@@ -1,4 +1,4 @@
-/* Copyright (c) 2009-2011, Nathan Freitas, The Guardian Project - http://openideals.com/guardian */
+/* Copyright (c) 2009, Nathan Freitas, The Guardian Project - http://openideals.com/guardian */
 /* See LICENSE for licensing information */
 /** SOCKS aware echo client*/
 
