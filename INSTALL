@@ -1,0 +1,34 @@
+
+Orbot: Android Onion Routing Robot
+***********************************************
+This is a freely licensed open-source application developed for the 
+Android platform, that acts as a front-end to the Tor binary application.
+Orbot also provides an HTTP Proxy for connecting web browsers and other
+HTTP client applications into the Tor SOCKS interface. 
+
+*** PreReqs ***
+You need the Android Developer SDK to compile and build the APK file: http://developer.android.com/
+The project files including in this distribution are meant to be used with Eclipse: http://eclipse.org/
+
+*** How to use ***
+Currently, Orbot will work with any application that supports using an HTTP or SOCKS Proxy.
+Once you start Tor using Orbot, you can then point your application to HTTP port 8118 or SOCKS port 9050
+on localhost IP 127.0.0.1.
+
+You can also set the Android system-wide HTTP proxy using the Mobile Network APN:
+Settings->Mobile networks->Access Point Names->(select your Carrier APN):
+
+Proxy: 127.0.0.1
+Port:8118
+
+** A Few Notes **
+
+To ensure you are connected to the Tor network, you should browse to https://check.torproject.org
+
+The first time you activate Orbot, it may take a while to connect to Tor. Check the message log to
+ensure you are "100% Bootstrapped".
+
+
+***********************************************
+
+/* Copyright (c) 2009, Nathan Freitas, The Guardian Project - http://openideals.com/guardian */
