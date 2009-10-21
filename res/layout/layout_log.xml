@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    
+     
+        <ScrollView  android:layout_height="380px"
+            android:layout_width="fill_parent"  android:id="@+id/logScrollView">
+            
+            <TextView android:id="@+id/messageLog"
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
+            android:layout_weight="1.0"
+            />	
+            
+        </ScrollView>
+            
+          <Button android:id="@+id/btnLogClose" 
+            android:layout_width="fill_parent" 
+            android:layout_height="40px" 
+             android:text="Close Log"        
+             android:layout_margin="0sp"
+      
+           
+             
+            />
+</LinearLayout>
