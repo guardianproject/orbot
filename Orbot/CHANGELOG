@@ -1,0 +1,6 @@
+
+Changes in version 0.0.1-alpha - 2009-10-21
+- First code release
+- Major Features: Tor binary application is fully operational, UI: Start/Stop Tor, View Message Log, View Settings (torrc)
+
+
