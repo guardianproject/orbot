@@ -97,4 +97,4 @@ Finally, we'll make a proper Android package with ant and the Android App SDK:
 	$APP_SDK/android update project --name Orbot --target 1 --path .
 	ant release
 
-This will produce an unsigned Tor package.
+This will produce an unsigned Tor package in ./bin/Orbot-unsigned.apk!
