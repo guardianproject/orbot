@@ -1,0 +1,26 @@
+This is an Android port/fork of: http://code.google.com/p/jsocks-mirror/
+
+jsocks-mirror
+Pure Java SOCKS client and server mirrored from the sourceforge project 
+
+Implements RFC1928 SOCKS protocol in both server and client form. Pure Java implementation that is easy to understand and easy to modify.
+
+Some features:
+
+   1. RFC1929 SOCKS 5 Auth
+   2. SOCKS4 protocol
+   3. Client code supports ATYP = 3 (DNS remote resolution).
+   4. Full server implemenation. Its easy to create SOCKS servers that have custom authentication and firewall mechanisms. This is a great way to write custom VPN type software: 
+
+This is a mirror from the JSOCKS sourceforge project. That project has had no updates since 2000. If I can get a hold of Kirill, I will delete this project. Google has made updates and is using this mirror to distribute our changes per the LGPL. Overall though, I hope we can continue to move this project forward.
+
+Some changes Google has made:
+
+    * Java style package names
+    * Fixes to SOCKS client to support JDK 1.4 sockets concept of "connect()"
+    * Log 4J logging instead of system.out.
+    * Better logging statements through the ProxyServer class. 
+
+Original JSOCKS Sourceforge Project Page: https://sourceforge.net/projects/jsocks/
+
+Original JSOCKS homepage: http://jsocks.sourceforge.net 
