@@ -48,12 +48,16 @@ We need to set to environment variables for droid-gcc:
 	export DROID_ROOT=~/mydroid/
 	export DROID_TARGET=generic
 
+# XXX TODO:
+# Do we need this?
 Build zlib:
 	cd ~/mydroid/external/zlib
 	export ZLIBDIR=`pwd`
 	CC=droid-gcc LD=droid-ld ./configure
 	make
 
+# XXX TODO:
+# Do we need this?
 Build openssl:
 	cd ~/mydroid/external/openssl/include/openssl/
 	export OPENSSLDIR=`pwd`
@@ -63,10 +67,11 @@ Build openssl:
 Fetch and build libevent:
 
 	cd ~/mydroid/external/libevent
-	svn co https://levent.svn.sourceforge.net/svnroot/levent .
-	cd trunk/libevent/
+	svn co https://levent.svn.sourceforge.net/svnroot/levent/tags/release-1.4.12-stable/libevent/ .
 	export LIBEVENTDIR=`pwd`
 	./autogen.sh
+	# http://pastebin.ca/1577159
+	patch < /tmp/libevent-patch
 	CC=droid-gcc LD=droid-ld ./configure --host=arm-none-linux-gnueabi
 	make
 
