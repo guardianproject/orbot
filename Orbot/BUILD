@@ -48,6 +48,18 @@ We need to set to environment variables for droid-gcc:
 	export DROID_ROOT=~/mydroid/
 	export DROID_TARGET=generic
 
+Build zlib:
+	cd ~/mydroid/external/zlib
+	export ZLIBDIR=`pwd`
+	CC=droid-gcc LD=droid-ld ./configure
+	make
+
+Build openssl:
+	cd ~/mydroid/external/openssl/include/openssl/
+	export OPENSSLDIR=`pwd`
+	CC=droid-gcc LD=droid-ld ./configure
+
+
 Fetch and build libevent:
 
 	cd ~/mydroid/external/libevent
