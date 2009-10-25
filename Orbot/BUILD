@@ -82,7 +82,7 @@ that will handle basic Tor controlling features.
 
 Finally, we'll make a proper Android package with ant and the Android App SDK:
 
-	export APP_SDK=/home/rorreoi/Documents/projects/android/android-sdk-linux_x86-1.5_r3/tools
+	export APP_SDK=~/Documents/projects/android/android-sdk-linux_x86-1.5_r3/tools
 	cd Orbot/
 	cp ~/mydroid/external/tor/tor/src/or/tor assets/tor
 	$APP_SDK/android update project --name Orbot --target 1 --path .
