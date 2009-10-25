@@ -4,7 +4,7 @@ source.
 Please install the following prerequisites (instructions for each follows):
 	Android OS SDK
 	droid-wrapper: http://github.com/tmurakam/droid-wrapper
-	libevent source
+	libevent source (1.4.12-stable)
 	Tor source (most recent git master branch)
 
 Install and prepare the Android OS SDK ( http://source.android.com/download )
@@ -48,32 +48,20 @@ We need to set to environment variables for droid-gcc:
 	export DROID_ROOT=~/mydroid/
 	export DROID_TARGET=generic
 
-# XXX TODO:
-# Do we need this?
-Build zlib:
-	cd ~/mydroid/external/zlib
-	export ZLIBDIR=`pwd`
-	CC=droid-gcc LD=droid-ld ./configure
-	make
-
-# XXX TODO:
-# Do we need this?
-Build openssl:
-	cd ~/mydroid/external/openssl/include/openssl/
-	export OPENSSLDIR=`pwd`
-	CC=droid-gcc LD=droid-ld ./configure
-
-
 Fetch and build libevent:
 
 	cd ~/mydroid/external/libevent
 	svn co https://levent.svn.sourceforge.net/svnroot/levent/tags/release-1.4.12-stable/libevent/ .
 	export LIBEVENTDIR=`pwd`
 	./autogen.sh
-	# http://pastebin.ca/1577159
+	# http://pastebin.ca/1577207
 	patch < /tmp/libevent-patch
 	CC=droid-gcc LD=droid-ld ./configure --host=arm-none-linux-gnueabi
 	make
+
+Copy over the libevent library:
+
+	cp .libs/libevent.a ~/mydroid/out/target/product/generic/obj/lib
 
 Fetch and build Tor:
 
