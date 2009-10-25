@@ -28,7 +28,16 @@ on Debian Lenny:
 
 	export ANDROID_JAVA_HOME=$JAVA_HOME
 	cd ~/mydroid
+
+	# This takes a long while...
 	make
+
+Install droid-wrapper:
+
+	cd /tmp
+	git clone git://github.com/tmurakam/droid-wrapper.git
+	cd droid-wrapper
+	sudo make install
 
 XXX TODO: Explain build process for making a static Tor with our libevent, etc.
 XXX TODO: Explain build process for making a .apk file for install.
