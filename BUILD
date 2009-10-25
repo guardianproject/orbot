@@ -81,10 +81,18 @@ At this point, you'll have a Tor binary that can be run on an Android handset.
 This isn't enough though and we'll now sew up the binary into a small package
 that will handle basic Tor controlling features.
 
+We need to build our Java SOCKS library:
+
+	# If you're in Orbot's directory already...
+	cd ../asocks/
+	ant compile
+	ant jar
+	cp bin/jar/asocks.jar ../Orbot/libs
+
 Finally, we'll make a proper Android package with ant and the Android App SDK:
 
 	export APP_SDK=~/Documents/projects/android/android-sdk-linux_x86-1.5_r3/tools
-	cd Orbot/
+	cd ../Orbot/
 	cp ~/mydroid/external/tor/tor/src/or/tor assets/tor
 	$APP_SDK/android update project --name Orbot --target 1 --path .
 	ant release
