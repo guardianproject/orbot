@@ -1,7 +1,7 @@
 This document explains how to properly build an Android package of Orbot from
 source.
 
-Please install the following prerequisites:
+Please install the following prerequisites (instructions for each follows):
 	Android OS SDK
 	droid-wrapper: http://github.com/tmurakam/droid-wrapper
 	libevent source
@@ -39,11 +39,40 @@ Install droid-wrapper:
 	cd droid-wrapper
 	sudo make install
 
-XXX TODO: Explain build process for making a static Tor with our libevent, etc.
-zlib and OpenSSL are included with the Android OS SDK.
+zlib and OpenSSL are included with the Android OS SDK. You'll need to build
+libevent and finally Tor. We'll create an externals directory for this code:
 
-Build libevent:
+	mkdir -p ~/mydroid/external/{libevent,tor}
 
-Build Tor:
+We need to set to environment variables for droid-gcc:
+	export DROID_ROOT=~/mydroid/
+	export DROID_TARGET=generic
+
+Fetch and build libevent:
+
+	cd ~/mydroid/external/libevent
+	svn co https://levent.svn.sourceforge.net/svnroot/levent .
+	cd trunk/libevent/
+	export LIBEVENTDIR=`pwd`
+	./autogen.sh
+	CC=droid-gcc LD=droid-ld ./configure --host=arm-none-linux-gnueabi
+	make
+
+Fetch and build Tor:
+
+	export OPENSSLDIR=`cd ~/mydroid/external/openssl/include/ && pwd`
+	export ZLIBDIR=`cd ~/mydroid/external/zlib && pwd`
+
+	cd ~/mydroid/external/tor
+	git clone https://git.torproject.org/git/tor.git
+	cd tor/
+	CC=droid-gcc LD=droid-ld ./configure --host=arm-none-linux-gnueabi \
+	--with-libevent-dir=$LIBEVENTDIR --with-openssl-dir=$OPENSSLDIR \
+	--with-zlib-dir=$ZLIBDIR
+	make
+
+At this point, you'll have a Tor binary that can be run on an Android handset.
+This isn't enough though and we'll now sew up the binary into a small package
+that will handle basic Tor controlling features.
 
 XXX TODO: Explain build process for making a .apk file for install.
