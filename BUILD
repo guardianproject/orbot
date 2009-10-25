@@ -2,9 +2,10 @@ This document explains how to properly build an Android package of Orbot from
 source.
 
 Please install the following prerequisites (instructions for each follows):
-	Android OS SDK
+	ant: http://ant.apache.org/
+	Android OS SDK: http://source.android.com/download
 	droid-wrapper: http://github.com/tmurakam/droid-wrapper
-	libevent source (1.4.12-stable)
+	libevent source (1.4.12-stable from svn)
 	Tor source (most recent git master branch)
 
 Install and prepare the Android OS SDK ( http://source.android.com/download )
@@ -54,7 +55,7 @@ Fetch and build libevent:
 	svn co https://levent.svn.sourceforge.net/svnroot/levent/tags/release-1.4.12-stable/libevent/ .
 	export LIBEVENTDIR=`pwd`
 	./autogen.sh
-	# http://pastebin.ca/1577207
+	# Put the contents of http://pastebin.ca/1577207 in /tmp/libevent-patch
 	patch < /tmp/libevent-patch
 	CC=droid-gcc LD=droid-ld ./configure --host=arm-none-linux-gnueabi
 	make
