@@ -12,7 +12,8 @@ on Debian Lenny:
 
 	sudo apt-get install git-core gnupg sun-java5-jdk flex bison gperf \
 		libsdl-dev libesd0-dev libwxgtk2.6-dev build-essential zip \
-		curl libncurses5-dev zlib1g-dev
+		curl libncurses5-dev zlib1g-dev valgrind
+	update-java-alternatives -s java-1.5.0-sun
 
 	curl http://android.git.kernel.org/repo >~/bin/repo
 	chmod a+x ~/bin/repo
@@ -26,7 +27,6 @@ on Debian Lenny:
 	# Paste in key from http://source.android.com/download next...
 	gpg --import
 
-	export ANDROID_JAVA_HOME=$JAVA_HOME
 	cd ~/mydroid
 
 	# This takes a long while...
@@ -40,4 +40,10 @@ Install droid-wrapper:
 	sudo make install
 
 XXX TODO: Explain build process for making a static Tor with our libevent, etc.
+zlib and OpenSSL are included with the Android OS SDK.
+
+Build libevent:
+
+Build Tor:
+
 XXX TODO: Explain build process for making a .apk file for install.
