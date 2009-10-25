@@ -80,4 +80,12 @@ At this point, you'll have a Tor binary that can be run on an Android handset.
 This isn't enough though and we'll now sew up the binary into a small package
 that will handle basic Tor controlling features.
 
-XXX TODO: Explain build process for making a .apk file for install.
+Finally, we'll make a proper Android package with ant and the Android App SDK:
+
+	export APP_SDK=/home/rorreoi/Documents/projects/android/android-sdk-linux_x86-1.5_r3/tools
+	cd Orbot/
+	cp ~/mydroid/external/tor/tor/src/or/tor assets/tor
+	$APP_SDK/android update project --name Orbot --target 1 --path .
+	ant release
+
+This will produce an unsigned Tor package.
