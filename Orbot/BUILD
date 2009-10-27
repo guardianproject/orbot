@@ -13,7 +13,8 @@ on Debian Lenny:
 
 	sudo apt-get install git-core gnupg sun-java5-jdk flex bison gperf \
 		libsdl-dev libesd0-dev libwxgtk2.6-dev build-essential zip \
-		curl libncurses5-dev zlib1g-dev valgrind
+		curl libncurses5-dev zlib1g-dev valgrind libtool automake \
+		ruby subversion
 	update-java-alternatives -s java-1.5.0-sun
 
 	curl http://android.git.kernel.org/repo >~/bin/repo
@@ -72,6 +73,7 @@ Fetch and build Tor:
 	cd ~/mydroid/external/tor
 	git clone https://git.torproject.org/git/tor.git
 	cd tor/
+	./autogen.sh
 	CC=droid-gcc LD=droid-ld ./configure --host=arm-none-linux-gnueabi \
 	--with-libevent-dir=$LIBEVENTDIR --with-openssl-dir=$OPENSSLDIR \
 	--with-zlib-dir=$ZLIBDIR
