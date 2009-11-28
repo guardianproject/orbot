@@ -1,6 +1,12 @@
+0.0.2 - 2009-11-27
+- Major improvement to the user interface including relative layout for different screens
+- New graphics resources
+- Implemented Tor Control Port using official Java library
+- Added 'clear' button to the log screen
+- Added 'save' and editable textbox for the settings screen
+- Moved screen navigation to a pop-up menu
 
 Changes in version 0.0.1-alpha - 2009-10-21
 - First code release
 - Major Features: Tor binary application is fully operational, UI: Start/Stop Tor, View Message Log, View Settings (torrc)
-
 

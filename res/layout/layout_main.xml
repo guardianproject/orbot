@@ -1,63 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<AbsoluteLayout
-android:id="@+id/widget29"
-android:layout_width="fill_parent"
-android:layout_height="fill_parent"
-xmlns:android="http://schemas.android.com/apk/res/android"
-android:background="#cccccc"
->
-<AbsoluteLayout
-android:id="@+id/topbox"
-android:layout_width="275px"
-android:layout_height="120px"
-android:layout_x="19px"
-android:layout_y="23px"
->
-<ImageView
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bgdarkdroid">
+    
+   <ScrollView android:id="@+id/mainview" 
+		android:orientation="vertical"
+		android:layout_width="fill_parent" 
+		android:layout_height="fill_parent">
+   <TableLayout android:id="@+id/mainLayout"
+			android:layout_gravity="center"
+			android:layout_height="wrap_content" 
+			android:layout_width="wrap_content">
+			<TableRow android:id="@+id/startRow">
+				<TableLayout
+					android:layout_gravity="center"
+					android:layout_height="wrap_content" 
+					android:layout_width="wrap_content">
+					<TableRow>
+					
+							
+							<ImageView
 android:id="@+id/imgStatus"
-android:layout_x="40px"
-android:layout_y="11px"
-android:layout_width="64px"
-android:layout_height="64px"
->
-</ImageView>
-<TextView
-android:id="@+id/lblStatus"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
-android:text="TextView"
-android:layout_x="111px"
-android:layout_y="39px"
-android:textColor="#333333"
->
-</TextView>
-</AbsoluteLayout>
-<Button
-android:id="@+id/btnStart"
-android:layout_width="205px"
-android:layout_height="wrap_content"
-android:text="Start Tor"
-android:layout_x="54px"
-android:layout_y="133px"
->
-</Button>
-<Button
-android:id="@+id/btnLog"
-android:layout_width="206px"
-android:layout_height="wrap_content"
-android:text="View Message Log"
-android:layout_x="54px"
-android:layout_y="221px"
->
-</Button>
-<Button
-android:id="@+id/btnSettings"
-android:layout_width="206px"
-android:layout_height="wrap_content"
-android:text="View Settings"
-android:layout_x="53px"
-android:layout_y="305px"
->
-</Button>
-</AbsoluteLayout>
+android:src="@drawable/toroff"/>
+					</TableRow>
+					<TableRow>
+						<TextView android:id="@+id/lblStatus"
+							android:text=" \n "
+							android:paddingTop="15px"
+							android:layout_gravity="center_horizontal"
+							android:textStyle="bold"
+							android:textColor="#ffffff" />
+					</TableRow>
+				</TableLayout>
+			</TableRow>
+			
+		</TableLayout>
+</ScrollView>
+
+
+       
+</LinearLayout>
+
 

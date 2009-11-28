@@ -91,6 +91,16 @@ We need to build our Java SOCKS library:
 	ant jar
 	cp bin/jar/asocks.jar ../Orbot/libs
 
+We need to get the TorControl library for Java (https://svn.torproject.org/svn/torctl/trunk/doc/howto.txt):
+
+	git clone git://git.torproject.org/git/jtorctl
+	cd jtorctl
+	mkdir bin
+	javac net/freehaven/tor/control/TorControlConnection.java -d bin
+	cd bin
+	jar cvf jtorctrl.jar *
+	cp jtorctrl.jar {Orbot Home}/libs
+	
 Finally, we'll make a proper Android package with ant and the Android App SDK:
 
 	export APP_SDK=~/Documents/projects/android/android-sdk-linux_x86-1.5_r3/tools
