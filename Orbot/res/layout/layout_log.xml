@@ -16,13 +16,11 @@
             
         </ScrollView>
             
-          <Button android:id="@+id/btnLogClose" 
-            android:layout_width="fill_parent" 
+         
+ <Button android:id="@+id/btnLogClear" 
             android:layout_height="40px" 
-             android:text="Close Log"        
+             android:text="Clear Log"        
              android:layout_margin="0sp"
-      
-           
-             
-            />
+            android:layout_width="fill_parent"/>
+
 </LinearLayout>
