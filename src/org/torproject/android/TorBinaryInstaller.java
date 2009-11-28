@@ -54,11 +54,13 @@ public class TorBinaryInstaller implements TorConstants {
 			streamToFile(zip.getInputStream(zipen),TORRC_INSTALL_PATH);
 			
 			zip.close();
+			
+			Log.i(LOG_TAG,"SUCCESS: unzipped tor binary from apk");
 	
 		}
 		catch (IOException ioe)
 		{
-			Log.i(LOG_TAG,"unable to unzip tor binary from apk",ioe);
+			Log.i(LOG_TAG,"FAIL: unable to unzip tor binary from apk",ioe);
 		
 		}
 	}

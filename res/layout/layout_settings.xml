@@ -8,21 +8,21 @@
         <ScrollView  android:layout_height="380px"
             android:layout_width="fill_parent">
             
-            <TextView android:id="@+id/textSettings"
+            <EditText android:id="@+id/textSettings"
             android:layout_height="fill_parent"
             android:layout_width="fill_parent"
             android:layout_weight="1.0"
+            android:singleLine="false"
             />	
             
         </ScrollView>
             
-          <Button android:id="@+id/btnSettingsClose" 
+          <Button android:id="@+id/btnSettingsSave" 
             android:layout_width="fill_parent" 
             android:layout_height="40px" 
-             android:text="Close Log"        
+             android:text="Save Settings"        
              android:layout_margin="0sp"
       
-           
              
             />
 </LinearLayout>

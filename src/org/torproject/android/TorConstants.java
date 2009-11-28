@@ -28,6 +28,9 @@ public interface TorConstants {
 
 	//where to send the notices log
 	public final static String TOR_LOG_PATH = TOR_HOME + "notices.log";
+	
+	//control port cookie path
+	public final static String TOR_CONTROL_AUTH_COOKIE = TOR_HOME + "data/control_auth_cookie";
 
 	//how to launch tor
 	public final static String TOR_COMMAND_LINE_ARGS = "-f " + TORRC_INSTALL_PATH;
@@ -55,5 +58,16 @@ public interface TorConstants {
 	
 	//what is says!
 	public final static String IP_LOCALHOST = "127.0.0.1";
+	public final static int TOR_CONTROL_PORT = 9051;
+	public final static int UPDATE_TIMEOUT = 3000;
 	
+	//status to communicate state
+    public final static int STATUS_OFF = 0;
+    public final static int STATUS_ON = 1;
+    public final static int STATUS_STARTING_UP = 2;
+    public final static int STATUS_SHUTTING_DOWN = 3;
+    
+    //control port 
+    public final static String TOR_CONTROL_PORT_MSG_BOOTSTRAP_DONE = "Bootstrapped 100%";
+    
 }

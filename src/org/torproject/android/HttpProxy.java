@@ -51,13 +51,20 @@ package org.torproject.android;
  *
  * Julian Robichaux -- http://www.nsftools.com
  */
-import java.io.*;
-import java.net.*;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.lang.reflect.Array;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.UnknownHostException;
 
-import net.sourceforge.jsocks.socks.Socks4Proxy;
 import net.sourceforge.jsocks.socks.Socks5Proxy;
 import net.sourceforge.jsocks.socks.SocksSocket;
+
 
 public class HttpProxy extends Thread
 {

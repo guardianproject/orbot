@@ -5,11 +5,20 @@ package org.torproject.android;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.Socket;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 import java.util.StringTokenizer;
 
+import net.freehaven.tor.control.EventHandler;
+import net.freehaven.tor.control.NullEventHandler;
+import net.freehaven.tor.control.TorControlConnection;
 import net.sourceforge.jsocks.socks.Proxy;
 import android.app.Service;
 import android.content.Intent;
@@ -28,22 +37,29 @@ public class TorService extends Service implements TorConstants
 	
 	private static Process procTor = null;
 	
+	private static int currentStatus = STATUS_OFF;
+	
+	private static TorControlConnection conn = null;
+	
     /** Called when the activity is first created. */
     @Override
     public void onCreate() {
     	super.onCreate();
        
-    
     }
     
-    public static boolean isRunning ()
+
+    public static int getStatus ()
     {
-    	int procId = findProcessId(TorConstants.TOR_BINARY_INSTALL_PATH);
-
-		return (procId != -1);
-		
+    	try {
+			getTorStatus();
+		} catch (IOException e) {
+			Log.i(TAG,"Unable to get tor status",e);
+		}
+    	
+    	return currentStatus;
+    	
     }
-
    
     
     /* (non-Javadoc)
@@ -74,13 +90,18 @@ public class TorService extends Service implements TorConstants
 
 	private void startService ()
     {
-       Log.i(TAG,"Tor thread started");
-            
-        	
-       initTor();
-        
-       
-       setupWebProxy(true);
+	   Thread thread = new Thread ()
+	   {
+		   public void run ()
+		   {
+	   
+		   Log.i(TAG,"Tor thread started");
+      
+		   initTor();
+		   }
+	   };
+	   
+	   thread.start();
      
        
     }
@@ -90,9 +111,25 @@ public class TorService extends Service implements TorConstants
     public void onDestroy ()
     {
     	
-    	killTorProcess ();
-		setupWebProxy(false);  
-		
+    }
+    
+    public static void stopTor ()
+    {
+    	currentStatus = STATUS_SHUTTING_DOWN;
+    	
+    	Thread thread = new Thread ()
+    	{
+    		public void run ()
+    		{
+		    	killTorProcess ();
+				
+				setupWebProxy(false);  
+				
+				currentStatus = STATUS_OFF;
+    		}
+    	};
+    	
+    	thread.start();
     }
     
  
@@ -100,7 +137,7 @@ public class TorService extends Service implements TorConstants
     	ACTIVITY = activity;
     }
    
-    private void setupWebProxy (boolean enabled)
+    private static void setupWebProxy (boolean enabled)
     {
     	if (enabled)
     	{
@@ -140,90 +177,141 @@ public class TorService extends Service implements TorConstants
 
     		if (webProxy != null)
     		{
-    			showToast("Tor is disabled - browsing is not anonymous!");
-    			webProxy.setDoSocks(false);
+    			//logNotice("Tor is disabled - browsing is not anonymous!");
+    			//webProxy.setDoSocks(false);
     			
     		}
     	}
     	
     }
     
-    private void killTorProcess ()
+    public static void reloadConfig ()
+    {
+    	try
+		{
+	    	if (conn == null)
+			{
+				initControlConnection ();
+			}
+		
+			if (conn != null)
+			{
+				 conn.signal("RELOAD");
+			}
+		}
+    	catch (Exception e)
+    	{
+    		Log.i(TAG,"Unable to reload configuration",e);
+    	}
+    }
+    
+    private void shutdownTor ()
+    {
+    	try
+		{
+        	currentStatus = STATUS_SHUTTING_DOWN;
+
+			if (conn == null)
+			{
+				initControlConnection ();
+			}
+		
+			if (conn != null)
+			{
+				 conn.signal("SHUTDOWN");
+			}
+		}
+		catch (Exception e)
+		{
+		}
+    }
+    private static void killTorProcess ()
     {
 		//doCommand(SHELL_CMD_KILLALL, CHMOD_EXE_VALUE, TOR_BINARY_INSTALL_PATH);
-		
+    	
+    	/*
     	if (procTor != null)
     	{
     		Log.i(TAG,"shutting down Tor process...");
-    		
     		procTor.destroy();
+    		
     		
     		try {
     			procTor.waitFor();
     		}
-    		catch(Exception e)
+    		catch(Exception e2)
     		{
-    			e.printStackTrace();
+    			e2.printStackTrace();
     		}
     		
     		int exitStatus = procTor.exitValue();
     		Log.i(TAG,"Tor exit: " + exitStatus);
-
+			
+    		
     		procTor = null;
     		
-    	}
+    	}*/
     		
 		int procId = findProcessId(TorConstants.TOR_BINARY_INSTALL_PATH);
 
 		if (procId != -1)
 		{
+			
 			Log.i(TAG,"Found Tor PID=" + procId + " - killing now...");
 			
 			doCommand(SHELL_CMD_KILLALL, procId + "");
+
 		}
 		
-		if (ACTIVITY != null)
-			((TorControlPanel)ACTIVITY).setUIState();
-
-    	
+		conn = null;
+		
     }
    
-    private void showToast (String msg)
+    private static void logNotice (String msg)
     {
 
-    	Toast toast = Toast.makeText(ACTIVITY, msg, Toast.LENGTH_LONG);
-		toast.show();
+    	Log.i(TAG, msg);
 		
+    }
+    
+    private void checkBinary ()
+    {
+
+		boolean binaryExists = new File(TOR_BINARY_INSTALL_PATH).exists();
+		
+		if (!binaryExists)
+		{
+			killTorProcess ();
+			
+			TorBinaryInstaller installer = new TorBinaryInstaller(); 
+			installer.start(true);
+		
+			binaryExists = new File(TOR_BINARY_INSTALL_PATH).exists();
+    		if (binaryExists)
+    		{
+    			logNotice("Tor binary installed!");
+    			
+    		}
+    		else
+    		{
+    			logNotice("Tor binary install FAILED!");
+    			return;
+    		}
+		}
+		
+		Log.i(TAG,"Setting permission on Tor binary");
+		doCommand(SHELL_CMD_CHMOD, CHMOD_EXE_VALUE + ' ' + TOR_BINARY_INSTALL_PATH);
     }
     
     public void initTor ()
     {
     	try {
     		
-    		
-    		boolean binaryExists = new File(TOR_BINARY_INSTALL_PATH).exists();
-    		
-    		if (!binaryExists)
-    		{
-    			TorBinaryInstaller installer = new TorBinaryInstaller(); 
-    			installer.start(false);
-    		
-    			binaryExists = new File(TOR_BINARY_INSTALL_PATH).exists();
-	    		if (binaryExists)
-	    		{
-	    			showToast("Tor binary installed!");
-	    		}
-	    		else
-	    		{
-	    			showToast("Tor binary install FAILED!");
-	    			return;
-	    		}
-    		}
-    		
-    		Log.i(TAG,"Setting permission on Tor binary");
-    		doCommand(SHELL_CMD_CHMOD, CHMOD_EXE_VALUE + ' ' + TOR_BINARY_INSTALL_PATH);
-			
+    		currentStatus = STATUS_STARTING_UP;
+
     		killTorProcess ();
+    		
+    		checkBinary ();
     		
     		doCommand(SHELL_CMD_RM,TOR_LOG_PATH);
     		
@@ -232,11 +320,13 @@ public class TorService extends Service implements TorConstants
 		
     		//Log.i(TAG,"Tor process id=" + procTor.);
     		
-			showToast("Tor is starting up...");
+    		currentStatus = STATUS_STARTING_UP;
+    		logNotice("Tor is starting up...");
 			
-			((TorControlPanel)ACTIVITY).setUIState();
-			
-		} catch (Exception e) {
+			Thread.sleep(2000);
+			initControlConnection ();
+		
+    	} catch (Exception e) {
 			
 			Log.w(TAG,"unable to start Tor Process",e);
 		
@@ -311,7 +401,7 @@ public class TorService extends Service implements TorConstants
 
 	}
 	
-	public Process doCommand(String command, String arg1) 
+	public static Process doCommand(String command, String arg1) 
 	{
 		
 		Runtime r = Runtime.getRuntime();
@@ -335,57 +425,161 @@ public class TorService extends Service implements TorConstants
         return child;
 
 	}
-	/*
-	public static String doCommand(String command, String arg0, String arg1, boolean logOutput) {
-		try {
-			// android.os.Exec is not included in android.jar so we need to use reflection.
-			Class execClass = Class.forName("android.os.Exec");
-			Method createSubprocess = execClass.getMethod("createSubprocess",
-			String.class, String.class, String.class, int[].class);
-			Method waitFor = execClass.getMethod("waitFor", int.class);
-			
-			// Executes the command.
-			// NOTE: createSubprocess() is asynchronous.
-			int[] pid = new int[1];
-			FileDescriptor fd = (FileDescriptor)createSubprocess.invoke(
-			null, command, arg0, arg1, pid);
-			
-			StringBuffer output = new StringBuffer();
-
-			if (logOutput)
-			{
-				// Reads stdout.
-				// NOTE: You can write to stdin of the command using new FileOutputStream(fd).
-				FileInputStream in = new FileInputStream(fd);
-				BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-				try {
-					String line;
-					while ((line = reader.readLine()) != null) {
-						output.append(line);
-						output.append('\n');
-					}
-				} catch (IOException e) {
-					// It seems IOException is thrown when it reaches EOF.
-					Log.e(TAG, "error reading output file", e);
 	
-				}
+	public static String generateHashPassword ()
+	{
+		/*
+		PasswordDigest d = PasswordDigest.generateDigest();
+	      byte[] s = d.getSecret(); // pass this to authenticate
+	      String h = d.getHashedPassword(); // pass this to the Tor on startup.
+*/
+		return null;
+	}
+	
+	public static synchronized void initControlConnection () throws Exception, RuntimeException
+	{
+		if (conn == null)
+		{
+			Log.i(TAG,"Connecting to control port: " + TOR_CONTROL_PORT);
+			Socket s = new Socket(IP_LOCALHOST, TOR_CONTROL_PORT);
+	        conn = TorControlConnection.getConnection(s);
+	      //  conn.authenticate(new byte[0]); // See section 3.2
+	        
+	        Log.i(TAG,"SUCCESS connected to control port");
+	        
+	        //
+	        File fileCookie = new File(TOR_CONTROL_AUTH_COOKIE);
+	        byte[] cookie = new byte[(int)fileCookie.length()];
+	        new FileInputStream(new File(TOR_CONTROL_AUTH_COOKIE)).read(cookie);
+	        conn.authenticate(cookie);
+	        
+	        Log.i(TAG,"SUCCESS authenticated to control port");
+	        
+	        addEventHandler();
+		}
+		
+
+	}
+	
+	public void modifyConf () throws IOException
+	{
+	       // Get one configuration variable.
+	       List options = conn.getConf("contact");
+	       // Get a set of configuration variables.
+	      // List options = conn.getConf(Arrays.asList(new String[]{
+	           //   "contact", "orport", "socksport"}));
+	       // Change a single configuration variable
+	       conn.setConf("BandwidthRate", "1 MB");
+	       // Change several configuration variables
+	       conn.setConf(Arrays.asList(new String[]{
+	              "HiddenServiceDir /home/tor/service1",
+	              "HiddenServicePort 80",
+	       }));
+	       // Reset some variables to their defaults
+	       conn.resetConf(Arrays.asList(new String[]{
+	              "contact", "socksport"
+	       }));
+	       // Flush the configuration to disk.
+	       conn.saveConf();
+
+	}
+	
+	private static void getTorStatus () throws IOException
+	{
+		try
+		{
+			 
+			if (conn == null && (currentStatus == STATUS_STARTING_UP || currentStatus == STATUS_ON))
+			{
 				
-				// Waits for the command to finish.
-				waitFor.invoke(null, pid[0]);
+					initControlConnection ();
+				
 			}
 			
+		
+			if (conn != null)
+			{
+				 // get a single value.
+			      
+			       // get several values
+			       
+			       if (currentStatus == STATUS_STARTING_UP)
+			       {
+				       //Map vals = conn.getInfo(Arrays.asList(new String[]{
+				         // "status/bootstrap-phase", "status","version"}));
 			
-			
-			// send output to the textbox
-			return output.toString();
-			
-		} 
+				       String bsPhase = conn.getInfo("status/bootstrap-phase");
+				    //   Log.i(TAG, "bootstrap-phase: " + bsPhase);
+				       
+				       if (bsPhase.indexOf("PROGRESS=100")!=-1)
+				       {
+				    	   currentStatus = STATUS_ON;
+				       }
+			       }
+			       else
+			       {
+			    	 //  String status = conn.getInfo("status/circuit-established");
+			    	 //  Log.i(TAG, "status/circuit-established=" + status);
+			       }
+			}
+		}
 		catch (Exception e)
 		{
-			Log.i(TAG, "unable to execute command",e);
-			e.printStackTrace();
-			return null;
+			Log.i(TAG, "Unable to get Tor status from control port");
 		}
-	}*/
+		
+	}
 	
+	/*
+	 * The recognized signal names are:
+       "RELOAD" -- Reload configuration information
+       "SHUTDOWN" -- Start a clean shutdown of the Tor process
+       "DUMP" -- Write current statistics to the logs
+       "DEBUG" -- Switch the logs to debugging verbosity
+       "HALT" -- Stop the Tor process immediately.
+
+	 */
+	public void sendSignal () throws IOException
+	{
+		
+		 conn.signal("RELOAD");
+
+	}
+	
+	public static void addEventHandler () throws IOException
+	{
+	       // We extend NullEventHandler so that we don't need to provide empty
+	       // implementations for all the events we don't care about.
+	       // ...
+        Log.i(TAG,"adding control port event handler");
+
+		
+	       EventHandler eh = new NullEventHandler() 
+	       {
+	          public void message(String severity, String msg) {
+	            
+	        	 // Log.println(priority, tag, msg)("["+severity+"] "+msg);
+	              //Toast.makeText(, text, duration)
+	        //      Toast.makeText(ACTIVITY, severity + ": " + msg, Toast.LENGTH_SHORT);
+	              Log.i(TAG, "[Tor Control Port] " + severity + ": " + msg);
+	              
+	              if (msg.indexOf(TOR_CONTROL_PORT_MSG_BOOTSTRAP_DONE)!=-1)
+	              {
+	            	  currentStatus = STATUS_ON;
+	            	  setupWebProxy(true);
+
+	              }
+	              
+	          }
+	       };
+	       
+	       conn.setEventHandler(eh);
+	       conn.setEvents(Arrays.asList(new String[]{
+	          "ORCONN", "CIRC", "INFO", "NOTICE", "ERR"}));
+	      // conn.setEvents(Arrays.asList(new String[]{
+	        //  "DEBUG", "INFO", "NOTICE", "WARN", "ERR"}));
+
+	        Log.i(TAG,"SUCCESS added control port event handler");
+
+	}
 }
