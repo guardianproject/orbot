@@ -75,9 +75,9 @@ public class HttpProxy extends Thread
 	private String fwdServer = "";
 	private int fwdPort = 0;
 	private int ptTimeout = ProxyThread.DEFAULT_TIMEOUT;
-	private int debugLevel = 0;
+	private int debugLevel = 1;
 	private PrintStream debugOut = System.out;
-	
+	private boolean keepRunning = true;
 	private boolean doSocks = false;
 	
 	private Socks5Proxy sProxy = null;
@@ -220,6 +220,7 @@ public class HttpProxy extends Thread
 	public void closeSocket ()
 	{
 		try {
+			keepRunning = false;
 			// close the open server socket
 			server.close();
 			// send it a message to make it stop waiting immediately
@@ -245,7 +246,7 @@ public class HttpProxy extends Thread
 			// client connections
 			server = new ServerSocket(thisPort);
 			
-			while (true)
+			while (keepRunning)
 			{
 				Socket client = server.accept();
 				ProxyThread t = new ProxyThread(client, doSocks, sProxy);

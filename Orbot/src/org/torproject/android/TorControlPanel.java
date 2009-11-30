@@ -8,6 +8,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
+
+
+import net.freehaven.tor.control.EventHandler;
 
 
 import android.app.Activity;
@@ -15,24 +19,41 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.webkit.JsResult;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class TorControlPanel extends Activity implements OnClickListener, TorConstants
+public class TorControlPanel extends Activity implements OnClickListener, TorConstants, EventHandler
 {
 	
-	private final static String LOG_TAG = "Tor";
+	private final static String TAG = "Tor";
 	
-	private Intent torService = null;
+	private static Intent torService = null;
 	
 	private boolean updateLog = false;
 	private boolean updateStatus = false;
+	
+	private TextView lblStatus = null;
+	private ImageView imgStatus = null;
+	private String txtStatus = "";
+	private int torStatus = STATUS_OFF;
+	
+	private Thread threadStatus = null;
+	
+    private WebView mWebView;
+
+	private int currentView = 0;
 	
     /** Called when the activity is first created. */
     @Override
@@ -44,7 +65,7 @@ public class TorControlPanel extends Activity implements OnClickListener, TorCon
         
         showMain();
 
-        
+      
     }
     
     
@@ -54,12 +75,12 @@ public class TorControlPanel extends Activity implements OnClickListener, TorCon
         MenuItem mItem = menu.add(0, 1, Menu.NONE, "Home");
         MenuItem mItem2 = menu.add(0, 2, Menu.NONE, "Settings");
         MenuItem mItem3 = menu.add(0, 3, Menu.NONE, "Log");
-       MenuItem mItem4 = menu.add(0, 4, Menu.NONE, "Browser");
+       MenuItem mItem4 = menu.add(0, 4, Menu.NONE, "Help");
        
       mItem.setIcon(R.drawable.ic_menu_home);
        mItem2.setIcon(R.drawable.ic_menu_register);
        mItem3.setIcon(R.drawable.ic_menu_reports);
-       mItem4.setIcon(R.drawable.ic_menu_goto);
+       mItem4.setIcon(R.drawable.ic_menu_about);
        
         return true;
     }
@@ -86,12 +107,28 @@ public class TorControlPanel extends Activity implements OnClickListener, TorCon
 		}
 		else if (item.getItemId() == 4)
 		{
-			Toast.makeText(this, "Not yet implemented!", Toast.LENGTH_SHORT);
+			this.showWeb(DEFAULT_HOME_PAGE);
 		}
 		
         return true;
 	}
 	
+	public boolean onKeyDown(int keyCode, KeyEvent event){
+		if(keyCode==KeyEvent.KEYCODE_BACK){
+			if(currentView != R.layout.layout_main){
+					
+					showMain ();
+					
+					return true;
+			}
+			else{
+				return super.onKeyDown(keyCode, event);
+			}
+		}
+	
+		return super.onKeyDown(keyCode, event);
+		
+	}
  
     /* (non-Javadoc)
 	 * @see android.app.Activity#onPause()
@@ -100,6 +137,8 @@ public class TorControlPanel extends Activity implements OnClickListener, TorCon
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
+		
+		TorService.setStatus(torStatus);
 	}
 
 
@@ -113,7 +152,9 @@ public class TorControlPanel extends Activity implements OnClickListener, TorCon
 		// TODO Auto-generated method stub
 		super.onResume();
 		
-		checkStatus ();
+		torStatus = TorService.getStatus();
+		
+		updateStatus ();
 	}
 
 
@@ -127,7 +168,10 @@ public class TorControlPanel extends Activity implements OnClickListener, TorCon
 		// TODO Auto-generated method stub
 		super.onStart();
 		
-		checkStatus ();
+		torStatus = TorService.getStatus();
+
+		
+		updateStatus ();
 	}
 
 
@@ -140,6 +184,8 @@ public class TorControlPanel extends Activity implements OnClickListener, TorCon
 	protected void onStop() {
 		// TODO Auto-generated method stub
 		super.onStop();
+		
+		TorService.setStatus(torStatus);
 	}
 
 
@@ -152,38 +198,47 @@ public class TorControlPanel extends Activity implements OnClickListener, TorCon
 		updateLog = false;
 		updateStatus = true;
 		
-    	setContentView(R.layout.layout_main);
+		currentView = R.layout.layout_main;
+    	setContentView(currentView);
     	
     	findViewById(R.id.imgStatus).setOnClickListener(this);
-    	    	
-		
-		Thread thread = new Thread ()
-		{
-			public void run ()
-			{
-				
-				while (updateStatus)
-				{
-					handlerStatus.sendEmptyMessage(0);
-					try {
-						Thread.sleep(UPDATE_TIMEOUT);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-			}
-		};
-		
-		thread.start();
+    	
+    	lblStatus = (TextView)findViewById(R.id.lblStatus);
+    	imgStatus = (ImageView)findViewById(R.id.imgStatus);
+    	
+    	updateStatus();
     }
+	
+	private void showWeb (String url)
+	{
+		
+		
+		currentView =R.layout.layout_web;
+		 setContentView(currentView);
+	        
+	        mWebView = (WebView) findViewById(R.id.webview);
+
+	        WebSettings webSettings = mWebView.getSettings();
+	        webSettings.setSavePassword(false);
+	        webSettings.setSaveFormData(false);
+	        webSettings.setJavaScriptEnabled(true);
+	      
+
+	        mWebView.setWebChromeClient(new MyWebChromeClient());
+	        
+	        mWebView.loadUrl(url);
+	
+		
+	}
+	
 	
 	/*
 	 * Show the message log UI
 	 */
 	private void showMessageLog ()
 	{
-		setContentView(R.layout.layout_log);
+		currentView = R.layout.layout_log;
+		setContentView(currentView);
 		((Button)findViewById(R.id.btnLogClear)).setOnClickListener(this);
 
 		updateStatus = false;
@@ -252,8 +307,9 @@ public class TorControlPanel extends Activity implements OnClickListener, TorCon
 		        @Override
 			    public void handleMessage(Message msg) {
 		
-		        	checkStatus();
-		
+		        	updateStatus();
+		        	
+		        	// Toast.makeText(this,txtStatus, Toast.LENGTH_SHORT).show();
 		        }
 		
 		    };
@@ -268,7 +324,8 @@ public class TorControlPanel extends Activity implements OnClickListener, TorCon
 		updateStatus = false;
 		updateLog = false;
 		
-		setContentView(R.layout.layout_settings);
+		currentView = R.layout.layout_settings;
+		setContentView(currentView);
 
 		
 		String output = loadTextFile(TORRC_INSTALL_PATH);
@@ -283,40 +340,36 @@ public class TorControlPanel extends Activity implements OnClickListener, TorCon
     /*
      * Set the state of the running/not running graphic and label
      */
-    public void checkStatus ()
+    public void updateStatus ()
     {
-    	
-    	
-    	TextView lblStatus = (TextView)findViewById(R.id.lblStatus);
-    	ImageView imgStatus = (ImageView)findViewById(R.id.imgStatus);
     	
     	if (imgStatus != null)
     	{
-    		int torStatus = TorService.getStatus();
     		
 	    	if (torStatus == STATUS_ON)
 	    	{
 	    		imgStatus.setImageResource(R.drawable.toron);
-	    		lblStatus.setText("Tor is running\n- touch to stop -");
+	    		lblStatus.setText("ORbot is running\n- touch the bot to stop -");
 	    		updateStatus = false;
 	    	}
 	    	else if (torStatus == STATUS_STARTING_UP)
 	    	{
 	    		imgStatus.setImageResource(R.drawable.torstarting);
-	    		lblStatus.setText("Tor is starting up\n(this might take a little bit)");
-	
+	    		
+	    		lblStatus.setText("ORbot reports:\n\"" + txtStatus + "\"");
+	    		
 	    	
 	    	}
 	    	else if (torStatus == STATUS_SHUTTING_DOWN)
 	    	{
 	    		imgStatus.setImageResource(R.drawable.torstopping);
-	    		lblStatus.setText("Tor is shutting down\nplease wait...");
+	    		lblStatus.setText("ORbot is shutting down\nplease wait...");
 	    		
 	    	}
 	    	else
 	    	{
 	    		imgStatus.setImageResource(R.drawable.toroff);
-	    		lblStatus.setText("Tor is not running\n- touch to start -");
+	    		lblStatus.setText("ORbot is not running\n- touch the bot to start -");
 	    		updateStatus = false;
 	    	}
     	}
@@ -337,26 +390,27 @@ public class TorControlPanel extends Activity implements OnClickListener, TorCon
 			//if Tor binary is not running, then start the service up
 			if (TorService.getStatus()==STATUS_OFF)
 			{
-		        torService = new Intent(this, TorService.class);
-		        torService.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		        TorService.setActivity(this);
+				torStatus = STATUS_STARTING_UP;
+				txtStatus = "Connecting to Tor...";
+				updateStatus();
 				
-				startService(torService);
+				startTorService ();
 				
 				
 			}
-			else if (TorService.getStatus()==STATUS_ON)
+			else
 			{
 				
+				torStatus = STATUS_SHUTTING_DOWN;
+				updateStatus();
 				
-				//stopService(torService);
+				stopService(torService);
 				
-				TorService.stopTor ();
+				torStatus = STATUS_OFF;
 				
+				updateStatus();
 			}
 			
-			
-			showMain ();
 		}
 		else if (view.getId()==R.id.btnLogClear)
 		{
@@ -375,6 +429,20 @@ public class TorControlPanel extends Activity implements OnClickListener, TorCon
 		
 	}
 	
+	private void startTorService ()
+	{
+		if (torService == null)
+		{
+			torService = new Intent(this, TorService.class);
+			//torService.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			TorService.setActivity(this);
+		}
+		
+		startService(torService);
+		
+	
+		
+	}
 	
 	/*
 	 * Load the log file text
@@ -431,33 +499,89 @@ public class TorControlPanel extends Activity implements OnClickListener, TorCon
 		    	
 		    }
 	
-	 
-	 /*
-	  * Get the last line of the log file for status display
-	  */
-	 public static String getLastLine (String path)
-	    {
-	    	String line = null;
-	    
-	    	String lastLine = null;
-	    	
-	    	try {
-		    	BufferedReader reader = new BufferedReader((new FileReader(new File(path))));
 
-				while ((line = reader.readLine()) != null)
-				{
-					lastLine = line;
-				}
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			return lastLine;
-	    	
-	    }
+	@Override
+	public void bandwidthUsed(long read, long written) {
+		Log.i(TAG,"BW Used: read=" + read + " written=" + written);
+		
+	}
+
+
+	@Override
+	public void circuitStatus(String status, String circID, String path) {
+		Log.i(TAG,"CircuitStatus=" + status + ": " + circID);
+		
+	}
+
+
+	@Override
+	public void message(String severity, String msg) {
+		
+        	 // Log.println(priority, tag, msg)("["+severity+"] "+msg);
+              //Toast.makeText(, text, duration)
+        //      Toast.makeText(ACTIVITY, severity + ": " + msg, Toast.LENGTH_SHORT);
+              Log.i(TAG, "[Tor Control Port] " + severity + ": " + msg);
+              
+              if (msg.indexOf(TOR_CONTROL_PORT_MSG_BOOTSTRAP_DONE)!=-1)
+              {
+            	  torStatus = STATUS_ON;
+            	  
+            	  
+            	  
+            	  //setupWebProxy(true);
+
+              }
+              
+      
+              txtStatus = msg;
+              handlerStatus.sendEmptyMessage(0);
+	
+             
+	}
+
+
+	@Override
+	public void newDescriptors(List<String> orList) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void orConnStatus(String status, String orName) {
+		
+		Log.i(TAG,"OrConnStatus=" + status + ": " + orName);
+		
+	}
+
+
+	@Override
+	public void streamStatus(String status, String streamID, String target) {
+		Log.i(TAG,"StreamStatus=" + status + ": " + streamID);
+		
+	}
+
+
+	@Override
+	public void unrecognized(String type, String msg) {
+		Log.i(TAG,"unrecognized log=" + type + ": " + msg);
+		
+	}
 	 
 	
-	
+	/**
+     * Provides a hook for calling "alert" from javascript. Useful for
+     * debugging your javascript.
+     */
+    final class MyWebChromeClient extends WebChromeClient {
+        @Override
+        public boolean onJsAlert(WebView view, String url, String message, JsResult result) {
+            Log.d(TAG, message);
+            result.confirm();
+            return true;
+        }
+        
+        
+    }
 	
 }
