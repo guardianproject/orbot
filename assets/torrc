@@ -17,7 +17,7 @@
 ## relay, and not make any local application connections yourself.
 SocksPort 9050 # what port to open for local application connections
 SocksListenAddress 127.0.0.1 # accept connections only from localhost
-#SocksListenAddress 192.168.0.1:9100 # listen on this IP:port also
+SocksListenAddress 127.0.0.1:1080 # listen on this IP:port also
 
 ## Entry policies to allow/deny SOCKS requests based on IP address.
 ## First entry that matches wins. If no SocksPolicy is set, we accept

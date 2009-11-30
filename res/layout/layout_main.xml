@@ -32,7 +32,10 @@ android:src="@drawable/toroff"/>
 							android:text=" \n "
 							android:paddingTop="15px"
 							android:layout_gravity="center_horizontal"
+							android:gravity="center_horizontal"
 							android:textStyle="bold"
+							android:width="240px"
+							android:height="100px"
 							android:textColor="#ffffff" />
 					</TableRow>
 				</TableLayout>

@@ -10,11 +10,14 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.ConnectException;
 import java.net.Socket;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import net.freehaven.tor.control.EventHandler;
 import net.freehaven.tor.control.NullEventHandler;
@@ -31,35 +34,118 @@ public class TorService extends Service implements TorConstants
 	
 	private static TorControlPanel ACTIVITY = null;
 	
-	private final static String TAG = "Tor";
+	private final static String TAG = "TorService";
 	
 	private static HttpProxy webProxy = null;
 	
-	private static Process procTor = null;
-	
 	private static int currentStatus = STATUS_OFF;
 	
-	private static TorControlConnection conn = null;
+	private TorControlConnection conn = null;
+	
+	private Timer timer = new Timer ();
+	private final static int UPDATE_INTERVAL = 60000;
 	
     /** Called when the activity is first created. */
     @Override
     public void onCreate() {
     	super.onCreate();
        
+    	Log.i(TAG,"TorService: onCreate");
+    	
+    	 timer.scheduleAtFixedRate(
+    		      new TimerTask() {
+    		        public void run() {
+    		         
+    		        	//do nothing
+    		        //	Log.i(TAG,"TorService: task is running");
+    		        }
+    		      },
+    		      0,
+    		      UPDATE_INTERVAL);
+    	 
+    	 
+    	 int procId = findProcessId(TorConstants.TOR_BINARY_INSTALL_PATH);
+
+ 		if (procId != -1)
+ 		{
+ 			Log.i(TAG,"Found existing Tor process");
+ 			
+ 			try {
+ 				currentStatus = STATUS_STARTING_UP;
+				
+ 				initControlConnection();
+				
+				getTorStatus();
+				
+				if (webProxy != null)
+				{
+					if (webProxy.isRunning())
+					{
+						//do nothing
+						Log.i(TAG, "Web Proxy is already running");
+					}
+					else
+					{
+						//do nothing
+						Log.i(TAG, "killing Web Proxy");
+						webProxy.closeSocket();
+						setupWebProxy(true);
+					}
+				}
+				else  //do something
+				{
+					setupWebProxy(true);
+				}
+				
+				currentStatus = STATUS_ON;
+				
+			} catch (RuntimeException e) {
+				Log.i(TAG,"Unable to connect to existing Tor instance,",e);
+				currentStatus = STATUS_OFF;
+				this.stopTor();
+				
+			} catch (Exception e) {
+				Log.i(TAG,"Unable to connect to existing Tor instance,",e);
+				currentStatus = STATUS_OFF;
+				this.stopTor();
+				
+			}
+ 		}
+    	 
     }
     
 
-    public static int getStatus ()
+    /* (non-Javadoc)
+	 * @see android.app.Service#onLowMemory()
+	 */
+	@Override
+	public void onLowMemory() {
+		// TODO Auto-generated method stub
+		super.onLowMemory();
+	}
+
+
+	/* (non-Javadoc)
+	 * @see android.app.Service#onUnbind(android.content.Intent)
+	 */
+	@Override
+	public boolean onUnbind(Intent intent) {
+		// TODO Auto-generated method stub
+		return super.onUnbind(intent);
+	}
+
+
+	public static int getStatus ()
     {
-    	try {
-			getTorStatus();
-		} catch (IOException e) {
-			Log.i(TAG,"Unable to get tor status",e);
-		}
     	
     	return currentStatus;
     	
     }
+    
+	public static void setStatus (int newStatus)
+	{
+		currentStatus = newStatus;
+	}
    
     
     /* (non-Javadoc)
@@ -82,54 +168,35 @@ public class TorService extends Service implements TorConstants
 		// TODO Auto-generated method stub
 		super.onStart(intent, startId);
 		
-		  Log.i(TAG,"on start");
-		  
-		  startService();
+	     Log.i(TAG,"onStart called");
+	     
+		   initTor();
+		   
+		   setupWebProxy (true);
 	}
 
-
-	private void startService ()
-    {
-	   Thread thread = new Thread ()
-	   {
-		   public void run ()
-		   {
-	   
-		   Log.i(TAG,"Tor thread started");
-      
-		   initTor();
-		   }
-	   };
-	   
-	   thread.start();
-     
-       
-    }
-    
-  
-    
+	
     public void onDestroy ()
     {
+    	super.onDestroy();
     	
+    	Log.i(TAG,"onDestroy called");
+	     
+    	if (timer != null) timer.cancel();
+
+    	stopTor();
     }
     
-    public static void stopTor ()
+    private void stopTor ()
     {
     	currentStatus = STATUS_SHUTTING_DOWN;
     	
-    	Thread thread = new Thread ()
-    	{
-    		public void run ()
-    		{
-		    	killTorProcess ();
+    	setupWebProxy(false);  
+    			
+		killTorProcess ();
 				
-				setupWebProxy(false);  
-				
-				currentStatus = STATUS_OFF;
-    		}
-    	};
+		currentStatus = STATUS_OFF;
     	
-    	thread.start();
     }
     
  
@@ -137,55 +204,62 @@ public class TorService extends Service implements TorConstants
     	ACTIVITY = activity;
     }
    
-    private static void setupWebProxy (boolean enabled)
+    private void setupWebProxy (boolean enabled)
     {
     	if (enabled)
     	{
     		
-    		if (webProxy == null)
+    		if (webProxy != null)
     		{
-		    	Log.i(TAG,"Setting up Web Proxy on port 8888");
-		    	//httpd s
-		    	webProxy = new HttpProxy(PORT_HTTP);
-		    	webProxy.setDoSocks(true);
-		    	webProxy.start();
-		    	
-		    	//socks
-		    	try
-		    	{
-		    		Proxy.setDefaultProxy(IP_LOCALHOST,PORT_SOCKS);
-		    		
-		    	}
-		    	catch (Exception e)
-		    	{
-		    		Log.w(TAG,e.getMessage());
-		    	}
-	    	
-		    	//Settings.System.putString(getContentResolver(), Settings.System.HTTP_PROXY, proxySetting);//enable proxy
-		    	//	Settings.Secure.putString(getContentResolver(), Settings.Secure.HTTP_PROXY, proxySetting);//enable proxy
-    		}
-    		else
-    		{
+    			webProxy.closeSocket();
+    			webProxy = null;
     			
-    			webProxy.setDoSocks(true);
-    			Log.i(TAG,"Web Proxy already running...");
     		}
+    		
+	    	Log.i(TAG,"Starting up Web Proxy on port: " + PORT_HTTP);
+	    	//httpd s
+	    	webProxy = new HttpProxy(PORT_HTTP);
+	    	webProxy.setDoSocks(true);
+	    	webProxy.start();
+	    	
+	    	//socks
+	    	try
+	    	{
+	    		
+	    		Proxy.setDefaultProxy(IP_LOCALHOST,PORT_SOCKS);
+	    		
+	    		
+	    	}
+	    	catch (Exception e)
+	    	{
+	    		Log.w(TAG,e.getMessage());
+	    	}
+	    	
+	    	Log.i(TAG,"Web Proxy enabled...");
+
+    	
+	    	//Settings.System.putString(getContentResolver(), Settings.System.HTTP_PROXY, proxySetting);//enable proxy
+	    	//	Settings.Secure.putString(getContentResolver(), Settings.Secure.HTTP_PROXY, proxySetting);//enable proxy
+    		
     	}
     	else
     	{
-	    	Log.i(TAG,"Turning off Socks/Tor routing on Web Proxy");
+	    	//Log.i(TAG,"Turning off Socks/Tor routing on Web Proxy");
 
     		if (webProxy != null)
     		{
     			//logNotice("Tor is disabled - browsing is not anonymous!");
     			//webProxy.setDoSocks(false);
     			
+    			webProxy.closeSocket();
+    			webProxy = null;
+    			Log.i(TAG,"WebProxy ServerSocket closed");
     		}
     	}
     	
     }
     
-    public static void reloadConfig ()
+    public void reloadConfig ()
     {
     	try
 		{
@@ -205,65 +279,39 @@ public class TorService extends Service implements TorConstants
     	}
     }
     
-    private void shutdownTor ()
+    private void killTorProcess ()
     {
-    	try
-		{
-        	currentStatus = STATUS_SHUTTING_DOWN;
-
-			if (conn == null)
-			{
-				initControlConnection ();
-			}
 		
-			if (conn != null)
-			{
-				 conn.signal("SHUTDOWN");
-			}
-		}
-		catch (Exception e)
+    	if (conn != null)
 		{
+			try {
+				Log.i(TAG,"sending SHUTDOWN signal");
+				conn.signal("SHUTDOWN");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				Log.i(TAG,"error shutting down Tor via connection",e);
+			}
+			conn = null;
 		}
-    }
-    private static void killTorProcess ()
-    {
-		//doCommand(SHELL_CMD_KILLALL, CHMOD_EXE_VALUE, TOR_BINARY_INSTALL_PATH);
     	
-    	/*
-    	if (procTor != null)
-    	{
-    		Log.i(TAG,"shutting down Tor process...");
-    		procTor.destroy();
-    		
-    		
-    		try {
-    			procTor.waitFor();
-    		}
-    		catch(Exception e2)
-    		{
-    			e2.printStackTrace();
-    		}
-    		
-    		int exitStatus = procTor.exitValue();
-    		Log.i(TAG,"Tor exit: " + exitStatus);
+    	try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
 			
-    		
-    		procTor = null;
-    		
-    	}*/
-    		
+		}
+    	
 		int procId = findProcessId(TorConstants.TOR_BINARY_INSTALL_PATH);
 
-		if (procId != -1)
+		while (procId != -1)
 		{
 			
 			Log.i(TAG,"Found Tor PID=" + procId + " - killing now...");
 			
-			doCommand(SHELL_CMD_KILLALL, procId + "");
+			doCommand(SHELL_CMD_KILL, procId + "");
 
+			procId = findProcessId(TorConstants.TOR_BINARY_INSTALL_PATH);
 		}
 		
-		conn = null;
 		
     }
    
@@ -316,14 +364,22 @@ public class TorService extends Service implements TorConstants
     		doCommand(SHELL_CMD_RM,TOR_LOG_PATH);
     		
     		Log.i(TAG,"Starting tor process");
-    		procTor = doCommand(TOR_BINARY_INSTALL_PATH, TOR_COMMAND_LINE_ARGS);
+    		doCommand(TOR_BINARY_INSTALL_PATH, TOR_COMMAND_LINE_ARGS);
 		
-    		//Log.i(TAG,"Tor process id=" + procTor.);
+    		int procId = findProcessId(TorConstants.TOR_BINARY_INSTALL_PATH);
+
+    		if (procId == -1)
+    		{
+    			doCommand(TOR_BINARY_INSTALL_PATH, TOR_COMMAND_LINE_ARGS);
+    			procId = findProcessId(TorConstants.TOR_BINARY_INSTALL_PATH);
+    		}
+    		
+    		Log.i(TAG,"Tor process id=" + procId);
     		
     		currentStatus = STATUS_STARTING_UP;
     		logNotice("Tor is starting up...");
 			
-			Thread.sleep(2000);
+			Thread.sleep(500);
 			initControlConnection ();
 		
     	} catch (Exception e) {
@@ -419,7 +475,7 @@ public class TorService extends Service implements TorConstants
             
             
         } catch (Exception e) {
-            Log.e(TAG, "error: " + e.getMessage(), e);
+            Log.e(TAG, "error: " + e.getMessage());
         }
         
         return child;
@@ -436,27 +492,38 @@ public class TorService extends Service implements TorConstants
 		return null;
 	}
 	
-	public static synchronized void initControlConnection () throws Exception, RuntimeException
+	public void initControlConnection () throws Exception, RuntimeException
 	{
-		if (conn == null)
-		{
-			Log.i(TAG,"Connecting to control port: " + TOR_CONTROL_PORT);
-			Socket s = new Socket(IP_LOCALHOST, TOR_CONTROL_PORT);
-	        conn = TorControlConnection.getConnection(s);
-	      //  conn.authenticate(new byte[0]); // See section 3.2
-	        
-	        Log.i(TAG,"SUCCESS connected to control port");
-	        
-	        //
-	        File fileCookie = new File(TOR_CONTROL_AUTH_COOKIE);
-	        byte[] cookie = new byte[(int)fileCookie.length()];
-	        new FileInputStream(new File(TOR_CONTROL_AUTH_COOKIE)).read(cookie);
-	        conn.authenticate(cookie);
-	        
-	        Log.i(TAG,"SUCCESS authenticated to control port");
-	        
-	        addEventHandler();
-		}
+			for (int i = 0; i < 50; i++)
+			{
+				try
+				{
+					Log.i(TAG,"Connecting to control port: " + TOR_CONTROL_PORT);
+					Socket s = new Socket(IP_LOCALHOST, TOR_CONTROL_PORT);
+			        conn = TorControlConnection.getConnection(s);
+			      //  conn.authenticate(new byte[0]); // See section 3.2
+			        
+			        Log.i(TAG,"SUCCESS connected to control port");
+			        
+			        //
+			        File fileCookie = new File(TOR_CONTROL_AUTH_COOKIE);
+			        byte[] cookie = new byte[(int)fileCookie.length()];
+			        new FileInputStream(new File(TOR_CONTROL_AUTH_COOKIE)).read(cookie);
+			        conn.authenticate(cookie);
+			        
+			        Log.i(TAG,"SUCCESS authenticated to control port");
+			        
+			        addEventHandler();
+			        
+			        break; //don't need to retry
+				}
+				catch (ConnectException ce)
+				{
+					Log.i(TAG,"Attempt " + i + ": Error connecting to control port; retrying...");
+					Thread.sleep(1000);
+				}	
+			}
+		
 		
 
 	}
@@ -484,17 +551,12 @@ public class TorService extends Service implements TorConstants
 
 	}
 	
-	private static void getTorStatus () throws IOException
+	private void getTorStatus () throws IOException
 	{
 		try
 		{
 			 
-			if (conn == null && (currentStatus == STATUS_STARTING_UP || currentStatus == STATUS_ON))
-			{
-				
-					initControlConnection ();
-				
-			}
+			
 			
 		
 			if (conn != null)
@@ -522,6 +584,10 @@ public class TorService extends Service implements TorConstants
 			    	 //  Log.i(TAG, "status/circuit-established=" + status);
 			       }
 			}
+			else
+			{
+				currentStatus = STATUS_OFF;
+			}
 		}
 		catch (Exception e)
 		{
@@ -530,56 +596,22 @@ public class TorService extends Service implements TorConstants
 		
 	}
 	
-	/*
-	 * The recognized signal names are:
-       "RELOAD" -- Reload configuration information
-       "SHUTDOWN" -- Start a clean shutdown of the Tor process
-       "DUMP" -- Write current statistics to the logs
-       "DEBUG" -- Switch the logs to debugging verbosity
-       "HALT" -- Stop the Tor process immediately.
-
-	 */
-	public void sendSignal () throws IOException
-	{
-		
-		 conn.signal("RELOAD");
-
-	}
 	
-	public static void addEventHandler () throws IOException
+	public void addEventHandler () throws IOException
 	{
 	       // We extend NullEventHandler so that we don't need to provide empty
 	       // implementations for all the events we don't care about.
 	       // ...
         Log.i(TAG,"adding control port event handler");
 
-		
-	       EventHandler eh = new NullEventHandler() 
-	       {
-	          public void message(String severity, String msg) {
-	            
-	        	 // Log.println(priority, tag, msg)("["+severity+"] "+msg);
-	              //Toast.makeText(, text, duration)
-	        //      Toast.makeText(ACTIVITY, severity + ": " + msg, Toast.LENGTH_SHORT);
-	              Log.i(TAG, "[Tor Control Port] " + severity + ": " + msg);
-	              
-	              if (msg.indexOf(TOR_CONTROL_PORT_MSG_BOOTSTRAP_DONE)!=-1)
-	              {
-	            	  currentStatus = STATUS_ON;
-	            	  setupWebProxy(true);
-
-	              }
-	              
-	          }
-	       };
-	       
-	       conn.setEventHandler(eh);
-	       conn.setEvents(Arrays.asList(new String[]{
-	          "ORCONN", "CIRC", "INFO", "NOTICE", "ERR"}));
+		conn.setEventHandler(ACTIVITY);
+	    
+		conn.setEvents(Arrays.asList(new String[]{
+	          "ORCONN", "CIRC", "NOTICE", "ERR"}));
 	      // conn.setEvents(Arrays.asList(new String[]{
 	        //  "DEBUG", "INFO", "NOTICE", "WARN", "ERR"}));
 
-	        Log.i(TAG,"SUCCESS added control port event handler");
+	    Log.i(TAG,"SUCCESS added control port event handler");
 
 	}
 }

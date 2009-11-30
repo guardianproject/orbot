@@ -37,7 +37,7 @@ public interface TorConstants {
 	
 	//various console cmds
 	public final static String SHELL_CMD_CHMOD = "/system/bin/chmod";
-	public final static String SHELL_CMD_KILLALL = "/system/bin/kill";
+	public final static String SHELL_CMD_KILL = "/system/bin/kill";
 	public final static String SHELL_CMD_RM = "/system/bin/rm";
 	public final static String SHELL_CMD_PS = "ps";
 	public final static String CHMOD_EXE_VALUE = "777";
@@ -60,6 +60,8 @@ public interface TorConstants {
 	public final static String IP_LOCALHOST = "127.0.0.1";
 	public final static int TOR_CONTROL_PORT = 9051;
 	public final static int UPDATE_TIMEOUT = 3000;
+	
+	public final static String DEFAULT_HOME_PAGE = "file:///android_asset/help.html";// "http://check.torproject.org";
 	
 	//status to communicate state
     public final static int STATUS_OFF = 0;
