@@ -1,3 +1,9 @@
+0.0.2a - 2009-11-30
+- Update user interace layout and graphics
+- Modified service launch, shutdown and handling
+- Improved event handler on Tor Control port callbacks
+- Added Help page
+
 0.0.2 - 2009-11-27
 - Major improvement to the user interface including relative layout for different screens
 - New graphics resources
