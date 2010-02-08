@@ -1,28 +1,45 @@
-/* Copyright (c) 2009, Nathan Freitas, The Guardian Project - http://openideals.com/guardian */
+/* Copyright (c) 2009, Nathan Freitas, Orbot / The Guardian Project - http://openideals.com/guardian */
 /* See LICENSE for licensing information */
+
 /** SOCKS aware echo client*/
 
-package org.torproject.android;
+package org.torproject.android.net;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import net.sourceforge.jsocks.socks.*;
+import net.sourceforge.jsocks.socks.InetRange;
+import net.sourceforge.jsocks.socks.Proxy;
+import net.sourceforge.jsocks.socks.SocksException;
+import net.sourceforge.jsocks.socks.SocksSocket;
+
+import org.torproject.android.TorConstants;
+
+import android.util.Log;
 
 
 public class SocksClient implements Runnable {
   
+	   @SuppressWarnings("unused")
    private int port;
+	   
+	   @SuppressWarnings("unused")
    private InetAddress hostIP;
 
    private Socket ss;
    private InputStream in;
    private OutputStream out;
 
-   private static final int BUF_SIZE = 1024;
-
+   @SuppressWarnings("unused")
+private static final int BUF_SIZE = 1024;
+   private static final String IP_LOCALHOST = "127.0.0.1";
+   
    public SocksClient(String host,int port) 
 	  throws IOException,UnknownHostException,SocksException{
       this.port = port;
@@ -30,9 +47,9 @@ public class SocksClient implements Runnable {
       ss = new SocksSocket(host, port);
       out = ss.getOutputStream();
       in  = ss.getInputStream();
-      System.out.println("Connected...");
-      System.out.println("TO: "+host+":"+port);
-      System.out.println("ViaProxy: "+ss.getLocalAddress().getHostAddress()
+      Log.i(getClass().getName(),"Connected...");
+      Log.i(getClass().getName(),"TO: "+host+":"+port);
+      Log.i(getClass().getName(),"ViaProxy: "+ss.getLocalAddress().getHostAddress()
                                  +":"+ss.getLocalPort());
 
    }
@@ -75,11 +92,11 @@ public class SocksClient implements Runnable {
 	     port = Integer.parseInt(args[1]);
 
 	     proxyPort =(args.length > 3)? Integer.parseInt(args[3])	     
-	                                 : TorConstants.PORT_SOCKS;
+	                                 : 9050;
 
 	     host = args[0];
 	     proxyHost =(args.length > 2)? args[2]
-	                                 : TorConstants.IP_LOCALHOST;
+	                                 : IP_LOCALHOST;
 
 	     Proxy.setDefaultProxy(proxyHost,proxyPort,"KOUKY001");
 	     //Proxy.setDefaultProxy(proxyHost,proxyPort);
