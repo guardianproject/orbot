@@ -1,0 +1,31 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+<CheckBoxPreference android:defaultValue="false" 
+android:title="Use Bridges" android:key="pref_bridges_enabled" 
+android:summary="Enable alternate entrance nodes into the Tor Network"></CheckBoxPreference>
+
+<CheckBoxPreference android:defaultValue="false" 
+android:title="Update Bridges from Authority" android:key="pref_bridges_update" 
+android:summary="Modify bridge list automatically"></CheckBoxPreference>
+
+<EditTextPreference android:key="pref_bridge_list"
+android:title="Bridges"
+android:summary="IP address and port of bridge(s) i.e. 124.45.6.789:1234"
+android:dialogTitle="Enter Bridge Addresses"
+/>
+
+<EditTextPreference android:key="pref_relay"
+android:title="Relaying"
+android:summary="Enable your device to be a relay"
+android:dialogTitle="Enter Bridge Addresses"
+android:enabled="false"
+/>
+
+<CheckBoxPreference android:defaultValue="false" 
+android:title="Fascist Firewall" android:key="pref_fascist_firewall" 
+android:summary="Run as a client behind a firewall with restrictive policies"
+android:enabled="false"></CheckBoxPreference>
+
+
+</PreferenceScreen>
