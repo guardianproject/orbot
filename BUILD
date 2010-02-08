@@ -7,7 +7,8 @@ Please install the following prerequisites (instructions for each follows):
 	droid-wrapper: http://github.com/tmurakam/droid-wrapper
 	libevent source (1.4.12-stable from svn)
 	Tor source (most recent git master branch)
-
+    Privoxy source (http://sourceforge.net/projects/ijbswa/)
+    
 Install and prepare the Android OS SDK ( http://source.android.com/download )
 on Debian Lenny:
 
@@ -42,14 +43,27 @@ Install droid-wrapper:
 	sudo make install
 
 zlib and OpenSSL are included with the Android OS SDK. You'll need to build
-libevent and finally Tor. We'll create an externals directory for this code:
+libevent, Privoxy and finally Tor. We'll create an externals directory for this code:
 
-	mkdir -p ~/mydroid/external/{libevent,tor}
+	mkdir -p ~/mydroid/external/{libevent,tor,privoxy}
 
 We need to set to environment variables for droid-gcc:
 	export DROID_ROOT=~/mydroid/
 	export DROID_TARGET=generic
 
+Fetch and build Privoxy:
+	cd ~/mydroid/external/privoxy
+	wget http://sourceforge.net/projects/ijbswa/files/Sources/3.0.12%20%28stable%29/privoxy-3.0.12-stable-src.tar.gz/download
+	tar xzvf privoxy-3.0.12-stable-src.tar.gz
+	cd privoxy-3.0.12-stable
+	autoheader
+	autoconf
+	#need to disable setpgrp check in configure
+	export ac_cv_func_setpgrp_void=yes 
+	CC=droid-gcc LD=droid-ld ./configure --host=arm-none-linux-gnueabi
+	#don't mind the "unrecognized option '-pthred'" error message that you'll see when you run make
+	make 
+	
 Fetch and build libevent:
 
 	cd ~/mydroid/external/libevent
@@ -62,7 +76,6 @@ Fetch and build libevent:
 	make
 
 Copy over the libevent library:
-
 	cp .libs/libevent.a ~/mydroid/out/target/product/generic/obj/lib
 
 Fetch and build Tor:
@@ -71,7 +84,7 @@ Fetch and build Tor:
 	export ZLIBDIR=`cd ~/mydroid/external/zlib && pwd`
 
 	cd ~/mydroid/external/tor
-	git clone https://git.torproject.org/git/tor.git
+	git clone git://git.torproject.org/git/tor.git
 	cd tor/
 	./autogen.sh
 	CC=droid-gcc LD=droid-ld ./configure --host=arm-none-linux-gnueabi \
@@ -105,6 +118,7 @@ Finally, we'll make a proper Android package with ant and the Android App SDK:
 
 	export APP_SDK=~/Documents/projects/android/android-sdk-linux_x86-1.5_r3/tools
 	cd ../Orbot/
+	cp ~/mydroid/external/privoxy/privoxy-3.0.12-stable/privoxy assets/privoxy
 	cp ~/mydroid/external/tor/tor/src/or/tor assets/tor
 	$APP_SDK/android update project --name Orbot --target 1 --path .
 	ant release

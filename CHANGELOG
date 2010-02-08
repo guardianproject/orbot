@@ -1,3 +1,10 @@
+0.0.3a - 2010-02-07
+- Integrated iptables support for transparenty proxying of outbound port 80 and DNS
+- Privoxy is now used as HTTP Proxy server (cross-compiled to ARM)
+- New UI layout and graphics
+- Android settings screen for generated torrc file
+- Improved performance and error handling
+
 0.0.2a - 2009-11-30
 - Update user interace layout and graphics
 - Modified service launch, shutdown and handling

@@ -1,7 +1,7 @@
-/* Copyright (c) 2009, Nathan Freitas, The Guardian Project - http://openideals.com/guardian */
+/* Copyright (c) 2009, Nathan Freitas, Orbot / The Guardian Project - http://openideals.com/guardian */
 /* See LICENSE for licensing information */
 
-package org.torproject.android;
+package org.torproject.android.service;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -14,9 +14,7 @@ import java.util.zip.ZipFile;
 
 import android.util.Log;
 
-public class TorBinaryInstaller implements TorConstants {
-
-	private final static String LOG_TAG = "Tor";
+public class TorBinaryInstaller implements TorServiceConstants {
 
 	
 	public TorBinaryInstaller ()
@@ -28,11 +26,13 @@ public class TorBinaryInstaller implements TorConstants {
 	 */
 	public void start (boolean force)
 	{
-		boolean binaryExists = new File(TOR_BINARY_INSTALL_PATH).exists();
+		boolean torBinaryExists = new File(TOR_BINARY_INSTALL_PATH).exists();
+		Log.i(TAG,"Tor binary exists=" + torBinaryExists);
 		
-		Log.i(LOG_TAG,"Tor binary exists=" + binaryExists);
+		boolean privoxyBinaryExists = new File(PRIVOXY_INSTALL_PATH).exists();
+		Log.i(TAG,"Privoxy binary exists=" + privoxyBinaryExists);
 		
-		if (!binaryExists || force)
+		if (!(torBinaryExists && privoxyBinaryExists) || force)
 			installFromZip ();
 		
 	}
@@ -53,14 +53,21 @@ public class TorBinaryInstaller implements TorConstants {
 			zipen = zip.getEntry(TORRC_ZIP_KEY);
 			streamToFile(zip.getInputStream(zipen),TORRC_INSTALL_PATH);
 			
+			zipen = zip.getEntry(PRIVOXY_ZIP_KEY);
+			streamToFile(zip.getInputStream(zipen),PRIVOXY_INSTALL_PATH);
+			
+			zipen = zip.getEntry(PRIVOXYCONFIG_ZIP_KEY);
+			streamToFile(zip.getInputStream(zipen),PRIVOXYCONFIG_INSTALL_PATH);
+			
+			
 			zip.close();
 			
-			Log.i(LOG_TAG,"SUCCESS: unzipped tor binary from apk");
+			Log.i(TAG,"SUCCESS: unzipped tor, privoxy binaries from apk");
 	
 		}
 		catch (IOException ioe)
 		{
-			Log.i(LOG_TAG,"FAIL: unable to unzip tor binary from apk",ioe);
+			Log.i(TAG,"FAIL: unable to unzip binaries from apk",ioe);
 		
 		}
 	}
@@ -91,7 +98,7 @@ public class TorBinaryInstaller implements TorConstants {
 
         {
 
-        	Log.i(LOG_TAG,"Error opening output file " + targetFilename,e);
+        	Log.i(TAG,"Error opening output file " + targetFilename,e);
 
         	return;
         }
@@ -118,7 +125,7 @@ public class TorBinaryInstaller implements TorConstants {
 
         {
 
-            Log.i(LOG_TAG,"Error writing output file '" + targetFilename + "': " + e.toString());
+            Log.i(TAG,"Error writing output file '" + targetFilename + "': " + e.toString());
 
             return;
 
@@ -135,12 +142,15 @@ public class TorBinaryInstaller implements TorConstants {
 			DataOutputStream out = new DataOutputStream(new FileOutputStream(outputFile));
 			DataInputStream in = new DataInputStream(is);
 			
-			int b;
+			int b = -1;
 			byte[] data = new byte[1024];
 			
 			while ((b = in.read(data)) != -1) {
 				out.write(data);
 			}
+			
+			if (b == -1); //rejoice
+			
 			//
 			out.flush();
 			out.close();
@@ -150,7 +160,7 @@ public class TorBinaryInstaller implements TorConstants {
 			
 			
 		} catch (IOException ex) {
-			Log.e(LOG_TAG, "error copying binary", ex);
+			Log.e(TAG, "error copying binary", ex);
 		}
 
 	}
