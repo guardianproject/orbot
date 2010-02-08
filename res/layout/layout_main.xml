@@ -3,13 +3,40 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/bgdarkdroid">
+    android:background="@drawable/background">
+    
+    	<RelativeLayout android:id="@+id/layoutHeaderMain"
+		android:layout_width="fill_parent"
+		android:layout_height="30dp"
+		android:layout_gravity="center_horizontal"
+		android:background="#A0909090">
+        <ImageView android:id="@+id/radioModeImage"
+ 		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+			android:layout_marginTop="3px"
+			android:layout_marginRight="3px"
+			android:gravity="right"
+			android:layout_toRightOf="@+id/radioModeLabel"
+			android:layout_alignParentRight="true"
+			android:layout_alignParentTop="true"
+			android:src="@drawable/tor25"
+			/>
+		<TextView android:id="@+id/radioModeText"
+ 		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"           
+            android:text="powered by the tor project  "
+			android:layout_marginTop="8px"
+			android:layout_marginRight="0px"
+			android:gravity="right"
+			android:layout_toLeftOf="@+id/radioModeImage"
+            android:textColor="#cccccc" />
+	</RelativeLayout>
     
    <ScrollView android:id="@+id/mainview" 
 		android:orientation="vertical"
 		android:layout_width="fill_parent" 
 		android:layout_height="fill_parent">
-   <TableLayout android:id="@+id/mainLayout"
+   		<TableLayout android:id="@+id/mainLayout"
 			android:layout_gravity="center"
 			android:layout_height="wrap_content" 
 			android:layout_width="wrap_content">
@@ -19,30 +46,28 @@
 					android:layout_height="wrap_content" 
 					android:layout_width="wrap_content">
 					<TableRow>
-					
-							
 							<ImageView
-android:id="@+id/imgStatus"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:src="@drawable/toroff"/>
+							android:id="@+id/imgStatus"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:src="@drawable/toroff"/>
 					</TableRow>
 					<TableRow>
 						<TextView android:id="@+id/lblStatus"
-							android:text=" \n "
-							android:paddingTop="15px"
+							android:text="- Press to enable - "
 							android:layout_gravity="center_horizontal"
 							android:gravity="center_horizontal"
 							android:textStyle="bold"
 							android:width="240px"
 							android:height="100px"
-							android:textColor="#ffffff" />
+							android:textColor="#ffffff"
+							 />
 					</TableRow>
 				</TableLayout>
 			</TableRow>
 			
 		</TableLayout>
-</ScrollView>
+	</ScrollView>
 
 
        
