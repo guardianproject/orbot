@@ -10,7 +10,7 @@ public interface TorConstants {
 	public final static int FILE_WRITE_BUFFER_SIZE = 2048;
 	
 	//path to check Tor against
-	public final static String URL_TOR_CHECK = "http://check.torproject.org";
+	public final static String URL_TOR_CHECK = "https://check.torproject.org";
 	
     public final static int STATUS_UNAVAILABLE = -1;
     public final static int STATUS_REQUIRES_DEMAND = 0;
@@ -25,7 +25,7 @@ public interface TorConstants {
     
     public final static String TORRC_DEFAULT = 
     		"SocksPort 9050\nSocksListenAddress 127.0.0.1\nSafeSocks 1\nDNSPort 5400\nLog notice stdout\nLog debug syslog\nDataDirectory /data/data/org.torproject.android/data\n"
-    	+ "ControlPort 9051\nCookieAuthentication 1\nRelayBandwidthRate 20 KBytes\nRelayBandwidthBurst 20 KBytes\n";
+    	+ "ControlPort 9051\nCookieAuthentication 1\nRelayBandwidthRate 20 KBytes\nRelayBandwidthBurst 20 KBytes\nAutomapHostsOnResolve 1\nTransPort 9040\n";
     	
     public final static String INTENT_TOR_SERVICE = "org.torproject.android.service.TOR_SERVICE";
     	
