@@ -11,7 +11,7 @@ android:summary="Modify bridge list automatically"></CheckBoxPreference>
 
 <EditTextPreference android:key="pref_bridge_list"
 android:title="Bridges"
-android:summary="IP address and port of bridge(s) i.e. 124.45.6.789:1234"
+android:summary="IP address and port of bridges"
 android:dialogTitle="Enter Bridge Addresses"
 />
 
