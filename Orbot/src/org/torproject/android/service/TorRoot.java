@@ -19,6 +19,8 @@ public final class TorRoot {
 
 	private final static String CMD_NAT_FLUSH = "iptables -t nat -F || exit\n";
 	private final static String CMD_NAT_IPTABLES_80 = "iptables -t nat -A OUTPUT -p tcp --dport 80 -j DNAT --to 127.0.0.1:8118 || exit\n";
+	private final static String CMD_NAT_IPTABLES_443 = "iptables -t nat -A OUTPUT -p tcp --dport 443 -j DNAT --to 127.0.0.1:9040 || exit\n";
+
 	private final static String CMD_DNS_PROXYING = "iptables -t nat -A PREROUTING -p udp --dport 53 -j DNAT --to 127.0.0.1:5400 || exit\n";
 	
 	public static boolean enableDNSProxying ()
@@ -61,7 +63,7 @@ public final class TorRoot {
 			int code;
 			
 			script.append(CMD_NAT_IPTABLES_80);
-			
+			script.append(CMD_NAT_IPTABLES_443);
 			/*
 			int uid = android.os.Process.getUidForName("dhcp");
 			if (uid != -1) script.append("iptables -A OUTPUT " + itfFilter + " -m owner --uid-owner " + uid + " -j ACCEPT || exit\n");
