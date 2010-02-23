@@ -60,8 +60,8 @@ Fetch and build Privoxy:
 	autoconf
 	#need to disable setpgrp check in configure
 	export ac_cv_func_setpgrp_void=yes 
-	CC=droid-gcc LD=droid-ld ./configure --host=arm-none-linux-gnueabi
-	#don't mind the "unrecognized option '-pthred'" error message that you'll see when you run make
+	CC=droid-gcc LD=droid-ld CPPFLAGS="-I/home/foo/mydroid/external/zlib"./configure --host=arm-none-linux-gnueabi
+	#don't mind the "unrecognized option '-pthread'" error message that you'll see when you run make
 	make 
 	
 Fetch and build libevent:
@@ -147,6 +147,10 @@ Verify the signature for the apk:
 
 	jarsigner -verify bin/Orbot-unsigned.apk
 	mv bin/Orbot-unsigned.apk bin/Orbot-signed-alpha.apk
+
+You can also GPG sign the apk and generate an .asc:
+
+	gpg -ab Orbot-signed-alpha.apk
 
 Now you should have a fully signed and production ready alpha release of Orbot!
 Give bin/Orbot-signed-alpha.apk an install and send us bug reports!
