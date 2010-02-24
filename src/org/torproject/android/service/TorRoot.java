@@ -5,6 +5,12 @@ package org.torproject.android.service;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.Iterator;
+import java.util.List;
+
+import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.util.Log;
 
 /**
@@ -225,6 +231,29 @@ public final class TorRoot {
 		public synchronized void destroy() {
 			if (exec != null) exec.destroy();
 			exec = null;
+		}
+	}
+	
+	public void getApps (Context context)
+	{
+		PackageManager pMgr = context.getPackageManager();
+		
+		List<ApplicationInfo> lAppInfo = pMgr.getInstalledApplications(0);
+		
+		Iterator<ApplicationInfo> itAppInfo = lAppInfo.iterator();
+		
+		ApplicationInfo aInfo = null;
+		
+		while (itAppInfo.hasNext())
+		{
+			aInfo = itAppInfo.next();
+			
+			boolean appEnabled = aInfo.enabled;
+			int uid = aInfo.uid; //-m owner --uid-owner 
+			String username = pMgr.getNameForUid(uid);
+			String procName = aInfo.processName;
+			String name = aInfo.name;
+			
 		}
 	}
 }

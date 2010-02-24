@@ -63,8 +63,8 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-    	setTheme(android.R.style.Theme_Black);
-    	setTitle(getString(R.string.app_name) + ' ' + getString(R.string.app_version));
+    	setTheme(android.R.style.Theme_Black_NoTitleBar);
+    	//setTitle(getString(R.string.app_name) + ' ' + getString(R.string.app_version));
         showMain();
 
     }
@@ -328,7 +328,9 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 		boolean useBridges = prefs.getBoolean(PREF_BRIDGES_ENABLED, false);
 		
 		boolean autoUpdateBridges = prefs.getBoolean(PREF_BRIDGES_UPDATED, false);
-			
+		
+		enableTransparentProxy = prefs.getBoolean(PREF_TRANSPARENT, false);
+		
 		String bridgeList = prefs.getString(PREF_BRIDGES_LIST,"");
 
 		if (useBridges)
@@ -496,7 +498,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 					processSettings();
 					mService.setProfile(PROFILE_ON);
 
-					if (hasRoot)
+					if (hasRoot && enableTransparentProxy)
 					{
 						TorRoot.enableDNSProxying();
 						TorRoot.enabledWebProxying();
@@ -507,7 +509,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 					
 					mService.setProfile(PROFILE_ONDEMAND);	
 				
-					if (hasRoot)
+					if (hasRoot && enableTransparentProxy)
 					{
 						TorRoot.purgeNatIptables();
 					}
@@ -606,6 +608,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
     
     boolean mIsBound = false;
     boolean hasRoot = false;
+    boolean enableTransparentProxy = false;
     
     private void bindService ()
     {
