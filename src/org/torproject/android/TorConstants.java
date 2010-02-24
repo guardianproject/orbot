@@ -34,4 +34,7 @@ public interface TorConstants {
 	public final static String PREF_BRIDGES_ENABLED = "pref_bridges_enabled";
 	public final static String PREF_BRIDGES_UPDATED = "pref_bridges_enabled";
 	public final static String PREF_BRIDGES_LIST = "pref_bridges_list";
+	public final static String PREF_TRANSPARENT = "pref_transparent";
+	
+	
 }
