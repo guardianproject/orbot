@@ -32,7 +32,8 @@
 				android:paddingLeft="15px"
 				android:textStyle="bold"
 				android:textColor="#ffffff" />
-			<TextView android:text="http://torproject.org/orbot"
+			<TextView android:text="https://torproject.org/android
+http://guardianproject.info/apps/orbot/"
 				android:layout_width="fill_parent" 
 				android:layout_height="wrap_content"
 				android:autoLink="web"
@@ -52,7 +53,7 @@
 				android:layout_height="wrap_content"
 				android:paddingLeft="15px"								
 				android:textColor="#ffffff" />	
-			<TextView android:text="http://torproject.org"
+			<TextView android:text="https://torproject.org"
 				android:layout_width="fill_parent" 
 				android:layout_height="wrap_content"
 				android:autoLink="web"
@@ -67,7 +68,7 @@
 				android:paddingLeft="15px"
 				android:textStyle="bold"
 				android:textColor="#ffffff" />	
-			<TextView android:text="Tor vX.x: http://www.torproject.org"
+			<TextView android:text="Tor v2.0.x: https://www.torproject.org"
 				android:layout_width="fill_parent" 
 				android:layout_height="wrap_content"
 				android:autoLink="web"
@@ -75,7 +76,7 @@
 				android:paddingLeft="15px"
 				android:textSize="12sp"					
 				android:textColor="#ffffff" />				
-			<TextView android:text="LibEvent vX.x: http://www.monkey.org/~provos/libevent/"
+			<TextView android:text="LibEvent v1.4.13: http://www.monkey.org/~provos/libevent/"
 				android:layout_width="fill_parent" 
 				android:layout_height="wrap_content"
 				android:autoLink="web"

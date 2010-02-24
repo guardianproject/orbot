@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Orbot</string>
-    <string name="app_version">0.0.3a</string>
+    <string name="app_version">0.0.3b</string>
     <string name="internal_web_url">http://orbot/</string>
     <string name="default_web_url">http://check.torproject.org</string>
     <string name="control_permission_label">start and stop the anonymous data connection</string>
@@ -29,17 +29,17 @@
 <string name="button_about">About</string>
 
 <string name="help_text">Orbot requires different configuration depending on the Android operating system version it is used on.
+Please visit http://torproject.org/android for the latest information.
 \n\n
 For non-rooted Android 1.x devices (G1, MyTouch3G, Hero): Please use the "ProxySurf" browser available in the Android Market, and set 
-the HTTP Proxy to 127.0.0.1 and port 8118. For Instant Messsaging, try "Beem" in the market, and set the HTTP or SOCKS5 proxy (to port 9050).
+the HTTP Proxy to 127.0.0.1 and port 8118. For Instant Messsaging, try "Beem" in the market, and set the SOCKS5 proxy to 127.0.0.1 / port 9050.
 \n\n
 For Android 2.x devices, you MUST ROOT your device in order for Orbot to work transparently for all web and DNS traffic. Otherwise, the "Beem" app will allow
 you to set the SOCKS5 proxy to 127.0.0.1 and port 9050. You should also enable SSL to protect your username and password.
 \n\n
-If you root your device, whether it is 1.x or 2.x based, Orbot will automatically, transparently proxy all web traffic on port 80
-and all DNS requests. This includes the built-in Browser, Gmail, YouTube, Maps and any other application that uses standard port 80
+If you root your device, whether it is 1.x or 2.x based, Orbot will automatically, transparently proxy all web traffic (http and https)
+and all DNS requests. This includes the built-in Browser, Gmail, YouTube, Maps and any other application that access the web.
 traffic.
 \n\n
-At this time, Orbot cannot proxy standard HTTPS traffic unless the application supports proxy via HTTP or SOCKS.
 </string>
 </resources>

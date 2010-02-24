@@ -15,6 +15,15 @@ android:summary="IP address and port of bridges"
 android:dialogTitle="Enter Bridge Addresses"
 />
 
+
+<CheckBoxPreference android:defaultValue="false" 
+android:key="pref_transparent"
+android:title="Transparent Proxying"
+android:summary="ROOTED DEVICES ONLY: Activate Tor for all web traffic and DNS"
+android:enabled="true"/>
+
+<!-- 
+
 <EditTextPreference android:key="pref_relay"
 android:title="Relaying"
 android:summary="Enable your device to be a relay"
@@ -22,10 +31,11 @@ android:dialogTitle="Enter Bridge Addresses"
 android:enabled="false"
 />
 
+
 <CheckBoxPreference android:defaultValue="false" 
 android:title="Fascist Firewall" android:key="pref_fascist_firewall" 
 android:summary="Run as a client behind a firewall with restrictive policies"
 android:enabled="false"></CheckBoxPreference>
-
+ -->
 
 </PreferenceScreen>
