@@ -32,7 +32,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 	
 	
 	
-	private static int currentStatus = STATUS_REQUIRES_DEMAND;
+	private static int currentStatus = STATUS_READY;
 		
 	private TorControlConnection conn = null;
 	
@@ -80,12 +80,12 @@ public class TorService extends Service implements TorServiceConstants, Runnable
  						
 			} catch (RuntimeException e) {
 				Log.i(TAG,"Unable to connect to existing Tor instance,",e);
-				currentStatus = STATUS_REQUIRES_DEMAND;
+				currentStatus = STATUS_OFF;
 				this.stopTor();
 				
 			} catch (Exception e) {
 				Log.i(TAG,"Unable to connect to existing Tor instance,",e);
-				currentStatus = STATUS_REQUIRES_DEMAND;
+				currentStatus = STATUS_OFF;
 				this.stopTor();
 				
 			}
@@ -203,7 +203,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 	     }
 	     catch (Exception e)
 	     {
-	    	 currentStatus = STATUS_REQUIRES_DEMAND;
+	    	 currentStatus = STATUS_OFF;
 	    	 this.showToolbarNotification("Orbot", "Unable to start Tor", R.drawable.tornotification);
 	    	 Log.i(TAG,"Unable to start Tor: " + e.getMessage(),e);
 	     }
@@ -226,14 +226,14 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     
     private void stopTor ()
     {
-    	currentStatus = STATUS_UNAVAILABLE;
+    	currentStatus = STATUS_OFF;
     	
     		
     	sendCallbackMessage("Web proxy shutdown");
     	
 		killTorProcess ();
 				
-		currentStatus = STATUS_REQUIRES_DEMAND;
+		currentStatus = STATUS_READY;
     	
 		showToolbarNotification ("Orbot","Anonymous browsing is disabled",R.drawable.tornotificationoff);
     	sendCallbackMessage("Anonymous browsing is disabled");
@@ -591,7 +591,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 			}
 			else
 			{
-				currentStatus = STATUS_UNAVAILABLE;
+				currentStatus = STATUS_OFF;
 	            sendCallbackMessage ("shutting down...");
 	            
 				_torInstance.stopTor();

@@ -5,6 +5,7 @@ package org.torproject.android;
 
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
+import android.util.Log;
 
 public class SettingsPreferences 
 		extends PreferenceActivity {
@@ -13,4 +14,15 @@ public class SettingsPreferences
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.preferences);
 	}
+	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onStop()
+	 */
+	@Override
+	protected void onStop() {
+		super.onStop();
+		
+		Log.i(getClass().getName(),"Exiting Preferences");
+	}
+
 }

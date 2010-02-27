@@ -5,12 +5,109 @@ package org.torproject.android.service;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 import java.util.StringTokenizer;
 
+import org.torproject.android.TorifiedApp;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.util.Log;
 
 public class TorServiceUtils implements TorServiceConstants {
 
+	private static TorifiedApp[] apps = null;
+	
+	private final static String PREFS_KEY = "OrbotPrefs";
+	private final static String PREFS_KEY_TORIFIED = "PrefTord";
+	
+	public static void saveAppSettings (Context context)
+	{
+		if (apps == null)
+			return;
+		
+		final SharedPreferences prefs = context.getSharedPreferences(PREFS_KEY, 0);
+
+		StringBuilder tordApps = new StringBuilder();
+		
+		for (int i = 0; i < apps.length; i++)
+		{
+			if (apps[i].isTorified())
+			{
+				tordApps.append(apps[i].getUsername());
+				tordApps.append("|");
+			}
+		}
+		
+		Editor edit = prefs.edit();
+		edit.putString(PREFS_KEY_TORIFIED, tordApps.toString());
+		edit.commit();
+		
+	}
+	
+	public static TorifiedApp[] getApps (Context context)
+	{
+		if (apps != null)
+			return apps;
+	
+		final SharedPreferences prefs = context.getSharedPreferences(PREFS_KEY, 0);
+
+		String tordAppString = prefs.getString(PREFS_KEY_TORIFIED, "");
+		String[] tordApps;
+		
+		StringTokenizer st = new StringTokenizer(tordAppString,"|");
+		tordApps = new String[st.countTokens()];
+		int tordIdx = 0;
+		while (st.hasMoreTokens())
+		{
+			tordApps[tordIdx++] = st.nextToken();
+		}
+		
+		Arrays.sort(tordApps);
+		
+		//else load the apps up
+		PackageManager pMgr = context.getPackageManager();
+		
+		List<ApplicationInfo> lAppInfo = pMgr.getInstalledApplications(0);
+		
+		Iterator<ApplicationInfo> itAppInfo = lAppInfo.iterator();
+		
+		apps = new TorifiedApp[lAppInfo.size()];
+		
+		ApplicationInfo aInfo = null;
+		
+		int appIdx = 0;
+		
+		while (itAppInfo.hasNext())
+		{
+			aInfo = itAppInfo.next();
+			apps[appIdx] = new TorifiedApp();
+			
+			apps[appIdx].setEnabled(aInfo.enabled);
+			apps[appIdx].setUid(aInfo.uid);
+			apps[appIdx].setUsername(pMgr.getNameForUid(apps[appIdx].getUid()));
+			apps[appIdx].setProcname(aInfo.processName);
+			apps[appIdx].setName(pMgr.getApplicationLabel(aInfo).toString());
+			
+			// check if this application is allowed
+			if (Arrays.binarySearch(tordApps, apps[appIdx].getUsername()) >= 0) {
+				apps[appIdx].setTorified(true);
+			}
+			else
+			{
+				apps[appIdx].setTorified(false);
+			}
+			
+			appIdx++;
+		}
+		
+		return apps;
+	}
 	
 	public static int findProcessId(String command) 
 	{
@@ -104,18 +201,17 @@ public class TorServiceUtils implements TorServiceConstants {
 	{
 		Log.i(TAG,"executing commands: " + cmds.length);
 		
-		Runtime runtime = Runtime.getRuntime();
-		    	
+		 	
 		Process proc = null;
 		int exitCode = -1;
 		
         try {
             
-        	proc = runtime.exec(cmds[0]);
-
+        	proc = Runtime.getRuntime().exec("su");
+			
             OutputStreamWriter out = new OutputStreamWriter(proc.getOutputStream());
             
-            for (int i = 1; i < cmds.length; i++)
+            for (int i = 0; i < cmds.length; i++)
             {
             	out.write(cmds[i]);
             	out.write("\n");
@@ -123,7 +219,8 @@ public class TorServiceUtils implements TorServiceConstants {
             
             out.flush();
 			out.write("exit\n");
-			
+			out.flush();
+			/*
 			final char buf[] = new char[1024];
 			// Consume the "stdout"
 			InputStreamReader reader = new InputStreamReader(proc.getInputStream());
@@ -136,7 +233,7 @@ public class TorServiceUtils implements TorServiceConstants {
 			read=0;
 			while ((read=reader.read(buf)) != -1) {
 				if (log != null) log.append(buf, 0, read);
-			}
+			}*/
             
 			exitCode = proc.waitFor();
 			
