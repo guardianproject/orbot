@@ -3,11 +3,14 @@
 
 package org.torproject.android;
 
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.StringTokenizer;
 
 import org.torproject.android.service.ITorService;
 import org.torproject.android.service.ITorServiceCallback;
-import org.torproject.android.service.TorRoot;
+import org.torproject.android.service.TorServiceUtils;
+import org.torproject.android.service.TorTransProxy;
 import org.torproject.android.service.TorServiceConstants;
 
 import android.app.Activity;
@@ -32,12 +35,19 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 
-public class Orbot extends Activity implements OnClickListener, TorConstants
+public class Orbot extends Activity implements OnClickListener, TorConstants, OnCheckedChangeListener
 {
 	
 	/* Useful UI bits */
@@ -45,18 +55,17 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 	private TextView lblStatus = null; //the main text display widget
 	private ImageView imgStatus = null; //the main touchable image for activating Orbot
 	private ProgressDialog progressDialog;
+	private ListView listApps;
+	private boolean showingSettings = false;
 	
 	/* Some tracking bits */
-	private int torStatus = STATUS_REQUIRES_DEMAND; //latest status reported from the tor service
+	private int torStatus = STATUS_READY; //latest status reported from the tor service
 	private int currentView = 0; //the currently displayed UI view
 	private StringBuffer logBuffer = new StringBuffer(); //the output of the service log messages
-	private String lastUrl = null;
 	
 	/* Tor Service interaction */
 		/* The primary interface we will be calling on the service. */
     ITorService mService = null;
-
-    
 	
     /** Called when the activity is first created. */
     @Override
@@ -83,15 +92,22 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 
         mItem = menu.add(0, 2, Menu.NONE, getString(R.string.menu_browse));
         mItem.setIcon(R.drawable.ic_menu_goto);
+
+        mItem = menu.add(0, 3, Menu.NONE, getString(R.string.menu_info));
+        mItem.setIcon(R.drawable.ic_menu_about);
         
-        mItem = menu.add(0, 3, Menu.NONE, getString(R.string.menu_settings));
+        mItem = menu.add(0, 4, Menu.NONE, getString(R.string.menu_settings));
         mItem.setIcon(R.drawable.ic_menu_register);
+       
+        mItem = menu.add(0, 5, Menu.NONE, getString(R.string.menu_apps));
+        mItem.setIcon(R.drawable.ic_menu_register);
+
+        if (!TorServiceUtils.hasRoot())
+        	mItem.setEnabled(false);
         
-        mItem =  menu.add(0, 4, Menu.NONE, getString(R.string.menu_log));
+        mItem =  menu.add(0,6, Menu.NONE, getString(R.string.menu_log));
         mItem.setIcon(R.drawable.ic_menu_reports);
 
-        mItem = menu.add(0, 5, Menu.NONE, getString(R.string.menu_info));
-        mItem.setIcon(R.drawable.ic_menu_about);
       
         return true;
     }
@@ -109,11 +125,11 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 		{
 			this.showMain();
 		}
-		else if (item.getItemId() == 3)
+		else if (item.getItemId() == 4)
 		{
 			this.showSettings();
 		}
-		else if (item.getItemId() == 4)
+		else if (item.getItemId() == 6)
 		{
 			this.showMessageLog();
 		}
@@ -121,9 +137,13 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 		{
 			openBrowser(URL_TOR_CHECK);
 		}
-		else if (item.getItemId() == 5)
+		else if (item.getItemId() == 3)
 		{
 			showHelp();
+		}
+		else if (item.getItemId() == 5)
+		{
+			showApps();
 		}
 		
         return true;
@@ -158,10 +178,8 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 	protected void onPause() {
 		super.onPause();
 		
+
 	}
-
-
-
 
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onResume()
@@ -171,6 +189,17 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 		super.onResume();
 		
 		updateStatus (""); //update the status, which checks the service status
+		
+		if (showingSettings)
+		{
+			
+			showingSettings = false;
+			processSettings();
+		
+		}
+		
+		
+		
 	}
 
 	/* (non-Javadoc)
@@ -198,6 +227,8 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 	protected void onStop() {
 		super.onStop();
 		
+		TorServiceUtils.saveAppSettings(this);
+		
 		unbindService();
 	}
 
@@ -209,6 +240,24 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 	private void showMain ()
     {
 		bindService(); //connect the UI activity to the remote service
+		
+		if (currentView == R.layout.layout_apps)
+		{
+			if (hasRoot)
+			{
+				
+				TorServiceUtils.saveAppSettings(this);
+				
+				if (enableTransparentProxy)
+				{
+					TorTransProxy.purgeNatIptables();
+					TorTransProxy.setDNSProxying();
+					TorTransProxy.setTransparentProxying(this, TorServiceUtils.getApps(this));
+				}
+				
+				
+			}
+		}
 		
 		currentView = R.layout.layout_main;
 		setContentView(currentView);
@@ -232,6 +281,67 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 		
 	}
 	
+	private void loadApps ()
+	{
+        final TorifiedApp[] apps = TorServiceUtils.getApps(this);
+        
+        Arrays.sort(apps, new Comparator<TorifiedApp>() {
+			@Override
+			public int compare(TorifiedApp o1, TorifiedApp o2) {
+				if (o1.isTorified() == o2.isTorified()) return o1.getName().compareTo(o2.getName());
+				if (o1.isTorified()) return -1;
+				return 1;
+			}
+        });
+        
+        final LayoutInflater inflater = getLayoutInflater();
+		
+        final ListAdapter adapter = new ArrayAdapter<TorifiedApp>(this,R.layout.layout_apps_item,R.id.itemtext,apps) {
+        	@Override
+        	public View getView(int position, View convertView, ViewGroup parent) {
+       			ListEntry entry;
+        		if (convertView == null) {
+        			// Inflate a new view
+        			convertView = inflater.inflate(R.layout.layout_apps_item, parent, false);
+       				entry = new ListEntry();
+       				entry.box = (CheckBox) convertView.findViewById(R.id.itemcheck);
+       				entry.text = (TextView) convertView.findViewById(R.id.itemtext);
+       				convertView.setTag(entry);
+       				entry.box.setOnCheckedChangeListener(Orbot.this);
+        		} else {
+        			// Convert an existing view
+        			entry = (ListEntry) convertView.getTag();
+        		}
+        		final TorifiedApp app = apps[position];
+        		entry.text.setText(app.getName());
+        		final CheckBox box = entry.box;
+        		box.setTag(app);
+        		box.setChecked(app.isTorified());
+       			return convertView;
+        	}
+        };
+        this.listApps.setAdapter(adapter);
+		   
+	}
+	
+	/**
+	 * Called an application is check/unchecked
+	 */
+	@Override
+	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+		final TorifiedApp app = (TorifiedApp) buttonView.getTag();
+		if (app != null) {
+			app.setTorified(isChecked);
+		}
+		
+		TorServiceUtils.saveAppSettings(this);
+
+	}
+	
+	private static class ListEntry {
+		private CheckBox box;
+		private TextView text;
+	}
 	/*
 	 * Show the about view - a popup dialog
 	 */
@@ -285,7 +395,16 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
         .show();
 	}
 	
+	private void showApps ()
+	{
+		currentView = R.layout.layout_apps;
+		setContentView(currentView);
 	
+		listApps = (ListView)findViewById(R.id.applistview);
+		
+		loadApps();
+		
+	}
 	/*
 	 * Show the message log UI
 	 */
@@ -308,6 +427,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 	private void showSettings ()
 	{
 		
+		showingSettings = true;
 		startActivity(new Intent(this, SettingsPreferences.class));
 
 		
@@ -331,6 +451,19 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 		
 		enableTransparentProxy = prefs.getBoolean(PREF_TRANSPARENT, false);
 		
+		if (hasRoot)
+		{
+			if (enableTransparentProxy)
+			{
+				TorTransProxy.setDNSProxying();
+				TorTransProxy.setTransparentProxying(this, TorServiceUtils.getApps(this));
+			}
+			else
+			{
+				TorTransProxy.purgeNatIptables();
+			}
+			
+		}
 		String bridgeList = prefs.getString(PREF_BRIDGES_LIST,"");
 
 		if (useBridges)
@@ -436,7 +569,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 	    			}
 		    			
 		    	}
-		    	else if (torStatus == STATUS_UNAVAILABLE)
+		    	else if (torStatus == STATUS_OFF)
 		    	{
 		    		imgStatus.setImageResource(R.drawable.torstopping);
 		    		lblStatus.setText(getString(R.string.status_shutting_down));
@@ -493,15 +626,16 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 				{
 				
 				}
-				else if (mService.getStatus() == STATUS_REQUIRES_DEMAND)
+				else if (mService.getStatus() == STATUS_READY)
 				{
 					processSettings();
 					mService.setProfile(PROFILE_ON);
 
 					if (hasRoot && enableTransparentProxy)
 					{
-						TorRoot.enableDNSProxying();
-						TorRoot.enabledWebProxying();
+						
+						TorTransProxy.setDNSProxying();
+						TorTransProxy.setTransparentProxying(this,TorServiceUtils.getApps(this));
 					}
 				}
 				else
@@ -511,7 +645,9 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 				
 					if (hasRoot && enableTransparentProxy)
 					{
-						TorRoot.purgeNatIptables();
+						TorTransProxy.purgeNatIptables();
+						//TorRoot.setDNSProxying(false);
+						//TorRoot.setTransparentProxying(this,false);
 					}
 				}
 			}
@@ -617,7 +753,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
     	 
     	 mIsBound = true;
     
-    	 hasRoot = TorRoot.hasRootAccess();
+    	 hasRoot = TorTransProxy.hasRootAccess();
 
     	
     }

@@ -12,8 +12,8 @@ public interface TorConstants {
 	//path to check Tor against
 	public final static String URL_TOR_CHECK = "https://check.torproject.org";
 	
-    public final static int STATUS_UNAVAILABLE = -1;
-    public final static int STATUS_REQUIRES_DEMAND = 0;
+    public final static int STATUS_OFF = -1;
+    public final static int STATUS_READY = 0;
     public final static int STATUS_ON = 1;
     public final static int STATUS_CONNECTING = 2;
     
