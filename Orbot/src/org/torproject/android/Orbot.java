@@ -87,26 +87,35 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
         
         MenuItem mItem = null;
         
+        /*
+        
         mItem = menu.add(0, 1, Menu.NONE, getString(R.string.menu_home));
         mItem.setIcon(R.drawable.ic_menu_home);
 
         mItem = menu.add(0, 2, Menu.NONE, getString(R.string.menu_browse));
         mItem.setIcon(R.drawable.ic_menu_goto);
+        */
 
-        mItem = menu.add(0, 3, Menu.NONE, getString(R.string.menu_info));
-        mItem.setIcon(R.drawable.ic_menu_about);
         
         mItem = menu.add(0, 4, Menu.NONE, getString(R.string.menu_settings));
         mItem.setIcon(R.drawable.ic_menu_register);
        
-        mItem = menu.add(0, 5, Menu.NONE, getString(R.string.menu_apps));
-        mItem.setIcon(R.drawable.ic_menu_register);
-
-        if (!TorServiceUtils.hasRoot())
-        	mItem.setEnabled(false);
-        
+       
+    	mItem = menu.add(0, 5, Menu.NONE, getString(R.string.menu_apps));
+    	mItem.setIcon(R.drawable.ic_menu_goto);
+    	
+    	 if (!TorServiceUtils.hasRoot())
+         {
+    		 mItem.setEnabled(false);
+    		 
+         }
+        	
         mItem =  menu.add(0,6, Menu.NONE, getString(R.string.menu_log));
         mItem.setIcon(R.drawable.ic_menu_reports);
+        
+        mItem = menu.add(0, 3, Menu.NONE, getString(R.string.menu_info));
+        mItem.setIcon(R.drawable.ic_menu_about);
+       
 
       
         return true;
@@ -628,8 +637,12 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
 				}
 				else if (mService.getStatus() == STATUS_READY)
 				{
+					mService.setProfile(PROFILE_ON); //this means turn on
+					
+					updateStatus("");
+					
 					processSettings();
-					mService.setProfile(PROFILE_ON);
+					
 
 					if (hasRoot && enableTransparentProxy)
 					{
@@ -641,8 +654,9 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
 				else
 				{
 					
-					mService.setProfile(PROFILE_ONDEMAND);	
-				
+					mService.setProfile(PROFILE_ONDEMAND);	//these means turn off
+					updateStatus("");
+					
 					if (hasRoot && enableTransparentProxy)
 					{
 						TorTransProxy.purgeNatIptables();
