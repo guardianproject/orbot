@@ -86,6 +86,7 @@ public class TorServiceUtils implements TorServiceConstants {
 		while (itAppInfo.hasNext())
 		{
 			aInfo = itAppInfo.next();
+			
 			apps[appIdx] = new TorifiedApp();
 			
 			apps[appIdx].setEnabled(aInfo.enabled);

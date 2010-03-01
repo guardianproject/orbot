@@ -3,6 +3,8 @@
 
 package org.torproject.android;
 
+import org.torproject.android.service.TorServiceUtils;
+
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.util.Log;
@@ -13,6 +15,9 @@ public class SettingsPreferences
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.preferences);
+		
+		if (!TorServiceUtils.hasRoot())
+			getPreferenceScreen().getPreference(3).setEnabled(false);
 	}
 	
 	/* (non-Javadoc)
