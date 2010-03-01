@@ -16,7 +16,8 @@ android:dialogTitle="Enter Bridge Addresses"
 />
 
 
-<CheckBoxPreference android:defaultValue="false" 
+<CheckBoxPreference 
+android:defaultValue="false" 
 android:key="pref_transparent"
 android:title="Transparent Proxying"
 android:summary="ROOTED DEVICES ONLY: Activate Tor for all web traffic and DNS"
