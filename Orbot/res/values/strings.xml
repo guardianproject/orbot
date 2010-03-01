@@ -9,8 +9,8 @@
     
 
 <string name="status_starting_up">Starting up...</string>
-<string name="status_activated">"Orbot is Activated\n&lt;&lt; TOUCH TO DISCONNECT &gt;&gt;</string>
-<string name="status_disabled">"Orbot is Disabled\n&lt;&lt; TOUCH TO START &gt;&gt;</string>
+<string name="status_activated">"Orbot is Activated!\nYou are now connected to Tor</string>
+<string name="status_disabled">"Orbot is Deactivated</string>
 <string name="status_shutting_down">Orbot is shutting down</string>
 
 <string name="tor_process_connecting">Starting Tor engine...</string>
@@ -22,7 +22,7 @@
 <string name="menu_browse">Browse</string>
 <string name="menu_settings">Settings</string>
 <string name="menu_log">Log</string>
-<string name="menu_info">Info</string>
+<string name="menu_info">Help</string>
 <string name="menu_apps">Apps</string>
 
 
