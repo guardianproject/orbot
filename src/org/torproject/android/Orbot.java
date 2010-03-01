@@ -631,39 +631,37 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
 		{
 			try
 			{
+				
 				if (mService == null)
 				{
 				
 				}
 				else if (mService.getStatus() == STATUS_READY)
 				{
+					
 					mService.setProfile(PROFILE_ON); //this means turn on
 					
-					updateStatus("");
+					imgStatus.setImageResource(R.drawable.torstarting);
+		    		lblStatus.setText(getString(R.string.status_starting_up));
+		    		
+					Message msg = mHandler.obtainMessage(ENABLE_TOR_MSG);
+		        	mHandler.sendMessage(msg);
+		        	
+		        	updateStatus("");
 					
-					processSettings();
-					
-
-					if (hasRoot && enableTransparentProxy)
-					{
-						
-						TorTransProxy.setDNSProxying();
-						TorTransProxy.setTransparentProxying(this,TorServiceUtils.getApps(this));
-					}
 				}
 				else
 				{
 					
 					mService.setProfile(PROFILE_ONDEMAND);	//these means turn off
-					updateStatus("");
 					
-					if (hasRoot && enableTransparentProxy)
-					{
-						TorTransProxy.purgeNatIptables();
-						//TorRoot.setDNSProxying(false);
-						//TorRoot.setTransparentProxying(this,false);
-					}
+					Message msg = mHandler.obtainMessage(DISABLE_TOR_MSG);
+		        	mHandler.sendMessage(msg);
+		        	
+		        	updateStatus("");
+					
 				}
+				
 			}
 			catch (Exception e)
 			{
@@ -673,6 +671,31 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
 		}
 		
 		
+	}
+	
+	private void doTorSetup (boolean enabled)
+	{
+		if (enabled)
+		{
+			processSettings();
+			
+	
+			if (hasRoot && enableTransparentProxy)
+			{
+				
+				TorTransProxy.setDNSProxying();
+				TorTransProxy.setTransparentProxying(this,TorServiceUtils.getApps(this));
+			}
+		}
+		else
+		{
+			if (hasRoot && enableTransparentProxy)
+			{
+				TorTransProxy.purgeNatIptables();
+				//TorRoot.setDNSProxying(false);
+				//TorRoot.setTransparentProxying(this,false);
+			}
+		}
 	}
 	
     /**
@@ -697,6 +720,8 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
     
     private static final int BUMP_MSG = 1;
     
+    private static final int ENABLE_TOR_MSG = 2;
+    private static final int DISABLE_TOR_MSG = 3;
     	
     private Handler mHandler = new Handler() {
         @Override public void handleMessage(Message msg) {
@@ -711,6 +736,15 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
                 	updateStatus(torServiceMsg);
                 	
                     break;
+                case ENABLE_TOR_MSG:
+                	
+                	doTorSetup(true);
+                	break;
+                case DISABLE_TOR_MSG:
+                	
+                	doTorSetup(false);
+                	break;
+                		
                 default:
                     super.handleMessage(msg);
             }

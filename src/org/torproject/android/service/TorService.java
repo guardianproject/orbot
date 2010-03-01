@@ -699,6 +699,8 @@ public class TorService extends Service implements TorServiceConstants, Runnable
         public void setProfile (int profile)
         {
         	setTorProfile(profile);
+        	sendCallbackMessage("");
+        	
         }
         
     };
