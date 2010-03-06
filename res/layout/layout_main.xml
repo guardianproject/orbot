@@ -24,7 +24,7 @@
 		<TextView android:id="@+id/radioModeText"
  		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"           
-            android:text="powered by the tor project  "
+            android:text="powered by The Tor Project  "
 			android:layout_marginTop="8px"
 			android:layout_marginRight="0px"
 			android:gravity="right"
