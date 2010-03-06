@@ -49,9 +49,10 @@ android:dialogTitle="Enter a custom relay nickname"
 </PreferenceCategory>
 
 <PreferenceCategory android:title="FascistFirewalling">
-<CheckBoxPreference android:defaultValue="false" 
+<CheckBoxPreference
+android:key="pref_fascist_firewall"
 android:defaultValue="false"
-android:title="Fascist Firewall" android:key="pref_fascist_firewall" 
+android:title="Fascist Firewall"
 android:summary="Run as a client behind a firewall with restrictive policies"
 android:enabled="false"></CheckBoxPreference>
 
