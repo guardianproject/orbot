@@ -1,13 +1,24 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-<PreferenceScreen android:title="Bridges">
+<PreferenceCategory android:title="Transparent Proxying">
+
+<CheckBoxPreference 
+android:defaultValue="false" 
+android:key="pref_transparent"
+android:title="Transparent Proxying"
+android:summary="Root Devices Only: Per App Torification"
+android:enabled="true"/>
+
+</PreferenceCategory>
+
+<PreferenceCategory android:title="Bridges">
 
 <CheckBoxPreference android:defaultValue="false" 
 android:title="Use Bridges" android:key="pref_bridges_enabled" 
 android:summary="Enable alternate entrance nodes into the Tor Network"></CheckBoxPreference>
 
 <CheckBoxPreference android:defaultValue="false" 
-android:title="Update Bridges from Authority" android:key="pref_bridges_update" 
+android:title="Update from Authority" android:key="pref_bridges_update" 
 android:summary="Modify bridge list automatically"></CheckBoxPreference>
 
 <EditTextPreference android:key="pref_bridge_list"
@@ -15,17 +26,11 @@ android:title="Bridges"
 android:summary="IP address and port of bridges"
 android:dialogTitle="Enter Bridge Addresses"
 />
-</PreferenceScreen>
+</PreferenceCategory>
 
 
-<CheckBoxPreference 
-android:defaultValue="false" 
-android:key="pref_transparent"
-android:title="Transparent Proxying"
-android:summary="ROOTED DEVICES ONLY: Activate Tor for all web traffic and DNS"
-android:enabled="true"/>
 
-<PreferenceScreen android:title="Relays">
+<PreferenceCategory android:title="Relays">
 <CheckBoxPreference android:key="pref_or"
 android:defaultValue="false"
 android:title="Relaying"
@@ -48,7 +53,7 @@ android:summary="The nickname for your Tor relay"
 android:dialogTitle="Enter a custom relay nickname"
 />
 
-</PreferenceScreen>
+</PreferenceCategory>
 
 <PreferenceCategory android:title="ReachableAddresses">
 <CheckBoxPreference
@@ -56,7 +61,7 @@ android:key="pref_reachable_addresses"
 android:defaultValue="false"
 android:title="ReachableAddresses"
 android:summary="Run as a client behind a firewall with restrictive policies"
-android:enabled="false"></CheckBoxPreference>
+android:enabled="true"></CheckBoxPreference>
 
 <EditTextPreference
 android:key="pref_reachable_addresses_ports"

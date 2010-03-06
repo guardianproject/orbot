@@ -19,7 +19,7 @@ public interface TorServiceConstants {
 	public final static String TORRC_INSTALL_PATH = TOR_HOME + TORRC_ASSET_KEY; //path to install torrc to within the android app data folder
 	public final static String TORRC_ZIP_KEY = "assets/" + TORRC_ASSET_KEY; //key of the torrc file in the Zip file
 	//how to launch tor
-	public final static String TOR_COMMAND_LINE_ARGS = "-f " + TORRC_INSTALL_PATH;
+	public final static String TOR_COMMAND_LINE_ARGS = "-f " + TORRC_INSTALL_PATH  + " || exit\n";
 		
 	//privoxy
 	public final static String PRIVOXY_ASSET_KEY = "privoxy";
@@ -32,7 +32,7 @@ public interface TorServiceConstants {
 	public final static String PRIVOXYCONFIG_ZIP_KEY = "assets/" + PRIVOXYCONFIG_ASSET_KEY; //key of the privoxy file in the Zip file
 	
 	//how to launch privoxy
-	public final static String PRIVOXY_COMMAND_LINE_ARGS = ' ' + PRIVOXYCONFIG_INSTALL_PATH;
+	public final static String PRIVOXY_COMMAND_LINE_ARGS = ' ' + PRIVOXYCONFIG_INSTALL_PATH + " || exit\n";
 
 	//where to send the notices log
 	public final static String TOR_LOG_PATH = TOR_HOME + "notices.log";
