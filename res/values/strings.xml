@@ -16,10 +16,11 @@
 <string name="status_shutting_down">Orbot is shutting down</string>
 
 <string name="tor_process_connecting">Starting Tor...</string>
-<string name="tor_process_connecting_step2">authenticating...</string>
+<string name="tor_process_connecting_step2">authenticating control connection...</string>
 <string name="tor_process_connecting_step3">complete.</string>
 <string name="tor_process_connecting_step4">waiting.</string>
 
+<string name="not_anonymous_yet">WARNING: Your traffic is not anonymous yet! Please configure your applications to use HTTP proxy 127.0.0.1:8118 or SOCKS5 proxy 127.0.0.1:9050</string>
 <string name="menu_home">Home</string>
 <string name="menu_browse">Browse</string>
 <string name="menu_settings">Settings</string>
@@ -36,9 +37,9 @@
 Please visit https://www.torproject.org/docs/android.html for the latest information.
 \n\n
 For non-rooted Android 1.x devices (G1, MyTouch3G, Hero): Please use the "ProxySurf" browser available in the Android Market, and set 
-the HTTP Proxy to 127.0.0.1 and port 8118. For Instant Messsaging, try "Beem" in the market, and set the SOCKS5 proxy to 127.0.0.1 / port 9050.
+the HTTP Proxy to 127.0.0.1 and port 8118, for HTTP traffic only (HTTP/S will not work). For Instant Messsaging, try "Beem" in the market, and set the SOCKS5 proxy to 127.0.0.1 / port 9050.
 \n\n
-For Android 2.x devices, you MUST ROOT your device in order for Orbot to work transparently for all web and DNS traffic. Otherwise, the "Beem" app will allow
+For Android 2.x devices, you MUST ROOT your device in order for Orbot to work transparently, as there is no browser that will work for non-root devices. Otherwise, the "Beem" app will allow
 you to set the SOCKS5 proxy to 127.0.0.1 and port 9050. You should also enable SSL to protect your username and password.
 \n\n
 If you root your device, whether it is 1.x or 2.x based, Orbot will automatically, transparently proxy all web traffic (http and https)

@@ -190,6 +190,25 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
 
 	}
 
+	public void onSaveInstanceState(Bundle savedInstanceState) {
+		  // Save UI state changes to the savedInstanceState.
+		  // This bundle will be passed to onCreate if the process is
+		  // killed and restarted.
+		  savedInstanceState.putString("log", logBuffer.toString());
+		  // etc.
+		  super.onSaveInstanceState(savedInstanceState);
+		}
+	
+	@Override
+	public void onRestoreInstanceState(Bundle savedInstanceState) {
+	  super.onRestoreInstanceState(savedInstanceState);
+	  // Restore UI state from the savedInstanceState.
+	  // This bundle has also been passed to onCreate.
+	 
+	  String logText = savedInstanceState.getString("log");
+	  logBuffer.append(logText);
+	}
+	
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onResume()
 	 */
@@ -427,8 +446,6 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
 		
 	}
 	
-		    
-    
 	
     /*
      * Load the basic settings application to display torrc
@@ -482,6 +499,16 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
 
 		if (useBridges)
 		{
+			if (bridgeList == null || bridgeList.length() == 0)
+			{
+			
+				showAlert("In order to use the bridge feature, you must enter at least one bridge IP address." +
+						"Send an email to bridges@torproject.org with the line \"get bridges\" by itself in the body of the mail from a gmail account.");
+				
+				showSettings();
+				return;
+			}
+			
 			torrcText.append("UseBridges 1");
 			torrcText.append('\n');		
 
@@ -530,8 +557,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
         }
         catch (Exception e)
         {
-            Toast.makeText(this,"Your ReachableAddresses settings caused an exception!",
-                           Toast.LENGTH_LONG).show();
+           showAlert("Your ReachableAddresses settings caused an exception!");
         }
 
         try
@@ -555,13 +581,19 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
         }
         catch (Exception e)
         {
-            Toast.makeText(this,"Your relay settings caused an exception!", Toast.LENGTH_LONG).show();
+            showAlert("Your relay settings caused an exception!");
+            showSettings();
+            return;
         }
 
 		Utils.saveTextFile(TorServiceConstants.TORRC_INSTALL_PATH, torrcText.toString());
 	}
 	
-	
+	private void showAlert(String msg)
+	{
+		   Toast.makeText(this,msg,
+                   Toast.LENGTH_LONG).show();
+	}
     /*
      * Set the state of the running/not running graphic and label
      */
@@ -589,10 +621,15 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
 		    			progressDialog.cancel();
 		    			progressDialog.hide();
 		    			progressDialog = null;
+		    			
+		    			if (!enableTransparentProxy)
+		    			{
+		    				showAlert(getString(R.string.not_anonymous_yet));
+		    			}
 		    		}
 		    		
-		    		if (torServiceMsg != null && torServiceMsg.length()>0)
-		    			Toast.makeText(this, torServiceMsg, Toast.LENGTH_LONG).show();
+		    	//	if (torServiceMsg != null && torServiceMsg.length()>0)
+		    		//	Toast.makeText(this, torServiceMsg, Toast.LENGTH_LONG).show();
 		    		
 		    	
 		    	}
@@ -623,6 +660,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
 	    				String pComp = torServiceMsg.substring(idx-2,idx).trim();
 	    				int ipComp = Integer.parseInt(pComp);
 	    				progressDialog.setProgress(ipComp);
+	    				
 	    			}
 		    			
 		    	}
@@ -631,8 +669,8 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
 		    		imgStatus.setImageResource(R.drawable.torstopping);
 		    		lblStatus.setText(getString(R.string.status_shutting_down));
 		    		
-		    		if (torServiceMsg != null && torServiceMsg.length()>0)
-		    			Toast.makeText(this, torServiceMsg, Toast.LENGTH_LONG).show();
+		    		//if (torServiceMsg != null && torServiceMsg.length()>0)
+		    			//Toast.makeText(this, torServiceMsg, Toast.LENGTH_LONG).show();
 		    		
 		    	
 		    		
@@ -640,8 +678,8 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
 		    	else
 		    	{
 
-		    		if (torServiceMsg != null && torServiceMsg.length()>0)
-		    			Toast.makeText(this, torServiceMsg, Toast.LENGTH_LONG).show();
+		    		//if (torServiceMsg != null && torServiceMsg.length()>0)
+		    			//Toast.makeText(this, torServiceMsg, Toast.LENGTH_LONG).show();
 		    		
 		    	
 		    		if (progressDialog != null)
