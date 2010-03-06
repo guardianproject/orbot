@@ -536,7 +536,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
 
         try
         {
-            if (becomeRelay && (!useBridges) && (!fascistFirewall))
+            if (becomeRelay && (!useBridges) && (!ReachableAddresses))
             {
                 int ORPort =  Integer.parseInt(prefs.getString(PREF_OR_PORT, "9001"));
                 String nickname = prefs.getString(PREF_OR_NICKNAME, "Orbot");
