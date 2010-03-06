@@ -457,7 +457,9 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
 		boolean useBridges = prefs.getBoolean(PREF_BRIDGES_ENABLED, false);
 		
 		boolean autoUpdateBridges = prefs.getBoolean(PREF_BRIDGES_UPDATED, false);
-		
+
+        boolean becomeRelay = prefs.getBoolean(PREF_OR, false);
+
 		enableTransparentProxy = prefs.getBoolean(PREF_TRANSPARENT, false);
 		
 		if (hasRoot)
@@ -509,7 +511,31 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
 		{
 			torrcText.append("UseBridges 0");
 		}
-		
+
+        try
+        {
+            if (becomeRelay && !useBridges)
+            {
+                int ORPort =  Integer.parseInt(prefs.getString(PREF_OR_PORT, "9001"));
+                String nickname = prefs.getString(PREF_OR_NICKNAME, "Orbot");
+
+                torrcText.append("ORPort ");
+                torrcText.append(ORPort);
+                torrcText.append('\n');
+
+                torrcText.append("Nickname ");
+                torrcText.append(nickname);
+                torrcText.append('\n');
+
+                torrcText.append("ExitPolicy reject *:*");
+                torrcText.append('\n');
+            }
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(this, "Your relay settings caused an exception!", Toast.LENGTH_LONG).show();
+        }
+
 		Utils.saveTextFile(TorServiceConstants.TORRC_INSTALL_PATH, torrcText.toString());
 	}
 	
