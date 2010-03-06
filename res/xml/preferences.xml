@@ -21,7 +21,7 @@ android:summary="Enable alternate entrance nodes into the Tor Network"></CheckBo
 android:title="Update from Authority" android:key="pref_bridges_update" 
 android:summary="Modify bridge list automatically"></CheckBoxPreference>
 
-<EditTextPreference android:key="pref_bridge_list"
+<EditTextPreference android:key="pref_bridges_list"
 android:title="Bridges"
 android:summary="IP address and port of bridges"
 android:dialogTitle="Enter Bridge Addresses"
