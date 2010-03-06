@@ -38,6 +38,14 @@ android:title="Relay Port"
 android:summary="Listening port for your Tor relay"
 android:dialogTitle="Enter OR port"
 />
+
+<EditTextPreference android:key="pref_or_nickname"
+android:defaultValue="Orbot"
+android:title="Relay nickname"
+android:summary="The nickname for your Tor relay"
+android:dialogTitle="Enter a custom relay nickname"
+/>
+
 </PreferenceCategory>
 
 <PreferenceCategory android:title="FascistFirewalling">
