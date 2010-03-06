@@ -10,7 +10,5 @@ CookieAuthentication 1
 RelayBandwidthRate 20 KBytes
 RelayBandwidthBurst 20 KBytes
 UseBridges 0
-UpdateBridgesFromAuthority 1
-bridge 74.82.1.191:19030
-bridge 221.31.40.135:4430
-bridge 24.110.168.130:443
+AutomapHostsOnResolve 1
+TransPort 9040
