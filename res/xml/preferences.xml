@@ -24,7 +24,7 @@ android:summary="ROOTED DEVICES ONLY: Activate Tor for all web traffic and DNS"
 android:enabled="true"/>
 
 <PreferenceCategory android:title="Relays">
-<CheckBoxPreference android:key="pref_relay"
+<CheckBoxPreference android:key="pref_or"
 android:defaultValue="false"
 android:title="Relaying"
 android:summary="Enable your device to be a relay"
@@ -32,7 +32,7 @@ android:dialogTitle="Enter Bridge Addresses"
 android:enabled="false"
 />
 
-<EditTextPreference android:key="pref_relay_port"
+<EditTextPreference android:key="pref_or_port"
 android:defaultValue="9001"
 android:title="Relay Port"
 android:summary="Listening port for your Tor relay"
