@@ -37,8 +37,8 @@ public interface TorConstants {
     public final static String PREF_OR = "pref_or";
     public final static String PREF_OR_PORT = "pref_or_port";
     public final static String PREF_OR_NICKNAME = "pref_or_nickname";
-    public final static String PREF_FASCIST_FIREWALL = "pref_fascist_firewall";
-    public final static String PREF_FASCIST_FIREWALL_PORTS = "pref_fascist_firewall_ports";
+    public final static String PREF_REACHABLE_ADDRESSES = "pref_reachable_addresses";
+    public final static String PREF_REACHABLE_ADDRESSES_PORTS = "pref_reachable_addresses_ports";
 	public final static String PREF_TRANSPARENT = "pref_transparent";
 	
 	

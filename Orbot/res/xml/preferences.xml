@@ -50,19 +50,21 @@ android:dialogTitle="Enter a custom relay nickname"
 
 </PreferenceScreen>
 
-<PreferenceScreen android:title="FascistFirewalling">
+<PreferenceCategory android:title="ReachableAddresses">
 <CheckBoxPreference
-android:key="pref_fascist_firewall"
-android:title="Fascist Firewall"
+android:key="pref_reachable_addresses"
+android:defaultValue="false"
+android:title="ReachableAddresses"
 android:summary="Run as a client behind a firewall with restrictive policies"
-android:enabled="true"></CheckBoxPreference>
+android:enabled="false"></CheckBoxPreference>
 
-<EditTextPreference android:key="pref_fascist_firewall_ports"
-android:defaultValue="80,443"
+<EditTextPreference
+android:key="pref_reachable_addresses_ports"
+android:defaultValue="*:80,*:443"
 android:title="Reachable ports"
 android:summary="Ports reachable behind a restrictive firewall"
 android:dialogTitle="Enter ports"
 />
-</PreferenceScreen>
+</PreferenceCategory>
 
 </PreferenceScreen>
