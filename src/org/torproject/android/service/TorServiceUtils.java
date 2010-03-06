@@ -112,6 +112,8 @@ public class TorServiceUtils implements TorServiceConstants {
 	
 	public static int findProcessId(String command) 
 	{
+		Log.i(TAG, "finding process id for: " + command);
+		
 		int procId = -1;
 		
 		Runtime r = Runtime.getRuntime();
@@ -147,60 +149,19 @@ public class TorServiceUtils implements TorServiceConstants {
 
 	}
 	
-	public static Process doCommand(String command, String arg1) 
-	{
-		Log.i(TAG,"executing command: " + command + ' ' + arg1);
-		
-		Runtime r = Runtime.getRuntime();
-		    	
-		Process proc = null;
-		
-		StringBuilder log = new StringBuilder();
-		
-        try {
-            
-        	proc = r.exec(command + ' ' + arg1);
-            
-/*
-			final char buf[] = new char[1024];
-			// Consume the "stdout"
-			InputStreamReader reader = new InputStreamReader(proc.getInputStream());
-			int read=0;
-			while ((read=reader.read(buf)) != -1) {
-				if (log != null) log.append(buf, 0, read);
-			}
-			// Consume the "stderr"
-			reader = new InputStreamReader(proc.getErrorStream());
-			read=0;
-			while ((read=reader.read(buf)) != -1) {
-				if (log != null) log.append(buf, 0, read);
-			}*/
-            
-            Log.i(TAG,"command process exit value: " + proc.exitValue());
-            Log.i(TAG, "shell cmd output: " + log.toString());
-
-        } catch (Exception e) {
-            Log.e(TAG, "error: " + e.getMessage());
-            Log.e(TAG, "shell cmd output: " + log.toString());
-        }
-        
-        
-        return proc;
-
-	}
 	
 	public static boolean hasRoot ()
 	{
 		String[] cmds = {"exit 0"};
 		
-		int code = doRootCommand(cmds,null);
+		int code = doShellCommand(cmds,null,true, true);
 		
 		return (code == 0);
 	}
 	
-	public static int doRootCommand(String[] cmds, StringBuilder log) 
+	public static int doShellCommand(String[] cmds, StringBuilder log, boolean isRoot, boolean waitFor) 
 	{
-		Log.i(TAG,"executing commands: " + cmds.length);
+		Log.i(TAG,"executing shell cmds: " + cmds[0] + "; isRoot=" + isRoot);
 		
 		 	
 		Process proc = null;
@@ -208,9 +169,12 @@ public class TorServiceUtils implements TorServiceConstants {
 		
         try {
             
-        	proc = Runtime.getRuntime().exec("su");
-			
-            OutputStreamWriter out = new OutputStreamWriter(proc.getOutputStream());
+        	if (isRoot)
+        		proc = Runtime.getRuntime().exec("su");
+        	else
+        		proc = Runtime.getRuntime().exec("sh");
+        	
+        	OutputStreamWriter out = new OutputStreamWriter(proc.getOutputStream());
             
             for (int i = 0; i < cmds.length; i++)
             {
@@ -221,25 +185,28 @@ public class TorServiceUtils implements TorServiceConstants {
             out.flush();
 			out.write("exit\n");
 			out.flush();
-			/*
-			final char buf[] = new char[1024];
-			// Consume the "stdout"
-			InputStreamReader reader = new InputStreamReader(proc.getInputStream());
-			int read=0;
-			while ((read=reader.read(buf)) != -1) {
-				if (log != null) log.append(buf, 0, read);
+		
+			if (waitFor)
+			{
+				
+				exitCode = proc.waitFor();
+				
+				
+				final char buf[] = new char[10];
+				// Consume the "stdout"
+				InputStreamReader reader = new InputStreamReader(proc.getInputStream());
+				int read=0;
+				while ((read=reader.read(buf)) != -1) {
+					if (log != null) log.append(buf, 0, read);
+				}
+				// Consume the "stderr"
+				reader = new InputStreamReader(proc.getErrorStream());
+				read=0;
+				while ((read=reader.read(buf)) != -1) {
+					if (log != null) log.append(buf, 0, read);
+				}
+				Log.i(TAG,"command process exit value: " + exitCode);
 			}
-			// Consume the "stderr"
-			reader = new InputStreamReader(proc.getErrorStream());
-			read=0;
-			while ((read=reader.read(buf)) != -1) {
-				if (log != null) log.append(buf, 0, read);
-			}*/
-            
-			exitCode = proc.waitFor();
-			
-            Log.i(TAG,"command process exit value: " + exitCode);
-
             
         } catch (Exception e) {
             Log.e(TAG, "Error executing shell cmd: " + e.getMessage(),e);

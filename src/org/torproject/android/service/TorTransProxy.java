@@ -34,7 +34,7 @@ public class TorTransProxy {
 		try {
 			// Run an empty script just to check root access
 			String[] cmd = {"exit 0"};
-			if (TorServiceUtils.doRootCommand(cmd, null) == 0) {
+			if (TorServiceUtils.doShellCommand(cmd, null, true, true) == 0) {
 				hasRoot = true;
 				return true;
 			}
@@ -53,7 +53,7 @@ public class TorTransProxy {
     	String[] cmds = {CMD_DNS_PROXYING_ADD};
     	
     
-    	code = TorServiceUtils.doRootCommand(cmds, log);
+    	code = TorServiceUtils.doShellCommand(cmds, log, true, true);
     	
     	return code;
     	
@@ -64,7 +64,7 @@ public class TorTransProxy {
     	StringBuilder res = new StringBuilder();
 		try {
 			String[] cmds = {CMD_NAT_FLUSH};
-			int code = TorServiceUtils.doRootCommand(cmds, res);
+			int code = TorServiceUtils.doShellCommand(cmds, res, true, true);
 			if (code != 0) {
 				Log.w(TAG, "error purging iptables. exit code: " + code + "\n" + res);
 				return false;
@@ -110,7 +110,7 @@ public class TorTransProxy {
 	    	
 	    	String[] cmd = {script.toString()};
 	    	
-			code = TorServiceUtils.doRootCommand(cmd, res);
+			code = TorServiceUtils.doShellCommand(cmd, res, true, true);
 			
 				String msg = res.toString();
 				Log.e(TAG, msg);

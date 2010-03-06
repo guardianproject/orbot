@@ -6,7 +6,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 import net.freehaven.tor.control.ConfigEntry;
@@ -277,6 +279,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 			conn = null;
 		}
     	
+    	StringBuilder log = new StringBuilder();
     	
 		int procId = TorServiceUtils.findProcessId(TorServiceConstants.TOR_BINARY_INSTALL_PATH);
 
@@ -285,7 +288,8 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 			
 			Log.i(TAG,"Found Tor PID=" + procId + " - killing now...");
 			
-			TorServiceUtils.doCommand(SHELL_CMD_KILL, procId + "");
+			String[] cmd = { SHELL_CMD_KILL + ' ' + procId + "" };
+			TorServiceUtils.doShellCommand(cmd,log, false, false);
 
 			procId = TorServiceUtils.findProcessId(TorServiceConstants.TOR_BINARY_INSTALL_PATH);
 		}
@@ -296,8 +300,9 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 		{
 			
 			Log.i(TAG,"Found Privoxy PID=" + procId + " - killing now...");
-			
-			TorServiceUtils.doCommand(SHELL_CMD_KILL, procId + "");
+			String[] cmd = { SHELL_CMD_KILL + ' ' + procId + "" };
+
+			TorServiceUtils.doShellCommand(cmd,log, false, false);
 
 			procId = TorServiceUtils.findProcessId(TorServiceConstants.PRIVOXY_INSTALL_PATH);
 		}
@@ -346,12 +351,15 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     		
 		}
 		
-
+		StringBuilder log = new StringBuilder ();
+		
 		Log.i(TAG,"Setting permission on Tor binary");
-		TorServiceUtils.doCommand(SHELL_CMD_CHMOD, CHMOD_EXE_VALUE + ' ' + TOR_BINARY_INSTALL_PATH);
+		String[] cmd1 = {SHELL_CMD_CHMOD + ' ' + CHMOD_EXE_VALUE + ' ' + TOR_BINARY_INSTALL_PATH};
+		TorServiceUtils.doShellCommand(cmd1, log, false, true);
 		
 		Log.i(TAG,"Setting permission on Privoxy binary");
-		TorServiceUtils.doCommand(SHELL_CMD_CHMOD, CHMOD_EXE_VALUE + ' ' + PRIVOXY_INSTALL_PATH);
+		String[] cmd2 = {SHELL_CMD_CHMOD + ' ' + CHMOD_EXE_VALUE + ' ' + PRIVOXY_INSTALL_PATH};
+		TorServiceUtils.doShellCommand(cmd2, log, false, true);
 				
 		return true;
     }
@@ -368,41 +376,82 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     		
     		checkTorBinaries ();
     		
-    		
-    		Log.i(TAG,"Starting tor process");
-    		
-    		TorServiceUtils.doCommand(TOR_BINARY_INSTALL_PATH, TOR_COMMAND_LINE_ARGS);
-		
-    		int procId = TorServiceUtils.findProcessId(TorServiceConstants.TOR_BINARY_INSTALL_PATH);
-
-    		while (procId == -1)
+    		new Thread()
     		{
-    			TorServiceUtils.doCommand(TOR_BINARY_INSTALL_PATH, TOR_COMMAND_LINE_ARGS);
-    			procId = TorServiceUtils.findProcessId(TorServiceConstants.TOR_BINARY_INSTALL_PATH);
-    			
-    			if (procId == -1)
+    			public void run ()
     			{
-    				this.sendCallbackMessage("Couldn't start Tor process... retrying...");
-    				Thread.sleep(3000);
+    				try {
+						runPrivoxyShellCmd();
+					} catch (Exception e) {
+						Log.w(TAG,"Error starting Privoxy",e);
+					} 
     			}
-    		}
+    		}.start();
     		
-    		Log.i(TAG,"Tor process id=" + procId);
+    		new Thread()
+    		{
+    			public void run ()
+    			{
+    				try {
+    					runTorShellCmd();
+    				} catch (Exception e) {
+						Log.w(TAG,"Error starting Tor",e);
+					} 
+    			}
+    		}.start();
     		
-    		showToolbarNotification("Orbot starting...", "Orbot is starting up", R.drawable.tornotification);
 			
-			initControlConnection ();
+    }
+    
+    private void runTorShellCmd() throws Exception
+    {
+    	StringBuilder log = new StringBuilder();
+		
+		Log.i(TAG,"Starting tor process");
+		
+		String[] torCmd = {TOR_BINARY_INSTALL_PATH + ' ' + TOR_COMMAND_LINE_ARGS};
+		TorServiceUtils.doShellCommand(torCmd, log, false, false);
+	
+		Thread.sleep(1000);
+		int procId = TorServiceUtils.findProcessId(TorServiceConstants.TOR_BINARY_INSTALL_PATH);
+
+		while (procId == -1)
+		{
+			log = new StringBuilder();
+    		
+			TorServiceUtils.doShellCommand(torCmd, log, false, false);
+			procId = TorServiceUtils.findProcessId(TorServiceConstants.TOR_BINARY_INSTALL_PATH);
 			
+			if (procId == -1)
+			{
+				this.sendCallbackMessage("Couldn't start Tor process...\n" + log.toString());
+				Thread.sleep(5000);
+			}
+		}
+		
+		Log.i(TAG,"Tor process id=" + procId);
+		
+		showToolbarNotification("Orbot starting...", "Orbot is starting up", R.drawable.tornotification);
+		
+		initControlConnection ();
+    }
+    
+    private void runPrivoxyShellCmd () throws Exception
+    {
 			int privoxyProcId = TorServiceUtils.findProcessId(TorServiceConstants.PRIVOXY_INSTALL_PATH);
 
+			StringBuilder log = new StringBuilder();
+			
     		while (privoxyProcId == -1)
     		{
-    			TorServiceUtils.doCommand(PRIVOXY_INSTALL_PATH, PRIVOXY_COMMAND_LINE_ARGS);
+    			String[] cmds = 
+    			{ PRIVOXY_INSTALL_PATH + " " + PRIVOXY_COMMAND_LINE_ARGS };
+    			TorServiceUtils.doShellCommand(cmds, log, false, true);
     			privoxyProcId = TorServiceUtils.findProcessId(TorServiceConstants.PRIVOXY_INSTALL_PATH);
     			
     			if (privoxyProcId == -1)
     			{
-    				this.sendCallbackMessage("Couldn't start Privoxy process... retrying...");
+    				this.sendCallbackMessage("Couldn't start Privoxy process... retrying...\n" + log);
     				Thread.sleep(3000);
     			}
     		}
@@ -705,19 +754,40 @@ public class TorService extends Service implements TorServiceConstants, Runnable
         
     };
     
-    private void sendCallbackMessage (String status)
+    private ArrayList<String> callbackBuffer = new ArrayList<String>();
+    
+    private void sendCallbackMessage (String newStatus)
     {
     	 
         // Broadcast to all clients the new value.
         final int N = mCallbacks.beginBroadcast();
-        for (int i=0; i<N; i++) {
-            try {
-                mCallbacks.getBroadcastItem(i).statusChanged(status);
-            } catch (RemoteException e) {
-                // The RemoteCallbackList will take care of removing
-                // the dead object for us.
-            }
+        
+
+    	callbackBuffer.add(newStatus);
+    	
+        if (N > 0)
+        {
+        
+        	Iterator<String> it = callbackBuffer.iterator();
+        	String status = null;
+        	
+        	while (it.hasNext())
+        	{
+        		status = it.next();
+        		
+		        for (int i=0; i<N; i++) {
+		            try {
+		                mCallbacks.getBroadcastItem(i).statusChanged(status);
+		            } catch (RemoteException e) {
+		                // The RemoteCallbackList will take care of removing
+		                // the dead object for us.
+		            }
+		        }
+        	}
+	        
+	        callbackBuffer.clear();
         }
+        
         mCallbacks.finishBroadcast();
     }
 }
