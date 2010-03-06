@@ -12,13 +12,13 @@ Main Authors:
 Nathan Freitas <nathan@freitas.net> developed the primary
 Android application and managed the porting of Tor to Android.
 
+Jake Appelbaum <jake@appelbaum.net > regular gave Nathan a
+swift kick in the rear to get this done. He has also provided
+extensive guidance and review. Most recently he has been
+promoted to Chief Application Resource Editor.
 
 Contributors:
 -------------
-Jake Appelbaum <jake@appelbaum.net > regular gave Nathan a
-swift kick in the rear to get this done. He has also provided
-extensive guidance and review.
-
 Nick Mathewson <nickm@freehaven.net> wrote some of the patch
 code to support the compiling of Tor and LibEvent on Android,
 and generaly provided guidance in the entire effort.

@@ -477,6 +477,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
 			}
 			
 		}
+		
 		String bridgeList = prefs.getString(PREF_BRIDGES_LIST,"");
 
 		if (useBridges)
@@ -512,6 +513,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
 		else
 		{
 			torrcText.append("UseBridges 0");
+			torrcText.append('\n');
 		}
 
         try
@@ -531,13 +533,13 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
         }
         catch (Exception e)
         {
-            Toast.makeText(this, "Your FascistFirewall settings caused an exception!",
+            Toast.makeText(this,"Your FascistFirewall settings caused an exception!",
                            Toast.LENGTH_LONG).show();
         }
 
         try
         {
-            if (becomeRelay && !useBridges && !fascistFirewall)
+            if (becomeRelay && (!useBridges) && (!fascistFirewall))
             {
                 int ORPort =  Integer.parseInt(prefs.getString(PREF_OR_PORT, "9001"));
                 String nickname = prefs.getString(PREF_OR_NICKNAME, "Orbot");
@@ -556,7 +558,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
         }
         catch (Exception e)
         {
-            Toast.makeText(this, "Your relay settings caused an exception!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Your relay settings caused an exception!", Toast.LENGTH_LONG).show();
         }
 
 		Utils.saveTextFile(TorServiceConstants.TORRC_INSTALL_PATH, torrcText.toString());
