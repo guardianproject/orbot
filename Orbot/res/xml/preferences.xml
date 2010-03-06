@@ -1,5 +1,6 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
+<PreferenceScreen android:title="Bridges">
 
 <CheckBoxPreference android:defaultValue="false" 
 android:title="Use Bridges" android:key="pref_bridges_enabled" 
@@ -14,6 +15,7 @@ android:title="Bridges"
 android:summary="IP address and port of bridges"
 android:dialogTitle="Enter Bridge Addresses"
 />
+</PreferenceScreen>
 
 
 <CheckBoxPreference 
@@ -23,13 +25,13 @@ android:title="Transparent Proxying"
 android:summary="ROOTED DEVICES ONLY: Activate Tor for all web traffic and DNS"
 android:enabled="true"/>
 
-<PreferenceCategory android:title="Relays">
+<PreferenceScreen android:title="Relays">
 <CheckBoxPreference android:key="pref_or"
 android:defaultValue="false"
 android:title="Relaying"
 android:summary="Enable your device to be a relay"
 android:dialogTitle="Enter Bridge Addresses"
-android:enabled="false"
+android:enabled="true"
 />
 
 <EditTextPreference android:key="pref_or_port"
@@ -46,15 +48,14 @@ android:summary="The nickname for your Tor relay"
 android:dialogTitle="Enter a custom relay nickname"
 />
 
-</PreferenceCategory>
+</PreferenceScreen>
 
-<PreferenceCategory android:title="FascistFirewalling">
+<PreferenceScreen android:title="FascistFirewalling">
 <CheckBoxPreference
 android:key="pref_fascist_firewall"
-android:defaultValue="false"
 android:title="Fascist Firewall"
 android:summary="Run as a client behind a firewall with restrictive policies"
-android:enabled="false"></CheckBoxPreference>
+android:enabled="true"></CheckBoxPreference>
 
 <EditTextPreference android:key="pref_fascist_firewall_ports"
 android:defaultValue="80,443"
@@ -62,6 +63,6 @@ android:title="Reachable ports"
 android:summary="Ports reachable behind a restrictive firewall"
 android:dialogTitle="Enter ports"
 />
-</PreferenceCategory>
+</PreferenceScreen>
 
 </PreferenceScreen>
