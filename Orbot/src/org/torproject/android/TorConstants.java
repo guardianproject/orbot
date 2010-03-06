@@ -36,6 +36,7 @@ public interface TorConstants {
 	public final static String PREF_BRIDGES_LIST = "pref_bridges_list";
     public final static String PREF_OR = "pref_relay";
     public final static String PREF_OR_PORT = "pref_relay_port";
+    public final static String PREF_OR_NICKNAME = "pref_or_nickname";
     public final static String PREF_FASCIST_FIREWALL = "pref_fascist_firewall";
     public final static String PREF_FASCIST_FIREWALL_PORTS = "pref_fascist_firewall_ports";
 	public final static String PREF_TRANSPARENT = "pref_transparent";
