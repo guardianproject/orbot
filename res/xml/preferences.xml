@@ -23,20 +23,36 @@ android:title="Transparent Proxying"
 android:summary="ROOTED DEVICES ONLY: Activate Tor for all web traffic and DNS"
 android:enabled="true"/>
 
-<!-- 
-
-<EditTextPreference android:key="pref_relay"
+<PreferenceCategory android:title="Relays">
+<CheckBoxPreference android:key="pref_relay"
+android:defaultValue="false"
 android:title="Relaying"
 android:summary="Enable your device to be a relay"
 android:dialogTitle="Enter Bridge Addresses"
 android:enabled="false"
 />
 
+<EditTextPreference android:key="pref_relay_port"
+android:defaultValue="9001"
+android:title="Relay Port"
+android:summary="Listening port for your Tor relay"
+android:dialogTitle="Enter OR port"
+/>
+</PreferenceCategory>
 
+<PreferenceCategory android:title="FascistFirewalling">
 <CheckBoxPreference android:defaultValue="false" 
+android:defaultValue="false"
 android:title="Fascist Firewall" android:key="pref_fascist_firewall" 
 android:summary="Run as a client behind a firewall with restrictive policies"
 android:enabled="false"></CheckBoxPreference>
- -->
+
+<EditTextPreference android:key="pref_fascist_firewall_ports"
+android:defaultValue="80,443"
+android:title="Reachable ports"
+android:summary="Ports reachable behind a restrictive firewall"
+android:dialogTitle="Enter ports"
+/>
+</PreferenceCategory>
 
 </PreferenceScreen>
