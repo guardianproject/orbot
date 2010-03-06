@@ -447,7 +447,10 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     			String[] cmds = 
     			{ PRIVOXY_INSTALL_PATH + " " + PRIVOXY_COMMAND_LINE_ARGS };
     			TorServiceUtils.doShellCommand(cmds, log, false, true);
+    			Thread.sleep(1000);
+    			
     			privoxyProcId = TorServiceUtils.findProcessId(TorServiceConstants.PRIVOXY_INSTALL_PATH);
+    			
     			
     			if (privoxyProcId == -1)
     			{
@@ -456,6 +459,9 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     			}
     		}
     		
+			sendCallbackMessage("Privoxy is running on port: " + PORT_HTTP);
+			Thread.sleep(100);
+			
     		Log.i(TAG,"Privoxy process id=" + privoxyProcId);
 			
     		
