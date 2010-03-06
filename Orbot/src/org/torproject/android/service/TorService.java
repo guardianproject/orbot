@@ -235,8 +235,8 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 				
 		currentStatus = STATUS_READY;
     	
-		showToolbarNotification ("Orbot","Anonymous browsing is disabled",R.drawable.tornotificationoff);
-    	sendCallbackMessage("Anonymous browsing is disabled");
+		showToolbarNotification ("Orbot","Tor is disabled",R.drawable.tornotificationoff);
+    	sendCallbackMessage("Tor is disabled");
 
     }
     
@@ -331,7 +331,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     		{
     			logNotice("Tor, Privoxy, IPtables binaries installed!");
     	
-    			this.showToolbarNotification("Orbot Installed!", "The Tor binary was successfully extracted and installed", R.drawable.tornotification);
+    			this.showToolbarNotification("Orbot Installed!", "Tor was successfully extracted and installed", R.drawable.tornotification);
     		
     		}
     		else
