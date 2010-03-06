@@ -460,7 +460,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
 
         boolean becomeRelay = prefs.getBoolean(PREF_OR, false);
 
-        boolean fascistFirewall = prefs.getBoolean(PREF_FASCIST_FIREWALL,false);
+        boolean ReachableAddresses = prefs.getBoolean(PREF_REACHABLE_ADDRESSES,false);
 
 		enableTransparentProxy = prefs.getBoolean(PREF_TRANSPARENT, false);
 		
@@ -518,22 +518,19 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
 
         try
         {
-            if (fascistFirewall)
+            if (ReachableAddresses)
             {
-                String fascistFirewallPorts =
-                    prefs.getString(PREF_FASCIST_FIREWALL_PORTS, "80,443");
-
-                torrcText.append("FascistFirewall 1");
-                torrcText.append('\n');
-                torrcText.append("FirewallPorts ");
+                String ReachableAddressesPorts =
+                    prefs.getString(PREF_REACHABLE_ADDRESSES_PORTS, "*:80,*:443");
+                torrcText.append("ReachableAddresses ");
                 // We should verify this and someday, the Exception will matter :-)
-                torrcText.append(fascistFirewallPorts);
+                torrcText.append(ReachableAddressesPorts);
                 torrcText.append('\n');
             }
         }
         catch (Exception e)
         {
-            Toast.makeText(this,"Your FascistFirewall settings caused an exception!",
+            Toast.makeText(this,"Your ReachableAddresses settings caused an exception!",
                            Toast.LENGTH_LONG).show();
         }
 
