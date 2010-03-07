@@ -37,7 +37,7 @@
 Please visit https://www.torproject.org/docs/android.html for the latest information.
 \n\n
 For non-rooted Android 1.x devices (G1, MyTouch3G, Hero): Please use the "ProxySurf" browser available in the Android Market, and set 
-the HTTP Proxy to 127.0.0.1 and port 8118, for HTTP traffic only (HTTP/S will not work). For Instant Messsaging, try "Beem" in the market, and set the SOCKS5 proxy to 127.0.0.1 / port 9050.
+the HTTP Proxy to 127.0.0.1 and port 8118, for HTTP traffic only (HTTP/S will not work). For Instant Messaging, try "Beem" in the market, and set the SOCKS5 proxy to 127.0.0.1 / port 9050.
 \n\n
 For Android 2.x devices, you MUST ROOT your device in order for Orbot to work transparently, as there is no browser that will work for non-root devices. Otherwise, the "Beem" app will allow
 you to set the SOCKS5 proxy to 127.0.0.1 and port 9050. You should also enable SSL to protect your username and password.
