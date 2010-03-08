@@ -34,8 +34,7 @@ android:dialogTitle="Enter Bridge Addresses"
 <CheckBoxPreference android:key="pref_or"
 android:defaultValue="false"
 android:title="Relaying"
-android:summary="Enable your device to be a relay"
-android:dialogTitle="Enter Bridge Addresses"
+android:summary="Enable your device to be a non-exit relay"
 android:enabled="true"
 />
 
