@@ -68,7 +68,7 @@ http://guardianproject.info/apps/orbot/"
 				android:paddingLeft="15px"
 				android:textStyle="bold"
 				android:textColor="#ffffff" />	
-			<TextView android:text="Tor v2.0.x: https://www.torproject.org"
+			<TextView android:text="Tor v0.2.2.9: https://www.torproject.org"
 				android:layout_width="fill_parent" 
 				android:layout_height="wrap_content"
 				android:autoLink="web"
