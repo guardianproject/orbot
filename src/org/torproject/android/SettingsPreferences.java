@@ -17,7 +17,7 @@ public class SettingsPreferences
 		addPreferencesFromResource(R.xml.preferences);
 		
 		if (!TorServiceUtils.hasRoot())
-			getPreferenceScreen().getPreference(3).setEnabled(false);
+			getPreferenceScreen().getPreference(0).setEnabled(false);
 	}
 	
 	/* (non-Javadoc)
