@@ -1,5 +1,11 @@
+0.0.3x - 2010-03-15
+- Added Start/Stop menu item for non-touch activation
+- Improved parsing and validation of settings screen
+- UI now compatible with landscape mode
+- Added relay support for static/publicly accessible IP devices
+
 0.0.3a - 2010-02-07
-- Integrated iptables support for transparenty proxying of outbound port 80 and DNS
+- Integrated iptables support for transparent proxying of outbound port 80 and DNS
 - Privoxy is now used as HTTP Proxy server (cross-compiled to ARM)
 - New UI layout and graphics
 - Android settings screen for generated torrc file

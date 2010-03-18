@@ -8,8 +8,7 @@
     <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
     <string name="control_permission_label">start and stop Tor</string>
     <string name="tor_proxy_service_process">torproxyservice</string>
-    
-
+   
 <string name="status_starting_up">Orbot is starting...</string>
 <string name="status_activated">Connected to the Tor network</string>
 <string name="status_disabled">"Orbot is Deactivated</string>
@@ -27,6 +26,9 @@
 <string name="menu_log">Log</string>
 <string name="menu_info">Help</string>
 <string name="menu_apps">Apps</string>
+<string name="menu_start">Start</string>
+<string name="menu_stop">Stop</string>
+
 
 
 <string name="button_help">Help</string>
