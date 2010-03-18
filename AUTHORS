@@ -20,8 +20,9 @@ promoted to Chief Application Resource Editor.
 Contributors:
 -------------
 Nick Mathewson <nickm@freehaven.net> wrote some of the patch
-code to support the compiling of Tor and LibEvent on Android,
-and generaly provided guidance in the entire effort.
+code to support the compiling of Tor and Libevent on Android,
+and generally provided guidance in the entire effort.
 
 Adam Langley <> made the original valiant effort to port
 Tor to Android.
+

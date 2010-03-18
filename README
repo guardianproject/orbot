@@ -7,7 +7,7 @@ Orbot also provides an HTTP Proxy for connecting web browsers and other
 HTTP client applications into the Tor SOCKS interface. 
 
 ***********************************************
-Orbot is a component of the Guardian Project, an effort to develope
+Orbot is a component of the Guardian Project, an effort to develop
 a secure, anonymous smartphone for use by human rights activists, journalists
 and others around the world. Learn more: http://openideals.com/guardian
 
