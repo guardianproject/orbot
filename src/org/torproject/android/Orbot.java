@@ -57,6 +57,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
 	private ProgressDialog progressDialog;
 	private ListView listApps;
 	private boolean showingSettings = false;
+	private MenuItem mItemOnOff = null;
 	
 	/* Some tracking bits */
 	private int torStatus = STATUS_READY; //latest status reported from the tor service
@@ -87,15 +88,9 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
         
         MenuItem mItem = null;
         
-        /*
-        
-        mItem = menu.add(0, 1, Menu.NONE, getString(R.string.menu_home));
-        mItem.setIcon(R.drawable.ic_menu_home);
 
-        mItem = menu.add(0, 2, Menu.NONE, getString(R.string.menu_browse));
-        mItem.setIcon(R.drawable.ic_menu_goto);
-        */
-
+        mItemOnOff = menu.add(0, 1, Menu.NONE, getString(R.string.menu_start));
+        mItemOnOff.setIcon(android.R.drawable.ic_menu_share);
         
         mItem = menu.add(0, 4, Menu.NONE, getString(R.string.menu_settings));
         mItem.setIcon(R.drawable.ic_menu_register);
@@ -132,7 +127,32 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
 		
 		if (item.getItemId() == 1)
 		{
-			this.showMain();
+			
+			try
+			{
+				
+				if (mService == null)
+				{
+				
+				}
+				else if (mService.getStatus() == STATUS_READY)
+				{
+					mItemOnOff.setTitle(R.string.menu_stop);
+					startTor();
+					
+				}
+				else
+				{
+					mItemOnOff.setTitle(R.string.menu_start);
+					stopTor();
+					
+				}
+				
+			}
+			catch (RemoteException re)
+			{
+				Log.w(TAG, "Unable to start/top Tor from menu UI", re);
+			}
 		}
 		else if (item.getItemId() == 4)
 		{
@@ -706,6 +726,29 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
         
     }
   
+    private void startTor () throws RemoteException
+    {
+    	mService.setProfile(PROFILE_ON); //this means turn on
+		
+		imgStatus.setImageResource(R.drawable.torstarting);
+		lblStatus.setText(getString(R.string.status_starting_up));
+		
+		Message msg = mHandler.obtainMessage(ENABLE_TOR_MSG);
+    	mHandler.sendMessage(msg);
+    	
+    	updateStatus("");
+    }
+    
+    private void stopTor () throws RemoteException
+    {
+    	mService.setProfile(PROFILE_ONDEMAND);	//these means turn off
+		
+		Message msg = mHandler.obtainMessage(DISABLE_TOR_MSG);
+    	mHandler.sendMessage(msg);
+    	
+    	updateStatus("");
+    }
+    
     /*
      * (non-Javadoc)
      * @see android.view.View.OnClickListener#onClick(android.view.View)
@@ -725,26 +768,13 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
 				else if (mService.getStatus() == STATUS_READY)
 				{
 					
-					mService.setProfile(PROFILE_ON); //this means turn on
-					
-					imgStatus.setImageResource(R.drawable.torstarting);
-		    		lblStatus.setText(getString(R.string.status_starting_up));
-		    		
-					Message msg = mHandler.obtainMessage(ENABLE_TOR_MSG);
-		        	mHandler.sendMessage(msg);
-		        	
-		        	updateStatus("");
+					startTor();
 					
 				}
 				else
 				{
 					
-					mService.setProfile(PROFILE_ONDEMAND);	//these means turn off
-					
-					Message msg = mHandler.obtainMessage(DISABLE_TOR_MSG);
-		        	mHandler.sendMessage(msg);
-		        	
-		        	updateStatus("");
+					stopTor();
 					
 				}
 				

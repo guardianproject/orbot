@@ -209,7 +209,7 @@ public class TorServiceUtils implements TorServiceConstants {
 			}
             
         } catch (Exception e) {
-            Log.e(TAG, "Error executing shell cmd: " + e.getMessage(),e);
+            Log.w(TAG, "Error executing shell cmd: " + e.getMessage());
         }
         
         return exitCode;
