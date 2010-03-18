@@ -97,9 +97,18 @@ public class TorTransProxy {
 				{
 					Log.i(TAG,"enabling transproxy for app: " + apps[i].getUsername() + "(" + apps[i].getUid() + ")");
 				 
+					//TCP
 					script.append("iptables -t nat");
 					script.append(command);
 					script.append("OUTPUT -p tcp -m owner --uid-owner ");
+					script.append(apps[i].getUid());
+					script.append(" -j DNAT --to 127.0.0.1:9040");
+					script.append(" || exit\n");
+					
+					//UDP
+					script.append("iptables -t nat");
+					script.append(command);
+					script.append("OUTPUT -p udp -m owner --uid-owner ");
 					script.append(apps[i].getUid());
 					script.append(" -j DNAT --to 127.0.0.1:9040");
 					script.append(" || exit\n");
@@ -120,5 +129,52 @@ public class TorTransProxy {
 		}
 		return false;
     }	
+	
+
+	public static boolean setTransparentProxyingByPort(Context context, String[] ports) {
+		
+		String command = null;
+		
+		command = IPTABLES_ADD; //ADD
+		
+    	final StringBuilder script = new StringBuilder();
+    	
+		try {
+			int code;
+			
+			for (int i = 0; i < ports.length; i++)
+			{
+				Log.i(TAG,"enabling transproxy for port: " + ports[i]);
+				 
+				//TCP
+				script.append("iptables -t nat");
+				script.append("-A PREROUTING -p tcp --dport ");
+				script.append(ports[i]);
+				script.append(" -j DNAT --to 127.0.0.1:9040");
+				script.append(" || exit\n");
+				
+				//UDP
+				script.append("iptables -t nat");
+				script.append("-A PREROUTING -p udp --dport ");
+				script.append(ports[i]);
+				script.append(" -j DNAT --to 127.0.0.1:9040");
+				script.append(" || exit\n");
+					
+			}
+			
+	    	StringBuilder res = new StringBuilder();
+	    	
+	    	String[] cmd = {script.toString()};
+	    	
+			code = TorServiceUtils.doShellCommand(cmd, res, true, true);
+			
+				String msg = res.toString();
+				Log.e(TAG, msg);
+			
+		} catch (Exception e) {
+			Log.w(TAG, "error refreshing iptables: " + e);
+		}
+		return false;
+    }
 
 }

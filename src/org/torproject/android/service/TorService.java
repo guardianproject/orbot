@@ -42,6 +42,8 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 	
 	private static final int NOTIFY_ID = 1;
 	
+	/* removing this for now - it is a work in progress and a security risk - 3/17/2010 */
+	//private static TorWebProxy _webProxy;
 	
 	
     /** Called when the activity is first created. */
@@ -307,6 +309,22 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 			procId = TorServiceUtils.findProcessId(TorServiceConstants.PRIVOXY_INSTALL_PATH);
 		}
 		
+		/*
+		 //removing this for now
+		if (_webProxy != null)
+		{
+			try
+			{
+				//shutdown web proxy
+				_webProxy.stop();
+				_webProxy = null;
+			}
+			catch (Exception e)
+			{
+				Log.i(TAG,"error stopping web proxy",e);
+			}
+		}*/
+		
     }
    
     private void logNotice (String msg)
@@ -400,6 +418,13 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     			}
     		}.start();
     		
+    		/*
+    		//removing this for now - nf - 3/17/2010
+    		if (_webProxy == null)
+    		{
+    			_webProxy = new TorWebProxy();
+    			
+    		}*/
 			
     }
     
