@@ -1,12 +1,14 @@
-This file contains the license for Orbot, a free software project to provide anonymity on the Internet from a Google Android smartphone.
+This file contains the license for Orbot, a free software project to
+provide anonymity on the Internet from a Google Android smartphone.
 
 It also lists the licenses for other components used by Orbot.
 
-For more information about Orbot, see http://openideals.com/guardian
+For more information about Orbot, see http://guardianproject.info/
 
-If you got this file as a part of a larger bundle, there may be other license terms that you should be aware of.
+If you got this file as a part of a larger bundle, there may be other
+license terms that you should be aware of.
 ===============================================================================
-Orbot is distributed under this license (aka The Tor License)
+Orbot is distributed under this license (aka the 3-clause BSD license)
 
 Copyright (c) 2009, Nathan Freitas, The Guardian Project
 
@@ -39,11 +41,14 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 *****
-Orbot contains a binary distribution of the JSocks library: http://code.google.com/p/jsocks-mirror/
-which is licensed under the GNU Lesser General Public License: http://www.gnu.org/licenses/lgpl.html
+Orbot contains a binary distribution of the JSocks library:
+http://code.google.com/p/jsocks-mirror/
+which is licensed under the GNU Lesser General Public License:
+http://www.gnu.org/licenses/lgpl.html
 
 *****
-Orbot contains the source code for HttpProxy developed and freely licensed by: Julian Robichaux -- http://www.nsftools.com
+Orbot contains the source code for HttpProxy developed and freely licensed
+by: Julian Robichaux -- http://www.nsftools.com
 
 ******
 Orbot contains a binary distribution of Tor:
@@ -95,7 +100,7 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ===============================================================================
 
-:src/common/strlcat.c and src/common/strlcpy.c by Todd C. Miller are licensed
+src/common/strlcat.c and src/common/strlcpy.c by Todd C. Miller are licensed
 under the following license:
 
  * Copyright (c) 1998 Todd C. Miller <Todd.Miller@courtesan.com>
@@ -135,8 +140,4 @@ WebHosting.Info (http://www.webhosting.info), available from
 http://ip-to-country.webhosting.info."
 See the src/config/geoip file in particular.
 ===============================================================================
-
-
-
-
 

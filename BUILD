@@ -7,8 +7,8 @@ Please install the following prerequisites (instructions for each follows):
 	droid-wrapper: http://github.com/tmurakam/droid-wrapper
 	libevent source (1.4.12-stable from svn)
 	Tor source (most recent git master branch)
-    Privoxy source (http://sourceforge.net/projects/ijbswa/)
-    
+	Privoxy source (http://sourceforge.net/projects/ijbswa/)
+
 Install and prepare the Android OS SDK ( http://source.android.com/download )
 on Debian Lenny:
 
@@ -59,10 +59,10 @@ Fetch and build Privoxy:
 	autoheader
 	autoconf
 	#need to disable setpgrp check in configure
-	export ac_cv_func_setpgrp_void=yes 
+	export ac_cv_func_setpgrp_void=yes
 	CC=droid-gcc LD=droid-ld CPPFLAGS="-I/home/foo/mydroid/external/zlib"./configure --host=arm-none-linux-gnueabi
 	#don't mind the "unrecognized option '-pthread'" error message that you'll see when you run make
-	make 
+	make
 	
 Fetch and build libevent:
 
@@ -104,7 +104,8 @@ We need to build our Java SOCKS library:
 	ant jar
 	cp bin/jar/asocks.jar ../Orbot/libs
 
-We need to get the TorControl library for Java (https://svn.torproject.org/svn/torctl/trunk/doc/howto.txt):
+We need to get the TorControl library for Java:
+(see also https://svn.torproject.org/svn/torctl/trunk/doc/howto.txt)
 
 	git clone git://git.torproject.org/git/jtorctl
 	cd jtorctl
@@ -154,3 +155,4 @@ You can also GPG sign the apk and generate an .asc:
 
 Now you should have a fully signed and production ready alpha release of Orbot!
 Give bin/Orbot-signed-alpha.apk an install and send us bug reports!
+
