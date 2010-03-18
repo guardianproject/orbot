@@ -1,25 +1,27 @@
 
 Orbot: Android Onion Routing Robot
 ***********************************************
-This is a freely licensed open-source application developed for the 
-Android platform, that acts as a front-end to the Tor binary application.
-Orbot also provides an HTTP Proxy for connecting web browsers and other
-HTTP client applications into the Tor SOCKS interface. 
+Orbot is a freely licensed open-source application developed for the
+Android platform. It acts as a front-end to the Tor binary application,
+and also provides an HTTP Proxy for connecting web browsers and other
+HTTP client applications into the Tor SOCKS interface.
 
 ***********************************************
 Orbot is a component of the Guardian Project, an effort to develop
 a secure, anonymous smartphone for use by human rights activists, journalists
-and others around the world. Learn more: http://openideals.com/guardian
+and others around the world. Learn more: http://guardianproject.info/
 
 ***********************************************
 Tor protects your privacy on the internet by hiding the connection
 between your Internet address and the services you use. We believe Tor
 is reasonably secure, but please ensure you read the instructions and
-configure it properly. Learn more at http://torproject.org
+configure it properly. Learn more at https://torproject.org/
 
 Tor Frequently Asked Questions:
         https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ
+        https://www.torproject.org/faq.html.en
 
 ***********************************************
 
-/* Copyright (c) 2009, Nathan Freitas, The Guardian Project - http://guardianproject.info */
+/* Copyright (c) 2009-2010, Nathan Freitas, The Guardian Project
+ * http://guardianproject.info/ */
