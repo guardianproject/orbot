@@ -12,7 +12,7 @@
 - Improved performance and error handling
 
 0.0.2a - 2009-11-30
-- Update user interace layout and graphics
+- Update user interface layout and graphics
 - Modified service launch, shutdown and handling
 - Improved event handler on Tor Control port callbacks
 - Added Help page
@@ -25,7 +25,7 @@
 - Added 'save' and editable textbox for the settings screen
 - Moved screen navigation to a pop-up menu
 
-Changes in version 0.0.1-alpha - 2009-10-21
+0.0.1-alpha - 2009-10-21
 - First code release
 - Major Features: Tor binary application is fully operational, UI: Start/Stop Tor, View Message Log, View Settings (torrc)
 
