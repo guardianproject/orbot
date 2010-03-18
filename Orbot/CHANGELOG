@@ -5,7 +5,8 @@
 - Added relay support for static/publicly accessible IP devices
 
 0.0.3a - 2010-02-07
-- Integrated iptables support for transparent proxying of outbound port 80 and DNS
+- Integrated iptables support for transparent proxying of outbound port
+  80 and DNS
 - Privoxy is now used as HTTP Proxy server (cross-compiled to ARM)
 - New UI layout and graphics
 - Android settings screen for generated torrc file
@@ -18,7 +19,8 @@
 - Added Help page
 
 0.0.2 - 2009-11-27
-- Major improvement to the user interface including relative layout for different screens
+- Major improvement to the user interface including relative layout for
+  different screens
 - New graphics resources
 - Implemented Tor Control Port using official Java library
 - Added 'clear' button to the log screen
@@ -27,5 +29,6 @@
 
 0.0.1-alpha - 2009-10-21
 - First code release
-- Major Features: Tor binary application is fully operational, UI: Start/Stop Tor, View Message Log, View Settings (torrc)
+- Major Features: Tor binary application is fully operational, UI:
+  Start/Stop Tor, View Message Log, View Settings (torrc)
 
