@@ -1,0 +1,14 @@
+
+See http://bugs.noreply.org/flyspray/index.php?tasks=all&project=8
+for the latest active bug and enhancment tickets.
+
+In addition, here are some other big areas that need work:
+
+- Android Java UI work: Improved home screen to show better statistics about data transferred (up/down), number of circuits connected, quality of connection and so on. The "Tether Wifi" Android application is a good model to follow in how it shows a realtime count of bytes transferred as well as notifications when wifi client connect. In addition, better display/handling of Tor system/error messages would also be very helpful. Finally, the addition of a wizard or tutorial walkthrough for novice users to explain to them exactly what or what is not anonymized or protected would greatly improve the likelihood they will use Orbot correctly.
+
+- Android Java OS/Core app work: Better system-wide indicator either via the notification bar, "Toast" pop-up dialogs or some other indicator that an application's traffic is indeed moving through Orbot/Tor. For instance, right now you need to first go to a torcheck web service to ensure your browser is routing via Tor. Orbot should be able to notify you that circuits are being opened, used, etc. The aforementioned data transfer tracker might provide this type of awareness as well.
+
+- Android Java Library/Community Outreach work: We need to package a simple library for use with third-party application to easily enable them to support "Torification" on non-root devices (aka w/o transparent proxying). This library should include a wrapper for the Apache HTTPClient library, a utility class for detecting the state of Orbot connectivity, and other relevant/useful things an Android app might need to anonymize itself. This work would include the creation of the library, documentation, and sample code. Outreach or effort to implement the library within other open-source apps would follow.
+
+-  Android OS/C/Linux work: The port of Tor to Android is basically a straight cross-compile to Linux ARM. There has been no work done in looking the optimization of Tor within a mobile hardware environment, on the ARM processor or other Android hardware, or on mobile networks. It should be noted, that even without optimization, Tor is handling the mobile network environment very well, automatically detecting change in IP addresses, reconnecting circuits, etc across switching from 2G to 3G to Wifi, and so forth. 
+
