@@ -427,21 +427,21 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
         View view = li.inflate(R.layout.layout_help, null); 
         
         StringBuilder msg = new StringBuilder();
-        msg.append(R.string.help_text_1);
+        msg.append(getString(R.string.help_text_1));
         msg.append("\n\n");
-        msg.append(R.string.help_text_2);
+        msg.append(getString(R.string.help_text_2));
         msg.append("\n\n");
-        msg.append(R.string.help_text_3);
+        msg.append(getString(R.string.help_text_3));
         msg.append("\n\n");
-        msg.append(R.string.help_text_4);
+        msg.append(getString(R.string.help_text_4));
         msg.append("\n\n");
-        msg.append(R.string.help_text_5);
+        msg.append(getString(R.string.help_text_5));
         msg.append("\n\n");
         
         
 		new AlertDialog.Builder(this)
         .setTitle(getString(R.string.menu_info))
-        .setMessage(msg)
+        .setMessage(msg.toString())
         .setView(view)
         .setNeutralButton(getString(R.string.button_about), new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int whichButton) {
@@ -536,7 +536,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
 			if (bridgeList == null || bridgeList.length() == 0)
 			{
 			
-				showAlert("In order to use the bridge feature, you must enter at least one bridge IP address." +
+				showAlert("Bridge Error","In order to use the bridge feature, you must enter at least one bridge IP address." +
 						"Send an email to bridges@torproject.org with the line \"get bridges\" by itself in the body of the mail from a gmail account.");
 				
 				showSettings();
@@ -591,7 +591,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
         }
         catch (Exception e)
         {
-           showAlert("Your ReachableAddresses settings caused an exception!");
+           showAlert("Config Error","Your ReachableAddresses settings caused an exception!");
         }
 
         try
@@ -615,7 +615,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
         }
         catch (Exception e)
         {
-            showAlert("Your relay settings caused an exception!");
+            showAlert("Uh-oh!","Your relay settings caused an exception!");
             showSettings();
             return;
         }
@@ -623,14 +623,14 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
 		Utils.saveTextFile(TorServiceConstants.TORRC_INSTALL_PATH, torrcText.toString());
 	}
 	
-	private void showAlert(String msg)
+	private void showAlert(String title, String msg)
 	{
 		 
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage(msg);
-		       
-		AlertDialog alert = builder.create();
-		
+		 new AlertDialog.Builder(this)
+         .setTitle(title)
+         .setMessage(msg)
+         .setPositiveButton(android.R.string.ok, null)
+         .show();
 	}
     /*
      * Set the state of the running/not running graphic and label
@@ -662,7 +662,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
 		    			
 		    			if (!enableTransparentProxy)
 		    			{
-		    				showAlert(getString(R.string.not_anonymous_yet));
+		    				showAlert("Configure",getString(R.string.not_anonymous_yet));
 		    			}
 		    		}
 		    		
