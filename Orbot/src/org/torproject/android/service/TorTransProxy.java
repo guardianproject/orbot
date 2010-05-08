@@ -15,8 +15,6 @@ public class TorTransProxy {
 	private final static String TAG = "TorTransProxy";
 	
 	private final static String CMD_NAT_FLUSH = "iptables -t nat -F || exit\n";
-//	private final static String CMD_NAT_IPTABLES_ALL = "iptables -t nat -A OUTPUT -j DNAT --to 127.0.0.1:9040 || exit\n";
-	
 	private final static String CMD_DNS_PROXYING_ADD = "iptables -t nat -A PREROUTING -p udp --dport 53 -j DNAT --to 127.0.0.1:5400 || exit\n";
 	private final static String CMD_DNS_PROXYING_DELETE = "iptables -t nat -D PREROUTING -p udp --dport 53 -j DNAT --to 127.0.0.1:5400 || exit\n";
 
@@ -89,9 +87,6 @@ public class TorTransProxy {
 			
 			for (int i = 0; i < apps.length; i++)
 			{
-				
-				if (apps[i].getUsername().startsWith("org.torproject.android")) //we never want to Tor this!
-					continue;
 				
 				if (apps[i].isTorified())
 				{
