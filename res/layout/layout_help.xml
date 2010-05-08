@@ -14,8 +14,8 @@
 			<TextView android:text=""
 				android:layout_width="fill_parent" 
 				android:layout_height="wrap_content"
-				android:paddingTop="15px"
-				android:paddingLeft="15px"
+				android:paddingTop="5px"
+				android:paddingLeft="5px"
 				android:textColor="#ffffff" />				
 			</LinearLayout>
 		</ScrollView>			

@@ -32,7 +32,7 @@
 				android:paddingLeft="15px"
 				android:textStyle="bold"
 				android:textColor="#ffffff" />
-			<TextView android:text="https://torproject.org/android
+			<TextView android:text="https://torproject.org/android \n
 http://guardianproject.info/apps/orbot/"
 				android:layout_width="fill_parent" 
 				android:layout_height="wrap_content"
