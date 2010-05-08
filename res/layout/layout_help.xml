@@ -11,7 +11,7 @@
 		    android:orientation="vertical"
 		    android:layout_width="fill_parent"
 		    android:layout_height="fill_parent">
-			<TextView android:text="@string/help_text"
+			<TextView android:text=""
 				android:layout_width="fill_parent" 
 				android:layout_height="wrap_content"
 				android:paddingTop="15px"
