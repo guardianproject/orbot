@@ -426,8 +426,22 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
 		LayoutInflater li = LayoutInflater.from(this);
         View view = li.inflate(R.layout.layout_help, null); 
         
+        StringBuilder msg = new StringBuilder();
+        msg.append(R.string.help_text_1);
+        msg.append("\n\n");
+        msg.append(R.string.help_text_2);
+        msg.append("\n\n");
+        msg.append(R.string.help_text_3);
+        msg.append("\n\n");
+        msg.append(R.string.help_text_4);
+        msg.append("\n\n");
+        msg.append(R.string.help_text_5);
+        msg.append("\n\n");
+        
+        
 		new AlertDialog.Builder(this)
         .setTitle(getString(R.string.menu_info))
+        .setMessage(msg)
         .setView(view)
         .setNeutralButton(getString(R.string.button_about), new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int whichButton) {
@@ -611,8 +625,12 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
 	
 	private void showAlert(String msg)
 	{
-		   Toast.makeText(this,msg,
-                   Toast.LENGTH_LONG).show();
+		 
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setMessage(msg);
+		       
+		AlertDialog alert = builder.create();
+		
 	}
     /*
      * Set the state of the running/not running graphic and label
