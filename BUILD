@@ -60,7 +60,8 @@ Fetch and build Privoxy:
 	autoconf
 	#need to disable setpgrp check in configure
 	export ac_cv_func_setpgrp_void=yes
-	CC=droid-gcc LD=droid-ld CPPFLAGS="-I/home/foo/mydroid/external/zlib" ./configure --host=arm-none-linux-gnueabi
+	#replace FOO with your actual username
+	CC=droid-gcc LD=droid-ld CPPFLAGS="-I/home/FOO/mydroid/external//" ./configure --host=arm-none-linux-gnueabi
 	#don't mind the "unrecognized option '-pthread'" error message that you'll see when you run make
 	make
 	
