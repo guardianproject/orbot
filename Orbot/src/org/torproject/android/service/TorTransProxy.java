@@ -20,7 +20,7 @@ public class TorTransProxy {
 
 	private final static String IPTABLES_ADD = " -A ";
 	private final static String IPTABLES_DELETE = " -D ";
-
+    private final static String IPTABLES_DROP_ALL = " -j DROP ";
 	private static boolean hasRoot = false;
 	
 	/**
@@ -57,7 +57,23 @@ public class TorTransProxy {
     	
     	
 	}
-	
+
+    /*
+    public static int setIptablesDropAll() {
+        // iptables -A OUTPUT -j DROP
+    }
+
+    public static int setTransparentProxying() {
+        // Flush everything from iptables first
+        purgeNatIptables();
+        // Setup DNS redirection
+        setDNSProxying();
+        //
+
+        //
+    }
+    */
+
 	public static boolean purgeNatIptables() {
     	StringBuilder res = new StringBuilder();
 		try {
