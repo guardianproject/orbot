@@ -90,7 +90,7 @@ Fetch and build Tor:
 	./autogen.sh
 	CC=droid-gcc LD=droid-ld ./configure --host=arm-none-linux-gnueabi \
 	--with-libevent-dir=$LIBEVENTDIR --with-openssl-dir=$OPENSSLDIR \
-	--with-zlib-dir=$ZLIBDIR
+	--with-zlib-dir=$ZLIBDIR --disable-asciidoc
 	make
 
 At this point, you'll have a Tor binary that can be run on an Android handset.
