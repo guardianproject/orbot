@@ -44,7 +44,6 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 	
 	
     /** Called when the activity is first created. */
-    @Override
     public void onCreate() {
     	super.onCreate();
        
@@ -100,7 +99,6 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     /* (non-Javadoc)
 	 * @see android.app.Service#onLowMemory()
 	 */
-	@Override
 	public void onLowMemory() {
 		super.onLowMemory();
 		
@@ -112,7 +110,6 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 	/* (non-Javadoc)
 	 * @see android.app.Service#onUnbind(android.content.Intent)
 	 */
-	@Override
 	public boolean onUnbind(Intent intent) {
 		
 		Log.i(TAG, "onUnbind Called: " + intent.getAction());
@@ -159,7 +156,6 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     /* (non-Javadoc)
 	 * @see android.app.Service#onRebind(android.content.Intent)
 	 */
-	@Override
 	public void onRebind(Intent intent) {
 		super.onRebind(intent);
 		
@@ -170,7 +166,6 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 	/* (non-Javadoc)
 	 * @see android.app.Service#onStart(android.content.Intent, int)
 	 */
-	@Override
 	public void onStart(Intent intent, int startId) {
 		super.onStart(intent, startId);
 		
@@ -671,7 +666,6 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 
 
 
-	@Override
 	public void message(String severity, String msg) {
 		
               Log.i(TAG, "[Tor Control Port] " + severity + ": " + msg);
@@ -693,13 +687,11 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 	}
 
 
-	@Override
 	public void newDescriptors(List<String> orList) {
 		
 	}
 
 
-	@Override
 	public void orConnStatus(String status, String orName) {
 		
 		Log.i(TAG,"OrConnStatus=" + status + ": " + orName);
@@ -708,30 +700,25 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 	}
 
 
-	@Override
 	public void streamStatus(String status, String streamID, String target) {
 		Log.i(TAG,"StreamStatus=" + status + ": " + streamID);
 		
 	}
 
 
-	@Override
 	public void unrecognized(String type, String msg) {
 		Log.i(TAG,"unrecognized log=" + type + ": " + msg);
 		
 	}
 
-	@Override
 	public void bandwidthUsed(long read, long written) {
 		
 	}
 
-	@Override
 	public void circuitStatus(String status, String circID, String path) {
 	
 	}
 
-	 @Override
     public IBinder onBind(Intent intent) {
         // Select the interface to return.  If your service only implements
         // a single interface, you can just return it here without checking
