@@ -69,7 +69,6 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
     ITorService mService = null;
 	
     /** Called when the activity is first created. */
-    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -120,7 +119,6 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
      * (non-Javadoc)
 	 * @see android.app.Activity#onMenuItemSelected(int, android.view.MenuItem)
 	 */
-	@Override
 	public boolean onMenuItemSelected(int featureId, MenuItem item) {
 		
 		super.onMenuItemSelected(featureId, item);
@@ -203,7 +201,6 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
     /* (non-Javadoc)
 	 * @see android.app.Activity#onPause()
 	 */
-	@Override
 	protected void onPause() {
 		super.onPause();
 		
@@ -219,7 +216,6 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
 		  super.onSaveInstanceState(savedInstanceState);
 		}
 	
-	@Override
 	public void onRestoreInstanceState(Bundle savedInstanceState) {
 	  super.onRestoreInstanceState(savedInstanceState);
 	  // Restore UI state from the savedInstanceState.
@@ -232,7 +228,6 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onResume()
 	 */
-	@Override
 	protected void onResume() {
 		super.onResume();
 		
@@ -253,7 +248,6 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onStart()
 	 */
-	@Override
 	protected void onStart() {
 		super.onStart();
 		
@@ -271,7 +265,6 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onStop()
 	 */
-	@Override
 	protected void onStop() {
 		super.onStop();
 		
@@ -334,7 +327,6 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
         final TorifiedApp[] apps = TorServiceUtils.getApps(this);
         
         Arrays.sort(apps, new Comparator<TorifiedApp>() {
-			@Override
 			public int compare(TorifiedApp o1, TorifiedApp o2) {
 				if (o1.isTorified() == o2.isTorified()) return o1.getName().compareTo(o2.getName());
 				if (o1.isTorified()) return -1;
@@ -345,7 +337,6 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
         final LayoutInflater inflater = getLayoutInflater();
 		
         final ListAdapter adapter = new ArrayAdapter<TorifiedApp>(this,R.layout.layout_apps_item,R.id.itemtext,apps) {
-        	@Override
         	public View getView(int position, View convertView, ViewGroup parent) {
        			ListEntry entry;
         		if (convertView == null) {
@@ -375,7 +366,6 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
 	/**
 	 * Called an application is check/unchecked
 	 */
-	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 		final TorifiedApp app = (TorifiedApp) buttonView.getTag();
 		if (app != null) {
@@ -858,7 +848,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
     private static final int DISABLE_TOR_MSG = 3;
     	
     private Handler mHandler = new Handler() {
-        @Override public void handleMessage(Message msg) {
+        public void handleMessage(Message msg) {
             switch (msg.what) {
                 case BUMP_MSG:
 

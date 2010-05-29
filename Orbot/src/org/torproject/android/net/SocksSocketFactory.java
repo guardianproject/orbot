@@ -73,7 +73,6 @@ public class SocksSocketFactory implements SocketFactory {
 
 	}
 	
-	@Override
 	public Socket connectSocket(Socket sock, String host, int port,
 			InetAddress localAddress, int localPort, HttpParams params) throws IOException,
 			UnknownHostException, ConnectTimeoutException {
@@ -126,12 +125,10 @@ public class SocksSocketFactory implements SocketFactory {
 	
     
     
-	@Override
 	public Socket createSocket() throws IOException {
 		return new Socket();
 	}
 
-	@Override
 	public boolean isSecure(Socket sock) throws IllegalArgumentException {
 		return false;
 	}
