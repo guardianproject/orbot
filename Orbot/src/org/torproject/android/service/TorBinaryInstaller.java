@@ -45,7 +45,20 @@ public class TorBinaryInstaller implements TorServiceConstants {
 		
 		try
 		{
-			ZipFile zip = new ZipFile(APK_PATH);
+			
+			String apkPath = APK_PATH;
+			
+			int apkIdx = 1;
+			
+			while (!new File(apkPath).exists())
+			{
+				apkPath = APK_PATH_BASE + '-' + (apkIdx++) + ".apk";
+				
+				Log.i(TAG,"Could not find APK. Trying new path: " + apkPath);
+			}
+			
+			
+			ZipFile zip = new ZipFile(apkPath);
 	
 			ZipEntry zipen = zip.getEntry(TOR_BINARY_ZIP_KEY);
 			streamToFile(zip.getInputStream(zipen),TOR_BINARY_INSTALL_PATH);
