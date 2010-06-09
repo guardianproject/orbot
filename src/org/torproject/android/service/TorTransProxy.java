@@ -16,10 +16,13 @@ public class TorTransProxy {
 	
 	private final static String CMD_NAT_FLUSH = "iptables -t nat -F || exit\n";
 	private final static String CMD_DNS_PROXYING_ADD = "iptables -t nat -A PREROUTING -p udp --dport 53 -j DNAT --to 127.0.0.1:5400 || exit\n";
-	private final static String CMD_DNS_PROXYING_DELETE = "iptables -t nat -D PREROUTING -p udp --dport 53 -j DNAT --to 127.0.0.1:5400 || exit\n";
-
+	
+	//private final static String CMD_DNS_PROXYING_DELETE = "iptables -t nat -D PREROUTING -p udp --dport 53 -j DNAT --to 127.0.0.1:5400 || exit\n";
+	// - just calling a system wide flush of iptables rules
+	
 	private final static String IPTABLES_ADD = " -A ";
-	private final static String IPTABLES_DELETE = " -D ";
+	
+	//private final static String IPTABLES_DELETE = " -D "; //not deleting manually anymore - just calling a system wide flush of iptables rules
     private final static String IPTABLES_DROP_ALL = " -j DROP ";
 	private static boolean hasRoot = false;
 	
@@ -121,7 +124,7 @@ public class TorTransProxy {
 					script.append(command);
 					script.append("OUTPUT -p udp -m owner --uid-owner ");
 					script.append(apps[i].getUid());
-					script.append(" -j DNAT --to 127.0.0.1:9040");
+					script.append(" -j DROP"); //drop all UDP packets as Tor won't handle them
 					script.append(" || exit\n");
 				}		
 			}
