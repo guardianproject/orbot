@@ -50,7 +50,8 @@ public interface TorServiceConstants {
 	
 	//path of the installed APK file
 	public final static String APK_PATH = "/data/app/org.torproject.android.apk";
-	
+	public final static String APK_PATH_BASE = "/data/app/org.torproject.android";
+
 	
 	
 	public final static int FILE_WRITE_BUFFER_SIZE = 2048;
