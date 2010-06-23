@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Orbot</string>
+    <string name="app_version">0.0.8</string>
+    <string name="internal_web_url">http://orbot/</string>
+    <string name="default_web_url">http://check.torproject.org</string>
+    <string name="secure_default_web_url">https://check.torproject.org</string>
+    <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
+    <string name="control_permission_label">start og stopp Tor</string>
+    <string name="tor_proxy_service_process">torproxyservice</string>
+   
+<string name="status_starting_up">Orbot starter...</string>
+<string name="status_activated">Tilkoblet Tor-nettverket</string>
+<string name="status_disabled">"Orbot er deaktivert</string>
+<string name="status_shutting_down">Orbot skrur seg av</string>
+
+<string name="tor_process_connecting">Starter Tor...</string>
+<string name="tor_process_connecting_step2">autentiserer kontrolltilkobling...</string>
+<string name="tor_process_connecting_step3">ferdig.</string>
+<string name="tor_process_connecting_step4">venter.</string>
+
+<string name="not_anonymous_yet">ADVARSEL: Trafikken din er ikke anonym helt enda! Vær vennlig og konfigurer applikasjonene dine til å bruke HTTP proxy 127.0.0.1:8118 eller SOCKS4A eller SOCKS5 proxy 127.0.0.1:9050</string>
+<string name="menu_home">Hjem</string>
+<string name="menu_browse">Gå til</string>
+<string name="menu_settings">Innstillinger</string>
+<string name="menu_log">Logg</string>
+<string name="menu_info">Hjelp</string>
+<string name="menu_apps">Applikasjoner</string>
+<string name="menu_start">Start</string>
+<string name="menu_stop">Stopp</string>
+
+
+
+<string name="button_help">Hjelp</string>
+<string name="button_close">Avslutt</string>
+<string name="button_about">Om</string>
+
+<string name="help_text_1">Orbot krever forskjellig konfigurasjon avhengig av hvilken versjon av Android du bruker.
+Se https://www.torproject.org/docs/android.html for oppdatert informasjon.</string>
+
+<string name="help_text_2">For ikke-rootede Android 1.x enheter (G1, MyTouch3G, Hero): Bruk nettleseren "ProxySurf" fra Android Market, og sett 
+HTTP Proxy til 127.0.0.1 og port 8118 for kun HTTP trafikk (HTTP/S vil ikke fungere).</string>
+
+<string name="help_text_3">For IM, prøv "Beem" fra Android Market. Sett SOCKS5 proxy til 127.0.0.1 med port 9050.</string>
+
+<string name="help_text_4">For Android 2.x enheter MÅ du roote telefonen for at Orbot skal fungere skikkelig. Dette fordi det ikke finnes en nettleser til Android 2.x som fungerer med ikke-rootede enheter. Du kan så bruke "Beem" fra Android Market. Sett SOCKS5 proxy til 127.0.0.1 med port 9050. Du burde også bruke SSL for å beskytte ditt brukernavn og passord.</string>
+
+<string name="help_text_5">Hvis du rooter telefonen, uansett om den er en 1.x eller 2.x enhet, så vil Orbot kunne fungere med alle aplikasjoner du velger, i tillegg til alle DNS-forespørsler. Dette inkluderer den innebyggede nettleseren, Gmail, Youtube og Kart, og mange tredjeparts-applikasjoner.</string>
+
+</resources>

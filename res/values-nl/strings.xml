@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Orbot</string>
+    <string name="app_version">0.0.8</string>
+    <string name="internal_web_url">http://orbot/</string>
+    <string name="default_web_url">http://check.torproject.org</string>
+    <string name="secure_default_web_url">https://check.torproject.org</string>
+    <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
+    <string name="control_permission_label">start en stop Tor</string>
+    <string name="tor_proxy_service_process">torproxydienst</string>
+   
+<string name="status_starting_up">Orbot is aan het starten...</string>
+<string name="status_activated">Aangesloten op het Tor netwerk</string>
+<string name="status_disabled">Orbot is uitgeschakeld</string>
+<string name="status_shutting_down">Orbot is aan het afsluiten</string>
+
+<string name="tor_process_connecting">Bezig met opstarten van Tor...</string>
+<string name="tor_process_connecting_step2">Bezig met authenticeren van besturings connectie.</string>
+<string name="tor_process_connecting_step3">klaar.</string>
+<string name="tor_process_connecting_step4">aan het wachten.</string>
+
+<string name="not_anonymous_yet">WAARSCHUWING: Uw verkeer is nog niet anononiem!Stel uw programma's alstublieft in dat ze gebruik maken van HTTP proxy 127.0.0.1:8118 of SOCKS4A of SOCKS5 proxy 127.0.0.1:9050</string>
+<string name="menu_home">Thuis</string>
+<string name="menu_browse">Bladeren</string>
+<string name="menu_settings">Instellingen</string>
+<string name="menu_log">Logboek</string>
+<string name="menu_info">Hulp</string>
+<string name="menu_apps">Applicaties</string>
+<string name="menu_start">Start</string>
+<string name="menu_stop">Stop</string>
+
+
+
+<string name="button_help">Hulp</string>
+<string name="button_close">Afsluiten</string>
+<string name="button_about">Over</string>
+
+<string name="help_text_1">Orbot heeft een verschillende configuratie nodig afhankelijk van de versie van het Android Operating Systeem waar het op gebruikt wordt.
+Bezoek alstublieft https://www.torproject.org/docs/android.html voor de nieuwste informatie.</string>
+
+<string name="help_text_2">Voor niet-geroote Android 1.x apparaten (G1, MyTouch3G, Hero): Gebruik alstublieft de "ProxySurf" browser die beschikbaar is op de Android Markt, en zet
+de HTTP Proxy op 127.0.0.1 en poort 8118, dit werkt alleen voor HTTP verkeer (HTTPS werkt niet).</string>
+
+<string name="help_text_3">Voor Instant Messaging, probeer "Beem" in de Android Markt, en zet de SOCKS5 proxy op 127.0.0.1 / poort 9050</string>
+
+<string name="help_text_4">Voor Android 2.x apparaten MOET je het apparaten ROOTEN om Orbot transparant te kunnen laten werken, daar er geen brower is die voor ongeroote apparaten werkt. Anders, de "Beem" applicatie laat toe
+dat je de SOCKS5 proxy op 127.0.0.1 poort 9050 zet. Zet ook SSL aan om je gebruikersnaam en wachtwoord te beveiligen.</string>
+
+<string name="help_text_5">Als je je apparaat root, of het een 1.x of een 2.x gebaseerde versie is, Orbot kan transparant elke applicatie proxien die je selecteert
+en ook alle DNS aanvragen. Dit omvat ook de ingebouwde browser, Gmail, Youtube en Maps, naast elke andere applicatie van derde partijen.</string>
+
+</resources>
