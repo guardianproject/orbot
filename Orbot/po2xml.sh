@@ -55,6 +55,9 @@ for file in $po ; do
 		then
 			mv "$xml/values-$lang/tmp-$xmlfile" "$xml/values-$lang/$xmlfile"
 		fi
+
+		# We need to escape apostrophe's
+		sed -i "s,',\\\',g" "$xml/values-$lang/$xmlfile"
 	}
 	
 	# If the current directory is zh_CN use zh, else convert everything.
