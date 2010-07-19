@@ -9,6 +9,8 @@ public interface TorServiceConstants {
 	//home directory of Android application
 	public final static String TOR_HOME = "/data/data/org.torproject.android/";
 
+	public final static String TOR_HOME_DATA_DIR = TOR_HOME + "cache/";
+	
 	//name of the tor C binary
 	public final static String TOR_BINARY_ASSET_KEY = "tor";	
 	public final static String TOR_BINARY_INSTALL_PATH = TOR_HOME + TOR_BINARY_ASSET_KEY; //path to install the Tor binary too
@@ -38,7 +40,7 @@ public interface TorServiceConstants {
 	public final static String TOR_LOG_PATH = TOR_HOME + "notices.log";
 	
 	//control port cookie path
-	public final static String TOR_CONTROL_AUTH_COOKIE = TOR_HOME + "data/control_auth_cookie";
+	public final static String TOR_CONTROL_AUTH_COOKIE = TOR_HOME_DATA_DIR + "control_auth_cookie";
 
 	
 	//various console cmds
@@ -70,7 +72,7 @@ public interface TorServiceConstants {
 	public final static int UPDATE_TIMEOUT = 1000;
 	
 	//path to check Tor against
-	public final static String URL_TOR_CHECK = "http://check.torproject.org";
+	public final static String URL_TOR_CHECK = "https://check.torproject.org";
 		
     //IPTABLES
 //	public final static String CMD_IPTABLES_PREROUTING = "iptables -t nat -A OUTPUT -p tcp --dport 80 -j DNAT --to 127.0.0.1:8118 || exit\n";
