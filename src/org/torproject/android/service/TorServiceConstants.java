@@ -46,6 +46,8 @@ public interface TorServiceConstants {
 	public final static String SHELL_CMD_KILL = "kill";
 	public final static String SHELL_CMD_RM = "rm";
 	public final static String SHELL_CMD_PS = "ps";
+	public final static String SHELL_CMD_PIDOF = "pidof";
+
 	public final static String CHMOD_EXE_VALUE = "777";
 	
 	//path of the installed APK file

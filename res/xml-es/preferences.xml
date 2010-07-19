@@ -1,29 +1,13 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-<PreferenceCategory android:title="Transparent Proxying (Requires Root)">
+<PreferenceCategory android:title="Transparent Proxying">
 
 <CheckBoxPreference 
 android:defaultValue="false" 
 android:key="pref_transparent"
 android:title="Transparent Proxying"
-android:summary="Auto-Tor Proxying"
+android:summary="Root Devices Only: Per App Torification"
 android:enabled="true"/>
-
-<CheckBoxPreference
-android:defaultValue="false" 
-android:key="pref_transparent_all"
-android:title="Auto-Proxy All Apps"
-android:summary="Route All Traffic Through Tor"
-android:enabled="true"/>
-
-<Preference
-android:defaultValue="" 
-android:key="pref_transparent_app_list"
-android:title="Select Apps"
-android:summary="Choose Apps to Route Through Tor"
-android:enabled="true"/>
-
-
 
 </PreferenceCategory>
 

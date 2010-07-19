@@ -49,4 +49,7 @@ dat je de SOCKS5 proxy op 127.0.0.1 poort 9050 zet. Zet ook SSL aan om je gebrui
 <string name="help_text_5">Als je je apparaat root, of het een 1.x of een 2.x gebaseerde versie is, Orbot kan transparant elke applicatie proxien die je selecteert
 en ook alle DNS aanvragen. Dit omvat ook de ingebouwde browser, Gmail, Youtube en Maps, naast elke andere applicatie van derde partijen.</string>
 
+
+<string name="menu_verify">Check</string>
+<string name="menu_exit">Exit</string>
 </resources>

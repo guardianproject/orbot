@@ -42,6 +42,8 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 	
 	private static final int NOTIFY_ID = 1;
 	
+	private static final int MAX_START_TRIES = 3;
+
 	
     /** Called when the activity is first created. */
     public void onCreate() {
@@ -114,6 +116,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 		
 		Log.i(TAG, "onUnbind Called: " + intent.getAction());
 		
+		
 		return super.onUnbind(intent);
 		
 		
@@ -169,20 +172,6 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 	public void onStart(Intent intent, int startId) {
 		super.onStart(intent, startId);
 		
-	    /*
-	     if (currentStatus == STATUS_ON && conn != null && webProxy != null)
-	     {
-	    	 //we are good to go
-		     Log.i(TAG,"onStart: Tor is running");
-
-	     }
-	     else
-	     {
-		     Log.i(TAG,"onStart: Starting up Tor");
-
-	    	 new Thread(this).start();
-	     }
-	     */
 	}
 	 
 	public void run ()
@@ -323,6 +312,8 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     {
 
     	Log.i(TAG, msg);
+    	
+    	sendCallbackMessage('>' + msg);
 		
     }
     
@@ -386,14 +377,20 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     		
     		checkTorBinaries ();
     		
+    		
+    		
     		new Thread()
     		{
     			public void run ()
     			{
     				try {
-						runPrivoxyShellCmd();
+    		    		runPrivoxyShellCmd();
+
 					} catch (Exception e) {
-						Log.w(TAG,"Error starting Privoxy",e);
+						currentStatus = STATUS_OFF;
+				    	 Log.i(TAG,"Unable to start Privoxy: " + e.getMessage(),e);
+	    			    sendCallbackMessage("Unable to start Privoxy: " + e.getMessage());
+
 					} 
     			}
     		}.start();
@@ -403,10 +400,13 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     			public void run ()
     			{
     				try {
-    					runTorShellCmd();
+    		    		runTorShellCmd();
+
     				} catch (Exception e) {
-						Log.w(TAG,"Error starting Tor",e);
-					} 
+    			    	Log.i(TAG,"Unable to start Tor: " + e.getMessage(),e);	
+    			    	sendCallbackMessage("Unable to start Tor: " + e.getMessage());
+    			    	stopTor();
+    			    } 
     			}
     		}.start();
     		
@@ -425,54 +425,82 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 		Thread.sleep(1000);
 		int procId = TorServiceUtils.findProcessId(TorServiceConstants.TOR_BINARY_INSTALL_PATH);
 
-		while (procId == -1)
+		int attempts = 0;
+		
+		while (procId == -1 && attempts < MAX_START_TRIES)
 		{
 			log = new StringBuilder();
-    		
+			
+			logNotice(torCmd[0]);
+			
 			TorServiceUtils.doShellCommand(torCmd, log, false, false);
 			procId = TorServiceUtils.findProcessId(TorServiceConstants.TOR_BINARY_INSTALL_PATH);
 			
 			if (procId == -1)
 			{
-				this.sendCallbackMessage("Couldn't start Tor process...\n" + log.toString());
-				Thread.sleep(5000);
+				sendCallbackMessage("Couldn't start Tor process...\n" + log.toString());
+				Thread.sleep(1000);
+				sendCallbackMessage("Trying to start Tor again...\n" + log.toString());
+				Thread.sleep(3000);
+				attempts++;
 			}
+			
+			logNotice(log.toString());
 		}
 		
-		Log.i(TAG,"Tor process id=" + procId);
+		if (procId == -1)
+		{
+			throw new Exception ("Unable to start Tor");
+		}
+		else
+		{
 		
-		showToolbarNotification("Orbot starting...", "Orbot is starting up", R.drawable.tornotification);
-		
-		initControlConnection ();
+			logNotice("Tor process id=" + procId);
+			
+			showToolbarNotification("Orbot starting...", "Tor is running", R.drawable.tornotification);
+			
+			initControlConnection ();
+	    }
     }
     
     private void runPrivoxyShellCmd () throws Exception
     {
 			int privoxyProcId = TorServiceUtils.findProcessId(TorServiceConstants.PRIVOXY_INSTALL_PATH);
 
-			StringBuilder log = new StringBuilder();
+			StringBuilder log = null;
 			
-    		while (privoxyProcId == -1)
+			int attempts = 0;
+			
+    		while (privoxyProcId == -1 && attempts < MAX_START_TRIES)
     		{
+    			log = new StringBuilder();
+    			
     			String[] cmds = 
     			{ PRIVOXY_INSTALL_PATH + " " + PRIVOXY_COMMAND_LINE_ARGS };
+    			
+    			logNotice (cmds[0]);
+    			
     			TorServiceUtils.doShellCommand(cmds, log, false, true);
+    			
+    			//wait one second to make sure it has started up
     			Thread.sleep(1000);
     			
     			privoxyProcId = TorServiceUtils.findProcessId(TorServiceConstants.PRIVOXY_INSTALL_PATH);
-    			
     			
     			if (privoxyProcId == -1)
     			{
     				this.sendCallbackMessage("Couldn't start Privoxy process... retrying...\n" + log);
     				Thread.sleep(3000);
+    				attempts++;
     			}
+    			
+    			logNotice(log.toString());
     		}
     		
 			sendCallbackMessage("Privoxy is running on port: " + PORT_HTTP);
 			Thread.sleep(100);
 			
-    		Log.i(TAG,"Privoxy process id=" + privoxyProcId);
+    		logNotice("Privoxy process id=" + privoxyProcId);
 			
     		
     		
@@ -668,21 +696,16 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 
 	public void message(String severity, String msg) {
 		
-              Log.i(TAG, "[Tor Control Port] " + severity + ": " + msg);
-              
-              if (msg.indexOf(TOR_CONTROL_PORT_MSG_BOOTSTRAP_DONE)!=-1)
-              {
-            	  currentStatus = STATUS_ON;
-            	  showToolbarNotification ("Orbot","Anonymous browsing is enabled",R.drawable.tornotification);
-      			  
-              }
-              else
-              {
-            	  showToolbarNotification("Orbot", msg, R.drawable.tornotification);
-
-              }
-             
-              sendCallbackMessage (msg);
+          Log.i(TAG, "[Tor Control Port] " + severity + ": " + msg);
+          
+          if (msg.indexOf(TOR_CONTROL_PORT_MSG_BOOTSTRAP_DONE)!=-1)
+          {
+        	  currentStatus = STATUS_ON;
+        	  showToolbarNotification ("Orbot","Tor is enabled",R.drawable.tornotification);
+  			  
+          }
+         
+          sendCallbackMessage (msg);
              
 	}
 
@@ -694,31 +717,72 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 
 	public void orConnStatus(String status, String orName) {
 		
-		Log.i(TAG,"OrConnStatus=" + status + ": " + orName);
-	
-
+		StringBuilder sb = new StringBuilder();
+		sb.append("orConnStatus (");
+		sb.append((orName) );
+		sb.append("): ");
+		sb.append(status);
+		
+		logNotice(sb.toString());
 	}
 
 
 	public void streamStatus(String status, String streamID, String target) {
-		Log.i(TAG,"StreamStatus=" + status + ": " + streamID);
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append("StreamStatus (");
+		sb.append((streamID));
+		sb.append("): ");
+		sb.append(status);
+		
+		logNotice(sb.toString());
+
 		
 	}
 
 
 	public void unrecognized(String type, String msg) {
-		Log.i(TAG,"unrecognized log=" + type + ": " + msg);
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append("Message (");
+		sb.append(type);
+		sb.append("): ");
+		sb.append(msg);
+		
+		logNotice(sb.toString());
+
 		
 	}
 
 	public void bandwidthUsed(long read, long written) {
+		sendCallbackMessage ("bandwidth used: read=" + read + " written=" + written);
 		
+		StringBuilder sb = new StringBuilder();
+		sb.append("Bandwidth used: ");
+		sb.append(read/1000);
+		sb.append("kb read / ");
+		sb.append(written/1000);
+		sb.append("kb written");
+		
+		logNotice(sb.toString());
+
 	}
 
 	public void circuitStatus(String status, String circID, String path) {
-	
-	}
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append("Circuit (");
+		sb.append((circID));
+		sb.append("): ");
+		sb.append(status);
+		sb.append("; ");
+		sb.append(path);
+		
+		logNotice(sb.toString());
 
+		
+	}
+	
     public IBinder onBind(Intent intent) {
         // Select the interface to return.  If your service only implements
         // a single interface, you can just return it here without checking
@@ -786,6 +850,8 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 		        for (int i=0; i<N; i++) {
 		            try {
 		                mCallbacks.getBroadcastItem(i).statusChanged(status);
+		                
+		                
 		            } catch (RemoteException e) {
 		                // The RemoteCallbackList will take care of removing
 		                // the dead object for us.

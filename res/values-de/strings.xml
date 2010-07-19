@@ -45,4 +45,7 @@
 
 <string name="help_text_5">Auf gerooteten Geräten (egal ob Android 1.x oder 2x) kann Orbot sämtliche Apps und alle DNS-Abfragen anonymisieren. Dies gilt auch für den eingebauten Browser, Gmail, YouTube und Maps, sowie jegliche Anwendung von Drittanbietern.</string>
 
+
+<string name="menu_verify">Check</string>
+<string name="menu_exit">Exit</string>
 </resources>

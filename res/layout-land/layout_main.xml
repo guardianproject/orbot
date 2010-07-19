@@ -13,7 +13,7 @@
         <ImageView android:id="@+id/radioModeImage"
  		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
-			android:layout_marginTop="0px"
+			android:layout_marginTop="3px"
 			android:layout_marginRight="3px"
 			android:gravity="right"
 			android:layout_toRightOf="@+id/radioModeLabel"
@@ -24,12 +24,12 @@
 		<TextView android:id="@+id/radioModeText"
  		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"           
-            android:text="@string/powered_by"
-			android:layout_marginTop="9px"
+            android:text="powered by The Tor Project  "
+			android:layout_marginTop="8px"
 			android:layout_marginRight="0px"
 			android:gravity="right"
 			android:layout_toLeftOf="@+id/radioModeImage"
-            android:textColor="#333333" />
+            android:textColor="#cccccc" />
 	</RelativeLayout>
     
    <ScrollView android:id="@+id/mainview" 
@@ -48,13 +48,13 @@
 					<TableRow>
 							<ImageView
 							android:id="@+id/imgStatus"
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
+							 android:layout_width="wrap_content"
+		   					 android:layout_height="175px"
 							android:src="@drawable/toroff"/>
 					</TableRow>
 					<TableRow>
 						<TextView android:id="@+id/lblStatus"
-							android:text="@string/press_to_start"
+							android:text="- Press to enable - "
 							android:layout_gravity="center_horizontal"
 							android:gravity="center_horizontal"
 							android:textStyle="bold"

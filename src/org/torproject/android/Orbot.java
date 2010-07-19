@@ -15,6 +15,7 @@ import org.torproject.android.service.TorServiceConstants;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.NotificationManager;
 import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Context;
@@ -87,31 +88,25 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
         
         MenuItem mItem = null;
         
-
         mItemOnOff = menu.add(0, 1, Menu.NONE, getString(R.string.menu_start));
         mItemOnOff.setIcon(android.R.drawable.ic_menu_share);
+        mItemOnOff.setAlphabeticShortcut('t');
         
         mItem = menu.add(0, 4, Menu.NONE, getString(R.string.menu_settings));
         mItem.setIcon(R.drawable.ic_menu_register);
        
-       
-    	mItem = menu.add(0, 5, Menu.NONE, getString(R.string.menu_apps));
-    	mItem.setIcon(R.drawable.ic_menu_goto);
-    	
-    	 if (!TorServiceUtils.hasRoot())
-         {
-    		 mItem.setEnabled(false);
-    		 
-         }
-        	
+        mItem = menu.add(0, 7, Menu.NONE, getString(R.string.menu_verify));
+        mItem.setIcon(R.drawable.ic_menu_goto);
+      
         mItem =  menu.add(0,6, Menu.NONE, getString(R.string.menu_log));
         mItem.setIcon(R.drawable.ic_menu_reports);
         
         mItem = menu.add(0, 3, Menu.NONE, getString(R.string.menu_info));
         mItem.setIcon(R.drawable.ic_menu_about);
        
-
-      
+        mItem = menu.add(0, 8, Menu.NONE, getString(R.string.menu_exit));
+        mItem.setIcon(R.drawable.ic_menu_exit);
+       
         return true;
     }
     
@@ -172,8 +167,39 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
 		{
 			showApps();
 		}
+		else if (item.getItemId() == 7)
+		{
+			//launch check.torproject.org
+			openBrowser(URL_TOR_CHECK);
+		}
+		else if (item.getItemId() == 8)
+		{
+			//exit app
+			doExit();
+			
+			
+		}
 		
         return true;
+	}
+	
+	private void doExit ()
+	{
+		try {
+			stopTor();
+			
+			NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+			mNotificationManager.cancelAll();
+			
+			unbindService();
+			
+			
+		} catch (RemoteException e) {
+			Log.w(TAG, e);
+		}
+		
+		finish();
+		
 	}
 	
 	/* Return to the main view when the back key is pressed
@@ -230,6 +256,10 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
 	 */
 	protected void onResume() {
 		super.onResume();
+		
+		NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+		mNotificationManager.cancelAll();
 		
 		updateStatus (""); //update the status, which checks the service status
 		
@@ -352,6 +382,8 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
         			entry = (ListEntry) convertView.getTag();
         		}
         		final TorifiedApp app = apps[position];
+        		
+        		
         		entry.text.setText(app.getName());
         		final CheckBox box = entry.box;
         		box.setTag(app);
@@ -432,7 +464,6 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
 		new AlertDialog.Builder(this)
         .setTitle(getString(R.string.menu_info))
         .setMessage(msg.toString())
-        .setView(view)
         .setNeutralButton(getString(R.string.button_about), new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int whichButton) {
                    
@@ -466,6 +497,8 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
 		setContentView(currentView);
 		
 		txtMessageLog = (TextView)findViewById(R.id.messageLog);
+		
+		txtMessageLog.setClickable(true);
     	txtMessageLog.setText(logBuffer.toString());
 		
 	}
@@ -633,6 +666,12 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
     		if (mService != null)
     			torStatus = mService.getStatus();
 	    	
+    		if (this.currentView == R.layout.layout_log)    
+    		{
+    			txtMessageLog.append(torServiceMsg);
+    			txtMessageLog.append("\n");
+    			
+    		}
 
 	    	if (imgStatus != null)
 	    	{
@@ -755,6 +794,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
     	mHandler.sendMessage(msg);
     	
     	updateStatus("");
+    	
     }
     
     /*
@@ -857,6 +897,8 @@ public class Orbot extends Activity implements OnClickListener, TorConstants, On
                 	logBuffer.append(torServiceMsg);
                 	logBuffer.append('\n');
                 	
+                	
+                	if (torServiceMsg.length() > 0 && torServiceMsg.charAt(0)!='>')
                 	updateStatus(torServiceMsg);
                 	
                     break;
