@@ -49,4 +49,7 @@ para configurar el proxy SOCKS5 a 127.0.0.1 y el puerto 9050. También debe habi
 <string name="help_text_5">Si la raíz del dispositivo, ya sea 1.xo 2.x base, puede proxy transparente Orbot cualquier applicatons selecciona y todas las peticiones DNS.
 Esto incluye el built-in del navegador, Gmail, YouTube y mapas, así como cualquier aplicación de terceros.</string>
 
+
+<string name="menu_verify">Check</string>
+<string name="menu_exit">Exit</string>
 </resources>

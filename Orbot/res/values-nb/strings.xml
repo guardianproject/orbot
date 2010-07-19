@@ -47,4 +47,7 @@ HTTP Proxy til 127.0.0.1 og port 8118 for kun HTTP trafikk (HTTP/S vil ikke fung
 
 <string name="help_text_5">Hvis du rooter telefonen, uansett om den er en 1.x eller 2.x enhet, så vil Orbot kunne fungere med alle aplikasjoner du velger, i tillegg til alle DNS-forespørsler. Dette inkluderer den innebyggede nettleseren, Gmail, Youtube og Kart, og mange tredjeparts-applikasjoner.</string>
 
+
+<string name="menu_verify">Check</string>
+<string name="menu_exit">Exit</string>
 </resources>

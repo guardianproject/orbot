@@ -49,4 +49,7 @@ que o permite definir o Proxy para 127.0.0.1 e porto 9050. Deve também activar 
 <string name="help_text_5">Se tiver acesso root no seu dispositivo, quer seja 1.x ou 2.x, o Orbot pode, de uma forma transparente, funcionar com todas as aplicações
 e pedidos de DNS. Isto inclui o navegador. Gmail, YouTube e Maps, como também aplicações de terceiros.</string>
 
+
+<string name="menu_verify">Check</string>
+<string name="menu_exit">Exit</string>
 </resources>

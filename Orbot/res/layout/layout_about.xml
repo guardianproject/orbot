@@ -18,7 +18,7 @@
 				android:paddingLeft="15px"
 				android:textStyle="bold"
 				android:textColor="#ffffff" />
-			<TextView android:text="- Unkown -"
+			<TextView android:text="- Unknown -"
 				android:id="@+id/versionName"
 				android:layout_width="fill_parent" 
 				android:layout_height="wrap_content"
@@ -32,14 +32,12 @@
 				android:paddingLeft="15px"
 				android:textStyle="bold"
 				android:textColor="#ffffff" />
-			<TextView android:text="https://www.torproject.org/docs/android \n
-http://guardianproject.info/apps/orbot/"
+			<TextView android:text="https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/"
 				android:layout_width="fill_parent" 
 				android:layout_height="wrap_content"
 				android:autoLink="web"
 				android:textColorLink="#ffffff"
-				android:paddingLeft="15px"
-				android:textSize="12sp"					
+				android:paddingLeft="15px"		
 				android:textColor="#ffffff" />
 			<TextView android:text="License: "
 				android:layout_width="fill_parent" 
@@ -58,8 +56,7 @@ http://guardianproject.info/apps/orbot/"
 				android:layout_height="wrap_content"
 				android:autoLink="web"
 				android:textColorLink="#ffffff"
-				android:paddingLeft="15px"
-				android:textSize="12sp"					
+				android:paddingLeft="15px"		
 				android:textColor="#ffffff" />				
 			<TextView android:text="3rd-Party-Software: "
 				android:layout_width="fill_parent" 
@@ -74,15 +71,13 @@ http://guardianproject.info/apps/orbot/"
 				android:autoLink="web"
 				android:textColorLink="#ffffff"
 				android:paddingLeft="15px"
-				android:textSize="12sp"					
 				android:textColor="#ffffff" />				
 			<TextView android:text="LibEvent v1.4.13: http://www.monkey.org/~provos/libevent/"
 				android:layout_width="fill_parent" 
 				android:layout_height="wrap_content"
 				android:autoLink="web"
 				android:textColorLink="#ffffff"
-				android:paddingLeft="15px"
-				android:textSize="12sp"					
+				android:paddingLeft="15px"	
 				android:textColor="#ffffff" />	
 							
 			</LinearLayout>
