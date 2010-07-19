@@ -49,4 +49,7 @@ you to set the SOCKS5 proxy to 127.0.0.1 and port 9050. You should also enable S
 <string name="help_text_5">If you root your device, whether it is 1.x or 2.x based, Orbot can transparently proxy any applicatons you select
 and all DNS requests. This includes the built-in Browser, Gmail, YouTube and Maps, as well as any third-party app.</string>
 
+
+<string name="menu_verify">Check</string>
+<string name="menu_exit">Exit</string>
 </resources>

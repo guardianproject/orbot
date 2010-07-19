@@ -1,4 +1,4 @@
-This document explains how to properly build an Android package of Orbot from
+nThis document explains how to properly build an Android package of Orbot from
 source. It covers building on Debian Lenny (5.0.3).
 
 Please install the following prerequisites (instructions for each follows):

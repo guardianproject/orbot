@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="wrap_content">
 	<ScrollView android:id="@+id/helpscrollview" 
 		android:orientation="vertical"
 		android:layout_width="fill_parent" 
@@ -14,8 +14,6 @@
 			<TextView android:text=""
 				android:layout_width="fill_parent" 
 				android:layout_height="wrap_content"
-				android:paddingTop="5px"
-				android:paddingLeft="5px"
 				android:textColor="#ffffff" />				
 			</LinearLayout>
 		</ScrollView>			

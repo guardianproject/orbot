@@ -5,20 +5,52 @@ package org.torproject.android;
 
 import org.torproject.android.service.TorServiceUtils;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
+import android.preference.Preference;
+import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
-import android.util.Log;
+import android.preference.PreferenceCategory;
+
 
 public class SettingsPreferences 
-		extends PreferenceActivity {
+		extends PreferenceActivity implements OnPreferenceClickListener {
 
+	private CheckBoxPreference prefCBTransProxy = null;
+	private CheckBoxPreference prefcBTransProxyAll = null;
+	private Preference prefTransProxyApps = null;
+	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.preferences);
 		
+		
 		if (!TorServiceUtils.hasRoot())
+		{
 			getPreferenceScreen().getPreference(0).setEnabled(false);
+		}
+		else
+		{
+			prefCBTransProxy = ((CheckBoxPreference)((PreferenceCategory)this.getPreferenceScreen().getPreference(0)).getPreference(0));
+			prefcBTransProxyAll = (CheckBoxPreference)((PreferenceCategory)this.getPreferenceScreen().getPreference(0)).getPreference(1);
+			prefTransProxyApps = ((PreferenceCategory)this.getPreferenceScreen().getPreference(0)).getPreference(2);
+
+			prefcBTransProxyAll.setEnabled(prefCBTransProxy.isChecked());
+			
+			prefTransProxyApps.setEnabled(prefCBTransProxy.isChecked() && (!prefcBTransProxyAll.isChecked()));
+			
+			prefCBTransProxy.setOnPreferenceClickListener(this);
+			prefcBTransProxyAll.setOnPreferenceClickListener(this);
+			prefTransProxyApps.setOnPreferenceClickListener(this);
+			
+		}
+		
+
 	}
+	
+	
+	
 	
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onStop()
@@ -27,7 +59,27 @@ public class SettingsPreferences
 	protected void onStop() {
 		super.onStop();
 		
-		Log.i(getClass().getName(),"Exiting Preferences");
+		//Log.i(getClass().getName(),"Exiting Preferences");
 	}
+
+	@Override
+	public boolean onPreferenceClick(Preference preference) {
+		
+		
+		if (preference == prefTransProxyApps)
+		{
+			startActivity(new Intent(this, AppManager.class));
+		}
+		else
+		{
+			prefcBTransProxyAll.setEnabled(prefCBTransProxy.isChecked());
+			prefTransProxyApps.setEnabled(prefCBTransProxy.isChecked() && (!prefcBTransProxyAll.isChecked()));
+			
+		}
+		
+		return true;
+	}
+
+	
 
 }

@@ -1,5 +1,7 @@
 package org.torproject.android;
 
+import android.graphics.drawable.Drawable;
+
 public class TorifiedApp {
 
 	private boolean enabled;
@@ -7,6 +9,7 @@ public class TorifiedApp {
 	private String username;
 	private String procname;
 	private String name;
+	private Drawable icon;
 	
 	private boolean torified = false;
 	
@@ -97,4 +100,12 @@ public class TorifiedApp {
 		this.name = name;
 	}
 	
+
+	public Drawable getIcon() {
+		return icon;
+	}
+	
+	public void setIcon(Drawable icon) {
+		this.icon = icon;
+	}
 }
