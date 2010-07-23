@@ -21,94 +21,10 @@ import android.util.Log;
 
 public class TorServiceUtils implements TorServiceConstants {
 
-	private static TorifiedApp[] apps = null;
 	
 	private final static String PREFS_KEY = "OrbotPrefs";
 	private final static String PREFS_KEY_TORIFIED = "PrefTord";
 	
-	public static void saveAppSettings (Context context)
-	{
-		if (apps == null)
-			return;
-		
-		final SharedPreferences prefs = context.getSharedPreferences(PREFS_KEY, 0);
-
-		StringBuilder tordApps = new StringBuilder();
-		
-		for (int i = 0; i < apps.length; i++)
-		{
-			if (apps[i].isTorified())
-			{
-				tordApps.append(apps[i].getUsername());
-				tordApps.append("|");
-			}
-		}
-		
-		Editor edit = prefs.edit();
-		edit.putString(PREFS_KEY_TORIFIED, tordApps.toString());
-		edit.commit();
-		
-	}
-	
-	public static TorifiedApp[] getApps (Context context)
-	{
-		if (apps != null)
-			return apps;
-	
-		final SharedPreferences prefs = context.getSharedPreferences(PREFS_KEY, 0);
-
-		String tordAppString = prefs.getString(PREFS_KEY_TORIFIED, "");
-		String[] tordApps;
-		
-		StringTokenizer st = new StringTokenizer(tordAppString,"|");
-		tordApps = new String[st.countTokens()];
-		int tordIdx = 0;
-		while (st.hasMoreTokens())
-		{
-			tordApps[tordIdx++] = st.nextToken();
-		}
-		
-		Arrays.sort(tordApps);
-		
-		//else load the apps up
-		PackageManager pMgr = context.getPackageManager();
-		
-		List<ApplicationInfo> lAppInfo = pMgr.getInstalledApplications(0);
-		
-		Iterator<ApplicationInfo> itAppInfo = lAppInfo.iterator();
-		
-		apps = new TorifiedApp[lAppInfo.size()];
-		
-		ApplicationInfo aInfo = null;
-		
-		int appIdx = 0;
-		
-		while (itAppInfo.hasNext())
-		{
-			aInfo = itAppInfo.next();
-			
-			apps[appIdx] = new TorifiedApp();
-			
-			apps[appIdx].setEnabled(aInfo.enabled);
-			apps[appIdx].setUid(aInfo.uid);
-			apps[appIdx].setUsername(pMgr.getNameForUid(apps[appIdx].getUid()));
-			apps[appIdx].setProcname(aInfo.processName);
-			apps[appIdx].setName(pMgr.getApplicationLabel(aInfo).toString());
-			
-			// check if this application is allowed
-			if (Arrays.binarySearch(tordApps, apps[appIdx].getUsername()) >= 0) {
-				apps[appIdx].setTorified(true);
-			}
-			else
-			{
-				apps[appIdx].setTorified(false);
-			}
-			
-			appIdx++;
-		}
-		
-		return apps;
-	}
 	
 	public static int findProcessId(String command) 
 	{

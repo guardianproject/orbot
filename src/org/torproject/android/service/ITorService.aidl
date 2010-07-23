@@ -6,19 +6,40 @@ import org.torproject.android.service.ITorServiceCallback;
  * an interface for calling on to a remote service
  */
 interface ITorService {
+
     /**
-     * Often you want to allow a service to call back to its clients.
-     * This shows how to do so, by registering a callback interface with
-     * the service.
+     * This allows Tor service to send messages back to the GUI
      */
     void registerCallback(ITorServiceCallback cb);
     
     /**
-     * Remove a previously registered callback interface.
+     * Remove registered callback interface.
      */
     void unregisterCallback(ITorServiceCallback cb);
     
+    /**
+    * Get a simple int status value for the state of Tor
+    **/
     int getStatus();
     
+    /**
+    * The profile value is the start/stop state for Tor
+    **/
     void setProfile(int profile);
+    
+    /**
+    * Set configuration
+    **/
+    boolean updateConfiguration (String name, String value, boolean saveToDisk);
+    
+    /**
+    * Set configuration
+    **/
+    boolean saveConfiguration ();
+    
+    /**
+    * Get current configuration value from torrc
+    */
+    String getConfiguration (String name);
+    
 }

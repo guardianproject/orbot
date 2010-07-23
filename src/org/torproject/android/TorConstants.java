@@ -6,6 +6,10 @@ package org.torproject.android;
 public interface TorConstants {
 
 	public final static String TAG = "Orbot";
+	
+
+	public final static String PREFS_KEY = "OrbotPrefs";
+	public final static String PREFS_KEY_TORIFIED = "PrefTord";
 
 	public final static int FILE_WRITE_BUFFER_SIZE = 2048;
 	
@@ -23,10 +27,12 @@ public interface TorConstants {
     
     public final static String NEWLINE = "\n";
     
+    /*
     public final static String TORRC_DEFAULT = 
     		"SocksPort 9050\nSocksListenAddress 127.0.0.1\nSafeSocks 1\nDNSPort 5400\nLog debug syslog\nDataDirectory /data/data/org.torproject.android/cache\n"
     	+ "ControlPort 9051\nCookieAuthentication 1\nRelayBandwidthRate 20 KBytes\nRelayBandwidthBurst 20 KBytes\nAutomapHostsOnResolve 1\nTransPort 9040\n";
-    	
+    	*/
+    
     public final static String INTENT_TOR_SERVICE = "org.torproject.android.service.TOR_SERVICE";
     	
     public final static String HANDLER_TOR_MSG = "torServiceMsg";

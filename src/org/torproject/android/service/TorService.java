@@ -15,23 +15,26 @@ import net.freehaven.tor.control.ConfigEntry;
 import net.freehaven.tor.control.EventHandler;
 import net.freehaven.tor.control.TorControlConnection;
 
+import org.torproject.android.AppManager;
 import org.torproject.android.Orbot;
 import org.torproject.android.R;
 
+import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.os.RemoteCallbackList;
 import android.os.RemoteException;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 public class TorService extends Service implements TorServiceConstants, Runnable, EventHandler
 {
-	
 	
 	
 	private static int currentStatus = STATUS_READY;
@@ -44,7 +47,10 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 	
 	private static final int MAX_START_TRIES = 3;
 
-	
+    private ArrayList<String> configBuffer = null;
+    
+    private boolean hasRoot = false;
+    
     /** Called when the activity is first created. */
     public void onCreate() {
     	super.onCreate();
@@ -57,6 +63,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     	
     	_torInstance = this;
 
+    	hasRoot = TorServiceUtils.hasRoot();
     	 
     }
     
@@ -130,19 +137,19 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     }
 	
    
-	private void showToolbarNotification (String title, String notifyMsg, int icon)
+	private void showToolbarNotification (String notifyMsg, int icon)
 	{
 		
 		NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
 		
-		CharSequence tickerText = title;
+		CharSequence tickerText = notifyMsg;
 		long when = System.currentTimeMillis();
 
 		Notification notification = new Notification(icon, tickerText, when);
 		
 		Context context = getApplicationContext();
-		CharSequence contentTitle = title;
+		CharSequence contentTitle = getString(R.string.app_name);
 		CharSequence contentText = notifyMsg;
 		
 		Intent notificationIntent = new Intent(this, Orbot.class);
@@ -189,7 +196,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 	     catch (Exception e)
 	     {
 	    	 currentStatus = STATUS_OFF;
-	    	 this.showToolbarNotification("Orbot", "Unable to start Tor", R.drawable.tornotification);
+	    	 this.showToolbarNotification(getString(R.string.status_disabled), R.drawable.tornotification);
 	    	 Log.i(TAG,"Unable to start Tor: " + e.getMessage(),e);
 	     }
 		}
@@ -220,9 +227,11 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 				
 		currentStatus = STATUS_READY;
     	
-		showToolbarNotification ("Orbot","Tor is disabled",R.drawable.tornotificationoff);
-    	sendCallbackMessage("Tor is disabled");
+	
+		showToolbarNotification (getString(R.string.status_disabled),R.drawable.tornotificationoff);
+    	sendCallbackMessage(getString(R.string.status_disabled));
 
+    	setupTransProxy(false);
     }
     
  
@@ -254,7 +263,8 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     	if (conn != null)
 		{
 			try {
-				Log.i(TAG,"sending SHUTDOWN signal");
+				logNotice("sending SHUTDOWN signal to Tor process");
+			//	conn.shutdownTor(arg0)
 				conn.signal("SHUTDOWN");
 			} catch (Exception e) {
 				Log.i(TAG,"error shutting down Tor via connection",e);
@@ -269,7 +279,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 		while (procId != -1)
 		{
 			
-			Log.i(TAG,"Found Tor PID=" + procId + " - killing now...");
+			logNotice("Found Tor PID=" + procId + " - killing now...");
 			
 			String[] cmd = { SHELL_CMD_KILL + ' ' + procId + "" };
 			TorServiceUtils.doShellCommand(cmd,log, false, false);
@@ -289,22 +299,6 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 
 			procId = TorServiceUtils.findProcessId(TorServiceConstants.PRIVOXY_INSTALL_PATH);
 		}
-		
-		/*
-		 //removing this for now
-		if (_webProxy != null)
-		{
-			try
-			{
-				//shutdown web proxy
-				_webProxy.stop();
-				_webProxy = null;
-			}
-			catch (Exception e)
-			{
-				Log.i(TAG,"error stopping web proxy",e);
-			}
-		}*/
 		
     }
    
@@ -335,17 +329,17 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 			
     		if (torBinaryExists && privoxyBinaryExists)
     		{
-    			logNotice("Tor, Privoxy, IPtables binaries installed!");
+    			logNotice(getString(R.string.status_install_success));
     	
-    			this.showToolbarNotification("Orbot Installed!", "Tor was successfully extracted and installed", R.drawable.tornotification);
+    			showToolbarNotification(getString(R.string.status_install_success), R.drawable.tornotification);
     		
     		}
     		else
     		{
-    			logNotice("Binary install FAILED!");
-    			
-    			this.showToolbarNotification("Orbot FAIL!", "The binaries were unable to be installed", R.drawable.tornotification);
+    		
+    			logNotice(getString(R.string.status_install_fail));
 
+    			showAlert(getString(R.string.title_error),getString(R.string.status_install_fail));
     		
     			return false;
     		}
@@ -354,11 +348,11 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 		
 		StringBuilder log = new StringBuilder ();
 		
-		Log.i(TAG,"Setting permission on Tor binary");
+		logNotice("Setting permission on Tor binary");
 		String[] cmd1 = {SHELL_CMD_CHMOD + ' ' + CHMOD_EXE_VALUE + ' ' + TOR_BINARY_INSTALL_PATH};
 		TorServiceUtils.doShellCommand(cmd1, log, false, true);
 		
-		Log.i(TAG,"Setting permission on Privoxy binary");
+		logNotice("Setting permission on Privoxy binary");
 		String[] cmd2 = {SHELL_CMD_CHMOD + ' ' + CHMOD_EXE_VALUE + ' ' + PRIVOXY_INSTALL_PATH};
 		TorServiceUtils.doShellCommand(cmd2, log, false, true);
 				
@@ -367,17 +361,19 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     
     public void initTor () throws Exception
     {
-    		
+    	   // android.os.Debug.waitForDebugger();
+    	
     		currentStatus = STATUS_CONNECTING;
 
-    		logNotice("Tor is starting up...");
-    		this.sendCallbackMessage("starting...");
+    		logNotice(getString(R.string.status_starting_up));
+    		
+    		sendCallbackMessage(getString(R.string.status_starting_up));
     		
     		killTorProcess ();
     		
     		checkTorBinaries ();
-    		
-    		
+
+        	
     		
     		new Thread()
     		{
@@ -401,6 +397,8 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     			{
     				try {
     		    		runTorShellCmd();
+    		    		
+    		    		setupTransProxy(true);
 
     				} catch (Exception e) {
     			    	Log.i(TAG,"Unable to start Tor: " + e.getMessage(),e);	
@@ -440,7 +438,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 			{
 				sendCallbackMessage("Couldn't start Tor process...\n" + log.toString());
 				Thread.sleep(1000);
-				sendCallbackMessage("Trying to start Tor again...\n" + log.toString());
+				sendCallbackMessage(getString(R.string.status_starting_up));
 				Thread.sleep(3000);
 				attempts++;
 			}
@@ -457,7 +455,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 		
 			logNotice("Tor process id=" + procId);
 			
-			showToolbarNotification("Orbot starting...", "Tor is running", R.drawable.tornotification);
+			showToolbarNotification(getString(R.string.status_starting_up), R.drawable.tornotification);
 			
 			initControlConnection ();
 	    }
@@ -489,7 +487,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     			
     			if (privoxyProcId == -1)
     			{
-    				this.sendCallbackMessage("Couldn't start Privoxy process... retrying...\n" + log);
+    				logNotice("Couldn't start Privoxy process... retrying...\n" + log);
     				Thread.sleep(3000);
     				attempts++;
     			}
@@ -506,18 +504,16 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     		
     }
     
-    
-	
-	
+    /*
 	public String generateHashPassword ()
 	{
-		/*
+		
 		PasswordDigest d = PasswordDigest.generateDigest();
 	      byte[] s = d.getSecret(); // pass this to authenticate
 	      String h = d.getHashedPassword(); // pass this to the Tor on startup.
-*/
+
 		return null;
-	}
+	}*/
 	
 	public void initControlConnection () throws Exception, RuntimeException
 	{
@@ -534,7 +530,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 			        conn = TorControlConnection.getConnection(s);
 			      //  conn.authenticate(new byte[0]); // See section 3.2
 			        
-					sendCallbackMessage(baseMessage + ' ' + getString(R.string.tor_process_connecting_step2));
+					sendCallbackMessage(getString(R.string.tor_process_connecting_step2));
 
 			        Log.i(TAG,"SUCCESS connected to control port");
 			        
@@ -542,12 +538,19 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 			        byte[] cookie = new byte[(int)fileCookie.length()];
 			        new FileInputStream(new File(TOR_CONTROL_AUTH_COOKIE)).read(cookie);
 			        conn.authenticate(cookie);
-			        
+			        		
 			        Log.i(TAG,"SUCCESS authenticated to control port");
 			        
-					sendCallbackMessage(baseMessage + ' ' + getString(R.string.tor_process_connecting_step3));
+					sendCallbackMessage(getString(R.string.tor_process_connecting_step2) + getString(R.string.tor_process_connecting_step3));
 
 			        addEventHandler();
+			        
+			        if (configBuffer != null)
+			        {
+			        	conn.setConf(configBuffer);
+			        	//conn.saveConf();
+			        	configBuffer = null;
+			        }
 			        
 			        break; //don't need to retry
 				}
@@ -568,29 +571,6 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 
 	}
 	
-	public void modifyConf () throws IOException
-	{
-	       // Get one configuration variable.
-	       List<ConfigEntry> options = conn.getConf("contact"); 
-	       options.size();
-	       // Get a set of configuration variables.
-	      // List options = conn.getConf(Arrays.asList(new String[]{
-	           //   "contact", "orport", "socksport"}));
-	       // Change a single configuration variable
-	       conn.setConf("BandwidthRate", "1 MB");
-	       // Change several configuration variables
-	       conn.setConf(Arrays.asList(new String[]{
-	              "HiddenServiceDir /home/tor/service1",
-	              "HiddenServicePort 80",
-	       }));
-	       // Reset some variables to their defaults
-	       conn.resetConf(Arrays.asList(new String[]{
-	              "contact", "socksport"
-	       }));
-	       // Flush the configuration to disk.
-	       conn.saveConf();
-
-	}
 	
 	/*
 	private void getTorStatus () throws IOException
@@ -640,7 +620,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 		conn.setEventHandler(this);
 	    
 		conn.setEvents(Arrays.asList(new String[]{
-	          "ORCONN", "CIRC", "NOTICE", "ERR"}));
+	          "ORCONN", "CIRC", "NOTICE", "WARN", "ERR"}));
 	      // conn.setEvents(Arrays.asList(new String[]{
 	        //  "DEBUG", "INFO", "NOTICE", "WARN", "ERR"}));
 
@@ -701,7 +681,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
           if (msg.indexOf(TOR_CONTROL_PORT_MSG_BOOTSTRAP_DONE)!=-1)
           {
         	  currentStatus = STATUS_ON;
-        	  showToolbarNotification ("Orbot","Tor is enabled",R.drawable.tornotification);
+        	  showToolbarNotification (getString(R.string.status_activated),R.drawable.tornotification);
   			  
           }
          
@@ -709,6 +689,15 @@ public class TorService extends Service implements TorServiceConstants, Runnable
              
 	}
 
+	private void showAlert(String title, String msg)
+	{
+		 
+		 new AlertDialog.Builder(this)
+         .setTitle(title)
+         .setMessage(msg)
+         .setPositiveButton(android.R.string.ok, null)
+         .show();
+	}
 
 	public void newDescriptors(List<String> orList) {
 		
@@ -783,6 +772,8 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 		
 	}
 	
+	private Intent launchContext = null;
+	
     public IBinder onBind(Intent intent) {
         // Select the interface to return.  If your service only implements
         // a single interface, you can just return it here without checking
@@ -807,6 +798,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
      * The IRemoteInterface is defined through IDL
      */
     private final ITorService.Stub mBinder = new ITorService.Stub() {
+    	
         public void registerCallback(ITorServiceCallback cb) {
             if (cb != null) mCallbacks.register(cb);
         }
@@ -820,10 +812,103 @@ public class TorService extends Service implements TorServiceConstants, Runnable
         public void setProfile (int profile)
         {
         	setTorProfile(profile);
-        	sendCallbackMessage("");
         	
         }
         
+        public String getConfiguration (String name)
+        {
+        	try
+        	{
+	        	if (conn != null)
+	        	{
+	        		StringBuffer result = new StringBuffer();
+	        		
+	        		List<ConfigEntry> listCe = conn.getConf(name);
+	        		
+	        		Iterator<ConfigEntry> itCe = listCe.iterator();
+	        		ConfigEntry ce = null;
+	        		
+	        		while (itCe.hasNext())
+	        		{
+	        			ce = itCe.next();
+	        			
+	        			result.append(ce.key);
+	        			result.append(' ');
+	        			result.append(ce.value);
+	        			result.append('\n');
+	        		}
+	        		
+	   	       		return result.toString();
+	        	}
+        	}
+        	catch (IOException ioe)
+        	{
+        		Log.e(TAG, "Unable to update Tor configuration", ioe);
+        		logNotice("Unable to update Tor configuration: " + ioe.getMessage());
+        	}
+        	
+        	return null;
+        }
+        /**
+         * Set configuration
+         **/
+        public boolean updateConfiguration (String name, String value, boolean saveToDisk)
+        {
+        	try
+        	{
+	        	if (conn != null)
+	        	{
+	        		conn.setConf(name, value);
+	   	       
+	        		if (saveToDisk)
+	        		{
+	   	       			// Flush the configuration to disk.
+	   	       			//conn.saveConf(); //NF 22/07/10 this is crashing right now
+	        		}
+	        		
+	   	       		return true;
+	        	}
+	        	else
+	        	{
+	        		if (configBuffer == null)
+	        			configBuffer = new ArrayList<String>();
+	        		
+	        		configBuffer.add(name + ' ' + value);
+	        	}
+        	}
+        	catch (IOException ioe)
+        	{
+        		Log.e(TAG, "Unable to update Tor configuration", ioe);
+        		logNotice("Unable to update Tor configuration: " + ioe.getMessage());
+        	}
+        	
+        	return false;
+        }
+         
+	    public boolean saveConfiguration ()
+	    {
+	    	try
+        	{
+	        	if (conn != null)
+	        	{
+	        		
+	   	       
+	   	       		// Flush the configuration to disk.
+	        		//this is doing bad things right now NF 22/07/10
+	   	       		//conn.saveConf();
+	
+	   	       		return true;
+	        	}
+        	}
+        	catch (Exception ioe)
+        	{
+        		Log.e(TAG, "Unable to update Tor configuration", ioe);
+        		logNotice("Unable to update Tor configuration: " + ioe.getMessage());
+        	}
+        	
+        	return false;
+        	
+	    }
     };
     
     private ArrayList<String> callbackBuffer = new ArrayList<String>();
@@ -864,4 +949,40 @@ public class TorService extends Service implements TorServiceConstants, Runnable
         
         mCallbacks.finishBroadcast();
     }
+    
+    private void setupTransProxy (boolean enabled)
+	{
+    	
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		
+		boolean enableTransparentProxy = prefs.getBoolean("pref_transparent", false);
+		boolean transProxyAll = prefs.getBoolean("pref_transparent_all", false);
+	
+    	logNotice ("Transparent Proxying: " + enableTransparentProxy);
+    	
+		if (enabled)
+		{
+		
+	
+			if (hasRoot && enableTransparentProxy)
+			{
+				
+				TorTransProxy.setDNSProxying();
+				TorTransProxy.setTransparentProxyingByApp(this,AppManager.getApps(this),transProxyAll);
+				
+			}
+			else
+			{
+				TorTransProxy.purgeNatIptables();
+
+			}
+		}
+		else
+		{
+			if (hasRoot)
+			{
+				TorTransProxy.purgeNatIptables();
+			}
+		}
+	}
 }
