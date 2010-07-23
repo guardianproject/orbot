@@ -21,12 +21,25 @@ public class SettingsPreferences
 	private CheckBoxPreference prefcBTransProxyAll = null;
 	private Preference prefTransProxyApps = null;
 	
-	protected void onCreate(Bundle savedInstanceState) {
+	private boolean hasRoot = false;
+	
+	protected void onCreate(Bundle savedInstanceState)
+	{
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.preferences);
 		
+		hasRoot = TorServiceUtils.hasRoot();
 		
-		if (!TorServiceUtils.hasRoot())
+	}
+	
+	
+	
+	@Override
+	protected void onResume() {
+	
+		super.onResume();
+	
+		if (!hasRoot)
 		{
 			getPreferenceScreen().getPreference(0).setEnabled(false);
 		}

@@ -93,7 +93,7 @@ public class TorTransProxy {
 		}
     }
 	
-	public static boolean setTransparentProxying(Context context, TorifiedApp[] apps) {
+	public static boolean setTransparentProxyingByApp(Context context, TorifiedApp[] apps, boolean forceAll) {
 		
 		String command = null;
 		
@@ -101,14 +101,24 @@ public class TorTransProxy {
 		
     	final StringBuilder script = new StringBuilder();
     	
+    	StringBuilder res = new StringBuilder();
+    	int code = -1;
+    	
 		try {
-			int code;
+			
 			
 			for (int i = 0; i < apps.length; i++)
 			{
-				
-				if (apps[i].isTorified())
+				if (forceAll || apps[i].isTorified())
 				{
+					
+					if (apps[i].getUsername().equals(TorServiceConstants.TOR_APP_USERNAME))
+					{
+						Log.i(TAG,"detected Orbot app - will not transproxy");
+						
+						continue;
+					}
+					
 					Log.i(TAG,"enabling transproxy for app: " + apps[i].getUsername() + "(" + apps[i].getUid() + ")");
 				 
 					//TCP
@@ -129,17 +139,16 @@ public class TorTransProxy {
 				}		
 			}
 			
-	    	StringBuilder res = new StringBuilder();
 	    	
 	    	String[] cmd = {script.toString()};
 	    	
 			code = TorServiceUtils.doShellCommand(cmd, res, true, true);
 			
-				String msg = res.toString();
-				Log.e(TAG, msg);
+			String msg = res.toString();
+			Log.e(TAG, msg);
 			
 		} catch (Exception e) {
-			Log.w(TAG, "error refreshing iptables: " + e);
+			Log.w(TAG, "error refreshing iptables: err=" + code + "; resp=" + res.toString(), e);
 		}
 		return false;
     }	

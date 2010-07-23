@@ -6,10 +6,12 @@ public interface TorServiceConstants {
 
 	public final static String TAG = "TOR_SERVICE";
 
+	public final static String TOR_APP_USERNAME = "org.torproject.android";
+	
 	//home directory of Android application
-	public final static String TOR_HOME = "/data/data/org.torproject.android/";
+	public final static String TOR_HOME = "/data/data/" + TOR_APP_USERNAME + "/";
 
-	public final static String TOR_HOME_DATA_DIR = TOR_HOME + "cache/";
+	public final static String TOR_HOME_DATA_DIR = TOR_HOME + "data/";
 	
 	//name of the tor C binary
 	public final static String TOR_BINARY_ASSET_KEY = "tor";	

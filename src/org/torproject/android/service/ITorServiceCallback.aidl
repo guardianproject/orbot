@@ -7,7 +7,13 @@ package org.torproject.android.service;
  */
 oneway interface ITorServiceCallback {
     /**
-     * Called when the service has a new value for you.
+     * Called when the service has a something to display to the user
      */
     void statusChanged(String value);
+    
+    /**
+     * Called when the service has something to add to the log
+     */
+    void logMessage(String value);
+    
 }
