@@ -15,7 +15,7 @@
 <string name="status_shutting_down">Orbot is shutting down</string>
 
 <string name="tor_process_connecting">Starting Tor...</string>
-<string name="tor_process_connecting_step2">authenticating control connection...</string>
+<string name="tor_process_connecting_step2">Setting up control...</string>
 <string name="tor_process_connecting_step3">complete.</string>
 <string name="tor_process_connecting_step4">waiting.</string>
 
@@ -37,7 +37,7 @@
 <string name="help_text_1">Orbot requires different configuration depending on the Android operating system version it is used on.
 Please visit https://www.torproject.org/docs/android.html for the latest information.</string>
 
-<string name="help_text_2">For non-rooted Android 1.x devices (G1, MyTouch3G, Hero): Please use the "ProxySurf" browser available in the Android Market, and set 
+<string name="help_text_2">For non-rooted Android 1.x devices: Please use the "ProxySurf" browser available in the Android Market, and set 
 the HTTP Proxy to 127.0.0.1 and port 8118, for HTTP traffic only (HTTP/S will not work).</string>
 
 <string name="help_text_3">For Instant Messaging, try "Beem" in the market, and set the SOCKS5 proxy to 127.0.0.1 / port 9050.</string>
@@ -52,4 +52,16 @@ and all DNS requests. This includes the built-in Browser, Gmail, YouTube and Map
 <string name="menu_exit">Exit</string>
 <string name="powered_by">powered by the Tor Project</string>
 <string name="press_to_start">- press to start -</string>
+
+<string name="pref_trans_proxy_group">Transparent Proxying (Requires Root)</string>
+<string name="pref_trans_proxy_title">Transparent Proxying</string>
+<string name="pref_trans_proxy_summary">Automatic Torifying of Apps</string>
+
+<string name="pref_transparent_all_title">Tor Everything</string>
+<string name="pref_transparent_all_summary">Send traffic for all apps through Tor</string>
+
+<string name="status_install_success">Tor binaries successfully installed!</string>
+<string name="status_install_fail">The Tor binary files were unable to be installed. Please check the log and notify tor-assistants@torproject.org</string>
+
+<string name="title_error">Application Error</string>
 </resources>
