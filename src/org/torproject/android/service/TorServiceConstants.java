@@ -9,40 +9,40 @@ public interface TorServiceConstants {
 	public final static String TOR_APP_USERNAME = "org.torproject.android";
 	
 	//home directory of Android application
-	public final static String TOR_HOME = "/data/data/" + TOR_APP_USERNAME + "/";
+//	public final static String TOR_HOME = "/data/data/" + TOR_APP_USERNAME + "/";
 
-	public final static String TOR_HOME_DATA_DIR = TOR_HOME + "data/";
+	//public final static String TOR_HOME_DATA_DIR = TOR_HOME + "data/";
 	
 	//name of the tor C binary
 	public final static String TOR_BINARY_ASSET_KEY = "tor";	
-	public final static String TOR_BINARY_INSTALL_PATH = TOR_HOME + TOR_BINARY_ASSET_KEY; //path to install the Tor binary too
+//	public final static String TOR_BINARY_INSTALL_PATH = TOR_HOME + TOR_BINARY_ASSET_KEY; //path to install the Tor binary too
 	public final static String TOR_BINARY_ZIP_KEY = "assets/" + TOR_BINARY_ASSET_KEY;//key of the tor binary in the Zip file
 	
 	//torrc (tor config file)
 	public final static String TORRC_ASSET_KEY = "torrc";
-	public final static String TORRC_INSTALL_PATH = TOR_HOME + TORRC_ASSET_KEY; //path to install torrc to within the android app data folder
+//	public final static String TORRC_INSTALL_PATH = TOR_HOME + TORRC_ASSET_KEY; //path to install torrc to within the android app data folder
 	public final static String TORRC_ZIP_KEY = "assets/" + TORRC_ASSET_KEY; //key of the torrc file in the Zip file
 	//how to launch tor
-	public final static String TOR_COMMAND_LINE_ARGS = "-f " + TORRC_INSTALL_PATH  + " || exit\n";
+//	public final static String TOR_COMMAND_LINE_ARGS = "-f " + TORRC_INSTALL_PATH  + " || exit\n";
 		
 	//privoxy
 	public final static String PRIVOXY_ASSET_KEY = "privoxy";
-	public final static String PRIVOXY_INSTALL_PATH = TOR_HOME + PRIVOXY_ASSET_KEY; //path to install privoxy to within the android app data folder
+//	public final static String PRIVOXY_INSTALL_PATH = TOR_HOME + PRIVOXY_ASSET_KEY; //path to install privoxy to within the android app data folder
 	public final static String PRIVOXY_ZIP_KEY = "assets/" + PRIVOXY_ASSET_KEY; //key of the privoxy file in the Zip file
 	
 	//privoxy.config
 	public final static String PRIVOXYCONFIG_ASSET_KEY = "privoxy.config";
-	public final static String PRIVOXYCONFIG_INSTALL_PATH = TOR_HOME + PRIVOXYCONFIG_ASSET_KEY; //path to install privoxy to within the android app data folder
+//	public final static String PRIVOXYCONFIG_INSTALL_PATH = TOR_HOME + PRIVOXYCONFIG_ASSET_KEY; //path to install privoxy to within the android app data folder
 	public final static String PRIVOXYCONFIG_ZIP_KEY = "assets/" + PRIVOXYCONFIG_ASSET_KEY; //key of the privoxy file in the Zip file
 	
 	//how to launch privoxy
-	public final static String PRIVOXY_COMMAND_LINE_ARGS = ' ' + PRIVOXYCONFIG_INSTALL_PATH + " || exit\n";
+//	public final static String PRIVOXY_COMMAND_LINE_ARGS = ' ' + PRIVOXYCONFIG_INSTALL_PATH + " || exit\n";
 
 	//where to send the notices log
-	public final static String TOR_LOG_PATH = TOR_HOME + "notices.log";
+//	public final static String TOR_LOG_PATH = TOR_HOME + "notices.log";
 	
 	//control port cookie path
-	public final static String TOR_CONTROL_AUTH_COOKIE = TOR_HOME_DATA_DIR + "control_auth_cookie";
+//	public final static String TOR_CONTROL_AUTH_COOKIE = TOR_HOME_DATA_DIR + "control_auth_cookie";
 
 	
 	//various console cmds
@@ -56,7 +56,7 @@ public interface TorServiceConstants {
 	
 	//path of the installed APK file
 	public final static String APK_PATH = "/data/app/org.torproject.android.apk";
-	public final static String APK_PATH_BASE = "/data/app/org.torproject.android";
+	public final static String APK_PATH_BASE = "/data/app";
 
 	
 	
