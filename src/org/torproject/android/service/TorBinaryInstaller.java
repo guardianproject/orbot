@@ -17,8 +17,13 @@ import android.util.Log;
 public class TorBinaryInstaller implements TorServiceConstants {
 
 	
-	public TorBinaryInstaller ()
+	String installPath = null;
+	String apkPath = null;
+	
+	public TorBinaryInstaller (String installPath, String apkPath)
 	{
+		this.installPath = installPath;
+		this.apkPath = apkPath;
 	}
 	
 	/*
@@ -26,10 +31,11 @@ public class TorBinaryInstaller implements TorServiceConstants {
 	 */
 	public void start (boolean force)
 	{
-		boolean torBinaryExists = new File(TOR_BINARY_INSTALL_PATH).exists();
+		
+		boolean torBinaryExists = new File(installPath + TOR_BINARY_ASSET_KEY).exists();
 		Log.i(TAG,"Tor binary exists=" + torBinaryExists);
 		
-		boolean privoxyBinaryExists = new File(PRIVOXY_INSTALL_PATH).exists();
+		boolean privoxyBinaryExists = new File(installPath + PRIVOXY_ASSET_KEY).exists();
 		Log.i(TAG,"Privoxy binary exists=" + privoxyBinaryExists);
 		
 		if (!(torBinaryExists && privoxyBinaryExists) || force)
@@ -45,7 +51,7 @@ public class TorBinaryInstaller implements TorServiceConstants {
 		
 		try
 		{
-			
+			/*
 			String apkPath = APK_PATH;
 			
 			int apkIdx = 1;
@@ -56,21 +62,23 @@ public class TorBinaryInstaller implements TorServiceConstants {
 				
 				Log.i(TAG,"Could not find APK. Trying new path: " + apkPath);
 			}
+			*/
+			
 			
 			
 			ZipFile zip = new ZipFile(apkPath);
 	
 			ZipEntry zipen = zip.getEntry(TOR_BINARY_ZIP_KEY);
-			streamToFile(zip.getInputStream(zipen),TOR_BINARY_INSTALL_PATH);
+			streamToFile(zip.getInputStream(zipen),installPath + TOR_BINARY_ASSET_KEY);
 			
 			zipen = zip.getEntry(TORRC_ZIP_KEY);
-			streamToFile(zip.getInputStream(zipen),TORRC_INSTALL_PATH);
+			streamToFile(zip.getInputStream(zipen),installPath + TORRC_ASSET_KEY);
 			
 			zipen = zip.getEntry(PRIVOXY_ZIP_KEY);
-			streamToFile(zip.getInputStream(zipen),PRIVOXY_INSTALL_PATH);
+			streamToFile(zip.getInputStream(zipen),installPath + PRIVOXY_ASSET_KEY);
 			
 			zipen = zip.getEntry(PRIVOXYCONFIG_ZIP_KEY);
-			streamToFile(zip.getInputStream(zipen),PRIVOXYCONFIG_INSTALL_PATH);
+			streamToFile(zip.getInputStream(zipen),installPath + PRIVOXYCONFIG_ASSET_KEY);
 			
 			
 			zip.close();

@@ -51,25 +51,25 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     
     private boolean hasRoot = false;
     
+    private String appHome = null;
+    private String torBinaryPath = null;
+    private String privoxyPath = null;
+    
     /** Called when the activity is first created. */
     public void onCreate() {
     	super.onCreate();
        
     	Log.i(TAG,"TorService: onCreate");
-    	
-    	checkTorBinaries();
-    	
-    	findExistingProc ();
-    	
-    	_torInstance = this;
 
-    	hasRoot = TorServiceUtils.hasRoot();
-    	 
+    
+
+      
     }
+    
     
     private boolean findExistingProc ()
     {
-    	 int procId = TorServiceUtils.findProcessId(TorServiceConstants.TOR_BINARY_INSTALL_PATH);
+    	 int procId = TorServiceUtils.findProcessId(torBinaryPath);
 
  		if (procId != -1)
  		{
@@ -274,7 +274,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     	
     	StringBuilder log = new StringBuilder();
     	
-		int procId = TorServiceUtils.findProcessId(TorServiceConstants.TOR_BINARY_INSTALL_PATH);
+		int procId = TorServiceUtils.findProcessId(torBinaryPath);
 
 		while (procId != -1)
 		{
@@ -284,10 +284,10 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 			String[] cmd = { SHELL_CMD_KILL + ' ' + procId + "" };
 			TorServiceUtils.doShellCommand(cmd,log, false, false);
 
-			procId = TorServiceUtils.findProcessId(TorServiceConstants.TOR_BINARY_INSTALL_PATH);
+			procId = TorServiceUtils.findProcessId(torBinaryPath);
 		}
 		
-		procId = TorServiceUtils.findProcessId(TorServiceConstants.PRIVOXY_INSTALL_PATH);
+		procId = TorServiceUtils.findProcessId(privoxyPath);
 
 		while (procId != -1)
 		{
@@ -297,7 +297,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 
 			TorServiceUtils.doShellCommand(cmd,log, false, false);
 
-			procId = TorServiceUtils.findProcessId(TorServiceConstants.PRIVOXY_INSTALL_PATH);
+			procId = TorServiceUtils.findProcessId(privoxyPath);
 		}
 		
     }
@@ -311,21 +311,76 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 		
     }
     
+    private String findAPK ()
+    {
+    	
+    	String apkBase = "/data/app/";
+    	
+    	String APK_EXT = ".apk";
+    	
+    	
+    	String buildPath = apkBase + TOR_APP_USERNAME + APK_EXT;
+    	Log.i(TAG, "Checking APK location: " + buildPath);
+		
+    	File fileApk = new File(buildPath);
+    	
+    	if (fileApk.exists())
+    		return fileApk.getAbsolutePath();
+    	
+    	for (int i = 0; i < 10; i++)
+    	{
+    		buildPath = apkBase + TOR_APP_USERNAME + '-' + i + APK_EXT;
+    		fileApk = new File(buildPath);
+    	
+    		Log.i(TAG, "Checking APK location: " + buildPath);
+    		
+    		if (fileApk.exists())
+    			return fileApk.getAbsolutePath();
+    	}
+    	
+    	return null;
+    }
+    
     private boolean checkTorBinaries ()
     {
-
-		boolean torBinaryExists = new File(TOR_BINARY_INSTALL_PATH).exists();
-		boolean privoxyBinaryExists = new File(PRIVOXY_INSTALL_PATH).exists();
+    	//android.os.Debug.waitForDebugger();
+    	
+    	
+    	Log.i(TAG,"checking Tor binaries");
+    	
+    	//appHome = getApplicationContext().getFilesDir().getAbsolutePath();
+    	appHome = "/data/data/" + TOR_APP_USERNAME + "/";
+    	
+    	Log.i(TAG,"appHome=" + appHome);
+    	
+    	String apkPath = findAPK();
+    	
+    	Log.i(TAG,"found apk at: " + apkPath);
+    	
+    	boolean apkExists = new File(apkPath).exists();
+    	
+    	if (!apkExists)
+    	{
+    		Log.w(TAG,"APK file not found at: " + apkPath);
+    		Log.w(TAG,"Binary installation aborted");
+    		return false;
+    	}
+    	
+    	torBinaryPath = appHome + '/' + TOR_BINARY_ASSET_KEY;
+    	privoxyPath = appHome + '/' + PRIVOXY_ASSET_KEY;
+    	
+		boolean torBinaryExists = new File(torBinaryPath).exists();
+		boolean privoxyBinaryExists = new File(privoxyPath).exists();
 
 		if (!(torBinaryExists && privoxyBinaryExists))
 		{
 			killTorProcess ();
 			
-			TorBinaryInstaller installer = new TorBinaryInstaller(); 
+			TorBinaryInstaller installer = new TorBinaryInstaller(appHome, apkPath); 
 			installer.start(true);
-		
-			torBinaryExists = new File(TOR_BINARY_INSTALL_PATH).exists();
-			privoxyBinaryExists = new File(PRIVOXY_INSTALL_PATH).exists();
+			
+			torBinaryExists = new File(torBinaryPath).exists();
+			privoxyBinaryExists = new File(privoxyPath).exists();
 			
     		if (torBinaryExists && privoxyBinaryExists)
     		{
@@ -339,7 +394,9 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     		
     			logNotice(getString(R.string.status_install_fail));
 
-    			showAlert(getString(R.string.title_error),getString(R.string.status_install_fail));
+    			sendCallbackMessage(getString(R.string.status_install_fail));
+    			
+    			//showAlert(getString(R.string.title_error),getString(R.string.status_install_fail));
     		
     			return false;
     		}
@@ -349,11 +406,11 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 		StringBuilder log = new StringBuilder ();
 		
 		logNotice("Setting permission on Tor binary");
-		String[] cmd1 = {SHELL_CMD_CHMOD + ' ' + CHMOD_EXE_VALUE + ' ' + TOR_BINARY_INSTALL_PATH};
+		String[] cmd1 = {SHELL_CMD_CHMOD + ' ' + CHMOD_EXE_VALUE + ' ' + torBinaryPath};
 		TorServiceUtils.doShellCommand(cmd1, log, false, true);
 		
 		logNotice("Setting permission on Privoxy binary");
-		String[] cmd2 = {SHELL_CMD_CHMOD + ' ' + CHMOD_EXE_VALUE + ' ' + PRIVOXY_INSTALL_PATH};
+		String[] cmd2 = {SHELL_CMD_CHMOD + ' ' + CHMOD_EXE_VALUE + ' ' + privoxyPath};
 		TorServiceUtils.doShellCommand(cmd2, log, false, true);
 				
 		return true;
@@ -362,6 +419,9 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     public void initTor () throws Exception
     {
     	   // android.os.Debug.waitForDebugger();
+    	
+
+	    	
     	
     		currentStatus = STATUS_CONNECTING;
 
@@ -417,11 +477,13 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 		
 		Log.i(TAG,"Starting tor process");
 		
-		String[] torCmd = {TOR_BINARY_INSTALL_PATH + ' ' + TOR_COMMAND_LINE_ARGS};
+		String torrcPath = appHome + TORRC_ASSET_KEY;
+		
+		String[] torCmd = {torBinaryPath + " -f " + torrcPath  + " || exit\n"};
 		TorServiceUtils.doShellCommand(torCmd, log, false, false);
 	
 		Thread.sleep(1000);
-		int procId = TorServiceUtils.findProcessId(TorServiceConstants.TOR_BINARY_INSTALL_PATH);
+		int procId = TorServiceUtils.findProcessId(torBinaryPath);
 
 		int attempts = 0;
 		
@@ -432,7 +494,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 			logNotice(torCmd[0]);
 			
 			TorServiceUtils.doShellCommand(torCmd, log, false, false);
-			procId = TorServiceUtils.findProcessId(TorServiceConstants.TOR_BINARY_INSTALL_PATH);
+			procId = TorServiceUtils.findProcessId(torBinaryPath);
 			
 			if (procId == -1)
 			{
@@ -463,7 +525,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     
     private void runPrivoxyShellCmd () throws Exception
     {
-			int privoxyProcId = TorServiceUtils.findProcessId(TorServiceConstants.PRIVOXY_INSTALL_PATH);
+			int privoxyProcId = TorServiceUtils.findProcessId(privoxyPath);
 
 			StringBuilder log = null;
 			
@@ -473,8 +535,10 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     		{
     			log = new StringBuilder();
     			
+    			String privoxyConfigPath = appHome + PRIVOXYCONFIG_ASSET_KEY;
+    			
     			String[] cmds = 
-    			{ PRIVOXY_INSTALL_PATH + " " + PRIVOXY_COMMAND_LINE_ARGS };
+    			{ privoxyPath + " " + privoxyConfigPath };
     			
     			logNotice (cmds[0]);
     			
@@ -483,7 +547,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     			//wait one second to make sure it has started up
     			Thread.sleep(1000);
     			
-    			privoxyProcId = TorServiceUtils.findProcessId(TorServiceConstants.PRIVOXY_INSTALL_PATH);
+    			privoxyProcId = TorServiceUtils.findProcessId(privoxyPath);
     			
     			if (privoxyProcId == -1)
     			{
@@ -534,9 +598,11 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 
 			        Log.i(TAG,"SUCCESS connected to control port");
 			        
-			        File fileCookie = new File(TOR_CONTROL_AUTH_COOKIE);
+			        String torAuthCookie = appHome + "data/control_auth_cookie";
+			        
+			        File fileCookie = new File(torAuthCookie);
 			        byte[] cookie = new byte[(int)fileCookie.length()];
-			        new FileInputStream(new File(TOR_CONTROL_AUTH_COOKIE)).read(cookie);
+			        new FileInputStream(new File(torAuthCookie)).read(cookie);
 			        conn.authenticate(cookie);
 			        		
 			        Log.i(TAG,"SUCCESS authenticated to control port");
@@ -772,16 +838,27 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 		
 	}
 	
-	private Intent launchContext = null;
-	
     public IBinder onBind(Intent intent) {
         // Select the interface to return.  If your service only implements
         // a single interface, you can just return it here without checking
         // the Intent.
-        if (ITorService.class.getName().equals(intent.getAction())) {
+        
+    	if (appHome == null)
+    	{
+    	    checkTorBinaries();
+        	
+        	findExistingProc ();
+        	
+        	_torInstance = this;
+
+        	hasRoot = TorServiceUtils.hasRoot();
+    	}
+    	
+    	if (ITorService.class.getName().equals(intent.getAction())) {
             return mBinder;
         }
-      
+        
+
         return null;
     }
 	
