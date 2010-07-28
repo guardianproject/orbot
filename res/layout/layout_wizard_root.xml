@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+	<ScrollView android:id="@+id/helpscrollview" 
+		android:orientation="vertical"
+		android:layout_width="fill_parent" 
+		android:layout_height="fill_parent">    
+		<LinearLayout
+		    android:orientation="vertical"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"
+		    android:padding="3px">
+<TextView android:text="@string/wizard_configure_msg" 	android:textColor="#ffffff" android:id="@+id/WizardRootTextView01" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+
+
+<CheckBox android:layout_marginTop="20px" android:text="@string/wizard_configure_all" android:id="@+id/WizardRootCheckBox01" android:layout_width="wrap_content" android:layout_height="wrap_content"></CheckBox>
+<TextView android:text="  or  " 	android:textColor="#ffffff"  android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+
+<Button android:text="@string/wizard_configure_select_apps" android:id="@+id/WizardRootButton01" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+
+			</LinearLayout>
+		</ScrollView>			
+</LinearLayout>
+

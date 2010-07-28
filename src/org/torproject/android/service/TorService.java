@@ -49,7 +49,6 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 
     private ArrayList<String> configBuffer = null;
     
-    private boolean hasRoot = false;
     
     private String appHome = null;
     private String torBinaryPath = null;
@@ -60,8 +59,6 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     	super.onCreate();
        
     	Log.i(TAG,"TorService: onCreate");
-
-    
 
       
     }
@@ -223,15 +220,25 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     		
     	sendCallbackMessage("Web proxy shutdown");
     	
-		killTorProcess ();
+    	try
+    	{	
+    		killTorProcess ();
 				
-		currentStatus = STATUS_READY;
+    		currentStatus = STATUS_READY;
     	
 	
-		showToolbarNotification (getString(R.string.status_disabled),R.drawable.tornotificationoff);
-    	sendCallbackMessage(getString(R.string.status_disabled));
+    		showToolbarNotification (getString(R.string.status_disabled),R.drawable.tornotificationoff);
+    		sendCallbackMessage(getString(R.string.status_disabled));
 
-    	setupTransProxy(false);
+    		setupTransProxy(false);
+    	}
+    	catch (Exception e)
+    	{
+    		Log.i(TAG, "An error occured stopping Tor",e);
+    		logNotice("An error occured stopping Tor: " + e.getMessage());
+    		sendCallbackMessage("Something bad happened. Check the log");
+
+    	}
     }
     
  
@@ -257,7 +264,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     	}
     }
     
-    private void killTorProcess ()
+    private void killTorProcess () throws Exception
     {
 		
     	if (conn != null)
@@ -318,6 +325,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     	
     	String APK_EXT = ".apk";
     	
+    	int MAX_TRIES = 10;
     	
     	String buildPath = apkBase + TOR_APP_USERNAME + APK_EXT;
     	Log.i(TAG, "Checking APK location: " + buildPath);
@@ -327,7 +335,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     	if (fileApk.exists())
     		return fileApk.getAbsolutePath();
     	
-    	for (int i = 0; i < 10; i++)
+    	for (int i = 0; i < MAX_TRIES; i++)
     	{
     		buildPath = apkBase + TOR_APP_USERNAME + '-' + i + APK_EXT;
     		fileApk = new File(buildPath);
@@ -338,10 +346,33 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     			return fileApk.getAbsolutePath();
     	}
     	
+    	String apkBaseExt = "/mnt/asec/" + TOR_APP_USERNAME;
+    	String pkgFile = "/pkg.apk";
+    	
+    	buildPath = apkBaseExt + pkgFile;
+    	fileApk = new File(buildPath);
+    	
+		Log.i(TAG, "Checking external storage APK location: " + buildPath);
+		
+		if (fileApk.exists())
+			return fileApk.getAbsolutePath();
+		
+    	for (int i = 0; i < MAX_TRIES; i++)
+    	{
+    		buildPath = apkBaseExt + '-' + i + pkgFile;
+    		fileApk = new File(buildPath);
+    	
+    		Log.i(TAG, "Checking external storage APK location: " + buildPath);
+    		
+    		if (fileApk.exists())
+    			return fileApk.getAbsolutePath();
+    	}
+    	
+    	
     	return null;
     }
     
-    private boolean checkTorBinaries ()
+    private boolean checkTorBinaries () throws Exception
     {
     	//android.os.Debug.waitForDebugger();
     	
@@ -366,8 +397,8 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     		return false;
     	}
     	
-    	torBinaryPath = appHome + '/' + TOR_BINARY_ASSET_KEY;
-    	privoxyPath = appHome + '/' + PRIVOXY_ASSET_KEY;
+    	torBinaryPath = appHome + TOR_BINARY_ASSET_KEY;
+    	privoxyPath = appHome + PRIVOXY_ASSET_KEY;
     	
 		boolean torBinaryExists = new File(torBinaryPath).exists();
 		boolean privoxyBinaryExists = new File(privoxyPath).exists();
@@ -402,14 +433,21 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     		}
     		
 		}
+		else
+		{
+			logNotice("Found Tor binary: " + torBinaryPath);
+
+			logNotice("Found prvoxy binary: " + privoxyPath);
+
+		}
 		
 		StringBuilder log = new StringBuilder ();
 		
-		logNotice("Setting permission on Tor binary");
+		logNotice("(re)Setting permission on Tor binary");
 		String[] cmd1 = {SHELL_CMD_CHMOD + ' ' + CHMOD_EXE_VALUE + ' ' + torBinaryPath};
 		TorServiceUtils.doShellCommand(cmd1, log, false, true);
 		
-		logNotice("Setting permission on Privoxy binary");
+		logNotice("(re)Setting permission on Privoxy binary");
 		String[] cmd2 = {SHELL_CMD_CHMOD + ' ' + CHMOD_EXE_VALUE + ' ' + privoxyPath};
 		TorServiceUtils.doShellCommand(cmd2, log, false, true);
 				
@@ -525,6 +563,9 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     
     private void runPrivoxyShellCmd () throws Exception
     {
+    	
+    	Log.i(TAG,"Starting privoxy process");
+    	
 			int privoxyProcId = TorServiceUtils.findProcessId(privoxyPath);
 
 			StringBuilder log = null;
@@ -538,9 +579,9 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     			String privoxyConfigPath = appHome + PRIVOXYCONFIG_ASSET_KEY;
     			
     			String[] cmds = 
-    			{ privoxyPath + " " + privoxyConfigPath };
+    			{ privoxyPath + " " + privoxyConfigPath + " &" };
     			
-    			logNotice (cmds[0]);
+    			logNotice (cmds[0]); 
     			
     			TorServiceUtils.doShellCommand(cmds, log, false, true);
     			
@@ -845,13 +886,19 @@ public class TorService extends Service implements TorServiceConstants, Runnable
         
     	if (appHome == null)
     	{
-    	    checkTorBinaries();
+    		try
+    		{
+    			checkTorBinaries();
         	
-        	findExistingProc ();
+    			findExistingProc ();
         	
-        	_torInstance = this;
-
-        	hasRoot = TorServiceUtils.hasRoot();
+    			_torInstance = this;
+    		}
+    		catch (Exception e)
+    		{
+    			Log.i(TAG,"Unable to check for Tor binaries",e);
+    			return null;
+    		}
     	}
     	
     	if (ITorService.class.getName().equals(intent.getAction())) {
@@ -1037,15 +1084,27 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 	
     	logNotice ("Transparent Proxying: " + enableTransparentProxy);
     	
+    	boolean hasRoot = TorTransProxy.hasRootAccess();
+
 		if (enabled)
 		{
 		
-	
+
 			if (hasRoot && enableTransparentProxy)
 			{
 				
-				TorTransProxy.setDNSProxying();
-				TorTransProxy.setTransparentProxyingByApp(this,AppManager.getApps(this),transProxyAll);
+				try
+				{
+					TorTransProxy.setDNSProxying();
+					boolean success = TorTransProxy.setTransparentProxyingByApp(this,AppManager.getApps(this),transProxyAll);
+				
+					logNotice ("TorTransProxy enabled: " + success);
+					
+				} catch (Exception e) {
+					logNotice("WARNING: Error configuring transparenty proxying: " + e.getMessage());
+					
+					Log.w(TAG, "error refreshing iptables: err=" + e.getMessage(), e);
+				}
 				
 			}
 			else

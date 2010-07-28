@@ -19,6 +19,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -35,7 +36,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -58,10 +62,14 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 		/* The primary interface we will be calling on the service. */
     ITorService mService = null;
 	
+    Orbot mOrbot = null;
+    
     /** Called when the activity is first created. */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        mOrbot = this;
+        
     	setTheme(android.R.style.Theme_Black_NoTitleBar);
     	//setTitle(getString(R.string.app_name) + ' ' + getString(R.string.app_version));
         showMain();
@@ -244,9 +252,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 		
 		
 		NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
 		mNotificationManager.cancelAll();
-		
 		
 		if (mService != null)
 		{
@@ -257,6 +263,23 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 				e.printStackTrace();
 			}
 		}
+		
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mOrbot);
+
+		boolean showWizard = prefs.getBoolean("show_wizard",true);
+		
+		if (showWizard)
+		{
+		
+			Editor pEdit = prefs.edit();
+			
+			pEdit.putBoolean("show_wizard",false);
+			
+			pEdit.commit();
+			
+			showHelp();
+		}
+		
 		
 	}
 
@@ -272,7 +295,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 		
 		//updateStatus ("");
 		
-		hasRoot = TorTransProxy.hasRootAccess();
+		
 
 	}
 
@@ -296,7 +319,6 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 	private void showMain ()
     {
 		bindService(); //connect the UI activity to the remote service
-		
 		
 		currentView = R.layout.layout_main;
 		setContentView(currentView);
@@ -358,64 +380,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 	private void showHelp ()
 	{
 		
-		LayoutInflater li = LayoutInflater.from(this);
-        View view = li.inflate(R.layout.layout_help, null); 
-        
-        StringBuilder msg = new StringBuilder();
-        msg.append(getString(R.string.help_text_1));
-        msg.append("\n\n");
-        
-        if (hasRoot)
-        {
-        	msg.append("Your device is ROOTED. Please enable the 'Transparent Proxying' setting to select which apps to send through Tor.");
-        }
-        else
-        {
-        	
-        	msg.append("Your device is NOT rooted.\n");
-        	
-        	msg.append(getString(R.string.help_text_5));
-        	
-        	msg.append("\n\n");
-        	
-        	msg.append(getString(R.string.not_anonymous_yet));
-        }
-        
-        /*
-        
-        msg.append(getString(R.string.help_text_2));
-        msg.append("\n\n");
-        msg.append(getString(R.string.help_text_3));
-        msg.append("\n\n");
-        msg.append(getString(R.string.help_text_4));
-        msg.append("\n\n");
-        msg.append(getString(R.string.help_text_5));
-        msg.append("\n\n");
-        */
-        
-        
-		new AlertDialog.Builder(this)
-        .setTitle(getString(R.string.menu_info))
-        .setMessage(msg.toString())
-        .setNeutralButton(getString(R.string.button_about), new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int whichButton) {
-                   
-                	showAbout();
-                }
-        })
-        .setNegativeButton(getString(R.string.button_close), new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int whichButton) {
-                    //    Log.d(TAG, "Close pressed");
-                }
-        })
-        .show();
-	}
-	
-	private void showHelpWizard ()
-	{
-		
-		//sshowAlert("Configure",getString(R.string.not_anonymous_yet));
-		
+       new WizardHelper(this).showWizard();
 	}
 	
 	
@@ -446,6 +411,8 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 
 		
 	}
+	
+	
 	
 	/*
 	 * Read in the Preferences and write then to the .torrc file
@@ -611,17 +578,8 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 				return;
 			}
 			
-			mService.updateConfiguration("UseBridges", "1", false);
 			
-			if (autoUpdateBridges)
-			{
-				mService.updateConfiguration("UpdateBridgesFromAuthority", "1", false);
-				
-			}
-			else
-			{
-				mService.updateConfiguration("UpdateBridgesFromAuthority", "0", false);
-			}
+			mService.updateConfiguration("UseBridges", "1", false);
 				
 			String bridgeDelim = "\n";
 			
@@ -637,6 +595,9 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 				mService.updateConfiguration("bridge", st.nextToken(), false);
 
 			}
+			
+			mService.updateConfiguration("UpdateBridgesFromAuthority", "0", false);
+			
 		}
 		else
 		{
@@ -721,7 +682,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 		    		
 		    		lblStatus.setText(getString(R.string.status_activated));
 		    		
-		    		showHelpWizard ();
+		    		
 		    		
 	    		
 	    			/*
@@ -998,7 +959,6 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
     };
     
     boolean mIsBound = false;
-    boolean hasRoot = false;
     
     private void bindService ()
     {
