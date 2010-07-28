@@ -58,10 +58,52 @@ and all DNS requests. This includes the built-in Browser, Gmail, YouTube and Map
 <string name="pref_trans_proxy_summary">Automatic Torifying of Apps</string>
 
 <string name="pref_transparent_all_title">Tor Everything</string>
-<string name="pref_transparent_all_summary">Send traffic for all apps through Tor</string>
+<string name="pref_transparent_all_summary">Proxy traffic for all apps through Tor</string>
 
 <string name="status_install_success">Tor binaries successfully installed!</string>
 <string name="status_install_fail">The Tor binary files were unable to be installed. Please check the log and notify tor-assistants@torproject.org</string>
 
 <string name="title_error">Application Error</string>
+
+<string name="wizard_title">Welcome to Orbot</string>
+
+<string name="wizard_btn_tell_me_more">About Orbot</string>
+<string name="btn_next">Next</string>
+<string name="btn_back">Back</string>
+<string name="btn_finish">Finish</string>
+
+
+ <!-- Welcome Wizard strings (DJH) -->
+    <string name="wizard_welcome_msg">Orbot brings Tor to Android. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.\n\n*WARNING:* Simply installing Orbot will _not_ magically anonymize your mobile traffic! This wizard will help you get started.</string>
+    <string name="wizard_details">Some Orbot Details</string>
+    <string name="wizard_details_msg">Orbot is an open-source application that contains Tor, LibEvent and Privoxy. It provides a local HTTP proxy (8118) and a SOCKS proxy (9050) into the Tor network. Orbot also has the ability, on rooted device, to send all internet traffic through Tor.</string>
+    <string name="wizard_permissions_root">Grant Permissions</string>
+    <string name="wizard_permissions_stock">Permissions Warning</string>
+    <string name="wizard_premissions_msg_root">Excellent! We\'ve detected that you have root permissions enabled for Orbot. We will use this power wisely.</string>
+    <string name="wizard_permissions_msg_stock">We\'ve detected that you do not have root permissions enabled. Your application data usage will NOT be transparently routed through Tor without root access. </string>
+   
+    <string name="wizard_permissions_no_root">If you choose to continue WITHOUT root, you must use apps that know how to talk to Tor.</string>
+    <string name="wizard_permissions_consent">I understand and would like to continue without root</string>
+   
+    <string name="wizard_permission_enable_root">Attempt to enable root access</string>
+    <string name="wizard_configure">Configure Torification</string>
+    <string name="wizard_configure_msg">Orbot gives you the option to route all application traffic through Tor OR to choose your applications individually.</string> 
+    <string name="wizard_configure_all">Proxy All Apps Through Tor</string>
+    <string name="wizard_configure_select_apps">Select Individual Apps for Tor</string>
+    
+    
+    <string name="wizard_tips_tricks">Orbot-enabled Apps</string>
+    <string name="wizard_tips_msg">We encourage you to download &amp; use apps that know how to connect directly to Orbot. Click on the buttons below to install.</string>
+    <string name="wizard_tips_otrchat">OtrChat - From the Orbot dev team, a secure Instant Messaging client for Android.</string>
+    <string name="wizard_tips_orweb">OrWeb (Android 1.x Only) - From the Orbot dev team, a web browser designed to work with Tor.</string>
+   
+    <string name="wizard_final">Orbot is ready!</string>
+    <string name="wizard_final_msg">Hundreds of thousands of people around the world use Tor for a wide variety of reasons: journalists and bloggers, human rights workers, law enforcement officers, soldiers, corporations, citizens of repressive regimes, and just ordinary citizens... and now you are ready to, as well!</string>
+    
+    <string name="otrchat_apk_url">https://github.com/downloads/guardianproject/OtRChat/OtRChat-0.0.1-alpha-build6a.apk</string>
+    <string name="orweb_apk_url">http://github.com/downloads/guardianproject/Orweb/Orweb-0.0.1c.apk.apk</string>
+    
+ <!-- END Welcome Wizard strings (DJH) -->
+
+
 </resources>
