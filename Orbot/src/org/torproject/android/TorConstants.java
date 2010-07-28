@@ -46,6 +46,8 @@ public interface TorConstants {
     public final static String PREF_REACHABLE_ADDRESSES = "pref_reachable_addresses";
     public final static String PREF_REACHABLE_ADDRESSES_PORTS = "pref_reachable_addresses_ports";
 	public final static String PREF_TRANSPARENT = "pref_transparent";
+	public final static String PREF_TRANSPARENT_ALL = "pref_transparent_all";
+	
 	
 	
 }

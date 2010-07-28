@@ -1,13 +1,8 @@
 package org.torproject.android.service;
 
-import java.util.Iterator;
-import java.util.List;
-
 import org.torproject.android.TorifiedApp;
 
 import android.content.Context;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
 import android.util.Log;
 
 public class TorTransProxy {
@@ -23,29 +18,35 @@ public class TorTransProxy {
 	private final static String IPTABLES_ADD = " -A ";
 	
 	//private final static String IPTABLES_DELETE = " -D "; //not deleting manually anymore - just calling a system wide flush of iptables rules
-    private final static String IPTABLES_DROP_ALL = " -j DROP ";
-	private static boolean hasRoot = false;
+   // private final static String IPTABLES_DROP_ALL = " -j DROP ";
 	
 	/**
 	 * Check if we have root access
 	 * @return boolean true if we have root
 	 */
 	public static boolean hasRootAccess() {
-		if (hasRoot) return true;
+	
+
+		StringBuilder log = new StringBuilder();
+		
 		try {
+			
 			// Run an empty script just to check root access
-			String[] cmd = {"exit 0"};
-			if (TorServiceUtils.doShellCommand(cmd, null, true, true) == 0) {
-				hasRoot = true;
+			String[] cmd = {"whoami"};
+			int exitCode = TorServiceUtils.doShellCommand(cmd, log, true, true);
+			if (exitCode == 0) {
+				
 				return true;
 			}
+			
 		} catch (Exception e) {
+			Log.w(TAG,"Error checking for root access: " + e.getMessage() ,e);
 		}
-		Log.w(TAG, "Could not acquire root access.");
+		Log.w(TAG, "Could not acquire root access: " + log.toString());
 		return false;
 	}
 	
-	public static int setDNSProxying ()
+	public static int setDNSProxying () throws Exception
 	{
 		
     	final StringBuilder log = new StringBuilder();
@@ -93,7 +94,8 @@ public class TorTransProxy {
 		}
     }
 	
-	public static boolean setTransparentProxyingByApp(Context context, TorifiedApp[] apps, boolean forceAll) {
+	public static boolean setTransparentProxyingByApp(Context context, TorifiedApp[] apps, boolean forceAll) throws Exception
+	{
 		
 		String command = null;
 		
@@ -104,9 +106,6 @@ public class TorTransProxy {
     	StringBuilder res = new StringBuilder();
     	int code = -1;
     	
-		try {
-			
-			
 			for (int i = 0; i < apps.length; i++)
 			{
 				if (forceAll || apps[i].isTorified())
@@ -147,9 +146,7 @@ public class TorTransProxy {
 			String msg = res.toString();
 			Log.e(TAG, msg);
 			
-		} catch (Exception e) {
-			Log.w(TAG, "error refreshing iptables: err=" + code + "; resp=" + res.toString(), e);
-		}
+		
 		return false;
     }	
 	
