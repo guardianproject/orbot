@@ -122,7 +122,7 @@ Finally, we'll make a proper Android package with ant and the Android App SDK:
 	cd ../Orbot/
 	cp ~/mydroid/external/privoxy/privoxy-3.0.12-stable/privoxy assets/privoxy
 	cp ~/mydroid/external/tor/tor/src/or/tor assets/tor
-	$APP_SDK/android update project --name Orbot --target 1 --path .
+	$APP_SDK/android update project --name Orbot --target 3 --path .
 	ant release
 
 This will produce an unsigned Tor package in ./bin/Orbot-unsigned.apk!
