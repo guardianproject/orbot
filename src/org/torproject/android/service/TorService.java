@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import net.freehaven.tor.control.ConfigEntry;
 import net.freehaven.tor.control.EventHandler;
@@ -18,6 +19,7 @@ import net.freehaven.tor.control.TorControlConnection;
 import org.torproject.android.AppManager;
 import org.torproject.android.Orbot;
 import org.torproject.android.R;
+import org.torproject.android.TorConstants;
 
 import android.app.AlertDialog;
 import android.app.Notification;
@@ -652,12 +654,8 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 
 			        addEventHandler();
 			        
-			        if (configBuffer != null)
-			        {
-			        	conn.setConf(configBuffer);
-			        	//conn.saveConf();
-			        	configBuffer = null;
-			        }
+			        applyPreferences();
+			        
 			        
 			        break; //don't need to retry
 				}
@@ -978,34 +976,11 @@ public class TorService extends Service implements TorServiceConstants, Runnable
          **/
         public boolean updateConfiguration (String name, String value, boolean saveToDisk)
         {
-        	try
-        	{
-	        	if (conn != null)
-	        	{
-	        		conn.setConf(name, value);
-	   	       
-	        		if (saveToDisk)
-	        		{
-	   	       			// Flush the configuration to disk.
-	   	       			//conn.saveConf(); //NF 22/07/10 this is crashing right now
-	        		}
+        	if (configBuffer == null)
+        		configBuffer = new ArrayList<String>();
 	        		
-	   	       		return true;
-	        	}
-	        	else
-	        	{
-	        		if (configBuffer == null)
-	        			configBuffer = new ArrayList<String>();
-	        		
-	        		configBuffer.add(name + ' ' + value);
-	        	}
-        	}
-        	catch (IOException ioe)
-        	{
-        		Log.e(TAG, "Unable to update Tor configuration", ioe);
-        		logNotice("Unable to update Tor configuration: " + ioe.getMessage());
-        	}
-        	
+	        configBuffer.add(name + ' ' + value);
+	        
         	return false;
         }
          
@@ -1015,7 +990,12 @@ public class TorService extends Service implements TorServiceConstants, Runnable
         	{
 	        	if (conn != null)
 	        	{
-	        		
+	        		 if (configBuffer != null)
+				        {
+				        	conn.setConf(configBuffer);
+				        	//conn.saveConf();
+				        	configBuffer = null;
+				        }
 	   	       
 	   	       		// Flush the configuration to disk.
 	        		//this is doing bad things right now NF 22/07/10
@@ -1073,6 +1053,106 @@ public class TorService extends Service implements TorServiceConstants, Runnable
         
         mCallbacks.finishBroadcast();
     }
+    
+    private void applyPreferences () throws RemoteException
+    {
+    	
+    	
+    	
+    	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		
+		boolean useBridges = prefs.getBoolean(TorConstants.PREF_BRIDGES_ENABLED, false);
+		
+		boolean autoUpdateBridges = prefs.getBoolean(TorConstants.PREF_BRIDGES_UPDATED, false);
+
+        boolean becomeRelay = prefs.getBoolean(TorConstants.PREF_OR, false);
+
+        boolean ReachableAddresses = prefs.getBoolean(TorConstants.PREF_REACHABLE_ADDRESSES,false);
+
+		boolean enableTransparentProxy = prefs.getBoolean(TorConstants.PREF_TRANSPARENT, false);
+		
+		
+		String bridgeList = prefs.getString(TorConstants.PREF_BRIDGES_LIST,"");
+
+		if (useBridges)
+		{
+			if (bridgeList == null || bridgeList.length() == 0)
+			{
+			
+				showAlert("Bridge Error","In order to use the bridge feature, you must enter at least one bridge IP address." +
+						"Send an email to bridges@torproject.org with the line \"get bridges\" by itself in the body of the mail from a gmail account.");
+				
+			
+				return;
+			}
+			
+			
+			mBinder.updateConfiguration("UseBridges", "1", false);
+				
+			String bridgeDelim = "\n";
+			
+			if (bridgeList.indexOf(",") != -1)
+			{
+				bridgeDelim = ",";
+			}
+			
+			StringTokenizer st = new StringTokenizer(bridgeList,bridgeDelim);
+			while (st.hasMoreTokens())
+			{
+
+				mBinder.updateConfiguration("bridge", st.nextToken(), false);
+
+			}
+			
+			mBinder.updateConfiguration("UpdateBridgesFromAuthority", "0", false);
+			
+		}
+		else
+		{
+			mBinder.updateConfiguration("UseBridges", "0", false);
+
+		}
+
+        try
+        {
+            if (ReachableAddresses)
+            {
+                String ReachableAddressesPorts =
+                    prefs.getString(TorConstants.PREF_REACHABLE_ADDRESSES_PORTS, "*:80,*:443");
+                
+                mBinder.updateConfiguration("ReachableAddresses", ReachableAddressesPorts, false);
+
+            }
+        }
+        catch (Exception e)
+        {
+           showAlert("Config Error","Your ReachableAddresses settings caused an exception!");
+        }
+
+        try
+        {
+            if (becomeRelay && (!useBridges) && (!ReachableAddresses))
+            {
+                int ORPort =  Integer.parseInt(prefs.getString(TorConstants.PREF_OR_PORT, "9001"));
+                String nickname = prefs.getString(TorConstants.PREF_OR_NICKNAME, "Orbot");
+
+                mBinder.updateConfiguration("ORPort", ORPort + "", false);
+    			mBinder.updateConfiguration("Nickname", nickname, false);
+    			mBinder.updateConfiguration("ExitPolicy", "reject *:*", false);
+
+            }
+        }
+        catch (Exception e)
+        {
+            showAlert("Uh-oh!","Your relay settings caused an exception!");
+          
+            return;
+        }
+
+        mBinder.saveConfiguration();
+		
+    }
+    
     
     private void setupTransProxy (boolean enabled)
 	{
