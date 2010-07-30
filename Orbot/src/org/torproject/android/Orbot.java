@@ -186,6 +186,8 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 			
 			unbindService();
 			
+            stopService(new Intent(ITorService.class.getName()));
+			
 			
 		} catch (RemoteException e) {
 			Log.w(TAG, e);
@@ -330,7 +332,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
     	lblStatus = (TextView)findViewById(R.id.lblStatus);
     	imgStatus = (ImageView)findViewById(R.id.imgStatus);
     	
-    	updateStatus("");
+    	//updateStatus("");
     }
 	
 	/*
@@ -343,36 +345,6 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 	}
 	
 	
-	private static class ListEntry {
-		private CheckBox box;
-		private TextView text;
-	}
-	/*
-	 * Show the about view - a popup dialog
-	 */
-	private void showAbout ()
-	{
-		
-		LayoutInflater li = LayoutInflater.from(this);
-        View view = li.inflate(R.layout.layout_about, null); 
-        TextView versionName = (TextView)view.findViewById(R.id.versionName);
-        versionName.setText(R.string.app_version);    
-        
-		new AlertDialog.Builder(this)
-        .setTitle(getString(R.string.button_about))
-        .setView(view)
-        .setNeutralButton(getString(R.string.button_help), new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int whichButton) {
-                      showHelp();
-                }
-        })
-        .setNegativeButton(getString(R.string.button_close), new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int whichButton) {
-                    //    Log.d(TAG, "Close pressed");
-                }
-        })
-        .show();
-	}
 	
 	/*
 	 * Show the help view - a popup dialog
@@ -649,6 +621,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 	{
 		 
 		 new AlertDialog.Builder(this)
+		 .setIcon(R.drawable.icon)
          .setTitle(title)
          .setMessage(msg)
          .setPositiveButton(android.R.string.ok, null)
@@ -683,7 +656,22 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 		    		lblStatus.setText(getString(R.string.status_activated));
 		    		
 		    		
+		    		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mOrbot);
+
+		    		boolean showWizard = prefs.getBoolean("connect_first_time",true);
 		    		
+		    		if (showWizard)
+		    		{
+		    		
+		    			Editor pEdit = prefs.edit();
+		    			
+		    			pEdit.putBoolean("connect_first_time",false);
+		    			
+		    			pEdit.commit();
+		    			
+		    			showAlert(getString(R.string.status_activated),getString(R.string.connect_first_time));
+		    			
+		    		}
 	    		
 	    			/*
 		    		if (progressDialog != null)
@@ -792,7 +780,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 		Message msg = mHandler.obtainMessage(ENABLE_TOR_MSG);
     	mHandler.sendMessage(msg);
     	
-    	updateStatus("");
+    //	updateStatus("");
     }
     
     private void stopTor () throws RemoteException
@@ -802,7 +790,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 		Message msg = mHandler.obtainMessage(DISABLE_TOR_MSG);
     	mHandler.sendMessage(msg);
     	
-    	updateStatus("");
+    	//updateStatus("");
     	
     }
     
@@ -979,6 +967,9 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
             if (mService != null) {
                 try {
                     mService.unregisterCallback(mCallback);
+                    
+                
+                    
                 } catch (RemoteException e) {
                     // There is nothing special we need to do if the service
                     // has crashed.
@@ -988,6 +979,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
             // Detach our existing connection.
             unbindService(mConnection);
             mIsBound = false;
+            
         }
     }
 	
