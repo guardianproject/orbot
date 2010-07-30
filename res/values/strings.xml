@@ -77,15 +77,15 @@ and all DNS requests. This includes the built-in Browser, Gmail, YouTube and Map
     <string name="wizard_welcome_msg">Orbot brings Tor to Android. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.\n\n*WARNING:* Simply installing Orbot will _not_ magically anonymize your mobile traffic! This wizard will help you get started.</string>
     <string name="wizard_details">Some Orbot Details</string>
     <string name="wizard_details_msg">Orbot is an open-source application that contains Tor, LibEvent and Privoxy. It provides a local HTTP proxy (8118) and a SOCKS proxy (9050) into the Tor network. Orbot also has the ability, on rooted device, to send all internet traffic through Tor.</string>
-    <string name="wizard_permissions_root">Grant Permissions</string>
-    <string name="wizard_permissions_stock">Permissions Warning</string>
+    <string name="wizard_permissions_root">Permission Granted</string>
+    <string name="wizard_permissions_stock">Orbot Permissions</string>
     <string name="wizard_premissions_msg_root">Excellent! We\'ve detected that you have root permissions enabled for Orbot. We will use this power wisely.</string>
-    <string name="wizard_permissions_msg_stock">We\'ve detected that you do not have root permissions enabled. Your application data usage will NOT be transparently routed through Tor without root access. </string>
+    <string name="wizard_permissions_msg_stock"> While it is not required, Orbot can become a more powerful tool if your device has root access. Use the button below to grant Orbot superpowers! </string>
    
-    <string name="wizard_permissions_no_root">If you choose to continue WITHOUT root, you must use apps that know how to talk to Tor.</string>
+    <string name="wizard_permissions_no_root">If you don\'t have root access or have no idea what we\'re talking about, just be sure to use apps made to work with Orbot.</string>
     <string name="wizard_permissions_consent">I understand and would like to continue without root</string>
    
-    <string name="wizard_permission_enable_root">Attempt to enable root access</string>
+    <string name="wizard_permission_enable_root">Grant Root for Orbot</string>
     <string name="wizard_configure">Configure Torification</string>
     <string name="wizard_configure_msg">Orbot gives you the option to route all application traffic through Tor OR to choose your applications individually.</string> 
     <string name="wizard_configure_all">Proxy All Apps Through Tor</string>
@@ -94,9 +94,9 @@ and all DNS requests. This includes the built-in Browser, Gmail, YouTube and Map
     
     <string name="wizard_tips_tricks">Orbot-enabled Apps</string>
     <string name="wizard_tips_msg">We encourage you to download &amp; use apps that know how to connect directly to Orbot. Click on the buttons below to install.</string>
-    <string name="wizard_tips_otrchat">OtrChat - From the Orbot dev team, a secure Instant Messaging client for Android.</string>
-    <string name="wizard_tips_orweb">OrWeb (Android 1.x Only) - From the Orbot dev team, a web browser designed to work with Tor.</string>
-   
+    <string name="wizard_tips_otrchat">OTRCHAT - Secure instant messaging client for Android</string>
+    <string name="wizard_tips_orweb">ORWEB (Android 1.x Only) - Browser designed for privacy &amp; for Orbot</string>
+    <string name="wizard_tips_proxy">Proxy Help - Learn how to configure apps to work with Orbot</string>
     <string name="wizard_final">Orbot is ready!</string>
     <string name="wizard_final_msg">Hundreds of thousands of people around the world use Tor for a wide variety of reasons: journalists and bloggers, human rights workers, law enforcement officers, soldiers, corporations, citizens of repressive regimes, and just ordinary citizens... and now you are ready to, as well!</string>
     
@@ -105,5 +105,6 @@ and all DNS requests. This includes the built-in Browser, Gmail, YouTube and Map
     
  <!-- END Welcome Wizard strings (DJH) -->
 
+	<string name="connect_first_time"> You\'ve successfully connected to the Tor network - but this does NOT mean your device is secure. You can use the \'Check\' option from the menu to test your browser. \n\nVisit us at https://guardianproject.info/apps/orbot or send an email to help@guardianproject.info to learn more.</string>
 
 </resources>

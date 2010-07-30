@@ -24,7 +24,7 @@ import android.widget.Toast;
 public class WizardHelper implements TorConstants {
 
 	private Context context;
-	private Dialog currentDialog;
+	private AlertDialog currentDialog;
 	
 	public WizardHelper (Context context)
 	{
@@ -70,59 +70,72 @@ public class WizardHelper implements TorConstants {
 	public void showWizardStep2()
 	{
 		
-		String title = null;
-		String msg = null;
+	
+		String title = context.getString(R.string.wizard_permissions_stock);
 		
-		
-			title = context.getString(R.string.wizard_permissions_root);
-			msg = context.getString(R.string.wizard_premissions_msg_root);
-		
+		LayoutInflater li = LayoutInflater.from(context);
+        View view = li.inflate(R.layout.layout_wizard_stock, null); 
+        
+        Button btn1 = (Button)view.findViewById(R.id.WizardRootButtonEnable);
+        
+        btn1.setOnClickListener(new OnClickListener() {
 			
-			title = context.getString(R.string.wizard_permissions_stock);
-			
-			LayoutInflater li = LayoutInflater.from(context);
-	        View view = li.inflate(R.layout.layout_wizard_stock, null); 
-	        
-	        Button btn1 = (Button)view.findViewById(R.id.WizardRootButtonEnable);
-	        
-	        btn1.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
 				
-				@Override
-				public void onClick(View view) {
-					
-					
-					boolean hasRoot = TorTransProxy.hasRootAccess();
-					
-					if (hasRoot)
-					{
-						currentDialog.dismiss();
-						showWizardStep2Root();
-					}
-					else
-					{
-						Toast.makeText(context, "Unable to get root access", Toast.LENGTH_LONG).show();
-					}
-				}
-			});
-	 
-			showCustomDialog(title, view,context.getString(R.string.btn_next),context.getString(R.string.btn_back),new DialogInterface.OnClickListener() {
 				
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					dialog.dismiss();
-					
-					if (which == DialogInterface.BUTTON_NEUTRAL)
-					{
-						showWizardTipsAndTricks();
-					}
-					else if (which == DialogInterface.BUTTON_POSITIVE)
-					{
-						showWizardStep1();
-					}
-					
+				boolean hasRoot = TorTransProxy.hasRootAccess();
+				
+				if (hasRoot)
+				{
+					currentDialog.dismiss();
+					showWizardStep2Root();
 				}
-			});
+				else
+				{
+					Toast.makeText(context, "Unable to get root access", Toast.LENGTH_LONG).show();
+					view.setEnabled(false);
+				}
+			}
+		});
+        
+        CheckBox cb1 = (CheckBox)view.findViewById(R.id.CheckBoxConsent);
+         
+        cb1.setOnCheckedChangeListener(new OnCheckedChangeListener (){
+
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView,
+					boolean isChecked) {
 			
+				currentDialog.getButton(AlertDialog.BUTTON_NEUTRAL).setEnabled(isChecked);
+				
+				
+				
+			}
+        	
+        });
+        
+ 
+		showCustomDialog(title, view,context.getString(R.string.btn_next),context.getString(R.string.btn_back),new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.dismiss();
+				
+				if (which == DialogInterface.BUTTON_NEUTRAL)
+				{
+					showWizardTipsAndTricks();
+				}
+				else if (which == DialogInterface.BUTTON_POSITIVE)
+				{
+					showWizardStep1();
+				}
+				
+			}
+		});
+		
+		currentDialog.getButton(AlertDialog.BUTTON_NEUTRAL).setEnabled(false);
+		
 		
 	}
 	
@@ -315,7 +328,7 @@ public class WizardHelper implements TorConstants {
 		
 	}
 	
-	private void showDialog (String title, String msg, String button1, String button2, DialogInterface.OnClickListener ocListener)
+	public void showDialog (String title, String msg, String button1, String button2, DialogInterface.OnClickListener ocListener)
 	{
 	 
 //		dialog.setContentView(R.layout.custom_dialog);

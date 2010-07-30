@@ -4,8 +4,6 @@
       android:versionName="0.2.2.14-orbot-alpha-0.0.9" android:versionCode="8">
        
        <uses-permission android:name="android.permission.INTERNET" />
-        <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
- 
  
     <application android:icon="@drawable/icon" android:label="@string/app_name" android:debuggable="false">
       

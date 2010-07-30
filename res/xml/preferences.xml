@@ -27,6 +27,17 @@ android:enabled="true"/>
 
 </PreferenceCategory>
 
+<!-- 
+<PreferenceCategory android:title="Web Proxy">
+<Preference
+android:defaultValue="" 
+android:key="pref_web_proxy"
+android:title="Open Proxy Panel"
+android:summary="Set HTTP Settings (Android 2.x Experimental)"
+android:enabled="true"/>
+</PreferenceCategory>
+ -->
+ 
 <PreferenceCategory android:title="Bridges">
 
 <CheckBoxPreference android:defaultValue="false" 
