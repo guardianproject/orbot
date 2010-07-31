@@ -401,11 +401,13 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     	
     	torBinaryPath = appHome + TOR_BINARY_ASSET_KEY;
     	privoxyPath = appHome + PRIVOXY_ASSET_KEY;
+    	String iptablesPath = appHome + IPTABLES_ASSET_KEY;
     	
 		boolean torBinaryExists = new File(torBinaryPath).exists();
 		boolean privoxyBinaryExists = new File(privoxyPath).exists();
+		boolean iptablesBinaryExists = new File(iptablesPath).exists();
 
-		if (!(torBinaryExists && privoxyBinaryExists))
+		if (!(torBinaryExists && privoxyBinaryExists && iptablesBinaryExists))
 		{
 			killTorProcess ();
 			
@@ -415,7 +417,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 			torBinaryExists = new File(torBinaryPath).exists();
 			privoxyBinaryExists = new File(privoxyPath).exists();
 			
-    		if (torBinaryExists && privoxyBinaryExists)
+    		if (torBinaryExists && privoxyBinaryExists && iptablesBinaryExists)
     		{
     			logNotice(getString(R.string.status_install_success));
     	
@@ -429,8 +431,6 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 
     			sendCallbackMessage(getString(R.string.status_install_fail));
     			
-    			//showAlert(getString(R.string.title_error),getString(R.string.status_install_fail));
-    		
     			return false;
     		}
     		
@@ -439,7 +439,9 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 		{
 			logNotice("Found Tor binary: " + torBinaryPath);
 
-			logNotice("Found prvoxy binary: " + privoxyPath);
+			logNotice("Found privoxy binary: " + privoxyPath);
+
+			logNotice("Found iptables binary: " + iptablesPath);
 
 		}
 		
@@ -453,6 +455,10 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 		String[] cmd2 = {SHELL_CMD_CHMOD + ' ' + CHMOD_EXE_VALUE + ' ' + privoxyPath};
 		TorServiceUtils.doShellCommand(cmd2, log, false, true);
 				
+		logNotice("(re)Setting permission on iptables binary");
+		String[] cmd3 = {SHELL_CMD_CHMOD + ' ' + CHMOD_EXE_VALUE + ' ' + iptablesPath};
+		TorServiceUtils.doShellCommand(cmd3, log, false, true);
+		
 		return true;
     }
     
@@ -1181,15 +1187,15 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 					logNotice ("TorTransProxy enabled: " + success);
 					
 				} catch (Exception e) {
-					logNotice("WARNING: Error configuring transparenty proxying: " + e.getMessage());
 					
+					logNotice("WARNING: Error configuring transparenty proxying: " + e.getMessage());
 					Log.w(TAG, "error refreshing iptables: err=" + e.getMessage(), e);
 				}
 				
 			}
 			else
 			{
-				TorTransProxy.purgeNatIptables();
+				TorTransProxy.purgeIptables();
 
 			}
 		}
@@ -1197,7 +1203,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 		{
 			if (hasRoot)
 			{
-				TorTransProxy.purgeNatIptables();
+				TorTransProxy.purgeIptables();
 			}
 		}
 	}
