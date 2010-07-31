@@ -12,3 +12,5 @@ RelayBandwidthBurst 20 KBytes
 UseBridges 0
 AutomapHostsOnResolve 1
 TransPort 9040
+HiddenServiceDir /data/data/org.torproject.android/
+HiddenServicePort 80 127.0.0.1:8080
