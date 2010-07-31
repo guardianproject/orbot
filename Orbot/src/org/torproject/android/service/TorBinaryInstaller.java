@@ -38,7 +38,10 @@ public class TorBinaryInstaller implements TorServiceConstants {
 		boolean privoxyBinaryExists = new File(installPath + PRIVOXY_ASSET_KEY).exists();
 		Log.i(TAG,"Privoxy binary exists=" + privoxyBinaryExists);
 		
-		if (!(torBinaryExists && privoxyBinaryExists) || force)
+		boolean iptablesBinaryExists = new File(installPath + IPTABLES_ASSET_KEY).exists();
+		Log.i(TAG,"IPTables binary exists=" + iptablesBinaryExists);
+		
+		if (!(torBinaryExists && privoxyBinaryExists && iptablesBinaryExists) || force)
 			installFromZip ();
 		
 	}
@@ -51,39 +54,31 @@ public class TorBinaryInstaller implements TorServiceConstants {
 		
 		try
 		{
-			/*
-			String apkPath = APK_PATH;
-			
-			int apkIdx = 1;
-			
-			while (!new File(apkPath).exists())
-			{
-				apkPath = APK_PATH_BASE + '-' + (apkIdx++) + ".apk";
-				
-				Log.i(TAG,"Could not find APK. Trying new path: " + apkPath);
-			}
-			*/
-			
-			
 			
 			ZipFile zip = new ZipFile(apkPath);
 	
-			ZipEntry zipen = zip.getEntry(TOR_BINARY_ZIP_KEY);
+			ZipEntry zipen = zip.getEntry(ASSETS_BASE + TOR_BINARY_ASSET_KEY);
 			streamToFile(zip.getInputStream(zipen),installPath + TOR_BINARY_ASSET_KEY);
 			
-			zipen = zip.getEntry(TORRC_ZIP_KEY);
+			zipen = zip.getEntry(ASSETS_BASE + TORRC_ASSET_KEY);
 			streamToFile(zip.getInputStream(zipen),installPath + TORRC_ASSET_KEY);
 			
-			zipen = zip.getEntry(PRIVOXY_ZIP_KEY);
+			zipen = zip.getEntry(ASSETS_BASE + PRIVOXY_ASSET_KEY);
 			streamToFile(zip.getInputStream(zipen),installPath + PRIVOXY_ASSET_KEY);
 			
-			zipen = zip.getEntry(PRIVOXYCONFIG_ZIP_KEY);
+			zipen = zip.getEntry(ASSETS_BASE + PRIVOXYCONFIG_ASSET_KEY);
 			streamToFile(zip.getInputStream(zipen),installPath + PRIVOXYCONFIG_ASSET_KEY);
+			
+			zipen = zip.getEntry(ASSETS_BASE + PRIVOXYCONFIG_ASSET_KEY);
+			streamToFile(zip.getInputStream(zipen),installPath + PRIVOXYCONFIG_ASSET_KEY);
+			
+			zipen = zip.getEntry(ASSETS_BASE + IPTABLES_ASSET_KEY);
+			streamToFile(zip.getInputStream(zipen),installPath + IPTABLES_ASSET_KEY);
 			
 			
 			zip.close();
 			
-			Log.i(TAG,"SUCCESS: unzipped tor, privoxy binaries from apk");
+			Log.i(TAG,"SUCCESS: unzipped tor, privoxy, iptables binaries from apk");
 	
 		}
 		catch (IOException ioe)
