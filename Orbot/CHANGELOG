@@ -3,6 +3,8 @@ NOTE: Specific #s below correspond to Trac tickets logged and maintained at http
 0.0.9x - 2010-08-03
 - Revised Orbot install wizard
 - Integrated Tor 0.2.2.14 binary
+- Fixed "got root" detection method 
+- Fixed Per App Torification handling so it updates on exit from Settings screen
 
 0.0.8x - 2010-07-15
 - Updated Settings & App configuration screens
