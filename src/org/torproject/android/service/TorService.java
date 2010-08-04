@@ -943,6 +943,14 @@ public class TorService extends Service implements TorServiceConstants, Runnable
         	
         }
         
+        public boolean updateTransProxy ()
+        {
+        	
+        	//turn on
+    		
+        	return setupTransProxy(currentStatus == STATUS_ON); 
+        }
+        
         public String getConfiguration (String name)
         {
         	try
@@ -1160,10 +1168,10 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     }
     
     
-    private void setupTransProxy (boolean enabled)
+    private boolean setupTransProxy (boolean enabled)
 	{
     	
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplication());
 		
 		boolean enableTransparentProxy = prefs.getBoolean("pref_transparent", false);
 		boolean transProxyAll = prefs.getBoolean("pref_transparent_all", false);
@@ -1186,10 +1194,14 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 				
 					logNotice ("TorTransProxy enabled: " + success);
 					
+					return true;
+					
 				} catch (Exception e) {
 					
 					logNotice("WARNING: Error configuring transparenty proxying: " + e.getMessage());
 					Log.w(TAG, "error refreshing iptables: err=" + e.getMessage(), e);
+					
+					return false;
 				}
 				
 			}
@@ -1206,5 +1218,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 				TorTransProxy.purgeIptables();
 			}
 		}
+		
+		return true;
 	}
 }
