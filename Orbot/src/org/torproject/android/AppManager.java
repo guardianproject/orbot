@@ -17,6 +17,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -145,10 +146,8 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
 
 	public static TorifiedApp[] getApps (Context context)
 	{
-		if (apps != null)
-			return apps;
-	
-		final SharedPreferences prefs = context.getSharedPreferences(PREFS_KEY, 0);
+
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
 		String tordAppString = prefs.getString(PREFS_KEY_TORIFIED, "");
 		String[] tordApps;
@@ -205,12 +204,14 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
 	}
 	
 
-	public static void saveAppSettings (Context context)
+	public void saveAppSettings (Context context)
 	{
 		if (apps == null)
 			return;
 		
-		final SharedPreferences prefs = context.getSharedPreferences(PREFS_KEY, 0);
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+	//	final SharedPreferences prefs = context.getSharedPreferences(PREFS_KEY, 0);
 
 		StringBuilder tordApps = new StringBuilder();
 		
