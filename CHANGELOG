@@ -1,7 +1,35 @@
+NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
+
+0.0.9x - 2010-08-03
+- Revised Orbot install wizard
+- Integrated Tor 0.2.2.14 binary
+
+0.0.8x - 2010-07-15
+- Updated Settings & App configuration screens
+- Changed progress dialog display
+- Significant application re-arch
+- Fixed force stop crash on install
+- Integrated Tor 0.2.2.13-alpha-dev binary
+- Fixed su shell cmd error handling & root perms issue
+- #1570: Added new setup wizard on install to clarify root / non-root capabilities 
+- #1716: Per-app traffic routing prefs not persisted
+- #1509: Help window is too big for the screen on android 1.6
+- #1513: Orbot can't be told to exit <-- added 'Exit' menu option
+- #1530: Capture sh cmd stout for debugging errors <-- updated debug log screen
+- #1531: Don't loop ad infinitum in Orbot fails <-- only retries 3 times now
+- #1272: Orbot should store Tor files in the cache
+- #1273: Info should mention anonymity problems with ProxySurf
+
+0.0.5x
+- #1388: Error parsing PID from output of "ps"
+- #1277, #1278: Enabling bridges issues
+- #1279: Misleading message when initialization is finished
+- #1292: Tor version in About screen is wrong
+
 0.0.3x - 2010-03-15
 - Added Start/Stop menu item for non-touch activation
 - Improved parsing and validation of settings screen
-- UI now compatible with landscape mode
+- UI now compatible with landscape mode (#1276)
 - Added relay support for static/publicly accessible IP devices
 
 0.0.3a - 2010-02-07
