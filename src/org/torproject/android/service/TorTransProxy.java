@@ -53,6 +53,7 @@ public class TorTransProxy {
 	
 	private static String findBaseDir ()
 	{
+		/*
 		String[] cmds = {"/system/bin/iptables -t nat --list"};
     	StringBuilder res = new StringBuilder();
 
@@ -69,7 +70,9 @@ public class TorTransProxy {
 		
 		} catch (Exception e) {
 			return BASE_DIR;
-		}
+		}*/
+		
+		return "/system/bin/";
 		
 			
 	}
@@ -139,6 +142,15 @@ public class TorTransProxy {
 		
     	final StringBuilder script = new StringBuilder();
     	
+    	//first we have to flush old settings
+		script.append(baseDir);
+		script.append(CMD_NAT_FLUSH);
+		script.append(" || exit\n");
+		
+		script.append(baseDir);
+		script.append(CMD_FILTER_FLUSH);
+		script.append(" || exit\n");
+		
     	StringBuilder res = new StringBuilder();
     	int code = -1;
     	
@@ -156,6 +168,8 @@ public class TorTransProxy {
 					
 					Log.i(TAG,"enabling transproxy for app: " + apps[i].getUsername() + "(" + apps[i].getUid() + ")");
 				 
+					
+					
 					//TCP
 					script.append(baseDir);
 					script.append("iptables -t nat");
@@ -173,12 +187,14 @@ public class TorTransProxy {
 					script.append(" --dport 53 -j REDIRECT --to-ports 5400"); //drop all UDP packets as Tor won't handle them
 					script.append(" || exit\n");
 					
+					/*
 					script.append(baseDir);
 					script.append("iptables -t nat");
 					script.append(" -A OUTPUT -m owner --uid-owner ");
 					script.append(apps[i].getUid());
 					script.append(" -j DROP"); //drop all other packets as Tor won't handle them
 					script.append(" || exit\n");
+					*/
 					
 					
 					/*

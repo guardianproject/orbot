@@ -89,6 +89,7 @@ public class SettingsPreferences
 		{
 			startActivity(new Intent(this, AppManager.class));
 		}
+		/*
 		else if (preference == prefWebProxy)
 		{
 			 Intent intent = new Intent();
@@ -99,7 +100,7 @@ public class SettingsPreferences
 			 startActivity(intent);
 			 
 			 
-		}
+		}*/
 		else
 		{
 			prefcBTransProxyAll.setEnabled(prefCBTransProxy.isChecked());

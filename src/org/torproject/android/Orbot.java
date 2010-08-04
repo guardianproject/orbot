@@ -256,15 +256,6 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 		NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 		mNotificationManager.cancelAll();
 		
-		if (mService != null)
-		{
-			try {
-				processSettings();
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
 		
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mOrbot);
 
@@ -281,7 +272,13 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 			
 			showHelp();
 		}
+		else
+		{
 		
+			
+			
+			
+		}
 		
 	}
 
@@ -332,7 +329,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
     	lblStatus = (TextView)findViewById(R.id.lblStatus);
     	imgStatus = (ImageView)findViewById(R.id.imgStatus);
     	
-    	//updateStatus("");
+    	updateStatus("");
     }
 	
 	/*
@@ -379,19 +376,25 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 	{
 		
 	
-		startActivity(new Intent(this, SettingsPreferences.class));
-
-		
+		startActivityForResult(new Intent(this, SettingsPreferences.class), 1);
 	}
 	
 	
 	
-	/*
-	 * Read in the Preferences and write then to the .torrc file
-	 */
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		
+		if (requestCode == 1)
+		{
+			try {
+				processSettings();
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 
-	
-	
 	private void processSettings () throws RemoteException
 	{
 		
@@ -408,6 +411,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 
 		boolean enableTransparentProxy = prefs.getBoolean(PREF_TRANSPARENT, false);
 		
+		mService.updateTransProxy();
 		
 		String bridgeList = prefs.getString(PREF_BRIDGES_LIST,"");
 
@@ -490,6 +494,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
         
 	}
 	
+	
 	private void showAlert(String title, String msg)
 	{
 		 
@@ -510,13 +515,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
     		
     		if (mService != null)
     			torStatus = mService.getStatus();
-	    	
-    		if (this.currentView == R.layout.layout_log)    
-    		{
-    			txtMessageLog.append(torServiceMsg);
-    			txtMessageLog.append("\n");
-    			
-    		}
+    		
 
 	    	if (imgStatus != null)
 	    	{
@@ -526,8 +525,9 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 		    		imgStatus.setImageResource(R.drawable.toron);
 		    		imgStatus.clearAnimation();
 		    		
-		    		lblStatus.setText(getString(R.string.status_activated));
+		    		String lblMsg = getString(R.string.status_activated) + ": " + torServiceMsg;
 		    		
+		    		lblStatus.setText(lblMsg);
 		    		
 		    		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mOrbot);
 
@@ -545,17 +545,9 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 		    			showAlert(getString(R.string.status_activated),getString(R.string.connect_first_time));
 		    			
 		    		}
+		    		
+
 	    		
-	    			/*
-		    		if (progressDialog != null)
-		    		{
-		    			
-		    			progressDialog.cancel();
-		    			progressDialog.hide();
-		    			progressDialog = null;
-		    			
-		    			
-		    		}*/
 		    
 		    	}
 		    	else if (torStatus == STATUS_CONNECTING)
@@ -563,33 +555,6 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 		    		
 		    		imgStatus.setImageResource(R.drawable.torstarting);
 		    		
-	    			
-		    		/*
-		    		if (imgStatus.getAnimation()==null)
-		    		{
-		    			
-		    			imgStatus.setAnimation(AnimationUtils.loadAnimation(this, R.anim.starting));
-		    			imgStatus.getAnimation().setRepeatMode(Animation.INFINITE);
-		    			
-		    			imgStatus.getAnimation().setRepeatCount(Animation.INFINITE);
-		    		}*/
-		    		
-		    		
-		    		/*
-		    		if (progressDialog == null)
-		    		{
-			    		progressDialog = new ProgressDialog(this);
-			    		progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-			    		progressDialog.setCancelable(true);
-			    		progressDialog.setMessage(getString(R.string.status_starting_up));
-			    		progressDialog.show();
-			    		
-			    		progressDialog.setProgress(10);
-
-		    		}
-		    			
-	    			progressDialog.setMessage(torServiceMsg);
-	    			*/
 		    		
 		    		lblStatus.setText(torServiceMsg);
 		    		
@@ -617,19 +582,12 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 		    	{
 
 		    		
-		    		/*
-		    		if (progressDialog != null)
-		    		{
-		    			
-		    			progressDialog.cancel();
-		    			progressDialog.hide();
-		    			progressDialog = null;
-		    		}
-		    		*/
 		    		imgStatus.clearAnimation();
 		    		
 		    		imgStatus.setImageResource(R.drawable.toroff);
 		    		lblStatus.setText(getString(R.string.status_disabled));
+		    		
+		    		
 		    		
 		    	}
 	    	}
@@ -653,7 +611,6 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 		Message msg = mHandler.obtainMessage(ENABLE_TOR_MSG);
     	mHandler.sendMessage(msg);
     	
-    //	updateStatus("");
     }
     
     private void stopTor () throws RemoteException
@@ -663,7 +620,6 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 		Message msg = mHandler.obtainMessage(DISABLE_TOR_MSG);
     	mHandler.sendMessage(msg);
     	
-    	//updateStatus("");
     	
     }
     
