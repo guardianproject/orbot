@@ -1,8 +1,12 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+1.0.0 - 2010-08-10
+- Added "Proxy Settings" help screen
+- Handle potential null pointers on process settings where service not yet active 
+
 0.0.9x - 2010-08-03
 - Revised Orbot install wizard
-- Integrated Tor 0.2.2.14 binary
+- Integrated Tor 0.2.2.14 and iptables 4.x binary
 - Fixed "got root" detection method 
 - Fixed Per App Torification handling so it updates on exit from Settings screen
 

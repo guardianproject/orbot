@@ -96,7 +96,15 @@ and all DNS requests. This includes the built-in Browser, Gmail, YouTube and Map
     <string name="wizard_tips_msg">We encourage you to download &amp; use apps that know how to connect directly to Orbot. Click on the buttons below to install.</string>
     <string name="wizard_tips_otrchat">OTRCHAT - Secure instant messaging client for Android</string>
     <string name="wizard_tips_orweb">ORWEB (Android 1.x Only) - Browser designed for privacy &amp; for Orbot</string>
-    <string name="wizard_tips_proxy">Proxy Help - Learn how to configure apps to work with Orbot</string>
+    <string name="wizard_tips_proxy">Proxy Settings - Learn how to configure apps to work with Orbot</string>
+    
+    <string name="wizard_proxy_help_info">Proxy Settings</string>
+    <string name="wizard_proxy_help_msg">If the Android app you are using can support the use of an HTTP or SOCKS proxy, then you can configure it to connect to Orbot and use Tor.\n\n
+    The host settings is 127.0.0.1 or "localhost". For HTTP, the port setting is 8118. For SOCKS, the proxy is 9050. You should use SOCKS4A or SOCKS5 if possible.
+    \n\n
+    You can learn more about proxying on Android via the FAQ at: http://tinyurl.com/proxyandroid
+    </string>
+    
     <string name="wizard_final">Orbot is ready!</string>
     <string name="wizard_final_msg">Hundreds of thousands of people around the world use Tor for a wide variety of reasons: journalists and bloggers, human rights workers, law enforcement officers, soldiers, corporations, citizens of repressive regimes, and just ordinary citizens... and now you are ready to, as well!</string>
     
