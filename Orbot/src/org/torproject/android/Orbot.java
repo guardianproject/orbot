@@ -32,6 +32,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.Animation;
@@ -398,100 +399,114 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 	private void processSettings () throws RemoteException
 	{
 		
+		try
+		{
+			if (mService == null)
+				return; //nothing to do if the service isn't connected yet
+			
+			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+			
+			boolean useBridges = prefs.getBoolean(PREF_BRIDGES_ENABLED, false);
+			
+			//boolean autoUpdateBridges = prefs.getBoolean(PREF_BRIDGES_UPDATED, false);
 	
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-		
-		boolean useBridges = prefs.getBoolean(PREF_BRIDGES_ENABLED, false);
-		
-		boolean autoUpdateBridges = prefs.getBoolean(PREF_BRIDGES_UPDATED, false);
-
-        boolean becomeRelay = prefs.getBoolean(PREF_OR, false);
-
-        boolean ReachableAddresses = prefs.getBoolean(PREF_REACHABLE_ADDRESSES,false);
-
-		boolean enableTransparentProxy = prefs.getBoolean(PREF_TRANSPARENT, false);
-		
-		mService.updateTransProxy();
-		
-		String bridgeList = prefs.getString(PREF_BRIDGES_LIST,"");
-
-		if (useBridges)
-		{
-			if (bridgeList == null || bridgeList.length() == 0)
-			{
+	        boolean becomeRelay = prefs.getBoolean(PREF_OR, false);
+	
+	        boolean ReachableAddresses = prefs.getBoolean(PREF_REACHABLE_ADDRESSES,false);
+	
+			boolean enableTransparentProxy = prefs.getBoolean(PREF_TRANSPARENT, false);
 			
-				showAlert("Bridge Error","In order to use the bridge feature, you must enter at least one bridge IP address." +
-						"Send an email to bridges@torproject.org with the line \"get bridges\" by itself in the body of the mail from a gmail account.");
+			mService.updateTransProxy();
+			
+			String bridgeList = prefs.getString(PREF_BRIDGES_LIST,"");
+	
+			if (useBridges)
+			{
+				if (bridgeList == null || bridgeList.length() == 0)
+				{
 				
-			
-				return;
-			}
-			
-			
-			mService.updateConfiguration("UseBridges", "1", false);
+					showAlert("Bridge Error","In order to use the bridge feature, you must enter at least one bridge IP address." +
+							"Send an email to bridges@torproject.org with the line \"get bridges\" by itself in the body of the mail from a gmail account.");
+					
 				
-			String bridgeDelim = "\n";
-			
-			if (bridgeList.indexOf(",") != -1)
-			{
-				bridgeDelim = ",";
+					return;
+				}
+				
+				
+				mService.updateConfiguration("UseBridges", "1", false);
+					
+				String bridgeDelim = "\n";
+				
+				if (bridgeList.indexOf(",") != -1)
+				{
+					bridgeDelim = ",";
+				}
+				
+				StringTokenizer st = new StringTokenizer(bridgeList,bridgeDelim);
+				while (st.hasMoreTokens())
+				{
+	
+					mService.updateConfiguration("bridge", st.nextToken(), false);
+	
+				}
+				
+				mService.updateConfiguration("UpdateBridgesFromAuthority", "0", false);
+				
 			}
-			
-			StringTokenizer st = new StringTokenizer(bridgeList,bridgeDelim);
-			while (st.hasMoreTokens())
+			else
 			{
-
-				mService.updateConfiguration("bridge", st.nextToken(), false);
-
+				mService.updateConfiguration("UseBridges", "0", false);
+	
 			}
-			
-			mService.updateConfiguration("UpdateBridgesFromAuthority", "0", false);
-			
-		}
-		else
-		{
-			mService.updateConfiguration("UseBridges", "0", false);
-
-		}
-
-        try
-        {
-            if (ReachableAddresses)
-            {
-                String ReachableAddressesPorts =
-                    prefs.getString(PREF_REACHABLE_ADDRESSES_PORTS, "*:80,*:443");
-                
-    			mService.updateConfiguration("ReachableAddresses", ReachableAddressesPorts, false);
-
-            }
-        }
+	
+	        try
+	        {
+	            if (ReachableAddresses)
+	            {
+	                String ReachableAddressesPorts =
+	                    prefs.getString(PREF_REACHABLE_ADDRESSES_PORTS, "*:80,*:443");
+	                
+	    			mService.updateConfiguration("ReachableAddresses", ReachableAddressesPorts, false);
+	
+	            }
+	        }
+	        catch (Exception e)
+	        {
+	           showAlert("Config Error","Your ReachableAddresses settings caused an exception!");
+	        }
+	
+	        try
+	        {
+	            if (becomeRelay && (!useBridges) && (!ReachableAddresses))
+	            {
+	                int ORPort =  Integer.parseInt(prefs.getString(PREF_OR_PORT, "9001"));
+	                String nickname = prefs.getString(PREF_OR_NICKNAME, "Orbot");
+	
+	    			mService.updateConfiguration("ORPort", ORPort + "", false);
+	    			mService.updateConfiguration("Nickname", nickname, false);
+	    			mService.updateConfiguration("ExitPolicy", "reject *:*", false);
+	
+	            }
+	        }
+	        catch (Exception e)
+	        {
+	            showAlert("Uh-oh!","Your relay settings caused an exception!");
+	          
+	            return;
+	        }
+	
+	        if (mService != null)
+	        	mService.saveConfiguration();
+		 }
         catch (Exception e)
         {
-           showAlert("Config Error","Your ReachableAddresses settings caused an exception!");
-        }
-
-        try
-        {
-            if (becomeRelay && (!useBridges) && (!ReachableAddresses))
-            {
-                int ORPort =  Integer.parseInt(prefs.getString(PREF_OR_PORT, "9001"));
-                String nickname = prefs.getString(PREF_OR_NICKNAME, "Orbot");
-
-    			mService.updateConfiguration("ORPort", ORPort + "", false);
-    			mService.updateConfiguration("Nickname", nickname, false);
-    			mService.updateConfiguration("ExitPolicy", "reject *:*", false);
-
-            }
-        }
-        catch (Exception e)
-        {
-            showAlert("Uh-oh!","Your relay settings caused an exception!");
+            showAlert("Uh-oh!","There was an error updating your settings");
           
+            Log.w(TAG, "processSettings()", e);
+            
             return;
         }
 
-        mService.saveConfiguration();
-        
 	}
 	
 	
@@ -623,15 +638,47 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
     	
     }
     
-    /*
+    
+    @Override
+	public boolean onTouchEvent(MotionEvent event) {
+    	try
+		{
+			
+			if (mService == null)
+			{
+			
+			}
+			else if (mService.getStatus() == STATUS_READY)
+			{
+				
+				startTor();
+				
+			}
+			else
+			{
+				
+				stopTor();
+				
+			}
+			
+		}
+		catch (Exception e)
+		{
+			Log.i(TAG,"error onclick",e);
+		}
+		
+		return super.onTouchEvent(event);
+	}
+
+	/*
      * (non-Javadoc)
      * @see android.view.View.OnClickListener#onClick(android.view.View)
      */
 	public void onClick(View view) {
 		
 		// the start button
-		if (view.getId()==R.id.imgStatus || view.getId()==R.id.lblStatus)
-		{
+	//	if (view.getId()==R.id.imgStatus || view.getId()==R.id.lblStatus)
+	//	{
 			try
 			{
 				
@@ -658,7 +705,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 				Log.i(TAG,"error onclick",e);
 			}
 			
-		}
+	//	}
 		
 		
 	}
