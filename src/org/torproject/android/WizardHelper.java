@@ -207,6 +207,18 @@ public class WizardHelper implements TorConstants {
 			}
 		});
         
+        Button btn3 = (Button)view.findViewById(R.id.WizardRootButtonProxyHelp);
+        
+        btn3.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View view) {
+
+				showProxyHelp();
+
+			}
+		});
+        
 		showCustomDialog(title, view,context.getString(R.string.btn_next),context.getString(R.string.btn_back),new DialogInterface.OnClickListener() {
 			
 			
@@ -377,6 +389,18 @@ public class WizardHelper implements TorConstants {
                       showWizard();
                 }
         })
+        .show();
+	}
+	
+	private void showProxyHelp ()
+	{
+		
+		LayoutInflater li = LayoutInflater.from(context);
+        View view = li.inflate(R.layout.layout_wizard_proxy_help, null); 
+       
+		new AlertDialog.Builder(context)
+        .setTitle(context.getString(R.string.wizard_proxy_help_info))
+        .setView(view)
         .show();
 	}
 	
