@@ -18,7 +18,8 @@
 translated=""
 
 # Location of the orbot directory, i.e. the original English xml file.
-# Do not add the trailing slash.
+# In svn, this should be svn/projects/android/trunk/Orbot/res. Do not add the
+# trailing slash.
 xml=""
 
 ### End config ###
@@ -54,10 +55,10 @@ for file in $po ; do
 		if [ -e "$xml/values-$lang/tmp-$xmlfile" ]
 		then
 			mv "$xml/values-$lang/tmp-$xmlfile" "$xml/values-$lang/$xmlfile"
+			
+			# We need to escape apostrophe's
+			sed -i "s,',\\\',g" "$xml/values-$lang/$xmlfile"
 		fi
-
-		# We need to escape apostrophe's
-		sed -i "s,',\\\',g" "$xml/values-$lang/$xmlfile"
 	}
 	
 	# If the current directory is zh_CN use zh, else convert everything.
