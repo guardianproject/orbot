@@ -27,16 +27,6 @@ android:enabled="true"/>
 
 </PreferenceCategory>
 
-<!-- 
-<PreferenceCategory android:title="Web Proxy">
-<Preference
-android:defaultValue="" 
-android:key="pref_web_proxy"
-android:title="Open Proxy Panel"
-android:summary="Set HTTP Settings (Android 2.x Experimental)"
-android:enabled="true"/>
-</PreferenceCategory>
- -->
  
 <PreferenceCategory android:title="Bridges">
 
@@ -100,4 +90,9 @@ android:dialogTitle="Enter ports"
 />
 </PreferenceCategory>
 
+<PreferenceCategory android:title="@string/pref_hs_group"><CheckBoxPreference android:title="Enable Hidden Services" android:summary="run servers accessible via the Tor network" android:key="pref_hs_enable"></CheckBoxPreference>
+<EditTextPreference android:summary="enter localhost ports for hidden services" android:title="Hidden Service Ports" android:enabled="false" android:key="pref_hs_ports"></EditTextPreference>
+
+<EditTextPreference android:key="pref_hs_hostname" android:summary="the addressable name for your hidden service (generated automatically)" android:title=".Onion Hostname"></EditTextPreference>
+</PreferenceCategory>
 </PreferenceScreen>

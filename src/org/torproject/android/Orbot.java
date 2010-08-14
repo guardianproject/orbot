@@ -3,10 +3,15 @@
 
 package org.torproject.android;
 
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.StringTokenizer;
 
 import org.torproject.android.service.ITorService;
 import org.torproject.android.service.ITorServiceCallback;
+import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.TorTransProxy;
 
 import android.app.Activity;
@@ -62,6 +67,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 	/* Tor Service interaction */
 		/* The primary interface we will be calling on the service. */
     ITorService mService = null;
+	private boolean autoStartOnBind = false;
 	
     Orbot mOrbot = null;
     
@@ -147,15 +153,11 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 		}
 		else if (item.getItemId() == 4)
 		{
-			this.showSettings();
+			showSettings();
 		}
 		else if (item.getItemId() == 6)
 		{
-			this.showMessageLog();
-		}
-		else if (item.getItemId() == 2)
-		{
-			openBrowser(URL_TOR_CHECK);
+			showMessageLog();
 		}
 		else if (item.getItemId() == 3)
 		{
@@ -163,8 +165,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 		}
 		else if (item.getItemId() == 7)
 		{
-			//launch check.torproject.org
-			openBrowser(URL_TOR_CHECK);
+			doTorCheck();
 		}
 		else if (item.getItemId() == 8)
 		{
@@ -180,15 +181,17 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 	private void doExit ()
 	{
 		try {
+		
 			stopTor();
 			
-			NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-			mNotificationManager.cancelAll();
 			
 			unbindService();
 			
             stopService(new Intent(ITorService.class.getName()));
-			
+		
+        	NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+			mNotificationManager.cancelAll();
+		
 			
 		} catch (RemoteException e) {
 			Log.w(TAG, e);
@@ -247,6 +250,69 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 	  logBuffer.append(logText);
 	}
 	
+	private void doTorCheck ()
+	{
+		
+		DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+		    @Override
+		    public void onClick(DialogInterface dialog, int which) {
+		        switch (which){
+		        case DialogInterface.BUTTON_POSITIVE:
+		            
+		    		openBrowser(URL_TOR_CHECK);
+
+					
+		        	
+		            break;
+
+		        case DialogInterface.BUTTON_NEGATIVE:
+		        
+		        	//do nothing
+		            break;
+		        }
+		    }
+		};
+
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setMessage(R.string.tor_check).setPositiveButton(R.string.btn_okay, dialogClickListener)
+		    .setNegativeButton(R.string.btn_cancel, dialogClickListener).show();
+
+	}
+	
+	private void enableHiddenServicePort (int hsPort)
+	{
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mOrbot);
+		Editor pEdit = prefs.edit();
+		
+		String hsPortString = prefs.getString("pref_hs_ports", "");
+		
+		if (hsPortString.length() > 0 && hsPortString.indexOf(hsPort+"")==-1)
+			hsPortString += ',' + hsPort;
+		else
+			hsPortString = hsPort + "";
+		
+		pEdit.putString("pref_hs_ports", hsPortString);
+		pEdit.putBoolean("pref_hs_enable", true);
+		
+		pEdit.commit();
+		
+		try {
+			processSettings();
+		
+			String onionHostname = getHiddenServiceHostname();
+	
+			Intent nResult = new Intent();
+			nResult.putExtra("hs_host", onionHostname);
+			setResult(RESULT_OK, nResult);
+			
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onResume()
 	 */
@@ -254,33 +320,80 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 		super.onResume();
 		
 		
-		NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-		mNotificationManager.cancelAll();
-		
-		
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mOrbot);
 
-		boolean showWizard = prefs.getBoolean("show_wizard",true);
+		String action = getIntent().getAction();
 		
-		if (showWizard)
+		if (action != null)
 		{
-		
-			Editor pEdit = prefs.edit();
+			if (action.equals("org.torproject.android.REQUEST_HS_PORT"))
+			{
+				
+				DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+				    @Override
+				    public void onClick(DialogInterface dialog, int which) {
+				        switch (which){
+				        case DialogInterface.BUTTON_POSITIVE:
+				            
+				        	int hsPort = getIntent().getIntExtra("hs_port", -1);
+							
+				        	enableHiddenServicePort (hsPort);
+				        	
+							finish();
+							
+				        	
+				            break;
+
+				        case DialogInterface.BUTTON_NEGATIVE:
+				            //No button clicked
+				        	finish();
+				            break;
+				        }
+				    }
+				};
+
+	        	int hsPort = getIntent().getIntExtra("hs_port", -1);
+
+				String requestMsg = "An app wants to open a server port (" + hsPort + ") to the Tor network. This is safe if you trust the app.";
+				AlertDialog.Builder builder = new AlertDialog.Builder(this);
+				builder.setMessage(requestMsg).setPositiveButton("Allow", dialogClickListener)
+				    .setNegativeButton("Deny", dialogClickListener).show();
+				
 			
-			pEdit.putBoolean("show_wizard",false);
+			}
+			else if (action.equals("org.torproject.android.START_TOR"))
+			{
+				autoStartOnBind = true;
+				
+				if (mService == null)
+					bindService();
+				
+			}
 			
-			pEdit.commit();
-			
-			showHelp();
 		}
 		else
 		{
+			
 		
+			NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+			mNotificationManager.cancelAll();
 			
 			
+			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mOrbot);
+	
+			boolean showWizard = prefs.getBoolean("show_wizard",true);
 			
+			if (showWizard)
+			{
+			
+				Editor pEdit = prefs.edit();
+				
+				pEdit.putBoolean("show_wizard",false);
+				
+				pEdit.commit();
+				
+				showHelp();
+			}
 		}
-		
 	}
 
 	/* (non-Javadoc)
@@ -293,8 +406,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 		startService(new Intent(INTENT_TOR_SERVICE));
 		bindService ();
 		
-		//updateStatus ("");
-		
+		updateStatus ("");
 		
 
 	}
@@ -414,8 +526,12 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 	
 	        boolean ReachableAddresses = prefs.getBoolean(PREF_REACHABLE_ADDRESSES,false);
 	
+	        boolean enableHiddenServices = prefs.getBoolean("pref_hs_enable", false);
+			
+			
 			boolean enableTransparentProxy = prefs.getBoolean(PREF_TRANSPARENT, false);
 			
+		
 			mService.updateTransProxy();
 			
 			String bridgeList = prefs.getString(PREF_BRIDGES_LIST,"");
@@ -469,6 +585,10 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 	    			mService.updateConfiguration("ReachableAddresses", ReachableAddressesPorts, false);
 	
 	            }
+	            else
+	            {
+	            	mService.updateConfiguration("ReachableAddresses", "", false);
+	            }
 	        }
 	        catch (Exception e)
 	        {
@@ -487,6 +607,12 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 	    			mService.updateConfiguration("ExitPolicy", "reject *:*", false);
 	
 	            }
+	            else
+	            {
+	            	mService.updateConfiguration("ORPort", "", false);
+	    			mService.updateConfiguration("Nickname", "", false);
+	    			mService.updateConfiguration("ExitPolicy", "", false);
+	            }
 	        }
 	        catch (Exception e)
 	        {
@@ -495,8 +621,48 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 	            return;
 	        }
 	
-	        if (mService != null)
-	        	mService.saveConfiguration();
+	        if (enableHiddenServices)
+	        {
+	        	mService.updateConfiguration("HiddenServiceDir","/data/data/org.torproject.android/", false);
+	        	
+	        	String hsPorts = prefs.getString("pref_hs_ports","");
+	        	
+	        	StringTokenizer st = new StringTokenizer (hsPorts,",");
+	        	String hsPortConfig = null;
+	        	
+	        	while (st.hasMoreTokens())
+	        	{
+	        		hsPortConfig = st.nextToken();
+	        		
+	        		if (hsPortConfig.indexOf(":")==-1) //setup the port to localhost if not specifed
+	        		{
+	        			hsPortConfig = hsPortConfig + " 127.0.0.1:" + hsPortConfig;
+	        		}
+	        		
+	        		mService.updateConfiguration("HiddenServicePort",hsPortConfig, false);
+	        	}
+	        	
+	        	//force save now so the hostname file gets generated
+	        	 mService.saveConfiguration();
+	        	 
+	        	String onionHostname = getHiddenServiceHostname();
+	        	
+	        	if (onionHostname != null)
+	        	{
+	        		
+	        		Editor pEdit = prefs.edit();
+	    			pEdit.putString("pref_hs_hostname",onionHostname);
+	    			pEdit.commit();
+	        		
+	        	}
+	        }
+	        else
+	        {
+	        	mService.updateConfiguration("HiddenServiceDir","", false);
+	        	
+	        }
+	        
+	        mService.saveConfiguration();
 		 }
         catch (Exception e)
         {
@@ -507,6 +673,20 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
             return;
         }
 
+	}
+	
+	private String getHiddenServiceHostname ()
+	{
+    	String appHome = "/data/data/" + TorServiceConstants.TOR_APP_USERNAME + "/";
+
+    	File file = new File(appHome, "hostname");
+    	try {
+			String onionHostname = Utils.readString(new FileInputStream(file));
+			return onionHostname.trim();
+		} catch (FileNotFoundException e) {
+			Log.i(TAG, "unable to read onion hostname file",e);
+			return null;
+		}
 	}
 	
 	
@@ -561,7 +741,21 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 		    			
 		    		}
 		    		
+			        boolean enableHiddenServices = prefs.getBoolean("pref_hs_enable", false);
 
+			        if (enableHiddenServices)
+			        {
+			    		String onionHostname = getHiddenServiceHostname();
+			    		
+			    		if (onionHostname != null)
+			    		{
+			    			Editor pEdit = prefs.edit();
+			    			pEdit.putString("pref_hs_hostname",onionHostname);
+			    			pEdit.commit();
+			    			
+			    		}
+		    		
+			        }
 	    		
 		    
 		    	}
@@ -651,14 +845,18 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 			else if (mService.getStatus() == STATUS_READY)
 			{
 				
-				startTor();
-				
+				if (event.getAction() == MotionEvent.ACTION_UP)
+				{
+					startTor();
+				}
 			}
 			else
 			{
 				
-				stopTor();
-				
+				if (event.getAction() == MotionEvent.ACTION_DOWN)
+				{
+					stopTor();
+				}
 			}
 			
 		}
@@ -799,18 +997,29 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
             mService = ITorService.Stub.asInterface(service);
        
             updateStatus ("");
-            
+       
             // We want to monitor the service for as long as we are
             // connected to it.
             try {
                 mService.registerCallback(mCallback);
+           
+
+	            if (autoStartOnBind)
+	            {
+	            	autoStartOnBind = false;
+	            	
+	            	startTor();
+	            	
+	            }
+            
             } catch (RemoteException e) {
                 // In this case the service has crashed before we could even
                 // do anything with it; we can count on soon being
                 // disconnected (and then reconnected if it can be restarted)
                 // so there is no need to do anything here.
+            	Log.i(TAG,"error registering callback to service",e);
             }
-            
+       
           
         }
 
@@ -843,8 +1052,6 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
             if (mService != null) {
                 try {
                     mService.unregisterCallback(mCallback);
-                    
-                
                     
                 } catch (RemoteException e) {
                     // There is nothing special we need to do if the service

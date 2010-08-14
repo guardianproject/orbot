@@ -20,6 +20,7 @@ public class TorTransProxy {
 	
 	private final static String IPTABLES_ADD = " -A ";
 	
+	
 	//private final static String CMD_DNS_PROXYING_DELETE = "iptables -t nat -D PREROUTING -p udp --dport 53 -j DNAT --to 127.0.0.1:5400 || exit\n";
 	// - just calling a system wide flush of iptables rules
 	//private final static String IPTABLES_DELETE = " -D "; //not deleting manually anymore - just calling a system wide flush of iptables rules
@@ -51,6 +52,40 @@ public class TorTransProxy {
 		return false;
 	}
 	
+	/**
+	 * Check if we have root access
+	 * @return boolean true if we have root
+	 */
+	public static String getIPTablesVersion() {
+	
+
+		StringBuilder log = new StringBuilder();
+		
+		try {
+			
+			// Run an empty script just to check root access
+			String[] cmd = {"iptables -v"};
+			int exitCode = TorServiceUtils.doShellCommand(cmd, log, true, true);
+			
+			String out = log.toString();
+			if (out.indexOf(" v")!=-1)
+			{
+			
+				out = out.substring(out.indexOf(" v")+2);
+				out = out.substring(0,out.indexOf(":"));
+				
+				return out;
+			}
+			
+			
+		} catch (Exception e) {
+			Log.w(TAG,"Error checking iptables version: " + e.getMessage() ,e);
+		}
+		
+		Log.w(TAG, "Could not acquire check iptables: " + log.toString());
+		return null;
+	}
+	
 	private static String findBaseDir ()
 	{
 		/*
@@ -72,10 +107,11 @@ public class TorTransProxy {
 			return BASE_DIR;
 		}*/
 		
-		return "/system/bin/";
+		return "";
 		
 			
 	}
+	/*
 	public static int setDNSProxying () throws Exception
 	{
 		String baseDir = findBaseDir();
@@ -91,7 +127,7 @@ public class TorTransProxy {
     	return code;
     	
     	
-	}
+	}*/
 
     /*
     public static int setIptablesDropAll() {
@@ -109,6 +145,45 @@ public class TorTransProxy {
     }
     */
 
+	public static int purgeIptables(Context context, TorifiedApp[] apps) throws Exception {
+
+		String baseDir = findBaseDir();
+		
+		
+    	final StringBuilder script = new StringBuilder();
+    	
+    	StringBuilder res = new StringBuilder();
+    	int code = -1;
+    	
+			for (int i = 0; i < apps.length; i++)
+			{
+
+				//flush nat for every app
+				script.append(baseDir);
+				script.append("iptables -t nat -m owner --uid-owner ");
+				script.append(apps[i].getUid());
+				script.append(" -F || exit\n");
+				script.append("iptables -t filter -m owner --uid-owner ");
+				script.append(apps[i].getUid());
+				script.append(" -F || exit\n");
+					
+			}
+			
+	    	
+	    	String[] cmd = {script.toString()};
+	    	Log.i(TAG, cmd[0]);
+			
+			code = TorServiceUtils.doShellCommand(cmd, res, true, true);
+			
+			String msg = res.toString();
+			Log.i(TAG, msg);
+			
+		
+		return code;
+		
+	}
+	
+	/*
 	public static boolean purgeIptables() {
 		
 		String baseDir = findBaseDir();
@@ -129,96 +204,121 @@ public class TorTransProxy {
 			Log.w(TAG,"error purging iptables: " + e);
 			return false;
 		}
-    }
+    }*/
 	
-	public static boolean setTransparentProxyingByApp(Context context, TorifiedApp[] apps, boolean forceAll) throws Exception
+	public static int setTransparentProxyingByApp(Context context, TorifiedApp[] apps, boolean forceAll) throws Exception
 	{
 	
 		String baseDir = findBaseDir();
 
-		String command = null;
+		String iptablesVersion = getIPTablesVersion();
+		Log.i(TAG, "iptables version: " + iptablesVersion);
 		
-		command = IPTABLES_ADD; //ADD
+		boolean ipTablesOld = false;
+		if (iptablesVersion != null && iptablesVersion.startsWith("1.3")){
+			ipTablesOld = true;
+		}
 		
-    	final StringBuilder script = new StringBuilder();
+    	StringBuilder script = new StringBuilder();
     	
-    	//first we have to flush old settings
-		script.append(baseDir);
-		script.append(CMD_NAT_FLUSH);
-		script.append(" || exit\n");
-		
-		script.append(baseDir);
-		script.append(CMD_FILTER_FLUSH);
-		script.append(" || exit\n");
-		
     	StringBuilder res = new StringBuilder();
     	int code = -1;
     	
-			for (int i = 0; i < apps.length; i++)
+		for (int i = 0; i < apps.length; i++)
+		{
+
+			//flush nat for every app
+			script.append(baseDir);
+			script.append("iptables -t nat -m owner --uid-owner ");
+			script.append(apps[i].getUid());
+			script.append(" -F || exit\n");
+			script.append("iptables -t filter -m owner --uid-owner ");
+			script.append(apps[i].getUid());
+			script.append(" -F || exit\n");
+			
+		}
+		
+    	String[] cmdFlush = {script.toString()};
+    	Log.i(TAG, cmdFlush[0]);
+		
+		code = TorServiceUtils.doShellCommand(cmdFlush, res, true, true);
+		
+		String msg = res.toString();
+		Log.i(TAG, msg);
+
+		script = new StringBuilder();
+		
+		for (int i = 0; i < apps.length; i++)
+		{
+
+			if (forceAll || apps[i].isTorified())
 			{
-				if (forceAll || apps[i].isTorified())
+				
+				if (apps[i].getUsername().equals(TorServiceConstants.TOR_APP_USERNAME))
 				{
+					Log.i(TAG,"detected Orbot app - will not transproxy");
 					
-					if (apps[i].getUsername().equals(TorServiceConstants.TOR_APP_USERNAME))
-					{
-						Log.i(TAG,"detected Orbot app - will not transproxy");
-						
-						continue;
-					}
-					
-					Log.i(TAG,"enabling transproxy for app: " + apps[i].getUsername() + "(" + apps[i].getUid() + ")");
-				 
-					
-					
-					//TCP
+					continue;
+				}
+				
+				Log.i(TAG,"enabling transproxy for app: " + apps[i].getUsername() + "(" + apps[i].getUid() + ")");
+			 
+				
+				//TCP
+				script.append(baseDir);
+				script.append("iptables -t nat");
+				script.append(" -A OUTPUT -p tcp --syn");
+				script.append(" -m owner --uid-owner ");
+				script.append(apps[i].getUid());
+				script.append(" -m tcp ");
+				
+				if (ipTablesOld)
+					script.append(" -j DNAT --to 127.0.0.1:9040");
+				else
+					script.append(" -j REDIRECT --to-ports 9040");
+				
+				script.append(" || exit\n");
+				
+				//DNS
+				script.append(baseDir);
+				script.append("iptables -t nat");
+				script.append(" -A OUTPUT -p udp -m owner --uid-owner ");
+				script.append(apps[i].getUid());
+				script.append(" -m udp --dport 53");
+				
+				if (ipTablesOld)
+					script.append(" -j DNAT --to 127.0.0.1:5400");
+				else
+					script.append(" -j REDIRECT --to-ports 5400");
+				
+				script.append(" || exit\n");
+				
+				//EVERYTHING ELSE UDP - DROP!
+				if (!ipTablesOld) //for some reason this doesn't work on iptables 1.3.7
+				{
 					script.append(baseDir);
-					script.append("iptables -t nat");
-					script.append(" -A OUTPUT -p tcp -m owner --uid-owner ");
-					script.append(apps[i].getUid());
-				//	script.append(" -j DNAT --to 127.0.0.1:9040");
-					script.append(" -m tcp --syn -j REDIRECT --to-ports 9040");
-					script.append(" || exit\n");
-					
-					//UDP
-					script.append(baseDir);
-					script.append("iptables -t nat");
+					script.append("iptables");
 					script.append(" -A OUTPUT -p udp -m owner --uid-owner ");
-					script.append(apps[i].getUid());
-					script.append(" --dport 53 -j REDIRECT --to-ports 5400"); //drop all UDP packets as Tor won't handle them
-					script.append(" || exit\n");
-					
-					/*
-					script.append(baseDir);
-					script.append("iptables -t nat");
-					script.append(" -A OUTPUT -m owner --uid-owner ");
 					script.append(apps[i].getUid());
 					script.append(" -j DROP"); //drop all other packets as Tor won't handle them
 					script.append(" || exit\n");
-					*/
-					
-					
-					/*
-					 * iptables -t nat -A OUTPUT -p tcp -m owner --uid-owner anonymous -m tcp -j REDIRECT --to-ports 9040 
-iptables -t nat -A OUTPUT -p udp -m owner --uid-owner anonymous -m udp --dport 53 -j REDIRECT --to-ports 53 
-iptables -t filter -A OUTPUT -p tcp -m owner --uid-owner anonymous -m tcp --dport 9040 -j ACCEPT
-iptables -t filter -A OUTPUT -p udp -m owner --uid-owner anonymous -m udp --dport 53 -j ACCEPT
-iptables -t filter -A OUTPUT -m owner --uid-owner anonymous -j DROP
-
-					 */
-				}		
-			}
-			
-	    	
-	    	String[] cmd = {script.toString()};
-	    	Log.i(TAG, cmd[0]);
-			
-			code = TorServiceUtils.doShellCommand(cmd, res, true, true);
-			
-			String msg = res.toString();
-			Log.i(TAG, msg);
+				}	
+				
+				
+			}		
+		}
+		
+    	
+    	String[] cmdAdd = {script.toString()};
+    	Log.i(TAG, cmdAdd[0]);
+		
+		code = TorServiceUtils.doShellCommand(cmdAdd, res, true, true);
+		
+		msg = res.toString();
+		Log.i(TAG, msg);
 			
 		
-		return false;
+		return code;
     }	
 	
 
