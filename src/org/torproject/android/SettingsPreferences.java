@@ -3,7 +3,6 @@
 
 package org.torproject.android;
 
-import org.torproject.android.service.TorServiceUtils;
 import org.torproject.android.service.TorTransProxy;
 
 import android.content.Intent;
@@ -21,8 +20,7 @@ public class SettingsPreferences
 	private CheckBoxPreference prefCBTransProxy = null;
 	private CheckBoxPreference prefcBTransProxyAll = null;
 	private Preference prefTransProxyApps = null;
-	private Preference prefWebProxy = null;
-	
+	private CheckBoxPreference prefHiddenServices = null;
 	
 	
 	private boolean hasRoot = false;
@@ -35,7 +33,6 @@ public class SettingsPreferences
 		hasRoot = TorTransProxy.hasRootAccess();
 		
 	}
-	
 	
 	
 	@Override
@@ -63,10 +60,13 @@ public class SettingsPreferences
 			
 		}
 		
-		//disabled for now 28/07 nf
-		//prefWebProxy = ((PreferenceCategory)this.getPreferenceScreen().getPreference(1)).getPreference(0);
-		//prefWebProxy.setOnPreferenceClickListener(this);
-	}
+		prefHiddenServices = ((CheckBoxPreference)((PreferenceCategory)this.getPreferenceScreen().getPreference(4)).getPreference(0));
+		prefHiddenServices.setOnPreferenceClickListener(this);
+		((PreferenceCategory)this.getPreferenceScreen().getPreference(4)).getPreference(1).setEnabled(prefHiddenServices.isChecked());
+		((PreferenceCategory)this.getPreferenceScreen().getPreference(4)).getPreference(2).setEnabled(prefHiddenServices.isChecked());
+				
+		
+	};
 	
 	
 	
@@ -89,18 +89,13 @@ public class SettingsPreferences
 		{
 			startActivity(new Intent(this, AppManager.class));
 		}
-		/*
-		else if (preference == prefWebProxy)
+		else if (preference == prefHiddenServices)
 		{
-			 Intent intent = new Intent();
-			 intent.setClassName(this,"com.android.settings.ProxySelector");
-			 intent.putExtra("title", "Set host=127.0.0.1 and port=8118");
-			 intent.putExtra("button-label", "Save");
-			 
-			 startActivity(intent);
-			 
-			 
-		}*/
+			
+			((PreferenceCategory)this.getPreferenceScreen().getPreference(4)).getPreference(1).setEnabled(prefHiddenServices.isChecked());
+			((PreferenceCategory)this.getPreferenceScreen().getPreference(4)).getPreference(2).setEnabled(prefHiddenServices.isChecked());
+			
+		}
 		else
 		{
 			prefcBTransProxyAll.setEnabled(prefCBTransProxy.isChecked());

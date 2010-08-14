@@ -26,9 +26,6 @@ public interface TorServiceConstants {
 	
 	//privoxy.config
 	public final static String PRIVOXYCONFIG_ASSET_KEY = "privoxy.config";
-	
-	//iptables key
-	public final static String IPTABLES_ASSET_KEY = "iptables";	
 		
 	//various console cmds
 	public final static String SHELL_CMD_CHMOD = "chmod";

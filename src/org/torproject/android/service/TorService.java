@@ -401,13 +401,11 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     	
     	torBinaryPath = appHome + TOR_BINARY_ASSET_KEY;
     	privoxyPath = appHome + PRIVOXY_ASSET_KEY;
-    	String iptablesPath = appHome + IPTABLES_ASSET_KEY;
     	
 		boolean torBinaryExists = new File(torBinaryPath).exists();
 		boolean privoxyBinaryExists = new File(privoxyPath).exists();
-		boolean iptablesBinaryExists = new File(iptablesPath).exists();
-
-		if (!(torBinaryExists && privoxyBinaryExists && iptablesBinaryExists))
+		
+		if (!(torBinaryExists && privoxyBinaryExists))
 		{
 			killTorProcess ();
 			
@@ -417,7 +415,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 			torBinaryExists = new File(torBinaryPath).exists();
 			privoxyBinaryExists = new File(privoxyPath).exists();
 			
-    		if (torBinaryExists && privoxyBinaryExists && iptablesBinaryExists)
+    		if (torBinaryExists && privoxyBinaryExists)
     		{
     			logNotice(getString(R.string.status_install_success));
     	
@@ -439,9 +437,8 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 		{
 			logNotice("Found Tor binary: " + torBinaryPath);
 
-			logNotice("Found privoxy binary: " + privoxyPath);
+			logNotice("Found Privoxy binary: " + privoxyPath);
 
-			logNotice("Found iptables binary: " + iptablesPath);
 
 		}
 		
@@ -455,9 +452,6 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 		String[] cmd2 = {SHELL_CMD_CHMOD + ' ' + CHMOD_EXE_VALUE + ' ' + privoxyPath};
 		TorServiceUtils.doShellCommand(cmd2, log, false, true);
 				
-		logNotice("(re)Setting permission on iptables binary");
-		String[] cmd3 = {SHELL_CMD_CHMOD + ' ' + CHMOD_EXE_VALUE + ' ' + iptablesPath};
-		TorServiceUtils.doShellCommand(cmd3, log, false, true);
 		
 		return true;
     }
@@ -947,8 +941,17 @@ public class TorService extends Service implements TorServiceConstants, Runnable
         {
         	
         	//turn on
-    		
-        	return setupTransProxy(currentStatus == STATUS_ON); 
+    		try
+    		{
+    			setupTransProxy(currentStatus == STATUS_ON); 
+    			return true;
+    		}
+    		catch (Exception e)
+    		{
+    			Log.i(TAG, "error enabling transproxy",e);
+    			
+    			return false;
+    		}
         }
         
         public String getConfiguration (String name)
@@ -993,7 +996,19 @@ public class TorService extends Service implements TorServiceConstants, Runnable
         	if (configBuffer == null)
         		configBuffer = new ArrayList<String>();
 	        		
-	        configBuffer.add(name + ' ' + value);
+        	if (value == null || value.length() == 0)
+        	{
+        		if (conn != null)
+        		{
+        			try {
+						conn.resetConf(Arrays.asList(new String[]{name}));
+					} catch (IOException e) {
+						Log.w(TAG, "Unable to reset conf",e);
+					}
+        		}
+        	}
+        	else
+        		configBuffer.add(name + ' ' + value);
 	        
         	return false;
         }
@@ -1007,7 +1022,6 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 	        		 if (configBuffer != null)
 				        {
 				        	conn.setConf(configBuffer);
-				        	//conn.saveConf();
 				        	configBuffer = null;
 				        }
 	   	       
@@ -1083,6 +1097,8 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 
         boolean ReachableAddresses = prefs.getBoolean(TorConstants.PREF_REACHABLE_ADDRESSES,false);
 
+        boolean enableHiddenServices = prefs.getBoolean("pref_hs_enable", false);
+
 		boolean enableTransparentProxy = prefs.getBoolean(TorConstants.PREF_TRANSPARENT, false);
 		
 		
@@ -1137,6 +1153,10 @@ public class TorService extends Service implements TorServiceConstants, Runnable
                 mBinder.updateConfiguration("ReachableAddresses", ReachableAddressesPorts, false);
 
             }
+            else
+            {
+                mBinder.updateConfiguration("ReachableAddresses", "", false);
+            }
         }
         catch (Exception e)
         {
@@ -1155,6 +1175,12 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     			mBinder.updateConfiguration("ExitPolicy", "reject *:*", false);
 
             }
+            else
+            {
+            	mBinder.updateConfiguration("ORPort", "", false);
+    			mBinder.updateConfiguration("Nickname", "", false);
+    			mBinder.updateConfiguration("ExitPolicy", "", false);
+            }
         }
         catch (Exception e)
         {
@@ -1163,12 +1189,41 @@ public class TorService extends Service implements TorServiceConstants, Runnable
             return;
         }
 
+        if (enableHiddenServices)
+        {
+        	mBinder.updateConfiguration("HiddenServiceDir","/data/data/org.torproject.android/", false);
+        	
+        	String hsPorts = prefs.getString("pref_hs_ports","");
+        	
+        	StringTokenizer st = new StringTokenizer (hsPorts,",");
+        	String hsPortConfig = null;
+        	
+        	while (st.hasMoreTokens())
+        	{
+        		hsPortConfig = st.nextToken();
+        		
+        		if (hsPortConfig.indexOf(":")==-1) //setup the port to localhost if not specifed
+        		{
+        			hsPortConfig = hsPortConfig + " 127.0.0.1:" + hsPortConfig;
+        		}
+        		
+        		mBinder.updateConfiguration("HiddenServicePort",hsPortConfig, false);
+        	}
+        	
+        	
+        }
+        else
+        {
+        	mBinder.updateConfiguration("HiddenServiceDir","", false);
+        	
+        }
+        
         mBinder.saveConfiguration();
 		
     }
     
     
-    private boolean setupTransProxy (boolean enabled)
+    private boolean setupTransProxy (boolean enabled) throws Exception
 	{
     	
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplication());
@@ -1187,27 +1242,19 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 			if (hasRoot && enableTransparentProxy)
 			{
 				
-				try
-				{
-					TorTransProxy.setDNSProxying();
-					boolean success = TorTransProxy.setTransparentProxyingByApp(this,AppManager.getApps(this),transProxyAll);
 				
-					logNotice ("TorTransProxy enabled: " + success);
+					//TorTransProxy.setDNSProxying();
+					int code = TorTransProxy.setTransparentProxyingByApp(this,AppManager.getApps(this),transProxyAll);
+				
+					logNotice ("TorTransProxy resp code: " + code);
 					
 					return true;
-					
-				} catch (Exception e) {
-					
-					logNotice("WARNING: Error configuring transparenty proxying: " + e.getMessage());
-					Log.w(TAG, "error refreshing iptables: err=" + e.getMessage(), e);
-					
-					return false;
-				}
+				
 				
 			}
 			else
 			{
-				TorTransProxy.purgeIptables();
+				TorTransProxy.purgeIptables(this,AppManager.getApps(this));
 
 			}
 		}
@@ -1215,7 +1262,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 		{
 			if (hasRoot)
 			{
-				TorTransProxy.purgeIptables();
+				TorTransProxy.purgeIptables(this,AppManager.getApps(this));
 			}
 		}
 		

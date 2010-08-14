@@ -37,11 +37,8 @@ public class TorBinaryInstaller implements TorServiceConstants {
 		
 		boolean privoxyBinaryExists = new File(installPath + PRIVOXY_ASSET_KEY).exists();
 		Log.i(TAG,"Privoxy binary exists=" + privoxyBinaryExists);
-		
-		boolean iptablesBinaryExists = new File(installPath + IPTABLES_ASSET_KEY).exists();
-		Log.i(TAG,"IPTables binary exists=" + iptablesBinaryExists);
-		
-		if (!(torBinaryExists && privoxyBinaryExists && iptablesBinaryExists) || force)
+	
+		if (!(torBinaryExists && privoxyBinaryExists) || force)
 			installFromZip ();
 		
 	}
@@ -71,9 +68,6 @@ public class TorBinaryInstaller implements TorServiceConstants {
 			
 			zipen = zip.getEntry(ASSETS_BASE + PRIVOXYCONFIG_ASSET_KEY);
 			streamToFile(zip.getInputStream(zipen),installPath + PRIVOXYCONFIG_ASSET_KEY);
-			
-			zipen = zip.getEntry(ASSETS_BASE + IPTABLES_ASSET_KEY);
-			streamToFile(zip.getInputStream(zipen),installPath + IPTABLES_ASSET_KEY);
 			
 			
 			zip.close();
