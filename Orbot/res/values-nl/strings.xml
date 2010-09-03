@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="pref_hs_group">Verborgen diensten</string>
     <string name="app_name">Orbot</string>
-    <string name="app_version">0.0.8</string>
+    <string name="app_version">1.0.2</string>
     <string name="internal_web_url">http://orbot/</string>
     <string name="default_web_url">http://check.torproject.org</string>
     <string name="secure_default_web_url">https://check.torproject.org</string>
@@ -15,11 +16,11 @@
 <string name="status_shutting_down">Orbot is aan het afsluiten</string>
 
 <string name="tor_process_connecting">Bezig met opstarten van Tor...</string>
-<string name="tor_process_connecting_step2">Bezig met authenticeren van besturings connectie.</string>
+<string name="tor_process_connecting_step2">Bezig met instellen aansturing</string>
 <string name="tor_process_connecting_step3">klaar.</string>
 <string name="tor_process_connecting_step4">aan het wachten.</string>
 
-<string name="not_anonymous_yet">WAARSCHUWING: Uw verkeer is nog niet anononiem!Stel uw programma\'s alstublieft in dat ze gebruik maken van HTTP proxy 127.0.0.1:8118 of SOCKS4A of SOCKS5 proxy 127.0.0.1:9050</string>
+<string name="not_anonymous_yet">WAARSCHUWING: Uw verkeer is nog niet anononiem! Stel uw programma\'s alstublieft in dat ze gebruik maken van HTTP proxy 127.0.0.1:8118 of SOCKS4A of SOCKS5 proxy 127.0.0.1:9050</string>
 <string name="menu_home">Thuis</string>
 <string name="menu_browse">Bladeren</string>
 <string name="menu_settings">Instellingen</string>
@@ -28,7 +29,6 @@
 <string name="menu_apps">Applicaties</string>
 <string name="menu_start">Start</string>
 <string name="menu_stop">Stop</string>
-
 
 
 <string name="button_help">Hulp</string>
@@ -49,7 +49,84 @@ dat je de SOCKS5 proxy op 127.0.0.1 poort 9050 zet. Zet ook SSL aan om je gebrui
 <string name="help_text_5">Als je je apparaat root, of het een 1.x of een 2.x gebaseerde versie is, Orbot kan transparant elke applicatie proxien die je selecteert
 en ook alle DNS aanvragen. Dit omvat ook de ingebouwde browser, Gmail, Youtube en Maps, naast elke andere applicatie van derde partijen.</string>
 
+<string name="menu_verify">Controleer</string>
+<string name="menu_exit">Verlaten</string>
+<string name="powered_by">aangedreven door het Tor Project</string>
+<string name="press_to_start">- druk om te starten -</string>
 
-<string name="menu_verify">Check</string>
-<string name="menu_exit">Exit</string>
+<string name="pref_trans_proxy_group">Transparant Proxyen (Vereist Root)</string>
+<string name="pref_trans_proxy_title">Transparant Proxyen</string>
+<string name="pref_trans_proxy_summary">Automatisch Tor forceren van aplicaties</string>
+
+<string name="pref_transparent_all_title">Tor Alles</string>
+<string name="pref_transparent_all_summary">Proxy verkeer voor alle toepasingen door Tor</string>
+
+<string name="status_install_success">Tor\'s binaire bestanden succesvol geïnstalleerd</string>
+<string name="status_install_fail">The binaire bestanden konden niet worden geïnstalleerd. Gelieve het log te raadplegen en tor-assistants@torproject.org op de hoogte te stellen</string>
+
+<string name="title_error">Toepassingsfout</string>
+
+<string name="wizard_title">Welkom bij Orbot</string>
+
+<string name="wizard_btn_tell_me_more">Over Orbot</string>
+<string name="btn_next">Volgende</string>
+<string name="btn_back">Terug</string>
+<string name="btn_finish">Einde</string>
+
+<string name="btn_okay">OK</string>
+<string name="btn_cancel">Annuleren</string>
+
+
+<!-- Welcome Wizard strings (DJH) -->
+ 
+    <string name="wizard_welcome_msg">Orbot brengt Tor naar de Android. Tor is vrije software en een open netwerk dat u helpt te verdedigen tegen netwerk toezicht welke aanvallen zijn op uw vrijheid en privacy, geheime zakelijke documenten en zaken relaties.
+
+*WAARSCHUWING:* Door het installeren van Orbot word uw verkeer _niet_ automatisch geproxyt! Deze wizard helpt u hier mee.</string>
+    <string name="wizard_details">Enkele Orbot Details</string>
+    <string name="wizard_details_msg">Orbot is een open-source applicatie waarin Tor, LibEvent en Privoxy zich bevinden. Het creeërt een lokale HTTP proxy (8118) en een SOCKS proxy (9050) naar het Tor netwerk. Orbot heeft ook de mogelijkheid om al het internet verkeer over het Tor netwerk te sturen.</string>
+    <string name="wizard_permissions_root">Toelating toegestaan</string>
+    <string name="wizard_permissions_stock">Orbot Rechten</string>
+    <string name="wizard_premissions_msg_root">Uitstekend! We hebben gedetecteerd dat je root rechten hebt aangezet voor Orbot. We gebruiken deze kracht met verstand.</string>
+    <string name="wizard_permissions_msg_stock">Alhoewel het niet verplicht is kan Orbot ook nog krachtiger worden. Als u root rechten heeft kunt u op de knop onderaan Orbot super krachten toewijzen.</string>
+   
+    <string name="wizard_permissions_no_root">Als u niet over root toegang beschikt en geen idee hebt waar u mee bezig bent zult u zeker moeten zijn dat de applicaties die u gebruikt geschikt voor Orbot zijn.</string>
+    <string name="wizard_permissions_consent">Ik begrijp dit en wil verdergaan zonder root</string>
+   
+    <string name="wizard_permission_enable_root">Root toestaan voor Orbot</string>
+    <string name="wizard_configure">Torificatie Configureren</string>
+    <string name="wizard_configure_msg">Orbot geeft u de mogelijkheid om induvidueel te bepalen welk van uw applicaties over het Tor netwerk gaan.</string> 
+    <string name="wizard_configure_all">Proxy alle toepasingen door Tor</string>
+    <string name="wizard_configure_select_apps">Selecteer individuele toepasingen voor Tor</string>
+    
+    
+    <string name="wizard_tips_tricks">Orbot-beschikbare Apps</string>
+    <string name="wizard_tips_msg">We raden u aan om te apps te downloaden welke zich zich automatisch verbinden met Orbot. Klik op de buttons hier beneden om te installeren.</string>
+    <string name="wizard_tips_otrchat">OTRCHAT - Veilige instant message programma voor Android</string>
+    <string name="wizard_tips_orweb">ORWEB (Alleen Android 1.x) - Browser gemaakt voor privacy &amp; voor Orbot</string>
+    <string name="wizard_tips_proxy">Proxy Instellingen - Leer hoe u uw apps kunt configureren voor Orbot</string>
+    
+    <string name="wizard_proxy_help_info">Proxy Instellingen</string>
+    <string name="wizard_proxy_help_msg">Als de Android app welke u gebruikt beschikt over een HTTP of SOCKS proxy instelling, dan kunt u het configureren zodat het via Orbot over het Tor netwerk gaat.
+
+
+De host instelling is 127.0.0.1 of "localhost". De poort voor SOCS is 9050 en voor HTTP 8118. Gebruik SOCKS4A or SOCKS5 indien nodig.
+
+
+U kunt meer leren over het proxyen op Android door naar de FAQ op http://tinyurl.com/proxyandroid te gaan
+</string>
+    
+    <string name="wizard_final">Orbot is klaar!</string>
+    <string name="wizard_final_msg">Honderdduizenden verschillende mensen over de wereld gebruiken Tor, zoals: journalisten, bloggers, mensen rechten medewerkers, soldaten, bedrijven, burgers met onderdrukte religies, en natuurlijk normale mensen... En nu bent u ook klaar om te gaan!</string>
+    
+    <string name="otrchat_apk_url">http://github.com/downloads/guardianproject/OtRChat/OtRChat-0.0.1-alpha-build6a.apk</string>
+    <string name="orweb_apk_url">http://github.com/downloads/guardianproject/Orweb/Orweb-0.0.1c.apk.apk</string>
+    
+<!-- END Welcome Wizard strings (DJH) -->
+ 
+
+	<string name="connect_first_time">U bent succesvol verbonden met het Tor netwerk, maar dit betekent NIET dat u apparaat volledig veilig is. Gebruik te \\'Check\\' optie vanuit het menu om u browser te testen.
+
+Bezoek onze website op https://guardianproject.info/apps/orbot of stuuf een email naar help@guardianproject.info voor vragen.</string>
+
+	<string name="tor_check">Dit opent uw standaard browser naar https://check.torproject.org om te controleren of Orbot succesvol is geconfigureerd om te verbinden met het Tor netwerk.</string>
 </resources>
