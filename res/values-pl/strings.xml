@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="pref_hs_group">Usługi ukryte</string>
     <string name="app_name">Orbot</string>
-    <string name="app_version">0.0.8</string>
+    <string name="app_version">1.0.2</string>
     <string name="internal_web_url">http://orbot/</string>
     <string name="default_web_url">http://check.torproject.org</string>
     <string name="secure_default_web_url">https://check.torproject.org</string>
@@ -15,7 +16,7 @@
 <string name="status_shutting_down">Orbot wyłącza się</string>
 
 <string name="tor_process_connecting">Tor startuje...</string>
-<string name="tor_process_connecting_step2">autentykacja kontroli połączenia...</string>
+<string name="tor_process_connecting_step2">Ustawianie sterowania...</string>
 <string name="tor_process_connecting_step3">zakończono.</string>
 <string name="tor_process_connecting_step4">oczekiwanie.</string>
 
@@ -30,7 +31,6 @@
 <string name="menu_stop">Stop</string>
 
 
-
 <string name="button_help">Pomoc</string>
 <string name="button_close">Zamknij</string>
 <string name="button_about">O programie</string>
@@ -38,18 +38,86 @@
 <string name="help_text_1">Orbot wymaga różnych konfiguracji w zależności od wersji systemu operacyjnego Android.
 Proszę odwiedź stronę https://www.torproject.org/docs/android.html aby uzyskać najnowsze informacje na ten temat.</string>
 
-<string name="help_text_2">Dla urządzeń non-rooted Android 1.x (G1, MyTouch3G, Hero): Użyj przeglądarki "ProxySurf" dostępnej w Android Market i ustaw
+<string name="help_text_2">Dla urządzeń bez uprawnień administratora Android 1.x: Użyj przeglądarki "ProxySurf" dostępnej w Android Market i ustaw
 HTTP Proxy 127.0.0.1 port 8118, dla połączeń HTTP (HTTP/S nie będzie działać).</string>
 
 <string name="help_text_3">Jako komunikatora użyj "Beem" dostępny w Android Market i ustaw proxy SOCKS5 127.0.0.1 port 9050</string>
 
-<string name="help_text_4">For Android 2.x devices, you MUST ROOT your device in order for Orbot to work transparently, as there is no browser that will work for non-root devices. Otherwise, the "Beem" app will allow
-you to set the SOCKS5 proxy to 127.0.0.1 and port 9050. You should also enable SSL to protect your username and password.</string>
+<string name="help_text_4">MUSISZ uruchomić urządzenia z Androidem 2.x w trybie administratora, by Orbot mógł działać w sposób przezroczysty, gdyż nie ma żdanej przeglądarki dla urządzeń nie działających w trybie administratora. W innym przypadku, aplikacja "Beem" pozwoli Ci ustawić proxy SOCKS5 na 127.0.0.1 i port 9050. Powinno się używać SSL, by chronić swoją nazwę użytkownika i hasło.</string>
 
-<string name="help_text_5">If you root your device, whether it is 1.x or 2.x based, Orbot can transparently proxy any applicatons you select
-and all DNS requests. This includes the built-in Browser, Gmail, YouTube and Maps, as well as any third-party app.</string>
+<string name="help_text_5">Jeśli uruchomisz urządzenie w trybie administratora, czy jest oparte na wersji 1.x, czy 2.x, Orbot może pzrezroczyście przekierowywać ruch każdej aplikacji, którą wybierzesz i wszystkie żądania DNS. Wlicza się w to wbudowaną przeglądarkę, Gmail, YouTube i Mapy, jak również jakiekolwiek aplikacje firm trzecich.</string>
+
+<string name="menu_verify">Sprawdź</string>
+<string name="menu_exit">Wyjście</string>
+<string name="powered_by">napędzane oprogramowaniem Projektu Tor</string>
+<string name="press_to_start">- wciśnij, by zacząć -</string>
+
+<string name="pref_trans_proxy_group">Przekierowanie przezroczyste (Wymaga uprawnień administratora)</string>
+<string name="pref_trans_proxy_title">Przekierowanie przezroczyste</string>
+<string name="pref_trans_proxy_summary">Automatyczne toryfikowanie aplikacji</string>
+
+<string name="pref_transparent_all_title">Przepuść wszystko przez Tora</string>
+<string name="pref_transparent_all_summary">Przekierowanie ruchu wszystkich aplikacji przez Tora</string>
+
+<string name="status_install_success">Binarki Tora pomyslnie zainstalowane!</string>
+<string name="status_install_fail">Nie można zainstalować plików binarnych Tora. Zajrzyj do dziennika i powiadom tor-assistants@torproject.org</string>
+
+<string name="title_error">Błąd Aplikacji</string>
+
+<string name="wizard_title">Witamy w Orbocie</string>
+
+<string name="wizard_btn_tell_me_more">O Orbocie</string>
+<string name="btn_next">Dalej</string>
+<string name="btn_back">wstecz</string>
+<string name="btn_finish">Koniec</string>
+
+<string name="btn_okay">OK</string>
+<string name="btn_cancel">Anuluj</string>
 
 
-<string name="menu_verify">Check</string>
-<string name="menu_exit">Exit</string>
+<!-- Welcome Wizard strings (DJH) -->
+ 
+    <string name="wizard_welcome_msg">Orbot daje Tora Androidowi. Tor jest otwartym oprogramowaniem i otwartą siecią, która pomaga bronić się przed podsłuchem sieci znanym jako analiza ruchu, który zagraża wolności osobistej i prywatności, poufnym działaniom biznesowym i relacjami oraz bezpieczeństwu państwa.\n\n*UWAGA:* Sama instalacja Orbota _nie_ zanonimizuje magicznie Twojego ruchu! Ten kreator pozwoli Ci w pierwszych krokach.</string>
+    <string name="wizard_details">Niektóre szczegóły o Orbocie</string>
+    <string name="wizard_details_msg">Orbot jest otwartą aplikacją zawierającą Tora, LibEvent i Privoxy. Dostarcza lokalnego pośrednika HTTP (8118) i SOCKS (9050) do sieci Tora. Orbot ma możliwość, na urządzeniu uruchomionym z prawami administratora, wysyłać cały ruch internetowy przez Tora.</string>
+    <string name="wizard_permissions_root">Dostęp zezwolony</string>
+    <string name="wizard_permissions_stock">Prawa dostepu Orbota</string>
+    <string name="wizard_premissions_msg_root">Doskonale! Odkryliśmy, że masz uprawnienia administratora włączone dla Orbota. Będziemy mądrze korzystać z tej władzy.</string>
+    <string name="wizard_permissions_msg_stock"> Podczas gdy nie jest to wymagane, Orbot może stać się znacznie potężniejszym narzędziem, gdy masz prawa administratora na swoim urządzeniu. Użyj przycisku poniżej, by dać Orbotowi duży uprawnienia.</string>
+   
+    <string name="wizard_permissions_no_root">Jeśli nie masz uprawnień administratora lub nie masz pojęcia, o czym mówimy, używaj aplikacji skonfigurowanych do pracy z Orbotem.</string>
+    <string name="wizard_permissions_consent">Rozumiem i chcę kontynuować bez uprawnień administratora</string>
+   
+    <string name="wizard_permission_enable_root">Daj uprawnienia administratora Orbotowi</string>
+    <string name="wizard_configure">Skonfiguruj Toryfikację</string>
+    <string name="wizard_configure_msg">Orbot daje Ci możliwość przekierowania całego ruchu aplikacji przez Tora ALBO wybrania aplikacji pojedynczo.</string> 
+    <string name="wizard_configure_all">Przekierowuj wszystkie aplikacje przez Tora</string>
+    <string name="wizard_configure_select_apps">Wybierz poszczególne aplikacje dla Tora</string>
+    
+    
+    <string name="wizard_tips_tricks">Aplikacje skonfigurowane dla Orbota</string>
+    <string name="wizard_tips_msg">Zachęcamy do pobierania i używania aplikacji, które wiedzą, jak łączyć się bezpośrednio z Orbotem. Kliknij na poniższe przyciski, by zainstalować.</string>
+    <string name="wizard_tips_otrchat">OTRCHAT - Bezpieczny klieny rozmów dla Androida</string>
+    <string name="wizard_tips_orweb">ORWEB (tylko Android 1.x) - Przeglądarka zaprojektowana do prywatności i dla Orbota</string>
+    <string name="wizard_tips_proxy">Ustawienia Proxy - NDowiedz się, jak konfiguroać aplikacje do współpracy z Orbotem</string>
+    
+    <string name="wizard_proxy_help_info">Ustawienia Proxy</string>
+    <string name="wizard_proxy_help_msg">Jeśli aplikacja na Androida, której używasz ma obsługę proxy HTTP lub SOCKS, możesz skonfigurować ją do łączenia się z Orbotem i używania Tora.\n\n
+    Ustawienie hosta to 127.0.0.1 lub "localhost". Dla HTTP, numer portu to 8118. Dla SOCKS pośrednik to 9050. Powinno się używać SOCKS4A lub SOCKS5, jeśli to możliwe.
+    \n\n
+    Możesz dowiedzieć się więcej o przekierowaniu ruchu na Androidzie z FAQ pod adresem: http://tinyurl.com/proxyandroid
+    </string>
+    
+    <string name="wizard_final">Orbot jest gotowy!</string>
+    <string name="wizard_final_msg">Setki tysięcy ludzi na całym świecie używają Tora z różnych powodów: dziennikarze i blogerzy, działacze na rzecz praw człowieka, stróże prawa, żołnierze, korporacje, obywatele represyjnych reżimów i zwykli obywatele... teraz Ty też możesz!</string>
+    
+    <string name="otrchat_apk_url">http://github.com/downloads/guardianproject/OtRChat/OtRChat-0.0.1-alpha-build6a.apk</string>
+    <string name="orweb_apk_url">http://github.com/downloads/guardianproject/Orweb/Orweb-0.0.1c.apk.apk</string>
+    
+<!-- END Welcome Wizard strings (DJH) -->
+ 
+
+	<string name="connect_first_time">Pomyślnie połaczono z siecią Tora - ale to NIE oznacza, że Twoje urządzenie jest bezpieczne. Możesz użyć opcji \\'Sprawdź\\' w menu, aby przetestować swoją przeglądarkę. \n\nOdwiedź nas na https://guardianproject.info/apps/orbot lub wyślij email na help@guardianproject.info, by dowiedzieć się więcej.</string>
+
+	<string name="tor_check">To otworzy Twoją domyślną przeglądarkę na adresie https://check.torproject.org w celu sprawdzenia, czy Orbot jest skonfigurowany i jest poąłczenie z Torem.</string>
 </resources>
