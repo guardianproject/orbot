@@ -61,8 +61,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     public void onCreate() {
     	super.onCreate();
        
-    	Log.d(TAG,"TorService: onCreate");
-
+    
       
     }
     
@@ -73,7 +72,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 
  		if (procId != -1)
  		{
- 			Log.d(TAG,"Found existing Tor process");
+ 			logNotice("Found existing Tor process");
  			
             sendCallbackLogMessage ("found existing Tor process...");
 
@@ -111,7 +110,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 	public void onLowMemory() {
 		super.onLowMemory();
 		
-		Log.d(TAG, "Low Memory Called");
+		logNotice( "Low Memory Warning!");
 		
 	}
 
@@ -121,7 +120,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 	 */
 	public boolean onUnbind(Intent intent) {
 		
-		Log.d(TAG, "onUnbind Called: " + intent.getAction());
+	//	logNotice( "onUnbind Called: " + intent.getAction());
 		
 		isBound = false;
 		
@@ -213,9 +212,6 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     	  // Unregister all callbacks.
         mCallbacks.kill();
       
-        
-    	Log.d(TAG,"onDestroy called");
-	     
     	stopTor();
     }
     
@@ -277,7 +273,6 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 		{
 			try {
 				logNotice("sending SHUTDOWN signal to Tor process");
-			//	conn.shutdownTor(arg0)
 				conn.signal("SHUTDOWN");
 			} catch (Exception e) {
 				Log.d(TAG,"error shutting down Tor via connection",e);
@@ -305,7 +300,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 		while (procId != -1)
 		{
 			
-			Log.d(TAG,"Found Privoxy PID=" + procId + " - killing now...");
+			logNotice("Found Privoxy PID=" + procId + " - killing now...");
 			String[] cmd = { SHELL_CMD_KILL + ' ' + procId + "" };
 
 			TorServiceUtils.doShellCommand(cmd,log, false, false);
@@ -317,10 +312,13 @@ public class TorService extends Service implements TorServiceConstants, Runnable
    
     private void logNotice (String msg)
     {
-
-    	Log.d(TAG, msg);
-    	sendCallbackLogMessage(msg);
-		
+    	if (msg != null && msg.trim().length() > 0)
+    	{
+    		if (LOG_OUTPUT_TO_DEBUG)        	
+        		Log.d(TAG, msg);
+    	
+    		sendCallbackLogMessage(msg);
+    	}
     }
     
     private String findAPK ()
@@ -333,7 +331,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     	int MAX_TRIES = 10;
     	
     	String buildPath = apkBase + TOR_APP_USERNAME + APK_EXT;
-    	Log.d(TAG, "Checking APK location: " + buildPath);
+    	logNotice("Checking APK location: " + buildPath);
 		
     	File fileApk = new File(buildPath);
     	
@@ -345,7 +343,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     		buildPath = apkBase + TOR_APP_USERNAME + '-' + i + APK_EXT;
     		fileApk = new File(buildPath);
     	
-    		Log.d(TAG, "Checking APK location: " + buildPath);
+    		logNotice( "Checking APK location: " + buildPath);
     		
     		if (fileApk.exists())
     			return fileApk.getAbsolutePath();
@@ -357,7 +355,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     	buildPath = apkBaseExt + pkgFile;
     	fileApk = new File(buildPath);
     	
-		Log.d(TAG, "Checking external storage APK location: " + buildPath);
+    	logNotice( "Checking external storage APK location: " + buildPath);
 		
 		if (fileApk.exists())
 			return fileApk.getAbsolutePath();
@@ -367,7 +365,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     		buildPath = apkBaseExt + '-' + i + pkgFile;
     		fileApk = new File(buildPath);
     	
-    		Log.d(TAG, "Checking external storage APK location: " + buildPath);
+    		logNotice( "Checking external storage APK location: " + buildPath);
     		
     		if (fileApk.exists())
     			return fileApk.getAbsolutePath();
@@ -381,16 +379,16 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     {
     	
     	
-    	Log.d(TAG,"checking Tor binaries");
+    	logNotice( "checking Tor binaries");
     	
     	//appHome = getApplicationContext().getFilesDir().getAbsolutePath();
     	appHome = "/data/data/" + TOR_APP_USERNAME + "/";
     	
-    	Log.d(TAG,"appHome=" + appHome);
+    	logNotice( "appHome=" + appHome);
     	
     	String apkPath = findAPK();
     	
-    	Log.d(TAG,"found apk at: " + apkPath);
+    	logNotice( "found apk at: " + apkPath);
     	
     	boolean apkExists = new File(apkPath).exists();
     	
@@ -522,7 +520,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 		String[] torCmd = {torBinaryPath + " -f " + torrcPath  + " || exit\n"};
 		TorServiceUtils.doShellCommand(torCmd, log, false, false);
 	
-		Log.d(TAG,"Starting tor process: " + torCmd[0]);
+		logNotice( "Starting tor process: " + torCmd[0]);
 		
 		Thread.sleep(1000);
 		int procId = TorServiceUtils.findProcessId(torBinaryPath);
@@ -568,7 +566,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     private void runPrivoxyShellCmd () throws Exception
     {
     	
-    	Log.d(TAG,"Starting privoxy process");
+    	logNotice( "Starting privoxy process");
     	
 			int privoxyProcId = TorServiceUtils.findProcessId(privoxyPath);
 
@@ -630,7 +628,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 			{
 				try
 				{
-					Log.d(TAG,"Connecting to control port: " + TOR_CONTROL_PORT);
+					logNotice( "Connecting to control port: " + TOR_CONTROL_PORT);
 					
 					String baseMessage = getString(R.string.tor_process_connecting);
 					sendCallbackStatusMessage(baseMessage);
@@ -641,7 +639,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 			        
 					sendCallbackStatusMessage(getString(R.string.tor_process_connecting_step2));
 
-			        Log.d(TAG,"SUCCESS connected to control port");
+					logNotice( "SUCCESS connected to control port");
 			        
 			        String torAuthCookie = appHome + "data/control_auth_cookie";
 			        
@@ -650,7 +648,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 			        new FileInputStream(new File(torAuthCookie)).read(cookie);
 			        conn.authenticate(cookie);
 			        		
-			        Log.d(TAG,"SUCCESS authenticated to control port");
+			        logNotice( "SUCCESS authenticated to control port");
 			        
 					sendCallbackStatusMessage(getString(R.string.tor_process_connecting_step2) + getString(R.string.tor_process_connecting_step3));
 
@@ -722,7 +720,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 	       // We extend NullEventHandler so that we don't need to provide empty
 	       // implementations for all the events we don't care about.
 	       // ...
-        Log.d(TAG,"adding control port event handler");
+		logNotice( "adding control port event handler");
 
 		conn.setEventHandler(this);
 	    
@@ -731,7 +729,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 	      // conn.setEvents(Arrays.asList(new String[]{
 	        //  "DEBUG", "INFO", "NOTICE", "WARN", "ERR"}));
 
-	    Log.d(TAG,"SUCCESS added control port event handler");
+		logNotice( "SUCCESS added control port event handler");
 	    
 	    
 
@@ -783,7 +781,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 
 	public void message(String severity, String msg) {
 		
-          Log.d(TAG, "[Tor Control Port] " + severity + ": " + msg);
+		logNotice(  "[Tor Control Port] " + severity + ": " + msg);
           
           if (msg.indexOf(TOR_CONTROL_PORT_MSG_BOOTSTRAP_DONE)!=-1)
           {
@@ -813,40 +811,46 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 
 	public void orConnStatus(String status, String orName) {
 		
-		StringBuilder sb = new StringBuilder();
-		sb.append("orConnStatus (");
-		sb.append((orName) );
-		sb.append("): ");
-		sb.append(status);
-		
-		logNotice(sb.toString());
+		if (LOG_OUTPUT_TO_DEBUG)
+		{
+			StringBuilder sb = new StringBuilder();
+			sb.append("orConnStatus (");
+			sb.append((orName) );
+			sb.append("): ");
+			sb.append(status);
+			
+			logNotice(sb.toString());
+		}
 	}
 
 
 	public void streamStatus(String status, String streamID, String target) {
 		
-		StringBuilder sb = new StringBuilder();
-		sb.append("StreamStatus (");
-		sb.append((streamID));
-		sb.append("): ");
-		sb.append(status);
-		
-		logNotice(sb.toString());
-
-		
+		if (LOG_OUTPUT_TO_DEBUG)
+		{
+			StringBuilder sb = new StringBuilder();
+			sb.append("StreamStatus (");
+			sb.append((streamID));
+			sb.append("): ");
+			sb.append(status);
+			
+			logNotice(sb.toString());
+		}
 	}
 
 
 	public void unrecognized(String type, String msg) {
 		
-		StringBuilder sb = new StringBuilder();
-		sb.append("Message (");
-		sb.append(type);
-		sb.append("): ");
-		sb.append(msg);
-		
-		logNotice(sb.toString());
-
+		if (LOG_OUTPUT_TO_DEBUG)
+		{
+			StringBuilder sb = new StringBuilder();
+			sb.append("Message (");
+			sb.append(type);
+			sb.append("): ");
+			sb.append(msg);
+			
+			logNotice(sb.toString());
+		}
 		
 	}
 
@@ -865,17 +869,18 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 
 	public void circuitStatus(String status, String circID, String path) {
 		
-		/*
-		StringBuilder sb = new StringBuilder();
-		sb.append("Circuit (");
-		sb.append((circID));
-		sb.append("): ");
-		sb.append(status);
-		sb.append("; ");
-		sb.append(path);
-		
-		logNotice(sb.toString());
-		*/
+		if (LOG_OUTPUT_TO_DEBUG)
+		{
+			StringBuilder sb = new StringBuilder();
+			sb.append("Circuit (");
+			sb.append((circID));
+			sb.append("): ");
+			sb.append(status);
+			sb.append("; ");
+			sb.append(path);
+			
+			logNotice(sb.toString());
+		}
 		
 	}
 	
