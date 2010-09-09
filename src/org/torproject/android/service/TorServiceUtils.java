@@ -12,6 +12,11 @@ import android.util.Log;
 public class TorServiceUtils implements TorServiceConstants {
 
 	
+	private static void logNotice (String msg)
+	{
+		if (LOG_OUTPUT_TO_DEBUG)
+			Log.d(TAG, msg);
+	}
 	
 	public static int findProcessId(String command) 
 	{
@@ -112,7 +117,7 @@ public class TorServiceUtils implements TorServiceConstants {
 	
 	public static int doShellCommand(String[] cmds, StringBuilder log, boolean runAsRoot, boolean waitFor) throws Exception
 	{
-		Log.d(TAG,"executing shell cmds: " + cmds[0] + "; runAsRoot=" + runAsRoot);
+		logNotice("executing shell cmds: " + cmds[0] + "; runAsRoot=" + runAsRoot);
 		
 		 	
 		Process proc = null;
@@ -163,7 +168,7 @@ public class TorServiceUtils implements TorServiceConstants {
 				log.append(exitCode);
 				log.append("\n");
 				
-				Log.d(TAG,"command process exit value: " + exitCode);
+				logNotice("command process exit value: " + exitCode);
 			}
         
         

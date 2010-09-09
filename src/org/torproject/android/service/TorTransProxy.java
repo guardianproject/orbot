@@ -5,27 +5,17 @@ import org.torproject.android.TorifiedApp;
 import android.content.Context;
 import android.util.Log;
 
-public class TorTransProxy {
+public class TorTransProxy implements TorServiceConstants {
 	
 	private final static String TAG = TorServiceConstants.TAG;
-	
-	
+		
 	//private static String BASE_DIR = "/data/data/" + TorServiceConstants.TOR_APP_USERNAME + "/";
-	
-	/*
-	private final static String CMD_NAT_FLUSH = "iptables -t nat -F || exit\n";
-	private final static String CMD_FILTER_FLUSH = "iptables -t filter -F || exit\n";
-	
-	private final static String CMD_DNS_PROXYING_ADD = "iptables -t nat -A PREROUTING -p udp --dport 53 -j DNAT --to 127.0.0.1:5400 || exit\n";
-	
-	private final static String IPTABLES_ADD = " -A ";
-	*/
-	
-	//private final static String CMD_DNS_PROXYING_DELETE = "iptables -t nat -D PREROUTING -p udp --dport 53 -j DNAT --to 127.0.0.1:5400 || exit\n";
-	// - just calling a system wide flush of iptables rules
-	//private final static String IPTABLES_DELETE = " -D "; //not deleting manually anymore - just calling a system wide flush of iptables rules
-   // private final static String IPTABLES_DROP_ALL = " -j DROP ";
-	
+
+	private static void logNotice (String msg)
+	{
+		if (LOG_OUTPUT_TO_DEBUG)
+			Log.d(TAG, msg);
+	}
 	/**
 	 * Check if we have root access
 	 * @return boolean true if we have root
@@ -48,7 +38,8 @@ public class TorTransProxy {
 		} catch (Exception e) {
 			Log.w(TAG,"Error checking for root access: " + e.getMessage() ,e);
 		}
-		Log.w(TAG, "Could not acquire root access: " + log.toString());
+		
+		logNotice("Could not acquire root access: " + log.toString());
 		return false;
 	}
 	
@@ -67,7 +58,7 @@ public class TorTransProxy {
 			String[] cmd = {"iptables -v"};
 			int code = TorServiceUtils.doShellCommand(cmd, log, true, true);
 			String msg = log.toString();
-			Log.d(TAG,cmd[0] + ";errCode=" + code + ";resp=" + msg);
+			logNotice(cmd[0] + ";errCode=" + code + ";resp=" + msg);
 			
 			
 			String out = log.toString();
@@ -85,7 +76,7 @@ public class TorTransProxy {
 			Log.w(TAG,"Error checking iptables version: " + e.getMessage() ,e);
 		}
 		
-		Log.w(TAG, "Could not acquire check iptables: " + log.toString());
+		logNotice("Could not acquire check iptables: " + log.toString());
 		return null;
 	}
 	
@@ -146,7 +137,7 @@ public class TorTransProxy {
 	    	String[] cmd = {script.toString()};	    	
 			code = TorServiceUtils.doShellCommand(cmd, res, true, true);		
 			String msg = res.toString();
-			Log.d(TAG,cmd[0] + ";errCode=" + code + ";resp=" + msg);
+			logNotice(cmd[0] + ";errCode=" + code + ";resp=" + msg);
 			
 		
 		return code;
@@ -163,7 +154,7 @@ public class TorTransProxy {
 		String baseDir = findBaseDir();
 
 		String iptablesVersion = getIPTablesVersion();
-		Log.d(TAG, "iptables version: " + iptablesVersion);
+		logNotice( "iptables version: " + iptablesVersion);
 		
 		boolean ipTablesOld = false;
 		if (iptablesVersion != null && iptablesVersion.startsWith("1.3")){
@@ -208,7 +199,7 @@ public class TorTransProxy {
 					continue;
 				}
 				
-				Log.d(TAG,"enabling transproxy for app: " + apps[i].getUsername() + "(" + apps[i].getUid() + ")");
+				logNotice("enabling transproxy for app: " + apps[i].getUsername() + "(" + apps[i].getUid() + ")");
 			 
 				//TCP
 				script.append(baseDir);
@@ -285,7 +276,7 @@ public class TorTransProxy {
     	String[] cmdAdd = {script.toString()};    	
 		code = TorServiceUtils.doShellCommand(cmdAdd, res, true, true);
 		String msg = res.toString();
-		Log.d(TAG,cmdAdd[0] + ";errCode=" + code + ";resp=" + msg);
+		logNotice(cmdAdd[0] + ";errCode=" + code + ";resp=" + msg);
 		
 		return code;
     }	
