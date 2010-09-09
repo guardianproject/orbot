@@ -118,40 +118,6 @@ public class TorTransProxy {
 			*/
 	}
 	
-	
-	/*
-	public static int setDNSProxying () throws Exception
-	{
-		String baseDir = findBaseDir();
-		
-    	final StringBuilder log = new StringBuilder();
-    	int code;
-    	
-    	String[] cmds = {baseDir + CMD_DNS_PROXYING_ADD};
-    	
-    
-    	code = TorServiceUtils.doShellCommand(cmds, log, true, true);
-    	
-    	return code;
-    	
-    	
-	}*/
-
-    /*
-    public static int setIptablesDropAll() {
-        // iptables -A OUTPUT -j DROP
-    }
-
-    public static int setTransparentProxying() {
-        // Flush everything from iptables first
-        purgeNatIptables();
-        // Setup DNS redirection
-        setDNSProxying();
-        //
-
-        //
-    }
-    */
 
 	public static int purgeIptables(Context context, TorifiedApp[] apps) throws Exception {
 
@@ -187,28 +153,7 @@ public class TorTransProxy {
 		
 	}
 	
-	/*
-	public static boolean purgeIptables() {
-		
-		String baseDir = findBaseDir();
 
-		
-    	StringBuilder res = new StringBuilder();
-		try {
-			String[] cmds = {baseDir + CMD_NAT_FLUSH, baseDir + CMD_FILTER_FLUSH};
-			int code = TorServiceUtils.doShellCommand(cmds, res, true, true);
-			if (code != 0) {
-				Log.w(TAG, "error purging iptables. exit code: " + code + "\n" + res);
-				return false;
-			}
-			
-			
-			return true;
-		} catch (Exception e) {
-			Log.w(TAG,"error purging iptables: " + e);
-			return false;
-		}
-    }*/
 	
 	public static int setTransparentProxyingByApp(Context context, TorifiedApp[] apps, boolean forceAll) throws Exception
 	{
@@ -288,23 +233,50 @@ public class TorTransProxy {
 				script.append(" --dport 53"); //drop all UDP packets as Tor won't handle them
 				
 				if (ipTablesOld)
-					script.append(" -j DNAT --to 127.0.0.1:9040");
+					script.append(" -j DNAT --to 127.0.0.1:5400");
 				else
-					script.append(" -j REDIRECT --to-ports 9040");
+					script.append(" -j REDIRECT --to-ports 5400");
+				
 				script.append(" || exit\n");
 				
 				
 				//EVERYTHING ELSE UDP - DROP!
-				if (!ipTablesOld) //for some reason this doesn't work on iptables 1.3.7
+				if (ipTablesOld) //for some reason this doesn't work on iptables 1.3.7
 				{
+					
 					script.append(baseDir);
 					script.append("iptables");
-					script.append(" -A OUTPUT -p udp -m owner --uid-owner ");
+					script.append(" -t nat -A OUTPUT -m owner --uid-owner ");
 					script.append(apps[i].getUid());
 					script.append(" -j DROP"); //drop all other packets as Tor won't handle them
 					script.append(" || exit\n");
 				}	
-				
+				else
+				{
+					script.append(baseDir);
+					script.append("iptables -t filter");
+					script.append(" -A OUTPUT -p tcp");
+					script.append(" -m owner --uid-owner ");
+					script.append(apps[i].getUid());
+					script.append(" -m tcp --dport 9040 -j ACCEPT");
+					script.append(" || exit\n");
+					
+					script.append(baseDir);
+					script.append("iptables -t filter");
+					script.append(" -A OUTPUT -p udp");
+					script.append(" -m owner --uid-owner ");
+					script.append(apps[i].getUid());
+					script.append(" -m udp --dport 5400 -j ACCEPT");
+					script.append(" || exit\n");
+										
+					script.append(baseDir);
+					script.append("iptables");
+					script.append(" -t filter -A OUTPUT -m owner --uid-owner ");
+					script.append(apps[i].getUid());
+					script.append(" -j DROP"); //drop all other packets as Tor won't handle them
+					script.append(" || exit\n");
+					
+				}
 				
 			}		
 		}
@@ -318,53 +290,5 @@ public class TorTransProxy {
 		return code;
     }	
 	
-
-	public static boolean setTransparentProxyingByPort(Context context, String[] ports) {
-		
-		String baseDir = findBaseDir();
-
-		
-    	final StringBuilder script = new StringBuilder();
-    	
-		try {
-			int code;
-			
-			for (int i = 0; i < ports.length; i++)
-			{
-				Log.d(TAG,"enabling transproxy for port: " + ports[i]);
-				 
-				//TCP
-
-				script.append(baseDir);
-				script.append("iptables -t nat");
-				script.append("-A PREROUTING -p tcp --dport ");
-				script.append(ports[i]);
-				script.append(" -j DNAT --to 127.0.0.1:9040");
-				script.append(" || exit\n");
-				
-				//UDP
-
-				script.append(baseDir);
-				script.append("iptables -t nat");
-				script.append("-A PREROUTING -p udp --dport ");
-				script.append(ports[i]);
-				script.append(" -j DNAT --to 127.0.0.1:9040");
-				script.append(" || exit\n");
-					
-			}
-			
-	    	StringBuilder res = new StringBuilder();
-	    	
-	    	String[] cmd = {script.toString()};	    	
-			code = TorServiceUtils.doShellCommand(cmd, res, true, true);
-			String msg = res.toString();
-			Log.d(TAG,cmd[0] + ";errCode=" + code + ";resp=" + msg);
-			
-		
-		} catch (Exception e) {
-			Log.w(TAG, "error refreshing iptables: " + e);
-		}
-		return false;
-    }
 
 }
