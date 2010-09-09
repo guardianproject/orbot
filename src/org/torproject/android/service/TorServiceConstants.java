@@ -4,7 +4,7 @@ package org.torproject.android.service;
 
 public interface TorServiceConstants {
 
-	public final static String TAG = "TOR_SERVICE";
+	public final static String TAG = "ORBOT";
 
 	public final static String TOR_APP_USERNAME = "org.torproject.android";
 	

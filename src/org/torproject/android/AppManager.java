@@ -140,7 +140,7 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
 	protected void onStop() {
 		super.onStop();
 		
-		//Log.i(getClass().getName(),"Exiting Preferences");
+		//Log.d(getClass().getName(),"Exiting Preferences");
 	}
 
 

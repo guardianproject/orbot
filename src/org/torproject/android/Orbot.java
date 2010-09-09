@@ -306,8 +306,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 			setResult(RESULT_OK, nResult);
 			
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Log.e(TAG, "error accessing hidden service", e);
 		}
 		
 		
@@ -478,6 +477,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 		
 		txtMessageLog.setClickable(true);
     	txtMessageLog.setText(logBuffer.toString());
+    	
 		
 	}
 	
@@ -684,7 +684,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 			String onionHostname = Utils.readString(new FileInputStream(file));
 			return onionHostname.trim();
 		} catch (FileNotFoundException e) {
-			Log.i(TAG, "unable to read onion hostname file",e);
+			Log.d(TAG, "unable to read onion hostname file",e);
 			return null;
 		}
 	}
@@ -820,6 +820,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 		Message msg = mHandler.obtainMessage(ENABLE_TOR_MSG);
     	mHandler.sendMessage(msg);
     	
+    	logBuffer = new StringBuffer();
     }
     
     private void stopTor () throws RemoteException
@@ -862,7 +863,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 		}
 		catch (Exception e)
 		{
-			Log.i(TAG,"error onclick",e);
+			Log.d(TAG,"error onclick",e);
 		}
 		
 		return super.onTouchEvent(event);
@@ -900,7 +901,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 			}
 			catch (Exception e)
 			{
-				Log.i(TAG,"error onclick",e);
+				Log.d(TAG,"error onclick",e);
 			}
 			
 	//	}
@@ -954,7 +955,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
                 	logBuffer.append('\n');
                 	
                 	
-                	if (torServiceMsg.length() > 0 && torServiceMsg.charAt(0)!='>')
+                	if (torServiceMsg.length() > 0)
                 		updateStatus(torServiceMsg);
                 	
                     break;
@@ -965,6 +966,10 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
                 	logBuffer.append(torLogMsg);
                 	logBuffer.append('\n');
                 	
+                	if (txtMessageLog != null)
+                	{
+                		txtMessageLog.append(torLogMsg + '\n');
+                	}
                 	
                     break;
                 case ENABLE_TOR_MSG:
@@ -1017,7 +1022,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
                 // do anything with it; we can count on soon being
                 // disconnected (and then reconnected if it can be restarted)
                 // so there is no need to do anything here.
-            	Log.i(TAG,"error registering callback to service",e);
+            	Log.d(TAG,"error registering callback to service",e);
             }
        
           

@@ -5,25 +5,12 @@ package org.torproject.android.service;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
 import java.util.StringTokenizer;
 
-import org.torproject.android.TorifiedApp;
-
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
 import android.util.Log;
 
 public class TorServiceUtils implements TorServiceConstants {
 
-	
-	private final static String PREFS_KEY = "OrbotPrefs";
-	private final static String PREFS_KEY_TORIFIED = "PrefTord";
 	
 	
 	public static int findProcessId(String command) 
@@ -125,7 +112,7 @@ public class TorServiceUtils implements TorServiceConstants {
 	
 	public static int doShellCommand(String[] cmds, StringBuilder log, boolean runAsRoot, boolean waitFor) throws Exception
 	{
-		Log.i(TAG,"executing shell cmds: " + cmds[0] + "; runAsRoot=" + runAsRoot);
+		Log.d(TAG,"executing shell cmds: " + cmds[0] + "; runAsRoot=" + runAsRoot);
 		
 		 	
 		Process proc = null;
@@ -176,7 +163,7 @@ public class TorServiceUtils implements TorServiceConstants {
 				log.append(exitCode);
 				log.append("\n");
 				
-				Log.i(TAG,"command process exit value: " + exitCode);
+				Log.d(TAG,"command process exit value: " + exitCode);
 			}
         
         

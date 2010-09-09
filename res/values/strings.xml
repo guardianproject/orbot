@@ -35,6 +35,9 @@
 <string name="button_close">Close</string>
 <string name="button_about">About</string>
 
+<string name="button_clear_log">Clear Log</string>
+
+
 <string name="help_text_1">Orbot requires different configuration depending on the Android operating system version it is used on.
 Please visit https://www.torproject.org/docs/android.html for the latest information.</string>
 
