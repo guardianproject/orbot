@@ -33,10 +33,10 @@ public class TorBinaryInstaller implements TorServiceConstants {
 	{
 		
 		boolean torBinaryExists = new File(installPath + TOR_BINARY_ASSET_KEY).exists();
-		Log.i(TAG,"Tor binary exists=" + torBinaryExists);
+		Log.d(TAG,"Tor binary exists=" + torBinaryExists);
 		
 		boolean privoxyBinaryExists = new File(installPath + PRIVOXY_ASSET_KEY).exists();
-		Log.i(TAG,"Privoxy binary exists=" + privoxyBinaryExists);
+		Log.d(TAG,"Privoxy binary exists=" + privoxyBinaryExists);
 	
 		if (!(torBinaryExists && privoxyBinaryExists) || force)
 			installFromZip ();
@@ -72,12 +72,12 @@ public class TorBinaryInstaller implements TorServiceConstants {
 			
 			zip.close();
 			
-			Log.i(TAG,"SUCCESS: unzipped tor, privoxy, iptables binaries from apk");
+			Log.d(TAG,"SUCCESS: unzipped tor, privoxy, iptables binaries from apk");
 	
 		}
 		catch (IOException ioe)
 		{
-			Log.i(TAG,"FAIL: unable to unzip binaries from apk",ioe);
+			Log.d(TAG,"FAIL: unable to unzip binaries from apk",ioe);
 		
 		}
 	}
@@ -108,7 +108,7 @@ public class TorBinaryInstaller implements TorServiceConstants {
 
         {
 
-        	Log.i(TAG,"Error opening output file " + targetFilename,e);
+        	Log.d(TAG,"Error opening output file " + targetFilename,e);
 
         	return;
         }
@@ -135,7 +135,7 @@ public class TorBinaryInstaller implements TorServiceConstants {
 
         {
 
-            Log.i(TAG,"Error writing output file '" + targetFilename + "': " + e.toString());
+            Log.d(TAG,"Error writing output file '" + targetFilename + "': " + e.toString());
 
             return;
 

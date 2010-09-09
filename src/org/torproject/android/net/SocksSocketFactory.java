@@ -65,7 +65,7 @@ public class SocksSocketFactory implements SocketFactory {
 			sProxy = new Socks5Proxy(proxyaddress, proxyport);
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
-			Log.i("TOR_SERVICE","SocksSF couldn't connect",e);
+			Log.d("TOR_SERVICE","SocksSF couldn't connect",e);
 		}
 		
 		sProxy.resolveAddrLocally(false);
@@ -77,7 +77,7 @@ public class SocksSocketFactory implements SocketFactory {
 			InetAddress localAddress, int localPort, HttpParams params) throws IOException,
 			UnknownHostException, ConnectTimeoutException {
 		
-		Log.i("TOR_SERVICE","SocksSocketFactory: connectSocket: " + host + ":" + port);
+		Log.d("TOR_SERVICE","SocksSocketFactory: connectSocket: " + host + ":" + port);
 		
 		if (host == null) {
             throw new IllegalArgumentException("Target host may not be null.");

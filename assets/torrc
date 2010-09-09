@@ -2,7 +2,6 @@ SocksPort 9050
 SocksListenAddress 127.0.0.1
 SafeSocks 1
 Log notice stdout
-##Log debug syslog
 DataDirectory /data/data/org.torproject.android/data
 ControlPort 9051
 CookieAuthentication 1

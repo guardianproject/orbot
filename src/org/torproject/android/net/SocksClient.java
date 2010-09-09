@@ -47,9 +47,9 @@ private static final int BUF_SIZE = 1024;
       ss = new SocksSocket(host, port);
       out = ss.getOutputStream();
       in  = ss.getInputStream();
-      Log.i(getClass().getName(),"Connected...");
-      Log.i(getClass().getName(),"TO: "+host+":"+port);
-      Log.i(getClass().getName(),"ViaProxy: "+ss.getLocalAddress().getHostAddress()
+      Log.d(getClass().getName(),"Connected...");
+      Log.d(getClass().getName(),"TO: "+host+":"+port);
+      Log.d(getClass().getName(),"ViaProxy: "+ss.getLocalAddress().getHostAddress()
                                  +":"+ss.getLocalPort());
 
    }
