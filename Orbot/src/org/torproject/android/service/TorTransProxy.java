@@ -213,7 +213,7 @@ public class TorTransProxy {
 	public static int setTransparentProxyingByApp(Context context, TorifiedApp[] apps, boolean forceAll) throws Exception
 	{
 
-		android.os.Debug.waitForDebugger();
+		//android.os.Debug.waitForDebugger();
 		
 		String baseDir = findBaseDir();
 
