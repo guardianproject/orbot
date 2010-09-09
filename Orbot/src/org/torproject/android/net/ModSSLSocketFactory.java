@@ -60,8 +60,6 @@ import org.apache.http.conn.ssl.X509HostnameVerifier;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 
-import android.util.Log;
-
 
 
 /**
@@ -255,8 +253,6 @@ public class ModSSLSocketFactory implements LayeredSocketFactory {
         this.socketfactory = SSLSocketFactory.getSocketFactory();
         //this.nameResolver = null;
         
-        //Log.i("TOR_SERVICE","ModSSLSocketFactory: proxied via " + host + ":" + port);
-        
         this.mSocksSocketFactory = new SocksSocketFactory("127.0.0.1",9050);
     }
 
@@ -325,15 +321,10 @@ public class ModSSLSocketFactory implements LayeredSocketFactory {
           
         }*/
         
-        Log.i("TOR_SERVICE","connecting socks factory");
         Socket sSocket = mSocksSocketFactory.connectSocket(underlying, host, port, localAddress, localPort, params);
-        Log.i("TOR_SERVICE","creating SSL Socket");
         
        // SSLSocket sslsock =  (SSLSocket) socketfactory.connectSocket(sSocket, host, port, localAddress, localPort, params);
         SSLSocket sslsock = (SSLSocket)socketfactory.createSocket(sSocket, host, port, true);
-        
-        
-        Log.i("TOR_SERVICE","created SSL Socket!");
         
         if ((localAddress != null) || (localPort > 0)) {
 
@@ -343,8 +334,6 @@ public class ModSSLSocketFactory implements LayeredSocketFactory {
 
             InetSocketAddress isa =
                 new InetSocketAddress(localAddress, localPort);
-            
-            Log.i("TOR_SERVICE","binding SSL Socket!");
 
             sslsock.bind(isa);
         }

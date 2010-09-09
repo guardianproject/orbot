@@ -84,7 +84,7 @@ public class Utils {
 		    		return true;
 			    	
 				} catch (IOException e) {
-				//	Log.i(TAG, "error writing file: " + path, e);
+				//	Log.d(TAG, "error writing file: " + path, e);
 						e.printStackTrace();
 					return false;
 				}

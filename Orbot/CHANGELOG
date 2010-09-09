@@ -1,5 +1,18 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+1.0.3
+- fixed spanish language issues with settings screen
+- cleaned up logging, and moved most of it to debug output only
+- small changes to iptables, transproxy settings to handle iptables 1.3 and 1.4 variations
+
+1.0.2
+- added "check" yes/no dialog prompt
+- debugged iptables/transprox settings on Android 1.6 and 2.2
+- added proxy settings help screen and fixed processSettings() NPE
+
+1.0.1
+- found and fixed major bug in per-app trans proxying; list of apps was being cached and iptables rules were not properly updated as the user changed the selection in the list
+ 
 1.0.0 - 2010-08-10
 - Added "Proxy Settings" help screen
 - Handle potential null pointers on process settings where service not yet active 

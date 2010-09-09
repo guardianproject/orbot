@@ -1,7 +1,5 @@
 package org.torproject.android.service;
 
-import java.io.File;
-
 import org.torproject.android.TorifiedApp;
 
 import android.content.Context;
@@ -9,17 +7,19 @@ import android.util.Log;
 
 public class TorTransProxy {
 	
-	private final static String TAG = "TorTransProxy";
+	private final static String TAG = TorServiceConstants.TAG;
 	
-	private static String BASE_DIR = "/data/data/" + TorServiceConstants.TOR_APP_USERNAME + "/";
 	
+	//private static String BASE_DIR = "/data/data/" + TorServiceConstants.TOR_APP_USERNAME + "/";
+	
+	/*
 	private final static String CMD_NAT_FLUSH = "iptables -t nat -F || exit\n";
 	private final static String CMD_FILTER_FLUSH = "iptables -t filter -F || exit\n";
 	
 	private final static String CMD_DNS_PROXYING_ADD = "iptables -t nat -A PREROUTING -p udp --dport 53 -j DNAT --to 127.0.0.1:5400 || exit\n";
 	
 	private final static String IPTABLES_ADD = " -A ";
-	
+	*/
 	
 	//private final static String CMD_DNS_PROXYING_DELETE = "iptables -t nat -D PREROUTING -p udp --dport 53 -j DNAT --to 127.0.0.1:5400 || exit\n";
 	// - just calling a system wide flush of iptables rules
@@ -65,7 +65,10 @@ public class TorTransProxy {
 			
 			// Run an empty script just to check root access
 			String[] cmd = {"iptables -v"};
-			int exitCode = TorServiceUtils.doShellCommand(cmd, log, true, true);
+			int code = TorServiceUtils.doShellCommand(cmd, log, true, true);
+			String msg = log.toString();
+			Log.d(TAG,cmd[0] + ";errCode=" + code + ";resp=" + msg);
+			
 			
 			String out = log.toString();
 			if (out.indexOf(" v")!=-1)
@@ -86,8 +89,11 @@ public class TorTransProxy {
 		return null;
 	}
 	
+	
 	private static String findBaseDir ()
 	{
+	
+		return ""; //just blank for now
 		/*
 		String[] cmds = {"/system/bin/iptables -t nat --list"};
     	StringBuilder res = new StringBuilder();
@@ -105,12 +111,14 @@ public class TorTransProxy {
 		
 		} catch (Exception e) {
 			return BASE_DIR;
-		}*/
+		}
 		
 		return "";
 		
-			
+			*/
 	}
+	
+	
 	/*
 	public static int setDNSProxying () throws Exception
 	{
@@ -149,7 +157,6 @@ public class TorTransProxy {
 
 		String baseDir = findBaseDir();
 		
-		
     	final StringBuilder script = new StringBuilder();
     	
     	StringBuilder res = new StringBuilder();
@@ -170,13 +177,10 @@ public class TorTransProxy {
 			}
 			
 	    	
-	    	String[] cmd = {script.toString()};
-	    	Log.i(TAG, cmd[0]);
-			
-			code = TorServiceUtils.doShellCommand(cmd, res, true, true);
-			
+	    	String[] cmd = {script.toString()};	    	
+			code = TorServiceUtils.doShellCommand(cmd, res, true, true);		
 			String msg = res.toString();
-			Log.i(TAG, msg);
+			Log.d(TAG,cmd[0] + ";errCode=" + code + ";resp=" + msg);
 			
 		
 		return code;
@@ -208,11 +212,13 @@ public class TorTransProxy {
 	
 	public static int setTransparentProxyingByApp(Context context, TorifiedApp[] apps, boolean forceAll) throws Exception
 	{
-	
+
+		android.os.Debug.waitForDebugger();
+		
 		String baseDir = findBaseDir();
 
 		String iptablesVersion = getIPTablesVersion();
-		Log.i(TAG, "iptables version: " + iptablesVersion);
+		Log.d(TAG, "iptables version: " + iptablesVersion);
 		
 		boolean ipTablesOld = false;
 		if (iptablesVersion != null && iptablesVersion.startsWith("1.3")){
@@ -239,38 +245,33 @@ public class TorTransProxy {
 		}
 		
     	String[] cmdFlush = {script.toString()};
-    	Log.i(TAG, cmdFlush[0]);
-		
 		code = TorServiceUtils.doShellCommand(cmdFlush, res, true, true);
+		//String msg = res.toString(); //get stdout from command
 		
-		String msg = res.toString();
-		Log.i(TAG, msg);
-
 		script = new StringBuilder();
 		
+		//build up array of shell cmds to execute under one root context
 		for (int i = 0; i < apps.length; i++)
 		{
 
-			if (forceAll || apps[i].isTorified())
+			if (forceAll || apps[i].isTorified()) //if "Tor Everything" on or app is set to true
 			{
 				
 				if (apps[i].getUsername().equals(TorServiceConstants.TOR_APP_USERNAME))
 				{
-					Log.i(TAG,"detected Orbot app - will not transproxy");
-					
+					//should never trans proxy the Orbot app (and Tor or Privoxy) itself
 					continue;
 				}
 				
-				Log.i(TAG,"enabling transproxy for app: " + apps[i].getUsername() + "(" + apps[i].getUid() + ")");
+				Log.d(TAG,"enabling transproxy for app: " + apps[i].getUsername() + "(" + apps[i].getUid() + ")");
 			 
-				
 				//TCP
 				script.append(baseDir);
 				script.append("iptables -t nat");
-				script.append(" -A OUTPUT -p tcp --syn");
+				script.append(" -A OUTPUT -p tcp");
 				script.append(" -m owner --uid-owner ");
 				script.append(apps[i].getUid());
-				script.append(" -m tcp ");
+				script.append(" -m tcp --syn");
 				
 				if (ipTablesOld)
 					script.append(" -j DNAT --to 127.0.0.1:9040");
@@ -284,14 +285,14 @@ public class TorTransProxy {
 				script.append("iptables -t nat");
 				script.append(" -A OUTPUT -p udp -m owner --uid-owner ");
 				script.append(apps[i].getUid());
-				script.append(" -m udp --dport 53");
+				script.append(" --dport 53"); //drop all UDP packets as Tor won't handle them
 				
 				if (ipTablesOld)
-					script.append(" -j DNAT --to 127.0.0.1:5400");
+					script.append(" -j DNAT --to 127.0.0.1:9040");
 				else
-					script.append(" -j REDIRECT --to-ports 5400");
-				
+					script.append(" -j REDIRECT --to-ports 9040");
 				script.append(" || exit\n");
+				
 				
 				//EVERYTHING ELSE UDP - DROP!
 				if (!ipTablesOld) //for some reason this doesn't work on iptables 1.3.7
@@ -309,14 +310,10 @@ public class TorTransProxy {
 		}
 		
     	
-    	String[] cmdAdd = {script.toString()};
-    	Log.i(TAG, cmdAdd[0]);
-		
+    	String[] cmdAdd = {script.toString()};    	
 		code = TorServiceUtils.doShellCommand(cmdAdd, res, true, true);
-		
-		msg = res.toString();
-		Log.i(TAG, msg);
-			
+		String msg = res.toString();
+		Log.d(TAG,cmdAdd[0] + ";errCode=" + code + ";resp=" + msg);
 		
 		return code;
     }	
@@ -334,7 +331,7 @@ public class TorTransProxy {
 			
 			for (int i = 0; i < ports.length; i++)
 			{
-				Log.i(TAG,"enabling transproxy for port: " + ports[i]);
+				Log.d(TAG,"enabling transproxy for port: " + ports[i]);
 				 
 				//TCP
 
@@ -358,14 +355,12 @@ public class TorTransProxy {
 			
 	    	StringBuilder res = new StringBuilder();
 	    	
-	    	String[] cmd = {script.toString()};
-	    	Log.i(TAG, cmd[0]);
-			
+	    	String[] cmd = {script.toString()};	    	
 			code = TorServiceUtils.doShellCommand(cmd, res, true, true);
+			String msg = res.toString();
+			Log.d(TAG,cmd[0] + ";errCode=" + code + ";resp=" + msg);
 			
-				String msg = res.toString();
-				Log.e(TAG, msg);
-			
+		
 		} catch (Exception e) {
 			Log.w(TAG, "error refreshing iptables: " + e);
 		}

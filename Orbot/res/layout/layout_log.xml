@@ -32,8 +32,9 @@
 			android:layout_toLeftOf="@+id/radioModeImage"
             android:textColor="#333333" />
 	</RelativeLayout>
+	
      <ScrollView  android:orientation="vertical"
-      android:layout_height="fill_parent"
+      android:layout_height="wrap_content"
          android:layout_width="fill_parent"  android:id="@+id/logScrollView"
           xmlns:android="http://schemas.android.com/apk/res/android">
          
@@ -45,8 +46,8 @@
          android:textSize="12px"
          android:background="#A0222222"
          />	
-         
         
-     </ScrollView>
+	</ScrollView>
+     	
      </LinearLayout>
             
