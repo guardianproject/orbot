@@ -319,7 +319,6 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     {
 
     	Log.d(TAG, msg);
-    	
     	sendCallbackLogMessage(msg);
 		
     }
