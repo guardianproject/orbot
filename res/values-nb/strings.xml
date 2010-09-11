@@ -35,19 +35,6 @@
 <string name="button_close">Avslutt</string>
 <string name="button_about">Om</string>
 
-<string name="help_text_1">Orbot krever forskjellig konfigurasjon avhengig av hvilken versjon av Android du bruker.
-Se https://www.torproject.org/docs/android.html for oppdatert informasjon.</string>
-
-<string name="help_text_2">For ikke-rootede Android 1.x enheter (G1, MyTouch3G, Hero): Bruk nettleseren "ProxySurf" fra Android Market, og sett 
-HTTP Proxy til 127.0.0.1 og port 8118 for kun HTTP trafikk (HTTP/S vil ikke fungere).</string>
-
-<string name="help_text_3">For IM, prøv "Beem" fra Android Market. Sett SOCKS5 proxy til 127.0.0.1 med port 9050.</string>
-
-<string name="help_text_4">For Android 2.x enheter MÅ du roote telefonen for at Orbot skal fungere skikkelig. Dette fordi det ikke finnes en nettleser til Android 2.x som fungerer med ikke-rootede enheter. Du kan så bruke "Beem" fra Android Market. Sett SOCKS5 proxy til 127.0.0.1 med port 9050. Du burde også bruke SSL for å beskytte ditt brukernavn og passord.</string>
-
-<string name="help_text_5">Hvis du rooter telefonen, uansett om den er en 1.x eller 2.x enhet, så vil Orbot kunne fungere med alle aplikasjoner du velger, i tillegg til alle DNS-forespørsler. Dette inkluderer den innebyggede nettleseren, Gmail, Youtube og Kart, og mange tredjeparts-applikasjoner.</string>
-
-
 <string name="menu_verify">Check</string>
 <string name="menu_exit">Exit</string>
 </resources>
