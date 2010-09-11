@@ -35,20 +35,6 @@
 <string name="button_close">Encerrar</string>
 <string name="button_about">Sobre</string>
 
-<string name="help_text_1">O Orbot requer diferentes configurações, dependo do sistema operativo Android que estiver a ser utilizado.
-Por favor visite https://www.torproject.org/docs/android.html para as mais recentes informações.</string>
-
-<string name="help_text_2">Para dispositivos non-rooted Android 1.x (G1, MyTouch3G, Hero): Por favor utilize o navegador "ProxySurf" disponível no Android Market, e defina
-o Proxy HTTP para 127.0.0.1 e o porto 8118, para tráfego HTTP (HTTP/S não é suportado).</string>
-
-<string name="help_text_3">Para mensagens instantâneas, experimente o "Beem", também disponível no Android Market, e defina o Proxy SOCKS5 para 127.0.0.1 / Porto 9050.</string>
-
-<string name="help_text_4">Para dispositivos Android 2.x, será necessário ACESSO ROOT para que o Orbot funciona de uma forma transparente, visto que não há nenhum navegador que funciona em equipamentos sem acesso root. No entanto, pode experimentar o "Beem", disponível no Android Market,
-que o permite definir o Proxy para 127.0.0.1 e porto 9050. Deve também activar SSL para proteger o seu nome de utilizador e password.</string>
-
-<string name="help_text_5">Se tiver acesso root no seu dispositivo, quer seja 1.x ou 2.x, o Orbot pode, de uma forma transparente, funcionar com todas as aplicações
-e pedidos de DNS. Isto inclui o navegador. Gmail, YouTube e Maps, como também aplicações de terceiros.</string>
-
 
 <string name="menu_verify">Check</string>
 <string name="menu_exit">Exit</string>

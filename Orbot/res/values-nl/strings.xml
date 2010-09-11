@@ -35,24 +35,6 @@
 <string name="button_close">Afsluiten</string>
 <string name="button_about">Over</string>
 
-<string name="help_text_1">Orbot heeft een verschillende configuratie nodig afhankelijk van de versie van het Android Operating Systeem waar het op gebruikt wordt.
-Bezoek alstublieft https://www.torproject.org/docs/android.html voor de nieuwste informatie.</string>
-
-<string name="help_text_2">Voor niet-geroote Android 1.x apparaten (G1, MyTouch3G, Hero): Gebruik alstublieft de "ProxySurf" browser die beschikbaar is op de Android Markt, en zet
-de HTTP Proxy op 127.0.0.1 en poort 8118, dit werkt alleen voor HTTP verkeer (HTTPS werkt niet).</string>
-
-<string name="help_text_3">Voor Instant Messaging, probeer "Beem" in de Android Markt, en zet de SOCKS5 proxy op 127.0.0.1 / poort 9050</string>
-
-<string name="help_text_4">Voor Android 2.x apparaten MOET je het apparaten ROOTEN om Orbot transparant te kunnen laten werken, daar er geen brower is die voor ongeroote apparaten werkt. Anders, de "Beem" applicatie laat toe
-dat je de SOCKS5 proxy op 127.0.0.1 poort 9050 zet. Zet ook SSL aan om je gebruikersnaam en wachtwoord te beveiligen.</string>
-
-<string name="help_text_5">Als je je apparaat root, of het een 1.x of een 2.x gebaseerde versie is, Orbot kan transparant elke applicatie proxien die je selecteert
-en ook alle DNS aanvragen. Dit omvat ook de ingebouwde browser, Gmail, Youtube en Maps, naast elke andere applicatie van derde partijen.</string>
-
-<string name="menu_verify">Controleer</string>
-<string name="menu_exit">Verlaten</string>
-<string name="powered_by">aangedreven door het Tor Project</string>
-<string name="press_to_start">- druk om te starten -</string>
 
 <string name="pref_trans_proxy_group">Transparant Proxyen (Vereist Root)</string>
 <string name="pref_trans_proxy_title">Transparant Proxyen</string>

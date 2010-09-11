@@ -35,22 +35,6 @@
 <string name="button_close">Zamknij</string>
 <string name="button_about">O programie</string>
 
-<string name="help_text_1">Orbot wymaga różnych konfiguracji w zależności od wersji systemu operacyjnego Android.
-Proszę odwiedź stronę https://www.torproject.org/docs/android.html aby uzyskać najnowsze informacje na ten temat.</string>
-
-<string name="help_text_2">Dla urządzeń bez uprawnień administratora Android 1.x: Użyj przeglądarki "ProxySurf" dostępnej w Android Market i ustaw
-HTTP Proxy 127.0.0.1 port 8118, dla połączeń HTTP (HTTP/S nie będzie działać).</string>
-
-<string name="help_text_3">Jako komunikatora użyj "Beem" dostępny w Android Market i ustaw proxy SOCKS5 127.0.0.1 port 9050</string>
-
-<string name="help_text_4">MUSISZ uruchomić urządzenia z Androidem 2.x w trybie administratora, by Orbot mógł działać w sposób przezroczysty, gdyż nie ma żdanej przeglądarki dla urządzeń nie działających w trybie administratora. W innym przypadku, aplikacja "Beem" pozwoli Ci ustawić proxy SOCKS5 na 127.0.0.1 i port 9050. Powinno się używać SSL, by chronić swoją nazwę użytkownika i hasło.</string>
-
-<string name="help_text_5">Jeśli uruchomisz urządzenie w trybie administratora, czy jest oparte na wersji 1.x, czy 2.x, Orbot może pzrezroczyście przekierowywać ruch każdej aplikacji, którą wybierzesz i wszystkie żądania DNS. Wlicza się w to wbudowaną przeglądarkę, Gmail, YouTube i Mapy, jak również jakiekolwiek aplikacje firm trzecich.</string>
-
-<string name="menu_verify">Sprawdź</string>
-<string name="menu_exit">Wyjście</string>
-<string name="powered_by">napędzane oprogramowaniem Projektu Tor</string>
-<string name="press_to_start">- wciśnij, by zacząć -</string>
 
 <string name="pref_trans_proxy_group">Przekierowanie przezroczyste (Wymaga uprawnień administratora)</string>
 <string name="pref_trans_proxy_title">Przekierowanie przezroczyste</string>
