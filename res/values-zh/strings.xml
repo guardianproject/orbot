@@ -35,18 +35,5 @@
 <string name="button_close">关闭</string>
 <string name="button_about">关于</string>
 
-<string name="help_text_1">Orbot 的设置因 Android 系统版本的不同而异。
-详情参见：https://www.torproject.org/docs/android.html </string>
-
-<string name="help_text_2">对于缺乏ROOT权限的Android 1.x 设备(G1, MyTouch3G, Hero): 推荐使用 Android Market 中的 “ProxySurf” 浏览器，
-并设置HTTP Proxy地址127.0.0.1端口8118进行HTTP浏览(对HTTP/S无效)。</string>
-
-<string name="help_text_3">即时聊天工具，可以尝试 Android Market 内的 “Beem”，并设置SOCKS5代理为127.0.0.1，端口9050。</string>
-
-<string name="help_text_4">对于 Android 2.x 设备，您必须获得设备的 ROOT 权限才能使 Orbot 以透明代理的方式工作，因为非ROOT设备上浏览器都无法成功代理(除非浏览器本身支持代理设置)。
-如果无法获得 ROOT 权限，至少\"Beem\" 程序可以设置SOCKS5(127.0.0.1端口9050)，您还可以开启SSL支持来保护用户名与密码。</string>
-
-<string name="help_text_5">无论是基于1.x还是2.x的设备，如果您曾破解过ROOT权限，Orbot 都能通过透明代理的方式代理您选择的任何程序及所有DNS请求。
-包括内置的浏览器,Gmail,YouTube,地图及各种三方程序。</string>
 
 </resources>

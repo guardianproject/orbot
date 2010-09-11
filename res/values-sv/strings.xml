@@ -35,18 +35,4 @@
 <string name="button_close">Stäng</string>
 <string name="button_about">Om</string>
 
-<string name="help_text_1">Orbot behöver olika inställningar beroende på vilken Android utgåva det körs på.
- Besök https://www.torproject.org/docs/android.html för den senaste informationen.</string>
-
-<string name="help_text_2">For non-rooted Android 1.x devices (G1, MyTouch3G, Hero): Please use the "ProxySurf" browser available in the Android Market, and set 
-the HTTP Proxy to 127.0.0.1 and port 8118, for HTTP traffic only (HTTP/S will not work).</string>
-
-<string name="help_text_3">För chatt/IM, pröva "Beem" från Android Market, och ställ in SOCKS5 proxy till 127.0.0.1 / port 9050.</string>
-
-<string name="help_text_4">For Android 2.x devices, you MUST ROOT your device in order for Orbot to work transparently, as there is no browser that will work for non-root devices. Otherwise, the "Beem" app will allow
-you to set the SOCKS5 proxy to 127.0.0.1 and port 9050. You should also enable SSL to protect your username and password.</string>
-
-<string name="help_text_5">If you root your device, whether it is 1.x or 2.x based, Orbot can transparently proxy any applicatons you select
-and all DNS requests. This includes the built-in Browser, Gmail, YouTube and Maps, as well as any third-party app.</string>
-
 </resources>

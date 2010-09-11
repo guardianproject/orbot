@@ -35,20 +35,6 @@
 <string name="button_close">Schließen</string>
 <string name="button_about">Über</string>
 
-<string name="help_text_1">Orbot benötigt eine andere Einstellung, die von der Version des Andriod-Betriebssystems abhängt.Aktuelle Informationen unter https://www.torproject.org/docs/android.html.</string>
-
-<string name="help_text_2">Auf nicht gerooteten Android 1.x Geräten verwenden Sie bitte den "ProxySurf" Browser, erhältlich im Android Market, und setzen den HTTP Proxy auf 127.0.0.1 Port 8118. Dies funktioniert nur für HTTP, aber nicht für HTTPS Verbindungen.</string>
-
-<string name="help_text_3">Um Tor für Instant Messaging zu verwenden, probieren Sie die Anwendung "Beem", erhältlich im Android Market, und setzen Sie den SOCKS5 Proxy auf 127.0.0.1 port 9050.</string>
-
-<string name="help_text_4">Android 2.x Geräte _MÜSSEN_ gerooted sein, damit Orbot transparent funktionieren kann, da hier kein Browser für nicht-gerootete Geräte vorhanden ist. Wahlweise erlaubt die "Beem" Anwendung jedoch, den SOCKS5 Proxy auf 127.0.0.1, Port 9050 einzustellen. Hierbei sollte zudem SSL aktiviert sein, um Benutzername und Passwort zu schützen.</string>
-
-<string name="help_text_5">Auf gerooteten Geräten (egal ob Android 1.x oder 2x) kann Orbot sämtliche Apps und alle DNS-Abfragen anonymisieren. Dies gilt auch für den eingebauten Browser, Gmail, YouTube und Maps, sowie jegliche Anwendung von Drittanbietern.</string>
-
-<string name="menu_verify">Überprüfen</string>
-<string name="menu_exit">Exit</string>
-<string name="powered_by">ermöglicht durch das Tor Projekt</string>
-<string name="press_to_start">- zum Starten drücken -</string>
 
 <string name="pref_trans_proxy_group">Transparenter Proxy (nur gerootete Geräte)</string>
 <string name="pref_trans_proxy_title">Transparenter Proxy</string>
