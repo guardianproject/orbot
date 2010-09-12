@@ -35,6 +35,13 @@
 <string name="button_close">Schließen</string>
 <string name="button_about">Über</string>
 
+<string name="button_clear_log">Clear Log</string>
+
+
+<string name="menu_verify">Überprüfen</string>
+<string name="menu_exit">Beenden</string>
+<string name="powered_by">ermöglicht durch das Tor Projekt</string>
+<string name="press_to_start">- zum Starten drücken -</string>
 
 <string name="pref_trans_proxy_group">Transparenter Proxy (nur gerootete Geräte)</string>
 <string name="pref_trans_proxy_title">Transparenter Proxy</string>
@@ -71,7 +78,7 @@
     <string name="wizard_premissions_msg_root">Exzellent! Wir haben festgestellt, dass sie Orbot Root-Rechte eingeräumt haben. Wir werden diese Macht weise nutzen.</string>
     <string name="wizard_permissions_msg_stock">Obwohl es nicht nötig ist, kann Orbot ein mächtigeres Tool werden, wenn sie ihn Root-Rechte einräumen. Drücken sie auf den Kopf unten um Orbot diese Superkräfte einzuräumen.</string>
    
-    <string name="wizard_permissions_no_root">If you don\'t have root access or have no idea what we\'re talking about, just be sure to use apps made to work with Orbot.</string>
+    <string name="wizard_permissions_no_root">If you don\\'t have root access or have no idea what we\\'re talking about, just be sure to use apps made to work with Orbot.</string>
     <string name="wizard_permissions_consent">I understand and would like to continue without root</string>
    
     <string name="wizard_permission_enable_root">Orbot Root-Rechte einräumen</string>
@@ -99,7 +106,7 @@ Erfahren sie mehr über die Verwendung von Proxys unter Android im FAQ unter htt
 </string>
     
     <string name="wizard_final">Orbot is ready!</string>
-    <string name="wizard_final_msg">Hundreds of thousands of people around the world use Tor for a wide variety of reasons: journalists and bloggers, human rights workers, law enforcement officers, soldiers, corporations, citizens of repressive regimes, and just ordinary citizens... and now you are ready to, as well!</string>
+    <string name="wizard_final_msg">Hunderttausende Menschen auf der ganzen Welt nutzen Tor aus einer Vielzahl von Gründen: Journalisten und Blogger, Menschenrechtsaktivisten, Strafverfolgungsbehörden, Soldaten, Unternehmen, Bürger repressiver Regime und ganz normale Menschen... und sind sie ebenfalls bereit!</string>
     
     <string name="otrchat_apk_url">http://github.com/downloads/guardianproject/OtRChat/OtRChat-0.0.1-alpha-build6a.apk</string>
     <string name="orweb_apk_url">http://github.com/downloads/guardianproject/Orweb/Orweb-0.0.1c.apk.apk</string>
@@ -107,7 +114,9 @@ Erfahren sie mehr über die Verwendung von Proxys unter Android im FAQ unter htt
 <!-- END Welcome Wizard strings (DJH) -->
  
 
-	<string name="connect_first_time"> You\'ve successfully connected to the Tor network - but this does NOT mean your device is secure. You can use the \'Check\' option from the menu to test your browser. \n\nVisit us at https://guardianproject.info/apps/orbot or send an email to help@guardianproject.info to learn more.</string>
+	<string name="connect_first_time">Sie haben sich erfolgreich mit dem Tor-Netzwerk verbunden - das bedeutet aber NICHT, dass dein Gerät sicher ist. Du kannst die \\'Überprüfen\\'-Option aus dem Menü benutzen, um deinen Browser zu testen. 
+
+Besuchen sie https://guardianproject.info/apps/orbot oder senden sie eine E-Mail an help@guardianproject.info um mehr zu erfahren.</string>
 
 	<string name="tor_check">This will open your default web browser to https://check.torproject.org in order to see if Orbot is probably configured and you are connected to Tor.</string>
 </resources>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pref_hs_group">سرويس هاي مخفي</string>
+    <string name="app_name">اوربات</string>
+    <string name="app_version">1.0.2</string>
+    <string name="internal_web_url">http://orbot/</string>
+    <string name="default_web_url">http://check.torproject.org</string>
+    <string name="secure_default_web_url">https://check.torproject.org</string>
+    <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
+    <string name="control_permission_label">شروع و پایان Tor</string>
+    <string name="tor_proxy_service_process">سرويس پروكسي تُر</string>
+   
+<string name="status_starting_up">Orbat آغاز می شود..</string>
+<string name="status_activated">پیوسته به شبکه ی Tor</string>
+<string name="status_disabled">اوربات غیرفعال شده است.</string>
+<string name="status_shutting_down">اوربات در حال بسته شدن است.</string>
+
+<string name="tor_process_connecting">شروع تُر ...</string>
+<string name="tor_process_connecting_step2">راه اندازی نظارت...</string>
+<string name="tor_process_connecting_step3">كامل شد.</string>
+<string name="tor_process_connecting_step4">در انتظار.</string>
+
+<string name="not_anonymous_yet">هشدار: فعالیت شما هنوز "گمنام" نیست! لطفن اپلیکیشن خود را تنظیم کنید تا از HTTP پروکسی 127.0.0.1:8118 و یا SOCKS4A و یا SOCKS5 پروکسی 127.0.01:9050 استفاده کند.</string>
+<string name="menu_home">خانه</string>
+<string name="menu_browse">جستجو</string>
+<string name="menu_settings">تنظیمات</string>
+<string name="menu_log">ورود</string>
+<string name="menu_info">کمک</string>
+<string name="menu_apps">واژ ه نامه</string>
+<string name="menu_start">آغاز</string>
+<string name="menu_stop">ایست</string>
+
+
+<string name="button_help">کمک</string>
+<string name="button_close">بسته</string>
+<string name="button_about">درباره</string>
+
+<string name="button_clear_log">Clear Log</string>
+
+
+<string name="menu_verify">بررسی</string>
+<string name="menu_exit">خروج</string>
+<string name="powered_by">فعال شده توسط Tor Project</string>
+<string name="press_to_start">برای شروع، کلیک کنید.</string>
+
+<string name="pref_trans_proxy_group">پروکسیدن شفاف (نیاز به Root دارد)</string>
+<string name="pref_trans_proxy_title">پروکسیدن شفاف</string>
+<string name="pref_trans_proxy_summary">Tori-نمایی اتوماتیک اپلیکیشن ها</string>
+
+<string name="pref_transparent_all_title">شامل همه</string>
+<string name="pref_transparent_all_summary">فعالیت همه اپلیکیشن ها را از طریق Tor پروکسی کنید.</string>
+
+<string name="status_install_success">دوتایی های Tor با موفقیت نصب شدند!</string>
+<string name="status_install_fail">نصب فایل های دوتایی Tor ممکن نبود. لطفن قطعه را وارسی کنید و به tor-assistance@torproject.org اطلاع دهید.</string>
+
+<string name="title_error">خطای اپلیکیشین</string>
+
+<string name="wizard_title">به اوربات خوش آمدید</string>
+
+<string name="wizard_btn_tell_me_more">درباره اوربات</string>
+<string name="btn_next">بعدی</string>
+<string name="btn_back">بازگشت</string>
+<string name="btn_finish">پایان</string>
+
+<string name="btn_okay">لغو</string>
+<string name="btn_cancel">لغو</string>
+
+
+<!-- Welcome Wizard strings (DJH) -->
+ 
+    <string name="wizard_welcome_msg">اوربات Tor را به آندرونید وارد می کند. Tor نرم افزاری رایگان و شبکه ای باز است که در مقابل تهدید شبکه های نظارتی علیه آزادی و حریم فردی، فعالیت ها و روابط محرمانه شرکت ها، و امنیت ملی، که "کاوش فعالیت" معروف است، به شما کمک می کند. *هشدار:* نصب اوربات به تنهایی قادر نیست معجزه ای صورت دهد و فعالیت آنلاین شما را مخفی کند! این ابزار تنها کمک می کند که قدم اول را بردارید.</string>
+    <string name="wizard_details">برخی جزئیات در مورد اوربات</string>
+    <string name="wizard_details_msg">اوربات اپلیکیشنی با متن-باز است که شامل Tor, LibEvent و Privoxy. این اپلیکیشن، HTTP پروکسی (8118) محلی و SOCKS پروکسی (9050) را در شبکه Tor در دسترس قرار می دهد. اوربات همچنین قادر است بر روی ابزار root شده، تمام ترافیک اینترنت را از Tor ارسال کند.</string>
+    <string name="wizard_permissions_root">مجوز صادر گردید</string>
+    <string name="wizard_permissions_stock">مجوزهای اوربات</string>
+    <string name="wizard_premissions_msg_root">بسیار عالی! اینطور که معلوم است شما دارای مجوز root برای فعال کردن اوربات هستید. این امکان را بخوبی مورد استفاده قرار خواهیم داد. </string>
+    <string name="wizard_permissions_msg_stock">هرچند ضرورت ندارد اما اگر سیستم شما دارای دسترسی root باشد اوربات با ظرفیت بسیار بیشتری عمل خواهد کرد. دکمه زیر را فشار دهید تا اوربات دارای ظرفیت حداکثری بشود.</string>
+   
+    <string name="wizard_permissions_no_root">اگر سیستم شما دارای دسترسی root نیست و یا اصلن چیزی از این عبارت متوجه نمی شوید، حتمن سعی کنید از اپلکیشن هایی استفاده کنید که ویژه اوربات تهیه شده اند. </string>
+    <string name="wizard_permissions_consent">متوجه هستم و ترجیح می دهم بدون root ادامه بدهم.</string>
+   
+    <string name="wizard_permission_enable_root">واگذاری root برای اوربات</string>
+    <string name="wizard_configure">تنظیمات تبدیل به Tor</string>
+    <string name="wizard_configure_msg">اوربات به شما امکان می دهد که تمام اپلیکشین ها را از طریق Tor  منتقل کنید و یا اپلیکیشن مورد نظر خود را شخصن انتخاب کنید.</string> 
+    <string name="wizard_configure_all">تمام اپلیکیشن ها را از طریق Tor منتقل کنید.</string>
+    <string name="wizard_configure_select_apps">اپلیکیشن های منفرد برای Tor انتخاب کنید.</string>
+    
+    
+    <string name="wizard_tips_tricks">اپلیکیشن هایی که برای اوربات تنظیم شده اند</string>
+    <string name="wizard_tips_msg">توصیه می کنیم داون لود و فعال کنید؛ اپلیکیشن هایی را استفاده کنید که مستقیم به اوربات وصل می شوند. دکمه های زیر را فشار دهید تا نصب شود. </string>
+    <string name="wizard_tips_otrchat">OTRCHAT - کاربر ایمن انتقال پیام فوری برای آندروید</string>
+    <string name="wizard_tips_orweb">ORWEB (فقط آندروید 1.x) - مرورگر طراحی شده برای حفظ حریم خصوصی و افزونساز اوربات</string>
+    <string name="wizard_tips_proxy">تنظیمات پروکسی - یادگیری تنظیم اپلیکیشن ها برای کار با اوربات</string>
+    
+    <string name="wizard_proxy_help_info">تنظیمات پروکسی</string>
+    <string name="wizard_proxy_help_msg">اگر اپلیکشین آندرونوید مورد استفاده شما قابلیت کار با HTTP و یا SOCKS پروکسی دارد می توانید تنظیمش کنید تا به اوربات وصل شود و از Tor استفاده کند. تنظیمات سرویس دهنده 127.0.0.1 و یا "سرویس-ده محلی" است. برای HTTP تنظیمات درگاه (port) 8118 است. برای SOCKS، پروکسی مناسب، 9050 است. شما می بایست SOCKS4A  و یا  در صورت امکان از socks5 استفاده کنید. در صورت نیاز به اطلاعات بیشتر در مورد انتقالده آندروید، می توانید به FAQ (سوالهای معمول) در http://tinyurl.com/proxyandroid مراجعه کنید.</string>
+    
+    <string name="wizard_final">اوربات آماده استفاده میباشد!</string>
+    <string name="wizard_final_msg">صدها هزار نفر در سراسر جهان به دلایل گوناگون از Tor استفاده می کنند: روزنامه نویسها و بلاگرها، کارکنان حقوق بشر، ماموران انتظامی، سربازان، شرکتها، شهروندان دولتهای سرکوبگر، و شهروندان عادی، و حالا شما نیز آماده استفاده از آن هستید!</string>
+    
+    <string name="otrchat_apk_url">http://github.com/downloads/guardianproject/OtRChat/OtRChat-0.0.1-alpha-build6a.apk</string>
+    <string name="orweb_apk_url">http://github.com/downloads/guardianproject/Orweb/Orweb-0.0.1c.apk.apk</string>
+    
+<!-- END Welcome Wizard strings (DJH) -->
+ 
+
+	<string name="connect_first_time">اکنون با موفقیت به شبکه Tor وصل شده اید اما به آن معنا نیست که سیستم شما ایمن است. می توانید از منیو گزینه /"Check/" را برای آزمایش مرورگر انتخاب کنید. به ما در صفحه https://guardianproject.info/apps/orbot مراجعه کنید و به آدرس help@guardianproject.info  ایمیلی بفرستید تا اطلاعات بیشتری دریافت کنید. </string>
+
+	<string name="tor_check">با این قدم پیشفرض مرورگر وب شما به صفحه   https://check.torproject.org باز می شود تا شما مشاهده کنید آیا اوربات تنظیم شده است و آیا شما به Tor وصل شده اید یا نه.</string>
+</resources>
