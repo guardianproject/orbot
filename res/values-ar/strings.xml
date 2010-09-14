@@ -8,7 +8,7 @@
     <string name="secure_default_web_url">https://check.torproject.org</string>
     <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
     <string name="control_permission_label">بدء وإيقاف تور</string>
-    <string name="tor_proxy_service_process">torproxyservice</string>
+    <string name="tor_proxy_service_process">خدمة وكيل تور</string>
    
 <string name="status_starting_up">اوربوت يبدأ...</string>
 <string name="status_activated">متصل بشبكة تور</string>
@@ -43,15 +43,15 @@
 <string name="powered_by">بدعم من مشروع تور</string>
 <string name="press_to_start">- اضغط للبدء -</string>
 
-<string name="pref_trans_proxy_group">بروكسي شفاف (يتطلب Root)</string>
-<string name="pref_trans_proxy_title">بروكسي شفاف</string>
-<string name="pref_trans_proxy_summary">تشغيل أوتوماتيكي للتطبيقات عبر تور</string>
+<string name="pref_trans_proxy_group">عملية توكيل غير مرئية أو ضمنية (يتطلب حقوق المسؤول- Root-)</string>
+<string name="pref_trans_proxy_title">عملية توكيل غير مرئية أو ضمنية</string>
+<string name="pref_trans_proxy_summary">عملية توريفاي أوتوماتيكية للتطبيقات</string>
 
 <string name="pref_transparent_all_title">تور كل شيء</string>
-<string name="pref_transparent_all_summary">تمرير جميع التطبيقات عبر بروكسي تور</string>
+<string name="pref_transparent_all_summary">حركة مرور الوكيل لجميع التطبيقات عبر تور</string>
 
-<string name="status_install_success">تم تثبيت ثنائيات تور بنجاح !</string>
-<string name="status_install_fail">لم يتم تثبيت ثنائيات تور٠ المرجو التحقق من السجل log وأعلمنا tor-assistants@torproject.org</string>
+<string name="status_install_success">تم تثبيت ثنائيات تور بنجاح!</string>
+<string name="status_install_fail">غير قادر على تثبيت ملفات ثنائيات تور. يرجى التحقق من السجل وإعلامنا على البريد الإلكتروني tor-assistants@torproject.org</string>
 
 <string name="title_error">خطأ في التطبيق</string>
 
@@ -60,49 +60,53 @@
 <string name="wizard_btn_tell_me_more">عن أوربوت</string>
 <string name="btn_next">التالي</string>
 <string name="btn_back">رجوع</string>
-<string name="btn_finish">نهاية</string>
+<string name="btn_finish">إنهاء</string>
 
-<string name="btn_okay">حسنا</string>
+<string name="btn_okay">موافق</string>
 <string name="btn_cancel">إلغاء</string>
 
 
 <!-- Welcome Wizard strings (DJH) -->
  
-    <string name="wizard_welcome_msg">بفضل أوربوت، صار ممكنا استعمال تور في أندرويد٠ تور هو برنامج مجاني وشبكة مفتوحة تساعدك على حمايتك من مراقبة الشبكات التي تهدد الخصوصية والحرية الشخصية والعلاقات والأنشطة التجارية السرية وكذا رقابة الدول٠ 
+    <string name="wizard_welcome_msg">بفضل أوربوت، صار ممكنا استعمال تور في أندرويد. تور هو برنامج مجاني وشبكة مفتوحة تساعد على حمايتك من مراقبة الشبكات التي تهدد الخصوصية والحرية الشخصية والعلاقات والأنشطة التجارية السرية ورقابة الدول المعروفة بإسم تحليل حركة المرور.
 
- تحذير : *تثبيت أوربوت على جهازك لن يقوم سحريا بحمايتك ! أولا، اقرأ ما يلي لمساعدتك٠</string>
+*تحذير: *تثبيت أوربوت على جهازك_لن_يقوم بإخفاء تحركات حركة مرورك بشكل سحري! سوف يساعدك هذا المعالج على البدء.</string>
     <string name="wizard_details">بعض التفاصيل عن أوربوت</string>
-    <string name="wizard_details_msg">أوربوت هو تطبيق مفتوح المصدر يضم تور، LibEvent وPrixovy يوفر(HTTP proxy (8118 و(9050) SOCKS proxy إلى شبكة تور. بإمكان أوربوت أن يرسل كل حركة الإنترنت عبر تور.</string>
-    <string name="wizard_permissions_root">إذن ممنوح</string>
+    <string name="wizard_details_msg">أوربوت هو تطبيق مفتوح المصدر والذي يضم تور, LibEvent وPrixovy. يعمل على توفير وكيل HTTP محلي (8118) ووكيل SOCKS (9050) إلى شبكة تور. يتوفر لدى أوربوت القدرة على إرسال جميع حركات مرور الانترنت من خلال تور على الجهاز ذات حقوق المسؤول (root). </string>
+    <string name="wizard_permissions_root">تم منح الإذن</string>
     <string name="wizard_permissions_stock">أذونات أوربوت</string>
-    <string name="wizard_premissions_msg_root">ممتاز ! لقد رصدنا بأنه لديك أذونات مفعلة لأوربوت، سوف نستعملها.</string>
-    <string name="wizard_permissions_msg_stock">رغم أنه ليس ضروريا، إلا أن أوربوت يستطيع أن يعمل أحسن إذا كان جهازك رووت root. استعمل الزر أسفله لكي يصير أوربوت أكثر قوة !</string>
+    <string name="wizard_premissions_msg_root">ممتاز! لقد وجدنا بأنه لديك أذونات حقوق المسؤول (root) لتمكين أوربوت. سوف نستخدم هذه السلطة بحكمة.</string>
+    <string name="wizard_permissions_msg_stock">رغم أنه ليس ضروريا، يمكن ان يصبح أوربوت أداة قوية إذا كان لدى جهازك صلاحية حقوق المسؤول (root). استخدم الزر بالأسفل لمنح أوربوت قوة أكبر!</string>
    
-    <string name="wizard_permissions_no_root">إذا لم يكن لديك رووت root أو ليست لديك أدنى فكرة عما نتحدث عنه، فقط تأكد من استخدام تطبيقات تعمل مع أوربوت٠</string>
-    <string name="wizard_permissions_consent">أفهم وأود أن أستمر بدون رووت root </string>
+    <string name="wizard_permissions_no_root">إذا لم يكن لديك صلاحية حقوق المسؤول (root) أو ليست لديك أدنى فكرة عما نتحدث عنه، تأكد فقط من استخدام تطبيقات تعمل مع أوربوت.</string>
+    <string name="wizard_permissions_consent">أفهم ذلك وأود أن أستمر بدون حقوق المسؤول (root)</string>
    
-    <string name="wizard_permission_enable_root">تزويد أوربوت برووت root</string>
-    <string name="wizard_configure">إعدادات تور</string>
-    <string name="wizard_configure_msg">أوربوت يعطيك الخيار لتوجيه جميع تطبيقاتك عبر تور أو فقط تلك التي تختارها.</string> 
-    <string name="wizard_configure_all">توجيه جميع التطبيقات عبر تور</string>
-    <string name="wizard_configure_select_apps">اختر التطبيقات التي تريد استعمالها مع تور</string>
+    <string name="wizard_permission_enable_root">منح أوربوت حقوق المسؤول (root)</string>
+    <string name="wizard_configure">تكوين توريفاي</string>
+    <string name="wizard_configure_msg">أوربوت يعطيك الخيار لتوجيه جميع حركات مرور التطبيقات عبر تور OR لإختيار تطبيقاتك بشكل فردي.</string> 
+    <string name="wizard_configure_all">توكيل جميع التطبيقات عبر تور</string>
+    <string name="wizard_configure_select_apps">اختر التطبيقات الفردية لتور</string>
     
     
-    <string name="wizard_tips_tricks">تطبيقات تستعمل تور</string>
-    <string name="wizard_tips_msg">نشجعكم على تحميل واستخدام التطبيقات التي يمكن لها الاتصال مباشرة بأوربوت. اضغط على الأزرار أسفله للتثبيت.</string>
-    <string name="wizard_tips_otrchat">OTRCHAT - تواصل فوري آمن للأندرويد</string>
-    <string name="wizard_tips_orweb">ORWEB (Android 1.x Only) - Browser designed for privacy &amp; for Orbot</string>
-    <string name="wizard_tips_proxy">إعدادات البروكسي - تعلم كيفية إعداد التطبيقات لتستعملها مع أوربوت</string>
+    <string name="wizard_tips_tricks">تطبيقات مهيئة لأوربوت</string>
+    <string name="wizard_tips_msg">نشجعكم على تحميل واستخدام التطبيقات التي تعرف كيفية الاتصال مباشرة بأوربوت. اضغط على الأزرار في الأسفل للتثبيت.</string>
+    <string name="wizard_tips_otrchat">OTRCHAT - عميل التراسل الفوري الآمن للأندرويد</string>
+    <string name="wizard_tips_orweb">ORWEB (أندرويد 1.x فقط) - متصفح مصمّم للخصوصية لأوربوت </string>
+    <string name="wizard_tips_proxy">إعدادات الوكيل - تعلم كيفية تكوين التطبيقات لتعمل مع أوربوت</string>
     
-    <string name="wizard_proxy_help_info">إعدادات البروكسي</string>
-    <string name="wizard_proxy_help_msg">If the Android app you are using can support the use of an HTTP or SOCKS proxy, then you can configure it to connect to Orbot and use Tor.\n\n
-    The host settings is 127.0.0.1 or "localhost". For HTTP, the port setting is 8118. For SOCKS, the proxy is 9050. You should use SOCKS4A or SOCKS5 if possible.
-    \n\n
-    You can learn more about proxying on Android via the FAQ at: http://tinyurl.com/proxyandroid
+    <string name="wizard_proxy_help_info">إعدادات الوكيل</string>
+    <string name="wizard_proxy_help_msg">اذا كان تطبيق أندرويد الذي تستخدمه يمكن ان يدعم استخدام وكيل HTTP او SOCKS , عندها يمكنك تكوينه للإتصال بأوربوت واستخدام تور.
+
+
+    اعدادات المستضيف هي 127.0.0.1 او "المستضيف المحلي". بالنسبة الى HTTP, فإن ضبط المنفذ هو 8118. بالنسبة الى SOCKS, فإن الوكيل هو 9050. يجب عليك استخدام SOCKS4A او SOCKS5 اذا امكن.
+    
+
+
+    يمكنك معرفة المزيد عن عملية توكيل غير مرئية للأندرويد عن طريق الأسئلة المتداولة (FAQ)  في: http://tinyurl.com/proxyandroid
     </string>
     
-    <string name="wizard_final">أوربوت مستعد للاستعمال !</string>
-    <string name="wizard_final_msg">مئات الآلاف من الناس في جميع أنحاء العالم يستعملون تور لأسباب شتى : الصحفيين والمدونين، والعاملين في مجال حقوق الإنسان، والجنود والشركات والمواطنين من الأنظمة القمعية، وكذا المواطنين العاديين ... والآن أنت مستعد لأن تستعمله كذلك !</string>
+    <string name="wizard_final">أوربوت جاهز!</string>
+    <string name="wizard_final_msg">مئات الآلاف من الناس في جميع أنحاء العالم يستخدمون تور لأسباب عديدة: الصحفيين والمدونين، والعاملين في مجال حقوق الإنسان، والجنود والشركات والمواطنين من الأنظمة القمعية، والمواطنين العاديين ... والآن أنت مستعد لأن تستخدمه كذلك!</string>
     
     <string name="otrchat_apk_url">http://github.com/downloads/guardianproject/OtRChat/OtRChat-0.0.1-alpha-build6a.apk</string>
     <string name="orweb_apk_url">http://github.com/downloads/guardianproject/Orweb/Orweb-0.0.1c.apk.apk</string>
@@ -110,7 +114,9 @@
 <!-- END Welcome Wizard strings (DJH) -->
  
 
-	<string name="connect_first_time"> You\\'ve successfully connected to the Tor network - but this does NOT mean your device is secure. You can use the \\'Check\\' option from the menu to test your browser. \n\nVisit us at https://guardianproject.info/apps/orbot or send an email to help@guardianproject.info to learn more.</string>
+	<string name="connect_first_time"> لقد قمت بإتصال ناجح الى شبكة تور - لكن هذا لا يعني بأن جهازك في مأمن. يمكنك استخدام خيار \\'تحقق\\' من القائمة لإختبار المتصفح الخاص بك. 
 
-	<string name="tor_check">This will open your default web browser to https://check.torproject.org in order to see if Orbot is probably configured and you are connected to Tor.</string>
+ قم بزيارتنا على https://guardianproject.info/apps/orbot او ارسل رسالة الكترونية الى help@guardianproject.info لمعرفة المزيد.</string>
+
+	<string name="tor_check">سيؤدي هذا إلى فتح المتصفح الافتراضي الخاص بك على العنوان https://check.torproject.org من اجل التحقق من تكوين أوربوت بشكل صحيح وبأنك متصل بتور.</string>
 </resources>
