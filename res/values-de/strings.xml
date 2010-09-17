@@ -78,7 +78,7 @@
     <string name="wizard_premissions_msg_root">Exzellent! Wir haben festgestellt, dass sie Orbot Root-Rechte eingeräumt haben. Wir werden diese Macht weise nutzen.</string>
     <string name="wizard_permissions_msg_stock">Obwohl es nicht nötig ist, kann Orbot ein mächtigeres Tool werden, wenn sie ihn Root-Rechte einräumen. Drücken sie auf den Kopf unten um Orbot diese Superkräfte einzuräumen.</string>
    
-    <string name="wizard_permissions_no_root">If you don\\'t have root access or have no idea what we\\'re talking about, just be sure to use apps made to work with Orbot.</string>
+    <string name="wizard_permissions_no_root">If you don\'t have root access or have no idea what we\'re talking about, just be sure to use apps made to work with Orbot.</string>
     <string name="wizard_permissions_consent">I understand and would like to continue without root</string>
    
     <string name="wizard_permission_enable_root">Orbot Root-Rechte einräumen</string>
@@ -114,7 +114,7 @@ Erfahren sie mehr über die Verwendung von Proxys unter Android im FAQ unter htt
 <!-- END Welcome Wizard strings (DJH) -->
  
 
-	<string name="connect_first_time">Sie haben sich erfolgreich mit dem Tor-Netzwerk verbunden - das bedeutet aber NICHT, dass dein Gerät sicher ist. Du kannst die \\'Überprüfen\\'-Option aus dem Menü benutzen, um deinen Browser zu testen. 
+	<string name="connect_first_time">Sie haben sich erfolgreich mit dem Tor-Netzwerk verbunden - das bedeutet aber NICHT, dass dein Gerät sicher ist. Du kannst die Überprüfen-Option aus dem Menü benutzen, um deinen Browser zu testen. 
 
 Besuchen sie https://guardianproject.info/apps/orbot oder senden sie eine E-Mail an help@guardianproject.info um mehr zu erfahren.</string>
 
