@@ -6,7 +6,7 @@ public interface TorServiceConstants {
 
 	public final static String TAG = "ORBOT";
 
-	public static boolean LOG_OUTPUT_TO_DEBUG = false;
+	public static boolean LOG_OUTPUT_TO_DEBUG = true;
 
 	public final static String TOR_APP_USERNAME = "org.torproject.android";
 	
@@ -56,6 +56,9 @@ public interface TorServiceConstants {
 	public final static String IP_LOCALHOST = "127.0.0.1";
 	public final static int TOR_CONTROL_PORT = 9051;
 	public final static int UPDATE_TIMEOUT = 1000;
+	public final static int TOR_TRANSPROXY_PORT = 9040;
+	public final static int STANDARD_DNS_PORT = 53;
+	public final static int TOR_DNS_PORT = 5400;
 	
 	//path to check Tor against
 	public final static String URL_TOR_CHECK = "https://check.torproject.org";
