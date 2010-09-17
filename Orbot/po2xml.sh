@@ -15,12 +15,12 @@
 
 # Location of the translated files, i.e. the path to the orbot
 # directory in the translation module. Do not add the trailing slash. 
-translated="/home/runa/tor/translation/projects/orbot"
+translated=""
 
 # Location of the orbot directory, i.e. the original English xml file.
 # In svn, this should be svn/projects/android/trunk/Orbot/res. Do not add the
 # trailing slash.
-xml="/home/runa/tor/orbot/res"
+xml=""
 
 ### End config ###
 
@@ -57,7 +57,6 @@ for file in $po ; do
 			mv "$xml/values-$lang/tmp-$xmlfile" "$xml/values-$lang/$xmlfile"
 			
 			# We need to escape apostrophe's
-		#	sed -i "s,',\\\',g" "$xml/values-$lang/$xmlfile"
 			sed -i "s/\([^\\]\)'/\1\\\\'/g" "$xml/values-$lang/$xmlfile" 
 		fi
 	}
