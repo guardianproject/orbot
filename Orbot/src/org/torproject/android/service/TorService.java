@@ -57,6 +57,8 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     private String torBinaryPath = null;
     private String privoxyPath = null;
     
+    private boolean hasRoot = false;
+    
     /** Called when the activity is first created. */
     public void onCreate() {
     	super.onCreate();
@@ -181,6 +183,8 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 	public void onStart(Intent intent, int startId) {
 		super.onStart(intent, startId);
 		
+    	hasRoot = TorServiceUtils.checkRootAccess();
+
 	}
 	 
 	public void run ()
@@ -1090,7 +1094,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
         mCallbacks.finishBroadcast();
     }
     
-    private void sendCallbackLogMessage (String logMessage)
+    private synchronized void sendCallbackLogMessage (String logMessage)
     {
     	 
         // Broadcast to all clients the new value.
@@ -1278,14 +1282,15 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 	
     	logNotice ("Transparent Proxying: " + enableTransparentProxy);
     	
-    	boolean hasRoot = TorTransProxy.hasRootAccess();
 
 		if (enabled)
 		{
 		
 
-			if (hasRoot && enableTransparentProxy)
+			if (hasRoot)
 			{
+				if (enableTransparentProxy)
+				{
 				
 				
 					//TorTransProxy.setDNSProxying();
@@ -1296,11 +1301,12 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 					return true;
 				
 				
-			}
-			else
-			{
-				TorTransProxy.purgeIptables(this,AppManager.getApps(this));
-
+				}
+				else
+				{
+					TorTransProxy.purgeIptables(this,AppManager.getApps(this));
+	
+				}
 			}
 		}
 		else

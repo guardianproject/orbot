@@ -6,7 +6,7 @@ public interface TorServiceConstants {
 
 	public final static String TAG = "ORBOT";
 
-	public static boolean LOG_OUTPUT_TO_DEBUG = true;
+	public static boolean LOG_OUTPUT_TO_DEBUG = false;
 
 	public final static String TOR_APP_USERNAME = "org.torproject.android";
 	

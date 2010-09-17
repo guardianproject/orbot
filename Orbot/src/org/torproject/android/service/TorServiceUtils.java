@@ -3,6 +3,7 @@
 package org.torproject.android.service;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.StringTokenizer;
@@ -11,6 +12,37 @@ import android.util.Log;
 
 public class TorServiceUtils implements TorServiceConstants {
 
+	/**
+	 * Check if we have root access
+	 * @return boolean true if we have root
+	 */
+	public static boolean checkRootAccess() {
+	
+
+		StringBuilder log = new StringBuilder();
+		
+		try {
+			
+			// Run an empty script just to check root access
+			String[] cmd = {"exit 0"};
+			int exitCode = TorServiceUtils.doShellCommand(cmd, log, true, true);
+			if (exitCode == 0) {
+				
+				return true;
+			}
+			
+		} catch (IOException e) {
+			//this means that there is no root to be had (normally) so we won't log anything
+		}
+		catch (Exception e) {
+			Log.w(TAG,"Error checking for root access: " + e.getMessage());
+			//this means that there is no root to be had (normally)
+		}
+		
+		logNotice("Could not acquire root permissions");
+		return false;
+	}
+	
 	
 	private static void logNotice (String msg)
 	{

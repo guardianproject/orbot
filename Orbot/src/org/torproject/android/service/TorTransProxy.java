@@ -16,33 +16,7 @@ public class TorTransProxy implements TorServiceConstants {
 		if (LOG_OUTPUT_TO_DEBUG)
 			Log.d(TAG, msg);
 	}
-	/**
-	 * Check if we have root access
-	 * @return boolean true if we have root
-	 */
-	public static boolean hasRootAccess() {
-	
 
-		StringBuilder log = new StringBuilder();
-		
-		try {
-			
-			// Run an empty script just to check root access
-			String[] cmd = {"exit 0"};
-			int exitCode = TorServiceUtils.doShellCommand(cmd, log, true, true);
-			if (exitCode == 0) {
-				
-				return true;
-			}
-			
-		} catch (Exception e) {
-			Log.w(TAG,"Error checking for root access: " + e.getMessage() ,e);
-		}
-		
-		logNotice("Could not acquire root access: " + log.toString());
-		return false;
-	}
-	
 	/**
 	 * Check if we have root access
 	 * @return boolean true if we have root
@@ -190,7 +164,7 @@ public class TorTransProxy implements TorServiceConstants {
 	public static int setTransparentProxyingByApp(Context context, TorifiedApp[] apps, boolean forceAll) throws Exception
 	{
 
-		android.os.Debug.waitForDebugger();
+		//android.os.Debug.waitForDebugger();
 		
 		//redirectDNSResolvConf(); //not working yet
 		
