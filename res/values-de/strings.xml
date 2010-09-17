@@ -114,7 +114,7 @@ Erfahren sie mehr über die Verwendung von Proxys unter Android im FAQ unter htt
 <!-- END Welcome Wizard strings (DJH) -->
  
 
-	<string name="connect_first_time">Sie haben sich erfolgreich mit dem Tor-Netzwerk verbunden - das bedeutet aber NICHT, dass dein Gerät sicher ist. Du kannst die Überprüfen-Option aus dem Menü benutzen, um deinen Browser zu testen. 
+	<string name="connect_first_time">Sie haben sich erfolgreich mit dem Tor-Netzwerk verbunden - das bedeutet aber NICHT, dass dein Gerät sicher ist. Du kannst die \'Überprüfen\'-Option aus dem Menü benutzen, um deinen Browser zu testen. 
 
 Besuchen sie https://guardianproject.info/apps/orbot oder senden sie eine E-Mail an help@guardianproject.info um mehr zu erfahren.</string>
 
