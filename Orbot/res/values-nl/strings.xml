@@ -113,7 +113,7 @@ U kunt meer leren over het proxyen op Android door naar de FAQ op http://tinyurl
 <!-- END Welcome Wizard strings (DJH) -->
  
 
-	<string name="connect_first_time">U bent succesvol verbonden met het Tor netwerk, maar dit betekent NIET dat u apparaat volledig veilig is. Gebruik te Check optie vanuit het menu om u browser te testen.
+	<string name="connect_first_time">U bent succesvol verbonden met het Tor netwerk, maar dit betekent NIET dat u apparaat volledig veilig is. Gebruik te \'Check\' optie vanuit het menu om u browser te testen.
 
 Bezoek onze website op https://guardianproject.info/apps/orbot of stuuf een email naar help@guardianproject.info voor vragen.</string>
 
