@@ -112,6 +112,8 @@ public class TorTransProxy implements TorServiceConstants {
 
 	public static int purgeIptables(Context context, TorifiedApp[] apps) throws Exception {
 
+		//restoreDNSResolvConf(); //not working yet
+		
 		String baseDir = findBaseDir();
 		
     	final StringBuilder script = new StringBuilder();
@@ -145,11 +147,52 @@ public class TorTransProxy implements TorServiceConstants {
 	}
 	
 
+	public static int redirectDNSResolvConf () throws Exception
+	{
+    	StringBuilder script = new StringBuilder();
+    	StringBuilder res = new StringBuilder();
+    	int code = -1;
+    	
+		//mv resolv.conf to resolve.conf.bak
+		String cmd = "mv /etc/resolv.conf /etc/resolv.conf.bak";
+		script.append(cmd);
+		
+		//create new resolve.conf pointing to localhost/127.0.0.1
+		cmd = "echo \"nameserver 127.0.0.1\" > /etc/resolv.conf";
+		script.append(cmd);
+		
+		String[] cmdFlush = {script.toString()};
+		code = TorServiceUtils.doShellCommand(cmdFlush, res, true, true);
+		//String msg = res.toString(); //get stdout from command
+		
+		
+		return code;
+	}
+	
+	public static int restoreDNSResolvConf () throws Exception
+	{
+		StringBuilder script = new StringBuilder();
+    	StringBuilder res = new StringBuilder();
+    	int code = -1;
+    	
+		//mv resolv.conf to resolve.conf.bak
+		String cmd = "mv /etc/resolv.conf.bak /etc/resolv.conf";
+		script.append(cmd);
+		script.append(" || exit\n");
+		
+		String[] cmdFlush = {script.toString()};
+		code = TorServiceUtils.doShellCommand(cmdFlush, res, true, true);
+		//String msg = res.toString(); //get stdout from command
+		
+		return code;
+	}
 	
 	public static int setTransparentProxyingByApp(Context context, TorifiedApp[] apps, boolean forceAll) throws Exception
 	{
 
-		//android.os.Debug.waitForDebugger();
+		android.os.Debug.waitForDebugger();
+		
+		//redirectDNSResolvConf(); //not working yet
 		
 		String baseDir = findBaseDir();
 
@@ -210,9 +253,11 @@ public class TorTransProxy implements TorServiceConstants {
 				script.append(" -m tcp --syn");
 				
 				if (ipTablesOld)
-					script.append(" -j DNAT --to 127.0.0.1:9040");
+					script.append(" -j DNAT --to 127.0.0.1:");
 				else
-					script.append(" -j REDIRECT --to-ports 9040");
+					script.append(" -j REDIRECT --to-ports ");
+				
+				script.append(TOR_TRANSPROXY_PORT);
 				
 				script.append(" || exit\n");
 				
@@ -221,12 +266,15 @@ public class TorTransProxy implements TorServiceConstants {
 				script.append("iptables -t nat");
 				script.append(" -A OUTPUT -p udp -m owner --uid-owner ");
 				script.append(apps[i].getUid());
-				script.append(" --dport 53"); //drop all UDP packets as Tor won't handle them
+				script.append(" --dport "); 
+				script.append(STANDARD_DNS_PORT);
 				
 				if (ipTablesOld)
-					script.append(" -j DNAT --to 127.0.0.1:5400");
+					script.append(" -j DNAT --to 127.0.0.1:");
 				else
-					script.append(" -j REDIRECT --to-ports 5400");
+					script.append(" -j REDIRECT --to-ports ");
+				
+				script.append(TOR_DNS_PORT);
 				
 				script.append(" || exit\n");
 				
@@ -249,7 +297,9 @@ public class TorTransProxy implements TorServiceConstants {
 					script.append(" -A OUTPUT -p tcp");
 					script.append(" -m owner --uid-owner ");
 					script.append(apps[i].getUid());
-					script.append(" -m tcp --dport 9040 -j ACCEPT");
+					script.append(" -m tcp --dport ");
+					script.append(TOR_TRANSPROXY_PORT);
+					script.append(" -j ACCEPT");
 					script.append(" || exit\n");
 					
 					script.append(baseDir);
@@ -257,7 +307,9 @@ public class TorTransProxy implements TorServiceConstants {
 					script.append(" -A OUTPUT -p udp");
 					script.append(" -m owner --uid-owner ");
 					script.append(apps[i].getUid());
-					script.append(" -m udp --dport 5400 -j ACCEPT");
+					script.append(" -m udp --dport ");
+					script.append(TOR_DNS_PORT);
+					script.append(" -j ACCEPT");
 					script.append(" || exit\n");
 										
 					script.append(baseDir);
