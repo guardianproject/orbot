@@ -35,7 +35,7 @@
 <string name="button_close">Закрыть</string>
 <string name="button_about">О программе</string>
 
-<string name="button_clear_log">Clear Log</string>
+<string name="button_clear_log">Очистить журнал</string>
 
 
 <string name="menu_verify">Проверка</string>
