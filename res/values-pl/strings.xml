@@ -108,7 +108,7 @@
 <!-- END Welcome Wizard strings (DJH) -->
  
 
-	<string name="connect_first_time">Pomyślnie połaczono z siecią Tora - ale to NIE oznacza, że Twoje urządzenie jest bezpieczne. Możesz użyć opcji \\'Sprawdź\\' w menu, aby przetestować swoją przeglądarkę. \n\nOdwiedź nas na https://guardianproject.info/apps/orbot lub wyślij email na help@guardianproject.info, by dowiedzieć się więcej.</string>
+	<string name="connect_first_time">Pomyślnie połaczono z siecią Tora - ale to NIE oznacza, że Twoje urządzenie jest bezpieczne. Możesz użyć opcji Sprawdź w menu, aby przetestować swoją przeglądarkę. \n\nOdwiedź nas na https://guardianproject.info/apps/orbot lub wyślij email na help@guardianproject.info, by dowiedzieć się więcej.</string>
 
 	<string name="tor_check">To otworzy Twoją domyślną przeglądarkę na adresie https://check.torproject.org w celu sprawdzenia, czy Orbot jest skonfigurowany i jest poąłczenie z Torem.</string>
 </resources>
