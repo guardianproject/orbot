@@ -322,51 +322,47 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 
 		String action = getIntent().getAction();
 		
-		if (action != null)
+		if (action.equals("org.torproject.android.REQUEST_HS_PORT"))
 		{
-			if (action.equals("org.torproject.android.REQUEST_HS_PORT"))
-			{
-				
-				DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-				    @Override
-				    public void onClick(DialogInterface dialog, int which) {
-				        switch (which){
-				        case DialogInterface.BUTTON_POSITIVE:
-				            
-				        	int hsPort = getIntent().getIntExtra("hs_port", -1);
-							
-				        	enableHiddenServicePort (hsPort);
-				        	
-							finish();
-							
-				        	
-				            break;
-
-				        case DialogInterface.BUTTON_NEGATIVE:
-				            //No button clicked
-				        	finish();
-				            break;
-				        }
-				    }
-				};
-
-	        	int hsPort = getIntent().getIntExtra("hs_port", -1);
-
-				String requestMsg = "An app wants to open a server port (" + hsPort + ") to the Tor network. This is safe if you trust the app.";
-				AlertDialog.Builder builder = new AlertDialog.Builder(this);
-				builder.setMessage(requestMsg).setPositiveButton("Allow", dialogClickListener)
-				    .setNegativeButton("Deny", dialogClickListener).show();
-				
 			
-			}
-			else if (action.equals("org.torproject.android.START_TOR"))
-			{
-				autoStartOnBind = true;
-				
-				if (mService == null)
-					bindService();
-				
-			}
+			DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+			    @Override
+			    public void onClick(DialogInterface dialog, int which) {
+			        switch (which){
+			        case DialogInterface.BUTTON_POSITIVE:
+			            
+			        	int hsPort = getIntent().getIntExtra("hs_port", -1);
+						
+			        	enableHiddenServicePort (hsPort);
+			        	
+						finish();
+						
+			        	
+			            break;
+
+			        case DialogInterface.BUTTON_NEGATIVE:
+			            //No button clicked
+			        	finish();
+			            break;
+			        }
+			    }
+			};
+
+        	int hsPort = getIntent().getIntExtra("hs_port", -1);
+
+			String requestMsg = "An app wants to open a server port (" + hsPort + ") to the Tor network. This is safe if you trust the app.";
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage(requestMsg).setPositiveButton("Allow", dialogClickListener)
+			    .setNegativeButton("Deny", dialogClickListener).show();
+			
+		
+		}
+		else if (action.equals("org.torproject.android.START_TOR"))
+		{
+			autoStartOnBind = true;
+			
+			if (mService == null)
+				bindService();
 			
 		}
 		else
@@ -390,7 +386,8 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 				
 				pEdit.commit();
 				
-				showHelp();
+			    new WizardHelper(this).showWizard();
+
 			}
 		}
 	}
@@ -726,9 +723,9 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 		    		
 		    		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mOrbot);
 
-		    		boolean showWizard = prefs.getBoolean("connect_first_time",true);
+		    		boolean showFirstTime = prefs.getBoolean("connect_first_time",true);
 		    		
-		    		if (showWizard)
+		    		if (showFirstTime)
 		    		{
 		    		
 		    			Editor pEdit = prefs.edit();
