@@ -114,7 +114,7 @@
 <!-- END Welcome Wizard strings (DJH) -->
  
 
-	<string name="connect_first_time"> لقد قمت بإتصال ناجح الى شبكة تور - لكن هذا لا يعني بأن جهازك في مأمن. يمكنك استخدام خيار \\'تحقق\\' من القائمة لإختبار المتصفح الخاص بك. 
+	<string name="connect_first_time"> لقد قمت بإتصال ناجح الى شبكة تور - لكن هذا لا يعني بأن جهازك في مأمن. يمكنك استخدام خيار تحقق من القائمة لإختبار المتصفح الخاص بك. 
 
  قم بزيارتنا على https://guardianproject.info/apps/orbot او ارسل رسالة الكترونية الى help@guardianproject.info لمعرفة المزيد.</string>
 

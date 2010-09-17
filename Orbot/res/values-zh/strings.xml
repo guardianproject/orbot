@@ -111,7 +111,7 @@
 <!-- END Welcome Wizard strings (DJH) -->
  
 
-	<string name="connect_first_time"> You\\'ve successfully connected to the Tor network - but this does NOT mean your device is secure. You can use the \\'Check\\' option from the menu to test your browser. \n\nVisit us at https://guardianproject.info/apps/orbot or send an email to help@guardianproject.info to learn more.</string>
+	<string name="connect_first_time"> You\'ve successfully connected to the Tor network - but this does NOT mean your device is secure. You can use the Check option from the menu to test your browser. \n\nVisit us at https://guardianproject.info/apps/orbot or send an email to help@guardianproject.info to learn more.</string>
 
 	<string name="tor_check">This will open your default web browser to https://check.torproject.org in order to see if Orbot is probably configured and you are connected to Tor.</string>
 </resources>
