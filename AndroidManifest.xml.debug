@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="org.torproject.android" android:versionName="1.0.4" android:versionCode="10">
+      package="org.torproject.android" android:versionName="0.2.2.14-orbot-alpha-1.0.3" android:versionCode="9">
        
        <uses-permission android:name="android.permission.INTERNET" />
 
  
-    <application android:icon="@drawable/icon" android:label="@string/app_name">
+    <application android:icon="@drawable/icon" android:label="@string/app_name" android:debuggable="true">
       
         <activity android:name=".Orbot"
                   android:theme="@android:style/Theme.NoTitleBar">
@@ -33,12 +33,21 @@
         <activity android:name=".AppManager"  android:label="@string/app_name"/>
         <activity android:name=".WizardActivity"  android:label="@string/app_name"/>
       
-    	<service android:name=".service.TorService" android:process=":remote">
+    	<!-- <service android:name=".service.TorService" android:process=":remote"> -->
+    	<service android:name=".service.TorService">
 	            <intent-filter>
 	                <action android:name="org.torproject.android.service.ITorService" />
 	              	<action android:name="org.torproject.android.service.TOR_SERVICE" />
             </intent-filter>
     	</service>
+    	
+    	<receiver android:name=".OnBootReceiver">
+			<intent-filter>
+			<action
+			android:name="android.intent.action.BOOT_COMPLETED" />
+			<category android:name="android.intent.category.HOME" />
+			</intent-filter>
+		</receiver>
     	
     	
     </application>

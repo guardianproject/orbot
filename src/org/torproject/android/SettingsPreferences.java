@@ -3,6 +3,7 @@
 
 package org.torproject.android;
 
+import org.torproject.android.service.TorServiceUtils;
 import org.torproject.android.service.TorTransProxy;
 
 import android.content.Intent;
@@ -30,7 +31,7 @@ public class SettingsPreferences
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.preferences);
 		
-		hasRoot = TorTransProxy.hasRootAccess();
+		hasRoot = TorServiceUtils.checkRootAccess();
 		
 	}
 	

@@ -1,5 +1,6 @@
 package org.torproject.android;
 
+import org.torproject.android.service.TorServiceUtils;
 import org.torproject.android.service.TorTransProxy;
 
 import android.app.AlertDialog;
@@ -84,7 +85,7 @@ public class WizardHelper implements TorConstants {
 			public void onClick(View view) {
 				
 				
-				boolean hasRoot = TorTransProxy.hasRootAccess();
+				boolean hasRoot = TorServiceUtils.checkRootAccess();
 				
 				if (hasRoot)
 				{
