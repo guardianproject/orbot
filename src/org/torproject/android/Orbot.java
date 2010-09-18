@@ -319,8 +319,13 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 		super.onResume();
 		
 		
-
+		if (getIntent() == null)
+			return;
+		
 		String action = getIntent().getAction();
+		
+		if (action == null)
+			return;
 		
 		if (action.equals("org.torproject.android.REQUEST_HS_PORT"))
 		{

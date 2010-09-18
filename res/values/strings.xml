@@ -2,7 +2,8 @@
 <resources>
     <string name="pref_hs_group">Hidden Services</string>
     <string name="app_name">Orbot</string>
-    <string name="app_version">1.0.2</string>
+        <string name="app_version">1.0.4</string>
+    
     <string name="internal_web_url">http://orbot/</string>
     <string name="default_web_url">http://check.torproject.org</string>
     <string name="secure_default_web_url">https://check.torproject.org</string>
@@ -101,8 +102,8 @@
     <string name="wizard_final">Orbot is ready!</string>
     <string name="wizard_final_msg">Hundreds of thousands of people around the world use Tor for a wide variety of reasons: journalists and bloggers, human rights workers, law enforcement officers, soldiers, corporations, citizens of repressive regimes, and just ordinary citizens... and now you are ready to, as well!</string>
     
-    <string name="otrchat_apk_url">http://github.com/downloads/guardianproject/OtRChat/OtRChat-0.0.1-alpha-build6a.apk</string>
-    <string name="orweb_apk_url">http://github.com/downloads/guardianproject/Orweb/Orweb-0.0.1c.apk.apk</string>
+    <string name="otrchat_apk_url">https://guardianproject/getgibber</string>
+    <string name="orweb_apk_url">https://guardianproject/getorweb</string>
     
  <!-- END Welcome Wizard strings (DJH) -->
 
