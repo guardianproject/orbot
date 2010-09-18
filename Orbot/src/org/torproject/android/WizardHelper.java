@@ -379,6 +379,7 @@ public class WizardHelper implements TorConstants {
 		
 		LayoutInflater li = LayoutInflater.from(context);
         View view = li.inflate(R.layout.layout_about, null); 
+        
         TextView versionName = (TextView)view.findViewById(R.id.versionName);
         versionName.setText(R.string.app_version);    
         

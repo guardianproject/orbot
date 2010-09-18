@@ -2,7 +2,7 @@
 <resources>
     <string name="pref_hs_group">خدمات خفية</string>
     <string name="app_name">اوربوت (Orbot)</string>
-    <string name="app_version">1.0.2</string>
+        <string name="app_version">1.0.4</string>
     <string name="internal_web_url">http://orbot/</string>
     <string name="default_web_url">http://check.torproject.org</string>
     <string name="secure_default_web_url">https://check.torproject.org</string>
