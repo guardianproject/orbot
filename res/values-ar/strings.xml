@@ -3,6 +3,7 @@
     <string name="pref_hs_group">خدمات خفية</string>
     <string name="app_name">اوربوت (Orbot)</string>
         <string name="app_version">1.0.4</string>
+    
     <string name="internal_web_url">http://orbot/</string>
     <string name="default_web_url">http://check.torproject.org</string>
     <string name="secure_default_web_url">https://check.torproject.org</string>
@@ -108,8 +109,8 @@
     <string name="wizard_final">أوربوت جاهز!</string>
     <string name="wizard_final_msg">مئات الآلاف من الناس في جميع أنحاء العالم يستخدمون تور لأسباب عديدة: الصحفيين والمدونين، والعاملين في مجال حقوق الإنسان، والجنود والشركات والمواطنين من الأنظمة القمعية، والمواطنين العاديين ... والآن أنت مستعد لأن تستخدمه كذلك!</string>
     
-    <string name="otrchat_apk_url">http://github.com/downloads/guardianproject/OtRChat/OtRChat-0.0.1-alpha-build6a.apk</string>
-    <string name="orweb_apk_url">http://github.com/downloads/guardianproject/Orweb/Orweb-0.0.1c.apk.apk</string>
+    <string name="otrchat_apk_url">https://guardianproject/getgibber</string>
+    <string name="orweb_apk_url">https://guardianproject/getorweb</string>
     
 <!-- END Welcome Wizard strings (DJH) -->
  

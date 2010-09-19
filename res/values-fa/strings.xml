@@ -3,6 +3,7 @@
     <string name="pref_hs_group">سرويس هاي مخفي</string>
     <string name="app_name">اوربات</string>
         <string name="app_version">1.0.4</string>
+    
     <string name="internal_web_url">http://orbot/</string>
     <string name="default_web_url">http://check.torproject.org</string>
     <string name="secure_default_web_url">https://check.torproject.org</string>
@@ -98,8 +99,8 @@
     <string name="wizard_final">اوربات آماده استفاده میباشد!</string>
     <string name="wizard_final_msg">صدها هزار نفر در سراسر جهان به دلایل گوناگون از Tor استفاده می کنند: روزنامه نویسها و بلاگرها، کارکنان حقوق بشر، ماموران انتظامی، سربازان، شرکتها، شهروندان دولتهای سرکوبگر، و شهروندان عادی، و حالا شما نیز آماده استفاده از آن هستید!</string>
     
-    <string name="otrchat_apk_url">http://github.com/downloads/guardianproject/OtRChat/OtRChat-0.0.1-alpha-build6a.apk</string>
-    <string name="orweb_apk_url">http://github.com/downloads/guardianproject/Orweb/Orweb-0.0.1c.apk.apk</string>
+    <string name="otrchat_apk_url">https://guardianproject/getgibber</string>
+    <string name="orweb_apk_url">https://guardianproject/getorweb</string>
     
 <!-- END Welcome Wizard strings (DJH) -->
  
