@@ -3,6 +3,7 @@
     <string name="pref_hs_group">Versteckte Dienste</string>
     <string name="app_name">Orbot</string>
         <string name="app_version">1.0.4</string>
+    
     <string name="internal_web_url">http://orbot/</string>
     <string name="default_web_url">http://check.torproject.org</string>
     <string name="secure_default_web_url">https://check.torproject.org</string>
@@ -108,8 +109,8 @@ Erfahren sie mehr über die Verwendung von Proxys unter Android im FAQ unter htt
     <string name="wizard_final">Orbot is ready!</string>
     <string name="wizard_final_msg">Hunderttausende Menschen auf der ganzen Welt nutzen Tor aus einer Vielzahl von Gründen: Journalisten und Blogger, Menschenrechtsaktivisten, Strafverfolgungsbehörden, Soldaten, Unternehmen, Bürger repressiver Regime und ganz normale Menschen... und sind sie ebenfalls bereit!</string>
     
-    <string name="otrchat_apk_url">http://github.com/downloads/guardianproject/OtRChat/OtRChat-0.0.1-alpha-build6a.apk</string>
-    <string name="orweb_apk_url">http://github.com/downloads/guardianproject/Orweb/Orweb-0.0.1c.apk.apk</string>
+    <string name="otrchat_apk_url">https://guardianproject/getgibber</string>
+    <string name="orweb_apk_url">https://guardianproject/getorweb</string>
     
 <!-- END Welcome Wizard strings (DJH) -->
  
