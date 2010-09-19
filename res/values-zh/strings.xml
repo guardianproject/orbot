@@ -3,6 +3,7 @@
     <string name="pref_hs_group">Hidden Services</string>
     <string name="app_name">Orbot</string>
         <string name="app_version">1.0.4</string>
+    
     <string name="internal_web_url">http://orbot/</string>
     <string name="default_web_url">http://check.torproject.org</string>
     <string name="secure_default_web_url">https://check.torproject.org</string>
@@ -105,8 +106,8 @@
     <string name="wizard_final">Orbot 配置完成</string>
     <string name="wizard_final_msg">全世界有100多万的人由于各种原因正在使用 Tor：新闻记者，博客，人权工作者，法律援助者，士兵，公司，强权政制下的公民，和普通的公民...现在你也一样在使用 Tor 了！</string>
     
-    <string name="otrchat_apk_url">http://github.com/downloads/guardianproject/OtRChat/OtRChat-0.0.1-alpha-build6a.apk</string>
-    <string name="orweb_apk_url">http://github.com/downloads/guardianproject/Orweb/Orweb-0.0.1c.apk.apk</string>
+    <string name="otrchat_apk_url">https://guardianproject/getgibber</string>
+    <string name="orweb_apk_url">https://guardianproject/getorweb</string>
     
 <!-- END Welcome Wizard strings (DJH) -->
  
