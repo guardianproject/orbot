@@ -12,12 +12,10 @@ import java.util.StringTokenizer;
 import org.torproject.android.service.ITorService;
 import org.torproject.android.service.ITorServiceCallback;
 import org.torproject.android.service.TorServiceConstants;
-import org.torproject.android.service.TorTransProxy;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.NotificationManager;
-import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -34,18 +32,11 @@ import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -720,9 +711,9 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 		    	if (torStatus == STATUS_ON)
 		    	{
 		    		imgStatus.setImageResource(R.drawable.toron);
-		    		imgStatus.clearAnimation();
+		    	//	imgStatus.clearAnimation();
 		    		
-		    		String lblMsg = getString(R.string.status_activated) + ": " + torServiceMsg;
+		    		String lblMsg = getString(R.string.status_activated) + "\n" + torServiceMsg;
 		    		
 		    		lblStatus.setText(lblMsg);
 		    		
@@ -769,7 +760,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 		    		
 		    		lblStatus.setText(torServiceMsg);
 		    		
-		    		
+		    		/*
 	    			int idx = torServiceMsg.indexOf("%");
 	    			
 	    			if (idx != -1)
@@ -778,13 +769,13 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 	    				int ipComp = Integer.parseInt(pComp);
 	    			//	progressDialog.setProgress(ipComp);
 	    				
-	    			}
+	    			}*/
 		    			
 		    	}
 		    	else if (torStatus == STATUS_OFF)
 		    	{
 		    		imgStatus.setImageResource(R.drawable.torstopping);
-		    		imgStatus.clearAnimation();
+		    	//	imgStatus.clearAnimation();
 		    		
 		    		lblStatus.setText(getString(R.string.status_shutting_down));
 		    			
@@ -793,10 +784,10 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 		    	{
 
 		    		
-		    		imgStatus.clearAnimation();
+		    	//	imgStatus.clearAnimation();
 		    		
 		    		imgStatus.setImageResource(R.drawable.toroff);
-		    		lblStatus.setText(getString(R.string.status_disabled));
+		    		lblStatus.setText(getString(R.string.status_disabled) + "\n" + getString(R.string.press_to_start));
 		    		
 		    		
 		    		
@@ -827,11 +818,13 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
     
     private void stopTor () throws RemoteException
     {
-    	mService.setProfile(PROFILE_ONDEMAND);	//these means turn off
+    	if (mService != null)
+    	{
+    		mService.setProfile(PROFILE_ONDEMAND);	//these means turn off
 		
-		Message msg = mHandler.obtainMessage(DISABLE_TOR_MSG);
-    	mHandler.sendMessage(msg);
-    	
+    		Message msg = mHandler.obtainMessage(DISABLE_TOR_MSG);
+    		mHandler.sendMessage(msg);
+    	}
     	
     }
     

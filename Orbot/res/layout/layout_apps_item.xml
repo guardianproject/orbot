@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    >
-    
-    
+    android:stretchColumns="1">
+    <TableRow>
+    <ImageView android:id="@+id/itemicon" android:layout_width="wrap_content" android:layout_height="wrap_content"  android:padding="3dip"></ImageView>
 
-<ImageView android:id="@+id/itemicon" android:layout_width="48px" android:layout_height="48px"></ImageView>
+<TextView android:layout_height="wrap_content" android:id="@+id/itemtext" android:text="uid:packages"  android:textSize="18sp"  android:padding="3dip"></TextView>
 
-<TextView android:layout_height="wrap_content" android:id="@+id/itemtext" android:text="uid:packages" 
-android:layout_width="220px" android:textSize="18sp"></TextView>
+<CheckBox  android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/itemcheck" ></CheckBox>
+       
+    </TableRow>
+</TableLayout>
 
-<CheckBox  android:layout_width="48px" android:layout_height="48px" android:id="@+id/itemcheck"></CheckBox>
-
-
-</LinearLayout>

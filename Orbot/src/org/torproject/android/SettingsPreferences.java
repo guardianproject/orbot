@@ -7,9 +7,12 @@ import org.torproject.android.service.TorServiceUtils;
 import org.torproject.android.service.TorTransProxy;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
+import android.preference.PreferenceManager;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
@@ -23,7 +26,6 @@ public class SettingsPreferences
 	private Preference prefTransProxyApps = null;
 	private CheckBoxPreference prefHiddenServices = null;
 	
-	
 	private boolean hasRoot = false;
 	
 	protected void onCreate(Bundle savedInstanceState)
@@ -31,8 +33,19 @@ public class SettingsPreferences
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.preferences);
 		
-		hasRoot = TorServiceUtils.checkRootAccess();
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		
+		if (prefs.contains("has_root"))
+		{
+			hasRoot = prefs.getBoolean("has_root",false);//TorServiceUtils.checkRootAccess();
+		}
+		else
+		{
+			hasRoot = TorServiceUtils.checkRootAccess();
+			Editor pEdit = prefs.edit();
+			pEdit.putBoolean("has_root",hasRoot);
+			pEdit.commit();
+		}
 	}
 	
 	
