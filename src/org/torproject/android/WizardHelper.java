@@ -87,6 +87,12 @@ public class WizardHelper implements TorConstants {
 				
 				boolean hasRoot = TorServiceUtils.checkRootAccess();
 				
+				SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+
+				Editor pEdit = prefs.edit();
+				pEdit.putBoolean("has_root",hasRoot);
+				pEdit.commit();
+				
 				if (hasRoot)
 				{
 					currentDialog.dismiss();

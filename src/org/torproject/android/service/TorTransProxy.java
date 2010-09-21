@@ -95,32 +95,34 @@ public class TorTransProxy implements TorServiceConstants {
     	StringBuilder res = new StringBuilder();
     	int code = -1;
     	
-			for (int i = 0; i < apps.length; i++)
-			{
+		for (int i = 0; i < apps.length; i++)
+		{
 
-				//flush nat for every app
-				script.append(baseDir);
-				script.append("iptables -t nat -m owner --uid-owner ");
-				script.append(apps[i].getUid());
-				script.append(" -F || exit\n");
-				script.append("iptables -t filter -m owner --uid-owner ");
-				script.append(apps[i].getUid());
-				script.append(" -F || exit\n");
-					
-			}
-			
-	    	
-	    	String[] cmd = {script.toString()};	    	
-			code = TorServiceUtils.doShellCommand(cmd, res, true, true);		
-			String msg = res.toString();
-			logNotice(cmd[0] + ";errCode=" + code + ";resp=" + msg);
+			//flush nat for every app
+			script.append(baseDir);
+			script.append("iptables -t nat -m owner --uid-owner ");
+			script.append(apps[i].getUid());
+			script.append(" -F || exit\n");
+			script.append("iptables -t filter -m owner --uid-owner ");
+			script.append(apps[i].getUid());
+			script.append(" -F || exit\n");
+				
+		}
+		
+    	
+    	String[] cmd = {script.toString()};	    	
+		code = TorServiceUtils.doShellCommand(cmd, res, true, true);		
+		String msg = res.toString();
+		logNotice(cmd[0] + ";errCode=" + code + ";resp=" + msg);
 			
 		
 		return code;
 		
 	}
 	
-
+	/*
+	 // 9/19/2010 - NF This code is in process... /etc path on System partition
+	 // is read-only on Android for now.
 	public static int redirectDNSResolvConf () throws Exception
 	{
     	StringBuilder script = new StringBuilder();
@@ -160,6 +162,7 @@ public class TorTransProxy implements TorServiceConstants {
 		
 		return code;
 	}
+	*/
 	
 	public static int setTransparentProxyingByApp(Context context, TorifiedApp[] apps, boolean forceAll) throws Exception
 	{

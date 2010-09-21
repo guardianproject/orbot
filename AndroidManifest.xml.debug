@@ -41,6 +41,7 @@
             </intent-filter>
     	</service>
     	
+    	<!--
     	<receiver android:name=".OnBootReceiver">
 			<intent-filter>
 			<action
@@ -48,11 +49,11 @@
 			<category android:name="android.intent.category.HOME" />
 			</intent-filter>
 		</receiver>
-    	
+    	-->
     	
     </application>
     
-    <uses-sdk android:minSdkVersion="3"/>
+    <uses-sdk android:minSdkVersion="4"/>
 
 
 

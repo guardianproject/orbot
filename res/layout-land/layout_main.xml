@@ -49,7 +49,7 @@
 							<ImageView
 							android:id="@+id/imgStatus"
 							 android:layout_width="wrap_content"
-		   					 android:layout_height="175px"
+		   					 android:layout_height="225px"
 							android:src="@drawable/toroff"/>
 					</TableRow>
 					<TableRow>
@@ -58,8 +58,8 @@
 							android:layout_gravity="center_horizontal"
 							android:gravity="center_horizontal"
 							android:textStyle="bold"
-							android:width="240px"
-							android:height="50px"
+							android:width="320px"
+							android:height="100px"
 							android:textColor="#ffffff"
 							 />
 					</TableRow>
