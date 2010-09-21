@@ -102,8 +102,8 @@
     <string name="wizard_final">Orbot is ready!</string>
     <string name="wizard_final_msg">Hundreds of thousands of people around the world use Tor for a wide variety of reasons: journalists and bloggers, human rights workers, law enforcement officers, soldiers, corporations, citizens of repressive regimes, and just ordinary citizens... and now you are ready to, as well!</string>
     
-    <string name="otrchat_apk_url">https://guardianproject/getgibber</string>
-    <string name="orweb_apk_url">https://guardianproject/getorweb</string>
+    <string name="otrchat_apk_url">https://guardianproject.info/getgibber</string>
+    <string name="orweb_apk_url">https://guardianproject.info/getorweb</string>
     
  <!-- END Welcome Wizard strings (DJH) -->
 
