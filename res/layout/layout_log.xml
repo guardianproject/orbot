@@ -43,7 +43,7 @@
          android:layout_width="fill_parent"
          android:layout_x="2px"
 		 android:layout_y="2px"
-         android:textSize="12px"
+         android:textSize="14px"
          android:background="#A0222222"
          />	
         
