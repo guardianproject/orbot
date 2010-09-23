@@ -1,5 +1,14 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
+<PreferenceCategory android:title="@string/pref_general_group">
+<CheckBoxPreference 
+android:defaultValue="true" 
+android:key="pref_start_boot"
+android:title="@string/pref_start_boot_title"
+android:summary="@string/pref_start_boot_summary"
+android:enabled="true"/>
+</PreferenceCategory>
+
 <PreferenceCategory android:title="@string/pref_trans_proxy_group">
 
 <CheckBoxPreference 

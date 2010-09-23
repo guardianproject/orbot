@@ -54,15 +54,18 @@ public class SettingsPreferences
 	
 		super.onResume();
 	
+
+		int transProxyGroupIdx = 1;
+		
 		if (!hasRoot)
 		{
-			getPreferenceScreen().getPreference(0).setEnabled(false);
+			getPreferenceScreen().getPreference(transProxyGroupIdx).setEnabled(false);
 		}
 		else
 		{
-			prefCBTransProxy = ((CheckBoxPreference)((PreferenceCategory)this.getPreferenceScreen().getPreference(0)).getPreference(0));
-			prefcBTransProxyAll = (CheckBoxPreference)((PreferenceCategory)this.getPreferenceScreen().getPreference(0)).getPreference(1);
-			prefTransProxyApps = ((PreferenceCategory)this.getPreferenceScreen().getPreference(0)).getPreference(2);
+			prefCBTransProxy = ((CheckBoxPreference)((PreferenceCategory)this.getPreferenceScreen().getPreference(transProxyGroupIdx)).getPreference(0));
+			prefcBTransProxyAll = (CheckBoxPreference)((PreferenceCategory)this.getPreferenceScreen().getPreference(transProxyGroupIdx)).getPreference(1);
+			prefTransProxyApps = ((PreferenceCategory)this.getPreferenceScreen().getPreference(transProxyGroupIdx)).getPreference(2);
 
 			prefcBTransProxyAll.setEnabled(prefCBTransProxy.isChecked());
 			
@@ -74,10 +77,12 @@ public class SettingsPreferences
 			
 		}
 		
-		prefHiddenServices = ((CheckBoxPreference)((PreferenceCategory)this.getPreferenceScreen().getPreference(4)).getPreference(0));
+		int hiddenGroupIdx = 5;
+		
+		prefHiddenServices = ((CheckBoxPreference)((PreferenceCategory)this.getPreferenceScreen().getPreference(hiddenGroupIdx)).getPreference(0));
 		prefHiddenServices.setOnPreferenceClickListener(this);
-		((PreferenceCategory)this.getPreferenceScreen().getPreference(4)).getPreference(1).setEnabled(prefHiddenServices.isChecked());
-		((PreferenceCategory)this.getPreferenceScreen().getPreference(4)).getPreference(2).setEnabled(prefHiddenServices.isChecked());
+		((PreferenceCategory)this.getPreferenceScreen().getPreference(hiddenGroupIdx)).getPreference(1).setEnabled(prefHiddenServices.isChecked());
+		((PreferenceCategory)this.getPreferenceScreen().getPreference(hiddenGroupIdx)).getPreference(2).setEnabled(prefHiddenServices.isChecked());
 				
 		
 	};
@@ -106,8 +111,8 @@ public class SettingsPreferences
 		else if (preference == prefHiddenServices)
 		{
 			
-			((PreferenceCategory)this.getPreferenceScreen().getPreference(4)).getPreference(1).setEnabled(prefHiddenServices.isChecked());
-			((PreferenceCategory)this.getPreferenceScreen().getPreference(4)).getPreference(2).setEnabled(prefHiddenServices.isChecked());
+			((PreferenceCategory)this.getPreferenceScreen().getPreference(5)).getPreference(1).setEnabled(prefHiddenServices.isChecked());
+			((PreferenceCategory)this.getPreferenceScreen().getPreference(5)).getPreference(2).setEnabled(prefHiddenServices.isChecked());
 			
 		}
 		else

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="pref_hs_group">Hidden Services</string>
     <string name="app_name">Orbot</string>
         <string name="app_version">1.0.4</string>
     
@@ -110,4 +109,12 @@
 	<string name="connect_first_time"> You\'ve successfully connected to the Tor network - but this does NOT mean your device is secure. You can use the \'Check\' option from the menu to test your browser. \n\nVisit us at https://guardianproject.info/apps/orbot or send an email to help@guardianproject.info to learn more.</string>
 
 	<string name="tor_check">This will open your default web browser to https://check.torproject.org in order to see if Orbot is probably configured and you are connected to Tor.</string>
+
+	
+    <string name="pref_hs_group">Hidden Services</string>
+    
+    <string name="pref_general_group">General</string>
+    <string name="pref_start_boot_title">Start Orbot on Boot</string>
+    <string name="pref_start_boot_summary">Automatically start Orbot and connect Tor when your Android device boots</string>
+    
 </resources>

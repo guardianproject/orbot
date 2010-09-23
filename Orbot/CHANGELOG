@@ -1,5 +1,6 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+
 1.0.4
 - Added Russian, Persian, Arabic and other .po translations (see res/values-* folders)
 - Fixed incorrect try to clear iptables rules for non-root devices
@@ -7,6 +8,9 @@ NOTE: Specific #s below correspond to Trac tickets logged and maintained at http
 - Added new green notification icon when Tor is connected
 - Fixed app selector layout in settings
 - Moved minSDK to 4 (Android 1.6); discontinued 1.5 support
+- Fixed log screen touch disable tor bug
+- Debugged issues around network status change causing FC/crash
+- Added "Start on Boot" option
 
 1.0.3
 - Fixed spanish language issues with settings screen
