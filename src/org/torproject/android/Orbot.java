@@ -176,10 +176,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 			stopTor();
 			
 			
-			unbindService();
 			
-            stopService(new Intent(ITorService.class.getName()));
-		
         	NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 			mNotificationManager.cancelAll();
 		
@@ -826,43 +823,45 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
     		mHandler.sendMessage(msg);
     	}
     	
+    	//unbindService();
+		
+        //stopService(new Intent(ITorService.class.getName()));
+	
+    	
     }
     
-    
+    /*
     @Override
 	public boolean onTouchEvent(MotionEvent event) {
-    	try
-		{
-			
-			if (mService == null)
+    	
+    	if (currentView == R.layout.layout_main)
+    	{
+	    	try
 			{
-			
-			}
-			else if (mService.getStatus() == STATUS_READY)
-			{
+				if (mService == null)
+				{
 				
-				if (event.getAction() == MotionEvent.ACTION_UP)
+				}
+				else if (mService.getStatus() == STATUS_READY)
 				{
 					startTor();
+					
 				}
-			}
-			else
-			{
-				
-				if (event.getAction() == MotionEvent.ACTION_DOWN)
+				else
 				{
 					stopTor();
+					
 				}
+				
 			}
-			
-		}
-		catch (Exception e)
-		{
-			Log.d(TAG,"error onclick",e);
-		}
-		
+			catch (Exception e)
+			{
+				Log.d(TAG,"error onclick",e);
+			}
+    	}
+    	
 		return super.onTouchEvent(event);
-	}
+	}*/
 
 	/*
      * (non-Javadoc)
@@ -870,9 +869,8 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
      */
 	public void onClick(View view) {
 		
-		// the start button
-	//	if (view.getId()==R.id.imgStatus || view.getId()==R.id.lblStatus)
-	//	{
+		if (currentView == R.layout.layout_main)
+    	{
 			try
 			{
 				
@@ -899,7 +897,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 				Log.d(TAG,"error onclick",e);
 			}
 			
-	//	}
+		}
 		
 		
 	}

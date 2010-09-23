@@ -58,8 +58,8 @@
 							android:layout_gravity="center_horizontal"
 							android:gravity="center_horizontal"
 							android:textStyle="bold"
-							android:width="320px"
-							android:height="100px"
+							android:width="300px"
+							android:height="75px"
 							android:textColor="#ffffff"
 							 />
 					</TableRow>
