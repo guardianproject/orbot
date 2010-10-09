@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="pref_hs_group">Hidden Services</string>
     <string name="app_name">Orbot</string>
         <string name="app_version">1.0.4</string>
     
@@ -11,13 +10,13 @@
     <string name="control_permission_label">启动和停止Tor</string>
     <string name="tor_proxy_service_process">Tor代理服务</string>
    
-<string name="status_starting_up">Orbot正在启动</string>
+<string name="status_starting_up">Orbot正在启动...</string>
 <string name="status_activated">已经连接上了Tor网络</string>
 <string name="status_disabled">Orbot已停用</string>
 <string name="status_shutting_down">Orbot正在关闭</string>
 
 <string name="tor_process_connecting">正在启动Tor....</string>
-<string name="tor_process_connecting_step2">Setting up control...</string>
+<string name="tor_process_connecting_step2">启动控制连接...</string>
 <string name="tor_process_connecting_step3">完毕.</string>
 <string name="tor_process_connecting_step4">请等待...</string>
 
@@ -44,7 +43,7 @@
 <string name="powered_by">由 Tor 项目提供动力</string>
 <string name="press_to_start">- 按下后启动 -</string>
 
-<string name="pref_trans_proxy_group">透明代码(需要 Root 权限)</string>
+<string name="pref_trans_proxy_group">透明代理(需要 Root 权限)</string>
 <string name="pref_trans_proxy_title">透明代理</string>
 <string name="pref_trans_proxy_summary">应用程序自动通过 Tor 访问网络</string>
 
@@ -76,7 +75,7 @@
     <string name="wizard_details_msg">Orbot 是一个开放源代码的应用程序，它包含了 Tor, LibEvent 和 Privoxy. 它在本地提供一个连接到 Tor 网络的 HTTP 代理（8118）和一个 SOCKS 代理（9050）。在有 Root 权限的设备上，Orbot 能够让所有的互联网访问通过 Tor 网络发出。</string>
     <string name="wizard_permissions_root">已经获得授权</string>
     <string name="wizard_permissions_stock">Orbot 权限</string>
-    <string name="wizard_premissions_msg_root">满塞！检测到 Orbot 已经获得了 Root 权限。我们会警慎地使用它。</string>
+    <string name="wizard_premissions_msg_root">很好！我们检测到 Orbot 已经获得了 Root 权限。我们会谨慎地使用它。</string>
     <string name="wizard_permissions_msg_stock">虽然 Root 权限并不是必须的，但是一旦拥有，Orbot 就会变成更加强大的工具。点击下面的按钮获得 Root 权限！</string>
    
     <string name="wizard_permissions_no_root">如果你没有 Root 权限，或者不明白我们在说什么，请一定只使用那些支持 Orbot的应用程序。</string>
@@ -101,18 +100,28 @@
 主机地址是 127.0.0.1 或者 localhost, HTTP 代理端口是 8118, SOCKS 代理端口是 9050. 你可以使用 SOCKS4A 或者 SOCKS5. 
 
 获取更多关于 Android 上使用代理设置的信息请访问： http://tinyurl.com/proxyandroid
-</string>
+    </string>
     
     <string name="wizard_final">Orbot 配置完成</string>
     <string name="wizard_final_msg">全世界有100多万的人由于各种原因正在使用 Tor：新闻记者，博客，人权工作者，法律援助者，士兵，公司，强权政制下的公民，和普通的公民...现在你也一样在使用 Tor 了！</string>
     
-    <string name="otrchat_apk_url">https://guardianproject/getgibber</string>
-    <string name="orweb_apk_url">https://guardianproject/getorweb</string>
+    <string name="otrchat_apk_url">https://guardianproject.info/getgibber</string>
+    <string name="orweb_apk_url">https://guardianproject.info/getorweb</string>
     
 <!-- END Welcome Wizard strings (DJH) -->
  
 
-	<string name="connect_first_time"> You\'ve successfully connected to the Tor network - but this does NOT mean your device is secure. You can use the \'Check\' option from the menu to test your browser. \n\nVisit us at https://guardianproject.info/apps/orbot or send an email to help@guardianproject.info to learn more.</string>
+	<string name="connect_first_time">你已经成功连接到Tor网络-但是，这并不意味着你的设备是安全的。你可以使用菜单中的\'检查\'选项来测试你的浏览器。
 
-	<string name="tor_check">This will open your default web browser to https://check.torproject.org in order to see if Orbot is probably configured and you are connected to Tor.</string>
+访问我们的网站https://guardianproject.info/apps/orbot或发送电子邮件至help@guardianproject.info了解更多信息。</string>
+
+	<string name="tor_check">这将打开你的默认浏览器至 https://check.torproject.org 为了确认 Orbot是否安装完成和你是否连接到了Tor。</string>
+
+	
+    <string name="pref_hs_group">隐匿服务</string>
+    
+    <string name="pref_general_group">General</string>
+    <string name="pref_start_boot_title">Start Orbot on Boot</string>
+    <string name="pref_start_boot_summary">Automatically start Orbot and connect Tor when your Android device boots</string>
+    
 </resources>
