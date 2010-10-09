@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="pref_hs_group">سرويس هاي مخفي</string>
     <string name="app_name">اوربات</string>
         <string name="app_version">1.0.4</string>
     
@@ -99,8 +98,8 @@
     <string name="wizard_final">اوربات آماده استفاده میباشد!</string>
     <string name="wizard_final_msg">صدها هزار نفر در سراسر جهان به دلایل گوناگون از Tor استفاده می کنند: روزنامه نویسها و بلاگرها، کارکنان حقوق بشر، ماموران انتظامی، سربازان، شرکتها، شهروندان دولتهای سرکوبگر، و شهروندان عادی، و حالا شما نیز آماده استفاده از آن هستید!</string>
     
-    <string name="otrchat_apk_url">https://guardianproject/getgibber</string>
-    <string name="orweb_apk_url">https://guardianproject/getorweb</string>
+    <string name="otrchat_apk_url">https://guardianproject.info/getgibber</string>
+    <string name="orweb_apk_url">https://guardianproject.info/getorweb</string>
     
 <!-- END Welcome Wizard strings (DJH) -->
  
@@ -108,4 +107,12 @@
 	<string name="connect_first_time">اکنون با موفقیت به شبکه Tor وصل شده اید اما به آن معنا نیست که سیستم شما ایمن است. می توانید از منیو گزینه /"Check/" را برای آزمایش مرورگر انتخاب کنید. به ما در صفحه https://guardianproject.info/apps/orbot مراجعه کنید و به آدرس help@guardianproject.info  ایمیلی بفرستید تا اطلاعات بیشتری دریافت کنید. </string>
 
 	<string name="tor_check">با این قدم پیشفرض مرورگر وب شما به صفحه   https://check.torproject.org باز می شود تا شما مشاهده کنید آیا اوربات تنظیم شده است و آیا شما به Tor وصل شده اید یا نه.</string>
+
+	
+    <string name="pref_hs_group">سرويس هاي مخفي</string>
+    
+    <string name="pref_general_group">General</string>
+    <string name="pref_start_boot_title">Start Orbot on Boot</string>
+    <string name="pref_start_boot_summary">Automatically start Orbot and connect Tor when your Android device boots</string>
+    
 </resources>

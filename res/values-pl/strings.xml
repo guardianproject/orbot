@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="pref_hs_group">Usługi ukryte</string>
     <string name="app_name">Orbot</string>
         <string name="app_version">1.0.4</string>
     
@@ -103,8 +102,8 @@
     <string name="wizard_final">Orbot jest gotowy!</string>
     <string name="wizard_final_msg">Setki tysięcy ludzi na całym świecie używają Tora z różnych powodów: dziennikarze i blogerzy, działacze na rzecz praw człowieka, stróże prawa, żołnierze, korporacje, obywatele represyjnych reżimów i zwykli obywatele... teraz Ty też możesz!</string>
     
-    <string name="otrchat_apk_url">https://guardianproject/getgibber</string>
-    <string name="orweb_apk_url">https://guardianproject/getorweb</string>
+    <string name="otrchat_apk_url">https://guardianproject.info/getgibber</string>
+    <string name="orweb_apk_url">https://guardianproject.info/getorweb</string>
     
 <!-- END Welcome Wizard strings (DJH) -->
  
@@ -112,4 +111,12 @@
 	<string name="connect_first_time">Pomyślnie połaczono z siecią Tora - ale to NIE oznacza, że Twoje urządzenie jest bezpieczne. Możesz użyć opcji \'Sprawdź\' w menu, aby przetestować swoją przeglądarkę. \n\nOdwiedź nas na https://guardianproject.info/apps/orbot lub wyślij email na help@guardianproject.info, by dowiedzieć się więcej.</string>
 
 	<string name="tor_check">To otworzy Twoją domyślną przeglądarkę na adresie https://check.torproject.org w celu sprawdzenia, czy Orbot jest skonfigurowany i jest poąłczenie z Torem.</string>
+
+	
+    <string name="pref_hs_group">Usługi ukryte</string>
+    
+    <string name="pref_general_group">General</string>
+    <string name="pref_start_boot_title">Start Orbot on Boot</string>
+    <string name="pref_start_boot_summary">Automatically start Orbot and connect Tor when your Android device boots</string>
+    
 </resources>

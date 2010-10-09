@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="pref_hs_group">Verborgen diensten</string>
     <string name="app_name">Orbot</string>
         <string name="app_version">1.0.4</string>
     
@@ -36,7 +35,7 @@
 <string name="button_close">Afsluiten</string>
 <string name="button_about">Over</string>
 
-<string name="button_clear_log">Clear Log</string>
+<string name="button_clear_log">Wis logboek</string>
 
 
 <string name="menu_verify">Controleer</string>
@@ -103,13 +102,13 @@ De host instelling is 127.0.0.1 of "localhost". De poort voor SOCS is 9050 en vo
 
 
 U kunt meer leren over het proxyen op Android door naar de FAQ op http://tinyurl.com/proxyandroid te gaan
-</string>
+    </string>
     
     <string name="wizard_final">Orbot is klaar!</string>
     <string name="wizard_final_msg">Honderdduizenden verschillende mensen over de wereld gebruiken Tor, zoals: journalisten, bloggers, mensen rechten medewerkers, soldaten, bedrijven, burgers met onderdrukte religies, en natuurlijk normale mensen... En nu bent u ook klaar om te gaan!</string>
     
-    <string name="otrchat_apk_url">https://guardianproject/getgibber</string>
-    <string name="orweb_apk_url">https://guardianproject/getorweb</string>
+    <string name="otrchat_apk_url">https://guardianproject.info/getgibber</string>
+    <string name="orweb_apk_url">https://guardianproject.info/getorweb</string>
     
 <!-- END Welcome Wizard strings (DJH) -->
  
@@ -119,4 +118,12 @@ U kunt meer leren over het proxyen op Android door naar de FAQ op http://tinyurl
 Bezoek onze website op https://guardianproject.info/apps/orbot of stuuf een email naar help@guardianproject.info voor vragen.</string>
 
 	<string name="tor_check">Dit opent uw standaard browser naar https://check.torproject.org om te controleren of Orbot succesvol is geconfigureerd om te verbinden met het Tor netwerk.</string>
+
+	
+    <string name="pref_hs_group">Verborgen diensten</string>
+    
+    <string name="pref_general_group">General</string>
+    <string name="pref_start_boot_title">Start Orbot on Boot</string>
+    <string name="pref_start_boot_summary">Automatically start Orbot and connect Tor when your Android device boots</string>
+    
 </resources>
