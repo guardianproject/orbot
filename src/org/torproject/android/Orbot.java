@@ -825,7 +825,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
     	
     	//unbindService();
 		
-        //stopService(new Intent(ITorService.class.getName()));
+        stopService(new Intent(ITorService.class.getName()));
 	
     	
     }

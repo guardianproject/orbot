@@ -1,5 +1,7 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+1.0.5
+- Removed unused Socks client code from android.net package
 
 1.0.4
 - Added Russian, Persian, Arabic and other .po translations (see res/values-* folders)

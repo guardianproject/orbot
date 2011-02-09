@@ -50,6 +50,13 @@
 <string name="pref_transparent_all_title">Tor Everything</string>
 <string name="pref_transparent_all_summary">Proxy traffic for all apps through Tor</string>
 
+<string name="pref_transparent_port_fallback_title">Port Proxy Fallback</string>
+<string name="pref_transparent_port_fallback_summary">WARNING: Circumvents common ports (80, 443, etc). *USE ONLY* if \'All\' or \'App\' mode doesn\'t work.</string>
+
+<string name="pref_transparent_port_title">Port List</string>
+<string name="pref_transparent_port_summary">List of ports to proxy. *USE ONLY* if \'All\' or \'App\' mode doesn\'t work</string>
+<string name="pref_transparent_port_dialog">Enter ports to proxy</string>
+
 <string name="status_install_success">Tor binaries successfully installed!</string>
 <string name="status_install_fail">The Tor binary files were unable to be installed. Please check the log and notify tor-assistants@torproject.org</string>
 

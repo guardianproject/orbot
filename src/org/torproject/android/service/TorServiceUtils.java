@@ -3,6 +3,7 @@
 package org.torproject.android.service;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -66,7 +67,6 @@ public class TorServiceUtils implements TorServiceConstants {
 			try
 			{
 				procId = findProcessIdWithPS(command);
-
 			}
 			catch (Exception e2)
 			{
@@ -87,22 +87,26 @@ public class TorServiceUtils implements TorServiceConstants {
 		    	
 		Process procPs = null;
 		
-        procPs = r.exec(SHELL_CMD_PIDOF);
+		String baseName = new File(command).getName();
+		//fix contributed my mikos on 2010.12.10
+		procPs = r.exec(new String[] {SHELL_CMD_PIDOF, baseName});
+        //procPs = r.exec(SHELL_CMD_PIDOF);
             
         BufferedReader reader = new BufferedReader(new InputStreamReader(procPs.getInputStream()));
         String line = null;
-        
 
         while ((line = reader.readLine())!=null)
         {
-        	if (line.indexOf(command)!=-1)
+        
+        	try
         	{
-
         		//this line should just be the process id
         		procId = Integer.parseInt(line.trim());
-
-        		
         		break;
+        	}
+        	catch (NumberFormatException e)
+        	{
+        		logNotice("unable to parse process pid: " + line);
         	}
         }
             
@@ -128,7 +132,7 @@ public class TorServiceUtils implements TorServiceConstants {
         
         while ((line = reader.readLine())!=null)
         {
-        	if (line.indexOf(command)!=-1)
+        	if (line.indexOf(' ' + command)!=-1)
         	{
         		
         		StringTokenizer st = new StringTokenizer(line," ");
