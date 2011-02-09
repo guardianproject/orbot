@@ -294,6 +294,8 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     
     private void killTorProcess () throws Exception
     {
+		//android.os.Debug.waitForDebugger();
+    	
     	StringBuilder log = new StringBuilder();
     	int procId = -1;
     	
@@ -301,9 +303,9 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 		{
     		logNotice("Using control port to shutdown Tor");
     		
+    		
 			try {
 				logNotice("sending SHUTDOWN signal to Tor process");
-				
 				conn.shutdownTor("SHUTDOWN");
 				
 				
@@ -313,30 +315,18 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 			
 			conn = null;
 		}
-    	else
-    	{
     	
-	    	
-	    	logNotice("Checking for existing Tor process via path: " + torBinaryPath);
-			procId = TorServiceUtils.findProcessId(torBinaryPath);
-	
-			while (procId != -1)
-			{
-				
-				logNotice("Found Tor PID=" + procId + " - killing now...");
-				
-				String[] cmd = { SHELL_CMD_KILL + ' ' + procId + "" };
-				TorServiceUtils.doShellCommand(cmd,log, false, false);
-	
-				procId = TorServiceUtils.findProcessId(torBinaryPath);
-			}
-    	
-    	}
-		
-    	logNotice("Checking for existing Privoxy process via path: " + privoxyPath);
-		procId = TorServiceUtils.findProcessId(privoxyPath);
+		while ((procId = TorServiceUtils.findProcessId(torBinaryPath)) != -1)
+		{
+			
+			logNotice("Found Tor PID=" + procId + " - killing now...");
+			
+			String[] cmd = { SHELL_CMD_KILL + ' ' + procId + "" };
+			TorServiceUtils.doShellCommand(cmd,log, false, false);
 
-		while (procId != -1)
+		}
+
+		while ((procId = TorServiceUtils.findProcessId(privoxyPath)) != -1)
 		{
 			
 			logNotice("Found Privoxy PID=" + procId + " - killing now...");
@@ -344,7 +334,6 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 
 			TorServiceUtils.doShellCommand(cmd,log, false, false);
 
-			procId = TorServiceUtils.findProcessId(privoxyPath);
 		}
 		
     }
@@ -443,7 +432,6 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     
     private boolean checkTorBinaries () throws Exception
     {
-    	
     	
 		appHome = "/data/data/" + TOR_APP_USERNAME + "/";
 		//appHome = getApplicationContext().getFilesDir().getAbsolutePath();
@@ -1353,8 +1341,11 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 		boolean enableTransparentProxy = prefs.getBoolean("pref_transparent", false);
 		boolean transProxyAll = prefs.getBoolean("pref_transparent_all", false);
 	
+		boolean transProxyPortFallback = prefs.getBoolean("pref_transparent_port_fallback", false);
+		
     	logNotice ("Transparent Proxying: " + enableTransparentProxy);
     	
+    	String portProxyList = prefs.getString("pref_port_list", "");
 
 		if (enabled)
 		{
@@ -1370,6 +1361,16 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 					int code = TorTransProxy.setTransparentProxyingByApp(this,AppManager.getApps(this),transProxyAll);
 				
 					logNotice ("TorTransProxy resp code: " + code);
+					
+					//this is for Androids w/o owner module support as a circumvention only fallback
+					if (transProxyPortFallback)
+					{
+						StringTokenizer st = new StringTokenizer(portProxyList, ",");
+						
+						while (st.hasMoreTokens())
+							TorTransProxy.setTransparentProxyingByPort(this, Integer.parseInt(st.nextToken()));
+						
+					}
 					
 					return true;
 				

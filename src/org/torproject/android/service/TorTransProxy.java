@@ -42,7 +42,7 @@ public class TorTransProxy implements TorServiceConstants {
 				out = out.substring(out.indexOf(" v")+2);
 				out = out.substring(0,out.indexOf(":"));
 				
-				return out;
+				return out.trim();
 			}
 			
 			
@@ -221,6 +221,15 @@ public class TorTransProxy implements TorServiceConstants {
 				
 				logNotice("enabling transproxy for app: " + apps[i].getUsername() + "(" + apps[i].getUid() + ")");
 			 
+				/*
+				 * iptables -t nat -A OUTPUT -p tcp -m owner --uid-owner anonymous -m tcp --syn -j REDIRECT --to-ports 9040 
+iptables -t nat -A OUTPUT -p udp -m owner --uid-owner anonymous -m udp --dport 53 -j REDIRECT --to-ports 53 
+iptables -t nat -A OUTPUT -m owner --uid-owner anonymous -j DROP
+				 */
+				
+				
+				//iptables -t nat -A output -p tcp -m owner --uid-owner 100 -m tcp --sync -j REDIRECT --to-ports 9040
+				
 				//TCP
 				script.append(baseDir);
 				script.append("iptables -t nat");
@@ -243,7 +252,7 @@ public class TorTransProxy implements TorServiceConstants {
 				script.append("iptables -t nat");
 				script.append(" -A OUTPUT -p udp -m owner --uid-owner ");
 				script.append(apps[i].getUid());
-				script.append(" --dport "); 
+				script.append(" -m udp --dport "); 
 				script.append(STANDARD_DNS_PORT);
 				
 				if (ipTablesOld)
@@ -256,15 +265,14 @@ public class TorTransProxy implements TorServiceConstants {
 				script.append(" || exit\n");
 				
 				
-				//EVERYTHING ELSE UDP - DROP!
+				//EVERYTHING ELSE - DROP!
 				if (ipTablesOld) //for some reason this doesn't work on iptables 1.3.7
 				{
 					
-					script.append(baseDir);
-					script.append("iptables");
-					script.append(" -t nat -A OUTPUT -m owner --uid-owner ");
+					script.append("iptables -t nat");
+					script.append(" -A OUTPUT -m owner --uid-owner ");
 					script.append(apps[i].getUid());
-					script.append(" -j DROP"); //drop all other packets as Tor won't handle them
+					script.append(" -j DROP"); 
 					script.append(" || exit\n");
 				}	
 				else
@@ -300,6 +308,93 @@ public class TorTransProxy implements TorServiceConstants {
 				
 			}		
 		}
+		
+    	
+    	String[] cmdAdd = {script.toString()};    	
+		code = TorServiceUtils.doShellCommand(cmdAdd, res, true, true);
+		String msg = res.toString();
+		logNotice(cmdAdd[0] + ";errCode=" + code + ";resp=" + msg);
+		
+		return code;
+    }	
+	
+	public static int setTransparentProxyingByPort(Context context, int port) throws Exception
+	{
+
+		//android.os.Debug.waitForDebugger();
+		
+		//redirectDNSResolvConf(); //not working yet
+		
+		String baseDir = findBaseDir();
+
+		String iptablesVersion = getIPTablesVersion();
+		logNotice( "iptables version: " + iptablesVersion);
+		
+		boolean ipTablesOld = false;
+		if (iptablesVersion != null && iptablesVersion.startsWith("1.3")){
+			ipTablesOld = true;
+		}
+		
+    	StringBuilder script = new StringBuilder();
+    	
+    	StringBuilder res = new StringBuilder();
+    	int code = -1;
+    	
+    	String[] cmdFlush = {script.toString()};
+		code = TorServiceUtils.doShellCommand(cmdFlush, res, true, true);
+		//String msg = res.toString(); //get stdout from command
+		
+		script = new StringBuilder();
+		
+		//TCP
+		//iptables -t nat -A PREROUTING -i eth0 -p tcp --dport $srcPortNumber -j REDIRECT --to-port $dstPortNumbe
+
+		script.append(baseDir);
+		script.append("iptables -t nat");
+		script.append(" -A OUTPUT -p tcp");
+		script.append(" --dport ");
+		script.append(port);
+		//script.append(" -m tcp --syn");
+		
+		if (ipTablesOld)
+			script.append(" -j DNAT --to 127.0.0.1:");
+		else
+			script.append(" -j REDIRECT --to-ports ");
+		
+		script.append(TOR_TRANSPROXY_PORT);
+		
+		script.append(" || exit\n");
+		
+		script.append(baseDir);
+		script.append("iptables -t nat");
+		script.append(" -A OUTPUT -p udp");
+		script.append(" --dport ");
+		script.append(port);
+		
+		if (ipTablesOld)
+			script.append(" -j DNAT --to 127.0.0.1:");
+		else
+			script.append(" -j REDIRECT --to-ports ");
+		
+		script.append(TOR_TRANSPROXY_PORT);
+		
+		script.append(" || exit\n");
+		
+		//DNS
+		script.append(baseDir);
+		script.append("iptables -t nat");
+		script.append(" -A OUTPUT -p udp ");
+		script.append(" -m udp --dport "); 
+		script.append(STANDARD_DNS_PORT);
+		
+		if (ipTablesOld)
+			script.append(" -j DNAT --to 127.0.0.1:");
+		else
+			script.append(" -j REDIRECT --to-ports ");
+		
+		script.append(TOR_DNS_PORT);
+		
+		script.append(" || exit\n");
 		
     	
     	String[] cmdAdd = {script.toString()};    	

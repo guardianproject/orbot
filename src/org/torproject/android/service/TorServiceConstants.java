@@ -6,7 +6,7 @@ public interface TorServiceConstants {
 
 	public final static String TAG = "ORBOT";
 
-	public static boolean LOG_OUTPUT_TO_DEBUG = false;
+	public static boolean LOG_OUTPUT_TO_DEBUG = true;
 
 	public final static String TOR_APP_USERNAME = "org.torproject.android";
 	
@@ -31,7 +31,7 @@ public interface TorServiceConstants {
 		
 	//various console cmds
 	public final static String SHELL_CMD_CHMOD = "chmod";
-	public final static String SHELL_CMD_KILL = "kill";
+	public final static String SHELL_CMD_KILL = "kill -9";
 	public final static String SHELL_CMD_RM = "rm";
 	public final static String SHELL_CMD_PS = "ps";
 	public final static String SHELL_CMD_PIDOF = "pidof";
