@@ -50,6 +50,13 @@
 <string name="pref_transparent_all_title">Przepuść wszystko przez Tora</string>
 <string name="pref_transparent_all_summary">Przekierowanie ruchu wszystkich aplikacji przez Tora</string>
 
+<string name="pref_transparent_port_fallback_title">Port Proxy Fallback</string>
+<string name="pref_transparent_port_fallback_summary">WARNING: Circumvents common ports (80, 443, etc). *USE ONLY* if \'All\' or \'App\' mode doesn\'t work.</string>
+
+<string name="pref_transparent_port_title">Port List</string>
+<string name="pref_transparent_port_summary">List of ports to proxy. *USE ONLY* if \'All\' or \'App\' mode doesn\'t work</string>
+<string name="pref_transparent_port_dialog">Enter ports to proxy</string>
+
 <string name="status_install_success">Binarki Tora pomyslnie zainstalowane!</string>
 <string name="status_install_fail">Nie można zainstalować plików binarnych Tora. Zajrzyj do dziennika i powiadom tor-assistants@torproject.org</string>
 

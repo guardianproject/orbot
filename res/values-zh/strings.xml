@@ -7,20 +7,20 @@
     <string name="default_web_url">http://check.torproject.org</string>
     <string name="secure_default_web_url">https://check.torproject.org</string>
     <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
-    <string name="control_permission_label">启动和停止Tor</string>
-    <string name="tor_proxy_service_process">Tor代理服务</string>
+    <string name="control_permission_label">启动和停止 Tor</string>
+    <string name="tor_proxy_service_process">Tor 代理服务</string>
    
-<string name="status_starting_up">Orbot正在启动...</string>
-<string name="status_activated">已经连接上了Tor网络</string>
-<string name="status_disabled">Orbot已停用</string>
-<string name="status_shutting_down">Orbot正在关闭</string>
+<string name="status_starting_up">Orbot 正在启动...</string>
+<string name="status_activated">已连接到 Tor 网络</string>
+<string name="status_disabled">Orbot 已停用</string>
+<string name="status_shutting_down">Orbot 正在关闭</string>
 
 <string name="tor_process_connecting">正在启动Tor....</string>
-<string name="tor_process_connecting_step2">启动控制连接...</string>
-<string name="tor_process_connecting_step3">完毕.</string>
-<string name="tor_process_connecting_step4">请等待...</string>
+<string name="tor_process_connecting_step2">设置控制...</string>
+<string name="tor_process_connecting_step3">完毕。</string>
+<string name="tor_process_connecting_step4">等待中。</string>
 
-<string name="not_anonymous_yet">警告: 您的通讯还不是匿名的! 请设置您的应用程序使用代理服务器127.0.0.1:8118或者SOCKS4A或者SOCKS5代理服务器127.0.0.1:9050</string>
+<string name="not_anonymous_yet">警告: 您的通讯还不是匿名的! 请设置您的应用程序使用代理服务器 127.0.0.1:8118 或者 SOCKS4A 或者 SOCKS5 代理服务器 127.0.0.1:9050</string>
 <string name="menu_home">首页</string>
 <string name="menu_browse">浏览</string>
 <string name="menu_settings">设置</string>
@@ -35,31 +35,38 @@
 <string name="button_close">关闭</string>
 <string name="button_about">关于</string>
 
-<string name="button_clear_log">清除日志</string>
+<string name="button_clear_log">Clear Log</string>
 
 
-<string name="menu_verify">验证</string>
+<string name="menu_verify">检查</string>
 <string name="menu_exit">退出</string>
-<string name="powered_by">由 Tor 项目提供动力</string>
-<string name="press_to_start">- 按下后启动 -</string>
+<string name="powered_by">由 Tor 项目强力驱动</string>
+<string name="press_to_start">- 按下以开始 -</string>
 
-<string name="pref_trans_proxy_group">透明代理(需要 Root 权限)</string>
+<string name="pref_trans_proxy_group">透明代理(需要 root)</string>
 <string name="pref_trans_proxy_title">透明代理</string>
-<string name="pref_trans_proxy_summary">应用程序自动通过 Tor 访问网络</string>
+<string name="pref_trans_proxy_summary">自动对应用程序使用 Tor</string>
 
-<string name="pref_transparent_all_title">全局使用 Tor</string>
-<string name="pref_transparent_all_summary">所有应用程序均通过 Tor 访问网络</string>
+<string name="pref_transparent_all_title">对所有应用使用 Tor</string>
+<string name="pref_transparent_all_summary">使用 Tor 代理所有程序的流量</string>
 
-<string name="status_install_success">Tor 程序安装成功！</string>
-<string name="status_install_fail">Tor 程序安装失败，请检查日志并报告给 tor-assistants@torproject.org</string>
+<string name="pref_transparent_port_fallback_title">Port Proxy Fallback</string>
+<string name="pref_transparent_port_fallback_summary">WARNING: Circumvents common ports (80, 443, etc). *USE ONLY* if \'All\' or \'App\' mode doesn\'t work.</string>
+
+<string name="pref_transparent_port_title">Port List</string>
+<string name="pref_transparent_port_summary">List of ports to proxy. *USE ONLY* if \'All\' or \'App\' mode doesn\'t work</string>
+<string name="pref_transparent_port_dialog">Enter ports to proxy</string>
+
+<string name="status_install_success">Tor 二进制程序安装成功！</string>
+<string name="status_install_fail">Tor 二进制程序无法安装。请查看日志 tor-assistants@torproject.org</string>
 
 <string name="title_error">应用程序错误</string>
 
 <string name="wizard_title">欢迎使用 Orbot</string>
 
 <string name="wizard_btn_tell_me_more">关于 Orbot</string>
-<string name="btn_next">前进</string>
-<string name="btn_back">后退</string>
+<string name="btn_next">下一步</string>
+<string name="btn_back">上一步</string>
 <string name="btn_finish">完成</string>
 
 <string name="btn_okay">确定</string>
@@ -68,42 +75,38 @@
 
 <!-- Welcome Wizard strings (DJH) -->
  
-    <string name="wizard_welcome_msg">Orbot 把 Tor 带到 Android 中。Tor 是一个自由软件，也是一个开放的网络。它可以帮助你防御可能威胁到人身自由和隐私，秘密的商业活动和商业关系，国家安全网络监控 - 流量分析。
-
-警告：* 仅仅是安装上 Orbot 并不能神奇地使你的移动网络流量变得无迹可寻！下面的向导将会引领你的匿名之路。</string>
-    <string name="wizard_details">关于 Orbot 的详情</string>
-    <string name="wizard_details_msg">Orbot 是一个开放源代码的应用程序，它包含了 Tor, LibEvent 和 Privoxy. 它在本地提供一个连接到 Tor 网络的 HTTP 代理（8118）和一个 SOCKS 代理（9050）。在有 Root 权限的设备上，Orbot 能够让所有的互联网访问通过 Tor 网络发出。</string>
-    <string name="wizard_permissions_root">已经获得授权</string>
+    <string name="wizard_welcome_msg">Orbot 将 Tor 带到 Android 之上。Tor 是自由软件，致力于构建开放网络，帮助保护网络访问的自由和隐私，可以抵御秘密的商业活动、关系以及已知的流量分析技术。\n\n*警告：*仅仅安装 Orbot 不会自动使您的移动流量匿名化！这个向导将带您入门。</string>
+    <string name="wizard_details">一些 Orbot 详情</string>
+    <string name="wizard_details_msg">Orbot 是包含 Tor、LibEvent 和 Privoxy 的开源软件。它包含了一个本地 HTTP 代理(8118)和 SOCKS 代理(9050)，使您接入 Tor 网络。Orbot 在可以获得 root 权限的设备上接管所有流量经由 Tor 网络。</string>
+    <string name="wizard_permissions_root">已赋予权限</string>
     <string name="wizard_permissions_stock">Orbot 权限</string>
-    <string name="wizard_premissions_msg_root">很好！我们检测到 Orbot 已经获得了 Root 权限。我们会谨慎地使用它。</string>
-    <string name="wizard_permissions_msg_stock">虽然 Root 权限并不是必须的，但是一旦拥有，Orbot 就会变成更加强大的工具。点击下面的按钮获得 Root 权限！</string>
+    <string name="wizard_premissions_msg_root">非常好！我们检测到您已经为 Orbot 配置了 root 权限。我们会聪明地使用这个特权。</string>
+    <string name="wizard_permissions_msg_stock">虽然并非必须，如果你的设备有 root 权限，Orbot 可以表现得更为强大。使用以下按钮来赋予 Orbot 超级能力！</string>
    
-    <string name="wizard_permissions_no_root">如果你没有 Root 权限，或者不明白我们在说什么，请一定只使用那些支持 Orbot的应用程序。</string>
-    <string name="wizard_permissions_consent">我知道我没有 Root 权限，继续</string>
+    <string name="wizard_permissions_no_root">如果你没有 root 权限，或不明白上面说的是什么，那么只需使用可与 Orbot 工作的应用程序。</string>
+    <string name="wizard_permissions_consent">我明白并会以非 root 继续</string>
    
-    <string name="wizard_permission_enable_root">授予 Orbot Root 权限</string>
-    <string name="wizard_configure">配置 Tor 功能</string>
-    <string name="wizard_configure_msg">Orbot 允许你选择代理所有的应用程序或者只代理某几个选中 的应用程序</string> 
-    <string name="wizard_configure_all">使用 Tor 代理所有的应用程序</string>
-    <string name="wizard_configure_select_apps">选择要使用 Tor 的应用程序</string>
+    <string name="wizard_permission_enable_root">为 Orbot 赋予 root 权限</string>
+    <string name="wizard_configure">配置 Tor 使用</string>
+    <string name="wizard_configure_msg">Orbot 给予您路由所有应用程序流量通过 Tor 或者为单个程序设置选择的选项。</string> 
+    <string name="wizard_configure_all">通过 Tor 代理全部应用程序</string>
+    <string name="wizard_configure_select_apps">选择使用 Tor 的单个应用程序</string>
     
     
-    <string name="wizard_tips_tricks">支持 Orbot 的应用程序</string>
-    <string name="wizard_tips_msg">我们鼓励你下载并使用能直接连接到 Orbot 的应用程序。点击下面的按钮来安装。</string>
-    <string name="wizard_tips_otrchat">OTRCHAT - Android 上的安全的即时聊天客户端</string>
-    <string name="wizard_tips_orweb">ORWEB (仅限 Android 1.x) - 通过 Orbot 保护隐私而设计的浏览器</string>
+    <string name="wizard_tips_tricks">可用 Orbot 的应用程序</string>
+    <string name="wizard_tips_msg">我们建议您下载和使用能直接连接到 Orbot 的应用程序。点击以下按钮安装。</string>
+    <string name="wizard_tips_otrchat">OTRCHAT - Android 上的安全即时消息客户端</string>
+    <string name="wizard_tips_orweb">ORWEB (仅 Android 1.x) - 着重隐私设计的浏览器</string>
     <string name="wizard_tips_proxy">代理设置 - 学习如何配置应用程序使用 Orbot</string>
     
     <string name="wizard_proxy_help_info">代理设置</string>
-    <string name="wizard_proxy_help_msg">如果你的 Android 程序能支持 HTTP 或者 SOCKS 代码，那么你可配置它们连接到 Orbot 以便使用 Tor。
-
-主机地址是 127.0.0.1 或者 localhost, HTTP 代理端口是 8118, SOCKS 代理端口是 9050. 你可以使用 SOCKS4A 或者 SOCKS5. 
-
-获取更多关于 Android 上使用代理设置的信息请访问： http://tinyurl.com/proxyandroid
-    </string>
+    <string name="wizard_proxy_help_msg">如果您正在使用的 Android 应用程序支持使用 HTTP 或 SOCKS 代理，您可以配置它连接到 Orbot 并使用 Tor。\n\n
+    主机设置为 127.0.0.1 或 localhost。对于 HTTP，端口为 8118，对于 SOCKS 端口为 9050。如果可能，应当使用 SOCKS4A 或 SOCKS5。
+    \n\n
+    您可以通过 http://tinyurl.com/proxyandroid 了解更多 Android 上使用代理的知识。</string>
     
-    <string name="wizard_final">Orbot 配置完成</string>
-    <string name="wizard_final_msg">全世界有100多万的人由于各种原因正在使用 Tor：新闻记者，博客，人权工作者，法律援助者，士兵，公司，强权政制下的公民，和普通的公民...现在你也一样在使用 Tor 了！</string>
+    <string name="wizard_final">Orbot 已就绪！</string>
+    <string name="wizard_final_msg">数以万计的各国人们因为各种原因使用 Tor：记者、人权工作者、法律工作者、士兵、公司、迫于实际情况使用的市民，当然也有普通的市民。现在你也即将成为其中的一员！</string>
     
     <string name="otrchat_apk_url">https://guardianproject.info/getgibber</string>
     <string name="orweb_apk_url">https://guardianproject.info/getorweb</string>
@@ -111,14 +114,12 @@
 <!-- END Welcome Wizard strings (DJH) -->
  
 
-	<string name="connect_first_time">你已经成功连接到Tor网络-但是，这并不意味着你的设备是安全的。你可以使用菜单中的\'检查\'选项来测试你的浏览器。
+	<string name="connect_first_time">您已成功连接至 Tor 网络 - 但这并不意味着您的设备安全。您可以使用“检查”选项测试您的浏览器。\n\n访问 https://guardianproject.info/apps/orbot 或发送邮件到 help@guardianproject.info 以了解更多信息。</string>
 
-访问我们的网站https://guardianproject.info/apps/orbot或发送电子邮件至help@guardianproject.info了解更多信息。</string>
-
-	<string name="tor_check">这将打开你的默认浏览器至 https://check.torproject.org 为了确认 Orbot是否安装完成和你是否连接到了Tor。</string>
+	<string name="tor_check">这将启动默认浏览器并访问 https://check.torproject.org 以测试是否正确配置了 Orbot 并确认您是否已经连接到 Tor。</string>
 
 	
-    <string name="pref_hs_group">隐匿服务</string>
+    <string name="pref_hs_group">隐藏服务</string>
     
     <string name="pref_general_group">General</string>
     <string name="pref_start_boot_title">Start Orbot on Boot</string>

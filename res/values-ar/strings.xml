@@ -50,6 +50,13 @@
 <string name="pref_transparent_all_title">تور كل شيء</string>
 <string name="pref_transparent_all_summary">حركة مرور الوكيل لجميع التطبيقات عبر تور</string>
 
+<string name="pref_transparent_port_fallback_title">Port Proxy Fallback</string>
+<string name="pref_transparent_port_fallback_summary">WARNING: Circumvents common ports (80, 443, etc). *USE ONLY* if \'All\' or \'App\' mode doesn\'t work.</string>
+
+<string name="pref_transparent_port_title">Port List</string>
+<string name="pref_transparent_port_summary">List of ports to proxy. *USE ONLY* if \'All\' or \'App\' mode doesn\'t work</string>
+<string name="pref_transparent_port_dialog">Enter ports to proxy</string>
+
 <string name="status_install_success">تم تثبيت ثنائيات تور بنجاح!</string>
 <string name="status_install_fail">غير قادر على تثبيت ملفات ثنائيات تور. يرجى التحقق من السجل وإعلامنا على البريد الإلكتروني tor-assistants@torproject.org</string>
 
