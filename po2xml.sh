@@ -15,12 +15,12 @@
 
 # Location of the translated files, i.e. the path to the orbot
 # directory in the translation module. Do not add the trailing slash. 
-translated=""
+translated="/home/runa/tor/translation/projects/orbot"
 
 # Location of the orbot directory, i.e. the original English xml file.
 # In svn, this should be svn/projects/android/trunk/Orbot/res. Do not add the
 # trailing slash.
-xml=""
+xml="/home/runa/tor/orbot/res"
 
 ### End config ###
 
@@ -37,7 +37,8 @@ for file in $po ; do
 	xmlfile="${pofile%.*}.xml"
 
 	# Figure out which language we are dealing with.
-	lang=`dirname $file | sed "s#$translated/##"`
+	dir=`dirname $file | sed "s#$translated/##"`
+	lang=`basename $dir`
 
 	# The translated document is written if 80% or more of the po
 	# file has been translated. Also, po4a-translate will only write

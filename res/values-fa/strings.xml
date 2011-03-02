@@ -50,6 +50,13 @@
 <string name="pref_transparent_all_title">شامل همه</string>
 <string name="pref_transparent_all_summary">فعالیت همه اپلیکیشن ها را از طریق Tor پروکسی کنید.</string>
 
+<string name="pref_transparent_port_fallback_title">Port Proxy Fallback</string>
+<string name="pref_transparent_port_fallback_summary">WARNING: Circumvents common ports (80, 443, etc). *USE ONLY* if \'All\' or \'App\' mode doesn\'t work.</string>
+
+<string name="pref_transparent_port_title">Port List</string>
+<string name="pref_transparent_port_summary">List of ports to proxy. *USE ONLY* if \'All\' or \'App\' mode doesn\'t work</string>
+<string name="pref_transparent_port_dialog">Enter ports to proxy</string>
+
 <string name="status_install_success">دوتایی های Tor با موفقیت نصب شدند!</string>
 <string name="status_install_fail">نصب فایل های دوتایی Tor ممکن نبود. لطفن قطعه را وارسی کنید و به tor-assistance@torproject.org اطلاع دهید.</string>
 
