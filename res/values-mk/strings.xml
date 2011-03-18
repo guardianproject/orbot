@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Орбот</string>
+        <string name="app_version">1.0.4</string>
+    
+    <string name="internal_web_url">http://orbot/</string>
+    <string name="default_web_url">http://check.torproject.org</string>
+    <string name="secure_default_web_url">https://check.torproject.org</string>
+    <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
+    <string name="control_permission_label">вклучи и исклучи го Тор</string>
+    <string name="tor_proxy_service_process">torproxyservice</string>
+   
+<string name="status_starting_up">Орбот се вклучува...</string>
+<string name="status_activated">Поврзан на мрежата Тор</string>
+<string name="status_disabled">"Орбот е дезактивиран</string>
+<string name="status_shutting_down">Орбот се исклучува</string>
+
+<string name="tor_process_connecting">Вклучување на Тор...</string>
+<string name="tor_process_connecting_step2">Воспоставување контрола...</string>
+<string name="tor_process_connecting_step3">готово.</string>
+<string name="tor_process_connecting_step4">чекање.</string>
+
+<string name="not_anonymous_yet">ВНИМАНИЕ: Вашиот сообраќај сеуште не е анонимен! Треба да ги конфигурирате Вашите апликации да го користат проксито за HTTP, 127.0.0.1:8118, или проксито за SOCKS4A или SOCKS5, 127.0.0.1:9050</string>
+<string name="menu_home">Дома</string>
+<string name="menu_browse">Прелистување</string>
+<string name="menu_settings">Подесувања</string>
+<string name="menu_log">Лог</string>
+<string name="menu_info">Помош</string>
+<string name="menu_apps">Апликации</string>
+<string name="menu_start">Вклучи</string>
+<string name="menu_stop">Исклучи</string>
+
+
+<string name="button_help">Помош</string>
+<string name="button_close">Затвори</string>
+<string name="button_about">За</string>
+
+<string name="button_clear_log">Избриши лог</string>
+
+
+<string name="menu_verify">Провери</string>
+<string name="menu_exit">Излез</string>
+<string name="powered_by">напојувано од проектот Тор</string>
+<string name="press_to_start">- притисни за вклучување -</string>
+
+<string name="pref_trans_proxy_group">Транспарентно прокси (бара root пристап)</string>
+<string name="pref_trans_proxy_title">Транспарентно прокси</string>
+<string name="pref_trans_proxy_summary">Автоматско торифицирање на апликациите</string>
+
+<string name="pref_transparent_all_title">Целосно торифицирање</string>
+<string name="pref_transparent_all_summary">Проксирај го сообраќајот на сите апликации низ Тор</string>
+
+<string name="pref_transparent_port_fallback_title">Port Proxy Fallback</string>
+<string name="pref_transparent_port_fallback_summary">WARNING: Circumvents common ports (80, 443, etc). *USE ONLY* if \'All\' or \'App\' mode doesn\'t work.</string>
+
+<string name="pref_transparent_port_title">Port List</string>
+<string name="pref_transparent_port_summary">List of ports to proxy. *USE ONLY* if \'All\' or \'App\' mode doesn\'t work</string>
+<string name="pref_transparent_port_dialog">Enter ports to proxy</string>
+
+<string name="status_install_success">Извршните програми за Тор се успешно инсталирани!</string>
+<string name="status_install_fail">Извршните фајлови на Тор не можеа да се инсталираат. Видете го логот и известете нè за ова на tor-assistants@torproject.org</string>
+
+<string name="title_error">Апликациска грешка</string>
+
+<string name="wizard_title">Добредојдовте во Орбот</string>
+
+<string name="wizard_btn_tell_me_more">За Орбот</string>
+<string name="btn_next">Напред</string>
+<string name="btn_back">Назад</string>
+<string name="btn_finish">Крај</string>
+
+<string name="btn_okay">Во ред</string>
+<string name="btn_cancel">Откажи се</string>
+
+
+<!-- Welcome Wizard strings (DJH) -->
+ 
+    <string name="wizard_welcome_msg">Орбот овозможува работа со Тор на Андроид. Тор е слободен софтвер и отворена мрежа којашто Ви помага да се заштитите од одреден вид мрежно прислушкување, познат како анализа на сообраќај (traffic analysis), кој претставуваат закана за личната слобода и приватност, за стопанските дејности и односи од доверлив карактер, како и за државната безбедност.\n\n*ВНИМАНИЕ:*Самиот факт што сте го инсталирале Орбот _нема_ автоматски да го направи Вашиот мобилен сообраќај анонимен! Но, овој прозор ќе Ви помогне да се иницирате.</string>
+    <string name="wizard_details">Некои детали за Орбот</string>
+    <string name="wizard_details_msg">Орбот е апликација со отворен код којашто го содржи Тор, LibEvent и Privoxy. Таа Ви нуди локални проксиња за HTTP (порт 8118) и SOCKS (порт 9050) за поврзување со мрежата Тор. Орбот исто така нуди можност, на уреди со root пристап, целиот сообраќај да се пренасочи преку Тор.</string>
+    <string name="wizard_permissions_root">Дозволата е издадена</string>
+    <string name="wizard_permissions_stock">Дозволи на орбот</string>
+    <string name="wizard_premissions_msg_root">Одлично! Детектиравме дека сте овозможиле root пристап за Орбот. Внимателно ќе се користиме со таа можност.</string>
+    <string name="wizard_permissions_msg_stock"> Иако тоа не е задолжително, Орбот може да стане помоќна алатка доколку вашиот уред има root пристап. Со копчето подолу можете на Орбот да му дадете таква супер-моќ.</string>
+   
+    <string name="wizard_permissions_no_root">Ако немате root пристап или ако не разбирате за што зборуваме, единствено осигурајте се дека користите апликации кои што работат со Орбот.</string>
+    <string name="wizard_permissions_consent">Разбирам и сакам да продолжам без root пристап</string>
+   
+    <string name="wizard_permission_enable_root">Дозволи root за Орбот</string>
+    <string name="wizard_configure">Подесување на торифицињето</string>
+    <string name="wizard_configure_msg">Орбот ви овозможува, или да го рутирате сиот сообраќај на сите апликации низ Тор, или поединечно да ги избирате апликациите.</string> 
+    <string name="wizard_configure_all">Проксирај ги сите апликации низ Тор</string>
+    <string name="wizard_configure_select_apps">Избери поединечно апликации за Тор</string>
+    
+    
+    <string name="wizard_tips_tricks">Орбот-вклучени апликации</string>
+    <string name="wizard_tips_msg">Ви препорачуваме да презимате и користите апликации кои што знаат како директно да се поврзат со Орбот. Притиснете на копчињата подолу за инсталирање.</string>
+    <string name="wizard_tips_otrchat">OTRCHAT - Безбеден клиент за инстант-пораки за Андроид</string>
+    <string name="wizard_tips_orweb">ORWEB (само Андроид 1.x) - Браусер дизајниран за приватност и за Орбот</string>
+    <string name="wizard_tips_proxy">Подесувања на прокси - Научете како да ги конфигурирате апликациите да работат со Орбот</string>
+    
+    <string name="wizard_proxy_help_info">Подесувања на прокси</string>
+    <string name="wizard_proxy_help_msg">Ако апликацијата за Андроид што ја користите поддржува употреба на прокси за HTTP или SOCKS, тогаш може да ја конфигурирате да се поврзе со Орбот и да користи Тор. \n\n
+    Подесувањето за хост е 127.0.0.1 или „localhost“. За HTTP, подесувањето на порт е 8118. За SOCKS, портот е 9050. Доколку можете, користете SOCKS4A или SOCKS5.
+    \n\n
+    Можете да научите повеќе за проксирањето на Андроид преку ЧПП на: http://tinyurl.com/proxyandroid
+    </string>
+    
+    <string name="wizard_final">Орбот е спремен!</string>
+    <string name="wizard_final_msg">Стотици илјади луѓе низ целиот Свет го користат Тор од многу различни причини: новинари и блогери, борци за човекови права, полицајци, војници, корпорации, граѓани на репресивни режими, и обични граѓани... а сега и Вие сте спремин да го користите!</string>
+    
+    <string name="otrchat_apk_url">https://guardianproject.info/getgibber</string>
+    <string name="orweb_apk_url">https://guardianproject.info/getorweb</string>
+    
+<!-- END Welcome Wizard strings (DJH) -->
+ 
+
+	<string name="connect_first_time"> Успешно се поврзавте на мрежата Тор - но ова НЕ значи дека важиот уред е сигурен. За да го проверите Вашиот браусер, изберете ја опцијата „Провери“ во менито. \n\nПосетете нѐ на https://guardianproject.info/apps/orbot или испратете порака на help@guardianproject.info за повеќе информации.</string>
+
+	<string name="tor_check">Ова ќе ја отвори страницата https://check.torproject.org во Вашиот веб браусер за да видите дали Орбот е правилно конфигуриран и дали сте поврзани на Тор.</string>
+
+	
+    <string name="pref_hs_group">Скриени сервиси </string>
+    
+    <string name="pref_general_group">General</string>
+    <string name="pref_start_boot_title">Start Orbot on Boot</string>
+    <string name="pref_start_boot_summary">Automatically start Orbot and connect Tor when your Android device boots</string>
+    
+</resources>

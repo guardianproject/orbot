@@ -110,7 +110,7 @@ La configuració de l\'amfitrió és 127.0.0.1 o "localhost". Per a HTTP, el por
 
 
 Pots aprendre més coses sobre l\'ús dels proxys a Android al FAQ de: http://tinyurl.com/proxyandroid
-</string>
+    </string>
     
     <string name="wizard_final">Orbot és a punt!</string>
     <string name="wizard_final_msg">Centenars de milers de persones arreu del món utilitzen Tor per un gran ventall de raons: periodistes i blocaires, treballadors pels drets humans, agents de l\'autoritat, soldats, corporacions, ciutadans de règims opressors, i ciutadans qualssevol... I ara tu també ho pots fer!</string>
