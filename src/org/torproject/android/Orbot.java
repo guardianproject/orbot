@@ -16,6 +16,7 @@ import org.torproject.android.service.TorServiceConstants;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.NotificationManager;
+import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -44,10 +45,10 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 {
 	
 	/* Useful UI bits */
-	private TextView txtMessageLog = null; //the full screen log view of Tor control messages
+	//private TextView txtMessageLog = null; //the full screen log view of Tor control messages
 	private TextView lblStatus = null; //the main text display widget
 	private ImageView imgStatus = null; //the main touchable image for activating Orbot
-//	private ProgressDialog progressDialog;
+	private ProgressDialog progressDialog;
 	private MenuItem mItemOnOff = null;
 	
 	/* Some tracking bits */
@@ -59,6 +60,8 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 		/* The primary interface we will be calling on the service. */
     ITorService mService = null;
 	private boolean autoStartOnBind = false;
+
+	SharedPreferences prefs;
 	
     Orbot mOrbot = null;
     
@@ -69,9 +72,9 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
         mOrbot = this;
         
     	setTheme(android.R.style.Theme_Black_NoTitleBar);
-    	//setTitle(getString(R.string.app_name) + ' ' + getString(R.string.app_version));
-        showMain();
-
+    	
+    	prefs = PreferenceManager.getDefaultSharedPreferences(this);
+    	
     }
     
    /*
@@ -93,8 +96,8 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
         mItem = menu.add(0, 7, Menu.NONE, getString(R.string.menu_verify));
         mItem.setIcon(R.drawable.ic_menu_check);
       
-        mItem =  menu.add(0,6, Menu.NONE, getString(R.string.menu_log));
-        mItem.setIcon(R.drawable.ic_menu_reports);
+       // mItem =  menu.add(0,6, Menu.NONE, getString(R.string.menu_log));
+       // mItem.setIcon(R.drawable.ic_menu_reports);
         
         mItem = menu.add(0, 3, Menu.NONE, getString(R.string.menu_info));
         mItem.setIcon(R.drawable.ic_menu_about);
@@ -146,10 +149,6 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 		{
 			showSettings();
 		}
-		else if (item.getItemId() == 6)
-		{
-			showMessageLog();
-		}
 		else if (item.getItemId() == 3)
 		{
 			showHelp();
@@ -193,6 +192,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 	 * (non-Javadoc)
 	 * @see android.app.Activity#onKeyDown(int, android.view.KeyEvent)
 	 */
+	/*
 	public boolean onKeyDown(int keyCode, KeyEvent event){
 		
 		if(keyCode==KeyEvent.KEYCODE_BACK){
@@ -209,7 +209,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 	
 		return super.onKeyDown(keyCode, event);
 		
-	}
+	}*/
  
     /* (non-Javadoc)
 	 * @see android.app.Activity#onPause()
@@ -306,7 +306,8 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 	protected void onResume() {
 		super.onResume();
 		
-		
+		 showMain();
+		 
 		if (getIntent() == null)
 			return;
 		
@@ -361,7 +362,8 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 		else
 		{
 			
-		
+			//setTitle(getString(R.string.app_name) + ' ' + getString(R.string.app_version));
+	    
 			NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 			mNotificationManager.cancelAll();
 			
@@ -382,6 +384,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 			    new WizardHelper(this).showWizard();
 
 			}
+			
 		}
 	}
 
@@ -400,9 +403,6 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 
 	}
 
-
-
-
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onStop()
 	 */
@@ -419,7 +419,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 	 */
 	private void showMain ()
     {
-		bindService(); //connect the UI activity to the remote service
+	//	bindService(); //connect the UI activity to the remote service
 		
 		currentView = R.layout.layout_main;
 		setContentView(currentView);
@@ -458,6 +458,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 	/*
 	 * Show the message log UI
 	 */
+	/*
 	private void showMessageLog ()
 	{
 		currentView = R.layout.layout_log;
@@ -469,7 +470,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
     	txtMessageLog.setText(logBuffer.toString());
     	
 		
-	}
+	}*/
 	
 	
     /*
@@ -495,18 +496,16 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 			} catch (RemoteException e) {
 				e.printStackTrace();
 			}
+	
 		}
 	}
 
 	private void processSettings () throws RemoteException
 	{
-		
 		try
 		{
 			if (mService == null)
 				return; //nothing to do if the service isn't connected yet
-			
-			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 			
 			boolean useBridges = prefs.getBoolean(PREF_BRIDGES_ENABLED, false);
 			
@@ -518,12 +517,10 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 	
 	        boolean enableHiddenServices = prefs.getBoolean("pref_hs_enable", false);
 			
-			
-			boolean enableTransparentProxy = prefs.getBoolean(PREF_TRANSPARENT, false);
-			
-		
+			boolean enableTransparentProxy = prefs.getBoolean(PREF_TRANSPARENT, false);		
 			mService.updateTransProxy();
 			
+	        
 			String bridgeList = prefs.getString(PREF_BRIDGES_LIST,"");
 	
 			if (useBridges)
@@ -648,11 +645,11 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 	        }
 	        else
 	        {
-	        	mService.updateConfiguration("HiddenServiceDir","", false);
-	        	
+	        	mService.updateConfiguration("HiddenServiceDir","", false);	       
 	        }
 	        
 	        mService.saveConfiguration();
+	        
 		 }
         catch (Exception e)
         {
@@ -664,6 +661,7 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
         }
 
 	}
+	
 	
 	private String getHiddenServiceHostname ()
 	{
@@ -709,6 +707,12 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 		    	{
 		    		imgStatus.setImageResource(R.drawable.toron);
 		    	//	imgStatus.clearAnimation();
+		    		if (progressDialog != null)
+		    		{
+		    			progressDialog.dismiss();
+		    			progressDialog = null;
+		    		}
+		    		
 		    		
 		    		String lblMsg = getString(R.string.status_activated) + "\n" + torServiceMsg;
 		    		
@@ -753,9 +757,14 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 		    	{
 		    		
 		    		imgStatus.setImageResource(R.drawable.torstarting);
+		    		if (progressDialog == null)
+		    		{
+		    			progressDialog =ProgressDialog.show(this, "", getString(R.string.status_starting_up));
+		    		}
+		    		else
+		    			progressDialog.setMessage(torServiceMsg);
+		    		//lblStatus.setText(torServiceMsg);
 		    		
-		    		
-		    		lblStatus.setText(torServiceMsg);
 		    		
 		    		/*
 	    			int idx = torServiceMsg.indexOf("%");
@@ -774,12 +783,23 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
 		    		imgStatus.setImageResource(R.drawable.torstopping);
 		    	//	imgStatus.clearAnimation();
 		    		
+		    		if (progressDialog != null)
+		    		{
+		    			progressDialog.dismiss();
+		    			progressDialog = null;
+		    		}
+		    		
 		    		lblStatus.setText(getString(R.string.status_shutting_down));
 		    			
 		    	}
 		    	else
 		    	{
 
+		    		if (progressDialog != null)
+		    		{
+		    			progressDialog.dismiss();
+		    			progressDialog = null;
+		    		}
 		    		
 		    	//	imgStatus.clearAnimation();
 		    		
@@ -953,16 +973,8 @@ public class Orbot extends Activity implements OnClickListener, TorConstants
                 	
                     break;
                 case LOG_MSG:
-
-                	String torLogMsg = (String)msg.getData().getString(HANDLER_TOR_MSG);
+                	//do nothing
                 	
-                	logBuffer.append(torLogMsg);
-                	logBuffer.append('\n');
-                	
-                	if (txtMessageLog != null)
-                	{
-                		txtMessageLog.append(torLogMsg + '\n');
-                	}
                 	
                     break;
                 case ENABLE_TOR_MSG:
