@@ -95,7 +95,7 @@
     
     <string name="wizard_tips_tricks">Aplikacje skonfigurowane dla Orbota</string>
     <string name="wizard_tips_msg">Zachęcamy do pobierania i używania aplikacji, które wiedzą, jak łączyć się bezpośrednio z Orbotem. Kliknij na poniższe przyciski, by zainstalować.</string>
-    <string name="wizard_tips_otrchat">OTRCHAT - Bezpieczny klieny rozmów dla Androida</string>
+    <string name="wizard_tips_otrchat">GibberBot - Bezpieczny klieny rozmów dla Androida</string>
     <string name="wizard_tips_orweb">ORWEB (tylko Android 1.x) - Przeglądarka zaprojektowana do prywatności i dla Orbota</string>
     <string name="wizard_tips_proxy">Ustawienia Proxy - NDowiedz się, jak konfiguroać aplikacje do współpracy z Orbotem</string>
     
@@ -109,7 +109,7 @@
     <string name="wizard_final">Orbot jest gotowy!</string>
     <string name="wizard_final_msg">Setki tysięcy ludzi na całym świecie używają Tora z różnych powodów: dziennikarze i blogerzy, działacze na rzecz praw człowieka, stróże prawa, żołnierze, korporacje, obywatele represyjnych reżimów i zwykli obywatele... teraz Ty też możesz!</string>
     
-    <string name="otrchat_apk_url">https://guardianproject.info/getgibber</string>
+    <string name="otrchat_apk_url">market://search?q=pname:info.guardianproject.otr.app.im</string>
     <string name="orweb_apk_url">https://guardianproject.info/getorweb</string>
     
 <!-- END Welcome Wizard strings (DJH) -->

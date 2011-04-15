@@ -97,7 +97,7 @@
     
     <string name="wizard_tips_tricks">Aplicaciones activas en Orbot</string>
     <string name="wizard_tips_msg">Le invitamos a descargar y utilizar aplicaciones que saben cómo conectarse directamente a Orbot. Haga clic en los botones a continuación para Instalar.</string>
-    <string name="wizard_tips_otrchat">OTRCHAT - Cliente de mensajería instantánea seguro para Android</string>
+    <string name="wizard_tips_otrchat">GibberBot - Cliente de mensajería instantánea seguro para Android</string>
     <string name="wizard_tips_orweb">ORWEB (Sólo Android 1.x) - Navegador diseñado para la privacidad y para Orbot</string>
     <string name="wizard_tips_proxy">Configuraciones Proxy - Aprenda cómo configurar aplicaciones para que trabajen con Orbot</string>
     
@@ -115,7 +115,7 @@ Puede aprender más acerca de los proxys en Android a través de las Preguntas F
     <string name="wizard_final">¡Orbot está listo!</string>
     <string name="wizard_final_msg">Cientos de miles de personas alrededor del mundo usan Tor por una amplia variedad de razones: periodistas y bloggers, trabajadores de los derechos humanos, oficiales de policía, soldados, corporaciones, ciudadanos de regímenes represivos y ciudadanos ordinarios... ¡y ahora también lo estás!</string>
     
-    <string name="otrchat_apk_url">https://guardianproject.info/getgibber</string>
+    <string name="otrchat_apk_url">market://search?q=pname:info.guardianproject.otr.app.im</string>
     <string name="orweb_apk_url">https://guardianproject.info/getorweb</string>
     
 <!-- END Welcome Wizard strings (DJH) -->

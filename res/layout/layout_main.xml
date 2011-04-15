@@ -58,7 +58,7 @@
 							android:layout_gravity="center_horizontal"
 							android:gravity="center_horizontal"
 							android:textStyle="bold"
-							android:width="300px"
+							android:width="330px"
 							android:height="75px"
 							android:textColor="#ffffff"
 							 />
