@@ -97,7 +97,7 @@
     
     <string name="wizard_tips_tricks">تطبيقات مهيئة لأوربوت</string>
     <string name="wizard_tips_msg">نشجعكم على تحميل واستخدام التطبيقات التي تعرف كيفية الاتصال مباشرة بأوربوت. اضغط على الأزرار في الأسفل للتثبيت.</string>
-    <string name="wizard_tips_otrchat">OTRCHAT - عميل التراسل الفوري الآمن للأندرويد</string>
+    <string name="wizard_tips_otrchat">GibberBot - عميل التراسل الفوري الآمن للأندرويد</string>
     <string name="wizard_tips_orweb">ORWEB (أندرويد 1.x فقط) - متصفح مصمّم للخصوصية لأوربوت </string>
     <string name="wizard_tips_proxy">إعدادات الوكيل - تعلم كيفية تكوين التطبيقات لتعمل مع أوربوت</string>
     
@@ -115,7 +115,7 @@
     <string name="wizard_final">أوربوت جاهز!</string>
     <string name="wizard_final_msg">مئات الآلاف من الناس في جميع أنحاء العالم يستخدمون تور لأسباب عديدة: الصحفيين والمدونين، والعاملين في مجال حقوق الإنسان، والجنود والشركات والمواطنين من الأنظمة القمعية، والمواطنين العاديين ... والآن أنت مستعد لأن تستخدمه كذلك!</string>
     
-    <string name="otrchat_apk_url">https://guardianproject.info/getgibber</string>
+    <string name="otrchat_apk_url">market://search?q=pname:info.guardianproject.otr.app.im</string>
     <string name="orweb_apk_url">https://guardianproject.info/getorweb</string>
     
 <!-- END Welcome Wizard strings (DJH) -->

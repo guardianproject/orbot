@@ -97,7 +97,7 @@
     
     <string name="wizard_tips_tricks">Aplicacions per a usar-se amb Orbot</string>
     <string name="wizard_tips_msg">T\'animem a descarregar-te &amp; utilitza aplicacions que sàpiguen com connectar-se directament a Orbot. Fes clic als botons de sota per instal·lar.</string>
-    <string name="wizard_tips_otrchat">OTRCHAT - Client de missatgeria instantània segura per a Android</string>
+    <string name="wizard_tips_otrchat">GibberBot - Client de missatgeria instantània segura per a Android</string>
     <string name="wizard_tips_orweb">ORWEB (Només Android 1.x) - Navegador dissenyat per la privacitat &amp; per a Orbot</string>
     <string name="wizard_tips_proxy">Coniguració de Proxy - Aprèn a configurar aplicacions per a què funcionin amb Orbot</string>
     
@@ -115,7 +115,7 @@ Pots aprendre més coses sobre l\'ús dels proxys a Android al FAQ de: http://ti
     <string name="wizard_final">Orbot és a punt!</string>
     <string name="wizard_final_msg">Centenars de milers de persones arreu del món utilitzen Tor per un gran ventall de raons: periodistes i blocaires, treballadors pels drets humans, agents de l\'autoritat, soldats, corporacions, ciutadans de règims opressors, i ciutadans qualssevol... I ara tu també ho pots fer!</string>
     
-    <string name="otrchat_apk_url">https://guardianproject.info/getgibber</string>
+    <string name="otrchat_apk_url">market://search?q=pname:info.guardianproject.otr.app.im</string>
     <string name="orweb_apk_url">https://guardianproject.info/getorweb</string>
     
 <!-- END Welcome Wizard strings (DJH) -->

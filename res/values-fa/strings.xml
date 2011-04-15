@@ -95,7 +95,7 @@
     
     <string name="wizard_tips_tricks">اپلیکیشن هایی که برای اوربات تنظیم شده اند</string>
     <string name="wizard_tips_msg">توصیه می کنیم داون لود و فعال کنید؛ اپلیکیشن هایی را استفاده کنید که مستقیم به اوربات وصل می شوند. دکمه های زیر را فشار دهید تا نصب شود. </string>
-    <string name="wizard_tips_otrchat">OTRCHAT - کاربر ایمن انتقال پیام فوری برای آندروید</string>
+    <string name="wizard_tips_otrchat">GibberBot - کاربر ایمن انتقال پیام فوری برای آندروید</string>
     <string name="wizard_tips_orweb">ORWEB (فقط آندروید 1.x) - مرورگر طراحی شده برای حفظ حریم خصوصی و افزونساز اوربات</string>
     <string name="wizard_tips_proxy">تنظیمات پروکسی - یادگیری تنظیم اپلیکیشن ها برای کار با اوربات</string>
     
@@ -105,7 +105,7 @@
     <string name="wizard_final">اوربات آماده استفاده میباشد!</string>
     <string name="wizard_final_msg">صدها هزار نفر در سراسر جهان به دلایل گوناگون از Tor استفاده می کنند: روزنامه نویسها و بلاگرها، کارکنان حقوق بشر، ماموران انتظامی، سربازان، شرکتها، شهروندان دولتهای سرکوبگر، و شهروندان عادی، و حالا شما نیز آماده استفاده از آن هستید!</string>
     
-    <string name="otrchat_apk_url">https://guardianproject.info/getgibber</string>
+    <string name="otrchat_apk_url">market://search?q=pname:info.guardianproject.otr.app.im</string>
     <string name="orweb_apk_url">https://guardianproject.info/getorweb</string>
     
 <!-- END Welcome Wizard strings (DJH) -->
