@@ -1,5 +1,7 @@
 package org.torproject.android.service;
 
+import java.io.File;
+
 import org.torproject.android.TorifiedApp;
 
 import android.content.Context;
@@ -21,6 +23,7 @@ public class TorTransProxy implements TorServiceConstants {
 	 * Check if we have root access
 	 * @return boolean true if we have root
 	 */
+	/*
 	public static String getIPTablesVersion() {
 	
 
@@ -52,43 +55,42 @@ public class TorTransProxy implements TorServiceConstants {
 		
 		logNotice("Could not acquire check iptables: " + log.toString());
 		return null;
-	}
+	}*/
 	
-	
-	private static String findBaseDir ()
-	{
-	
-		return ""; //just blank for now
-		/*
-		String[] cmds = {"/system/bin/iptables -t nat --list"};
+	public static int purgeIptables(Context context) throws Exception {
+		
+	String ipTablesPath = new File(context.getDir("bin", 0),"iptables_n1").getAbsolutePath();
+		
+    	final StringBuilder script = new StringBuilder();
+    	
     	StringBuilder res = new StringBuilder();
+    	int code = -1;
+    	
 
-		int code;
-		try {
-			code = TorServiceUtils.doShellCommand(cmds, res, true, true);
+		script.append(ipTablesPath);
+		script.append(" -t nat");
+		script.append(" -F || exit\n");
 	
+		script.append(ipTablesPath);
+		script.append(" -t filter");
+		script.append(" -F || exit\n");
+    	
+    	String[] cmd = {script.toString()};	    	
+		code = TorServiceUtils.doShellCommand(cmd, res, true, true);		
+		String msg = res.toString();
+		logNotice(cmd[0] + ";errCode=" + code + ";resp=" + msg);
+			
 		
-		if (code != 0) {
-			return BASE_DIR;
-		}
-		else
-			return "/system/bin/";
-		
-		} catch (Exception e) {
-			return BASE_DIR;
-		}
-		
-		return "";
-		
-			*/
+		return code;
+	
 	}
 	
-
-	public static int purgeIptables(Context context, TorifiedApp[] apps) throws Exception {
+	/*
+	public static int purgeIptablesByApp(Context context, TorifiedApp[] apps) throws Exception {
 
 		//restoreDNSResolvConf(); //not working yet
 		
-		String baseDir = findBaseDir();
+		String ipTablesPath = new File(context.getDir("bin", 0),"iptables_n1").getAbsolutePath();
 		
     	final StringBuilder script = new StringBuilder();
     	
@@ -97,13 +99,14 @@ public class TorTransProxy implements TorServiceConstants {
     	
 		for (int i = 0; i < apps.length; i++)
 		{
-
 			//flush nat for every app
-			script.append(baseDir);
-			script.append("iptables -t nat -m owner --uid-owner ");
+			script.append(ipTablesPath);
+			script.append(" -t nat -m owner --uid-owner ");
 			script.append(apps[i].getUid());
 			script.append(" -F || exit\n");
-			script.append("iptables -t filter -m owner --uid-owner ");
+		
+			script.append(ipTablesPath);
+			script.append(" -t filter -m owner --uid-owner ");
 			script.append(apps[i].getUid());
 			script.append(" -F || exit\n");
 				
@@ -118,7 +121,8 @@ public class TorTransProxy implements TorServiceConstants {
 		
 		return code;
 		
-	}
+	}*/
+	
 	
 	/*
 	 // 9/19/2010 - NF This code is in process... /etc path on System partition
@@ -171,38 +175,17 @@ public class TorTransProxy implements TorServiceConstants {
 		
 		//redirectDNSResolvConf(); //not working yet
 		
-		String baseDir = findBaseDir();
+		//String baseDir = context.getDir("bin", 0).getAbsolutePath() + "/";
+		String ipTablesPath = new File(context.getDir("bin", 0),"iptables_n1").getAbsolutePath();
 
-		String iptablesVersion = getIPTablesVersion();
-		logNotice( "iptables version: " + iptablesVersion);
-		
 		boolean ipTablesOld = false;
-		if (iptablesVersion != null && iptablesVersion.startsWith("1.3")){
-			ipTablesOld = true;
-		}
 		
     	StringBuilder script = new StringBuilder();
     	
     	StringBuilder res = new StringBuilder();
     	int code = -1;
     	
-		for (int i = 0; i < apps.length; i++)
-		{
-
-			//flush nat for every app
-			script.append(baseDir);
-			script.append("iptables -t nat -m owner --uid-owner ");
-			script.append(apps[i].getUid());
-			script.append(" -F || exit\n");
-			script.append("iptables -t filter -m owner --uid-owner ");
-			script.append(apps[i].getUid());
-			script.append(" -F || exit\n");
-			
-		}
-		
-    	String[] cmdFlush = {script.toString()};
-		code = TorServiceUtils.doShellCommand(cmdFlush, res, true, true);
-		//String msg = res.toString(); //get stdout from command
+    	purgeIptables(context);
 		
 		script = new StringBuilder();
 		
@@ -231,8 +214,8 @@ iptables -t nat -A OUTPUT -m owner --uid-owner anonymous -j DROP
 				//iptables -t nat -A output -p tcp -m owner --uid-owner 100 -m tcp --sync -j REDIRECT --to-ports 9040
 				
 				//TCP
-				script.append(baseDir);
-				script.append("iptables -t nat");
+				script.append(ipTablesPath);
+				script.append(" -t nat");
 				script.append(" -A OUTPUT -p tcp");
 				script.append(" -m owner --uid-owner ");
 				script.append(apps[i].getUid());
@@ -248,8 +231,8 @@ iptables -t nat -A OUTPUT -m owner --uid-owner anonymous -j DROP
 				script.append(" || exit\n");
 				
 				//DNS
-				script.append(baseDir);
-				script.append("iptables -t nat");
+				script.append(ipTablesPath);
+				script.append(" -t nat");
 				script.append(" -A OUTPUT -p udp -m owner --uid-owner ");
 				script.append(apps[i].getUid());
 				script.append(" -m udp --dport "); 
@@ -268,8 +251,8 @@ iptables -t nat -A OUTPUT -m owner --uid-owner anonymous -j DROP
 				//EVERYTHING ELSE - DROP!
 				if (ipTablesOld) //for some reason this doesn't work on iptables 1.3.7
 				{
-					
-					script.append("iptables -t nat");
+					script.append(ipTablesPath);
+					script.append(" -t nat");
 					script.append(" -A OUTPUT -m owner --uid-owner ");
 					script.append(apps[i].getUid());
 					script.append(" -j DROP"); 
@@ -277,8 +260,8 @@ iptables -t nat -A OUTPUT -m owner --uid-owner anonymous -j DROP
 				}	
 				else
 				{
-					script.append(baseDir);
-					script.append("iptables -t filter");
+					script.append(ipTablesPath);
+					script.append(" -t filter");
 					script.append(" -A OUTPUT -p tcp");
 					script.append(" -m owner --uid-owner ");
 					script.append(apps[i].getUid());
@@ -287,8 +270,8 @@ iptables -t nat -A OUTPUT -m owner --uid-owner anonymous -j DROP
 					script.append(" -j ACCEPT");
 					script.append(" || exit\n");
 					
-					script.append(baseDir);
-					script.append("iptables -t filter");
+					script.append(ipTablesPath);
+					script.append(" -t filter");
 					script.append(" -A OUTPUT -p udp");
 					script.append(" -m owner --uid-owner ");
 					script.append(apps[i].getUid());
@@ -297,8 +280,7 @@ iptables -t nat -A OUTPUT -m owner --uid-owner anonymous -j DROP
 					script.append(" -j ACCEPT");
 					script.append(" || exit\n");
 										
-					script.append(baseDir);
-					script.append("iptables");
+					script.append(ipTablesPath);
 					script.append(" -t filter -A OUTPUT -m owner --uid-owner ");
 					script.append(apps[i].getUid());
 					script.append(" -j DROP"); //drop all other packets as Tor won't handle them
@@ -307,6 +289,9 @@ iptables -t nat -A OUTPUT -m owner --uid-owner anonymous -j DROP
 				}
 				
 			}		
+			else
+			{
+			}
 		}
 		
     	
@@ -325,15 +310,10 @@ iptables -t nat -A OUTPUT -m owner --uid-owner anonymous -j DROP
 		
 		//redirectDNSResolvConf(); //not working yet
 		
-		String baseDir = findBaseDir();
+		//String baseDir = context.getDir("bin",0).getAbsolutePath() + '/';
+		String ipTablesPath = new File(context.getDir("bin", 0),"iptables_n1").getAbsolutePath();
 
-		String iptablesVersion = getIPTablesVersion();
-		logNotice( "iptables version: " + iptablesVersion);
-		
 		boolean ipTablesOld = false;
-		if (iptablesVersion != null && iptablesVersion.startsWith("1.3")){
-			ipTablesOld = true;
-		}
 		
     	StringBuilder script = new StringBuilder();
     	
@@ -349,8 +329,8 @@ iptables -t nat -A OUTPUT -m owner --uid-owner anonymous -j DROP
 		//TCP
 		//iptables -t nat -A PREROUTING -i eth0 -p tcp --dport $srcPortNumber -j REDIRECT --to-port $dstPortNumbe
 
-		script.append(baseDir);
-		script.append("iptables -t nat");
+		script.append(ipTablesPath);
+		script.append(" -t nat");
 		script.append(" -A OUTPUT -p tcp");
 		script.append(" --dport ");
 		script.append(port);
@@ -365,8 +345,8 @@ iptables -t nat -A OUTPUT -m owner --uid-owner anonymous -j DROP
 		
 		script.append(" || exit\n");
 		
-		script.append(baseDir);
-		script.append("iptables -t nat");
+		script.append(ipTablesPath);
+		script.append(" -t nat");
 		script.append(" -A OUTPUT -p udp");
 		script.append(" --dport ");
 		script.append(port);
@@ -381,8 +361,8 @@ iptables -t nat -A OUTPUT -m owner --uid-owner anonymous -j DROP
 		script.append(" || exit\n");
 		
 		//DNS
-		script.append(baseDir);
-		script.append("iptables -t nat");
+		script.append(ipTablesPath);
+		script.append(" -t nat");
 		script.append(" -A OUTPUT -p udp ");
 		script.append(" -m udp --dport "); 
 		script.append(STANDARD_DNS_PORT);

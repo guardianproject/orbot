@@ -19,7 +19,8 @@ public interface TorServiceConstants {
 	
 	//torrc (tor config file)
 	public final static String TORRC_ASSET_KEY = "torrc";
-
+	public final static String TOR_CONTROL_COOKIE = "control_auth_cookie";
+	
 	//how to launch tor
 //	public final static String TOR_COMMAND_LINE_ARGS = "-f " + TORRC_INSTALL_PATH  + " || exit\n";
 		
@@ -39,8 +40,8 @@ public interface TorServiceConstants {
 	public final static String CHMOD_EXE_VALUE = "777";
 	
 	//path of the installed APK file
-	public final static String APK_PATH = "/data/app/org.torproject.android.apk";
-	public final static String APK_PATH_BASE = "/data/app";
+	//public final static String APK_PATH = "/data/app/org.torproject.android.apk";
+	//public final static String APK_PATH_BASE = "/data/app";
 
 	
 	
