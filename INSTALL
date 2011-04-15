@@ -18,12 +18,13 @@ an HTTP or SOCKS Proxy. Once you start Tor using Orbot, you can then
 point your application to HTTP port 8118 or SOCKS port 9050 on localhost
 IP 127.0.0.1.
 
-You can also set the Android system-wide HTTP proxy using the Mobile
-Network APN:
-Settings->Mobile networks->Access Point Names->(select your Carrier APN):
+If you have root access, and a version of Android with iptables that
+supports the netfilter owner module, then Orbot can setup transparent
+proxying for any application.
 
-Proxy: 127.0.0.1
-Port:8118
+Finally, Firefox on Android is available, and we have released an
+add-on named ProxyMob for configuring SOCKS proxy settings for use
+with the local Tor socks proxy.
 
 ** A Few Notes **
 
@@ -35,5 +36,5 @@ Tor. Check the message log to ensure you are "100% Bootstrapped".
 
 ***********************************************
 
-/* Copyright (c) 2009-2010, Nathan Freitas, The Guardian Project
+/* Copyright (c) 2009,2010,2011, Nathan Freitas, The Guardian Project
  * http://guardianproject.info/ */

@@ -1,4 +1,8 @@
-nThis document explains how to properly build an Android package of Orbot from
+
+// 2011/04/15 this document is a bit out of date. We will be updating to use
+// the standalone cross-compiler that is offered by the Android NDK soon
+
+This document explains how to properly build an Android package of Orbot from
 source. It covers building on Debian Lenny (5.0.3).
 
 Please install the following prerequisites (instructions for each follows):
