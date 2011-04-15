@@ -52,11 +52,15 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 	private static final int MAX_START_TRIES = 3;
 
     private ArrayList<String> configBuffer = null;
-    
+    private ArrayList<String> resetBuffer = null;
+     
    
-    private String appHome = "/data/data/" + TOR_APP_USERNAME + "/";;
-    private String torBinaryPath = appHome + TOR_BINARY_ASSET_KEY;
-    private String privoxyPath = appHome + PRIVOXY_ASSET_KEY;
+    private String appHome;
+    private String appBinHome;
+    private String appDataHome;
+    
+    private String torBinaryPath;
+    private String privoxyPath;
     
 	
     private boolean hasRoot = false;
@@ -323,7 +327,8 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 			
 			String[] cmd = { SHELL_CMD_KILL + ' ' + procId + "" };
 			TorServiceUtils.doShellCommand(cmd,log, false, false);
-
+			try { Thread.sleep(500); }
+			catch (Exception e){}
 		}
 
 		while ((procId = TorServiceUtils.findProcessId(privoxyPath)) != -1)
@@ -333,7 +338,8 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 			String[] cmd = { SHELL_CMD_KILL + ' ' + procId + "" };
 
 			TorServiceUtils.doShellCommand(cmd,log, false, false);
-
+			try { Thread.sleep(500); }
+			catch (Exception e){}
 		}
 		
     }
@@ -349,6 +355,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     	}
     }
     
+    /*
     private String findAPK ()
     {
     	
@@ -428,39 +435,29 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     	
     	
     	return null;
-    }
+    }*/
+    
     
     private boolean checkTorBinaries () throws Exception
     {
+    	//android.os.Debug.waitForDebugger();
     	
-		appHome = "/data/data/" + TOR_APP_USERNAME + "/";
-		//appHome = getApplicationContext().getFilesDir().getAbsolutePath();
+    	//check and install iptables
+    	Api.assertBinaries(this, true);
     	
+    	File fileInstall = getDir("",0);
+    	String subBinPath = "bin/";
+    	
+		appHome = fileInstall.getAbsolutePath();
+		appBinHome = appHome + subBinPath;
+		appDataHome = getCacheDir().getAbsolutePath() + '/';
 		logNotice( "appHome=" + appHome);
-		torBinaryPath = appHome + TOR_BINARY_ASSET_KEY;
-    	privoxyPath = appHome + PRIVOXY_ASSET_KEY;
+		
+		torBinaryPath = appBinHome + TOR_BINARY_ASSET_KEY;
+    	privoxyPath = appBinHome + PRIVOXY_ASSET_KEY;
     	
 		logNotice( "checking Tor binaries");
-	    	
-    	String apkPath = findAPK();
-		    	
-    	if (apkPath == null)
-    		throw new Exception ("Unable to locate Orbot binary APK file");
-    	
-    	logNotice( "found apk at: " + apkPath);
-    	
-    	boolean apkExists = new File(apkPath).exists();
-    	
-    	if (!apkExists)
-    	{
-    		Log.w(TAG,"APK file not found at: " + apkPath);
-    		Log.w(TAG,"Binary installation aborted");
-    		logNotice(getString(R.string.status_install_fail));
-    		sendCallbackStatusMessage(getString(R.string.status_install_fail));
-    		return false;
-    	}
-    	
-    	
+	    
 		boolean torBinaryExists = new File(torBinaryPath).exists();
 		boolean privoxyBinaryExists = new File(privoxyPath).exists();
 		
@@ -468,7 +465,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 		{
 			killTorProcess ();
 			
-			TorBinaryInstaller installer = new TorBinaryInstaller(appHome, apkPath); 
+			TorBinaryInstaller installer = new TorBinaryInstaller(this, appBinHome, appBinHome); 
 			installer.start(true);
 			
 			torBinaryExists = new File(torBinaryPath).exists();
@@ -552,12 +549,11 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     private void runTorShellCmd() throws Exception
     {
     	
-    	
     	StringBuilder log = new StringBuilder();
 		
-		String torrcPath = appHome + TORRC_ASSET_KEY;
+		String torrcPath = appBinHome + TORRC_ASSET_KEY;
 		
-		String[] torCmd = {torBinaryPath + " -f " + torrcPath  + " || exit\n"};
+		String[] torCmd = {torBinaryPath + " DataDirectory " + appDataHome + " -f " + torrcPath  + " || exit\n"};
 		
 		boolean runAsRootFalse = false;
 		boolean waitForProcess = false;
@@ -623,7 +619,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     		{
     			log = new StringBuilder();
     			
-    			String privoxyConfigPath = appHome + PRIVOXYCONFIG_ASSET_KEY;
+    			String privoxyConfigPath = appBinHome + PRIVOXYCONFIG_ASSET_KEY;
     			
     			String[] cmds = 
     			{ privoxyPath + " " + privoxyConfigPath + " &" };
@@ -680,27 +676,31 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 					
 					torConnSocket = new Socket(IP_LOCALHOST, TOR_CONTROL_PORT);
 			        conn = TorControlConnection.getConnection(torConnSocket);
+			        
 			      //  conn.authenticate(new byte[0]); // See section 3.2
 			        
 					sendCallbackStatusMessage(getString(R.string.tor_process_connecting_step2));
 
 					logNotice( "SUCCESS connected to control port");
 			        
-			        String torAuthCookie = appHome + "data/control_auth_cookie";
+			        String torAuthCookie = appDataHome + TOR_CONTROL_COOKIE;
 			        
 			        File fileCookie = new File(torAuthCookie);
-			        byte[] cookie = new byte[(int)fileCookie.length()];
-			        new FileInputStream(new File(torAuthCookie)).read(cookie);
-			        conn.authenticate(cookie);
-			        		
-			        logNotice( "SUCCESS authenticated to control port");
 			        
-					sendCallbackStatusMessage(getString(R.string.tor_process_connecting_step2) + getString(R.string.tor_process_connecting_step3));
-
-			        addEventHandler();
-			        
-			        applyPreferences();
-			        
+			        if (fileCookie.exists())
+			        {
+				        byte[] cookie = new byte[(int)fileCookie.length()];
+				        new FileInputStream(new File(torAuthCookie)).read(cookie);
+				        conn.authenticate(cookie);
+				        		
+				        logNotice( "SUCCESS authenticated to control port");
+				        
+						sendCallbackStatusMessage(getString(R.string.tor_process_connecting_step2) + getString(R.string.tor_process_connecting_step3));
+	
+				        addEventHandler();
+				        
+				        applyPreferences();
+			        }
 			        
 			        break; //don't need to retry
 				}
@@ -712,8 +712,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 					sendCallbackStatusMessage(getString(R.string.tor_process_connecting_step4));
 
 					Thread.sleep(1000);
-					
-					
+										
 				}	
 			}
 		
@@ -1052,9 +1051,14 @@ public class TorService extends Service implements TorServiceConstants, Runnable
         {
         	if (configBuffer == null)
         		configBuffer = new ArrayList<String>();
-	        		
+	        
+        	if (resetBuffer == null)
+        		resetBuffer = new ArrayList<String>();
+	        
         	if (value == null || value.length() == 0)
         	{
+        		
+        		/*
         		if (conn != null)
         		{
         			try {
@@ -1063,6 +1067,9 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 						Log.w(TAG, "Unable to reset conf",e);
 					}
         		}
+        		*/
+        		
+        		resetBuffer.add(name);
         	}
         	else
         		configBuffer.add(name + ' ' + value);
@@ -1076,8 +1083,16 @@ public class TorService extends Service implements TorServiceConstants, Runnable
         	{
 	        	if (conn != null)
 	        	{
-	        		 if (configBuffer != null)
+	        		 if (resetBuffer != null && resetBuffer.size() > 0)
+				        {	
+				        	conn.resetConf(resetBuffer);
+				        	resetBuffer = null;
+				        }
+	   	       
+	        		 
+	        		 if (configBuffer != null && configBuffer.size() > 0)
 				        {
+	        			 	
 				        	conn.setConf(configBuffer);
 				        	configBuffer = null;
 				        }
@@ -1378,14 +1393,14 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 				}
 				else
 				{
-					TorTransProxy.purgeIptables(this,AppManager.getApps(this));
+					TorTransProxy.purgeIptables(this);
 	
 				}
 			}
 		}
 		else if (hasRoot)
 		{
-			TorTransProxy.purgeIptables(this,AppManager.getApps(this));
+			TorTransProxy.purgeIptables(this);
 		}
 		
 		return true;

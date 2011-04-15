@@ -12,18 +12,23 @@ import java.io.InputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
+import org.torproject.android.R;
+
+import android.content.Context;
 import android.util.Log;
 
 public class TorBinaryInstaller implements TorServiceConstants {
 
 	
-	String installPath = null;
-	String apkPath = null;
+	String installPath;
+	String apkPath;
+	Context context;
 	
-	public TorBinaryInstaller (String installPath, String apkPath)
+	public TorBinaryInstaller (Context context, String installPath, String apkPath)
 	{
 		this.installPath = installPath;
 		this.apkPath = apkPath;
+		this.context = context;
 	}
 	
 	/*
@@ -39,10 +44,39 @@ public class TorBinaryInstaller implements TorServiceConstants {
 		Log.d(TAG,"Privoxy binary exists=" + privoxyBinaryExists);
 	
 		if (!(torBinaryExists && privoxyBinaryExists) || force)
-			installFromZip ();
+			installFromRaw ();
+		
+	
 		
 	}
 	
+	//		
+	/*
+	 * Extract the Tor binary from the APK file using ZIP
+	 */
+	private void installFromRaw () 
+	{
+		
+			
+			InputStream is = context.getResources().openRawResource(R.raw.tor);			
+			streamToFile(is,installPath + TOR_BINARY_ASSET_KEY);
+		
+			
+			is = context.getResources().openRawResource(R.raw.torrc);			
+			streamToFile(is,installPath + TORRC_ASSET_KEY);
+
+			is = context.getResources().openRawResource(R.raw.privoxy);			
+			streamToFile(is,installPath + PRIVOXY_ASSET_KEY);
+
+			is = context.getResources().openRawResource(R.raw.privoxy_config);			
+			streamToFile(is,installPath + PRIVOXYCONFIG_ASSET_KEY);
+
+			
+			
+			Log.d(TAG,"SUCCESS: installed tor, privoxy binaries from raw");
+	
+		
+	}
 	/*
 	 * Extract the Tor binary from the APK file using ZIP
 	 */
