@@ -2,6 +2,12 @@ NOTE: Specific #s below correspond to Trac tickets logged and maintained at http
 
 1.0.5
 - Removed unused Socks client code from android.net package
+- Updated wizard to show link to Gibberbot (formerly OTRchat) chat app
+- Bundled iptables 1.4.7 for ARM instead of relying on installed version
+- Fixed various issues related to iptables, transproxying for CyanogenMod7/Android 2.3.*
+- Changed how settings changed are processed through the control port (batched instead of one by one)
+- Stopped app by app flushing of iptables rules, in favor of complete flush of 'nat' and 'filter' type
+- removed useless log screen (logs can be viewed/retrieved using 'alogcat' 3rd party app)
 
 1.0.4
 - Added Russian, Persian, Arabic and other .po translations (see res/values-* folders)
