@@ -1,0 +1,12 @@
+SocksPort 9050
+SocksListenAddress 127.0.0.1
+SafeSocks 1
+Log notice stdout
+ControlPort 9051
+CookieAuthentication 1
+RelayBandwidthRate 20 KBytes
+RelayBandwidthBurst 20 KBytes
+UseBridges 0
+AutomapHostsOnResolve 1
+TransPort 9040
+DNSPort 5400
