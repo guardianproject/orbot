@@ -3,7 +3,9 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/bgtitanium">
+    android:background="@drawable/bgtitanium"
+    android:id="@+id/viewMain"
+    >
     
     	<RelativeLayout android:id="@+id/layoutHeaderMain"
 		android:layout_width="fill_parent"
@@ -59,7 +61,7 @@
 							android:gravity="center_horizontal"
 							android:textStyle="bold"
 							android:width="330px"
-							android:height="75px"
+							android:height="125px"
 							android:textColor="#ffffff"
 							 />
 					</TableRow>
