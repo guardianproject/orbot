@@ -7,6 +7,13 @@ android:key="pref_start_boot"
 android:title="@string/pref_start_boot_title"
 android:summary="@string/pref_start_boot_summary"
 android:enabled="true"/>
+
+<CheckBoxPreference 
+android:defaultValue="false" 
+android:key="has_root"
+android:title="@string/pref_has_root"
+android:summary="@string/pref_has_root_summary"
+android:enabled="true"/>
 </PreferenceCategory>
 
 <PreferenceCategory android:title="@string/pref_trans_proxy_group">
@@ -33,19 +40,6 @@ android:summary="Choose Apps to Route Through Tor"
 android:enabled="true"/>
 
 
-<CheckBoxPreference
-android:defaultValue="false" 
-android:key="pref_transparent_port_fallback"
-android:summary="@string/pref_transparent_port_fallback_summary"
-android:enabled="true" 
-android:title="@string/pref_transparent_port_fallback_title"/>
-
-<EditTextPreference android:key="pref_port_list"
-android:defaultValue="80,443,8080,8888,8443"
-android:title="@string/pref_transparent_port_title"
-android:summary="@string/pref_transparent_port_summary"
-android:dialogTitle="@string/pref_transparent_port_dialog"
-/>
 </PreferenceCategory>
 
  
@@ -111,9 +105,34 @@ android:dialogTitle="Enter ports"
 />
 </PreferenceCategory>
 
-<PreferenceCategory android:title="@string/pref_hs_group"><CheckBoxPreference android:title="Enable Hidden Services" android:summary="run servers accessible via the Tor network" android:key="pref_hs_enable"></CheckBoxPreference>
+<PreferenceCategory android:title="@string/pref_hs_group">
+<CheckBoxPreference android:title="Enable Hidden Services" android:summary="run servers accessible via the Tor network" android:key="pref_hs_enable"></CheckBoxPreference>
 <EditTextPreference android:summary="enter localhost ports for hidden services" android:title="Hidden Service Ports" android:enabled="false" android:key="pref_hs_ports"></EditTextPreference>
 
 <EditTextPreference android:key="pref_hs_hostname" android:summary="the addressable name for your hidden service (generated automatically)" android:title=".Onion Hostname"></EditTextPreference>
+</PreferenceCategory>
+
+<PreferenceCategory android:title="Debug">
+<CheckBoxPreference
+android:key="pref_enable_logging"
+android:defaultValue="false"
+android:title="Debug Log"
+android:summary="enable debug log to output (must use adb or aLogCat to view)"
+android:enabled="true"></CheckBoxPreference>
+
+
+<CheckBoxPreference
+android:defaultValue="false" 
+android:key="pref_transparent_port_fallback"
+android:summary="@string/pref_transparent_port_fallback_summary"
+android:enabled="true" 
+android:title="@string/pref_transparent_port_fallback_title"/>
+
+<EditTextPreference android:key="pref_port_list"
+android:defaultValue="80,443,8080,8888,8443"
+android:title="@string/pref_transparent_port_title"
+android:summary="@string/pref_transparent_port_summary"
+android:dialogTitle="@string/pref_transparent_port_dialog"
+/>
 </PreferenceCategory>
 </PreferenceScreen>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Orbot</string>
-        <string name="app_version">1.0.4</string>
+        <string name="app_version">1.0.5-dev</string>
     
     <string name="internal_web_url">http://orbot/</string>
     <string name="default_web_url">http://check.torproject.org</string>
@@ -30,6 +30,8 @@
 <string name="menu_start">启动</string>
 <string name="menu_stop">停止</string>
 
+<string name="menu_about">About</string>
+<string name="menu_wizard">Wizard</string>
 
 <string name="button_help">帮助</string>
 <string name="button_close">关闭</string>
@@ -56,6 +58,9 @@
 <string name="pref_transparent_port_title">Port List</string>
 <string name="pref_transparent_port_summary">List of ports to proxy. *USE ONLY* if \'All\' or \'App\' mode doesn\'t work</string>
 <string name="pref_transparent_port_dialog">Enter ports to proxy</string>
+
+<string name="pref_has_root">Request Root Access</string>
+<string name="pref_has_root_summary">Request root access for transparent proxying</string>
 
 <string name="status_install_success">Tor 二进制程序安装成功！</string>
 <string name="status_install_fail">Tor 二进制程序无法安装。请查看日志 tor-assistants@torproject.org</string>
