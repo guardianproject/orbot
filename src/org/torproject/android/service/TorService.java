@@ -4,6 +4,7 @@ package org.torproject.android.service;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -18,8 +19,10 @@ import net.freehaven.tor.control.TorControlConnection;
 
 import org.torproject.android.AppManager;
 import org.torproject.android.Orbot;
+import org.torproject.android.ProcessSettingsAsyncTask;
 import org.torproject.android.R;
 import org.torproject.android.TorConstants;
+import org.torproject.android.Utils;
 
 import android.app.AlertDialog;
 import android.app.Notification;
@@ -31,6 +34,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.IBinder;
+import android.os.Looper;
 import android.os.RemoteCallbackList;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
@@ -39,6 +43,7 @@ import android.util.Log;
 public class TorService extends Service implements TorServiceConstants, Runnable, EventHandler
 {
 	
+	private static boolean ENABLE_DEBUG_LOG = false;
 	
 	private static int currentStatus = STATUS_READY;
 		
@@ -48,6 +53,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 	private static TorService _torInstance;
 	
 	private static final int NOTIFY_ID = 1;
+	private static int NOTIFY_ID_ERROR = 2;
 	
 	private static final int MAX_START_TRIES = 3;
 
@@ -69,8 +75,20 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     public void onCreate() {
     	super.onCreate();
        
-    	Log.i(TAG, "serviced created");
+    	logMessage("serviced created");
       
+    }
+    
+    public static void logMessage(String msg)
+    {
+    	if (ENABLE_DEBUG_LOG)
+    		Log.d(TAG,msg);
+    }
+    
+    public static void logException(String msg, Exception e)
+    {
+    	if (ENABLE_DEBUG_LOG)
+    		Log.e(TAG,msg,e);
     }
     
     
@@ -96,12 +114,11 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 			} catch (RuntimeException e) {
 				Log.d(TAG,"Unable to connect to existing Tor instance,",e);
 				currentStatus = STATUS_OFF;
-				this.stopTor();
 				
 			} catch (Exception e) {
 				Log.d(TAG,"Unable to connect to existing Tor instance,",e);
 				currentStatus = STATUS_OFF;
-				this.stopTor();
+				
 				
 			}
  		}
@@ -144,7 +161,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     }
 	
    
-	private void showToolbarNotification (String notifyMsg, int icon)
+	private void showToolbarNotification (String notifyMsg, int notifyId, int icon)
 	{
 	
 		
@@ -166,7 +183,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 		notification.setLatestEventInfo(context, contentTitle, contentText, contentIntent);
 
 
-		mNotificationManager.notify(NOTIFY_ID, notification);
+		mNotificationManager.notify(notifyId, notification);
 
 
 	}
@@ -196,7 +213,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 		} catch (Exception e) {
 
 			logNotice("unable to find tor binaries: " + e.getMessage());
-	    	showToolbarNotification(e.getMessage(), R.drawable.tornotificationoff);
+	    	showToolbarNotification(e.getMessage(), NOTIFY_ID_ERROR, R.drawable.tornotificationoff);
 
 			Log.e(TAG, "error checking tor binaries", e);
 		}
@@ -226,13 +243,12 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 	     try
 	     {
 		   initTor();
-		   
-		   
+		   isRunning = true;
 	     }
 	     catch (Exception e)
 	     {
 	    	 currentStatus = STATUS_OFF;
-	    	 this.showToolbarNotification(getString(R.string.status_disabled), R.drawable.tornotification);
+	    	 this.showToolbarNotification(getString(R.string.status_disabled), NOTIFY_ID_ERROR, R.drawable.tornotification);
 	    	 Log.d(TAG,"Unable to start Tor: " + e.getMessage(),e);
 	     }
 		}
@@ -243,10 +259,11 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     {
     	super.onDestroy();
     	
+    	Log.d(TAG,"onDestroy called");
+    	
     	  // Unregister all callbacks.
         mCallbacks.kill();
       
-    	stopTor();
     }
     
     private void stopTor ()
@@ -259,7 +276,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 				
     		currentStatus = STATUS_READY;
     
-    		showToolbarNotification (getString(R.string.status_disabled),R.drawable.tornotificationoff);
+    		showToolbarNotification (getString(R.string.status_disabled),NOTIFY_ID,R.drawable.tornotificationoff);
     		sendCallbackStatusMessage(getString(R.string.status_disabled));
 
     		setupTransProxy(false);
@@ -275,7 +292,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     
  
    
-    
+    /*
     public void reloadConfig ()
     {
     	try
@@ -294,7 +311,211 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     	{
     		Log.d(TAG,"Unable to reload configuration",e);
     	}
-    }
+    }*/
+    
+    
+    /*
+	private void loadTorSettingsFromPreferences () throws RemoteException
+	{
+		try
+		{
+    		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+    		ENABLE_DEBUG_LOG = prefs.getBoolean("pref_enable_logging",false);
+    		Log.i(TAG,"debug logging:" + ENABLE_DEBUG_LOG);
+    		
+			boolean useBridges = prefs.getBoolean(TorConstants.PREF_BRIDGES_ENABLED, false);
+			
+			//boolean autoUpdateBridges = prefs.getBoolean(PREF_BRIDGES_UPDATED, false);
+	
+	        boolean becomeRelay = prefs.getBoolean(TorConstants.PREF_OR, false);
+	
+	        boolean ReachableAddresses = prefs.getBoolean(TorConstants.PREF_REACHABLE_ADDRESSES,false);
+	
+	        boolean enableHiddenServices = prefs.getBoolean("pref_hs_enable", false);
+			
+			boolean enableTransparentProxy = prefs.getBoolean(TorConstants.PREF_TRANSPARENT, false);		
+			mBinder.updateTransProxy();
+			
+			String bridgeList = prefs.getString(TorConstants.PREF_BRIDGES_LIST,"");
+	
+			if (useBridges)
+			{
+				if (bridgeList == null || bridgeList.length() == 0)
+				{
+				
+					showAlert("Bridge Error","In order to use the bridge feature, you must enter at least one bridge IP address." +
+							"Send an email to bridges@torproject.org with the line \"get bridges\" by itself in the body of the mail from a gmail account.");
+					
+				
+					return;
+				}
+				
+				
+				mBinder.updateConfiguration("UseBridges", "1", false);
+					
+				String bridgeDelim = "\n";
+				
+				if (bridgeList.indexOf(",") != -1)
+				{
+					bridgeDelim = ",";
+				}
+				
+				StringTokenizer st = new StringTokenizer(bridgeList,bridgeDelim);
+				while (st.hasMoreTokens())
+				{
+	
+					mBinder.updateConfiguration("bridge", st.nextToken(), false);
+	
+				}
+				
+				mBinder.updateConfiguration("UpdateBridgesFromAuthority", "0", false);
+				
+			}
+			else
+			{
+				mBinder.updateConfiguration("UseBridges", "0", false);
+	
+			}
+	
+	        try
+	        {
+	            if (ReachableAddresses)
+	            {
+	                String ReachableAddressesPorts =
+	                    prefs.getString(TorConstants.PREF_REACHABLE_ADDRESSES_PORTS, "*:80,*:443");
+	                
+	                mBinder.updateConfiguration("ReachableAddresses", ReachableAddressesPorts, false);
+	
+	            }
+	            else
+	            {
+	            	mBinder.updateConfiguration("ReachableAddresses", "", false);
+	            }
+	        }
+	        catch (Exception e)
+	        {
+	           showAlert("Config Error","Your ReachableAddresses settings caused an exception!");
+	        }
+	
+	        try
+	        {
+	            if (becomeRelay && (!useBridges) && (!ReachableAddresses))
+	            {
+	                int ORPort =  Integer.parseInt(prefs.getString(TorConstants.PREF_OR_PORT, "9001"));
+	                String nickname = prefs.getString(TorConstants.PREF_OR_NICKNAME, "Orbot");
+	
+	                mBinder.updateConfiguration("ORPort", ORPort + "", false);
+	                mBinder.updateConfiguration("Nickname", nickname, false);
+	                mBinder.updateConfiguration("ExitPolicy", "reject *:*", false);
+	
+	            }
+	            else
+	            {
+	            	mBinder.updateConfiguration("ORPort", "", false);
+	            	mBinder.updateConfiguration("Nickname", "", false);
+	            	mBinder.updateConfiguration("ExitPolicy", "", false);
+	            }
+	        }
+	        catch (Exception e)
+	        {
+	            showAlert("Uh-oh!","Your relay settings caused an exception!");
+	          
+	            return;
+	        }
+	
+	        if (enableHiddenServices)
+	        {
+	        	mBinder.updateConfiguration("HiddenServiceDir","/data/data/org.torproject.android/", false);
+	        	
+	        	String hsPorts = prefs.getString("pref_hs_ports","");
+	        	
+	        	StringTokenizer st = new StringTokenizer (hsPorts,",");
+	        	String hsPortConfig = null;
+	        	
+	        	while (st.hasMoreTokens())
+	        	{
+	        		hsPortConfig = st.nextToken();
+	        		
+	        		if (hsPortConfig.indexOf(":")==-1) //setup the port to localhost if not specifed
+	        		{
+	        			hsPortConfig = hsPortConfig + " 127.0.0.1:" + hsPortConfig;
+	        		}
+	        		
+	        		mBinder.updateConfiguration("HiddenServicePort",hsPortConfig, false);
+	        	}
+	        	
+	        	//force save now so the hostname file gets generated
+	        	mBinder.saveConfiguration();
+	        	 
+	        	String onionHostname = getHiddenServiceHostname();
+	        	
+	        	if (onionHostname != null)
+	        	{
+	        		
+	        		Editor pEdit = prefs.edit();
+	    			pEdit.putString("pref_hs_hostname",onionHostname);
+	    			pEdit.commit();
+	        		
+	        	}
+	        }
+	        else
+	        {
+	        	mBinder.updateConfiguration("HiddenServiceDir","", false);	       
+	        }
+	        
+	        mBinder.saveConfiguration();
+	        
+		 }
+        catch (Exception e)
+        {
+            showAlert("Uh-oh!","There was an error updating your settings");
+          
+            Log.w(TAG, "processSettings()", e);
+            
+            return;
+        }
+
+	}*/
+
+	private void getHiddenServiceHostname ()
+	{
+
+    	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		
+        boolean enableHiddenServices = prefs.getBoolean("pref_hs_enable", false);
+
+        if (enableHiddenServices)
+        {
+	    	File file = new File(appDataHome, "hostname");
+	    	
+	    	if (file.exists())
+	    	{
+		    	try {
+					String onionHostname = Utils.readString(new FileInputStream(file));
+					showToolbarNotification("hidden service on: " + onionHostname, NOTIFY_ID_ERROR, R.drawable.tornotification);
+					Editor pEdit = prefs.edit();
+					pEdit.putString("pref_hs_hostname",onionHostname);
+					pEdit.commit();
+				
+					
+				} catch (FileNotFoundException e) {
+					logException("unable to read onion hostname file",e);
+					showToolbarNotification("unable to read hidden service name", NOTIFY_ID_ERROR, R.drawable.tornotification);
+					return;
+				}
+	    	}
+	    	else
+	    	{
+				showToolbarNotification("unable to read hidden service name", NOTIFY_ID_ERROR, R.drawable.tornotification);
+	
+	    		
+	    	}
+        }
+        
+        return;
+	}
+	
     
     private void killTorProcess () throws Exception
     {
@@ -348,95 +569,14 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     {
     	if (msg != null && msg.trim().length() > 0)
     	{
-    		if (LOG_OUTPUT_TO_DEBUG)        	
+    		if (ENABLE_DEBUG_LOG)        	
         		Log.d(TAG, msg);
     	
     		sendCallbackLogMessage(msg);
     	}
     }
     
-    /*
-    private String findAPK ()
-    {
-    	
-    	String apkBase = "/data/app/";
-    	
-    	String APK_EXT = ".apk";
-    	
-    	int MAX_TRIES = 10;
-    	
-    	String buildPath = apkBase + TOR_APP_USERNAME + APK_EXT;
-    	logNotice("Checking APK location: " + buildPath);
-		
-    	File fileApk = new File(buildPath);
-    	
-    	if (fileApk.exists())
-    		return fileApk.getAbsolutePath();
-    	
-    	for (int i = 0; i < MAX_TRIES; i++)
-    	{
-    		buildPath = apkBase + TOR_APP_USERNAME + '-' + i + APK_EXT;
-    		fileApk = new File(buildPath);
-    	
-    		logNotice( "Checking APK location: " + buildPath);
-    		
-    		if (fileApk.exists())
-    			return fileApk.getAbsolutePath();
-    	}
-    	
-    	String apkBaseExt = "/mnt/asec/" + TOR_APP_USERNAME;
-    	String pkgFile = "/pkg.apk";
-    	
-    	buildPath = apkBaseExt + pkgFile;
-    	fileApk = new File(buildPath);
-    	
-    	logNotice( "Checking external storage APK location: " + buildPath);
-		
-		if (fileApk.exists())
-			return fileApk.getAbsolutePath();
-		
-    	for (int i = 0; i < MAX_TRIES; i++)
-    	{
-    		buildPath = apkBaseExt + '-' + i + pkgFile;
-    		fileApk = new File(buildPath);
-    	
-    		logNotice( "Checking external storage APK location: " + buildPath);
-    		
-    		if (fileApk.exists())
-    			return fileApk.getAbsolutePath();
-    	}
-    	
 
-    	apkBase = "/sd-ext/app/";
-    	
-    	APK_EXT = ".apk";
-    	
-    	MAX_TRIES = 10;
-    	
-    	buildPath = apkBase + TOR_APP_USERNAME + APK_EXT;
-    	logNotice("Checking Apps2SD APK location: " + buildPath);
-		
-    	fileApk = new File(buildPath);
-    	
-    	if (fileApk.exists())
-    		return fileApk.getAbsolutePath();
-    	
-    	for (int i = 0; i < MAX_TRIES; i++)
-    	{
-    		buildPath = apkBase + TOR_APP_USERNAME + '-' + i + APK_EXT;
-    		fileApk = new File(buildPath);
-    	
-    		logNotice( "Checking Apps2SD location: " + buildPath);
-    		
-    		if (fileApk.exists())
-    			return fileApk.getAbsolutePath();
-    	}
-    	
-    	
-    	
-    	return null;
-    }*/
-    
     
     private boolean checkTorBinaries () throws Exception
     {
@@ -475,7 +615,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     		{
     			logNotice(getString(R.string.status_install_success));
     	
-    			showToolbarNotification(getString(R.string.status_install_success), R.drawable.tornotification);
+    			showToolbarNotification(getString(R.string.status_install_success), NOTIFY_ID, R.drawable.tornotification);
     		
     		}
     		else
@@ -522,29 +662,99 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     		
     		killTorProcess ();
     		
-    		
-    		new Thread()
-    		{
-    			public void run ()
-    			{
-    				try {
-    		    		runTorShellCmd();
-    		    		
-    		    		setupTransProxy(true);
-    		    		
-       		    		runPrivoxyShellCmd();
+    		try {
 
+	    		runTorShellCmd();
+	    		runPrivoxyShellCmd();
+	    		setupTransProxy(true);
 
-    				} catch (Exception e) {
-    			    	Log.d(TAG,"Unable to start Tor: " + e.getMessage(),e);	
-    			    	sendCallbackStatusMessage("Unable to start Tor: " + e.getMessage());
-    			    	stopTor();
-    			    } 
-    			}
-    		}.start();
-    		
+			} catch (Exception e) {
+		    	logException("Unable to start Tor: " + e.getMessage(),e);	
+		    	sendCallbackStatusMessage("Unable to start Tor: " + e.getMessage());
+		    	
+		    } 
     		
     }
+    
+    
+    private boolean setupTransProxy (boolean activate) throws Exception
+ 	{
+    	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+ 		boolean hasRoot;
+ 		
+ 		if (prefs.contains("has_root"))
+ 		{
+ 			hasRoot = prefs.getBoolean("has_root",false);
+ 		}
+ 		else
+ 		{
+ 			hasRoot = TorServiceUtils.checkRootAccess();
+ 			Editor pEdit = prefs.edit();
+ 			pEdit.putBoolean("has_root",hasRoot);
+ 			pEdit.commit();
+ 		}
+ 		
+ 		if (!hasRoot)
+ 			return false;
+ 		
+    	if (activate)
+    	{
+	 		
+	 		boolean enableTransparentProxy = prefs.getBoolean("pref_transparent", false);
+	 		boolean transProxyAll = prefs.getBoolean("pref_transparent_all", false);
+	 		boolean transProxyPortFallback = prefs.getBoolean("pref_transparent_port_fallback", false);
+	 		
+	     	TorService.logMessage ("Transparent Proxying: " + enableTransparentProxy);
+	     	
+	     	String portProxyList = prefs.getString("pref_port_list", "");
+	
+	 		if (enableTransparentProxy)
+	 		{
+				showAlert("Status", "Setting up transparent proxying...");
+
+				//TorTransProxy.setDNSProxying();
+				int code = TorTransProxy.setTransparentProxyingByApp(this,AppManager.getApps(this),transProxyAll);
+			
+				TorService.logMessage ("TorTransProxy resp code: " + code);
+				
+				if (code == 0)
+				{
+					showAlert("Status", "Transparent proxying ENABLED");
+				}
+				else
+				{
+					showAlert("Status", "WARNING: error starting transparent proxying!");
+				}
+				
+				//this is for Androids w/o owner module support as a circumvention only fallback
+				if (transProxyPortFallback)
+				{
+					StringTokenizer st = new StringTokenizer(portProxyList, ",");
+					
+					while (st.hasMoreTokens())
+						TorTransProxy.setTransparentProxyingByPort(this, Integer.parseInt(st.nextToken()));
+					
+				}
+				
+				return true;
+	 				
+	 		}
+	 		else
+	 		{
+	 			TorTransProxy.purgeIptables(this);
+				showAlert("Status", "Transparent proxying DISABLED");
+
+	 		}
+    	}
+    	else
+    	{	 	
+    		TorTransProxy.purgeIptables(this);
+			showAlert("Status", "Transparent proxying DISABLED");
+
+    	}
+    	
+ 		return true;
+ 	}
     
     private void runTorShellCmd() throws Exception
     {
@@ -598,9 +808,11 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 		
 			logNotice("Tor process id=" + procId);
 			
-			showToolbarNotification(getString(R.string.status_starting_up), R.drawable.tornotification);
+			showToolbarNotification(getString(R.string.status_starting_up), NOTIFY_ID, R.drawable.tornotification);
 			
 			initControlConnection ();
+
+	        applyPreferences();
 	    }
     }
     
@@ -644,7 +856,6 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     		}
     		
 			sendCallbackLogMessage("Privoxy is running on port: " + PORT_HTTP);
-			Thread.sleep(100);
 			
     		logNotice("Privoxy process id=" + privoxyProcId);
 			
@@ -699,7 +910,6 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 	
 				        addEventHandler();
 				        
-				        applyPreferences();
 			        }
 			        
 			        break; //don't need to retry
@@ -811,9 +1021,9 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 
 	            Thread thread = new Thread(this);
 	            thread.start();
-
+	           
 			}
-			else
+			else if (profile == PROFILE_OFF)
 			{
 				currentStatus = STATUS_OFF;
 	            sendCallbackStatusMessage ("shutting down...");
@@ -828,29 +1038,37 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 
 	public void message(String severity, String msg) {
 		
+		
 		logNotice(  "[Tor Control Port] " + severity + ": " + msg);
           
           if (msg.indexOf(TOR_CONTROL_PORT_MSG_BOOTSTRAP_DONE)!=-1)
           {
         	  currentStatus = STATUS_ON;
-        	  showToolbarNotification (getString(R.string.status_activated),R.drawable.tornotificationon);
-  			  
+        	
+
+   		   	getHiddenServiceHostname ();
+   		   
           }
-         
+          
+          
+    	  showToolbarNotification (getString(R.string.status_activated),NOTIFY_ID,R.drawable.tornotificationon);
+    		 
           sendCallbackStatusMessage (msg);
           
 	}
 
 	private void showAlert(String title, String msg)
 	{
-		 
+		 /*
 		 new AlertDialog.Builder(this)
          .setTitle(title)
          .setMessage(msg)
          .setPositiveButton(android.R.string.ok, null)
          .show();
+         */
+		showToolbarNotification(msg, NOTIFY_ID_ERROR, R.drawable.tornotification);
 	}
-
+	
 	public void newDescriptors(List<String> orList) {
 		
 	}
@@ -858,7 +1076,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 
 	public void orConnStatus(String status, String orName) {
 		
-		if (LOG_OUTPUT_TO_DEBUG)
+		if (ENABLE_DEBUG_LOG)
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.append("orConnStatus (");
@@ -873,7 +1091,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 
 	public void streamStatus(String status, String streamID, String target) {
 		
-		if (LOG_OUTPUT_TO_DEBUG)
+		if (ENABLE_DEBUG_LOG)
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.append("StreamStatus (");
@@ -888,7 +1106,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 
 	public void unrecognized(String type, String msg) {
 		
-		if (LOG_OUTPUT_TO_DEBUG)
+		if (ENABLE_DEBUG_LOG)
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.append("Message (");
@@ -903,20 +1121,23 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 
 	public void bandwidthUsed(long read, long written) {
 		
-		StringBuilder sb = new StringBuilder();
-		sb.append("Bandwidth used: ");
-		sb.append(read/1000);
-		sb.append("kb read / ");
-		sb.append(written/1000);
-		sb.append("kb written");
-		
-		logNotice(sb.toString());
+		if (ENABLE_DEBUG_LOG)
+		{
+			StringBuilder sb = new StringBuilder();
+			sb.append("Bandwidth used: ");
+			sb.append(read/1000);
+			sb.append("kb read / ");
+			sb.append(written/1000);
+			sb.append("kb written");
+			
+			logNotice(sb.toString());
+		}
 
 	}
 
 	public void circuitStatus(String status, String circID, String path) {
 		
-		if (LOG_OUTPUT_TO_DEBUG)
+		if (ENABLE_DEBUG_LOG)
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.append("Circuit (");
@@ -947,7 +1168,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 		catch (Exception e)
 		{
 			logNotice("unable to find tor binaries: " + e.getMessage());
-	    	showToolbarNotification(e.getMessage(), R.drawable.tornotificationoff);
+	    	showToolbarNotification(e.getMessage(), NOTIFY_ID_ERROR, R.drawable.tornotificationoff);
 
 			Log.d(TAG,"Unable to check for Tor binaries",e);
 			return null;
@@ -977,7 +1198,8 @@ public class TorService extends Service implements TorServiceConstants, Runnable
      */
     private final ITorService.Stub mBinder = new ITorService.Stub() {
     	
-        public void registerCallback(ITorServiceCallback cb) {
+       
+		public void registerCallback(ITorServiceCallback cb) {
             if (cb != null) mCallbacks.register(cb);
         }
         public void unregisterCallback(ITorServiceCallback cb) {
@@ -990,6 +1212,18 @@ public class TorService extends Service implements TorServiceConstants, Runnable
         public void setProfile (int profile)
         {
         	setTorProfile(profile);
+        	
+        }
+        
+        public void processSettings ()
+        {
+        	
+        	
+        	try {
+				applyPreferences();
+			} catch (RemoteException e) {
+				logException ("error applying prefs",e);
+			}
         	
         }
         
@@ -1044,6 +1278,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
         	
         	return null;
         }
+        
         /**
          * Set configuration
          **/
@@ -1057,7 +1292,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 	        
         	if (value == null || value.length() == 0)
         	{
-        		
+        		resetBuffer.add(name);
         		/*
         		if (conn != null)
         		{
@@ -1066,10 +1301,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 					} catch (IOException e) {
 						Log.w(TAG, "Unable to reset conf",e);
 					}
-        		}
-        		*/
-        		
-        		resetBuffer.add(name);
+        		}*/
         	}
         	else
         		configBuffer.add(name + ' ' + value);
@@ -1083,13 +1315,13 @@ public class TorService extends Service implements TorServiceConstants, Runnable
         	{
 	        	if (conn != null)
 	        	{
+	        		
 	        		 if (resetBuffer != null && resetBuffer.size() > 0)
 				        {	
 				        	conn.resetConf(resetBuffer);
 				        	resetBuffer = null;
 				        }
 	   	       
-	        		 
 	        		 if (configBuffer != null && configBuffer.size() > 0)
 				        {
 	        			 	
@@ -1117,24 +1349,21 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     
     private ArrayList<String> callbackBuffer = new ArrayList<String>();
     private boolean inCallbackStatus = false;
-    private boolean inCallbackLog = false;
+    private boolean inCallback = false;
     
-    private void sendCallbackStatusMessage (String newStatus)
+    private synchronized void sendCallbackStatusMessage (String newStatus)
     {
     	 
     	if (mCallbacks == null)
     		return;
     	
-    	
-    	
         // Broadcast to all clients the new value.
         final int N = mCallbacks.beginBroadcast();
         
-        inCallbackStatus = true;
+        inCallback = true;
         
         if (N > 0)
         {
-        
         	 for (int i=0; i<N; i++) {
 		            try {
 		                mCallbacks.getBroadcastItem(i).statusChanged(newStatus);
@@ -1148,57 +1377,57 @@ public class TorService extends Service implements TorServiceConstants, Runnable
         }
         
         mCallbacks.finishBroadcast();
-        inCallbackStatus = false;
+        inCallback = false;
     }
     
-    private void sendCallbackLogMessage (String logMessage)
+    private synchronized void sendCallbackLogMessage (String logMessage)
     {
     	 
     	if (mCallbacks == null)
     		return;
     	
     	callbackBuffer.add(logMessage);
-    	
-    	
-        // Broadcast to all clients the new value.
-        final int N = mCallbacks.beginBroadcast();
-        
-        inCallbackLog = true;
 
-    	
-        if (N > 0)
-        {
-        
-        	Iterator<String> it = callbackBuffer.iterator();
-        	String status = null;
-        	
-        	while (it.hasNext())
-        	{
-        		status = it.next();
-        		
-		        for (int i=0; i<N; i++) {
-		            try {
-		                mCallbacks.getBroadcastItem(i).logMessage(status);
-		                
-		                
-		            } catch (RemoteException e) {
-		                // The RemoteCallbackList will take care of removing
-		                // the dead object for us.
-		            }
-		        }
-        	}
+    	if (!inCallback)
+    	{
+
+	        inCallback = true;
+	        // Broadcast to all clients the new value.
+	        final int N = mCallbacks.beginBroadcast();
 	        
-	        callbackBuffer.clear();
-        }
-        
-        mCallbacks.finishBroadcast();
-        inCallbackLog = false;
+	
+	        if (N > 0)
+	        {
+	        
+	        	Iterator<String> it = callbackBuffer.iterator();
+	        	String status = null;
+	        	
+	        	while (it.hasNext())
+	        	{
+	        		status = it.next();
+	        		
+			        for (int i=0; i<N; i++) {
+			            try {
+			                mCallbacks.getBroadcastItem(i).logMessage(status);
+			                
+			            } catch (RemoteException e) {
+			                // The RemoteCallbackList will take care of removing
+			                // the dead object for us.
+			            }
+			        }
+	        	}
+		        
+		        callbackBuffer.clear();
+	        }
+	        
+	        mCallbacks.finishBroadcast();
+	        inCallback = false;
+    	}
+    	
     }
     
-    private void applyPreferences () throws RemoteException
+    private boolean applyPreferences () throws RemoteException
     {
-    	
-    	
     	
     	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		
@@ -1214,11 +1443,19 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 
 		boolean enableTransparentProxy = prefs.getBoolean(TorConstants.PREF_TRANSPARENT, false);
 		
+		try
+		{
+			setupTransProxy(currentStatus != STATUS_OFF); 		
+		}
+		catch (Exception e)
+		{
+			logException("unable to setup transproxy",e);
+		}
 		
-		String bridgeList = prefs.getString(TorConstants.PREF_BRIDGES_LIST,"");
-
 		if (useBridges)
 		{
+			String bridgeList = prefs.getString(TorConstants.PREF_BRIDGES_LIST,"");
+
 			if (bridgeList == null || bridgeList.length() == 0)
 			{
 			
@@ -1226,7 +1463,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 						"Send an email to bridges@torproject.org with the line \"get bridges\" by itself in the body of the mail from a gmail account.");
 				
 			
-				return;
+				return false;
 			}
 			
 			
@@ -1274,6 +1511,8 @@ public class TorService extends Service implements TorServiceConstants, Runnable
         catch (Exception e)
         {
            showAlert("Config Error","Your ReachableAddresses settings caused an exception!");
+           
+           return false;
         }
 
         try
@@ -1299,12 +1538,12 @@ public class TorService extends Service implements TorServiceConstants, Runnable
         {
             showAlert("Uh-oh!","Your relay settings caused an exception!");
           
-            return;
+            return false;
         }
 
         if (enableHiddenServices)
         {
-        	mBinder.updateConfiguration("HiddenServiceDir","/data/data/org.torproject.android/", false);
+        	mBinder.updateConfiguration("HiddenServiceDir",appDataHome, false);
         	
         	String hsPorts = prefs.getString("pref_hs_ports","");
         	
@@ -1332,77 +1571,10 @@ public class TorService extends Service implements TorServiceConstants, Runnable
         }
         
         mBinder.saveConfiguration();
-		
+	
+        return true;
     }
     
     
-    private boolean setupTransProxy (boolean enabled) throws Exception
-	{
-    	
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplication());
-		
-		if (prefs.contains("has_root"))
-		{
-			hasRoot = prefs.getBoolean("has_root",false);//TorServiceUtils.checkRootAccess();
-		}
-		else
-		{
-			hasRoot = TorServiceUtils.checkRootAccess();
-			Editor pEdit = prefs.edit();
-			pEdit.putBoolean("has_root",hasRoot);
-			pEdit.commit();
-		}
-		
-		boolean enableTransparentProxy = prefs.getBoolean("pref_transparent", false);
-		boolean transProxyAll = prefs.getBoolean("pref_transparent_all", false);
-	
-		boolean transProxyPortFallback = prefs.getBoolean("pref_transparent_port_fallback", false);
-		
-    	logNotice ("Transparent Proxying: " + enableTransparentProxy);
-    	
-    	String portProxyList = prefs.getString("pref_port_list", "");
-
-		if (enabled)
-		{
-		
-
-			if (hasRoot)
-			{
-				if (enableTransparentProxy)
-				{
-				
-				
-					//TorTransProxy.setDNSProxying();
-					int code = TorTransProxy.setTransparentProxyingByApp(this,AppManager.getApps(this),transProxyAll);
-				
-					logNotice ("TorTransProxy resp code: " + code);
-					
-					//this is for Androids w/o owner module support as a circumvention only fallback
-					if (transProxyPortFallback)
-					{
-						StringTokenizer st = new StringTokenizer(portProxyList, ",");
-						
-						while (st.hasMoreTokens())
-							TorTransProxy.setTransparentProxyingByPort(this, Integer.parseInt(st.nextToken()));
-						
-					}
-					
-					return true;
-				
-				
-				}
-				else
-				{
-					TorTransProxy.purgeIptables(this);
-	
-				}
-			}
-		}
-		else if (hasRoot)
-		{
-			TorTransProxy.purgeIptables(this);
-		}
-		
-		return true;
-	}
+   
 }

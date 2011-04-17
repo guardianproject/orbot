@@ -11,55 +11,11 @@ public class TorTransProxy implements TorServiceConstants {
 	
 	private final static String TAG = TorServiceConstants.TAG;
 		
-	//private static String BASE_DIR = "/data/data/" + TorServiceConstants.TOR_APP_USERNAME + "/";
 
-	private static void logNotice (String msg)
-	{
-		if (LOG_OUTPUT_TO_DEBUG)
-			Log.d(TAG, msg);
-	}
-
-	/**
-	 * Check if we have root access
-	 * @return boolean true if we have root
-	 */
-	/*
-	public static String getIPTablesVersion() {
-	
-
-		StringBuilder log = new StringBuilder();
-		
-		try {
-			
-			// Run an empty script just to check root access
-			String[] cmd = {"iptables -v"};
-			int code = TorServiceUtils.doShellCommand(cmd, log, true, true);
-			String msg = log.toString();
-			logNotice(cmd[0] + ";errCode=" + code + ";resp=" + msg);
-			
-			
-			String out = log.toString();
-			if (out.indexOf(" v")!=-1)
-			{
-			
-				out = out.substring(out.indexOf(" v")+2);
-				out = out.substring(0,out.indexOf(":"));
-				
-				return out.trim();
-			}
-			
-			
-		} catch (Exception e) {
-			Log.w(TAG,"Error checking iptables version: " + e.getMessage() ,e);
-		}
-		
-		logNotice("Could not acquire check iptables: " + log.toString());
-		return null;
-	}*/
 	
 	public static int purgeIptables(Context context) throws Exception {
 		
-	String ipTablesPath = new File(context.getDir("bin", 0),"iptables_n1").getAbsolutePath();
+	String ipTablesPath = new File(context.getDir("bin", 0),"iptables").getAbsolutePath();
 		
     	final StringBuilder script = new StringBuilder();
     	
@@ -78,7 +34,8 @@ public class TorTransProxy implements TorServiceConstants {
     	String[] cmd = {script.toString()};	    	
 		code = TorServiceUtils.doShellCommand(cmd, res, true, true);		
 		String msg = res.toString();
-		logNotice(cmd[0] + ";errCode=" + code + ";resp=" + msg);
+		
+		TorService.logMessage(cmd[0] + ";errCode=" + code + ";resp=" + msg);
 			
 		
 		return code;
@@ -90,7 +47,7 @@ public class TorTransProxy implements TorServiceConstants {
 
 		//restoreDNSResolvConf(); //not working yet
 		
-		String ipTablesPath = new File(context.getDir("bin", 0),"iptables_n1").getAbsolutePath();
+		String ipTablesPath = new File(context.getDir("bin", 0),"iptables").getAbsolutePath();
 		
     	final StringBuilder script = new StringBuilder();
     	
@@ -171,12 +128,14 @@ public class TorTransProxy implements TorServiceConstants {
 	public static int setTransparentProxyingByApp(Context context, TorifiedApp[] apps, boolean forceAll) throws Exception
 	{
 
+		boolean runRoot = true;
+    	boolean waitFor = true;
+    	
 		//android.os.Debug.waitForDebugger();
 		
 		//redirectDNSResolvConf(); //not working yet
 		
-		//String baseDir = context.getDir("bin", 0).getAbsolutePath() + "/";
-		String ipTablesPath = new File(context.getDir("bin", 0),"iptables_n1").getAbsolutePath();
+		String ipTablesPath = new File(context.getDir("bin", 0),"iptables").getAbsolutePath();
 
 		boolean ipTablesOld = false;
 		
@@ -202,17 +161,8 @@ public class TorTransProxy implements TorServiceConstants {
 					continue;
 				}
 				
-				logNotice("enabling transproxy for app: " + apps[i].getUsername() + "(" + apps[i].getUid() + ")");
+				TorService.logMessage("enabling transproxy for app: " + apps[i].getUsername() + "(" + apps[i].getUid() + ")");
 			 
-				/*
-				 * iptables -t nat -A OUTPUT -p tcp -m owner --uid-owner anonymous -m tcp --syn -j REDIRECT --to-ports 9040 
-iptables -t nat -A OUTPUT -p udp -m owner --uid-owner anonymous -m udp --dport 53 -j REDIRECT --to-ports 53 
-iptables -t nat -A OUTPUT -m owner --uid-owner anonymous -j DROP
-				 */
-				
-				
-				//iptables -t nat -A output -p tcp -m owner --uid-owner 100 -m tcp --sync -j REDIRECT --to-ports 9040
-				
 				//TCP
 				script.append(ipTablesPath);
 				script.append(" -t nat");
@@ -248,7 +198,6 @@ iptables -t nat -A OUTPUT -m owner --uid-owner anonymous -j DROP
 				script.append(" || exit\n");
 				
 				
-				//EVERYTHING ELSE - DROP!
 				if (ipTablesOld) //for some reason this doesn't work on iptables 1.3.7
 				{
 					script.append(ipTablesPath);
@@ -288,17 +237,16 @@ iptables -t nat -A OUTPUT -m owner --uid-owner anonymous -j DROP
 					
 				}
 				
+				
 			}		
-			else
-			{
-			}
 		}
 		
+		String[] cmdAdd = {script.toString()};    	
     	
-    	String[] cmdAdd = {script.toString()};    	
-		code = TorServiceUtils.doShellCommand(cmdAdd, res, true, true);
+		code = TorServiceUtils.doShellCommand(cmdAdd, res, runRoot, waitFor);
 		String msg = res.toString();
-		logNotice(cmdAdd[0] + ";errCode=" + code + ";resp=" + msg);
+		TorService.logMessage(cmdAdd[0] + ";errCode=" + code + ";resp=" + msg);
+		
 		
 		return code;
     }	
@@ -311,7 +259,7 @@ iptables -t nat -A OUTPUT -m owner --uid-owner anonymous -j DROP
 		//redirectDNSResolvConf(); //not working yet
 		
 		//String baseDir = context.getDir("bin",0).getAbsolutePath() + '/';
-		String ipTablesPath = new File(context.getDir("bin", 0),"iptables_n1").getAbsolutePath();
+		String ipTablesPath = new File(context.getDir("bin", 0),"iptables").getAbsolutePath();
 
 		boolean ipTablesOld = false;
 		
@@ -380,7 +328,7 @@ iptables -t nat -A OUTPUT -m owner --uid-owner anonymous -j DROP
     	String[] cmdAdd = {script.toString()};    	
 		code = TorServiceUtils.doShellCommand(cmdAdd, res, true, true);
 		String msg = res.toString();
-		logNotice(cmdAdd[0] + ";errCode=" + code + ";resp=" + msg);
+		TorService.logMessage(cmdAdd[0] + ";errCode=" + code + ";resp=" + msg);
 		
 		return code;
     }	
