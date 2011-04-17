@@ -48,7 +48,7 @@ public class WizardHelper implements TorConstants {
         View view = li.inflate(R.layout.layout_wizard_welcome, null); 
         
        
-		showCustomDialog(title, view,context.getString(R.string.btn_next),context.getString(R.string.wizard_btn_tell_me_more),new DialogInterface.OnClickListener() {
+		showCustomDialog(title, view,context.getString(R.string.btn_next),null,new DialogInterface.OnClickListener() {
 					
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
@@ -59,10 +59,11 @@ public class WizardHelper implements TorConstants {
 
 					showWizardStep2();
 				}
+				/*
 				else if (which == DialogInterface.BUTTON_POSITIVE)
 				{
 					showAbout();
-				}
+				}*/
 				
 			}
 		});
@@ -116,7 +117,11 @@ public class WizardHelper implements TorConstants {
 			
 				currentDialog.getButton(AlertDialog.BUTTON_NEUTRAL).setEnabled(isChecked);
 				
-				
+				SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+
+				Editor pEdit = prefs.edit();
+				pEdit.putBoolean("has_root",false);
+				pEdit.commit();
 				
 			}
         	
@@ -380,25 +385,7 @@ public class WizardHelper implements TorConstants {
 	
 	}
 	
-	private void showAbout ()
-	{
-		
-		LayoutInflater li = LayoutInflater.from(context);
-        View view = li.inflate(R.layout.layout_about, null); 
-        
-        TextView versionName = (TextView)view.findViewById(R.id.versionName);
-        versionName.setText(R.string.app_version);    
-        
-		new AlertDialog.Builder(context)
-        .setTitle(context.getString(R.string.button_about))
-        .setView(view)
-        .setNeutralButton(context.getString(R.string.btn_back), new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int whichButton) {
-                      showWizard();
-                }
-        })
-        .show();
-	}
+	
 	
 	private void showProxyHelp ()
 	{

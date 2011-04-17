@@ -21,9 +21,6 @@ public interface TorConstants {
     public final static int STATUS_ON = 1;
     public final static int STATUS_CONNECTING = 2;
     
-    public final static int PROFILE_OFF = -1;
-    public final static int PROFILE_ONDEMAND = 0;
-    public final static int PROFILE_ON = 1;
     
     public final static String NEWLINE = "\n";
     
