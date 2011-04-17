@@ -801,23 +801,29 @@ public final class Api {
 		boolean changed = false;
 		try {
 			// Check iptables_g1
-			File file = new File(ctx.getDir("bin",0), "iptables_g1");
+			File file = new File(ctx.getDir("bin",0), "iptables");
+			
 			if ((!file.exists()) && isARMv6()) {
 				copyRawFile(ctx, R.raw.iptables_g1, file, "755");
 				changed = true;
 			}
+			
 			// Check iptables_n1
-			file = new File(ctx.getDir("bin",0), "iptables_n1");
+			file = new File(ctx.getDir("bin",0), "iptables");
 			if ((!file.exists()) && (!isARMv6())) {
 				copyRawFile(ctx, R.raw.iptables_n1, file, "755");
 				changed = true;
 			}
+			
 			// Check busybox
+			/*
 			file = new File(ctx.getDir("bin",0), "busybox_g1");
 			if (!file.exists()) {
 				copyRawFile(ctx, R.raw.busybox_g1, file, "755");
 				changed = true;
 			}
+			*/
+			
 			if (changed) {
 				Toast.makeText(ctx, R.string.status_install_success, Toast.LENGTH_LONG).show();
 			}

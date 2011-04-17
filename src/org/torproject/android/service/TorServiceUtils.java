@@ -34,22 +34,19 @@ public class TorServiceUtils implements TorServiceConstants {
 			
 		} catch (IOException e) {
 			//this means that there is no root to be had (normally) so we won't log anything
+			TorService.logException("Error checking for root access",e);
+			
 		}
 		catch (Exception e) {
-			Log.w(TAG,"Error checking for root access: " + e.getMessage());
+			TorService.logException("Error checking for root access",e);
 			//this means that there is no root to be had (normally)
 		}
 		
-		logNotice("Could not acquire root permissions");
+		TorService.logMessage("Could not acquire root permissions");
 		return false;
 	}
 	
 	
-	private static void logNotice (String msg)
-	{
-		if (LOG_OUTPUT_TO_DEBUG)
-			Log.d(TAG, msg);
-	}
 	
 	public static int findProcessId(String command) 
 	{
@@ -106,7 +103,7 @@ public class TorServiceUtils implements TorServiceConstants {
         	}
         	catch (NumberFormatException e)
         	{
-        		logNotice("unable to parse process pid: " + line);
+        		TorService.logException("unable to parse process pid: " + line,e);
         	}
         }
             
@@ -153,7 +150,7 @@ public class TorServiceUtils implements TorServiceConstants {
 	
 	public static int doShellCommand(String[] cmds, StringBuilder log, boolean runAsRoot, boolean waitFor) throws Exception
 	{
-		logNotice("executing shell cmds: " + cmds[0] + "; runAsRoot=" + runAsRoot);
+		TorService.logMessage("executing shell cmds: " + cmds[0] + "; runAsRoot=" + runAsRoot);
 		
 		 	
 		Process proc = null;
@@ -201,7 +198,7 @@ public class TorServiceUtils implements TorServiceConstants {
 				log.append(exitCode);
 				log.append("\n");
 				
-				logNotice("command process exit value: " + exitCode);
+				TorService.logMessage("command process exit value: " + exitCode);
 			}
         
         

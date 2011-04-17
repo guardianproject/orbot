@@ -6,8 +6,6 @@ public interface TorServiceConstants {
 
 	public final static String TAG = "ORBOT";
 
-	public static boolean LOG_OUTPUT_TO_DEBUG = true;
-
 	public final static String TOR_APP_USERNAME = "org.torproject.android";
 	
 	public final static String ASSETS_BASE = "assets/";
@@ -78,4 +76,9 @@ public interface TorServiceConstants {
     
     public final static int PROFILE_OFF = -1;
     public final static int PROFILE_ON = 1;
+
+    public static final int STATUS_MSG = 1;
+    public static final int ENABLE_TOR_MSG = 2;
+    public static final int DISABLE_TOR_MSG = 3;
+    public static final int LOG_MSG = 4;
 }

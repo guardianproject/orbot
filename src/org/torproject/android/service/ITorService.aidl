@@ -37,6 +37,11 @@ interface ITorService {
     * Set configuration
     **/
     boolean updateConfiguration (String name, String value, boolean saveToDisk);
+ 
+    /**
+    * Set configuration
+    **/
+    void processSettings();
     
     /**
     * Set configuration
