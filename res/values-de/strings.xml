@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Orbot</string>
-        <string name="app_version">1.0.4</string>
+        <string name="app_version">1.0.5-dev</string>
     
     <string name="internal_web_url">http://orbot/</string>
     <string name="default_web_url">http://check.torproject.org</string>
@@ -29,6 +29,8 @@
 <string name="menu_apps">Apps</string>
 <string name="menu_start">Start</string>
 <string name="menu_stop">Stop</string>
+<string name="menu_about">About</string>
+<string name="menu_wizard">Wizard</string>
 
 
 <string name="button_help">Hilfe</string>
@@ -56,6 +58,9 @@
 <string name="pref_transparent_port_title">Port List</string>
 <string name="pref_transparent_port_summary">List of ports to proxy. *USE ONLY* if \'All\' or \'App\' mode doesn\'t work</string>
 <string name="pref_transparent_port_dialog">Enter ports to proxy</string>
+
+<string name="pref_has_root">Request Root Access</string>
+<string name="pref_has_root_summary">Request root access for transparent proxying</string>
 
 <string name="status_install_success">Die Tor-Pakete wurden erfolgreich installiert!</string>
 <string name="status_install_fail">Die Tor-Pakete konnten nicht erfolgreich installiert werden. Bitte prüfen Sie das Logfile und wenden Sie sich an tor-assistants@torproject.org.</string>
