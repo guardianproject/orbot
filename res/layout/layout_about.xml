@@ -100,6 +100,13 @@
 				android:autoLink="web"
 				android:textColorLink="#ffffff"
 				android:paddingLeft="15px"	
+				android:textColor="#ffffff" />	
+			<TextView android:text="Iptables v1.4.7: http://www.netfilter.org"
+				android:layout_width="fill_parent" 
+				android:layout_height="wrap_content"
+				android:autoLink="web"
+				android:textColorLink="#ffffff"
+				android:paddingLeft="15px"	
 				android:textColor="#ffffff" />					
 			</LinearLayout>
 		</ScrollView>			
