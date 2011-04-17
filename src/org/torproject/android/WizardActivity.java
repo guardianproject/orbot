@@ -41,7 +41,7 @@ public class WizardActivity extends Activity implements OnClickListener
 
 	public void showStep1()
 	{
-		showDialog("Test","this is nathan's test","foo","bar",this);
+		showDialog("Test","","foo","bar",this);
 	}
 	
 	private void showDialog (String title, String msg, String button1, String button2, OnClickListener ocListener)

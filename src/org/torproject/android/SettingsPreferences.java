@@ -37,7 +37,7 @@ public class SettingsPreferences
 		
 		if (prefs.contains("has_root"))
 		{
-			hasRoot = prefs.getBoolean("has_root",false);//TorServiceUtils.checkRootAccess();
+			hasRoot = prefs.getBoolean("has_root",false);
 		}
 		else
 		{
@@ -103,10 +103,12 @@ public class SettingsPreferences
 	@Override
 	public boolean onPreferenceClick(Preference preference) {
 		
+		setResult(1010);
 		
 		if (preference == prefTransProxyApps)
 		{
 			startActivity(new Intent(this, AppManager.class));
+			
 		}
 		else if (preference == prefHiddenServices)
 		{

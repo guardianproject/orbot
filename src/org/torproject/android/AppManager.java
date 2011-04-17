@@ -69,6 +69,7 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
 
 	private void loadApps ()
 	{
+		resetApps(this);
         final TorifiedApp[] apps = getApps(this);
         
         Arrays.sort(apps, new Comparator<TorifiedApp>() {
@@ -140,11 +141,17 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
 	protected void onStop() {
 		super.onStop();
 		
-		//Log.d(getClass().getName(),"Exiting Preferences");
 	}
 
-
 	public static TorifiedApp[] getApps (Context context)
+	{
+		if (apps == null)
+			resetApps(context);
+		
+		return apps;
+	}
+	
+	public static TorifiedApp[] resetApps (Context context)
 	{
 
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
@@ -161,7 +168,7 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
 		}
 		
 		Arrays.sort(tordApps);
-		
+
 		//else load the apps up
 		PackageManager pMgr = context.getPackageManager();
 		
@@ -199,6 +206,7 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
 			
 			appIdx++;
 		}
+	
 		
 		return apps;
 	}
