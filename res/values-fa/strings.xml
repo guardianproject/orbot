@@ -30,8 +30,9 @@
 <string name="menu_start">آغاز</string>
 <string name="menu_stop">ایست</string>
 
-<string name="menu_about">About</string>
+<string name="menu_about">درباره</string>
 <string name="menu_wizard">Wizard</string>
+
 
 <string name="button_help">کمک</string>
 <string name="button_close">بسته</string>
@@ -43,7 +44,7 @@
 <string name="menu_verify">بررسی</string>
 <string name="menu_exit">خروج</string>
 <string name="powered_by">فعال شده توسط Tor Project</string>
-<string name="press_to_start">برای شروع، کلیک کنید.</string>
+<string name="press_to_start">- long press to start -</string>
 
 <string name="pref_trans_proxy_group">پروکسیدن شفاف (نیاز به Root دارد)</string>
 <string name="pref_trans_proxy_title">پروکسیدن شفاف</string>
@@ -100,7 +101,7 @@
     
     <string name="wizard_tips_tricks">اپلیکیشن هایی که برای اوربات تنظیم شده اند</string>
     <string name="wizard_tips_msg">توصیه می کنیم داون لود و فعال کنید؛ اپلیکیشن هایی را استفاده کنید که مستقیم به اوربات وصل می شوند. دکمه های زیر را فشار دهید تا نصب شود. </string>
-    <string name="wizard_tips_otrchat">GibberBot - کاربر ایمن انتقال پیام فوری برای آندروید</string>
+    <string name="wizard_tips_otrchat">Gibberbot - Secure instant messaging client for Android</string>
     <string name="wizard_tips_orweb">ORWEB (فقط آندروید 1.x) - مرورگر طراحی شده برای حفظ حریم خصوصی و افزونساز اوربات</string>
     <string name="wizard_tips_proxy">تنظیمات پروکسی - یادگیری تنظیم اپلیکیشن ها برای کار با اوربات</string>
     
@@ -111,7 +112,7 @@
     <string name="wizard_final_msg">صدها هزار نفر در سراسر جهان به دلایل گوناگون از Tor استفاده می کنند: روزنامه نویسها و بلاگرها، کارکنان حقوق بشر، ماموران انتظامی، سربازان، شرکتها، شهروندان دولتهای سرکوبگر، و شهروندان عادی، و حالا شما نیز آماده استفاده از آن هستید!</string>
     
     <string name="otrchat_apk_url">market://search?q=pname:info.guardianproject.otr.app.im</string>
-    <string name="orweb_apk_url">https://guardianproject.info/getorweb</string>
+    <string name="orweb_apk_url">market://search?q=pname:nfo.guardianproject.browser</string>
     
 <!-- END Welcome Wizard strings (DJH) -->
  
