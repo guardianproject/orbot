@@ -30,8 +30,9 @@
 <string name="menu_start">Запустить</string>
 <string name="menu_stop">Остановить</string>
 
-<string name="menu_about">About</string>
+<string name="menu_about">О программе</string>
 <string name="menu_wizard">Wizard</string>
+
 
 <string name="button_help">Справка</string>
 <string name="button_close">Закрыть</string>
@@ -43,7 +44,7 @@
 <string name="menu_verify">Проверка</string>
 <string name="menu_exit">Выход</string>
 <string name="powered_by">powered by the Tor Project</string>
-<string name="press_to_start">- нажмите на пуск -</string>
+<string name="press_to_start">- long press to start -</string>
 
 <string name="pref_trans_proxy_group">Прозрачный прокси (Требуются привилегии root)</string>
 <string name="pref_trans_proxy_title">Прозрачный прокси</string>
@@ -100,7 +101,7 @@
     
     <string name="wizard_tips_tricks">Orbot-задействованные приложения</string>
     <string name="wizard_tips_msg">Мы советуем вам скачать и использовать приложения, которые умеют работать напрямую через Orbot. Нажмите на кнопки ниже, чтобы запустить процесс установки.</string>
-    <string name="wizard_tips_otrchat">GibberBot - Обезопасте обмен мгновенными сообщениями для клиентов в Android</string>
+    <string name="wizard_tips_otrchat">Gibberbot - Secure instant messaging client for Android</string>
     <string name="wizard_tips_orweb">ORWEB (Только для версии Android 1.x) - Браузер, разработанный для обеспечения безопасности и для Orbot</string>
     <string name="wizard_tips_proxy">Настройки прокси - узнайте как настроить приложения для работы с Orbot</string>
     
@@ -115,7 +116,7 @@
     <string name="wizard_final_msg">Сотни тысяч людей по всему миру используют Tor по различным причинам: журналисты и блоггеры, активисты организаций, выступающих в защиту прав человека, судебные исполнители, солдаты, корпорации, граждане стран с репрессивным режимом, и простые люди... а теперь готовы и вы!</string>
     
     <string name="otrchat_apk_url">market://search?q=pname:info.guardianproject.otr.app.im</string>
-    <string name="orweb_apk_url">https://guardianproject.info/getorweb</string>
+    <string name="orweb_apk_url">market://search?q=pname:nfo.guardianproject.browser</string>
     
 <!-- END Welcome Wizard strings (DJH) -->
  

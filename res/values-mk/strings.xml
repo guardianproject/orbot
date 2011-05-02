@@ -29,7 +29,8 @@
 <string name="menu_apps">Апликации</string>
 <string name="menu_start">Вклучи</string>
 <string name="menu_stop">Исклучи</string>
-<string name="menu_about">About</string>
+
+<string name="menu_about">За</string>
 <string name="menu_wizard">Wizard</string>
 
 
@@ -43,7 +44,7 @@
 <string name="menu_verify">Провери</string>
 <string name="menu_exit">Излез</string>
 <string name="powered_by">напојувано од проектот Тор</string>
-<string name="press_to_start">- притисни за вклучување -</string>
+<string name="press_to_start">- long press to start -</string>
 
 <string name="pref_trans_proxy_group">Транспарентно прокси (бара root пристап)</string>
 <string name="pref_trans_proxy_title">Транспарентно прокси</string>
@@ -100,7 +101,7 @@
     
     <string name="wizard_tips_tricks">Орбот-вклучени апликации</string>
     <string name="wizard_tips_msg">Ви препорачуваме да презимате и користите апликации кои што знаат како директно да се поврзат со Орбот. Притиснете на копчињата подолу за инсталирање.</string>
-    <string name="wizard_tips_otrchat">GibberBot - Безбеден клиент за инстант-пораки за Андроид</string>
+    <string name="wizard_tips_otrchat">Gibberbot - Secure instant messaging client for Android</string>
     <string name="wizard_tips_orweb">ORWEB (само Андроид 1.x) - Браусер дизајниран за приватност и за Орбот</string>
     <string name="wizard_tips_proxy">Подесувања на прокси - Научете како да ги конфигурирате апликациите да работат со Орбот</string>
     
@@ -115,7 +116,7 @@
     <string name="wizard_final_msg">Стотици илјади луѓе низ целиот Свет го користат Тор од многу различни причини: новинари и блогери, борци за човекови права, полицајци, војници, корпорации, граѓани на репресивни режими, и обични граѓани... а сега и Вие сте спремин да го користите!</string>
     
     <string name="otrchat_apk_url">market://search?q=pname:info.guardianproject.otr.app.im</string>
-    <string name="orweb_apk_url">https://guardianproject.info/getorweb</string>
+    <string name="orweb_apk_url">market://search?q=pname:nfo.guardianproject.browser</string>
     
 <!-- END Welcome Wizard strings (DJH) -->
  
