@@ -1,6 +1,10 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
 1.0.5
+- updated to Tor 0.2.2.25-alpha binary
+- moved back to single notification bar id to avoid double entries
+- cleaned up progress dialog and alert handling to avoid leaky windows
+- Merged __sporkbomb's patch for how transproxy all works; now does "everything but Tor"
 - Added new toolbar notifications and alerts for displaying notifications and Tor messages
 - Removed unused Socks client code from android.net package
 - Updated wizard to show link to Gibberbot (formerly OTRchat) chat app
