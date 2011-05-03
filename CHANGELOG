@@ -1,6 +1,7 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
 1.0.5
+- Added new toolbar notifications and alerts for displaying notifications and Tor messages
 - Removed unused Socks client code from android.net package
 - Updated wizard to show link to Gibberbot (formerly OTRchat) chat app
 - Bundled iptables 1.4.7 for ARM instead of relying on installed version

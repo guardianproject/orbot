@@ -1,7 +1,8 @@
 This file contains the license for Orbot, a free software project to
 provide anonymity on the Internet from a Google Android smartphone.
 
-It also lists the licenses for other components used by Orbot.
+It also lists the licenses for other components used by Orbot, including 
+Tor, Privoxy, and iptables.
 
 For more information about Orbot, see https://guardianproject.info/apps/orbot
 
@@ -146,3 +147,14 @@ http://ip-to-country.webhosting.info."
 See the src/config/geoip file in particular.
 ===============================================================================
 
+===============================================================================
+Orbot also uses iptables from the Netfilter.org project
+
+netfilter/iptables is - like all of the Linux Kernel - Free Software (sometimes
+referred to as Open Source Software), distributed under the terms of the GNU GPLv2
+only. Please, note that some source code files might differ, and in that case it
+is explicitely stated in the header of every file.
+
+The GPL also contains some obligations. If you distribute netfilter/iptables code
+in binary form, you have to offer the source code, too.
+===============================================================================
