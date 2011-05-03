@@ -1,5 +1,6 @@
 package org.torproject.android;
 
+import org.torproject.android.service.TorService;
 import org.torproject.android.service.TorServiceUtils;
 import org.torproject.android.service.TorTransProxy;
 
@@ -12,6 +13,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.net.Uri;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -87,6 +89,26 @@ public class WizardHelper implements TorConstants {
 				
 				
 				boolean hasRoot = TorServiceUtils.checkRootAccess();
+				
+				if (hasRoot)
+				{
+					try {
+						int resp = TorTransProxy.testOwnerModule(context);
+						
+						if (resp < 0)
+						{
+							hasRoot = false;
+							Toast.makeText(context, "ERROR: IPTables OWNER module not available", Toast.LENGTH_LONG).show();
+
+							Log.i(TorService.TAG,"ERROR: IPTables OWNER module not available");
+						}
+						
+					} catch (Exception e) {
+						
+						hasRoot = false;
+						Log.d(TorService.TAG,"ERROR: IPTables OWNER module not available",e);
+					}
+				}
 				
 				SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 

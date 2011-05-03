@@ -162,6 +162,7 @@ public class TorServiceUtils implements TorServiceConstants {
         	else
         		proc = Runtime.getRuntime().exec("sh");
         	
+        	
         	OutputStreamWriter out = new OutputStreamWriter(proc.getOutputStream());
             
             for (int i = 0; i < cmds.length; i++)

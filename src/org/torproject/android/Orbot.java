@@ -75,6 +75,12 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
     	
     	prefs = PreferenceManager.getDefaultSharedPreferences(this);
     	
+    	setContentView(R.layout.layout_main);
+		
+    	lblStatus = (TextView)findViewById(R.id.lblStatus);
+		lblStatus.setOnLongClickListener(this);
+    	imgStatus = (ImageView)findViewById(R.id.imgStatus);
+    	imgStatus.setOnLongClickListener(this);
     }
     
    /*
@@ -199,7 +205,7 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
 		
 			stopTor();
 			
-			
+			stopService(new Intent(ITorService.class.getName()));
 			
         	NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 			mNotificationManager.cancelAll();
@@ -321,7 +327,6 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
 	protected void onResume() {
 		super.onResume();
 		
-		 showMain();
 		 updateStatus("");
 		 
 		if (getIntent() == null)
@@ -427,21 +432,6 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
 
 
 	/*
-	 * Show the main form UI
-	 */
-	private void showMain ()
-    {
-		
-		setContentView(R.layout.layout_main);
-		
-    	lblStatus = (TextView)findViewById(R.id.lblStatus);
-		lblStatus.setOnLongClickListener(this);
-    	imgStatus = (ImageView)findViewById(R.id.imgStatus);
-    	imgStatus.setOnLongClickListener(this);
-    	
-    }
-	
-	/*
 	 * Launch the system activity for Uri viewing with the provided url
 	 */
 	private void openBrowser(String url)
@@ -482,11 +472,16 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
 		}
 	}
 	
+	private AlertDialog aDialog = null;
+	
 	private void showAlert(String title, String msg, boolean button)
 	{
+		if (aDialog != null)
+			aDialog.dismiss();
+		
 		 if (button)
 		 {
-		 new AlertDialog.Builder(this)
+			 aDialog = new AlertDialog.Builder(this)
 		 .setIcon(R.drawable.icon)
          .setTitle(title)
          .setMessage(msg)
@@ -495,7 +490,7 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
 		 }
 		 else
 		 {
-			 new AlertDialog.Builder(this)
+			 aDialog = new AlertDialog.Builder(this)
 			 .setIcon(R.drawable.icon)
 	         .setTitle(title)
 	         .setMessage(msg)
@@ -519,7 +514,7 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
 		    	if (torStatus == STATUS_ON)
 		    	{
 		    		imgStatus.setImageResource(R.drawable.toron);
-		    	//	imgStatus.clearAnimation();
+		    	
 		    		if (progressDialog != null)
 		    		{
 		    			progressDialog.dismiss();
@@ -535,8 +530,6 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
 		    		if (torServiceMsg.length() > 0)
 		    			showAlert("Update", torServiceMsg, false);
 		    		
-		    		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-
 		    		boolean showFirstTime = prefs.getBoolean("connect_first_time",true);
 		    		
 		    		if (showFirstTime)
@@ -572,7 +565,7 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
 		    	}
 		    	else if (torStatus == STATUS_OFF)
 		    	{
-		    		imgStatus.setImageResource(R.drawable.torstopping);
+		    		imgStatus.setImageResource(R.drawable.toroff);
 		    		
 		    		if (progressDialog != null)
 		    		{
@@ -615,10 +608,6 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
   
     private void startTor () throws RemoteException
     {
-    	if (progressDialog == null)
-		{
-			progressDialog =ProgressDialog.show(this, "", getString(R.string.status_starting_up));
-		}
     	
     	mService.setProfile(TorServiceConstants.PROFILE_ON); //this means turn on
 		
@@ -641,7 +630,7 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
     		mHandler.sendMessage(msg);
     	}
     	
-        stopService(new Intent(ITorService.class.getName()));
+       // stopService(new Intent(ITorService.class.getName()));
 	
     	
     }
@@ -720,8 +709,7 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
 
                 	String torServiceMsg = (String)msg.getData().getString(HANDLER_TOR_MSG);
                 	
-                	if (torServiceMsg.length() > 0)
-                		updateStatus(torServiceMsg);
+                	updateStatus(torServiceMsg);
                 	
                     break;
                 case TorServiceConstants.LOG_MSG:
@@ -730,9 +718,18 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
                     break;
                 case TorServiceConstants.ENABLE_TOR_MSG:
                 	
+                	if (progressDialog == null)
+					{
+						progressDialog = ProgressDialog.show(Orbot.this, "", getString(R.string.status_starting_up));
+					}
+    	
+                	
+                	updateStatus((String)msg.getData().getString(HANDLER_TOR_MSG));
                 	
                 	break;
                 case TorServiceConstants.DISABLE_TOR_MSG:
+                	
+                	updateStatus((String)msg.getData().getString(HANDLER_TOR_MSG));
                 	
                 	break;
                 		
