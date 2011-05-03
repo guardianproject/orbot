@@ -500,6 +500,7 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
 	         .show();
 		 }
 	
+		 aDialog.setCanceledOnTouchOutside(true);
 	}
     /*
      * Set the state of the running/not running graphic and label
@@ -518,7 +519,6 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
 		    	if (torStatus == STATUS_ON)
 		    	{
 		    		imgStatus.setImageResource(R.drawable.toron);
-		    	
 
 		    		if (progressDialog != null)
 		    		{
@@ -559,11 +559,8 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
 		    	{
 		    		
 		    		imgStatus.setImageResource(R.drawable.torstarting);
-		    		if (progressDialog == null)
-		    		{
-		    			progressDialog =ProgressDialog.show(this, "", getString(R.string.status_starting_up));
-		    		}
-		    		else
+		    		
+		    		if (progressDialog != null)
 		    			progressDialog.setMessage(torServiceMsg);
 		    		
 		    		if (mItemOnOff != null)
@@ -593,7 +590,6 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
 		    			progressDialog.dismiss();
 		    			progressDialog = null;
 		    		}
-		    		
 		    		
 		    		imgStatus.setImageResource(R.drawable.toroff);
 		    		lblStatus.setText(getString(R.string.status_disabled) + "\n" + getString(R.string.press_to_start));
@@ -725,11 +721,7 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
                     break;
                 case TorServiceConstants.ENABLE_TOR_MSG:
                 	
-                	if (progressDialog == null)
-					{
-						progressDialog = ProgressDialog.show(Orbot.this, "", getString(R.string.status_starting_up));
-					}
-    	
+                	createProgressDialog(getString(R.string.status_starting_up));
                 	
                 	updateStatus((String)msg.getData().getString(HANDLER_TOR_MSG));
                 	
@@ -743,6 +735,17 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
                 default:
                     super.handleMessage(msg);
             }
+        }
+        
+        private synchronized void createProgressDialog (String msg)
+        {
+        	if (progressDialog == null)
+			{
+				progressDialog = ProgressDialog.show(Orbot.this, "", msg);
+				
+				progressDialog.setCancelable(true);
+			}
+	
         }
         
     };
