@@ -43,9 +43,9 @@ import android.util.Log;
 public class TorService extends Service implements TorServiceConstants, Runnable, EventHandler
 {
 	
-	private static boolean ENABLE_DEBUG_LOG = false;
+	public static boolean ENABLE_DEBUG_LOG = false;
 	
-	private static int currentStatus = STATUS_READY;
+	private static int currentStatus = STATUS_OFF;
 		
 	private TorControlConnection conn = null;
 	private Socket torConnSocket = null;
@@ -53,7 +53,6 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 	private static TorService _torInstance;
 	
 	private static final int NOTIFY_ID = 1;
-	private static int NOTIFY_ID_ERROR = 2;
 	
 	private static final int MAX_START_TRIES = 3;
 
@@ -213,7 +212,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 		} catch (Exception e) {
 
 			logNotice("unable to find tor binaries: " + e.getMessage());
-	    	showToolbarNotification(e.getMessage(), NOTIFY_ID_ERROR, R.drawable.tornotificationoff);
+	    	showToolbarNotification(e.getMessage(), NOTIFY_ID, R.drawable.tornotificationerr);
 
 			Log.e(TAG, "error checking tor binaries", e);
 		}
@@ -248,7 +247,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 	     catch (Exception e)
 	     {
 	    	 currentStatus = STATUS_OFF;
-	    	 this.showToolbarNotification(getString(R.string.status_disabled), NOTIFY_ID_ERROR, R.drawable.tornotification);
+	    	 this.showToolbarNotification(getString(R.string.status_disabled), NOTIFY_ID, R.drawable.tornotificationerr);
 	    	 Log.d(TAG,"Unable to start Tor: " + e.getMessage(),e);
 	     }
 		}
@@ -274,7 +273,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     	{	
     		killTorProcess ();
 				
-    		currentStatus = STATUS_READY;
+    		currentStatus = STATUS_OFF;
     
     		showToolbarNotification (getString(R.string.status_disabled),NOTIFY_ID,R.drawable.tornotificationoff);
     		sendCallbackStatusMessage(getString(R.string.status_disabled));
@@ -314,170 +313,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     }*/
     
     
-    /*
-	private void loadTorSettingsFromPreferences () throws RemoteException
-	{
-		try
-		{
-    		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-
-    		ENABLE_DEBUG_LOG = prefs.getBoolean("pref_enable_logging",false);
-    		Log.i(TAG,"debug logging:" + ENABLE_DEBUG_LOG);
-    		
-			boolean useBridges = prefs.getBoolean(TorConstants.PREF_BRIDGES_ENABLED, false);
-			
-			//boolean autoUpdateBridges = prefs.getBoolean(PREF_BRIDGES_UPDATED, false);
-	
-	        boolean becomeRelay = prefs.getBoolean(TorConstants.PREF_OR, false);
-	
-	        boolean ReachableAddresses = prefs.getBoolean(TorConstants.PREF_REACHABLE_ADDRESSES,false);
-	
-	        boolean enableHiddenServices = prefs.getBoolean("pref_hs_enable", false);
-			
-			boolean enableTransparentProxy = prefs.getBoolean(TorConstants.PREF_TRANSPARENT, false);		
-			mBinder.updateTransProxy();
-			
-			String bridgeList = prefs.getString(TorConstants.PREF_BRIDGES_LIST,"");
-	
-			if (useBridges)
-			{
-				if (bridgeList == null || bridgeList.length() == 0)
-				{
-				
-					showAlert("Bridge Error","In order to use the bridge feature, you must enter at least one bridge IP address." +
-							"Send an email to bridges@torproject.org with the line \"get bridges\" by itself in the body of the mail from a gmail account.");
-					
-				
-					return;
-				}
-				
-				
-				mBinder.updateConfiguration("UseBridges", "1", false);
-					
-				String bridgeDelim = "\n";
-				
-				if (bridgeList.indexOf(",") != -1)
-				{
-					bridgeDelim = ",";
-				}
-				
-				StringTokenizer st = new StringTokenizer(bridgeList,bridgeDelim);
-				while (st.hasMoreTokens())
-				{
-	
-					mBinder.updateConfiguration("bridge", st.nextToken(), false);
-	
-				}
-				
-				mBinder.updateConfiguration("UpdateBridgesFromAuthority", "0", false);
-				
-			}
-			else
-			{
-				mBinder.updateConfiguration("UseBridges", "0", false);
-	
-			}
-	
-	        try
-	        {
-	            if (ReachableAddresses)
-	            {
-	                String ReachableAddressesPorts =
-	                    prefs.getString(TorConstants.PREF_REACHABLE_ADDRESSES_PORTS, "*:80,*:443");
-	                
-	                mBinder.updateConfiguration("ReachableAddresses", ReachableAddressesPorts, false);
-	
-	            }
-	            else
-	            {
-	            	mBinder.updateConfiguration("ReachableAddresses", "", false);
-	            }
-	        }
-	        catch (Exception e)
-	        {
-	           showAlert("Config Error","Your ReachableAddresses settings caused an exception!");
-	        }
-	
-	        try
-	        {
-	            if (becomeRelay && (!useBridges) && (!ReachableAddresses))
-	            {
-	                int ORPort =  Integer.parseInt(prefs.getString(TorConstants.PREF_OR_PORT, "9001"));
-	                String nickname = prefs.getString(TorConstants.PREF_OR_NICKNAME, "Orbot");
-	
-	                mBinder.updateConfiguration("ORPort", ORPort + "", false);
-	                mBinder.updateConfiguration("Nickname", nickname, false);
-	                mBinder.updateConfiguration("ExitPolicy", "reject *:*", false);
-	
-	            }
-	            else
-	            {
-	            	mBinder.updateConfiguration("ORPort", "", false);
-	            	mBinder.updateConfiguration("Nickname", "", false);
-	            	mBinder.updateConfiguration("ExitPolicy", "", false);
-	            }
-	        }
-	        catch (Exception e)
-	        {
-	            showAlert("Uh-oh!","Your relay settings caused an exception!");
-	          
-	            return;
-	        }
-	
-	        if (enableHiddenServices)
-	        {
-	        	mBinder.updateConfiguration("HiddenServiceDir","/data/data/org.torproject.android/", false);
-	        	
-	        	String hsPorts = prefs.getString("pref_hs_ports","");
-	        	
-	        	StringTokenizer st = new StringTokenizer (hsPorts,",");
-	        	String hsPortConfig = null;
-	        	
-	        	while (st.hasMoreTokens())
-	        	{
-	        		hsPortConfig = st.nextToken();
-	        		
-	        		if (hsPortConfig.indexOf(":")==-1) //setup the port to localhost if not specifed
-	        		{
-	        			hsPortConfig = hsPortConfig + " 127.0.0.1:" + hsPortConfig;
-	        		}
-	        		
-	        		mBinder.updateConfiguration("HiddenServicePort",hsPortConfig, false);
-	        	}
-	        	
-	        	//force save now so the hostname file gets generated
-	        	mBinder.saveConfiguration();
-	        	 
-	        	String onionHostname = getHiddenServiceHostname();
-	        	
-	        	if (onionHostname != null)
-	        	{
-	        		
-	        		Editor pEdit = prefs.edit();
-	    			pEdit.putString("pref_hs_hostname",onionHostname);
-	    			pEdit.commit();
-	        		
-	        	}
-	        }
-	        else
-	        {
-	        	mBinder.updateConfiguration("HiddenServiceDir","", false);	       
-	        }
-	        
-	        mBinder.saveConfiguration();
-	        
-		 }
-        catch (Exception e)
-        {
-            showAlert("Uh-oh!","There was an error updating your settings");
-          
-            Log.w(TAG, "processSettings()", e);
-            
-            return;
-        }
-
-	}*/
-
+    
 	private void getHiddenServiceHostname ()
 	{
 
@@ -493,7 +329,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 	    	{
 		    	try {
 					String onionHostname = Utils.readString(new FileInputStream(file));
-					showToolbarNotification("hidden service on: " + onionHostname, NOTIFY_ID_ERROR, R.drawable.tornotification);
+					showToolbarNotification("hidden service on: " + onionHostname, NOTIFY_ID, R.drawable.tornotification);
 					Editor pEdit = prefs.edit();
 					pEdit.putString("pref_hs_hostname",onionHostname);
 					pEdit.commit();
@@ -501,13 +337,13 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 					
 				} catch (FileNotFoundException e) {
 					logException("unable to read onion hostname file",e);
-					showToolbarNotification("unable to read hidden service name", NOTIFY_ID_ERROR, R.drawable.tornotification);
+					showToolbarNotification("unable to read hidden service name", NOTIFY_ID, R.drawable.tornotificationerr);
 					return;
 				}
 	    	}
 	    	else
 	    	{
-				showToolbarNotification("unable to read hidden service name", NOTIFY_ID_ERROR, R.drawable.tornotification);
+				showToolbarNotification("unable to read hidden service name", NOTIFY_ID, R.drawable.tornotificationerr);
 	
 	    		
 	    	}
@@ -664,9 +500,10 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     		
     		try {
 
+
+	    		setupTransProxy(true);
 	    		runTorShellCmd();
 	    		runPrivoxyShellCmd();
-	    		setupTransProxy(true);
 
 			} catch (Exception e) {
 		    	logException("Unable to start Tor: " + e.getMessage(),e);	
@@ -676,7 +513,12 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     		
     }
     
-    
+    /*
+     * activate means whether to apply the users preferences
+     * or clear them out
+     * 
+     * the idea is that if Tor is off then transproxy is off
+     */
     private boolean setupTransProxy (boolean activate) throws Exception
  	{
     	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -710,10 +552,36 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 	
 	 		if (enableTransparentProxy)
 	 		{
-				showAlert("Status", "Setting up transparent proxying...");
-
-				//TorTransProxy.setDNSProxying();
-				int code = TorTransProxy.setTransparentProxyingByApp(this,AppManager.getApps(this),transProxyAll);
+	 			//TODO: Find a nice place for the next (commented) line
+				//TorTransProxy.setDNSProxying(); 
+				
+				int code = 0; // Default state is "okay"
+					
+				if(transProxyPortFallback)
+				{
+					showAlert("Status", "Setting up port-based transparent proxying...");
+					StringTokenizer st = new StringTokenizer(portProxyList, ",");
+					int status = code;
+					while (st.hasMoreTokens())
+					{
+						status = TorTransProxy.setTransparentProxyingByPort(this, Integer.parseInt(st.nextToken()));
+						if(status != 0)
+							code = status;
+					}
+				}
+				else
+				{
+					if(transProxyAll)
+					{
+						showAlert("Status", "Setting up full transparent proxying...");
+						code = TorTransProxy.setTransparentProxyingAll(this);
+					}
+					else
+					{
+						showAlert("Status", "Setting up app-based transparent proxying...");
+						code = TorTransProxy.setTransparentProxyingByApp(this,AppManager.getApps(this));
+					}
+				}
 			
 				TorService.logMessage ("TorTransProxy resp code: " + code);
 				
@@ -725,17 +593,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 				{
 					showAlert("Status", "WARNING: error starting transparent proxying!");
 				}
-				
-				//this is for Androids w/o owner module support as a circumvention only fallback
-				if (transProxyPortFallback)
-				{
-					StringTokenizer st = new StringTokenizer(portProxyList, ",");
-					
-					while (st.hasMoreTokens())
-						TorTransProxy.setTransparentProxyingByPort(this, Integer.parseInt(st.nextToken()));
-					
-				}
-				
+			
 				return true;
 	 				
 	 		}
@@ -827,7 +685,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 			
 			int attempts = 0;
 			
-    		while (privoxyProcId == -1 && attempts < MAX_START_TRIES)
+    		if (privoxyProcId == -1)
     		{
     			log = new StringBuilder();
     			
@@ -838,19 +696,21 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     			
     			logNotice (cmds[0]); 
     			
-    			TorServiceUtils.doShellCommand(cmds, log, false, true);
+    			boolean runAsRoot = false;
+    			boolean waitFor = false;
+    			
+    			TorServiceUtils.doShellCommand(cmds, log, runAsRoot, waitFor);
     			
     			//wait one second to make sure it has started up
     			Thread.sleep(1000);
     			
-    			privoxyProcId = TorServiceUtils.findProcessId(privoxyPath);
-    			
-    			if (privoxyProcId == -1)
+    			while ((privoxyProcId = TorServiceUtils.findProcessId(privoxyPath)) == -1  && attempts < MAX_START_TRIES)
     			{
-    				logNotice("Couldn't start Privoxy process... retrying...\n" + log);
+    				logNotice("Couldn't find Privoxy process... retrying...\n" + log);
     				Thread.sleep(3000);
     				attempts++;
     			}
+    			
     			
     			logNotice(log.toString());
     		}
@@ -1066,7 +926,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
          .setPositiveButton(android.R.string.ok, null)
          .show();
          */
-		showToolbarNotification(msg, NOTIFY_ID_ERROR, R.drawable.tornotification);
+		showToolbarNotification(msg, NOTIFY_ID, R.drawable.tornotification);
 	}
 	
 	public void newDescriptors(List<String> orList) {
@@ -1168,7 +1028,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 		catch (Exception e)
 		{
 			logNotice("unable to find tor binaries: " + e.getMessage());
-	    	showToolbarNotification(e.getMessage(), NOTIFY_ID_ERROR, R.drawable.tornotificationoff);
+	    	showToolbarNotification(e.getMessage(), NOTIFY_ID, R.drawable.tornotificationerr);
 
 			Log.d(TAG,"Unable to check for Tor binaries",e);
 			return null;
@@ -1227,22 +1087,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
         	
         }
         
-        public boolean updateTransProxy ()
-        {
-        	
-        	//turn on
-    		try
-    		{
-    			setupTransProxy(currentStatus == STATUS_ON); 
-    			return true;
-    		}
-    		catch (Exception e)
-    		{
-    			Log.d(TAG, "error enabling transproxy",e);
-    			
-    			return false;
-    		}
-        }
+        
         
         public String getConfiguration (String name)
         {
@@ -1431,9 +1276,12 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     	
     	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		
+    	ENABLE_DEBUG_LOG = prefs.getBoolean("pref_enable_logging",false);
+    	Log.i(TAG,"debug logging:" + ENABLE_DEBUG_LOG);
+    		
 		boolean useBridges = prefs.getBoolean(TorConstants.PREF_BRIDGES_ENABLED, false);
 		
-		boolean autoUpdateBridges = prefs.getBoolean(TorConstants.PREF_BRIDGES_UPDATED, false);
+		//boolean autoUpdateBridges = prefs.getBoolean(TorConstants.PREF_BRIDGES_UPDATED, false);
 
         boolean becomeRelay = prefs.getBoolean(TorConstants.PREF_OR, false);
 
@@ -1441,16 +1289,21 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 
         boolean enableHiddenServices = prefs.getBoolean("pref_hs_enable", false);
 
-		boolean enableTransparentProxy = prefs.getBoolean(TorConstants.PREF_TRANSPARENT, false);
+		//boolean enableTransparentProxy = prefs.getBoolean(TorConstants.PREF_TRANSPARENT, false);
 		
-		try
-		{
-			setupTransProxy(currentStatus != STATUS_OFF); 		
-		}
-		catch (Exception e)
-		{
-			logException("unable to setup transproxy",e);
-		}
+        if (currentStatus == STATUS_ON)
+        {
+        	//reset iptables rules in active mode
+        
+			try
+			{
+				setupTransProxy(true); 		
+			}
+			catch (Exception e)
+			{
+				logException("unable to setup transproxy",e);
+			}
+        }
 		
 		if (useBridges)
 		{
@@ -1575,6 +1428,6 @@ public class TorService extends Service implements TorServiceConstants, Runnable
         return true;
     }
     
-    
+   
    
 }

@@ -27,11 +27,6 @@ interface ITorService {
     **/
     void setProfile(int profile);
     
-     /**
-    * Update trans proxying
-    **/
-    boolean updateTransProxy ();
-    
     
     /**
     * Set configuration
