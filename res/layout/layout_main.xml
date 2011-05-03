@@ -61,7 +61,7 @@
 							android:gravity="center_horizontal"
 							android:textStyle="bold"
 							android:width="330px"
-							android:height="125px"
+							android:height="75px"
 							android:textColor="#ffffff"
 							 />
 					</TableRow>
