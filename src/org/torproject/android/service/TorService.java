@@ -600,14 +600,13 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 	 		else
 	 		{
 	 			TorTransProxy.purgeIptables(this);
-				showAlert("Status", "Transparent proxying DISABLED");
-
+				showAlert("Status", "Transparent proxying: DISABLED");
 	 		}
     	}
     	else
     	{	 	
     		TorTransProxy.purgeIptables(this);
-			showAlert("Status", "Transparent proxying DISABLED");
+			showAlert("Status", "Transparent proxying: DISABLED");
 
     	}
     	

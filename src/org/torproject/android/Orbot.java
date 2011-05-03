@@ -248,6 +248,12 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
 	protected void onPause() {
 		super.onPause();
 		
+		if (progressDialog != null)
+		{
+			progressDialog.dismiss();
+			progressDialog = null;
+		}
+		
 
 	}
 
@@ -472,21 +478,18 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
 		}
 	}
 	
-	private AlertDialog aDialog = null;
-	
 	private void showAlert(String title, String msg, boolean button)
 	{
-		if (aDialog != null)
-			aDialog.dismiss();
+		AlertDialog aDialog = null;
 		
 		 if (button)
 		 {
-			 aDialog = new AlertDialog.Builder(this)
-		 .setIcon(R.drawable.icon)
-         .setTitle(title)
-         .setMessage(msg)
-         .setPositiveButton(android.R.string.ok, null)
-         .show();
+				 aDialog = new AlertDialog.Builder(this)
+			 .setIcon(R.drawable.icon)
+	         .setTitle(title)
+	         .setMessage(msg)
+	         .setPositiveButton(android.R.string.ok, null)
+	         .show();
 		 }
 		 else
 		 {
@@ -496,6 +499,7 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
 	         .setMessage(msg)
 	         .show();
 		 }
+	
 	}
     /*
      * Set the state of the running/not running graphic and label
@@ -515,6 +519,7 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
 		    	{
 		    		imgStatus.setImageResource(R.drawable.toron);
 		    	
+
 		    		if (progressDialog != null)
 		    		{
 		    			progressDialog.dismiss();
@@ -544,8 +549,10 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
 		    			showAlert(getString(R.string.status_activated),getString(R.string.connect_first_time),true);
 		    			
 		    		}
+		    		
 		    		if (mItemOnOff != null)
 		    			mItemOnOff.setTitle(R.string.menu_stop);
+		    		
 
 		    	}
 		    	else if (torStatus == STATUS_CONNECTING)
