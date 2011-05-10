@@ -313,6 +313,49 @@ public class TorTransProxy implements TorServiceConstants {
 		return code;
     }
 
+	public static int enableWifiHotspotRules (Context context) throws Exception
+	{
+		
+		boolean runRoot = true;
+    	boolean waitFor = true;
+    	
+		//redirectDNSResolvConf(); //not working yet
+		
+		String ipTablesPath = new File(context.getDir("bin", 0),"iptables").getAbsolutePath();
+		
+    	StringBuilder script = new StringBuilder();
+    	
+    	StringBuilder res = new StringBuilder();
+    	int code = -1;
+    
+    	script.append(ipTablesPath);
+		script.append(" -I FORWARD");
+		script.append(" -m state --state ESTABLISHED,RELATED -j ACCEPT");
+		script.append(" || exit\n");
+		
+		script.append(ipTablesPath);
+		script.append(" -I FORWARD");
+		script.append(" -s 192.168.43.0/24 -j ACCEPT");
+		script.append(" || exit\n");
+		
+		script.append(ipTablesPath);
+		script.append(" -P FORWARD DROP");
+		script.append(" || exit\n");
+		
+		script.append(ipTablesPath);
+		script.append(" -t nat -I POSTROUTING -s 192.168.43.0/24 -j MASQUERADE");
+		script.append(" || exit\n");
+		
+		String[] cmdAdd = {script.toString()};    	
+    	
+		code = TorServiceUtils.doShellCommand(cmdAdd, res, runRoot, waitFor);
+		String msg = res.toString();
+		TorService.logMessage(cmdAdd[0] + ";errCode=" + code + ";resp=" + msg);
+		
+		
+		return code;
+	}
+	
 	public static int setTransparentProxyingAll(Context context) throws Exception 
 	{
 		boolean runRoot = true;
@@ -328,6 +371,8 @@ public class TorTransProxy implements TorServiceConstants {
     	int code = -1;
     	
     	purgeIptables(context);
+    	
+    	//enableWifiHotspotRules(context);
     	
     	int torUid = context.getApplicationInfo().uid;
 
