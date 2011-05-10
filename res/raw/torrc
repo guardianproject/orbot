@@ -1,5 +1,4 @@
 SocksPort 9050
-SocksListenAddress 127.0.0.1
 SafeSocks 1
 Log notice stdout
 ControlPort 9051
