@@ -73,7 +73,7 @@ Fetch and build libevent:
 
 	cd ~/mydroid/external/libevent
 	svn co https://levent.svn.sourceforge.net/svnroot/levent/tags/release-1.4.12-stable/libevent/ .
-	export LIBEVENTDIR=`pwd`
+	export LIBEVENTDIR=`cd $DROID_ROOT/external/libevent && pwd`
 	./autogen.sh
 	# Put the contents of http://pastebin.ca/1577207 in /tmp/libevent-patch
 	patch < /tmp/libevent-patch
@@ -81,14 +81,14 @@ Fetch and build libevent:
 	make
 
 Copy over the libevent library:
-	cp .libs/libevent.a ~/mydroid/out/target/product/generic/obj/lib
+	cp .libs/libevent.a $DROID_ROOT/out/target/product/generic/obj/lib
 
 Fetch and build Tor:
 
-	export OPENSSLDIR=`cd ~/mydroid/external/openssl/include/ && pwd`
-	export ZLIBDIR=`cd ~/mydroid/external/zlib && pwd`
+	export OPENSSLDIR=`cd $DROID_ROOT/external/openssl/include/ && pwd`
+	export ZLIBDIR=`cd $DROID_ROOT/external/zlib && pwd`
 
-	cd ~/mydroid/external/tor
+	cd $DROID_ROOT/external/tor
 	git clone git://git.torproject.org/git/tor.git
 	cd tor/
 	./autogen.sh
@@ -98,16 +98,15 @@ Fetch and build Tor:
 	make
 
 At this point, you'll have a Tor binary that can be run on an Android handset.
+You can verify the ARM binary was properly built using the following command:
+
+file src/or/tor
+	
+You should see something like:
+src/or/tor: ELF 32-bit LSB executable, ARM, version 1 (SYSV), dynamically linked (uses shared libs), not stripped
+
 This isn't enough though and we'll now sew up the binary into a small package
 that will handle basic Tor controlling features.
-
-We need to build our Java SOCKS library:
-
-	# If you're in Orbot's directory already...
-	cd ../asocks/
-	ant compile
-	ant jar
-	cp bin/jar/asocks.jar ../Orbot/libs
 
 We need to get the TorControl library for Java:
 (see also https://svn.torproject.org/svn/torctl/trunk/doc/howto.txt)
@@ -124,8 +123,8 @@ Finally, we'll make a proper Android package with ant and the Android App SDK:
 
 	export APP_SDK=~/Documents/projects/android/android-sdk-linux_x86-1.5_r3/tools
 	cd ../Orbot/
-	cp ~/mydroid/external/privoxy/privoxy-3.0.12-stable/privoxy assets/privoxy
-	cp ~/mydroid/external/tor/tor/src/or/tor assets/tor
+	cp $DROID_ROOT/external/privoxy/privoxy-3.0.12-stable/privoxy assets/privoxy
+	cp $DROID_ROOT/external/tor/tor/src/or/tor assets/tor
 	$APP_SDK/android update project --name Orbot --target 3 --path .
 	ant release
 

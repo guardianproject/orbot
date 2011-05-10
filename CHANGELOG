@@ -1,6 +1,8 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
 1.0.5
+- fixed tor binary installation issue related to max resource size and compression
+- updated "start on boot" code to test for proper launch event
 - updated to Tor 0.2.2.25-alpha binary
 - moved back to single notification bar id to avoid double entries
 - cleaned up progress dialog and alert handling to avoid leaky windows
