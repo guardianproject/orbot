@@ -42,7 +42,19 @@ android:enabled="true"/>
 
 </PreferenceCategory>
 
- 
+<PreferenceCategory android:title="Exit Nodes">
+
+<EditTextPreference android:key="pref_exit_nodes"
+android:title="Exit Nodes"
+android:summary="Fingerprints, nicknames, country codes and address patterns for the last hop"
+android:dialogTitle="Enter Exit Nodes"
+/>
+
+<CheckBoxPreference android:defaultValue="false" 
+android:title="Strict Exit Nodes" android:key="pref_strict_exit_nodes" 
+android:summary="Use only these specific exit nodes"/>
+
+</PreferenceCategory> 
 <PreferenceCategory android:title="Bridges">
 
 <CheckBoxPreference android:defaultValue="false" 

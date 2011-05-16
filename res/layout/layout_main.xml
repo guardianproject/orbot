@@ -15,8 +15,8 @@
         <ImageView android:id="@+id/radioModeImage"
  		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
-			android:layout_marginTop="0px"
-			android:layout_marginRight="3px"
+			android:layout_marginTop="3dip"
+			android:layout_marginRight="3dip"
 			android:gravity="right"
 			android:layout_toRightOf="@+id/radioModeLabel"
 			android:layout_alignParentRight="true"
@@ -34,10 +34,6 @@
             android:textColor="#333333" />
 	</RelativeLayout>
     
-   <ScrollView android:id="@+id/mainview" 
-		android:orientation="vertical"
-		android:layout_width="fill_parent" 
-		android:layout_height="fill_parent">
    		<TableLayout android:id="@+id/mainLayout"
 			android:layout_gravity="center"
 			android:layout_height="wrap_content" 
@@ -50,6 +46,7 @@
 					<TableRow>
 							<ImageView
 							android:id="@+id/imgStatus"
+							android:layout_marginTop="30dip"
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
 							android:src="@drawable/toroff"/>
@@ -60,8 +57,8 @@
 							android:layout_gravity="center_horizontal"
 							android:gravity="center_horizontal"
 							android:textStyle="bold"
-							android:width="330px"
-							android:height="75px"
+							android:layout_width="fill_parent"
+							android:layout_height="75px"
 							android:textColor="#ffffff"
 							 />
 					</TableRow>
@@ -69,7 +66,6 @@
 			</TableRow>
 			
 		</TableLayout>
-	</ScrollView>
 
 
        
