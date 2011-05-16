@@ -1288,6 +1288,10 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 
         boolean enableHiddenServices = prefs.getBoolean("pref_hs_enable", false);
 
+        boolean enableStrictExitNodes = prefs.getBoolean("pref_strict_exit_nodes", false);
+        String exitNodes = prefs.getString("pref_exit_nodes", "");
+        
+        
 		//boolean enableTransparentProxy = prefs.getBoolean(TorConstants.PREF_TRANSPARENT, false);
 		
         if (currentStatus == STATUS_ON)
@@ -1302,6 +1306,14 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 			{
 				logException("unable to setup transproxy",e);
 			}
+        }
+        
+        if (exitNodes.length() > 0)
+        {
+        	
+			mBinder.updateConfiguration("ExitNodes", exitNodes, false);
+			mBinder.updateConfiguration("StrictExitNodes", enableStrictExitNodes ? "1" : "0", false);
+			
         }
 		
 		if (useBridges)

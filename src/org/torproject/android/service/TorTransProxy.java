@@ -335,15 +335,17 @@ public class TorTransProxy implements TorServiceConstants {
 		
 		script.append(ipTablesPath);
 		script.append(" -I FORWARD");
-		script.append(" -s 192.168.43.0/24 -j ACCEPT");
+		script.append(" -j ACCEPT");
 		script.append(" || exit\n");
 		
+		/*
 		script.append(ipTablesPath);
 		script.append(" -P FORWARD DROP");
 		script.append(" || exit\n");
+		*/
 		
 		script.append(ipTablesPath);
-		script.append(" -t nat -I POSTROUTING -s 192.168.43.0/24 -j MASQUERADE");
+		script.append(" -t nat -I POSTROUTING -j MASQUERADE");
 		script.append(" || exit\n");
 		
 		String[] cmdAdd = {script.toString()};    	
@@ -372,8 +374,8 @@ public class TorTransProxy implements TorServiceConstants {
     	
     	purgeIptables(context);
     	
-    	//enableWifiHotspotRules(context);
-    	
+    	enableWifiHotspotRules(context);
+		
     	int torUid = context.getApplicationInfo().uid;
 
     	// Set up port redirection
@@ -472,6 +474,8 @@ public class TorTransProxy implements TorServiceConstants {
 		String msg = res.toString();
 		TorService.logMessage(cmdAdd[0] + ";errCode=" + code + ";resp=" + msg);
 		
+    	
+    	
     	return code;
 	}	
 	

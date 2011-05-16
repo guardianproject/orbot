@@ -77,7 +77,7 @@ public class SettingsPreferences
 			
 		}
 		
-		int hiddenGroupIdx = 5;
+		int hiddenGroupIdx = 6;
 		
 		prefHiddenServices = ((CheckBoxPreference)((PreferenceCategory)this.getPreferenceScreen().getPreference(hiddenGroupIdx)).getPreference(0));
 		prefHiddenServices.setOnPreferenceClickListener(this);
