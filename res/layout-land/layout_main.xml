@@ -31,46 +31,26 @@
 			android:layout_toLeftOf="@+id/radioModeImage"
             android:textColor="#cccccc" />
 	</RelativeLayout>
-    
-   <ScrollView android:id="@+id/mainview" 
-		android:orientation="vertical"
-		android:layout_width="fill_parent" 
-		android:layout_height="fill_parent">
-   		<TableLayout android:id="@+id/mainLayout"
-			android:layout_gravity="center"
-			android:layout_height="wrap_content" 
-			android:layout_width="wrap_content">
-			<TableRow android:id="@+id/startRow">
-				<TableLayout
-					android:layout_gravity="center"
-					android:layout_height="wrap_content" 
-					android:layout_width="wrap_content">
-					<TableRow>
-							<ImageView
-							android:id="@+id/imgStatus"
-							 android:layout_width="wrap_content"
-		   					 android:layout_height="225px"
-							android:src="@drawable/toroff"/>
-					</TableRow>
-					<TableRow>
-						<TextView android:id="@+id/lblStatus"
-							android:text="- Press to enable - "
-							android:layout_gravity="center_horizontal"
-							android:gravity="center_horizontal"
-							android:textStyle="bold"
-							android:width="320px"
-							android:height="100px"
-							android:textColor="#ffffff"
-							 />
-					</TableRow>
-				</TableLayout>
-			</TableRow>
-			
-		</TableLayout>
-	</ScrollView>
+        
+			<ImageView
+			android:id="@+id/imgStatus"
+			 android:layout_width="fill_parent"
+			 android:layout_margin="5dip"
+ 			android:layout_height="fill_parent"
+ 			android:layout_gravity="center_horizontal"
+			android:src="@drawable/toroff"/>
+	
+		
+        <TextView android:id="@+id/lblStatus"
+			android:text="@string/press_to_start"
+			android:layout_gravity="center_horizontal"
+			android:textStyle="bold"
+			android:layout_width="wrap_content"
+			android:layout_height="50dip"
+			android:textColor="#ffffff"
+			 />
 
 
        
 </LinearLayout>
-
 

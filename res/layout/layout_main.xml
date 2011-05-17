@@ -12,11 +12,11 @@
 		android:layout_height="30dp"
 		android:layout_gravity="center_horizontal"
 		android:background="#A0909090">
-        <ImageView android:id="@+id/radioModeImage"
+               <ImageView android:id="@+id/radioModeImage"
  		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
-			android:layout_marginTop="3dip"
-			android:layout_marginRight="3dip"
+			android:layout_marginTop="3px"
+			android:layout_marginRight="3px"
 			android:gravity="right"
 			android:layout_toRightOf="@+id/radioModeLabel"
 			android:layout_alignParentRight="true"
@@ -26,46 +26,32 @@
 		<TextView android:id="@+id/radioModeText"
  		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"           
-            android:text="@string/powered_by"
-			android:layout_marginTop="9px"
+            android:text="powered by The Tor Project  "
+			android:layout_marginTop="8px"
 			android:layout_marginRight="0px"
 			android:gravity="right"
 			android:layout_toLeftOf="@+id/radioModeImage"
-            android:textColor="#333333" />
+            android:textColor="#cccccc" />
 	</RelativeLayout>
     
-   		<TableLayout android:id="@+id/mainLayout"
-			android:layout_gravity="center"
-			android:layout_height="wrap_content" 
-			android:layout_width="wrap_content">
-			<TableRow android:id="@+id/startRow">
-				<TableLayout
-					android:layout_gravity="center"
-					android:layout_height="wrap_content" 
-					android:layout_width="wrap_content">
-					<TableRow>
-							<ImageView
-							android:id="@+id/imgStatus"
-							android:layout_marginTop="30dip"
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:src="@drawable/toroff"/>
-					</TableRow>
-					<TableRow>
-						<TextView android:id="@+id/lblStatus"
-							android:text="@string/press_to_start"
-							android:layout_gravity="center_horizontal"
-							android:gravity="center_horizontal"
-							android:textStyle="bold"
-							android:layout_width="fill_parent"
-							android:layout_height="75px"
-							android:textColor="#ffffff"
-							 />
-					</TableRow>
-				</TableLayout>
-			</TableRow>
-			
-		</TableLayout>
+    <ImageView
+		android:id="@+id/imgStatus"
+		android:layout_margin="5dip"
+		android:layout_width="320dip"
+		android:layout_height="320dip"
+		android:src="@drawable/toroff"
+		android:layout_gravity="center_horizontal"
+		/>
+		
+	<TextView android:id="@+id/lblStatus"
+		android:text="@string/press_to_start"
+		android:layout_gravity="center_horizontal"
+		android:textStyle="bold"
+		android:layout_width="wrap_content"
+		android:layout_height="30dip"
+		android:textColor="#ffffff"
+		 />
+				
 
 
        
