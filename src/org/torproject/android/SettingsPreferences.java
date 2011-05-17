@@ -28,6 +28,9 @@ public class SettingsPreferences
 	
 	private boolean hasRoot = false;
 	
+
+	private final static int HIDDEN_SERVICE_PREF_IDX = 6;
+	
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
@@ -77,12 +80,11 @@ public class SettingsPreferences
 			
 		}
 		
-		int hiddenGroupIdx = 6;
 		
-		prefHiddenServices = ((CheckBoxPreference)((PreferenceCategory)this.getPreferenceScreen().getPreference(hiddenGroupIdx)).getPreference(0));
+		prefHiddenServices = ((CheckBoxPreference)((PreferenceCategory)this.getPreferenceScreen().getPreference(HIDDEN_SERVICE_PREF_IDX)).getPreference(0));
 		prefHiddenServices.setOnPreferenceClickListener(this);
-		((PreferenceCategory)this.getPreferenceScreen().getPreference(hiddenGroupIdx)).getPreference(1).setEnabled(prefHiddenServices.isChecked());
-		((PreferenceCategory)this.getPreferenceScreen().getPreference(hiddenGroupIdx)).getPreference(2).setEnabled(prefHiddenServices.isChecked());
+		((PreferenceCategory)this.getPreferenceScreen().getPreference(HIDDEN_SERVICE_PREF_IDX)).getPreference(1).setEnabled(prefHiddenServices.isChecked());
+		((PreferenceCategory)this.getPreferenceScreen().getPreference(HIDDEN_SERVICE_PREF_IDX)).getPreference(2).setEnabled(prefHiddenServices.isChecked());
 				
 		
 	};
@@ -113,8 +115,8 @@ public class SettingsPreferences
 		else if (preference == prefHiddenServices)
 		{
 			
-			((PreferenceCategory)this.getPreferenceScreen().getPreference(5)).getPreference(1).setEnabled(prefHiddenServices.isChecked());
-			((PreferenceCategory)this.getPreferenceScreen().getPreference(5)).getPreference(2).setEnabled(prefHiddenServices.isChecked());
+			((PreferenceCategory)this.getPreferenceScreen().getPreference(HIDDEN_SERVICE_PREF_IDX)).getPreference(1).setEnabled(prefHiddenServices.isChecked());
+			((PreferenceCategory)this.getPreferenceScreen().getPreference(HIDDEN_SERVICE_PREF_IDX)).getPreference(2).setEnabled(prefHiddenServices.isChecked());
 			
 		}
 		else

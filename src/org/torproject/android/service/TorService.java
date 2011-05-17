@@ -1137,18 +1137,12 @@ public class TorService extends Service implements TorServiceConstants, Runnable
         	if (value == null || value.length() == 0)
         	{
         		resetBuffer.add(name);
-        		/*
-        		if (conn != null)
-        		{
-        			try {
-						conn.resetConf(Arrays.asList(new String[]{name}));
-					} catch (IOException e) {
-						Log.w(TAG, "Unable to reset conf",e);
-					}
-        		}*/
+        		
         	}
         	else
+        	{
         		configBuffer.add(name + ' ' + value);
+        	}
 	        
         	return false;
         }
@@ -1289,13 +1283,10 @@ public class TorService extends Service implements TorServiceConstants, Runnable
         boolean enableHiddenServices = prefs.getBoolean("pref_hs_enable", false);
 
         boolean enableStrictNodes = prefs.getBoolean("pref_strict_nodes", false);
-        String entranceNodes = prefs.getString("pref_entrance_nodes", "");
-        String exitNodes = prefs.getString("pref_exit_nodes", "");
-        String excludeNodes = prefs.getString("pref_exclude_nodes", "");
+        String entranceNodes = prefs.getString("pref_entrance_nodes", null);
+        String exitNodes = prefs.getString("pref_exit_nodes", null);
+        String excludeNodes = prefs.getString("pref_exclude_nodes", null);
         
-        
-		//boolean enableTransparentProxy = prefs.getBoolean(TorConstants.PREF_TRANSPARENT, false);
-		
         if (currentStatus == STATUS_ON)
         {
         	//reset iptables rules in active mode
@@ -1310,10 +1301,10 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 			}
         }
         
-        mBinder.updateConfiguration("EntranceNodes", entranceNodes, false);
+        mBinder.updateConfiguration("EntryNodes", entranceNodes, false);
         mBinder.updateConfiguration("ExitNodes", exitNodes, false);
 		mBinder.updateConfiguration("ExcludeNodes", excludeNodes, false);
-		mBinder.updateConfiguration("StrictExitNodes", enableStrictNodes ? "1" : "0", false);
+		mBinder.updateConfiguration("StrictNodes", enableStrictNodes ? "1" : "0", false);
 		
 		if (useBridges)
 		{
