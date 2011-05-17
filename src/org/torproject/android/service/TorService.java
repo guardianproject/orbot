@@ -1288,8 +1288,10 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 
         boolean enableHiddenServices = prefs.getBoolean("pref_hs_enable", false);
 
-        boolean enableStrictExitNodes = prefs.getBoolean("pref_strict_exit_nodes", false);
+        boolean enableStrictNodes = prefs.getBoolean("pref_strict_nodes", false);
+        String entranceNodes = prefs.getString("pref_entrance_nodes", "");
         String exitNodes = prefs.getString("pref_exit_nodes", "");
+        String excludeNodes = prefs.getString("pref_exclude_nodes", "");
         
         
 		//boolean enableTransparentProxy = prefs.getBoolean(TorConstants.PREF_TRANSPARENT, false);
@@ -1308,13 +1310,10 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 			}
         }
         
-        if (exitNodes.length() > 0)
-        {
-        	
-			mBinder.updateConfiguration("ExitNodes", exitNodes, false);
-			mBinder.updateConfiguration("StrictExitNodes", enableStrictExitNodes ? "1" : "0", false);
-			
-        }
+        mBinder.updateConfiguration("EntranceNodes", entranceNodes, false);
+        mBinder.updateConfiguration("ExitNodes", exitNodes, false);
+		mBinder.updateConfiguration("ExcludeNodes", excludeNodes, false);
+		mBinder.updateConfiguration("StrictExitNodes", enableStrictNodes ? "1" : "0", false);
 		
 		if (useBridges)
 		{

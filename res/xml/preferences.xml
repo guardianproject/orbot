@@ -42,17 +42,26 @@ android:enabled="true"/>
 
 </PreferenceCategory>
 
-<PreferenceCategory android:title="Exit Nodes">
-
+<PreferenceCategory android:title="Node Configuration" android:summary="These are advanced settings that can reduce your anonymity">
+<EditTextPreference android:key="pref_entrance_nodes"
+android:title="Entrance Nodes"
+android:summary="Fingerprints, nicks, countries and addresses for the first hop"
+android:dialogTitle="Enter Entrance Nodes"
+/>
 <EditTextPreference android:key="pref_exit_nodes"
 android:title="Exit Nodes"
-android:summary="Fingerprints, nicknames, country codes and address patterns for the last hop"
+android:summary="Fingerprints, nicks, countries and addresses for the last hop"
 android:dialogTitle="Enter Exit Nodes"
+/>
+<EditTextPreference android:key="pref_exclude_nodes"
+android:title="Exclude Nodes"
+android:summary="Fingerprints, nicks, countries and addresses to exclude"
+android:dialogTitle="Enter Exclude Nodes"
 />
 
 <CheckBoxPreference android:defaultValue="false" 
-android:title="Strict Exit Nodes" android:key="pref_strict_exit_nodes" 
-android:summary="Use only these specific exit nodes"/>
+android:title="Strict Nodes" android:key="pref_strict_nodes" 
+android:summary="Use *only* these specified nodes"/>
 
 </PreferenceCategory> 
 <PreferenceCategory android:title="Bridges">
