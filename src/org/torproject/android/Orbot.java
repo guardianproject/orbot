@@ -4,6 +4,8 @@
 package org.torproject.android;
 
 
+
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -454,7 +456,7 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
 	private void showHelp ()
 	{
 		
-       new WizardHelper(this).showWizard();
+		startActivityForResult(new Intent(getBaseContext(), AboutActivity.class), 1);
 	}
 	
 	

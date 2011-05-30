@@ -28,8 +28,9 @@
             	<action android:name="org.torproject.android.START_TOR" />
             </intent-filter>
         </activity>
-      
-        <activity android:name=".SettingsPreferences"  android:label="@string/app_name"/>
+      	
+      	<activity android:name=".AboutActivity"/>
+      	<activity android:name=".SettingsPreferences"  android:label="@string/app_name"/>
         <activity android:name=".AppManager"  android:label="@string/app_name"/>
         <activity android:name=".WizardActivity"  android:label="@string/app_name"/>
       

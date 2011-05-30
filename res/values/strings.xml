@@ -69,8 +69,6 @@
 
 <string name="title_error">Application Error</string>
 
-<string name="wizard_title">Welcome to Orbot</string>
-
 <string name="wizard_btn_tell_me_more">About Orbot</string>
 <string name="btn_next">Next</string>
 <string name="btn_back">Back</string>
@@ -130,5 +128,15 @@
     <string name="pref_general_group">General</string>
     <string name="pref_start_boot_title">Start Orbot on Boot</string>
     <string name="pref_start_boot_summary">Automatically start Orbot and connect Tor when your Android device boots</string>
-    
+ <!--  New Wizard Strings -->
+	<!-- Title Screen -->
+	<string name="wizard_title">Orbot</string>
+	<string name="wizard_title_msg">Orbot brings Tor to Android \nTor helps you defend against a form of network surveillance that threatens privacy, confidential business activity and relationships, and state security known as traffic analysis</string>
+	<!-- Warning screen -->
+	<string name="wizard_warning_title">Warning</string>
+	<string name="wizard_warning_msg">Simply installing Orbot will not automatically anonymize your mobile traffic.\nPlease follow the following steps to get started</string>
+	<!-- Permissions screen -->
+	<string name="wizard_permissions_title">Permissions</string>
+	
+	
 </resources>
