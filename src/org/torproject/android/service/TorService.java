@@ -1,4 +1,4 @@
-/* Copyright (c) 2009, Nathan Freitas, Orbot / The Guardian Project - http://openideals.com/guardian */
+/* Copyright (c) 2009-2011, Nathan Freitas, Orbot / The Guardian Project - http://openideals.com/guardian */
 /* See LICENSE for licensing information */
 package org.torproject.android.service;
 
@@ -545,6 +545,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 	 		boolean enableTransparentProxy = prefs.getBoolean("pref_transparent", false);
 	 		boolean transProxyAll = prefs.getBoolean("pref_transparent_all", false);
 	 		boolean transProxyPortFallback = prefs.getBoolean("pref_transparent_port_fallback", false);
+	 		boolean transProxyTethering = prefs.getBoolean("pref_transparent_tethering", false);
 	 		
 	     	TorService.logMessage ("Transparent Proxying: " + enableTransparentProxy);
 	     	
@@ -581,6 +582,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 						showAlert("Status", "Setting up app-based transparent proxying...");
 						code = TorTransProxy.setTransparentProxyingByApp(this,AppManager.getApps(this));
 					}
+					
 				}
 			
 				TorService.logMessage ("TorTransProxy resp code: " + code);
@@ -588,11 +590,22 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 				if (code == 0)
 				{
 					showAlert("Status", "Transparent proxying ENABLED");
+					
+
+					
+					if (transProxyTethering)
+					{
+						showAlert("Status", "TransProxy enabled for Tethering!");
+
+						TorTransProxy.enableTetheringRules(this);
+					}
 				}
 				else
 				{
 					showAlert("Status", "WARNING: error starting transparent proxying!");
 				}
+				
+				
 			
 				return true;
 	 				
