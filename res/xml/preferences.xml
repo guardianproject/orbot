@@ -39,6 +39,13 @@ android:title="Select Apps"
 android:summary="Choose Apps to Route Through Tor"
 android:enabled="true"/>
 
+<CheckBoxPreference
+android:defaultValue="false" 
+android:key="pref_transparent_tethering"
+android:summary="@string/pref_transparent_tethering_summary"
+android:enabled="true" 
+android:title="@string/pref_transparent_tethering_title"/>
+
 
 </PreferenceCategory>
 

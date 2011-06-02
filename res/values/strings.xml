@@ -131,4 +131,8 @@
     <string name="pref_start_boot_title">Start Orbot on Boot</string>
     <string name="pref_start_boot_summary">Automatically start Orbot and connect Tor when your Android device boots</string>
     
+    <string name="pref_transparent_tethering_title">Tor Tethering</string>
+	<string name="pref_transparent_tethering_summary">Enable Tor Transparent Proxying for Wifi and USB Tethered Devices</string>
+    
+    
 </resources>
