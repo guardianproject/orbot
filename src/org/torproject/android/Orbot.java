@@ -456,7 +456,7 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
 	private void showHelp ()
 	{
 		
-		startActivityForResult(new Intent(getBaseContext(), AboutActivity.class), 1);
+		startActivityForResult(new Intent(getBaseContext(), LotsaText.class), 1);
 	}
 	
 	
