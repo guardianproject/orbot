@@ -2,6 +2,7 @@ package org.torproject.android;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -24,13 +25,10 @@ public class LotsaText extends Activity implements TorConstants{
 	protected void onStart() {
 		
 		super.onStart();
+		setContentView(R.layout.scrollingtext_buttons_view);
 		
-		
-        if (step == -1)
-        {			
-        	setContentView(R.layout.scrollingtext_buttons_view);
-        	stepOne();
-        }
+		stepOne();
+        
 	}
 	
 	@Override
@@ -52,7 +50,6 @@ public class LotsaText extends Activity implements TorConstants{
 	*/
 	private void stepOne() {
 		
-		step++;
 		
 		//setContentView(R.layout.scrollingtext_buttons_view);
 		String title = context.getString(R.string.wizard_title);
@@ -82,7 +79,7 @@ public class LotsaText extends Activity implements TorConstants{
 	}
 	
 	private void stepTwo() {
-		step++;
+		step=0;
 		
 		setContentView(R.layout.scrollingtext_buttons_view);
 		String title = context.getString(R.string.wizard_warning_title);
@@ -114,9 +111,11 @@ public class LotsaText extends Activity implements TorConstants{
 			
 			@Override
 			public void onClick(View v) {
-				//stepThree();
+				startActivityForResult(new Intent(getBaseContext(), Permissions.class), 1);
 			}
 		});
 		
 	}
+	
+	
 }
