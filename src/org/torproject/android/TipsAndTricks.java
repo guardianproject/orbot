@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class TipsAndTricks extends Activity implements TorConstants {
 
@@ -26,7 +27,7 @@ public class TipsAndTricks extends Activity implements TorConstants {
 		super.onStart();
 		setContentView(R.layout.layout_wizard_tips);
 		
-		//stepFive();
+		stepFive();
         
 	}
 	
@@ -39,8 +40,10 @@ public class TipsAndTricks extends Activity implements TorConstants {
 	
 	void stepFive(){
 		
-		
-        
+		String title = context.getString(R.string.wizard_tips_title);
+		TextView txtTitle  = ((TextView)findViewById(R.id.WizardTextTitle));
+		txtTitle.setText(title);
+		 
         Button btn1 = (Button)findViewById(R.id.WizardRootButtonInstallGibberbot);
         
         btn1.setOnClickListener(new OnClickListener() {

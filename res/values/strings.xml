@@ -138,6 +138,7 @@
 	<string name="wizard_permissions_root_msg2">If you choose to continue without providing superuser privileges, make sure to use apps made to work with orbot</string>
 	<string name="wizard_permissions_msg">Orbot has detected that you do not have root permissions.\nTransparent Proxying is not possible without superuser privileges.\nMake sure to use apps that have been configured to work with Orbot</string>
 	<!-- TipsAndTricks screen -->
+	<string name="wizard_tips_title">Orbot configured Apps</string>
 	<string name="wizard_tips_gibberbot">Gibberbot - Secure instant messaging client for Android</string>
 	<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
