@@ -133,7 +133,7 @@ public class Permissions extends Activity implements TorConstants {
 			
 			@Override
 			public void onClick(View v) {
-				//Tips Screen
+				startActivityForResult(new Intent(getBaseContext(), TipsAndTricks.class), 1);
 			}
 		});
 		
@@ -167,7 +167,7 @@ public class Permissions extends Activity implements TorConstants {
 			
 			@Override
 			public void onClick(View v) {
-					//Tips Screen
+				startActivityForResult(new Intent(getBaseContext(), TipsAndTricks.class), 1);
 			}
 		});
 	}
