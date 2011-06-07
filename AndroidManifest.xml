@@ -32,6 +32,7 @@
       	<activity android:name=".LotsaText"/>
       	<activity android:name=".Permissions"/>
       	<activity android:name=".TipsAndTricks"/>
+      	<activity android:name=".ConfigureTransProxy"/>
       	<activity android:name=".SettingsPreferences"  android:label="@string/app_name"/>
         <activity android:name=".AppManager"  android:label="@string/app_name"/>
         <activity android:name=".WizardActivity"  android:label="@string/app_name"/>

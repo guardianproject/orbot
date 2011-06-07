@@ -11,18 +11,9 @@
 	android:layout_height="wrap_content" 
 	android:id="@+id/relativeLayout1" 
 	android:layout_gravity="center_horizontal">
-        <ImageView 
-        	android:src="@drawable/tor" 
-        	android:id="@+id/orbot_image" 
-        	android:layout_width="wrap_content" 
-        	android:layout_height="wrap_content" 
-        	android:layout_alignParentLeft="true"
-        	android:paddingLeft="20px" android:paddingRight="20px" >
-        </ImageView>
-        <TextView android:textSize="10pt" 
-        	android:layout_toRightOf="@id/orbot_image" 
+         <TextView android:textSize="10pt" 
+        	
         	android:layout_alignParentTop="true"
-        	android:gravity="center_vertical"
        	 	android:layout_height="wrap_content" 
         	android:id="@+id/WizardTextTitle" 
         	android:layout_width="wrap_content" 
@@ -30,11 +21,7 @@
         	android:text="TITLE" 
         	android:textColor="#00ff00" 
         	android:singleLine="true" 
-        	
-        	
-        	
-        	android:layout_centerInParent="true" 
-        	android:padding="20px"> 
+          	android:padding="20px" android:layout_centerInParent="true"> 
         </TextView>
     </RelativeLayout>    
 <TableLayout android:id="@+id/TableLayout01" android:stretchColumns="*" android:layout_height="fill_parent" android:layout_width="wrap_content">
