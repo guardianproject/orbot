@@ -15,13 +15,16 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.Toast;
 
 public class ConfigureTransProxy extends Activity implements TorConstants {
 
 	private Context context;
-	
+	private int flag =0;
 	protected void onCreate(Bundle savedInstanceState)
 	{
         super.onCreate(savedInstanceState);
@@ -46,55 +49,53 @@ public class ConfigureTransProxy extends Activity implements TorConstants {
 		
 	}
 	
+	
+	
 	private void stepSix(){
 		
 			String title = context.getString(R.string.wizard_transproxy_title);
 			TextView txtTitle  = ((TextView)findViewById(R.id.WizardTextTitle));
 			txtTitle.setText(title);
 		
-			CheckBox cb1 = (CheckBox)findViewById(R.id.WizardRootCheckBox01);
-	        Button btn1 = (Button)findViewById(R.id.WizardRootButton01);
+			RadioGroup mRadioGroup = (RadioGroup)findViewById(R.id.radioGroup);
+	        mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener (){
 	        
-	        cb1.setOnCheckedChangeListener(new OnCheckedChangeListener (){
+	        
+	        	@Override
+	        	public void onCheckedChanged(RadioGroup group, int checkedId){
+	        		
+	        		flag = 0;
+	        		
+	        		RadioButton rb0 = (RadioButton)findViewById(R.id.radio0);
+	        		RadioButton rb1 = (RadioButton)findViewById(R.id.radio1);
+	        		RadioButton rb2 = (RadioButton)findViewById(R.id.radio2);
 
-				@Override
-				public void onCheckedChanged(CompoundButton buttonView,
-						boolean isChecked) {
-				
-					
-					SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+	        		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
 					Editor pEdit = prefs.edit();
-					
-					pEdit.putBoolean(PREF_TRANSPARENT, isChecked);
-					pEdit.putBoolean(PREF_TRANSPARENT_ALL, isChecked);
-					
+						
+					pEdit.putBoolean(PREF_TRANSPARENT, rb0.isChecked());
+					pEdit.putBoolean(PREF_TRANSPARENT_ALL, rb0.isChecked());
+						
 					pEdit.commit();
-					
-				}
-	        	
+	        		
+	        		
+	        		if(rb1.isChecked())
+	        		{	
+	        			flag = 1;
+	        			SharedPreferences prefs1 = PreferenceManager.getDefaultSharedPreferences(context);
+
+						Editor pEdit1 = prefs1.edit();
+						pEdit1.putBoolean(PREF_TRANSPARENT, true);
+						pEdit1.putBoolean(PREF_TRANSPARENT_ALL, false);
+						pEdit1.commit();
+						
+	        		}
+	        		
+	        		
+	        }
 	        });
-	        
-	     
-	        
-	        btn1.setOnClickListener(new OnClickListener() {
-				
-				@Override
-				public void onClick(View view) {
-					
-					
-					SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
-					Editor pEdit = prefs.edit();
-					pEdit.putBoolean(PREF_TRANSPARENT, true);
-					pEdit.putBoolean(PREF_TRANSPARENT_ALL, false);
-					pEdit.commit();
-					
-					context.startActivity(new Intent(context, AppManager.class));
-					
-				}
-			});
-	        
 	        Button back = ((Button)findViewById(R.id.btnWizard1));
 	        Button next = ((Button)findViewById(R.id.btnWizard2));
 	        
@@ -111,7 +112,11 @@ public class ConfigureTransProxy extends Activity implements TorConstants {
 				
 				@Override
 				public void onClick(View v) {
-					showWizardFinal();
+					if( flag == 1 )
+						context.startActivity(new Intent(context, AppManager.class));
+						
+					else 
+						showWizardFinal();
 				}
 			});
 	}

@@ -149,4 +149,5 @@
     <string name="wizard_transproxy_title">Transparent Proxy</string>
     <string name="wizard_transproxy_msg">Transparent Proxying allows you to redirect client requests without any special configuration or knowledge at the client.</string>
     <string name="wizard_transproxy_hint">(Check this box if you have no idea what we are talking about)</string>
+    <string name="wizard_transproxy_none">None</string>
 </resources>
