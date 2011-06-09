@@ -41,12 +41,17 @@
 		    android:layout_height="fill_parent"
 		    android:padding="3px">
 <TextView android:text="@string/wizard_transproxy_msg" 	android:textColor="#ffffff" android:id="@+id/WizardRootTextView01" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-
-
-<CheckBox android:layout_marginTop="20px" android:text="@string/wizard_configure_all" android:id="@+id/WizardRootCheckBox01" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center"></CheckBox>
-<TextView android:text="@string/wizard_transproxy_hint" 	android:textColor="#ffffff"  android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingBottom="20dip"></TextView>
-
-<Button android:text="@string/wizard_configure_select_apps" android:id="@+id/WizardRootButton01" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center"/>
+<RadioGroup android:id="@+id/radioGroup" android:layout_height="wrap_content" android:layout_width="wrap_content">
+    <RadioButton android:checked="true" android:text="@string/wizard_configure_all" android:id="@+id/radio0" android:layout_height="wrap_content" android:layout_width="wrap_content"></RadioButton>
+	   <TextView android:layout_height="wrap_content" 
+        android:text="@string/wizard_transproxy_hint"
+        android:layout_width="wrap_content" 
+        android:textSize="15sp"
+        android:paddingBottom="10dip">
+    </TextView>   
+    <RadioButton android:text="@string/wizard_configure_select_apps" android:id="@+id/radio1" android:layout_height="wrap_content" android:layout_width="wrap_content"></RadioButton>
+    <RadioButton android:text="@string/wizard_transproxy_none" android:id="@+id/radio2" android:layout_height="wrap_content" android:layout_width="wrap_content"></RadioButton>
+</RadioGroup>
 
 
 			</LinearLayout>

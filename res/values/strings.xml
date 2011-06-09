@@ -88,7 +88,6 @@
     <string name="wizard_permissions_msg_stock"> While it is not required, Orbot can become a more powerful tool if your device has root access. Use the button below to grant Orbot superpowers! </string>
    
     <string name="wizard_permissions_no_root">If you don\'t have root access or have no idea what we\'re talking about, just be sure to use apps made to work with Orbot.</string>
-    <string name="wizard_permissions_consent">I understand and would like to continue without root</string>
    
     <string name="wizard_permission_enable_root">Grant Root for Orbot</string>
     <string name="wizard_configure">Configure Torification</string>
@@ -137,6 +136,7 @@
 	<string name="wizard_permissions_root_msg1">Orbot has detected that you have root permissions enabled. To enable \'Transparent Proxying\', please grant superuser privileges to Orbot</string>
 	<string name="wizard_permissions_root_msg2">If you choose to continue without providing superuser privileges, make sure to use apps made to work with orbot</string>
 	<string name="wizard_permissions_msg">Orbot has detected that you do not have root permissions.\nTransparent Proxying is not possible without superuser privileges.\nMake sure to use apps that have been configured to work with Orbot</string>
+    <string name="wizard_permissions_consent">I understand and would like to continue without root</string>
 	<!-- TipsAndTricks screen -->
 	<string name="wizard_tips_title">Orbot configured Apps</string>
 	<string name="wizard_tips_gibberbot">Gibberbot - Secure instant messaging client for Android</string>

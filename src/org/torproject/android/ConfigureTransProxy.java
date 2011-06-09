@@ -24,7 +24,8 @@ import android.widget.Toast;
 public class ConfigureTransProxy extends Activity implements TorConstants {
 
 	private Context context;
-	private int flag =0;
+	private int flag = 0;
+	
 	protected void onCreate(Bundle savedInstanceState)
 	{
         super.onCreate(savedInstanceState);
@@ -63,8 +64,15 @@ public class ConfigureTransProxy extends Activity implements TorConstants {
 	        
 	        	@Override
 	        	public void onCheckedChanged(RadioGroup group, int checkedId){
-	        		
-	        		flag = 0;
+	        		Button next = ((Button)findViewById(R.id.btnWizard2));
+	        		next.setOnClickListener(new View.OnClickListener() {
+	    				
+	    				@Override
+	    				public void onClick(View v) {
+	    					
+	    						showWizardFinal();
+	    				}
+	    			});
 	        		
 	        		RadioButton rb0 = (RadioButton)findViewById(R.id.radio0);
 	        		RadioButton rb1 = (RadioButton)findViewById(R.id.radio1);
@@ -90,6 +98,16 @@ public class ConfigureTransProxy extends Activity implements TorConstants {
 						pEdit1.putBoolean(PREF_TRANSPARENT_ALL, false);
 						pEdit1.commit();
 						
+						next.setOnClickListener(new View.OnClickListener() {
+		    				
+		    				@Override
+		    				public void onClick(View v) {
+		    					
+		    					context.startActivity(new Intent(context, AppManager.class));
+		    						
+		    					
+		    				}
+		    			});
 	        		}
 	        		
 	        		

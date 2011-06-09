@@ -14,6 +14,9 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -110,6 +113,38 @@ public class Permissions extends Activity implements TorConstants {
 		
         Button back = ((Button)findViewById(R.id.btnWizard1));
         Button next = ((Button)findViewById(R.id.btnWizard2));
+        next.setClickable(false);
+        
+        CheckBox consent = (CheckBox)findViewById(R.id.checkBox);
+        consent.setVisibility(CheckBox.VISIBLE);
+        
+        consent.setOnCheckedChangeListener(new OnCheckedChangeListener (){
+
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView,
+					boolean isChecked) {
+			
+				
+				SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+
+				Editor pEdit = prefs.edit();
+				
+				pEdit.putBoolean(PREF_TRANSPARENT, isChecked);
+				pEdit.putBoolean(PREF_TRANSPARENT_ALL, isChecked);
+				
+				pEdit.commit();
+				
+				Button next = ((Button)findViewById(R.id.btnWizard2));
+				if(isChecked)
+					next.setClickable(true);
+				else
+					next.setClickable(false);
+				
+				
+			}
+        	
+        });
+        
         
         grantPermissions.setOnClickListener(new View.OnClickListener() {
 			
