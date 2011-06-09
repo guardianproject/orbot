@@ -48,7 +48,7 @@
 		android:layout_height="fill_parent"
 		 android:layout_span="3">    
 
-			<TextView android:text="this is sample text this is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample text" android:padding="6px" android:background="#222222" android:textColor="#ffffff"  android:id="@+id/WizardTextBody" android:textSize="8pt" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+			<TextView android:text="this is sample text this is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample text" android:background="#222222" android:textColor="#ffffff"  android:id="@+id/WizardTextBody" android:textSize="8pt" android:layout_width="wrap_content" android:layout_height="wrap_content" android:padding="20dip"></TextView>
 
 		</ScrollView>
 		

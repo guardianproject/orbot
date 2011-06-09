@@ -127,10 +127,10 @@
  <!--  New Wizard Strings -->
 	<!-- Title Screen -->
 	<string name="wizard_title">Orbot</string>
-	<string name="wizard_title_msg">Orbot brings Tor to Android \nTor helps you defend against a form of network surveillance that threatens privacy, confidential business activity and relationships, and state security known as traffic analysis</string>
+	<string name="wizard_title_msg">Orbot brings Tor to Android \n\nTor helps you defend against a form of network surveillance that threatens privacy, confidential business activity and relationships, and state security known as traffic analysis</string>
 	<!-- Warning screen -->
 	<string name="wizard_warning_title">Warning</string>
-	<string name="wizard_warning_msg">Simply installing Orbot will not automatically anonymize your mobile traffic.\nPlease follow the following steps to get started</string>
+	<string name="wizard_warning_msg">Simply installing Orbot will not automatically anonymize your mobile traffic.\n\nPlease follow the following steps to get started</string>
 	<!-- Permissions screen -->
 	<string name="wizard_permissions_title">Permissions</string>
 	<string name="wizard_permissions_root_msg1">Orbot has detected that you have root permissions enabled. To enable \'Transparent Proxying\', please grant superuser privileges to Orbot</string>

@@ -41,8 +41,7 @@
 		    android:layout_height="fill_parent"
 		    android:padding="3px">
 		    
-<TextView android:text="@string/wizard_tips_msg" android:layout_gravity="left"	android:textColor="#ffffff" android:id="@+id/TextView01" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-
+<TextView android:text="@string/wizard_tips_msg" android:layout_width="wrap_content" android:textColor="#ffffff" android:layout_height="wrap_content" android:background="#222222" android:textSize="8pt" android:id="@+id/WizardTextBody1" android:padding="20dip"></TextView>
 <Button android:text="@string/wizard_tips_gibberbot"  android:layout_gravity="left" android:drawableLeft="@drawable/ic_launcher_gibberbot"  android:layout_marginTop="10px" android:id="@+id/WizardRootButtonInstallGibberbot" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 
 <Button android:text="@string/wizard_tips_firefox"  android:layout_gravity="left" android:drawableLeft="@drawable/icon_firefox" android:layout_marginTop="10px" android:id="@+id/WizardRootButtonInstallFirefox" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
