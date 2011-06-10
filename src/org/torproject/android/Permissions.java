@@ -150,7 +150,7 @@ public class Permissions extends Activity implements TorConstants {
 			
 			@Override
 			public void onClick(View v) {
-				//Check and Install iptables - orTransProxy.testOwnerModule(this)
+				//Check and Install iptables - TorTransProxy.testOwnerModule(this)
 				startActivityForResult(new Intent(getBaseContext(), ConfigureTransProxy.class), 1);
 
 				

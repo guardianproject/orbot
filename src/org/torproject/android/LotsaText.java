@@ -3,7 +3,10 @@ package org.torproject.android;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -12,12 +15,14 @@ import android.widget.TextView;
 public class LotsaText extends Activity implements TorConstants{
 	
 	private Context context;
-	private int step = -1;
 	
 	protected void onCreate(Bundle savedInstanceState)
-	{
+	{	
+		
+		
         super.onCreate(savedInstanceState);
         context = this;
+        
 
 	}
 	
@@ -27,7 +32,13 @@ public class LotsaText extends Activity implements TorConstants{
 		super.onStart();
 		setContentView(R.layout.scrollingtext_buttons_view);
 		
-		stepOne();
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+
+		boolean wizardScreen1 = prefs.getBoolean("wizardscreen1",false);
+		if(wizardScreen1)
+			stepOne();
+		else
+			stepTwo();
         
 	}
 	
@@ -39,19 +50,15 @@ public class LotsaText extends Activity implements TorConstants{
 	}
 	
 	
-	/*public void startWizard(){
-		
-		switch(step){
-		
-		case -1 : stepOne();break;
-		
-		}
-	}
-	*/
+	
 	private void stepOne() {
 		
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+
+		Editor pEdit = prefs.edit();
+		pEdit.putBoolean("wizardscreen1",true);
+		pEdit.commit();
 		
-		//setContentView(R.layout.scrollingtext_buttons_view);
 		String title = context.getString(R.string.wizard_title);
 		String msg = context.getString(R.string.wizard_title_msg);
 		
@@ -79,7 +86,12 @@ public class LotsaText extends Activity implements TorConstants{
 	}
 	
 	private void stepTwo() {
-		step=0;
+		
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+
+		Editor pEdit = prefs.edit();
+		pEdit.putBoolean("wizardscreen1",false);
+		pEdit.commit();
 		
 		setContentView(R.layout.scrollingtext_buttons_view);
 		String title = context.getString(R.string.wizard_warning_title);

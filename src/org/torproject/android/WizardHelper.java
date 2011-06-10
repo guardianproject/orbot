@@ -277,7 +277,7 @@ public class WizardHelper implements TorConstants {
 	
 	public void showWizardRootConfigureTorification()
 	{
-		
+		/*
 		LayoutInflater li = LayoutInflater.from(context);
         View view = li.inflate(R.layout.layout_wizard_root, null); 
         
@@ -347,7 +347,7 @@ public class WizardHelper implements TorConstants {
 			}
 		});
 
-		  
+		 */ 
       
 	}
 	

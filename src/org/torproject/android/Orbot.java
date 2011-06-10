@@ -455,7 +455,12 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
 	 */
 	private void showHelp ()
 	{
-		
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+		Editor pEdit = prefs.edit();
+		pEdit.putBoolean("wizardscreen1",true);
+		pEdit.commit();
 		startActivityForResult(new Intent(getBaseContext(), LotsaText.class), 1);
 	}
 	
