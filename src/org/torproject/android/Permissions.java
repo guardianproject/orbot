@@ -113,7 +113,7 @@ public class Permissions extends Activity implements TorConstants {
 		
         Button back = ((Button)findViewById(R.id.btnWizard1));
         Button next = ((Button)findViewById(R.id.btnWizard2));
-        next.setClickable(false);
+        next.setEnabled(false);
         
         CheckBox consent = (CheckBox)findViewById(R.id.checkBox);
         consent.setVisibility(CheckBox.VISIBLE);
@@ -129,16 +129,16 @@ public class Permissions extends Activity implements TorConstants {
 
 				Editor pEdit = prefs.edit();
 				
-				pEdit.putBoolean(PREF_TRANSPARENT, isChecked);
-				pEdit.putBoolean(PREF_TRANSPARENT_ALL, isChecked);
+				pEdit.putBoolean(PREF_TRANSPARENT, !isChecked);
+				pEdit.putBoolean(PREF_TRANSPARENT_ALL, !isChecked);
 				
 				pEdit.commit();
 				
 				Button next = ((Button)findViewById(R.id.btnWizard2));
 				if(isChecked)
-					next.setClickable(true);
+					next.setEnabled(true);
 				else
-					next.setClickable(false);
+					next.setEnabled(false);
 				
 				
 			}
@@ -166,7 +166,9 @@ public class Permissions extends Activity implements TorConstants {
 			}
 		});
     	
-    	next.setOnClickListener(new View.OnClickListener() {
+    	
+    	  next.setOnClickListener(new View.OnClickListener() {
+    	 
 			
 			@Override
 			public void onClick(View v) {
@@ -178,7 +180,7 @@ public class Permissions extends Activity implements TorConstants {
 	
 	private void stepFour(){
 		
-		
+		Toast.makeText(context, "NON ROOT FUNC", Toast.LENGTH_SHORT).show();
 		String title = context.getString(R.string.wizard_permissions_title);
 		String msg = context.getString(R.string.wizard_permissions_msg);
 		
