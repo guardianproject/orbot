@@ -410,7 +410,7 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
 				
 				pEdit.commit();
 				
-			    new WizardHelper(this).showWizard();
+				startActivityForResult(new Intent(getBaseContext(), LotsaText.class), 1);
 
 			}
 			
