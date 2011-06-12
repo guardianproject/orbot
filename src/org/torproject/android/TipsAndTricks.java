@@ -1,7 +1,9 @@
 package org.torproject.android;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -98,9 +100,40 @@ public class TipsAndTricks extends Activity implements TorConstants {
 			
 			@Override
 			public void onClick(View v) {
-				//Finsh Screen
+				showWizardFinal();
 			}
 		});
         
+	}
+	
+	private void showWizardFinal ()
+	{
+		String title = null;
+		String msg = null;
+		
+		
+		title = context.getString(R.string.wizard_final);
+		msg = context.getString(R.string.wizard_final_msg);
+		
+		DialogInterface.OnClickListener ocListener = new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				context.startActivity(new Intent(context, Orbot.class));
+
+			}
+		};
+	
+		
+		 new AlertDialog.Builder(context)
+		.setIcon(R.drawable.icon)
+        .setTitle(title)
+        .setPositiveButton(R.string.button_close, ocListener)
+        .setMessage(msg)
+        .show();
+	
+	
+				
+		
 	}
 }

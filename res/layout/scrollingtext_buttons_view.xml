@@ -4,13 +4,15 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-            android:background="@drawable/background">
+   >
             
 <RelativeLayout 
 	android:layout_width="match_parent" 
 	android:layout_height="wrap_content" 
 	android:id="@+id/relativeLayout1" 
-	android:layout_gravity="center_horizontal">
+	android:layout_gravity="center_horizontal"
+	android:background="#000000"
+	>
         <ImageView 
         	android:src="@drawable/tor" 
         	android:id="@+id/orbot_image" 
@@ -19,7 +21,9 @@
         	android:layout_alignParentLeft="true"
         	android:paddingLeft="20px" android:paddingRight="20px" >
         </ImageView>
-        <TextView android:textSize="10pt" 
+        <TextView 
+        	android:textColor="#FFFFFF"
+        	android:textSize="10pt" 
         	android:layout_toRightOf="@id/orbot_image" 
         	android:layout_alignParentTop="true"
         	android:gravity="center_vertical"
@@ -27,8 +31,7 @@
         	android:id="@+id/WizardTextTitle" 
         	android:layout_width="wrap_content" 
         	android:fadingEdge="vertical" 
-        	android:text="TITLE" 
-        	android:textColor="#00ff00" 
+        	android:text="TITLE"     
         	android:singleLine="true" 
         	
         	
@@ -37,9 +40,9 @@
         	android:padding="20px"> 
         </TextView>
     </RelativeLayout>    
-<TableLayout android:id="@+id/TableLayout01" android:stretchColumns="*" android:layout_height="fill_parent" android:layout_width="wrap_content">
+<TableLayout  android:id="@+id/TableLayout01" android:stretchColumns="*" android:layout_height="fill_parent" android:layout_width="wrap_content" >
 
-<TableRow android:id="@+id/TableRow01" android:layout_weight="1" android:layout_width="fill_parent" android:layout_height="fill_parent">
+<TableRow android:id="@+id/TableRow01"  android:layout_weight="1" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_margin="10dip">
 
 
 	<ScrollView android:id="@+id/helpscrollview" 
@@ -48,12 +51,12 @@
 		android:layout_height="fill_parent"
 		 android:layout_span="3">    
 
-			<TextView android:text="this is sample text this is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample text" android:background="#222222" android:textColor="#ffffff"  android:id="@+id/WizardTextBody" android:textSize="8pt" android:layout_width="wrap_content" android:layout_height="wrap_content" android:padding="20dip"></TextView>
+			<TextView  android:background="#575757" android:text="this is sample text this is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample textthis is sample text"  android:textColor="#ffffff"  android:id="@+id/WizardTextBody" android:textSize="8pt" android:layout_width="wrap_content" android:layout_height="wrap_content" android:padding="20dip"></TextView>
 
 		</ScrollView>
 		
 </TableRow>
-<TableRow android:id="@+id/TableRow01" android:textColor="#00ff00" android:layout_width="fill_parent" android:layout_height="30px">
+<TableRow  android:background="#000000" android:id="@+id/TableRow01" android:textColor="#00ff00" android:layout_width="fill_parent" android:layout_height="30px" android:layout_marginTop="10dip" android:paddingTop="10dip">
 	   	<Button android:text="Back" android:id="@+id/btnWizard1" android:layout_weight="1" android:layout_width="fill_parent" android:layout_height="wrap_content"></Button>
     	<Button android:text="Next" android:id="@+id/btnWizard2"  android:layout_weight="1" android:layout_width="fill_parent" android:layout_height="wrap_content"></Button>	    
 </TableRow>			

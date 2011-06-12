@@ -81,22 +81,24 @@ public class ConfigureTransProxy extends Activity implements TorConstants {
 	        		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
 					Editor pEdit = prefs.edit();
-						
 					pEdit.putBoolean(PREF_TRANSPARENT, rb0.isChecked());
 					pEdit.putBoolean(PREF_TRANSPARENT_ALL, rb0.isChecked());
-						
 					pEdit.commit();
+
+					if(rb0.isChecked())
+					{ 	
+						pEdit.putString("radiobutton","rb0");
+						pEdit.commit();
+					}
 	        		
-	        		
-	        		if(rb1.isChecked())
+					else if(rb1.isChecked())
 	        		{	
 	        			flag = 1;
-	        			SharedPreferences prefs1 = PreferenceManager.getDefaultSharedPreferences(context);
-
-						Editor pEdit1 = prefs1.edit();
-						pEdit1.putBoolean(PREF_TRANSPARENT, true);
-						pEdit1.putBoolean(PREF_TRANSPARENT_ALL, false);
-						pEdit1.commit();
+	        			
+	        			pEdit.putBoolean(PREF_TRANSPARENT, true);
+						pEdit.putBoolean(PREF_TRANSPARENT_ALL, false);
+						pEdit.putString("radiobutton","rb1");
+						pEdit.commit();
 						
 						next.setOnClickListener(new View.OnClickListener() {
 		    				
@@ -109,7 +111,11 @@ public class ConfigureTransProxy extends Activity implements TorConstants {
 		    				}
 		    			});
 	        		}
-	        		
+					else if(rb2.isChecked())
+					{
+						pEdit.putString("radiobutton", "rb2");
+						pEdit.commit();
+					}
 	        		
 	        }
 	        });
@@ -127,7 +133,8 @@ public class ConfigureTransProxy extends Activity implements TorConstants {
 			});
 	    	
 	    	next.setOnClickListener(new View.OnClickListener() {
-				
+			
+	    		//Dirty flag variable - improve logic
 				@Override
 				public void onClick(View v) {
 					if( flag == 1 )
@@ -152,8 +159,8 @@ public class ConfigureTransProxy extends Activity implements TorConstants {
 			
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				//close wizard - return to orbot
-				
+				context.startActivity(new Intent(context, Orbot.class));
+
 			}
 		};
 	
@@ -164,7 +171,6 @@ public class ConfigureTransProxy extends Activity implements TorConstants {
         .setPositiveButton(R.string.button_close, ocListener)
         .setMessage(msg)
         .show();
-		
 	
 	
 				

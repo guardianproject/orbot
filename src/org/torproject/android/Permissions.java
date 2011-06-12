@@ -80,12 +80,10 @@ public class Permissions extends Activity implements TorConstants {
 		
 		if (hasRoot)
 		{
-			Toast.makeText(context, "Has Root", Toast.LENGTH_SHORT).show();
 			stepFourRoot();
 		}
 		else
 		{
-			Toast.makeText(context, "Unable to get root access", Toast.LENGTH_LONG).show();
 			stepFour();
 		}
 		

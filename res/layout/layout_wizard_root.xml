@@ -3,30 +3,29 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-            android:background="@drawable/background">
+    android:layout_height="fill_parent">
             
 <RelativeLayout 
 	android:layout_width="match_parent" 
 	android:layout_height="wrap_content" 
 	android:id="@+id/relativeLayout1" 
-	android:layout_gravity="center_horizontal">
+	android:layout_gravity="center_horizontal"
+	android:background="#000000">
          <TextView android:textSize="10pt" 
-        	
+        	android:textColor="#FFFFFF"
         	android:layout_alignParentTop="true"
        	 	android:layout_height="wrap_content" 
         	android:id="@+id/WizardTextTitle" 
         	android:layout_width="wrap_content" 
         	android:fadingEdge="vertical" 
         	android:text="TITLE" 
-        	android:textColor="#00ff00" 
         	android:singleLine="true" 
           	android:padding="20px" android:layout_centerInParent="true"> 
         </TextView>
     </RelativeLayout>    
 <TableLayout android:id="@+id/TableLayout01" android:stretchColumns="*" android:layout_height="fill_parent" android:layout_width="wrap_content">
 
-<TableRow android:id="@+id/TableRow01" android:layout_weight="1" android:layout_width="fill_parent" android:layout_height="fill_parent">
+<TableRow android:layout_margin="10dip" android:id="@+id/TableRow01" android:layout_weight="1" android:layout_width="fill_parent" android:layout_height="fill_parent">
 
 
 	<ScrollView android:id="@+id/helpscrollview" 
@@ -36,18 +35,19 @@
 		 android:layout_span="3">    
 
 <LinearLayout
+			android:background="#575757"
 		    android:orientation="vertical"
 		    android:layout_width="fill_parent"
 		    android:layout_height="fill_parent"
 		    android:padding="3px">
-<TextView android:text="@string/wizard_transproxy_msg" android:layout_width="wrap_content" android:textColor="#ffffff" android:layout_height="wrap_content" android:background="#222222" android:textSize="8pt" android:id="@+id/WizardTextBody1" android:padding="20dip"></TextView>
-<RadioGroup android:id="@+id/radioGroup" android:layout_height="wrap_content" android:layout_width="wrap_content">
+<TextView android:text="@string/wizard_transproxy_msg" android:layout_width="wrap_content" android:textColor="#ffffff" android:layout_height="wrap_content"  android:textSize="8pt" android:id="@+id/WizardTextBody1" android:padding="20dip"></TextView>
+<RadioGroup android:id="@+id/radioGroup" android:layout_height="wrap_content" android:layout_width="wrap_content" android:paddingLeft="15dip">
     <RadioButton android:checked="true" android:text="@string/wizard_configure_all" android:id="@+id/radio0" android:layout_height="wrap_content" android:layout_width="wrap_content"></RadioButton>
 	   <TextView android:layout_height="wrap_content" 
         android:text="@string/wizard_transproxy_hint"
         android:layout_width="wrap_content" 
         android:textSize="15sp"
-        android:paddingBottom="10dip">
+        android:paddingBottom="10dip" android:paddingRight="20dip">
     </TextView>   
     <RadioButton android:text="@string/wizard_configure_select_apps" android:id="@+id/radio1" android:layout_height="wrap_content" android:layout_width="wrap_content"></RadioButton>
     <RadioButton android:text="@string/wizard_transproxy_none" android:id="@+id/radio2" android:layout_height="wrap_content" android:layout_width="wrap_content"></RadioButton>
@@ -58,7 +58,7 @@
 		</ScrollView>
 		
 </TableRow>
-<TableRow android:id="@+id/TableRow01" android:textColor="#00ff00" android:layout_width="fill_parent" android:layout_height="30px">
+<TableRow android:background="#000000" android:layout_marginTop="10dip" android:paddingTop="10dip" android:id="@+id/TableRow01" android:textColor="#00ff00" android:layout_width="fill_parent" android:layout_height="30px">
 	   	<Button android:text="Back" android:id="@+id/btnWizard1" android:layout_weight="1" android:layout_width="fill_parent" android:layout_height="wrap_content"></Button>
     	<Button android:text="Next" android:id="@+id/btnWizard2"  android:layout_weight="1" android:layout_width="fill_parent" android:layout_height="wrap_content"></Button>	    
 </TableRow>			
