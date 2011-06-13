@@ -42,7 +42,7 @@
 		    android:padding="3px">
 <TextView android:text="@string/wizard_transproxy_msg" android:layout_width="wrap_content" android:textColor="#ffffff" android:layout_height="wrap_content"  android:textSize="8pt" android:id="@+id/WizardTextBody1" android:padding="20dip"></TextView>
 <RadioGroup android:id="@+id/radioGroup" android:layout_height="wrap_content" android:layout_width="wrap_content" android:paddingLeft="15dip">
-    <RadioButton android:checked="true" android:text="@string/wizard_configure_all" android:id="@+id/radio0" android:layout_height="wrap_content" android:layout_width="wrap_content"></RadioButton>
+    <RadioButton  android:text="@string/wizard_configure_all" android:id="@+id/radio0" android:layout_height="wrap_content" android:layout_width="wrap_content"></RadioButton>
 	   <TextView android:layout_height="wrap_content" 
         android:text="@string/wizard_transproxy_hint"
         android:layout_width="wrap_content" 

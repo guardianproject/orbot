@@ -57,6 +57,32 @@ public class ConfigureTransProxy extends Activity implements TorConstants {
 			String title = context.getString(R.string.wizard_transproxy_title);
 			TextView txtTitle  = ((TextView)findViewById(R.id.WizardTextTitle));
 			txtTitle.setText(title);
+			
+			Button back = ((Button)findViewById(R.id.btnWizard1));
+		    Button next = ((Button)findViewById(R.id.btnWizard2));
+		    next.setEnabled(false);
+		        
+		    back.setOnClickListener(new View.OnClickListener() {
+					
+		    	@Override
+				public void onClick(View v) {
+						
+					startActivityForResult(new Intent(getBaseContext(), Permissions.class), 1);
+				}
+			});
+		    	
+		    next.setOnClickListener(new View.OnClickListener() {
+				
+		    	//Dirty flag variable - improve logic
+				@Override
+				public void onClick(View v) {
+					if( flag == 1 )
+						context.startActivity(new Intent(context, AppManager.class));
+							
+					else 
+						showWizardFinal();
+				}
+			});
 		
 			RadioGroup mRadioGroup = (RadioGroup)findViewById(R.id.radioGroup);
 	        mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener (){
@@ -65,6 +91,7 @@ public class ConfigureTransProxy extends Activity implements TorConstants {
 	        	@Override
 	        	public void onCheckedChanged(RadioGroup group, int checkedId){
 	        		Button next = ((Button)findViewById(R.id.btnWizard2));
+	        		next.setEnabled(true);
 	        		next.setOnClickListener(new View.OnClickListener() {
 	    				
 	    				@Override
@@ -120,30 +147,7 @@ public class ConfigureTransProxy extends Activity implements TorConstants {
 	        }
 	        });
 
-	        Button back = ((Button)findViewById(R.id.btnWizard1));
-	        Button next = ((Button)findViewById(R.id.btnWizard2));
-	        
-	        back.setOnClickListener(new View.OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					
-					startActivityForResult(new Intent(getBaseContext(), Permissions.class), 1);
-				}
-			});
-	    	
-	    	next.setOnClickListener(new View.OnClickListener() {
-			
-	    		//Dirty flag variable - improve logic
-				@Override
-				public void onClick(View v) {
-					if( flag == 1 )
-						context.startActivity(new Intent(context, AppManager.class));
-						
-					else 
-						showWizardFinal();
-				}
-			});
+	       
 	}
 	
 	private void showWizardFinal ()
