@@ -73,8 +73,8 @@ public class LotsaText extends Activity implements TorConstants{
         ImageView img = (ImageView) findViewById(R.id.orbot_image);
         
     	btn1.setVisibility(Button.INVISIBLE);
-    	img.setVisibility(ImageView.VISIBLE);
-    	
+    	img.setImageResource(R.drawable.tor);
+
     	btn2.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -108,7 +108,7 @@ public class LotsaText extends Activity implements TorConstants{
         ImageView img = (ImageView) findViewById(R.id.orbot_image);
         
     	btn1.setVisibility(Button.VISIBLE);
-    	img.setVisibility(ImageView.INVISIBLE);
+    	img.setImageResource(R.drawable.warning);
     	
     	btn1.setOnClickListener(new View.OnClickListener() {
 			

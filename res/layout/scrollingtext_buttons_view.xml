@@ -14,12 +14,12 @@
 	android:background="#000000"
 	>
         <ImageView 
-        	android:src="@drawable/tor" 
+        	android:src="@drawable/warning" 
         	android:id="@+id/orbot_image" 
         	android:layout_width="wrap_content" 
         	android:layout_height="wrap_content" 
         	android:layout_alignParentLeft="true"
-        	android:paddingLeft="20px" android:paddingRight="20px" >
+        	android:paddingLeft="20px" android:layout_marginLeft="10dip" android:layout_marginTop="8dip">
         </ImageView>
         <TextView 
         	android:textColor="#FFFFFF"
@@ -37,7 +37,9 @@
         	
         	
         	android:layout_centerInParent="true" 
-        	android:padding="20px"> 
+        	android:paddingLeft="5px"
+        	android:padding="20px"
+        	> 
         </TextView>
     </RelativeLayout>    
 <TableLayout  android:id="@+id/TableLayout01" android:stretchColumns="*" android:layout_height="fill_parent" android:layout_width="wrap_content" >
