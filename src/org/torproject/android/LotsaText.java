@@ -34,7 +34,7 @@ public class LotsaText extends Activity implements TorConstants{
 		
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
-		boolean wizardScreen1 = prefs.getBoolean("wizardscreen1",false);
+		boolean wizardScreen1 = prefs.getBoolean("wizardscreen1",true);
 		if(wizardScreen1)
 			stepOne();
 		else
