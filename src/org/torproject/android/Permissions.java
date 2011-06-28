@@ -51,27 +51,6 @@ public class Permissions extends Activity implements TorConstants {
 	private void stepThree(){
 		
 		boolean hasRoot = TorServiceUtils.checkRootAccess();
-		
-		if (hasRoot)
-		{
-			try {
-				int resp = TorTransProxy.testOwnerModule(context);
-				
-				if (resp < 0)
-				{
-					hasRoot = false;
-					Toast.makeText(context, "ERROR: IPTables OWNER module not available", Toast.LENGTH_LONG).show();
-
-					Log.i(TorService.TAG,"ERROR: IPTables OWNER module not available");
-				}
-				
-			} catch (Exception e) {
-				
-				hasRoot = false;
-				Log.d(TorService.TAG,"ERROR: IPTables OWNER module not available",e);
-			}
-		}
-		
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
 		Editor pEdit = prefs.edit();
@@ -149,6 +128,31 @@ public class Permissions extends Activity implements TorConstants {
 			@Override
 			public void onClick(View v) {
 				//Check and Install iptables - TorTransProxy.testOwnerModule(this)
+				
+				SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+				boolean hasRoot = prefs.getBoolean("has_root",false);
+				
+				if (hasRoot)
+				{
+					try {
+						int resp = TorTransProxy.testOwnerModule(context);
+						
+						if (resp < 0)
+						{
+							hasRoot = false;
+							Toast.makeText(context, "ERROR: IPTables OWNER module not available", Toast.LENGTH_LONG).show();
+
+							Log.i(TorService.TAG,"ERROR: IPTables OWNER module not available");
+							stepFour();
+						}
+						
+					} catch (Exception e) {
+						
+						hasRoot = false;
+						Log.d(TorService.TAG,"ERROR: IPTables OWNER module not available",e);
+					}
+				}
+				
 				startActivityForResult(new Intent(getBaseContext(), ConfigureTransProxy.class), 1);
 
 				
@@ -185,12 +189,24 @@ public class Permissions extends Activity implements TorConstants {
 		TextView txtTitle  = ((TextView)findViewById(R.id.WizardTextTitle));
 		txtTitle.setText(title);
         
-        TextView txtBody = ((TextView)findViewById(R.id.WizardTextBody));
+        TextView txtBody = ((TextView)findViewById(R.id.WizardTextBody1));
 		txtBody.setText(msg);
 		
         Button btn1 = ((Button)findViewById(R.id.btnWizard1));
         Button btn2 = ((Button)findViewById(R.id.btnWizard2));
-            	
+        btn2.setEnabled(true);
+   
+        
+        TextView txtBody2 = ((TextView)findViewById(R.id.WizardTextBody2));
+		txtBody2.setVisibility(TextView.GONE);
+		
+		Button grantPermissions = ((Button)findViewById(R.id.grantPermissions));
+		grantPermissions.setVisibility(Button.GONE);
+        
+        
+        CheckBox consent = (CheckBox)findViewById(R.id.checkBox);
+        consent.setVisibility(CheckBox.GONE);
+        
     	btn1.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
