@@ -43,7 +43,7 @@ import android.util.Log;
 public class TorService extends Service implements TorServiceConstants, Runnable, EventHandler
 {
 	
-	public static boolean ENABLE_DEBUG_LOG = false;
+	public static boolean ENABLE_DEBUG_LOG = true;
 	
 	private static int currentStatus = STATUS_OFF;
 		
@@ -1057,7 +1057,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
      */
     private final ITorService.Stub mBinder = new ITorService.Stub() {
     	
-       
+        
 		public void registerCallback(ITorServiceCallback cb) {
             if (cb != null) mCallbacks.register(cb);
         }
@@ -1275,7 +1275,8 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     	
     	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		
-    	ENABLE_DEBUG_LOG = prefs.getBoolean("pref_enable_logging",false);
+    	//ENABLE_DEBUG_LOG = prefs.getBoolean("pref_enable_logging",false);
+    	ENABLE_DEBUG_LOG = true;
     	Log.i(TAG,"debug logging:" + ENABLE_DEBUG_LOG);
     		
 		boolean useBridges = prefs.getBoolean(TorConstants.PREF_BRIDGES_ENABLED, false);
