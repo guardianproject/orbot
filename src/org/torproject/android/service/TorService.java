@@ -41,9 +41,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
+import android.os.Parcelable;
 import android.os.RemoteCallbackList;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
@@ -1125,10 +1127,16 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	        datacount.Download = read/1000;
 	        datacount.Upload = written/1000;
 	        
-			Message message = Message.obtain();
-			message.what = MESSAGE_TRAFFIC_COUNT;
-			message.obj = datacount;
-			Orbot.currentInstance.mHandler.sendMessage(message); 
+			Message msg = Message.obtain();
+			msg.what = MESSAGE_TRAFFIC_COUNT;
+			//msg.obj = datacount;
+			Bundle data = new Bundle();
+			data.putLong("upload", datacount.Upload);
+			data.putLong("download", datacount.Download);
+			
+			msg.setData(data);
+			
+			Orbot.currentInstance.mHandler.sendMessage(msg); 
 
 			//sendCallbackStatusMessage(message); 
 			
