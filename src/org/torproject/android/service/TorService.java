@@ -42,6 +42,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.IBinder;
+import android.os.Looper;
+import android.os.Message;
 import android.os.RemoteCallbackList;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
@@ -50,7 +52,7 @@ import android.util.Log;
 public class TorService extends Service implements TorServiceConstants, TorConstants, Runnable, EventHandler
 {
 	
-	public static boolean ENABLE_DEBUG_LOG = false;
+	public static boolean ENABLE_DEBUG_LOG = true;
 	
 	private static int currentStatus = STATUS_OFF;
 		
@@ -944,7 +946,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		conn.setEventHandler(this);
 	    
 		conn.setEvents(Arrays.asList(new String[]{
-	          "ORCONN", "CIRC", "NOTICE", "WARN", "ERR"}));
+	          "ORCONN", "CIRC", "NOTICE", "WARN", "ERR","BW"}));
 	      // conn.setEvents(Arrays.asList(new String[]{
 	        //  "DEBUG", "INFO", "NOTICE", "WARN", "ERR"}));
 
@@ -1118,10 +1120,29 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			sb.append("kb written");
 			
 			logNotice(sb.toString());
+	        DataCount datacount = new DataCount();
+	        
+	        datacount.Download = read/1000;
+	        datacount.Upload = written/1000;
+	        
+			Message message = Message.obtain();
+			message.what = MESSAGE_TRAFFIC_COUNT;
+			message.obj = datacount;
+			Orbot.currentInstance.mHandler.sendMessage(message); 
+
+			//sendCallbackStatusMessage(message); 
+			
 		}
 
 	}
 
+   	public class DataCount {
+   		// data uploaded
+   		public long Upload;
+   		// data downloaded
+   		public long Download;
+   	}
+   	
 	public void circuitStatus(String status, String circID, String path) {
 		
 		if (ENABLE_DEBUG_LOG)
@@ -1441,8 +1462,11 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     {
     	
     	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-    	
-		boolean useBridges = prefs.getBoolean(TorConstants.PREF_BRIDGES_ENABLED, false); 
+		
+    	ENABLE_DEBUG_LOG = prefs.getBoolean("pref_enable_logging",true);
+    	Log.i(TAG,"debug logging:" + ENABLE_DEBUG_LOG);
+    		
+		boolean useBridges = prefs.getBoolean(TorConstants.PREF_BRIDGES_ENABLED, false);
 		
 		//boolean autoUpdateBridges = prefs.getBoolean(TorConstants.PREF_BRIDGES_UPDATED, false);
 

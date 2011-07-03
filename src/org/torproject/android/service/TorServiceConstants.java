@@ -85,4 +85,6 @@ public interface TorServiceConstants {
     //obfsproxy 
     public static final String OBFSPROXY_ASSET_KEY = "obfsproxy";
     
+	public static final int MESSAGE_TRAFFIC_COUNT = 5;
+
 }

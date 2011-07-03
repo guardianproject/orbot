@@ -57,6 +57,55 @@
 		
 		android:textColor="#ffffff"
 		 />
+	<RelativeLayout android:id="@+id/trafficRow"
+		android:gravity="bottom"
+	    android:layout_width="fill_parent"
+		android:layout_alignParentBottom="true"
+	    android:visibility="invisible"
+	    android:layout_height="80dp"
+	    android:background="#A0909090">
+	    <TextView
+	    	android:id="@+id/trafficDownLabel"
+			android:textColor="#FFFFFFFF"
+			android:layout_width="150dp"
+			android:layout_height="wrap_content"
+			android:layout_alignParentLeft="true"
+			android:textSize="16sp"
+			android:text="@string/main_layout_download"
+			android:gravity="center_vertical|center_horizontal"
+			android:textStyle="bold" />
+		<TextView
+			android:id="@+id/trafficUpLabel"
+			android:textColor="#FFFFFFFF"
+			android:layout_width="150dp"
+			android:layout_height="wrap_content"
+			android:layout_alignParentRight="true"
+			android:text="@string/main_layout_upload"
+			android:textSize="16sp"
+			android:gravity="center_vertical|center_horizontal"
+			android:textStyle="bold" />
+		<TextView
+			android:id="@+id/trafficDown"
+			android:textColor="#FF00B627"
+			android:layout_width="150dp"
+			android:layout_height="wrap_content"
+			android:layout_alignParentLeft="true"
+			android:layout_below="@+id/trafficDownLabel"
+			android:textSize="24sp"
+			android:gravity="center_vertical|center_horizontal"
+			android:textStyle="bold" />
+		<TextView
+			android:id="@+id/trafficUp"
+			android:textColor="#FFFF2211"
+			android:layout_width="150dp"
+			android:layout_height="wrap_content"
+			android:layout_alignParentRight="true"
+			android:layout_below="@+id/trafficUpLabel"
+			android:textSize="24sp"
+			android:gravity="center_vertical|center_horizontal"
+			android:textStyle="bold" />
+    </RelativeLayout>			
+
 </LinearLayout>
        
 </FrameLayout>
