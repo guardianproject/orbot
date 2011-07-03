@@ -1122,10 +1122,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			sb.append("kb written");
 			
 			logNotice(sb.toString());
-	        DataCount datacount = new DataCount();
-	        
-	        datacount.Download = read/1000;
-	        datacount.Upload = written/1000;
+	        DataCount datacount = new DataCount(written,read);
 	        
 			Message msg = Message.obtain();
 			msg.what = MESSAGE_TRAFFIC_COUNT;
@@ -1149,6 +1146,12 @@ public class TorService extends Service implements TorServiceConstants, TorConst
    		public long Upload;
    		// data downloaded
    		public long Download;
+   		
+
+   		DataCount(long Upload, long Download){
+   			this.Upload = Upload;
+   			this.Download = Download;
+   		}
    	}
    	
 	public void circuitStatus(String status, String circID, String path) {
