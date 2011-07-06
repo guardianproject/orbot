@@ -613,7 +613,6 @@ public class Orbot extends Activity implements TorConstants, OnLongClickListener
             msg.getData().putString(HANDLER_TOR_MSG, getString(R.string.status_starting_up));
             mHandler.sendMessage(msg);
             
-        trafficRow.setVisibility(RelativeLayout.VISIBLE);
     	
     }
     
@@ -744,7 +743,8 @@ public class Orbot extends Activity implements TorConstants, OnLongClickListener
                 	
 
             	case TorServiceConstants.MESSAGE_TRAFFIC_COUNT :
-            		
+                    
+            		trafficRow.setVisibility(RelativeLayout.VISIBLE);
             		Bundle data = msg.getData();
             		DataCount datacount =  new DataCount(data.getLong("upload"),data.getLong("download"));      		
             		downloadText.setText(formatCount(datacount.Download));
@@ -921,8 +921,8 @@ public class Orbot extends Activity implements TorConstants, OnLongClickListener
 		// Under 2Mb, returns "xxx.xKb"
 		// Over 2Mb, returns "xxx.xxMb"
 		if (count < 1e6 * 2)
-			return ((float)((int)(count*10/1024))/10 + "kB");
-		return ((float)((int)(count*100/1024/1024))/100 + "MB");
+			return ((float)((int)(count*10/1024))/10 + " kbps");
+		return ((float)((int)(count*100/1024/1024))/100 + " mbps");
 		
    		//return count+" kB";
 	}
