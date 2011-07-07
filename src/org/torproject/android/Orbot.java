@@ -694,14 +694,31 @@ public class Orbot extends Activity implements TorConstants, OnLongClickListener
                 mHandler.sendMessage(msg);
         }
 
-    
-            public void logMessage(String value) throws RemoteException {
-                    
-                    Message msg = mHandler.obtainMessage(TorServiceConstants.LOG_MSG);
-            msg.getData().putString(HANDLER_TOR_MSG, value);
-            mHandler.sendMessage(msg);
-                    
-            }
+		@Override
+		public void logMessage(String value) throws RemoteException {
+			
+			Message msg = mHandler.obtainMessage(TorServiceConstants.LOG_MSG);
+        	msg.getData().putString(HANDLER_TOR_MSG, value);
+        	mHandler.sendMessage(msg);
+			
+		}
+
+		@Override
+		public void updateBandwidth(long upload, long download)
+				throws RemoteException {
+			
+        	Message msg = Message.obtain();
+			msg.what = TorServiceConstants.MESSAGE_TRAFFIC_COUNT;
+			
+			
+			Bundle data = new Bundle();
+			data.putLong("upload", upload);
+			data.putLong("download", download);
+			
+			msg.setData(data);
+			mHandler.sendMessage(msg); 
+
+		}
     };
     
 

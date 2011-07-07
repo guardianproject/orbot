@@ -1122,37 +1122,14 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			sb.append("kb written");
 			
 			logNotice(sb.toString());
-	        DataCount datacount = new DataCount(written,read);
-	        
-			Message msg = Message.obtain();
-			msg.what = MESSAGE_TRAFFIC_COUNT;
-			//msg.obj = datacount;
-			Bundle data = new Bundle();
-			data.putLong("upload", datacount.Upload);
-			data.putLong("download", datacount.Download);
-			
-			msg.setData(data);
-			
-			Orbot.currentInstance.mHandler.sendMessage(msg); 
-
-			//sendCallbackStatusMessage(message); 
-			
 		}
+		
+		sendCallbackStatusMessage(written, read); 
+			
+		
 
 	}
 
-   	public class DataCount {
-   		// data uploaded
-   		public long Upload;
-   		// data downloaded
-   		public long Download;
-   		
-
-   		DataCount(long Upload, long Download){
-   			this.Upload = Upload;
-   			this.Download = Download;
-   		}
-   	}
    	
 	public void circuitStatus(String status, String circID, String path) {
 		
@@ -1422,6 +1399,36 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         mCallbacks.finishBroadcast();
         inCallback = false;
     }
+   
+    private synchronized void sendCallbackStatusMessage (long upload, long download)
+    {
+    	 
+    	if (mCallbacks == null)
+    		return;
+    	
+        // Broadcast to all clients the new value.
+        final int N = mCallbacks.beginBroadcast();
+        
+        inCallback = true;
+        
+        if (N > 0)
+        {
+        	 for (int i=0; i<N; i++) {
+		            try {
+		                mCallbacks.getBroadcastItem(i).updateBandwidth(upload, download);
+		                
+		                
+		            } catch (RemoteException e) {
+		                // The RemoteCallbackList will take care of removing
+		                // the dead object for us.
+		            }
+		        }
+        }
+        
+        mCallbacks.finishBroadcast();
+        inCallback = false;
+    }
+    
     
     private synchronized void sendCallbackLogMessage (String logMessage)
     {
