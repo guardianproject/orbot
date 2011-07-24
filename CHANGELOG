@@ -1,5 +1,8 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+1.0.5.3
+- added auto-tor of wireless and usb tethering
+
 1.0.5.1/.2
 - small updates to layout of main screen to fit smaller screens
 - fixed preference setting of EntryNode torrc value
