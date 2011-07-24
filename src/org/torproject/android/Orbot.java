@@ -3,6 +3,9 @@
 
 package org.torproject.android;
 
+
+
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -269,255 +272,224 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
         }*/
  
     /* (non-Javadoc)
-         * @see android.app.Activity#onPause()
-         */
-        protected void onPause() {
-                super.onPause();
-                
-                hideProgressDialog();
+	 * @see android.app.Activity#onPause()
+	 */
+	protected void onPause() {
+		super.onPause();
+		
+		hideProgressDialog();
 
-                if (aDialog != null)
-                        aDialog.dismiss();
-        }
+		if (aDialog != null)
+			aDialog.dismiss();
+	}
 
-/**
-* i think we need to suport this onSave/Restore code more b/c i think
-* when someone rotates the screen, and the state is lost during setup
-* etc it causes problems. this might be the place to solve that in the wizard - hmm this prob coz android restarts the activity when the screen is rotated. this will prob be fixed(?) when 
-we redesign the wizard into a view not just a dialogbox 
-cool
-**/
-        public void onSaveInstanceState(Bundle savedInstanceState) {
-                  // Save UI state changes to the savedInstanceState.
-                  // This bundle will be passed to onCreate if the process is
-                  // killed and restarted.
-                  // etc.
-                  super.onSaveInstanceState(savedInstanceState);
-                }
-        
-        public void onRestoreInstanceState(Bundle savedInstanceState) {
-          super.onRestoreInstanceState(savedInstanceState);
-          // Restore UI state from the savedInstanceState.
-          // This bundle has also been passed to onCreate.
-         
-         //we do nothing here
-        }
-        
-        /**
-        * confirm with the user that they want to open a browser to connect to https://check.torproject.org
-        and then launch the URL.
-        this may be where the TorCheck API code/UI is added, though always offering the web-based confirm
-        should be an option, since users know it
-        
-        **/
-        private void doTorCheck ()
-        {
-                
-                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-                        
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        switch (which){
-                        case DialogInterface.BUTTON_POSITIVE:
-                            
-                                    openBrowser(URL_TOR_CHECK);
+	public void onSaveInstanceState(Bundle savedInstanceState) {
+		  // Save UI state changes to the savedInstanceState.
+		  // This bundle will be passed to onCreate if the process is
+		  // killed and restarted.
+		  // etc.
+		  super.onSaveInstanceState(savedInstanceState);
+		}
+	
+	public void onRestoreInstanceState(Bundle savedInstanceState) {
+	  super.onRestoreInstanceState(savedInstanceState);
+	  // Restore UI state from the savedInstanceState.
+	  // This bundle has also been passed to onCreate.
+	 
+	}
+	
+	private void doTorCheck ()
+	{
+		
+		DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+			
+		    @Override
+		    public void onClick(DialogInterface dialog, int which) {
+		        switch (which){
+		        case DialogInterface.BUTTON_POSITIVE:
+		            
+		    		openBrowser(URL_TOR_CHECK);
 
-                                        
-                                
-                            break;
+					
+		        	
+		            break;
 
-                        case DialogInterface.BUTTON_NEGATIVE:
-                        
-                                //do nothing
-                            break;
-                        }
-                    }
-                };
+		        case DialogInterface.BUTTON_NEGATIVE:
+		        
+		        	//do nothing
+		            break;
+		        }
+		    }
+		};
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage(R.string.tor_check).setPositiveButton(R.string.btn_okay, dialogClickListener)
-                    .setNegativeButton(R.string.btn_cancel, dialogClickListener).show();
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setMessage(R.string.tor_check).setPositiveButton(R.string.btn_okay, dialogClickListener)
+		    .setNegativeButton(R.string.btn_cancel, dialogClickListener).show();
 
-        }
-        
-        /**
-        * this adds a port to the list of hidden service ports
-        * we might want to add remove/disable port too
-        * this is used by external apps that launch an intent
-        * to request a hidden service on a specific port
-        * currently, we haven't promoted this intent API or capability
-        * that much, but we hope to
-        **/
-        private void enableHiddenServicePort (int hsPort)
-        {
-                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-                Editor pEdit = prefs.edit();
-                
-                String hsPortString = prefs.getString("pref_hs_ports", "");
-                
-                if (hsPortString.length() > 0 && hsPortString.indexOf(hsPort+"")==-1)
-                        hsPortString += ',' + hsPort;
-                else
-                        hsPortString = hsPort + "";
-                
-                pEdit.putString("pref_hs_ports", hsPortString);
-                pEdit.putBoolean("pref_hs_enable", true);
-                
-                pEdit.commit();
-                
-                String onionHostname = prefs.getString("pref_hs_hostname","");
+	}
+	
+	private void enableHiddenServicePort (int hsPort)
+	{
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		Editor pEdit = prefs.edit();
+		
+		String hsPortString = prefs.getString("pref_hs_ports", "");
+		
+		if (hsPortString.length() > 0 && hsPortString.indexOf(hsPort+"")==-1)
+			hsPortString += ',' + hsPort;
+		else
+			hsPortString = hsPort + "";
+		
+		pEdit.putString("pref_hs_ports", hsPortString);
+		pEdit.putBoolean("pref_hs_enable", true);
+		
+		pEdit.commit();
+		
+		String onionHostname = prefs.getString("pref_hs_hostname","");
 
-                Intent nResult = new Intent();
-                nResult.putExtra("hs_host", onionHostname);
-                setResult(RESULT_OK, nResult);
-        
-        }
-        
-        /* (non-Javadoc)
-         * @see android.app.Activity#onResume()
-         */
-        protected void onResume() {
-                super.onResume();
-                
-                //this is where we make sure we have a handle to ITorService
-                bindService();
-                
-                //this is a hack which basically pings the ITorService to update our status for the UI
-                // - the dialogbox/progressbar ?
-                // right, this was for when the label displayed the status, and not the progress, so it may
-                // not make as much sense now; there is a bunch of loose ends like this that should be
-                // cleaned up with the transition to the progressdialog - ok
-                updateStatus("");
-                 
-                 //this checks if we were launched via an Intent call from another app or activity
-                 //- how does this matter? if Orbot has been launched via an Intent or not ?
-                 //we want to know if this is a launch by the user from the home screen, or via back, or some
-                 // standard interaction, or if it is another app launching Orbot for a programmatic/API request
-                 // this is how we can add more functionality into ORlib, for instance via Intent launching - hmm ok
-                if (getIntent() == null)
-                        return;
-                
-                String action = getIntent().getAction();
-                
-                if (action == null)
-                        return;
-                
-                //this relates to the previously discussed hidden port capability
-                if (action.equals("org.torproject.android.REQUEST_HS_PORT"))
-                {
-                        
-                        //tell the user an app is trying to open a hidden port and ask for permission
-                        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                switch (which){
-                                case DialogInterface.BUTTON_POSITIVE:
-                                    
-                                        int hsPort = getIntent().getIntExtra("hs_port", -1);
-                                                
-                                        enableHiddenServicePort (hsPort);
-                                        
-                                                finish();
-                                                
-                                        
-                                    break;
+		Intent nResult = new Intent();
+		nResult.putExtra("hs_host", onionHostname);
+		setResult(RESULT_OK, nResult);
+	
+	}
+	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onResume()
+	 */
+	protected void onResume() {
+		super.onResume();
+		
+		bindService();
+		
+		 updateStatus("");
+		 
+		if (getIntent() == null)
+			return;
+		
+		String action = getIntent().getAction();
+		
+		if (action == null)
+			return;
+		
+		if (action.equals("org.torproject.android.REQUEST_HS_PORT"))
+		{
+			
+			DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+			    @Override
+			    public void onClick(DialogInterface dialog, int which) {
+			        switch (which){
+			        case DialogInterface.BUTTON_POSITIVE:
+			            
+			        	int hsPort = getIntent().getIntExtra("hs_port", -1);
+						
+			        	enableHiddenServicePort (hsPort);
+			        	
+						finish();
+						
+			        	
+			            break;
 
-                                case DialogInterface.BUTTON_NEGATIVE:
-                                    //No button clicked
-                                        finish();
-                                    break;
-                                }
-                            }
-                        };
+			        case DialogInterface.BUTTON_NEGATIVE:
+			            //No button clicked
+			        	finish();
+			            break;
+			        }
+			    }
+			};
 
-                int hsPort = getIntent().getIntExtra("hs_port", -1);
+        	int hsPort = getIntent().getIntExtra("hs_port", -1);
 
-                        String requestMsg = "An app wants to open a server port (" + hsPort + ") to the Tor network. This is safe if you trust the app.";
-                        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                        builder.setMessage(requestMsg).setPositiveButton("Allow", dialogClickListener)
-                            .setNegativeButton("Deny", dialogClickListener).show();
-                        
-                
-                }
-                else if (action.equals("org.torproject.android.START_TOR")) //this is the intent used to start Tor from another app, again meant for ORlib functionality
-                {
-                        autoStartOnBind = true;
-                        
-                        if (mService == null)
-                                bindService();
-                        
-                }
-                else
-                {
-                        //hmm not sure when this is ever reached honestly ;P
-                        //but it looks like a general UI reset
-                        
-                        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                        mNotificationManager.cancelAll();
-                        
-                        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        
-                        boolean showWizard = prefs.getBoolean("show_wizard",true);
-                        
-                        if (showWizard)
-                        {
-                        
-                                Editor pEdit = prefs.edit();
-                                
-                                pEdit.putBoolean("show_wizard",false);
-                                
-                                pEdit.commit();
-                                
-                            new WizardHelper(this).showWizard();
+			String requestMsg = "An app wants to open a server port (" + hsPort + ") to the Tor network. This is safe if you trust the app.";
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage(requestMsg).setPositiveButton("Allow", dialogClickListener)
+			    .setNegativeButton("Deny", dialogClickListener).show();
+			
+		
+		}
+		else if (action.equals("org.torproject.android.START_TOR"))
+		{
+			autoStartOnBind = true;
+			
+			if (mService == null)
+				bindService();
+			
+		}
+		else
+		{
+			
+			//setTitle(getString(R.string.app_name) + ' ' + getString(R.string.app_version));
+	    
+			NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+			mNotificationManager.cancelAll();
+			
+			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+	
+			boolean showWizard = prefs.getBoolean("show_wizard",true);
+			
+			if (showWizard)
+			{
+			
+				Editor pEdit = prefs.edit();
+				
+				pEdit.putBoolean("show_wizard",false);
+				
+				pEdit.commit();
+				
+				startActivityForResult(new Intent(getBaseContext(), LotsaText.class), 1);
 
-                        }
-                        
-                }
-        }
+			}
+			
+		}
+	}
 
-        /* (non-Javadoc)
-         * @see android.app.Activity#onStart()
-         */
-        protected void onStart() {
-                super.onStart();
-                
-                
-                updateStatus ("");
-                
-        }
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onStart()
+	 */
+	protected void onStart() {
+		super.onStart();
+		
+		
+		updateStatus ("");
+		
+	}
 
-        /* (non-Javadoc)
-         * @see android.app.Activity#onStop()
-         */
-        protected void onStop() {
-                super.onStop();
-                
-                //unbindService();
-        }
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onStop()
+	 */
+	protected void onStop() {
+		super.onStop();
+		
+		//unbindService();
+	}
 
 
 
-        /*
-         * Launch the system activity for Uri viewing with the provided url
-         */
-        private void openBrowser(String url)
-        {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
-                
-        }
-        
-        
-        
-        /*
-         * Show the help view - a popup dialog
-         */
-        private void showHelp ()
-        {
-                
-       new WizardHelper(this).showWizard();
-        }
-        
-        
+	/*
+	 * Launch the system activity for Uri viewing with the provided url
+	 */
+	private void openBrowser(String url)
+	{
+		startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+		
+	}
+	
+	
+	
+	/*
+	 * Show the help view - a popup dialog
+	 */
+	private void showHelp ()
+	{
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+		Editor pEdit = prefs.edit();
+		pEdit.putBoolean("wizardscreen1",true);
+		pEdit.commit();
+		startActivityForResult(new Intent(getBaseContext(), LotsaText.class), 1);
+	}
+	
+	
     /*
      * Load the basic settings application to display torrc
      */

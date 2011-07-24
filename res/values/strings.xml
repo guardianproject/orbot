@@ -130,9 +130,32 @@
     <string name="pref_general_group">General</string>
     <string name="pref_start_boot_title">Start Orbot on Boot</string>
     <string name="pref_start_boot_summary">Automatically start Orbot and connect Tor when your Android device boots</string>
-    
-    <string name="pref_transparent_tethering_title">Tor Tethering</string>
+ <!--  New Wizard Strings -->
+	<!-- Title Screen -->
+	<string name="wizard_title_msg">Orbot brings Tor to Android \n\nTor helps you defend against a form of network surveillance that threatens privacy, confidential business activity and relationships, and state security known as traffic analysis</string>
+	<!-- Warning screen -->
+	<string name="wizard_warning_title">Warning</string>
+	<string name="wizard_warning_msg">Simply installing Orbot will not automatically anonymize your mobile traffic.\n\nPlease follow the following steps to get started</string>
+	<!-- Permissions screen -->
+	<string name="wizard_permissions_title">Permissions</string>
+	<string name="wizard_permissions_root_msg1">Orbot has detected that you have root permissions enabled. To enable \'Transparent Proxying\', please grant superuser privileges to Orbot</string>
+	<string name="wizard_permissions_root_msg2">If you choose to continue without providing superuser privileges, make sure to use apps made to work with orbot</string>
+	<string name="wizard_permissions_msg">Orbot has detected that you do not have root permissions.\nTransparent Proxying is not possible without superuser privileges.\nMake sure to use apps that have been configured to work with Orbot</string>
+	<!-- TipsAndTricks screen -->
+	<string name="wizard_tips_title">Orbot configured Apps</string>
+	<string name="wizard_tips_gibberbot">Gibberbot - Secure instant messaging client for Android</string>
+	<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
+	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
+	<string name="gibberbot_apk_url">https://market.android.com/details?id=info.guardianproject.otr.app.im</string>
+    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
+    <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>
+    <!-- Transparent Proxy screen -->
+    <string name="wizard_transproxy_title">Transparent Proxy</string>
+    <string name="wizard_transproxy_msg">Transparent Proxying allows you to redirect client requests without any special configuration or knowledge at the client.</string>
+    <string name="wizard_transproxy_hint">(Check this box if you have no idea what we are talking about)</string>
+    <string name="wizard_transproxy_none">None</string>
+
+ <string name="pref_transparent_tethering_title">Tor Tethering</string>
 	<string name="pref_transparent_tethering_summary">Enable Tor Transparent Proxying for Wifi and USB Tethered Devices</string>
-    
-    
+   
 </resources>

@@ -215,7 +215,7 @@ public class WizardHelper implements TorConstants {
 		LayoutInflater li = LayoutInflater.from(context);
         View view = li.inflate(R.layout.layout_wizard_tips, null); 
         
-        Button btn1 = (Button)view.findViewById(R.id.WizardRootButtonInstallOtrchat);
+        Button btn1 = (Button)view.findViewById(R.id.WizardRootButtonInstallGibberbot);
         
         btn1.setOnClickListener(new OnClickListener() {
 			
@@ -228,7 +228,7 @@ public class WizardHelper implements TorConstants {
 			}
 		});
         
-        Button btn2 = (Button)view.findViewById(R.id.WizardRootButtonInstallOrweb);
+        Button btn2 = (Button)view.findViewById(R.id.WizardRootButtonInstallFirefox);
 
         btn2.setOnClickListener(new OnClickListener() {
 			
@@ -241,7 +241,7 @@ public class WizardHelper implements TorConstants {
 			}
 		});
         
-        Button btn3 = (Button)view.findViewById(R.id.WizardRootButtonProxyHelp);
+        Button btn3 = (Button)view.findViewById(R.id.WizardRootButtonInstallProxyMob);
         
         btn3.setOnClickListener(new OnClickListener() {
 			
@@ -277,7 +277,7 @@ public class WizardHelper implements TorConstants {
 	
 	public void showWizardRootConfigureTorification()
 	{
-		
+		/*
 		LayoutInflater li = LayoutInflater.from(context);
         View view = li.inflate(R.layout.layout_wizard_root, null); 
         
@@ -347,7 +347,7 @@ public class WizardHelper implements TorConstants {
 			}
 		});
 
-		  
+		 */ 
       
 	}
 	
