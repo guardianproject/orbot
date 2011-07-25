@@ -58,18 +58,26 @@ public class TorBinaryInstaller implements TorServiceConstants {
 	{
 		
 			
-			InputStream is = context.getResources().openRawResource(R.raw.tor);			
-			streamToFile(is,installPath + TOR_BINARY_ASSET_KEY);
+			InputStream is = context.getResources().openRawResource(R.raw.toraa);			
+			streamToFile(is,installPath + TOR_BINARY_ASSET_KEY, false);
 		
-			
+			is = context.getResources().openRawResource(R.raw.torab);			
+			streamToFile(is,installPath + TOR_BINARY_ASSET_KEY, true);
+		
+			is = context.getResources().openRawResource(R.raw.torac);			
+			streamToFile(is,installPath + TOR_BINARY_ASSET_KEY, true);
+		
+			is = context.getResources().openRawResource(R.raw.torad);			
+			streamToFile(is,installPath + TOR_BINARY_ASSET_KEY, true);
+		
 			is = context.getResources().openRawResource(R.raw.torrc);			
-			streamToFile(is,installPath + TORRC_ASSET_KEY);
+			streamToFile(is,installPath + TORRC_ASSET_KEY, false);
 
 			is = context.getResources().openRawResource(R.raw.privoxy);			
-			streamToFile(is,installPath + PRIVOXY_ASSET_KEY);
+			streamToFile(is,installPath + PRIVOXY_ASSET_KEY, false);
 
 			is = context.getResources().openRawResource(R.raw.privoxy_config);			
-			streamToFile(is,installPath + PRIVOXYCONFIG_ASSET_KEY);
+			streamToFile(is,installPath + PRIVOXYCONFIG_ASSET_KEY, false);
 
 			
 			
@@ -77,9 +85,8 @@ public class TorBinaryInstaller implements TorServiceConstants {
 	
 		
 	}
+	
 	/*
-	 * Extract the Tor binary from the APK file using ZIP
-	 */
 	private void installFromZip ()
 	{
 		
@@ -89,7 +96,7 @@ public class TorBinaryInstaller implements TorServiceConstants {
 			ZipFile zip = new ZipFile(apkPath);
 	
 			ZipEntry zipen = zip.getEntry(ASSETS_BASE + TOR_BINARY_ASSET_KEY);
-			streamToFile(zip.getInputStream(zipen),installPath + TOR_BINARY_ASSET_KEY);
+			streamToFile(zip.getInputStream(zipen),installPath + TOR_BINARY_ASSET_KEY, false);
 			
 			zipen = zip.getEntry(ASSETS_BASE + TORRC_ASSET_KEY);
 			streamToFile(zip.getInputStream(zipen),installPath + TORRC_ASSET_KEY);
@@ -115,11 +122,12 @@ public class TorBinaryInstaller implements TorServiceConstants {
 		
 		}
 	}
+	*/
 	
 	/*
 	 * Write the inputstream contents to the file
 	 */
-    private static void streamToFile(InputStream stm, String targetFilename)
+    private static void streamToFile(InputStream stm, String targetFilename, boolean append)
 
     {
 
@@ -133,7 +141,8 @@ public class TorBinaryInstaller implements TorServiceConstants {
         File outFile = new File(targetFilename);
         
         try {
-            outFile.createNewFile();
+           if (!append)
+        	   outFile.createNewFile();
 
         	stmOut = new FileOutputStream(outFile);
         }
