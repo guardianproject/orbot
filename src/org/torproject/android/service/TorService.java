@@ -60,15 +60,12 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     private ArrayList<String> resetBuffer = null;
      
    
-    private String appHome;
-    private String appBinHome;
-    private String appDataHome;
+   //   private String appHome;
+    private File appBinHome;
+    private File appDataHome;
     
     private String torBinaryPath;
     private String privoxyPath;
-    
-	
-    private boolean hasRoot = false;
     
     /** Called when the activity is first created. */
     public void onCreate() {
@@ -419,36 +416,34 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     	//check and install iptables
     	IptablesManager.assertBinaries(this, true);
     	
-    	File fileInstall = getDir("bin/",0);
     	
-		appHome = fileInstall.getAbsolutePath();
-		appDataHome = getCacheDir().getAbsolutePath() + '/';
-		logNotice( "appHome=" + appHome);
+    	appBinHome = getDir("bin",0);
+    	appDataHome = getCacheDir();
+    	
+	//	logNotice( "appHome=" + appHome);
 		
-		torBinaryPath = appBinHome + TOR_BINARY_ASSET_KEY;
-    	privoxyPath = appBinHome + PRIVOXY_ASSET_KEY;
-    	
+		File fileTor = new File(appBinHome, TOR_BINARY_ASSET_KEY);
+		File filePrivoxy = new File(appBinHome, PRIVOXY_ASSET_KEY);
+
+		
 		logNotice( "checking Tor binaries");
-	    
-		boolean torBinaryExists = new File(torBinaryPath).exists();
-		boolean privoxyBinaryExists = new File(privoxyPath).exists();
 		
-		if (!(torBinaryExists && privoxyBinaryExists))
+		if (!(fileTor.exists() && filePrivoxy.exists()))
 		{
 			killTorProcess ();
 			
-			TorBinaryInstaller installer = new TorBinaryInstaller(this, appBinHome, appBinHome); 
-			installer.start(true);
+			TorBinaryInstaller installer = new TorBinaryInstaller(this, appBinHome); 
+			boolean success = installer.installFromRaw();
 			
-			torBinaryExists = new File(torBinaryPath).exists();
-			privoxyBinaryExists = new File(privoxyPath).exists();
-			
-    		if (torBinaryExists && privoxyBinaryExists)
+    		if (success)
     		{
     			logNotice(getString(R.string.status_install_success));
     	
     			showToolbarNotification(getString(R.string.status_install_success), NOTIFY_ID, R.drawable.tornotification);
     		
+
+    			torBinaryPath = fileTor.getAbsolutePath();
+    			privoxyPath = filePrivoxy.getAbsolutePath();
     		}
     		else
     		{
@@ -466,6 +461,9 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 			logNotice("Found Tor binary: " + torBinaryPath);
 			logNotice("Found Privoxy binary: " + privoxyPath);
 
+
+			torBinaryPath = fileTor.getAbsolutePath();
+			privoxyPath = filePrivoxy.getAbsolutePath();
 		}
 	
 		StringBuilder log = new StringBuilder ();
@@ -627,9 +625,9 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     	
     	StringBuilder log = new StringBuilder();
 		
-		String torrcPath = appBinHome + TORRC_ASSET_KEY;
+		String torrcPath = new File(appBinHome, TORRC_ASSET_KEY).getAbsolutePath();
 		
-		String[] torCmd = {torBinaryPath + " DataDirectory " + appDataHome + " -f " + torrcPath  + " || exit\n"};
+		String[] torCmd = {torBinaryPath + " DataDirectory " + appDataHome.getAbsolutePath() + " -f " + torrcPath  + " || exit\n"};
 		
 		boolean runAsRootFalse = false;
 		boolean waitForProcess = false;
@@ -697,7 +695,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     		{
     			log = new StringBuilder();
     			
-    			String privoxyConfigPath = appBinHome + PRIVOXYCONFIG_ASSET_KEY;
+    			String privoxyConfigPath = new File(appBinHome, PRIVOXYCONFIG_ASSET_KEY).getAbsolutePath();
     			
     			String[] cmds = 
     			{ privoxyPath + " " + privoxyConfigPath + " &" };
@@ -762,7 +760,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 
 					logNotice( "SUCCESS connected to control port");
 			        
-			        String torAuthCookie = appDataHome + TOR_CONTROL_COOKIE;
+			        String torAuthCookie = new File(appDataHome, TOR_CONTROL_COOKIE).getAbsolutePath();
 			        
 			        File fileCookie = new File(torAuthCookie);
 			        
@@ -1406,7 +1404,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 
         if (enableHiddenServices)
         {
-        	mBinder.updateConfiguration("HiddenServiceDir",appDataHome, false);
+        	mBinder.updateConfiguration("HiddenServiceDir",appDataHome.getAbsolutePath(), false);
         	
         	String hsPorts = prefs.getString("pref_hs_ports","");
         	

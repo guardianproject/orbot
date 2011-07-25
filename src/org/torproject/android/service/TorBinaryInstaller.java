@@ -20,169 +20,88 @@ import android.util.Log;
 public class TorBinaryInstaller implements TorServiceConstants {
 
 	
-	String installPath;
-	String apkPath;
+	File installFolder;
 	Context context;
 	
-	public TorBinaryInstaller (Context context, String installPath, String apkPath)
+	public TorBinaryInstaller (Context context, File installFolder)
 	{
-		this.installPath = installPath;
-		this.apkPath = apkPath;
+		this.installFolder = installFolder;
+		
 		this.context = context;
-	}
-	
-	/*
-	 * Start the binary installation if the file doesn't exist or is forced
-	 */
-	public void start (boolean force)
-	{
-		
-		boolean torBinaryExists = new File(installPath + TOR_BINARY_ASSET_KEY).exists();
-		Log.d(TAG,"Tor binary exists=" + torBinaryExists);
-		
-		boolean privoxyBinaryExists = new File(installPath + PRIVOXY_ASSET_KEY).exists();
-		Log.d(TAG,"Privoxy binary exists=" + privoxyBinaryExists);
-	
-		if (!(torBinaryExists && privoxyBinaryExists) || force)
-			installFromRaw ();
-		
-	
-		
 	}
 	
 	//		
 	/*
 	 * Extract the Tor binary from the APK file using ZIP
 	 */
-	private void installFromRaw () 
+	public boolean installFromRaw () 
 	{
+		boolean result = false;
 		
 			
-			InputStream is = context.getResources().openRawResource(R.raw.toraa);			
-			streamToFile(is,installPath + TOR_BINARY_ASSET_KEY, false);
-		
-			is = context.getResources().openRawResource(R.raw.torab);			
-			streamToFile(is,installPath + TOR_BINARY_ASSET_KEY, true);
-		
-			is = context.getResources().openRawResource(R.raw.torac);			
-			streamToFile(is,installPath + TOR_BINARY_ASSET_KEY, true);
-		
-			is = context.getResources().openRawResource(R.raw.torad);			
-			streamToFile(is,installPath + TOR_BINARY_ASSET_KEY, true);
-		
-			is = context.getResources().openRawResource(R.raw.torrc);			
-			streamToFile(is,installPath + TORRC_ASSET_KEY, false);
-
-			is = context.getResources().openRawResource(R.raw.privoxy);			
-			streamToFile(is,installPath + PRIVOXY_ASSET_KEY, false);
-
-			is = context.getResources().openRawResource(R.raw.privoxy_config);			
-			streamToFile(is,installPath + PRIVOXYCONFIG_ASSET_KEY, false);
-
-			
-			
-			Log.d(TAG,"SUCCESS: installed tor, privoxy binaries from raw");
-	
-		
-	}
-	
-	/*
-	private void installFromZip ()
-	{
-		
 		try
 		{
+			InputStream is;
 			
-			ZipFile zip = new ZipFile(apkPath);
+			is = context.getResources().openRawResource(R.raw.toraa);			
+			streamToFile(is,installFolder, TOR_BINARY_ASSET_KEY, false);
+		
+			is = context.getResources().openRawResource(R.raw.torab);			
+			streamToFile(is,installFolder, TOR_BINARY_ASSET_KEY, true);
+		
+			is = context.getResources().openRawResource(R.raw.torac);			
+			streamToFile(is,installFolder, TOR_BINARY_ASSET_KEY, true);
+		
+			is = context.getResources().openRawResource(R.raw.torad);			
+			streamToFile(is,installFolder, TOR_BINARY_ASSET_KEY, true);
+		
+			is = context.getResources().openRawResource(R.raw.torrc);			
+			streamToFile(is,installFolder, TORRC_ASSET_KEY, false);
 	
-			ZipEntry zipen = zip.getEntry(ASSETS_BASE + TOR_BINARY_ASSET_KEY);
-			streamToFile(zip.getInputStream(zipen),installPath + TOR_BINARY_ASSET_KEY, false);
-			
-			zipen = zip.getEntry(ASSETS_BASE + TORRC_ASSET_KEY);
-			streamToFile(zip.getInputStream(zipen),installPath + TORRC_ASSET_KEY);
-			
-			zipen = zip.getEntry(ASSETS_BASE + PRIVOXY_ASSET_KEY);
-			streamToFile(zip.getInputStream(zipen),installPath + PRIVOXY_ASSET_KEY);
-			
-			zipen = zip.getEntry(ASSETS_BASE + PRIVOXYCONFIG_ASSET_KEY);
-			streamToFile(zip.getInputStream(zipen),installPath + PRIVOXYCONFIG_ASSET_KEY);
-			
-			zipen = zip.getEntry(ASSETS_BASE + PRIVOXYCONFIG_ASSET_KEY);
-			streamToFile(zip.getInputStream(zipen),installPath + PRIVOXYCONFIG_ASSET_KEY);
-			
-			
-			zip.close();
-			
-			Log.d(TAG,"SUCCESS: unzipped tor, privoxy, iptables binaries from apk");
+			is = context.getResources().openRawResource(R.raw.privoxy);			
+			streamToFile(is,installFolder, PRIVOXY_ASSET_KEY, false);
 	
+			is = context.getResources().openRawResource(R.raw.privoxy_config);			
+			streamToFile(is,installFolder, PRIVOXYCONFIG_ASSET_KEY, false);
+
 		}
 		catch (IOException ioe)
 		{
-			Log.d(TAG,"FAIL: unable to unzip binaries from apk",ioe);
-		
+			Log.e(TAG, "unable to install tor binaries from raw", ioe);
+			return false;
 		}
-	}
-	*/
+			
 	
+		return true;
+	}
+	
+
 	/*
 	 * Write the inputstream contents to the file
 	 */
-    private static void streamToFile(InputStream stm, String targetFilename, boolean append)
+    private static boolean streamToFile(InputStream stm, File folder, String targetFilename, boolean append) throws IOException
 
     {
-
-        FileOutputStream stmOut = null;
-
         byte[] buffer = new byte[FILE_WRITE_BUFFER_SIZE];
 
         int bytecount;
 
-       
-        File outFile = new File(targetFilename);
+        File outFile = new File(folder, targetFilename);
+
+    	FileOutputStream stmOut = new FileOutputStream(outFile, append);
+    	
+        while ((bytecount = stm.read(buffer)) > 0)
+
+        {
+
+            stmOut.write(buffer, 0, bytecount);
+
+        }
+
+        stmOut.close();
+
         
-        try {
-           if (!append)
-        	   outFile.createNewFile();
-
-        	stmOut = new FileOutputStream(outFile);
-        }
-
-        catch (java.io.IOException e)
-
-        {
-
-        	Log.d(TAG,"Error opening output file " + targetFilename,e);
-
-        	return;
-        }
-
-       
-
-        try
-
-        {
-
-            while ((bytecount = stm.read(buffer)) > 0)
-
-            {
-
-                stmOut.write(buffer, 0, bytecount);
-
-            }
-
-            stmOut.close();
-
-        }
-
-        catch (java.io.IOException e)
-
-        {
-
-            Log.d(TAG,"Error writing output file '" + targetFilename + "': " + e.toString());
-
-            return;
-
-        }
+        return true;
 
     }
 	
