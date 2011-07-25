@@ -26,6 +26,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -136,16 +137,24 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
     private void showAbout ()
         {
                 
-                LayoutInflater li = LayoutInflater.from(this);
-        View view = li.inflate(R.layout.layout_about, null); 
-        
-        TextView versionName = (TextView)view.findViewById(R.id.versionName);
-        versionName.setText(R.string.app_version);    
-        
-                new AlertDialog.Builder(this)
-        .setTitle(getString(R.string.button_about))
-        .setView(view)
-        .show();
+	        LayoutInflater li = LayoutInflater.from(this);
+	        View view = li.inflate(R.layout.layout_about, null); 
+	        
+	        String version = "";
+	        
+	        try {
+	        	version = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+	        } catch (NameNotFoundException e) {
+	        	version = "Version Not Found";
+	        }
+	        
+	        TextView versionName = (TextView)view.findViewById(R.id.versionName);
+	        versionName.setText(version);    
+	        
+	                new AlertDialog.Builder(this)
+	        .setTitle(getString(R.string.button_about))
+	        .setView(view)
+	        .show();
         }
     
     /* When a menu item is selected launch the appropriate view or activity

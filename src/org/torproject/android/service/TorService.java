@@ -416,16 +416,12 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     
     private boolean checkTorBinaries () throws Exception
     {
-    	//android.os.Debug.waitForDebugger();
-    	
     	//check and install iptables
-    	Api.assertBinaries(this, true);
+    	IptablesManager.assertBinaries(this, true);
     	
-    	File fileInstall = getDir("",0);
-    	String subBinPath = "bin/";
+    	File fileInstall = getDir("bin/",0);
     	
 		appHome = fileInstall.getAbsolutePath();
-		appBinHome = appHome + subBinPath;
 		appDataHome = getCacheDir().getAbsolutePath() + '/';
 		logNotice( "appHome=" + appHome);
 		
