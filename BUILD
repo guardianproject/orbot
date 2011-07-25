@@ -124,7 +124,13 @@ Finally, we'll make a proper Android package with ant and the Android App SDK:
 	export APP_SDK=~/Documents/projects/android/android-sdk-linux_x86-1.5_r3/tools
 	cd ../Orbot/
 	cp $DROID_ROOT/external/privoxy/privoxy-3.0.12-stable/privoxy assets/privoxy
-	cp $DROID_ROOT/external/tor/tor/src/or/tor assets/tor
+
+Now you need to split and copy the tor binary into res/raw. We split it into < 1M chunks
+because some Android devices don't like resources larger than 1M.
+
+	split --bytes=1m $DROID_ROOT/external/tor/tor/src/or/tor res/raw/tor
+
+Now build the Android app
 	$APP_SDK/android update project --name Orbot --target 3 --path .
 	ant release
 
