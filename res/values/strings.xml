@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Orbot</string>
-             <string name="app_version">1.0.5.2</string>
      
     <string name="internal_web_url">http://orbot/</string>
     <string name="default_web_url">http://check.torproject.org</string>
@@ -158,4 +157,14 @@
  <string name="pref_transparent_tethering_title">Tor Tethering</string>
 	<string name="pref_transparent_tethering_summary">Enable Tor Transparent Proxying for Wifi and USB Tethered Devices</string>
    
+   
+<string name="pref_select_apps">Select Apps</string>
+<string name="pref_select_apps_summary">Choose Apps to Route Through Tor</string>
+
+<string name="pref_node_configuration">Node Configuration</string>
+<string name="pref_node_configuration_summary">These are advanced settings that can reduce your anonymity</string>
+
+<string name="pref_entrance_node">Entrance Nodes</string>
+<string name="pref_entrance_node_summary">Fingerprints, nicks, countries and addresses for the first hop</string>
+<string name="pref_entrance_node_dialog">Enter Entrance Nodes</string>
 </resources>
