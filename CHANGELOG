@@ -2,6 +2,8 @@ NOTE: Specific #s below correspond to Trac tickets logged and maintained at http
 
 1.0.5.3
 - added auto-tor of wireless and usb tethering
+- integrated new setup wizard
+- moved large tor binary into split multiple 1M segments to fix for devices with 1M resource limit
 
 1.0.5.1/.2
 - small updates to layout of main screen to fit smaller screens
