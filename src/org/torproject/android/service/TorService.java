@@ -1109,7 +1109,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		}
 		
 	}
-
+	
 	public void bandwidthUsed(long read, long written) {
 		
 		if (ENABLE_DEBUG_LOG)
@@ -1120,7 +1120,14 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			sb.append("kb read / ");
 			sb.append(written/1000);
 			sb.append("kb written");
-			
+	   /*		try {
+				sb.append("Total upload :"+conn.getInfo("traffic/written"));
+				sb.append("Total Download "+conn.getInfo("traffic/read"));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		*/	
 			logNotice(sb.toString());
 		}
 		
