@@ -55,7 +55,7 @@ import android.widget.Toast;
  * Contains shared programming interfaces.
  * All iptables "communication" is handled by this class.
  */
-public final class Api {
+public final class IptablesManager {
 	/** application version string */
 	public static final String VERSION = "1.5.1-dev";
 	/** special application UID used to indicate "any application" */
@@ -861,8 +861,8 @@ public final class Api {
 			return;
 		}
 		/* notify */
-		final Intent message = new Intent(Api.STATUS_CHANGED_MSG);
-        message.putExtra(Api.STATUS_EXTRA, enabled);
+		final Intent message = new Intent(IptablesManager.STATUS_CHANGED_MSG);
+        message.putExtra(IptablesManager.STATUS_EXTRA, enabled);
         ctx.sendBroadcast(message);
 	}
 	/**

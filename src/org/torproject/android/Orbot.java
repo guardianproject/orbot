@@ -1,7 +1,9 @@
-/* Copyright (c) 2009, Nathan Freitas, Orbot / The Guardian Project - http://openideals.com/guardian */
+/* Copyright (c) 2009, Nathan Freitas, Orbot / The Guardian Project - https://guardianproject.info */
 /* See LICENSE for licensing information */
 
 package org.torproject.android;
+
+
 
 
 import java.io.File;
@@ -24,6 +26,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -45,43 +48,56 @@ import android.widget.TextView;
 
 public class Orbot extends Activity implements OnLongClickListener, TorConstants
 {
-	
-	/* Useful UI bits */
-	private TextView lblStatus = null; //the main text display widget
-	private ImageView imgStatus = null; //the main touchable image for activating Orbot
-	private ProgressDialog progressDialog;
-	private MenuItem mItemOnOff = null;
-	
-	/* Some tracking bits */
-	private int torStatus = STATUS_READY; //latest status reported from the tor service
-	
-	/* Tor Service interaction */
-		/* The primary interface we will be calling on the service. */
-    ITorService mService = null;
-	private boolean autoStartOnBind = false;
+        
+        /* Useful UI bits */
+        // so this is probably pretty obvious, here, but also an area
+        // which we might see quite a bit of change+complexity was the main screen
+        // UI gets new features
+        private TextView lblStatus = null; //the main text display widget
+        private ImageView imgStatus = null; //the main touchable image for activating Orbot
+        private ProgressDialog progressDialog; //the spinning progress dialog that shows up now and then
+        private MenuItem mItemOnOff = null; //the menu item which we toggle based on Orbot state
+        
+        /* Some tracking bits */
+        private int torStatus = STATUS_READY; //latest status reported from the tor service
+        // this is a value we get passed back from the TorService
+        
+        /* Tor Service interaction */
+         /* The primary interface we will be calling on the service. */
+        ITorService mService = null; //interface to remote TorService 
+        private boolean autoStartOnBind = false; //controls whether service starts when class binds to it
 
-	SharedPreferences prefs;
-	
-    /** Called when the activity is first created. */
+        SharedPreferences prefs; //what the user really wants!
+        
+    /** 
+    * When the Orbot activity is created, we call startService
+    * to ensure the Tor remote service is running. However, it may
+    * already be running, and this should not create more than one instnace
+     */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
       //if Tor binary is not running, then start the service up
-		startService(new Intent(INTENT_TOR_SERVICE));
-		
-
-    	setTheme(android.R.style.Theme_Black_NoTitleBar);
-    	
-    	prefs = PreferenceManager.getDefaultSharedPreferences(this);
-    	
-    	setContentView(R.layout.layout_main);
-		
-    	lblStatus = (TextView)findViewById(R.id.lblStatus);
-		lblStatus.setOnLongClickListener(this);
-    	imgStatus = (ImageView)findViewById(R.id.imgStatus);
-    	imgStatus.setOnLongClickListener(this);
-    	
-    	
+      //might want to look at whether we need to call this every time
+      //or whether binding to the service is enough
+                startService(new Intent(INTENT_TOR_SERVICE));
+                
+            //something to play with on the UI branch
+            setTheme(android.R.style.Theme_Black_NoTitleBar);
+            
+            prefs = PreferenceManager.getDefaultSharedPreferences(this);
+            
+            //same here - layout_main has been cleaned up since 1.0.5.2 a bit (removed table as you recmnd)
+            //but ther eis more to be done
+            setContentView(R.layout.layout_main);
+                
+            //obvious? -yep got everything so far
+            lblStatus = (TextView)findViewById(R.id.lblStatus);
+                lblStatus.setOnLongClickListener(this);
+            imgStatus = (ImageView)findViewById(R.id.imgStatus);
+            imgStatus.setOnLongClickListener(this);
+            
+            
 
     }
     
@@ -119,130 +135,150 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
     
 
     private void showAbout ()
-	{
-		
-		LayoutInflater li = LayoutInflater.from(this);
-        View view = li.inflate(R.layout.layout_about, null); 
-        
-        TextView versionName = (TextView)view.findViewById(R.id.versionName);
-        versionName.setText(R.string.app_version);    
-        
-		new AlertDialog.Builder(this)
-        .setTitle(getString(R.string.button_about))
-        .setView(view)
-        .show();
-	}
+        {
+                
+	        LayoutInflater li = LayoutInflater.from(this);
+	        View view = li.inflate(R.layout.layout_about, null); 
+	        
+	        String version = "";
+	        
+	        try {
+	        	version = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+	        } catch (NameNotFoundException e) {
+	        	version = "Version Not Found";
+	        }
+	        
+	        TextView versionName = (TextView)view.findViewById(R.id.versionName);
+	        versionName.setText(version);    
+	        
+	                new AlertDialog.Builder(this)
+	        .setTitle(getString(R.string.button_about))
+	        .setView(view)
+	        .show();
+        }
     
     /* When a menu item is selected launch the appropriate view or activity
      * (non-Javadoc)
-	 * @see android.app.Activity#onMenuItemSelected(int, android.view.MenuItem)
-	 */
-	public boolean onMenuItemSelected(int featureId, MenuItem item) {
-		
-		super.onMenuItemSelected(featureId, item);
-		
-		if (item.getItemId() == 1)
-		{
-			
-			try
-			{
-				
-				if (mService == null)
-				{
-				
-				}
-				else if (mService.getStatus() == STATUS_READY)
-				{
-		    		if (mItemOnOff != null)
-		    			mItemOnOff.setTitle(R.string.menu_stop);
-					startTor();
-					
-				}
-				else
-				{
-		    		if (mItemOnOff != null)
-		    			mItemOnOff.setTitle(R.string.menu_start);
-					stopTor();
-					
-				}
-				
-			}
-			catch (RemoteException re)
-			{
-				Log.w(TAG, "Unable to start/top Tor from menu UI", re);
-			}
-		}
-		else if (item.getItemId() == 4)
-		{
-			showSettings();
-		}
-		else if (item.getItemId() == 3)
-		{
-			showHelp();
-		}
-		else if (item.getItemId() == 7)
-		{
-			doTorCheck();
-		}
-		else if (item.getItemId() == 8)
-		{
-			//exit app
-			doExit();
-			
-			
-		}
-		else if (item.getItemId() == 6)
-		{
-			showAbout();
-			
-			
-		}
-		
+         * @see android.app.Activity#onMenuItemSelected(int, android.view.MenuItem)
+         */
+        public boolean onMenuItemSelected(int featureId, MenuItem item) {
+                
+                super.onMenuItemSelected(featureId, item);
+                
+                if (item.getItemId() == 1)
+                {
+                        
+                        try
+                        {
+                                
+                                if (mService == null)
+                                {
+                                
+                                }
+                                else if (mService.getStatus() == STATUS_READY)
+                                {
+                                    if (mItemOnOff != null)
+                                            mItemOnOff.setTitle(R.string.menu_stop);
+                                        startTor();
+                                        
+                                }
+                                else
+                                {
+                                    if (mItemOnOff != null)
+                                            mItemOnOff.setTitle(R.string.menu_start);
+                                        stopTor();
+                                        
+                                }
+                                
+                        }
+                        catch (RemoteException re)
+                        {
+                                Log.w(TAG, "Unable to start/top Tor from menu UI", re);
+                        }
+                }
+                else if (item.getItemId() == 4)
+                {
+                        showSettings();
+                }
+                else if (item.getItemId() == 3)
+                {
+                        showHelp();
+                }
+                else if (item.getItemId() == 7)
+                {
+                        doTorCheck();
+                }
+                else if (item.getItemId() == 8)
+                {
+                        //exit app
+                        doExit();
+                        
+                        
+                }
+                else if (item.getItemId() == 6)
+                {
+                        showAbout();
+                        
+                        
+                }
+                
         return true;
-	}
-	
-	private void doExit ()
-	{
-		try {
-		
-			stopTor();
-			
-			stopService(new Intent(ITorService.class.getName()));
-			
-        	NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-			mNotificationManager.cancelAll();
-		
-			
-		} catch (RemoteException e) {
-			Log.w(TAG, e);
-		}
-		
-		finish();
-		
-	}
-	
-	/* Return to the main view when the back key is pressed
-	 * (non-Javadoc)
-	 * @see android.app.Activity#onKeyDown(int, android.view.KeyEvent)
-	 */
-	/*
-	public boolean onKeyDown(int keyCode, KeyEvent event){
-		
-		if(keyCode==KeyEvent.KEYCODE_BACK){
+        }
+        
+        /**
+        * This is our attempt to REALLY exit Orbot, and stop the background service
+        * However, Android doesn't like people "quitting" apps, and/or our code may not
+        * be quite right b/c no matter what we do, it seems like the TorService still exists
+        **/
+        private void doExit ()
+        {
+                try {
+                
+                        //one of the confusing things about all of this code is the multiple
+                        //places where things like "stopTor" are called, both in the Activity and the Service
+                        //not something to tackle in your first iteration, but i thin we can talk about fixing
+                        //terminology but also making sure there are clear distinctions in control
+                        stopTor();
+                        
+                        //perhaps this should be referenced as INTENT_TOR_SERVICE as in startService
+                        stopService(new Intent(ITorService.class.getName()));
+                        
+                        //clears all notifications from the status bar
+                NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                        mNotificationManager.cancelAll();
+                
+                        
+                } catch (RemoteException e) {
+                        Log.w(TAG, e);
+                }
+                
+                finish();
+                
+        }
+        
+        /* Return to the main view when the back key is pressed
+         * (non-Javadoc)
+         * @see android.app.Activity#onKeyDown(int, android.view.KeyEvent)
+         */
+        /*
+        public boolean onKeyDown(int keyCode, KeyEvent event){
+                
+                //yeah this should probably go away now :) - or not
+                if(keyCode==KeyEvent.KEYCODE_BACK){
 
-			if(currentView != R.layout.layout_main){
-					
-					showMain ();
-					return true;
-			}
-			else{
-				return super.onKeyDown(keyCode, event);
-			}
-		}
-	
-		return super.onKeyDown(keyCode, event);
-		
-	}*/
+                        if(currentView != R.layout.layout_main){
+                                        
+                                        showMain ();
+                                        return true;
+                        }
+                        else{
+                                return super.onKeyDown(keyCode, event);
+                        }
+                }
+        
+                return super.onKeyDown(keyCode, event);
+                
+        }*/
  
     /* (non-Javadoc)
 	 * @see android.app.Activity#onPause()
@@ -408,7 +444,7 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
 				
 				pEdit.commit();
 				
-			    new WizardHelper(this).showWizard();
+				startActivityForResult(new Intent(getBaseContext(), LotsaText.class), 1);
 
 			}
 			
@@ -453,228 +489,259 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
 	 */
 	private void showHelp ()
 	{
-		
-       new WizardHelper(this).showWizard();
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+		Editor pEdit = prefs.edit();
+		pEdit.putBoolean("wizardscreen1",true);
+		pEdit.commit();
+		startActivityForResult(new Intent(getBaseContext(), LotsaText.class), 1);
 	}
 	
 	
     /*
      * Load the basic settings application to display torrc
      */
-	private void showSettings ()
-	{
-		
-		startActivityForResult(new Intent(this, SettingsPreferences.class), 1);
-	}
-	
-	
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-		
-		if (requestCode == 1 && resultCode == 1010 && mService != null)
-		{
-			new ProcessSettingsAsyncTask().execute(mService);	
-		}
-	}
-	
-	AlertDialog aDialog = null;
-	
-	private void showAlert(String title, String msg, boolean button)
-	{
-		try
-		{
-			if (aDialog != null && aDialog.isShowing())
-				aDialog.dismiss();
-		}
-		catch (Exception e){} //swallow any errors
-		
-		 if (button)
-		 {
-				aDialog = new AlertDialog.Builder(this)
-			 .setIcon(R.drawable.icon)
-	         .setTitle(title)
-	         .setMessage(msg)
-	         .setPositiveButton(android.R.string.ok, null)
-	         .show();
-		 }
-		 else
-		 {
-			 aDialog = new AlertDialog.Builder(this)
-			 .setIcon(R.drawable.icon)
-	         .setTitle(title)
-	         .setMessage(msg)
-	         .show();
-		 }
-	
-		 aDialog.setCanceledOnTouchOutside(true);
-	}
+        private void showSettings ()
+        {
+                
+                startActivityForResult(new Intent(this, SettingsPreferences.class), 1);
+        }
+        
+        
+        @Override
+        protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+                super.onActivityResult(requestCode, resultCode, data);
+                
+                //if we get a response from an activity we launched (like from line 527 where we launch the Settings/Prefs screen)
+                //and the resultCode matches our arbitrary 1010 value, AND Tor is running
+                //then update the preferences in an async background task
+                if (requestCode == 1 && resultCode == 1010 && mService != null)
+                {
+                        new ProcessSettingsAsyncTask().execute(mService);        
+                }
+        }
+        
+        AlertDialog aDialog = null;
+        
+        //general alert dialog for mostly Tor warning messages
+        //sometimes this can go haywire or crazy with too many error
+        //messages from Tor, and the user cannot stop or exit Orbot
+        //so need to ensure repeated error messages are not spamming this method
+        private void showAlert(String title, String msg, boolean button)
+        {
+                try
+                {
+                        if (aDialog != null && aDialog.isShowing())
+                                aDialog.dismiss();
+                }
+                catch (Exception e){} //swallow any errors
+                
+                 if (button)
+                 {
+                                aDialog = new AlertDialog.Builder(this)
+                         .setIcon(R.drawable.icon)
+                 .setTitle(title)
+                 .setMessage(msg)
+                 .setPositiveButton(android.R.string.ok, null)
+                 .show();
+                 }
+                 else
+                 {
+                         aDialog = new AlertDialog.Builder(this)
+                         .setIcon(R.drawable.icon)
+                 .setTitle(title)
+                 .setMessage(msg)
+                 .show();
+                 }
+        
+                 aDialog.setCanceledOnTouchOutside(true);
+        }
     /*
      * Set the state of the running/not running graphic and label
+     * this all needs to be looked at w/ the shift to progressDialog
      */
     public void updateStatus (String torServiceMsg)
     {
-    	try
-    	{
-    		
-    		if (mService != null)
-    			torStatus = mService.getStatus();
-    		
-	    	if (imgStatus != null)
-	    	{
-	    		
-		    	if (torStatus == STATUS_ON)
-		    	{
-		    		imgStatus.setImageResource(R.drawable.toron);
+            try
+            {
+                    //if the serivce is bound, query it for the curren status value (int)
+                    if (mService != null)
+                            torStatus = mService.getStatus();
+                    
+                    //now update the layout_main UI based on the status
+                    if (imgStatus != null)
+                    {
+                            
+                            if (torStatus == STATUS_ON)
+                            {
+                                    imgStatus.setImageResource(R.drawable.toron);
 
-		    		hideProgressDialog();
-		    		
-		    		String lblMsg = getString(R.string.status_activated);
-		    		//+ "\n" + torServiceMsg;
-		    		
-		    		lblStatus.setText(lblMsg);
-		    		
-		    		if (torServiceMsg.length() > 0)
-		    			showAlert("Update", torServiceMsg, false);
-		    		
-		    		boolean showFirstTime = prefs.getBoolean("connect_first_time",true);
-		    		
-		    		if (showFirstTime)
-		    		{
-		    		
-		    			Editor pEdit = prefs.edit();
-		    			
-		    			pEdit.putBoolean("connect_first_time",false);
-		    			
-		    			pEdit.commit();
-		    			
-		    			showAlert(getString(R.string.status_activated),getString(R.string.connect_first_time),true);
-		    			
-		    		}
-		    		
-		    		if (mItemOnOff != null)
-		    			mItemOnOff.setTitle(R.string.menu_stop);
-		    		
+                                    hideProgressDialog();
+                                    
+                                    String lblMsg = getString(R.string.status_activated);
+                                    //+ "\n" + torServiceMsg;
+                                    
+                                    lblStatus.setText(lblMsg);
+                                    
+                                    if (torServiceMsg.length() > 0)
+                                            showAlert("Update", torServiceMsg, false);
+                                    
+                                    boolean showFirstTime = prefs.getBoolean("connect_first_time",true);
+                                    
+                                    if (showFirstTime)
+                                    {
+                                    
+                                            Editor pEdit = prefs.edit();
+                                            
+                                            pEdit.putBoolean("connect_first_time",false);
+                                            
+                                            pEdit.commit();
+                                            
+                                            showAlert(getString(R.string.status_activated),getString(R.string.connect_first_time),true);
+                                            
+                                    }
+                                    
+                                    if (mItemOnOff != null)
+                                            mItemOnOff.setTitle(R.string.menu_stop);
+                                    
 
-		    	}
-		    	else if (torStatus == STATUS_CONNECTING)
-		    	{
-		    		
-		    		imgStatus.setImageResource(R.drawable.torstarting);
-		    		
-		    		if (progressDialog != null)
-		    			progressDialog.setMessage(torServiceMsg);
-		    		
-		    		if (mItemOnOff != null)
-		    			mItemOnOff.setTitle(R.string.menu_stop);
-		    			
-		    	}
-		    	else if (torStatus == STATUS_OFF)
-		    	{
-		    		imgStatus.setImageResource(R.drawable.toroff);
-		    		
+                            }
+                            else if (torStatus == STATUS_CONNECTING)
+                            {
+                                    
+                                    imgStatus.setImageResource(R.drawable.torstarting);
+                                    
+                                    if (progressDialog != null)
+                                            progressDialog.setMessage(torServiceMsg);
+                                    
+                                    if (mItemOnOff != null)
+                                            mItemOnOff.setTitle(R.string.menu_stop);
+                                            
+                            }
+                            else if (torStatus == STATUS_OFF)
+                            {
+                                    imgStatus.setImageResource(R.drawable.toroff);
+                                    
 
-		    		hideProgressDialog();
-		    		
-		    		lblStatus.setText(getString(R.string.status_shutting_down));
-		    			
-		    		if (mItemOnOff != null)
-		    			mItemOnOff.setTitle(R.string.menu_start);
-		    	}
-		    	else
-		    	{
+                                    hideProgressDialog();
+                                    
+                                    lblStatus.setText(getString(R.string.status_shutting_down));
+                                            
+                                    if (mItemOnOff != null)
+                                            mItemOnOff.setTitle(R.string.menu_start);
+                            }
+                            else
+                            {
 
 
-		    		hideProgressDialog();
-		    		
-		    		imgStatus.setImageResource(R.drawable.toroff);
-		    		lblStatus.setText(getString(R.string.status_disabled) + "\n" + getString(R.string.press_to_start));
-		    		
-		    		if (mItemOnOff != null)
-		    			mItemOnOff.setTitle(R.string.menu_start);
-		    		
-		    	}
-	    	}
-		    	
-    	}
-    	catch (RemoteException e)
-    	{
-    		Log.e(TAG,"remote exception updating status",e);
-    	}
-    	
+                                    hideProgressDialog();
+                                    
+                                    imgStatus.setImageResource(R.drawable.toroff);
+                                    lblStatus.setText(getString(R.string.status_disabled) + "\n" + getString(R.string.press_to_start));
+                                    
+                                    if (mItemOnOff != null)
+                                            mItemOnOff.setTitle(R.string.menu_start);
+                                    
+                            }
+                    }
+                            
+            }
+            catch (RemoteException e)
+            {
+                    Log.e(TAG,"remote exception updating status",e);
+            }
+            
         
     }
   
+  // guess what? this start's Tor! actually no it just requests via the local ITorService to the remote TorService instance
+  // to start Tor
     private void startTor () throws RemoteException
     {
-    	
-    	bindService();
-    	
-    	mService.setProfile(TorServiceConstants.PROFILE_ON); //this means turn on
-		
-		imgStatus.setImageResource(R.drawable.torstarting);
-		lblStatus.setText(getString(R.string.status_starting_up));
-		
-		Message msg = mHandler.obtainMessage(TorServiceConstants.ENABLE_TOR_MSG);
-    	mHandler.sendMessage(msg);
-    	
-    	
-    	
+            // here we bind AGAIN - at some point i think we had to bind multiple times just in case
+            // but i would love to clarify, clean this up
+            bindService();
+            
+            // this is a bit of a strange/old/borrowed code/design i used to change the service state
+            // not sure it really makes sense when what we want to say is just "startTor"
+            mService.setProfile(TorServiceConstants.PROFILE_ON); //this means turn on
+                
+                //here we update the UI which is a bit sloppy and mixed up code wise
+                //might be best to just call updateStatus() instead of directly manipulating UI in this method - yep makes sense
+                imgStatus.setImageResource(R.drawable.torstarting);
+                lblStatus.setText(getString(R.string.status_starting_up));
+                
+            
+            //we send a message here to the progressDialog i believe, but we can clarify that shortly
+            Message msg = mHandler.obtainMessage(TorServiceConstants.ENABLE_TOR_MSG);
+            mHandler.sendMessage(msg);
+            
+            
+            
     }
     
+    //now we stop Tor! amazing!
     private void stopTor () throws RemoteException
     {
-    	if (mService != null)
-    	{
-    		mService.setProfile(TorServiceConstants.PROFILE_OFF);
-    		Message msg = mHandler.obtainMessage(TorServiceConstants.DISABLE_TOR_MSG);
-    		mHandler.sendMessage(msg);
-    	}
-    	
+        //if the service is bound, then turn it off, using the same "PROFILE_" technique
+            if (mService != null)
+            {
+                    mService.setProfile(TorServiceConstants.PROFILE_OFF);
+                    
+                    //again this is related to the progress dialog or some other threaded UI object
+                    Message msg = mHandler.obtainMessage(TorServiceConstants.DISABLE_TOR_MSG);
+                    mHandler.sendMessage(msg);
+            }
+            
      
     }
     
-	/*
+        /*
      * (non-Javadoc)
      * @see android.view.View.OnClickListener#onClick(android.view.View)
      */
-	public boolean onLongClick(View view) {
-		
-		
-		try
-		{
-			
-			if (mService == null)
-			{
-			
-			}
-			else if (mService.getStatus() == STATUS_READY)
-			{
-				
-				createProgressDialog(getString(R.string.status_starting_up));
+        public boolean onLongClick(View view) {
+                
+                
+                try
+                {
+                        
+                        if (mService == null)
+                        {
+                        
+                        }
+                        else if (mService.getStatus() == STATUS_READY)
+                        {
+                                
+                                createProgressDialog(getString(R.string.status_starting_up));
 
-				startTor();
-			}
-			else
-			{
-				
-				stopTor();
-				
-			}
-			
-		}
-		catch (Exception e)
-		{
-			Log.d(TAG,"error onclick",e);
-		}
-			
-		return true;
-	}
-	
+                                startTor();
+                        }
+                        else
+                        {
+                                
+                                stopTor();
+                                
+                        }
+                        
+                }
+                catch (Exception e)
+                {
+                        Log.d(TAG,"error onclick",e);
+                }
+                        
+                return true;
+        }
+        
 
     /**
      * This implementation is used to receive callbacks from the remote
-     * service.
+     * service. 
+     *
+     * If we have this setup probably, we shouldn't have to poll or query status
+     * to the service, as it should send it as it changes or when we bind/unbind to it
+     * from this activity
      */
     private ITorServiceCallback mCallback = new ITorServiceCallback.Stub() {
         /**
@@ -684,50 +751,55 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
          * NOT be running in our main thread like most other things -- so,
          * to update the UI, we need to use a Handler to hop over there.
          */
+         
+         //receive a new string vaule end-user displayable message from the ITorService
         public void statusChanged(String value) {
            
-        	Message msg = mHandler.obtainMessage(TorServiceConstants.STATUS_MSG);
-        	msg.getData().putString(HANDLER_TOR_MSG, value);
-        	mHandler.sendMessage(msg);
+           //pass it off to the progressDialog
+                Message msg = mHandler.obtainMessage(TorServiceConstants.STATUS_MSG);
+                msg.getData().putString(HANDLER_TOR_MSG, value);
+                mHandler.sendMessage(msg);
         }
 
-		@Override
-		public void logMessage(String value) throws RemoteException {
-			
-			Message msg = mHandler.obtainMessage(TorServiceConstants.LOG_MSG);
-        	msg.getData().putString(HANDLER_TOR_MSG, value);
-        	mHandler.sendMessage(msg);
-			
-		}
+                @Override //this was when we displayed the log in the main Activity; can prob take this out now
+                public void logMessage(String value) throws RemoteException {
+                        
+                        Message msg = mHandler.obtainMessage(TorServiceConstants.LOG_MSG);
+                msg.getData().putString(HANDLER_TOR_MSG, value);
+                mHandler.sendMessage(msg);
+                        
+                }
     };
     
 
+// this is what takes messages or values from the callback threads or other non-mainUI threads
+//and passes them back into the main UI thread for display to the user
     private Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case TorServiceConstants.STATUS_MSG:
 
-                	String torServiceMsg = (String)msg.getData().getString(HANDLER_TOR_MSG);
-                	
-                	updateStatus(torServiceMsg);
-                	
+                        String torServiceMsg = (String)msg.getData().getString(HANDLER_TOR_MSG);
+                        
+                        updateStatus(torServiceMsg);
+                        
                     break;
                 case TorServiceConstants.LOG_MSG:
-                	
-                	
+                        
+                        
                     break;
                 case TorServiceConstants.ENABLE_TOR_MSG:
-                	
-                	
-                	updateStatus((String)msg.getData().getString(HANDLER_TOR_MSG));
-                	
-                	break;
+                        
+                        
+                        updateStatus((String)msg.getData().getString(HANDLER_TOR_MSG));
+                        
+                        break;
                 case TorServiceConstants.DISABLE_TOR_MSG:
-                	
-                	updateStatus((String)msg.getData().getString(HANDLER_TOR_MSG));
-                	
-                	break;
-                		
+                        
+                        updateStatus((String)msg.getData().getString(HANDLER_TOR_MSG));
+                        
+                        break;
+                                
                 default:
                     super.handleMessage(msg);
             }
@@ -741,6 +813,10 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
     /**
      * Class for interacting with the main interface of the service.
      */
+     // this is the connection that gets called back when a successfull bind occurs
+     // we should use this to activity monitor unbind so that we don't have to call
+     // bindService() a million times
+     
     private ServiceConnection mConnection = new ServiceConnection() {
         public void onServiceConnected(ComponentName className,
                 IBinder service) {
@@ -756,14 +832,15 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
             try {
                 mService.registerCallback(mCallback);
            
+                //again with the update status?!? :P
                 updateStatus("");
                 
                 if (autoStartOnBind)
                 {
-                	autoStartOnBind = false;
-                	
-                	startTor();
-                	
+                        autoStartOnBind = false;
+                        
+                        startTor();
+                        
                 }
             
             } catch (RemoteException e) {
@@ -771,7 +848,7 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
                 // do anything with it; we can count on soon being
                 // disconnected (and then reconnected if it can be restarted)
                 // so there is no need to do anything here.
-            	Log.d(TAG,"error registering callback to service",e);
+                    Log.d(TAG,"error registering callback to service",e);
             }
             
 
@@ -789,20 +866,26 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
         }
     };
     
+    //should move this up with all the other class variables
     boolean mIsBound = false;
     
+    //this is where we bind! 
     private void bindService ()
     {
-    	 bindService(new Intent(ITorService.class.getName()),
+         //since its auto create, we prob don't ever need to call startService
+         //also we should again be consistent with using either iTorService.class.getName()
+         //or the variable constant       
+             bindService(new Intent(ITorService.class.getName()),
                  mConnection, Context.BIND_AUTO_CREATE);
-    	 
-    	 mIsBound = true;
+             
+             mIsBound = true;
     
     }
     
+    //unbind removes the callback, and unbinds the service
     private void unbindService ()
     {
-    	if (mIsBound) {
+            if (mIsBound) {
             // If we have received the service, and hence registered with
             // it, then now is the time to unregister.
             if (mService != null) {
@@ -813,7 +896,10 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
                     // There is nothing special we need to do if the service
                     // has crashed.
                 }
-            }
+        }
+            
+            //maybe needs this?
+            mService = null; 
             
             // Detach our existing connection.
             unbindService(mConnection);
@@ -821,26 +907,26 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
             
         }
     }
-	
+        
     private void createProgressDialog (String msg)
     {
-    	if (progressDialog != null && progressDialog.isShowing())
-    		return;
-    	
-    	progressDialog = ProgressDialog.show(Orbot.this, "", msg);	
-		progressDialog.setCancelable(true);
+            if (progressDialog != null && progressDialog.isShowing())
+                    return;
+            
+            progressDialog = ProgressDialog.show(Orbot.this, "", msg);        
+                progressDialog.setCancelable(true);
 
     }
     
     private void hideProgressDialog ()
     {
 
-		if (progressDialog != null && progressDialog.isShowing())
-		{
-			progressDialog.dismiss();
+                if (progressDialog != null && progressDialog.isShowing())
+                {
+                        progressDialog.dismiss();
 
-		}
-		
-		
+                }
+                
+                
     }
 }

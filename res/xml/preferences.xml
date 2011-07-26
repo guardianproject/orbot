@@ -35,18 +35,27 @@ android:title="@string/pref_transparent_all_title"/>
 <Preference
 android:defaultValue="" 
 android:key="pref_transparent_app_list"
-android:title="Select Apps"
-android:summary="Choose Apps to Route Through Tor"
+android:title="@string/pref_select_apps"
+android:summary="@string/pref_select_apps_summary"
 android:enabled="true"/>
+
+<CheckBoxPreference
+android:defaultValue="false" 
+android:key="pref_transparent_tethering"
+android:summary="@string/pref_transparent_tethering_summary"
+android:enabled="true" 
+android:title="@string/pref_transparent_tethering_title"/>
 
 
 </PreferenceCategory>
 
-<PreferenceCategory android:title="Node Configuration" android:summary="These are advanced settings that can reduce your anonymity">
+<PreferenceCategory android:title="@string/pref_node_configuration"
+ android:summary="@string/pref_node_configuration_summary">
+ 
 <EditTextPreference android:key="pref_entrance_nodes"
-android:title="Entrance Nodes"
-android:summary="Fingerprints, nicks, countries and addresses for the first hop"
-android:dialogTitle="Enter Entrance Nodes"
+android:title="@string/pref_entrance_node"
+android:summary="@string/pref_entrance_node_summary"
+android:dialogTitle="@string/pref_entrance_node_dialog"
 />
 <EditTextPreference android:key="pref_exit_nodes"
 android:title="Exit Nodes"
@@ -70,11 +79,6 @@ android:summary="Use *only* these specified nodes"/>
 android:title="Use Bridges" android:key="pref_bridges_enabled" 
 android:summary="Enable alternate entrance nodes into the Tor Network"></CheckBoxPreference>
 
-<!-- 5/8/2010 NF: Arma says this doesn't actually work, so commenting out for now
-<CheckBoxPreference android:defaultValue="false" 
-android:title="Update from Authority" android:key="pref_bridges_update" 
-android:summary="Modify bridge list automatically"></CheckBoxPreference>
- -->
  
 <EditTextPreference android:key="pref_bridges_list"
 android:title="Bridges"

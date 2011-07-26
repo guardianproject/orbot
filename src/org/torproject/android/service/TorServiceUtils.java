@@ -17,7 +17,9 @@ public class TorServiceUtils implements TorServiceConstants {
 	 * Check if we have root access
 	 * @return boolean true if we have root
 	 */
-	public static boolean checkRootAccess() {
+	/*
+	  public static boolean checkRootAccess() {
+	 
 	
 
 		StringBuilder log = new StringBuilder();
@@ -45,7 +47,40 @@ public class TorServiceUtils implements TorServiceConstants {
 		TorService.logMessage("Could not acquire root permissions");
 		return false;
 	}
+	*/
 	
+	public static boolean checkRootAccess(){
+		
+		StringBuilder log = new StringBuilder();
+		
+		try {
+			
+			// Check if Superuser.apk exists
+			File file = new File("/system/app/Superuser.apk");
+			
+			//Check for 'su' binary 
+			String[] cmd = {"which su"};
+			int exitCode = TorServiceUtils.doShellCommand(cmd, log, false, true);
+			
+			if (file.exists() && exitCode == 0) {
+				TorService.logMessage("Can acquire root permissions");
+		    	 return true;
+		     
+		    }
+		      
+		} catch (IOException e) {
+			//this means that there is no root to be had (normally) so we won't log anything
+			TorService.logException("Error checking for root access",e);
+			
+		}
+		catch (Exception e) {
+			TorService.logException("Error checking for root access",e);
+			//this means that there is no root to be had (normally)
+		}
+		
+		TorService.logMessage("Could not acquire root permissions");
+		return false;
+	}
 	
 	
 	public static int findProcessId(String command) 

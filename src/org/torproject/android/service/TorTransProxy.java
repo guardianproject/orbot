@@ -313,14 +313,12 @@ public class TorTransProxy implements TorServiceConstants {
 		return code;
     }
 
-	public static int enableWifiHotspotRules (Context context) throws Exception
+	public static int enableTetheringRules (Context context) throws Exception
 	{
 		
 		boolean runRoot = true;
     	boolean waitFor = true;
     	
-		//redirectDNSResolvConf(); //not working yet
-		
 		String ipTablesPath = new File(context.getDir("bin", 0),"iptables").getAbsolutePath();
 		
     	StringBuilder script = new StringBuilder();
@@ -328,25 +326,24 @@ public class TorTransProxy implements TorServiceConstants {
     	StringBuilder res = new StringBuilder();
     	int code = -1;
     
-    	script.append(ipTablesPath);
-		script.append(" -I FORWARD");
-		script.append(" -m state --state ESTABLISHED,RELATED -j ACCEPT");
-		script.append(" || exit\n");
-		
-		script.append(ipTablesPath);
-		script.append(" -I FORWARD");
-		script.append(" -j ACCEPT");
-		script.append(" || exit\n");
-		
-		/*
-		script.append(ipTablesPath);
-		script.append(" -P FORWARD DROP");
-		script.append(" || exit\n");
-		*/
-		
-		script.append(ipTablesPath);
-		script.append(" -t nat -I POSTROUTING -j MASQUERADE");
-		script.append(" || exit\n");
+    	String[] hwinterfaces = {"usb0","wl0.1"};
+    	
+    	for (int i = 0; i < hwinterfaces.length; i++)
+    	{
+	    	script.append(ipTablesPath);
+			script.append(" -t nat -A PREROUTING -i ");
+			script.append(hwinterfaces[i]);
+			script.append(" -p udp --dport 53 -j REDIRECT --to-ports ");
+			script.append(TOR_DNS_PORT);
+			script.append(" || exit\n");
+			
+			script.append(ipTablesPath);
+			script.append(" -t nat -A PREROUTING -i ");
+			script.append(hwinterfaces[i]);
+			script.append(" -p tcp -j REDIRECT --to-ports ");
+			script.append(TOR_TRANSPROXY_PORT);
+			script.append(" || exit\n");
+    	}
 		
 		String[] cmdAdd = {script.toString()};    	
     	
@@ -374,8 +371,6 @@ public class TorTransProxy implements TorServiceConstants {
     	
     	purgeIptables(context);
     	
-    	enableWifiHotspotRules(context);
-		
     	int torUid = context.getApplicationInfo().uid;
 
     	// Set up port redirection
