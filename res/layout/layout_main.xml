@@ -105,7 +105,8 @@
 			android:gravity="center_vertical|center_horizontal"
 			android:textStyle="bold" />
     </RelativeLayout>			
-
+</RelativeLayout>
+       
 </LinearLayout>
        
 </FrameLayout>

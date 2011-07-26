@@ -48,4 +48,9 @@ interface ITorService {
     */
     String getConfiguration (String name);
     
+    /**
+    * Get information
+    */
+    String getInfo (String args);
+    
 }

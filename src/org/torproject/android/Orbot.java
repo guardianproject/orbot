@@ -768,7 +768,18 @@ public class Orbot extends Activity implements TorConstants, OnLongClickListener
             		uploadText.setText(formatCount(datacount.Upload));
             		downloadText.invalidate();
             		uploadText.invalidate();
-            		
+			
+            		try {
+            			String TotalUpload = mService.getInfo("traffic/written");
+            			String TotalDownload = mService.getInfo("traffic/read");
+            			StringBuilder sb = new StringBuilder();
+            			sb.append("Total Upload " + TotalUpload);
+            			sb.append("Total Download" + TotalDownload);
+            			Log.d(TAG,sb.toString());
+            		} catch (RemoteException e) {
+            			Log.d(TAG,"Total bandwidth error"+e.getMessage());
+            		}
+           		 		
             		break;
                 		
                 default:

@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.StringTokenizer;
 
 import net.freehaven.tor.control.ConfigEntry;
@@ -1120,14 +1121,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			sb.append("kb read / ");
 			sb.append(written/1000);
 			sb.append("kb written");
-	   /*		try {
-				sb.append("Total upload :"+conn.getInfo("traffic/written"));
-				sb.append("Total Download "+conn.getInfo("traffic/read"));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		*/	
+	   		
 			logNotice(sb.toString());
 		}
 		
@@ -1136,7 +1130,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
 
 	}
-
+	
    	
 	public void circuitStatus(String status, String circID, String path) {
 		
@@ -1274,8 +1268,25 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			}
         	
         }
-        
-        
+ 
+
+    	public String getInfo (String key) {
+    		try
+    		{
+    			if(conn !=null)
+    			{
+    				String m = conn.getInfo(key);
+					return m;
+					
+    			}
+    		}
+    		catch(IOException ioe)
+    		{
+    			Log.e(TAG,"Unable to get Tor information",ioe);
+    			logNotice("Unable to get Tor information"+ioe.getMessage());
+    		}
+			return null;
+        }
         
         public String getConfiguration (String name)
         {
