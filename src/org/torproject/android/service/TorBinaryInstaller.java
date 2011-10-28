@@ -13,6 +13,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 import org.torproject.android.R;
+import org.torproject.android.TorConstants;
 
 import android.content.Context;
 import android.util.Log;
@@ -34,43 +35,34 @@ public class TorBinaryInstaller implements TorServiceConstants {
 	/*
 	 * Extract the Tor binary from the APK file using ZIP
 	 */
-	public boolean installFromRaw () 
+	public boolean installFromRaw () throws IOException
 	{
-		boolean result = false;
 		
-			
-		try
-		{
-			InputStream is;
-			
-			is = context.getResources().openRawResource(R.raw.toraa);			
-			streamToFile(is,installFolder, TOR_BINARY_ASSET_KEY, false);
+		InputStream is;
 		
-			is = context.getResources().openRawResource(R.raw.torab);			
-			streamToFile(is,installFolder, TOR_BINARY_ASSET_KEY, true);
-		
-			is = context.getResources().openRawResource(R.raw.torac);			
-			streamToFile(is,installFolder, TOR_BINARY_ASSET_KEY, true);
-		
-			is = context.getResources().openRawResource(R.raw.torad);			
-			streamToFile(is,installFolder, TOR_BINARY_ASSET_KEY, true);
-		
-			is = context.getResources().openRawResource(R.raw.torrc);			
-			streamToFile(is,installFolder, TORRC_ASSET_KEY, false);
+		is = context.getResources().openRawResource(R.raw.toraa);			
+		streamToFile(is,installFolder, TOR_BINARY_ASSET_KEY, false);
 	
-			is = context.getResources().openRawResource(R.raw.privoxy);			
-			streamToFile(is,installFolder, PRIVOXY_ASSET_KEY, false);
+		is = context.getResources().openRawResource(R.raw.torab);			
+		streamToFile(is,installFolder, TOR_BINARY_ASSET_KEY, true);
 	
-			is = context.getResources().openRawResource(R.raw.privoxy_config);			
-			streamToFile(is,installFolder, PRIVOXYCONFIG_ASSET_KEY, false);
+		is = context.getResources().openRawResource(R.raw.torac);			
+		streamToFile(is,installFolder, TOR_BINARY_ASSET_KEY, true);
+	
+		is = context.getResources().openRawResource(R.raw.torad);			
+		streamToFile(is,installFolder, TOR_BINARY_ASSET_KEY, true);
+	
+		is = context.getResources().openRawResource(R.raw.torrc);			
+		streamToFile(is,installFolder, TORRC_ASSET_KEY, false);
 
-		}
-		catch (IOException ioe)
-		{
-			Log.e(TAG, "unable to install tor binaries from raw", ioe);
-			return false;
-		}
-			
+		is = context.getResources().openRawResource(R.raw.privoxy);			
+		streamToFile(is,installFolder, PRIVOXY_ASSET_KEY, false);
+
+		is = context.getResources().openRawResource(R.raw.privoxy_config);			
+		streamToFile(is,installFolder, PRIVOXYCONFIG_ASSET_KEY, false);
+		
+		is = context.getResources().openRawResource(R.raw.geoip);			
+		streamToFile(is,installFolder, GEOIP_ASSET_KEY, false);
 	
 		return true;
 	}
@@ -132,7 +124,7 @@ public class TorBinaryInstaller implements TorServiceConstants {
 			
 			
 		} catch (IOException ex) {
-			Log.e(TAG, "error copying binary", ex);
+			Log.e(TorConstants.TAG, "error copying binary", ex);
 		}
 
 	}

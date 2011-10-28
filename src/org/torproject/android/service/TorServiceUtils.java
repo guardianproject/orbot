@@ -9,47 +9,15 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.StringTokenizer;
 
+import org.torproject.android.TorConstants;
+
 import android.util.Log;
 
 public class TorServiceUtils implements TorServiceConstants {
 
-	/**
-	 * Check if we have root access
-	 * @return boolean true if we have root
-	 */
-	/*
-	  public static boolean checkRootAccess() {
-	 
 	
-
-		StringBuilder log = new StringBuilder();
-		
-		try {
-			
-			// Run an empty script just to check root access
-			String[] cmd = {"exit 0"};
-			int exitCode = TorServiceUtils.doShellCommand(cmd, log, true, true);
-			if (exitCode == 0) {
-				
-				return true;
-			}
-			
-		} catch (IOException e) {
-			//this means that there is no root to be had (normally) so we won't log anything
-			TorService.logException("Error checking for root access",e);
-			
-		}
-		catch (Exception e) {
-			TorService.logException("Error checking for root access",e);
-			//this means that there is no root to be had (normally)
-		}
-		
-		TorService.logMessage("Could not acquire root permissions");
-		return false;
-	}
-	*/
-	
-	public static boolean checkRootAccess(){
+	public static boolean isRootPossible()
+	{
 		
 		StringBuilder log = new StringBuilder();
 		
@@ -79,6 +47,8 @@ public class TorServiceUtils implements TorServiceConstants {
 		}
 		
 		TorService.logMessage("Could not acquire root permissions");
+		
+		
 		return false;
 	}
 	
@@ -102,7 +72,7 @@ public class TorServiceUtils implements TorServiceConstants {
 			}
 			catch (Exception e2)
 			{
-				Log.w(TAG,"Unable to get proc id for: " + command,e2);
+				Log.w(TorConstants.TAG,"Unable to get proc id for: " + command,e2);
 			}
 		}
 		

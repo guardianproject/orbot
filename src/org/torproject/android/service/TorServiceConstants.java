@@ -4,11 +4,9 @@ package org.torproject.android.service;
 
 public interface TorServiceConstants {
 
-	public final static String TAG = "ORBOT";
 
 	public final static String TOR_APP_USERNAME = "org.torproject.android";
 	
-	public final static String ASSETS_BASE = "assets/";
 	
 	//home directory of Android application
 	
@@ -27,7 +25,10 @@ public interface TorServiceConstants {
 	
 	//privoxy.config
 	public final static String PRIVOXYCONFIG_ASSET_KEY = "privoxy.config";
-		
+	
+	//geoip data file asset key
+	public final static String GEOIP_ASSET_KEY = "geoip";
+	
 	//various console cmds
 	public final static String SHELL_CMD_CHMOD = "chmod";
 	public final static String SHELL_CMD_KILL = "kill -9";
