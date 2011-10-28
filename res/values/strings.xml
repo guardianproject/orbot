@@ -14,10 +14,9 @@
 <string name="status_disabled">"Orbot is Deactivated</string>
 <string name="status_shutting_down">Orbot is shutting down</string>
 
-<string name="tor_process_connecting">Starting Tor...</string>
-<string name="tor_process_connecting_step2">Setting up control...</string>
-<string name="tor_process_connecting_step3">complete.</string>
-<string name="tor_process_connecting_step4">waiting.</string>
+<string name="tor_process_starting">Starting Tor client...</string>
+<string name="tor_process_complete">complete.</string>
+<string name="tor_process_waiting">waiting.</string>
 
 <string name="not_anonymous_yet">WARNING: Your traffic is not anonymous yet! Please configure your applications to use HTTP proxy 127.0.0.1:8118 or SOCKS4A or SOCKS5 proxy 127.0.0.1:9050</string>
 <string name="menu_home">Home</string>
@@ -68,7 +67,7 @@
 
 <string name="title_error">Application Error</string>
 
-<string name="wizard_title">Welcome to Orbot</string>
+<string name="wizard_title">Orbot</string>
 
 <string name="wizard_btn_tell_me_more">About Orbot</string>
 <string name="btn_next">Next</string>
@@ -80,7 +79,6 @@
 
 
  <!-- Welcome Wizard strings (DJH) -->
-    <string name="wizard_welcome_msg">Orbot brings Tor to Android. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.\n\n*WARNING:* Simply installing Orbot will _not_ magically anonymize your mobile traffic! This wizard will help you get started.</string>
     <string name="wizard_details">Some Orbot Details</string>
     <string name="wizard_details_msg">Orbot is an open-source application that contains Tor, LibEvent and Privoxy. It provides a local HTTP proxy (8118) and a SOCKS proxy (9050) into the Tor network. Orbot also has the ability, on rooted device, to send all internet traffic through Tor.</string>
     <string name="wizard_permissions_root">Permission Granted</string>
@@ -89,7 +87,7 @@
     <string name="wizard_permissions_msg_stock"> While it is not required, Orbot can become a more powerful tool if your device has root access. Use the button below to grant Orbot superpowers! </string>
    
     <string name="wizard_permissions_no_root">If you don\'t have root access or have no idea what we\'re talking about, just be sure to use apps made to work with Orbot.</string>
-    <string name="wizard_permissions_consent">I understand and would like to continue without root</string>
+    <string name="wizard_permissions_consent">I understand and would like to continue without Superuser</string>
    
     <string name="wizard_permission_enable_root">Grant Root for Orbot</string>
     <string name="wizard_configure">Configure Torification</string>
@@ -99,9 +97,8 @@
     
     
     <string name="wizard_tips_tricks">Orbot-enabled Apps</string>
-    <string name="wizard_tips_msg">We encourage you to download &amp; use apps that know how to connect directly to Orbot. Click on the buttons below to install.</string>
+    <string name="wizard_tips_msg">The apps below were developed to work with Orbot. Click each button to install now, or you can find them later in the Android Market.</string>
     <string name="wizard_tips_otrchat">Gibberbot - Secure instant messaging client for Android</string>
-    <string name="wizard_tips_orweb">ORWEB (Android 1.x Only) - Browser designed for privacy &amp; for Orbot</string>
     <string name="wizard_tips_proxy">Proxy Settings - Learn how to configure apps to work with Orbot</string>
     
     <string name="wizard_proxy_help_info">Proxy Settings</string>
@@ -112,16 +109,13 @@
     </string>
     
     <string name="wizard_final">Orbot is ready!</string>
-    <string name="wizard_final_msg">Hundreds of thousands of people around the world use Tor for a wide variety of reasons: journalists and bloggers, human rights workers, law enforcement officers, soldiers, corporations, citizens of repressive regimes, and just ordinary citizens... and now you are ready to, as well!</string>
-    
-    <string name="otrchat_apk_url">market://search?q=pname:info.guardianproject.otr.app.im</string>
-    <string name="orweb_apk_url">market://search?q=pname:nfo.guardianproject.browser</string>
+    <string name="wizard_final_msg">Hundreds of thousands of people around the world use Tor for a wide variety of reasons.\n\nJournalists and bloggers, human rights defenders, law enforcement officers, soldiers, corporations, citizens of repressive regimes, and just ordinary citizens... and now you are ready to, as well!</string>
     
  <!-- END Welcome Wizard strings (DJH) -->
 
-	<string name="connect_first_time"> You\'ve successfully connected to the Tor network - but this does NOT mean your device is secure. You can use the \'Check\' option from the menu to test your browser. \n\nVisit us at https://guardianproject.info/apps/orbot or send an email to help@guardianproject.info to learn more.</string>
+	<string name="connect_first_time">You\'ve successfully connected to the Tor network - but this does NOT mean your device is secure. You can use the \'Check\' option from the menu to test your browser. \n\nVisit us at https://guardianproject.info/apps/orbot or send an email to help@guardianproject.info to learn more.</string>
 
-	<string name="tor_check">This will open your default web browser to https://check.torproject.org in order to see if Orbot is probably configured and you are connected to Tor.</string>
+	<string name="tor_check">This will open your web browser to https://check.torproject.org in order to see if Orbot is probably configured and you are connected to Tor.</string>
 
 	
     <string name="pref_hs_group">Hidden Services</string>
@@ -131,33 +125,39 @@
     <string name="pref_start_boot_summary">Automatically start Orbot and connect Tor when your Android device boots</string>
  <!--  New Wizard Strings -->
 	<!-- Title Screen -->
-	<string name="wizard_title_msg">Orbot brings Tor to Android \n\nTor helps you defend against a form of network surveillance that threatens privacy, confidential business activity and relationships, and state security known as traffic analysis</string>
+	<string name="wizard_title_msg">Orbot brings Tor to Android!\n\nTor helps you defend against content filtering, traffic analysis and network surveillance that threatens privacy, confidential information and personal relationships.\n\nThis wizard will help you configure Orbot and Tor on your device.</string>
 	<!-- Warning screen -->
 	<string name="wizard_warning_title">Warning</string>
-	<string name="wizard_warning_msg">Simply installing Orbot will not automatically anonymize your mobile traffic.\n\nPlease follow the following steps to get started</string>
+	<string name="wizard_warning_msg">Simply installing Orbot will not automatically anonymize your mobile traffic.\n\nYou must properly configure Orbot, your device and other apps to successfully use Tor.</string>
 	<!-- Permissions screen -->
 	<string name="wizard_permissions_title">Permissions</string>
-	<string name="wizard_permissions_root_msg1">Orbot has detected that you have root permissions enabled. To enable \'Transparent Proxying\', please grant superuser privileges to Orbot</string>
-	<string name="wizard_permissions_root_msg2">If you choose to continue without providing superuser privileges, make sure to use apps made to work with orbot</string>
-	<string name="wizard_permissions_msg">Orbot has detected that you do not have root permissions.\nTransparent Proxying is not possible without superuser privileges.\nMake sure to use apps that have been configured to work with Orbot</string>
+	<string name="wizard_permissions_root_msg1">You can optionally grant Orbot \'Superuser\' access to enable advanced features, such as Transparent Proxying.</string>
+	<string name="wizard_permissions_root_msg2">If you do not want to do this, please make sure to use apps made to work with Orbot</string>
+	<string name="wizard_permissions_no_root_msg">Your device is running in standard mode, and does not support root or \'Superuser\' access.\n\nIn order to you to benefit from Tor, you will need to use apps built to work with Orbot, or that support HTTP or SOCKS proxy settings.\n\n</string>
 	<!-- TipsAndTricks screen -->
-	<string name="wizard_tips_title">Orbot configured Apps</string>
-	<string name="wizard_tips_gibberbot">Gibberbot - Secure instant messaging client for Android</string>
+	<string name="wizard_tips_title">Orbot-Enabled Apps</string>
+	<string name="wizard_tips_gibberbot">Gibberbot: Secure chat app with Off-the-Record Encryption</string>
+	<string name="gibberbot_apk_url">https://market.android.com/details?id=info.guardianproject.otr.app.im</string>
+
+	<string name="wizard_tips_orweb">Orweb: Privacy-enhanced browser that works through Tor</string>
+	<string name="orweb_apk_url">https://market.android.com/details?id=info.guardianproject.browser</string>
+
+<!-- 
 	<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
-	<string name="gibberbot_apk_url">https://market.android.com/details?id=info.guardianproject.otr.app.im</string>
     <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
     <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>
+  -->
     <!-- Transparent Proxy screen -->
-    <string name="wizard_transproxy_title">Transparent Proxy</string>
-    <string name="wizard_transproxy_msg">Transparent Proxying allows you to redirect client requests without any special configuration or knowledge at the client.</string>
+    <string name="wizard_transproxy_title">Transparent Proxying</string>
+    <string name="wizard_transproxy_msg">This allows your apps to automatically run through the Tor network without any configuration.</string>
     <string name="wizard_transproxy_hint">(Check this box if you have no idea what we are talking about)</string>
     <string name="wizard_transproxy_none">None</string>
 
  <string name="pref_transparent_tethering_title">Tor Tethering</string>
 	<string name="pref_transparent_tethering_summary">Enable Tor Transparent Proxying for Wifi and USB Tethered Devices</string>
    
-   
+<string name="button_grant_superuser">Request Superuser Access</string>
 <string name="pref_select_apps">Select Apps</string>
 <string name="pref_select_apps_summary">Choose Apps to Route Through Tor</string>
 
@@ -167,4 +167,21 @@
 <string name="pref_entrance_node">Entrance Nodes</string>
 <string name="pref_entrance_node_summary">Fingerprints, nicks, countries and addresses for the first hop</string>
 <string name="pref_entrance_node_dialog">Enter Entrance Nodes</string>
+
+<string name="pref_use_whispercore">Use WhisperCore</string>
+<string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>
+
+
+<string name="pref_proxy_type_title">Proxy Type</string>
+<string name="pref_proxy_type_summary">Protocol to use for proxy server: HTTP, HTTPS, Socks4, Socks5</string>
+<string name="pref_proxy_type_dialog">Enter Proxy Type</string>
+
+<string name="pref_proxy_host_title">Proxy Host</string>
+<string name="pref_proxy_host_summary">Proxy server hostname</string>
+<string name="pref_proxy_host_dialog">Enter Proxy Host</string>
+
+<string name="pref_proxy_port_title">Proxy Port</string>
+<string name="pref_proxy_port_summary">Proxy server port</string>
+<string name="pref_proxy_port_dialog">Enter Proxy port</string>
+
 </resources>

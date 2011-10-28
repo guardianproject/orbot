@@ -8,9 +8,9 @@
             
 <RelativeLayout 
 	android:layout_width="fill_parent" 
-	android:layout_height="wrap_content" 
+	android:layout_height="70sp" 
 	android:id="@+id/relativeLayout1" 
-	android:layout_gravity="center_horizontal"
+	android:layout_gravity="center_vertical|center_horizontal"
 	android:background="#000000"
 	>
         <ImageView 
@@ -19,29 +19,25 @@
         	android:layout_width="wrap_content" 
         	android:layout_height="wrap_content" 
         	android:layout_alignParentLeft="true"
-        	android:paddingLeft="20px" android:layout_marginLeft="10dip" android:layout_marginTop="8dip">
+        	android:paddingLeft="20sp" >
         </ImageView>
         <TextView 
         	android:textColor="#FFFFFF"
         	android:textSize="10pt" 
         	android:layout_toRightOf="@id/orbot_image" 
-        	android:layout_alignParentTop="true"
         	android:gravity="center_vertical"
-       	 	android:layout_height="wrap_content" 
+       	 	android:layout_height="fill_parent" 
         	android:id="@+id/WizardTextTitle" 
         	android:layout_width="wrap_content" 
         	android:fadingEdge="vertical" 
         	android:text="TITLE"     
         	android:singleLine="true" 
-        	
-        	
-        	
         	android:layout_centerInParent="true" 
-        	android:paddingLeft="5px"
-        	android:padding="20px"
+        	android:paddingLeft="5sp"
         	> 
         </TextView>
-    </RelativeLayout>    
+    </RelativeLayout> 
+       
 <TableLayout  android:id="@+id/TableLayout01" android:stretchColumns="*" android:layout_height="fill_parent" android:layout_width="wrap_content" >
 
 <TableRow android:id="@+id/TableRow01"  android:layout_weight="1" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_margin="10dip">

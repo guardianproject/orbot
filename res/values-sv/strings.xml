@@ -14,10 +14,6 @@
 <string name="status_disabled">"Orbot är inaktiverad</string>
 <string name="status_shutting_down">Orbot avslutas</string>
 
-<string name="tor_process_connecting">Startar Tor...</string>
-<string name="tor_process_connecting_step2">verifierar kontroll uppkopplingen...</string>
-<string name="tor_process_connecting_step3">klar.</string>
-<string name="tor_process_connecting_step4">väntar.</string>
 
 <string name="not_anonymous_yet">VARNING: Din trafik är inte anonym än! Vänligen konfigurera dina apps att använda HTTP proxy 127.0.0.1:8118 eller SOCKS4A/5 proxy 127.0.0.1:9050</string>
 <string name="menu_home">Hem</string>
