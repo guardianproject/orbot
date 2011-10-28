@@ -22,13 +22,15 @@ on Debian Lenny:
 		ruby subversion
 	update-java-alternatives -s java-1.5.0-sun
 
-	curl http://android.git.kernel.org/repo >~/bin/repo
+	mkdir ~/bin
+	PATH=~/bin:$PATH
+	curl https://dl-ssl.google.com/dl/googlesource/git-repo/repo > ~/bin/repo
 	chmod a+x ~/bin/repo
 
 	mkdir ~/mydroid
 	cd ~/mydroid
 
-	repo init -u git://android.git.kernel.org/platform/manifest.git
+	repo init -u https://android.googlesource.com/platform/manifest -b android-2.3.7_r1
 	repo sync
 
 	# Paste in key from http://source.android.com/download next...
@@ -55,7 +57,7 @@ We need to set to environment variables for droid-gcc:
 	export DROID_ROOT=~/mydroid/
 	export DROID_TARGET=generic
 
-Fetch and build Privoxy:
+Fetch and build Privoxy:c
 	cd ~/mydroid/external/privoxy
 	wget http://sourceforge.net/projects/ijbswa/files/Sources/3.0.12%20%28stable%29/privoxy-3.0.12-stable-src.tar.gz/download
 	tar xzvf privoxy-3.0.12-stable-src.tar.gz
@@ -64,19 +66,18 @@ Fetch and build Privoxy:
 	autoconf
 	#need to disable setpgrp check in configure
 	export ac_cv_func_setpgrp_void=yes
-	#replace FOO with your actual username
-	CC=droid-gcc LD=droid-ld CPPFLAGS="-I/home/FOO/mydroid/external/zlib/" ./configure --host=arm-none-linux-gnueabi
+	CC=droid-gcc LD=droid-ld CPPFLAGS="-I$DROID_ROOT/external/zlib/" ./configure --host=arm-none-linux-gnueabi
 	#don't mind the "unrecognized option '-pthread'" error message that you'll see when you run make
 	make
 	
 Fetch and build libevent:
 
 	cd ~/mydroid/external/libevent
-	svn co https://levent.svn.sourceforge.net/svnroot/levent/tags/release-1.4.12-stable/libevent/ .
+	svn co https://levent.svn.sourceforge.net/svnroot/levent/tags/release-1.4.13-stable/libevent/ .
 	export LIBEVENTDIR=`cd $DROID_ROOT/external/libevent && pwd`
 	./autogen.sh
 	# Put the contents of http://pastebin.ca/1577207 in /tmp/libevent-patch
-	patch < /tmp/libevent-patch
+	# path no longer needed: patch < /tmp/libevent-patch
 	CC=droid-gcc LD=droid-ld ./configure --host=arm-none-linux-gnueabi
 	make
 
