@@ -14,6 +14,9 @@ import java.util.StringTokenizer;
 import org.torproject.android.service.ITorService;
 import org.torproject.android.service.ITorServiceCallback;
 import org.torproject.android.service.TorServiceConstants;
+import org.torproject.android.settings.ProcessSettingsAsyncTask;
+import org.torproject.android.settings.SettingsPreferences;
+import org.torproject.android.wizard.LotsaText;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -59,7 +62,7 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
         private MenuItem mItemOnOff = null; //the menu item which we toggle based on Orbot state
         
         /* Some tracking bits */
-        private int torStatus = STATUS_READY; //latest status reported from the tor service
+        private int torStatus = TorServiceConstants.STATUS_OFF; //latest status reported from the tor service
         // this is a value we get passed back from the TorService
         
         /* Tor Service interaction */
@@ -175,7 +178,7 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
                                 {
                                 
                                 }
-                                else if (mService.getStatus() == STATUS_READY)
+                                else if (mService.getStatus() == TorServiceConstants.STATUS_OFF)
                                 {
                                     if (mItemOnOff != null)
                                             mItemOnOff.setTitle(R.string.menu_stop);
@@ -573,7 +576,7 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
                     if (imgStatus != null)
                     {
                             
-                            if (torStatus == STATUS_ON)
+                            if (torStatus == TorServiceConstants.STATUS_ON)
                             {
                                     imgStatus.setImageResource(R.drawable.toron);
 
@@ -584,7 +587,7 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
                                     
                                     lblStatus.setText(lblMsg);
                                     
-                                    if (torServiceMsg.length() > 0)
+                                    if (torServiceMsg != null && torServiceMsg.length() > 0)
                                             showAlert("Update", torServiceMsg, false);
                                     
                                     boolean showFirstTime = prefs.getBoolean("connect_first_time",true);
@@ -607,7 +610,7 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
                                     
 
                             }
-                            else if (torStatus == STATUS_CONNECTING)
+                            else if (torStatus == TorServiceConstants.STATUS_CONNECTING)
                             {
                                     
                                     imgStatus.setImageResource(R.drawable.torstarting);
@@ -618,18 +621,6 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
                                     if (mItemOnOff != null)
                                             mItemOnOff.setTitle(R.string.menu_stop);
                                             
-                            }
-                            else if (torStatus == STATUS_OFF)
-                            {
-                                    imgStatus.setImageResource(R.drawable.toroff);
-                                    
-
-                                    hideProgressDialog();
-                                    
-                                    lblStatus.setText(getString(R.string.status_shutting_down));
-                                            
-                                    if (mItemOnOff != null)
-                                            mItemOnOff.setTitle(R.string.menu_start);
                             }
                             else
                             {
@@ -704,34 +695,30 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
         public boolean onLongClick(View view) {
                 
                 
-                try
+            try
+            {
+                    
+                if (mService != null && mService.getStatus() == TorServiceConstants.STATUS_OFF)
                 {
                         
-                        if (mService == null)
-                        {
-                        
-                        }
-                        else if (mService.getStatus() == STATUS_READY)
-                        {
-                                
-                                createProgressDialog(getString(R.string.status_starting_up));
+                        createProgressDialog(getString(R.string.status_starting_up));
 
-                                startTor();
-                        }
-                        else
-                        {
-                                
-                                stopTor();
-                                
-                        }
-                        
+                        startTor();
                 }
-                catch (Exception e)
+                else
                 {
-                        Log.d(TAG,"error onclick",e);
-                }
                         
-                return true;
+                        stopTor();
+                        
+                }
+                    
+            }
+            catch (Exception e)
+            {
+                    Log.d(TAG,"error onclick",e);
+            }
+                    
+            return true;
         }
         
 
@@ -775,13 +762,21 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
 // this is what takes messages or values from the callback threads or other non-mainUI threads
 //and passes them back into the main UI thread for display to the user
     private Handler mHandler = new Handler() {
+    	
+    	private String lastServiceMsg = null;
+    	
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case TorServiceConstants.STATUS_MSG:
 
                         String torServiceMsg = (String)msg.getData().getString(HANDLER_TOR_MSG);
                         
-                        updateStatus(torServiceMsg);
+                        if (lastServiceMsg == null || !lastServiceMsg.equals(torServiceMsg))
+                        {
+                        	updateStatus(torServiceMsg);
+                        
+                        	lastServiceMsg = torServiceMsg;
+                        }
                         
                     break;
                 case TorServiceConstants.LOG_MSG:
