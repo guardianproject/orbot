@@ -39,7 +39,7 @@ public class ConfigureTransProxy extends Activity implements TorConstants {
 	{
         super.onCreate(savedInstanceState);
         context = this;
-
+       
 	}
 	
 	@Override
@@ -56,9 +56,41 @@ public class ConfigureTransProxy extends Activity implements TorConstants {
 	protected void onResume() {
 		super.onResume();
 	
+		 setupUI();
+	
+		
 		
 	}
 	
+	private void setupUI ()
+	{
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+
+		boolean transEnabled = prefs.getBoolean(PREF_TRANSPARENT, false);
+		
+		if (transEnabled)
+		{
+			boolean transAllEnabled = prefs.getBoolean(PREF_TRANSPARENT_ALL, false);
+			
+			if (transAllEnabled)
+			{
+				RadioButton rb0 = (RadioButton)findViewById(R.id.radio0);
+				rb0.setChecked(true);
+				
+				
+			}
+			else
+			{
+				RadioButton rb1 = (RadioButton)findViewById(R.id.radio1);
+        		rb1.setChecked(true);
+				
+			}
+			
+		    Button next = ((Button)findViewById(R.id.btnWizard2));
+		    next.setEnabled(true);
+		}
+		
+	}
 	
 	
 	private void stepSix(){
@@ -85,13 +117,29 @@ public class ConfigureTransProxy extends Activity implements TorConstants {
 		    	//Dirty flag variable - improve logic
 				@Override
 				public void onClick(View v) {
-					if( flag == 1 )
-						context.startActivity(new Intent(context, AppManager.class));
-							
-					else 
+					
 						showWizardFinal();
 				}
 			});
+		    
+
+    		RadioButton rb0 = (RadioButton)findViewById(R.id.radio0);
+    		RadioButton rb1 = (RadioButton)findViewById(R.id.radio1);
+    		RadioButton rb2 = (RadioButton)findViewById(R.id.radio2);
+
+    		rb1.setOnClickListener(new OnClickListener()
+    		{
+
+				@Override
+				public void onClick(View v) {
+					
+						context.startActivity(new Intent(context, AppManager.class));							
+					
+					
+					
+				}
+    			
+    		});
 		
 			RadioGroup mRadioGroup = (RadioGroup)findViewById(R.id.radioGroup);
 	        mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener (){
@@ -101,14 +149,6 @@ public class ConfigureTransProxy extends Activity implements TorConstants {
 	        	public void onCheckedChanged(RadioGroup group, int checkedId){
 	        		Button next = ((Button)findViewById(R.id.btnWizard2));
 	        		next.setEnabled(true);
-	        		next.setOnClickListener(new View.OnClickListener() {
-	    				
-	    				@Override
-	    				public void onClick(View v) {
-	    					
-	    						showWizardFinal();
-	    				}
-	    			});
 	        		
 	        		RadioButton rb0 = (RadioButton)findViewById(R.id.radio0);
 	        		RadioButton rb1 = (RadioButton)findViewById(R.id.radio1);
@@ -129,23 +169,13 @@ public class ConfigureTransProxy extends Activity implements TorConstants {
 	        		
 					else if(rb1.isChecked())
 	        		{	
-	        			flag = 1;
+	        			flag++;
 	        			
 	        			pEdit.putBoolean(PREF_TRANSPARENT, true);
 						pEdit.putBoolean(PREF_TRANSPARENT_ALL, false);
 						pEdit.putString("radiobutton","rb1");
 						pEdit.commit();
-						
-						next.setOnClickListener(new View.OnClickListener() {
-		    				
-		    				@Override
-		    				public void onClick(View v) {
-		    					
-		    					context.startActivity(new Intent(context, AppManager.class));
-		    						
-		    					
-		    				}
-		    			});
+					
 	        		}
 					else if(rb2.isChecked())
 					{
@@ -187,6 +217,17 @@ public class ConfigureTransProxy extends Activity implements TorConstants {
 	
 	
 				
+		
+	}
+
+	@Override
+	protected void onRestoreInstanceState(Bundle savedInstanceState) {
+		super.onRestoreInstanceState(savedInstanceState);
+	}
+
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
 		
 	}
 }

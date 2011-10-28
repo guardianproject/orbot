@@ -28,6 +28,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
@@ -55,8 +56,6 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
 		
 		mAppManager = this;
 
-
-		
 	}
 	
 	
@@ -66,6 +65,16 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
 		super.onResume();
 		listApps = (ListView)findViewById(R.id.applistview);
 
+		Button btnSave = (Button)findViewById(R.id.btnsave);
+		btnSave.setOnClickListener(new OnClickListener()
+		{
+
+			@Override
+			public void onClick(View v) {
+				finish();
+			}
+		});
+		
 		if (!appsLoaded)
 			loadApps();
 	}
