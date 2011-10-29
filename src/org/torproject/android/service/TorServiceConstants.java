@@ -15,6 +15,8 @@ public interface TorServiceConstants {
 	
 	//torrc (tor config file)
 	public final static String TORRC_ASSET_KEY = "torrc";
+	public final static String TORRC_TETHER_KEY = "torrctether";
+	
 	public final static String TOR_CONTROL_COOKIE = "control_auth_cookie";
 	
 	//how to launch tor

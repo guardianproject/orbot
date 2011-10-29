@@ -8,7 +8,7 @@ RelayBandwidthRate 20 KBytes
 RelayBandwidthBurst 20 KBytes
 UseBridges 0
 AutomapHostsOnResolve 1
-TransListenAddress 127.0.0.1
+TransListenAddress 0.0.0.0
 TransPort 9040
-DNSListenAddress 127.0.0.1
+DNSListenAddress 0.0.0.0
 DNSPort 5400

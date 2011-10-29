@@ -582,6 +582,10 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 						showAlert("Status", "TransProxy enabled for Tethering!");
 
 						TorTransProxy.enableTetheringRules(this);
+						
+					//	mBinder.updateConfiguration("TransListenAddress", "0.0.0.0", false);
+					//	mBinder.updateConfiguration("DNSListenAddress", "0.0.0.0", false);
+					      
 					}
 				}
 				else
@@ -616,6 +620,14 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	StringBuilder log = new StringBuilder();
 		
 		String torrcPath = new File(appBinHome, TORRC_ASSET_KEY).getAbsolutePath();
+		
+    	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		boolean transProxyTethering = prefs.getBoolean("pref_transparent_tethering", false);
+ 		
+		if (transProxyTethering)
+		{
+			torrcPath = new File(appBinHome, TORRC_TETHER_KEY).getAbsolutePath();
+		}
 		
 		String[] torCmd = {torBinaryPath + " DataDirectory " + appDataHome.getAbsolutePath() + " -f " + torrcPath  + " || exit\n"};
 		
@@ -1430,7 +1442,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         	mBinder.updateConfiguration("HiddenServiceDir","", false);
         	
         }
-        
+
         mBinder.saveConfiguration();
 	
         return true;

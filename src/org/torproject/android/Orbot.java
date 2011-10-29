@@ -588,7 +588,10 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
                                     lblStatus.setText(lblMsg);
                                     
                                     if (torServiceMsg != null && torServiceMsg.length() > 0)
-                                            showAlert("Update", torServiceMsg, false);
+                                    {
+                                    //        showAlert("Update", torServiceMsg, false);
+                                    	lblStatus.setText(torServiceMsg);
+                                    }
                                     
                                     boolean showFirstTime = prefs.getBoolean("connect_first_time",true);
                                     

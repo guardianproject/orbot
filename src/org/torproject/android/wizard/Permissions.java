@@ -137,6 +137,18 @@ public class Permissions extends Activity implements TorConstants {
 				SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 				boolean hasRoot = prefs.getBoolean("has_root",false);
 				
+				
+				if (!hasRoot)
+				{
+				
+					hasRoot = TorServiceUtils.isRootPossible();
+					
+					Editor pEdit = prefs.edit();
+					pEdit.putBoolean(PREF_HAS_ROOT,hasRoot);
+					pEdit.commit();
+					
+				}
+				
 				if (hasRoot)
 				{
 					try {
