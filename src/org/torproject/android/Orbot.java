@@ -6,11 +6,6 @@ package org.torproject.android;
 
 
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.util.StringTokenizer;
-
 import org.torproject.android.service.ITorService;
 import org.torproject.android.service.ITorServiceCallback;
 import org.torproject.android.service.TorServiceConstants;
@@ -38,13 +33,10 @@ import android.os.Message;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
