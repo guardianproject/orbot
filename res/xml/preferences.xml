@@ -145,7 +145,7 @@ android:dialogTitle="Enter ports"
 <EditTextPreference android:key="pref_hs_hostname" android:summary="the addressable name for your hidden service (generated automatically)" android:title=".Onion Hostname"></EditTextPreference>
 </PreferenceCategory>
 
-<PreferenceCategory android:title="Proxy Service">
+<PreferenceCategory android:title="Proxy Service for Tor">
 <EditTextPreference android:key="pref_proxy_type"
 android:title="@string/pref_proxy_type_title"
 android:summary="@string/pref_proxy_type_summary"
