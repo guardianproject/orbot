@@ -55,7 +55,18 @@ public class LotsaText extends Activity implements TorConstants{
 	
 		
 	}
+
 	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+	    switch(resultCode)
+	    {
+	    case RESULT_CLOSE_ALL:
+	        setResult(RESULT_CLOSE_ALL);
+	        finish();
+	    }
+	    super.onActivityResult(requestCode, resultCode, data);
+	}
 	
 	
 	private void stepOne() {
@@ -135,6 +146,6 @@ public class LotsaText extends Activity implements TorConstants{
 		});
 		
 	}
-	
+
 	
 }

@@ -228,7 +228,7 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
         private void doExit ()
         {
                 try {
-                
+                		
                         //one of the confusing things about all of this code is the multiple
                         //places where things like "stopTor" are called, both in the Activity and the Service
                         //not something to tackle in your first iteration, but i thin we can talk about fixing
@@ -247,6 +247,8 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
                         Log.w(TAG, e);
                 }
                 
+                //Kill all the wizard activities
+                setResult(RESULT_CLOSE_ALL);
                 finish();
                 
         }

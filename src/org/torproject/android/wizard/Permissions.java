@@ -55,6 +55,18 @@ public class Permissions extends Activity implements TorConstants {
 		
 	}
 	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+	    switch(resultCode)
+	    {
+	    case RESULT_CLOSE_ALL:
+	        setResult(RESULT_CLOSE_ALL);
+	        finish();
+	    }
+	    super.onActivityResult(requestCode, resultCode, data);
+	}
+
+	
 	private void stepThree(){
 		
 		boolean isRootPossible = TorServiceUtils.isRootPossible();
