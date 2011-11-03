@@ -1,8 +1,10 @@
 /* Copyright (c) 2009, Nathan Freitas, Orbot / The Guardian Project - http://openideals.com/guardian */
 /* See LICENSE for licensing information */
 
-package org.torproject.android;
+package org.torproject.android.settings;
 
+import org.torproject.android.R;
+import org.torproject.android.R.xml;
 import org.torproject.android.service.TorServiceUtils;
 import org.torproject.android.service.TorTransProxy;
 
@@ -38,16 +40,12 @@ public class SettingsPreferences
 		
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		
-		if (prefs.contains("has_root"))
+		hasRoot = prefs.getBoolean("has_root",false);
+		
+		if (!hasRoot)
 		{
-			hasRoot = prefs.getBoolean("has_root",false);
-		}
-		else
-		{
-			hasRoot = TorServiceUtils.checkRootAccess();
-			Editor pEdit = prefs.edit();
-			pEdit.putBoolean("has_root",hasRoot);
-			pEdit.commit();
+			hasRoot = prefs.getBoolean("use_whispercore", false);
+			
 		}
 	}
 	

@@ -14,6 +14,14 @@ android:key="has_root"
 android:title="@string/pref_has_root"
 android:summary="@string/pref_has_root_summary"
 android:enabled="true"/>
+<!-- 
+<CheckBoxPreference 
+android:defaultValue="false" 
+android:key="use_whispercore"
+android:title="@string/pref_use_whispercore"
+android:summary="@string/pref_use_whispercore_summary"
+android:enabled="true"/>
+ -->
 </PreferenceCategory>
 
 <PreferenceCategory android:title="@string/pref_trans_proxy_group">
@@ -135,6 +143,24 @@ android:dialogTitle="Enter ports"
 <EditTextPreference android:summary="enter localhost ports for hidden services" android:title="Hidden Service Ports" android:enabled="false" android:key="pref_hs_ports"></EditTextPreference>
 
 <EditTextPreference android:key="pref_hs_hostname" android:summary="the addressable name for your hidden service (generated automatically)" android:title=".Onion Hostname"></EditTextPreference>
+</PreferenceCategory>
+
+<PreferenceCategory android:title="Proxy Service for Tor">
+<EditTextPreference android:key="pref_proxy_type"
+android:title="@string/pref_proxy_type_title"
+android:summary="@string/pref_proxy_type_summary"
+android:dialogTitle="@string/pref_proxy_type_dialog"
+/>
+<EditTextPreference android:key="pref_proxy_host"
+android:title="@string/pref_proxy_host_title"
+android:summary="@string/pref_proxy_host_summary"
+android:dialogTitle="@string/pref_proxy_host_dialog"
+/>
+<EditTextPreference android:key="pref_proxy_port"
+android:title="@string/pref_proxy_port_title"
+android:summary="@string/pref_proxy_port_summary"
+android:dialogTitle="@string/pref_proxy_port_dialog"
+/>
 </PreferenceCategory>
 
 <PreferenceCategory android:title="Debug">

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="org.torproject.android" android:versionName="0.2.3.1-orbot-alpha-1.0.5.3" android:versionCode="16">
+      package="org.torproject.android" android:versionName="0.2.3.7-alpha-orbot-1.0.6-RC3" android:versionCode="19">
        
        <uses-permission android:name="android.permission.INTERNET" />
  		<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
  
-    <application android:theme="@style/DefaultTheme" android:icon="@drawable/icon" android:label="@string/app_name" android:debuggable="false">
+    <application android:theme="@style/DefaultTheme" android:icon="@drawable/icon"
+     android:label="@string/app_name" android:debuggable="false">
       
         <activity android:name=".Orbot"
                   android:theme="@android:style/Theme.NoTitleBar">
@@ -29,13 +30,13 @@
             </intent-filter>
         </activity>
       	
-      	<activity android:name=".LotsaText"/>
-      	<activity android:name=".Permissions"/>
-      	<activity android:name=".TipsAndTricks"/>
-      	<activity android:name=".ConfigureTransProxy"/>
-      	<activity android:name=".SettingsPreferences"  android:label="@string/app_name"/>
-        <activity android:name=".AppManager"  android:label="@string/app_name"/>
-        <activity android:name=".WizardActivity"  android:label="@string/app_name"/>
+      	<activity android:name=".wizard.LotsaText"/>
+      	<activity android:name=".wizard.Permissions"/>
+      	<activity android:name=".wizard.TipsAndTricks"/>
+      	<activity android:name=".wizard.ConfigureTransProxy"/>
+      	
+      	<activity android:name=".settings.SettingsPreferences"  android:label="@string/app_name"/>
+        <activity android:name=".settings.AppManager"  android:label="@string/app_name"/>
       
     	<service android:enabled="true"
     		android:name=".service.TorService" 

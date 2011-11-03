@@ -1,4 +1,11 @@
-package org.torproject.android;
+package org.torproject.android.wizard;
+
+import org.torproject.android.R;
+import org.torproject.android.TorConstants;
+import org.torproject.android.R.drawable;
+import org.torproject.android.R.id;
+import org.torproject.android.R.layout;
+import org.torproject.android.R.string;
 
 import android.app.Activity;
 import android.content.Context;

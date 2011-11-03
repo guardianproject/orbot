@@ -80,7 +80,7 @@
 				android:paddingLeft="15px"
 				android:textStyle="bold"
 				android:textColor="#00ff00" />	
-			<TextView android:text="Tor v0.2.2.25: https://www.torproject.org"
+			<TextView android:text="Tor v0.2.3.6-alpha: https://www.torproject.org"
 				android:layout_width="fill_parent" 
 				android:layout_height="wrap_content"
 				android:autoLink="web"

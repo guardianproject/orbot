@@ -2,16 +2,16 @@ package org.torproject.android.service;
 
 import java.io.File;
 
-import org.torproject.android.TorifiedApp;
+import org.torproject.android.TorConstants;
+import org.torproject.android.settings.TorifiedApp;
 
 import android.content.Context;
 import android.util.Log;
 
 public class TorTransProxy implements TorServiceConstants {
 	
-	private final static String TAG = TorServiceConstants.TAG;
+	private final static String TAG = TorConstants.TAG;
 		
-
 	
 	public static int purgeIptables(Context context) throws Exception {
 		

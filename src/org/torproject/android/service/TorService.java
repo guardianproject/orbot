@@ -17,12 +17,12 @@ import net.freehaven.tor.control.ConfigEntry;
 import net.freehaven.tor.control.EventHandler;
 import net.freehaven.tor.control.TorControlConnection;
 
-import org.torproject.android.AppManager;
 import org.torproject.android.Orbot;
-import org.torproject.android.ProcessSettingsAsyncTask;
 import org.torproject.android.R;
 import org.torproject.android.TorConstants;
 import org.torproject.android.Utils;
+import org.torproject.android.settings.AppManager;
+import org.torproject.android.settings.ProcessSettingsAsyncTask;
 
 import android.app.AlertDialog;
 import android.app.Notification;
@@ -40,7 +40,7 @@ import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-public class TorService extends Service implements TorServiceConstants, Runnable, EventHandler
+public class TorService extends Service implements TorServiceConstants, TorConstants, Runnable, EventHandler
 {
 	
 	public static boolean ENABLE_DEBUG_LOG = true;
@@ -516,24 +516,14 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     private boolean setupTransProxy (boolean activate) throws Exception
  	{
     	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
- 		boolean hasRoot;
- 		
- 		if (prefs.contains("has_root"))
- 		{
- 			hasRoot = prefs.getBoolean("has_root",false);
- 		}
- 		else
- 		{
- 			hasRoot = TorServiceUtils.checkRootAccess();
- 			Editor pEdit = prefs.edit();
- 			pEdit.putBoolean("has_root",hasRoot);
- 			pEdit.commit();
- 		}
+    	
+ 		boolean hasRoot = prefs.getBoolean(PREF_HAS_ROOT,false);
  		
  		if (!hasRoot)
- 			return false;
- 		
-    	if (activate)
+ 		{
+ 			
+ 		}
+ 		else if (activate)
     	{
 	 		
 	 		boolean enableTransparentProxy = prefs.getBoolean("pref_transparent", false);
@@ -592,6 +582,10 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 						showAlert("Status", "TransProxy enabled for Tethering!");
 
 						TorTransProxy.enableTetheringRules(this);
+						
+					//	mBinder.updateConfiguration("TransListenAddress", "0.0.0.0", false);
+					//	mBinder.updateConfiguration("DNSListenAddress", "0.0.0.0", false);
+					      
 					}
 				}
 				else
@@ -626,6 +620,14 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     	StringBuilder log = new StringBuilder();
 		
 		String torrcPath = new File(appBinHome, TORRC_ASSET_KEY).getAbsolutePath();
+		
+    	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		boolean transProxyTethering = prefs.getBoolean("pref_transparent_tethering", false);
+ 		
+		if (transProxyTethering)
+		{
+			torrcPath = new File(appBinHome, TORRC_TETHER_KEY).getAbsolutePath();
+		}
 		
 		String[] torCmd = {torBinaryPath + " DataDirectory " + appDataHome.getAbsolutePath() + " -f " + torrcPath  + " || exit\n"};
 		
@@ -748,7 +750,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 				{
 					logNotice( "Connecting to control port: " + TOR_CONTROL_PORT);
 					
-					String baseMessage = getString(R.string.tor_process_connecting);
+					String baseMessage = getString(R.string.tor_process_starting);
 					sendCallbackStatusMessage(baseMessage);
 					
 					torConnSocket = new Socket(IP_LOCALHOST, TOR_CONTROL_PORT);
@@ -756,7 +758,6 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 			        
 			      //  conn.authenticate(new byte[0]); // See section 3.2
 			        
-					sendCallbackStatusMessage(getString(R.string.tor_process_connecting_step2));
 
 					logNotice( "SUCCESS connected to control port");
 			        
@@ -772,7 +773,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 				        		
 				        logNotice( "SUCCESS authenticated to control port");
 				        
-						sendCallbackStatusMessage(getString(R.string.tor_process_connecting_step2) + getString(R.string.tor_process_connecting_step3));
+						sendCallbackStatusMessage(getString(R.string.tor_process_starting) + ' ' + getString(R.string.tor_process_complete));
 	
 				        addEventHandler();
 				        
@@ -785,7 +786,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 					conn = null;
 					Log.d(TAG,"Attempt: Error connecting to control port: " + ce.getLocalizedMessage(),ce);
 					
-					sendCallbackStatusMessage(getString(R.string.tor_process_connecting_step4));
+					sendCallbackStatusMessage(getString(R.string.tor_process_waiting));
 
 					Thread.sleep(1000);
 										
@@ -910,14 +911,14 @@ public class TorService extends Service implements TorServiceConstants, Runnable
           if (msg.indexOf(TOR_CONTROL_PORT_MSG_BOOTSTRAP_DONE)!=-1)
           {
         	  currentStatus = STATUS_ON;
+        	  showToolbarNotification (getString(R.string.status_activated),NOTIFY_ID,R.drawable.tornotificationon);
         	
 
    		   	getHiddenServiceHostname ();
    		   
           }
-          
-          
-    	  showToolbarNotification (getString(R.string.status_activated),NOTIFY_ID,R.drawable.tornotificationon);
+        
+      	
     		 
           sendCallbackStatusMessage (msg);
           
@@ -1273,7 +1274,6 @@ public class TorService extends Service implements TorServiceConstants, Runnable
     
     private boolean applyPreferences () throws RemoteException
     {
-    	
     	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		
     	//ENABLE_DEBUG_LOG = prefs.getBoolean("pref_enable_logging",false);
@@ -1285,15 +1285,25 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 		//boolean autoUpdateBridges = prefs.getBoolean(TorConstants.PREF_BRIDGES_UPDATED, false);
 
         boolean becomeRelay = prefs.getBoolean(TorConstants.PREF_OR, false);
-
         boolean ReachableAddresses = prefs.getBoolean(TorConstants.PREF_REACHABLE_ADDRESSES,false);
-
         boolean enableHiddenServices = prefs.getBoolean("pref_hs_enable", false);
 
         boolean enableStrictNodes = prefs.getBoolean("pref_strict_nodes", false);
         String entranceNodes = prefs.getString("pref_entrance_nodes", null);
         String exitNodes = prefs.getString("pref_exit_nodes", null);
         String excludeNodes = prefs.getString("pref_exclude_nodes", null);
+        
+        String proxyType = prefs.getString("pref_proxy_type", null);
+        if (proxyType != null)
+        {
+        	String proxyHost = prefs.getString("pref_proxy_host", null);
+        	String proxyPort = prefs.getString("pref_proxy_port", null);
+        	
+        	if (proxyHost != null && proxyPort != null)
+        	{
+        		mBinder.updateConfiguration(proxyType + "Proxy", proxyHost + ':' + proxyPort, false);
+        	}
+        }
         
         if (currentStatus == STATUS_ON)
         {
@@ -1309,6 +1319,8 @@ public class TorService extends Service implements TorServiceConstants, Runnable
 			}
         }
         
+        File fileGeoIP = new File(appBinHome,"geoip");
+        mBinder.updateConfiguration("GeoIPFile", fileGeoIP.getAbsolutePath(), false);
         mBinder.updateConfiguration("EntryNodes", entranceNodes, false);
         mBinder.updateConfiguration("ExitNodes", exitNodes, false);
 		mBinder.updateConfiguration("ExcludeNodes", excludeNodes, false);
@@ -1431,7 +1443,7 @@ public class TorService extends Service implements TorServiceConstants, Runnable
         	mBinder.updateConfiguration("HiddenServiceDir","", false);
         	
         }
-        
+
         mBinder.saveConfiguration();
 	
         return true;

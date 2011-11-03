@@ -1,5 +1,11 @@
-package org.torproject.android;
+package org.torproject.android.wizard;
 
+import org.torproject.android.R;
+import org.torproject.android.TorConstants;
+import org.torproject.android.R.drawable;
+import org.torproject.android.R.id;
+import org.torproject.android.R.layout;
+import org.torproject.android.R.string;
 import org.torproject.android.service.TorService;
 import org.torproject.android.service.TorServiceUtils;
 import org.torproject.android.service.TorTransProxy;
@@ -88,16 +94,16 @@ public class WizardHelper implements TorConstants {
 			public void onClick(View view) {
 				
 				
-				boolean hasRoot = TorServiceUtils.checkRootAccess();
+				boolean isRootPossible = TorServiceUtils.isRootPossible();
 				
-				if (hasRoot)
+				if (isRootPossible)
 				{
 					try {
 						int resp = TorTransProxy.testOwnerModule(context);
 						
 						if (resp < 0)
 						{
-							hasRoot = false;
+							isRootPossible = false;
 							Toast.makeText(context, "ERROR: IPTables OWNER module not available", Toast.LENGTH_LONG).show();
 
 							Log.i(TorService.TAG,"ERROR: IPTables OWNER module not available");
@@ -105,18 +111,21 @@ public class WizardHelper implements TorConstants {
 						
 					} catch (Exception e) {
 						
-						hasRoot = false;
+						isRootPossible = false;
 						Log.d(TorService.TAG,"ERROR: IPTables OWNER module not available",e);
 					}
 				}
-				
+
+				/*
+				 * we shouldn't store root here, as this step is just chekcing to see if root is possible
 				SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
 				Editor pEdit = prefs.edit();
 				pEdit.putBoolean("has_root",hasRoot);
 				pEdit.commit();
+				*/
 				
-				if (hasRoot)
+				if (isRootPossible)
 				{
 					currentDialog.dismiss();
 					showWizardStep2Root();
@@ -228,7 +237,7 @@ public class WizardHelper implements TorConstants {
 			}
 		});
         
-        Button btn2 = (Button)view.findViewById(R.id.WizardRootButtonInstallFirefox);
+        Button btn2 = (Button)view.findViewById(R.id.WizardRootButtonInstallOrweb);
 
         btn2.setOnClickListener(new OnClickListener() {
 			
@@ -241,6 +250,7 @@ public class WizardHelper implements TorConstants {
 			}
 		});
         
+        /*
         Button btn3 = (Button)view.findViewById(R.id.WizardRootButtonInstallProxyMob);
         
         btn3.setOnClickListener(new OnClickListener() {
@@ -252,7 +262,7 @@ public class WizardHelper implements TorConstants {
 
 			}
 		});
-        
+        */
 		showCustomDialog(title, view,context.getString(R.string.btn_next),context.getString(R.string.btn_back),new DialogInterface.OnClickListener() {
 			
 			

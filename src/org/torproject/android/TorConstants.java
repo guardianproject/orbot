@@ -16,11 +16,6 @@ public interface TorConstants {
 	//path to check Tor against
 	public final static String URL_TOR_CHECK = "https://check.torproject.org";
 	
-    public final static int STATUS_OFF = -1;
-    public final static int STATUS_READY = 0;
-    public final static int STATUS_ON = 1;
-    public final static int STATUS_CONNECTING = 2;
-    
     
     public final static String NEWLINE = "\n";
     
@@ -44,6 +39,8 @@ public interface TorConstants {
     public final static String PREF_REACHABLE_ADDRESSES_PORTS = "pref_reachable_addresses_ports";
 	public final static String PREF_TRANSPARENT = "pref_transparent";
 	public final static String PREF_TRANSPARENT_ALL = "pref_transparent_all";
+	
+	public final static String PREF_HAS_ROOT = "has_root";
 	
 	
 	

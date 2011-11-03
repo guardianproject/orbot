@@ -1,5 +1,11 @@
-package org.torproject.android;
+package org.torproject.android.wizard;
 
+import org.torproject.android.R;
+import org.torproject.android.TorConstants;
+import org.torproject.android.R.drawable;
+import org.torproject.android.R.id;
+import org.torproject.android.R.layout;
+import org.torproject.android.R.string;
 import org.torproject.android.service.TorService;
 import org.torproject.android.service.TorServiceUtils;
 import org.torproject.android.service.TorTransProxy;
@@ -16,6 +22,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,14 +57,9 @@ public class Permissions extends Activity implements TorConstants {
 	
 	private void stepThree(){
 		
-		boolean hasRoot = TorServiceUtils.checkRootAccess();
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-
-		Editor pEdit = prefs.edit();
-		pEdit.putBoolean("has_root",hasRoot);
-		pEdit.commit();
+		boolean isRootPossible = TorServiceUtils.isRootPossible();
 		
-		if (hasRoot)
+		if (isRootPossible)
 		{
 			stepFourRoot();
 		}
@@ -109,6 +111,9 @@ public class Permissions extends Activity implements TorConstants {
 				pEdit.putBoolean(PREF_TRANSPARENT, !isChecked);
 				pEdit.putBoolean(PREF_TRANSPARENT_ALL, !isChecked);
 				
+				pEdit.putBoolean(PREF_HAS_ROOT, !isChecked);
+				
+				
 				pEdit.commit();
 				
 				Button next = ((Button)findViewById(R.id.btnWizard2));
@@ -131,6 +136,18 @@ public class Permissions extends Activity implements TorConstants {
 				
 				SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 				boolean hasRoot = prefs.getBoolean("has_root",false);
+				
+				
+				if (!hasRoot)
+				{
+				
+					hasRoot = TorServiceUtils.isRootPossible();
+					
+					Editor pEdit = prefs.edit();
+					pEdit.putBoolean(PREF_HAS_ROOT,hasRoot);
+					pEdit.commit();
+					
+				}
 				
 				if (hasRoot)
 				{
@@ -182,9 +199,8 @@ public class Permissions extends Activity implements TorConstants {
 	
 	private void stepFour(){
 		
-		Toast.makeText(context, "NON ROOT FUNC", Toast.LENGTH_SHORT).show();
 		String title = context.getString(R.string.wizard_permissions_title);
-		String msg = context.getString(R.string.wizard_permissions_msg);
+		String msg = context.getString(R.string.wizard_permissions_no_root_msg);
 		
 		TextView txtTitle  = ((TextView)findViewById(R.id.WizardTextTitle));
 		txtTitle.setText(title);
@@ -196,7 +212,9 @@ public class Permissions extends Activity implements TorConstants {
         Button btn2 = ((Button)findViewById(R.id.btnWizard2));
         btn2.setEnabled(true);
    
-        
+        ImageView img = (ImageView) findViewById(R.id.orbot_image);
+    	img.setImageResource(R.drawable.warning);
+    
         TextView txtBody2 = ((TextView)findViewById(R.id.WizardTextBody2));
 		txtBody2.setVisibility(TextView.GONE);
 		

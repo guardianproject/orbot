@@ -5,24 +5,38 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
             
+
 <RelativeLayout 
 	android:layout_width="fill_parent" 
-	android:layout_height="wrap_content" 
+	android:layout_height="70sp" 
 	android:id="@+id/relativeLayout1" 
-	android:layout_gravity="center_horizontal"
-	android:background="#000000">
-         <TextView android:textSize="10pt" 
+	android:layout_gravity="center_vertical|center_horizontal"
+	android:background="#000000"
+	>
+        <ImageView 
+        	android:src="@drawable/warning" 
+        	android:id="@+id/orbot_image" 
+        	android:layout_width="wrap_content" 
+        	android:layout_height="wrap_content" 
+        	android:layout_alignParentLeft="true"
+        	android:paddingLeft="20sp" >
+        </ImageView>
+        <TextView 
         	android:textColor="#FFFFFF"
-        	android:layout_alignParentTop="true"
-       	 	android:layout_height="wrap_content" 
+        	android:textSize="10pt" 
+        	android:layout_toRightOf="@id/orbot_image" 
+        	android:gravity="center_vertical"
+       	 	android:layout_height="fill_parent" 
         	android:id="@+id/WizardTextTitle" 
         	android:layout_width="wrap_content" 
         	android:fadingEdge="vertical" 
-        	android:text="TITLE" 
+        	android:text="TITLE"     
         	android:singleLine="true" 
-          	android:padding="20px" android:layout_centerInParent="true"> 
+        	android:layout_centerInParent="true" 
+        	android:paddingLeft="5sp"
+        	> 
         </TextView>
-    </RelativeLayout>    
+    </RelativeLayout>   
 <TableLayout  android:id="@+id/TableLayout01" android:stretchColumns="*" android:layout_height="fill_parent" android:layout_width="wrap_content">
 
 <TableRow android:layout_margin="10dip"   android:id="@+id/TableRow01" android:layout_weight="1" android:layout_width="fill_parent" android:layout_height="fill_parent">
@@ -43,12 +57,15 @@
 		    >
 		    
 <TextView android:text="@string/wizard_tips_msg" android:layout_width="wrap_content" android:textColor="#ffffff" android:layout_height="wrap_content"  android:textSize="8pt" android:id="@+id/WizardTextBody1" android:padding="20dip"></TextView>
+<Button android:text="@string/wizard_tips_orweb"  android:layout_gravity="left" android:drawableLeft="@drawable/icon_orweb" android:layout_marginTop="10px" android:id="@+id/WizardRootButtonInstallOrweb" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
 <Button android:text="@string/wizard_tips_gibberbot"  android:layout_gravity="left" android:drawableLeft="@drawable/ic_launcher_gibberbot"  android:layout_marginTop="10px" android:id="@+id/WizardRootButtonInstallGibberbot" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 
+<!-- 
 <Button android:text="@string/wizard_tips_firefox"  android:layout_gravity="left" android:drawableLeft="@drawable/icon_firefox" android:layout_marginTop="10px" android:id="@+id/WizardRootButtonInstallFirefox" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 
 <Button android:text="@string/wizard_tips_proxymob" android:layout_marginTop="10px" android:drawableLeft="@drawable/proxymob" android:id="@+id/WizardRootButtonInstallProxyMob" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-
+ -->
 			</LinearLayout>
 		</ScrollView>
 		

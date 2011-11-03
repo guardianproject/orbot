@@ -1,13 +1,18 @@
 /* Copyright (c) 2009, Nathan Freitas, Orbot / The Guardian Project - http://openideals.com/guardian */
 /* See LICENSE for licensing information */
 
-package org.torproject.android;
+package org.torproject.android.settings;
 
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
+
+import org.torproject.android.R;
+import org.torproject.android.TorConstants;
+import org.torproject.android.R.id;
+import org.torproject.android.R.layout;
 
 import android.app.Activity;
 import android.content.Context;
@@ -23,6 +28,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
@@ -50,8 +56,6 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
 		
 		mAppManager = this;
 
-
-		
 	}
 	
 	
@@ -61,6 +65,16 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
 		super.onResume();
 		listApps = (ListView)findViewById(R.id.applistview);
 
+		Button btnSave = (Button)findViewById(R.id.btnsave);
+		btnSave.setOnClickListener(new OnClickListener()
+		{
+
+			@Override
+			public void onClick(View v) {
+				finish();
+			}
+		});
+		
 		if (!appsLoaded)
 			loadApps();
 	}
@@ -173,6 +187,7 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
 		PackageManager pMgr = context.getPackageManager();
 		
 		List<ApplicationInfo> lAppInfo = pMgr.getInstalledApplications(0);
+		
 		
 		Iterator<ApplicationInfo> itAppInfo = lAppInfo.iterator();
 		
