@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="org.torproject.android" android:versionName="0.2.3.7-alpha-orbot-1.0.6-RC3" android:versionCode="19">
+      package="org.torproject.android" android:versionName="0.2.3.7-alpha-orbot-1.0.6-RC4" android:versionCode="20">
        
        <uses-permission android:name="android.permission.INTERNET" />
  		<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
