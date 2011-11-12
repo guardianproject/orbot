@@ -275,7 +275,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     		showToolbarNotification (getString(R.string.status_disabled),NOTIFY_ID,R.drawable.tornotificationoff);
     		sendCallbackStatusMessage(getString(R.string.status_disabled));
 
-    		setupTransProxy(false);
+    		clearTransparentProxy();
     	}
     	catch (Exception e)
     	{
@@ -495,7 +495,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     		try {
 
 
-	    		setupTransProxy(true);
+	    		enableTransparentProxy();
 	    		runTorShellCmd();
 	    		runPrivoxyShellCmd();
 
@@ -513,20 +513,16 @@ public class TorService extends Service implements TorServiceConstants, TorConst
      * 
      * the idea is that if Tor is off then transproxy is off
      */
-    private boolean setupTransProxy (boolean activate) throws Exception
+    private boolean enableTransparentProxy () throws Exception
  	{
     	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
     	
  		boolean hasRoot = prefs.getBoolean(PREF_HAS_ROOT,false);
+ 		boolean enableTransparentProxy = prefs.getBoolean("pref_transparent", false);
  		
- 		if (!hasRoot)
- 		{
- 			
- 		}
- 		else if (activate)
+ 		if (hasRoot && enableTransparentProxy)
     	{
 	 		
-	 		boolean enableTransparentProxy = prefs.getBoolean("pref_transparent", false);
 	 		boolean transProxyAll = prefs.getBoolean("pref_transparent_all", false);
 	 		boolean transProxyPortFallback = prefs.getBoolean("pref_transparent_port_fallback", false);
 	 		boolean transProxyTethering = prefs.getBoolean("pref_transparent_tethering", false);
@@ -535,83 +531,92 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	     	
 	     	String portProxyList = prefs.getString("pref_port_list", "");
 	
-	 		if (enableTransparentProxy)
-	 		{
-	 			//TODO: Find a nice place for the next (commented) line
-				//TorTransProxy.setDNSProxying(); 
+	 		
+ 			//TODO: Find a nice place for the next (commented) line
+			//TorTransProxy.setDNSProxying(); 
+			
+			int code = 0; // Default state is "okay"
 				
-				int code = 0; // Default state is "okay"
-					
-				if(transProxyPortFallback)
+			if(transProxyPortFallback)
+			{
+				showAlert(getString(R.string.status), getString(R.string.setting_up_port_based_transparent_proxying_));
+				StringTokenizer st = new StringTokenizer(portProxyList, ",");
+				int status = code;
+				while (st.hasMoreTokens())
 				{
-					showAlert("Status", "Setting up port-based transparent proxying...");
-					StringTokenizer st = new StringTokenizer(portProxyList, ",");
-					int status = code;
-					while (st.hasMoreTokens())
-					{
-						status = TorTransProxy.setTransparentProxyingByPort(this, Integer.parseInt(st.nextToken()));
-						if(status != 0)
-							code = status;
-					}
+					status = TorTransProxy.setTransparentProxyingByPort(this, Integer.parseInt(st.nextToken()));
+					if(status != 0)
+						code = status;
+				}
+			}
+			else
+			{
+				if(transProxyAll)
+				{
+					showAlert(getString(R.string.status), getString(R.string.setting_up_full_transparent_proxying_));
+					code = TorTransProxy.setTransparentProxyingAll(this);
 				}
 				else
 				{
-					if(transProxyAll)
-					{
-						showAlert("Status", "Setting up full transparent proxying...");
-						code = TorTransProxy.setTransparentProxyingAll(this);
-					}
-					else
-					{
-						showAlert("Status", "Setting up app-based transparent proxying...");
-						code = TorTransProxy.setTransparentProxyingByApp(this,AppManager.getApps(this));
-					}
-					
+					showAlert(getString(R.string.status), getString(R.string.setting_up_app_based_transparent_proxying_));
+					code = TorTransProxy.setTransparentProxyingByApp(this,AppManager.getApps(this));
 				}
+				
+			}
+		
+			TorService.logMessage ("TorTransProxy resp code: " + code);
 			
-				TorService.logMessage ("TorTransProxy resp code: " + code);
+			if (code == 0)
+			{
+				showAlert(getString(R.string.status), getString(R.string.transparent_proxying_enabled));
 				
-				if (code == 0)
+
+				
+				if (transProxyTethering)
 				{
-					showAlert("Status", "Transparent proxying ENABLED");
-					
+					showAlert(getString(R.string.status), getString(R.string.transproxy_enabled_for_tethering_));
 
-					
-					if (transProxyTethering)
-					{
-						showAlert("Status", "TransProxy enabled for Tethering!");
-
-						TorTransProxy.enableTetheringRules(this);
-						
-					//	mBinder.updateConfiguration("TransListenAddress", "0.0.0.0", false);
-					//	mBinder.updateConfiguration("DNSListenAddress", "0.0.0.0", false);
-					      
-					}
+					TorTransProxy.enableTetheringRules(this);
+					  
 				}
-				else
-				{
-					showAlert("Status", "WARNING: error starting transparent proxying!");
-				}
-				
-				
-			
-				return true;
-	 				
-	 		}
-	 		else
-	 		{
-	 			TorTransProxy.purgeIptables(this);
-				showAlert("Status", "Transparent proxying: DISABLED");
-	 		}
+			}
+			else
+			{
+				showAlert(getString(R.string.status), getString(R.string.warning_error_starting_transparent_proxying_));
+			}
+		
+			return true;
     	}
-    	else
-    	{	 	
-    		TorTransProxy.purgeIptables(this);
-			showAlert("Status", "Transparent proxying: DISABLED");
-
-    	}
+ 		else
+ 			return false;
+ 	}
+    
+    /*
+     * activate means whether to apply the users preferences
+     * or clear them out
+     * 
+     * the idea is that if Tor is off then transproxy is off
+     */
+    private boolean clearTransparentProxy () throws Exception
+ 	{
+    	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
     	
- 		return true;
+ 		boolean hasRoot = prefs.getBoolean(PREF_HAS_ROOT,false);
+ 		boolean enableTransparentProxy = prefs.getBoolean("pref_transparent", false);
+ 		
+ 		if (hasRoot && enableTransparentProxy)
+    	{
+	 		
+	     	TorService.logMessage ("Clearing TransProxy rules");
+	     	
+	     	TorTransProxy.purgeIptables(this);
+	     	
+			showAlert(getString(R.string.status), getString(R.string.transproxy_rules_cleared));
+	     	
+	     	return true;
+    	}
+ 		else
+ 			return false;
  	}
     
     private void runTorShellCmd() throws Exception
@@ -657,7 +662,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			if (procId == -1)
 			{
 				
-				sendCallbackStatusMessage("Couldn't start Tor process.\nretrying..." + log.toString());
+				sendCallbackStatusMessage(getString(R.string.couldn_t_start_tor_process_) + log.toString());
 				Thread.sleep(torRetryWaitTimeMS);
 				attempts++;
 			}
@@ -723,7 +728,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     			logNotice(log.toString());
     		}
     		
-			sendCallbackLogMessage("Privoxy is running on port: " + PORT_HTTP);
+			sendCallbackLogMessage(getString(R.string.privoxy_is_running_on_port_) + PORT_HTTP);
 			
     		logNotice("Privoxy process id=" + privoxyProcId);
 			
@@ -926,13 +931,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 	private void showAlert(String title, String msg)
 	{
-		 /*
-		 new AlertDialog.Builder(this)
-         .setTitle(title)
-         .setMessage(msg)
-         .setPositiveButton(android.R.string.ok, null)
-         .show();
-         */
 		showToolbarNotification(msg, NOTIFY_ID, R.drawable.tornotification);
 	}
 	
@@ -1088,6 +1086,25 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         	
         	try {
 				applyPreferences();
+				
+
+		        
+		        if (currentStatus == STATUS_ON)
+		        {
+		        	//reset iptables rules in active mode
+		        
+					try
+					{
+						clearTransparentProxy();
+			    		enableTransparentProxy();
+					}
+					catch (Exception e)
+					{
+						logException("unable to setup transproxy",e);
+					}
+		        }
+		        
+				
 			} catch (RemoteException e) {
 				logException ("error applying prefs",e);
 			}
@@ -1304,20 +1321,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         	}
         }
         
-        if (currentStatus == STATUS_ON)
-        {
-        	//reset iptables rules in active mode
-        
-			try
-			{
-				setupTransProxy(true); 		
-			}
-			catch (Exception e)
-			{
-				logException("unable to setup transproxy",e);
-			}
-        }
-        
         File fileGeoIP = new File(appBinHome,"geoip");
         mBinder.updateConfiguration("GeoIPFile", fileGeoIP.getAbsolutePath(), false);
         mBinder.updateConfiguration("EntryNodes", entranceNodes, false);
@@ -1332,8 +1335,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			if (bridgeList == null || bridgeList.length() == 0)
 			{
 			
-				showAlert("Bridge Error","In order to use the bridge feature, you must enter at least one bridge IP address." +
-						"Send an email to bridges@torproject.org with the line \"get bridges\" by itself in the body of the mail from a gmail account.");
+				showAlert(getString(R.string.bridge_error),getString(R.string.bridge_requires_ip) +
+						getString(R.string.send_email_for_bridges));
 				
 			
 				return false;
@@ -1383,7 +1386,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         }
         catch (Exception e)
         {
-           showAlert("Config Error","Your ReachableAddresses settings caused an exception!");
+           showAlert(getString(R.string.error),getString(R.string.your_reachableaddresses_settings_caused_an_exception_));
            
            return false;
         }
@@ -1409,7 +1412,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         }
         catch (Exception e)
         {
-            showAlert("Uh-oh!","Your relay settings caused an exception!");
+            showAlert(getString(R.string.error),getString(R.string.your_relay_settings_caused_an_exception_));
           
             return false;
         }

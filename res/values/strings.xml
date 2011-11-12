@@ -183,5 +183,21 @@
 <string name="pref_proxy_port_title">Proxy Port</string>
 <string name="pref_proxy_port_summary">Proxy server port</string>
 <string name="pref_proxy_port_dialog">Enter Proxy port</string>
+<string name="status">Status</string>
+<string name="setting_up_full_transparent_proxying_">Setting up full transparent proxying...</string>
+<string name="setting_up_app_based_transparent_proxying_">Setting up app-based transparent proxying...</string>
+<string name="transparent_proxying_enabled">Transparent proxying ENABLED</string>
+<string name="transproxy_enabled_for_tethering_">TransProxy enabled for Tethering!</string>
+<string name="warning_error_starting_transparent_proxying_">WARNING: error starting transparent proxying!</string>
+<string name="transproxy_rules_cleared">TransProxy rules cleared</string>
+<string name="couldn_t_start_tor_process_">"Couldn't start Tor process: "</string>
+<string name="privoxy_is_running_on_port_">Privoxy is running on port: </string>
+<string name="setting_up_port_based_transparent_proxying_">Setting up port-based transparent proxying...</string>
+<string name="bridge_error">Bridge Error</string>
+<string name="bridge_requires_ip">In order to use the bridge feature, you must enter at least one bridge IP address.</string>
+<string name="send_email_for_bridges">Send an email to bridges@torproject.org with the line \"get bridges\" by itself in the body of the mail from a gmail account.</string>
+<string name="error">Error</string>
+<string name="your_reachableaddresses_settings_caused_an_exception_">Your ReachableAddresses settings caused an exception!</string>
+<string name="your_relay_settings_caused_an_exception_">Your relay settings caused an exception!</string>
 
 </resources>
