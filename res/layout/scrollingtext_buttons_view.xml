@@ -6,20 +6,23 @@
     android:layout_height="fill_parent"
    >
             
-<RelativeLayout 
-	android:layout_width="fill_parent" 
-	android:layout_height="70sp" 
-	android:id="@+id/relativeLayout1" 
-	android:layout_gravity="center_vertical|center_horizontal"
-	android:background="#000000"
-	>
-        <ImageView 
-        	android:src="@drawable/warning" 
-        	android:id="@+id/orbot_image" 
-        	android:layout_width="wrap_content" 
-        	android:layout_height="wrap_content" 
-        	android:layout_alignParentLeft="true"
-        	android:paddingLeft="20sp" >
+<RelativeLayout
+    android:id="@+id/relativeLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="70sp"
+    android:layout_gravity="center_vertical|center_horizontal"
+    android:background="#000000"
+    android:gravity="center" >
+
+        <ImageView
+            android:id="@+id/orbot_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="9dip"
+            android:paddingLeft="20sp"
+            android:src="@drawable/warning" >
+
         </ImageView>
         <TextView 
         	android:textColor="#FFFFFF"
