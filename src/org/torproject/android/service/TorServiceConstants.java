@@ -6,6 +6,7 @@ public interface TorServiceConstants {
 
 
 	public final static String TOR_APP_USERNAME = "org.torproject.android";
+	public final static String ORWEB_APP_USERNAME = "info.guardianproject.browser";
 	
 	
 	//home directory of Android application

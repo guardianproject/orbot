@@ -192,6 +192,12 @@ public class TorTransProxy implements TorServiceConstants {
 					continue;
 				}
 				
+				if (apps[i].getUsername().equals(TorServiceConstants.ORWEB_APP_USERNAME))
+				{
+					//should never trans proxy the Orbot app (and Tor or Privoxy) itself
+					continue;
+				}
+				
 				TorService.logMessage("enabling transproxy for app: " + apps[i].getUsername() + "(" + apps[i].getUid() + ")");
 			 
 				//TCP
