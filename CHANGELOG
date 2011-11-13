@@ -1,5 +1,12 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+1.0.6
+- updated tablet layout graphic sizing
+- stopped Orweb from being transparent proxied (not needed)
+- updated to Tor 0.2.3.7-alpha binary 
+- geoip database now included for exit/entrace node control
+- stopped iptables rule purging if transproxy is not enabled (conflicted with DroidWall and others)
+
 1.0.5.3
 - added auto-tor of wireless and usb tethering
 - integrated new setup wizard
