@@ -66,57 +66,57 @@ android:summary="@string/pref_entrance_node_summary"
 android:dialogTitle="@string/pref_entrance_node_dialog"
 />
 <EditTextPreference android:key="pref_exit_nodes"
-android:title="Exit Nodes"
-android:summary="Fingerprints, nicks, countries and addresses for the last hop"
-android:dialogTitle="Enter Exit Nodes"
+android:title="@string/exit_nodes"
+android:summary="@string/fingerprints_nicks_countries_and_addresses_for_the_last_hop"
+android:dialogTitle="@string/enter_exit_nodes"
 />
 <EditTextPreference android:key="pref_exclude_nodes"
-android:title="Exclude Nodes"
-android:summary="Fingerprints, nicks, countries and addresses to exclude"
-android:dialogTitle="Enter Exclude Nodes"
+android:title="@string/exclude_nodes"
+android:summary="@string/fingerprints_nicks_countries_and_addresses_to_exclude"
+android:dialogTitle="@string/enter_exclude_nodes"
 />
 
 <CheckBoxPreference android:defaultValue="false" 
-android:title="Strict Nodes" android:key="pref_strict_nodes" 
-android:summary="Use *only* these specified nodes"/>
+android:title="@string/strict_nodes" android:key="pref_strict_nodes" 
+android:summary="@string/use_only_these_specified_nodes"/>
 
 </PreferenceCategory> 
-<PreferenceCategory android:title="Bridges">
+<PreferenceCategory android:title="@string/bridges">
 
 <CheckBoxPreference android:defaultValue="false" 
-android:title="Use Bridges" android:key="pref_bridges_enabled" 
-android:summary="Enable alternate entrance nodes into the Tor Network"></CheckBoxPreference>
+android:title="@string/use_bridges" android:key="pref_bridges_enabled" 
+android:summary="@string/enable_alternate_entrance_nodes_into_the_tor_network"></CheckBoxPreference>
 
  
 <EditTextPreference android:key="pref_bridges_list"
-android:title="Bridges"
-android:summary="IP address and port of bridges"
-android:dialogTitle="Enter Bridge Addresses"
+android:title="@string/bridges"
+android:summary="@string/ip_address_and_port_of_bridges"
+android:dialogTitle="@string/enter_bridge_addresses"
 />
 </PreferenceCategory>
 
 
 
-<PreferenceCategory android:title="Relays">
+<PreferenceCategory android:title="@string/relays">
 <CheckBoxPreference android:key="pref_or"
 android:defaultValue="false"
-android:title="Relaying"
-android:summary="Enable your device to be a non-exit relay"
+android:title="@string/relaying"
+android:summary="@string/enable_your_device_to_be_a_non_exit_relay"
 android:enabled="true"
 />
 
 <EditTextPreference android:key="pref_or_port"
 android:defaultValue="9001"
-android:title="Relay Port"
-android:summary="Listening port for your Tor relay"
-android:dialogTitle="Enter OR port"
+android:title="@string/relay_port"
+android:summary="@string/listening_port_for_your_tor_relay"
+android:dialogTitle="@string/enter_or_port"
 />
 
 <EditTextPreference android:key="pref_or_nickname"
-android:defaultValue="Orbot"
-android:title="Relay nickname"
-android:summary="The nickname for your Tor relay"
-android:dialogTitle="Enter a custom relay nickname"
+android:defaultValue="OrbotRelay"
+android:title="@string/relay_nickname"
+android:summary="@string/the_nickname_for_your_tor_relay"
+android:dialogTitle="@string/enter_a_custom_relay_nickname"
 />
 
 </PreferenceCategory>
@@ -125,24 +125,28 @@ android:dialogTitle="Enter a custom relay nickname"
 <CheckBoxPreference
 android:key="pref_reachable_addresses"
 android:defaultValue="false"
-android:title="ReachableAddresses"
-android:summary="Run as a client behind a firewall with restrictive policies"
+android:title="@string/reachable_addresses"
+android:summary="@string/run_as_a_client_behind_a_firewall_with_restrictive_policies"
 android:enabled="true"></CheckBoxPreference>
 
 <EditTextPreference
 android:key="pref_reachable_addresses_ports"
 android:defaultValue="*:80,*:443"
-android:title="Reachable ports"
-android:summary="Ports reachable behind a restrictive firewall"
-android:dialogTitle="Enter ports"
+android:title="@string/reachable_ports"
+android:summary="@string/ports_reachable_behind_a_restrictive_firewall"
+android:dialogTitle="@string/enter_ports"
 />
 </PreferenceCategory>
 
 <PreferenceCategory android:title="@string/pref_hs_group">
-<CheckBoxPreference android:title="Enable Hidden Services" android:summary="run servers accessible via the Tor network" android:key="pref_hs_enable"></CheckBoxPreference>
-<EditTextPreference android:summary="enter localhost ports for hidden services" android:title="Hidden Service Ports" android:enabled="false" android:key="pref_hs_ports"></EditTextPreference>
+<CheckBoxPreference android:title="@string/enable_hidden_services" 
+android:summary="@string/run_servers_accessible_via_the_tor_network" android:key="pref_hs_enable"></CheckBoxPreference>
+<EditTextPreference android:summary="@string/enter_localhost_ports_for_hidden_services" 
+android:title="@string/hidden_service_ports" android:enabled="false" android:key="pref_hs_ports"></EditTextPreference>
 
-<EditTextPreference android:key="pref_hs_hostname" android:summary="the addressable name for your hidden service (generated automatically)" android:title=".Onion Hostname"></EditTextPreference>
+<EditTextPreference android:key="pref_hs_hostname" 
+android:summary="@string/the_addressable_name_for_your_hidden_service_generated_automatically_" 
+android:title=".Onion Hostname"></EditTextPreference>
 </PreferenceCategory>
 
 <PreferenceCategory android:title="Proxy Service for Tor">
@@ -168,7 +172,7 @@ android:dialogTitle="@string/pref_proxy_port_dialog"
 android:key="pref_enable_logging"
 android:defaultValue="false"
 android:title="Debug Log"
-android:summary="enable debug log to output (must use adb or aLogCat to view)"
+android:summary="@string/enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_"
 android:enabled="true"></CheckBoxPreference>
 
 
