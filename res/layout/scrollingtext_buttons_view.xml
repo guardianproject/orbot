@@ -11,22 +11,22 @@
     android:layout_width="fill_parent"
     android:layout_height="70sp"
     android:layout_gravity="center_vertical|center_horizontal"
-    android:background="#000000"
-    android:gravity="center" >
+    android:background="#000000" >
 
         <ImageView
             android:id="@+id/orbot_image"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_marginTop="9dip"
+            android:layout_height="fill_parent"
             android:paddingLeft="20sp"
-            android:src="@drawable/warning" >
+            android:src="@drawable/warning" 
+            android:gravity="center_vertical"
+            
+            >
 
         </ImageView>
         <TextView 
         	android:textColor="#FFFFFF"
-        	android:textSize="10pt" 
+        	android:textSize="20dp" 
         	android:layout_toRightOf="@id/orbot_image" 
         	android:gravity="center_vertical"
        	 	android:layout_height="fill_parent" 
