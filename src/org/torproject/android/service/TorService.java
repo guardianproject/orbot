@@ -96,7 +96,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
  		{
  			logNotice("Found existing Tor process");
  			
-            sendCallbackLogMessage ("found existing Tor process...");
+            sendCallbackLogMessage (getString(R.string.found_existing_tor_process));
 
  			try {
  				currentStatus = STATUS_CONNECTING;
@@ -281,7 +281,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	{
     		Log.d(TAG, "An error occured stopping Tor",e);
     		logNotice("An error occured stopping Tor: " + e.getMessage());
-    		sendCallbackStatusMessage("Something bad happened. Check the log");
+    		sendCallbackStatusMessage(getString(R.string.something_bad_happened));
 
     	}
     }
@@ -326,7 +326,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	    	{
 		    	try {
 					String onionHostname = Utils.readString(new FileInputStream(file));
-					showToolbarNotification("hidden service on: " + onionHostname, NOTIFY_ID, R.drawable.tornotification);
+					showToolbarNotification(getString(R.string.hidden_service_on) + ' ' + onionHostname, NOTIFY_ID, R.drawable.tornotification);
 					Editor pEdit = prefs.edit();
 					pEdit.putString("pref_hs_hostname",onionHostname);
 					pEdit.commit();
@@ -334,13 +334,13 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 					
 				} catch (FileNotFoundException e) {
 					logException("unable to read onion hostname file",e);
-					showToolbarNotification("unable to read hidden service name", NOTIFY_ID, R.drawable.tornotificationerr);
+					showToolbarNotification(getString(R.string.unable_to_read_hidden_service_name), NOTIFY_ID, R.drawable.tornotificationerr);
 					return;
 				}
 	    	}
 	    	else
 	    	{
-				showToolbarNotification("unable to read hidden service name", NOTIFY_ID, R.drawable.tornotificationerr);
+				showToolbarNotification(getString(R.string.unable_to_read_hidden_service_name), NOTIFY_ID, R.drawable.tornotificationerr);
 	
 	    		
 	    	}
@@ -501,7 +501,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 			} catch (Exception e) {
 		    	logException("Unable to start Tor: " + e.getMessage(),e);	
-		    	sendCallbackStatusMessage("Unable to start Tor: " + e.getMessage());
+		    	sendCallbackStatusMessage(getString(R.string.unable_to_start_tor) + ' ' + e.getMessage());
 		    	
 		    } 
     		
@@ -889,7 +889,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			if (profile == PROFILE_ON)
 			{
  				currentStatus = STATUS_CONNECTING;
-	            sendCallbackStatusMessage ("starting...");
+	            sendCallbackStatusMessage (getString(R.string.status_starting_up));
 
 	            Thread thread = new Thread(this);
 	            thread.start();
@@ -898,7 +898,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			else if (profile == PROFILE_OFF)
 			{
 				currentStatus = STATUS_OFF;
-	            sendCallbackStatusMessage ("shutting down...");
+	            sendCallbackStatusMessage (getString(R.string.status_shutting_down));
 	            
 				_torInstance.stopTor();
 
