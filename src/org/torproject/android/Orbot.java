@@ -3,9 +3,6 @@
 
 package org.torproject.android;
 
-
-
-
 import org.torproject.android.service.ITorService;
 import org.torproject.android.service.ITorServiceCallback;
 import org.torproject.android.service.TorServiceConstants;
@@ -253,30 +250,6 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
                 
         }
         
-        /* Return to the main view when the back key is pressed
-         * (non-Javadoc)
-         * @see android.app.Activity#onKeyDown(int, android.view.KeyEvent)
-         */
-        /*
-        public boolean onKeyDown(int keyCode, KeyEvent event){
-                
-                //yeah this should probably go away now :) - or not
-                if(keyCode==KeyEvent.KEYCODE_BACK){
-
-                        if(currentView != R.layout.layout_main){
-                                        
-                                        showMain ();
-                                        return true;
-                        }
-                        else{
-                                return super.onKeyDown(keyCode, event);
-                        }
-                }
-        
-                return super.onKeyDown(keyCode, event);
-                
-        }*/
- 
     /* (non-Javadoc)
 	 * @see android.app.Activity#onPause()
 	 */
@@ -405,7 +378,7 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
 
         	int hsPort = getIntent().getIntExtra("hs_port", -1);
 
-			String requestMsg = "An app wants to open a server port (" + hsPort + ") to the Tor network. This is safe if you trust the app.";
+			String requestMsg = getString(R.string.hidden_service_request, hsPort);
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setMessage(requestMsg).setPositiveButton("Allow", dialogClickListener)
 			    .setNegativeButton("Deny", dialogClickListener).show();
@@ -499,61 +472,62 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
     /*
      * Load the basic settings application to display torrc
      */
-        private void showSettings ()
-        {
-                
-                startActivityForResult(new Intent(this, SettingsPreferences.class), 1);
-        }
-        
-        
-        @Override
-        protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-                super.onActivityResult(requestCode, resultCode, data);
-                
-                //if we get a response from an activity we launched (like from line 527 where we launch the Settings/Prefs screen)
-                //and the resultCode matches our arbitrary 1010 value, AND Tor is running
-                //then update the preferences in an async background task
-                if (requestCode == 1 && resultCode == 1010 && mService != null)
-                {
-                        new ProcessSettingsAsyncTask().execute(mService);        
-                }
-        }
-        
-        AlertDialog aDialog = null;
-        
-        //general alert dialog for mostly Tor warning messages
-        //sometimes this can go haywire or crazy with too many error
-        //messages from Tor, and the user cannot stop or exit Orbot
-        //so need to ensure repeated error messages are not spamming this method
-        private void showAlert(String title, String msg, boolean button)
-        {
-                try
-                {
-                        if (aDialog != null && aDialog.isShowing())
-                                aDialog.dismiss();
-                }
-                catch (Exception e){} //swallow any errors
-                
-                 if (button)
-                 {
-                                aDialog = new AlertDialog.Builder(this)
-                         .setIcon(R.drawable.icon)
-                 .setTitle(title)
-                 .setMessage(msg)
-                 .setPositiveButton(android.R.string.ok, null)
-                 .show();
-                 }
-                 else
-                 {
-                         aDialog = new AlertDialog.Builder(this)
-                         .setIcon(R.drawable.icon)
-                 .setTitle(title)
-                 .setMessage(msg)
-                 .show();
-                 }
-        
-                 aDialog.setCanceledOnTouchOutside(true);
-        }
+    private void showSettings ()
+    {
+            
+            startActivityForResult(new Intent(this, SettingsPreferences.class), 1);
+    }
+    
+    
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+            super.onActivityResult(requestCode, resultCode, data);
+            
+            //if we get a response from an activity we launched (like from line 527 where we launch the Settings/Prefs screen)
+            //and the resultCode matches our arbitrary 1010 value, AND Tor is running
+            //then update the preferences in an async background task
+            if (requestCode == 1 && resultCode == 1010 && mService != null)
+            {
+                    new ProcessSettingsAsyncTask().execute(mService);        
+            }
+    }
+    
+    AlertDialog aDialog = null;
+    
+    //general alert dialog for mostly Tor warning messages
+    //sometimes this can go haywire or crazy with too many error
+    //messages from Tor, and the user cannot stop or exit Orbot
+    //so need to ensure repeated error messages are not spamming this method
+    private void showAlert(String title, String msg, boolean button)
+    {
+            try
+            {
+                    if (aDialog != null && aDialog.isShowing())
+                            aDialog.dismiss();
+            }
+            catch (Exception e){} //swallow any errors
+            
+             if (button)
+             {
+                            aDialog = new AlertDialog.Builder(this)
+                     .setIcon(R.drawable.icon)
+             .setTitle(title)
+             .setMessage(msg)
+             .setPositiveButton(android.R.string.ok, null)
+             .show();
+             }
+             else
+             {
+                     aDialog = new AlertDialog.Builder(this)
+                     .setIcon(R.drawable.icon)
+             .setTitle(title)
+             .setMessage(msg)
+             .show();
+             }
+    
+             aDialog.setCanceledOnTouchOutside(true);
+    }
+    
     /*
      * Set the state of the running/not running graphic and label
      * this all needs to be looked at w/ the shift to progressDialog
@@ -875,6 +849,7 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
     }
     
     //unbind removes the callback, and unbinds the service
+    /*
     private void unbindService ()
     {
             if (mIsBound) {
@@ -898,7 +873,7 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
             mIsBound = false;
             
         }
-    }
+    }*/
         
     private void createProgressDialog (String msg)
     {
