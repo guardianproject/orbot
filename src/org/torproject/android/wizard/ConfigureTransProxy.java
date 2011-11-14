@@ -61,6 +61,18 @@ public class ConfigureTransProxy extends Activity implements TorConstants {
 		
 		
 	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+	    switch(resultCode)
+	    {
+	    case RESULT_CLOSE_ALL:
+	        setResult(RESULT_CLOSE_ALL);
+	        finish();
+	    }
+	    super.onActivityResult(requestCode, resultCode, data);
+	}
+
 	
 	private void setupUI ()
 	{
@@ -202,7 +214,7 @@ public class ConfigureTransProxy extends Activity implements TorConstants {
 			
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				context.startActivity(new Intent(context, Orbot.class));
+				startActivityForResult(new Intent(getBaseContext(), Orbot.class), 1);
 
 			}
 		};

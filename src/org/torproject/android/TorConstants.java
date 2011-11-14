@@ -41,7 +41,7 @@ public interface TorConstants {
 	public final static String PREF_TRANSPARENT_ALL = "pref_transparent_all";
 	
 	public final static String PREF_HAS_ROOT = "has_root";
-	
+	public final static  int RESULT_CLOSE_ALL = 0;
 	
 	
 }

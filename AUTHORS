@@ -27,7 +27,7 @@ provided guidance in the entire effort.
 
 Adam Langley made the original valiant effort to port Tor to Android.
 
-Sathyanarayanan <me@gsathya.in> created a patch for the wizard
+Sathyanarayanan <gsathya@torproject.org> created a patch for the wizard
 which updated the icon and link for the secure chat app info to point
 to Gibberbot, and hopefully will continue to contribute useful patches.
 

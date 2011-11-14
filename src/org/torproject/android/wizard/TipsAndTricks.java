@@ -49,6 +49,17 @@ public class TipsAndTricks extends Activity implements TorConstants {
 		
 	}
 	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+	    switch(resultCode)
+	    {
+	    case RESULT_CLOSE_ALL:
+	        setResult(RESULT_CLOSE_ALL);
+	        finish();
+	    }
+	    super.onActivityResult(requestCode, resultCode, data);
+	}
+
 	void stepFive(){
 		
 		String title = getString(R.string.wizard_tips_title);
@@ -141,7 +152,7 @@ public class TipsAndTricks extends Activity implements TorConstants {
 			
 			@Override
 			public void onClick(View v) {
-				startActivity(new Intent(getBaseContext(), Orbot.class));
+				startActivityForResult(new Intent(getBaseContext(), Orbot.class), 1);
 
 			}
 		});
