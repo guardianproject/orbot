@@ -1,5 +1,14 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+1.0.7
+- updated openssl to 1.0.0f to address recent SSLv3 threat
+- check for root mode uses "which su" command and does not look for Superuser.apk
+- changed tor binary res/raw storage mechanism to use the "mp3" file ext trick
+
+1.0.6.1
+- small fixes to wizard UI
+- fixed "exit" problem, after running wizard
+
 1.0.6
 - updated tablet layout graphic sizing
 - stopped Orweb from being transparent proxied (not needed)
