@@ -390,8 +390,13 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
 			autoStartOnBind = true;
 			
 			if (mService == null)
+			{
 				bindService();
-			
+			}
+			else
+			{
+				//already running!
+			}
 		}
 		else
 		{
