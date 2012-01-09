@@ -10,6 +10,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -65,7 +66,20 @@ public class TorBinaryInstaller implements TorServiceConstants {
 		return true;
 	}
 	
-
+	private static void copyAssetFile(Context ctx, String asset, File file) throws IOException, InterruptedException
+	{
+    	
+		DataOutputStream out = new DataOutputStream(new FileOutputStream(file));
+		InputStream is = new GZIPInputStream(ctx.getAssets().open(asset));
+		
+		byte buf[] = new byte[8172];
+		int len;
+		while ((len = is.read(buf)) > 0) {
+			out.write(buf, 0, len);
+		}
+		out.close();
+		is.close();
+	}
 	/*
 	 * Write the inputstream contents to the file
 	 */
@@ -97,7 +111,7 @@ public class TorBinaryInstaller implements TorServiceConstants {
         }
 
         stmOut.close();
-
+        stm.close();
         
         return true;
 

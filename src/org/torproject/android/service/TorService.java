@@ -275,7 +275,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     		showToolbarNotification (getString(R.string.status_disabled),NOTIFY_ID,R.drawable.tornotificationoff);
     		sendCallbackStatusMessage(getString(R.string.status_disabled));
 
-    		clearTransparentProxy();
+    		disableTransparentProxy();
     	}
     	catch (Exception e)
     	{
@@ -597,7 +597,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
      * 
      * the idea is that if Tor is off then transproxy is off
      */
-    private boolean clearTransparentProxy () throws Exception
+    private boolean disableTransparentProxy () throws Exception
  	{
     	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
     	
@@ -609,7 +609,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	 		
 	     	TorService.logMessage ("Clearing TransProxy rules");
 	     	
-	     	TorTransProxy.purgeIptables(this);
+	     	TorTransProxy.flushIptables(this);
 	     	
 			showAlert(getString(R.string.status), getString(R.string.transproxy_rules_cleared));
 	     	
@@ -1095,7 +1095,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		        
 					try
 					{
-						clearTransparentProxy();
+						disableTransparentProxy();
 			    		enableTransparentProxy();
 					}
 					catch (Exception e)

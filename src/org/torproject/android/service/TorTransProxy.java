@@ -13,7 +13,7 @@ public class TorTransProxy implements TorServiceConstants {
 	private final static String TAG = TorConstants.TAG;
 		
 	
-	public static int purgeIptables(Context context) throws Exception {
+	public static int flushIptables(Context context) throws Exception {
 		
 	String ipTablesPath = new File(context.getDir("bin", 0),"iptables").getAbsolutePath();
 		
@@ -21,7 +21,6 @@ public class TorTransProxy implements TorServiceConstants {
     	
     	StringBuilder res = new StringBuilder();
     	int code = -1;
-    	
 
 		script.append(ipTablesPath);
 		script.append(" -t nat");
@@ -177,7 +176,7 @@ public class TorTransProxy implements TorServiceConstants {
     	StringBuilder res = new StringBuilder();
     	int code = -1;
     	
-    	purgeIptables(context);
+    	flushIptables(context);
 				
 		//build up array of shell cmds to execute under one root context
 		for (int i = 0; i < apps.length; i++)
@@ -276,7 +275,7 @@ public class TorTransProxy implements TorServiceConstants {
     	
     	StringBuilder res = new StringBuilder();
     	int code = -1;
-    	purgeIptables(context);
+    	flushIptables(context);
 		
 		//TCP
 		//iptables -t nat -A PREROUTING -i eth0 -p tcp --dport $srcPortNumber -j REDIRECT --to-port $dstPortNumbe
@@ -375,7 +374,7 @@ public class TorTransProxy implements TorServiceConstants {
     	StringBuilder res = new StringBuilder();
     	int code = -1;
     	
-    	purgeIptables(context);
+    	flushIptables(context);
     	
     	int torUid = context.getApplicationInfo().uid;
 
