@@ -106,8 +106,15 @@
 				android:layout_height="wrap_content"
 				android:autoLink="web"
 				android:textColorLink="#ffffff"
+				android:paddingLeft="15px"
+				android:textColor="#ffffff"/>
+			<TextView android:text="@string/openssl_version"
+				android:layout_width="fill_parent" 
+				android:layout_height="wrap_content"
+				android:autoLink="web"
+				android:textColorLink="#ffffff"
 				android:paddingLeft="15px"	
-				android:textColor="#ffffff" />					
+				android:textColor="#ffffff" />						
 			</LinearLayout>
 		</ScrollView>			
 </LinearLayout>

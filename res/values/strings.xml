@@ -133,7 +133,7 @@
 	<string name="wizard_permissions_title">Permissions</string>
 	<string name="wizard_permissions_root_msg1">You can optionally grant Orbot \'Superuser\' access to enable advanced features, such as Transparent Proxying.</string>
 	<string name="wizard_permissions_root_msg2">If you do not want to do this, please make sure to use apps made to work with Orbot</string>
-	<string name="wizard_permissions_no_root_msg">Your device is running in standard mode, and does not support root or \'Superuser\' access.\n\nIn order to you to benefit from Tor, you will need to use apps built to work with Orbot, or that support HTTP or SOCKS proxy settings.\n\n</string>
+	<string name="wizard_permissions_no_root_msg">Your device does not appear to be rooted or provide \'Superuser\' access.\n\nIn order to you to benefit from Tor, you will need to use apps built to work with Orbot, or that support HTTP or SOCKS proxy settings.\n\n</string>
 	<!-- TipsAndTricks screen -->
 	<string name="wizard_tips_title">Orbot-Enabled Apps</string>
 	<string name="wizard_tips_gibberbot">Gibberbot: Secure chat app with Off-the-Record Encryption</string>
@@ -237,10 +237,11 @@
 <string name="the_tor_license">The Tor License</string>
 <string name="https_torproject_org">https://torproject.org</string>
 <string name="third_party_software">3rd-Party-Software: </string>
-<string name="tor_version">Tor v0.2.3.7-alpha: https://www.torproject.org</string>
+<string name="tor_version">Tor v0.2.3.10-alpha: https://www.torproject.org</string>
 <string name="libevent_version">LibEvent v1.4.13: http://www.monkey.org/~provos/libevent/</string>
 <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
 <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
+<string name="openssl_version">OpenSSL v1.0.0f: http://www.openssl.org</string>
 <string name="hidden_service_request">An app wants to open hidden server port %S to the Tor network. This is safe if you trust the app.</string>
 <string name="found_existing_tor_process">found existing Tor process...</string>
 <string name="something_bad_happened">Something bad happened. Check the log</string>
