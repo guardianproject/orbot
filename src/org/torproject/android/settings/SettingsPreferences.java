@@ -18,6 +18,7 @@ import android.preference.PreferenceManager;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
+import android.widget.Toast;
 
 
 public class SettingsPreferences 
@@ -27,11 +28,13 @@ public class SettingsPreferences
 	private CheckBoxPreference prefcBTransProxyAll = null;
 	private Preference prefTransProxyApps = null;
 	private CheckBoxPreference prefHiddenServices = null;
+	private CheckBoxPreference prefRequestRoot = null;
 	
 	private boolean hasRoot = false;
 	
 
 	private final static int HIDDEN_SERVICE_PREF_IDX = 6;
+	private final static int TRANSPROXY_GROUP_IDX = 1;
 	
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -55,26 +58,30 @@ public class SettingsPreferences
 	
 		super.onResume();
 	
+		int REQUEST_ROOT_IDX = 1;
+		int GENERAL_GROUP_IDX = 0;
+		
+		prefRequestRoot = ((CheckBoxPreference)((PreferenceCategory)getPreferenceScreen().getPreference(GENERAL_GROUP_IDX)).getPreference(REQUEST_ROOT_IDX));
+		prefRequestRoot.setOnPreferenceClickListener(this);
 
-		int transProxyGroupIdx = 1;
+		prefCBTransProxy = ((CheckBoxPreference)((PreferenceCategory)this.getPreferenceScreen().getPreference(TRANSPROXY_GROUP_IDX)).getPreference(0));
+		prefcBTransProxyAll = (CheckBoxPreference)((PreferenceCategory)this.getPreferenceScreen().getPreference(TRANSPROXY_GROUP_IDX)).getPreference(1);
+		prefTransProxyApps = ((PreferenceCategory)this.getPreferenceScreen().getPreference(TRANSPROXY_GROUP_IDX)).getPreference(2);
+
+
+		prefCBTransProxy.setOnPreferenceClickListener(this);
+		prefcBTransProxyAll.setOnPreferenceClickListener(this);
+		prefTransProxyApps.setOnPreferenceClickListener(this);
 		
 		if (!hasRoot)
 		{
-			getPreferenceScreen().getPreference(transProxyGroupIdx).setEnabled(false);
+			getPreferenceScreen().getPreference(TRANSPROXY_GROUP_IDX).setEnabled(false);
 		}
 		else
 		{
-			prefCBTransProxy = ((CheckBoxPreference)((PreferenceCategory)this.getPreferenceScreen().getPreference(transProxyGroupIdx)).getPreference(0));
-			prefcBTransProxyAll = (CheckBoxPreference)((PreferenceCategory)this.getPreferenceScreen().getPreference(transProxyGroupIdx)).getPreference(1);
-			prefTransProxyApps = ((PreferenceCategory)this.getPreferenceScreen().getPreference(transProxyGroupIdx)).getPreference(2);
 
 			prefcBTransProxyAll.setEnabled(prefCBTransProxy.isChecked());
-			
 			prefTransProxyApps.setEnabled(prefCBTransProxy.isChecked() && (!prefcBTransProxyAll.isChecked()));
-			
-			prefCBTransProxy.setOnPreferenceClickListener(this);
-			prefcBTransProxyAll.setOnPreferenceClickListener(this);
-			prefTransProxyApps.setOnPreferenceClickListener(this);
 			
 		}
 		
@@ -105,7 +112,23 @@ public class SettingsPreferences
 		
 		setResult(1010);
 		
-		if (preference == prefTransProxyApps)
+		if (preference == prefRequestRoot)
+		{
+
+			if (prefRequestRoot.isChecked())
+			{
+				boolean canRoot = TorServiceUtils.isRootPossible();
+				
+				getPreferenceScreen().getPreference(TRANSPROXY_GROUP_IDX).setEnabled(canRoot);
+				prefRequestRoot.setChecked(canRoot);
+
+				if (!canRoot)
+				{
+					Toast.makeText(this, R.string.wizard_permissions_no_root_msg, Toast.LENGTH_LONG).show();
+				}
+			}
+		}
+		else if (preference == prefTransProxyApps)
 		{
 			startActivity(new Intent(this, AppManager.class));
 			

@@ -107,7 +107,7 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
         mItemOnOff.setAlphabeticShortcut('t');
         
         mItem = menu.add(0, 4, Menu.NONE, getString(R.string.menu_settings));
-        mItem.setIcon(R.drawable.ic_menu_register);
+        mItem.setIcon(R.drawable.ic_menu_settings);
        
         mItem = menu.add(0, 7, Menu.NONE, getString(R.string.menu_verify));
         mItem.setIcon(R.drawable.ic_menu_check);
