@@ -1309,9 +1309,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         boolean enableHiddenServices = prefs.getBoolean("pref_hs_enable", false);
 
         boolean enableStrictNodes = prefs.getBoolean("pref_strict_nodes", false);
-        String entranceNodes = prefs.getString("pref_entrance_nodes", null);
-        String exitNodes = prefs.getString("pref_exit_nodes", null);
-        String excludeNodes = prefs.getString("pref_exclude_nodes", null);
+        String entranceNodes = prefs.getString("pref_entrance_nodes", "");
+        String exitNodes = prefs.getString("pref_exit_nodes", "");
+        String excludeNodes = prefs.getString("pref_exclude_nodes", "");
         
         String proxyType = prefs.getString("pref_proxy_type", null);
         if (proxyType != null)
@@ -1325,13 +1325,18 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         	}
         }
         
-        File fileGeoIP = new File(appBinHome,"geoip");
-        mBinder.updateConfiguration("GeoIPFile", fileGeoIP.getAbsolutePath(), false);
+        if (entranceNodes.length() > 0 || exitNodes.length() > 0 || excludeNodes.length() > 0)
+        {
+        	//only apple GeoIP if you need it
+	        File fileGeoIP = new File(appBinHome,"geoip");
+	        mBinder.updateConfiguration("GeoIPFile", fileGeoIP.getAbsolutePath(), false);
+        }
+
         mBinder.updateConfiguration("EntryNodes", entranceNodes, false);
         mBinder.updateConfiguration("ExitNodes", exitNodes, false);
 		mBinder.updateConfiguration("ExcludeNodes", excludeNodes, false);
 		mBinder.updateConfiguration("StrictNodes", enableStrictNodes ? "1" : "0", false);
-		
+        
 		if (useBridges)
 		{
 			String bridgeList = prefs.getString(TorConstants.PREF_BRIDGES_LIST,"");
