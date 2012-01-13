@@ -43,5 +43,6 @@ public interface TorConstants {
 	public final static String PREF_HAS_ROOT = "has_root";
 	public final static  int RESULT_CLOSE_ALL = 0;
 	
+	public final static String PREF_USE_SYSTEM_IPTABLES = "pref_use_sys_iptables";
 	
 }

@@ -6,17 +6,59 @@ import org.torproject.android.TorConstants;
 import org.torproject.android.settings.TorifiedApp;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 public class TorTransProxy implements TorServiceConstants {
 	
-	private final static String TAG = TorConstants.TAG;
-		
+	private String ipTablesPath;
+
+	public String getIpTablesPath (Context context)
+	{
 	
-	public static int flushIptables(Context context) throws Exception {
+		if (ipTablesPath == null)
+		{
+			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+			
+			if (prefs.getBoolean(TorConstants.PREF_USE_SYSTEM_IPTABLES, false))
+			{
+				//if the user wants us to use the built-in iptables, then we have to find it
+				File fileIpt = new File("/system/bin/iptables");
+				
+				if (fileIpt.exists())
+					 ipTablesPath = fileIpt.getAbsolutePath();
+				else
+				{
+				
+					fileIpt = new File("/system/xbin/iptables");
+					
+					if (fileIpt.exists())
+						return (ipTablesPath = fileIpt.getAbsolutePath());
+					else
+					{
+						//use the bundled version
+						ipTablesPath = new File(context.getDir("bin", 0),"iptables").getAbsolutePath();
+					}
+				}				
+			}
+			else
+			{
+				//use the bundled version
+	
+				ipTablesPath = new File(context.getDir("bin", 0),"iptables").getAbsolutePath();
+			}
+			
+		}
+			
+		return ipTablesPath;
 		
-	String ipTablesPath = new File(context.getDir("bin", 0),"iptables").getAbsolutePath();
+	}
+	
+	public int flushIptables(Context context) throws Exception {
 		
+		String ipTablesPath = getIpTablesPath(context);
+	
     	final StringBuilder script = new StringBuilder();
     	
     	StringBuilder res = new StringBuilder();
@@ -124,16 +166,17 @@ public class TorTransProxy implements TorServiceConstants {
 	}
 	*/
 	
-	public static int testOwnerModule(Context context) throws Exception
+	public int testOwnerModule(Context context) throws Exception
 	{
 
+		TorBinaryInstaller.assertIpTablesBinaries(context, false);
+		
 		boolean runRoot = true;
     	boolean waitFor = true;
     	
-		//redirectDNSResolvConf(); //not working yet
     	int torUid = context.getApplicationInfo().uid;
 
-		String ipTablesPath = new File(context.getDir("bin", 0),"iptables").getAbsolutePath();
+		String ipTablesPath = getIpTablesPath(context);
 		
     	StringBuilder script = new StringBuilder();
     	
@@ -161,7 +204,7 @@ public class TorTransProxy implements TorServiceConstants {
 	
 	
 	
-	public static int setTransparentProxyingByApp(Context context, TorifiedApp[] apps) throws Exception
+	public int setTransparentProxyingByApp(Context context, TorifiedApp[] apps) throws Exception
 	{
 
 		boolean runRoot = true;
@@ -169,7 +212,7 @@ public class TorTransProxy implements TorServiceConstants {
     	
 		//redirectDNSResolvConf(); //not working yet
 		
-		String ipTablesPath = new File(context.getDir("bin", 0),"iptables").getAbsolutePath();
+		String ipTablesPath = getIpTablesPath(context);
 		
     	StringBuilder script = new StringBuilder();
     	
@@ -261,7 +304,7 @@ public class TorTransProxy implements TorServiceConstants {
 		return code;
     }	
 	
-	public static int setTransparentProxyingByPort(Context context, int port) throws Exception
+	public int setTransparentProxyingByPort(Context context, int port) throws Exception
 	{
 
 		//android.os.Debug.waitForDebugger();
@@ -269,7 +312,7 @@ public class TorTransProxy implements TorServiceConstants {
 		//redirectDNSResolvConf(); //not working yet
 		
 		//String baseDir = context.getDir("bin",0).getAbsolutePath() + '/';
-		String ipTablesPath = new File(context.getDir("bin", 0),"iptables").getAbsolutePath();
+		String ipTablesPath = getIpTablesPath(context);
 		
     	StringBuilder script = new StringBuilder();
     	
@@ -318,13 +361,13 @@ public class TorTransProxy implements TorServiceConstants {
 		return code;
     }
 
-	public static int enableTetheringRules (Context context) throws Exception
+	public int enableTetheringRules (Context context) throws Exception
 	{
 		
 		boolean runRoot = true;
     	boolean waitFor = true;
     	
-		String ipTablesPath = new File(context.getDir("bin", 0),"iptables").getAbsolutePath();
+		String ipTablesPath = getIpTablesPath(context);
 		
     	StringBuilder script = new StringBuilder();
     	
@@ -360,14 +403,14 @@ public class TorTransProxy implements TorServiceConstants {
 		return code;
 	}
 	
-	public static int setTransparentProxyingAll(Context context) throws Exception 
+	public int setTransparentProxyingAll(Context context) throws Exception 
 	{
 		boolean runRoot = true;
     	boolean waitFor = true;
     	
 		//redirectDNSResolvConf(); //not working yet
 		
-		String ipTablesPath = new File(context.getDir("bin", 0),"iptables").getAbsolutePath();
+		String ipTablesPath = getIpTablesPath(context);
 		
     	StringBuilder script = new StringBuilder();
     	

@@ -1,11 +1,20 @@
 /* Copyright (c) 2009-2011, Nathan Freitas, Orbot / The Guardian Project - http://openideals.com/guardian */
 /* See LICENSE for licensing information */
+/*
+ * Code for iptables binary management taken from DroidWall GPLv3
+ * Copyright (C) 2009-2010  Rodrigo Zechin Rosauro
+ */
+
 package org.torproject.android.service;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -39,6 +48,7 @@ import android.os.RemoteCallbackList;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.widget.Toast;
 
 public class TorService extends Service implements TorServiceConstants, TorConstants, Runnable, EventHandler
 {
@@ -414,8 +424,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     private boolean checkTorBinaries () throws Exception
     {
     	//check and install iptables
-    	IptablesManager.assertBinaries(this, true);
-    	
+    	TorBinaryInstaller.assertIpTablesBinaries(this, true);
     	
     	appBinHome = getDir("bin",0);
     	appDataHome = getCacheDir();
@@ -520,6 +529,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
  		boolean hasRoot = prefs.getBoolean(PREF_HAS_ROOT,false);
  		boolean enableTransparentProxy = prefs.getBoolean("pref_transparent", false);
  		
+ 		TorTransProxy ttProxy = new TorTransProxy();
+ 		
  		if (hasRoot && enableTransparentProxy)
     	{
 	 		
@@ -544,7 +555,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 				int status = code;
 				while (st.hasMoreTokens())
 				{
-					status = TorTransProxy.setTransparentProxyingByPort(this, Integer.parseInt(st.nextToken()));
+					status = ttProxy.setTransparentProxyingByPort(this, Integer.parseInt(st.nextToken()));
 					if(status != 0)
 						code = status;
 				}
@@ -554,12 +565,12 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 				if(transProxyAll)
 				{
 					showAlert(getString(R.string.status), getString(R.string.setting_up_full_transparent_proxying_));
-					code = TorTransProxy.setTransparentProxyingAll(this);
+					code = ttProxy.setTransparentProxyingAll(this);
 				}
 				else
 				{
 					showAlert(getString(R.string.status), getString(R.string.setting_up_app_based_transparent_proxying_));
-					code = TorTransProxy.setTransparentProxyingByApp(this,AppManager.getApps(this));
+					code = ttProxy.setTransparentProxyingByApp(this,AppManager.getApps(this));
 				}
 				
 			}
@@ -576,7 +587,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 				{
 					showAlert(getString(R.string.status), getString(R.string.transproxy_enabled_for_tethering_));
 
-					TorTransProxy.enableTetheringRules(this);
+					ttProxy.enableTetheringRules(this);
 					  
 				}
 			}
@@ -604,12 +615,13 @@ public class TorService extends Service implements TorServiceConstants, TorConst
  		boolean hasRoot = prefs.getBoolean(PREF_HAS_ROOT,false);
  		boolean enableTransparentProxy = prefs.getBoolean("pref_transparent", false);
  		
+ 		
  		if (hasRoot && enableTransparentProxy)
     	{
 	 		
 	     	TorService.logMessage ("Clearing TransProxy rules");
 	     	
-	     	TorTransProxy.flushIptables(this);
+	     	new TorTransProxy().flushIptables(this);
 	     	
 			showAlert(getString(R.string.status), getString(R.string.transproxy_rules_cleared));
 	     	

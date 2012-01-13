@@ -93,17 +93,16 @@ public class WizardHelper implements TorConstants {
 			@Override
 			public void onClick(View view) {
 				
+				boolean iCanHazRoot = TorServiceUtils.isRootPossible();
 				
-				boolean isRootPossible = TorServiceUtils.isRootPossible();
-				
-				if (isRootPossible)
+				if (iCanHazRoot)
 				{
 					try {
-						int resp = TorTransProxy.testOwnerModule(context);
+						int resp = new TorTransProxy().testOwnerModule(context);
 						
 						if (resp < 0)
 						{
-							isRootPossible = false;
+							iCanHazRoot = false;
 							Toast.makeText(context, "ERROR: IPTables OWNER module not available", Toast.LENGTH_LONG).show();
 
 							Log.i(TorService.TAG,"ERROR: IPTables OWNER module not available");
@@ -111,21 +110,12 @@ public class WizardHelper implements TorConstants {
 						
 					} catch (Exception e) {
 						
-						isRootPossible = false;
+						iCanHazRoot = false;
 						Log.d(TorService.TAG,"ERROR: IPTables OWNER module not available",e);
 					}
 				}
 
-				/*
-				 * we shouldn't store root here, as this step is just chekcing to see if root is possible
-				SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-
-				Editor pEdit = prefs.edit();
-				pEdit.putBoolean("has_root",hasRoot);
-				pEdit.commit();
-				*/
-				
-				if (isRootPossible)
+				if (iCanHazRoot)
 				{
 					currentDialog.dismiss();
 					showWizardStep2Root();

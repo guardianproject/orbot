@@ -164,7 +164,7 @@ public class Permissions extends Activity implements TorConstants {
 				if (hasRoot)
 				{
 					try {
-						int resp = TorTransProxy.testOwnerModule(context);
+						int resp = new TorTransProxy().testOwnerModule(context);
 						
 						if (resp < 0)
 						{

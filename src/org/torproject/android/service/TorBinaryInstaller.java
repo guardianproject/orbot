@@ -3,10 +3,12 @@
 
 package org.torproject.android.service;
 
+import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -22,6 +24,7 @@ import org.torproject.android.TorConstants;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 public class TorBinaryInstaller implements TorServiceConstants {
 
@@ -29,6 +32,8 @@ public class TorBinaryInstaller implements TorServiceConstants {
 	File installFolder;
 	Context context;
 	
+    private static int isARMv6 = -1;
+
 	public TorBinaryInstaller (Context context, File installFolder)
 	{
 		this.installFolder = installFolder;
@@ -149,6 +154,99 @@ public class TorBinaryInstaller implements TorServiceConstants {
 
 	}
 	
+	
+
+    /**
+	 * Check if this is an ARMv6 device
+	 * @return true if this is ARMv6
+	 */
+	private static boolean isARMv6() {
+		if (isARMv6 == -1) {
+			BufferedReader r = null;
+			try {
+				isARMv6 = 0;
+				r = new BufferedReader(new FileReader("/proc/cpuinfo"));
+				for (String line = r.readLine(); line != null; line = r.readLine()) {
+					if (line.startsWith("Processor") && line.contains("ARMv6")) {
+						isARMv6 = 1;
+						break;
+					} else if (line.startsWith("CPU architecture") && (line.contains("6TE") || line.contains("5TE"))) {
+						isARMv6 = 1;
+						break;
+					}
+				}
+			} catch (Exception ex) {
+			} finally {
+				if (r != null) try {r.close();} catch (Exception ex) {}
+			}
+		}
+		return (isARMv6 == 1);
+	}
+	
+	/**
+	 * Copies a raw resource file, given its ID to the given location
+	 * @param ctx context
+	 * @param resid resource id
+	 * @param file destination file
+	 * @param mode file permissions (E.g.: "755")
+	 * @throws IOException on error
+	 * @throws InterruptedException when interrupted
+	 */
+	private static void copyRawFile(Context ctx, int resid, File file, String mode) throws IOException, InterruptedException
+	{
+		final String abspath = file.getAbsolutePath();
+		// Write the iptables binary
+		final FileOutputStream out = new FileOutputStream(file);
+		final InputStream is = ctx.getResources().openRawResource(resid);
+		byte buf[] = new byte[1024];
+		int len;
+		while ((len = is.read(buf)) > 0) {
+			out.write(buf, 0, len);
+		}
+		out.close();
+		is.close();
+		// Change the permissions
+		Runtime.getRuntime().exec("chmod "+mode+" "+abspath).waitFor();
+	}
+    /**
+	 * Asserts that the binary files are installed in the cache directory.
+	 * @param ctx context
+     * @param showErrors indicates if errors should be alerted
+	 * @return false if the binary files could not be installed
+	 */
+	public static boolean assertIpTablesBinaries(Context ctx, boolean showErrors) throws Exception {
+		boolean changed = false;
+		
+		// Check iptables_g1
+		File file = new File(ctx.getDir("bin",0), "iptables");
+		
+		if ((!file.exists()) && isARMv6()) {
+			copyRawFile(ctx, R.raw.iptables_g1, file, "755");
+			changed = true;
+		}
+		
+		// Check iptables_n1
+		file = new File(ctx.getDir("bin",0), "iptables");
+		if ((!file.exists()) && (!isARMv6())) {
+			copyRawFile(ctx, R.raw.iptables_n1, file, "755");
+			changed = true;
+		}
+		
+		// Check busybox
+		/*
+		file = new File(ctx.getDir("bin",0), "busybox_g1");
+		if (!file.exists()) {
+			copyRawFile(ctx, R.raw.busybox_g1, file, "755");
+			changed = true;
+		}
+		*/
+		
+		if (changed) {
+				Toast.makeText(ctx, R.string.status_install_success, Toast.LENGTH_LONG).show();
+			}
+		
+		return true;
+	}
 	
 
 }
