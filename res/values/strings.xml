@@ -252,4 +252,5 @@
 <string name="pref_use_sys_iptables_title">Use Default Iptables</string>
 <string name="pref_use_sys_iptables_summary">use the built-in iptables binary instead of the one bundled with Orbot</string>
     
+<string name="error_installing_binares">The Tor binaries were not able to be installed or upgraded.</string>
 </resources>
