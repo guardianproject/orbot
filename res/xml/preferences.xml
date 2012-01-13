@@ -176,6 +176,14 @@ android:summary="@string/enable_debug_log_to_output_must_use_adb_or_alogcat_to_v
 android:enabled="true"></CheckBoxPreference>
 
 
+
+<CheckBoxPreference
+android:defaultValue="false" 
+android:key="pref_use_sys_iptables"
+android:summary="@string/pref_use_sys_iptables_summary"
+android:enabled="true" 
+android:title="@string/pref_use_sys_iptables_title"/>
+
 <CheckBoxPreference
 android:defaultValue="false" 
 android:key="pref_transparent_port_fallback"

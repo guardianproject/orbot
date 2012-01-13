@@ -248,4 +248,8 @@
 <string name="hidden_service_on">hidden service on:</string>
 <string name="unable_to_read_hidden_service_name">unable to read hidden service name</string>
 <string name="unable_to_start_tor">Unable to start Tor:</string>
+
+<string name="pref_use_sys_iptables_title">Use Default Iptables</string>
+<string name="pref_use_sys_iptables_summary">use the built-in iptables binary instead of the one bundled with Orbot</string>
+    
 </resources>
