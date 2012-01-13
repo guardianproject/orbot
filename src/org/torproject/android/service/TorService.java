@@ -7,14 +7,10 @@
 
 package org.torproject.android.service;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,9 +27,7 @@ import org.torproject.android.R;
 import org.torproject.android.TorConstants;
 import org.torproject.android.Utils;
 import org.torproject.android.settings.AppManager;
-import org.torproject.android.settings.ProcessSettingsAsyncTask;
 
-import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -43,17 +37,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.IBinder;
-import android.os.Looper;
 import android.os.RemoteCallbackList;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.util.Log;
-import android.widget.Toast;
 
 public class TorService extends Service implements TorServiceConstants, TorConstants, Runnable, EventHandler
 {
 	
-	public static boolean ENABLE_DEBUG_LOG = true;
+	public static boolean ENABLE_DEBUG_LOG = false;
 	
 	private static int currentStatus = STATUS_OFF;
 		
@@ -1305,8 +1297,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     {
     	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		
-    	//ENABLE_DEBUG_LOG = prefs.getBoolean("pref_enable_logging",false);
-    	ENABLE_DEBUG_LOG = true;
+    	ENABLE_DEBUG_LOG = prefs.getBoolean("pref_enable_logging",false);
     	Log.i(TAG,"debug logging:" + ENABLE_DEBUG_LOG);
     		
 		boolean useBridges = prefs.getBoolean(TorConstants.PREF_BRIDGES_ENABLED, false);
