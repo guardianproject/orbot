@@ -246,6 +246,7 @@ public class TorTransProxy implements TorServiceConstants {
 				script.append(ipTablesPath);
 				script.append(" -t nat");
 				script.append(" -A OUTPUT -p tcp");
+				script.append(" ! -d 127.0.0.1"); //allow access to localhost
 				script.append(" -m owner --uid-owner ");
 				script.append(apps[i].getUid());
 				script.append(" -m tcp --syn");
@@ -267,6 +268,7 @@ public class TorTransProxy implements TorServiceConstants {
 				script.append(ipTablesPath);
 				script.append(" -t filter");
 				script.append(" -A OUTPUT -p tcp");
+				script.append(" ! -d 127.0.0.1"); //allow access to localhost
 				script.append(" -m owner --uid-owner ");
 				script.append(apps[i].getUid());
 				script.append(" -m tcp --dport ");
@@ -425,6 +427,7 @@ public class TorTransProxy implements TorServiceConstants {
     	script.append(ipTablesPath);
 		script.append(" -t nat");
 		script.append(" -A OUTPUT -p tcp");
+		script.append(" ! -d 127.0.0.1"); //allow access to localhost
 		script.append(" -m owner ! --uid-owner ");
 		script.append(torUid);
 		script.append(" -m tcp --syn");
@@ -443,14 +446,22 @@ public class TorTransProxy implements TorServiceConstants {
 		script.append(TOR_DNS_PORT);
 		script.append(" || exit\n");
 		
-		// Allow packets to localhost (contains all the port-redirected ones)
-		script.append(ipTablesPath);
-		script.append(" -t filter");
-		script.append(" -A OUTPUT");
-		script.append(" -p tcp");
-		script.append(" -d 127.0.0.1");
-		script.append(" -j ACCEPT");
-		script.append(" || exit\n");
+		int[] ports = {TOR_DNS_PORT,TOR_TRANSPROXY_PORT,PORT_SOCKS,PORT_HTTP};
+		
+		for (int port : ports)
+		{
+			// Allow packets to localhost (contains all the port-redirected ones)
+			script.append(ipTablesPath);
+			script.append(" -t filter");
+			script.append(" -A OUTPUT");
+			script.append(" -p tcp");
+			script.append(" -d 127.0.0.1");
+			script.append(" --dport ");
+			script.append(port);	
+			script.append(" -j ACCEPT");
+			script.append(" || exit\n");
+		
+		}
 		
 		// Allow loopback
 		script.append(ipTablesPath);
