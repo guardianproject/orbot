@@ -1,6 +1,8 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
 1.0.7
+- enabled access to localhost ports for SOCKS, HTTP, etc even when transproxy is on
+- improved handling of tor and privoxy binary upgrades
 - updated openssl to 1.0.0f to address recent SSLv3 threat
 - check for root mode uses "which su" command and does not look for Superuser.apk
 - changed tor binary res/raw storage mechanism to use the "mp3" file ext trick
