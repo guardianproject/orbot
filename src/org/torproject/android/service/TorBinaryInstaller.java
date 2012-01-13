@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
@@ -45,28 +46,36 @@ public class TorBinaryInstaller implements TorServiceConstants {
 	/*
 	 * Extract the Tor binary from the APK file using ZIP
 	 */
-	public boolean installFromRaw () throws IOException
+	public boolean installFromRaw () throws IOException, FileNotFoundException
 	{
 		
 		InputStream is;
-		
+        File outFile;
+        
+        
 		is = context.getResources().openRawResource(R.raw.tor);			
-		streamToFile(is,installFolder, TOR_BINARY_ASSET_KEY, false, true);
+		outFile = new File(installFolder, TOR_BINARY_ASSET_KEY);
+		streamToFile(is, outFile, false, true);
 			
-		is = context.getResources().openRawResource(R.raw.torrc);			
-		streamToFile(is,installFolder, TORRC_ASSET_KEY, false, false);
+		is = context.getResources().openRawResource(R.raw.torrc);
+		outFile = new File(installFolder, TORRC_ASSET_KEY);
+		streamToFile(is,outFile, false, false);
 
-		is = context.getResources().openRawResource(R.raw.torrctether);			
-		streamToFile(is,installFolder, TORRC_TETHER_KEY, false, false);
+		is = context.getResources().openRawResource(R.raw.torrctether);		
+		outFile = new File(installFolder, TORRC_TETHER_KEY);
+		streamToFile(is, outFile, false, false);
 
-		is = context.getResources().openRawResource(R.raw.privoxy);			
-		streamToFile(is,installFolder, PRIVOXY_ASSET_KEY, false, false);
+		is = context.getResources().openRawResource(R.raw.privoxy);
+		outFile = new File(installFolder, PRIVOXY_ASSET_KEY);
+		streamToFile(is,outFile, false, false);
 
-		is = context.getResources().openRawResource(R.raw.privoxy_config);			
-		streamToFile(is,installFolder, PRIVOXYCONFIG_ASSET_KEY, false, false);
+		is = context.getResources().openRawResource(R.raw.privoxy_config);
+		outFile = new File(installFolder, PRIVOXYCONFIG_ASSET_KEY);
+		streamToFile(is,outFile, false, false);
 		
-		is = context.getResources().openRawResource(R.raw.geoip);			
-		streamToFile(is,installFolder, GEOIP_ASSET_KEY, false, true);
+		is = context.getResources().openRawResource(R.raw.geoip);
+		outFile = new File(installFolder, GEOIP_ASSET_KEY);
+		streamToFile(is, outFile, false, true);
 	
 		return true;
 	}
@@ -88,14 +97,13 @@ public class TorBinaryInstaller implements TorServiceConstants {
 	/*
 	 * Write the inputstream contents to the file
 	 */
-    private static boolean streamToFile(InputStream stm, File folder, String targetFilename, boolean append, boolean zip) throws IOException
+    private static boolean streamToFile(InputStream stm, File outFile, boolean append, boolean zip) throws IOException
 
     {
         byte[] buffer = new byte[FILE_WRITE_BUFFER_SIZE];
 
         int bytecount;
 
-        File outFile = new File(folder, targetFilename);
 
     	OutputStream stmOut = new FileOutputStream(outFile, append);
     	

@@ -207,11 +207,11 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	Log.i(TAG, "service started: " + intent.getAction());
 
 		try {
-			checkTorBinaries ();
+			checkTorBinaries (false);
 		} catch (Exception e) {
 
 			logNotice("unable to find tor binaries: " + e.getMessage());
-	    	showToolbarNotification(e.getMessage(), NOTIFY_ID, R.drawable.tornotificationerr);
+	    	showToolbarNotification(getString(R.string.error_installing_binares), NOTIFY_ID, R.drawable.tornotificationerr);
 
 			Log.e(TAG, "error checking tor binaries", e);
 		}
@@ -412,24 +412,46 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     }
     
 
-    
-    private boolean checkTorBinaries () throws Exception
+    private boolean checkTorBinaries (boolean forceInstall) throws Exception
     {
+    	
     	//check and install iptables
     	TorBinaryInstaller.assertIpTablesBinaries(this, true);
-    	
+
     	appBinHome = getDir("bin",0);
     	appDataHome = getCacheDir();
     	
-	//	logNotice( "appHome=" + appHome);
-		
-		File fileTor = new File(appBinHome, TOR_BINARY_ASSET_KEY);
+    	File fileTor = new File(appBinHome, TOR_BINARY_ASSET_KEY);
 		File filePrivoxy = new File(appBinHome, PRIVOXY_ASSET_KEY);
 
+		File fileTorOld = null;
+		File filePrivoxyOld = null;
 		
+    	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+    	String currTorBinary = prefs.getString(TorServiceConstants.PREF_BINARY_TOR_VERSION_INSTALLED, null);
+    	String currPrivoxyBinary = prefs.getString(TorServiceConstants.PREF_BINARY_PRIVOXY_VERSION_INSTALLED, null);
+    	
+    	if (currTorBinary == null || (!currTorBinary.equals(TorServiceConstants.BINARY_TOR_VERSION)))
+    		if (fileTor.exists())
+    		{
+    			killTorProcess ();
+    			fileTorOld = new File(fileTor.getAbsolutePath() + ".old");
+    			fileTor.renameTo(fileTorOld);
+    		}
+    
+    	if (currPrivoxyBinary == null || (!currPrivoxyBinary.equals(TorServiceConstants.BINARY_PRIVOXY_VERSION)))
+    		if (filePrivoxy.exists())
+    		{
+    			killTorProcess ();
+    			filePrivoxyOld = new File(filePrivoxy.getAbsolutePath() + ".old");
+    			filePrivoxy.renameTo(filePrivoxyOld);
+    		}
+    	
+    	
+
 		logNotice( "checking Tor binaries");
 		
-		if (!(fileTor.exists() && filePrivoxy.exists()))
+		if ((!(fileTor.exists() && filePrivoxy.exists())) || forceInstall)
 		{
 			killTorProcess ();
 			
@@ -438,6 +460,18 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			
     		if (success)
     		{
+    			
+    			Editor edit = prefs.edit();
+    			edit.putString(TorServiceConstants.PREF_BINARY_TOR_VERSION_INSTALLED, TorServiceConstants.BINARY_TOR_VERSION);
+    			edit.putString(TorServiceConstants.PREF_BINARY_PRIVOXY_VERSION_INSTALLED, TorServiceConstants.BINARY_PRIVOXY_VERSION);
+    			edit.commit();
+    			
+    			if (fileTorOld != null)
+    				fileTorOld.delete();
+    			
+    			if (filePrivoxyOld != null)
+    				filePrivoxyOld.delete();
+    			
     			logNotice(getString(R.string.status_install_success));
     	
     			showToolbarNotification(getString(R.string.status_install_success), NOTIFY_ID, R.drawable.tornotification);
@@ -1028,10 +1062,11 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         
     	_torInstance = this;
     	
+    	/*
 		try
 		{
 	
-			checkTorBinaries();
+			checkTorBinaries(false);
     	
 		}
 		catch (Exception e)
@@ -1041,7 +1076,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 			Log.d(TAG,"Unable to check for Tor binaries",e);
 			return null;
-		}
+		}*/
     	
 		findExistingProc ();
 		
