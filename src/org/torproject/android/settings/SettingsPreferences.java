@@ -5,6 +5,7 @@ package org.torproject.android.settings;
 
 import org.torproject.android.R;
 import org.torproject.android.R.xml;
+import org.torproject.android.TorConstants;
 import org.torproject.android.service.TorServiceUtils;
 import org.torproject.android.service.TorTransProxy;
 
@@ -18,6 +19,7 @@ import android.preference.PreferenceManager;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
+import android.util.Log;
 import android.widget.Toast;
 
 
@@ -145,11 +147,21 @@ public class SettingsPreferences
 			prefcBTransProxyAll.setEnabled(prefCBTransProxy.isChecked());
 			prefTransProxyApps.setEnabled(prefCBTransProxy.isChecked() && (!prefcBTransProxyAll.isChecked()));
 			
+			if (!prefCBTransProxy.isChecked())
+				clearTransProxyState ();
+			
 		}
 		
 		return true;
 	}
 
-	
+	private void clearTransProxyState ()
+	{
+		try {
+			new TorTransProxy().flushIptables(this);
+		} catch (Exception e) {
+			Log.e(TorConstants.TAG,"error flushing iptables",e);
+		}
+	}
 
 }
