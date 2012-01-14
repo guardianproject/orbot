@@ -206,23 +206,32 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
     	Log.i(TAG, "service started: " + intent.getAction());
 
-		try {
-			checkTorBinaries (false);
-		} catch (Exception e) {
-
-			logNotice("unable to find tor binaries: " + e.getMessage());
-	    	showToolbarNotification(getString(R.string.error_installing_binares), NOTIFY_ID, R.drawable.tornotificationerr);
-
-			Log.e(TAG, "error checking tor binaries", e);
-		}
+    	
+    	Thread thread = new Thread ()
+    	{
+    		
+    		public void run ()
+    		{
+				try {
+					checkTorBinaries (false);
+				} catch (Exception e) {
+		
+					logNotice("unable to find tor binaries: " + e.getMessage());
+			    	showToolbarNotification(getString(R.string.error_installing_binares), NOTIFY_ID, R.drawable.tornotificationerr);
+		
+					Log.e(TAG, "error checking tor binaries", e);
+				}
+    		}
+    	};
+    	
+    	thread.start();
 
 		if (intent.getAction()!=null && intent.getAction().equals("onboot"))
 		{
 			
-		
 			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 			
-			boolean startOnBoot = prefs.getBoolean("pref_start_boot",true);
+			boolean startOnBoot = prefs.getBoolean("pref_start_boot",false);
 			
 			if (startOnBoot)
 			{
@@ -474,8 +483,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     			
     			logNotice(getString(R.string.status_install_success));
     	
-    			showToolbarNotification(getString(R.string.status_install_success), NOTIFY_ID, R.drawable.tornotification);
-    		
+    			//showToolbarNotification(getString(R.string.status_install_success), NOTIFY_ID, R.drawable.tornotification);
 
     			torBinaryPath = fileTor.getAbsolutePath();
     			privoxyPath = filePrivoxy.getAbsolutePath();

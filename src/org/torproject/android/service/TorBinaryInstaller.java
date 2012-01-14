@@ -249,9 +249,6 @@ public class TorBinaryInstaller implements TorServiceConstants {
 		}
 		*/
 		
-		if (changed) {
-				Toast.makeText(ctx, R.string.status_install_success, Toast.LENGTH_LONG).show();
-			}
 		
 		return true;
 	}

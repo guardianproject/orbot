@@ -72,7 +72,7 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
       //if Tor binary is not running, then start the service up
       //might want to look at whether we need to call this every time
       //or whether binding to the service is enough
-                startService(new Intent(INTENT_TOR_SERVICE));
+            startService(new Intent(INTENT_TOR_SERVICE));
                 
             //something to play with on the UI branch
             setTheme(android.R.style.Theme_Black_NoTitleBar);
