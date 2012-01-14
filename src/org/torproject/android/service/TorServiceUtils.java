@@ -24,7 +24,13 @@ public class TorServiceUtils implements TorServiceConstants {
 		try {
 			
 			// Check if Superuser.apk exists
-			//File file = new File("/system/app/Superuser.apk");
+			File fileSU = new File("/system/app/Superuser.apk");
+			if (fileSU.exists())
+				return true;
+			
+			fileSU = new File("/system/bin/su");
+			if (fileSU.exists())
+				return true;
 			
 			//Check for 'su' binary 
 			String[] cmd = {"which su"};
