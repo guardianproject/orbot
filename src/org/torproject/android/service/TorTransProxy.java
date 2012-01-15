@@ -454,6 +454,8 @@ public class TorTransProxy implements TorServiceConstants {
 			script.append(ipTablesPath);
 			script.append(" -t filter");
 			script.append(" -A OUTPUT");
+			script.append(" -m owner ! --uid-owner ");
+			script.append(torUid);
 			script.append(" -p tcp");
 			script.append(" -d 127.0.0.1");
 			script.append(" --dport ");
