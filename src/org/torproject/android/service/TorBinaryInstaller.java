@@ -34,7 +34,8 @@ public class TorBinaryInstaller implements TorServiceConstants {
 	Context context;
 	
     private static int isARMv6 = -1;
-
+    private static String CHMOD_EXEC = "700";
+    
 	public TorBinaryInstaller (Context context, File installFolder)
 	{
 		this.installFolder = installFolder;
@@ -116,7 +117,6 @@ public class TorBinaryInstaller implements TorServiceConstants {
     	}
     	
         while ((bytecount = stm.read(buffer)) > 0)
-
         {
 
             stmOut.write(buffer, 0, bytecount);
@@ -229,25 +229,16 @@ public class TorBinaryInstaller implements TorServiceConstants {
 		File file = new File(ctx.getDir("bin",0), "iptables");
 		
 		if ((!file.exists()) && isARMv6()) {
-			copyRawFile(ctx, R.raw.iptables_g1, file, "755");
+			copyRawFile(ctx, R.raw.iptables_g1, file, CHMOD_EXEC);
 			changed = true;
 		}
 		
 		// Check iptables_n1
 		file = new File(ctx.getDir("bin",0), "iptables");
 		if ((!file.exists()) && (!isARMv6())) {
-			copyRawFile(ctx, R.raw.iptables_n1, file, "755");
+			copyRawFile(ctx, R.raw.iptables_n1, file, CHMOD_EXEC);
 			changed = true;
 		}
-		
-		// Check busybox
-		/*
-		file = new File(ctx.getDir("bin",0), "busybox_g1");
-		if (!file.exists()) {
-			copyRawFile(ctx, R.raw.busybox_g1, file, "755");
-			changed = true;
-		}
-		*/
 		
 		
 		return true;
