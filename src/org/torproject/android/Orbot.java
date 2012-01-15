@@ -514,7 +514,7 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
             
              if (button)
              {
-                            aDialog = new AlertDialog.Builder(this)
+                            aDialog = new AlertDialog.Builder(Orbot.this)
                      .setIcon(R.drawable.icon)
              .setTitle(title)
              .setMessage(msg)
@@ -523,7 +523,7 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
              }
              else
              {
-                     aDialog = new AlertDialog.Builder(this)
+                     aDialog = new AlertDialog.Builder(Orbot.this)
                      .setIcon(R.drawable.icon)
              .setTitle(title)
              .setMessage(msg)
@@ -634,17 +634,15 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
             // not sure it really makes sense when what we want to say is just "startTor"
             mService.setProfile(TorServiceConstants.PROFILE_ON); //this means turn on
                 
-                //here we update the UI which is a bit sloppy and mixed up code wise
-                //might be best to just call updateStatus() instead of directly manipulating UI in this method - yep makes sense
-                imgStatus.setImageResource(R.drawable.torstarting);
-                lblStatus.setText(getString(R.string.status_starting_up));
-                
+            //here we update the UI which is a bit sloppy and mixed up code wise
+            //might be best to just call updateStatus() instead of directly manipulating UI in this method - yep makes sense
+            imgStatus.setImageResource(R.drawable.torstarting);
+            lblStatus.setText(getString(R.string.status_starting_up));
             
             //we send a message here to the progressDialog i believe, but we can clarify that shortly
             Message msg = mHandler.obtainMessage(TorServiceConstants.ENABLE_TOR_MSG);
+            msg.getData().putString(HANDLER_TOR_MSG, getString(R.string.status_starting_up));
             mHandler.sendMessage(msg);
-            
-            
             
     }
     
@@ -883,11 +881,14 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
     private void createProgressDialog (String msg)
     {
             if (progressDialog != null && progressDialog.isShowing())
-                    return;
-            
-            progressDialog = ProgressDialog.show(Orbot.this, "", msg);        
+            {
+            	progressDialog.setMessage(msg);
+            }
+            else
+            {
+            	progressDialog = ProgressDialog.show(Orbot.this, "", msg);        
                 progressDialog.setCancelable(true);
-
+            }
     }
     
     private void hideProgressDialog ()
@@ -896,7 +897,7 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
                 if (progressDialog != null && progressDialog.isShowing())
                 {
                         progressDialog.dismiss();
-
+                        progressDialog = null;
                 }
                 
                 
