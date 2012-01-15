@@ -158,8 +158,13 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	
     }
 	
+	private void clearNotifications ()
+	{
+		NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+		mNotificationManager.cancelAll();
+	}
    
-	private void showToolbarNotification (String notifyMsg, int notifyId, int icon)
+	private void showToolbarNotification (String notifyMsg, int notifyId, int icon, int flags)
 	{
 	
 		
@@ -171,6 +176,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 		Notification notification = new Notification(icon, tickerText, when);
 		
+		if (flags != -1)
+			notification.flags |= flags;
+
 		Context context = getApplicationContext();
 		CharSequence contentTitle = getString(R.string.app_name);
 		CharSequence contentText = notifyMsg;
@@ -204,9 +212,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 		_torInstance = this;
 		
-    	Log.i(TAG, "service started: " + intent.getAction());
-
-    	
     	Thread thread = new Thread ()
     	{
     		
@@ -217,7 +222,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 				} catch (Exception e) {
 		
 					logNotice("unable to find tor binaries: " + e.getMessage());
-			    	showToolbarNotification(getString(R.string.error_installing_binares), NOTIFY_ID, R.drawable.tornotificationerr);
+			    	showToolbarNotification(getString(R.string.error_installing_binares), NOTIFY_ID, R.drawable.tornotificationerr, -1);
 		
 					Log.e(TAG, "error checking tor binaries", e);
 				}
@@ -255,7 +260,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	     catch (Exception e)
 	     {
 	    	 currentStatus = STATUS_OFF;
-	    	 this.showToolbarNotification(getString(R.string.status_disabled), NOTIFY_ID, R.drawable.tornotificationerr);
+	    	 this.showToolbarNotification(getString(R.string.status_disabled), NOTIFY_ID, R.drawable.tornotificationerr, -1);
 	    	 Log.d(TAG,"Unable to start Tor: " + e.getMessage(),e);
 	     }
 		}
@@ -283,7 +288,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 				
     		currentStatus = STATUS_OFF;
     
-    		showToolbarNotification (getString(R.string.status_disabled),NOTIFY_ID,R.drawable.tornotificationoff);
+    		clearNotifications();
+    		
+    		//showToolbarNotification (getString(R.string.status_disabled),NOTIFY_ID,R.drawable.tornotificationoff);
     		sendCallbackStatusMessage(getString(R.string.status_disabled));
 
     		disableTransparentProxy();
@@ -337,7 +344,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	    	{
 		    	try {
 					String onionHostname = Utils.readString(new FileInputStream(file));
-					showToolbarNotification(getString(R.string.hidden_service_on) + ' ' + onionHostname, NOTIFY_ID, R.drawable.tornotification);
+					showToolbarNotification(getString(R.string.hidden_service_on) + ' ' + onionHostname, NOTIFY_ID, R.drawable.tornotification, Notification.FLAG_ONGOING_EVENT);
 					Editor pEdit = prefs.edit();
 					pEdit.putString("pref_hs_hostname",onionHostname);
 					pEdit.commit();
@@ -345,13 +352,13 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 					
 				} catch (FileNotFoundException e) {
 					logException("unable to read onion hostname file",e);
-					showToolbarNotification(getString(R.string.unable_to_read_hidden_service_name), NOTIFY_ID, R.drawable.tornotificationerr);
+					showToolbarNotification(getString(R.string.unable_to_read_hidden_service_name), NOTIFY_ID, R.drawable.tornotificationerr, -1);
 					return;
 				}
 	    	}
 	    	else
 	    	{
-				showToolbarNotification(getString(R.string.unable_to_read_hidden_service_name), NOTIFY_ID, R.drawable.tornotificationerr);
+				showToolbarNotification(getString(R.string.unable_to_read_hidden_service_name), NOTIFY_ID, R.drawable.tornotificationerr, -1);
 	
 	    		
 	    	}
@@ -423,6 +430,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
     private boolean checkTorBinaries (boolean forceInstall) throws Exception
     {
+    	//android.os.Debug.waitForDebugger();
     	
     	//check and install iptables
     	TorBinaryInstaller.assertIpTablesBinaries(this, true);
@@ -433,27 +441,34 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	File fileTor = new File(appBinHome, TOR_BINARY_ASSET_KEY);
 		File filePrivoxy = new File(appBinHome, PRIVOXY_ASSET_KEY);
 
-		File fileTorOld = null;
-		File filePrivoxyOld = null;
-		
     	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
     	String currTorBinary = prefs.getString(TorServiceConstants.PREF_BINARY_TOR_VERSION_INSTALLED, null);
     	String currPrivoxyBinary = prefs.getString(TorServiceConstants.PREF_BINARY_PRIVOXY_VERSION_INSTALLED, null);
     	
+    	StringBuilder cmdLog = new StringBuilder();
+    	int exitCode = -1;
+    	
     	if (currTorBinary == null || (!currTorBinary.equals(TorServiceConstants.BINARY_TOR_VERSION)))
     		if (fileTor.exists())
     		{
-    			killTorProcess ();
-    			fileTorOld = new File(fileTor.getAbsolutePath() + ".old");
-    			fileTor.renameTo(fileTorOld);
+    			if (currentStatus != STATUS_OFF)
+    				stopTor();
+    			
+    			String[] cmds = {"rm " + fileTor.getAbsolutePath()};
+    			exitCode = TorServiceUtils.doShellCommand(cmds, cmdLog, false, true);
+
     		}
     
     	if (currPrivoxyBinary == null || (!currPrivoxyBinary.equals(TorServiceConstants.BINARY_PRIVOXY_VERSION)))
     		if (filePrivoxy.exists())
     		{
-    			killTorProcess ();
-    			filePrivoxyOld = new File(filePrivoxy.getAbsolutePath() + ".old");
-    			filePrivoxy.renameTo(filePrivoxyOld);
+    			if (currentStatus != STATUS_OFF)
+    				stopTor();
+    			
+    			
+    			String[] cmds = {"rm " + filePrivoxy.getAbsolutePath()};
+    			exitCode = TorServiceUtils.doShellCommand(cmds, cmdLog, false, true);
+
     		}
     	
     	
@@ -462,7 +477,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
 		if ((!(fileTor.exists() && filePrivoxy.exists())) || forceInstall)
 		{
-			killTorProcess ();
+			if (currentStatus != STATUS_OFF)
+				stopTor();
 			
 			TorBinaryInstaller installer = new TorBinaryInstaller(this, appBinHome); 
 			boolean success = installer.installFromRaw();
@@ -474,12 +490,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     			edit.putString(TorServiceConstants.PREF_BINARY_TOR_VERSION_INSTALLED, TorServiceConstants.BINARY_TOR_VERSION);
     			edit.putString(TorServiceConstants.PREF_BINARY_PRIVOXY_VERSION_INSTALLED, TorServiceConstants.BINARY_PRIVOXY_VERSION);
     			edit.commit();
-    			
-    			if (fileTorOld != null)
-    				fileTorOld.delete();
-    			
-    			if (filePrivoxyOld != null)
-    				filePrivoxyOld.delete();
     			
     			logNotice(getString(R.string.status_install_success));
     	
@@ -536,7 +546,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     		killTorProcess ();
     		
     		try {
-
 
 	    		enableTransparentProxy();
 	    		runTorShellCmd();
@@ -725,7 +734,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
 			logNotice("Tor process id=" + procId);
 			
-			showToolbarNotification(getString(R.string.status_starting_up), NOTIFY_ID, R.drawable.tornotification);
+			//showToolbarNotification(getString(R.string.status_starting_up), NOTIFY_ID, R.drawable.tornotification);
 			
 			initControlConnection ();
 
@@ -793,7 +802,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		return null;
 	}*/
 	
-	public void initControlConnection () throws Exception, RuntimeException
+	private void initControlConnection () throws Exception, RuntimeException
 	{
 			while (true)
 			{
@@ -801,8 +810,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 				{
 					logNotice( "Connecting to control port: " + TOR_CONTROL_PORT);
 					
-					String baseMessage = getString(R.string.tor_process_starting);
-					sendCallbackStatusMessage(baseMessage);
 					
 					torConnSocket = new Socket(IP_LOCALHOST, TOR_CONTROL_PORT);
 			        conn = TorControlConnection.getConnection(torConnSocket);
@@ -962,8 +969,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
           if (msg.indexOf(TOR_CONTROL_PORT_MSG_BOOTSTRAP_DONE)!=-1)
           {
         	  currentStatus = STATUS_ON;
-        	  showToolbarNotification (getString(R.string.status_activated),NOTIFY_ID,R.drawable.tornotificationon);
-        	
+        	  showToolbarNotification (getString(R.string.status_activated),NOTIFY_ID,R.drawable.tornotificationon, Notification.FLAG_ONGOING_EVENT);
 
    		   	getHiddenServiceHostname ();
    		   
@@ -977,7 +983,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 	private void showAlert(String title, String msg)
 	{
-		showToolbarNotification(msg, NOTIFY_ID, R.drawable.tornotification);
+		//showToolbarNotification(msg, NOTIFY_ID, R.drawable.tornotification);
+		sendCallbackStatusMessage(msg);
+
 	}
 	
 	public void newDescriptors(List<String> orList) {
@@ -1135,7 +1143,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 				applyPreferences();
 				
 
-		        
 		        if (currentStatus == STATUS_ON)
 		        {
 		        	//reset iptables rules in active mode
