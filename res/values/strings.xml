@@ -237,7 +237,7 @@
 <string name="the_tor_license">The Tor License</string>
 <string name="https_torproject_org">https://torproject.org</string>
 <string name="third_party_software">3rd-Party-Software: </string>
-<string name="tor_version">Tor v0.2.3.10-alpha: https://www.torproject.org</string>
+<string name="tor_version">Tor v0.2.3.7: https://www.torproject.org</string>
 <string name="libevent_version">LibEvent v1.4.13: http://www.monkey.org/~provos/libevent/</string>
 <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
 <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
