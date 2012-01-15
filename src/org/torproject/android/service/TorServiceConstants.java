@@ -39,13 +39,8 @@ public interface TorServiceConstants {
 	public final static String SHELL_CMD_PS = "ps";
 	public final static String SHELL_CMD_PIDOF = "pidof";
 
-	public final static String CHMOD_EXE_VALUE = "777";
-	
-	//path of the installed APK file
-	//public final static String APK_PATH = "/data/app/org.torproject.android.apk";
-	//public final static String APK_PATH_BASE = "/data/app";
+	public final static String CHMOD_EXE_VALUE = "700";
 
-	
 	
 	public final static int FILE_WRITE_BUFFER_SIZE = 2048;
 	
@@ -65,10 +60,6 @@ public interface TorServiceConstants {
 	
 	//path to check Tor against
 	public final static String URL_TOR_CHECK = "https://check.torproject.org";
-		
-    //IPTABLES
-//	public final static String CMD_IPTABLES_PREROUTING = "iptables -t nat -A OUTPUT -p tcp --dport 80 -j DNAT --to 127.0.0.1:8118 || exit\n";
-	//public final static String CMD_IPTABLES_PREROUTING_FLUSH = "iptables -t nat -F || exit\n";
 
     //control port 
     public final static String TOR_CONTROL_PORT_MSG_BOOTSTRAP_DONE = "Bootstrapped 100%";
@@ -86,7 +77,7 @@ public interface TorServiceConstants {
     public static final int DISABLE_TOR_MSG = 3;
     public static final int LOG_MSG = 4;
     
-    public static final String BINARY_TOR_VERSION = "0.2.3.10-alpha";
+    public static final String BINARY_TOR_VERSION = "0.2.3.10-openssl-1.0.0f";
     public static final String BINARY_PRIVOXY_VERSION = "1.4.13";
     public static final String PREF_BINARY_TOR_VERSION_INSTALLED = "BINARY_TOR_VERSION_INTALLED";
     public static final String PREF_BINARY_PRIVOXY_VERSION_INSTALLED = "BINARY_PRIVOXY_VERSION_INTALLED";
