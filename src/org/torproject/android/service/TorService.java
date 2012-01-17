@@ -55,6 +55,10 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	private static TorService _torInstance;
 	
 	private static final int NOTIFY_ID = 1;
+	private static final int TRANSPROXY_NOTIFY_ID = 2;
+	private static final int ERROR_NOTIFY_ID = 3;
+	private static final int HS_NOTIFY_ID = 3;
+	
 	
 	private static final int MAX_START_TRIES = 3;
 
@@ -66,14 +70,12 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     private File appBinHome;
     private File appDataHome;
     
-    private String torBinaryPath;
-    private String privoxyPath;
+    private File fileTor;
+    private File filePrivoxy;
     
     /** Called when the activity is first created. */
     public void onCreate() {
     	super.onCreate();
-       
-    	logMessage("serviced created");
       
     }
     
@@ -92,7 +94,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     
     private boolean findExistingProc ()
     {
-    	 int procId = TorServiceUtils.findProcessId(torBinaryPath);
+    	 int procId = TorServiceUtils.findProcessId(fileTor.getAbsolutePath());
 
  		if (procId != -1)
  		{
@@ -200,7 +202,27 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	public void onRebind(Intent intent) {
 		super.onRebind(intent);
 		
+		initTorPaths();
 		
+		if (!fileTor.exists())
+		{
+			new Thread ()
+			{
+				
+				public void run ()
+				{
+					try {
+						checkTorBinaries (false);
+					} catch (Exception e) {
+		
+						logNotice("unable to find tor binaries: " + e.getMessage());
+				    	showToolbarNotification(getString(R.string.error_installing_binares), ERROR_NOTIFY_ID, R.drawable.tornotificationerr, -1);
+		
+						Log.e(TAG, "error checking tor binaries", e);
+					}
+				}
+			}.start();
+		}
 	}
 
 
@@ -212,24 +234,26 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 		_torInstance = this;
 		
-    	Thread thread = new Thread ()
-    	{
-    		
-    		public void run ()
-    		{
+		initTorPaths();
+		
+		new Thread ()
+		{
+			
+			public void run ()
+			{
 				try {
 					checkTorBinaries (false);
 				} catch (Exception e) {
-		
+	
 					logNotice("unable to find tor binaries: " + e.getMessage());
-			    	showToolbarNotification(getString(R.string.error_installing_binares), NOTIFY_ID, R.drawable.tornotificationerr, -1);
-		
+			    	showToolbarNotification(getString(R.string.error_installing_binares), ERROR_NOTIFY_ID, R.drawable.tornotificationerr, -1);
+	
 					Log.e(TAG, "error checking tor binaries", e);
 				}
-    		}
-    	};
-    	
-    	thread.start();
+			}
+		}.start();
+		
+		
 
 		if (intent.getAction()!=null && intent.getAction().equals("onboot"))
 		{
@@ -260,7 +284,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	     catch (Exception e)
 	     {
 	    	 currentStatus = STATUS_OFF;
-	    	 this.showToolbarNotification(getString(R.string.status_disabled), NOTIFY_ID, R.drawable.tornotificationerr, -1);
+	    	 this.showToolbarNotification(getString(R.string.status_disabled), ERROR_NOTIFY_ID, R.drawable.tornotificationerr, -1);
 	    	 Log.d(TAG,"Unable to start Tor: " + e.getMessage(),e);
 	     }
 		}
@@ -290,7 +314,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     
     		clearNotifications();
     		
-    		//showToolbarNotification (getString(R.string.status_disabled),NOTIFY_ID,R.drawable.tornotificationoff);
     		sendCallbackStatusMessage(getString(R.string.status_disabled));
 
     		disableTransparentProxy();
@@ -344,7 +367,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	    	{
 		    	try {
 					String onionHostname = Utils.readString(new FileInputStream(file));
-					showToolbarNotification(getString(R.string.hidden_service_on) + ' ' + onionHostname, NOTIFY_ID, R.drawable.tornotification, Notification.FLAG_ONGOING_EVENT);
+					showToolbarNotification(getString(R.string.hidden_service_on) + ' ' + onionHostname, HS_NOTIFY_ID, R.drawable.tornotification, Notification.FLAG_ONGOING_EVENT);
 					Editor pEdit = prefs.edit();
 					pEdit.putString("pref_hs_hostname",onionHostname);
 					pEdit.commit();
@@ -352,13 +375,13 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 					
 				} catch (FileNotFoundException e) {
 					logException("unable to read onion hostname file",e);
-					showToolbarNotification(getString(R.string.unable_to_read_hidden_service_name), NOTIFY_ID, R.drawable.tornotificationerr, -1);
+					showToolbarNotification(getString(R.string.unable_to_read_hidden_service_name), ERROR_NOTIFY_ID, R.drawable.tornotificationerr, -1);
 					return;
 				}
 	    	}
 	    	else
 	    	{
-				showToolbarNotification(getString(R.string.unable_to_read_hidden_service_name), NOTIFY_ID, R.drawable.tornotificationerr, -1);
+				showToolbarNotification(getString(R.string.unable_to_read_hidden_service_name), HS_NOTIFY_ID, R.drawable.tornotificationerr, -1);
 	
 	    		
 	    	}
@@ -392,7 +415,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			conn = null;
 		}
     	
-		while ((procId = TorServiceUtils.findProcessId(torBinaryPath)) != -1)
+		while ((procId = TorServiceUtils.findProcessId(fileTor.getAbsolutePath())) != -1)
 		{
 			
 			logNotice("Found Tor PID=" + procId + " - killing now...");
@@ -403,7 +426,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			catch (Exception e){}
 		}
 
-		while ((procId = TorServiceUtils.findProcessId(privoxyPath)) != -1)
+		while ((procId = TorServiceUtils.findProcessId(filePrivoxy.getAbsolutePath())) != -1)
 		{
 			
 			logNotice("Found Privoxy PID=" + procId + " - killing now...");
@@ -427,20 +450,25 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	}
     }
     
-
-    private boolean checkTorBinaries (boolean forceInstall) throws Exception
+    private void initTorPaths ()
     {
-    	//android.os.Debug.waitForDebugger();
-    	
-    	//check and install iptables
-    	TorBinaryInstaller.assertIpTablesBinaries(this, true);
 
     	appBinHome = getDir("bin",0);
     	appDataHome = getCacheDir();
     	
-    	File fileTor = new File(appBinHome, TOR_BINARY_ASSET_KEY);
-		File filePrivoxy = new File(appBinHome, PRIVOXY_ASSET_KEY);
+    	fileTor = new File(appBinHome, TOR_BINARY_ASSET_KEY);
+		filePrivoxy = new File(appBinHome, PRIVOXY_ASSET_KEY);
 
+		
+    }
+
+    public boolean checkTorBinaries (boolean forceInstall) throws Exception
+    {
+    	//check and install iptables
+    	TorBinaryInstaller.assertIpTablesBinaries(this, true);
+
+    	initTorPaths();
+		
     	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
     	String currTorBinary = prefs.getString(TorServiceConstants.PREF_BINARY_TOR_VERSION_INSTALLED, null);
     	String currPrivoxyBinary = prefs.getString(TorServiceConstants.PREF_BINARY_PRIVOXY_VERSION_INSTALLED, null);
@@ -495,8 +523,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	
     			//showToolbarNotification(getString(R.string.status_install_success), NOTIFY_ID, R.drawable.tornotification);
 
-    			torBinaryPath = fileTor.getAbsolutePath();
-    			privoxyPath = filePrivoxy.getAbsolutePath();
     		}
     		else
     		{
@@ -509,24 +535,15 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     		}
     		
 		}
-		else
-		{
-			logNotice("Found Tor binary: " + torBinaryPath);
-			logNotice("Found Privoxy binary: " + privoxyPath);
-
-
-			torBinaryPath = fileTor.getAbsolutePath();
-			privoxyPath = filePrivoxy.getAbsolutePath();
-		}
 	
 		StringBuilder log = new StringBuilder ();
 		
 		logNotice("(re)Setting permission on Tor binary");
-		String[] cmd1 = {SHELL_CMD_CHMOD + ' ' + CHMOD_EXE_VALUE + ' ' + torBinaryPath};
+		String[] cmd1 = {SHELL_CMD_CHMOD + ' ' + CHMOD_EXE_VALUE + ' ' + fileTor.getAbsolutePath()};
 		TorServiceUtils.doShellCommand(cmd1, log, false, true);
 		
 		logNotice("(re)Setting permission on Privoxy binary");
-		String[] cmd2 = {SHELL_CMD_CHMOD + ' ' + CHMOD_EXE_VALUE + ' ' + privoxyPath};
+		String[] cmd2 = {SHELL_CMD_CHMOD + ' ' + CHMOD_EXE_VALUE + ' ' + filePrivoxy.getAbsolutePath()};
 		TorServiceUtils.doShellCommand(cmd2, log, false, true);
 		
 		
@@ -535,27 +552,29 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     
     public void initTor () throws Exception
     {
-
+    	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+    	ENABLE_DEBUG_LOG = prefs.getBoolean("pref_enable_logging",false);
+    	Log.i(TAG,"debug logging:" + ENABLE_DEBUG_LOG);
     	
-    		currentStatus = STATUS_CONNECTING;
+		currentStatus = STATUS_CONNECTING;
 
-    		logNotice(getString(R.string.status_starting_up));
-    		
-    		sendCallbackStatusMessage(getString(R.string.status_starting_up));
-    		
-    		killTorProcess ();
-    		
-    		try {
+		logNotice(getString(R.string.status_starting_up));
+		
+		sendCallbackStatusMessage(getString(R.string.status_starting_up));
+		
+		killTorProcess ();
+		
+		try {
 
-	    		enableTransparentProxy();
-	    		runTorShellCmd();
-	    		runPrivoxyShellCmd();
+    		enableTransparentProxy();
+    		runTorShellCmd();
+    		runPrivoxyShellCmd();
 
-			} catch (Exception e) {
-		    	logException("Unable to start Tor: " + e.getMessage(),e);	
-		    	sendCallbackStatusMessage(getString(R.string.unable_to_start_tor) + ' ' + e.getMessage());
-		    	
-		    } 
+		} catch (Exception e) {
+	    	logException("Unable to start Tor: " + e.getMessage(),e);	
+	    	sendCallbackStatusMessage(getString(R.string.unable_to_start_tor) + ' ' + e.getMessage());
+	    	
+	    } 
     		
     }
     
@@ -593,7 +612,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 				
 			if(transProxyPortFallback)
 			{
-				showAlert(getString(R.string.status), getString(R.string.setting_up_port_based_transparent_proxying_));
+				
+				showToolbarNotification(getString(R.string.setting_up_port_based_transparent_proxying_), TRANSPROXY_NOTIFY_ID, R.drawable.tornotification, -1);
 				StringTokenizer st = new StringTokenizer(portProxyList, ",");
 				int status = code;
 				while (st.hasMoreTokens())
@@ -607,12 +627,14 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			{
 				if(transProxyAll)
 				{
-					showAlert(getString(R.string.status), getString(R.string.setting_up_full_transparent_proxying_));
+					showToolbarNotification(getString(R.string.setting_up_full_transparent_proxying_), TRANSPROXY_NOTIFY_ID, R.drawable.tornotification, -1);
+
 					code = ttProxy.setTransparentProxyingAll(this);
 				}
 				else
 				{
-					showAlert(getString(R.string.status), getString(R.string.setting_up_app_based_transparent_proxying_));
+					showToolbarNotification(getString(R.string.setting_up_app_based_transparent_proxying_), TRANSPROXY_NOTIFY_ID, R.drawable.tornotification, -1);
+
 					code = ttProxy.setTransparentProxyingByApp(this,AppManager.getApps(this));
 				}
 				
@@ -622,13 +644,11 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			
 			if (code == 0)
 			{
-				showAlert(getString(R.string.status), getString(R.string.transparent_proxying_enabled));
-				
+				showToolbarNotification(getString(R.string.transparent_proxying_enabled), TRANSPROXY_NOTIFY_ID, R.drawable.tornotification, -1);
 
-				
 				if (transProxyTethering)
 				{
-					showAlert(getString(R.string.status), getString(R.string.transproxy_enabled_for_tethering_));
+					showToolbarNotification(getString(R.string.transproxy_enabled_for_tethering_), TRANSPROXY_NOTIFY_ID, R.drawable.tornotification, -1);
 
 					ttProxy.enableTetheringRules(this);
 					  
@@ -636,7 +656,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			}
 			else
 			{
-				showAlert(getString(R.string.status), getString(R.string.warning_error_starting_transparent_proxying_));
+				showToolbarNotification(getString(R.string.warning_error_starting_transparent_proxying_), TRANSPROXY_NOTIFY_ID, R.drawable.tornotification, -1);
+
 			}
 		
 			return true;
@@ -666,7 +687,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	     	
 	     	new TorTransProxy().flushIptables(this);
 	     	
-			showAlert(getString(R.string.status), getString(R.string.transproxy_rules_cleared));
+			showToolbarNotification(getString(R.string.transproxy_rules_cleared), TRANSPROXY_NOTIFY_ID, R.drawable.tornotification, -1);
+
 	     	
 	     	return true;
     	}
@@ -689,7 +711,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			torrcPath = new File(appBinHome, TORRC_TETHER_KEY).getAbsolutePath();
 		}
 		
-		String[] torCmd = {torBinaryPath + " DataDirectory " + appDataHome.getAbsolutePath() + " -f " + torrcPath  + " || exit\n"};
+		String[] torCmd = {fileTor.getAbsolutePath() + " DataDirectory " + appDataHome.getAbsolutePath() + " -f " + torrcPath  + " || exit\n"};
 		
 		boolean runAsRootFalse = false;
 		boolean waitForProcess = false;
@@ -710,19 +732,20 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
 			Thread.sleep(torRetryWaitTimeMS);
 			
-			procId = TorServiceUtils.findProcessId(torBinaryPath);
+			procId = TorServiceUtils.findProcessId(fileTor.getAbsolutePath());
 			
 			logNotice("got tor proc id: " + procId);
 			
 			if (procId == -1)
 			{
 				
-				sendCallbackStatusMessage(getString(R.string.couldn_t_start_tor_process_) + log.toString());
+				sendCallbackStatusMessage(getString(R.string.couldn_t_start_tor_process_));
 				Thread.sleep(torRetryWaitTimeMS);
 				attempts++;
 			}
-			
-			logNotice(log.toString());
+
+			if (waitForProcess)
+				logNotice(log.toString());
 		}
 		
 		if (procId == -1)
@@ -747,7 +770,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	
     	logNotice( "Starting privoxy process");
     	
-			int privoxyProcId = TorServiceUtils.findProcessId(privoxyPath);
+			int privoxyProcId = TorServiceUtils.findProcessId(filePrivoxy.getAbsolutePath());
 
 			StringBuilder log = null;
 			
@@ -760,7 +783,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     			String privoxyConfigPath = new File(appBinHome, PRIVOXYCONFIG_ASSET_KEY).getAbsolutePath();
     			
     			String[] cmds = 
-    			{ privoxyPath + " " + privoxyConfigPath + " &" };
+    			{ filePrivoxy.getAbsolutePath() + " " + privoxyConfigPath + " &" };
     			
     			logNotice (cmds[0]); 
     			
@@ -772,7 +795,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     			//wait one second to make sure it has started up
     			Thread.sleep(1000);
     			
-    			while ((privoxyProcId = TorServiceUtils.findProcessId(privoxyPath)) == -1  && attempts < MAX_START_TRIES)
+    			while ((privoxyProcId = TorServiceUtils.findProcessId(filePrivoxy.getAbsolutePath())) == -1  && attempts < MAX_START_TRIES)
     			{
     				logNotice("Couldn't find Privoxy process... retrying...\n" + log);
     				Thread.sleep(3000);
@@ -981,12 +1004,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
           
 	}
 
-	private void showAlert(String title, String msg)
-	{
-		//showToolbarNotification(msg, NOTIFY_ID, R.drawable.tornotification);
-		sendCallbackStatusMessage(msg);
-
-	}
+	//showToolbarNotification(msg, TRANSPROXY_NOTIFY_ID, R.drawable.tornotification);
 	
 	public void newDescriptors(List<String> orList) {
 		
@@ -1072,36 +1090,18 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	}
 	
     public IBinder onBind(Intent intent) {
-        // Select the interface to return.  If your service only implements
-        // a single interface, you can just return it here without checking
-        // the Intent.
         
+    	
     	_torInstance = this;
-    	
-    	/*
-		try
-		{
-	
-			checkTorBinaries(false);
-    	
-		}
-		catch (Exception e)
-		{
-			logNotice("unable to find tor binaries: " + e.getMessage());
-	    	showToolbarNotification(e.getMessage(), NOTIFY_ID, R.drawable.tornotificationerr);
-
-			Log.d(TAG,"Unable to check for Tor binaries",e);
-			return null;
-		}*/
+    	initTorPaths();
     	
 		findExistingProc ();
 		
     	if (ITorService.class.getName().equals(intent.getAction())) {
             return mBinder;
         }
-        
-
-        return null;
+    	else
+    		return null;
     }
 	
     /**
@@ -1346,7 +1346,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     private boolean applyPreferences () throws RemoteException
     {
     	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-		
     	ENABLE_DEBUG_LOG = prefs.getBoolean("pref_enable_logging",false);
     	Log.i(TAG,"debug logging:" + ENABLE_DEBUG_LOG);
     		
@@ -1393,10 +1392,10 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 			if (bridgeList == null || bridgeList.length() == 0)
 			{
-			
-				showAlert(getString(R.string.bridge_error),getString(R.string.bridge_requires_ip) +
-						getString(R.string.send_email_for_bridges));
-				
+				String msgBridge = getString(R.string.bridge_requires_ip) +
+						getString(R.string.send_email_for_bridges);
+				showToolbarNotification(msgBridge, ERROR_NOTIFY_ID, R.drawable.tornotification, -1);
+
 			
 				return false;
 			}
@@ -1445,8 +1444,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         }
         catch (Exception e)
         {
-           showAlert(getString(R.string.error),getString(R.string.your_reachableaddresses_settings_caused_an_exception_));
-           
+     	  showToolbarNotification (getString(R.string.your_reachableaddresses_settings_caused_an_exception_),ERROR_NOTIFY_ID,R.drawable.tornotificationon, Notification.FLAG_ONGOING_EVENT);
+
            return false;
         }
 
@@ -1471,7 +1470,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         }
         catch (Exception e)
         {
-            showAlert(getString(R.string.error),getString(R.string.your_relay_settings_caused_an_exception_));
+       	  showToolbarNotification (getString(R.string.your_relay_settings_caused_an_exception_),ERROR_NOTIFY_ID,R.drawable.tornotificationon, Notification.FLAG_ONGOING_EVENT);
+
           
             return false;
         }
