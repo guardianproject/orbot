@@ -161,57 +161,51 @@ public class TorServiceUtils implements TorServiceConstants {
 	
 	public static int doShellCommand(String[] cmds, StringBuilder log, boolean runAsRoot, boolean waitFor) throws Exception
 	{
-		TorService.logMessage("executing shell cmds: " + cmds[0] + "; runAsRoot=" + runAsRoot);
+		TorService.logMessage("executing shell cmds: " + cmds[0] + "; runAsRoot=" + runAsRoot + ";waitFor=" + waitFor);
 		
-		 	
 		Process proc = null;
 		int exitCode = -1;
 		
-            
-        	if (runAsRoot)
-        		proc = Runtime.getRuntime().exec("su");
-        	else
-        		proc = Runtime.getRuntime().exec("sh");
-        	
-        	
-        	OutputStreamWriter out = new OutputStreamWriter(proc.getOutputStream());
-            
-            for (int i = 0; i < cmds.length; i++)
-            {
-            	out.write(cmds[i]);
-            	out.write("\n");
-            }
-            
-            out.flush();
-			out.write("exit\n");
-			out.flush();
-		
-			if (waitFor)
-			{
-				
-				final char buf[] = new char[10];
-				
-				// Consume the "stdout"
-				InputStreamReader reader = new InputStreamReader(proc.getInputStream());
-				int read=0;
-				while ((read=reader.read(buf)) != -1) {
-					if (log != null) log.append(buf, 0, read);
-				}
-				
-				// Consume the "stderr"
-				reader = new InputStreamReader(proc.getErrorStream());
-				read=0;
-				while ((read=reader.read(buf)) != -1) {
-					if (log != null) log.append(buf, 0, read);
-				}
-				
-				exitCode = proc.waitFor();
-				log.append("process exit code: ");
-				log.append(exitCode);
-				log.append("\n");
-				
-				TorService.logMessage("command process exit value: " + exitCode);
+    	if (runAsRoot)
+    		proc = Runtime.getRuntime().exec("su");
+    	else
+    		proc = Runtime.getRuntime().exec("sh");
+    	
+    	
+    	OutputStreamWriter out = new OutputStreamWriter(proc.getOutputStream());
+        
+        for (int i = 0; i < cmds.length; i++)
+        {
+        	out.write(cmds[i]);
+        	out.write("\n");
+        }
+        
+        out.flush();
+		out.write("exit\n");
+		out.flush();
+	
+		if (waitFor)
+		{
+			
+			final char buf[] = new char[10];
+			
+			// Consume the "stdout"
+			InputStreamReader reader = new InputStreamReader(proc.getInputStream());
+			int read=0;
+			while ((read=reader.read(buf)) != -1) {
+				if (log != null) log.append(buf, 0, read);
 			}
+			
+			// Consume the "stderr"
+			reader = new InputStreamReader(proc.getErrorStream());
+			read=0;
+			while ((read=reader.read(buf)) != -1) {
+				if (log != null) log.append(buf, 0, read);
+			}
+			
+			exitCode = proc.waitFor();
+			
+		}
         
         
         return exitCode;
