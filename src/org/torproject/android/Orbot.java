@@ -72,7 +72,9 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
       //if Tor binary is not running, then start the service up
       //might want to look at whether we need to call this every time
       //or whether binding to the service is enough
-            startService(new Intent(INTENT_TOR_SERVICE));
+           	//bindService();
+           	startService(new Intent(INTENT_TOR_SERVICE));
+
                 
             //something to play with on the UI branch
             setTheme(android.R.style.Theme_Black_NoTitleBar);
@@ -339,8 +341,7 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
 		super.onResume();
 		
 		bindService();
-		
-		 updateStatus("");
+	
 		 
 		if (getIntent() == null)
 			return;
@@ -556,8 +557,7 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
                                     hideProgressDialog();
                                     
                                     String lblMsg = getString(R.string.status_activated);
-                                    //+ "\n" + torServiceMsg;
-                                    
+                                     
                                     lblStatus.setText(lblMsg);
                                     
                                     if (torServiceMsg != null && torServiceMsg.length() > 0)
@@ -802,7 +802,7 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
                 mService.registerCallback(mCallback);
            
                 //again with the update status?!? :P
-                updateStatus("");
+                updateStatus(null);
                 
                 if (autoStartOnBind)
                 {
@@ -844,15 +844,14 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
          //since its auto create, we prob don't ever need to call startService
          //also we should again be consistent with using either iTorService.class.getName()
          //or the variable constant       
-             bindService(new Intent(ITorService.class.getName()),
-                 mConnection, Context.BIND_AUTO_CREATE);
-             
-             mIsBound = true;
+         bindService(new Intent(ITorService.class.getName()),
+             mConnection, Context.BIND_AUTO_CREATE);
+         
+         mIsBound = true;
     
     }
     
     //unbind removes the callback, and unbinds the service
-    /*
     private void unbindService ()
     {
             if (mIsBound) {
@@ -876,7 +875,7 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
             mIsBound = false;
             
         }
-    }*/
+    }
         
     private void createProgressDialog (String msg)
     {
