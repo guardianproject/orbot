@@ -255,7 +255,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
 		
 
-		if (intent.getAction()!=null && intent.getAction().equals("onboot"))
+		if (intent != null && intent.getAction()!=null && intent.getAction().equals("onboot"))
 		{
 			
 			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
