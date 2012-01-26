@@ -284,7 +284,6 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
 		
 		DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
 			
-		    @Override
 		    public void onClick(DialogInterface dialog, int which) {
 		        switch (which){
 		        case DialogInterface.BUTTON_POSITIVE:
@@ -340,9 +339,9 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
 	protected void onResume() {
 		super.onResume();
 		
-		bindService();
+		if (!mIsBound)
+			bindService();
 	
-		 
 		if (getIntent() == null)
 			return;
 		
@@ -355,7 +354,7 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
 		{
 			
 			DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-			    @Override
+			    
 			    public void onClick(DialogInterface dialog, int which) {
 			        switch (which){
 			        case DialogInterface.BUTTON_POSITIVE:
@@ -401,11 +400,7 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
 		}
 		else
 		{
-			
-			//setTitle(getString(R.string.app_name) + ' ' + getString(R.string.app_version));
-	    
-			NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-			mNotificationManager.cancelAll();
+		
 			
 			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 	
@@ -722,14 +717,14 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
                 mHandler.sendMessage(msg);
         }
 
-                @Override //this was when we displayed the log in the main Activity; can prob take this out now
-                public void logMessage(String value) throws RemoteException {
-                        
-                        Message msg = mHandler.obtainMessage(TorServiceConstants.LOG_MSG);
-                msg.getData().putString(HANDLER_TOR_MSG, value);
-                mHandler.sendMessage(msg);
-                        
-                }
+    
+            public void logMessage(String value) throws RemoteException {
+                    
+                    Message msg = mHandler.obtainMessage(TorServiceConstants.LOG_MSG);
+            msg.getData().putString(HANDLER_TOR_MSG, value);
+            mHandler.sendMessage(msg);
+                    
+            }
     };
     
 
