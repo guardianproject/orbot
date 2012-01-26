@@ -28,6 +28,7 @@ import org.torproject.android.TorConstants;
 import org.torproject.android.Utils;
 import org.torproject.android.settings.AppManager;
 
+import android.app.Application;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -59,6 +60,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	private static final int ERROR_NOTIFY_ID = 3;
 	private static final int HS_NOTIFY_ID = 3;
 	
+	private boolean prefPersistNotifications = true;
 	
 	private static final int MAX_START_TRIES = 3;
 
@@ -178,7 +180,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 		Notification notification = new Notification(icon, tickerText, when);
 		
-		if (flags != -1)
+		if (prefPersistNotifications && flags != -1)			
 			notification.flags |= flags;
 
 		Context context = getApplicationContext();
@@ -204,11 +206,11 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
 		initTorPaths();
 		
+		//if Tor was deleted for some reason, do this again!
 		if (!fileTor.exists())
 		{
 			new Thread ()
-			{
-				
+			{				
 				public void run ()
 				{
 					try {
@@ -272,21 +274,30 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	public void run ()
 	{
 		
-		boolean isRunning = _torInstance.findExistingProc ();
-		
-		if (!isRunning)
+		if (currentStatus == STATUS_CONNECTING)
 		{
-	     try
-	     {
-		   initTor();
-		   isRunning = true;
-	     }
-	     catch (Exception e)
-	     {
-	    	 currentStatus = STATUS_OFF;
-	    	 this.showToolbarNotification(getString(R.string.status_disabled), ERROR_NOTIFY_ID, R.drawable.tornotificationerr, -1);
-	    	 Log.d(TAG,"Unable to start Tor: " + e.getMessage(),e);
-	     }
+			boolean isRunning = _torInstance.findExistingProc ();
+			
+			if (!isRunning)
+			{
+		     try
+		     {
+			   initTor();
+			   isRunning = true;
+		     }
+		     catch (Exception e)
+		     {
+		    	 currentStatus = STATUS_OFF;
+		    	 this.showToolbarNotification(getString(R.string.status_disabled), ERROR_NOTIFY_ID, R.drawable.tornotificationerr, -1);
+		    	 Log.d(TAG,"Unable to start Tor: " + e.getMessage(),e);
+		     }
+			}
+		}
+		else if (currentStatus == STATUS_OFF)
+		{
+
+			_torInstance.stopTor();
+
 		}
 	}
 
@@ -452,8 +463,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     
     private void initTorPaths ()
     {
-
-    	appBinHome = getDir("bin",0);
+    	
+    	appBinHome = getDir("bin",Application.MODE_PRIVATE);
     	appDataHome = getCacheDir();
     	
     	fileTor = new File(appBinHome, TOR_BINARY_ASSET_KEY);
@@ -975,9 +986,10 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			{
 				currentStatus = STATUS_OFF;
 	            sendCallbackStatusMessage (getString(R.string.status_shutting_down));
+	          
+	            Thread thread = new Thread(this);
+	            thread.start();
 	            
-				_torInstance.stopTor();
-
 				
 			}
 		}
@@ -1346,9 +1358,12 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     private boolean applyPreferences () throws RemoteException
     {
     	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+    	
     	ENABLE_DEBUG_LOG = prefs.getBoolean("pref_enable_logging",false);
     	Log.i(TAG,"debug logging:" + ENABLE_DEBUG_LOG);
-    		
+    	
+    	prefPersistNotifications = prefs.getBoolean(TorConstants.PREF_PERSIST_NOTIFICATIONS, true);
+    	
 		boolean useBridges = prefs.getBoolean(TorConstants.PREF_BRIDGES_ENABLED, false);
 		
 		//boolean autoUpdateBridges = prefs.getBoolean(TorConstants.PREF_BRIDGES_UPDATED, false);
@@ -1378,7 +1393,23 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         {
         	//only apple GeoIP if you need it
 	        File fileGeoIP = new File(appBinHome,"geoip");
-	        mBinder.updateConfiguration("GeoIPFile", fileGeoIP.getAbsolutePath(), false);
+	        
+	        try
+	        {
+		        if (!fileGeoIP.exists())
+		        {
+		        	TorBinaryInstaller installer = new TorBinaryInstaller(this, appBinHome); 
+					boolean success = installer.installGeoIP();	
+		        }
+		        
+		        mBinder.updateConfiguration("GeoIPFile", fileGeoIP.getAbsolutePath(), false);
+	        }
+	        catch (IOException e)
+	        {
+	       	  showToolbarNotification (getString(R.string.error_installing_binares),ERROR_NOTIFY_ID,R.drawable.tornotificationon, Notification.FLAG_ONGOING_EVENT);
+
+	        	return false;
+	        }
         }
 
         mBinder.updateConfiguration("EntryNodes", entranceNodes, false);
