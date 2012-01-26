@@ -273,9 +273,9 @@ public class TorTransProxy implements TorServiceConstants {
 					script.append(" --dport ");
 					script.append(port);	
 					script.append(" -j ACCEPT");
-					script.append(" || exit\n");
-				
+					script.append(" || exit\n");				
 				}
+				
 				// Allow loopback
 				script.append(ipTablesPath);
 				script.append(" -t filter");
@@ -310,8 +310,8 @@ public class TorTransProxy implements TorServiceConstants {
 				script.append(" || exit\n");
 				
 			}		
-		}
-				
+		}			
+		
 
 		// Allow everything for Tor
 		script.append(ipTablesPath);
