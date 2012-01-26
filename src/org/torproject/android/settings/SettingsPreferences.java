@@ -109,7 +109,6 @@ public class SettingsPreferences
 		//Log.d(getClass().getName(),"Exiting Preferences");
 	}
 
-	@Override
 	public boolean onPreferenceClick(Preference preference) {
 		
 		setResult(1010);

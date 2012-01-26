@@ -69,7 +69,6 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
 		btnSave.setOnClickListener(new OnClickListener()
 		{
 
-			@Override
 			public void onClick(View v) {
 				finish();
 			}
@@ -268,8 +267,6 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
 	}
 
 
-
-	@Override
 	public void onClick(View v) {
 		
 		CheckBox cbox = (CheckBox)v.getTag();
