@@ -1,6 +1,8 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
 1.0.7
+- reduced data folder size by making geoip file only installed on demand
+- added options for turning of persistent notification
 - enabled access to localhost ports for SOCKS, HTTP, etc even when transproxy is on
 - improved handling of tor and privoxy binary upgrades
 - updated openssl to 1.0.0f to address recent SSLv3 threat
