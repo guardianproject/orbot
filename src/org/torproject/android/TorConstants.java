@@ -45,4 +45,6 @@ public interface TorConstants {
 	
 	public final static String PREF_USE_SYSTEM_IPTABLES = "pref_use_sys_iptables";
 	
+	public final static String PREF_PERSIST_NOTIFICATIONS = "pref_persistent_notifications";
+	
 }
