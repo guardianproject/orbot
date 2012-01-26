@@ -74,6 +74,19 @@ public class TorBinaryInstaller implements TorServiceConstants {
 		outFile = new File(installFolder, PRIVOXYCONFIG_ASSET_KEY);
 		streamToFile(is,outFile, false, false);
 		
+	
+		return true;
+	}
+	
+	/*
+	 * Extract the Tor binary from the APK file using ZIP
+	 */
+	public boolean installGeoIP () throws IOException, FileNotFoundException
+	{
+		
+		InputStream is;
+        File outFile;
+        
 		is = context.getResources().openRawResource(R.raw.geoip);
 		outFile = new File(installFolder, GEOIP_ASSET_KEY);
 		streamToFile(is, outFile, false, true);
@@ -200,12 +213,20 @@ public class TorBinaryInstaller implements TorServiceConstants {
 	 * @throws IOException on error
 	 * @throws InterruptedException when interrupted
 	 */
-	private static void copyRawFile(Context ctx, int resid, File file, String mode) throws IOException, InterruptedException
+	private static void copyRawFile(Context ctx, int resid, File file, String mode, boolean isZipd) throws IOException, InterruptedException
 	{
 		final String abspath = file.getAbsolutePath();
 		// Write the iptables binary
 		final FileOutputStream out = new FileOutputStream(file);
-		final InputStream is = ctx.getResources().openRawResource(resid);
+		InputStream is = ctx.getResources().openRawResource(resid);
+		
+		if (isZipd)
+    	{
+    		ZipInputStream zis = new ZipInputStream(is);    		
+    		ZipEntry ze = zis.getNextEntry();
+    		is = zis;
+    	}
+		
 		byte buf[] = new byte[1024];
 		int len;
 		while ((len = is.read(buf)) > 0) {
@@ -229,14 +250,16 @@ public class TorBinaryInstaller implements TorServiceConstants {
 		File file = new File(ctx.getDir("bin",0), "iptables");
 		
 		if ((!file.exists()) && isARMv6()) {
-			copyRawFile(ctx, R.raw.iptables_g1, file, CHMOD_EXEC);
+			copyRawFile(ctx, R.raw.iptables_g1, file, CHMOD_EXEC, false);
+			
+
 			changed = true;
 		}
 		
 		// Check iptables_n1
 		file = new File(ctx.getDir("bin",0), "iptables");
 		if ((!file.exists()) && (!isARMv6())) {
-			copyRawFile(ctx, R.raw.iptables_n1, file, CHMOD_EXEC);
+			copyRawFile(ctx, R.raw.iptables_n1, file, CHMOD_EXEC, false);
 			changed = true;
 		}
 		
