@@ -111,7 +111,6 @@ public class Permissions extends Activity implements TorConstants {
         
         consent.setOnCheckedChangeListener(new OnCheckedChangeListener (){
 
-			@Override
 			public void onCheckedChanged(CompoundButton buttonView,
 					boolean isChecked) {
 			
@@ -142,7 +141,6 @@ public class Permissions extends Activity implements TorConstants {
         
         grantPermissions.setOnClickListener(new View.OnClickListener() {
 			
-			@Override
 			public void onClick(View v) {
 				//Check and Install iptables - TorTransProxy.testOwnerModule(this)
 				
@@ -190,7 +188,6 @@ public class Permissions extends Activity implements TorConstants {
         
     	back.setOnClickListener(new View.OnClickListener() {
 			
-			@Override
 			public void onClick(View v) {
 				
 				startActivityForResult(new Intent(getBaseContext(), LotsaText.class), 1);
@@ -201,7 +198,6 @@ public class Permissions extends Activity implements TorConstants {
     	  next.setOnClickListener(new View.OnClickListener() {
     	 
 			
-			@Override
 			public void onClick(View v) {
 				startActivityForResult(new Intent(getBaseContext(), TipsAndTricks.class), 1);
 			}
@@ -239,7 +235,6 @@ public class Permissions extends Activity implements TorConstants {
         
     	btn1.setOnClickListener(new View.OnClickListener() {
 			
-			@Override
 			public void onClick(View v) {
 				
 				startActivityForResult(new Intent(getBaseContext(), LotsaText.class), 1);
@@ -248,7 +243,6 @@ public class Permissions extends Activity implements TorConstants {
     	
     	btn2.setOnClickListener(new View.OnClickListener() {
 			
-			@Override
 			public void onClick(View v) {
 				startActivityForResult(new Intent(getBaseContext(), TipsAndTricks.class), 1);
 			}

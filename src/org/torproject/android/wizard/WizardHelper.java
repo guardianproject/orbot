@@ -58,7 +58,6 @@ public class WizardHelper implements TorConstants {
        
 		showCustomDialog(title, view,context.getString(R.string.btn_next),null,new DialogInterface.OnClickListener() {
 					
-			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				dialog.dismiss();
 				
@@ -90,7 +89,6 @@ public class WizardHelper implements TorConstants {
         
         btn1.setOnClickListener(new OnClickListener() {
 			
-			@Override
 			public void onClick(View view) {
 				
 				boolean iCanHazRoot = TorServiceUtils.isRootPossible();
@@ -132,7 +130,6 @@ public class WizardHelper implements TorConstants {
          
         cb1.setOnCheckedChangeListener(new OnCheckedChangeListener (){
 
-			@Override
 			public void onCheckedChanged(CompoundButton buttonView,
 					boolean isChecked) {
 			
@@ -151,7 +148,6 @@ public class WizardHelper implements TorConstants {
  
 		showCustomDialog(title, view,context.getString(R.string.btn_next),context.getString(R.string.btn_back),new DialogInterface.OnClickListener() {
 			
-			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				dialog.dismiss();
 				
@@ -183,11 +179,8 @@ public class WizardHelper implements TorConstants {
 			title = context.getString(R.string.wizard_permissions_root);
 			msg = context.getString(R.string.wizard_premissions_msg_root);
 		
-			
-			
 			showDialog(title, msg,context.getString(R.string.btn_next),context.getString(R.string.btn_back),new DialogInterface.OnClickListener() {
 				
-				@Override
 				public void onClick(DialogInterface dialog, int which) {
 					dialog.dismiss();
 					
@@ -218,7 +211,6 @@ public class WizardHelper implements TorConstants {
         
         btn1.setOnClickListener(new OnClickListener() {
 			
-			@Override
 			public void onClick(View view) {
 
 				String url = context.getString(R.string.otrchat_apk_url);
@@ -231,7 +223,6 @@ public class WizardHelper implements TorConstants {
 
         btn2.setOnClickListener(new OnClickListener() {
 			
-			@Override
 			public void onClick(View view) {
 				
 				String url = context.getString(R.string.orweb_apk_url);
@@ -255,9 +246,6 @@ public class WizardHelper implements TorConstants {
         */
 		showCustomDialog(title, view,context.getString(R.string.btn_next),context.getString(R.string.btn_back),new DialogInterface.OnClickListener() {
 			
-			
-			
-			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				dialog.dismiss();
 				

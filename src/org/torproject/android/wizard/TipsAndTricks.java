@@ -74,7 +74,6 @@ public class TipsAndTricks extends Activity implements TorConstants {
         
         btn1.setOnClickListener(new OnClickListener() {
 			
-			@Override
 			public void onClick(View view) {
 
 				String url = getString(R.string.gibberbot_apk_url);
@@ -87,7 +86,6 @@ public class TipsAndTricks extends Activity implements TorConstants {
 
         btn2.setOnClickListener(new OnClickListener() {
 			
-			@Override
 			public void onClick(View view) {
 				
 				String url = getString(R.string.orweb_apk_url);
@@ -102,7 +100,6 @@ public class TipsAndTricks extends Activity implements TorConstants {
         
         back.setOnClickListener(new View.OnClickListener() {
 			
-			@Override
 			public void onClick(View v) {
 				
 				startActivityForResult(new Intent(getBaseContext(), Permissions.class), 1);
@@ -111,7 +108,6 @@ public class TipsAndTricks extends Activity implements TorConstants {
     	
     	next.setOnClickListener(new View.OnClickListener() {
 			
-			@Override
 			public void onClick(View v) {
 				showWizardFinal();
 			}
@@ -141,7 +137,6 @@ public class TipsAndTricks extends Activity implements TorConstants {
     	
     	btn1.setOnClickListener(new View.OnClickListener() {
 			
-			@Override
 			public void onClick(View v) {
 				startActivityForResult(new Intent(getBaseContext(), Permissions.class), 1);
 
@@ -150,7 +145,6 @@ public class TipsAndTricks extends Activity implements TorConstants {
     	
     	btn2.setOnClickListener(new View.OnClickListener() {
 			
-			@Override
 			public void onClick(View v) {
 				startActivityForResult(new Intent(getBaseContext(), Orbot.class), 1);
 

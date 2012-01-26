@@ -117,7 +117,6 @@ public class ConfigureTransProxy extends Activity implements TorConstants {
 		        
 		    back.setOnClickListener(new View.OnClickListener() {
 					
-		    	@Override
 				public void onClick(View v) {
 						
 					startActivityForResult(new Intent(getBaseContext(), Permissions.class), 1);
@@ -126,8 +125,6 @@ public class ConfigureTransProxy extends Activity implements TorConstants {
 		    	
 		    next.setOnClickListener(new View.OnClickListener() {
 				
-		    	//Dirty flag variable - improve logic
-				@Override
 				public void onClick(View v) {
 					
 						showWizardFinal();
@@ -142,7 +139,6 @@ public class ConfigureTransProxy extends Activity implements TorConstants {
     		rb1.setOnClickListener(new OnClickListener()
     		{
 
-				@Override
 				public void onClick(View v) {
 					
 						context.startActivity(new Intent(context, AppManager.class));							
@@ -157,7 +153,6 @@ public class ConfigureTransProxy extends Activity implements TorConstants {
 	        mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener (){
 	        
 	        
-	        	@Override
 	        	public void onCheckedChanged(RadioGroup group, int checkedId){
 	        		Button next = ((Button)findViewById(R.id.btnWizard2));
 	        		next.setEnabled(true);
@@ -212,7 +207,6 @@ public class ConfigureTransProxy extends Activity implements TorConstants {
 		
 		DialogInterface.OnClickListener ocListener = new DialogInterface.OnClickListener() {
 			
-			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				startActivityForResult(new Intent(getBaseContext(), Orbot.class), 1);
 

@@ -95,7 +95,6 @@ public class LotsaText extends Activity implements TorConstants{
 
     	btn2.setOnClickListener(new View.OnClickListener() {
 			
-			@Override
 			public void onClick(View v) {
 				stepTwo();
 			}
@@ -130,7 +129,6 @@ public class LotsaText extends Activity implements TorConstants{
     	
     	btn1.setOnClickListener(new View.OnClickListener() {
 			
-			@Override
 			public void onClick(View v) {
 				
 				stepOne();
@@ -139,7 +137,6 @@ public class LotsaText extends Activity implements TorConstants{
     	
     	btn2.setOnClickListener(new View.OnClickListener() {
 			
-			@Override
 			public void onClick(View v) {
 				startActivityForResult(new Intent(getBaseContext(), Permissions.class), 1);
 			}
