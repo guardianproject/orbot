@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="org.torproject.android" 
-      android:versionName="0.2.3.10-alpha-orbot-1.0.7-beta-20110125" 
-      android:versionCode="30"
+      android:versionName="0.2.3.10-alpha-orbot-1.0.7-RC7" 
+      android:versionCode="31"
         android:installLocation="auto"
       >
        <uses-permission android:name="android.permission.INTERNET" />
