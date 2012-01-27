@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="org.torproject.android" 
       android:versionName="0.2.3.10-alpha-orbot-1.0.7-FINAL" 
-      android:versionCode="31"
+      android:versionCode="32"
         android:installLocation="auto"
       >
        <uses-permission android:name="android.permission.INTERNET" />
