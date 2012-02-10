@@ -209,7 +209,9 @@
 <string name="use_only_these_specified_nodes">Use *only* these specified nodes</string>
 <string name="bridges">Bridges</string>
 <string name="use_bridges">Use Bridges</string>
+<string name="bridges_obfuscated">Obfuscated Bridges</string>
 <string name="enable_alternate_entrance_nodes_into_the_tor_network">Enable alternate entrance nodes into the Tor Network</string>
+<string name="enable_if_configured_bridges_are_obfuscated_bridges">Enable if configured bridges are obfuscated bridges</string>
 <string name="ip_address_and_port_of_bridges">IP address and port of bridges</string>
 <string name="enter_bridge_addresses">Enter Bridge Addresses</string>
 <string name="relays">Relays</string>
