@@ -32,6 +32,7 @@ public interface TorConstants {
 	public final static String PREF_BRIDGES_ENABLED = "pref_bridges_enabled";
 	public final static String PREF_BRIDGES_UPDATED = "pref_bridges_enabled";
 	public final static String PREF_BRIDGES_LIST = "pref_bridges_list";
+	public final static String PREF_BRIDGES_OBFUSCATED = "pref_bridges_obfuscated";
     public final static String PREF_OR = "pref_or";
     public final static String PREF_OR_PORT = "pref_or_port";
     public final static String PREF_OR_NICKNAME = "pref_or_nickname";
