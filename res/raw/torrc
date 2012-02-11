@@ -6,9 +6,24 @@ ControlPort 9051
 CookieAuthentication 1
 RelayBandwidthRate 20 KBytes
 RelayBandwidthBurst 20 KBytes
-UseBridges 0
 AutomapHostsOnResolve 1
 TransListenAddress 127.0.0.1
 TransPort 9040
 DNSListenAddress 127.0.0.1
 DNSPort 5400
+UseBridges 1 
+bridge obfs2 38.229.33.18:42401
+bridge obfs2 85.17.20.242:61264
+bridge obfs2 85.214.131.213:1051
+bridge obfs2 86.59.30.35:45605
+bridge obfs2 91.208.34.7:5353
+bridge obfs2 109.105.109.163:53999
+bridge obfs2 109.163.233.195:1051
+bridge obfs2 128.30.30.25:51420
+bridge obfs2 128.31.0.34:1051
+bridge obfs2 131.215.158.1:29936
+bridge obfs2 173.254.192.38:1051
+bridge obfs2 188.40.20.215:32982
+bridge obfs2 212.112.242.160:49259
+bridge obfs2 213.108.105.129:36609
+ClientTransportPlugin obfs2 exec /data/data/org.torproject.android/app_bin/obfsproxy --managed
