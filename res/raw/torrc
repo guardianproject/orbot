@@ -11,5 +11,4 @@ TransListenAddress 127.0.0.1
 TransPort 9040
 DNSListenAddress 127.0.0.1
 DNSPort 5400
-UseBridges 1
 ClientTransportPlugin obfs2 exec /data/data/org.torproject.android/app_bin/obfsproxy --managed

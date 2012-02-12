@@ -256,4 +256,7 @@
 
 <string name="pref_use_persistent_notifications">Always keep the icon in toolbar when Orbot is connected</string>
 <string name="pref_use_persistent_notifications_title">Always-On Notifications</string>
+
+<string name="default_bridges">obfs2 146.185.23.182:8080,obfs2 108.166.107.30:42396,obfs2 18.85.35.209:49937,obfs2 143.215.129.51:35777,obfs2 68.22.187.113:45672,obfs2 209.176.111.36:38297,obfs2 195.43.157.80:51715,obfs2 128.31.0.34:1051,obfs2 184.73.35.40:8080,obfs2 141.201.27.48:37708</string>
+<string name="notification_using_bridges">Bridges enabled!</string>
 </resources>

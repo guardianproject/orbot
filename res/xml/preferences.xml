@@ -101,6 +101,7 @@ android:summary="@string/enable_alternate_entrance_nodes_into_the_tor_network"><
 android:title="@string/bridges"
 android:summary="@string/ip_address_and_port_of_bridges"
 android:dialogTitle="@string/enter_bridge_addresses"
+android:defaultValue="@string/default_bridges"
 />
 </PreferenceCategory>
 
