@@ -3,6 +3,8 @@
 
 package org.torproject.android;
 
+import java.util.Locale;
+
 import org.torproject.android.service.ITorService;
 import org.torproject.android.service.ITorServiceCallback;
 import org.torproject.android.service.TorServiceConstants;
@@ -22,6 +24,7 @@ import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -40,7 +43,8 @@ import android.widget.TextView;
 
 public class Orbot extends Activity implements OnLongClickListener, TorConstants
 {
-        
+ 
+		
         /* Useful UI bits */
         // so this is probably pretty obvious, here, but also an area
         // which we might see quite a bit of change+complexity was the main screen
@@ -72,7 +76,9 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
       //if Tor binary is not running, then start the service up
       //might want to look at whether we need to call this every time
       //or whether binding to the service is enough
-           	//bindService();
+           	
+        
+        	bindService();
            	startService(new Intent(INTENT_TOR_SERVICE));
 
                 
@@ -339,9 +345,6 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
 	protected void onResume() {
 		super.onResume();
 		
-		if (!mIsBound)
-			bindService();
-	
 		if (getIntent() == null)
 			return;
 		
@@ -896,4 +899,5 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
                 
                 
     }
+    
 }
