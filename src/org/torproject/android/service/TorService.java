@@ -1462,18 +1462,28 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			
 			showToolbarNotification(getString(R.string.notification_using_bridges) + ": " + bridgeList, TRANSPROXY_NOTIFY_ID, R.drawable.tornotification, -1);
 
+			boolean obfsBridges = prefs.getBoolean(TorConstants.PREF_BRIDGES_OBFUSCATED, false);
+			String bridgeCfgKey = "bridge";
+
+			if (obfsBridges)
+			{
+				bridgeCfgKey = bridgeCfgKey + " obfs2";
+			}
+
 			StringTokenizer st = new StringTokenizer(bridgeList,bridgeDelim);
 			while (st.hasMoreTokens())
 			{
 
-				mBinder.updateConfiguration("bridge", st.nextToken(), false);
+				mBinder.updateConfiguration(bridgeCfgKey, st.nextToken(), false);
 
 			}
-			
-			mBinder.updateConfiguration("ClientTransportPlugin","obfs2 exec /data/data/org.torproject.android/app_bin/obfsproxy --managed",false);
+
+			if (obfsBridges)
+			{
+				mBinder.updateConfiguration("ClientTransportPlugin","obfs2 exec " + fileObfsProxy.getAbsolutePath() + " --managed", false);
+			}
 
 			mBinder.updateConfiguration("UpdateBridgesFromAuthority", "0", false);
-			
 		}
 		else
 		{
