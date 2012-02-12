@@ -92,7 +92,7 @@ android:summary="@string/use_only_these_specified_nodes"/>
 </PreferenceCategory> 
 <PreferenceCategory android:title="@string/bridges">
 
-<CheckBoxPreference android:defaultValue="false" 
+<CheckBoxPreference android:defaultValue="true" 
 android:title="@string/use_bridges" android:key="pref_bridges_enabled" 
 android:summary="@string/enable_alternate_entrance_nodes_into_the_tor_network"></CheckBoxPreference>
 
