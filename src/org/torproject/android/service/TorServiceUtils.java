@@ -161,7 +161,6 @@ public class TorServiceUtils implements TorServiceConstants {
 	
 	public static int doShellCommand(String[] cmds, StringBuilder log, boolean runAsRoot, boolean waitFor) throws Exception
 	{
-		TorService.logMessage("executing shell cmds: " + cmds[0] + "; runAsRoot=" + runAsRoot + ";waitFor=" + waitFor);
 		
 		Process proc = null;
 		int exitCode = -1;
@@ -176,6 +175,8 @@ public class TorServiceUtils implements TorServiceConstants {
         
         for (int i = 0; i < cmds.length; i++)
         {
+        	TorService.logMessage("executing shell cmd: " + cmds[i] + "; runAsRoot=" + runAsRoot + ";waitFor=" + waitFor);
+    		
         	out.write(cmds[i]);
         	out.write("\n");
         }
