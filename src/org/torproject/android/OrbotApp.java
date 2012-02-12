@@ -11,7 +11,7 @@ public class OrbotApp extends Application implements TorConstants
 {
 
 	private Locale locale;
-	private final static String DEFAULT_LOCALE = "fa";
+	private final static String DEFAULT_LOCALE = "en";
 	
 	@Override
     public void onCreate() {

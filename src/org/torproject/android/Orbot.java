@@ -3,8 +3,6 @@
 
 package org.torproject.android;
 
-import java.util.Locale;
-
 import org.torproject.android.service.ITorService;
 import org.torproject.android.service.ITorServiceCallback;
 import org.torproject.android.service.TorServiceConstants;
@@ -24,7 +22,6 @@ import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
