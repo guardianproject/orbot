@@ -82,6 +82,7 @@ public interface TorServiceConstants {
     public static final String PREF_BINARY_TOR_VERSION_INSTALLED = "BINARY_TOR_VERSION_INTALLED";
     public static final String PREF_BINARY_PRIVOXY_VERSION_INSTALLED = "BINARY_PRIVOXY_VERSION_INTALLED";
     
-    
+    //obfsproxy 
+    public static final String OBFSPROXY_ASSET_KEY = "obfsproxy";
     
 }

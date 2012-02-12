@@ -73,7 +73,10 @@ public class TorBinaryInstaller implements TorServiceConstants {
 		is = context.getResources().openRawResource(R.raw.privoxy_config);
 		outFile = new File(installFolder, PRIVOXYCONFIG_ASSET_KEY);
 		streamToFile(is,outFile, false, false);
-		
+	
+		is = context.getResources().openRawResource(R.raw.obfsproxy);
+		outFile = new File(installFolder, OBFSPROXY_ASSET_KEY);
+		streamToFile(is,outFile, false, false);
 	
 		return true;
 	}
