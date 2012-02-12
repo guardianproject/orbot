@@ -70,10 +70,11 @@ public class TorService extends Service implements TorServiceConstants, TorConst
    
    //   private String appHome;
     private File appBinHome;
-    private File appDataHome;
+    private File appCacheHome;
     
     private File fileTor;
     private File filePrivoxy;
+    private File fileObfsProxy;
     
     /** Called when the activity is first created. */
     public void onCreate() {
@@ -372,7 +373,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
         if (enableHiddenServices)
         {
-	    	File file = new File(appDataHome, "hostname");
+	    	File file = new File(appCacheHome, "hostname");
 	    	
 	    	if (file.exists())
 	    	{
@@ -426,6 +427,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			conn = null;
 		}
     	
+    	int killDelayMs = 300;
+    	
 		while ((procId = TorServiceUtils.findProcessId(fileTor.getAbsolutePath())) != -1)
 		{
 			
@@ -433,7 +436,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			
 			String[] cmd = { SHELL_CMD_KILL + ' ' + procId + "" };
 			TorServiceUtils.doShellCommand(cmd,log, false, false);
-			try { Thread.sleep(500); }
+			try { Thread.sleep(killDelayMs); }
 			catch (Exception e){}
 		}
 
@@ -444,7 +447,18 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			String[] cmd = { SHELL_CMD_KILL + ' ' + procId + "" };
 
 			TorServiceUtils.doShellCommand(cmd,log, false, false);
-			try { Thread.sleep(500); }
+			try { Thread.sleep(killDelayMs); }
+			catch (Exception e){}
+		}
+		
+		while ((procId = TorServiceUtils.findProcessId(fileObfsProxy.getAbsolutePath())) != -1)
+		{
+			
+			logNotice("Found ObfsProxy PID=" + procId + " - killing now...");
+			String[] cmd = { SHELL_CMD_KILL + ' ' + procId + "" };
+
+			TorServiceUtils.doShellCommand(cmd,log, false, false);
+			try { Thread.sleep(killDelayMs); }
 			catch (Exception e){}
 		}
 		
@@ -465,10 +479,11 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     {
     	
     	appBinHome = getDir("bin",Application.MODE_PRIVATE);
-    	appDataHome = getCacheDir();
+    	appCacheHome = getCacheDir();
     	
     	fileTor = new File(appBinHome, TOR_BINARY_ASSET_KEY);
 		filePrivoxy = new File(appBinHome, PRIVOXY_ASSET_KEY);
+		fileObfsProxy = new File(appBinHome, OBFSPROXY_ASSET_KEY);
 
 		
     }
@@ -557,6 +572,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		String[] cmd2 = {SHELL_CMD_CHMOD + ' ' + CHMOD_EXE_VALUE + ' ' + filePrivoxy.getAbsolutePath()};
 		TorServiceUtils.doShellCommand(cmd2, log, false, true);
 		
+		logNotice("(re)Setting permission on Obfsproxy binary");
+		String[] cmd3 = {SHELL_CMD_CHMOD + ' ' + CHMOD_EXE_VALUE + ' ' + fileObfsProxy.getAbsolutePath()};
+		TorServiceUtils.doShellCommand(cmd3, log, false, true);
 		
 		return true;
     }
@@ -724,7 +742,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
 		String[] torCmd = {
 				"export HOME=" + appBinHome.getAbsolutePath(),
-				fileTor.getAbsolutePath() + " DataDirectory " + appDataHome.getAbsolutePath() + " -f " + torrcPath  + " || exit\n"
+				fileTor.getAbsolutePath() + " DataDirectory " + appCacheHome.getAbsolutePath() + " -f " + torrcPath  + " || exit\n"
 				};
 		
 		boolean runAsRootFalse = false;
@@ -739,7 +757,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		{
 			log = new StringBuilder();
 			
-			logNotice(torCmd[0]);
 			sendCallbackStatusMessage(getString(R.string.status_starting_up));
 			
 			TorServiceUtils.doShellCommand(torCmd, log, runAsRootFalse, waitForProcess);
@@ -856,7 +873,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 					logNotice( "SUCCESS connected to control port");
 			        
-			        String torAuthCookie = new File(appDataHome, TOR_CONTROL_COOKIE).getAbsolutePath();
+			        String torAuthCookie = new File(appCacheHome, TOR_CONTROL_COOKIE).getAbsolutePath();
 			        
 			        File fileCookie = new File(torAuthCookie);
 			        
@@ -1367,7 +1384,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	
     	prefPersistNotifications = prefs.getBoolean(TorConstants.PREF_PERSIST_NOTIFICATIONS, true);
     	
-		boolean useBridges = prefs.getBoolean(TorConstants.PREF_BRIDGES_ENABLED, false);
+		boolean useBridges = prefs.getBoolean(TorConstants.PREF_BRIDGES_ENABLED, true); //default true for using bridges
 		
 		//boolean autoUpdateBridges = prefs.getBoolean(TorConstants.PREF_BRIDGES_UPDATED, false);
 
@@ -1422,7 +1439,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         
 		if (useBridges)
 		{
-			String bridgeList = prefs.getString(TorConstants.PREF_BRIDGES_LIST,"");
+			String bridgeList = prefs.getString(TorConstants.PREF_BRIDGES_LIST,getString(R.string.default_bridges));
 
 			if (bridgeList == null || bridgeList.length() == 0)
 			{
@@ -1434,7 +1451,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 				return false;
 			}
 			
-			
 			mBinder.updateConfiguration("UseBridges", "1", false);
 				
 			String bridgeDelim = "\n";
@@ -1444,6 +1460,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 				bridgeDelim = ",";
 			}
 			
+			showToolbarNotification(getString(R.string.notification_using_bridges) + ": " + bridgeList, TRANSPROXY_NOTIFY_ID, R.drawable.tornotification, -1);
+
 			StringTokenizer st = new StringTokenizer(bridgeList,bridgeDelim);
 			while (st.hasMoreTokens())
 			{
@@ -1512,7 +1530,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
         if (enableHiddenServices)
         {
-        	mBinder.updateConfiguration("HiddenServiceDir",appDataHome.getAbsolutePath(), false);
+        	mBinder.updateConfiguration("HiddenServiceDir",appCacheHome.getAbsolutePath(), false);
         	
         	String hsPorts = prefs.getString("pref_hs_ports","");
         	
