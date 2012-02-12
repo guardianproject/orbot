@@ -118,7 +118,21 @@ public class SettingsPreferences
 
 			if (prefRequestRoot.isChecked())
 			{
-				boolean canRoot = TorServiceUtils.isRootPossible();
+				//boolean canRoot = TorServiceUtils.isRootPossible();
+				boolean canRoot;
+				
+				try
+				{
+					StringBuilder res = new StringBuilder();
+					String[] cmd = {"ls /data/data"}; //only root can do this!
+					int code = TorServiceUtils.doShellCommand(cmd, res, true, true);		
+					canRoot = code > -1;
+				}
+				catch (Exception e)
+				{
+					//probably not root
+					canRoot = false;
+				}
 				
 				getPreferenceScreen().getPreference(TRANSPROXY_GROUP_IDX).setEnabled(canRoot);
 				prefRequestRoot.setChecked(canRoot);
