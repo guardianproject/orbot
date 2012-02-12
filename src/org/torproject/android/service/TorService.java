@@ -1470,6 +1470,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 			}
 			
+			mBinder.updateConfiguration("ClientTransportPlugin","obfs2 exec /data/data/org.torproject.android/app_bin/obfsproxy --managed",false);
+
 			mBinder.updateConfiguration("UpdateBridgesFromAuthority", "0", false);
 			
 		}
