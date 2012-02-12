@@ -722,7 +722,10 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			torrcPath = new File(appBinHome, TORRC_TETHER_KEY).getAbsolutePath();
 		}
 		
-		String[] torCmd = {fileTor.getAbsolutePath() + " DataDirectory " + appDataHome.getAbsolutePath() + " -f " + torrcPath  + " || exit\n"};
+		String[] torCmd = {
+				"export HOME=" + appBinHome.getAbsolutePath(),
+				fileTor.getAbsolutePath() + " DataDirectory " + appDataHome.getAbsolutePath() + " -f " + torrcPath  + " || exit\n"
+				};
 		
 		boolean runAsRootFalse = false;
 		boolean waitForProcess = false;
