@@ -47,4 +47,6 @@ public interface TorConstants {
 	
 	public final static String PREF_PERSIST_NOTIFICATIONS = "pref_persistent_notifications";
 	
+	public final static String PREF_DEFAULT_LOCALE = "pref_default_locale";
+	
 }
