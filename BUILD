@@ -1,4 +1,6 @@
 
+// 2012/02/13 will be adding information on how to build OBFSPROXY binary 
+
 // 2011/04/15 this document is a bit out of date. We will be updating to use
 // the standalone cross-compiler that is offered by the Android NDK soon
 

@@ -1,5 +1,10 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+1.0.7.2
+- added obfsproxy binary to res/raw and binary installation process
+- added new preferences to support obfsproxy bridge configuration
+- upgraded tor binary to 0.2.3.11-alpha
+
 1.0.7
 - reduced data folder size by making geoip file only installed on demand
 - added options for turning of persistent notification
