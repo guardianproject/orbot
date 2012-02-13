@@ -97,6 +97,7 @@ android:title="@string/use_bridges" android:key="pref_bridges_enabled"
 android:summary="@string/enable_alternate_entrance_nodes_into_the_tor_network"/>
 
 <CheckBoxPreference android:key="pref_bridges_obfuscated"
+     android:defaultValue="true" 
 android:title="@string/bridges_obfuscated"
 android:summary="@string/enable_if_configured_bridges_are_obfuscated_bridges"/>
 
