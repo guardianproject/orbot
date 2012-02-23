@@ -1,137 +1,202 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
-    <string name="app_name">Orbot</string>
-    
-    <string name="internal_web_url">http://orbot/</string>
-    <string name="default_web_url">http://check.torproject.org</string>
-    <string name="secure_default_web_url">https://check.torproject.org</string>
-    <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
-    <string name="control_permission_label">start en stop Tor</string>
-    <string name="tor_proxy_service_process">torproxydienst</string>
-   
-<string name="status_starting_up">Orbot is aan het starten...</string>
-<string name="status_activated">Aangesloten op het Tor netwerk</string>
-<string name="status_disabled">Orbot is uitgeschakeld</string>
-<string name="status_shutting_down">Orbot is aan het afsluiten</string>
+  <string name="app_name">Orbot</string>
+  <string name="internal_web_url">http://orbot/</string>
+  <string name="default_web_url">http://check.torproject.org</string>
+  <string name="secure_default_web_url">https://check.torproject.org</string>
+  <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
+  <string name="control_permission_label">start en stop Tor</string>
+  <string name="tor_proxy_service_process">torproxyservice</string>
+  <string name="status_starting_up">Orbot is bezig met starten...</string>
+  <string name="status_activated">Verbonden met het Tor netwerk</string>
+  <string name="status_disabled">Orbot is uitgeschakeld</string>
+  <string name="status_shutting_down">Orbot is bezig met afsluiten</string>
+  <string name="tor_process_starting">Bezig met Tor client starten...</string>
+  <string name="tor_process_complete">klaar.</string>
+  <string name="tor_process_waiting">bezig met wachten.</string>
+  <string name="not_anonymous_yet">WAARSCHUWING: Je verkeer is nog niet anononiem! Stel je programma\'s in om gebruik te maken van HTTP proxy 127.0.0.1:8118 of SOCKS4A of SOCKS5 proxy 127.0.0.1:9050</string>
+  <string name="menu_home">Thuis</string>
+  <string name="menu_browse">Bladeren</string>
+  <string name="menu_settings">Instellingen</string>
+  <string name="menu_log">Logboek</string>
+  <string name="menu_info">Help</string>
+  <string name="menu_apps">Apps</string>
+  <string name="menu_start">Start</string>
+  <string name="menu_stop">Stop</string>
+  <string name="menu_about">Over</string>
+  <string name="menu_wizard">Wizard</string>
+  <string name="button_help">Help</string>
+  <string name="button_close">Afsluiten</string>
+  <string name="button_about">Over</string>
+  <string name="button_clear_log">Wis logboek</string>
+  <string name="menu_verify">Controleer</string>
+  <string name="menu_exit">Sluiten</string>
+  <string name="powered_by">mogelijk gemaakt door het Tor Project</string>
+  <string name="press_to_start">- Lang indrukken om te starten -</string>
+  <string name="pref_trans_proxy_group">Transparant Proxy-en (Vereist Root)</string>
+  <string name="pref_trans_proxy_title">Transparant Proxy-en</string>
+  <string name="pref_trans_proxy_summary">Automatisch Torificeren van apps</string>
+  <string name="pref_transparent_all_title">Tor Alles</string>
+  <string name="pref_transparent_all_summary">Proxy verkeer van alle apps door Tor</string>
+  <string name="pref_transparent_port_fallback_title">Poort Proxy Fallback</string>
+  <string name="pref_transparent_port_fallback_summary">WAARSCHUWING: Omzeil veel voorkomende poorten (80, 443, etc). *GEBRUIK ALLEEN* als \'Alles\' of \'Applicaties\' mode niet werkt.</string>
+  <string name="pref_transparent_port_title">Poort Lijst</string>
+  <string name="pref_transparent_port_summary">Lijst van poorten om te proxy-en. *GEBRUIK ALLEEN* als \'Alles\' of \'Applicaties\' mode niet werkt</string>
+  <string name="pref_transparent_port_dialog">Voer poorten in voor proxy</string>
+  <string name="pref_has_root">Vraag Root toegang aan</string>
+  <string name="pref_has_root_summary">Vraag Root toegang aan voor transparant proxy-en</string>
+  <string name="status_install_success">Tor\'s binaire bestanden succesvol geïnstalleerd!</string>
+  <string name="status_install_fail">De binaire bestanden konden niet worden geïnstalleerd. Gelieve de log te raadplegen en tor-assistants@torproject.org op de hoogte te stellen</string>
+  <string name="title_error">Toepassingsfout</string>
+  <string name="wizard_title">Welkom bij Orbot</string>
+  <string name="wizard_btn_tell_me_more">Over Orbot</string>
+  <string name="btn_next">Volgende</string>
+  <string name="btn_back">Vorige</string>
+  <string name="btn_finish">Einde</string>
+  <string name="btn_okay">OK</string>
+  <string name="btn_cancel">Annuleren</string>
+  <string name="wizard_details">Enkele Orbot Details</string>
+  <string name="wizard_details_msg">Orbot is een open-source applicatie die Tor, LibEvent en Privoxy bevat. Het creëert een lokale HTTP proxy (8118) en een SOCKS proxy (9050) naar het Tor netwerk. Orbot heeft ook de mogelijkheid om al het internet verkeer over het Tor netwerk te sturen.</string>
+  <string name="wizard_permissions_root">Rechten toegewezen</string>
+  <string name="wizard_permissions_stock">Orbot Rechten</string>
+  <string name="wizard_premissions_msg_root">Uitstekend! We hebben gedetecteerd dat je root rechten hebt aangezet voor Orbot. We gebruiken deze kracht met verstand.</string>
+  <string name="wizard_permissions_msg_stock">Hoewel het niet verplicht is kan Orbot ook nog krachtiger worden als je apparaat root rechten heeft. Gebruik de knop onderaan om Orbot superkrachten te geven.</string>
+  <string name="wizard_permissions_no_root">Als je niet over root toegang beschikt en geen idee hebt waar je mee bezig bent zul je zeker moeten zijn dat de apps die je gebruikt geschikt zijn voor Orbot.</string>
+  <string name="wizard_permissions_consent">Ik begrijp dit en wil verdergaan zonder root</string>
+  <string name="wizard_permission_enable_root">Root toestaan voor Orbot</string>
+  <string name="wizard_configure">Torificatie Instellen</string>
+  <string name="wizard_configure_msg">Orbot geeft je de mogelijkheid om al het verkeer via Tor te laten gaan OF om individueel je applicaties te kiezen.</string>
+  <string name="wizard_configure_all">Proxy alle apps door Tor</string>
+  <string name="wizard_configure_select_apps">Selecteer individuele apps voor Tor</string>
+  <string name="wizard_tips_tricks">Orbot-geschikte Apps</string>
+  <string name="wizard_tips_msg">We raden je aan om apps te downloaden die zich automatisch verbinden met Orbot. Klik op de knoppen hieronder om te installeren.</string>
+  <string name="wizard_tips_otrchat">Gibberbot - Veilige instant messaging client voor Android</string>
+  <string name="wizard_tips_proxy">Proxy Instellingen - Leer hoe je apps te configureren voor Orbot</string>
+  <string name="wizard_proxy_help_info">Proxy Instellingen</string>
+  <string name="wizard_proxy_help_msg">Als de Android app die je gebruikt beschikt over een HTTP of SOCKS proxy instelling, dan kun je het configureren zodat het via Orbot over het Tor netwerk gaat.
 
 
-<string name="not_anonymous_yet">WAARSCHUWING: Uw verkeer is nog niet anononiem! Stel uw programma\'s alstublieft in dat ze gebruik maken van HTTP proxy 127.0.0.1:8118 of SOCKS4A of SOCKS5 proxy 127.0.0.1:9050</string>
-<string name="menu_home">Thuis</string>
-<string name="menu_browse">Bladeren</string>
-<string name="menu_settings">Instellingen</string>
-<string name="menu_log">Logboek</string>
-<string name="menu_info">Hulp</string>
-<string name="menu_apps">Applicaties</string>
-<string name="menu_start">Start</string>
-<string name="menu_stop">Stop</string>
-
-<string name="menu_about">Over</string>
-<string name="menu_wizard">Wizard</string>
+De host instelling is 127.0.0.1 of \"localhost\". De poort voor SOCKS is 9050 en voor HTTP 8118. Gebruik SOCKS4A of SOCKS5 indien mogelijk.
 
 
-<string name="button_help">Hulp</string>
-<string name="button_close">Afsluiten</string>
-<string name="button_about">Over</string>
-
-<string name="button_clear_log">Wis logboek</string>
-
-
-<string name="menu_verify">Controleer</string>
-<string name="menu_exit">Verlaten</string>
-<string name="powered_by">aangedreven door het Tor Project</string>
-<string name="press_to_start">- long press to start -</string>
-
-<string name="pref_trans_proxy_group">Transparant Proxyen (Vereist Root)</string>
-<string name="pref_trans_proxy_title">Transparant Proxyen</string>
-<string name="pref_trans_proxy_summary">Automatisch Tor forceren van aplicaties</string>
-
-<string name="pref_transparent_all_title">Tor Alles</string>
-<string name="pref_transparent_all_summary">Proxy verkeer voor alle toepasingen door Tor</string>
-
-<string name="pref_transparent_port_fallback_title">Port Proxy Fallback</string>
-<string name="pref_transparent_port_fallback_summary">WARNING: Circumvents common ports (80, 443, etc). *USE ONLY* if \'All\' or \'App\' mode doesn\'t work.</string>
-
-<string name="pref_transparent_port_title">Port List</string>
-<string name="pref_transparent_port_summary">List of ports to proxy. *USE ONLY* if \'All\' or \'App\' mode doesn\'t work</string>
-<string name="pref_transparent_port_dialog">Enter ports to proxy</string>
-
-<string name="pref_has_root">Request Root Access</string>
-<string name="pref_has_root_summary">Request root access for transparent proxying</string>
-
-<string name="status_install_success">Tor\'s binaire bestanden succesvol geïnstalleerd</string>
-<string name="status_install_fail">The binaire bestanden konden niet worden geïnstalleerd. Gelieve het log te raadplegen en tor-assistants@torproject.org op de hoogte te stellen</string>
-
-<string name="title_error">Toepassingsfout</string>
-
-<string name="wizard_title">Welkom bij Orbot</string>
-
-<string name="wizard_btn_tell_me_more">Over Orbot</string>
-<string name="btn_next">Volgende</string>
-<string name="btn_back">Terug</string>
-<string name="btn_finish">Einde</string>
-
-<string name="btn_okay">OK</string>
-<string name="btn_cancel">Annuleren</string>
-
-
-<!-- Welcome Wizard strings (DJH) -->
- 
-    <string name="wizard_welcome_msg">Orbot brengt Tor naar de Android. Tor is vrije software en een open netwerk dat u helpt te verdedigen tegen netwerk toezicht welke aanvallen zijn op uw vrijheid en privacy, geheime zakelijke documenten en zaken relaties.
-
-*WAARSCHUWING:* Door het installeren van Orbot word uw verkeer _niet_ automatisch geproxyt! Deze wizard helpt u hier mee.</string>
-    <string name="wizard_details">Enkele Orbot Details</string>
-    <string name="wizard_details_msg">Orbot is een open-source applicatie waarin Tor, LibEvent en Privoxy zich bevinden. Het creeërt een lokale HTTP proxy (8118) en een SOCKS proxy (9050) naar het Tor netwerk. Orbot heeft ook de mogelijkheid om al het internet verkeer over het Tor netwerk te sturen.</string>
-    <string name="wizard_permissions_root">Toelating toegestaan</string>
-    <string name="wizard_permissions_stock">Orbot Rechten</string>
-    <string name="wizard_premissions_msg_root">Uitstekend! We hebben gedetecteerd dat je root rechten hebt aangezet voor Orbot. We gebruiken deze kracht met verstand.</string>
-    <string name="wizard_permissions_msg_stock">Alhoewel het niet verplicht is kan Orbot ook nog krachtiger worden. Als u root rechten heeft kunt u op de knop onderaan Orbot super krachten toewijzen.</string>
-   
-    <string name="wizard_permissions_no_root">Als u niet over root toegang beschikt en geen idee hebt waar u mee bezig bent zult u zeker moeten zijn dat de applicaties die u gebruikt geschikt voor Orbot zijn.</string>
-    <string name="wizard_permissions_consent">Ik begrijp dit en wil verdergaan zonder root</string>
-   
-    <string name="wizard_permission_enable_root">Root toestaan voor Orbot</string>
-    <string name="wizard_configure">Torificatie Configureren</string>
-    <string name="wizard_configure_msg">Orbot geeft u de mogelijkheid om induvidueel te bepalen welk van uw applicaties over het Tor netwerk gaan.</string> 
-    <string name="wizard_configure_all">Proxy alle toepasingen door Tor</string>
-    <string name="wizard_configure_select_apps">Selecteer individuele toepasingen voor Tor</string>
-    
-    
-    <string name="wizard_tips_tricks">Orbot-beschikbare Apps</string>
-    <string name="wizard_tips_msg">We raden u aan om te apps te downloaden welke zich zich automatisch verbinden met Orbot. Klik op de buttons hier beneden om te installeren.</string>
-    <string name="wizard_tips_otrchat">Gibberbot - Secure instant messaging client for Android</string>
-    <string name="wizard_tips_orweb">ORWEB (Alleen Android 1.x) - Browser gemaakt voor privacy &amp; voor Orbot</string>
-    <string name="wizard_tips_proxy">Proxy Instellingen - Leer hoe u uw apps kunt configureren voor Orbot</string>
-    
-    <string name="wizard_proxy_help_info">Proxy Instellingen</string>
-    <string name="wizard_proxy_help_msg">Als de Android app welke u gebruikt beschikt over een HTTP of SOCKS proxy instelling, dan kunt u het configureren zodat het via Orbot over het Tor netwerk gaat.
-
-
-De host instelling is 127.0.0.1 of "localhost". De poort voor SOCS is 9050 en voor HTTP 8118. Gebruik SOCKS4A or SOCKS5 indien nodig.
-
-
-U kunt meer leren over het proxyen op Android door naar de FAQ op http://tinyurl.com/proxyandroid te gaan
+Je kunt meer leren over het proxy-en op Android door naar de FAQ op http://tinyurl.com/proxyandroid te gaan
     </string>
-    
-    <string name="wizard_final">Orbot is klaar!</string>
-    <string name="wizard_final_msg">Honderdduizenden verschillende mensen over de wereld gebruiken Tor, zoals: journalisten, bloggers, mensen rechten medewerkers, soldaten, bedrijven, burgers met onderdrukte religies, en natuurlijk normale mensen... En nu bent u ook klaar om te gaan!</string>
-    
-    <string name="otrchat_apk_url">market://search?q=pname:info.guardianproject.otr.app.im</string>
-    <string name="orweb_apk_url">market://search?q=pname:nfo.guardianproject.browser</string>
-    
-<!-- END Welcome Wizard strings (DJH) -->
- 
+  <string name="wizard_final">Orbot is klaar!</string>
+  <string name="wizard_final_msg">Honderdduizenden verschillende mensen over de wereld gebruiken Tor, voor verschillende redenen. Zoals: journalisten, bloggers, mensen rechten medewerkers, soldaten, bedrijven, burgers met onderdrukte religies, en natuurlijk normale mensen... En nu ben jij er ook klaar voor!</string>
+  <string name="connect_first_time">Je bent succesvol verbonden met het Tor netwerk, maar dit betekent NIET dat je apparaat volledig veilig is. Gebruik te \'Check\' optie vanuit het menu om je browser te testen.
 
-	<string name="connect_first_time">U bent succesvol verbonden met het Tor netwerk, maar dit betekent NIET dat u apparaat volledig veilig is. Gebruik te \'Check\' optie vanuit het menu om u browser te testen.
-
-Bezoek onze website op https://guardianproject.info/apps/orbot of stuuf een email naar help@guardianproject.info voor vragen.</string>
-
-	<string name="tor_check">Dit opent uw standaard browser naar https://check.torproject.org om te controleren of Orbot succesvol is geconfigureerd om te verbinden met het Tor netwerk.</string>
-
-	
-    <string name="pref_hs_group">Verborgen diensten</string>
-    
-    <string name="pref_general_group">General</string>
-    <string name="pref_start_boot_title">Start Orbot on Boot</string>
-    <string name="pref_start_boot_summary">Automatically start Orbot and connect Tor when your Android device boots</string>
-    
+Bezoek onze website op https://guardianproject.info/apps/orbot of stuur een email naar help@guardianproject.info voor vragen.</string>
+  <string name="tor_check">Dit opent je standaard browser naar https://check.torproject.org om te controleren of Orbot succesvol is geconfigureerd om te verbinden met het Tor netwerk.</string>
+  <string name="pref_hs_group">Verborgen diensten</string>
+  <string name="pref_general_group">Algemeen</string>
+  <string name="pref_start_boot_title">Start Orbot bij boot</string>
+  <string name="pref_start_boot_summary">Start Orbot automatisch en verbind metTor wanneer je Android apparaat opstart.</string>
+  <string name="wizard_title_msg">Orbot brengt Tor naar Android!\n\nTor helpt je verdedigen tegen filtering, verkeersanalyse en netwerktoezicht dat privacy, vertrouwelijke informatie en persoonlijke relaties bedreigt.\n\n Deze wizard helpt je met configureren van Orbot en Tor op jouw apparaat.</string>
+  <string name="wizard_warning_title">Waarschuwing</string>
+  <string name="wizard_warning_msg">Alleen Orbot installeren zal niet automatisch alle je mobiele verkeer anonimiseren.\n\nJe moet Orbot, je apparaat en andere apps juist instellen om succesvol Tor te gebruiken.</string>
+  <string name="wizard_permissions_title">Rechten</string>
+  <string name="wizard_permissions_root_msg1">Je kan optioneeel Orbot \'superuser\' toegang geven om geavanceerde functies beschikbaar te stellen, zoals Tranparante Proxy.</string>
+  <string name="wizard_permissions_root_msg2">Als je dit niet wilt doen, zorg er dan voor dat je apps gebruikt die gemaakt zijn om te werken met Orbot</string>
+  <string name="wizard_permissions_no_root_msg">Je apparaat draait in standaard modus en ondersteunt geen root of \'superuser\' toegang.\n\nOm voordeel te hebben van Tor moet je gebruik maken van apps die gemaakt zijn om te werken met Tor, of die HTTP of SOCKS proxy instellingen ondersteunen.\n\n
+</string>
+  <string name="wizard_tips_title">Orbot geschikte Apps</string>
+  <string name="wizard_tips_gibberbot">Gibberbot: Veilige chat app met Off-the-Record encryptie</string>
+  <string name="gibberbot_apk_url">https://market.android.com/details?id=info.guardianproject.otr.app.im</string>
+  <string name="wizard_tips_orweb">ORWEB (Alleen Android 1.x) - Browser gemaakt voor privacy &amp;amp; voor Orbot</string>
+  <string name="orweb_apk_url">market://search?q=pname:nfo.guardianproject.browser</string>
+  <string name="wizard_transproxy_title">Tranparante Proxy</string>
+  <string name="wizard_transproxy_msg">Dit maakt het mogelijk voor jouw apps om automatisch via het Tor netwerk te draaien zonder enige configuratie.</string>
+  <string name="wizard_transproxy_hint">(Vink dit aan al je geen idee hebt waar we het over hebben)</string>
+  <string name="wizard_transproxy_none">Geen</string>
+  <string name="pref_transparent_tethering_title">Tor tethering</string>
+  <string name="pref_transparent_tethering_summary">Schakel Tor Transparante Proxy voor WiFi en USB-getheterde apparaten in. (vereist herstart)</string>
+  <string name="button_grant_superuser">Verzoek Superuser toegang</string>
+  <string name="pref_select_apps">Selecteer Apps</string>
+  <string name="pref_select_apps_summary">Kies Apps om via Tor te draaien</string>
+  <string name="pref_node_configuration">Node configuratie</string>
+  <string name="pref_node_configuration_summary">Dit zijn geavanceerde instellingen die je anonimiteit kunnen verminderen</string>
+  <string name="pref_entrance_node">Toegangsnodes.</string>
+  <string name="pref_entrance_node_summary">Fingerprints, nicks, landen en adressen voor de eerste hop</string>
+  <string name="pref_entrance_node_dialog">Voer Toegangsnode in</string>
+  <string name="pref_use_whispercore">Gebruik WhisperCore</string>
+  <string name="pref_use_whispercore_summary">Gebruik de propriëtaire NetFilter APIs aangeboden door WhisperSystems (vereist een apparaat met WhisperCore geïnstaleerd)</string>
+  <string name="pref_proxy_type_title">Proxy type</string>
+  <string name="pref_proxy_type_summary">Protocol om te gebruiken voor proxy server: HTTP, HTTPS, SOCKS4, SOCKS5</string>
+  <string name="pref_proxy_type_dialog">Voer proxy type in</string>
+  <string name="pref_proxy_host_title">Proxy host</string>
+  <string name="pref_proxy_host_summary">Proxyserver hostnaam</string>
+  <string name="pref_proxy_host_dialog">Voer proxy host in</string>
+  <string name="pref_proxy_port_title">Proxy poort</string>
+  <string name="pref_proxy_port_summary">Proxy server poort</string>
+  <string name="pref_proxy_port_dialog">Voer proxy poort in</string>
+  <string name="status">Status</string>
+  <string name="setting_up_full_transparent_proxying_">Bezig met opzetten van volledig transparante proxy...</string>
+  <string name="setting_up_app_based_transparent_proxying_">Bezig met opzetten van per-app transparante proxy...</string>
+  <string name="transparent_proxying_enabled">Transparante proxy ingeschakeld</string>
+  <string name="transproxy_enabled_for_tethering_">Transparante Proxy ingeschakeld voor tethering!</string>
+  <string name="warning_error_starting_transparent_proxying_">WAARSCHUWING: fout tijdens starten van transparante proxy!</string>
+  <string name="transproxy_rules_cleared">Transparante Proxy regels geleegd</string>
+  <string name="couldn_t_start_tor_process_">Kan Tor proces niet starten: </string>
+  <string name="privoxy_is_running_on_port_">Privoxy draait op poort: </string>
+  <string name="setting_up_port_based_transparent_proxying_">Bezig met opzetten van per-poort transparante proxy</string>
+  <string name="bridge_error">Bridge-fout</string>
+  <string name="bridge_requires_ip">Om de bridge functie te gebruiken moet je tenminste één bridge IP-adres invoeren.</string>
+  <string name="send_email_for_bridges">Stuur een email via een gmail account naar bridges@torproject.org met alleen de regel \"get bridges\" in de body van de e-mail.</string>
+  <string name="error">Fout</string>
+  <string name="your_reachableaddresses_settings_caused_an_exception_">Je ReachableAddresses instellingen veroorzaakte een fout!</string>
+  <string name="your_relay_settings_caused_an_exception_">Je relay instellingen veroorzaakte een fout!</string>
+  <string name="exit_nodes">Exit nodes</string>
+  <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Fingerprints, nicks, landen en adressen van de laatste hop</string>
+  <string name="enter_exit_nodes">Voer Exit node in</string>
+  <string name="exclude_nodes">Uitgesloten nodes</string>
+  <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Fingerprints, nicks, landen en adressen om uit te sluiten</string>
+  <string name="enter_exclude_nodes">Voer uitgesloten nodes in</string>
+  <string name="strict_nodes">Strikte nodes</string>
+  <string name="use_only_these_specified_nodes">Gebruik *alleen* deze nodes</string>
+  <string name="bridges">Bridges</string>
+  <string name="use_bridges">Gebruik bridges</string>
+  <string name="enable_alternate_entrance_nodes_into_the_tor_network">Gebruik alternatieve toegangsnodes naar het Tor Netwerk</string>
+  <string name="ip_address_and_port_of_bridges">IP-adres en poort van bridges</string>
+  <string name="enter_bridge_addresses">Voer bridge adres in</string>
+  <string name="relays">Relays</string>
+  <string name="relaying">Relay-en</string>
+  <string name="enable_your_device_to_be_a_non_exit_relay">Stel je apparaat in staat om een non-exit relay te zijn.</string>
+  <string name="relay_port">Relay poort</string>
+  <string name="listening_port_for_your_tor_relay">Luisterpoort van jouw Tor relay</string>
+  <string name="enter_or_port">Voer OR poort in</string>
+  <string name="relay_nickname">Relay bijnaam</string>
+  <string name="the_nickname_for_your_tor_relay">De bijnaam voor jouw Tor relay</string>
+  <string name="enter_a_custom_relay_nickname">Voer een eigen relay bijnaam in</string>
+  <string name="reachable_addresses">Bereikbare adressen</string>
+  <string name="run_as_a_client_behind_a_firewall_with_restrictive_policies">Draai als een client achter een firewall met beperkend beleid</string>
+  <string name="reachable_ports">Bereikbare poorten</string>
+  <string name="ports_reachable_behind_a_restrictive_firewall">Poorten bereikbaar achter een beperkende firewall</string>
+  <string name="enter_ports">Voer poorten in</string>
+  <string name="enable_hidden_services">Schakel hidden services in</string>
+  <string name="run_servers_accessible_via_the_tor_network">draai servers toegankelijk via het Tor netwerk</string>
+  <string name="enter_localhost_ports_for_hidden_services">Voer localhost poorten in voor hidden services</string>
+  <string name="hidden_service_ports">Hidden Service poort</string>
+  <string name="the_addressable_name_for_your_hidden_service_generated_automatically_">De adresseerbare naam (automatisch gegenereerd)</string>
+  <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Schakel debug log naar uitvoer in (moet adb of aLogCat gebruiken om te bekijken)</string>
+  <string name="project_home">Project homepage(s): </string>
+  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
+  <string name="the_tor_license">De Tor licentie</string>
+  <string name="https_torproject_org">https://torproject.org</string>
+  <string name="third_party_software">Software van derden: </string>
+  <string name="tor_version">Tor v0.2.3.7-alpha: https://www.torproject.org</string>
+  <string name="libevent_version">LibEvent v1.4.13: http://www.monkey.org/~provos/libevent/</string>
+  <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
+  <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
+  <string name="openssl_version">OpenSSL v1.0.0f: http://www.openssl.org</string>
+  <string name="hidden_service_request">Een app wil hidden service poort %S openen naar het Tor netwerk. Dit is veilig als je de app vertrouwd.</string>
+  <string name="found_existing_tor_process">bestaand Tor proces gevonden...</string>
+  <string name="something_bad_happened">Er is iets slechts gebeurt. Controleer de log</string>
+  <string name="hidden_service_on">hidden service op:</string>
+  <string name="unable_to_read_hidden_service_name">Kan hidden service naam niet lezen.</string>
+  <string name="unable_to_start_tor">Kan Tor niet starten:</string>
+  <string name="pref_use_sys_iptables_title">Gebruik standaard iptables</string>
+  <string name="pref_use_sys_iptables_summary">gebruik de ingebouwde iptables binary in plaats van de in Orbot geïntegreerde.</string>
+  <string name="error_installing_binares">De Tor binaries konden niet worden geïnstalleerd of geüpgraded.</string>
+  <string name="pref_use_persistent_notifications">Houd icoon in toolbar zolang Orbot verbonden is</string>
+  <string name="pref_use_persistent_notifications_title">Meldingen altijd aan</string>
 </resources>
