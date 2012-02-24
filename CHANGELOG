@@ -1,4 +1,7 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
+1.0.7.3
+- updated strings
+- adding in manual locale selection
 
 1.0.7.2
 - added obfsproxy binary to res/raw and binary installation process
