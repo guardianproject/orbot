@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+   
+    <string-array name="languages">
+		<item>English</item>
+		<item>العربية</item>
+		<item>پارسی</item>
+		<item>中文(简体)</item>
+		<item>Deutsche</item>
+		<item>Español</item>
+		<item>System</item>
+		
+	</string-array>
+	<string-array name="languages_values">
+		<item></item>
+		<item>ar</item>
+		<item>fa</item>
+		<item>zh</item>
+		<item>de</item>
+		<item>es</item>
+		<item>xx</item>
+	</string-array>
+    
+</resources>
