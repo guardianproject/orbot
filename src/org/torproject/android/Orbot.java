@@ -3,6 +3,8 @@
 
 package org.torproject.android;
 
+import java.util.Locale;
+
 import org.torproject.android.service.ITorService;
 import org.torproject.android.service.ITorServiceCallback;
 import org.torproject.android.service.TorServiceConstants;
@@ -22,6 +24,7 @@ import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -74,6 +77,7 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
       //might want to look at whether we need to call this every time
       //or whether binding to the service is enough
            	
+        	setLocale();
         
         	bindService();
            	startService(new Intent(INTENT_TOR_SERVICE));
@@ -341,6 +345,8 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
 	 */
 	protected void onResume() {
 		super.onResume();
+		
+		setLocale();
 		
 		if (getIntent() == null)
 			return;
@@ -895,6 +901,24 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
                 }
                 
                 
+    }
+    
+    private void setLocale ()
+    {
+    	
+    	SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
+
+        Configuration config = getResources().getConfiguration();
+
+        String lang = settings.getString(PREF_DEFAULT_LOCALE, "");
+        
+        if (! "".equals(lang) && ! config.locale.getLanguage().equals(lang))
+        {
+        	Locale locale = new Locale(lang);
+            Locale.setDefault(locale);
+            config.locale = locale;
+            getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+        }
     }
     
 }

@@ -12,12 +12,13 @@ public class OrbotApp extends Application implements TorConstants
 
 	private Locale locale;
 	private final static String DEFAULT_LOCALE = "en";
+	private SharedPreferences settings;
 	
 	@Override
     public void onCreate() {
         super.onCreate();
         
-        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
+        settings = PreferenceManager.getDefaultSharedPreferences(this);
 
         Configuration config = getResources().getConfiguration();
 
@@ -38,8 +39,11 @@ public class OrbotApp extends Application implements TorConstants
     {
         super.onConfigurationChanged(newConfig);
 
-        if (locale != null)
+        String lang = settings.getString(PREF_DEFAULT_LOCALE, DEFAULT_LOCALE);
+
+        if (! "".equals(lang) && ! newConfig.locale.getLanguage().equals(lang))
         {
+            locale = new Locale(lang);
             newConfig.locale = locale;
             Locale.setDefault(locale);
             getResources().updateConfiguration(newConfig, getResources().getDisplayMetrics());

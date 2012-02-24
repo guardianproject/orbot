@@ -3,6 +3,8 @@
 
 package org.torproject.android.settings;
 
+import java.util.Locale;
+
 import org.torproject.android.R;
 import org.torproject.android.R.xml;
 import org.torproject.android.TorConstants;
@@ -12,6 +14,7 @@ import org.torproject.android.service.TorTransProxy;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
@@ -31,6 +34,7 @@ public class SettingsPreferences
 	private Preference prefTransProxyApps = null;
 	private CheckBoxPreference prefHiddenServices = null;
 	private CheckBoxPreference prefRequestRoot = null;
+	private Preference prefLocale = null;
 	
 	private boolean hasRoot = false;
 	
@@ -61,11 +65,16 @@ public class SettingsPreferences
 		super.onResume();
 	
 		int REQUEST_ROOT_IDX = 1;
+		int SET_LOCALE_IDX = 3;
+
 		int GENERAL_GROUP_IDX = 0;
 		
 		prefRequestRoot = ((CheckBoxPreference)((PreferenceCategory)getPreferenceScreen().getPreference(GENERAL_GROUP_IDX)).getPreference(REQUEST_ROOT_IDX));
 		prefRequestRoot.setOnPreferenceClickListener(this);
 
+		prefLocale = (((PreferenceCategory)getPreferenceScreen().getPreference(GENERAL_GROUP_IDX)).getPreference(SET_LOCALE_IDX));
+		prefLocale.setOnPreferenceClickListener(this);
+				
 		prefCBTransProxy = ((CheckBoxPreference)((PreferenceCategory)this.getPreferenceScreen().getPreference(TRANSPROXY_GROUP_IDX)).getPreference(0));
 		prefcBTransProxyAll = (CheckBoxPreference)((PreferenceCategory)this.getPreferenceScreen().getPreference(TRANSPROXY_GROUP_IDX)).getPreference(1);
 		prefTransProxyApps = ((PreferenceCategory)this.getPreferenceScreen().getPreference(TRANSPROXY_GROUP_IDX)).getPreference(2);
@@ -154,6 +163,20 @@ public class SettingsPreferences
 			((PreferenceCategory)this.getPreferenceScreen().getPreference(HIDDEN_SERVICE_PREF_IDX)).getPreference(1).setEnabled(prefHiddenServices.isChecked());
 			((PreferenceCategory)this.getPreferenceScreen().getPreference(HIDDEN_SERVICE_PREF_IDX)).getPreference(2).setEnabled(prefHiddenServices.isChecked());
 			
+		}
+		else if (preference == prefLocale)
+		{
+			 SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
+
+		        Configuration config = getResources().getConfiguration();
+
+		        String lang = settings.getString("pref_default_locale", "");
+		     
+	        	Locale locale = new Locale(lang);
+	            Locale.setDefault(locale);
+	            config.locale = locale;
+	            getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+	            
 		}
 		else
 		{

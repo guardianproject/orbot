@@ -23,6 +23,15 @@ android:summary="@string/pref_use_persistent_notifications"
 android:enabled="true" 
 android:title="@string/pref_use_persistent_notifications_title"/>
 
+
+ <ListPreference android:title="@string/set_locale_title"
+   android:key="pref_default_locale"
+   android:entryValues="@array/languages_values"
+   android:entries="@array/languages"
+   android:summary="@string/set_locale_summary"
+   android:defaultValue="en">
+ </ListPreference>
+
 <!-- 
 <CheckBoxPreference 
 android:defaultValue="false" 
@@ -92,12 +101,12 @@ android:summary="@string/use_only_these_specified_nodes"/>
 </PreferenceCategory> 
 <PreferenceCategory android:title="@string/bridges">
 
-<CheckBoxPreference android:defaultValue="true" 
+<CheckBoxPreference android:defaultValue="false" 
 android:title="@string/use_bridges" android:key="pref_bridges_enabled" 
 android:summary="@string/enable_alternate_entrance_nodes_into_the_tor_network"/>
 
 <CheckBoxPreference android:key="pref_bridges_obfuscated"
-     android:defaultValue="true" 
+     android:defaultValue="false" 
 android:title="@string/bridges_obfuscated"
 android:summary="@string/enable_if_configured_bridges_are_obfuscated_bridges"/>
 

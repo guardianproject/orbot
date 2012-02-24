@@ -260,4 +260,8 @@
 
 <string name="notification_using_bridges">Bridges enabled!</string>
 <string name="default_bridges"></string>
+
+<string name="set_locale_title">Set Locale</string>
+<string name="set_locale_summary">Choose the locale and language for Orbot</string>
+
 </resources>
