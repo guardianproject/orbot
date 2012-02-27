@@ -1384,7 +1384,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	
     	prefPersistNotifications = prefs.getBoolean(TorConstants.PREF_PERSIST_NOTIFICATIONS, true);
     	
-		boolean useBridges = prefs.getBoolean(TorConstants.PREF_BRIDGES_ENABLED, true); //default true for using bridges
+		boolean useBridges = prefs.getBoolean(TorConstants.PREF_BRIDGES_ENABLED, false); 
 		
 		//boolean autoUpdateBridges = prefs.getBoolean(TorConstants.PREF_BRIDGES_UPDATED, false);
 

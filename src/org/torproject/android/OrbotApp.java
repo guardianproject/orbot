@@ -26,7 +26,14 @@ public class OrbotApp extends Application implements TorConstants
         
         if (! "".equals(lang) && ! config.locale.getLanguage().equals(lang))
         {
-            locale = new Locale(lang);
+        	if (lang.equals("xx"))
+            {
+            	locale = Locale.getDefault();
+            
+            }
+            else
+            	locale = new Locale(lang);
+        	
             Locale.setDefault(locale);
             config.locale = locale;
             getResources().updateConfiguration(config, getResources().getDisplayMetrics());

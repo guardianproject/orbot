@@ -10,6 +10,7 @@ import org.torproject.android.service.ITorServiceCallback;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.settings.ProcessSettingsAsyncTask;
 import org.torproject.android.settings.SettingsPreferences;
+import org.torproject.android.wizard.ChooseLocaleWizardActivity;
 import org.torproject.android.wizard.LotsaText;
 
 import android.app.Activity;
@@ -35,6 +36,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnLongClickListener;
@@ -82,14 +84,8 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
         	bindService();
            	startService(new Intent(INTENT_TOR_SERVICE));
 
-                
-            //something to play with on the UI branch
-            setTheme(android.R.style.Theme_Black_NoTitleBar);
-            
             prefs = PreferenceManager.getDefaultSharedPreferences(this);
             
-            //same here - layout_main has been cleaned up since 1.0.5.2 a bit (removed table as you recmnd)
-            //but ther eis more to be done
             setContentView(R.layout.layout_main);
                 
             //obvious? -yep got everything so far
@@ -108,28 +104,10 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
     */
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        
-        MenuItem mItem = null;
-        
-        mItemOnOff = menu.add(0, 1, Menu.NONE, getString(R.string.menu_start));
-        mItemOnOff.setIcon(android.R.drawable.ic_menu_share);
-        mItemOnOff.setAlphabeticShortcut('t');
-        
-        mItem = menu.add(0, 4, Menu.NONE, getString(R.string.menu_settings));
-        mItem.setIcon(R.drawable.ic_menu_settings);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
        
-        mItem = menu.add(0, 7, Menu.NONE, getString(R.string.menu_verify));
-        mItem.setIcon(R.drawable.ic_menu_check);
-      
-        mItem =  menu.add(0,6, Menu.NONE, getString(R.string.menu_about));
-        mItem.setIcon(R.drawable.ic_menu_about);
-        
-        mItem = menu.add(0, 3, Menu.NONE, getString(R.string.menu_wizard));
-        mItem.setIcon(R.drawable.ic_menu_goto);
-       
-        mItem = menu.add(0, 8, Menu.NONE, getString(R.string.menu_exit));
-        mItem.setIcon(R.drawable.ic_menu_exit);
-       
+        mItemOnOff = menu.getItem(0);
         
         return true;
     }
@@ -166,7 +144,7 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
                 
                 super.onMenuItemSelected(featureId, item);
                 
-                if (item.getItemId() == 1)
+                if (item.getItemId() == R.id.menu_start)
                 {
                         
                         try
@@ -197,26 +175,26 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
                                 Log.w(TAG, "Unable to start/top Tor from menu UI", re);
                         }
                 }
-                else if (item.getItemId() == 4)
+                else if (item.getItemId() == R.id.menu_settings)
                 {
                         showSettings();
                 }
-                else if (item.getItemId() == 3)
+                else if (item.getItemId() == R.id.menu_wizard)
                 {
-                        showHelp();
+                		startWizard();
                 }
-                else if (item.getItemId() == 7)
+                else if (item.getItemId() == R.id.menu_verify)
                 {
                         doTorCheck();
                 }
-                else if (item.getItemId() == 8)
+                else if (item.getItemId() == R.id.menu_exit)
                 {
                         //exit app
                         doExit();
                         
                         
                 }
-                else if (item.getItemId() == 6)
+                else if (item.getItemId() == R.id.menu_about)
                 {
                         showAbout();
                         
@@ -415,13 +393,14 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
 			if (showWizard)
 			{
 			
+				
 				Editor pEdit = prefs.edit();
-				
 				pEdit.putBoolean("show_wizard",false);
-				
 				pEdit.commit();
+	
+				startWizard();
 				
-				startActivityForResult(new Intent(getBaseContext(), LotsaText.class), 1);
+				//startActivityForResult(new Intent(getBaseContext(), LotsaText.class), 1);
 
 			}
 			
@@ -464,7 +443,7 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
 	/*
 	 * Show the help view - a popup dialog
 	 */
-	private void showHelp ()
+	private void startWizard ()
 	{
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -472,7 +451,7 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
 		Editor pEdit = prefs.edit();
 		pEdit.putBoolean("wizardscreen1",true);
 		pEdit.commit();
-		startActivityForResult(new Intent(getBaseContext(), LotsaText.class), 1);
+		startActivityForResult(new Intent(getBaseContext(), ChooseLocaleWizardActivity.class), 1);
 	}
 	
 	

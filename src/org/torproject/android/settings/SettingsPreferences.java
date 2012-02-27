@@ -171,8 +171,17 @@ public class SettingsPreferences
 		        Configuration config = getResources().getConfiguration();
 
 		        String lang = settings.getString("pref_default_locale", "");
-		     
-	        	Locale locale = new Locale(lang);
+		        
+		        Locale locale;
+		        
+		        if (lang.equals("xx"))
+		        {
+		        	locale = Locale.getDefault();
+		        
+		        }
+		        else
+		        	locale = new Locale(lang);
+		        
 	            Locale.setDefault(locale);
 	            config.locale = locale;
 	            getResources().updateConfiguration(config, getResources().getDisplayMetrics());
