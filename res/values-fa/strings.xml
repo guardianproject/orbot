@@ -7,7 +7,7 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">شروع و پایان Tor</string>
   <string name="tor_proxy_service_process">سرويس پروكسي تُر</string>
-  <string name="status_starting_up">Orbat آغاز می شود..</string>
+  <string name="status_starting_up">Orbot آغاز می شود..</string>
   <string name="status_activated">پیوسته به شبکه ی Tor</string>
   <string name="status_disabled">اوربات غیرفعال شده است.</string>
   <string name="status_shutting_down">اوربات در حال بسته شدن است.</string>
