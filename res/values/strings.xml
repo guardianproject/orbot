@@ -41,7 +41,6 @@
 
 <string name="menu_verify">Check</string>
 <string name="menu_exit">Exit</string>
-<string name="powered_by">powered by the Tor Project</string>
 <string name="press_to_start">- long press to start -</string>
 
 <string name="pref_trans_proxy_group">Transparent Proxying (Requires Root)</string>
@@ -266,4 +265,6 @@
 <string name="wizard_locale_title">Choose Language</string>
 <string name="wizard_locale_msg">Leave default or switch the current language</string>
 
+<string name="powered_by">powered by The Tor Project  </string>
+<string name="btn_save_settings">Save Settings</string>
 </resources>
