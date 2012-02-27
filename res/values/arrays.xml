@@ -10,6 +10,13 @@
 		<item>中文(简体)</item>
 		<item>Deutsche</item>
 		<item>Español</item>
+		<item>Français</item>
+		<item>Italian</item>
+		<item>Nederlands</item>
+		<item>Magyar</item>
+		<item>Português</item>
+		<item>Português Brasileiro</item>
+		<item>русский язык</item>
 		
 	</string-array>
 	<string-array name="languages_values">
@@ -20,6 +27,17 @@
 		<item>zh</item>
 		<item>de</item>
 		<item>es</item>
+		<item>fr</item>
+		<item>it</item>
+		<item>nl</item>
+		<item>hu</item>
+		<item>pt</item>
+		<item>pt_BR</item>
+		<item>ru</item>
+		
+		
+		
+		
 		
 	</string-array>
     
