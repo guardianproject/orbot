@@ -32,7 +32,6 @@
 <string name="menu_wizard">Wizard</string>
 
 
-
 <string name="button_help">Help</string>
 <string name="button_close">Close</string>
 <string name="button_about">About</string>
@@ -263,5 +262,8 @@
 
 <string name="set_locale_title">Set Locale</string>
 <string name="set_locale_summary">Choose the locale and language for Orbot</string>
+
+<string name="wizard_locale_title">Choose Language</string>
+<string name="wizard_locale_msg">Leave default or switch the current language</string>
 
 </resources>
