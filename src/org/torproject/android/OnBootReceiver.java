@@ -5,6 +5,8 @@ import org.torproject.android.service.TorService;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 public class OnBootReceiver extends BroadcastReceiver {
 	
@@ -14,11 +16,18 @@ public class OnBootReceiver extends BroadcastReceiver {
 		if (intent.getAction() != null 
 				&& intent.getAction().equals("android.intent.action.BOOT_COMPLETED"))
 		{
-			//Phase 1: Launch a service
-			Intent service = new Intent();
-			service.setAction("onboot");
-			service.setClass(context, TorService.class);
-			context.startService(service);
+			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+			
+			boolean startOnBoot = prefs.getBoolean("pref_start_boot",false);
+			
+			if (startOnBoot)
+			{
+				//Phase 1: Launch a service
+				Intent service = new Intent();
+				service.setAction("onboot");
+				service.setClass(context, TorService.class);
+				context.startService(service);
+			}
 		}
 	
 		
