@@ -1127,8 +1127,15 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	_torInstance = this;
     	initTorPaths();
     	
-		findExistingProc ();
-		
+    	new Thread ()
+    	{
+    		
+    		public void run ()
+    		{
+    			findExistingProc ();
+    		}
+    	}.start();
+    	
     	if (ITorService.class.getName().equals(intent.getAction())) {
             return mBinder;
         }
