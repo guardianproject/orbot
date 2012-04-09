@@ -1,11 +1,9 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
-1.0.7.3
+1.0.8 (includes 1.0.7.3 and 1.0.7.2)
 - fixed tor control port cookie file path lookup related to #5305 
 - updated strings
 - adding in manual locale selection
-
-1.0.7.2
 - added obfsproxy binary to res/raw and binary installation process
 - added new preferences to support obfsproxy bridge configuration
 - upgraded tor binary to 0.2.3.11-alpha
