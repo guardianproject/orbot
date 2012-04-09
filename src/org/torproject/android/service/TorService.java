@@ -869,18 +869,15 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			        conn = TorControlConnection.getConnection(torConnSocket);
 			        
 			      //  conn.authenticate(new byte[0]); // See section 3.2
-			        
 
 					logNotice( "SUCCESS connected to control port");
 			        
-			        String torAuthCookie = new File(appCacheHome, TOR_CONTROL_COOKIE).getAbsolutePath();
-			        
-			        File fileCookie = new File(torAuthCookie);
+			        File fileCookie = new File(appCacheHome, TOR_CONTROL_COOKIE);
 			        
 			        if (fileCookie.exists())
 			        {
 				        byte[] cookie = new byte[(int)fileCookie.length()];
-				        new FileInputStream(new File(torAuthCookie)).read(cookie);
+				        new FileInputStream(fileCookie).read(cookie);
 				        conn.authenticate(cookie);
 				        		
 				        logNotice( "SUCCESS authenticated to control port");

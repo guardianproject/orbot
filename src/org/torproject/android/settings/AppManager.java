@@ -202,6 +202,7 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
 			
 			apps[appIdx] = new TorifiedApp();
 			
+			
 			apps[appIdx].setEnabled(aInfo.enabled);
 			apps[appIdx].setUid(aInfo.uid);
 			apps[appIdx].setUsername(pMgr.getNameForUid(apps[appIdx].getUid()));
@@ -280,5 +281,8 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
 		saveAppSettings(this);
 		
 	}
+
+
+
 	
 }
