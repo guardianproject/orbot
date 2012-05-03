@@ -7,13 +7,13 @@ if test -z $NDK_ROOT; then echo "NDK_ROOT is not exported, do so by something cl
 rm -rf native
 rm res/raw/privoxy
 rm res/raw/tor
-rm -rf libs/jtorctrl
-rm libs/jtorctrl.jar
+rm -rf libs
 
 #create the native folder if it doesn't exist
 mkdir native
 mkdir native/lib
 mkdir native/include
+mkdir libs
 cd native
 
 #Build openssl using default ndk-build
