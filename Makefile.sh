@@ -114,8 +114,8 @@ mkdir res/raw
 cp native/privoxy/privoxy-3.0.12-stable/privoxy res/raw
 cp native/tor/src/or/tor res/raw
 
-echo "BUILD ANDROID APP"
-android update project --name Orbot --target 9 --path .
-ant debug
+echo "READY TO BUILD ANDROID APP"
+echo "> android update project --name Orbot --target 9 --path ."
+echo "> ant debug"
 
 echo "BUILD COMPLETE"
