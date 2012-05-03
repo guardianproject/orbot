@@ -51,7 +51,7 @@ LDFLAGS = -L$(LOCAL)/lib
 CFLAGS += -fdata-sections -ffunction-sections -Os
 LDFLAGS += -Wl,--gc-sections
 
-all: openssl-static libevent tor privoxy
+all: assets
 
 #------------------------------------------------------------------------------#
 # openssl-static
@@ -133,7 +133,7 @@ tor-build-stamp: tor/Makefile
 	$(MAKE) -C tor 
 	touch tor-build-stamp
 
-tor: tor-build-stamp libevent openssl-static
+tor: libevent openssl-static tor-build-stamp
 	test -d bin || mkdir bin
 	cp tor/src/or/tor bin
 
@@ -181,12 +181,24 @@ jtorctrl:
 	test -d jtorctl/bin || mkdir jtorctl/bin
 	cd jtorctl && \
 		javac net/freehaven/tor/control/TorControlConnection.java -d bin
-	jar cvf bin/jtorctrl.jar jtorctl/bin/*
+	cd jtorctl/bin && \
+		jar cvf jtorctrl.jar *
+	cp jtorctl/bin/jtorctrl.jar bin
 
 jtorctrl-clean:
 	-rm bin/jtorctrl.jar
 
 #------------------------------------------------------------------------------#
 # cleanup, cleanup, put the toys away
+assets: tor privoxy jtorctrl
+	install -d ../res/raw
+	install -d ../libs
+	install bin/tor ../res/raw	
+	install bin/privoxy ../res/raw	
+	install bin/jtorctrl.jar ../libs
+	
 
-clean: openssl-static-clean libevent-clean tor-clean privoxy-clean
+#------------------------------------------------------------------------------#
+# cleanup, cleanup, put the toys away
+
+clean: openssl-static-clean libevent-clean tor-clean privoxy-clean jtorctrl-clean
