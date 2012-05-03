@@ -1,0 +1,67 @@
+<!--
+ File        :  $Source: /cvsroot/ijbswa/current/doc/source/authors.sgml,v $
+
+ Purpose     :  AUTHORS file for Privoxy
+                
+ $Id: authors.sgml,v 2.11 2009/02/12 16:08:26 fabiankeil Exp $
+
+ 
+ Copyright (C) 2001-2009 Privoxy Developers http://www.privoxy.org/
+ See LICENSE.
+
+ ========================================================================
+ NOTE: Please read developer-manual/documentation.html before touching 
+ anything in this, or other Privoxy documentation. You have been warned!
+ Failure to abide by this rule will result in the revocation of your license 
+ to live a peaceful existence!
+ ========================================================================
+
+ ===================================================================
+ READ: Document Note: This file generates the AUTHORS file in the 
+ top level source directory. See p-authors.sgml for list of developers
+ and contributors, etc. They were split from here for use in man page.
+ ===================================================================
+
+-->
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook V3.1//EN" [
+<!entity % dummy "IGNORE"> 
+<!entity authors SYSTEM "p-authors.sgml">
+<!entity p-version "3.0.11">
+<!entity p-status "stable">
+<!entity % p-not-stable "IGNORE">
+<!entity % p-stable "INCLUDE">
+<!entity % p-text "INCLUDE">           <!-- define we are a text only doc -->
+<!entity % p-authors-formal "INCLUDE"> <!-- include additional text, etc  -->
+]>
+
+<article id="index">
+
+<![%dummy;[
+ <para>
+ <comment>
+  This is here to keep vim syntax file from breaking :/
+  If I knew enough to fix it, I would.
+  PLEASE DO NOT REMOVE! HB: hal@foobox.net
+ </comment>
+ </para>
+]]>
+
+<literallayout>
+              Authors of <application>Privoxy</application> v2.9.x and 3.x
+===========================================================================
+</literallayout>
+
+<!-- include boilerplate p-authors.sgml -->
+ &authors;
+<!-- end boilerplate -->
+
+<para>
+ If we've missed you off this list, please let us know!
+</para>
+
+<literallayout>
+ Privoxy team. <ulink url="http://www.privoxy.org/">http://www.privoxy.org/</ulink>
+ <email>ijbswa-developers@lists.sourceforge.net</email>
+</literallayout>
+
+</article>

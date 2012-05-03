@@ -1,0 +1,330 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>The CVS Repository</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Privoxy Developer Manual"
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="Introduction"
+HREF="introduction.html"><LINK
+REL="NEXT"
+TITLE="Documentation Guidelines"
+HREF="documentation.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="../p_doc.css"><META
+HTTP-EQUIV="Content-Type"
+CONTENT="text/html;
+charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#EEEEEE"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Privoxy Developer Manual</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="introduction.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="documentation.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="CVS"
+>2. The CVS Repository</A
+></H1
+><P
+>      If you become part of the active development team, you will eventually
+      need write access to our holy grail, the CVS repository. One of the 
+      team members will need to set this up for you. Please read
+      this chapter completely before accessing via CVS.
+    </P
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="CVSACCESS"
+>2.1. Access to CVS</A
+></H2
+><P
+>        The project's CVS repository is hosted on
+        <A
+HREF="http://sourceforge.net/"
+TARGET="_top"
+>SourceForge.</A
+>
+        Please refer to the chapters 6 and 7 in
+        <A
+HREF="http://sourceforge.net/docman/?group_id=1"
+TARGET="_top"
+>SF's site
+        documentation</A
+> for the technical access details for your
+        operating system. For historical reasons, the CVS server is
+        called <TT
+CLASS="LITERAL"
+>ijbswa.cvs.sourceforge.net</TT
+>, the repository is
+        called <TT
+CLASS="LITERAL"
+>ijbswa</TT
+>, and the source tree module is called
+        <TT
+CLASS="LITERAL"
+>current</TT
+>.
+      </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="CVSBRANCHES"
+>2.2. Branches</A
+></H2
+><P
+>       Within the CVS repository, there are modules and branches. As
+       mentioned, the sources are in the <TT
+CLASS="LITERAL"
+>current</TT
+>
+       <SPAN
+CLASS="QUOTE"
+>"module"</SPAN
+>. Other modules are present for platform specific
+       issues. There is a webview of the CVS hierarchy at <A
+HREF="http://ijbswa.cvs.sourceforge.net/ijbswa/"
+TARGET="_top"
+>http://ijbswa.cvs.sourceforge.net/ijbswa/</A
+>,
+       which might help with visualizing how these pieces fit together.
+     </P
+><P
+>       Branches are used to fork a sub-development path from the main trunk.
+       Within the <TT
+CLASS="LITERAL"
+>current</TT
+> module where the sources are, there
+       is always at least one <SPAN
+CLASS="QUOTE"
+>"branch"</SPAN
+> from the main trunk
+       devoted to a stable release series. The main trunk is where active
+       development takes place for the next stable series (e.g. 3.2.x).
+       So just prior to each stable series (e.g. 3.0.x), a branch is created
+       just for stable series releases (e.g. 3.0.0 -&#62; 3.0.1 -&#62; 3.0.2, etc).
+       Once the initial stable release of any stable branch has taken place,
+       this branch is <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>only used for bugfixes</I
+></SPAN
+>, which have
+       had prior testing before being committed to CVS. (See <A
+HREF="newrelease.html#VERSIONNUMBERS"
+>Version Numbers</A
+> below for details on
+       versioning.)
+     </P
+><P
+>      At one time there were two distinct branches: stable and unstable. The
+      more drastic changes were to be in the unstable branch. These branches 
+      have now been merged to minimize time and effort of maintaining two 
+      branches.
+     </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="CVSCOMMIT"
+>2.3. CVS Commit Guidelines</A
+></H2
+><P
+>        The source tree is the heart of every software project. Every effort must
+        be made to ensure that it is readable, compilable and consistent at all
+        times. There are differing guidelines for the stable branch and the
+        main development trunk, and we ask anyone with CVS access to strictly
+        adhere to the following guidelines:
+      </P
+><P
+>       Basic Guidelines, for all branches:
+      </P
+><P
+>        <P
+></P
+><UL
+><LI
+><P
+>            Please don't commit even 
+            a small change without testing it thoroughly first. When we're
+            close to a public release, ask a fellow developer to review your 
+            changes.
+          </P
+></LI
+><LI
+><P
+>            Your commit message should give a concise overview of <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>what you
+            changed</I
+></SPAN
+> (no big details) and <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>why you changed it</I
+></SPAN
+>
+            Just check previous messages for good examples.
+          </P
+></LI
+><LI
+><P
+>            Don't use the same message on multiple files, unless it equally applies to
+            all those files.
+          </P
+></LI
+><LI
+><P
+>            If your changes span multiple files, and the code won't recompile unless
+            all changes are committed (e.g. when changing the signature of a function),
+            then commit all files one after another, without long delays in between.
+            If necessary, prepare the commit messages in advance.
+          </P
+></LI
+><LI
+><P
+>            Before changing things on CVS, make sure that your changes are in line
+            with the team's general consensus on what should be done.
+          </P
+></LI
+><LI
+><P
+>            Note that near a major public release, we get more cautious.
+            There is always the possibility to submit a patch to the <A
+HREF="http://sourceforge.net/tracker/?atid=311118&#38;group_id=11118&#38;func=browse"
+TARGET="_top"
+>patch
+            tracker</A
+> instead.
+          </P
+></LI
+></UL
+>
+      </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="introduction.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="documentation.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Introduction</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Documentation Guidelines</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

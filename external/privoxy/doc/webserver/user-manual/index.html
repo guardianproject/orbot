@@ -1,0 +1,963 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Privoxy 3.0.12 User Manual</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="NEXT"
+TITLE="Introduction"
+HREF="introduction.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="../p_doc.css"><META
+HTTP-EQUIV="Content-Type"
+CONTENT="text/html;
+charset=ISO-8859-1">
+<LINK REL="STYLESHEET" TYPE="text/css" HREF="p_doc.css">
+</head
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#EEEEEE"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="AEN2"
+>Privoxy 3.0.12 User Manual</A
+></H1
+><P
+CLASS="PUBDATE"
+> <SUB
+> <A
+HREF="copyright.html"
+>Copyright</A
+> © 2001-2009 by 
+ <A
+HREF="http://www.privoxy.org/"
+TARGET="_top"
+>Privoxy Developers</A
+>
+ </SUB
+><BR></P
+><P
+CLASS="PUBDATE"
+>$Id: index.html,v 1.60 2009/03/21 12:58:53 fabiankeil Exp $<BR></P
+><DIV
+><DIV
+CLASS="ABSTRACT"
+><P
+></P
+><A
+NAME="AEN9"
+></A
+><P
+>  The <I
+CLASS="CITETITLE"
+>Privoxy User Manual</I
+> gives users information on how to
+  install, configure and use <A
+HREF="http://www.privoxy.org/"
+TARGET="_top"
+>Privoxy</A
+>.
+ </P
+><P
+> Privoxy is a non-caching web proxy with advanced filtering capabilities
+ for enhancing privacy, modifying web page data and HTTP headers, controlling
+ access, and removing ads and other obnoxious Internet junk. Privoxy has a
+ flexible configuration and can be customized to suit individual needs and tastes.
+ It has application for both stand-alone systems and multi-user networks.</P
+><P
+> Privoxy is Free Software and licensed under the GPL2.</P
+><P
+> Privoxy is an associated project of Software in the Public Interest (SPI).
+ <A
+HREF="http://www.privoxy.org/faq/general.html#DONATE"
+TARGET="_top"
+>Donations are welcome</A
+>.</P
+><P
+>  You can find the latest version of the <I
+CLASS="CITETITLE"
+>Privoxy User Manual</I
+> at  <A
+HREF="http://www.privoxy.org/user-manual/"
+TARGET="_top"
+>http://www.privoxy.org/user-manual/</A
+>.
+  Please see the <A
+HREF="contact.html"
+>Contact section</A
+> on how to
+  contact the developers.
+ </P
+><P
+></P
+></DIV
+></DIV
+><HR></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+>1. <A
+HREF="introduction.html"
+>Introduction</A
+></DT
+><DD
+><DL
+><DT
+>1.1. <A
+HREF="introduction.html#FEATURES"
+>Features</A
+></DT
+></DL
+></DD
+><DT
+>2. <A
+HREF="installation.html"
+>Installation</A
+></DT
+><DD
+><DL
+><DT
+>2.1. <A
+HREF="installation.html#INSTALLATION-PACKAGES"
+>Binary Packages</A
+></DT
+><DD
+><DL
+><DT
+>2.1.1. <A
+HREF="installation.html#INSTALLATION-PACK-RPM"
+>Red Hat and Fedora RPMs</A
+></DT
+><DT
+>2.1.2. <A
+HREF="installation.html#INSTALLATION-DEB"
+>Debian and Ubuntu</A
+></DT
+><DT
+>2.1.3. <A
+HREF="installation.html#INSTALLATION-PACK-WIN"
+>Windows</A
+></DT
+><DT
+>2.1.4. <A
+HREF="installation.html#INSTALLATION-PACK-BINTGZ"
+>Solaris</A
+></DT
+><DT
+>2.1.5. <A
+HREF="installation.html#INSTALLATION-OS2"
+>OS/2</A
+></DT
+><DT
+>2.1.6. <A
+HREF="installation.html#INSTALLATION-MAC"
+>Mac OS X</A
+></DT
+><DT
+>2.1.7. <A
+HREF="installation.html#INSTALLATION-AMIGA"
+>AmigaOS</A
+></DT
+><DT
+>2.1.8. <A
+HREF="installation.html#INSTALLATION-TBZ"
+>FreeBSD</A
+></DT
+><DT
+>2.1.9. <A
+HREF="installation.html#INSTALLATTION-GENTOO"
+>Gentoo</A
+></DT
+></DL
+></DD
+><DT
+>2.2. <A
+HREF="installation.html#INSTALLATION-SOURCE"
+>Building from Source</A
+></DT
+><DT
+>2.3. <A
+HREF="installation.html#INSTALLATION-KEEPUPDATED"
+>Keeping your Installation Up-to-Date</A
+></DT
+></DL
+></DD
+><DT
+>3. <A
+HREF="whatsnew.html"
+>What's New in this Release</A
+></DT
+><DD
+><DL
+><DT
+>3.1. <A
+HREF="whatsnew.html#UPGRADERSNOTE"
+>Note to Upgraders</A
+></DT
+></DL
+></DD
+><DT
+>4. <A
+HREF="quickstart.html"
+>Quickstart to Using Privoxy</A
+></DT
+><DD
+><DL
+><DT
+>4.1. <A
+HREF="quickstart.html#QUICKSTART-AD-BLOCKING"
+>Quickstart to Ad Blocking</A
+></DT
+></DL
+></DD
+><DT
+>5. <A
+HREF="startup.html"
+>Starting Privoxy</A
+></DT
+><DD
+><DL
+><DT
+>5.1. <A
+HREF="startup.html#START-REDHAT"
+>Red Hat and Fedora</A
+></DT
+><DT
+>5.2. <A
+HREF="startup.html#START-DEBIAN"
+>Debian</A
+></DT
+><DT
+>5.3. <A
+HREF="startup.html#START-WINDOWS"
+>Windows</A
+></DT
+><DT
+>5.4. <A
+HREF="startup.html#START-UNICES"
+>Solaris, NetBSD, FreeBSD, HP-UX and others</A
+></DT
+><DT
+>5.5. <A
+HREF="startup.html#START-OS2"
+>OS/2</A
+></DT
+><DT
+>5.6. <A
+HREF="startup.html#START-MACOSX"
+>Mac OS X</A
+></DT
+><DT
+>5.7. <A
+HREF="startup.html#START-AMIGAOS"
+>AmigaOS</A
+></DT
+><DT
+>5.8. <A
+HREF="startup.html#START-GENTOO"
+>Gentoo</A
+></DT
+><DT
+>5.9. <A
+HREF="startup.html#CMDOPTIONS"
+>Command Line Options</A
+></DT
+></DL
+></DD
+><DT
+>6. <A
+HREF="configuration.html"
+>Privoxy Configuration</A
+></DT
+><DD
+><DL
+><DT
+>6.1. <A
+HREF="configuration.html#AEN776"
+>Controlling Privoxy with Your Web Browser</A
+></DT
+><DT
+>6.2. <A
+HREF="configuration.html#CONFOVERVIEW"
+>Configuration Files Overview</A
+></DT
+></DL
+></DD
+><DT
+>7. <A
+HREF="config.html"
+>The Main Configuration File</A
+></DT
+><DD
+><DL
+><DT
+>7.1. <A
+HREF="config.html#LOCAL-SET-UP"
+>Local Set-up Documentation</A
+></DT
+><DD
+><DL
+><DT
+>7.1.1. <A
+HREF="config.html#USER-MANUAL"
+>user-manual</A
+></DT
+><DT
+>7.1.2. <A
+HREF="config.html#TRUST-INFO-URL"
+>trust-info-url</A
+></DT
+><DT
+>7.1.3. <A
+HREF="config.html#ADMIN-ADDRESS"
+>admin-address</A
+></DT
+><DT
+>7.1.4. <A
+HREF="config.html#PROXY-INFO-URL"
+>proxy-info-url</A
+></DT
+></DL
+></DD
+><DT
+>7.2. <A
+HREF="config.html#CONF-LOG-LOC"
+>Configuration and Log File Locations</A
+></DT
+><DD
+><DL
+><DT
+>7.2.1. <A
+HREF="config.html#CONFDIR"
+>confdir</A
+></DT
+><DT
+>7.2.2. <A
+HREF="config.html#TEMPLDIR"
+>templdir</A
+></DT
+><DT
+>7.2.3. <A
+HREF="config.html#LOGDIR"
+>logdir</A
+></DT
+><DT
+>7.2.4. <A
+HREF="config.html#ACTIONSFILE"
+>actionsfile</A
+></DT
+><DT
+>7.2.5. <A
+HREF="config.html#FILTERFILE"
+>filterfile</A
+></DT
+><DT
+>7.2.6. <A
+HREF="config.html#LOGFILE"
+>logfile</A
+></DT
+><DT
+>7.2.7. <A
+HREF="config.html#TRUSTFILE"
+>trustfile</A
+></DT
+></DL
+></DD
+><DT
+>7.3. <A
+HREF="config.html#DEBUGGING"
+>Debugging</A
+></DT
+><DD
+><DL
+><DT
+>7.3.1. <A
+HREF="config.html#DEBUG"
+>debug</A
+></DT
+><DT
+>7.3.2. <A
+HREF="config.html#SINGLE-THREADED"
+>single-threaded</A
+></DT
+><DT
+>7.3.3. <A
+HREF="config.html#HOSTNAME"
+>hostname</A
+></DT
+></DL
+></DD
+><DT
+>7.4. <A
+HREF="config.html#ACCESS-CONTROL"
+>Access Control and Security</A
+></DT
+><DD
+><DL
+><DT
+>7.4.1. <A
+HREF="config.html#LISTEN-ADDRESS"
+>listen-address</A
+></DT
+><DT
+>7.4.2. <A
+HREF="config.html#TOGGLE"
+>toggle</A
+></DT
+><DT
+>7.4.3. <A
+HREF="config.html#ENABLE-REMOTE-TOGGLE"
+>enable-remote-toggle</A
+></DT
+><DT
+>7.4.4. <A
+HREF="config.html#ENABLE-REMOTE-HTTP-TOGGLE"
+>enable-remote-http-toggle</A
+></DT
+><DT
+>7.4.5. <A
+HREF="config.html#ENABLE-EDIT-ACTIONS"
+>enable-edit-actions</A
+></DT
+><DT
+>7.4.6. <A
+HREF="config.html#ENFORCE-BLOCKS"
+>enforce-blocks</A
+></DT
+><DT
+>7.4.7. <A
+HREF="config.html#ACLS"
+>ACLs: permit-access and deny-access</A
+></DT
+><DT
+>7.4.8. <A
+HREF="config.html#BUFFER-LIMIT"
+>buffer-limit</A
+></DT
+></DL
+></DD
+><DT
+>7.5. <A
+HREF="config.html#FORWARDING"
+>Forwarding</A
+></DT
+><DD
+><DL
+><DT
+>7.5.1. <A
+HREF="config.html#FORWARD"
+>forward</A
+></DT
+><DT
+>7.5.2. <A
+HREF="config.html#SOCKS"
+>forward-socks4, forward-socks4a and forward-socks5</A
+></DT
+><DT
+>7.5.3. <A
+HREF="config.html#ADVANCED-FORWARDING-EXAMPLES"
+>Advanced Forwarding Examples</A
+></DT
+><DT
+>7.5.4. <A
+HREF="config.html#FORWARDED-CONNECT-RETRIES"
+>forwarded-connect-retries</A
+></DT
+><DT
+>7.5.5. <A
+HREF="config.html#ACCEPT-INTERCEPTED-REQUESTS"
+>accept-intercepted-requests</A
+></DT
+><DT
+>7.5.6. <A
+HREF="config.html#ALLOW-CGI-REQUEST-CRUNCHING"
+>allow-cgi-request-crunching</A
+></DT
+><DT
+>7.5.7. <A
+HREF="config.html#SPLIT-LARGE-FORMS"
+>split-large-forms</A
+></DT
+><DT
+>7.5.8. <A
+HREF="config.html#KEEP-ALIVE-TIMEOUT"
+>keep-alive-timeout</A
+></DT
+><DT
+>7.5.9. <A
+HREF="config.html#SOCKET-TIMEOUT"
+>socket-timeout</A
+></DT
+></DL
+></DD
+><DT
+>7.6. <A
+HREF="config.html#WINDOWS-GUI"
+>Windows GUI Options</A
+></DT
+></DL
+></DD
+><DT
+>8. <A
+HREF="actions-file.html"
+>Actions Files</A
+></DT
+><DD
+><DL
+><DT
+>8.1. <A
+HREF="actions-file.html#AEN2288"
+>Finding the Right Mix</A
+></DT
+><DT
+>8.2. <A
+HREF="actions-file.html#AEN2295"
+>How to Edit</A
+></DT
+><DT
+>8.3. <A
+HREF="actions-file.html#ACTIONS-APPLY"
+>How Actions are Applied to Requests</A
+></DT
+><DT
+>8.4. <A
+HREF="actions-file.html#AF-PATTERNS"
+>Patterns</A
+></DT
+><DD
+><DL
+><DT
+>8.4.1. <A
+HREF="actions-file.html#AEN2386"
+>The Domain Pattern</A
+></DT
+><DT
+>8.4.2. <A
+HREF="actions-file.html#AEN2462"
+>The Path Pattern</A
+></DT
+><DT
+>8.4.3. <A
+HREF="actions-file.html#TAG-PATTERN"
+>The Tag Pattern</A
+></DT
+></DL
+></DD
+><DT
+>8.5. <A
+HREF="actions-file.html#ACTIONS"
+>Actions</A
+></DT
+><DD
+><DL
+><DT
+>8.5.1. <A
+HREF="actions-file.html#ADD-HEADER"
+>add-header</A
+></DT
+><DT
+>8.5.2. <A
+HREF="actions-file.html#BLOCK"
+>block</A
+></DT
+><DT
+>8.5.3. <A
+HREF="actions-file.html#CHANGE-X-FORWARDED-FOR"
+>change-x-forwarded-for</A
+></DT
+><DT
+>8.5.4. <A
+HREF="actions-file.html#CLIENT-HEADER-FILTER"
+>client-header-filter</A
+></DT
+><DT
+>8.5.5. <A
+HREF="actions-file.html#CLIENT-HEADER-TAGGER"
+>client-header-tagger</A
+></DT
+><DT
+>8.5.6. <A
+HREF="actions-file.html#CONTENT-TYPE-OVERWRITE"
+>content-type-overwrite</A
+></DT
+><DT
+>8.5.7. <A
+HREF="actions-file.html#CRUNCH-CLIENT-HEADER"
+>crunch-client-header</A
+></DT
+><DT
+>8.5.8. <A
+HREF="actions-file.html#CRUNCH-IF-NONE-MATCH"
+>crunch-if-none-match</A
+></DT
+><DT
+>8.5.9. <A
+HREF="actions-file.html#CRUNCH-INCOMING-COOKIES"
+>crunch-incoming-cookies</A
+></DT
+><DT
+>8.5.10. <A
+HREF="actions-file.html#CRUNCH-SERVER-HEADER"
+>crunch-server-header</A
+></DT
+><DT
+>8.5.11. <A
+HREF="actions-file.html#CRUNCH-OUTGOING-COOKIES"
+>crunch-outgoing-cookies</A
+></DT
+><DT
+>8.5.12. <A
+HREF="actions-file.html#DEANIMATE-GIFS"
+>deanimate-gifs</A
+></DT
+><DT
+>8.5.13. <A
+HREF="actions-file.html#DOWNGRADE-HTTP-VERSION"
+>downgrade-http-version</A
+></DT
+><DT
+>8.5.14. <A
+HREF="actions-file.html#FAST-REDIRECTS"
+>fast-redirects</A
+></DT
+><DT
+>8.5.15. <A
+HREF="actions-file.html#FILTER"
+>filter</A
+></DT
+><DT
+>8.5.16. <A
+HREF="actions-file.html#FORCE-TEXT-MODE"
+>force-text-mode</A
+></DT
+><DT
+>8.5.17. <A
+HREF="actions-file.html#FORWARD-OVERRIDE"
+>forward-override</A
+></DT
+><DT
+>8.5.18. <A
+HREF="actions-file.html#HANDLE-AS-EMPTY-DOCUMENT"
+>handle-as-empty-document</A
+></DT
+><DT
+>8.5.19. <A
+HREF="actions-file.html#HANDLE-AS-IMAGE"
+>handle-as-image</A
+></DT
+><DT
+>8.5.20. <A
+HREF="actions-file.html#HIDE-ACCEPT-LANGUAGE"
+>hide-accept-language</A
+></DT
+><DT
+>8.5.21. <A
+HREF="actions-file.html#HIDE-CONTENT-DISPOSITION"
+>hide-content-disposition</A
+></DT
+><DT
+>8.5.22. <A
+HREF="actions-file.html#HIDE-IF-MODIFIED-SINCE"
+>hide-if-modified-since</A
+></DT
+><DT
+>8.5.23. <A
+HREF="actions-file.html#HIDE-FROM-HEADER"
+>hide-from-header</A
+></DT
+><DT
+>8.5.24. <A
+HREF="actions-file.html#HIDE-REFERRER"
+>hide-referrer</A
+></DT
+><DT
+>8.5.25. <A
+HREF="actions-file.html#HIDE-USER-AGENT"
+>hide-user-agent</A
+></DT
+><DT
+>8.5.26. <A
+HREF="actions-file.html#LIMIT-CONNECT"
+>limit-connect</A
+></DT
+><DT
+>8.5.27. <A
+HREF="actions-file.html#PREVENT-COMPRESSION"
+>prevent-compression</A
+></DT
+><DT
+>8.5.28. <A
+HREF="actions-file.html#OVERWRITE-LAST-MODIFIED"
+>overwrite-last-modified</A
+></DT
+><DT
+>8.5.29. <A
+HREF="actions-file.html#REDIRECT"
+>redirect</A
+></DT
+><DT
+>8.5.30. <A
+HREF="actions-file.html#SERVER-HEADER-FILTER"
+>server-header-filter</A
+></DT
+><DT
+>8.5.31. <A
+HREF="actions-file.html#SERVER-HEADER-TAGGER"
+>server-header-tagger</A
+></DT
+><DT
+>8.5.32. <A
+HREF="actions-file.html#SESSION-COOKIES-ONLY"
+>session-cookies-only</A
+></DT
+><DT
+>8.5.33. <A
+HREF="actions-file.html#SET-IMAGE-BLOCKER"
+>set-image-blocker</A
+></DT
+><DT
+>8.5.34. <A
+HREF="actions-file.html#AEN4093"
+>Summary</A
+></DT
+></DL
+></DD
+><DT
+>8.6. <A
+HREF="actions-file.html#ALIASES"
+>Aliases</A
+></DT
+><DT
+>8.7. <A
+HREF="actions-file.html#ACT-EXAMPLES"
+>Actions Files Tutorial</A
+></DT
+><DD
+><DL
+><DT
+>8.7.1. <A
+HREF="actions-file.html#AEN4157"
+>match-all.action</A
+></DT
+><DT
+>8.7.2. <A
+HREF="actions-file.html#AEN4179"
+>default.action</A
+></DT
+><DT
+>8.7.3. <A
+HREF="actions-file.html#AEN4292"
+>user.action</A
+></DT
+></DL
+></DD
+></DL
+></DD
+><DT
+>9. <A
+HREF="filter-file.html"
+>Filter Files</A
+></DT
+><DD
+><DL
+><DT
+>9.1. <A
+HREF="filter-file.html#AEN4447"
+>Filter File Tutorial</A
+></DT
+><DT
+>9.2. <A
+HREF="filter-file.html#PREDEFINED-FILTERS"
+>The Pre-defined Filters</A
+></DT
+></DL
+></DD
+><DT
+>10. <A
+HREF="templates.html"
+>Privoxy's Template Files</A
+></DT
+><DT
+>11. <A
+HREF="contact.html"
+>Contacting the Developers, Bug Reporting and Feature
+Requests</A
+></DT
+><DD
+><DL
+><DT
+>11.1. <A
+HREF="contact.html#CONTACT-SUPPORT"
+>Get Support</A
+></DT
+><DT
+>11.2. <A
+HREF="contact.html#REPORTING"
+>Reporting Problems</A
+></DT
+><DD
+><DL
+><DT
+>11.2.1. <A
+HREF="contact.html#CONTACT-ADS"
+>Reporting Ads or Other Configuration Problems</A
+></DT
+><DT
+>11.2.2. <A
+HREF="contact.html#CONTACT-BUGS"
+>Reporting Bugs</A
+></DT
+></DL
+></DD
+><DT
+>11.3. <A
+HREF="contact.html#CONTACT-FEATURE"
+>Request New Features</A
+></DT
+><DT
+>11.4. <A
+HREF="contact.html#CONTACT-OTHER"
+>Other</A
+></DT
+></DL
+></DD
+><DT
+>12. <A
+HREF="copyright.html"
+>Privoxy Copyright, License and History</A
+></DT
+><DD
+><DL
+><DT
+>12.1. <A
+HREF="copyright.html#AEN4921"
+>License</A
+></DT
+><DT
+>12.2. <A
+HREF="copyright.html#HISTORY"
+>History</A
+></DT
+><DT
+>12.3. <A
+HREF="copyright.html#AUTHORS"
+>Authors</A
+></DT
+></DL
+></DD
+><DT
+>13. <A
+HREF="seealso.html"
+>See Also</A
+></DT
+><DT
+>14. <A
+HREF="appendix.html"
+>Appendix</A
+></DT
+><DD
+><DL
+><DT
+>14.1. <A
+HREF="appendix.html#REGEX"
+>Regular Expressions</A
+></DT
+><DT
+>14.2. <A
+HREF="appendix.html#AEN5174"
+>Privoxy's Internal Pages</A
+></DT
+><DD
+><DL
+><DT
+>14.2.1. <A
+HREF="appendix.html#BOOKMARKLETS"
+>Bookmarklets</A
+></DT
+></DL
+></DD
+><DT
+>14.3. <A
+HREF="appendix.html#CHAIN"
+>Chain of Events</A
+></DT
+><DT
+>14.4. <A
+HREF="appendix.html#ACTIONSANAT"
+>Troubleshooting: Anatomy of an Action</A
+></DT
+></DL
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="introduction.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Introduction</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

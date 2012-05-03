@@ -1,0 +1,782 @@
+#############################################################################
+# $Id: regression-tests.action,v 1.22 2009/02/22 15:07:58 fabiankeil Exp $
+#############################################################################
+#
+# This is a configuration file for Privoxy-Regression-Test
+# (included in the source tarball's tools directory).
+#
+# After referencing it in your Privoxy configuration both Privoxy and
+# Privoxy-Regression-Test should be good to go.
+#
+#############################################################################
+#
+# Copyright (c) 2007-2009 Fabian Keil <fk@fabiankeil.de>
+#
+# Permission to use, copy, modify, and distribute this software for any
+# purpose with or without fee is hereby granted, provided that the above
+# copyright notice and this permission notice appear in all copies.
+#
+# THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+# WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+# MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+# ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+# WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+# ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+# OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+#
+#############################################################################
+
+{{settings}}
+for-privoxy-version=3.0.11
+
+# Some dependencies Privoxy-Regression-Test should know about:
+#
+# Level  9 needs = config line user-manual\s+(\.?\.?/|[A-Za-z]:)
+# Level 12 needs = config line enable-edit-actions\s+1
+# Level 13 needs = feature status FEATURE_CONNECTION_KEEP_ALIVE Yes
+# Level 14 needs = feature status FEATURE_CONNECTION_KEEP_ALIVE No
+
+#######################################################
+# Enable taggers to activate the tests on demand
+# and suppress hiding the User-Agent for
+# Privoxy-Regression-Test to save log space.
+#######################################################
+{\
+ +client-header-tagger{user-agent} \
+ +client-header-tagger{privoxy-control} \
+ +client-header-filter{privoxy-control} \
+}
+config.privoxy.org/
+p.p/
+127.0.0.1/
+
+{-hide-user-agent}
+TAG:^User-Agent: Privoxy-Regression-Test
+
+#######################################################
+# Test accept-language{}.
+#######################################################
+
+# Set Header    = Accept-Language: de-de
+# Expect Header = Accept-Language: en-gb
+{+hide-accept-language{en-gb}}
+TAG:^hide-accept-language\{en-gb\}$
+
+# Set Header    = Accept-Language: de-de
+# Expect Header = REMOVAL
+{+hide-accept-language{block}}
+TAG:^hide-accept-language\{block\}$
+
+#######################################################
+# Sections for hide-referrer{} to test:
+#
+# 1) conditional-block
+# 2) conditional-forge
+# 3) forge
+# 4) block
+# 5) a parameter that looks like a valid fake referrer 
+# 6) a parameter that looks like an invalid fake referrer
+#######################################################
+
+# Set Header    = Referer: http://www.example.org/foo 
+# Expect Header = REMOVAL
+#
+# Set Header    = Referer: http://p.p/foo
+# Expect Header = NO CHANGE
+#
+# Set Header    = Referer: p.p/
+# Expect Header = REMOVAL
+#
+# Set Header    = Referer: p
+# Expect Header = REMOVAL
+#
+# Set Header    = Referer: http://
+# Expect Header = REMOVAL
+#
+# Set Header    = Referer: https://p.p/
+# Expect Header = REMOVAL
+{+hide-referrer{conditional-block}}
+TAG:^hide-referrer\{conditional-block\}$
+
+# Set Header    = Referer: http://www.example.org/foo 
+# Expect Header = Referer: http://p.p/
+#
+# Set Header    = Referer: http://p.p/foo
+# Expect Header = NO CHANGE
+#
+# Set Header    = Referer: p.p/
+# Expect Header = Referer: http://p.p/
+#
+# Set Header    = Referer: p
+# Expect Header = Referer: http://p.p/
+#
+# Set Header    = Referer: http://
+# Expect Header = Referer: http://p.p/
+#
+# Set Header    = Referer: https://p.p/
+# Expect Header = Referer: http://p.p/
+{+hide-referrer{conditional-forge}}
+TAG:^hide-referrer\{conditional-forge\}$
+
+# Set Header    = Referer: http://www.example.org/foo 
+# Expect Header = Referer: http://p.p/
+{+hide-referrer{forge}}
+TAG:^hide-referrer\{forge\}$
+
+# Set Header    = Referer: http://www.example.org/foo 
+# Expect Header = REMOVAL
+{+hide-referrer{block}}
+TAG:^hide-referrer\{block\}$
+
+# Set Header    = Referer: http://www.example.org/foo 
+# Expect Header = Referer: invalid
+{+hide-referrer{invalid}}
+TAG:^hide-referrer\{invalid\}$
+
+# Set Header    = Referer: http://www.example.org/asdf
+# Expect Header = Referer: http://www.privoxy.org/
+{+hide-referrer{http://www.privoxy.org/}}
+TAG:^hide-referrer\{http://www.privoxy.org/\}$
+
+#{+hide-referrer{}}
+#TAG:^hide-referrer\{\}$
+
+#######################################################
+# Test hide-user-agent{}.
+#######################################################
+
+# Set Header    = User-Agent: Mozilla/5.0 (X11; U; NetBSD i386; de-CH; rv:1.8.1.6) Gecko/20070806 Firefox/2.0.0.6
+# Expect Header = User-Agent: Mozilla/5.0 (X11; U; FreeBSD alpha; en-GB; rv:1.8.1.6) Gecko/20070913 Firefox/2.0.0.6
+{+hide-user-agent{Mozilla/5.0 (X11; U; FreeBSD alpha; en-GB; rv:1.8.1.6) Gecko/20070913 Firefox/2.0.0.6}}
+TAG:^hide-user-agent\{Mozilla/5\.0 \(X11; U; FreeBSD alpha; en-GB; rv:1\.8\.1\.6\) Gecko/20070913 Firefox/2\.0\.0\.6\}$
+
+# XXX: Check the code that is tested here.
+# Set Header = ua-blah: blah
+# Expect Header = REMOVAL
+{+hide-user-agent{block}}
+TAG:^hide-user-agent{block}$
+
+# Set Header = ua-blah: blah
+# Expect Header = NO CHANGE
+{-hide-user-agent{}}
+TAG:^-hide-user-agent{block}$
+
+
+#######################################################
+# Test add-header{}.
+#######################################################
+
+# Set Header    = X-Whatever: foo
+# Expect Header = X-Custom-Header: yes, please
+
+{+add-header{X-Custom-Header: yes, please}}
+TAG:^add-header\{X-Custom-Header: yes, please\}$
+
+#######################################################
+# Test client-header-filter{hide-tor-exit-notation}.
+#######################################################
+
+# Set Header    = Referer: http://p.p.zwiebelsuppe.exit/
+# Expect Header = Referer: http://p.p/
+#
+# Set Header    = Referer: http://p.p.zwiebelsuppe.exit/foo/bar/baaz/
+# Expect Header = Referer: http://p.p/foo/bar/baaz/
+#
+# Set Header    = Referer: http://p.p/
+# Expect Header = NO CHANGE
+#
+# Set Header    = Referer: http://config.privoxy.org.zwiebelsuppe.exit/foo/bar/baaz.html
+# Expect Header = Referer: http://config.privoxy.org/foo/bar/baaz.html
+#
+# Set Header    = Host: p.p.zwiebelsuppe.exit
+# Expect Header = Host: p.p
+#
+# Set Header    = Host: p.p
+# Expect Header = NO CHANGE
+#
+# Set Header    = Referer: http://config.privoxy.org.ad356ef8e87a89e6c898b74500d58607ac691178.exit/foo/baaz.html
+# Expect Header = Referer: http://config.privoxy.org/foo/baaz.html
+
+{+client-header-filter{hide-tor-exit-notation} -hide-referer}
+TAG:^client-header-filter\{hide-tor-exit-notation\}$
+
+#######################################################
+# Test crunch-client-header{}.
+#######################################################
+
+# Set Header    = Content-Type: text/html
+# Expect Header = REMOVAL
+#
+# Set Header    = Content-Type: text/html; charset=4711
+# Expect Header = REMOVAL
+#
+# Set Header    = Content-Type: text/plain
+# Expect Header = NO CHANGE
+
+{+crunch-client-header{text/html}}
+TAG:^crunch-client-header\{text/plain\}$
+
+
+#######################################################
+# Test crunch-if-none-match.
+#######################################################
+
+# Set Header    = If-None-Match: 8987afd239d2093kd2309kd
+# Expect Header = REMOVAL
+
+# Set Header    = If-None-Match: 82c3cb50c984ef11b1fed749949b2a16
+# Expect Header = REMOVAL
+
+# Set Header    = If-Modified-Since: Thu, 04 Oct 2007 09:56:35 GMT
+# Expect Header = NO CHANGE
+
+{+crunch-if-none-match -hide-if-modified-since}
+TAG:^crunch-if-none-match$
+
+#######################################################
+# Test hide-if-modified-since
+#######################################################
+
+# Set Header    = If-Modified-Since: Thu, 04 Oct 2007 09:56:35 GMT
+# Expect Header = REMOVAL
+#
+# Set Header    = If-None-Match: 82c3cb50c984ef11b1fed749949b2a16
+# Expect Header = NO CHANGE
+
+{+hide-if-modified-since{block} -crunch-if-none-match}
+TAG:^hide-if-modified-since\{block\}$
+
+# Set Header    = If-Modified-Since: Gee, this date is invalid
+# Expect Header = REMOVAL
+# Set Header    = If-Modified-Since: Thu, 04 Oct 2007 09:56:35 GMT
+# Expect Header = SOME CHANGE
+
+{+hide-if-modified-since{-60} -crunch-if-none-match}
+TAG:^hide-if-modified-since\{-60\}$
+
+# Set Header    = If-Modified-Since: Gee, this date is invalid
+# Expect Header = REMOVAL
+# Set Header    = If-Modified-Since: Thu, 04 Oct 2007 09:56:35 GMT
+# Expect Header = SOME CHANGE
+
+{+hide-if-modified-since{+60} -crunch-if-none-match}
+TAG:^hide-if-modified-since\{\+60\}$
+
+# Set Header    = If-Modified-Since: Gee, this date is invalid
+# Expect Header = REMOVAL
+# Set Header    = If-Modified-Since: Thu, 04 Oct 2007 09:56:35 GMT
+# Expect Header = SOME CHANGE
+
+{+hide-if-modified-since{60} -crunch-if-none-match}
+TAG:^hide-if-modified-since\{60\}$
+
+# Set Header    = If-Modified-Since: Gee, this date is invalid
+# Expect Header = REMOVAL
+# Set Header    = If-Modified-Since: Thu, 04 Oct 2007 09:56:35 GMT
+# Expect Header = NO CHANGE
+
+{+hide-if-modified-since{+0} -crunch-if-none-match}
+TAG:^hide-if-modified-since\{\+0\}$
+
+# Set Header    = If-Modified-Since: Gee, this date is invalid
+# Expect Header = REMOVAL
+# Set Header    = If-Modified-Since: Thu, 04 Oct 2007 09:56:35 GMT
+# Expect Header = NO CHANGE
+
+{+hide-if-modified-since{-0} -crunch-if-none-match}
+TAG:^hide-if-modified-since\{-0\}$
+
+# Set Header    = If-Modified-Since: Gee, this date is invalid
+# Expect Header = REMOVAL
+# Set Header    = If-Modified-Since: Thu, 04 Oct 2007 09:56:35 GMT
+# Expect Header = NO CHANGE
+
+{+hide-if-modified-since{0} -crunch-if-none-match}
+TAG:^hide-if-modified-since\{0\}$
+
+# Set Header    = If-Modified-Since: Gee, this date is invalid
+# Expect Header = REMOVAL
+# Set Header    = If-Modified-Since: Thu, 04 Oct 2007 09:56:35 GMT
+# Expect Header = NO CHANGE
+
+{+hide-if-modified-since{NaN} -crunch-if-none-match}
+TAG:^hide-if-modified-since\{NaN\}$
+
+
+#######################################################
+# Test crunch-outgoing-cookies
+#######################################################
+
+# Set Header    = If-Modified-Since: Gee, this date is invalid
+# Expect Header = NO CHANGE
+#
+# Set Header    = Cookie: PREF=ID=6cf0abd34262:TM=117335617:LM=1617:S=jZypyJ7LPiwFi1_
+# Expect Header = REMOVAL
+{\
+ +crunch-outgoing-cookies \
+ -crunch-incoming-cookies \
+ -session-cookies-only    \
+ -hide-if-modified-since  \
+}
+TAG:^crunch-outgoing-cookies$
+
+#######################################################
+# Test session-cookies-only
+#
+# XXX: pretty useless as session-cookies-only doesn't
+# affect client headers.
+#######################################################
+
+# Set Header    = Cookie: NSC_gffe-iuuq-mc-wtfswfs=8efb330d3660;expires=Thu, 04-Oct-07 19:11:34 GMT;path=/
+# Expect Header = NO CHANGE
+#
+# Set Header    = Cookie: PREF=ID=6cf0abd34262:TM=117335617:LM=1617:S=jZypyJ7LPiwFi1_
+# Expect Header = NO CHANGE
+{\
+ -crunch-outgoing-cookies \
+ -crunch-incoming-cookies \
+ +session-cookies-only    \
+ -hide-if-modified-since  \
+}
+TAG:^session-cookies-only$
+
+#######################################################
+# Test change-x-forwarded-for
+#######################################################
+
+# Set Header    = X-Forwarded-For: 10.0.0.1
+# Expect Header = NO CHANGE
+{\
+ -change-x-forwarded-for \
+}
+TAG:^-change-x-forwarded-for$
+
+# Set Header    = X-Forwarded-For: 10.0.0.1
+# Expect Header = REMOVAL
+{\
+ +change-x-forwarded-for{block} \
+}
+TAG:^change-x-forwarded-for\{block\}$
+
+# Set Header    = X-Forwarded-For: 10.0.0.1
+# Expect Header = SOME CHANGE
+{\
+ +change-x-forwarded-for{add} \
+}
+TAG:^change-x-forwarded-for\{add\}$
+
+#######################################################
+# Test hide-from-header
+#######################################################
+
+# Set Header    = From: schneewitchen@example.org
+# Expect Header = REMOVAL
+{\
+ +hide-from-header{block}\
+}
+TAG:^hide-from-header\{block\}$
+
+# Set Header    = From: schneewitchen@example.org
+# Expect Header = From: siebenzwerge@example.org
+{\
+ +hide-from-header{siebenzwerge@example.org}\
+}
+TAG:^hide-from-header\{siebenzwerge@example.org\}$
+
+#######################################################
+# Test prevent-compression
+#######################################################
+
+# Set Header    = Accept-Encoding: gzip, deflate
+# Expect Header = REMOVAL
+#
+# Set Header    = Accept-Encoding: gzip
+# Expect Header = REMOVAL
+#
+# Set Header    = Accept-Encoding: deflate
+# Expect Header = REMOVAL
+{\
+ +prevent-compression\
+}
+TAG:^prevent-compression$
+
+#######################################################
+# Test content filters which could cause problems with
+# range requests.
+#######################################################
+
+# Set Header    = Range: bytes=1234-5678
+# Expect Header = REMOVAL
+# Set Header    = If-Range: bytes=1234-5678
+# Expect Header = REMOVAL
+# Set Header    = Request-Range: bytes=1234-5678
+# Expect Header = REMOVAL
+{\
+ +deanimate-gifs{last} \
+ -filter \
+}
+TAG:^deanimate-gifs\{last\}$
+
+# Set Header    = Range: bytes=1234-5678
+# Expect Header = REMOVAL
+# Set Header    = If-Range: bytes=1234-5678
+# Expect Header = REMOVAL
+# Set Header    = Request-Range: bytes=1234-5678
+# Expect Header = REMOVAL
+{\
+ -deanimate-gifs \
+ +filter{banners-by-size} \
+}
+TAG:^filter\{banners-by-size\}$
+
+# Set Header    = Range: bytes=1234-5678
+# Expect Header = NO CHANGE
+# Set Header    = If-Range: bytes=1234-5678
+# Expect Header = NO CHANGE
+# Set Header    = Request-Range: bytes=1234-5678
+# Expect Header = NO CHANGE
+{\
+ -deanimate-gifs \
+ -filter \
+}
+TAG:^no-content-filter$
+
+# Set Header    = Connection: close
+# Expect Header = Connection: keep-alive
+# Level = 13
+# Set Header    = Connection: keep-alive
+# Expect Header = NO CHANGE
+# Level = 13
+# Set Header    = Connection:
+# Expect Header = Connection: keep-alive
+# Level = 13
+{}
+TAG:^Connection: keep-alive$
+
+# Set Header    = Connection: keep-alive
+# Expect Header = Connection: close
+# Level = 14
+# Set Header    = Connection:
+# Expect Header = Connection: close
+# Level = 14
+{}
+TAG:^Connection: close$
+
+# XXX: Removing a header by not specifying a value is
+# an inherited curl feature and could be viewed as a
+# bug as far as Privoxy-Regression-Test is concerned.
+#
+# Set Header    = Host:
+# Expect Header = Host: p.p
+{}
+TAG:^No Host header$
+
+# Set Header    = Host: whatever.example.org
+# Expect Header = NO CHANGE
+{}
+TAG:^Host header other than the target host$
+
+# XXX: check the RFC to use a real value
+# Set Header = Keep-Alive: Yes
+# Expect Header = REMOVAL
+{}
+TAG:^Keep-Alive header removal$
+
+# XXX: check the RFC to use a real value
+# Set Header = proxy-connection: keep-alive
+# Expect Header = REMOVAL
+{}
+TAG:^Proxy-Connection removal$
+
+# Set Header = Proxy-Connection: keep-alive
+# Expect Header = REMOVAL
+{}
+TAG:^Proxy-Connection removal$
+
+# These are somewhat redundant when testing with
+# GET requests, but I want to remember then when
+# TRACE requests are supported.
+#
+# Set Header = Max-Forwards: 0
+# Expect Header = NO CHANGE
+# Set Header = Max-Forwards: 1
+# Expect Header = NO CHANGE
+# Set Header = Max-Forwards: -1
+# Expect Header = NO CHANGE
+# Set Header = Max-Forwards: 3
+# Expect Header = NO CHANGE
+{}
+TAG:^Max-Forwards header without TRACE method$
+
+################################################################
+#
+# Fairly dumb tests for Privoxy CGI pages.
+#
+# These are mainly useful for checking for memory leaks
+# with Valgrind or whether or not the user manual is installed
+# correctly and are unlikely to actually detect any
+#
+# Note that if "Expect Status Code" is missing, 200 is implied.
+#
+################################################################
+
+# Fetch Test = http://p.p/
+# Will fail if compiled with FEATURE_GRACEFUL_TERMINATION
+# Fetch Test = http://p.p/die
+# Expect Status Code = 404
+# Fetch Test = http://p.p/show-status
+# Fetch Test = http://config.privoxy.org/show-status?file=actions&index=0
+# Fetch Test = http://config.privoxy.org/show-status?file=filter&index=0
+# XXX: for the invalid ones we probably shouldn't return status code 200.
+# Fetch Test = http://config.privoxy.org/show-status?file=actions&index=100
+# Fetch Test = http://config.privoxy.org/show-status?file=actions&index=NaN
+# Fetch Test = http://config.privoxy.org/show-status?file=actions
+# Fetch Test = http://config.privoxy.org/show-status?file=filter&index=100
+# Fetch Test = http://config.privoxy.org/show-status?file=filter&index=NaN
+# Fetch Test = http://config.privoxy.org/show-status?file=filter
+# Fetch Test = http://config.privoxy.org/show-status?file=invalid
+# Fetch Test = http://config.privoxy.org/show-status?file=trust
+# Fetch Test = http://p.p/show-version
+# Fetch Test = http://p.p/show-request
+# Fetch Test = http://p.p/show-url-info
+# Fetch Test = http://p.p/show-url-info?url=www.privoxy.org%2F
+# Fetch Test = http://p.p/show-url-info?url=http:%2F%2Fwww.privoxy.org%2F
+# Fetch Test = http://p.p/show-url-info?url=HTTp:%2F%2Fwww.privoxy.org%2F
+# Fetch Test = http://p.p/show-url-info?url=https:%2F%2Fwww.privoxy.org%2F
+# Fetch Test = http://p.p/show-url-info?url=HtTps:%2F%2Fwww.privoxy.org%2F
+# Fetch Test = http://p.p/show-url-info?url=ftp:%2F%2Fwww.privoxy.org%2F
+# Fetch Test = http://p.p/show-url-info?url=FTp:%2F%2Fwww.privoxy.org%2F
+# Fetch Test = http://p.p/show-url-info?url=
+# Fetch Test = http://p.p/show-url-info?url=%2F
+# Fetch Test = http://p.p/toggle
+# Fetch Test = http://p.p/edit-actions
+# Fetch Test = http://p.p/eaa
+# Fetch Test = http://p.p/eau
+# Fetch Test = http://p.p/ear
+# Fetch Test = http://p.p/eal
+# Fetch Test = http://p.p/eafu
+# Fetch Test = http://p.p/eas
+# Fetch Test = http://p.p/easa
+# Fetch Test = http://p.p/easr
+# Fetch Test = http://p.p/eass
+# Fetch Test = http://p.p/edit-actions-for-url
+# Fetch Test = http://p.p/edit-actions-list
+# Fetch Test = http://p.p/edit-actions-submit
+# Fetch Test = http://p.p/edit-actions-url
+# Fetch Test = http://p.p/edit-actions-url-form
+# Fetch Test = http://p.p/edit-actions-add-url
+# Fetch Test = http://p.p/edit-actions-add-url-form
+# Fetch Test = http://p.p/edit-actions-remove-url
+# Fetch Test = http://p.p/edit-actions-remove-url-form
+# Fetch Test = http://p.p/edit-actions-section-add
+# Fetch Test = http://p.p/edit-actions-section-remove
+# Fetch Test = http://p.p/edit-actions-section-swap
+# Fetch Test = http://p.p/error-favicon.ico
+# Fetch Test = http://p.p/favicon.ico
+# Fetch Test = http://p.p/robots.txt
+# Fetch Test = http://p.p/send-banner
+# Fetch Test = http://p.p/send-stylesheet
+# Fetch Test = http://p.p/t
+# Fetch Test = http://p.p/url-info-osd.xml
+
+# Trusted CGI Request = http://p.p/edit-actions
+# Expect Status Code = 302
+# Level = 12 # Depends on the CGI editor being enabled
+# Fetch Test = http://p.p/does-not-exist
+# Expect Status Code = 404
+# Trusted CGI Request = http://p.p/eaa
+# Trusted CGI Request = http://p.p/eau
+# Trusted CGI Request = http://p.p/ear
+# Trusted CGI Request = http://p.p/eal
+# Trusted CGI Request = http://p.p/eafu
+# Trusted CGI Request = http://p.p/eas
+# Trusted CGI Request = http://p.p/easa
+# Trusted CGI Request = http://p.p/easr
+# Trusted CGI Request = http://p.p/eass
+# Trusted CGI Request = http://p.p/edit-actions-for-url
+# Trusted CGI Request = http://p.p/edit-actions-list
+# Trusted CGI Request = http://p.p/edit-actions-submit
+# Trusted CGI Request = http://p.p/edit-actions-url
+# Trusted CGI Request = http://p.p/edit-actions-url-form
+# Trusted CGI Request = http://p.p/edit-actions-add-url
+# Trusted CGI Request = http://p.p/edit-actions-add-url-form
+# Trusted CGI Request = http://p.p/edit-actions-remove-url
+# Trusted CGI Request = http://p.p/edit-actions-remove-url-form
+# Trusted CGI Request = http://p.p/edit-actions-section-add
+# Trusted CGI Request = http://p.p/edit-actions-section-remove
+# Trusted CGI Request = http://p.p/edit-actions-section-swap
+# Trusted CGI Request = http://p.p/send-stylesheet
+
+# The following tests depend on Privoxy being configured to deliver the user manual
+
+# Fetch Test = http://p.p/user-manual
+# Expect Status Code = 302
+# Level = 9
+# Fetch Test = http://p.p/user-manual/
+# Level = 9
+# Fetch Test = http://p.p/user-manual/actions-file.html
+# Level = 9
+# Fetch Test = http://p.p/user-manual/appendix.html
+# Level = 9
+# Fetch Test = http://p.p/user-manual/config.html
+# Level = 9
+# Fetch Test = http://p.p/user-manual/configuration.html
+# Level = 9
+# Fetch Test = http://p.p/user-manual/contact.html
+# Level = 9
+# Fetch Test = http://p.p/user-manual/copyright.html
+# Level = 9
+# Fetch Test = http://p.p/user-manual/files-in-use.jpg
+# Level = 9
+# Fetch Test = http://p.p/user-manual/filter-file.html
+# Level = 9
+# Fetch Test = http://p.p/user-manual/index.html
+# Level = 9
+# Fetch Test = http://p.p/user-manual/installation.html
+# Level = 9
+# Fetch Test = http://p.p/user-manual/introduction.html
+# Level = 9
+# Fetch Test = http://p.p/user-manual/p_doc.css
+# Level = 9
+# Fetch Test = http://p.p/user-manual/proxy2.jpg
+# Level = 9
+# Fetch Test = http://p.p/user-manual/proxy_setup.jpg
+# Level = 9
+# Fetch Test = http://p.p/user-manual/quickstart.html
+# Level = 9
+# Fetch Test = http://p.p/user-manual/seealso.html
+# Level = 9
+# Fetch Test = http://p.p/user-manual/startup.html
+# Level = 9
+# Fetch Test = http://p.p/user-manual/templates.html
+# Level = 9
+# Fetch Test = http://p.p/user-manual/upgradersnote.html
+# Level = 9
+# Fetch Test = http://p.p/user-manual/whatsnew.html
+# Level = 9
+
+
+# Method Test = OPTIONS
+# Method Test = GET
+# Method Test = get
+# Method Test = gEt
+# Method Test = HEAD
+# Method Test = POST
+# Method Test = PUT
+# Method Test = DELETE
+# Method Test = OPTIONS
+# Method Test = TRACE
+# Method Test = CONNECT
+# Method Test = PROPFIND
+# Method Test = PROPPATCH
+# Method Test = MOVE
+# Method Test = COPY
+# Method Test = MKCOL
+# Method Test = LOCK
+# Method Test = UNLOCK
+# Method Test = BCOPY
+# Method Test = BMOVE
+# Method Test = BDELETE
+# Method Test = BPROPFIND
+# Method Test = BPROPPATCH
+# Method Test = SUBSCRIBE
+# Method Test = UNSUBSCRIBE
+# Method Test = NOTIFY
+# Method Test = POLL
+# Method Test = VERSION-CONTROL
+# Method Test = REPORT
+# Method Test = CHECKOUT
+# Method Test = CHECKIN
+# Method Test = UNCHECKOUT
+# Method Test = MKWORKSPACE
+# Method Test = UPDATE
+# Method Test = LABEL
+# Method Test = MERGE
+# Method Test = BASELINE-CONTROL
+# Method Test = MKACTIVITY
+# Method Test = PRIVOXY-REGRESSION-TEST-IN-THE-HOUSE
+# Expect Status Code = 400
+
+{+block{Forbidden Port. You are not supposed to see this.}}
+config.privoxy.org:1-/
+p.p:1-/
+
+{-block}
+config.privoxy.org:3,79-81/
+p.p:3,22,79-81/
+
+# Fetch Test = http://oh-dear-this-hostname-is-so-very-long-that-it-can-not-possibly-be-forwarded-through-socks5-as-a-result-we-therefore-expect-privoxy-to-return-an-error-response-instead-of-forwarding-the-request-because-as-already-mentioned-this-host-is-really-very-long.example
+# Expect Status Code = 503
+{+forward-override{forward-socks5 127.0.0.1:12345 .}}
+oh-dear-this-hostname-is-so-very-long-that-it-can-not-possibly-be-forwarded-through-socks5-as-a-result-we-therefore-expect-privoxy-to-return-an-error-response-instead-of-forwarding-the-request-because-as-already-mentioned-this-host-is-really-very-long.example/
+
+# Fetch Test = http://oh-dear-this-hostname-is-short-enough-but-there-is-no-socks-server-listening.example
+# Expect Status Code = 503
+{+forward-override{forward-socks5 127.0.0.1:12345 .}}
+oh-dear-this-hostname-is-short-enough-but-there-is-no-socks-server-listening.example
+
+# This one currently triggers the same error condition as the
+# test above (socks5 server unreachable), but once Privoxy
+# starts to properly reject invalid ports it should become useful.
+
+# Fetch Test = http://invalid-forward5-gateway-port.example
+# Expect Status Code = 503
+{+forward-override{forward-socks5 127.0.0.1:-1 127.0.0.1:12345}}
+invalid-forward5-gateway-port.example
+
+# Fetch Test = http://forward5-null-gateway-host.example
+# Expect Status Code = 503
+{+forward-override{forward-socks5 :12345 127.0.0.1:12345}}
+forward5-null-gateway-host.example
+
+# Fetch Test = http://www.forbidden-connect.example:444/
+# Method = CONNECT
+# Expect Status Code = 403
+{+limit-connect{443}}
+www.forbidden-connect.example/
+
+# Fetch Test = http://www.blocked-request.example/blocked-request
+# Expect Status Code = 403
+{+block{This request failed to make it to the target destination which means the test succeeded.}}
+www.blocked-request.example/blocked-request
+
+# Fetch Test = http://www.blocked-request.example/blocked-request-with-no-reason-specified
+# Expect Status Code = 403
+{+block}
+www.blocked-request.example/blocked-request-with-no-reason-specified
+
+# Some domain pattern tests
+#
+{+block{domain pattern test}}
+# Blocked URL = http://domain-pattern-test.example/
+# Blocked URL = http://domain-pattern-test.example.org/
+domain-pattern-test.example.
+
+# Just in case there is no white-space fuzzer in the house ...
+#
+# Set Header = X-LWS-Test: no superfluous white space here
+# Expect Header = NO CHANGE
+# Set Header = X-LWS-Test:  superfluous   white space  in  the   house
+# Expect Header = X-LWS-Test: superfluous white space in the house
+# Set Header = X-LWS-Test   :  superfluous   white   space   in   the    house
+# Expect Header = X-LWS-Test: superfluous white space in the house
+# Set Header = X-LWS-Test:  :superfluous white space in the house
+# Expect Header = X-LWS-Test: :superfluous white space in the house
+# Set Header = X-LWS-Test: :no superfluous white space here
+# Expect Header = NO CHANGE
+# Set Header = X-LWS-Test:	superfluous 		white 			tabs in the house
+# Expect Header = X-LWS-Test: superfluous white tabs in the house
+# Set Header = X-LWS-Test	:	superfluous 		white 			tabs in the house
+# Expect Header = X-LWS-Test: superfluous white tabs in the house
+# Set Header = X-LWS-Test: "leave  quoted  lws alone"
+# Expect Header = X-LWS-Test: "leave  quoted  lws alone"
+# Set Header = X-LWS-Test:  "leave  quoted  lws alone"  thxbye
+# Expect Header = X-LWS-Test: "leave  quoted  lws alone" thxbye
+# Set Header = X-LWS-Test: " Do I Look like	quoted  text? Me    thinks  not.
+# Expect Header = X-LWS-Test: " Do I Look like quoted text? Me thinks not.
+# Set Header = X-LWS-Test: "This  is  quoted" this  is  not "but   this  is  again"
+# Expect Header = X-LWS-Test: "This  is  quoted" this is not "but   this  is  again"
+# Set Header = X-LWS-Test:  "This  is  quoted" this   is  not "this  is  "  but  "  this again   is  not
+# Expect Header = X-LWS-Test: "This  is  quoted" this is not "this  is  " but " this again is not
+{}
+TAG:^LWS Tests$

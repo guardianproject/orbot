@@ -1,0 +1,2187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Appendix</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Privoxy 3.0.12 User Manual"
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="See Also"
+HREF="seealso.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="../p_doc.css"><META
+HTTP-EQUIV="Content-Type"
+CONTENT="text/html;
+charset=ISO-8859-1">
+<LINK REL="STYLESHEET" TYPE="text/css" HREF="p_doc.css">
+</head
+><BODY
+CLASS="SECT1"
+BGCOLOR="#EEEEEE"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Privoxy 3.0.12 User Manual</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="seealso.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+>&nbsp;</TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="APPENDIX"
+>14. Appendix</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="REGEX"
+>14.1. Regular Expressions</A
+></H2
+><P
+> <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> uses Perl-style <SPAN
+CLASS="QUOTE"
+>"regular
+ expressions"</SPAN
+> in its <A
+HREF="actions-file.html"
+>actions
+ files</A
+> and <A
+HREF="filter-file.html"
+>filter file</A
+>,
+ through the <A
+HREF="http://www.pcre.org/"
+TARGET="_top"
+>PCRE</A
+> and
+ <SPAN
+CLASS="APPLICATION"
+>PCRS</SPAN
+> libraries.</P
+><P
+> If you are reading this, you probably don't understand what <SPAN
+CLASS="QUOTE"
+>"regular
+ expressions"</SPAN
+> are, or what they can do. So this will be a very brief
+ introduction only. A full explanation would require a <A
+HREF="http://www.oreilly.com/catalog/regex/"
+TARGET="_top"
+>book</A
+> ;-)</P
+><P
+> Regular expressions provide a language to describe patterns that can be
+ run against strings of characters (letter, numbers, etc), to see if they
+ match the string or not. The  patterns are themselves (sometimes complex)
+ strings of literal characters, combined with  wild-cards, and other special
+ characters, called meta-characters. The <SPAN
+CLASS="QUOTE"
+>"meta-characters"</SPAN
+> have
+ special meanings and are used to build complex patterns to be matched against.
+ Perl Compatible Regular Expressions are an especially convenient
+ <SPAN
+CLASS="QUOTE"
+>"dialect"</SPAN
+> of the regular expression language.</P
+><P
+> To make a simple analogy, we do something similar when we use wild-card
+ characters when listing files with the <B
+CLASS="COMMAND"
+>dir</B
+> command in DOS. 
+ <TT
+CLASS="LITERAL"
+>*.*</TT
+> matches all filenames. The <SPAN
+CLASS="QUOTE"
+>"special"</SPAN
+>
+ character here is the asterisk which matches any and all characters. We can be
+ more specific and use <TT
+CLASS="LITERAL"
+>?</TT
+> to match just individual
+ characters. So <SPAN
+CLASS="QUOTE"
+>"dir file?.text"</SPAN
+> would match
+ <SPAN
+CLASS="QUOTE"
+>"file1.txt"</SPAN
+>, <SPAN
+CLASS="QUOTE"
+>"file2.txt"</SPAN
+>, etc. We are pattern
+ matching, using a similar technique to <SPAN
+CLASS="QUOTE"
+>"regular expressions"</SPAN
+>!</P
+><P
+> Regular expressions do essentially the same thing, but are much, much more
+ powerful. There are many more <SPAN
+CLASS="QUOTE"
+>"special characters"</SPAN
+> and ways of 
+ building complex patterns however. Let's look at a few of the common ones,
+ and then some examples:</P
+><P
+><P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+>  <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>.</I
+></SPAN
+> - Matches any single character, e.g. <SPAN
+CLASS="QUOTE"
+>"a"</SPAN
+>,
+  <SPAN
+CLASS="QUOTE"
+>"A"</SPAN
+>, <SPAN
+CLASS="QUOTE"
+>"4"</SPAN
+>, <SPAN
+CLASS="QUOTE"
+>":"</SPAN
+>, or <SPAN
+CLASS="QUOTE"
+>"@"</SPAN
+>.
+ </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></P
+><P
+><P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+>  <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>?</I
+></SPAN
+> - The preceding character or expression is matched ZERO or ONE
+  times. Either/or.
+ </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></P
+><P
+><P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+>  <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>+</I
+></SPAN
+> - The preceding character or expression is matched ONE or MORE
+  times.
+ </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></P
+><P
+><P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+>  <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>*</I
+></SPAN
+> - The preceding character or expression is matched ZERO or MORE
+  times.
+ </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></P
+><P
+><P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+>  <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>\</I
+></SPAN
+> - The <SPAN
+CLASS="QUOTE"
+>"escape"</SPAN
+> character denotes that
+  the following character should be taken literally. This is used where one of the 
+  special characters (e.g. <SPAN
+CLASS="QUOTE"
+>"."</SPAN
+>) needs to be taken literally and
+  not as a special meta-character. Example: <SPAN
+CLASS="QUOTE"
+>"example\.com"</SPAN
+>, makes 
+  sure the period is recognized only as a period (and not expanded to its 
+  meta-character meaning of any single character).
+ </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></P
+><P
+><P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+>  <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>[ ]</I
+></SPAN
+> - Characters enclosed in brackets will be matched if
+  any of the enclosed characters are encountered. For instance, <SPAN
+CLASS="QUOTE"
+>"[0-9]"</SPAN
+>
+  matches any numeric digit (zero through nine). As an example, we can combine 
+  this with <SPAN
+CLASS="QUOTE"
+>"+"</SPAN
+> to match any digit one of more times: <SPAN
+CLASS="QUOTE"
+>"[0-9]+"</SPAN
+>.
+ </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></P
+><P
+><P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+>  <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>( )</I
+></SPAN
+> - parentheses are used to group a sub-expression,
+  or multiple sub-expressions.
+ </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></P
+><P
+><P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+>  <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>|</I
+></SPAN
+> - The <SPAN
+CLASS="QUOTE"
+>"bar"</SPAN
+> character works like an
+  <SPAN
+CLASS="QUOTE"
+>"or"</SPAN
+> conditional statement. A match is successful if the
+  sub-expression on either side of <SPAN
+CLASS="QUOTE"
+>"|"</SPAN
+> matches. As an example:
+  <SPAN
+CLASS="QUOTE"
+>"/(this|that) example/"</SPAN
+> uses grouping and the bar character 
+  and would match either <SPAN
+CLASS="QUOTE"
+>"this example"</SPAN
+> or <SPAN
+CLASS="QUOTE"
+>"that
+  example"</SPAN
+>, and nothing else.
+ </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></P
+><P
+> These are just some of the ones you are likely to use when matching URLs with 
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>, and is a long way from a definitive
+ list. This is enough to get us started with a few simple examples which may
+ be more illuminating:</P
+><P
+> <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+><TT
+CLASS="LITERAL"
+>/.*/banners/.*</TT
+></I
+></SPAN
+> - A  simple example
+ that uses the common combination of <SPAN
+CLASS="QUOTE"
+>"."</SPAN
+> and <SPAN
+CLASS="QUOTE"
+>"*"</SPAN
+> to 
+ denote any character, zero or more times. In other words, any string at all.
+ So we start with a literal forward slash, then our regular expression pattern 
+ (<SPAN
+CLASS="QUOTE"
+>".*"</SPAN
+>) another literal forward slash, the string
+ <SPAN
+CLASS="QUOTE"
+>"banners"</SPAN
+>, another forward slash, and lastly another
+ <SPAN
+CLASS="QUOTE"
+>".*"</SPAN
+>. We are building 
+ a directory path here. This will match any file with the path that has a
+ directory named <SPAN
+CLASS="QUOTE"
+>"banners"</SPAN
+> in it. The <SPAN
+CLASS="QUOTE"
+>".*"</SPAN
+> matches
+ any characters, and this could conceivably be more forward slashes, so it
+ might expand into a much longer looking path. For example, this could match:
+ <SPAN
+CLASS="QUOTE"
+>"/eye/hate/spammers/banners/annoy_me_please.gif"</SPAN
+>, or just
+ <SPAN
+CLASS="QUOTE"
+>"/banners/annoying.html"</SPAN
+>, or almost an infinite number of other
+ possible combinations, just so it has <SPAN
+CLASS="QUOTE"
+>"banners"</SPAN
+> in the path
+ somewhere.</P
+><P
+> And now something a little more complex:</P
+><P
+> <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+><TT
+CLASS="LITERAL"
+>/.*/adv((er)?ts?|ertis(ing|ements?))?/</TT
+></I
+></SPAN
+> - 
+ We have several literal forward slashes again (<SPAN
+CLASS="QUOTE"
+>"/"</SPAN
+>), so we are
+ building another expression that is a file path statement. We have another 
+ <SPAN
+CLASS="QUOTE"
+>".*"</SPAN
+>, so we are matching against any conceivable sub-path, just so
+ it matches our expression. The only true literal that <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>must
+ match</I
+></SPAN
+> our pattern is <SPAN
+CLASS="APPLICATION"
+>adv</SPAN
+>, together with
+ the forward slashes. What comes after the <SPAN
+CLASS="QUOTE"
+>"adv"</SPAN
+> string is the
+ interesting part. </P
+><P
+> Remember the <SPAN
+CLASS="QUOTE"
+>"?"</SPAN
+> means the preceding expression (either a
+ literal character or anything grouped with <SPAN
+CLASS="QUOTE"
+>"(...)"</SPAN
+> in this case)
+ can exist or not, since this means either zero or one match. So
+ <SPAN
+CLASS="QUOTE"
+>"((er)?ts?|ertis(ing|ements?))"</SPAN
+> is optional, as are the
+ individual sub-expressions: <SPAN
+CLASS="QUOTE"
+>"(er)"</SPAN
+>,
+ <SPAN
+CLASS="QUOTE"
+>"(ing|ements?)"</SPAN
+>, and the <SPAN
+CLASS="QUOTE"
+>"s"</SPAN
+>. The <SPAN
+CLASS="QUOTE"
+>"|"</SPAN
+>
+ means <SPAN
+CLASS="QUOTE"
+>"or"</SPAN
+>. We have two of those. For instance, 
+ <SPAN
+CLASS="QUOTE"
+>"(ing|ements?)"</SPAN
+>, can expand to match either <SPAN
+CLASS="QUOTE"
+>"ing"</SPAN
+> 
+ <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>OR</I
+></SPAN
+> <SPAN
+CLASS="QUOTE"
+>"ements?"</SPAN
+>. What is being done here, is an
+ attempt at matching as many variations of <SPAN
+CLASS="QUOTE"
+>"advertisement"</SPAN
+>, and 
+ similar, as possible. So this would expand to match just <SPAN
+CLASS="QUOTE"
+>"adv"</SPAN
+>,
+ or <SPAN
+CLASS="QUOTE"
+>"advert"</SPAN
+>, or <SPAN
+CLASS="QUOTE"
+>"adverts"</SPAN
+>, or
+ <SPAN
+CLASS="QUOTE"
+>"advertising"</SPAN
+>, or <SPAN
+CLASS="QUOTE"
+>"advertisement"</SPAN
+>, or
+ <SPAN
+CLASS="QUOTE"
+>"advertisements"</SPAN
+>. You get the idea. But it would not match 
+ <SPAN
+CLASS="QUOTE"
+>"advertizements"</SPAN
+> (with a <SPAN
+CLASS="QUOTE"
+>"z"</SPAN
+>). We could fix that by
+ changing our regular expression to: 
+ <SPAN
+CLASS="QUOTE"
+>"/.*/adv((er)?ts?|erti(s|z)(ing|ements?))?/"</SPAN
+>, which would then match
+ either spelling.</P
+><P
+> <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+><TT
+CLASS="LITERAL"
+>/.*/advert[0-9]+\.(gif|jpe?g)</TT
+></I
+></SPAN
+> - Again 
+ another path statement with forward slashes. Anything in the square brackets 
+ <SPAN
+CLASS="QUOTE"
+>"[ ]"</SPAN
+> can be matched. This is using <SPAN
+CLASS="QUOTE"
+>"0-9"</SPAN
+> as a
+ shorthand expression to mean any digit one through nine. It is the same as
+ saying <SPAN
+CLASS="QUOTE"
+>"0123456789"</SPAN
+>. So any digit matches. The <SPAN
+CLASS="QUOTE"
+>"+"</SPAN
+>
+ means one or more of the preceding expression must be included. The preceding 
+ expression here is what is in the square brackets -- in this case, any digit 
+ one through nine. Then, at the end, we have a grouping: <SPAN
+CLASS="QUOTE"
+>"(gif|jpe?g)"</SPAN
+>. 
+ This includes a <SPAN
+CLASS="QUOTE"
+>"|"</SPAN
+>, so this needs to match the expression on
+ either side of that bar character also. A simple <SPAN
+CLASS="QUOTE"
+>"gif"</SPAN
+> on one side, and the other
+ side will in turn match either <SPAN
+CLASS="QUOTE"
+>"jpeg"</SPAN
+> or <SPAN
+CLASS="QUOTE"
+>"jpg"</SPAN
+>,
+ since the <SPAN
+CLASS="QUOTE"
+>"?"</SPAN
+> means the letter <SPAN
+CLASS="QUOTE"
+>"e"</SPAN
+> is optional and
+ can be matched once or not at all. So we are building an expression here to
+ match image GIF or JPEG type image file. It must include the literal
+ string <SPAN
+CLASS="QUOTE"
+>"advert"</SPAN
+>, then one or more digits, and a <SPAN
+CLASS="QUOTE"
+>"."</SPAN
+>
+ (which is now a literal, and not a special character, since it is escaped
+ with <SPAN
+CLASS="QUOTE"
+>"\"</SPAN
+>), and lastly either <SPAN
+CLASS="QUOTE"
+>"gif"</SPAN
+>, or
+ <SPAN
+CLASS="QUOTE"
+>"jpeg"</SPAN
+>, or <SPAN
+CLASS="QUOTE"
+>"jpg"</SPAN
+>. Some possible matches would
+ include: <SPAN
+CLASS="QUOTE"
+>"//advert1.jpg"</SPAN
+>,
+ <SPAN
+CLASS="QUOTE"
+>"/nasty/ads/advert1234.gif"</SPAN
+>,
+ <SPAN
+CLASS="QUOTE"
+>"/banners/from/hell/advert99.jpg"</SPAN
+>. It would not match
+ <SPAN
+CLASS="QUOTE"
+>"advert1.gif"</SPAN
+> (no leading slash), or
+ <SPAN
+CLASS="QUOTE"
+>"/adverts232.jpg"</SPAN
+> (the expression does not include an
+ <SPAN
+CLASS="QUOTE"
+>"s"</SPAN
+>), or <SPAN
+CLASS="QUOTE"
+>"/advert1.jsp"</SPAN
+> (<SPAN
+CLASS="QUOTE"
+>"jsp"</SPAN
+> is not
+ in the expression anywhere).</P
+><P
+> We are barely scratching the surface of regular expressions here so that you
+ can understand the default <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>
+ configuration files, and maybe use this knowledge to customize your own
+ installation. There is much, much more that can be done with regular
+ expressions. Now that you know enough to get started, you can learn more on
+ your own :/</P
+><P
+> More reading on Perl Compatible Regular expressions: 
+ <A
+HREF="http://perldoc.perl.org/perlre.html"
+TARGET="_top"
+>http://perldoc.perl.org/perlre.html</A
+></P
+><P
+> For information on regular expression based substitutions and their applications
+ in filters, please see the <A
+HREF="filter-file.html"
+>filter file tutorial</A
+>
+ in this manual.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN5174"
+>14.2. Privoxy's Internal Pages</A
+></H2
+><P
+> Since <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> proxies each requested 
+ web page, it is easy for <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> to 
+ trap certain special URLs. In this way, we can talk directly to
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>, and see how it is 
+ configured, see how our rules are being applied, change these 
+ rules and other configuration options, and even turn
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy's</SPAN
+> filtering off, all with 
+ a web browser.&#13;</P
+><P
+> The URLs listed below are the special ones that allow direct access 
+ to <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>. Of course,
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> must be running to access these. If 
+ not, you will get a friendly error message. Internet access is not 
+ necessary either.</P
+><P
+> <P
+></P
+><UL
+><LI
+><P
+>  
+   Privoxy main page: 
+  </P
+><A
+NAME="AEN5188"
+></A
+><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+> 
+     <A
+HREF="http://config.privoxy.org/"
+TARGET="_top"
+>http://config.privoxy.org/</A
+>
+   </P
+></BLOCKQUOTE
+><P
+>   There is a shortcut: <A
+HREF="http://p.p/"
+TARGET="_top"
+>http://p.p/</A
+> (But it
+   doesn't provide a fall-back to a real page, in case the request is not
+   sent through <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>)
+  </P
+></LI
+><LI
+><P
+>  
+    Show information about the current configuration, including viewing and 
+    editing of actions files:
+  </P
+><A
+NAME="AEN5196"
+></A
+><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+> 
+    <A
+HREF="http://config.privoxy.org/show-status"
+TARGET="_top"
+>http://config.privoxy.org/show-status</A
+>
+   </P
+></BLOCKQUOTE
+></LI
+><LI
+><P
+>  
+    Show the source code version numbers:
+  </P
+><A
+NAME="AEN5201"
+></A
+><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+> 
+    <A
+HREF="http://config.privoxy.org/show-version"
+TARGET="_top"
+>http://config.privoxy.org/show-version</A
+>
+   </P
+></BLOCKQUOTE
+></LI
+><LI
+><P
+>  
+   Show the browser's request headers:
+  </P
+><A
+NAME="AEN5206"
+></A
+><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+> 
+    <A
+HREF="http://config.privoxy.org/show-request"
+TARGET="_top"
+>http://config.privoxy.org/show-request</A
+>
+   </P
+></BLOCKQUOTE
+></LI
+><LI
+><P
+>  
+   Show which actions apply to a URL and why:
+  </P
+><A
+NAME="AEN5211"
+></A
+><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+> 
+    <A
+HREF="http://config.privoxy.org/show-url-info"
+TARGET="_top"
+>http://config.privoxy.org/show-url-info</A
+>
+   </P
+></BLOCKQUOTE
+></LI
+><LI
+><P
+>  
+   Toggle Privoxy on or off. This feature can be turned off/on in the main 
+   <TT
+CLASS="FILENAME"
+>config</TT
+> file. When toggled <SPAN
+CLASS="QUOTE"
+>"off"</SPAN
+>, <SPAN
+CLASS="QUOTE"
+>"Privoxy"</SPAN
+>
+   continues to run, but only as a pass-through proxy, with no actions taking
+   place:
+  </P
+><A
+NAME="AEN5219"
+></A
+><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+> 
+    <A
+HREF="http://config.privoxy.org/toggle"
+TARGET="_top"
+>http://config.privoxy.org/toggle</A
+>
+   </P
+></BLOCKQUOTE
+><P
+>   Short cuts. Turn off, then on: 
+  </P
+><A
+NAME="AEN5223"
+></A
+><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+> 
+     <A
+HREF="http://config.privoxy.org/toggle?set=disable"
+TARGET="_top"
+>http://config.privoxy.org/toggle?set=disable</A
+>
+   </P
+></BLOCKQUOTE
+><A
+NAME="AEN5226"
+></A
+><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+> 
+     <A
+HREF="http://config.privoxy.org/toggle?set=enable"
+TARGET="_top"
+>http://config.privoxy.org/toggle?set=enable</A
+>
+   </P
+></BLOCKQUOTE
+></LI
+></UL
+></P
+><P
+> These may be bookmarked for quick reference. See next.&#13;</P
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="BOOKMARKLETS"
+>14.2.1. Bookmarklets</A
+></H3
+><P
+> Below are some <SPAN
+CLASS="QUOTE"
+>"bookmarklets"</SPAN
+> to allow you to easily access a
+ <SPAN
+CLASS="QUOTE"
+>"mini"</SPAN
+> version of some of <SPAN
+CLASS="APPLICATION"
+>Privoxy's</SPAN
+>
+ special pages. They are designed for MS Internet Explorer, but should work
+ equally well in Netscape, Mozilla, and other browsers which support
+ JavaScript. They are designed to run directly from your bookmarks - not by
+ clicking the links below (although that should work for testing).</P
+><P
+> To save them, right-click the link and choose <SPAN
+CLASS="QUOTE"
+>"Add to Favorites"</SPAN
+>
+ (IE) or <SPAN
+CLASS="QUOTE"
+>"Add Bookmark"</SPAN
+> (Netscape). You will get a warning that
+ the bookmark <SPAN
+CLASS="QUOTE"
+>"may not be safe"</SPAN
+> - just click OK. Then you can run the
+ Bookmarklet directly from your favorites/bookmarks. For even faster access,
+ you can put them on the <SPAN
+CLASS="QUOTE"
+>"Links"</SPAN
+> bar (IE) or the <SPAN
+CLASS="QUOTE"
+>"Personal
+ Toolbar"</SPAN
+> (Netscape), and run them with a single click. </P
+><P
+> <P
+></P
+><UL
+><LI
+><P
+>    <A
+HREF="javascript:void(window.open('http://config.privoxy.org/toggle?mini=y&#38;set=enabled','ijbstatus','width=250,height=100,resizable=yes,scrollbars=no,toolbar=no,location=no,directories=no,status=no,menubar=no,copyhistory=no').focus());"
+TARGET="_top"
+>Privoxy - Enable</A
+>
+   </P
+></LI
+><LI
+><P
+>    <A
+HREF="javascript:void(window.open('http://config.privoxy.org/toggle?mini=y&#38;set=disabled','ijbstatus','width=250,height=100,resizable=yes,scrollbars=no,toolbar=no,location=no,directories=no,status=no,menubar=no,copyhistory=no').focus());"
+TARGET="_top"
+>Privoxy - Disable</A
+>
+   </P
+></LI
+><LI
+><P
+>    <A
+HREF="javascript:void(window.open('http://config.privoxy.org/toggle?mini=y&#38;set=toggle','ijbstatus','width=250,height=100,resizable=yes,scrollbars=no,toolbar=no,location=no,directories=no,status=no,menubar=no,copyhistory=no').focus());"
+TARGET="_top"
+>Privoxy - Toggle Privoxy</A
+> (Toggles between enabled and disabled)
+   </P
+></LI
+><LI
+><P
+>    <A
+HREF="javascript:void(window.open('http://config.privoxy.org/toggle?mini=y','ijbstatus','width=250,height=2,resizable=yes,scrollbars=no,toolbar=no,location=no,directories=no,status=no,menubar=no,copyhistory=no').focus());"
+TARGET="_top"
+>Privoxy- View Status</A
+>
+   </P
+></LI
+><LI
+><P
+>    <A
+HREF="javascript:void(window.open('http://config.privoxy.org/show-url-info?url='+escape(location.href),'Why').focus());"
+TARGET="_top"
+>Privoxy - Why?</A
+>
+   </P
+></LI
+></UL
+></P
+><P
+> Credit: The site which gave us the general idea for these bookmarklets is
+ <A
+HREF="http://www.bookmarklets.com/"
+TARGET="_top"
+>www.bookmarklets.com</A
+>. They
+ have more information about bookmarklets. </P
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="CHAIN"
+>14.3. Chain of Events</A
+></H2
+><P
+> Let's take a quick look at how some of <SPAN
+CLASS="APPLICATION"
+>Privoxy's</SPAN
+> 
+ core features are triggered, and the ensuing sequence of events when a web
+ page is requested by your browser:</P
+><P
+> <P
+></P
+><UL
+><LI
+><P
+>   First, your web browser requests a web page. The browser knows to send 
+   the request to <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>, which will in turn, 
+   relay the request to the remote web server after passing the following 
+   tests: 
+  </P
+></LI
+><LI
+><P
+>   <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> traps any request for its own internal CGI 
+   pages (e.g <A
+HREF="http://p.p/"
+TARGET="_top"
+>http://p.p/</A
+>) and sends the CGI page back to the browser.
+  </P
+></LI
+><LI
+><P
+>   Next, <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> checks to see if the URL 
+   matches any <A
+HREF="actions-file.html#BLOCK"
+><SPAN
+CLASS="QUOTE"
+>"+block"</SPAN
+></A
+> patterns. If
+   so, the URL is then blocked, and the remote web server will not be contacted.
+   <A
+HREF="actions-file.html#HANDLE-AS-IMAGE"
+><SPAN
+CLASS="QUOTE"
+>"+handle-as-image"</SPAN
+></A
+> 
+   and 
+   <A
+HREF="actions-file.html#HANDLE-AS-EMPTY-DOCUMENT"
+><SPAN
+CLASS="QUOTE"
+>"+handle-as-empty-document"</SPAN
+></A
+>
+   are then checked, and if there is no match, an 
+   HTML <SPAN
+CLASS="QUOTE"
+>"BLOCKED"</SPAN
+> page is sent back to the browser. Otherwise, if
+   it does match, an image is returned for the former, and an empty text
+   document for the latter. The type of image would depend on the setting of
+   <A
+HREF="actions-file.html#SET-IMAGE-BLOCKER"
+><SPAN
+CLASS="QUOTE"
+>"+set-image-blocker"</SPAN
+></A
+>
+   (blank, checkerboard pattern, or an HTTP redirect to an image elsewhere).
+  </P
+></LI
+><LI
+><P
+>   Untrusted URLs are blocked. If URLs are being added to the
+   <TT
+CLASS="FILENAME"
+>trust</TT
+> file, then that is done.
+  </P
+></LI
+><LI
+><P
+>   If the URL pattern matches the <A
+HREF="actions-file.html#FAST-REDIRECTS"
+><SPAN
+CLASS="QUOTE"
+>"+fast-redirects"</SPAN
+></A
+> action,
+   it is then processed. Unwanted parts of the requested URL are stripped.
+  </P
+></LI
+><LI
+><P
+>   Now the rest of the client browser's request headers are processed. If any
+   of these match any of the relevant actions (e.g. <A
+HREF="actions-file.html#HIDE-USER-AGENT"
+><SPAN
+CLASS="QUOTE"
+>"+hide-user-agent"</SPAN
+></A
+>,
+   etc.), headers are suppressed or forged as determined by these actions and
+   their parameters.
+  </P
+></LI
+><LI
+><P
+>   Now the web server starts sending its response back (i.e. typically a web
+   page).
+  </P
+></LI
+><LI
+><P
+>   First, the server headers are read and processed to determine, among other
+   things, the MIME type (document type) and encoding. The headers are then
+   filtered as determined by the 
+   <A
+HREF="actions-file.html#CRUNCH-INCOMING-COOKIES"
+><SPAN
+CLASS="QUOTE"
+>"+crunch-incoming-cookies"</SPAN
+></A
+>,
+   <A
+HREF="actions-file.html#SESSION-COOKIES-ONLY"
+><SPAN
+CLASS="QUOTE"
+>"+session-cookies-only"</SPAN
+></A
+>,
+   and <A
+HREF="actions-file.html#DOWNGRADE-HTTP-VERSION"
+><SPAN
+CLASS="QUOTE"
+>"+downgrade-http-version"</SPAN
+></A
+>
+   actions.
+  </P
+></LI
+><LI
+><P
+>   If any <A
+HREF="actions-file.html#FILTER"
+><SPAN
+CLASS="QUOTE"
+>"+filter"</SPAN
+></A
+> action
+   or <A
+HREF="actions-file.html#DEANIMATE-GIFS"
+><SPAN
+CLASS="QUOTE"
+>"+deanimate-gifs"</SPAN
+></A
+>
+   action applies (and the document type fits the action), the rest of the page is
+   read into memory (up to a configurable limit). Then the filter rules (from
+   <TT
+CLASS="FILENAME"
+>default.filter</TT
+> and any other filter files) are
+   processed against the buffered content. Filters are applied in the order
+   they are specified in one of the filter files. Animated GIFs, if present,
+   are reduced to either the first or last frame, depending on the action
+   setting.The entire page, which is now filtered, is then sent by
+   <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> back to your browser. 
+  </P
+><P
+>   If neither a <A
+HREF="actions-file.html#FILTER"
+><SPAN
+CLASS="QUOTE"
+>"+filter"</SPAN
+></A
+> action
+   or <A
+HREF="actions-file.html#DEANIMATE-GIFS"
+><SPAN
+CLASS="QUOTE"
+>"+deanimate-gifs"</SPAN
+></A
+>
+   matches, then <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> passes the raw data through 
+   to the client browser as it becomes available.
+  </P
+></LI
+><LI
+><P
+>   As the browser receives the now (possibly filtered) page content, it 
+   reads and then requests any URLs that may be embedded within the page
+   source, e.g. ad images, stylesheets, JavaScript, other HTML documents (e.g.
+   frames), sounds, etc. For each of these objects, the browser issues a
+   separate request (this is easily viewable in <SPAN
+CLASS="APPLICATION"
+>Privoxy's</SPAN
+>
+   logs). And each such request is in turn processed just as above. Note that a
+   complex web page will have many, many such embedded URLs. If these 
+   secondary requests are to a different server, then quite possibly a very 
+   differing set of actions is triggered.
+  </P
+></LI
+></UL
+></P
+><P
+> NOTE: This is somewhat of a simplistic overview of what happens with each URL
+ request. For the sake of brevity and simplicity, we have focused on 
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy's</SPAN
+> core features only.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="ACTIONSANAT"
+>14.4. Troubleshooting: Anatomy of an Action</A
+></H2
+><P
+> The way <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> applies 
+ <A
+HREF="actions-file.html#ACTIONS"
+>actions</A
+> and <A
+HREF="actions-file.html#FILTER"
+>filters</A
+>
+ to any given URL can be complex, and not always so
+ easy to understand what is happening. And sometimes we need to be able to
+ <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>see</I
+></SPAN
+> just what <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> is
+ doing. Especially, if something <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> is doing
+ is causing us a problem inadvertently. It can be a little daunting to look at
+ the actions and filters files themselves, since they tend to be filled with
+ <A
+HREF="appendix.html#REGEX"
+>regular expressions</A
+> whose consequences are not
+ always so obvious. </P
+><P
+> One quick test to see if <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> is causing a problem 
+ or not, is to disable it temporarily. This should be the first troubleshooting 
+ step. See <A
+HREF="appendix.html#BOOKMARKLETS"
+>the Bookmarklets</A
+> section on a quick 
+ and easy way to do this (be sure to flush caches afterward!). Looking at the 
+ logs is a good idea too. (Note that both the toggle feature and logging are 
+ enabled via <TT
+CLASS="FILENAME"
+>config</TT
+> file settings, and may need to be 
+ turned <SPAN
+CLASS="QUOTE"
+>"on"</SPAN
+>.)</P
+><P
+> Another easy troubleshooting step to try is if you have done any
+ customization of your installation, revert back to the installed
+ defaults and see if that helps. There are times the developers get complaints
+ about one thing or another, and the problem is more related to a customized
+ configuration issue.</P
+><P
+> <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> also provides the 
+ <A
+HREF="http://config.privoxy.org/show-url-info"
+TARGET="_top"
+>http://config.privoxy.org/show-url-info</A
+>
+ page that can show us very specifically how <SPAN
+CLASS="APPLICATION"
+>actions</SPAN
+>
+ are being applied to any given URL. This is a big help for troubleshooting.</P
+><P
+> First, enter one URL (or partial URL) at the prompt, and then
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> will tell us 
+ how the current configuration will handle it. This will not
+ help with filtering effects (i.e. the <A
+HREF="actions-file.html#FILTER"
+><SPAN
+CLASS="QUOTE"
+>"+filter"</SPAN
+></A
+> action) from
+ one of the filter files since this is handled very
+ differently and not so easy to trap! It also will not tell you about any other
+ URLs that may be embedded within the URL you are testing. For instance, images
+ such as ads are expressed as URLs within the raw page source of HTML pages. So
+ you will only get info for the actual URL that is pasted into the prompt area
+ -- not any sub-URLs. If you want to know about embedded URLs like ads, you
+ will have to dig those out of the HTML source. Use your browser's <SPAN
+CLASS="QUOTE"
+>"View
+ Page Source"</SPAN
+> option for this. Or right click on the ad, and grab the
+ URL.</P
+><P
+> Let's try an example, <A
+HREF="http://google.com"
+TARGET="_top"
+>google.com</A
+>, 
+ and look at it one section at a time in a sample configuration (your real 
+ configuration may vary):</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+> Matches for http://www.google.com:
+
+ In file: default.action <SPAN
+CLASS="GUIBUTTON"
+>[ View ]</SPAN
+> <SPAN
+CLASS="GUIBUTTON"
+>[ Edit ]</SPAN
+>
+
+ {+change-x-forwarded-for{block}
+ +deanimate-gifs {last}
+ +fast-redirects {check-decoded-url}
+ +filter {refresh-tags}
+ +filter {img-reorder}
+ +filter {banners-by-size}
+ +filter {webbugs}
+ +filter {jumping-windows}
+ +filter {ie-exploits}
+ +hide-from-header {block}
+ +hide-referrer {forge}
+ +session-cookies-only
+ +set-image-blocker {pattern}
+/
+ 
+ { -session-cookies-only }
+ .google.com
+
+ { -fast-redirects }
+ .google.com
+
+In file: user.action <SPAN
+CLASS="GUIBUTTON"
+>[ View ]</SPAN
+> <SPAN
+CLASS="GUIBUTTON"
+>[ Edit ]</SPAN
+>
+(no matches in this file)  </PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> This is telling us how we have defined our 
+ <A
+HREF="actions-file.html#ACTIONS"
+><SPAN
+CLASS="QUOTE"
+>"actions"</SPAN
+></A
+>, and
+ which ones match for our test case, <SPAN
+CLASS="QUOTE"
+>"google.com"</SPAN
+>. 
+ Displayed is all the actions that are available to us. Remember,
+ the <TT
+CLASS="LITERAL"
+>+</TT
+> sign denotes <SPAN
+CLASS="QUOTE"
+>"on"</SPAN
+>. <TT
+CLASS="LITERAL"
+>-</TT
+>
+ denotes <SPAN
+CLASS="QUOTE"
+>"off"</SPAN
+>. So some are <SPAN
+CLASS="QUOTE"
+>"on"</SPAN
+> here, but many 
+ are <SPAN
+CLASS="QUOTE"
+>"off"</SPAN
+>. Each example we try may provide a slightly different
+ end result, depending on our configuration directives.</P
+><P
+> The first listing
+  is for our <TT
+CLASS="FILENAME"
+>default.action</TT
+> file. The large, multi-line
+  listing, is how the actions are set to match for all URLs, i.e. our default
+  settings. If you look at your <SPAN
+CLASS="QUOTE"
+>"actions"</SPAN
+> file, this would be the
+  section just below the <SPAN
+CLASS="QUOTE"
+>"aliases"</SPAN
+> section near the top. This
+  will apply to all URLs as signified by the single forward slash at the end
+  of the listing -- <SPAN
+CLASS="QUOTE"
+>" / "</SPAN
+>.</P
+><P
+> But we have defined additional actions that would be exceptions to these general
+ rules, and then we list specific URLs (or patterns) that these exceptions
+ would apply to. Last match wins. Just below this then are two explicit
+ matches for <SPAN
+CLASS="QUOTE"
+>".google.com"</SPAN
+>. The first is negating our previous
+ cookie setting, which was for <A
+HREF="actions-file.html#SESSION-COOKIES-ONLY"
+><SPAN
+CLASS="QUOTE"
+>"+session-cookies-only"</SPAN
+></A
+>
+ (i.e. not persistent). So we will allow persistent cookies for google, at
+ least that is how it is in this example. The second turns
+ <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>off</I
+></SPAN
+> any <A
+HREF="actions-file.html#FAST-REDIRECTS"
+><SPAN
+CLASS="QUOTE"
+>"+fast-redirects"</SPAN
+></A
+>
+ action, allowing this to take place unmolested. Note that there is a leading
+ dot here -- <SPAN
+CLASS="QUOTE"
+>".google.com"</SPAN
+>. This will match any hosts and
+ sub-domains, in the google.com domain also, such as
+ <SPAN
+CLASS="QUOTE"
+>"www.google.com"</SPAN
+> or <SPAN
+CLASS="QUOTE"
+>"mail.google.com"</SPAN
+>. But it would not 
+ match <SPAN
+CLASS="QUOTE"
+>"www.google.de"</SPAN
+>! So, apparently, we have these two actions
+ defined as exceptions to the general rules at the top somewhere in the lower
+ part of our <TT
+CLASS="FILENAME"
+>default.action</TT
+> file, and
+ <SPAN
+CLASS="QUOTE"
+>"google.com"</SPAN
+> is referenced somewhere in these latter sections.</P
+><P
+> Then, for our <TT
+CLASS="FILENAME"
+>user.action</TT
+> file, we again have no hits.
+ So there is nothing google-specific that we might have added to our own, local
+ configuration. If there was, those actions would over-rule any actions from 
+ previously processed files, such as <TT
+CLASS="FILENAME"
+>default.action</TT
+>.
+ <TT
+CLASS="FILENAME"
+>user.action</TT
+> typically has the last word. This is the
+ best place to put hard and fast exceptions,</P
+><P
+> And finally we pull it all together in the bottom section and summarize how
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> is applying all its <SPAN
+CLASS="QUOTE"
+>"actions"</SPAN
+> 
+ to <SPAN
+CLASS="QUOTE"
+>"google.com"</SPAN
+>:&#13;</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>&#13; Final results:
+ 
+ -add-header
+ -block
+ +change-x-forwarded-for{block} 
+ -client-header-filter{hide-tor-exit-notation}
+ -content-type-overwrite
+ -crunch-client-header
+ -crunch-if-none-match
+ -crunch-incoming-cookies
+ -crunch-outgoing-cookies
+ -crunch-server-header
+ +deanimate-gifs {last}
+ -downgrade-http-version
+ -fast-redirects
+ -filter {js-events}
+ -filter {content-cookies}
+ -filter {all-popups}
+ -filter {banners-by-link}
+ -filter {tiny-textforms}
+ -filter {frameset-borders}
+ -filter {demoronizer}
+ -filter {shockwave-flash}
+ -filter {quicktime-kioskmode}
+ -filter {fun}
+ -filter {crude-parental}
+ -filter {site-specifics}
+ -filter {js-annoyances}
+ -filter {html-annoyances}
+ +filter {refresh-tags}
+ -filter {unsolicited-popups}
+ +filter {img-reorder}
+ +filter {banners-by-size}
+ +filter {webbugs}
+ +filter {jumping-windows}
+ +filter {ie-exploits}
+ -filter {google}
+ -filter {yahoo}
+ -filter {msn}
+ -filter {blogspot}
+ -filter {no-ping}
+ -force-text-mode
+ -handle-as-empty-document
+ -handle-as-image
+ -hide-accept-language
+ -hide-content-disposition
+ +hide-from-header {block}
+ -hide-if-modified-since
+ +hide-referrer {forge}
+ -hide-user-agent
+ -limit-connect
+ -overwrite-last-modified
+ -prevent-compression
+ -redirect
+ -server-header-filter{xml-to-html}
+ -server-header-filter{html-to-xml} 
+ -session-cookies-only
+ +set-image-blocker {pattern} </PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> Notice the only difference here to the previous listing, is to 
+ <SPAN
+CLASS="QUOTE"
+>"fast-redirects"</SPAN
+> and <SPAN
+CLASS="QUOTE"
+>"session-cookies-only"</SPAN
+>,
+ which are activated specifically for this site in our configuration, 
+ and thus show in the <SPAN
+CLASS="QUOTE"
+>"Final Results"</SPAN
+>.</P
+><P
+> Now another example, <SPAN
+CLASS="QUOTE"
+>"ad.doubleclick.net"</SPAN
+>:</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>&#13; { +block{Domains starts with "ad"} }
+  ad*.
+
+ { +block{Domain contains "ad"} }
+  .ad.
+
+ { +block{Doubleclick banner server} +handle-as-image }
+  .[a-vx-z]*.doubleclick.net</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> We'll just show the interesting part here - the explicit matches. It is 
+ matched three different times. Two <SPAN
+CLASS="QUOTE"
+>"+block{}"</SPAN
+> sections, 
+ and a <SPAN
+CLASS="QUOTE"
+>"+block{} +handle-as-image"</SPAN
+>,
+ which is the expanded form of one of our aliases that had been defined as: 
+ <SPAN
+CLASS="QUOTE"
+>"+block-as-image"</SPAN
+>. (<A
+HREF="actions-file.html#ALIASES"
+><SPAN
+CLASS="QUOTE"
+>"Aliases"</SPAN
+></A
+> are defined in
+ the first section of the actions file and typically used to combine more 
+ than one action.)</P
+><P
+> Any one of these would have done the trick and blocked this as an unwanted 
+ image. This is unnecessarily redundant since the last case effectively 
+ would also cover the first. No point in taking chances with these guys 
+ though ;-) Note that if you want an ad or obnoxious 
+ URL to be invisible, it should be defined as <SPAN
+CLASS="QUOTE"
+>"ad.doubleclick.net"</SPAN
+>
+ is done here -- as both a <A
+HREF="actions-file.html#BLOCK"
+><SPAN
+CLASS="QUOTE"
+>"+block{}"</SPAN
+></A
+>
+ <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>and</I
+></SPAN
+> an 
+ <A
+HREF="actions-file.html#HANDLE-AS-IMAGE"
+><SPAN
+CLASS="QUOTE"
+>"+handle-as-image"</SPAN
+></A
+>.
+ The custom alias <SPAN
+CLASS="QUOTE"
+>"<TT
+CLASS="LITERAL"
+>+block-as-image</TT
+>"</SPAN
+> just
+ simplifies the process and make it more readable.</P
+><P
+> One last example. Let's try <SPAN
+CLASS="QUOTE"
+>"http://www.example.net/adsl/HOWTO/"</SPAN
+>.
+ This one is giving us problems. We are getting a blank page. Hmmm ...</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>&#13; Matches for http://www.example.net/adsl/HOWTO/:
+
+ In file: default.action <SPAN
+CLASS="GUIBUTTON"
+>[ View ]</SPAN
+> <SPAN
+CLASS="GUIBUTTON"
+>[ Edit ]</SPAN
+>
+
+ {-add-header 
+  -block
+  +change-x-forwarded-for{block} 
+  -client-header-filter{hide-tor-exit-notation}
+  -content-type-overwrite
+  -crunch-client-header
+  -crunch-if-none-match
+  -crunch-incoming-cookies
+  -crunch-outgoing-cookies
+  -crunch-server-header
+  +deanimate-gifs 
+  -downgrade-http-version 
+  +fast-redirects {check-decoded-url}
+  -filter {js-events}
+  -filter {content-cookies}
+  -filter {all-popups}
+  -filter {banners-by-link}
+  -filter {tiny-textforms}
+  -filter {frameset-borders}
+  -filter {demoronizer}
+  -filter {shockwave-flash}
+  -filter {quicktime-kioskmode}
+  -filter {fun}
+  -filter {crude-parental}
+  -filter {site-specifics}
+  -filter {js-annoyances}
+  -filter {html-annoyances}
+  +filter {refresh-tags}
+  -filter {unsolicited-popups}
+  +filter {img-reorder}
+  +filter {banners-by-size}
+  +filter {webbugs}
+  +filter {jumping-windows}
+  +filter {ie-exploits}
+  -filter {google}
+  -filter {yahoo}
+  -filter {msn}
+  -filter {blogspot}
+  -filter {no-ping}
+  -force-text-mode
+  -handle-as-empty-document
+  -handle-as-image 
+  -hide-accept-language
+  -hide-content-disposition  
+  +hide-from-header{block} 
+  +hide-referer{forge} 
+  -hide-user-agent 
+  -overwrite-last-modified
+  +prevent-compression 
+  -redirect
+  -server-header-filter{xml-to-html}
+  -server-header-filter{html-to-xml} 
+  +session-cookies-only 
+  +set-image-blocker{blank} }
+   /
+
+ { +block{Path contains "ads".} +handle-as-image }
+  /ads</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> Ooops, the <SPAN
+CLASS="QUOTE"
+>"/adsl/"</SPAN
+> is matching <SPAN
+CLASS="QUOTE"
+>"/ads"</SPAN
+> in our 
+ configuration! But we did not want this at all! Now we see why we get the
+ blank page. It is actually triggering two different actions here, and 
+ the effects are aggregated so that the URL is blocked, and <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> is told 
+ to treat the block as if it were an image. But this is, of course, all wrong.
+  We could now add a new action below this (or better in our own
+  <TT
+CLASS="FILENAME"
+>user.action</TT
+> file) that explicitly
+  <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>un</I
+></SPAN
+> blocks (
+  <A
+HREF="actions-file.html#BLOCK"
+><SPAN
+CLASS="QUOTE"
+>"{-block}"</SPAN
+></A
+>) paths with
+  <SPAN
+CLASS="QUOTE"
+>"adsl"</SPAN
+> in them (remember, last match in the configuration
+  wins). There are various ways to handle such exceptions. Example:</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>&#13; { -block }
+  /adsl</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> Now the page displays ;-) 
+ Remember to flush your browser's caches when making these kinds of changes to
+ your configuration to insure that you get a freshly delivered page! Or, try
+ using <TT
+CLASS="LITERAL"
+>Shift+Reload</TT
+>.</P
+><P
+> But now what about a situation where we get no explicit matches like 
+ we did with:</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>&#13; { +block{Path starts with "ads".} +handle-as-image }
+ /ads</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> That actually was very helpful and pointed us quickly to where the problem
+ was. If you don't get this kind of match, then it means one of the default 
+ rules in the first section of <TT
+CLASS="FILENAME"
+>default.action</TT
+> is causing
+ the problem. This would require some guesswork, and maybe a little trial and
+ error to isolate the offending rule. One likely cause would be one of the
+ <A
+HREF="actions-file.html#FILTER"
+><SPAN
+CLASS="QUOTE"
+>"+filter"</SPAN
+></A
+> actions.
+ These tend to be harder to troubleshoot.
+ Try adding the URL for the site to one of aliases that turn off
+ <A
+HREF="actions-file.html#FILTER"
+><SPAN
+CLASS="QUOTE"
+>"+filter"</SPAN
+></A
+>:</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>&#13; { shop }
+ .quietpc.com
+ .worldpay.com   # for quietpc.com
+ .jungle.com
+ .scan.co.uk
+ .forbes.com</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> <SPAN
+CLASS="QUOTE"
+>"<TT
+CLASS="LITERAL"
+>{ shop }</TT
+>"</SPAN
+> is an <SPAN
+CLASS="QUOTE"
+>"alias"</SPAN
+> that expands to 
+ <SPAN
+CLASS="QUOTE"
+>"<TT
+CLASS="LITERAL"
+>{ -filter -session-cookies-only }</TT
+>"</SPAN
+>.
+ Or you could do your own exception to negate filtering:&#13;</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>&#13; { -filter }
+ # Disable ALL filter actions for sites in this section
+ .forbes.com
+ developer.ibm.com
+ localhost</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> This would turn off all filtering for these sites. This is best
+ put in <TT
+CLASS="FILENAME"
+>user.action</TT
+>, for local site
+ exceptions. Note that when a simple domain pattern is used by itself (without
+ the subsequent path portion), all sub-pages within that domain are included 
+ automatically in the scope of the action.</P
+><P
+> Images that are inexplicably being blocked, may well be hitting the 
+<A
+HREF="actions-file.html#FILTER-BANNERS-BY-SIZE"
+><SPAN
+CLASS="QUOTE"
+>"+filter{banners-by-size}"</SPAN
+></A
+>
+ rule, which assumes 
+ that images of certain sizes are ad banners (works well 
+ <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>most of the time</I
+></SPAN
+>  since these tend to be standardized).</P
+><P
+> <SPAN
+CLASS="QUOTE"
+>"<TT
+CLASS="LITERAL"
+>{ fragile }</TT
+>"</SPAN
+> is an alias that disables most
+ actions that are the most likely to cause trouble. This can be used as a
+ last resort for problem sites. </P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>&#13; { fragile }
+ # Handle with care: easy to break
+ mail.google.
+ mybank.example.com</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Remember to flush caches!</I
+></SPAN
+> Note that the 
+ <TT
+CLASS="LITERAL"
+>mail.google</TT
+> reference lacks the TLD portion (e.g. 
+ <SPAN
+CLASS="QUOTE"
+>".com"</SPAN
+>). This will effectively match any TLD with 
+ <TT
+CLASS="LITERAL"
+>google</TT
+> in it, such as <TT
+CLASS="LITERAL"
+>mail.google.de.</TT
+>, 
+ just as an example.</P
+><P
+> 
+ If this still does not work, you will have to go through the remaining
+ actions one by one to find which one(s) is causing the problem.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="seealso.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>&nbsp;</TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>See Also</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>&nbsp;</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

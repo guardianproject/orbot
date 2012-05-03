@@ -1,0 +1,372 @@
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook V3.1//EN" [
+<!entity % dummy "IGNORE"> 
+<!entity p-intro SYSTEM "privoxy.sgml">
+<!entity contacting SYSTEM "contacting.sgml">
+<!entity history SYSTEM "history.sgml">
+<!entity copyright SYSTEM "copyright.sgml">
+<!entity license SYSTEM "license.sgml">
+<!entity p-version "3.0.11">
+<!entity p-status "stable">
+<!entity % p-not-stable "IGNORE">
+<!entity % p-stable "INCLUDE">
+<!entity  my-copy "&copy;">        <!-- kludge for docbook2man            -->
+<!entity % p-homepage "IGNORE">    <!-- toggle for webserver index.html   -->
+<!entity % p-index "IGNORE">       <!-- toggle for local doc index        -->
+]>
+<!--
+ File        :  $Source: /cvsroot/ijbswa/current/doc/source/webserver/index.sgml,v $
+
+ Purpose     :  Index file of the project's homepage and also documentation index
+                This file belongs into
+                ijbswa.sourceforge.net:/home/groups/i/ij/ijbswa/htdocs/
+                
+ $Id: index.sgml,v 2.9 2009/02/19 14:12:02 fabiankeil Exp $
+
+ Copyright (C) 2001-2009 Privoxy Developers <ijbswa-developers@lists.sourceforge.net>
+ See LICENSE.
+
+ ========================================================================
+ NOTE: Please read developer-manual/documentation.html before touching 
+ anything in this, or other Privoxy documentation. 
+ ========================================================================
+
+ Note: This is the Privoxy home page *and* builds a page that can be 
+ used with local documentation as a focal point for docs or other points
+ of interest. The Makefile is adding additional meta data and content via
+ perl.
+
+ Generates: index.html, for webserver home page.
+            privoxy-index.html, for packaging with docs
+ 
+-->
+
+<article id="index">
+<artheader>
+ <title>Privoxy - <![%p-homepage;[Home Page]]><![%p-index;[The Privacy Enhancing Proxy]]></title>
+ <![%p-index;[<subtitle>Project Index Page v&p-version;</subtitle>]]>
+
+<!-- copyright is at bottom of page -->
+
+ <keywordset>
+  <keyword>privoxy</keyword> <keyword>HTTP</keyword> <keyword>proxy</keyword> <keyword>privacy</keyword>
+  <keyword>popups</keyword>  <keyword>po-ups</keyword> <keyword>HTML</keyword> <keyword>JavaScript</keyword>
+  <keyword>cleaning</keyword> <keyword>blocking</keyword> <keyword>cleaner</keyword> <keyword>blocker</keyword>
+  <keyword>filter</keyword> <keyword>proxy</keyword> <keyword>junk</keyword> <keyword>ad</keyword>
+  <keyword>advertisement</keyword> <keyword>banner</keyword> <keyword>webbugs</keyword>
+  <keyword>web-bugs</keyword> <keyword>werbung</keyword> <keyword>junkbusters</keyword>
+  <keyword>junkbuster</keyword>
+ </keywordset>
+
+ <abstract>
+
+<![%dummy;[
+  <para>
+   <comment>
+    This is here to keep vim syntax file from breaking :/
+    If I knew enough to fix it, I would.
+    PLEASE DO NOT REMOVE! HB: hal@foobox.net
+   </comment>
+  </para>
+]]>
+
+<!-- Include privoxy.sgml boilerplate: -->
+  &p-intro;
+<!-- end boilerplate -->
+
+<![%p-homepage;[
+  <para>
+   The most recent release is <ulink url="announce.txt">&p-version; (&p-status;)</ulink>. 
+  </para>
+]]>
+
+ </abstract>
+</artheader>
+
+<!--   ~~~~~       New section      ~~~~~     -->
+
+
+<sect1 renderas="sect2" id="download" label=""><title>Download</title>
+<para>
+ <itemizedlist>
+  <listitem>
+   <para>
+    <ulink url="https://sourceforge.net/project/showfiles.php?group_id=11118">Download recent releases</ulink>
+   </para>
+  </listitem>
+ <!-- 
+ deprecated
+  <listitem>
+   <para>
+    <ulink url="http://cvs.sourceforge.net/cvstarballs/ijbswa-cvsroot.tar.bz2">Download the latest CVS snapshot (source tarball)</ulink>
+   </para>
+  </listitem>
+ --> 
+  <listitem>
+   <para>
+    <ulink url="user-manual/quickstart.html">Quickstart after installation</ulink>
+   </para>
+  </listitem>
+ </itemizedlist>
+</para>
+</sect1>
+
+<sect1 renderas="sect2" id="docs" label=""><title>Documentation</title>
+<para>
+ <itemizedlist>
+  <listitem>
+   <para>
+    <ulink url="user-manual/index.html">User manual</ulink>
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    <ulink url="faq/index.html">Frequently Asked Questions</ulink>
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    <ulink url="developer-manual/index.html">Developer Manual</ulink>
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    <ulink url="man-page/privoxy-man-page.html">Classic Man Page</ulink>
+   </para>
+  </listitem>
+ </itemizedlist>
+</para>
+</sect1>
+
+<sect1 renderas="sect2" id="moreinfo" label=""><title>More information</title>
+<para>
+ <itemizedlist>
+  <listitem>
+   <para>
+    <ulink url="user-manual/contact.html">Support &amp; Service</ulink>
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    <ulink url="user-manual/copyright.html">Copyright, License, History & Authors</ulink>
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    <ulink url="user-manual/introduction.html#FEATURES">List of (new) Features</ulink>
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    <ulink url="https://sourceforge.net/projects/ijbswa/">The project page</ulink>
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    <ulink url="user-manual/seealso.html">Related links</ulink>
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    <!-- please leave this link absolute so this file can be bundled with -->
+    <!-- documentation and still used locally -->
+    <ulink url="http://privoxy.org/team/index.html">Pictures of the Privoxy Team</ulink>
+   </para>
+  </listitem>
+ </itemizedlist>
+</para>
+</sect1>
+
+<![%p-homepage;[
+<!--   ~~~~~       New section      ~~~~~     -->
+<sect1 label="">
+<!-- dummy section, for spacing -->
+<title></title>
+<para>
+<!-- show the SF logo per AUP -->
+<informaltable frame=none label="" pgwide="1">
+ <tgroup cols=1 align="center" colsep=1 rowsep=1>
+  <colspec colname=c1 align="center">
+  <tbody>
+   <row>
+    <entry align="center">Privoxy is developed on:</entry>
+   </row>
+   <row>
+    <entry align="center">
+     <ulink url="http://sourceforge.net/">
+      <inlinegraphic  fileref="http://sourceforge.net/sflogo.php?group_id=11118&#38;type=1&#38;dummy=.gif"></inlinegraphic>
+     </ulink>
+    </entry>
+   </row>
+  </tbody>
+ </tgroup>
+</informaltable>
+</para>
+]]>
+
+<!--
+<informalfigure pgwide="1">
+ <ulink url="http://sourceforge.net/">
+  <inlinegraphic align="center" fileref="http://sourceforge.net/sflogo.php?group_id=11118&#38;type=1&#38;dummy=.gif"></inlinegraphic>
+ </ulink>
+</informalfigure>
+-->
+
+
+<![%p-index;[
+<sect1 label=""><title></title>
+<!-- dummy section for layout and spacing -->
+]]>
+
+<!-- Formal copyright markup does not work here. HB. -->
+<!-- NOTE: I could not get docbook to completely ignore &copy; -->
+<!-- GNUMakefile is inserting this now -->
+<para>
+ <subscript>
+  Copyright __copy 2001-2009 by Privoxy Developers
+ </subscript>
+</para>
+
+</sect1>
+ 
+ <!--
+
+ This program is free software; you can redistribute it 
+ and/or modify it under the terms of the GNU General
+ Public License as published by the Free Software
+ Foundation; either version 2 of the License, or (at
+ your option) any later version.
+
+ This program is distributed in the hope that it will
+ be useful, but WITHOUT ANY WARRANTY; without even the
+ implied warranty of MERCHANTABILITY or FITNESS FOR A
+ PARTICULAR PURPOSE.  See the GNU General Public
+ License for more details.
+
+ The GNU General Public License should be included with
+ this file.  If not, you can view it at
+ http://www.gnu.org/copyleft/gpl.html
+ or write to the Free Software Foundation, Inc., 59
+ Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+
+ $Log: index.sgml,v $
+ Revision 2.9  2009/02/19 14:12:02  fabiankeil
+ Change link to the project page to https://.
+
+ Revision 2.8  2009/02/12 16:09:44  fabiankeil
+ Declare the code stable.
+
+ Revision 2.7  2009/01/13 16:50:36  fabiankeil
+ The standard.action file is gone.
+
+ Revision 2.6  2008/08/16 08:51:28  fabiankeil
+ Update version-related entities.
+
+ Revision 2.5  2008/06/18 17:42:13  fabiankeil
+ - Remove link to soon-to-be-removed PDFs.
+ - Use https for the download URL.
+ - Update copyright year.
+
+ Revision 2.4  2006/08/28 01:08:57  hal9
+ Remove reference to defunct nightly cvs tarballs.
+
+ Revision 2.3  2006/07/18 14:48:51  david__schmidt
+ Reorganizing the repository: swapping out what was HEAD (the old 3.1 branch)
+ with what was really the latest development (the v_3_0_branch branch)
+
+ Revision 1.16.2.12  2004/01/30 14:33:41  oes
+ Vi(m) syntax voodoo now hidden; copyright updated
+
+ Revision 1.16.2.11  2003/08/16 12:16:30  hal9
+ Update cvs tarball URL (to bz2)
+
+ Revision 1.16.2.10  2003/03/28 03:33:09  hal9
+ Include link for announce.txt, and change handling of &copy;.
+
+ Revision 1.16.2.9  2003/03/26 02:03:45  oes
+ Updated hard-coded copyright dates
+
+ Revision 1.16.2.8  2002/08/16 03:05:42  hal9
+ Put all pdf docs in a zip archive now.
+
+ Revision 1.16.2.7  2002/08/14 16:40:00  hal9
+ Add links to pdf docs.
+
+ Revision 1.16.2.6  2002/07/26 15:22:15  oes
+ Most recent release now inserted automatically (again)
+
+ Revision 1.16.2.5  2002/06/09 18:59:16  hal9
+ Correct typo.
+
+ Revision 1.16.2.4  2002/06/09 16:36:33  hal9
+ Clarifications on filtering and MIME. Hardcode 'latest release' in index.html.
+
+ Revision 1.16.2.3  2002/05/28 02:31:38  hal9
+ New file, privoxy-index.html, for bundling with documentation. Built from
+ index.sgml, like homepage, but with content toggles more suitable for this use.
+
+ Revision 1.16.2.2  2002/05/26 22:04:46  hal9
+ Add several comments, and reworded 'most recent release', ie we don't officially
+ release odd numbered versions.
+
+ Revision 1.16.2.1  2002/05/26 17:40:02  hal9
+ Make team pictures link absolute for docs.
+
+ Revision 1.16  2002/05/24 10:06:31  oes
+ Nit
+
+ Revision 1.15  2002/05/24 00:02:05  oes
+ Tried to make more useful and concise:
+   Reordered, no more TOC, link to instead of include info,
+   added some links. Should we use the free space to better
+   describe what Privoxy is good for?
+
+ Revision 1.14  2002/05/10 01:48:20  hal9
+ This is mostly proposed copyright/licensing additions and changes. Docs
+ are still GPL, but licensing and copyright are more visible. Also, copyright
+ changed in doc header comments (eliminate references to JB except FAQ).
+
+ Revision 1.13  2002/05/05 20:29:59  hal9
+ Ooops, fixing an accidental delete of title element.
+
+ Revision 1.12  2002/05/05 20:26:02  hal9
+ Sorting out license vs copyright in these docs.
+
+ Revision 1.11  2002/05/04 08:44:45  swa
+ bumped version
+
+ Revision 1.10  2002/04/26 17:24:31  swa
+ bookmarks cleaned, changed structure of user manual, screen and programlisting cleanups, and numerous other changes that I forgot
+
+ Revision 1.9  2002/04/14 01:00:07  hal9
+ Fix the logo properly with docbook.
+
+ Revision 1.7  2002/04/12 10:11:53  swa
+ changed bookmarklet text so that users can easily find the bookmark
+
+ Revision 1.6  2002/04/12 08:34:18  swa
+ added link to new page
+
+ Revision 1.5  2002/04/12 02:05:19  david__schmidt
+ Tiny English fix: infos -> info
+ Add copyright date 2002
+
+ Revision 1.4  2002/04/08 20:42:07  swa
+ fixed JB spelling
+
+ Revision 1.3  2002/04/07 20:27:18  hal9
+ Fix meta data.
+
+ Revision 1.2  2002/04/07 09:06:45  swa
+ users can now completely browse offline
+
+ Revision 1.1  2002/04/07 08:10:48  swa
+ create some of the webserver docs
+ automatically (in particular if
+ those docs recycle other documentation
+ fragments). Now committed webserver's
+ index file.
+
+
+ -->
+
+</article>

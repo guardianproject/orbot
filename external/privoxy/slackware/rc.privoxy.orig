@@ -1,0 +1,109 @@
+#!/bin/sh
+#  ********************************************************************
+#  This script uses exit to return proper error codes,
+#  sourcing (. /path/to/rc.privoxy) it in your system's
+#  rc files is a bad idea.
+#  ********************************************************************
+
+RETVAL=1
+
+PRIVOXY_PRG="%PROGRAM%"
+PRIVOXY_BIN="%SBIN_DEST%/$PRIVOXY_PRG"
+PRIVOXY_CONF="%CONF_DEST%/config"
+PRIVOXY_USER="%USER%"
+PRIVOXY_GROUP="%GROUP%"
+PRIVOXY_PID="/var/run/$PRIVOXY_PRG.pid"
+
+declare -i check
+check=(`/bin/ps -e|/bin/grep $PRIVOXY_PRG|/usr/bin/wc -l`)
+
+# some checks for us
+if [ ! -x $PRIVOXY_BIN  ] ; then exit 0 ;fi
+if [ ! -f $PRIVOXY_CONF ] ; then exit 0 ;fi
+
+# See how we were called.
+
+PRIVOXY="$PRIVOXY_BIN --user $PRIVOXY_USER.$PRIVOXY_GROUP --pidfile $PRIVOXY_PID $PRIVOXY_CONF"
+
+start () {
+	# start daemon
+	echo -n $"Starting $PRIVOXY_PRG: "
+
+	if [ ! -f $PRIVOXY_PID ]; then
+		( $PRIVOXY 2>/dev/tty9 ) \
+			&& echo " OK" \
+			&& /bin/touch /var/lock/$PRIVOXY_PRG \
+			&& RETVAL=0
+	elif [ $check -lt 3 ]; then 
+	        echo "Zombie lock file found"
+	        /bin/rm -f /var/lock/$PRIVOXY_PRG $PRIVOXY_PID
+		echo "Retrying..."
+		start
+	else
+		echo "Already running"
+	fi
+	echo
+}
+
+stop () {
+	# stop daemon
+	echo -n $"Stopping $PRIVOXY_PRG: "
+	if [ -f $PRIVOXY_PID ]; then
+		/bin/kill `/bin/cat $PRIVOXY_PID` \
+			&& /bin/rm -f /var/lock/$PRIVOXY_PRG $PRIVOXY_PID \
+			&& echo " OK" \
+			&& RETVAL=0
+		echo
+	else
+		echo " Not Running"
+	fi
+}
+
+case "$1" in
+  start)
+	start	
+	;;
+  stop)
+	stop	
+	;;
+  reload)
+	if [ -f $PRIVOXY_PID ] ; then
+                /bin/kill -HUP `cat $PRIVOXY_PID` \
+			&& RETVAL=0
+        fi
+	;;
+  restart)
+	stop 
+	start
+	;;
+  kill)
+	echo "Kill all Privoxy"
+	/bin/rm -f /var/lock/$PRIVOXY_PRG $PRIVOXY_PID 
+	/bin/killall $PRIVOXY
+	;;
+  condrestart)
+	# restart only if already running
+	if [ -f $PRIVOXY_PID ] ; then
+		stop
+		start
+	fi 
+	;;
+  status)
+	/bin/ps ax|/bin/grep $PRIVOXY_PRG|/bin/grep -v 'grep\|init\.d\|rc\.d'
+	RETVAL=0
+	;;
+  top)
+	if [ -f $PRIVOXY_PID ]; then
+                a=""
+                for i in `/sbin/pidof $PRIVOXY_PRG` ; do
+                        a="$a -p $i"
+                done
+                /usr/bin/top $a
+        fi
+	;;
+  *)
+	echo $"Usage: $PRIVOXY_PRG {start|stop|reload|restart|condrestart|status|top|kill}"
+	exit 1
+esac
+
+exit $RETVAL

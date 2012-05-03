@@ -1,0 +1,514 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Privoxy Configuration</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Privoxy 3.0.12 User Manual"
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="Starting Privoxy"
+HREF="startup.html"><LINK
+REL="NEXT"
+TITLE="The Main Configuration File"
+HREF="config.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="../p_doc.css"><META
+HTTP-EQUIV="Content-Type"
+CONTENT="text/html;
+charset=ISO-8859-1">
+<LINK REL="STYLESHEET" TYPE="text/css" HREF="p_doc.css">
+</head
+><BODY
+CLASS="SECT1"
+BGCOLOR="#EEEEEE"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Privoxy 3.0.12 User Manual</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="startup.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="config.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="CONFIGURATION"
+>6. Privoxy Configuration</A
+></H1
+><P
+>  All <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> configuration is stored  
+  in text files. These files can be edited with a text editor.
+  Many important aspects of <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> can 
+  also be controlled easily with a web browser.
+ </P
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN776"
+>6.1. Controlling Privoxy with Your Web Browser</A
+></H2
+><P
+> <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>'s user interface can be reached through the special 
+ URL <A
+HREF="http://config.privoxy.org/"
+TARGET="_top"
+>http://config.privoxy.org/</A
+>
+ (shortcut: <A
+HREF="http://p.p/"
+TARGET="_top"
+>http://p.p/</A
+>), 
+ which is a built-in page and works without Internet access.
+ You will see the following section:&#13;</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+> <H2
+CLASS="BRIDGEHEAD"
+><A
+NAME="AEN784"
+></A
+>    Privoxy Menu</H2
+><P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+>          &#9642;  <A
+HREF="http://config.privoxy.org/show-status"
+TARGET="_top"
+>View &#38; change the current configuration</A
+>
+ </TD
+></TR
+><TR
+><TD
+>          &#9642;  <A
+HREF="http://config.privoxy.org/show-version"
+TARGET="_top"
+>View the source code version numbers</A
+>
+ </TD
+></TR
+><TR
+><TD
+>          &#9642;  <A
+HREF="http://config.privoxy.org/show-request"
+TARGET="_top"
+>View the request headers.</A
+>
+ </TD
+></TR
+><TR
+><TD
+>          &#9642;  <A
+HREF="http://config.privoxy.org/show-url-info"
+TARGET="_top"
+>Look up which actions apply to a URL and why</A
+>
+ </TD
+></TR
+><TR
+><TD
+>          &#9642;  <A
+HREF="http://config.privoxy.org/toggle"
+TARGET="_top"
+>Toggle Privoxy on or off</A
+>
+ </TD
+></TR
+><TR
+><TD
+>          &#9642;  <A
+HREF="http://www.privoxy.org/3.0.12/user-manual/"
+TARGET="_top"
+>Documentation</A
+>
+ </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></PRE
+></TD
+></TR
+></TABLE
+><P
+> This should be self-explanatory. Note the first item leads to an editor for the
+ <A
+HREF="actions-file.html"
+>actions files</A
+>, which is where the ad, banner,
+ cookie, and URL blocking magic is configured as well as other advanced features of
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>. This is an easy way to adjust various
+ aspects of <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> configuration. The actions
+ file, and other configuration files, are explained in detail below. </P
+><P
+> <SPAN
+CLASS="QUOTE"
+>"Toggle Privoxy On or Off"</SPAN
+> is handy for sites that might 
+ have problems with your current actions and filters. You can in fact use
+ it as a test to see whether it is <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> 
+ causing the problem or not. <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> continues 
+ to run as a proxy in this case, but all manipulation is disabled, i.e.
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> acts like a normal forwarding proxy. There
+ is even a toggle <A
+HREF="appendix.html#BOOKMARKLETS"
+>Bookmarklet</A
+> offered, so
+ that you can toggle <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> with one click from
+ your browser.</P
+><P
+> Note that several of the features described above are disabled by default
+ in <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> 3.0.7 beta and later.
+ Check the
+ <A
+HREF="config.html"
+TARGET="_top"
+>configuration file</A
+> to learn why
+ and in which cases it's safe to enable them again.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="CONFOVERVIEW"
+>6.2. Configuration Files Overview</A
+></H2
+><P
+> For Unix, *BSD and Linux, all configuration files are located in
+ <TT
+CLASS="FILENAME"
+>/etc/privoxy/</TT
+> by default. For MS Windows, OS/2, and
+ AmigaOS these are all in the same directory as the 
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> executable. </P
+><P
+> The installed defaults provide a reasonable starting point, though 
+ some settings may be aggressive by some standards. For the time being, the
+ principle configuration files are:</P
+><P
+> <P
+></P
+><UL
+><LI
+><P
+>     The <A
+HREF="config.html"
+>main configuration file</A
+> is named <TT
+CLASS="FILENAME"
+>config</TT
+>
+     on Linux, Unix, BSD, OS/2, and AmigaOS and <TT
+CLASS="FILENAME"
+>config.txt</TT
+>
+     on Windows. This is a required file.
+   </P
+></LI
+><LI
+><P
+>    <TT
+CLASS="FILENAME"
+>match-all.action</TT
+> is used to define which <SPAN
+CLASS="QUOTE"
+>"actions"</SPAN
+>
+    relating to banner-blocking, images, pop-ups, content modification, cookie handling
+    etc should be applied by default. It should be the first actions file loaded.
+   </P
+><P
+>    <TT
+CLASS="FILENAME"
+>default.action</TT
+> defines many exceptions (both positive and negative)
+    from the default set of actions that's configured in <TT
+CLASS="FILENAME"
+>match-all.action</TT
+>.
+    It should be the second actions file loaded and shouldn't be edited by the user.
+   </P
+><P
+>    Multiple actions files may be defined in <TT
+CLASS="FILENAME"
+>config</TT
+>. These 
+    are processed in the order they are defined. Local customizations and locally 
+    preferred exceptions to the default policies as defined in
+    <TT
+CLASS="FILENAME"
+>match-all.action</TT
+> (which you will most probably want
+    to define sooner or later) are best applied in <TT
+CLASS="FILENAME"
+>user.action</TT
+>,
+    where you can preserve them across upgrades. The file isn't installed by all
+    installers, but you can easily create it yourself with a text editor.
+   </P
+><P
+>    
+    There is also a web based editor that can be accessed from
+    <A
+HREF="http://config.privoxy.org/show-status"
+TARGET="_top"
+>http://config.privoxy.org/show-status</A
+>
+    (Shortcut: <A
+HREF="http://p.p/show-status"
+TARGET="_top"
+>http://p.p/show-status</A
+>) for the
+    various actions files. 
+   </P
+></LI
+><LI
+><P
+>    <SPAN
+CLASS="QUOTE"
+>"Filter files"</SPAN
+> (the <A
+HREF="filter-file.html"
+>filter
+    file</A
+>) can be used to re-write the raw page content, including
+    viewable text as well as embedded HTML and JavaScript, and whatever else
+    lurks on any given web page. The filtering jobs are only pre-defined here;
+    whether to apply them or not is up to the actions files. 
+    <TT
+CLASS="FILENAME"
+>default.filter</TT
+> includes various filters made 
+    available for use by the developers. Some are much more intrusive than 
+    others, and all should be used with caution. You may define additional 
+    filter files in <TT
+CLASS="FILENAME"
+>config</TT
+> as you can with 
+    actions files. We suggest <TT
+CLASS="FILENAME"
+>user.filter</TT
+> for any 
+    locally defined filters or customizations.
+   </P
+></LI
+></UL
+></P
+><P
+> The syntax of the configuration and filter files may change between different
+ Privoxy versions, unfortunately some enhancements cost backwards compatibility.
+ </P
+><P
+> All files use the <SPAN
+CLASS="QUOTE"
+>"<TT
+CLASS="LITERAL"
+>#</TT
+>"</SPAN
+> character to denote a
+ comment (the rest of the line will be ignored) and understand line continuation
+ through placing a backslash ("<TT
+CLASS="LITERAL"
+>\</TT
+>") as the very last character
+ in a line. If the <TT
+CLASS="LITERAL"
+>#</TT
+> is preceded by a backslash, it looses
+ its special function. Placing a <TT
+CLASS="LITERAL"
+>#</TT
+> in front of an otherwise
+ valid configuration line to prevent it from being interpreted is called "commenting
+ out" that line. Blank lines are ignored.</P
+><P
+> The actions files and filter files  
+ can use Perl style <A
+HREF="appendix.html#REGEX"
+>regular expressions</A
+> for
+ maximum flexibility. </P
+><P
+> After making any changes, there is no need to restart
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> in order for the changes to take
+ effect. <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> detects such changes 
+ automatically. Note, however, that it may take one or two additional
+ requests for the change to take effect. When changing the listening address
+ of <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>, these <SPAN
+CLASS="QUOTE"
+>"wake up"</SPAN
+> requests
+ must obviously be sent to the <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>old</I
+></SPAN
+> listening address.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="startup.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="config.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Starting Privoxy</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>The Main Configuration File</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

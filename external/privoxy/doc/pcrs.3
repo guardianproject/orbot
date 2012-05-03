@@ -1,0 +1,488 @@
+.\" Copyright (c) 2001-2003 Andreas S. Oesterhelt <oes@oesterhelt.org>
+.\"
+.\" This is free documentation; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License as
+.\" published by the Free Software Foundation; either version 2 of
+.\" the License, or (at your option) any later version.
+.\"
+.\" The GNU General Public License's references to "object code"
+.\" and "executables" are to be interpreted as the output of any
+.\" document formatting or typesetting system, including
+.\" intermediate and printed output.
+.\"
+.\" This manual is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public
+.\" License along with this manual; if not, write to the Free
+.\" Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
+.\" MA 02111, USA.
+.\"
+.TH PCRS 3 "2 December 2003" "pcrs-0.0.3"
+.SH NAME
+pcrs - Perl-compatible regular substitution.
+.SH SYNOPSIS
+.br
+.B "#include <pcrs.h>"
+.PP
+.br
+.BI "pcrs_job *pcrs_compile(const char *" pattern "," 
+.ti +5n
+.BI "const char *" substitute ", const char *" options ,
+.ti +5n
+.BI "int *" errptr );
+.PP
+.br
+.BI "pcrs_job *pcrs_compile_command(const char *" command ,
+.ti +5n
+.BI "int *" errptr );
+.PP
+.br
+.BI "int pcrs_execute(pcrs_job *" job ", char *" subject ,
+.ti +5n
+.BI "int " subject_length ", char **" result ,
+.ti +5n
+.BI "int *" result_length );
+.PP
+.br
+.BI "int pcrs_execute_list (pcrs_job *" joblist ", char *" subject ,
+.ti +5n
+.BI "int " subject_length ", char **" result ,
+.ti +5n
+.BI "int *" result_length );
+.PP
+.br
+.BI "pcrs_job *pcrs_free_job(pcrs_job *" job );
+.PP
+.br
+.BI "void pcrs_free_joblist(pcrs_job *" joblist );
+.PP
+.br
+.BI "char *pcrs_strerror(int " err );
+.PP
+.br
+
+.SH DESCRIPTION
+
+The
+.SM PCRS
+library is a supplement to the 
+.SB PCRE(3)
+library that implements
+.RB "regular expression based substitution, like provided by " Perl(1) "'s 's'"
+operator. It uses the same syntax and semantics as Perl 5, with just a few
+differences (see below).
+
+In a first step, the information on a substitution, i.e. the pattern, the
+substitute and the options are compiled from Perl syntax to an internal form
+.RB "called " pcrs_job " by using either the " pcrs_compile() " or " 
+.BR pcrs_compile_command() " functions."
+
+Once the job is compiled, it can be used on subjects, which are arbitrary 
+memory areas containing string or binary data, by calling
+.BR pcrs_execute() ". Jobs can be chained to joblists and whole"
+.RB "joblists can be applied to a subject using " pcrs_execute_list() .
+
+There are also convenience functions for freeing the jobs and for errno-to-string
+.RB "conversion, namely " pcrs_free_job() ", " pcrs_free_joblist() " and "
+.BR pcrs_strerror() .
+
+.SH COMPILING JOBS
+
+.RB "The function " pcrs_compile() " is called to compile a " pcrs_job
+.RI "from a " pattern ", " substitute " and " options " string."
+.RB "The resulting " "pcrs_job" " structure is dynamically allocated and it"
+.RB "is the caller's responsibility to call " "pcrs_free_job()" "  when it's no longer needed."
+
+.BR "pcrs_compile_command()" " is a convenience wrapper function that parses a Perl"
+.IR "command" " of the form"
+.BI "s/" "pattern" "/" "substitute" "/[" "options" "]"
+.RB "into its components and then calls " "pcrs_compile()" ". As in Perl, you"
+.RB "are not bound to the '" "/" "' character: Whatever"
+.RB "follows the '" "s" "' will be used as the delimiter. Patterns or substitutes"
+that contain the delimiter need to quote it:
+\fBs/th\\/is/th\\/at/\fR
+.RB "will replace " "th/is" " by " "th/at" " and can be written more simply as" 
+.BR "s|th/is|th/at|" "."
+
+.IR "pattern" ", " "substitute" ", " "options" " and " "command" " must be"
+.RI "zero-terminated C strings. " "substitute" " and " "options" " may be"
+.BR "NULL" ", in which case they are treated like the empty string."
+
+.SS "Return value and diagnostics"
+On success, both functions return a pointer to the compiled job.
+.RB "On failure, " "NULL"
+.RI "is returned. In that case, the pcrs error code is written to *" "err" "."
+
+.SS Patterns
+.RI "For the syntax of the " "pattern" ", see the "
+.BR "PCRE(3)" " manual page."
+
+.SS Substitutes
+.RI "The " "substitute" " uses"
+.RB "Perl syntax as documented in the " "perlre(1)" " manual page, with"
+some exceptions: 
+
+Most notably and evidently, since
+.SM PCRS
+is not Perl, variable interpolation or Perl command substitution won't work.
+Special variables that do get interpolated, are:
+.TP
+.B "$1, $2, ..., $n"
+Like in Perl, these variables refer to what the nth capturing subpattern
+in the pattern matched.
+.TP
+.B "$& and $0"
+.RB "refer to the whole match. Note that " "$0" " is deprecated in recent"
+Perl versions and now refers to the program name.
+.TP
+.B "$+"
+refers to what the last capturing subpattern matched.
+.TP
+.BR "$` and $'" " (backtick and tick)"
+.RI "refer to the areas of the " "subject" " before and after the match, respectively."
+.RB "Note that, like in Perl, the " "unmodified" " subject is used, even"
+if a global substitution previously matched.
+
+.PP
+Perl4-style references to subpattern matches of the form 
+\fB\\1, \\2, ...\fR
+.RB "which only exist in Perl5 for backwards compatibility, are " "not" 
+supported.
+
+Also, since the substitute is a double-quoted string in Perl, you
+might expect all Perl syntax for special characters to apply. In fact,
+only the following are supported:
+
+.TP
+\fB\\n\fR
+newline (0x0a)
+.TP
+\fB\\r\fR
+carriage return (0x0d)
+.TP
+\fB\\t\fR
+horizontal tab (0x09)
+.TP
+\fB\\f\fR
+form feed (0x0c)
+.TP
+\fB\\b\fR
+backspace (0x08)
+.TP
+\fB\\a\fR
+alarm, bell (0x07)
+.TP
+\fB\\e\fR
+escape (0x1b)
+.TP
+\fB\\0\fR
+binary zero (0x00)
+
+.SS "Options"
+.RB "The options " "gmisx" " are supported. " "e" " is not, since it would"
+.RB "require a Perl interpreter and neither is " o ", because the pattern
+is explicitly compiled, anyway. Additionally,
+.SM PCRS
+.RB "honors the options " "U" " and " "T" "."
+Where
+.SM PCRE
+.RB "options are mentioned below, refer to " PCRE(3) " for the subtle differences"
+to Perl behaviour.
+
+.TP
+.B g
+.RB "Replace " all " instances of"
+.IR pattern " in " subject ,
+not just the first one.
+
+.TP
+.B i
+.RI "Match the " pattern " without respect to case. This translates to"
+.SM PCRE_CASELESS.
+
+.TP
+.B m
+.RI "Treat the " subject " as consisting of multiple lines, i.e."
+.RB ' ^ "' matches immediately after, and '" $ "' immediately before each newline."
+Translates to
+.SM PCRE_MULTILINE.
+
+.TP
+.B s
+.RI "Treat the " subject " as consisting of one single line, i.e."
+.RB "let the scope of the '" . "' metacharacter include newlines."
+Translates to
+.SM PCRE_DOTALL.
+
+.TP
+.B x
+.RI "Allow extended regular expression syntax in the " pattern ","
+.RB "enabling whitespace and comments in complex patterns."
+Translates to
+.SM PCRE_EXTENDED.
+
+.TP
+.B U
+.RB "Switch the default behaviour of the '" * "' and '" + "' quantifiers"
+.RB "to ungreedy. Note that appending a '" ? "' switches back to greedy(!)."
+.RB "The explicit in-pattern switches " (?U) " and " (?-U) " remain unaffected."
+Translates to
+.SM PCRE_UNGREEDY.
+
+.TP
+.B T
+.RI "Consider the " substitute " trivial, i.e. do not interpret any references"
+or special character escape sequences in the substitute. Handy for large
+user-supplied substitutes, which would otherwise have to be examined and properly
+quoted.
+
+.PP
+Unsupported options are silently ignored.
+
+.SH EXECUTING JOBS
+
+.RI "Calling " pcrs_execute() " produces a modified copy of the " subject ", in which"
+.RB "the first (or all, if the '" g "' option was given when compiling the job)"
+.RI "occurance(s) of the job's " pattern " in the " subject " is replaced by the job's"
+.IR substitute .
+
+.RI "The first " subject_length " bytes following " subject " are processed, so"
+.RI  "a " subject_length " that exceeds the actual " subject " is dangerous."
+.RI "Note that for zero-terminated C strings, you should set " subject_length " to"
+.BI strlen( subject ) \fR,
+so that the dollar metacharacter matches at the end of the string, not after
+the string-terminating null byte. For convenience, an extra null byte is
+appended to the result so it can again be used as a string.
+
+.RI "The " subject " itself is left untouched, and the " *result " is dynamically"
+.RB "allocated, so it is the caller's responsibility to " free() " it when it's"
+no longer needed.
+
+.RI "The result's length (excluding the extra null byte) is written to " *result_length "."
+
+.RB "If the job matched, the " PCRS_SUCCESS " flag in"
+.IB job ->flags
+is set.
+
+
+.SS String subjects
+If your 
+
+.SS Return value and diagnostics
+
+.RB "On success, " pcrs_execute() " returns the number of substitutions that"
+were made, which is limited to 0 or 1 for non-global searches.
+.RI "On failure, a negative error code is returned and " result " is set"
+.RB "to " NULL .
+
+.SH FREEING JOBS
+.RB "It is not sufficient to call " free() " on a " pcrs_job ", because it "
+contains pointers to other dynamically allocated structures.
+.RB "Use " pcrs_free_job() " instead. It is safe to pass " NULL " pointers "
+.RB "(or pointers to invalid " pcrs_job "s that contain " NULL " pointers"
+.RB "to dependant structures) to " pcrs_free_job() "."
+
+.SS Return value
+.RB "The value of the job's " next " pointer."
+
+
+.SH CHAINING JOBS
+
+.SM PCRS
+.RB "supports to some extent the chaining of multiple " pcrs_job " structures by"
+.RB "means of their " next " member."
+
+Chaining the jobs is up to you, but once you have built a linked list of jobs,
+.RI "you can execute a whole " joblist " on a given subject by"
+.RB "a single call to " pcrs_execute_list() ", which will sequentially traverse"
+.RB "the linked list until it reaches a " NULL " pointer, and call " pcrs_execute() 
+.RI "for each job it encounters, feeding the " result  " and " result_length " of each"
+.RI "call into the next as the " subject " and " subject_length ". As in the single"
+.RI "job case, the original " subject " remains untouched, but all interim " result "s"
+.RB "are of course " free() "d. The return value is the accumulated number of matches"
+.RI "for all jobs in the " joblist "."
+.RI "Note that while this is handy, it reduces the diagnostic value of " err ", since "
+you won't know which job failed.
+
+.RI "In analogy, you can free all jobs in a given " joblist " by calling"
+.BR pcrs_free_joblist() .
+
+.SH QUOTING
+The quote character is (surprise!) '\fB\\\fR'. It quotes the delimiter in a
+.IR command ", the"
+.RB ' $ "' in  a"
+.IR substitute ", and, of course, itself. Note that the"
+.RB ' $ "' doesn't need to be quoted if it isn't followed by " [0-9+'`&] "."
+
+.RI "For quoting in the " pattern ", please refer to"
+.BR PCRE(3) .
+
+.SH DIAGNOSTICS
+
+.RB "When " compiling " a job either via the " pcrs_compile() " or " pcrs_compile_command()
+.RB "functions, you know that something went wrong when you are returned a " NULL " pointer."
+.RI "In that case, or in the event of non-fatal warnings, the integer pointed to by " err
+contains a nonzero error code, which is either a passed-through
+.SM PCRE
+error code or one generated by
+.SM PCRS.
+Under normal circumstances, it can take the following values:
+.TP
+.B PCRE_ERROR_NOMEMORY
+While compiling the pattern,
+.SM PCRE
+ran out of memory.
+.TP  
+.B  PCRS_ERR_NOMEM
+While compiling the job,
+.SM PCRS
+ran out of memory.
+.TP  
+.B  PCRS_ERR_CMDSYNTAX
+.BR pcrs_compile_command() " didn't find four tokens while parsing the"
+.IR command .
+.TP  
+.B  PCRS_ERR_STUDY
+A
+.SM PCRE
+.RB "error occured while studying the compiled pattern. Since " pcre_study()
+only provides textual diagnostic information, the details are lost.
+.TP  
+.B  PCRS_WARN_BADREF
+.RI "The " substitute " contains a reference to a capturing subpattern that"
+.RI "has a higher index than the number of capturing subpatterns in the " pattern
+or that exceeds the current hard limit of 33 (See LIMITATIONS below). As in Perl,
+this is non-fatal and results in substitutions with the empty string.
+
+.PP
+.RB "When " executing " jobs via " pcrs_execute() " or " pcrs_execute_list() ","
+.RI "a negative return code indicates an error. In that case, *" result
+.RB "is " NULL ". Possible error codes are:"
+.TP
+.B PCRE_ERROR_NOMEMORY
+While matching the pattern,
+.SM PCRE
+ran out of memory. This can only happen if there are more than 33 backrefrences
+.RI "in the " pattern "(!)"
+.BR and " memory is too tight to extend storage for more."
+.TP  
+.B  PCRS_ERR_NOMEM
+While executing the job,
+.SM PCRS
+ran out of memory.
+.TP  
+.B  PCRS_ERR_BADJOB
+.RB "The " pcrs_job "*  passed to " pcrs_execute " was NULL, or the"
+.RB "job is bogus (it contains " NULL " pointers to the compiled
+pattern, extra, or substitute).
+
+.PP
+If you see any other
+.SM PCRE
+error code passed through, you've either messed with the compiled job
+or found a bug in
+.SM PCRS.
+Please send me an email.
+
+.RB "Ah, and don't look for " PCRE_ERROR_NOMATCH ", since this"
+is not an error in the context of
+.SM PCRS.
+.RI "Should there be no match, an exact copy of the " subject " is"
+.RI "found at *" result " and the return code is 0 (matches)."
+
+All error codes can be translated into human readable text by means
+.RB "of the " pcrs_strerror() " function."
+
+
+.SH EXAMPLE
+A trivial command-line test program for
+.SM PCRS
+might look like:
+
+.nf
+#include <pcrs.h>
+#include <stdio.h>
+
+int main(int Argc, char **Argv)
+{
+   pcrs_job *job;
+   char *result;
+   size_t newsize;
+   int err;
+
+   if (Argc != 3)
+   {
+      fprintf(stderr, "Usage: %s s/pattern/substitute/[options]  subject\\n", Argv[0]);
+      return 1;
+   }
+
+   if (NULL == (job = pcrs_compile_command(Argv[1], &err)))
+   {
+      fprintf(stderr, "%s: compile error:  %s (%d).\\n", Argv[0], pcrs_strerror(err), err);
+   }
+
+   if (0 > (err = pcrs_execute(job, Argv[2], strlen(Argv[2]), &result, &newsize)))
+   {
+      fprintf(stderr, "%s: exec error:  %s (%d).\\n", Argv[0], pcrs_strerror(err), err);
+   }
+   else
+   {
+      printf("Result: *%s*\\n", result);
+      free(result);
+   }
+
+   pcrs_free_job(job);
+   return(err < 0);
+
+}
+
+.fi
+
+
+.SH LIMITATIONS
+The number of matches that a global job can have is only limited by the
+available memory. An initial storage for 40 matches is reserved, which
+is dynamically resized by the factor 1.6 whenever it is exhausted.
+
+The number of capturing subpatterns is currently limited to 33, which
+is a Bad Thing[tm]. It should be dynamically expanded until it reaches the
+.SM PCRE
+limit of 99.
+.br
+This limitation is particularly embarassing since
+.SM PCRE
+3.5 has raised the capturing subpattern limit to 65K.
+
+All of the above values can be adjusted in the "Capacity" section
+.RB "of " pcrs.h "."
+
+The Perl-style escape sequences for special characters \\\fInnn\fR,
+\\x\fInn\fR, and \\c\fIX\fR are currently unsupported.
+
+.SH BUGS
+This library has only been tested in the context of one application
+and should be considered high risk.
+
+.SH HISTORY
+.SM PCRS
+was originally written for the Privoxy project
+(http://www.privoxy.org/).
+
+.SH SEE ALSO
+.B PCRE(3), perl(1), perlre(1)
+
+.SH AUTHOR
+
+.SM PCRS
+is Copyright 2000 - 2003 by Andreas Oesterhelt <andreas@oesterhelt.org> and is
+licensed under the terms of the GNU Lesser General Public License (LGPL),
+version 2.1, which should be included in this distribution, with the exception
+that the permission to replace that license with the GNU General Public
+License (GPL) given in section 3 is restricted to version 2 of the GPL.
+
+If it is missing from this distribution, the LGPL can be obtained from
+http://www.gnu.org/licenses/lgpl.html or by mail: Write to the Free Software
+Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.

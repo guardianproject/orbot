@@ -1,0 +1,343 @@
+/*********************************************************************
+ *
+ * File        :  $Source: /cvsroot/ijbswa/current/w32.rc,v $
+ *
+ * Purpose     :  Windows GUI resource script.
+ *
+ * Copyright   :  Written by and Copyright (C) 2001-2002 members of
+ *                the Privoxy team.  http://www.privoxy.org/
+ *
+ *                Based on the Internet Junkbuster originally written
+ *                by and Copyright (C) 1997 Anonymous Coders and 
+ *                Junkbusters Corporation.  http://www.junkbusters.com
+ *
+ *                This program is free software; you can redistribute it 
+ *                and/or modify it under the terms of the GNU General
+ *                Public License as published by the Free Software
+ *                Foundation; either version 2 of the License, or (at
+ *                your option) any later version.
+ *
+ *                This program is distributed in the hope that it will
+ *                be useful, but WITHOUT ANY WARRANTY; without even the
+ *                implied warranty of MERCHANTABILITY or FITNESS FOR A
+ *                PARTICULAR PURPOSE.  See the GNU General Public
+ *                License for more details.
+ *
+ *                The GNU General Public License should be included with
+ *                this file.  If not, you can view it at
+ *                http://www.gnu.org/copyleft/gpl.html
+ *                or write to the Free Software Foundation, Inc., 59
+ *                Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ * Revisions   :
+ *    $Log: w32.rc,v $
+ *    Revision 1.22  2009/01/01 15:09:23  ler762
+ *    Change the Windows taskbar icon when privoxy is toggled off.
+ *
+ *    Revision 1.21  2008/11/02 14:37:47  ler762
+ *    commit the part of the patches I've been using that were written by torford and gjmurphy
+ *      [ 1824315 ] Minor code cleanup
+ *      [ 1781135 ] Patch - Add clear log, select all, and Accelerators for w32
+ *        http://sourceforge.net/tracker/?func=detail&atid=311118&aid=1781135&group_id=11118
+ *    The full patch adds control keys A(select all), C(copy) and D(delete all) to the
+ *    Privoxy log window menu.  Select all and copy work for me without the patch
+ *    (albeit without showing the accelerator keys on the menu), so the only part of the
+ *    patch I've been using for the last year or so has been the ctrl-d to delete
+ *    everything in the Privoxy log window.
+ *
+ *    Revision 1.20  2006/08/18 02:06:25  david__schmidt
+ *    Making icon go back to blue when idle.
+ *    See: bug #967648.
+ *
+ *    Revision 1.19  2006/07/18 14:48:48  david__schmidt
+ *    Reorganizing the repository: swapping out what was HEAD (the old 3.1 branch)
+ *    with what was really the latest development (the v_3_0_branch branch)
+ *
+ *    Revision 1.17.2.1  2002/08/21 17:58:40  oes
+ *     - Reorder of Win32 menu
+ *     - "Show Privoxy Window" now a toggle
+ *     - Temp kludge to let user and default action file be edited through win32 GUI (FR 592080)
+ *
+ *    Revision 1.17  2002/03/31 17:19:00  jongfoster
+ *    Win32 only: Enabling STRICT to fix a VC++ compile warning.
+ *
+ *    Revision 1.16  2002/03/26 22:57:44  jongfoster
+ *    Web server name should begin www.
+ *
+ *    Revision 1.15  2002/03/24 14:29:25  jongfoster
+ *    Renaming icon file
+ *
+ *    Revision 1.14  2002/03/24 12:07:36  jongfoster
+ *    Consistern name for filters file
+ *
+ *    Revision 1.13  2002/03/24 12:03:47  jongfoster
+ *    Name change
+ *
+ *    Revision 1.12  2001/07/30 22:16:07  jongfoster
+ *    Tidying up #defines:
+ *    - All feature #defines are now of the form FEATURE_xxx
+ *    - Permanently turned off WIN_GUI_EDIT
+ *    - Permanently turned on WEBDAV and SPLIT_PROXY_ARGS
+ *
+ *    Revision 1.11  2001/07/21 17:53:41  jongfoster
+ *    Adding version information block.
+ *
+ *    Revision 1.10  2001/07/19 19:14:19  haroon
+ *    -  Removed all #ifdef PCRS. The .rc file extension had eluded Andreas.
+ *
+ *    Revision 1.9  2001/06/07 23:08:54  jongfoster
+ *    Forward and ACL edit options removed.
+ *    Config edit option renamed from "&Junkbuster" to "&Configuration".
+ *
+ *    Revision 1.8  2001/05/31 21:37:11  jongfoster
+ *    GUI changes to rename "permissions file" to "actions file".
+ *
+ *    Revision 1.7  2001/05/29 09:50:24  jongfoster
+ *    Unified blocklist/imagelist/permissionslist.
+ *    File format is still under discussion, but the internal changes
+ *    are (mostly) done.
+ *
+ *    Also modified interceptor behaviour:
+ *    - We now intercept all URLs beginning with one of the following
+ *      prefixes (and *only* these prefixes):
+ *        * http://i.j.b/
+ *        * http://ijbswa.sf.net/config/
+ *        * http://ijbswa.sourceforge.net/config/
+ *    - New interceptors "home page" - go to http://i.j.b/ to see it.
+ *    - Internal changes so that intercepted and fast redirect pages
+ *      are not replaced with an image.
+ *    - Interceptors now have the option to send a binary page direct
+ *      to the client. (i.e. ijb-send-banner uses this)
+ *    - Implemented show-url-info interceptor.  (Which is why I needed
+ *      the above interceptors changes - a typical URL is
+ *      "http://i.j.b/show-url-info?url=www.somesite.com/banner.gif".
+ *      The previous mechanism would not have intercepted that, and
+ *      if it had been intercepted then it then it would have replaced
+ *      it with an image.)
+ *
+ *    Revision 1.6  2001/05/26 14:15:18  jongfoster
+ *    Cosmetic fix: // -> block comment
+ *
+ *    Revision 1.5  2001/05/26 13:24:31  jongfoster
+ *    New #define, WIN_GUI_EDIT, enables the (embryonic) Win32 GUI editor.
+ *    This #define cannot be set from ./configure - there's no point, it
+ *    doesn't work yet.  See feature request # 425722
+ *    (I missed this file in my original checkin)
+ *
+ *    Revision 1.4  2001/05/26 00:28:36  jongfoster
+ *    Automatic reloading of config file.
+ *    Removed obsolete SIGHUP support (Unix) and Reload menu option (Win32).
+ *    Most of the global variables have been moved to a new
+ *    struct configuration_spec, accessed through csp->config->globalname
+ *    Most of the globals remaining are used by the Win32 GUI.
+ *
+ *    Revision 1.3  2001/05/25 22:33:40  jongfoster
+ *    CRLF->LF
+ *
+ *    Revision 1.2  2001/05/20 01:21:20  jongfoster
+ *    Version 2.9.4 checkin.
+ *    - Merged popupfile and cookiefile, and added control over PCRS
+ *      filtering, in new "permissionsfile".
+ *    - Implemented LOG_LEVEL_FATAL, so that if there is a configuration
+ *      file error you now get a message box (in the Win32 GUI) rather
+ *      than the program exiting with no explanation.
+ *    - Made killpopup use the PCRS MIME-type checking and HTTP-header
+ *      skipping.
+ *    - Removed tabs from "config"
+ *    - Moved duplicated url parsing code in "loaders.c" to a new funcition.
+ *    - Bumped up version number.
+ *
+ *    Revision 1.1.1.1  2001/05/15 13:59:07  oes
+ *    Initial import of version 2.9.3 source tree
+ *
+ *
+ *********************************************************************/
+
+#include "config.h"
+
+#ifndef STRICT
+#define STRICT
+#endif
+#include <windows.h>
+
+#include "w32res.h"
+
+#ifdef __MINGW32__
+#include "cygwin.h"
+#endif
+
+/****************************************************************************
+ *  Language-neutral resources
+ ****************************************************************************/
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEU)
+#ifdef _WIN32
+/* LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL */
+#pragma code_page(1252)
+#endif /* _WIN32 */
+
+/*
+ * Icons
+ *
+ * Icon with lowest ID value placed first to ensure application icon
+ * remains consistent on all systems.
+ */
+IDI_MAINICON            ICON    DISCARDABLE     "icons/privoxy.ico"
+IDI_ANIMATED1           ICON    DISCARDABLE     "icons/ico00001.ico"
+IDI_ANIMATED2           ICON    DISCARDABLE     "icons/ico00002.ico"
+IDI_ANIMATED3           ICON    DISCARDABLE     "icons/ico00003.ico"
+IDI_ANIMATED4           ICON    DISCARDABLE     "icons/ico00004.ico"
+IDI_ANIMATED5           ICON    DISCARDABLE     "icons/ico00005.ico"
+IDI_ANIMATED6           ICON    DISCARDABLE     "icons/ico00006.ico"
+IDI_ANIMATED7           ICON    DISCARDABLE     "icons/ico00007.ico"
+IDI_ANIMATED8           ICON    DISCARDABLE     "icons/ico00008.ico"
+IDI_IDLE                ICON    DISCARDABLE     "icons/privoxy.ico"
+IDI_OFF                 ICON    DISCARDABLE     "icons/off.ico"
+
+#endif /* Neutral resources */
+
+
+/****************************************************************************
+ *  English (U.S.) resources
+ ****************************************************************************/
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+/* LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US */
+#pragma code_page(1252)
+#endif /* def _WIN32 */
+
+/*
+ * File Version
+ */
+#ifndef _MAC
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION VERSION_MAJOR,VERSION_MINOR,VERSION_POINT,0
+ PRODUCTVERSION VERSION_MAJOR,VERSION_MINOR,VERSION_POINT,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "CompanyName", "The Privoxy team - www.privoxy.org\0"
+            VALUE "FileDescription", "Privoxy\0"
+            VALUE "FileVersion", VERSION "\0"
+            VALUE "InternalName", "Privoxy\0"
+            VALUE "LegalCopyright", "Distributed under the GNU GPL\0"
+            VALUE "OriginalFilename", "privoxy.exe\0"
+            VALUE "ProductName", "Privoxy\0"
+            VALUE "ProductVersion", VERSION "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif /* ndef _MAC */
+
+
+/*
+ * Menus
+ */
+
+IDR_TRAYMENU MENU DISCARDABLE
+BEGIN
+    POPUP "Popup"
+    BEGIN
+        MENUITEM "E&xit Privoxy",      ID_FILE_EXIT
+        MENUITEM                       SEPARATOR
+        POPUP "E&dit.."
+        BEGIN
+            MENUITEM "&Main Configuration",           ID_TOOLS_EDITCONFIG
+            MENUITEM "&Default Actions",              ID_TOOLS_EDITDEFAULTACTIONS
+            MENUITEM "&User Actions",                 ID_TOOLS_EDITUSERACTIONS
+            MENUITEM "&Filters",                      ID_TOOLS_EDITFILTERS
+#ifdef FEATURE_TRUST
+            MENUITEM "&Trust list",                   ID_TOOLS_EDITTRUST
+#endif /* def FEATURE_TRUST */
+        END
+        MENUITEM                              SEPARATOR
+#ifdef FEATURE_TOGGLE
+        MENUITEM "&Enable",                   ID_TOGGLE_ENABLED, CHECKED
+#endif /* def FEATURE_TOGGLE */
+        MENUITEM "Show Privoxy &Window",      ID_TOGGLE_SHOWWINDOW, CHECKED
+    END
+END
+
+IDR_LOGVIEW MENU DISCARDABLE
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "E&xit",                       ID_FILE_EXIT
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "Copy",                        ID_EDIT_COPY
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "&Clear Log\tCtrl+D",          ID_VIEW_CLEARLOG
+        MENUITEM                                SEPARATOR
+        MENUITEM "&Log Messages",               ID_VIEW_LOGMESSAGES, CHECKED
+        MENUITEM "Message &Highlighting",       ID_VIEW_MESSAGEHIGHLIGHTING, CHECKED
+        MENUITEM "Limit &Buffer Size",          ID_VIEW_LIMITBUFFERSIZE, CHECKED
+        MENUITEM "&Activity Animation",         ID_VIEW_ACTIVITYANIMATION, CHECKED
+    END
+    POPUP "&Options"
+    BEGIN
+#ifdef FEATURE_TOGGLE
+        MENUITEM "&Enable",                     ID_TOGGLE_ENABLED, CHECKED
+        MENUITEM                                SEPARATOR
+#endif /* def FEATURE_TOGGLE */
+        MENUITEM "Edit Main &Configuration",      ID_TOOLS_EDITCONFIG
+        MENUITEM "Edit &Default Actions",         ID_TOOLS_EDITDEFAULTACTIONS
+        MENUITEM "Edit &User Actions",            ID_TOOLS_EDITUSERACTIONS
+        MENUITEM "Edit &Filters",                 ID_TOOLS_EDITFILTERS
+#ifdef FEATURE_TRUST
+        MENUITEM "Edit &Trust list",              ID_TOOLS_EDITTRUST
+#endif /* def FEATURE_TRUST */
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "Privoxy &FAQ",                ID_HELP_FAQ
+        MENUITEM "Privoxy &Manual",             ID_HELP_MANUAL
+        MENUITEM "GNU &General Public Licence", ID_HELP_GPL
+        MENUITEM                                SEPARATOR
+        MENUITEM "Privoxy Status...",           ID_HELP_STATUS
+        MENUITEM                                SEPARATOR
+        MENUITEM "About Privoxy...",            ID_HELP_ABOUT
+    END
+END
+
+IDR_POPUP_SELECTION MENU DISCARDABLE
+BEGIN
+    POPUP "Popup"
+    BEGIN
+        MENUITEM "&Copy",                       ID_EDIT_COPY
+    END
+END
+
+
+/*
+ * Accelerators
+ */
+
+IDR_ACCELERATOR ACCELERATORS DISCARDABLE
+BEGIN
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    "D",            ID_VIEW_CLEARLOG,       VIRTKEY, CONTROL, NOINVERT
+END
+
+#endif /* English (U.S.) resources */

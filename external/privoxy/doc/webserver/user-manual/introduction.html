@@ -1,0 +1,292 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Introduction</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Privoxy 3.0.12 User Manual"
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="Privoxy 3.0.12 User Manual"
+HREF="index.html"><LINK
+REL="NEXT"
+TITLE="Installation"
+HREF="installation.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="../p_doc.css"><META
+HTTP-EQUIV="Content-Type"
+CONTENT="text/html;
+charset=ISO-8859-1">
+<LINK REL="STYLESHEET" TYPE="text/css" HREF="p_doc.css">
+</head
+><BODY
+CLASS="SECT1"
+BGCOLOR="#EEEEEE"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Privoxy 3.0.12 User Manual</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="index.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="installation.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="INTRODUCTION"
+>1. Introduction</A
+></H1
+><P
+> This documentation is included with the current stable version of
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>, v.3.0.12.</P
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="FEATURES"
+>1.1. Features</A
+></H2
+><P
+> In addition to the core 
+ features of ad blocking and 
+ <A
+HREF="http://en.wikipedia.org/wiki/Browser_cookie"
+TARGET="_top"
+>cookie</A
+> management,
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> provides many supplemental
+ features, 
+ that give the end-user more control, more privacy and more freedom:</P
+><P
+> <P
+></P
+><UL
+><LI
+><P
+>     Can keep outgoing connections alive and reuse them later on.
+  </P
+></LI
+><LI
+><P
+>     Supports tagging which allows to change the behaviour
+     based on client and server headers.
+  </P
+></LI
+><LI
+><P
+>     Can be run as an "intercepting" proxy, which obviates the need to
+     configure browsers individually.
+  </P
+></LI
+><LI
+><P
+>     Sophisticated actions and filters for manipulating both server and client
+     headers. 
+   </P
+></LI
+><LI
+><P
+>     Can be chained with other proxies.
+  </P
+></LI
+><LI
+><P
+>   Integrated browser based configuration and control utility at <A
+HREF="http://config.privoxy.org/"
+TARGET="_top"
+>http://config.privoxy.org/</A
+>
+   (shortcut: <A
+HREF="http://p.p/"
+TARGET="_top"
+>http://p.p/</A
+>). Browser-based
+   tracing of rule and filter effects. Remote toggling.
+  </P
+></LI
+><LI
+><P
+>   Web page filtering (text replacements, removes banners based on size,
+   invisible <SPAN
+CLASS="QUOTE"
+>"web-bugs"</SPAN
+>, JavaScript and HTML annoyances, 
+   pop-up windows, etc.)
+  </P
+></LI
+><LI
+><P
+>   Modularized configuration that allows for standard settings and
+   user settings to reside in separate files, so that installing updated
+   actions files won't overwrite individual user settings.
+  </P
+></LI
+><LI
+><P
+>   Support for Perl Compatible Regular Expressions in the configuration files, and 
+   a more sophisticated and flexible configuration syntax.
+  </P
+></LI
+><LI
+><P
+>   Improved cookie management features (e.g. session based cookies).
+  </P
+></LI
+><LI
+><P
+>   GIF de-animation. 
+  </P
+></LI
+><LI
+><P
+>   Bypass many click-tracking scripts (avoids script redirection).
+  </P
+></LI
+><LI
+><P
+>   Multi-threaded (POSIX and native threads).
+  </P
+></LI
+><LI
+><P
+>   User-customizable HTML templates for most proxy-generated pages (e.g. "blocked" page).
+  </P
+></LI
+><LI
+><P
+>   Auto-detection and re-reading of config file changes.
+  </P
+></LI
+><LI
+><P
+>   Improved signal handling, and a true daemon mode (Unix).
+  </P
+></LI
+><LI
+><P
+>   Every feature now controllable on a per-site or per-location basis, configuration
+   more powerful and versatile over-all.
+  </P
+></LI
+><LI
+><P
+>   Many smaller new features added, limitations and bugs removed.
+  </P
+></LI
+></UL
+></P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="installation.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Privoxy 3.0.12 User Manual</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Installation</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

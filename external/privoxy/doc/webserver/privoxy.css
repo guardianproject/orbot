@@ -1,0 +1,69 @@
+/*
+ * CSS for Privoxy CGI and script output
+ *
+ * $Id: privoxy.css,v 1.2 2002/04/09 11:55:20 oes Exp $
+ */
+
+/*
+ * General rules: Font, Color, Headings, Margins, Links
+ */
+body,td,th { font-family: arial, helvetica, helv, sans-serif; }
+body { background-color: #ffffff; color: #000000; }
+
+h1 { font-size: 140%; margin: 0px; }
+h2 { font-size: 120%; margin: 0px; }
+h3 { font-size: 110%; margin: 0px; }
+
+p,pre  { margin-left: 15px; }
+li { margin: 2px 15px; }
+dl { margin: 2px 15px; }
+
+a:link    { color: #0000dd; text-decoration: none; }
+a:visited { color: #330099; text-decoration: none; }
+a:active  { color: #3333ff; text-decoration: none; }
+
+/*
+ * Boxen as Table elements:
+ */
+td.title   { border: solid black 1px; background-color: #dddddd; }
+td.box     { border: solid black 1px; background-color: #eeeeee; }
+td.info    { border: solid black 1px; background-color: #ccccff; }
+td.warning { border: solid black 1px; background-color: #ffdddd; }
+
+/*
+ * Special Table Boxen: for nesting, naked container and for
+ * the Status field in CGI Output:
+ */
+td.wrapbox { border: solid black 1px; padding: 5px; }
+td.container { padding: 0px; }
+td.status  { border: solid black 1px; background-color: #ff0000; color: #ffffff; font-size: 300%; font-weight: bolder; }
+
+/*
+ * Same Boxen as <div>s:
+ */
+div.title    { border: solid black 1px; background-color: #dddddd; margin: 20px; padding: 20px; }
+div.box      { border: solid black 1px; background-color: #eeeeee; margin: 20px; padding: 20px; }
+div.info     { border: solid black 1px; background-color: #ccccff; margin: 20px; padding: 20px; }
+div.warning  { border: solid black 1px; background-color: #ffdddd; margin: 20px; padding: 20px; }
+div.wrapbox  { border: solid black 1px;                            margin: 20px; padding:  5px; }
+
+
+/*
+ * Bold definitions in <dl>s, Grey BG for Table headings
+ */
+dt { font-weight: bold; }
+th { background-color: #dddddd; }
+
+/*
+ * Special purpose paragraphs: Small for page footers,
+ * Important for quoting wrong or dangerous examples,
+ * Whiteframed for the toggle?mini=y CGI
+ */
+p.small { font-size: 10px; margin: 0px; }
+p.important { border: solid black 1px; background-color: #ffdddd; font-weight: bold; padding: 2px; }
+p.whiteframed { margin: 5px; padding: 5px; border: solid black 1px; text-align: center; background-color: #eeeeee; }
+
+/*
+ * Special red emphasis:
+ */
+em.warning { color: #ff0000 }

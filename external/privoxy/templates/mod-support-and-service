@@ -1,0 +1,61 @@
+##############################################################################
+#
+# File        :  $Source: /cvsroot/ijbswa/current/templates/mod-support-and-service,v $
+#
+# Purpose     :  Template that is included from most of Privoxy's CGI pages
+#                to show the user how to get help or report problems.
+# 
+#
+# Copyright   :  Written by and Copyright (C) 2002-2007 members of
+#                the SourceForge Privoxy team. http://www.privoxy.org/
+#
+#                This template is free software; you can redistribute it 
+#                and/or modify it under the terms of the GNU General
+#                Public License as published by the Free Software
+#                Foundation; either version 2 of the License, or (at
+#                your option) any later version.
+#
+# Revisions   :
+#    $Log: mod-support-and-service,v $
+#    Revision 1.11  2008/01/02 18:06:58  fabiankeil
+#    Instead of linking to the "Contacting the developers ..." section
+#    in the FAQ, use the one from the User Manual. The latter can be
+#    delivered by Privoxy and thus possibly loads faster.
+#
+#    Revision 1.10  2007/03/17 11:31:36  fabiankeil
+#    - Add revision log and copyright header.
+#    - Reword instructions and link to the FAQ
+#      in an attempt to reduce the number of
+#      incomplete reports.
+#
+##############################################################################
+       <h2>Support and Service:</h2>
+        <p>
+          The Privoxy Team values your feedback. To provide you with the best support,
+          we ask that you:
+        </p>
+        <ul>
+          <li>
+            use the <a href="http://sourceforge.net/tracker/?group_id=11118&amp;atid=211118">Support Tracker</a>
+            if you need help.
+          </li>
+          <li>
+            submit ads and configuration related problems with the actions files through the
+            <a href="http://sourceforge.net/tracker/?group_id=11118&amp;atid=460288">Actionsfile Feedback Tracker</a>.
+          </li>
+          <li>
+            submit bugs only through the
+            <a href="http://sourceforge.net/tracker/?group_id=11118&amp;atid=111118">Bug Tracker</a>.
+            Please make sure that the bug has not been submitted yet.
+          </li>
+          <li>
+            submit feature requests only through the
+            <a href="http://sourceforge.net/tracker/?atid=361118&amp;group_id=11118&amp;func=browse">Feature
+            Request Tracker</a>.
+          </li>
+          <li>
+            read the <a title="Contacting the developers, Bug Reporting and Feature Requests"
+             href="@user-manual@contact.html">instructions in the User Manual</a>
+            to make sure your request contains all the information we need.
+          </li>
+        </ul>

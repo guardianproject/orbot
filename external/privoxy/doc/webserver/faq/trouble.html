@@ -1,0 +1,1276 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Troubleshooting</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Privoxy Frequently Asked Questions"
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="Miscellaneous"
+HREF="misc.html"><LINK
+REL="NEXT"
+TITLE="Contacting the developers, Bug Reporting and Feature Requests"
+HREF="contact.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="../p_doc.css"><META
+HTTP-EQUIV="Content-Type"
+CONTENT="text/html;
+charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#EEEEEE"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Privoxy Frequently Asked Questions</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="misc.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="contact.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="TROUBLE"
+>5. Troubleshooting</A
+></H1
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="AEN1084"
+>5.1. I cannot connect to any websites. Or, I am getting
+<SPAN
+CLASS="QUOTE"
+>"connection refused"</SPAN
+> message with every web page. Why?</A
+></H3
+><P
+> There are several possibilities:</P
+><P
+><P
+></P
+><UL
+><LI
+><P
+><SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> is not running. Solution: verify 
+ that <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> is installed correctly, has not crashed, and is indeed running.
+ Turn on <SPAN
+CLASS="APPLICATION"
+>Privoxy's</SPAN
+> logging, and look at the logs to see what they say.</P
+></LI
+><LI
+><P
+>Or your browser is configured for a different port than what
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> is using. Solution: verify that <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>
+ and your browser are set to the same port (<TT
+CLASS="LITERAL"
+>listen-address</TT
+>).</P
+></LI
+><LI
+><P
+>Or if using a forwarding rule, you have a configuration problem or a
+ problem with a host in the forwarding chain. Solution: temporarily alter your
+ configuration and take the forwarders out of the equation.</P
+></LI
+><LI
+><P
+>  Or you have a firewall that is interfering and blocking you. Solution: 
+  try disabling or removing the firewall as a simple test.
+ </P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="ERROR503"
+>5.2. Why am I getting a 503 Error (WSAECONNREFUSED) on every page?</A
+></H3
+><P
+>  More than likely this is a problem with your TCP/IP networking. ZoneAlarm has
+  been reported to cause this symptom -- even if not running! The solution is
+  to either fight the ZA configuration, or uninstall ZoneAlarm, and then find
+  something better behaved in its place. Other personal firewall type products
+  may cause similar type problems if not configured correctly.
+ </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="AEN1107"
+>5.3. I just added a new rule, but the steenkin ad is 
+still getting through. How?</A
+></H3
+><P
+> If the ad had been displayed before you added its URL, it will probably be
+ held in the browser's cache for some time, so it will be displayed without
+ the need for any request to the server, and <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>
+ will not be involved. Flush the browser's caches, and then try again.</P
+><P
+> If this doesn't help, you probably have an error in the rule you
+ applied. Try pasting the full URL of the offending ad into <A
+HREF="http://config.privoxy.org/show-url-info"
+TARGET="_top"
+>http://config.privoxy.org/show-url-info</A
+>
+ and see if it really matches your new rule. Blocking ads is like blocking
+ spam: a lot of tinkering is required to stay ahead of the game. And 
+ remember you need to block the URL of the ad in question, which may be 
+ entirely different from the site URL itself. Most ads are hosted on different
+ servers than the main site itself. If you right-click on the ad, you should
+ be able to get all the relevant information you need. Alternately, you can 
+ find the correct URL by looking at <SPAN
+CLASS="APPLICATION"
+>Privoxy's</SPAN
+> logs
+ (you may need to enable logging in the main config file if its disabled).</P
+><P
+> Below is a slightly modified real-life log snippet that originates with one 
+ requested URL: <TT
+CLASS="LITERAL"
+>www.example.com</TT
+> (name of site was changed
+ for this example, the number of requests is real). You can see in this the
+ complexity of what goes into making up this one <SPAN
+CLASS="QUOTE"
+>"page"</SPAN
+>. There
+ are eight different domains involved here, with thirty two separate URLs
+ requested in all, making up all manner of images, Shockwave Flash,
+ JavaScript, CSS stylesheets, scripts, and other related content. Some of this
+ content is obviously <SPAN
+CLASS="QUOTE"
+>"good"</SPAN
+> or <SPAN
+CLASS="QUOTE"
+>"bad"</SPAN
+>, but not all.
+ Many of the more questionable looking requests, are going to outside domains
+ that seem to be identifying themselves with suspicious looking names, making
+ our job a little easier. <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> has <SPAN
+CLASS="QUOTE"
+>"crunched"</SPAN
+> (meaning caught 
+ and BLOCKED) quite a few items in this example, but perhaps missed a few as well. </P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>Request: www.example.com/
+Request: www.example.com/favicon.ico
+Request: img.example.com/main.css
+Request: img.example.com/sr.js
+Request: example.betamarker.com/example.html
+Request: www.lik-sang.com/Banners/bestsellers/skyscraper.php?likref=BSellers
+Request: img.example.com/pb.png
+Request: www.google-analytics.com/urchin.js crunch! (Blocked)
+Request: www.advertising-department.com/ats/switch.ps.php?26856 crunch! (Blocked)
+Request: img.example.com/p.gif
+Request: www.popuptraffic.com/assign.php?l=example&#38;mode=behind crunch! (Blocked)
+Request: www.popuptraffic.com/scripts/popup.php?hid=5c3cf&#38;tmpl=PBa.tmpl crunch! (Blocked)
+Request: www.popuptraffic.com/assign.php?l=example crunch! (Blocked)
+Request: www.lik-sang.com/Banners/best_sellers/best_sellers.css
+Request: www.adtrak.net/adx.js crunch! (Blocked)
+Request: img.example.com/hbg.gif
+Request: img.example.com/example.jpg
+Request: img.example.com/mt.png
+Request: img.example.com/mm.png
+Request: img.example.com/mb.png
+Request: www.popuptraffic.com/scripts/popup.php?hid=a71b91fa5&#38;tmpl=Ua.tmp crunch! (Blocked)
+Request: www.example.com/tracker.js
+Request: www.lik-sang.com/Banners/best_sellers/lsi_head.gif
+Request: www.adtrak.net/adjs.php?n=020548130&#38;what=zone:61 crunch! (Blocked)
+Request: www.adtrak.net/adjs.php?n=463594413&#38;what=zone:58&#38;source=Ua crunch! (Blocked)
+Request: www.lik-sang.com/Banners/best_sellers/bottomani.swf
+Request: mmm.elitemediagroup.net/install.php?allowpop=no&#38;popupmincook=0&#38;allowsp2=1 crunch! (Blocked)
+Request: www.example.com/tracker.js?screen=1400x1050&#38;win=962x693
+Request: www.adtrak.net/adlog.php?bannerid=1309&#38;clientid=439&#38;zoneid=61 crunch! (Blocked)
+Request: 66.70.21.80/scripts/click.php?hid=5c3cf599a9efd0320d26&#38;si
+Request: 66.70.21.80/img/pixel.gif
+Request: www.adtrak.net/adlog.php?bannerid=1309&#38;clientid=439&#38;zoneid=58&#38;source=Ua&#38;block=86400 crunch! (Blocked)
+Request: 66.70.21.80/scripts/click.php?hid=a71b9f6504b0c5681fa5&#38;si=Ua</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> Despite 12 out of 32 requests being blocked, the page looked, and seemed to
+ behave perfectly <SPAN
+CLASS="QUOTE"
+>"normal"</SPAN
+> (minus some ads, of course).</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="BADSITE"
+>5.4. One of my favorite sites does not work with Privoxy.
+What can I do?</A
+></H3
+><P
+> First verify that it is indeed a <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> problem, 
+ by toggling off <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> through <A
+HREF="http://config.privoxy.org/toggle"
+TARGET="_top"
+>http://config.privoxy.org/toggle</A
+>
+ (the toggle feature may need to be enabled in the main
+ <TT
+CLASS="FILENAME"
+>config</TT
+>),
+ and then shift-reloading the problem page (i.e. holding down the shift key
+ while clicking reload. Alternatively, flush your browser's disk and memory
+ caches).</P
+><P
+> If the problem went away, we know we have a configuration related problem.
+ Now go to <A
+HREF="http://config.privoxy.org/show-url-info"
+TARGET="_top"
+>http://config.privoxy.org/show-url-info</A
+>
+ and paste the full URL of the page in question into the prompt. See which
+ actions are being applied to the URL, and which matches in which actions
+ files are responsible for that. It might be helpful also to look at your logs
+ for this site too, to see what else might be happening (note: logging may need
+ to be enabled in the main config file). Many sites are
+ complex and require a number of related pages to help present their content.
+ Look at what else might be used by the page in question, and what of that
+ might be <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>required</I
+></SPAN
+>.
+ Now, armed with this information, go to
+ <A
+HREF="http://config.privoxy.org/show-status"
+TARGET="_top"
+>http://config.privoxy.org/show-status</A
+>
+ and select the appropriate actions files for editing. </P
+><P
+> You can now either look for a section which disables the actions that
+ you suspect to cause the problem and add a pattern for your site there,
+ or make up a completely new section for your site. In any case, the recommended
+ way is to disable only the prime suspect, reload the problem page, and only
+ if the problem persists, disable more and more actions until you have
+ identified the culprit. You may or may not want to turn the other actions
+ on again. Remember to flush your browser's caches in between any such changes!</P
+><P
+> Alternately, if you are comfortable with a text editor, you can accomplish 
+ the same thing by editing the appropriate actions file. Probably the easiest 
+ way to deal with such problems when editing by hand is to add your
+ site to a <TT
+CLASS="LITERAL"
+>{ fragile }</TT
+> section in <TT
+CLASS="FILENAME"
+>user.action</TT
+>,
+ which is an alias that turns off most <SPAN
+CLASS="QUOTE"
+>"dangerous"</SPAN
+>
+ actions, but is also likely to turn off more actions then needed, and thus lower
+ your privacy and protection more than necessary, </P
+><P
+> Troubleshooting actions is discussed in more detail in the <A
+HREF="../user-manual/appendix.html#ACTIONSANAT"
+TARGET="_top"
+>User Manual appendix,
+ Troubleshooting: the Anatomy of an Action</A
+>.
+ There is also an <A
+HREF="../user-manual/actions-file.html#ACT-EXAMPLES"
+TARGET="_top"
+>actions tutorial</A
+>
+ with general configuration information and examples.</P
+><P
+> As a last resort, you can always see if your browser has a setting that will 
+ bypass the proxy setting for selective sites. Modern browsers can do this.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="DUN"
+>5.5. After installing Privoxy, I have to log in
+every time I start IE. What gives?</A
+></H3
+><P
+> This is a quirk that effects the installation of
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>, in conjunction with Internet Explorer and
+ Internet Connection Sharing on Windows 2000 and Windows XP. The symptoms may
+ appear to be corrupted or invalid DUN settings, or passwords.</P
+><P
+> When setting up an NT based Windows system with
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> you may find that things do not seem to be
+ doing what you expect. When you set your system up you will probably have set
+ up Internet Connection Sharing (ICS) with Dial up Networking (DUN) when
+ logged in with administrator privileges. You will probably have made this DUN
+ connection available to other accounts that you may have set-up on your
+ system. E.g. Mum or Dad sets up the system and makes accounts suitably
+ configured for the kids.</P
+><P
+> When setting up <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> in this environment you
+ will have to alter the proxy set-up of Internet Explorer (IE) for the
+ specific DUN connection on which you wish to use
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>. When you do this the ICS DUN set-up
+ becomes user specific. In this instance you will see no difference if you
+ change the DUN connection under the account used to set-up the connection.
+ However when you do this from another user you will notice that the DUN
+ connection changes to make available to "Me only". You will also find that
+ you have to store the password under each different user!</P
+><P
+> The reason for this is that each user's set-up for IE is user specific. Each
+ set-up DUN connection and each LAN connection in IE store the settings for
+ each user individually. As such this enforces individual configurations
+ rather than common ones. Hence the first time you use a DUN connection after
+ re-booting your system it may not perform as you expect, and prompt you for 
+ the password. Just set and save the password again and all should be OK.</P
+><P
+>[Thanks to Ray Griffith for this submission.]</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="FTP"
+>5.6. I cannot connect to any FTP sites. Privoxy
+ is blocking me.</A
+></H3
+><P
+>  <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> cannot act as a proxy for FTP traffic, 
+  so do not configure your browser to use <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>
+  as an FTP proxy. The same is true for <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>any protocol other than HTTP
+  or HTTPS (SSL)</I
+></SPAN
+>. 
+ </P
+><P
+>  Most browsers understand FTP as well as HTTP. If you connect to a site, with
+  a URL like <TT
+CLASS="LITERAL"
+>ftp://ftp.example.com</TT
+>, your browser is making
+  an FTP connection, and not a HTTP connection. So while your browser may 
+  speak FTP, <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> does not, and cannot proxy 
+  such traffic.
+ </P
+><P
+>  To complicate matters, some systems may have a generic <SPAN
+CLASS="QUOTE"
+>"proxy"</SPAN
+>
+  setting, which will enable various protocols, including
+  <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>both</I
+></SPAN
+> HTTP and FTP proxying! So it is possible to
+  accidentally enable FTP proxying in these cases. And of course, if this
+  happens, <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> will indeed cause problems since
+  it does not know FTP. Newer version will give a sane error
+  message if a FTP connection is attempted. Just disable the FTP setting 
+  and all will be well again.
+ </P
+><P
+>  Will <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> ever proxy FTP traffic? Unlikely.
+  There just is not much reason, and the work to make this happen is more than
+  it may seem.
+ </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="MACOSXIE"
+>5.7. In Mac OS X, I can't configure Microsoft Internet Explorer to use 
+ Privoxy as the HTTP proxy.</A
+></H3
+><P
+>  Microsoft Internet Explorer (in versions like 5.1) respects system-wide
+  network settings.  In order to change the HTTP proxy, open System
+  Preferences, and click on the Network icon.  In the settings pane that
+  comes up, click on the Proxies tab.  Ensure the "Web Proxy (HTTP)" checkbox 
+  is checked and enter <TT
+CLASS="LITERAL"
+>127.0.0.1</TT
+> in the entry field.  
+  Enter <TT
+CLASS="LITERAL"
+>8118</TT
+> in the Port field.  The next time you start
+  IE, it should reflect these values.
+ </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="MACOSXUNINSTALL"
+>5.8. In Mac OS X, I dragged the Privoxy folder to the trash in order to 
+ uninstall it. Now the finder tells me I don't have sufficient privileges to
+ empty the trash.</A
+></H3
+><P
+> Note: This ONLY applies to privoxy 3.0.6 and earlier.
+ </P
+><P
+>  Just dragging the <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> folder to the trash is
+  not enough to delete it. <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> supplies an
+  <SPAN
+CLASS="APPLICATION"
+>uninstall.command</SPAN
+> file that takes care of
+  these details. Open the trash, drag the <SPAN
+CLASS="APPLICATION"
+>uninstall.command</SPAN
+>
+  file out of the trash and double-click on it. You will be prompted for
+  confirmation and the administration password.
+ </P
+><P
+>  The trash may still appear full after this command; emptying the trash 
+  from the desktop should make it appear empty again.
+ </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="MACOSXIMAGES"
+>5.9. In Mac OS X Panther (10.3), images often fail to load and/or I
+ experience random delays in page loading. I'm using
+ <TT
+CLASS="LITERAL"
+>localhost</TT
+> as my browser's proxy setting.</A
+></H3
+><P
+>  We believe this is due to an IPv6-related bug in Mac OS X, but don't fully
+  understand the issue yet. In any case, changing the proxy setting to 
+  <TT
+CLASS="LITERAL"
+>127.0.0.1</TT
+> instead of <TT
+CLASS="LITERAL"
+>localhost</TT
+>
+  works around the problem.
+ </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="BLANKPAGE"
+>5.10. I get a completely blank page at one site. <SPAN
+CLASS="QUOTE"
+>"View Source"</SPAN
+>
+ shows only: <SPAN
+CLASS="MARKUP"
+>&#60;html&#62;&#60;body&#62;&#60;/body&#62;&#60;/html&#62;</SPAN
+>. Without
+ Privoxy the page loads fine.</A
+></H3
+><P
+>  Chances are that the site suffers from a bug in
+  <A
+HREF="http://www.php.net/"
+TARGET="_top"
+><SPAN
+CLASS="APPLICATION"
+>PHP</SPAN
+></A
+>,
+  which results in empty pages being sent if the client explicitly requests
+  an uncompressed page, like <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> does.
+  This bug has been fixed in PHP 4.2.3.
+ </P
+><P
+>  To find out if this is in fact the source of the problem, try adding
+  the site to a <TT
+CLASS="LITERAL"
+>-prevent-compression</TT
+> section in
+  <TT
+CLASS="FILENAME"
+>user.action</TT
+>:
+ </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>   # Make exceptions for ill-behaved sites:                                     
+   #                                                                    
+   {-prevent-compression}                                               
+    .example.com</PRE
+></TD
+></TR
+></TABLE
+><P
+>  If that works, you may also want to report the problem to the
+  site's webmasters, telling them to use zlib.output_compression
+  instead of ob_gzhandler in their PHP applications (workaround)
+  or upgrade to PHP 4.2.3 or later (fix).
+ </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="NOHOSTNAME"
+>5.11. My logs show many <SPAN
+CLASS="QUOTE"
+>"Unable to get my own hostname"</SPAN
+> lines.
+Why?</A
+></H3
+><P
+> <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> tries to get the hostname of the system
+ its running on from the IP address of the system interface it is bound to
+ (from the <TT
+CLASS="FILENAME"
+>config</TT
+> file
+ <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>listen-address</I
+></SPAN
+> setting). If the system cannot supply
+ this information, <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> logs this condition. </P
+><P
+> Typically, this would be considered a minor system configuration error. It is
+ not a fatal error to <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> however, but may
+ result in a much slower response from <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> on
+ some platforms due to DNS timeouts.</P
+><P
+> This can be caused by a problem with the local <TT
+CLASS="FILENAME"
+>hosts</TT
+>
+ file. If this file has been changed from the original, try reverting it to
+ see if that helps. Make sure whatever name(s) are used for the local system,
+ that they resolve both ways.</P
+><P
+> You should also be able to work around the problem with the
+ <A
+HREF="../user-manual/config.html#HOSTNAME"
+TARGET="_top"
+>hostname option</A
+>.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="INUSE"
+>5.12. When I try to launch Privoxy, I get an 
+error message <SPAN
+CLASS="QUOTE"
+>"port 8118 is already in use"</SPAN
+> (or similar wording).
+Why?</A
+></H3
+><P
+> Port 8118 is <SPAN
+CLASS="APPLICATION"
+>Privoxy's</SPAN
+> default TCP 
+ <SPAN
+CLASS="QUOTE"
+>"listening"</SPAN
+> port. Typically this message would mean that there
+ is already one instance of <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> running, and
+ your system is actually trying to start a second
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> on the same port, which will not work.
+ (You can have multiple instances but they must be assigned different ports.)
+ How and why this might happen varies from platform to platform, but you need
+ to check your installation and start-up procedures.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="DEMORONIZER"
+>5.13. Pages with UTF-8 fonts are garbled.</A
+></H3
+><P
+> This is caused by the <SPAN
+CLASS="QUOTE"
+>"demoronizer"</SPAN
+> filter. You should either
+ upgrade <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>, or at least upgrade to the most
+ recent <TT
+CLASS="FILENAME"
+>default.action</TT
+> file available from <A
+HREF="http://sourceforge.net/project/showfiles.php?group_id=11118"
+TARGET="_top"
+>SourceForge</A
+>.
+ Or you can simply disable the demoronizer filter.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="DEMORONIZER2"
+>5.14. Why are binary files (such as images) corrupted when Privoxy
+ is used?</A
+></H3
+><P
+> This may also be caused by the <SPAN
+CLASS="QUOTE"
+>"demoronizer"</SPAN
+> filter, 
+ in conjunction with a web server that is misreporting the content type. Binary 
+ files are exempted from <SPAN
+CLASS="APPLICATION"
+>Privoxy's</SPAN
+> filtering
+ (unless the web server by mistake says the file is something else). Either
+ upgrade <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>, or go to the most recent
+ <TT
+CLASS="FILENAME"
+>default.action</TT
+> file available from <A
+HREF="http://sourceforge.net/project/showfiles.php?group_id=11118"
+TARGET="_top"
+>SourceForge</A
+>.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="DEMORONIZER3"
+>5.15. What is the <SPAN
+CLASS="QUOTE"
+>"demoronizer"</SPAN
+> and why is it there?</A
+></H3
+><P
+> The original demoronizer was a Perl script that cleaned up HTML pages which 
+ were created with certain Microsoft products. MS has used proprietary extensions 
+ to standardized font encodings (ISO 8859-1), which has caused problems for pages
+ that are viewed with non-Microsoft products (and are expecting to see a
+ standard set of fonts). The demoronizer corrected these errors so the pages
+ displayed correctly. <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> borrowed from this
+ script, introducing a filter based on the original demoronizer, which in turn could
+ correct these errors on the fly. </P
+><P
+> But this is only needed in some situations, and will cause serious problems in some 
+ other situations.</P
+><P
+> If you are using Microsoft products, you do not need it. If you need to view 
+ pages with UTF-8 characters (such as Cyrillic or Chinese), then it will 
+ cause corruption of the fonts, and thus <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>should not be on</I
+></SPAN
+>.</P
+><P
+> On the other hand, if you use non-Microsoft products, and you occasionally 
+ notice weird characters on pages, you might want to try it.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="WINDOWOPEN"
+>5.16. Why do I keep seeing <SPAN
+CLASS="QUOTE"
+>"PrivoxyWindowOpen()"</SPAN
+> in raw source code?</A
+></H3
+><P
+> <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> is attempting to disable malicious 
+  <A
+HREF="http://en.wikipedia.org/wiki/Javascript"
+TARGET="_top"
+>Javascript</A
+> 
+  in this case, with the <TT
+CLASS="LITERAL"
+>unsolicited-popups</TT
+>
+ filter. <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> cannot tell very well 
+ <SPAN
+CLASS="QUOTE"
+>"good"</SPAN
+> code snippets from <SPAN
+CLASS="QUOTE"
+>"bad"</SPAN
+> code snippets.</P
+><P
+> If you see this in HTML source, and the page displays without problems, then 
+ this is good, and likely some pop-up window was disabled. If you see this 
+ where it is causing a problem, such as a downloaded program source code file, 
+ then you should set an exception for this site or page such that the
+ integrity of the page stays in tact by disabling all filtering.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="DNSERRORS"
+>5.17. I am getting too many DNS errors like <SPAN
+CLASS="QUOTE"
+>"404 No Such Domain"</SPAN
+>. Why
+ can't Privoxy do this better?</A
+></H3
+><P
+> There are potentially several factors here. First of all, the DNS resolution
+ is done by the underlying operating system -- not
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> itself. <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>
+ merely initiates the process and hands it off, and then later reports
+ whatever the outcome was and tries to give a coherent message if there seems
+ to be a problem. In some cases, this might otherwise be mitigated by the
+ browser itself which might try some work-arounds and alternate approaches (e.g
+ adding <SPAN
+CLASS="QUOTE"
+>"www."</SPAN
+> to the URL).</P
+><P
+> In other cases, if <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> is being chained
+ with another proxy, this could complicate the issue, and cause undue
+ delays and timeouts. In the case of a <SPAN
+CLASS="QUOTE"
+>"socks4a"</SPAN
+> proxy, the socks
+ server handles all the DNS.  <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> would just be
+ the <SPAN
+CLASS="QUOTE"
+>"messenger"</SPAN
+> which is reporting whatever problem occurred
+ downstream, and not the root cause of the error.</P
+><P
+> In any case, versions newer than 3.0.3 include various improvements to help
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> better handle these cases.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="ALLCPU"
+>5.18. At one site Privoxy just hangs, and starts taking 
+ all CPU. Why is this?</A
+></H3
+><P
+> This is probably a manifestation of the <SPAN
+CLASS="QUOTE"
+>"100% cpu"</SPAN
+> problem that
+ occurs on pages containing many (thousands upon thousands) of blank lines. The blank lines 
+ are in the raw HTML source of the page, and the browser just ignores them. But the 
+ pattern matching in <SPAN
+CLASS="APPLICATION"
+>Privoxy's</SPAN
+> page filtering
+ mechanism is trying to match against absurdly long strings and this becomes
+ very CPU-intensive, taking a long, long time to complete.</P
+><P
+> Until a better solution comes along, disable filtering on these pages,
+ particularly the <TT
+CLASS="LITERAL"
+>js-annoyances</TT
+> and
+ <TT
+CLASS="LITERAL"
+>unsolicited-popups</TT
+> filters. If you run into this problem
+ with a recent <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> version, please send a problem report.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="SLOWCRAWL"
+>5.19. I just installed Privoxy, and all my
+browsing has slowed to a crawl. What gives?</A
+></H3
+><P
+> This should not happen, and for the overwhelming number of users world-wide,
+ it does not happen. I would suspect some inadvertent interaction of software
+ components such as anti-virus software, spyware protectors, personal
+ firewalls or similar components. Try disabling (or uninstalling) these one
+ at a time and see if that helps. Either way, if you are using a
+ recent <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> version, please report the problem.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="PREVENTCOMP"
+>5.20. Why do my filters work on some sites but not on others?</A
+></H3
+><P
+> It's probably due to compression. It is a common practice for web servers to
+ send their content <SPAN
+CLASS="QUOTE"
+>"compressed"</SPAN
+> in order to speed things up, and
+ then let the browser <SPAN
+CLASS="QUOTE"
+>"uncompress"</SPAN
+> them. When compiled with zlib support
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> can decompress content before filtering, otherwise you may want to enable
+<A
+HREF="../user-manual/actions-file.html#PREVENT-COMPRESSION"
+TARGET="_top"
+>prevent-compression</A
+>.</P
+><P
+> As of <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> 3.0.9, zlib support is enabled in the default builds.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="SSL-WARNINGS"
+>5.21. On some HTTPS sites my browser warns me about unauthenticated content,
+ the URL bar doesn't get highlighted and the lock symbol appears to be broken.
+ What's going on?</A
+></H3
+><P
+> Probably the browser is requesting ads through HTTPS and <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>
+ is blocking the requests. Privoxy's error messages are delivered
+ unencrypted and while it's obvious for the browser that the HTTPS
+ request is already blocked by the proxy, some warn about unauthenticated
+ content anyway.</P
+><P
+> To work around the problem you can redirect those requests to an invalid
+ local address instead of blocking them. While the redirects aren't
+ encrypted either, many browsers don't care. They simply follow the
+ redirect, fail to reach a server and display an error message instead
+ of the ad.</P
+><P
+> To do that, enable logging to figure out which requests get blocked by
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> and add the hosts (no path patterns) to a section like this:</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>{+redirect{http://127.0.0.1:0/} -block -limit-connect}
+.ivwbox.de:443/</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> Additionally you have to configure your browser to contact
+ <SPAN
+CLASS="QUOTE"
+>"127.0.0.1:0"</SPAN
+> directly (instead of through <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>).</P
+><P
+> To add a proxy exception in <SPAN
+CLASS="APPLICATION"
+>Mozilla Firefox</SPAN
+>
+ open the <SPAN
+CLASS="QUOTE"
+>"Preferences"</SPAN
+>, click the <SPAN
+CLASS="QUOTE"
+>"Settings"</SPAN
+>
+ button located on the <SPAN
+CLASS="QUOTE"
+>"Network"</SPAN
+> tab in the <SPAN
+CLASS="QUOTE"
+>"Advanced"</SPAN
+>
+ section, and add <SPAN
+CLASS="QUOTE"
+>"127.0.0.1:0"</SPAN
+> in the <SPAN
+CLASS="QUOTE"
+>"No Proxy for:"</SPAN
+>
+ field.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="SE-LINUX"
+>5.22. I get selinux error messages. How can I fix this?</A
+></H3
+><P
+> Please report the problem to the creator of your selinux policies.</P
+><P
+> The problem is that some selinux policy writers aren't familiar
+ with the application they are trying to <SPAN
+CLASS="QUOTE"
+>"secure"</SPAN
+> and
+ thus create policies that make no sense.</P
+><P
+> In <SPAN
+CLASS="APPLICATION"
+>Privoxy's</SPAN
+> case the problem usually
+ is that the policy only allows outgoing connections for certain
+ destination ports (e.g. 80 and 443). While this may cover the
+ standard ports, websites occasionally use other ports as well.
+ This isn't a security problem and therefore <SPAN
+CLASS="APPLICATION"
+>Privoxy's</SPAN
+>
+ default configuration doesn't block these requests.</P
+><P
+> If you really want to block these ports (and don't be able
+ to load websites that don't use standard ports), you should
+ configure Privoxy to block these ports as well, so it doesn't
+ trigger the selinux warnings.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="GENTOO-RICERS"
+>5.23. I compiled <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> with Gentoo's portage and it appears to be very slow. Why?</A
+></H3
+><P
+> Probably you unintentionally compiled <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> without threading support
+ in which case requests have to be serialized and only one can be served
+ at the same time.</P
+><P
+> Check your <SPAN
+CLASS="QUOTE"
+>"USE"</SPAN
+> flags and make sure they include
+ <SPAN
+CLASS="QUOTE"
+>"threads"</SPAN
+>. If they don't, add the flag and rebuild <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>.</P
+><P
+> If you compiled <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> with threading support (on POSIX-based systems),
+ the <SPAN
+CLASS="QUOTE"
+>"Conditional #defines"</SPAN
+> section on <A
+HREF="http://config.privoxy.org/show-status"
+TARGET="_top"
+>http://config.privoxy.org/show-status</A
+>
+ will list <SPAN
+CLASS="QUOTE"
+>"FEATURE_PTHREAD"</SPAN
+> as <SPAN
+CLASS="QUOTE"
+>"enabled"</SPAN
+>. </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="misc.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="contact.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Miscellaneous</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Contacting the developers, Bug Reporting and Feature Requests</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

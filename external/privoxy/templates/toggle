@@ -1,0 +1,180 @@
+##########################################################
+#
+# Toggle Output template for Privoxy.
+#
+#
+# USING HTML TEMPLATES:
+# ---------------------
+#
+# Template files are written win plain HTML, with a few
+# additions:
+# 
+# - Lines that start with a '#' character like this one
+#   are ignored
+#
+# - Each item in the below list of exported symbols will
+#   be replaced by dynamically generated text, if they
+#   are enclosed in '@'-characters. E.g. The string @version@
+#   will be replaced by the version number of Privoxy.
+#
+# - One special application of this is to make whole blocks
+#   of the HTML template disappear if the condition <name>
+#   is not given. Simply enclose the block between the two
+#   strings @if-<name>start and if-<name>-end@. The strings
+#   should be placed in HTML comments (<!-- -->), so the
+#   html structure won't be messed when the magic happens.
+#   
+# USABLE SYMBOLS IN THIS TEMPLATE:
+# --------------------------------
+#
+#  my-ip-addr:
+#    The IP-address that the client used to reach this proxy
+#  my-hostname:
+#    The hostname associated with my-ip-addr
+#  admin-address:
+#    The email address of the pxoxy's administrator, as configured
+#    in the config file
+#  default-cgi:
+#    The URL for the "main menu" builtin CGI of this proxy
+#  menu:
+#    List of <li> elements linking to the other available CGIs
+#  version:
+#    The version number of the proxy software
+#  code-status:
+#    The development status of the proxy software: "alpha", "beta",
+#    or "stable".
+#  homepage:
+#    The URL of the SourceForge ijbswa project, who maintains this
+#    software.
+#
+# CONDITIONAL SYMBOLS FOR THIS TEMPLATE AND THEIR DEPANDANT SYMBOLS:
+# ------------------------------------------------------------------
+#
+#  unstable:
+#    this is an alpha or beta release of the proxy software
+#  have-adminaddr-info:
+#    An e-mail address for the local Privoxy adminstrator has
+#    been specified and is available through the "admin-address"
+#    symbol
+#  have-proxy-info:
+#    A URL for online documentation about this proxy has been
+#    specified and is available through the "proxy-info-url"
+#    symbol
+#  have-help-info:
+#    If either have-proxy-info is true or have-adminaddr-info is
+#    true, have-help-info is true.  Used to conditionally include
+#    a grey box for any and all help info.
+#  @if-enabled-display-then@ on @else-not-enabled-display@ off @endif-enabled-display@
+#
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+<head>
+  <title>@if-enabled-display-then@Enabled@else-not-enabled-display@Disabled@endif-enabled-display@ - Privoxy@@my-hostname@</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta http-equiv="Content-Script-Type" content="text/javascript">
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="stylesheet" type="text/css" href="@default-cgi@send-stylesheet">
+  <link rel="shortcut icon" href="@default-cgi@favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+  <table cellpadding="20" cellspacing="10" border="0" width="100%">
+    <tr>
+      <td class="title">
+
+#include mod-title
+
+      </td>
+    </tr>
+
+<!-- @if-unstable-start -->
+# This will only appear if CODE_STATUS is "alpha" or "beta". See configure.in
+    <tr>
+      <td class="warning">
+
+#include mod-unstable-warning
+
+      </td>
+    </tr>
+<!-- if-unstable-end@ -->
+
+    <tr>
+      <td class="box">
+        <h2>Privoxy is @if-enabled-display-then@Enabled@else-not-enabled-display@Disabled@endif-enabled-display@</h2>
+          <p>When enabled, Privoxy performs its magic - blocking
+            adverts, filtering cookies, regex-filtering, etc.</p>
+          <p>When disabled, Privoxy behaves as a normal HTTP proxy,
+            and will not affect your web browsing.</p>
+          <p><a href="@default-cgi@toggle?set=@if-enabled-display-then@disable@else-not-enabled-display@enable@endif-enabled-display@">Click
+            here</a> to @if-enabled-display-then@disable@else-not-enabled-display@enable@endif-enabled-display@ Privoxy.</p>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="box">
+        <h2>Bookmarklets</h2>
+          <p>Here are some bookmarklets to allow you to easily access a
+            "mini" version of this page.  They are known to work with MS 
+            Internet Explorer, Netscape and Mozilla, but should work equally
+            well in other browsers which support JavaScript.  They are designed
+            to run directly from your bookmarks - <b>not</b> by clicking the
+            links below (although that will work for testing).
+          </p>
+          <p>To save them, right-click the link and choose
+            "Add to Favorites" (IE) or "Add Bookmark" (Netscape).  You
+            will get a warning that the bookmark "may not be safe" - just
+            click OK.  Then you can run the Bookmarklet directly from your
+            favourites/bookmarks.  For even faster access, you can put
+            them on the "Links" bar (IE) or the "Personal Toolbar"
+            (Netscape), and run them with a single click.
+          </p>
+
+          <ul>
+            <li><a href="javascript:void(window.open('@default-cgi@toggle?mini=y&amp;set=enabled','ijbstatus','width=250,height=100,resizable=yes,scrollbars=no,toolbar=no,location=no,directories=no,status=no,menubar=no,copyhistory=no').focus());">Privoxy - Enable</a></li>
+            <li><a href="javascript:void(window.open('@default-cgi@toggle?mini=y&amp;set=disabled','ijbstatus','width=250,height=100,resizable=yes,scrollbars=no,toolbar=no,location=no,directories=no,status=no,menubar=no,copyhistory=no').focus());">Privoxy - Disable</a></li>
+            <li><a href="javascript:void(window.open('@default-cgi@toggle?mini=y&amp;set=toggle','ijbstatus','width=250,height=100,resizable=yes,scrollbars=no,toolbar=no,location=no,directories=no,status=no,menubar=no,copyhistory=no').focus());">Privoxy - Toggle Privoxy</a>
+                  (Toggles between enabled and disabled)</li>
+            <li><a href="javascript:void(window.open('@default-cgi@toggle?mini=y','ijbstatus','width=250,height=100,resizable=yes,scrollbars=no,toolbar=no,location=no,directories=no,status=no,menubar=no,copyhistory=no').focus());">Privoxy - View Status</a></li>
+          </ul>
+
+          <p>
+            <b>Credit:</b> The site which gave us the general idea for these
+            bookmarklets is <a href="http://www.bookmarklets.com/">www.bookmarklets.com</a>.
+            They have <a href="http://www.bookmarklets.com/about/">more information</a> about them.
+          </p>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="box">
+        <h2>More Privoxy:</h2>
+        <ul>@menu@<li><a href="@user-manual@">Documentation</a></li></ul>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="info">
+
+#include mod-support-and-service
+
+      </td>
+    </tr>
+
+<!-- @if-have-help-info-start -->
+    <tr>
+      <td class="info">
+
+#include mod-local-help
+
+      </td>
+    </tr>
+<!-- if-have-help-info-end@ -->
+    
+  </table>
+
+</body>
+</html>
+

@@ -1,0 +1,412 @@
+##############################################################################
+#
+# File        :  $Source: /cvsroot/ijbswa/current/templates/edit-actions-list,v $
+#
+# Purpose     :  Template used to edit the actions file.
+# 
+#
+# Copyright   :  Written by and Copyright (C) 2001-2007 the SourceForge
+#                Privoxy team. http://www.privoxy.org/
+#
+#                Original Author: Copyright (C) 2001 Jonathan Foster
+#                http://www.jon-foster.co.uk/
+#
+#                This program is free software; you can redistribute it 
+#                and/or modify it under the terms of the GNU General
+#                Public License as published by the Free Software
+#                Foundation; either version 2 of the License, or (at
+#                your option) any later version.
+#
+#                This program is distributed in the hope that it will
+#                be useful, but WITHOUT ANY WARRANTY; without even the
+#                implied warranty of MERCHANTABILITY or FITNESS FOR A
+#                PARTICULAR PURPOSE.  See the GNU General Public
+#                License for more details.
+#
+#                The GNU General Public License should be included with
+#                this file.  If not, you can view it at
+#                http://www.gnu.org/copyleft/gpl.html
+#                or write to the Free Software Foundation, Inc., 59
+#                Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#
+# Revisions   :
+#    $Log: edit-actions-list,v $
+#    Revision 1.34  2007/05/21 10:54:46  fabiankeil
+#    - Use strlcpy() instead of strcpy().
+#    - Stop treating actions files special. Expect a complete file name
+#      (with or without path) like it's done for the rest of the files.
+#      Closes FR#588084.
+#    - Don't rerun sed() in cgi_show_request().
+#
+#    Revision 1.33  2007/04/08 13:21:06  fabiankeil
+#    Reference action files in CGI URLs by id instead
+#    of using the first part of the file name.
+#    Fixes BR 1694250 and BR 1590556.
+#
+#    Revision 1.32  2007/01/23 16:03:16  fabiankeil
+#    - Add favicon links.
+#    - Remove useless W3C validator links.
+#
+#    Revision 1.31  2006/09/10 14:39:24  hal9
+#    Fix typo + minor change.
+#
+#    Revision 1.30  2006/09/09 01:12:15  hal9
+#    Soften actions files update interval.
+#
+#    Revision 1.29  2006/07/18 14:49:13  david__schmidt
+#    Reorganizing the repository: swapping out what was HEAD (the old 3.1 branch)
+#    with what was really the latest development (the v_3_0_branch branch)
+#
+#    Revision 1.26.2.4  2003/12/17 16:35:17  oes
+#    Work around new & silly MSIE behaviour where the request resulting from
+#    changing window.location.href doesn't reveal the referrer anymore
+#
+#    Revision 1.26.2.3  2002/09/25 15:34:09  oes
+#    - Work around JS problem in NS 2.0 (no joke)
+#    - Make JS string edit popup remove the pattern
+#      if edited to empty; make JS add popup do nothing
+#      if pattern empty.
+#
+#    Revision 1.26.2.2  2002/08/23 02:22:53  hal9
+#    Fix a perl brain fart with <li> in comments.
+#
+#    Revision 1.26  2002/05/23 23:37:25  oes
+#    Nit
+#
+#    Revision 1.25  2002/05/21 21:02:52  oes
+#    Added more help links
+#
+#    Revision 1.24  2002/05/21 19:11:40  oes
+#     - Added client-side JavaScript versions of edit and add URL forms
+#     - Moved jump targets to before container table cell
+#     - Let earu determine the jump target when removing URLs via JS
+#     - Fixed broken help link
+#
+#    Revision 1.23  2002/05/12 15:53:10  jongfoster
+#    Restoring CVS log information accidentally removed in
+#    my previous commit.
+#
+#    Revision 1.22  2002/05/12 15:45:33  jongfoster
+#    Applying [Patch 552094] New templates for edit-actions-list
+#    This cleans up the templates by:
+#    - Removing the (confusing) alternating color scheme.
+#    - Making everything left-justified.
+#
+#    Revision 1.21  2002/05/03 22:58:15  jongfoster
+#    Fixing link target in all URLs section
+#
+#    Revision 1.20  2002/04/26 12:57:18  oes
+#     - Central "button" link style in cgi-style.css
+#     - Help links now dynamic
+#
+#    Revision 1.19  2002/04/24 02:19:16  oes
+#     - Show name of actions file being edited
+#     - Show context sensitive help
+#     - Add buttons for easy changing of defaults
+#     - Cosmetics and clarifications
+#
+#    Revision 1.18  2002/04/18 19:21:09  jongfoster
+#    Added code to detect "conventional" action files, that start
+#    with a set of actions for all URLs (the pattern "/").
+#    These are special-cased in the "edit-actions-list" CGI, so
+#    that a special UI can be written for them.
+#
+#    Revision 1.17  2002/04/10 13:32:53  oes
+#    Made templates modular
+#
+#    Revision 1.16  2002/04/08 17:08:14  oes
+#    Cosmetic: make status in title lowercase
+#
+#    Revision 1.15  2002/04/05 16:01:32  oes
+#    Correct HTML, external Stylesheets, eye candy, some fixes
+#
+#    Revision 1.14  2002/03/26 22:29:56  swa
+#    we have a new homepage!
+#
+#    Revision 1.13  2002/03/24 15:23:33  jongfoster
+#    Name changes
+#
+#    Revision 1.12  2002/03/24 11:01:06  swa
+#    name change
+#
+#    Revision 1.11  2002/03/23 16:18:15  swa
+#    renamed every reference to the old name with foobar.
+#    fixed "application foobar application" tag, fixed
+#    "the foobar" with "foobar". left junkbuster in cvs
+#    comments and remarks to history untouched. should
+#    make final rename easier.
+#
+#    Revision 1.10  2002/03/16 15:22:19  jongfoster
+#    Moving 'alpha' warning to the end of the page
+#
+#    Revision 1.9  2002/03/05 00:24:51  jongfoster
+#    Patch to always edit the current actions file.
+#
+#    Revision 1.8  2002/03/03 10:29:12  swa
+#    point users to the right feedback forms,
+#    not necessarily the developer list.
+#
+#    Revision 1.7  2002/01/23 00:26:45  jongfoster
+#    Reducing length of URLs
+#    Where encoded and unencoded versions of a string existed, removing
+#    the unencoded one.
+#
+#    Revision 1.6  2002/01/17 21:33:00  jongfoster
+#    Replacing all references to the URL of the config interface
+#    with @default-cgi@
+#
+#    Revision 1.5  2002/01/17 21:21:05  jongfoster
+#    DOS->Unix line endings
+#
+#    Revision 1.4  2001/11/13 00:58:18  jongfoster
+#    New version of actions file editor templates
+#
+#
+##############################################################################
+#
+# Browser support for the CSS on this page:
+#   MS Internet Explorer 5.5 - Yes - everything works.
+#   Netscape 6.2             - Yes - everything works.
+#   Netscape 4.75            - No  - CSS buttons look really bad, but they are
+#                                    usable.  Everything else works.
+#   Opera 5.12               - Yes - everything works.
+#   MS Internet Explorer 4+  - Untested
+#   MS IE 3.x, NS3.x         - Untested (Don't support CSS, so everything
+#                              should work, but will look ugly).
+#   Mozilla >=0.6            - Yes - everything works.
+#
+# All browsers should work, you just might not get the pretty CSS buttons.
+#
+# If your favorite browser isn't listed/tested, please test and add it.
+#
+#
+#############################################################################
+#
+# Standard support:
+#
+# This file currently produces valid HTML 4.01 Strict.
+#
+# If you change it, please save the generated page from your web browser
+# and then upload it to http://validator.w3.org/ for checking.
+#
+#############################################################################
+#
+# Available variables include:
+#
+# filename
+# ver
+#
+#
+#############################################################################
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+<head>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta http-equiv="Content-Script-Type" content="text/javascript">
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="stylesheet" type="text/css" href="@default-cgi@send-stylesheet">
+  <link rel="shortcut icon" href="@default-cgi@favicon.ico" type="image/x-icon">
+
+  <title>Privoxy: Edit actions file @actions-file@</title>
+
+  <style type="text/css">
+
+table.framed {
+  border: solid black 1px;
+  margin: 10px 0px;
+}
+tr.actions {
+  background-color: #eeffee;
+}
+tr.url {
+  background-color: #ddddff;
+}
+tr.adv {
+  background-color: #FFFFD0;
+}
+td.header {
+  font-weight: bold;
+  font-size: 110%;
+  padding: 10px 15px 2px 15px;
+}
+td.url {
+  font-weight: bold;
+}
+td.action {
+  font-weight: bold;
+  font-style: italic;
+  padding: 2px 30px;
+}
+td.nbr, td.buttons {
+  white-space: nowrap;
+}
+td.indentbuttons {
+  padding: 2px 30px;
+}
+</style>
+
+<script type="text/javascript">
+<!--
+
+// Non-JS capable browsers will follow the link to a HTML "are you sure?" page
+// JavaScript-capable browsers will call this function, which does a
+// client-side prompt for speed.  It may kick off the delete directly.
+// It always returns false to cancel following the link.
+function rm_p(link,pattern,curtext)
+{
+   if (window.confirm("Are you sure you want to delete this URL pattern?\nPattern is: "+unescape(curtext)))
+   {
+      link.href="edit-actions-remove-url?f=@f@&v=@v@&p="+pattern;
+      return true;
+   }
+   return false;
+}
+
+function e_p(link,pattern,curtext)
+{
+   if ((newtext=window.prompt("Edit the pattern to your needs:", unescape(curtext))) != null)
+   {
+      if (newtext != "")
+      { link.href="edit-actions-url?f=@f@&v=@v@&p="+pattern+"&u="+escape(newtext); }
+      else
+      { link.href="edit-actions-remove-url?f=@f@&v=@v@&p="+pattern; }
+      return true;
+   }
+   return false;
+}
+
+function a_p(link,section)
+{
+   if (((newtext=window.prompt("Enter the new pattern:", "")) != null ) && (newtext != ""))
+   {
+      link.href="edit-actions-add-url?f=@f@&v=@v@&s="+section+"&u="+escape(newtext);
+      return true;
+   }
+   return false;
+}
+//-->
+</script>
+</head>
+
+<body>
+
+  <table cellpadding="20" cellspacing="10" border="0" width="100%">
+    <tr>
+      <td class="title">
+
+#include mod-title
+
+      </td>
+    </tr>
+
+<!-- @if-unstable-start -->
+# This will only appear if CODE_STATUS is "alpha" or "beta". See configure.in
+    <tr>
+      <td class="warning">
+
+#include mod-unstable-warning
+
+      </td>
+    </tr>
+<!-- if-unstable-end@ -->
+
+    <tr>
+      <td class="info">
+	<h2>What is all this?</h2>
+        <p>
+         If you haven't already done so, it is <b>strongly recommended</b> that you at 
+         least skim <a href="@user-manual@@actions-help-prefix@ACTIONS-FILE">the
+         chapter on actions files</a> in the <a href="@user-manual@">User Manual</a>
+         before making any changes. You will also find a comprehensive list of
+         all available actions there, as well how the settings on this page
+         work.
+        </p>
+         <!-- @if-all-urls-present-then@ -->
+        <p>
+         Please note that <b>the first section has special importance</b>. It sets the default actions for
+         all URLs. The resulting actions for a particular URL may differ from these defaults if that
+         URL matches again further down, but this section is largely responsible for your browsing
+         experience. Edit manually with great care, or choose from the predefined sets of actions.
+        </p>
+        <!-- @else-not-all-urls-present@@endif-all-urls-present@ -->
+        <!-- @if-default-action-then@ -->
+        <p>
+         This is the default action file. Updates for it are available from
+         <a href="http://www.privoxy.org/">Privoxy.org</a> from time to time. 
+         It is therefore <b>not recommended</b> that you add your private
+         rules here, since they will be lost if you install an update in the future.
+         Put your rules in a separate actions file, like <tt>user.action</tt> instead.
+        </p>
+        <!-- @else-not-default-action@@endif-default-action@ -->
+      </td>
+    </tr>
+
+    <tr>
+      <td class="box">
+        <div class="buttons">
+          <h2>Editing Actions File @actions-file@</h2>
+          <!-- @if-all-urls-present-then@@else-not-all-urls-present@ -->
+          <p><a class="cmd" href="edit-actions-section-add?f=@f@&amp;v=@v@&amp;s=0">Insert new section at top</a></p>
+          <!-- @endif-all-urls-present@ -->
+        </div>
+      </td>
+    </tr>
+
+    <!-- @if-all-urls-present-then@ -->
+    <tr>
+      <td class="container"><a name="l@all-urls-s@"></a>
+        <table border="0" width="100%" cellspacing="2" cellpadding="3" class="framed">
+          <tr class="actions"><td class="header"><a href="@user-manual@@actions-help-prefix@ACTIONS">Actions</a>:</td></tr>
+          <tr class="actions">
+            <td class="indentbuttons">
+              <a href="eafu?f=@f@&amp;v=@v@&amp;s=@all-urls-s@">Edit</a>
+              @all-urls-buttons@
+            </td>
+          </tr>
+          <tr class="actions"><td class="action">@all-urls-actions@</td></tr>
+          <tr class="url"><td class="header"><a href="@user-manual@@actions-help-prefix@AF-PATTERNS">URL patterns</a>:</td></tr>
+          <tr class="url"><td class="indentbuttons">/ &nbsp; <i>(Matches all requests)</a></td></tr>
+          <tr class="adv"><td class="header">Advanced:</td></tr>
+          <tr class="adv">
+            <td class="indentbuttons">
+              <a href="easa?f=@f@&amp;v=@v@&amp;s=@all-urls-s@#l@all-urls-s-next@">Insert new section below</a>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <!-- @else-not-all-urls-present@@endif-all-urls-present@ -->
+
+@sections@
+
+    <tr>
+      <td class="box">
+        <h2>More Privoxy:</h2>
+        <ul>@menu@<li><a href="@user-manual@">Documentation</a></li></ul>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="info">
+
+#include mod-support-and-service
+
+      </td>
+    </tr>
+
+<!-- @if-have-help-info-start -->
+    <tr>
+      <td class="info">
+
+#include mod-local-help
+
+      </td>
+    </tr>
+<!-- if-have-help-info-end@ -->
+
+  </table>
+</body>
+
+</html>

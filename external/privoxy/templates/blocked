@@ -1,0 +1,287 @@
+##########################################################
+#
+# "Blocked" Error Output template for Privoxy.
+#
+#  NOTE: UNLIKE THE OTHER TEMPLATES, THIS ONE USES
+#  JavaScript write() TO GENERATE THE PAGE IN JS_AWARE
+#  BROWSERS. SYMBOL SUBSTITUTIONS THAT RESULT IN MULTILINE
+#  STRINGS WILL BREAK THE JavaScript SYNTAX.
+#  USE WITH CAUTION.
+#
+# USING HTML TEMPLATES:
+# ---------------------
+#
+# Template files are written in plain HTML, with a few
+# additions:
+# 
+# - Lines that start with a '#' character like this one
+#   are ignored
+#
+# - Each item in the below list of exported symbols will
+#   be replaced by dynamically generated text, if they
+#   are enclosed in '@'-characters. E.g. The string @version@
+#   will be replaced by the version number of Privoxy.
+#
+# - One special application of this is to make whole blocks
+#   of the HTML template disappear if the condition <name>
+#   is not given. Simply enclose the block between the two
+#   strings @if-<name>start and if-<name>-end@. The strings
+#   should be placed in HTML comments (<!-- -->), so the
+#   html structure won't be messed when the magic happens.
+#   
+# USABLE SYMBOLS IN THIS TEMPLATE:
+# --------------------------------
+#
+#  my-ip-addr:
+#    The IP-address that the client used to reach this proxy
+#  my-hostname:
+#    The hostname associated with my-ip-addr
+#  admin-address:
+#    The email address of the pxoxy's administrator, as configured
+#    in the config file
+#  default-cgi:
+#    The URL for the "main menu" builtin CGI of this proxy
+#  menu:
+#    List of <li> elements linking to the other available CGIs
+#  version:
+#    The version number of the proxy software
+#  code-status:
+#    The development status of the proxy software: "alpha", "beta",
+#    or "stable".
+#  homepage:
+#    The URL of the SourceForge ijbswa project, who maintains this
+#    software.
+#
+#  protocol:
+#    The request's protocol: http:// or https://
+#  hostport:
+#    The host and port part of the blocked request's URL.
+#  path:
+#    The path part of the blocked request's URL.
+#  path-ue:
+#    The path part of the blocked request's URL, url-encoded.
+#
+#
+# CONDITIONAL SYMBOLS FOR THIS TEMPLATE AND THEIR DEPANDANT SYMBOLS:
+# ------------------------------------------------------------------
+#
+#  unstable:
+#    This is an alpha or beta release of the proxy software
+#  have-adminaddr-info:
+#    An e-mail address for the local Privoxy adminstrator has
+#    been specified and is available through the "admin-address"
+#    symbol
+#  have-proxy-info:
+#    A URL for online documentation about this proxy has been
+#    specified and is available through the "proxy-info-url"
+#    symbol
+#  have-help-info:
+#    If either have-proxy-info is true or have-adminaddr-info is
+#    true, have-help-info is true.  Used to conditionally include
+#    a grey box for any and all help info.
+#  force-support:
+#    Privoxy has been compiled with support for forced loading
+#    of blocked content. In that case, the symbol "force-prefix" is
+#    avaiable, which translates to the FORCE_PREFIX  
+#
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+ <head>
+  <title>Request blocked (Privoxy@@my-hostname@)</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta http-equiv="Content-Script-Type" content="text/javascript">
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="shortcut icon" href="@default-cgi@error-favicon.ico" type="image/x-icon">
+  <style type="text/css">
+#include cgi-style.css
+  </style>
+  <script type="text/javascript" language="javascript">
+  <!--
+    /*
+     * Is this window or frame too small
+     * for the full-blown "blocked" page?
+     */
+    function isSmallFrame()
+    {
+       minWidth  = 650;
+       minHeight = 330;
+
+       /* 
+        * Navigator, Mozilla, Opera
+        */
+       if (window.innerWidth 
+           && (window.innerWidth >= minWidth) 
+           && (window.innerHeight >= minHeight))
+       {
+          return false;
+       }
+ 
+       /* 
+        * MSIE
+        */
+       else if (document.body && document.body.clientWidth 
+                && (document.body.clientWidth >= minWidth)
+                && (document.body.clientHeight >= minHeight))
+       {
+          return false;
+       }
+
+       /*
+        * Small window or unsupported browser
+        */
+       return true;
+   }
+  //-->
+  </script>
+ </head>
+ <body>
+  <script type="text/javascript" language="javascript">
+  <!--
+#   Note: The same small version is used at the bottom
+#         of this file in the <noscript> context. If you
+#         make changes here, keep the other version in sync!
+
+  if (isSmallFrame())
+  {
+     document.write('\
+   <p class="small" align="center"> \
+    Request blocked by <a href="@default-cgi@" target="_blank">Privoxy</a>: @block-reason@ \
+    <br>See <a href="@default-cgi@show-url-info?url=@hostport@@path-ue@" \
+     target="_blank">why this block applies</a> \
+    <!-- @if-force-support-start --> \
+    or <a href="http://@hostport@@force-prefix@@path@">go \
+    <!-- if-force-support-end@ --> \
+    to <b>@protocol@@hostport@@path@</b> \
+    <!-- @if-force-support-start --> \
+    anyway</a>. \
+    <!-- if-force-support-end@ --> \
+   </p> \
+   ');
+
+  }
+  else
+  {
+     document.write('\
+  <table cellpadding="20" cellspacing="10" border="0" width="100%">\
+    <tr> \
+      <td class="status"> \
+        BLOCKED \
+      </td> \
+      <td class="title" width=100%> \
+         <h1> \
+          This is <a href="@homepage@">Privoxy</a> @version@ on @my-hostname@ (@my-ip-address@), port @my-port@, \
+          @if-enabled-display-then@enabled@else-not-enabled-display@disabled@endif-enabled-display@ \
+        </h1> \
+      </td> \
+    </tr> \
+ \
+<!-- @if-unstable-start --> \
+# This will only appear if CODE_STATUS is "alpha" or "beta". See configure.in \
+    <tr> \
+      <td class="warning" colspan="2"> \
+        <h2>Warning:</h2> \
+        <p> \
+          <b>Please note that this <font color=red>@code-status@</font> release \
+          of the proxy software is not intended for production systems! \
+          <br>Use at your own risk. See the <a href="http://www.gnu.org/copyleft/gpl.html">license</a> for details.</b> \
+        </p> \
+      </td> \
+    </tr> \
+<!-- if-unstable-end@ --> \
+ \
+    <tr> \
+      <td class="box" colspan="2"> \
+        <h2>Request for blocked URL</h2> \
+        <p>Your request for <b>@protocol@@hostport@@path@</b> was blocked. \
+         <br>Block reason: @block-reason@ \
+         <br><a href="@default-cgi@show-url-info?url=@hostport@@path-ue@" \
+         target="_blank">See why this block applies</a> \
+<!-- @if-force-support-start --> \
+          or <a href="http://@hostport@@force-prefix@@path@">go there anyway</a>. \
+<!-- if-force-support-end@ --> \
+        </p> \
+      </td> \
+    </tr> \
+ \
+    <tr> \
+      <td class="box" colspan="2"> \
+        <h2>More Privoxy:</h2> \
+        <ul>@menu@<li><a href="@user-manual@">Documentation</a></li></ul> \
+      </td> \
+    </tr> \
+ \
+    <tr> \
+      <td class="info" colspan="2"> \
+        <big><b>Support and Service via Sourceforge:</b></big> \
+        <p> \
+          We value your feedback. To provide you with the best support, \
+          we ask that you: \
+        </p> \
+        <ul> \
+          <li> \
+            use the <a href="http://sourceforge.net/tracker/?group_id=11118&amp;atid=211118">support forum</a> or (better) the \
+            <a href="http://sourceforge.net/mail/?group_id=11118">mailing lists</a> to get help. \
+          </li> \
+          <li> \
+            submit banners and all problems with the actions file only through the \
+            <a href="javascript:void(window.open(\'http://www.privoxy.org/actions\',\'Feedback\',\'width=600,scrollbars=yes,toolbar=no,location=no,directories=no,status=no,menubar=no,copyhistory=no\').focus());">actions \
+            file feedback system</a>. \
+          </li> \
+          <li> \
+            submit bugs only through our <a href="http://sourceforge.net/tracker/?group_id=11118&amp;atid=111118">bug tracker</a>. \
+            Make sure that the bug has not yet been submitted. \
+          </li> \
+          <li> \
+            submit feature requests only through our <a href="http://sourceforge.net/tracker/?atid=361118&amp;group_id=11118&amp;func=browse">feature \
+            request tracker</a>. \
+          </li> \
+        </ul> \
+      </td> \
+    </tr> \
+ \
+<!-- @if-have-help-info-start --> \
+    <tr> \
+      <td class="info" colspan="2"> \
+        <h2>Local Privoxy support:</h2> \
+ \
+<!-- @if-have-proxy-info-start --> \
+        <p>You can consult the <a href="@proxy-info-url@">online documentation</a> for more information about this Privoxy installation.</p> \
+<!-- if-have-proxy-info-end@ --> \
+ \
+<!-- @if-have-adminaddr-info-start --> \
+        <p>Address e-mail questions about this service to \
+          <a href="mailto:@admin-address@"><code>@admin-address@</code></a>, \
+          who will be glad to help you. \
+        </p> \
+<!-- if-have-adminaddr-info-end@ --> \
+      </td> \
+    </tr> \
+<!-- if-have-help-info-end@ --> \
+ \
+  </table> \
+     ');
+  }
+  //-->
+  </script>
+
+#   Note: The same small version is used above via JavaScript
+#         If you make changes here, keep the other version in sync!
+
+  <noscript>
+   <p class="small" align="center">
+    Request blocked by <a href="@default-cgi@" target="_blank">Privoxy</a>: @block-reason@
+    <br>See <a href="@default-cgi@show-url-info?url=@hostport@@path-ue@"
+     target="_blank">why this block applies</a>
+    <!-- @if-force-support-start -->
+    or <a href="http://@hostport@@force-prefix@@path@">go
+    <!-- if-force-support-end@ -->
+    to <b>@protocol@@hostport@@path@</b>
+    <!-- @if-force-support-start -->
+    anyway</a>.
+    <!-- if-force-support-end@ -->
+   </p>
+  </noscript>
+
+ </body>
+</html>

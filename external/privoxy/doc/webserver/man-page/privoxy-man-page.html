@@ -1,0 +1,294 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML><HEAD><TITLE>Man page of PRIVOXY</TITLE>
+<LINK REL="STYLESHEET" TYPE="text/css" HREF="../p_doc.css"></HEAD><BODY>
+<H1>PRIVOXY</H1>
+Section:  (1)<BR>Updated: 21 March 2009<BR><A HREF="#index">Index</A>
+<HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+privoxy - Privacy Enhancing Proxy
+<A NAME="lbAC">&nbsp;</A>
+<H2>SYNOPSIS</H2>
+
+<P>
+<B>privoxy</B> [<B>--help</B> ] [<B>--version</B> ] [<B>--no-daemon</B> ] [<B>--pidfile </B><I>pidfile</I><B></B> ] [<B>--user </B><I>user[.group]</I><B></B> ] [<B>--chroot</B> ] [<B>--pre-chroot-nslookup </B><I>hostname</I><B></B> ] [<B></B><I>configfile</I><B></B> ]
+<P>
+<A NAME="lbAD">&nbsp;</A>
+<H2>OPTIONS</H2>
+
+<P>
+
+<B>Privoxy</B> may be invoked with the following command line
+options:
+<DL COMPACT>
+<DT><B>--help</B><DD>
+Print brief usage info and exit.
+<DT><B>--version</B><DD>
+Print version info and exit.
+<DT><B>--no-daemon</B><DD>
+Don't  become  a daemon, i.e. don't fork and become process group
+leader, don't detach from controlling tty, and do all logging there.
+<DT><B>--pidfile </B><I>pidfile</I><B></B><DD>
+On startup, write the process ID to <I>pidfile</I>.
+Delete the <I>pidfile</I> on exit.
+Failure to create or delete the <I>pidfile</I>
+is non-fatal. If no <B>--pidfile</B> option is given, no PID file will be used.
+<DT><B>--user </B><I>user[.group]</I><B></B><DD>
+After (optionally) writing the PID file, assume the user ID of
+<I>user</I> and the GID of
+<I>group</I>, or, if the optional
+<I>group</I> was not given, the default group of
+<I>user</I>. Exit if the privileges are not
+sufficient to do so.
+<DT><B>--chroot</B><DD>
+Before changing to the user ID given in the --user option, chroot to
+that user's home directory, i.e. make the kernel pretend to the
+<B>Privoxy</B> process that the directory tree starts
+there. If set up carefully, this can limit the impact of possible
+vulnerabilities in <B>Privoxy</B> to the files contained in
+that hierarchy. 
+<DT><B>--pre-chroot-nslookup </B><I>hostname</I><B></B><DD>
+Initialize the resolver library using <I>hostname</I>
+before chroot'ing. On some systems this reduces the number of files
+that must be copied into the chroot tree.
+</DL>
+<P>
+
+If the <I>configfile</I> is not specified on  the  command  line,
+<B>Privoxy</B>  will  look for a file named
+<I>config</I> in the current directory. If no
+<I>configfile</I> is found, <B>Privoxy</B> will 
+fail to start.
+<A NAME="lbAE">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+<P>
+
+Privoxy is a non-caching web proxy with advanced filtering capabilities
+for enhancing privacy, modifying web page data and HTTP headers, controlling
+access, and removing ads and other obnoxious Internet junk. Privoxy has a
+flexible configuration and can be customized to suit individual needs and tastes.
+It has application for both stand-alone systems and multi-user networks.
+<P>
+
+Privoxy is Free Software and licensed under the GPL2.
+<A NAME="lbAF">&nbsp;</A>
+<H2>INSTALLATION AND USAGE</H2>
+
+<P>
+
+Browsers can either be individually configured to use
+<B>Privoxy</B> as a HTTP proxy (recommended),
+or <B>Privoxy</B> can be combined with a packet
+filter to build an intercepting proxy
+(see <I>config</I>).  The default setting is  for
+localhost,  on port  8118 (configurable in the main config file).  To set the
+HTTP proxy in Firefox, go through: <B>Tools</B>; 
+<B>Options</B>; <B>General</B>;
+<B>Connection Settings</B>;
+<B>Manual Proxy Configuration</B>. 
+<P>
+
+For Internet Explorer, go through: <B>Tools</B>; 
+<B>Internet Properties</B>; <B>Connections</B>;
+<B>LAN Settings</B>. 
+<P>
+
+The Secure (SSL) Proxy should also be set to the same values, otherwise
+https: URLs will not be proxied. Note: <B>Privoxy</B> can only
+proxy HTTP and HTTPS traffic. Do not try it with FTP or other protocols.
+HTTPS presents some limitations, and not all features will work with HTTPS 
+connections.
+<P>
+
+For other browsers, check the documentation.
+<A NAME="lbAG">&nbsp;</A>
+<H2>CONFIGURATION</H2>
+
+<P>
+
+<B>Privoxy</B> can be configured with the various configuration
+files. The default configuration files are: <I>config</I>,
+<I>default.filter</I>, <I>default.action</I> and
+<I>default.action</I>. <I>user.action</I> should 
+be used for locally defined exceptions to the default rules in
+<I>match-all.action</I> and <I>default.action</I>,
+and <I>user.filter</I> for locally defined filters. These are
+well commented.  On Unix and Unix-like systems, these are located in
+<I>/etc/privoxy/</I> by default. 
+<P>
+
+<B>Privoxy</B> uses the concept of <B>actions</B> 
+in order to manipulate the data stream between the browser and remote sites.
+There are various actions available with specific functions for such things 
+as blocking web sites, managing cookies, etc. These actions can be invoked
+individually or combined, and used against individual URLs, or groups of URLs 
+that can be defined using wildcards and regular expressions. The result is
+that the user has greatly enhanced control and freedom.
+<P>
+
+The actions list (ad blocks, etc) can also be configured with your
+web browser at <A HREF="http://config.privoxy.org/">http://config.privoxy.org/</A> 
+(assuming the configuration allows it).
+<B>Privoxy's</B> configuration parameters  can also  be viewed at
+the same page. In addition, <B>Privoxy</B> can be toggled on/off.
+This is an internal page, and does not require Internet access.
+<P>
+
+See the <I>User Manual</I> for a detailed
+explanation of installation, general usage, all configuration options, new
+features and notes on upgrading.
+<A NAME="lbAH">&nbsp;</A>
+<H2>FILES</H2>
+
+<P>
+<PRE>
+ 
+ <I>/usr/sbin/privoxy</I>
+ <I>/etc/privoxy/config</I>
+ <I>/etc/privoxy/match-all.action</I>
+ <I>/etc/privoxy/default.action</I>
+ <I>/etc/privoxy/user.action</I>
+ <I>/etc/privoxy/default.filter</I>
+ <I>/etc/privoxy/user.filter</I>
+ <I>/etc/privoxy/trust</I>
+ <I>/etc/privoxy/templates/*</I>
+ <I>/var/log/privoxy/logfile</I>
+</PRE>
+
+<P>
+
+Various other files should be included, but may vary depending on platform
+and build configuration. Additional documentation should be included in the local
+documentation directory.
+<A NAME="lbAI">&nbsp;</A>
+<H2>SIGNALS</H2>
+
+<P>
+
+<B>Privoxy</B> terminates on the <B>SIGINT</B>,
+<B>SIGTERM</B> and <B>SIGABRT</B> signals. Log
+rotation scripts may cause a re-opening of the logfile by sending a 
+<B>SIGHUP</B> to <B>Privoxy</B>. Note that unlike
+other daemons,  <B>Privoxy</B> does not need to be made aware of
+config file changes by <B>SIGHUP</B> -- it will detect them
+automatically. 
+<A NAME="lbAJ">&nbsp;</A>
+<H2>NOTES</H2>
+
+<P>
+
+Please see the <I>User Manual</I> on how to contact the
+developers, for feature requests, reporting problems, and other questions.
+<A NAME="lbAK">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<P>
+
+Other references and sites of interest to <B>Privoxy</B>
+users:
+<P>
+
+<P>
+<A HREF="http://www.privoxy.org/">http://www.privoxy.org/,</A> 
+the <B>Privoxy</B> Home page. 
+<P>
+<A HREF="http://www.privoxy.org/faq/">http://www.privoxy.org/faq/,</A> 
+the <B>Privoxy</B> FAQ. 
+<P>
+<A HREF="http://www.privoxy.org/developer-manual/">http://www.privoxy.org/developer-manual/,</A> 
+the <B>Privoxy</B> developer manual. 
+<P>
+<A HREF="https://sourceforge.net/projects/ijbswa/">https://sourceforge.net/projects/ijbswa/,</A> 
+the Project Page for <B>Privoxy</B> on 
+SourceForge.
+<P>
+<A HREF="http://config.privoxy.org/">http://config.privoxy.org/,</A>
+the web-based user interface. <B>Privoxy</B> must be
+running for this to work. Shortcut: <A HREF="http://p.p/">http://p.p/</A>
+<P>
+<A HREF="https://sourceforge.net/tracker/?group_id=11118">https://sourceforge.net/tracker/?group_id=11118</A>&amp;atid=460288, to submit ``misses'' and other
+configuration related suggestions to the developers. 
+<A NAME="lbAL">&nbsp;</A>
+<H2>DEVELOPMENT TEAM</H2>
+
+<P>
+<PRE>
+ Fabian Keil, lead developer
+ David Schmidt, developer
+
+ Hal Burgiss
+ Mark Miller
+ Gerry Murphy
+ Lee Rian
+ Roland Rosenfeld
+ J&ouml;rg Strohmayer
+</PRE>
+
+<A NAME="lbAM">&nbsp;</A>
+<H2>COPYRIGHT AND LICENSE</H2>
+
+<A NAME="lbAN">&nbsp;</A>
+<H3>COPYRIGHT</H3>
+
+<P>
+
+Copyright (C) 2001-2009 by Privoxy Developers &lt;<A HREF="mailto:ijbswa-developers@lists.sourceforge.net">ijbswa-developers@lists.sourceforge.net</A>&gt;
+<P>
+
+Some source code is based on code Copyright (C) 1997 by Anonymous Coders
+and Junkbusters, Inc. and licensed under the <I>GNU General Public
+License</I>.
+<A NAME="lbAO">&nbsp;</A>
+<H3>LICENSE</H3>
+
+<P>
+
+<B>Privoxy</B> is free software; you can
+redistribute it and/or modify it under the terms of the 
+<I>GNU General Public License</I>, version 2,
+as published by the Free Software Foundation.
+<P>
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE.  See the  <I>GNU General Public License</I> for details.
+<P>
+
+You should have received a copy of the <I>GNU GPL</I>
+along with this program; if not, write to the  Free Software
+Foundation, Inc. 51 Franklin Street, Fifth Floor
+Boston, MA 02110-1301
+USA 
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">OPTIONS</A><DD>
+<DT><A HREF="#lbAE">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAF">INSTALLATION AND USAGE</A><DD>
+<DT><A HREF="#lbAG">CONFIGURATION</A><DD>
+<DT><A HREF="#lbAH">FILES</A><DD>
+<DT><A HREF="#lbAI">SIGNALS</A><DD>
+<DT><A HREF="#lbAJ">NOTES</A><DD>
+<DT><A HREF="#lbAK">SEE ALSO</A><DD>
+<DT><A HREF="#lbAL">DEVELOPMENT TEAM</A><DD>
+<DT><A HREF="#lbAM">COPYRIGHT AND LICENSE</A><DD>
+<DL>
+<DT><A HREF="#lbAN">COPYRIGHT</A><DD>
+<DT><A HREF="#lbAO">LICENSE</A><DD>
+</DL>
+</DL>
+<HR>
+This document was created by
+man2html,
+using the manual pages.<BR>
+Time: 11:32:52 GMT, March 21, 2009
+</BODY>
+</HTML>

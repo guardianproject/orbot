@@ -1,0 +1,340 @@
+########################################################################
+#
+# File        :  $Source: /cvsroot/ijbswa/current/templates/show-url-info,v $
+#
+# Purpose     :  Template for Privoxy's show-url-info CGI page.
+#
+# Copyright   :  Written by and Copyright (C) 2001-2007 the SourceForge
+#                Privoxy team. http://www.privoxy.org/
+#
+#                This program is free software; you can redistribute it 
+#                and/or modify it under the terms of the GNU General
+#                Public License as published by the Free Software
+#                Foundation; either version 2 of the License, or (at
+#                your option) any later version.
+#
+#                This program is distributed in the hope that it will
+#                be useful, but WITHOUT ANY WARRANTY; without even the
+#                implied warranty of MERCHANTABILITY or FITNESS FOR A
+#                PARTICULAR PURPOSE.  See the GNU General Public
+#                License for more details.
+#
+#                The GNU General Public License should be included with
+#                this file.  If not, you can view it at
+#                http://www.gnu.org/copyleft/gpl.html
+#                or write to the Free Software Foundation, Inc., 59
+#                Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#
+# Revisions   :
+#    $Log: show-url-info,v $
+#    Revision 1.29  2009/01/01 17:36:41  ler762
+#    remove non-standard <nobr> tags
+#
+#    Revision 1.28  2009/01/01 14:51:21  ler762
+#    keep the input field and 'go' button on the same line.
+#
+#    Revision 1.27  2008/05/26 17:30:58  fabiankeil
+#    Provide an OpenSearch Description to access the
+#    show-url-info page through "search engine plugins".
+#
+#    Revision 1.26  2008/05/05 10:03:06  fabiankeil
+#    If the provided URL isn't valid, don't show the
+#    cgi-editor-is-disabled and filters-might-be-ineffective
+#    sections.
+#
+#    Revision 1.25  2008/04/26 10:34:18  fabiankeil
+#    If zlib support is unavailable and there are content filters active
+#    but the prevent-compression action is disabled, include a warning
+#    on the show-url-info page that compression might prevent filtering.
+#
+#    Revision 1.24  2008/02/10 17:26:52  fabiankeil
+#    Reduce superfluous white space by not marking
+#    up the final results list as paragraph.
+#
+#    Revision 1.23  2008/02/01 06:04:31  fabiankeil
+#    If edit buttons on the show-url-info CGI page are hidden, explain why.
+#
+#    Revision 1.22  2007/12/08 14:29:06  fabiankeil
+#    Use CSS to let the URL and pattern input fields scale with
+#    the browser width and try to prevent vertical scroll bars
+#    if the width is less than 80 characters. Closes #1843596,
+#    thanks to Gerry Murphy and Lee.
+#
+#    Revision 1.21  2007/11/15 19:11:11  fabiankeil
+#    Reword HTTPS URL information.
+#
+#    Revision 1.20  2007/07/21 12:19:50  fabiankeil
+#    If show-url-info is called with an URL that Privoxy
+#    would reject as invalid, don't show unresolved forwarding
+#    variables, "final matches" or claim the site's secure.
+#
+#    Revision 1.19  2007/02/10 16:55:22  fabiankeil
+#    - Show forwarding settings on the show-url-info page
+#    - Fix some HTML syntax errors.
+#
+#
+#########################################################################
+# USING HTML TEMPLATES:
+# ---------------------
+#
+# Template files are written win plain HTML, with a few
+# additions:
+# 
+# - Lines that start with a '#' character like this one
+#   are ignored
+#
+# - Each item in the below list of exported symbols will
+#   be replaced by dynamically generated text, if they
+#   are enclosed in '@'-characters. E.g. The string @version@
+#   will be replaced by the version number of Privoxy.
+#
+# - One special application of this is to make whole blocks
+#   of the HTML template disappear if the condition <name>
+#   is not given. Simply enclose the block between the two
+#   strings @if-<name>start and if-<name>-end@. The strings
+#   should be placed in HTML comments (<!-- -->), so the
+#   html structure won't be messed when the magic happens.
+#   
+# USABLE SYMBOLS IN THIS TEMPLATE:
+# --------------------------------
+#
+#  my-ip-addr:
+#    The IP-address that the client used to reach Privoxy
+#  my-hostname:
+#    The hostname associated with my-ip-addr
+#  admin-address:
+#    The email address of the Privoxy administrator, as configured
+#    in the config file
+#  default-cgi:
+#    The URL for Privoxy's "main menu" builtin CGI page
+#  menu:
+#    List of <li> elements linking to the other available CGIs
+#  version:
+#    Privoxy's version number
+#  code-status:
+#    Privoxy's development status: "alpha", "beta", or "stable".
+#  homepage:
+#    The Privoxy web site.
+#
+# CONDITIONAL SYMBOLS FOR THIS TEMPLATE AND THEIR DEPANDANT SYMBOLS:
+# ------------------------------------------------------------------
+#
+#  unstable:
+#    this is an alpha or beta release of the proxy software
+#  have-adminaddr-info:
+#    An e-mail address for the local Privoxy adminstrator has
+#    been specified and is available through the "admin-address"
+#    symbol
+#  have-proxy-info:
+#    A URL for online documentation about this proxy has been
+#    specified and is available through the "proxy-info-url"
+#    symbol
+#  have-help-info:
+#    If either have-proxy-info is true or have-adminaddr-info is
+#    true, have-help-info is true.  Used to conditionally include
+#    a grey box for any and all help info.
+#  url-given:
+#    The CGI was called with a url parameter. In that case, the
+#    following symbols are available:
+#    url:
+#      The given URL
+#    default:
+#      The system default for actions
+#    matches:
+#      The list of all matches in the actions file that this URL
+#      produced, along with the actions that were triggered by
+#      these matches
+#    final:
+#      The actions that are associated with the URL at the end of
+#      the matching process
+#  no-forwarder: Requests to url will be made directly.
+#  http-forwarder:
+#      Requests to url will be made through a HTTP proxy
+#      forward-host:
+#         The IP address or its hostname
+#      forward-port.
+#         The proxy port
+#  socks-forwarder:
+#      Requests to url will be made through a socks proxy
+#      socks-type:
+#         The socks type: socks4 or socks4a
+#      gateway-host:
+#         The IP address or its hostname
+#      gateway-port:
+#         The proxy port.
+#
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+<head>
+  <title>Privoxy@@my-hostname@ URL Info</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta http-equiv="Content-Script-Type" content="text/javascript">
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="stylesheet" type="text/css" href="@default-cgi@send-stylesheet">
+  <link rel="shortcut icon" href="@default-cgi@favicon.ico" type="image/x-icon">
+  <link rel="search" type="application/opensearchdescription+xml" title="Privoxy URL Info" href="/url-info-osd.xml">
+</head>
+
+<body>
+
+  <table summary="" cellpadding="20" cellspacing="10" border="0" width="100%">
+    <tr>
+      <td class="title">
+
+#include mod-title
+
+      </td>
+    </tr>
+
+<!-- @if-unstable-start -->
+# This will only appear if CODE_STATUS is "alpha" or "beta". See configure.in
+    <tr>
+      <td class="warning">
+
+#include mod-unstable-warning
+
+      </td>
+    </tr>
+<!-- if-unstable-end@ -->
+
+<!-- @if-url-given-start -->
+    <tr>
+      <td class="box">
+<!-- @if-valid-url-start -->
+        <h2>Forwarding settings:</h2>
+        <p>
+          Requests for <a href="@url@">@url@</a> will be <!--
+
+# "Interesting" formatting to prevent white space at the end of the sentence.
+
+          @if-no-forwarder-start -->
+
+             made <b>directly</b>, no forwarding settings apply<!--
+
+          if-no-forwarder-end@--><!--
+          @if-http-forwarder-start --><!-- @if-socks-forwarder-start -->
+
+             first <!--
+
+          if-socks-forwarder-end@ --><!-- if-http-forwarder-end@ --><!--
+          @if-socks-forwarder-start -->
+
+             forwarded through <b>@socks-type@-proxy @gateway-host@:@gateway-port@</b><!--
+
+          if-socks-forwarder-end@ --><!--
+          @if-http-forwarder-start --><!-- @if-socks-forwarder-start -->
+
+             and then <!--
+
+          if-socks-forwarder-end@ --><!-- if-http-forwarder-end@ --><!--
+          @if-http-forwarder-start -->
+
+             forwarded through <b>HTTP-proxy @forward-host@:@forward-port@</b><!--
+
+          if-http-forwarder-end@ -->.
+      </td>
+    </tr>
+    <tr>
+      <td class="box">
+<!-- @if-https-start -->
+        <h2>NOTE:</h2>
+        <p>This is a HTTPS URL, so the part after the "/" is ignored
+          as Privoxy doesn't see the path for real HTTPS requests either.</p>
+<!-- if-https-end@ -->
+<!-- if-valid-url-end@ -->
+        <h2>Matches for <a href="@url@">@url@</a>:</h2>
+        @matches@
+<!-- @if-valid-url-start -->
+<!-- @if-cgi-editor-is-disabled-start -->
+        <p>
+          The CGI editor is currently disabled, thus no edit buttons are shown.<br>
+          Please have a look at the
+           <a href="@user-manual@config.html#ENABLE-EDIT-ACTIONS">enable-edit-actions documentation</a>
+          to learn how to enable it and what the risks are.
+        </p>
+<!--  if-cgi-editor-is-disabled-end@ -->
+<!-- @if-valid-url-end -->
+      </td>
+    </tr>
+<!-- @if-valid-url-start -->
+<!-- @if-filters-might-be-ineffective-start -->
+    <tr>
+      <td class="warning">
+        <h2>Warning:</h2>
+        <p>
+          This Privoxy version has been build without zlib support,
+          <strong>content filters will not work if the server sends compressed content.</strong>
+          Consider enabling the <a title="prevent-compression documentation"
+           href="@user-manual@actions-file.html#PREVENT-COMPRESSION">prevent-compression</a>
+          action for this URL or rebuild Privoxy with zlib support.
+        </p>
+      </td>
+    </tr>
+<!-- if-filters-might-be-ineffective-end@ -->
+    <tr>
+      <td class="box">
+        <h2>Final results:</h2>
+        <b>@final@</b>
+      </td>
+    </tr>
+<!-- if-valid-url-end@ -->
+<!-- if-url-given-end@ -->
+
+<!-- @if-privoxy-is-toggled-off-start -->
+
+    <tr>
+      <td class="warning">
+        <h2>Warning:</h2>
+        <p>
+          <strong>Privoxy is currently toggled off. Matching actions will not apply
+          unless you <a href="@default-cgi@toggle?set=enable">toggle Privoxy on</a> first.</strong>
+        </p>
+      </td>
+    </tr>
+<!-- if-privoxy-is-toggled-off-end@ -->
+
+    <tr>
+      <td class="box">
+        <h2>Look up the actions for a 
+<!-- @if-url-given-start -->new<!-- if-url-given-end@ -->
+          URL:</h2>
+        <form method="GET" action="@default-cgi@show-url-info">
+          <p>
+            <input type="text" name="url" size="80" value="@url@" class="url"> 
+            <input type="submit" value="Go">
+          </p>
+        </form>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="box">
+        <h2>More Privoxy:</h2>
+        <ul>@menu@<li><a href="@user-manual@">Documentation</a></li></ul>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="info">
+
+#include mod-support-and-service
+
+      </td>
+    </tr>
+
+<!-- @if-have-help-info-start -->
+    <tr>
+      <td class="info">
+
+#include mod-local-help
+
+      </td>
+    </tr>
+<!-- if-have-help-info-end@ -->
+
+  </table>
+
+</body>
+</html>

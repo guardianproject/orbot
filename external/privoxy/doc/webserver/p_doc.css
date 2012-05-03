@@ -1,0 +1,66 @@
+/*
+ * CSS for Privoxy documentation
+ *
+ * $Id: p_doc.css,v 1.5 2006/09/09 19:13:42 hal9 Exp $
+ */
+
+/*
+ * Global fonts, colors, margins:
+ */ 
+body,td,th { font-family: arial, helvetica, sans-serif; }
+body { margin: 4%; color: #000000; background-color: #eeeeee; }
+
+/*
+ * Headings hierarchy in terms of size and color:
+ */
+h1 { color: #4c000f; font-size: 160%; }
+h2 { color: #660014; font-size: 140%; }
+h3 { color: #820019; font-size: 120%; }
+h4 { color: #99001d; font-size: 110%; }
+
+/*
+ * Make headings stand out:
+ * Indent all content in chapters, by additional 2%,
+ * and then pull the headings back left.
+ */
+div.sect1 { margin-left: 2%; }
+h1,h2,h3,h4 {margin-left: -2%; }
+h1.title { margin-left: 0; }
+h2.subtitle { margin-left: 0; }
+
+/*
+ * Underlined links disturb the examples;
+ * Let them get darker instead of purple after visited.
+ */
+a { text-decoration: none; }
+a:link { color: #0c29ff; }
+a:visited { color: #071899; }
+
+/*
+ * Special highlighting:
+ * Code examples in embedded in the text flow become half-bold,
+ * Emphasis gets h4-red.
+ * Warnings get the same bg as in privoxy.css
+ */
+tt.literal { font-weight: 600; }
+i.emphasis { color: #99001d; }
+table.warning { border: 0; background-color: #ffdddd;}
+span.guibutton { 
+  white-space: nowrap;
+  width: auto;
+  padding: 2px;
+  background-color: #dddddd;
+  color:            #000000;
+  text-decoration: none;
+  border-top:    1px solid #ffffff;
+  border-left:   1px solid #ffffff;
+  border-bottom: 1px solid #000000;
+  border-right:  1px solid #000000;
+}
+
+/*
+ * Misc:
+ */
+ul { list-style-type: square; }
+/* Privoxy, of course */
+.application {font-weight: bold; font-size:105%; color: #99001d;}

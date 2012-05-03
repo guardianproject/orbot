@@ -1,0 +1,1956 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Releasing a New Version</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Privoxy Developer Manual"
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="Testing Guidelines"
+HREF="testing.html"><LINK
+REL="NEXT"
+TITLE="Update the Webserver"
+HREF="webserver-update.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="../p_doc.css"><META
+HTTP-EQUIV="Content-Type"
+CONTENT="text/html;
+charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#EEEEEE"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Privoxy Developer Manual</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="testing.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="webserver-update.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="NEWRELEASE"
+>6. Releasing a New Version</A
+></H1
+><P
+>        When we release versions of <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>,
+        our work leaves our cozy secret lab and has to work in the cold
+        RealWorld[tm]. Once it is released, there is no way to call it
+        back, so it is very important that great care is taken to ensure
+        that everything runs fine, and not to introduce problems in the
+        very last minute.
+    </P
+><P
+>        So when releasing a new version, please adhere exactly to the
+        procedure outlined in this chapter.
+    </P
+><P
+>	The following programs are required to follow this process:
+	<TT
+CLASS="FILENAME"
+>ncftpput</TT
+> (ncftp), <TT
+CLASS="FILENAME"
+>scp, ssh</TT
+> (ssh),
+        <TT
+CLASS="FILENAME"
+>gmake</TT
+> (GNU's version of make), autoconf, cvs.
+    </P
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="VERSIONNUMBERS"
+>6.1. Version numbers</A
+></H2
+><P
+>      First you need to determine which version number the release will have. 
+      <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> version numbers consist of three numbers,
+      separated by dots, like in X.Y.Z (e.g. 3.0.0), where:
+        <P
+></P
+><UL
+><LI
+><P
+>              X, the version major, is rarely ever changed. It is increased by one if
+              turning a development branch into stable substantially changes the functionality,
+              user interface or configuration syntax. Majors 1 and 2 were 
+              <SPAN
+CLASS="APPLICATION"
+>Junkbuster</SPAN
+>, and 3 will be the first stable
+              <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> release.
+            </P
+></LI
+><LI
+><P
+>              Y, the version minor, represents the branch within the major version.
+              At any point in time, there are two branches being maintained:
+              The stable branch, with an even minor, say, 2N, in which no functionality is
+              being added and only bug-fixes are made, and 2N+1, the development branch, in
+              which the further development of <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> takes
+              place.
+              This enables us to turn the code upside down and inside out, while at the same time
+              providing and maintaining a stable version.
+              The minor is reset to zero (and one) when the major is incremented. When a development
+              branch has matured to the point where it can be turned into stable, the old stable branch
+              2N is given up (i.e. no longer maintained), the former development branch 2N+1 becomes the
+              new stable branch 2N+2, and a new development branch 2N+3 is opened.
+            </P
+></LI
+><LI
+><P
+>              Z, the point or sub version, represents a release of the software within a branch.
+              It is therefore incremented immediately before each code freeze. 
+              In development branches, only the even point versions correspond to actual releases,
+              while the odd ones denote the evolving state of the sources on CVS in between.
+              It follows that Z is odd on CVS in development branches most of the time. There, it gets
+              increased to an even number immediately before a code freeze, and is increased to an odd
+              number again immediately thereafter.
+              This ensures that builds from CVS snapshots are easily distinguished from released versions.
+              The point version is reset to zero when the minor changes.
+            </P
+><P
+>              Stable branches work a little differently, since there should be
+              little to no development happening in such branches. Remember,
+              only bugfixes, which presumably should have had some testing
+              before being committed. Stable branches will then have their 
+              version reported as <TT
+CLASS="LITERAL"
+>0.0.0</TT
+>, during that period 
+              between releases when changes are being added. This is to denote 
+              that this code is <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>not for release</I
+></SPAN
+>. Then 
+              as the release nears, the version is bumped according: e.g. 
+              <TT
+CLASS="LITERAL"
+>3.0.1 -&#62; 0.0.0 -&#62; 3.0.2</TT
+>.
+            </P
+></LI
+></UL
+>
+    </P
+><P
+>     In summary, the main CVS trunk is the development branch where new
+     features are being worked on for the next stable series. This should
+     almost always be where the most activity takes place. There is always at
+     least one stable branch from the trunk, e.g now it is
+     <TT
+CLASS="LITERAL"
+>3.0</TT
+>, which is only used to release stable versions.
+     Once the initial *.0 release of the stable branch has been done, then as a
+     rule, only bugfixes that have had prior testing should be committed to
+     the stable branch. Once there are enough bugfixes to justify a new
+     release, the version of this branch is again incremented Example: 3.0.0
+     -&#62; 3.0.1 -&#62; 3.0.2, etc are all stable releases from within the stable
+     branch. 3.1.x is currently the main trunk, and where work on 3.2.x is
+     taking place. If any questions, please post to the devel list
+     <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>before</I
+></SPAN
+> committing to a stable branch!
+    </P
+><P
+>     Developers should remember too that if they commit a bugfix to the stable 
+     branch, this will more than likely require a separate submission to the 
+     main trunk, since these are separate development trees within CVS. If you 
+     are working on both, then this would require at least two separate check
+     outs (i.e main trunk, <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>and</I
+></SPAN
+> the stable release branch,
+     which is <TT
+CLASS="LITERAL"
+>v_3_0_branch</TT
+> at the moment).
+    </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="BEFORERELEASE"
+>6.2. Before the Release: Freeze</A
+></H2
+><P
+>       The following <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>must be done by one of the
+       developers</I
+></SPAN
+> prior to each new release.
+     </P
+><P
+>      <P
+></P
+><UL
+><LI
+><P
+>         Make sure that everybody who has worked on the code in the last
+         couple of days has had a chance to yell <SPAN
+CLASS="QUOTE"
+>"no!"</SPAN
+> in case
+         they have pending changes/fixes in their pipelines. Announce the
+         freeze so that nobody will interfere with last minute changes.
+        </P
+></LI
+><LI
+><P
+>         Increment the version number (point from odd to even in development
+         branches!) in <TT
+CLASS="FILENAME"
+>configure.in</TT
+>. (RPM spec files 
+         will need to be incremented as well.)
+       </P
+></LI
+><LI
+><P
+>        If <TT
+CLASS="FILENAME"
+>default.action</TT
+> has changed since last
+        release (i.e. software release or standalone actions file release),
+        bump up its version info to A.B in this line:
+       </P
+><P
+> 
+        <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>  {+add-header{X-Actions-File-Version: A.B} -filter -no-popups}</PRE
+></TD
+></TR
+></TABLE
+>
+       </P
+><P
+> 
+        Then change the version info in doc/webserver/actions/index.php,
+        line: '$required_actions_file_version = "A.B";'
+       </P
+></LI
+><LI
+><P
+>        All documentation should be rebuild after the version bump.
+        Finished docs should be then be committed to CVS (for those 
+        without the ability to build these). Some docs may require 
+        rather obscure processing tools. <TT
+CLASS="FILENAME"
+>config</TT
+>,
+        the man page (and the html version of the man page), and the PDF docs
+        fall in this category. REAMDE, the man page, AUTHORS, and config
+        should all also be committed to CVS for other packagers. The 
+        formal docs should be uploaded to the webserver. See the
+        Section "Updating the webserver" in this manual for details.
+       </P
+></LI
+><LI
+><P
+>         The <I
+CLASS="CITETITLE"
+>User Manual</I
+> is also used for context 
+         sensitive help for the CGI editor. This is version sensitive, so that
+         the user will get appropriate help for his/her release. So with 
+         each release a fresh version should be uploaded to the webserver
+         (this is in addition to the main <I
+CLASS="CITETITLE"
+>User Manual</I
+>
+         link from the main page since we need to keep manuals for various 
+         versions available). The CGI pages will link to something like 
+         <TT
+CLASS="LITERAL"
+>http://privoxy.org/$(VERSION)/user-manual/</TT
+>. This
+         will need to be updated for each new release. There is no Makefile
+         target for this at this time!!! It needs to be done manually.
+       </P
+></LI
+><LI
+><P
+>        All developers should look at the <TT
+CLASS="FILENAME"
+>ChangeLog</TT
+> and
+        make sure noteworthy changes are referenced.
+       </P
+></LI
+><LI
+><P
+>        <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Commit all files that were changed in the above steps!</I
+></SPAN
+>
+       </P
+></LI
+><LI
+><P
+>        Tag all files in CVS with the version number with
+        <SPAN
+CLASS="QUOTE"
+>"<B
+CLASS="COMMAND"
+>cvs tag v_X_Y_Z</B
+>"</SPAN
+>.
+        Don't use vX_Y_Z, ver_X_Y_Z, v_X.Y.Z (won't work) etc.
+       </P
+></LI
+><LI
+><P
+>        If the release was in a development branch, increase the point version
+        from even to odd (X.Y.(Z+1)) again in <TT
+CLASS="FILENAME"
+>configure.in</TT
+> and
+        commit your change.
+       </P
+></LI
+><LI
+><P
+>        On the webserver, copy the user manual to a new top-level directory
+        called <TT
+CLASS="FILENAME"
+>X.Y.Z</TT
+>. This ensures that help links from the CGI
+        pages, which have the version as a prefix, will go into the right version of the manual.
+        If this is a development branch release, also symlink <TT
+CLASS="FILENAME"
+>X.Y.(Z-1)</TT
+>
+        to <TT
+CLASS="FILENAME"
+>X.Y.Z</TT
+> and <TT
+CLASS="FILENAME"
+>X.Y.(Z+1)</TT
+> to
+        <TT
+CLASS="FILENAME"
+>.</TT
+> (i.e. dot). 
+       </P
+></LI
+></UL
+>
+     </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="THERELEASE"
+>6.3. Building and Releasing the Packages</A
+></H2
+><P
+>      Now the individual packages can be built and released. Note that for
+      GPL reasons the first package to be released is always the source tarball.
+     </P
+><P
+>      For <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>all</I
+></SPAN
+> types of packages, including the source tarball,
+      <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>you must make sure that you build from clean sources by exporting
+      the right version from CVS into an empty directory</I
+></SPAN
+> (just press return when
+      asked for a password):
+     </P
+><P
+>      <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>  mkdir dist # delete or choose different name if it already exists
+  cd dist
+  cvs -d:pserver:anonymous@ijbswa.cvs.sourceforge.net:/cvsroot/ijbswa login
+  cvs -z3 -d:pserver:anonymous@ijbswa.cvs.sourceforge.net:/cvsroot/ijbswa export -r v_X_Y_Z current</PRE
+></TD
+></TR
+></TABLE
+>
+    </P
+><P
+>     <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Do NOT change</I
+></SPAN
+> a single bit, including, but not limited to
+     version information after export from CVS. This is to make sure that
+     all release packages, and with them, all future bug reports, are based
+     on exactly the same code.
+    </P
+><DIV
+CLASS="WARNING"
+><P
+></P
+><TABLE
+CLASS="WARNING"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Warning</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>      Every significant release of Privoxy has included at least one 
+      package that either had incorrect versions of files, missing files, 
+      or incidental leftovers from a previous build process that gave 
+      unknown numbers of users headaches to try to figure out what was 
+      wrong. PLEASE, make sure you are using pristene sources, and are
+      following the prescribed process!
+     </P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>     Please find additional instructions for the source tarball and the
+     individual platform dependent binary packages below. And details 
+     on the Sourceforge release process below that.
+    </P
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="PACK-GUIDELINES"
+>6.3.1. Note on Privoxy Packaging</A
+></H3
+><P
+>      Please keep these general guidelines in mind when putting together 
+      your package. These apply to <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>all</I
+></SPAN
+> platforms!
+     </P
+><P
+>      <P
+></P
+><UL
+><LI
+><P
+>          <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>requires</I
+></SPAN
+>
+          write access to: all <TT
+CLASS="FILENAME"
+>*.action</TT
+> files, all 
+          logfiles, and the <TT
+CLASS="FILENAME"
+>trust</TT
+> file. You will 
+          need to determine the best way to do this for your platform.
+        </P
+></LI
+><LI
+><P
+>          Please include up to date documentation. At a bare minimum:
+        </P
+><P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+>          <TT
+CLASS="FILENAME"
+>LICENSE</TT
+> (top-level directory)
+         </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+><P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+>          <TT
+CLASS="FILENAME"
+>README</TT
+> (top-level directory)
+         </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+><P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+>          <TT
+CLASS="FILENAME"
+>AUTHORS</TT
+> (top-level directory)
+         </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+><P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+>          <TT
+CLASS="FILENAME"
+>man page</TT
+> (top-level directory, Unix-like
+          platforms only)
+         </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+><P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+>          <TT
+CLASS="FILENAME"
+>The User Manual</TT
+> (doc/webserver/user-manual/)
+         </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+><P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+>          <TT
+CLASS="FILENAME"
+>FAQ</TT
+> (doc/webserver/faq/)
+         </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+><P
+>          Also suggested: <TT
+CLASS="FILENAME"
+>Developer Manual</TT
+>
+          (doc/webserver/developer-manual) and <TT
+CLASS="FILENAME"
+>ChangeLog</TT
+>
+          (top-level directory). <TT
+CLASS="FILENAME"
+>FAQ</TT
+> and the manuals are
+          HTML docs. There are also text versions in
+          <TT
+CLASS="FILENAME"
+>doc/text/</TT
+> which could conceivably also be
+          included.
+        </P
+><P
+>         The documentation has been designed such that the manuals are linked
+         to each other from parallel directories, and should be packaged 
+         that way. <TT
+CLASS="FILENAME"
+>privoxy-index.html</TT
+> can also be
+         included and can serve as a focal point for docs and other links of
+         interest (and possibly renamed to <TT
+CLASS="FILENAME"
+>index.html</TT
+>).
+         This should be one level up from the manuals. There is a link also 
+         on this page to an HTMLized version of the man page. To avoid 404 for
+         this, it is in CVS as
+         <TT
+CLASS="FILENAME"
+>doc/webserver/man-page/privoxy-man-page.html</TT
+>,
+         and should be included along with the manuals. There is also a
+         css stylesheets that can be included for better presentation:
+         <TT
+CLASS="FILENAME"
+>p_doc.css</TT
+>. This should be in the same directory
+         with <TT
+CLASS="FILENAME"
+>privoxy-index.html</TT
+>, (i.e. one level up from
+         the manual directories).
+        </P
+></LI
+><LI
+><P
+>        <TT
+CLASS="FILENAME"
+>user.action</TT
+> and <TT
+CLASS="FILENAME"
+>user.filter</TT
+>
+        are designed for local preferences. Make sure these do not get overwritten!
+        <TT
+CLASS="FILENAME"
+>config</TT
+> should not be overwritten either. This 
+        has especially important configuration data in it.
+        <TT
+CLASS="FILENAME"
+>trust</TT
+> should be left in tact as well.
+       </P
+></LI
+><LI
+><P
+>        Other configuration files (<TT
+CLASS="FILENAME"
+>default.action</TT
+> and
+        <TT
+CLASS="FILENAME"
+>default.filter</TT
+>) should be installed as the new
+        defaults, but all previously installed configuration files should be
+        preserved as backups. This is just good manners :-) These files are
+        likely to change between releases and contain important new features
+        and bug fixes.
+       </P
+></LI
+><LI
+><P
+>       Please check platform specific notes in this doc, if you haven't 
+       done <SPAN
+CLASS="QUOTE"
+>"Privoxy"</SPAN
+> packaging before for other platform 
+       specific issues. Conversely, please add any notes that you know 
+       are important for your platform (or contact one of the doc 
+       maintainers to do this if you can't).
+      </P
+></LI
+><LI
+><P
+>       Packagers should do a <SPAN
+CLASS="QUOTE"
+>"clean"</SPAN
+> install of their 
+       package after building it. So any previous installs should be 
+       removed first to ensure the integrity of the newly built package. 
+       Then run the package for a while to make sure there are no 
+       obvious problems, before uploading.
+     </P
+></LI
+></UL
+>
+     </P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="NEWRELEASE-TARBALL"
+>6.3.2. Source Tarball</A
+></H3
+><P
+>	First, <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>make sure that you have freshly exported the right
+        version into an empty directory</I
+></SPAN
+>. (See "Building and releasing
+        packages" above). Then run:
+	</P
+><P
+>	<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>  cd current
+  autoheader &#38;&#38; autoconf &#38;&#38; ./configure</PRE
+></TD
+></TR
+></TABLE
+>
+	</P
+><P
+>	Then do:
+	</P
+><P
+>	<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>  make tarball-dist</PRE
+></TD
+></TR
+></TABLE
+>
+	</P
+><P
+>	To upload the package to Sourceforge, simply issue
+	</P
+><P
+>	<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>  make tarball-upload</PRE
+></TD
+></TR
+></TABLE
+>
+	</P
+><P
+>	Go to the displayed URL and release the file publicly on Sourceforge.
+        For the change log field, use the relevant section of the
+        <TT
+CLASS="FILENAME"
+>ChangeLog</TT
+> file.
+      </P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="NEWRELEASE-RPM"
+>6.3.3. SuSE, Conectiva or Red Hat RPM</A
+></H3
+><P
+>        In following text, replace <TT
+CLASS="REPLACEABLE"
+><I
+>dist</I
+></TT
+>
+        with either <SPAN
+CLASS="QUOTE"
+>"rh"</SPAN
+> for Red Hat or <SPAN
+CLASS="QUOTE"
+>"suse"</SPAN
+> for SuSE.
+        </P
+><P
+>	First, <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>make sure that you have freshly exported the right
+        version into an empty directory</I
+></SPAN
+>. (See "Building and releasing
+        packages" above). 
+	</P
+><P
+>        As the only exception to not changing anything after export from CVS,
+        now examine the file <TT
+CLASS="FILENAME"
+>privoxy-</TT
+><TT
+CLASS="REPLACEABLE"
+><I
+>dist</I
+></TT
+><TT
+CLASS="FILENAME"
+>.spec</TT
+>
+        and make sure that the version information and the RPM release number are
+        correct. The RPM release numbers for each version start at one. Hence it must
+        be reset to one if this is the first RPM for
+        <TT
+CLASS="REPLACEABLE"
+><I
+>dist</I
+></TT
+> which is built from version
+        X.Y.Z. Check the
+        <A
+HREF="http://sourceforge.net/project/showfiles.php?group_id=11118"
+TARGET="_top"
+>file
+        list</A
+> if unsure. Else, it must be set to the highest already available RPM
+        release number for that version plus one.
+	</P
+><P
+>        Then run:
+	</P
+><P
+>	<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>  cd current
+  autoheader &#38;&#38; autoconf &#38;&#38; ./configure</PRE
+></TD
+></TR
+></TABLE
+>
+	</P
+><P
+>	Then do
+	</P
+><P
+>	<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>  make <TT
+CLASS="REPLACEABLE"
+><I
+>dist</I
+></TT
+>-dist</PRE
+></TD
+></TR
+></TABLE
+>
+	</P
+><P
+>	To upload the package to Sourceforge, simply issue
+	</P
+><P
+>	<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>  make <TT
+CLASS="REPLACEABLE"
+><I
+>dist</I
+></TT
+>-upload <TT
+CLASS="REPLACEABLE"
+><I
+>rpm_packagerev</I
+></TT
+></PRE
+></TD
+></TR
+></TABLE
+>
+	</P
+><P
+>        where <TT
+CLASS="REPLACEABLE"
+><I
+>rpm_packagerev</I
+></TT
+> is the
+        RPM release number as determined above.
+	Go to the displayed URL and release the file publicly on Sourceforge.
+        Use the release notes and change log from the source tarball package.
+      </P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="NEWRELEASE-OS2"
+>6.3.4. OS/2</A
+></H3
+><P
+>	First, <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>make sure that you have freshly exported the right
+        version into an empty directory</I
+></SPAN
+>. (See "Building and releasing
+        packages" above). Then get the OS/2 Setup module:
+	</P
+><P
+>	<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>  cvs -z3 -d:pserver:anonymous@ijbswa.cvs.sourceforge.net:/cvsroot/ijbswa co os2setup</PRE
+></TD
+></TR
+></TABLE
+>
+	</P
+><P
+>	You will need a mix of development tools.
+	The main compilation takes place with IBM Visual Age C++.
+	Some ancillary work takes place with GNU tools, available from
+	various sources like hobbes.nmsu.edu.
+	Specificially, you will need <TT
+CLASS="FILENAME"
+>autoheader</TT
+>,
+	<TT
+CLASS="FILENAME"
+>autoconf</TT
+> and <TT
+CLASS="FILENAME"
+>sh</TT
+> tools.
+	The packaging takes place with WarpIN, available from various sources, including
+	its home page: <A
+HREF="http://www.xworkplace.org/"
+TARGET="_top"
+>xworkplace</A
+>.
+	</P
+><P
+>	Change directory to the <TT
+CLASS="FILENAME"
+>os2setup</TT
+> directory.
+	Edit the os2build.cmd file to set the final executable filename.
+	For example, 
+	</P
+><P
+> 	<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>  installExeName='privoxyos2_setup_X.Y.Z.exe'</PRE
+></TD
+></TR
+></TABLE
+>
+	</P
+><P
+> 	Next, edit the <TT
+CLASS="FILENAME"
+>IJB.wis</TT
+> file so the release number matches
+ 	in the <TT
+CLASS="FILENAME"
+>PACKAGEID</TT
+> section:
+ 	</P
+><P
+>	<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>  PACKAGEID="Privoxy Team\Privoxy\Privoxy Package\X\Y\Z"</PRE
+></TD
+></TR
+></TABLE
+>
+	</P
+><P
+>	You're now ready to build.  Run:
+	</P
+><P
+>	<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>  os2build</PRE
+></TD
+></TR
+></TABLE
+>
+	</P
+><P
+>         You will find the  WarpIN-installable executable in the
+        <TT
+CLASS="FILENAME"
+>./files</TT
+> directory. Upload this anonymously to
+         <TT
+CLASS="FILENAME"
+>uploads.sourceforge.net/incoming</TT
+>, create a release
+         for it, and you're done. Use the release notes and Change Log from the
+         source tarball package.
+	</P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="NEWRELEASE-SOLARIS"
+>6.3.5. Solaris</A
+></H3
+><P
+>	Login to Sourceforge's compilefarm via ssh:
+	</P
+><P
+>	<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>  ssh cf.sourceforge.net</PRE
+></TD
+></TR
+></TABLE
+>
+	</P
+><P
+>	Choose the right operating system (not the Debian one).
+        When logged in, <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>make sure that you have freshly exported the right
+        version into an empty directory</I
+></SPAN
+>. (See "Building and releasing
+        packages" above). Then run:
+	</P
+><P
+>	<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>  cd current
+  autoheader &#38;&#38; autoconf &#38;&#38; ./configure</PRE
+></TD
+></TR
+></TABLE
+>
+	</P
+><P
+>	Then run
+	</P
+><P
+>	<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>  gmake solaris-dist</PRE
+></TD
+></TR
+></TABLE
+>
+	</P
+><P
+>	which creates a gzip'ed tar archive. Sadly, you cannot use <B
+CLASS="COMMAND"
+>make
+	solaris-upload</B
+> on the Sourceforge machine (no ncftpput). You now have
+	to manually upload the archive to Sourceforge's ftp server and release
+	the file publicly. Use the release notes and Change Log from the
+        source tarball package.
+	</P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="NEWRELEASE-WINDOWS"
+>6.3.6. Windows</A
+></H3
+><P
+>        You should ensure you have the latest version of Cygwin (from
+        <A
+HREF="http://www.cygwin.com/"
+TARGET="_top"
+>http://www.cygwin.com/</A
+>).
+        Run the following commands from within a Cygwin bash shell.
+      </P
+><P
+>	First, <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>make sure that you have freshly exported the right
+        version into an empty directory</I
+></SPAN
+>. (See "Building and releasing
+        packages" above). Then get the Windows setup module:
+      </P
+><P
+>      <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>  cvs -z3  -d:pserver:anonymous@ijbswa.cvs.sourceforge.net:/cvsroot/ijbswa co winsetup</PRE
+></TD
+></TR
+></TABLE
+>
+      </P
+><P
+>        Then you can build the package.  This is fully automated, and is
+        controlled by <TT
+CLASS="FILENAME"
+>winsetup/GNUmakefile</TT
+>.
+        All you need to do is:
+      </P
+><P
+>      <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>  cd winsetup
+  make</PRE
+></TD
+></TR
+></TABLE
+>
+      </P
+><P
+>        Now you can manually rename <TT
+CLASS="FILENAME"
+>privoxy_setup.exe</TT
+> to
+        <TT
+CLASS="FILENAME"
+>privoxy_setup_X_Y_Z.exe</TT
+>, and upload it to
+        SourceForge. When releasing the package on SourceForge, use the release notes
+        and Change Log from the source tarball package.
+      </P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="NEWRELEASE-DEBIAN"
+>6.3.7. Debian</A
+></H3
+><P
+>        First, <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>make sure that you have freshly exported the
+        right version into an empty directory</I
+></SPAN
+>. (See
+        "Building and releasing packages" above).  Then add a log
+        entry to <TT
+CLASS="FILENAME"
+>debian/changelog</TT
+>, if it is not
+        already there, for example by running:
+      </P
+><P
+>        <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>  debchange -v 3.0.12-stable-1 "New upstream version"</PRE
+></TD
+></TR
+></TABLE
+>
+      </P
+><P
+>        Then, run: 
+      </P
+><P
+>        <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>  dpkg-buildpackage -rfakeroot -us -uc -b</PRE
+></TD
+></TR
+></TABLE
+>
+      </P
+><P
+>        This will create
+        <TT
+CLASS="FILENAME"
+>../privoxy_3.0.12-stable-1_i386.deb</TT
+>
+        which can be uploaded.  To upload the package to Sourceforge, simply
+	issue
+      </P
+><P
+>        <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>  make debian-upload</PRE
+></TD
+></TR
+></TABLE
+>
+      </P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="NEWRELEASE-MACOSX"
+>6.3.8. Mac OS X</A
+></H3
+><P
+>	First, <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>make sure that you have freshly exported the right
+        version into an empty directory</I
+></SPAN
+>. (See "Building and releasing
+        packages" above). Then get the Mac OS X setup module:
+	</P
+><P
+>	<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>  cvs -z3 -d:pserver:anonymous@ijbswa.cvs.sourceforge.net:/cvsroot/ijbswa co osxsetup</PRE
+></TD
+></TR
+></TABLE
+>
+	</P
+><P
+>	Then run:
+	</P
+><P
+>	<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>  cd osxsetup
+  build</PRE
+></TD
+></TR
+></TABLE
+>
+	</P
+><P
+>	This will run <TT
+CLASS="FILENAME"
+>autoheader</TT
+>, <TT
+CLASS="FILENAME"
+>autoconf</TT
+> and
+	<TT
+CLASS="FILENAME"
+>configure</TT
+> as well as <TT
+CLASS="FILENAME"
+>make</TT
+>.
+	Finally, it will copy over the necessary files to the ./osxsetup/files directory
+	for further processing by <TT
+CLASS="FILENAME"
+>PackageMaker</TT
+>.
+	</P
+><P
+>	Bring up PackageMaker with the PrivoxyPackage.pmsp definition file, modify the package
+	name to match the release, and hit the "Create package" button.
+	If you specify ./Privoxy.pkg as the output package name, you can then create
+	the distributable zip file with the command:
+	</P
+><P
+>	<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>  zip -r privoxyosx_setup_x.y.z.zip Privoxy.pkg</PRE
+></TD
+></TR
+></TABLE
+>
+	</P
+><P
+>	You can then upload <TT
+CLASS="FILENAME"
+>privoxyosx_setup_x.y.z.zip</TT
+> anonymously to 
+	<TT
+CLASS="FILENAME"
+>uploads.sourceforge.net/incoming</TT
+>,
+	create a release for it, and you're done. Use the release notes
+        and Change Log from the source tarball package.
+	</P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="NEWRELEASE-FREEBSD"
+>6.3.9. FreeBSD</A
+></H3
+><P
+>	Login to Sourceforge's compile-farm via ssh:
+	</P
+><P
+>	<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>  ssh cf.sourceforge.net</PRE
+></TD
+></TR
+></TABLE
+>
+	</P
+><P
+>	Choose the right operating system.
+        When logged in, <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>make sure that you have freshly exported the right
+        version into an empty directory</I
+></SPAN
+>. (See "Building and releasing
+        packages" above). Then run:
+	</P
+><P
+>	<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>  cd current
+  autoheader &#38;&#38; autoconf &#38;&#38; ./configure</PRE
+></TD
+></TR
+></TABLE
+>
+	</P
+><P
+>	Then run:
+	</P
+><P
+>	<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>  gmake freebsd-dist</PRE
+></TD
+></TR
+></TABLE
+>
+	</P
+><P
+>	which creates a gzip'ed tar archive. Sadly, you cannot use <B
+CLASS="COMMAND"
+>make
+	freebsd-upload</B
+> on the Sourceforge machine (no ncftpput). You now have
+	to manually upload the archive to Sourceforge's ftp server and release
+	the file publicly. Use the release notes and Change Log from the
+        source tarball package.
+	</P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="NEWRELEASE-HPUX"
+>6.3.10. HP-UX 11</A
+></H3
+><P
+>	First, <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>make sure that you have freshly exported the right
+        version into an empty directory</I
+></SPAN
+>. (See "Building and releasing
+        packages" above). Then run:
+	</P
+><P
+>	<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>  cd current
+  autoheader &#38;&#38; autoconf &#38;&#38; ./configure</PRE
+></TD
+></TR
+></TABLE
+>
+	</P
+><P
+>	Then do FIXME.
+	</P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="NEWRELEASE-AMIGA"
+>6.3.11. Amiga OS</A
+></H3
+><P
+>	First, <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>make sure that you have freshly exported the right
+        version into an empty directory</I
+></SPAN
+>. (See "Building and releasing
+        packages" above). Then run:
+	</P
+><P
+>	<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>  cd current
+  autoheader &#38;&#38; autoconf &#38;&#38; ./configure</PRE
+></TD
+></TR
+></TABLE
+>
+	</P
+><P
+>	Then do FIXME.
+	</P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="NEWRELEASE-AIX"
+>6.3.12. AIX</A
+></H3
+><P
+>	Login to Sourceforge's compilefarm via ssh:
+	</P
+><P
+>	<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>  ssh cf.sourceforge.net</PRE
+></TD
+></TR
+></TABLE
+>
+	</P
+><P
+>	Choose the right operating system.
+        When logged in, <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>make sure that you have freshly exported the right
+        version into an empty directory</I
+></SPAN
+>. (See "Building and releasing
+        packages" above). Then run:
+	</P
+><P
+>	<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>  cd current
+  autoheader &#38;&#38; autoconf &#38;&#38; ./configure</PRE
+></TD
+></TR
+></TABLE
+>
+	</P
+><P
+>	Then run:
+	</P
+><P
+>	<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>  make aix-dist</PRE
+></TD
+></TR
+></TABLE
+>
+	</P
+><P
+>	which creates a gzip'ed tar archive. Sadly, you cannot use <B
+CLASS="COMMAND"
+>make
+	aix-upload</B
+> on the Sourceforge machine (no ncftpput). You now have
+	to manually upload the archive to Sourceforge's ftp server and release
+	the file publicly. Use the release notes and Change Log from the
+        source tarball package.
+	</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="RELEASING"
+>6.4. Uploading and Releasing Your Package</A
+></H2
+><P
+>      After the package is ready, it is time to upload it 
+      to SourceForge, and go through the release steps. The upload
+      is done via FTP:
+    </P
+><P
+>      <P
+></P
+><UL
+><LI
+><P
+>          Upload to: <A
+HREF="ftp://upload.sourceforge.net/incoming"
+TARGET="_top"
+>ftp://upload.sourceforge.net/incoming</A
+>
+        </P
+></LI
+><LI
+><P
+>         user: <TT
+CLASS="LITERAL"
+>anonymous</TT
+>
+       </P
+></LI
+><LI
+><P
+>         password: <TT
+CLASS="LITERAL"
+>ijbswa-developers@lists.sourceforge.net</TT
+>
+       </P
+></LI
+></UL
+>
+    </P
+><P
+>     Or use the <B
+CLASS="COMMAND"
+>make</B
+> targets as described above.
+    </P
+><P
+>     Once this done go to <A
+HREF="https://sourceforge.net/project/admin/editpackages.php?group_id=11118"
+TARGET="_top"
+>https://sourceforge.net/project/admin/editpackages.php?group_id=11118</A
+>, 
+     making sure you are logged in. Find your target platform in the 
+     second column, and click <TT
+CLASS="LITERAL"
+>Add Release</TT
+>. You will 
+     then need to create a new release for your package, using the format 
+     of <TT
+CLASS="LITERAL"
+>$VERSION ($CODE_STATUS)</TT
+>, e.g. <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>3.0.12
+     (beta)</I
+></SPAN
+>.
+    </P
+><P
+>     Now just follow the prompts. Be sure to add any appropriate Release
+     notes. You should see your freshly uploaded packages in 
+     <SPAN
+CLASS="QUOTE"
+>"Step 2. Add Files To This Release"</SPAN
+>. Check the 
+     appropriate box(es). Remember at each step to hit the 
+     <SPAN
+CLASS="QUOTE"
+>"Refresh/Submit"</SPAN
+> buttons! You should now see your 
+     file(s) listed in Step 3. Fill out the forms with the appropriate 
+     information for your platform, being sure to hit <SPAN
+CLASS="QUOTE"
+>"Update"</SPAN
+>
+     for each file. If anyone is monitoring your platform, check the 
+     <SPAN
+CLASS="QUOTE"
+>"email"</SPAN
+> box at the very bottom to notify them of 
+     the new package. This should do it!
+    </P
+><P
+>     If you have made errors, or need to make changes, you can go through 
+     essentially the same steps, but select <TT
+CLASS="LITERAL"
+>Edit Release</TT
+>, 
+     instead of <TT
+CLASS="LITERAL"
+>Add Release</TT
+>.
+    </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AFTERRELEASE"
+>6.5. After the Release</A
+></H2
+><P
+>      When all (or: most of the) packages have been uploaded and made available,
+      send an email to the <A
+HREF="mailto:ijbswa-announce@lists.sourceforge.net"
+TARGET="_top"
+>announce
+      mailing list</A
+>, Subject: "Version X.Y.Z available for download". Be sure to
+      include the
+      <A
+HREF="http://sourceforge.net/project/showfiles.php?group_id=11118"
+TARGET="_top"
+>download
+      location</A
+>, the release notes and the Changelog. Also, post an
+      updated News item on the project page Sourceforge, and update the Home 
+      page and docs linked from the Home page (see below). Other news sites
+      and release oriented sites, such as Freshmeat, should also be notified.
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="testing.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="webserver-update.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Testing Guidelines</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Update the Webserver</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

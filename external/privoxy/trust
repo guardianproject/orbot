@@ -1,0 +1,85 @@
+######################################################################
+# 
+#  File        :  $Source: /cvsroot/ijbswa/current/trust,v $
+# 
+#  $Id: trust,v 1.6 2007/05/14 17:19:42 fabiankeil Exp $
+#
+#  Purpose     :  Trustfiles are an experimental feature and can be used
+#                 to build "whitelists" (versus the usual "blacklists"
+#                 techniques).
+# 
+#  Copyright   :  Written by and Copyright
+#                 Privoxy team. http://www.privoxy.org/
+#
+#                 Based on the Internet Junkbuster originally written
+#                 by and Copyright (C) 1997 Anonymous Coders and
+#                 Junkbusters Corporation.  http://www.junkbusters.com
+#
+# We value your feedback. However, to provide you with the best support,
+# please note:
+#  
+#  * Use the support forum to get help:
+#    http://sourceforge.net/tracker/?group_id=11118&atid=211118
+#  * Submit bugs only thru our bug forum:
+#    http://sourceforge.net/tracker/?group_id=11118&atid=111118 
+#    Make sure that the bug has not already been submitted. Please try
+#    to verify that it is a Privoxy bug, and not a browser or site
+#    bug first. If you are using your own custom configuration, please
+#    try the stock configs to see if the problem is a configuration
+#    related bug. And if not using the latest development snapshot,
+#    please try the latest one. Or even better, CVS sources.
+#  * Submit feature requests only thru our feature request tracker:
+#    http://sourceforge.net/tracker/?atid=361118&group_id=11118&func=browse
+#      
+# For any other issues, feel free to use the mailing lists:
+# http://sourceforge.net/mail/?group_id=11118
+#    
+# Anyone interested in actively participating in development and related
+# discussions can join the appropriate mailing list here:
+# http://sourceforge.net/mail/?group_id=11118. Archives are available
+# here too.
+# 
+######################################################################
+#
+#                      Sample Trustfile for Privoxy
+
+# For this file to have any effect, the line in the main config file beginning
+# with "trustfile" must be uncommented, with the name of this file following the
+# word "trustfile".
+
+# Trustfiles are an experimental feature used for building "whitelists"
+# of "trusted" sites (versus the usual "blacklists" technique). For more
+# detail, see http://www.privoxy.org/user-manual/config.html#TRUSTFILE.
+
+# List trusted domains here. The default is to block any URL that is NOT
+# referenced. Access to trusted domains includes all paths within that
+# domain.
+
+# Preceding a domain with a '+' character will designate that domain
+# as a "trusted referrer", meaning any requests whose HTTP "Referer" headers
+# contain an URL from that domain will be allowed, and the previously untrusted
+# host will be dynamically added to this file. Thus, this builds a "white-list"
+# of hosts the user is allowed to visit.
+
+# Note this means that the file will grow with use!
+
+# Also note that you can only trust referrers if you control the user's
+# system and make sure that there are no programs available that allow
+# to set arbitrary headers.
+
+# Preceding the domain with '~' character allows access to that domain only
+# (including all paths within that domain), but does not allow access to links
+# to other, outside domains. Sites that are added dynamically by trusted 
+# referrers will include the '~' character, and thus do not become trusted
+# referrers themselves.
+
+# Example: to allow example.com and to white-list domains that appear to
+# be reached through links from example.com, uncomment this line:
+
+# +example.com 
+
+# The next two lines make sure that the user can access Privoxy's
+# CGI pages, without automatically trusting their links.
+
+~config.privoxy.org
+~p.p

@@ -1,0 +1,268 @@
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook V3.1//EN" [
+<!entity % dummy "IGNORE"> 
+<!entity supported SYSTEM "supported.sgml">
+<!entity p-intro SYSTEM "privoxy.sgml">
+<!entity contacting SYSTEM "contacting.sgml">
+<!entity buildsource SYSTEM "buildsource.sgml">
+<!entity p-version "3.0.12">
+<!entity p-status "stable">
+<!entity % p-not-stable "IGNORE">
+<!entity % p-stable "INCLUDE">
+<!entity % p-text "INCLUDE">       <!-- define we are a text only doc    -->
+<!entity % p-doc "IGNORE">         <!-- and never a text doc             -->
+<!entity % p-readme "INCLUDE">     <!-- all your README belong to us     -->
+]>
+<!--
+ File        :  $Source: /cvsroot/ijbswa/current/doc/source/readme.sgml,v $
+
+ Purpose     :  README for Privoxy
+                
+ $Id: readme.sgml,v 2.26 2009/03/21 11:32:38 hal9 Exp $
+
+ Copyright (C) 2001-2009 Privoxy Developers http://www.privoxy.org/
+ See LICENSE.
+
+ ========================================================================
+ NOTE: Please read developer-manual/documentation.html before touching 
+ anything in this, or other Privoxy documentation. You have been warned!
+ Failure to abide by this rule will result in the revocation of your license 
+ to live a peaceful existence!
+ ========================================================================
+
+ ===================================================================
+ READ: Document Note: This file generates the README in the top level 
+ source directory. It is generated as only a plain text file. The 
+ current markup is not suitable for other formats. Build from 
+ Makefile with 'make dok-readme'.
+ ===================================================================
+
+ READ:
+
+ ======================================================================
+ NOTE: The left margin spacing is *important* when using 'literallayout'
+ WYSISWYG!!! Don't mess this up!!! Careful with linebreaks too, ie 
+ the para tag forces a linebreak. Tags need to be carefully placed as a result
+ to avoid extra blank lines, etc. 
+ ======================================================================
+
+ For stable releases, change 
+ 
+  entity % p-not-stable "INCLUDE" 
+ 
+ to 
+ 
+  entity % p-not-stable "IGNORE" 
+  
+ in the DTD at the top. This will toggle various text 'off'. BOTH
+ MUST be toggled in this case or you will get both text referencing 
+ stable and unstable versions. You only want one or the other!
+
+-->
+<article id="index">
+<artheader>
+<![%dummy;[
+ <para>
+ <comment>
+  This is here to keep vim syntax file from breaking :/
+  If I knew enough to fix it, I would.
+  PLEASE DO NOT REMOVE! HB: hal@foobox.net
+ </comment>
+ </para>
+]]>
+<abstract>
+<para>
+ <literal>
+  <msgtext>
+   <literallayout>
+/*********************************************************************
+ *
+ * File        :  $Source: /cvsroot/ijbswa/current/doc/source/readme.sgml,v $
+ *
+ * Purpose     :  README file to give a short intro.
+ *
+ * Copyright   :  Written by and Copyright (C) 2001-2009  the SourceForge
+ *                Privoxy team. http://www.privoxy.org/
+ *
+ *                Based on the Internet Junkbuster originally written
+ *                by and Copyright (C) 1997 Anonymous Coders and 
+ *                Junkbusters Corporation.  http://www.junkbusters.com
+ *
+ *                This program is free software; you can redistribute it 
+ *                and/or modify it under the terms of the GNU General
+ *                Public License as published by the Free Software
+ *                Foundation; either version 2 of the License, or (at
+ *                your option) any later version.
+ *
+ *                This program is distributed in the hope that it will
+ *                be useful, but WITHOUT ANY WARRANTY; without even the
+ *                implied warranty of MERCHANTABILITY or FITNESS FOR A
+ *                PARTICULAR PURPOSE.  See the GNU General Public
+ *                License for more details.
+ *
+ *                The GNU General Public License should be included with
+ *                this file.  If not, you can view it at
+ *                http://www.gnu.org/copyleft/gpl.html
+ *                or write to the Free Software Foundation, Inc., 
+ *                51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, 
+ *                USA
+ *
+ *********************************************************************/
+</literallayout>
+</msgtext>
+</literal>
+</para>
+
+<para>
+ <!-- include some conditional text -->
+ This README is included with <![%p-not-stable;[ the development version of]]>
+ Privoxy &p-version;. See http://www.privoxy.org/ for more information. The current code maturity
+ level is <quote>&p-status;</quote><![%p-not-stable;[, but seems stable to us :)]]>.
+</para>
+</abstract>
+</artheader>
+
+<!-- Include privoxy.sgml boilerplate: -->
+&p-intro;
+<!-- end boilerplate -->
+
+<!--   ~~~~~       New section      ~~~~~     -->
+<sect1 id="importantchanges" ><title>IMPORTANT CHANGES</title>
+<para>
+ March 2009, Privoxy 3.0.12 is released.
+</para>
+<para>
+ This is primarily a bug fix release. See the "ChangeLog", and the "What's
+ New" section and the "Upgrader's Notes" in <citetitle>the User
+ Manual</citetitle> for details. 
+</para>
+
+<para>
+ February 2009, Privoxy 3.0.11 is released.
+</para>
+<para>
+ As usual there are changes that effect the configuration. See the "ChangeLog",
+ and the "What's New" section and the "Upgrader's Notes" in
+ <citetitle>the User Manual</citetitle> for details and specifics. 
+</para>
+<para>
+ This is a stable release, and marks a departure for Privoxy development.
+</para>
+<para>
+ Previously, odd numbered releases were considered beta versions and
+ were only released at the end of the development cycle when the code
+ was already believed to be stable. Usually it was, so the stable release
+ contained pretty much the same code, but got a higher version number.
+ In the future we intend to release several snapshots between stable releases.
+ There will probably still be about two stable releases per year,
+ but hopefully about six snapshots instead of the two betas we have now.
+ The intentions is to make testing without CVS access easier.
+</para>
+</sect1>
+
+<!--   ~~~~~       New section      ~~~~~     -->
+<sect1 id="install" ><title>INSTALL</title>
+<para> 
+ See the <filename>INSTALL</filename> file in this directory, for installing
+ from raw source, and the <citetitle>User Manual</citetitle>, for all other
+ installation types. 
+</para>
+</sect1>
+
+<!--   ~~~~~       New section      ~~~~~     -->
+<sect1 id="run"><title>RUN</title>
+<para>
+ privoxy [--help] [--version]
+ [--no-daemon] [--pidfile PIDFILE] [--user USER[.GROUP]] [--chroot]  [--pre-chroot-nslookup
+ HOSTNAME ][config_file]
+</para>
+<para>
+ See the man page or <citetitle>User Manual</citetitle> for an explanation of each option, and 
+ other configuration and usage issues.
+</para>
+<para>
+ If no config_file is specified on the command line, Privoxy will look for a
+ file named 'config' in the current directory (except Win32 which will look
+ for 'config.txt'). If no config_file is found, Privoxy will fail to start.
+</para>
+<para>
+ Or for Red Hat and Fedora based distributions: /etc/rc.d/init.d/privoxy start
+</para>
+<para>
+ Or Debian and Ubuntu: /etc/init.d/privoxy start
+</para>
+</sect1>
+
+<!--   ~~~~~       New section      ~~~~~     -->
+<sect1 id="configuration"><title>CONFIGURATION</title>
+<para>
+ See: 'config', 'default.action', 'user.action', 'default.filter', and
+ 'user.filter'. 'user.action' and 'user.filter' are for personal and local
+ configuration preferences. These are all well commented. Most of the magic is
+ in '*.action' files. 'user.action' should be used for any actions
+ customizations. On Unix-like systems, these files are typically installed in
+ /etc/privoxy.  On Windows, then wherever the executable itself is installed.
+ There are many significant changes and advances from earlier versions. The
+ <citetitle>User Manual</citetitle> has an explanation of all configuration
+ options, and examples: http://www.privoxy.org/user-manual/.
+</para>
+<para>
+ Be sure to set your browser(s) for HTTP/HTTPS Proxy at &lt;IP&gt;:&lt;Port&gt;, or
+ whatever you specify in the config file under 'listen-address'. DEFAULT is
+ localhost:8118. Note that Privoxy ONLY proxies HTTP (and HTTPS) traffic. Do not try it 
+ with FTP or other protocols for the simple reason it does not work.
+</para>
+<para>
+ The actions list can be configured via the web interface accessed via
+ http://p.p/, as well other options.
+</para>
+<![%p-not-stable;[
+<para>
+ All configuration files are subject to unannounced changes during the
+ development process.
+</para>
+]]>
+</sect1>
+
+<!--   ~~~~~       New section      ~~~~~     -->
+<sect1 id="documentation"><title>DOCUMENTATION</title>
+<para>
+ There should be documentation in the 'doc' subdirectory<![%p-not-stable;[, but it
+ may not be completed at this point]]>. In particular, see the 
+ <citetitle>User Manual</citetitle> there,
+ the <citetitle>FAQ</citetitle>, and those interested in Privoxy development, should look at
+ <citetitle>developer-manual</citetitle>. 
+</para>
+<para>
+ <![%p-not-stable;[
+ The most up to date source of information on the current development version,
+ may still be either comments in the source code, or the included
+ configuration files. ]]>The source and configuration files are all well
+ commented. The main configuration files are: 'config', 'default.action', and
+ 'default.filter'<![%p-not-stable;[ in the top-level source directory]]>. 
+</para>
+
+<para>
+ Included documentation may vary according to platform and packager. All 
+ documentation is posted on http://www.privoxy.org, in case you don't have it, 
+ or can't find it.
+</para>
+</sect1>
+
+<!--   ~~~~~       New section      ~~~~~     -->
+<sect1 id="contact"><title>CONTACTING THE DEVELOPERS, BUG REPORTING AND FEATURE REQUESTS</title>
+<!-- Include contacting.sgml boilerplate: -->
+  &contacting;
+<!-- end boilerplate -->
+</sect1>
+
+<!-- <para> -->
+<!--  <LiteralLayout> -->
+<!--  ------------------------------------------------------------------------- -->
+<!--  ijbswa-developers@lists.sourceforge.net -->
+<!-- </LiteralLayout> -->
+<!-- </para> -->
+<!-- <para> -->
+<!--  $Id: readme.sgml,v 2.26 2009/03/21 11:32:38 hal9 Exp $ -->
+<!-- </para> -->
+
+</article>

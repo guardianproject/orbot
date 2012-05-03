@@ -1,0 +1,227 @@
+#
+# fix_print_html.lib
+#
+#   Dan Scott  / <dan.scott (at) acm.org>
+#   Ferg       / <gferg (at) sgi.com>
+#
+#   Used to prepare single-file HTML variant for PDF/Postscript creation
+#   thru htmldoc.
+#
+# log:
+#     16Oct2000 - 0.1   - initial entry <gferg (at) sgi.com>
+#     03Apr2001 - 0.2   - fix for <preface>
+#     05Jul2001 - 0.3   - fix for <tt> and -f
+#     12Oct2001 - 0.4   - fix for sections; loop thru both files (body/title)
+#     27Nov2001 - 0.5   - fixed bug in determining where doc-index lies
+#     18Jan2002 - 0.5.1 - entity fix (822*)
+#     02Apr2002 - 0.6   - misc fixes (bibliography/appendix, etc).
+#     04Apr2002 - 0.7   - fix for newer DSSSL
+#
+
+sub fix_print_html {
+
+   my($in,$out,$ttl) = @_;
+
+   open(IN_FILE, "< $in") || do {
+        print "fix_print_html: cannot open $in: $!\n";
+        return 0;
+   };
+
+   my($buf, $ttl_buf) = '';
+   my($indx) = -1;
+   my($is_article) = 1;
+   while(<IN_FILE>) {
+
+         if( $indx == 1 ) {
+
+             # ignore everything until we see the chapter or sect
+             #
+             if( $_ =~ /CLASS="CHAP/i || $_ =~ /CLASS="PREF/i
+                 ||
+                 $_ =~ /CLASS="SECT/i )  {
+
+                 $buf .= $_;
+                 $indx++;
+
+             } else {
+                 next;
+             }
+
+         } elsif( $indx == 0 ) {
+
+             # write out the title page file
+             #
+             if( $_ =~ /CLASS="TOC"/ ) {
+
+                 $ttl_buf .= "></DIV>\n</BODY>\n</HTML>\n"; 
+                 $ttl_buf =~ s/<\/H1\n/<\/H1\n><P><BR><BR\n/ms;
+                 $ttl_buf =~ s/<HR><\/DIV\n><HR>/<HR><\/DIV\n>/ms;
+                 &fix_html(\$ttl_buf, 1);
+                 
+                 open(TOC_FILE, "> $ttl") || do {
+                      print "fix_print_html: cannot open $ttl: $!\n";
+                      close(IN_FILE);
+                      return 0;
+                 };
+                 print TOC_FILE $ttl_buf;
+                 close(TOC_FILE);
+                 $ttl_buf = '';
+                 $indx++;
+
+             } else {
+                $ttl_buf .= $_;
+             }
+
+         } elsif( $indx < 0 ) {
+
+             if( $_ =~ /CLASS="BOOK"/i ) {
+                 $is_article = 0;
+             }
+
+             # up to this point, both buffers get the line
+             #
+             if( $_ =~ /CLASS="TITLEPAGE"/ ) {
+
+                 $ttl_buf .= $_ . ">\n<P>\n<BR><BR><BR><BR>\n<\/P\n";
+                 $indx++;
+
+             } else {
+                 $buf .= $_;
+                 $ttl_buf .= $_;
+             }
+
+         } else {
+
+             $buf .= $_;
+         }
+   }
+   close(IN_FILE);
+
+
+   # fix body file
+   #
+   open(OUT_FILE, "> $out") || do {
+        print "fix_print_html: cannot open $out: $!\n";
+        return 0;
+   };
+
+   &fix_html(\$buf, $is_article);
+
+   print OUT_FILE $buf;
+   close(OUT_FILE);
+
+
+   return 1;
+}
+
+
+sub fix_html {
+   
+   my($buf, $is_article) = @_;
+   my($indx) = -1;
+
+
+   # make corrections and write out the file
+   #
+
+   $$buf =~ s/(\n><LI\n)><P\n(.*?)<\/P\n>/$1$2\n/gms;
+   $$buf =~ s/(\n><LI\n><DIV\nCLASS="FORMALPARA"\n)><P\n(.*?)<\/P\n>/$1$2\n/gms;
+   $$buf =~ s/(\n><LI\nSTYLE="[^\"]+"\n)><P\n(.*?)<\/P\n>/$1$2\n/gms;
+   if( $is_article == 0 ) {
+       $$buf =~ 
+         s/(\nCLASS="SECT[TION\d]+"\n>)<H1\n(.*?)<\/H1/$1<H0\n$2<\/H0/gims;
+       $$buf =~ 
+         s/(\nCLASS="SECT[TION\d]+"\n><HR>)<H1\n(.*?)<\/H1/$1<H0\n$2<\/H0/gims;
+   }
+   $$buf =~ s/<H1(\nCLASS="INDEXDIV"\n)(.*?)<\/H1/<H2$1$2<\/H2/gims;
+   if( ($indx = rindex($$buf, "<H1\n><A\nNAME=\"DOC-INDEX\"")) > -1 ) {
+       $$buf = substr($$buf, 0, $indx);
+       $$buf .= "\n<\/BODY>\n<\/HTML>\n\n";
+   } elsif( ($indx = rindex($$buf, "<H1\n><A\nNAME=\"doc-index\"")) > -1 ) {
+       $$buf = substr($$buf, 0, $indx);
+       $$buf .= "\n<\/BODY>\n<\/HTML>\n\n";
+   }
+
+   $$buf =~ s/\&\#13;//g;
+   $$buf =~ s/\&\#60;/\&lt;/g;
+   $$buf =~ s/\&\#62;/\&gt;/g;
+   $$buf =~ s/\&\#8211;/\-/g;
+   $$buf =~ s/\&\#8220;/\"/g;
+   $$buf =~ s/\&\#8221;/\"/g;
+   $$buf =~ s/WIDTH=\"\d\"//g;
+   $$buf =~ s/><[\/]*TBODY//g;
+   $$buf =~ s/><[\/]*THEAD//g;
+   $$buf =~ s/TYPE=\"1\"\n//gim;
+
+   $$buf =~ s/<P\nCLASS="LITERALLAYOUT"(.*?)<\/P/<P CLASS="LITERALLAYOUT"><FONT FACE=\"courier\"$1<\/FONT><\/P/gms;
+
+   my($cnt, $j) = 0;
+
+   if( $$buf !~ /<H1/ ) {
+       
+       # for newer docbook styles, set h2 to h1, etc.
+       #
+       for($cnt=2; $cnt < 7; $cnt++ ) {
+           $j = $cnt - 1;
+           $$buf =~ s/<H${cnt}/<H${j}/g;
+           $$buf =~ s/<\/H${cnt}/<\/H${j}/g;
+       }
+
+   } elsif( $is_article == 0 ) {
+
+       # decrement the headers by 1 and then re-set the
+       # chapter level only to H1...
+       #
+       for($cnt=5; $cnt >= 0; $cnt--) {
+           $j = $cnt + 1;
+           if( $cnt == 0 ) {
+               $j = 2;
+           }
+           $$buf =~ s/<H${cnt}/<H${j}/g;
+           $$buf =~ s/<\/H${cnt}/<\/H${j}/g;
+       }
+
+       my(@l) = split(/\n/, $$buf);
+       for( $cnt=0; $cnt < (@l + 0); $cnt++ ) {
+
+            if( $j == 1 ) {
+                if( $l[$cnt] =~ /<DIV/ ) {
+                    $j = 0;
+                    next;
+                }
+                $l[$cnt] =~ s/<H2/<H1/g;
+                $l[$cnt] =~ s/<\/H2/<\/H1/g;
+            }
+
+            if( $l[$cnt] =~ /^CLASS=\"CHAP/i
+                ||
+                $l[$cnt] =~ /^NAME=\"BIBL/i
+                ||
+                $l[$cnt] =~ /^CLASS=\"APPENDIX/i
+                ||
+                $l[$cnt] =~ /^CLASS=\"GLOSSARY/i
+                ||
+                $l[$cnt] =~ /^CLASS=\"PREF/i ) {
+                $j = 1;
+            }
+       }
+
+       $$buf = join("\n", @l);
+
+   }
+   $$buf =~ s/><DIV\nCLASS="\w+"\n//gms;
+   $$buf =~ s/><\/DIV\n//gms;
+
+   $buf =~ s/<SPAN\n[^>]*?>//gms;
+   $buf =~ s/<\/SPAN\n>//gms;
+
+   $$buf =~ s/(><LI\n)><P\n(.*?)<\/P\n>(<\/LI\n)/$1$2$3/gms;
+
+   return;
+}
+
+
+# Return true from package include
+#
+1;
+

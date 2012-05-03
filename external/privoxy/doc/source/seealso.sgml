@@ -1,0 +1,113 @@
+<!--
+ File        :  $Source: /cvsroot/ijbswa/current/doc/source/seealso.sgml,v $
+
+ Purpose     :  Entity included in other project documents.
+                
+ $Id: seealso.sgml,v 2.12 2009/02/23 10:42:58 fabiankeil Exp $
+
+ Copyright (C) 2001-2009 Privoxy Developers http://www.privoxy.org/
+ See LICENSE.
+
+ ======================================================================
+  This file used for inclusion with other documents only.
+ ======================================================================
+
+ If you make changes to this file, please verify the finished 
+ docs all display as intended.
+
+ This file is included into:
+
+  privoxy-man-page
+  user-manual
+  faq
+  developer-manual
+
+ NOTE: 04/05/02, HB Removed &nbsp; tags. They were causing docbook2man 
+ to barf.
+
+-->
+
+<para>
+ Other references and sites of interest to <application>Privoxy</application>
+ users:
+</para>
+
+<para>
+ <simplelist>
+  <member>
+   <ulink
+   url="http://www.privoxy.org/">http://www.privoxy.org/</ulink>, 
+   the <application>Privoxy</application> Home page. 
+  </member>
+ </simplelist>
+ <simplelist>
+  <member>
+   <ulink
+   url="http://www.privoxy.org/faq/">http://www.privoxy.org/faq/</ulink>, 
+   the <application>Privoxy</application> FAQ. 
+  </member>
+ </simplelist>
+ <simplelist>
+  <member>
+   <ulink
+   url="http://www.privoxy.org/developer-manual/">http://www.privoxy.org/developer-manual/</ulink>, 
+   the <application>Privoxy</application> developer manual. 
+  </member>
+ </simplelist>
+ <simplelist>
+  <member>
+   <ulink url="https://sourceforge.net/projects/ijbswa/">https://sourceforge.net/projects/ijbswa/</ulink>, 
+   the Project Page for <application>Privoxy</application> on 
+   <ulink url="http://sourceforge.net">SourceForge</ulink>.
+  </member>
+ </simplelist>
+ <simplelist>
+  <member>
+   <ulink url="http://config.privoxy.org/">http://config.privoxy.org/</ulink>,
+   the web-based user interface. <application>Privoxy</application> must be
+   running for this to work. Shortcut: <ulink url="http://p.p/">http://p.p/</ulink>
+  </member>
+ </simplelist>
+ <simplelist>
+  <member>
+   <ulink url="https://sourceforge.net/tracker/?group_id=11118&amp;atid=460288">https://sourceforge.net/tracker/?group_id=11118&amp;atid=460288</ulink>, to submit <quote>misses</quote> and other
+   configuration related suggestions to the developers. 
+  </member>
+ </simplelist>
+ <![%seealso-extra;[
+ <!-- This part only goes into user-manual -->
+ <simplelist>
+  <member>
+   <ulink url="http://www.junkbusters.com/ht/en/cookies.html">http://www.junkbusters.com/ht/en/cookies.html</ulink>,
+   an explanation how cookies are used to track web users.
+  </member>
+ </simplelist>
+ <simplelist>
+  <member>
+   <ulink url="http://www.junkbusters.com/ijb.html">http://www.junkbusters.com/ijb.html</ulink>,
+   the original Internet Junkbuster.
+  </member>
+ </simplelist>
+ <simplelist>
+  <member>
+   <ulink url="http://www.squid-cache.org/">http://www.squid-cache.org/</ulink>, a popular
+   caching proxy, which is often used together with <application>Privoxy</application>.
+  </member>
+ </simplelist>
+ <simplelist>
+  <member>
+   <ulink url="http://www.pps.jussieu.fr/~jch/software/polipo/">http://www.pps.jussieu.fr/~jch/software/polipo/</ulink>,
+   <application>Polipo</application> is a caching proxy with advanced features
+   like pipelining, multiplexing and caching of partial instances. In many setups
+   it can be used as <application>Squid</application> replacement.
+  </member>
+ </simplelist>
+ <simplelist>
+  <member>
+   <ulink url="https://www.torproject.org/">https://www.torproject.org/</ulink>, 
+   <application>Tor</application> can help anonymize web browsing, 
+   web publishing, instant messaging, IRC, SSH, and other applications.
+  </member>
+ </simplelist>
+ ]]>
+</para>

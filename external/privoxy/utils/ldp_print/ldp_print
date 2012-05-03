@@ -1,0 +1,72 @@
+#!/usr/bin/perl -w
+#
+# usage: ldp_print <single_file.html>
+#
+# Creates a PDF variant of a single-file HTML representation of a
+# DocBook SGML (or XML) instance. This simple wrapper assumes that
+# the file was created using {open}jade in a manner similar to:
+#
+#	jade -t sgml -i html -V nochunks -d $style $fname > $fname.html
+#
+# Give this script the filename as an argument. It will then parse
+# the file into 'title.html' and 'body.html' and send each to
+# htmldoc (as the corresponding title page and body of the document).
+#
+#
+# CAVEATS:
+#
+# Assumes perl is in /usr/bin; adjust if necessary
+#
+# You may need to specify where the htmldoc executable resides.
+# The script assumes it's within your $PATH.
+#
+# If you want Postscript as an output variant, uncomment the 
+# appropriate lines (see below).
+#
+# Relies on output from a DocBook instance created via DSSSL/{open}jade!
+#
+# Cleans up (removes) the intermediate files it creates (but not the
+# PDF or Postscript files, obviously!)
+#
+# Works silently; PDF (PostScript) will be created in the same directory
+# as was specified for the input (single-file HTML) file.
+#
+# Provided without warranty or support!
+#
+#	gferg@sgi.com / Ferg (used as part of the LDP production env)
+#
+
+use strict;
+push(@INC, "./");
+require 'fix_print_html.lib';
+
+if( $ARGV[0] eq '' || !(-r $ARGV[0]) ) {
+    die "\nusage: ldp_print <single_file.html>\n\n";
+}
+
+my($fname_wo_ext) = $ARGV[0];
+$fname_wo_ext =~ s/\.[\w]+$//;
+
+
+# create new files from single HTML file to use for print
+#
+&fix_print_html($ARGV[0], 'body.html', 'title.html');
+
+my($cmd) = "htmldoc --size universal --bodyfont helvetica --fontsize 8 " .
+           "-t pdf -f ${fname_wo_ext}.pdf --firstpage p1 --titlefile title.html" .
+           " body.html --footer c.1";
+
+# For postscript output; append onto the above cmd string:
+#
+#          "; htmldoc --size universal -t ps -f ${fname_wo_ext}.ps " .
+#          "--firstpage p1 --titlefile title.html body.html";
+#
+system($cmd);
+die "\nldp_print: could not create ${fname_wo_ext}.pdf ($!)\n" if ($?);
+
+# cleanup
+#
+system("rm -f body.html title.html");
+
+exit(0);
+

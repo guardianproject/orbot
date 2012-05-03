@@ -1,0 +1,260 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Update the Webserver</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Privoxy Developer Manual"
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="Releasing a New Version"
+HREF="newrelease.html"><LINK
+REL="NEXT"
+TITLE="Contacting the developers, Bug Reporting and Feature Requests"
+HREF="contact.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="../p_doc.css"><META
+HTTP-EQUIV="Content-Type"
+CONTENT="text/html;
+charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#EEEEEE"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Privoxy Developer Manual</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="newrelease.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="contact.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="WEBSERVER-UPDATE"
+>7. Update the Webserver</A
+></H1
+><P
+>    The webserver should be updated at least with each stable release. When
+    updating, please follow these steps to make sure that no broken links,
+    inconsistent contents or permission problems will occur (as it has many 
+    times in the past!):
+   </P
+><P
+>    If you have changed anything in the stable-branch documentation source
+    SGML files, do:
+   </P
+><P
+>    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>  make dok dok-pdf # (or 'make redhat-dok dok-pdf' if 'make dok' doesn't work for you)</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>    That will generate <TT
+CLASS="FILENAME"
+>doc/webserver/user-manual</TT
+>,
+    <TT
+CLASS="FILENAME"
+>doc/webserver/developer-manual</TT
+>,
+    <TT
+CLASS="FILENAME"
+>doc/webserver/faq</TT
+>, 
+    <TT
+CLASS="FILENAME"
+>doc/pdf/*.pdf</TT
+> and
+    <TT
+CLASS="FILENAME"
+>doc/webserver/index.html</TT
+> automatically.
+   </P
+><P
+>    If you changed the manual page sources, generate
+    <TT
+CLASS="FILENAME"
+>doc/webserver/man-page/privoxy-man-page.html</TT
+>
+    by running <SPAN
+CLASS="QUOTE"
+>"<B
+CLASS="COMMAND"
+>make man</B
+>"</SPAN
+>. (This is
+    a separate target due to dependencies on some obscure perl scripts
+    [now in CVS, but not well tested]. See comments in <TT
+CLASS="FILENAME"
+>GNUmakefile</TT
+>.)
+   </P
+><P
+>    If you want to add new files to the webserver, create them locally in
+    the <TT
+CLASS="FILENAME"
+>doc/webserver/*</TT
+> directory (or
+    create new directories under <TT
+CLASS="FILENAME"
+>doc/webserver</TT
+>).
+   </P
+><P
+>    Next, commit any changes from the above steps to CVS. All set? 
+    If these are docs in the stable branch, then do:
+   </P
+><P
+>    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>  make webserver</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>    This will do the upload to <A
+HREF="http://www.privoxy.org/"
+TARGET="_top"
+>the
+    webserver</A
+> (www.privoxy.org) and ensure all files and directories
+    there are group writable.
+   </P
+><P
+>    Please do <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>NOT</I
+></SPAN
+> use any other means of transferring
+    files to the webserver to avoid permission problems. Also, please do not
+    upload docs from development branches or versions. The publicly posted
+    docs should be in sync with the last official release.
+   </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="newrelease.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="contact.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Releasing a New Version</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Contacting the developers, Bug Reporting and Feature Requests</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

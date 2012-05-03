@@ -1,0 +1,351 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>What's New in this Release</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Privoxy 3.0.12 User Manual"
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="Installation"
+HREF="installation.html"><LINK
+REL="NEXT"
+TITLE="Quickstart to Using Privoxy"
+HREF="quickstart.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="../p_doc.css"><META
+HTTP-EQUIV="Content-Type"
+CONTENT="text/html;
+charset=ISO-8859-1">
+<LINK REL="STYLESHEET" TYPE="text/css" HREF="p_doc.css">
+</head
+><BODY
+CLASS="SECT1"
+BGCOLOR="#EEEEEE"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Privoxy 3.0.12 User Manual</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="installation.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="quickstart.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="WHATSNEW"
+>3. What's New in this Release</A
+></H1
+><P
+> <SPAN
+CLASS="APPLICATION"
+>Privoxy 3.0.12</SPAN
+> is mainly a bugfix release:</P
+><P
+> <P
+></P
+><UL
+><LI
+><P
+>    The socket-timeout option now also works on platforms whose
+    select() implementation modifies the timeout structure.
+    Previously the timeout was triggered even if the connection
+    didn't stall. Reported by cyberpatrol.
+   </P
+></LI
+><LI
+><P
+>    The Connection: keep-alive code properly deals with files
+    larger than 2GB. Previously the connection was closed too
+    early.
+   </P
+></LI
+><LI
+><P
+>    The content length for files above 2GB is logged correctly.
+   </P
+></LI
+><LI
+><P
+>    The user-manual directive on the show-status page links to
+    the documentation location specified with the directive,
+    not to the Privoxy website.
+   </P
+></LI
+><LI
+><P
+>    When running in daemon mode, Privoxy doesn't log anything
+    to the console unless there are errors before the logfile
+    has been opened.
+   </P
+></LI
+><LI
+><P
+>    The show-status page prints warnings about invalid directives
+    on the same line as the directives themselves.
+   </P
+></LI
+><LI
+><P
+>    Fixed several justified (but harmless) compiler warnings,
+    mostly on 64 bit platforms.
+   </P
+></LI
+><LI
+><P
+>    The mingw32 version explicitly requests the default charset
+    to prevent display problems with some fonts available on more
+    recent Windows versions. Patch by Burberry.
+   </P
+></LI
+><LI
+><P
+>    The mingw32 version uses the Privoxy icon in the alt-tab
+    windows. Patch by Burberry.
+   </P
+></LI
+><LI
+><P
+>    The timestamp and the thread id is omitted in the "Fatal error"
+    message box on mingw32.
+   </P
+></LI
+><LI
+><P
+>    Fixed two related mingw32-only buffer overflows. Triggering
+    them required control over the configuration file, therefore
+    this isn't seen as a security issue.
+   </P
+></LI
+><LI
+><P
+>    In verbose mode, or if the new option --show-skipped-tests
+    is used, Privoxy-Regression-Test logs skipped tests and the
+    skip reason.
+   </P
+></LI
+></UL
+></P
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="UPGRADERSNOTE"
+>3.1. Note to Upgraders</A
+></H2
+><P
+> A quick list of things to be aware of before upgrading from earlier 
+ versions of <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>:</P
+><P
+> <P
+></P
+><UL
+><LI
+><P
+>   The recommended way to upgrade <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> is to backup your old 
+   configuration files, install the new ones, verify that <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>
+   is working correctly and finally merge back your changes using
+   <SPAN
+CLASS="APPLICATION"
+>diff</SPAN
+> and maybe <SPAN
+CLASS="APPLICATION"
+>patch</SPAN
+>.
+  </P
+><P
+>   There are a number of new features in each <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> release and
+   most of them have to be explicitly enabled in the configuration
+   files. Old configuration files obviously don't do that and due
+   to syntax changes using old configuration files with a new
+   <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> isn't always possible anyway.
+  </P
+></LI
+><LI
+><P
+>  
+    Note that some installers remove earlier versions completely,
+    including configuration files, therefore you should really save
+    any important configuration files!
+  </P
+></LI
+><LI
+><P
+>  
+   On the other hand, other installers don't overwrite existing configuration 
+   files, thinking you will want to do that yourself.
+  </P
+></LI
+><LI
+><P
+>  
+   <TT
+CLASS="FILENAME"
+>standard.action</TT
+> has been merged into
+   the <TT
+CLASS="FILENAME"
+>default.action</TT
+> file.
+  </P
+></LI
+><LI
+><P
+>   In the default configuration only fatal errors are logged now.
+   You can change that in the <A
+HREF="config.html#DEBUG"
+>debug section</A
+>
+   of the configuration file. You may also want to enable more verbose
+   logging until you verified that the new <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> version is working
+   as expected.
+  </P
+></LI
+><LI
+><P
+>     Three other config file settings are now off by default: 
+     <A
+HREF="config.html#ENABLE-REMOTE-TOGGLE"
+>enable-remote-toggle</A
+>,
+     <A
+HREF="config.html#ENABLE-REMOTE-HTTP-TOGGLE"
+>enable-remote-http-toggle</A
+>,
+     and  <A
+HREF="config.html#ENABLE-EDIT-ACTIONS"
+>enable-edit-actions</A
+>. 
+     If you use or want these, you will need to explicitly enable them, and
+     be aware of the security issues involved. 
+    </P
+></LI
+></UL
+></P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="installation.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="quickstart.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Installation</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Quickstart to Using Privoxy</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

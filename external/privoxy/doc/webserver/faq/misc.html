@@ -1,0 +1,1745 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Miscellaneous</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Privoxy Frequently Asked Questions"
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="Configuration"
+HREF="configuration.html"><LINK
+REL="NEXT"
+TITLE="Troubleshooting"
+HREF="trouble.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="../p_doc.css"><META
+HTTP-EQUIV="Content-Type"
+CONTENT="text/html;
+charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#EEEEEE"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Privoxy Frequently Asked Questions</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="configuration.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="trouble.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="MISC"
+>4. Miscellaneous</A
+></H1
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="AEN729"
+>4.1. How much does Privoxy slow my browsing down? This 
+has to add extra time to browsing.</A
+></H3
+><P
+> How much of an impact depends on many things, including the CPU of the host
+ system, how aggressive the configuration is, which specific actions are being triggered, 
+ the size of the page, the bandwidth of the connection, etc.</P
+><P
+> Overall, it should not slow you down any in real terms, and may actually help 
+ speed things up since ads, banners and other junk are not typically being
+ retrieved and displayed. The actual processing time required by
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> itself for each page, is relatively small
+ in the overall scheme of things, and happens very quickly. This is typically
+ more than offset by time saved not downloading and rendering ad images and
+ other junk content (if ad blocking is being used).</P
+><P
+> <SPAN
+CLASS="QUOTE"
+>"Filtering"</SPAN
+> content via the <TT
+CLASS="LITERAL"
+><A
+HREF="../user-manual/actions-file.html#FILTER"
+TARGET="_top"
+>filter</A
+></TT
+> or
+ <TT
+CLASS="LITERAL"
+><A
+HREF="../user-manual/actions-file.html#DEANIMATE-GIFS"
+TARGET="_top"
+>deanimate-gifs</A
+></TT
+>
+ actions may cause a perceived slowdown, since the entire document
+ needs to be buffered before displaying. And on very large documents,
+ filtering may have some measurable impact. How much depends on the page size,
+ the actual definition of the filter(s), etc. See below. Most other actions
+ have little to no impact on speed.</P
+><P
+> Also, when filtering is enabled but zlib support isn't available, compression
+ is often disabled (see <A
+HREF="../user-manual/actions-file.html#PREVENT-COMPRESSION"
+TARGET="_top"
+>prevent-compression</A
+>).
+ This can have an impact on speed as well, although it's probably smaller than
+ you might think. Again, the page size, etc. will determine how much of an impact.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="LOADINGTIMES"
+>4.2. I notice considerable
+delays in page requests. What's wrong?</A
+></H3
+><P
+> If you use any <TT
+CLASS="LITERAL"
+><A
+HREF="../user-manual/actions-file.html#FILTER"
+TARGET="_top"
+>filter</A
+></TT
+> action,
+ such as filtering banners by size, web-bugs etc, or the <TT
+CLASS="LITERAL"
+><A
+HREF="../user-manual/actions-file.html#DEANIMATE-GIFS"
+TARGET="_top"
+>deanimate-gifs</A
+></TT
+>
+ action, the entire document must be loaded into memory in order for the filtering 
+ mechanism to work, and nothing is sent to the browser during this time.</P
+><P
+> The loading time typically does not really change much in real numbers, but
+ the feeling is different, because most browsers are able to start rendering
+ incomplete content, giving the user a feeling of "it works". This effect is
+ more noticeable on slower dialup connections. Extremely large documents
+ may have some impact on the time to load the page where there is filtering
+ being done. But overall, the difference should be very minimal. If there is a
+ big impact, then probably some other situation is contributing (like
+ anti-virus software).
+ </P
+><P
+> Filtering is automatically disabled for inappropriate MIME types. But note 
+ that if the web server mis-reports the MIME type, then content that should
+ not be filtered, could be. <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> only knows how
+ to differentiate filterable content because of the MIME type as reported by
+ the server, or because of some configuration setting that enables/disables
+ filtering.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="CONFIGURL"
+>4.3. What are "http://config.privoxy.org/" and
+"http://p.p/"?</A
+></H3
+><P
+> <A
+HREF="http://config.privoxy.org/"
+TARGET="_top"
+>http://config.privoxy.org/</A
+> is the
+ address of <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>'s built-in user interface, and 
+ <A
+HREF="http://p.p/"
+TARGET="_top"
+>http://p.p/</A
+> is a shortcut for it.</P
+><P
+> Since <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> sits between your web browser and the Internet, 
+ it can simply intercept requests for these addresses and answer them with its built-in
+ <SPAN
+CLASS="QUOTE"
+>"web server"</SPAN
+>.</P
+><P
+> This also makes for a good test for your browser configuration: If entering the
+ URL <A
+HREF="http://config.privoxy.org/"
+TARGET="_top"
+>http://config.privoxy.org/</A
+>
+ takes you to a page saying <SPAN
+CLASS="QUOTE"
+>"This is Privoxy ..."</SPAN
+>, everything is OK.
+ If you get a page saying <SPAN
+CLASS="QUOTE"
+>"Privoxy is not working"</SPAN
+> instead, then
+ your browser didn't use <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> for the request,
+ hence it could not be intercepted, and you have accessed the <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>real</I
+></SPAN
+>
+ web site at config.privoxy.org.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="NEWADS"
+>4.4. How can I submit new ads, or report
+problems?</A
+></H3
+><P
+>Please see the <A
+HREF="contact.html"
+>Contact section</A
+> for
+various ways to interact with the developers.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="NEWADS2"
+>4.5. If I do submit missed ads, will 
+they be included in future updates?</A
+></H3
+><P
+> Whether such submissions are eventually included in the
+ <TT
+CLASS="FILENAME"
+>default.action</TT
+> configuration file depends on how 
+ significant the issue is. We of course want to address any potential 
+ problem with major, high-profile sites such as <I
+CLASS="CITETITLE"
+>Google</I
+>, 
+ <I
+CLASS="CITETITLE"
+>Yahoo</I
+>, etc. Any site with global or regional reach, 
+ has a good chance of being a candidate. But at the other end of the spectrum
+ are any number of smaller, low-profile sites such as for local clubs or
+ schools. Since their reach and impact are much less, they are best handled by
+ inclusion in the user's <TT
+CLASS="FILENAME"
+>user.action</TT
+>, and thus would be
+ unlikely to be included. </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="NOONECARES"
+>4.6. Why doesn't anyone answer my support 
+request?</A
+></H3
+><P
+>Rest assured that it has been read and considered. Why it is not answered,
+could be for various reasons, including no one has a good answer for it, no
+one has had time to yet investigate it thoroughly, it has been reported
+numerous times already, or because not enough information was provided to help
+us help you. Your efforts are not wasted, and we do appreciate them.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="IP"
+>4.7. How can I hide my IP address?</A
+></H3
+><P
+> If you run both the browser and <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> locally, you cannot hide your IP
+ address with <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> or ultimately any other
+ software alone. The server needs to know your IP address so that it knows
+ where to send the responses back. </P
+><P
+> There are many publicly usable "anonymous" proxies out there, which
+ provide a further level of indirection between you and the web server.</P
+><P
+> However, these proxies are called "anonymous" because you don't need
+ to authenticate, not because they would offer any real anonymity.
+ Most of them will log your IP address and make it available to the
+ authorities in case you violate the law of the country they run in. In fact
+ you can't even rule out that some of them only exist to *collect* information
+ on (those suspicious) people with a more than average preference for privacy.</P
+><P
+> If you want to hide your IP address from most adversaries,
+ you should consider chaining <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>
+ with <A
+HREF="https://www.torproject.org/"
+TARGET="_top"
+>Tor</A
+>.
+ The configuration details can be found in
+ <A
+HREF="#TOR"
+TARGET="_top"
+>How do I use <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> together
+ with <SPAN
+CLASS="APPLICATION"
+>Tor</SPAN
+> section</A
+>
+ just below.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="AEN794"
+>4.8. Can Privoxy guarantee I am anonymous?</A
+></H3
+><P
+> No. Your chances of remaining anonymous are improved, but unless you
+ <A
+HREF="#TOR"
+TARGET="_top"
+>chain <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> with <SPAN
+CLASS="APPLICATION"
+>Tor</SPAN
+></A
+>
+ or a similar proxy and know what you're doing when it comes to configuring
+ the rest of your system, you should assume that everything you do
+ on the Web can be traced back to you.</P
+><P
+> <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> can remove various information about you,
+ and allows <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>you</I
+></SPAN
+> more freedom to decide which sites 
+ you can trust, and what details you want to reveal. But it neither 
+ hides your IP address, nor can it guarantee that the rest of the system
+ behaves correctly. There are several possibilities how a web sites can find
+ out who you are, even if you are using a strict <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>
+ configuration and chained it with <SPAN
+CLASS="APPLICATION"
+>Tor</SPAN
+>.</P
+><P
+> Most of <SPAN
+CLASS="APPLICATION"
+>Privoxy's</SPAN
+> privacy-enhancing features can be easily subverted
+ by an insecure browser configuration, therefore you should use a browser that can
+ be configured to only execute code from trusted sites, and be careful which sites you trust.
+ For example there is no point in having <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>
+ modify the User-Agent header, if websites can get all the information they want
+ through JavaScript, ActiveX, Flash, Java etc.</P
+><P
+> A few browsers disclose the user's email address in certain situations, such
+ as when transferring a file by FTP. <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>
+ does not filter FTP. If you need this feature, or are concerned about the
+ mail handler of your browser disclosing your email address, you might
+ consider products such as <SPAN
+CLASS="APPLICATION"
+>NSClean</SPAN
+>.</P
+><P
+> Browsers available only as binaries could use non-standard headers to give
+ out any information they can have access to: see the manufacturer's license
+ agreement. It's impossible to anticipate and prevent every breach of privacy
+ that might occur. The professionally paranoid prefer browsers available as
+ source code, because anticipating their behavior is easier. Trust the source,
+ Luke!</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="AEN812"
+>4.9. A test site says I am not using a Proxy.</A
+></H3
+><P
+> Good! Actually, they are probably testing for some other kinds of proxies.
+ Hiding yourself completely would require additional steps.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="TOR"
+>4.10. How do I use Privoxy
+ together with Tor?</A
+></H3
+><P
+> Before you configure <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> to use
+ <A
+HREF="https://www.torproject.org/"
+TARGET="_top"
+>Tor</A
+>,
+ please follow the <I
+CLASS="CITETITLE"
+>User Manual</I
+> chapters
+ <A
+HREF="../user-manual/installation.html"
+TARGET="_top"
+>2. Installation</A
+> and
+ <A
+HREF="../user-manual/startup.html"
+TARGET="_top"
+>5. Startup</A
+> to make sure
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> itself is setup correctly.</P
+><P
+> 
+ If it is, refer to <A
+HREF="https://www.torproject.org/documentation.html"
+TARGET="_top"
+>Tor's
+ extensive documentation</A
+> to learn how to install <SPAN
+CLASS="APPLICATION"
+>Tor</SPAN
+>,
+ and make sure <SPAN
+CLASS="APPLICATION"
+>Tor</SPAN
+>'s logfile says that
+ <SPAN
+CLASS="QUOTE"
+>"Tor has successfully opened a circuit"</SPAN
+> and it
+ <SPAN
+CLASS="QUOTE"
+>"looks like client functionality is working"</SPAN
+>.</P
+><P
+> If either <SPAN
+CLASS="APPLICATION"
+>Tor</SPAN
+> or <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>
+ isn't working, their combination most likely will neither. Testing them on their
+ own will also help you to direct problem reports to the right audience.
+ If <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> isn't working, don't bother the
+ <SPAN
+CLASS="APPLICATION"
+>Tor</SPAN
+> developers. If <SPAN
+CLASS="APPLICATION"
+>Tor</SPAN
+>
+ isn't working, don't send bug reports to the <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> Team.</P
+><P
+> If you verified that <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> and <SPAN
+CLASS="APPLICATION"
+>Tor</SPAN
+>
+ are working, it is time to connect them. As far as <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>
+ is concerned, <SPAN
+CLASS="APPLICATION"
+>Tor</SPAN
+> is just another proxy that can be reached
+ by socks4 or socks4a. Most likely you are interested in <SPAN
+CLASS="APPLICATION"
+>Tor</SPAN
+>
+ to increase your anonymity level, therefore you should use socks4a, to make sure DNS requests are
+ done through <SPAN
+CLASS="APPLICATION"
+>Tor</SPAN
+> and thus invisible to your local network.</P
+><P
+> Since <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> 3.0.5, its
+ <A
+HREF="../user-manual/config.html"
+TARGET="_top"
+>main configuration file</A
+>
+ is already prepared for <SPAN
+CLASS="APPLICATION"
+>Tor</SPAN
+>, if you are using a
+ default <SPAN
+CLASS="APPLICATION"
+>Tor</SPAN
+> configuration and run it on the same
+ system as <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>, you just have to edit the
+ <A
+HREF="../user-manual/config.html#FORWARDING"
+TARGET="_top"
+>forwarding section</A
+>
+ and uncomment the line:</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>#        forward-socks4a             /     127.0.0.1:9050 .
+ </PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> This is enough to reach the Internet, but additionally you might want to
+ uncomment the following forward rules, to make sure your local network is still
+ reachable through Privoxy:</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>#        forward         192.168.*.*/     .
+#        forward            10.*.*.*/     .
+#        forward           127.*.*.*/     .
+ </PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> Unencrypted connections to systems in these address ranges will
+ be as (un)secure as the local network is, but the alternative is
+ that your browser can't reach the network at all. Then again,
+ that may actually be desired and if you don't know for sure
+ that your browser has to be able to reach the local network,
+ there's no reason to allow it.</P
+><P
+> If you want your browser to be able to reach servers in your local
+ network by using their names, you will need additional exceptions
+ that look like this:</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>#        forward           localhost/     .
+ </PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> Save the modified configuration file and open
+ <A
+HREF="http://config.privoxy.org/show-status"
+TARGET="_top"
+>http://config.privoxy.org/show-status/</A
+>
+ in your browser, confirm that <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> has reloaded its configuration
+ and that there are no other forward lines, unless you know that you need them. If everything looks good,
+ refer to
+ <A
+HREF="https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#IsMyConnectionPrivate"
+TARGET="_top"
+>Tor
+ Faq 4.2</A
+> to learn how to verify that you are really using <SPAN
+CLASS="APPLICATION"
+>Tor</SPAN
+>.</P
+><P
+> Afterward, please take the time to at least skim through the rest
+ of <SPAN
+CLASS="APPLICATION"
+>Tor's</SPAN
+> documentation. Make sure you understand
+ what <SPAN
+CLASS="APPLICATION"
+>Tor</SPAN
+> does, why it is no replacement for
+ application level security, and why you probably don't want to
+ use it for unencrypted logins.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="AEN868"
+>4.11. Might some things break because header information or
+content is being altered?</A
+></H3
+><P
+> Definitely. It is common for sites to use browser type, browser version, 
+ HTTP header content, and various other techniques in order to dynamically
+ decide what to display and how to display it. What you see, and what I see,
+ might be very different. There are many, many ways that this can be handled,
+ so having hard and fast rules, is tricky.</P
+><P
+> The <SPAN
+CLASS="QUOTE"
+>"User-Agent"</SPAN
+> is sometimes used in this way to identify
+ the browser, and adjust content accordingly.</P
+><P
+> Also, different browsers use different encodings of non-English
+ characters, certain web servers convert pages on-the-fly according to the
+ User Agent header. Giving a <SPAN
+CLASS="QUOTE"
+>"User Agent"</SPAN
+> with the wrong
+ operating system or browser manufacturer causes some sites in these languages
+ to be garbled; Surfers to Eastern European sites should change it to
+ something closer. And then some page access counters work by looking at the
+ <SPAN
+CLASS="QUOTE"
+>"Referer"</SPAN
+> header; they may fail or break if unavailable. The
+ weather maps of Intellicast have been blocked by their server when no
+ <SPAN
+CLASS="QUOTE"
+>"Referer"</SPAN
+> or cookie is provided, is another example. (But you
+ can forge both headers without giving information away). There are
+ many other ways things can go wrong when trying to fool a web server. The
+ results of which could inadvertently cause pages to load incorrectly,
+ partially, or even not at all. And there may be no obvious clues as to just
+ what went wrong, or why. Nowhere will there be a message that says 
+ <SPAN
+CLASS="QUOTE"
+>"<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Turn off <TT
+CLASS="LITERAL"
+>fast-redirects</TT
+> or else!</I
+></SPAN
+> 
+ "</SPAN
+></P
+><P
+> Similar thoughts apply to modifying JavaScript, and, to a lesser degree,
+ HTML elements.</P
+><P
+> If you have problems with a site, you will have to adjust your configuration 
+ accordingly. Cookies are probably the most likely adjustment that may 
+ be required, but by no means the only one.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="AEN882"
+>4.12. Can Privoxy act as a <SPAN
+CLASS="QUOTE"
+>"caching"</SPAN
+> proxy to 
+speed up web browsing?</A
+></H3
+><P
+> No, it does not have this ability at all. You want something like 
+ <A
+HREF="http://www.squid-cache.org/"
+TARGET="_top"
+>Squid</A
+> or
+ <A
+HREF="http://www.pps.jussieu.fr/~jch/software/polipo/"
+TARGET="_top"
+>Polipo</A
+> for this.
+ And, yes, before you ask, <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> can co-exist 
+ with other kinds of proxies like <SPAN
+CLASS="APPLICATION"
+>Squid</SPAN
+>.
+ See the <A
+HREF="../user-manual/config.html#FORWARDING"
+TARGET="_top"
+>forwarding
+ chapter</A
+> in the <A
+HREF="../user-manual/index.html"
+TARGET="_top"
+>user
+ manual</A
+> for details.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="AEN892"
+>4.13. What about as a firewall? Can Privoxy protect me?</A
+></H3
+><P
+> Not in the way you mean, or in the way some firewall vendors claim they can. 
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> can help protect your privacy, but can't
+ protect your system from intrusion attempts. It is, of course, perfectly possible
+ to use <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>both</I
+></SPAN
+>.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="AEN897"
+>4.14. I have large empty spaces / a checkerboard pattern now where
+ads used to be. Why?</A
+></H3
+><P
+> It is technically possible to eliminate banners and ads in a way that frees
+ their allocated page space. This could easily be done by blocking with 
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy's</SPAN
+> filters,
+ and eliminating the <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>entire</I
+></SPAN
+> image references from the
+ HTML page source. </P
+><P
+> But, this would consume considerably more CPU resources (IOW, slow things
+ down), would likely destroy the layout of some web pages which rely on the
+ banners utilizing a certain amount of page space, and might fail in other
+ cases, where the screen space is reserved (e.g. by HTML tables for instance).
+ Also, making ads and banners disappear without any trace complicates
+ troubleshooting, and would sooner or later be problematic.</P
+><P
+> The better alternative is to instead let them stay, and block the resulting
+ requests for the banners themselves as is now the case. This leaves either
+ empty space, or the familiar checkerboard pattern.</P
+><P
+> So the developers won't support this in the default configuration, but you
+ can of course define appropriate filters yourself to achieve this.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="AEN905"
+>4.15. How can Privoxy filter Secure (HTTPS) URLs?</A
+></H3
+><P
+> Since secure HTTP connections are encrypted SSL sessions between your browser
+ and the secure site, and are meant to be reliably <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>secure</I
+></SPAN
+>,
+ there is little that <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> can do but hand the raw
+ gibberish data though from one end to the other unprocessed.</P
+><P
+> The only exception to this is blocking by host patterns, as the client needs
+ to tell <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> the name of the remote server,
+ so that <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> can establish the connection.
+ If that name matches a host-only pattern, the connection will be blocked.</P
+><P
+> As far as ad blocking is concerned, this is less of a restriction than it may
+ seem, since ad sources are often identifiable by the host name, and often
+ the banners to be placed in an encrypted page come unencrypted nonetheless
+ for efficiency reasons, which exposes them to the full power of 
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>'s ad blocking.</P
+><P
+> <SPAN
+CLASS="QUOTE"
+>"Content cookies"</SPAN
+> (those that are embedded in the actual HTML or
+ JS page content, see <TT
+CLASS="LITERAL"
+><A
+HREF="../user-manual/actions-file.html#FILTER-CONTENT-COOKIES"
+TARGET="_top"
+>filter{content-cookies}</A
+></TT
+>), 
+ in an SSL transaction will be impossible to block under these conditions. 
+ Fortunately, this does not seem to be a very common scenario since most 
+ cookies come by traditional means.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="AEN919"
+>4.16. Privoxy runs as a <SPAN
+CLASS="QUOTE"
+>"server"</SPAN
+>. How 
+secure is it? Do I need to take any special precautions?</A
+></H3
+><P
+> On Unix-like systems, <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> can run as a non-privileged 
+ user, which is how we recommend it be run. Also, by default
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> listens to requests from <SPAN
+CLASS="QUOTE"
+>"localhost"</SPAN
+>
+ only.</P
+><P
+> The server aspect of <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> is not itself directly 
+ exposed to the Internet in this configuration. If you want to have
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> serve as a LAN proxy, this will have to
+ be opened up to allow for LAN requests. In this case, we'd recommend
+ you specify only the LAN gateway address, e.g. 192.168.1.1, in the main 
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> configuration file and check all <A
+HREF="../user-manual/config.html#ACCESS-CONTROL"
+TARGET="_top"
+>access control and security
+ options</A
+>. All LAN hosts can then use this as their proxy address
+ in the browser proxy configuration, but <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>
+ will not listen on any external interfaces. ACLs can be defined in addition,
+ and using a firewall is always good too. Better safe than sorry.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="TURNOFF"
+>4.17. Can I temporarily disable Privoxy?</A
+></H3
+><P
+> <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> doesn't have a transparent proxy mode,
+ but you can toggle off blocking and content filtering.</P
+><P
+> The easiest way to do that is to point your browser
+ to the remote toggle URL: <A
+HREF="http://config.privoxy.org/toggle"
+TARGET="_top"
+>http://config.privoxy.org/toggle</A
+>.</P
+><P
+> See the <A
+HREF="../user-manual/appendix.html#BOOKMARKLETS"
+TARGET="_top"
+>Bookmarklets section</A
+> 
+ of the <I
+CLASS="CITETITLE"
+>User Manual</I
+> for an easy way to access this 
+ feature. Note that this is a feature that may need to be enabled in the main 
+ <TT
+CLASS="FILENAME"
+>config</TT
+> file.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="REALLYOFF"
+>4.18. When <SPAN
+CLASS="QUOTE"
+>"disabled"</SPAN
+> is Privoxy totally 
+out of the picture?</A
+></H3
+><P
+> No, this just means all optional filtering and actions are disabled.
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> is still acting as a proxy, but just 
+ doing less of the things that <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> would
+ normally be expected to do. It is still a <SPAN
+CLASS="QUOTE"
+>"middle-man"</SPAN
+> in 
+ the interaction between your browser and web sites. See below to bypass 
+ the proxy.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="TURNOFF2"
+>4.19. How can I tell Privoxy to totally ignore certain sites?</A
+></H3
+><P
+> Bypassing a proxy, or proxying based on arbitrary criteria, is purely a browser
+ configuration issue, not a <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> issue. Modern browsers typically do have
+ settings for not proxying certain sites. Check your browser's help files.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="CRUNCH"
+>4.20. My logs show Privoxy <SPAN
+CLASS="QUOTE"
+>"crunches"</SPAN
+> 
+ads, but also its own internal CGI pages. What is a <SPAN
+CLASS="QUOTE"
+>"crunch"</SPAN
+>?</A
+></H3
+><P
+> A <SPAN
+CLASS="QUOTE"
+>"crunch"</SPAN
+> simply means <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> intercepted 
+ <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>something</I
+></SPAN
+>, nothing more. Often this is indeed ads or
+ banners, but <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> uses the same mechanism for
+ trapping requests for its own internal pages. For instance, a request for
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy's</SPAN
+> configuration page at: <A
+HREF="http://config.privoxy.org"
+TARGET="_top"
+>http://config.privoxy.org</A
+>, is
+ intercepted (i.e. it does not go out to the 'net), and the familiar CGI
+ configuration is returned to the browser, and the log consequently will show
+ a <SPAN
+CLASS="QUOTE"
+>"crunch"</SPAN
+>.</P
+><P
+> Since version 3.0.7, Privoxy will also log the crunch reason.
+ If you are using an older version you might want to upgrade.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="DOWNLOADS"
+>4.21. Can Privoxy effect files that I download
+from a webserver? FTP server?</A
+></H3
+><P
+> From the webserver's perspective, there is no difference between
+ viewing a document (i.e. a page), and downloading a file. The same is true of
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>. If there is a match for a <TT
+CLASS="LITERAL"
+><A
+HREF="../user-manual/actions-file.html#BLOCK"
+TARGET="_top"
+>block</A
+></TT
+> pattern,
+ it will still be blocked, and of course this is obvious. 
+ </P
+><P
+> Filtering is potentially more of a concern since the results are not always
+ so obvious, and the effects of filtering are there whether the file is simply
+ viewed, or downloaded. And potentially whether the content is some obnoxious
+ advertisement, or Mr. Jimmy's latest/greatest source code jewel. Of course,
+ one of these presumably is <SPAN
+CLASS="QUOTE"
+>"bad"</SPAN
+> content that we don't want, and
+ the other is <SPAN
+CLASS="QUOTE"
+>"good"</SPAN
+> content that we do want.
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> is blind to the differences, and can only
+ distinguish <SPAN
+CLASS="QUOTE"
+>"good from bad"</SPAN
+> by the configuration parameters
+ <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>we</I
+></SPAN
+> give it.</P
+><P
+> <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> knows the differences in files according
+ to the <SPAN
+CLASS="QUOTE"
+>"Content Type"</SPAN
+> as reported by the webserver. If this is
+ reported accurately (e.g. <SPAN
+CLASS="QUOTE"
+>"application/zip"</SPAN
+> for a zip archive),
+ then <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> knows to ignore these where
+ appropriate. <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> potentially can filter HTML
+ as well as plain text documents, subject to configuration parameters of
+ course. Also, documents that are of an unknown type (generally assumed to be
+ <SPAN
+CLASS="QUOTE"
+>"text/plain"</SPAN
+>) can be filtered, as will those that might be
+ incorrectly reported by the webserver. If such a file is a downloaded file
+ that is intended to be saved to disk, then any content that might have been
+ altered by filtering, will be saved too, for these (probably rare) cases.</P
+><P
+> Note that versions later than 3.0.2 do NOT filter document types reported as 
+ <SPAN
+CLASS="QUOTE"
+>"text/plain"</SPAN
+>. Prior to this, <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>
+ did filter this document type.</P
+><P
+> In short, filtering is <SPAN
+CLASS="QUOTE"
+>"ON"</SPAN
+> if a) the content type as reported
+ by the webserver is appropriate <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>and</I
+></SPAN
+> b) the configuration
+ allows it (or at least does not disallow it). That's it. There is no magic
+ cookie anywhere to say this is <SPAN
+CLASS="QUOTE"
+>"good"</SPAN
+> and this is
+ <SPAN
+CLASS="QUOTE"
+>"bad"</SPAN
+>. It's the configuration that lets it all happen or not.</P
+><P
+> If you download text files, you probably do not want these to be filtered,
+ particularly if the content is source code, or other critical content. Source
+ code sometimes might be mistaken for Javascript (i.e. the kind that might
+ open a pop-up window). It is recommended to turn off filtering for download
+ sites (particularly if the content may be plain text files and you are using
+ version 3.0.2 or earlier) in your <TT
+CLASS="FILENAME"
+>user.action</TT
+> file. And
+ also, for any site or page where making <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>any</I
+></SPAN
+> changes at
+ all to the content is to be avoided.</P
+><P
+> <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> does not do FTP at all, only HTTP 
+ and HTTPS (SSL) protocols.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="DOWNLOADS2"
+>4.22. I just downloaded a Perl script, and Privoxy
+altered it! Yikes, what is wrong!</A
+></H3
+><P
+> Please read above.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="HOSTSFILE"
+>4.23. Should I continue to use a <SPAN
+CLASS="QUOTE"
+>"HOSTS"</SPAN
+> file for ad-blocking?</A
+></H3
+><P
+> One time-tested technique to defeat common ads is to trick the local DNS
+ system by giving a phony IP address for the ad generator in the local 
+ <TT
+CLASS="FILENAME"
+>HOSTS</TT
+> file, typically using <TT
+CLASS="LITERAL"
+>127.0.0.1</TT
+>, aka 
+ <TT
+CLASS="LITERAL"
+>localhost</TT
+>. This effectively blocks the ad.</P
+><P
+> There is no reason to use this technique in conjunction with 
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>. <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>
+ does essentially the same thing, much more elegantly and with much more 
+ flexibility. A large <TT
+CLASS="FILENAME"
+>HOSTS</TT
+> file, in fact, not only
+ duplicates effort, but may get in the way and seriously slow down your system.
+ It is recommended to remove such entries from your <TT
+CLASS="FILENAME"
+>HOSTS</TT
+> file. If you think 
+ your hosts list is neglected by <SPAN
+CLASS="APPLICATION"
+>Privoxy's </SPAN
+> 
+ configuration, consider adding your list to your <TT
+CLASS="FILENAME"
+>user.action</TT
+> file:</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>  { +block }
+   www.ad.example1.com
+   ad.example2.com
+   ads.galore.example.com
+   etc.example.com</PRE
+></TD
+></TR
+></TABLE
+></P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="SEEALSO"
+>4.24. Where can I find more information about Privoxy
+and related issues?</A
+></H3
+><P
+> Other references and sites of interest to <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>
+ users:</P
+><P
+> <P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+>   <A
+HREF="http://www.privoxy.org/"
+TARGET="_top"
+>http://www.privoxy.org/</A
+>, 
+   the <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> Home page. 
+  </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+>
+ <P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+>   <A
+HREF="http://www.privoxy.org/faq/"
+TARGET="_top"
+>http://www.privoxy.org/faq/</A
+>, 
+   the <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> FAQ. 
+  </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+>
+ <P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+>   <A
+HREF="http://www.privoxy.org/developer-manual/"
+TARGET="_top"
+>http://www.privoxy.org/developer-manual/</A
+>, 
+   the <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> developer manual. 
+  </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+>
+ <P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+>   <A
+HREF="https://sourceforge.net/projects/ijbswa/"
+TARGET="_top"
+>https://sourceforge.net/projects/ijbswa/</A
+>, 
+   the Project Page for <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> on 
+   <A
+HREF="http://sourceforge.net"
+TARGET="_top"
+>SourceForge</A
+>.
+  </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+>
+ <P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+>   <A
+HREF="http://config.privoxy.org/"
+TARGET="_top"
+>http://config.privoxy.org/</A
+>,
+   the web-based user interface. <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> must be
+   running for this to work. Shortcut: <A
+HREF="http://p.p/"
+TARGET="_top"
+>http://p.p/</A
+>
+  </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+>
+ <P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+>   <A
+HREF="https://sourceforge.net/tracker/?group_id=11118&#38;atid=460288"
+TARGET="_top"
+>https://sourceforge.net/tracker/?group_id=11118&#38;atid=460288</A
+>, to submit <SPAN
+CLASS="QUOTE"
+>"misses"</SPAN
+> and other
+   configuration related suggestions to the developers. 
+  </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+>
+ 
+ 
+ <P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+>   <A
+HREF="http://www.junkbusters.com/ht/en/cookies.html"
+TARGET="_top"
+>http://www.junkbusters.com/ht/en/cookies.html</A
+>,
+   an explanation how cookies are used to track web users.
+  </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+>
+ <P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+>   <A
+HREF="http://www.junkbusters.com/ijb.html"
+TARGET="_top"
+>http://www.junkbusters.com/ijb.html</A
+>,
+   the original Internet Junkbuster.
+  </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+>
+ <P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+>   <A
+HREF="http://www.squid-cache.org/"
+TARGET="_top"
+>http://www.squid-cache.org/</A
+>, a popular
+   caching proxy, which is often used together with <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>.
+  </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+>
+ <P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+>   <A
+HREF="http://www.pps.jussieu.fr/~jch/software/polipo/"
+TARGET="_top"
+>http://www.pps.jussieu.fr/~jch/software/polipo/</A
+>,
+   <SPAN
+CLASS="APPLICATION"
+>Polipo</SPAN
+> is a caching proxy with advanced features
+   like pipelining, multiplexing and caching of partial instances. In many setups
+   it can be used as <SPAN
+CLASS="APPLICATION"
+>Squid</SPAN
+> replacement.
+  </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+>
+ <P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+>   <A
+HREF="https://www.torproject.org/"
+TARGET="_top"
+>https://www.torproject.org/</A
+>, 
+   <SPAN
+CLASS="APPLICATION"
+>Tor</SPAN
+> can help anonymize web browsing, 
+   web publishing, instant messaging, IRC, SSH, and other applications.
+  </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+>
+ </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="MICROSUCK"
+>4.25. I've noticed that Privoxy changes <SPAN
+CLASS="QUOTE"
+>"Microsoft"</SPAN
+> to 
+<SPAN
+CLASS="QUOTE"
+>"MicroSuck"</SPAN
+>! Why are you manipulating my browsing?</A
+></H3
+><P
+> We're not. The text substitutions that you are seeing are disabled
+ in the default configuration as shipped. You have either manually
+ activated the <SPAN
+CLASS="QUOTE"
+>"<TT
+CLASS="LITERAL"
+>fun</TT
+>"</SPAN
+> filter which
+ is clearly labeled <SPAN
+CLASS="QUOTE"
+>"Text replacements for subversive browsing
+ fun!"</SPAN
+> or you are using an older Privoxy version and have implicitly
+ activated it by choosing the <SPAN
+CLASS="QUOTE"
+>"Advanced"</SPAN
+> profile in the
+ web-based editor. Please upgrade.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="VALID"
+>4.26. Does Privoxy produce <SPAN
+CLASS="QUOTE"
+>"valid"</SPAN
+> HTML (or XHTML)?</A
+></H3
+><P
+> Privoxy generates HTML in both its own <SPAN
+CLASS="QUOTE"
+>"templates"</SPAN
+>, and possibly
+ whenever there are text substitutions via a <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> filter. While this
+ should always conform to the HTML 4.01 specifications, it has not been
+ validated against this or any other standard. </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="configuration.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="trouble.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Configuration</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Troubleshooting</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,902 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Starting Privoxy</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Privoxy 3.0.12 User Manual"
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="Quickstart to Using Privoxy"
+HREF="quickstart.html"><LINK
+REL="NEXT"
+TITLE="Privoxy Configuration"
+HREF="configuration.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="../p_doc.css"><META
+HTTP-EQUIV="Content-Type"
+CONTENT="text/html;
+charset=ISO-8859-1">
+<LINK REL="STYLESHEET" TYPE="text/css" HREF="p_doc.css">
+</head
+><BODY
+CLASS="SECT1"
+BGCOLOR="#EEEEEE"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Privoxy 3.0.12 User Manual</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="quickstart.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="configuration.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="STARTUP"
+>5. Starting Privoxy</A
+></H1
+><P
+> Before launching <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> for the first time, you
+ will want to configure your browser(s) to use
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> as a HTTP and HTTPS (SSL) 
+ <A
+HREF="http://en.wikipedia.org/wiki/Proxy_server"
+TARGET="_top"
+>proxy</A
+>. The default is
+ 127.0.0.1 (or localhost) for the proxy address, and port 8118 (earlier versions
+ used port 8000). This is the one configuration step <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>that must be done</I
+></SPAN
+>!</P
+><P
+> Please note that <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> can only proxy HTTP and 
+ HTTPS traffic. It will not work with FTP or other protocols.</P
+><P
+>  <DIV
+CLASS="FIGURE"
+><A
+NAME="AEN585"
+></A
+><P
+><B
+>Figure 2. Proxy Configuration Showing
+  Mozilla/Netscape HTTP and HTTPS (SSL) Settings</B
+></P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="proxy_setup.jpg"></P
+></DIV
+></DIV
+>
+ </P
+><P
+> 
+ With <SPAN
+CLASS="APPLICATION"
+>Firefox</SPAN
+>, this is typically set under:</P
+><P
+CLASS="LITERALLAYOUT"
+>&nbsp;<SPAN
+CLASS="GUIBUTTON"
+>Tools</SPAN
+>&nbsp;-&#62;&nbsp;<SPAN
+CLASS="GUIBUTTON"
+>Options</SPAN
+>&nbsp;-&#62;&nbsp;&nbsp;<SPAN
+CLASS="GUIBUTTON"
+>Advanced</SPAN
+>&nbsp;-&#62;&nbsp;<SPAN
+CLASS="GUIBUTTON"
+>Network</SPAN
+>&nbsp;-&#62;<SPAN
+CLASS="GUIBUTTON"
+>Connection</SPAN
+>&nbsp;-&#62;&nbsp;<SPAN
+CLASS="GUIBUTTON"
+>Settings</SPAN
+><br>&#13;</P
+><P
+> 
+ Or optionally on some platforms:</P
+><P
+CLASS="LITERALLAYOUT"
+>&nbsp;<SPAN
+CLASS="GUIBUTTON"
+>Edit</SPAN
+>&nbsp;-&#62;&nbsp;<SPAN
+CLASS="GUIBUTTON"
+>Preferences</SPAN
+>&nbsp;-&#62;&nbsp;<SPAN
+CLASS="GUIBUTTON"
+>General</SPAN
+>&nbsp;-&#62;&nbsp;<SPAN
+CLASS="GUIBUTTON"
+>Connection Settings</SPAN
+>&nbsp;-&#62;&nbsp;<SPAN
+CLASS="GUIBUTTON"
+>Manual Proxy Configuration</SPAN
+><br>&#13;</P
+><P
+> 
+ With <SPAN
+CLASS="APPLICATION"
+>Netscape</SPAN
+> (and
+ <SPAN
+CLASS="APPLICATION"
+>Mozilla</SPAN
+>), this can be set under:</P
+><P
+CLASS="LITERALLAYOUT"
+>&nbsp;<SPAN
+CLASS="GUIBUTTON"
+>Edit</SPAN
+>&nbsp;-&#62;&nbsp;<SPAN
+CLASS="GUIBUTTON"
+>Preferences</SPAN
+>&nbsp;-&#62;&nbsp;<SPAN
+CLASS="GUIBUTTON"
+>Advanced</SPAN
+>&nbsp;-&#62;&nbsp;<SPAN
+CLASS="GUIBUTTON"
+>Proxies</SPAN
+>&nbsp;-&#62;&nbsp;<SPAN
+CLASS="GUIBUTTON"
+>HTTP Proxy</SPAN
+><br>&#13;</P
+><P
+> For <SPAN
+CLASS="APPLICATION"
+>Internet Explorer v.5-7</SPAN
+>: </P
+><P
+CLASS="LITERALLAYOUT"
+>&nbsp;<SPAN
+CLASS="GUIBUTTON"
+>Tools</SPAN
+>&nbsp;-&#62;&nbsp;<SPAN
+CLASS="GUIBUTTON"
+>Internet Options</SPAN
+>&nbsp;-&#62;&nbsp;<SPAN
+CLASS="GUIBUTTON"
+>Connections</SPAN
+>&nbsp;-&#62;&nbsp;<SPAN
+CLASS="GUIBUTTON"
+>LAN Settings</SPAN
+></P
+><P
+> Then, check <SPAN
+CLASS="QUOTE"
+>"Use Proxy"</SPAN
+> and fill in the appropriate info
+ (Address: 127.0.0.1, Port: 8118). Include HTTPS (SSL), if you want HTTPS
+ proxy support too (sometimes labeled <SPAN
+CLASS="QUOTE"
+>"Secure"</SPAN
+>). Make sure any
+ checkboxes like <SPAN
+CLASS="QUOTE"
+>"Use the same proxy server for all protocols"</SPAN
+> is
+ <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>UNCHECKED</I
+></SPAN
+>. You want only HTTP and HTTPS (SSL)!</P
+><P
+>  <DIV
+CLASS="FIGURE"
+><A
+NAME="AEN630"
+></A
+><P
+><B
+>Figure 3. Proxy Configuration Showing
+  Internet Explorer HTTP and HTTPS (Secure) Settings</B
+></P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="proxy2.jpg"></P
+></DIV
+></DIV
+>
+ </P
+><P
+> After doing this, flush your browser's disk and memory caches to force a
+ re-reading of all pages and to get rid of any ads that may be cached. Remove 
+ any <A
+HREF="http://en.wikipedia.org/wiki/Browser_cookie"
+TARGET="_top"
+>cookies</A
+>,
+ if you want <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> to manage that. You are now
+ ready to start enjoying the benefits of using
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>!</P
+><P
+> <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> itself is typically started by specifying the
+ main configuration file to be used on the command line. If no configuration
+ file is specified on the command line, <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>
+ will look for a file named <TT
+CLASS="FILENAME"
+>config</TT
+> in the current
+ directory. Except on Win32 where it will try <TT
+CLASS="FILENAME"
+>config.txt</TT
+>.</P
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="START-REDHAT"
+>5.1. Red Hat and Fedora</A
+></H2
+><P
+> A default Red Hat installation may not start <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> upon boot. It will use
+ the file <TT
+CLASS="FILENAME"
+>/etc/privoxy/config</TT
+> as its main configuration
+ file.</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+> # /etc/rc.d/init.d/privoxy start</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> Or ...</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+> # service privoxy start</PRE
+></TD
+></TR
+></TABLE
+></P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="START-DEBIAN"
+>5.2. Debian</A
+></H2
+><P
+> We use a script. Note that Debian typically starts <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> upon booting per
+ default.  It will use the file
+ <TT
+CLASS="FILENAME"
+>/etc/privoxy/config</TT
+> as its main configuration
+ file.</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+> # /etc/init.d/privoxy start</PRE
+></TD
+></TR
+></TABLE
+></P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="START-WINDOWS"
+>5.3. Windows</A
+></H2
+><P
+>Click on the <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> Icon to start <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>. If no configuration file is
+ specified on the command line, <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> will look
+ for a file named <TT
+CLASS="FILENAME"
+>config.txt</TT
+>. Note that Windows will
+ automatically start <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> when the system starts if you chose that option
+ when installing.</P
+><P
+> <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> can run with full Windows service functionality.
+ On Windows only, the <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> program has two new command line arguments
+ to install and uninstall <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> as a service. See the 
+ <A
+HREF="installation.html#INSTALLATION-PACK-WIN"
+>Windows Installation
+ instructions</A
+> for details.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="START-UNICES"
+>5.4. Solaris, NetBSD, FreeBSD, HP-UX and others</A
+></H2
+><P
+>Example Unix startup command:</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+> # /usr/sbin/privoxy /etc/privoxy/config</PRE
+></TD
+></TR
+></TABLE
+></P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="START-OS2"
+>5.5. OS/2</A
+></H2
+><P
+> During installation, <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> is configured to
+ start automatically when the system restarts. You can start it manually by
+ double-clicking on the <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> icon in the
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> folder.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="START-MACOSX"
+>5.6. Mac OS X</A
+></H2
+><P
+>  After downloading the privoxy software, unzip the downloaded file by
+  double-clicking on the zip file icon.  Then, double-click on the
+  installer package icon and follow the installation process.</P
+><P
+>  The privoxy service will automatically start after a successful
+  installation.  In addition, the privoxy service will automatically
+  start every time your computer starts up.</P
+><P
+>  To prevent the privoxy service from automatically starting when your
+  computer starts up, remove or rename the folder named
+  /Library/StartupItems/Privoxy.</P
+><P
+>  A simple application named Privoxy Utility has been created which
+  enables administrators to easily start and stop the privoxy service.</P
+><P
+>  In addition, the Privoxy Utility presents a simple way for
+  administrators to edit the various privoxy config files.  A method
+  to uninstall the software is also available.</P
+><P
+>  An administrator username and password must be supplied in order for
+  the Privoxy Utility to perform any of the tasks.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="START-AMIGAOS"
+>5.7. AmigaOS</A
+></H2
+><P
+> Start <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> (with RUN &#60;&#62;NIL:) in your
+ <TT
+CLASS="FILENAME"
+>startnet</TT
+> script (AmiTCP), in
+ <TT
+CLASS="FILENAME"
+>s:user-startup</TT
+> (RoadShow), as startup program in your
+ startup script (Genesis), or as startup action (Miami and MiamiDx). 
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> will automatically quit when you quit your
+ TCP/IP stack (just ignore the harmless warning your TCP/IP stack may display that
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> is still running).</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="START-GENTOO"
+>5.8. Gentoo</A
+></H2
+><P
+> A script is again used. It will use the file <TT
+CLASS="FILENAME"
+>/etc/privoxy/config 
+ </TT
+> as its main configuration file.</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+> /etc/init.d/privoxy start
+ </PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> Note that <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> is not automatically started at 
+ boot time by default. You can change this with the <TT
+CLASS="LITERAL"
+>rc-update</TT
+> 
+ command.</P
+><P
+> 
+ <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+> rc-update add privoxy default
+ </PRE
+></TD
+></TR
+></TABLE
+></P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="CMDOPTIONS"
+>5.9. Command Line Options</A
+></H2
+><P
+> <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> may be invoked with the following
+ command-line options:</P
+><P
+> <P
+></P
+><UL
+><LI
+><P
+>    <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>--version</I
+></SPAN
+>
+  </P
+><P
+>     Print version info and exit. Unix only.
+  </P
+></LI
+><LI
+><P
+>    <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>--help</I
+></SPAN
+>
+  </P
+><P
+>   Print short usage info and exit. Unix only.
+  </P
+></LI
+><LI
+><P
+>   <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>--no-daemon</I
+></SPAN
+>
+  </P
+><P
+>   Don't become a daemon, i.e. don't fork and become process group
+   leader, and don't detach from controlling tty. Unix only.
+  </P
+></LI
+><LI
+><P
+>   <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>--pidfile FILE</I
+></SPAN
+>
+  </P
+><P
+>   On startup, write the process ID to <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>FILE</I
+></SPAN
+>. Delete the
+   <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>FILE</I
+></SPAN
+> on exit. Failure to create or delete the
+   <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>FILE</I
+></SPAN
+> is non-fatal. If no <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>FILE</I
+></SPAN
+>
+   option is given, no PID file will be used. Unix only.
+  </P
+></LI
+><LI
+><P
+>   <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>--user USER[.GROUP]</I
+></SPAN
+>
+  </P
+><P
+>   After (optionally) writing the PID file, assume the user  ID  of
+   <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>USER</I
+></SPAN
+>, and if included the GID of GROUP.  Exit if the
+   privileges are not sufficient to do so. Unix only.
+  </P
+></LI
+><LI
+><P
+>   <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>--chroot</I
+></SPAN
+>
+  </P
+><P
+>   Before changing to the user ID given in the <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>--user</I
+></SPAN
+> option, 
+   chroot to that user's home directory, i.e. make the kernel pretend to the <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>
+   process that the directory tree starts there. If set up carefully, this can limit 
+   the impact of possible vulnerabilities in <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> to the files contained in that hierarchy.
+   Unix only.
+  </P
+></LI
+><LI
+><P
+>   <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>--pre-chroot-nslookup hostname</I
+></SPAN
+>
+  </P
+><P
+>   Specifies a hostname to look up before doing a chroot. On some systems, initializing the
+   resolver library involves reading config files from /etc and/or loading additional shared
+   libraries from /lib. On these systems, doing a hostname lookup before the chroot reduces
+   the number of files that must be copied into the chroot tree.
+  </P
+><P
+>   For fastest startup speed, a good value is a hostname that is not in /etc/hosts but that
+   your local name server (listed in /etc/resolv.conf) can resolve without recursion
+   (that is, without having to ask any other name servers). The hostname need not exist,
+   but if it doesn't, an error message (which can be ignored) will be output.
+  </P
+></LI
+><LI
+><P
+>    <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>configfile</I
+></SPAN
+>
+  </P
+><P
+>    If no <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>configfile</I
+></SPAN
+> is included on the command line, 
+    <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> will look for a file named 
+    <SPAN
+CLASS="QUOTE"
+>"config"</SPAN
+> in the current directory (except on Win32 
+    where it will look for <SPAN
+CLASS="QUOTE"
+>"config.txt"</SPAN
+> instead). Specify 
+    full path to avoid confusion. If no config file is found, 
+    <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> will fail to start.
+  </P
+></LI
+></UL
+></P
+><P
+> On <SPAN
+CLASS="APPLICATION"
+>MS Windows</SPAN
+> only there are two additional 
+ command-line options to allow <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> to install and 
+ run as a <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>service</I
+></SPAN
+>. See the 
+<A
+HREF="installation.html#INSTALLATION-PACK-WIN"
+>Window Installation section</A
+> 
+for details.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="quickstart.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="configuration.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Quickstart to Using Privoxy</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Privoxy Configuration</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

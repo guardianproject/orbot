@@ -1,0 +1,1289 @@
+# ********************************************************************
+# 
+#  File        :  $Source: /cvsroot/ijbswa/current/default.filter,v $
+# 
+#  $Id: default.filter,v 1.71 2009/03/01 18:33:17 ler762 Exp $
+#
+#  Purpose     :  Rules to process the content of web pages
+# 
+#  Copyright   :  Written by and Copyright (C) 2001-2009 the
+#                 Privoxy team. http://www.privoxy.org/
+#
+# We value your feedback. However, to provide you with the best support,
+# please note:
+#  
+#  * Use the support forum to get help:
+#    http://sourceforge.net/tracker/?group_id=11118&atid=211118
+#  * Submit bugs only thru our bug forum:
+#    http://sourceforge.net/tracker/?group_id=11118&atid=111118 
+#    Make sure that the bug has not already been submitted. Please try
+#    to verify that it is a Privoxy bug, and not a browser or site
+#    bug first. If you are using your own custom configuration, please
+#    try the stock configs to see if the problem is a configuration
+#    related bug. And if not using the latest development snapshot,
+#    please try the latest one. Or even better, CVS sources.
+#  * Submit feature requests only thru our feature request forum:
+#    http://sourceforge.net/tracker/?atid=361118&group_id=11118&func=browse
+#      
+# For any other issues, feel free to use the mailing lists:
+# http://sourceforge.net/mail/?group_id=11118
+#    
+# Anyone interested in actively participating in development and related
+# discussions can join the appropriate mailing list here:
+# http://sourceforge.net/mail/?group_id=11118. Archives are available
+# here too.
+# 
+#################################################################################
+#
+# Syntax:
+#
+# Generally filters start with a line like "FILTER: name description".
+# They are then referrable from the actionsfile with +filter{name}
+#
+# FILTER marks a filter as content filter, other filter
+# types are CLIENT-HEADER-FILTER, CLIENT-HEADER-TAGGER,
+# SERVER-HEADER-FILTER and SERVER-HEADER-TAGGER.
+#
+# Inside the filters, write one Perl-Style substitution (job) per line.
+# Jobs that precede the first FILTER: line are ignored.
+#
+# For Details see the pcrs manpage contained in this distribution.
+# (and the perlre, perlop and pcre manpages)
+#
+# Note that you are free to choose the delimiter as you see fit.
+#
+# Note2: In addition to the Perl options gimsx, the following nonstandard
+# options are supported:
+# 
+# 'U' turns the default to ungreedy matching.  Add ? to quantifiers to
+#     switch back to greedy.
+#
+# 'T' (trivial) prevents parsing for backreferences in the substitute.
+#     Use if you want to include text like '$&' in your substitute without
+#     quoting.
+#
+# 'D' (Dynamic) allows the use of variables. Supported variables are:
+#     $host, $origin (the IP address the request came from), $path and $url.
+#
+#     Note that '$' is a bad choice as delimiter for dynamic filters as you
+#     might end up with unintended variables if you use a variable name
+#     directly after the delimiter. Variables will be resolved without
+#     escaping anything, therefore you also have to be careful not to chose
+#     delimiters that appear in the replacement text. For example '<' should
+#     be save, while '?' will sooner or later cause conflicts with $url.
+# 
+#################################################################################
+
+
+#################################################################################
+#
+# js-annoyances: Get rid of particularly annoying JavaScript abuse.
+#
+#################################################################################
+FILTER: js-annoyances Get rid of particularly annoying JavaScript abuse.
+
+# Note: Most of these jobs would be safer if restricted to a
+# <script> context as in:
+#
+# s/(<script.*)nasty-item(?=.*<\/script>)/$1replacement/sigU
+#
+# but that would make them match only the first occurrence of
+# nasty-item in each <script>. We need nestable jobs!
+
+# Get rid of Javascript referrer tracking. 
+# Test page: http://www.javascript-page.com/referrer.html
+#
+s|(?:\w+\.)+referrer|"Not Your Business!"|gisU
+
+# The status bar is for displaying link targets, not pointless blahblah
+#
+s@([\W]\s*)((?:this|window)\.(?:default)?status)\s*=\s*((['"]).*?\4)@$1$2 =\
+ (typeof(this.href) != 'undefined')?($3 + ' URL: ' + this.href):($2)@ig
+
+s/(?:(?:this|window)\.(?:default)?status)\s*=\s*\w*\s*;//ig
+
+# Kill OnUnload popups. Yummy.
+# Test: http://www.zdnet.com/zdsubs/yahoo/tree/yfs.html
+#
+s/(<body\s+[^>]*)onunload/$1never/siU
+s|(<script.*)window\.onunload(?=.*</script>)|$1never|sigU
+
+# If we allow window.open, we want normal window features: 
+# Test: http://www.htmlgoodies.com/beyond/notitle.html
+#
+s/(open\s*\([^\)]+resizable=)(["']?)(?:no|0)\2/$1$2yes$2/sigU
+s/(open\s*\([^\)]+location=)(["']?)(?:no|0)\2/$1$2yes$2/sigU 
+s/(open\s*\([^\)]+status=)(["']?)(?:no|0)\2/$1$2yes$2/sigU 
+s/(open\s*\([^\)]+scroll(?:ing|bars)=)(["']?)(?:no|0)\2/$1$2auto$2/sigU 
+s/(open\s*\([^\)]+menubar=)(["']?)(?:no|0)\2/$1$2yes$2/sigU 
+s/(open\s*\([^\)]+toolbar=)(["']?)(?:no|0)\2/$1$2yes$2/sigU 
+s/(open\s*\([^\)]+directories=)(["']?)(?:no|0)\2/$1$2yes$2/sigU 
+s/(open\s*\([^\)]+fullscreen=)(["']?)(?:yes|1)\2/$1$2no$2/sigU
+s/(open\s*\([^\)]+always(?:raised|lowered)=)(["']?)(?:yes|1)\2/$1$2no$2/sigU
+s/(open\s*\([^\)]+z-?lock=)(["']?)(?:yes|1)\2/$1$2no$2/sigU
+s/(open\s*\([^\)]+hotkeys=)(["']?)(?:yes|1)\2/$1$2no$2/sigU
+s/(open\s*\([^\)]+titlebar=)(["']?)(?:no|0)\2/$1$2yes$2/sigU
+s/(open\s*\([^\)]+always(?:raised|lowered)=)(["']?)(?:yes|1)\2/$1$2no$2/sigU
+
+
+#################################################################################
+#
+# js-events: Kill all JS event bindings and timers (Radically destructive! Only for extra nasty sites).
+#
+#################################################################################
+FILTER: js-events Kill all JS event bindings and timers (Radically destructive! Only for extra nasty sites).
+
+s/(on|event\.)((mouse(over|out|down|up|move))|(un)?load|contextmenu|selectstart)/never/ig
+# Not events, but abused on the same type of sites:
+s/(alert|confirm)\s*\(/concat(/ig
+s/settimeout\(/concat(/ig
+
+#################################################################################
+#
+# html-annoyances: Get rid of particularly annoying HTML abuse.
+#
+#################################################################################
+FILTER: html-annoyances Get rid of particularly annoying HTML abuse.
+
+# New browser windows (if allowed -- see no-popups filter below) should be
+# resizeable and have a location and status bar
+#
+s/(<a\s+href[^>]+resizable=)(['"]?)(?:no|0)\2/$1$2yes$2/igU 
+s/(<a\s+href[^>]+location=)(['"]?)(?:no|0)\2/$1$2yes$2/igU 
+s/(<a\s+href[^>]+status=)(['"]?)(?:no|0)\2/$1$2yes1$2/igU
+s/(<a\s+href[^>]+scrolling=)(['"]?)(?:no|0)\2/$1$2auto$2/igU
+s/(<a\s+href[^>]+menubar=)(['"]?)(?:no|0)\2/$1$2yes$2/igU
+
+# The <BLINK> and <MARQUEE> tags were crimes!
+#
+s-</?(blink|marquee).*>--sigU
+
+
+#################################################################################
+#
+# content-cookies: Kill cookies that come in the HTML or JS content.
+#
+#################################################################################
+FILTER: content-cookies Kill cookies that come in the HTML or JS content.
+
+# JS cookies, except those used by antiadbuster.com to detect us:
+#
+s|(\w+\.)+cookie(?=[ \t\r\n]*=)(?!='aab)|ZappedCookie|ig
+
+# HTML cookies:
+#
+s|<meta\s+http-equiv=['"]?set-cookie.*>|<!-- ZappedCookie -->|igU
+
+
+#################################################################################
+#
+# refresh-tags: Kill automatic refresh tags (for dial-on-demand setups).
+#
+#################################################################################
+FILTER: refresh-tags Kill automatic refresh tags (for dial-on-demand setups).
+
+# Note: Only deactivates refreshes with more than 9 seconds delay to
+#       preserve monster-stupid but common redirections via meta tags.
+#
+s/<meta\s+http-equiv\s*=\s*(['"]?)refresh\1\s+content\s*=\s*(['"]?)\d{2,}\s*(;\s*url\s*=\s*([^>\2]*))?\2/<link rev="x-refresh" href="$4"/iU
+
+
+#################################################################################
+#
+# unsolicited-popups: Disable unsolicited pop-up windows.
+#
+#################################################################################
+FILTER: unsolicited-popups Disable only unsolicited pop-up windows.
+
+s+([^'"]\s*<head.*>)(?=\s*[^'"])+$1<script>function PrivoxyWindowOpen(){return(null);}</script>+isU
+s@([^\w\s.]\s*)((?:map)?(window|this|parent)\.?)?open\s*\(@$1PrivoxyWindowOpen(@ig
+s+([^'"]\s*</html>)(?!\s*(\\n|'|"))+$1<script>function PrivoxyWindowOpen(a, b, c){return(window.open(a, b, c));}</script>+iU     
+
+
+##################################################################################
+#
+# all-popups: Kill all popups in JavaScript and HTML.
+#
+#################################################################################
+FILTER: all-popups Kill all popups in JavaScript and HTML.
+
+s@((\W\s*)(?:map)?(window|this|parent)\.?)open\s*\\?\(@$1concat(@ig  # JavaScript
+#s/\starget\s*=\s*(['"]?)_?(blank|new)\1?/ notarget/ig        # HTML
+s/\starget\s*=\s*(['"]?)_?(blank|new)\1?/ /ig        # (X)HTML
+
+##################################################################################
+#
+# img-reorder: Reorder attributes in <img> tags to make the banners-by-* filters more effective.
+#
+#################################################################################
+FILTER: img-reorder Reorder attributes in <img> tags to make the banners-by-* filters more effective.
+
+# In the first step src is moved to the start, then width is moved to the second
+# place to guarantee an order of src, width, height. Also does some white-space
+# normalization.
+#
+# This makes banners-by-size more effective and allows both banners-by-size
+# and banners-by-link to preserve the original image URL in the title attribute.
+
+s|<img\s+?([^>]*)\ssrc\s*=\s*(['"])([^>\\\2]+)\2|<img src=$2$3$2 $1|siUg
+s|<img\s+?([^>]*)\ssrc\s*=\s*([^'">\\\s]+)|<img src=$2 $1|sig
+s|(<img[^>]+height)\s*=\s*|$1=|sig
+
+s|<img (src=(?:(['"])[^>\\\\2]*\2\|[^'">\\\s]+?))([^>]*)\s+width\s*=\s*((["']?)\d+?\5)(?=[\s>])|<img $1 width=$4$3|siUg
+
+
+#################################################################################
+#
+# banners-by-size: Kill banners by size.
+#
+#################################################################################
+#
+# Standard banner sizes taken from http://www.iab.net/iab_banner_standards/bannersizes.html
+#
+# Note: Use http://config.privoxy.org/send-banner?type=trans for a transparent 1x1 image
+#       Use http://config.privoxy.org/send-banner?type=pattern for a grey/white pattern image
+#       Use http://config.privoxy.org/send-banner?type=auto  to auto-select.
+#
+# Note2: Use img-reorder before this filter to ensure maximum matching success
+#
+#################################################################################
+FILTER: banners-by-size Kill banners by size.
+
+# 88*31
+s@<img\s+(?:src\s*=\s*(['"]?)([^>\\\1\s]+)\1)?[^>]*?(width=(['"]?)88\4)[^>]*?(height=(['"]?)31\6)[^>]*?(?=/?>)@\
+  <img src="http://config.privoxy.org/send-banner?type=auto" border="0" title="Killed-$2-by-size" $3 $5@sig
+# 120*60, 120*90, 120*240, 120*600
+s@<img\s+(?:src\s*=\s*(['"]?)([^>\\\1\s]+)\1)?[^>]*?(width=(['"]?)120\4)[^>]*?(height=(['"]?)(?:600?|90|240)\6)[^>]*?(?=/?>)@\
+  <img src="http://config.privoxy.org/send-banner?type=auto" border="0" title="Killed-$2-by-size" $3 $5@sig
+# 125*125
+s@<img\s+(?:src\s*=\s*(['"]?)([^>\\\1\s]+)\1)?[^>]*?(width=(['"]?)125\4)[^>]*?(height=(['"]?)125\6)[^>]*?(?=/?>)@\
+  <img src="http://config.privoxy.org/send-banner?type=auto" border="0" title="Killed-$2-by-size" $3 $5@sig
+# 160*600
+s@<img\s+(?:src\s*=\s*(['"]?)([^>\\\1\s]+)\1)?[^>]*?(width=(['"]?)160\4)[^>]*?(height=(['"]?)600\6)[^>]*?(?=/?>)@\
+  <img src="http://config.privoxy.org/send-banner?type=auto" border="0" title="Killed-$2-by-size" $3 $5@sig
+# 180*150
+s@<img\s+(?:src\s*=\s*(['"]?)([^>\\\1\s]+)\1)?[^>]*?(width=(['"]?)180\4)[^>]*?(height=(['"]?)150\6)[^>]*?(?=/?>)@\
+  <img src="http://config.privoxy.org/send-banner?type=auto" border="0" title="Killed-$2-by-size" $3 $5@sig
+# 234*60, 468*60 (Most Banners!)
+s@<img\s+(?:src\s*=\s*(['"]?)([^>\\\1\s]+)\1)?[^>]*?(width=(['"]?)(?:234|468)\4)[^>]*?(height=(['"]?)60\6)[^>]*?(?=/?>)@\
+  <img src="http://config.privoxy.org/send-banner?type=auto" border="0" title="Killed-$2-by-size" $3 $5@sig
+# 240*400
+s@<img\s+(?:src\s*=\s*(['"]?)([^>\\\1\s]+)\1)?[^>]*?(width=(['"]?)240\4)[^>]*?(height=(['"]?)400\6)[^>]*?(?=/?>)@\
+  <img src="http://config.privoxy.org/send-banner?type=auto" border="0" title="Killed-$2-by-size" $3 $5@sig
+# 250*250, 300*250
+s@<img\s+(?:src\s*=\s*(['"]?)([^>\\\1\s]+)\1)?[^>]*?(width=(['"]?)(?:250|300)\4)[^>]*?(height=(['"]?)250\6)[^>]*?(?=/?>)@\
+  <img src="http://config.privoxy.org/send-banner?type=auto" border="0" title="Killed-$2-by-size" $3 $5@sig
+# 336*280
+s@<img\s+(?:src\s*=\s*(['"]?)([^>\\\1\s]+)\1)?[^>]*?(width=(['"]?)336\4)[^>]*?(height=(['"]?)280\6)[^>]*?(?=/?>)@\
+  <img src="http://config.privoxy.org/send-banner?type=auto" border="0" title="Killed-$2-by-size" $3 $5@sig
+
+# Note: 200*50 was also proposed, but it probably causes too much collateral damage:
+#
+#s@<img\s+(?:src\s*=\s*(['"]?)([^>\\\1\s]+)\1)?[^>]*?(width=(['"]?)200\4)[^>]*?(height=(['"]?)50\6)[^>]*?(?=/?>)@\
+#   <img src="http://config.privoxy.org/send-banner?type=auto" border="0" title="Killed-$2-by-size" $3 $5@sig
+
+
+#################################################################################
+#
+# banners-by-link: Kill banners by their links to known clicktrackers (Experimental).
+#
+#################################################################################
+FILTER: banners-by-link Kill banners by their links to known clicktrackers.
+
+# Common case with width and height attributes:
+#
+s@<a\s+href\s*=\s*(['"]?)([^>\1\s]*?(?:\
+  adclick                             # See www.dn.se \
+| advert                              # see dict.leo.org \
+| atwola\.com/(?:link|redir)          # see www.cnn.com \
+| doubleclick\.net/jump/              # redirs for doublecklick.net ads \
+| counter                             # common \
+| (?<!&type=)tracker                  # (&type=tracker is used in sf's project statistics) \
+| adlog\.pl                           # see sf.net \
+)[^>\1\s]*)\1[^>]*>\s*<img\s+(?:src\s*=\s*(['"]?)([^>\\\3\s]+)\3)?[^>]*((?:width|height)\s*=\s*(['"]?)\d+?\6)[^>]*((?:width|height)\s*=\s*(['"]?)\d+?\8)[^>]*?(?=/?>)\
+@<img $5 $7 src="http://config.privoxy.org/send-banner?type=auto" border="0" title="Killed $4 by link to $2"@sigx
+
+# Rare case w/o explicit dimensions:
+#
+s@<a\s+href\s*=\s*(['"]?)([^>\1\s]*?(?:ad(?:click|vert)|atwola\.com/(?:link|redir)|doubleclick\.net/jump/|(?<!&type=)tracker|counter|adlog\.pl)[^>\1\s]*)\1[^>]*>\s*<img\s+(?:src\s*=\s*(['"]?)([^>\\\3\s]+)\3)?[^>]*?(?=/?>)@<img src="http://config.privoxy.org/send-banner?type=auto" border="0" title="Killed $4 by link to $2"@sig
+
+
+################################################################################
+#
+# webbugs: Squish WebBugs (1x1 invisible GIFs used for user tracking).
+#
+#################################################################################
+FILTER: webbugs Squish WebBugs (1x1 invisible GIFs used for user tracking).
+
+s@<img[^>]*\s(?:width|height)\s*=\s*['"]?[01](?=\D)[^>]*\s(?:width|height)\s*=\s*['"]?[01](?=\D)[^>]*?>@@siUg
+
+
+#################################################################################
+#
+# tiny-textforms: Extend those tiny textareas up to 40x80 and kill the hard wrap.
+#
+#################################################################################
+FILTER: tiny-textforms Extend those tiny textareas up to 40x80 and kill the hard wrap.
+
+s/(<textarea[^>]*?)(?:\s*(?:rows|cols)=(['"]?)\d+\2)+/$1 rows=$2\40$2 cols=$2\80$2/ig 
+s/(<textarea[^>]*?)wrap=(['"]?)hard\2/$1/ig
+
+
+#################################################################################
+#
+# jumping-windows: Prevent windows from resizing and moving themselves.
+#
+#################################################################################
+FILTER: jumping-windows Prevent windows from resizing and moving themselves.
+
+s/(?<=[\W])(?:window|this|self)\.(?:move|resize)(?:to|by)\(/''.concat(/ig
+
+#################################################################################
+#
+# frameset-borders: Give frames a border, make them resizable and scrollable.
+#
+#################################################################################
+FILTER: frameset-borders Give frames a border and make them resizable.
+
+s/(<frameset\s+[^>]*)framespacing=(['"]?)(no|0)\2/$1/igU
+s/(<frameset\s+[^>]*)frameborder=(['"]?)(no|0)\2/$1/igU
+s/(<frameset\s+[^>]*)border=(['"]?)(no|0)\2/$1/igU
+s/(<frame\s+[^>]*)noresize/$1/igU
+s/(<frame\s+[^>]*)frameborder=(['"]?)(no|0)\2/$1/igU 
+s/(<frame\s+[^>]*)scrolling=(['"]?)(no|0)\2/$1/igU
+
+
+
+#################################################################################
+#
+# demoronizer: Correct Microsoft's abuse of standardized character sets, which 
+#              leave the browser to (mis)-interpret unknown characters, with 
+#              sometimes bizarre results on non-MS platforms.
+#
+# credit: ripped from the demoroniser.pl script by: 
+#         John Walker -- January 1998, http://www.fourmilab.ch/webtools/demoroniser
+#
+#################################################################################
+FILTER: demoronizer Fix MS's non-standard use of standard charsets.
+
+s/(&\#[0-2]\d\d)\s/$1; /g
+# per Robert Lynch: http://slate.msn.com//?id=2067547, just a guess.
+# Must come before x94 below.
+s/\xE2\x80\x94/ -- /g
+s/\x82/,/g
+#s-\x83-<em>f</em>-g
+s/\x84/,,/g
+s/\x85/.../g
+#s/\x88/^/g
+#s-\x89- °/°°-g
+s/\x8B/</g
+s/\x8C/Oe/g
+s/\x91/`/g
+s/\x92/'/g
+s/(\x93|\x94)/"/g
+# Bullet type character.
+s/\x95/&middot;/g
+s/\x96/-/g
+s/\x97/--/g
+#s-\x98-<sup>~</sup>-g
+#s-\x99-<sup>TM</sup>-g
+# per Robert Lynch.
+s/\x9B/>/g                  # 155
+
+
+#################################################################################
+#
+# shockwave-flash: Kill embedded Shockwave Flash objects.
+#                  Note: Better just block "/.*\.swf$"!
+#
+#################################################################################
+FILTER: shockwave-flash Kill embedded Shockwave Flash objects.
+
+s|<object [^>]*macromedia.*</object>|<!-- Squished Shockwave Object -->|sigU
+s|<embed [^>]*(application/x-shockwave-flash\|\.swf).*>(.*</embed>)?|<!-- Squished Shockwave Flash Embed -->|sigU
+
+
+#################################################################################
+#
+# quicktime-kioskmode: Make Quicktime movies saveable.
+#
+#################################################################################
+FILTER: quicktime-kioskmode Make Quicktime movies saveable.
+
+s/(<embed\s+[^>]*)kioskmode\s*=\s*(["']?)true\2/$1/ig 
+
+
+#################################################################################
+#
+# fun: Text replacements for subversive browsing fun!
+#
+#################################################################################
+FILTER: fun Text replacements for subversive browsing fun!
+
+# SCNR
+#
+s/microsoft(?!.[^\s])/MicroSuck/ig
+
+# Buzzword Bingo (example for extended regex syntax)
+#
+s* (?:industry|world)[ -]leading \
+|  cutting[ -]edge \
+|  customer[ -]focused \
+|  market[ -]driven \
+|  award[ -]winning # Comments are OK, too! \
+|  high[ -]performance \
+|  solutions[ -]based \
+|  unmatched \
+|  unparalleled \
+|  unrivalled \
+*$0<sup><font color="red"><b>Bingo!</b></font></sup> \
+*igx
+
+# For Germans only
+#
+s/(M|m)edien(?![^<]*>)/$1&auml;dchen/Ug
+
+#################################################################################
+#
+# crude-parental: Crude parental filtering. Use with a suitable blocklist.
+#                 Pages are "blocked" based on keyword matching.
+#
+#################################################################################
+FILTER: crude-parental Crude parental filtering. Note that this filter doesn't work reliably.
+
+# (Note: Middlesex, Sussex and Essex are counties in the UK, not rude words)
+# (Note #2: Is 'sex' a rude word?!)
+
+s%^.*(?<!middle)(?<!sus)(?<!es)sex.*$%<html><head><title>Blocked</title></head><body>\
+<h3>Blocked by Privoxy's crude-parental filter due to possible adult content.</h3></body></html>%is
+
+s+^.*warez.*$+<html><head><title>No Warez</title></head><body><h3>You're not searching for illegal stuff, are you?</h3></body></html>+is
+
+# Remove by description
+s/^.*\
+(?:(suck|lick|tongue|rub|fuck|fingering|finger|chicks?)\s*)?\
+(?:(her|your|my|hard|with|big|wet|tight|pink|hot|moist|young|teen)\s*)+\
+(dicks?|penis|cocks?|balls?|tits?|pussy|cunt|clit|ass|mouth).*$\
+/This page has been blocked by Privoxy's crude-parental content filter\
+/is
+
+#Remove by link text
+s/^.*\
+(download|broadband|view|watch|free|get|extreem)?\s*\
+(sex|xxx|porn|cumshot|fuck(ing|s)?|anal|ass|asian|adult|Amateur|org(y|ies)|close ups?|hand?job|nail(ed)?)+\s*\
+(movies?|pics?|videos?|dvds?|dvd's|links?).*$\
+/This page has been blocked by Privoxy's crude-parental content filter\
+/is
+
+#Remove by age disclaimer
+s/^.*\
+(models?|chicks?|girls?|women|persons)\s*\
+(who|are|were)+ (over|at least) (16|18|21) years (old|of age).*$\
+/This page has been blocked by Privoxy's crude-parental content filter\
+/is
+
+#Remove by regulations
+s/^.*(Section 2257|18 U.?S.?C.? 2257).*$\
+/This page has been blocked by Privoxy's crude-parental content filter\
+/is 
+
+
+#################################################################################
+#
+# IE-Exploits: Disable some known Internet Explorer bug exploits.
+#
+#################################################################################
+FILTER: ie-exploits Disable some known Internet Explorer bug exploits.
+
+# Note: This is basically a demo and waits for someone more interested in IE
+# security (sic!) to take over.
+
+# Cross-site-scripting:
+#
+s%f\("javascript:location.replace\('mk:@MSITStore:C:'\)"\);%alert\("This page looks like it tries to use a vulnerability described here:\n http://online.securityfocus.com/archive/1/298748/2002-11-02/2002-11-08/2"\);%siU
+
+# Address bar spoofing (http://www.secunia.com/advisories/10395/):
+#
+s/(<a[^>]*href[^>]*)(?:\x01|\x02|\x03|%0[012])@/$1MALICIOUS-LINK@/ig
+
+# Nimda:
+#
+s%<script language="JavaScript">(window\.open|1;''\.concat)\("readme\.eml", null, "resizable=no,top=6000,left=6000"\)</script>%<br><font size="7"> WARNING: This Server is infected with <a href="http://www.cert.org/advisories/CA-2001-26.html">Nimda</a>!</font>%g
+
+
+#################################################################################
+#
+#
+# site-specifics: Cure for site-specific problems. Don't apply generally!
+#
+#   Note: The fixes contained here are so specific to the problems of the
+#         particular web sites they are designed for that they would be a
+#         waste of CPU cycles (or even destructive!) on 99.9% of the web
+#         sites where they don't apply.
+#
+#################################################################################
+FILTER: site-specifics Cure for site-specific problems. Don't apply generally!
+
+# www.spiegel.de excludes X11 users from viewing Flash5 objects - shame.
+# Apply to: www.spiegel.de/static/js/flash-plugin.js 
+#
+s/indexOf\("x11"\)/indexOf("x13")/
+
+# www.quelle-bausparkasse.de uses a very stupid redirect mechanism that
+# relies on a webbug being present. Can we tolerate that? No!
+# Apply to: www.quelle-bausparkasse.de/$
+#
+s/mylogfunc()//g
+
+# groups.yahoo.com has splash pages that one needs to click through in
+# order to access the actual messages. Let the browser do that. Thanks
+# to Paul Jobson for this one:
+#
+s|<a href="(.+?)">(?:Continue to message\|Weiter zu Nachricht)</a>|<meta http-equiv="refresh" content="0; URL=$1">|ig
+
+# monster.com has two very similar gimmicks:
+#
+s|<input type="hidden" name="REDIRECT" value="(.+?)">|<meta http-equiv="refresh" content="0; URL=$1">|i
+ 
+s|<IMG SRC="http://media.monster.com/mm/usen/my/no_thanks_211x40.gif".+?>|<meta http-equiv="refresh" content="0; URL=http://my.monster.com/resume.asp">|i 
+
+# nytimes.com triggers popups through the onload handler of dummy images
+# to fool popup-blockers.  
+#
+s|(<img [^>]*)onload|$1never|sig
+
+# Pre-check all the "Discard" buttons in GNU Mailman's web interface.
+# (This saves a lot of mouse aiming practice when flushing spamtraps)
+#
+s|(<INPUT name="\d{2,4}" type="RADIO" value="0") CHECKED |$1|g
+s|<INPUT name="\d{2,4}" type="RADIO" value="3" |$0 checked|g
+
+#################################################################################
+#
+# no-ping: Removes non-standard ping attributes in <a> and <area> tags.
+#          
+#################################################################################
+FILTER: no-ping Removes non-standard ping attributes in <a> and <area> tags.
+s@(<a(?:rea)?[^>]*?)\sping=(['"]?)([^"'>]+)\2([>\s]?)@\
+<strong style="color:white; background-color:red;" title="Privoxy removed ping target '$3'">PING!</strong>\n$1$4@ig
+
+#################################################################################
+#
+# google: CSS-based block for Google text ads. Also removes
+#         a width limitation and the toolbar advertisement.
+#
+#################################################################################
+FILTER: google CSS-based block for Google text ads. Also removes a width limitation and the toolbar advertisement.
+
+s@</head>@<style type="text/css">\n\
+ /* Style sheet inserted by Privoxy's google filter. */\n\
+ \#fbc, \#fbl, \#ra, .rhh {visibility: hidden !important;}\n\
+ \#tpa1,\#tpa2,\#tpa3,\#tpa4,\#tpa5,\#tpa5, \#spl, .ch, \#ads,\
+ \#toolbar, \#google_ads_frame, \#mbEnd {display: none !important;}\n\
+ .main_body, .j {width: 100%}\n</style>\n$0@
+s@<div style=\"padding-top:11px;min-width:500px\">@<div id="main_body">@
+s@(<table cellspacing=0 cellpadding=0 width=25% align=right bgcolor=\#ffffff border=0\
+|</font></td></tr></tbody></table><table align=\"right\" bgcolor=\"\#ffffff\"\
+|<table cellspacing=0 cellpadding=0 align=right bgcolor=\#ffffff border=0\
+|<table style=\"clear:both\" align=right width=25% cellspacing=\"0\" cellpadding=\"0\"\
+ border=\"0\" bgcolor=\"\#ffffff\")@$0 id="ads"@
+s@(<br clear=all><table)( border=0 cellpadding=9><tr><td)@$1 id="toolbar"$2@
+
+#################################################################################
+#
+# yahoo: CSS-based block for Yahoo text ads. Also removes a width limitation.
+#
+#################################################################################
+FILTER: yahoo CSS-based block for Yahoo text ads. Also removes a width limitation.
+
+s@</head>@\n<style type="text/css">\n\
+ /* Style sheet inserted by Privoxy's yahoo filter. */\n\
+ \#symadbn, \#ymadbn, .yschbox, .yschhd, .bbox, \#yschsec, \#sec,\
+ \#yschanswr, .yschftad, .yschspn, .yschspns, \#ygrp-sponsored-links,\
+ \#nwad, \#MWA2, \#MSCM, \#yregad, \
+ \#ks-ypn-ads, .ad, \#east, \#ygrp-vital {display: none !important;}\n\
+ \#yschpri, \#yschweb, \#pri, \#web, \#main {width: 100% !important; max-width: 100% !important;}\n\
+ \#yschqcon, \#yschtg {width: auto !important; /* No useless horizontal scrollbar please */}\n\
+ \#composebox \#compose_editorArea {width: 70% !important; /* reasonably sized reply textarea please */\n\
+ </style>\n$0\n@
+
+s@(<textarea\s+id="composeArea"[^>]*)width:545px;@$1width:70%;@isU
+
+#################################################################################
+#
+# msn: CSS-based block for MSN text ads. Also removes tracking URLs
+#      and a width limitation.
+#
+#################################################################################
+FILTER: msn CSS-based block for MSN text ads. Also removes tracking URLs and a width limitation.
+
+s@</head>@<style type="text/css">\n\
+ /* Style sheet inserted by Privoxy's msn filter. */\n\
+ .msn_ads, \#at, \#ar, .mktmsg {display: none !important;}\n\
+ \#results, .flank, .results_area_flank, .results_area_stroke,\n\
+ \#results_area, .SearchSection, .not, .sc_rslth1\n\
+.content, \#sw_foot, \#bf, \#sw_content, \#sidebar, \#pag\n\
+ {width: 99% !important; min-width: 99% !important;\n\
+ max-width: 100% !important; /* width:100% sometimes causes horizontal scrollbars */}\n\
+ /* Remove "suggestions". They are next to worthless but partly overlap with the search results */\n\
+ .suggestion, \#nys_right, \#nys {clear: both; display:none;}\n\
+ \#content {padding-right: 0;}\n\
+ </style>\n$0@
+# Are these ids still in use?
+s@(<div[^>]*) id=(["']?)ads_[^\2]*\2@$1 class="msn_ads"@Uig
+s@(<div[^>]*) class=(["']?)sb_ads[^\2]*\2@$1 class="msn_ads"@Uig
+s@(<a[^>]*href=\")http://g.msn.com/.*\?(http://.*)(&amp;&amp;DI=.*)(\")@$1$2$4@Ug
+s@(<a[^>]*)gping=\".*\"@$1 title="URL cleaned up by Privoxy's msn filter"@Ug
+
+#################################################################################
+#
+# blogspot: Cleans up some Blogspot blogs. Read the fine print before using this.
+#
+#           This filter also intentionally removes some navigation stuff and
+#           sets the page width to 100%. As a result, some rounded "corners" would
+#           appear to early or not at all and as fixing this would require a browser
+#           that understands background-size (CSS3), they are removed instead.
+#
+#           When applied to feeds, it removes comment titles that
+#           only contain the beginning of the actual comment.
+#
+#################################################################################
+FILTER: blogspot Cleans up some Blogspot blogs. Read the fine print before using this.
+
+s@</head>@<style type="text/css">\n\
+ /* Style sheet inserted by Privoxy's blogspot filter. */\n\
+ \#powered-by {display: none !important;}\n\
+ \#wrap4, \#wrapper {margin-top: 0px }\n\
+ \#blogheader, \#header {margin-top: 0.5em !important}\n\
+ \#content {width: 98% }\n\
+ \#main {width: 70% }\n\
+ \#sidebar {width: 29% }\n\
+ .post-body {overflow: auto;}\n\
+ .blogComments {width: 100%; overflow: auto;}\n</style>\n$0@
+s@<body.*(?:<div id="space-for-ie"></div>|(<div id="(?:content|wrap4|wrapper)))@<body>\
+ <!-- Privoxy's blogspot filter ditched some garbage here -->$1@Us
+s@(<div style=\"[^\"]*width:)30em@$1 100%@
+s@background:url\(\"http://www.blogblog.com/rounders[^\"]*\"\).*;@/*$0*/@Ug
+s@(background:\#[a-f\d]{3})( url\(\"http://www.blogblog.com/rounders[^\"]*\"\).*;)@$1 ;/*$2*/@Ug
+# Do the feed filtering magic as described above.
+s@<title(?:\s+type=\'text\')?>([^<]*)(?:\.\.\.)?\s*</title>\s*\
+(<content(?:\s+type=\'(?:html|text)\')?>\s*\1)@<title></title>$2@ig
+
+#################################################################################
+#
+# x-httpd-php-to-html: Changes the Content-Type header from
+#                      x-httpd-php to html. "Content-Type: x-httpd-php"
+#                      is set by clueless PHP users and causes many
+#                      browsers do open a download menu instead of
+#                      rendering the page.
+#
+#################################################################################
+SERVER-HEADER-FILTER: x-httpd-php-to-html Changes the Content-Type header from x-httpd-php to html.
+
+s@^(Content-Type:)\s*application/x-httpd-php@$1 text/html@i
+
+#################################################################################
+#
+# html-to-xml: Changes the Content-Type header from html to xml.
+#
+#################################################################################
+SERVER-HEADER-FILTER: html-to-xml Changes the Content-Type header from html to xml.
+
+s@^(Content-Type:)\s*text/html(;.*)?$@$1 application/xhtml+xml$2@i
+
+#################################################################################
+#
+# xml-to-html: Changes the Content-Type header from xml to html.
+#
+#################################################################################
+SERVER-HEADER-FILTER: xml-to-html Changes the Content-Type header from xml to html.
+
+s@^(Content-Type:)\s*(?:application|text)/(?:xhtml\+)?xml(;.*)?$@$1 text/html$2@i
+
+#################################################################################
+#
+# hide-tor-exit-notation: Remove the Tor exit node notation in Host and Referer headers.
+#
+#   Note: If Privoxy and Tor are chained and Privoxy is configured to
+#         use socks4a, one can use http://www.example.org.foobar.exit/
+#         to access the host www.example.org through Tor exit node foobar.
+#
+#         As the HTTP client isn't aware of this notation, it treats the
+#         whole string "www.example.org.foobar.exit" as host and uses it
+#         for the "Host" and "Referer" headers. From the server's point of
+#         view the resulting headers are invalid and can cause problems.
+#
+#         An invalid "Referer" header can trigger "hot-linking" protections,
+#         an invalid "Host" header will make it impossible for the server to
+#         find the right vhost (several domains hosted on the same IP address).
+#
+#         This filter removes the "foo.exit" part in those headers
+#         to prevent the mentioned problems. Note that it only modifies
+#         the HTTP headers, it doesn't make it impossible for the server
+#         to detect your Tor exit node based on the IP address the request is
+#         coming from.
+#
+#################################################################################
+CLIENT-HEADER-FILTER: hide-tor-exit-notation Removes the Tor exit node notation in Host and Referer headers.
+
+s@^((?:Referer|Host):\s*(?:https?://)?[^/]*)\.[^\./]*?\.exit@$1@i
+
+#################################################################################
+#
+# less-download-windows: Prevents annoying download windows for content types
+#                        the browser can handle itself.
+#
+#################################################################################
+SERVER-HEADER-FILTER: less-download-windows Prevent annoying download windows for content types the browser can handle itself.
+
+s@^Content-Disposition:.*filename=(["']?).*\.(png|gif|jpe?g|diff?|d?patch|c|h|pl|shar)\1.*$@@i
+s@^(Content-Type:)\s*(?:message/(?:news|rfc822)|text/x-.*|application/x-sh(?:\s|$))\s*@$1 text/plain@i
+
+#################################################################################
+#
+# image-requests: Tags detected image requests as "IMAGE-REQUEST". Whether
+#                 or not the detection actually works depends on the browser.
+#
+#################################################################################
+CLIENT-HEADER-TAGGER: image-requests Tags detected image requests as "IMAGE-REQUEST".
+
+s@^Accept:\s*image/.*@IMAGE-REQUEST@i
+
+#################################################################################
+#
+# css-requests:  Tags detected CSS requests as "CSS-REQUEST". Whether
+#                or not the detection actually works depends on the browser.
+#
+#################################################################################
+CLIENT-HEADER-TAGGER: css-requests Tags detected CSS requests as "CSS-REQUEST".
+
+s@^Accept:\s*text/css.*@CSS-REQUEST@i
+
+#################################################################################
+#
+# client-ip-address: Tags the request with the client's IP address.
+#
+#################################################################################
+CLIENT-HEADER-TAGGER: client-ip-address Tags the request with the client's IP address.
+
+s@^\w*\s+.*\s+HTTP/\d\.\d\s*@IP-ADDRESS: $origin@D
+
+#################################################################################
+#
+# http-method: Tags the request with its HTTP method.
+#
+#################################################################################
+CLIENT-HEADER-TAGGER: http-method Tags the request with its HTTP method.
+
+s@^(\w*).*HTTP/\d\.\d\s*$@$1@i
+
+#################################################################################
+#
+# allow-post: Tags POST requests as "ALLOWED-POST".
+#
+#################################################################################
+CLIENT-HEADER-TAGGER: allow-post Tags POST requests as "ALLOWED-POST".
+
+s@^(?:POST)\s+.*\s+HTTP/\d\.\d\s*@ALLOWED-POST@i
+
+#################################################################################
+#
+# complete-url: Tags the request with the whole request URL.
+#
+#################################################################################
+CLIENT-HEADER-TAGGER: complete-url Tags the request with the whole request URL.
+
+s@^\w*\s+(.*)\s+HTTP/\d\.\d\s*$@$1@i
+
+#################################################################################
+#
+# user-agent: Tags the request with the complete User-Agent header.
+#
+#################################################################################
+CLIENT-HEADER-TAGGER: user-agent Tags the request with the complete User-Agent header.
+
+s@^User-Agent:.*@$0@i
+
+#################################################################################
+#
+# content-type: Tags the request with the content type declared by the server.
+#
+#################################################################################
+SERVER-HEADER-TAGGER: content-type Tags the request with the content type declared by the server.
+
+s@^Content-Type:\s*([^;]+).*@$1@i
+
+#################################################################################
+#
+# privoxy-control: The taggers create tags with the content of X-Privoxy-Control
+#                  headers, the filters remove said headers.
+#
+#################################################################################
+CLIENT-HEADER-TAGGER: privoxy-control Creates tags with the content of X-Privoxy-Control headers.
+
+s@^X-Privoxy-Control:\s*@@i
+
+CLIENT-HEADER-FILTER: privoxy-control Removes X-Privoxy-Control headers.
+
+s@^X-Privoxy-Control:.*@@i
+
+SERVER-HEADER-TAGGER: privoxy-control Creates tags with the content of X-Privoxy-Control headers.
+
+s@^X-Privoxy-Control:\s*@@i
+
+SERVER-HEADER-FILTER: privoxy-control Removes X-Privoxy-Control headers.
+
+s@^X-Privoxy-Control:.*@@i
+
+
+############################################################################## 
+#
+#  Revisions   :
+#     $Log: default.filter,v $
+#     Revision 1.71  2009/03/01 18:33:17  ler762
+#     couple of changes to the yahoo filter
+#     -get a bigger email message reply textarea
+#     -block a few more ads
+#     -remove the now useless northbanner css change
+#
+#     Revision 1.70  2009/02/21 13:01:51  fabiankeil
+#     Make blogspot's feed magic slightly more reliable.
+#
+#     Revision 1.69  2009/02/12 15:40:11  ler762
+#     more yahoo email ad blocking
+#
+#     Revision 1.68  2008/09/19 13:26:04  fabiankeil
+#     s@tounge@tongue@. Anonymously reported in #1648657.
+#
+#     Revision 1.67  2008/08/06 17:38:06  fabiankeil
+#     In banners-by-size, make sure white-space around the height
+#     attribute is removed as well and replace two spaces with
+#     "\s" so we don't get fooled by tabs. Fixes #2036125.
+#
+#     Revision 1.66  2008/08/03 17:27:47  fabiankeil
+#     Teach msn filter to catch a few new ad classes.
+#
+#     Revision 1.65  2008/07/21 13:43:44  fabiankeil
+#     Fix img-reorder regression introduced with my last commit.
+#     Some tags were terminated too soon, letting the browser render
+#     some of their arguments as text. Oops.
+#
+#     Revision 1.64  2008/07/12 15:49:09  fabiankeil
+#     - Don't let img-reorder touch width attributes
+#       that aren't followed by either whitespace or '>',
+#       as those usually indicate onclick nonsense.
+#       Problem and solution reported by Glenn Washburn in #2014552.
+#     - While at it, don't use more groups than necessary.
+#
+#     Revision 1.63  2008/06/27 12:53:41  fabiankeil
+#     Make sure the taggers css-requests and image-requests
+#     only match at the beginning of the header.
+#
+#     Revision 1.62  2008/06/21 17:02:03  fabiankeil
+#     Fix typo.
+#
+#     Revision 1.61  2008/05/21 18:44:43  fabiankeil
+#     - Let the content-type tagger ignore headers without value.
+#     - Remove a few unused lines at the end of the file.
+#
+#     Revision 1.60  2008/04/26 10:36:41  fabiankeil
+#     Let the msn filter hide another class.
+#
+#     Revision 1.59  2008/04/23 16:18:18  fabiankeil
+#     s@declarded@declared@
+#
+#     Revision 1.58  2008/02/02 15:27:19  fabiankeil
+#     Yet another yahoo update to get the width limitation removal working again.
+#
+#     Revision 1.57  2008/01/26 15:45:39  fabiankeil
+#     Don't let the less-download-windows filter mess up
+#     "Content-Type: application/x-shockwave-flash" headers.
+#
+#     Revision 1.56  2008/01/25 19:12:40  fabiankeil
+#     - Add yet another new yahoo ad id.
+#     - Don't let the first banners-by-link job punish URLs for merely
+#       containing the pattern "/jump/" when it should really look for
+#       "doubleclick\.net/jump/".
+#
+#     Revision 1.55  2007/12/31 19:53:59  fabiankeil
+#     Let the msn filter remove the width limitation again.
+#
+#     Revision 1.54  2007/12/31 19:11:31  fabiankeil
+#     - Let the yahoo filter remove the width limitation again.
+#     - Teach the blogspot filter to remove useless feed comment
+#       titles that only contain the beginning of the actual comment.
+#
+#     Revision 1.53  2007/12/23 15:48:12  fabiankeil
+#     - Lo and behold, the CSS fix for the MSN buttons is no longer necessary.
+#     - Add some new selectors the msn filter should hide.
+#     - Add the two yahoo selectors Lee reported in #1856574.
+#     - Add comments that the width limitation fixes stopped
+#       working for the msn and yahoo filter.
+#
+#     Revision 1.52  2007/11/27 18:35:48  fabiankeil
+#     Update CSS for the yahoo filter.
+#
+#     Revision 1.51  2007/11/04 16:15:11  fabiankeil
+#     - Add client-header taggers: client-ip-address,
+#       http-method, allow-post, complete-url and user-agent.
+#     - Add server-header tagger: content-type.
+#
+#     Revision 1.50  2007/11/03 15:05:30  fabiankeil
+#     Consistently use an empty line between the description and the PCRS code
+#     and end descriptions with dots. Patch submitted by Simon Ruderich.
+#
+#     Revision 1.49  2007/11/03 14:29:41  fabiankeil
+#     Spelling fixes mostly submitted by Simon Ruderich.
+#
+#     Revision 1.48  2007/10/17 18:11:32  fabiankeil
+#     Add privoxy-control header filters and taggers.
+#
+#     Revision 1.47  2007/10/06 15:45:25  fabiankeil
+#     Let msn hide sponsored links in #at divs.
+#
+#     Revision 1.46  2007/10/06 09:54:13  fabiankeil
+#     - Let msn hide sponsored links in #ar divs.
+#     - Teach banners-by-link not to block the graphs for sf's tracker statistics.
+#
+#     Revision 1.45  2007/08/11 16:54:12  fabiankeil
+#     - Complete the changes from r1.42.
+#     - Make crude-parental less sensitive to the amount of white-space,
+#       add the note that it doesn't work too well again and replace the
+#       DMOZ link with a less confusing explanation.
+#
+#     Revision 1.44  2007/07/18 11:06:56  hal9
+#     Replace notarget with '' in all popups filter to keep from breaking xhmtl per
+#     report from Siegfried Gipp.
+#
+#     Revision 1.43  2007/06/01 14:17:04  fabiankeil
+#     Mention possible delimiter conflicts with variables in dynamic pcrs commands.
+#
+#     Revision 1.42  2007/05/17 15:55:36  fabiankeil
+#     Undo an improperly tested last-minute change
+#     and turn "text-requests" back into "css-requests".
+#
+#     Revision 1.41  2007/05/17 15:45:41  fabiankeil
+#     - Mention new filter types and the 'D' option.
+#     - Header filters are now case-insensitive and accept a
+#       varying amount of whitespace after the colon.
+#     - Add another selector for yahoo ads.
+#     - New server-header filter: less-download-windows
+#     - New client-header taggers: text-requests and image-requests.
+#
+#     Revision 1.40  2007/03/20 15:40:00  fabiankeil
+#     Adjust to new world order with dedicated header-filter actions.
+#
+#     Revision 1.39  2007/02/21 14:10:23  fabiankeil
+#     - Fix a js-annoyances pcrs command that broke
+#       evaluated code. (BR #1124071, thanks to Bor Gergely)
+#     - Have unsolicited-popups and all-popups catch the
+#       wheather.com popup reported in in AF #1640173.
+#
+#     Revision 1.38  2007/02/19 11:22:48  hal9
+#     Adding back the orginal filter content to offset problems found by Fabian.
+#
+#     Revision 1.37  2007/02/17 13:29:44  hal9
+#     Updates to the crude parental filter per Feature Requests item #1648657.
+#
+#     Revision 1.36  2007/02/05 16:47:31  fabiankeil
+#     - Let banners-by-link look for "advert".
+#     - Fix XML systax problems with banners-by-link
+#       and banners-by-size (AF#1651570).
+#
+#     Revision 1.35  2006/12/21 12:28:12  fabiankeil
+#     Escaping special characters in filter descriptions is no
+#     longer necessary, it's done by Privoxy now.
+#
+#     Revision 1.34  2006/12/12 17:32:23  fabiankeil
+#     Added id mbEnd to google filter, it's now and then
+#     used for the sponsored links.
+#
+#     Have js-annoyances try to prevent status bar
+#     modifications where the status bar text is
+#     inside another variable. Fixes 1605710.
+#
+#     Revision 1.33  2006/11/16 17:10:43  fabiankeil
+#     Removed webbugs debugging comment again.
+#     The apostrophe could break JavaScript and
+#     the comment itself could mess up existing
+#     comments.
+#
+#     Revision 1.32  2006/11/10 18:04:04  fabiankeil
+#     Have no-ping print the ping warning in red.
+#
+#     Modified yahoo to keep in sync with recent
+#     CSS changes and to suppress a useless horizontal
+#     scrollbar.
+#
+#     msn now makes sure that the continue-link boxes
+#     act as links (the original CSS just changes the cursor).
+#
+#     Changed fun filter regex to leave microsoft links alone.
+#     Fixes BR 1019996.
+#
+#     Revision 1.31  2006/10/21 13:12:28  fabiankeil
+#     Added no-ping and hide-tor-exit-notation.
+#
+#     Adjusted jumping-windows to break less.
+#     Fixes BR 1146134.
+#
+#     Revision 1.30  2006/10/18 12:36:50  fabiankeil
+#     google filter now cleans Google groups as well.
+#
+#     Revision 1.29  2006/10/11 14:03:17  fabiankeil
+#     Changed img-reorder regex to only move width
+#     attributes if they are following at least one
+#     whitespace. Fixes BR 1328455.
+#
+#     Revision 1.28  2006/10/11 13:31:13  fabiankeil
+#     Added Anduin Withers' js-annoyances fix
+#     for not messing up escaped quotes. Fixes BR 999765.
+#
+#     Improved blogspot filter to make it less likely that
+#     the blogspot banner at the top of the page is missed.
+#
+#     Revision 1.27  2006/10/08 17:00:51  fabiankeil
+#     Modified webbugs filter to create a comment around the offending
+#     image instead of removing it entirely.
+#
+#     Adjusted regex to only match if there's at least one whitespace
+#     before the width and height attributes. Makes it more likely that
+#     they are indeed attributes, and not part of the value of another attribute.
+#     Solves BR 1035587.
+#
+#     Thanks to Martin Thomas for diagnosing the cause of the problem.
+#
+#     Revision 1.26  2006/10/06 18:06:16  fabiankeil
+#     Added header filter x-httpd-php-to-html
+#     and reverted another img-reorder whitespace
+#     problem.
+#
+#     Revision 1.25  2006/10/06 15:26:09  fabiankeil
+#     Bumped copyright year.
+#
+#     Reverted parts of the last img-reorder change
+#     which were intended to remove superfluous whitespace
+#     but had the side effect to mess up some tags.
+#
+#     Modified banners-by-size and banners-by-link to
+#     use border value "0" instead of "\0". Fixes BR 1100065.
+#
+#     Revision 1.24  2006/10/06 11:25:31  fabiankeil
+#     Taught img-reorder not to break img tags
+#     with empty src attributes. Fixes BR 1089474.
+#     Thanks to Raphael Moll for reporting.
+#
+#     Revision 1.23  2006/10/05 14:46:28  fabiankeil
+#     Replaced "<" in img-reorder's description with "&lt;".
+#
+#     Modified msn filter to tag ads with classes instead
+#     of ids. There may be more than one ad per page,
+#     but ids are required to be unique.
+#
+#     Revision 1.22  2006/10/04 19:17:14  fabiankeil
+#     Incorportated Frédéric Crozat's ie-exploits
+#     modification to make it less trigger-happy.
+#
+#     Modified blogspot filter to make .post-body
+#     scrollable if necessary.
+#
+#     Revision 1.21  2006/10/02 16:21:14  fabiankeil
+#     Adjusted yahoo filter to hide .yschspns as well.
+#     Added header filters: html-to-xml and xml-to-html.
+#
+#     Revision 1.20  2006/10/01 21:00:22  fabiankeil
+#     New site-specific filters: google, yahoo, msn and blogspot.
+#
+#     Revision 1.19  2006/07/18 14:48:45  david__schmidt
+#     Reorganizing the repository: swapping out what was HEAD (the old 3.1 branch)
+#     with what was really the latest development (the v_3_0_branch branch)
+#
+#     Revision 1.11.2.23  2004/02/17 13:34:01  oes
+#     - Beefed up the protection of the unsolicited-popups
+#       filter against matching in JavaScript string constants.
+#     - Extended the fun filter with a German joke
+#     - Extended the site-specifics filter with a convenience
+#       reeplacement for managing mailing lists at SourceForge
+#
+#     Revision 1.11.2.22  2004/01/30 15:29:29  oes
+#     Updated the copyright note
+#
+#     Revision 1.11.2.21  2004/01/20 15:15:01  oes
+#     Detail enhancement in all-popups
+#
+#     Revision 1.11.2.20  2004/01/06 16:46:14  oes
+#     Fixed a JS syntax problem in jumping-windows
+#
+#     Revision 1.11.2.19  2003/12/17 17:09:25  oes
+#     Added remedy against IE address bar spoofing
+#
+#     Revision 1.11.2.18  2003/12/02 11:25:27  oes
+#     Fixed a line trashed in previous commit
+#
+#     Revision 1.11.2.17  2003/12/01 21:58:46  oes
+#     Assorted tuning:
+#
+#      - unsolicited-popups no longer matches at start or end of quoted
+#        strings, and is now activated earlier and deactivated later in
+#        the page.
+#      - replacement images in banners-by-* now without border
+#      - more effective shockwave flash flattening
+#      - Custom annoyance filtering for Yahoo Groups, Monster.com, NY Times.
+#
+#     Revision 1.11.2.16  2003/05/08 09:44:56  oes
+#     Allow extra parameters in blink,marquee tags. Fixes bug #734012
+#
+#     Revision 1.11.2.15  2003/03/30 13:57:08  oes
+#     Making unsolicited-popups safe for use on <html> tags enclosed in JS strings
+#
+#     Revision 1.11.2.14  2003/03/19 13:17:50  oes
+#     - Added filter "site-specifics" to address site specific problems
+#     - Fixed a small problem in the img-reorder filter
+#
+#     Revision 1.11.2.13  2003/03/18 19:28:59  oes
+#     Fixed a minor problem in the img-reorder filter
+#
+#     Revision 1.11.2.12  2003/03/15 14:06:58  oes
+#      - Assorted refinements, optimizations and fixes in the js-annoyances,
+#        img-reorder, banners-by-size, banners-by-link, webbugs, refresh-tags,
+#        html-annoyances, content-cookies and fun filters
+#      - Replaced filter "popups" by choice between two modes:
+#        - "unsolicited-popups" tries to catch only the unsolicited ones
+#        - "all-popups" tries to kill them all (as before)
+#      - New filter "tiny-textforms" Help those tiny or hard-wrap textareas.
+#      - New filter "jumping-windows" that prevents windows from resizing
+#        and moving themselves
+#      - Replaced "nimda" with more general "ie-exploits" filter in which
+#        all filters for exploits shall be collected
+#
+#     Revision 1.11.2.11  2002/11/12 16:14:43  oes
+#     Exchanged js-annoyance filter against status bar rewrites with improved version by Don Libes
+#
+#     Revision 1.11.2.10  2002/11/11 13:39:47  oes
+#     Make refresh-tags filter work even on incorrect refresh tags like found on usatoday.com
+#
+#     Revision 1.11.2.9  2002/11/08 16:39:17  oes
+#     Made img-reorder more cautious. Fixes bug #632715
+#
+#     Revision 1.11.2.8  2002/10/13 21:56:52  hal9
+#     Adding demoronizer filter. This should include all the common abuses. I have
+#     left a few of the rare cases commented out (never found these in the wild).
+#
+#     Revision 1.11.2.7  2002/09/25 15:09:39  oes
+#     Preserve original quoting style in <img> tags wherever possible. Fixes Bug #605956
+#
+#     Revision 1.11.2.6  2002/08/23 14:12:26  oes
+#     Proofed frameset-borders against "fremaborder=0 border=0"
+#
+#     Revision 1.11.2.5  2002/08/22 15:05:20  oes
+#     Added Filter to make Quicktime movies saveable (thanks to aaron@linville.org for the idea)
+#
+#     Revision 1.11.2.4  2002/08/10 11:32:29  oes
+#     Attribute values in replacement tags of banners-by-size filter now undelimited. (Fixes bug #592493)
+#
+#     Revision 1.11.2.3  2002/08/05 11:43:56  oes
+#     Fixed a bug in the popups filter that was introduced with the last fix :-(
+#
+#     Revision 1.11.2.2  2002/08/01 11:20:13  oes
+#     Fixed bugs 587802, 577802 and an unreported one
+#
+#     Revision 1.11.2.1  2002/07/26 15:18:26  oes
+#     - All filters reviewed and many shorcomings fixed
+#     - New filters: img-reorder, banners-by-link and js-events
+#     - Jobs reorderd because they are now executed in order of
+#       appearance
+#
+#     Revision 1.11  2002/05/24 00:57:18  oes
+#     Made WeBugs job ungreedy; Fixes bug 559190
+#
+#     Revision 1.10  2002/04/18 10:14:19  oes
+#     renamed some filters
+#
+#     Revision 1.9  2002/04/11 07:36:35  oes
+#     Generalized js-popup filter
+#
+#     Revision 1.8  2002/04/10 17:07:21  oes
+#     Fixed potentially desctructive jobs, added noflash filter
+#
+#     Revision 1.7  2002/04/09 18:34:51  oes
+#     Fixed HTML syntax in replacements
+#
+#     Revision 1.6  2002/04/03 19:49:52  swa
+#     name change
+#
+#     Revision 1.5  2002/03/27 15:30:26  swa
+#     have a consistent appearance
+#
+#     Revision 1.4  2002/03/26 22:29:54  swa
+#     we have a new homepage!
+#
+#     Revision 1.3  2002/03/24 16:08:03  jongfoster
+#     Fixing banners-by-size for new config URLs
+#
+#     Revision 1.2  2002/03/24 13:02:18  swa
+#     name change related issues.
+#
+#     Revision 1.1  2002/03/24 11:37:39  jongfoster
+#     Name change
+#
+#     Revision 1.24  2002/03/16 20:39:54  oes
+#      - Added descriptions to the filters so users will know what they select in the cgi editor
+#      - Added content-cookies filter
+#      - Bugfixed many jobs (Thanks to Al for some hints)
+#
+#     Revision 1.22  2002/03/12 13:42:50  oes
+#     Fixing & Optimizing REs
+#
+#     Revision 1.21  2002/03/12 11:59:20  oes
+#     Beefed up Buzzword Bingo
+#
+#     Revision 1.20  2002/03/12 01:42:50  oes
+#     Introduced modular filters
+#
+#     Revision 1.19  2002/03/10 19:49:24  oes
+#     Added expression to kill referer tracking in JavaScripts
+#
+#     Revision 1.18  2002/03/08 17:14:12  oes
+#     PNG -> image in comments
+#
+#     Revision 1.17  2002/03/07 03:50:54  oes
+#     Adapted comments to new built-in images
+#
+#     Revision 1.16  2002/02/21 00:12:19  jongfoster
+#     Modifying the banner regexps to use long URLS and to autodetect
+#     whether to show a logo or a transparent GIF, based on actionsfile
+#     setting.
+#
+#     Revision 1.15  2001/12/28 23:54:20  steudten
+#     Fix for feature Req #495374: http-equiv problem
+#
+#     Revision 1.14  2001/12/09 18:55:11  david__schmidt
+#     Updated CODE_STATUS to beta, commented out microsuck line in re_filterfile
+#     for 2.9.10 beta
+#
+#     Revision 1.13  2001/10/13 13:11:20  joergs
+#     Fixed WebBug filter.
+#
+#     Revision 1.12  2001/10/07 15:46:42  oes
+#     Followed Guy's proposal to change the document.cookie job
+#
+#     Revision 1.11  2001/09/21 12:34:00  joergs
+#     Added filter to replace "Nimda" code by a warning.
+#
+#     Revision 1.10  2001/07/20 11:04:26  oes
+#     Added Rodneys javascript cookie filter
+#
+#     Revision 1.9  2001/07/13 14:03:48  oes
+#     Elimiated yet another bug in the banner-by-size jobs. Shame on me!
+#
+#     Revision 1.8  2001/06/29 13:34:00  oes
+#     - Added explanation for U and T options
+#     - Added hint on image replacement by CGI call
+#     - Fixed bug in banner-by-size jobs
+#
+#     Revision 1.7  2001/06/19 14:21:56  oes
+#     Fixed microsuck line
+#
+#     Revision 1.6  2001/06/09 14:01:57  swa
+#     header. cosmetics. default: no messing ala microsuck.
+#

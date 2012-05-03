@@ -1,0 +1,321 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Privoxy's Template Files</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Privoxy 3.0.12 User Manual"
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="Filter Files"
+HREF="filter-file.html"><LINK
+REL="NEXT"
+TITLE="Contacting the Developers, Bug Reporting and Feature
+Requests"
+HREF="contact.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="../p_doc.css"><META
+HTTP-EQUIV="Content-Type"
+CONTENT="text/html;
+charset=ISO-8859-1">
+<LINK REL="STYLESHEET" TYPE="text/css" HREF="p_doc.css">
+</head
+><BODY
+CLASS="SECT1"
+BGCOLOR="#EEEEEE"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Privoxy 3.0.12 User Manual</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="filter-file.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="contact.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="TEMPLATES"
+>10. Privoxy's Template Files</A
+></H1
+><P
+> All <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> built-in pages, i.e. error pages such as the 
+ <A
+HREF="http://show-the-404-error.page"
+TARGET="_top"
+><SPAN
+CLASS="QUOTE"
+>"404 - No Such Domain"</SPAN
+>
+ error page</A
+>, the <A
+HREF="http://ads.bannerserver.example.com/nasty-ads/sponsor.html"
+TARGET="_top"
+><SPAN
+CLASS="QUOTE"
+>"BLOCKED"</SPAN
+>
+ page</A
+>
+ and all pages of its <A
+HREF="http://config.privoxy.org/"
+TARGET="_top"
+>web-based
+ user interface</A
+>, are generated from <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>templates</I
+></SPAN
+>. 
+ (<SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> must be running for the above links to work as
+ intended.)</P
+><P
+> These templates are stored in a subdirectory of the <A
+HREF="config.html#CONFDIR"
+>configuration
+ directory</A
+> called <TT
+CLASS="FILENAME"
+>templates</TT
+>. On Unixish platforms,
+ this is typically
+ <A
+HREF="file:///etc/privoxy/templates/"
+TARGET="_top"
+><TT
+CLASS="FILENAME"
+>/etc/privoxy/templates/</TT
+></A
+>.</P
+><P
+> The templates are basically normal HTML files, but with place-holders (called symbols
+ or exports), which <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> fills at run time. It
+ is possible to edit the templates with a normal text editor, should you want
+ to customize them. (<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Not recommended for the casual
+ user</I
+></SPAN
+>). Should you create your own custom templates, you should use 
+ the <TT
+CLASS="FILENAME"
+>config</TT
+> setting <A
+HREF="config.html#TEMPLDIR"
+>templdir</A
+>
+ to specify an alternate location, so your templates do not get overwritten
+ during upgrades. 
+ </P
+><P
+> Note that just like in configuration files, lines starting
+ with <TT
+CLASS="LITERAL"
+>#</TT
+> are ignored when the templates are filled in.</P
+><P
+> The place-holders are of the form <TT
+CLASS="LITERAL"
+>@name@</TT
+>, and you will
+ find a list of available symbols, which vary from template to template,
+ in the comments at the start of each file. Note that these comments are not
+ always accurate, and that it's probably best to look at the existing HTML
+ code to find out which symbols are supported and what they are filled in with.</P
+><P
+> A special application of this substitution mechanism is to make whole
+ blocks of HTML code disappear when a specific symbol is set. We use this
+ for many purposes, one of them being to include the beta warning in all
+ our user interface (CGI) pages when <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>
+ is in an alpha or beta development stage:</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>&#60;!-- @if-unstable-start --&#62;
+
+  ... beta warning HTML code goes here ...
+
+&#60;!-- if-unstable-end@ --&#62;</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> If the "unstable" symbol is set, everything in between and including
+ <TT
+CLASS="LITERAL"
+>@if-unstable-start</TT
+> and <TT
+CLASS="LITERAL"
+>if-unstable-end@</TT
+>
+ will disappear, leaving nothing but an empty comment:</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>&#60;!--  --&#62;</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> There's also an if-then-else construct and an <TT
+CLASS="LITERAL"
+>#include</TT
+>
+ mechanism, but you'll sure find out if you are inclined to edit the
+ templates ;-)</P
+><P
+> All templates refer to a style located at
+ <A
+HREF="http://config.privoxy.org/send-stylesheet"
+TARGET="_top"
+><TT
+CLASS="LITERAL"
+>http://config.privoxy.org/send-stylesheet</TT
+></A
+>.
+ This is, of course, locally served by <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>
+ and the source for it can be found and edited in the
+ <TT
+CLASS="FILENAME"
+>cgi-style.css</TT
+> template.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="filter-file.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="contact.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Filter Files</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Contacting the Developers, Bug Reporting and Feature
+Requests</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

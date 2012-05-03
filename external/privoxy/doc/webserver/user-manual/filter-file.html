@@ -1,0 +1,1652 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Filter Files</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Privoxy 3.0.12 User Manual"
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="Actions Files"
+HREF="actions-file.html"><LINK
+REL="NEXT"
+TITLE="Privoxy's Template Files"
+HREF="templates.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="../p_doc.css"><META
+HTTP-EQUIV="Content-Type"
+CONTENT="text/html;
+charset=ISO-8859-1">
+<LINK REL="STYLESHEET" TYPE="text/css" HREF="p_doc.css">
+</head
+><BODY
+CLASS="SECT1"
+BGCOLOR="#EEEEEE"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Privoxy 3.0.12 User Manual</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="actions-file.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="templates.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="FILTER-FILE"
+>9. Filter Files</A
+></H1
+><P
+> On-the-fly text substitutions need
+ to be defined in a <SPAN
+CLASS="QUOTE"
+>"filter file"</SPAN
+>. Once defined, they 
+ can then be invoked as an <SPAN
+CLASS="QUOTE"
+>"action"</SPAN
+>.</P
+><P
+> <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> supports three different filter actions:
+ <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#FILTER"
+>filter</A
+></TT
+> to
+ rewrite the content that is send to the client,
+ <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#CLIENT-HEADER-FILTER"
+>client-header-filter</A
+></TT
+>
+ to rewrite headers that are send by the client, and
+ <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#SERVER-HEADER-FILTER"
+>server-header-filter</A
+></TT
+>
+ to rewrite headers that are send by the server.</P
+><P
+> <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> also supports two tagger actions:
+ <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#CLIENT-HEADER-TAGGER"
+>client-header-tagger</A
+></TT
+>
+ and
+ <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#SERVER-HEADER-TAGGER"
+>server-header-tagger</A
+></TT
+>.
+ Taggers and filters use the same syntax in the filter files, the difference
+ is that taggers don't modify the text they are filtering, but use a rewritten
+ version of the filtered text as tag. The tags can then be used to change the
+ applying actions through sections with <A
+HREF="actions-file.html#TAG-PATTERN"
+>tag-patterns</A
+>.</P
+><P
+> Multiple filter files can be defined through the <TT
+CLASS="LITERAL"
+> <A
+HREF="config.html#FILTERFILE"
+>filterfile</A
+></TT
+> config directive. The filters
+ as supplied by the developers are located in
+ <TT
+CLASS="FILENAME"
+>default.filter</TT
+>. It is recommended that any locally
+ defined or modified filters go in a separately defined file such as
+ <TT
+CLASS="FILENAME"
+>user.filter</TT
+>.
+ </P
+><P
+> Common tasks for content filters are to eliminate common annoyances in
+ HTML and JavaScript, such as pop-up windows,
+ exit consoles, crippled windows without navigation tools, the
+ infamous &#60;BLINK&#62; tag etc, to suppress images with certain
+ width and height attributes (standard banner sizes or web-bugs),
+ or just to have fun.</P
+><P
+> Enabled content filters are applied to any content whose
+ <SPAN
+CLASS="QUOTE"
+>"Content Type"</SPAN
+> header is recognised as a sign
+ of text-based content, with the exception of <TT
+CLASS="LITERAL"
+>text/plain</TT
+>.
+ Use the <A
+HREF="actions-file.html#FORCE-TEXT-MODE"
+>force-text-mode</A
+> action
+ to also filter other content.</P
+><P
+> Substitutions are made at the source level, so if you want to <SPAN
+CLASS="QUOTE"
+>"roll
+ your own"</SPAN
+> filters, you should first be familiar with HTML syntax, 
+ and, of course, regular expressions.</P
+><P
+> Just like the <A
+HREF="actions-file.html"
+>actions files</A
+>, the
+ filter file is organized in sections, which are called <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>filters</I
+></SPAN
+>
+ here. Each filter consists of a heading line, that starts with one of the
+ <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>keywords</I
+></SPAN
+> <TT
+CLASS="LITERAL"
+>FILTER:</TT
+>,
+ <TT
+CLASS="LITERAL"
+>CLIENT-HEADER-FILTER:</TT
+> or <TT
+CLASS="LITERAL"
+>SERVER-HEADER-FILTER:</TT
+>
+ followed by the filter's <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>name</I
+></SPAN
+>, and a short (one line) 
+ <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>description</I
+></SPAN
+> of what it does. Below that line
+ come the <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>jobs</I
+></SPAN
+>, i.e. lines that define the actual
+ text substitutions. By convention, the name of a filter
+ should describe what the filter <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>eliminates</I
+></SPAN
+>. The
+ comment is used in the <A
+HREF="http://config.privoxy.org/"
+TARGET="_top"
+>web-based
+ user interface</A
+>.</P
+><P
+> Once a filter called <TT
+CLASS="REPLACEABLE"
+><I
+>name</I
+></TT
+> has been defined
+ in the filter file, it can be invoked by using an action of the form
+ +<TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#FILTER"
+>filter</A
+>{<TT
+CLASS="REPLACEABLE"
+><I
+>name</I
+></TT
+>}</TT
+>
+ in any <A
+HREF="actions-file.html"
+>actions file</A
+>.</P
+><P
+> Filter definitions start with a header line that contains the filter
+ type, the filter name and the filter description.
+ A content filter header line for a filter called <SPAN
+CLASS="QUOTE"
+>"foo"</SPAN
+> could look
+ like this:</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>FILTER: foo Replace all "foo" with "bar"</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> Below that line, and up to the next header line, come the jobs that
+ define what text replacements the filter executes. They are specified
+ in a syntax that imitates <A
+HREF="http://www.perl.org/"
+TARGET="_top"
+>Perl</A
+>'s
+ <TT
+CLASS="LITERAL"
+>s///</TT
+> operator. If you are familiar with Perl, you
+ will find this to be quite intuitive, and may want to look at the
+ PCRS documentation for the subtle differences to Perl behaviour. Most
+ notably, the non-standard option letter <TT
+CLASS="LITERAL"
+>U</TT
+> is supported,
+ which turns the default to ungreedy matching.</P
+><P
+> If you are new to 
+  <A
+HREF="http://en.wikipedia.org/wiki/Regular_expressions"
+TARGET="_top"
+><SPAN
+CLASS="QUOTE"
+>"Regular
+  Expressions"</SPAN
+></A
+>, you might want to take a look at
+ the <A
+HREF="appendix.html#REGEX"
+>Appendix on regular expressions</A
+>, and
+ see the <A
+HREF="http://perldoc.perl.org/perlre.html"
+TARGET="_top"
+>Perl
+ manual</A
+> for
+ <A
+HREF="http://perldoc.perl.org/perlop.html"
+TARGET="_top"
+>the 
+ <TT
+CLASS="LITERAL"
+>s///</TT
+> operator's syntax</A
+> and <A
+HREF="http://perldoc.perl.org/perlre.html"
+TARGET="_top"
+>Perl-style regular
+ expressions</A
+> in general.
+ The below examples might also help to get you started.</P
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN4447"
+>9.1. Filter File Tutorial</A
+></H2
+><P
+> Now, let's complete our <SPAN
+CLASS="QUOTE"
+>"foo"</SPAN
+> content filter. We have already defined
+ the heading, but the jobs are still missing. Since all it does is to replace
+ <SPAN
+CLASS="QUOTE"
+>"foo"</SPAN
+> with <SPAN
+CLASS="QUOTE"
+>"bar"</SPAN
+>, there is only one (trivial) job
+ needed:</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>s/foo/bar/</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> But wait! Didn't the comment say that <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>all</I
+></SPAN
+> occurrences
+ of <SPAN
+CLASS="QUOTE"
+>"foo"</SPAN
+> should be replaced? Our current job will only take
+ care of the first <SPAN
+CLASS="QUOTE"
+>"foo"</SPAN
+> on each page. For global substitution,
+ we'll need to add the <TT
+CLASS="LITERAL"
+>g</TT
+> option:</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>s/foo/bar/g</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> Our complete filter now looks like this:</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>FILTER: foo Replace all "foo" with "bar"
+s/foo/bar/g</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> Let's look at some real filters for more interesting examples. Here you see
+ a filter that protects against some common annoyances that arise from JavaScript
+ abuse. Let's look at its jobs one after the other:</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>FILTER: js-annoyances Get rid of particularly annoying JavaScript abuse
+
+# Get rid of JavaScript referrer tracking. Test page: http://www.randomoddness.com/untitled.htm
+#
+s|(&#60;script.*)document\.referrer(.*&#60;/script&#62;)|$1"Not Your Business!"$2|Usg</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> Following the header line and a comment, you see the job. Note that it uses
+ <TT
+CLASS="LITERAL"
+>|</TT
+> as the delimiter instead of <TT
+CLASS="LITERAL"
+>/</TT
+>, because
+ the pattern contains a forward slash, which would otherwise have to be escaped
+ by a backslash (<TT
+CLASS="LITERAL"
+>\</TT
+>).</P
+><P
+> Now, let's examine the pattern: it starts with the text <TT
+CLASS="LITERAL"
+>&#60;script.*</TT
+>
+ enclosed in parentheses. Since the dot matches any character, and <TT
+CLASS="LITERAL"
+>*</TT
+>
+ means: <SPAN
+CLASS="QUOTE"
+>"Match an arbitrary number of the element left of myself"</SPAN
+>, this
+ matches <SPAN
+CLASS="QUOTE"
+>"&#60;script"</SPAN
+>, followed by <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>any</I
+></SPAN
+> text, i.e.
+ it matches the whole page, from the start of the first &#60;script&#62; tag.</P
+><P
+> That's more than we want, but the pattern continues: <TT
+CLASS="LITERAL"
+>document\.referrer</TT
+>
+ matches only the exact string <SPAN
+CLASS="QUOTE"
+>"document.referrer"</SPAN
+>. The dot needed to
+ be <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>escaped</I
+></SPAN
+>, i.e. preceded by a backslash, to take away its
+ special meaning as a joker, and make it just a regular dot. So far, the meaning is:
+ Match from the start of the first &#60;script&#62; tag in a the page, up to, and including,
+ the text <SPAN
+CLASS="QUOTE"
+>"document.referrer"</SPAN
+>, if <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>both</I
+></SPAN
+> are present
+ in the page (and appear in that order).</P
+><P
+> But there's still more pattern to go. The next element, again enclosed in parentheses,
+ is <TT
+CLASS="LITERAL"
+>.*&#60;/script&#62;</TT
+>. You already know what <TT
+CLASS="LITERAL"
+>.*</TT
+>
+ means, so the whole pattern translates to: Match from the start of the first  &#60;script&#62;
+ tag in a page to the end of the last &#60;script&#62; tag, provided that the text
+ <SPAN
+CLASS="QUOTE"
+>"document.referrer"</SPAN
+> appears somewhere in between.</P
+><P
+> This is still not the whole story, since we have ignored the options and the parentheses:
+ The portions of the page matched by sub-patterns that are enclosed in parentheses, will be
+ remembered and be available through the variables <TT
+CLASS="LITERAL"
+>$1, $2, ...</TT
+> in
+ the substitute. The <TT
+CLASS="LITERAL"
+>U</TT
+> option switches to ungreedy matching, which means
+ that the first <TT
+CLASS="LITERAL"
+>.*</TT
+> in the pattern will only <SPAN
+CLASS="QUOTE"
+>"eat up"</SPAN
+> all
+ text in between <SPAN
+CLASS="QUOTE"
+>"&#60;script"</SPAN
+> and the <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>first</I
+></SPAN
+> occurrence
+ of <SPAN
+CLASS="QUOTE"
+>"document.referrer"</SPAN
+>, and that the second <TT
+CLASS="LITERAL"
+>.*</TT
+> will
+ only span the text up to the <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>first</I
+></SPAN
+> <SPAN
+CLASS="QUOTE"
+>"&#60;/script&#62;"</SPAN
+>
+ tag. Furthermore, the <TT
+CLASS="LITERAL"
+>s</TT
+> option says that the match may span
+ multiple lines in the page, and the <TT
+CLASS="LITERAL"
+>g</TT
+> option again means that the
+ substitution is global.</P
+><P
+> So, to summarize, the pattern means: Match all scripts that contain the text
+ <SPAN
+CLASS="QUOTE"
+>"document.referrer"</SPAN
+>. Remember the parts of the script from
+ (and including) the start tag up to (and excluding) the string
+ <SPAN
+CLASS="QUOTE"
+>"document.referrer"</SPAN
+> as <TT
+CLASS="LITERAL"
+>$1</TT
+>, and the part following
+ that string, up to and including the closing tag, as <TT
+CLASS="LITERAL"
+>$2</TT
+>.</P
+><P
+> Now the pattern is deciphered, but wasn't this about substituting things? So
+ lets look at the substitute: <TT
+CLASS="LITERAL"
+>$1"Not Your Business!"$2</TT
+> is
+ easy to read: The text remembered as <TT
+CLASS="LITERAL"
+>$1</TT
+>, followed by 
+ <TT
+CLASS="LITERAL"
+>"Not Your Business!"</TT
+> (<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>including</I
+></SPAN
+>
+ the quotation marks!), followed by the text remembered as <TT
+CLASS="LITERAL"
+>$2</TT
+>.
+ This produces an exact copy of the original string, with the middle part
+ (the <SPAN
+CLASS="QUOTE"
+>"document.referrer"</SPAN
+>) replaced by <TT
+CLASS="LITERAL"
+>"Not Your
+ Business!"</TT
+>.</P
+><P
+> The whole job now reads: Replace <SPAN
+CLASS="QUOTE"
+>"document.referrer"</SPAN
+> by
+ <TT
+CLASS="LITERAL"
+>"Not Your Business!"</TT
+> wherever it appears inside a
+ &#60;script&#62; tag. Note that this job won't break JavaScript syntax,
+ since both the original and the replacement are syntactically valid
+ string objects. The script just won't have access to the referrer
+ information anymore.</P
+><P
+> We'll show you two other jobs from the JavaScript taming department, but
+ this time only point out the constructs of special interest:</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+># The status bar is for displaying link targets, not pointless blahblah
+#
+s/window\.status\s*=\s*(['"]).*?\1/dUmMy=1/ig</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> <TT
+CLASS="LITERAL"
+>\s</TT
+> stands for whitespace characters (space, tab, newline,
+ carriage return, form feed), so that <TT
+CLASS="LITERAL"
+>\s*</TT
+> means: <SPAN
+CLASS="QUOTE"
+>"zero
+ or more whitespace"</SPAN
+>. The <TT
+CLASS="LITERAL"
+>?</TT
+> in <TT
+CLASS="LITERAL"
+>.*?</TT
+>
+ makes this matching of arbitrary text ungreedy. (Note that the <TT
+CLASS="LITERAL"
+>U</TT
+>
+ option is not set). The <TT
+CLASS="LITERAL"
+>['"]</TT
+> construct means: <SPAN
+CLASS="QUOTE"
+>"a single
+ <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>or</I
+></SPAN
+> a double quote"</SPAN
+>. Finally, <TT
+CLASS="LITERAL"
+>\1</TT
+> is
+ a back-reference to the first parenthesis just like <TT
+CLASS="LITERAL"
+>$1</TT
+> above,
+ with the difference that in the <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>pattern</I
+></SPAN
+>, a backslash indicates
+ a back-reference, whereas in the <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>substitute</I
+></SPAN
+>, it's the dollar.</P
+><P
+> So what does this job do? It replaces assignments of single- or double-quoted
+ strings to the <SPAN
+CLASS="QUOTE"
+>"window.status"</SPAN
+> object with a dummy assignment
+ (using a variable name that is hopefully odd enough not to conflict with
+ real variables in scripts). Thus, it catches many cases where e.g. pointless
+ descriptions are displayed in the status bar instead of the link target when
+ you move your mouse over links.</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+># Kill OnUnload popups. Yummy. Test: http://www.zdnet.com/zdsubs/yahoo/tree/yfs.html
+#
+s/(&#60;body [^&#62;]*)onunload(.*&#62;)/$1never$2/iU</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> Including the
+ <A
+HREF="http://www.w3.org/TR/2000/REC-DOM-Level-2-Events-20001113/events.html#Events-eventgroupings-htmlevents"
+TARGET="_top"
+>OnUnload
+ event binding</A
+> in the HTML DOM was a <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>CRIME</I
+></SPAN
+>.
+ When I close a browser window, I want it to close and die. Basta.
+ This job replaces the <SPAN
+CLASS="QUOTE"
+>"onunload"</SPAN
+> attribute in
+ <SPAN
+CLASS="QUOTE"
+>"&#60;body&#62;"</SPAN
+> tags with the dummy word <TT
+CLASS="LITERAL"
+>never</TT
+>.
+ Note that the <TT
+CLASS="LITERAL"
+>i</TT
+> option makes the pattern matching
+ case-insensitive. Also note that ungreedy matching alone doesn't always guarantee
+ a minimal match: In the first parenthesis, we had to use <TT
+CLASS="LITERAL"
+>[^&#62;]*</TT
+>
+ instead of <TT
+CLASS="LITERAL"
+>.*</TT
+> to prevent the match from exceeding the 
+ &#60;body&#62; tag if it doesn't contain <SPAN
+CLASS="QUOTE"
+>"OnUnload"</SPAN
+>, but the page's
+ content does.</P
+><P
+> The last example is from the fun department:</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>FILTER: fun Fun text replacements
+
+# Spice the daily news:
+#
+s/microsoft(?!\.com)/MicroSuck/ig</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> Note the <TT
+CLASS="LITERAL"
+>(?!\.com)</TT
+> part (a so-called negative lookahead)
+ in the job's pattern, which means: Don't match, if the string 
+ <SPAN
+CLASS="QUOTE"
+>".com"</SPAN
+> appears directly following <SPAN
+CLASS="QUOTE"
+>"microsoft"</SPAN
+>
+ in the page. This prevents links to microsoft.com from being trashed, while
+ still replacing the word everywhere else.</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+># Buzzword Bingo (example for extended regex syntax)
+#
+s* industry[ -]leading \
+|  cutting[ -]edge \
+|  customer[ -]focused \
+|  market[ -]driven \
+|  award[ -]winning # Comments are OK, too! \
+|  high[ -]performance \
+|  solutions[ -]based \
+|  unmatched \
+|  unparalleled \
+|  unrivalled \
+*&#60;font color="red"&#62;&#60;b&#62;BINGO!&#60;/b&#62;&#60;/font&#62; \
+*igx</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> The <TT
+CLASS="LITERAL"
+>x</TT
+> option in this job turns on extended syntax, and allows for
+ e.g. the liberal use of (non-interpreted!) whitespace for nicer formatting. </P
+><P
+> You get the idea?</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="PREDEFINED-FILTERS"
+>9.2. The Pre-defined Filters</A
+></H2
+><P
+>The distribution <TT
+CLASS="FILENAME"
+>default.filter</TT
+> file contains a selection of
+pre-defined filters for your convenience:</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>js-annoyances</I
+></SPAN
+></DT
+><DD
+><P
+>    The purpose of this filter is to get rid of particularly annoying JavaScript abuse.
+    To that end, it
+   <P
+></P
+><UL
+><LI
+><P
+>      replaces JavaScript references to the browser's referrer information
+      with the string "Not Your Business!". This compliments the <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#HIDE-REFERRER"
+>hide-referrer</A
+></TT
+> action on the content level.
+     </P
+></LI
+><LI
+><P
+>      removes the bindings to the DOM's
+      <A
+HREF="http://www.w3.org/TR/2000/REC-DOM-Level-2-Events-20001113/events.html#Events-eventgroupings-htmlevents"
+TARGET="_top"
+>unload
+      event</A
+> which we feel has no right to exist and is responsible for most <SPAN
+CLASS="QUOTE"
+>"exit consoles"</SPAN
+>, i.e.
+      nasty windows that pop up when you close another one.
+     </P
+></LI
+><LI
+><P
+>      removes code that causes new windows to be opened with undesired properties, such as being
+      full-screen, non-resizeable, without location, status or menu bar etc.
+     </P
+></LI
+></UL
+>
+   </P
+><P
+>    Use with caution. This is an aggressive filter, and can break sites that 
+    rely heavily on JavaScript.
+   </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>js-events</I
+></SPAN
+></DT
+><DD
+><P
+>    This is a very radical measure. It removes virtually all JavaScript event bindings, which
+    means that scripts can not react to user actions such as mouse movements or clicks, window
+    resizing etc, anymore. Use with caution!
+   </P
+><P
+>    We <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>strongly discourage</I
+></SPAN
+> using this filter as a default since it breaks
+    many legitimate scripts. It is meant for use only on extra-nasty sites (should you really
+    need to go there).
+   </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>html-annoyances</I
+></SPAN
+></DT
+><DD
+><P
+>    This filter will undo many common instances of HTML based abuse.
+   </P
+><P
+>    The <TT
+CLASS="LITERAL"
+>BLINK</TT
+> and <TT
+CLASS="LITERAL"
+>MARQUEE</TT
+> tags 
+    are neutralized (yeah baby!), and browser windows will be created as
+    resizeable (as of course they should be!), and will have location,
+    scroll and menu bars -- even if specified otherwise.
+   </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>content-cookies</I
+></SPAN
+></DT
+><DD
+><P
+>    Most cookies are set in the HTTP dialog, where they can be intercepted
+    by the
+    <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#CRUNCH-INCOMING-COOKIES"
+>crunch-incoming-cookies</A
+></TT
+>
+    and <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#CRUNCH-OUTGOING-COOKIES"
+>crunch-outgoing-cookies</A
+></TT
+>
+    actions. But web sites increasingly make use of HTML meta tags and JavaScript
+    to sneak cookies to the browser on the content level.
+   </P
+><P
+>    This filter disables most HTML and JavaScript code that reads or sets
+    cookies. It cannot detect all clever uses of these types of code, so it 
+    should not be relied on as an absolute fix. Use it wherever you would also
+    use the cookie crunch actions. 
+   </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>refresh tags</I
+></SPAN
+></DT
+><DD
+><P
+>    Disable any refresh tags if the interval is greater than nine seconds (so 
+    that redirections done via refresh tags are not destroyed). This is useful 
+    for dial-on-demand setups, or for those who find this HTML feature
+    annoying.
+   </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>unsolicited-popups</I
+></SPAN
+></DT
+><DD
+><P
+>    This filter attempts to prevent only <SPAN
+CLASS="QUOTE"
+>"unsolicited"</SPAN
+> pop-up 
+    windows from opening, yet still allow pop-up windows that the user 
+    has explicitly chosen to open. It was added in version 3.0.1, 
+    as an improvement over earlier such filters.
+   </P
+><P
+>    Technical note: The filter works by redefining the window.open JavaScript
+    function to a dummy function, <TT
+CLASS="LITERAL"
+>PrivoxyWindowOpen()</TT
+>,
+    during the loading and rendering phase of each HTML page access, and
+    restoring the function afterward.
+   </P
+><P
+>    This is recommended only for browsers that cannot perform this function
+    reliably themselves. And be aware that some sites require such windows 
+    in order to function normally. Use with caution.
+   </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>all-popups</I
+></SPAN
+></DT
+><DD
+><P
+>    Attempt to prevent <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>all</I
+></SPAN
+> pop-up windows from opening.
+    Note this should be used with even more discretion than the above, since
+    it is more likely to break some sites that require pop-ups for normal
+    usage. Use with caution.
+   </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>img-reorder</I
+></SPAN
+></DT
+><DD
+><P
+>    This is a helper filter that has no value if used alone. It makes the
+    <TT
+CLASS="LITERAL"
+>banners-by-size</TT
+> and <TT
+CLASS="LITERAL"
+>banners-by-link</TT
+>
+    (see below) filters more effective and should be enabled together with them.
+   </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>banners-by-size</I
+></SPAN
+></DT
+><DD
+><P
+>    This filter removes image tags purely based on what size they are. Fortunately 
+    for us, many ads and banner images tend to conform to certain standardized
+    sizes, which makes this filter quite effective for ad stripping purposes.
+   </P
+><P
+>    Occasionally this filter will cause false positives on images that are not ads,
+    but just happen to be of one of the standard banner sizes.
+   </P
+><P
+>    Recommended only for those who require extreme ad blocking. The default 
+    block rules should catch 95+% of all ads <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>without</I
+></SPAN
+> this filter enabled.
+   </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>banners-by-link</I
+></SPAN
+></DT
+><DD
+><P
+>    This is an experimental filter that attempts to kill any banners if 
+    their URLs seem to point to known or suspected click trackers. It is currently
+    not of much value and is not recommended for use by default.
+   </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>webbugs</I
+></SPAN
+></DT
+><DD
+><P
+>    Webbugs are small, invisible images (technically 1X1 GIF images), that 
+    are used to track users across websites, and collect information on them.
+    As an HTML page is loaded by the browser, an embedded image tag causes the
+    browser to contact a third-party site, disclosing the tracking information
+    through the requested URL and/or cookies for that third-party domain, without
+    the user ever becoming aware of the interaction with the third-party site.
+    HTML-ized spam also uses a similar technique to verify email addresses.
+   </P
+><P
+>    This filter removes the HTML code that loads such <SPAN
+CLASS="QUOTE"
+>"webbugs"</SPAN
+>.
+   </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>tiny-textforms</I
+></SPAN
+></DT
+><DD
+><P
+>    A rather special-purpose filter that can be used to enlarge textareas (those
+    multi-line text boxes in web forms) and turn off hard word wrap in them. 
+    It was written for the sourceforge.net tracker system where such boxes are
+    a nuisance, but it can be handy on other sites, too.
+   </P
+><P
+>    It is not recommended to use this filter as a default.
+   </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>jumping-windows</I
+></SPAN
+></DT
+><DD
+><P
+>    Many consider windows that move, or resize themselves to be abusive. This filter
+    neutralizes the related JavaScript code. Note that some sites might not display
+    or behave as intended when using this filter. Use with caution.
+   </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>frameset-borders</I
+></SPAN
+></DT
+><DD
+><P
+>    Some web designers seem to assume that everyone in the world will view their
+    web sites using the same browser brand and version, screen resolution etc,
+    because only that assumption could explain why they'd use static frame sizes,
+    yet prevent their frames from being resized by the user, should they be too
+    small to show their whole content.
+   </P
+><P
+>    This filter removes the related HTML code. It should only be applied to sites
+    which need it.
+   </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>demoronizer</I
+></SPAN
+></DT
+><DD
+><P
+>    Many Microsoft products that generate HTML use non-standard extensions (read:
+    violations) of the ISO 8859-1 aka Latin-1 character set. This can cause those
+    HTML documents to display with errors on standard-compliant platforms. 
+   </P
+><P
+>    This filter translates the MS-only characters into Latin-1 equivalents. 
+    It is not necessary when using MS products, and will cause corruption of  
+    all documents that use 8-bit character sets other than Latin-1. It's mostly
+    worthwhile for Europeans on non-MS platforms, if weird garbage characters
+    sometimes appear on some pages, or user agents that don't correct for this on 
+    the fly.
+ 
+   </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>shockwave-flash</I
+></SPAN
+></DT
+><DD
+><P
+>    A filter for shockwave haters. As the name suggests, this filter strips code
+    out of web pages that is used to embed shockwave flash objects. 
+   </P
+><P
+>   </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>quicktime-kioskmode</I
+></SPAN
+></DT
+><DD
+><P
+>    Change HTML code that embeds Quicktime objects so that kioskmode, which
+    prevents saving, is disabled.
+   </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>fun</I
+></SPAN
+></DT
+><DD
+><P
+>    Text replacements for subversive browsing fun. Make fun of your favorite
+    Monopolist or play buzzword bingo.
+   </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>crude-parental</I
+></SPAN
+></DT
+><DD
+><P
+>    A demonstration-only filter that shows how <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>
+    can be used to delete web content on a keyword basis.
+   </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>ie-exploits</I
+></SPAN
+></DT
+><DD
+><P
+>    An experimental collection of text replacements to disable malicious HTML and JavaScript
+    code that exploits known security holes in Internet Explorer.
+   </P
+><P
+>    Presently, it only protects against Nimda and a cross-site scripting bug, and
+    would need active maintenance to provide more substantial protection.
+   </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>site-specifics</I
+></SPAN
+></DT
+><DD
+><P
+>    Some web sites have very specific problems, the cure for which doesn't apply
+    anywhere else, or could even cause damage on other sites.
+   </P
+><P
+>    This is a collection of such site-specific cures which should only be applied
+    to the sites they were intended for, which is what the supplied
+    <TT
+CLASS="FILENAME"
+>default.action</TT
+> file does. Users shouldn't need to change
+    anything regarding this filter.
+   </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>google</I
+></SPAN
+></DT
+><DD
+><P
+>    A CSS based block for Google text ads. Also removes a width limitation
+    and the toolbar advertisement.
+   </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>yahoo</I
+></SPAN
+></DT
+><DD
+><P
+>    Another CSS based block, this time for Yahoo text ads. And removes 
+    a width limitation as well.
+   </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>msn</I
+></SPAN
+></DT
+><DD
+><P
+>    Another CSS based block, this time for MSN text ads. And removes 
+    tracking URLs, as well as a width limitation.
+   </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>blogspot</I
+></SPAN
+></DT
+><DD
+><P
+>    Cleans up some Blogspot blogs. Read the fine print before using this one!
+   </P
+><P
+>    This filter also intentionally removes some navigation stuff and sets the
+    page width to 100%. As a result, some rounded <SPAN
+CLASS="QUOTE"
+>"corners"</SPAN
+> would
+    appear to early or not at all and as fixing this would require a browser
+    that understands background-size (CSS3), they are removed instead.
+   </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>xml-to-html</I
+></SPAN
+></DT
+><DD
+><P
+>    Server-header filter to change the Content-Type from xml to html.
+   </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>html-to-xml</I
+></SPAN
+></DT
+><DD
+><P
+>    Server-header filter to change the Content-Type from html to xml.
+   </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>no-ping</I
+></SPAN
+></DT
+><DD
+><P
+>    Removes the non-standard <TT
+CLASS="LITERAL"
+>ping</TT
+> attribute from
+    anchor and area HTML tags.
+   </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>hide-tor-exit-notation</I
+></SPAN
+></DT
+><DD
+><P
+>    Client-header filter to remove the <B
+CLASS="COMMAND"
+>Tor</B
+> exit node notation
+    found in Host and Referer headers.
+   </P
+><P
+>    If <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> and <B
+CLASS="COMMAND"
+>Tor</B
+> are chained and <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>
+    is configured to use socks4a, one can use <SPAN
+CLASS="QUOTE"
+>"http://www.example.org.foobar.exit/"</SPAN
+>
+    to access the host <SPAN
+CLASS="QUOTE"
+>"www.example.org"</SPAN
+> through the
+    <B
+CLASS="COMMAND"
+>Tor</B
+> exit node <SPAN
+CLASS="QUOTE"
+>"foobar"</SPAN
+>.
+   </P
+><P
+>    As the HTTP client isn't aware of this notation, it treats the
+    whole string <SPAN
+CLASS="QUOTE"
+>"www.example.org.foobar.exit"</SPAN
+> as host and uses it
+    for the <SPAN
+CLASS="QUOTE"
+>"Host"</SPAN
+> and <SPAN
+CLASS="QUOTE"
+>"Referer"</SPAN
+> headers. From the
+    server's point of view the resulting headers are invalid and can cause problems.
+   </P
+><P
+>    An invalid <SPAN
+CLASS="QUOTE"
+>"Referer"</SPAN
+> header can trigger <SPAN
+CLASS="QUOTE"
+>"hot-linking"</SPAN
+>
+    protections, an invalid <SPAN
+CLASS="QUOTE"
+>"Host"</SPAN
+> header will make it impossible for
+    the server to find the right vhost (several domains hosted on the same IP address).
+   </P
+><P
+>    This client-header filter removes the <SPAN
+CLASS="QUOTE"
+>"foo.exit"</SPAN
+> part in those headers
+    to prevent the mentioned problems. Note that it only modifies
+    the HTTP headers, it doesn't make it impossible for the server
+    to detect your <B
+CLASS="COMMAND"
+>Tor</B
+> exit node based on the IP address
+    the request is coming from.
+   </P
+></DD
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="actions-file.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="templates.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Actions Files</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Privoxy's Template Files</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

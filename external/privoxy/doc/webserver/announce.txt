@@ -1,0 +1,126 @@
+                 Announcing Privoxy v.3.0.12
+-----------------------------------------------------------------
+
+Privoxy 3.0.12-stable is primarily a bugfix release.
+
+See http://www.privoxy.org/3.0.12/user-manual/whatsnew.html for details.
+
+--------------------------------------------------------------------
+ChangeLog for Privoxy
+--------------------------------------------------------------------
+*** Version 3.0.12  ***
+
+- The socket-timeout option now also works on platforms whose
+  select() implementation modifies the timeout structure.
+  Previously the timeout was triggered even if the connection
+  didn't stall. Reported by cyberpatrol.
+- The Connection: keep-alive code properly deals with files
+  larger than 2GB. Previously the connection was closed too
+  early.
+- The content length for files above 2GB is logged correctly.
+- The user-manual directive on the show-status page links to
+  the documentation location specified with the directive,
+  not to the Privoxy website.
+- When running in daemon mode, Privoxy doesn't log anything
+  to the console unless there are errors before the logfile
+  has been opened.
+- The show-status page prints warnings about invalid directives
+  on the same line as the directives themselves.
+- Fixed several justified (but harmless) compiler warnings,
+  mostly on 64 bit platforms.
+- The mingw32 version explicitly requests the default charset
+  to prevent display problems with some fonts available on more
+  recent Windows versions. Patch by Burberry.
+- The mingw32 version uses the Privoxy icon in the alt-tab
+  windows. Patch by Burberry.
+- The timestamp and the thread id is omitted in the "Fatal error"
+  message box on mingw32.
+- Fixed two related mingw32-only buffer overflows. Triggering
+  them required control over the configuration file, therefore
+  this isn't seen as a security issue.
+- In verbose mode, or if the new option --show-skipped-tests
+  is used, Privoxy-Regression-Test logs skipped tests and the
+  skip reason.
+
+
+-----------------------------------------------------------------
+About Privoxy:
+-----------------------------------------------------------------
+
+Privoxy is a non-caching web proxy with advanced filtering capabilities for
+enhancing privacy, modifying web page data and HTTP headers, controlling
+access, and removing ads and other obnoxious Internet junk. Privoxy has a
+flexible configuration and can be customized to suit individual needs and
+tastes. It has application for both stand-alone systems and multi-user
+networks.
+
+Privoxy is Free Software and licensed under the GPL2.
+
+Privoxy is an associated project of Software in the Public Interest (SPI).
+Donations are welcome: http://www.privoxy.org/faq/general.html#DONATE
+
+At present, Privoxy is known to run on Windows(95, 98, ME, 2000,
+XP, Vista), Linux (Ubuntu, RedHat, SuSE, Debian, Fedora, Gentoo and
+others), Mac OSX, OS/2, AmigaOS, FreeBSD, NetBSD, OpenBSD, Solaris, and
+various other flavors of Unix.
+
+In addition to the core features of ad blocking and cookie management,
+Privoxy provides many supplemental features, that give the end-user
+more control, more privacy and more freedom:
+
+
+    *  Can keep outgoing connections alive and reuse them later on.
+
+    *  Supports tagging which allows to change the behaviour based on client
+       and server headers.
+
+    *  Can be run as an "intercepting" proxy, which obviates the need to
+       configure browsers individually.
+
+    *  Sophisticated actions and filters for manipulating both server and
+       client headers.
+
+    *  Can be chained with other proxies.
+
+    *  Integrated browser based configuration and control utility at
+       http://config.privoxy.org/ (shortcut: http://p.p/). Browser-based
+       tracing of rule and filter effects. Remote toggling.
+
+    *  Web page filtering (text replacements, removes banners based on size,
+       invisible "web-bugs", JavaScript and HTML annoyances, pop-up windows,
+       etc.)
+
+    *  Modularized configuration that allows for standard settings and user
+       settings to reside in separate files, so that installing updated actions
+       files won't overwrite individual user settings.
+
+    *  Support for Perl Compatible Regular Expressions in the configuration
+       files, and a more sophisticated and flexible configuration syntax.
+
+    *  Improved cookie management features (e.g. session based cookies).
+
+    *  GIF de-animation.
+
+    *  Bypass many click-tracking scripts (avoids script redirection).
+
+    *  Multi-threaded (POSIX and native threads).
+
+    *  User-customizable HTML templates for most proxy-generated pages (e.g.
+       "blocked" page).
+
+    *  Auto-detection and re-reading of config file changes.
+
+    *  Improved signal handling, and a true daemon mode (Unix).
+    
+    *  Every feature now controllable on a per-site or per-location basis,
+       configuration more powerful and versatile over-all.
+    
+
+Download location: 
+   http://sourceforge.net/project/showfiles.php?group_id=11118
+ 
+Home Page: 
+   http://www.privoxy.org/
+
+
+  - Privoxy Developers <ijbswa-developers@lists.sourceforge.net>

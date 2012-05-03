@@ -1,0 +1,80 @@
+
+######################################################################
+    ldp_print -  print tool/script for DocBook SGML/XML documents 
+######################################################################
+
+ Copyright (C) 2002-2000  - Greg Ferguson (gferg@metalab.unc.edu)
+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
+
+######################################################################
+
+This process/script is used in the production environment for the
+LDP.  It relies on the HTMLDOC software package (GPL'ed) which can be
+obtained from the Easy Software Products (c) web site:
+
+        http://www.easysw.com/htmldoc/
+
+This process creates a PDF variant from the single-file HTML
+representation of a DocBook SGML (or XML) instance. The simple
+wrapper script (ldp_print) assumes that the file was created using
+{open}jade in a manner similar to:
+
+        jade -t sgml -i html -V nochunks -d $style $fname > $fname.html
+
+Give the script the filename as an argument. It will then parse the
+file into 'title.html' and 'body.html' and send each to htmldoc (as
+the corresponding title page and body of the document).
+
+
+CAVEATS
+=======
+
+o  Assumes perl is in /usr/bin; adjust if necessary
+
+o  You may need to specify where the htmldoc executable resides.
+   The script assumes it's within your $PATH.
+
+o  If you want Postscript as an output variant, uncomment the
+   appropriate lines (see below).
+
+o  Relies on output from a DocBook instance created via DSSSL/{open}jade!
+
+o  Cleans up (removes) the intermediate files it creates (but not the
+   PDF or Postscript files, obviously!)
+
+o  Works silently; PDF (PostScript) will be created in the same directory
+   as was specified for the input (single-file HTML) file.
+
+o  Provided without warranty or support!
+
+o  I ran into a problem with htmldoc v1.8.8 which required a source
+   code change (I was getting a core dump from the htmldoc process).
+   Here is the change required:
+
+	htmldoc/ps-pdf.cxx :
+	3662,3665d3661
+	<      /* gjf = 11Oct2000 */
+	<      if( temprow == NULL )
+	<          break;
+	< 
+
+   UPDATE (2001-10-10): It appears that later versions of htmldoc
+   have this problem corrected. The patch is not required.
+
+====
+Greg Ferguson / gferg (at) metalab.unc.edu
+11 Jan 2000
+

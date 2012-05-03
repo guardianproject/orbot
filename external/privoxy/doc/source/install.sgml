@@ -1,0 +1,106 @@
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook V3.1//EN" [
+<!entity % dummy "IGNORE"> 
+<!entity buildsource SYSTEM "buildsource.sgml">
+<!entity p-version "3.0.11">
+<!entity p-status "stable">
+<!entity % p-stable "INCLUDE">
+<!entity % p-not-stable "IGNORE">
+<!entity % p-alpha "IGNORE">
+<!entity % p-beta "IGNORE">
+<!entity % p-text "INCLUDE">       <!-- define we are a text only doc    -->
+<!entity % p-doc "IGNORE">         <!-- and never a text doc             -->
+<!entity % p-readme "INCLUDE">     <!-- This is now in INSTALL           -->
+]>
+<!--
+ File        :  $Source: /cvsroot/ijbswa/current/doc/source/install.sgml,v $
+
+ Purpose     :  INSTALL file for Privoxy
+                
+ $Id: install.sgml,v 2.11 2009/02/12 16:08:26 fabiankeil Exp $
+
+ Copyright (C) 2001-2009 Privoxy Developers http://www.privoxy.org/
+ See LICENSE.
+
+ ========================================================================
+ NOTE: Please read developer-manual/documentation.html before touching 
+ anything in this, or other Privoxy documentation. You have been warned!
+ Failure to abide by this rule will result in the revocation of your license 
+ to live a peaceful existence!
+ ========================================================================
+
+ ===================================================================
+ READ: Document Note: This file generates the INSTALL file in the top level
+ source directory. It is generated as only a plain text file. The current
+ markup is not suitable for other formats. Build from Makefile with 'make
+ dok-readme'.
+ ===================================================================
+
+-->
+<article id="index">
+<artheader>
+<![%dummy;[
+ <para>
+ <comment>
+  This is here to keep vim syntax file from breaking :/
+  If I knew enough to fix it, I would.
+  PLEASE DO NOT REMOVE! HB: hal@foobox.net
+ </comment>
+ </para>
+]]>
+<abstract>
+<para>
+ <literal>
+  <msgtext>
+   <literallayout>
+/*********************************************************************
+ *
+ * File        :  $Source: /cvsroot/ijbswa/current/doc/source/install.sgml,v $
+ *
+ * Purpose     :  INSTALL file to help with installing from source.
+ *
+ * Copyright   :  Written by and Copyright (C) 2001-2009 the
+ *                Privoxy team. http://www.privoxy.org/
+ *
+ *                Based on the Internet Junkbuster originally written
+ *                by and Copyright (C) 1997 Anonymous Coders and 
+ *                Junkbusters Corporation.  http://www.junkbusters.com
+ *
+ *                This program is free software; you can redistribute it 
+ *                and/or modify it under the terms of the GNU General
+ *                Public License as published by the Free Software
+ *                Foundation; either version 2 of the License, or (at
+ *                your option) any later version.
+ *
+ *                This program is distributed in the hope that it will
+ *                be useful, but WITHOUT ANY WARRANTY; without even the
+ *                implied warranty of MERCHANTABILITY or FITNESS FOR A
+ *                PARTICULAR PURPOSE.  See the GNU General Public
+ *                License for more details.
+ *
+ *                The GNU General Public License should be included with
+ *                this file.  If not, you can view it at
+ *                http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *                or write to the Free Software Foundation, Inc., 
+ *                51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, 
+ *                USA
+ *
+ *********************************************************************/
+   </literallayout>
+  </msgtext>
+ </literal>
+</para>
+
+ </abstract>
+</artheader>
+
+<para>
+ <msgtext>
+<!--   ~~~~~       New section      ~~~~~     -->
+<!-- include buildsource.sgml boilerplate: -->
+ &buildsource;
+<!-- end boilderplate -->
+ </msgtext>
+</para>
+
+
+</article>

@@ -1,0 +1,196 @@
+##############################################################################
+#
+# File        :  $Source: /cvsroot/ijbswa/current/templates/edit-actions-remove-url-form,v $
+#
+# Purpose     :  Template used to confirm removal of a particular URL
+#                pattern from an actions file.  Only used on browsers that
+#                don't support JavaScript.
+# 
+#
+# Copyright   :  Written by and Copyright (C) 2001 the SourceForge
+#                Privoxy team. http://www.privoxy.org/
+#
+#                Original Author: Copyright (C) 2001 Jonathan Foster
+#                http://www.jon-foster.co.uk/
+#
+#                This program is free software; you can redistribute it 
+#                and/or modify it under the terms of the GNU General
+#                Public License as published by the Free Software
+#                Foundation; either version 2 of the License, or (at
+#                your option) any later version.
+#
+#                This program is distributed in the hope that it will
+#                be useful, but WITHOUT ANY WARRANTY; without even the
+#                implied warranty of MERCHANTABILITY or FITNESS FOR A
+#                PARTICULAR PURPOSE.  See the GNU General Public
+#                License for more details.
+#
+#                The GNU General Public License should be included with
+#                this file.  If not, you can view it at
+#                http://www.gnu.org/copyleft/gpl.html
+#                or write to the Free Software Foundation, Inc., 59
+#                Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#
+# Revisions   :
+#    $Log: edit-actions-remove-url-form,v $
+#    Revision 1.17  2007/01/23 16:03:16  fabiankeil
+#    - Add favicon links.
+#    - Remove useless W3C validator links.
+#
+#    Revision 1.16  2006/07/18 14:49:14  david__schmidt
+#    Reorganizing the repository: swapping out what was HEAD (the old 3.1 branch)
+#    with what was really the latest development (the v_3_0_branch branch)
+#
+#    Revision 1.14.2.2  2002/08/23 02:22:53  hal9
+#    Fix a perl brain fart with <li> in comments.
+#
+#    Revision 1.14  2002/05/21 19:13:49  oes
+#    Added button style and jumptargets to "add" and "cancel" links
+#
+#    Revision 1.13  2002/04/10 13:32:53  oes
+#    Made templates modular
+#
+#    Revision 1.12  2002/04/08 17:08:14  oes
+#    Cosmetic: make status in title lowercase
+#
+#    Revision 1.11  2002/04/05 16:01:30  oes
+#    Correct HTML, external Stylesheets, eye candy, some fixes
+#
+#    Revision 1.10  2002/03/26 22:29:56  swa
+#    we have a new homepage!
+#
+#    Revision 1.9  2002/03/24 15:23:33  jongfoster
+#    Name changes
+#
+#    Revision 1.8  2002/03/24 11:01:06  swa
+#    name change
+#
+#    Revision 1.7  2002/03/23 16:18:15  swa
+#    renamed every reference to the old name with foobar.
+#    fixed "application foobar application" tag, fixed
+#    "the foobar" with "foobar". left junkbuster in cvs
+#    comments and remarks to history untouched. should
+#    make final rename easier.
+#
+#    Revision 1.6  2002/03/16 15:22:19  jongfoster
+#    Moving 'alpha' warning to the end of the page
+#
+#    Revision 1.5  2002/03/03 10:29:12  swa
+#    point users to the right feedback forms,
+#    not necessarily the developer list.
+#
+#    Revision 1.4  2002/01/23 00:26:45  jongfoster
+#    Reducing length of URLs
+#    Where encoded and unencoded versions of a string existed, removing
+#    the unencoded one.
+#
+#    Revision 1.3  2002/01/17 21:33:00  jongfoster
+#    Replacing all references to the URL of the config interface
+#    with @default-cgi@
+#
+#    Revision 1.2  2002/01/17 21:21:05  jongfoster
+#    DOS->Unix line endings
+#
+#    Revision 1.1  2001/11/13 00:58:18  jongfoster
+#    New version of actions file editor templates
+#
+#
+##############################################################################
+#
+# Standard support:
+#
+# This file currently produces valid HTML 4.01 Strict.
+#
+# If you change it, please save the generated page from your web browser
+# and then upload it to http://validator.w3.org/ for checking.
+#
+#############################################################################
+#
+# Available variables include:
+#
+# filename
+# ver
+# section
+# pattern
+# oldval
+# jumptarget - append to eal URL to jump to relevant section
+#
+#############################################################################
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+<head>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta http-equiv="Content-Script-Type" content="text/javascript">
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="stylesheet" type="text/css" href="@default-cgi@send-stylesheet">
+  <link rel="shortcut icon" href="@default-cgi@favicon.ico" type="image/x-icon">
+
+  <title>Privoxy@@my-hostname@: Remove URL Pattern</title>
+</head>
+
+<body>
+
+  <table cellpadding="20" cellspacing="10" border="0" width="100%">
+    <tr>
+      <td class="title">
+
+#include mod-title
+
+      </td>
+    </tr>
+
+<!-- @if-unstable-start -->
+# This will only appear if CODE_STATUS is "alpha" or "beta". See configure.in
+    <tr>
+      <td class="warning">
+
+#include mod-unstable-warning
+
+      </td>
+    </tr>
+<!-- if-unstable-end@ -->
+
+    <tr>
+      <td class="box">
+        <h2>Remove URL Pattern</h2>
+        <p>Are you sure you want to delete this URL pattern?  The pattern is:</p>
+        <p class="important">@u@</p>
+        <p>
+          <a class="cmd" href="edit-actions-remove-url?f=@f@&amp;v=@v@&amp;p=@p@">OK</a>
+          &nbsp;
+          <a class="cmd" href="edit-actions-list?f=@f@@jumptarget@">Cancel</a>
+        </p>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="box">
+        <h2>More Privoxy:</h2>
+        <ul>@menu@<li><a href="@user-manual@">Documentation</a></li></ul>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="info">
+
+#include mod-support-and-service
+
+      </td>
+    </tr>
+
+<!-- @if-have-help-info-start -->
+    <tr>
+      <td class="info">
+
+#include mod-local-help
+
+      </td>
+    </tr>
+<!-- if-have-help-info-end@ -->
+
+  </table>
+</body>
+
+</html>

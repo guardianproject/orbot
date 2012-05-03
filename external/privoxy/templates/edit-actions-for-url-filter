@@ -1,0 +1,40 @@
+##############################################################################
+#
+# File        :  $Source: /cvsroot/ijbswa/current/templates/edit-actions-for-url-filter,v $
+#
+# Purpose     :  Template that is included from most of Privoxy's CGI pages
+#                to show the user how to get help or report problems.
+# 
+#
+# Copyright   :  Written by and Copyright (C) 2002-2007 members of
+#                the SourceForge Privoxy team. http://www.privoxy.org/
+#
+#                This template is free software; you can redistribute it 
+#                and/or modify it under the terms of the GNU General
+#                Public License as published by the Free Software
+#                Foundation; either version 2 of the License, or (at
+#                your option) any later version.
+#
+# Revisions   :
+#    $Log: edit-actions-for-url-filter,v $
+#    Revision 1.8  2007/03/29 11:40:34  fabiankeil
+#    Divide @filter-params@ into @client-header-filter-params@
+#    @content-filter-params@ and @server-header-filter-params@.
+#
+#    Revision 1.7  2007/03/20 15:40:00  fabiankeil
+#    Adjust to new world order with dedicated header-filter actions.
+#
+#
+##############################################################################
+
+<tr class="bg1" align="left" valign="top">
+  <td class="en1" align="center" valign="middle"><input type="radio" name="filter_r@index@" value="Y" @this-filter-y@></td>
+  <td class="dis1" align="center" valign="middle"><input type="radio" name="filter_r@index@" value="N" @this-filter-n@></td>
+  <td class="noc1" align="center" valign="middle"><input type="radio" name="filter_r@index@" value="X" @this-filter-x@></td>
+  <td class="action">
+    <input type="hidden" name="filter_t@index@" value="@abbr-filter-type@">
+    <input type="hidden" name="filter_n@index@" value="@name@">
+    <a href="@user-manual@@actions-help-prefix@@anchor@">@filter-type@</a> @name@
+  </td>
+  <td>@description@</td>
+</tr>

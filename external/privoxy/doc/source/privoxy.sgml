@@ -1,0 +1,44 @@
+<!--
+ File        :  $Source: /cvsroot/ijbswa/current/doc/source/privoxy.sgml,v $
+
+ Purpose     :  Entity included in other project documents.
+                
+ $Id: privoxy.sgml,v 2.9 2009/03/21 12:42:49 fabiankeil Exp $
+
+ Copyright (C) 2001-2009 Privoxy Developers http://www.privoxy.org/
+ See LICENSE.
+
+ ======================================================================
+  This file used for inclusion with other documents only.
+ ======================================================================
+
+ If you make changes to this file, please verify the finished 
+ docs all display as intended.
+
+ This file is included into:
+
+  privoxy-man-page
+  user-manual
+  faq
+  developer-manual
+  README
+  webserver/index.sgml
+
+-->
+
+<para>
+ Privoxy is a non-caching web proxy with advanced filtering capabilities
+ for enhancing privacy, modifying web page data and HTTP headers, controlling
+ access, and removing ads and other obnoxious Internet junk. Privoxy has a
+ flexible configuration and can be customized to suit individual needs and tastes.
+ It has application for both stand-alone systems and multi-user networks.
+</para>
+
+<para>
+ Privoxy is Free Software and licensed under the GPL2.
+</para>
+
+<para>
+ Privoxy is an associated project of Software in the Public Interest (SPI).
+ <ulink url="http://www.privoxy.org/faq/general.html#DONATE">Donations are welcome</ulink>.
+</para>

@@ -1,0 +1,47 @@
+<!--
+ File        :  $Source: /cvsroot/ijbswa/current/doc/source/copyright.sgml,v $
+
+ Purpose     :  Entity included in other project documents.
+                
+ $Id: copyright.sgml,v 2.10 2009/02/10 16:13:30 fabiankeil Exp $
+
+ Copyright (C) 2001-2009 Privoxy Developers http://www.privoxy.org/
+ See LICENSE.
+
+ ======================================================================
+  This file used for inclusion with other documents only.
+ ======================================================================
+
+ If you make changes to this file, please verify the finished 
+ docs all display as intended.
+
+ This file is included into:
+
+  privoxy-man-page
+  user-manual
+  developer-manual
+  faq
+
+ **************************************************************
+ NOTE: the &my-copy entity must be defined in any file that will 
+ include this file. (This is a workaround for docbook2man not 
+ handling the standard &copy entity in the man page processing.)
+ **************************************************************
+
+-->
+
+<!--
+ GFDL:
+ http://www.gnu.org/licenses/fdl.html
+-->
+
+<para>
+ Copyright &my-copy; 2001-2009 by Privoxy Developers <email>ijbswa-developers@lists.sourceforge.net</email>
+</para>
+
+<para>
+ Some source code is based on code Copyright &my-copy; 1997 by Anonymous Coders
+ and Junkbusters, Inc. and licensed under the <citetitle>GNU General Public
+ License</citetitle>.
+</para>
+

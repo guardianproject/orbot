@@ -1,0 +1,2602 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Coding Guidelines</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Privoxy Developer Manual"
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="Documentation Guidelines"
+HREF="documentation.html"><LINK
+REL="NEXT"
+TITLE="Testing Guidelines"
+HREF="testing.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="../p_doc.css"><META
+HTTP-EQUIV="Content-Type"
+CONTENT="text/html;
+charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#EEEEEE"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Privoxy Developer Manual</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="documentation.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="testing.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="CODING"
+>4. Coding Guidelines</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="S1"
+>4.1. Introduction</A
+></H2
+><P
+>This set of standards is designed to make our lives easier.  It is
+    developed with the simple goal of helping us keep the "new and improved
+    <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>" consistent and reliable. Thus making
+    maintenance easier and increasing chances of success of the
+    project.</P
+><P
+>And that of course comes back to us as individuals. If we can
+    increase our development and product efficiencies then we can solve more
+    of the request for changes/improvements and in general feel good about
+    ourselves. ;-&#62;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="S2"
+>4.2. Using Comments</A
+></H2
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="S3"
+>4.2.1. Comment, Comment, Comment</A
+></H3
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Explanation:</I
+></SPAN
+></P
+><P
+>Comment as much as possible without commenting the obvious.
+    For example do not comment "variable_a is equal to variable_b".
+    Instead explain why variable_a should be equal to the variable_b.
+    Just because a person can read code does not mean they will
+    understand why or what is being done. A reader may spend a lot
+    more time figuring out what is going on when a simple comment
+    or explanation would have prevented the extra research. Please
+    help your brother IJB'ers out!</P
+><P
+>The comments will also help justify the intent of the code.
+    If the comment describes something different than what the code
+    is doing then maybe a programming error is occurring.</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Example:</I
+></SPAN
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>/* if page size greater than 1k ... */
+if ( page_length() &#62; 1024 )
+{
+    ... "block" the page up ...
+}
+
+/* if page size is small, send it in blocks */
+if ( page_length() &#62; 1024 )
+{
+    ... "block" the page up ...
+}
+
+This demonstrates 2 cases of "what not to do".  The first is a
+"syntax comment".  The second is a comment that does not fit what
+is actually being done.</PRE
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="S4"
+>4.2.2. Use blocks for comments</A
+></H3
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Explanation:</I
+></SPAN
+></P
+><P
+>Comments can help or they can clutter. They help when they
+    are differentiated from the code they describe. One line
+    comments do not offer effective separation between the comment
+    and the code. Block identifiers do, by surrounding the code
+    with a clear, definable pattern.</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Example:</I
+></SPAN
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>/*********************************************************************
+ * This will stand out clearly in your code!
+ *********************************************************************/
+if ( this_variable == that_variable )
+{
+   do_something_very_important();
+}
+
+
+/* unfortunately, this may not */
+if ( this_variable == that_variable )
+{
+   do_something_very_important();
+}
+
+
+if ( this_variable == that_variable ) /* this may not either */
+{
+   do_something_very_important();
+}</PRE
+></TD
+></TR
+></TABLE
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Exception:</I
+></SPAN
+></P
+><P
+>If you are trying to add a small logic comment and do not
+    wish to "disrupt" the flow of the code, feel free to use a 1
+    line comment which is NOT on the same line as the code.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="S5"
+>4.2.3. Keep Comments on their own line</A
+></H3
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Explanation:</I
+></SPAN
+></P
+><P
+>It goes back to the question of readability. If the comment
+    is on the same line as the code it will be harder to read than
+    the comment that is on its own line.</P
+><P
+>There are three exceptions to this rule, which should be
+    violated freely and often: during the definition of variables,
+    at the end of closing braces, when used to comment
+    parameters.</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Example:</I
+></SPAN
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>/*********************************************************************
+ * This will stand out clearly in your code,
+ * But the second example won't.
+ *********************************************************************/
+if ( this_variable == this_variable )
+{
+   do_something_very_important();
+}
+
+if ( this_variable == this_variable ) /*can you see me?*/
+{
+   do_something_very_important(); /*not easily*/
+}
+
+
+/*********************************************************************
+ * But, the encouraged exceptions:
+ *********************************************************************/
+int urls_read     = 0;     /* # of urls read + rejected */
+int urls_rejected = 0;     /* # of urls rejected */
+
+if ( 1 == X )
+{
+   do_something_very_important();
+}
+
+
+short do_something_very_important(
+   short firstparam,   /* represents something */
+   short nextparam     /* represents something else */ )
+{
+   ...code here...
+
+}   /* -END- do_something_very_important */</PRE
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="S6"
+>4.2.4. Comment each logical step</A
+></H3
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Explanation:</I
+></SPAN
+></P
+><P
+>Logical steps should be commented to help others follow the
+    intent of the written code and comments will make the code more
+    readable.</P
+><P
+>If you have 25 lines of code without a comment, you should
+    probably go back into it to see where you forgot to put
+    one.</P
+><P
+>Most "for", "while", "do", etc... loops _probably_ need a
+    comment. After all, these are usually major logic
+    containers.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="S7"
+>4.2.5. Comment All Functions Thoroughly</A
+></H3
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Explanation:</I
+></SPAN
+></P
+><P
+>A reader of the code should be able to look at the comments
+    just prior to the beginning of a function and discern the
+    reason for its existence and the consequences of using it. The
+    reader should not have to read through the code to determine if
+    a given function is safe for a desired use. The proper
+    information thoroughly presented at the introduction of a
+    function not only saves time for subsequent maintenance or
+    debugging, it more importantly aids in code reuse by allowing a
+    user to determine the safety and applicability of any function
+    for the problem at hand. As a result of such benefits, all
+    functions should contain the information presented in the
+    addendum section of this document.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="S8"
+>4.2.6. Comment at the end of braces if the
+    content is more than one screen length</A
+></H3
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Explanation:</I
+></SPAN
+></P
+><P
+>Each closing brace should be followed on the same line by a
+    comment that describes the origination of the brace if the
+    original brace is off of the screen, or otherwise far away from
+    the closing brace. This will simplify the debugging,
+    maintenance, and readability of the code.</P
+><P
+>As a suggestion , use the following flags to make the
+    comment and its brace more readable:</P
+><P
+>use following a closing brace: } /* -END- if() or while ()
+    or etc... */</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Example:</I
+></SPAN
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>if ( 1 == X )
+{
+   do_something_very_important();
+   ...some long list of commands...
+} /* -END- if x is 1 */
+
+or:
+
+if ( 1 == X )
+{
+   do_something_very_important();
+   ...some long list of commands...
+} /* -END- if ( 1 == X ) */</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="S9"
+>4.3. Naming Conventions</A
+></H2
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="S10"
+>4.3.1. Variable Names</A
+></H3
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Explanation:</I
+></SPAN
+></P
+><P
+>Use all lowercase, and separate words via an underscore
+    ('_'). Do not start an identifier with an underscore. (ANSI C
+    reserves these for use by the compiler and system headers.) Do
+    not use identifiers which are reserved in ANSI C++. (E.g.
+    template, class, true, false, ...). This is in case we ever
+    decide to port Privoxy to C++.</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Example:</I
+></SPAN
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>int ms_iis5_hack = 0;</PRE
+></TD
+></TR
+></TABLE
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Instead of:</I
+></SPAN
+></P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>int msiis5hack = 0; int msIis5Hack = 0;</PRE
+></TD
+></TR
+></TABLE
+></P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="S11"
+>4.3.2. Function Names</A
+></H3
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Explanation:</I
+></SPAN
+></P
+><P
+>Use all lowercase, and separate words via an underscore
+    ('_'). Do not start an identifier with an underscore. (ANSI C
+    reserves these for use by the compiler and system headers.) Do
+    not use identifiers which are reserved in ANSI C++. (E.g.
+    template, class, true, false, ...). This is in case we ever
+    decide to port Privoxy to C++.</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Example:</I
+></SPAN
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>int load_some_file( struct client_state *csp )</PRE
+></TD
+></TR
+></TABLE
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Instead of:</I
+></SPAN
+></P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>int loadsomefile( struct client_state *csp )
+int loadSomeFile( struct client_state *csp )</PRE
+></TD
+></TR
+></TABLE
+></P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="S12"
+>4.3.3. Header file prototypes</A
+></H3
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Explanation:</I
+></SPAN
+></P
+><P
+>Use a descriptive parameter name in the function prototype
+    in header files. Use the same parameter name in the header file
+    that you use in the c file.</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Example:</I
+></SPAN
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>(.h) extern int load_aclfile( struct client_state *csp );
+(.c) int load_aclfile( struct client_state *csp )</PRE
+></TD
+></TR
+></TABLE
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Instead of:</I
+></SPAN
+>
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>(.h) extern int load_aclfile( struct client_state * ); or 
+(.h) extern int load_aclfile(); 
+(.c) int load_aclfile( struct client_state *csp )</PRE
+></TD
+></TR
+></TABLE
+></P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="S13"
+>4.3.4. Enumerations, and #defines</A
+></H3
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Explanation:</I
+></SPAN
+></P
+><P
+>Use all capital letters, with underscores between words. Do
+    not start an identifier with an underscore. (ANSI C reserves
+    these for use by the compiler and system headers.)</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Example:</I
+></SPAN
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>(enumeration) : enum Boolean { FALSE, TRUE };
+(#define) : #define DEFAULT_SIZE 100;</PRE
+></TD
+></TR
+></TABLE
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Note:</I
+></SPAN
+> We have a standard naming scheme for #defines
+    that toggle a feature in the preprocessor: FEATURE_&#62;, where
+    &#62; is a short (preferably 1 or 2 word) description.</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Example:</I
+></SPAN
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>#define FEATURE_FORCE 1
+
+#ifdef FEATURE_FORCE
+#define FORCE_PREFIX blah
+#endif /* def FEATURE_FORCE */</PRE
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="S14"
+>4.3.5. Constants</A
+></H3
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Explanation:</I
+></SPAN
+></P
+><P
+>Spell common words out entirely (do not remove vowels).</P
+><P
+>Use only widely-known domain acronyms and abbreviations.
+    Capitalize all letters of an acronym.</P
+><P
+>Use underscore (_) to separate adjacent acronyms and
+    abbreviations. Never terminate a name with an underscore.</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Example:</I
+></SPAN
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>#define USE_IMAGE_LIST 1</PRE
+></TD
+></TR
+></TABLE
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Instead of:</I
+></SPAN
+></P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>#define USE_IMG_LST 1 or 
+#define _USE_IMAGE_LIST 1 or
+#define USE_IMAGE_LIST_ 1 or 
+#define use_image_list 1 or
+#define UseImageList 1</PRE
+></TD
+></TR
+></TABLE
+></P
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="S15"
+>4.4. Using Space</A
+></H2
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="S16"
+>4.4.1. Put braces on a line by themselves.</A
+></H3
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Explanation:</I
+></SPAN
+></P
+><P
+>The brace needs to be on a line all by itself, not at the
+    end of the statement. Curly braces should line up with the
+    construct that they're associated with. This practice makes it
+    easier to identify the opening and closing braces for a
+    block.</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Example:</I
+></SPAN
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>if ( this == that )
+{
+   ...
+}</PRE
+></TD
+></TR
+></TABLE
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Instead of:</I
+></SPAN
+></P
+><P
+>if ( this == that ) { ... }</P
+><P
+>or</P
+><P
+>if ( this == that ) { ... }</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Note:</I
+></SPAN
+> In the special case that the if-statement is
+    inside a loop, and it is trivial, i.e. it tests for a
+    condition that is obvious from the purpose of the block,
+    one-liners as above may optically preserve the loop structure
+    and make it easier to read.</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Status:</I
+></SPAN
+> developer-discretion.</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Example exception:</I
+></SPAN
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>while ( more lines are read )
+{
+   /* Please document what is/is not a comment line here */
+   if ( it's a comment ) continue;
+
+   do_something( line );
+}</PRE
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="S17"
+>4.4.2. ALL control statements should have a
+    block</A
+></H3
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Explanation:</I
+></SPAN
+></P
+><P
+>Using braces to make a block will make your code more
+    readable and less prone to error. All control statements should
+    have a block defined.</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Example:</I
+></SPAN
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>if ( this == that )
+{
+   do_something();
+   do_something_else();
+}</PRE
+></TD
+></TR
+></TABLE
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Instead of:</I
+></SPAN
+></P
+><P
+>if ( this == that ) do_something(); do_something_else();</P
+><P
+>or</P
+><P
+>if ( this == that ) do_something();</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Note:</I
+></SPAN
+> The first example in "Instead of" will execute
+    in a manner other than that which the developer desired (per
+    indentation). Using code braces would have prevented this
+    "feature". The "explanation" and "exception" from the point
+    above also applies.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="S18"
+>4.4.3. Do not belabor/blow-up boolean
+    expressions</A
+></H3
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Example:</I
+></SPAN
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>structure-&#62;flag = ( condition );</PRE
+></TD
+></TR
+></TABLE
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Instead of:</I
+></SPAN
+></P
+><P
+>if ( condition ) { structure-&#62;flag = 1; } else {
+    structure-&#62;flag = 0; }</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Note:</I
+></SPAN
+> The former is readable and concise. The later
+    is wordy and inefficient. Please assume that any developer new
+    to the project has at least a "good" knowledge of C/C++. (Hope
+    I do not offend by that last comment ... 8-)</P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="S19"
+>4.4.4. Use white space freely because it is
+    free</A
+></H3
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Explanation:</I
+></SPAN
+></P
+><P
+>Make it readable. The notable exception to using white space
+    freely is listed in the next guideline.</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Example:</I
+></SPAN
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>int first_value   = 0;
+int some_value    = 0;
+int another_value = 0;
+int this_variable = 0;
+
+if ( this_variable == this_variable )
+
+first_value = old_value + ( ( some_value - another_value ) - whatever )</PRE
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="S20"
+>4.4.5. Don't use white space around structure
+    operators</A
+></H3
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Explanation:</I
+></SPAN
+></P
+><P
+>- structure pointer operator ( "-&#62;" ) - member operator (
+    "." ) - functions and parentheses</P
+><P
+>It is a general coding practice to put pointers, references,
+    and function parentheses next to names. With spaces, the
+    connection between the object and variable/function name is not
+    as clear.</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Example:</I
+></SPAN
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>a_struct-&#62;a_member;
+a_struct.a_member;
+function_name();</PRE
+></TD
+></TR
+></TABLE
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Instead of:</I
+></SPAN
+> a_struct -&#62; a_member; a_struct . a_member;
+    function_name ();</P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="S21"
+>4.4.6. Make the last brace of a function stand
+    out</A
+></H3
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Example:</I
+></SPAN
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>int function1( ... )
+{
+   ...code...
+   return( ret_code );
+
+}   /* -END- function1 */
+
+
+int function2( ... )
+{
+}   /* -END- function2 */</PRE
+></TD
+></TR
+></TABLE
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Instead of:</I
+></SPAN
+></P
+><P
+>int function1( ... ) { ...code... return( ret_code ); } int
+    function2( ... ) { }</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Note:</I
+></SPAN
+> Use 1 blank line before the closing brace and 2
+    lines afterward. This makes the end of function standout to
+    the most casual viewer. Although function comments help
+    separate functions, this is still a good coding practice. In
+    fact, I follow these rules when using blocks in "for", "while",
+    "do" loops, and long if {} statements too. After all whitespace
+    is free!</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Status:</I
+></SPAN
+> developer-discretion on the number of blank
+    lines. Enforced is the end of function comments.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="S22"
+>4.4.7. Use 3 character indentions</A
+></H3
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Explanation:</I
+></SPAN
+></P
+><P
+>If some use 8 character TABs and some use 3 character TABs,
+    the code can look *very* ragged. So use 3 character indentions
+    only. If you like to use TABs, pass your code through a filter
+    such as "expand -t3" before checking in your code.</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Example:</I
+></SPAN
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>static const char * const url_code_map[256] =
+{
+   NULL, ...
+};
+
+
+int function1( ... )
+{
+   if ( 1 )
+   {
+      return( ALWAYS_TRUE );
+   }
+   else
+   {
+      return( HOW_DID_YOU_GET_HERE );
+   }
+
+   return( NEVER_GETS_HERE );
+
+}</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="S23"
+>4.5. Initializing</A
+></H2
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="S24"
+>4.5.1. Initialize all variables</A
+></H3
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Explanation:</I
+></SPAN
+></P
+><P
+>Do not assume that the variables declared will not be used
+    until after they have been assigned a value somewhere else in
+    the code. Remove the chance of accidentally using an unassigned
+    variable.</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Example:</I
+></SPAN
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>short a_short = 0;
+float a_float  = 0;
+struct *ptr = NULL;</PRE
+></TD
+></TR
+></TABLE
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Note:</I
+></SPAN
+> It is much easier to debug a SIGSEGV if the
+    message says you are trying to access memory address 00000000
+    and not 129FA012; or array_ptr[20] causes a SIGSEV vs.
+    array_ptr[0].</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Status:</I
+></SPAN
+> developer-discretion if and only if the
+    variable is assigned a value "shortly after" declaration.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="S25"
+>4.6. Functions</A
+></H2
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="S26"
+>4.6.1. Name functions that return a boolean as a
+    question.</A
+></H3
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Explanation:</I
+></SPAN
+></P
+><P
+>Value should be phrased as a question that would logically
+    be answered as a true or false statement</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Example:</I
+></SPAN
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>should_we_block_this();
+contains_an_image();
+is_web_page_blank();</PRE
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="S27"
+>4.6.2. Always specify a return type for a
+    function.</A
+></H3
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Explanation:</I
+></SPAN
+></P
+><P
+>The default return for a function is an int. To avoid
+    ambiguity, create a return for a function when the return has a
+    purpose, and create a void return type if the function does not
+    need to return anything.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="S28"
+>4.6.3. Minimize function calls when iterating by
+    using variables</A
+></H3
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Explanation:</I
+></SPAN
+></P
+><P
+>It is easy to write the following code, and a clear argument
+    can be made that the code is easy to understand:</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Example:</I
+></SPAN
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>for ( size_t cnt = 0; cnt &#60; block_list_length(); cnt++ )
+{
+   ....
+}</PRE
+></TD
+></TR
+></TABLE
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Note:</I
+></SPAN
+> Unfortunately, this makes a function call for
+    each and every iteration. This increases the overhead in the
+    program, because the compiler has to look up the function each
+    time, call it, and return a value. Depending on what occurs in
+    the block_list_length() call, it might even be creating and
+    destroying structures with each iteration, even though in each
+    case it is comparing "cnt" to the same value, over and over.
+    Remember too - even a call to block_list_length() is a function
+    call, with the same overhead.</P
+><P
+>Instead of using a function call during the iterations,
+    assign the value to a variable, and evaluate using the
+    variable.</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Example:</I
+></SPAN
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>size_t len = block_list_length();
+
+for ( size_t cnt = 0; cnt &#60; len; cnt++ )
+{
+   ....
+}</PRE
+></TD
+></TR
+></TABLE
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Exceptions:</I
+></SPAN
+> if the value of block_list_length()
+    *may* change or could *potentially* change, then you must code the
+    function call in the for/while loop.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="S29"
+>4.6.4. Pass and Return by Const Reference</A
+></H3
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Explanation:</I
+></SPAN
+></P
+><P
+>This allows a developer to define a const pointer and call
+    your function. If your function does not have the const
+    keyword, we may not be able to use your function. Consider
+    strcmp, if it were defined as: extern int strcmp( char *s1,
+    char *s2 );</P
+><P
+>I could then not use it to compare argv's in main: int main(
+    int argc, const char *argv[] ) { strcmp( argv[0], "privoxy"
+    ); }</P
+><P
+>Both these pointers are *const*! If the c runtime library
+    maintainers do it, we should too.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="S30"
+>4.6.5. Pass and Return by Value</A
+></H3
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Explanation:</I
+></SPAN
+></P
+><P
+>Most structures cannot fit onto a normal stack entry (i.e.
+    they are not 4 bytes or less). Aka, a function declaration
+    like: int load_aclfile( struct client_state csp )</P
+><P
+>would not work. So, to be consistent, we should declare all
+    prototypes with "pass by value": int load_aclfile( struct
+    client_state *csp )</P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="S31"
+>4.6.6. Names of include files</A
+></H3
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Explanation:</I
+></SPAN
+></P
+><P
+>Your include statements should contain the file name without
+    a path. The path should be listed in the Makefile, using -I as
+    processor directive to search the indicated paths. An exception
+    to this would be for some proprietary software that utilizes a
+    partial path to distinguish their header files from system or
+    other header files.</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Example:</I
+></SPAN
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>#include &#60;iostream.h&#62;     /* This is not a local include */
+#include "config.h"       /* This IS a local include */</PRE
+></TD
+></TR
+></TABLE
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Exception:</I
+></SPAN
+></P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>/* This is not a local include, but requires a path element. */ 
+#include &#60;sys/fileName.h&#62;</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Note:</I
+></SPAN
+> Please! do not add "-I." to the Makefile
+    without a _very_ good reason. This duplicates the #include
+    "file.h" behavior.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="S32"
+>4.6.7. Provide multiple inclusion
+    protection</A
+></H3
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Explanation:</I
+></SPAN
+></P
+><P
+>Prevents compiler and linker errors resulting from
+    redefinition of items.</P
+><P
+>Wrap each header file with the following syntax to prevent
+    multiple inclusions of the file. Of course, replace PROJECT_H
+    with your file name, with "." Changed to "_", and make it
+    uppercase.</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Example:</I
+></SPAN
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>#ifndef PROJECT_H_INCLUDED
+#define PROJECT_H_INCLUDED
+ ...
+#endif /* ndef PROJECT_H_INCLUDED */</PRE
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="S33"
+>4.6.8. Use `extern "C"` when appropriate</A
+></H3
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Explanation:</I
+></SPAN
+></P
+><P
+>If our headers are included from C++, they must declare our
+    functions as `extern "C"`. This has no cost in C, but increases
+    the potential re-usability of our code.</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Example:</I
+></SPAN
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>#ifdef __cplusplus
+extern "C"
+{
+#endif /* def __cplusplus */
+
+... function definitions here ...
+
+#ifdef __cplusplus
+}
+#endif /* def __cplusplus */</PRE
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="S34"
+>4.6.9. Where Possible, Use Forward Struct
+    Declaration Instead of Includes</A
+></H3
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Explanation:</I
+></SPAN
+></P
+><P
+>Useful in headers that include pointers to other struct's.
+    Modifications to excess header files may cause needless
+    compiles.</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Example:</I
+></SPAN
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>/*********************************************************************
+ * We're avoiding an include statement here!
+ *********************************************************************/
+struct file_list;
+extern file_list *xyz;</PRE
+></TD
+></TR
+></TABLE
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Note:</I
+></SPAN
+> If you declare "file_list xyz;" (without the
+    pointer), then including the proper header file is necessary.
+    If you only want to prototype a pointer, however, the header
+    file is unnecessary.</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Status:</I
+></SPAN
+> Use with discretion.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="S35"
+>4.7. General Coding Practices</A
+></H2
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="S36"
+>4.7.1. Turn on warnings</A
+></H3
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Explanation</I
+></SPAN
+></P
+><P
+>Compiler warnings are meant to help you find bugs. You
+    should turn on as many as possible. With GCC, the switch is
+    "-Wall". Try and fix as many warnings as possible.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="S37"
+>4.7.2. Provide a default case for all switch
+    statements</A
+></H3
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Explanation:</I
+></SPAN
+></P
+><P
+>What you think is guaranteed is never really guaranteed. The
+    value that you don't think you need to check is the one that
+    someday will be passed. So, to protect yourself from the
+    unknown, always have a default step in a switch statement.</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Example:</I
+></SPAN
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>switch( hash_string( cmd ) )
+{
+   case hash_actions_file :
+      ... code ...
+      break;
+
+   case hash_confdir :
+      ... code ...
+      break;
+
+   default :
+      log_error( ... );
+      ... anomaly code goes here ...
+      continue; / break; / exit( 1 ); / etc ...
+
+} /* end switch( hash_string( cmd ) ) */</PRE
+></TD
+></TR
+></TABLE
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Note:</I
+></SPAN
+> If you already have a default condition, you
+    are obviously exempt from this point. Of note, most of the
+    WIN32 code calls `DefWindowProc' after the switch statement.
+    This API call *should* be included in a default statement.</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Another Note:</I
+></SPAN
+> This is not so much a readability issue
+    as a robust programming issue. The "anomaly code goes here" may
+    be no more than a print to the STDERR stream (as in
+    load_config). Or it may really be an abort condition.</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Status:</I
+></SPAN
+> Programmer discretion is advised.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="S38"
+>4.7.3. Try to avoid falling through cases in a
+    switch statement.</A
+></H3
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Explanation:</I
+></SPAN
+></P
+><P
+>In general, you will want to have a 'break' statement within
+    each 'case' of a switch statement. This allows for the code to
+    be more readable and understandable, and furthermore can
+    prevent unwanted surprises if someone else later gets creative
+    and moves the code around.</P
+><P
+>The language allows you to plan the fall through from one
+    case statement to another simply by omitting the break
+    statement within the case statement. This feature does have
+    benefits, but should only be used in rare cases. In general,
+    use a break statement for each case statement.</P
+><P
+>If you choose to allow fall through, you should comment both
+    the fact of the fall through and reason why you felt it was
+    necessary.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="S39"
+>4.7.4. Use 'long' or 'short' Instead of
+    'int'</A
+></H3
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Explanation:</I
+></SPAN
+></P
+><P
+>On 32-bit platforms, int usually has the range of long. On
+    16-bit platforms, int has the range of short.</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Status:</I
+></SPAN
+> open-to-debate. In the case of most FSF
+    projects (including X/GNU-Emacs), there are typedefs to int4,
+    int8, int16, (or equivalence ... I forget the exact typedefs
+    now). Should we add these to IJB now that we have a "configure"
+    script?</P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="S40"
+>4.7.5. Don't mix size_t and other types</A
+></H3
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Explanation:</I
+></SPAN
+></P
+><P
+>The type of size_t varies across platforms. Do not make
+    assumptions about whether it is signed or unsigned, or about
+    how long it is. Do not compare a size_t against another
+    variable of a different type (or even against a constant)
+    without casting one of the values.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="S41"
+>4.7.6. Declare each variable and struct on its
+    own line.</A
+></H3
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Explanation:</I
+></SPAN
+></P
+><P
+>It can be tempting to declare a series of variables all on
+    one line. Don't.</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Example:</I
+></SPAN
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>long a = 0;
+long b = 0;
+long c = 0;</PRE
+></TD
+></TR
+></TABLE
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Instead of:</I
+></SPAN
+></P
+><P
+>long a, b, c;</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Explanation:</I
+></SPAN
+> - there is more room for comments on the
+    individual variables - easier to add new variables without
+    messing up the original ones - when searching on a variable to
+    find its type, there is less clutter to "visually"
+    eliminate</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Exceptions:</I
+></SPAN
+> when you want to declare a bunch of loop
+    variables or other trivial variables; feel free to declare them
+    on one line. You should, although, provide a good comment on
+    their functions.</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Status:</I
+></SPAN
+> developer-discretion.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="S42"
+>4.7.7. Use malloc/zalloc sparingly</A
+></H3
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Explanation:</I
+></SPAN
+></P
+><P
+>Create a local struct (on the stack) if the variable will
+    live and die within the context of one function call.</P
+><P
+>Only "malloc" a struct (on the heap) if the variable's life
+    will extend beyond the context of one function call.</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Example:</I
+></SPAN
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>If a function creates a struct and stores a pointer to it in a
+list, then it should definitely be allocated via `malloc'.</PRE
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="S43"
+>4.7.8. The Programmer Who Uses 'malloc' is
+    Responsible for Ensuring 'free'</A
+></H3
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Explanation:</I
+></SPAN
+></P
+><P
+>If you have to "malloc" an instance, you are responsible for
+    insuring that the instance is `free'd, even if the deallocation
+    event falls within some other programmer's code. You are also
+    responsible for ensuring that deletion is timely (i.e. not too
+    soon, not too late). This is known as "low-coupling" and is a
+    "good thing (tm)". You may need to offer a
+    free/unload/destructor type function to accommodate this.</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Example:</I
+></SPAN
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>int load_re_filterfile( struct client_state *csp ) { ... }
+static void unload_re_filterfile( void *f ) { ... }</PRE
+></TD
+></TR
+></TABLE
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Exceptions:</I
+></SPAN
+></P
+><P
+>The developer cannot be expected to provide `free'ing
+    functions for C run-time library functions ... such as
+    `strdup'.</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Status:</I
+></SPAN
+> developer-discretion. The "main" use of this
+    standard is for allocating and freeing data structures (complex
+    or nested).</P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="S44"
+>4.7.9. Add loaders to the `file_list' structure
+    and in order</A
+></H3
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Explanation:</I
+></SPAN
+></P
+><P
+>I have ordered all of the "blocker" file code to be in alpha
+    order. It is easier to add/read new blockers when you expect a
+    certain order.</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Note:</I
+></SPAN
+> It may appear that the alpha order is broken in
+    places by POPUP tests coming before PCRS tests. But since
+    POPUPs can also be referred to as KILLPOPUPs, it is clear that
+    it should come first.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="S45"
+>4.7.10. "Uncertain" new code and/or changes to
+    existing code, use FIXME or XXX</A
+></H3
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Explanation:</I
+></SPAN
+></P
+><P
+>If you have enough confidence in new code or confidence in
+    your changes, but are not *quite* sure of the repercussions,
+    add this:</P
+><P
+>/* FIXME: this code has a logic error on platform XYZ, *
+    attempting to fix */ #ifdef PLATFORM ...changed code here...
+    #endif</P
+><P
+>or:</P
+><P
+>/* FIXME: I think the original author really meant this...
+    */ ...changed code here...</P
+><P
+>or:</P
+><P
+>/* FIXME: new code that *may* break something else... */
+    ...new code here...</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Note:</I
+></SPAN
+> If you make it clear that this may or may not
+    be a "good thing (tm)", it will be easier to identify and
+    include in the project (or conversely exclude from the
+    project).</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="S46"
+>4.8. Addendum: Template for files and function
+    comment blocks:</A
+></H2
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Example for file comments:</I
+></SPAN
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>const char FILENAME_rcs[] = "$Id: coding.html,v 1.42 2009/03/21 12:59:32 fabiankeil Exp $";
+/*********************************************************************
+ *
+ * File        :  $Source: /cvsroot/ijbswa/current/doc/webserver/developer-manual/coding.html,v $
+ *
+ * Purpose     :  (Fill me in with a good description!)
+ *
+ * Copyright   :  Written by and Copyright (C) 2001-2009
+ *                the Privoxy team. http://www.privoxy.org/
+ *
+ *                This program is free software; you can redistribute it
+ *                and/or modify it under the terms of the GNU General
+ *                Public License as published by the Free Software
+ *                Foundation; either version 2 of the License, or (at
+ *                your option) any later version.
+ *
+ *                This program is distributed in the hope that it will
+ *                be useful, but WITHOUT ANY WARRANTY; without even the
+ *                implied warranty of MERCHANTABILITY or FITNESS FOR A
+ *                PARTICULAR PURPOSE.  See the GNU General Public
+ *                License for more details.
+ *
+ *                The GNU General Public License should be included with
+ *                this file.  If not, you can view it at
+ *                http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *                or write to the Free Software Foundation, Inc., 
+ *                51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 ,
+ *                USA
+ *
+ * Revisions   :
+ *    $Log: coding.html,v $
+ *    Revision 1.42  2009/03/21 12:59:32  fabiankeil
+ *    Rebuild with recent changes.
+ *
+ *
+ *********************************************************************/
+
+
+#include "config.h"
+
+   ...necessary include files for us to do our work...
+
+const char FILENAME_h_rcs[] = FILENAME_H_VERSION;</PRE
+></TD
+></TR
+></TABLE
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Note:</I
+></SPAN
+> This declares the rcs variables that should be
+    added to the "show-proxy-args" page. If this is a brand new
+    creation by you, you are free to change the "Copyright" section
+    to represent the rights you wish to maintain.</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Note:</I
+></SPAN
+> The formfeed character that is present right
+    after the comment flower box is handy for (X|GNU)Emacs users to
+    skip the verbiage and get to the heart of the code (via
+    `forward-page' and `backward-page'). Please include it if you
+    can.</P
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Example for file header comments:</I
+></SPAN
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>#ifndef _FILENAME_H
+#define _FILENAME_H
+#define FILENAME_H_VERSION "$Id: coding.html,v 1.42 2009/03/21 12:59:32 fabiankeil Exp $"
+/*********************************************************************
+ *
+ * File        :  $Source: /cvsroot/ijbswa/current/doc/webserver/developer-manual/coding.html,v $
+ *
+ * Purpose     :  (Fill me in with a good description!)
+ *
+ * Copyright   :  Written by and Copyright (C) 2001-2009
+ *                the Privoxy team. http://www.privoxy.org/
+ *
+ *                This program is free software; you can redistribute it
+ *                and/or modify it under the terms of the GNU General
+ *                Public License as published by the Free Software
+ *                Foundation; either version 2 of the License, or (at
+ *                your option) any later version.
+ *
+ *                This program is distributed in the hope that it will
+ *                be useful, but WITHOUT ANY WARRANTY; without even the
+ *                implied warranty of MERCHANTABILITY or FITNESS FOR A
+ *                PARTICULAR PURPOSE.  See the GNU General Public
+ *                License for more details.
+ *
+ *                The GNU General Public License should be included with
+ *                this file.  If not, you can view it at
+ *                http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *                or write to the Free Software Foundation, Inc., 
+ *                51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 ,
+ *                USA
+ *
+ * Revisions   :
+ *    $Log: coding.html,v $
+ *    Revision 1.42  2009/03/21 12:59:32  fabiankeil
+ *    Rebuild with recent changes.
+ *
+ *
+ *********************************************************************/
+
+
+#include "project.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+   ... function headers here ...
+
+
+/* Revision control strings from this header and associated .c file */
+extern const char FILENAME_rcs[];
+extern const char FILENAME_h_rcs[];
+
+
+#ifdef __cplusplus
+} /* extern "C" */
+#endif
+
+#endif /* ndef _FILENAME_H */
+
+/*
+  Local Variables:
+  tab-width: 3
+  end:
+*/</PRE
+></TD
+></TR
+></TABLE
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Example for function comments:</I
+></SPAN
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>/*********************************************************************
+ *
+ * Function    :  FUNCTION_NAME
+ *
+ * Description :  (Fill me in with a good description!)
+ *
+ * parameters  :
+ *          1  :  param1 = pointer to an important thing
+ *          2  :  x      = pointer to something else
+ *
+ * Returns     :  0 =&#62; Ok, everything else is an error.
+ *
+ *********************************************************************/
+int FUNCTION_NAME( void *param1, const char *x )
+{
+   ...
+   return( 0 );
+
+}</PRE
+></TD
+></TR
+></TABLE
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Note:</I
+></SPAN
+> If we all follow this practice, we should be
+    able to parse our code to create a "self-documenting" web
+    page.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="documentation.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="testing.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Documentation Guidelines</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Testing Guidelines</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

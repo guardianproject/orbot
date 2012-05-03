@@ -1,0 +1,75 @@
+# ********************************************************************
+# 
+#  File        :  $Source: /cvsroot/ijbswa/current/user.filter,v $
+# 
+#  $Id: user.filter,v 1.3 2008/05/21 20:17:03 fabiankeil Exp $
+#
+#  Purpose     :  Rules to process the content of web pages
+# 
+#  Copyright   :  Written by and Copyright (C) 2006-2008 the
+#                 Privoxy team. http://www.privoxy.org/
+#
+# We value your feedback. However, to provide you with the best support,
+# please note:
+#  
+#  * Use the support forum to get help:
+#    http://sourceforge.net/tracker/?group_id=11118&atid=211118
+#  * Submit bugs only thru our bug forum:
+#    http://sourceforge.net/tracker/?group_id=11118&atid=111118 
+#    Make sure that the bug has not already been submitted. Please try
+#    to verify that it is a Privoxy bug, and not a browser or site
+#    bug first. If you are using your own custom configuration, please
+#    try the stock configs to see if the problem is a configuration
+#    related bug. And if not using the latest development snapshot,
+#    please try the latest one. Or even better, CVS sources.
+#  * Submit feature requests only thru our feature request forum:
+#    http://sourceforge.net/tracker/?atid=361118&group_id=11118&func=browse
+#      
+# For any other issues, feel free to use the mailing lists:
+# http://sourceforge.net/mail/?group_id=11118
+#    
+# Anyone interested in actively participating in development and related
+# discussions can join the appropriate mailing list here:
+# http://sourceforge.net/mail/?group_id=11118. Archives are available
+# here too.
+# 
+#################################################################################
+#
+# Syntax:
+#
+# Generally filters start with a line like "FILTER: name description".
+# They are then referrable from the actionsfile with +filter{name}
+#
+# FILTER marks a filter as content filter, other filter
+# types are CLIENT-HEADER-FILTER, CLIENT-HEADER-TAGGER,
+# SERVER-HEADER-FILTER and SERVER-HEADER-TAGGER.
+#
+# Inside the filters, write one Perl-Style substitution (job) per line.
+# Jobs that precede the first FILTER: line are ignored.
+#
+# For Details see the pcrs manpage contained in this distribution.
+# (and the perlre, perlop and pcre manpages)
+#
+# Note that you are free to choose the delimiter as you see fit.
+#
+# Note2: In addition to the Perl options gimsx, the following nonstandard
+# options are supported:
+# 
+# 'U' turns the default to ungreedy matching.  Add ? to quantifiers to
+#     switch back to greedy.
+#
+# 'T' (trivial) prevents parsing for backreferences in the substitute.
+#     Use if you want to include text like '$&' in your substitute without
+#     quoting.
+#
+# 'D' (Dynamic) allows the use of variables. Supported variables are:
+#     $host, $origin (the IP address the request came from), $path and $url.
+#
+#     Note that '$' is a bad choice as delimiter for dynamic filters as you
+#     might end up with unintended variables if you use a variable name
+#     directly after the delimiter. Variables will be resolved without
+#     escaping anything, therefore you also have to be careful not to chose
+#     delimiters that appear in the replacement text. For example '<' should
+#     be save, while '?' will sooner or later cause conflicts with $url.
+# 
+#################################################################################

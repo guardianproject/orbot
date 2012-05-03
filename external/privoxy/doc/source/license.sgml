@@ -1,0 +1,50 @@
+<!--
+ File        :  $Source: /cvsroot/ijbswa/current/doc/source/license.sgml,v $
+
+ Purpose     :  Entity included in other project documents.
+                
+ $Id: license.sgml,v 2.6 2008/05/23 15:09:48 fabiankeil Exp $
+
+  Copyright (C) 2001-2008 Privoxy Developers http://www.privoxy.org/
+  See LICENSE.
+ 
+ ======================================================================
+  This file used for inclusion with other documents only.
+ ======================================================================
+
+ If you make changes to this file, please verify the finished 
+ docs all display as intended.
+
+ This file is included into:
+
+  privoxy-man-page
+  user-manual
+  developer-manual
+  faq
+  webserver/index.sgml
+
+-->
+
+<para>
+ <application>Privoxy</application> is free software; you can
+ redistribute it and/or modify it under the terms of the 
+ <citetitle>GNU General Public License</citetitle>, version 2,
+ as published by the Free Software Foundation.
+</para>
+
+<para>
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ FITNESS FOR A PARTICULAR PURPOSE.  See the <ulink
+ url="http://www.gnu.org/licenses/old-licenses/gpl-2.0.html">
+ <citetitle>GNU General Public License</citetitle></ulink> for details.
+</para>
+
+<para>
+ You should have received a copy of the <citetitle>GNU GPL</citetitle>
+ along with this program; if not, write to the <address> Free Software
+ Foundation, Inc. <street>51 Franklin Street, Fifth Floor</street>
+ <city>Boston</city>, <state>MA</state> <postcode>02110-1301</postcode>
+ <country>USA</country> </address>
+</para>
+

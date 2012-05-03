@@ -1,0 +1,71 @@
+<!--
+ File        :  $Source: /cvsroot/ijbswa/current/doc/source/history.sgml,v $
+
+ Purpose     :  Entity included in other project documents.
+                
+ $Id: history.sgml,v 2.7 2009/02/22 11:05:21 fabiankeil Exp $
+
+  Copyright (C) 2001-2009 Privoxy Developers http://www.privoxy.org/
+  See LICENSE.
+
+ ======================================================================
+  This file used for inclusion with other documents only.
+ ======================================================================
+
+ If you make changes to this file, please verify the finished 
+ docs all display as intended.
+
+ This file is included into:
+
+  user-manual
+  developer-manual
+  faq
+  webserver/index.sgml
+
+-->
+
+<para>
+ A long time ago, there was the
+ <ulink url="http://www.junkbusters.com/ijb.html"><application>Internet Junkbuster</application></ulink>, 
+ by Anonymous Coders and <ulink url="http://www.junkbusters.com/">Junkbusters
+ Corporation</ulink>. This saved many users a lot of pain in the early days of
+ web advertising and user tracking.
+</para>
+
+<para>
+ But the web, its protocols and standards, and with it, the techniques for
+ forcing ads on users, give up autonomy over their browsing, and
+ for tracking them, keeps evolving. Unfortunately, the <application>Internet
+ Junkbuster</application> did not. Version 2.0.2, published in 1998, was 
+ (and is) the last official
+ <ulink url="http://www.junkbusters.com/ijbdist.html#release">release</ulink>
+ available from <ulink url="http://www.junkbusters.com">Junkbusters Corporation</ulink>.
+ Fortunately, it had been released under the GNU
+ <ulink url="http://www.gnu.org/licenses/old-licenses/gpl-2.0.html">GPL</ulink>,
+ which allowed further development by others.
+</para>
+
+<para>
+ So Stefan Waldherr started maintaining an improved version of the
+ software, to which eventually a number of people contributed patches.
+ It could already replace banners with a transparent image, and had a first
+ version of pop-up killing, but it was still very closely based on the
+ original, with all its limitations, such as the lack of HTTP/1.1 support,
+ flexible per-site configuration, or content modification. The last release
+ from this effort was version 2.0.2-10, published in 2000.
+</para>
+
+<para>
+ Then, some
+ <ulink url="http://www.privoxy.org/user-manual/copyright.html#AUTHORS">developers</ulink>
+ picked up the thread, and started turning the software inside out, upside down,
+ and then reassembled it, adding many
+ <ulink url="http://www.privoxy.org/user-manual/introduction.html#FEATURES">new
+ features</ulink> along the way.
+</para>
+
+<para>
+ The result of this is <application>Privoxy</application>, whose first
+ stable version, 3.0, was released August, 2002. 
+ <!-- Cautious!!!!!!!!! ;) -->
+</para>

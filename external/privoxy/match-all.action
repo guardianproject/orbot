@@ -1,0 +1,14 @@
+#############################################################################
+# $Id: match-all.action,v 1.2 2009/02/14 10:41:07 fabiankeil Exp $
+#
+# This file contains the actions that are applied to all requests and
+# may be overruled later on by other actions files. Less experienced
+# users should only edit this file through the actions file editor.
+#
+#############################################################################
+{ \
++change-x-forwarded-for{block} \
++hide-from-header{block} \
++set-image-blocker{pattern} \
+}
+/ # Match all URLs

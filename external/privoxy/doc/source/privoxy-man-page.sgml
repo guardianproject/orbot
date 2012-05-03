@@ -1,0 +1,352 @@
+<!--
+ File        :  $Source: /cvsroot/ijbswa/current/doc/source/privoxy-man-page.sgml,v $
+
+ Purpose     :  Manual Page
+                This file belongs into
+                ijbswa.sourceforge.net:/home/groups/i/ij/ijbswa/htdocs/
+                
+ $Id: privoxy-man-page.sgml,v 2.29 2009/02/19 02:20:22 hal9 Exp $
+
+ Copyright (C) 2001-2009 Privoxy Developers http://www.privoxy.org/
+ See LICENSE.
+
+ ========================================================================
+ NOTE: Please read developer-manual/documentation.html before touching 
+ anything in this, or other Privoxy documentation. 
+ ========================================================================
+
+ Doc NOTES: This is some tricky markup! There are some quirks
+ to how this markup is handled. It is not always so co-operative.
+ Please don't change the markup unless you can verify the changes 
+ will improve finished output! 
+ 
+ literallayout tags are particularly sensitive to where they are placed.
+ The 'replaceable' and 'command' tags are used here somewhat unconventionally,
+ since it seems to generate the proper formatting (at least for me :).
+
+ Create man page: 'make man'
+
+ Requires docbook2man (short perl script), see CVS
+ http://sources.redhat.com/docbook-tools/. Also requires openjade and SGMLSpm
+ perl module. 
+ 
+ For man page references, see:
+ http://www.linuxdoc.org/HOWTO/mini/DocBook-Install/using.html
+ http://docbook.org/tdg/en/html/ch02.html#making-refentry
+
+-->
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook V4.1//EN"[
+<!entity % dummy "IGNORE"> 
+<!entity p-intro SYSTEM "privoxy.sgml">
+<!entity seealso SYSTEM "seealso.sgml">
+<!entity copyright SYSTEM "copyright.sgml">
+<!entity license SYSTEM "license.sgml">
+<!entity authors SYSTEM "p-authors.sgml">
+<!entity p-version "3.0.11">
+<!entity p-status "stable">
+<!entity % p-not-stable "IGNORE">
+<!entity % p-stable "INCLUDE">
+<!entity % p-text "IGNORE">           <!-- define we are not a text only doc -->
+<!entity % p-authors-formal "IGNORE"> <!-- exclude additional formating      -->
+<!entity my-copy "(C)">               <!-- db2man barfs on copyright symbol  -->
+<!entity % seealso-extra "IGNORE">    <!-- for excluding sections of seealso -->
+]>
+
+<refentry id="privoxy">
+<refentryinfo>
+ <date>2009-02-15</date>
+</refentryinfo>
+<refmeta>
+ <refentrytitle>privoxy</refentrytitle> 
+ <manvolnum>1</manvolnum>
+ <refmiscinfo>
+  Privoxy &p-version;<![%p-not-stable;[ &p-status;]]>
+ </refmiscinfo>
+</refmeta>
+
+<refnamediv>
+ <refname><application>privoxy</application></refname>
+ <refpurpose>Privacy Enhancing Proxy</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+ <cmdsynopsis> 
+  <command>privoxy</command>
+  <arg><option>--help</option></arg>
+  <arg><option>--version</option></arg>
+  <arg><option>--no-daemon</option></arg>
+  <arg><option>--pidfile </option><replaceable class="parameter">pidfile</replaceable></arg>  
+  <arg><option>--user </option><replaceable class="parameter">user[.group]</replaceable></arg> 
+  <arg><option>--chroot</option></arg>
+  <arg><option>--pre-chroot-nslookup </option><replaceable class="parameter">hostname</replaceable></arg> 
+  <arg><replaceable class="parameter">configfile</replaceable></arg>        
+ </cmdsynopsis>
+
+</refsynopsisdiv>
+
+
+<!--   ~~~~~       New section      ~~~~~     -->
+<refsect1><title>Options</title>
+ <para>
+  <command>Privoxy</command> may be invoked with the following command line
+  options:
+ </para>
+
+ <variablelist>                                          
+  <varlistentry>
+    <term>--help</term>
+      <listitem>
+       <para>
+         Print brief usage info and exit.
+        </para>
+      </listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term>--version</term>
+      <listitem>
+       <para>
+         Print version info and exit.
+        </para>
+      </listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term>--no-daemon</term>
+     <listitem>
+      <para>
+        Don't  become  a daemon, i.e. don't fork and become process group
+        leader, don't detach from controlling tty, and do all logging there.
+      </para>
+    </listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term>--pidfile <replaceable class="parameter">pidfile</replaceable></term>
+     <listitem>
+      <para>
+        On startup, write the process ID to <replaceable class="parameter">pidfile</replaceable>.
+        Delete the <replaceable class="parameter">pidfile</replaceable> on exit.
+        Failure to create or delete the <replaceable class="parameter">pidfile</replaceable>
+        is non-fatal. If no <command>--pidfile</command> option is given, no PID file will be used.
+      </para>
+    </listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term>--user <replaceable class="parameter">user[.group]</replaceable></term>
+     <listitem>
+      <para>
+       <!-- Note: replaceable is maybe the wrong tag, but generates  -->
+       <!-- correct looking man output.                              -->
+       After (optionally) writing the PID file, assume the user ID of
+       <replaceable class="parameter">user</replaceable> and the GID of
+       <replaceable class="parameter">group</replaceable>, or, if the optional
+       <replaceable class="parameter">group</replaceable> was not given, the default group of
+       <replaceable class="parameter">user</replaceable>. Exit if the privileges are not
+       sufficient to do so.
+     </para>
+    </listitem>
+  </varlistentry>
+  <varlistentry>
+    <term>--chroot</term>
+     <listitem>
+      <para>
+       Before changing to the user ID given in the --user option, chroot to
+       that user's home directory, i.e. make the kernel pretend to the
+       <command>Privoxy</command> process that the directory tree starts
+       there. If set up carefully, this can limit the impact of possible
+       vulnerabilities in <command>Privoxy</command> to the files contained in
+       that hierarchy. 
+      </para>
+    </listitem>
+  </varlistentry>
+  <varlistentry>
+    <term>--pre-chroot-nslookup <replaceable class="parameter">hostname</replaceable></term>
+     <listitem>
+      <para>
+        Initialize the resolver library using <replaceable class="parameter">hostname</replaceable>
+        before chroot'ing. On some systems this reduces the number of files
+        that must be copied into the chroot tree.
+     </para>
+    </listitem>
+  </varlistentry>
+ </variablelist>
+
+ <para>
+  If the <filename>configfile</filename> is not specified on  the  command  line,
+  <command>Privoxy</command>  will  look for a file named
+  <filename>config</filename> in the current directory. If no
+  <filename>configfile</filename> is found, <command>Privoxy</command> will 
+  fail to start.
+ </para>
+
+</refsect1>
+
+
+<!--   ~~~~~       New section      ~~~~~     -->
+<refsect1><title>Description</title>
+<!-- Include privoxy.sgml boilerplate: -->
+ &p-intro;
+<!-- end boilerplate -->
+</refsect1>
+
+
+<!--   ~~~~~       New section      ~~~~~     -->
+<refsect1><title>Installation and Usage</title>
+<para>
+ Browsers can either be individually configured to use
+ <command>Privoxy</command> as a HTTP proxy (recommended),
+ or <command>Privoxy</command> can be combined with a packet
+ filter to build an intercepting proxy
+ (see <filename>config</filename>).  The default setting is  for
+ localhost,  on port  8118 (configurable in the main config file).  To set the
+ HTTP proxy in Firefox, go through: <command>Tools</command>; 
+ <command>Options</command>; <command>General</command>;
+ <command>Connection Settings</command>;
+ <command>Manual Proxy Configuration</command>. 
+</para>
+<para>
+ For Internet Explorer, go through: <command>Tools</command>; 
+ <command>Internet Properties</command>; <command>Connections</command>;
+ <command>LAN Settings</command>. 
+</para>
+<para>
+ The Secure (SSL) Proxy should also be set to the same values, otherwise
+ https: URLs will not be proxied. Note: <command>Privoxy</command> can only
+ proxy HTTP and HTTPS traffic. Do not try it with FTP or other protocols.
+ HTTPS presents some limitations, and not all features will work with HTTPS 
+ connections.
+</para>
+
+<para>
+ For other browsers, check the documentation.
+</para>
+</refsect1>
+
+
+<!--   ~~~~~       New section      ~~~~~     -->
+<refsect1><title>Configuration</title>
+<para>
+ <command>Privoxy</command> can be configured with the various configuration
+ files. The default configuration files are: <filename>config</filename>,
+ <filename>default.filter</filename>, <filename>default.action</filename> and
+ <filename>default.action</filename>. <filename>user.action</filename> should 
+ be used for locally defined exceptions to the default rules in
+ <filename>match-all.action</filename> and <filename>default.action</filename>,
+ and <filename>user.filter</filename> for locally defined filters. These are
+ well commented.  On Unix and Unix-like systems, these are located in
+ <filename>/etc/privoxy/</filename> by default. 
+</para>
+<para> 
+ <command>Privoxy</command> uses the concept of <command>actions</command> 
+ in order to manipulate the data stream between the browser and remote sites.
+ There are various actions available with specific functions for such things 
+ as blocking web sites, managing cookies, etc. These actions can be invoked
+ individually or combined, and used against individual URLs, or groups of URLs 
+ that can be defined using wildcards and regular expressions. The result is
+ that the user has greatly enhanced control and freedom.
+</para>
+<para>
+ The actions list (ad blocks, etc) can also be configured with your
+ web browser at <ulink url="http://config.privoxy.org/">http://config.privoxy.org/</ulink> 
+ (assuming the configuration allows it).
+ <command>Privoxy's</command> configuration parameters  can also  be viewed at
+ the same page. In addition, <command>Privoxy</command> can be toggled on/off.
+ This is an internal page, and does not require Internet access.
+</para>
+<para>
+ See the <ulink
+ url="http://www.privoxy.org/user-manual/"><citetitle>User Manual</citetitle></ulink> for a detailed
+ explanation of installation, general usage, all configuration options, new
+ features and notes on upgrading.
+</para>
+</refsect1>
+
+
+
+<!--   ~~~~~       New section      ~~~~~     -->
+<refsect1><title>Files</title>
+<!-- this is a cheesy way to do this, but WTF. -->
+<literallayout> 
+ <filename>/usr/sbin/privoxy</filename>
+ <filename>/etc/privoxy/config</filename>
+ <filename>/etc/privoxy/match-all.action</filename>
+ <filename>/etc/privoxy/default.action</filename>
+ <filename>/etc/privoxy/user.action</filename>
+ <filename>/etc/privoxy/default.filter</filename>
+ <filename>/etc/privoxy/user.filter</filename>
+ <filename>/etc/privoxy/trust</filename>
+ <filename>/etc/privoxy/templates/*</filename>
+ <filename>/var/log/privoxy/logfile</filename>
+</literallayout>
+
+<para>
+ Various other files should be included, but may vary depending on platform
+ and build configuration. Additional documentation should be included in the local
+ documentation directory.
+</para>
+
+</refsect1>
+
+
+<!--   ~~~~~       New section      ~~~~~     -->
+<refsect1><title>Signals</title>
+<para>
+ <!-- command tag is used here to get proper looking format  -->
+ <command>Privoxy</command> terminates on the <command>SIGINT</command>,
+ <command>SIGTERM</command> and <command>SIGABRT</command> signals. Log
+ rotation scripts may cause a re-opening of the logfile by sending a 
+ <command>SIGHUP</command> to <command>Privoxy</command>. Note that unlike
+ other daemons,  <command>Privoxy</command> does not need to be made aware of
+ config file changes by <command>SIGHUP</command> -- it will detect them
+ automatically. 
+</para>
+
+</refsect1>
+
+<!--   ~~~~~       New section      ~~~~~     -->
+<refsect1><title>Notes</title>
+<![%p-not-stable;[
+<para>
+ This is a &p-status; version of <command>Privoxy</command>. Not 
+ all features are well tested.
+</para>]]>
+<para>
+ Please see the <citetitle>User Manual</citetitle> on how to contact the
+ developers, for feature requests, reporting problems, and other questions.
+</para>
+
+</refsect1>
+
+<!--   ~~~~~       New section      ~~~~~     -->
+<refsect1><title>See Also</title>
+<!-- Include seealso.sgml boilerplate: -->
+ &seealso;
+<!-- end boilerplate -->
+</refsect1>
+
+<!--   ~~~~~       New section      ~~~~~     -->
+<refsect1><title>Development Team</title>
+<!-- Include p-authors.sgml boilerplate: -->
+ &authors;
+<!-- end boilerplate -->
+</refsect1>
+
+<!--   ~~~~~       New section      ~~~~~     -->
+<refsect1><title>Copyright and License</title>
+
+<refsect2><title>Copyright</title>
+<!-- Include copyright.sgml boilerplate: -->
+ &copyright;
+<!-- end boilerplate -->
+</refsect2>
+
+<refsect2><title>License</title>
+<!-- Include license.sgml boilerplate: -->
+ &license;
+<!-- end boilerplate -->
+</refsect2>
+</refsect1>
+
+</refentry>

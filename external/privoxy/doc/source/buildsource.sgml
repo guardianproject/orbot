@@ -1,0 +1,256 @@
+<!--
+ File        :  $Source: /cvsroot/ijbswa/current/doc/source/buildsource.sgml,v $
+
+ Purpose     :  Entity included in other project documents.
+                
+ $Id: buildsource.sgml,v 2.18 2009/02/23 09:03:12 fabiankeil Exp $
+
+ Copyright (C) 2001-2009 Privoxy Developers http://www.privoxy.org/
+ See LICENSE.
+
+ ======================================================================
+  This file used for inclusion with other documents only.
+ ======================================================================
+
+ If you make changes to this file, please verify the finished 
+ docs all display as intended.
+
+ This file is included into:
+
+  user-manual
+  INSTALL
+
+-->
+<para>
+ To build <application>Privoxy</application> from source, 
+ <ulink url="http://www.gnu.org/software/autoconf/autoconf.html">autoconf</ulink>,
+ <ulink
+ url="http://www.gnu.org/software/make/make.html">GNU make
+ (gmake)</ulink>, and, of course, a C compiler like <ulink
+ url="http://www.gnu.org/software/gcc/gcc.html">gcc</ulink> are required.
+</para>
+
+<para>
+ When building from a source tarball,
+<!-- 
+ no longer available ...
+ <ulink
+ url="http://cvs.sourceforge.net/cvstarballs/ijbswa-cvsroot.tar.gz">nightly CVS
+ tarball</ulink>), 
+--> first unpack the source: 
+</para>
+
+<para>
+ <screen>
+ tar xzvf privoxy-&p-version;<![%p-not-stable;[-beta]]><![%p-stable;[-stable]]>-src.tar.gz
+ cd privoxy-&p-version;<![%p-not-stable;[-beta]]><![%p-stable;[-stable]]>
+</screen>
+</para>
+
+<para>
+ For retrieving the current CVS sources, you'll need a CVS client installed.
+ Note that sources from CVS are typically development quality, and may not be
+ stable, or well tested. To download CVS source, check the Sourceforge
+ documentation, which might give commands like:
+</para>
+
+<para>
+ <screen>
+  cvs -d:pserver:anonymous@ijbswa.cvs.sourceforge.net:/cvsroot/ijbswa login
+  cvs -z3 -d:pserver:anonymous@ijbswa.cvs.sourceforge.net:/cvsroot/ijbswa co current
+  cd current
+</screen>
+</para>
+
+<para>
+ This will create a directory named <filename>current/</filename>, which will 
+ contain the source tree.
+</para>
+
+<para>
+ You can also check out any <application>Privoxy</application>
+ <quote>branch</quote>, just exchange the <application>current</application>
+ name with the wanted branch name (Example: v_3_0_branch for the 3.0 cvs
+ tree).
+</para>
+
+<para>
+ It is also strongly recommended to not run <application>Privoxy</application>
+ as root. You should configure/install/run <application>Privoxy</application> as
+ an unprivileged user, preferably by  creating a <quote>privoxy</quote> user
+ and group just for this purpose. See your local documentation for the correct
+ command line to do add new users and groups (something like
+ <command>adduser</command>, but the command syntax may vary from platform
+ to platform). 
+</para>
+
+<para>
+ <filename>/etc/passwd</filename> might then look like:
+</para>
+
+<para>
+ <screen>  privoxy:*:7777:7777:privoxy proxy:/no/home:/no/shell</screen>
+</para>
+
+<para>
+ And then <filename>/etc/group</filename>, like:
+</para>
+
+<para>
+ <screen>  privoxy:*:7777:</screen>
+</para>
+
+<para>
+ Some binary packages may do this for you.
+</para>
+
+<para>
+ Then, to build from either unpacked tarball or CVS source:
+</para>
+
+<para>
+ <screen>
+ autoheader
+ autoconf
+ ./configure      # (--help to see options)
+ make             # (the make from GNU, sometimes called gmake) 
+ su               # Possibly required
+ make -n install  # (to see where all the files will go)
+ make -s install  # (to really install, -s to silence output)</screen>
+</para>
+
+<para>
+  Using GNU <command>make</command>, you can have the first four steps
+  automatically done for you by just typing:
+</para>
+
+<para>
+ <screen>
+  make
+</screen>
+</para>
+
+<para>
+  in the freshly downloaded or unpacked source directory.
+</para>
+
+<para>
+ To build an executable with security enhanced features so that 
+ users cannot easily bypass the proxy (e.g. <quote>Go There Anyway</quote>), or
+ alter their own configurations, <command>configure</command> like this:
+</para>
+<para>
+ <screen>
+ ./configure  --disable-toggle  --disable-editor  --disable-force</screen>
+</para> 
+<para>
+Then build as above. In Privoxy 3.0.7 and later, all of these options
+can also be disabled through the configuration file.
+</para>
+<para>
+ <emphasis>WARNING:</emphasis> If installing as root, the install will fail
+ unless a non-root user or group is specified, or a <literal>privoxy</literal>
+ user and group already exist on the system. If a non-root user is specified,
+ and no group, then the installation will try to also use a group of the same name
+ as <quote>user</quote>. If a group is specified (and no user), then the
+ support files will be installed as writable by that group, and owned by the
+ user running the installation.
+</para>
+
+<para>
+ <command>configure</command> accepts <literal>--with-user</literal> and
+ <literal>--with-group</literal> options for setting user and group ownership
+ of the configuration files (which need to be writable by the daemon). The
+ specified <emphasis>user must already exist</emphasis>. When starting
+ <application>Privoxy</application>, it must be run as this same user to
+ insure write access to configuration and log files!
+</para>
+
+<para>
+ Alternately, you can specify <literal>user</literal> and <literal>group</literal>
+ on the <command>make</command> command line, but be sure both already exist:
+</para>
+
+<para>
+ <screen>
+ make -s install  USER=privoxy GROUP=privoxy</screen>
+</para>
+
+<para>
+ The default installation path for <command>make install</command> is 
+ <filename>/usr/local</filename>. This may of course be customized with 
+ the various <command>./configure</command> path options. If you are doing 
+ an install to anywhere besides <filename>/usr/local</filename>, be
+ sure to set the appropriate paths with the correct configure options
+ (<command>./configure --help</command>). Non-privileged users must of course
+ have write access permissions to wherever the target installation is going.
+</para>
+
+<para>
+ If you do install to <filename>/usr/local</filename>, the install will use
+ <literal>sysconfdir=$prefix/etc/privoxy</literal> by default. All other
+ destinations, and the direct usage of <literal>--sysconfdir</literal> flag
+ behave like normal, i.e. will not add the extra <filename>privoxy</filename>
+ directory. This is for a safer install, as there may already exist another
+ program that uses a file with the <quote>config</quote> name, and thus makes
+ <filename>/usr/local/etc</filename> cleaner.
+</para>
+
+<para>
+ If installing to <filename>/usr/local</filename>, the documentation will go
+ by default to <filename>$prefix/share/doc</filename>. But if this directory
+ doesn't exist, it will then try <filename>$prefix/doc</filename> and install
+ there before creating a new <filename>$prefix/share/doc</filename> just for
+ <application>Privoxy</application>.
+</para>
+
+<para>
+ Again, if the installs goes to <filename>/usr/local</filename>, the
+ <literal>localstatedir</literal> (ie: <filename>var/</filename>) will default
+ to <filename>/var</filename> instead of <literal>$prefix/var</literal> so
+ the logs will go to <filename>/var/log/privoxy/</filename>, and the pid file
+ will be created in <filename>/var/run/privoxy.pid</filename>. 
+</para>
+
+<para>
+ <command>make install</command> will attempt to set the correct values 
+ in <filename>config</filename> (main configuration file). You should  
+ check this to make sure all values are correct. If appropriate,
+ an init script will be installed, but it is up to the user to determine 
+ how and where to start <application>Privoxy</application>. The init 
+ script should be checked for correct paths and values, if anything other than
+ a default install is done.
+</para>
+
+<para>
+ If install finds previous versions of local configuration files, most of
+ these will not be overwritten, and the new ones will be installed with a
+ <quote>new</quote> extension. default.action and default.filter
+ <emphasis>will be overwritten</emphasis>. You will then need
+ to manually update the other installed configuration files as needed. The
+ default template files <emphasis>will</emphasis> be overwritten. If you have
+ customized, local templates, these should be stored safely in a separate
+ directory and defined in <filename>config</filename> by the
+ <quote>templdir</quote> directive. It is of course wise to always back-up any
+ important configuration files <quote>just in case</quote>. If a previous
+ version of <application>Privoxy</application> is already running, you will
+ have to restart it manually.
+</para>
+
+<para>
+ For more detailed instructions on how to build Redhat RPMs,
+ Windows self-extracting installers, building on platforms with
+ special requirements etc, please consult the <ulink
+ url="http://www.privoxy.org/developer-manual/newrelease.html">developer manual</ulink>.
+</para>
+
+<!-- print for README only -->
+<!-- Actually this is now in INSTALL -->
+ <![%p-readme;[
+<para>
+ The simplest command line to start <application>Privoxy</application> is 
+ <command>$path/privoxy --user=privoxy  $path/etc/privoxy/config</command>. 
+ See <command>privoxy --usage</command>, or the man page, for other options, 
+ and configuration.
+</para>
+]]>

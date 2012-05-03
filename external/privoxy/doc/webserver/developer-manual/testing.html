@@ -1,0 +1,259 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Testing Guidelines</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Privoxy Developer Manual"
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="Coding Guidelines"
+HREF="coding.html"><LINK
+REL="NEXT"
+TITLE="Releasing a New Version"
+HREF="newrelease.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="../p_doc.css"><META
+HTTP-EQUIV="Content-Type"
+CONTENT="text/html;
+charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#EEEEEE"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Privoxy Developer Manual</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="coding.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="newrelease.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="TESTING"
+>5. Testing Guidelines</A
+></H1
+><P
+>To be filled.</P
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="TESTING-PLAN"
+>5.1. Testplan for releases</A
+></H2
+><P
+>       Explain release numbers. major, minor. developer releases. etc.
+
+<P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>Remove any existing rpm with rpm -e</P
+></LI
+><LI
+><P
+>Remove any file that was left over. This includes (but is not limited to)
+      <P
+></P
+><UL
+><LI
+><P
+>/var/log/privoxy</P
+></LI
+><LI
+><P
+>/etc/privoxy</P
+></LI
+><LI
+><P
+>/usr/sbin/privoxy</P
+></LI
+><LI
+><P
+>/etc/init.d/privoxy</P
+></LI
+><LI
+><P
+>/usr/doc/privoxy*</P
+></LI
+></UL
+></P
+></LI
+><LI
+><P
+>Install the rpm. Any error messages?</P
+></LI
+><LI
+><P
+>start,stop,status <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> with the specific script
+      (e.g. /etc/rc.d/init/privoxy stop). Reboot your machine. Does
+      autostart work?</P
+></LI
+><LI
+><P
+>Start browsing. Does <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> work? Logfile written?</P
+></LI
+><LI
+><P
+>Remove the rpm. Any error messages? All files removed?</P
+></LI
+></OL
+></P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="TESTING-REPORT"
+>5.2. Test reports</A
+></H2
+><P
+>Please submit test reports only with the <A
+HREF="http://sourceforge.net/tracker/?func=add&#38;group_id=11118&#38;atid=395005"
+TARGET="_top"
+>test form</A
+>
+at sourceforge. Three simple steps:
+        <P
+></P
+><UL
+><LI
+><P
+>Select category: the distribution you test on.</P
+></LI
+><LI
+><P
+>Select group: the version of <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> that we are about to release.</P
+></LI
+><LI
+><P
+>Fill the Summary and Detailed Description with something
+              intelligent (keep it short and precise).</P
+></LI
+></UL
+>
+        Do not mail to the mailing list (we cannot keep track on issues there).
+      </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="coding.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="newrelease.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Coding Guidelines</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Releasing a New Version</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,717 @@
+--------------------------------------------------------------------
+ChangeLog for Privoxy
+--------------------------------------------------------------------
+*** Version 3.0.12 (UNRELEASED) ***
+
+- The socket-timeout option now also works on platforms whose
+  select() implementation modifies the timeout structure.
+  Previously the timeout was triggered even if the connection
+  didn't stall. Reported by cyberpatrol.
+- The Connection: keep-alive code properly deals with files
+  larger than 2GB. Previously the connection was closed too
+  early.
+- The content length for files above 2GB is logged correctly.
+- The user-manual directive on the show-status page links to
+  the documentation location specified with the directive,
+  not to the Privoxy website.
+- When running in daemon mode, Privoxy doesn't log anything
+  to the console unless there are errors before the logfile
+  has been opened.
+- The show-status page prints warnings about invalid directives
+  on the same line as the directives themselves.
+- Fixed several justified (but harmless) compiler warnings,
+  mostly on 64 bit platforms.
+- The mingw32 version explicitly requests the default charset
+  to prevent display problems with some fonts available on more
+  recent Windows versions. Patch by Burberry.
+- The mingw32 version uses the Privoxy icon in the alt-tab
+  windows. Patch by Burberry.
+- The timestamp and the thread id is omitted in the "Fatal error"
+  message box on mingw32.
+- Fixed two related mingw32-only buffer overflows. Triggering
+  them required control over the configuration file, therefore
+  this isn't seen as a security issue.
+- In verbose mode, or if the new option --show-skipped-tests
+  is used, Privoxy-Regression-Test logs skipped tests and the
+  skip reason.
+
+*** Version 3.0.11 ***
+	
+- On most platforms, outgoing connections can be kept alive and
+  reused if the server supports it. Whether or not this improves
+  things depends on the connection.
+- When dropping privileges, membership in supplementary groups
+  is given up as well. Not doing that can lead to Privoxy running
+  with more rights than necessary and violates the principle of
+  least privilege. Users of the --user option are advised to update.
+  Thanks to Matthias Drochner for reporting the problem,
+  providing the initial patch and testing the final version.
+- Passing invalid users or groups with the --user option
+  didn't lead to program exit. Regression introduced in 3.0.7.
+- The match all section has been moved from default.action
+  to a new file called match-all.action. As a result the
+  default.action no longer needs to be touched by the user
+  and can be safely overwritten by updates.
+- The standard.action file has been removed. Its content
+  is now part of the default.action file.
+- In some situations the logged content length was slightly too low.
+- Crunched requests are logged with their own log level.
+  If you used "debug 1" in the past, you'll probably want
+  to additionally enable "debug 1024", otherwise only passed
+  requests will be logged. If you only care about crunched
+  requests, simply replace "debug 1" with "debug 1024".
+- The crunch reason has been moved to the beginning of the
+  crunch message. For HTTP URLs, the protocol is logged as well.
+- Log messages are shortened by printing the thread id on its
+  own (as opposed to putting it inside the string "Privoxy()").
+- The config option socket-timeout has been added to control
+  the time Privoxy waits for data to arrive on a socket.
+- Support for remote toggling is controlled by the configure
+  option --disable-toggle only. In previous versions it also
+  depended on the action editor and thus configuring with the
+  --disable-editor option would disable remote toggling support
+  as well.
+- Requests with invalid HTTP versions are rejected.
+- The template symbol @date@ can be used to include a date(1)-like
+  time string. Initial patch submitted by Endre Szabo.
+- Responses from shoutcast servers are accepted again.
+  Problem reported and fix suggested by Stefan.
+- The hide-forwarded-for-headers action has been replaced with
+  the change-x-forwarded-for{} action which can also be used to
+  add X-Forwarded-For headers. The latter functionality already
+  existed in Privoxy versions prior to 3.0.7 but has been removed
+  as it was often used unintentionally (by not using the
+  hide-forwarded-for-headers action).
+- A "clear log" view option was added to the mingw32 version
+  to clear out all of the lines in the Privoxy log window.
+  Based on a patch submitted by T Ford.
+- The mingw32 version uses "critical sections" now, which prevents
+  log message corruption under load. As a side effect, the
+  "no thread-safe PRNG" warning could be removed as well.
+- The mingw32 version's task bar icon is crossed out and
+  the color changed to gray if Privoxy is toggled off.
+
+*** Version 3.0.10 ***
+
+- Ordinary configuration file changes no longer cause program
+  termination on OS/2 if the name of the logfile hasn't been
+  changed as well. This regression probably crept in with the
+  logging improvements in 3.0.7. Reported by Maynard.
+- The img-reorder filter is less likely to mess up JavaScript code in
+  img tags. Problem and solution reported by Glenn Washburn in #2014552.
+- The source tar ball now includes Privoxy-Log-Parser,
+  a syntax-highlighter for Privoxy logs. For fancy screenshots see:
+  http://www.fabiankeil.de/sourcecode/privoxy-log-parser/
+  Documentation is available through perldoc(1).
+
+*** Version 3.0.9 Beta ***
+
+- Added SOCKS5 support (with address resolution done by
+  the SOCKS5 server). Patch provided by Eric M. Hopper.
+- The "blocked" CGI pages include a block reason that was
+  provided as argument to the last-applying block action.
+- If enable-edit-actions is disabled (the default since 3.0.7 beta)
+  the show-status page hides the edit buttons and explains why.
+  Previously the user would get the "this feature has been disabled"
+  message after using the edit button.
+- Forbidden CONNECT requests are treated like blocks by default.
+  The now-pointless treat-forbidden-connects-like-blocks action
+  has been removed.
+- Not enabling limit-connect now allows CONNECT requests to all ports.
+  In previous versions it would only allow CONNECT requests to port 443.
+  Use +limit-connect{443} if you think you need the old default behaviour.
+- The CGI editor gets turned off after three edit requests with invalid
+  file modification timestamps. This makes life harder for attackers
+  who can leverage browser bugs to send fake Referers and intend to
+  brute-force edit URLs.
+- Action settings for multiple patterns in the same section are
+  shared in memory. As a result these sections take up less space
+  (and are loaded slightly faster). Problem reported by Franz Schwartau.
+- Linear white space in HTTP headers will be normalized to single
+  spaces before parsing the header's content, headers split across
+  multiple lines get merged first. This should prevent problems like:
+   * letting the session-cookies-only action slip
+     some Cookies through unmodified,
+   * only suppressing the first line of a header,
+     thus creating an invalid one, and
+   * to incorrectly block headers with valid timestamps
+     that weren't properly recognized.
+  Headers that could trigger these problems are unlikely to appear
+  in "normal" web traffic, but could be intentionally generated to
+  fool some of Privoxy's header parsers.
+- Host information is gathered outside the main thread so it's less
+  likely to delay other incoming connections if the host is misconfigured.
+- New config option "hostname" to use a hostname other than
+  the one returned by the operating system. Useful to speed-up responses
+  for CGI requests on misconfigured systems. Requested by Max Khon.
+- The CGI editor supports the "disable all filters of this type"
+  directives "-client-header-filter", "-server-header-filter",
+  "-client-header-tagger" and "-server-header-tagger".
+- Fixed false-positives with the link-by-url filter and URLs that
+  contain the pattern "/jump/".
+- The less-download-windows filter no longer messes
+  "Content-Type: application/x-shockwave-flash" headers up.
+- In the show-url-info page's "Final results" section active and
+  inactive actions are listed separately. Patch provided by Lee.
+- The GNUmakefile supports the DESTDIR variable. Patch for
+  the install target submitted by Radoslaw Zielinski.
+- Embedding the content of configuration files in the show-status
+  page is significantly faster now. For a largish action file (1 MB)
+  a speedup of about 2450 times has been measured. This is mostly
+  interesting if you are using large action files or regularly use
+  Privoxy-Regression-Test while running Privoxy through Valgrind,
+  for stock configuration files it doesn't really matter.
+- If zlib support is unavailable and there are content
+  filters active but the prevent-compression action is disabled,
+  the show-url-info page includes a warning that compression
+  might prevent filtering.
+- The show-url-info page provides an OpenSearch Description that
+  allows to access the page through browser search plugins.
+- Custom client-header filters that rewrite the request line
+  incorrectly no longer cause Privoxy to crash. Reported by din_a4.
+- The obsolete kill-popups action has been removed as the
+  PCRS-based popup filters can do the same and are slightly
+  less unreliable.
+- The inspect-jpegs action has been removed.
+- The send-wafer and send-vanilla-wafer actions have been removed.
+  They weren't particular useful and their behaviour could be emulated
+  with add-header anyway.
+- Privoxy-Regression-Test has been significantly improved.
+- Most sections in the default.action file contain tests for
+  Privoxy-Regression-Test to verify that they are working as intended.
+- Parts of Privoxy have been refactored to increase maintainability.
+- Building with zlib (if available) is done by default.
+
+*** Version 3.0.8 ***
+
+- Fixed a small memory leak when listen-address only specifies the port.
+- The source tar balls now include Privoxy-Regression-Test which
+  (upon other things) can be used to automatically detect some
+  packaging problems. Packagers are welcome to give it a try.
+- Reverted a change in 3.0.7 that caused path patterns to be checked
+  even if the host pattern match already failed. While this doesn't
+  noticeable affect the performance, it makes it less likely to run
+  out of stack space with overly-complex path patterns the user might
+  have added.
+- Updated the msn, yahoo and google filters to work as advertised again.
+- The warning message shown by the show-status CGI page is easier to
+  understand. Previously it wasn't clear that the error message
+  is shown below the invalid directive. (Reported by Lee)
+- When regenerating Content-Disposition headers the more common
+  spelling is used for the name. Previously it was written without caps.
+- Less confusing log message if the content type isn't overwritten
+  because force-text-type wasn't used but the old type doesn't look
+  like content that would be filtered normally.
+- Better log messages if the user tries to execute filters that
+  don't exist.
+- Treat the non-standard Request-Range headers like standard range
+  headers and suppress them if content filtering is enabled.
+- Prevent the log messages for CONNECT requests to unacceptable
+  ports from printing the limit-connect argument as [null] if
+  limit-connect hasn't been explicitly enabled.
+- Don't disable the mingw32 log window if the logfile directive
+  isn't used. While it was an intentional change in 3.0.7 at least
+  one user perceived it as a regression and the same effect can
+  be achieved by disabling all debug directives.
+- Fixed two minor problems related to the win32 build process: a css
+  file was not being in the installer and the trustfile comment in the
+  config.txt referenced a nonexisting file
+- Minor documentation fixes.
+
+*** Version 3.0.7 Beta ***
+
+- Added zlib support to filter content with gzip and deflate
+  encoding. (Patch provided by Wil Mahan)
+- Dedicated filters and actions are used for header filtering.
+  "filter-client-headers" and "filter-client-headers" are no longer
+  supported, use server-header-filter{} and client-header-filter{}
+  instead.
+- Tags can be used to change actions based on HTTP headers.
+- New server-header filter: less-download-windows.
+- New client-header taggers: css-requests, image-requests,
+  client-ip-address, http-method, allow-post, complete-url,
+  user-agent and privoxy-control.
+- New server-header taggers: content-type and privoxy-control.
+- The forward-override{} action allows to change the forwarding
+  settings through the action files, for example based on client
+  headers like the User-Agent, or the request origin.
+- Socks errors are no longer handled by the CGI page for
+  DNS resolution failures.
+- CGI pages use favicons to signal whether they are error
+  or control pages. This is useful if you rely heavily on
+  browser tabs.
+- The show-url-info CGI page shows the forwarding settings.
+- "Crunch!" log messages (used when Privoxy answers requests
+  by itself) now also contain the reason.
+- Allow to rewrite the request destination behind the client's back.
+- Fix socks requests on big-endian platforms. Patch provided by Song Weijia.
+- Fixes possible deadlocks and crashes on OpenBSD.
+  Patch provided by Ralf Horstmann.
+- The CGI action editor allows to edit actionfiles with previously
+  forbidden characters like dots.
+- New trust entries are saved with a comment that contains the
+  trusted referring URL (Suggested by Daniel Griscom).
+- Filter descriptions are HTML encoded automatically. 	
+- New config option "split-large-forms" to work
+  around a browser bug that caused IE6 and IE7 to ignore
+  the Submit button on the edit-actions-for-url CGI page.
+- New config option "allow-cgi-request-crunching" to allow
+  requests for Privoxy's CGI pages to be blocked, redirected
+  or (un)trusted like ordinary requests.
+- Empty filter files no longer interrupt the filtering process
+  prematurely and are correctly listed on the show-status CGI page.
+- New config option "accept-intercepted-requests" to combine
+  Privoxy with any packet filter to build an intercepting proxy
+  for HTTP/1.1 requests (and for HTTP/1.0 requests with Host header set).
+- fast-redirects{} catch redirects to https URLs as well.
+- redirect{s@foo@bar@} can be used to redirect to a rewritten
+  version of the original URL.
+- Trap unsupported gopher proxy requests.
+- Fixed a bug in the User Manual delivery on Windows
+  (mingw32 only). Images now show up correctly and HTML
+  pages are no longer padded with garbage data.
+- Fixed several minor memory leaks, most of them discovered with Valgrind.
+- Only unlink the pidfile if it's actually used.
+- Retries after connection problems with forced requests
+  aren't blocked again.
+- On Unix SIGABRT causes a core dump as expected and is no
+  longer treated as normal shutdown signal.
+- The "access denied" CGI page is more descriptive and
+  allows retries to circumvent the referrer check.
+- Updated PCRS to handle unexpected PCRE errors properly.
+  Fixed crashes that could occur if Privoxy was build
+  with external PCRE versions newer than Privoxy's internal
+  one. (Reported by Chung-chieh Shan)
+- Fixed crashes with null bytes in PCRS replacement strings
+  (Patch provided by Felix Gröbert).
+- Fixed crashes with header time randomization on mingw32.
+- The CGI style sheet is no longer delivered if the referring
+  page isn't a Privoxy CGI page. This prevents a JavaScript-based
+  Privoxy detection "attack". Note that detecting Privoxy is
+  still possible through other ways and Privoxy was never intended
+  to be invisible anyway.
+- Added support for AmigaOS 4, fixed build for AmigaOS 3.x.	
+- The show-url-info CGI page displays a warning if Privoxy
+  is currently toggled off.
+- The show-status CGI page suppresses the edit button
+  for action files if Privoxy has no write access.	
+- Most CGI error pages react properly to HEAD requests.
+- Requests with RFC 3253 HTTP methods (used by Subversion)
+  are accepted. (Patch provided by Petr Kadlec)
+- New config option "templdir" to change the location
+  of the CGI templates to make sure customized templates
+  aren't "updated".
+- Better handling of "HTTP/1.1 100 Continue" responses.
+- The background of the PNG pattern is transparent.
+- Fixed XML syntax errors caused by banners-by-size and banners-by-url.
+- Fixed crashes and possible action file corruptions
+  when lines containing hashes are written through the CGI editor.
+- Supports dynamic filters which can contain variables.
+- Supports tags to change the actions based on client or server headers.
+- Incorrect actions are logged before program termination.
+- The "actionsfile" syntax in the configuration file is consistent
+  with the rest of the configuration options and requires the
+  whole file name. This is an incompatible change, if you use
+  an old configuration file you might have to append ".action"
+  to your "actionsfile" directives.
+- With the configuration file option "enforce-blocks" the
+  "go there anyway" mechanism can be disabled without recompiling
+  Privoxy.
+- More precise error messages in case of incorrect acl syntax.
+- Logs a warning if filtering is enabled but impossible due
+  to lack of zlib support or use of the prevent-compression action.
+- Less noisy handling of Cookie:" and "Connection:" headers.
+- Improved error messages in case of connection problems.
+- Fix a command-line-parsing bug that was introduced before 3.0.5
+  beta and caused Privoxy to treat the last argument as configuration
+  file if no configuration file was specified.
+- Treat unknown command line options as fatal errors instead
+  of silently ignoring them.
+- Use string functions with length checks more often.
+- Don't log CONNECT requests twice.
+- Allow to log the source address for ACL-related connection drops.
+- Don't ignore applying filters if the server didn't
+  specify a Content-Type. Bug reported by Amuro Namie.
+- Rejected CONNECT requests are logged with log level info
+  (enabled by default) and the reason for the block.
+- New command line option "--pre-chroot-nslookup hostname" to
+  intialize the resolver library before chroot'ing. On some systems this
+  reduces the number of files that must be copied into the chroot tree.
+  (Patch provided by Stephen Gildea)
+- Fix a long-standing memory corruption bug that could cause
+  Privoxy to overwrite a single byte in memory it didn't explicitly
+  allocate (but that probably was allocated anyway due to bucket size).
+- Send template-based CGI pages as HTTP/1.1 unless the client
+  asked for HTTP/1.0.
+- Let the first line in connection established responses
+  end in \r\n as required by RFC1945. Reported by Bert van Leeuwen.
+- If no log file has been specified, disable logging instead of logging
+  to stderr.
+- Don't block stderr when in daemon mode.
+- Ignore missing zero-chunks when filtering chunk-encoded content.
+  Earlier Privoxy versions would buffer and then forward the content
+  unmodified which caused some browsers to simply show empty pages.
+- Fix double free in cgi_edit_actions_list(). Reported by Venustech AD-LAB.
+- The code to add X-Forwarded-For headers when the hide-forwarded-for-headers
+  action isn't being used has been removed.
+- Fixed trustfile feature which previously didn't work without FEATURE_TOGGLE.
+  Reported by Lee.
+- Minor code clean-ups, filter and action file updates.
+  (Some of them reported by Davide Alberani, Markus Elfring,
+   Stefan Huehner and Adam Piggott)
+
+*** Version 3.0.6 ***
+
+- New content filters: no-ping, google, msn, yahoo and blogspot.
+- New header filters:  x-httpd-php-to-html, html-to-xml, xml-to-html
+                       and hide-tor-exit-notation.
+- The special header "X-Filter: No" now disables header filtering as well.
+- Improved the filters img-reorder, js-annoyances, webbugs,
+  banners-by-size, banners-by-link and ie-exploits to make them
+  less likely to break anything.
+- Removed outdated URL patterns in default.action and added new ones. 
+- Added redirection from http://p.p/user-manual to http://p.p/user-manual/
+- Changed webinterface default values for hide-user-agent, hide-referrer
+  and set-image-blocker.
+	
+*** Version 3.0.5 Beta ***
+
+- Windows version can be installed/started as a service.
+- Windows icon stays blue when Privoxy is idle, green when busy.
+- Integrated Fabian Keil's extensive patch.  See:
+  http://www.fabiankeil.de/sourcecode/privoxy/. Includes the 
+  following new or significantly improved actions (among many 
+  other improvements):
+
+     content-type-overwrite{}
+     crunch-client-header{string}
+     crunch-if-none-match
+     crunch-server-header{string}
+     fast-redirects{check-decoded-url}
+     filter-client-headers
+     filter-server-headers
+     force-text-mode
+     handle-as-empty-document
+     hide-accept-language{}
+     hide-content-disposition{}
+     hide-if-modified-since
+     hide-referrer{conditional-block}
+     overwrite-last-modified{}
+     redirect{URL}
+     treat-forbidden-connects-like-blocks
+
+- Standard-compliant clients are prevented from displaying cached
+  copies of Privoxy's error messages after the cause of the problem
+  has gone.
+- Improved DNS error handling.
+- Multiple filter files can now be specified in config.
+- Added jpeg filtering to defend against MS jpeg vulnerability MS04-028
+  with the new inspect-jpegs action.
+- Removed the "arbitrary" 1000 filter limit - addresses tracker #911950
+- Thanks to Jindrich Makovicka for a race condition fix for the log 
+  file.  The race condition remains for non-pthread implementations.
+  Reference patch #1175720. Various other logging enhancements.
+- A pile of assorted bug fixes, memory leaks, enhancements, etc.
+- Moved Actions file reporting mechanism to SF tracker.
+- Two new options for config: enable-remote-http-toggle and 
+  forwarded-connect-retries.
+- Trap unsupported FTP requests.
+- Let text/xml be filtered.
+- Numerous updates to default.action
+- Increase the compiled in limit of trusted referrers from 64 to 512 
+  (for trustfile users).
+
+*** Version 3.0.3 ***
+
+- Fixed yet another two memory leaks. Process growth seems stopped now.
+- Further tightened security against malicious toggle-off links.
+- Excluded text/plain MIME types from filtering. This fixes a
+  couple of client-crashing, download corruption and
+  Privoxy performance issues, whose root cause lies in
+  web servers labelling content of unknown type as text/plain.
+- Assorted fixes for POSIX compliance, signal handling, graceful
+  termination, compiler warnings, OSX support, Win32 systray,
+  error logging, hostname wildcards, correct detection of NetBSD.
+- Workarounds for client (iTunes etc) and server (PHP < 4.2.3) bugs
+  including the notorious "blank page" problem.
+- Various filter improvements; most notably the unsolicited-popups
+  filter became less destructive     
+- Major revamp of the actions file
+	
+*** Version 3.0.2 ***
+
+- Fixed two memory leaks, one serious
+- Fixed bug in pcrs which could cause crashes with user-defined filters
+- Fixed bug in domain name matching
+- Assorted small fixes (Win32 menu, CGI URL editor, ..) 
+- Added basic support for the OPTIONS and TRACE http methods
+- Added workaround for Bug in Mac OSX that made Privoxy crash occasionally
+- Refined the default action file through >400 items of user feedback
+- Filter changes:
+  - Assorted refinements, optimizations and fixes in the js-annoyances,
+    img-reorder, banners-by-size, banners-by-link, webbugs, refresh-tags,
+    html-annoyances, content-cookies and fun filters
+  - Replaced filter "popups" by choice between two modes:
+    - "unsolicited-popups" tries to catch only the unsolicited ones
+    - "all-popups" tries to kill them all (as before)
+  - New filter "tiny-textforms" Help those tiny or hard-wrap textareas. 
+  - New filter "jumping-windows" that prevents windows from resizing
+    and moving themselves
+  - New filter "demoronizer" which fixes MS's abuse of std charsets
+    (common cases anyway).
+  - Replaced "nimda" with more general "ie-exploits" filter in which
+    all filters for exploits shall be collected
+- Improved cookie logging
+- Rewrote make install target. Added uninstall and install-strip
+  targets.
+- Fixed a potential (application-level, NOT OS-level!) security
+  problem involving remote toggling and action file manipulation
+  by mailicious websites.
+- Added ability to chroot (thanks to Sviatoslav Sviridov)
+- Added more action aliases for prehistoric action names
+- Add Slackware support to Makefile.
+
+*** Version 3.0  ***
+
+- Fixed Windows startmenu items, log window and tray icon menus.
+- Added warning for bogus install target
+- Added quicktime-kioskmode filter and improved frameset-borders
+- Updated default.action based on latest feedback
+- New PDF doc build process
+- Add a user contrib module to cvs: 
+  http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/ijbswa/contrib/
+
+*** Version 2.9.18  ***
+
+- Added workaround for IE bug that broke CGI interface
+- Bugfix: String actions now reliably editable through CGI interface
+- Three filters fixed (again!)
+- Assorted small fixes and doc enhancements
+
+*** Version 2.9.16  *** 
+
+- Major revamp of default.action to get rid of years of cruft.
+- Same for default.filter
+- Re-design and major improvements to the CGI editor interface.
+- Address spurious 'out of memory' error due to incorrect file permissions.
+- Impose buffer limits while reading client and server headers.
+- Better memory and CPU optimization.
+- Add Conectiva Linux package.
+- user-manual directive added to config for help links from within CGI
+  editor.
+- Multiple actions files can now be specified in config.
+- Actions files are changed to: default.action, standard.action, and 
+  user.action. user.action is for personal/local configuration.
+- The usual many small and miscellaneous bug and security fixes.
+
+*** Version 2.9.14 Beta *** 
+
+- Fix Solaris compile problem (gateway.h and filters.h)
+- Makefile fixes for Solaris, FreeBSD (?)
+- Fix build failure where certain features were disabled.
+- 'blocked-compact' template is removed. Various CGI improvements,
+  including an adaptive 'blocked' template.
+- Various tweaks for actions file to get ready for stable 3.0
+- Included a 'Bookmarklet' and PHP scripts for reporting actions file
+  problems via web interface at privoxy.org. Accessed via internal CGIs.
+- Include cgi-style.css for templates.
+- #include mechansim for common text in templates
+- Various other minor fixes.
+
+*** Version 2.9.13 Beta *** 
+
+- *NEWS*: The project has been renamed to Privoxy! The new name is 
+  reflected throughout (file locations, etc).
+- ijb.action is now default.action. re_filterfile is now 
+  default.filter.
+- http://i.j.b/ is now http://p.p/
+- The 'logo' option for replacing ad iamges is removed now. 'Pattern' 
+  (checkerboard) is now the default.
+- RPM spec file make over.
+
+
+*** Version 2.9.12 Beta *** 
+
+- **READ**: The default listening PORT is NOW 8118!!! Changed from 
+  8000 due to conflict with NAS (Network Audio Server, whatever that 
+  is.)
+- More CGI actions editor fixes and improvements.
+- Win32 command line fix ups.
+- re_filterfile now has modular sections that can be activated on a 
+  per site basis. Some new goodies there too.
+- +filter now takes arguments to match FILTER sections in re_filterfile
+  for even more flexibility. 
+- Added a new image blocker option: +image-blocker{pattern}, which 
+  displays a checkerboard patthern and scales better than the logo.
+- PNG images will be used in place of GIF for JB built-in images
+  if configured with --enable-no-gif.
+- Clean up compiler warnings (mostly).
+- Improved handling of failed DNS lookups & diagnostics for failed bind
+  to listen socket
+- Made --no-daemon mode log to tty instead of logfile.
+- Various spec file and init script cleanups and improvements (Redhat and
+  SuSE).
+- CGI Editor works on OS/2 now.
+- Fix restart failure where sockets were in TIME_WAIT.
+- Fixes for actions cgi editor, make sure we have right file.
+- A --pidfile command line option now, in addition to --help, 
+  --version, --no-daemon, --user and configfile. --no-daemon replaces
+  the former -d option and _DEBUG define. --user will drop privileges 
+  to the specified user.
+- Signal handling cleanups (*nix).
+- CGI actions editor improvements and fixes.
+- Error handling improvements, especially out of memory.
+- Default re_filterfile fix that caused spurious IJB logos 
+  (instead of 'blank').
+- configure.in threading fixes for Solaris.
+- Various other minor fixes.
+
+
+*** Version 2.9.11 Beta Changes ***
+
+- Add "session" cookie concept where cookies exist for the life 
+of that browser session only (ie never goes to disk). 
+- Checks for correct header length.
+- Fix user:pass@host.domain.com auth bug.
+- Better signal handling on *nix.
+- Fix CFLAGS hard-coded in configure.in
+- Fix threading bug re: gethostbyname() that caused random 
+URLs to fail in some cases.
+
+
+*** Version 2.9.11 Alpha Changes ***
+
+- A web-based editor for the actions file is included (go to http://i.j.b/).
+- Web-based toggle IJB on/off support.
+- Cookie handling has changed - the new +no-cookies-keep feature is now the
+default.
+- actionsfile is renamed to ijb.action.
+- junkbstr.txt is now config.txt on Win32.
+- Support for running IJB as a UNIX daemon process has improved.
+- Unix daemon now returns error code on failed start.
+- Timestamps in logfile and jarfile now.
+- Fix for the Netscape bug reintroduced in 2.9.9.
+- make should now abort if gmake (GNU make) not present.
+- Many other minor bugfixes
+- Start a ChangeLog :)
+
+
+
+*** Version 2.9.3 pre-Alpha Changes ***
+
+- Amiga support (completely untested by me - I don't have an Amiga)
+- "tinygif 3" support (redirects blocked images to a specified URL, so
+the browser doesn't have to load and cache many copies of the same
+image).
+- one case where there were both local and global "referrer" variables
+(yuck!) clarified by renaming the local one to "refer".
+- Fixed some places where close() was used instead of close_socket().
+Thanks to Jörg Strohmayer (joergs at users.sourceforge.net) for these.
+- Temporary hack to get FORCE_LOAD to work with IE.  I just lowercased the
+FORCE_LOAD_PREFIX.  Needs fixing properly.
+- Most URLs hardcoded into Junkbuster were changed to go through a script
+e.g. http://ijbswa.sourceforge.net/redirect.php?v=2.9.3&to=faq
+The only other URLs left are the GNU GPL:
+  http://www.fsf.org/copyleft/gpl.html
+and the home page:
+  http://ijbswa.sourceforge.net/
+... and various URLs which will be intercepted by Junkbuster anyway.
+TODO: Still need to do something with the URLs in Junkbuster Corp's 
+copyright/trademark notice on the bottom of the show-proxy-args page.
+- PCRE or GNU Regex is now a #define option.
+
+
+*** Version 2.9.2 pre-Alpha Changes ***
+
+- Andreas applied the latest version of the FORCE patch.
+
+
+*** Version 2.9.1 pre-Alpha Changes ***
+
+- in parsers.c, fixed two #ifdef FORCE to #ifdef FORCE_LOAD
+(BTW: I think FORCE is precise enough, since loading remote
+data is the whole purpose of a proxy..)
+- Set the FORCE_PREFIX (back) to 'IJB-FORCE-LOAD-'. While 'noijb.'
+is more elegant and looks like a hostname in the URL, it doesn't
+make clear to the inexperienced user that the proxy is bypassed. It
+also has a higher name collision risk.
+- Filled in the function header templates for my functions in
+parsers.c (again). They obviously got lost in our current
+patch war ;-)
+- Cut the credit for the §-referrer-option from the config file,
+that Stefan had placed there.
+- Improved the re_filterfile 
+
+
+*** Version 2.9.0 pre-Alpha Changes ***
+
+-  Now use PCRE, not GNU REGEX.  I have not yet had chance to check the
+syntax of the block/image/cookie file to ensure that they match what
+is expected - however they seem to work.
+-  Replaced "configure" script with one generated by "autoconf".  Also 
+use a header "config.h" (was ijbconfig.h in my previous release) for 
+the #defines.  "config.h" is now generated with "autoheader" from 
+"acconfig.h" and "configure.in".  (Note that to install you do not
+need autoconf or autoheader - just run "./configure".)
+To see command-line options, run "./configure --help".
+This is my first ever autoconf script, so it has some rough edges
+(how PCRE is handled is the roughest).
+-  Error logging code replaced with new module errlog.c, based on the
+one from JunkbusterMT (but with the threading code removed).
+-  Most of Rodney's 0.21 and 0.21A patches applied. (Marked *).  I did not
+apply all of these, since I had already independently done conditional
+popup file, conditional image file, and integration of popup code.
+- ACL, Jar and trust files conditionally compiled.
+- New source file headers.
+- Various cosmetic changes.  (But I have not consistently ordered the 
+config files - I think that's worthwhile, but it's 1am and I want to
+get this released!)
+- RCS tags on .h files.
+-  RCS tags are const char[] rather than const char *.  (Saves 4 bytes
+per tag ;-)
+- VC++ project files renamed to vc_junkbuster.*.
+- show-proxy-args now shows status of all conditionals, not just REGEX
+- Various functions moved around.  Most notably all the system-specific
+sockets code which was spread between jcc.c, bind.c, and connect.c,
+has been moved to "jbsockets.c".  The non-system-specific code from
+connect.c and socks4.c has been movet to "gateway.c".  Also, the
+config file loader and the global variables it writes to have been
+moved to "loadcfg.c".  (Maybe this should go into loaders.c?)
+And candidate for the "worst filename ever" award is "miscutil.c",
+which contains, well, miscellaneous utility functions like zalloc.
+(Suggestions for a better name for this file are welcome!)
+- Loaders now use a common function to read a line and skip comments,
+and this function also stores the proxy_args.
+- Added ./junkbuster --help     (Not for Win32 GUI)
+- Added ./junkbuster --version  (Not for Win32 GUI)
+- Win32 resources are now all marked as "U.S. English", rather than
+being a mix of "U.S. English", "U.K. English" and "Irish English".
+- Version number changes to 2.9.0
+
+
+
+----------------------------------------------------------------------
+Copyright   :  Written by and Copyright (C) 2001-2008 the SourceForge
+               Privoxy team. http://www.privoxy.org/
+
+               Based on the Internet Junkbuster originally written
+               by and Copyright (C) 1997 Anonymous Coders and 
+               Junkbusters Corporation.  http://www.junkbusters.com/
+
+               This program is free software; you can redistribute it 
+               and/or modify it under the terms of the GNU General
+               Public License as published by the Free Software
+               Foundation; either version 2 of the License, or (at
+               your option) any later version.
+
+               This program is distributed in the hope that it will
+               be useful, but WITHOUT ANY WARRANTY; without even the
+               implied warranty of MERCHANTABILITY or FITNESS FOR A
+               PARTICULAR PURPOSE.  See the GNU General Public
+               License for more details.
+
+               The GNU General Public License should be included with
+               this file.  If not, you can view it at
+               http://www.gnu.org/copyleft/gpl.html
+               or write to the Free Software Foundation, Inc., 59
+               Temple Place - Suite 330, Boston, MA  02111-1307, USA.

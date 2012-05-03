@@ -1,0 +1,8214 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Actions Files</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Privoxy 3.0.12 User Manual"
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="The Main Configuration File"
+HREF="config.html"><LINK
+REL="NEXT"
+TITLE="Filter Files"
+HREF="filter-file.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="../p_doc.css"><META
+HTTP-EQUIV="Content-Type"
+CONTENT="text/html;
+charset=ISO-8859-1">
+<LINK REL="STYLESHEET" TYPE="text/css" HREF="p_doc.css">
+</head
+><BODY
+CLASS="SECT1"
+BGCOLOR="#EEEEEE"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Privoxy 3.0.12 User Manual</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="config.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="filter-file.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="ACTIONS-FILE"
+>8. Actions Files</A
+></H1
+><P
+> The actions files are used to define what <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>actions</I
+></SPAN
+>
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> takes for which URLs, and thus determines
+ how ad images, cookies and various other aspects of HTTP content and
+ transactions are handled, and on which sites (or even parts thereof). 
+ There are a number of such actions, with a wide range of functionality.
+ Each action does something a little different.
+ These actions give us a veritable arsenal of tools with which to exert 
+ our control, preferences and independence. Actions can be combined so that 
+ their effects are aggregated when applied against a given set of URLs.</P
+><P
+> There 
+ are three action files included with <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> with
+ differing purposes:</P
+><P
+> <P
+></P
+><UL
+><LI
+><P
+>    <TT
+CLASS="FILENAME"
+>match-all.action</TT
+> - is used to define which
+    <SPAN
+CLASS="QUOTE"
+>"actions"</SPAN
+> relating to banner-blocking, images, pop-ups,
+    content modification, cookie handling etc should be applied by default.
+    It should be the first actions file loaded
+   </P
+></LI
+><LI
+><P
+>    <TT
+CLASS="FILENAME"
+>default.action</TT
+> - defines many exceptions (both
+    positive and negative) from the default set of actions that's configured
+    in <TT
+CLASS="FILENAME"
+>match-all.action</TT
+>. It is a set of rules that should
+    work reasonably well as-is for most users. This file is only supposed to
+    be edited by the developers. It should be the second actions file loaded.
+   </P
+></LI
+><LI
+><P
+>    <TT
+CLASS="FILENAME"
+>user.action</TT
+> - is intended to be for local site 
+    preferences and exceptions. As an example, if your ISP or your bank
+    has specific requirements, and need special handling, this kind of 
+    thing should go here. This file will not be upgraded.
+   </P
+></LI
+><LI
+><P
+>    <SPAN
+CLASS="GUIBUTTON"
+>Edit</SPAN
+>  <SPAN
+CLASS="GUIBUTTON"
+>Set to Cautious</SPAN
+> <SPAN
+CLASS="GUIBUTTON"
+>Set to Medium</SPAN
+>  <SPAN
+CLASS="GUIBUTTON"
+>Set to Advanced</SPAN
+>
+   </P
+><P
+>    These have increasing levels of aggressiveness <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>and have no
+    influence on your browsing unless you select them explicitly in the
+    editor</I
+></SPAN
+>. A default installation should be pre-set to 
+    <TT
+CLASS="LITERAL"
+>Cautious</TT
+>. New users should try this for a while before
+    adjusting the settings to more aggressive levels. The more aggressive 
+    the settings, then the more likelihood there is of problems such as sites 
+    not working as they should.
+   </P
+><P
+>    The <SPAN
+CLASS="GUIBUTTON"
+>Edit</SPAN
+> button allows you to turn each 
+    action on/off individually for fine-tuning. The <SPAN
+CLASS="GUIBUTTON"
+>Cautious</SPAN
+>
+    button changes the actions list to low/safe settings which will activate 
+    ad blocking and a minimal set of <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>'s features, and subsequently
+    there will be less of a chance for accidental problems. The
+    <SPAN
+CLASS="GUIBUTTON"
+>Medium</SPAN
+> button sets the list to a medium level of
+    other features and a low level set of privacy features. The
+    <SPAN
+CLASS="GUIBUTTON"
+>Advanced</SPAN
+> button sets the list to a high level of
+    ad blocking and medium level of privacy. See the chart below. The latter
+    three buttons over-ride any changes via with the
+    <SPAN
+CLASS="GUIBUTTON"
+>Edit</SPAN
+> button. More fine-tuning can be done in the
+    lower sections of this internal page.
+   </P
+><P
+>    While the actions file editor allows to enable these settings in all
+    actions files, they are only supposed to be enabled in the first one
+    to make sure you don't unintentionally overrule earlier rules.
+   </P
+><P
+>    The default profiles, and their associated actions, as pre-defined in
+    <TT
+CLASS="FILENAME"
+>default.action</TT
+> are:
+   </P
+><P
+>    <DIV
+CLASS="TABLE"
+><A
+NAME="AEN2189"
+></A
+><P
+><B
+>Table 1. Default Configurations</B
+></P
+><TABLE
+BORDER="1"
+FRAME="border"
+RULES="all"
+CLASS="CALSTABLE"
+><COL
+WIDTH="1*"
+TITLE="C1"><COL
+WIDTH="1*"
+TITLE="C2"><COL
+WIDTH="1*"
+TITLE="C3"><COL
+WIDTH="1*"
+TITLE="C4"><THEAD
+><TR
+><TH
+>Feature</TH
+><TH
+>Cautious</TH
+><TH
+>Medium</TH
+><TH
+>Advanced</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>Ad-blocking Aggressiveness</TD
+><TD
+>medium</TD
+><TD
+>high</TD
+><TD
+>high</TD
+></TR
+><TR
+><TD
+>Ad-filtering by size</TD
+><TD
+>no</TD
+><TD
+>yes</TD
+><TD
+>yes</TD
+></TR
+><TR
+><TD
+>Ad-filtering by link</TD
+><TD
+>no</TD
+><TD
+>no</TD
+><TD
+>yes</TD
+></TR
+><TR
+><TD
+>Pop-up killing</TD
+><TD
+>blocks only</TD
+><TD
+>blocks only</TD
+><TD
+>blocks only</TD
+></TR
+><TR
+><TD
+>Privacy Features</TD
+><TD
+>low</TD
+><TD
+>medium</TD
+><TD
+>medium/high</TD
+></TR
+><TR
+><TD
+>Cookie handling</TD
+><TD
+>none</TD
+><TD
+>session-only</TD
+><TD
+>kill</TD
+></TR
+><TR
+><TD
+>Referer forging</TD
+><TD
+>no</TD
+><TD
+>yes</TD
+><TD
+>yes</TD
+></TR
+><TR
+><TD
+>GIF de-animation</TD
+><TD
+>no</TD
+><TD
+>yes</TD
+><TD
+>yes</TD
+></TR
+><TR
+><TD
+>Fast redirects</TD
+><TD
+>no</TD
+><TD
+>no</TD
+><TD
+>yes</TD
+></TR
+><TR
+><TD
+>HTML taming</TD
+><TD
+>no</TD
+><TD
+>no</TD
+><TD
+>yes</TD
+></TR
+><TR
+><TD
+>JavaScript taming</TD
+><TD
+>no</TD
+><TD
+>no</TD
+><TD
+>yes</TD
+></TR
+><TR
+><TD
+>Web-bug killing</TD
+><TD
+>no</TD
+><TD
+>yes</TD
+><TD
+>yes</TD
+></TR
+><TR
+><TD
+>Image tag reordering</TD
+><TD
+>no</TD
+><TD
+>yes</TD
+><TD
+>yes</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+    </P
+></LI
+></UL
+></P
+><P
+> The list of actions files to be used are defined in the main configuration 
+ file, and are processed in the order they are defined (e.g.
+ <TT
+CLASS="FILENAME"
+>default.action</TT
+> is typically processed before
+ <TT
+CLASS="FILENAME"
+>user.action</TT
+>). The content of these can all be viewed and
+ edited from <A
+HREF="http://config.privoxy.org/show-status"
+TARGET="_top"
+>http://config.privoxy.org/show-status</A
+>.
+ The over-riding principle when applying actions, is that the last action that
+ matches a given URL wins. The broadest, most general rules go first
+ (defined in <TT
+CLASS="FILENAME"
+>default.action</TT
+>),
+ followed by any exceptions (typically also in
+ <TT
+CLASS="FILENAME"
+>default.action</TT
+>), which are then followed lastly by any
+ local preferences (typically in <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>user</I
+></SPAN
+><TT
+CLASS="FILENAME"
+>.action</TT
+>). 
+ Generally, <TT
+CLASS="FILENAME"
+>user.action</TT
+> has the last word.
+ </P
+><P
+> An actions file typically has multiple sections. If you want to use
+ <SPAN
+CLASS="QUOTE"
+>"aliases"</SPAN
+> in an actions file, you have to place the (optional)
+ <A
+HREF="actions-file.html#ALIASES"
+>alias section</A
+> at the top of that file.
+ Then comes the default set of rules which will apply universally to all
+ sites and pages (be <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>very careful</I
+></SPAN
+> with using such a
+ universal set in <TT
+CLASS="FILENAME"
+>user.action</TT
+> or any other actions file after 
+ <TT
+CLASS="FILENAME"
+>default.action</TT
+>, because it will override the result
+ from consulting any previous file). And then below that,
+ exceptions to the defined universal policies. You can regard
+ <TT
+CLASS="FILENAME"
+>user.action</TT
+> as an appendix to <TT
+CLASS="FILENAME"
+>default.action</TT
+>,
+ with the advantage that it is a separate file, which makes preserving your
+ personal settings across <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> upgrades easier.</P
+><P
+> 
+ Actions can be used to block anything you want, including ads, banners, or
+ just some obnoxious URL whose content you would rather not see. Cookies can be accepted
+ or rejected, or accepted only during the current browser session (i.e. not
+ written to disk), content can be modified, some JavaScripts tamed, user-tracking
+ fooled, and much more. See below for a <A
+HREF="actions-file.html#ACTIONS"
+>complete list
+ of actions</A
+>.</P
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN2288"
+>8.1. Finding the Right Mix</A
+></H2
+><P
+> Note that some <A
+HREF="actions-file.html#ACTIONS"
+>actions</A
+>, like cookie suppression
+ or script disabling, may render some sites unusable that rely on these
+ techniques to work properly. Finding the right mix of actions is not always easy and
+ certainly a matter of personal taste. And, things can always change, requiring 
+ refinements in the configuration. In general, it can be said that the more
+ <SPAN
+CLASS="QUOTE"
+>"aggressive"</SPAN
+> your default settings (in the top section of the
+ actions file) are, the more exceptions for <SPAN
+CLASS="QUOTE"
+>"trusted"</SPAN
+> sites you
+ will have to make later. If, for example, you want to crunch all cookies per
+ default, you'll have to make exceptions from that rule for sites that you
+ regularly use and that require cookies for actually useful purposes, like maybe
+ your bank, favorite shop, or newspaper.</P
+><P
+> We have tried to provide you with reasonable rules to start from in the
+ distribution actions files. But there is no general rule of thumb on these
+ things. There just are too many variables, and sites are constantly changing.
+ Sooner or later you will want to change the rules (and read this chapter again :).</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN2295"
+>8.2. How to Edit</A
+></H2
+><P
+> The easiest way to edit the actions files is with a browser by
+ using our browser-based editor, which can be reached from <A
+HREF="http://config.privoxy.org/show-status"
+TARGET="_top"
+>http://config.privoxy.org/show-status</A
+>.
+ Note: the config file option <A
+HREF="config.html#ENABLE-EDIT-ACTIONS"
+>enable-edit-actions</A
+> must be enabled for
+ this to work. The editor allows both fine-grained control over every single
+ feature on a per-URL basis, and easy choosing from wholesale sets of defaults
+ like <SPAN
+CLASS="QUOTE"
+>"Cautious"</SPAN
+>, <SPAN
+CLASS="QUOTE"
+>"Medium"</SPAN
+> or
+ <SPAN
+CLASS="QUOTE"
+>"Advanced"</SPAN
+>. Warning: the <SPAN
+CLASS="QUOTE"
+>"Advanced"</SPAN
+> setting is more
+ aggressive, and will be more likely to cause problems for some sites.
+ Experienced users only! 
+ </P
+><P
+> If you prefer plain text editing to GUIs, you can of course also directly edit the
+ the actions files with your favorite text editor. Look at
+ <TT
+CLASS="FILENAME"
+>default.action</TT
+> which is richly commented with many 
+ good examples.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="ACTIONS-APPLY"
+>8.3. How Actions are Applied to Requests</A
+></H2
+><P
+> Actions files are divided into sections. There are special sections,
+ like the <SPAN
+CLASS="QUOTE"
+>"<A
+HREF="actions-file.html#ALIASES"
+>alias</A
+>"</SPAN
+> sections which will
+ be discussed later. For now let's concentrate on regular sections: They have a
+ heading line (often split up to multiple lines for readability) which consist
+ of a list of actions, separated by whitespace and enclosed in curly braces.
+ Below that, there is a list of URL and tag patterns, each on a separate line.</P
+><P
+> To determine which actions apply to a request, the URL of the request is
+ compared to all URL patterns in each <SPAN
+CLASS="QUOTE"
+>"action file"</SPAN
+>.
+ Every time it matches, the list of applicable actions for the request is
+ incrementally updated, using the heading of the section in which the
+ pattern is located. The same is done again for tags and tag patterns later on.</P
+><P
+> If multiple applying sections set the same action differently,
+ the last match wins. If not, the effects are aggregated.
+ E.g. a URL might match a regular section with a heading line of <TT
+CLASS="LITERAL"
+>{ 
+ +<A
+HREF="actions-file.html#HANDLE-AS-IMAGE"
+>handle-as-image</A
+> }</TT
+>,
+ then later another one with just <TT
+CLASS="LITERAL"
+>{
+ +<A
+HREF="actions-file.html#BLOCK"
+>block</A
+> }</TT
+>, resulting
+ in <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>both</I
+></SPAN
+> actions to apply. And there may well be 
+ cases where you will want to combine actions together. Such a section then 
+ might look like:</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>  { +<TT
+CLASS="LITERAL"
+>handle-as-image</TT
+>  +<TT
+CLASS="LITERAL"
+>block{Banner ads.}</TT
+> }
+  # Block these as if they were images. Send no block page.
+   banners.example.com
+   media.example.com/.*banners
+   .example.com/images/ads/</PRE
+></TD
+></TR
+></TABLE
+>
+ </P
+><P
+> You can trace this process for URL patterns and any given URL by visiting <A
+HREF="http://config.privoxy.org/show-url-info"
+TARGET="_top"
+>http://config.privoxy.org/show-url-info</A
+>.</P
+><P
+> Examples and more detail on this is provided in the Appendix, <A
+HREF="appendix.html#ACTIONSANAT"
+> Troubleshooting: Anatomy of an Action</A
+> section.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AF-PATTERNS"
+>8.4. Patterns</A
+></H2
+><P
+> 
+ As mentioned, <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> uses <SPAN
+CLASS="QUOTE"
+>"patterns"</SPAN
+>
+ to determine what <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>actions</I
+></SPAN
+> might apply to which sites and
+ pages your browser attempts to access. These <SPAN
+CLASS="QUOTE"
+>"patterns"</SPAN
+> use wild
+ card type <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>pattern</I
+></SPAN
+> matching to achieve a high degree of
+ flexibility. This allows one expression to be expanded and potentially match
+ against many similar patterns.</P
+><P
+> Generally, an URL pattern has the form
+ <TT
+CLASS="LITERAL"
+>&#60;domain&#62;/&#60;path&#62;</TT
+>, where both the
+ <TT
+CLASS="LITERAL"
+>&#60;domain&#62;</TT
+> and <TT
+CLASS="LITERAL"
+>&#60;path&#62;</TT
+> are
+ optional. (This is why the special <TT
+CLASS="LITERAL"
+>/</TT
+> pattern matches all
+ URLs). Note that the protocol portion of the URL pattern (e.g.
+ <TT
+CLASS="LITERAL"
+>http://</TT
+>) should <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>not</I
+></SPAN
+> be included in
+ the pattern. This is assumed already!</P
+><P
+> The pattern matching syntax is different for the domain and path parts of
+ the URL. The domain part uses a simple globbing type matching technique, 
+ while the path part uses more flexible 
+ <A
+HREF="http://en.wikipedia.org/wiki/Regular_expressions"
+TARGET="_top"
+><SPAN
+CLASS="QUOTE"
+>"Regular
+  Expressions"</SPAN
+></A
+> (POSIX 1003.2).</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+><TT
+CLASS="LITERAL"
+>www.example.com/</TT
+></DT
+><DD
+><P
+>    is a domain-only pattern and will match any request to <TT
+CLASS="LITERAL"
+>www.example.com</TT
+>,
+    regardless of which document on that server is requested. So ALL pages in
+    this domain would be covered by the scope of this action. Note that a 
+    simple <TT
+CLASS="LITERAL"
+>example.com</TT
+> is different and would NOT match.
+   </P
+></DD
+><DT
+><TT
+CLASS="LITERAL"
+>www.example.com</TT
+></DT
+><DD
+><P
+>    means exactly the same. For domain-only patterns, the trailing <TT
+CLASS="LITERAL"
+>/</TT
+> may
+    be omitted.
+   </P
+></DD
+><DT
+><TT
+CLASS="LITERAL"
+>www.example.com/index.html</TT
+></DT
+><DD
+><P
+>    matches all the documents on <TT
+CLASS="LITERAL"
+>www.example.com</TT
+>
+    whose name starts with <TT
+CLASS="LITERAL"
+>/index.html</TT
+>.
+   </P
+></DD
+><DT
+><TT
+CLASS="LITERAL"
+>www.example.com/index.html$</TT
+></DT
+><DD
+><P
+>    matches only the single document <TT
+CLASS="LITERAL"
+>/index.html</TT
+>
+    on <TT
+CLASS="LITERAL"
+>www.example.com</TT
+>.
+   </P
+></DD
+><DT
+><TT
+CLASS="LITERAL"
+>/index.html$</TT
+></DT
+><DD
+><P
+>    matches the document <TT
+CLASS="LITERAL"
+>/index.html</TT
+>, regardless of the domain,
+    i.e. on <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>any</I
+></SPAN
+> web server anywhere.
+   </P
+></DD
+><DT
+><TT
+CLASS="LITERAL"
+>index.html</TT
+></DT
+><DD
+><P
+>    matches nothing, since it would be interpreted as a domain name and
+    there is no top-level domain called <TT
+CLASS="LITERAL"
+>.html</TT
+>. So its 
+    a mistake.
+   </P
+></DD
+></DL
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="AEN2386"
+>8.4.1. The Domain Pattern</A
+></H3
+><P
+> The matching of the domain part offers some flexible options: if the
+ domain starts or ends with a dot, it becomes unanchored at that end. 
+ For example:</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+><TT
+CLASS="LITERAL"
+>.example.com</TT
+></DT
+><DD
+><P
+>    matches any domain with first-level domain <TT
+CLASS="LITERAL"
+>com</TT
+>
+    and second-level domain <TT
+CLASS="LITERAL"
+>example</TT
+>.
+    For example <TT
+CLASS="LITERAL"
+>www.example.com</TT
+>,
+    <TT
+CLASS="LITERAL"
+>example.com</TT
+> and <TT
+CLASS="LITERAL"
+>foo.bar.baz.example.com</TT
+>.
+    Note that it wouldn't match if the second-level domain was <TT
+CLASS="LITERAL"
+>another-example</TT
+>.
+   </P
+></DD
+><DT
+><TT
+CLASS="LITERAL"
+>www.</TT
+></DT
+><DD
+><P
+>    matches any domain that <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>STARTS</I
+></SPAN
+> with
+    <TT
+CLASS="LITERAL"
+>www.</TT
+> (It also matches the domain
+    <TT
+CLASS="LITERAL"
+>www</TT
+> but most of the time that doesn't matter.)
+   </P
+></DD
+><DT
+><TT
+CLASS="LITERAL"
+>.example.</TT
+></DT
+><DD
+><P
+>    matches any domain that <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>CONTAINS</I
+></SPAN
+> <TT
+CLASS="LITERAL"
+>.example.</TT
+>.
+    And, by the way, also included would be any files or documents that exist
+    within that domain since no path limitations are specified. (Correctly
+    speaking: It matches any FQDN that contains <TT
+CLASS="LITERAL"
+>example</TT
+> as
+    a domain.) This might be <TT
+CLASS="LITERAL"
+>www.example.com</TT
+>,
+    <TT
+CLASS="LITERAL"
+>news.example.de</TT
+>, or
+    <TT
+CLASS="LITERAL"
+>www.example.net/cgi/testing.pl</TT
+> for instance. All these
+    cases are matched. 
+   </P
+></DD
+></DL
+></DIV
+><P
+> Additionally, there are wild-cards that you can use in the domain names
+ themselves. These work similarly to shell globbing type wild-cards:
+ <SPAN
+CLASS="QUOTE"
+>"*"</SPAN
+> represents zero or more arbitrary characters (this is
+ equivalent to the 
+ <A
+HREF="http://en.wikipedia.org/wiki/Regular_expressions"
+TARGET="_top"
+><SPAN
+CLASS="QUOTE"
+>"Regular
+ Expression"</SPAN
+></A
+> based syntax of <SPAN
+CLASS="QUOTE"
+>".*"</SPAN
+>),
+ <SPAN
+CLASS="QUOTE"
+>"?"</SPAN
+>  represents any single character (this is equivalent to the
+ regular expression syntax of a simple <SPAN
+CLASS="QUOTE"
+>"."</SPAN
+>), and you can define
+ <SPAN
+CLASS="QUOTE"
+>"character classes"</SPAN
+> in square brackets which is similar to 
+ the same regular expression technique. All of this can be freely mixed:</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+><TT
+CLASS="LITERAL"
+>ad*.example.com</TT
+></DT
+><DD
+><P
+>    matches <SPAN
+CLASS="QUOTE"
+>"adserver.example.com"</SPAN
+>, 
+    <SPAN
+CLASS="QUOTE"
+>"ads.example.com"</SPAN
+>, etc but not <SPAN
+CLASS="QUOTE"
+>"sfads.example.com"</SPAN
+>
+   </P
+></DD
+><DT
+><TT
+CLASS="LITERAL"
+>*ad*.example.com</TT
+></DT
+><DD
+><P
+>    matches all of the above, and then some.
+   </P
+></DD
+><DT
+><TT
+CLASS="LITERAL"
+>.?pix.com</TT
+></DT
+><DD
+><P
+>    matches <TT
+CLASS="LITERAL"
+>www.ipix.com</TT
+>,
+    <TT
+CLASS="LITERAL"
+>pictures.epix.com</TT
+>, <TT
+CLASS="LITERAL"
+>a.b.c.d.e.upix.com</TT
+> etc. 
+   </P
+></DD
+><DT
+><TT
+CLASS="LITERAL"
+>www[1-9a-ez].example.c*</TT
+></DT
+><DD
+><P
+>     matches <TT
+CLASS="LITERAL"
+>www1.example.com</TT
+>, 
+     <TT
+CLASS="LITERAL"
+>www4.example.cc</TT
+>, <TT
+CLASS="LITERAL"
+>wwwd.example.cy</TT
+>, 
+     <TT
+CLASS="LITERAL"
+>wwwz.example.com</TT
+> etc., but <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>not</I
+></SPAN
+> 
+     <TT
+CLASS="LITERAL"
+>wwww.example.com</TT
+>.
+   </P
+></DD
+></DL
+></DIV
+><P
+> While flexible, this is not the sophistication of full regular expression based syntax.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="AEN2462"
+>8.4.2. The Path Pattern</A
+></H3
+><P
+> <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> uses <SPAN
+CLASS="QUOTE"
+>"modern"</SPAN
+> POSIX 1003.2
+  <A
+HREF="http://en.wikipedia.org/wiki/Regular_expressions"
+TARGET="_top"
+><SPAN
+CLASS="QUOTE"
+>"Regular
+  Expressions"</SPAN
+></A
+> for matching the path portion (after the slash),
+  and is thus more flexible.</P
+><P
+> There is an <A
+HREF="appendix.html#REGEX"
+>Appendix</A
+> with a brief quick-start into regular
+ expressions, you also might want to have a look at your operating system's documentation
+ on regular expressions (try <TT
+CLASS="LITERAL"
+>man re_format</TT
+>).</P
+><P
+> Note that the path pattern is automatically left-anchored at the <SPAN
+CLASS="QUOTE"
+>"/"</SPAN
+>,
+ i.e. it matches as if it would start with a <SPAN
+CLASS="QUOTE"
+>"^"</SPAN
+> (regular expression speak 
+ for the beginning of a line).</P
+><P
+> Please also note that matching in the path is <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>CASE INSENSITIVE</I
+></SPAN
+>
+ by default, but you can switch to case sensitive at any point in the pattern by using the 
+ <SPAN
+CLASS="QUOTE"
+>"(?-i)"</SPAN
+> switch: <TT
+CLASS="LITERAL"
+>www.example.com/(?-i)PaTtErN.*</TT
+> will match
+ only documents whose path starts with <TT
+CLASS="LITERAL"
+>PaTtErN</TT
+> in
+ <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>exactly</I
+></SPAN
+> this capitalization.</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+><TT
+CLASS="LITERAL"
+>.example.com/.*</TT
+></DT
+><DD
+><P
+>     Is equivalent to just <SPAN
+CLASS="QUOTE"
+>".example.com"</SPAN
+>, since any documents 
+     within that domain are matched with or without the <SPAN
+CLASS="QUOTE"
+>".*"</SPAN
+>
+     regular expression. This is redundant
+   </P
+></DD
+><DT
+><TT
+CLASS="LITERAL"
+>.example.com/.*/index.html$</TT
+></DT
+><DD
+><P
+>    Will match any page in the domain of <SPAN
+CLASS="QUOTE"
+>"example.com"</SPAN
+> that is
+    named <SPAN
+CLASS="QUOTE"
+>"index.html"</SPAN
+>, and that is part of some path. For
+    example, it matches <SPAN
+CLASS="QUOTE"
+>"www.example.com/testing/index.html"</SPAN
+> but
+    NOT <SPAN
+CLASS="QUOTE"
+>"www.example.com/index.html"</SPAN
+> because the regular
+    expression called for at least two <SPAN
+CLASS="QUOTE"
+>"/'s"</SPAN
+>, thus the path 
+    requirement. It also would match 
+    <SPAN
+CLASS="QUOTE"
+>"www.example.com/testing/index_html"</SPAN
+>, because of the 
+    special meta-character <SPAN
+CLASS="QUOTE"
+>"."</SPAN
+>.
+   </P
+></DD
+><DT
+><TT
+CLASS="LITERAL"
+>.example.com/(.*/)?index\.html$</TT
+></DT
+><DD
+><P
+>    This regular expression is conditional so it will match any page 
+    named <SPAN
+CLASS="QUOTE"
+>"index.html"</SPAN
+> regardless of path which in this case can 
+    have one or more <SPAN
+CLASS="QUOTE"
+>"/'s"</SPAN
+>. And this one must contain exactly 
+    <SPAN
+CLASS="QUOTE"
+>".html"</SPAN
+> (but does not have to end with that!).
+   </P
+></DD
+><DT
+><TT
+CLASS="LITERAL"
+>.example.com/(.*/)(ads|banners?|junk)</TT
+></DT
+><DD
+><P
+>    This regular expression will match any path of <SPAN
+CLASS="QUOTE"
+>"example.com"</SPAN
+>
+    that contains any of the words <SPAN
+CLASS="QUOTE"
+>"ads"</SPAN
+>, <SPAN
+CLASS="QUOTE"
+>"banner"</SPAN
+>, 
+    <SPAN
+CLASS="QUOTE"
+>"banners"</SPAN
+> (because of the <SPAN
+CLASS="QUOTE"
+>"?"</SPAN
+>) or <SPAN
+CLASS="QUOTE"
+>"junk"</SPAN
+>.
+    The path does not have to end in these words, just contain them.
+   </P
+></DD
+><DT
+><TT
+CLASS="LITERAL"
+>.example.com/(.*/)(ads|banners?|junk)/.*\.(jpe?g|gif|png)$</TT
+></DT
+><DD
+><P
+>    This is very much the same as above, except now it must end in either 
+    <SPAN
+CLASS="QUOTE"
+>".jpg"</SPAN
+>, <SPAN
+CLASS="QUOTE"
+>".jpeg"</SPAN
+>, <SPAN
+CLASS="QUOTE"
+>".gif"</SPAN
+> or <SPAN
+CLASS="QUOTE"
+>".png"</SPAN
+>. So this 
+    one is limited to common image formats.
+   </P
+></DD
+></DL
+></DIV
+><P
+> There are many, many good examples to be found in <TT
+CLASS="FILENAME"
+>default.action</TT
+>, 
+ and more tutorials below in <A
+HREF="appendix.html#REGEX"
+>Appendix on regular expressions</A
+>.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="TAG-PATTERN"
+>8.4.3. The Tag Pattern</A
+></H3
+><P
+> Tag patterns are used to change the applying actions based on the
+ request's tags. Tags can be created with either the
+ <A
+HREF="actions-file.html#CLIENT-HEADER-TAGGER"
+>client-header-tagger</A
+>
+ or the  <A
+HREF="actions-file.html#SERVER-HEADER-TAGGER"
+>server-header-tagger</A
+> action.</P
+><P
+> Tag patterns have to start with <SPAN
+CLASS="QUOTE"
+>"TAG:"</SPAN
+>, so <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>
+ can tell them apart from URL patterns. Everything after the colon
+ including white space, is interpreted as a regular expression with
+ path pattern syntax, except that tag patterns aren't left-anchored
+ automatically (<SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> doesn't silently add a <SPAN
+CLASS="QUOTE"
+>"^"</SPAN
+>,
+ you have to do it yourself if you need it).</P
+><P
+> To match all requests that are tagged with <SPAN
+CLASS="QUOTE"
+>"foo"</SPAN
+>
+ your pattern line should be <SPAN
+CLASS="QUOTE"
+>"TAG:^foo$"</SPAN
+>,
+ <SPAN
+CLASS="QUOTE"
+>"TAG:foo"</SPAN
+> would work as well, but it would also
+ match requests whose tags contain <SPAN
+CLASS="QUOTE"
+>"foo"</SPAN
+> somewhere.
+ <SPAN
+CLASS="QUOTE"
+>"TAG: foo"</SPAN
+> wouldn't work as it requires white space.</P
+><P
+> Sections can contain URL and tag patterns at the same time,
+ but tag patterns are checked after the URL patterns and thus
+ always overrule them, even if they are located before the URL patterns.</P
+><P
+> Once a new tag is added, Privoxy checks right away if it's matched by one
+ of the tag patterns and updates the action settings accordingly. As a result
+ tags can be used to activate other tagger actions, as long as these other
+ taggers look for headers that haven't already be parsed.</P
+><P
+> For example you could tag client requests which use the
+ <TT
+CLASS="LITERAL"
+>POST</TT
+> method,
+ then use this tag to activate another tagger that adds a tag if cookies
+ are sent, and then use a block action based on the cookie tag. This allows
+ the outcome of one action, to be input into a subsequent action. However if
+ you'd reverse the position of the described taggers, and activated the
+ method tagger based on the cookie tagger, no method tags would be created.
+ The method tagger would look for the request line, but at the time
+ the cookie tag is created, the request line has already been parsed.</P
+><P
+> While this is a limitation you should be aware of, this kind of
+ indirection is seldom needed anyway and even the example doesn't
+ make too much sense.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="ACTIONS"
+>8.5. Actions</A
+></H2
+><P
+> All actions are disabled by default, until they are explicitly enabled
+ somewhere in an actions file. Actions are turned on if preceded with a
+ <SPAN
+CLASS="QUOTE"
+>"+"</SPAN
+>, and turned off if preceded with a <SPAN
+CLASS="QUOTE"
+>"-"</SPAN
+>. So a
+ <TT
+CLASS="LITERAL"
+>+action</TT
+> means <SPAN
+CLASS="QUOTE"
+>"do that action"</SPAN
+>, e.g.
+ <TT
+CLASS="LITERAL"
+>+block</TT
+> means <SPAN
+CLASS="QUOTE"
+>"please block URLs that match the
+ following patterns"</SPAN
+>, and <TT
+CLASS="LITERAL"
+>-block</TT
+> means <SPAN
+CLASS="QUOTE"
+>"don't
+ block URLs that match the following patterns, even if <TT
+CLASS="LITERAL"
+>+block</TT
+>
+ previously applied."</SPAN
+>&#13;</P
+><P
+> 
+ Again, actions are invoked by placing them on a line, enclosed in curly braces and
+ separated by whitespace, like in 
+ <TT
+CLASS="LITERAL"
+>{+some-action -some-other-action{some-parameter}}</TT
+>,
+ followed by a list of URL patterns, one per line, to which they apply.
+ Together, the actions line and the following pattern lines make up a section
+ of the actions file. </P
+><P
+> 
+ Actions fall into three categories:</P
+><P
+> <P
+></P
+><UL
+><LI
+><P
+>  
+   Boolean, i.e the action can only be <SPAN
+CLASS="QUOTE"
+>"enabled"</SPAN
+> or
+   <SPAN
+CLASS="QUOTE"
+>"disabled"</SPAN
+>. Syntax:
+  </P
+><P
+>   <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>  +<TT
+CLASS="REPLACEABLE"
+><I
+>name</I
+></TT
+>        # enable action <TT
+CLASS="REPLACEABLE"
+><I
+>name</I
+></TT
+>
+  -<TT
+CLASS="REPLACEABLE"
+><I
+>name</I
+></TT
+>        # disable action <TT
+CLASS="REPLACEABLE"
+><I
+>name</I
+></TT
+></PRE
+></TD
+></TR
+></TABLE
+>
+  </P
+><P
+>  
+   Example: <TT
+CLASS="LITERAL"
+>+handle-as-image</TT
+>
+  </P
+></LI
+><LI
+><P
+>  
+   Parameterized, where some value is required in order to enable this type of action.
+   Syntax:
+  </P
+><P
+>   <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>  +<TT
+CLASS="REPLACEABLE"
+><I
+>name</I
+></TT
+>{<TT
+CLASS="REPLACEABLE"
+><I
+>param</I
+></TT
+>}  # enable action and set parameter to <TT
+CLASS="REPLACEABLE"
+><I
+>param</I
+></TT
+>,
+               # overwriting parameter from previous match if necessary
+  -<TT
+CLASS="REPLACEABLE"
+><I
+>name</I
+></TT
+>         # disable action. The parameter can be omitted</PRE
+></TD
+></TR
+></TABLE
+>
+  </P
+><P
+>   Note that if the URL matches multiple positive forms of a parameterized action,
+   the last match wins, i.e. the params from earlier matches are simply ignored.
+  </P
+><P
+>  
+   Example: <TT
+CLASS="LITERAL"
+>+hide-user-agent{Mozilla/5.0 (X11; U; FreeBSD i386; en-US; rv:1.8.1.4) Gecko/20070602 Firefox/2.0.0.4}</TT
+>
+  </P
+></LI
+><LI
+><P
+>  
+   Multi-value. These look exactly like parameterized actions,
+   but they behave differently: If the action applies multiple times to the
+   same URL, but with different parameters, <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>all</I
+></SPAN
+> the parameters
+   from <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>all</I
+></SPAN
+> matches are remembered. This is used for actions
+   that can be executed for the same request repeatedly, like adding multiple
+   headers, or filtering through multiple filters. Syntax:
+  </P
+><P
+>   <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>  +<TT
+CLASS="REPLACEABLE"
+><I
+>name</I
+></TT
+>{<TT
+CLASS="REPLACEABLE"
+><I
+>param</I
+></TT
+>}   # enable action and add <TT
+CLASS="REPLACEABLE"
+><I
+>param</I
+></TT
+> to the list of parameters
+  -<TT
+CLASS="REPLACEABLE"
+><I
+>name</I
+></TT
+>{<TT
+CLASS="REPLACEABLE"
+><I
+>param</I
+></TT
+>}   # remove the parameter <TT
+CLASS="REPLACEABLE"
+><I
+>param</I
+></TT
+> from the list of parameters
+                # If it was the last one left, disable the action.
+  <TT
+CLASS="REPLACEABLE"
+><I
+>-name</I
+></TT
+>          # disable this action completely and remove all parameters from the list</PRE
+></TD
+></TR
+></TABLE
+>
+  </P
+><P
+>  
+   Examples: <TT
+CLASS="LITERAL"
+>+add-header{X-Fun-Header: Some text}</TT
+> and
+   <TT
+CLASS="LITERAL"
+>+filter{html-annoyances}</TT
+>
+  </P
+></LI
+></UL
+></P
+><P
+> If nothing is specified in any actions file, no <SPAN
+CLASS="QUOTE"
+>"actions"</SPAN
+> are
+ taken. So in this case <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> would just be a
+ normal, non-blocking, non-filtering proxy. You must specifically enable the
+ privacy and blocking features you need (although the provided default actions
+ files will give a good starting point).</P
+><P
+> Later defined action sections always over-ride earlier ones of the same type.
+ So exceptions to any rules you make, should come in the latter part of the file (or 
+ in a file that is processed later when using multiple actions files such 
+ as <TT
+CLASS="FILENAME"
+>user.action</TT
+>). For multi-valued actions, the actions
+ are applied in the order they are specified. Actions files are processed in
+ the order they are defined in <TT
+CLASS="FILENAME"
+>config</TT
+> (the default
+ installation has three actions files). It also quite possible for any given
+ URL to match more than one <SPAN
+CLASS="QUOTE"
+>"pattern"</SPAN
+> (because of wildcards and
+ regular expressions), and thus to trigger more than one set of actions! Last
+ match wins.</P
+><P
+> The list of valid <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> actions are:</P
+><DIV
+CLASS="SECT3"
+><H4
+CLASS="SECT3"
+><A
+NAME="ADD-HEADER"
+>8.5.1. add-header</A
+></H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Typical use:</DT
+><DD
+><P
+>Confuse log analysis, custom applications</P
+></DD
+><DT
+>Effect:</DT
+><DD
+><P
+>    Sends a user defined HTTP header to the web server.
+   </P
+></DD
+><DT
+>Type:</DT
+><DD
+><P
+>Multi-value.</P
+></DD
+><DT
+>Parameter:</DT
+><DD
+><P
+>    Any string value is possible. Validity of the defined HTTP headers is not checked.
+    It is recommended that you use the <SPAN
+CLASS="QUOTE"
+>"<TT
+CLASS="LITERAL"
+>X-</TT
+>"</SPAN
+> prefix
+    for custom headers.
+   </P
+></DD
+><DT
+>Notes:</DT
+><DD
+><P
+>    This action may be specified multiple times, in order to define multiple 
+    headers. This is rarely needed for the typical user. If you don't know what 
+    <SPAN
+CLASS="QUOTE"
+>"HTTP headers"</SPAN
+> are, you definitely don't need to worry about this 
+    one.
+   </P
+></DD
+><DT
+>Example usage:</DT
+><DD
+><P
+>     <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>+add-header{X-User-Tracking: sucks}</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECT3"
+><H4
+CLASS="SECT3"
+><A
+NAME="BLOCK"
+>8.5.2. block</A
+></H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Typical use:</DT
+><DD
+><P
+>Block ads or other unwanted content</P
+></DD
+><DT
+>Effect:</DT
+><DD
+><P
+>    Requests for URLs to which this action applies are blocked, i.e. the
+    requests are trapped by <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> and the requested URL is never retrieved,
+    but is answered locally with a substitute page or image, as determined by
+    the <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#HANDLE-AS-IMAGE"
+>handle-as-image</A
+></TT
+>,
+    <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#SET-IMAGE-BLOCKER"
+>set-image-blocker</A
+></TT
+>, and 
+    <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#HANDLE-AS-EMPTY-DOCUMENT"
+>handle-as-empty-document</A
+></TT
+> actions.
+    
+   </P
+></DD
+><DT
+>Type:</DT
+><DD
+><P
+>Parameterized.</P
+></DD
+><DT
+>Parameter:</DT
+><DD
+><P
+>A block reason that should be given to the user.</P
+></DD
+><DT
+>Notes:</DT
+><DD
+><P
+>    <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> sends a special <SPAN
+CLASS="QUOTE"
+>"BLOCKED"</SPAN
+> page
+    for requests to blocked pages. This page contains the block reason given as
+    parameter, a link to find out why the block action applies, and a click-through
+    to the blocked content (the latter only if the force feature is available and
+    enabled).
+   </P
+><P
+> 
+    A very important exception occurs if <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>both</I
+></SPAN
+> 
+    <TT
+CLASS="LITERAL"
+>block</TT
+> and <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#HANDLE-AS-IMAGE"
+>handle-as-image</A
+></TT
+>,
+    apply to the same request: it will then be replaced by an image. If 
+    <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#SET-IMAGE-BLOCKER"
+>set-image-blocker</A
+></TT
+>
+    (see below) also applies, the type of image will be determined by its parameter,
+    if not, the standard checkerboard pattern is sent.
+   </P
+><P
+>    It is important to understand this process, in order 
+    to understand how <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> deals with 
+    ads and other unwanted content. Blocking is a core feature, and one 
+    upon which various other features depend.
+   </P
+><P
+>    The <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#FILTER"
+>filter</A
+></TT
+>
+    action can perform a very similar task, by <SPAN
+CLASS="QUOTE"
+>"blocking"</SPAN
+>
+    banner images and other content through rewriting the relevant URLs in the
+    document's HTML source, so they don't get requested in the first place.
+    Note that this is a totally different technique, and it's easy to confuse the two.
+   </P
+></DD
+><DT
+>Example usage (section):</DT
+><DD
+><P
+>     <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>{+block{No nasty stuff for you.}}
+# Block and replace with "blocked" page
+ .nasty-stuff.example.com
+
+{+block{Doubleclick banners.} +handle-as-image} 
+# Block and replace with image
+ .ad.doubleclick.net
+ .ads.r.us/banners/
+
+{+block{Layered ads.} +handle-as-empty-document} 
+# Block and then ignore
+ adserver.example.net/.*\.js$</PRE
+></TD
+></TR
+></TABLE
+>
+    </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECT3"
+><H4
+CLASS="SECT3"
+><A
+NAME="CHANGE-X-FORWARDED-FOR"
+>8.5.3. change-x-forwarded-for</A
+></H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Typical use:</DT
+><DD
+><P
+>Improve privacy by not forwarding the source of the request in the HTTP headers.</P
+></DD
+><DT
+>Effect:</DT
+><DD
+><P
+>    Deletes the <SPAN
+CLASS="QUOTE"
+>"X-Forwarded-For:"</SPAN
+> HTTP header from the client request,
+    or adds a new one.
+   </P
+></DD
+><DT
+>Type:</DT
+><DD
+><P
+>Parameterized.</P
+></DD
+><DT
+>Parameter:</DT
+><DD
+><P
+></P
+><UL
+><LI
+><P
+><SPAN
+CLASS="QUOTE"
+>"block"</SPAN
+> to delete the header.</P
+></LI
+><LI
+><P
+>       <SPAN
+CLASS="QUOTE"
+>"add"</SPAN
+> to create the header (or append
+       the client's IP address to an already existing one).
+     </P
+></LI
+></UL
+></DD
+><DT
+>Notes:</DT
+><DD
+><P
+>    It is safe and recommended to use <TT
+CLASS="LITERAL"
+>block</TT
+>.
+   </P
+><P
+>    Forwarding the source address of the request may make
+    sense in some multi-user setups but is also a privacy risk.
+   </P
+></DD
+><DT
+>Example usage:</DT
+><DD
+><P
+>     <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>+change-x-forwarded-for{block}</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECT3"
+><H4
+CLASS="SECT3"
+><A
+NAME="CLIENT-HEADER-FILTER"
+>8.5.4. client-header-filter</A
+></H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Typical use:</DT
+><DD
+><P
+>   Rewrite or remove single client headers.
+   </P
+></DD
+><DT
+>Effect:</DT
+><DD
+><P
+>    All client headers to which this action applies are filtered on-the-fly through
+    the specified regular expression based substitutions.
+   </P
+></DD
+><DT
+>Type:</DT
+><DD
+><P
+>Parameterized.</P
+></DD
+><DT
+>Parameter:</DT
+><DD
+><P
+>    The name of a client-header filter, as defined in one of the
+    <A
+HREF="filter-file.html"
+>filter files</A
+>.
+   </P
+></DD
+><DT
+>Notes:</DT
+><DD
+><P
+>    Client-header filters are applied to each header on its own, not to
+    all at once. This makes it easier to diagnose problems, but on the downside
+    you can't write filters that only change header x if header y's value is z.
+    You can do that by using tags though.
+   </P
+><P
+>    Client-header filters are executed after the other header actions have finished
+    and use their output as input.
+   </P
+><P
+>    If the request URL gets changed, <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> will detect that and use the new
+    one. This can be used to rewrite the request destination behind the client's
+    back, for example to specify a Tor exit relay for certain requests.
+   </P
+><P
+>    Please refer to the <A
+HREF="filter-file.html"
+>filter file chapter</A
+>
+    to learn which client-header filters are available by default, and how to
+    create your own.
+   </P
+></DD
+><DT
+>Example usage (section):</DT
+><DD
+><P
+>     <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+># Hide Tor exit notation in Host and Referer Headers
+{+client-header-filter{hide-tor-exit-notation}}
+/
+    </PRE
+></TD
+></TR
+></TABLE
+>
+    </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECT3"
+><H4
+CLASS="SECT3"
+><A
+NAME="CLIENT-HEADER-TAGGER"
+>8.5.5. client-header-tagger</A
+></H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Typical use:</DT
+><DD
+><P
+>   Block requests based on their headers.
+   </P
+></DD
+><DT
+>Effect:</DT
+><DD
+><P
+>    Client headers to which this action applies are filtered on-the-fly through
+    the specified regular expression based substitutions, the result is used as
+    tag. 
+   </P
+></DD
+><DT
+>Type:</DT
+><DD
+><P
+>Parameterized.</P
+></DD
+><DT
+>Parameter:</DT
+><DD
+><P
+>    The name of a client-header tagger, as defined in one of the
+    <A
+HREF="filter-file.html"
+>filter files</A
+>.
+   </P
+></DD
+><DT
+>Notes:</DT
+><DD
+><P
+>    Client-header taggers are applied to each header on its own,
+    and as the header isn't modified, each tagger <SPAN
+CLASS="QUOTE"
+>"sees"</SPAN
+>
+    the original.
+   </P
+><P
+>    Client-header taggers are the first actions that are executed
+    and their tags can be used to control every other action.
+   </P
+></DD
+><DT
+>Example usage (section):</DT
+><DD
+><P
+>     <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+># Tag every request with the User-Agent header
+{+client-header-tagger{user-agent}}
+/
+
+# Tagging itself doesn't change the action
+# settings, sections with TAG patterns do:
+#
+# If it's a download agent, use a different forwarding proxy,
+# show the real User-Agent and make sure resume works.
+{+forward-override{forward-socks5 10.0.0.2:2222 .} \
+ -hide-if-modified-since      \
+ -overwrite-last-modified     \
+ -hide-user-agent             \
+ -filter                      \
+ -deanimate-gifs              \
+}
+TAG:^User-Agent: NetBSD-ftp/
+TAG:^User-Agent: Novell ZYPP Installer
+TAG:^User-Agent: RPM APT-HTTP/
+TAG:^User-Agent: fetch libfetch/
+TAG:^User-Agent: Ubuntu APT-HTTP/
+TAG:^User-Agent: MPlayer/
+    </PRE
+></TD
+></TR
+></TABLE
+>
+    </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECT3"
+><H4
+CLASS="SECT3"
+><A
+NAME="CONTENT-TYPE-OVERWRITE"
+>8.5.6. content-type-overwrite</A
+></H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Typical use:</DT
+><DD
+><P
+>Stop useless download menus from popping up, or change the browser's rendering mode</P
+></DD
+><DT
+>Effect:</DT
+><DD
+><P
+>    Replaces the <SPAN
+CLASS="QUOTE"
+>"Content-Type:"</SPAN
+> HTTP server header.
+   </P
+></DD
+><DT
+>Type:</DT
+><DD
+><P
+>Parameterized.</P
+></DD
+><DT
+>Parameter:</DT
+><DD
+><P
+>    Any string. 
+   </P
+></DD
+><DT
+>Notes:</DT
+><DD
+><P
+>    The <SPAN
+CLASS="QUOTE"
+>"Content-Type:"</SPAN
+> HTTP server header is used by the
+    browser to decide what to do with the document. The value of this
+    header can cause the browser to open a download menu instead of
+    displaying the document by itself, even if the document's format is
+    supported by the browser. 
+   </P
+><P
+>    The declared content type can also affect which rendering mode
+    the browser chooses. If XHTML is delivered as <SPAN
+CLASS="QUOTE"
+>"text/html"</SPAN
+>,
+    many browsers treat it as yet another broken HTML document.
+    If it is send as <SPAN
+CLASS="QUOTE"
+>"application/xml"</SPAN
+>, browsers with
+    XHTML support will only display it, if the syntax is correct.
+   </P
+><P
+>    If you see a web site that proudly uses XHTML buttons, but sets
+    <SPAN
+CLASS="QUOTE"
+>"Content-Type: text/html"</SPAN
+>, you can use <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>
+    to overwrite it with <SPAN
+CLASS="QUOTE"
+>"application/xml"</SPAN
+> and validate
+    the web master's claim inside your XHTML-supporting browser.
+    If the syntax is incorrect, the browser will complain loudly. 
+   </P
+><P
+>    You can also go the opposite direction: if your browser prints
+    error messages instead of rendering a document falsely declared
+    as XHTML, you can overwrite the content type with
+    <SPAN
+CLASS="QUOTE"
+>"text/html"</SPAN
+> and have it rendered as broken HTML document. 
+   </P
+><P
+>    By default <TT
+CLASS="LITERAL"
+>content-type-overwrite</TT
+> only replaces
+    <SPAN
+CLASS="QUOTE"
+>"Content-Type:"</SPAN
+> headers that look like some kind of text.
+    If you want to overwrite it unconditionally, you have to combine it with
+    <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#FORCE-TEXT-MODE"
+>force-text-mode</A
+></TT
+>.
+    This limitation exists for a reason, think twice before circumventing it.
+   </P
+><P
+>    Most of the time it's easier to replace this action with a custom
+    <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#SERVER-HEADER-FILTER"
+>server-header filter</A
+></TT
+>.
+    It allows you to activate it for every document of a certain site and it will still
+    only replace the content types you aimed at.
+   </P
+><P
+>    Of course you can apply <TT
+CLASS="LITERAL"
+>content-type-overwrite</TT
+>
+    to a whole site and then make URL based exceptions, but it's a lot
+    more work to get the same precision. 
+   </P
+></DD
+><DT
+>Example usage (sections):</DT
+><DD
+><P
+>     <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+># Check if www.example.net/ really uses valid XHTML
+{ +content-type-overwrite{application/xml} }
+www.example.net/
+
+# but leave the content type unmodified if the URL looks like a style sheet
+{-content-type-overwrite}
+www.example.net/.*\.css$
+www.example.net/.*style</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECT3"
+><H4
+CLASS="SECT3"
+><A
+NAME="CRUNCH-CLIENT-HEADER"
+>8.5.7. crunch-client-header</A
+></H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Typical use:</DT
+><DD
+><P
+>Remove a client header <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> has no dedicated action for.</P
+></DD
+><DT
+>Effect:</DT
+><DD
+><P
+>    Deletes every header sent by the client that contains the string the user supplied as parameter.
+   </P
+></DD
+><DT
+>Type:</DT
+><DD
+><P
+>Parameterized.</P
+></DD
+><DT
+>Parameter:</DT
+><DD
+><P
+>    Any string.
+   </P
+></DD
+><DT
+>Notes:</DT
+><DD
+><P
+>    This action allows you to block client headers for which no dedicated
+    <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> action exists.
+    <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> will remove every client header that
+    contains the string you supplied as parameter.
+   </P
+><P
+>    Regular expressions are <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>not supported</I
+></SPAN
+> and you can't
+    use this action to block different headers in the same request, unless
+    they contain the same string.
+   </P
+><P
+>    <TT
+CLASS="LITERAL"
+>crunch-client-header</TT
+> is only meant for quick tests.
+    If you have to block several different headers, or only want to modify
+    parts of them, you should use a
+    <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#CLIENT-HEADER-FILTER"
+>client-header filter</A
+></TT
+>.
+   </P
+><DIV
+CLASS="WARNING"
+><P
+></P
+><TABLE
+CLASS="WARNING"
+BORDER="1"
+WIDTH="90%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Warning</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>      Don't block any header without understanding the consequences.
+     </P
+></TD
+></TR
+></TABLE
+></DIV
+></DD
+><DT
+>Example usage (section):</DT
+><DD
+><P
+>     <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+># Block the non-existent "Privacy-Violation:" client header 
+{ +crunch-client-header{Privacy-Violation:} }
+/
+    </PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECT3"
+><H4
+CLASS="SECT3"
+><A
+NAME="CRUNCH-IF-NONE-MATCH"
+>8.5.8. crunch-if-none-match</A
+></H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Typical use:</DT
+><DD
+><P
+>Prevent yet another way to track the user's steps between sessions.</P
+></DD
+><DT
+>Effect:</DT
+><DD
+><P
+>    Deletes the <SPAN
+CLASS="QUOTE"
+>"If-None-Match:"</SPAN
+> HTTP client header.
+   </P
+></DD
+><DT
+>Type:</DT
+><DD
+><P
+>Boolean.</P
+></DD
+><DT
+>Parameter:</DT
+><DD
+><P
+>    N/A
+   </P
+></DD
+><DT
+>Notes:</DT
+><DD
+><P
+>    Removing the <SPAN
+CLASS="QUOTE"
+>"If-None-Match:"</SPAN
+> HTTP client header
+    is useful for filter testing, where you want to force a real
+    reload instead of getting status code <SPAN
+CLASS="QUOTE"
+>"304"</SPAN
+> which
+    would cause the browser to use a cached copy of the page.
+   </P
+><P
+>    It is also useful to make sure the header isn't used as a cookie
+    replacement (unlikely but possible).
+   </P
+><P
+>    Blocking the <SPAN
+CLASS="QUOTE"
+>"If-None-Match:"</SPAN
+> header shouldn't cause any
+    caching problems, as long as the <SPAN
+CLASS="QUOTE"
+>"If-Modified-Since:"</SPAN
+> header
+    isn't blocked or missing as well.
+   </P
+><P
+>    It is recommended to use this action together with
+    <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#HIDE-IF-MODIFIED-SINCE"
+>hide-if-modified-since</A
+></TT
+>
+    and
+    <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#OVERWRITE-LAST-MODIFIED"
+>overwrite-last-modified</A
+></TT
+>.
+   </P
+></DD
+><DT
+>Example usage (section):</DT
+><DD
+><P
+>     <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+># Let the browser revalidate cached documents but don't
+# allow the server to use the revalidation headers for user tracking.
+{+hide-if-modified-since{-60} \
+ +overwrite-last-modified{randomize} \
+ +crunch-if-none-match}
+/   </PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECT3"
+><H4
+CLASS="SECT3"
+><A
+NAME="CRUNCH-INCOMING-COOKIES"
+>8.5.9. crunch-incoming-cookies</A
+></H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Typical use:</DT
+><DD
+><P
+>    Prevent the web server from setting HTTP cookies on your system
+   </P
+></DD
+><DT
+>Effect:</DT
+><DD
+><P
+>    Deletes any <SPAN
+CLASS="QUOTE"
+>"Set-Cookie:"</SPAN
+> HTTP headers from server replies.
+   </P
+></DD
+><DT
+>Type:</DT
+><DD
+><P
+>Boolean.</P
+></DD
+><DT
+>Parameter:</DT
+><DD
+><P
+>    N/A
+   </P
+></DD
+><DT
+>Notes:</DT
+><DD
+><P
+>    This action is only concerned with <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>incoming</I
+></SPAN
+> HTTP cookies. For
+    <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>outgoing</I
+></SPAN
+> HTTP cookies, use
+    <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#CRUNCH-OUTGOING-COOKIES"
+>crunch-outgoing-cookies</A
+></TT
+>.
+    Use <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>both</I
+></SPAN
+> to disable HTTP cookies completely.
+   </P
+><P
+>    It makes <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>no sense at all</I
+></SPAN
+> to use this action in conjunction
+    with the <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#SESSION-COOKIES-ONLY"
+>session-cookies-only</A
+></TT
+> action,
+    since it would prevent the session cookies from being set. See also 
+    <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#FILTER-CONTENT-COOKIES"
+>filter-content-cookies</A
+></TT
+>.
+   </P
+></DD
+><DT
+>Example usage:</DT
+><DD
+><P
+>    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>+crunch-incoming-cookies</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECT3"
+><H4
+CLASS="SECT3"
+><A
+NAME="CRUNCH-SERVER-HEADER"
+>8.5.10. crunch-server-header</A
+></H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Typical use:</DT
+><DD
+><P
+>Remove a server header <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> has no dedicated action for.</P
+></DD
+><DT
+>Effect:</DT
+><DD
+><P
+>    Deletes every header sent by the server that contains the string the user supplied as parameter.
+   </P
+></DD
+><DT
+>Type:</DT
+><DD
+><P
+>Parameterized.</P
+></DD
+><DT
+>Parameter:</DT
+><DD
+><P
+>    Any string.
+   </P
+></DD
+><DT
+>Notes:</DT
+><DD
+><P
+>    This action allows you to block server headers for which no dedicated
+    <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> action exists. <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>
+    will remove every server header that contains the string you supplied as parameter.
+   </P
+><P
+>    Regular expressions are <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>not supported</I
+></SPAN
+> and you can't
+    use this action to block different headers in the same request, unless
+    they contain the same string.
+   </P
+><P
+>    <TT
+CLASS="LITERAL"
+>crunch-server-header</TT
+> is only meant for quick tests.
+    If you have to block several different headers, or only want to modify
+    parts of them, you should use a custom
+    <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#SERVER-HEADER-FILTER"
+>server-header filter</A
+></TT
+>.
+   </P
+><DIV
+CLASS="WARNING"
+><P
+></P
+><TABLE
+CLASS="WARNING"
+BORDER="1"
+WIDTH="90%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Warning</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>     Don't block any header without understanding the consequences.
+     </P
+></TD
+></TR
+></TABLE
+></DIV
+></DD
+><DT
+>Example usage (section):</DT
+><DD
+><P
+>     <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+># Crunch server headers that try to prevent caching
+{ +crunch-server-header{no-cache} }
+/   </PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECT3"
+><H4
+CLASS="SECT3"
+><A
+NAME="CRUNCH-OUTGOING-COOKIES"
+>8.5.11. crunch-outgoing-cookies</A
+></H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Typical use:</DT
+><DD
+><P
+>    Prevent the web server from reading any HTTP cookies from your system
+   </P
+></DD
+><DT
+>Effect:</DT
+><DD
+><P
+>    Deletes any <SPAN
+CLASS="QUOTE"
+>"Cookie:"</SPAN
+> HTTP headers from client requests.
+   </P
+></DD
+><DT
+>Type:</DT
+><DD
+><P
+>Boolean.</P
+></DD
+><DT
+>Parameter:</DT
+><DD
+><P
+>    N/A
+   </P
+></DD
+><DT
+>Notes:</DT
+><DD
+><P
+>    This action is only concerned with <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>outgoing</I
+></SPAN
+> HTTP cookies. For
+    <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>incoming</I
+></SPAN
+> HTTP cookies, use
+    <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#CRUNCH-INCOMING-COOKIES"
+>crunch-incoming-cookies</A
+></TT
+>.
+    Use <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>both</I
+></SPAN
+> to disable HTTP cookies completely.
+   </P
+><P
+>    It makes <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>no sense at all</I
+></SPAN
+> to use this action in conjunction
+    with the <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#SESSION-COOKIES-ONLY"
+>session-cookies-only</A
+></TT
+> action,
+    since it would prevent the session cookies from being read.
+   </P
+></DD
+><DT
+>Example usage:</DT
+><DD
+><P
+>    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>+crunch-outgoing-cookies</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECT3"
+><H4
+CLASS="SECT3"
+><A
+NAME="DEANIMATE-GIFS"
+>8.5.12. deanimate-gifs</A
+></H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Typical use:</DT
+><DD
+><P
+>Stop those annoying, distracting animated GIF images.</P
+></DD
+><DT
+>Effect:</DT
+><DD
+><P
+>    De-animate GIF animations, i.e. reduce them to their first or last image.
+   </P
+></DD
+><DT
+>Type:</DT
+><DD
+><P
+>Parameterized.</P
+></DD
+><DT
+>Parameter:</DT
+><DD
+><P
+>    <SPAN
+CLASS="QUOTE"
+>"last"</SPAN
+> or <SPAN
+CLASS="QUOTE"
+>"first"</SPAN
+>
+   </P
+></DD
+><DT
+>Notes:</DT
+><DD
+><P
+>    This will also shrink the images considerably (in bytes, not pixels!). If
+    the option <SPAN
+CLASS="QUOTE"
+>"first"</SPAN
+> is given, the first frame of the animation
+    is used as the replacement. If <SPAN
+CLASS="QUOTE"
+>"last"</SPAN
+> is given, the last
+    frame of the animation is used instead, which probably makes more sense for
+    most banner animations, but also has the risk of not showing the entire
+    last frame (if it is only a delta to an earlier frame).
+   </P
+><P
+>    You can safely use this action with patterns that will also match non-GIF
+    objects, because no attempt will be made at anything that doesn't look like
+    a GIF.
+   </P
+></DD
+><DT
+>Example usage:</DT
+><DD
+><P
+>      <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>+deanimate-gifs{last}</PRE
+></TD
+></TR
+></TABLE
+>
+    </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECT3"
+><H4
+CLASS="SECT3"
+><A
+NAME="DOWNGRADE-HTTP-VERSION"
+>8.5.13. downgrade-http-version</A
+></H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Typical use:</DT
+><DD
+><P
+>Work around (very rare) problems with HTTP/1.1</P
+></DD
+><DT
+>Effect:</DT
+><DD
+><P
+>    Downgrades HTTP/1.1 client requests and server replies to HTTP/1.0.
+   </P
+></DD
+><DT
+>Type:</DT
+><DD
+><P
+>Boolean.</P
+></DD
+><DT
+>Parameter:</DT
+><DD
+><P
+>    N/A
+   </P
+></DD
+><DT
+>Notes:</DT
+><DD
+><P
+>    This is a left-over from the time when <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>
+    didn't support important HTTP/1.1 features well. It is left here for the
+    unlikely case that you experience HTTP/1.1 related problems with some server
+    out there. Not all HTTP/1.1 features and requirements are supported yet,
+    so there is a chance you might need this action.
+   </P
+></DD
+><DT
+>Example usage (section):</DT
+><DD
+><P
+>     <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>{+downgrade-http-version}
+problem-host.example.com</PRE
+></TD
+></TR
+></TABLE
+>
+    </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECT3"
+><H4
+CLASS="SECT3"
+><A
+NAME="FAST-REDIRECTS"
+>8.5.14. fast-redirects</A
+></H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Typical use:</DT
+><DD
+><P
+>Fool some click-tracking scripts and speed up indirect links.</P
+></DD
+><DT
+>Effect:</DT
+><DD
+><P
+>    Detects redirection URLs and redirects the browser without contacting
+    the redirection server first.
+   </P
+></DD
+><DT
+>Type:</DT
+><DD
+><P
+>Parameterized.</P
+></DD
+><DT
+>Parameter:</DT
+><DD
+><P
+></P
+><UL
+><LI
+><P
+>      <SPAN
+CLASS="QUOTE"
+>"simple-check"</SPAN
+> to just search for the string <SPAN
+CLASS="QUOTE"
+>"http://"</SPAN
+>
+      to detect redirection URLs.
+     </P
+></LI
+><LI
+><P
+>      <SPAN
+CLASS="QUOTE"
+>"check-decoded-url"</SPAN
+> to decode URLs (if necessary) before searching
+      for redirection URLs.
+     </P
+></LI
+></UL
+></DD
+><DT
+>Notes:</DT
+><DD
+><P
+>  
+    Many sites, like yahoo.com, don't just link to other sites. Instead, they
+    will link to some script on their own servers, giving the destination as a
+    parameter, which will then redirect you to the final target. URLs
+    resulting from this scheme typically look like:
+    <SPAN
+CLASS="QUOTE"
+>"http://www.example.org/click-tracker.cgi?target=http%3a//www.example.net/"</SPAN
+>.
+  </P
+><P
+>    Sometimes, there are even multiple consecutive redirects encoded in the
+    URL. These redirections via scripts make your web browsing more traceable,
+    since the server from which you follow such a link can see where you go
+    to. Apart from that, valuable bandwidth and time is wasted, while your
+    browser asks the server for one redirect after the other. Plus, it feeds
+    the advertisers.
+   </P
+><P
+>    This feature is currently not very smart and is scheduled for improvement.
+    If it is enabled by default, you will have to create some exceptions to
+    this action. It can lead to failures in several ways: 
+   </P
+><P
+>    Not every URLs with other URLs as parameters is evil.
+    Some sites offer a real service that requires this information to work.
+    For example a validation service needs to know, which document to validate.
+    <TT
+CLASS="LITERAL"
+>fast-redirects</TT
+> assumes that every URL parameter that
+    looks like another URL is a redirection target, and will always redirect to
+    the last one. Most of the time the assumption is correct, but if it isn't,
+    the user gets redirected anyway.
+   </P
+><P
+>    Another failure occurs if the URL contains other parameters after the URL parameter.
+    The URL:
+    <SPAN
+CLASS="QUOTE"
+>"http://www.example.org/?redirect=http%3a//www.example.net/&#38;foo=bar"</SPAN
+>.
+    contains the redirection URL <SPAN
+CLASS="QUOTE"
+>"http://www.example.net/"</SPAN
+>,
+    followed by another parameter. <TT
+CLASS="LITERAL"
+>fast-redirects</TT
+> doesn't know that
+    and will cause a redirect to <SPAN
+CLASS="QUOTE"
+>"http://www.example.net/&#38;foo=bar"</SPAN
+>.
+    Depending on the target server configuration, the parameter will be silently ignored
+    or lead to a <SPAN
+CLASS="QUOTE"
+>"page not found"</SPAN
+> error. You can prevent this problem by
+    first using the <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#REDIRECT"
+>redirect</A
+></TT
+> action
+    to remove the last part of the URL, but it requires a little effort.
+   </P
+><P
+>    To detect a redirection URL, <TT
+CLASS="LITERAL"
+>fast-redirects</TT
+> only
+    looks for the string <SPAN
+CLASS="QUOTE"
+>"http://"</SPAN
+>, either in plain text
+    (invalid but often used) or encoded as <SPAN
+CLASS="QUOTE"
+>"http%3a//"</SPAN
+>.
+    Some sites use their own URL encoding scheme, encrypt the address
+    of the target server or replace it with a database id. In theses cases
+    <TT
+CLASS="LITERAL"
+>fast-redirects</TT
+> is fooled and the request reaches the
+    redirection server where it probably gets logged.
+   </P
+></DD
+><DT
+>Example usage:</DT
+><DD
+><P
+>     <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+> { +fast-redirects{simple-check} }
+   one.example.com 
+
+ { +fast-redirects{check-decoded-url} }
+   another.example.com/testing</PRE
+></TD
+></TR
+></TABLE
+>
+    </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECT3"
+><H4
+CLASS="SECT3"
+><A
+NAME="FILTER"
+>8.5.15. filter</A
+></H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Typical use:</DT
+><DD
+><P
+>Get rid of HTML and JavaScript annoyances, banner advertisements (by size), 
+         do fun text replacements, add personalized effects, etc.</P
+></DD
+><DT
+>Effect:</DT
+><DD
+><P
+>    All instances of text-based type, most notably HTML and JavaScript, to which
+    this action applies, can be filtered on-the-fly through the specified regular
+    expression based substitutions. (Note: as of version 3.0.3 plain text documents
+    are exempted from filtering, because web servers often use the
+   <TT
+CLASS="LITERAL"
+>text/plain</TT
+> MIME type for all files whose type they don't know.)
+   </P
+></DD
+><DT
+>Type:</DT
+><DD
+><P
+>Parameterized.</P
+></DD
+><DT
+>Parameter:</DT
+><DD
+><P
+>    The name of a content filter, as defined in the <A
+HREF="filter-file.html"
+>filter file</A
+>.
+    Filters can be defined in one or more  files as defined by the 
+    <TT
+CLASS="LITERAL"
+><A
+HREF="config.html#FILTERFILE"
+>filterfile</A
+></TT
+>
+    option in the <A
+HREF="config.html"
+>config file</A
+>. 
+    <TT
+CLASS="FILENAME"
+>default.filter</TT
+> is the collection of filters 
+    supplied by the developers. Locally defined filters should go 
+    in their own file, such as <TT
+CLASS="FILENAME"
+>user.filter</TT
+>.
+   </P
+><P
+>     When used in its negative form,
+     and without parameters, <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>all</I
+></SPAN
+> filtering is completely disabled.
+  </P
+></DD
+><DT
+>Notes:</DT
+><DD
+><P
+>    For your convenience, there are a number of pre-defined filters available 
+    in the distribution filter file that you can use. See the examples below for
+    a list.
+   </P
+><P
+>    Filtering requires buffering the page content, which may appear to
+    slow down page rendering since nothing is displayed until all content has
+    passed the filters. (It does not really take longer, but seems that way
+    since the page is not incrementally displayed.) This effect will be more
+    noticeable on slower connections.
+   </P
+><P
+>   <SPAN
+CLASS="QUOTE"
+>"Rolling your own"</SPAN
+>
+    filters requires a knowledge of 
+     <A
+HREF="http://en.wikipedia.org/wiki/Regular_expressions"
+TARGET="_top"
+><SPAN
+CLASS="QUOTE"
+>"Regular
+     Expressions"</SPAN
+></A
+> and 
+      <A
+HREF="http://en.wikipedia.org/wiki/Html"
+TARGET="_top"
+><SPAN
+CLASS="QUOTE"
+>"HTML"</SPAN
+></A
+>.
+    This is very powerful feature, and potentially very intrusive. 
+    Filters should be used with caution, and where an equivalent
+    <SPAN
+CLASS="QUOTE"
+>"action"</SPAN
+> is not available.
+   </P
+><P
+>    The amount of data that can be filtered is limited to the 
+    <TT
+CLASS="LITERAL"
+><A
+HREF="config.html#BUFFER-LIMIT"
+>buffer-limit</A
+></TT
+>
+    option in the main <A
+HREF="config.html"
+>config file</A
+>. The 
+    default is 4096 KB (4 Megs). Once this limit is exceeded, the buffered
+    data, and all pending data, is passed through unfiltered. 
+   </P
+><P
+>    Inappropriate MIME types, such as zipped files, are not filtered at all.
+    (Again, only text-based types except plain text). Encrypted SSL data
+    (from HTTPS servers) cannot be filtered either, since this would violate
+    the integrity of the secure transaction. In some situations it might
+    be necessary to protect certain text, like source code, from filtering
+    by defining appropriate <TT
+CLASS="LITERAL"
+>-filter</TT
+> exceptions.
+   </P
+><P
+>    Compressed content can't be filtered either, unless <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>
+    is compiled with zlib support (requires at least <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> 3.0.7),
+    in which case <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> will decompress the content before filtering
+    it.
+   </P
+><P
+>    If you use a <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> version without zlib support, but want filtering to work on
+    as much documents as possible, even those that would normally be sent compressed,
+    you must use the <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#PREVENT-COMPRESSION"
+>prevent-compression</A
+></TT
+>
+    action in conjunction with <TT
+CLASS="LITERAL"
+>filter</TT
+>.
+   </P
+><P
+>    Content filtering can achieve some of the same effects as the 
+    <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#BLOCK"
+>block</A
+></TT
+>
+    action, i.e. it can be used to block ads and banners. But the mechanism 
+    works quite differently. One effective use, is to block ad banners 
+    based on their size (see below), since many of these seem to be somewhat 
+    standardized.
+   </P
+><P
+>    <A
+HREF="contact.html"
+>Feedback</A
+> with suggestions for new or
+    improved filters is particularly welcome!
+   </P
+><P
+>    The below list has only the names and a one-line description of each
+    predefined filter. There are <A
+HREF="filter-file.html#PREDEFINED-FILTERS"
+>more
+    verbose explanations</A
+> of what these filters do in the <A
+HREF="filter-file.html"
+>filter file chapter</A
+>.
+   </P
+></DD
+><DT
+>Example usage (with filters from the distribution <TT
+CLASS="FILENAME"
+>default.filter</TT
+> file).
+  See <A
+HREF="filter-file.html#PREDEFINED-FILTERS"
+>the Predefined Filters section</A
+> for 
+  more explanation on each:</DT
+><DD
+><P
+>    <A
+NAME="FILTER-JS-ANNOYANCES"
+></A
+>
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>+filter{js-annoyances}       # Get rid of particularly annoying JavaScript abuse.</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>    <A
+NAME="FILTER-JS-EVENTS"
+></A
+>
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>+filter{js-events}           # Kill all JS event bindings and timers (Radically destructive! Only for extra nasty sites).</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>    <A
+NAME="FILTER-HTML-ANNOYANCES"
+></A
+>
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>+filter{html-annoyances}     # Get rid of particularly annoying HTML abuse.</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>    <A
+NAME="FILTER-CONTENT-COOKIES"
+></A
+>
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>+filter{content-cookies}     # Kill cookies that come in the HTML or JS content.</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>    <A
+NAME="FILTER-REFRESH-TAGS"
+></A
+>
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>+filter{refresh-tags}        # Kill automatic refresh tags (for dial-on-demand setups).</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>    <A
+NAME="FILTER-UNSOLICITED-POPUPS"
+></A
+>
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>+filter{unsolicited-popups}  # Disable only unsolicited pop-up windows. Useful if your browser lacks this ability.</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>    <A
+NAME="FILTER-ALL-POPUPS"
+></A
+>
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>+filter{all-popups}          # Kill all popups in JavaScript and HTML. Useful if your browser lacks this ability.</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>    <A
+NAME="FILTER-IMG-REORDER"
+></A
+>
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>+filter{img-reorder}         # Reorder attributes in &#60;img&#62; tags to make the banners-by-* filters more effective.</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>    <A
+NAME="FILTER-BANNERS-BY-SIZE"
+></A
+>
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>+filter{banners-by-size}     # Kill banners by size.</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>    <A
+NAME="FILTER-BANNERS-BY-LINK"
+></A
+>
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>+filter{banners-by-link}     # Kill banners by their links to known clicktrackers.</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>    <A
+NAME="FILTER-WEBBUGS"
+></A
+>
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>+filter{webbugs}             # Squish WebBugs (1x1 invisible GIFs used for user tracking).</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>    <A
+NAME="FILTER-TINY-TEXTFORMS"
+></A
+>
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>+filter{tiny-textforms}      # Extend those tiny textareas up to 40x80 and kill the hard wrap.</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>    <A
+NAME="FILTER-JUMPING-WINDOWS"
+></A
+>
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>+filter{jumping-windows}     # Prevent windows from resizing and moving themselves.</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>    <A
+NAME="FILTER-FRAMESET-BORDERS"
+></A
+>
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>+filter{frameset-borders}    # Give frames a border and make them resizable.</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>    <A
+NAME="FILTER-DEMORONIZER"
+></A
+>
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>+filter{demoronizer}         # Fix MS's non-standard use of standard charsets.</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>    <A
+NAME="FILTER-SHOCKWAVE-FLASH"
+></A
+>
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>+filter{shockwave-flash}     # Kill embedded Shockwave Flash objects.</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>    <A
+NAME="FILTER-QUICKTIME-KIOSKMODE"
+></A
+>
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>+filter{quicktime-kioskmode} # Make Quicktime movies saveable.</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>    <A
+NAME="FILTER-FUN"
+></A
+>
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>+filter{fun}                 # Text replacements for subversive browsing fun!</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>    <A
+NAME="FILTER-CRUDE-PARENTAL"
+></A
+>
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>+filter{crude-parental}      # Crude parental filtering. Note that this filter doesn't work reliably.</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>    <A
+NAME="FILTER-IE-EXPLOITS"
+></A
+>
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>+filter{ie-exploits}         # Disable some known Internet Explorer bug exploits.</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>    <A
+NAME="FILTER-SITE-SPECIFICS"
+></A
+>
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>+filter{site-specifics}      # Cure for site-specific problems. Don't apply generally!</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>    <A
+NAME="FILTER-NO-PING"
+></A
+>
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>+filter{no-ping}             # Removes non-standard ping attributes in &#60;a&#62; and &#60;area&#62; tags.</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>    <A
+NAME="FILTER-GOOGLE"
+></A
+>
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>+filter{google}              # CSS-based block for Google text ads. Also removes a width limitation and the toolbar advertisement.</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>    <A
+NAME="FILTER-YAHOO"
+></A
+>
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>+filter{yahoo}               # CSS-based block for Yahoo text ads. Also removes a width limitation.</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>    <A
+NAME="FILTER-MSN"
+></A
+>
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>+filter{msn}                 # CSS-based block for MSN text ads. Also removes tracking URLs and a width limitation.</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>    <A
+NAME="FILTER-BLOGSPOT"
+></A
+>
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>+filter{blogspot}            # Cleans up some Blogspot blogs. Read the fine print before using this.</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECT3"
+><H4
+CLASS="SECT3"
+><A
+NAME="FORCE-TEXT-MODE"
+>8.5.16. force-text-mode</A
+></H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Typical use:</DT
+><DD
+><P
+>Force <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> to treat a document as if it was in some kind of <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>text</I
+></SPAN
+> format.   </P
+></DD
+><DT
+>Effect:</DT
+><DD
+><P
+>    Declares a document as text, even if the <SPAN
+CLASS="QUOTE"
+>"Content-Type:"</SPAN
+> isn't detected as such.
+   </P
+></DD
+><DT
+>Type:</DT
+><DD
+><P
+>Boolean.</P
+></DD
+><DT
+>Parameter:</DT
+><DD
+><P
+>    N/A
+   </P
+></DD
+><DT
+>Notes:</DT
+><DD
+><P
+>    As explained <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#FILTER"
+>above</A
+></TT
+>,
+    <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> tries to only filter files that are
+    in some kind of text format. The same restrictions apply to
+    <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#CONTENT-TYPE-OVERWRITE"
+>content-type-overwrite</A
+></TT
+>.
+    <TT
+CLASS="LITERAL"
+>force-text-mode</TT
+> declares a document as text,
+    without looking at the <SPAN
+CLASS="QUOTE"
+>"Content-Type:"</SPAN
+> first.
+   </P
+><DIV
+CLASS="WARNING"
+><P
+></P
+><TABLE
+CLASS="WARNING"
+BORDER="1"
+WIDTH="90%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Warning</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>     Think twice before activating this action. Filtering binary data
+     with regular expressions can cause file damage.
+    </P
+></TD
+></TR
+></TABLE
+></DIV
+></DD
+><DT
+>Example usage:</DT
+><DD
+><P
+>     <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>+force-text-mode
+     </PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECT3"
+><H4
+CLASS="SECT3"
+><A
+NAME="FORWARD-OVERRIDE"
+>8.5.17. forward-override</A
+></H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Typical use:</DT
+><DD
+><P
+>Change the forwarding settings based on User-Agent or request origin</P
+></DD
+><DT
+>Effect:</DT
+><DD
+><P
+>    Overrules the forward directives in the configuration file.
+   </P
+></DD
+><DT
+>Type:</DT
+><DD
+><P
+>Multi-value.</P
+></DD
+><DT
+>Parameter:</DT
+><DD
+><P
+></P
+><UL
+><LI
+><P
+><SPAN
+CLASS="QUOTE"
+>"forward ."</SPAN
+> to use a direct connection without any additional proxies.</P
+></LI
+><LI
+><P
+>      <SPAN
+CLASS="QUOTE"
+>"forward 127.0.0.1:8123"</SPAN
+> to use the HTTP proxy listening at 127.0.0.1 port 8123.
+     </P
+></LI
+><LI
+><P
+>      <SPAN
+CLASS="QUOTE"
+>"forward-socks4a 127.0.0.1:9050 ."</SPAN
+> to use the socks4a proxy listening at
+      127.0.0.1 port 9050. Replace <SPAN
+CLASS="QUOTE"
+>"forward-socks4a"</SPAN
+> with <SPAN
+CLASS="QUOTE"
+>"forward-socks4"</SPAN
+>
+      to use a socks4 connection  (with local DNS resolution) instead, use <SPAN
+CLASS="QUOTE"
+>"forward-socks5"</SPAN
+>
+      for socks5 connections (with remote DNS resolution).
+     </P
+></LI
+><LI
+><P
+>      <SPAN
+CLASS="QUOTE"
+>"forward-socks4a 127.0.0.1:9050 proxy.example.org:8000"</SPAN
+> to use the socks4a proxy
+      listening at 127.0.0.1 port 9050 to reach the HTTP proxy listening at proxy.example.org port 8000.
+      Replace <SPAN
+CLASS="QUOTE"
+>"forward-socks4a"</SPAN
+> with <SPAN
+CLASS="QUOTE"
+>"forward-socks4"</SPAN
+> to use a socks4 connection
+      (with local DNS resolution) instead, use <SPAN
+CLASS="QUOTE"
+>"forward-socks5"</SPAN
+>
+      for socks5 connections (with remote DNS resolution).
+     </P
+></LI
+></UL
+></DD
+><DT
+>Notes:</DT
+><DD
+><P
+>    This action takes parameters similar to the
+    <A
+HREF="config.html#FORWARDING"
+>forward</A
+> directives in the configuration
+    file, but without the URL pattern. It can be used as replacement, but normally it's only
+    used in cases where matching based on the request URL isn't sufficient.
+   </P
+><DIV
+CLASS="WARNING"
+><P
+></P
+><TABLE
+CLASS="WARNING"
+BORDER="1"
+WIDTH="90%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Warning</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>     Please read the description for the <A
+HREF="config.html#FORWARDING"
+>forward</A
+> directives before
+     using this action. Forwarding to the wrong people will reduce your privacy and increase the
+     chances of man-in-the-middle attacks.
+    </P
+><P
+>     If the ports are missing or invalid, default values will be used. This might change
+     in the future and you shouldn't rely on it. Otherwise incorrect syntax causes Privoxy
+     to exit.
+    </P
+><P
+>     Use the <A
+HREF="http://config.privoxy.org/show-url-info"
+TARGET="_top"
+>show-url-info CGI page</A
+>
+     to verify that your forward settings do what you thought the do.
+    </P
+></TD
+></TR
+></TABLE
+></DIV
+></DD
+><DT
+>Example usage:</DT
+><DD
+><P
+>     <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+># Always use direct connections for requests previously tagged as
+# <SPAN
+CLASS="QUOTE"
+>"User-Agent: fetch libfetch/2.0"</SPAN
+> and make sure
+# resuming downloads continues to work.
+# This way you can continue to use Tor for your normal browsing,
+# without overloading the Tor network with your FreeBSD ports updates
+# or downloads of bigger files like ISOs.
+# Note that HTTP headers are easy to fake and therefore their
+# values are as (un)trustworthy as your clients and users.
+{+forward-override{forward .} \
+ -hide-if-modified-since      \
+ -overwrite-last-modified     \
+}
+TAG:^User-Agent: fetch libfetch/2\.0$
+     </PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECT3"
+><H4
+CLASS="SECT3"
+><A
+NAME="HANDLE-AS-EMPTY-DOCUMENT"
+>8.5.18. handle-as-empty-document</A
+></H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Typical use:</DT
+><DD
+><P
+>Mark URLs that should be replaced by empty documents <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>if they get blocked</I
+></SPAN
+></P
+></DD
+><DT
+>Effect:</DT
+><DD
+><P
+>    This action alone doesn't do anything noticeable. It just marks URLs.
+    If the <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#BLOCK"
+>block</A
+></TT
+> action <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>also applies</I
+></SPAN
+>,
+    the presence or absence of this mark decides whether an HTML <SPAN
+CLASS="QUOTE"
+>"BLOCKED"</SPAN
+>
+    page, or an empty document will be sent to the client as a substitute for the blocked content.
+    The <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>empty</I
+></SPAN
+> document isn't literally empty, but actually contains a single space.
+   </P
+></DD
+><DT
+>Type:</DT
+><DD
+><P
+>Boolean.</P
+></DD
+><DT
+>Parameter:</DT
+><DD
+><P
+>    N/A
+   </P
+></DD
+><DT
+>Notes:</DT
+><DD
+><P
+>    Some browsers complain about syntax errors if JavaScript documents
+    are blocked with <SPAN
+CLASS="APPLICATION"
+>Privoxy's</SPAN
+>
+    default HTML page; this option can be used to silence them.
+    And of course this action can also be used to eliminate the <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>
+    BLOCKED message in frames.
+   </P
+><P
+>    The content type for the empty document can be specified with
+    <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#CONTENT-TYPE-OVERWRITE"
+>content-type-overwrite{}</A
+></TT
+>,
+    but usually this isn't necessary.
+   </P
+></DD
+><DT
+>Example usage:</DT
+><DD
+><P
+>     <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+># Block all documents on example.org that end with ".js",
+# but send an empty document instead of the usual HTML message. 
+{+block{Blocked JavaScript} +handle-as-empty-document}
+example.org/.*\.js$
+     </PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECT3"
+><H4
+CLASS="SECT3"
+><A
+NAME="HANDLE-AS-IMAGE"
+>8.5.19. handle-as-image</A
+></H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Typical use:</DT
+><DD
+><P
+>Mark URLs as belonging to images (so they'll be replaced by images <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>if they do get blocked</I
+></SPAN
+>, rather than HTML pages)</P
+></DD
+><DT
+>Effect:</DT
+><DD
+><P
+>    This action alone doesn't do anything noticeable. It just marks URLs as images.
+    If the <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#BLOCK"
+>block</A
+></TT
+> action <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>also applies</I
+></SPAN
+>,
+    the presence or absence of this mark decides whether an HTML <SPAN
+CLASS="QUOTE"
+>"blocked"</SPAN
+>
+    page, or a replacement image (as determined by the <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#SET-IMAGE-BLOCKER"
+>set-image-blocker</A
+></TT
+> action) will be sent to the
+    client as a substitute for the blocked content.
+   </P
+></DD
+><DT
+>Type:</DT
+><DD
+><P
+>Boolean.</P
+></DD
+><DT
+>Parameter:</DT
+><DD
+><P
+>    N/A
+   </P
+></DD
+><DT
+>Notes:</DT
+><DD
+><P
+>    The below generic example section is actually part of <TT
+CLASS="FILENAME"
+>default.action</TT
+>.
+    It marks all URLs with well-known image file name extensions as images and should
+    be left intact. 
+   </P
+><P
+>    Users will probably only want to use the handle-as-image action in conjunction with
+    <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#BLOCK"
+>block</A
+></TT
+>, to block sources of banners, whose URLs don't
+    reflect the file type, like in the second example section.
+   </P
+><P
+>    Note that you cannot treat HTML pages as images in most cases. For instance, (in-line) ad
+    frames require an HTML page to be sent, or they won't display properly.
+    Forcing <TT
+CLASS="LITERAL"
+>handle-as-image</TT
+> in this situation will not replace the
+    ad frame with an image, but lead to error messages.
+   </P
+></DD
+><DT
+>Example usage (sections):</DT
+><DD
+><P
+>     <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+># Generic image extensions:
+#
+{+handle-as-image}
+/.*\.(gif|jpg|jpeg|png|bmp|ico)$
+
+# These don't look like images, but they're banners and should be
+# blocked as images:
+#
+{+block{Nasty banners.} +handle-as-image}
+nasty-banner-server.example.com/junk.cgi\?output=trash</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECT3"
+><H4
+CLASS="SECT3"
+><A
+NAME="HIDE-ACCEPT-LANGUAGE"
+>8.5.20. hide-accept-language</A
+></H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Typical use:</DT
+><DD
+><P
+>Pretend to use different language settings.</P
+></DD
+><DT
+>Effect:</DT
+><DD
+><P
+>    Deletes or replaces the <SPAN
+CLASS="QUOTE"
+>"Accept-Language:"</SPAN
+> HTTP header in client requests.
+   </P
+></DD
+><DT
+>Type:</DT
+><DD
+><P
+>Parameterized.</P
+></DD
+><DT
+>Parameter:</DT
+><DD
+><P
+>    Keyword: <SPAN
+CLASS="QUOTE"
+>"block"</SPAN
+>, or any user defined value.
+   </P
+></DD
+><DT
+>Notes:</DT
+><DD
+><P
+>    Faking the browser's language settings can be useful to make a
+    foreign User-Agent set with
+    <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#HIDE-USER-AGENT"
+>hide-user-agent</A
+></TT
+>
+    more believable.
+   </P
+><P
+>    However some sites with content in different languages check the
+    <SPAN
+CLASS="QUOTE"
+>"Accept-Language:"</SPAN
+> to decide which one to take by default.
+    Sometimes it isn't possible to later switch to another language without
+    changing the <SPAN
+CLASS="QUOTE"
+>"Accept-Language:"</SPAN
+> header first.
+   </P
+><P
+>    Therefore it's a good idea to either only change the
+    <SPAN
+CLASS="QUOTE"
+>"Accept-Language:"</SPAN
+> header to languages you understand,
+    or to languages that aren't wide spread.
+   </P
+><P
+>    Before setting the <SPAN
+CLASS="QUOTE"
+>"Accept-Language:"</SPAN
+> header
+    to a rare language, you should consider that it helps to
+    make your requests unique and thus easier to trace.
+    If you don't plan to change this header frequently,
+    you should stick to a common language. 
+   </P
+></DD
+><DT
+>Example usage (section):</DT
+><DD
+><P
+>     <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+># Pretend to use Canadian language settings.
+{+hide-accept-language{en-ca} \
++hide-user-agent{Mozilla/5.0 (X11; U; OpenBSD i386; en-CA; rv:1.8.0.4) Gecko/20060628 Firefox/1.5.0.4} \
+}
+/   </PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECT3"
+><H4
+CLASS="SECT3"
+><A
+NAME="HIDE-CONTENT-DISPOSITION"
+>8.5.21. hide-content-disposition</A
+></H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Typical use:</DT
+><DD
+><P
+>Prevent download menus for content you prefer to view inside the browser.</P
+></DD
+><DT
+>Effect:</DT
+><DD
+><P
+>    Deletes or replaces the <SPAN
+CLASS="QUOTE"
+>"Content-Disposition:"</SPAN
+> HTTP header set by some servers.
+   </P
+></DD
+><DT
+>Type:</DT
+><DD
+><P
+>Parameterized.</P
+></DD
+><DT
+>Parameter:</DT
+><DD
+><P
+>    Keyword: <SPAN
+CLASS="QUOTE"
+>"block"</SPAN
+>, or any user defined value.
+   </P
+></DD
+><DT
+>Notes:</DT
+><DD
+><P
+>    Some servers set the <SPAN
+CLASS="QUOTE"
+>"Content-Disposition:"</SPAN
+> HTTP header for
+    documents they assume you want to save locally before viewing them.
+    The <SPAN
+CLASS="QUOTE"
+>"Content-Disposition:"</SPAN
+> header contains the file name
+    the browser is supposed to use by default.
+   </P
+><P
+>    In most browsers that understand this header, it makes it impossible to
+    <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>just view</I
+></SPAN
+> the document, without downloading it first,
+    even if it's just a simple text file or an image.
+   </P
+><P
+>    Removing the <SPAN
+CLASS="QUOTE"
+>"Content-Disposition:"</SPAN
+> header helps
+    to prevent this annoyance, but some browsers additionally check the
+    <SPAN
+CLASS="QUOTE"
+>"Content-Type:"</SPAN
+> header, before they decide if they can
+    display a document without saving it first. In these cases, you have
+    to change this header as well, before the browser stops displaying
+    download menus.
+   </P
+><P
+>    It is also possible to change the server's file name suggestion
+    to another one, but in most cases it isn't worth the time to set
+    it up.
+   </P
+><P
+>    This action will probably be removed in the future,
+    use server-header filters instead.
+   </P
+></DD
+><DT
+>Example usage:</DT
+><DD
+><P
+>     <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+># Disarm the download link in Sourceforge's patch tracker
+{ -filter \
+ +content-type-overwrite{text/plain}\
+ +hide-content-disposition{block} }
+ .sourceforge.net/tracker/download\.php</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECT3"
+><H4
+CLASS="SECT3"
+><A
+NAME="HIDE-IF-MODIFIED-SINCE"
+>8.5.22. hide-if-modified-since</A
+></H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Typical use:</DT
+><DD
+><P
+>Prevent yet another way to track the user's steps between sessions.</P
+></DD
+><DT
+>Effect:</DT
+><DD
+><P
+>    Deletes the <SPAN
+CLASS="QUOTE"
+>"If-Modified-Since:"</SPAN
+> HTTP client header or modifies its value. 
+   </P
+></DD
+><DT
+>Type:</DT
+><DD
+><P
+>Parameterized.</P
+></DD
+><DT
+>Parameter:</DT
+><DD
+><P
+>    Keyword: <SPAN
+CLASS="QUOTE"
+>"block"</SPAN
+>, or a user defined value that specifies a range of hours.
+   </P
+></DD
+><DT
+>Notes:</DT
+><DD
+><P
+>    Removing this header is useful for filter testing, where you want to force a real
+    reload instead of getting status code <SPAN
+CLASS="QUOTE"
+>"304"</SPAN
+>, which would cause the
+    browser to use a cached copy of the page.
+   </P
+><P
+>    Instead of removing the header, <TT
+CLASS="LITERAL"
+>hide-if-modified-since</TT
+> can
+    also add or subtract a random amount of time to/from the header's value.
+    You specify a range of minutes where the random factor should be chosen from and
+    <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> does the rest. A negative value means
+    subtracting, a positive value adding.
+   </P
+><P
+>    Randomizing the value of the <SPAN
+CLASS="QUOTE"
+>"If-Modified-Since:"</SPAN
+> makes
+    it less likely that the server can use the time as a cookie replacement,
+    but you will run into caching problems if the random range is too high.
+   </P
+><P
+>    It is a good idea to only use a small negative value and let
+    <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#OVERWRITE-LAST-MODIFIED"
+>overwrite-last-modified</A
+></TT
+>
+    handle the greater changes.
+   </P
+><P
+>    It is also recommended to use this action together with
+    <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#CRUNCH-IF-NONE-MATCH"
+>crunch-if-none-match</A
+></TT
+>,
+    otherwise it's more or less pointless.
+   </P
+></DD
+><DT
+>Example usage (section):</DT
+><DD
+><P
+>     <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+># Let the browser revalidate but make tracking based on the time less likely.
+{+hide-if-modified-since{-60} \
+ +overwrite-last-modified{randomize} \
+ +crunch-if-none-match}
+/</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECT3"
+><H4
+CLASS="SECT3"
+><A
+NAME="HIDE-FROM-HEADER"
+>8.5.23. hide-from-header</A
+></H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Typical use:</DT
+><DD
+><P
+>Keep your (old and ill) browser from telling web servers your email address</P
+></DD
+><DT
+>Effect:</DT
+><DD
+><P
+>    Deletes any existing <SPAN
+CLASS="QUOTE"
+>"From:"</SPAN
+> HTTP header, or replaces it with the
+    specified string.
+   </P
+></DD
+><DT
+>Type:</DT
+><DD
+><P
+>Parameterized.</P
+></DD
+><DT
+>Parameter:</DT
+><DD
+><P
+>    Keyword: <SPAN
+CLASS="QUOTE"
+>"block"</SPAN
+>, or any user defined value.
+   </P
+></DD
+><DT
+>Notes:</DT
+><DD
+><P
+>    The keyword <SPAN
+CLASS="QUOTE"
+>"block"</SPAN
+> will completely remove the header 
+    (not to be confused with the <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#BLOCK"
+>block</A
+></TT
+>
+    action).
+   </P
+><P
+>    Alternately, you can specify any value you prefer to be sent to the web
+    server. If you do, it is a matter of fairness not to use any address that
+    is actually used by a real person.
+   </P
+><P
+>    This action is rarely needed, as modern web browsers don't send
+    <SPAN
+CLASS="QUOTE"
+>"From:"</SPAN
+> headers anymore.
+   </P
+></DD
+><DT
+>Example usage:</DT
+><DD
+><P
+>    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>+hide-from-header{block}</PRE
+></TD
+></TR
+></TABLE
+> or
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>+hide-from-header{spam-me-senseless@sittingduck.example.com}</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECT3"
+><H4
+CLASS="SECT3"
+><A
+NAME="HIDE-REFERRER"
+>8.5.24. hide-referrer</A
+></H4
+><A
+NAME="HIDE-REFERER"
+></A
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Typical use:</DT
+><DD
+><P
+>Conceal which link you followed to get to a particular site</P
+></DD
+><DT
+>Effect:</DT
+><DD
+><P
+>    Deletes the <SPAN
+CLASS="QUOTE"
+>"Referer:"</SPAN
+> (sic) HTTP header from the client request,
+    or replaces it with a forged one.
+   </P
+></DD
+><DT
+>Type:</DT
+><DD
+><P
+>Parameterized.</P
+></DD
+><DT
+>Parameter:</DT
+><DD
+><P
+></P
+><UL
+><LI
+><P
+><SPAN
+CLASS="QUOTE"
+>"conditional-block"</SPAN
+> to delete the header completely if the host has changed.</P
+></LI
+><LI
+><P
+><SPAN
+CLASS="QUOTE"
+>"conditional-forge"</SPAN
+> to forge the header if the host has changed.</P
+></LI
+><LI
+><P
+><SPAN
+CLASS="QUOTE"
+>"block"</SPAN
+> to delete the header unconditionally.</P
+></LI
+><LI
+><P
+><SPAN
+CLASS="QUOTE"
+>"forge"</SPAN
+> to pretend to be coming from the homepage of the server we are talking to.</P
+></LI
+><LI
+><P
+>Any other string to set a user defined referrer.</P
+></LI
+></UL
+></DD
+><DT
+>Notes:</DT
+><DD
+><P
+>    <TT
+CLASS="LITERAL"
+>conditional-block</TT
+> is the only parameter,
+    that isn't easily detected in the server's log file. If it blocks the
+    referrer, the request will look like the visitor used a bookmark or
+    typed in the address directly.
+   </P
+><P
+>    Leaving the referrer unmodified for requests on the same host
+    allows the server owner to see the visitor's <SPAN
+CLASS="QUOTE"
+>"click path"</SPAN
+>,
+    but in most cases she could also get that information by comparing
+    other parts of the log file: for example the User-Agent if it isn't
+    a very common one, or the user's IP address if it doesn't change between
+    different requests.
+   </P
+><P
+>    Always blocking the referrer, or using a custom one, can lead to
+    failures on servers that check the referrer before they answer any
+    requests, in an attempt to prevent their content from being
+    embedded or linked to elsewhere.
+   </P
+><P
+>    Both <TT
+CLASS="LITERAL"
+>conditional-block</TT
+> and <TT
+CLASS="LITERAL"
+>forge</TT
+>
+    will work with referrer checks, as long as content and valid referring page
+    are on the same host. Most of the time that's the case.
+   </P
+><P
+>  
+    <TT
+CLASS="LITERAL"
+>hide-referer</TT
+> is an alternate spelling of
+    <TT
+CLASS="LITERAL"
+>hide-referrer</TT
+> and the two can be can be freely
+    substituted with each other. (<SPAN
+CLASS="QUOTE"
+>"referrer"</SPAN
+> is the
+    correct English spelling, however the HTTP specification has a bug - it
+    requires it to be spelled as <SPAN
+CLASS="QUOTE"
+>"referer"</SPAN
+>.) 
+   </P
+></DD
+><DT
+>Example usage:</DT
+><DD
+><P
+>     <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>+hide-referrer{forge}</PRE
+></TD
+></TR
+></TABLE
+> or
+     <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>+hide-referrer{http://www.yahoo.com/}</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECT3"
+><H4
+CLASS="SECT3"
+><A
+NAME="HIDE-USER-AGENT"
+>8.5.25. hide-user-agent</A
+></H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Typical use:</DT
+><DD
+><P
+>Try to conceal your type of browser and client operating system</P
+></DD
+><DT
+>Effect:</DT
+><DD
+><P
+>    Replaces the value of the <SPAN
+CLASS="QUOTE"
+>"User-Agent:"</SPAN
+> HTTP header
+    in client requests with the specified value.
+   </P
+></DD
+><DT
+>Type:</DT
+><DD
+><P
+>Parameterized.</P
+></DD
+><DT
+>Parameter:</DT
+><DD
+><P
+>    Any user-defined string.
+   </P
+></DD
+><DT
+>Notes:</DT
+><DD
+><DIV
+CLASS="WARNING"
+><P
+></P
+><TABLE
+CLASS="WARNING"
+BORDER="1"
+WIDTH="90%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Warning</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>     This can lead to problems on web sites that depend on looking at this header in
+     order to customize their content for different browsers (which, by the
+     way, is <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>NOT</I
+></SPAN
+> the right thing to do: good web sites
+     work browser-independently). 
+    </P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>    Using this action in multi-user setups or wherever different types of
+    browsers will access the same <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> is
+    <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>not recommended</I
+></SPAN
+>. In single-user, single-browser
+    setups, you might use it to delete your OS version information from
+    the headers, because it is an invitation to exploit known bugs for your
+    OS. It is also occasionally useful to forge this in order to access 
+    sites that won't let you in otherwise (though there may be a good 
+    reason in some cases). Example of this: some MSN sites will not 
+    let <SPAN
+CLASS="APPLICATION"
+>Mozilla</SPAN
+> enter, yet forging to a 
+    <SPAN
+CLASS="APPLICATION"
+>Netscape 6.1</SPAN
+> user-agent works just fine.
+    (Must be just a silly MS goof, I'm sure :-).
+   </P
+><P
+>     More information on known user-agent strings can be found at 
+     <A
+HREF="http://www.user-agents.org/"
+TARGET="_top"
+>http://www.user-agents.org/</A
+>
+     and 
+     <A
+HREF="http://en.wikipedia.org/wiki/User_agent"
+TARGET="_top"
+>http://en.wikipedia.org/wiki/User_agent</A
+>.
+   </P
+></DD
+><DT
+>Example usage:</DT
+><DD
+><P
+>     <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>+hide-user-agent{Netscape 6.1 (X11; I; Linux 2.4.18 i686)}</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECT3"
+><H4
+CLASS="SECT3"
+><A
+NAME="LIMIT-CONNECT"
+>8.5.26. limit-connect</A
+></H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Typical use:</DT
+><DD
+><P
+>Prevent abuse of <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> as a TCP proxy relay or disable SSL for untrusted sites</P
+></DD
+><DT
+>Effect:</DT
+><DD
+><P
+>    Specifies to which ports HTTP CONNECT requests are allowable.
+   </P
+></DD
+><DT
+>Type:</DT
+><DD
+><P
+>Parameterized.</P
+></DD
+><DT
+>Parameter:</DT
+><DD
+><P
+>    A comma-separated list of ports or port ranges (the latter using dashes, with the minimum
+    defaulting to 0 and the maximum to 65K).
+   </P
+></DD
+><DT
+>Notes:</DT
+><DD
+><P
+>    By default, i.e. if no <TT
+CLASS="LITERAL"
+>limit-connect</TT
+> action applies,
+    <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> allows HTTP CONNECT requests to all
+    ports. Use <TT
+CLASS="LITERAL"
+>limit-connect</TT
+> if fine-grained control
+    is desired for some or all destinations.
+   </P
+><P
+>    The CONNECT methods exists in HTTP to allow access to secure websites
+    (<SPAN
+CLASS="QUOTE"
+>"https://"</SPAN
+> URLs) through proxies. It works very simply:
+    the proxy connects to the server on the specified port, and then
+    short-circuits its connections to the client and to the remote server.
+    This means CONNECT-enabled proxies can be used as TCP relays very easily.
+  </P
+><P
+>   <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> relays HTTPS traffic without seeing
+   the decoded content. Websites can leverage this limitation to circumvent <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>'s
+   filters. By specifying an invalid port range you can disable HTTPS entirely.
+  </P
+></DD
+><DT
+>Example usages:</DT
+><DD
+><P
+>     <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>+limit-connect{443}                   # Port 443 is OK.
++limit-connect{80,443}                # Ports 80 and 443 are OK.
++limit-connect{-3, 7, 20-100, 500-}   # Ports less than 3, 7, 20 to 100 and above 500 are OK.
++limit-connect{-}                     # All ports are OK
++limit-connect{,}                     # No HTTPS/SSL traffic is allowed</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECT3"
+><H4
+CLASS="SECT3"
+><A
+NAME="PREVENT-COMPRESSION"
+>8.5.27. prevent-compression</A
+></H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Typical use:</DT
+><DD
+><P
+>    Ensure that servers send the content uncompressed, so it can be
+    passed through <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#FILTER"
+>filter</A
+></TT
+>s.
+   </P
+></DD
+><DT
+>Effect:</DT
+><DD
+><P
+>    Removes the Accept-Encoding header which can be used to ask for compressed transfer.
+   </P
+></DD
+><DT
+>Type:</DT
+><DD
+><P
+>Boolean.</P
+></DD
+><DT
+>Parameter:</DT
+><DD
+><P
+>    N/A
+   </P
+></DD
+><DT
+>Notes:</DT
+><DD
+><P
+>    More and more websites send their content compressed by default, which
+    is generally a good idea and saves bandwidth. But the <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#FILTER"
+>filter</A
+></TT
+> and
+    <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#DEANIMATE-GIFS"
+>deanimate-gifs</A
+></TT
+>
+    actions need access to the uncompressed data.
+   </P
+><P
+>    When compiled with zlib support (available since <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> 3.0.7), content that should be
+    filtered is decompressed on-the-fly and you don't have to worry about this action.
+    If you are using an older <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> version, or one that hasn't been compiled with zlib
+    support, this action can be used to convince the server to send the content uncompressed.
+   </P
+><P
+>    Most text-based instances compress very well, the size is seldom decreased by less than 50%,
+    for markup-heavy instances like news feeds saving more than 90% of the original size isn't
+    unusual. 
+   </P
+><P
+>    Not using compression will therefore slow down the transfer, and you should only
+    enable this action if you really need it. As of <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> 3.0.7 it's disabled in all
+    predefined action settings.
+   </P
+><P
+>    Note that some (rare) ill-configured sites don't handle requests for uncompressed
+    documents correctly. Broken PHP applications tend to send an empty document body,
+    some IIS versions only send the beginning of the content. If you enable
+    <TT
+CLASS="LITERAL"
+>prevent-compression</TT
+> per default, you might want to add
+    exceptions for those sites. See the example for how to do that.
+   </P
+></DD
+><DT
+>Example usage (sections):</DT
+><DD
+><P
+>    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+># Selectively turn off compression, and enable a filter
+#
+{ +filter{tiny-textforms} +prevent-compression }
+# Match only these sites
+ .google.
+ sourceforge.net
+ sf.net
+
+# Or instead, we could set a universal default:
+#
+{ +prevent-compression }
+ / # Match all sites
+
+# Then maybe make exceptions for broken sites:
+#
+{ -prevent-compression }
+.compusa.com/</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECT3"
+><H4
+CLASS="SECT3"
+><A
+NAME="OVERWRITE-LAST-MODIFIED"
+>8.5.28. overwrite-last-modified</A
+></H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Typical use:</DT
+><DD
+><P
+>Prevent yet another way to track the user's steps between sessions.</P
+></DD
+><DT
+>Effect:</DT
+><DD
+><P
+>    Deletes the <SPAN
+CLASS="QUOTE"
+>"Last-Modified:"</SPAN
+> HTTP server header or modifies its value. 
+   </P
+></DD
+><DT
+>Type:</DT
+><DD
+><P
+>Parameterized.</P
+></DD
+><DT
+>Parameter:</DT
+><DD
+><P
+>    One of the keywords: <SPAN
+CLASS="QUOTE"
+>"block"</SPAN
+>, <SPAN
+CLASS="QUOTE"
+>"reset-to-request-time"</SPAN
+>
+    and <SPAN
+CLASS="QUOTE"
+>"randomize"</SPAN
+>
+   </P
+></DD
+><DT
+>Notes:</DT
+><DD
+><P
+>    Removing the <SPAN
+CLASS="QUOTE"
+>"Last-Modified:"</SPAN
+> header is useful for filter
+    testing, where you want to force a real reload instead of getting status
+    code <SPAN
+CLASS="QUOTE"
+>"304"</SPAN
+>, which would cause the browser to reuse the old
+    version of the page.
+   </P
+><P
+>    The <SPAN
+CLASS="QUOTE"
+>"randomize"</SPAN
+> option overwrites the value of the
+    <SPAN
+CLASS="QUOTE"
+>"Last-Modified:"</SPAN
+> header with a randomly chosen time
+    between the original value and the current time. In theory the server
+    could send each document with a different <SPAN
+CLASS="QUOTE"
+>"Last-Modified:"</SPAN
+>
+    header to track visits without using cookies. <SPAN
+CLASS="QUOTE"
+>"Randomize"</SPAN
+>
+    makes it impossible and the browser can still revalidate cached documents. 
+   </P
+><P
+>    <SPAN
+CLASS="QUOTE"
+>"reset-to-request-time"</SPAN
+> overwrites the value of the
+    <SPAN
+CLASS="QUOTE"
+>"Last-Modified:"</SPAN
+> header with the current time. You could use
+    this option together with
+    <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#HIDE-IF-MODIFIED-SINCE"
+>hide-if-modified-since</A
+></TT
+>
+    to further customize your random range.
+   </P
+><P
+>    The preferred parameter here is <SPAN
+CLASS="QUOTE"
+>"randomize"</SPAN
+>. It is safe
+    to use, as long as the time settings are more or less correct.
+    If the server sets the <SPAN
+CLASS="QUOTE"
+>"Last-Modified:"</SPAN
+> header to the time
+    of the request, the random range becomes zero and the value stays the same.
+    Therefore you should later randomize it a second time with
+    <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#HIDE-IF-MODIFIED-SINCE"
+>hided-if-modified-since</A
+></TT
+>,
+    just to be sure. 
+   </P
+><P
+>    It is also recommended to use this action together with
+    <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#CRUNCH-IF-NONE-MATCH"
+>crunch-if-none-match</A
+></TT
+>.
+   </P
+></DD
+><DT
+>Example usage:</DT
+><DD
+><P
+>     <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+># Let the browser revalidate without being tracked across sessions
+{ +hide-if-modified-since{-60} \
+ +overwrite-last-modified{randomize} \
+ +crunch-if-none-match}
+/</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECT3"
+><H4
+CLASS="SECT3"
+><A
+NAME="REDIRECT"
+>8.5.29. redirect</A
+></H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Typical use:</DT
+><DD
+><P
+>    Redirect requests to other sites.
+   </P
+></DD
+><DT
+>Effect:</DT
+><DD
+><P
+>    Convinces the browser that the requested document has been moved
+    to another location and the browser should get it from there.
+   </P
+></DD
+><DT
+>Type:</DT
+><DD
+><P
+>Parameterized</P
+></DD
+><DT
+>Parameter:</DT
+><DD
+><P
+>    An absolute URL or a single pcrs command.
+   </P
+></DD
+><DT
+>Notes:</DT
+><DD
+><P
+>    Requests to which this action applies are answered with a
+    HTTP redirect to URLs of your choosing. The new URL is
+    either provided as parameter, or derived by applying a
+    single pcrs command to the original URL.
+   </P
+><P
+>    This action will be ignored if you use it together with
+    <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#BLOCK"
+>block</A
+></TT
+>.
+    It can be combined with
+    <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#FAST-REDIRECTS"
+>fast-redirects{check-decoded-url}</A
+></TT
+>
+    to redirect to a decoded version of a rewritten URL.
+   </P
+><P
+>    Use this action carefully, make sure not to create redirection loops
+    and be aware that using your own redirects might make it
+    possible to fingerprint your requests.
+   </P
+><P
+>    In case of problems with your redirects, or simply to watch
+    them working, enable <A
+HREF="config.html#DEBUG"
+>debug 128</A
+>.
+   </P
+></DD
+><DT
+>Example usages:</DT
+><DD
+><P
+>    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+># Replace example.com's style sheet with another one
+{ +redirect{http://localhost/css-replacements/example.com.css} }
+ example.com/stylesheet\.css
+
+# Create a short, easy to remember nickname for a favorite site
+# (relies on the browser accept and forward invalid URLs to <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>)
+{ +redirect{http://www.privoxy.org/user-manual/actions-file.html} }
+ a
+
+# Always use the expanded view for Undeadly.org articles
+# (Note the $ at the end of the URL pattern to make sure
+# the request for the rewritten URL isn't redirected as well)
+{+redirect{s@$@&#38;mode=expanded@}}
+undeadly.org/cgi\?action=article&#38;sid=\d*$
+
+# Redirect Google search requests to MSN
+{+redirect{s@^http://[^/]*/search\?q=([^&#38;]*).*@http://search.msn.com/results.aspx?q=$1@}}
+.google.com/search
+
+# Redirect MSN search requests to Yahoo
+{+redirect{s@^http://[^/]*/results\.aspx\?q=([^&#38;]*).*@http://search.yahoo.com/search?p=$1@}}
+search.msn.com//results\.aspx\?q=
+
+# Redirect remote requests for this manual
+# to the local version delivered by Privoxy
+{+redirect{s@^http://www@http://config@}}
+www.privoxy.org/user-manual/</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECT3"
+><H4
+CLASS="SECT3"
+><A
+NAME="SERVER-HEADER-FILTER"
+>8.5.30. server-header-filter</A
+></H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Typical use:</DT
+><DD
+><P
+>   Rewrite or remove single server headers.
+   </P
+></DD
+><DT
+>Effect:</DT
+><DD
+><P
+>    All server headers to which this action applies are filtered on-the-fly
+    through the specified regular expression based substitutions.
+   </P
+></DD
+><DT
+>Type:</DT
+><DD
+><P
+>Parameterized.</P
+></DD
+><DT
+>Parameter:</DT
+><DD
+><P
+>    The name of a server-header filter, as defined in one of the
+    <A
+HREF="filter-file.html"
+>filter files</A
+>.
+   </P
+></DD
+><DT
+>Notes:</DT
+><DD
+><P
+>    Server-header filters are applied to each header on its own, not to
+    all at once. This makes it easier to diagnose problems, but on the downside
+    you can't write filters that only change header x if header y's value is z.
+    You can do that by using tags though.
+   </P
+><P
+>    Server-header filters are executed after the other header actions have finished
+    and use their output as input.
+   </P
+><P
+>    Please refer to the <A
+HREF="filter-file.html"
+>filter file chapter</A
+>
+    to learn which server-header filters are available by default, and how to
+    create your own.
+   </P
+></DD
+><DT
+>Example usage (section):</DT
+><DD
+><P
+>     <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>{+server-header-filter{html-to-xml}}
+example.org/xml-instance-that-is-delivered-as-html
+
+{+server-header-filter{xml-to-html}}
+example.org/instance-that-is-delivered-as-xml-but-is-not
+    </PRE
+></TD
+></TR
+></TABLE
+>
+    </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECT3"
+><H4
+CLASS="SECT3"
+><A
+NAME="SERVER-HEADER-TAGGER"
+>8.5.31. server-header-tagger</A
+></H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Typical use:</DT
+><DD
+><P
+>   Enable or disable filters based on the Content-Type header.
+   </P
+></DD
+><DT
+>Effect:</DT
+><DD
+><P
+>    Server headers to which this action applies are filtered on-the-fly through
+    the specified regular expression based substitutions, the result is used as
+    tag.
+   </P
+></DD
+><DT
+>Type:</DT
+><DD
+><P
+>Parameterized.</P
+></DD
+><DT
+>Parameter:</DT
+><DD
+><P
+>    The name of a server-header tagger, as defined in one of the
+    <A
+HREF="filter-file.html"
+>filter files</A
+>.
+   </P
+></DD
+><DT
+>Notes:</DT
+><DD
+><P
+>    Server-header taggers are applied to each header on its own,
+    and as the header isn't modified, each tagger <SPAN
+CLASS="QUOTE"
+>"sees"</SPAN
+>
+    the original.
+   </P
+><P
+>    Server-header taggers are executed before all other header actions
+    that modify server headers. Their tags can be used to control
+    all of the other server-header actions, the content filters
+    and the crunch actions (<A
+HREF="actions-file.html#REDIRECT"
+>redirect</A
+>
+    and <A
+HREF="actions-file.html#BLOCK"
+>block</A
+>).
+   </P
+><P
+>    Obviously crunching based on tags created by server-header taggers
+    doesn't prevent the request from showing up in the server's log file.
+   </P
+></DD
+><DT
+>Example usage (section):</DT
+><DD
+><P
+>     <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+># Tag every request with the content type declared by the server
+{+server-header-tagger{content-type}}
+/
+    </PRE
+></TD
+></TR
+></TABLE
+>
+    </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECT3"
+><H4
+CLASS="SECT3"
+><A
+NAME="SESSION-COOKIES-ONLY"
+>8.5.32. session-cookies-only</A
+></H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Typical use:</DT
+><DD
+><P
+>    Allow only temporary <SPAN
+CLASS="QUOTE"
+>"session"</SPAN
+> cookies (for the current
+    browser session <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>only</I
+></SPAN
+>). 
+   </P
+></DD
+><DT
+>Effect:</DT
+><DD
+><P
+>    Deletes the <SPAN
+CLASS="QUOTE"
+>"expires"</SPAN
+> field from <SPAN
+CLASS="QUOTE"
+>"Set-Cookie:"</SPAN
+>
+    server headers. Most browsers will not store such cookies permanently and
+    forget them in between sessions.
+   </P
+></DD
+><DT
+>Type:</DT
+><DD
+><P
+>Boolean.</P
+></DD
+><DT
+>Parameter:</DT
+><DD
+><P
+>    N/A
+   </P
+></DD
+><DT
+>Notes:</DT
+><DD
+><P
+>    This is less strict than <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#CRUNCH-INCOMING-COOKIES"
+>crunch-incoming-cookies</A
+></TT
+> / 
+    <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#CRUNCH-OUTGOING-COOKIES"
+>crunch-outgoing-cookies</A
+></TT
+> and allows you to browse
+    websites that insist or rely on setting cookies, without compromising your privacy too badly.
+   </P
+><P
+>    Most browsers will not permanently store cookies that have been processed by
+    <TT
+CLASS="LITERAL"
+>session-cookies-only</TT
+> and will forget about them between sessions.
+    This makes profiling cookies useless, but won't break sites which require cookies so
+    that you can log in for transactions. This is generally turned on for all 
+    sites, and is the recommended setting.
+   </P
+><P
+>    It makes <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>no sense at all</I
+></SPAN
+> to use <TT
+CLASS="LITERAL"
+>session-cookies-only</TT
+>
+    together with <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#CRUNCH-INCOMING-COOKIES"
+>crunch-incoming-cookies</A
+></TT
+> or
+    <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#CRUNCH-OUTGOING-COOKIES"
+>crunch-outgoing-cookies</A
+></TT
+>. If you do, cookies
+    will be plainly killed.
+   </P
+><P
+>    Note that it is up to the browser how it handles such cookies without an <SPAN
+CLASS="QUOTE"
+>"expires"</SPAN
+>
+    field. If you use an exotic browser, you might want to try it out to be sure.
+   </P
+><P
+>    This setting also has no effect on cookies that may have been stored
+    previously by the browser before starting <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>.
+    These would have to be removed manually.
+   </P
+><P
+>     <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> also uses  
+     the <A
+HREF="actions-file.html#FILTER-CONTENT-COOKIES"
+>content-cookies filter</A
+> 
+     to block some types of cookies. Content cookies are not effected by 
+     <TT
+CLASS="LITERAL"
+>session-cookies-only</TT
+>.
+   </P
+></DD
+><DT
+>Example usage:</DT
+><DD
+><P
+>     <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>+session-cookies-only</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECT3"
+><H4
+CLASS="SECT3"
+><A
+NAME="SET-IMAGE-BLOCKER"
+>8.5.33. set-image-blocker</A
+></H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>Typical use:</DT
+><DD
+><P
+>Choose the replacement for blocked images</P
+></DD
+><DT
+>Effect:</DT
+><DD
+><P
+>     This action alone doesn't do anything noticeable. If <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>both</I
+></SPAN
+>
+     <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#BLOCK"
+>block</A
+></TT
+> <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>and</I
+></SPAN
+> <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#HANDLE-AS-IMAGE"
+>handle-as-image</A
+></TT
+> <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>also</I
+></SPAN
+>
+     apply, i.e. if the request is to be blocked as an image,
+     <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>then</I
+></SPAN
+> the parameter of this action decides what will be
+     sent as a replacement.
+   </P
+></DD
+><DT
+>Type:</DT
+><DD
+><P
+>Parameterized.</P
+></DD
+><DT
+>Parameter:</DT
+><DD
+><P
+></P
+><UL
+><LI
+><P
+>      <SPAN
+CLASS="QUOTE"
+>"pattern"</SPAN
+> to send a built-in checkerboard pattern image. The image is visually
+      decent, scales very well, and makes it obvious where banners were busted.
+     </P
+></LI
+><LI
+><P
+>      <SPAN
+CLASS="QUOTE"
+>"blank"</SPAN
+> to send a built-in transparent image. This makes banners disappear
+      completely, but makes it hard to detect where <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> has blocked
+      images on a given page and complicates troubleshooting if <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>
+      has blocked innocent images, like navigation icons.
+     </P
+></LI
+><LI
+><P
+>      <SPAN
+CLASS="QUOTE"
+>"<TT
+CLASS="REPLACEABLE"
+><I
+>target-url</I
+></TT
+>"</SPAN
+> to
+      send a redirect to <TT
+CLASS="REPLACEABLE"
+><I
+>target-url</I
+></TT
+>. You can redirect
+      to any image anywhere, even in your local filesystem via <SPAN
+CLASS="QUOTE"
+>"file:///"</SPAN
+> URL. 
+      (But note that not all browsers support redirecting to a local file system).
+     </P
+><P
+>      A good application of redirects is to use special <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>-built-in
+      URLs, which send the built-in images, as <TT
+CLASS="REPLACEABLE"
+><I
+>target-url</I
+></TT
+>.
+      This has the same visual effect as specifying <SPAN
+CLASS="QUOTE"
+>"blank"</SPAN
+> or <SPAN
+CLASS="QUOTE"
+>"pattern"</SPAN
+> in
+      the first place, but enables your browser to cache the replacement image, instead of requesting
+      it over and over again.
+     </P
+></LI
+></UL
+></DD
+><DT
+>Notes:</DT
+><DD
+><P
+>    The URLs for the built-in images are <SPAN
+CLASS="QUOTE"
+>"http://config.privoxy.org/send-banner?type=<TT
+CLASS="REPLACEABLE"
+><I
+>type</I
+></TT
+>"</SPAN
+>, where <TT
+CLASS="REPLACEABLE"
+><I
+>type</I
+></TT
+> is
+    either <SPAN
+CLASS="QUOTE"
+>"blank"</SPAN
+> or <SPAN
+CLASS="QUOTE"
+>"pattern"</SPAN
+>.
+   </P
+><P
+>    There is a third (advanced) type, called <SPAN
+CLASS="QUOTE"
+>"auto"</SPAN
+>. It is <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>NOT</I
+></SPAN
+> to be
+    used in <TT
+CLASS="LITERAL"
+>set-image-blocker</TT
+>, but meant for use from <A
+HREF="filter-file.html"
+>filters</A
+>.
+    Auto will select the type of image that would have applied to the referring page, had it been an image.
+   </P
+></DD
+><DT
+>Example usage:</DT
+><DD
+><P
+>    Built-in pattern:
+   </P
+><P
+>    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>+set-image-blocker{pattern}</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>    Redirect to the BSD daemon:
+   </P
+><P
+>    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>+set-image-blocker{http://www.freebsd.org/gifs/dae_up3.gif}</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>    Redirect to the built-in pattern for better caching:
+   </P
+><P
+>    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>+set-image-blocker{http://config.privoxy.org/send-banner?type=pattern}</PRE
+></TD
+></TR
+></TABLE
+>
+   </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="AEN4093"
+>8.5.34. Summary</A
+></H3
+><P
+> Note that many of these actions have the potential to cause a page to
+ misbehave, possibly even not to display at all. There are many ways 
+ a site designer may choose to design his site, and what HTTP header 
+ content, and other criteria, he may depend on. There is no way to have hard
+ and fast rules for all sites. See the <A
+HREF="appendix.html#ACTIONSANAT"
+>Appendix</A
+> for a brief example on troubleshooting
+ actions.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="ALIASES"
+>8.6. Aliases</A
+></H2
+><P
+> Custom <SPAN
+CLASS="QUOTE"
+>"actions"</SPAN
+>, known to <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>
+ as <SPAN
+CLASS="QUOTE"
+>"aliases"</SPAN
+>, can be defined by combining other actions.
+ These can in turn be invoked just like the built-in actions.
+ Currently, an alias name can contain any character except space, tab,
+ <SPAN
+CLASS="QUOTE"
+>"="</SPAN
+>,
+ <SPAN
+CLASS="QUOTE"
+>"{"</SPAN
+> and <SPAN
+CLASS="QUOTE"
+>"}"</SPAN
+>, but we <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>strongly 
+ recommend</I
+></SPAN
+> that you only use <SPAN
+CLASS="QUOTE"
+>"a"</SPAN
+> to <SPAN
+CLASS="QUOTE"
+>"z"</SPAN
+>,
+ <SPAN
+CLASS="QUOTE"
+>"0"</SPAN
+> to <SPAN
+CLASS="QUOTE"
+>"9"</SPAN
+>, <SPAN
+CLASS="QUOTE"
+>"+"</SPAN
+>, and <SPAN
+CLASS="QUOTE"
+>"-"</SPAN
+>.
+ Alias names are not case sensitive, and are not required to start with a
+ <SPAN
+CLASS="QUOTE"
+>"+"</SPAN
+> or <SPAN
+CLASS="QUOTE"
+>"-"</SPAN
+> sign, since they are merely textually
+ expanded.</P
+><P
+> Aliases can be used throughout the actions file, but they <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>must be
+ defined in a special section at the top of the file!</I
+></SPAN
+>
+ And there can only be one such section per actions file. Each actions file may
+ have its own alias section, and the aliases defined in it are only visible
+ within that file.</P
+><P
+> There are two main reasons to use aliases: One is to save typing for frequently
+ used combinations of actions, the other one is a gain in flexibility: If you
+ decide once how you want to handle shops by defining an alias called
+ <SPAN
+CLASS="QUOTE"
+>"shop"</SPAN
+>, you can later change your policy on shops in
+ <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>one</I
+></SPAN
+> place, and your changes will take effect everywhere
+ in the actions file where the <SPAN
+CLASS="QUOTE"
+>"shop"</SPAN
+> alias is used. Calling aliases
+ by their purpose also makes your actions files more readable.</P
+><P
+> Currently, there is one big drawback to using aliases, though:
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>'s built-in web-based action file
+ editor honors aliases when reading the actions files, but it expands
+ them before writing. So the effects of your aliases are of course preserved,
+ but the aliases themselves are lost when you edit sections that use aliases
+ with it.</P
+><P
+> Now let's define some aliases...</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+> # Useful custom aliases we can use later.
+ #
+ # Note the (required!) section header line and that this section
+ # must be at the top of the actions file!
+ #
+ {{alias}}
+
+ # These aliases just save typing later:
+ # (Note that some already use other aliases!)
+ #
+ +crunch-all-cookies = +<A
+HREF="actions-file.html#CRUNCH-INCOMING-COOKIES"
+>crunch-incoming-cookies</A
+> +<A
+HREF="actions-file.html#CRUNCH-OUTGOING-COOKIES"
+>crunch-outgoing-cookies</A
+>
+ -crunch-all-cookies = -<A
+HREF="actions-file.html#CRUNCH-INCOMING-COOKIES"
+>crunch-incoming-cookies</A
+> -<A
+HREF="actions-file.html#CRUNCH-OUTGOING-COOKIES"
+>crunch-outgoing-cookies</A
+>
+ +block-as-image      = +block{Blocked image.} +handle-as-image
+ allow-all-cookies   = -crunch-all-cookies -<A
+HREF="actions-file.html#SESSION-COOKIES-ONLY"
+>session-cookies-only</A
+> -<A
+HREF="actions-file.html#FILTER-CONTENT-COOKIES"
+>filter{content-cookies}</A
+>
+
+ # These aliases define combinations of actions
+ # that are useful for certain types of sites:
+ #
+ fragile     = -<A
+HREF="actions-file.html#BLOCK"
+>block</A
+> -<A
+HREF="actions-file.html#FILTER"
+>filter</A
+> -crunch-all-cookies -<A
+HREF="actions-file.html#FAST-REDIRECTS"
+>fast-redirects</A
+> -<A
+HREF="actions-file.html#HIDE-REFERER"
+>hide-referrer</A
+> -<A
+HREF="actions-file.html#PREVENT-COMPRESSION"
+>prevent-compression</A
+>
+
+ shop        = -crunch-all-cookies -<A
+HREF="actions-file.html#FILTER-ALL-POPUPS"
+>filter{all-popups}</A
+>
+
+ # Short names for other aliases, for really lazy people ;-)
+ #
+ c0 = +crunch-all-cookies
+ c1 = -crunch-all-cookies</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> ...and put them to use. These sections would appear in the lower part of an 
+ actions file and define exceptions to the default actions (as specified further
+ up for the <SPAN
+CLASS="QUOTE"
+>"/"</SPAN
+> pattern):</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+> # These sites are either very complex or very keen on
+ # user data and require minimal interference to work:
+ #
+ {fragile}
+ .office.microsoft.com
+ .windowsupdate.microsoft.com
+ # Gmail is really mail.google.com, not gmail.com
+ mail.google.com
+
+ # Shopping sites:
+ # Allow cookies (for setting and retrieving your customer data)
+ #           
+ {shop}
+ .quietpc.com
+ .worldpay.com   # for quietpc.com
+ mybank.example.com
+
+ # These shops require pop-ups:
+ #
+ {-filter{all-popups} -filter{unsolicited-popups}}
+  .dabs.com
+  .overclockers.co.uk</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> Aliases like <SPAN
+CLASS="QUOTE"
+>"shop"</SPAN
+> and <SPAN
+CLASS="QUOTE"
+>"fragile"</SPAN
+> are typically used for 
+ <SPAN
+CLASS="QUOTE"
+>"problem"</SPAN
+> sites that require more than one action to be disabled 
+ in order to function properly.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="ACT-EXAMPLES"
+>8.7. Actions Files Tutorial</A
+></H2
+><P
+> The above chapters have shown <A
+HREF="actions-file.html"
+>which actions files
+ there are and how they are organized</A
+>, how actions are <A
+HREF="actions-file.html#ACTIONS"
+>specified</A
+> and <A
+HREF="actions-file.html#ACTIONS-APPLY"
+>applied
+ to URLs</A
+>, how <A
+HREF="actions-file.html#AF-PATTERNS"
+>patterns</A
+> work, and how to
+ define and use <A
+HREF="actions-file.html#ALIASES"
+>aliases</A
+>. Now, let's look at an
+ example <TT
+CLASS="FILENAME"
+>match-all.action</TT
+>, <TT
+CLASS="FILENAME"
+>default.action</TT
+>
+ and <TT
+CLASS="FILENAME"
+>user.action</TT
+> file and see how all these pieces come together:</P
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="AEN4157"
+>8.7.1. match-all.action</A
+></H3
+><P
+> Remember <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>all actions are disabled when matching starts</I
+></SPAN
+>,
+ so we have to explicitly enable the ones we want.</P
+><P
+> While the <TT
+CLASS="FILENAME"
+>match-all.action</TT
+> file only contains a
+ single section, it is probably the most important one. It has only one
+ pattern, <SPAN
+CLASS="QUOTE"
+>"<TT
+CLASS="LITERAL"
+>/</TT
+>"</SPAN
+>, but this pattern
+ <A
+HREF="actions-file.html#AF-PATTERNS"
+>matches all URLs</A
+>. Therefore, the set of
+ actions used in this <SPAN
+CLASS="QUOTE"
+>"default"</SPAN
+> section <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>will
+ be applied to all requests as a start</I
+></SPAN
+>. It can  be partly or
+ wholly overridden by other actions files like <TT
+CLASS="FILENAME"
+>default.action</TT
+>
+ and <TT
+CLASS="FILENAME"
+>user.action</TT
+>, but it will still be largely responsible
+ for your overall browsing experience.</P
+><P
+> Again, at the start of matching, all actions are disabled, so there is
+ no need to disable any actions here. (Remember: a <SPAN
+CLASS="QUOTE"
+>"+"</SPAN
+>
+ preceding the action name enables the action, a <SPAN
+CLASS="QUOTE"
+>"-"</SPAN
+> disables!).
+ Also note how this long line has been made more readable by splitting it into
+ multiple lines with line continuation.</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>{ \
+ +<A
+HREF="actions-file.html#CHANGE-X-FORWARDED-FOR"
+>change-x-forwarded-for{block}</A
+> \
+ +<A
+HREF="actions-file.html#HIDE-FROM-HEADER"
+>hide-from-header{block}</A
+> \
+ +<A
+HREF="actions-file.html#SET-IMAGE-BLOCKER"
+>set-image-blocker{pattern}</A
+> \
+}
+/ # Match all URLs
+ </PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> The default behavior is now set.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="AEN4179"
+>8.7.2. default.action</A
+></H3
+><P
+> If you aren't a developer, there's no need for you to edit the
+ <TT
+CLASS="FILENAME"
+>default.action</TT
+> file. It is maintained by
+ the <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> developers and if you disagree with some of the
+ sections, you should overrule them in your <TT
+CLASS="FILENAME"
+>user.action</TT
+>.</P
+><P
+> Understanding the <TT
+CLASS="FILENAME"
+>default.action</TT
+> file can
+ help you with your <TT
+CLASS="FILENAME"
+>user.action</TT
+>, though.</P
+><P
+> The first section in this file is a special section for internal use
+ that prevents older <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> versions from reading the file:</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>##########################################################################
+# Settings -- Don't change! For internal Privoxy use ONLY.
+##########################################################################
+{{settings}}
+for-privoxy-version=3.0.11</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> After that comes the (optional) alias section. We'll use the example
+ section from the above <A
+HREF="actions-file.html#ALIASES"
+>chapter on aliases</A
+>,
+ that also explains why and how aliases are used:</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>##########################################################################
+# Aliases
+##########################################################################
+{{alias}}
+
+ # These aliases just save typing later:
+ # (Note that some already use other aliases!)
+ #
+ +crunch-all-cookies = +<A
+HREF="actions-file.html#CRUNCH-INCOMING-COOKIES"
+>crunch-incoming-cookies</A
+> +<A
+HREF="actions-file.html#CRUNCH-OUTGOING-COOKIES"
+>crunch-outgoing-cookies</A
+>
+ -crunch-all-cookies = -<A
+HREF="actions-file.html#CRUNCH-INCOMING-COOKIES"
+>crunch-incoming-cookies</A
+> -<A
+HREF="actions-file.html#CRUNCH-OUTGOING-COOKIES"
+>crunch-outgoing-cookies</A
+>
+ +block-as-image      = +block{Blocked image.} +handle-as-image
+ mercy-for-cookies   = -crunch-all-cookies -<A
+HREF="actions-file.html#SESSION-COOKIES-ONLY"
+>session-cookies-only</A
+> -<A
+HREF="actions-file.html#FILTER-CONTENT-COOKIES"
+>filter{content-cookies}</A
+>
+
+ # These aliases define combinations of actions
+ # that are useful for certain types of sites:
+ #
+ fragile     = -<A
+HREF="actions-file.html#BLOCK"
+>block</A
+> -<A
+HREF="actions-file.html#FILTER"
+>filter</A
+> -crunch-all-cookies -<A
+HREF="actions-file.html#FAST-REDIRECTS"
+>fast-redirects</A
+> -<A
+HREF="actions-file.html#HIDE-REFERER"
+>hide-referrer</A
+>
+ shop        = -crunch-all-cookies -<A
+HREF="actions-file.html#FILTER-ALL-POPUPS"
+>filter{all-popups}</A
+></PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> The first of our specialized sections is concerned with <SPAN
+CLASS="QUOTE"
+>"fragile"</SPAN
+>
+ sites, i.e. sites that require minimum interference, because they are either
+ very complex or very keen on tracking you (and have mechanisms in place that
+ make them unusable for people who avoid being tracked). We will simply use
+ our pre-defined <TT
+CLASS="LITERAL"
+>fragile</TT
+> alias instead of stating the list
+ of actions explicitly:</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>##########################################################################
+# Exceptions for sites that'll break under the default action set:
+##########################################################################
+
+# "Fragile" Use a minimum set of actions for these sites (see alias above):
+#
+{ fragile }
+.office.microsoft.com           # surprise, surprise!
+.windowsupdate.microsoft.com
+mail.google.com</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> Shopping sites are not as fragile, but they typically
+ require cookies to log in, and pop-up windows for shopping
+ carts or item details. Again, we'll use a pre-defined alias:</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+># Shopping sites:
+#
+{ shop }
+.quietpc.com 
+.worldpay.com   # for quietpc.com
+.jungle.com
+.scan.co.uk</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> The <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#FAST-REDIRECTS"
+>fast-redirects</A
+></TT
+>
+ action, which may have been enabled in <TT
+CLASS="FILENAME"
+>match-all.action</TT
+>,
+ breaks some sites. So disable it for popular sites where we know it misbehaves:</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>{ -<A
+HREF="actions-file.html#FAST-REDIRECTS"
+>fast-redirects</A
+> }
+login.yahoo.com
+edit.*.yahoo.com
+.google.com
+.altavista.com/.*(like|url|link):http
+.altavista.com/trans.*urltext=http
+.nytimes.com</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> It is important that <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> knows which
+ URLs belong to images, so that <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>if</I
+></SPAN
+> they are to
+ be blocked, a substitute image can be sent, rather than an HTML page.
+ Contacting the remote site to find out is not an option, since it
+ would destroy the loading time advantage of banner blocking, and it
+ would feed the advertisers information about you. We can mark any
+ URL as an image with the <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#HANDLE-AS-IMAGE"
+>handle-as-image</A
+></TT
+> action,
+ and marking all URLs that end in a known image file extension is a
+ good start:</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>##########################################################################
+# Images:
+##########################################################################
+
+# Define which file types will be treated as images, in case they get
+# blocked further down this file:
+#
+{ +<A
+HREF="actions-file.html#HANDLE-AS-IMAGE"
+>handle-as-image</A
+> }
+/.*\.(gif|jpe?g|png|bmp|ico)$</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> And then there are known banner sources. They often use scripts to
+ generate the banners, so it won't be visible from the URL that the
+ request is for an image. Hence we block them <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>and</I
+></SPAN
+>
+ mark them as images in one go, with the help of our
+ <TT
+CLASS="LITERAL"
+>+block-as-image</TT
+> alias defined above. (We could of
+ course just as well use <TT
+CLASS="LITERAL"
+>+<A
+HREF="actions-file.html#BLOCK"
+>block</A
+>
+ +<A
+HREF="actions-file.html#HANDLE-AS-IMAGE"
+>handle-as-image</A
+></TT
+> here.)
+ Remember that the type of the replacement image is chosen by the
+ <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#SET-IMAGE-BLOCKER"
+>set-image-blocker</A
+></TT
+>
+ action. Since all URLs have matched the default section with its
+ <TT
+CLASS="LITERAL"
+>+<A
+HREF="actions-file.html#SET-IMAGE-BLOCKER"
+>set-image-blocker</A
+>{pattern}</TT
+>
+ action before, it still applies and needn't be repeated:</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+># Known ad generators:
+#
+{ +block-as-image }
+ar.atwola.com 
+.ad.doubleclick.net
+.ad.*.doubleclick.net
+.a.yimg.com/(?:(?!/i/).)*$
+.a[0-9].yimg.com/(?:(?!/i/).)*$
+bs*.gsanet.com
+.qkimg.net</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> One of the most important jobs of <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>
+ is to block banners. Many of these can be <SPAN
+CLASS="QUOTE"
+>"blocked"</SPAN
+>
+ by the <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#FILTER"
+>filter</A
+>{banners-by-size}</TT
+>
+ action, which we enabled above, and which deletes the references to banner
+ images from the pages while they are loaded, so the browser doesn't request
+ them anymore, and hence they don't need to be blocked here. But this naturally
+ doesn't catch all banners, and some people choose not to use filters, so we
+ need a comprehensive list of patterns for banner URLs here, and apply the
+ <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#BLOCK"
+>block</A
+></TT
+> action to them.</P
+><P
+> First comes many generic patterns, which do most of the work, by
+ matching typical domain and path name components of banners. Then comes
+ a list of individual patterns for specific sites, which is omitted here
+ to keep the example short:</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>##########################################################################
+# Block these fine banners:
+##########################################################################
+{ <A
+HREF="actions-file.html#BLOCK"
+>+block{Banner ads.}</A
+> }
+
+# Generic patterns:
+# 
+ad*.
+.*ads.
+banner?.
+count*.
+/.*count(er)?\.(pl|cgi|exe|dll|asp|php[34]?)
+/(?:.*/)?(publicite|werbung|rekla(ma|me|am)|annonse|maino(kset|nta|s)?)/
+
+# Site-specific patterns (abbreviated):
+#
+.hitbox.com</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> It's quite remarkable how many advertisers actually call their banner
+ servers ads.<TT
+CLASS="REPLACEABLE"
+><I
+>company</I
+></TT
+>.com, or call the directory
+ in which the banners are stored simply <SPAN
+CLASS="QUOTE"
+>"banners"</SPAN
+>. So the above
+ generic patterns are surprisingly effective.</P
+><P
+> But being very generic, they necessarily also catch URLs that we don't want
+ to block. The pattern <TT
+CLASS="LITERAL"
+>.*ads.</TT
+> e.g. catches 
+ <SPAN
+CLASS="QUOTE"
+>"nasty-<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>ads</I
+></SPAN
+>.nasty-corp.com"</SPAN
+> as intended,
+ but also <SPAN
+CLASS="QUOTE"
+>"downlo<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>ads</I
+></SPAN
+>.sourcefroge.net"</SPAN
+> or
+ <SPAN
+CLASS="QUOTE"
+>"<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>ads</I
+></SPAN
+>l.some-provider.net."</SPAN
+> So here come some
+ well-known exceptions to the <TT
+CLASS="LITERAL"
+>+<A
+HREF="actions-file.html#BLOCK"
+>block</A
+></TT
+>
+ section above.</P
+><P
+> Note that these are exceptions to exceptions from the default! Consider the URL
+ <SPAN
+CLASS="QUOTE"
+>"downloads.sourcefroge.net"</SPAN
+>: Initially, all actions are deactivated,
+ so it wouldn't get blocked. Then comes the defaults section, which matches the
+ URL, but just deactivates the <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#BLOCK"
+>block</A
+></TT
+>
+ action once again. Then it matches <TT
+CLASS="LITERAL"
+>.*ads.</TT
+>, an exception to the
+ general non-blocking policy, and suddenly
+ <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#BLOCK"
+>+block</A
+></TT
+> applies. And now, it'll match
+ <TT
+CLASS="LITERAL"
+>.*loads.</TT
+>, where <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#BLOCK"
+>-block</A
+></TT
+>
+ applies, so (unless it matches <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>again</I
+></SPAN
+> further down) it ends up
+ with no <TT
+CLASS="LITERAL"
+><A
+HREF="actions-file.html#BLOCK"
+>block</A
+></TT
+> action applying.</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>##########################################################################
+# Save some innocent victims of the above generic block patterns:
+##########################################################################
+
+# By domain:
+# 
+{ -<A
+HREF="actions-file.html#BLOCK"
+>block</A
+> }
+adv[io]*.  # (for advogato.org and advice.*)
+adsl.      # (has nothing to do with ads)
+adobe.     # (has nothing to do with ads either)
+ad[ud]*.   # (adult.* and add.*)
+.edu       # (universities don't host banners (yet!))
+.*loads.   # (downloads, uploads etc)
+
+# By path:
+#
+/.*loads/
+
+# Site-specific:
+#
+www.globalintersec.com/adv # (adv = advanced)
+www.ugu.com/sui/ugu/adv</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> Filtering source code can have nasty side effects,
+ so make an exception for our friends at sourceforge.net,
+ and all paths with <SPAN
+CLASS="QUOTE"
+>"cvs"</SPAN
+> in them. Note that
+ <TT
+CLASS="LITERAL"
+>-<A
+HREF="actions-file.html#FILTER"
+>filter</A
+></TT
+>
+ disables <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>all</I
+></SPAN
+> filters in one fell swoop!</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+># Don't filter code!
+#
+{ -<A
+HREF="actions-file.html#FILTER"
+>filter</A
+> }
+/(.*/)?cvs
+bugzilla.
+developer.
+wiki.
+.sourceforge.net</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> The actual <TT
+CLASS="FILENAME"
+>default.action</TT
+> is of course much more
+ comprehensive, but we hope this example made clear how it works.</P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="AEN4292"
+>8.7.3. user.action</A
+></H3
+><P
+> So far we are painting with a broad brush by setting general policies,
+ which would be a reasonable starting point for many people. Now, 
+ you might want to be more specific and have customized rules that
+ are more suitable to your personal habits and preferences. These would
+ be for narrowly defined situations like your ISP or your bank, and should
+ be placed in <TT
+CLASS="FILENAME"
+>user.action</TT
+>, which is parsed after all other 
+ actions files and hence has the last word, over-riding any previously
+ defined actions. <TT
+CLASS="FILENAME"
+>user.action</TT
+> is also a 
+ <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>safe</I
+></SPAN
+> place for your personal settings, since
+ <TT
+CLASS="FILENAME"
+>default.action</TT
+> is actively maintained by the
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> developers and you'll probably want
+ to install updated versions from time to time.</P
+><P
+> So let's look at a few examples of things that one might typically do in
+ <TT
+CLASS="FILENAME"
+>user.action</TT
+>: </P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+># My user.action file. &#60;fred@example.com&#62;</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> As <A
+HREF="actions-file.html#ALIASES"
+>aliases</A
+> are local to the actions
+ file that they are defined in, you can't use the ones from
+ <TT
+CLASS="FILENAME"
+>default.action</TT
+>, unless you repeat them here:</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+># Aliases are local to the file they are defined in.
+# (Re-)define aliases for this file:
+#
+{{alias}}
+# 
+# These aliases just save typing later, and the alias names should 
+# be self explanatory.
+#
++crunch-all-cookies = +crunch-incoming-cookies +crunch-outgoing-cookies
+-crunch-all-cookies = -crunch-incoming-cookies -crunch-outgoing-cookies
+ allow-all-cookies  = -crunch-all-cookies -session-cookies-only
+ allow-popups       = -filter{all-popups}
++block-as-image     = +block{Blocked as image.} +handle-as-image
+-block-as-image     = -block
+
+# These aliases define combinations of actions that are useful for
+# certain types of sites:
+#
+fragile     = -block -crunch-all-cookies -filter -fast-redirects -hide-referrer
+shop        = -crunch-all-cookies allow-popups
+
+# Allow ads for selected useful free sites:
+#
+allow-ads   = -block -filter{banners-by-size} -filter{banners-by-link}
+
+# Alias for specific file types that are text, but might have conflicting
+# MIME types. We want the browser to force these to be text documents.
+handle-as-text = -<A
+HREF="actions-file.html#FILTER"
+>filter</A
+> +-<A
+HREF="actions-file.html#CONTENT-TYPE-OVERWRITE"
+>content-type-overwrite{text/plain}</A
+> +-<A
+HREF="actions-file.html#FORCE-TEXT-MODE"
+>force-text-mode</A
+> -<A
+HREF="actions-file.html#HIDE-CONTENT-DISPOSITION"
+>hide-content-disposition</A
+></PRE
+></TD
+></TR
+></TABLE
+>&#13;</P
+><P
+> Say you have accounts on some sites that you visit regularly, and
+ you don't want to have to log in manually each time. So you'd like
+ to allow persistent cookies for these sites. The
+ <TT
+CLASS="LITERAL"
+>allow-all-cookies</TT
+> alias defined above does exactly
+ that, i.e. it disables crunching of cookies in any direction, and the 
+ processing of cookies to make them only temporary.</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>{ allow-all-cookies }
+ sourceforge.net
+ .yahoo.com
+ .msdn.microsoft.com
+ .redhat.com</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> Your bank is allergic to some filter, but you don't know which, so you disable them all:</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>{ -<A
+HREF="actions-file.html#FILTER"
+>filter</A
+> }
+ .your-home-banking-site.com</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> Some file types you may not want to filter for various reasons:</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+># Technical documentation is likely to contain strings that might
+# erroneously get altered by the JavaScript-oriented filters:
+#
+.tldp.org
+/(.*/)?selfhtml/
+
+# And this stupid host sends streaming video with a wrong MIME type,
+# so that Privoxy thinks it is getting HTML and starts filtering:
+#
+stupid-server.example.com/</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> Example of a simple <A
+HREF="actions-file.html#BLOCK"
+>block</A
+> action. Say you've
+ seen an ad on your favourite page on example.com that you want to get rid of.
+ You have right-clicked the image, selected <SPAN
+CLASS="QUOTE"
+>"copy image location"</SPAN
+>
+ and pasted the URL below while removing the leading http://, into a 
+ <TT
+CLASS="LITERAL"
+>{ +block{} }</TT
+> section. Note that <TT
+CLASS="LITERAL"
+>{ +handle-as-image
+ }</TT
+> need not be specified, since all URLs ending in
+ <TT
+CLASS="LITERAL"
+>.gif</TT
+> will be tagged as images by the general rules as set
+ in default.action anyway:</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>{ +<A
+HREF="actions-file.html#BLOCK"
+>block</A
+>{Nasty ads.} }
+ www.example.com/nasty-ads/sponsor\.gif
+ another.example.net/more/junk/here/</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> The URLs of dynamically generated banners, especially from large banner
+ farms, often don't use the well-known image file name extensions, which
+ makes it impossible for <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> to guess
+ the file type just by looking at the URL. 
+ You can use the <TT
+CLASS="LITERAL"
+>+block-as-image</TT
+> alias defined above for
+ these cases.
+ Note that objects which match this rule but then turn out NOT to be an
+ image are typically rendered as a <SPAN
+CLASS="QUOTE"
+>"broken image"</SPAN
+> icon by the
+ browser. Use cautiously.</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>{ +block-as-image }
+ .doubleclick.net
+ .fastclick.net
+ /Realmedia/ads/
+ ar.atwola.com/</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> Now you noticed that the default configuration breaks Forbes Magazine,
+ but you were too lazy to find out which action is the culprit, and you
+ were again too lazy to give <A
+HREF="contact.html"
+>feedback</A
+>, so
+ you just used the <TT
+CLASS="LITERAL"
+>fragile</TT
+> alias on the site, and
+ -- <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>whoa!</I
+></SPAN
+> -- it worked. The <TT
+CLASS="LITERAL"
+>fragile</TT
+>
+ aliases disables those actions that are most likely to break a site. Also,
+ good for testing purposes to see if it is <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>
+ that is causing the problem or not. We later find other regular sites 
+ that misbehave, and add those to our personalized list of troublemakers:</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>{ fragile }
+ .forbes.com
+ webmail.example.com
+ .mybank.com</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> You like the <SPAN
+CLASS="QUOTE"
+>"fun"</SPAN
+> text replacements in <TT
+CLASS="FILENAME"
+>default.filter</TT
+>,
+ but it is disabled in the distributed actions file.
+ So you'd like to turn it on in your private,
+ update-safe config, once and for all:</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>{ +<A
+HREF="actions-file.html#FILTER-FUN"
+>filter{fun}</A
+> }
+ / # For ALL sites!</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> Note that the above is not really a good idea: There are exceptions
+ to the filters in <TT
+CLASS="FILENAME"
+>default.action</TT
+> for things that
+ really shouldn't be filtered, like code on CVS-&#62;Web interfaces. Since
+ <TT
+CLASS="FILENAME"
+>user.action</TT
+> has the last word, these exceptions
+ won't be valid for the <SPAN
+CLASS="QUOTE"
+>"fun"</SPAN
+> filtering specified here.</P
+><P
+> You might also worry about how your favourite free websites are
+ funded, and find that they rely on displaying banner advertisements
+ to survive. So you might want to specifically allow banners for those
+ sites that you feel provide value to you:</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>{ allow-ads }
+ .sourceforge.net
+ .slashdot.org
+ .osdn.net</PRE
+></TD
+></TR
+></TABLE
+>   </P
+><P
+> Note that <TT
+CLASS="LITERAL"
+>allow-ads</TT
+> has been aliased to 
+ <TT
+CLASS="LITERAL"
+>-<A
+HREF="actions-file.html#BLOCK"
+>block</A
+></TT
+>, 
+ <TT
+CLASS="LITERAL"
+>-<A
+HREF="actions-file.html#FILTER-BANNERS-BY-SIZE"
+>filter{banners-by-size}</A
+></TT
+>, and 
+ <TT
+CLASS="LITERAL"
+>-<A
+HREF="actions-file.html#FILTER-BANNERS-BY-LINK"
+>filter{banners-by-link}</A
+></TT
+> above.</P
+><P
+> Invoke another alias here to force an over-ride of the MIME type <TT
+CLASS="LITERAL"
+> application/x-sh</TT
+> which typically would open a download type 
+ dialog. In my case, I want to look at the shell script, and then I can save
+ it should I choose to.</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>{ handle-as-text }
+ /.*\.sh$</PRE
+></TD
+></TR
+></TABLE
+>   </P
+><P
+> <TT
+CLASS="FILENAME"
+>user.action</TT
+> is generally the best place to define
+ exceptions and additions to the default policies of
+ <TT
+CLASS="FILENAME"
+>default.action</TT
+>. Some actions are safe to have their
+ default policies set here though. So let's set a default policy to have a
+ <SPAN
+CLASS="QUOTE"
+>"blank"</SPAN
+> image as opposed to the checkerboard pattern for
+ <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>ALL</I
+></SPAN
+> sites. <SPAN
+CLASS="QUOTE"
+>"/"</SPAN
+> of course matches all URL
+ paths and patterns:</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>{ +<A
+HREF="actions-file.html#SET-IMAGE-BLOCKER"
+>set-image-blocker{blank}</A
+> }
+/ # ALL sites</PRE
+></TD
+></TR
+></TABLE
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="config.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="filter-file.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>The Main Configuration File</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Filter Files</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

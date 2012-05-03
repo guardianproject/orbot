@@ -1,0 +1,276 @@
+#!/bin/sh
+#
+# This is file /etc/rc.d/init.d/privoxy and was put here 
+# by the privoxy rpm
+#
+# chkconfig: 2345 84 09
+#
+# description: Web proxy with advanced filtering capabilities \
+#              such as filtering web page content, managing \
+#              cookies and removing ads
+#
+
+#  ********************************************************************
+# 
+#  File        :  $Source: /cvsroot/ijbswa/current/privoxy.init,v $
+# 
+#  Purpose     :  This shell script takes care of starting and stopping
+#                 privoxy.
+# 
+#  Copyright   :  Written by and Copyright (C) 2001 the SourceForge
+#                 Privoxy team. http://www.privoxy.org/
+# 
+#                 Based on the Internet Junkbuster originally written
+#                 by and Copyright (C) 1997 Anonymous Coders and
+#                 Junkbusters Corporation.  http://www.junkbusters.com
+# 
+#                 This program is free software; you can redistribute it
+#                 and/or modify it under the terms of the GNU General
+#                 Public License as published by the Free Software
+#                 Foundation; either version 2 of the License, or (at
+#                 your option) any later version.
+# 
+#                 This program is distributed in the hope that it will
+#                 be useful, but WITHOUT ANY WARRANTY; without even the
+#                 implied warranty of MERCHANTABILITY or FITNESS FOR A
+#                 PARTICULAR PURPOSE.  See the GNU General Public
+#                 License for more details.
+# 
+#                 The GNU General Public License should be included with
+#                 this file.  If not, you can view it at
+#                 http://www.gnu.org/copyleft/gpl.html
+#                 or write to the Free Software Foundation, Inc., 59
+#                 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+# 
+#  Revisions   :
+#     $Log: privoxy.init,v $
+#     Revision 1.11  2006/07/18 14:48:47  david__schmidt
+#     Reorganizing the repository: swapping out what was HEAD (the old 3.1 branch)
+#     with what was really the latest development (the v_3_0_branch branch)
+#
+#     Revision 1.8.2.3  2002/12/10 20:52:16  kick_
+#     better service description. This text will be shown when the user configures the services
+#
+#     Revision 1.8.2.2  2002/08/05 08:42:13  kick_
+#     same permissions, same runlevels as all the other initscripts
+#
+#     Revision 1.8.2.1  2002/07/12 09:14:26  kick_
+#     don't use ghost files for rcX.d/*, chkconfig is available to do this job. Enable translation of error messge
+#
+#     Revision 1.8  2002/04/09 02:51:31  hal9
+#     Changed $JB to $PRIVOXY.
+#
+#     Revision 1.7  2002/04/08 14:54:51  morcego
+#     Moved the chkconfig comments to the begining of the file, couse Linuxconf
+#     was getting confused with it where it was.
+#
+#     Revision 1.6  2002/03/26 22:29:55  swa
+#     we have a new homepage!
+#
+#     Revision 1.5  2002/03/25 06:14:18  morcego
+#     Removing the OPRG definition (no longer needed)
+#
+#     Revision 1.4  2002/03/25 04:16:48  hal9
+#     Fix proper config file location.
+#
+#     Revision 1.3  2002/03/24 19:12:15  hal9
+#     Fixed some naming conflicts.
+#
+#     Revision 1.2  2002/03/24 11:40:14  swa
+#     name change
+#
+#     Revision 1.1  2002/03/24 11:23:44  swa
+#     name change
+#
+#     Revision 1.1  2002/03/22 20:53:03  morcego
+#     - Ongoing process to change name to JunkbusterNG
+#     - configure/configure.in: no change needed
+#     - GNUmakefile.in:
+#             - TAR_ARCH = /tmp/JunkbusterNG-$(RPM_VERSION).tar.gz
+#             - PROGRAM    = jbng@EXEEXT@
+#             - rh-spec now references as junkbusterng-rh.spec
+#             - redhat-upload: references changed to junkbusterng-* (package names)
+#             - tarball-dist: references changed to JunkbusterNG-distribution-*
+#             - tarball-src: now JunkbusterNG-*
+#             - install: initscript now junkbusterng.init and junkbusterng (when
+#                        installed)
+#     - junkbuster-rh.spec: renamed to junkbusterng-rh.spec
+#     - junkbusterng.spec:
+#             - References to the expression ijb where changed where possible
+#             - New package name: junkbusterng (all in lower case, acording to
+#               the LSB recomendation)
+#             - Version changed to: 2.9.13
+#             - Release: 1
+#             - Added: junkbuster to obsoletes and conflicts (Not sure this is
+#               right. If it obsoletes, why conflict ? Have to check it later)
+#             - Summary changed: Stefan, please check and aprove it
+#             - Changes description to use the new name
+#             - Sed string was NOT changed. Have to wait to the manpage to
+#               change first
+#             - Keeping the user junkbuster for now. It will require some aditional
+#               changes on the script (scheduled for the next specfile release)
+#             - Added post entry to move the old logfile to the new log directory
+#             - Removing "chkconfig --add" entry (not good to have it automaticaly
+#               added to the startup list).
+#             - Added preun section to stop the service with the old name, as well
+#               as remove it from the startup list
+#             - Removed the chkconfig --del entry from the conditional block on
+#               the preun scriptlet (now handled on the %files section)
+#     - junkbuster.init: renamed to junkbusterng.init
+#     - junkbusterng.init:
+#             - Changed JB_BIN to jbng
+#             - Created JB_OBIN with the old value of JB_BIN (junkbuster), to
+#               be used where necessary (config dir)
+#
+#     Aditional notes:
+#     - The config directory is /etc/junkbuster yet. Have to change it on the
+#     specfile, after it is changes on the code
+#     - The only files that got renamed on the cvs tree were the rh specfile and
+#     the init file. Some file references got changes on the makefile and on the
+#     rh-spec (as listed above)
+#
+#     Revision 1.15  2002/03/09 15:05:58  swa
+#     wrong user.group
+#
+#     Revision 1.14  2002/03/06 06:13:40  hal9
+#     Adapted for Andreas' changes for --user and --pidfile.
+#
+#     Revision 1.13  2002/03/05 05:10:10  oes
+#     Changed pidfile path to conform with FHS
+#
+#     Revision 1.12  2002/03/04 20:44:36  oes
+#     Changed to new cmdline syntax
+#
+#     Revision 1.11  2001/12/30 14:07:32  steudten
+#     - Add signal handling (unix)
+#     - Add SIGHUP handler (unix)
+#     - Add creation of pidfile (unix)
+#     - Add action 'top' in rc file (RH)
+#     - Add entry 'SIGNALS' to manpage
+#     - Add exit message to logfile (unix)
+#
+#     Revision 1.10  2001/11/05 21:30:23  steudten
+#     Make JB startup without & due to be a 'real' daemon right now.
+#     Make the script easy to change.
+#
+#     Revision 1.9  2001/09/15 01:53:12  steudten
+#
+#     Remove test for subsys flag in start. Some minor changes.
+#
+#     Revision 1.8  2001/06/28 13:50:36  sarantis
+#     swap ?$ with $?; remove bogus ";;"
+#
+#     Revision 1.7  2001/06/28 13:40:26  sarantis
+#     remove single quotes from $JB; it was not expanded.
+#
+#     Revision 1.6  2001/06/28 13:38:42  sarantis
+#     formatting changes; individual return values are returned from the init script.
+#
+#     Revision 1.5  2001/06/11 11:37:40  sarantis
+#     Minor editing changes.
+#
+#     Revision 1.4  2001/06/09 09:14:11  swa
+#     shamelessly adapted RPM stuff from the newest rpm that
+#     RedHat provided for the JB.
+#
+#     Revision 1.3  2001/05/25 10:12:44  oes
+#     Fixed default case in switch statement (# -> *)
+#
+#     Revision 1.2  2001/05/24 07:52:24  swa
+#     added header. removed ^M.
+#
+# 
+# ********************************************************************/
+
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+. /etc/sysconfig/network
+
+#  Check that networking is up.
+[ ${NETWORKING} = "no" ] && exit 0
+
+PRIVOXY_PRG="privoxy"
+PRIVOXY_BIN="/usr/sbin/$PRIVOXY_PRG"
+PRIVOXY_CONF="/etc/$PRIVOXY_PRG/config"
+PRIVOXY_USER="privoxy"
+PRIVOXY_PID=/var/run/$PRIVOXY_PRG.pid
+PRIVOXY_LOCK=/var/lock/subsys/$PRIVOXY_PRG
+PRIVOXY="$PRIVOXY_BIN --user $PRIVOXY_USER.$PRIVOXY_USER --pidfile $PRIVOXY_PID $PRIVOXY_CONF"
+
+# some checks for us
+! [ -x $PRIVOXY_BIN  ] && echo $"Can't find $PRIVOXY_BIN, exit." && exit 0
+! [ -f $PRIVOXY_CONF ] && echo $"Can't find $PRIVOXY_CONF, exit." && exit 0
+
+# See how we were called.
+
+start () {
+	# start daemon
+	echo -n $"Starting $PRIVOXY_PRG: "
+     if [ -f $PRIVOXY_PID ]; then 
+        killproc $PRIVOXY_PRG && rm -f $PRIVOXY_LOCK $PRIVOXY_PID
+        RETVAL=$?
+        [ $RETVAL != 0 ] && return $RETVAL
+     fi
+	daemon $PRIVOXY
+	RETVAL=$?
+	echo
+	[ $RETVAL = 0 ] && touch $PRIVOXY_LOCK
+	return $RETVAL
+}
+
+stop () {
+	# stop daemon
+	echo -n $"Stopping $PRIVOXY_PRG: "
+	killproc $PRIVOXY_PRG && rm -f $PRIVOXY_LOCK $PRIVOXY_PID
+	RETVAL=$?
+	echo
+	return $RETVAL
+}
+
+case "$1" in
+  start)
+	start	
+	;;
+  stop)
+	stop
+	;;
+  reload)
+	if [ -f $PRIVOXY_PID ] ; then
+        kill -HUP `cat $PRIVOXY_PID`
+        RETVAL=$?
+     fi
+	;;
+  restart)
+	stop
+	start
+	RETVAL=$?
+	;;
+  condrestart)
+	# restart only if already running
+	if [ -f $PRIVOXY_PID ] ; then
+        stop
+        start
+        RETVAL=$?
+	fi 
+	;;
+  status)
+	status $PRIVOXY_PRG 
+	RETVAL=$?
+	;;
+  top)
+     if [ -f $PRIVOXY_PID ]; then
+                a=""
+                for i in `pidof $PRIVOXY_PRG` ; do
+                        a="$a -p $i"
+                done
+                top $a
+     fi
+	;;
+  *)
+	echo $"Usage: $PRIVOXY_PRG {start|stop|reload|restart|condrestart|status|top}"
+	exit 1
+esac
+
+exit $RETVAL

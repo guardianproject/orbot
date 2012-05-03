@@ -1,0 +1,1463 @@
+dnl Process this file with autoconf to produce a configure script.
+dnl 
+dnl $Id: configure.in,v 1.126 2009/03/21 10:45:06 fabiankeil Exp $
+dnl 
+dnl Written by and Copyright (C) 2001-2009 the
+dnl Privoxy team. http://www.privoxy.org/
+dnl
+dnl Based on the Internet Junkbuster originally written
+dnl by and Copyright (C) 1997 Anonymous Coders and 
+dnl Junkbusters Corporation.  http://www.junkbusters.com
+dnl
+dnl This program is free software; you can redistribute it 
+dnl and/or modify it under the terms of the GNU General
+dnl Public License as published by the Free Software
+dnl Foundation; either version 2 of the License, or (at
+dnl your option) any later version.
+dnl 
+dnl This program is distributed in the hope that it will
+dnl be useful, but WITHOUT ANY WARRANTY; without even the
+dnl implied warranty of MERCHANTABILITY or FITNESS FOR A
+dnl PARTICULAR PURPOSE.  See the GNU General Public
+dnl License for more details.
+dnl 
+dnl The GNU General Public License should be included with
+dnl this file.  If not, you can view it at
+dnl http://www.gnu.org/copyleft/gpl.html
+dnl or write to the Free Software Foundation, Inc., 59
+dnl Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+dnl 
+dnl $Log: configure.in,v $
+dnl Revision 1.126  2009/03/21 10:45:06  fabiankeil
+dnl Declare the code stable.
+dnl
+dnl Revision 1.125  2009/02/25 16:58:03  fabiankeil
+dnl And the journey continues. Bump version to 3.0.12 UNRELEASED.
+dnl
+dnl Revision 1.124  2009/02/12 15:42:00  fabiankeil
+dnl Declare the code stable.
+dnl
+dnl Revision 1.123  2009/02/06 18:17:32  fabiankeil
+dnl Boldly enable keep-alive support where possible.
+dnl
+dnl Revision 1.122  2008/10/18 11:17:52  fabiankeil
+dnl Connection keep-alive support is ready for testing,
+dnl allow enabling it through the configure script.
+dnl
+dnl Revision 1.121  2008/08/30 12:03:07  fabiankeil
+dnl Remove FEATURE_COOKIE_JAR.
+dnl
+dnl Revision 1.120  2008/08/21 17:19:50  fabiankeil
+dnl Change version to 3.0.11 UNRELEASED.
+dnl
+dnl Revision 1.119  2008/08/13 16:53:50  fabiankeil
+dnl Change version to 3.0.10 stable.
+dnl
+dnl Revision 1.118  2008/06/27 12:50:44  fabiankeil
+dnl Here's looking at you, Gentoo Linux: Show a warning if
+dnl --disable-pthread is used even though pthreads are available.
+dnl
+dnl Revision 1.117  2008/06/14 12:47:30  fabiankeil
+dnl Set CODE_STATUS to beta.
+dnl
+dnl Revision 1.116  2008/06/08 11:55:09  fabiankeil
+dnl - Show a warning if the soon-to-be-removed static PCRE code is used.
+dnl - Hide the "using built-in static pcrs" message. With dynamic linking
+dnl   against PCRS disabled, the message isn't particularly useful.
+dnl
+dnl Revision 1.115  2008/05/25 15:50:14  fabiankeil
+dnl Try to use zlib by default, but just show a warning if it's
+dnl unavailable. Remove --enable-zlib, add  --disable-zlib.
+dnl
+dnl Revision 1.114  2008/04/06 15:18:33  fabiankeil
+dnl Oh well, rename the --enable-pcre-host-patterns option to
+dnl --enable-extended-host-patterns as it's not really PCRE syntax.
+dnl
+dnl Revision 1.113  2008/04/06 14:54:26  fabiankeil
+dnl Use PCRE syntax in host patterns when configured
+dnl with --enable-pcre-host-patterns.
+dnl
+dnl Revision 1.112  2008/03/27 18:27:22  fabiankeil
+dnl Remove kill-popups action.
+dnl
+dnl Revision 1.111  2008/02/03 14:40:47  fabiankeil
+dnl Remove unused OSX_DARWIN macro. Reported by Mark Miller in #1852529.
+dnl
+dnl Revision 1.110  2008/01/26 10:52:13  fabiankeil
+dnl Change version to 3.0.9 UNRELEASED.
+dnl
+dnl Revision 1.109  2008/01/20 14:07:09  fabiankeil
+dnl Set CODE_STATUS to stable.
+dnl
+dnl Revision 1.108  2007/12/10 02:30:00  hal9
+dnl Change versioning for > 3.0.7 && < 3.0.8
+dnl
+dnl Revision 1.107  2007/11/15 02:50:14  hal9
+dnl Setting to "beta" (for doc builds, etc).
+dnl
+dnl Revision 1.106  2007/05/11 11:49:41  fabiankeil
+dnl Check for strlcat().
+dnl
+dnl Revision 1.105  2007/04/09 17:34:58  fabiankeil
+dnl Check for snprintf().
+dnl
+dnl Revision 1.104  2007/03/31 13:35:11  fabiankeil
+dnl Add checks for gettimeofday() and strlcpy().
+dnl
+dnl Revision 1.103  2007/01/20 16:29:38  fabiankeil
+dnl Suppress edit buttons for action files if Privoxy has
+dnl no write access. Suggested by Roland in PR 1564026.
+dnl
+dnl Revision 1.102  2007/01/18 14:55:45  fabiankeil
+dnl Check for tzset() and putenv() to make sure the
+dnl replacement timegm() isn't included on systems
+dnl where it fails to compile.
+dnl
+dnl Revision 1.101  2007/01/12 15:20:17  fabiankeil
+dnl Temporarily ignore external libpcrs to prevent
+dnl problems that are fixed in Privoxy's own version.
+dnl
+dnl Revision 1.100  2007/01/07 07:38:10  joergs
+dnl Disabled -pipe for AmigaOS4.
+dnl
+dnl Revision 1.99  2007/01/01 19:36:37  fabiankeil
+dnl Integrate a modified version of Wil Mahan's
+dnl zlib patch (PR #895531).
+dnl
+dnl Revision 1.98  2006/12/17 19:15:26  fabiankeil
+dnl Added ./configure switch for FEATURE_GRACEFUL_TERMINATION.
+dnl
+dnl Revision 1.97  2006/11/21 18:32:46  hal9
+dnl Setting version to 3.0.7 UNRELEASED for lack of a better setting.
+dnl
+dnl Revision 1.96  2006/11/18 14:42:51  fabiankeil
+dnl Mark as stable.
+dnl
+dnl Revision 1.95  2006/11/14 02:08:59  hal9
+dnl Setting version string to 3.0.6 UNRELEASED. This needs to be reset to 3.0.6
+dnl stable just before CVS is tagged for release.
+dnl
+dnl Revision 1.94  2006/11/13 19:05:50  fabiankeil
+dnl Make pthread mutex locking more generic. Instead of
+dnl checking for OSX and OpenBSD, check for FEATURE_PTHREAD
+dnl and use mutex locking unless there is an _r function
+dnl available. Better safe than sorry.
+dnl
+dnl Fixes "./configure --disable-pthread" and should result
+dnl in less threading-related problems on pthread-using platforms,
+dnl but it still doesn't fix BR#1122404.
+dnl
+dnl Revision 1.93  2006/09/22 01:26:20  hal9
+dnl Set version to 3.0.5 BETA for hopefully release this weekend.
+dnl
+dnl Revision 1.92  2006/08/17 17:09:49  fabiankeil
+dnl Added check for timegm().
+dnl
+dnl Revision 1.91  2006/08/13 22:01:51  fabiankeil
+dnl Added checks for strptime() and random()
+dnl
+dnl Revision 1.90  2006/07/18 14:48:45  david__schmidt
+dnl Reorganizing the repository: swapping out what was HEAD (the old 3.1 branch)
+dnl with what was really the latest development (the v_3_0_branch branch)
+dnl
+dnl Revision 1.68.2.20  2004/01/31 16:31:46  oes
+dnl Resetting version info to 0.0.0 UNRELEASED
+dnl
+dnl Revision 1.68.2.19  2004/01/30 09:26:03  oes
+dnl Added docbook paths for debian sarge; set status for release
+dnl
+dnl Revision 1.68.2.18  2003/12/08 15:10:29  oes
+dnl Bugfix: --with-docbook now correctly accepts its path parameter. Thanks, Roland!
+dnl
+dnl Revision 1.68.2.17  2003/10/18 18:41:26  david__schmidt
+dnl Update to remain buildable on OS/2 - remove the failures
+dnl due to missing unixisms
+dnl
+dnl Revision 1.68.2.16  2003/03/26 16:05:14  oes
+dnl Marked as 0.0.0 UNRELEASED
+dnl
+dnl Revision 1.68.2.15  2003/03/26 00:25:00  oes
+dnl Bump version for 3.0.2
+dnl
+dnl Revision 1.68.2.14  2003/03/25 13:27:12  hal9
+dnl Manually apply Docbook/FreeBSD patch #708081 from a.go at tiscali.nl.
+dnl
+dnl Revision 1.68.2.13  2003/03/18 19:38:57  oes
+dnl Set version info for 3.0.1 release
+dnl
+dnl Revision 1.68.2.12  2003/03/07 03:41:04  david__schmidt
+dnl Wrapping all *_r functions (the non-_r versions of them) with mutex semaphores for OSX.  Hopefully this will take care of all of those pesky crash reports.
+dnl
+dnl Revision 1.68.2.11  2003/03/06 15:22:37  oes
+dnl Fixed minor shell syntax bug
+dnl
+dnl Revision 1.68.2.10  2003/01/08 16:39:41  oes
+dnl Changing default to exclude FEATURE_IMAGE_DETECT_MSIE because of problem reports with recent IEs
+dnl
+dnl Revision 1.68.2.9  2002/12/13 23:47:45  hal9
+dnl Add openbsd $specialflags per gunner at styx2002.no-ip.org
+dnl
+dnl Revision 1.68.2.8  2002/11/27 12:55:26  oes
+dnl Fixed broken handling of pre-set CFLAGS
+dnl
+dnl Revision 1.68.2.7  2002/10/25 02:44:22  hal9
+dnl Port of make install, etc from main trunk. Needs testing! Add Slackware
+dnl support, and other related changes. Update related docs.
+dnl
+dnl Revision 1.68.2.6  2002/09/25 15:35:15  oes
+dnl Marking as non-release
+dnl
+dnl Revision 1.68.2.5  2002/08/25 23:37:00  hal9
+dnl Getting ready for 3.0 release.
+dnl
+dnl Revision 1.68.2.4  2002/08/10 11:21:57  oes
+dnl - Set Version to 2.9.20 (beta)
+dnl - Add two AC_DEFINEs that indicate if the pcre*.h headers
+dnl   are located in a pcre/ subdir to the include path.
+dnl
+dnl Revision 1.68.2.3  2002/08/06 11:29:36  oes
+dnl Fixed detection/inclusion of pcre.h, which is in a pcre subdir on RH
+dnl
+dnl Revision 1.68.2.2  2002/07/30 19:36:09  hal9
+dnl Bump version to 2.9.17.
+dnl
+dnl Revision 1.68.2.1  2002/07/26 15:21:12  oes
+dnl  Bumped version number for 2.9.16 freeze
+dnl
+dnl Revision 1.68  2002/05/25 16:54:54  jongfoster
+dnl Detect if the compiler supports -pthread.
+dnl Hopefully this will fix bug 560442.  (I don't have a HP PA-RISC
+dnl machine to test this!)
+dnl
+dnl Revision 1.67  2002/05/03 14:33:59  oes
+dnl Generate doc/soucre/ldp.dsl
+dnl
+dnl Revision 1.66  2002/05/03 00:41:56  oes
+dnl Set version to 2.9.15 to comply with new versioning scheme
+dnl
+dnl Revision 1.65  2002/04/25 19:13:57  morcego
+dnl Removed RPM release number declaration on configure.in
+dnl Changed makefile to use given value for RPM_PACKAGEV when on uploading
+dnl targets (will produce an error, explaining who to do it, if no value
+dnl if provided).
+dnl
+dnl Revision 1.64  2002/04/22 16:32:31  morcego
+dnl configure.in, *.spec: Bumping release to 2 (2.9.14-2)
+dnl -rh.spec: uid and gid are now macros
+dnl -suse.spec: Changing the header Copyright to License (Copyright is
+dnl             deprecable)
+dnl
+dnl Revision 1.63  2002/04/11 11:00:21  oes
+dnl Applied Moritz' fix for socklen_t on Solaris
+dnl
+dnl Revision 1.62  2002/04/11 10:09:20  oes
+dnl Version 2.9.14
+dnl
+dnl Revision 1.61  2002/04/10 18:14:45  morcego
+dnl - (privoxy-rh.spec only) Relisting template files on the %%files section
+dnl - (configure.in, privoxy-rh.spec) Bumped package release to 5
+dnl
+dnl Revision 1.60  2002/04/09 16:38:49  oes
+dnl Added detection of missing config.h.in
+dnl
+dnl Revision 1.59  2002/04/06 20:23:55  jongfoster
+dnl Removing unnessacery tests (C++, ranlib)
+dnl
+dnl Revision 1.58  2002/04/04 20:49:20  swa
+dnl attempt to consolidate the
+dnl different dokbook versions.
+dnl
+dnl Revision 1.57  2002/04/04 00:36:36  gliptak
+dnl always use pcre for matching
+dnl
+dnl Revision 1.56  2002/04/03 22:28:03  gliptak
+dnl Removed references to gnu_regex
+dnl
+dnl Revision 1.55  2002/04/03 03:54:38  gliptak
+dnl Checking pcre version
+dnl
+dnl Revision 1.54  2002/04/01 00:54:24  gliptak
+dnl More changes needed around regex support.
+dnl
+dnl Revision 1.53  2002/03/29 20:09:01  swa
+dnl al's patch
+dnl
+dnl Revision 1.52  2002/03/29 19:51:40  gliptak
+dnl Correcting compile problem with Debian
+dnl
+dnl Revision 1.51  2002/03/28 20:43:00  swa
+dnl set make correctly
+dnl
+dnl Revision 1.50  2002/03/27 03:03:45  hal9
+dnl Add test for man2html
+dnl
+dnl Revision 1.49  2002/03/27 02:19:52  david__schmidt
+dnl More Mac OSX support:
+dnl - Get rid of extraneous, noisy -pthread warnings
+dnl - Define unix so we get oes' unix-tagged changes
+dnl
+dnl Revision 1.48  2002/03/26 22:29:54  swa
+dnl we have a new homepage!
+dnl
+dnl Revision 1.47  2002/03/26 16:41:00  hal9
+dnl Upped RPM Release to 3 (need to build new RH packages)
+dnl
+dnl Revision 1.46  2002/03/24 18:55:06  jongfoster
+dnl Making Docbook work under Windows
+dnl
+dnl Revision 1.45  2002/03/24 14:19:55  swa
+dnl set rpm package release in configure.in. nowhere else.
+dnl
+dnl Revision 1.44  2002/03/24 13:25:43  swa
+dnl name change related issues
+dnl
+dnl Revision 1.43  2002/03/24 12:56:21  swa
+dnl name change related issues.
+dnl
+dnl Revision 1.42  2002/03/22 18:11:37  jongfoster
+dnl Bumping version number to 2.9.12
+dnl
+dnl Revision 1.41  2002/03/19 19:30:04  morcego
+dnl - Fixing stylesheet checking on configure. If it is found, no further checks
+dnl   should be done
+dnl
+dnl - configure will now check for db2html or docbook2html (should work now
+dnl   on SuSe without the docbktls package)
+dnl
+dnl Revision 1.40  2002/03/09 14:33:30  oes
+dnl Fixing the (harmless) AC_CHECK_FILE warnings
+dnl
+dnl Revision 1.39  2002/03/08 16:46:13  oes
+dnl Added --enable-no-gifs
+dnl
+dnl Revision 1.38  2002/03/08 14:13:50  morcego
+dnl Fixing configure, to remove a command not found error.
+dnl
+dnl Revision 1.37  2002/03/08 12:58:21  oes
+dnl Tiny bugfix in AC_ARG_WITH(debug)
+dnl
+dnl Revision 1.36  2002/03/06 23:50:36  morcego
+dnl Will not test for a text browser if we are not using docbook.
+dnl
+dnl Revision 1.35  2002/03/06 21:55:52  morcego
+dnl New configure option: --with-docbook=(yes|no|directory)
+dnl Preliminary new platform detection code included. Will work with the
+dnl old one for now. No use just trowing it away
+dnl
+dnl Revision 1.34  2002/03/06 20:57:00  morcego
+dnl Fixing detection of stylesheets on SuSe.
+dnl
+dnl Revision 1.33  2002/03/05 17:31:11  morcego
+dnl Search for docbook.dsl. Should solve portability problems for SuSe.
+dnl
+dnl Revision 1.32  2002/03/05 14:07:43  morcego
+dnl configure now detects rpm topdir, and change GNUmakefile acordingly
+dnl    (based on sugestion by Sarantis Paskalis)
+dnl
+dnl Revision 1.31  2002/03/05 13:43:28  morcego
+dnl Checking for text browser, so redhat-dok can work.
+dnl
+dnl Revision 1.30  2002/03/04 17:58:01  oes
+dnl Deleted _DEBUG and PID_FILE_PATH
+dnl
+dnl Revision 1.29  2002/02/28 14:20:53  oes
+dnl Fixed detection of gethost*_r functions on Solaris
+dnl
+dnl Revision 1.28  2002/02/27 15:02:38  oes
+dnl Incremented version number
+dnl
+dnl Revision 1.27  2002/01/10 12:35:18  oes
+dnl Added cross-compile defaults to the AC_CHECK_SIZEOF macros
+dnl to silence autoconf warnings. Numbers are for Intel/Linux.
+dnl Is there a better way?
+dnl
+dnl Revision 1.26  2002/01/09 14:29:49  oes
+dnl - Added AC_CHECK_FUNC tests for the availability of
+dnl   gethostbyname_r, gethostbyaddr_r, gmtime_r and
+dnl   localtime_r, as well as AC_TRY_COMPILE tests to
+dnl   determine their signatures.
+dnl
+dnl - Fixed a bug with the init of CFLAGS that was
+dnl   reported by barsnick
+dnl
+dnl Revision 1.25  2002/01/04 15:27:18  oes
+dnl Changed quoting of CODE_STATUS for use in make
+dnl
+dnl Revision 1.24  2001/12/30 14:07:31  steudten
+dnl - Add signal handling (unix)
+dnl - Add SIGHUP handler (unix)
+dnl - Add creation of pidfile (unix)
+dnl - Add action 'top' in rc file (RH)
+dnl - Add entry 'SIGNALS' to manpage
+dnl - Add exit message to logfile (unix)
+dnl
+dnl Revision 1.23  2001/12/09 20:24:42  david__schmidt
+dnl Change from "alpha" to "beta" in configure.in
+dnl
+dnl Revision 1.22  2001/12/01 11:24:01  jongfoster
+dnl Renaming Makefile.in to GNUmakefile.in so that non-GNU versions of
+dnl make break in a more obvious way.
+dnl
+dnl Revision 1.21  2001/11/30 21:35:54  jongfoster
+dnl Bumping version number to 2.9.10
+dnl
+dnl Revision 1.20  2001/10/23 21:24:09  jongfoster
+dnl Support for FEATURE_CGI_EDIT_ACTIONS
+dnl
+dnl Revision 1.19  2001/10/07 15:33:14  oes
+dnl Removed FEATURE_DENY_GZIP
+dnl Bumped up version number
+dnl
+dnl Revision 1.18  2001/09/13 13:10:24  steudten
+dnl
+dnl PreWork for Debug Interface.
+dnl Add new option "--with-debug" to enable debugging (flags aso.)
+dnl
+dnl Revision 1.17  2001/09/12 23:44:55  david__schmidt
+dnl Mac OSX (Darwin) support added.
+dnl
+dnl Revision 1.16  2001/09/12 22:55:45  joergs
+dnl AmigaOS support added.
+dnl
+dnl Revision 1.15  2001/09/12 17:28:59  david__schmidt
+dnl
+dnl OS/2 port: update autoconf'd support for the platform.
+dnl
+dnl Revision 1.14  2001/07/30 22:12:11  jongfoster
+dnl Fixing Solaris build (I hope) and tidying up #defines:
+dnl - All feature #defines are now of the form FEATURE_xxx
+dnl - Permanently turned off WIN_GUI_EDIT
+dnl - Permanently turned on WEBDAV and SPLIT_PROXY_ARGS
+dnl
+dnl Revision 1.13  2001/07/29 17:09:17  jongfoster
+dnl Major changes to build system in order to fix these bugs:
+dnl - pthreads under Linux was broken - changed -lpthread to -pthread
+dnl - Compiling in MinGW32 mode under CygWin now correctly detects
+dnl   which shared libraries are available
+dnl - Solaris support (?) (Not tested under Solaris yet)
+dnl
+dnl Revision 1.12  2001/07/25 19:16:27  oes
+dnl Bumping version number to 2.9.8
+dnl
+dnl Revision 1.11  2001/07/21 18:00:07  jongfoster
+dnl Bumping version number to 2.9.7
+dnl
+dnl Revision 1.10  2001/07/18 17:25:04  oes
+dnl Fixed a typo
+dnl
+dnl Revision 1.9  2001/07/15 19:45:13  jongfoster
+dnl Added support for linking with POSIX threads library
+dnl
+dnl Revision 1.8  2001/07/15 17:54:29  jongfoster
+dnl Renaming #define STATIC to STATIC_PCRE
+dnl Adding new #define FEATURE_PTHREAD that will be used to enable
+dnl POSIX threads support.
+dnl
+dnl Revision 1.7  2001/07/13 13:58:05  oes
+dnl    Completely reorganized the selection scheme for
+dnl    pcre, pcreposix, pcrs and gnu_regex:
+dnl
+dnl    The presence of shared pcre, pcreposix or pcrs
+dnl    libraried is now autodetected. Additionally, the
+dnl    user can enforce using the built-in static variants
+dnl    by specifying --disable-dynamic-(pcre|pcrs).
+dnl    Care is taken to avoid that pcre is dyn, while pcreposix
+dnl    is static, if both are used and that pcrs is static if
+dnl    pcrs is.
+dnl
+dnl    The choice between pcre, gnu or no regex for actionsfile
+dnl    URL matching is now via
+dnl    --(enable|disable)-regex-matching[=(gnu|pcre|no)] with the
+dnl    default being pcre.
+dnl
+dnl Revision 1.6  2001/06/29 21:56:40  oes
+dnl Version -> 2.9.5
+dnl
+dnl Revision 1.5  2001/06/29 13:26:27  oes
+dnl Introduced #define CODE_STATUS
+dnl
+dnl Revision 1.4  2001/05/29 09:50:24  jongfoster
+dnl Unified blocklist/imagelist/permissionslist.
+dnl File format is still under discussion, but the internal changes
+dnl are (mostly) done.
+dnl
+dnl Also modified interceptor behaviour:
+dnl - We now intercept all URLs beginning with one of the following
+dnl   prefixes (and *only* these prefixes):
+dnl     * http://i.j.b/
+dnl     * http://ijbswa.sf.net/config/
+dnl     * http://ijbswa.sourceforge.net/config/
+dnl - New interceptors "home page" - go to http://i.j.b/ to see it.
+dnl - Internal changes so that intercepted and fast redirect pages
+dnl   are not replaced with an image.
+dnl - Interceptors now have the option to send a binary page direct
+dnl   to the client. (i.e. ijb-send-banner uses this)
+dnl - Implemented show-url-info interceptor.  (Which is why I needed
+dnl   the above interceptors changes - a typical URL is
+dnl   "http://i.j.b/show-url-info?url=www.somesite.com/banner.gif".
+dnl   The previous mechanism would not have intercepted that, and
+dnl   if it had been intercepted then it then it would have replaced
+dnl   it with an image.)
+dnl
+dnl Revision 1.3  2001/05/22 18:46:04  oes
+dnl
+dnl - Enabled filtering banners by size rather than URL
+dnl   by adding patterns that replace all standard banner
+dnl   sizes with the "Junkbuster" gif to the re_filterfile
+dnl
+dnl - Enabled filtering WebBugs by providing a pattern
+dnl   which kills all 1x1 images
+dnl
+dnl - Added support for PCRE_UNGREEDY behaviour to pcrs,
+dnl   which is selected by the (nonstandard and therefore
+dnl   capital) letter 'U' in the option string.
+dnl   It causes the quantifiers to be ungreedy by default.
+dnl   Appending a ? turns back to greedy (!).
+dnl
+dnl - Added a new interceptor ijb-send-banner, which
+dnl   sends back the "Junkbuster" gif. Without imagelist or
+dnl   MSIE detection support, or if tinygif = 1, or the
+dnl   URL isn't recognized as an imageurl, a lame HTML
+dnl   explanation is sent instead.
+dnl
+dnl - Added new feature, which permits blocking remote
+dnl   script redirects and firing back a local redirect
+dnl   to the browser.
+dnl   The feature is conditionally compiled, i.e. it
+dnl   can be disabled with --disable-fast-redirects,
+dnl   plus it must be activated by a "fast-redirects"
+dnl   line in the config file, has its own log level
+dnl   and of course wants to be displayed by show-proxy-args
+dnl   Note: Boy, all the #ifdefs in 1001 locations and
+dnl   all the fumbling with configure.in and acconfig.h
+dnl   were *way* more work than the feature itself :-(
+dnl
+dnl - Because a generic redirect template was needed for
+dnl   this, tinygif = 3 now uses the same.
+dnl
+dnl - Moved GIFs, and other static HTTP response templates
+dnl   to project.h
+dnl
+dnl - Some minor fixes
+dnl
+dnl - Removed some >400 CRs again (Jon, you really worked
+dnl   a lot! ;-)
+dnl
+dnl Revision 1.2  2001/05/20 01:21:20  jongfoster
+dnl Version 2.9.4 checkin.
+dnl - Merged popupfile and cookiefile, and added control over PCRS
+dnl   filtering, in new "permissionsfile".
+dnl - Implemented LOG_LEVEL_FATAL, so that if there is a configuration
+dnl   file error you now get a message box (in the Win32 GUI) rather
+dnl   than the program exiting with no explanation.
+dnl - Made killpopup use the PCRS MIME-type checking and HTTP-header
+dnl   skipping.
+dnl - Removed tabs from "config"
+dnl - Moved duplicated url parsing code in "loaders.c" to a new funcition.
+dnl - Bumped up version number.
+dnl
+dnl Revision 1.1.1.1  2001/05/15 13:58:50  oes
+dnl Initial import of version 2.9.3 source tree
+dnl
+dnl 
+
+
+dnl =================================================================
+dnl AutoConf Initialization
+dnl =================================================================
+
+AC_REVISION($Revision: 1.126 $)
+AC_INIT(jcc.c)
+
+if test ! -f config.h.in; then
+   echo "You need to run autoheader first. "
+   echo -n "Shall I do this for you now? (y/n) "
+   read answer
+   if test "$answer" != "y"; then
+      exit 1
+   else
+      autoheader
+  fi
+fi  
+
+AC_CONFIG_HEADER([config.h])
+AC_CANONICAL_HOST
+
+dodk=auto
+DKPREFIX=none
+AC_ARG_WITH(docbook, dnl
+  --with-docbook=[[yes|no|directory]]	
+                           Enable docbook documentation creation 
+			   (default = yes, for gnu and linux),[dnl
+case "$with_docbook" in
+yes) dodk=yes;;
+no) dodk=no;;
+*) 
+	dodk=yes
+	DKPREFIX=$withval
+	;;
+esac
+])
+DB2HTML=false
+AC_ARG_WITH(db2html, dnl
+  --with-db2html=<path/executable>
+                          Set the location of the docbook to html converter
+                          (default = search),[dnl
+DB2HTML=$withval
+])
+
+dnl =================================================================
+dnl Application version number
+dnl =================================================================
+
+VERSION_MAJOR=3
+VERSION_MINOR=0
+VERSION_POINT=12
+CODE_STATUS="stable"
+
+dnl CODE_STATUS can be "alpha", "beta", or "stable", and will be
+dnl used for CGI output. Set version to 0.0.0 and status to "UNRELEASED"
+dnl whenever CVS in a stable branch differs from the last release.
+
+dnl =================================================================
+dnl Substitute the version numbers
+dnl =================================================================
+
+AC_SUBST(VERSION_MAJOR)
+AC_SUBST(VERSION_MINOR)
+AC_SUBST(VERSION_POINT)
+AC_SUBST(CODE_STATUS)
+
+dnl
+AC_DEFINE_UNQUOTED(VERSION_MAJOR,${VERSION_MAJOR})
+AC_DEFINE_UNQUOTED(VERSION_MINOR,${VERSION_MINOR})
+AC_DEFINE_UNQUOTED(VERSION_POINT,${VERSION_POINT})
+AC_DEFINE_UNQUOTED(VERSION,"${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_POINT}")
+AC_DEFINE_UNQUOTED(CODE_STATUS,"${CODE_STATUS}")
+
+dnl =================================================================
+dnl Checks for programs needed to build.
+dnl =================================================================
+
+dnl Keep AC_PROG_CC from setting its own defaults:
+if test "X$CFLAGS" = "X"; then
+   CFLAGS=" "
+fi
+
+AC_PROG_CC
+AC_PROG_CPP
+AC_PROG_INSTALL
+AC_PROG_LN_S
+AC_PROG_MAKE_SET
+AC_PROG_AWK
+
+AC_CHECK_PROG(GDB,gdb,yes,no)
+AC_PATH_PROG(BGROUPS,groups,no,/bin:/usr/bin:/usr/local/bin)
+AC_PATH_PROG(ID,id,no,/bin:/usr/bin:/usr/local/bin)
+AC_SUBST(ID)
+AC_SUBST(BGROUPS)
+
+dnl =================================================================
+dnl debug, gcc and gdb support 
+dnl =================================================================
+
+AC_ARG_WITH(debug,
+        [  --with-debug            Enable debug mode],
+        [
+                if test "x$withval" != "xno" ; then
+                    if test $ac_cv_prog_cc_g = yes; then
+                      if test "$GCC" = yes; then
+                        if test "$GDB"; then
+                          CFLAGS="$CFLAGS -ggdb"
+                        else
+                          CFLAGS="$CFLAGS -g"
+                        fi
+                        CFLAGS="$CFLAGS -Wshadow  -Wconversion"
+                      else
+                        CFLAGS="$CFLAGS -g"
+                      fi
+                   fi
+                fi
+        ],
+        [
+            if test "X$CFLAGS" = "X "; then # if CFLAGS were unset (see above)
+              if test "$GCC" = yes; then
+                CFLAGS="-O2"
+              fi
+            fi
+        ]
+)
+
+dnl =================================================================
+dnl Check for user and group validity
+dnl =================================================================
+
+
+if test "$EMXOS2" = yes; then
+  echo "Skipping user and group validity stuff.";
+
+else
+
+  $ID privoxy >/dev/null 2>/dev/null
+  if test $? -ne 0 ; then
+   AC_MSG_WARN(There is no user 'privoxy' on this system)
+  fi
+  AC_MSG_CHECKING([for user])
+  AC_ARG_WITH(user,
+        [  --with-user=privoxy          Set user under which privoxy will run],
+        [
+                if test "x$withval" != "xyes"; then
+                  if test $ID = no ; then
+                    AC_MSG_ERROR(There is no 'id' program on this system)
+                  else
+                    AC_MSG_RESULT($with_user)
+                    $ID $with_user 2>/dev/null >/dev/null
+                    if test $? -eq 0 ; then
+                      USER=$with_user;
+                    else
+                      AC_MSG_ERROR(There is no user '$with_user' on this system)
+                    fi
+                  fi
+                  else
+                   AC_MSG_ERROR(We need a user if you give me this parameter)
+                fi
+        ],
+        [
+          if test $ID = no ; then
+            AC_MSG_ERROR(There is no 'id' programm on this system)
+          else
+            AC_MSG_RESULT(none specified)
+            USER=$with_user
+          fi
+        ]
+  )
+  AC_SUBST(USER)
+
+  AC_MSG_CHECKING([for group])
+  AC_ARG_WITH(group,
+        [  --with-group=privoxy         Set group for privoxy],
+        [ 
+                if test "x$withval" != "xyes"; then
+                  if test $BGROUPS = no ; then
+                    AC_MSG_ERROR(There is no 'groups' program on this system)
+                  else
+                    AC_MSG_RESULT($with_group)
+                    $BGROUPS $USER >/dev/null
+                    if test $? -eq 0 ; then
+                    # FIXME: this fails if valid group, but not first group
+                    # listed.
+                      if test "$with_group" != "`$BGROUPS $USER | sed 's/.*: //' 2>/dev/null |$AWK '{print $1}'`" ; then
+                        AC_MSG_ERROR(The given value '$withval' does not match group entry)
+                      else
+                        GROUP=$with_group;
+                      fi
+                    else
+                      AC_MSG_ERROR(There is no group entry for user '$USER')
+                    fi
+                  fi
+                else
+                   AC_MSG_ERROR(We need a group if you give me this parameter)
+                fi
+        ],
+        [
+          if test $BGROUPS = no ; then
+            AC_MSG_ERROR(There is no 'groups' programm on this system)
+          else
+            AC_MSG_RESULT(none specified)
+            GROUP=$with_group;
+          fi
+        ]
+  )
+  AC_SUBST(GROUP)
+
+fi
+
+dnl =================================================================
+dnl additional gcc flags
+dnl =================================================================
+dnl 
+if test "$GCC"; then
+  if test "$host" != "powerpc-unknown-amigaos"; then
+    CFLAGS="-pipe $CFLAGS"
+  fi
+fi
+
+
+dnl =================================================================
+dnl Build type
+dnl =================================================================
+dnl
+dnl Must do this first.
+dnl
+dnl Reason: This sets CFLAGS in order to switch the Cygwin compiler
+dnl into Cygwin or MinGW32 modes.  Depending on the mode selected,
+dnl the compiler will use completely different sets of library
+dnl and include files.
+dnl 
+dnl =================================================================
+
+AC_MINGW32
+AC_CYGWIN
+
+if test "$MINGW32" = "yes"; then
+  target_type=mingw
+else
+  if test "$CYGWIN" = "yes"; then
+    target_type=cygwin
+  else
+    target_type=unix
+  fi
+fi
+
+if test $dodk = auto; then
+	dodk=no
+	if test $target_type = unix; then
+		case "$host_os" in
+		linux* | gnu*)
+			dodk=yes
+		;;
+		esac
+	fi
+fi
+
+dnl Decide what to do based on target_type
+dnl Note: PTHREAD_LIB is always set, even if pthread is disabled.
+dnl This is because we don't know yet whether pthread is enabled.
+
+AC_ARG_ENABLE(mingw32,
+[  --enable-mingw32                Use mingw32 for a Windows GUI],
+[if test $enableval = yes; then
+  target_type=mingw
+fi])
+
+if test $target_type = mingw; then
+  WIN_ONLY=
+  SPECIAL_CFLAGS="-mwindows -mno-cygwin"
+  PTHREAD_LIB=-lpthreadGC
+  echo "Using mingw32 (Win32 GUI)"
+else
+  WIN_ONLY=#
+  if test $target_type = cygwin; then
+    SPECIAL_CFLAGS="-mno-win32"
+    PTHREAD_LIB=
+    echo "Using Cygnus (Win32 command line)"
+  else
+    SPECIAL_CFLAGS=
+    PTHREAD_LIB=-lpthread
+  fi
+fi
+AC_SUBST(WIN_ONLY)
+
+dnl Checking which text html browser we have avaliable
+if test $dodk != no; then
+	AC_CHECK_PROGS(WDUMP,w3m lynx links,false)
+	if test "$WDUMP" = false; then
+		AC_MSG_WARN(You need some kind of text browser to build documentation \(w3m, lynx and links are supported\))
+	fi
+	if test $DB2HTML = false; then
+		dnl We need to clean the variable, otherwise AC_CHECK_PROGS
+		dnl will fail	
+		DB2HTML=""
+		AC_CHECK_PROGS(DB2HTML,db2html docbook2html,false)
+	fi
+fi
+AC_SUBST(WDUMP)
+AC_SUBST(DB2HTML)
+
+dnl If we use rpm, we need to check where %_topdir is
+AC_CHECK_PROGS(RPMBIN,rpm,false)
+if test $RPMBIN != false; then
+		RPM_BASE=`rpm --eval "%{_topdir}"`
+		if test "$RPM_BASE" = ""; then
+			RPM_BASE=/usr/src/redhat
+		fi
+fi
+AC_SUBST(RPM_BASE)
+
+dnl Check for jade, so we can build the documentation
+AC_CHECK_PROGS(JADEBIN,jade openjade,false)
+AC_SUBST(JADEBIN)
+
+dnl Check for man2html for docs.
+AC_CHECK_PROGS(MAN2HTML,man2html,false)
+AC_SUBST(MAN2HTML)
+
+dnl Set doc status flag for conditional content inclusions
+DOC_STATUS=p-not-stable
+if  test $CODE_STATUS = stable; then
+     DOC_STATUS="p-stable"
+fi
+AC_SUBST(DOC_STATUS)
+
+dnl Checking for the docbook.dsl stylesheet file
+dnl It is still not portable (directory slash)
+JADECAT=""
+if test $dodk = yes; then
+  if test $DKPREFIX = none; then
+    for i in /usr/share/sgml/docbook/dsssl-stylesheets \
+             /usr/share/sgml/docbkdsl /usr/share/sgml/docbook-dsssl \
+             /usr/local/share/sgml/docbook/dsssl/modular \
+             /usr/share/sgml/docbook/stylesheet/dsssl/modular/ \
+             ; do
+dnl  echo -n does not fly with /bin/sh.
+dnl      echo -n "checking for $i/html/docbook.dsl..."
+      AC_MSG_CHECKING([for $i])
+      if test -f $i/html/docbook.dsl; then
+        echo "yes"
+        DKPREFIX=$i
+        break
+      else
+        echo "no"
+      fi
+    done
+# where are the catalogs?
+    for i in /usr/share/sgml/CATALOG.docbk30 \
+             /usr/share/sgml/CATALOG.docbk31 \
+             /usr/share/sgml/CATALOG.docbk31 \
+             /usr/local/share/sgml/docbook/3.0/docbook.cat \
+             /usr/local/share/sgml/docbook/3.1/docbook.cat \
+             /usr/share/sgml/docbook/dtd/3.1/docbook.cat \
+             ; do
+dnl     echo -n "checking for $i..."
+      AC_MSG_CHECKING([for $i])
+      if test -f $i; then
+        echo "yes"
+        JADECAT="$JADECAT -c $i"
+      else
+        echo "no"
+      fi
+    done
+  fi
+fi
+AC_SUBST(JADECAT)
+AC_SUBST(DKPREFIX)
+
+dnl Save old CFLAGS so we can restore them later, then add SPECIAL_CFLAGS
+old_CFLAGS_nospecial=$CFLAGS
+CFLAGS="$CFLAGS $SPECIAL_CFLAGS"
+
+# Hack to force AutoConf to use the CFLAGS we just set
+dnl Warning: This may break with a future version of Autoconf
+dnl          Tested with autoconf 2.13
+ac_cpp='$CPP $CPPFLAGS $SPECIAL_CFLAGS'
+ac_compile='${CC-cc} -c $CFLAGS $CPPFLAGS conftest.$ac_ext 1>&5'
+ac_link='${CC-cc} -o conftest${ac_exeext} $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS 1>&5'
+
+
+dnl =================================================================
+dnl Thread support
+dnl =================================================================
+
+AC_CHECK_HEADER(pthread.h, [have_pthread=yes], [have_pthread=no])
+
+AC_ARG_ENABLE(pthread,
+[  --disable-pthread               Don't use POSIX threads (pthreads)],
+[if test $enableval = no; then
+  # Disable pthreads
+  if test $have_pthread = yes; then
+     AC_MSG_WARN([pthreads seem to be available but you are using --disable-pthread.]) 
+     AC_MSG_WARN([This is almost always a mistake and can render Privoxy unacceptable slow.])
+  fi
+  have_pthread=no
+fi])
+
+if test $have_pthread = yes; then
+  PTHREAD_ONLY=
+  AC_DEFINE(FEATURE_PTHREAD)
+  echo Using POSIX threads
+  if test "$GCC" = "yes"; then
+    # Set a GCC specific switch:
+    if test "$target_type" = "unix"; then
+      ac_jgf_save_CFLAGS=$CFLAGS
+      CFLAGS="$CFLAGS -pthread"
+      AC_TRY_LINK([#include <pthread.h>],
+        [void *p = pthread_create;],
+        [
+          # This compiler switch makes GCC on Linux thread-safe
+          # However, it's not supported on most other OS.
+          PTHREAD_LIB=
+          SPECIAL_CFLAGS="-pthread"
+        ])
+      CFLAGS=$ac_jgf_save_CFLAGS
+    fi
+  fi
+else
+  PTHREAD_ONLY=#
+  echo Using native threads
+fi
+
+AC_SUBST(PTHREAD_ONLY)
+
+dnl =================================================================
+dnl Support for thread-safe versions of gethostbyaddr, gethostbyname,
+dnl gmtime and localtime
+dnl =================================================================
+
+dnl Next line needed to find the gethost*_r functions on Solaris
+AC_CHECK_LIB(nsl, gethostbyname)
+
+AC_CHECK_FUNC(gethostbyaddr_r, [
+  AC_MSG_CHECKING([signature of gethostbyaddr_r])
+  AC_TRY_COMPILE([
+#   include <netdb.h>
+  ], [
+    struct hostent *h, *hp;
+    char *a, *b;
+    int l, bl, t, e;
+    (void) gethostbyaddr_r(a, l, t, h, b, bl, &hp, &e)
+  ], [
+    AC_DEFINE(HAVE_GETHOSTBYADDR_R_8_ARGS)
+    AC_MSG_RESULT([8 args])
+  ], [
+    AC_TRY_COMPILE([
+#     include <netdb.h>
+    ], [
+      struct hostent *h;
+      char *a, *b;
+      int l, bl, t, e;
+      (void) gethostbyaddr_r(a, l, t, h, b, bl, &e)
+    ], [
+      AC_DEFINE(HAVE_GETHOSTBYADDR_R_7_ARGS)
+      AC_MSG_RESULT([7 args])
+    ], [
+      AC_TRY_COMPILE([
+#       include <netdb.h>
+      ], [
+        struct hostent_data *d;
+        struct hostent *h;
+        char a,
+        int l, t;
+        (void) gethostbyaddr_r(a, l, t, h, d)
+      ], [
+        AC_DEFINE(HAVE_GETHOSTBYADDR_R_5_ARGS)
+        AC_MSG_RESULT([5 args])
+      ], [
+        AC_MSG_RESULT(unrecognised)
+      ])
+    ])
+  ])
+], [
+  AC_MSG_RESULT(no)
+])
+
+AC_CHECK_FUNC(gethostbyname_r, [
+  AC_MSG_CHECKING([signature of gethostbyname_r])
+  AC_TRY_COMPILE([
+#   include <netdb.h>
+  ], [
+    struct hostent *h, *r;
+    char *n, *b;
+    int bl, e;
+    (void) gethostbyname_r(n, h, b, bl, &r, &e)
+  ], [
+    AC_DEFINE(HAVE_GETHOSTBYNAME_R_6_ARGS)
+    AC_MSG_RESULT([6 args])
+  ], [
+    AC_TRY_COMPILE([
+#     include <netdb.h>
+    ], [
+      struct hostent *h;
+      char *n, *b;
+      int bl, e;
+      (void) gethostbyname_r(n, h, b, bl, &e)
+    ], [
+      AC_DEFINE(HAVE_GETHOSTBYNAME_R_5_ARGS)
+      AC_MSG_RESULT([5 args])
+    ], [
+      AC_TRY_COMPILE([
+#       include <netdb.h>
+      ], [
+        struct hostent_data *d;
+        struct hostent *h;
+        char *n,
+        (void) gethostbyname_r(n, h, d)
+      ], [
+        AC_DEFINE(HAVE_GETHOSTBYNAME_R_3_ARGS)
+        AC_MSG_RESULT([3 args])
+      ], [
+        AC_MSG_RESULT(unrecognised)
+      ])
+    ])
+  ])
+], [
+  AC_MSG_RESULT(no)
+])
+
+AC_CHECK_FUNC(gmtime_r, [
+  AC_MSG_CHECKING([signature of gmtime_r])
+  AC_TRY_COMPILE([
+#   include <time.h>
+  ], [
+    struct time *t;
+    struct tm *tm;
+    (void) gmtime_r(t, tm)
+  ], [
+    AC_MSG_RESULT(ok)
+    AC_DEFINE(HAVE_GMTIME_R)
+  ], [
+    AC_MSG_RESULT(unrecognised)
+  ])
+], [
+  AC_MSG_RESULT(no)
+])
+
+AC_CHECK_FUNC(localtime_r, [
+  AC_MSG_CHECKING([signature of localtime_r])
+  AC_TRY_COMPILE([
+#   include <time.h>
+  ], [
+    struct time *t;
+    struct tm *tm;
+    (void) localtime_r(t, tm)
+  ], [
+    AC_MSG_RESULT(ok)
+    AC_DEFINE(HAVE_LOCALTIME_R)
+  ], [
+    AC_MSG_RESULT(unrecognised)
+  ])
+], [
+  AC_MSG_RESULT(no)
+])
+
+dnl =================================================================
+dnl Solaris specific
+dnl FIXME: Not tested on Solaris yet...
+dnl ISFIXED: Have tested it on Solaris, but there are other ways to
+dnl 	make these checks generic, e.g.:
+dnl AC_CHECK_FUNC(getsockopt, , AC_CHECK_LIB(socket, getsockopt))
+dnl	(Moritz Barsnick <moritz@barsnick.net>)
+dnl =================================================================
+
+
+SOCKET_LIB=
+
+case "$host" in
+*-solaris*) SOCKET_LIB="-lsocket -lnsl"
+            AC_DEFINE(__EXTENSIONS__)
+            if test "$GCC" = "yes"; then
+              # Set a GCC specific switch:
+              # This compiler switch makes Solaris thread-safe
+              PTHREAD_LIB=
+              SPECIAL_CFLAGS="-pthreads"
+            else
+              # What do we do without GCC? Guess this:
+              SPECIAL_CFLAGS="-D_REENTRANT"
+            fi
+;;
+esac
+
+AC_SUBST(SOCKET_LIB)
+
+dnl =================================================================
+dnl Solaris problem, and others perhaps (socklen_t is undefined)
+dnl =================================================================
+
+AC_MSG_CHECKING([for socklen_t])
+AC_EGREP_HEADER(socklen_t, sys/socket.h, AC_MSG_RESULT([yes]),
+	AC_MSG_RESULT([no])
+	AC_DEFINE(socklen_t,int,
+		[ Define to 'int' if <sys/socket.h> doesn't have it. ]))
+
+
+dnl =================================================================
+dnl OS/2 specific
+dnl =================================================================
+
+case "$host" in
+*-os2-emx*) SOCKET_LIB=-lsocket
+;;
+esac
+
+AC_SUBST(SOCKET_LIB)
+
+dnl =================================================================
+dnl Mac OSX specific
+dnl =================================================================
+    
+case "$host" in
+*-apple-darwin*) SPECIAL_CFLAGS="-Dunix"
+;;  
+esac
+
+dnl =================================================================
+dnl OpenBSD specific
+dnl =================================================================
+
+case "$host" in
+*-openbsd*) SPECIAL_CFLAGS="$SPECIAL_CFLAGS -Dunix"
+;;
+esac
+
+dnl =================================================================
+dnl AmigaOS specific
+dnl =================================================================
+
+AMIGAOS_ONLY=#
+
+case "$host" in
+*-amigaos) AMIGAOS_ONLY=
+;;
+esac
+
+AC_SUBST(AMIGAOS_ONLY)
+
+dnl =================================================================
+dnl Check for standard compiler stuff
+dnl =================================================================
+
+AC_EXEEXT
+AC_OBJEXT
+AC_HEADER_STDC
+AC_HEADER_DIRENT
+AC_C_CONST
+AC_TYPE_SIZE_T
+AC_TYPE_PID_T
+AC_HEADER_TIME
+AC_STRUCT_TM
+AC_CHECK_SIZEOF(int, 4)
+AC_CHECK_SIZEOF(char *, 4)
+AC_CHECK_SIZEOF(long, 4)
+AC_CHECK_SIZEOF(long long, 8)
+AC_CHECK_SIZEOF(size_t, 4)
+
+dnl Checks for header files.
+dnl AC_HEADER_SYS_WAIT
+dnl AC_CHECK_HEADERS(fcntl.h limits.h malloc.h sys/time.h unistd.h)
+AC_CHECK_HEADERS([OS.h arpa/inet.h errno.h fcntl.h limits.h locale.h netdb.h netinet/in.h stddef.h stdlib.h string.h sys/ioctl.h sys/socket.h sys/time.h sys/timeb.h sys/wait.h unistd.h])
+
+dnl Checks for library functions.
+dnl AC_TYPE_SIGNAL
+dnl AC_CHECK_FUNC(strstr)
+dnl bcopy and memmove are for PCRE
+AC_CHECK_FUNCS([strerror bcopy memmove])
+AC_PROG_GCC_TRADITIONAL
+dnl uncommenting does not work for swa. suse linux
+dnl AC_FUNC_MALLOC
+AC_FUNC_SETPGRP
+AC_TYPE_SIGNAL
+dnl uncommenting does not work for swa. suse linux
+dnl AC_FUNC_STAT
+AC_CHECK_FUNCS([access atexit getcwd gethostbyaddr gethostbyaddr_r gethostbyname gethostbyname_r gettimeofday inet_ntoa localtime_r memchr memmove memset poll putenv random regcomp select setlocale snprintf socket strchr strdup strerror strftime strlcat strlcpy strptime strstr strtoul timegm tzset])
+
+
+dnl =================================================================
+dnl Checks for libraries.
+dnl =================================================================
+dnl Note: Some systems may have the library but not the system header
+dnl       file, so we must check for both.
+dnl       Also check for correct version
+AC_CHECK_LIB(pcre, pcre_compile, [
+   AC_CHECK_HEADER(pcre.h, [
+      AC_EGREP_HEADER(pcre_fullinfo, pcre.h, [have_pcre=yes], [AC_MSG_WARN([[pcre old version installed]]); have_pcre=no])
+   ], [
+      AC_CHECK_HEADER(pcre/pcre.h, [
+         AC_EGREP_HEADER(pcre_fullinfo, pcre/pcre.h, [have_pcre=yes]; [AC_DEFINE(PCRE_H_IN_SUBDIR)], [AC_MSG_WARN([[pcre old version installed]]); have_pcre=no])
+      ], [have_pcre=no])
+   ])
+], [have_pcre=no])
+ 
+AC_CHECK_LIB(pcreposix, regcomp, [
+   AC_CHECK_HEADER(pcreposix.h, [
+      AC_EGREP_HEADER(pcreposix_regerror, pcreposix.h, [AC_MSG_WARN([[pcreposix old version installed]]); have_pcreposix=no], [have_pcreposix=yes])
+   ], [
+      AC_CHECK_HEADER(pcre/pcreposix.h, [
+         AC_EGREP_HEADER(pcreposix_regerror, pcre/pcreposix.h, [AC_MSG_WARN([[pcreposix old version installed]]); have_pcreposix=no], [have_pcreposix=yes]; [AC_DEFINE(PCREPOSIX_H_IN_SUBDIR)])
+      ], [have_pcreposix=no])
+   ])
+], [have_pcreposix=no], -lpcre) 
+
+dnl ================================================================
+dnl libpcrs is temporarily disabled.
+dnl
+dnl Privoxy's own pcrs version fixes some problems that
+dnl are present in libpcrs 0.3, the last pcrs release we
+dnl know of, and as libpcrs seems to be currently unmaintained
+dnl we can't send these fixes upstream.
+dnl ================================================================
+dnl
+dnl AC_CHECK_LIB(pcrs, pcrs_compile, [AC_CHECK_HEADER(pcrs.h, [have_pcrs=yes], [have_pcrs=no])], [have_pcrs=no], -lpcre)
+
+dnl =================================================================
+dnl Always defined
+dnl =================================================================
+
+AC_DEFINE(__MT__)
+
+dnl =================================================================
+dnl Features
+dnl =================================================================
+
+AC_ARG_ENABLE(toggle,
+[  --disable-toggle                Don't support temporary disable],
+[if test $enableval = yes; then
+  AC_DEFINE(FEATURE_TOGGLE)
+fi],AC_DEFINE(FEATURE_TOGGLE))
+
+AC_ARG_ENABLE(force,
+[  --disable-force                 Don't allow single-page disable],
+[if test $enableval = yes; then
+  AC_DEFINE(FEATURE_FORCE_LOAD)
+fi],AC_DEFINE(FEATURE_FORCE_LOAD))
+
+AC_ARG_ENABLE(fast-redirects,
+[  --disable-fast-redirects        Don't support fast redirects],
+[if test $enableval = yes; then
+  AC_DEFINE(FEATURE_FAST_REDIRECTS)
+fi], AC_DEFINE(FEATURE_FAST_REDIRECTS))
+
+AC_ARG_ENABLE(stats,
+[  --disable-stats                 Don't keep statistics],
+[if test $enableval = yes; then
+  AC_DEFINE(FEATURE_STATISTICS)
+fi],AC_DEFINE(FEATURE_STATISTICS))
+
+AC_ARG_ENABLE(ie-images,
+[  --enable-ie-images              Enable a quick but not always reliable auto-detect whether requests from
+                                  MS Internet Explorer are for an image or not.],
+[if test $enableval = yes; then
+  AC_DEFINE(FEATURE_IMAGE_DETECT_MSIE)
+fi],)
+
+AC_ARG_ENABLE(image-blocking,
+[  --disable-image-blocking        Don't try to figure out whether a request is 
+                                  for an image or HTML - assume HTML.],
+[if test $enableval = yes; then
+  AC_DEFINE(FEATURE_IMAGE_BLOCKING)
+fi],
+AC_DEFINE(FEATURE_IMAGE_BLOCKING))
+
+AC_ARG_ENABLE(acl-files,
+[  --disable-acl-files             Prevents the use of ACL files to control access to
+                                  Privoxy by IP address.],
+[if test $enableval = yes; then
+  AC_DEFINE(FEATURE_ACL)
+fi],
+AC_DEFINE(FEATURE_ACL))
+
+AC_ARG_ENABLE(trust-files,
+[  --disable-trust-files           Prevents the use of trust files.],
+[if test $enableval = yes; then
+  AC_DEFINE(FEATURE_TRUST)
+fi],
+AC_DEFINE(FEATURE_TRUST))
+
+AC_ARG_ENABLE(editor,
+[  --disable-editor                Prevents the use of the web-based actions file
+                                  editor and web-based temporary disable setting.],
+[if test $enableval = yes; then
+  AC_DEFINE(FEATURE_CGI_EDIT_ACTIONS)
+fi],
+AC_DEFINE(FEATURE_CGI_EDIT_ACTIONS))
+
+AC_ARG_ENABLE(no-gifs,
+[  --enable-no-gifs                Use politically correct PNG format instead of GIF
+                                  for built-in images. May not work with all browsers.],
+[if test $enableval = yes; then
+  AC_DEFINE(FEATURE_NO_GIFS)
+fi])
+
+AC_ARG_ENABLE(graceful-termination,
+[  --enable-graceful-termination   Allow to shutdown Privoxy through the webinterface.],
+[if test $enableval = yes; then
+  AC_DEFINE(FEATURE_GRACEFUL_TERMINATION)
+fi])
+
+AC_ARG_ENABLE(extended-host-patterns,
+[  --enable-extended-host-patterns Allow extended regular expressions in host patterns.],
+[if test $enableval = yes; then
+  AC_DEFINE(FEATURE_EXTENDED_HOST_PATTERNS)
+fi])
+
+dnl pcre/pcrs is needed for CGI anyway, so
+dnl the choice is only between static and
+dnl dynamic:
+
+AC_ARG_ENABLE(dynamic-pcre,
+[  --disable-dynamic-pcre          Use the built-in, static pcre, even if libpcre is available],
+[ if test $enableval = "no"; then have_pcre=no; fi ])
+
+dnl =================================================
+dnl libpcrs is temporarily disabled,
+dnl see comment above for the reason.
+dnl =================================================
+dnl AC_ARG_ENABLE(dynamic-pcrs,
+dnl [  --disable-dynamic-pcrs          Use the built-in, static pcrs, even if libpcrs is available],
+dnl [ if test $enableval = "no"; then have_pcrs=no; fi ])
+
+
+dnl ====================================================
+dnl This check is incomplete. For mingw32 zlib is found
+dnl by configure, but not necessarily by the compiler.
+dnl ====================================================
+AC_ARG_ENABLE(zlib,
+[  --disable-zlib                  Don't use zlib to decompress data before filtering.],
+[enableval2=$enableval],
+[enableval2=yes])
+if test $enableval2 = yes; then
+  AC_CHECK_LIB(z, zlibVersion, [have_zlib="yes"], [have_zlib="no"])
+  if test $have_zlib = "yes"; then
+    LIBS="$LIBS -lz"
+    AC_DEFINE(FEATURE_ZLIB,1,[Define to 1 to use compression through the zlib library.])
+  else
+   AC_MSG_WARN([No zlib found.
+   Privoxy will not be able to filter compressed content.
+   This may become a fatal error in the future.])
+  fi  
+fi
+
+
+# If we have libpcre and either we also have pcreposix or
+# we don't need pcreposix, then link pcre dynamically; else
+# build it and link statically
+#
+if test $have_pcre = "yes"; then
+  echo "using libpcre"
+  pcre_dyn=yes
+  STATIC_PCRE_ONLY=#
+  LIBS="$LIBS -lpcre -lpcreposix"
+else
+  AC_MSG_WARN([You are using the static PCRE code which is scheduled for removal, for details see: 
+    https://sourceforge.net/mailarchive/message.php?msg_id=20080511195555.2dc6cfdc%40fabiankeil.de])
+  pcre_dyn=no
+  AC_DEFINE(STATIC_PCRE)
+  STATIC_PCRE_ONLY=
+fi
+
+if test $have_pthread = "yes" -o $target_type = "mingw"; then
+  echo Enabling keep-alive support for outgoing connections.
+  AC_DEFINE(FEATURE_CONNECTION_KEEP_ALIVE)
+fi
+
+dnl =================================================
+dnl libpcrs is temporarily disabled,
+dnl see comment above for the reason.
+dnl =================================================
+dnl # If we have libpcrs and pcre is linked dynamically
+dnl # then also link pcrs dynamically, else build and link
+dnl # pcrs statically
+dnl
+dnl if test $have_pcrs = "yes" -a $pcre_dyn = "yes"; then
+dnl  echo "using libpcrs"
+dnl  STATIC_PCRS_ONLY=#
+dnl  LIBS="$LIBS -lpcrs"
+dnl else
+dnl  echo "using built-in static pcrs"
+  AC_DEFINE(STATIC_PCRS)
+  STATIC_PCRS_ONLY=
+dnl fi
+
+AC_SUBST(STATIC_PCRE_ONLY)
+AC_SUBST(STATIC_PCRS_ONLY)
+
+dnl =================================================================
+dnl Final cleanup and output
+dnl =================================================================
+
+dnl Remove the SPECIAL_CFLAGS stuff from CFLAGS, and add it seperately
+dnl in the Makefile
+CFLAGS=$old_CFLAGS_nospecial
+AC_SUBST(SPECIAL_CFLAGS)
+
+AC_SUBST(PTHREAD_LIB)
+
+AC_OUTPUT(GNUmakefile doc/source/ldp.dsl)

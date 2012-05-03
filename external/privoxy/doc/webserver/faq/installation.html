@@ -1,0 +1,569 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Installation</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Privoxy Frequently Asked Questions"
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="General Information"
+HREF="general.html"><LINK
+REL="NEXT"
+TITLE="Configuration"
+HREF="configuration.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="../p_doc.css"><META
+HTTP-EQUIV="Content-Type"
+CONTENT="text/html;
+charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#EEEEEE"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Privoxy Frequently Asked Questions</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="general.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="configuration.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="INSTALLATION"
+>2. Installation</A
+></H1
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="WHICHBROWSERS"
+>2.1. Which browsers are supported by Privoxy?</A
+></H3
+><P
+> Any browser that can be configured to use a proxy, which 
+ should be virtually all browsers, including
+ <SPAN
+CLASS="APPLICATION"
+>Firefox</SPAN
+>, <SPAN
+CLASS="APPLICATION"
+>Internet
+ Explorer</SPAN
+>, <SPAN
+CLASS="APPLICATION"
+>Opera</SPAN
+>, and 
+ <SPAN
+CLASS="APPLICATION"
+>Safari</SPAN
+> among others.
+ Direct browser support is not an absolute requirement since
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> runs as a separate application and talks
+ to the browser in the standardized HTTP protocol, just like a web server
+ does.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="WHICHOS"
+>2.2. Which operating systems are supported?</A
+></H3
+><P
+> At present, <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> is known to run on
+ Windows(95, 98, ME, 2000, XP, Vista), GNU/Linux (RedHat, SuSE, Debian,
+ Fedora, Gentoo, Slackware and others), Mac OSX, OS/2, AmigaOS, FreeBSD,
+ NetBSD, OpenBSD, Solaris, and various other flavors of Unix.</P
+><P
+> But any operating system that runs TCP/IP, can conceivably take advantage of
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> in a networked situation where
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> would run as a server on a LAN gateway. 
+ Then only the <SPAN
+CLASS="QUOTE"
+>"gateway"</SPAN
+> needs to be running one of the above
+ operating systems.</P
+><P
+> Source code is freely available, so porting to other operating systems 
+ is always a possibility.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="EMAIL-CLIENT"
+>2.3. Can I use Privoxy with my email client?</A
+></H3
+><P
+> As long as there is some way to set a HTTP proxy for the client, then yes,
+ any application can be used, whether it is strictly speaking a
+ <SPAN
+CLASS="QUOTE"
+>"browser"</SPAN
+> or not. Though this may not be the best approach for
+ dealing with some of the common abuses of HTML in email. See <A
+HREF="configuration.html#OUTLOOK"
+>How can I configure <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>
+ with <SPAN
+CLASS="APPLICATION"
+>Outlook</SPAN
+>?</A
+> below for more on
+ this. </P
+><P
+> Be aware that HTML email presents a number of unique security and privacy
+ related issues, that can require advanced skills to overcome. The developers
+ recommend using email clients that can be configured to convert HTML to plain
+ text for these reasons.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="FIRSTSTEP"
+>2.4. I just installed Privoxy. Is there anything 
+special I have to do now?</A
+></H3
+><P
+> All browsers should be told to use <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> 
+ as a proxy by specifying the correct proxy address and port number 
+ in the appropriate configuration area for the browser. It's possible
+ to combine <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> with a packet filter to intercept HTTP requests
+ even if the client isn't explicitly configured to use <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>,
+ but where possible, configuring the client is recommended. See 
+ <A
+HREF="../user-manual/startup.html"
+TARGET="_top"
+>the User Manual for more
+ details</A
+>. You should also flush your browser's memory and disk
+ cache to get rid of any cached junk items, and remove any stored 
+ <A
+HREF="http://en.wikipedia.org/wiki/Browser_cookie"
+TARGET="_top"
+>cookies</A
+>.&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="LOCALHOST"
+>2.5. What is the proxy address of Privoxy?</A
+></H3
+><P
+>  If you set up the <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> to run on
+  the computer you browse from (rather than your ISP's server or some
+  networked computer on a LAN), the proxy will be on <TT
+CLASS="LITERAL"
+>127.0.0.1</TT
+> 
+  (sometimes referred to as <SPAN
+CLASS="QUOTE"
+>"localhost"</SPAN
+>,
+  which is the special name used by every computer on the Internet to refer
+  to itself) and the port will be 8118 (unless you used the <A
+HREF="../user-manual/config.html#LISTEN-ADDRESS"
+TARGET="_top"
+>listen-address</A
+>
+  config option to tell <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> to run on
+  a different port).
+ </P
+><P
+>  When configuring your browser's proxy settings you typically enter
+  the word <SPAN
+CLASS="QUOTE"
+>"localhost"</SPAN
+> or the IP address <SPAN
+CLASS="QUOTE"
+>"127.0.0.1"</SPAN
+>
+  in the boxes next to <SPAN
+CLASS="QUOTE"
+>"HTTP"</SPAN
+> and <SPAN
+CLASS="QUOTE"
+>"Secure"</SPAN
+> (HTTPS) and
+  then the number <SPAN
+CLASS="QUOTE"
+>"8118"</SPAN
+> for <SPAN
+CLASS="QUOTE"
+>"port"</SPAN
+>. 
+  This tells your browser to send all web requests to <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>
+  instead of directly to the Internet.
+ </P
+><P
+>  <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> can also be used to proxy for 
+  a Local Area Network. In this case, your would enter either the IP 
+  address of the LAN host where <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> 
+  is running, or the equivalent hostname, e.g. <TT
+CLASS="LITERAL"
+>192.168.1.1</TT
+>.
+  Port assignment would be same as above. Note that
+  <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> doesn't listen on any LAN interfaces by
+  default.
+ </P
+><P
+>  <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> does not currently handle
+  any other protocols such as FTP, SMTP, IM, IRC, ICQ, etc.
+ </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="NOTHING"
+>2.6. I just installed Privoxy, and nothing is happening.
+All the ads are there. What's wrong?</A
+></H3
+><P
+> Did you configure your browser to use <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> 
+ as a proxy? It does not sound like it. See above. You might also try flushing
+ the browser's caches to force a full re-reading of pages. You can verify 
+ that <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> is running, and your browser 
+ is correctly configured by entering the special URL: 
+ <A
+HREF="http://p.p/"
+TARGET="_top"
+>http://p.p/</A
+>. 
+ 
+ This should take you to a page titled <SPAN
+CLASS="QUOTE"
+>"This is Privoxy.."</SPAN
+> with
+ access to <SPAN
+CLASS="APPLICATION"
+>Privoxy's</SPAN
+> internal configuration.
+ If you see this, then you are good to go. If you receive a page saying 
+ <SPAN
+CLASS="QUOTE"
+>"Privoxy is not running"</SPAN
+>, then the browser is not set up to use
+ your <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> installation.
+ If you receive anything else (probably nothing at all), it could either
+ be that the browser is not set up correctly, or that
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> is not running at all. Check the <A
+HREF="../user-manual/config.html#LOGFILE"
+TARGET="_top"
+>log file</A
+>. For instructions
+ on starting <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> and browser configuration,
+ see the <A
+HREF="http://www.privoxy.org/user-manual/startup.html"
+TARGET="_top"
+>chapter
+ on starting <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+></A
+> in the
+ <A
+HREF="http://www.privoxy.org/user-manual/"
+TARGET="_top"
+>User Manual</A
+>.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="NOTUSED"
+>2.7. I get a <SPAN
+CLASS="QUOTE"
+>"Privoxy is not being used"</SPAN
+> dummy page although
+Privoxy is running and being used.</A
+></H3
+><P
+> First, make sure that Privoxy is <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>really</I
+></SPAN
+> running and
+ being used by visiting <A
+HREF="http://p.p/"
+TARGET="_top"
+>http://p.p/</A
+>. You
+ should see the <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> main page. If not, see
+ the <A
+HREF="http://www.privoxy.org/user-manual/startup.html"
+TARGET="_top"
+>chapter
+ on starting <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+></A
+> in the
+ <A
+HREF="http://www.privoxy.org/user-manual/"
+TARGET="_top"
+>User Manual</A
+>.</P
+><P
+> Now if <A
+HREF="http://p.p/"
+TARGET="_top"
+>http://p.p/</A
+> works for you, but
+ other parts of <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>'s web interface show
+ the dummy page, your browser has cached a redirection it encountered before
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> was being used. You need to clear your
+ browser's cache. Note that shift-reloading the dummy page won't help, since
+ that'll only refresh the dummy page, not the redirection that lead you there.</P
+><P
+> The procedure for clearing the cache varies from browser to browser. For
+ example, <SPAN
+CLASS="APPLICATION"
+>Mozilla/Netscape</SPAN
+> users would click 
+ <SPAN
+CLASS="GUIBUTTON"
+>Edit</SPAN
+> --&#62; <SPAN
+CLASS="GUIBUTTON"
+>Preferences</SPAN
+> --&#62;
+ <SPAN
+CLASS="GUIBUTTON"
+>Advanced</SPAN
+> --&#62; <SPAN
+CLASS="GUIBUTTON"
+>Cache</SPAN
+> and
+ then click both <SPAN
+CLASS="QUOTE"
+>"<SPAN
+CLASS="GUIBUTTON"
+>Clear Memory Cache</SPAN
+>"</SPAN
+>
+ and <SPAN
+CLASS="QUOTE"
+>"<SPAN
+CLASS="GUIBUTTON"
+>Clear Disk Cache</SPAN
+>"</SPAN
+>.
+ In some <SPAN
+CLASS="APPLICATION"
+>Firefox</SPAN
+> versions it's
+ <SPAN
+CLASS="GUIBUTTON"
+>Tools</SPAN
+> --&#62; <SPAN
+CLASS="GUIBUTTON"
+>Options</SPAN
+> --&#62;
+ <SPAN
+CLASS="GUIBUTTON"
+>Privacy</SPAN
+> --&#62; <SPAN
+CLASS="GUIBUTTON"
+>Cache</SPAN
+> and
+ then click <SPAN
+CLASS="QUOTE"
+>"<SPAN
+CLASS="GUIBUTTON"
+>Clear Cache Now</SPAN
+>"</SPAN
+>.
+ </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="general.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="configuration.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>General Information</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Configuration</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
