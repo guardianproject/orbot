@@ -61,6 +61,8 @@ openssl-static/obj/local/armeabi/libcrypto.a:
 		ndk-build
 
 openssl-static/obj/local/armeabi/libssl.a:
+	cp config.sub openssl-static
+	cp config.guess openssl-static
 	cd openssl-static && \
 		ndk-build
 
@@ -86,10 +88,10 @@ openssl-static-clean:
 
 libevent/configure: 
 	cd libevent && ./autogen.sh
-	cp config.sub libevent
-	cp config.guess libevent
 
 libevent/Makefile: libevent/configure
+	cp config.sub libevent
+	cp config.guess libevent
 	cd libevent && \
  		CC="$(CC)" AR="$(AR)" RANLIB=$(RANLIB) CFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS)" \
 			./configure \
@@ -124,6 +126,8 @@ tor/configure:
 	cp config.guess tor
 
 tor/Makefile: tor/configure
+	cp config.sub tor
+	cp config.guess tor
 	cd tor && \
                 CC="$(CC)" AR="$(AR)" RANLIB=$(RANLIB) CFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS)" \
                         ./configure \
@@ -155,10 +159,10 @@ privoxy/configure:
 	cd privoxy && \
 	 ./autoheader
 	 ./autoconf
-	cp config.sub privoxy
-	cp config.guess privoxy	
 
 privoxy/Makefile: privoxy/configure
+	cp config.sub privoxy
+	cp config.guess privoxy	
 	cd privoxy && \
                 CC="$(CC)" AR="$(AR)" RANLIB=$(RANLIB) CFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS)" \
                         ./configure \
@@ -173,6 +177,7 @@ privoxy: privoxy-build-stamp
 	cp privoxy/privoxy bin
 
 privoxy-clean:
+	$(MAKE) -C privoxy clean
 	-rm -f bin/privoxy
 	-rm -f privoxy-build-stamp
 	-rm -f privoxy/config.status
@@ -202,9 +207,13 @@ assets: tor privoxy jtorctrl
 	install bin/tor ../res/raw	
 	install bin/privoxy ../res/raw	
 	install bin/jtorctrl.jar ../libs
-	
+
+assets-clean:
+	-rm ../res/raw/tor
+	-rm ../res/raw/privoxy
+	-rm ../libs/jtorctrl.jar	
 
 #------------------------------------------------------------------------------#
 # cleanup, cleanup, put the toys away
 
-clean: openssl-static-clean libevent-clean tor-clean privoxy-clean jtorctrl-clean
+clean: openssl-static-clean libevent-clean tor-clean privoxy-clean jtorctrl-clean assets-clean
