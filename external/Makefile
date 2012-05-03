@@ -86,6 +86,8 @@ openssl-static-clean:
 
 libevent/configure: 
 	cd libevent && ./autogen.sh
+	cp config.sub libevent
+	cp config.guess libevent
 
 libevent/Makefile: libevent/configure
 	cd libevent && \
@@ -118,6 +120,8 @@ libevent-clean:
 tor/configure: 
 	cd tor && \
 	 ./autogen.sh
+	cp config.sub tor
+	cp config.guess tor
 
 tor/Makefile: tor/configure
 	cd tor && \
@@ -151,6 +155,8 @@ privoxy/configure:
 	cd privoxy && \
 	 ./autoheader
 	 ./autoconf
+	cp config.sub privoxy
+	cp config.guess privoxy	
 
 privoxy/Makefile: privoxy/configure
 	cd privoxy && \
