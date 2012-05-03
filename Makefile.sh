@@ -1,9 +1,12 @@
 #!/bin/sh
 
+export ORBOT_BASE=$PWD
+
 # begin by testing NDK_ROOT
 if test -z $NDK_ROOT; then echo "NDK_ROOT is not exported, do so by something close to this: export NDK_ROOT=/path/to/android-ndk-r5"; exit; fi
 
 #clean
+cd $ORBOT_BASE
 rm -rf native
 rm res/raw/privoxy
 rm res/raw/tor
@@ -14,17 +17,14 @@ mkdir native
 mkdir native/lib
 mkdir native/include
 mkdir libs
-cd native
 
 #Build openssl using default ndk-build
 echo "BUILDING OPENSSL STATIC..."
-git clone git://github.com/guardianproject/android-external-openssl-ndk-static.git
-cd android-external-openssl-ndk-static
-
+cd external/openssl-static
 ndk-build
-cp obj/local/armeabi/*.a ../lib
-cp -R include/openssl ../include
-cd ../..
+cp obj/local/armeabi/*.a $ORBOT_BASE/native/lib
+cp -R include/openssl $ORBOT_BASE/native/include
+cd $ORBOT_BASE
 
 echo "SETTING UP NDK CROSS COMPILER..."
 # export needed variables
@@ -54,68 +54,56 @@ export OBJDUMP=$HOST-objdump
 export CPPFLAGS="--sysroot=$NDK_TOOLCHAIN/sysroot -I$NDK_TOOLCHAIN/sysroot/usr/include -I$NDK_TOOLCHAIN/include"
 export LDFLAGS="-L$NDK_TOOLCHAIN/sysroot/usr/lib -L$NDK_TOOLCHAIN/lib"
 
+echo $BUILD
 
 #Build libevent
 echo "BUILDING LIBEVENT..."
-mkdir native/libevent
-cd native/libevent
-svn co https://levent.svn.sourceforge.net/svnroot/levent/tags/release-1.4.13-stable/libevent/ .
+cd external/libevent
 ./autogen.sh
-./configure --host=arm-linux-eabi --build=$BUILD --prefix=$NDK_TOOLCHAIN
-make clean
+./configure --host=arm-linux-eabi --prefix=$NDK_TOOLCHAIN
 make
-cp .libs/libevent.a ../lib
-cp *.h ../include
-cd ../..
+cp .libs/libevent.a $ORBOT_BASE/native/lib
+cp *.h $ORBOT_BASE/native/include
+cd $ORBOT_BASE
 
 #Build Tor
 echo "BUILDING TOR..."
-cd native
-git clone git://git.torproject.org/git/tor.git
-cd tor/
+cd external/tor
 ./autogen.sh
-./configure --host=arm-linux-eabi --disable-asciidoc --prefix=$NDK_TOOLCHAIN --with-libevent-dir=$PWD/../ --enable-static-libevent --with-openssl-dir=$PWD/../ --enable-static-openssl
-make clean
+./configure --host=arm-linux-eabi --disable-asciidoc --prefix=$NDK_TOOLCHAIN --with-libevent-dir=$ORBOT_BASE/native --enable-static-libevent --with-openssl-dir=$ORBOT_BASE/native --enable-static-openssl
 make
-cd ../..
+cd $ORBOT_BASE
 
 #Build JTorControl
 echo "BUILDING JTORCTRL..."
-cd libs
-git clone git://git.torproject.org/git/jtorctl
-cd jtorctl
+cd external/jtorctl
 mkdir bin
 javac net/freehaven/tor/control/TorControlConnection.java -d bin
 cd bin
 jar cvf jtorctrl.jar *
-cp jtorctrl.jar ../..
-cd ../../..
+cp jtorctrl.jar $ORBOT_BASE/libs
+cd $ORBOT_BASE
 
 #BUILD privoxy
 echo "BUILDING PRIVOXY..."
-mkdir native/privoxy
-cd native/privoxy
-rm download*
-wget http://sourceforge.net/projects/ijbswa/files/Sources/3.0.12%20%28stable%29/privoxy-3.0.12-stable-src.tar.gz/download
-tar xzvf download
-cd privoxy-3.0.12-stable
+cd $ORBOT_BASE/external/privoxy
 autoheader
 autoconf
 #need to disable setpgrp check in configure
 export ac_cv_func_setpgrp_void=yes
-./configure --host=arm-linux-eabi --build=$BUILD --prefix=$NDK_TOOLCHAIN --disable-pthread
-make clean
+./configure --host=arm-linux-eabi --prefix=$NDK_TOOLCHAIN --disable-pthread
 make
-cd ../../..
+
+cd $ORBOT_BASE
 
 #create assets folder and put the binaries in it
 echo "MOVING BINARIES TO ANDROID RESOURCES..."
 mkdir res/raw
-cp native/privoxy/privoxy-3.0.12-stable/privoxy res/raw
-cp native/tor/src/or/tor res/raw
+cp external/privoxy/privoxy res/raw
+cp external/tor/src/or/tor res/raw
 
-echo "READY TO BUILD ANDROID APP"
-echo "> android update project --name Orbot --target 9 --path ."
-echo "> ant debug"
+echo "Setting Android build configuration"
+android update project --name Orbot --target 9 --path .
 
+echo "READY TO BUILD ANDROID APP: run 'ant debug'"
 echo "BUILD COMPLETE"
