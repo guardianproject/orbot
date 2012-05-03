@@ -1,109 +1,31 @@
 
-// 2012/02/13 will be adding information on how to build OBFSPROXY binary 
+This document explains how to properly build an Android package of Orbot from source.
 
-// 2011/04/15 this document is a bit out of date. We will be updating to use
-// the standalone cross-compiler that is offered by the Android NDK soon
+Orbot includes, in the external directory, git repo submodules of:
+	- Tor
+	- OpenSSL (statically built and patched for Android)
+	- LibEvent
+	- JTorControl: The Tor Control Library for Java
 
-This document explains how to properly build an Android package of Orbot from
-source. It covers building on Debian Lenny (5.0.3).
+The Orbot repo also includes the Privoxy source code of a recent stable release.
 
 Please install the following prerequisites (instructions for each follows):
 	ant: http://ant.apache.org/
-	Android OS SDK: http://source.android.com/download
-	droid-wrapper: http://github.com/tmurakam/droid-wrapper
-	libevent source (1.4.12-stable from svn)
-	Tor source (most recent git master branch)
-	Privoxy source (http://sourceforge.net/projects/ijbswa/)
+	Android Native Dev Kit or NDK (for C/C++ code): http://developer.android.com/sdk/ndk/index.html
+	Android Software Dev Kit or SDK (for Java code): http://developer.android.com/sdk/index.html
 
-Install and prepare the Android OS SDK ( http://source.android.com/download )
-on Debian Lenny:
+You will need to run the 'android' command in the SDK to install the necessary Android platform supports (ICS 4.x or android-15)
 
-	sudo apt-get install git-core gnupg sun-java5-jdk flex bison gperf \
-		libsdl-dev libesd0-dev libwxgtk2.6-dev build-essential zip \
-		curl libncurses5-dev zlib1g-dev valgrind libtool automake \
-		ruby subversion
-	update-java-alternatives -s java-1.5.0-sun
+To begin building, from the Orbot root directory, you first need to build all external C/native dependencies:
 
-	mkdir ~/bin
-	PATH=~/bin:$PATH
-	curl https://dl-ssl.google.com/dl/googlesource/git-repo/repo > ~/bin/repo
-	chmod a+x ~/bin/repo
+	export NDK_BASE={PATH TO YOUR NDK INSTALL}
+	make -C external
 
-	mkdir ~/mydroid
-	cd ~/mydroid
-
-	repo init -u https://android.googlesource.com/platform/manifest -b android-2.3.7_r1
-	repo sync
-
-	# Paste in key from http://source.android.com/download next...
-	gpg --import
-
-	cd ~/mydroid
-
-	# This takes a long while...
-	make
-
-Install droid-wrapper:
-
-	cd /tmp
-	git clone git://github.com/tmurakam/droid-wrapper.git
-	cd droid-wrapper
-	sudo make install
-
-zlib and OpenSSL are included with the Android OS SDK. You'll need to build
-libevent, Privoxy and finally Tor. We'll create an externals directory for this code:
-
-	mkdir -p ~/mydroid/external/{libevent,tor,privoxy}
-
-We need to set to environment variables for droid-gcc:
-	export DROID_ROOT=~/mydroid/
-	export DROID_TARGET=generic
-
-Fetch and build Privoxy:c
-	cd ~/mydroid/external/privoxy
-	wget http://sourceforge.net/projects/ijbswa/files/Sources/3.0.12%20%28stable%29/privoxy-3.0.12-stable-src.tar.gz/download
-	tar xzvf privoxy-3.0.12-stable-src.tar.gz
-	cd privoxy-3.0.12-stable
-	autoheader
-	autoconf
-	#need to disable setpgrp check in configure
-	export ac_cv_func_setpgrp_void=yes
-	CC=droid-gcc LD=droid-ld CPPFLAGS="-I$DROID_ROOT/external/zlib/" ./configure --host=arm-none-linux-gnueabi
-	#don't mind the "unrecognized option '-pthread'" error message that you'll see when you run make
-	make
-	
-Fetch and build libevent:
-
-	cd ~/mydroid/external/libevent
-	svn co https://levent.svn.sourceforge.net/svnroot/levent/tags/release-1.4.13-stable/libevent/ .
-	export LIBEVENTDIR=`cd $DROID_ROOT/external/libevent && pwd`
-	./autogen.sh
-	# Put the contents of http://pastebin.ca/1577207 in /tmp/libevent-patch
-	# path no longer needed: patch < /tmp/libevent-patch
-	CC=droid-gcc LD=droid-ld ./configure --host=arm-none-linux-gnueabi
-	make
-
-Copy over the libevent library:
-	cp .libs/libevent.a $DROID_ROOT/out/target/product/generic/obj/lib
-
-Fetch and build Tor:
-
-	export OPENSSLDIR=`cd $DROID_ROOT/external/openssl/include/ && pwd`
-	export ZLIBDIR=`cd $DROID_ROOT/external/zlib && pwd`
-
-	cd $DROID_ROOT/external/tor
-	git clone git://git.torproject.org/git/tor.git
-	cd tor/
-	./autogen.sh
-	CC=droid-gcc LD=droid-ld ./configure --host=arm-none-linux-gnueabi \
-	--with-libevent-dir=$LIBEVENTDIR --with-openssl-dir=$OPENSSLDIR \
-	--with-zlib-dir=$ZLIBDIR --disable-asciidoc
-	make
-
-At this point, you'll have a Tor binary that can be run on an Android handset.
+At this point, you'll have Tor and Privoxy binaries that can be run on an Android handset.
 You can verify the ARM binary was properly built using the following command:
 
-file src/or/tor
+	file res/raw/tor
+	file res/raw/privoxy
 	
 You should see something like:
 src/or/tor: ELF 32-bit LSB executable, ARM, version 1 (SYSV), dynamically linked (uses shared libs), not stripped
@@ -111,30 +33,14 @@ src/or/tor: ELF 32-bit LSB executable, ARM, version 1 (SYSV), dynamically linked
 This isn't enough though and we'll now sew up the binary into a small package
 that will handle basic Tor controlling features.
 
-We need to get the TorControl library for Java:
-(see also https://svn.torproject.org/svn/torctl/trunk/doc/howto.txt)
+	android update project --name Orbot --target android-15 --path .
 
-	git clone git://git.torproject.org/git/jtorctl
-	cd jtorctl
-	mkdir bin
-	javac net/freehaven/tor/control/TorControlConnection.java -d bin
-	cd bin
-	jar cvf jtorctrl.jar *
-	cp jtorctrl.jar {Orbot Home}/libs
-	
-Finally, we'll make a proper Android package with ant and the Android App SDK:
-
-	export APP_SDK=~/Documents/projects/android/android-sdk-linux_x86-1.5_r3/tools
-	cd ../Orbot/
-	cp $DROID_ROOT/external/privoxy/privoxy-3.0.12-stable/privoxy assets/privoxy
-
-Now you need to split and copy the tor binary into res/raw. We split it into < 1M chunks
-because some Android devices don't like resources larger than 1M.
-
-	split --bytes=1m $DROID_ROOT/external/tor/tor/src/or/tor res/raw/tor
+#Now you need to split and copy the tor binary into res/raw. We split it into < 1M chunks
+#because some Android devices don't like resources larger than 1M.
+#split --bytes=1m $DROID_ROOT/external/tor/tor/src/or/tor res/raw/tor
 
 Now build the Android app
-	$APP_SDK/android update project --name Orbot --target 3 --path .
+
 	ant release
 
 This will produce an unsigned Tor package in ./bin/Orbot-unsigned.apk!
