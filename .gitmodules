@@ -1,0 +1,15 @@
+[submodule "external/openssl-static"]
+	path = external/openssl-static
+	url = git://github.com/guardianproject/android-external-openssl-ndk-static.git
+[submodule "external/tor"]
+	path = external/tor
+	url = git://git.torproject.org/git/tor.git
+[submodule "external/libevent"]
+	path = external/libevent
+	url = git://github.com/libevent/libevent.git
+[submodule "external/jtorctrl"]
+	path = external/jtorctrl
+	url = git://git.torproject.org/git/jtorctl
+[submodule "external/jtorctl"]
+	path = external/jtorctl
+	url = git://git.torproject.org/git/jtorctl
