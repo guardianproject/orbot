@@ -186,12 +186,12 @@ obfsproxy-clean:
 #------------------------------------------------------------------------------#
 # privoxy
 
-privoxy/configure: 
-	cd privoxy && \
-	 ./autoheader
-	 ./autoconf
 
-privoxy/Makefile: privoxy/configure
+privoxy/Makefile:
+	cd privoxy && \
+	  autoheader
+	cd privoxy && \
+	  autoconf
 	cp config.sub privoxy
 	cp config.guess privoxy	
 	cd privoxy && \
@@ -232,17 +232,19 @@ jtorctrl-clean:
 
 #------------------------------------------------------------------------------#
 # cleanup, cleanup, put the toys away
-assets: tor privoxy jtorctrl
+assets: tor privoxy jtorctrl obfsproxy
 	install -d ../res/raw
 	install -d ../libs
 	install bin/tor ../res/raw	
 	install bin/privoxy ../res/raw	
+	install bin/obfsproxy ../res/raw
 	install bin/jtorctrl.jar ../libs
 
 assets-clean:
 	-rm ../res/raw/tor
 	-rm ../res/raw/privoxy
 	-rm ../libs/jtorctrl.jar	
+	-rm ../res/raw/obfsproxy
 
 #------------------------------------------------------------------------------#
 # cleanup, cleanup, put the toys away
