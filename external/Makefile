@@ -13,7 +13,7 @@ export ac_cv_func_setpgrp_void=yes
 
 CWD = $(shell pwd)
 PROJECT_ROOT = $(CWD)/..
-EXTERNAL_ROOT = $(PROJECT_ROOT)/external
+EXTERNAL_ROOT = $(CWD)
 
 # Android NDK setup:
 NDK_BASE ?= /usr/local/android-ndk
@@ -30,7 +30,7 @@ HOST := arm-linux-androideabi
 # install root for built files
 DESTDIR = $(EXTERNAL_ROOT)
 # TODO try adding the Android-style /data/app.name here
-prefix = /data/data/org.torproject.android
+prefix = 
 LOCAL := $(DESTDIR)$(prefix)
 
 export PATH := ${PATH}:$(NDK_TOOLCHAIN)/bin:$(LOCAL)/bin
@@ -44,8 +44,8 @@ RANLIB := $(NDK_TOOLCHAIN)/bin/arm-linux-androideabi-ranlib
 STRIP := $(NDK_TOOLCHAIN)/bin/arm-linux-androideabi-strip \
 	--strip-unneeded -R .note -R .comment
 
-CFLAGS = -DANDROID -I$(LOCAL)/include
-LDFLAGS = -L$(LOCAL)/lib
+CFLAGS = -DANDROID -I$(LOCAL)/include -I$(NDK_SYSROOT)/usr/include
+LDFLAGS = -L$(LOCAL)/lib -L$(NDK_SYSROOT)/usr/lib
 
 # build as small as possible, mostly useful for static binaries
 CFLAGS += -fdata-sections -ffunction-sections -Os
@@ -79,24 +79,24 @@ openssl-static: openssl-static-build-stamp
 openssl-static-clean:
 	-cd openssl-static && \
 		ndk-build clean
-	-rm openssl-static/openssl-static-build-stamp
+	-rm openssl-static-build-stamp
 	-rm lib/libcrypto.a
 	-rm lib/libssl.a
+	-cd openssl-static && \
+		git clean -fdx
 
 #------------------------------------------------------------------------------#
 # libevent
 
-libevent/configure: 
+libevent/Makefile:
 	cd libevent && ./autogen.sh
-
-libevent/Makefile: libevent/configure
 	cp config.sub libevent
 	cp config.guess libevent
 	cd libevent && \
  		CC="$(CC)" AR="$(AR)" RANLIB=$(RANLIB) CFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS)" \
 			./configure \
 				--host=$(HOST) \
-				--prefix=$(NDK_TOOLCHAIN)
+				--disable-shared
 
 libevent-build-stamp: libevent/Makefile
 	$(MAKE) -C libevent
@@ -106,15 +106,14 @@ libevent: libevent-build-stamp
 	test -d lib || mkdir lib
 	test -d include || mkdir include
 	cp libevent/.libs/libevent.a lib
-	cp libevent/*.h include
+	cp -R libevent/include/* include
 
 libevent-clean:
 	-rm -f include/*.h
 	-rm -f lib/libevent.a
 	-rm -f libevent-build-stamp
-	-rm -f libevent/config.status
-	-rm -f libevent/config.log
-	-rm -f libevent/Makefile
+	-cd libevent && \
+		git clean -fdx
 
 #------------------------------------------------------------------------------#
 # tor
@@ -122,8 +121,6 @@ libevent-clean:
 tor/configure: 
 	cd tor && \
 	 ./autogen.sh
-	cp config.sub tor
-	cp config.guess tor
 
 tor/Makefile: tor/configure
 	cp config.sub tor
@@ -148,9 +145,40 @@ tor: libevent openssl-static tor-build-stamp
 tor-clean:
 	-rm -f bin/tor
 	-rm -f tor-build-stamp
-	-rm -f tor/config.status
-	-rm -f tor/config.log
-	-rm -f tor/Makefile
+	-cd tor && \
+		git clean -fdx
+
+
+#------------------------------------------------------------------------------#
+# obfsproxy
+
+
+obfsproxy/Makefile: 
+	cd obfsproxy && \
+	 ./autogen.sh
+	cp config.sub obfsproxy
+	cp config.guess obfsproxy
+	cd obfsproxy && \
+                CC="$(CC)" AR="$(AR)" RANLIB=$(RANLIB) CFLAGS="$(CFLAGS) -D_FORTIFY_SOURCE=2 -fPIE -fwrapv -fno-strict-aliasing -fno-strict-overflow" LDFLAGS="$(LDFLAGS)" \
+			libevent_LIBS="-L$(EXTERNAL_ROOT)/lib -levent" libevent_CFLAGS="-I$(EXTERNAL_ROOT)/include" \
+			libcrypto_LIBS="-L$(EXTERNAL_ROOT)/lib -lcrypto" libcrypto_CFLAGS="-I$(EXTERNAL_ROOT)/include" \
+                        ./configure \
+                                --host=$(HOST) \
+                                --prefix=$(NDK_TOOLCHAIN) \
+
+obfsproxy-build-stamp: obfsproxy/Makefile
+	$(MAKE) -C obfsproxy
+	touch obfsproxy-build-stamp
+
+obfsproxy: openssl-static libevent obfsproxy-build-stamp
+	test -d bin || mkdir bin
+	cp obfsproxy/obfsproxy bin
+
+obfsproxy-clean:
+	-rm -f bin/obfsproxy
+	-rm -f obfsproxy-build-stamp
+	-cd obfsproxy && \
+		git clean -fdx
 
 #------------------------------------------------------------------------------#
 # privoxy
