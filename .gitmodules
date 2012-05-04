@@ -13,3 +13,6 @@
 [submodule "external/jtorctl"]
 	path = external/jtorctl
 	url = git://git.torproject.org/git/jtorctl
+[submodule "external/obfsproxy"]
+	path = external/obfsproxy
+	url = git://git.torproject.org/obfsproxy.git
