@@ -154,8 +154,11 @@ tor-clean:
 
 
 obfsproxy/Makefile: 
+	cp obfsproxy_android_no_hardening.patch obfsproxy
 	cd obfsproxy && \
-	 ./autogen.sh
+	 	patch -N -p1 --reject-file=- < obfsproxy_android_no_hardening.patch
+	cd obfsproxy && \
+	 	./autogen.sh
 	cp config.sub obfsproxy
 	cp config.guess obfsproxy
 	cd obfsproxy && \
