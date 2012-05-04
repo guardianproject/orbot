@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="org.torproject.android" 
-      android:versionName="0.2.3.11-alpha-1.0.8-RC1" 
+      android:versionName="0.2.3.15-alpha-1.0.8-RC1" 
       android:versionCode="37"
         android:installLocation="auto"
       >
