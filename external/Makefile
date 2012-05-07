@@ -187,7 +187,7 @@ obfsproxy-clean:
 # privoxy
 
 
-privoxy/Makefile:
+privoxy/config.log:
 	cd privoxy && \
 	  autoheader
 	cd privoxy && \
@@ -199,7 +199,7 @@ privoxy/Makefile:
                         ./configure \
                                 --host=arm-linux-eabi --disable-pthread 
 
-privoxy-build-stamp: privoxy/Makefile
+privoxy-build-stamp: privoxy/config.log
 	$(MAKE) -C privoxy
 	touch privoxy-build-stamp
 
@@ -219,34 +219,45 @@ privoxy-clean:
 #------------------------------------------------------------------------------#
 # JTorControl library
 
-jtorctrl:
+jtorctl/bin/jtorctl.jar:
 	test -d jtorctl/bin || mkdir jtorctl/bin
 	cd jtorctl && \
 		javac net/freehaven/tor/control/TorControlConnection.java -d bin
 	cd jtorctl/bin && \
-		jar cvf jtorctrl.jar *
-	cp jtorctl/bin/jtorctrl.jar bin
+		jar cvf jtorctl.jar *
 
-jtorctrl-clean:
-	-rm bin/jtorctrl.jar
+jtorctl-build-stamp: jtorctl/bin/jtorctl.jar
+	touch jtorctl-build-stamp
+
+jtorctl: jtorctl-build-stamp
+	test -d bin || mkdir bin
+	cp jtorctl/bin/jtorctl.jar bin
+	
+jtorctl-clean:
+	-rm -rf jtorctl/bin
+	-rm jtorctl-build-stamp
 
 #------------------------------------------------------------------------------#
-# cleanup, cleanup, put the toys away
-assets: tor privoxy jtorctrl obfsproxy
+#create and clean assets: FYI - tor is stored as a ZIP file with an mp3 extension
+#in order to stop Android OS (older devices) from trying to compress/decompress it
+#this is related to a bug in compression of assets and resources > 1MB
+
+assets: tor privoxy jtorctl obfsproxy
 	install -d ../res/raw
 	install -d ../libs
-	install bin/tor ../res/raw	
 	install bin/privoxy ../res/raw	
 	install bin/obfsproxy ../res/raw
-	install bin/jtorctrl.jar ../libs
+	install bin/jtorctl.jar ../libs
+	cd bin && \
+		zip ../../res/raw/tor.mp3 tor
 
 assets-clean:
-	-rm ../res/raw/tor
+	-rm ../res/raw/tor.mp3
 	-rm ../res/raw/privoxy
-	-rm ../libs/jtorctrl.jar	
+	-rm ../libs/jtorctl.jar	
 	-rm ../res/raw/obfsproxy
 
 #------------------------------------------------------------------------------#
 # cleanup, cleanup, put the toys away
 
-clean: openssl-static-clean libevent-clean tor-clean privoxy-clean jtorctrl-clean assets-clean
+clean: openssl-static-clean libevent-clean tor-clean privoxy-clean jtorctl-clean assets-clean
