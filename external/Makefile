@@ -252,6 +252,7 @@ assets: tor privoxy jtorctl obfsproxy
 		zip ../../res/raw/tor.mp3 tor
 
 assets-clean:
+	-rm ../res/raw/tor
 	-rm ../res/raw/tor.mp3
 	-rm ../res/raw/privoxy
 	-rm ../libs/jtorctl.jar	
