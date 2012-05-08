@@ -255,7 +255,7 @@ assets-clean:
 	-rm ../res/raw/tor
 	-rm ../res/raw/tor.mp3
 	-rm ../res/raw/privoxy
-	-rm ../libs/jtorctl.jar	
+	-rm ../libs/*
 	-rm ../res/raw/obfsproxy
 
 #------------------------------------------------------------------------------#
