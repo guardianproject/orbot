@@ -93,7 +93,7 @@ libevent/Makefile:
 	cp config.sub libevent
 	cp config.guess libevent
 	cd libevent && \
- 		CC="$(CC)" AR="$(AR)" RANLIB=$(RANLIB) CFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS)" \
+ 		CC="$(CC)" AR="$(AR)" RANLIB=$(RANLIB) CFLAGS="$(CFLAGS) -I$(EXTERNAL_ROOT)/include" LDFLAGS="$(LDFLAGS)" LIBS="-L$(EXTERNAL_ROOT)/lib -lcrypto -lssl" \
 			./configure \
 				--host=$(HOST) \
 				--disable-shared
@@ -102,7 +102,7 @@ libevent-build-stamp: libevent/Makefile
 	$(MAKE) -C libevent
 	touch libevent-build-stamp
 
-libevent: libevent-build-stamp
+libevent: openssl-static libevent-build-stamp
 	test -d lib || mkdir lib
 	test -d include || mkdir include
 	cp libevent/.libs/libevent.a lib
