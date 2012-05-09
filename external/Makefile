@@ -93,7 +93,7 @@ libevent/Makefile:
 	cp config.sub libevent
 	cp config.guess libevent
 	cd libevent && \
- 		CC="$(CC)" AR="$(AR)" RANLIB=$(RANLIB) CFLAGS="$(CFLAGS) -I$(EXTERNAL_ROOT)/include" LDFLAGS="$(LDFLAGS)" LIBS="-L$(EXTERNAL_ROOT)/lib -lcrypto -lssl" \
+ 		CC="$(CC)" AR="$(AR)" RANLIB=$(RANLIB) CFLAGS="$(CFLAGS) -I$(EXTERNAL_ROOT)/include" LDFLAGS="$(LDFLAGS)" \
 			./configure \
 				--host=$(HOST) \
 				--disable-shared
