@@ -171,7 +171,7 @@ android:summary="@string/the_addressable_name_for_your_hidden_service_generated_
 android:title=".Onion Hostname"></EditTextPreference>
 </PreferenceCategory>
 
-<PreferenceCategory android:title="Proxy Service for Tor">
+<PreferenceCategory android:title="@string/pref_proxy_title">
 <EditTextPreference android:key="pref_proxy_type"
 android:title="@string/pref_proxy_type_title"
 android:summary="@string/pref_proxy_type_summary"
