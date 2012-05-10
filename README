@@ -9,7 +9,7 @@ HTTP client applications into the Tor SOCKS interface.
 ***********************************************
 Orbot is a component of the Guardian Project, an effort to develop
 a secure, anonymous smartphone for use by human rights activists, journalists
-and others around the world. Learn more: http://guardianproject.info/
+and others around the world. Learn more: https://guardianproject.info/
 
 ***********************************************
 Tor protects your privacy on the internet by hiding the connection
@@ -23,5 +23,5 @@ Tor Frequently Asked Questions:
 
 ***********************************************
 
-/* Copyright (c) 2009-2010, Nathan Freitas, The Guardian Project
- * http://guardianproject.info/ */
+/* Copyright (c) 2009-2012, Nathan Freitas, The Guardian Project
+ * https://guardianproject.info/ */
