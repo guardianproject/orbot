@@ -241,7 +241,7 @@ public class TorBinaryInstaller implements TorServiceConstants {
 		Runtime.getRuntime().exec("chmod "+mode+" "+abspath).waitFor();
 	}
     /**
-	 * Asserts that the binary files are installed in the cache directory.
+	 * Asserts that the binary files are installed in the bin directory.
 	 * @param ctx context
      * @param showErrors indicates if errors should be alerted
 	 * @return false if the binary files could not be installed

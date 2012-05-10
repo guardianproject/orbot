@@ -479,7 +479,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     {
     	
     	appBinHome = getDir("bin",Application.MODE_PRIVATE);
-    	appCacheHome = getCacheDir();
+    	appCacheHome = getDir("data",Application.MODE_PRIVATE);
     	
     	fileTor = new File(appBinHome, TOR_BINARY_ASSET_KEY);
 		filePrivoxy = new File(appBinHome, PRIVOXY_ASSET_KEY);
