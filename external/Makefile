@@ -197,7 +197,8 @@ privoxy/config.log:
 	cd privoxy && \
                 CC="$(CC)" AR="$(AR)" RANLIB=$(RANLIB) CFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS)" \
                         ./configure \
-                                --host=arm-linux-eabi --disable-pthread 
+                                --host=arm-linux-eabi --enable-pthread
+## --disable-pthread 
 
 privoxy-build-stamp: privoxy/config.log
 	$(MAKE) -C privoxy
