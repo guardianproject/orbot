@@ -56,7 +56,7 @@ USER         =
 GROUP	   = 
 
 datarootdir  = ${prefix}/share
-prefix       = /home/n8fr8/dev/android/ndk/my-android-toolchain
+prefix       = /usr/local
 exec_prefix  = ${prefix}
 CONF_BASE    = ${prefix}/etc
 SBIN_DEST    = ${exec_prefix}/sbin
@@ -105,7 +105,7 @@ INSTALL_R  = -m $(RWD_MODE)
 #############################################################################
 
 PROGRAM    = privoxy
-CC         = arm-linux-androideabi-gcc
+CC         = /home/n8fr8/dev/android/ndk/toolchains/arm-linux-androideabi-4.4.3/prebuilt/linux-x86/bin/arm-linux-androideabi-gcc --sysroot=/home/n8fr8/dev/android/ndk/platforms/android-8/arch-arm
 ECHO       = echo
 GZIP_PROG  = gzip
 
@@ -113,7 +113,7 @@ GZIP_PROG  = gzip
 # Solaris.
 #ID         = id -u
 ID         = id
-LD         = arm-linux-androideabi-gcc
+LD         = /home/n8fr8/dev/android/ndk/toolchains/arm-linux-androideabi-4.4.3/prebuilt/linux-x86/bin/arm-linux-androideabi-gcc --sysroot=/home/n8fr8/dev/android/ndk/platforms/android-8/arch-arm
 RM         = rm -f
 CP         = cp -f
 RMDIR      = rmdir
@@ -220,7 +220,7 @@ PROJECT_H_DEPS = project.h $(REGEX_HDRS) $(PCRS_HDRS) pcre/pcre.h
 SOCKET_LIB   = 
 
 # PThreads library, if needed.
-PTHREAD_LIB  = #-lpthread
+PTHREAD_LIB  = 
 
 SRCS         = $(C_SRC)  $(W32_SRC)  $(PCRS_SRC)  $(PCRE_SRC)  $(REGEX_SRC)
 OBJS         = $(C_OBJS) $(W32_OBJS) $(PCRS_OBJS) $(PCRE_OBJS) $(REGEX_OBJS)
@@ -242,10 +242,10 @@ SPECIAL_CFLAGS =
 # Add your flags here 
 OTHER_CFLAGS =   
 
-CFLAGS = -pipe -O2 --sysroot=/home/n8fr8/dev/android/ndk/my-android-toolchain/sysroot -I/home/n8fr8/dev/android/ndk/my-android-toolchain/sysroot/usr/include -I/home/n8fr8/dev/android/ndk/my-android-toolchain/include $(OTHER_CFLAGS) $(SPECIAL_CFLAGS) -Wall \
+CFLAGS = -pipe -DANDROID -I/home/n8fr8/dev/gp/repos/orbot/external/include -I/home/n8fr8/dev/android/ndk/platforms/android-8/arch-arm/usr/include -fdata-sections -ffunction-sections -Os  $(OTHER_CFLAGS) $(SPECIAL_CFLAGS) -Wall \
           -Ipcre 
 
-LDFLAGS = -L/home/n8fr8/dev/android/ndk/my-android-toolchain/sysroot/usr/lib -L/home/n8fr8/dev/android/ndk/my-android-toolchain/lib $(DEBUG_CFLAGS) $(SPECIAL_CFLAGS)
+LDFLAGS = -L/home/n8fr8/dev/gp/repos/orbot/external/lib -L/home/n8fr8/dev/android/ndk/platforms/android-8/arch-arm/usr/lib -Wl,--gc-sections $(DEBUG_CFLAGS) $(SPECIAL_CFLAGS)
 
 
 #############################################################################

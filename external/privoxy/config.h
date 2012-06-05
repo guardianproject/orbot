@@ -373,12 +373,12 @@
 /*
  * Keep outgoing connections alive if possible.
  */
-/* #undef FEATURE_CONNECTION_KEEP_ALIVE */
+#define FEATURE_CONNECTION_KEEP_ALIVE 1
 
 /*
  * Use POSIX threads instead of native threads.
  */
-/* #undef FEATURE_PTHREAD */
+#define FEATURE_PTHREAD 1
 
 /*
  * Enables statistics function.
