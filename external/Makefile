@@ -132,7 +132,11 @@ tor/Makefile: tor/configure
                                 --prefix=$(NDK_TOOLCHAIN) \
 				--disable-asciidoc \
 				--with-libevent-dir=$(EXTERNAL_ROOT) --enable-static-libevent \
-				--with-openssl-dir=$(EXTERNAL_ROOT) --enable-static-openssl
+				--with-openssl-dir=$(EXTERNAL_ROOT) --enable-static-openssl \
+				--disable-gcc-hardening 
+
+##	--disable-linker-hardening --disable-gcc-hardening 
+
 
 tor-build-stamp: tor/Makefile
 	$(MAKE) -C tor 
@@ -223,7 +227,7 @@ privoxy-clean:
 jtorctl/bin/jtorctl.jar:
 	test -d jtorctl/bin || mkdir jtorctl/bin
 	cd jtorctl && \
-		javac net/freehaven/tor/control/TorControlConnection.java -d bin
+		javac -source 1.6 -target 1.6 net/freehaven/tor/control/TorControlConnection.java -d bin
 	cd jtorctl/bin && \
 		jar cvf jtorctl.jar *
 
