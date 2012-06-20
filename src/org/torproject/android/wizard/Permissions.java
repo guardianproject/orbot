@@ -177,6 +177,7 @@ public class Permissions extends Activity implements TorConstants {
 						
 						hasRoot = false;
 						Log.d(TorService.TAG,"ERROR: IPTables OWNER module not available",e);
+						stepFour();
 					}
 				}
 				
