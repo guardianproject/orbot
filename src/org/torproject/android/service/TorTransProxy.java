@@ -1,6 +1,7 @@
 package org.torproject.android.service;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import org.torproject.android.TorConstants;
 import org.torproject.android.settings.TorifiedApp;
@@ -100,12 +101,12 @@ public class TorTransProxy implements TorServiceConstants {
 			//flush nat for every app
 			script.append(ipTablesPath);
 			script.append(" -t nat -m owner --uid-owner ");
-			script.append(apps[i].getUid());
+			script.append(tApp.getUid());
 			script.append(" -F || exit\n");
 		
 			script.append(ipTablesPath);
 			script.append(" -t filter -m owner --uid-owner ");
-			script.append(apps[i].getUid());
+			script.append(tApp.getUid());
 			script.append(" -F || exit\n");
 				
 		}
@@ -204,7 +205,7 @@ public class TorTransProxy implements TorServiceConstants {
 	
 	
 	
-	public int setTransparentProxyingByApp(Context context, TorifiedApp[] apps) throws Exception
+	public int setTransparentProxyingByApp(Context context, ArrayList<TorifiedApp> apps) throws Exception
 	{
 
 		boolean runRoot = true;
@@ -224,16 +225,16 @@ public class TorTransProxy implements TorServiceConstants {
     	int torUid = context.getApplicationInfo().uid;
 
 		//build up array of shell cmds to execute under one root context
-		for (int i = 0; i < apps.length; i++)
+		for (TorifiedApp tApp:apps)
 		{
 
-			if (apps[i].isTorified()
-					&& (!apps[i].getUsername().equals(TorServiceConstants.TOR_APP_USERNAME))
-					&& (!apps[i].getUsername().equals(TorServiceConstants.ORWEB_APP_USERNAME))
+			if (tApp.isTorified()
+					&& (!tApp.getUsername().equals(TorServiceConstants.TOR_APP_USERNAME))
+					&& (!tApp.getUsername().equals(TorServiceConstants.ORWEB_APP_USERNAME))
 					) //if app is set to true
 			{
 				
-				TorService.logMessage("enabling transproxy for app: " + apps[i].getUsername() + "(" + apps[i].getUid() + ")");
+				TorService.logMessage("enabling transproxy for app: " + tApp.getUsername() + "(" + tApp.getUid() + ")");
 			 
 				// Set up port redirection
 		    	script.append(ipTablesPath);
@@ -241,7 +242,7 @@ public class TorTransProxy implements TorServiceConstants {
 				script.append(" -A OUTPUT -p tcp");
 				script.append(" ! -d 127.0.0.1"); //allow access to localhost
 				script.append(" -m owner --uid-owner ");
-				script.append(apps[i].getUid());
+				script.append(tApp.getUid());
 				script.append(" -m tcp --syn");
 				script.append(" -j REDIRECT --to-ports ");
 				script.append(TOR_TRANSPROXY_PORT);
@@ -251,7 +252,7 @@ public class TorTransProxy implements TorServiceConstants {
 				script.append(ipTablesPath);
 				script.append(" -t nat");
 				script.append(" -A OUTPUT -p udp -m owner --uid-owner ");
-				script.append(apps[i].getUid());
+				script.append(tApp.getUid());
 				script.append(" -m udp --dport "); 
 				script.append(STANDARD_DNS_PORT);
 				script.append(" -j REDIRECT --to-ports ");
@@ -267,7 +268,7 @@ public class TorTransProxy implements TorServiceConstants {
 					script.append(" -t filter");
 					script.append(" -A OUTPUT");
 					script.append(" -m owner --uid-owner ");
-					script.append(apps[i].getUid());
+					script.append(tApp.getUid());
 					script.append(" -p tcp");
 					script.append(" -d 127.0.0.1");
 					script.append(" --dport ");
@@ -281,7 +282,7 @@ public class TorTransProxy implements TorServiceConstants {
 				script.append(" -t filter");
 				script.append(" -A OUTPUT");
 				script.append(" -m owner --uid-owner ");
-				script.append(apps[i].getUid());
+				script.append(tApp.getUid());
 				script.append(" -p tcp");
 				script.append(" -o lo");
 				script.append(" -j ACCEPT");
@@ -292,7 +293,7 @@ public class TorTransProxy implements TorServiceConstants {
 				script.append(" -t filter");
 				script.append(" -A OUTPUT");
 				script.append(" -m owner --uid-owner ");
-				script.append(apps[i].getUid());
+				script.append(tApp.getUid());
 				script.append(" -p udp");
 				script.append(" --dport ");
 				script.append(STANDARD_DNS_PORT);
@@ -304,7 +305,7 @@ public class TorTransProxy implements TorServiceConstants {
 				script.append(" -t filter");
 				script.append(" -A OUTPUT");
 				script.append(" -m owner --uid-owner ");
-				script.append(apps[i].getUid());
+				script.append(tApp.getUid());
 				script.append(" -p tcp");
 				script.append(" -j REJECT");
 				script.append(" || exit\n");

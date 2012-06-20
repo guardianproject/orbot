@@ -3,6 +3,7 @@
 
 package org.torproject.android.settings;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -19,7 +20,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.pm.PermissionInfo;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -40,7 +44,7 @@ import android.widget.TextView;
 
 public class AppManager extends Activity implements OnCheckedChangeListener, OnClickListener, TorConstants {
 
-	private static TorifiedApp[] apps = null;
+	private static ArrayList<TorifiedApp> apps = null;
 
 	private ListView listApps;
 	
@@ -83,8 +87,9 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
 	private void loadApps ()
 	{
 		resetApps(this);
-        final TorifiedApp[] apps = getApps(this);
+        final ArrayList<TorifiedApp> apps = getApps(this);
         
+        /*
         Arrays.sort(apps, new Comparator<TorifiedApp>() {
 			public int compare(TorifiedApp o1, TorifiedApp o2) {
 				if (o1.isTorified() == o2.isTorified()) return o1.getName().compareTo(o2.getName());
@@ -92,6 +97,7 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
 				return 1;
 			}
         });
+        */
         
         final LayoutInflater inflater = getLayoutInflater();
 		
@@ -118,7 +124,7 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
         		}
         		
         		
-        		final TorifiedApp app = apps[position];
+        		final TorifiedApp app = apps.get(position);
         		
         	
         		entry.icon.setImageDrawable(app.getIcon());
@@ -156,7 +162,7 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
 		
 	}
 
-	public static TorifiedApp[] getApps (Context context)
+	public static ArrayList<TorifiedApp> getApps (Context context)
 	{
 		if (apps == null)
 			resetApps(context);
@@ -164,7 +170,7 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
 		return apps;
 	}
 	
-	public static TorifiedApp[] resetApps (Context context)
+	public static ArrayList<TorifiedApp> resetApps (Context context)
 	{
 
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
@@ -187,36 +193,71 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
 		
 		List<ApplicationInfo> lAppInfo = pMgr.getInstalledApplications(0);
 		
-		
 		Iterator<ApplicationInfo> itAppInfo = lAppInfo.iterator();
 		
-		apps = new TorifiedApp[lAppInfo.size()];
+		apps = new ArrayList<TorifiedApp>();
 		
 		ApplicationInfo aInfo = null;
 		
 		int appIdx = 0;
+		TorifiedApp app = null;
 		
 		while (itAppInfo.hasNext())
 		{
 			aInfo = itAppInfo.next();
 			
-			apps[appIdx] = new TorifiedApp();
+			app = new TorifiedApp();
+			
+			try {
+				PackageInfo pInfo = pMgr.getPackageInfo(aInfo.packageName, PackageManager.GET_PERMISSIONS);
+				
+				if (pInfo != null && pInfo.permissions != null)
+				{
+					for (String permInfo:pInfo.requestedPermissions)
+					{
+						if (permInfo.equals("android.permission.INTERNET"))
+						{
+							app.setUsesInternet(true);
+							
+						}
+					}
+					
+				}
+				
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			if ((aInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 1)
+		    {
+		         //System app
+				app.setUsesInternet(true);
+		   }
 			
 			
-			apps[appIdx].setEnabled(aInfo.enabled);
-			apps[appIdx].setUid(aInfo.uid);
-			apps[appIdx].setUsername(pMgr.getNameForUid(apps[appIdx].getUid()));
-			apps[appIdx].setProcname(aInfo.processName);
-			apps[appIdx].setName(pMgr.getApplicationLabel(aInfo).toString());
-			apps[appIdx].setIcon(pMgr.getApplicationIcon(aInfo));
+			if (!app.usesInternet())
+				continue;
+			else
+			{
+				apps.add(app);
+			}
+			
+			app.setEnabled(aInfo.enabled);
+			app.setUid(aInfo.uid);
+			app.setUsername(pMgr.getNameForUid(app.getUid()));
+			app.setProcname(aInfo.processName);
+			app.setName(pMgr.getApplicationLabel(aInfo).toString());
+			app.setIcon(pMgr.getApplicationIcon(aInfo));
 			
 			// check if this application is allowed
-			if (Arrays.binarySearch(tordApps, apps[appIdx].getUsername()) >= 0) {
-				apps[appIdx].setTorified(true);
+			if (Arrays.binarySearch(tordApps, app.getUsername()) >= 0) {
+				app.setTorified(true);
 			}
 			else
 			{
-				apps[appIdx].setTorified(false);
+				app.setTorified(false);
 			}
 			
 			appIdx++;
@@ -238,11 +279,11 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
 
 		StringBuilder tordApps = new StringBuilder();
 		
-		for (int i = 0; i < apps.length; i++)
+		for (TorifiedApp tApp:apps)
 		{
-			if (apps[i].isTorified())
+			if (tApp.isTorified())
 			{
-				tordApps.append(apps[i].getUsername());
+				tordApps.append(tApp.getUsername());
 				tordApps.append("|");
 			}
 		}

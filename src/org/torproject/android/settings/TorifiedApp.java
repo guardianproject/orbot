@@ -12,7 +12,14 @@ public class TorifiedApp {
 	private Drawable icon;
 	
 	private boolean torified = false;
+	private boolean usesInternet = false;
 	
+	public boolean usesInternet() {
+		return usesInternet;
+	}
+	public void setUsesInternet(boolean usesInternet) {
+		this.usesInternet = usesInternet;
+	}
 	/**
 	 * @return the torified
 	 */

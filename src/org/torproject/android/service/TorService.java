@@ -7,6 +7,7 @@
 
 package org.torproject.android.service;
 
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -1012,6 +1013,28 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		}
 
 
+		private void startNotification ()
+		{
+			
+			Notification notice = new Notification(R.drawable.tornotificationon, getString(R.string.status_activated), System.currentTimeMillis());
+			
+			//This constructor is deprecated. Use Notification.Builder instead
+			//Notification notice = new Notification(R.drawable.iocipher, "Active: " + mIpAddress, System.currentTimeMillis());
+
+			Intent intent = new Intent(TorService.this, Orbot.class);
+
+			PendingIntent pendIntent = PendingIntent.getActivity(TorService.this, 0, intent, 0);
+
+			//This method is deprecated. Use Notification.Builder instead.
+			notice.setLatestEventInfo(TorService.this,getString(R.string.app_name), getString(R.string.status_activated), pendIntent);
+
+			notice.flags |= Notification.FLAG_NO_CLEAR;
+			notice.flags |= Notification.FLAG_ONGOING_EVENT;
+			
+			startForeground(NOTIFY_ID,notice);
+		
+		}
+		
 
 	public void message(String severity, String msg) {
 		
@@ -1021,8 +1044,12 @@ public class TorService extends Service implements TorServiceConstants, TorConst
           if (msg.indexOf(TOR_CONTROL_PORT_MSG_BOOTSTRAP_DONE)!=-1)
           {
         	  currentStatus = STATUS_ON;
-        	  showToolbarNotification (getString(R.string.status_activated),NOTIFY_ID,R.drawable.tornotificationon, Notification.FLAG_ONGOING_EVENT);
+        	//  showToolbarNotification (getString(R.string.status_activated),NOTIFY_ID,R.drawable.tornotificationon, Notification.FLAG_ONGOING_EVENT);
 
+        //	  TorService.this.set
+        	  
+        	  startNotification();
+        	  
    		   	getHiddenServiceHostname ();
    		   
           }

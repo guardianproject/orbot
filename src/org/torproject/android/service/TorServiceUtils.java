@@ -28,16 +28,27 @@ public class TorServiceUtils implements TorServiceConstants {
 			if (fileSU.exists())
 				return true;
 			
-			fileSU = new File("/system/bin/su");
+			fileSU = new File("/system/app/superuser.apk");
 			if (fileSU.exists())
 				return true;
+			
+			fileSU = new File("/system/bin/su");
+			if (fileSU.exists())
+			{
+				String[] cmd = {"su"};
+				int exitCode = TorServiceUtils.doShellCommand(cmd, log, false, true);
+				if (exitCode != 0)
+					return false;
+				else
+					return true;
+			}
 			
 			//Check for 'su' binary 
 			String[] cmd = {"which su"};
 			int exitCode = TorServiceUtils.doShellCommand(cmd, log, false, true);
 			
 			if (exitCode == 0) {
-				TorService.logMessage("Can acquire root permissions");
+				TorService.logMessage("root exists, but not sure about permissions");
 		    	 return true;
 		     
 		    }
