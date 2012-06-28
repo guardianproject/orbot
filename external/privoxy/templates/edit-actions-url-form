@@ -11,7 +11,7 @@
 #                Original Author: Copyright (C) 2001 Jonathan Foster
 #                http://www.jon-foster.co.uk/
 #
-#                This program is free software; you can redistribute it
+#                This program is free software; you can redistribute it 
 #                and/or modify it under the terms of the GNU General
 #                Public License as published by the Free Software
 #                Foundation; either version 2 of the License, or (at
@@ -28,6 +28,75 @@
 #                http://www.gnu.org/copyleft/gpl.html
 #                or write to the Free Software Foundation, Inc., 59
 #                Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#
+# Revisions   :
+#    $Log: edit-actions-url-form,v $
+#    Revision 1.18  2007/12/08 14:38:55  fabiankeil
+#    - Use the shiny new CSS "pattern" class.
+#    - s@URL Pattern@URL or TAG Pattern@
+#    - Use the standard favicon as this ain't no error page.
+#
+#    Revision 1.17  2007/01/23 16:03:16  fabiankeil
+#    - Add favicon links.
+#    - Remove useless W3C validator links.
+#
+#    Revision 1.16  2006/07/18 14:49:14  david__schmidt
+#    Reorganizing the repository: swapping out what was HEAD (the old 3.1 branch)
+#    with what was really the latest development (the v_3_0_branch branch)
+#
+#    Revision 1.14.2.2  2002/08/23 02:22:53  hal9
+#    Fix a perl brain fart with <li> in comments.
+#
+#    Revision 1.14  2002/05/21 19:14:10  oes
+#    Added button style and jumptarget "cancel" link
+#
+#    Revision 1.13  2002/04/10 13:32:53  oes
+#    Made templates modular
+#
+#    Revision 1.12  2002/04/08 17:08:14  oes
+#    Cosmetic: make status in title lowercase
+#
+#    Revision 1.11  2002/04/05 16:01:32  oes
+#    Correct HTML, external Stylesheets, eye candy, some fixes
+#
+#    Revision 1.10  2002/03/26 22:29:56  swa
+#    we have a new homepage!
+#
+#    Revision 1.9  2002/03/24 15:23:33  jongfoster
+#    Name changes
+#
+#    Revision 1.8  2002/03/24 11:01:06  swa
+#    name change
+#
+#    Revision 1.7  2002/03/23 16:18:15  swa
+#    renamed every reference to the old name with foobar.
+#    fixed "application foobar application" tag, fixed
+#    "the foobar" with "foobar". left junkbuster in cvs
+#    comments and remarks to history untouched. should
+#    make final rename easier.
+#
+#    Revision 1.6  2002/03/16 15:22:19  jongfoster
+#    Moving 'alpha' warning to the end of the page
+#
+#    Revision 1.5  2002/03/03 10:29:13  swa
+#    point users to the right feedback forms,
+#    not necessarily the developer list.
+#
+#    Revision 1.4  2002/01/23 00:26:45  jongfoster
+#    Reducing length of URLs
+#    Where encoded and unencoded versions of a string existed, removing
+#    the unencoded one.
+#
+#    Revision 1.3  2002/01/17 21:33:00  jongfoster
+#    Replacing all references to the URL of the config interface
+#    with @default-cgi@
+#
+#    Revision 1.2  2002/01/17 21:21:05  jongfoster
+#    DOS->Unix line endings
+#
+#    Revision 1.1  2001/11/13 00:58:18  jongfoster
+#    New version of actions file editor templates
+#
 #
 ##############################################################################
 #

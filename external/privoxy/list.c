@@ -1,4 +1,4 @@
-const char list_rcs[] = "$Id: list.c,v 1.25 2011/09/04 11:10:56 fabiankeil Exp $";
+const char list_rcs[] = "$Id: list.c,v 1.20 2007/05/14 16:56:07 fabiankeil Exp $";
 /*********************************************************************
  *
  * File        :  $Source: /cvsroot/ijbswa/current/list.c,v $
@@ -32,8 +32,110 @@ const char list_rcs[] = "$Id: list.c,v 1.25 2011/09/04 11:10:56 fabiankeil Exp $
  *                or write to the Free Software Foundation, Inc., 59
  *                Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
+ * Revisions   :
+ *    $Log: list.c,v $
+ *    Revision 1.20  2007/05/14 16:56:07  fabiankeil
+ *    - Stop using strcpy().
+ *    - enlist_unique_header() now behaves as advertised
+ *      and checks for existing headers with the same name
+ *      but ignores the values.
+ *
+ *    Revision 1.19  2007/04/17 18:14:06  fabiankeil
+ *    Add list_contains_item().
+ *
+ *    Revision 1.18  2006/12/28 19:21:23  fabiankeil
+ *    Fixed gcc43 warning and enabled list_is_valid()'s loop
+ *    detection again. It was ineffective since the removal of
+ *    the arbitrary list length limit two years ago.
+ *
+ *    Revision 1.17  2006/07/18 14:48:46  david__schmidt
+ *    Reorganizing the repository: swapping out what was HEAD (the old 3.1 branch)
+ *    with what was really the latest development (the v_3_0_branch branch)
+ *
+ *    Revision 1.15.2.2  2004/05/25 02:04:23  david__schmidt
+ *    Removed the "arbitrary" 1000 filter limit in file.c.  See tracker #911950.
+ *
+ *    Revision 1.15.2.1  2002/11/28 18:14:54  oes
+ *    Added unmap function that removes all items with a given
+ *    name from a map.
+ *
+ *    Revision 1.15  2002/03/26 22:29:55  swa
+ *    we have a new homepage!
+ *
+ *    Revision 1.14  2002/03/24 13:25:43  swa
+ *    name change related issues
+ *
+ *    Revision 1.13  2002/03/07 03:46:17  oes
+ *    Fixed compiler warnings
+ *
+ *    Revision 1.12  2001/10/25 03:40:48  david__schmidt
+ *    Change in porting tactics: OS/2's EMX porting layer doesn't allow multiple
+ *    threads to call select() simultaneously.  So, it's time to do a real, live,
+ *    native OS/2 port.  See defines for __EMX__ (the porting layer) vs. __OS2__
+ *    (native). Both versions will work, but using __OS2__ offers multi-threading.
+ *
+ *    Revision 1.11  2001/10/23 21:21:03  jongfoster
+ *    New error handling - error codes are now jb_errs, not ints.
+ *    Changed the way map() handles out-of-memory, to dramatically
+ *    reduce the amount of error-checking clutter needed.
+ *
+ *    Revision 1.10  2001/09/16 17:30:24  jongfoster
+ *    Fixing a compiler warning.
+ *
+ *    Revision 1.9  2001/09/16 13:20:29  jongfoster
+ *    Rewrite of list library.  Now has seperate header and list_entry
+ *    structures.  Also added a large sprinking of assert()s to the list
+ *    code.
+ *
+ *    Revision 1.8  2001/08/07 14:00:20  oes
+ *    Fixed comment
+ *
+ *    Revision 1.7  2001/08/05 16:06:20  jongfoster
+ *    Modifiying "struct map" so that there are now separate header and
+ *    "map_entry" structures.  This means that functions which modify a
+ *    map no longer need to return a pointer to the modified map.
+ *    Also, it no longer reverses the order of the entries (which may be
+ *    important with some advanced template substitutions).
+ *
+ *    Revision 1.6  2001/07/31 14:44:51  oes
+ *    list_to_text() now appends empty line at end
+ *
+ *    Revision 1.5  2001/06/29 21:45:41  oes
+ *    Indentation, CRLF->LF, Tab-> Space
+ *
+ *    Revision 1.4  2001/06/29 13:30:22  oes
+ *    - Added Convenience function enlist_unique_header(),
+ *      which takes the Header name and value as separate
+ *      arguments and thus saves the pain of sprintf()ing
+ *      and determining the Header name length to enlist_unique
+ *    - Improved comments
+ *    - Removed logentry from cancelled commit
+ *
+ *    Revision 1.3  2001/06/03 19:12:24  oes
+ *    functions for new struct map, extended enlist_unique
+ *
+ *    Revision 1.2  2001/06/01 18:49:17  jongfoster
+ *    Replaced "list_share" with "list" - the tiny memory gain was not
+ *    worth the extra complexity.
+ *
+ *    Revision 1.1  2001/05/31 21:11:53  jongfoster
+ *    - Moved linked list support to new "list.c" file.
+ *      Structure definitions are still in project.h,
+ *      function prototypes are now in "list.h".
+ *    - Added support for "struct list_share", which is identical
+ *      to "struct list" except it saves memory by not duplicating
+ *      the strings.  Obviously, this only works if there is some
+ *      other way of managing the memory used by the strings.
+ *      (These list_share lists are used for lists which last
+ *      for only 1 request, and where all the list entries are
+ *      just coming directly from entries in the actionsfile.)
+ *      Note that you still need to destroy list_share lists
+ *      properly to free the nodes - it's only the strings
+ *      which are shared.
+ *
+ *
  *********************************************************************/
-
+
 
 #include "config.h"
 
@@ -185,13 +287,13 @@ static int list_is_valid (const struct list *the_list)
        * Note that the 1000 limit was hit by a real user in tracker 911950;
        * removing it for now.  Real circular references should eventually
        * be caught by the check above, anyway.
-       */
+       */         
       /*
       if (entry > 1000)
-      {
+      {           
          return 0;
-      }
-      */
+      }           
+      */          
 
       /*
        * Check this isn't marked as the last entry, unless of course it's
@@ -496,7 +598,7 @@ char *list_to_text(const struct list *the_list)
    assert(list_is_valid(the_list));
 
    /*
-    * Calculate the length of the final text.
+    * Calculate the lenght of the final text.
     * '2' because of the '\r\n' at the end of
     * each string and at the end of the text.
     */
@@ -839,7 +941,7 @@ int list_contains_item(const struct list *the_list, const char *str)
       if (entry->str == NULL)
       {
          /*
-          * NULL pointers are allowed in some lists.
+          * NULL pointers are allowed in some lists. 
           * For example for csp->headers in case a
           * header was removed.
           */
@@ -921,7 +1023,7 @@ void free_map(struct map *the_map)
  *
  *                Note: Since all strings will be free()d in free_map()
  *                      later, set the copy flags for constants or
- *                      strings that will be independently free()d.
+ *                      strings that will be independantly free()d.
  *
  *                Note2: This function allows NULL parameters - it
  *                       returns JB_ERR_MEMORY in that case.
@@ -1040,7 +1142,7 @@ jb_err unmap(struct map *the_map, const char *name)
 
    assert(the_map);
    assert(name);
-
+   
    last_entry = the_map->first;
 
    for (cur_entry = the_map->first; cur_entry != NULL; cur_entry = cur_entry->next)
@@ -1060,13 +1162,13 @@ jb_err unmap(struct map *the_map, const char *name)
          }
 
          /*
-          * Update the map's last pointer
+          * Update the map's last pointer 
           */
          if (cur_entry == the_map->last)
          {
             the_map->last = last_entry;
          }
-
+         
          /*
           * Free the map_entry
           */

@@ -4,7 +4,7 @@
 #
 # Purpose     :  Template used to edit the actions associated with a
 #                particular section in an actions file.
-#
+# 
 #
 # Copyright   :  Written by and Copyright (C) 2001-2008 the SourceForge
 #                Privoxy team. http://www.privoxy.org/
@@ -12,7 +12,7 @@
 #                Original Author: Copyright (C) 2001 Jonathan Foster
 #                http://www.jon-foster.co.uk/
 #
-#                This program is free software; you can redistribute it
+#                This program is free software; you can redistribute it 
 #                and/or modify it under the terms of the GNU General
 #                Public License as published by the Free Software
 #                Foundation; either version 2 of the License, or (at
@@ -30,7 +30,241 @@
 #                or write to the Free Software Foundation, Inc., 59
 #                Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #
+# Revisions   :
+#    $Log: edit-actions-for-url,v $
+#    Revision 1.56  2008/09/20 10:04:33  fabiankeil
+#    Remove hide-forwarded-for-headers action which has
+#    been obsoleted by change-x-forwarded-for{block}.
+#
+#    Revision 1.55  2008/09/19 15:26:29  fabiankeil
+#    Add change-x-forwarded-for{} action to block or add
+#    X-Forwarded-For headers. Mostly based on code removed
+#    before 3.0.7.
+#
+#    Revision 1.54  2008/03/29 12:14:27  fabiankeil
+#    Remove send-wafer and send-vanilla-wafer actions.
+#
+#    Revision 1.53  2008/03/28 15:13:45  fabiankeil
+#    Remove inspect-jpegs action.
+#
+#    Revision 1.52  2008/03/15 14:52:36  fabiankeil
+#    Add CGI editor support for the "disable all filters of this type"
+#    directives "-client-header-filter", "-server-header-filter",
+#    "-client-header-tagger" and "-server-header-tagger".
+#
+#    Revision 1.51  2008/03/07 16:46:49  fabiankeil
+#    Reword limit-connect{} entry.
+#
+#    Revision 1.50  2008/03/04 18:30:44  fabiankeil
+#    Remove the treat-forbidden-connects-like-blocks action. We now
+#    use the "blocked" page for forbidden CONNECT requests by default.
+#
+#    Revision 1.49  2008/03/01 14:00:47  fabiankeil
+#    Let the block action take the reason for the block
+#    as argument and show it on the "blocked" page.
+#
+#    Revision 1.48  2007/12/11 21:18:55  fabiankeil
+#    Make forward-override accessible through the CGI editor.
+#
+#    Revision 1.47  2007/12/06 18:21:55  fabiankeil
+#    Update hide-forwarded-for-headers description.
+#
+#    Revision 1.46  2007/11/10 15:06:10  fabiankeil
+#    - Add support for +hide-referrer{conditional-forge}.
+#    - Minor rewordings.
+#
+#    Revision 1.45  2007/05/24 13:38:45  fabiankeil
+#    Two minor fixes.
+#
+#    Revision 1.44  2007/04/15 16:39:21  fabiankeil
+#    Introduce tags as alternative way to specify which
+#    actions apply to a request. At the moment tags can be
+#    created based on client and server headers.
+#
+#    Revision 1.43  2007/03/29 11:40:34  fabiankeil
+#    Divide @filter-params@ into @client-header-filter-params@
+#    @content-filter-params@ and @server-header-filter-params@.
+#
+#    Revision 1.42  2007/03/20 15:40:00  fabiankeil
+#    Adjust to new world order with dedicated header-filter actions.
+#
+#    Revision 1.41  2007/01/23 16:03:16  fabiankeil
+#    - Add favicon links.
+#    - Remove useless W3C validator links.
+#
+#    Revision 1.40  2006/12/21 13:01:03  fabiankeil
+#    Prepare for "split-large-forms".
+#
+#    Mention that redirect{} now also understands
+#    a single pcrs job as argument.
+#
+#    Add some table summaries and remove useless validator link.
+#
+#    Revision 1.39  2006/10/04 17:37:54  fabiankeil
+#    JavaScript fix for bug report #1570678.
+#
+#    Revision 1.38  2006/09/08 12:06:35  fabiankeil
+#    Have hide-if-modified-since interpret the random
+#    range value as minutes instead of hours. Allows
+#    more fine-grained configuration.
+#
+#    Revision 1.37  2006/09/05 18:20:14  fabiankeil
+#    Sorted alphabetically, fixed spelling mistakes
+#    and shortened some descriptions.
+#
+#    Revision 1.36  2006/08/14 08:29:17  fabiankeil
+#    Split filter-headers{} into filter-client-headers{}
+#    and filter-server-headers{}.
+#
+#    Revision 1.35  2006/08/03 02:46:42  david__schmidt
+#    Incorporate Fabian Keil's patch work:http://www.fabiankeil.de/sourcecode/privoxy/
+#
+#    Revision 1.34  2006/07/18 14:49:13  david__schmidt
+#    Reorganizing the repository: swapping out what was HEAD (the old 3.1 branch)
+#    with what was really the latest development (the v_3_0_branch branch)
+#
+#    Revision 1.29.2.5  2004/10/05 03:17:26  david__schmidt
+#    Typo: inspect_jpegs, not inspect-jpegs in form
+#
+#    Revision 1.29.2.4  2004/10/03 12:53:46  david__schmidt
+#    Add the ability to check jpeg images for invalid
+#    lengths of comment blocks.  Defensive strategy
+#    against the exploit:
+#       Microsoft Security Bulletin MS04-028
+#       Buffer Overrun in JPEG Processing (GDI+) Could
+#       Allow Code Execution (833987)
+#    Enabled with +inspect-jpegs in actions files.
+#
+#    Revision 1.29.2.3  2002/08/23 02:22:53  hal9
+#    Fix a perl brain fart with <li> in comments.
+#
+#    Revision 1.29.2.1  2002/08/02 12:51:42  oes
+#    Added top submit button; Consistency with docs: Change default name for action from hide-referer to hide-referrer
+#
+#    Revision 1.29  2002/05/21 19:10:57  oes
+#    Fixed JavaScript error
+#
+#    Revision 1.28  2002/05/14 21:36:38  oes
+#     - Renamed prevent-(setting/reading)-cookies to
+#       crunch-(incoming/outgoing)-cookies
+#     - Renamed helplink export to actions-help-prefix
+#     - Restored alphabetical order of actions
+#
+#    Revision 1.27  2002/04/26 22:55:26  jongfoster
+#    Removing the alternating colors because they've been wrong
+#    since the actions renames, they're high maintenance, they
+#    don't look particularly good, and now there are gaps between
+#    the table cells we don't need them.
+#
+#    Revision 1.26  2002/04/26 21:55:17  jongfoster
+#    Cosmetic change: Making the +filter UI look the same as
+#    the other actions.
+#
+#    Revision 1.25  2002/04/26 21:37:50  jongfoster
+#    Fixing all(?) the substitutions that were broken in the
+#    recent actions rename.
+#
+#    Revision 1.24  2002/04/26 18:24:28  jongfoster
+#    Fixing typos in help hyperlinks
+#
+#    Revision 1.23  2002/04/26 12:57:02  oes
+#    Actions renamed, alphabetically sorted, comments fixed, and names linked to help
+#
+#    Revision 1.22  2002/04/10 13:32:53  oes
+#    Made templates modular
+#
+#    Revision 1.21  2002/04/08 17:05:18  oes
+#    Inline a style exception
+#
+#    Revision 1.20  2002/04/05 16:01:30  oes
+#    Correct HTML, external Stylesheets, eye candy, some fixes
+#
+#    Revision 1.19  2002/03/26 22:29:56  swa
+#    we have a new homepage!
+#
+#    Revision 1.18  2002/03/24 16:32:08  jongfoster
+#    Removing logo option
+#
+#    Revision 1.17  2002/03/24 15:23:33  jongfoster
+#    Name changes
+#
+#    Revision 1.16  2002/03/24 11:01:06  swa
+#    name change
+#
+#    Revision 1.15  2002/03/23 16:18:15  swa
+#    renamed every reference to the old name with foobar.
+#    fixed "application foobar application" tag, fixed
+#    "the foobar" with "foobar". left junkbuster in cvs
+#    comments and remarks to history untouched. should
+#    make final rename easier.
+#
+#    Revision 1.14  2002/03/16 15:22:19  jongfoster
+#    Moving 'alpha' warning to the end of the page
+#
+#    Revision 1.13  2002/03/16 14:28:38  jongfoster
+#    First version of modular filters support
+#
+#    Revision 1.12  2002/03/12 01:42:50  oes
+#    Introduced modular filters
+#
+#    Revision 1.11  2002/03/08 18:19:14  jongfoster
+#    Adding +image-blocker{pattern} option to edit interface
+#
+#    Revision 1.10  2002/03/03 10:29:12  swa
+#    point users to the right feedback forms,
+#    not necessarily the developer list.
+#
+#    Revision 1.9  2002/01/23 00:26:45  jongfoster
+#    Reducing length of URLs
+#    Where encoded and unencoded versions of a string existed, removing
+#    the unencoded one.
+#
+#    Revision 1.8  2002/01/17 21:33:00  jongfoster
+#    Replacing all references to the URL of the config interface
+#    with @default-cgi@
+#
+#    Revision 1.7  2002/01/17 21:21:03  jongfoster
+#    DOS->Unix line endings
+#
+#    Revision 1.6  2001/11/22 21:58:41  jongfoster
+#    Adding action +no-cookies-keep
+#
+#    Revision 1.5  2001/11/13 21:12:17  jongfoster
+#    Added support for the following actions:
+#    +downgrade, +limit-connect, +no-compression
+#
+#    Revision 1.4  2001/11/13 00:58:18  jongfoster
+#    New version of actions file editor templates
+#
+#
 ##############################################################################
+#
+# Browser support for the JavaScript on this page:
+#   MS Internet Explorer 5.5 - Tested,   Yes
+#   Netscape 6.0             - Tested,   Yes
+#   Netscape 4.75            - Tested,   NO
+#   Opera 5.12               - Tested,   NO
+#   MS Internet Explorer 4+  - Untested, Yes
+#   MS IE 3.x, NS3.x         - Untested, NO
+#   Mozilla >=0.6            - Untested, Yes
+#
+# All browsers should work, you just might not get the pretty DHTML effects.
+#
+# The effects that only work under the browsers marked "Yes" above are:
+#  - Text edit boxes that won't have any effect are disabled.
+#  - Table rows containing additional settings are hidden if the feature in
+#    question is disabled.
+#
+# There are major kludges to get around these problems with NS4, but they
+# screw up the HTML too much for other browsers.  If anyone wants to try,
+# here's some descriptions of the kludges:
+#    http://www.webreference.com/js/tips/991114.html
+#    http://www.webreference.com/dhtml/column12/outDisplay.html
+#
+# If you're favorite browser isn't listed, please test and add it.
+#
+#
+#############################################################################
 #
 # Standard support:
 #
@@ -39,7 +273,7 @@
 # If you change it, please save the generated page from your web browser
 # and then upload it to http://validator.w3.org/ for checking.
 #
-##############################################################################
+#############################################################################
 #
 # Available variables include:
 #
@@ -62,7 +296,7 @@
 # image-blocker-param-custom
 #
 #
-##############################################################################
+#############################################################################
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 
@@ -351,7 +585,7 @@ function show_limit_connect_opts(tf)
         id="change_x_forwarded_for_mode_block" @change-x-forwarded-for-param-block@><label
         for="change_x_forwarded_for_mode_block">Block the header.</label><br>
         <input type="radio" name="change_x_forwarded_for_mode" value="add"
-        id="change_x_forwarded_for_mode_add" @change-x-forwarded-for-param-add@><label
+        id="change_x_forwarded_for_mode_add" @change-x-forwarded-for-param-add@><label 
         for="change_x_forwarded_for_mode_add">Add the header.</label><br>
     </tr>
     <tr class="bg1" align="left" valign="top">
@@ -390,7 +624,7 @@ function show_limit_connect_opts(tf)
       <td class="noc1" align="center" valign="middle"><input type="radio"
         name="content_type_overwrite" value="X" @content-type-overwrite-x@
         ></td>
-      <td class="action"><a href="@user-manual@@actions-help-prefix@CONTENT-TYPE-OVERWRITE">content-type-overwrite</a></td>
+      <td class="action"><a href="@user-manual@@actions-help-prefix@CONTENT_TYPE_OVERWRITE">content-type-overwrite</a></td>
       <td>Replace Content-Type header. By default it only applies to
 	 text documents, but if you know what you're doing you
 	 can enable force-text-mode to modify binary content types as well.</td>
@@ -436,7 +670,7 @@ function show_limit_connect_opts(tf)
       <td class="noc1" align="center" valign="middle"><input type="radio"
         name="crunch_if_none_match" value="X" @crunch-if-none-match-x@
         ></td>
-      <td class="action"><a href="@user-manual@@actions-help-prefix@CRUNCH-IF-NONE-MATCH">crunch-if-none-match</a></td>
+      <td class="action"><a href="@user-manual@@actions-help-prefix@CRUNCH_IF_NONE_MATCH">crunch-if-none-match</a></td>
       <td>Remove If-None-Match header. Useful for filter testing
          and to make sure the header can't be used to track your visits.</td>
     </tr>
@@ -511,7 +745,7 @@ function show_limit_connect_opts(tf)
       <td>Use the <input type="radio" name="deanimate_gifs_mode"
         value="first" id="deanimate_first" @deanimate-gifs-param-first@><label
         for="deanimate_first">first frame</label>&nbsp;&nbsp; <input
-        type="radio" name="deanimate_gifs_mode" value="last"
+        type="radio" name="deanimate_gifs_mode" value="last" 
         id="deanimate_last" @deanimate-gifs-param-last@><label
         for="deanimate_last">last frame</label></td>
     </tr>
@@ -550,7 +784,7 @@ function show_limit_connect_opts(tf)
         value="simple-check" id="fast_redirects_simple_check" @fast-redirects-param-simple-check@><label
         for="fast_redirects_simple_check">Simple check.</label>
        <br>
-       <input type="radio" name="fast_redirects_mode" value="check-decoded-url"
+       <input type="radio" name="fast_redirects_mode" value="check-decoded-url" 
         id="fast_redirects_check_decoded_url" @fast-redirects-param-check-decoded-url@><label
         for="fast_redirects_check_decoded_url">Decode URL before checking.</label></td>
     </tr>
@@ -623,7 +857,7 @@ function show_limit_connect_opts(tf)
       <td class="noc1" align="center" valign="middle"><input type="radio"
         name="force_text_mode" value="X" @force-text-mode-x@
         ></td>
-      <td class="action"><a href="@user-manual@@actions-help-prefix@FORCE-TEXT-MODE">force-text-mode</a></td>
+      <td class="action"><a href="@user-manual@@actions-help-prefix@FORCE_TEXT_MODE">force-text-mode</a></td>
       <td>
        Enable filtering on documents whose Content-Type wasn't recognized as text.
        Do think twice, nothing is alright.
@@ -652,7 +886,7 @@ function show_limit_connect_opts(tf)
       <td>&nbsp;</td>
       <td>
         Overriding forward directive:<br>
-        <input type="text" name="forward_override_param"
+        <input type="text" name="forward_override_param" 
         id="forward_override_param" size="40"
         value="@forward-override-param@"><br>
      </td>
@@ -667,7 +901,7 @@ function show_limit_connect_opts(tf)
       <td class="noc1" align="center" valign="middle"><input type="radio"
         name="handle_as_empty_document" value="X" @handle-as-empty-document-x@
         ></td>
-      <td class="action"><a href="@user-manual@@actions-help-prefix@HANDLE-AS-EMPTY-DOCUMENT">handle-as-empty-document</a></td>
+      <td class="action"><a href="@user-manual@@actions-help-prefix@HANDLE_AS_EMPTY_DOCUMENT">handle-as-empty-document</a></td>
       <td>
        Block with an <em>empty</em> document instead of an Image or HTML message.
        The <em>empty</em> document contains only a space and can safely be parsed
@@ -718,7 +952,7 @@ function show_limit_connect_opts(tf)
         onclick="hide_accept_language_param_disable(false)"
         @hide-accept-language-param-custom@ id="hide_accept_language_mode_set"><label
         for="hide_accept_language_mode_set">Fake these language settings:</label><br>
-        <input type="text" name="hide_accept_language_param"
+        <input type="text" name="hide_accept_language_param" 
         id="hide_accept_language_param" size="40"
         value="@hide-accept-language-param@"><br>
      </td>
@@ -752,7 +986,7 @@ function show_limit_connect_opts(tf)
         onclick="hide_content_disposition_param_disable(false)"
         @hide-content-disposition-param-custom@ id="hide_content_disposition_mode_set"><label
         for="hide_content_disposition_mode_set">Overwrite content-dispostion header with:</label><br>
-        <input type="text" name="hide_content_disposition_param"
+        <input type="text" name="hide_content_disposition_param" 
         id="hide_content_disposition_param" size="40"
         value="@hide-content-disposition-param@"><br>
      </td>
@@ -780,7 +1014,7 @@ function show_limit_connect_opts(tf)
         onclick="hide_from_header_param_disable(true);"
         @hide-from-header-param-block@ id="hide_from_header_mode_block"><label
         for="hide_from_header_mode_block">Remove completely</label><br>
-        <input type="radio" name="hide_from_header_mode" value="CUSTOM"
+        <input type="radio" name="hide_from_header_mode" value="CUSTOM" 
         onclick="hide_from_header_param_disable(false);"
         @hide-from-header-param-custom@ id="hide_from_header_mode_set"><label
         for="hide_from_header_mode_set">Fake e-mail address:</label><br>
@@ -798,7 +1032,7 @@ function show_limit_connect_opts(tf)
       <td class="noc1" align="center" valign="middle"><input type="radio"
         name="hide_if_modified_since" value="X" @hide-if-modified-since-x@
         ></td>
-      <td class="action"><a href="@user-manual@@actions-help-prefix@HIDE-IF-MODIFIED-SINCE">hide-if-modified-since</a></td>
+      <td class="action"><a href="@user-manual@@actions-help-prefix@HIDE_IF_MODIFIED_SINCE">hide-if-modified-since</a></td>
       <td>Remove or randomize the If-Modified-Since header.</td>
     </tr>
     <tr class="bg1" align="left" valign="top" id="hide_if-modifed-since_opts">
@@ -815,7 +1049,7 @@ function show_limit_connect_opts(tf)
         onclick="hide_if_modified_since_param_disable(true)"
         @hide-if-modified-since-param-custom@ id="hide_if_modified_since_mode_set"><label
         for="hide_if_modified_since_mode_set">Add random amount of seconds in the range of</label>
-        <input type="text" name="hide_if_modified_since_param"
+        <input type="text" name="hide_if_modified_since_param" 
         id="hide_if_modified_since_param" size="4"
         value="@hide-if-modified-since-param@"> minute(s).
         To appreciate this option a small amount of paranoia is required,
@@ -879,7 +1113,7 @@ function show_limit_connect_opts(tf)
         onclick="hide_referrer_param_disable(false)"
         @hide-referrer-param-custom@ id="hide_referrer_mode_set"><label
         for="hide_referrer_mode_set">Fake as this web address:</label><br>
-        <input type="text" name="hide_referrer_param"
+        <input type="text" name="hide_referrer_param" 
         id="hide_referrer_param" size="40"
         value="@hide-referrer-param@"><br>
         <input type="radio" name="hide_referrer_mode" value="conditional-block"
@@ -950,7 +1184,7 @@ function show_limit_connect_opts(tf)
       <td class="noc1" align="center" valign="middle"><input type="radio"
         name="overwrite_last_modified" value="X" @overwrite-last-modified-x@
         ></td>
-      <td class="action"><a href="@user-manual@@actions-help-prefix@OVERWRITE-LAST-MODIFIED">overwrite-last-modified</a></td>
+      <td class="action"><a href="@user-manual@@actions-help-prefix@OVERWRITE_LAST_MODIFIED">overwrite-last-modified</a></td>
       <td>Remove or randomize the Last-Modified header.</td>
     </tr>
     <tr class="bg1" align="left" valign="top" id="overwrite_last_modified_opts">
@@ -1058,7 +1292,7 @@ function show_limit_connect_opts(tf)
         ("per-session") ones, which only last until you close your web
         browser.  This will allow you to use sites that require cookies, but
         sites will not be able to track you across sessions.  For this to
-        be useful, you should disable
+        be useful, you should disable 
         <a href="@user-manual@@actions-help-prefix@CRUNCH-OUTGOING-COOKIES"><b>crunch-outgoing-cookies</b></a> and
         <a href="@user-manual@@actions-help-prefix@CRUNCH-INCOMING-COOKIES"><b>crunch-incoming-cookies</b></a>.</td>
     </tr>
@@ -1089,7 +1323,7 @@ function show_limit_connect_opts(tf)
         alt="pattern">)</label><br>
         <input type="radio" name="set_image_blocker_mode" value="blank"
         onclick="set_image_blocker_param_disable(true)"
-        id="set_image_blocker_mode_blank" @set-image-blocker-param-blank@><label
+        id="set_image_blocker_mode_blank" @set-image-blocker-param-blank@><label 
         for="set_image_blocker_mode_blank">Send a 1x1 transparent GIF</label><br>
         <input type="radio" name="set_image_blocker_mode" value="CUSTOM"
         onclick="set_image_blocker_param_disable(false)"

@@ -1,900 +1,1797 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-"http://www.w3.org/TR/html4/loose.dtd">
-
-<html>
-<head>
-  <meta name="generator" content=
-  "HTML Tidy for Linux/x86 (vers 7 December 2008), see www.w3.org">
-
-  <title>Configuration</title>
-  <meta name="GENERATOR" content=
-  "Modular DocBook HTML Stylesheet Version 1.79">
-  <link rel="HOME" title="Privoxy Frequently Asked Questions" href=
-  "index.html">
-  <link rel="PREVIOUS" title="Installation" href="installation.html">
-  <link rel="NEXT" title="Miscellaneous" href="misc.html">
-  <link rel="STYLESHEET" type="text/css" href="../p_doc.css">
-  <meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
-  <style type="text/css">
-body {
-  background-color: #EEEEEE;
-  color: #000000;
-  }
-  :link { color: #0000FF }
-  :visited { color: #840084 }
-  :active { color: #0000FF }
-  a.c4 {font-style: italic}
-  span.c3 {font-style: italic}
-  table.c2 {background-color: #E0E0E0}
-  hr.c1 {text-align: left}
-  </style>
-</head>
-
-<body class="SECT1">
-  <div class="NAVHEADER">
-    <table summary="Header navigation table" width="100%" border="0"
-    cellpadding="0" cellspacing="0">
-      <tr>
-        <th colspan="3" align="center">Privoxy Frequently Asked
-        Questions</th>
-      </tr>
-
-      <tr>
-        <td width="10%" align="left" valign="bottom"><a href=
-        "installation.html" accesskey="P">Prev</a></td>
-
-        <td width="80%" align="center" valign="bottom"></td>
-
-        <td width="10%" align="right" valign="bottom"><a href="misc.html"
-        accesskey="N">Next</a></td>
-      </tr>
-    </table>
-    <hr class="c1" width="100%">
-  </div>
-
-  <div class="SECT1">
-    <h1 class="SECT1"><a name="CONFIGURATION" id="CONFIGURATION">3.
-    Configuration</a></h1>
-
-    <div class="SECT2">
-      <h3 class="SECT2"><a name="AEN369" id="AEN369">3.1. What exactly is an
-      <span class="QUOTE">"actions"</span> file?</a></h3>
-
-      <p><span class="APPLICATION">Privoxy</span> utilizes the concept of
-      <span class="QUOTE">" <a href=
-      "../user-manual/actions-file.html#ACTIONS" target=
-      "_top">actions</a>"</span> that are used to manipulate and control web
-      page data. <a href="../user-manual/actions-file.html" target=
-      "_top">Actions files</a> are where these <a href=
-      "../user-manual/actions-file.html#ACTIONS" target="_top">actions</a>
-      that <span class="APPLICATION">Privoxy</span> could take while
-      processing a certain request, are configured. Typically, you would
-      define a set of default actions that apply globally to all URLs, then
-      add exceptions to these defaults where needed. There is a wide array of
-      actions available that give the user a high degree of control and
-      flexibility on how to process each and every web page.</p>
-
-      <p>Actions can be defined on a <a href=
-      "../user-manual/actions-file.html#AF-PATTERNS" target="_top">URL
-      pattern</a> basis, i.e. for single URLs, whole web sites, groups or
-      parts thereof etc. Actions can also be grouped together and then
-      applied to requests matching one or more patterns. There are many
-      possible actions that might apply to any given site. As an example, if
-      you are blocking <a href="http://en.wikipedia.org/wiki/Browser_cookie"
-      target="_top">cookies</a> as one of your default actions, but need to
-      accept cookies from a given site, you would need to define an exception
-      for this site in one of your actions files, preferably in <tt class=
-      "FILENAME">user.action</tt>.</p>
-    </div>
-
-    <div class="SECT2">
-      <h3 class="SECT2"><a name="ACTIONSS" id="ACTIONSS">3.2. The
-      <span class="QUOTE">"actions"</span> concept confuses me. Please list
-      some of these <span class="QUOTE">"actions"</span>.</a></h3>
-
-      <p>For a comprehensive discussion of the actions concept, please refer
-      to the <a href="../user-manual/actions-file.html" target="_top">actions
-      file chapter</a> in the <a href="../user-manual/index.html" target=
-      "_top">User Manual</a>. It includes a <a href=
-      "../user-manual/actions-file.html#ACTIONS" target="_top">list of all
-      actions</a> and an <a href=
-      "../user-manual/actions-file.html#ACT-EXAMPLES" target="_top">actions
-      file tutorial</a> to get you started.</p>
-    </div>
-
-    <div class="SECT2">
-      <h3 class="SECT2"><a name="AEN392" id="AEN392">3.3. How are actions
-      files configured? What is the easiest way to do this?</a></h3>
-
-      <p>Actions files are just text files in a special syntax and can be
-      edited with a text editor. But probably the easiest way is to access
-      <span class="APPLICATION">Privoxy</span>'s user interface with your web
-      browser at <a href="http://config.privoxy.org/" target=
-      "_top">http://config.privoxy.org/</a> (Shortcut: <a href="http://p.p/"
-      target="_top">http://p.p/</a>) and then select <span class=
-      "QUOTE">"<a href="http://config.privoxy.org/show-status" target=
-      "_top">View &amp; change the current configuration</a>"</span> from the
-      menu. Note that this feature must be explicitly enabled in the main
-      config file (see <a href=
-      "../user-manual/config.html#ENABLE-EDIT-ACTIONS" target=
-      "_top">enable-edit-actions</a>).</p>
-    </div>
-
-    <div class="SECT2">
-      <h3 class="SECT2"><a name="AEN401" id="AEN401">3.4. There are several
-      different <span class="QUOTE">"actions"</span> files. What are the
-      differences?</a></h3>
-
-      <p>Please have a look at the <a href="../user-manual/actions-file.html"
-      target="_top">the actions chapter</a> in the <a href=
-      "../user-manual/index.html" target="_top">User Manual</a> for a
-      detailed explanation.</p>
-    </div>
-
-    <div class="SECT2">
-      <h3 class="SECT2"><a name="GETUPDATES" id="GETUPDATES">3.5. Where can I
-      get updated Actions Files?</a></h3>
-
-      <p>Based on your feedback and the continuing development, updates of
-      <tt class="FILENAME">default.action</tt> will be made available from
-      time to time on the <a href=
-      "http://sourceforge.net/project/showfiles.php?group_id=11118" target=
-      "_top">files section</a> of our <a href=
-      "http://sf.net/projects/ijbswa/" target="_top">project page</a>.</p>
-
-      <p>If you wish to receive an email notification whenever we release
-      updates of <span class="APPLICATION">Privoxy</span> or the actions
-      file, <a href=
-      "http://lists.sourceforge.net/lists/listinfo/ijbswa-announce/" target=
-      "_top">subscribe to our announce mailing list</a>,
-      ijbswa-announce@lists.sourceforge.net.</p>
-    </div>
-
-    <div class="SECT2">
-      <h3 class="SECT2"><a name="NEWCONFIG" id="NEWCONFIG">3.6. Can I use my
-      old config files?</a></h3>
-
-      <p>The syntax and purpose of configuration files has remained roughly
-      the same throughout the 3.x series, but backwards compatibility is not
-      guaranteed. Also each release contains updated, <span class=
-      "QUOTE">"improved"</span> versions and it is therefore strongly
-      recommended to install the newer configuration files and merge back
-      your modifications.</p>
-    </div>
-
-    <div class="SECT2">
-      <h3 class="SECT2"><a name="DIFFICULT" id="DIFFICULT">3.7. Why is the
-      configuration so complicated?</a></h3>
-
-      <p><span class="QUOTE">"Complicated"</span> is in the eye of the
-      beholder. Those that are familiar with some of the underlying concepts,
-      such as regular expression syntax, take to it like a fish takes to
-      water. Also, software that tries hard to be <span class="QUOTE">"user
-      friendly"</span>, often lacks sophistication and flexibility. There is
-      always that trade-off there between power vs. easy-of-use. Furthermore,
-      anyone is welcome to contribute ideas and implementations to enhance
-      <span class="APPLICATION">Privoxy</span>.</p>
-    </div>
-
-    <div class="SECT2">
-      <h3 class="SECT2"><a name="YAHOO" id="YAHOO">3.8. How can I make my
-      Yahoo/Hotmail/Gmail account work?</a></h3>
-
-      <p>The default configuration shouldn't impact the usability of any of
-      these services. It may, however, make all <a href=
-      "http://en.wikipedia.org/wiki/Browser_cookie" target="_top">cookies</a>
-      temporary, so that your browser will forget your login credentials in
-      between browser sessions. If you would like not to have to log in
-      manually each time you access those websites, simply turn off all
-      cookie handling for them in the <tt class="FILENAME">user.action</tt>
-      file. An example for yahoo might look like:</p>
-
-      <table class="c2" border="0" width="100%">
-        <tr>
-          <td>
-            <pre class="SCREEN">
-# Allow all cookies for Yahoo login:
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Configuration</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Privoxy Frequently Asked Questions"
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="Installation"
+HREF="installation.html"><LINK
+REL="NEXT"
+TITLE="Miscellaneous"
+HREF="misc.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="../p_doc.css"><META
+HTTP-EQUIV="Content-Type"
+CONTENT="text/html;
+charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#EEEEEE"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Privoxy Frequently Asked Questions</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="installation.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="misc.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="CONFIGURATION"
+>3. Configuration</A
+></H1
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="AEN354"
+>3.1. What exactly is an <SPAN
+CLASS="QUOTE"
+>"actions"</SPAN
+> file?</A
+></H3
+><P
+> <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> utilizes the concept of <SPAN
+CLASS="QUOTE"
+>" <A
+HREF="../user-manual/actions-file.html#ACTIONS"
+TARGET="_top"
+>actions</A
+>"</SPAN
+> 
+ that are used to manipulate and control web page data.
+ <A
+HREF="../user-manual/actions-file.html"
+TARGET="_top"
+>Actions files</A
+>
+ are where these <A
+HREF="../user-manual/actions-file.html#ACTIONS"
+TARGET="_top"
+>actions</A
+>
+ that <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> could take while processing a certain
+ request, are configured. Typically, you would define a set of default actions
+ that apply globally to all URLs, then add exceptions to these defaults where needed.
+ There is a wide array of actions available that give the user a high degree
+ of control and flexibility on how to process each and every web page.</P
+><P
+> Actions can be defined on a <A
+HREF="../user-manual/actions-file.html#AF-PATTERNS"
+TARGET="_top"
+>URL pattern</A
+> basis, i.e.
+ for single URLs, whole web sites, groups or parts thereof etc. Actions can also be
+ grouped together and then applied to requests matching one or more patterns.
+ There are many possible actions that might apply to any given site. As an example,
+ if you are blocking <A
+HREF="http://en.wikipedia.org/wiki/Browser_cookie"
+TARGET="_top"
+>cookies</A
+>
+ as one of your default actions, but need to accept cookies from a given site,
+ you would need to define an exception for this site in one of your actions
+ files, preferably in <TT
+CLASS="FILENAME"
+>user.action</TT
+>.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="ACTIONSS"
+>3.2. The <SPAN
+CLASS="QUOTE"
+>"actions"</SPAN
+> concept confuses me. Please list 
+some of these <SPAN
+CLASS="QUOTE"
+>"actions"</SPAN
+>.</A
+></H3
+><P
+> For a comprehensive discussion of the actions concept, please refer
+ to the <A
+HREF="../user-manual/actions-file.html"
+TARGET="_top"
+>actions file
+ chapter</A
+> in the <A
+HREF="../user-manual/index.html"
+TARGET="_top"
+>User
+ Manual</A
+>. It includes a <A
+HREF="../user-manual/actions-file.html#ACTIONS"
+TARGET="_top"
+>list of all actions</A
+>
+ and an <A
+HREF="../user-manual/actions-file.html#ACT-EXAMPLES"
+TARGET="_top"
+>actions
+ file tutorial</A
+> to get you started.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="AEN377"
+>3.3. How are actions files configured? What is the easiest
+way to do this?</A
+></H3
+><P
+> Actions files are just text files in a special syntax and can be edited
+ with a text editor. But probably the easiest way is to access
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>'s user interface with your web browser
+ at <A
+HREF="http://config.privoxy.org/"
+TARGET="_top"
+>http://config.privoxy.org/</A
+>
+ (Shortcut: <A
+HREF="http://p.p/"
+TARGET="_top"
+>http://p.p/</A
+>) and then select
+ <SPAN
+CLASS="QUOTE"
+>"<A
+HREF="http://config.privoxy.org/show-status"
+TARGET="_top"
+>View &#38;
+ change the current configuration</A
+>"</SPAN
+> from the menu. Note 
+ that this feature must be explicitly enabled in the main config file 
+ (see <A
+HREF="../user-manual/config.html#ENABLE-EDIT-ACTIONS"
+TARGET="_top"
+>enable-edit-actions</A
+>).</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="AEN386"
+>3.4. There are several different <SPAN
+CLASS="QUOTE"
+>"actions"</SPAN
+> files. What are
+the differences?</A
+></H3
+><P
+> Three actions files 
+ are being included by the developers, to be used for 
+ different purposes: These are 
+ <TT
+CLASS="FILENAME"
+>default.action</TT
+>, the <SPAN
+CLASS="QUOTE"
+>"main"</SPAN
+> actions file
+ which is actively maintained by the <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>
+ developers and typically sets the default policies, <TT
+CLASS="FILENAME"
+>user.action</TT
+>,
+ where users are encouraged to make their private customizations.
+ Please see <A
+HREF="../user-manual/actions-file.html"
+TARGET="_top"
+>the actions chapter</A
+>
+ in the <A
+HREF="../user-manual/index.html"
+TARGET="_top"
+>User Manual</A
+> for a more
+ detailed explanation.</P
+><P
+> Earlier versions included three different versions of the 
+ <TT
+CLASS="FILENAME"
+>default.action</TT
+> file. The new scheme allows for 
+ greater flexibility of local configuration, and for browser based 
+ selection of pre-defined <SPAN
+CLASS="QUOTE"
+>"aggressiveness"</SPAN
+> levels.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="GETUPDATES"
+>3.5. Where can I get updated Actions Files?</A
+></H3
+><P
+>  Based on your feedback and the continuing development, updates of 
+  <TT
+CLASS="FILENAME"
+>default.action</TT
+> will be
+  made available from time to time on the <A
+HREF="http://sourceforge.net/project/showfiles.php?group_id=11118"
+TARGET="_top"
+>files section</A
+> of
+  our <A
+HREF="http://sf.net/projects/ijbswa/"
+TARGET="_top"
+>project page</A
+>.
+ </P
+><P
+>  If you wish to receive an email notification whenever we release updates of
+  <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> or the actions file, <A
+HREF="http://lists.sourceforge.net/lists/listinfo/ijbswa-announce/"
+TARGET="_top"
+>subscribe
+  to our announce mailing list</A
+>, ijbswa-announce@lists.sourceforge.net.
+ </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="NEWCONFIG"
+>3.6. Can I use my old config files?</A
+></H3
+><P
+>  The syntax and purpose of configuration files has remained roughly the
+  same throughout the 3.x series, but backwards compatibility is not guaranteed.
+  Also each release contains updated, <SPAN
+CLASS="QUOTE"
+>"improved"</SPAN
+> versions and it is
+  therefore strongly recommended to install the newer configuration files
+  and merge back your modifications.
+ </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="DIFFICULT"
+>3.7. Why is the configuration so complicated?</A
+></H3
+><P
+>  <SPAN
+CLASS="QUOTE"
+>"Complicated"</SPAN
+> is in the eye of the beholder. Those that are 
+  familiar with some of the underlying concepts, such as regular expression
+  syntax, take to it like a fish takes to water. Also, software that tries
+  hard to be <SPAN
+CLASS="QUOTE"
+>"user friendly"</SPAN
+>, often lacks sophistication and
+  flexibility. There is always that trade-off there between power vs.
+  easy-of-use. Furthermore, anyone is welcome to contribute ideas and
+  implementations to enhance <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>. 
+ </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="YAHOO"
+>3.8. How can I make my Yahoo/Hotmail/Gmail account work?</A
+></H3
+><P
+>  The default configuration shouldn't impact the usability of any of these services.
+  It may, however, make all <A
+HREF="http://en.wikipedia.org/wiki/Browser_cookie"
+TARGET="_top"
+>cookies</A
+> 
+  temporary, so that your browser will forget your
+  login credentials in between browser sessions. If you would like not to have to log
+  in manually each time you access those websites, simply turn off all cookie handling
+  for them in the <TT
+CLASS="FILENAME"
+>user.action</TT
+> file. An example for yahoo might
+  look like:
+ </P
+><P
+>  <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+># Allow all cookies for Yahoo login:
 #
-{ -<a href="../user-manual/actions-file.html#CRUNCH-INCOMING-COOKIES" target=
-"_top">crunch-incoming-cookies</a> -<a href=
-"../user-manual/actions-file.html#CRUNCH-OUTGOING-COOKIES" target=
-"_top">crunch-outgoing-cookies</a> -<a href=
-"../user-manual/actions-file.html#SESSION-COOKIES-ONLY" target=
-"_top">session-cookies-only</a> }
-.login.yahoo.com
-</pre>
-          </td>
-        </tr>
-      </table>
-
-      <p>These kinds of sites are often quite complex and heavy with <a href=
-      "http://en.wikipedia.org/wiki/Javascript" target="_top">Javascript</a>
-      and thus <span class="QUOTE">"fragile"</span>. So if <span class=
-      "emphasis EMPHASIS c3">still</span> a problem, we have an <a href=
-      "../user-manual/actions-file.html#ALIASES" target="_top">alias</a> just
-      for such sticky situations:</p>
-
-      <table class="c2" border="0" width="100%">
-        <tr>
-          <td>
-            <pre class="SCREEN">
-# Gmail is a _fragile_ site:
+{ -<A
+HREF="../user-manual/actions-file.html#CRUNCH-INCOMING-COOKIES"
+TARGET="_top"
+>crunch-incoming-cookies</A
+> -<A
+HREF="../user-manual/actions-file.html#CRUNCH-OUTGOING-COOKIES"
+TARGET="_top"
+>crunch-outgoing-cookies</A
+> -<A
+HREF="../user-manual/actions-file.html#SESSION-COOKIES-ONLY"
+TARGET="_top"
+>session-cookies-only</A
+> }
+.login.yahoo.com</PRE
+></TD
+></TR
+></TABLE
+>
+ </P
+><P
+>  These kinds of sites are often quite complex and heavy with 
+  <A
+HREF="http://en.wikipedia.org/wiki/Javascript"
+TARGET="_top"
+>Javascript</A
+> and 
+  thus <SPAN
+CLASS="QUOTE"
+>"fragile"</SPAN
+>. So if <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>still</I
+></SPAN
+> a problem, 
+  we have an <A
+HREF="../user-manual/actions-file.html#ALIASES"
+TARGET="_top"
+>alias</A
+> just for such
+  sticky situations:
+ </P
+><P
+>  <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+># Gmail is a _fragile_ site:
 #
-{ <tt class="LITERAL">fragile</tt> }
+{ <TT
+CLASS="LITERAL"
+>fragile</TT
+> }
  # Gmail is ...
- mail.google.com
-</pre>
-          </td>
-        </tr>
-      </table>
-
-      <p>Be sure to flush your browser's caches whenever making these kinds
-      of changes, just to make sure the changes <span class=
-      "QUOTE">"take"</span>.</p>
-
-      <p>Make sure the domain, host and path are appropriate as well. Your
-      browser can tell you where you are specifically and you should use that
-      information for your configuration settings. Note that above it is not
-      referenced as <tt class="LITERAL">gmail.com</tt>, which is a valid
-      domain name.</p>
-    </div>
-
-    <div class="SECT2">
-      <h3 class="SECT2"><a name="CONFIGFILES" id="CONFIGFILES">3.9. What's
-      the difference between the <span class="QUOTE">"Cautious"</span>,
-      <span class="QUOTE">"Medium"</span> and <span class=
-      "QUOTE">"Advanced"</span> defaults?</a></h3>
-
-      <p>Configuring <span class="APPLICATION">Privoxy</span> is not entirely
-      trivial. To help you get started, we provide you with three different
-      default action <span class="QUOTE">"profiles"</span> in the web based
-      actions file editor at <a href="http://config.privoxy.org/show-status"
-      target="_top">http://config.privoxy.org/show-status</a>. See the
-      <a class="CITETITLE c4" href="../user-manual/actions-file.html" target=
-      "_top">User Manual</a> for a list of actions, and how the default
-      profiles are set.</p>
-
-      <p>Where the defaults are likely to break some sites, exceptions for
-      known popular <span class="QUOTE">"problem"</span> sites are included,
-      but in general, the more aggressive your default settings are, the more
-      exceptions you will have to make later. New users are best to start off
-      in <span class="QUOTE">"Cautious"</span> setting. This is safest and
-      will have the fewest problems. See the <a class="CITETITLE c4" href=
-      "../user-manual/index.html" target="_top">User Manual</a> for a more
-      detailed discussion.</p>
-
-      <p>It should be noted that the <span class="QUOTE">"Advanced"</span>
-      profile (formerly known as the <span class=
-      "QUOTE">"Adventuresome"</span> profile) is more aggressive, and will
-      make use of some of <span class="APPLICATION">Privoxy's</span> advanced
-      features. Use at your own risk!</p>
-    </div>
-
-    <div class="SECT2">
-      <h3 class="SECT2"><a name="BROWSECONFIG" id="BROWSECONFIG">3.10. Why
-      can I change the configuration with a browser? Does that not raise
-      security issues?</a></h3>
-
-      <p>It may seem strange that regular users can edit the config files
-      with their browsers, although the whole <tt class=
-      "FILENAME">/etc/privoxy</tt> hierarchy belongs to the user <span class=
-      "QUOTE">"privoxy"</span>, with only 644 permissions.</p>
-
-      <p>When you use the browser-based editor, <span class=
-      "APPLICATION">Privoxy</span> itself is writing to the config files.
-      Because <span class="APPLICATION">Privoxy</span> is running as the user
-      <span class="QUOTE">"privoxy"</span>, it can update its own config
-      files.</p>
-
-      <p>If you run <span class="APPLICATION">Privoxy</span> for multiple
-      untrusted users (e.g. in a LAN) or aren't entirely in control of your
-      own browser, you will probably want to make sure that the web-based
-      editor and remote toggle features are <span class="QUOTE">"off"</span>
-      by setting <span class="QUOTE">"<tt class="LITERAL"><a href=
-      "../user-manual/config.html#ENABLE-EDIT-ACTIONS" target=
-      "_top">enable-edit-actions</a> 0</tt>"</span> and <span class=
-      "QUOTE">"<tt class="LITERAL"><a href=
-      "../user-manual/config.html#ENABLE-REMOTE-TOGGLE" target=
-      "_top">enable-remote-toggle</a> 0</tt>"</span> in the <a href=
-      "../user-manual/config.html" target="_top">main configuration
-      file</a>.</p>
-
-      <p>As of <span class="APPLICATION">Privoxy</span> 3.0.7 these options
-      are disabled by default.</p>
-    </div>
-
-    <div class="SECT2">
-      <h3 class="SECT2"><a name="AEN489" id="AEN489">3.11. What is the
-      <tt class="FILENAME">default.filter</tt> file? What is a <span class=
-      "QUOTE">"filter"</span>?</a></h3>
-
-      <p>The <a href="../user-manual/filter-file.html" target=
-      "_top"><tt class="FILENAME">default.filter</tt></a> file is where
-      <span class="emphasis EMPHASIS c3">filters</span> as supplied by the
-      developers are defined. Filters are a special subset of actions that
-      can be used to modify or remove web page content or headers on the fly.
-      Content filters can be applied to <span class=
-      "emphasis EMPHASIS c3">anything</span> in the page source, header
-      filters can be applied to either server or client headers. Regular
-      expressions are used to accomplish this.</p>
-
-      <p>There are a number of pre-defined filters to deal with common
-      annoyances. The filters are only defined here, to invoke them, you need
-      to use the <a href="../user-manual/actions-file.html#FILTER" target=
-      "_top"><tt class="LITERAL">filter</tt> action</a> in one of the actions
-      files. Content filtering is automatically disabled for inappropriate
-      MIME types, but if you know better than Privoxy what should or should
-      not be filtered you can filter any content you like.</p>
-
-      <p>Filters should <span class="emphasis EMPHASIS c3">not</span> be
-      confused with <a href="../user-manual/actions-file.html#BLOCK" target=
-      "_top"><tt class="LITERAL">blocks</tt></a>, which is a completely
-      different action, and is more typically used to block ads and unwanted
-      sites.</p>
-
-      <p>If you are familiar with regular expressions, and HTML, you can look
-      at the provided <tt class="FILENAME">default.filter</tt> with a text
-      editor and define your own filters. This is potentially a very powerful
-      feature, but requires some expertise in both regular expressions and
-      HTML/HTTP. You should place any modifications to the default filters,
-      or any new ones you create in a separate file, such as <tt class=
-      "FILENAME">user.filter</tt>, so they won't be overwritten during
-      upgrades. The ability to define multiple filter files in <tt class=
-      "FILENAME">config</tt> is a new feature as of v. 3.0.5.</p>
-
-      <p>There is no GUI editor option for this part of the configuration,
-      but you can disable/enable the various pre-defined filters of the
-      included <tt class="FILENAME">default.filter</tt> file with the
-      <a href="http://config.privoxy.org/show-status" target="_top">web-based
-      actions file editor</a>. Note that the custom actions editor must be
-      explicitly enabled in the main config file (see <a href=
-      "../user-manual/config.html#ENABLE-EDIT-ACTIONS" target=
-      "_top">enable-edit-actions</a>).</p>
-
-      <p>If you intend to develop your own filters, you might want to have a
-      look at <a href="http://www.fabiankeil.de/sourcecode/pft/" target=
-      "_top">Privoxy-Filter-Test</a>.</p>
-    </div>
-
-    <div class="SECT2">
-      <h3 class="SECT2"><a name="LANCONFIG" id="LANCONFIG">3.12. How can I
-      set up Privoxy to act as a proxy for my LAN?</a></h3>
-
-      <p>By default, <span class="APPLICATION">Privoxy</span> only responds
-      to requests from <tt class="LITERAL">127.0.0.1</tt> (localhost). To
-      have it act as a server for a network, this needs to be changed in the
-      <a href="../user-manual/config.html" target="_top">main configuration
-      file</a>. Look for the <tt class="LITERAL"><a href=
-      "../user-manual/config.html#LISTEN-ADDRESS" target=
-      "_top">listen-address</a></tt> option, which may be commented out with
-      a <span class="QUOTE">"#"</span> symbol. Make sure it is uncommented,
-      and assign it the address of the LAN gateway interface, and port number
-      to use. Assuming your LAN address is 192.168.1.1 and you wish to run
-      <span class="APPLICATION">Privoxy</span> on port 8118, this line should
-      look like:</p>
-
-      <table class="c2" border="0" width="100%">
-        <tr>
-          <td>
-            <pre class="SCREEN">
-  listen-address  192.168.1.1:8118
-</pre>
-          </td>
-        </tr>
-      </table>
-
-      <p>Save the file, and restart <span class="APPLICATION">Privoxy</span>.
-      Configure all browsers on the network then to use this address and port
-      number.</p>
-
-      <p>Alternately, you can have <span class="APPLICATION">Privoxy</span>
-      listen on all available interfaces:</p>
-
-      <table class="c2" border="0" width="100%">
-        <tr>
-          <td>
-            <pre class="SCREEN">
-  listen-address    :8118
-</pre>
-          </td>
-        </tr>
-      </table>
-
-      <p>And then use <span class="APPLICATION">Privoxy's</span> <a href=
-      "../user-manual/config.html#PERMIT-ACCESS" target=
-      "_top">permit-access</a> feature to limit connections. A firewall in
-      this situation is recommended as well.</p>
-
-      <p>The above steps should be the same for any TCP network, regardless
-      of operating system.</p>
-
-      <p>If you run <span class="APPLICATION">Privoxy</span> on a LAN with
-      untrusted users, we recommend that you double-check the <a href=
-      "../user-manual/config.html#ACCESS-CONTROL" target="_top">access
-      control and security</a> options!</p>
-    </div>
-
-    <div class="SECT2">
-      <h3 class="SECT2"><a name="AEN540" id="AEN540">3.13. Instead of ads,
-      now I get a checkerboard pattern. I don't want to see
-      anything.</a></h3>
-
-      <p>The replacement for blocked images can be controlled with the
-      <a href="../user-manual/actions-file.html#SET-IMAGE-BLOCKER" target=
-      "_top"><tt class="LITERAL">set-image-blocker</tt> action</a>. You have
-      the choice of a checkerboard pattern, a transparent 1x1 GIF image (aka
-      <span class="QUOTE">"blank"</span>), or a redirect to a custom image of
-      your choice. Note that this choice only has effect for images which are
-      blocked as images, i.e. whose URLs match both a <tt class=
-      "LITERAL"><a href="../user-manual/actions-file.html#HANDLE-AS-IMAGE"
-      target="_top">handle-as-image</a></tt> <span class=
-      "emphasis EMPHASIS c3">and</span> <tt class="LITERAL"><a href=
-      "../user-manual/actions-file.html#BLOCK" target="_top">block</a></tt>
-      action.</p>
-
-      <p>If you want to see nothing, then change the <a href=
-      "../user-manual/actions-file.html#SET-IMAGE-BLOCKER" target=
-      "_top"><tt class="LITERAL">set-image-blocker</tt> action</a> to
-      <span class="QUOTE">"blank"</span>. This can be done by editing the
-      <tt class="FILENAME">user.action</tt> file, or through the <a href=
-      "http://config.privoxy.org/show-status" target="_top">web-based actions
-      file editor</a>.</p>
-    </div>
-
-    <div class="SECT2">
-      <h3 class="SECT2"><a name="AEN557" id="AEN557">3.14. Why would anybody
-      want to see a checkerboard pattern?</a></h3>
-
-      <p>Remember that <a href="general.html#WHATSANAD">telling which image
-      is an ad and which isn't</a>, is an educated guess. While we hope that
-      the standard configuration is rather smart, it will make occasional
-      mistakes. The checkerboard image is visually decent, and it shows you
-      where images have been blocked, which can be very helpful in case some
-      navigation aid or otherwise innocent image was erroneously blocked. It
-      is recommended for new users so they can <span class=
-      "QUOTE">"see"</span> what is happening. Some people might also enjoy
-      seeing how many banners they <span class=
-      "emphasis EMPHASIS c3">don't</span> have to see.</p>
-    </div>
-
-    <div class="SECT2">
-      <h3 class="SECT2"><a name="AEN563" id="AEN563">3.15. I see some images
-      being replaced with text instead of the checkerboard image. Why and how
-      do I get rid of this?</a></h3>
-
-      <p>This happens when the banners are not embedded in the HTML code of
-      the page itself, but in separate HTML (sub)documents that are loaded
-      into (i)frames or (i)layers, and these external HTML documents are
-      blocked. Being non-images they get replaced by a substitute HTML page
-      rather than a substitute image, which wouldn't work out technically,
-      since the browser expects and accepts only HTML when it has requested
-      an HTML document.</p>
-
-      <p>The substitute page adapts to the available space and shows itself
-      as a miniature two-liner if loaded into small frames, or full-blown
-      with a large red "BLOCKED" banner if space allows.</p>
-
-      <p>If you prefer the banners to be blocked by images, you must see to
-      it that the HTML documents in which they are embedded are not blocked.
-      Clicking the <span class="QUOTE">"See why"</span> link offered in the
-      substitute page will show you which rule blocked the page. After
-      changing the rule and un-blocking the HTML documents, the browser will
-      try to load the actual banner images and the usual image blocking will
-      (hopefully!) kick in.</p>
-    </div>
-
-    <div class="SECT2">
-      <h3 class="SECT2"><a name="SRVANY" id="SRVANY">3.16. Can Privoxy run as
-      a service on Win2K/NT/XP?</a></h3>
-
-      <p>Yes. Version 3.0.5 introduces full <span class=
-      "APPLICATION">Windows</span> service functionality. See <a href=
-      "../user-manual/installation.html#installation-pack-win" target=
-      "_top">the <i class="CITETITLE">User Manual</i></a> for details on how
-      to install and configure <span class="APPLICATION">Privoxy</span> as a
-      service.</p>
-
-      <p>Earlier 3.x versions could run as a system service using <b class=
-      "COMMAND">srvany.exe</b>. See the discussion at <a href=
-      "http://sourceforge.net/tracker/?func=detail&amp;atid=361118&amp;aid=485617&amp;group_id=11118"
-      target=
-      "_top">http://sourceforge.net/tracker/?func=detail&amp;atid=361118&amp;aid=485617&amp;group_id=11118</a>,
-      for details, and a sample configuration.</p>
-    </div>
-
-    <div class="SECT2">
-      <h3 class="SECT2"><a name="OTHERPROXY" id="OTHERPROXY">3.17. How can I
-      make Privoxy work with other proxies?</a></h3>
-
-      <p>This can be done and is often useful to combine the benefits of
-      <span class="APPLICATION">Privoxy</span> with those of a another proxy,
-      for example to cache content. See the <a href=
-      "../user-manual/config.html#FORWARDING" target="_top">forwarding
-      chapter</a> in the <a href="../user-manual/index.html" target=
-      "_top">User Manual</a> which describes how to do this. If you intend to
-      use Privoxy with Tor, please also have a look at <a href=
-      "misc.html#TOR">How do I use Privoxy together with Tor</a>.</p>
-    </div>
-
-    <div class="SECT2">
-      <h3 class="SECT2"><a name="PORT-80" id="PORT-80">3.18. Can I just set
-      Privoxy to use port 80 and thus avoid individual browser
-      configuration?</a></h3>
-
-      <p>No, its more complicated than that. This only works with special
-      kinds of proxies known as <span class="QUOTE">"intercepting"</span>
-      proxies (<a href="configuration.html#INTERCEPTING">see below</a>).</p>
-    </div>
-
-    <div class="SECT2">
-      <h3 class="SECT2"><a name="TRANSPARENT" id="TRANSPARENT">3.19. Can
-      Privoxy run as a <span class="QUOTE">"transparent"</span>
-      proxy?</a></h3>
-
-      <p>The whole idea of Privoxy is to modify client requests and server
-      responses in all sorts of ways and therefore it's not a transparent
-      proxy as described in <a href="http://tools.ietf.org/html/rfc2616"
-      target="_top">RFC 2616</a>.</p>
-
-      <p>However, some people say <span class="QUOTE">"transparent
-      proxy"</span> when they mean <span class="QUOTE">"intercepting
-      proxy"</span>. If you are one of them, please read the <a href=
-      "configuration.html#INTERCEPTING">next entry</a>.</p>
-    </div>
-
-    <div class="SECT2">
-      <h3 class="SECT2"><a name="INTERCEPTING" id="INTERCEPTING">3.20. Can
-      Privoxy run as a <span class="QUOTE">"intercepting"</span>
-      proxy?</a></h3>
-
-      <p><span class="APPLICATION">Privoxy</span> can't intercept traffic
-      itself, but it can handle requests that where intercepted and
-      redirected with a packet filter (like <span class=
-      "APPLICATION">PF</span> or <span class="APPLICATION">iptables</span>),
-      as long as the <tt class="LITERAL">Host</tt> header is present.</p>
-
-      <p>As the <tt class="LITERAL">Host</tt> header is required by HTTP/1.1
-      and as most web sites rely on it anyway, this limitation shouldn't be a
-      problem.</p>
-
-      <p>Please refer to your packet filter's documentation to learn how to
-      intercept and redirect traffic into <span class=
-      "APPLICATION">Privoxy</span>. Afterward you just have to configure
-      <span class="APPLICATION">Privoxy</span> to <a href=
-      "../user-manual/config.html#ACCEPT-INTERCEPTED-REQUESTS" target=
-      "_top">accept intercepted requests</a>.</p>
-    </div>
-
-    <div class="SECT2">
-      <h3 class="SECT2"><a name="OUTLOOK" id="OUTLOOK">3.21. How can I
-      configure Privoxy for use with Outlook?</a></h3>
-
-      <p>Versions of <span class="APPLICATION">Outlook</span> prior to Office
-      2007, use <span class="APPLICATION">Internet Explorer</span> components
-      to both render HTML, and fetch any HTTP requests that may be embedded
-      in an HTML email. So however you have <span class=
-      "APPLICATION">Privoxy</span> configured to work with IE, this
-      configuration should automatically be shared, at least with older
-      version of Internet Explorer.</p>
-
-      <p>Starting with Office 2007, Microsoft is instead using the MS-Word
-      rendering engine with Outlook. It is unknown whether this can be
-      configured to use a proxy.</p>
-    </div>
-
-    <div class="SECT2">
-      <h3 class="SECT2"><a name="OUTLOOK-MORE" id="OUTLOOK-MORE">3.22. How
-      can I have separate rules just for HTML mail?</a></h3>
-
-      <p>The short answer is, you can't. <span class=
-      "APPLICATION">Privoxy</span> has no way of knowing which particular
-      application makes a request, so there is no way to distinguish between
-      web pages and HTML mail. <span class="APPLICATION">Privoxy</span> just
-      blindly proxies all requests. In the case of <span class=
-      "APPLICATION">Outlook Express</span> (see above), OE uses IE anyway,
-      and there is no way for <span class="APPLICATION">Privoxy</span> to
-      ever be able to distinguish between them (nor could any other proxy
-      type application for that matter).</p>
-
-      <p>For a good discussion of some of the issues involved (including
-      privacy and security issues), see <a href=
-      "http://sourceforge.net/tracker/?func=detail&amp;atid=211118&amp;aid=629518&amp;group_id=11118"
-      target=
-      "_top">http://sourceforge.net/tracker/?func=detail&amp;atid=211118&amp;aid=629518&amp;group_id=11118</a>.</p>
-    </div>
-
-    <div class="SECT2">
-      <h3 class="SECT2"><a name="SNEAKY-COOKIES" id="SNEAKY-COOKIES">3.23. I
-      sometimes notice cookies sneaking through. How?</a></h3>
-
-      <p><a href="http://en.wikipedia.org/wiki/Browser_cookie" target=
-      "_top">Cookies</a> can be set in several ways. The classic method is
-      via the <tt class="LITERAL">Set-Cookie</tt> HTTP header. This is
-      straightforward, and an easy one to manipulate, such as the
-      <span class="APPLICATION">Privoxy</span> concept of <a href=
-      "../user-manual/actions-file.html#SESSION-COOKIES-ONLY" target=
-      "_top">session-cookies-only</a>. There is also the possibility of using
-      <a href="http://en.wikipedia.org/wiki/Javascript" target=
-      "_top">Javascript</a> to set cookies (<span class=
-      "APPLICATION">Privoxy</span> calls these <tt class=
-      "LITERAL">content-cookies</tt>). This is trickier because the syntax
-      can vary widely, and thus requires a certain amount of guesswork. It is
-      not realistic to catch all of these short of disabling Javascript,
-      which would break many sites. And lastly, if the cookies are embedded
-      in a HTTPS/SSL secure session via Javascript, they are beyond
-      <span class="APPLICATION">Privoxy's</span> reach.</p>
-
-      <p>All in all, <span class="APPLICATION">Privoxy</span> can help manage
-      cookies in general, can help minimize the loss of privacy posed by
-      cookies, but can't realistically stop all cookies.</p>
-    </div>
-
-    <div class="SECT2">
-      <h3 class="SECT2"><a name="EVIL-COOKIES" id="EVIL-COOKIES">3.24. Are
-      all cookies bad? Why?</a></h3>
-
-      <p>No, in fact there are many beneficial uses of <a href=
-      "http://en.wikipedia.org/wiki/Browser_cookie" target=
-      "_top">cookies</a>. Cookies are just a method that browsers can use to
-      store data between pages, or between browser sessions. Sometimes there
-      is a good reason for this, and the user's life is a bit easier as a
-      result. But there is a long history of some websites taking advantage
-      of this layer of trust, and using the data they glean from you and your
-      browsing habits for their own purposes, and maybe to your potential
-      detriment. Such sites are using you and storing their data on your
-      system. That is why the privacy conscious watch from whom those cookies
-      come, and why they really <span class=
-      "emphasis EMPHASIS c3">need</span> to be there.</p>
-
-      <p>See the <a href="http://en.wikipedia.org/wiki/Browser_cookie"
-      target="_top">Wikipedia cookie definition</a> for more.</p>
-    </div>
-
-    <div class="SECT2">
-      <h3 class="SECT2"><a name="ALLOW-COOKIES" id="ALLOW-COOKIES">3.25. How
-      can I allow permanent cookies for my trusted sites?</a></h3>
-
-      <p>There are several actions that relate to cookies. The default
-      behavior is to allow only <span class="QUOTE">"session cookies"</span>,
-      which means the cookies only last for the current browser session. This
-      eliminates most kinds of abuse related to cookies. But there may be
-      cases where you want cookies to last.</p>
-
-      <p>To disable all cookie actions, so that cookies are allowed
-      unrestricted, both in and out, for <tt class=
-      "LITERAL">example.com</tt>:</p>
-
-      <table class="c2" border="0" width="100%">
-        <tr>
-          <td>
-            <pre class="SCREEN">
- { -crunch-incoming-cookies -crunch-outgoing-cookies -session-cookies-only -filter{content-cookies} }
-  .example.com
-</pre>
-          </td>
-        </tr>
-      </table>
-
-      <p>Place the above in <tt class="FILENAME">user.action</tt>. Note that
-      some of these may be off by default anyway, so this might be redundant,
-      but there is no harm being explicit in what you want to happen.
-      <tt class="FILENAME">user.action</tt> includes an alias for this
-      situation, called <tt class="LITERAL">allow-all-cookies</tt>.</p>
-    </div>
-
-    <div class="SECT2">
-      <h3 class="SECT2"><a name="MULTIPLES" id="MULTIPLES">3.26. Can I have
-      separate configurations for different users?</a></h3>
-
-      <p>Each instance of <span class="APPLICATION">Privoxy</span> has its
-      own configuration, including such attributes as the TCP port that it
-      listens on. What you can do is run multiple instances of <span class=
-      "APPLICATION">Privoxy</span>, each with a unique <a href=
-      "../user-manual/config.html#LISTEN-ADDRESS" target=
-      "_top">listen-address</a> configuration setting, and configuration
-      path, and then each of these can have their own configurations. Think
-      of it as per-port configuration.</p>
-
-      <p>Simple enough for a few users, but for large installations, consider
-      having groups of users that might share like configurations.</p>
-    </div>
-
-    <div class="SECT2">
-      <h3 class="SECT2"><a name="WHITELISTS" id="WHITELISTS">3.27. Can I
-      set-up Privoxy as a whitelist of <span class="QUOTE">"good"</span>
-      sites?</a></h3>
-
-      <p>Sure. There are a couple of things you can do for simple
-      white-listing. Here's one real easy one:</p>
-
-      <table class="c2" border="0" width="100%">
-        <tr>
-          <td>
-            <pre class="SCREEN">
- ############################################################
+ mail.google.com</PRE
+></TD
+></TR
+></TABLE
+>
+ </P
+><P
+>  Be sure to flush your browser's caches whenever making these kinds of
+  changes, just to make sure the changes <SPAN
+CLASS="QUOTE"
+>"take"</SPAN
+>.
+ </P
+><P
+>  Make sure the domain, host and path are appropriate as well. Your browser can
+  tell you where you are specifically and you should use that information for 
+  your configuration settings. Note that above it is not referenced as 
+  <TT
+CLASS="LITERAL"
+>gmail.com</TT
+>, which is a valid domain name.
+ </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="CONFIGFILES"
+>3.9. What's the difference between the
+<SPAN
+CLASS="QUOTE"
+>"Cautious"</SPAN
+>, <SPAN
+CLASS="QUOTE"
+>"Medium"</SPAN
+> and <SPAN
+CLASS="QUOTE"
+>"Advanced"</SPAN
+> defaults?</A
+></H3
+><P
+>  Configuring <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> is not entirely trivial. To
+  help you get started, we provide you with three different default action
+  <SPAN
+CLASS="QUOTE"
+>"profiles"</SPAN
+> in the web based actions file editor at <A
+HREF="http://config.privoxy.org/show-status"
+TARGET="_top"
+>http://config.privoxy.org/show-status</A
+>.
+  See the <A
+HREF="../user-manual/actions-file.html"
+TARGET="_top"
+><I
+CLASS="CITETITLE"
+>User
+  Manual</I
+></A
+> for a list of actions, and how the default 
+  profiles are set.
+ </P
+><P
+> Where the defaults are likely to break some sites, exceptions for
+ known popular <SPAN
+CLASS="QUOTE"
+>"problem"</SPAN
+> sites are included, but in
+ general, the more aggressive your default settings are, the more exceptions
+ you will have to make later. New users are best to start off in 
+ <SPAN
+CLASS="QUOTE"
+>"Cautious"</SPAN
+> setting. This is safest and will have the fewest 
+ problems. See the <A
+HREF="../user-manual/index.html"
+TARGET="_top"
+><I
+CLASS="CITETITLE"
+>User Manual</I
+></A
+>
+ for a more detailed discussion.</P
+><P
+> It should be noted that the <SPAN
+CLASS="QUOTE"
+>"Advanced"</SPAN
+> profile (formerly known 
+ as the <SPAN
+CLASS="QUOTE"
+>"Adventuresome"</SPAN
+> profile) is more
+ aggressive, and will make use of some of 
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy's</SPAN
+> advanced features. Use at your own risk!</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="BROWSECONFIG"
+>3.10. Why can I change the configuration 
+with a browser? Does that not raise security issues?</A
+></H3
+><P
+>  It may seem strange that regular users can edit the config files with their
+  browsers, although the whole <TT
+CLASS="FILENAME"
+>/etc/privoxy</TT
+> hierarchy
+  belongs to the user <SPAN
+CLASS="QUOTE"
+>"privoxy"</SPAN
+>, with only 644 permissions.
+ </P
+><P
+>  When you use the browser-based editor, <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>
+  itself is writing to the config files.  Because
+  <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> is running as the user <SPAN
+CLASS="QUOTE"
+>"privoxy"</SPAN
+>,
+  it can update its own config files.
+ </P
+><P
+>  If you run <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> for multiple untrusted users (e.g. in
+  a LAN) or aren't entirely in control of your own browser, you will probably want
+  to make sure that the the web-based editor and remote toggle features are
+  <SPAN
+CLASS="QUOTE"
+>"off"</SPAN
+> by setting <SPAN
+CLASS="QUOTE"
+>"<TT
+CLASS="LITERAL"
+><A
+HREF="../user-manual/config.html#ENABLE-EDIT-ACTIONS"
+TARGET="_top"
+>enable-edit-actions</A
+>
+  0</TT
+>"</SPAN
+> and <SPAN
+CLASS="QUOTE"
+>"<TT
+CLASS="LITERAL"
+><A
+HREF="../user-manual/config.html#ENABLE-REMOTE-TOGGLE"
+TARGET="_top"
+>enable-remote-toggle</A
+>
+  0</TT
+>"</SPAN
+> in the <A
+HREF="../user-manual/config.html"
+TARGET="_top"
+>main configuration file</A
+>.
+ </P
+><P
+>  As of <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> 3.0.7 these options are disabled by default.
+ </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="AEN481"
+>3.11. What is the <TT
+CLASS="FILENAME"
+>default.filter</TT
+> file? What is a <SPAN
+CLASS="QUOTE"
+>"filter"</SPAN
+>?</A
+></H3
+><P
+> The <A
+HREF="../user-manual/filter-file.html"
+TARGET="_top"
+><TT
+CLASS="FILENAME"
+>default.filter</TT
+></A
+>
+ file is where <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>filters</I
+></SPAN
+> as supplied by the developers are defined.
+ Filters are a special subset of actions that can be used to modify or
+ remove web page content or headers on the fly. Content filters can
+ be applied to <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>anything</I
+></SPAN
+> in the page source,
+ header filters can be applied to either server or client headers.
+ Regular expressions are used to accomplish this.</P
+><P
+> There are a number of pre-defined filters to deal with common annoyances. The
+ filters are only defined here, to invoke them, you need to use the
+ <A
+HREF="../user-manual/actions-file.html#FILTER"
+TARGET="_top"
+><TT
+CLASS="LITERAL"
+>filter</TT
+>
+ action</A
+> in one of the actions files. Content filtering is automatically
+ disabled for inappropriate MIME types, but if you now better than Privoxy
+ what should or should not be filtered you can filter any content you like.</P
+><P
+> Filters should
+ <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>not</I
+></SPAN
+> be confused with <A
+HREF="../user-manual/actions-file.html#BLOCK"
+TARGET="_top"
+><TT
+CLASS="LITERAL"
+>blocks</TT
+></A
+>, which
+ is a completely different action, and is more typically used to block ads and
+ unwanted sites.</P
+><P
+> If you are familiar with regular expressions, and HTML, you can look at 
+ the provided <TT
+CLASS="FILENAME"
+>default.filter</TT
+> with a text editor and define
+ your own filters.  This is potentially a very powerful feature, but
+ requires some expertise in both regular expressions and HTML/HTTP. 
+  You should 
+ place any modifications to the default filters, or any new ones you create 
+ in a separate file, such as <TT
+CLASS="FILENAME"
+>user.filter</TT
+>, so they won't 
+ be overwritten during upgrades. 
+ The ability to define multiple filter files 
+ in <TT
+CLASS="FILENAME"
+>config</TT
+> is a new feature as of v. 3.0.5.</P
+><P
+> There is no GUI editor option for this part of the configuration, 
+ but you can disable/enable the various pre-defined filters of the included 
+ <TT
+CLASS="FILENAME"
+>default.filter</TT
+> file with the <A
+HREF="http://config.privoxy.org/show-status"
+TARGET="_top"
+>web-based actions file editor</A
+>.
+ Note that the custom actions editor must be explicitly enabled in
+ the main config file (see <A
+HREF="../user-manual/config.html#ENABLE-EDIT-ACTIONS"
+TARGET="_top"
+>enable-edit-actions</A
+>).</P
+><P
+> If you intend to develop your own filters, you might want to have a look at
+ <A
+HREF="http://www.fabiankeil.de/sourcecode/pft/"
+TARGET="_top"
+>Privoxy-Filter-Test</A
+>.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="LANCONFIG"
+>3.12. How can I set up Privoxy to act as a proxy for my 
+ LAN?</A
+></H3
+><P
+> By default, <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> only responds to requests 
+ from <TT
+CLASS="LITERAL"
+>127.0.0.1</TT
+> (localhost). To have it act as a server for
+ a network, this needs to be changed in the <A
+HREF="../user-manual/config.html"
+TARGET="_top"
+>main configuration file</A
+>. Look for
+ the <TT
+CLASS="LITERAL"
+><A
+HREF="../user-manual/config.html#LISTEN-ADDRESS"
+TARGET="_top"
+>listen-address</A
+></TT
+>
+ option, which may be commented out with a <SPAN
+CLASS="QUOTE"
+>"#"</SPAN
+> symbol. Make sure
+ it is uncommented, and assign it the address of the LAN gateway interface,
+ and port number to use. Assuming your LAN address is 192.168.1.1 and you
+ wish to run <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> on port 8118, this line
+ should look like:</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>  listen-address  192.168.1.1:8118</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> Save the file, and restart <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>. Configure 
+ all browsers on the network then to use this address and port number.</P
+><P
+> Alternately, you can have <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> listen on 
+ all available interfaces:</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+>  listen-address    :8118</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> And then use <SPAN
+CLASS="APPLICATION"
+>Privoxy's</SPAN
+> 
+ <A
+HREF="../user-manual/config.html#PERMIT-ACCESS"
+TARGET="_top"
+>permit-access</A
+> 
+ feature to limit connections. A firewall in this situation is recommended 
+ as well.</P
+><P
+> The above steps should be the same for any TCP network, regardless of
+ operating system.</P
+><P
+> If you run <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> on a LAN with untrusted users,
+ we recommend that you double-check the <A
+HREF="../user-manual/config.html#ACCESS-CONTROL"
+TARGET="_top"
+>access control and security</A
+>
+ options!</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="AEN532"
+>3.13. Instead of ads, now I get a checkerboard pattern. I don't want to see anything.</A
+></H3
+><P
+> The replacement for blocked images can be controlled with the <A
+HREF="../user-manual/actions-file.html#SET-IMAGE-BLOCKER"
+TARGET="_top"
+><TT
+CLASS="LITERAL"
+>set-image-blocker</TT
+>
+ action</A
+>. You have the choice of a checkerboard pattern, a transparent 1x1 GIF
+ image (aka <SPAN
+CLASS="QUOTE"
+>"blank"</SPAN
+>), or a redirect to a custom image of your choice.
+ Note that this choice only has effect for images which are blocked as images, i.e.
+ whose URLs match both a <TT
+CLASS="LITERAL"
+><A
+HREF="../user-manual/actions-file.html#HANDLE-AS-IMAGE"
+TARGET="_top"
+>handle-as-image</A
+></TT
+>
+ <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>and</I
+></SPAN
+> <TT
+CLASS="LITERAL"
+><A
+HREF="../user-manual/actions-file.html#BLOCK"
+TARGET="_top"
+>block</A
+></TT
+> action.</P
+><P
+> If you want to see nothing, then change the <A
+HREF="../user-manual/actions-file.html#SET-IMAGE-BLOCKER"
+TARGET="_top"
+><TT
+CLASS="LITERAL"
+>set-image-blocker</TT
+>
+ action</A
+> to <SPAN
+CLASS="QUOTE"
+>"blank"</SPAN
+>. This can be done by editing the 
+ <TT
+CLASS="FILENAME"
+>user.action</TT
+> file, or through the <A
+HREF="http://config.privoxy.org/show-status"
+TARGET="_top"
+>web-based actions file editor</A
+>.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="AEN549"
+>3.14. Why would anybody want to see a checkerboard pattern?</A
+></H3
+><P
+> Remember that <A
+HREF="general.html#WHATSANAD"
+>telling which image is an ad and which
+ isn't</A
+>, is an educated guess. While we hope that the standard configuration
+ is rather smart, it will make occasional mistakes. The checkerboard image is visually
+ decent, and it shows you where images have been blocked, which can be very
+ helpful in case some navigation aid or otherwise innocent image was
+ erroneously blocked. It is recommended for new users so they can 
+ <SPAN
+CLASS="QUOTE"
+>"see"</SPAN
+> what is happening. Some people might also enjoy seeing how
+ many banners they <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>don't</I
+></SPAN
+> have to see.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="AEN555"
+>3.15. I see some images being replaced with text
+instead of the checkerboard image. Why and how do I get rid of this?</A
+></H3
+><P
+> This happens when the banners are not embedded in the HTML code of the
+ page itself, but in separate HTML (sub)documents that are loaded into (i)frames
+ or (i)layers, and these external HTML documents are blocked. Being non-images
+ they get replaced by a substitute HTML page rather than a substitute image,
+ which wouldn't work out technically, since the browser expects and accepts
+ only HTML when it has requested an HTML document. </P
+><P
+> The substitute page adapts to the available space and shows itself as a
+ miniature two-liner if loaded into small frames, or full-blown with a
+ large red "BLOCKED" banner if space allows.</P
+><P
+> If you prefer the banners to be blocked by images, you must see to it that
+ the HTML documents in which they are embedded are not blocked. Clicking
+ the <SPAN
+CLASS="QUOTE"
+>"See why"</SPAN
+> link offered in the substitute page will show
+ you which rule blocked the page. After changing the rule and un-blocking
+ the HTML documents, the browser will try to load the actual banner images
+ and the usual image blocking will (hopefully!) kick in.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="SRVANY"
+>3.16. Can Privoxy run as a service 
+on Win2K/NT/XP?</A
+></H3
+><P
+> Yes. Version 3.0.5 introduces full <SPAN
+CLASS="APPLICATION"
+>Windows</SPAN
+> service
+ functionality. See <A
+HREF="../user-manual/installation.html#installation-pack-win"
+TARGET="_top"
+> the <I
+CLASS="CITETITLE"
+>User Manual</I
+></A
+> for details on how to install and configure 
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> as a service.</P
+><P
+> Earlier 3.x versions could run as a system service using <B
+CLASS="COMMAND"
+>srvany.exe</B
+>.
+ See the discussion at <A
+HREF="http://sourceforge.net/tracker/?func=detail&#38;atid=361118&#38;aid=485617&#38;group_id=11118"
+TARGET="_top"
+>http://sourceforge.net/tracker/?func=detail&#38;atid=361118&#38;aid=485617&#38;group_id=11118</A
+>,
+ for details, and a sample configuration.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="OTHERPROXY"
+>3.17. How can I make Privoxy work with other 
+proxies like Squid or Tor?</A
+></H3
+><P
+> This can be done and is often useful to combine the benefits of
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> with those of a another proxy.
+ See the <A
+HREF="../user-manual/config.html#FORWARDING"
+TARGET="_top"
+>forwarding chapter</A
+>
+ in the <A
+HREF="../user-manual/index.html"
+TARGET="_top"
+>User Manual</A
+> which
+ describes how to do this, and the <A
+HREF="misc.html#TOR"
+> How do I use Privoxy together with 
+ Tor</A
+> section below.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="PORT-80"
+>3.18. Can I just set Privoxy to use port 80
+and thus avoid individual browser configuration?</A
+></H3
+><P
+> No, its more complicated than that. This only works with special kinds 
+ of proxies known as <SPAN
+CLASS="QUOTE"
+>"intercepting"</SPAN
+> proxies (see below).</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="TRANSPARENT"
+>3.19. Can Privoxy run as a <SPAN
+CLASS="QUOTE"
+>"transparent"</SPAN
+> proxy?</A
+></H3
+><P
+> The whole idea of Privoxy is to modify client requests
+ and server responses in all sorts of ways and therefore
+ it's not a transparent proxy as described in
+ <A
+HREF="http://tools.ietf.org/html/rfc2616"
+TARGET="_top"
+>RFC 2616</A
+>.</P
+><P
+> However, some people say <SPAN
+CLASS="QUOTE"
+>"transparent proxy"</SPAN
+> when they
+ mean <SPAN
+CLASS="QUOTE"
+>"intercepting proxy"</SPAN
+>. If you are one of them,
+ please read the <A
+HREF="#intercepting"
+TARGET="_top"
+>next entry</A
+>.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="INTERCEPTING"
+>3.20. Can Privoxy run as a <SPAN
+CLASS="QUOTE"
+>"intercepting"</SPAN
+> proxy?</A
+></H3
+><P
+> <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> can't intercept traffic itself,
+  but it can handle requests that where intercepted and redirected
+  with a packet filter (like <SPAN
+CLASS="APPLICATION"
+>PF</SPAN
+> or
+  <SPAN
+CLASS="APPLICATION"
+>iptables</SPAN
+>), as long as the <TT
+CLASS="LITERAL"
+>Host</TT
+>
+  header is present. 
+  </P
+><P
+>  As the <TT
+CLASS="LITERAL"
+>Host</TT
+> header is required by HTTP/1.1 and as most
+  web sites rely on it anyway, this limitation shouldn't be a problem.</P
+><P
+>  Please refer to your packet filter's documentation to learn how to
+  intercept and redirect traffic into <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>.
+  Afterward you just have to configure <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> to
+  <A
+HREF="../user-manual/config.html#ACCEPT-INTERCEPTED-REQUESTS"
+TARGET="_top"
+>accept
+  intercepted requests</A
+>.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="OUTLOOK"
+>3.21. How can I configure Privoxy for use with Outlook?</A
+></H3
+><P
+> Versions of <SPAN
+CLASS="APPLICATION"
+>Outlook</SPAN
+> prior to Office 2007, use
+ <SPAN
+CLASS="APPLICATION"
+>Internet Explorer</SPAN
+> components to both render HTML,
+ and fetch any HTTP requests that may be embedded in an HTML email. So however
+ you have <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> configured to work with IE, this
+ configuration should automatically be shared, at least with older version of
+ Internet Explorer.</P
+><P
+> Starting with Office 2007, Microsoft is instead using the MS-Word rendering
+ engine with Outlook. It is unknown whether this can be configured to use a
+ proxy.
+ </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="OUTLOOK-MORE"
+>3.22. How can I have separate rules just for HTML mail?</A
+></H3
+><P
+> The short answer is, you can't. <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> has no way
+ of knowing which particular application makes a request, so there is no way to
+ distinguish between web pages and HTML mail.
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> just blindly proxies all requests. In the
+ case of <SPAN
+CLASS="APPLICATION"
+>Outlook Express</SPAN
+> (see above), OE uses 
+ IE anyway, and there is no way for <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> to ever 
+ be able to distinguish between them (nor could any other proxy type application for
+ that matter).</P
+><P
+> For a good discussion of some of the issues involved (including privacy and 
+ security issues), see 
+ <A
+HREF="http://sourceforge.net/tracker/?func=detail&#38;atid=211118&#38;aid=629518&#38;group_id=11118"
+TARGET="_top"
+>http://sourceforge.net/tracker/?func=detail&#38;atid=211118&#38;aid=629518&#38;group_id=11118</A
+>.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="SNEAKY-COOKIES"
+>3.23. I sometimes notice cookies sneaking through. How?</A
+></H3
+><P
+> <A
+HREF="http://en.wikipedia.org/wiki/Browser_cookie"
+TARGET="_top"
+>Cookies</A
+> can be 
+ set in several ways. The classic method is via the 
+ <TT
+CLASS="LITERAL"
+>Set-Cookie</TT
+> HTTP header. This is straightforward, and an
+ easy one to manipulate, such as the <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> concept of 
+ <A
+HREF="../user-manual/actions-file.html#SESSION-COOKIES-ONLY"
+TARGET="_top"
+>session-cookies-only</A
+>.
+ There is also the possibility of using 
+  <A
+HREF="http://en.wikipedia.org/wiki/Javascript"
+TARGET="_top"
+>Javascript</A
+> to
+ set cookies (<SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> calls these <TT
+CLASS="LITERAL"
+>content-cookies</TT
+>). This
+ is trickier because the syntax can vary widely, and thus requires a certain
+ amount of guesswork. It is not realistic to catch all of these short of
+ disabling Javascript, which would break many sites. And lastly, if the
+ cookies are embedded in a HTTPS/SSL secure session via Javascript, they are beyond
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy's</SPAN
+> reach.</P
+><P
+> All in all, <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> can help manage cookies in general, can help minimize
+ the loss of privacy posed by cookies, but can't realistically stop all
+ cookies.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="EVIL-COOKIES"
+>3.24. Are all cookies bad? Why?</A
+></H3
+><P
+> No, in fact there are many beneficial uses of 
+ <A
+HREF="http://en.wikipedia.org/wiki/Browser_cookie"
+TARGET="_top"
+>cookies</A
+>. Cookies are just a
+ method that browsers can use to store data between pages, or between browser
+ sessions. Sometimes there is a good reason for this, and the user's life is a
+ bit easier as a result. But there is a long history of some websites taking
+ advantage of this layer of trust, and using the data they glean from you and 
+ your browsing habits for their own purposes, and maybe to your potential
+ detriment. Such sites are using you and storing their data on your system.
+ That is why the privacy conscious watch from whom those cookies come, and why
+ they really <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>need</I
+></SPAN
+> to be there.</P
+><P
+>  See the 
+   <A
+HREF="http://en.wikipedia.org/wiki/Browser_cookie"
+TARGET="_top"
+>Wikipedia cookie
+  definition</A
+> for more.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="ALLOW-COOKIES"
+>3.25. How can I allow permanent cookies for my trusted sites?</A
+></H3
+><P
+>  There are several actions that relate to cookies. The default behavior is to 
+  allow only <SPAN
+CLASS="QUOTE"
+>"session cookies"</SPAN
+>, which means the cookies only last
+  for the current browser session. This eliminates most kinds of abuse related 
+  to cookies. But there may be cases where you want cookies to last.</P
+><P
+>  To disable all cookie actions, so that cookies are allowed unrestricted,
+  both in and out, for <TT
+CLASS="LITERAL"
+>example.com</TT
+>: </P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+> { -crunch-incoming-cookies -crunch-outgoing-cookies -session-cookies-only -filter{content-cookies} }
+  .example.com</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> Place the above in <TT
+CLASS="FILENAME"
+>user.action</TT
+>. Note that some of these may
+ be off by default anyway, so this might be redundant, but there is no harm
+ being explicit in what you want to happen. <TT
+CLASS="FILENAME"
+>user.action</TT
+>
+ includes an alias for this situation, called
+ <TT
+CLASS="LITERAL"
+>allow-all-cookies</TT
+>.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="MULTIPLES"
+>3.26. Can I have separate configurations for different users?</A
+></H3
+><P
+> Each instance of <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> has its own
+ configuration, including such attributes as the TCP port that it listens on.
+ What you can do is run multiple instances of <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+>, each with 
+ a unique 
+ <A
+HREF="../user-manual/config.html#LISTEN-ADDRESS"
+TARGET="_top"
+>listen-address</A
+>
+ configuration setting, and configuration path, and then
+ each of these can have their own configurations. Think of it as per-port
+ configuration.</P
+><P
+> 
+ Simple enough for a few users, but for large installations, consider having
+ groups of users that might share like configurations.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="WHITELISTS"
+>3.27. Can I set-up Privoxy as a whitelist of
+<SPAN
+CLASS="QUOTE"
+>"good"</SPAN
+> sites?</A
+></H3
+><P
+> Sure. There are a couple of things you can do for simple white-listing.
+ Here's one real easy one:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+> ############################################################
  # Blacklist
  ############################################################
- { <a href="../user-manual/actions-file.html#BLOCK" target=
-"_top">+block</a> }
+ { <A
+HREF="../user-manual/actions-file.html#BLOCK"
+TARGET="_top"
+>+block</A
+> }
  / # Block *all* URLs
-
+ 
  ############################################################
  # Whitelist
  ############################################################
- { <a href="../user-manual/actions-file.html#BLOCK" target=
-"_top">-block</a> }
+ { <A
+HREF="../user-manual/actions-file.html#BLOCK"
+TARGET="_top"
+>-block</A
+> }
   kids.example.com
   toys.example.com
-  games.example.com
-</pre>
-          </td>
-        </tr>
-      </table>
-
-      <p>This allows access to only those three sites by first blocking all
-      URLs, and then subsequently allowing three specific exceptions.</p>
-
-      <p>Another approach is <span class="APPLICATION">Privoxy's</span>
-      <tt class="LITERAL">trustfile</tt> concept, which incorporates the
-      notion of <span class="QUOTE">"trusted referrers"</span>. See the
-      <a href="../user-manual/config.html#TRUSTFILE" target="_top">Trust
-      documentation</a> for details.</p>
-
-      <p>These are fairly simple approaches and are not completely foolproof.
-      There are various other configuration options that should be disabled
-      (described elsewhere here and in <a href="../user-manual/" target=
-      "_top">the User Manual</a>) so that users can't modify their own
-      configuration and easily circumvent the whitelist.</p>
-    </div>
-
-    <div class="SECT2">
-      <h3 class="SECT2"><a name="NO-ADBLOCK" id="NO-ADBLOCK">3.28. How can I
-      turn off ad-blocking?</a></h3>
-
-      <p>Ad blocking is achieved through a complex application of various
-      <span class="APPLICATION">Privoxy</span> <a href=
-      "../user-manual/actions-file.html" target="_top">actions</a>. These
-      actions are deployed against simple images, banners, flash animations,
-      text pages, JavaScript, pop-ups and pop-unders, etc., so its not as
-      simple as just turning one or two actions off. The various actions that
-      make up <span class="APPLICATION">Privoxy</span> ad blocking are
-      hard-coded into the default configuration files. It has been assumed
-      that everyone using <span class="APPLICATION">Privoxy</span> is
-      interested in this particular feature.</p>
-
-      <p>If you want to do without this, there are several approaches you can
-      take: You can manually undo the many block rules in <tt class=
-      "FILENAME">default.action</tt>. Or even easier, just create your own
-      <tt class="FILENAME">default.action</tt> file from scratch without the
-      many ad blocking rules, and corresponding exceptions. Or lastly, if you
-      are not concerned about the additional blocks that are done for privacy
-      reasons, you can very easily over-ride <span class=
-      "emphasis EMPHASIS c3">all</span> blocking with the following very
-      simple rule in your <tt class="FILENAME">user.action</tt>:</p>
-
-      <table class="c2" border="0" width="100%">
-        <tr>
-          <td>
-            <pre class="SCREEN">
- # Unblock everybody, everywhere
- { <a href="../user-manual/actions-file.html#BLOCK" target=
-"_top">-block</a> }
- / # UN-Block *all* URLs
-</pre>
-          </td>
-        </tr>
-      </table>
-
-      <p>Or even a more comprehensive reversing of various ad related
-      actions:</p>
-
-      <table class="c2" border="0" width="100%">
-        <tr>
-          <td>
-            <pre class="SCREEN">
- # Unblock everybody, everywhere, and turn off appropriate filtering, etc
- { <a href="../user-manual/actions-file.html#BLOCK" target=
-"_top">-block</a> \
-  <a href="../user-manual/actions-file.html#FILTER-BANNERS-BY-SIZE" target=
-"_top">-filter{banners-by-size}</a> \
-  <a href="../user-manual/actions-file.html#FILTER-BANNERS-BY-LINK" target=
-"_top">-filter{banners-by-link}</a> \
-  <tt class="LITERAL">allow-popups</tt> \
+  games.example.com</PRE
+></TD
+></TR
+></TABLE
+><P
+> This allows access to only those three sites by first blocking all URLs, and 
+ then subsequently allowing three specific exceptions.</P
+><P
+> Another approach is <SPAN
+CLASS="APPLICATION"
+>Privoxy's</SPAN
+> 
+ <TT
+CLASS="LITERAL"
+>trustfile</TT
+> concept, which incorporates the notion of 
+ <SPAN
+CLASS="QUOTE"
+>"trusted referrers"</SPAN
+>. See the <A
+HREF="../user-manual/config.html#TRUSTFILE"
+TARGET="_top"
+>Trust documentation</A
+>
+ for details.</P
+><P
+> These are fairly simple approaches and are not completely foolproof. There
+ are various other configuration options that should be disabled (described
+ elsewhere here and in <A
+HREF="../user-manual/"
+TARGET="_top"
+>the User Manual</A
+>)
+ so that users can't modify their own configuration and easily circumvent the
+ whitelist.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="NO-ADBLOCK"
+>3.28. How can I turn off ad-blocking?</A
+></H3
+><P
+> Ad blocking is achieved through a complex application of various <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> 
+ <A
+HREF="../user-manual/actions-file.html"
+TARGET="_top"
+>actions</A
+>. These 
+ actions are deployed against simple images, banners, flash animations, 
+ text pages, JavaScript, pop-ups and pop-unders, etc., so its not as simple as
+ just turning one or two actions off. The various actions that make up
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> ad blocking are hard-coded into the default configuration files. It
+ has been assumed that everyone using <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> is interested in this
+ particular feature. 
+ </P
+><P
+> If you want to do without this, there are several approaches you can take:
+ You can manually undo the many block rules in
+ <TT
+CLASS="FILENAME"
+>default.action</TT
+>. Or even easier, just create your own
+ <TT
+CLASS="FILENAME"
+>default.action</TT
+> file from scratch without the many ad
+ blocking rules, and corresponding exceptions. Or lastly, if you are not
+ concerned about the additional blocks that are done for privacy reasons, you
+ can very easily over-ride <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>all</I
+></SPAN
+> blocking with the
+ following very simple rule in your <TT
+CLASS="FILENAME"
+>user.action</TT
+>: 
+ </P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+> # Unblock everybody, everywhere
+ { <A
+HREF="../user-manual/actions-file.html#BLOCK"
+TARGET="_top"
+>-block</A
+> }
+ / # UN-Block *all* URLs</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> 
+ Or even a more comprehensive reversing of various ad related actions:</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+> # Unblock everybody, everywhere, and turn off appropriate filtering, etc
+ { <A
+HREF="../user-manual/actions-file.html#BLOCK"
+TARGET="_top"
+>-block</A
+> \
+  <A
+HREF="../user-manual/actions-file.html#FILTER-BANNERS-BY-SIZE"
+TARGET="_top"
+>-filter{banners-by-size}</A
+> \
+  <A
+HREF="../user-manual/actions-file.html#FILTER-BANNERS-BY-LINK"
+TARGET="_top"
+>-filter{banners-by-link}</A
+> \
+  <TT
+CLASS="LITERAL"
+>allow-popups</TT
+> \
  }
- / # UN-Block *all* URLs and allow ads
-</pre>
-          </td>
-        </tr>
-      </table>
-
-      <p>This last <span class="QUOTE">"action"</span> in this compound
-      statement, <tt class="LITERAL">allow-popups</tt>, is an <a href=
-      "../user-manual/actions-file.html#ALIASES" target="_top">alias</a> that
-      disables various pop-up blocking features.</p>
-    </div>
-
-    <div class="SECT2">
-      <h3 class="SECT2"><a name="TEMPLATES" id="TEMPLATES">3.29. How can I
-      have custom template pages, like the <span class=
-      "emphasis EMPHASIS c3">BLOCKED</span> page?</a></h3>
-
-      <p><span class="APPLICATION">Privoxy</span> <span class=
-      "QUOTE">"templates"</span> are specialized text files utilized by
-      <span class="APPLICATION">Privoxy</span> for various purposes and can
-      easily be modified using any text editor. All the template pages are
-      installed in a sub-directory appropriately named: <tt class=
-      "FILENAME">templates</tt>. Knowing something about HTML syntax will of
-      course be helpful.</p>
-
-      <p>Be forewarned that the default templates are subject to being
-      overwritten during upgrades. You can, however, create completely new
-      templates, place them in another directory and specify the alternate
-      path in the main <tt class="FILENAME">config</tt>. For details, have a
-      look at the <a href="../user-manual/config.html#templdir" target=
-      "_top">templdir</a> option.</p>
-    </div>
-
-    <div class="SECT2">
-      <h3 class="SECT2"><a name="BLOCKALL" id="BLOCKALL">3.30. How can I
-      remove the <span class="QUOTE">"Go There Anyway"</span> link from the
-      <span class="emphasis EMPHASIS c3">BLOCKED</span> page?</a></h3>
-
-      <p>There is more than one way to do it (although Perl is not
-      involved).</p>
-
-      <p>Editing the BLOCKED template page (see above) may dissuade some
-      users, but this method is easily circumvented. Where you need this
-      level of control, you might want to build <span class=
-      "APPLICATION">Privoxy</span> from source, and disable various features
-      that are available as compile-time options. You should <b class=
-      "COMMAND">configure</b> the sources as follows:</p>
-
-      <table class="c2" border="0" width="100%">
-        <tr>
-          <td>
-            <pre class="SCREEN">
- ./configure  --disable-toggle  --disable-editor  --disable-force
-</pre>
-          </td>
-        </tr>
-      </table>
-
-      <p>This will create an executable with hard-coded security features so
-      that <span class="APPLICATION">Privoxy</span> does not allow easy
-      bypassing of blocked sites, or changing the current configuration via
-      any connected user's web browser.</p>
-
-      <p>Finally, all of these features can also be toggled on/off via
-      options in <span class="APPLICATION">Privoxy's</span> main <a href=
-      "../user-manual/config.html#ACCESS-CONTROL" target="_top">config</a>
-      file which means you don't have to recompile anything.</p>
-    </div>
-  </div>
-
-  <div class="NAVFOOTER">
-    <hr class="c1" width="100%">
-
-    <table summary="Footer navigation table" width="100%" border="0"
-    cellpadding="0" cellspacing="0">
-      <tr>
-        <td width="33%" align="left" valign="top"><a href="installation.html"
-        accesskey="P">Prev</a></td>
-
-        <td width="34%" align="center" valign="top"><a href="index.html"
-        accesskey="H">Home</a></td>
-
-        <td width="33%" align="right" valign="top"><a href="misc.html"
-        accesskey="N">Next</a></td>
-      </tr>
-
-      <tr>
-        <td width="33%" align="left" valign="top">Installation</td>
-
-        <td width="34%" align="center" valign="top">&nbsp;</td>
-
-        <td width="33%" align="right" valign="top">Miscellaneous</td>
-      </tr>
-    </table>
-  </div>
-</body>
-</html>
+ / # UN-Block *all* URLs and allow ads</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> This last <SPAN
+CLASS="QUOTE"
+>"action"</SPAN
+> in this compound statement,
+ <TT
+CLASS="LITERAL"
+>allow-popups</TT
+>, is an <A
+HREF="../user-manual/actions-file.html#ALIASES"
+TARGET="_top"
+>alias</A
+> that disables
+ various pop-up blocking features.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="TEMPLATES"
+>3.29. How can I have custom template pages, like the 
+<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>BLOCKED</I
+></SPAN
+> page?</A
+></H3
+><P
+> <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> <SPAN
+CLASS="QUOTE"
+>"templates"</SPAN
+> are specialized text files utilized by
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> for various purposes and can easily be modified using any text
+ editor. All the template pages are installed in a sub-directory appropriately
+ named: <TT
+CLASS="FILENAME"
+>templates</TT
+>.  Knowing something about HTML syntax
+ will of course be helpful.</P
+><P
+> Be forewarned that the default templates are subject to being overwritten
+ during upgrades. You can, however, create completely new templates,
+ place them in another directory and specify the alternate path in the main
+ <TT
+CLASS="FILENAME"
+>config</TT
+>. For details, have a look at the <A
+HREF="../user-manual/config.html#templdir"
+TARGET="_top"
+>templdir</A
+> option. </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H3
+CLASS="SECT2"
+><A
+NAME="BLOCKALL"
+>3.30. How can I remove the <SPAN
+CLASS="QUOTE"
+>"Go There Anyway"</SPAN
+> link from 
+the <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>BLOCKED</I
+></SPAN
+> page?</A
+></H3
+><P
+> There is more than one way to do it (although Perl is not involved).</P
+><P
+> Editing the BLOCKED template page (see above) may dissuade some users, but
+ this method is easily circumvented. Where you need this level of control, you
+ might want to build <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> from source, and disable various features that are
+ available as compile-time options. You should 
+ <B
+CLASS="COMMAND"
+>configure</B
+> the sources as follows:</P
+><P
+> <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+> ./configure  --disable-toggle  --disable-editor  --disable-force</PRE
+></TD
+></TR
+></TABLE
+></P
+><P
+> This will create an executable with hard-coded security features so that
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> does not allow easy bypassing of blocked sites, or changing the
+ current configuration via any connected user's web browser.</P
+><P
+> Finally, all of these features can also be toggled on/off via options in
+ <SPAN
+CLASS="APPLICATION"
+>Privoxy's</SPAN
+> main  <A
+HREF="../user-manual/config.html#ACCESS-CONTROL"
+TARGET="_top"
+>config</A
+> file which
+ means you don't have to recompile anything.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="installation.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="misc.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Installation</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Miscellaneous</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

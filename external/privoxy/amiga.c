@@ -1,4 +1,4 @@
-const char amiga_rcs[] = "$Id: amiga.c,v 1.14 2011/09/04 11:10:56 fabiankeil Exp $";
+const char amiga_rcs[] = "$Id: amiga.c,v 1.12 2007/01/07 07:40:52 joergs Exp $";
 /*********************************************************************
  *
  * File        :  $Source: /cvsroot/ijbswa/current/amiga.c,v $
@@ -8,7 +8,7 @@ const char amiga_rcs[] = "$Id: amiga.c,v 1.14 2011/09/04 11:10:56 fabiankeil Exp
  * Copyright   :  Written by and Copyright (C) 2001 the SourceForge
  *                Privoxy team. http://www.privoxy.org/
  *
- *                This program is free software; you can redistribute it
+ *                This program is free software; you can redistribute it 
  *                and/or modify it under the terms of the GNU General
  *                Public License as published by the Free Software
  *                Foundation; either version 2 of the License, or (at
@@ -26,8 +26,66 @@ const char amiga_rcs[] = "$Id: amiga.c,v 1.14 2011/09/04 11:10:56 fabiankeil Exp
  *                or write to the Free Software Foundation, Inc., 59
  *                Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
+ * Revisions   :
+ *    $Log: amiga.c,v $
+ *    Revision 1.12  2007/01/07 07:40:52  joergs
+ *    Added AmigaOS4 support and made it work on AmigaOS 3.x with current sources.
+ *
+ *    Revision 1.11  2006/07/18 14:48:45  david__schmidt
+ *    Reorganizing the repository: swapping out what was HEAD (the old 3.1 branch)
+ *    with what was really the latest development (the v_3_0_branch branch)
+ *
+ *    Revision 1.9  2002/03/26 22:29:54  swa
+ *    we have a new homepage!
+ *
+ *    Revision 1.8  2002/03/25 19:32:15  joergs
+ *    Name in version string changed from junkbuster to Privoxy.
+ *
+ *    Revision 1.7  2002/03/24 13:25:43  swa
+ *    name change related issues
+ *
+ *    Revision 1.6  2002/03/09 20:03:52  jongfoster
+ *    - Making various functions return int rather than size_t.
+ *      (Undoing a recent change).  Since size_t is unsigned on
+ *      Windows, functions like read_socket that return -1 on
+ *      error cannot return a size_t.
+ *
+ *      THIS WAS A MAJOR BUG - it caused frequent, unpredictable
+ *      crashes, and also frequently caused JB to jump to 100%
+ *      CPU and stay there.  (Because it thought it had just
+ *      read ((unsigned)-1) == 4Gb of data...)
+ *
+ *    - The signature of write_socket has changed, it now simply
+ *      returns success=0/failure=nonzero.
+ *
+ *    - Trying to get rid of a few warnings --with-debug on
+ *      Windows, I've introduced a new type "jb_socket".  This is
+ *      used for the socket file descriptors.  On Windows, this
+ *      is SOCKET (a typedef for unsigned).  Everywhere else, it's
+ *      an int.  The error value can't be -1 any more, so it's
+ *      now JB_INVALID_SOCKET (which is -1 on UNIX, and in
+ *      Windows it maps to the #define INVALID_SOCKET.)
+ *
+ *    - The signature of bind_port has changed.
+ *
+ *    Revision 1.5  2002/03/03 09:18:03  joergs
+ *    Made jumbjuster work on AmigaOS again.
+ *
+ *    Revision 1.4  2001/10/07 15:35:13  oes
+ *    Replaced 6 boolean members of csp with one bitmap (csp->flags)
+ *
+ *    Revision 1.3  2001/09/12 22:54:51  joergs
+ *    Stacksize of main thread increased.
+ *
+ *    Revision 1.2  2001/05/23 00:13:58  joergs
+ *    AmigaOS support fixed.
+ *
+ *    Revision 1.1.1.1  2001/05/15 13:58:46  oes
+ *    Initial import of version 2.9.3 source tree
+ *
+ *
  *********************************************************************/
-
+
 
 #include "config.h"
 

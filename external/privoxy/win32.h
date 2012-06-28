@@ -1,6 +1,6 @@
 #ifndef WIN32_H_INCLUDED
 #define WIN32_H_INCLUDED
-#define WIN32_H_VERSION "$Id: win32.h,v 1.9 2011/09/04 11:10:56 fabiankeil Exp $"
+#define WIN32_H_VERSION "$Id: win32.h,v 1.7 2006/07/18 14:48:48 david__schmidt Exp $"
 /*********************************************************************
  *
  * File        :  $Source: /cvsroot/ijbswa/current/win32.h,v $
@@ -13,7 +13,7 @@
  *                Written by and Copyright (C) 1999 Adam Lock
  *                <locka@iol.ie>
  *
- *                This program is free software; you can redistribute it
+ *                This program is free software; you can redistribute it 
  *                and/or modify it under the terms of the GNU General
  *                Public License as published by the Free Software
  *                Foundation; either version 2 of the License, or (at
@@ -31,8 +31,34 @@
  *                or write to the Free Software Foundation, Inc., 59
  *                Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
+ * Revisions   :
+ *    $Log: win32.h,v $
+ *    Revision 1.7  2006/07/18 14:48:48  david__schmidt
+ *    Reorganizing the repository: swapping out what was HEAD (the old 3.1 branch)
+ *    with what was really the latest development (the v_3_0_branch branch)
+ *
+ *    Revision 1.5  2002/03/26 22:57:10  jongfoster
+ *    Web server name should begin www.
+ *
+ *    Revision 1.4  2002/03/24 12:03:47  jongfoster
+ *    Name change
+ *
+ *    Revision 1.3  2001/07/30 22:08:36  jongfoster
+ *    Tidying up #defines:
+ *    - All feature #defines are now of the form FEATURE_xxx
+ *    - Permanently turned off WIN_GUI_EDIT
+ *    - Permanently turned on WEBDAV and SPLIT_PROXY_ARGS
+ *
+ *    Revision 1.2  2001/07/29 18:43:08  jongfoster
+ *    Changing #ifdef _FILENAME_H to FILENAME_H_INCLUDED, to conform to
+ *    ANSI C rules.
+ *
+ *    Revision 1.1.1.1  2001/05/15 13:59:08  oes
+ *    Initial import of version 2.9.3 source tree
+ *
+ *
  *********************************************************************/
-
+
 
 #ifdef __cplusplus
 extern "C" {
@@ -60,7 +86,7 @@ extern const char win32_h_rcs[];
 #endif
 
 #endif /* ndef WIN32_H_INCLUDED */
-
+  
 /*
   Local Variables:
   tab-width: 3

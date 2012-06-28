@@ -3,39 +3,39 @@
 
  Purpose     :  Used with other docs and files only.
 
- $Id: p-config.sgml,v 2.79 2011/09/04 11:10:12 fabiankeil Exp $
+ $Id: p-config.sgml,v 2.41 2009/02/19 16:59:41 fabiankeil Exp $
 
- Copyright (C) 2001-2011 Privoxy Developers http://www.privoxy.org/
+ Copyright (C) 2001-2009 Privoxy Developers http://www.privoxy.org/
  See LICENSE.
 
  ========================================================================
- NOTE: Please read developer-manual/documentation.html before touching
+ NOTE: Please read developer-manual/documentation.html before touching 
  anything in this, or other Privoxy documentation.
  ========================================================================
 
-
- This file contains all the config file comments and options. It used to
+ 
+ This file contains all the config file comments and options. It used to 
  build both the user-manual config sections, and all of config (yes, the main
  config file) itself.
 
- Rationale: This is broken up into two files since a file with a prolog
+ Rationale: This is broken up into two files since a file with a prolog 
  (DTD, etc) cannot be sourced as a secondary file. config.sgml is basically
  a wrapper for this file.
 
  IMPORTANT:
 
- OPTIONS: The actual options are included in this file and prefixed with
- '@@', and processed by the Makefile to strip the '@@'. Default options
- that should appear commented out should be listed as: '@@#OPTION'.
+ OPTIONS: The actual options are included in this file and prefixed with 
+ '@@', and processed by the Makefile to strip the '@@'. Default options 
+ that should appear commented out should be listed as: '@@#OPTION'. 
  Otherwise, as '@@OPTION'. Example:
 
   @@listen-address  127.0.0.1:8118
 
- The Makefile does significant other processing too. The final results
- should be checked to make sure that the perl processing does not
+ The Makefile does significant other processing too. The final results 
+ should be checked to make sure that the perl processing does not 
  fubar something!!! Makefile processing requires w3m, fmt (shell line
  formatter), and perl.
-
+ 
 
  This file is included into:
 
@@ -50,8 +50,8 @@
 <title>The Main Configuration File</title>
 
 <para>
- By default, the main configuration file is named <filename>config</filename>,
- with the exception of Windows, where it is named <filename>config.txt</filename>.
+ Again, the main configuration file is named <filename>config</filename> on
+ Linux/Unix/BSD and OS/2, and <filename>config.txt</filename> on Windows.
  Configuration lines consist of an initial keyword followed by a list of
  values, all separated by whitespace (any number of spaces or tabs). For
  example:
@@ -59,11 +59,11 @@
 
 <para>
  <literal>
-  <msgtext>
+  <msgtext> 
    <literallayout>
   <emphasis>confdir /etc/privoxy</emphasis></literallayout>
   </msgtext>
- </literal>
+ </literal> 
 </para>
 
 <para>
@@ -81,9 +81,7 @@
 <para>
  The main config file controls all aspects of <application>Privoxy</application>'s
  operation that are not location dependent (i.e. they apply universally, no matter
- where you may be surfing). Like the filter and action files, the config file is
- a plain text file and can be modified with a text editor like emacs, vim or
- notepad.exe.
+ where you may be surfing).
 </para>
 
 ]]>
@@ -97,10 +95,10 @@
  Sample Configuration File for Privoxy v&p-version;
 </title>
 <para>
- $Id: p-config.sgml,v 2.79 2011/09/04 11:10:12 fabiankeil Exp $
+ $Id: p-config.sgml,v 2.41 2009/02/19 16:59:41 fabiankeil Exp $
 </para>
 <para>
-Copyright (C) 2001-2011 Privoxy Developers http://www.privoxy.org/
+Copyright (C) 2001-2009 Privoxy Developers http://www.privoxy.org/
 </para>
 
 <para>
@@ -167,7 +165,7 @@ II. FORMAT OF THE CONFIGURATION FILE
 </para>
 <para>
  Thus, by placing a # at the start of an existing configuration line,
- you can make it a comment and it will be treated as if it weren't there.
+ you can make it a comment and it will be treated as if it weren't there. 
  This is called "commenting out" an option and can be useful. Removing
  the # again is called "uncommenting".
 </para>
@@ -237,11 +235,11 @@ II. FORMAT OF THE CONFIGURATION FILE
   <term>Notes:</term>
   <listitem>
     <para>
-    The User Manual URI is the single best source of information on
+    The User Manual URI is the single best source of information on 
     <application>Privoxy</application>, and is used for help links from some
     of the internal CGI pages. The manual itself is normally packaged with the
     binary distributions, so you probably want to set this to a locally
-    installed copy.
+    installed copy. 
    </para>
    <para>
     Examples:
@@ -265,7 +263,7 @@ II. FORMAT OF THE CONFIGURATION FILE
   <para>
    <screen>&nbsp;&nbsp;user-manual&nbsp;&nbsp;file://///some-server/some-path/privoxy-&p-version;/user-manual/</screen>
   </para>
- -->
+ --> 
   <para>
    The best all purpose solution is simply to put the full local
    <literal>PATH</literal> to where the <citetitle>User Manual</citetitle> is
@@ -281,7 +279,7 @@ II. FORMAT OF THE CONFIGURATION FILE
    (or the shortcut: <literal>http://p.p/user-manual/</literal>).
   </para>
   <para>
-   If the documentation is not on the local system, it can be accessed
+   If the documentation is not on the local system, it can be accessed 
    from a remote server, as:
   </para>
   <para>
@@ -295,7 +293,7 @@ II. FORMAT OF THE CONFIGURATION FILE
      file</emphasis>, because it is used while the config file is being read
      on start-up.
    </para>
-  </warning>
+  </warning>     
   ]]>
 
   <![%config-file;[
@@ -304,7 +302,7 @@ II. FORMAT OF THE CONFIGURATION FILE
     WARNING!!!
    </para>
    <blockquote>
-    <para>
+    <para> 
      If set, this option should be the first option in the config
      file, because it is used while the config file is being read.
     </para>
@@ -327,7 +325,7 @@ II. FORMAT OF THE CONFIGURATION FILE
   <term>Specifies:</term>
   <listitem>
    <para>
-    A URL to be displayed in the error page that users will see if access to an untrusted page is denied.
+    A URL to be displayed in the error page that users will see if access to an untrusted page is denied.    
    </para>
   </listitem>
  </varlistentry>
@@ -415,7 +413,7 @@ II. FORMAT OF THE CONFIGURATION FILE
     If both <literal>admin-address</literal> and <literal>proxy-info-url</literal>
     are unset, the whole "Local Privoxy Support" box on all generated pages will
     not be shown.
-   </para>
+   </para>  
   </listitem>
  </varlistentry>
 </variablelist>
@@ -464,10 +462,10 @@ II. FORMAT OF THE CONFIGURATION FILE
     If both <literal>admin-address</literal> and <literal>proxy-info-url</literal>
     are unset, the whole "Local Privoxy Support" box on all generated pages will
     not be shown.
-   </para>
+   </para>  
    <para>
     This URL shouldn't be blocked ;-)
-   </para>
+   </para> 
   </listitem>
  </varlistentry>
 </variablelist>
@@ -489,7 +487,7 @@ II. FORMAT OF THE CONFIGURATION FILE
  <application>Privoxy</application> can (and normally does) use a number of
  other files for additional configuration, help and logging.
  This section of the configuration file tells <application>Privoxy</application>
- where to find those other files.
+ where to find those other files. 
 </para>
 
 <para>
@@ -533,16 +531,16 @@ II. FORMAT OF THE CONFIGURATION FILE
    <para>
     No trailing <quote><literal>/</literal></quote>, please.
    </para>
-  <!--
+  <!-- 
    This is really outdated and not likely to happen. HB 09/20/06
    <para>
     When development goes modular and multi-user, the blocker, filter, and
     per-user config will be stored in subdirectories of <quote>confdir</quote>.
-    For now, the configuration directory structure is flat, except for
-    <filename>confdir/templates</filename>, where the HTML templates for CGI
-    output reside (e.g. <application>Privoxy's</application> 404 error page).
+    For now, the configuration directory structure is flat, except for 
+    <filename>confdir/templates</filename>, where the HTML templates for CGI 
+    output reside (e.g. <application>Privoxy's</application> 404 error page). 
    </para>
-  -->
+  --> 
   </listitem>
  </varlistentry>
 </variablelist>
@@ -685,7 +683,7 @@ actionsfile
   <term>Effect if unset:</term>
   <listitem>
    <para>
-    No actions are taken at all. More or less neutral proxying.
+    No actions are taken at all. More or less neutral proxying. 
    </para>
   </listitem>
  </varlistentry>
@@ -695,15 +693,15 @@ actionsfile
    <para>
     Multiple <literal>actionsfile</literal> lines are permitted, and are in fact recommended!
    </para>
-   <para>
+   <para> 
     The default values are <filename>default.action</filename>, which is the
     <quote>main</quote> actions file maintained by the developers, and
     <filename>user.action</filename>, where you can make your personal additions.
    </para>
-   <para>
-    Actions files contain all the per site and per URL configuration for
+   <para> 
+    Actions files contain all the per site and per URL configuration for 
     ad blocking, cookie management, privacy considerations, etc.
-    There is no point in using <application>Privoxy</application> without at
+    There is no point in using <application>Privoxy</application> without at 
     least one actions file.
    </para>
    <para>
@@ -772,7 +770,7 @@ actionsfile
     rules that use <link linkend="regex">regular expressions</link>. These rules permit
     powerful changes on the content of Web pages, and optionally the headers
     as well, e.g., you could try to disable your favorite JavaScript annoyances,
-    re-write the actual displayed text, or just have some fun
+    re-write the actual displayed text, or just have some fun 
     playing buzzword bingo with web pages.
    </para>
    <para>
@@ -796,7 +794,7 @@ actionsfile
 </variablelist>
 
 <![%config-file;[<literallayout>@@filterfile default.filter</literallayout>]]>
-<![%config-file;[<literallayout>@@filterfile user.filter      # User customizations</literallayout>]]>
+<![%config-file;[<literallayout>@@#filterfile user.filter      # User customizations</literallayout>]]>
 </sect3>
 
 
@@ -858,7 +856,7 @@ actionsfile
     periodically remove it.  On Unix systems, you can do this with a cron job
     (see <quote>man cron</quote>). For Red Hat based Linux distributions, a
     <command>logrotate</command> script has been included.
-   </para>
+   </para> 
    <para>
     Any log files must be writable by whatever user <application>Privoxy</application>
     is being run as (on Unix, default user id is <quote>privoxy</quote>).
@@ -911,14 +909,14 @@ actionsfile
    </para>
    <para>
     If you specify a trust file, <application>Privoxy</application> will only allow
-    access to sites that are specified in the trustfile. Sites can be listed
+    access to sites that are specified in the trustfile. Sites can be listed 
     in one of two ways:
    </para>
    <para>
-    Prepending a <literal>~</literal> character limits access to this site
-    only (and any sub-paths within this site), e.g.
+    Prepending a <literal>~</literal> character limits access to this site 
+    only (and any sub-paths within this site), e.g. 
     <literal>~www.example.com</literal> allows access to
-    <literal>~www.example.com/features/news.html</literal>, etc.
+    <literal>~www.example.com/features/news.html</literal>, etc. 
    </para>
    <para>
     Or, you can designate sites as <emphasis>trusted referrers</emphasis>, by
@@ -932,7 +930,7 @@ actionsfile
     made.
    </para>
    <para>
-    If you use the <literal>+</literal> operator in the trust file, it may grow
+    If you use the <literal>+</literal> operator in the trust file, it may grow 
     considerably over time.
    </para>
    <para>
@@ -944,7 +942,7 @@ actionsfile
    <para>
     Possible applications include limiting Internet access for children.
    </para>
-
+   
   </listitem>
  </varlistentry>
 </variablelist>
@@ -1009,7 +1007,7 @@ actionsfile
   debug     2 # show each connection status
   debug     4 # show I/O status
   debug     8 # show header parsing
-  debug    16 # log all data written to the network
+  debug    16 # log all data written to the network into the logfile
   debug    32 # debug force feature
   debug    64 # debug regular expression filters
   debug   128 # debug redirects
@@ -1019,7 +1017,6 @@ actionsfile
   debug  2048 # CGI user interface
   debug  4096 # Startup banner and warnings.
   debug  8192 # Non-fatal errors
-  debug 32768 # log all data read from the network
 </programlisting>
    </para>
    <para>
@@ -1028,7 +1025,7 @@ actionsfile
    </para>
    <para>
     A debug level of 1 is informative because it will show you each request
-    as it happens. <emphasis>1, 1024, 4096 and 8192 are recommended</emphasis>
+    as it happens. <emphasis>1, 4096 and 8192 are recommended</emphasis>
     so that you will notice when things go wrong. The other levels are
     probably only of interest if you are hunting down a specific problem.
     They can produce a hell of an output (especially 16).
@@ -1194,7 +1191,7 @@ actionsfile
   <term>Specifies:</term>
   <listitem>
    <para>
-    The address and TCP port on which <application>Privoxy</application> will
+    The IP address and TCP port on which <application>Privoxy</application> will
     listen for client requests.
    </para>
   </listitem>
@@ -1203,7 +1200,6 @@ actionsfile
   <term>Type of value:</term>
   <listitem>
    <para>[<replaceable class="parameter">IP-Address</replaceable>]:<replaceable class="parameter">Port</replaceable></para>
-   <para>[<replaceable class="parameter">Hostname</replaceable>]:<replaceable class="parameter">Port</replaceable></para>
   </listitem>
  </varlistentry>
 
@@ -1217,9 +1213,9 @@ actionsfile
   <term>Effect if unset:</term>
   <listitem>
    <para>
-    Bind to 127.0.0.1 (IPv4 localhost), port 8118. This is suitable and
-    recommended for home users who run <application>Privoxy</application> on
-    the same machine as their browser.
+    Bind to 127.0.0.1 (localhost), port 8118. This is suitable and recommended for
+    home users who run <application>Privoxy</application> on the same machine as
+    their browser.
    </para>
   </listitem>
  </varlistentry>
@@ -1235,67 +1231,17 @@ actionsfile
     will need to override the default.
    </para>
    <para>
-    You can use this statement multiple times to make
-    <application>Privoxy</application> listen on more ports or more
-    <abbrev>IP</abbrev> addresses. Suitable if your operating system does not
-    support sharing <abbrev>IPv6</abbrev> and <abbrev>IPv4</abbrev> protocols
-    on the same socket.
-   </para>
-   <para>
-    If a hostname is used instead of an IP address, <application>Privoxy</application>
-    will try to resolve it to an IP address and if there are multiple, use the first
-    one returned.
-   </para>
-   <para>
-    If the address for the hostname isn't already known on the system
-    (for example because it's in /etc/hostname), this may result in DNS
-    traffic.
-   </para>
-   <para>
-    If the specified address isn't available on the system, or if the
-    hostname can't be resolved, <application>Privoxy</application>
-    will fail to start.
-   </para>
-   <para>
-    IPv6 addresses containing colons have to be quoted by brackets.
-    They can only be used if <application>Privoxy</application> has
-    been compiled with IPv6 support. If you aren't sure if your version
-    supports it, have a look at
-    <literal>http://config.privoxy.org/show-status</literal>.
-   </para>
-   <para>
-    Some operating systems will prefer IPv6 to IPv4 addresses even if the
-    system has no IPv6 connectivity which is usually not expected by the user.
-    Some even rely on DNS to resolve localhost which mean the "localhost" address
-    used may not actually be local.
-   </para>
-   <para>
-    It is therefore recommended to explicitly configure the intended IP address
-    instead of relying on the operating system, unless there's a strong reason not to.
-   </para>
-   <para>
-    If you leave out the address, <application>Privoxy</application> will bind to all
-    IPv4 interfaces (addresses) on your machine and may become reachable from the
-    Internet and/or the local network. Be aware that some GNU/Linux distributions
-    modify that behaviour without updating the documentation. Check for non-standard
-    patches if your <application>Privoxy</application>version behaves differently.
-   </para>
-   <para>
-    If you configure <application>Privoxy</application>to be reachable from the
-    network, consider using <link linkend="acls">access control lists</link>
-    (ACL's, see below), and/or a firewall.
+    If you leave out the IP address, <application>Privoxy</application> will
+    bind to all interfaces (addresses) on your machine and may become reachable
+    from the Internet. In that case, consider using <link
+    linkend="acls">access control lists</link> (ACL's, see below), and/or
+    a firewall.
    </para>
    <para>
     If you open <application>Privoxy</application> to untrusted users, you will
     also want to make sure that the following actions are disabled:  <literal><link
     linkend="enable-edit-actions">enable-edit-actions</link></literal> and
     <literal><link linkend="enable-remote-toggle">enable-remote-toggle</link></literal>
-   </para>
-   <para>
-    With the exception noted above, listening on multiple addresses is currently
-    not supported by <application>Privoxy</application> directly.
-    It can be done on most operating systems by letting a packet filter
-    redirect request for certain addresses to Privoxy, though.
    </para>
   </listitem>
  </varlistentry>
@@ -1311,16 +1257,6 @@ actionsfile
    <para>
     <programlisting>
   listen-address  192.168.0.1:8118
-</programlisting>
-   </para>
-   <para>
-    Suppose you are running <application>Privoxy</application> on an
-    IPv6-capable machine and you want it to listen on the IPv6 address
-    of the loopback device:
-   </para>
-   <para>
-    <programlisting>
-  listen-address [::1]:8118
 </programlisting>
    </para>
   </listitem>
@@ -1449,7 +1385,7 @@ actionsfile
    </para>
    <para>
     Note that you must have compiled <application>Privoxy</application> with
-    support for this feature, otherwise this option has no effect.
+    support for this feature, otherwise this option has no effect. 
    </para>
   </listitem>
  </varlistentry>
@@ -1572,7 +1508,7 @@ actionsfile
    </para>
    <para>
     Note that you must have compiled <application>Privoxy</application> with
-    support for this feature, otherwise this option has no effect.
+    support for this feature, otherwise this option has no effect. 
    </para>
   </listitem>
  </varlistentry>
@@ -1675,28 +1611,16 @@ ACLs: permit-access and deny-access</title>
   <term>Type of value:</term>
   <listitem>
    <para>
-    <replaceable class="parameter">src_addr</replaceable>[:<replaceable class="parameter">port</replaceable>][/<replaceable class="parameter">src_masklen</replaceable>]
-    [<replaceable class="parameter">dst_addr</replaceable>[:<replaceable class="parameter">port</replaceable>][/<replaceable class="parameter">dst_masklen</replaceable>]]
+    <replaceable class="parameter">src_addr</replaceable>[/<replaceable class="parameter">src_masklen</replaceable>]
+    [<replaceable class="parameter">dst_addr</replaceable>[/<replaceable class="parameter">dst_masklen</replaceable>]]
    </para>
    <para>
-    Where <replaceable class="parameter">src_addr</replaceable> and
-   <replaceable class="parameter">dst_addr</replaceable> are IPv4 addresses in dotted decimal notation or valid
-    DNS names, <replaceable class="parameter">port</replaceable> is a port
-    number, and <replaceable class="parameter">src_masklen</replaceable> and
+    Where <replaceable class="parameter">src_addr</replaceable> and 
+   <replaceable class="parameter">dst_addr</replaceable> are IP addresses in dotted decimal notation or valid
+    DNS names, and <replaceable class="parameter">src_masklen</replaceable> and
     <replaceable class="parameter">dst_masklen</replaceable> are subnet masks in CIDR notation, i.e. integer
     values from 2 to 30 representing the length (in bits) of the network address. The masks and the whole
     destination part are optional.
-   </para>
-   <para>
-    If your system implements
-    <ulink url="http://tools.ietf.org/html/rfc3493">RFC 3493</ulink>, then
-    <replaceable class="parameter">src_addr</replaceable> and <replaceable
-    class="parameter">dst_addr</replaceable> can be IPv6 addresses delimeted by
-    brackets, <replaceable class="parameter">port</replaceable> can be a number
-    or a service name, and
-    <replaceable class="parameter">src_masklen</replaceable> and
-    <replaceable class="parameter">dst_masklen</replaceable> can be a number
-    from 0 to 128.
    </para>
   </listitem>
  </varlistentry>
@@ -1704,12 +1628,6 @@ ACLs: permit-access and deny-access</title>
   <term>Default value:</term>
   <listitem>
    <para><emphasis>Unset</emphasis></para>
-   <para>
-    If no <replaceable class="parameter">port</replaceable> is specified,
-    any port will match. If no <replaceable class="parameter">src_masklen</replaceable> or
-    <replaceable class="parameter">src_masklen</replaceable> is given, the complete IP
-    address has to match (i.e. 32 bits for IPv4 and 128 bits for IPv6).
-   </para>
   </listitem>
  </varlistentry>
  <varlistentry>
@@ -1726,11 +1644,11 @@ ACLs: permit-access and deny-access</title>
    <para>
     Access controls are included at the request of ISPs and systems
     administrators, and <emphasis>are not usually needed by individual users</emphasis>.
-    For a typical home user, it will normally suffice to ensure that
+    For a typical home user, it will normally suffice to ensure that 
     <application>Privoxy</application> only listens on the localhost
     (127.0.0.1) or internal (home) network address by means of the
     <link linkend="listen-address"><emphasis>listen-address</emphasis></link>
-    option.
+    option. 
    </para>
    <para>
     Please see the warnings in the FAQ that <application>Privoxy</application>
@@ -1757,13 +1675,6 @@ ACLs: permit-access and deny-access</title>
     time. All DNS names must resolve! You can <emphasis>not</emphasis> use domain patterns
     like <quote>*.org</quote> or partial domain names. If a DNS name resolves to multiple
     IP addresses, only the first one is used.
-   </para>
-   <para>
-     Some systems allow IPv4 clients to connect to IPv6 server sockets.
-     Then the client's IPv4 address will be translated by the system into
-     IPv6 address space with special prefix ::ffff:0:0/96 (so called IPv4
-     mapped IPv6 address). <application>Privoxy</application> can handle it
-     and maps such ACL addresses automatically.
    </para>
    <para>
     Denying access to particular sites by ACL may have undesired side effects
@@ -1805,24 +1716,6 @@ ACLs: permit-access and deny-access</title>
   permit-access  192.168.45.64/26
   deny-access    192.168.45.73    www.dirty-stuff.example.com
 </screen>
-   </para>
-   <para>
-     Allow access from the IPv4 network 192.0.2.0/24 even if listening on
-     an IPv6 wild card address (not supported on all platforms):
-   </para>
-   <para>
-    <programlisting>
-  permit-access  192.0.2.0/24
-</programlisting>
-   </para>
-   <para>
-     This is equivalent to the following line even if listening on an
-     IPv4 address (not supported on all platforms):
-   </para>
-   <para>
-    <programlisting>
-  permit-access  [::ffff:192.0.2.0]/120
-</programlisting>
    </para>
   </listitem>
  </varlistentry>
@@ -1867,7 +1760,7 @@ ACLs: permit-access and deny-access</title>
   <listitem>
    <para>
     For content filtering, i.e. the <literal>+filter</literal> and
-    <literal>+deanimate-gif</literal> actions, it is necessary that
+    <literal>+deanimate-gif</literal> actions, it is necessary that 
     <application>Privoxy</application> buffers the entire document body.
     This can be potentially dangerous, since a server could just keep sending
     data indefinitely and wait for your RAM to exhaust -- with nasty consequences.
@@ -1940,12 +1833,12 @@ ACLs: permit-access and deny-access</title>
     <replaceable class="parameter">http_parent</replaceable>[:<replaceable class="parameter">port</replaceable>]
    </para>
    <para>
-    where <replaceable class="parameter">target_pattern</replaceable> is a <link linkend="af-patterns">URL pattern</link>
+    where <replaceable class="parameter">target_pattern</replaceable> is a <link linkend="af-patterns">URL pattern</link> 
     that specifies to which requests (i.e. URLs) this forward rule shall apply. Use <literal>/</literal> to
     denote <quote>all URLs</quote>.
     <replaceable class="parameter">http_parent</replaceable>[:<replaceable class="parameter">port</replaceable>]
     is the DNS name or IP address of the parent HTTP proxy through which the requests should be forwarded,
-    optionally followed by its listening port (default: 8000).
+    optionally followed by its listening port (default: 8080).
     Use a single dot (<literal>.</literal>) to denote <quote>no forwarding</quote>.
    </para>
   </listitem>
@@ -1970,16 +1863,6 @@ ACLs: permit-access and deny-access</title>
    <para>
     If <replaceable class="parameter">http_parent</replaceable> is <quote>.</quote>, then requests are not
     forwarded to another HTTP proxy but are made directly to the web servers.
-   </para>
-   <para>
-    <replaceable class="parameter">http_parent</replaceable> can be a
-     numerical IPv6 address (if
-    <ulink url="http://tools.ietf.org/html/rfc3493">RFC 3493</ulink> is
-    implemented). To prevent clashes with the port delimiter, the whole IP
-    address has to be put into brackets. On the other hand a <replaceable
-    class="parameter">target_pattern</replaceable> containing an IPv6 address
-    has to be put into angle brackets (normal brackets are reserved for
-    regular expressions already).
    </para>
    <para>
     Multiple lines are OK, they are checked in sequence, and the last match wins.
@@ -2007,24 +1890,6 @@ ACLs: permit-access and deny-access</title>
   forward   /                  caching-proxy.isp.example.net:8000
   forward   .isp.example.net   .
 </screen>
-   </para>
-   <para>
-    Parent proxy specified by an IPv6 address:
-   </para>
-   <para>
-    <programlisting>
-  forward   /                   [2001:DB8::1]:8000
-</programlisting>
-   </para>
-   <para>
-    Suppose your parent proxy doesn't support IPv6:
-   </para>
-   <para>
-    <programlisting>
-  forward  /                        parent-proxy.example.org:8000
-  forward  ipv6-server.example.org  .
-  forward  &lt;[2-3][0-9a-f][0-9a-f][0-9a-f]:*&gt;   .
-</programlisting>
    </para>
   </listitem>
  </varlistentry>
@@ -2063,7 +1928,7 @@ forward-socks4, forward-socks4a and forward-socks5</title>
     and <replaceable class="parameter">socks_proxy</replaceable>
     are IP addresses in dotted decimal notation or valid DNS names
     (<replaceable class="parameter">http_parent</replaceable>
-    may be <quote>.</quote> to denote <quote>no HTTP forwarding</quote>), and the optional
+    may be <quote>.</quote> to denote <quote>no HTTP forwarding</quote>), and the optional 
     <replaceable class="parameter">port</replaceable> parameters are TCP ports,
     i.e. integer values from 1 to 65535
    </para>
@@ -2098,17 +1963,6 @@ forward-socks4, forward-socks4a and forward-socks5</title>
     With <literal>forward-socks5</literal> the DNS resolution will happen on the remote server as well.
    </para>
    <para>
-    <replaceable class="parameter">socks_proxy</replaceable> and
-    <replaceable class="parameter">http_parent</replaceable> can be a
-     numerical IPv6 address (if
-    <ulink url="http://tools.ietf.org/html/rfc3493">RFC 3493</ulink> is
-    implemented). To prevent clashes with the port delimiter, the whole IP
-    address has to be put into brackets. On the other hand a <replaceable
-    class="parameter">target_pattern</replaceable> containing an IPv6 address
-    has to be put into angle brackets (normal brackets are reserved for
-    regular expressions already).
-   </para>
-   <para>
     If <replaceable class="parameter">http_parent</replaceable> is <quote>.</quote>, then requests are not
     forwarded to another HTTP proxy but are made (HTTP-wise) directly to the web servers, albeit through
     a SOCKS proxy.
@@ -2138,14 +1992,14 @@ forward-socks4, forward-socks4a and forward-socks5</title>
   forward-socks4   /               socks-gw.example.com:1080  .
 </screen>
    </para>
-
+  
     <para>
-    To chain Privoxy and Tor, both running on the same system, you would use
+    To chain Privoxy and Tor, both running on the same system, you would use 
     something like:
    </para>
    <para>
     <screen>
-  forward-socks5   /               127.0.0.1:9050 .
+  forward-socks4a   /               127.0.0.1:9050 .
 </screen>
    </para>
 
@@ -2189,7 +2043,7 @@ forward-socks4, forward-socks4a and forward-socks5</title>
 <sect3 renderas="sect4" id="advanced-forwarding-examples"><title>Advanced Forwarding Examples</title>
 
 <para>
- If you have links to multiple ISPs that provide various special content
+ If you have links to multiple ISPs that provide various special content 
  only to their subscribers, you can configure multiple <application>Privoxies</application>
  which have connections to the respective ISPs to act as forwarders to each other, so that
  <emphasis>your</emphasis> users can see the internal content of all ISPs.
@@ -2230,9 +2084,9 @@ forward-socks4, forward-socks4a and forward-socks5</title>
 </para>
 
 <para>
- If you intend to chain <application>Privoxy</application> and
- <application>squid</application> locally, then chaining as
- <literal>browser -> squid -> privoxy</literal> is the recommended way.
+ If you intend to chain <application>Privoxy</application> and 
+ <application>squid</application> locally, then chaining as 
+ <literal>browser -> squid -> privoxy</literal> is the recommended way. 
 </para>
 
 <para>
@@ -2242,14 +2096,14 @@ forward-socks4, forward-socks4a and forward-socks5</title>
 
 <para>
  <screen>
-  # Define Privoxy as parent proxy (without ICP)
-  cache_peer 127.0.0.1 parent 8118 7 no-query
+  # Define Privoxy as parent proxy (without ICP) 
+  cache_peer 127.0.0.1 parent 8118 7 no-query 
 
-  # Define ACL for protocol FTP
-  acl ftp proto FTP
+  # Define ACL for protocol FTP 
+  acl ftp proto FTP 
 
   # Do not forward FTP requests to Privoxy
-  always_direct allow ftp
+  always_direct allow ftp 
 
   # Forward all the rest to Privoxy
   never_direct allow all</screen>
@@ -2269,7 +2123,7 @@ forward-socks4, forward-socks4a and forward-socks5</title>
 <para>
  <screen>
   forward   /                          .
-  forward   /.*\.(exe|com|dll|zip)$    antivir.example.com:8010</screen>
+  forward   /.*\.(exe|com|dll|zip)$    antivir.example.com:8010</screen> 
 </para>
 
 </sect3>
@@ -2281,7 +2135,7 @@ forward-socks4, forward-socks4a and forward-socks5</title>
   <term>Specifies:</term>
   <listitem>
    <para>
-    How often Privoxy retries if a forwarded connection request fails.
+    How often Privoxy retries if a forwarded connection request fails. 
    </para>
   </listitem>
  </varlistentry>
@@ -2340,11 +2194,6 @@ forward-socks4, forward-socks4a and forward-socks5</title>
 <![%config-file;[<literallayout>@@forwarded-connect-retries  0</literallayout>]]>
 </sect3>
 
-</sect2>
-
-<sect2 id="misc">
-<title>Miscellaneous</title>
-
 <sect3 renderas="sect4" id="accept-intercepted-requests"><title>accept-intercepted-requests</title>
 <variablelist>
  <varlistentry>
@@ -2384,7 +2233,7 @@ forward-socks4, forward-socks4a and forward-socks5</title>
     If you don't trust your clients and want to force them
     to use <application>Privoxy</application>, enable this
     option and configure your packet filter to redirect outgoing
-    HTTP connections into <application>Privoxy</application>.
+    HTTP connections into <application>Privoxy</application>. 
    </para>
    <para>
     Make sure that <application>Privoxy's</application> own requests
@@ -2561,7 +2410,7 @@ forward-socks4, forward-socks4a and forward-socks5</title>
   <term>Effect if unset:</term>
   <listitem>
    <para>
-    Connections are not kept alive.
+    Connections are not reused.
    </para>
   </listitem>
  </varlistentry>
@@ -2569,38 +2418,26 @@ forward-socks4, forward-socks4a and forward-socks5</title>
   <term>Notes:</term>
   <listitem>
    <para>
-    This option allows clients to keep the connection to &my-app;
-    alive. If the server supports it, &my-app; will keep
-    the connection to the server alive as well. Under certain
-    circumstances this may result in speed-ups.
-   </para>
-   <para>
-    By default, &my-app; will close the connection to the server if
-    the client connection gets closed, or if the specified timeout
-    has been reached without a new request coming in. This behaviour
-    can be changed with the <ulink
-     url="#CONNECTION-SHARING">connection-sharing</ulink> option.
-   </para>
-   <para>
     This option has no effect if <application>Privoxy</application>
     has been compiled without keep-alive support.
    </para>
+  </listitem>
+ </varlistentry>
+ <varlistentry>
+  <term>Notes:</term>
+  <listitem>
    <para>
-    Note that a timeout of five seconds as used in the default
-    configuration file significantly decreases the number of
-    connections that will be reused. The value is used because
-    some browsers limit the number of connections they open to
-    a single host and apply the same limit to proxies. This can
-    result in a single website <quote>grabbing</quote> all the
-    connections the browser allows, which means connections to
-    other websites can't be opened until the connections currently
-    in use time out.
+    Note that reusing connections doesn't necessary cause speedups.
+    There are also a few privacy implications you should be aware of.
    </para>
    <para>
-    Several users have reported this as a Privoxy bug, so the
-    default value has been reduced. Consider increasing it to
-    300 seconds or even more if you think your browser can handle
-    it. If your browser appears to be hanging it can't.
+    Outgoing connections are shared between clients (if there are more
+    than one) and closing the client that initiated the outgoing connection
+    does not affect the connection between &my-app; and the server unless
+    the client's request hasn't been completed yet. If the outgoing connection
+    is idle, it will not be closed until either <application>Privoxy's</application>
+    or the server's timeout is reached. While it's open, the server knows
+    that the system running &my-app; is still there.
    </para>
   </listitem>
  </varlistentry>
@@ -2613,187 +2450,7 @@ forward-socks4, forward-socks4a and forward-socks5</title>
   </listitem>
  </varlistentry>
 </variablelist>
-<![%config-file;[<literallayout>@@keep-alive-timeout 5</literallayout>]]>
-</sect3>
-
-
-<sect3 renderas="sect4" id="default-server-timeout"><title>default-server-timeout</title>
-<variablelist>
- <varlistentry>
-  <term>Specifies:</term>
-  <listitem>
-   <para>
-    Assumed server-side keep-alive timeout if not specified by the server.
-   </para>
-  </listitem>
- </varlistentry>
- <varlistentry>
-  <term>Type of value:</term>
-  <listitem>
-   <para>
-    <replaceable>Time in seconds.</replaceable>
-   </para>
-  </listitem>
- </varlistentry>
- <varlistentry>
-  <term>Default value:</term>
-  <listitem>
-   <para>None</para>
-  </listitem>
- </varlistentry>
- <varlistentry>
-  <term>Effect if unset:</term>
-  <listitem>
-   <para>
-    Connections for which the server didn't specify the keep-alive
-    timeout are not reused.
-   </para>
-  </listitem>
- </varlistentry>
- <varlistentry>
-  <term>Notes:</term>
-  <listitem>
-   <para>
-    Enabling this option significantly increases the number of connections
-    that are reused, provided the <ulink
-     url="#KEEP-ALIVE-TIMEOUT">keep-alive-timeout</ulink> option
-    is also enabled.
-   </para>
-   <para>
-    While it also increases the number of connections problems
-    when &my-app; tries to reuse a connection that already has
-    been closed on the server side, or is closed while &my-app;
-    is trying to reuse it, this should only be a problem if it
-    happens for the first request sent by the client. If it happens
-    for requests on reused client connections, &my-app; will simply
-    close the connection and the client is supposed to retry the
-    request without bothering the user.
-   </para>
-   <para>
-    Enabling this option is therefore only recommended if the
-    <ulink
-     url="#CONNECTION-SHARING">connection-sharing</ulink> option
-    is disabled.
-   </para>
-   <para>
-    It is an error to specify a value larger than the <ulink
-     url="#KEEP-ALIVE-TIMEOUT">keep-alive-timeout</ulink> value.
-   </para>
-   <para>
-    This option has no effect if <application>Privoxy</application>
-    has been compiled without keep-alive support.
-   </para>
-  </listitem>
- </varlistentry>
- <varlistentry>
-  <term>Examples:</term>
-  <listitem>
-   <para>
-    default-server-timeout 60
-   </para>
-  </listitem>
- </varlistentry>
-</variablelist>
-<![%config-file;[<literallayout>@@#default-server-timeout 60</literallayout>]]>
-</sect3>
-
-
-<sect3 renderas="sect4" id="connection-sharing"><title>connection-sharing</title>
-<variablelist>
- <varlistentry>
-  <term>Specifies:</term>
-  <listitem>
-   <para>
-    Whether or not outgoing connections that have been kept alive
-    should be shared between different incoming connections.
-   </para>
-  </listitem>
- </varlistentry>
- <varlistentry>
-  <term>Type of value:</term>
-  <listitem>
-   <para>
-    <replaceable>0 or 1</replaceable>
-   </para>
-  </listitem>
- </varlistentry>
- <varlistentry>
-  <term>Default value:</term>
-  <listitem>
-   <para>None</para>
-  </listitem>
- </varlistentry>
- <varlistentry>
-  <term>Effect if unset:</term>
-  <listitem>
-   <para>
-    Connections are not shared.
-   </para>
-  </listitem>
- </varlistentry>
- <varlistentry>
-  <term>Notes:</term>
-  <listitem>
-   <para>
-    This option has no effect if <application>Privoxy</application>
-    has been compiled without keep-alive support, or if it's disabled.
-   </para>
-  </listitem>
- </varlistentry>
- <varlistentry>
-  <term>Notes:</term>
-  <listitem>
-   <para>
-    Note that reusing connections doesn't necessary cause speedups.
-    There are also a few privacy implications you should be aware of.
-   </para>
-   <para>
-    If this option is effective, outgoing connections are shared between
-    clients (if there are more than one) and closing the browser that initiated
-    the outgoing connection does no longer affect the connection between &my-app;
-    and the server unless the client's request hasn't been completed yet.
-   </para>
-   <para>
-    If the outgoing connection  is idle, it will not be closed until either
-    <application>Privoxy's</application> or the server's timeout is reached.
-    While it's open, the server knows that the system running &my-app; is still
-    there.
-   </para>
-   <para>
-    If there are more than one client (maybe even belonging to multiple users),
-    they will be able to reuse each others connections. This is potentially
-    dangerous in case of authentication schemes like NTLM where only the
-    connection is authenticated, instead of requiring authentication for
-    each request.
-   </para>
-   <para>
-    If there is only a single client, and if said client can keep connections
-    alive on its own, enabling this option has next to no effect. If the client
-    doesn't support connection keep-alive, enabling this option may make sense
-    as it allows &my-app; to keep outgoing connections alive even if the client
-    itself doesn't support it.
-   </para>
-   <para>
-    You should also be aware that enabling this option increases the likelihood
-    of getting the "No server or forwarder data" error message, especially if you
-    are using a slow connection to the Internet.
-   </para>
-   <para>
-    This option should only be used by experienced users who
-    understand the risks and can weight them against the benefits.
-   </para>
-  </listitem>
- </varlistentry>
- <varlistentry>
-  <term>Examples:</term>
-  <listitem>
-   <para>
-    connection-sharing 1
-   </para>
-  </listitem>
- </varlistentry>
-</variablelist>
-<![%config-file;[<literallayout>@@#connection-sharing 1</literallayout>]]>
+<![%config-file;[<literallayout>@@keep-alive-timeout 300</literallayout>]]>
 </sect3>
 
 
@@ -2834,9 +2491,9 @@ forward-socks4, forward-socks4a and forward-socks5</title>
   <term>Notes:</term>
   <listitem>
    <para>
-    The default is quite high and you probably want to reduce it.
-    If you aren't using an occasionally slow proxy like Tor, reducing
-    it to a few seconds should be fine.
+    For SOCKS requests the timeout currently doesn't start until
+    the SOCKS server accepted the request. This will be fixed in
+    the next release.
    </para>
   </listitem>
  </varlistentry>
@@ -2850,279 +2507,6 @@ forward-socks4, forward-socks4a and forward-socks5</title>
  </varlistentry>
 </variablelist>
 <![%config-file;[<literallayout>@@socket-timeout 300</literallayout>]]>
-</sect3>
-
-
-<sect3 renderas="sect4" id="max-client-connections"><title>max-client-connections</title>
-<variablelist>
- <varlistentry>
-  <term>Specifies:</term>
-  <listitem>
-   <para>
-    Maximum number of client connections that will be served.
-   </para>
-  </listitem>
- </varlistentry>
- <varlistentry>
-  <term>Type of value:</term>
-  <listitem>
-   <para>
-    <replaceable>Positive number.</replaceable>
-   </para>
-  </listitem>
- </varlistentry>
- <varlistentry>
-  <term>Default value:</term>
-  <listitem>
-   <para>None</para>
-  </listitem>
- </varlistentry>
- <varlistentry>
-  <term>Effect if unset:</term>
-  <listitem>
-   <para>
-    Connections are served until a resource limit is reached.
-   </para>
-  </listitem>
- </varlistentry>
- <varlistentry>
-  <term>Notes:</term>
-  <listitem>
-   <para>
-    &my-app; creates one thread (or process) for every incoming client
-    connection that isn't rejected based on the access control settings.
-   </para>
-   <para>
-    If the system is powerful enough, &my-app; can theoretically deal with
-    several hundred (or thousand) connections at the same time, but some
-    operating systems enforce resource limits by shutting down offending
-    processes and their default limits may be below the ones &my-app; would
-    require under heavy load.
-   </para>
-   <para>
-    Configuring &my-app; to enforce a connection limit below the thread
-    or process limit used by the operating system makes sure this doesn't
-    happen. Simply increasing the operating system's limit would work too,
-    but if &my-app; isn't the only application running on the system,
-    you may actually want to limit the resources used by &my-app;.
-   </para>
-   <para>
-    If &my-app; is only used by a single trusted user, limiting the
-    number of client connections is probably unnecessary. If there
-    are multiple possibly untrusted users you probably still want to
-    additionally use a packet filter to limit the maximal number of
-    incoming connections per client. Otherwise a malicious user could
-    intentionally create a high number of connections to prevent other
-    users from using &my-app;.
-   </para>
-   <para>
-    Obviously using this option only makes sense if you choose a limit
-    below the one enforced by the operating system.
-   </para>
-  </listitem>
- </varlistentry>
- <varlistentry>
-  <term>Examples:</term>
-  <listitem>
-   <para>
-    max-client-connections 256
-   </para>
-  </listitem>
- </varlistentry>
-</variablelist>
-<![%config-file;[<literallayout>@@#max-client-connections 256</literallayout>]]>
-</sect3>
-
-
-<sect3 renderas="sect4" id="handle-as-empty-doc-returns-ok"><title>handle-as-empty-doc-returns-ok</title>
-<variablelist>
- <varlistentry>
-  <term>Specifies:</term>
-  <listitem>
-   <para>
-    The status code Privoxy returns for pages blocked with
-    <!--  URL will only end up in the user manual so the relative link should work. -->
-    <literal><ulink url="actions-file.html#HANDLE-AS-EMPTY-DOCUMENT">+handle-as-empty-document</ulink></literal>.
-   </para>
-  </listitem>
- </varlistentry>
- <varlistentry>
-  <term>Type of value:</term>
-  <listitem>
-   <para>
-    <replaceable>0 or 1</replaceable>
-   </para>
-  </listitem>
- </varlistentry>
- <varlistentry>
-  <term>Default value:</term>
-  <listitem>
-   <para>0</para>
-  </listitem>
- </varlistentry>
- <varlistentry>
-  <term>Effect if unset:</term>
-  <listitem>
-   <para>
-    Privoxy returns a status 403(forbidden) for all blocked pages.
-   </para>
-  </listitem>
- </varlistentry>
- <varlistentry>
-  <term>Effect if set:</term>
-  <listitem>
-   <para>
-    Privoxy returns a status 200(OK) for pages blocked with +handle-as-empty-document
-    and a status 403(Forbidden) for all other blocked pages.
-   </para>
-  </listitem>
- </varlistentry>
- <varlistentry>
-  <term>Notes:</term>
-  <listitem>
-   <para>
-    This is a work-around for Firefox bug 492459:
-    <quote>
-    Websites are no longer rendered if SSL requests for JavaScripts are blocked by a proxy.
-    </quote>
-    (<ulink url="https://bugzilla.mozilla.org/show_bug.cgi?id=492459"
-	>https://bugzilla.mozilla.org/show_bug.cgi?id=492459</ulink>)
-    As the bug has been fixed for quite some time this option should no longer
-    be needed and will be removed in a future release. Please speak up if you
-    have a reason why the option should be kept around.
-   </para>
-  </listitem>
- </varlistentry>
-</variablelist>
-<![%config-file;[<literallayout>@@#handle-as-empty-doc-returns-ok 1</literallayout>]]>
-</sect3>
-
-
-<sect3 renderas="sect4" id="enable-compression"><title>enable-compression</title>
-<variablelist>
- <varlistentry>
-  <term>Specifies:</term>
-  <listitem>
-   <para>
-    Whether or not buffered content is compressed before delivery.
-   </para>
-  </listitem>
- </varlistentry>
- <varlistentry>
-  <term>Type of value:</term>
-  <listitem>
-   <para>
-    <replaceable>0 or 1</replaceable>
-   </para>
-  </listitem>
- </varlistentry>
- <varlistentry>
-  <term>Default value:</term>
-  <listitem>
-   <para>0</para>
-  </listitem>
- </varlistentry>
- <varlistentry>
-  <term>Effect if unset:</term>
-  <listitem>
-   <para>
-    Privoxy does not compress buffered content.
-   </para>
-  </listitem>
- </varlistentry>
- <varlistentry>
-  <term>Effect if set:</term>
-  <listitem>
-   <para>
-    Privoxy compresses buffered content before delivering it to the client,
-    provided the client supports it.
-   </para>
-  </listitem>
- </varlistentry>
- <varlistentry>
-  <term>Notes:</term>
-  <listitem>
-   <para>
-    This directive is only supported if Privoxy has been compiled with
-    FEATURE_COMPRESSION, which should not to be confused with FEATURE_ZLIB.
-   </para>
-   <para>
-    Compressing buffered content is mainly useful if Privoxy and the
-    client are running on different systems. If they are running on the
-    same system, enabling compression is likely to slow things down.
-    If you didn't measure otherwise, you should assume that it does
-    and keep this option disabled.
-   </para>
-   <para>
-    Privoxy will not compress buffered content below a certain length.
-   </para>
-  </listitem>
- </varlistentry>
-</variablelist>
-<![%config-file;[<literallayout>@@#enable-compression 1</literallayout>]]>
-</sect3>
-
-
-<sect3 renderas="sect4" id="compression-level"><title>compression-level</title>
-<variablelist>
- <varlistentry>
-  <term>Specifies:</term>
-  <listitem>
-   <para>
-    The compression level that is passed to the zlib library when compressing buffered content.
-   </para>
-  </listitem>
- </varlistentry>
- <varlistentry>
-  <term>Type of value:</term>
-  <listitem>
-   <para>
-    <replaceable>Positive number ranging from 0 to 9.</replaceable>
-   </para>
-  </listitem>
- </varlistentry>
- <varlistentry>
-  <term>Default value:</term>
-  <listitem>
-   <para>1</para>
-  </listitem>
- </varlistentry>
- <varlistentry>
-  <term>Notes:</term>
-  <listitem>
-   <para>
-     Compressing the data more takes usually longer than compressing
-     it less or not compressing it at all. Which level is best depends
-     on the connection between Privoxy and the client. If you can't
-     be bothered to benchmark it for yourself, you should stick with
-     the default and keep compression disabled.
-   </para>
-   <para>
-     If compression is disabled, the compression level is irrelevant.
-   </para>
-  </listitem>
- </varlistentry>
- <varlistentry>
-  <term>Examples:</term>
-  <listitem>
-   <para>
-    <screen>
-    # Best speed (compared to the other levels)
-    compression-level 1
-    # Best compression
-    compression-level 9
-    # No compression. Only useful for testing as the added header
-    # slightly increases the amount of data that has to be sent.
-    # If your benchmark shows that using this compression level
-    # is superior to using no compression at all, the benchmark
-    # is likely to be flawed.
-    compression-level 0
-    </screen>
-   </para>
-  </listitem>
- </varlistentry>
-</variablelist>
-<![%config-file;[<literallayout>@@#compression-level 1</literallayout>]]>
 </sect3>
 
 
@@ -3152,11 +2536,11 @@ forward-socks4, forward-socks4a and forward-socks5</title>
 <![%user-man;[
 <para>
  <literal>
-  <msgtext>
+  <msgtext> 
    <literallayout>
   <emphasis>activity-animation   1</emphasis>
    </literallayout>
-  </msgtext>
+  </msgtext> 
  </literal>
 </para>
 ]]>
@@ -3173,18 +2557,18 @@ forward-socks4, forward-socks4a and forward-socks5</title>
 <![%user-man;[
 <para>
  <literal>
-  <msgtext>
+  <msgtext> 
    <literallayout>
   <emphasis>log-messages       1</emphasis>
    </literallayout>
-  </msgtext>
+  </msgtext> 
  </literal>
 </para>
 ]]>
 
 <anchor id="log-buffer-size">
 <![%config-file;[<para>@@</para>]]> <!-- for spacing -->
-<para>
+<para> 
  If <quote>log-buffer-size</quote> is set to 1, the size of the log buffer,
  i.e. the amount of memory used for the log messages displayed in the
  console window, will be limited to <quote>log-max-lines</quote> (see below).
@@ -3199,11 +2583,11 @@ forward-socks4, forward-socks4a and forward-socks5</title>
 <![%user-man;[
 <para>
  <literal>
-  <msgtext>
+  <msgtext> 
    <literallayout>
   <emphasis>log-buffer-size      1</emphasis>
    </literallayout>
-  </msgtext>
+  </msgtext> 
  </literal>
 </para>
 ]]>
@@ -3219,11 +2603,11 @@ forward-socks4, forward-socks4a and forward-socks5</title>
 <![%user-man;[
 <para>
  <literal>
-  <msgtext>
+  <msgtext> 
    <literallayout>
   <emphasis>log-max-lines      200</emphasis>
    </literallayout>
-  </msgtext>
+  </msgtext> 
  </literal>
 </para>
 ]]>
@@ -3240,11 +2624,11 @@ forward-socks4, forward-socks4a and forward-socks5</title>
 <![%user-man;[
 <para>
  <literal>
-  <msgtext>
+  <msgtext> 
    <literallayout>
   <emphasis>log-highlight-messages   1</emphasis>
    </literallayout>
-  </msgtext>
+  </msgtext> 
  </literal>
 </para>
 ]]>
@@ -3259,11 +2643,11 @@ forward-socks4, forward-socks4a and forward-socks5</title>
 <![%user-man;[
 <para>
  <literal>
-  <msgtext>
+  <msgtext> 
    <literallayout>
   <emphasis>log-font-name        Comic Sans MS</emphasis>
    </literallayout>
-  </msgtext>
+  </msgtext> 
  </literal>
 </para>
 ]]>
@@ -3278,18 +2662,18 @@ forward-socks4, forward-socks4a and forward-socks5</title>
 <![%user-man;[
 <para>
  <literal>
-  <msgtext>
+  <msgtext> 
    <literallayout>
   <emphasis>log-font-size        8</emphasis>
    </literallayout>
-  </msgtext>
+  </msgtext> 
  </literal>
 </para>
 ]]>
 
 <anchor id="show-on-task-bar">
 <![%config-file;[<para>@@</para>]]> <!-- for spacing -->
-<para>
+<para>  
  <quote>show-on-task-bar</quote> controls whether or not
  <application>Privoxy</application> will appear as a button on the Task bar
  when minimized:
@@ -3299,11 +2683,11 @@ forward-socks4, forward-socks4a and forward-socks5</title>
 <![%user-man;[
 <para>
  <literal>
-  <msgtext>
+  <msgtext> 
    <literallayout>
   <emphasis>show-on-task-bar     0</emphasis>
    </literallayout>
-  </msgtext>
+  </msgtext> 
  </literal>
 </para>
 ]]>
@@ -3320,11 +2704,11 @@ forward-socks4, forward-socks4a and forward-socks5</title>
 <![%user-man;[
 <para>
  <literal>
-  <msgtext>
+  <msgtext> 
    <literallayout>
   <emphasis>close-button-minimizes  1</emphasis>
    </literallayout>
-  </msgtext>
+  </msgtext> 
  </literal>
 </para>
 ]]>
@@ -3342,11 +2726,11 @@ forward-socks4, forward-socks4a and forward-socks5</title>
 <![%user-man;[
 <para>
  <literal>
-  <msgtext>
+  <msgtext> 
    <literallayout>
   #<emphasis>hide-console</emphasis>
    </literallayout>
-  </msgtext>
+  </msgtext> 
  </literal>
 </para>
 ]]>

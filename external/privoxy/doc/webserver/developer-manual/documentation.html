@@ -1,464 +1,944 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-"http://www.w3.org/TR/html4/loose.dtd">
-
-<html>
-<head>
-  <meta name="generator" content=
-  "HTML Tidy for Linux/x86 (vers 7 December 2008), see www.w3.org">
-
-  <title>Documentation Guidelines</title>
-  <meta name="GENERATOR" content=
-  "Modular DocBook HTML Stylesheet Version 1.79">
-  <link rel="HOME" title="Privoxy Developer Manual" href="index.html">
-  <link rel="PREVIOUS" title="The CVS Repository" href="cvs.html">
-  <link rel="NEXT" title="Coding Guidelines" href="coding.html">
-  <link rel="STYLESHEET" type="text/css" href="../p_doc.css">
-  <meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
-  <style type="text/css">
-body {
-  background-color: #EEEEEE;
-  color: #000000;
-  }
-  :link { color: #0000FF }
-  :visited { color: #840084 }
-  :active { color: #0000FF }
-  span.c3 {font-style: italic}
-  a.c2 {font-style: italic}
-  hr.c1 {text-align: left}
-  </style>
-</head>
-
-<body class="SECT1">
-  <div class="NAVHEADER">
-    <table summary="Header navigation table" width="100%" border="0"
-    cellpadding="0" cellspacing="0">
-      <tr>
-        <th colspan="3" align="center">Privoxy Developer Manual</th>
-      </tr>
-
-      <tr>
-        <td width="10%" align="left" valign="bottom"><a href="cvs.html"
-        accesskey="P">Prev</a></td>
-
-        <td width="80%" align="center" valign="bottom"></td>
-
-        <td width="10%" align="right" valign="bottom"><a href="coding.html"
-        accesskey="N">Next</a></td>
-      </tr>
-    </table>
-    <hr class="c1" width="100%">
-  </div>
-
-  <div class="SECT1">
-    <h1 class="SECT1"><a name="DOCUMENTATION" id="DOCUMENTATION">3.
-    Documentation Guidelines</a></h1>
-
-    <p>All formal documents are maintained in Docbook SGML and located in the
-    <samp class="COMPUTEROUTPUT">doc/source/*</samp> directory. You will need
-    <a href="http://www.docbook.org" target="_top">Docbook</a>, the Docbook
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Documentation Guidelines</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Privoxy Developer Manual"
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="The CVS Repository"
+HREF="cvs.html"><LINK
+REL="NEXT"
+TITLE="Coding Guidelines"
+HREF="coding.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="../p_doc.css"><META
+HTTP-EQUIV="Content-Type"
+CONTENT="text/html;
+charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#EEEEEE"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Privoxy Developer Manual</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="cvs.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="coding.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="DOCUMENTATION"
+>3. Documentation Guidelines</A
+></H1
+><P
+>    All formal documents are maintained in Docbook SGML and located in the
+    <SAMP
+CLASS="COMPUTEROUTPUT"
+>doc/source/*</SAMP
+> directory. You will need
+    <A
+HREF="http://www.docbook.org"
+TARGET="_top"
+>Docbook</A
+>, the Docbook 
     DTD's and the Docbook modular stylesheets (or comparable alternatives),
-    and either <span class="APPLICATION">jade</span> or <span class=
-    "APPLICATION">openjade</span> (recommended) installed in order to build
-    docs from source. Currently there is <a class="CITETITLE c2" href=
-    "../user-manual/index.html" target="_top">user-manual</a>, <a class=
-    "CITETITLE c2" href="../faq/index.html" target="_top">FAQ</a>, and, of
-    course this, the <i class="CITETITLE">developer-manual</i> in this
-    format. The <i class="CITETITLE">README</i>, <i class=
-    "CITETITLE">AUTHORS</i>, <i class="CITETITLE">INSTALL</i>, <i class=
-    "CITETITLE">privoxy.1</i> (man page), and <i class="CITETITLE">config</i>
-    files are also now maintained as Docbook SGML. These files, when built,
-    in the top-level source directory are generated files! Also, the
-    <span class="APPLICATION">Privoxy</span> <tt class=
-    "FILENAME">index.html</tt> (and a variation on this file, <tt class=
-    "FILENAME">privoxy-index.html</tt>, meant for inclusion with doc
-    packages), are maintained as SGML as well. <span class=
-    "emphasis EMPHASIS c3">DO NOT edit these directly</span>. Edit the SGML
-    source, or contact someone involved in the documentation.</p>
-
-    <p><tt class="FILENAME">config</tt> requires some special handling. The
-    reason it is maintained this way is so that the extensive comments in the
-    file mirror those in <i class="CITETITLE">user-manual</i>. But the
-    conversion process requires going from SGML to HTML to text to special
-    formatting required for the embedded comments. Some of this does not
-    survive so well. Especially some of the examples that are longer than 80
-    characters. The build process for this file outputs to <tt class=
-    "FILENAME">config.new</tt>, which should be reviewed for errors and
-    mis-formatting. Once satisfied that it is correct, then it should be hand
-    copied to <tt class="FILENAME">config</tt>.</p>
-
-    <p>Other, less formal documents (e.g. <tt class="FILENAME">LICENSE</tt>)
-    are maintained as plain text files in the top-level source directory.</p>
-
-    <p>Packagers are encouraged to include this documentation. For those
-    without the ability to build the docs locally, text versions of each are
-    kept in CVS. HTML versions are also being kept in CVS under <tt class=
-    "FILENAME">doc/webserver/*</tt>. And PDF version are kept in <tt class=
-    "FILENAME">doc/pdf/*</tt>.</p>
-
-    <p>Formal documents are built with the Makefile targets of <samp class=
-    "COMPUTEROUTPUT">make dok</samp>, or alternately <samp class=
-    "COMPUTEROUTPUT">make redhat-dok</samp>. If you have problems, try both.
-    The build process uses the document SGML sources in <samp class=
-    "COMPUTEROUTPUT">doc/source/*/*</samp> to update all text files in
-    <samp class="COMPUTEROUTPUT">doc/text/</samp> and to update all HTML
-    documents in <samp class="COMPUTEROUTPUT">doc/webserver/</samp>.</p>
-
-    <p>Documentation writers should please make sure documents build
-    successfully before committing to CVS, if possible.</p>
-
-    <p>How do you update the webserver (i.e. the pages on privoxy.org)?</p>
-
-    <ol type="1">
-      <li>
-        <p>First, build the docs by running <samp class="COMPUTEROUTPUT">make
-        dok</samp> (or alternately <samp class="COMPUTEROUTPUT">make
-        redhat-dok</samp>). For PDF docs, do <samp class=
-        "COMPUTEROUTPUT">make dok-pdf</samp>.</p>
-      </li>
-
-      <li>
-        <p>Run <samp class="COMPUTEROUTPUT">make webserver</samp> which
-        copies all files from <samp class=
-        "COMPUTEROUTPUT">doc/webserver</samp> to the sourceforge webserver
-        via scp.</p>
-      </li>
-    </ol>
-
-    <p>Finished docs should be occasionally submitted to CVS (<tt class=
-    "FILENAME">doc/webserver/*/*.html</tt>) so that those without the ability
-    to build them locally, have access to them if needed. This is especially
-    important just prior to a new release! Please do this <span class=
-    "emphasis EMPHASIS c3">after</span> the <tt class="LITERAL">$VERSION</tt>
-    and other release specific data in <tt class="FILENAME">configure.in</tt>
-    has been updated (this is done just prior to a new release).</p>
-
-    <div class="SECT2">
-      <h2 class="SECT2"><a name="SGML" id="SGML">3.1. Quickstart to Docbook
-      and SGML</a></h2>
-
-      <p>If you are not familiar with SGML, it is a markup language similar
-      to HTML. Actually, not a mark up language per se, but a language used
-      to define markup languages. In fact, HTML is an SGML application. Both
-      will use <span class="QUOTE">"tags"</span> to format text and other
-      content. SGML tags can be much more varied, and flexible, but do much
-      of the same kinds of things. The tags, or <span class=
-      "QUOTE">"elements"</span>, are definable in SGML. There is no set
-      <span class="QUOTE">"standards"</span>. Since we are using <span class=
-      "APPLICATION">Docbook</span>, our tags are those that are defined by
-      <span class="APPLICATION">Docbook</span>. Much of how the finish
-      document is rendered is determined by the <span class=
-      "QUOTE">"stylesheets"</span>. The stylesheets determine how each tag
-      gets translated to HTML, or other formats.</p>
-
-      <p>Tags in Docbook SGML need to be always <span class=
-      "QUOTE">"closed"</span>. If not, you will likely generate errors.
-      Example: <tt class="LITERAL">&lt;title&gt;My Title&lt;/title&gt;</tt>.
-      They are also case-insensitive, but we strongly suggest using all lower
-      case. This keeps compatibility with [Docbook] <span class=
-      "APPLICATION">XML</span>.</p>
-
-      <p>Our documents use <span class="QUOTE">"sections"</span> for the most
-      part. Sections will be processed into HTML headers (e.g. <tt class=
-      "LITERAL">h1</tt> for <tt class="LITERAL">sect1</tt>). The <span class=
-      "APPLICATION">Docbook</span> stylesheets will use these to also
-      generate the Table of Contents for each doc. Our TOC's are set to a
-      depth of three. Meaning <tt class="LITERAL">sect1</tt>, <tt class=
-      "LITERAL">sect2</tt>, and <tt class="LITERAL">sect3</tt> will have TOC
-      entries, but <tt class="LITERAL">sect4</tt> will not. Each section
-      requires a <tt class="LITERAL">&lt;title&gt;</tt> element, and at least
-      one <tt class="LITERAL">&lt;para&gt;</tt>. There is a limit of five
-      section levels in Docbook, but generally three should be sufficient for
-      our purposes.</p>
-
-      <p>Some common elements that you likely will use:</p>
-
-      <table border="0">
-        <tbody>
-          <tr>
-            <td><span class=
-            "emphasis EMPHASIS c3">&lt;para&gt;&lt;/para&gt;</span>,
-            paragraph delimiter. Most text needs to be within paragraph
-            elements (there are some exceptions).</td>
-          </tr>
-
-          <tr>
-            <td><span class=
-            "emphasis EMPHASIS c3">&lt;emphasis&gt;&lt;/emphasis&gt;</span>,
-            the stylesheets make this italics.</td>
-          </tr>
-
-          <tr>
-            <td><span class=
-            "emphasis EMPHASIS c3">&lt;filename&gt;&lt;/filename&gt;</span>,
-            files and directories.</td>
-          </tr>
-
-          <tr>
-            <td><span class=
-            "emphasis EMPHASIS c3">&lt;command&gt;&lt;/command&gt;</span>,
-            command examples.</td>
-          </tr>
-
-          <tr>
-            <td><span class=
-            "emphasis EMPHASIS c3">&lt;literallayout&gt;&lt;/literallayout&gt;</span>,
-            like <tt class="LITERAL">&lt;pre&gt;</tt>, more or less.</td>
-          </tr>
-
-          <tr>
-            <td><span class=
-            "emphasis EMPHASIS c3">&lt;itemizedlist&gt;&lt;/itemizedlist&gt;</span>,
-            list with bullets.</td>
-          </tr>
-
-          <tr>
-            <td><span class=
-            "emphasis EMPHASIS c3">&lt;listitem&gt;&lt;/listitem&gt;</span>,
-            member of the above.</td>
-          </tr>
-
-          <tr>
-            <td><span class=
-            "emphasis EMPHASIS c3">&lt;screen&gt;&lt;/screen&gt;</span>,
-            screen output, implies <tt class=
-            "LITERAL">&lt;literallayout&gt;</tt>.</td>
-          </tr>
-
-          <tr>
-            <td><span class="emphasis EMPHASIS c3">&lt;ulink
-            url="example.com"&gt;&lt;/ulink&gt;</span>, like HTML <tt class=
-            "LITERAL">&lt;a&gt;</tt> tag.</td>
-          </tr>
-
-          <tr>
-            <td><span class=
-            "emphasis EMPHASIS c3">&lt;quote&gt;&lt;/quote&gt;</span>, for,
-            doh, quoting text.</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <p>Look at any of the existing docs for examples of all these and
-      more.</p>
-
-      <p>You might also find <span class="QUOTE">"<a href=
-      "http://opensource.bureau-cornavin.com/crash-course/index.html" target=
-      "_top">Writing Documentation Using DocBook - A Crash Course</a>"</span>
-      useful.</p>
-    </div>
-
-    <div class="SECT2">
-      <h2 class="SECT2"><a name="DOCSTYLE" id="DOCSTYLE">3.2. <span class=
-      "APPLICATION">Privoxy</span> Documentation Style</a></h2>
-
-      <p>It will be easier if everyone follows a similar writing style. This
-      just makes it easier to read what someone else has written if it is all
-      done in a similar fashion.</p>
-
-      <p>Here it is:</p>
-
-      <ul>
-        <li>
-          <p>All tags should be lower case.</p>
-        </li>
-
-        <li>
-          <p>Tags delimiting a <span class=
-          "emphasis EMPHASIS c3">block</span> of text (even small blocks)
-          should be on their own line. Like:</p>
-
-          <p class="LITERALLAYOUT">&nbsp;&lt;para&gt;<br>
-          &nbsp;&nbsp;Some&nbsp;text&nbsp;goes&nbsp;here.<br>
-          &nbsp;&lt;/para&gt;<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>Tags marking
-          individual words, or few words, should be in-line:
-
-          <p class="LITERALLAYOUT">
-          &nbsp;&nbsp;Just&nbsp;to&nbsp;&lt;emphasis&gt;emphasize&lt;/emphasis&gt;,&nbsp;some&nbsp;text&nbsp;goes&nbsp;here.<br>
-
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-        </li>
-
-        <li>
-          <p>Tags should be nested and step indented for block text like:
-          (except in-line tags)</p>
-
-          <p class="LITERALLAYOUT">&nbsp;&lt;para&gt;<br>
-          &nbsp;&nbsp;&lt;itemizedlist&gt;<br>
-          &nbsp;&nbsp;&nbsp;&lt;para&gt;<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&lt;listitem&gt;<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Some&nbsp;text&nbsp;goes&nbsp;here&nbsp;in&nbsp;our&nbsp;list&nbsp;example.<br>
-
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/listitem&gt;<br>
-          &nbsp;&nbsp;&nbsp;&lt;/para&gt;<br>
-          &nbsp;&nbsp;&lt;/itemizedlist&gt;<br>
-          &nbsp;&lt;/para&gt;<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>This makes it easier
-          to find the text amongst the tags ;-)
-        </li>
-
-        <li>
-          <p>Use white space to separate logical divisions within a document,
-          like between sections. Running everything together consistently
-          makes it harder to read and work on.</p>
-        </li>
-
-        <li>
-          <p>Do not hesitate to make comments. Comments can either use the
-          &lt;comment&gt; element, or the &lt;!-- --&gt; style comment
-          familiar from HTML. (Note in Docbook v4.x &lt;comment&gt; is
-          replaced by &lt;remark&gt;.)</p>
-        </li>
-
-        <li>
-          <p>We have an international audience. Refrain from slang, or
-          English idiosyncrasies (too many to list :). Humor also does not
-          translate well sometimes.</p>
-        </li>
-
-        <li>
-          <p>Try to keep overall line lengths in source files to 80
-          characters or less for obvious reasons. This is not always
-          possible, with lengthy URLs for instance.</p>
-        </li>
-
-        <li>
-          <p>Our documents are available in differing formats. Right now,
-          they are just plain text, HTML, and PDF, but others are always a
-          future possibility. Be careful with URLs (&lt;ulink&gt;), and avoid
-          this mistake:</p>
-
-          <p>My favorite site is &lt;ulink
-          url="http://example.com"&gt;here&lt;/ulink&gt;.</p>
-
-          <p>This will render as <span class="QUOTE">"My favorite site is
-          here"</span>, which is not real helpful in a text doc. Better like
-          this:</p>
-
-          <p>My favorite site is &lt;ulink
-          url="http://example.com"&gt;example.com&lt;/ulink&gt;.</p>
-        </li>
-
-        <li>
-          <p>All documents should be spell checked occasionally. <span class=
-          "APPLICATION">aspell</span> can check SGML with the <tt class=
-          "LITERAL">-H</tt> option. (<span class="APPLICATION">ispell</span>
-          I think too.)</p>
-        </li>
-      </ul>
-    </div>
-
-    <div class="SECT2">
-      <h2 class="SECT2"><a name="AEN217" id="AEN217">3.3. Privoxy Custom
-      Entities</a></h2>
-
-      <p><span class="APPLICATION">Privoxy</span> documentation is using a
-      number of customized <span class="QUOTE">"entities"</span> to
-      facilitate documentation maintenance.</p>
-
-      <p>We are using a set of <span class="QUOTE">"boilerplate"</span> files
-      with generic text, that is used by multiple docs. This way we can write
-      something once, and use it repeatedly without having to re-write the
-      same content over and over again. If editing such a file, keep in mind
-      that it should be <span class="emphasis EMPHASIS c3">generic</span>.
-      That is the purpose; so it can be used in varying contexts without
-      additional modifications.</p>
-
-      <p>We are also using what <span class="APPLICATION">Docbook</span>
-      calls <span class="QUOTE">"internal entities"</span>. These are like
-      variables in programming. Well, sort of. For instance, we have the
-      <tt class="LITERAL">p-version</tt> entity that contains the current
-      <span class="APPLICATION">Privoxy</span> version string. You are
-      strongly encouraged to use these where possible. Some of these
-      obviously require re-setting with each release (done by the Makefile).
-      A sampling of custom entities are listed below. See any of the main
-      docs for examples.</p>
-
-      <ul>
-        <li>
-          <p>Re- <span class="QUOTE">"boilerplate"</span> text entities are
-          defined like:</p>
-
-          <p><tt class="LITERAL">&lt;!entity supported SYSTEM
-          "supported.sgml"&gt;</tt></p>
-
-          <p>In this example, the contents of the file, <tt class=
-          "FILENAME">supported.sgml</tt> is available for inclusion anywhere
-          in the doc. To make this happen, just reference the now defined
-          entity: <tt class="LITERAL">&amp;supported;</tt> (starts with an
-          ampersand and ends with a semi-colon), and the contents will be
-          dumped into the finished doc at that point.</p>
-        </li>
-
-        <li>
-          <p>Commonly used <span class="QUOTE">"internal
-          entities"</span>:</p>
-
-          <table border="0">
-            <tbody>
-              <tr>
-                <td><span class="emphasis EMPHASIS c3">p-version</span>: the
-                <span class="APPLICATION">Privoxy</span> version string, e.g.
-                <span class="QUOTE">"3.0.19"</span>.</td>
-              </tr>
-
-              <tr>
-                <td><span class="emphasis EMPHASIS c3">p-status</span>: the
-                project status, either <span class="QUOTE">"alpha"</span>,
-                <span class="QUOTE">"beta"</span>, or <span class=
-                "QUOTE">"stable"</span>.</td>
-              </tr>
-
-              <tr>
-                <td><span class="emphasis EMPHASIS c3">p-not-stable</span>:
-                use to conditionally include text in <span class="QUOTE">"not
-                stable"</span> releases (e.g. <span class=
-                "QUOTE">"beta"</span>).</td>
-              </tr>
-
-              <tr>
-                <td><span class="emphasis EMPHASIS c3">p-stable</span>: just
-                the opposite.</td>
-              </tr>
-
-              <tr>
-                <td><span class="emphasis EMPHASIS c3">p-text</span>: this
-                doc is only generated as text.</td>
-              </tr>
-            </tbody>
-          </table>
-        </li>
-      </ul>
-
-      <p>There are others in various places that are defined for a specific
-      purpose. Read the source!</p>
-    </div>
-  </div>
-
-  <div class="NAVFOOTER">
-    <hr class="c1" width="100%">
-
-    <table summary="Footer navigation table" width="100%" border="0"
-    cellpadding="0" cellspacing="0">
-      <tr>
-        <td width="33%" align="left" valign="top"><a href="cvs.html"
-        accesskey="P">Prev</a></td>
-
-        <td width="34%" align="center" valign="top"><a href="index.html"
-        accesskey="H">Home</a></td>
-
-        <td width="33%" align="right" valign="top"><a href="coding.html"
-        accesskey="N">Next</a></td>
-      </tr>
-
-      <tr>
-        <td width="33%" align="left" valign="top">The CVS Repository</td>
-
-        <td width="34%" align="center" valign="top">&nbsp;</td>
-
-        <td width="33%" align="right" valign="top">Coding Guidelines</td>
-      </tr>
-    </table>
-  </div>
-</body>
-</html>
+    and either <SPAN
+CLASS="APPLICATION"
+>jade</SPAN
+> or
+    <SPAN
+CLASS="APPLICATION"
+>openjade</SPAN
+> (recommended) installed in order to
+    build docs from source. Currently there is <A
+HREF="../user-manual/index.html"
+TARGET="_top"
+><I
+CLASS="CITETITLE"
+>user-manual</I
+></A
+>,
+    <A
+HREF="../faq/index.html"
+TARGET="_top"
+><I
+CLASS="CITETITLE"
+>FAQ</I
+></A
+>, and, of
+    course this, the <I
+CLASS="CITETITLE"
+>developer-manual</I
+> in this format.
+    The <I
+CLASS="CITETITLE"
+>README</I
+>, <I
+CLASS="CITETITLE"
+>AUTHORS</I
+>,
+    <I
+CLASS="CITETITLE"
+>INSTALL</I
+>,
+    <I
+CLASS="CITETITLE"
+>privoxy.1</I
+> (man page), and
+    <I
+CLASS="CITETITLE"
+>config</I
+> files are also now maintained as Docbook
+    SGML. These files, when built, in the top-level source directory are
+    generated files! Also, the <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> <TT
+CLASS="FILENAME"
+>index.html</TT
+> (and a 
+    variation on this file, <TT
+CLASS="FILENAME"
+>privoxy-index.html</TT
+>, 
+    meant for inclusion with doc packages), are maintained as SGML as well.
+    <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>DO NOT edit these directly</I
+></SPAN
+>. Edit the SGML source, or
+    contact someone involved in the documentation.
+    </P
+><P
+>     <TT
+CLASS="FILENAME"
+>config</TT
+> requires some special handling. The reason it
+     is maintained this way is so that the extensive comments in the file
+     mirror those in <I
+CLASS="CITETITLE"
+>user-manual</I
+>. But the conversion 
+     process requires going from SGML to HTML to text to special formatting 
+     required for the embedded comments. Some of this does not survive so
+     well. Especially some of the examples that are longer than 80 characters.
+     The build process for this file outputs to <TT
+CLASS="FILENAME"
+>config.new</TT
+>, 
+     which should be reviewed for errors and mis-formatting. Once satisfied
+     that it is correct, then it should be hand copied to
+     <TT
+CLASS="FILENAME"
+>config</TT
+>.
+    </P
+><P
+>     Other, less formal documents (e.g. <TT
+CLASS="FILENAME"
+>LICENSE</TT
+>) are
+     maintained as plain text files in the top-level source directory.
+    </P
+><P
+>     Packagers are encouraged to include this documentation. For those without
+     the ability to build the docs locally, text versions of each are kept in
+     CVS. HTML versions are also being kept in CVS under 
+     <TT
+CLASS="FILENAME"
+>doc/webserver/*</TT
+>. And PDF version are kept in 
+     <TT
+CLASS="FILENAME"
+>doc/pdf/*</TT
+>.
+    </P
+><P
+>     Formal documents are built with the Makefile targets of
+     <SAMP
+CLASS="COMPUTEROUTPUT"
+>make dok</SAMP
+>, or alternately
+     <SAMP
+CLASS="COMPUTEROUTPUT"
+>make redhat-dok</SAMP
+>. If you have problems,
+     try both. The build process uses the document SGML sources in
+     <SAMP
+CLASS="COMPUTEROUTPUT"
+>doc/source/*/*</SAMP
+> to update all text files in
+     <SAMP
+CLASS="COMPUTEROUTPUT"
+>doc/text/</SAMP
+> and to update all HTML
+     documents in <SAMP
+CLASS="COMPUTEROUTPUT"
+>doc/webserver/</SAMP
+>.
+    </P
+><P
+>     Documentation writers should please make sure documents build
+     successfully before committing to CVS, if possible.
+    </P
+><P
+>     How do you update the webserver (i.e. the pages on privoxy.org)?
+     
+     <P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>        First, build the docs by running <SAMP
+CLASS="COMPUTEROUTPUT"
+>make
+        dok</SAMP
+> (or alternately <SAMP
+CLASS="COMPUTEROUTPUT"
+>make
+        redhat-dok</SAMP
+>). For PDF docs, do <SAMP
+CLASS="COMPUTEROUTPUT"
+>make
+        dok-pdf</SAMP
+>.
+      </P
+></LI
+><LI
+><P
+>        Run <SAMP
+CLASS="COMPUTEROUTPUT"
+>make webserver</SAMP
+> which copies all
+        files from <SAMP
+CLASS="COMPUTEROUTPUT"
+>doc/webserver</SAMP
+> to the
+        sourceforge webserver via scp.
+      </P
+></LI
+></OL
+>
+  </P
+><P
+>   Finished docs should be occasionally submitted to CVS
+   (<TT
+CLASS="FILENAME"
+>doc/webserver/*/*.html</TT
+>) so that those without 
+   the ability to build them locally, have access to them if needed.
+   This is especially important just prior to a new release! Please
+   do this <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>after</I
+></SPAN
+> the <TT
+CLASS="LITERAL"
+>$VERSION</TT
+> and
+   other release specific data in <TT
+CLASS="FILENAME"
+>configure.in</TT
+> has been
+   updated (this is done just prior to a new release).
+  </P
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="SGML"
+>3.1. Quickstart to Docbook and SGML</A
+></H2
+><P
+> If you are not familiar with SGML, it is a markup language similar to HTML. 
+ Actually, not a mark up language per se, but a language used to define 
+ markup languages. In fact, HTML is an SGML application. Both will use
+ <SPAN
+CLASS="QUOTE"
+>"tags"</SPAN
+> to format text and other content. SGML tags can be much
+ more varied, and flexible, but do much of the same kinds of things. The tags,
+ or <SPAN
+CLASS="QUOTE"
+>"elements"</SPAN
+>, are definable in SGML. There is no set
+ <SPAN
+CLASS="QUOTE"
+>"standards"</SPAN
+>. Since we are using
+ <SPAN
+CLASS="APPLICATION"
+>Docbook</SPAN
+>, our tags are those that are defined by 
+ <SPAN
+CLASS="APPLICATION"
+>Docbook</SPAN
+>. Much of how the finish document is
+ rendered is determined by the <SPAN
+CLASS="QUOTE"
+>"stylesheets"</SPAN
+>.
+ The stylesheets determine how each tag gets translated to HTML, or other
+ formats.</P
+><P
+> Tags in Docbook SGML need to be always <SPAN
+CLASS="QUOTE"
+>"closed"</SPAN
+>. If not, you
+ will likely generate errors. Example: <TT
+CLASS="LITERAL"
+>&#60;title&#62;My
+ Title&#60;/title&#62;</TT
+>. They are also case-insensitive, but we
+ strongly suggest using all lower case. This keeps compatibility with
+ [Docbook] <SPAN
+CLASS="APPLICATION"
+>XML</SPAN
+>.</P
+><P
+> Our documents use <SPAN
+CLASS="QUOTE"
+>"sections"</SPAN
+> for the most part. Sections
+ will be processed into HTML headers (e.g. <TT
+CLASS="LITERAL"
+>h1</TT
+> for 
+ <TT
+CLASS="LITERAL"
+>sect1</TT
+>). The <SPAN
+CLASS="APPLICATION"
+>Docbook</SPAN
+> stylesheets
+ will use these to also generate the Table of Contents for each doc. Our 
+ TOC's are set to a depth of three. Meaning <TT
+CLASS="LITERAL"
+>sect1</TT
+>, 
+ <TT
+CLASS="LITERAL"
+>sect2</TT
+>, and <TT
+CLASS="LITERAL"
+>sect3</TT
+> will have TOC 
+ entries, but <TT
+CLASS="LITERAL"
+>sect4</TT
+> will not. Each section requires 
+ a <TT
+CLASS="LITERAL"
+>&#60;title&#62;</TT
+> element, and at least one 
+ <TT
+CLASS="LITERAL"
+>&#60;para&#62;</TT
+>. There is a limit of five section 
+ levels in Docbook, but generally three should be sufficient for our 
+ purposes.</P
+><P
+> Some common elements that you likely will use: </P
+><P
+>  <P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+>      <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>&#60;para&#62;&#60;/para&#62;</I
+></SPAN
+>, paragraph delimiter. Most 
+      text needs to be within paragraph elements (there are some exceptions).
+    </TD
+></TR
+><TR
+><TD
+>      <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>&#60;emphasis&#62;&#60;/emphasis&#62;</I
+></SPAN
+>, the stylesheets
+      make this italics.
+    </TD
+></TR
+><TR
+><TD
+>      <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>&#60;filename&#62;&#60;/filename&#62;</I
+></SPAN
+>, files and directories.
+    </TD
+></TR
+><TR
+><TD
+>      <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>&#60;command&#62;&#60;/command&#62;</I
+></SPAN
+>, command examples.
+    </TD
+></TR
+><TR
+><TD
+>      <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>&#60;literallayout&#62;&#60;/literallayout&#62;</I
+></SPAN
+>, like 
+      <TT
+CLASS="LITERAL"
+>&#60;pre&#62;</TT
+>, more or less.
+    </TD
+></TR
+><TR
+><TD
+>      <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>&#60;itemizedlist&#62;&#60;/itemizedlist&#62;</I
+></SPAN
+>, list with bullets.
+    </TD
+></TR
+><TR
+><TD
+>      <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>&#60;listitem&#62;&#60;/listitem&#62;</I
+></SPAN
+>, member of the above.
+    </TD
+></TR
+><TR
+><TD
+>      <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>&#60;screen&#62;&#60;/screen&#62;</I
+></SPAN
+>, screen output, implies 
+      <TT
+CLASS="LITERAL"
+>&#60;literallayout&#62;</TT
+>.
+    </TD
+></TR
+><TR
+><TD
+>      <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>&#60;ulink url="example.com"&#62;&#60;/ulink&#62;</I
+></SPAN
+>, like 
+      HTML <TT
+CLASS="LITERAL"
+>&#60;a&#62;</TT
+> tag.
+    </TD
+></TR
+><TR
+><TD
+>      <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>&#60;quote&#62;&#60;/quote&#62;</I
+></SPAN
+>, for, doh, quoting text. 
+    </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></P
+><P
+> Look at any of the existing docs for examples of all these and more.</P
+><P
+> You might also find <SPAN
+CLASS="QUOTE"
+>"<A
+HREF="http://opensource.bureau-cornavin.com/crash-course/index.html"
+TARGET="_top"
+>Writing Documentation
+ Using DocBook - A Crash Course</A
+>"</SPAN
+> useful.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="DOCSTYLE"
+>3.2. <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> Documentation Style</A
+></H2
+><P
+>    It will be easier if everyone follows a similar writing style. This 
+    just makes it easier to read what someone else has written if it 
+    is all done in a similar fashion.
+   </P
+><P
+>    Here it is:
+   </P
+><P
+>    <P
+></P
+><UL
+><LI
+><P
+>       All tags should be lower case.
+      </P
+></LI
+><LI
+><P
+>       Tags delimiting a <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>block</I
+></SPAN
+> of text (even small
+       blocks) should be on their own line. Like:
+       <P
+CLASS="LITERALLAYOUT"
+>&nbsp;&#60;para&#62;<br>
+&nbsp;&nbsp;Some&nbsp;text&nbsp;goes&nbsp;here.<br>
+&nbsp;&#60;/para&#62;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</P
+>
+       Tags marking individual words, or few words, should be in-line:
+       <P
+CLASS="LITERALLAYOUT"
+>&nbsp;&nbsp;Just&nbsp;to&nbsp;&#60;emphasis&#62;emphasize&#60;/emphasis&#62;,&nbsp;some&nbsp;text&nbsp;goes&nbsp;here.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</P
+>
+     </P
+></LI
+><LI
+><P
+>      Tags should be nested and step indented for block text like: (except
+      in-line tags) 
+     <P
+CLASS="LITERALLAYOUT"
+>&nbsp;&#60;para&#62;<br>
+&nbsp;&nbsp;&#60;itemizedlist&#62;<br>
+&nbsp;&nbsp;&nbsp;&#60;para&#62;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&#60;listitem&#62;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Some&nbsp;text&nbsp;goes&nbsp;here&nbsp;in&nbsp;our&nbsp;list&nbsp;example.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#60;/listitem&#62;<br>
+&nbsp;&nbsp;&nbsp;&#60;/para&#62;<br>
+&nbsp;&nbsp;&#60;/itemizedlist&#62;<br>
+&nbsp;&#60;/para&#62;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</P
+>
+      This makes it easier to find the text amongst the tags ;-)
+    </P
+></LI
+><LI
+><P
+>     Use white space to separate logical divisions within a document, 
+     like between sections. Running everything together consistently 
+     makes it harder to read and work on.
+    </P
+></LI
+><LI
+><P
+>     Do not hesitate to make comments. Comments can either use the 
+     &#60;comment&#62; element, or the &#60;!--  --&#62; style comment 
+     familiar from HTML. (Note in Docbook v4.x &#60;comment&#62; is 
+     replaced by &#60;remark&#62;.)
+    </P
+></LI
+><LI
+><P
+>     We have an international audience. Refrain from slang, or English 
+     idiosyncrasies (too many to list :). Humor also does not translate 
+     well sometimes.
+   </P
+></LI
+><LI
+><P
+>    Try to keep overall line lengths in source files to 80 characters or less
+    for obvious reasons. This is not always possible, with lengthy URLs for
+    instance.
+   </P
+></LI
+><LI
+><P
+>    Our documents are available in differing formats. Right now, they 
+    are just plain text, HTML, and PDF, but others are always a 
+    future possibility. Be careful with URLs (&#60;ulink&#62;), and avoid 
+    this mistake:
+   </P
+><P
+>     My favorite site is &#60;ulink url="http://example.com"&#62;here&#60;/ulink&#62;.
+   </P
+><P
+>     This will render as <SPAN
+CLASS="QUOTE"
+>"My favorite site is here"</SPAN
+>, which is 
+     not real helpful in a text doc. Better like this:
+   </P
+><P
+>     My favorite site is &#60;ulink url="http://example.com"&#62;example.com&#60;/ulink&#62;.
+   </P
+></LI
+><LI
+><P
+>    All documents should be spell checked occasionally.
+    <SPAN
+CLASS="APPLICATION"
+>aspell</SPAN
+> can check SGML with the
+    <TT
+CLASS="LITERAL"
+>-H</TT
+> option. (<SPAN
+CLASS="APPLICATION"
+>ispell</SPAN
+> I think
+    too.)
+   </P
+></LI
+></UL
+>
+ </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN217"
+>3.3. Privoxy Custom Entities</A
+></H2
+><P
+>  <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> documentation is using 
+  a number of customized <SPAN
+CLASS="QUOTE"
+>"entities"</SPAN
+> to facilitate 
+  documentation maintenance. 
+ </P
+><P
+>  We are using a set of <SPAN
+CLASS="QUOTE"
+>"boilerplate"</SPAN
+> files with generic text,
+  that is used by multiple docs. This way we can write something once, and use
+  it repeatedly without having to re-write the same content over and over again.
+  If editing such a file, keep in mind that it should be
+  <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>generic</I
+></SPAN
+>. That is the purpose; so it can be used in varying 
+  contexts without additional modifications.
+ </P
+><P
+>  We are also using what <SPAN
+CLASS="APPLICATION"
+>Docbook</SPAN
+> calls 
+  <SPAN
+CLASS="QUOTE"
+>"internal entities"</SPAN
+>. These are like variables in 
+  programming. Well, sort of. For instance, we have the
+  <TT
+CLASS="LITERAL"
+>p-version</TT
+> entity that contains the current 
+  <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> version string. You are strongly 
+  encouraged to use these where possible. Some of these obviously 
+  require re-setting with each release (done by the Makefile). A sampling of
+  custom entities are listed below. See any of the main docs for examples.
+ </P
+><P
+>  <P
+></P
+><UL
+><LI
+><P
+>    Re- <SPAN
+CLASS="QUOTE"
+>"boilerplate"</SPAN
+> text entities are defined like:
+   </P
+><P
+>    <TT
+CLASS="LITERAL"
+>&#60;!entity supported SYSTEM "supported.sgml"&#62;</TT
+>
+   </P
+><P
+>     In this example, the contents of the file,
+     <TT
+CLASS="FILENAME"
+>supported.sgml</TT
+> is available for inclusion anywhere 
+     in the doc. To make this happen, just reference the now defined 
+     entity: <TT
+CLASS="LITERAL"
+>&#38;supported;</TT
+> (starts with an ampersand 
+     and ends with a semi-colon), and the contents will be dumped into 
+     the finished doc at that point.
+   </P
+></LI
+><LI
+><P
+>    Commonly used <SPAN
+CLASS="QUOTE"
+>"internal entities"</SPAN
+>:
+  </P
+><P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+>    <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>p-version</I
+></SPAN
+>: the <SPAN
+CLASS="APPLICATION"
+>Privoxy</SPAN
+> 
+    version string, e.g. <SPAN
+CLASS="QUOTE"
+>"3.0.12"</SPAN
+>.
+   </TD
+></TR
+><TR
+><TD
+>    <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>p-status</I
+></SPAN
+>: the project status, either 
+    <SPAN
+CLASS="QUOTE"
+>"alpha"</SPAN
+>, <SPAN
+CLASS="QUOTE"
+>"beta"</SPAN
+>, or <SPAN
+CLASS="QUOTE"
+>"stable"</SPAN
+>.
+   </TD
+></TR
+><TR
+><TD
+>    <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>p-not-stable</I
+></SPAN
+>: use to conditionally include 
+    text in <SPAN
+CLASS="QUOTE"
+>"not stable"</SPAN
+> releases (e.g. <SPAN
+CLASS="QUOTE"
+>"beta"</SPAN
+>).
+   </TD
+></TR
+><TR
+><TD
+>    <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>p-stable</I
+></SPAN
+>: just the opposite.
+   </TD
+></TR
+><TR
+><TD
+>    <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>p-text</I
+></SPAN
+>: this doc is only generated as text.
+   </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></LI
+></UL
+>
+ </P
+><P
+>  There are others in various places that are defined for a specific 
+  purpose. Read the source!
+ </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="cvs.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="coding.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>The CVS Repository</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Coding Guidelines</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

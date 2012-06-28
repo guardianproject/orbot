@@ -1,7 +1,7 @@
 #ifndef PROJECT_H_INCLUDED
 #define PROJECT_H_INCLUDED
 /** Version string. */
-#define PROJECT_H_VERSION "$Id: project.h,v 1.171 2011/09/04 11:10:56 fabiankeil Exp $"
+#define PROJECT_H_VERSION "$Id: project.h,v 1.129 2009/03/08 14:12:51 fabiankeil Exp $"
 /*********************************************************************
  *
  * File        :  $Source: /cvsroot/ijbswa/current/project.h,v $
@@ -10,7 +10,7 @@
  *                project.  Does not define any variables or functions
  *                (though it does declare some macros).
  *
- * Copyright   :  Written by and Copyright (C) 2001-2010 the
+ * Copyright   :  Written by and Copyright (C) 2001-2009 the
  *                Privoxy team. http://www.privoxy.org/
  *
  *                Based on the Internet Junkbuster originally written
@@ -35,8 +35,672 @@
  *                or write to the Free Software Foundation, Inc., 59
  *                Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
+ * Revisions   :
+ *    $Log: project.h,v $
+ *    Revision 1.129  2009/03/08 14:12:51  fabiankeil
+ *    All the CSP_FLAG_FOO bit masks should be unsigned ints.
+ *
+ *    Revision 1.128  2009/03/07 13:09:17  fabiankeil
+ *    Change csp->expected_content and_csp->expected_content_length from
+ *    size_t to unsigned long long to reduce the likelihood of integer
+ *    overflows that would let us close the connection prematurely.
+ *    Bug found while investigating #2669131, reported by cyberpatrol.
+ *
+ *    Revision 1.127  2008/12/20 14:53:55  fabiankeil
+ *    Add config option socket-timeout to control the time
+ *    Privoxy waits for data to arrive on a socket. Useful
+ *    in case of stale ssh tunnels or when fuzz-testing.
+ *
+ *    Revision 1.126  2008/12/14 17:02:54  fabiankeil
+ *    Fix a cparser warning.
+ *
+ *    Revision 1.125  2008/11/20 08:22:28  fabiankeil
+ *    Remove an obsolete comment.
+ *
+ *    Revision 1.124  2008/11/16 12:43:49  fabiankeil
+ *    Turn keep-alive support into a runtime feature
+ *    that is disabled by setting keep-alive-timeout
+ *    to a negative value.
+ *
+ *    Revision 1.123  2008/11/10 16:55:59  fabiankeil
+ *    Fix a gcc44 warning (in filters.c).
+ *
+ *    Revision 1.122  2008/10/16 07:11:34  fabiankeil
+ *    Fix a bunch of gcc44 conversion warnings.
+ *
+ *    Revision 1.121  2008/10/09 18:21:41  fabiankeil
+ *    Flush work-in-progress changes to keep outgoing connections
+ *    alive where possible. Incomplete and mostly #ifdef'd out.
+ *
+ *    Revision 1.120  2008/09/21 13:36:52  fabiankeil
+ *    If change-x-forwarded-for{add} is used and the client
+ *    sends multiple X-Forwarded-For headers, append the client's
+ *    IP address to each one of them. "Traditionally" we would
+ *    lose all but the last one.
+ *
+ *    Revision 1.119  2008/09/20 10:04:33  fabiankeil
+ *    Remove hide-forwarded-for-headers action which has
+ *    been obsoleted by change-x-forwarded-for{block}.
+ *
+ *    Revision 1.118  2008/09/19 15:26:29  fabiankeil
+ *    Add change-x-forwarded-for{} action to block or add
+ *    X-Forwarded-For headers. Mostly based on code removed
+ *    before 3.0.7.
+ *
+ *    Revision 1.117  2008/08/30 12:03:07  fabiankeil
+ *    Remove FEATURE_COOKIE_JAR.
+ *
+ *    Revision 1.116  2008/05/20 16:05:02  fabiankeil
+ *    Move parsers structure definition from project.h to parsers.h.
+ *
+ *    Revision 1.115  2008/05/19 16:57:20  fabiankeil
+ *    Declare all members of the parsers structure immutable.
+ *
+ *    Revision 1.114  2008/04/11 16:35:39  fabiankeil
+ *    Oops, I forgot to shorten the URL_SPEC_INITIALIZER in my last commit.
+ *
+ *    Revision 1.113  2008/04/10 14:41:04  fabiankeil
+ *    Ditch url_spec's path member now that it's no longer used.
+ *
+ *    Revision 1.112  2008/04/06 15:18:34  fabiankeil
+ *    Oh well, rename the --enable-pcre-host-patterns option to
+ *    --enable-extended-host-patterns as it's not really PCRE syntax.
+ *
+ *    Revision 1.111  2008/04/06 14:54:26  fabiankeil
+ *    Use PCRE syntax in host patterns when configured
+ *    with --enable-pcre-host-patterns.
+ *
+ *    Revision 1.110  2008/03/29 12:13:46  fabiankeil
+ *    Remove send-wafer and send-vanilla-wafer actions.
+ *
+ *    Revision 1.109  2008/03/28 15:13:41  fabiankeil
+ *    Remove inspect-jpegs action.
+ *
+ *    Revision 1.108  2008/03/27 18:27:36  fabiankeil
+ *    Remove kill-popups action.
+ *
+ *    Revision 1.107  2008/03/26 18:07:08  fabiankeil
+ *    Add hostname directive. Closes PR#1918189.
+ *
+ *    Revision 1.106  2008/03/24 11:21:03  fabiankeil
+ *    Share the action settings for multiple patterns in the same
+ *    section so we waste less memory for gigantic block lists
+ *    (and load them slightly faster). Reported by Franz Schwartau.
+ *
+ *    Revision 1.105  2008/03/21 11:16:27  fabiankeil
+ *    Garbage-collect csp->my_ip_addr_str and csp->my_hostname.
+ *
+ *    Revision 1.104  2008/03/04 18:30:40  fabiankeil
+ *    Remove the treat-forbidden-connects-like-blocks action. We now
+ *    use the "blocked" page for forbidden CONNECT requests by default.
+ *
+ *    Revision 1.103  2008/03/01 14:00:45  fabiankeil
+ *    Let the block action take the reason for the block
+ *    as argument and show it on the "blocked" page.
+ *
+ *    Revision 1.102  2008/02/03 13:46:14  fabiankeil
+ *    Add SOCKS5 support. Patch #1862863 by Eric M. Hopper with minor changes.
+ *
+ *    Revision 1.101  2007/12/07 18:29:23  fabiankeil
+ *    Remove now-obsolete csp member x_forwarded.
+ *
+ *    Revision 1.100  2007/09/02 13:42:11  fabiankeil
+ *    - Allow port lists in url patterns.
+ *    - Ditch unused url_spec member pathlen.
+ *
+ *    Revision 1.99  2007/07/21 11:51:36  fabiankeil
+ *    As Hal noticed, checking dispatch_cgi() as the last cruncher
+ *    looks like a bug if CGI requests are blocked unintentionally,
+ *    so don't do it unless the user enabled the new config option
+ *    "allow-cgi-request-crunching".
+ *
+ *    Revision 1.98  2007/07/14 07:31:26  fabiankeil
+ *    Add new csp->content_type flag (CT_DECLARED).
+ *
+ *    Revision 1.97  2007/05/27 12:38:08  fabiankeil
+ *    - Remove some left-overs from the switch to dedicated header filters.
+ *    - Adjust "X-Filter: No" to disable dedicated header filters.
+ *    - Prepare for forward-override{}
+ *
+ *    Revision 1.96  2007/05/14 10:41:15  fabiankeil
+ *    Ditch the csp member cookie_list[] which isn't used anymore.
+ *
+ *    Revision 1.95  2007/04/30 15:02:19  fabiankeil
+ *    Introduce dynamic pcrs jobs that can resolve variables.
+ *
+ *    Revision 1.94  2007/04/15 16:39:21  fabiankeil
+ *    Introduce tags as alternative way to specify which
+ *    actions apply to a request. At the moment tags can be
+ *    created based on client and server headers.
+ *
+ *    Revision 1.93  2007/03/20 15:16:34  fabiankeil
+ *    Use dedicated header filter actions instead of abusing "filter".
+ *    Replace "filter-client-headers" and "filter-client-headers"
+ *    with "server-header-filter" and "client-header-filter".
+ *
+ *    Revision 1.92  2007/03/17 15:20:05  fabiankeil
+ *    New config option: enforce-blocks.
+ *
+ *    Revision 1.91  2007/03/05 13:28:03  fabiankeil
+ *    Add some CSP_FLAGs for the header parsers.
+ *
+ *    Revision 1.90  2007/02/07 10:36:16  fabiankeil
+ *    Add new http_response member to save
+ *    the reason why the response was generated.
+ *
+ *    Revision 1.89  2007/01/27 13:09:16  fabiankeil
+ *    Add new config option "templdir" to
+ *    change the templates directory.
+ *
+ *    Revision 1.88  2007/01/25 13:36:59  fabiankeil
+ *    Add csp->error_message for failure reasons
+ *    that should be embedded into the CGI pages.
+ *
+ *    Revision 1.87  2007/01/01 19:36:37  fabiankeil
+ *    Integrate a modified version of Wil Mahan's
+ *    zlib patch (PR #895531).
+ *
+ *    Revision 1.86  2006/12/31 17:56:37  fabiankeil
+ *    Added config option accept-intercepted-requests
+ *    and disabled it by default.
+ *
+ *    Revision 1.85  2006/12/31 15:03:31  fabiankeil
+ *    Fix gcc43 compiler warnings and a comment.
+ *
+ *    Revision 1.84  2006/12/21 12:57:48  fabiankeil
+ *    Add config option "split-large-forms"
+ *    to work around the browser bug reported
+ *    in BR #1570678.
+ *
+ *    Revision 1.83  2006/12/06 19:26:29  fabiankeil
+ *    Moved HTTP snipplets into jcc.c. They aren't
+ *    used anywhere else.
+ *
+ *    Revision 1.82  2006/09/20 15:50:31  fabiankeil
+ *    Doubled size of HOSTENT_BUFFER_SIZE to mask
+ *    problems with gethostbyname_r and some
+ *    /etc/hosts configurations. Only a workaround
+ *    until we get the real fix ready.
+ *    Thanks Félix Rauch for reporting.
+ *
+ *    Increased value of MAX_TRUSTED_REFERRERS from 64 to 512.
+ *
+ *    Revision 1.81  2006/09/06 13:03:04  fabiankeil
+ *    Respond with 400 and a short text message
+ *    if the client tries to use Privoxy as FTP proxy.
+ *
+ *    Revision 1.80  2006/09/06 10:43:32  fabiankeil
+ *    Added config option enable-remote-http-toggle
+ *    to specify if Privoxy should recognize special
+ *    headers (currently only X-Filter) to change its
+ *    behaviour. Disabled by default.
+ *
+ *    Revision 1.79  2006/09/06 09:23:37  fabiankeil
+ *    Make number of retries in case of forwarded-connect problems
+ *    a config file option (forwarded-connect-retries) and use 0 as
+ *    default.
+ *
+ *    Revision 1.78  2006/08/31 16:25:06  fabiankeil
+ *    Work around a buffer overflow that caused Privoxy to
+ *    segfault if too many trusted referrers were used. Good
+ *    enough for now, but should be replaced with a real
+ *    solution after the next release.
+ *
+ *    Revision 1.77  2006/08/21 12:50:51  david__schmidt
+ *    Formatting cleanup
+ *
+ *    Revision 1.76  2006/08/14 08:25:19  fabiankeil
+ *    Split filter-headers{} into filter-client-headers{}
+ *    and filter-server-headers{}.
+ *    Added parse_header_time() to share some code.
+ *    Replaced timegm() with mktime().
+ *
+ *    Revision 1.75  2006/08/03 02:46:41  david__schmidt
+ *    Incorporate Fabian Keil's patch work: *    http://www.fabiankeil.de/sourcecode/privoxy/
+ *
+ *    Revision 1.74  2006/07/18 14:48:47  david__schmidt
+ *    Reorganizing the repository: swapping out what was HEAD (the old 3.1 branch)
+ *    with what was really the latest development (the v_3_0_branch branch)
+ *
+ *    Revision 1.72.2.7  2006/01/29 23:10:56  david__schmidt
+ *    Multiple filter file support
+ *
+ *    Revision 1.72.2.6  2004/10/03 12:53:46  david__schmidt
+ *    Add the ability to check jpeg images for invalid
+ *    lengths of comment blocks.  Defensive strategy
+ *    against the exploit:
+ *       Microsoft Security Bulletin MS04-028
+ *       Buffer Overrun in JPEG Processing (GDI+) Could
+ *       Allow Code Execution (833987)
+ *    Enabled with +inspect-jpegs in actions files.
+ *
+ *    Revision 1.72.2.5  2004/01/30 15:29:29  oes
+ *    Updated the copyright note
+ *
+ *    Revision 1.72.2.4  2004/01/13 16:12:14  oes
+ *    Fixed double slash in USER_MANUAL_URL. Closes BR #867088.
+ *
+ *    Revision 1.72.2.3  2003/03/11 11:54:37  oes
+ *    Introduced RC_FLAG_* flags for use in child process return code
+ *
+ *    Revision 1.72.2.2  2002/11/28 18:15:44  oes
+ *    Added flag to each cgi_dispatcher that allows or denies
+ *    external linking and removed const qualifier from
+ *    struct list_entry.str.
+ *
+ *    Revision 1.72.2.1  2002/08/10 11:25:18  oes
+ *    - Include config.h for access to config data
+ *    - Include <pcre*.h> depending on where they are
+ *
+ *    Revision 1.72  2002/05/14 21:35:49  oes
+ *    Split HELP_LINK_PREFIX into ACTIONS_HELP_PREFIX and CONFIG_HELP_PREFIX
+ *    because of split in user-manual
+ *
+ *    Revision 1.71  2002/05/12 21:39:36  jongfoster
+ *    - Adding Doxygen-style comments to structures and #defines.
+ *
+ *    Revision 1.70  2002/05/12 16:05:50  jongfoster
+ *    Fixing ACTION_MASK_ALL to be unsigned long rather than
+ *    just unsigned int.  I don't know if anyone is porting
+ *    Privoxy to 16-bit platforms, but if so, +limit-connect
+ *    wouldn't have worked because of this bug.
+ *
+ *    Revision 1.69  2002/05/08 16:00:16  oes
+ *    Added size member to struct iob, so it can
+ *    be alloced larger than needed.
+ *
+ *    Revision 1.68  2002/04/26 12:56:00  oes
+ *    Killed REDIRECT_URL, added USER_MANUAL_URL and HELP_LINK_PREFIX
+ *
+ *    Revision 1.67  2002/04/24 02:12:43  oes
+ *     - Jon's multiple AF patch:
+ *       - Make csp->actions_list an array
+ *       - #define MAX_AF_FILES
+ *     - Moved CGI_PARAM_LEN_MAX (500) here
+ *
+ *    Revision 1.66  2002/04/15 19:06:43  jongfoster
+ *    Typos
+ *
+ *    Revision 1.65  2002/04/04 00:36:36  gliptak
+ *    always use pcre for matching
+ *
+ *    Revision 1.64  2002/04/03 22:28:03  gliptak
+ *    Removed references to gnu_regex
+ *
+ *    Revision 1.63  2002/03/31 17:19:00  jongfoster
+ *    Win32 only: Enabling STRICT to fix a VC++ compile warning.
+ *
+ *    Revision 1.62  2002/03/26 22:48:49  swa
+ *    new homepage url
+ *
+ *    Revision 1.61  2002/03/26 22:29:55  swa
+ *    we have a new homepage!
+ *
+ *    Revision 1.60  2002/03/24 15:52:17  jongfoster
+ *    Changing CGI URL prefixes for new name
+ *
+ *    Revision 1.59  2002/03/24 15:23:33  jongfoster
+ *    Name changes
+ *
+ *    Revision 1.58  2002/03/24 13:25:43  swa
+ *    name change related issues
+ *
+ *    Revision 1.57  2002/03/16 20:28:34  oes
+ *    Added descriptions to the filters so users will know what they select in the cgi editor
+ *
+ *    Revision 1.56  2002/03/13 20:27:30  oes
+ *    Fixing bug with CT_TABOO
+ *
+ *    Revision 1.55  2002/03/12 01:42:50  oes
+ *    Introduced modular filters
+ *
+ *    Revision 1.54  2002/03/09 20:03:52  jongfoster
+ *    - Making various functions return int rather than size_t.
+ *      (Undoing a recent change).  Since size_t is unsigned on
+ *      Windows, functions like read_socket that return -1 on
+ *      error cannot return a size_t.
+ *
+ *      THIS WAS A MAJOR BUG - it caused frequent, unpredictable
+ *      crashes, and also frequently caused JB to jump to 100%
+ *      CPU and stay there.  (Because it thought it had just
+ *      read ((unsigned)-1) == 4Gb of data...)
+ *
+ *    - The signature of write_socket has changed, it now simply
+ *      returns success=0/failure=nonzero.
+ *
+ *    - Trying to get rid of a few warnings --with-debug on
+ *      Windows, I've introduced a new type "jb_socket".  This is
+ *      used for the socket file descriptors.  On Windows, this
+ *      is SOCKET (a typedef for unsigned).  Everywhere else, it's
+ *      an int.  The error value can't be -1 any more, so it's
+ *      now JB_INVALID_SOCKET (which is -1 on UNIX, and in
+ *      Windows it maps to the #define INVALID_SOCKET.)
+ *
+ *    - The signature of bind_port has changed.
+ *
+ *    Revision 1.53  2002/03/08 16:48:55  oes
+ *    Added FEATURE_NO_GIFS and BUILTIN_IMAGE_MIMETYPE
+ *
+ *    Revision 1.52  2002/03/07 03:46:17  oes
+ *    Fixed compiler warnings
+ *
+ *    Revision 1.51  2002/03/05 04:52:42  oes
+ *    Deleted non-errlog debugging code
+ *
+ *    Revision 1.50  2002/03/04 19:32:07  oes
+ *    Changed default port to 8118
+ *
+ *    Revision 1.49  2002/03/04 18:28:55  oes
+ *    Deleted PID_FILE_NAME
+ *
+ *    Revision 1.48  2002/03/03 14:50:40  oes
+ *    Fixed CLF logging: Added ocmd member for client's request to struct http_request
+ *
+ *    Revision 1.47  2002/02/20 23:15:13  jongfoster
+ *    Parsing functions now handle out-of-memory gracefully by returning
+ *    an error code.
+ *
+ *    Revision 1.46  2002/01/17 21:06:09  jongfoster
+ *    Now #defining the URLs of the config interface
+ *
+ *    Minor changes to struct http_request and struct url_spec due to
+ *    standardizing that struct http_request is used to represent a URL, and
+ *    struct url_spec is used to represent a URL pattern.  (Before, URLs were
+ *    represented as seperate variables and a partially-filled-in url_spec).
+ *
+ *    Revision 1.45  2002/01/09 14:33:27  oes
+ *    Added HOSTENT_BUFFER_SIZE
+ *
+ *    Revision 1.44  2001/12/30 14:07:32  steudten
+ *    - Add signal handling (unix)
+ *    - Add SIGHUP handler (unix)
+ *    - Add creation of pidfile (unix)
+ *    - Add action 'top' in rc file (RH)
+ *    - Add entry 'SIGNALS' to manpage
+ *    - Add exit message to logfile (unix)
+ *
+ *    Revision 1.43  2001/11/22 21:57:51  jongfoster
+ *    Making action_spec->flags into an unsigned long rather than just an
+ *    unsigned int.
+ *    Adding ACTION_NO_COOKIE_KEEP
+ *
+ *    Revision 1.42  2001/11/05 21:42:41  steudten
+ *    Include DBG() macro.
+ *
+ *    Revision 1.41  2001/10/28 19:12:06  jongfoster
+ *    Adding ijb_toupper()
+ *
+ *    Revision 1.40  2001/10/26 17:40:47  oes
+ *    Moved ijb_isspace and ijb_tolower to project.h
+ *    Removed http->user_agent, csp->referrer and csp->accept_types
+ *
+ *    Revision 1.39  2001/10/25 03:45:02  david__schmidt
+ *    Adding a (void*) cast to freez() because Visual Age C++ won't expand the
+ *    macro when called with a cast; so moving the cast to the macro def'n
+ *    seems to both eliminate compiler warnings (on darwin and OS/2, anyway) and
+ *    doesn't make macro expansion complain.  Hope this works for everyone else
+ *    too...
+ *
+ *    Revision 1.38  2001/10/23 21:19:04  jongfoster
+ *    New error-handling support: jb_err type and JB_ERR_xxx constants
+ *    CGI functions now return a jb_err, and their parameters map is const.
+ *    Support for RUNTIME_FEATUREs to enable/disable config editor
+ *    Adding a few comments
+ *
+ *    Revision 1.37  2001/10/14 22:14:01  jongfoster
+ *    Removing name_length field from struct cgi_dispatcher, as this is
+ *    now calculated at runtime from the "name" field.
+ *
+ *    Revision 1.36  2001/10/10 16:45:15  oes
+ *    Added LIMIT_CONNECT action and string
+ *    Fixed HTTP message line termination
+ *    Added CFORBIDDEN HTTP message
+ *
+ *    Revision 1.35  2001/10/07 18:06:43  oes
+ *    Added status member to struct http_request
+ *
+ *    Revision 1.34  2001/10/07 15:45:25  oes
+ *    Added url member to struct http_request and commented all
+ *      members
+ *
+ *    Added CT_TABOO
+ *
+ *    Added ACTION_DOWNGRADE and ACTION_NO_COMPRESSION
+ *
+ *    Replaced struct client_state members rejected,
+ *      force, active and toggled_on with "flags" bitmap.
+ *
+ *    Added CSP_FLAG_MODIFIED and CSP_FLAG_CHUNKED
+ *
+ *    Added buffer_limit to struct configuration_spec
+ *
+ *    Revision 1.33  2001/09/20 13:30:08  steudten
+ *
+ *    Make freez() more secure in case of: if (exp) { free(z) ; a=*z }
+ *    Last case will set z to NULL in free(z) and thats bad..
+ *
+ *    Revision 1.32  2001/09/16 23:02:51  jongfoster
+ *    Fixing warning
+ *
+ *    Revision 1.31  2001/09/16 13:20:29  jongfoster
+ *    Rewrite of list library.  Now has seperate header and list_entry
+ *    structures.  Also added a large sprinking of assert()s to the list
+ *    code.
+ *
+ *    Revision 1.30  2001/09/13 23:52:00  jongfoster
+ *    Support for both static and dynamically generated CGI pages
+ *
+ *    Revision 1.29  2001/09/13 23:29:43  jongfoster
+ *    Defining FORWARD_SPEC_INITIALIZER
+ *
+ *    Revision 1.28  2001/09/13 23:05:50  jongfoster
+ *    Changing the string paramater to the header parsers a "const".
+ *
+ *    Revision 1.27  2001/08/05 16:06:20  jongfoster
+ *    Modifiying "struct map" so that there are now separate header and
+ *    "map_entry" structures.  This means that functions which modify a
+ *    map no longer need to return a pointer to the modified map.
+ *    Also, it no longer reverses the order of the entries (which may be
+ *    important with some advanced template substitutions).
+ *
+ *    Revision 1.26  2001/07/30 22:08:36  jongfoster
+ *    Tidying up #defines:
+ *    - All feature #defines are now of the form FEATURE_xxx
+ *    - Permanently turned off WIN_GUI_EDIT
+ *    - Permanently turned on WEBDAV and SPLIT_PROXY_ARGS
+ *
+ *    Revision 1.25  2001/07/29 18:43:08  jongfoster
+ *    Changing #ifdef _FILENAME_H to FILENAME_H_INCLUDED, to conform to
+ *    ANSI C rules.
+ *
+ *    Revision 1.24  2001/07/25 17:20:27  oes
+ *    Introduced http->user_agent
+ *
+ *    Revision 1.23  2001/07/18 12:32:23  oes
+ *    - Added ACTION_STRING_DEANIMATE
+ *    - moved #define freez from jcc.h to project.h
+ *
+ *    Revision 1.22  2001/07/15 17:51:41  jongfoster
+ *    Renaming #define STATIC to STATIC_PCRE
+ *
+ *    Revision 1.21  2001/07/13 14:03:19  oes
+ *     - Reorganized regex header inclusion and #defines to
+ *       comply to the scheme in configure.in
+ *     - Added csp->content_type and its CT_* keys
+ *     - Added ACTION_DEANIMATE
+ *     - Removed all #ifdef PCRS
+ *
+ *    Revision 1.20  2001/06/29 21:45:41  oes
+ *    Indentation, CRLF->LF, Tab-> Space
+ *
+ *    Revision 1.19  2001/06/29 13:33:36  oes
+ *    - Improved comments
+ *    - Introduced http_request.host_ip_addr_str
+ *    - Introduced http_response.head_length
+ *    - Introduced config.my_ip_addr_str, config.my_hostname,
+ *      config.admin_address and config.proxy_info_url
+ *    - Removed config.proxy_args_header and config.proxy_args_trailer,
+ *      renamed config.proxy_args_invocation to config.proxy_args
+ *    - Removed HTML snipplets and GIFs
+ *    - Removed logentry from cancelled commit
+ *
+ *    Revision 1.18  2001/06/09 10:57:39  jongfoster
+ *    Adding definition of BUFFER_SIZE.
+ *    Changing struct cgi_dispatcher to use "const" strings.
+ *
+ *    Revision 1.17  2001/06/07 23:15:09  jongfoster
+ *    Merging ACL and forward files into config file.
+ *    Moving struct gateway members into struct forward_spec
+ *    Removing config->proxy_args_gateways
+ *    Cosmetic: Adding a few comments
+ *
+ *    Revision 1.16  2001/06/04 18:31:58  swa
+ *    files are now prefixed with either `confdir' or `logdir'.
+ *    `make redhat-dist' replaces both entries confdir and logdir
+ *    with redhat values
+ *
+ *    Revision 1.15  2001/06/04 11:28:53  swa
+ *    redirect did not work due to missing /
+ *
+ *    Revision 1.14  2001/06/03 11:03:48  oes
+ *    Added struct map,
+ *    added struct http_response,
+ *    changed struct interceptors to struct cgi_dispatcher,
+ *    moved HTML stuff to cgi.h
+ *
+ *    Revision 1.13  2001/06/01 20:05:36  jongfoster
+ *    Support for +image-blocker{}: added ACTION_IMAGE_BLOCKER
+ *    constant, and removed csp->tinygif.
+ *
+ *    Revision 1.12  2001/06/01 18:49:17  jongfoster
+ *    Replaced "list_share" with "list" - the tiny memory gain was not
+ *    worth the extra complexity.
+ *
+ *    Revision 1.11  2001/06/01 10:32:47  oes
+ *    Added constants for anchoring selection bitmap
+ *
+ *    Revision 1.10  2001/05/31 21:33:53  jongfoster
+ *    Changes for new actions file, replacing permissionsfile
+ *    and parts of the config file.  Also added support for
+ *    list_shared.
+ *
+ *    Revision 1.9  2001/05/31 17:32:31  oes
+ *
+ *     - Enhanced domain part globbing with infix and prefix asterisk
+ *       matching and optional unanchored operation
+ *
+ *    Revision 1.8  2001/05/29 20:09:15  joergs
+ *    HTTP_REDIRECT_TEMPLATE fixed.
+ *
+ *    Revision 1.7  2001/05/29 09:50:24  jongfoster
+ *    Unified blocklist/imagelist/actionslist.
+ *    File format is still under discussion, but the internal changes
+ *    are (mostly) done.
+ *
+ *    Also modified interceptor behaviour:
+ *    - We now intercept all URLs beginning with one of the following
+ *      prefixes (and *only* these prefixes):
+ *        * http://i.j.b/
+ *        * http://ijbswa.sf.net/config/
+ *        * http://ijbswa.sourceforge.net/config/
+ *    - New interceptors "home page" - go to http://i.j.b/ to see it.
+ *    - Internal changes so that intercepted and fast redirect pages
+ *      are not replaced with an image.
+ *    - Interceptors now have the option to send a binary page direct
+ *      to the client. (i.e. ijb-send-banner uses this)
+ *    - Implemented show-url-info interceptor.  (Which is why I needed
+ *      the above interceptors changes - a typical URL is
+ *      "http://i.j.b/show-url-info?url=www.somesite.com/banner.gif".
+ *      The previous mechanism would not have intercepted that, and
+ *      if it had been intercepted then it then it would have replaced
+ *      it with an image.)
+ *
+ *    Revision 1.6  2001/05/27 22:17:04  oes
+ *
+ *    - re_process_buffer no longer writes the modified buffer
+ *      to the client, which was very ugly. It now returns the
+ *      buffer, which it is then written by chat.
+ *
+ *    - content_length now adjusts the Content-Length: header
+ *      for modified documents rather than crunch()ing it.
+ *      (Length info in csp->content_length, which is 0 for
+ *      unmodified documents)
+ *
+ *    - For this to work, sed() is called twice when filtering.
+ *
+ *    Revision 1.5  2001/05/26 00:28:36  jongfoster
+ *    Automatic reloading of config file.
+ *    Removed obsolete SIGHUP support (Unix) and Reload menu option (Win32).
+ *    Most of the global variables have been moved to a new
+ *    struct configuration_spec, accessed through csp->config->globalname
+ *    Most of the globals remaining are used by the Win32 GUI.
+ *
+ *    Revision 1.4  2001/05/22 18:46:04  oes
+ *
+ *    - Enabled filtering banners by size rather than URL
+ *      by adding patterns that replace all standard banner
+ *      sizes with the "Junkbuster" gif to the re_filterfile
+ *
+ *    - Enabled filtering WebBugs by providing a pattern
+ *      which kills all 1x1 images
+ *
+ *    - Added support for PCRE_UNGREEDY behaviour to pcrs,
+ *      which is selected by the (nonstandard and therefore
+ *      capital) letter 'U' in the option string.
+ *      It causes the quantifiers to be ungreedy by default.
+ *      Appending a ? turns back to greedy (!).
+ *
+ *    - Added a new interceptor ijb-send-banner, which
+ *      sends back the "Junkbuster" gif. Without imagelist or
+ *      MSIE detection support, or if tinygif = 1, or the
+ *      URL isn't recognized as an imageurl, a lame HTML
+ *      explanation is sent instead.
+ *
+ *    - Added new feature, which permits blocking remote
+ *      script redirects and firing back a local redirect
+ *      to the browser.
+ *      The feature is conditionally compiled, i.e. it
+ *      can be disabled with --disable-fast-redirects,
+ *      plus it must be activated by a "fast-redirects"
+ *      line in the config file, has its own log level
+ *      and of course wants to be displayed by show-proxy-args
+ *      Note: Boy, all the #ifdefs in 1001 locations and
+ *      all the fumbling with configure.in and acconfig.h
+ *      were *way* more work than the feature itself :-(
+ *
+ *    - Because a generic redirect template was needed for
+ *      this, tinygif = 3 now uses the same.
+ *
+ *    - Moved GIFs, and other static HTTP response templates
+ *      to project.h
+ *
+ *    - Some minor fixes
+ *
+ *    - Removed some >400 CRs again (Jon, you really worked
+ *      a lot! ;-)
+ *
+ *    Revision 1.3  2001/05/20 01:21:20  jongfoster
+ *    Version 2.9.4 checkin.
+ *    - Merged popupfile and cookiefile, and added control over PCRS
+ *      filtering, in new "actionsfile".
+ *    - Implemented LOG_LEVEL_FATAL, so that if there is a configuration
+ *      file error you now get a message box (in the Win32 GUI) rather
+ *      than the program exiting with no explanation.
+ *    - Made killpopup use the PCRS MIME-type checking and HTTP-header
+ *      skipping.
+ *    - Removed tabs from "config"
+ *    - Moved duplicated url parsing code in "loaders.c" to a new funcition.
+ *    - Bumped up version number.
+ *
+ *    Revision 1.2  2001/05/17 23:01:01  oes
+ *     - Cleaned CRLF's from the sources and related files
+ *
+ *    Revision 1.1.1.1  2001/05/15 13:59:03  oes
+ *    Initial import of version 2.9.3 source tree
+ *
+ *
  *********************************************************************/
-
+
 
 /* Declare struct FILE for vars and funcs. */
 #include <stdio.h>
@@ -45,20 +709,6 @@
 #include <time.h>
 /* Needed for pcre choice */
 #include "config.h"
-
-/* Need for struct sockaddr_storage */
-#ifdef HAVE_RFC2553
-#  ifndef _WIN32
-#    include <netdb.h>
-#    include <sys/socket.h>
-#  else
-#    include <stdint.h>
-#    include <winsock2.h>
-#    include <ws2tcpip.h>
-     typedef unsigned short in_port_t;
-#  endif
-#endif
-
 
 /*
  * Include appropriate regular expression libraries.
@@ -148,7 +798,7 @@ typedef int jb_err;
 #define JB_ERR_CGI_PARAMS 2 /**< Missing or corrupt CGI parameters        */
 #define JB_ERR_FILE       3 /**< Error opening, reading or writing a file */
 #define JB_ERR_PARSE      4 /**< Error parsing file                       */
-#define JB_ERR_MODIFIED   5 /**< File has been modified outside of the
+#define JB_ERR_MODIFIED   5 /**< File has been modified outside of the  
                                  CGI actions editor.                      */
 #define JB_ERR_COMPRESS   6 /**< Error on decompression                   */
 
@@ -173,7 +823,7 @@ typedef int jb_err;
  */
 #define ijb_toupper(__X) toupper((int)(unsigned char)(__X))
 #define ijb_tolower(__X) tolower((int)(unsigned char)(__X))
-#define ijb_isspace(__X) isspace((int)(unsigned char)(__X))
+#define ijb_isspace(__X) isspace((int)(unsigned char)(__X))  
 
 /**
  * Use for statically allocated buffers if you have no other choice.
@@ -191,7 +841,7 @@ typedef int jb_err;
  * Buffer size for capturing struct hostent data in the
  * gethostby(name|addr)_r library calls. Since we don't
  * loop over gethostbyname_r, the buffer must be sufficient
- * to accommodate multiple IN A RRs, as used in DNS round robin
+ * to accomodate multiple IN A RRs, as used in DNS round robin
  * load balancing. W3C's wwwlib uses 1K, so that should be
  * good enough for us, too.
  */
@@ -211,10 +861,16 @@ typedef int jb_err;
 #define FOREVER 1
 
 /**
- * Default TCP/IP address to listen on, as a string.
- * Set to "127.0.0.1:8118".
+ * Default IP address to listen on, as a string.
+ * Set to "127.0.0.1".
  */
-#define HADDR_DEFAULT   "127.0.0.1:8118"
+#define HADDR_DEFAULT   "127.0.0.1"
+
+/**
+ * Default port to listen on, as a number.
+ * Set to 8118.
+ */
+#define HADDR_PORT      8118
 
 
 /* Forward def for struct client_state */
@@ -233,7 +889,7 @@ struct list_entry
     * your own code.
     */
    char *str;
-
+   
    /** Next entry in the linked list, or NULL if no more. */
    struct list_entry *next;
 };
@@ -304,11 +960,9 @@ struct http_request
    char *host_ip_addr_str; /**< String with dotted decimal representation
                                 of host's IP. NULL before connect_to() */
 
-#ifndef FEATURE_EXTENDED_HOST_PATTERNS
    char  *dbuffer; /**< Buffer with '\0'-delimited domain name.           */
    char **dvec;    /**< List of pointers to the strings in dbuffer.       */
    int    dcount;  /**< How many parts to this domain? (length of dvec)   */
-#endif /* ndef FEATURE_EXTENDED_HOST_PATTERNS */
 };
 
 /**
@@ -316,36 +970,31 @@ struct http_request
  * the requested resource. Mostly ordered the way they are checked
  * for in chat().
  */
-enum crunch_reason
-{
-   UNSUPPORTED,
-   BLOCKED,
-   UNTRUSTED,
-   REDIRECTED,
-   CGI_CALL,
-   NO_SUCH_DOMAIN,
-   FORWARDING_FAILED,
-   CONNECT_FAILED,
-   OUT_OF_MEMORY,
-   INTERNAL_ERROR,
-   CONNECTION_TIMEOUT,
-   NO_SERVER_DATA
-};
+#define RSP_REASON_UNSUPPORTED        1
+#define RSP_REASON_BLOCKED            2
+#define RSP_REASON_UNTRUSTED          3
+#define RSP_REASON_REDIRECTED         4
+#define RSP_REASON_CGI_CALL           5
+#define RSP_REASON_NO_SUCH_DOMAIN     6
+#define RSP_REASON_FORWARDING_FAILED  7
+#define RSP_REASON_CONNECT_FAILED     8
+#define RSP_REASON_OUT_OF_MEMORY      9
+#define RSP_REASON_INTERNAL_ERROR     10
 
 /**
  * Response generated by CGI, blocker, or error handler
  */
 struct http_response
 {
-  enum crunch_reason crunch_reason; /**< Why the response was generated in the first place. */
-  char  *status;                    /**< HTTP status (string). */
-  struct list headers[1];           /**< List of header lines. */
-  char  *head;                      /**< Formatted http response head. */
-  size_t head_length;               /**< Length of http response head. */
-  char  *body;                      /**< HTTP document body. */
-  size_t content_length;            /**< Length of body, REQUIRED if binary body. */
-  int    is_static;                 /**< Nonzero if the content will never change and
-                                         should be cached by the browser (e.g. images). */
+  char  *status;          /**< HTTP status (string). */
+  struct list headers[1]; /**< List of header lines. */
+  char  *head;            /**< Formatted http response head. */
+  size_t head_length;     /**< Length of http response head. */
+  char  *body;            /**< HTTP document body. */
+  size_t content_length;  /**< Length of body, REQUIRED if binary body. */
+  int    is_static;       /**< Nonzero if the content will never change and
+                               should be cached by the browser (e.g. images). */
+  int reason;             /**< Why the response was generated in the first place. */
 };
 
 /**
@@ -503,7 +1152,7 @@ struct iob
 #define ACTION_FORCE_TEXT_MODE                       0x00400000UL
 /** Action bitmap: Enable text mode by force */
 #define ACTION_CRUNCH_IF_NONE_MATCH                  0x00800000UL
-/** Action bitmap: Enable content-disposition crunching */
+/** Action bitmap: Enable content-dispostion crunching */
 #define ACTION_HIDE_CONTENT_DISPOSITION              0x01000000UL
 /** Action bitmap: Replace or block Last-Modified header */
 #define ACTION_OVERWRITE_LAST_MODIFIED               0x02000000UL
@@ -531,7 +1180,7 @@ struct iob
 #define ACTION_STRING_LANGUAGE              8
 /** Action string index: Replacement for the "Content-Type:" header*/
 #define ACTION_STRING_CONTENT_TYPE          9
-/** Action string index: Replacement for the "content-disposition:" header*/
+/** Action string index: Replacement for the "content-dispostion:" header*/
 #define ACTION_STRING_CONTENT_DISPOSITION  10
 /** Action string index: Replacement for the "If-Modified-Since:" header*/
 #define ACTION_STRING_IF_MODIFIED_SINCE    11
@@ -643,39 +1292,9 @@ struct url_actions
 
 
 /*
- * Structure to hold the server socket and the information
- * required to make sure we only reuse the connection if
- * the host and forwarding settings are the same.
- */
-struct reusable_connection
-{
-   jb_socket sfd;
-   int       in_use;
-   time_t    timestamp; /* XXX: rename? */
-
-   time_t    request_sent;
-   time_t    response_received;
-
-   /*
-    * Number of seconds after which this
-    * connection will no longer be reused.
-    */
-   unsigned int keep_alive_timeout;
-
-   char *host;
-   int  port;
-   int  forwarder_type;
-   char *gateway_host;
-   int  gateway_port;
-   char *forward_host;
-   int  forward_port;
-};
-
-
-/*
  * Flags for use in csp->flags
  */
-
+ 
 /**
  * Flag for csp->flags: Set if this client is processing data.
  * Cleared when the thread associated with this structure dies.
@@ -710,21 +1329,16 @@ struct reusable_connection
 #define CSP_FLAG_TOGGLED_ON 0x20U
 
 /**
- * Flag for csp->flags: Set if we answered the request ourselve.
- */
-#define CSP_FLAG_CRUNCHED   0x40U
-
-/**
  * Flag for csp->flags: Set if an acceptable Connection header
- * has already been set by the client.
+ * is already set.
  */
 #define CSP_FLAG_CLIENT_CONNECTION_HEADER_SET  0x00000040U
 
 /**
- * Flag for csp->flags: Set if an acceptable Connection header
- * has already been set by the server.
+ * Flag for csp->flags: Set if adding the 'Connection: close' header
+ * for the server isn't necessary.
  */
-#define CSP_FLAG_SERVER_CONNECTION_HEADER_SET  0x00000080U
+#define CSP_FLAG_SERVER_CONNECTION_CLOSE_SET   0x00000080U
 
 /**
  * Flag for csp->flags: Signals header parsers whether they
@@ -762,64 +1376,8 @@ struct reusable_connection
  * Flag for csp->flags: Set if the server specified the
  * content length.
  */
-#define CSP_FLAG_SERVER_CONTENT_LENGTH_SET     0x00002000U
-
-/**
- * Flag for csp->flags: Set if we know the content length,
- * either because the server set it, or we figured it out
- * on our own.
- */
-#define CSP_FLAG_CONTENT_LENGTH_SET            0x00004000U
-
-/**
- * Flag for csp->flags: Set if the client wants to keep
- * the connection alive.
- */
-#define CSP_FLAG_CLIENT_CONNECTION_KEEP_ALIVE  0x00008000U
-
-/**
- * Flag for csp->flags: Set if we think we got the whole
- * client request and shouldn't read any additional data
- * coming from the client until the current request has
- * been dealt with.
- */
-#define CSP_FLAG_CLIENT_REQUEST_COMPLETELY_READ 0x00010000U
-
-/**
- * Flag for csp->flags: Set if the server promised us to
- * keep the connection open for a known number of seconds.
- */
-#define CSP_FLAG_SERVER_KEEP_ALIVE_TIMEOUT_SET  0x00020000U
-
+#define CSP_FLAG_CONTENT_LENGTH_SET            0x00002000U
 #endif /* def FEATURE_CONNECTION_KEEP_ALIVE */
-
-/**
- * Flag for csp->flags: Set if we think we can't reuse
- * the server socket.
- */
-#define CSP_FLAG_SERVER_SOCKET_TAINTED          0x00040000U
-
-/**
- * Flag for csp->flags: Set if the Proxy-Connection header
- * is among the server headers.
- */
-#define CSP_FLAG_SERVER_PROXY_CONNECTION_HEADER_SET 0x00080000U
-
-/**
- * Flag for csp->flags: Set if the client reused its connection.
- */
-#define CSP_FLAG_REUSED_CLIENT_CONNECTION           0x00100000U
-
-/**
- * Flag for csp->flags: Set if the supports deflate compression.
- */
-#define CSP_FLAG_CLIENT_SUPPORTS_DEFLATE            0x00200000U
-
-/**
- * Flag for csp->flags: Set if the content has been deflated by Privoxy
- */
-#define CSP_FLAG_BUFFERED_CONTENT_DEFLATED          0x00400000U
-
 
 /*
  * Flags for use in return codes of child processes
@@ -844,12 +1402,6 @@ struct reusable_connection
 #define MAX_AF_FILES 10
 
 /**
- * Maximum number of sockets to listen to.  This limit is arbitrary - it's just used
- * to size an array.
- */
-#define MAX_LISTENING_SOCKETS 10
-
-/**
  * The state of a Privoxy processing thread.
  */
 struct client_state
@@ -863,8 +1415,8 @@ struct client_state
    /** socket to talk to client (web browser) */
    jb_socket cfd;
 
-   /** current connection to the server (may go through a proxy) */
-   struct reusable_connection server_connection;
+   /** socket to talk to server (web server or proxy) */
+   jb_socket sfd;
 
    /** Multi-purpose flag container, see CSP_FLAG_* above */
    unsigned int flags;
@@ -872,15 +1424,9 @@ struct client_state
    /** Client PC's IP address, as reported by the accept() function.
        As a string. */
    char *ip_addr_str;
-#ifdef HAVE_RFC2553
-   /** Client PC's TCP address, as reported by the accept() function.
-       As a sockaddr. */
-   struct sockaddr_storage tcp_addr;
-#else
    /** Client PC's IP address, as reported by the accept() function.
        As a number. */
    unsigned long ip_addr_long;
-#endif /* def HAVE_RFC2553 */
 
    /** The URL that was requested */
    struct http_request http[1];
@@ -914,17 +1460,11 @@ struct client_state
    unsigned long long content_length;
 
 #ifdef FEATURE_CONNECTION_KEEP_ALIVE
-   /* XXX: is this the right location? */
-
    /** Expected length of content after which we
     * should stop reading from the server socket.
     */
+   /* XXX: is this the right location? */
    unsigned long long expected_content_length;
-
-   /** Expected length of content after which we
-    *  should stop reading from the client socket.
-    */
-   unsigned long long expected_client_content_length;
 #endif /* def FEATURE_CONNECTION_KEEP_ALIVE */
 
 #ifdef FEATURE_TRUST
@@ -939,17 +1479,11 @@ struct client_state
     * or NULL. Currently only used for socks errors.
     */
    char *error_message;
+
+   /** Next thread in linked list. Only read or modify from the main thread! */
+   struct client_state *next;
 };
 
-/**
- * List of client states so the main thread can keep
- * track of them and garbage collect their resources.
- */
-struct client_states
-{
-   struct client_states *next;
-   struct client_state csp;
-};
 
 /**
  * A function to add a header
@@ -1012,7 +1546,7 @@ struct file_list
     * Read-only once the structure has been created.
     */
    time_t lastmodified;
-
+   
    /**
     * The full filename.
     */
@@ -1048,16 +1582,12 @@ struct block_spec
 
 #endif /* def FEATURE_TRUST */
 
-enum forwarder_type {
-   /**< Don't use a SOCKS server               */
-   SOCKS_NONE =  0,
-   /**< original SOCKS 4 protocol              */
-   SOCKS_4    = 40,
-   /**< SOCKS 4A, DNS resolution is done by the SOCKS server */
-   SOCKS_4A   = 41,
-   /**< SOCKS 5 with hostnames, DNS resolution is done by the SOCKS server */
-   SOCKS_5    = 50,
-};
+
+#define SOCKS_NONE    0    /**< Don't use a SOCKS server               */
+#define SOCKS_4      40    /**< original SOCKS 4 protocol              */
+#define SOCKS_4A     41    /**< as modified for hosts w/o external DNS */
+#define SOCKS_5      50    /**< as modified for hosts w/o external DNS */
+
 
 /**
  * How to forward a connection to a parent proxy.
@@ -1068,7 +1598,7 @@ struct forward_spec
    struct url_spec url[1];
 
    /** Connection type.  Must be SOCKS_NONE, SOCKS_4, SOCKS_4A or SOCKS_5. */
-   enum forwarder_type type;
+   int   type;
 
    /** SOCKS server hostname.  Only valid if "type" is SOCKS_4 or SOCKS_4A. */
    char *gateway_host;
@@ -1093,14 +1623,12 @@ struct forward_spec
 #define FORWARD_SPEC_INITIALIZER { { URL_SPEC_INITIALIZER }, 0, NULL, 0, NULL, 0, NULL }
 
 /* Supported filter types */
-enum filter_type
-{
-   FT_CONTENT_FILTER       = 0,
-   FT_CLIENT_HEADER_FILTER = 1,
-   FT_SERVER_HEADER_FILTER = 2,
-   FT_CLIENT_HEADER_TAGGER = 3,
-   FT_SERVER_HEADER_TAGGER = 4,
-};
+#define FT_CONTENT_FILTER       0
+#define FT_CLIENT_HEADER_FILTER 1
+#define FT_SERVER_HEADER_FILTER 2
+#define FT_CLIENT_HEADER_TAGGER 3
+#define FT_SERVER_HEADER_TAGGER 4
+
 #define MAX_FILTER_TYPES        5
 
 /**
@@ -1115,7 +1643,7 @@ struct re_filterfile_spec
    char *description;               /**< Description from FILTER: statement in re_filterfile. */
    struct list patterns[1];         /**< The patterns from the re_filterfile. */
    pcrs_job *joblist;               /**< The resulting compiled pcrs_jobs. */
-   enum filter_type type;           /**< Filter type (content, client-header, server-header). */
+   int type;                        /**< Filter type (content, client-header, server-header). */
    int dynamic;                     /**< Set to one if the pattern might contain variables
                                          and has to be recompiled for every request. */
    struct re_filterfile_spec *next; /**< The pointer for chaining. */
@@ -1132,14 +1660,9 @@ struct re_filterfile_spec
  */
 struct access_control_addr
 {
-#ifdef HAVE_RFC2553
-   struct sockaddr_storage addr; /* <The TCP address in network order. */
-   struct sockaddr_storage mask; /* <The TCP mask in network order. */
-#else
    unsigned long addr;  /**< The IP address as an integer. */
    unsigned long mask;  /**< The network mask as an integer. */
    unsigned long port;  /**< The port number. */
-#endif /* HAVE_RFC2553 */
 };
 
 /**
@@ -1151,9 +1674,6 @@ struct access_control_list
 {
    struct access_control_addr src[1];  /**< Client IP address */
    struct access_control_addr dst[1];  /**< Website or parent proxy IP address */
-#ifdef HAVE_RFC2553
-   int wildcard_dst;                   /** < dst address is wildcard */
-#endif
 
    short action;                       /**< ACL_PERMIT or ACL_DENY */
    struct access_control_list *next;   /**< The next entry in the ACL. */
@@ -1190,15 +1710,6 @@ struct access_control_list
 /** configuration_spec::feature_flags: Try to keep the connection to the server alive. */
 #define RUNTIME_FEATURE_CONNECTION_KEEP_ALIVE      128U
 
-/** configuration_spec::feature_flags: Share outgoing connections between different client connections. */
-#define RUNTIME_FEATURE_CONNECTION_SHARING         256U
-
-/** configuration_spec::feature_flags: Pages blocked with +handle-as-empty-doc get a return status of 200 OK. */
-#define RUNTIME_FEATURE_EMPTY_DOC_RETURNS_OK       512U
-
-/** configuration_spec::feature_flags: Buffered content is sent compressed if the client supports it. */
-#define RUNTIME_FEATURE_COMPRESSION               1024U
-
 /**
  * Data loaded from the configuration file.
  *
@@ -1208,7 +1719,7 @@ struct configuration_spec
 {
    /** What to log */
    int debug;
-
+   
    /** Nonzero to enable multithreading. */
    int multi_threaded;
 
@@ -1220,12 +1731,6 @@ struct configuration_spec
     * - RUNTIME_FEATURE_CGI_TOGGLE
     * - RUNTIME_FEATURE_HTTP_TOGGLE
     * - RUNTIME_FEATURE_SPLIT_LARGE_FORMS
-    * - RUNTIME_FEATURE_ACCEPT_INTERCEPTED_REQUESTS
-    * - RUNTIME_FEATURE_ENFORCE_BLOCKS
-    * - RUNTIME_FEATURE_CGI_CRUNCHING
-    * - RUNTIME_FEATURE_CONNECTION_KEEP_ALIVE
-    * - RUNTIME_FEATURE_CONNECTION_SHARING
-    * - RUNTIME_FEATURE_EMPTY_DOC_RETURNS_OK
     */
    unsigned feature_flags;
 
@@ -1265,11 +1770,11 @@ struct configuration_spec
    /** The hostname to show on CGI pages, or NULL to use the real one. */
    const char *hostname;
 
-   /** IP addresses to bind to.  Defaults to HADDR_DEFAULT == 127.0.0.1. */
-   const char *haddr[MAX_LISTENING_SOCKETS];
+   /** IP address to bind to.  Defaults to HADDR_DEFAULT == 127.0.0.1. */
+   const char *haddr;
 
-   /** Ports to bind to.  Defaults to HADDR_PORT == 8118. */
-   int         hport[MAX_LISTENING_SOCKETS];
+   /** Port to bind to.  Defaults to HADDR_PORT == 8118. */
+   int         hport;
 
    /** Size limit for IOB */
    size_t buffer_limit;
@@ -1298,25 +1803,10 @@ struct configuration_spec
    struct forward_spec *forward;
 
    /** Number of retries in case a forwarded connection attempt fails */
-   int forwarded_connect_retries;
-
-   /** Maximum number of client connections. */
-   int max_client_connections;
+   int         forwarded_connect_retries;
 
    /* Timeout when waiting on sockets for data to become available. */
    int socket_timeout;
-
-#ifdef FEATURE_CONNECTION_KEEP_ALIVE
-   /* Maximum number of seconds after which an open connection will no longer be reused. */
-   unsigned int keep_alive_timeout;
-
-   /* Assumed server-side keep alive timeout if none is specified. */
-   unsigned int default_server_timeout;
-#endif
-
-#ifdef FEATURE_COMPRESSION
-   int compression_level;
-#endif
 
    /** All options from the config file, HTML-formatted. */
    char *proxy_args;
@@ -1347,7 +1837,7 @@ struct configuration_spec
 #endif /* def FEATURE_NO_GIFS */
 
 
-/*
+/* 
  * Hardwired URLs
  */
 

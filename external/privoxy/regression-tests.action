@@ -1,5 +1,5 @@
 #############################################################################
-# $Id: regression-tests.action,v 1.42 2011/11/06 11:46:58 fabiankeil Exp $
+# $Id: regression-tests.action,v 1.22 2009/02/22 15:07:58 fabiankeil Exp $
 #############################################################################
 #
 # This is a configuration file for Privoxy-Regression-Test
@@ -10,7 +10,7 @@
 #
 #############################################################################
 #
-# Copyright (c) 2007-2011 Fabian Keil <fk@fabiankeil.de>
+# Copyright (c) 2007-2009 Fabian Keil <fk@fabiankeil.de>
 #
 # Permission to use, copy, modify, and distribute this software for any
 # purpose with or without fee is hereby granted, provided that the above
@@ -26,26 +26,15 @@
 #
 #############################################################################
 
-# While the syntax used is understood by Privoxy 3.0.14 and later,
-# some of the +fast-redirects{} tests require at least 3.0.18 to work.
 {{settings}}
-for-privoxy-version=3.0.18
+for-privoxy-version=3.0.11
 
 # Some dependencies Privoxy-Regression-Test should know about:
 #
 # Level  9 needs = config line user-manual\s+(\.?\.?/|[A-Za-z]:)
 # Level 12 needs = config line enable-edit-actions\s+1
 # Level 13 needs = feature status FEATURE_CONNECTION_KEEP_ALIVE Yes
-# Level 13 needs = config line keep-alive-timeout\s+[1-9]+
 # Level 14 needs = feature status FEATURE_CONNECTION_KEEP_ALIVE No
-# Level 15 needs = config line connection-sharing\s+0
-# Level 16 needs = feature status FEATURE_CONNECTION_KEEP_ALIVE Yes
-# Level 16 needs = config line connection-sharing\s+1
-# Level 17 needs = feature status FEATURE_PTHREAD Yes
-# Level 18 needs = feature status FEATURE_GRACEFUL_TERMINATION No
-# Level 19 needs = feature status FEATURE_GRACEFUL_TERMINATION Yes
-# Level 20 needs = feature status FEATURE_TOGGLE Yes
-# Level 21 needs = feature status FEATURE_TOGGLE No
 
 #######################################################
 # Enable taggers to activate the tests on demand
@@ -85,11 +74,11 @@ TAG:^hide-accept-language\{block\}$
 # 2) conditional-forge
 # 3) forge
 # 4) block
-# 5) a parameter that looks like a valid fake referrer
+# 5) a parameter that looks like a valid fake referrer 
 # 6) a parameter that looks like an invalid fake referrer
 #######################################################
 
-# Set Header    = Referer: http://www.example.org/foo
+# Set Header    = Referer: http://www.example.org/foo 
 # Expect Header = REMOVAL
 #
 # Set Header    = Referer: http://p.p/foo
@@ -109,7 +98,7 @@ TAG:^hide-accept-language\{block\}$
 {+hide-referrer{conditional-block}}
 TAG:^hide-referrer\{conditional-block\}$
 
-# Set Header    = Referer: http://www.example.org/foo
+# Set Header    = Referer: http://www.example.org/foo 
 # Expect Header = Referer: http://p.p/
 #
 # Set Header    = Referer: http://p.p/foo
@@ -129,17 +118,17 @@ TAG:^hide-referrer\{conditional-block\}$
 {+hide-referrer{conditional-forge}}
 TAG:^hide-referrer\{conditional-forge\}$
 
-# Set Header    = Referer: http://www.example.org/foo
+# Set Header    = Referer: http://www.example.org/foo 
 # Expect Header = Referer: http://p.p/
 {+hide-referrer{forge}}
 TAG:^hide-referrer\{forge\}$
 
-# Set Header    = Referer: http://www.example.org/foo
+# Set Header    = Referer: http://www.example.org/foo 
 # Expect Header = REMOVAL
 {+hide-referrer{block}}
 TAG:^hide-referrer\{block\}$
 
-# Set Header    = Referer: http://www.example.org/foo
+# Set Header    = Referer: http://www.example.org/foo 
 # Expect Header = Referer: invalid
 {+hide-referrer{invalid}}
 TAG:^hide-referrer\{invalid\}$
@@ -261,16 +250,6 @@ TAG:^hide-if-modified-since\{block\}$
 # Expect Header = REMOVAL
 # Set Header    = If-Modified-Since: Thu, 04 Oct 2007 09:56:35 GMT
 # Expect Header = SOME CHANGE
-# Set Header    = If-Modified-Since: Thu, 1 Jan 1970 00:00:00 GMT
-# Expect Header = SOME CHANGE
-# Level = 17
-# Set Header    = If-Modified-Since: Thu, 1 Jan 123456789 00:00:00 GMT
-# Expect Header = REMOVAL
-# Set Header    = If-Modified-Since: Mon, 1 Jan 2525 00:00:00 GMT
-# Expect Header = SOME CHANGE
-# Level = 17
-# Set Header    = If-Modified-Since: Thu, 1 Jan 1970 02:00:00 GMT
-# Expect Header = SOME CHANGE
 
 {+hide-if-modified-since{-60} -crunch-if-none-match}
 TAG:^hide-if-modified-since\{-60\}$
@@ -278,8 +257,6 @@ TAG:^hide-if-modified-since\{-60\}$
 # Set Header    = If-Modified-Since: Gee, this date is invalid
 # Expect Header = REMOVAL
 # Set Header    = If-Modified-Since: Thu, 04 Oct 2007 09:56:35 GMT
-# Expect Header = SOME CHANGE
-# Set Header    = If-Modified-Since: Wed, 31 Dec 1969 23:59:59 GMT
 # Expect Header = SOME CHANGE
 
 {+hide-if-modified-since{+60} -crunch-if-none-match}
@@ -435,7 +412,6 @@ TAG:^prevent-compression$
 # Set Header    = Request-Range: bytes=1234-5678
 # Expect Header = REMOVAL
 {\
- -client-header-tagger{range-requests} \
  +deanimate-gifs{last} \
  -filter \
 }
@@ -448,7 +424,6 @@ TAG:^deanimate-gifs\{last\}$
 # Set Header    = Request-Range: bytes=1234-5678
 # Expect Header = REMOVAL
 {\
- -client-header-tagger{range-requests} \
  -deanimate-gifs \
  +filter{banners-by-size} \
 }
@@ -461,17 +436,19 @@ TAG:^filter\{banners-by-size\}$
 # Set Header    = Request-Range: bytes=1234-5678
 # Expect Header = NO CHANGE
 {\
- -client-header-tagger{range-requests} \
  -deanimate-gifs \
  -filter \
 }
 TAG:^no-content-filter$
 
+# Set Header    = Connection: close
+# Expect Header = Connection: keep-alive
+# Level = 13
 # Set Header    = Connection: keep-alive
 # Expect Header = NO CHANGE
 # Level = 13
 # Set Header    = Connection:
-# Expect Header = REMOVAL
+# Expect Header = Connection: keep-alive
 # Level = 13
 {}
 TAG:^Connection: keep-alive$
@@ -484,21 +461,6 @@ TAG:^Connection: keep-alive$
 # Level = 14
 {}
 TAG:^Connection: close$
-
-# Set Header    = Connection: close
-# Expect Header = NO CHANGE
-# Level = 15
-{}
-TAG:^connection-sharing disabled$
-
-# Set Header    = Connection: close
-# Expect Header = REMOVAL
-# Level = 16
-# Set Header    = Connection: keep-alive
-# Expect Header = NO CHANGE
-# Level = 16
-{}
-TAG:^connection-sharing enabled$
 
 # XXX: Removing a header by not specifying a value is
 # an inherited curl feature and could be viewed as a
@@ -514,15 +476,9 @@ TAG:^No Host header$
 {}
 TAG:^Host header other than the target host$
 
-# Set Header = Keep-Alive: 20
-# Expect Header = NO CHANGE
-# Level = 13
-{}
-TAG:^Pass Keep-Alive header$
-
-# Set Header = Keep-Alive: 20
+# XXX: check the RFC to use a real value
+# Set Header = Keep-Alive: Yes
 # Expect Header = REMOVAL
-# Level = 14
 {}
 TAG:^Keep-Alive header removal$
 
@@ -565,12 +521,9 @@ TAG:^Max-Forwards header without TRACE method$
 ################################################################
 
 # Fetch Test = http://p.p/
+# Will fail if compiled with FEATURE_GRACEFUL_TERMINATION
 # Fetch Test = http://p.p/die
 # Expect Status Code = 404
-# Level = 18
-# Fetch Test = http://p.p/die
-# Expect Status Code = 200
-# Level = 19
 # Fetch Test = http://p.p/show-status
 # Fetch Test = http://config.privoxy.org/show-status?file=actions&index=0
 # Fetch Test = http://config.privoxy.org/show-status?file=filter&index=0
@@ -595,12 +548,7 @@ TAG:^Max-Forwards header without TRACE method$
 # Fetch Test = http://p.p/show-url-info?url=FTp:%2F%2Fwww.privoxy.org%2F
 # Fetch Test = http://p.p/show-url-info?url=
 # Fetch Test = http://p.p/show-url-info?url=%2F
-# Depends on FEATURE_TOGGLE
 # Fetch Test = http://p.p/toggle
-# Level = 20
-# Fetch Test = http://p.p/toggle
-# Expect Status Code = 404
-# Level = 21
 # Fetch Test = http://p.p/edit-actions
 # Fetch Test = http://p.p/eaa
 # Fetch Test = http://p.p/eau
@@ -702,6 +650,8 @@ TAG:^Max-Forwards header without TRACE method$
 # Level = 9
 # Fetch Test = http://p.p/user-manual/templates.html
 # Level = 9
+# Fetch Test = http://p.p/user-manual/upgradersnote.html
+# Level = 9
 # Fetch Test = http://p.p/user-manual/whatsnew.html
 # Level = 9
 
@@ -760,20 +710,10 @@ p.p:3,22,79-81/
 {+forward-override{forward-socks5 127.0.0.1:12345 .}}
 oh-dear-this-hostname-is-so-very-long-that-it-can-not-possibly-be-forwarded-through-socks5-as-a-result-we-therefore-expect-privoxy-to-return-an-error-response-instead-of-forwarding-the-request-because-as-already-mentioned-this-host-is-really-very-long.example/
 
-# Fetch Test = http://oh-dear-this-hostname-is-short-enough-but-there-is-no-socks5-server-listening.example
+# Fetch Test = http://oh-dear-this-hostname-is-short-enough-but-there-is-no-socks-server-listening.example
 # Expect Status Code = 503
 {+forward-override{forward-socks5 127.0.0.1:12345 .}}
-oh-dear-this-hostname-is-short-enough-but-there-is-no-socks5-server-listening.example
-
-# Fetch Test = http://oh-dear-this-hostname-is-short-enough-but-there-is-no-socks4-server-listening.example
-# Expect Status Code = 503
-{+forward-override{forward-socks4 127.0.0.1:12345 .}}
-oh-dear-this-hostname-is-short-enough-but-there-is-no-socks4-server-listening.example
-
-# Fetch Test = http://oh-dear-this-hostname-is-short-enough-but-there-is-no-socks4a-server-listening.example
-# Expect Status Code = 503
-{+forward-override{forward-socks4a 127.0.0.1:12345 .}}
-oh-dear-this-hostname-is-short-enough-but-there-is-no-socks4a-server-listening.example
+oh-dear-this-hostname-is-short-enough-but-there-is-no-socks-server-listening.example
 
 # This one currently triggers the same error condition as the
 # test above (socks5 server unreachable), but once Privoxy
@@ -812,11 +752,6 @@ www.blocked-request.example/blocked-request-with-no-reason-specified
 # Blocked URL = http://domain-pattern-test.example.org/
 domain-pattern-test.example.
 
-{+block{Hostname patterns without trailing dots cover hostnames with trailing dots as well.}}
-# Blocked URL = http://trailing-dot.example.org./
-# Blocked URL = http://trailing-dot.example.org./foo
-trailing-dot.example.org
-
 # Just in case there is no white-space fuzzer in the house ...
 #
 # Set Header = X-LWS-Test: no superfluous white space here
@@ -845,47 +780,3 @@ trailing-dot.example.org
 # Expect Header = X-LWS-Test: "This  is  quoted" this is not "this  is  " but " this again is not
 {}
 TAG:^LWS Tests$
-
-{+fast-redirects{check-decoded-url}}
-# Redirected URL = http://redirect.example.net/blafasel&url=http://redirected1.example.net/
-# Redirect Destination = http://redirected1.example.net/
-# Redirected URL = http://redirect.example.net/blafasel&url=http%3A%2F%2Fredirected2.example.net%2F&parameter=not-part-of-the-redirected-url
-# Redirect Destination = http://redirected2.example.net/
-# Redirected URL = http://redirect.example.net/blafasel&url=http%3A%2F%2Fredirected3.example.net%2F&parameter=not-part-of-the-redirected-url
-# Redirect Destination = http://redirected3.example.net/
-# Redirected URL = http://redirect.example.net/blafasel&url=http%3A%2F%2Fredirected4.example.net%2F%26parameter=part-of-the-redirected-url
-# Redirect Destination = http://redirected4.example.net/&parameter=part-of-the-redirected-url
-# Redirected URL = http://redirect.example.net/blafasel&url1=http%3A%2F%2Fredirected5.example.net%2F%26parameter1=part-of-the-redirected-url&url2=http%3A%2F%2Fredirected5.example.net%2F%26parameter2=part-of-the-redirected-url2
-# Redirect Destination = http://redirected5.example.net/&parameter2=part-of-the-redirected-url2
-# Redirected URL = http://redirect.example.net/blafasel&url1=http%3A%2F%2Fredirected6.example.net%2F%26parameter1=part-of-the-redirected-url&url2=http%3A%2F%2Fredirected6.example.net%2F%26parameter2=part-of-the-redirected-url2&parameter3=not-part-of-the-redirected-url2
-# Redirect Destination = http://redirected6.example.net/&parameter2=part-of-the-redirected-url2
-# Redirected URL = http://redirect.example.net/blafasel?x=http%3A%2F%2Fredirected7.example.net%2F%26parameter1=part-of-the-redirected-url1&parameter2=not-part-of-the-redirected-url1
-# Redirect Destination = http://redirected7.example.net/&parameter1=part-of-the-redirected-url1
-# Redirected URL = http://redirect.example.net/blafasel?x=http%3A%2F%2Fredirected8.example.net%2F%26parameter1=part-of-the-redirected-url1&parameter2=not-part-of-the-redirected-url1&parameter3=not-part-of-the-redirected-url1
-# Redirect Destination = http://redirected8.example.net/&parameter1=part-of-the-redirected-url1
-# Redirected URL = http://redirect.example.net/blafasel?a?b?c?d?e?f?g?h?i?j?k?l?m?n?o?p?q?r?s&t&u&v&w&x&y&z&1&2&3&4&5&6&7&8&9&10&11&12&13&14&15&16x=http%3A%2F%2Fredirected8.example.net%2F%26parameter1=part-of-the-redirected-url1&parameter2=not-part-of-the-redirected-url1&parameter3=not-part-of-the-redirected-url1
-# Redirect Destination = http://redirected8.example.net/&parameter1=part-of-the-redirected-url1
-# Redirected URL = http://redirect.example.net/blafasel???????????????????????????????=http%3A%2F%2Fredirected8.example.net%2F%26parameter1=part-of-the-redirected-url1&parameter2=not-part-of-the-redirected-url1&parameter3=not-part-of-the-redirected-url1
-# Redirect Destination = http://redirected8.example.net/&parameter1=part-of-the-redirected-url1
-# Redirected URL = http://redirect.example.net/blafasel&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&=http%3A%2F%2Fredirected8.example.net%2F%26parameter1=part-of-the-redirected-url1&parameter2=not-part-of-the-redirected-url1&parameter3=not-part-of-the-redirected-url1
-# Redirect Destination = http://redirected8.example.net/&parameter1=part-of-the-redirected-url1
-redirect.example.net/
-# Redirected URL = http://redirect.example.net/blafaselhttp://redirect1.example.net/http://redirect2.example.net/
-# Redirect Destination = http://redirect2.example.net/
-# Redirected URL = http://redirect.example.net/blafasel%3A%2F%2Fredirect1.example.net/http://redirect2.example.net/
-# Redirect Destination = http://redirect2.example.net/
-# Redirected URL = http://redirect.example.net/blafaselhttp://redirect1.example.net/http%3A%2F%2Fredirect2.example.net/
-# Redirect Destination = http://redirect2.example.net/
-# These tests verify that Privoxy behaves as intended,
-# given that the encoded redirect URLs are invalid,
-# there are no correct redirect URLs.
-# Redirected URL = http://redirect.example.net/%%%%%%%%%%%%%%%%%%%%%%blafaselhttp://redirect1.example.net/http%3A%2F%2Fredirect2.example.net/%%%%%%%%%%%%%%
-# Redirect Destination = http://redirect2.example.net/%%%%%%%%%%%%%%
-# Redirected URL = http://redirect.example.net/%%%%%%%%%%%%%%%%%%%%%%blafaselhttp://redirect1.example.net/http%3A%2F%2Fredirect2.example.net/%1%2%%3%4%5%6%7%8%9%0%0%%
-# Redirect Destination = http://redirect2.example.net/%1%2%%3%4%5%6%7%8%9%0%0%%
-
-{+fast-redirects{simple-check}}
-# Redirected URL = http://redirect2.example.net/blafasel?x=http://redirected.example.net/&parameter1=part-of-the-redirected-url1&parameter2=part-of-the-redirected-url1
-# Redirect Destination = http://redirected.example.net/&parameter1=part-of-the-redirected-url1&parameter2=part-of-the-redirected-url1
-redirect2.example.net/
-

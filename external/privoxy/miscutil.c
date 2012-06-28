@@ -1,18 +1,19 @@
-const char miscutil_rcs[] = "$Id: miscutil.c,v 1.68 2011/09/04 11:10:56 fabiankeil Exp $";
+const char miscutil_rcs[] = "$Id: miscutil.c,v 1.62 2008/12/04 18:16:41 fabiankeil Exp $";
 /*********************************************************************
  *
  * File        :  $Source: /cvsroot/ijbswa/current/miscutil.c,v $
  *
- * Purpose     :  zalloc, hash_string, strcmpic, strncmpic, and
- *                MinGW32 strdup functions.  These are each too small
- *                to deserve their own file but don't really fit in
- *                any other file.
+ * Purpose     :  zalloc, hash_string, safe_strerror, strcmpic,
+ *                strncmpic, chomp, and MinGW32 strdup
+ *                functions. 
+ *                These are each too small to deserve their own file
+ *                but don't really fit in any other file.
  *
- * Copyright   :  Written by and Copyright (C) 2001-2011 the
- *                Privoxy team. http://www.privoxy.org/
+ * Copyright   :  Written by and Copyright (C) 2001-2007
+ *                the SourceForge Privoxy team. http://www.privoxy.org/
  *
  *                Based on the Internet Junkbuster originally written
- *                by and Copyright (C) 1997 Anonymous Coders and
+ *                by and Copyright (C) 1997 Anonymous Coders and 
  *                Junkbusters Corporation.  http://www.junkbusters.com
  *
  *                The timegm replacement function was taken from GnuPG,
@@ -23,7 +24,7 @@ const char miscutil_rcs[] = "$Id: miscutil.c,v 1.68 2011/09/04 11:10:56 fabianke
  *                used under the terms of the GPL or the terms of the
  *                "Frontier Artistic License".
  *
- *                This program is free software; you can redistribute it
+ *                This program is free software; you can redistribute it 
  *                and/or modify it under the terms of the GNU General
  *                Public License as published by the Free Software
  *                Foundation; either version 2 of the License, or (at
@@ -41,8 +42,294 @@ const char miscutil_rcs[] = "$Id: miscutil.c,v 1.68 2011/09/04 11:10:56 fabianke
  *                or write to the Free Software Foundation, Inc., 59
  *                Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
+ * Revisions   :
+ *    $Log: miscutil.c,v $
+ *    Revision 1.62  2008/12/04 18:16:41  fabiankeil
+ *    Fix some cparser warnings.
+ *
+ *    Revision 1.61  2008/10/18 11:09:23  fabiankeil
+ *    Improve seed used by pick_from_range() on mingw32.
+ *
+ *    Revision 1.60  2008/09/07 12:35:05  fabiankeil
+ *    Add mutex lock support for _WIN32.
+ *
+ *    Revision 1.59  2008/09/04 08:13:58  fabiankeil
+ *    Prepare for critical sections on Windows by adding a
+ *    layer of indirection before the pthread mutex functions.
+ *
+ *    Revision 1.58  2008/04/17 14:53:30  fabiankeil
+ *    Move simplematch() into urlmatch.c as it's only
+ *    used to match (old-school) domain patterns.
+ *
+ *    Revision 1.57  2008/03/24 15:29:51  fabiankeil
+ *    Pet gcc43.
+ *
+ *    Revision 1.56  2007/12/01 12:59:05  fabiankeil
+ *    Some sanity checks for pick_from_range().
+ *
+ *    Revision 1.55  2007/11/03 17:34:49  fabiankeil
+ *    Log the "weak randomization factor" warning only
+ *    once for mingw32 and provide some more details.
+ *
+ *    Revision 1.54  2007/09/19 20:28:37  fabiankeil
+ *    If privoxy_strlcpy() is called with a "buffer" size
+ *    of 0, don't touch whatever destination points to.
+ *
+ *    Revision 1.53  2007/09/09 18:20:20  fabiankeil
+ *    Turn privoxy_strlcpy() into a function and try to work with
+ *    b0rked snprintf() implementations too. Reported by icmp30.
+ *
+ *    Revision 1.52  2007/08/19 12:32:34  fabiankeil
+ *    Fix a conversion warning.
+ *
+ *    Revision 1.51  2007/06/17 16:12:22  fabiankeil
+ *    #ifdef _WIN32 the last commit. According to David Shaw,
+ *    one of the gnupg developers, the changes are mingw32-specific.
+ *
+ *    Revision 1.50  2007/06/10 14:59:59  fabiankeil
+ *    Change replacement timegm() to better match our style, plug a small
+ *    but guaranteed memory leak and fix "time zone breathing" on mingw32.
+ *
+ *    Revision 1.49  2007/05/11 11:48:15  fabiankeil
+ *    - Delete strsav() which was replaced
+ *      by string_append() years ago.
+ *    - Add a strlcat() look-alike.
+ *    - Use strlcat() and strlcpy() in those parts
+ *      of the code that are run on unixes.
+ *
+ *    Revision 1.48  2007/04/09 17:48:51  fabiankeil
+ *    Check for HAVE_SNPRINTF instead of __OS2__
+ *    before including the portable snprintf() code.
+ *
+ *    Revision 1.47  2007/03/17 11:52:15  fabiankeil
+ *    - Use snprintf instead of sprintf.
+ *    - Mention copyright for the replacement
+ *      functions in the copyright header.
+ *
+ *    Revision 1.46  2007/01/18 15:03:20  fabiankeil
+ *    Don't include replacement timegm() if
+ *    putenv() or tzset() isn't available.
+ *
+ *    Revision 1.45  2006/12/26 17:31:41  fabiankeil
+ *    Mutex protect rand() if POSIX threading
+ *    is used, warn the user if that's not possible
+ *    and stop using it on _WIN32 where it could
+ *    cause crashes.
+ *
+ *    Revision 1.44  2006/11/07 12:46:43  fabiankeil
+ *    Silence compiler warning on NetBSD 3.1.
+ *
+ *    Revision 1.43  2006/09/23 13:26:38  roro
+ *    Replace TABs by spaces in source code.
+ *
+ *    Revision 1.42  2006/09/09 14:01:45  fabiankeil
+ *    Integrated Oliver Yeoh's domain pattern fix
+ *    to make sure *x matches xx. Closes Patch 1217393
+ *    and Bug 1170767.
+ *
+ *    Revision 1.41  2006/08/18 16:03:17  david__schmidt
+ *    Tweak for OS/2 build happiness.
+ *
+ *    Revision 1.40  2006/08/17 17:15:10  fabiankeil
+ *    - Back to timegm() using GnuPG's replacement if necessary.
+ *      Using mktime() and localtime() could add a on hour offset if
+ *      the randomize factor was big enough to lead to a summer/wintertime
+ *      switch.
+ *
+ *    - Removed now-useless Privoxy 3.0.3 compatibility glue.
+ *
+ *    - Moved randomization code into pick_from_range().
+ *
+ *    - Changed parse_header_time definition.
+ *      time_t isn't guaranteed to be signed and
+ *      if it isn't, -1 isn't available as error code.
+ *      Changed some variable types in client_if_modified_since()
+ *      because of the same reason.
+ *
+ *    Revision 1.39  2006/07/18 14:48:46  david__schmidt
+ *    Reorganizing the repository: swapping out what was HEAD (the old 3.1 branch)
+ *    with what was really the latest development (the v_3_0_branch branch)
+ *
+ *    Revision 1.37.2.4  2003/12/01 14:45:14  oes
+ *    Fixed two more problems with wildcarding in simplematch()
+ *
+ *    Revision 1.37.2.3  2003/11/20 11:39:24  oes
+ *    Bugfix: The "?" wildcard for domain names had never been implemented. Ooops\!
+ *
+ *    Revision 1.37.2.2  2002/11/12 14:28:18  oes
+ *    Proper backtracking in simplematch; fixes bug #632888
+ *
+ *    Revision 1.37.2.1  2002/09/25 12:58:51  oes
+ *    Made strcmpic and strncmpic safe against NULL arguments
+ *    (which are now treated as empty strings).
+ *
+ *    Revision 1.37  2002/04/26 18:29:43  jongfoster
+ *    Fixing this Visual C++ warning:
+ *    miscutil.c(710) : warning C4090: '=' : different 'const' qualifiers
+ *
+ *    Revision 1.36  2002/04/26 12:55:38  oes
+ *    New function string_toupper
+ *
+ *    Revision 1.35  2002/03/26 22:29:55  swa
+ *    we have a new homepage!
+ *
+ *    Revision 1.34  2002/03/24 13:25:43  swa
+ *    name change related issues
+ *
+ *    Revision 1.33  2002/03/07 03:46:53  oes
+ *    Fixed compiler warnings etc
+ *
+ *    Revision 1.32  2002/03/06 23:02:57  jongfoster
+ *    Removing tabs
+ *
+ *    Revision 1.31  2002/03/05 04:52:42  oes
+ *    Deleted non-errlog debugging code
+ *
+ *    Revision 1.30  2002/03/04 18:27:42  oes
+ *    - Deleted deletePidFile
+ *    - Made write_pid_file use the --pidfile option value
+ *      (or no PID file, if the option was absent)
+ *    - Played styleguide police
+ *
+ *    Revision 1.29  2002/03/04 02:08:02  david__schmidt
+ *    Enable web editing of actions file on OS/2 (it had been broken all this time!)
+ *
+ *    Revision 1.28  2002/03/03 09:18:03  joergs
+ *    Made jumbjuster work on AmigaOS again.
+ *
+ *    Revision 1.27  2002/01/21 00:52:32  jongfoster
+ *    Adding string_join()
+ *
+ *    Revision 1.26  2001/12/30 14:07:32  steudten
+ *    - Add signal handling (unix)
+ *    - Add SIGHUP handler (unix)
+ *    - Add creation of pidfile (unix)
+ *    - Add action 'top' in rc file (RH)
+ *    - Add entry 'SIGNALS' to manpage
+ *    - Add exit message to logfile (unix)
+ *
+ *    Revision 1.25  2001/11/13 00:16:38  jongfoster
+ *    Replacing references to malloc.h with the standard stdlib.h
+ *    (See ANSI or K&R 2nd Ed)
+ *
+ *    Revision 1.24  2001/11/05 21:41:43  steudten
+ *    Add changes to be a real daemon just for unix os.
+ *    (change cwd to /, detach from controlling tty, set
+ *    process group and session leader to the own process.
+ *    Add DBG() Macro.
+ *    Add some fatal-error log message for failed malloc().
+ *    Add '-d' if compiled with 'configure --with-debug' to
+ *    enable debug output.
+ *
+ *    Revision 1.23  2001/10/29 03:48:10  david__schmidt
+ *    OS/2 native needed a snprintf() routine.  Added one to miscutil, brackedted
+ *    by and __OS2__ ifdef.
+ *
+ *    Revision 1.22  2001/10/26 17:39:38  oes
+ *    Moved ijb_isspace and ijb_tolower to project.h
+ *
+ *    Revision 1.21  2001/10/23 21:27:50  jongfoster
+ *    Standardising error codes in string_append
+ *    make_path() no longer adds '\\' if the dir already ends in '\\' (this
+ *    is just copying a UNIX-specific fix to the Windows-specific part)
+ *
+ *    Revision 1.20  2001/10/22 15:33:56  david__schmidt
+ *    Special-cased OS/2 out of the Netscape-abort-on-404-in-js problem in
+ *    filters.c.  Added a FIXME in front of the offending code.  I'll gladly
+ *    put in a better/more robust fix for all parties if one is presented...
+ *    It seems that just returning 200 instead of 404 would pretty much fix
+ *    it for everyone, but I don't know all the history of the problem.
+ *
+ *    Revision 1.19  2001/10/14 22:02:57  jongfoster
+ *    New function string_append() which is like strsav(), but running
+ *    out of memory isn't automatically FATAL.
+ *
+ *    Revision 1.18  2001/09/20 13:33:43  steudten
+ *
+ *    change long to int as return value in hash_string(). Remember the wraparound
+ *    for int = long = sizeof(4) - thats maybe not what we want.
+ *
+ *    Revision 1.17  2001/09/13 20:51:29  jongfoster
+ *    Fixing potential problems with characters >=128 in simplematch()
+ *    This was also a compiler warning.
+ *
+ *    Revision 1.16  2001/09/10 10:56:59  oes
+ *    Silenced compiler warnings
+ *
+ *    Revision 1.15  2001/07/13 14:02:24  oes
+ *    Removed vim-settings
+ *
+ *    Revision 1.14  2001/06/29 21:45:41  oes
+ *    Indentation, CRLF->LF, Tab-> Space
+ *
+ *    Revision 1.13  2001/06/29 13:32:14  oes
+ *    Removed logentry from cancelled commit
+ *
+ *    Revision 1.12  2001/06/09 10:55:28  jongfoster
+ *    Changing BUFSIZ ==> BUFFER_SIZE
+ *
+ *    Revision 1.11  2001/06/07 23:09:19  jongfoster
+ *    Cosmetic indentation changes.
+ *
+ *    Revision 1.10  2001/06/07 14:51:38  joergs
+ *    make_path() no longer adds '/' if the dir already ends in '/'.
+ *
+ *    Revision 1.9  2001/06/07 14:43:17  swa
+ *    slight mistake in make_path, unix path style is /.
+ *
+ *    Revision 1.8  2001/06/05 22:32:01  jongfoster
+ *    New function make_path() to splice directory and file names together.
+ *
+ *    Revision 1.7  2001/06/03 19:12:30  oes
+ *    introduced bindup()
+ *
+ *    Revision 1.6  2001/06/01 18:14:49  jongfoster
+ *    Changing the calls to strerr() to check HAVE_STRERR (which is defined
+ *    in config.h if appropriate) rather than the NO_STRERR macro.
+ *
+ *    Revision 1.5  2001/06/01 10:31:51  oes
+ *    Added character class matching to trivimatch; renamed to simplematch
+ *
+ *    Revision 1.4  2001/05/31 17:32:31  oes
+ *
+ *     - Enhanced domain part globbing with infix and prefix asterisk
+ *       matching and optional unanchored operation
+ *
+ *    Revision 1.3  2001/05/29 23:10:09  oes
+ *
+ *
+ *     - Introduced chomp()
+ *     - Moved strsav() from showargs to miscutil
+ *
+ *    Revision 1.2  2001/05/29 09:50:24  jongfoster
+ *    Unified blocklist/imagelist/permissionslist.
+ *    File format is still under discussion, but the internal changes
+ *    are (mostly) done.
+ *
+ *    Also modified interceptor behaviour:
+ *    - We now intercept all URLs beginning with one of the following
+ *      prefixes (and *only* these prefixes):
+ *        * http://i.j.b/
+ *        * http://ijbswa.sf.net/config/
+ *        * http://ijbswa.sourceforge.net/config/
+ *    - New interceptors "home page" - go to http://i.j.b/ to see it.
+ *    - Internal changes so that intercepted and fast redirect pages
+ *      are not replaced with an image.
+ *    - Interceptors now have the option to send a binary page direct
+ *      to the client. (i.e. ijb-send-banner uses this)
+ *    - Implemented show-url-info interceptor.  (Which is why I needed
+ *      the above interceptors changes - a typical URL is
+ *      "http://i.j.b/show-url-info?url=www.somesite.com/banner.gif".
+ *      The previous mechanism would not have intercepted that, and
+ *      if it had been intercepted then it then it would have replaced
+ *      it with an image.)
+ *
+ *    Revision 1.1.1.1  2001/05/15 13:59:00  oes
+ *    Initial import of version 2.9.3 source tree
+ *
+ *
  *********************************************************************/
-
+
 
 #include "config.h"
 
@@ -97,19 +384,19 @@ void *zalloc(size_t size)
 #if defined(unix)
 /*********************************************************************
  *
- * Function    :  write_pid_file
+ * Function    :  write_pid_file 
  *
- * Description :  Writes a pid file with the pid of the main process
+ * Description :  Writes a pid file with the pid of the main process 
  *
  * Parameters  :  None
  *
- * Returns     :  N/A
+ * Returns     :  N/A 
  *
  *********************************************************************/
 void write_pid_file(void)
 {
    FILE   *fp;
-
+   
    /*
     * If no --pidfile option was given,
     * we can live without one.
@@ -147,7 +434,7 @@ void write_pid_file(void)
  *********************************************************************/
 unsigned int hash_string( const char* s )
 {
-   unsigned int h = 0;
+   unsigned int h = 0; 
 
    for ( ; *s; ++s )
    {
@@ -155,6 +442,75 @@ unsigned int hash_string( const char* s )
    }
 
    return (h);
+
+}
+
+
+#ifdef __MINGW32__
+/*********************************************************************
+ *
+ * Function    :  strdup
+ *
+ * Description :  For some reason (which is beyond me), gcc and WIN32
+ *                don't like strdup.  When a "free" is executed on a
+ *                strdup'd ptr, it can at times freez up!  So I just
+ *                replaced it and problem was solved.
+ *
+ * Parameters  :
+ *          1  :  s = string to duplicate
+ *
+ * Returns     :  Pointer to newly malloc'ed copy of the string.
+ *
+ *********************************************************************/
+char *strdup( const char *s )
+{
+   char * result = (char *)malloc( strlen(s)+1 );
+
+   if (result != NULL)
+   {
+      strcpy( result, s );
+   }
+
+   return( result );
+}
+
+#endif /* def __MINGW32__ */
+
+
+
+/*********************************************************************
+ *
+ * Function    :  safe_strerror
+ *
+ * Description :  Variant of the library routine strerror() which will
+ *                work on systems without the library routine, and
+ *                which should never return NULL.
+ *
+ * Parameters  :
+ *          1  :  err = the `errno' of the last operation.
+ *
+ * Returns     :  An "English" string of the last `errno'.  Allocated
+ *                with strdup(), so caller frees.  May be NULL if the
+ *                system is out of memory.
+ *
+ *********************************************************************/
+char *safe_strerror(int err)
+{
+   char *s = NULL;
+   char buf[BUFFER_SIZE];
+
+
+#ifdef HAVE_STRERROR
+   s = strerror(err);
+#endif /* HAVE_STRERROR */
+
+   if (s == NULL)
+   {
+      snprintf(buf, sizeof(buf), "(errno = %d)", err);
+      s = buf;
+   }
+
+   return(strdup(s));
 
 }
 
@@ -194,7 +550,7 @@ int strcmpic(const char *s1, const char *s2)
  *
  * Function    :  strncmpic
  *
- * Description :  Case insensitive string comparison (up to n characters)
+ * Description :  Case insensitive string comparison (upto n characters)
  *
  * Parameters  :
  *          1  :  s1 = string 1 to compare
@@ -209,7 +565,7 @@ int strncmpic(const char *s1, const char *s2, size_t n)
    if (n <= (size_t)0) return(0);
    if (!s1) s1 = "";
    if (!s2) s2 = "";
-
+   
    while (*s1 && *s2)
    {
       if ( ( *s1 != *s2 ) && ( ijb_tolower(*s1) != ijb_tolower(*s2) ) )
@@ -243,7 +599,7 @@ char *chomp(char *string)
 {
    char *p, *q, *r;
 
-   /*
+   /* 
     * strip trailing whitespace
     */
    p = string + strlen(string);
@@ -253,8 +609,8 @@ char *chomp(char *string)
    }
    *p = '\0';
 
-   /*
-    * find end of leading whitespace
+   /* 
+    * find end of leading whitespace 
     */
    q = r = string;
    while (*q && ijb_isspace(*q))
@@ -282,7 +638,7 @@ char *chomp(char *string)
  *
  * Function    :  string_append
  *
- * Description :  Reallocate target_string and append text to it.
+ * Description :  Reallocate target_string and append text to it.  
  *                This makes it easier to append to malloc'd strings.
  *                This is similar to the (removed) strsav(), but
  *                running out of memory isn't catastrophic.
@@ -427,7 +783,7 @@ jb_err string_join(char **target_string, char *text_to_append)
  * Parameters  :
  *          1  :  string = string to convert
  *
- * Returns     :  Uppercase copy of string if possible,
+ * Returns     :  Uppercase copy of string if possible, 
  *                NULL on out-of-memory or if string was NULL.
  *
  *********************************************************************/
@@ -440,7 +796,7 @@ char *string_toupper(const char *string)
    {
       return NULL;
    }
-
+   
    q = string;
    p = result;
 
@@ -490,11 +846,11 @@ char *bindup(const char *string, size_t len)
  *
  * Function    :  make_path
  *
- * Description :  Takes a directory name and a file name, returns
+ * Description :  Takes a directory name and a file name, returns 
  *                the complete path.  Handles windows/unix differences.
  *                If the file name is already an absolute path, or if
- *                the directory name is NULL or empty, it returns
- *                the filename.
+ *                the directory name is NULL or empty, it returns 
+ *                the filename. 
  *
  * Parameters  :
  *          1  :  dir: Name of directory or NULL for none.
@@ -503,7 +859,7 @@ char *bindup(const char *string, size_t len)
  * Returns     :  "dir/file" (Or on windows, "dir\file").
  *                It allocates the string on the heap.  Caller frees.
  *                Returns NULL in error (i.e. NULL file or out of
- *                memory)
+ *                memory) 
  *
  *********************************************************************/
 char * make_path(const char * dir, const char * file)
@@ -585,7 +941,6 @@ char * make_path(const char * dir, const char * file)
          strlcpy(path, dir, path_size);
       }
 
-      assert(NULL != path);
 #if defined(_WIN32) || defined(__OS2__)
       if(path[strlen(path)-1] != '\\')
       {
@@ -616,7 +971,7 @@ char * make_path(const char * dir, const char * file)
  * Parameters  :
  *          1  :  range: Highest possible number to pick.
  *
- * Returns     :  Picked number.
+ * Returns     :  Picked number. 
  *
  *********************************************************************/
 long int pick_from_range(long int range)
@@ -632,7 +987,7 @@ long int pick_from_range(long int range)
    if (range <= 0) return 0;
 
 #ifdef HAVE_RANDOM
-   number = random() % range + 1;
+   number = random() % range + 1; 
 #elif defined(MUTEX_LOCKS_AVAILABLE)
    privoxy_mutex_lock(&rand_mutex);
 #ifdef _WIN32
@@ -736,7 +1091,7 @@ size_t privoxy_strlcat(char *destination, const char *source, const size_t size)
  * Parameters  :
  *          1  :  tm: Broken-down time struct.
  *
- * Returns     :  tm converted into time_t seconds.
+ * Returns     :  tm converted into time_t seconds. 
  *
  *********************************************************************/
 time_t timegm(struct tm *tm)
@@ -788,7 +1143,7 @@ time_t timegm(struct tm *tm)
                                   snprintf.c
                    - a portable implementation of snprintf,
        including vsnprintf.c, asnprintf, vasnprintf, asprintf, vasprintf
-
+                                       
    snprintf is a routine to convert numeric and string arguments to
    formatted strings. It is similar to sprintf(3) provided in a system's
    C library, yet it requires an additional argument - the buffer size -
@@ -1430,7 +1785,7 @@ int portable_vsnprintf(char *str, size_t str_m, const char *fmt, va_list ap) {
             }
           }
        /* zero padding to specified precision? */
-          if (num_of_digits < precision)
+          if (num_of_digits < precision) 
             number_of_zeros_to_pad = precision - num_of_digits;
         }
      /* zero padding to specified minimal field width? */
@@ -1448,7 +1803,7 @@ int portable_vsnprintf(char *str, size_t str_m, const char *fmt, va_list ap) {
 #if defined(PERL_COMPATIBLE) || defined(LINUX_COMPATIBLE)
      /* keep the entire format string unchanged */
         str_arg = starting_p; str_arg_l = p - starting_p;
-     /* well, not exactly so for Linux, which does something between,
+     /* well, not exactly so for Linux, which does something inbetween,
       * and I don't feel an urge to imitate it: "%+++++hy" -> "%+y"  */
 #else
      /* discard the unrecognized conversion, just keep *

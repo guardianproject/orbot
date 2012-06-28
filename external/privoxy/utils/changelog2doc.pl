@@ -1,27 +1,11 @@
 #!/usr/bin/perl
 
-##########################################################################
-#
-# $Id: changelog2doc.pl,v 1.8 2011/11/13 17:00:54 fabiankeil Exp $
-#
+# $Id: changelog2doc.pl,v 1.2 2008/09/26 16:49:09 fabiankeil Exp $
+# $Source: /cvsroot/ijbswa/current/utils/changelog2doc.pl,v $
+
 # Filter to parse the ChangeLog and translate the changes for
 # the most recent version into something that looks like markup
 # for the documentation but still needs fine-tuning.
-#
-# Copyright (c) 2008, 2010 Fabian Keil <fk@fabiankeil.de>
-#
-# Permission to use, copy, modify, and distribute this software for any
-# purpose with or without fee is hereby granted, provided that the above
-# copyright notice and this permission notice appear in all copies.
-#
-# THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-# WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-# MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-# ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-# WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-# ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
-# OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-##########################################################################
 
 use strict;
 use warnings;
@@ -41,80 +25,37 @@ sub read_entries() {
         next unless $section_reached;
         next if /^\s*$/;
 
-        if (/^(\s*)-/) {
-            my $indentation = length($1);
-            if ($i > 1 and $entries[$i]{indentation} > $indentation) {
-                $entries[$i]{last_list_item} = 1;
-            }
+        if (/^-/) {
             $i++; 
-            $entries[$i]{description} = '';
-            $entries[$i]{indentation} = $indentation;
+            $entries[$i] = '';
         }
-        if (/:\s*$/) {
-            $entries[$i]{list_header} = 1;
-        }
+        s@^-?\s*@@;
 
-        s@^\s*-?\s*@@;
-
-        $entries[$i]{description} .= $_;
-    }
-    if ($entries[$i]{indentation} != 0) {
-        $entries[$i]{last_list_item} = 1;
+        $entries[$i] .= $_;
     }
     print "Parsed " . @entries . " entries.\n";
-}
-
-sub create_listitem_markup($) {
-    my $entry = shift;
-    my $description = $entry->{description};
-    my $markup = '';
-    my $default_lws = '  ';
-    my $lws = $default_lws x ($entry->{indentation} ? 2 : 1);
-
-    chomp $description;
-
-    $description =~ s@\n@\n  ${lws}@g;
-
-    $markup .= $lws . "<listitem>\n" .
-               $lws . " <para>\n";
-
-    $markup .= $lws . "  " . $description . "\n";
-
-    if (defined $entry->{list_header}) {
-        $markup .= $lws . "  <itemizedlist>\n";
-
-    } else {
-        if (defined $entry->{last_list_item}) {
-            $markup .= $lws . " </para>\n";
-            $markup .= $lws . " </listitem>\n";
-            $markup .= $lws . "</itemizedlist>\n";
-            $lws = $default_lws;
-        }
-        $markup .= $lws . " </para>\n" .
-                   $lws . "</listitem>\n";
-    }
-
-    return $markup;
-}
-
-sub wrap_in_para_itemlist_markup($) {
-    my $content = shift;
-    my $markup = "<para>\n" .
-                 " <itemizedlist>\n" .
-                 "  $content" .
-                 " </itemizedlist>\n" .
-                 "</para>\n";
-    return $markup;
 }
 
 sub generate_markup() {
     my $markup = '';
 
-    foreach my $entry (@entries) {
-        $markup .= create_listitem_markup(\%{$entry});
-    }
+    $markup .= "<para>\n" .
+               " <itemizedlist>\n";
 
-    print wrap_in_para_itemlist_markup($markup);
+    foreach my $entry (@entries) {
+        chomp $entry;
+        $entry =~ s@\n@\n    @g;
+        $markup .= "  <listitem>\n" .
+                   "   <para>\n" .
+                   "    " . $entry . "\n" .
+                   "   </para>\n" .
+                   "  </listitem>\n"
+                   ;
+    }
+    $markup .= " </itemizedlist>\n" .
+               "</para>\n";
+
+    print $markup;
 }
 
 sub main () {

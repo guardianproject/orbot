@@ -1,4 +1,4 @@
-const char actions_rcs[] = "$Id: actions.c,v 1.73 2011/09/18 14:43:07 fabiankeil Exp $";
+const char actions_rcs[] = "$Id: actions.c,v 1.56 2009/03/08 14:19:21 fabiankeil Exp $";
 /*********************************************************************
  *
  * File        :  $Source: /cvsroot/ijbswa/current/actions.c,v $
@@ -6,7 +6,7 @@ const char actions_rcs[] = "$Id: actions.c,v 1.73 2011/09/18 14:43:07 fabiankeil
  * Purpose     :  Declares functions to work with actions files
  *                Functions declared include: FIXME
  *
- * Copyright   :  Written by and Copyright (C) 2001-2011 the
+ * Copyright   :  Written by and Copyright (C) 2001-2008 the SourceForge
  *                Privoxy team. http://www.privoxy.org/
  *
  *                Based on the Internet Junkbuster originally written
@@ -31,8 +31,259 @@ const char actions_rcs[] = "$Id: actions.c,v 1.73 2011/09/18 14:43:07 fabiankeil
  *                or write to the Free Software Foundation, Inc., 59
  *                Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
+ * Revisions   :
+ *    $Log: actions.c,v $
+ *    Revision 1.56  2009/03/08 14:19:21  fabiankeil
+ *    Fix justified (but harmless) compiler warnings
+ *    on platforms where sizeof(int) < sizeof(long).
+ *
+ *    Revision 1.55  2008/12/04 18:18:56  fabiankeil
+ *    Fix some cparser warnings.
+ *
+ *    Revision 1.54  2008/09/20 10:04:33  fabiankeil
+ *    Remove hide-forwarded-for-headers action which has
+ *    been obsoleted by change-x-forwarded-for{block}.
+ *
+ *    Revision 1.53  2008/05/26 16:04:04  fabiankeil
+ *    s@memorey@memory@
+ *
+ *    Revision 1.52  2008/04/27 16:26:59  fabiankeil
+ *    White space fix for the last commit.
+ *
+ *    Revision 1.51  2008/04/27 16:20:19  fabiankeil
+ *    Complain about every block action without reason found.
+ *
+ *    Revision 1.50  2008/03/30 14:52:00  fabiankeil
+ *    Rename load_actions_file() and load_re_filterfile()
+ *    as they load multiple files "now".
+ *
+ *    Revision 1.49  2008/03/29 12:13:45  fabiankeil
+ *    Remove send-wafer and send-vanilla-wafer actions.
+ *
+ *    Revision 1.48  2008/03/28 18:17:14  fabiankeil
+ *    In action_used_to_be_valid(), loop through an array of formerly
+ *    valid actions instead of using an OR-chain of strcmpic() calls.
+ *
+ *    Revision 1.47  2008/03/28 15:13:37  fabiankeil
+ *    Remove inspect-jpegs action.
+ *
+ *    Revision 1.46  2008/03/27 18:27:20  fabiankeil
+ *    Remove kill-popups action.
+ *
+ *    Revision 1.45  2008/03/24 11:21:02  fabiankeil
+ *    Share the action settings for multiple patterns in the same
+ *    section so we waste less memory for gigantic block lists
+ *    (and load them slightly faster). Reported by Franz Schwartau.
+ *
+ *    Revision 1.44  2008/03/04 18:30:34  fabiankeil
+ *    Remove the treat-forbidden-connects-like-blocks action. We now
+ *    use the "blocked" page for forbidden CONNECT requests by default.
+ *
+ *    Revision 1.43  2008/03/01 14:00:43  fabiankeil
+ *    Let the block action take the reason for the block
+ *    as argument and show it on the "blocked" page.
+ *
+ *    Revision 1.42  2008/02/09 15:15:38  fabiankeil
+ *    List active and inactive actions in the show-url-info's
+ *    "Final results" section separately. Patch submitted by Lee
+ *    in #1830056, modified to list active actions first.
+ *
+ *    Revision 1.41  2008/01/28 20:17:40  fabiankeil
+ *    - Mark some parameters as immutable.
+ *    - Hide update_action_bits_for_all_tags() while it's unused.
+ *
+ *    Revision 1.40  2007/05/21 10:26:50  fabiankeil
+ *    - Use strlcpy() instead of strcpy().
+ *    - Provide a reason why loading the actions
+ *      file might have failed.
+ *
+ *    Revision 1.39  2007/04/17 18:21:45  fabiankeil
+ *    Split update_action_bits() into
+ *    update_action_bits_for_all_tags()
+ *    and update_action_bits_for_tag().
+ *
+ *    Revision 1.38  2007/04/15 16:39:20  fabiankeil
+ *    Introduce tags as alternative way to specify which
+ *    actions apply to a request. At the moment tags can be
+ *    created based on client and server headers.
+ *
+ *    Revision 1.37  2007/03/11 15:56:12  fabiankeil
+ *    Add kludge to log unknown aliases and actions before exiting.
+ *
+ *    Revision 1.36  2006/12/28 17:15:42  fabiankeil
+ *    Fix gcc43 conversion warning.
+ *
+ *    Revision 1.35  2006/07/18 14:48:45  david__schmidt
+ *    Reorganizing the repository: swapping out what was HEAD (the old 3.1 branch)
+ *    with what was really the latest development (the v_3_0_branch branch)
+ *
+ *    Revision 1.32.2.6  2006/01/29 23:10:56  david__schmidt
+ *    Multiple filter file support
+ *
+ *    Revision 1.32.2.5  2005/06/09 01:18:41  david__schmidt
+ *    Tweaks to conditionally include pthread.h if FEATURE_PTHREAD is enabled -
+ *    this becomes important when jcc.h gets included later down the line.
+ *
+ *    Revision 1.32.2.4  2003/12/03 10:33:11  oes
+ *    - Implemented Privoxy version requirement through
+ *      for-privoxy-version= statement in {{settings}}
+ *      block
+ *    - Fix for unchecked out-of-memory condition
+ *
+ *    Revision 1.32.2.3  2003/02/28 12:52:10  oes
+ *    Fixed memory leak reported by Dan Price in Bug #694713
+ *
+ *    Revision 1.32.2.2  2002/11/20 14:36:55  oes
+ *    Extended unload_current_actions_file() to multiple AFs.
+ *    Thanks to Oliver Stoeneberg for the hint.
+ *
+ *    Revision 1.32.2.1  2002/05/26 12:13:16  roro
+ *    Change unsigned to unsigned long in actions_name struct.  This closes
+ *    SourceForge Bug #539284.
+ *
+ *    Revision 1.32  2002/05/12 21:36:29  jongfoster
+ *    Correcting function comments
+ *
+ *    Revision 1.31  2002/05/06 07:56:50  oes
+ *    Made actions_to_html independent of FEATURE_CGI_EDIT_ACTIONS
+ *
+ *    Revision 1.30  2002/04/30 11:14:52  oes
+ *    Made csp the first parameter in *action_to_html
+ *
+ *    Revision 1.29  2002/04/26 19:30:54  jongfoster
+ *    - current_action_to_html(): Adding help link for the "-" form of
+ *      one-string actions.
+ *    - Some actions had "<br>-", some "<br> -" (note the space).
+ *      Standardizing on no space.
+ *    - Greatly simplifying some of the code by using string_join()
+ *      where appropriate.
+ *
+ *    Revision 1.28  2002/04/26 12:53:15  oes
+ *     - CGI AF editor now writes action lines split into
+ *       single lines with line continuation
+ *     - actions_to_html now embeds each action name in
+ *       link to chapter
+ *     - current_action_to_text is now called current_action_to_html
+ *       and acts like actions_to_html
+ *
+ *    Revision 1.27  2002/04/24 02:10:31  oes
+ *     - Jon's patch for multiple AFs:
+ *       - split load_actions_file, add load_one_actions_file
+ *       - make csp->actions_list files an array
+ *       - remember file id with each action
+ *     - Copy_action now frees dest action before copying
+ *
+ *    Revision 1.26  2002/03/26 22:29:54  swa
+ *    we have a new homepage!
+ *
+ *    Revision 1.25  2002/03/24 13:25:43  swa
+ *    name change related issues
+ *
+ *    Revision 1.24  2002/03/16 23:54:06  jongfoster
+ *    Adding graceful termination feature, to help look for memory leaks.
+ *    If you enable this (which, by design, has to be done by hand
+ *    editing config.h) and then go to http://i.j.b/die, then the program
+ *    will exit cleanly after the *next* request.  It should free all the
+ *    memory that was used.
+ *
+ *    Revision 1.23  2002/03/07 03:46:16  oes
+ *    Fixed compiler warnings
+ *
+ *    Revision 1.22  2002/01/21 00:27:02  jongfoster
+ *    Allowing free_action(NULL).
+ *    Moving the functions that #include actionlist.h to the end of the file,
+ *    because the Visual C++ 97 debugger gets extremely confused if you try
+ *    to debug any code that comes after them in the file.
+ *
+ *    Revision 1.21  2002/01/17 20:54:44  jongfoster
+ *    Renaming free_url to free_url_spec, since it frees a struct url_spec.
+ *
+ *    Revision 1.20  2001/11/22 21:56:49  jongfoster
+ *    Making action_spec->flags into an unsigned long rather than just an
+ *    unsigned int.
+ *    Fixing a bug in the display of -add-header and -wafer
+ *
+ *    Revision 1.19  2001/11/13 00:14:07  jongfoster
+ *    Fixing stupid bug now I've figured out what || means.
+ *    (It always returns 0 or 1, not one of it's paramaters.)
+ *
+ *    Revision 1.18  2001/11/07 00:06:06  steudten
+ *    Add line number in error output for lineparsing for
+ *    actionsfile.
+ *
+ *    Revision 1.17  2001/10/25 03:40:47  david__schmidt
+ *    Change in porting tactics: OS/2's EMX porting layer doesn't allow multiple
+ *    threads to call select() simultaneously.  So, it's time to do a real, live,
+ *    native OS/2 port.  See defines for __EMX__ (the porting layer) vs. __OS2__
+ *    (native). Both versions will work, but using __OS2__ offers multi-threading.
+ *
+ *    Revision 1.16  2001/10/23 21:30:30  jongfoster
+ *    Adding error-checking to selected functions.
+ *
+ *    Revision 1.15  2001/10/14 21:58:22  jongfoster
+ *    Adding support for the CGI-based editor:
+ *    - Exported get_actions()
+ *    - Added new function free_alias_list()
+ *    - Added support for {{settings}} and {{description}} blocks
+ *      in the actions file.  They are currently ignored.
+ *    - Added restriction to only one {{alias}} block which must appear
+ *      first in the file, to simplify the editor's rewriting rules.
+ *    - Note that load_actions_file() is no longer used by the CGI-based
+ *      editor, but some of the other routines in this file are.
+ *
+ *    Revision 1.14  2001/09/22 16:36:59  jongfoster
+ *    Removing unused parameter fs from read_config_line()
+ *
+ *    Revision 1.13  2001/09/16 15:47:37  jongfoster
+ *    First version of CGI-based edit interface.  This is very much a
+ *    work-in-progress, and you can't actually use it to edit anything
+ *    yet.  You must #define FEATURE_CGI_EDIT_ACTIONS for these changes
+ *    to have any effect.
+ *
+ *    Revision 1.12  2001/09/16 13:21:27  jongfoster
+ *    Changes to use new list functions.
+ *
+ *    Revision 1.11  2001/09/14 00:17:32  jongfoster
+ *    Tidying up memory allocation. New function init_action().
+ *
+ *    Revision 1.10  2001/09/10 10:14:34  oes
+ *    Removing unused variable
+ *
+ *    Revision 1.9  2001/07/30 22:08:36  jongfoster
+ *    Tidying up #defines:
+ *    - All feature #defines are now of the form FEATURE_xxx
+ *    - Permanently turned off WIN_GUI_EDIT
+ *    - Permanently turned on WEBDAV and SPLIT_PROXY_ARGS
+ *
+ *    Revision 1.8  2001/06/29 13:19:52  oes
+ *    Removed logentry from cancelled commit
+ *
+ *    Revision 1.7  2001/06/09 10:55:28  jongfoster
+ *    Changing BUFSIZ ==> BUFFER_SIZE
+ *
+ *    Revision 1.6  2001/06/07 23:04:34  jongfoster
+ *    Made get_actions() static.
+ *
+ *    Revision 1.5  2001/06/03 19:11:48  oes
+ *    adapted to new enlist_unique arg format
+ *
+ *    Revision 1.4  2001/06/01 20:03:42  jongfoster
+ *    Better memory management - current_action->strings[] now
+ *    contains copies of the strings, not the original.
+ *
+ *    Revision 1.3  2001/06/01 18:49:17  jongfoster
+ *    Replaced "list_share" with "list" - the tiny memory gain was not
+ *    worth the extra complexity.
+ *
+ *    Revision 1.2  2001/05/31 21:40:00  jongfoster
+ *    Removing some commented out, obsolete blocks of code.
+ *
+ *    Revision 1.1  2001/05/31 21:16:46  jongfoster
+ *    Moved functions to process the action list into this new file.
+ *
+ *
  *********************************************************************/
-
+
 
 #include "config.h"
 
@@ -434,7 +685,7 @@ jb_err get_action_token(char **line, char **name, char **value)
  *********************************************************************/
 static int action_used_to_be_valid(const char *action)
 {
-   static const char * const formerly_valid_actions[] = {
+   static const char *formerly_valid_actions[] = {
       "inspect-jpegs",
       "kill-popups",
       "send-vanilla-wafer",
@@ -522,7 +773,7 @@ jb_err get_actions(char *line,
 
                   if ((value == NULL) || (*value == '\0'))
                   {
-                     if (0 == strcmpic(action->name, "+block"))
+                     if (0 != strcmpic(action->name, "block"))
                      {
                         /*
                          * XXX: Temporary backwards compatibility hack.
@@ -879,7 +1130,7 @@ int update_action_bits_for_tag(struct client_state *csp, const char *tag)
  * Returns     :  N/A
  *
  *********************************************************************/
-void free_current_action(struct current_action_spec *src)
+void free_current_action (struct current_action_spec *src)
 {
    int i;
 
@@ -1033,108 +1284,6 @@ int load_action_files(struct client_state *csp)
    return 0;
 }
 
-
-/*********************************************************************
- *
- * Function    :  referenced_filters_are_missing
- *
- * Description :  Checks if any filters of a certain type referenced
- *                in an action spec are missing.
- *
- * Parameters  :
- *          1  :  csp = Current client state (buffers, headers, etc...)
- *          2  :  cur_action = The action spec to check.
- *          3  :  multi_index = The index where to look for the filter.
- *          4  :  filter_type = The filter type the caller is interested in.
- *
- * Returns     :  0 => All referenced filters exists, everything else is an error.
- *
- *********************************************************************/
-static int referenced_filters_are_missing(const struct client_state *csp,
-   const struct action_spec *cur_action, int multi_index, enum filter_type filter_type)
-{
-   int i;
-   struct file_list *fl;
-   struct re_filterfile_spec *b;
-   struct list_entry *filtername;
-
-   for (filtername = cur_action->multi_add[multi_index]->first;
-        filtername; filtername = filtername->next)
-   {
-      int filter_found = 0;
-      for (i = 0; i < MAX_AF_FILES; i++)
-      {
-         fl = csp->rlist[i];
-         if ((NULL == fl) || (NULL == fl->f))
-         {
-            continue;
-         }
-
-         for (b = fl->f; b; b = b->next)
-         {
-            if (b->type != filter_type)
-            {
-               continue;
-            }
-            if (strcmp(b->name, filtername->str) == 0)
-            {
-               filter_found = 1;
-            }
-         }
-      }
-      if (!filter_found)
-      {
-         log_error(LOG_LEVEL_ERROR, "Missing filter '%s'", filtername->str);
-         return 1;
-      }
-   }
-
-   return 0;
-
-}
-
-
-/*********************************************************************
- *
- * Function    :  action_spec_is_valid
- *
- * Description :  Should eventually figure out if an action spec
- *                is valid, but currently only checks that the
- *                referenced filters are accounted for.
- *
- * Parameters  :
- *          1  :  csp = Current client state (buffers, headers, etc...)
- *          2  :  cur_action = The action spec to check.
- *
- * Returns     :  0 => No problems detected, everything else is an error.
- *
- *********************************************************************/
-static int action_spec_is_valid(struct client_state *csp, const struct action_spec *cur_action)
-{
-   struct {
-      int multi_index;
-      enum filter_type filter_type;
-   } filter_map[] = {
-      {ACTION_MULTI_FILTER, FT_CONTENT_FILTER},
-      {ACTION_MULTI_CLIENT_HEADER_FILTER, FT_CLIENT_HEADER_FILTER},
-      {ACTION_MULTI_SERVER_HEADER_FILTER, FT_SERVER_HEADER_FILTER},
-      {ACTION_MULTI_CLIENT_HEADER_TAGGER, FT_CLIENT_HEADER_TAGGER},
-      {ACTION_MULTI_SERVER_HEADER_TAGGER, FT_SERVER_HEADER_TAGGER}
-   };
-   int errors = 0;
-   int i;
-
-   for (i = 0; i < SZ(filter_map); i++)
-   {
-      errors += referenced_filters_are_missing(csp, cur_action,
-         filter_map[i].multi_index, filter_map[i].filter_type);
-   }
-
-   return errors;
-
-}
-
-
 /*********************************************************************
  *
  * Function    :  load_one_actions_file
@@ -1157,24 +1306,23 @@ static int load_one_actions_file(struct client_state *csp, int fileid)
     * Note: Keep these in the order they occur in the file, they are
     * sometimes tested with <=
     */
-   enum {
-      MODE_START_OF_FILE = 1,
-      MODE_SETTINGS      = 2,
-      MODE_DESCRIPTION   = 3,
-      MODE_ALIAS         = 4,
-      MODE_ACTIONS       = 5
-   } mode;
+#define MODE_START_OF_FILE 1
+#define MODE_SETTINGS      2
+#define MODE_DESCRIPTION   3
+#define MODE_ALIAS         4
+#define MODE_ACTIONS       5
+
+   int mode = MODE_START_OF_FILE;
 
    FILE *fp;
    struct url_actions *last_perm;
    struct url_actions *perm;
-   char  *buf;
+   char  buf[BUFFER_SIZE];
    struct file_list *fs;
    struct action_spec * cur_action = NULL;
    int cur_action_used = 0;
    struct action_alias * alias_list = NULL;
    unsigned long linenum = 0;
-   mode = MODE_START_OF_FILE;
 
    if (!check_file_changed(current_actions_file[fileid], csp->config->actions_file[fileid], &fs))
    {
@@ -1205,9 +1353,7 @@ static int load_one_actions_file(struct client_state *csp, int fileid)
       return 1; /* never get here */
    }
 
-   log_error(LOG_LEVEL_INFO, "Loading actions file: %s", csp->config->actions_file[fileid]);
-
-   while (read_config_line(fp, &linenum, &buf) != NULL)
+   while (read_config_line(buf, sizeof(buf), fp, &linenum) != NULL)
    {
       if (*buf == '{')
       {
@@ -1223,7 +1369,7 @@ static int load_one_actions_file(struct client_state *csp, int fileid)
                /* too short */
                fclose(fp);
                log_error(LOG_LEVEL_FATAL,
-                  "can't load actions file '%s': invalid line (%lu): %s",
+                  "can't load actions file '%s': invalid line (%lu): %s", 
                   csp->config->actions_file[fileid], linenum, buf);
                return 1; /* never get here */
             }
@@ -1324,11 +1470,11 @@ static int load_one_actions_file(struct client_state *csp, int fileid)
          {
             /* It's an actions block */
 
-            char *actions_buf;
+            char  actions_buf[BUFFER_SIZE];
             char * end;
 
             /* set mode */
-            mode = MODE_ACTIONS;
+            mode    = MODE_ACTIONS;
 
             /* free old action */
             if (cur_action)
@@ -1351,23 +1497,8 @@ static int load_one_actions_file(struct client_state *csp, int fileid)
             }
             init_action(cur_action);
 
-            /*
-             * Copy the buffer before messing with it as we may need the
-             * unmodified version in for the fatal error messages. Given
-             * that this is not a common event, we could instead simply
-             * read the line again.
-             *
-             * buf + 1 to skip the leading '{'
-             */
-            actions_buf = strdup(buf + 1);
-            if (actions_buf == NULL)
-            {
-               fclose(fp);
-               log_error(LOG_LEVEL_FATAL,
-                  "can't load actions file '%s': out of memory",
-                  csp->config->actions_file[fileid]);
-               return 1; /* never get here */
-            }
+            /* trim { */
+            strlcpy(actions_buf, buf + 1, sizeof(actions_buf));
 
             /* check we have a trailing } and then trim it */
             end = actions_buf + strlen(actions_buf) - 1;
@@ -1375,9 +1506,8 @@ static int load_one_actions_file(struct client_state *csp, int fileid)
             {
                /* No closing } */
                fclose(fp);
-               freez(actions_buf);
-               log_error(LOG_LEVEL_FATAL, "can't load actions file '%s': "
-                  "Missing trailing '}' in action section starting at line (%lu): %s",
+               log_error(LOG_LEVEL_FATAL,
+                  "can't load actions file '%s': invalid line (%lu): %s",
                   csp->config->actions_file[fileid], linenum, buf);
                return 1; /* never get here */
             }
@@ -1390,21 +1520,11 @@ static int load_one_actions_file(struct client_state *csp, int fileid)
             {
                /* error */
                fclose(fp);
-               freez(actions_buf);
-               log_error(LOG_LEVEL_FATAL, "can't load actions file '%s': "
-                  "can't completely parse the action section starting at line (%lu): %s",
+               log_error(LOG_LEVEL_FATAL,
+                  "can't load actions file '%s': invalid line (%lu): %s",
                   csp->config->actions_file[fileid], linenum, buf);
                return 1; /* never get here */
             }
-
-            if (action_spec_is_valid(csp, cur_action))
-            {
-               log_error(LOG_LEVEL_ERROR, "Invalid action section in file '%s', "
-                  "starting at line %lu: %s",
-                  csp->config->actions_file[fileid], linenum, buf);
-            }
-
-            freez(actions_buf);
          }
       }
       else if (mode == MODE_SETTINGS)
@@ -1428,8 +1548,8 @@ static int load_one_actions_file(struct client_state *csp, int fileid)
                          csp->config->actions_file[fileid]);
                return 1; /* never get here */
             }
-
-            num_fields = ssplit(version_string, ".", fields, SZ(fields), TRUE, FALSE);
+            
+            num_fields = ssplit(version_string, ".", fields, 3, TRUE, FALSE);
 
             if (num_fields < 1 || atoi(fields[0]) == 0)
             {
@@ -1538,7 +1658,7 @@ static int load_one_actions_file(struct client_state *csp, int fileid)
       }
       else if (mode == MODE_ACTIONS)
       {
-         /* it's an URL pattern */
+         /* it's a URL pattern */
 
          /* allocate a new node */
          if ((perm = zalloc(sizeof(*perm))) == NULL)
@@ -1558,7 +1678,7 @@ static int load_one_actions_file(struct client_state *csp, int fileid)
          {
             fclose(fp);
             log_error(LOG_LEVEL_FATAL,
-               "can't load actions file '%s': line %lu: cannot create URL or TAG pattern from: %s",
+               "can't load actions file '%s': line %lu: cannot create URL pattern from: %s",
                csp->config->actions_file[fileid], linenum, buf);
             return 1; /* never get here */
          }
@@ -1572,7 +1692,7 @@ static int load_one_actions_file(struct client_state *csp, int fileid)
          /* oops - please have a {} line as 1st line in file. */
          fclose(fp);
          log_error(LOG_LEVEL_FATAL,
-            "can't load actions file '%s': line %lu should begin with a '{': %s",
+            "can't load actions file '%s': first needed line (%lu) is invalid: %s",
             csp->config->actions_file[fileid], linenum, buf);
          return 1; /* never get here */
       }
@@ -1585,7 +1705,6 @@ static int load_one_actions_file(struct client_state *csp, int fileid)
             csp->config->actions_file[fileid], mode);
          return 1; /* never get here */
       }
-      freez(buf);
    }
 
    fclose(fp);
@@ -1619,7 +1738,7 @@ static int load_one_actions_file(struct client_state *csp, int fileid)
  *
  * Description :  Converts a actionsfile entry from the internal
  *                structure into a text line.  The output is split
- *                into one line for each action with line continuation.
+ *                into one line for each action with line continuation. 
  *
  * Parameters  :
  *          1  :  action = The action to format.
@@ -1704,7 +1823,7 @@ char * actions_to_text(const struct action_spec *action)
  * Function    :  actions_to_html
  *
  * Description :  Converts a actionsfile entry from numeric form
- *                ("mask" and "add") to a <br>-separated HTML string
+ *                ("mask" and "add") to a <br>-seperated HTML string
  *                in which each action is linked to its chapter in
  *                the user manual.
  *
@@ -1810,12 +1929,12 @@ char * actions_to_html(const struct client_state *csp,
  *
  * Function    :  current_actions_to_html
  *
- * Description :  Converts a curren action spec to a <br> separated HTML
+ * Description :  Converts a curren action spec to a <br> seperated HTML
  *                text in which each action is linked to its chapter in
  *                the user manual.
  *
  * Parameters  :
- *          1  :  csp    = Client state (for config)
+ *          1  :  csp    = Client state (for config) 
  *          2  :  action = Current action spec to be converted
  *
  * Returns     :  A string.  Caller must free it.

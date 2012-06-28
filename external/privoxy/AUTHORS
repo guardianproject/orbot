@@ -7,8 +7,11 @@ Current Privoxy Team:
  David Schmidt, developer
 
  Hal Burgiss
+ Mark Miller
+ Gerry Murphy
  Lee Rian
  Roland Rosenfeld
+ Jörg Strohmayer
 
 Former Privoxy Team Members:
 
@@ -25,13 +28,10 @@ Former Privoxy Team Members:
  Adam Lock
  Guy Laroche
  Justin McMurtry
- Mark Miller
- Gerry Murphy
  Andreas Oesterhelt
  Haroon Rafique
  Georg Sauthoff
  Thomas Steudten
- Jörg Strohmayer
  Rodney Stromlund
  Sviatoslav Sviridov
  Sarantis Paskalis
@@ -43,15 +43,11 @@ alphabetical order):
 
  Ken Arromdee
  Devin Bayer
- Havard Berland
  Gergely Bor
- Francois Botha
  Reiner Buehl
  Andrew J. Caines
  Clifford Caoile
- Wan-Teh Chang
  Frédéric Crozat
- Billy Crook
  Michael T. Davis
  Mattes Dolak
  Matthias Drochner
@@ -62,13 +58,12 @@ alphabetical order):
  Stephen Gildea
  Daniel Griscom
  Felix Gröbert
- Jeff H.
  Aaron Hamid
  Darel Henman
  Magnus Holmgren
  Eric M. Hopper
  Ralf Horstmann
- Stefan Huehner
+ Stefan Huehner 
  Peter Hyman
  Derek Jennings
  Petr Kadlec
@@ -76,17 +71,13 @@ alphabetical order):
  Bert van Leeuwen
  Don Libes
  Paul Lieverse
- Han Liu
  Toby Lyward
  Wil Mahan
  Jindrich Makovicka
- Raphael Marichez
- Francois Marier
  David Mediavilla
  Raphael Moll
  Amuro Namie
  Adam Piggott
- Petr Písar
  Dan Price
  Roberto Ragusa
  Félix Rauch
@@ -94,7 +85,6 @@ alphabetical order):
  Chung-chieh Shan
  Spinor S.
  Bart Schelstraete
- Dan Stahlke
  Oliver Stoeneberg
  Peter Thoenen
  Martin Thomas
@@ -124,4 +114,3 @@ If we've missed you off this list, please let us know!
 
  Privoxy team. http://www.privoxy.org/
  <ijbswa-developers@lists.sourceforge.net>
-

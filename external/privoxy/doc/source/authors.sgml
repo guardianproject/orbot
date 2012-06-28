@@ -2,31 +2,31 @@
  File        :  $Source: /cvsroot/ijbswa/current/doc/source/authors.sgml,v $
 
  Purpose     :  AUTHORS file for Privoxy
+                
+ $Id: authors.sgml,v 2.11 2009/02/12 16:08:26 fabiankeil Exp $
 
- $Id: authors.sgml,v 2.21 2011/12/26 17:05:40 fabiankeil Exp $
-
-
+ 
  Copyright (C) 2001-2009 Privoxy Developers http://www.privoxy.org/
  See LICENSE.
 
  ========================================================================
- NOTE: Please read developer-manual/documentation.html before touching
+ NOTE: Please read developer-manual/documentation.html before touching 
  anything in this, or other Privoxy documentation. You have been warned!
- Failure to abide by this rule will result in the revocation of your license
+ Failure to abide by this rule will result in the revocation of your license 
  to live a peaceful existence!
  ========================================================================
 
  ===================================================================
- READ: Document Note: This file generates the AUTHORS file in the
+ READ: Document Note: This file generates the AUTHORS file in the 
  top level source directory. See p-authors.sgml for list of developers
  and contributors, etc. They were split from here for use in man page.
  ===================================================================
 
 -->
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook V3.1//EN" [
-<!entity % dummy "IGNORE">
+<!entity % dummy "IGNORE"> 
 <!entity authors SYSTEM "p-authors.sgml">
-<!entity p-version "3.0.19">
+<!entity p-version "3.0.11">
 <!entity p-status "stable">
 <!entity % p-not-stable "IGNORE">
 <!entity % p-stable "INCLUDE">

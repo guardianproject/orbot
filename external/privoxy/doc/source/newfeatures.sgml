@@ -2,8 +2,8 @@
  File        :  $Source: /cvsroot/ijbswa/current/doc/source/newfeatures.sgml,v $
 
  Purpose     :  Entity included in other project documents.
-
- $Id: newfeatures.sgml,v 2.14 2009/10/10 05:51:13 fabiankeil Exp $
+                
+ $Id: newfeatures.sgml,v 2.10 2009/02/14 17:37:13 fabiankeil Exp $
 
  Copyright (C) 2001-2009 Privoxy Developers http://www.privoxy.org/
  See LICENSE.
@@ -12,7 +12,7 @@
   This file used for inclusion with other documents only.
  ======================================================================
 
- If you make changes to this file, please verify the finished
+ If you make changes to this file, please verify the finished 
  docs all display as intended.
 
  This file is included into:
@@ -30,64 +30,57 @@
   FIXME: complete the list of features. change the order: most important
   features to the top of the list. prefix new features with "NEW".
   </para>
- </listitem>
+ </listitem> 
 -->
  <listitem>
   <para>
-     Supports "Connection: keep-alive". Outgoing connections can
-     be kept alive independently from the client.
+     Can keep outgoing connections alive and reuse them later on.
   </para>
- </listitem>
-
- <listitem>
-  <para>
-     Supports IPv6, provided the operating system does so too,
-     and the configure script detects it.
-  </para>
- </listitem>
+ </listitem> 
 
  <listitem>
   <para>
      Supports tagging which allows to change the behaviour
      based on client and server headers.
   </para>
- </listitem>
+ </listitem> 
 
  <listitem>
   <para>
      Can be run as an "intercepting" proxy, which obviates the need to
      configure browsers individually.
   </para>
- </listitem>
+ </listitem> 
 
  <listitem>
   <para>
      Sophisticated actions and filters for manipulating both server and client
-     headers.
+     headers. 
    </para>
- </listitem>
+ </listitem> 
 
  <listitem>
   <para>
      Can be chained with other proxies.
   </para>
- </listitem>
+ </listitem> 
 
  <listitem>
   <para>
-   Integrated browser-based configuration and control utility at <ulink
+   Integrated browser based configuration and control utility at <ulink
    url="http://config.privoxy.org/">http://config.privoxy.org/</ulink>
    (shortcut: <ulink url="http://p.p/">http://p.p/</ulink>). Browser-based
    tracing of rule and filter effects. Remote toggling.
   </para>
- </listitem>
+ </listitem> 
 
  <listitem>
   <para>
    Web page filtering (text replacements, removes banners based on size,
-   invisible <quote>web-bugs</quote> and HTML annoyances, etc.)
+   invisible <quote>web-bugs</quote>, JavaScript and HTML annoyances, 
+   pop-up windows, etc.)
   </para>
- </listitem>
+ </listitem> 
 
  <listitem>
   <para>
@@ -95,50 +88,69 @@
    user settings to reside in separate files, so that installing updated
    actions files won't overwrite individual user settings.
   </para>
- </listitem>
+ </listitem> 
 
  <listitem>
   <para>
-   Support for Perl Compatible Regular Expressions in the configuration files, and
+   Support for Perl Compatible Regular Expressions in the configuration files, and 
    a more sophisticated and flexible configuration syntax.
   </para>
- </listitem>
+ </listitem> 
 
  <listitem>
   <para>
-   GIF de-animation.
+   Improved cookie management features (e.g. session based cookies).
   </para>
- </listitem>
+</listitem> 
 
+ <listitem>
+  <para>
+   GIF de-animation. 
+  </para>
+ </listitem> 
+ 
  <listitem>
   <para>
    Bypass many click-tracking scripts (avoids script redirection).
   </para>
- </listitem>
+ </listitem> 
+ 
+ <listitem>
+  <para>
+   Multi-threaded (POSIX and native threads).
+  </para>
+ </listitem> 
 
  <listitem>
   <para>
    User-customizable HTML templates for most proxy-generated pages (e.g. "blocked" page).
   </para>
- </listitem>
+ </listitem> 
 
  <listitem>
   <para>
    Auto-detection and re-reading of config file changes.
   </para>
- </listitem>
+ </listitem> 
 
  <listitem>
   <para>
-   Most features are controllable on a per-site or per-location basis.
+   Improved signal handling, and a true daemon mode (Unix).
   </para>
-</listitem>
+</listitem> 
+
+ <listitem>
+  <para>
+   Every feature now controllable on a per-site or per-location basis, configuration
+   more powerful and versatile over-all.
+  </para>
+</listitem> 
 
  <listitem>
   <para>
    Many smaller new features added, limitations and bugs removed.
   </para>
-</listitem>
+</listitem> 
 
  </itemizedlist>
 </para>

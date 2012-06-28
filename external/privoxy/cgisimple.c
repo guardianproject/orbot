@@ -1,22 +1,22 @@
-const char cgisimple_rcs[] = "$Id: cgisimple.c,v 1.111 2011/09/04 11:10:56 fabiankeil Exp $";
+const char cgisimple_rcs[] = "$Id: cgisimple.c,v 1.91 2009/03/08 14:19:23 fabiankeil Exp $";
 /*********************************************************************
  *
  * File        :  $Source: /cvsroot/ijbswa/current/cgisimple.c,v $
  *
  * Purpose     :  Simple CGIs to get information about Privoxy's
  *                status.
- *
+ *                
  *                Functions declared include:
+ * 
  *
- *
- * Copyright   :  Written by and Copyright (C) 2001-2011 the
+ * Copyright   :  Written by and Copyright (C) 2001-2008 the SourceForge
  *                Privoxy team. http://www.privoxy.org/
  *
  *                Based on the Internet Junkbuster originally written
- *                by and Copyright (C) 1997 Anonymous Coders and
+ *                by and Copyright (C) 1997 Anonymous Coders and 
  *                Junkbusters Corporation.  http://www.junkbusters.com
  *
- *                This program is free software; you can redistribute it
+ *                This program is free software; you can redistribute it 
  *                and/or modify it under the terms of the GNU General
  *                Public License as published by the Free Software
  *                Foundation; either version 2 of the License, or (at
@@ -34,8 +34,415 @@ const char cgisimple_rcs[] = "$Id: cgisimple.c,v 1.111 2011/09/04 11:10:56 fabia
  *                or write to the Free Software Foundation, Inc., 59
  *                Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
+ * Revisions   :
+ *    $Log: cgisimple.c,v $
+ *    Revision 1.91  2009/03/08 14:19:23  fabiankeil
+ *    Fix justified (but harmless) compiler warnings
+ *    on platforms where sizeof(int) < sizeof(long).
+ *
+ *    Revision 1.90  2009/03/01 18:43:09  fabiankeil
+ *    Fix cparser warnings.
+ *
+ *    Revision 1.89  2008/10/11 11:31:14  fabiankeil
+ *    Add FEATURE_CONNECTION_KEEP_ALIVE to the list
+ *    of conditional defines on the show-status page.
+ *
+ *    Revision 1.88  2008/08/30 12:03:07  fabiankeil
+ *    Remove FEATURE_COOKIE_JAR.
+ *
+ *    Revision 1.87  2008/08/29 15:59:22  fabiankeil
+ *    Fix two comments.
+ *
+ *    Revision 1.86  2008/06/28 14:19:05  fabiankeil
+ *    Protocol detection is done case-insensitive, fix assertion
+ *    to do the same. Yay for Privoxy-Regression-Test and zzuf.
+ *
+ *    Revision 1.85  2008/05/26 17:30:55  fabiankeil
+ *    Provide an OpenSearch Description to access the
+ *    show-url-info page through "search engine plugins".
+ *
+ *    Revision 1.84  2008/05/26 16:16:55  fabiankeil
+ *    Spell error correctly.
+ *
+ *    Revision 1.83  2008/05/12 14:51:30  fabiankeil
+ *    Don't complain about an invalid URL if show-url-info is requested
+ *    without parameters. Regression introduced in 1.81 by yours truly.
+ *
+ *    Revision 1.82  2008/05/10 20:01:47  fabiankeil
+ *    Fix an assertion that could erroneously
+ *    trigger in case of memory shortage.
+ *
+ *    Revision 1.81  2008/05/05 09:54:39  fabiankeil
+ *    In cgi_show_url_info(), make sure ftp URLs are
+ *    declared invalid. Also simplify the code that adds
+ *    "http://" if no protocol has been specified.
+ *
+ *    Revision 1.80  2008/05/04 16:18:32  fabiankeil
+ *    Provide parse_http_url() with a third parameter to specify
+ *    whether or not URLs without protocol are acceptable.
+ *
+ *    Revision 1.79  2008/05/04 13:30:56  fabiankeil
+ *    Streamline parse_http_url()'s prototype.
+ *
+ *    Revision 1.78  2008/05/03 16:50:11  fabiankeil
+ *    Leverage content_filters_enabled() in cgi_show_url_info().
+ *
+ *    Revision 1.77  2008/05/02 09:47:48  fabiankeil
+ *    In cgi_show_url_info, pass an initialized http structure
+ *    to parse_http_url() as that will be required soonish and
+ *    assert that https URLs are recognized correctly.
+ *
+ *    Revision 1.76  2008/04/28 09:13:30  fabiankeil
+ *    In load_file(), remember the error reason and fclose()
+ *    and return later on instead of right away.
+ *
+ *    Revision 1.75  2008/04/27 13:52:52  fabiankeil
+ *    Move CGI file loading code into load_file() and
+ *    add checks for unexpected errors.
+ *
+ *    Revision 1.74  2008/04/26 15:50:56  fabiankeil
+ *    Fix macro name in cgi_show_file() error path.
+ *
+ *    Revision 1.73  2008/04/26 12:21:55  fabiankeil
+ *    Forget about JB_ERR_PARSE. JB_ERR_CGI_PARAMS to the rescue.
+ *
+ *    Revision 1.72  2008/04/26 10:34:15  fabiankeil
+ *    If zlib support is unavailable and there are content filters active
+ *    but the prevent-compression action is disabled, include a warning
+ *    on the show-url-info page that compression might prevent filtering.
+ *
+ *    Revision 1.71  2008/04/25 13:33:56  fabiankeil
+ *    - Factor cgi_show_file() out of cgi_show_status().
+ *    - Adjust cgi_show_status()'s parameter description to match reality.
+ *
+ *    Revision 1.70  2008/04/24 16:12:38  fabiankeil
+ *    In cgi_show_status(), load the requested file at once.
+ *    Using string_join() for every line really doesn't scale.
+ *
+ *    Revision 1.69  2008/04/17 14:40:48  fabiankeil
+ *    Provide get_http_time() with the buffer size so it doesn't
+ *    have to blindly assume that the buffer is big enough.
+ *
+ *    Revision 1.68  2008/03/27 18:27:21  fabiankeil
+ *    Remove kill-popups action.
+ *
+ *    Revision 1.67  2008/03/27 17:00:05  fabiankeil
+ *    Turn the favicon blobs into locals.
+ *
+ *    Revision 1.66  2008/02/23 16:57:12  fabiankeil
+ *    Rename url_actions() to get_url_actions() and let it
+ *    use the standard parameter ordering.
+ *
+ *    Revision 1.65  2008/02/23 16:33:43  fabiankeil
+ *    Let forward_url() use the standard parameter ordering
+ *    and mark its second parameter immutable.
+ *
+ *    Revision 1.64  2008/02/03 13:56:07  fabiankeil
+ *    Add SOCKS5 support for show-url-info CGI page.
+ *
+ *    Revision 1.63  2008/02/01 06:04:31  fabiankeil
+ *    If edit buttons on the show-url-info CGI page are hidden, explain why.
+ *
+ *    Revision 1.62  2008/02/01 05:52:40  fabiankeil
+ *    Hide edit buttons on the show-url-info CGI page if enable-edit-action
+ *    is disabled. Patch by Lee with additional white space adjustments.
+ *
+ *    Revision 1.61  2008/01/26 11:13:25  fabiankeil
+ *    If enable-edit-actions is disabled, hide the edit buttons and explain why.
+ *
+ *    Revision 1.60  2007/10/27 13:12:13  fabiankeil
+ *    Finish 1.49 and check write access before
+ *    showing edit buttons on show-url-info page.
+ *
+ *    Revision 1.59  2007/10/19 16:42:36  fabiankeil
+ *    Plug memory leak I introduced five months ago.
+ *    Yay Valgrind and Privoxy-Regression-Test.
+ *
+ *    Revision 1.58  2007/07/21 12:19:50  fabiankeil
+ *    If show-url-info is called with an URL that Privoxy
+ *    would reject as invalid, don't show unresolved forwarding
+ *    variables, "final matches" or claim the site's secure.
+ *
+ *    Revision 1.57  2007/06/01 16:53:05  fabiankeil
+ *    Adjust cgi_show_url_info() to show what forward-override{}
+ *    would do with the requested URL (instead of showing how the
+ *    request for the CGI page would be forwarded if it wasn't a
+ *    CGI request).
+ *
+ *    Revision 1.56  2007/05/21 10:50:35  fabiankeil
+ *    - Use strlcpy() instead of strcpy().
+ *    - Stop treating actions files special. Expect a complete file name
+ *      (with or without path) like it's done for the rest of the files.
+ *      Closes FR#588084.
+ *    - Don't rerun sed() in cgi_show_request().
+ *
+ *    Revision 1.55  2007/04/13 13:36:46  fabiankeil
+ *    Reference action files in CGI URLs by id instead
+ *    of using the first part of the file name.
+ *    Fixes BR 1694250 and BR 1590556.
+ *
+ *    Revision 1.54  2007/04/09 18:11:35  fabiankeil
+ *    Don't mistake VC++'s _snprintf() for a snprintf() replacement.
+ *
+ *    Revision 1.53  2007/04/08 13:21:04  fabiankeil
+ *    Reference action files in CGI URLs by id instead
+ *    of using the first part of the file name.
+ *    Fixes BR 1694250 and BR 1590556.
+ *
+ *    Revision 1.52  2007/02/13 15:10:26  fabiankeil
+ *    Apparently fopen()ing in "binary" mode doesn't require
+ *    #ifdefs, it's already done without them in cgiedit.c.
+ *
+ *    Revision 1.51  2007/02/10 16:55:22  fabiankeil
+ *    - Show forwarding settings on the show-url-info page
+ *    - Fix some HTML syntax errors.
+ *
+ *    Revision 1.50  2007/01/23 15:51:17  fabiankeil
+ *    Add favicon delivery functions.
+ *
+ *    Revision 1.49  2007/01/20 16:29:38  fabiankeil
+ *    Suppress edit buttons for action files if Privoxy has
+ *    no write access. Suggested by Roland in PR 1564026.
+ *
+ *    Revision 1.48  2007/01/20 15:31:31  fabiankeil
+ *    Display warning if show-url-info CGI page
+ *    is used while Privoxy is toggled off.
+ *
+ *    Revision 1.47  2007/01/12 15:07:10  fabiankeil
+ *    Use zalloc in cgi_send_user_manual.
+ *
+ *    Revision 1.46  2007/01/02 12:49:46  fabiankeil
+ *    Add FEATURE_ZLIB to the list of conditional
+ *    defines at the show-status page.
+ *
+ *    Revision 1.45  2006/12/28 18:16:41  fabiankeil
+ *    Fixed gcc43 compiler warnings, zero out cgi_send_user_manual's
+ *    body memory before using it, replaced sprintf calls with snprintf.
+ *
+ *    Revision 1.44  2006/12/22 14:19:27  fabiankeil
+ *    Removed checks whether or not AF_FILES have
+ *    data structures associated with them in cgi_show_status.
+ *    It doesn't matter as we're only interested in the file names.
+ *
+ *    For the action files the checks were always true,
+ *    but they prevented empty filter files from being
+ *    listed. Fixes parts of BR 1619208.
+ *
+ *    Revision 1.43  2006/12/17 17:57:56  fabiankeil
+ *    - Added FEATURE_GRACEFUL_TERMINATION to the
+ *      "conditional #defines" section
+ *    - Escaped ampersands in generated HTML.
+ *    - Renamed re-filter-filename to re-filter-filenames
+ *
+ *    Revision 1.42  2006/11/21 15:43:12  fabiankeil
+ *    Add special treatment for WIN32 to make sure
+ *    cgi_send_user_manual opens the files in binary mode.
+ *    Fixes BR 1600411 and unbreaks image delivery.
+ *
+ *    Remove outdated comment.
+ *
+ *    Revision 1.41  2006/10/09 19:18:28  roro
+ *    Redirect http://p.p/user-manual (without trailing slash) to
+ *    http://p.p/user-manual/ (with trailing slash), otherwise links will be broken.
+ *
+ *    Revision 1.40  2006/09/09 13:05:33  fabiankeil
+ *    Modified cgi_send_user_manual to serve binary
+ *    content without destroying it first. Should also be
+ *    faster now. Added ".jpg" check for Content-Type guessing.
+ *
+ *    Revision 1.39  2006/09/08 09:49:23  fabiankeil
+ *    Deliver documents in the user-manual directory
+ *    with "Content-Type text/css" if their filename
+ *    ends with ".css".
+ *
+ *    Revision 1.38  2006/09/06 18:45:03  fabiankeil
+ *    Incorporate modified version of Roland Rosenfeld's patch to
+ *    optionally access the user-manual via Privoxy. Closes patch 679075.
+ *
+ *    Formatting changed to Privoxy style, added call to
+ *    cgi_error_no_template if the requested file doesn't
+ *    exist and modified check whether or not Privoxy itself
+ *    should serve the manual. Should work cross-platform now.
+ *
+ *    Revision 1.37  2006/07/18 14:48:45  david__schmidt
+ *    Reorganizing the repository: swapping out what was HEAD (the old 3.1 branch)
+ *    with what was really the latest development (the v_3_0_branch branch)
+ *
+ *    Revision 1.35.2.7  2006/01/29 23:10:56  david__schmidt
+ *    Multiple filter file support
+ *
+ *    Revision 1.35.2.6  2005/07/04 03:13:43  david__schmidt
+ *    Undo some damaging memory leak patches
+ *
+ *    Revision 1.35.2.5  2005/05/07 21:50:55  david__schmidt
+ *    A few memory leaks plugged (mostly on error paths)
+ *
+ *    Revision 1.35.2.4  2005/04/04 02:21:24  david__schmidt
+ *    Another instance of:
+ *    Don't show "Edit" buttons #ifndef FEATURE_CGI_EDIT_ACTIONS
+ *    Thanks to Magnus Holmgren for the patch
+ *
+ *    Revision 1.35.2.3  2003/12/17 16:34:15  oes
+ *     - Prevent line wrap beween "View/Edit" link buttons on status page
+ *     - Some (mostly irrelevant) fixes for Out-of-mem-case handling
+ *
+ *    Revision 1.35.2.2  2003/04/03 13:48:28  oes
+ *    Don't show "Edit" buttons #ifndef FEATURE_CGI_EDIT_ACTIONS
+ *
+ *    Revision 1.35.2.1  2002/07/04 15:02:38  oes
+ *    Added ability to send redirects to send-banner CGI, so that it can completely mimic the image blocking action if called with type=auto
+ *
+ *    Revision 1.35.2.1  2002/07/01 17:32:04  morcego
+ *    Applying patch from Andreas as provided by Hal on the list.
+ *    Message-ID: <20020701121218.V1606@feenix.burgiss.net>
+ *
+ *    Revision 1.35  2002/05/12 21:44:44  jongfoster
+ *    Adding amiga.[ch] revision information, if on an amiga.
+ *
+ *    Revision 1.34  2002/04/30 12:06:12  oes
+ *    Deleted unused code from default_cgi
+ *
+ *    Revision 1.33  2002/04/30 11:14:52  oes
+ *    Made csp the first parameter in *action_to_html
+ *
+ *    Revision 1.32  2002/04/26 18:29:13  jongfoster
+ *    Fixing this Visual C++ warning:
+ *    cgisimple.c(775) : warning C4018: '<' : signed/unsigned mismatch
+ *
+ *    Revision 1.31  2002/04/26 12:54:36  oes
+ *     - Kill obsolete REDIRECT_URL code
+ *     - Error handling fixes
+ *     - Style sheet related HTML snipplet changes
+ *     - cgi_show_url_info:
+ *       - Matches now in table, actions on single lines,
+ *         linked to help
+ *       - standard.action suppressed
+ *       - Buttons to View and Edit AFs
+ *
+ *    Revision 1.30  2002/04/24 02:18:08  oes
+ *     - show-status is now the starting point for editing
+ *       the actions files, generate list of all AFs with buttons
+ *       for viewing and editing, new look for file list (Jon:
+ *       buttons now aligned ;-P ), view mode now supports multiple
+ *       AFs, name changes, no view links for unspecified files,
+ *       no edit link for standard.action.
+ *
+ *     - Jon's multiple AF patch: cgi_show_url_info now uses all
+ *       AFs and marks the output accordingly
+ *
+ *    Revision 1.29  2002/04/10 13:38:35  oes
+ *    load_template signature changed
+ *
+ *    Revision 1.28  2002/04/07 15:42:12  jongfoster
+ *    Fixing send-banner?type=auto when the image-blocker is
+ *    a redirect to send-banner
+ *
+ *    Revision 1.27  2002/04/05 15:50:48  oes
+ *    added send-stylesheet CGI
+ *
+ *    Revision 1.26  2002/04/04 00:36:36  gliptak
+ *    always use pcre for matching
+ *
+ *    Revision 1.25  2002/04/03 22:28:03  gliptak
+ *    Removed references to gnu_regex
+ *
+ *    Revision 1.24  2002/04/02 16:12:47  oes
+ *    Fix: moving misplaced lines into #ifdef FEATURE_FORCE
+ *
+ *    Revision 1.23  2002/03/26 22:29:54  swa
+ *    we have a new homepage!
+ *
+ *    Revision 1.22  2002/03/24 16:18:15  jongfoster
+ *    Removing old logo
+ *
+ *    Revision 1.21  2002/03/24 15:23:33  jongfoster
+ *    Name changes
+ *
+ *    Revision 1.20  2002/03/24 13:25:43  swa
+ *    name change related issues
+ *
+ *    Revision 1.19  2002/03/16 23:54:06  jongfoster
+ *    Adding graceful termination feature, to help look for memory leaks.
+ *    If you enable this (which, by design, has to be done by hand
+ *    editing config.h) and then go to http://i.j.b/die, then the program
+ *    will exit cleanly after the *next* request.  It should free all the
+ *    memory that was used.
+ *
+ *    Revision 1.18  2002/03/12 01:44:49  oes
+ *    Changed default for "blocked" image from jb logo to checkboard pattern
+ *
+ *    Revision 1.17  2002/03/08 16:43:18  oes
+ *    Added choice beween GIF and PNG built-in images
+ *
+ *    Revision 1.16  2002/03/07 03:48:38  oes
+ *     - Changed built-in images from GIF to PNG
+ *       (with regard to Unisys patent issue)
+ *     - Added a 4x4 pattern PNG which is less intrusive
+ *       than the logo but also clearly marks the deleted banners
+ *
+ *    Revision 1.15  2002/03/06 22:54:35  jongfoster
+ *    Automated function-comment nitpicking.
+ *
+ *    Revision 1.14  2002/03/02 04:14:50  david__schmidt
+ *    Clean up a little CRLF unpleasantness that suddenly appeared
+ *
+ *    Revision 1.13  2002/02/21 00:10:37  jongfoster
+ *    Adding send-banner?type=auto option
+ *
+ *    Revision 1.12  2002/01/23 01:03:32  jongfoster
+ *    Fixing gcc [CygWin] compiler warnings
+ *
+ *    Revision 1.11  2002/01/23 00:01:04  jongfoster
+ *    Adding cgi_transparent_gif() for http://i.j.b/t
+ *    Adding missing html_encode() to many CGI functions.
+ *    Adding urlmatch.[ch] to http://i.j.b/show-version
+ *
+ *    Revision 1.10  2002/01/17 21:10:37  jongfoster
+ *    Changes to cgi_show_url_info to use new matching code from urlmatch.c.
+ *    Also fixing a problem in the same function with improperly quoted URLs
+ *    in output HTML, and adding code to handle https:// URLs correctly.
+ *
+ *    Revision 1.9  2001/11/30 23:09:15  jongfoster
+ *    Now reports on FEATURE_CGI_EDIT_ACTIONS
+ *    Removing FEATURE_DENY_GZIP from template
+ *
+ *    Revision 1.8  2001/11/13 00:14:07  jongfoster
+ *    Fixing stupid bug now I've figured out what || means.
+ *    (It always returns 0 or 1, not one of it's paramaters.)
+ *
+ *    Revision 1.7  2001/10/23 21:48:19  jongfoster
+ *    Cleaning up error handling in CGI functions - they now send back
+ *    a HTML error page and should never cause a FATAL error.  (Fixes one
+ *    potential source of "denial of service" attacks).
+ *
+ *    CGI actions file editor that works and is actually useful.
+ *
+ *    Ability to toggle JunkBuster remotely using a CGI call.
+ *
+ *    You can turn off both the above features in the main configuration
+ *    file, e.g. if you are running a multi-user proxy.
+ *
+ *    Revision 1.6  2001/10/14 22:00:32  jongfoster
+ *    Adding support for a 404 error when an invalid CGI page is requested.
+ *
+ *    Revision 1.5  2001/10/07 15:30:41  oes
+ *    Removed FEATURE_DENY_GZIP
+ *
+ *    Revision 1.4  2001/10/02 15:31:12  oes
+ *    Introduced show-request cgi
+ *
+ *    Revision 1.3  2001/09/22 16:34:44  jongfoster
+ *    Removing unneeded #includes
+ *
+ *    Revision 1.2  2001/09/19 18:01:11  oes
+ *    Fixed comments; cosmetics
+ *
+ *    Revision 1.1  2001/09/16 17:08:54  jongfoster
+ *    Moving simple CGI functions from cgi.c to new file cgisimple.c
+ *
+ *
  **********************************************************************/
-
+
 
 #include "config.h"
 
@@ -80,7 +487,7 @@ static jb_err load_file(const char *filename, char **buffer, size_t *length);
  * Description :  CGI function that is called for the CGI_SITE_1_HOST
  *                and CGI_SITE_2_HOST/CGI_SITE_2_PATH base URLs.
  *                Boring - only exports the default exports.
- *
+ *               
  * Parameters  :
  *          1  :  csp = Current client state (buffers, headers, etc...)
  *          2  :  rsp = http_response data structure for output
@@ -118,7 +525,7 @@ jb_err cgi_default(struct client_state *csp,
  *
  * Description :  CGI function that is called if an unknown action was
  *                given.
- *
+ *               
  * Parameters  :
  *          1  :  csp = Current client state (buffers, headers, etc...)
  *          2  :  rsp = http_response data structure for output
@@ -127,7 +534,7 @@ jb_err cgi_default(struct client_state *csp,
  * CGI Parameters : none
  *
  * Returns     :  JB_ERR_OK on success
- *                JB_ERR_MEMORY on out-of-memory error.
+ *                JB_ERR_MEMORY on out-of-memory error.  
  *
  *********************************************************************/
 jb_err cgi_error_404(struct client_state *csp,
@@ -165,7 +572,7 @@ jb_err cgi_error_404(struct client_state *csp,
  *                NOTE: Turning this on in a production build
  *                would be a BAD idea.  An EXTREMELY BAD idea.
  *                In short, don't do it.
- *
+ *               
  * Parameters  :
  *          1  :  csp = Current client state (buffers, headers, etc...)
  *          2  :  rsp = http_response data structure for output
@@ -174,27 +581,13 @@ jb_err cgi_error_404(struct client_state *csp,
  * CGI Parameters : none
  *
  * Returns     :  JB_ERR_OK on success
- *                JB_ERR_MEMORY on out-of-memory error.
+ *                JB_ERR_MEMORY on out-of-memory error.  
  *
  *********************************************************************/
 jb_err cgi_die (struct client_state *csp,
                 struct http_response *rsp,
                 const struct map *parameters)
 {
-   static const char status[] = "200 OK Privoxy shutdown request received";
-   static const char body[] =
-      "<html>\n"
-      "<head>\n"
-      " <title>Privoxy shutdown request received</title>\n"
-      " <link rel=\"shortcut icon\" href=\"" CGI_PREFIX "error-favicon.ico\" type=\"image/x-icon\">\n"
-      " <link rel=\"stylesheet\" type=\"text/css\" href=\"http://config.privoxy.org/send-stylesheet\">\n"
-      "</head>\n"
-      "<body>\n"
-      "<h1>Privoxy shutdown request received</h1>\n"
-      "<p>Privoxy is going to shut down after the next request.</p>\n"
-      "</body>\n"
-      "</html>\n";
-
    assert(csp);
    assert(rsp);
    assert(parameters);
@@ -202,21 +595,12 @@ jb_err cgi_die (struct client_state *csp,
    /* quit */
    g_terminate = 1;
 
-   csp->flags &= ~CSP_FLAG_CLIENT_CONNECTION_KEEP_ALIVE;
+   /*
+    * I don't really care what gets sent back to the browser.
+    * Take the easy option - "out of memory" page.
+    */
 
-   rsp->content_length = 0;
-   rsp->head_length = 0;
-   rsp->is_static = 0;
-
-   rsp->body = strdup(body);
-   rsp->status = strdup(status);
-
-   if ((rsp->body == NULL) || (rsp->status == NULL))
-   {
-      return JB_ERR_MEMORY;
-   }
-
-   return JB_ERR_OK;
+   return JB_ERR_MEMORY;
 }
 #endif /* def FEATURE_GRACEFUL_TERMINATION */
 
@@ -227,7 +611,7 @@ jb_err cgi_die (struct client_state *csp,
  *
  * Description :  Show the client's request and what sed() would have
  *                made of it.
- *
+ *               
  * Parameters  :
  *          1  :  csp = Current client state (buffers, headers, etc...)
  *          2  :  rsp = http_response data structure for output
@@ -236,7 +620,7 @@ jb_err cgi_die (struct client_state *csp,
  * CGI Parameters : none
  *
  * Returns     :  JB_ERR_OK on success
- *                JB_ERR_MEMORY on out-of-memory error.
+ *                JB_ERR_MEMORY on out-of-memory error.  
  *
  *********************************************************************/
 jb_err cgi_show_request(struct client_state *csp,
@@ -254,7 +638,7 @@ jb_err cgi_show_request(struct client_state *csp,
    {
       return JB_ERR_MEMORY;
    }
-
+   
    /*
     * Repair the damage done to the IOB by get_header()
     */
@@ -289,7 +673,7 @@ jb_err cgi_show_request(struct client_state *csp,
  *
  * Function    :  cgi_send_banner
  *
- * Description :  CGI function that returns a banner.
+ * Description :  CGI function that returns a banner. 
  *
  * Parameters  :
  *          1  :  csp = Current client state (buffers, headers, etc...)
@@ -304,7 +688,7 @@ jb_err cgi_show_request(struct client_state *csp,
  *                  equivalent).
  *
  * Returns     :  JB_ERR_OK on success
- *                JB_ERR_MEMORY on out-of-memory error.
+ *                JB_ERR_MEMORY on out-of-memory error.  
  *
  *********************************************************************/
 jb_err cgi_send_banner(struct client_state *csp,
@@ -317,7 +701,7 @@ jb_err cgi_send_banner(struct client_state *csp,
     * If type is auto, then determine the right thing
     * to do from the set-image-blocker action
     */
-   if (imagetype == 'a')
+   if (imagetype == 'a') 
    {
       /*
        * Default to pattern
@@ -368,14 +752,14 @@ jb_err cgi_send_banner(struct client_state *csp,
       }
 #endif /* def FEATURE_IMAGE_BLOCKING */
    }
-
+      
    /*
     * Now imagetype is either the non-auto type we were called with,
     * or it was auto and has since been determined. In any case, we
     * can proceed to actually answering the request by sending a redirect
     * or an image as appropriate:
     */
-   if (imagetype == 'r')
+   if (imagetype == 'r') 
    {
       rsp->status = strdup("302 Local Redirect from Privoxy");
       if (rsp->status == NULL)
@@ -390,7 +774,7 @@ jb_err cgi_send_banner(struct client_state *csp,
    }
    else
    {
-      if ((imagetype == 'b') || (imagetype == 't'))
+      if ((imagetype == 'b') || (imagetype == 't')) 
       {
          rsp->body = bindup(image_blank_data, image_blank_length);
          rsp->content_length = image_blank_length;
@@ -432,7 +816,7 @@ jb_err cgi_send_banner(struct client_state *csp,
  * CGI Parameters : None
  *
  * Returns     :  JB_ERR_OK on success
- *                JB_ERR_MEMORY on out-of-memory error.
+ *                JB_ERR_MEMORY on out-of-memory error.  
  *
  *********************************************************************/
 jb_err cgi_transparent_image(struct client_state *csp,
@@ -476,7 +860,7 @@ jb_err cgi_transparent_image(struct client_state *csp,
  * CGI Parameters : None
  *
  * Returns     :  JB_ERR_OK on success
- *                JB_ERR_MEMORY on out-of-memory error.
+ *                JB_ERR_MEMORY on out-of-memory error.  
  *
  *********************************************************************/
 jb_err cgi_send_default_favicon(struct client_state *csp,
@@ -537,7 +921,7 @@ jb_err cgi_send_default_favicon(struct client_state *csp,
  * CGI Parameters : None
  *
  * Returns     :  JB_ERR_OK on success
- *                JB_ERR_MEMORY on out-of-memory error.
+ *                JB_ERR_MEMORY on out-of-memory error.  
  *
  *********************************************************************/
 jb_err cgi_send_error_favicon(struct client_state *csp,
@@ -599,7 +983,7 @@ jb_err cgi_send_error_favicon(struct client_state *csp,
  * CGI Parameters : None
  *
  * Returns     :  JB_ERR_OK on success
- *                JB_ERR_MEMORY on out-of-memory error.
+ *                JB_ERR_MEMORY on out-of-memory error.  
  *
  *********************************************************************/
 jb_err cgi_send_stylesheet(struct client_state *csp,
@@ -607,7 +991,7 @@ jb_err cgi_send_stylesheet(struct client_state *csp,
                            const struct map *parameters)
 {
    jb_err err;
-
+   
    assert(csp);
    assert(rsp);
 
@@ -653,7 +1037,7 @@ jb_err cgi_send_stylesheet(struct client_state *csp,
  * CGI Parameters : None
  *
  * Returns     :  JB_ERR_OK on success
- *                JB_ERR_MEMORY on out-of-memory error.
+ *                JB_ERR_MEMORY on out-of-memory error.  
  *
  *********************************************************************/
 jb_err cgi_send_url_info_osd(struct client_state *csp,
@@ -683,48 +1067,6 @@ jb_err cgi_send_url_info_osd(struct client_state *csp,
 
 /*********************************************************************
  *
- * Function    :  get_content_type
- *
- * Description :  Use the file extension to guess the content type
- *                header we should use to serve the file.
- *
- * Parameters  :
- *          1  :  filename = Name of the file whose content type
- *                           we care about
- *
- * Returns     :  The guessed content type.
- *
- *********************************************************************/
-static const char *get_content_type(const char *filename)
-{
-   int i;
-   struct content_type
-   {
-      const char *extension;
-      const char *content_type;
-   };
-   static const struct content_type content_types[] =
-   {
-      {".css",  "text/css"},
-      {".jpg",  "image/jpeg"},
-      {".jpeg", "image/jpeg"},
-      {".png",  "image/png"},
-   };
-
-   for (i = 0; i < SZ(content_types); i++)
-   {
-      if (strstr(filename, content_types[i].extension))
-      {
-         return content_types[i].content_type;
-      }
-   }
-
-   /* No match by extension, default to html */
-   return "text/html";
-}
-
-/*********************************************************************
- *
  * Function    :  cgi_send_user_manual
  *
  * Description :  CGI function that sends a file in the user
@@ -739,28 +1081,21 @@ static const char *get_content_type(const char *filename)
  *                  (relative to user-manual from config)
  *
  * Returns     :  JB_ERR_OK on success
- *                JB_ERR_MEMORY on out-of-memory error.
+ *                JB_ERR_MEMORY on out-of-memory error.  
  *
  *********************************************************************/
 jb_err cgi_send_user_manual(struct client_state *csp,
                             struct http_response *rsp,
                             const struct map *parameters)
 {
-   const char *filename;
+   const char * filename;
    char *full_path;
    jb_err err = JB_ERR_OK;
-   const char *content_type;
+   size_t length;
 
    assert(csp);
    assert(rsp);
    assert(parameters);
-
-   if (0 == strncmpic(csp->config->usermanual, "http://", 7))
-   {
-      log_error(LOG_LEVEL_CGI, "Request for local user-manual "
-         "received while user-manual delivery is disabled.");
-      return cgi_error_404(csp, rsp, parameters);
-   }
 
    if (!parameters->first)
    {
@@ -769,24 +1104,17 @@ jb_err cgi_send_user_manual(struct client_state *csp,
    }
 
    get_string_param(parameters, "file", &filename);
-   if (filename == NULL)
+   /* Check paramter for hack attempts */
+   if (filename && strchr(filename, '/'))
    {
-      /* It's '/' so serve the index.html if there is one.  */
-      filename = "index.html";
+      return JB_ERR_CGI_PARAMS;
    }
-   else if (NULL != strchr(filename, '/') || NULL != strstr(filename, ".."))
+   if (filename && strstr(filename, ".."))
    {
-      /*
-       * We currently only support a flat file
-       * hierarchy for the documentation.
-       */
-      log_error(LOG_LEVEL_ERROR,
-         "Rejecting the request to serve '%s' as it contains '/' or '..'",
-         filename);
       return JB_ERR_CGI_PARAMS;
    }
 
-   full_path = make_path(csp->config->usermanual, filename);
+   full_path = make_path(csp->config->usermanual, filename ? filename : "index.html");
    if (full_path == NULL)
    {
       return JB_ERR_MEMORY;
@@ -805,12 +1133,29 @@ jb_err cgi_send_user_manual(struct client_state *csp,
    }
    freez(full_path);
 
-   content_type = get_content_type(filename);
-   log_error(LOG_LEVEL_CGI,
-      "Content-Type guessed for %s: %s", filename, content_type);
+   /* Guess correct Content-Type based on the filename's ending */
+   if (filename)
+   {
+      length = strlen(filename);
+   }
+   else
+   {
+      length = 0;
+   } 
+   if((length>=4) && !strcmp(&filename[length-4], ".css"))
+   {
+      err = enlist(rsp->headers, "Content-Type: text/css");
+   }
+   else if((length>=4) && !strcmp(&filename[length-4], ".jpg"))
+   {
+      err = enlist(rsp->headers, "Content-Type: image/jpeg");
+   }
+   else
+   {
+      err = enlist(rsp->headers, "Content-Type: text/html");
+   }
 
-   return enlist_unique_header(rsp->headers, "Content-Type", content_type);
-
+   return err;
 }
 
 
@@ -829,7 +1174,7 @@ jb_err cgi_send_user_manual(struct client_state *csp,
  * CGI Parameters : none
  *
  * Returns     :  JB_ERR_OK on success
- *                JB_ERR_MEMORY on out-of-memory error.
+ *                JB_ERR_MEMORY on out-of-memory error.  
  *
  *********************************************************************/
 jb_err cgi_show_version(struct client_state *csp,
@@ -878,7 +1223,7 @@ jb_err cgi_show_version(struct client_state *csp,
  *                Default is to show menu and other information.
  *
  * Returns     :  JB_ERR_OK on success
- *                JB_ERR_MEMORY on out-of-memory error.
+ *                JB_ERR_MEMORY on out-of-memory error.  
  *
  *********************************************************************/
 jb_err cgi_show_status(struct client_state *csp,
@@ -924,7 +1269,7 @@ jb_err cgi_show_status(struct client_state *csp,
    if (!err) err = map(exports, "options", 1, csp->config->proxy_args, 1);
    if (!err) err = show_defines(exports);
 
-   if (err)
+   if (err) 
    {
       free_map(exports);
       return JB_ERR_MEMORY;
@@ -968,8 +1313,8 @@ jb_err cgi_show_status(struct client_state *csp,
 #else /* ndef FEATURE_STATISTICS */
    err = err || map_block_killer(exports, "statistics");
 #endif /* ndef FEATURE_STATISTICS */
-
-   /*
+   
+   /* 
     * List all action files in use, together with view and edit links,
     * except for standard.action, which should only be viewable. (Not
     * enforced in the editor itself)
@@ -1010,7 +1355,7 @@ jb_err cgi_show_status(struct client_state *csp,
          if (!err) err = string_append(&s, "</td></tr>\n");
       }
    }
-   if (*s != '\0')
+   if (*s != '\0')   
    {
       if (!err) err = map(exports, "actions-filenames", 1, s, 0);
    }
@@ -1019,7 +1364,7 @@ jb_err cgi_show_status(struct client_state *csp,
       if (!err) err = map(exports, "actions-filenames", 1, "<tr><td>None specified</td></tr>", 1);
    }
 
-   /*
+   /* 
     * List all re_filterfiles in use, together with view options.
     * FIXME: Shouldn't include hardwired HTML here, use line template instead!
     */
@@ -1036,7 +1381,7 @@ jb_err cgi_show_status(struct client_state *csp,
          if (!err) err = string_append(&s, "</td></tr>\n");
       }
    }
-   if (*s != '\0')
+   if (*s != '\0')   
    {
       if (!err) err = map(exports, "re-filter-filenames", 1, s, 0);
    }
@@ -1076,7 +1421,7 @@ jb_err cgi_show_status(struct client_state *csp,
    return template_fill_for_cgi(csp, "show-status", exports, rsp);
 }
 
-
+ 
 /*********************************************************************
  *
  * Function    :  cgi_show_url_info
@@ -1097,7 +1442,7 @@ jb_err cgi_show_status(struct client_state *csp,
  *                  the template.
  *
  * Returns     :  JB_ERR_OK on success
- *                JB_ERR_MEMORY on out-of-memory error.
+ *                JB_ERR_MEMORY on out-of-memory error.  
  *
  *********************************************************************/
 jb_err cgi_show_url_info(struct client_state *csp,
@@ -1133,7 +1478,7 @@ jb_err cgi_show_url_info(struct client_state *csp,
     * 1) "http://" or "https://" prefix present and followed by URL - OK
     * 2) Only the "http://" or "https://" part is present, no URL - change
     *    to empty string so it will be detected later as "no URL".
-    * 3) Parameter specified but doesn't start with "http(s?)://" - add a
+    * 3) Parameter specified but doesn't contain "http(s?)://" - add a
     *    "http://" prefix.
     * 4) Parameter not specified or is empty string - let this fall through
     *    for now, next block of code will handle it.
@@ -1160,14 +1505,9 @@ jb_err cgi_show_url_info(struct client_state *csp,
          url_param[0] = '\0';
       }
    }
-   else if ((url_param[0] != '\0')
-      && ((NULL == strstr(url_param, "://")
-            || (strstr(url_param, "://") > strstr(url_param, "/")))))
+   else if ((url_param[0] != '\0') && (NULL == strstr(url_param, "://")))
    {
-      /*
-       * No prefix or at least no prefix before
-       * the first slash - assume http://
-       */
+      /* No prefix - assume http:// */
       char *url_param_prefixed = strdup("http://");
 
       if (JB_ERR_OK != string_join(&url_param_prefixed, url_param))
@@ -1215,7 +1555,7 @@ jb_err cgi_show_url_info(struct client_state *csp,
       struct http_request url_to_query[1];
       struct current_action_spec action[1];
       int i;
-
+      
       if (map(exports, "url", 1, html_encode(url_param), 0))
       {
          free(url_param);
@@ -1503,7 +1843,7 @@ jb_err cgi_show_url_info(struct client_state *csp,
  * CGI Parameters : None
  *
  * Returns     :  JB_ERR_OK on success
- *                JB_ERR_MEMORY on out-of-memory error.
+ *                JB_ERR_MEMORY on out-of-memory error.  
  *
  *********************************************************************/
 jb_err cgi_robots_txt(struct client_state *csp,
@@ -1551,18 +1891,12 @@ jb_err cgi_robots_txt(struct client_state *csp,
  *          1  :  exports = map to extend
  *
  * Returns     :  JB_ERR_OK on success
- *                JB_ERR_MEMORY on out-of-memory error.
+ *                JB_ERR_MEMORY on out-of-memory error.  
  *
  *********************************************************************/
 static jb_err show_defines(struct map *exports)
 {
    jb_err err = JB_ERR_OK;
-
-#ifdef FEATURE_ACCEPT_FILTER
-   if (!err) err = map_conditional(exports, "FEATURE_ACCEPT_FILTER", 1);
-#else /* ifndef FEATURE_ACCEPT_FILTER */
-   if (!err) err = map_conditional(exports, "FEATURE_ACCEPT_FILTER", 0);
-#endif /* ndef FEATURE_ACCEPT_FILTER */
 
 #ifdef FEATURE_ACL
    if (!err) err = map_conditional(exports, "FEATURE_ACL", 1);
@@ -1576,23 +1910,11 @@ static jb_err show_defines(struct map *exports)
    if (!err) err = map_conditional(exports, "FEATURE_CGI_EDIT_ACTIONS", 0);
 #endif /* ndef FEATURE_CGI_EDIT_ACTIONS */
 
-#ifdef FEATURE_COMPRESSION
-   if (!err) err = map_conditional(exports, "FEATURE_COMPRESSION", 1);
-#else /* ifndef FEATURE_COMPRESSION */
-   if (!err) err = map_conditional(exports, "FEATURE_COMPRESSION", 0);
-#endif /* ndef FEATURE_COMPRESSION */
-
 #ifdef FEATURE_CONNECTION_KEEP_ALIVE
    if (!err) err = map_conditional(exports, "FEATURE_CONNECTION_KEEP_ALIVE", 1);
-#else /* ifndef FEATURE_CONNECTION_KEEP_ALIVE */
+#else /* ifndef FEATURE_CGI_EDIT_ACTIONS */
    if (!err) err = map_conditional(exports, "FEATURE_CONNECTION_KEEP_ALIVE", 0);
 #endif /* ndef FEATURE_CONNECTION_KEEP_ALIVE */
-
-#ifdef FEATURE_CONNECTION_SHARING
-   if (!err) err = map_conditional(exports, "FEATURE_CONNECTION_SHARING", 1);
-#else /* ifndef FEATURE_CONNECTION_SHARING */
-   if (!err) err = map_conditional(exports, "FEATURE_CONNECTION_SHARING", 0);
-#endif /* ndef FEATURE_CONNECTION_SHARING */
 
 #ifdef FEATURE_FAST_REDIRECTS
    if (!err) err = map_conditional(exports, "FEATURE_FAST_REDIRECTS", 1);
@@ -1625,12 +1947,6 @@ static jb_err show_defines(struct map *exports)
 #else /* ifndef FEATURE_IMAGE_DETECT_MSIE */
    if (!err) err = map_conditional(exports, "FEATURE_IMAGE_DETECT_MSIE", 0);
 #endif /* ndef FEATURE_IMAGE_DETECT_MSIE */
-
-#ifdef HAVE_RFC2553
-   if (!err) err = map_conditional(exports, "FEATURE_IPV6_SUPPORT", 1);
-#else /* ifndef HAVE_RFC2553 */
-   if (!err) err = map_conditional(exports, "FEATURE_IPV6_SUPPORT", 0);
-#endif /* ndef HAVE_RFC2553 */
 
 #ifdef FEATURE_NO_GIFS
    if (!err) err = map_conditional(exports, "FEATURE_NO_GIFS", 1);
@@ -1801,7 +2117,7 @@ static char *show_rcs(void)
  *                Default is to show menu and other information.
  *
  * Returns     :  JB_ERR_OK on success
- *                JB_ERR_MEMORY on out-of-memory error.
+ *                JB_ERR_MEMORY on out-of-memory error.  
  *
  *********************************************************************/
 static jb_err cgi_show_file(struct client_state *csp,
@@ -1895,7 +2211,7 @@ static jb_err cgi_show_file(struct client_state *csp,
    return JB_ERR_CGI_PARAMS;
 }
 
-
+ 
 /*********************************************************************
  *
  * Function    :  load_file
@@ -1922,7 +2238,6 @@ static jb_err load_file(const char *filename, char **buffer, size_t *length)
    fp = fopen(filename, "rb");
    if (NULL == fp)
    {
-      log_error(LOG_LEVEL_ERROR, "Failed to open %s: %E", filename);
       return JB_ERR_FILE;
    }
 

@@ -1,4 +1,4 @@
-const char cgi_rcs[] = "$Id: cgi.c,v 1.145 2011/10/08 17:31:05 fabiankeil Exp $";
+const char cgi_rcs[] = "$Id: cgi.c,v 1.116 2009/03/15 14:59:34 fabiankeil Exp $";
 /*********************************************************************
  *
  * File        :  $Source: /cvsroot/ijbswa/current/cgi.c,v $
@@ -7,18 +7,18 @@ const char cgi_rcs[] = "$Id: cgi.c,v 1.145 2011/10/08 17:31:05 fabiankeil Exp $"
  *                html or gif answers, and to compose HTTP resonses.
  *                This only contains the framework functions, the
  *                actual handler functions are declared elsewhere.
- *
+ *                
  *                Functions declared include:
- *
+ * 
  *
  * Copyright   :  Written by and Copyright (C) 2001-2004, 2006-2008
  *                the SourceForge Privoxy team. http://www.privoxy.org/
  *
  *                Based on the Internet Junkbuster originally written
- *                by and Copyright (C) 1997 Anonymous Coders and
+ *                by and Copyright (C) 1997 Anonymous Coders and 
  *                Junkbusters Corporation.  http://www.junkbusters.com
  *
- *                This program is free software; you can redistribute it
+ *                This program is free software; you can redistribute it 
  *                and/or modify it under the terms of the GNU General
  *                Public License as published by the Free Software
  *                Foundation; either version 2 of the License, or (at
@@ -36,8 +36,618 @@ const char cgi_rcs[] = "$Id: cgi.c,v 1.145 2011/10/08 17:31:05 fabiankeil Exp $"
  *                or write to the Free Software Foundation, Inc., 59
  *                Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
+ * Revisions   :
+ *    $Log: cgi.c,v $
+ *    Revision 1.116  2009/03/15 14:59:34  fabiankeil
+ *    Cosmetics.
+ *
+ *    Revision 1.115  2009/03/01 18:28:23  fabiankeil
+ *    Help clang understand that we aren't dereferencing
+ *    NULL pointers here.
+ *
+ *    Revision 1.114  2008/12/04 18:15:04  fabiankeil
+ *    Fix some cparser warnings.
+ *
+ *    Revision 1.113  2008/09/04 08:13:58  fabiankeil
+ *    Prepare for critical sections on Windows by adding a
+ *    layer of indirection before the pthread mutex functions.
+ *
+ *    Revision 1.112  2008/08/31 16:08:12  fabiankeil
+ *    "View the request headers" isn't more equal than the other
+ *    menu items and thus doesn't need a trailing dot either.
+ *
+ *    Revision 1.111  2008/08/31 15:59:02  fabiankeil
+ *    There's no reason to let remote toggling support depend
+ *    on FEATURE_CGI_EDIT_ACTIONS, so make sure it doesn't.
+ *
+ *    Revision 1.110  2008/08/31 14:55:43  fabiankeil
+ *    Add a @date@ symbol to include a date(1)-like time string
+ *    in templates. Modified version of the patch Endre Szabo
+ *    submitted in #2026468.
+ *
+ *    Revision 1.109  2008/07/26 09:40:27  fabiankeil
+ *    Remove the unconditional block in get_http_time().
+ *    It's pointless now that it's no longer used to limit
+ *    dummy's scope. While at it, remove obvious comments
+ *    and a trailing space.
+ *
+ *    Revision 1.108  2008/05/26 17:30:53  fabiankeil
+ *    Provide an OpenSearch Description to access the
+ *    show-url-info page through "search engine plugins".
+ *
+ *    Revision 1.107  2008/05/26 16:23:19  fabiankeil
+ *    - Fix spelling in template-not-found message.
+ *    - Declare referrer_is_safe()'s alternative_prefix[] static.
+ *
+ *    Revision 1.106  2008/05/21 15:24:38  fabiankeil
+ *    Mark csp as immutable for a bunch of functions.
+ *
+ *    Revision 1.105  2008/04/17 14:40:47  fabiankeil
+ *    Provide get_http_time() with the buffer size so it doesn't
+ *    have to blindly assume that the buffer is big enough.
+ *
+ *    Revision 1.104  2008/03/26 18:07:06  fabiankeil
+ *    Add hostname directive. Closes PR#1918189.
+ *
+ *    Revision 1.103  2008/03/21 11:13:57  fabiankeil
+ *    Only gather host information if it's actually needed.
+ *    Also move the code out of accept_connection() so it's less likely
+ *    to delay other incoming connections if the host is misconfigured.
+ *
+ *    Revision 1.102  2008/02/23 16:33:43  fabiankeil
+ *    Let forward_url() use the standard parameter ordering
+ *    and mark its second parameter immutable.
+ *
+ *    Revision 1.101  2008/02/03 15:45:06  fabiankeil
+ *    Add SOCKS5 support for "Forwarding failure" CGI page.
+ *
+ *    Revision 1.100  2007/10/17 18:40:53  fabiankeil
+ *    - Send CGI pages as HTTP/1.1 unless the client asked for HTTP/1.0.
+ *    - White space fix.
+ *
+ *    Revision 1.99  2007/08/05 13:42:22  fabiankeil
+ *    #1763173 from Stefan Huehner: declare some more functions static.
+ *
+ *    Revision 1.98  2007/05/14 10:33:51  fabiankeil
+ *    - Use strlcpy() and strlcat() instead of strcpy() and strcat().
+ *
+ *    Revision 1.97  2007/04/09 18:11:35  fabiankeil
+ *    Don't mistake VC++'s _snprintf() for a snprintf() replacement.
+ *
+ *    Revision 1.96  2007/03/08 17:41:05  fabiankeil
+ *    Use sizeof() more often.
+ *
+ *    Revision 1.95  2007/02/10 17:01:37  fabiankeil
+ *    Don't overlook map result for the forwarding-type.
+ *
+ *    Revision 1.94  2007/02/08 19:44:49  fabiankeil
+ *    Use a transparent background for the PNG replacement pattern.
+ *
+ *    Revision 1.93  2007/02/07 10:45:22  fabiankeil
+ *    - Save the reason for generating http_responses.
+ *    - Fix --disable-toggle (again).
+ *    - Use TBL birthday hack for 403 responses as well.
+ *    - Uglify the @menu@ again to fix JavaScript
+ *      errors on the "blocked" template.
+ *    - Escape an ampersand in cgi_error_unknown().
+ *
+ *    Revision 1.92  2007/01/28 13:41:17  fabiankeil
+ *    - Add HEAD support to finish_http_response.
+ *    - Add error favicon to internal HTML error messages.
+ *
+ *    Revision 1.91  2007/01/27 13:09:16  fabiankeil
+ *    Add new config option "templdir" to
+ *    change the templates directory.
+ *
+ *    Revision 1.90  2007/01/25 13:47:26  fabiankeil
+ *    Added "forwarding-failed" template support for error_response().
+ *
+ *    Revision 1.89  2007/01/23 15:51:16  fabiankeil
+ *    Add favicon delivery functions.
+ *
+ *    Revision 1.88  2007/01/23 13:14:32  fabiankeil
+ *    - Map variables that aren't guaranteed to be
+ *      pure ASCII html_encoded.
+ *    - Use CGI_PREFIX to generate URL for user manual
+ *      CGI page to make sure CGI_SITE_2_PATH is included.
+ *
+ *    Revision 1.87  2007/01/22 15:34:13  fabiankeil
+ *    - "Protect" against a rather lame JavaScript-based
+ *      Privoxy detection "attack" and check the referrer
+ *      before delivering the CGI style sheet.
+ *    - Move referrer check for unsafe CGI pages into
+ *      referrer_is_safe() and log the result.
+ *    - Map @url@ in cgi-error-disabled page.
+ *      It's required for the "go there anyway" link.
+ *    - Mark *csp as immutable for grep_cgi_referrer().
+ *
+ *    Revision 1.86  2007/01/09 11:54:26  fabiankeil
+ *    Fix strdup() error handling in cgi_error_unknown()
+ *    and cgi_error_no_template(). Reported by Markus Elfring.
+ *
+ *    Revision 1.85  2007/01/05 14:19:02  fabiankeil
+ *    Handle pcrs_execute() errors in template_fill() properly.
+ *
+ *    Revision 1.84  2006/12/28 17:54:22  fabiankeil
+ *    Fixed gcc43 conversion warnings and replaced sprintf
+ *    calls with snprintf to give OpenBSD's gcc one less reason
+ *    to complain.
+ *
+ *    Revision 1.83  2006/12/17 19:35:19  fabiankeil
+ *    Escape ampersand in Privoxy menu.
+ *
+ *    Revision 1.82  2006/12/17 17:53:39  fabiankeil
+ *    Suppress the toggle link if remote toggling is disabled.
+ *
+ *    Revision 1.81  2006/12/09 13:49:16  fabiankeil
+ *    Fix configure option --disable-toggle.
+ *    Thanks to Peter Thoenen for reporting this.
+ *
+ *    Revision 1.80  2006/12/08 14:45:32  fabiankeil
+ *    Don't lose the FORCE_PREFIX in case of
+ *    connection problems. Fixes #612235.
+ *
+ *    Revision 1.79  2006/11/13 19:05:50  fabiankeil
+ *    Make pthread mutex locking more generic. Instead of
+ *    checking for OSX and OpenBSD, check for FEATURE_PTHREAD
+ *    and use mutex locking unless there is an _r function
+ *    available. Better safe than sorry.
+ *
+ *    Fixes "./configure --disable-pthread" and should result
+ *    in less threading-related problems on pthread-using platforms,
+ *    but it still doesn't fix BR#1122404.
+ *
+ *    Revision 1.78  2006/09/21 19:22:07  fabiankeil
+ *    Use CGI_PREFIX to check the referrer.
+ *    The check for "http://config.privoxy.org/" fails
+ *    if the user modified CGI_SITE_2_HOST.
+ *
+ *    Revision 1.77  2006/09/21 15:17:23  fabiankeil
+ *    Adjusted headers for Privoxy's cgi responses:
+ *    Don't set Last-Modified, Expires and Cache-Control
+ *    headers for redirects; always set "Connection: close".
+ *
+ *    Revision 1.76  2006/09/07 14:06:38  fabiankeil
+ *    Only predate the Last-Modified header for cgi responses
+ *    that are delivered with status code 404 or 503.
+ *
+ *    Revision 1.75  2006/09/07 11:56:39  fabiankeil
+ *    Mark cgi_send_user_manual as harmless,
+ *    to fix the access denied problem Hal spotted.
+ *    The manual has no secret content, therefore we
+ *    don't have to care about "secure" referrers.
+ *
+ *    Revision 1.74  2006/09/06 18:45:03  fabiankeil
+ *    Incorporate modified version of Roland Rosenfeld's patch to
+ *    optionally access the user-manual via Privoxy. Closes patch 679075.
+ *
+ *    Formatting changed to Privoxy style, added call to
+ *    cgi_error_no_template if the requested file doesn't
+ *    exist and modified check whether or not Privoxy itself
+ *    should serve the manual. Should work cross-platform now.
+ *
+ *    Revision 1.73  2006/08/03 02:46:41  david__schmidt
+ *    Incorporate Fabian Keil's patch work:http://www.fabiankeil.de/sourcecode/privoxy/
+ *
+ *    Revision 1.72  2006/07/18 14:48:45  david__schmidt
+ *    Reorganizing the repository: swapping out what was HEAD (the old 3.1 branch)
+ *    with what was really the latest development (the v_3_0_branch branch)
+ *
+ *    Revision 1.70.2.13  2004/02/17 13:30:23  oes
+ *    Moved cgi_error_disabled() from cgiedit.c to
+ *    cgi.c to re-enable build with --disable-editor.
+ *    Fixes Bug #892744. Thanks to Matthew Fischer
+ *    for spotting.
+ *
+ *    Revision 1.70.2.12  2003/12/17 16:33:16  oes
+ *     - Added new function cgi_redirect to handle creation of
+ *       HTTP redirect messages formerly repeated in the code.
+ *     - Send cgi_error_disabled instead of cgi_error_404 when
+ *       referrer check fails
+ *     - Dynamic content now gets Expires header field with date
+ *       in the past
+ *
+ *    Revision 1.70.2.11  2003/10/23 12:29:26  oes
+ *    Bugfix: Transparent PNG was not transparent. Thanks to
+ *    Dan Razzell of Starfish Systems for notice and new PNG.
+ *
+ *    Revision 1.70.2.10  2003/06/06 07:54:25  oes
+ *    Security fix: dspatch_known_cgi no longer considers an empty
+ *    referrer safe for critical CGIs, since malicious links could
+ *    reside on https:// locations which browsers don't advertize as
+ *    referrers. Closes bug #749916, thanks to Jeff Epler for the
+ *    hint. Goodbye One-Click[tm] toggling :-(
+ *
+ *    Revision 1.70.2.9  2003/05/08 15:11:31  oes
+ *    Nit
+ *
+ *    Revision 1.70.2.8  2003/04/29 13:33:51  oes
+ *    Killed a compiler warning on OSX
+ *
+ *    Revision 1.70.2.7  2003/04/03 13:50:58  oes
+ *    - Don't call cgi_error_disabled ifndef FEATURE_CGI_EDIT_ACTIONS
+ *      (fixes bug #710056)
+ *    - Show toggle info only if we have it
+ *
+ *    Revision 1.70.2.6  2003/03/12 01:26:25  david__schmidt
+ *    Move declaration of struct tm dummy outside of a control block so it is
+ *    accessible later on during snprintf in get_http_time.
+ *
+ *    Revision 1.70.2.5  2003/03/11 11:53:58  oes
+ *    Cosmetic: Renamed cryptic variable
+ *
+ *    Revision 1.70.2.4  2003/03/07 03:41:03  david__schmidt
+ *    Wrapping all *_r functions (the non-_r versions of them) with mutex semaphores for OSX.  Hopefully this will take care of all of those pesky crash reports.
+ *
+ *    Revision 1.70.2.3  2002/11/28 18:14:32  oes
+ *    Disable access to critical CGIs via untrusted referrers.
+ *    This prevents users from being tricked by malicious websites
+ *    into making unintentional configuration changes:
+ *
+ *     - Added flag to each cgi_dispatcher that allows or denies
+ *       external linking
+ *     - Introduced proviorical function that greps for the
+ *       referrer header before regular header parsing happens
+ *     - Added safety check to dispatch_known_cgi. CGI is called
+ *       if (cgi harmless || no referrer || we are referrer).
+ *       Else a) toggle calls are modified not to change status and
+ *       b) all other calls are denied.
+ *
+ *    Revision 1.70.2.2  2002/11/12 16:20:37  oes
+ *    Added missing #ifdef FEATURE_TOGGLE around g_bToggleIJB; fixes bug #636651
+ *
+ *    Revision 1.70.2.1  2002/08/05 11:17:46  oes
+ *    Fixed Bug #587820, i.e. added workaround for IE bug that includes fragment identifier in (cgi) query
+ *
+ *    Revision 1.70  2002/05/19 11:33:20  jongfoster
+ *    If a CGI error was not handled, and propogated back to
+ *    dispatch_known_cgi(), then it was assumed to be "out of memory".
+ *    This gave a very misleading error message.
+ *
+ *    Now other errors will cause a simple message giving the error
+ *    number and asking the user to report a bug.
+ *
+ *    Bug report:
+ *    http://sourceforge.net/tracker/index.php?func=detail
+ *    &aid=557905&group_id=11118&atid=111118
+ *
+ *    Revision 1.69  2002/05/14 21:28:40  oes
+ *     - Fixed add_help_link to link to the (now split) actions
+ *       part of the config chapter
+ *     - Renamed helplink export to actions-help-prefix
+ *
+ *    Revision 1.68  2002/05/12 21:36:29  jongfoster
+ *    Correcting function comments
+ *
+ *    Revision 1.67  2002/04/30 12:02:07  oes
+ *    Nit: updated a comment
+ *
+ *    Revision 1.66  2002/04/26 18:32:57  jongfoster
+ *    Fixing a memory leak on error
+ *
+ *    Revision 1.65  2002/04/26 12:53:51  oes
+ *     - New function add_help_link
+ *     - default_exports now exports links to the user manual
+ *       and a prefix for links into the config chapter
+ *
+ *    Revision 1.64  2002/04/24 02:17:21  oes
+ *     - Better descriptions for CGIs
+ *     - Hide edit-actions, more shortcuts
+ *     - Moved get_char_param, get_string_param and get_number_param here
+ *       from cgiedit.c
+ *
+ *    Revision 1.63  2002/04/15 19:06:43  jongfoster
+ *    Typos
+ *
+ *    Revision 1.62  2002/04/10 19:59:46  jongfoster
+ *    Fixes to #include in templates:
+ *    - Didn't close main file if loading an included template fails.
+ *    - I'm paranoid and want to disallow "#include /etc/passwd".
+ *
+ *    Revision 1.61  2002/04/10 13:37:48  oes
+ *    Made templates modular: template_load now recursive with max depth 1
+ *
+ *    Revision 1.60  2002/04/08 20:50:25  swa
+ *    fixed JB spelling
+ *
+ *    Revision 1.59  2002/04/05 15:51:51  oes
+ *     - added send-stylesheet CGI
+ *     - bugfix: error-pages now get correct request protocol
+ *     - fixed
+ *     - kludged CGI descriptions and menu not to break JS syntax
+ *
+ *    Revision 1.58  2002/03/29 03:33:13  david__schmidt
+ *    Fix Mac OSX compiler warnings
+ *
+ *    Revision 1.57  2002/03/26 22:29:54  swa
+ *    we have a new homepage!
+ *
+ *    Revision 1.56  2002/03/24 17:50:46  jongfoster
+ *    Fixing compile error if actions file editor disabled
+ *
+ *    Revision 1.55  2002/03/24 16:55:06  oes
+ *    Making GIF checkerboard transparent
+ *
+ *    Revision 1.54  2002/03/24 16:18:15  jongfoster
+ *    Removing old logo
+ *
+ *    Revision 1.53  2002/03/24 16:06:00  oes
+ *    Correct transparency for checkerboard PNG. Thanks, Magnus!
+ *
+ *    Revision 1.52  2002/03/24 15:23:33  jongfoster
+ *    Name changes
+ *
+ *    Revision 1.51  2002/03/24 13:25:43  swa
+ *    name change related issues
+ *
+ *    Revision 1.50  2002/03/16 23:54:06  jongfoster
+ *    Adding graceful termination feature, to help look for memory leaks.
+ *    If you enable this (which, by design, has to be done by hand
+ *    editing config.h) and then go to http://i.j.b/die, then the program
+ *    will exit cleanly after the *next* request.  It should free all the
+ *    memory that was used.
+ *
+ *    Revision 1.49  2002/03/13 00:27:04  jongfoster
+ *    Killing warnings
+ *
+ *    Revision 1.48  2002/03/08 17:47:07  jongfoster
+ *    Adding comments
+ *
+ *    Revision 1.47  2002/03/08 16:41:33  oes
+ *    Added GIF images again
+ *
+ *    Revision 1.46  2002/03/07 03:48:38  oes
+ *     - Changed built-in images from GIF to PNG
+ *       (with regard to Unisys patent issue)
+ *     - Added a 4x4 pattern PNG which is less intrusive
+ *       than the logo but also clearly marks the deleted banners
+ *
+ *    Revision 1.45  2002/03/06 22:54:35  jongfoster
+ *    Automated function-comment nitpicking.
+ *
+ *    Revision 1.44  2002/03/05 22:43:45  david__schmidt
+ *    - Better error reporting on OS/2
+ *    - Fix double-slash comment (oops)
+ *
+ *    Revision 1.43  2002/03/05 21:33:45  david__schmidt
+ *    - Re-enable OS/2 building after new parms were added
+ *    - Fix false out of memory report when resolving CGI templates when no IP
+ *      address is available of failed attempt (a la no such domain)
+ *
+ *    Revision 1.42  2002/01/21 00:33:20  jongfoster
+ *    Replacing strsav() with the safer string_append() or string_join().
+ *    Adding map_block_keep() to save a few bytes in the edit-actions-list HTML.
+ *    Adding missing html_encode() to error message generators.
+ *    Adding edit-actions-section-swap and many "shortcuts" to the list of CGIs.
+ *
+ *    Revision 1.41  2002/01/17 20:56:22  jongfoster
+ *    Replacing hard references to the URL of the config interface
+ *    with #defines from project.h
+ *
+ *    Revision 1.40  2002/01/09 14:26:46  oes
+ *    Added support for thread-safe gmtime_r call.
+ *
+ *    Revision 1.39  2001/11/16 00:48:13  jongfoster
+ *    Fixing a compiler warning
+ *
+ *    Revision 1.38  2001/11/13 00:31:21  jongfoster
+ *    - Adding new CGIs for use by non-JavaScript browsers:
+ *        edit-actions-url-form
+ *        edit-actions-add-url-form
+ *        edit-actions-remove-url-form
+ *    - Fixing make_menu()'s HTML generation - it now quotes the href parameter.
+ *    - Fixing || bug.
+ *
+ *    Revision 1.37  2001/11/01 14:28:47  david__schmidt
+ *    Show enablement/disablement status in almost all templates.
+ *    There is a little trickiness here: apparent recursive resolution of
+ *    @if-enabled-then@ caused the toggle template to show status out-of-phase with
+ *    the actual enablement status.  So a similar construct,
+ *    @if-enabled-display-then@, is used to resolve the status display on non-'toggle'
+ *    templates.
+ *
+ *    Revision 1.36  2001/10/26 17:33:27  oes
+ *    marginal bugfix
+ *
+ *    Revision 1.35  2001/10/23 21:48:19  jongfoster
+ *    Cleaning up error handling in CGI functions - they now send back
+ *    a HTML error page and should never cause a FATAL error.  (Fixes one
+ *    potential source of "denial of service" attacks).
+ *
+ *    CGI actions file editor that works and is actually useful.
+ *
+ *    Ability to toggle Junkbuster remotely using a CGI call.
+ *
+ *    You can turn off both the above features in the main configuration
+ *    file, e.g. if you are running a multi-user proxy.
+ *
+ *    Revision 1.34  2001/10/18 22:22:09  david__schmidt
+ *    Only show "Local support" on templates conditionally:
+ *      - if either 'admin-address' or 'proxy-info-url' are uncommented in config
+ *      - if not, no Local support section appears
+ *
+ *    Revision 1.33  2001/10/14 22:28:41  jongfoster
+ *    Fixing stupid typo.
+ *
+ *    Revision 1.32  2001/10/14 22:20:18  jongfoster
+ *    - Changes to CGI dispatching method to match CGI names exactly,
+ *      rather than doing a prefix match.
+ *    - No longer need to count the length of the CGI handler names by hand.
+ *    - Adding new handler for 404 error when disptching a CGI, if none of
+ *      the handlers match.
+ *    - Adding new handlers for CGI actionsfile editor.
+ *
+ *    Revision 1.31  2001/10/10 10:56:39  oes
+ *    Failiure to load template now fatal. Before, the user got a hard-to-understand assertion failure from cgi.c
+ *
+ *    Revision 1.30  2001/10/02 15:30:57  oes
+ *    Introduced show-request cgi
+ *
+ *    Revision 1.29  2001/09/20 15:47:44  steudten
+ *
+ *    Fix BUG: Modify int size to size_t size in fill_template()
+ *     - removes big trouble on machines where sizeof(int) != sizeof(size_t).
+ *
+ *    Revision 1.28  2001/09/19 18:00:37  oes
+ *     - Deletef time() FIXME (Can't fail under Linux either, if
+ *       the argument is guaranteed to be in out address space,
+ *       which it is.)
+ *     - Fixed comments
+ *     - Pointer notation cosmetics
+ *     - Fixed a minor bug in template_fill(): Failiure of
+ *       pcrs_execute() now secure.
+ *
+ *    Revision 1.27  2001/09/16 17:08:54  jongfoster
+ *    Moving simple CGI functions from cgi.c to new file cgisimple.c
+ *
+ *    Revision 1.26  2001/09/16 15:47:37  jongfoster
+ *    First version of CGI-based edit interface.  This is very much a
+ *    work-in-progress, and you can't actually use it to edit anything
+ *    yet.  You must #define FEATURE_CGI_EDIT_ACTIONS for these changes
+ *    to have any effect.
+ *
+ *    Revision 1.25  2001/09/16 15:02:35  jongfoster
+ *    Adding i.j.b/robots.txt.
+ *    Inlining add_stats() since it's only ever called from one place.
+ *
+ *    Revision 1.24  2001/09/16 11:38:01  jongfoster
+ *    Splitting fill_template() into 2 functions:
+ *    template_load() loads the file
+ *    template_fill() performs the PCRS regexps.
+ *    This is because the CGI edit interface has a "table row"
+ *    template which is used many times in the page - this
+ *    change means it's only loaded from disk once.
+ *
+ *    Revision 1.23  2001/09/16 11:16:05  jongfoster
+ *    Better error handling in dispatch_cgi() and parse_cgi_parameters()
+ *
+ *    Revision 1.22  2001/09/16 11:00:10  jongfoster
+ *    New function alloc_http_response, for symmetry with free_http_response
+ *
+ *    Revision 1.21  2001/09/13 23:53:03  jongfoster
+ *    Support for both static and dynamically generated CGI pages.
+ *    Correctly setting Last-Modified: and Expires: HTTP headers.
+ *
+ *    Revision 1.20  2001/09/13 23:40:36  jongfoster
+ *    (Cosmetic only) Indentation correction
+ *
+ *    Revision 1.19  2001/09/13 23:31:25  jongfoster
+ *    Moving image data to cgi.c rather than cgi.h.
+ *
+ *    Revision 1.18  2001/08/05 16:06:20  jongfoster
+ *    Modifiying "struct map" so that there are now separate header and
+ *    "map_entry" structures.  This means that functions which modify a
+ *    map no longer need to return a pointer to the modified map.
+ *    Also, it no longer reverses the order of the entries (which may be
+ *    important with some advanced template substitutions).
+ *
+ *    Revision 1.17  2001/08/05 15:57:38  oes
+ *    Adapted finish_http_response to new list_to_text
+ *
+ *    Revision 1.16  2001/08/01 21:33:18  jongfoster
+ *    Changes to fill_template() that reduce memory usage without having
+ *    an impact on performance.  I also renamed some variables so as not
+ *    to clash with the C++ keywords "new" and "template".
+ *
+ *    Revision 1.15  2001/08/01 21:19:22  jongfoster
+ *    Moving file version information to a separate CGI page.
+ *
+ *    Revision 1.14  2001/08/01 00:19:03  jongfoster
+ *    New function: map_conditional() for an if-then-else syntax.
+ *    Changing to use new version of show_defines()
+ *
+ *    Revision 1.13  2001/07/30 22:08:36  jongfoster
+ *    Tidying up #defines:
+ *    - All feature #defines are now of the form FEATURE_xxx
+ *    - Permanently turned off WIN_GUI_EDIT
+ *    - Permanently turned on WEBDAV and SPLIT_PROXY_ARGS
+ *
+ *    Revision 1.12  2001/07/29 18:47:05  jongfoster
+ *    Adding missing #include "loadcfg.h"
+ *
+ *    Revision 1.11  2001/07/18 17:24:37  oes
+ *    Changed to conform to new pcrs interface
+ *
+ *    Revision 1.10  2001/07/13 13:53:13  oes
+ *    Removed all #ifdef PCRS and related code
+ *
+ *    Revision 1.9  2001/06/29 21:45:41  oes
+ *    Indentation, CRLF->LF, Tab-> Space
+ *
+ *    Revision 1.8  2001/06/29 13:21:46  oes
+ *    - Cosmetics: renamed and reordered functions, variables,
+ *      texts, improved comments  etc
+ *
+ *    - Removed ij_untrusted_url() The relevant
+ *      info is now part of the "untrusted" page,
+ *      which is generated by filters.c:trust_url()
+ *
+ *    - Generators of content now call finish_http_response()
+ *      themselves, making jcc.c:chat() a little less
+ *      cluttered
+ *
+ *    - Removed obsolete "Pragma: no-cache" from our headers
+ *
+ *    - http_responses now know their head length
+ *
+ *    - fill_template now uses the new interface to pcrs, so that
+ *       - long jobs (like whole files) no longer have to be assembled
+ *         in a fixed size buffer
+ *       - the new T (trivial) option is used, and the replacement may
+ *         contain Perl syntax backrefs without confusing pcrs
+ *
+ *    - Introduced default_exports() which generates a set of exports
+ *      common to all CGIs and other content generators
+ *
+ *    - Introduced convenience function map_block_killer()
+ *
+ *    - Introduced convenience function make_menu()
+ *
+ *    - Introduced CGI-like function error_response() which generates
+ *      the "No such domain" and "Connect failed" messages using the
+ *      CGI platform
+ *
+ *    - cgi_show_url_info:
+ *      - adapted to new CGI features
+ *      - form and answers now generated from same template
+ *      - http:// prefix in URL now OK
+ *
+ *    - cgi_show_status:
+ *      - adapted to new CGI features
+ *      - no longer uses csp->init_proxy_args
+ *
+ *    - cgi_default:
+ *      - moved menu generation to make_menu()
+ *
+ *    - add_stats now writes single export map entries instead
+ *      of a fixed string
+ *
+ *    - Moved redirect_url() to filters.c
+ *
+ *    - Fixed mem leak in free_http_response(), map_block_killer(),
+ *
+ *    - Removed logentry from cancelled commit
+ *
+ *    Revision 1.7  2001/06/09 10:51:58  jongfoster
+ *    Changing "show URL info" handler to new style.
+ *    Changing BUFSIZ ==> BUFFER_SIZE
+ *
+ *    Revision 1.6  2001/06/07 23:05:19  jongfoster
+ *    Removing code related to old forward and ACL files.
+ *
+ *    Revision 1.5  2001/06/05 19:59:16  jongfoster
+ *    Fixing multiline character string (a GCC-only "feature"), and snprintf (it's _snprintf under VC++).
+ *
+ *    Revision 1.4  2001/06/04 10:41:52  swa
+ *    show version string of cgi.h and cgi.c
+ *
+ *    Revision 1.3  2001/06/03 19:12:16  oes
+ *    introduced new cgi handling
+ *
+ *    No revisions before 1.3
+ *
  **********************************************************************/
-
+
 
 #include "config.h"
 
@@ -48,10 +658,6 @@ const char cgi_rcs[] = "$Id: cgi.c,v 1.145 2011/10/08 17:31:05 fabiankeil Exp $"
 #include <string.h>
 #include <limits.h>
 #include <assert.h>
-
-#ifdef FEATURE_COMPRESSION
-#include <zlib.h>
-#endif
 
 #include "project.h"
 #include "cgi.h"
@@ -66,12 +672,12 @@ const char cgi_rcs[] = "$Id: cgi.c,v 1.145 2011/10/08 17:31:05 fabiankeil Exp $"
 #if defined(FEATURE_CGI_EDIT_ACTIONS) || defined(FEATURE_TOGGLE)
 #include "cgiedit.h"
 #endif /* defined(FEATURE_CGI_EDIT_ACTIONS) || defined (FEATURE_TOGGLE) */
-
-/* loadcfg.h is for global_toggle_state only */
 #include "loadcfg.h"
-/* jcc.h is for mutex semaphore globals only */
+/* loadcfg.h is for global_toggle_state only */
+#ifdef FEATURE_PTHREAD
 #include "jcc.h"
-
+/* jcc.h is for mutex semaphore globals only */
+#endif /* def FEATURE_PTHREAD */
 const char cgi_h_rcs[] = CGI_H_VERSION;
 
 /*
@@ -85,126 +691,126 @@ static const struct cgi_dispatcher cgi_dispatchers[] = {
          "Privoxy main page",
          TRUE },
 #ifdef FEATURE_GRACEFUL_TERMINATION
-   { "die",
-         cgi_die,
+   { "die", 
+         cgi_die,  
          "<b>Shut down</b> - <em class=\"warning\">Do not deploy this build in a production environment, "
         "this is a one click Denial Of Service attack!!!</em>",
-         FALSE },
+         FALSE }, 
 #endif
-   { "show-status",
-         cgi_show_status,
+   { "show-status", 
+         cgi_show_status,  
 #ifdef FEATURE_CGI_EDIT_ACTIONS
         "View &amp; change the current configuration",
 #else
         "View the current configuration",
 #endif
-         TRUE },
-   { "show-version",
-         cgi_show_version,
+         TRUE }, 
+   { "show-version", 
+         cgi_show_version,  
          "View the source code version numbers",
-          TRUE },
-   { "show-request",
-         cgi_show_request,
+          TRUE }, 
+   { "show-request", 
+         cgi_show_request,  
          "View the request headers",
-         TRUE },
+         TRUE }, 
    { "show-url-info",
-         cgi_show_url_info,
+         cgi_show_url_info, 
          "Look up which actions apply to a URL and why",
          TRUE },
 #ifdef FEATURE_TOGGLE
    { "toggle",
-         cgi_toggle,
+         cgi_toggle, 
          "Toggle Privoxy on or off",
          FALSE },
 #endif /* def FEATURE_TOGGLE */
 #ifdef FEATURE_CGI_EDIT_ACTIONS
    { "edit-actions", /* Edit the actions list */
-         cgi_edit_actions,
+         cgi_edit_actions, 
          NULL, FALSE },
    { "eaa", /* Shortcut for edit-actions-add-url-form */
-         cgi_edit_actions_add_url_form,
+         cgi_edit_actions_add_url_form, 
          NULL, FALSE },
    { "eau", /* Shortcut for edit-actions-url-form */
-         cgi_edit_actions_url_form,
+         cgi_edit_actions_url_form, 
          NULL, FALSE },
    { "ear", /* Shortcut for edit-actions-remove-url-form */
-         cgi_edit_actions_remove_url_form,
+         cgi_edit_actions_remove_url_form, 
          NULL, FALSE },
    { "eal", /* Shortcut for edit-actions-list */
-         cgi_edit_actions_list,
+         cgi_edit_actions_list, 
          NULL, FALSE },
    { "eafu", /* Shortcut for edit-actions-for-url */
-         cgi_edit_actions_for_url,
+         cgi_edit_actions_for_url, 
          NULL, FALSE },
    { "eas", /* Shortcut for edit-actions-submit */
-         cgi_edit_actions_submit,
+         cgi_edit_actions_submit, 
          NULL, FALSE },
    { "easa", /* Shortcut for edit-actions-section-add */
-         cgi_edit_actions_section_add,
+         cgi_edit_actions_section_add, 
          NULL, FALSE  },
    { "easr", /* Shortcut for edit-actions-section-remove */
-         cgi_edit_actions_section_remove,
+         cgi_edit_actions_section_remove, 
          NULL, FALSE  },
    { "eass", /* Shortcut for edit-actions-section-swap */
-         cgi_edit_actions_section_swap,
+         cgi_edit_actions_section_swap, 
          NULL, FALSE  },
    { "edit-actions-for-url",
-         cgi_edit_actions_for_url,
+         cgi_edit_actions_for_url, 
          NULL, FALSE  /* Edit the actions for (a) specified URL(s) */ },
    { "edit-actions-list",
-         cgi_edit_actions_list,
+         cgi_edit_actions_list, 
          NULL, TRUE /* Edit the actions list */ },
    { "edit-actions-submit",
-         cgi_edit_actions_submit,
+         cgi_edit_actions_submit, 
          NULL, FALSE /* Change the actions for (a) specified URL(s) */ },
    { "edit-actions-url",
-         cgi_edit_actions_url,
+         cgi_edit_actions_url, 
          NULL, FALSE /* Change a URL pattern in the actionsfile */ },
    { "edit-actions-url-form",
-         cgi_edit_actions_url_form,
+         cgi_edit_actions_url_form, 
          NULL, FALSE /* Form to change a URL pattern in the actionsfile */ },
    { "edit-actions-add-url",
-         cgi_edit_actions_add_url,
+         cgi_edit_actions_add_url, 
          NULL, FALSE /* Add a URL pattern to the actionsfile */ },
    { "edit-actions-add-url-form",
-         cgi_edit_actions_add_url_form,
+         cgi_edit_actions_add_url_form, 
          NULL, FALSE /* Form to add a URL pattern to the actionsfile */ },
    { "edit-actions-remove-url",
-         cgi_edit_actions_remove_url,
+         cgi_edit_actions_remove_url, 
          NULL, FALSE /* Remove a URL pattern from the actionsfile */ },
    { "edit-actions-remove-url-form",
-         cgi_edit_actions_remove_url_form,
+         cgi_edit_actions_remove_url_form, 
          NULL, FALSE /* Form to remove a URL pattern from the actionsfile */ },
    { "edit-actions-section-add",
-         cgi_edit_actions_section_add,
+         cgi_edit_actions_section_add, 
          NULL, FALSE /* Remove a section from the actionsfile */ },
    { "edit-actions-section-remove",
-         cgi_edit_actions_section_remove,
+         cgi_edit_actions_section_remove, 
          NULL, FALSE /* Remove a section from the actionsfile */ },
    { "edit-actions-section-swap",
-         cgi_edit_actions_section_swap,
+         cgi_edit_actions_section_swap, 
          NULL, FALSE /* Swap two sections in the actionsfile */ },
 #endif /* def FEATURE_CGI_EDIT_ACTIONS */
-   { "error-favicon.ico",
-         cgi_send_error_favicon,
+   { "error-favicon.ico", 
+         cgi_send_error_favicon,  
          NULL, TRUE /* Sends the favicon image for error pages. */ },
-   { "favicon.ico",
-         cgi_send_default_favicon,
+   { "favicon.ico", 
+         cgi_send_default_favicon,  
          NULL, TRUE /* Sends the default favicon image. */ },
-   { "robots.txt",
-         cgi_robots_txt,
-         NULL, TRUE /* Sends a robots.txt file to tell robots to go away. */ },
+   { "robots.txt", 
+         cgi_robots_txt,  
+         NULL, TRUE /* Sends a robots.txt file to tell robots to go away. */ }, 
    { "send-banner",
-         cgi_send_banner,
+         cgi_send_banner, 
          NULL, TRUE /* Send a built-in image */ },
    { "send-stylesheet",
-         cgi_send_stylesheet,
+         cgi_send_stylesheet, 
          NULL, FALSE /* Send templates/cgi-style.css */ },
    { "t",
-         cgi_transparent_image,
+         cgi_transparent_image, 
          NULL, TRUE /* Send a transparent image (short name) */ },
    { "url-info-osd.xml",
-         cgi_send_url_info_osd,
+         cgi_send_url_info_osd, 
          NULL, TRUE /* Send templates/url-info-osd.xml */ },
    { "user-manual",
           cgi_send_user_manual,
@@ -271,13 +877,6 @@ const char image_blank_data[] =
 const size_t image_pattern_length = sizeof(image_pattern_data) - 1;
 const size_t image_blank_length   = sizeof(image_blank_data) - 1;
 
-#ifdef FEATURE_COMPRESSION
-/*
- * Minimum length which a buffer has to reach before
- * we bother to (re-)compress it. Completely arbitrary.
- */
-const size_t LOWER_LENGTH_LIMIT_FOR_COMPRESSION = 1024U;
-#endif
 
 static struct http_response cgi_error_memory_response[1];
 
@@ -287,7 +886,7 @@ static struct map *parse_cgi_parameters(char *argstring);
 
 
 /*********************************************************************
- *
+ * 
  * Function    :  dispatch_cgi
  *
  * Description :  Checks if a request URL has either the magical
@@ -349,7 +948,7 @@ struct http_response *dispatch_cgi(struct client_state *csp)
       return NULL;
    }
 
-   /*
+   /* 
     * This is a CGI call.
     */
 
@@ -394,7 +993,7 @@ static char *grep_cgi_referrer(const struct client_state *csp)
 
 
 /*********************************************************************
- *
+ * 
  * Function    :  referrer_is_safe
  *
  * Description :  Decides whether we trust the Referer for
@@ -442,7 +1041,7 @@ static int referrer_is_safe(const struct client_state *csp)
 }
 
 /*********************************************************************
- *
+ * 
  * Function    :  dispatch_known_cgi
  *
  * Description :  Processes a CGI once dispatch_cgi has determined that
@@ -480,7 +1079,7 @@ static struct http_response *dispatch_known_cgi(struct client_state * csp,
    {
       query_args_start++;
    }
-   if (*query_args_start == '/')
+   if (*query_args_start == '/') 
    {
       *query_args_start++ = '\0';
       if ((param_list = new_map()))
@@ -515,7 +1114,7 @@ static struct http_response *dispatch_known_cgi(struct client_state * csp,
       return cgi_error_memory();
    }
 
-   /*
+   /* 
     * Find and start the right CGI function
     */
    d = cgi_dispatchers;
@@ -558,15 +1157,13 @@ static struct http_response *dispatch_known_cgi(struct client_state * csp,
          if (err && (err != JB_ERR_MEMORY))
          {
             /* Unexpected error! Shouldn't get here */
-            log_error(LOG_LEVEL_ERROR,
-               "Unexpected CGI error %d in top-level handler. "
-               "Please file a bug report!", err);
+            log_error(LOG_LEVEL_ERROR, "Unexpected CGI error %d in top-level handler.  Please file a bug report!", err);
             err = cgi_error_unknown(csp, rsp, err);
          }
          if (!err)
          {
             /* It worked */
-            rsp->crunch_reason = CGI_CALL;
+            rsp->reason = RSP_REASON_CGI_CALL;
             return finish_http_response(csp, rsp);
          }
          else
@@ -579,8 +1176,8 @@ static struct http_response *dispatch_known_cgi(struct client_state * csp,
       d++;
    }
 }
-
-
+   
+        
 /*********************************************************************
  *
  * Function    :  parse_cgi_parameters
@@ -606,7 +1203,7 @@ static struct map *parse_cgi_parameters(char *argstring)
       return NULL;
    }
 
-   /*
+   /* 
     * IE 5 does, of course, violate RFC 2316 Sect 4.1 and sends
     * the fragment identifier along with the request, so we must
     * cut it off here, so it won't pollute the CGI params:
@@ -775,7 +1372,7 @@ jb_err get_number_param(struct client_state *csp,
    assert(name);
    assert(pvalue);
 
-   *pvalue = 0;
+   *pvalue = 0; 
 
    param = lookup(parameters, name);
    if (!*param)
@@ -828,13 +1425,15 @@ jb_err get_number_param(struct client_state *csp,
  * Parameters  :
  *          1  :  csp = Current client state (buffers, headers, etc...)
  *          2  :  templatename = Which template should be used for the answer
+ *          3  :  sys_err = system error number
  *
  * Returns     :  A http_response.  If we run out of memory, this
  *                will be cgi_error_memory().
  *
  *********************************************************************/
 struct http_response *error_response(struct client_state *csp,
-                                     const char *templatename)
+                                     const char *templatename,
+                                     int sys_err)
 {
    jb_err err;
    struct http_response *rsp;
@@ -867,7 +1466,8 @@ struct http_response *error_response(struct client_state *csp,
    if (!err) err = map(exports, "host", 1, html_encode(csp->http->host), 0);
    if (!err) err = map(exports, "hostport", 1, html_encode(csp->http->hostport), 0);
    if (!err) err = map(exports, "path", 1, html_encode_and_free_original(path), 0);
-   if (!err) err = map(exports, "protocol", 1, csp->http->ssl ? "https://" : "http://", 1);
+   if (!err) err = map(exports, "error", 1, html_encode_and_free_original(safe_strerror(sys_err)), 0);
+   if (!err) err = map(exports, "protocol", 1, csp->http->ssl ? "https://" : "http://", 1); 
    if (!err)
    {
      err = map(exports, "host-ip", 1, html_encode(csp->http->host_ip_addr_str), 0);
@@ -889,7 +1489,13 @@ struct http_response *error_response(struct client_state *csp,
    if (!strcmp(templatename, "no-such-domain"))
    {
       rsp->status = strdup("404 No such domain");
-      rsp->crunch_reason = NO_SUCH_DOMAIN;
+      if (rsp->status == NULL)
+      {
+         free_map(exports);
+         free_http_response(rsp);
+         return cgi_error_memory();
+      }
+      rsp->reason = RSP_REASON_NO_SUCH_DOMAIN;
    }
    else if (!strcmp(templatename, "forwarding-failed"))
    {
@@ -943,37 +1549,26 @@ struct http_response *error_response(struct client_state *csp,
 
       if (!err) err = map(exports, "forwarding-type", 1, socks_type, 1);
       if (!err) err = map(exports, "error-message", 1, html_encode(csp->error_message), 0);
-      if ((NULL == csp->error_message) || err)
+
+      if (!err) rsp->status = strdup("503 Forwarding failure");
+      if ((rsp->status == NULL) || (NULL == csp->error_message) || err)
       {
          free_map(exports);
          free_http_response(rsp);
          return cgi_error_memory();
       }
-
-      rsp->status = strdup("503 Forwarding failure");
-      rsp->crunch_reason = FORWARDING_FAILED;
+      rsp->reason = RSP_REASON_FORWARDING_FAILED;
    }
    else if (!strcmp(templatename, "connect-failed"))
    {
       rsp->status = strdup("503 Connect failed");
-      rsp->crunch_reason = CONNECT_FAILED;
-   }
-   else if (!strcmp(templatename, "connection-timeout"))
-   {
-      rsp->status = strdup("504 Connection timeout");
-      rsp->crunch_reason = CONNECTION_TIMEOUT;
-   }
-   else if (!strcmp(templatename, "no-server-data"))
-   {
-      rsp->status = strdup("502 No data received from server or forwarder");
-      rsp->crunch_reason = NO_SERVER_DATA;
-   }
-
-   if (rsp->status == NULL)
-   {
-      free_map(exports);
-      free_http_response(rsp);
-      return cgi_error_memory();
+      if (rsp->status == NULL)
+      {
+         free_map(exports);
+         free_http_response(rsp);
+         return cgi_error_memory();
+      }
+      rsp->reason = RSP_REASON_CONNECT_FAILED;
    }
 
    err = template_fill_for_cgi(csp, templatename, exports, rsp);
@@ -1050,23 +1645,23 @@ void cgi_init_error_messages(void)
       "Content-Type: text/html\r\n"
       "\r\n";
    cgi_error_memory_response->body =
-      "<html>\n"
-      "<head>\n"
-      " <title>500 Internal Privoxy Error</title>\n"
+      "<html>\r\n"
+      "<head>\r\n"
+      " <title>500 Internal Privoxy Error</title>\r\n"
       " <link rel=\"shortcut icon\" href=\"" CGI_PREFIX "error-favicon.ico\" type=\"image/x-icon\">"
-      "</head>\n"
-      "<body>\n"
-      "<h1>500 Internal Privoxy Error</h1>\n"
-      "<p>Privoxy <b>ran out of memory</b> while processing your request.</p>\n"
-      "<p>Please contact your proxy administrator, or try again later</p>\n"
-      "</body>\n"
-      "</html>\n";
+      "</head>\r\n"
+      "<body>\r\n"
+      "<h1>500 Internal Privoxy Error</h1>\r\n"
+      "<p>Privoxy <b>ran out of memory</b> while processing your request.</p>\r\n"
+      "<p>Please contact your proxy administrator, or try again later</p>\r\n"
+      "</body>\r\n"
+      "</html>\r\n";
 
    cgi_error_memory_response->head_length =
       strlen(cgi_error_memory_response->head);
    cgi_error_memory_response->content_length =
       strlen(cgi_error_memory_response->body);
-   cgi_error_memory_response->crunch_reason = OUT_OF_MEMORY;
+   cgi_error_memory_response->reason = RSP_REASON_OUT_OF_MEMORY;
 }
 
 
@@ -1098,7 +1693,7 @@ struct http_response *cgi_error_memory(void)
  *
  * Description :  Almost-CGI function that is called if a template
  *                cannot be loaded.  Note this is not a true CGI,
- *                it takes a template name rather than a map of
+ *                it takes a template name rather than a map of 
  *                parameters.
  *
  * Parameters  :
@@ -1108,7 +1703,7 @@ struct http_response *cgi_error_memory(void)
  *                                be loaded.
  *
  * Returns     :  JB_ERR_OK on success
- *                JB_ERR_MEMORY on out-of-memory error.
+ *                JB_ERR_MEMORY on out-of-memory error.  
  *
  *********************************************************************/
 jb_err cgi_error_no_template(const struct client_state *csp,
@@ -1118,18 +1713,18 @@ jb_err cgi_error_no_template(const struct client_state *csp,
    static const char status[] =
       "500 Internal Privoxy Error";
    static const char body_prefix[] =
-      "<html>\n"
-      "<head>\n"
-      " <title>500 Internal Privoxy Error</title>\n"
+      "<html>\r\n"
+      "<head>\r\n"
+      " <title>500 Internal Privoxy Error</title>\r\n"
       " <link rel=\"shortcut icon\" href=\"" CGI_PREFIX "error-favicon.ico\" type=\"image/x-icon\">"
-      "</head>\n"
-      "<body>\n"
-      "<h1>500 Internal Privoxy Error</h1>\n"
-      "<p>Privoxy encountered an error while processing your request:</p>\n"
+      "</head>\r\n"
+      "<body>\r\n"
+      "<h1>500 Internal Privoxy Error</h1>\r\n"
+      "<p>Privoxy encountered an error while processing your request:</p>\r\n"
       "<p><b>Could not load template file <code>";
    static const char body_suffix[] =
-      "</code> or one of its included components.</b></p>\n"
-      "<p>Please contact your proxy administrator.</p>\n"
+      "</code> or one of its included components.</b></p>\r\n"
+      "<p>Please contact your proxy administrator.</p>\r\n"
       "<p>If you are the proxy administrator, please put the required file(s)"
       "in the <code><i>(confdir)</i>/templates</code> directory.  The "
       "location of the <code><i>(confdir)</i></code> directory "
@@ -1138,9 +1733,9 @@ jb_err cgi_error_no_template(const struct client_state *csp,
 #ifndef _WIN32
       ", or <code>/etc/privoxy/</code>"
 #endif /* ndef _WIN32 */
-      ").</p>\n"
-      "</body>\n"
-      "</html>\n";
+      ").</p>\r\n"
+      "</body>\r\n"
+      "</html>\r\n";
    const size_t body_size = strlen(body_prefix) + strlen(template_name) + strlen(body_suffix) + 1;
 
    assert(csp);
@@ -1195,7 +1790,7 @@ jb_err cgi_error_no_template(const struct client_state *csp,
  *          3  :  error_to_report = Error code to report.
  *
  * Returns     :  JB_ERR_OK on success
- *                JB_ERR_MEMORY on out-of-memory error.
+ *                JB_ERR_MEMORY on out-of-memory error.  
  *
  *********************************************************************/
 jb_err cgi_error_unknown(const struct client_state *csp,
@@ -1205,24 +1800,28 @@ jb_err cgi_error_unknown(const struct client_state *csp,
    static const char status[] =
       "500 Internal Privoxy Error";
    static const char body_prefix[] =
-      "<html>\n"
-      "<head>\n"
-      " <title>500 Internal Privoxy Error</title>\n"
+      "<html>\r\n"
+      "<head>\r\n"
+      " <title>500 Internal Privoxy Error</title>\r\n"
       " <link rel=\"shortcut icon\" href=\"" CGI_PREFIX "error-favicon.ico\" type=\"image/x-icon\">"
-      "</head>\n"
-      "<body>\n"
-      "<h1>500 Internal Privoxy Error</h1>\n"
-      "<p>Privoxy encountered an error while processing your request:</p>\n"
+      "</head>\r\n"
+      "<body>\r\n"
+      "<h1>500 Internal Privoxy Error</h1>\r\n"
+      "<p>Privoxy encountered an error while processing your request:</p>\r\n"
       "<p><b>Unexpected internal error: ";
    static const char body_suffix[] =
-      "</b></p>\n"
+      "</b></p>\r\n"
       "<p>Please "
       "<a href=\"http://sourceforge.net/tracker/?group_id=11118&amp;atid=111118\">"
-      "file a bug report</a>.</p>\n"
-      "</body>\n"
-      "</html>\n";
-   /* Includes room for larger error numbers in the future. */
-   const size_t body_size = sizeof(body_prefix) + sizeof(body_suffix) + 5;
+      "file a bug report</a>.</p>\r\n"
+      "</body>\r\n"
+      "</html>\r\n";
+   char errnumbuf[30];
+   /*
+    * Due to sizeof(errnumbuf), body_size will be slightly
+    * bigger than necessary but it doesn't really matter.
+    */
+   const size_t body_size = strlen(body_prefix) + sizeof(errnumbuf) + strlen(body_suffix) + 1;
    assert(csp);
    assert(rsp);
 
@@ -1233,15 +1832,18 @@ jb_err cgi_error_unknown(const struct client_state *csp,
    rsp->content_length = 0;
    rsp->head_length = 0;
    rsp->is_static = 0;
-   rsp->crunch_reason = INTERNAL_ERROR;
+   rsp->reason = RSP_REASON_INTERNAL_ERROR;
+
+   snprintf(errnumbuf, sizeof(errnumbuf), "%d", error_to_report);
 
    rsp->body = malloc(body_size);
    if (rsp->body == NULL)
    {
       return JB_ERR_MEMORY;
    }
-
-   snprintf(rsp->body, body_size, "%s%d%s", body_prefix, error_to_report, body_suffix);
+   strlcpy(rsp->body, body_prefix, body_size);
+   strlcat(rsp->body, errnumbuf,   body_size);
+   strlcat(rsp->body, body_suffix, body_size);
 
    rsp->status = strdup(status);
    if (rsp->status == NULL)
@@ -1259,7 +1861,7 @@ jb_err cgi_error_unknown(const struct client_state *csp,
  *
  * Description :  CGI function that is called if the parameters
  *                (query string) for a CGI were wrong.
- *
+ *               
  * Parameters  :
  *          1  :  csp = Current client state (buffers, headers, etc...)
  *          2  :  rsp = http_response data structure for output
@@ -1267,7 +1869,7 @@ jb_err cgi_error_unknown(const struct client_state *csp,
  * CGI Parameters : none
  *
  * Returns     :  JB_ERR_OK on success
- *                JB_ERR_MEMORY on out-of-memory error.
+ *                JB_ERR_MEMORY on out-of-memory error.  
  *
  *********************************************************************/
 jb_err cgi_error_bad_param(const struct client_state *csp,
@@ -1289,7 +1891,7 @@ jb_err cgi_error_bad_param(const struct client_state *csp,
 
 /*********************************************************************
  *
- * Function    :  cgi_redirect
+ * Function    :  cgi_redirect 
  *
  * Description :  CGI support function to generate a HTTP redirect
  *                message
@@ -1301,7 +1903,7 @@ jb_err cgi_error_bad_param(const struct client_state *csp,
  * CGI Parameters : None
  *
  * Returns     :  JB_ERR_OK on success
- *                JB_ERR_MEMORY on out-of-memory error.
+ *                JB_ERR_MEMORY on out-of-memory error.  
  *
  *********************************************************************/
 jb_err cgi_redirect (struct http_response * rsp, const char *target)
@@ -1336,8 +1938,8 @@ jb_err cgi_redirect (struct http_response * rsp, const char *target)
  *                FIXME: I currently only work for actions, and would
  *                       like to be generalized for other topics.
  *
- * Parameters  :
- *          1  :  item = item (will NOT be free()d.)
+ * Parameters  :  
+ *          1  :  item = item (will NOT be free()d.) 
  *                       It is assumed to be HTML-safe.
  *          2  :  config = The current configuration.
  *
@@ -1368,7 +1970,7 @@ char *add_help_link(const char *item,
    string_join  (&result, string_toupper(item));
    string_append(&result, "\">");
    string_append(&result, item);
-   string_append(&result, "</a>");
+   string_append(&result, "</a> ");
 
    return result;
 }
@@ -1382,7 +1984,7 @@ char *add_help_link(const char *item,
  *                HTTP header - e.g.:
  *                "Sun, 06 Nov 1994 08:49:37 GMT"
  *
- * Parameters  :
+ * Parameters  :  
  *          1  :  time_offset = Time returned will be current time
  *                              plus this number of seconds.
  *          2  :  buf = Destination for result.
@@ -1395,6 +1997,12 @@ char *add_help_link(const char *item,
  *********************************************************************/
 void get_http_time(int time_offset, char *buf, size_t buffer_size)
 {
+   static const char day_names[7][4] =
+      { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
+   static const char month_names[12][4] =
+      { "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
+
    struct tm *t;
    time_t current_time;
 #if defined(HAVE_GMTIME_R)
@@ -1411,7 +2019,7 @@ void get_http_time(int time_offset, char *buf, size_t buffer_size)
    /* get and save the gmt */
 #if HAVE_GMTIME_R
    t = gmtime_r(&current_time, &dummy);
-#elif defined(MUTEX_LOCKS_AVAILABLE)
+#elif FEATURE_PTHREAD
    privoxy_mutex_lock(&gmtime_mutex);
    t = gmtime(&current_time);
    privoxy_mutex_unlock(&gmtime_mutex);
@@ -1419,7 +2027,17 @@ void get_http_time(int time_offset, char *buf, size_t buffer_size)
    t = gmtime(&current_time);
 #endif
 
-   strftime(buf, buffer_size, "%a, %d %b %Y %H:%M:%S GMT", t);
+   /* Format: "Sun, 06 Nov 1994 08:49:37 GMT" */
+   snprintf(buf, buffer_size,
+      "%s, %02d %s %4d %02d:%02d:%02d GMT",
+      day_names[t->tm_wday],
+      t->tm_mday,
+      month_names[t->tm_mon],
+      t->tm_year + 1900,
+      t->tm_hour,
+      t->tm_min,
+      t->tm_sec
+      );
 
 }
 
@@ -1457,7 +2075,7 @@ static void get_locale_time(char *buf, size_t buffer_size)
 
 #if HAVE_LOCALTIME_R
    timeptr = localtime_r(&current_time, &dummy);
-#elif defined(MUTEX_LOCKS_AVAILABLE)
+#elif FEATURE_PTHREAD
    privoxy_mutex_lock(&localtime_mutex);
    timeptr = localtime(&current_time);
    privoxy_mutex_unlock(&localtime_mutex);
@@ -1468,63 +2086,6 @@ static void get_locale_time(char *buf, size_t buffer_size)
    strftime(buf, buffer_size, "%a %b %d %X %Z %Y", timeptr);
 
 }
-
-
-#ifdef FEATURE_COMPRESSION
-/*********************************************************************
- *
- * Function    :  compress_buffer
- *
- * Description :  Compresses the content of a buffer with zlib's deflate
- *                Allocates a new buffer for the result, free'ing it is
- *                up to the caller.
- *
- * Parameters  :
- *          1  :  buffer = buffer whose content should be compressed
- *          2  :  buffer_length = length of the buffer
- *          3  :  compression_level = compression level for compress2()
- *
- * Returns     :  NULL on error, otherwise a pointer to the compressed
- *                content of the input buffer.
- *
- *********************************************************************/
-char *compress_buffer(char *buffer, size_t *buffer_length, int compression_level)
-{
-   char *compressed_buffer;
-   uLongf new_length;
-   assert(-1 <= compression_level && compression_level <= 9);
-
-   /* Let zlib figure out the maximum length of the compressed data */
-   new_length = compressBound((uLongf)*buffer_length);
-
-   compressed_buffer = malloc(new_length);
-   if (NULL == compressed_buffer)
-   {
-      log_error(LOG_LEVEL_FATAL,
-         "Out of memory allocation compression buffer.");
-   }
-
-   if (Z_OK != compress2((Bytef *)compressed_buffer, &new_length,
-         (Bytef *)buffer, *buffer_length, compression_level))
-   {
-      log_error(LOG_LEVEL_ERROR,
-         "compress2() failed. Buffer size: %d, compression level: %d.",
-         new_length, compression_level);
-      freez(compressed_buffer);
-      return NULL;
-   }
-
-   log_error(LOG_LEVEL_RE_FILTER,
-      "Compressed content from %d to %d bytes. Compression level: %d",
-      *buffer_length, new_length, compression_level);
-
-   *buffer_length = (size_t)new_length;
-
-   return compressed_buffer;
-
-}
-#endif
-
 
 /*********************************************************************
  *
@@ -1555,7 +2116,7 @@ struct http_response *finish_http_response(const struct client_state *csp, struc
       return rsp;
    }
 
-   /*
+   /* 
     * Fill in the HTTP Status, using HTTP/1.1
     * unless the client asked for HTTP/1.0.
     */
@@ -1564,31 +2125,13 @@ struct http_response *finish_http_response(const struct client_state *csp, struc
       rsp->status ? rsp->status : "200 OK");
    err = enlist_first(rsp->headers, buf);
 
-   /*
+   /* 
     * Set the Content-Length
     */
    if (rsp->content_length == 0)
    {
       rsp->content_length = rsp->body ? strlen(rsp->body) : 0;
    }
-
-#ifdef FEATURE_COMPRESSION
-   if (!err && (csp->flags & CSP_FLAG_CLIENT_SUPPORTS_DEFLATE)
-      && (rsp->content_length > LOWER_LENGTH_LIMIT_FOR_COMPRESSION))
-   {
-      char *compressed_content;
-
-      compressed_content = compress_buffer(rsp->body, &rsp->content_length,
-         csp->config->compression_level);
-      if (NULL != compressed_content)
-      {
-         freez(rsp->body);
-         rsp->body = compressed_content;
-         err = enlist_unique_header(rsp->headers, "Content-Encoding", "deflate");
-      }
-   }
-#endif
-
    if (!err)
    {
       snprintf(buf, sizeof(buf), "Content-Length: %d", (int)rsp->content_length);
@@ -1630,7 +2173,7 @@ struct http_response *finish_http_response(const struct client_state *csp, struc
     * Last-Modified: set to date/time the page was last changed.
     * Expires: set to date/time page next needs reloading.
     * Cache-Control: set to "no-cache" if applicable.
-    *
+    * 
     * See http://www.w3.org/Protocols/rfc2068/rfc2068
     */
    if (rsp->is_static)
@@ -1687,9 +2230,7 @@ struct http_response *finish_http_response(const struct client_state *csp, struc
       if (!err) err = enlist_unique_header(rsp->headers, "Date", buf);
       if (!strncmpic(rsp->status, "403", 3)
        || !strncmpic(rsp->status, "404", 3)
-       || !strncmpic(rsp->status, "502", 3)
-       || !strncmpic(rsp->status, "503", 3)
-       || !strncmpic(rsp->status, "504", 3))
+       || !strncmpic(rsp->status, "503", 3))
       {
          if (!err) err = enlist_unique_header(rsp->headers, "Last-Modified", "Wed, 08 Jun 1955 12:00:00 GMT");
       }
@@ -1701,12 +2242,15 @@ struct http_response *finish_http_response(const struct client_state *csp, struc
       if (!err) err = enlist_unique_header(rsp->headers, "Pragma", "no-cache");
    }
 
-   if (!err && !(csp->flags & CSP_FLAG_CLIENT_CONNECTION_KEEP_ALIVE))
-   {
-      err = enlist_unique_header(rsp->headers, "Connection", "close");
-   }
-
    /*
+    * Quoting RFC 2616:
+    *
+    * HTTP/1.1 applications that do not support persistent connections MUST
+    * include the "close" connection option in every message.
+    */
+   if (!err) err = enlist_unique_header(rsp->headers, "Connection", "close");
+
+   /* 
     * Write the head
     */
    if (err || (NULL == (rsp->head = list_to_text(rsp->headers))))
@@ -1786,11 +2330,11 @@ void free_http_response(struct http_response *rsp)
  *                            following an #include statament
  *
  * Returns     :  JB_ERR_OK on success
- *                JB_ERR_MEMORY on out-of-memory error.
+ *                JB_ERR_MEMORY on out-of-memory error.  
  *                JB_ERR_FILE if the template file cannot be read
  *
  *********************************************************************/
-jb_err template_load(const struct client_state *csp, char **template_ptr,
+jb_err template_load(const struct client_state *csp, char **template_ptr, 
                      const char *templatename, int recursive)
 {
    jb_err err;
@@ -1872,7 +2416,7 @@ jb_err template_load(const struct client_state *csp, char **template_ptr,
    }
    free(full_path);
 
-   /*
+   /* 
     * Read the file, ignoring comments, and honoring #include
     * statements, unless we're already called recursively.
     *
@@ -1927,7 +2471,7 @@ jb_err template_load(const struct client_state *csp, char **template_ptr,
  *                HTML template by replacing @name@ with value using
  *                pcrs, for each item in the output map.
  *
- *                Note that a leading '$' character in the export map's
+ *                Note that a leading '$' charachter in the export map's
  *                values will be stripped and toggle on backreference
  *                interpretation.
  *
@@ -1960,7 +2504,7 @@ jb_err template_fill(char **template_ptr, const struct map *exports)
    file_buffer = *template_ptr;
    size = strlen(file_buffer) + 1;
 
-   /*
+   /* 
     * Assemble pcrs joblist from exports map
     */
    for (m = exports->first; m != NULL; m = m->next)
@@ -1978,7 +2522,7 @@ jb_err template_fill(char **template_ptr, const struct map *exports)
       else
       {
          /*
-          * Treat the "replace with" text as a literal string -
+          * Treat the "replace with" text as a literal string - 
           * no quoting needed, no backreferences allowed.
           * ("Trivial" ['T'] flag).
           */
@@ -1992,7 +2536,7 @@ jb_err template_fill(char **template_ptr, const struct map *exports)
 
       /* Make and run job. */
       job = pcrs_compile(buf, m->value, flags,  &error);
-      if (job == NULL)
+      if (job == NULL) 
       {
          if (error == PCRS_ERR_NOMEM)
          {
@@ -2019,10 +2563,10 @@ jb_err template_fill(char **template_ptr, const struct map *exports)
 
          if (error < 0)
          {
-            /*
+            /* 
              * Substitution failed, keep the original buffer,
              * log the problem and ignore it.
-             *
+             * 
              * The user might see some unresolved @CGI_VARIABLES@,
              * but returning a special CGI error page seems unreasonable
              * and could mask more important error messages.
@@ -2074,7 +2618,7 @@ jb_err template_fill_for_cgi(const struct client_state *csp,
                              struct http_response *rsp)
 {
    jb_err err;
-
+   
    assert(csp);
    assert(templatename);
    assert(exports);
@@ -2119,7 +2663,6 @@ struct map *default_exports(const struct client_state *csp, const char *caller)
    struct map * exports;
    int local_help_exists = 0;
    char *ip_address = NULL;
-   char *port = NULL;
    char *hostname = NULL;
 
    assert(csp);
@@ -2132,12 +2675,12 @@ struct map *default_exports(const struct client_state *csp, const char *caller)
 
    if (csp->config->hostname)
    {
-      get_host_information(csp->cfd, &ip_address, &port, NULL);
+      get_host_information(csp->cfd, &ip_address, NULL);
       hostname = strdup(csp->config->hostname);
    }
    else
    {
-      get_host_information(csp->cfd, &ip_address, &port, &hostname);
+      get_host_information(csp->cfd, &ip_address, &hostname);
    }
 
    err = map(exports, "version", 1, html_encode(VERSION), 0);
@@ -2145,8 +2688,6 @@ struct map *default_exports(const struct client_state *csp, const char *caller)
    if (!err) err = map(exports, "time",          1, html_encode(buf), 0);
    if (!err) err = map(exports, "my-ip-address", 1, html_encode(ip_address ? ip_address : "unknown"), 0);
    freez(ip_address);
-   if (!err) err = map(exports, "my-port",       1, html_encode(port ? port : "unkown"), 0);
-   freez(port);
    if (!err) err = map(exports, "my-hostname",   1, html_encode(hostname ? hostname : "unknown"), 0);
    freez(hostname);
    if (!err) err = map(exports, "homepage",      1, html_encode(HOME_PAGE_URL), 0);
@@ -2170,6 +2711,9 @@ struct map *default_exports(const struct client_state *csp, const char *caller)
 #else
    if (!err) err = map_block_killer(exports, "can-toggle");
 #endif
+
+   snprintf(buf, sizeof(buf), "%d", csp->config->hport);
+   if (!err) err = map(exports, "my-port", 1, buf, 1);
 
    if(!strcmp(CODE_STATUS, "stable"))
    {
@@ -2221,12 +2765,12 @@ struct map *default_exports(const struct client_state *csp, const char *caller)
  *                "if-<name>-start.*if-<name>-end" to the given
  *                export list.
  *
- * Parameters  :
+ * Parameters  :  
  *          1  :  exports = map to extend
  *          2  :  name = name of conditional block
  *
  * Returns     :  JB_ERR_OK on success
- *                JB_ERR_MEMORY on out-of-memory error.
+ *                JB_ERR_MEMORY on out-of-memory error.  
  *
  *********************************************************************/
 jb_err map_block_killer(struct map *exports, const char *name)
@@ -2250,12 +2794,12 @@ jb_err map_block_killer(struct map *exports, const char *name)
  *                by map-block-killer, to save a few bytes.
  *                i.e. removes "@if-<name>-start@" and "@if-<name>-end@"
  *
- * Parameters  :
+ * Parameters  :  
  *          1  :  exports = map to extend
  *          2  :  name = name of conditional block
  *
  * Returns     :  JB_ERR_OK on success
- *                JB_ERR_MEMORY on out-of-memory error.
+ *                JB_ERR_MEMORY on out-of-memory error.  
  *
  *********************************************************************/
 jb_err map_block_keep(struct map *exports, const char *name)
@@ -2296,13 +2840,13 @@ jb_err map_block_keep(struct map *exports, const char *name)
  *                The control structure and one of the alternatives
  *                will be hidden.
  *
- * Parameters  :
+ * Parameters  :  
  *          1  :  exports = map to extend
  *          2  :  name = name of conditional block
  *          3  :  choose_first = nonzero for first, zero for second.
  *
  * Returns     :  JB_ERR_OK on success
- *                JB_ERR_MEMORY on out-of-memory error.
+ *                JB_ERR_MEMORY on out-of-memory error.  
  *
  *********************************************************************/
 jb_err map_conditional(struct map *exports, const char *name, int choose_first)
@@ -2334,7 +2878,7 @@ jb_err map_conditional(struct map *exports, const char *name, int choose_first)
  *
  * Function    :  make_menu
  *
- * Description :  Returns an HTML-formatted menu of the available
+ * Description :  Returns an HTML-formatted menu of the available 
  *                unhidden CGIs, excluding the one given in <self>
  *                and the toggle CGI if toggling is disabled.
  *
@@ -2342,7 +2886,7 @@ jb_err map_conditional(struct map *exports, const char *name, int choose_first)
  *          1  :  self = name of CGI to leave out, can be NULL for
  *                complete listing.
  *          2  :  feature_flags = feature bitmap from csp->config
- *
+ *                
  *
  * Returns     :  menu string, or NULL on out-of-memory error.
  *
@@ -2383,7 +2927,7 @@ char *make_menu(const char *self, const unsigned feature_flags)
          html_encoded_prefix = html_encode(CGI_PREFIX);
          if (html_encoded_prefix == NULL)
          {
-            return NULL;
+            return NULL;  
          }
          else
          {
