@@ -40,7 +40,7 @@
     	
        <ImageView
 		android:id="@+id/imgStatus"
-				    android:layout_marginTop="40dip"
+				    android:layout_marginTop="55dip"
 
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent"
