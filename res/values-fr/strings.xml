@@ -178,11 +178,6 @@
   <string name="the_tor_license">La licence de Tor</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Logiciels tierce-partie :</string>
-  <string name="tor_version">Tor v0.2.3.7-alpha: https://www.torproject.org</string>
-  <string name="libevent_version">Libevent v1.4.13 : http://www.monkey.org/~provos/libevent/</string>
-  <string name="privoxy_version">Privoxy v3.0.12 : http://www.privoxy.org</string>
-  <string name="iptables_version">Iptables v1.4.7 : http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v1.0.0f: http://www.openssl.org</string>
   <string name="hidden_service_request">Une application veut ouvrir le port %S du serveur caché sur le réseau Tor. C\'est sécuritaire si vous faites confiance à l\'application.</string>
   <string name="found_existing_tor_process">trouvé un processus existant de Tor ...</string>
   <string name="something_bad_happened">Quelque chose d\'incorrect s\'est passé. Vérifiez le journal</string>

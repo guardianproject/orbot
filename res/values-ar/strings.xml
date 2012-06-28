@@ -183,11 +183,6 @@
   <string name="the_tor_license">رخصة استخدام تور</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">برامج من جهات أخرى:</string>
-  <string name="tor_version">Tor v0.2.3.10: https://www.torproject.orgب</string>
-  <string name="libevent_version">LibEvent v1.4.13: http://www.monkey.org/~provos/libevent/</string>
-  <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
-  <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v1.0.0f: http://www.openssl.org</string>
   <string name="hidden_service_request">أحد البرامج يحاول تشغيل خدمة مخفية بمنفذ %S على شبكة تور. هذه الميزة آمنة فقط اذا كنت تثق بالبرنامج</string>
   <string name="found_existing_tor_process">تم العثور على برنامج تور </string>
   <string name="something_bad_happened">حصل خطأ ما. افحص السجل</string>

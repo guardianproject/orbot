@@ -183,11 +183,6 @@ Visítenos en https://guardianproject.info/apps/orbot o envíenos un correo elec
   <string name="the_tor_license">Licencia de uso Tor</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Software de terceras partes</string>
-  <string name="tor_version">Tor v0.2.3.7-alfa: https://www.torproject.org</string>
-  <string name="libevent_version">Libevent v1.4.13: http://www.monkey.org/ ~ provos / libevent /</string>
-  <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
-  <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v1.0.0f: http://www.openssl.org</string>
   <string name="hidden_service_request">Una aplicación esta intentando abrir el siguiente puerto %S a la red Tor. Esto es seguro, si confía en la aplicación, que lo esta intentando abrir.</string>
   <string name="found_existing_tor_process">Se ha encontrado proceso activo de Tor ...</string>
   <string name="something_bad_happened">Algo ha ocurrido con el normal funcionamiento de la aplicacion. Compruebe el log de registro del sistema Tor</string>
