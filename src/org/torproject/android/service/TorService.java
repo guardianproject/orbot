@@ -1044,12 +1044,17 @@ public class TorService extends Service implements TorServiceConstants, TorConst
           if (msg.indexOf(TOR_CONTROL_PORT_MSG_BOOTSTRAP_DONE)!=-1)
           {
         	  currentStatus = STATUS_ON;
-        	//  showToolbarNotification (getString(R.string.status_activated),NOTIFY_ID,R.drawable.tornotificationon, Notification.FLAG_ONGOING_EVENT);
 
-        //	  TorService.this.set
-        	  
+  			if (prefPersistNotifications)
+  			{
         	  startNotification();
-        	  
+  			}
+  			else
+  			{
+  				showToolbarNotification (getString(R.string.status_activated),NOTIFY_ID,R.drawable.tornotificationon, Notification.FLAG_ONGOING_EVENT);
+
+  			}
+  			
    		   	getHiddenServiceHostname ();
    		   
           }
