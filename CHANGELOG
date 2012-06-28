@@ -1,5 +1,23 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+1.0.9
+- Tor now updated to 0.2.3.17-beta
+- Privoxy updated to 3.0.12
+- tweaked layout for smaller screens
+- fixed obfsproxy android patch build error
+- privoxy: removed lpthread library flag since Android has it built-in
+- updated strings; made notify on/off option work again
+- added background view; fixed long click;
+- removed unneeded landscape custom layout
+- updated layout for larger screens
+- updated impl of torified apps logic
+- improved wizard flow on non-root devices
+- removed gcc ssp hardening (not support on Android NDK)
+- fixed posix thread option for Privoxy
+- added docs folder and readme's
+- clarified english strings for hidden srv and proxying
+- moved Tor data directory to app_data from cache
+
 1.0.8 (includes 1.0.7.3 and 1.0.7.2)
 - new external/Makefile and git submodules
 - fixed tor control port cookie file path lookup related to #5305 
