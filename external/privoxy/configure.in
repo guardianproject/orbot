@@ -843,7 +843,7 @@ else
     echo "Using Cygnus (Win32 command line)"
   else
     SPECIAL_CFLAGS=
-    PTHREAD_LIB=-lpthread
+dnl    PTHREAD_LIB=-lpthread
   fi
 fi
 AC_SUBST(WIN_ONLY)
