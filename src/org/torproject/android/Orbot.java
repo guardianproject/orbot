@@ -82,9 +82,6 @@ public class Orbot extends Activity implements TorConstants, OnLongClickListener
            	
         	setLocale();
         
-        	bindService();
-           	startService(new Intent(INTENT_TOR_SERVICE));
-
             prefs = PreferenceManager.getDefaultSharedPreferences(this);
             
             setContentView(R.layout.layout_main);
@@ -94,8 +91,6 @@ public class Orbot extends Activity implements TorConstants, OnLongClickListener
                 
             imgStatus = (ImageView)findViewById(R.id.imgStatus);
             imgStatus.setOnLongClickListener(this);
-            
-            
 
     }
     
@@ -244,25 +239,12 @@ public class Orbot extends Activity implements TorConstants, OnLongClickListener
 	protected void onPause() {
 		super.onPause();
 		
+		unbindService();
+		
 		hideProgressDialog();
 
 		if (aDialog != null)
 			aDialog.dismiss();
-	}
-
-	public void onSaveInstanceState(Bundle savedInstanceState) {
-		  // Save UI state changes to the savedInstanceState.
-		  // This bundle will be passed to onCreate if the process is
-		  // killed and restarted.
-		  // etc.
-		  super.onSaveInstanceState(savedInstanceState);
-		}
-	
-	public void onRestoreInstanceState(Bundle savedInstanceState) {
-	  super.onRestoreInstanceState(savedInstanceState);
-	  // Restore UI state from the savedInstanceState.
-	  // This bundle has also been passed to onCreate.
-	 
 	}
 	
 	private void doTorCheck ()
@@ -326,6 +308,11 @@ public class Orbot extends Activity implements TorConstants, OnLongClickListener
 		super.onResume();
 		
 		setLocale();
+		
+    	bindService();
+        // 	startService(new Intent(INTENT_TOR_SERVICE));
+
+
 		
 		if (getIntent() == null)
 			return;
@@ -425,7 +412,7 @@ public class Orbot extends Activity implements TorConstants, OnLongClickListener
 	protected void onStop() {
 		super.onStop();
 		
-		//unbindService();
+		unbindService();
 	}
 
 
@@ -607,9 +594,6 @@ public class Orbot extends Activity implements TorConstants, OnLongClickListener
   // to start Tor
     private void startTor () throws RemoteException
     {
-            // here we bind AGAIN - at some point i think we had to bind multiple times just in case
-            // but i would love to clarify, clean this up
-            bindService();
             
             // this is a bit of a strange/old/borrowed code/design i used to change the service state
             // not sure it really makes sense when what we want to say is just "startTor"
@@ -877,12 +861,11 @@ public class Orbot extends Activity implements TorConstants, OnLongClickListener
     private void hideProgressDialog ()
     {
 
-                if (progressDialog != null && progressDialog.isShowing())
-                {
-                        progressDialog.dismiss();
-                        progressDialog = null;
-                }
-                
+        if (progressDialog != null && progressDialog.isShowing())
+        {
+                progressDialog.dismiss();
+                progressDialog = null;
+        }
                 
     }
     

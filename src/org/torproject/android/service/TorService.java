@@ -77,11 +77,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     private File filePrivoxy;
     private File fileObfsProxy;
     
-    /** Called when the activity is first created. */
-    public void onCreate() {
-    	super.onCreate();
-      
-    }
     
     public static void logMessage(String msg)
     {
@@ -168,6 +163,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	{
 		NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 		mNotificationManager.cancelAll();
+		
+		
 	}
    
 	private void showToolbarNotification (String notifyMsg, int notifyId, int icon, int flags)
@@ -322,7 +319,10 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	try
     	{	
     		killTorProcess ();
-				
+    		
+    		//stop the foreground priority and make sure to remove the persistant notification
+    		stopForeground(true);
+    			
     		currentStatus = STATUS_OFF;
     
     		clearNotifications();
@@ -793,7 +793,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			
 			initControlConnection ();
 
-	        applyPreferences();
+			updateTorConfiguration();
 	    }
     }
     
@@ -1033,6 +1033,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			
 			startForeground(NOTIFY_ID,notice);
 		
+			
 		}
 		
 
@@ -1156,6 +1157,15 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	_torInstance = this;
     	initTorPaths();
     	
+    	
+    	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+    	
+    	ENABLE_DEBUG_LOG = prefs.getBoolean("pref_enable_logging",false);
+    	Log.i(TAG,"debug logging:" + ENABLE_DEBUG_LOG);
+    	
+    	prefPersistNotifications = prefs.getBoolean(TorConstants.PREF_PERSIST_NOTIFICATIONS, true);
+    	
+    	
     	new Thread ()
     	{
     		
@@ -1208,8 +1218,14 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         	
         	
         	try {
-				applyPreferences();
-				
+        		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(TorService.this);
+            	
+            	ENABLE_DEBUG_LOG = prefs.getBoolean("pref_enable_logging",false);
+            	Log.i(TAG,"debug logging:" + ENABLE_DEBUG_LOG);
+            	
+            	prefPersistNotifications = prefs.getBoolean(TorConstants.PREF_PERSIST_NOTIFICATIONS, true);
+            	
+        		updateTorConfiguration();
 
 		        if (currentStatus == STATUS_ON)
 		        {
@@ -1411,14 +1427,10 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	
     }
     
-    private boolean applyPreferences () throws RemoteException
+    private boolean updateTorConfiguration () throws RemoteException
     {
+    	
     	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-    	
-    	ENABLE_DEBUG_LOG = prefs.getBoolean("pref_enable_logging",false);
-    	Log.i(TAG,"debug logging:" + ENABLE_DEBUG_LOG);
-    	
-    	prefPersistNotifications = prefs.getBoolean(TorConstants.PREF_PERSIST_NOTIFICATIONS, true);
     	
 		boolean useBridges = prefs.getBoolean(TorConstants.PREF_BRIDGES_ENABLED, false); 
 		
