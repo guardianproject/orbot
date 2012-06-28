@@ -1,4 +1,4 @@
-const char cgiedit_rcs[] = "$Id: cgiedit.c,v 1.65 2009/03/08 14:19:22 fabiankeil Exp $";
+const char cgiedit_rcs[] = "$Id: cgiedit.c,v 1.71 2011/11/18 16:47:08 fabiankeil Exp $";
 /*********************************************************************
  *
  * File        :  $Source: /cvsroot/ijbswa/current/cgiedit.c,v $
@@ -40,361 +40,8 @@ const char cgiedit_rcs[] = "$Id: cgiedit.c,v 1.65 2009/03/08 14:19:22 fabiankeil
  *                or write to the Free Software Foundation, Inc., 59
  *                Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
- * Revisions   :
- *    $Log: cgiedit.c,v $
- *    Revision 1.65  2009/03/08 14:19:22  fabiankeil
- *    Fix justified (but harmless) compiler warnings
- *    on platforms where sizeof(int) < sizeof(long).
- *
- *    Revision 1.64  2009/03/01 18:43:09  fabiankeil
- *    Fix cparser warnings.
- *
- *    Revision 1.63  2008/12/04 18:15:38  fabiankeil
- *    Fix some cparser warnings.
- *
- *    Revision 1.62  2008/08/31 15:59:02  fabiankeil
- *    There's no reason to let remote toggling support depend
- *    on FEATURE_CGI_EDIT_ACTIONS, so make sure it doesn't.
- *
- *    Revision 1.61  2008/03/24 18:12:52  fabiankeil
- *    Use sizeof() more often.
- *
- *    Revision 1.60  2008/03/15 14:52:35  fabiankeil
- *    Add CGI editor support for the "disable all filters of this type"
- *    directives "-client-header-filter", "-server-header-filter",
- *    "-client-header-tagger" and "-server-header-tagger".
- *
- *    Revision 1.59  2008/03/08 16:25:56  fabiankeil
- *    After three file modification time mismatches, turn the CGI editor off.
- *
- *    Revision 1.58  2007/11/28 17:57:01  fabiankeil
- *    Fix double free in cgi_edit_actions_list().
- *    Reported by adlab in BR#1840145.
- *
- *    Revision 1.57  2007/10/27 13:32:23  fabiankeil
- *    Plug minor 5-year-old memory leak. Spotted by
- *    Valgrind and triggered by Privoxy-Regression-Test.
- *
- *    Revision 1.56  2007/08/05 13:47:03  fabiankeil
- *    #1763173 from Stefan Huehner: s@const static@static const@.
- *
- *    Revision 1.55  2007/05/31 11:50:20  fabiankeil
- *    Re-enable support for old-school URLs like
- *    http://config.privoxy.org/edit-actions-list?f=default
- *    in the action editor.
- *
- *    They are no longer used by the CGI pages, but make it easier
- *    to reach the editor directly, without knowing the requested
- *    file's index in csp->config->actions_file[].
- *
- *    Revision 1.54  2007/05/14 10:33:51  fabiankeil
- *    - Use strlcpy() and strlcat() instead of strcpy() and strcat().
- *
- *    Revision 1.53  2007/04/15 16:39:20  fabiankeil
- *    Introduce tags as alternative way to specify which
- *    actions apply to a request. At the moment tags can be
- *    created based on client and server headers.
- *
- *    Revision 1.52  2007/04/12 10:41:23  fabiankeil
- *    - Don't mistake VC++'s _snprintf() for a snprintf() replacement.
- *    - Move some cgi_edit_actions_for_url() variables into structs.
- *    - Remove bogus comment.
- *
- *    Revision 1.51  2007/04/08 13:21:05  fabiankeil
- *    Reference action files in CGI URLs by id instead
- *    of using the first part of the file name.
- *    Fixes BR 1694250 and BR 1590556.
- *
- *    Revision 1.50  2007/03/29 11:40:34  fabiankeil
- *    Divide @filter-params@ into @client-header-filter-params@
- *    @content-filter-params@ and @server-header-filter-params@.
- *
- *    Revision 1.49  2007/03/20 15:16:34  fabiankeil
- *    Use dedicated header filter actions instead of abusing "filter".
- *    Replace "filter-client-headers" and "filter-client-headers"
- *    with "server-header-filter" and "client-header-filter".
- *
- *    Revision 1.48  2007/02/13 14:35:25  fabiankeil
- *    Replace hash escaping code to prevent
- *    crashes, memory and file corruption.
- *
- *    Revision 1.47  2006/12/28 18:04:25  fabiankeil
- *    Fixed gcc43 conversion warnings.
- *
- *    Revision 1.46  2006/12/27 18:44:52  fabiankeil
- *    Stop shadowing string.h's index().
- *
- *    Revision 1.45  2006/12/21 12:57:48  fabiankeil
- *    Add config option "split-large-forms"
- *    to work around the browser bug reported
- *    in BR #1570678.
- *
- *    Revision 1.44  2006/12/09 13:49:16  fabiankeil
- *    Fix configure option --disable-toggle.
- *    Thanks to Peter Thoenen for reporting this.
- *
- *    Revision 1.43  2006/07/18 14:48:45  david__schmidt
- *    Reorganizing the repository: swapping out what was HEAD (the old 3.1 branch)
- *    with what was really the latest development (the v_3_0_branch branch)
- *
- *    Revision 1.41.2.12  2006/01/30 15:16:25  david__schmidt
- *    Remove a little residual debugging info
- *
- *    Revision 1.41.2.11  2006/01/29 23:10:56  david__schmidt
- *    Multiple filter file support
- *
- *    Revision 1.41.2.10  2005/07/04 03:13:43  david__schmidt
- *    Undo some damaging memory leak patches
- *
- *    Revision 1.41.2.9  2005/07/04 00:31:04  david__schmidt
- *    Removing a double free
- *
- *    Revision 1.41.2.8  2005/05/07 21:50:54  david__schmidt
- *    A few memory leaks plugged (mostly on error paths)
- *
- *    Revision 1.41.2.7  2004/02/17 13:30:23  oes
- *    Moved cgi_error_disabled() from cgiedit.c to
- *    cgi.c to re-enable build with --disable-editor.
- *    Fixes Bug #892744. Thanks to Matthew Fischer
- *    for spotting.
- *
- *    Revision 1.41.2.6  2003/12/18 08:13:48  oes
- *    One line lost in last commit
- *
- *    Revision 1.41.2.5  2003/12/17 16:33:47  oes
- *     - All edit functions that redirect back to the list page
- *       now use cgi_redirect
- *     - All redirects now contain useless parameter "foo", whose
- *       value are raw seconds since epoch, in order to force
- *       Opera and Konqueror to properly reload the list. Closes
- *       bug #859993
- *
- *    Revision 1.41.2.4  2003/03/11 11:53:59  oes
- *    Cosmetic: Renamed cryptic variable
- *
- *    Revision 1.41.2.3  2002/11/12 15:01:41  oes
- *    Fix: Don't free uninitialized struct editable_file
- *
- *    Revision 1.41.2.2  2002/08/05 20:02:59  oes
- *    Bugfix: "Insert new section at top" did not work properly if first non-comment line in file was of type FILE_LINE_ACTION
- *
- *    Revision 1.41.2.1  2002/08/02 12:43:14  oes
- *    Fixed bug #588514: first_time now set on a per-string basis in actions_from_radio; javascriptify now called on copies
- *
- *    Revision 1.41  2002/05/21 19:09:45  oes
- *     - Made Add/Edit/Remove URL Submit and Cancel
- *       buttons jump back to relevant section in eal
- *     - Bugfix: remove-url-form needs p export
- *
- *    Revision 1.40  2002/05/19 11:34:35  jongfoster
- *    Handling read-only actions files better - report the actual
- *    error, not "Out of memory"!
- *
- *    Bug report:
- *    http://sourceforge.net/tracker/index.php?func=detail
- *    &aid=557905&group_id=11118&atid=111118
- *
- *    Revision 1.39  2002/05/12 21:39:15  jongfoster
- *    - Adding Doxygen-style comments to structures and #defines.
- *    - Correcting function comments
- *
- *    Revision 1.38  2002/05/03 23:00:38  jongfoster
- *    Support for templates for "standard actions" buttons.
- *    See bug #549871
- *
- *    Revision 1.37  2002/04/30 11:14:52  oes
- *    Made csp the first parameter in *action_to_html
- *
- *    Revision 1.36  2002/04/26 21:53:30  jongfoster
- *    Fixing a memory leak.  (Near, but not caused by, my earlier commit).
- *
- *    Revision 1.35  2002/04/26 21:50:02  jongfoster
- *    Honouring default exports in edit-actions-for-url-filter template.
- *
- *    Revision 1.34  2002/04/26 12:54:17  oes
- *    Adaptions to changes in actions.c
- *
- *    Revision 1.33  2002/04/24 02:17:47  oes
- *     - Moved get_char_param, get_string_param and get_number_param to cgi.c
- *     - Comments
- *     - Activated Jon's code for editing multiple AFs
- *     - cgi_edit_list_actions now provides context-sensitive
- *       help, looks up all action sets from standard.action and
- *       makes buttons for them in the catchall section
- *     - cgi_edit_action_submit now honors a p parameter, looks up
- *       the corresponding action set, and sets the catchall pattern's
- *       actions accordingly.
- *
- *    Revision 1.32  2002/04/19 16:55:31  jongfoster
- *    Fixing newline problems.  If we do our own text file newline
- *    mangling, we don't want the library to do any, so we need to
- *    open the files in *binary* mode.
- *
- *    Revision 1.31  2002/04/18 19:21:08  jongfoster
- *    Added code to detect "conventional" action files, that start
- *    with a set of actions for all URLs (the pattern "/").
- *    These are special-cased in the "edit-actions-list" CGI, so
- *    that a special UI can be written for them.
- *
- *    Revision 1.30  2002/04/10 13:38:35  oes
- *    load_template signature changed
- *
- *    Revision 1.29  2002/04/08 16:59:08  oes
- *    Fixed comment
- *
- *    Revision 1.28  2002/03/27 12:30:29  oes
- *    Deleted unsused variable
- *
- *    Revision 1.27  2002/03/26 23:06:04  jongfoster
- *    Removing duplicate @ifs on the toggle page
- *
- *    Revision 1.26  2002/03/26 22:59:17  jongfoster
- *    Fixing /toggle to display status consistently.
- *
- *    Revision 1.25  2002/03/26 22:29:54  swa
- *    we have a new homepage!
- *
- *    Revision 1.24  2002/03/24 15:23:33  jongfoster
- *    Name changes
- *
- *    Revision 1.23  2002/03/24 13:32:41  swa
- *    name change related issues
- *
- *    Revision 1.22  2002/03/24 13:25:43  swa
- *    name change related issues
- *
- *    Revision 1.21  2002/03/22 18:02:48  jongfoster
- *    Fixing remote toggle
- *
- *    Revision 1.20  2002/03/16 20:28:34  oes
- *    Added descriptions to the filters so users will know what they select in the cgi editor
- *
- *    Revision 1.19  2002/03/16 18:38:14  jongfoster
- *    Stopping stupid or malicious users from breaking the actions
- *    file using the web-based editor.
- *
- *    Revision 1.18  2002/03/16 14:57:44  jongfoster
- *    Full support for enabling/disabling modular filters.
- *
- *    Revision 1.17  2002/03/16 14:26:42  jongfoster
- *    First version of modular filters support - READ ONLY!
- *    Fixing a double-free bug in the out-of-memory handling in map_radio().
- *
- *    Revision 1.16  2002/03/07 03:46:17  oes
- *    Fixed compiler warnings
- *
- *    Revision 1.15  2002/03/06 22:54:35  jongfoster
- *    Automated function-comment nitpicking.
- *
- *    Revision 1.14  2002/03/05 00:24:51  jongfoster
- *    Patch to always edit the current actions file.
- *
- *    Revision 1.13  2002/03/04 02:07:59  david__schmidt
- *    Enable web editing of actions file on OS/2 (it had been broken all this time!)
- *
- *    Revision 1.12  2002/03/03 09:18:03  joergs
- *    Made jumbjuster work on AmigaOS again.
- *
- *    Revision 1.11  2002/01/23 01:03:31  jongfoster
- *    Fixing gcc [CygWin] compiler warnings
- *
- *    Revision 1.10  2002/01/23 00:22:59  jongfoster
- *    Adding new function cgi_edit_actions_section_swap(), to reorder
- *    the actions file.
- *
- *    Adding get_url_spec_param() to get a validated URL pattern.
- *
- *    Moving edit_read_line() out of this file and into loaders.c.
- *
- *    Adding missing html_encode() to many CGI functions.
- *
- *    Moving the functions that #include actionlist.h to the end of the file,
- *    because the Visual C++ 97 debugger gets extremely confused if you try
- *    to debug any code that comes after them in the file.
- *
- *    Major optimizations in cgi_edit_actions_list() to reduce the size of
- *    the generated HTML (down 40% from 550k to 304k), with major side-effects
- *    throughout the editor and templates.  In particular, the length of the
- *    URLs throughout the editor has been drastically reduced, by cutting
- *    paramater names down to 1 character and CGI names down to 3-4
- *    characters, by removing all non-essential CGI paramaters even at the
- *    expense of having to re-read the actions file for the most trivial
- *    page, and by using relative rather than absolute URLs.  This means
- *    that this (typical example):
- *
- *    <a href="http://ijbswa.sourceforge.net/config/edit-actions-url-form?
- *    filename=ijb&amp;ver=1011487572&amp;section=12&amp;pattern=13
- *    &amp;oldval=www.oesterhelt.org%2Fdeanimate-demo">
- *
- *    is now this:
- *
- *    <a href="eau?f=ijb&amp;v=1011487572&amp;p=13">
- *
- *    Revision 1.9  2002/01/17 20:56:22  jongfoster
- *    Replacing hard references to the URL of the config interface
- *    with #defines from project.h
- *
- *    Revision 1.8  2001/11/30 23:35:51  jongfoster
- *    Renaming actionsfile to ijb.action
- *
- *    Revision 1.7  2001/11/13 00:28:24  jongfoster
- *    - Renaming parameters from edit-actions-for-url so that they only
- *      contain legal JavaScript characters.  If we wanted to write
- *      JavaScript that worked with Netscape 4, this is nessacery.
- *      (Note that at the moment the JavaScript doesn't actually work
- *      with Netscape 4, but now this is purely a template issue, not
- *      one affecting code).
- *    - Adding new CGIs for use by non-JavaScript browsers:
- *        edit-actions-url-form
- *        edit-actions-add-url-form
- *        edit-actions-remove-url-form
- *    - Fixing || bug.
- *
- *    Revision 1.6  2001/10/29 03:48:09  david__schmidt
- *    OS/2 native needed a snprintf() routine.  Added one to miscutil, brackedted
- *    by and __OS2__ ifdef.
- *
- *    Revision 1.5  2001/10/25 03:40:48  david__schmidt
- *    Change in porting tactics: OS/2's EMX porting layer doesn't allow multiple
- *    threads to call select() simultaneously.  So, it's time to do a real, live,
- *    native OS/2 port.  See defines for __EMX__ (the porting layer) vs. __OS2__
- *    (native). Both versions will work, but using __OS2__ offers multi-threading.
- *
- *    Revision 1.4  2001/10/23 21:48:19  jongfoster
- *    Cleaning up error handling in CGI functions - they now send back
- *    a HTML error page and should never cause a FATAL error.  (Fixes one
- *    potential source of "denial of service" attacks).
- *
- *    CGI actions file editor that works and is actually useful.
- *
- *    Ability to toggle JunkBuster remotely using a CGI call.
- *
- *    You can turn off both the above features in the main configuration
- *    file, e.g. if you are running a multi-user proxy.
- *
- *    Revision 1.3  2001/10/14 22:12:49  jongfoster
- *    New version of CGI-based actionsfile editor.
- *    Major changes, including:
- *    - Completely new file parser and file output routines
- *    - edit-actions CGI renamed edit-actions-for-url
- *    - All CGIs now need a filename parameter, except for...
- *    - New CGI edit-actions which doesn't need a filename,
- *      to allow you to start the editor up.
- *    - edit-actions-submit now works, and now automatically
- *      redirects you back to the main edit-actions-list handler.
- *
- *    Revision 1.2  2001/09/16 17:05:14  jongfoster
- *    Removing unused #include showarg.h
- *
- *    Revision 1.1  2001/09/16 15:47:37  jongfoster
- *    First version of CGI-based edit interface.  This is very much a
- *    work-in-progress, and you can't actually use it to edit anything
- *    yet.  You must #define FEATURE_CGI_EDIT_ACTIONS for these changes
- *    to have any effect.
- *
- *
  **********************************************************************/
-
+
 
 #include "config.h"
 
@@ -438,10 +85,10 @@ struct file_line
 {
    /** Next entry in the linked list */
    struct file_line * next;
-   
+
    /** The raw data, to write out if this line is unmodified. */
    char * raw;
-   
+
    /** Comments and/or whitespace to put before this line if it's modified
        and then written out. */
    char * prefix;
@@ -450,7 +97,7 @@ struct file_line
        are performed on the data read from file before it's stored here, so
        it will be a single line of data.  */
    char * unprocessed;
-   
+
    /** The type of data on this line.  One of the FILE_LINE_xxx constants. */
    int type;
 
@@ -674,15 +321,10 @@ static jb_err actions_from_radio(const struct map * parameters,
 static jb_err map_copy_parameter_html(struct map *out,
                                       const struct map *in,
                                       const char *name);
-#if 0 /* unused function */
-static jb_err map_copy_parameter_url(struct map *out,
-                                     const struct map *in,
-                                     const char *name);
-#endif /* unused function */
 
-static jb_err get_file_name_param(struct client_state *csp, 	 
-	                                   const struct map *parameters, 	 
-	                                   const char *param_name, 	 
+static jb_err get_file_name_param(struct client_state *csp,
+	                                   const struct map *parameters,
+	                                   const char *param_name,
 	                                   const char **pfilename);
 
 /* Internal convenience functions */
@@ -784,56 +426,6 @@ static jb_err map_copy_parameter_html(struct map *out,
       return JB_ERR_OK;
    }
 }
-
-
-#if 0 /* unused function */
-/*********************************************************************
- *
- * Function    :  map_copy_parameter_url
- *
- * Description :  Copy a CGI parameter from one map to another, URL
- *                encoding it.
- *
- * Parameters  :
- *          1  :  out = target map
- *          2  :  in = source map
- *          3  :  name = name of cgi parameter to copy
- *
- * Returns     :  JB_ERR_OK on success
- *                JB_ERR_MEMORY on out-of-memory
- *                JB_ERR_CGI_PARAMS if the parameter doesn't exist
- *                                  in the source map
- *
- *********************************************************************/
-static jb_err map_copy_parameter_url(struct map *out,
-                                     const struct map *in,
-                                     const char *name)
-{
-   const char * value;
-   jb_err err;
-
-   assert(out);
-   assert(in);
-   assert(name);
-
-   value = lookup(in, name);
-   err = map(out, name, 1, url_encode(value), 0);
-
-   if (err)
-   {
-      /* Out of memory */
-      return err;
-   }
-   else if (*value == '\0')
-   {
-      return JB_ERR_CGI_PARAMS;
-   }
-   else
-   {
-      return JB_ERR_OK;
-   }
-}
-#endif /* 0 - unused function */
 
 
 /*********************************************************************
@@ -1060,7 +652,7 @@ jb_err cgi_edit_actions_remove_url_form(struct client_state *csp,
       if (cur_line->type == FILE_LINE_ACTION)
       {
          section_start_line_number = line_number;
-      }      
+      }
       cur_line = cur_line->next;
    }
 
@@ -1836,7 +1428,7 @@ jb_err edit_read_file_lines(FILE *fp, struct file_line ** pfile, int *newline)
    if (rval)
    {
       /* Out of memory or empty file. */
-      /* Note that empty file is not an error we propogate up */
+      /* Note that empty file is not an error we propagate up */
       free(cur_line);
       return ((rval == JB_ERR_FILE) ? JB_ERR_OK : rval);
    }
@@ -1941,7 +1533,7 @@ jb_err edit_read_file(struct client_state *csp,
        * Probably an old-school URL like
        * http://config.privoxy.org/edit-actions-list?f=default
        */
-      err = get_file_name_param(csp, parameters, "f", &filename);
+      get_file_name_param(csp, parameters, "f", &filename);
    }
 
    if (NULL == filename || stat(filename, statbuf) < 0)
@@ -2087,7 +1679,7 @@ jb_err edit_read_actions_file(struct client_state *csp,
          {
             log_error(LOG_LEVEL_INFO,
                "Timestamp mismatch limit reached, turning CGI editor off. "
-               "Reload the configuration file to reenable it.");
+               "Reload the configuration file to re-enable it.");
             csp->config->feature_flags &= ~RUNTIME_FEATURE_CGI_EDIT_ACTIONS;
          }
       }
@@ -3226,7 +2818,7 @@ jb_err cgi_edit_actions_for_url(struct client_state *csp,
    if (!err) err = actions_to_radio(exports, cur_line->data.action);
 
    /*
-    * XXX: Some browsers (at least IE6 and IE7) have an artifical URL
+    * XXX: Some browsers (at least IE6 and IE7) have an artificial URL
     * length limitation and ignore clicks on the Submit buttons if
     * the resulting GET URL would be longer than their limit.
     *
@@ -3235,7 +2827,7 @@ jb_err cgi_edit_actions_for_url(struct client_state *csp,
     * browsers (BR #1570678).
     *
     * The config option split-large-forms works around this browser
-    * bug (HTTP has no URL lenght limitation) by deviding the action
+    * bug (HTTP has no URL length limitation) by deviding the action
     * list form into multiple smaller ones. It means the URLs are shorter
     * and work in broken browsers as well, but the user can no longer change
     * all actions with one submit.
@@ -3768,7 +3360,7 @@ jb_err cgi_edit_actions_url(struct client_state *csp,
       if (cur_line->type == FILE_LINE_ACTION)
       {
          section_start_line_number = line_number;
-      }      
+      }
       cur_line = cur_line->next;
       line_number++;
    }
@@ -4536,7 +4128,7 @@ jb_err cgi_edit_actions_section_swap(struct client_state *csp,
  *
  * Description :  Converts a string into a form JavaScript will like.
  *
- *                Netscape 4's JavaScript sucks - it doesn't use 
+ *                Netscape 4's JavaScript sucks - it doesn't use
  *                "id" parameters, so you have to set the "name"
  *                used to submit a form element to something JavaScript
  *                will like.  (Or access the elements by index in an

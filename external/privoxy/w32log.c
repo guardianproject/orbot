@@ -1,4 +1,4 @@
-const char w32log_rcs[] = "$Id: w32log.c,v 1.33 2009/03/09 19:02:09 fabiankeil Exp $";
+const char w32log_rcs[] = "$Id: w32log.c,v 1.40 2011/09/04 11:10:56 fabiankeil Exp $";
 /*********************************************************************
  *
  * File        :  $Source: /cvsroot/ijbswa/current/w32log.c,v $
@@ -12,7 +12,7 @@ const char w32log_rcs[] = "$Id: w32log.c,v 1.33 2009/03/09 19:02:09 fabiankeil E
  *                Written by and Copyright (C) 1999 Adam Lock
  *                <locka@iol.ie>
  *
- *                This program is free software; you can redistribute it 
+ *                This program is free software; you can redistribute it
  *                and/or modify it under the terms of the GNU General
  *                Public License as published by the Free Software
  *                Foundation; either version 2 of the License, or (at
@@ -30,183 +30,8 @@ const char w32log_rcs[] = "$Id: w32log.c,v 1.33 2009/03/09 19:02:09 fabiankeil E
  *                or write to the Free Software Foundation, Inc., 59
  *                Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
- * Revisions   :
- *    $Log: w32log.c,v $
- *    Revision 1.33  2009/03/09 19:02:09  fabiankeil
- *    Request the default charset in LogPutStringNoMatch().
- *    Submitted by Burberry in #2674342 as fix for #2662382.
- *
- *    Revision 1.32  2009/03/09 18:32:48  fabiankeil
- *    Use the Privoxy icon in the alt+tab window.
- *    Patch submitted by Burberry in #2674342.
- *
- *    Revision 1.31  2009/03/07 17:58:02  fabiankeil
- *    Fix two mingw32-only buffer overflows. Note that triggering
- *    them requires control over the configuration file in which
- *    case all bets are off anyway.
- *
- *    Revision 1.30  2009/01/01 15:09:23  ler762
- *    Change the Windows taskbar icon when privoxy is toggled off.
- *
- *    Revision 1.29  2008/12/20 15:27:40  ler762
- *    The crunch log message format changed, so update the strings to highlight
- *    in the log window.
- *
- *    Revision 1.28  2008/11/02 14:37:47  ler762
- *    commit the part of the patches I've been using that were written by torford and gjmurphy
- *      [ 1824315 ] Minor code cleanup
- *      [ 1781135 ] Patch - Add clear log, select all, and Accelerators for w32
- *        http://sourceforge.net/tracker/?func=detail&atid=311118&aid=1781135&group_id=11118
- *    The full patch adds control keys A(select all), C(copy) and D(delete all) to the
- *    Privoxy log window menu.  Select all and copy work for me without the patch
- *    (albeit without showing the accelerator keys on the menu), so the only part of the
- *    patch I've been using for the last year or so has been the ctrl-d to delete
- *    everything in the Privoxy log window.
- *
- *    Revision 1.27  2006/07/18 14:48:48  david__schmidt
- *    Reorganizing the repository: swapping out what was HEAD (the old 3.1 branch)
- *    with what was really the latest development (the v_3_0_branch branch)
- *
- *    Revision 1.25.2.5  2003/04/04 12:48:51  oes
- *    Fixed bug #711865:
- *     - Made tray menu correctly reflect initial window visibility state
- *     - Hopefully fixed problem where log window contents wasn't visible
- *       until vertical scroll bar was clicked. Thanks to Guy for the fix!
- *
- *    Revision 1.25.2.4  2003/03/11 11:53:59  oes
- *    Cosmetic: Renamed cryptic variable
- *
- *    Revision 1.25.2.3  2002/11/20 14:39:05  oes
- *    Fixed compiler warning
- *
- *    Revision 1.25.2.2  2002/09/25 15:23:10  oes
- *    Uncheck the "Show Privoxy Window" taskbar menu item when window gets minimized. Fixes bug #606804
- *
- *    Revision 1.25.2.1  2002/08/21 17:59:05  oes
- *     - "Show Privoxy Window" now a toggle
- *     - Temp kludge to let user and default action file be edited through win32 GUI (FR 592080)
- *
- *    Revision 1.25  2002/04/04 00:36:36  gliptak
- *    always use pcre for matching
- *
- *    Revision 1.24  2002/03/31 17:19:00  jongfoster
- *    Win32 only: Enabling STRICT to fix a VC++ compile warning.
- *
- *    Revision 1.23  2002/03/26 22:57:10  jongfoster
- *    Web server name should begin www.
- *
- *    Revision 1.22  2002/03/24 12:48:23  jongfoster
- *    Fixing doc links
- *
- *    Revision 1.21  2002/03/24 12:07:35  jongfoster
- *    Consistern name for filters file
- *
- *    Revision 1.20  2002/03/24 12:03:47  jongfoster
- *    Name change
- *
- *    Revision 1.19  2002/01/17 21:04:17  jongfoster
- *    Replacing hard references to the URL of the config interface
- *    with #defines from project.h
- *
- *    Revision 1.18  2001/11/30 23:37:24  jongfoster
- *    Renaming the Win32 config file to config.txt - this is almost the
- *    same as the corresponding UNIX name "config"
- *
- *    Revision 1.17  2001/11/16 00:46:31  jongfoster
- *    Fixing compiler warnings
- *
- *    Revision 1.16  2001/08/01 19:58:12  jongfoster
- *    Fixing documentation filenames in help menu, and making status
- *    option work without needing the "Junkbuster Status.URL" file.
- *
- *    Revision 1.15  2001/07/30 22:08:36  jongfoster
- *    Tidying up #defines:
- *    - All feature #defines are now of the form FEATURE_xxx
- *    - Permanently turned off WIN_GUI_EDIT
- *    - Permanently turned on WEBDAV and SPLIT_PROXY_ARGS
- *
- *    Revision 1.14  2001/07/29 18:47:05  jongfoster
- *    Adding missing #include "loadcfg.h"
- *
- *    Revision 1.13  2001/07/19 19:15:14  haroon
- *    - Added a FIXME for EditFile but didn't fix :-)
- *
- *    Revision 1.12  2001/07/13 14:04:59  oes
- *    Removed all #ifdef PCRS
- *
- *    Revision 1.11  2001/06/07 23:08:12  jongfoster
- *    Forward and ACL edit options removed.
- *
- *    Revision 1.10  2001/05/31 21:37:11  jongfoster
- *    GUI changes to rename "permissions file" to "actions file".
- *
- *    Revision 1.9  2001/05/31 17:33:13  oes
- *
- *    CRLF -> LF
- *
- *    Revision 1.8  2001/05/29 09:50:24  jongfoster
- *    Unified blocklist/imagelist/permissionslist.
- *    File format is still under discussion, but the internal changes
- *    are (mostly) done.
- *
- *    Also modified interceptor behaviour:
- *    - We now intercept all URLs beginning with one of the following
- *      prefixes (and *only* these prefixes):
- *        * http://i.j.b/
- *        * http://ijbswa.sf.net/config/
- *        * http://ijbswa.sourceforge.net/config/
- *    - New interceptors "home page" - go to http://i.j.b/ to see it.
- *    - Internal changes so that intercepted and fast redirect pages
- *      are not replaced with an image.
- *    - Interceptors now have the option to send a binary page direct
- *      to the client. (i.e. ijb-send-banner uses this)
- *    - Implemented show-url-info interceptor.  (Which is why I needed
- *      the above interceptors changes - a typical URL is
- *      "http://i.j.b/show-url-info?url=www.somesite.com/banner.gif".
- *      The previous mechanism would not have intercepted that, and
- *      if it had been intercepted then it then it would have replaced
- *      it with an image.)
- *
- *    Revision 1.7  2001/05/26 01:26:34  jongfoster
- *    New #define, WIN_GUI_EDIT, enables the (embryonic) Win32 GUI editor.
- *    This #define cannot be set from ./configure - there's no point, it
- *    doesn't work yet.  See feature request # 425722
- *
- *    Revision 1.6  2001/05/26 00:31:30  jongfoster
- *    Fixing compiler warning about comparing signed/unsigned.
- *
- *    Revision 1.5  2001/05/26 00:28:36  jongfoster
- *    Automatic reloading of config file.
- *    Removed obsolete SIGHUP support (Unix) and Reload menu option (Win32).
- *    Most of the global variables have been moved to a new
- *    struct configuration_spec, accessed through csp->config->globalname
- *    Most of the globals remaining are used by the Win32 GUI.
- *
- *    Revision 1.4  2001/05/22 18:56:28  oes
- *    CRLF -> LF
- *
- *    Revision 1.3  2001/05/20 15:07:54  jongfoster
- *    File is now ignored if _WIN_CONSOLE is defined.
- *
- *    Revision 1.2  2001/05/20 01:21:20  jongfoster
- *    Version 2.9.4 checkin.
- *    - Merged popupfile and cookiefile, and added control over PCRS
- *      filtering, in new "permissionsfile".
- *    - Implemented LOG_LEVEL_FATAL, so that if there is a configuration
- *      file error you now get a message box (in the Win32 GUI) rather
- *      than the program exiting with no explanation.
- *    - Made killpopup use the PCRS MIME-type checking and HTTP-header
- *      skipping.
- *    - Removed tabs from "config"
- *    - Moved duplicated url parsing code in "loaders.c" to a new funcition.
- *    - Bumped up version number.
- *
- *    Revision 1.1.1.1  2001/05/15 13:59:07  oes
- *    Initial import of version 2.9.3 source tree
- *
- *
  *********************************************************************/
-
+
 
 #include "config.h"
 
@@ -310,7 +135,8 @@ int g_nFontSize = DEFAULT_LOG_FONT_SIZE;
 
 const char * g_default_actions_file = NULL;
 const char * g_user_actions_file = NULL;
-const char * g_re_filterfile = NULL;
+const char * g_default_filterfile = NULL;
+const char * g_user_filterfile = NULL;
 #ifdef FEATURE_TRUST
 const char * g_trustfile = NULL;
 #endif /* def FEATURE_TRUST */
@@ -342,6 +168,11 @@ static struct _Pattern
    { "Crunch: Forwarding failed",   STYLE_HIGHLIGHT },
    { "Crunch: Connection failure",  STYLE_HIGHLIGHT },
    { "Crunch: Out of memory",       STYLE_HIGHLIGHT },
+   { "Connect: Found reusable socket",     STYLE_HIGHLIGHT },
+   { "Connect: Reusing server socket",     STYLE_HIGHLIGHT },
+   { "Connect: Created new connection to", STYLE_HIGHLIGHT },
+   { "hung up on us",               STYLE_HIGHLIGHT },
+   { "Crunching Referer:",          STYLE_HIGHLIGHT },
    /* what are all the possible error strings?? */
    { "Error:",                      STYLE_HIGHLIGHT },
    /* http headers */
@@ -521,67 +352,6 @@ void LogDestroyPatternMatchingBuffers(void)
 
 /*********************************************************************
  *
- * Function    :  LogGetURLUnderCursor
- *
- * Description :  Returns the URL from under the cursor (remember to free it!).
- *
- * Parameters  :  None
- *
- * Returns     :  NULL or a pointer to an URL string.
- *
- *********************************************************************/
-char *LogGetURLUnderCursor(void)
-{
-   char *szResult = NULL;
-   regex_t re;
-   POINT ptCursor;
-   POINTL ptl;
-   DWORD nPos;
-   DWORD nWordStart = 0;
-   DWORD nWordEnd = 0;
-
-   regcomp(&re, RE_URL, REG_ICASE);
-
-   /* Get the position of the cursor over the text window */
-   GetCursorPos(&ptCursor);
-   ScreenToClient(g_hwndLogBox, &ptCursor);
-   ptl.x = ptCursor.x;
-   ptl.y = ptCursor.y;
-
-   /* Search backwards and fowards to obtain the word that is highlighted */
-   nPos = LOWORD(SendMessage(g_hwndLogBox, EM_CHARFROMPOS, 0, (LPARAM) &ptl));
-   nWordStart = SendMessage(g_hwndLogBox, EM_FINDWORDBREAK, WB_LEFT, nPos);
-   nWordEnd = SendMessage(g_hwndLogBox, EM_FINDWORDBREAK, WB_RIGHTBREAK, nPos);
-
-   /* Compare the string to the pattern */
-   if (nWordEnd > nWordStart)
-   {
-      TEXTRANGE range;
-      regmatch_t match;
-
-      range.chrg.cpMin = nWordStart;
-      range.chrg.cpMax = nWordEnd;
-      range.lpstrText = (LPSTR)zalloc(nWordEnd - nWordStart + 1);
-      SendMessage(g_hwndLogBox, EM_GETTEXTRANGE, 0, (LPARAM) &range);
-
-      if (regexec(&re, range.lpstrText, 1, &match, 0) == 0)
-      {
-         szResult = range.lpstrText;
-      }
-      else
-      {
-         free(range.lpstrText);
-      }
-
-      regfree(&re);
-   }
-   return szResult;
-
-}
-
-
-/*********************************************************************
- *
  * Function    :  LogPutString
  *
  * Description :  Inserts text into the logging window.  This is really
@@ -600,12 +370,12 @@ int LogPutString(const char *pszText)
    int i;
    int result = 0;
 
-   if (pszText == NULL || strlen(pszText) == 0)
+   if (!g_bLogMessages)
    {
       return 1;
    }
 
-   if (!g_bLogMessages)
+   if (pszText == NULL || strlen(pszText) == 0)
    {
       return 1;
    }
@@ -828,13 +598,13 @@ void LogClipBuffer(void)
       range.cpMin = SendMessage (g_hwndLogBox, WM_GETTEXTLENGTH, 0, 0);
       range.cpMax = -1;
       SendMessage(g_hwndLogBox, EM_EXSETSEL, 0, (LPARAM) &range);
- 
+
       /* restore vertical ScrollBar stuff (messed up by AUTOVSCROLL) */
       SendMessage (g_hwndLogBox, EM_SCROLL, SB_LINEDOWN, 0);
- 
+
    }
 
-}                                        
+}
 
 
 /*********************************************************************
@@ -1036,7 +806,7 @@ void ShowLogWindow(BOOL bShow)
    {
       SetForegroundWindow(g_hwndLogFrame);
       SetWindowPos(g_hwndLogFrame, HWND_TOP, 0, 0, 0, 0, SWP_SHOWWINDOW | SWP_NOSIZE | SWP_NOMOVE);
-      
+
    }
    else if (g_bShowOnTaskBar)
    {
@@ -1201,8 +971,12 @@ void OnLogCommand(int nCommand)
          EditFile(g_user_actions_file);
          break;
 
-      case ID_TOOLS_EDITFILTERS:
-         EditFile(g_re_filterfile);
+      case ID_TOOLS_EDITDEFAULTFILTERS:
+         EditFile(g_default_filterfile);
+         break;
+
+      case ID_TOOLS_EDITUSERFILTERS:
+         EditFile(g_user_filterfile);
          break;
 
 #ifdef FEATURE_TRUST
@@ -1257,7 +1031,8 @@ void OnLogInitMenu(HMENU hmenu)
    /* Only enable editors if there is a file to edit */
    EnableMenuItem(hmenu, ID_TOOLS_EDITDEFAULTACTIONS, MF_BYCOMMAND | (g_default_actions_file ? MF_ENABLED : MF_GRAYED));
    EnableMenuItem(hmenu, ID_TOOLS_EDITUSERACTIONS, MF_BYCOMMAND | (g_user_actions_file ? MF_ENABLED : MF_GRAYED));
-   EnableMenuItem(hmenu, ID_TOOLS_EDITFILTERS, MF_BYCOMMAND | (g_re_filterfile ? MF_ENABLED : MF_GRAYED));
+   EnableMenuItem(hmenu, ID_TOOLS_EDITDEFAULTFILTERS, MF_BYCOMMAND | (g_default_filterfile ? MF_ENABLED : MF_GRAYED));
+   EnableMenuItem(hmenu, ID_TOOLS_EDITUSERFILTERS, MF_BYCOMMAND | (g_user_filterfile ? MF_ENABLED : MF_GRAYED));
 #ifdef FEATURE_TRUST
    EnableMenuItem(hmenu, ID_TOOLS_EDITTRUST, MF_BYCOMMAND | (g_trustfile ? MF_ENABLED : MF_GRAYED));
 #endif /* def FEATURE_TRUST */

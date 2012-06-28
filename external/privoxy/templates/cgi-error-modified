@@ -8,7 +8,7 @@
 #
 # Template files are written win plain HTML, with a few
 # additions:
-# 
+#
 # - Lines that start with a '#' character like this one
 #   are ignored
 #
@@ -23,7 +23,7 @@
 #   strings @if-<name>start and if-<name>-end@. The strings
 #   should be placed in HTML comments (<!-- -->), so the
 #   html structure won't be messed when the magic happens.
-#   
+#
 # USABLE SYMBOLS IN THIS TEMPLATE:
 # --------------------------------
 #
@@ -109,7 +109,7 @@
         <p>Possible causes:</p>
         <ul>
           <li>If you got here using your browser's "back" button, then
-             that is deliberately disabled for this page.  Please 
+             that is deliberately disabled for this page.  Please
              navigate around the configuration editor using the
              links provided.</li>
           <li>Perhaps you've got more than one browser window open, and
@@ -117,7 +117,7 @@
              only have one editor window open at a time.  Your other edit
              window should continue to function.</li>
           <li>You may have modified the file some other way - perhaps by
-             editing it with a text editor.  Simply go back in to the 
+             editing it with a text editor.  Simply go back in to the
              configuration interface using the links below.</li>
         </ul>
         <p>You can go back into the edit interface using the menu below,
@@ -150,7 +150,7 @@
       </td>
     </tr>
 <!-- if-have-help-info-end@ -->
-        
+
   </table>
 
 </body>

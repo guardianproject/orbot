@@ -7,7 +7,7 @@
 #
 # Template files are written win plain HTML, with a few
 # additions:
-# 
+#
 # - Lines that start with a '#' character like this one
 #   are ignored
 #
@@ -22,7 +22,7 @@
 #   strings @if-<name>start and if-<name>-end@. The strings
 #   should be placed in HTML comments (<!-- -->), so the
 #   html structure won't be messed when the magic happens.
-#   
+#
 # USABLE SYMBOLS IN THIS TEMPLATE:
 # --------------------------------
 #
@@ -47,7 +47,7 @@
 #
 #  redirect-url:
 #    The URL to a script that will redirect to the Privoxy
-#    documentation for a given item  
+#    documentation for a given item
 #  invocation:
 #    The command line with which Privoxy was invoked
 #  options:
@@ -60,7 +60,7 @@
 #    A HTML-formatted list of all conditional #defines used when
 #    Privoxy was compiled
 #
-#  
+#
 # CONDITIONAL SYMBOLS FOR THIS TEMPLATE AND THEIR DEPANDANT SYMBOLS:
 # ------------------------------------------------------------------
 #
@@ -200,11 +200,17 @@
   <!-- @if-have-stats-start -->
           @requests-blocked@ out of @requests-received@ requests have been blocked,
           which equals a block rate of @percent-blocked@%.
+        </p>
+        <p>
+          <strong>Note that the statistics currently don't work properly for
+          reused connections where only the last request gets counted.
+          You may want to look into Privoxy-Log-Parser's --statistics option,
+          which doesn't have this limitation.</strong>
 <!-- if-have-stats-end@ -->
 <!-- @if-have-no-stats-start -->
           There haven't been any requests so far.
 <!-- if-have-no-stats-end@ -->
-        </p>                                   
+        </p>
       </td>
     </tr>
 <!-- if-statistics-end@ -->
@@ -213,8 +219,14 @@
       <td class="box">
         <h2>Conditional #defines:</h2>
           <table summary="The state of some ./configure options and what they do." border="1" style="margin-left: 10px">
-            <tr> 
+            <tr>
               <th>#define</th> <th>Enabled?</th> <th>Effects when enabled</th>
+            </tr>
+
+            <tr>
+              <td><code>FEATURE_ACCEPT_FILTER</code></td>
+              <td>@if-FEATURE_ACCEPT_FILTER-then@ Yes @else-not-FEATURE_ACCEPT_FILTER@ No @endif-FEATURE_ACCEPT_FILTER@</td>
+              <td>Support for FreeBSD's accf_http(9) which is also available on some other BSDs.</td>
             </tr>
             <tr>
               <td><code>FEATURE_ACL</code></td>
@@ -230,11 +242,26 @@
                  editor@if-FEATURE_CGI_EDIT_ACTIONS-then@</a>@else-not-FEATURE_CGI_EDIT_ACTIONS@@endif-FEATURE_CGI_EDIT_ACTIONS@.</td>
             </tr>
             <tr>
+              <td><code>FEATURE_COMPRESSION</code></td>
+              <td>@if-FEATURE_COMPRESSION-then@ Yes @else-not-FEATURE_COMPRESSION@ No @endif-FEATURE_COMPRESSION@</td>
+              <td>
+               Allows to compress buffered content before sending it to the client, assuming the client supports it.
+              </td>
+            </tr>
+            <tr>
               <td><code>FEATURE_CONNECTION_KEEP_ALIVE</code></td>
               <td>@if-FEATURE_CONNECTION_KEEP_ALIVE-then@ Yes @else-not-FEATURE_CONNECTION_KEEP_ALIVE@ No @endif-FEATURE_CONNECTION_KEEP_ALIVE@</td>
               <td>
-               Allows to reuse outgoing connections if the server supports it.
+               Allows to send multiple request through the same connections if the server supports it.
                Requires the keep-alive-timeout config directive to be set.
+              </td>
+            </tr>
+            <tr>
+              <td><code>FEATURE_CONNECTION_SHARING</code></td>
+              <td>@if-FEATURE_CONNECTION_SHARING-then@ Yes @else-not-FEATURE_CONNECTION_SHARING@ No @endif-FEATURE_CONNECTION_SHARING@</td>
+              <td>
+               Allows to share outgoing connections between incoming connections.
+               Requires the connection-sharing config directive to be set.
               </td>
             </tr>
             <tr>
@@ -259,10 +286,18 @@
               <td>Allows the +handle-as-image action, to send <q>blocked</q> images instead of HTML.</td>
             </tr>
             <tr>
+              <td><code>FEATURE_IPV6_SUPPORT</code></td>
+              <td>@if-FEATURE_IPV6_SUPPORT-then@ Yes @else-not-FEATURE_IPV6_SUPPORT@ No @endif-FEATURE_IPV6_SUPPORT@</td>
+              <td>
+               Allows IPv6 addresses in incoming requests, when resolving domains to
+               IP addresses and in the configuration files.
+              </td>
+            </tr>
+            <tr>
               <td><code>FEATURE_IMAGE_DETECT_MSIE</code></td>
               <td>@if-FEATURE_IMAGE_DETECT_MSIE-then@ Yes @else-not-FEATURE_IMAGE_DETECT_MSIE@ No @endif-FEATURE_IMAGE_DETECT_MSIE@</td>
               <td>Enables automatic detection of image and HTML requests from
-               Microsoft Internet Explorer users, overriding the setting of 
+               Microsoft Internet Explorer users, overriding the setting of
                +image in the actions file.</td>
             </tr>
             <tr>
@@ -299,8 +334,10 @@
             <tr>
               <td><code>STATIC_PCRE</code></td>
               <td>@if-STATIC_PCRE-then@ Yes @else-not-STATIC_PCRE@ No @endif-STATIC_PCRE@</td>
-              <td>Use the supplied statically-linked PCRE library.  This is set automatically
-               by <code>./configure</code> if you do not have the libpcre installed.</td>
+              <td>Use the supplied statically-linked PCRE library. This is set automatically
+               by <code>./configure</code> if you do not have the libpcre installed.
+               Dynamically linking to an external libpcre is recommended as the internal
+               one is outdated and lacks various features and bug-fixes you may be interested in.</td>
             </tr>
             <tr>
               <td><code>STATIC_PCRS</code></td>

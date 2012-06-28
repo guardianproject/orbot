@@ -83,7 +83,7 @@
   ;; REFENTRY body-attr
   ;; PURP What attributes should be hung off of BODY?
   ;; DESC
-  ;; A list of the the BODY attributes that should be generated.
+  ;; A list of the BODY attributes that should be generated.
   ;; The format is a list of lists, each interior list contains the
   ;; name and value of a BODY attribute.
   ;; /DESC

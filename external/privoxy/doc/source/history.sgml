@@ -2,8 +2,8 @@
  File        :  $Source: /cvsroot/ijbswa/current/doc/source/history.sgml,v $
 
  Purpose     :  Entity included in other project documents.
-                
- $Id: history.sgml,v 2.7 2009/02/22 11:05:21 fabiankeil Exp $
+
+ $Id: history.sgml,v 2.8 2011/09/04 11:10:12 fabiankeil Exp $
 
   Copyright (C) 2001-2009 Privoxy Developers http://www.privoxy.org/
   See LICENSE.
@@ -12,7 +12,7 @@
   This file used for inclusion with other documents only.
  ======================================================================
 
- If you make changes to this file, please verify the finished 
+ If you make changes to this file, please verify the finished
  docs all display as intended.
 
  This file is included into:
@@ -26,7 +26,7 @@
 
 <para>
  A long time ago, there was the
- <ulink url="http://www.junkbusters.com/ijb.html"><application>Internet Junkbuster</application></ulink>, 
+ <ulink url="http://www.junkbusters.com/ijb.html"><application>Internet Junkbuster</application></ulink>,
  by Anonymous Coders and <ulink url="http://www.junkbusters.com/">Junkbusters
  Corporation</ulink>. This saved many users a lot of pain in the early days of
  web advertising and user tracking.
@@ -36,7 +36,7 @@
  But the web, its protocols and standards, and with it, the techniques for
  forcing ads on users, give up autonomy over their browsing, and
  for tracking them, keeps evolving. Unfortunately, the <application>Internet
- Junkbuster</application> did not. Version 2.0.2, published in 1998, was 
+ Junkbuster</application> did not. Version 2.0.2, published in 1998, was
  (and is) the last official
  <ulink url="http://www.junkbusters.com/ijbdist.html#release">release</ulink>
  available from <ulink url="http://www.junkbusters.com">Junkbusters Corporation</ulink>.
@@ -66,6 +66,6 @@
 
 <para>
  The result of this is <application>Privoxy</application>, whose first
- stable version, 3.0, was released August, 2002. 
+ stable version, 3.0, was released August, 2002.
  <!-- Cautious!!!!!!!!! ;) -->
 </para>

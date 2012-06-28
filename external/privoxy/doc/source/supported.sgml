@@ -2,8 +2,8 @@
  File        :  $Source: /cvsroot/ijbswa/current/doc/source/supported.sgml,v $
 
  Purpose     :  Entity included in other project documents.
-                
- $Id: supported.sgml,v 2.9 2008/01/17 01:49:51 hal9 Exp $
+
+ $Id: supported.sgml,v 2.10 2011/09/04 11:10:12 fabiankeil Exp $
 
  Copyright (C) 2001-2008 Privoxy Developers http://www.privoxy.org/
  See LICENSE.
@@ -12,7 +12,7 @@
   This file used for inclusion with other documents only.
  ======================================================================
 
- If you make changes to this file, please verify the finished 
+ If you make changes to this file, please verify the finished
  docs all display as intended.
 
  This file is included into:
@@ -34,13 +34,13 @@
 <para>
  But any operating system that runs TCP/IP, can conceivably take advantage of
  <application>Privoxy</application> in a networked situation where
- <application>Privoxy</application> would run as a server on a LAN gateway. 
+ <application>Privoxy</application> would run as a server on a LAN gateway.
  Then only the <quote>gateway</quote> needs to be running one of the above
  operating systems.
 </para>
 
 <para>
- Source code is freely available, so porting to other operating systems 
+ Source code is freely available, so porting to other operating systems
  is always a possibility.
 </para>
 ]]>

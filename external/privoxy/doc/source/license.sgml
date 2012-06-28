@@ -2,17 +2,17 @@
  File        :  $Source: /cvsroot/ijbswa/current/doc/source/license.sgml,v $
 
  Purpose     :  Entity included in other project documents.
-                
- $Id: license.sgml,v 2.6 2008/05/23 15:09:48 fabiankeil Exp $
+
+ $Id: license.sgml,v 2.7 2011/09/04 11:10:12 fabiankeil Exp $
 
   Copyright (C) 2001-2008 Privoxy Developers http://www.privoxy.org/
   See LICENSE.
- 
+
  ======================================================================
   This file used for inclusion with other documents only.
  ======================================================================
 
- If you make changes to this file, please verify the finished 
+ If you make changes to this file, please verify the finished
  docs all display as intended.
 
  This file is included into:
@@ -27,7 +27,7 @@
 
 <para>
  <application>Privoxy</application> is free software; you can
- redistribute it and/or modify it under the terms of the 
+ redistribute it and/or modify it under the terms of the
  <citetitle>GNU General Public License</citetitle>, version 2,
  as published by the Free Software Foundation.
 </para>

@@ -1,7 +1,7 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook V3.1//EN"[
-<!entity % dummy "IGNORE"> 
+<!entity % dummy "IGNORE">
 <!entity config SYSTEM "p-config.sgml">
-<!entity p-version "3.0.11">
+<!entity p-version "3.0.19">
 <!entity p-status "stable">
 <!entity % p-not-stable "IGNORE">
 <!entity % user-man "IGNORE">
@@ -12,19 +12,19 @@
  File        :  $Source: /cvsroot/ijbswa/current/doc/source/config.sgml,v $
 
  Purpose     :  config file generation
-                
- $Id: config.sgml,v 2.12 2009/02/12 16:08:26 fabiankeil Exp $
+
+ $Id: config.sgml,v 2.22 2011/12/26 17:05:40 fabiankeil Exp $
 
  Copyright (C) 2001-2009 Privoxy Developers http://www.privoxy.org/
  See LICENSE.
 
  ========================================================================
- NOTE: Please read developer-manual/documentation.html before touching 
- anything in this, or other Privoxy documentation. 
+ NOTE: Please read developer-manual/documentation.html before touching
+ anything in this, or other Privoxy documentation.
  ========================================================================
 
- This file is used to generate the main Privoxy config file. It is mostly 
- content included from p-config.sgml (where all the data is). See that 
+ This file is used to generate the main Privoxy config file. It is mostly
+ content included from p-config.sgml (where all the data is). See that
  file for more comments.
 
 -->

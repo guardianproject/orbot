@@ -1,4 +1,4 @@
-const char w32_svrapi_rcs[] = "$Id: w32svrapi.c,v 1.2 2006/09/20 03:15:43 david__schmidt Exp $";
+const char w32_svrapi_rcs[] = "$Id: w32svrapi.c,v 1.5 2011/09/04 11:10:56 fabiankeil Exp $";
 /*********************************************************************
  *
  * File        :  $Source: /cvsroot/ijbswa/current/w32svrapi.c,v $
@@ -26,7 +26,7 @@ const char w32_svrapi_rcs[] = "$Id: w32svrapi.c,v 1.2 2006/09/20 03:15:43 david_
  *                some very helpful feedback and suggestions during the
  *                development of this code.
  *
- *                This program is free software; you can redistribute it 
+ *                This program is free software; you can redistribute it
  *                and/or modify it under the terms of the GNU General
  *                Public License as published by the Free Software
  *                Foundation; either version 2 of the License, or (at
@@ -44,19 +44,8 @@ const char w32_svrapi_rcs[] = "$Id: w32svrapi.c,v 1.2 2006/09/20 03:15:43 david_
  *                or write to the Free Software Foundation, Inc., 59
  *                Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
- * Revisions   :
- *    $Log: w32svrapi.c,v $
- *    Revision 1.2  2006/09/20 03:15:43  david__schmidt
- *    Clean up a variable type declaration which just
- *    happened to work...
- *
- *    Revision 1.1  2006/08/12 03:54:37  david__schmidt
- *    Windows service integration
- *
- *
- *
  *********************************************************************/
-
+
 
 #include "config.h"
 
@@ -130,7 +119,7 @@ static BOOL HasServiceControlManager()
       return FALSE;
    }
 
-   /* Try and connect to the SCM. If it fails check and see if the error 
+   /* Try and connect to the SCM. If it fails check and see if the error
     * code is ERROR_CALL_NOT_IMPLEMENTED, which means:
     *    "This function is not supported on this system."
     */
@@ -176,12 +165,12 @@ BOOL CanSystemSupportServices()
  * The Service functions are defined in <winsvc.h> which is where
  * the declarations used in this file are taken from
  *
- *********************************************************************/ 
+ *********************************************************************/
 
 
 /*********************************************************************
  * Open a connection to the service control manager
- *********************************************************************/ 
+ *********************************************************************/
 SC_HANDLE w32_open_sc_manager(
   LPCTSTR lpMachineName,   /* computer name */
   LPCTSTR lpDatabaseName,  /* SCM database name */
@@ -216,7 +205,7 @@ SC_HANDLE w32_open_sc_manager(
     */
    FreeLibrary(hDll);
    SetLastError(dwLastErr);
-     
+
    return hScm;
 
 } /* -END- w32_open_sc_manager */
@@ -264,7 +253,7 @@ BOOL w32_close_service_handle(
 
 /*********************************************************************
  * Open a service
- *********************************************************************/ 
+ *********************************************************************/
 SC_HANDLE w32_open_service(
   SC_HANDLE hSCManager,   /* handle to SCM database */
   LPCTSTR lpServiceName,  /* service name */
@@ -299,7 +288,7 @@ SC_HANDLE w32_open_service(
     */
    FreeLibrary(hDll);
    SetLastError(dwLastErr);
-     
+
    return hSrv;
 
 } /* -END- w32_open_service */
@@ -362,7 +351,7 @@ SC_HANDLE w32_create_service(
     */
    FreeLibrary(hDll);
    SetLastError(dwLastErr);
-     
+
    return hSrv;
 
 } /* -END- w32_create_service */
@@ -574,12 +563,12 @@ static void display_win32_msg(BOOL bIsError, char *msg)
 #else
    if (bIsError)
    {
-      MessageBox(NULL, msg, "Privoxy Error", 
+      MessageBox(NULL, msg, "Privoxy Error",
          MB_OK | MB_ICONERROR | MB_TASKMODAL | MB_SETFOREGROUND | MB_TOPMOST);
    }
    else
    {
-      MessageBox(NULL, msg, "Privoxy Information", 
+      MessageBox(NULL, msg, "Privoxy Information",
          MB_OK | MB_ICONINFORMATION | MB_TASKMODAL | MB_SETFOREGROUND | MB_TOPMOST);
    }
 #endif
@@ -639,9 +628,9 @@ BOOL install_service(const char *service_name)
     * We'll temporarily use szDisplayName as a second buffer.
     *********************************************************************/
    GetModuleFileName(NULL, szDisplayName, MAX_PATH);
-   sprintf(szModule, "\"%s\" --service", szDisplayName); 
+   sprintf(szModule, "\"%s\" --service", szDisplayName);
 
-   
+
    /*********************************************************************
     * Get the display name for the service
     *********************************************************************/
@@ -651,7 +640,7 @@ BOOL install_service(const char *service_name)
    /*********************************************************************
     * Create the service
     *********************************************************************/
-   hService = w32_create_service(hSCM, 
+   hService = w32_create_service(hSCM,
                            service_name,              /* the internal service name */
                            szDisplayName,             /* the display name */
                            SERVICE_ALL_ACCESS,        /* get full access during creation */
@@ -774,7 +763,7 @@ static void WINAPI privoxy_w32_service_start(DWORD dw, LPSTR* pszArgs)
 {
    int child_id;
 
-   /* Arg zero is always the service name, and we need to 
+   /* Arg zero is always the service name, and we need to
     * know it when we call RegisterServiceCtrlHandler.
     */
    strcpy(szThisServiceName, pszArgs[0]);
@@ -926,7 +915,7 @@ static void WINAPI privoxy_w32_service_handler(DWORD dwOpcode)
           * even after the process had disappeared.
           *
           * It seems that if we call exit in the ServiceMain thread, it causes
-          * the SCM to not recieve the status we sent in the line above. The
+          * the SCM to not receive the status we sent in the line above. The
           * simple fix was to create a new thread to actually call exit for us
           * whilst this thread continues and returns to its caller.
           */

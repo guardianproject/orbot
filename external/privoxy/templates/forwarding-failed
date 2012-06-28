@@ -8,7 +8,7 @@
 #
 # Template files are written in plain HTML, with a few
 # additions:
-# 
+#
 # - Lines that start with a '#' character like this one
 #   are ignored
 #
@@ -23,7 +23,7 @@
 #   strings @if-<name>start and if-<name>-end@. The strings
 #   should be placed in HTML comments (<!-- -->), so the
 #   html structure won't be messed when the magic happens.
-#   
+#
 # USABLE SYMBOLS IN THIS TEMPLATE:
 # --------------------------------
 #
@@ -99,7 +99,7 @@
     <tr>
       <td class="status">
         503
-      </td>     
+      </td>
       <td class="title" style="width: 100%">
 
 #include mod-title

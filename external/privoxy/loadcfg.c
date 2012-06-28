@@ -1,4 +1,4 @@
-const char loadcfg_rcs[] = "$Id: loadcfg.c,v 1.93 2009/03/18 21:46:26 fabiankeil Exp $";
+const char loadcfg_rcs[] = "$Id: loadcfg.c,v 1.121 2011/07/30 15:05:23 fabiankeil Exp $";
 /*********************************************************************
  *
  * File        :  $Source: /cvsroot/ijbswa/current/loadcfg.c,v $
@@ -33,491 +33,8 @@ const char loadcfg_rcs[] = "$Id: loadcfg.c,v 1.93 2009/03/18 21:46:26 fabiankeil
  *                or write to the Free Software Foundation, Inc., 59
  *                Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
- * Revisions   :
- *    $Log: loadcfg.c,v $
- *    Revision 1.93  2009/03/18 21:46:26  fabiankeil
- *    Revert the last commit as there's a better way.
- *
- *    Revision 1.92  2009/03/18 20:43:19  fabiankeil
- *    Don't enable LOG_LEVEL_INFO by default and don't apply the user's
- *    debug settings until the logfile has been opened (if there is one).
- *    Patch submitted by Roland in #2624120.
- *
- *    Revision 1.91  2009/03/09 17:29:08  fabiankeil
- *    As of r1.88, the show-status page can use a single line for
- *    warnings about ignored directives and the names of the ignored
- *    directives themselves. Reminded by Lee, finally closes #1856559.
- *
- *    Revision 1.90  2009/03/07 17:58:02  fabiankeil
- *    Fix two mingw32-only buffer overflows. Note that triggering
- *    them requires control over the configuration file in which
- *    case all bets are off anyway.
- *
- *    Revision 1.89  2009/03/01 18:46:33  fabiankeil
- *    - Help clang understand that we aren't
- *      dereferencing NULL pointers here.
- *    - Some style fixes in the modified region.
- *
- *    Revision 1.88  2009/02/28 10:57:10  fabiankeil
- *    Gimme a break or two. Don't let the show-status page
- *    link to the website documentation for the user-manual
- *    directive itself.
- *
- *    Revision 1.87  2009/02/15 07:56:13  fabiankeil
- *    Increase default socket timeout to 300 seconds.
- *
- *    Revision 1.86  2009/02/08 19:18:57  fabiankeil
- *    Now that we have the match-all.action file, the other action
- *    files changed their position in config->actions_file[] back
- *    to the way it was before standard.action got removed and the
- *    changes from revision 1.84 have to be reverted.
- *
- *    Revision 1.85  2009/01/22 12:06:26  fabiankeil
- *    Don't keep connections alive when running single-threaded.
- *
- *    Revision 1.84  2009/01/14 16:14:36  fabiankeil
- *    Due to the standard.action file removal, the other action
- *    files changed their position in config->actions_file[].
- *    Update mingw32 kludge accordingly.
- *
- *    Revision 1.83  2008/12/20 14:53:55  fabiankeil
- *    Add config option socket-timeout to control the time
- *    Privoxy waits for data to arrive on a socket. Useful
- *    in case of stale ssh tunnels or when fuzz-testing.
- *
- *    Revision 1.82  2008/11/16 12:43:49  fabiankeil
- *    Turn keep-alive support into a runtime feature
- *    that is disabled by setting keep-alive-timeout
- *    to a negative value.
- *
- *    Revision 1.81  2008/11/13 09:08:42  fabiankeil
- *    Add new config option: keep-alive-timeout.
- *
- *    Revision 1.80  2008/08/31 15:59:03  fabiankeil
- *    There's no reason to let remote toggling support depend
- *    on FEATURE_CGI_EDIT_ACTIONS, so make sure it doesn't.
- *
- *    Revision 1.79  2008/08/30 12:03:07  fabiankeil
- *    Remove FEATURE_COOKIE_JAR.
- *
- *    Revision 1.78  2008/08/02 08:23:22  fabiankeil
- *    If the enforce-blocks directive is used with FEATURE_FORCE_LOAD
- *    disabled, log a message that blocks will always be enforced
- *    instead of complaining about an unrecognized directive.
- *    Reported by Pietro Leone.
- *
- *    Revision 1.77  2008/05/26 16:13:22  fabiankeil
- *    Reuse directive_hash and don't hash the same directive twice.
- *
- *    Revision 1.76  2008/05/10 09:03:16  fabiankeil
- *    - Merge three string_append() calls.
- *    - Remove useless assertion.
- *
- *    Revision 1.75  2008/03/30 14:52:05  fabiankeil
- *    Rename load_actions_file() and load_re_filterfile()
- *    as they load multiple files "now".
- *
- *    Revision 1.74  2008/03/26 18:07:07  fabiankeil
- *    Add hostname directive. Closes PR#1918189.
- *
- *    Revision 1.73  2008/02/16 16:54:51  fabiankeil
- *    Fix typo.
- *
- *    Revision 1.72  2008/02/03 13:46:15  fabiankeil
- *    Add SOCKS5 support. Patch #1862863 by Eric M. Hopper with minor changes.
- *
- *    Revision 1.71  2007/12/23 15:24:56  fabiankeil
- *    Reword "unrecognized directive" warning, use better
- *    mark up and add a <br>. Fixes parts of #1856559.
- *
- *    Revision 1.70  2007/12/15 14:24:05  fabiankeil
- *    Plug memory leak if listen-address only specifies the port.
- *
- *    Revision 1.69  2007/10/27 13:02:27  fabiankeil
- *    Relocate daemon-mode-related log messages to make sure
- *    they aren't shown again in case of configuration reloads.
- *
- *    Revision 1.68  2007/10/19 16:32:34  fabiankeil
- *    Plug memory leak introduced with my last commit.
- *
- *    Revision 1.67  2007/10/14 14:12:41  fabiankeil
- *    When in daemon mode, close stderr after the configuration file has been
- *    parsed the first time. If logfile isn't set, stop logging. Fixes BR#897436.
- *
- *    Revision 1.66  2007/08/05 14:02:09  fabiankeil
- *    #1763173 from Stefan Huehner: declare unload_configfile() static.
- *
- *    Revision 1.65  2007/07/21 11:51:36  fabiankeil
- *    As Hal noticed, checking dispatch_cgi() as the last cruncher
- *    looks like a bug if CGI requests are blocked unintentionally,
- *    so don't do it unless the user enabled the new config option
- *    "allow-cgi-request-crunching".
- *
- *    Revision 1.64  2007/05/21 10:44:08  fabiankeil
- *    - Use strlcpy() instead of strcpy().
- *    - Stop treating actions files special. Expect a complete file name
- *      (with or without path) like it's done for the rest of the files.
- *      Closes FR#588084.
- *    - Remove an unnecessary temporary memory allocation.
- *    - Don't log anything to the console when running as
- *      daemon and no errors occurred.
- *
- *    Revision 1.63  2007/04/09 18:11:36  fabiankeil
- *    Don't mistake VC++'s _snprintf() for a snprintf() replacement.
- *
- *    Revision 1.62  2007/03/17 15:20:05  fabiankeil
- *    New config option: enforce-blocks.
- *
- *    Revision 1.61  2007/03/16 16:47:35  fabiankeil
- *    - Mention other reasons why acl directive loading might have failed.
- *    - Don't log the acl source if the acl destination is to blame.
- *
- *    Revision 1.60  2007/01/27 13:09:16  fabiankeil
- *    Add new config option "templdir" to
- *    change the templates directory.
- *
- *    Revision 1.59  2006/12/31 17:56:38  fabiankeil
- *    Added config option accept-intercepted-requests
- *    and disabled it by default.
- *
- *    Revision 1.58  2006/12/31 14:24:29  fabiankeil
- *    Fix gcc43 compiler warnings.
- *
- *    Revision 1.57  2006/12/21 12:57:48  fabiankeil
- *    Add config option "split-large-forms"
- *    to work around the browser bug reported
- *    in BR #1570678.
- *
- *    Revision 1.56  2006/12/17 17:04:51  fabiankeil
- *    Move the <br> in the generated HTML for the config
- *    options from the beginning of the string to its end.
- *    Keeps the white space in balance.
- *
- *    Revision 1.55  2006/11/28 15:31:52  fabiankeil
- *    Fix memory leak in case of config file reloads.
- *
- *    Revision 1.54  2006/10/21 16:04:22  fabiankeil
- *    Modified kludge for win32 to make ming32 menu
- *    "Options/Edit Filters" (sort of) work again.
- *    Same limitations as for the action files apply.
- *    Fixes BR 1567373.
- *
- *    Revision 1.53  2006/09/06 18:45:03  fabiankeil
- *    Incorporate modified version of Roland Rosenfeld's patch to
- *    optionally access the user-manual via Privoxy. Closes patch 679075.
- *
- *    Formatting changed to Privoxy style, added call to
- *    cgi_error_no_template if the requested file doesn't
- *    exist and modified check whether or not Privoxy itself
- *    should serve the manual. Should work cross-platform now.
- *
- *    Revision 1.52  2006/09/06 10:43:32  fabiankeil
- *    Added config option enable-remote-http-toggle
- *    to specify if Privoxy should recognize special
- *    headers (currently only X-Filter) to change its
- *    behaviour. Disabled by default.
- *
- *    Revision 1.51  2006/09/06 09:23:37  fabiankeil
- *    Make number of retries in case of forwarded-connect problems
- *    a config file option (forwarded-connect-retries) and use 0 as
- *    default.
- *
- *    Revision 1.50  2006/07/18 14:48:46  david__schmidt
- *    Reorganizing the repository: swapping out what was HEAD (the old 3.1 branch)
- *    with what was really the latest development (the v_3_0_branch branch)
- *
- *    Revision 1.48.2.7  2006/02/02 17:29:16  david__schmidt
- *    Don't forget to malloc space for the null terminator...
- *
- *    Revision 1.48.2.6  2006/01/29 23:10:56  david__schmidt
- *    Multiple filter file support
- *
- *    Revision 1.48.2.5  2003/05/08 15:17:25  oes
- *    Closed two memory leaks; hopefully the last remaining ones
- *    (in the main execution paths, anyway).
- *
- *    Revision 1.48.2.4  2003/04/11 12:06:14  oes
- *    Addressed bug #719435
- *     - Extraneous filterfile directives now logged as errors
- *     - This and unrecnonised directives now really obvious on status page
- *
- *    Revision 1.48.2.3  2003/03/11 11:53:59  oes
- *    Cosmetic: Renamed cryptic variable
- *
- *    Revision 1.48.2.2  2002/11/12 16:28:20  oes
- *    Move unrelated variable declaration out of #ifdef FEATURE_ACL; fixes bug #636655
- *
- *    Revision 1.48.2.1  2002/08/21 17:58:05  oes
- *    Temp kludge to let user and default action file be edited through win32 GUI (FR 592080)
- *
- *    Revision 1.48  2002/05/14 21:30:38  oes
- *    savearg now uses own linking code instead of (now special-cased) add_help_link
- *
- *    Revision 1.47  2002/05/12 21:36:29  jongfoster
- *    Correcting function comments
- *
- *    Revision 1.46  2002/04/26 12:55:14  oes
- *     - New option "user-manual", defaults to our site
- *       via project.h #define
- *     - savearg now embeds option names in help links
- *
- *    Revision 1.45  2002/04/24 02:11:54  oes
- *    Jon's multiple AF patch: Allow up to MAX_AF_FILES actionsfile options
- *
- *    Revision 1.44  2002/04/08 20:37:13  swa
- *    fixed JB spelling
- *
- *    Revision 1.43  2002/04/08 20:36:50  swa
- *    fixed JB spelling
- *
- *    Revision 1.42  2002/04/05 15:50:15  oes
- *    fix for invalid HTML proxy_args
- *
- *    Revision 1.41  2002/03/31 17:19:00  jongfoster
- *    Win32 only: Enabling STRICT to fix a VC++ compile warning.
- *
- *    Revision 1.40  2002/03/26 22:29:55  swa
- *    we have a new homepage!
- *
- *    Revision 1.39  2002/03/24 13:25:43  swa
- *    name change related issues
- *
- *    Revision 1.38  2002/03/24 13:05:48  jongfoster
- *    Renaming re_filterfile to filterfile
- *
- *    Revision 1.37  2002/03/16 23:54:06  jongfoster
- *    Adding graceful termination feature, to help look for memory leaks.
- *    If you enable this (which, by design, has to be done by hand
- *    editing config.h) and then go to http://i.j.b/die, then the program
- *    will exit cleanly after the *next* request.  It should free all the
- *    memory that was used.
- *
- *    Revision 1.36  2002/03/13 00:27:05  jongfoster
- *    Killing warnings
- *
- *    Revision 1.35  2002/03/07 03:52:44  oes
- *    Set logging to tty for --no-daemon mode
- *
- *    Revision 1.34  2002/03/06 23:14:35  jongfoster
- *    Trivial cosmetic changes to make function comments easier to find.
- *
- *    Revision 1.33  2002/03/05 04:52:42  oes
- *    Deleted non-errlog debugging code
- *
- *    Revision 1.32  2002/03/04 18:24:53  oes
- *    Re-enabled output of unknown config directive hash
- *
- *    Revision 1.31  2002/03/03 15:07:20  oes
- *    Re-enabled automatic config reloading
- *
- *    Revision 1.30  2002/01/22 23:31:43  jongfoster
- *    Replacing strsav() with string_append()
- *
- *    Revision 1.29  2002/01/17 21:02:30  jongfoster
- *    Moving all our URL and URL pattern parsing code to urlmatch.c.
- *
- *    Renaming free_url to free_url_spec, since it frees a struct url_spec.
- *
- *    Revision 1.28  2001/12/30 14:07:32  steudten
- *    - Add signal handling (unix)
- *    - Add SIGHUP handler (unix)
- *    - Add creation of pidfile (unix)
- *    - Add action 'top' in rc file (RH)
- *    - Add entry 'SIGNALS' to manpage
- *    - Add exit message to logfile (unix)
- *
- *    Revision 1.27  2001/11/07 00:02:13  steudten
- *    Add line number in error output for lineparsing for
- *    actionsfile and configfile.
- *    Special handling for CLF added.
- *
- *    Revision 1.26  2001/11/05 21:41:43  steudten
- *    Add changes to be a real daemon just for unix os.
- *    (change cwd to /, detach from controlling tty, set
- *    process group and session leader to the own process.
- *    Add DBG() Macro.
- *    Add some fatal-error log message for failed malloc().
- *    Add '-d' if compiled with 'configure --with-debug' to
- *    enable debug output.
- *
- *    Revision 1.25  2001/10/25 03:40:48  david__schmidt
- *    Change in porting tactics: OS/2's EMX porting layer doesn't allow multiple
- *    threads to call select() simultaneously.  So, it's time to do a real, live,
- *    native OS/2 port.  See defines for __EMX__ (the porting layer) vs. __OS2__
- *    (native). Both versions will work, but using __OS2__ offers multi-threading.
- *
- *    Revision 1.24  2001/10/23 21:40:30  jongfoster
- *    Added support for enable-edit-actions and enable-remote-toggle config
- *    file options.
- *
- *    Revision 1.23  2001/10/07 15:36:00  oes
- *    Introduced new config option "buffer-limit"
- *
- *    Revision 1.22  2001/09/22 16:36:59  jongfoster
- *    Removing unused parameter fs from read_config_line()
- *
- *    Revision 1.21  2001/09/16 17:10:43  jongfoster
- *    Moving function savearg() here, since it was the only thing left in
- *    showargs.c.
- *
- *    Revision 1.20  2001/07/30 22:08:36  jongfoster
- *    Tidying up #defines:
- *    - All feature #defines are now of the form FEATURE_xxx
- *    - Permanently turned off WIN_GUI_EDIT
- *    - Permanently turned on WEBDAV and SPLIT_PROXY_ARGS
- *
- *    Revision 1.19  2001/07/15 17:45:16  jongfoster
- *    Removing some unused #includes
- *
- *    Revision 1.18  2001/07/13 14:01:14  oes
- *     - Removed all #ifdef PCRS
- *     - Removed vim-settings
- *
- *    Revision 1.17  2001/06/29 13:31:03  oes
- *    - Improved comments
- *    - Fixed (actionsfile) and sorted hashes
- *    - Introduced admin_address and proxy-info-url
- *      as config parameters
- *    - Renamed config->proxy_args_invocation (which didn't have
- *      the invocation but the options!) to config->proxy_args
- *    - Various adaptions
- *    - Removed logentry from cancelled commit
- *
- *    Revision 1.16  2001/06/09 10:55:28  jongfoster
- *    Changing BUFSIZ ==> BUFFER_SIZE
- *
- *    Revision 1.15  2001/06/07 23:13:40  jongfoster
- *    Merging ACL and forward files into config file.
- *    Cosmetic: Sorting config file options alphabetically.
- *    Cosmetic: Adding brief syntax comments to config file options.
- *
- *    Revision 1.14  2001/06/07 14:46:25  joergs
- *    Missing make_path() added for re_filterfile.
- *
- *    Revision 1.13  2001/06/05 22:33:54  jongfoster
- *
- *    Fixed minor memory leak.
- *    Also now uses make_path to prepend the pathnames.
- *
- *    Revision 1.12  2001/06/05 20:04:09  jongfoster
- *    Now uses _snprintf() in place of snprintf() under Win32.
- *
- *    Revision 1.11  2001/06/04 18:31:58  swa
- *    files are now prefixed with either `confdir' or `logdir'.
- *    `make redhat-dist' replaces both entries confdir and logdir
- *    with redhat values
- *
- *    Revision 1.10  2001/06/03 19:11:54  oes
- *    introduced confdir option
- *
- *    Revision 1.9  2001/06/01 20:06:24  jongfoster
- *    Removed support for "tinygif" option - moved to actions file.
- *
- *    Revision 1.8  2001/05/31 21:27:13  jongfoster
- *    Removed many options from the config file and into the
- *    "actions" file: add_forwarded, suppress_vanilla_wafer,
- *    wafer, add_header, user_agent, referer, from
- *    Also globally replaced "permission" with "action".
- *
- *    Revision 1.7  2001/05/29 09:50:24  jongfoster
- *    Unified blocklist/imagelist/permissionslist.
- *    File format is still under discussion, but the internal changes
- *    are (mostly) done.
- *
- *    Also modified interceptor behaviour:
- *    - We now intercept all URLs beginning with one of the following
- *      prefixes (and *only* these prefixes):
- *        * http://i.j.b/
- *        * http://ijbswa.sf.net/config/
- *        * http://ijbswa.sourceforge.net/config/
- *    - New interceptors "home page" - go to http://i.j.b/ to see it.
- *    - Internal changes so that intercepted and fast redirect pages
- *      are not replaced with an image.
- *    - Interceptors now have the option to send a binary page direct
- *      to the client. (i.e. ijb-send-banner uses this)
- *    - Implemented show-url-info interceptor.  (Which is why I needed
- *      the above interceptors changes - a typical URL is
- *      "http://i.j.b/show-url-info?url=www.somesite.com/banner.gif".
- *      The previous mechanism would not have intercepted that, and
- *      if it had been intercepted then it then it would have replaced
- *      it with an image.)
- *
- *    Revision 1.6  2001/05/26 00:28:36  jongfoster
- *    Automatic reloading of config file.
- *    Removed obsolete SIGHUP support (Unix) and Reload menu option (Win32).
- *    Most of the global variables have been moved to a new
- *    struct configuration_spec, accessed through csp->config->globalname
- *    Most of the globals remaining are used by the Win32 GUI.
- *
- *    Revision 1.5  2001/05/25 22:34:30  jongfoster
- *    Hard tabs->Spaces
- *
- *    Revision 1.4  2001/05/22 18:46:04  oes
- *
- *    - Enabled filtering banners by size rather than URL
- *      by adding patterns that replace all standard banner
- *      sizes with the "Junkbuster" gif to the re_filterfile
- *
- *    - Enabled filtering WebBugs by providing a pattern
- *      which kills all 1x1 images
- *
- *    - Added support for PCRE_UNGREEDY behaviour to pcrs,
- *      which is selected by the (nonstandard and therefore
- *      capital) letter 'U' in the option string.
- *      It causes the quantifiers to be ungreedy by default.
- *      Appending a ? turns back to greedy (!).
- *
- *    - Added a new interceptor ijb-send-banner, which
- *      sends back the "Junkbuster" gif. Without imagelist or
- *      MSIE detection support, or if tinygif = 1, or the
- *      URL isn't recognized as an imageurl, a lame HTML
- *      explanation is sent instead.
- *
- *    - Added new feature, which permits blocking remote
- *      script redirects and firing back a local redirect
- *      to the browser.
- *      The feature is conditionally compiled, i.e. it
- *      can be disabled with --disable-fast-redirects,
- *      plus it must be activated by a "fast-redirects"
- *      line in the config file, has its own log level
- *      and of course wants to be displayed by show-proxy-args
- *      Note: Boy, all the #ifdefs in 1001 locations and
- *      all the fumbling with configure.in and acconfig.h
- *      were *way* more work than the feature itself :-(
- *
- *    - Because a generic redirect template was needed for
- *      this, tinygif = 3 now uses the same.
- *
- *    - Moved GIFs, and other static HTTP response templates
- *      to project.h
- *
- *    - Some minor fixes
- *
- *    - Removed some >400 CRs again (Jon, you really worked
- *      a lot! ;-)
- *
- *    Revision 1.3  2001/05/20 01:21:20  jongfoster
- *    Version 2.9.4 checkin.
- *    - Merged popupfile and cookiefile, and added control over PCRS
- *      filtering, in new "permissionsfile".
- *    - Implemented LOG_LEVEL_FATAL, so that if there is a configuration
- *      file error you now get a message box (in the Win32 GUI) rather
- *      than the program exiting with no explanation.
- *    - Made killpopup use the PCRS MIME-type checking and HTTP-header
- *      skipping.
- *    - Removed tabs from "config"
- *    - Moved duplicated url parsing code in "loaders.c" to a new funcition.
- *    - Bumped up version number.
- *
- *    Revision 1.2  2001/05/17 23:01:01  oes
- *     - Cleaned CRLF's from the sources and related files
- *
- *    Revision 1.1.1.1  2001/05/15 13:58:58  oes
- *    Initial import of version 2.9.3 source tree
- *
- *
  *********************************************************************/
-
+
 
 #include "config.h"
 
@@ -594,7 +111,7 @@ const char *configfile  = NULL;
  * so we will make argc and argv global.
  */
 int Argc = 0;
-const char **Argv = NULL;
+char * const * Argv = NULL;
 
 static struct file_list *current_configfile = NULL;
 
@@ -616,10 +133,14 @@ static struct file_list *current_configfile = NULL;
 #define hash_admin_address               4112573064ul /* "admin-address" */
 #define hash_allow_cgi_request_crunching  258915987ul /* "allow-cgi-request-crunching" */
 #define hash_buffer_limit                1881726070ul /* "buffer-limit */
+#define hash_compression_level           2464423563ul /* "compression-level" */
 #define hash_confdir                        1978389ul /* "confdir" */
+#define hash_connection_sharing          1348841265ul /* "connection-sharing" */
 #define hash_debug                            78263ul /* "debug" */
+#define hash_default_server_timeout      2530089913ul /* "default-server-timeout" */
 #define hash_deny_access                 1227333715ul /* "deny-access" */
 #define hash_enable_edit_actions         2517097536ul /* "enable-edit-actions" */
+#define hash_enable_compression          3943696946ul /* "enable-compression" */
 #define hash_enable_remote_toggle        2979744683ul /* "enable-remote-toggle" */
 #define hash_enable_remote_http_toggle    110543988ul /* "enable-remote-http-toggle" */
 #define hash_enforce_blocks              1862427469ul /* "enforce-blocks" */
@@ -629,11 +150,13 @@ static struct file_list *current_configfile = NULL;
 #define hash_forward_socks4a             2639958518ul /* "forward-socks4a" */
 #define hash_forward_socks5              3963965522ul /* "forward-socks5" */
 #define hash_forwarded_connect_retries    101465292ul /* "forwarded-connect-retries" */
+#define hash_handle_as_empty_returns_ok  1444873247ul /* "handle-as-empty-doc-returns-ok" */
 #define hash_hostname                      10308071ul /* "hostname" */
 #define hash_keep_alive_timeout          3878599515ul /* "keep-alive-timeout" */
 #define hash_listen_address              1255650842ul /* "listen-address" */
 #define hash_logdir                          422889ul /* "logdir" */
 #define hash_logfile                        2114766ul /* "logfile" */
+#define hash_max_client_connections      3595884446ul /* "max-client-connections" */
 #define hash_permit_access               3587953268ul /* "permit-access" */
 #define hash_proxy_info_url              3903079059ul /* "proxy-info-url" */
 #define hash_single_threaded             4250084780ul /* "single-threaded" */
@@ -706,7 +229,10 @@ static void unload_configfile (void * data)
    freez(config->templdir);
    freez(config->hostname);
 
-   freez(config->haddr);
+   for (i = 0; i < MAX_LISTENING_SOCKETS; i++)
+   {
+      freez(config->haddr[i]);
+   }
    freez(config->logfile);
 
    for (i = 0; i < MAX_AF_FILES; i++)
@@ -726,11 +252,6 @@ static void unload_configfile (void * data)
    freez(config->trustfile);
    list_remove_all(config->trust_info);
 #endif /* def FEATURE_TRUST */
-
-   for (i = 0; i < MAX_AF_FILES; i++)
-   {
-      freez(config->re_filterfile[i]);
-   }
 
    freez(config);
 }
@@ -762,6 +283,51 @@ void unload_current_config_file(void)
 
 /*********************************************************************
  *
+ * Function    :  parse_toggle_value
+ *
+ * Description :  Parse the value of a directive that can only be
+ *                enabled or disabled. Terminates with a fatal error
+ *                if the value is NULL or something other than 0 or 1.
+ *
+ * Parameters  :
+ *          1  :  name:  The name of the directive. Used for log messages.
+ *          2  :  value: The value to parse
+ *
+ *
+ * Returns     :  The numerical toggle state
+ *
+ *********************************************************************/
+static int parse_toggle_state(const char *name, const char *value)
+{
+   int toggle_state;
+   assert(name != NULL);
+   assert(value != NULL);
+
+   if ((value == NULL) || (*value == '\0'))
+   {
+      log_error(LOG_LEVEL_FATAL, "Directive %s used without argument", name);
+   }
+
+   toggle_state = atoi(value);
+
+   /*
+    * Also check the length as atoi() doesn't mind
+    * garbage after a valid integer, but we do.
+    */
+   if (((toggle_state != 0) && (toggle_state != 1)) || (strlen(value) != 1))
+   {
+      log_error(LOG_LEVEL_FATAL,
+         "Directive %s used with invalid argument '%s'. Use either '0' or '1'.",
+         name, value);
+   }
+
+   return toggle_state;
+
+}
+
+
+/*********************************************************************
+ *
  * Function    :  load_config
  *
  * Description :  Load the config file and all parameters.
@@ -776,7 +342,7 @@ void unload_current_config_file(void)
  *********************************************************************/
 struct configuration_spec * load_config(void)
 {
-   char buf[BUFFER_SIZE];
+   char *buf = NULL;
    char *p, *q;
    FILE *configfp = NULL;
    struct configuration_spec * config = NULL;
@@ -785,9 +351,6 @@ struct configuration_spec * load_config(void)
    unsigned long linenum = 0;
    int i;
    char *logfile = NULL;
-#ifdef FEATURE_CONNECTION_KEEP_ALIVE
-   int keep_alive_timeout = DEFAULT_KEEP_ALIVE_TIMEOUT;
-#endif
 
    if (!check_file_changed(current_configfile, configfile, &fs))
    {
@@ -835,15 +398,29 @@ struct configuration_spec * load_config(void)
     * Set to defaults
     */
    config->multi_threaded            = 1;
-   config->hport                     = HADDR_PORT;
    config->buffer_limit              = 4096 * 1024;
    config->usermanual                = strdup(USER_MANUAL_URL);
    config->proxy_args                = strdup("");
    config->forwarded_connect_retries = 0;
+   config->max_client_connections    = 0;
    config->socket_timeout            = 300; /* XXX: Should be a macro. */
+#ifdef FEATURE_CONNECTION_KEEP_ALIVE
+   config->default_server_timeout    = 0;
+   config->keep_alive_timeout        = DEFAULT_KEEP_ALIVE_TIMEOUT;
+   config->feature_flags            &= ~RUNTIME_FEATURE_CONNECTION_KEEP_ALIVE;
+   config->feature_flags            &= ~RUNTIME_FEATURE_CONNECTION_SHARING;
+#endif
    config->feature_flags            &= ~RUNTIME_FEATURE_CGI_TOGGLE;
    config->feature_flags            &= ~RUNTIME_FEATURE_SPLIT_LARGE_FORMS;
    config->feature_flags            &= ~RUNTIME_FEATURE_ACCEPT_INTERCEPTED_REQUESTS;
+   config->feature_flags            &= ~RUNTIME_FEATURE_EMPTY_DOC_RETURNS_OK;
+#ifdef FEATURE_COMPRESSION
+   config->feature_flags            &= ~RUNTIME_FEATURE_COMPRESSION;
+   /*
+    * XXX: Run some benchmarks to see if there are better default values.
+    */
+   config->compression_level         = 1;
+#endif
 
    configfp = fopen(configfile, "r");
    if (NULL == configfp)
@@ -853,7 +430,7 @@ struct configuration_spec * load_config(void)
       /* Never get here - LOG_LEVEL_FATAL causes program exit */
    }
 
-   while (read_config_line(buf, sizeof(buf), configfp, &linenum) != NULL)
+   while (read_config_line(configfp, &linenum, &buf) != NULL)
    {
       char cmd[BUFFER_SIZE];
       char arg[BUFFER_SIZE];
@@ -884,11 +461,15 @@ struct configuration_spec * load_config(void)
       }
 
       /* Copy the argument into arg */
-      strlcpy(arg, p, sizeof(arg));
+      if (strlcpy(arg, p, sizeof(arg)) >= sizeof(arg))
+      {
+         log_error(LOG_LEVEL_FATAL, "Config line too long: %s", buf);
+      }
 
       /* Should never happen, but check this anyway */
       if (*cmd == '\0')
       {
+         freez(buf);
          continue;
       }
 
@@ -929,7 +510,7 @@ struct configuration_spec * load_config(void)
  * accept-intercepted-requests
  * *************************************************************************/
          case hash_accept_intercepted_requests:
-            if ((*arg != '\0') && (0 != atoi(arg)))
+            if (parse_toggle_state(cmd, arg) == 1)
             {
                config->feature_flags |= RUNTIME_FEATURE_ACCEPT_INTERCEPTED_REQUESTS;
             }
@@ -951,7 +532,7 @@ struct configuration_spec * load_config(void)
  * allow-cgi-request-crunching
  * *************************************************************************/
          case hash_allow_cgi_request_crunching:
-            if ((*arg != '\0') && (0 != atoi(arg)))
+            if (parse_toggle_state(cmd, arg) == 1)
             {
                config->feature_flags |= RUNTIME_FEATURE_CGI_CRUNCHING;
             }
@@ -977,12 +558,75 @@ struct configuration_spec * load_config(void)
             break;
 
 /* *************************************************************************
+ * compression-level 0-9
+ * *************************************************************************/
+#ifdef FEATURE_COMPRESSION
+         case hash_compression_level :
+            if (*arg != '\0')
+            {
+               int compression_level = atoi(arg);
+               if (-1 <= compression_level && compression_level <= 9)
+               {
+                  config->compression_level = compression_level;;
+               }
+               else
+               {
+                  log_error(LOG_LEVEL_FATAL,
+                     "Invalid compression-level value: %s", arg);
+               }
+            }
+            else
+            {
+               log_error(LOG_LEVEL_FATAL,
+                  "Invalid compression-level directive. Compression value missing");
+            }
+            break;
+#endif
+
+/* *************************************************************************
+ * connection-sharing (0|1)
+ * *************************************************************************/
+#ifdef FEATURE_CONNECTION_SHARING
+         case hash_connection_sharing :
+            if (parse_toggle_state(cmd, arg) == 1)
+            {
+               config->feature_flags |= RUNTIME_FEATURE_CONNECTION_SHARING;
+            }
+            else
+            {
+               config->feature_flags &= ~RUNTIME_FEATURE_CONNECTION_SHARING;
+            }
+            break;
+#endif
+
+/* *************************************************************************
  * debug n
  * Specifies debug level, multiple values are ORed together.
  * *************************************************************************/
          case hash_debug :
             config->debug |= atoi(arg);
             break;
+
+/* *************************************************************************
+ * default-server-timeout timeout
+ * *************************************************************************/
+#ifdef FEATURE_CONNECTION_KEEP_ALIVE
+         case hash_default_server_timeout :
+            if (*arg != '\0')
+            {
+               int timeout = atoi(arg);
+               if (0 < timeout)
+               {
+                  config->default_server_timeout = (unsigned int)timeout;
+               }
+               else
+               {
+                  log_error(LOG_LEVEL_FATAL,
+                     "Invalid default-server-timeout value: %s", arg);
+               }
+            }
+            break;
+#endif
 
 /* *************************************************************************
  * deny-access source-ip[/significant-bits] [dest-ip[/significant-bits]]
@@ -1044,6 +688,12 @@ struct configuration_spec * load_config(void)
                   break;
                }
             }
+#ifdef HAVE_RFC2553
+            else
+            {
+               cur_acl->wildcard_dst = 1;
+            }
+#endif /* def HAVE_RFC2553 */
 
             /*
              * Add it to the list.  Note we reverse the list to get the
@@ -1065,7 +715,7 @@ struct configuration_spec * load_config(void)
  * *************************************************************************/
 #ifdef FEATURE_CGI_EDIT_ACTIONS
          case hash_enable_edit_actions:
-            if ((*arg != '\0') && (0 != atoi(arg)))
+            if (parse_toggle_state(cmd, arg) == 1)
             {
                config->feature_flags |= RUNTIME_FEATURE_CGI_EDIT_ACTIONS;
             }
@@ -1077,11 +727,28 @@ struct configuration_spec * load_config(void)
 #endif /* def FEATURE_CGI_EDIT_ACTIONS */
 
 /* *************************************************************************
+ * enable-compression 0|1
+ * *************************************************************************/
+#ifdef FEATURE_COMPRESSION
+         case hash_enable_compression:
+            if (parse_toggle_state(cmd, arg) == 1)
+            {
+               config->feature_flags |= RUNTIME_FEATURE_COMPRESSION;
+            }
+            else
+            {
+               config->feature_flags &= ~RUNTIME_FEATURE_COMPRESSION;
+            }
+            break;
+#endif /* def FEATURE_COMPRESSION */
+
+
+/* *************************************************************************
  * enable-remote-toggle 0|1
  * *************************************************************************/
 #ifdef FEATURE_TOGGLE
          case hash_enable_remote_toggle:
-            if ((*arg != '\0') && (0 != atoi(arg)))
+            if (parse_toggle_state(cmd, arg) == 1)
             {
                config->feature_flags |= RUNTIME_FEATURE_CGI_TOGGLE;
             }
@@ -1096,7 +763,7 @@ struct configuration_spec * load_config(void)
  * enable-remote-http-toggle 0|1
  * *************************************************************************/
          case hash_enable_remote_http_toggle:
-            if ((*arg != '\0') && (0 != atoi(arg)))
+            if (parse_toggle_state(cmd, arg) == 1)
             {
                config->feature_flags |= RUNTIME_FEATURE_HTTP_TOGGLE;
             }
@@ -1111,7 +778,7 @@ struct configuration_spec * load_config(void)
  * *************************************************************************/
          case hash_enforce_blocks:
 #ifdef FEATURE_FORCE_LOAD
-            if ((*arg != '\0') && (0 != atoi(arg)))
+            if (parse_toggle_state(cmd, arg) == 1)
             {
                config->feature_flags |= RUNTIME_FEATURE_ENFORCE_BLOCKS;
             }
@@ -1191,18 +858,9 @@ struct configuration_spec * load_config(void)
 
             if (strcmp(p, ".") != 0)
             {
-               cur_fwd->forward_host = strdup(p);
-
-               if (NULL != (p = strchr(cur_fwd->forward_host, ':')))
-               {
-                  *p++ = '\0';
-                  cur_fwd->forward_port = atoi(p);
-               }
-
-               if (cur_fwd->forward_port <= 0)
-               {
-                  cur_fwd->forward_port = 8000;
-               }
+               cur_fwd->forward_port = 8000;
+               parse_forwarder_address(p, &cur_fwd->forward_host,
+                  &cur_fwd->forward_port);
             }
 
             /* Add to list. */
@@ -1253,19 +911,12 @@ struct configuration_spec * load_config(void)
             /* Parse the SOCKS proxy host[:port] */
             p = vec[1];
 
+            /* XXX: This check looks like a bug. */
             if (strcmp(p, ".") != 0)
             {
-               cur_fwd->gateway_host = strdup(p);
-
-               if (NULL != (p = strchr(cur_fwd->gateway_host, ':')))
-               {
-                  *p++ = '\0';
-                  cur_fwd->gateway_port = atoi(p);
-               }
-               if (cur_fwd->gateway_port <= 0)
-               {
-                  cur_fwd->gateway_port = 1080;
-               }
+               cur_fwd->gateway_port = 1080;
+               parse_forwarder_address(p, &cur_fwd->gateway_host,
+                  &cur_fwd->gateway_port);
             }
 
             /* Parse the parent HTTP proxy host[:port] */
@@ -1273,18 +924,9 @@ struct configuration_spec * load_config(void)
 
             if (strcmp(p, ".") != 0)
             {
-               cur_fwd->forward_host = strdup(p);
-
-               if (NULL != (p = strchr(cur_fwd->forward_host, ':')))
-               {
-                  *p++ = '\0';
-                  cur_fwd->forward_port = atoi(p);
-               }
-
-               if (cur_fwd->forward_port <= 0)
-               {
-                  cur_fwd->forward_port = 8000;
-               }
+               cur_fwd->forward_port = 8000;
+               parse_forwarder_address(p, &cur_fwd->forward_host,
+                  &cur_fwd->forward_port);
             }
 
             /* Add to list. */
@@ -1343,35 +985,18 @@ struct configuration_spec * load_config(void)
             /* Parse the SOCKS proxy host[:port] */
             p = vec[1];
 
-            cur_fwd->gateway_host = strdup(p);
-
-            if (NULL != (p = strchr(cur_fwd->gateway_host, ':')))
-            {
-               *p++ = '\0';
-               cur_fwd->gateway_port = atoi(p);
-            }
-            if (cur_fwd->gateway_port <= 0)
-            {
-               cur_fwd->gateway_port = 1080;
-            }
+            cur_fwd->gateway_port = 1080;
+            parse_forwarder_address(p, &cur_fwd->gateway_host,
+               &cur_fwd->gateway_port);
 
             /* Parse the parent HTTP proxy host[:port] */
             p = vec[2];
 
             if (strcmp(p, ".") != 0)
             {
-               cur_fwd->forward_host = strdup(p);
-
-               if (NULL != (p = strchr(cur_fwd->forward_host, ':')))
-               {
-                  *p++ = '\0';
-                  cur_fwd->forward_port = atoi(p);
-               }
-
-               if (cur_fwd->forward_port <= 0)
-               {
-                  cur_fwd->forward_port = 8000;
-               }
+               cur_fwd->forward_port = 8000;
+               parse_forwarder_address(p, &cur_fwd->forward_host,
+                  &cur_fwd->forward_port);
             }
 
             /* Add to list. */
@@ -1385,6 +1010,26 @@ struct configuration_spec * load_config(void)
  * *************************************************************************/
          case hash_forwarded_connect_retries :
             config->forwarded_connect_retries = atoi(arg);
+            break;
+
+/* *************************************************************************
+ * handle-as-empty-doc-returns-ok 0|1
+ *
+ * Workaround for firefox hanging on blocked javascript pages.
+ *   Block with the "+handle-as-empty-document" flag and set the
+ *   "handle-as-empty-doc-returns-ok" run-time config flag so that
+ *   Privoxy returns a 200/OK status instead of a 403/Forbidden status
+ *   to the browser for blocked pages.
+ ***************************************************************************/
+         case hash_handle_as_empty_returns_ok:
+            if (parse_toggle_state(cmd, arg) == 1)
+            {
+               config->feature_flags |= RUNTIME_FEATURE_EMPTY_DOC_RETURNS_OK;
+            }
+            else
+            {
+               config->feature_flags &= ~RUNTIME_FEATURE_EMPTY_DOC_RETURNS_OK;
+            }
             break;
 
 /* *************************************************************************
@@ -1407,10 +1052,10 @@ struct configuration_spec * load_config(void)
             if (*arg != '\0')
             {
                int timeout = atoi(arg);
-               if (0 <= timeout)
+               if (0 < timeout)
                {
                   config->feature_flags |= RUNTIME_FEATURE_CONNECTION_KEEP_ALIVE;
-                  keep_alive_timeout = timeout;
+                  config->keep_alive_timeout = (unsigned int)timeout;
                }
                else
                {
@@ -1424,8 +1069,23 @@ struct configuration_spec * load_config(void)
  * listen-address [ip][:port]
  * *************************************************************************/
          case hash_listen_address :
-            freez(config->haddr);
-            config->haddr = strdup(arg);
+            i = 0;
+            while ((i < MAX_LISTENING_SOCKETS) && (NULL != config->haddr[i]))
+            {
+               i++;
+            }
+
+            if (i >= MAX_LISTENING_SOCKETS)
+            {
+               log_error(LOG_LEVEL_FATAL, "Too many 'listen-address' directives in config file - limit is %d.\n"
+                  "(You can increase this limit by changing MAX_LISTENING_SOCKETS in project.h and recompiling).",
+                  MAX_LISTENING_SOCKETS);
+            }
+            config->haddr[i] = strdup(arg);
+            if (NULL == config->haddr[i])
+            {
+               log_error(LOG_LEVEL_FATAL, "Out of memory while copying listening address");
+            }
             break;
 
 /* *************************************************************************
@@ -1441,12 +1101,26 @@ struct configuration_spec * load_config(void)
  * In logdir by default
  * *************************************************************************/
          case hash_logfile :
-            if (!no_daemon)
+            if (daemon_mode)
             {
                logfile = make_path(config->logdir, arg);
                if (NULL == logfile)
                {
                   log_error(LOG_LEVEL_FATAL, "Out of memory while creating logfile path");
+               }
+            }
+            break;
+
+/* *************************************************************************
+ * max-client-connections number
+ * *************************************************************************/
+         case hash_max_client_connections :
+            if (*arg != '\0')
+            {
+               int max_client_connections = atoi(arg);
+               if (0 <= max_client_connections)
+               {
+                  config->max_client_connections = max_client_connections;
                }
             }
             break;
@@ -1512,6 +1186,12 @@ struct configuration_spec * load_config(void)
                   break;
                }
             }
+#ifdef HAVE_RFC2553
+            else
+            {
+               cur_acl->wildcard_dst = 1;
+            }
+#endif /* def HAVE_RFC2553 */
 
             /*
              * Add it to the list.  Note we reverse the list to get the
@@ -1566,7 +1246,7 @@ struct configuration_spec * load_config(void)
  * split-large-cgi-forms
  * *************************************************************************/
          case hash_split_large_cgi_forms :
-            if ((*arg != '\0') && (0 != atoi(arg)))
+            if (parse_toggle_state(cmd, arg) == 1)
             {
                config->feature_flags |= RUNTIME_FEATURE_SPLIT_LARGE_FORMS;
             }
@@ -1778,7 +1458,7 @@ struct configuration_spec * load_config(void)
 
       /* Save the argument for the show-status page. */
       savearg(cmd, arg, config);
-
+      freez(buf);
    } /* end while ( read_config_line(...) ) */
 
    fclose(configfp);
@@ -1787,7 +1467,7 @@ struct configuration_spec * load_config(void)
 
    freez(config->logfile);
 
-   if (!no_daemon)
+   if (daemon_mode)
    {
       if (NULL != logfile)
       {
@@ -1801,11 +1481,21 @@ struct configuration_spec * load_config(void)
    }
 
 #ifdef FEATURE_CONNECTION_KEEP_ALIVE
+   if (config->default_server_timeout > config->keep_alive_timeout)
+   {
+      log_error(LOG_LEVEL_ERROR,
+         "Reducing the default-server-timeout from %d to the keep-alive-timeout %d.",
+         config->default_server_timeout, config->keep_alive_timeout);
+      config->default_server_timeout = config->keep_alive_timeout;
+   }
+#endif /* def FEATURE_CONNECTION_KEEP_ALIVE */
+
+#ifdef FEATURE_CONNECTION_SHARING
    if (config->feature_flags & RUNTIME_FEATURE_CONNECTION_KEEP_ALIVE)
    {
       if (config->multi_threaded)
       {
-         set_keep_alive_timeout(keep_alive_timeout);
+         set_keep_alive_timeout(config->keep_alive_timeout);
       }
       else
       {
@@ -1814,27 +1504,35 @@ struct configuration_spec * load_config(void)
           * if we didn't bother with enforcing the connection timeout,
           * that might make Tor users sad, even though they shouldn't
           * enable the single-threaded option anyway.
+          *
+          * XXX: We could still use Proxy-Connection: keep-alive.
           */
          config->feature_flags &= ~RUNTIME_FEATURE_CONNECTION_KEEP_ALIVE;
          log_error(LOG_LEVEL_ERROR,
             "Config option single-threaded disables connection keep-alive.");
       }
    }
-#endif
+   else if ((config->feature_flags & RUNTIME_FEATURE_CONNECTION_SHARING))
+   {
+      log_error(LOG_LEVEL_ERROR, "Config option connection-sharing "
+         "has no effect if keep-alive-timeout isn't set.");
+      config->feature_flags &= ~RUNTIME_FEATURE_CONNECTION_SHARING;
+   }
+#endif /* def FEATURE_CONNECTION_SHARING */
 
    if (NULL == config->proxy_args)
    {
       log_error(LOG_LEVEL_FATAL, "Out of memory loading config - insufficient memory for config->proxy_args");
    }
 
-   if (config->actions_file[0])
-   {
-      add_loader(load_action_files, config);
-   }
-
    if (config->re_filterfile[0])
    {
       add_loader(load_re_filterfiles, config);
+   }
+
+   if (config->actions_file[0])
+   {
+      add_loader(load_action_files, config);
    }
 
 #ifdef FEATURE_TRUST
@@ -1844,35 +1542,45 @@ struct configuration_spec * load_config(void)
    }
 #endif /* def FEATURE_TRUST */
 
-   if ( NULL == config->haddr )
+   if ( NULL == config->haddr[0] )
    {
-      config->haddr = strdup( HADDR_DEFAULT );
+      config->haddr[0] = strdup( HADDR_DEFAULT );
+      if (NULL == config->haddr[0])
+      {
+         log_error(LOG_LEVEL_FATAL, "Out of memory while copying default listening address");
+      }
    }
 
-   if ( NULL != config->haddr )
+   for (i = 0; i < MAX_LISTENING_SOCKETS && NULL != config->haddr[i]; i++)
    {
-      if (NULL != (p = strchr(config->haddr, ':')))
+      if ((*config->haddr[i] == '[')
+         && (NULL != (p = strchr(config->haddr[i], ']')))
+         && (p[1] == ':')
+         && (0 < (config->hport[i] = atoi(p + 2))))
       {
-         *p++ = '\0';
-         if (*p)
-         {
-            config->hport = atoi(p);
-         }
+         *p = '\0';
+         memmove((void *)config->haddr[i], config->haddr[i] + 1,
+            (size_t)(p - config->haddr[i]));
       }
-
-      if (config->hport <= 0)
+      else if (NULL != (p = strchr(config->haddr[i], ':'))
+         && (0 < (config->hport[i] = atoi(p + 1))))
       {
-         *--p = ':';
-         log_error(LOG_LEVEL_FATAL, "invalid bind port spec %s", config->haddr);
+         *p = '\0';
+      }
+      else
+      {
+         log_error(LOG_LEVEL_FATAL, "invalid bind port spec %s", config->haddr[i]);
          /* Never get here - LOG_LEVEL_FATAL causes program exit */
       }
-      if (*config->haddr == '\0')
+      if (*config->haddr[i] == '\0')
       {
          /*
-          * Only the port specified. We stored it in config->hport
+          * Only the port specified. We stored it in config->hport[i]
           * and don't need its text representation anymore.
+          * Use config->hport[i] == 0 to iterate listening addresses since
+          * now.
           */
-         freez(config->haddr);
+         freez(config->haddr[i]);
       }
    }
 
@@ -1896,8 +1604,9 @@ struct configuration_spec * load_config(void)
 #if defined(_WIN32) && !defined (_WIN_CONSOLE)
 
    g_default_actions_file = config->actions_file[1]; /* FIXME Hope this is default.action */
-   g_user_actions_file = config->actions_file[2]; /* FIXME Hope this is user.action */
-   g_re_filterfile    = config->re_filterfile[0]; /* FIXME Hope this is default.filter */
+   g_user_actions_file  = config->actions_file[2];  /* FIXME Hope this is user.action */
+   g_default_filterfile = config->re_filterfile[0]; /* FIXME Hope this is default.filter */
+   g_user_filterfile    = config->re_filterfile[1]; /* FIXME Hope this is user.filter */
 
 #ifdef FEATURE_TRUST
    g_trustfile        = config->trustfile;
@@ -1915,30 +1624,34 @@ struct configuration_spec * load_config(void)
       struct configuration_spec * oldcfg = (struct configuration_spec *)
                                            current_configfile->f;
       /*
-       * Check if config->haddr,hport == oldcfg->haddr,hport
+       * Check if config->haddr[i],hport[i] == oldcfg->haddr[i],hport[i]
        *
        * The following could be written more compactly as a single,
        * (unreadably long) if statement.
        */
       config->need_bind = 0;
-      if (config->hport != oldcfg->hport)
+
+      for (i = 0; i < MAX_LISTENING_SOCKETS; i++)
       {
-         config->need_bind = 1;
-      }
-      else if (config->haddr == NULL)
-      {
-         if (oldcfg->haddr != NULL)
+         if (config->hport[i] != oldcfg->hport[i])
          {
             config->need_bind = 1;
          }
-      }
-      else if (oldcfg->haddr == NULL)
-      {
-         config->need_bind = 1;
-      }
-      else if (0 != strcmp(config->haddr, oldcfg->haddr))
-      {
-         config->need_bind = 1;
+         else if (config->haddr[i] == NULL)
+         {
+            if (oldcfg->haddr[i] != NULL)
+            {
+               config->need_bind = 1;
+            }
+         }
+         else if (oldcfg->haddr[i] == NULL)
+         {
+            config->need_bind = 1;
+         }
+         else if (0 != strcmp(config->haddr[i], oldcfg->haddr[i]))
+         {
+            config->need_bind = 1;
+         }
       }
 
       current_configfile->unloader = unload_configfile;

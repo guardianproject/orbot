@@ -5,7 +5,7 @@
 <!entity history SYSTEM "history.sgml">
 <!entity copyright SYSTEM "copyright.sgml">
 <!entity license SYSTEM "license.sgml">
-<!entity p-version "3.0.11">
+<!entity p-version "3.0.19">
 <!entity p-status "stable">
 <!entity % p-not-stable "IGNORE">
 <!entity % p-stable "INCLUDE">
@@ -20,7 +20,7 @@
                 This file belongs into
                 ijbswa.sourceforge.net:/home/groups/i/ij/ijbswa/htdocs/
                 
- $Id: index.sgml,v 2.9 2009/02/19 14:12:02 fabiankeil Exp $
+ $Id: index.sgml,v 2.20 2011/12/26 17:05:40 fabiankeil Exp $
 
  Copyright (C) 2001-2009 Privoxy Developers <ijbswa-developers@lists.sourceforge.net>
  See LICENSE.
@@ -90,7 +90,7 @@
  <itemizedlist>
   <listitem>
    <para>
-    <ulink url="https://sourceforge.net/project/showfiles.php?group_id=11118">Download recent releases</ulink>
+    <ulink url="https://sourceforge.net/projects/ijbswa/files/">Download recent releases</ulink>
    </para>
   </listitem>
  <!-- 
@@ -169,7 +169,7 @@
    <para>
     <!-- please leave this link absolute so this file can be bundled with -->
     <!-- documentation and still used locally -->
-    <ulink url="http://privoxy.org/team/index.html">Pictures of the Privoxy Team</ulink>
+    <ulink url="http://www.privoxy.org/team/index.html">Pictures of the Privoxy Team</ulink>
    </para>
   </listitem>
  </itemizedlist>
@@ -222,7 +222,7 @@
 <!-- GNUMakefile is inserting this now -->
 <para>
  <subscript>
-  Copyright __copy 2001-2009 by Privoxy Developers
+  Copyright __copy 2001-2010 by Privoxy Developers
  </subscript>
 </para>
 
@@ -249,6 +249,42 @@
  Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
  $Log: index.sgml,v $
+ Revision 2.20  2011/12/26 17:05:40  fabiankeil
+ Bump entities for 3.0.19
+
+ Revision 2.19  2011/11/13 17:03:54  fabiankeil
+ Bump entities for 3.0.18 stable
+
+ Revision 2.18  2011/08/17 10:40:07  fabiankeil
+ Update the entities.
+
+ This commit is chronological out of order.
+
+ Revision 2.17  2010/11/10 21:49:38  fabiankeil
+ Set p-version to 3.0.17
+
+ Revision 2.16  2010/02/13 17:38:39  fabiankeil
+ Update entities for 3.0.16 stable.
+
+ Revision 2.15  2010/02/13 16:38:18  fabiankeil
+ Update copyright.
+
+ Revision 2.14  2010/01/11 13:47:25  fabiankeil
+ Finally bump entities for 3.0.16 UNRELEASED here, too.
+
+ Revision 2.13  2009/10/10 06:07:40  fabiankeil
+ Prepare for 3.0.15 beta.
+
+ Revision 2.12  2009/08/01 11:48:22  fabiankeil
+ Update the "Download recent releases" URL and fix the "Pictures of the Privoxy Team" URL.
+ privoxy.org redirects to www.privoxy.org anyway.
+
+ Revision 2.11  2009/07/18 16:24:39  fabiankeil
+ Bump entities for 3.0.14 beta.
+
+ Revision 2.10  2009/06/12 14:30:59  fabiankeil
+ Update entities for 3.0.13 beta.
+
  Revision 2.9  2009/02/19 14:12:02  fabiankeil
  Change link to the project page to https://.
 

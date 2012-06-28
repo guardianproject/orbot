@@ -2,7 +2,7 @@
 # 
 #  File        :  $Source: /cvsroot/ijbswa/current/user.action,v $
 # 
-#  $Id: user.action,v 1.9 2008/03/27 18:27:37 fabiankeil Exp $
+#  $Id: user.action,v 1.13 2011/11/06 11:36:01 fabiankeil Exp $
 #
 #  Purpose     :  User-maintained actions file, see
 #                 http://www.privoxy.org/user-manual/actions-file.html
@@ -166,4 +166,32 @@ www.example.com/nasty-ads/sponsor.gif
 { +set-image-blocker{blank} }
 #/
 
-## set vi:nowrap tw=72
+# Enable the following section (not the regression-test directives)
+# to rewrite and redirect click-tracking URLs on news.google.com.
+# Disabling JavaScript should work as well and probably works more reliably.
+#
+# Redirected URL = http://news.google.com/news/url?ct2=us%2F0_0_s_1_1_a&sa=t&usg=AFQjCNHJWPc7ffoSXPSqBRz55jDA0KgxOQ&cid=8797762374160&url=http%3A%2F%2Fonline.wsj.com%2Farticle%2FSB10001424052970204485304576640791304008536.html&ei=YcqeTsymCIjxggf8uQE&rt=HOMEPAGE&vm=STANDARD&bvm=section&did=-6537064229385238098
+# Redirect Destination = http://online.wsj.com/article/SB10001424052970204485304576640791304008536.html
+# Ignore = Yes
+#
+#{+fast-redirects{check-decoded-url}}
+#news.google.com/news/url.*&url=http.*&
+
+# Enable the following section (not the regression-test directives)
+# to block various Facebook "like" and similar tracking URLs.  At the
+# time this section was added it was reported to not break Facebook
+# itself but this may have changed by the time you read this. This URL
+# list is probably incomplete and if you don't have an account anyway,
+# you may prefer to block the whole domain.
+#
+# Blocked URL = http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Ffacebook.com%2Farstechnica&width=300&colorscheme=light&show_faces=false&stream=false&header=false&height=62&border_color=%23FFFFFF
+# Ignore = Yes
+# Blocked URL = http://www.facebook.com/plugins/activity.php?site=arstechnica.com&width=300&height=370&header=false&colorscheme=light&recommendations=false&border_color=%23FFFFFF
+# Ignore = Yes
+# Blocked URL = http://www.facebook.com/plugins/fan.php?api_key=368513495882&connections=10&height=250&id=8304333127&locale=en_US&sdk=joey&stream=false&width=377
+# Ignore = Yes
+# Blocked URL = http://www.facebook.com/plugins/like.php?api_key=368513495882&channel_url=http%3A%2F%2Fstatic.ak.fbcdn.net%2Fconnect%2Fxd_proxy.php%3Fversion%3D3%23cb%3Df13997452c%26origin%3Dhttp%253A%252F%252Fonline.wsj.com%252Ff1b037e354%26relation%3Dparent.parent%26transport%3Dpostmessage&extended_social_context=false&href=http%3A%2F%2Fonline.wsj.com%2Farticle%2FSB10001424052970204485304576640791304008536.html&layout=button_count&locale=en_US&node_type=link&ref=wsj_share_FB&sdk=joey&send=false&show_faces=false&width=90
+# Ignore = Yes
+#
+#{+block{Facebook "like" and similar tracking URLs.}}
+#www.facebook.com/(extern|plugins)/(login_status|like(box)?|activity|fan)\.php

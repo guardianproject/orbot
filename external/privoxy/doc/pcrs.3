@@ -28,7 +28,7 @@ pcrs - Perl-compatible regular substitution.
 .B "#include <pcrs.h>"
 .PP
 .br
-.BI "pcrs_job *pcrs_compile(const char *" pattern "," 
+.BI "pcrs_job *pcrs_compile(const char *" pattern ","
 .ti +5n
 .BI "const char *" substitute ", const char *" options ,
 .ti +5n
@@ -68,7 +68,7 @@ pcrs - Perl-compatible regular substitution.
 
 The
 .SM PCRS
-library is a supplement to the 
+library is a supplement to the
 .SB PCRE(3)
 library that implements
 .RB "regular expression based substitution, like provided by " Perl(1) "'s 's'"
@@ -77,10 +77,10 @@ differences (see below).
 
 In a first step, the information on a substitution, i.e. the pattern, the
 substitute and the options are compiled from Perl syntax to an internal form
-.RB "called " pcrs_job " by using either the " pcrs_compile() " or " 
+.RB "called " pcrs_job " by using either the " pcrs_compile() " or "
 .BR pcrs_compile_command() " functions."
 
-Once the job is compiled, it can be used on subjects, which are arbitrary 
+Once the job is compiled, it can be used on subjects, which are arbitrary
 memory areas containing string or binary data, by calling
 .BR pcrs_execute() ". Jobs can be chained to joblists and whole"
 .RB "joblists can be applied to a subject using " pcrs_execute_list() .
@@ -104,7 +104,7 @@ There are also convenience functions for freeing the jobs and for errno-to-strin
 .RB "follows the '" "s" "' will be used as the delimiter. Patterns or substitutes"
 that contain the delimiter need to quote it:
 \fBs/th\\/is/th\\/at/\fR
-.RB "will replace " "th/is" " by " "th/at" " and can be written more simply as" 
+.RB "will replace " "th/is" " by " "th/at" " and can be written more simply as"
 .BR "s|th/is|th/at|" "."
 
 .IR "pattern" ", " "substitute" ", " "options" " and " "command" " must be"
@@ -123,7 +123,7 @@ On success, both functions return a pointer to the compiled job.
 .SS Substitutes
 .RI "The " "substitute" " uses"
 .RB "Perl syntax as documented in the " "perlre(1)" " manual page, with"
-some exceptions: 
+some exceptions:
 
 Most notably and evidently, since
 .SM PCRS
@@ -147,9 +147,9 @@ refers to what the last capturing subpattern matched.
 if a global substitution previously matched.
 
 .PP
-Perl4-style references to subpattern matches of the form 
+Perl4-style references to subpattern matches of the form
 \fB\\1, \\2, ...\fR
-.RB "which only exist in Perl5 for backwards compatibility, are " "not" 
+.RB "which only exist in Perl5 for backwards compatibility, are " "not"
 supported.
 
 Also, since the substitute is a double-quoted string in Perl, you
@@ -269,7 +269,7 @@ is set.
 
 
 .SS String subjects
-If your 
+If your
 
 .SS Return value and diagnostics
 
@@ -298,7 +298,7 @@ contains pointers to other dynamically allocated structures.
 Chaining the jobs is up to you, but once you have built a linked list of jobs,
 .RI "you can execute a whole " joblist " on a given subject by"
 .RB "a single call to " pcrs_execute_list() ", which will sequentially traverse"
-.RB "the linked list until it reaches a " NULL " pointer, and call " pcrs_execute() 
+.RB "the linked list until it reaches a " NULL " pointer, and call " pcrs_execute()
 .RI "for each job it encounters, feeding the " result  " and " result_length " of each"
 .RI "call into the next as the " subject " and " subject_length ". As in the single"
 .RI "job case, the original " subject " remains untouched, but all interim " result "s"
@@ -335,22 +335,22 @@ Under normal circumstances, it can take the following values:
 While compiling the pattern,
 .SM PCRE
 ran out of memory.
-.TP  
+.TP
 .B  PCRS_ERR_NOMEM
 While compiling the job,
 .SM PCRS
 ran out of memory.
-.TP  
+.TP
 .B  PCRS_ERR_CMDSYNTAX
 .BR pcrs_compile_command() " didn't find four tokens while parsing the"
 .IR command .
-.TP  
+.TP
 .B  PCRS_ERR_STUDY
 A
 .SM PCRE
 .RB "error occured while studying the compiled pattern. Since " pcre_study()
 only provides textual diagnostic information, the details are lost.
-.TP  
+.TP
 .B  PCRS_WARN_BADREF
 .RI "The " substitute " contains a reference to a capturing subpattern that"
 .RI "has a higher index than the number of capturing subpatterns in the " pattern
@@ -368,12 +368,12 @@ While matching the pattern,
 ran out of memory. This can only happen if there are more than 33 backrefrences
 .RI "in the " pattern "(!)"
 .BR and " memory is too tight to extend storage for more."
-.TP  
+.TP
 .B  PCRS_ERR_NOMEM
 While executing the job,
 .SM PCRS
 ran out of memory.
-.TP  
+.TP
 .B  PCRS_ERR_BADJOB
 .RB "The " pcrs_job "*  passed to " pcrs_execute " was NULL, or the"
 .RB "job is bogus (it contains " NULL " pointers to the compiled

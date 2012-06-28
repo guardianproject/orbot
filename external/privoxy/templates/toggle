@@ -8,7 +8,7 @@
 #
 # Template files are written win plain HTML, with a few
 # additions:
-# 
+#
 # - Lines that start with a '#' character like this one
 #   are ignored
 #
@@ -23,7 +23,7 @@
 #   strings @if-<name>start and if-<name>-end@. The strings
 #   should be placed in HTML comments (<!-- -->), so the
 #   html structure won't be messed when the magic happens.
-#   
+#
 # USABLE SYMBOLS IN THIS TEMPLATE:
 # --------------------------------
 #
@@ -117,7 +117,7 @@
       <td class="box">
         <h2>Bookmarklets</h2>
           <p>Here are some bookmarklets to allow you to easily access a
-            "mini" version of this page.  They are known to work with MS 
+            "mini" version of this page.  They are known to work with MS
             Internet Explorer, Netscape and Mozilla, but should work equally
             well in other browsers which support JavaScript.  They are designed
             to run directly from your bookmarks - <b>not</b> by clicking the
@@ -172,7 +172,7 @@
       </td>
     </tr>
 <!-- if-have-help-info-end@ -->
-    
+
   </table>
 
 </body>

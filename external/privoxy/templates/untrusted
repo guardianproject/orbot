@@ -8,7 +8,7 @@
 #
 # Template files are written win plain HTML, with a few
 # additions:
-# 
+#
 # - Lines that start with a '#' character like this one
 #   are ignored
 #
@@ -23,7 +23,7 @@
 #   strings @if-<name>start and if-<name>-end@. The strings
 #   should be placed in HTML comments (<!-- -->), so the
 #   html structure won't be messed when the magic happens.
-#   
+#
 # USABLE SYMBOLS IN THIS TEMPLATE:
 # --------------------------------
 #
@@ -78,7 +78,7 @@
 #  force-support:
 #    Privoxy has been compiled with support for forced loading
 #    of blocked content. In that case, the symbol "force-prefix" is
-#    avaiable, which translates to the FORCE_PREFIX  
+#    avaiable, which translates to the FORCE_PREFIX
 #  have-trust-info:
 #    There were URLs with info on the trust policy defined in the config
 #    file. In this case the list of URLs is available through the
@@ -107,9 +107,9 @@
         UNTRUSTED
       </td>
       <td class="title" style="width: 100%">
- 
+
 #include mod-title
- 
+
       </td>
     </tr>
 
@@ -184,7 +184,7 @@
       </td>
     </tr>
 <!-- if-have-help-info-end@ -->
-        
+
   </table>
 
 </body>

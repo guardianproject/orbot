@@ -2,8 +2,8 @@
  File        :  $Source: /cvsroot/ijbswa/current/doc/source/buildsource.sgml,v $
 
  Purpose     :  Entity included in other project documents.
-                
- $Id: buildsource.sgml,v 2.18 2009/02/23 09:03:12 fabiankeil Exp $
+
+ $Id: buildsource.sgml,v 2.19 2011/09/04 11:10:12 fabiankeil Exp $
 
  Copyright (C) 2001-2009 Privoxy Developers http://www.privoxy.org/
  See LICENSE.
@@ -12,7 +12,7 @@
   This file used for inclusion with other documents only.
  ======================================================================
 
- If you make changes to this file, please verify the finished 
+ If you make changes to this file, please verify the finished
  docs all display as intended.
 
  This file is included into:
@@ -22,7 +22,7 @@
 
 -->
 <para>
- To build <application>Privoxy</application> from source, 
+ To build <application>Privoxy</application> from source,
  <ulink url="http://www.gnu.org/software/autoconf/autoconf.html">autoconf</ulink>,
  <ulink
  url="http://www.gnu.org/software/make/make.html">GNU make
@@ -32,12 +32,12 @@
 
 <para>
  When building from a source tarball,
-<!-- 
+<!--
  no longer available ...
  <ulink
  url="http://cvs.sourceforge.net/cvstarballs/ijbswa-cvsroot.tar.gz">nightly CVS
- tarball</ulink>), 
---> first unpack the source: 
+ tarball</ulink>),
+--> first unpack the source:
 </para>
 
 <para>
@@ -63,7 +63,7 @@
 </para>
 
 <para>
- This will create a directory named <filename>current/</filename>, which will 
+ This will create a directory named <filename>current/</filename>, which will
  contain the source tree.
 </para>
 
@@ -81,7 +81,7 @@
  and group just for this purpose. See your local documentation for the correct
  command line to do add new users and groups (something like
  <command>adduser</command>, but the command syntax may vary from platform
- to platform). 
+ to platform).
 </para>
 
 <para>
@@ -113,7 +113,7 @@
  autoheader
  autoconf
  ./configure      # (--help to see options)
- make             # (the make from GNU, sometimes called gmake) 
+ make             # (the make from GNU, sometimes called gmake)
  su               # Possibly required
  make -n install  # (to see where all the files will go)
  make -s install  # (to really install, -s to silence output)</screen>
@@ -135,14 +135,14 @@
 </para>
 
 <para>
- To build an executable with security enhanced features so that 
+ To build an executable with security enhanced features so that
  users cannot easily bypass the proxy (e.g. <quote>Go There Anyway</quote>), or
  alter their own configurations, <command>configure</command> like this:
 </para>
 <para>
  <screen>
  ./configure  --disable-toggle  --disable-editor  --disable-force</screen>
-</para> 
+</para>
 <para>
 Then build as above. In Privoxy 3.0.7 and later, all of these options
 can also be disabled through the configuration file.
@@ -177,9 +177,9 @@ can also be disabled through the configuration file.
 </para>
 
 <para>
- The default installation path for <command>make install</command> is 
- <filename>/usr/local</filename>. This may of course be customized with 
- the various <command>./configure</command> path options. If you are doing 
+ The default installation path for <command>make install</command> is
+ <filename>/usr/local</filename>. This may of course be customized with
+ the various <command>./configure</command> path options. If you are doing
  an install to anywhere besides <filename>/usr/local</filename>, be
  sure to set the appropriate paths with the correct configure options
  (<command>./configure --help</command>). Non-privileged users must of course
@@ -209,15 +209,15 @@ can also be disabled through the configuration file.
  <literal>localstatedir</literal> (ie: <filename>var/</filename>) will default
  to <filename>/var</filename> instead of <literal>$prefix/var</literal> so
  the logs will go to <filename>/var/log/privoxy/</filename>, and the pid file
- will be created in <filename>/var/run/privoxy.pid</filename>. 
+ will be created in <filename>/var/run/privoxy.pid</filename>.
 </para>
 
 <para>
- <command>make install</command> will attempt to set the correct values 
- in <filename>config</filename> (main configuration file). You should  
+ <command>make install</command> will attempt to set the correct values
+ in <filename>config</filename> (main configuration file). You should
  check this to make sure all values are correct. If appropriate,
- an init script will be installed, but it is up to the user to determine 
- how and where to start <application>Privoxy</application>. The init 
+ an init script will be installed, but it is up to the user to determine
+ how and where to start <application>Privoxy</application>. The init
  script should be checked for correct paths and values, if anything other than
  a default install is done.
 </para>
@@ -248,9 +248,9 @@ can also be disabled through the configuration file.
 <!-- Actually this is now in INSTALL -->
  <![%p-readme;[
 <para>
- The simplest command line to start <application>Privoxy</application> is 
- <command>$path/privoxy --user=privoxy  $path/etc/privoxy/config</command>. 
- See <command>privoxy --usage</command>, or the man page, for other options, 
+ The simplest command line to start <application>Privoxy</application> is
+ <command>$path/privoxy --user=privoxy  $path/etc/privoxy/config</command>.
+ See <command>privoxy --usage</command>, or the man page, for other options,
  and configuration.
 </para>
 ]]>

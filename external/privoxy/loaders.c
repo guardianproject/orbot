@@ -1,4 +1,4 @@
-const char loaders_rcs[] = "$Id: loaders.c,v 1.71 2009/03/04 18:24:47 fabiankeil Exp $";
+const char loaders_rcs[] = "$Id: loaders.c,v 1.87 2011/11/06 11:53:15 fabiankeil Exp $";
 /*********************************************************************
  *
  * File        :  $Source: /cvsroot/ijbswa/current/loaders.c,v $
@@ -8,7 +8,7 @@ const char loaders_rcs[] = "$Id: loaders.c,v 1.71 2009/03/04 18:24:47 fabiankeil
  *                the list of active loaders, and to automatically
  *                unload files that are no longer in use.
  *
- * Copyright   :  Written by and Copyright (C) 2001-2009 the
+ * Copyright   :  Written by and Copyright (C) 2001-2010 the
  *                Privoxy team. http://www.privoxy.org/
  *
  *                Based on the Internet Junkbuster originally written
@@ -33,353 +33,8 @@ const char loaders_rcs[] = "$Id: loaders.c,v 1.71 2009/03/04 18:24:47 fabiankeil
  *                or write to the Free Software Foundation, Inc., 59
  *                Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
- * Revisions   :
- *    $Log: loaders.c,v $
- *    Revision 1.71  2009/03/04 18:24:47  fabiankeil
- *    No need to create empty strings manually, strdup("") FTW.
- *
- *    Revision 1.70  2009/03/01 18:34:24  fabiankeil
- *    Help clang understand that we aren't dereferencing
- *    NULL pointers here.
- *
- *    Revision 1.69  2008/09/21 13:36:52  fabiankeil
- *    If change-x-forwarded-for{add} is used and the client
- *    sends multiple X-Forwarded-For headers, append the client's
- *    IP address to each one of them. "Traditionally" we would
- *    lose all but the last one.
- *
- *    Revision 1.68  2008/09/19 15:26:28  fabiankeil
- *    Add change-x-forwarded-for{} action to block or add
- *    X-Forwarded-For headers. Mostly based on code removed
- *    before 3.0.7.
- *
- *    Revision 1.67  2008/03/30 14:52:08  fabiankeil
- *    Rename load_actions_file() and load_re_filterfile()
- *    as they load multiple files "now".
- *
- *    Revision 1.66  2008/03/21 11:16:30  fabiankeil
- *    Garbage-collect csp->my_ip_addr_str and csp->my_hostname.
- *
- *    Revision 1.65  2007/12/07 18:29:23  fabiankeil
- *    Remove now-obsolete csp member x_forwarded.
- *
- *    Revision 1.64  2007/06/01 14:12:38  fabiankeil
- *    Add unload_forward_spec() in preparation for forward-override{}.
- *
- *    Revision 1.63  2007/05/14 10:41:15  fabiankeil
- *    Ditch the csp member cookie_list[] which isn't used anymore.
- *
- *    Revision 1.62  2007/04/30 15:02:18  fabiankeil
- *    Introduce dynamic pcrs jobs that can resolve variables.
- *
- *    Revision 1.61  2007/04/15 16:39:21  fabiankeil
- *    Introduce tags as alternative way to specify which
- *    actions apply to a request. At the moment tags can be
- *    created based on client and server headers.
- *
- *    Revision 1.60  2007/03/20 15:16:34  fabiankeil
- *    Use dedicated header filter actions instead of abusing "filter".
- *    Replace "filter-client-headers" and "filter-client-headers"
- *    with "server-header-filter" and "client-header-filter".
- *
- *    Revision 1.59  2007/01/25 13:38:20  fabiankeil
- *    Freez csp->error_message in sweep().
- *
- *    Revision 1.58  2006/12/31 14:25:20  fabiankeil
- *    Fix gcc43 compiler warnings.
- *
- *    Revision 1.57  2006/12/21 12:22:22  fabiankeil
- *    html_encode filter descriptions.
- *
- *    Have "Ignoring job ..." error messages
- *    print the filter file name correctly.
- *
- *    Revision 1.56  2006/09/07 10:40:30  fabiankeil
- *    Turns out trusted referrers above our arbitrary
- *    limit are downgraded too ordinary trusted URLs.
- *    Adjusted error message.
- *
- *    Revision 1.55  2006/09/07 10:25:39  fabiankeil
- *    Fix typo.
- *
- *    Revision 1.54  2006/09/07 10:22:20  fabiankeil
- *    If too many trusted referrers are used,
- *    print only one error message instead of logging
- *    every single trusted referrer above the arbitrary
- *    limit.
- *
- *    Revision 1.53  2006/08/31 16:25:06  fabiankeil
- *    Work around a buffer overflow that caused Privoxy to
- *    segfault if too many trusted referrers were used. Good
- *    enough for now, but should be replaced with a real
- *    solution after the next release.
- *
- *    Revision 1.52  2006/07/18 14:48:46  david__schmidt
- *    Reorganizing the repository: swapping out what was HEAD (the old 3.1 branch)
- *    with what was really the latest development (the v_3_0_branch branch)
- *
- *    Revision 1.50.2.8  2006/01/30 15:16:25  david__schmidt
- *    Remove a little residual debugging info
- *
- *    Revision 1.50.2.7  2006/01/29 23:10:56  david__schmidt
- *    Multiple filter file support
- *
- *    Revision 1.50.2.6  2003/10/24 10:17:54  oes
- *    Nit: Allowed tabs as separators in filter headings
- *
- *    Revision 1.50.2.5  2003/05/08 15:19:15  oes
- *    sweep: Made loop structure of sweep step mirror that of mark step
- *
- *    Revision 1.50.2.4  2003/05/06 15:57:12  oes
- *    Bugfix: Update last_active pointer in sweep() before
- *    leaving an active client. Closes bugs #724395, #727882
- *
- *    Revision 1.50.2.3  2002/11/20 17:12:30  oes
- *    Ooops, forgot one change.
- *
- *    Revision 1.50.2.2  2002/11/20 14:38:15  oes
- *    Fixed delayed/incomplete freeing of client resources and
- *    simplified loop structure in sweep.
- *    Thanks to Oliver Stoeneberg for the hint.
- *
- *    Revision 1.50.2.1  2002/07/26 15:19:24  oes
- *    - PCRS jobs now chained in order of appearance. Previous
- *      reverse chaining was counter-intuitive.
- *    - Changed loglevel of PCRS job compile errors to
- *      LOG_LEVEL_ERROR
- *
- *    Revision 1.50  2002/04/24 02:12:16  oes
- *    Jon's multiple AF patch: Sweep now takes care of all AFs
- *
- *    Revision 1.49  2002/04/19 16:53:25  jongfoster
- *    Optimize away a function call by using an equivalent macro
- *
- *    Revision 1.48  2002/04/05 00:56:09  gliptak
- *    Correcting typo to clean up on realloc failure
- *
- *    Revision 1.47  2002/03/26 22:29:55  swa
- *    we have a new homepage!
- *
- *    Revision 1.46  2002/03/24 13:25:43  swa
- *    name change related issues
- *
- *    Revision 1.45  2002/03/16 23:54:06  jongfoster
- *    Adding graceful termination feature, to help look for memory leaks.
- *    If you enable this (which, by design, has to be done by hand
- *    editing config.h) and then go to http://i.j.b/die, then the program
- *    will exit cleanly after the *next* request.  It should free all the
- *    memory that was used.
- *
- *    Revision 1.44  2002/03/16 21:51:00  jongfoster
- *    Fixing free(NULL).
- *
- *    Revision 1.43  2002/03/16 20:28:34  oes
- *    Added descriptions to the filters so users will know what they select in the cgi editor
- *
- *    Revision 1.42  2002/03/13 00:27:05  jongfoster
- *    Killing warnings
- *
- *    Revision 1.41  2002/03/12 01:42:50  oes
- *    Introduced modular filters
- *
- *    Revision 1.40  2002/03/08 17:46:04  jongfoster
- *    Fixing int/size_t warnings
- *
- *    Revision 1.39  2002/03/07 03:46:17  oes
- *    Fixed compiler warnings
- *
- *    Revision 1.38  2002/03/06 22:54:35  jongfoster
- *    Automated function-comment nitpicking.
- *
- *    Revision 1.37  2002/03/03 15:07:49  oes
- *    Re-enabled automatic config reloading
- *
- *    Revision 1.36  2002/01/22 23:46:18  jongfoster
- *    Moving edit_read_line() and simple_read_line() to loaders.c, and
- *    extending them to support reading MS-DOS, Mac and UNIX style files
- *    on all platforms.
- *
- *    Modifying read_config_line() (without changing it's prototype) to
- *    be a trivial wrapper for edit_read_line().  This means that we have
- *    one function to read a line and handle comments, which is common
- *    between the initialization code and the edit interface.
- *
- *    Revision 1.35  2002/01/17 21:03:08  jongfoster
- *    Moving all our URL and URL pattern parsing code to urlmatch.c.
- *
- *    Renaming free_url to free_url_spec, since it frees a struct url_spec.
- *
- *    Revision 1.34  2001/12/30 14:07:32  steudten
- *    - Add signal handling (unix)
- *    - Add SIGHUP handler (unix)
- *    - Add creation of pidfile (unix)
- *    - Add action 'top' in rc file (RH)
- *    - Add entry 'SIGNALS' to manpage
- *    - Add exit message to logfile (unix)
- *
- *    Revision 1.33  2001/11/13 00:16:38  jongfoster
- *    Replacing references to malloc.h with the standard stdlib.h
- *    (See ANSI or K&R 2nd Ed)
- *
- *    Revision 1.32  2001/11/07 00:02:13  steudten
- *    Add line number in error output for lineparsing for
- *    actionsfile and configfile.
- *    Special handling for CLF added.
- *
- *    Revision 1.31  2001/10/26 17:39:01  oes
- *    Removed csp->referrer
- *    Moved ijb_isspace and ijb_tolower to project.h
- *
- *    Revision 1.30  2001/10/25 03:40:48  david__schmidt
- *    Change in porting tactics: OS/2's EMX porting layer doesn't allow multiple
- *    threads to call select() simultaneously.  So, it's time to do a real, live,
- *    native OS/2 port.  See defines for __EMX__ (the porting layer) vs. __OS2__
- *    (native). Both versions will work, but using __OS2__ offers multi-threading.
- *
- *    Revision 1.29  2001/10/23 21:38:53  jongfoster
- *    Adding error-checking to create_url_spec()
- *
- *    Revision 1.28  2001/10/07 15:40:39  oes
- *    Replaced 6 boolean members of csp with one bitmap (csp->flags)
- *
- *    Revision 1.27  2001/09/22 16:36:59  jongfoster
- *    Removing unused parameter fs from read_config_line()
- *
- *    Revision 1.26  2001/09/22 14:05:22  jongfoster
- *    Bugfix: Multiple escaped "#" characters in a configuration
- *    file are now permitted.
- *    Also removing 3 unused headers.
- *
- *    Revision 1.25  2001/09/13 22:44:03  jongfoster
- *    Adding {} to an if statement
- *
- *    Revision 1.24  2001/07/30 22:08:36  jongfoster
- *    Tidying up #defines:
- *    - All feature #defines are now of the form FEATURE_xxx
- *    - Permanently turned off WIN_GUI_EDIT
- *    - Permanently turned on WEBDAV and SPLIT_PROXY_ARGS
- *
- *    Revision 1.23  2001/07/20 15:51:54  oes
- *    Fixed indentation of prepocessor commands
- *
- *    Revision 1.22  2001/07/20 15:16:17  haroon
- *    - per Guy's suggestion, added a while loop in sweep() to catch not just
- *      the last inactive CSP but all other consecutive inactive CSPs after that
- *      as well
- *
- *    Revision 1.21  2001/07/18 17:26:24  oes
- *    Changed to conform to new pcrs interface
- *
- *    Revision 1.20  2001/07/17 13:07:01  oes
- *    Fixed segv when last line in config files
- *     lacked a terminating (\r)\n
- *
- *    Revision 1.19  2001/07/13 14:01:54  oes
- *    Removed all #ifdef PCRS
- *
- *    Revision 1.18  2001/06/29 21:45:41  oes
- *    Indentation, CRLF->LF, Tab-> Space
- *
- *    Revision 1.17  2001/06/29 13:31:51  oes
- *    Various adaptions
- *
- *    Revision 1.16  2001/06/09 10:55:28  jongfoster
- *    Changing BUFSIZ ==> BUFFER_SIZE
- *
- *    Revision 1.15  2001/06/07 23:14:14  jongfoster
- *    Removing ACL and forward file loaders - these
- *    files have been merged into the config file.
- *    Cosmetic: Moving unloader funcs next to their
- *    respective loader funcs
- *
- *    Revision 1.14  2001/06/01 03:27:04  oes
- *    Fixed line continuation problem
- *
- *    Revision 1.13  2001/05/31 21:28:49  jongfoster
- *    Removed all permissionsfile code - it's now called the actions
- *    file, and (almost) all the code is in actions.c
- *
- *    Revision 1.12  2001/05/31 17:32:31  oes
- *
- *     - Enhanced domain part globbing with infix and prefix asterisk
- *       matching and optional unanchored operation
- *
- *    Revision 1.11  2001/05/29 23:25:24  oes
- *
- *     - load_config_line() and load_permissions_file() now use chomp()
- *
- *    Revision 1.10  2001/05/29 09:50:24  jongfoster
- *    Unified blocklist/imagelist/permissionslist.
- *    File format is still under discussion, but the internal changes
- *    are (mostly) done.
- *
- *    Also modified interceptor behaviour:
- *    - We now intercept all URLs beginning with one of the following
- *      prefixes (and *only* these prefixes):
- *        * http://i.j.b/
- *        * http://ijbswa.sf.net/config/
- *        * http://ijbswa.sourceforge.net/config/
- *    - New interceptors "home page" - go to http://i.j.b/ to see it.
- *    - Internal changes so that intercepted and fast redirect pages
- *      are not replaced with an image.
- *    - Interceptors now have the option to send a binary page direct
- *      to the client. (i.e. ijb-send-banner uses this)
- *    - Implemented show-url-info interceptor.  (Which is why I needed
- *      the above interceptors changes - a typical URL is
- *      "http://i.j.b/show-url-info?url=www.somesite.com/banner.gif".
- *      The previous mechanism would not have intercepted that, and
- *      if it had been intercepted then it then it would have replaced
- *      it with an image.)
- *
- *    Revision 1.9  2001/05/26 17:12:07  jongfoster
- *    Fatal errors loading configuration files now give better error messages.
- *
- *    Revision 1.8  2001/05/26 00:55:20  jongfoster
- *    Removing duplicated code.  load_forwardfile() now uses create_url_spec()
- *
- *    Revision 1.7  2001/05/26 00:28:36  jongfoster
- *    Automatic reloading of config file.
- *    Removed obsolete SIGHUP support (Unix) and Reload menu option (Win32).
- *    Most of the global variables have been moved to a new
- *    struct configuration_spec, accessed through csp->config->globalname
- *    Most of the globals remaining are used by the Win32 GUI.
- *
- *    Revision 1.6  2001/05/23 12:27:33  oes
- *
- *    Fixed ugly indentation of my last changes
- *
- *    Revision 1.5  2001/05/23 10:39:05  oes
- *    - Added support for escaping the comment character
- *      in config files by a backslash
- *    - Added support for line continuation in config
- *      files
- *    - Fixed a buffer overflow bug with long config lines
- *
- *    Revision 1.4  2001/05/22 18:56:28  oes
- *    CRLF -> LF
- *
- *    Revision 1.3  2001/05/20 01:21:20  jongfoster
- *    Version 2.9.4 checkin.
- *    - Merged popupfile and cookiefile, and added control over PCRS
- *      filtering, in new "permissionsfile".
- *    - Implemented LOG_LEVEL_FATAL, so that if there is a configuration
- *      file error you now get a message box (in the Win32 GUI) rather
- *      than the program exiting with no explanation.
- *    - Made killpopup use the PCRS MIME-type checking and HTTP-header
- *      skipping.
- *    - Removed tabs from "config"
- *    - Moved duplicated url parsing code in "loaders.c" to a new funcition.
- *    - Bumped up version number.
- *
- *    Revision 1.2  2001/05/17 23:01:01  oes
- *     - Cleaned CRLF's from the sources and related files
- *
- *    Revision 1.1.1.1  2001/05/15 13:58:59  oes
- *    Initial import of version 2.9.3 source tree
- *
- *
  *********************************************************************/
-
+
 
 #include "config.h"
 
@@ -453,14 +108,16 @@ static struct file_list *current_re_filterfile[MAX_AF_FILES]  = {
  *
  * Parameters  :  None
  *
- * Returns     :  N/A
+ * Returns     :  The number of threads that are still active.
  *
  *********************************************************************/
-void sweep(void)
+unsigned int sweep(void)
 {
    struct file_list *fl, *nfl;
-   struct client_state *csp, *last_active;
+   struct client_state *csp;
+   struct client_states *last_active, *client_list;
    int i;
+   unsigned int active_threads = 0;
 
    /* clear all of the file's active flags */
    for ( fl = files->next; NULL != fl; fl = fl->next )
@@ -469,10 +126,11 @@ void sweep(void)
    }
 
    last_active = clients;
-   csp = clients->next;
+   client_list = clients->next;
 
-   while (NULL != csp)
+   while (NULL != client_list)
    {
+      csp = &client_list->csp;
       if (csp->flags & CSP_FLAG_ACTIVE)
       {
          /* Mark this client's files as active */
@@ -484,12 +142,12 @@ void sweep(void)
           */
          csp->config->config_file_list->active = 1;
 
-         /* 
+         /*
           * Actions files
           */
          for (i = 0; i < MAX_AF_FILES; i++)
          {
-            if (csp->actions_list[i])     
+            if (csp->actions_list[i])
             {
                csp->actions_list[i]->active = 1;
             }
@@ -500,7 +158,7 @@ void sweep(void)
           */
          for (i = 0; i < MAX_AF_FILES; i++)
          {
-            if (csp->rlist[i])     
+            if (csp->rlist[i])
             {
                csp->rlist[i]->active = 1;
             }
@@ -515,17 +173,18 @@ void sweep(void)
             csp->tlist->active = 1;
          }
 #endif /* def FEATURE_TRUST */
-         
-         last_active = csp;
-         csp = csp->next;
 
+         active_threads++;
+
+         last_active = client_list;
+         client_list = client_list->next;
       }
-      else 
+      else
       /*
        * This client is not active. Free its resources.
        */
       {
-         last_active->next = csp->next;
+         last_active->next = client_list->next;
 
          freez(csp->ip_addr_str);
          freez(csp->iob->buf);
@@ -551,9 +210,9 @@ void sweep(void)
          }
 #endif /* def FEATURE_STATISTICS */
 
-         freez(csp);
-         
-         csp = last_active->next;
+         freez(client_list);
+
+         client_list = last_active->next;
       }
    }
 
@@ -579,6 +238,8 @@ void sweep(void)
          fl = fl->next;
       }
    }
+
+   return active_threads;
 
 }
 
@@ -698,7 +359,7 @@ jb_err simple_read_line(FILE *fp, char **dest, int *newline)
    p = buf;
 
 /*
- * Character codes.  If you have a wierd compiler and the following are
+ * Character codes.  If you have a weird compiler and the following are
  * incorrect, you also need to fix NEWLINE() in loaders.h
  */
 #define CHAR_CR '\r' /* ASCII 13 */
@@ -1076,37 +737,27 @@ jb_err edit_read_line(FILE *fp,
  *                and respects escaping of newline and comment char.
  *
  * Parameters  :
- *          1  :  buf = Buffer to use.
- *          2  :  buflen = Size of buffer in bytes.
- *          3  :  fp = File to read from
- *          4  :  linenum = linenumber in file
+ *          1  :  fp = File to read from
+ *          2  :  linenum = linenumber in file
+ *          3  :  buf = Pointer to a pointer to set to the data buffer.
  *
  * Returns     :  NULL on EOF or error
  *                Otherwise, returns buf.
  *
  *********************************************************************/
-char *read_config_line(char *buf, size_t buflen, FILE *fp, unsigned long *linenum)
+char *read_config_line(FILE *fp, unsigned long *linenum, char **buf)
 {
    jb_err err;
-   char *buf2 = NULL;
-   err = edit_read_line(fp, NULL, NULL, &buf2, NULL, linenum);
+   err = edit_read_line(fp, NULL, NULL, buf, NULL, linenum);
    if (err)
    {
       if (err == JB_ERR_MEMORY)
       {
          log_error(LOG_LEVEL_FATAL, "Out of memory loading a config file");
       }
-      return NULL;
+      *buf = NULL;
    }
-   else
-   {
-      assert(buf2);
-      assert(strlen(buf2) + 1U < buflen);
-      strncpy(buf, buf2, buflen - 1);
-      free(buf2);
-      buf[buflen - 1] = '\0';
-      return buf;
-   }
+   return *buf;
 }
 
 
@@ -1184,7 +835,7 @@ int load_trustfile(struct client_state *csp)
    struct block_spec *b, *bl;
    struct url_spec **tl;
 
-   char  buf[BUFFER_SIZE], *p, *q;
+   char *buf = NULL;
    int reject, trusted;
    struct file_list *fs;
    unsigned long linenum = 0;
@@ -1193,10 +844,7 @@ int load_trustfile(struct client_state *csp)
    if (!check_file_changed(current_trustfile, csp->config->trustfile, &fs))
    {
       /* No need to load */
-      if (csp)
-      {
-         csp->tlist = current_trustfile;
-      }
+      csp->tlist = current_trustfile;
       return(0);
    }
    if (!fs)
@@ -1214,10 +862,11 @@ int load_trustfile(struct client_state *csp)
    {
       goto load_trustfile_error;
    }
+   log_error(LOG_LEVEL_INFO, "Loading trust file: %s", csp->config->trustfile);
 
    tl = csp->config->trust_list;
 
-   while (read_config_line(buf, sizeof(buf), fp, &linenum) != NULL)
+   while (read_config_line(fp, &linenum, &buf) != NULL)
    {
       trusted = 0;
       reject  = 1;
@@ -1230,6 +879,9 @@ int load_trustfile(struct client_state *csp)
 
       if (*buf == '~')
       {
+         char *p;
+         char *q;
+
          reject = 0;
          p = buf;
          q = p+1;
@@ -1242,6 +894,7 @@ int load_trustfile(struct client_state *csp)
       /* skip blank lines */
       if (*buf == '\0')
       {
+         freez(buf);
          continue;
       }
 
@@ -1275,9 +928,10 @@ int load_trustfile(struct client_state *csp)
             *tl++ = b->url;
          }
       }
+      freez(buf);
    }
 
-   if(trusted_referrers >= MAX_TRUSTED_REFERRERS) 
+   if(trusted_referrers >= MAX_TRUSTED_REFERRERS)
    {
       /*
        * FIXME: ... after Privoxy 3.0.4 is out.
@@ -1301,17 +955,14 @@ int load_trustfile(struct client_state *csp)
    fs->next    = files->next;
    files->next = fs;
    current_trustfile = fs;
-
-   if (csp)
-   {
-      csp->tlist = fs;
-   }
+   csp->tlist = fs;
 
    return(0);
 
 load_trustfile_error:
    log_error(LOG_LEVEL_FATAL, "can't load trustfile '%s': %E",
-             csp->config->trustfile);
+      csp->config->trustfile);
+   freez(buf);
    return(-1);
 
 }
@@ -1355,7 +1006,7 @@ static void unload_re_filterfile(void *f)
  *
  * Function    :  unload_forward_spec
  *
- * Description :  Unload the forward spec settings by freeing all 
+ * Description :  Unload the forward spec settings by freeing all
  *                memory referenced by members and the memory for
  *                the spec itself.
  *
@@ -1409,7 +1060,7 @@ void unload_current_re_filterfile(void)
  *
  * Function    :  load_re_filterfiles
  *
- * Description :  Loads all the filterfiles. 
+ * Description :  Loads all the filterfiles.
  *                Generate a chained list of re_filterfile_spec's from
  *                the "FILTER: " blocks, compiling all their substitutions
  *                into chained lists of pcrs_job structs.
@@ -1450,7 +1101,7 @@ int load_re_filterfiles(struct client_state *csp)
  *
  * Function    :  load_one_re_filterfile
  *
- * Description :  Load a re_filterfile. 
+ * Description :  Load a re_filterfile.
  *                Generate a chained list of re_filterfile_spec's from
  *                the "FILTER: " blocks, compiling all their substitutions
  *                into chained lists of pcrs_job structs.
@@ -1468,7 +1119,7 @@ int load_one_re_filterfile(struct client_state *csp, int fileid)
    struct re_filterfile_spec *new_bl, *bl = NULL;
    struct file_list *fs;
 
-   char  buf[BUFFER_SIZE];
+   char *buf = NULL;
    int error;
    unsigned long linenum = 0;
    pcrs_job *dummy, *lastjob = NULL;
@@ -1478,10 +1129,7 @@ int load_one_re_filterfile(struct client_state *csp, int fileid)
     */
    if (!check_file_changed(current_re_filterfile[fileid], csp->config->re_filterfile[fileid], &fs))
    {
-      if (csp)
-      {
-         csp->rlist[fileid] = current_re_filterfile[fileid];
-      }
+      csp->rlist[fileid] = current_re_filterfile[fileid];
       return(0);
    }
    if (!fs)
@@ -1489,7 +1137,7 @@ int load_one_re_filterfile(struct client_state *csp, int fileid)
       goto load_re_filterfile_error;
    }
 
-   /* 
+   /*
     * Open the file or fail
     */
    if ((fp = fopen(csp->config->re_filterfile[fileid], "r")) == NULL)
@@ -1497,10 +1145,12 @@ int load_one_re_filterfile(struct client_state *csp, int fileid)
       goto load_re_filterfile_error;
    }
 
-   /* 
+   log_error(LOG_LEVEL_INFO, "Loading filter file: %s", csp->config->re_filterfile[fileid]);
+
+   /*
     * Read line by line
     */
-   while (read_config_line(buf, sizeof(buf), fp, &linenum) != NULL)
+   while (read_config_line(fp, &linenum, &buf) != NULL)
    {
       int new_filter = NO_NEW_FILTER;
 
@@ -1565,7 +1215,7 @@ int load_one_re_filterfile(struct client_state *csp, int fileid)
          }
 
          new_bl->name = strdup(chomp(new_bl->name));
-         
+
          /*
           * If this is the first filter block, chain it
           * to the file_list rather than its (nonexistant)
@@ -1584,12 +1234,13 @@ int load_one_re_filterfile(struct client_state *csp, int fileid)
 
          log_error(LOG_LEVEL_RE_FILTER, "Reading in filter \"%s\" (\"%s\")", bl->name, bl->description);
 
+         freez(buf);
          continue;
       }
 
-      /* 
+      /*
        * Else, save the expression, make it a pcrs_job
-       * and chain it into the current filter's joblist 
+       * and chain it into the current filter's joblist
        */
       if (bl != NULL)
       {
@@ -1615,7 +1266,8 @@ int load_one_re_filterfile(struct client_state *csp, int fileid)
             bl->dynamic = 1;
             log_error(LOG_LEVEL_RE_FILTER,
                "Adding dynamic re_filter job \'%s\' to filter %s succeeded.", buf, bl->name);
-            continue;             
+            freez(buf);
+            continue;
          }
          else if (bl->dynamic)
          {
@@ -1626,6 +1278,7 @@ int load_one_re_filterfile(struct client_state *csp, int fileid)
              */
             log_error(LOG_LEVEL_RE_FILTER,
                "Adding static re_filter job \'%s\' to dynamic filter %s succeeded.", buf, bl->name);
+            freez(buf);
             continue;
          }
 
@@ -1633,6 +1286,7 @@ int load_one_re_filterfile(struct client_state *csp, int fileid)
          {
             log_error(LOG_LEVEL_ERROR,
                "Adding re_filter job \'%s\' to filter %s failed with error %d.", buf, bl->name, error);
+            freez(buf);
             continue;
          }
          else
@@ -1654,11 +1308,12 @@ int load_one_re_filterfile(struct client_state *csp, int fileid)
          log_error(LOG_LEVEL_ERROR, "Ignoring job %s outside filter block in %s, line %d",
             buf, csp->config->re_filterfile[fileid], linenum);
       }
+      freez(buf);
    }
 
    fclose(fp);
 
-   /* 
+   /*
     * Schedule the now-obsolete old data for unloading
     */
    if ( NULL != current_re_filterfile[fileid] )
@@ -1672,11 +1327,7 @@ int load_one_re_filterfile(struct client_state *csp, int fileid)
    fs->next    = files->next;
    files->next = fs;
    current_re_filterfile[fileid] = fs;
-
-   if (csp)
-   {
-      csp->rlist[fileid] = fs;
-   }
+   csp->rlist[fileid] = fs;
 
    return( 0 );
 
@@ -1708,7 +1359,7 @@ void add_loader(int (*loader)(struct client_state *),
 {
    int i;
 
-   for (i=0; i < NLOADERS; i++)
+   for (i = 0; i < NLOADERS; i++)
    {
       if (config->loaders[i] == NULL)
       {
@@ -1742,7 +1393,7 @@ int run_loader(struct client_state *csp)
    int ret = 0;
    int i;
 
-   for (i=0; i < NLOADERS; i++)
+   for (i = 0; i < NLOADERS; i++)
    {
       if (csp->config->loaders[i] == NULL)
       {
@@ -1752,6 +1403,66 @@ int run_loader(struct client_state *csp)
    }
    return(ret);
 
+}
+
+/*********************************************************************
+ *
+ * Function    :  file_has_been_modified
+ *
+ * Description :  Helper function to check if a file has been changed
+ *
+ * Parameters  :
+ *          1  : filename = The name of the file to check
+ *          2  : last_known_modification = The time of the last known
+ *                                         modification
+ *
+ * Returns     :  TRUE if the file has been changed,
+ *                FALSE otherwise.
+ *
+ *********************************************************************/
+static int file_has_been_modified(const char *filename, time_t last_know_modification)
+{
+   struct stat statbuf[1];
+
+   if (stat(filename, statbuf) < 0)
+   {
+      /* Error, probably file not found which counts as change. */
+      return 1;
+   }
+
+   return (last_know_modification != statbuf->st_mtime);
+}
+
+
+/*********************************************************************
+ *
+ * Function    :  any_loaded_file_changed
+ *
+ * Description :  Helper function to check if any loaded file has been
+ *                changed since the time it has been loaded.
+ *
+ *                XXX: Should we cache the return value for x seconds?
+ *
+ * Parameters  :
+ *          1  : files_to_check = List of files to check
+ *
+ * Returns     : TRUE if any file has been changed,
+ *               FALSE otherwise.
+ *
+ *********************************************************************/
+int any_loaded_file_changed(const struct file_list *files_to_check)
+{
+   const struct file_list *file_to_check = files_to_check;
+
+   while (file_to_check != NULL)
+   {
+      if (file_has_been_modified(file_to_check->filename, file_to_check->lastmodified))
+      {
+         return TRUE;
+      }
+      file_to_check = file_to_check->next;
+   }
+   return FALSE;
 }
 
 

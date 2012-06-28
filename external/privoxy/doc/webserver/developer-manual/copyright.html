@@ -1,298 +1,161 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
-<HTML
-><HEAD
-><TITLE
->Privoxy Copyright, License and History</TITLE
-><META
-NAME="GENERATOR"
-CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
-REL="HOME"
-TITLE="Privoxy Developer Manual"
-HREF="index.html"><LINK
-REL="PREVIOUS"
-TITLE="Contacting the developers, Bug Reporting and Feature Requests"
-HREF="contact.html"><LINK
-REL="NEXT"
-TITLE="See also"
-HREF="seealso.html"><LINK
-REL="STYLESHEET"
-TYPE="text/css"
-HREF="../p_doc.css"><META
-HTTP-EQUIV="Content-Type"
-CONTENT="text/html;
-charset=ISO-8859-1"></HEAD
-><BODY
-CLASS="SECT1"
-BGCOLOR="#EEEEEE"
-TEXT="#000000"
-LINK="#0000FF"
-VLINK="#840084"
-ALINK="#0000FF"
-><DIV
-CLASS="NAVHEADER"
-><TABLE
-SUMMARY="Header navigation table"
-WIDTH="100%"
-BORDER="0"
-CELLPADDING="0"
-CELLSPACING="0"
-><TR
-><TH
-COLSPAN="3"
-ALIGN="center"
->Privoxy Developer Manual</TH
-></TR
-><TR
-><TD
-WIDTH="10%"
-ALIGN="left"
-VALIGN="bottom"
-><A
-HREF="contact.html"
-ACCESSKEY="P"
->Prev</A
-></TD
-><TD
-WIDTH="80%"
-ALIGN="center"
-VALIGN="bottom"
-></TD
-><TD
-WIDTH="10%"
-ALIGN="right"
-VALIGN="bottom"
-><A
-HREF="seealso.html"
-ACCESSKEY="N"
->Next</A
-></TD
-></TR
-></TABLE
-><HR
-ALIGN="LEFT"
-WIDTH="100%"></DIV
-><DIV
-CLASS="SECT1"
-><H1
-CLASS="SECT1"
-><A
-NAME="COPYRIGHT"
->9. Privoxy Copyright, License and History</A
-></H1
-><P
-> Copyright © 2001-2009 by Privoxy Developers <CODE
-CLASS="EMAIL"
->&#60;<A
-HREF="mailto:ijbswa-developers@lists.sourceforge.net"
->ijbswa-developers@lists.sourceforge.net</A
->&#62;</CODE
-></P
-><P
-> Some source code is based on code Copyright © 1997 by Anonymous Coders
- and Junkbusters, Inc. and licensed under the <I
-CLASS="CITETITLE"
->GNU General Public
- License</I
->.</P
-><DIV
-CLASS="SECT2"
-><H2
-CLASS="SECT2"
-><A
-NAME="AEN1223"
->9.1. License</A
-></H2
-><P
-> <SPAN
-CLASS="APPLICATION"
->Privoxy</SPAN
-> is free software; you can
- redistribute it and/or modify it under the terms of the 
- <I
-CLASS="CITETITLE"
->GNU General Public License</I
->, version 2,
- as published by the Free Software Foundation.</P
-><P
-> This program is distributed in the hope that it will be useful, but WITHOUT
- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
- FITNESS FOR A PARTICULAR PURPOSE.  See the <A
-HREF="http://www.gnu.org/licenses/old-licenses/gpl-2.0.html"
-TARGET="_top"
-> <I
-CLASS="CITETITLE"
->GNU General Public License</I
-></A
-> for details.</P
-><P
-> You should have received a copy of the <I
-CLASS="CITETITLE"
->GNU GPL</I
->
- along with this program; if not, write to the <P
-CLASS="ADDRESS"
->&nbsp;Free&nbsp;Software<br>
-&nbsp;Foundation,&nbsp;Inc.&nbsp;<SPAN
-CLASS="STREET"
->51 Franklin Street, Fifth Floor</SPAN
-><br>
-&nbsp;<SPAN
-CLASS="CITY"
->Boston</SPAN
->,&nbsp;<SPAN
-CLASS="STATE"
->MA</SPAN
->&nbsp;<SPAN
-CLASS="POSTCODE"
->02110-1301</SPAN
-><br>
-&nbsp;<SPAN
-CLASS="COUNTRY"
->USA</SPAN
->&nbsp;</P
-></P
-></DIV
-><DIV
-CLASS="SECT2"
-><H2
-CLASS="SECT2"
-><A
-NAME="AEN1239"
->9.2. History</A
-></H2
-><P
-> A long time ago, there was the
- <A
-HREF="http://www.junkbusters.com/ijb.html"
-TARGET="_top"
-><SPAN
-CLASS="APPLICATION"
->Internet Junkbuster</SPAN
-></A
->, 
- by Anonymous Coders and <A
-HREF="http://www.junkbusters.com/"
-TARGET="_top"
->Junkbusters
- Corporation</A
->. This saved many users a lot of pain in the early days of
- web advertising and user tracking.</P
-><P
-> But the web, its protocols and standards, and with it, the techniques for
- forcing ads on users, give up autonomy over their browsing, and
- for tracking them, keeps evolving. Unfortunately, the <SPAN
-CLASS="APPLICATION"
->Internet
- Junkbuster</SPAN
-> did not. Version 2.0.2, published in 1998, was 
- (and is) the last official
- <A
-HREF="http://www.junkbusters.com/ijbdist.html#release"
-TARGET="_top"
->release</A
->
- available from <A
-HREF="http://www.junkbusters.com"
-TARGET="_top"
->Junkbusters Corporation</A
->.
- Fortunately, it had been released under the GNU
- <A
-HREF="http://www.gnu.org/licenses/old-licenses/gpl-2.0.html"
-TARGET="_top"
->GPL</A
->,
- which allowed further development by others.</P
-><P
-> So Stefan Waldherr started maintaining an improved version of the
- software, to which eventually a number of people contributed patches.
- It could already replace banners with a transparent image, and had a first
- version of pop-up killing, but it was still very closely based on the
- original, with all its limitations, such as the lack of HTTP/1.1 support,
- flexible per-site configuration, or content modification. The last release
- from this effort was version 2.0.2-10, published in 2000.</P
-><P
-> Then, some
- <A
-HREF="http://www.privoxy.org/user-manual/copyright.html#AUTHORS"
-TARGET="_top"
->developers</A
->
- picked up the thread, and started turning the software inside out, upside down,
- and then reassembled it, adding many
- <A
-HREF="http://www.privoxy.org/user-manual/introduction.html#FEATURES"
-TARGET="_top"
->new
- features</A
-> along the way.</P
-><P
-> The result of this is <SPAN
-CLASS="APPLICATION"
->Privoxy</SPAN
->, whose first
- stable version, 3.0, was released August, 2002. 
- </P
-></DIV
-></DIV
-><DIV
-CLASS="NAVFOOTER"
-><HR
-ALIGN="LEFT"
-WIDTH="100%"><TABLE
-SUMMARY="Footer navigation table"
-WIDTH="100%"
-BORDER="0"
-CELLPADDING="0"
-CELLSPACING="0"
-><TR
-><TD
-WIDTH="33%"
-ALIGN="left"
-VALIGN="top"
-><A
-HREF="contact.html"
-ACCESSKEY="P"
->Prev</A
-></TD
-><TD
-WIDTH="34%"
-ALIGN="center"
-VALIGN="top"
-><A
-HREF="index.html"
-ACCESSKEY="H"
->Home</A
-></TD
-><TD
-WIDTH="33%"
-ALIGN="right"
-VALIGN="top"
-><A
-HREF="seealso.html"
-ACCESSKEY="N"
->Next</A
-></TD
-></TR
-><TR
-><TD
-WIDTH="33%"
-ALIGN="left"
-VALIGN="top"
->Contacting the developers, Bug Reporting and Feature Requests</TD
-><TD
-WIDTH="34%"
-ALIGN="center"
-VALIGN="top"
->&nbsp;</TD
-><TD
-WIDTH="33%"
-ALIGN="right"
-VALIGN="top"
->See also</TD
-></TR
-></TABLE
-></DIV
-></BODY
-></HTML
->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 7 December 2008), see www.w3.org">
+
+  <title>Privoxy Copyright, License and History</title>
+  <meta name="GENERATOR" content=
+  "Modular DocBook HTML Stylesheet Version 1.79">
+  <link rel="HOME" title="Privoxy Developer Manual" href="index.html">
+  <link rel="PREVIOUS" title=
+  "Contacting the developers, Bug Reporting and Feature Requests" href=
+  "contact.html">
+  <link rel="NEXT" title="See also" href="seealso.html">
+  <link rel="STYLESHEET" type="text/css" href="../p_doc.css">
+  <meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+  <style type="text/css">
+body {
+  background-color: #EEEEEE;
+  color: #000000;
+  }
+  :link { color: #0000FF }
+  :visited { color: #840084 }
+  :active { color: #0000FF }
+  a.c2 {font-style: italic}
+  hr.c1 {text-align: left}
+  </style>
+</head>
+
+<body class="SECT1">
+  <div class="NAVHEADER">
+    <table summary="Header navigation table" width="100%" border="0"
+    cellpadding="0" cellspacing="0">
+      <tr>
+        <th colspan="3" align="center">Privoxy Developer Manual</th>
+      </tr>
+
+      <tr>
+        <td width="10%" align="left" valign="bottom"><a href="contact.html"
+        accesskey="P">Prev</a></td>
+
+        <td width="80%" align="center" valign="bottom"></td>
+
+        <td width="10%" align="right" valign="bottom"><a href="seealso.html"
+        accesskey="N">Next</a></td>
+      </tr>
+    </table>
+    <hr class="c1" width="100%">
+  </div>
+
+  <div class="SECT1">
+    <h1 class="SECT1"><a name="COPYRIGHT" id="COPYRIGHT">9. Privoxy
+    Copyright, License and History</a></h1>
+
+    <p>Copyright &copy; 2001-2011 by Privoxy Developers <code class=
+    "EMAIL">&lt;<a href=
+    "mailto:ijbswa-developers@lists.sourceforge.net">ijbswa-developers@lists.sourceforge.net</a>&gt;</code></p>
+
+    <p>Some source code is based on code Copyright &copy; 1997 by Anonymous
+    Coders and Junkbusters, Inc. and licensed under the <i class=
+    "CITETITLE">GNU General Public License</i>.</p>
+
+    <div class="SECT2">
+      <h2 class="SECT2"><a name="AEN1231" id="AEN1231">9.1. License</a></h2>
+
+      <p><span class="APPLICATION">Privoxy</span> is free software; you can
+      redistribute it and/or modify it under the terms of the <i class=
+      "CITETITLE">GNU General Public License</i>, version 2, as published by
+      the Free Software Foundation.</p>
+
+      <p>This program is distributed in the hope that it will be useful, but
+      WITHOUT ANY WARRANTY; without even the implied warranty of
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the <a class=
+      "CITETITLE c2" href=
+      "http://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target=
+      "_top">GNU General Public License</a> for details.</p>
+
+      <p>You should have received a copy of the <i class="CITETITLE">GNU
+      GPL</i> along with this program; if not, write to the</p>
+
+      <p class="ADDRESS">&nbsp;Free&nbsp;Software<br>
+      &nbsp;Foundation,&nbsp;Inc.&nbsp;<span class="STREET">51 Franklin
+      Street, Fifth Floor</span><br>
+      &nbsp;<span class="CITY">Boston</span>,&nbsp;<span class=
+      "STATE">MA</span>&nbsp;<span class="POSTCODE">02110-1301</span><br>
+      &nbsp;<span class="COUNTRY">USA</span>&nbsp;</p>
+    </div>
+
+    <div class="SECT2">
+      <h2 class="SECT2"><a name="AEN1247" id="AEN1247">9.2. History</a></h2>
+
+      <p>A long time ago, there was the <a href=
+      "http://www.junkbusters.com/ijb.html" target="_top"><span class=
+      "APPLICATION">Internet Junkbuster</span></a>, by Anonymous Coders and
+      <a href="http://www.junkbusters.com/" target="_top">Junkbusters
+      Corporation</a>. This saved many users a lot of pain in the early days
+      of web advertising and user tracking.</p>
+
+      <p>But the web, its protocols and standards, and with it, the
+      techniques for forcing ads on users, give up autonomy over their
+      browsing, and for tracking them, keeps evolving. Unfortunately, the
+      <span class="APPLICATION">Internet Junkbuster</span> did not. Version
+      2.0.2, published in 1998, was (and is) the last official <a href=
+      "http://www.junkbusters.com/ijbdist.html#release" target=
+      "_top">release</a> available from <a href="http://www.junkbusters.com"
+      target="_top">Junkbusters Corporation</a>. Fortunately, it had been
+      released under the GNU <a href=
+      "http://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target=
+      "_top">GPL</a>, which allowed further development by others.</p>
+
+      <p>So Stefan Waldherr started maintaining an improved version of the
+      software, to which eventually a number of people contributed patches.
+      It could already replace banners with a transparent image, and had a
+      first version of pop-up killing, but it was still very closely based on
+      the original, with all its limitations, such as the lack of HTTP/1.1
+      support, flexible per-site configuration, or content modification. The
+      last release from this effort was version 2.0.2-10, published in
+      2000.</p>
+
+      <p>Then, some <a href=
+      "http://www.privoxy.org/user-manual/copyright.html#AUTHORS" target=
+      "_top">developers</a> picked up the thread, and started turning the
+      software inside out, upside down, and then reassembled it, adding many
+      <a href="http://www.privoxy.org/user-manual/introduction.html#FEATURES"
+      target="_top">new features</a> along the way.</p>
+
+      <p>The result of this is <span class="APPLICATION">Privoxy</span>,
+      whose first stable version, 3.0, was released August, 2002.</p>
+    </div>
+  </div>
+
+  <div class="NAVFOOTER">
+    <hr class="c1" width="100%">
+
+    <table summary="Footer navigation table" width="100%" border="0"
+    cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="33%" align="left" valign="top"><a href="contact.html"
+        accesskey="P">Prev</a></td>
+
+        <td width="34%" align="center" valign="top"><a href="index.html"
+        accesskey="H">Home</a></td>
+
+        <td width="33%" align="right" valign="top"><a href="seealso.html"
+        accesskey="N">Next</a></td>
+      </tr>
+
+      <tr>
+        <td width="33%" align="left" valign="top">Contacting the developers,
+        Bug Reporting and Feature Requests</td>
+
+        <td width="34%" align="center" valign="top">&nbsp;</td>
+
+        <td width="33%" align="right" valign="top">See also</td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>

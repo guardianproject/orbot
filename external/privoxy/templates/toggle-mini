@@ -8,7 +8,7 @@
 #
 # Template files are written win plain HTML, with a few
 # additions:
-# 
+#
 # - Lines that start with a '#' character like this one
 #   are ignored
 #
@@ -23,7 +23,7 @@
 #   strings @if-<name>start and if-<name>-end@. The strings
 #   should be placed in HTML comments (<!-- -->), so the
 #   html structure won't be messed when the magic happens.
-#   
+#
 # USABLE SYMBOLS IN THIS TEMPLATE:
 # --------------------------------
 #
@@ -81,7 +81,7 @@
 
 <body>
   <p class="whiteframed">
-    <a href="@default-cgi@" target="_blank">Privoxy</a> is 
+    <a href="@default-cgi@" target="_blank">Privoxy</a> is
     <b>@if-enabled-display-then@enabled@else-not-enabled-display@disabled@endif-enabled-display@</b>.
     <br><a href="@default-cgi@toggle?mini=y&amp;set=@if-enabled-display-then@disable@else-not-enabled-display@enable@endif-enabled-display@"
     >@if-enabled-display-then@[Disable]@else-not-enabled-display@[Enable]@endif-enabled-display@</a> |

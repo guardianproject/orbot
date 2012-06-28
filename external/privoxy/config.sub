@@ -2,9 +2,9 @@
 # Configuration validation subroutine script.
 #   Copyright (C) 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999,
 #   2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010,
-#   2011, 2012 Free Software Foundation, Inc.
+#   2011 Free Software Foundation, Inc.
 
-timestamp='2012-02-10'
+timestamp='2011-11-11'
 
 # This file is (in principle) common to ALL GNU software.
 # The presence of a machine in this file suggests that SOME GNU software
@@ -21,7 +21,9 @@ timestamp='2012-02-10'
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with this program; if not, see <http://www.gnu.org/licenses/>.
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA
+# 02110-1301, USA.
 #
 # As a special exception to the GNU General Public License, if you
 # distribute this file as part of a program that contains a
@@ -74,8 +76,8 @@ version="\
 GNU config.sub ($timestamp)
 
 Copyright (C) 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000,
-2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012
-Free Software Foundation, Inc.
+2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011 Free
+Software Foundation, Inc.
 
 This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE."
@@ -129,10 +131,6 @@ case $maybe_os in
   storm-chaos* | os2-emx* | rtmk-nova*)
     os=-$maybe_os
     basic_machine=`echo $1 | sed 's/^\(.*\)-\([^-]*-[^-]*\)$/\1/'`
-    ;;
-  android-linux)
-    os=-linux-android
-    basic_machine=`echo $1 | sed 's/^\(.*\)-\([^-]*-[^-]*\)$/\1/'`-unknown
     ;;
   *)
     basic_machine=`echo $1 | sed 's/-[^-]*$//'`
@@ -249,7 +247,6 @@ case $basic_machine in
 	# Some are omitted here because they have special meanings below.
 	1750a | 580 \
 	| a29k \
-	| aarch64 | aarch64_be \
 	| alpha | alphaev[4-8] | alphaev56 | alphaev6[78] | alphapca5[67] \
 	| alpha64 | alpha64ev[4-8] | alpha64ev56 | alpha64ev6[78] | alpha64pca5[67] \
 	| am33_2.0 \
@@ -322,7 +319,8 @@ case $basic_machine in
 	c6x)
 		basic_machine=tic6x-unknown
 		;;
-	m6811 | m68hc11 | m6812 | m68hc12 | m68hcs12x | picochip)
+	m6811 | m68hc11 | m6812 | m68hc12 | picochip)
+		# Motorola 68HC11/12.
 		basic_machine=$basic_machine-unknown
 		os=-none
 		;;
@@ -335,10 +333,7 @@ case $basic_machine in
 	strongarm | thumb | xscale)
 		basic_machine=arm-unknown
 		;;
-	xgate)
-		basic_machine=$basic_machine-unknown
-		os=-none
-		;;
+
 	xscaleeb)
 		basic_machine=armeb-unknown
 		;;
@@ -361,7 +356,6 @@ case $basic_machine in
 	# Recognize the basic CPU types with company name.
 	580-* \
 	| a29k-* \
-	| aarch64-* | aarch64_be-* \
 	| alpha-* | alphaev[4-8]-* | alphaev56-* | alphaev6[78]-* \
 	| alpha64-* | alpha64ev[4-8]-* | alpha64ev56-* | alpha64ev6[78]-* \
 	| alphapca5[67]-* | alpha64pca5[67]-* | arc-* \
@@ -725,6 +719,7 @@ case $basic_machine in
 	i370-ibm* | ibm*)
 		basic_machine=i370-ibm
 		;;
+# I'm not sure what "Sysv32" means.  Should this be sysv3.2?
 	i*86v32)
 		basic_machine=`echo $1 | sed -e 's/86.*/86-pc/'`
 		os=-sysv32
@@ -1564,6 +1559,9 @@ case $basic_machine in
 		;;
 	m68000-sun)
 		os=-sunos3
+		# This also exists in the configure program, but was not the
+		# default.
+		# os=-sunos4
 		;;
 	m68*-cisco)
 		os=-aout

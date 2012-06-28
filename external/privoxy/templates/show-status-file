@@ -8,7 +8,7 @@
 #
 # Template files are written win plain HTML, with a few
 # additions:
-# 
+#
 # - Lines that start with a '#' character like this one
 #   are ignored
 #
@@ -23,7 +23,7 @@
 #   strings @if-<name>start and if-<name>-end@. The strings
 #   should be placed in HTML comments (<!-- -->), so the
 #   html structure won't be messed when the magic happens.
-#   
+#
 # USABLE SYMBOLS IN THIS TEMPLATE:
 # --------------------------------
 #
@@ -54,7 +54,7 @@
 #  filepath
 #    The complete filename of the file being shown
 #
-#  
+#
 # CONDITIONAL SYMBOLS FOR THIS TEMPLATE AND THEIR DEPANDANT SYMBOLS:
 # ------------------------------------------------------------------
 #
@@ -114,7 +114,7 @@
         <pre>@contents@</pre>
       </td>
     </tr>
- 
+
     <tr>
       <td class="box">
         <h2>More Privoxy:</h2>

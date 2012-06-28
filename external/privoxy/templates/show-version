@@ -7,7 +7,7 @@
 #
 # Template files are written win plain HTML, with a few
 # additions:
-# 
+#
 # - Lines that start with a '#' character like this one
 #   are ignored
 #
@@ -22,7 +22,7 @@
 #   strings @if-<name>start and if-<name>-end@. The strings
 #   should be placed in HTML comments (<!-- -->), so the
 #   html structure won't be messed when the magic happens.
-#   
+#
 # USABLE SYMBOLS IN THIS TEMPLATE:
 # --------------------------------
 #
@@ -48,7 +48,7 @@
 #
 #  redirect-url:
 #    The URL to a script that will redirect to the Privoxy
-#    documentation for a given item  
+#    documentation for a given item
 #  invocation:
 #    The command line with whitch Privoxy was invoked
 #  options:
@@ -61,7 +61,7 @@
 #    A HTML-formatted list of all conditional #defines used when
 #    Privoxy was compiled
 #
-#  
+#
 # CONDITIONAL SYMBOLS FOR THIS TEMPLATE AND THEIR DEPANDANT SYMBOLS:
 # ------------------------------------------------------------------
 #
@@ -120,8 +120,8 @@
       <td class="box">
         <h2>Source code versions:</h2>
         <p><i>(Note: This information is only relevant if you checked out Privoxy from CVS
-           and compiled it yourself.  If you downloaded a binary, .exe, RPM, or a .tgz file, 
-           then when you ask for support just mention the version number <b>@version@</b> 
+           and compiled it yourself.  If you downloaded a binary, .exe, RPM, or a .tgz file,
+           then when you ask for support just mention the version number <b>@version@</b>
            and the type of download you got.)</i>
         </p>
         <pre>@sourceversions@</pre>
@@ -139,7 +139,7 @@
       <td class="info">
 
 #include mod-support-and-service
- 
+
       </td>
     </tr>
 

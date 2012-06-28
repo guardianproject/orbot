@@ -1,4 +1,4 @@
-const char filters_rcs[] = "$Id: filters.c,v 1.113 2009/03/08 14:19:23 fabiankeil Exp $";
+const char filters_rcs[] = "$Id: filters.c,v 1.163 2011/12/26 17:03:08 fabiankeil Exp $";
 /*********************************************************************
  *
  * File        :  $Source: /cvsroot/ijbswa/current/filters.c,v $
@@ -13,7 +13,7 @@ const char filters_rcs[] = "$Id: filters.c,v 1.113 2009/03/08 14:19:23 fabiankei
  *                   `execute_single_pcrs_command', `rewrite_url',
  *                   `get_last_url'
  *
- * Copyright   :  Written by and Copyright (C) 2001, 2004-2008 the SourceForge
+ * Copyright   :  Written by and Copyright (C) 2001-2011 the
  *                Privoxy team. http://www.privoxy.org/
  *
  *                Based on the Internet Junkbuster originally written
@@ -38,623 +38,8 @@ const char filters_rcs[] = "$Id: filters.c,v 1.113 2009/03/08 14:19:23 fabiankei
  *                or write to the Free Software Foundation, Inc., 59
  *                Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
- * Revisions   :
- *    $Log: filters.c,v $
- *    Revision 1.113  2009/03/08 14:19:23  fabiankeil
- *    Fix justified (but harmless) compiler warnings
- *    on platforms where sizeof(int) < sizeof(long).
- *
- *    Revision 1.112  2009/03/01 18:28:23  fabiankeil
- *    Help clang understand that we aren't dereferencing
- *    NULL pointers here.
- *
- *    Revision 1.111  2008/12/04 18:13:46  fabiankeil
- *    Fix a cparser warning.
- *
- *    Revision 1.110  2008/11/10 16:40:25  fabiankeil
- *    Fix a gcc44 warning.
- *
- *    Revision 1.109  2008/11/08 15:48:41  fabiankeil
- *    Mention actual values when complaining about
- *    the chunk size exceeding the buffer size.
- *
- *    Revision 1.108  2008/05/21 15:35:08  fabiankeil
- *    - Mark csp as immutable for block_acl().
- *    - Remove an obsolete complaint about filter_popups().
- *
- *    Revision 1.107  2008/05/04 17:52:56  fabiankeil
- *    Adjust parse_http_url() call to new prototype.
- *
- *    Revision 1.106  2008/05/03 16:40:44  fabiankeil
- *    Change content_filters_enabled()'s parameter from
- *    csp->action to action so it can be also used in the
- *    CGI code. Don't bother checking if there are filters
- *    loaded, as that's somewhat besides the point.
- *
- *    Revision 1.105  2008/03/28 15:13:39  fabiankeil
- *    Remove inspect-jpegs action.
- *
- *    Revision 1.104  2008/03/27 18:27:24  fabiankeil
- *    Remove kill-popups action.
- *
- *    Revision 1.103  2008/03/06 16:33:45  fabiankeil
- *    If limit-connect isn't used, don't limit CONNECT requests to port 443.
- *
- *    Revision 1.102  2008/03/01 14:00:44  fabiankeil
- *    Let the block action take the reason for the block
- *    as argument and show it on the "blocked" page.
- *
- *    Revision 1.101  2008/02/23 16:57:12  fabiankeil
- *    Rename url_actions() to get_url_actions() and let it
- *    use the standard parameter ordering.
- *
- *    Revision 1.100  2008/02/23 16:33:43  fabiankeil
- *    Let forward_url() use the standard parameter ordering
- *    and mark its second parameter immutable.
- *
- *    Revision 1.99  2008/02/03 13:57:58  fabiankeil
- *    Add SOCKS5 support for forward-override{}.
- *
- *    Revision 1.98  2008/01/04 17:43:45  fabiankeil
- *    Improve the warning messages that get logged if the action files
- *    "enable" filters but no filters of that type have been loaded.
- *
- *    Revision 1.97  2007/11/30 15:37:03  fabiankeil
- *    Use freez instead of free.
- *
- *    Revision 1.96  2007/10/19 16:53:28  fabiankeil
- *    Add helper function to check if any content filters are enabled.
- *
- *    Revision 1.95  2007/10/17 19:31:20  fabiankeil
- *    Omitting the zero chunk that ends the chunk transfer encoding seems
- *    to be the new black. Log the problem and continue filtering anyway.
- *
- *    Revision 1.94  2007/09/29 13:20:20  fabiankeil
- *    Remove two redundant and one useless log messages.
- *
- *    Revision 1.93  2007/09/29 10:21:16  fabiankeil
- *    - Move get_filter_function() from jcc.c to filters.c
- *      so the filter functions can be static.
- *    - Don't bother filtering body-less responses.
- *
- *    Revision 1.92  2007/09/28 16:38:55  fabiankeil
- *    - Execute content filters through execute_content_filter().
- *    - Add prepare_for_filtering() so filter functions don't have to
- *      care about de-chunking and decompression. As a side effect this enables
- *      decompression for gif_deanimate_response() and jpeg_inspect_response().
- *    - Change remove_chunked_transfer_coding()'s return type to jb_err.
- *      Some clowns feel like chunking empty responses in which case
- *      (size == 0) is valid but previously would be interpreted as error.
- *
- *    Revision 1.91  2007/09/02 15:31:20  fabiankeil
- *    Move match_portlist() from filter.c to urlmatch.c.
- *    It's used for url matching, not for filtering.
- *
- *    Revision 1.90  2007/09/02 12:44:17  fabiankeil
- *    Remove newline at the end of a log_error() message.
- *
- *    Revision 1.89  2007/08/05 13:42:23  fabiankeil
- *    #1763173 from Stefan Huehner: declare some more functions static.
- *
- *    Revision 1.88  2007/06/01 16:41:11  fabiankeil
- *    Add forward-override{} to change the forwarding settings through
- *    action sections. This is mainly interesting to forward different
- *    clients differently (for example based on User-Agent or request
- *    origin).
- *
- *    Revision 1.87  2007/04/30 15:53:10  fabiankeil
- *    Make sure filters with dynamic jobs actually use them.
- *
- *    Revision 1.86  2007/04/30 15:03:28  fabiankeil
- *    - Introduce dynamic pcrs jobs that can resolve variables.
- *    - Don't run redirect functions more than once,
- *      unless they are activated more than once.
- *
- *    Revision 1.85  2007/03/21 12:24:47  fabiankeil
- *    - Log the content size after decompression in decompress_iob()
- *      instead of pcrs_filter_response().
- *
- *    Revision 1.84  2007/03/20 15:16:34  fabiankeil
- *    Use dedicated header filter actions instead of abusing "filter".
- *    Replace "filter-client-headers" and "filter-client-headers"
- *    with "server-header-filter" and "client-header-filter".
- *
- *    Revision 1.83  2007/03/17 15:20:05  fabiankeil
- *    New config option: enforce-blocks.
- *
- *    Revision 1.82  2007/03/13 11:28:43  fabiankeil
- *    - Fix port handling in acl_addr() and use a temporary acl spec
- *      copy so error messages don't contain a truncated version.
- *    - Log size of iob before and after decompression.
- *
- *    Revision 1.81  2007/03/05 14:40:53  fabiankeil
- *    - Cosmetical changes for LOG_LEVEL_RE_FILTER messages.
- *    - Hide the "Go there anyway" link for blocked CONNECT
- *      requests where going there anyway doesn't work anyway.
- *
- *    Revision 1.80  2007/02/07 10:55:20  fabiankeil
- *    - Save the reason for generating http_responses.
- *    - Block (+block) with status code 403 instead of 404.
- *    - Use a different kludge to remember a failed decompression.
- *
- *    Revision 1.79  2007/01/31 16:21:38  fabiankeil
- *    Search for Max-Forwards headers case-insensitive,
- *    don't generate the "501 unsupported" message for invalid
- *    Max-Forwards values and don't increase negative ones.
- *
- *    Revision 1.78  2007/01/28 13:41:18  fabiankeil
- *    - Add HEAD support to finish_http_response.
- *    - Add error favicon to internal HTML error messages.
- *
- *    Revision 1.77  2007/01/12 15:36:44  fabiankeil
- *    Mark *csp as immutable for is_untrusted_url()
- *    and is_imageurl(). Closes FR 1237736.
- *
- *    Revision 1.76  2007/01/01 19:36:37  fabiankeil
- *    Integrate a modified version of Wil Mahan's
- *    zlib patch (PR #895531).
- *
- *    Revision 1.75  2006/12/29 18:30:46  fabiankeil
- *    Fixed gcc43 conversion warnings,
- *    changed sprintf calls to snprintf.
- *
- *    Revision 1.74  2006/12/24 17:37:38  fabiankeil
- *    Adjust comment in pcrs_filter_response()
- *    to recent pcrs changes. Hohoho.
- *
- *    Revision 1.73  2006/12/23 16:01:02  fabiankeil
- *    Don't crash if pcre returns an error code
- *    that pcrs didn't expect. Fixes BR 1621173.
- *
- *    Revision 1.72  2006/12/22 18:52:53  fabiankeil
- *    Modified is_untrusted_url to complain in case of
- *    write errors and to give a reason when adding new
- *    entries to the trustfile. Closes FR 1097611.
- *
- *    Revision 1.71  2006/12/22 14:24:52  fabiankeil
- *    Skip empty filter files in pcrs_filter_response,
- *    but don't ignore the ones that come afterwards.
- *    Fixes parts of BR 1619208.
- *
- *    Revision 1.70  2006/12/09 13:33:15  fabiankeil
- *    Added some sanity checks for get_last_url().
- *    Fixed possible segfault caused by my last commit.
- *
- *    Revision 1.69  2006/12/08 12:39:13  fabiankeil
- *    Let get_last_url() catch https URLs as well.
- *
- *    Revision 1.68  2006/12/05 14:45:48  fabiankeil
- *    Make sure get_last_url() behaves like advertised
- *    and fast-redirects{} can be combined with redirect{}.
- *
- *    Revision 1.67  2006/11/28 15:19:43  fabiankeil
- *    Implemented +redirect{s@foo@bar@} to generate
- *    a redirect based on a rewritten version of the
- *    original URL.
- *
- *    Revision 1.66  2006/09/23 13:26:38  roro
- *    Replace TABs by spaces in source code.
- *
- *    Revision 1.65  2006/09/21 12:54:43  fabiankeil
- *    Fix +redirect{}. Didn't work with -fast-redirects.
- *
- *    Revision 1.64  2006/08/31 10:55:49  fabiankeil
- *    Block requests for untrusted URLs with status
- *    code 403 instead of 200.
- *
- *    Revision 1.63  2006/08/31 10:11:28  fabiankeil
- *    Don't free p which is still in use and will be later
- *    freed by free_map(). Don't claim the referrer is unknown
- *    when the client didn't set one.
- *
- *    Revision 1.62  2006/08/14 00:27:47  david__schmidt
- *    Feature request 595948: Re-Filter logging in single line
- *
- *    Revision 1.61  2006/08/03 02:46:41  david__schmidt
- *    Incorporate Fabian Keil's patch work:http://www.fabiankeil.de/sourcecode/privoxy/
- *
- *    Revision 1.60  2006/07/18 14:48:46  david__schmidt
- *    Reorganizing the repository: swapping out what was HEAD (the old 3.1 branch)
- *    with what was really the latest development (the v_3_0_branch branch)
- *
- *    Revision 1.58.2.9  2006/01/29 23:10:56  david__schmidt
- *    Multiple filter file support
- *
- *    Revision 1.58.2.8  2005/05/07 21:50:55  david__schmidt
- *    A few memory leaks plugged (mostly on error paths)
- *
- *    Revision 1.58.2.7  2004/10/03 12:53:32  david__schmidt
- *    Add the ability to check jpeg images for invalid
- *    lengths of comment blocks.  Defensive strategy
- *    against the exploit:
- *       Microsoft Security Bulletin MS04-028
- *       Buffer Overrun in JPEG Processing (GDI+) Could
- *       Allow Code Execution (833987)
- *    Enabled with +inspect-jpegs in actions files.
- *
- *    Revision 1.58.2.6  2003/12/06 22:18:27  gliptak
- *    Correcting compile problem with FEATURE_IMAGE_BLOCKING
- *
- *    Revision 1.58.2.5  2003/11/11 13:10:31  oes
- *    Fixed bug #839859: "See why" link URL now gets url-encoded.
- *
- *    Revision 1.58.2.4  2003/02/28 12:52:45  oes
- *    Fixed a typo
- *
- *    Revision 1.58.2.3  2002/09/25 14:51:51  oes
- *    Added basic support for OPTIONS and TRACE HTTP methods:
- *    New function direct_response which handles OPTIONS and
- *    TRACE requests whose Max-Forwards header field is zero.
- *
- *    Revision 1.58.2.2  2002/08/01 17:18:28  oes
- *    Fixed BR 537651 / SR 579724 (MSIE image detect improper for IE/Mac)
- *
- *    Revision 1.58.2.1  2002/07/26 15:18:53  oes
- *    - Bugfix: Executing a filters without jobs no longer results in
- *      turing off *all* filters.
- *    - Security fix: Malicious web servers can't cause a seg fault
- *      through bogus chunk sizes anymore
- *
- *    Revision 1.58  2002/04/24 02:11:17  oes
- *    Jon's multiple AF patch: url_actions now evaluates rules
- *    from all AFs.
- *
- *    Revision 1.57  2002/04/08 20:38:34  swa
- *    fixed JB spelling
- *
- *    Revision 1.56  2002/04/05 15:51:24  oes
- *     - bugfix: error-pages now get correct request protocol
- *     - fix for invalid HTML in trust info
- *
- *    Revision 1.55  2002/04/02 16:13:51  oes
- *    Fix: No "Go there anyway" for SSL
- *
- *    Revision 1.54  2002/04/02 14:55:56  oes
- *    Bugfix: is_untrusted_url() now depends on FEATURE_TRUST, not FEATURE_COOKIE_JAR
- *
- *    Revision 1.53  2002/03/26 22:29:54  swa
- *    we have a new homepage!
- *
- *    Revision 1.52  2002/03/24 16:35:57  jongfoster
- *    Removing logo
- *
- *    Revision 1.51  2002/03/24 15:23:33  jongfoster
- *    Name changes
- *
- *    Revision 1.50  2002/03/24 13:25:43  swa
- *    name change related issues
- *
- *    Revision 1.49  2002/03/16 20:29:14  oes
- *    Cosmetics
- *
- *    Revision 1.48  2002/03/13 20:25:34  oes
- *    Better logging for content filters
- *
- *    Revision 1.47  2002/03/13 00:30:52  jongfoster
- *    Killing warnings
- *    Added option of always sending redirect for imageblock,
- *    currently disabled with #if 0.
- *
- *    Revision 1.46  2002/03/12 01:42:49  oes
- *    Introduced modular filters
- *
- *    Revision 1.45  2002/03/08 16:47:50  oes
- *    Added choice beween GIF and PNG built-in images
- *
- *    Revision 1.44  2002/03/07 03:49:31  oes
- *     - Fixed compiler warnings etc
- *     - Changed built-in images from GIF to PNG
- *       (with regard to Unisys patent issue)
- *     - Added a 4x4 pattern PNG which is less intrusive
- *       than the logo but also clearly marks the deleted banners
- *
- *    Revision 1.43  2002/01/22 23:51:59  jongfoster
- *    Replacing strsav() with the safer string_append().
- *
- *    Adding missing html_encode() to error message generators.  Where encoded
- *    and unencoded versions of a string were provided, removing the unencoded
- *    one.
- *
- *    Revision 1.42  2002/01/17 21:00:32  jongfoster
- *    Moving all our URL and URL pattern parsing code to urlmatch.c.
- *
- *    Using a single, simple url_match(pattern,url) function - rather than
- *    the 3-line match routine which was repeated all over the place.
- *
- *    Renaming free_url to free_url_spec, since it frees a struct url_spec.
- *
- *    Using parse_http_url() to parse URLs without faking a HTTP
- *    request line for parse_http_request().
- *
- *    Revision 1.41  2001/11/13 00:14:07  jongfoster
- *    Fixing stupid bug now I've figured out what || means.
- *    (It always returns 0 or 1, not one of it's paramaters.)
- *
- *    Revision 1.40  2001/10/26 17:37:55  oes
- *    - Re-enabled Netscape 200/404 bug workaround in block_url():
- *      - Removed OS/2 special case
- *      - Made block_url() independant from sed() having been run
- *    - Made trust_url independant from sed() having been run
- *    - Made is_imageurl independant from sed() having been run.
- *      It now checks User-Agent: and Accept: by itself.
- *
- *
- *    Revision 1.39  2001/10/25 03:40:48  david__schmidt
- *    Change in porting tactics: OS/2's EMX porting layer doesn't allow multiple
- *    threads to call select() simultaneously.  So, it's time to do a real, live,
- *    native OS/2 port.  See defines for __EMX__ (the porting layer) vs. __OS2__
- *    (native). Both versions will work, but using __OS2__ offers multi-threading.
- *
- *    Revision 1.38  2001/10/23 21:32:33  jongfoster
- *    Adding error-checking to selected functions
- *
- *    Revision 1.37  2001/10/22 15:33:56  david__schmidt
- *    Special-cased OS/2 out of the Netscape-abort-on-404-in-js problem in
- *    filters.c.  Added a FIXME in front of the offending code.  I'll gladly
- *    put in a better/more robust fix for all parties if one is presented...
- *    It seems that just returning 200 instead of 404 would pretty much fix
- *    it for everyone, but I don't know all the history of the problem.
- *
- *    Revision 1.36  2001/10/10 16:44:16  oes
- *    Added match_portlist function
- *
- *    Revision 1.35  2001/10/07 15:41:23  oes
- *    Replaced 6 boolean members of csp with one bitmap (csp->flags)
- *
- *    New function remove_chunked_transfer_coding that strips chunked
- *      transfer coding to plain and is called by pcrs_filter_response
- *      and gif_deanimate_response if neccessary
- *
- *    Improved handling of zero-change re_filter runs
- *
- *    pcrs_filter_response and gif_deanimate_response now remove
- *      chunked transfer codeing before processing the body.
- *
- *    Revision 1.34  2001/09/20 15:49:36  steudten
- *
- *    Fix BUG: Change int size to size_t size in pcrs_filter_response().
- *    See cgi.c fill_template().
- *
- *    Revision 1.33  2001/09/16 17:05:14  jongfoster
- *    Removing unused #include showarg.h
- *
- *    Revision 1.32  2001/09/16 13:21:27  jongfoster
- *    Changes to use new list functions.
- *
- *    Revision 1.31  2001/09/16 11:38:02  jongfoster
- *    Splitting fill_template() into 2 functions:
- *    template_load() loads the file
- *    template_fill() performs the PCRS regexps.
- *    This is because the CGI edit interface has a "table row"
- *    template which is used many times in the page - this
- *    change means it's only loaded from disk once.
- *
- *    Revision 1.30  2001/09/16 11:00:10  jongfoster
- *    New function alloc_http_response, for symmetry with free_http_response
- *
- *    Revision 1.29  2001/09/13 23:32:40  jongfoster
- *    Moving image data to cgi.c rather than cgi.h
- *    Fixing a GPF under Win32 (and any other OS that protects global
- *    constants from being written to).
- *
- *    Revision 1.28  2001/09/10 10:18:51  oes
- *    Silenced compiler warnings
- *
- *    Revision 1.27  2001/08/05 16:06:20  jongfoster
- *    Modifiying "struct map" so that there are now separate header and
- *    "map_entry" structures.  This means that functions which modify a
- *    map no longer need to return a pointer to the modified map.
- *    Also, it no longer reverses the order of the entries (which may be
- *    important with some advanced template substitutions).
- *
- *    Revision 1.26  2001/07/30 22:08:36  jongfoster
- *    Tidying up #defines:
- *    - All feature #defines are now of the form FEATURE_xxx
- *    - Permanently turned off WIN_GUI_EDIT
- *    - Permanently turned on WEBDAV and SPLIT_PROXY_ARGS
- *
- *    Revision 1.25  2001/07/26 10:09:46  oes
- *    Made browser detection a little less naive
- *
- *    Revision 1.24  2001/07/25 17:22:51  oes
- *    Added workaround for Netscape bug that prevents display of page when loading a component fails.
- *
- *    Revision 1.23  2001/07/23 13:40:12  oes
- *    Fixed bug that caused document body to be dropped when pcrs joblist was empty.
- *
- *    Revision 1.22  2001/07/18 12:29:34  oes
- *    - Made gif_deanimate_response respect
- *      csp->action->string[ACTION_STRING_DEANIMATE]
- *    - Logging cosmetics
- *
- *    Revision 1.21  2001/07/13 13:59:53  oes
- *     - Introduced gif_deanimate_response which shares the
- *       generic content modification interface of pcrs_filter_response
- *       and acts as a wrapper to deanimate.c:gif_deanimate()
- *     - Renamed re_process_buffer to pcrs_filter_response
- *     - pcrs_filter_response now returns NULL on failiure
- *     - Removed all #ifdef PCRS
- *
- *    Revision 1.20  2001/07/01 17:01:04  oes
- *    Added comments and missing return statement in is_untrusted_url()
- *
- *    Revision 1.19  2001/06/29 21:45:41  oes
- *    Indentation, CRLF->LF, Tab-> Space
- *
- *    Revision 1.18  2001/06/29 13:27:38  oes
- *    - Cleaned up, renamed and reorderd functions
- *      and improved comments
- *
- *    - block_url:
- *      - Ported to CGI platform. Now delivers
- *        http_response or NULL
- *      - Unified HTML and GIF generation (moved image detection
- *        and GIF generation here from jcc.c:chat())
- *      - Fixed HTTP status to:
- *       -  403 (Forbidden) for the "blocked" HTML message
- *       -  200 (OK) for GIF answers
- *       -  302 (Redirect) for redirect to GIF
- *
- *    - trust_url:
- *      - Ported to CGI platform. Now delivers
- *        http_response or NULL
- *      - Separated detection of untrusted URL into
- *        (bool)is_untrusted_url
- *      - Added enforcement of untrusted requests
- *
- *    - Moved redirect_url() from cgi.c to here
- *      and ported it to the CGI platform
- *
- *    - Removed logentry from cancelled commit
- *
- *    Revision 1.17  2001/06/09 10:55:28  jongfoster
- *    Changing BUFSIZ ==> BUFFER_SIZE
- *
- *    Revision 1.16  2001/06/07 23:10:26  jongfoster
- *    Allowing unanchored domain patterns to back off and retry
- *    if they partially match.  Optimized right-anchored patterns.
- *    Moving ACL and forward files into config file.
- *    Replacing struct gateway with struct forward_spec
- *
- *    Revision 1.15  2001/06/03 19:12:00  oes
- *    extracted-CGI relevant stuff
- *
- *    Revision 1.14  2001/06/01 10:30:55  oes
- *    Added optional left-anchoring to domaincmp
- *
- *    Revision 1.13  2001/05/31 21:21:30  jongfoster
- *    Permissionsfile / actions file changes:
- *    - Changed "permission" to "action" throughout
- *    - changes to file format to allow string parameters
- *    - Moved helper functions to actions.c
- *
- *    Revision 1.12  2001/05/31 17:35:20  oes
- *
- *     - Enhanced domain part globbing with infix and prefix asterisk
- *       matching and optional unanchored operation
- *
- *    Revision 1.11  2001/05/29 11:53:23  oes
- *    "See why" link added to "blocked" page
- *
- *    Revision 1.10  2001/05/29 09:50:24  jongfoster
- *    Unified blocklist/imagelist/permissionslist.
- *    File format is still under discussion, but the internal changes
- *    are (mostly) done.
- *
- *    Also modified interceptor behaviour:
- *    - We now intercept all URLs beginning with one of the following
- *      prefixes (and *only* these prefixes):
- *        * http://i.j.b/
- *        * http://ijbswa.sf.net/config/
- *        * http://ijbswa.sourceforge.net/config/
- *    - New interceptors "home page" - go to http://i.j.b/ to see it.
- *    - Internal changes so that intercepted and fast redirect pages
- *      are not replaced with an image.
- *    - Interceptors now have the option to send a binary page direct
- *      to the client. (i.e. ijb-send-banner uses this)
- *    - Implemented show-url-info interceptor.  (Which is why I needed
- *      the above interceptors changes - a typical URL is
- *      "http://i.j.b/show-url-info?url=www.somesite.com/banner.gif".
- *      The previous mechanism would not have intercepted that, and
- *      if it had been intercepted then it then it would have replaced
- *      it with an image.)
- *
- *    Revision 1.9  2001/05/27 22:17:04  oes
- *
- *    - re_process_buffer no longer writes the modified buffer
- *      to the client, which was very ugly. It now returns the
- *      buffer, which it is then written by chat.
- *
- *    - content_length now adjusts the Content-Length: header
- *      for modified documents rather than crunch()ing it.
- *      (Length info in csp->content_length, which is 0 for
- *      unmodified documents)
- *
- *    - For this to work, sed() is called twice when filtering.
- *
- *    Revision 1.8  2001/05/26 17:13:28  jongfoster
- *    Filled in a function comment.
- *
- *    Revision 1.7  2001/05/26 15:26:15  jongfoster
- *    ACL feature now provides more security by immediately dropping
- *    connections from untrusted hosts.
- *
- *    Revision 1.6  2001/05/26 00:28:36  jongfoster
- *    Automatic reloading of config file.
- *    Removed obsolete SIGHUP support (Unix) and Reload menu option (Win32).
- *    Most of the global variables have been moved to a new
- *    struct configuration_spec, accessed through csp->config->globalname
- *    Most of the globals remaining are used by the Win32 GUI.
- *
- *    Revision 1.5  2001/05/25 22:34:30  jongfoster
- *    Hard tabs->Spaces
- *
- *    Revision 1.4  2001/05/22 18:46:04  oes
- *
- *    - Enabled filtering banners by size rather than URL
- *      by adding patterns that replace all standard banner
- *      sizes with the "Junkbuster" gif to the re_filterfile
- *
- *    - Enabled filtering WebBugs by providing a pattern
- *      which kills all 1x1 images
- *
- *    - Added support for PCRE_UNGREEDY behaviour to pcrs,
- *      which is selected by the (nonstandard and therefore
- *      capital) letter 'U' in the option string.
- *      It causes the quantifiers to be ungreedy by default.
- *      Appending a ? turns back to greedy (!).
- *
- *    - Added a new interceptor ijb-send-banner, which
- *      sends back the "Junkbuster" gif. Without imagelist or
- *      MSIE detection support, or if tinygif = 1, or the
- *      URL isn't recognized as an imageurl, a lame HTML
- *      explanation is sent instead.
- *
- *    - Added new feature, which permits blocking remote
- *      script redirects and firing back a local redirect
- *      to the browser.
- *      The feature is conditionally compiled, i.e. it
- *      can be disabled with --disable-fast-redirects,
- *      plus it must be activated by a "fast-redirects"
- *      line in the config file, has its own log level
- *      and of course wants to be displayed by show-proxy-args
- *      Note: Boy, all the #ifdefs in 1001 locations and
- *      all the fumbling with configure.in and acconfig.h
- *      were *way* more work than the feature itself :-(
- *
- *    - Because a generic redirect template was needed for
- *      this, tinygif = 3 now uses the same.
- *
- *    - Moved GIFs, and other static HTTP response templates
- *      to project.h
- *
- *    - Some minor fixes
- *
- *    - Removed some >400 CRs again (Jon, you really worked
- *      a lot! ;-)
- *
- *    Revision 1.3  2001/05/20 16:44:47  jongfoster
- *    Removing last hardcoded Junkbusters.com URLs.
- *
- *    Revision 1.2  2001/05/20 01:21:20  jongfoster
- *    Version 2.9.4 checkin.
- *    - Merged popupfile and cookiefile, and added control over PCRS
- *      filtering, in new "permissionsfile".
- *    - Implemented LOG_LEVEL_FATAL, so that if there is a configuration
- *      file error you now get a message box (in the Win32 GUI) rather
- *      than the program exiting with no explanation.
- *    - Made killpopup use the PCRS MIME-type checking and HTTP-header
- *      skipping.
- *    - Removed tabs from "config"
- *    - Moved duplicated url parsing code in "loaders.c" to a new funcition.
- *    - Bumped up version number.
- *
- *    Revision 1.1.1.1  2001/05/15 13:58:52  oes
- *    Initial import of version 2.9.3 source tree
- *
- *
  *********************************************************************/
-
+
 
 #include "config.h"
 
@@ -708,10 +93,158 @@ const char filters_h_rcs[] = FILTERS_H_VERSION;
  */
 #define ijb_isdigit(__X) isdigit((int)(unsigned char)(__X))
 
+typedef char *(*filter_function_ptr)();
+static filter_function_ptr get_filter_function(const struct client_state *csp);
 static jb_err remove_chunked_transfer_coding(char *buffer, size_t *size);
 static jb_err prepare_for_filtering(struct client_state *csp);
 
 #ifdef FEATURE_ACL
+#ifdef HAVE_RFC2553
+/*********************************************************************
+ *
+ * Function    :  sockaddr_storage_to_ip
+ *
+ * Description :  Access internal structure of sockaddr_storage
+ *
+ * Parameters  :
+ *          1  :  addr = socket address
+ *          2  :  ip   = IP address as array of octets in network order
+ *                       (it points into addr)
+ *          3  :  len  = length of IP address in octets
+ *          4  :  port = port number in network order;
+ *
+ * Returns     :  0 = no errror; -1 otherwise.
+ *
+ *********************************************************************/
+static int sockaddr_storage_to_ip(const struct sockaddr_storage *addr,
+                                  uint8_t **ip, unsigned int *len,
+                                  in_port_t **port)
+{
+   if (NULL == addr)
+   {
+      return(-1);
+   }
+
+   switch (addr->ss_family)
+   {
+      case AF_INET:
+         if (NULL != len)
+         {
+            *len = 4;
+         }
+         if (NULL != ip)
+         {
+            *ip = (uint8_t *)
+               &(((struct sockaddr_in *)addr)->sin_addr.s_addr);
+         }
+         if (NULL != port)
+         {
+            *port = &((struct sockaddr_in *)addr)->sin_port;
+         }
+         break;
+
+      case AF_INET6:
+         if (NULL != len)
+         {
+            *len = 16;
+         }
+         if (NULL != ip)
+         {
+            *ip = ((struct sockaddr_in6 *)addr)->sin6_addr.s6_addr;
+         }
+         if (NULL != port)
+         {
+            *port = &((struct sockaddr_in6 *)addr)->sin6_port;
+         }
+         break;
+
+      default:
+         /* Unsupported address family */
+         return(-1);
+   }
+
+   return(0);
+}
+
+
+/*********************************************************************
+ *
+ * Function    :  match_sockaddr
+ *
+ * Description :  Check whether address matches network (IP address and port)
+ *
+ * Parameters  :
+ *          1  :  network = socket address of subnework
+ *          2  :  netmask = network mask as socket address
+ *          3  :  address = checked socket address against given network
+ *
+ * Returns     :  0 = doesn't match; 1 = does match
+ *
+ *********************************************************************/
+static int match_sockaddr(const struct sockaddr_storage *network,
+                          const struct sockaddr_storage *netmask,
+                          const struct sockaddr_storage *address)
+{
+   uint8_t *network_addr, *netmask_addr, *address_addr;
+   unsigned int addr_len;
+   in_port_t *network_port, *netmask_port, *address_port;
+   int i;
+
+   if (network->ss_family != netmask->ss_family)
+   {
+      /* This should never happen */
+      log_error(LOG_LEVEL_ERROR,
+         "Internal error at %s:%llu: network and netmask differ in family",
+         __FILE__, __LINE__);
+      return 0;
+   }
+
+   sockaddr_storage_to_ip(network, &network_addr, &addr_len, &network_port);
+   sockaddr_storage_to_ip(netmask, &netmask_addr, NULL, &netmask_port);
+   sockaddr_storage_to_ip(address, &address_addr, NULL, &address_port);
+
+   /* Check for family */
+   if ((network->ss_family == AF_INET) && (address->ss_family == AF_INET6)
+      && IN6_IS_ADDR_V4MAPPED((struct in6_addr *)address_addr))
+   {
+      /* Map AF_INET6 V4MAPPED address into AF_INET */
+      address_addr += 12;
+      addr_len = 4;
+   }
+   else if ((network->ss_family == AF_INET6) && (address->ss_family == AF_INET)
+      && IN6_IS_ADDR_V4MAPPED((struct in6_addr *)network_addr))
+   {
+      /* Map AF_INET6 V4MAPPED network into AF_INET */
+      network_addr += 12;
+      netmask_addr += 12;
+      addr_len = 4;
+   }
+   else if (network->ss_family != address->ss_family)
+   {
+      return 0;
+   }
+
+   /* XXX: Port check is signaled in netmask */
+   if (*netmask_port && *network_port != *address_port)
+   {
+      return 0;
+   }
+
+   /* TODO: Optimize by checking by words insted of octets */
+   for (i = 0; (i < addr_len) && netmask_addr[i]; i++)
+   {
+      if ((network_addr[i] & netmask_addr[i]) !=
+          (address_addr[i] & netmask_addr[i]))
+      {
+         return 0;
+      }
+   }
+
+   return 1;
+}
+#endif /* def HAVE_RFC2553 */
+
+
 /*********************************************************************
  *
  * Function    :  block_acl
@@ -741,7 +274,13 @@ int block_acl(const struct access_control_addr *dst, const struct client_state *
    /* search the list */
    while (acl != NULL)
    {
-      if ((csp->ip_addr_long & acl->src->mask) == acl->src->addr)
+      if (
+#ifdef HAVE_RFC2553
+            match_sockaddr(&acl->src->addr, &acl->src->mask, &csp->tcp_addr)
+#else
+            (csp->ip_addr_long & acl->src->mask) == acl->src->addr
+#endif
+            )
       {
          if (dst == NULL)
          {
@@ -750,9 +289,28 @@ int block_acl(const struct access_control_addr *dst, const struct client_state *
             {
                return(0);
             }
+            else
+            {
+               return(1);
+            }
          }
-         else if ( ((dst->addr & acl->dst->mask) == acl->dst->addr)
-           && ((dst->port == acl->dst->port) || (acl->dst->port == 0)))
+         else if (
+#ifdef HAVE_RFC2553
+               /*
+                * XXX: An undefined acl->dst is full of zeros and should be
+                * considered a wildcard address. sockaddr_storage_to_ip()
+                * fails on such destinations because of unknown sa_familly
+                * (glibc only?). However this test is not portable.
+                *
+                * So, we signal the acl->dst is wildcard in wildcard_dst.
+                */
+               acl->wildcard_dst ||
+                  match_sockaddr(&acl->dst->addr, &acl->dst->mask, &dst->addr)
+#else
+               ((dst->addr & acl->dst->mask) == acl->dst->addr)
+           && ((dst->port == acl->dst->port) || (acl->dst->port == 0))
+#endif
+           )
          {
             if (acl->action == ACL_PERMIT)
             {
@@ -788,12 +346,24 @@ int block_acl(const struct access_control_addr *dst, const struct client_state *
 int acl_addr(const char *aspec, struct access_control_addr *aca)
 {
    int i, masklength;
+#ifdef HAVE_RFC2553
+   struct addrinfo hints, *result;
+   uint8_t *mask_data;
+   in_port_t *mask_port;
+   unsigned int addr_len;
+#else
    long port;
+#endif /* def HAVE_RFC2553 */
    char *p;
    char *acl_spec = NULL;
 
+#ifdef HAVE_RFC2553
+   /* XXX: Depend on ai_family */
+   masklength = 128;
+#else
    masklength = 32;
    port       =  0;
+#endif
 
    /*
     * Use a temporary acl spec copy so we can log
@@ -817,13 +387,54 @@ int acl_addr(const char *aspec, struct access_control_addr *aca)
       masklength = atoi(p);
    }
 
-   if ((masklength < 0) || (masklength > 32))
+   if ((masklength < 0) ||
+#ifdef HAVE_RFC2553
+         (masklength > 128)
+#else
+         (masklength > 32)
+#endif
+         )
    {
       freez(acl_spec);
       return(-1);
    }
 
-   if ((p = strchr(acl_spec, ':')) != NULL)
+   if ((*acl_spec == '[') && (NULL != (p = strchr(acl_spec, ']'))))
+   {
+      *p = '\0';
+      memmove(acl_spec, acl_spec + 1, (size_t)(p - acl_spec));
+
+      if (*++p != ':')
+      {
+         p = NULL;
+      }
+   }
+   else
+   {
+      p = strchr(acl_spec, ':');
+   }
+
+#ifdef HAVE_RFC2553
+   memset(&hints, 0, sizeof(struct addrinfo));
+   hints.ai_family = AF_UNSPEC;
+   hints.ai_socktype = SOCK_STREAM;
+
+   i = getaddrinfo(acl_spec, ((p) ? ++p : NULL), &hints, &result);
+
+   if (i != 0)
+   {
+      log_error(LOG_LEVEL_ERROR, "Can not resolve [%s]:%s: %s",
+         acl_spec, p, gai_strerror(i));
+      freez(acl_spec);
+      return(-1);
+   }
+   freez(acl_spec);
+
+   /* TODO: Allow multihomed hostnames */
+   memcpy(&(aca->addr), result->ai_addr, result->ai_addrlen);
+   freeaddrinfo(result);
+#else
+   if (p != NULL)
    {
       char *endptr;
 
@@ -847,8 +458,56 @@ int acl_addr(const char *aspec, struct access_control_addr *aca)
       /* XXX: This will be logged as parse error. */
       return(-1);
    }
+#endif /* def HAVE_RFC2553 */
 
    /* build the netmask */
+#ifdef HAVE_RFC2553
+   /* Clip masklength according to current family. */
+   if ((aca->addr.ss_family == AF_INET) && (masklength > 32))
+   {
+      masklength = 32;
+   }
+
+   aca->mask.ss_family = aca->addr.ss_family;
+   if (sockaddr_storage_to_ip(&aca->mask, &mask_data, &addr_len, &mask_port))
+   {
+      return(-1);
+   }
+
+   if (p)
+   {
+      /* ACL contains a port number, check ports in the future. */
+      *mask_port = 1;
+   }
+
+   /*
+    * XXX: This could be optimized to operate on whole words instead
+    * of octets (128-bit CPU could do it in one iteration).
+    */
+   /*
+    * Octets after prefix can be omitted because of
+    * previous initialization to zeros.
+    */
+   for (i = 0; (i < addr_len) && masklength; i++)
+   {
+      if (masklength >= 8)
+      {
+         mask_data[i] = 0xFF;
+         masklength -= 8;
+      }
+      else
+      {
+         /*
+          * XXX: This assumes MSB of octet is on the left side.
+          * This should be true for all architectures or solved
+          * by the link layer.
+          */
+         mask_data[i] = (uint8_t)~((1 << (8 - masklength)) - 1);
+         masklength = 0;
+      }
+   }
+
+#else
    aca->mask = 0;
    for (i=1; i <= masklength ; i++)
    {
@@ -859,6 +518,7 @@ int acl_addr(const char *aspec, struct access_control_addr *aca)
     * (i.e. save on the network portion of the address).
     */
    aca->addr = aca->addr & aca->mask;
+#endif /* def HAVE_RFC2553 */
 
    return(0);
 
@@ -914,7 +574,7 @@ struct http_response *block_url(struct client_state *csp)
    }
    if (csp->action->flags & ACTION_REDIRECT)
    {
-      log_error(LOG_LEVEL_ERROR, "redirect{} overruled by block.");     
+      log_error(LOG_LEVEL_ERROR, "redirect{} overruled by block.");
    }
    /*
     * Else, prepare a response
@@ -940,7 +600,6 @@ struct http_response *block_url(struct client_state *csp)
       {
          log_error(LOG_LEVEL_ERROR, "handle-as-empty-document overruled by handle-as-image.");
       }
-#if 1 /* Two alternative strategies, use this one for now: */
 
       /* and handle accordingly: */
       if ((p == NULL) || (0 == strcmpic(p, "pattern")))
@@ -965,7 +624,6 @@ struct http_response *block_url(struct client_state *csp)
             return cgi_error_memory();
          }
       }
-
       else if (0 == strcmpic(p, "blank"))
       {
          rsp->status = strdup("403 Request blocked by Privoxy");
@@ -988,7 +646,6 @@ struct http_response *block_url(struct client_state *csp)
             return cgi_error_memory();
          }
       }
-
       else
       {
          rsp->status = strdup("302 Local Redirect from Privoxy");
@@ -1005,35 +662,13 @@ struct http_response *block_url(struct client_state *csp)
          }
       }
 
-#else /* Following code is disabled for now */
-
-      /* and handle accordingly: */
-      if ((p == NULL) || (0 == strcmpic(p, "pattern")))
-      {
-         p = CGI_PREFIX "send-banner?type=pattern";
-      }
-      else if (0 == strcmpic(p, "blank"))
-      {
-         p = CGI_PREFIX "send-banner?type=blank";
-      }
-      rsp->status = strdup("302 Local Redirect from Privoxy");
-      if (rsp->status == NULL)
-      {
-         free_http_response(rsp);
-         return cgi_error_memory();
-      }
-
-      if (enlist_unique_header(rsp->headers, "Location", p))
-      {
-         free_http_response(rsp);
-         return cgi_error_memory();
-      }
-#endif /* Preceeding code is disabled for now */
    }
-   else if(csp->action->flags & ACTION_HANDLE_AS_EMPTY_DOCUMENT)
+   else
+#endif /* def FEATURE_IMAGE_BLOCKING */
+   if(csp->action->flags & ACTION_HANDLE_AS_EMPTY_DOCUMENT)
    {
      /*
-      *  Send empty document.               
+      *  Send empty document.
       */
       new_content_type = csp->action->string[ACTION_STRING_CONTENT_TYPE];
 
@@ -1041,7 +676,21 @@ struct http_response *block_url(struct client_state *csp)
       rsp->body = strdup(" ");
       rsp->content_length = 1;
 
-      rsp->status = strdup("403 Request blocked by Privoxy");
+      if (csp->config->feature_flags & RUNTIME_FEATURE_EMPTY_DOC_RETURNS_OK)
+      {
+         /*
+          * Workaround for firefox bug 492459
+          *   https://bugzilla.mozilla.org/show_bug.cgi?id=492459
+          * Return a 200 OK status for pages blocked with +handle-as-empty-document
+          * if the "handle-as-empty-doc-returns-ok" runtime config option is set.
+          */
+         rsp->status = strdup("200 Request blocked by Privoxy");
+      }
+      else
+      {
+         rsp->status = strdup("403 Request blocked by Privoxy");
+      }
+
       if (rsp->status == NULL)
       {
          free_http_response(rsp);
@@ -1058,7 +707,6 @@ struct http_response *block_url(struct client_state *csp)
       }
    }
    else
-#endif /* def FEATURE_IMAGE_BLOCKING */
 
    /*
     * Else, generate an HTML "blocked" message:
@@ -1066,27 +714,8 @@ struct http_response *block_url(struct client_state *csp)
    {
       jb_err err;
       struct map * exports;
-      char *p;
 
-      /*
-       * Workaround for stupid Netscape bug which prevents
-       * pages from being displayed if loading a referenced
-       * JavaScript or style sheet fails. So make it appear
-       * as if it succeeded.
-       */
-      if ( NULL != (p = get_header_value(csp->headers, "User-Agent:"))
-           && !strncmpic(p, "mozilla", 7) /* Catch Netscape but */
-           && !strstr(p, "Gecko")         /* save Mozilla, */
-           && !strstr(p, "compatible")    /* MSIE */
-           && !strstr(p, "Opera"))        /* and Opera. */
-      {
-         rsp->status = strdup("200 Request for blocked URL");
-      }
-      else
-      {
-         rsp->status = strdup("403 Request for blocked URL");
-      }
-
+      rsp->status = strdup("403 Request blocked by Privoxy");
       if (rsp->status == NULL)
       {
          free_http_response(rsp);
@@ -1148,7 +777,7 @@ struct http_response *block_url(struct client_state *csp)
          return cgi_error_memory();
       }
    }
-   rsp->reason = RSP_REASON_BLOCKED;
+   rsp->crunch_reason = BLOCKED;
 
    return finish_http_response(csp, rsp);
 
@@ -1207,7 +836,7 @@ struct http_response *trust_url(struct client_state *csp)
     * Export the protocol, host, port, and referrer information
     */
    err = map(exports, "hostport", 1, csp->http->hostport, 1);
-   if (!err) err = map(exports, "protocol", 1, csp->http->ssl ? "https://" : "http://", 1); 
+   if (!err) err = map(exports, "protocol", 1, csp->http->ssl ? "https://" : "http://", 1);
    if (!err) err = map(exports, "path", 1, csp->http->path, 1);
 
    if (NULL != (p = get_header_value(csp->headers, "Referer:")))
@@ -1308,7 +937,7 @@ struct http_response *trust_url(struct client_state *csp)
       free_http_response(rsp);
       return cgi_error_memory();
    }
-   rsp->reason = RSP_REASON_UNTRUSTED;
+   rsp->crunch_reason = UNTRUSTED;
 
    return finish_http_response(csp, rsp);
 }
@@ -1327,7 +956,7 @@ struct http_response *trust_url(struct client_state *csp)
  *          2  :  b = The filter list to compile
  *
  * Returns     :  NULL in case of errors, otherwise the
- *                pcrs job list.  
+ *                pcrs job list.
  *
  *********************************************************************/
 pcrs_job *compile_dynamic_pcrs_job_list(const struct client_state *csp, const struct re_filterfile_spec *b)
@@ -1354,10 +983,9 @@ pcrs_job *compile_dynamic_pcrs_job_list(const struct client_state *csp, const st
       dummy = pcrs_compile_dynamic_command(pattern->str, variables, &error);
       if (NULL == dummy)
       {
-         assert(error < 0);
          log_error(LOG_LEVEL_ERROR,
-            "Adding filter job \'%s\' to dynamic filter %s failed: %s",
-            pattern->str, b->name, pcrs_strerror(error));
+            "Compiling dynamic pcrs job '%s' for '%s' failed with error code %d: %s",
+            pattern->str, b->name, error, pcrs_strerror(error));
          continue;
       }
       else
@@ -1397,7 +1025,7 @@ pcrs_job *compile_dynamic_pcrs_job_list(const struct client_state *csp, const st
  *          2  :  pcrs_command = pcrs command formatted as string (s@foo@bar@)
  *
  *
- * Returns     :  NULL if the pcrs_command didn't change the url, or 
+ * Returns     :  NULL if the pcrs_command didn't change the url, or
  *                the result of the modification.
  *
  *********************************************************************/
@@ -1456,7 +1084,7 @@ char *rewrite_url(char *old_url, const char *pcrs_command)
  *
  * Parameters  :
  *          1  :  subject = the string to check
- *          2  :  redirect_mode = +fast-redirect{} mode 
+ *          2  :  redirect_mode = +fast-redirect{} mode
  *
  * Returns     :  NULL if no URL was found, or
  *                the last URL found.
@@ -1477,22 +1105,78 @@ char *get_last_url(char *subject, const char *redirect_mode)
       return NULL;
    }
 
-   if (0 == strcmpic(redirect_mode, "check-decoded-url"))
+   if (0 == strcmpic(redirect_mode, "check-decoded-url") && strchr(subject, '%'))
    {  
-      log_error(LOG_LEVEL_REDIRECTS, "Decoding \"%s\" if necessary.", subject);
-      new_url = url_decode(subject);
-      if (new_url != NULL)
-      {
-         freez(subject);
-         subject = new_url;
-      }
-      else
-      {
-         log_error(LOG_LEVEL_ERROR, "Unable to decode \"%s\".", subject);
-      }
-   }
+      log_error(LOG_LEVEL_REDIRECTS,
+         "Checking \"%s\" for encoded redirects.", subject);
 
-   log_error(LOG_LEVEL_REDIRECTS, "Checking \"%s\" for redirects.", subject);
+      /*
+       * Check each parameter in the URL separately.
+       * Sectionize the URL at "?" and "&",
+       * go backwards through the segments, URL-decode them
+       * and look for a URL in the decoded result.
+       * Stop the search after the first match.
+       */
+      char *url_segment = NULL;
+      /*
+       * XXX: This estimate is guaranteed to be high enough as we
+       *      let ssplit() ignore empty fields, but also a bit wasteful.
+       */
+      size_t max_segments = strlen(subject) / 2;
+      char **url_segments = malloc(max_segments * sizeof(char *));
+      int segments;
+
+      if (NULL == url_segments)
+      {
+         log_error(LOG_LEVEL_ERROR, "Out of memory while decoding URL: %s", new_url);
+         freez(subject);
+         return NULL;
+      }
+
+      segments = ssplit(subject, "?&", url_segments, max_segments, 1, 1);
+
+      while (segments-- > 0)
+      {
+         char *dtoken = url_decode(url_segments[segments]);
+         if (NULL == dtoken)
+         {
+            log_error(LOG_LEVEL_ERROR, "Unable to decode \"%s\".", url_segments[segments]);
+            continue;
+         }
+         url_segment = strstr(dtoken, "http://");
+         if (NULL == url_segment)
+         {
+            url_segment = strstr(dtoken, "https://");
+         }
+         if (NULL != url_segment)
+         {
+            url_segment = strdup(url_segment);
+            freez(dtoken);
+            if (url_segment == NULL)
+            {
+               log_error(LOG_LEVEL_ERROR,
+                  "Out of memory while searching for redirects.");
+               return NULL;
+            }
+            break;
+         }
+         freez(dtoken);
+      }
+      freez(subject);
+      freez(url_segments);
+
+      if (url_segment == NULL)
+      {
+         return NULL;
+      }
+      subject = url_segment;
+   }
+   else
+   {
+      /* Look for a URL inside this one, without decoding anything. */
+      log_error(LOG_LEVEL_REDIRECTS,
+         "Checking \"%s\" for unencoded redirects.", subject);
+   }
 
    /*
     * Find the last URL encoded in the request
@@ -1515,7 +1199,7 @@ char *get_last_url(char *subject, const char *redirect_mode)
          ))
    {
       /*
-       * Return new URL if we found a redirect 
+       * Return new URL if we found a redirect
        * or if the subject already was a URL.
        *
        * The second case makes sure that we can
@@ -1621,9 +1305,24 @@ struct http_response *redirect_url(struct client_state *csp)
 #endif /* def FEATURE_FAST_REDIRECTS */
    csp->action->flags &= ~ACTION_REDIRECT;
 
-   /* Did any redirect action trigger? */   
+   /* Did any redirect action trigger? */
    if (new_url)
    {
+      if (url_requires_percent_encoding(new_url))
+      {
+         char *encoded_url;
+         log_error(LOG_LEVEL_REDIRECTS, "Percent-encoding redirect URL: %N",
+            strlen(new_url), new_url);
+         encoded_url = percent_encode_url(new_url);
+         freez(new_url);
+         if (encoded_url == NULL)
+         {
+            return cgi_error_memory();
+         }
+         new_url = encoded_url;
+         assert(FALSE == url_requires_percent_encoding(new_url));
+      }
+
       if (0 == strcmpic(new_url, csp->http->url))
       {
          log_error(LOG_LEVEL_ERROR,
@@ -1641,14 +1340,14 @@ struct http_response *redirect_url(struct client_state *csp)
             return cgi_error_memory();
          }
 
-         if ( enlist_unique_header(rsp->headers, "Location", new_url)
-           || (NULL == (rsp->status = strdup("302 Local Redirect from Privoxy"))) )
+         if (enlist_unique_header(rsp->headers, "Location", new_url)
+           || (NULL == (rsp->status = strdup("302 Local Redirect from Privoxy"))))
          {
             freez(new_url);
             free_http_response(rsp);
             return cgi_error_memory();
          }
-         rsp->reason = RSP_REASON_REDIRECTED;
+         rsp->crunch_reason = REDIRECTED;
          freez(new_url);
 
          return finish_http_response(csp, rsp);
@@ -1863,7 +1562,8 @@ int is_untrusted_url(const struct client_state *csp)
  *********************************************************************/
 static char *pcrs_filter_response(struct client_state *csp)
 {
-   int hits=0;
+   int hits = 0;
+   int i;
    size_t size, prev_size;
 
    char *old = NULL;
@@ -1874,9 +1574,7 @@ static char *pcrs_filter_response(struct client_state *csp)
    struct re_filterfile_spec *b;
    struct list_entry *filtername;
 
-   int i, found_filters = 0;
-
-   /* 
+   /*
     * Sanity first
     */
    if (csp->iob->cur >= csp->iob->eod)
@@ -1884,23 +1582,7 @@ static char *pcrs_filter_response(struct client_state *csp)
       return(NULL);
    }
 
-   /*
-    * Need to check the set of re_filterfiles...
-    */
-   for (i = 0; i < MAX_AF_FILES; i++)
-   {
-      fl = csp->rlist[i];
-      if (NULL != fl)
-      {
-         if (NULL != fl->f)
-         {
-           found_filters = 1;
-           break;
-         }
-      }
-   }
-
-   if (0 == found_filters)
+   if (filters_available(csp) == FALSE)
    {
       log_error(LOG_LEVEL_ERROR, "Inconsistent configuration: "
          "content filtering enabled, but no content filters available.");
@@ -2108,41 +1790,9 @@ static char *gif_deanimate_response(struct client_state *csp)
  *                NULL if no content filter is active
  *
  *********************************************************************/
-filter_function_ptr get_filter_function(struct client_state *csp)
+static filter_function_ptr get_filter_function(const struct client_state *csp)
 {
    filter_function_ptr filter_function = NULL;
-
-   /*
-    * Are we enabling text mode by force?
-    */
-   if (csp->action->flags & ACTION_FORCE_TEXT_MODE)
-   {
-      /*
-       * Do we really have to?
-       */
-      if (csp->content_type & CT_TEXT)
-      {
-         log_error(LOG_LEVEL_HEADER, "Text mode is already enabled.");   
-      }
-      else
-      {
-         csp->content_type |= CT_TEXT;
-         log_error(LOG_LEVEL_HEADER, "Text mode enabled by force. Take cover!");   
-      }
-   }
-
-   if (!(csp->content_type & CT_DECLARED))
-   {
-      /*
-       * The server didn't bother to declare a MIME-Type.
-       * Assume it's text that can be filtered.
-       *
-       * This also regulary happens with 304 responses,
-       * therefore logging anything here would cause
-       * too much noise.
-       */
-      csp->content_type |= CT_TEXT;
-   }
 
    /*
     * Choose the applying filter function based on
@@ -2204,13 +1854,15 @@ static jb_err remove_chunked_transfer_coding(char *buffer, size_t *size)
          return JB_ERR_PARSE;
       }
 
-      if ((newsize += chunksize) >= *size)
+      if (chunksize >= *size - newsize)
       {
          log_error(LOG_LEVEL_ERROR,
-            "Chunk size %d exceeds buffer size %d in  \"chunked\" transfer coding",
-            chunksize, *size);
+            "Chunk size %u exceeds buffered data left. "
+            "Already digested %u of %u buffered bytes.",
+            chunksize, (unsigned int)newsize, (unsigned int)*size);
          return JB_ERR_PARSE;
       }
+      newsize += chunksize;
       from_p += 2;
 
       memmove(to_p, from_p, (size_t) chunksize);
@@ -2223,7 +1875,7 @@ static jb_err remove_chunked_transfer_coding(char *buffer, size_t *size)
          break;
       }
    }
-   
+
    /* XXX: Should get its own loglevel. */
    log_error(LOG_LEVEL_RE_FILTER, "De-chunking successful. Shrunk from %d to %d", *size, newsize);
 
@@ -2311,20 +1963,23 @@ static jb_err prepare_for_filtering(struct client_state *csp)
 
 /*********************************************************************
  *
- * Function    :  execute_content_filter
+ * Function    :  execute_content_filters
  *
  * Description :  Executes a given content filter.
  *
  * Parameters  :
  *          1  :  csp = Current client state (buffers, headers, etc...)
- *          2  :  content_filter = The filter function to execute
  *
  * Returns     :  Pointer to the modified buffer, or
  *                NULL if filtering failed or wasn't necessary.
  *
  *********************************************************************/
-char *execute_content_filter(struct client_state *csp, filter_function_ptr content_filter)
+char *execute_content_filters(struct client_state *csp)
 {
+   filter_function_ptr content_filter;
+
+   assert(content_filters_enabled(csp->action));
+
    if (0 == csp->iob->eod - csp->iob->cur)
    {
       /*
@@ -2349,6 +2004,8 @@ char *execute_content_filter(struct client_state *csp, filter_function_ptr conte
        */
       return NULL;
    }
+
+   content_filter = get_filter_function(csp);
 
    return ((*content_filter)(csp));
 }
@@ -2521,18 +2178,9 @@ const static struct forward_spec *get_forward_override_settings(struct client_st
       if (NULL != socks_proxy)
       {
          /* Parse the SOCKS proxy host[:port] */
-         fwd->gateway_host = strdup(socks_proxy);
-
-         if (NULL != (socks_proxy = strchr(fwd->gateway_host, ':')))
-         {
-            *socks_proxy++ = '\0';
-            fwd->gateway_port = (int)strtol(socks_proxy, NULL, 0);
-         }
-
-         if (fwd->gateway_port <= 0)
-         {
-            fwd->gateway_port = 1080;
-         }
+         fwd->gateway_port = 1080;
+         parse_forwarder_address(socks_proxy,
+            &fwd->gateway_host, &fwd->gateway_port);
 
          http_parent = vec[2];
       }
@@ -2548,18 +2196,9 @@ const static struct forward_spec *get_forward_override_settings(struct client_st
    /* Parse http forwarding settings */
    if (strcmp(http_parent, ".") != 0)
    {
-      fwd->forward_host = strdup(http_parent);
-
-      if (NULL != (http_parent = strchr(fwd->forward_host, ':')))
-      {
-         *http_parent++ = '\0';
-         fwd->forward_port = (int)strtol(http_parent, NULL, 0);
-      }
-
-      if (fwd->forward_port <= 0)
-      {
-         fwd->forward_port = 8000;
-      }
+      fwd->forward_port = 8000;
+      parse_forwarder_address(http_parent,
+         &fwd->forward_host, &fwd->forward_port);
    }
 
    assert (NULL != fwd);
@@ -2615,7 +2254,7 @@ const struct forward_spec *forward_url(struct client_state *csp,
 
 /*********************************************************************
  *
- * Function    :  direct_response 
+ * Function    :  direct_response
  *
  * Description :  Check if Max-Forwards == 0 for an OPTIONS or TRACE
  *                request and if so, return a HTTP 501 to the client.
@@ -2624,7 +2263,7 @@ const struct forward_spec *forward_url(struct client_state *csp,
  *                requests properly. Still, what we do here is rfc-
  *                compliant, whereas ignoring or forwarding are not.
  *
- * Parameters  :  
+ * Parameters  :
  *          1  :  csp = Current client state (buffers, headers, etc...)
  *
  * Returns     :  http_response if , NULL if nonmatch or handler fail
@@ -2640,7 +2279,7 @@ struct http_response *direct_response(struct client_state *csp)
    {
       for (p = csp->headers->first; (p != NULL) ; p = p->next)
       {
-         if (!strncmpic("Max-Forwards:", p->str, 13))
+         if (!strncmpic(p->str, "Max-Forwards:", 13))
          {
             unsigned int max_forwards;
 
@@ -2664,7 +2303,7 @@ struct http_response *direct_response(struct client_state *csp)
                {
                   return cgi_error_memory();
                }
-            
+
                if (NULL == (rsp->status = strdup("501 Not Implemented")))
                {
                   free_http_response(rsp);
@@ -2672,7 +2311,7 @@ struct http_response *direct_response(struct client_state *csp)
                }
 
                rsp->is_static = 1;
-               rsp->reason = RSP_REASON_UNSUPPORTED;
+               rsp->crunch_reason = UNSUPPORTED;
 
                return(finish_http_response(csp, rsp));
             }
@@ -2685,12 +2324,87 @@ struct http_response *direct_response(struct client_state *csp)
 
 /*********************************************************************
  *
+ * Function    :  content_requires_filtering
+ *
+ * Description :  Checks whether there are any content filters
+ *                enabled for the current request and if they
+ *                can actually be applied..
+ *
+ * Parameters  :
+ *          1  :  csp = Current client state (buffers, headers, etc...)
+ *
+ * Returns     :  TRUE for yes, FALSE otherwise
+ *
+ *********************************************************************/
+int content_requires_filtering(struct client_state *csp)
+{
+   if ((csp->content_type & CT_TABOO)
+      && !(csp->action->flags & ACTION_FORCE_TEXT_MODE))
+   {
+      return FALSE;
+   }
+
+   /*
+    * Are we enabling text mode by force?
+    */
+   if (csp->action->flags & ACTION_FORCE_TEXT_MODE)
+   {
+      /*
+       * Do we really have to?
+       */
+      if (csp->content_type & CT_TEXT)
+      {
+         log_error(LOG_LEVEL_HEADER, "Text mode is already enabled.");
+      }
+      else
+      {
+         csp->content_type |= CT_TEXT;
+         log_error(LOG_LEVEL_HEADER, "Text mode enabled by force. Take cover!");
+      }
+   }
+
+   if (!(csp->content_type & CT_DECLARED))
+   {
+      /*
+       * The server didn't bother to declare a MIME-Type.
+       * Assume it's text that can be filtered.
+       *
+       * This also regulary happens with 304 responses,
+       * therefore logging anything here would cause
+       * too much noise.
+       */
+      csp->content_type |= CT_TEXT;
+   }
+
+   /*
+    * Choose the applying filter function based on
+    * the content type and action settings.
+    */
+   if ((csp->content_type & CT_TEXT) &&
+       (csp->rlist != NULL) &&
+       (!list_is_empty(csp->action->multi[ACTION_MULTI_FILTER])))
+   {
+      return TRUE;
+   }
+   else if ((csp->content_type & CT_GIF)  &&
+            (csp->action->flags & ACTION_DEANIMATE))
+   {
+      return TRUE;
+   }
+
+   return FALSE;
+
+}
+
+
+/*********************************************************************
+ *
  * Function    :  content_filters_enabled
  *
  * Description :  Checks whether there are any content filters
  *                enabled for the current request.
  *
- * Parameters  :  
+ * Parameters  :
  *          1  :  action = Action spec to check.
  *
  * Returns     :  TRUE for yes, FALSE otherwise
@@ -2701,6 +2415,34 @@ int content_filters_enabled(const struct current_action_spec *action)
    return ((action->flags & ACTION_DEANIMATE) ||
       !list_is_empty(action->multi[ACTION_MULTI_FILTER]));
 }
+
+
+/*********************************************************************
+ *
+ * Function    :  filters_available
+ *
+ * Description :  Checks whether there are any filters available.
+ *
+ * Parameters  :
+ *          1  :  csp = Current client state (buffers, headers, etc...)
+ *
+ * Returns     :  TRUE for yes, FALSE otherwise.
+ *
+ *********************************************************************/
+int filters_available(const struct client_state *csp)
+{
+   int i;
+   for (i = 0; i < MAX_AF_FILES; i++)
+   {
+      const struct file_list *fl = csp->rlist[i];
+      if ((NULL != fl) && (NULL != fl->f))
+      {
+         return TRUE;
+      }
+   }
+   return FALSE;
+}
+
 
 /*
   Local Variables:

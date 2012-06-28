@@ -4,29 +4,16 @@
 #
 # Purpose     :  Template that is included from most of Privoxy's CGI pages
 #                to show the user how to get help or report problems.
-# 
 #
-# Copyright   :  Written by and Copyright (C) 2002-2007 members of
-#                the SourceForge Privoxy team. http://www.privoxy.org/
 #
-#                This template is free software; you can redistribute it 
+# Copyright   :  Written by and Copyright (C) 2002-2009 members of
+#                the Privoxy team. http://www.privoxy.org/
+#
+#                This template is free software; you can redistribute it
 #                and/or modify it under the terms of the GNU General
 #                Public License as published by the Free Software
 #                Foundation; either version 2 of the License, or (at
 #                your option) any later version.
-#
-# Revisions   :
-#    $Log: mod-support-and-service,v $
-#    Revision 1.11  2008/01/02 18:06:58  fabiankeil
-#    Instead of linking to the "Contacting the developers ..." section
-#    in the FAQ, use the one from the User Manual. The latter can be
-#    delivered by Privoxy and thus possibly loads faster.
-#
-#    Revision 1.10  2007/03/17 11:31:36  fabiankeil
-#    - Add revision log and copyright header.
-#    - Reword instructions and link to the FAQ
-#      in an attempt to reduce the number of
-#      incomplete reports.
 #
 ##############################################################################
        <h2>Support and Service:</h2>
@@ -59,3 +46,8 @@
             to make sure your request contains all the information we need.
           </li>
         </ul>
+        <p>
+         If you want to support the Privoxy Team, please have a look at the FAQ to learn how to
+         <a href="http://www.privoxy.org/faq/general.html#PARTICIPATE">participate</a>
+         or to <a href="http://www.privoxy.org/faq/general.html#DONATE">donate</a>.
+        </p>

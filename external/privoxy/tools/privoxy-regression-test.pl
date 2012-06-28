@@ -7,7 +7,7 @@
 # A regression test "framework" for Privoxy. For documentation see:
 # perldoc privoxy-regression-test.pl
 #
-# $Id: privoxy-regression-test.pl,v 1.34 2009/02/27 18:35:22 fabiankeil Exp $
+# $Id: privoxy-regression-test.pl,v 1.81 2011/10/30 16:22:29 fabiankeil Exp $
 #
 # Wish list:
 #
@@ -19,7 +19,7 @@
 # - Document magic Expect Header values
 # - Internal fuzz support?
 #
-# Copyright (c) 2007-2009 Fabian Keil <fk@fabiankeil.de>
+# Copyright (c) 2007-2011 Fabian Keil <fk@fabiankeil.de>
 #
 # Permission to use, copy, modify, and distribute this software for any
 # purpose with or without fee is hereby granted, provided that the above
@@ -40,7 +40,7 @@ use strict;
 use Getopt::Long;
 
 use constant {
-    PRT_VERSION => 'Privoxy-Regression-Test 0.3',
+    PRT_VERSION => 'Privoxy-Regression-Test 0.5',
  
     CURL => 'curl',
 
@@ -52,6 +52,7 @@ use constant {
     # XXX: why limit at all?
     CLI_MAX_LEVEL => 100,
     CLI_FORKS     => 0,
+    CLI_SLEEP_TIME => 0,
 
     PRIVOXY_CGI_URL  => 'http://p.p/',
     FELLATIO_URL     => 'http://127.0.0.1:8080/',
@@ -69,13 +70,12 @@ use constant {
 
     # Internal use, don't modify
     # Available debug bits:
-    LL_ERROR            =>  1,
+    LL_SOFT_ERROR       =>  1,
     LL_VERBOSE_FAILURE  =>  2,
     LL_PAGE_FETCHING    =>  4,
     LL_FILE_LOADING     =>  8,
     LL_VERBOSE_SUCCESS  => 16,
     LL_STATUS           => 32,
-    LL_SOFT_ERROR       => 64,
 
     CLIENT_HEADER_TEST  =>  1,
     SERVER_HEADER_TEST  =>  2,
@@ -84,19 +84,16 @@ use constant {
     STICKY_ACTIONS_TEST =>  5,
     TRUSTED_CGI_REQUEST =>  6,
     BLOCK_TEST          =>  7,
+    REDIRECT_TEST       =>108,
 };
 
 sub init_our_variables () {
 
     our $leading_log_time = LEADING_LOG_TIME;
     our $leading_log_date = LEADING_LOG_DATE;
-
     our $privoxy_cgi_url  = PRIVOXY_CGI_URL;
-
     our $verbose_test_description = VERBOSE_TEST_DESCRIPTION;
-
     our $log_level = get_default_log_level();
-
 }
 
 sub get_default_log_level () {
@@ -109,9 +106,8 @@ sub get_default_log_level () {
     $log_level |= LL_VERBOSE_SUCCESS if DEBUG_LEVEL_VERBOSE_SUCCESS;
     $log_level |= LL_STATUS          if DEBUG_LEVEL_STATUS;
 
-    # These are intended to be always on.
+    # This one is supposed to be always on.
     $log_level |= LL_SOFT_ERROR;
-    $log_level |= LL_ERROR;
 
     return $log_level;
 }
@@ -140,18 +136,173 @@ sub parse_tag ($) {
 
 sub check_for_forbidden_characters ($) {
 
-    my $tag = shift; # XXX: also used to check values though.
-    my $allowed = '[-=\dA-Za-z~{}:.\/();\s,+@"_%\?&*^]';
+    my $string = shift;
+    my $allowed = '[-=\dA-Za-z~{}:./();\t ,+@"_%?&*^]';
 
-    unless ($tag =~ m/^$allowed*$/) {
-        my $forbidden = $tag;
+    unless ($string =~ m/^$allowed*$/o) {
+        my $forbidden = $string;
         $forbidden =~ s@^$allowed*(.).*@$1@;
 
-        l(LL_ERROR, "'" . $tag . "' contains character '" . $forbidden. "' which is unacceptable.");
+        log_and_die("'" . $string . "' contains character '" . $forbidden. "' which is unacceptable.");
     }
 }
 
-sub load_regressions_tests () {
+sub load_regression_tests() {
+    if (cli_option_is_set('local-test-file')) {
+        load_regression_tests_from_file(get_cli_option('local-test-file'));
+    } else {
+        load_regression_tests_through_privoxy();
+    }
+}
+
+# XXX: Contains a lot of code duplicated from load_action_files()
+#      that should be factored out.
+sub load_regression_tests_from_file ($) {
+    my $action_file = shift;
+
+    # initialized here
+    our %actions;
+    our @regression_tests;
+
+    my $si = 0;  # Section index
+    my $ri = -1; # Regression test index
+    my $count = 0;
+
+    my $ignored = 0;
+
+    my $sticky_actions = undef;
+
+    l(LL_STATUS, "Gathering regression tests from local file " . $action_file);
+
+    open(my $ACTION_FILE, "<", $action_file)
+        or log_and_die("Failed to open $action_file: $!");
+
+    while (<$ACTION_FILE>) {
+
+        my $no_checks = 0;
+        chomp;
+        my ($token, $value) = tokenize($_);
+
+        next unless defined $token;
+
+        # Load regression tests
+
+        if (token_starts_new_test($token)) {
+
+            # Beginning of new regression test.
+            $ri++;
+            $count++;
+            enlist_new_test(\@regression_tests, $token, $value, $si, $ri, $count);
+            $no_checks = 1; # Already validated by enlist_new_test().
+        }
+
+        if ($token =~ /level\s+(\d+)/i) {
+
+            my $level = $1;
+            register_dependency($level, $value);
+        }
+
+        if ($token eq 'sticky actions') {
+
+            # Will be used by each following Sticky URL.
+            $sticky_actions = $value;
+            if ($sticky_actions =~ /{[^}]*\s/) {
+                log_and_die("'Sticky Actions' with whitespace inside the " .
+                            "action parameters are currently unsupported.");
+            }
+        }
+
+        if ($si == -1 || $ri == -1) {
+            # No beginning of a test detected yet,
+            # so we don't care about any other test
+            # attributes.
+            next;
+        }
+
+        if ($token eq 'expect header') {
+
+            l(LL_FILE_LOADING, "Detected expectation: " . $value);
+            $regression_tests[$si][$ri]{'expect-header'} = $value;
+
+        } elsif ($token eq 'tag') {
+
+            next if ($ri == -1);
+
+            my $tag = parse_tag($value);
+
+            # We already checked in parse_tag() after filtering
+            $no_checks = 1;
+
+            l(LL_FILE_LOADING, "Detected TAG: " . $tag);
+
+            # Save tag for all tests in this section
+            do {
+                $regression_tests[$si][$ri]{'tag'} = $tag;
+            } while ($ri-- > 0);
+
+            $si++;
+            $ri = -1;
+
+        } elsif ($token eq 'ignore' && $value =~ /Yes/i) {
+
+            l(LL_FILE_LOADING, "Ignoring section: " . test_content_as_string($regression_tests[$si][$ri]));
+            $regression_tests[$si][$ri]{'ignore'} = 1;
+            $ignored++;
+
+        } elsif ($token eq 'expect status code') {
+
+            l(LL_FILE_LOADING, "Expecting status code: " . $value);
+            $regression_tests[$si][$ri]{'expected-status-code'} = $value;
+
+        } elsif ($token eq 'level') { # XXX: stupid name
+
+            $value =~ s@(\d+).*@$1@;
+            l(LL_FILE_LOADING, "Level: " . $value);
+            $regression_tests[$si][$ri]{'level'} = $value;
+
+        } elsif ($token eq 'method') {
+
+            l(LL_FILE_LOADING, "Method: " . $value);
+            $regression_tests[$si][$ri]{'method'} = $value;
+
+        } elsif ($token eq 'redirect destination') {
+
+            l(LL_FILE_LOADING, "Redirect destination: " . $value);
+            $regression_tests[$si][$ri]{'redirect destination'} = $value;
+
+        } elsif ($token eq 'url') {
+
+            if (defined $sticky_actions) {
+                die "WTF? Attempted to overwrite Sticky Actions"
+                    if defined ($regression_tests[$si][$ri]{'sticky-actions'});
+
+                l(LL_FILE_LOADING, "Sticky actions: " . $sticky_actions);
+                $regression_tests[$si][$ri]{'sticky-actions'} = $sticky_actions;
+            } else {
+                log_and_die("Sticky URL without Sticky Actions: $value");
+            }
+
+        } else {
+
+            # We don't use it, so we don't need
+            $no_checks = 1;
+            l(LL_STATUS, "Enabling no_checks for $token") unless $no_checks;
+        }
+
+        # XXX: Necessary?
+        unless ($no_checks)  {
+            check_for_forbidden_characters($value);
+            check_for_forbidden_characters($token);
+        }
+    }
+
+    l(LL_FILE_LOADING, "Done loading " . $count . " regression tests."
+      . " Of which " . $ignored. " will be ignored)\n");
+
+}
+
+
+sub load_regression_tests_through_privoxy () {
 
     our $privoxy_cgi_url;
     our @privoxy_config;
@@ -166,6 +317,10 @@ sub load_regressions_tests () {
 
     l(LL_STATUS, "Asking Privoxy for the number of action files available ...");
 
+    # Dear Privoxy, please reload the config file if necessary ...
+    get_cgi_page_or_else($curl_url);
+
+    # ... so we get the latest one here.
     foreach (@{get_cgi_page_or_else($curl_url)}) {
 
         chomp;
@@ -200,7 +355,7 @@ sub token_starts_new_test ($) {
     my $token = shift;
     my @new_test_directives = ('set header', 'fetch test',
          'trusted cgi request', 'request header', 'method test',
-         'blocked url', 'url');
+         'blocked url', 'url', 'redirected url');
 
     foreach my $new_test_directive (@new_test_directives) {
         return 1 if $new_test_directive eq $token;
@@ -218,12 +373,12 @@ sub tokenize ($) {
     s@\s*$@@;
 
     # Reverse HTML-encoding
-    # XXX: Seriously imcomplete. 
+    # XXX: Seriously incomplete.
     s@&quot;@"@g;
     s@&amp;@&@g;
 
     # Tokenize
-    if (/^\#\s*([^=:]*?)\s*[=]\s*(.+?)\s*$/) {
+    if (/^\#\s*([^=:#]*?)\s*[=]\s*([^#]+)(?:#.*)?$/) {
 
         $token = $1;
         $value = $2;
@@ -244,45 +399,59 @@ sub enlist_new_test ($$$$$$) {
 
     my ($regression_tests, $token, $value, $si, $ri, $number) = @_;
     my $type;
+    my $executor;
 
     if ($token eq 'set header') {
 
         l(LL_FILE_LOADING, "Header to set: " . $value);
         $type = CLIENT_HEADER_TEST;
+        $executor = \&execute_client_header_regression_test;
 
     } elsif ($token eq 'request header') {
 
         l(LL_FILE_LOADING, "Header to request: " . $value);
         $type = SERVER_HEADER_TEST;
+        $executor = \&execute_server_header_regression_test;
         $$regression_tests[$si][$ri]{'expected-status-code'} = 200;
 
     } elsif ($token eq 'trusted cgi request') {
 
         l(LL_FILE_LOADING, "CGI URL to test in a dumb way: " . $value);
         $type = TRUSTED_CGI_REQUEST;
+        $executor = \&execute_dumb_fetch_test;
         $$regression_tests[$si][$ri]{'expected-status-code'} = 200;
 
     } elsif ($token eq 'fetch test') {
 
         l(LL_FILE_LOADING, "URL to test in a dumb way: " . $value);
         $type = DUMB_FETCH_TEST;
+        $executor = \&execute_dumb_fetch_test;
         $$regression_tests[$si][$ri]{'expected-status-code'} = 200;
 
     } elsif ($token eq 'method test') {
 
         l(LL_FILE_LOADING, "Method to test: " . $value);
         $type = METHOD_TEST;
+        $executor = \&execute_method_test;
         $$regression_tests[$si][$ri]{'expected-status-code'} = 200;
 
     } elsif ($token eq 'blocked url') {
 
         l(LL_FILE_LOADING, "URL to block-test: " . $value);
+        $executor = \&execute_block_test;
         $type = BLOCK_TEST;
 
     } elsif ($token eq 'url') {
 
         l(LL_FILE_LOADING, "Sticky URL to test: " . $value);
         $type = STICKY_ACTIONS_TEST;
+        $executor = \&execute_sticky_actions_test;
+
+    } elsif ($token eq 'redirected url') {
+
+        l(LL_FILE_LOADING, "Redirected URL to test: " . $value);
+        $type = REDIRECT_TEST;
+        $executor = \&execute_redirect_test;
 
     } else {
 
@@ -291,6 +460,7 @@ sub enlist_new_test ($$$$$$) {
 
     $$regression_tests[$si][$ri]{'type'} = $type;
     $$regression_tests[$si][$ri]{'level'} = $type;
+    $$regression_tests[$si][$ri]{'executor'} = $executor;
 
     check_for_forbidden_characters($value);
 
@@ -304,6 +474,8 @@ sub enlist_new_test ($$$$$$) {
       "Regression test " . $number . " (section:" . $si . "):");
 }
 
+# XXX: Shares a lot of code with load_regression_tests_from_file()
+#      that should be factored out.
 sub load_action_files ($) {
 
     # initialized here
@@ -324,7 +496,7 @@ sub load_action_files ($) {
 
     for my $file_number (0 .. @actionfiles - 1) {
 
-        my $curl_url = ' "' . $actionfiles[$file_number] . '"';
+        my $curl_url = quote($actionfiles[$file_number]);
         my $actionfile = undef;
         my $sticky_actions = undef;
 
@@ -353,6 +525,7 @@ sub load_action_files ($) {
                 $ri++;
                 $count++;
                 enlist_new_test(\@regression_tests, $token, $value, $si, $ri, $count);
+                $no_checks = 1; # Already validated by enlist_new_test().
             }
 
             if ($token =~ /level\s+(\d+)/i) {
@@ -366,9 +539,8 @@ sub load_action_files ($) {
                 # Will be used by each following Sticky URL.
                 $sticky_actions = $value;
                 if ($sticky_actions =~ /{[^}]*\s/) {
-                    l(LL_ERROR,
-                      "'Sticky Actions' with whitespace inside the " .
-                      "action parameters are currently unsupported.");
+                    log_and_die("'Sticky Actions' with whitespace inside the " .
+                                "action parameters are currently unsupported.");
                 }
             }
             
@@ -425,6 +597,11 @@ sub load_action_files ($) {
                 l(LL_FILE_LOADING, "Method: " . $value);
                 $regression_tests[$si][$ri]{'method'} = $value;
 
+            } elsif ($token eq 'redirect destination') {
+
+                l(LL_FILE_LOADING, "Redirect destination: " . $value);
+                $regression_tests[$si][$ri]{'redirect destination'} = $value;
+
             } elsif ($token eq 'url') {
 
                 if (defined $sticky_actions) {
@@ -434,17 +611,21 @@ sub load_action_files ($) {
                     l(LL_FILE_LOADING, "Sticky actions: " . $sticky_actions);
                     $regression_tests[$si][$ri]{'sticky-actions'} = $sticky_actions;
                 } else {
-                    l(LL_ERROR, "Sticky URL without Sticky Actions: $value");
+                    log_and_die("Sticky URL without Sticky Actions: $value");
                 }
 
             } else {
 
                 # We don't use it, so we don't need
                 $no_checks = 1;
+                l(LL_STATUS, "Enabling no_checks for $token") unless $no_checks;
             }
-            # XXX: Neccessary?
-            check_for_forbidden_characters($value) unless $no_checks;
-            check_for_forbidden_characters($token);
+
+            # XXX: Necessary?
+            unless ($no_checks)  {
+                check_for_forbidden_characters($value);
+                check_for_forbidden_characters($token);
+            }
         }
     }
 
@@ -457,6 +638,16 @@ sub load_action_files ($) {
 # Regression test executing functions
 #
 ############################################################################
+
+# Fisher Yates shuffle from Perl's "How do I shuffle an array randomly?" FAQ
+sub fisher_yates_shuffle ($) {
+    my $deck = shift;
+    my $i = @$deck;
+    while ($i--) {
+        my $j = int rand($i+1);
+        @$deck[$i,$j] = @$deck[$j,$i];
+    }
+}
 
 sub execute_regression_tests () {
 
@@ -481,47 +672,51 @@ sub execute_regression_tests () {
         my $failures;
         my $skipped = 0;
 
-        for my $s (0 .. @regression_tests - 1) {
+        if (cli_option_is_set('shuffle-tests')) {
+
+            # Shuffle both the test sections and
+            # the tests they contain.
+            #
+            # XXX: With the current data layout, shuffling tests
+            #      from different sections isn't possible.
+            #      Is this worth changing the layout?
+            fisher_yates_shuffle(\@regression_tests);
+            for (my $s = 0;  $s < @regression_tests; $s++) {
+                fisher_yates_shuffle($regression_tests[$s]);
+            }
+        }
+
+        for (my $s = 0;  $s < @regression_tests; $s++) {
 
             my $r = 0;
 
             while (defined $regression_tests[$s][$r]) {
 
-                die "Section id mismatch" if ($s != $regression_tests[$s][$r]{'section-id'});
-                die "Regression test id mismatch" if ($r != $regression_tests[$s][$r]{'regression-test-id'});
+                unless (cli_option_is_set('shuffle-tests')) {
+                    die "Section id mismatch" if ($s != $regression_tests[$s][$r]{'section-id'});
+                    die "Regression test id mismatch" if ($r != $regression_tests[$s][$r]{'regression-test-id'});
+                }
+                die "Internal error. Test executor missing."
+                    unless defined $regression_tests[$s][$r]{executor};
 
                 my $number = $regression_tests[$s][$r]{'number'};
-                my $skip_reason = undef;
-
-                if ($regression_tests[$s][$r]{'ignore'}) {
-
-                    $skip_reason = "Ignore flag is set";
-
-                } elsif (cli_option_is_set('test-number')
-                         and get_cli_option('test-number') != $number) {
-
-                    $skip_reason = "Only executing test " . get_cli_option('test-number');
-
-                } else {
-
-                    $skip_reason = level_is_unacceptable($regression_tests[$s][$r]{'level'});
-                }
+                my $skip_reason = get_skip_reason($regression_tests[$s][$r]);
 
                 if (defined $skip_reason) {
 
                     my $message = "Skipping test " . $number . ": " . $skip_reason . ".";
-                    log_message($message) if (cli_option_is_set('verbose') or
-                                              cli_option_is_set('show-skipped-tests'));
+                    log_message($message) if (cli_option_is_set('show-skipped-tests'));
                     $skipped++;
 
                 } else {
 
-                    my $result = execute_regression_test($regression_tests[$s][$r]);
+                    my $result = $regression_tests[$s][$r]{executor}($regression_tests[$s][$r]);
 
                     log_result($regression_tests[$s][$r], $result, $tests);
 
                     $successes += $result;
                     $tests++;
+                    sleep(get_cli_option('sleep-time')) if (cli_option_is_set('sleep-time'));
                 }
                 $r++;
             }
@@ -535,13 +730,33 @@ sub execute_regression_tests () {
         $all_tests     += $tests;
         $all_failures  += $failures;
         $all_successes += $successes;
-
     }
 
     if (get_cli_option('loops') > 1) {
         log_message("Total: Executed " . $all_tests . " regression tests. " .
             $all_successes . " successes, " . $all_failures . " failures.");
     }
+}
+
+sub get_skip_reason ($) {
+    my $test = shift;
+    my $skip_reason = undef;
+
+    if ($test->{'ignore'}) {
+
+        $skip_reason = "Ignore flag is set";
+
+    } elsif (cli_option_is_set('test-number') and
+             get_cli_option('test-number') != $test->{'number'}) {
+
+        $skip_reason = "Only executing test " . get_cli_option('test-number');
+
+    } else {
+
+        $skip_reason = level_is_unacceptable($test->{'level'});
+    }
+
+    return $skip_reason;
 }
 
 sub level_is_unacceptable ($) {
@@ -559,11 +774,11 @@ sub level_is_unacceptable ($) {
 
     } elsif ($level < $min_level) {
 
-        $reason = "Level to low (" . $level . " < " . $min_level . ")";
+        $reason = "Level too low (" . $level . " < " . $min_level . ")";
 
     } elsif ($level > $max_level) {
 
-        $reason = "Level to high (" . $level . " > " . $max_level . ")";
+        $reason = "Level too high (" . $level . " > " . $max_level . ")";
 
     } else {
 
@@ -589,11 +804,16 @@ sub dependency_unsatisfied ($) {
 
         foreach (@privoxy_config) {
 
-             $dependency_problem = undef if (/$dependency/);
-             last; # XXX: this looks ... interesting.
+            if (/$dependency/) {
+                $dependency_problem = undef;
+                last;
+            }
         }
 
-    } elsif (defined ($dependencies{$level}{'feature status'})) {
+    }
+
+    if (defined ($dependencies{$level}{'feature status'})
+        and not defined $dependency_problem) {
 
         my $dependency = $dependencies{$level}{'feature status'};
         my ($feature, $status) = $dependency =~ /([^\s]*)\s+(Yes|No)/;
@@ -623,59 +843,21 @@ sub register_dependency ($$) {
 
         $dependencies{$level}{'feature status'} = $1;
 
-    }
-}
-
-# XXX: somewhat misleading name
-sub execute_regression_test ($) {
-
-    my $test_ref = shift;
-    my %test = %{$test_ref};
-    my $result = 0;
-
-    if ($test{'type'} == CLIENT_HEADER_TEST) {
-
-        $result = execute_client_header_regression_test($test_ref);
-
-    } elsif ($test{'type'} == SERVER_HEADER_TEST) {
-
-        $result = execute_server_header_regression_test($test_ref);
-
-    } elsif ($test{'type'} == DUMB_FETCH_TEST
-          or $test{'type'} == TRUSTED_CGI_REQUEST) {
-
-        $result = execute_dumb_fetch_test($test_ref);
-
-    } elsif ($test{'type'} == METHOD_TEST) {
-
-        $result = execute_method_test($test_ref);
-
-    } elsif ($test{'type'} == BLOCK_TEST) {
-
-        $result = execute_block_test($test_ref);
-
-    } elsif ($test{'type'} == STICKY_ACTIONS_TEST) {
-
-        $result = execute_sticky_actions_test($test_ref);
-
     } else {
 
-        die "Unsupported test type detected: " . $test{'type'};
+        log_and_die("Didn't recognize dependency: $dependency.");
     }
-
-    return $result;
 }
 
 sub execute_method_test ($) {
 
-    my $test_ref = shift;
-    my %test = %{$test_ref};
+    my $test = shift;
     my $buffer_ref;
     my $status_code;
-    my $method = $test{'data'};
+    my $method = $test->{'data'};
 
     my $curl_parameters = '';
-    my $expected_status_code = $test{'expected-status-code'};
+    my $expected_status_code = $test->{'expected-status-code'};
 
     $curl_parameters .= '--request ' . $method . ' ';
     # Don't complain about the 'missing' body
@@ -689,24 +871,68 @@ sub execute_method_test ($) {
     return check_status_code_result($status_code, $expected_status_code);
 }
 
-sub execute_dumb_fetch_test ($) {
+sub execute_redirect_test ($) {
 
-    my $test_ref = shift;
-    my %test = %{$test_ref};
+    my $test = shift;
     my $buffer_ref;
     my $status_code;
 
     my $curl_parameters = '';
-    my $expected_status_code = $test{'expected-status-code'};
+    my $url = $test->{'data'};
+    my $redirect_destination;
+    my $expected_redirect_destination = $test->{'redirect destination'};
 
-    if (defined $test{method}) {
-        $curl_parameters .= '--request ' . $test{method} . ' ';
+    # XXX: Check if a redirect actually applies before doing the request.
+    #      otherwise the test may hit a real server in failure cases.
+
+    $curl_parameters .= '--head ';
+
+    $curl_parameters .= quote($url);
+
+    $buffer_ref = get_page_with_curl($curl_parameters);
+    $status_code = get_status_code($buffer_ref);
+
+    if ($status_code ne "302") {
+        l(LL_VERBOSE_FAILURE,
+          "Ooops. Expected redirect to: '" . $expected_redirect_destination
+          . "' but got a response with status code: " . $status_code);
+        return 0;
     }
-    if ($test{type} == TRUSTED_CGI_REQUEST) {
-        $curl_parameters .= '--referer ' . PRIVOXY_CGI_URL . ' ';
+    foreach (@{$buffer_ref}) {
+        if (/^Location: (.*)\r\n/) {
+            $redirect_destination = $1;
+            last;
+        }
     }
 
-    $curl_parameters .= $test{'data'};
+    my $success = ($redirect_destination eq $expected_redirect_destination);
+
+    unless ($success) {
+        l(LL_VERBOSE_FAILURE,
+          "Ooops. Expected redirect to: '" . $expected_redirect_destination
+          . "' but the redirect leads to: '" . $redirect_destination. "'");
+    }
+
+    return $success;
+}
+
+sub execute_dumb_fetch_test ($) {
+
+    my $test = shift;
+    my $buffer_ref;
+    my $status_code;
+
+    my $curl_parameters = '';
+    my $expected_status_code = $test->{'expected-status-code'};
+
+    if (defined $test->{method}) {
+        $curl_parameters .= '--request ' . quote($test->{method}) . ' ';
+    }
+    if ($test->{type} == TRUSTED_CGI_REQUEST) {
+        $curl_parameters .= '--referer ' . quote(PRIVOXY_CGI_URL) . ' ';
+    }
+
+    $curl_parameters .= quote($test->{'data'});
 
     $buffer_ref = get_page_with_curl($curl_parameters);
     $status_code = get_status_code($buffer_ref);
@@ -733,15 +959,18 @@ sub execute_sticky_actions_test ($) {
     my $final_results = get_final_results($url);
 
     foreach my $sticky_action (@sticky_actions) {
+
         if (defined $final_results->{$sticky_action}) {
             # Exact match
             $verified_actions++;
-        }elsif ($sticky_action =~ /-.*\{/ and
-                not defined $final_results->{$sticky_action}) {
+
+        } elsif ($sticky_action =~ /-.*\{/) {
+
             # Disabled multi actions aren't explicitly listed as
             # disabled and thus have to be checked by verifying
             # that they aren't enabled.
             $verified_actions++;
+
         } else {
             l(LL_VERBOSE_FAILURE,
               "Ooops. '$sticky_action' is not among the final results.");
@@ -775,7 +1004,10 @@ sub get_final_results ($) {
         next unless ($final_results_reached);
         last if (m@</td>@);
 
-        if (m@<br>([-+])<a.*>([^>]*)</a>(?: (\{.*\}))?@) {
+        # Privoxy versions before 3.0.16 add a space
+        # between action name and parameters, therefore
+        # the " ?".
+        if (m@<br>([-+])<a.*>([^>]*)</a>(?: ?(\{.*\}))?@) {
             my $action = $1.$2;
             my $parameter = $3;
             
@@ -827,28 +1059,28 @@ sub check_status_code_result ($$) {
 
 sub execute_client_header_regression_test ($) {
 
-    my $test_ref = shift;
+    my $test = shift;
     my $buffer_ref;
     my $header;
 
-    $buffer_ref = get_show_request_with_curl($test_ref);
+    $buffer_ref = get_show_request_with_curl($test);
 
-    $header = get_header($buffer_ref, $test_ref);
+    $header = get_header($buffer_ref, $test);
 
-    return check_header_result($test_ref, $header);
+    return check_header_result($test, $header);
 }
 
 sub execute_server_header_regression_test ($) {
 
-    my $test_ref = shift;
+    my $test = shift;
     my $buffer_ref;
     my $header;
 
-    $buffer_ref = get_head_with_curl($test_ref);
+    $buffer_ref = get_head_with_curl($test);
 
-    $header = get_server_header($buffer_ref, $test_ref);
+    $header = get_server_header($buffer_ref, $test);
 
-    return check_header_result($test_ref, $header);
+    return check_header_result($test, $header);
 }
 
 sub interpret_result ($) {
@@ -858,65 +1090,51 @@ sub interpret_result ($) {
 
 sub check_header_result ($$) {
 
-    my $test_ref = shift;
+    my $test = shift;
     my $header = shift;
 
-    my %test = %{$test_ref};
-    my $expect_header = $test{'expect-header'};
+    my $expect_header = $test->{'expect-header'};
     my $success = 0;
 
     if ($expect_header eq 'NO CHANGE') {
 
-        if (defined($header) and $header eq $test{'data'}) {
+        $success = (defined($header) and $header eq $test->{'data'});
 
-            $success = 1;
-
-        } else {
-
+        unless ($success) {
             $header = "REMOVAL" unless defined $header;
             l(LL_VERBOSE_FAILURE,
-              "Ooops. Got: " . $header . " while expecting: " . $expect_header);
+              "Ooops. Got: '" . $header . "' while expecting: '" . $expect_header . "'");
         }
 
     } elsif ($expect_header eq 'REMOVAL') {
 
-        if (defined($header) and $header eq $test{'data'}) {
+        # XXX: Use more reliable check here and make sure
+        # the header has a different name.
+        $success = not (defined($header) and $header eq $test->{'data'});
 
+        unless ($success) {
             l(LL_VERBOSE_FAILURE,
-              "Ooops. Expected removal but: " . $header . " is still there.");
-
-        } else {
-
-            # XXX: Use more reliable check here and make sure
-            # the header has a different name.
-            $success = 1;
+              "Ooops. Expected removal but: '" . $header . "' is still there.");
         }
 
     } elsif ($expect_header eq 'SOME CHANGE') {
 
-        if (defined($header) and not $header eq $test{'data'}) {
+        $success = (defined($header) and $header ne $test->{'data'});
 
-            $success = 1;
-
-        } else {
-
+        unless  ($success) {
             $header = "REMOVAL" unless defined $header;
             l(LL_VERBOSE_FAILURE,
-              "Ooops. Got: " . $header . " while expecting: SOME CHANGE");
+              "Ooops. Got: '" . $header . "' while expecting: SOME CHANGE");
         }
-
 
     } else {
 
-        if (defined($header) and $header eq $expect_header) {
+        $success = (defined($header) and $header eq $expect_header);
 
-            $success = 1;
-
-        } else {
-
-            $header = "'No matching header'" unless defined $header; # XXX: No header detected to be precise
+        unless ($success) {
+            $header = "No matching header" unless defined $header; # XXX: No header detected to be precise
             l(LL_VERBOSE_FAILURE,
-              "Ooops. Got: " . $header . " while expecting: " . $expect_header);
+              "Ooops. Got: '" . $header . "' while expecting: '" . $expect_header . "'");
         }
     }
     return $success;
@@ -936,12 +1154,11 @@ sub get_header ($$) {
     our $filtered_request = '';
 
     my $buffer_ref = shift;
-    my $test_ref = shift;
+    my $test = shift;
 
-    my %test = %{$test_ref};
     my @buffer = @{$buffer_ref};
 
-    my $expect_header = $test{'expect-header'};
+    my $expect_header = $test->{'expect-header'};
 
     die "get_header called with no expect header" unless defined $expect_header;
 
@@ -954,10 +1171,9 @@ sub get_header ($$) {
 
     if ($expect_header eq 'REMOVAL'
      or $expect_header eq 'NO CHANGE'
-     or  $expect_header eq 'SOME CHANGE') {
+     or $expect_header eq 'SOME CHANGE') {
 
-        $expect_header = $test{'data'};
-
+        $expect_header = $test->{'data'};
     }
 
     $header_to_get = get_header_name($expect_header);
@@ -996,24 +1212,23 @@ sub get_header ($$) {
 sub get_server_header ($$) {
 
     my $buffer_ref = shift;
-    my $test_ref = shift;
+    my $test = shift;
 
-    my %test = %{$test_ref};
     my @buffer = @{$buffer_ref};
 
-    my $expect_header = $test{'expect-header'};
+    my $expect_header = $test->{'expect-header'};
     my $header;
     my $header_to_get;
 
     # XXX: Should be caught before starting to test.
-    l(LL_ERROR, "No expect header for test " . $test{'number'})
+    log_and_die("No expect header for test " . $test->{'number'})
         unless defined $expect_header;
 
     if ($expect_header eq 'REMOVAL'
      or $expect_header eq 'NO CHANGE'
      or $expect_header eq 'SOME CHANGE') {
 
-        $expect_header = $test{'data'};
+        $expect_header = $test->{'data'};
     }
 
     $header_to_get = get_header_name($expect_header);
@@ -1047,7 +1262,7 @@ sub get_status_code ($) {
 
             return '123' if cli_option_is_set('fuzzer-feeding');
             chomp;
-            l(LL_ERROR, 'Unexpected buffer line: "' . $_ . '"');
+            log_and_die('Unexpected buffer line: "' . $_ . '"');
         }
     }
 }
@@ -1059,22 +1274,21 @@ sub get_test_keys () {
 # XXX: incomplete
 sub test_content_as_string ($) {
 
-    my $test_ref = shift;
-    my %test = %{$test_ref};
+    my $test = shift;
 
     my $s = "\n\t";
 
     foreach my $key (get_test_keys()) {
-        $test{$key} = 'Not set' unless (defined $test{$key});
+        $test->{$key} = 'Not set' unless (defined $test->{$key});
     }
 
-    $s .= 'Tag: ' . $test{'tag'};
+    $s .= 'Tag: ' . $test->{'tag'};
     $s .= "\n\t";
-    $s .= 'Set header: ' . $test{'data'}; # XXX: adjust for other test types
+    $s .= 'Set header: ' . $test->{'data'}; # XXX: adjust for other test types
     $s .= "\n\t";
-    $s .= 'Expected header: ' . $test{'expect-header'};
+    $s .= 'Expected header: ' . $test->{'expect-header'};
     $s .= "\n\t";
-    $s .= 'Ignore: ' . $test{'ignore'};
+    $s .= 'Ignore: ' . $test->{'ignore'};
 
     return $s;
 }
@@ -1099,11 +1313,6 @@ sub fuzz_header($) {
 #
 ############################################################################
 
-sub check_for_curl () {
-    my $curl = CURL;
-    l(LL_ERROR, "No curl found.") unless (`which $curl`);
-}
-
 sub get_cgi_page_or_else ($) {
 
     my $cgi_url = shift;
@@ -1123,7 +1332,7 @@ sub get_cgi_page_or_else ($) {
 
         } else {
 
-            l(LL_ERROR, $log_message);
+            log_and_die($log_message);
         }
     }
     
@@ -1134,18 +1343,17 @@ sub get_cgi_page_or_else ($) {
 sub get_show_request_with_curl ($) {
 
     our $privoxy_cgi_url;
-    my $test_ref = shift;
-    my %test = %{$test_ref};
+    my $test = shift;
 
     my $curl_parameters = ' ';
-    my $header = $test{'data'};
+    my $header = $test->{'data'};
 
     if (cli_option_is_set('header-fuzzing')) {
         $header = fuzz_header($header);
     }
 
     # Enable the action to test
-    $curl_parameters .= '-H \'X-Privoxy-Control: ' . $test{'tag'} . '\' ';
+    $curl_parameters .= '-H \'X-Privoxy-Control: ' . $test->{'tag'} . '\' ';
     # The header to filter
     $curl_parameters .= '-H \'' . $header . '\' ';
 
@@ -1159,15 +1367,14 @@ sub get_show_request_with_curl ($) {
 sub get_head_with_curl ($) {
 
     our $fellatio_url = FELLATIO_URL;
-    my $test_ref = shift;
-    my %test = %{$test_ref};
+    my $test = shift;
 
     my $curl_parameters = ' ';
 
     # Enable the action to test
-    $curl_parameters .= '-H \'X-Privoxy-Control: ' . $test{'tag'} . '\' ';
+    $curl_parameters .= '-H \'X-Privoxy-Control: ' . $test->{'tag'} . '\' ';
     # The header to filter
-    $curl_parameters .= '-H \'X-Gimme-Head-With: ' . $test{'data'} . '\' ';
+    $curl_parameters .= '-H \'X-Gimme-Head-With: ' . $test->{'data'} . '\' ';
     $curl_parameters .= '--head ';
 
     $curl_parameters .= ' ';
@@ -1186,8 +1393,9 @@ sub get_page_with_curl ($) {
     my $retries_left = get_cli_option('retries') + 1;
     my $failure_reason;
 
-    $curl_line .= ' --proxy ' . $proxy if (defined $proxy);
-
+    if (defined $proxy) {
+        $curl_line .= ' --proxy ' . quote($proxy);
+    }
     # We want to see the HTTP status code
     $curl_line .= " --include ";
     # Let Privoxy emit two log messages less.
@@ -1212,6 +1420,7 @@ sub get_page_with_curl ($) {
         @buffer = `$curl_line`;
 
         if ($?) {
+            log_and_die("Executing '$curl_line' failed.") unless @buffer;
             $failure_reason = array_as_string(\@buffer);
             chomp $failure_reason;
             l(LL_SOFT_ERROR, "Fetch failure: '" . $failure_reason . $! ."'");
@@ -1219,9 +1428,8 @@ sub get_page_with_curl ($) {
     } while ($? && --$retries_left);
 
     unless ($retries_left) {
-        l(LL_ERROR,
-          "Running curl failed " . get_cli_option('retries') .
-          " times in a row. Last error: '" . $failure_reason . "'.");
+        log_and_die("Running curl failed " . get_cli_option('retries') .
+                    " times in a row. Last error: '" . $failure_reason . "'.");
     }
 
     return \@buffer;
@@ -1246,8 +1454,8 @@ sub array_as_string ($) {
 }
 
 sub show_test ($) {
-    my $test_ref = shift;
-    log_message('Test is:' . test_content_as_string($test_ref));
+    my $test = shift;
+    log_message('Test is:' . test_content_as_string($test));
 }
 
 # Conditional log
@@ -1256,17 +1464,14 @@ sub l ($$) {
     my $this_level = shift;
     my $message = shift;
 
-    return unless ($log_level & $this_level);
+    log_message($message) if ($log_level & $this_level);
+}
 
-    if (LL_ERROR & $this_level) {
-        $message = 'Oh noes. ' . $message . ' Fatal error. Exiting.';
-    }
+sub log_and_die ($) {
+    my $message = shift;
 
-    log_message($message);
-
-    if (LL_ERROR & $this_level) {
-        exit;
-    }
+    log_message('Oh noes. ' . $message . ' Fatal error. Exiting.');
+    exit;
 }
 
 sub log_message ($) {
@@ -1286,7 +1491,7 @@ sub log_message ($) {
         if ($leading_log_date) {
             $year += 1900;
             $mon  += 1;
-            $time_stamp = sprintf("%i/%.2i/%.2i", $year, $mon, $mday);
+            $time_stamp = sprintf("%i-%.2i-%.2i", $year, $mon, $mday);
         }
 
         if ($leading_log_time) {
@@ -1305,76 +1510,82 @@ sub log_result ($$) {
     our $verbose_test_description;
     our $filtered_request;
 
-    my $test_ref = shift;
+    my $test = shift;
     my $result = shift;
     my $number = shift;
 
-    my %test = %{$test_ref};
     my $message = '';
 
     $message .= interpret_result($result);
     $message .= " for test ";
     $message .= $number;
     $message .= '/';
-    $message .= $test{'number'};
+    $message .= $test->{'number'};
     $message .= '/';
-    $message .= $test{'section-id'};
+    $message .= $test->{'section-id'};
     $message .= '/';
-    $message .= $test{'regression-test-id'};
+    $message .= $test->{'regression-test-id'};
     $message .= '.';
 
     if ($verbose_test_description) {
 
-        if ($test{'type'} == CLIENT_HEADER_TEST) {
+        if ($test->{'type'} == CLIENT_HEADER_TEST) {
 
             $message .= ' Header ';
-            $message .= quote($test{'data'});
+            $message .= quote($test->{'data'});
             $message .= ' and tag ';
-            $message .= quote($test{'tag'});
+            $message .= quote($test->{'tag'});
 
-        } elsif ($test{'type'} == SERVER_HEADER_TEST) {
+        } elsif ($test->{'type'} == SERVER_HEADER_TEST) {
 
             $message .= ' Request Header ';
-            $message .= quote($test{'data'});
+            $message .= quote($test->{'data'});
             $message .= ' and tag ';
-            $message .= quote($test{'tag'});
+            $message .= quote($test->{'tag'});
 
-        } elsif ($test{'type'} == DUMB_FETCH_TEST) {
+        } elsif ($test->{'type'} == DUMB_FETCH_TEST) {
 
             $message .= ' URL ';
-            $message .= quote($test{'data'});
+            $message .= quote($test->{'data'});
             $message .= ' and expected status code ';
-            $message .= quote($test{'expected-status-code'});
+            $message .= quote($test->{'expected-status-code'});
 
-        } elsif ($test{'type'} == TRUSTED_CGI_REQUEST) {
+        } elsif ($test->{'type'} == TRUSTED_CGI_REQUEST) {
 
             $message .= ' CGI URL ';
-            $message .= quote($test{'data'});
+            $message .= quote($test->{'data'});
             $message .= ' and expected status code ';
-            $message .= quote($test{'expected-status-code'});
+            $message .= quote($test->{'expected-status-code'});
 
-        } elsif ($test{'type'} == METHOD_TEST) {
+        } elsif ($test->{'type'} == METHOD_TEST) {
 
             $message .= ' HTTP method ';
-            $message .= quote($test{'data'});
+            $message .= quote($test->{'data'});
             $message .= ' and expected status code ';
-            $message .= quote($test{'expected-status-code'});
+            $message .= quote($test->{'expected-status-code'});
 
-        } elsif ($test{'type'} == BLOCK_TEST) {
+        } elsif ($test->{'type'} == BLOCK_TEST) {
 
             $message .= ' Supposedly-blocked URL: ';
-            $message .= quote($test{'data'});
+            $message .= quote($test->{'data'});
 
-        } elsif ($test{'type'} == STICKY_ACTIONS_TEST) {
+        } elsif ($test->{'type'} == STICKY_ACTIONS_TEST) {
 
             $message .= ' Sticky Actions: ';
-            $message .= quote($test{'sticky-actions'});
+            $message .= quote($test->{'sticky-actions'});
             $message .= ' and URL: ';
-            $message .= quote($test{'data'});
+            $message .= quote($test->{'data'});
+
+        } elsif ($test->{'type'} == REDIRECT_TEST) {
+
+            $message .= ' Redirected URL: ';
+            $message .= quote($test->{'data'});
+            $message .= ' and redirect destination: ';
+            $message .= quote($test->{'redirect destination'});
 
         } else {
 
-            die "Incomplete support for test type " . $test{'type'} .  " detected.";
+            die "Incomplete support for test type " . $test->{'type'} .  " detected.";
         }
     }
 
@@ -1387,7 +1598,25 @@ sub quote ($) {
 }
 
 sub print_version () {
-    printf PRT_VERSION . "\n" . 'Copyright (C) 2007-2009 Fabian Keil <fk@fabiankeil.de>' . "\n";
+    printf PRT_VERSION . "\n" . 'Copyright (C) 2007-2011 Fabian Keil <fk@fabiankeil.de>' . "\n";
+}
+
+sub list_test_types () {
+    my %test_types = (
+        'Client header test'  => CLIENT_HEADER_TEST,
+        'Server header test'  =>  2,
+        'Dumb fetch test'     =>  3,
+        'Method test'         =>  4,
+        'Sticky action test'  =>  5,
+        'Trusted CGI test'    =>  6,
+        'Block test'          =>  7,
+        'Redirect test'       => 108,
+    );
+
+    print "\nThe supported test types and their default levels are:\n";
+    foreach my $test_type (sort { $test_types{$a} <=> $test_types{$b} } keys %test_types) {
+        printf "     %-20s -> %3.d\n", $test_type, $test_types{$test_type};
+    }
 }
 
 sub help () {
@@ -1406,6 +1635,7 @@ Options and their default values if they have any:
     [--help]
     [--header-fuzzing]
     [--level]
+    [--local-test-file]
     [--loops $cli_options{'loops'}]
     [--max-level $cli_options{'max-level'}]
     [--max-time $cli_options{'max-time'}]
@@ -1413,12 +1643,22 @@ Options and their default values if they have any:
     [--privoxy-address]
     [--retries $cli_options{'retries'}]
     [--show-skipped-tests]
+    [--shuffle-tests]
+    [--sleep-time $cli_options{'sleep-time'}]
     [--test-number]
     [--verbose]
     [--version]
-see "perldoc $0" for more information
     EOF
     ;
+
+    list_test_types();
+
+    print << "    EOF"
+
+Try "perldoc $0" for more information
+    EOF
+    ;
+
     exit(0);
 }
 
@@ -1433,6 +1673,7 @@ sub init_cli_options () {
     $cli_options{'max-level'} = CLI_MAX_LEVEL;
     $cli_options{'max-time'}  = CLI_MAX_TIME;
     $cli_options{'min-level'} = CLI_MIN_LEVEL;
+    $cli_options{'sleep-time'}= CLI_SLEEP_TIME;
     $cli_options{'retries'}   = CLI_RETRIES;
 }
 
@@ -1444,24 +1685,27 @@ sub parse_cli_options () {
     init_cli_options();
 
     GetOptions (
-        'debug=s'            => \$cli_options{'debug'},
-        'forks=s'            => \$cli_options{'forks'},
+        'debug=i'            => \$cli_options{'debug'},
+        'forks=i'            => \$cli_options{'forks'},
         'fuzzer-address=s'   => \$cli_options{'fuzzer-address'},
         'fuzzer-feeding'     => \$cli_options{'fuzzer-feeding'},
         'header-fuzzing'     => \$cli_options{'header-fuzzing'},
-        'help'               => sub {help},
-        'level=s'            => \$cli_options{'level'},
-        'loops=s'            => \$cli_options{'loops'},
-        'max-level=s'        => \$cli_options{'max-level'},
-        'max-time=s'         => \$cli_options{'max-time'},
-        'min-level=s'        => \$cli_options{'min-level'},
+        'help'               => \&help,
+        'level=i'            => \$cli_options{'level'},
+        'local-test-file=s'  => \$cli_options{'local-test-file'},
+        'loops=i'            => \$cli_options{'loops'},
+        'max-level=i'        => \$cli_options{'max-level'},
+        'max-time=i'         => \$cli_options{'max-time'},
+        'min-level=i'        => \$cli_options{'min-level'},
         'privoxy-address=s'  => \$cli_options{'privoxy-address'},
-        'retries=s'          => \$cli_options{'retries'},
+        'retries=i'          => \$cli_options{'retries'},
+        'shuffle-tests'      => \$cli_options{'shuffle-tests'},
         'show-skipped-tests' => \$cli_options{'show-skipped-tests'},
-        'test-number=s'      => \$cli_options{'test-number'},
+        'sleep-time=i'       => \$cli_options{'sleep-time'},
+        'test-number=i'      => \$cli_options{'test-number'},
         'verbose'            => \$cli_options{'verbose'},
         'version'            => sub {print_version && exit(0)}
-    );
+    ) or exit(1);
     $log_level |= $cli_options{'debug'};
 }
 
@@ -1497,14 +1741,13 @@ sub init_proxy_settings($) {
         if (cli_option_is_set('privoxy-address')) {
             $proxy .=  get_cli_option('privoxy-address');
         }
-
     }
 }
 
 sub start_forks($) {
     my $forks = shift;
 
-    l(LL_ERROR, "Invalid --fork value: " . $forks . ".") if ($forks < 0); 
+    log_and_die("Invalid --fork value: " . $forks . ".") if ($forks < 0);
 
     foreach my $fork (1 .. $forks) {
         log_message("Starting fork $fork");
@@ -1519,9 +1762,8 @@ sub main () {
 
     init_our_variables();
     parse_cli_options();
-    check_for_curl();
     init_proxy_settings('vanilla-proxy');
-    load_regressions_tests();
+    load_regression_tests();
     init_proxy_settings('fuzz-proxy');
     start_forks(get_cli_option('forks')) if cli_option_is_set('forks');
     execute_regression_tests();
@@ -1537,10 +1779,10 @@ B<privoxy-regression-test> - A regression test "framework" for Privoxy.
 
 B<privoxy-regression-test> [B<--debug bitmask>] [B<--forks> forks]
 [B<--fuzzer-feeding>] [B<--fuzzer-feeding>] [B<--help>] [B<--level level>]
-[B<--loops count>] [B<--max-level max-level>] [B<--max-time max-time>]
-[B<--min-level min-level>] B<--privoxy-address proxy-address>
+[B<--local-test-file testfile>] [B<--loops count>] [B<--max-level max-level>]
+[B<--max-time max-time>] [B<--min-level min-level>] B<--privoxy-address proxy-address>
 [B<--retries retries>] [B<--test-number test-number>]
-[B<--show-skipped-tests>] [B<--verbose>]
+[B<--show-skipped-tests>] [B<--sleep-time> seconds] [B<--verbose>]
 [B<--version>]
 
 =head1 DESCRIPTION
@@ -1624,6 +1866,11 @@ To verify that a specific set of actions is applied to an URL, use:
 The sticky actions will be checked for all URLs below it
 until the next sticky actions directive.
 
+To verify that requests for a URL get redirected, use:
+
+    # Redirected URL = http://www.example.com/redirect-me
+    # Redirect Destination = http://www.example.org/redirected
+
 =head1 TEST LEVELS
 
 All tests have test levels to let the user
@@ -1631,9 +1878,15 @@ control which ones to execute (see I<OPTIONS> below).
 Test levels are either set with the B<Level> directive,
 or implicitly through the test type.
 
-Block tests default to level 7, fetch tests to level 6,
-"Sticky Actions" tests default to level 5, tests for trusted CGI
-requests to level 3 and client-header-action tests to level 1.
+Redirect tests default to level 108, block tests to level 7,
+fetch tests to level 6, "Sticky Actions" tests default to
+level 5, tests for trusted CGI requests to level 3 and
+client-header-action tests to level 1.
+
+The current redirect test level is above the default
+max-level value as failed tests will result in outgoing
+connections. Use the B<--max-level> option to run them
+as well.
 
 =head1 OPTIONS
 
@@ -1661,6 +1914,12 @@ B<--header-fuzzing> Modifies linear white space in
 headers in a way that should not affect the test result.
 
 B<--level level> Only execute tests with the specified B<level>. 
+
+B<--local-test-file test-file> Do not get the tests
+through Privoxy's web interface, but use a single local
+file. Not recommended for testing Privoxy, but can be useful
+to "misappropriate" Privoxy-Regression-Test to test other
+stuff, like webserver configurations.
 
 B<--loop count> Loop through the regression tests B<count> times. 
 Useful to feed a fuzzer, or when doing stress tests with
@@ -1691,7 +1950,16 @@ number.
 
 B<--show-skipped-tests> Log skipped tests even if verbose mode is off.
 
-B<--verbose> Log succesful and skipped tests.
+B<--shuffle-tests> Shuffle test sections and their tests before
+executing them. When combined with B<--forks>, this can increase
+the chances of detecting race conditions. Of course some problems
+are easier to detect without this option.
+
+B<--sleep-time seconds> Wait B<seconds> between tests. Useful when
+debugging issues with systems that don't log with millisecond precision.
+
+B<--verbose> Log successful tests as well. By default only
+the failures are logged.
 
 B<--version> Print version and exit.
 

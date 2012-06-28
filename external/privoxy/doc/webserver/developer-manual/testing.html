@@ -1,259 +1,169 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
-<HTML
-><HEAD
-><TITLE
->Testing Guidelines</TITLE
-><META
-NAME="GENERATOR"
-CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
-REL="HOME"
-TITLE="Privoxy Developer Manual"
-HREF="index.html"><LINK
-REL="PREVIOUS"
-TITLE="Coding Guidelines"
-HREF="coding.html"><LINK
-REL="NEXT"
-TITLE="Releasing a New Version"
-HREF="newrelease.html"><LINK
-REL="STYLESHEET"
-TYPE="text/css"
-HREF="../p_doc.css"><META
-HTTP-EQUIV="Content-Type"
-CONTENT="text/html;
-charset=ISO-8859-1"></HEAD
-><BODY
-CLASS="SECT1"
-BGCOLOR="#EEEEEE"
-TEXT="#000000"
-LINK="#0000FF"
-VLINK="#840084"
-ALINK="#0000FF"
-><DIV
-CLASS="NAVHEADER"
-><TABLE
-SUMMARY="Header navigation table"
-WIDTH="100%"
-BORDER="0"
-CELLPADDING="0"
-CELLSPACING="0"
-><TR
-><TH
-COLSPAN="3"
-ALIGN="center"
->Privoxy Developer Manual</TH
-></TR
-><TR
-><TD
-WIDTH="10%"
-ALIGN="left"
-VALIGN="bottom"
-><A
-HREF="coding.html"
-ACCESSKEY="P"
->Prev</A
-></TD
-><TD
-WIDTH="80%"
-ALIGN="center"
-VALIGN="bottom"
-></TD
-><TD
-WIDTH="10%"
-ALIGN="right"
-VALIGN="bottom"
-><A
-HREF="newrelease.html"
-ACCESSKEY="N"
->Next</A
-></TD
-></TR
-></TABLE
-><HR
-ALIGN="LEFT"
-WIDTH="100%"></DIV
-><DIV
-CLASS="SECT1"
-><H1
-CLASS="SECT1"
-><A
-NAME="TESTING"
->5. Testing Guidelines</A
-></H1
-><P
->To be filled.</P
-><DIV
-CLASS="SECT2"
-><H2
-CLASS="SECT2"
-><A
-NAME="TESTING-PLAN"
->5.1. Testplan for releases</A
-></H2
-><P
->       Explain release numbers. major, minor. developer releases. etc.
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
 
-<P
-></P
-><OL
-TYPE="1"
-><LI
-><P
->Remove any existing rpm with rpm -e</P
-></LI
-><LI
-><P
->Remove any file that was left over. This includes (but is not limited to)
-      <P
-></P
-><UL
-><LI
-><P
->/var/log/privoxy</P
-></LI
-><LI
-><P
->/etc/privoxy</P
-></LI
-><LI
-><P
->/usr/sbin/privoxy</P
-></LI
-><LI
-><P
->/etc/init.d/privoxy</P
-></LI
-><LI
-><P
->/usr/doc/privoxy*</P
-></LI
-></UL
-></P
-></LI
-><LI
-><P
->Install the rpm. Any error messages?</P
-></LI
-><LI
-><P
->start,stop,status <SPAN
-CLASS="APPLICATION"
->Privoxy</SPAN
-> with the specific script
-      (e.g. /etc/rc.d/init/privoxy stop). Reboot your machine. Does
-      autostart work?</P
-></LI
-><LI
-><P
->Start browsing. Does <SPAN
-CLASS="APPLICATION"
->Privoxy</SPAN
-> work? Logfile written?</P
-></LI
-><LI
-><P
->Remove the rpm. Any error messages? All files removed?</P
-></LI
-></OL
-></P
-></DIV
-><DIV
-CLASS="SECT2"
-><H2
-CLASS="SECT2"
-><A
-NAME="TESTING-REPORT"
->5.2. Test reports</A
-></H2
-><P
->Please submit test reports only with the <A
-HREF="http://sourceforge.net/tracker/?func=add&#38;group_id=11118&#38;atid=395005"
-TARGET="_top"
->test form</A
->
-at sourceforge. Three simple steps:
-        <P
-></P
-><UL
-><LI
-><P
->Select category: the distribution you test on.</P
-></LI
-><LI
-><P
->Select group: the version of <SPAN
-CLASS="APPLICATION"
->Privoxy</SPAN
-> that we are about to release.</P
-></LI
-><LI
-><P
->Fill the Summary and Detailed Description with something
-              intelligent (keep it short and precise).</P
-></LI
-></UL
->
-        Do not mail to the mailing list (we cannot keep track on issues there).
-      </P
-></DIV
-></DIV
-><DIV
-CLASS="NAVFOOTER"
-><HR
-ALIGN="LEFT"
-WIDTH="100%"><TABLE
-SUMMARY="Footer navigation table"
-WIDTH="100%"
-BORDER="0"
-CELLPADDING="0"
-CELLSPACING="0"
-><TR
-><TD
-WIDTH="33%"
-ALIGN="left"
-VALIGN="top"
-><A
-HREF="coding.html"
-ACCESSKEY="P"
->Prev</A
-></TD
-><TD
-WIDTH="34%"
-ALIGN="center"
-VALIGN="top"
-><A
-HREF="index.html"
-ACCESSKEY="H"
->Home</A
-></TD
-><TD
-WIDTH="33%"
-ALIGN="right"
-VALIGN="top"
-><A
-HREF="newrelease.html"
-ACCESSKEY="N"
->Next</A
-></TD
-></TR
-><TR
-><TD
-WIDTH="33%"
-ALIGN="left"
-VALIGN="top"
->Coding Guidelines</TD
-><TD
-WIDTH="34%"
-ALIGN="center"
-VALIGN="top"
->&nbsp;</TD
-><TD
-WIDTH="33%"
-ALIGN="right"
-VALIGN="top"
->Releasing a New Version</TD
-></TR
-></TABLE
-></DIV
-></BODY
-></HTML
->
+<html>
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 7 December 2008), see www.w3.org">
+
+  <title>Testing Guidelines</title>
+  <meta name="GENERATOR" content=
+  "Modular DocBook HTML Stylesheet Version 1.79">
+  <link rel="HOME" title="Privoxy Developer Manual" href="index.html">
+  <link rel="PREVIOUS" title="Coding Guidelines" href="coding.html">
+  <link rel="NEXT" title="Releasing a New Version" href="newrelease.html">
+  <link rel="STYLESHEET" type="text/css" href="../p_doc.css">
+  <meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+  <style type="text/css">
+body {
+  background-color: #EEEEEE;
+  color: #000000;
+  }
+  :link { color: #0000FF }
+  :visited { color: #840084 }
+  :active { color: #0000FF }
+  hr.c1 {text-align: left}
+  </style>
+</head>
+
+<body class="SECT1">
+  <div class="NAVHEADER">
+    <table summary="Header navigation table" width="100%" border="0"
+    cellpadding="0" cellspacing="0">
+      <tr>
+        <th colspan="3" align="center">Privoxy Developer Manual</th>
+      </tr>
+
+      <tr>
+        <td width="10%" align="left" valign="bottom"><a href="coding.html"
+        accesskey="P">Prev</a></td>
+
+        <td width="80%" align="center" valign="bottom"></td>
+
+        <td width="10%" align="right" valign="bottom"><a href=
+        "newrelease.html" accesskey="N">Next</a></td>
+      </tr>
+    </table>
+    <hr class="c1" width="100%">
+  </div>
+
+  <div class="SECT1">
+    <h1 class="SECT1"><a name="TESTING" id="TESTING">5. Testing
+    Guidelines</a></h1>
+
+    <p>To be filled.</p>
+
+    <div class="SECT2">
+      <h2 class="SECT2"><a name="TESTING-PLAN" id="TESTING-PLAN">5.1.
+      Testplan for releases</a></h2>
+
+      <p>Explain release numbers. major, minor. developer releases. etc.</p>
+
+      <ol type="1">
+        <li>
+          <p>Remove any existing rpm with rpm -e</p>
+        </li>
+
+        <li>
+          <p>Remove any file that was left over. This includes (but is not
+          limited to)</p>
+
+          <ul>
+            <li>
+              <p>/var/log/privoxy</p>
+            </li>
+
+            <li>
+              <p>/etc/privoxy</p>
+            </li>
+
+            <li>
+              <p>/usr/sbin/privoxy</p>
+            </li>
+
+            <li>
+              <p>/etc/init.d/privoxy</p>
+            </li>
+
+            <li>
+              <p>/usr/doc/privoxy*</p>
+            </li>
+          </ul>
+        </li>
+
+        <li>
+          <p>Install the rpm. Any error messages?</p>
+        </li>
+
+        <li>
+          <p>start,stop,status <span class="APPLICATION">Privoxy</span> with
+          the specific script (e.g. /etc/rc.d/init/privoxy stop). Reboot your
+          machine. Does autostart work?</p>
+        </li>
+
+        <li>
+          <p>Start browsing. Does <span class="APPLICATION">Privoxy</span>
+          work? Logfile written?</p>
+        </li>
+
+        <li>
+          <p>Remove the rpm. Any error messages? All files removed?</p>
+        </li>
+      </ol>
+    </div>
+
+    <div class="SECT2">
+      <h2 class="SECT2"><a name="TESTING-REPORT" id="TESTING-REPORT">5.2.
+      Test reports</a></h2>
+
+      <p>Please submit test reports only with the <a href=
+      "http://sourceforge.net/tracker/?func=add&amp;group_id=11118&amp;atid=395005"
+      target="_top">test form</a> at sourceforge. Three simple steps:</p>
+
+      <ul>
+        <li>
+          <p>Select category: the distribution you test on.</p>
+        </li>
+
+        <li>
+          <p>Select group: the version of <span class=
+          "APPLICATION">Privoxy</span> that we are about to release.</p>
+        </li>
+
+        <li>
+          <p>Fill the Summary and Detailed Description with something
+          intelligent (keep it short and precise).</p>
+        </li>
+      </ul>Do not mail to the mailing list (we cannot keep track on issues
+      there).
+    </div>
+  </div>
+
+  <div class="NAVFOOTER">
+    <hr class="c1" width="100%">
+
+    <table summary="Footer navigation table" width="100%" border="0"
+    cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="33%" align="left" valign="top"><a href="coding.html"
+        accesskey="P">Prev</a></td>
+
+        <td width="34%" align="center" valign="top"><a href="index.html"
+        accesskey="H">Home</a></td>
+
+        <td width="33%" align="right" valign="top"><a href="newrelease.html"
+        accesskey="N">Next</a></td>
+      </tr>
+
+      <tr>
+        <td width="33%" align="left" valign="top">Coding Guidelines</td>
+
+        <td width="34%" align="center" valign="top">&nbsp;</td>
+
+        <td width="33%" align="right" valign="top">Releasing a New
+        Version</td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>

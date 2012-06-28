@@ -8,7 +8,7 @@
 #
 # Template files are written win plain HTML, with a few
 # additions:
-# 
+#
 # - Lines that start with a '#' character like this one
 #   are ignored
 #
@@ -23,7 +23,7 @@
 #   strings @if-<name>start and if-<name>-end@. The strings
 #   should be placed in HTML comments (<!-- -->), so the
 #   html structure won't be messed when the magic happens.
-#   
+#
 # USABLE SYMBOLS IN THIS TEMPLATE:
 # --------------------------------
 #
@@ -111,7 +111,7 @@
           <p>
             Here you see the original headers that your client sent when requesting this page, along with
             the headers that Privoxy would have sent to the remote server if this request hadn't been
-            intercepted. 
+            intercepted.
           </p>
 
         <h3>Original Client Request:</h3>

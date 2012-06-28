@@ -1,5 +1,5 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook V3.1//EN"[
-<!entity % dummy "IGNORE"> 
+<!entity % dummy "IGNORE">
 <!entity supported SYSTEM "supported.sgml">
 <!entity newfeatures SYSTEM "newfeatures.sgml">
 <!entity p-intro SYSTEM "privoxy.sgml">
@@ -8,7 +8,7 @@
 <!entity contacting SYSTEM "contacting.sgml">
 <!entity copyright SYSTEM "copyright.sgml">
 <!entity license SYSTEM "license.sgml">
-<!entity p-version "3.0.11">
+<!entity p-version "3.0.19">
 <!entity p-status "stable">
 <!entity % p-not-stable "IGNORE">
 <!entity % p-stable "INCLUDE">
@@ -23,16 +23,16 @@
  Purpose     :  developer manual
                 This file belongs into
                 ijbswa.sourceforge.net:/home/groups/i/ij/ijbswa/htdocs/
-                
- $Id: developer-manual.sgml,v 2.27 2009/02/19 02:20:22 hal9 Exp $
+
+ $Id: developer-manual.sgml,v 2.38 2011/12/26 17:05:40 fabiankeil Exp $
 
  Copyright (C) 2001-2009 Privoxy Developers http://www.privoxy.org/
  See LICENSE.
 
  ========================================================================
- NOTE: Please read developer-manual/documentation.html before touching 
+ NOTE: Please read developer-manual/documentation.html before touching
  anything in this, or other Privoxy documentation. You have been warned!
- Failure to abide by this rule will result in the revocation of your license 
+ Failure to abide by this rule will result in the revocation of your license
  to live a peaceful existence!
  ========================================================================
 
@@ -45,24 +45,24 @@
      <subscript>
     <!-- Completely the wrong markup, but very little is allowed  -->
     <!-- in this part of an article. FIXME -->
-      <link linkend="copyright">Copyright</link> &my-copy; 2001-2009 by 
+      <link linkend="copyright">Copyright</link> &my-copy; 2001-2009 by
       <ulink url="http://www.privoxy.org/">Privoxy Developers</ulink>
      </subscript>
     </pubdate>
 
 
-    <pubdate>$Id: developer-manual.sgml,v 2.27 2009/02/19 02:20:22 hal9 Exp $</pubdate>
+    <pubdate>$Id: developer-manual.sgml,v 2.38 2011/12/26 17:05:40 fabiankeil Exp $</pubdate>
 
 <!--
 
-Note: this should generate a separate page, and a live link to it. 
+Note: this should generate a separate page, and a live link to it.
 But it doesn't for some mysterious reason. Please leave commented
-unless it can be fixed proper. For the time being, the copyright 
+unless it can be fixed proper. For the time being, the copyright
 statement will be in copyright.smgl.
 
 Hal.
 
-<legalnotice id="legalnotice"> 
+<legalnotice id="legalnotice">
  <para>
   text goes here ........
  </para>
@@ -101,7 +101,7 @@ Hal.
  the state at the release of version &p-version;.
  You can find the latest version of the this manual at <ulink
  url="http://www.privoxy.org/developer-manual/">http://www.privoxy.org/developer-manual/</ulink>.
- Please see <link linkend="contact">the Contact section</link> 
+ Please see <link linkend="contact">the Contact section</link>
  on how to contact the developers.
 </para>
 <!--        <para> -->
@@ -118,16 +118,16 @@ Hal.
 
  I don't like seeing blank space :) So added *something* here.
 
- --> 
+ -->
     <para>
      <application>Privoxy</application>, as an heir to
-     <application>Junkbuster</application>, is a Free Software project 
+     <application>Junkbuster</application>, is a Free Software project
      and the code is licensed under the GNU General Public License version 2.
      As such, <application>Privoxy</application> development is potentially open
      to anyone who has the time, knowledge, and desire to contribute
      in any capacity. Our goals are simply to continue the mission,
      to improve <application>Privoxy</application>, and
-     to make it available to as wide an audience as possible. 
+     to make it available to as wide an audience as possible.
     </para>
     <para>
      One does not have to be a programmer to contribute. Packaging, testing,
@@ -139,19 +139,19 @@ Hal.
    <para>
     The first step is to join the <ulink
       url="mailto:ijbswa-developers@lists.sourceforge.net">developer's mailing list</ulink>.
-    You can submit your ideas, or even better patches. Patches are best 
-    submitted to the Sourceforge tracker set up for this purpose, but 
+    You can submit your ideas, or even better patches. Patches are best
+    submitted to the Sourceforge tracker set up for this purpose, but
     can be sent to the list for review too.
    </para>
     <para>
-     You will also need to have a cvs package installed, which will 
+     You will also need to have a cvs package installed, which will
      entail having ssh installed as well (which seems to be a requirement of
      SourceForge), in order to access the cvs repository. Having the GNU build
      tools is also going to be important (particularly, autoconf and gmake).
     </para>
     <para>
-      For the time being (read, this section is under construction), you can 
-      also refer to the extensive comments in the source code. In fact, 
+      For the time being (read, this section is under construction), you can
+      also refer to the extensive comments in the source code. In fact,
       reading the code is recommended in any case.
     </para>
    </sect2>
@@ -161,7 +161,7 @@ Hal.
   <sect1 id="cvs"><title>The CVS Repository</title>
     <para>
       If you become part of the active development team, you will eventually
-      need write access to our holy grail, the CVS repository. One of the 
+      need write access to our holy grail, the CVS repository. One of the
       team members will need to set this up for you. Please read
       this chapter completely before accessing via CVS.
     </para>
@@ -206,21 +206,21 @@ Hal.
      </para>
      <para>
       At one time there were two distinct branches: stable and unstable. The
-      more drastic changes were to be in the unstable branch. These branches 
-      have now been merged to minimize time and effort of maintaining two 
+      more drastic changes were to be in the unstable branch. These branches
+      have now been merged to minimize time and effort of maintaining two
       branches.
      </para>
-    <!-- 
+    <!--
      <para>
        This will result in at least two active branches, which means there may
-       be occasions that require the same (or similar) item to be 
-       checked into to two different places (assuming its a bugfix and needs 
+       be occasions that require the same (or similar) item to be
+       checked into to two different places (assuming its a bugfix and needs
        fixing in both the stable and unstable trees). This also means that in
-       order to have access to both trees, both will have to be checked out 
-       separately. Use the <literal>cvs -r</literal> flag to check out a 
+       order to have access to both trees, both will have to be checked out
+       separately. Use the <literal>cvs -r</literal> flag to check out a
        branch, e.g: <literal>cvs co -r v_3_0_branch current</literal>.
      </para>
-    --> 
+    -->
     </sect2>
 
     <sect2 id="cvscommit"><title>CVS Commit Guidelines</title>
@@ -231,16 +231,16 @@ Hal.
         main development trunk, and we ask anyone with CVS access to strictly
         adhere to the following guidelines:
       </para>
-      
+
       <para>
        Basic Guidelines, for all branches:
       </para>
       <para>
         <itemizedlist>
           <listitem><para>
-            Please don't commit even 
+            Please don't commit even
             a small change without testing it thoroughly first. When we're
-            close to a public release, ask a fellow developer to review your 
+            close to a public release, ask a fellow developer to review your
             changes.
           </para></listitem>
           <listitem><para>
@@ -269,18 +269,18 @@ Hal.
             url="http://sourceforge.net/tracker/?atid=311118&amp;group_id=11118&amp;func=browse">patch
             tracker</ulink> instead.
           </para>
-         </listitem> 
+         </listitem>
         </itemizedlist>
       </para>
-      
+
 <!--
       <para>
-       Stable branches are handled with more care, especially after the 
-       initial *.*.0 release, and we are just in bugfix mode. In addition to 
-       the above, the below applies only to the stable branch (currently the 
+       Stable branches are handled with more care, especially after the
+       initial *.*.0 release, and we are just in bugfix mode. In addition to
+       the above, the below applies only to the stable branch (currently the
        <literal>v_3_0_branch</literal> branch):
       </para>
-      
+
       <para>
        <itemizedlist>
         <listitem>
@@ -290,41 +290,41 @@ Hal.
            project, or have prior approval of the project leaders or consensus
            of the devel list.
          </para>
-        </listitem> 
+        </listitem>
        <listitem>
         <para>
-         Where possible, bugfixes and changes should be tested in the main 
-         development trunk first. There may be occasions where this is not 
+         Where possible, bugfixes and changes should be tested in the main
+         development trunk first. There may be occasions where this is not
          feasible, though.
         </para>
-       </listitem> 
+       </listitem>
        <listitem>
         <para>
-          Alternately, proposed changes can be submitted as patches to the patch tracker on 
+          Alternately, proposed changes can be submitted as patches to the patch tracker on
           Sourceforge first: <ulink
           url="http://sourceforge.net/tracker/?group_id=11118&#38;atid=311118">http://sourceforge.net/tracker/?group_id=11118&#38;atid=311118</ulink>.
-          Then ask for peer review. 
+          Then ask for peer review.
         </para>
-       </listitem> 
+       </listitem>
         <listitem>
          <para>
           Do not even think about anything except bugfixes. No new features!
          </para>
-        </listitem> 
-     
+        </listitem>
+
        </itemizedlist>
-      </para> 
+      </para>
     -->
     </sect2>
 
   </sect1>
-	
+
   <!--   ~~~~~       New section      ~~~~~     -->
 <sect1 id="documentation"><title>Documentation Guidelines</title>
   <para>
     All formal documents are maintained in Docbook SGML and located in the
     <computeroutput>doc/source/*</computeroutput> directory. You will need
-    <ulink url="http://www.docbook.org">Docbook</ulink>, the Docbook 
+    <ulink url="http://www.docbook.org">Docbook</ulink>, the Docbook
     DTD's and the Docbook modular stylesheets (or comparable alternatives),
     and either <application>jade</application> or
     <application>openjade</application> (recommended) installed in order to
@@ -337,20 +337,20 @@ Hal.
     <citetitle>privoxy.1</citetitle> (man page), and
     <citetitle>config</citetitle> files are also now maintained as Docbook
     SGML. These files, when built, in the top-level source directory are
-    generated files! Also, the <application>Privoxy</application> <filename>index.html</filename> (and a 
-    variation on this file, <filename>privoxy-index.html</filename>, 
+    generated files! Also, the <application>Privoxy</application> <filename>index.html</filename> (and a
+    variation on this file, <filename>privoxy-index.html</filename>,
     meant for inclusion with doc packages), are maintained as SGML as well.
     <emphasis>DO NOT edit these directly</emphasis>. Edit the SGML source, or
     contact someone involved in the documentation.
-    </para> 
+    </para>
     <para>
      <filename>config</filename> requires some special handling. The reason it
      is maintained this way is so that the extensive comments in the file
-     mirror those in <citetitle>user-manual</citetitle>. But the conversion 
-     process requires going from SGML to HTML to text to special formatting 
+     mirror those in <citetitle>user-manual</citetitle>. But the conversion
+     process requires going from SGML to HTML to text to special formatting
      required for the embedded comments. Some of this does not survive so
      well. Especially some of the examples that are longer than 80 characters.
-     The build process for this file outputs to <filename>config.new</filename>, 
+     The build process for this file outputs to <filename>config.new</filename>,
      which should be reviewed for errors and mis-formatting. Once satisfied
      that it is correct, then it should be hand copied to
      <filename>config</filename>.
@@ -362,8 +362,8 @@ Hal.
     <para>
      Packagers are encouraged to include this documentation. For those without
      the ability to build the docs locally, text versions of each are kept in
-     CVS. HTML versions are also being kept in CVS under 
-     <filename>doc/webserver/*</filename>. And PDF version are kept in 
+     CVS. HTML versions are also being kept in CVS under
+     <filename>doc/webserver/*</filename>. And PDF version are kept in
      <filename>doc/pdf/*</filename>.
     </para>
     <para>
@@ -381,7 +381,7 @@ Hal.
     </para>
     <para>
      How do you update the webserver (i.e. the pages on privoxy.org)?
-     
+
      <orderedlist numeration="arabic">
       <listitem><para>
         First, build the docs by running <computeroutput>make
@@ -399,7 +399,7 @@ Hal.
 
   <para>
    Finished docs should be occasionally submitted to CVS
-   (<filename>doc/webserver/*/*.html</filename>) so that those without 
+   (<filename>doc/webserver/*/*.html</filename>) so that those without
    the ability to build them locally, have access to them if needed.
    This is especially important just prior to a new release! Please
    do this <emphasis>after</emphasis> the <literal>$VERSION</literal> and
@@ -411,14 +411,14 @@ Hal.
 <sect2 id="sgml">
 <title>Quickstart to Docbook and SGML</title>
 <para>
- If you are not familiar with SGML, it is a markup language similar to HTML. 
- Actually, not a mark up language per se, but a language used to define 
+ If you are not familiar with SGML, it is a markup language similar to HTML.
+ Actually, not a mark up language per se, but a language used to define
  markup languages. In fact, HTML is an SGML application. Both will use
  <quote>tags</quote> to format text and other content. SGML tags can be much
  more varied, and flexible, but do much of the same kinds of things. The tags,
  or <quote>elements</quote>, are definable in SGML. There is no set
  <quote>standards</quote>. Since we are using
- <application>Docbook</application>, our tags are those that are defined by 
+ <application>Docbook</application>, our tags are those that are defined by
  <application>Docbook</application>. Much of how the finish document is
  rendered is determined by the <quote>stylesheets</quote>.
  The stylesheets determine how each tag gets translated to HTML, or other
@@ -435,26 +435,26 @@ Hal.
 
 <para>
  Our documents use <quote>sections</quote> for the most part. Sections
- will be processed into HTML headers (e.g. <literal>h1</literal> for 
+ will be processed into HTML headers (e.g. <literal>h1</literal> for
  <literal>sect1</literal>). The <application>Docbook</application> stylesheets
- will use these to also generate the Table of Contents for each doc. Our 
- TOC's are set to a depth of three. Meaning <literal>sect1</literal>, 
- <literal>sect2</literal>, and <literal>sect3</literal> will have TOC 
- entries, but <literal>sect4</literal> will not. Each section requires 
- a <literal>&lt;title&gt;</literal> element, and at least one 
- <literal>&lt;para&gt;</literal>. There is a limit of five section 
- levels in Docbook, but generally three should be sufficient for our 
+ will use these to also generate the Table of Contents for each doc. Our
+ TOC's are set to a depth of three. Meaning <literal>sect1</literal>,
+ <literal>sect2</literal>, and <literal>sect3</literal> will have TOC
+ entries, but <literal>sect4</literal> will not. Each section requires
+ a <literal>&lt;title&gt;</literal> element, and at least one
+ <literal>&lt;para&gt;</literal>. There is a limit of five section
+ levels in Docbook, but generally three should be sufficient for our
  purposes.
 </para>
 
 <para>
- Some common elements that you likely will use: 
+ Some common elements that you likely will use:
 </para>
 
 <para>
   <simplelist>
     <member>
-      <emphasis>&lt;para&gt;&lt;/para&gt;</emphasis>, paragraph delimiter. Most 
+      <emphasis>&lt;para&gt;&lt;/para&gt;</emphasis>, paragraph delimiter. Most
       text needs to be within paragraph elements (there are some exceptions).
     </member>
     <member>
@@ -468,7 +468,7 @@ Hal.
       <emphasis>&lt;command&gt;&lt;/command&gt;</emphasis>, command examples.
     </member>
     <member>
-      <emphasis>&lt;literallayout&gt;&lt;/literallayout&gt;</emphasis>, like 
+      <emphasis>&lt;literallayout&gt;&lt;/literallayout&gt;</emphasis>, like
       <literal>&lt;pre&gt;</literal>, more or less.
     </member>
     <member>
@@ -478,15 +478,15 @@ Hal.
       <emphasis>&lt;listitem&gt;&lt;/listitem&gt;</emphasis>, member of the above.
     </member>
     <member>
-      <emphasis>&lt;screen&gt;&lt;/screen&gt;</emphasis>, screen output, implies 
+      <emphasis>&lt;screen&gt;&lt;/screen&gt;</emphasis>, screen output, implies
       <literal>&lt;literallayout&gt;</literal>.
     </member>
     <member>
-      <emphasis>&lt;ulink url="example.com"&gt;&lt;/ulink&gt;</emphasis>, like 
+      <emphasis>&lt;ulink url="example.com"&gt;&lt;/ulink&gt;</emphasis>, like
       HTML <literal>&lt;a&gt;</literal> tag.
     </member>
     <member>
-      <emphasis>&lt;quote&gt;&lt;/quote&gt;</emphasis>, for, doh, quoting text. 
+      <emphasis>&lt;quote&gt;&lt;/quote&gt;</emphasis>, for, doh, quoting text.
     </member>
   </simplelist>
 </para>
@@ -506,8 +506,8 @@ Hal.
   <sect2 id="docstyle">
   <title><application>Privoxy</application> Documentation Style</title>
    <para>
-    It will be easier if everyone follows a similar writing style. This 
-    just makes it easier to read what someone else has written if it 
+    It will be easier if everyone follows a similar writing style. This
+    just makes it easier to read what someone else has written if it
     is all done in a similar fashion.
    </para>
    <para>
@@ -519,7 +519,7 @@ Hal.
       <para>
        All tags should be lower case.
       </para>
-    </listitem> 
+    </listitem>
     <listitem>
      <para>
        Tags delimiting a <emphasis>block</emphasis> of text (even small
@@ -534,11 +534,11 @@ Hal.
   Just to &lt;emphasis&gt;emphasize&lt;/emphasis&gt;, some text goes here.
        </literallayout>
      </para>
-   </listitem> 
+   </listitem>
    <listitem>
     <para>
       Tags should be nested and step indented for block text like: (except
-      in-line tags) 
+      in-line tags)
      <literallayout>
  &lt;para&gt;
   &lt;itemizedlist&gt;
@@ -552,48 +552,48 @@ Hal.
        </literallayout>
       This makes it easier to find the text amongst the tags ;-)
     </para>
-   </listitem> 
+   </listitem>
    <listitem>
     <para>
-     Use white space to separate logical divisions within a document, 
-     like between sections. Running everything together consistently 
+     Use white space to separate logical divisions within a document,
+     like between sections. Running everything together consistently
      makes it harder to read and work on.
     </para>
-   </listitem> 
+   </listitem>
    <listitem>
     <para>
-     Do not hesitate to make comments. Comments can either use the 
-     &lt;comment&gt; element, or the &lt;!--  --&gt; style comment 
-     familiar from HTML. (Note in Docbook v4.x &lt;comment&gt; is 
+     Do not hesitate to make comments. Comments can either use the
+     &lt;comment&gt; element, or the &lt;!--  --&gt; style comment
+     familiar from HTML. (Note in Docbook v4.x &lt;comment&gt; is
      replaced by &lt;remark&gt;.)
     </para>
-  </listitem> 
+  </listitem>
   <listitem>
    <para>
-     We have an international audience. Refrain from slang, or English 
-     idiosyncrasies (too many to list :). Humor also does not translate 
+     We have an international audience. Refrain from slang, or English
+     idiosyncrasies (too many to list :). Humor also does not translate
      well sometimes.
    </para>
-  </listitem> 
+  </listitem>
   <listitem>
    <para>
     Try to keep overall line lengths in source files to 80 characters or less
     for obvious reasons. This is not always possible, with lengthy URLs for
     instance.
    </para>
-  </listitem> 
+  </listitem>
   <listitem>
    <para>
-    Our documents are available in differing formats. Right now, they 
-    are just plain text, HTML, and PDF, but others are always a 
-    future possibility. Be careful with URLs (&lt;ulink&gt;), and avoid 
+    Our documents are available in differing formats. Right now, they
+    are just plain text, HTML, and PDF, but others are always a
+    future possibility. Be careful with URLs (&lt;ulink&gt;), and avoid
     this mistake:
    </para>
    <para>
      My favorite site is &lt;ulink url="http://example.com"&gt;here&lt;/ulink&gt;.
    </para>
    <para>
-     This will render as <quote>My favorite site is here</quote>, which is 
+     This will render as <quote>My favorite site is here</quote>, which is
      not real helpful in a text doc. Better like this:
    </para>
    <para>
@@ -607,37 +607,37 @@ Hal.
     <literal>-H</literal> option. (<application>ispell</application> I think
     too.)
    </para>
-  </listitem> 
+  </listitem>
 
   </itemizedlist>
- </para> 
-  
+ </para>
+
   </sect2>
 
-  
+
  <!--   ~~~~~       New section      ~~~~~     -->
 
  <sect2><title>Privoxy Custom Entities</title>
  <para>
-  <application>Privoxy</application> documentation is using 
-  a number of customized <quote>entities</quote> to facilitate 
-  documentation maintenance. 
+  <application>Privoxy</application> documentation is using
+  a number of customized <quote>entities</quote> to facilitate
+  documentation maintenance.
  </para>
  <para>
   We are using a set of <quote>boilerplate</quote> files with generic text,
   that is used by multiple docs. This way we can write something once, and use
   it repeatedly without having to re-write the same content over and over again.
   If editing such a file, keep in mind that it should be
-  <emphasis>generic</emphasis>. That is the purpose; so it can be used in varying 
+  <emphasis>generic</emphasis>. That is the purpose; so it can be used in varying
   contexts without additional modifications.
  </para>
  <para>
-  We are also using what <application>Docbook</application> calls 
-  <quote>internal entities</quote>. These are like variables in 
+  We are also using what <application>Docbook</application> calls
+  <quote>internal entities</quote>. These are like variables in
   programming. Well, sort of. For instance, we have the
-  <literal>p-version</literal> entity that contains the current 
-  <application>Privoxy</application> version string. You are strongly 
-  encouraged to use these where possible. Some of these obviously 
+  <literal>p-version</literal> entity that contains the current
+  <application>Privoxy</application> version string. You are strongly
+  encouraged to use these where possible. Some of these obviously
   require re-setting with each release (done by the Makefile). A sampling of
   custom entities are listed below. See any of the main docs for examples.
  </para>
@@ -653,28 +653,28 @@ Hal.
    </para>
    <para>
      In this example, the contents of the file,
-     <filename>supported.sgml</filename> is available for inclusion anywhere 
-     in the doc. To make this happen, just reference the now defined 
-     entity: <literal>&#38;supported;</literal> (starts with an ampersand 
-     and ends with a semi-colon), and the contents will be dumped into 
+     <filename>supported.sgml</filename> is available for inclusion anywhere
+     in the doc. To make this happen, just reference the now defined
+     entity: <literal>&#38;supported;</literal> (starts with an ampersand
+     and ends with a semi-colon), and the contents will be dumped into
      the finished doc at that point.
    </para>
-  </listitem> 
+  </listitem>
   <listitem>
    <para>
     Commonly used <quote>internal entities</quote>:
   </para>
   <simplelist>
    <member>
-    <emphasis>p-version</emphasis>: the <application>Privoxy</application> 
+    <emphasis>p-version</emphasis>: the <application>Privoxy</application>
     version string, e.g. <quote>&p-version;</quote>.
    </member>
    <member>
-    <emphasis>p-status</emphasis>: the project status, either 
+    <emphasis>p-status</emphasis>: the project status, either
     <quote>alpha</quote>, <quote>beta</quote>, or <quote>stable</quote>.
    </member>
    <member>
-    <emphasis>p-not-stable</emphasis>: use to conditionally include 
+    <emphasis>p-not-stable</emphasis>: use to conditionally include
     text in <quote>not stable</quote> releases (e.g. <quote>beta</quote>).
    </member>
    <member>
@@ -684,16 +684,16 @@ Hal.
     <emphasis>p-text</emphasis>: this doc is only generated as text.
    </member>
   </simplelist>
- </listitem> 
+ </listitem>
  </itemizedlist>
- </para> 
+ </para>
  <para>
-  There are others in various places that are defined for a specific 
+  There are others in various places that are defined for a specific
   purpose. Read the source!
  </para>
- 
+
  </sect2>
-  
+
  </sect1>
 
 <!--     <listitem><para>be consistent with the redirect script (i.e. the <application>Privoxy</application> program -->
@@ -718,7 +718,7 @@ Hal.
   </sect2>
 
     <sect2 id="s2"><title>Using Comments</title>
- 
+
 
     <sect3 id="s3"><title>Comment, Comment, Comment</title>
 
@@ -757,7 +757,7 @@ is actually being done.
 </programlisting>
   </sect3>
 
-    
+
 
     <sect3 id="s4"><title>Use blocks for comments</title>
 
@@ -798,9 +798,9 @@ if ( this_variable == that_variable ) /* this may not either */
     wish to "disrupt" the flow of the code, feel free to use a 1
     line comment which is NOT on the same line as the code.</para>
 
-    
+
   </sect3>
-    
+
 
     <sect3 id="s5"><title>Keep Comments on their own line</title>
 
@@ -853,7 +853,7 @@ short do_something_very_important(
 }   /* -END- do_something_very_important */
 </programlisting>
   </sect3>
-    
+
 
     <sect3 id="s6"><title>Comment each logical step</title>
 
@@ -871,9 +871,9 @@ short do_something_very_important(
     comment. After all, these are usually major logic
     containers.</para>
 
-    
+
   </sect3>
-    
+
 
     <sect3 id="s7"><title>Comment All Functions Thoroughly</title>
 
@@ -892,9 +892,9 @@ short do_something_very_important(
     functions should contain the information presented in the
     addendum section of this document.</para>
 
-    
+
   </sect3>
-    
+
 
     <sect3 id="s8"><title>Comment at the end of braces if the
     content is more than one screen length</title>
@@ -930,12 +930,12 @@ if ( 1 == X )
 } /* -END- if ( 1 == X ) */
 </programlisting>
   </sect3>
-    
+
   </sect2>
 
     <sect2 id="s9"><title>Naming Conventions</title>
 
-    
+
 
     <sect3 id="s10"><title>Variable Names</title>
 
@@ -960,9 +960,9 @@ int msiis5hack = 0; int msIis5Hack = 0;
 </programlisting>
 </para>
 
-    
 
-  </sect3>    
+
+  </sect3>
 
     <sect3 id="s11"><title>Function Names</title>
 
@@ -988,9 +988,9 @@ int loadSomeFile( struct client_state *csp )
 </programlisting>
 </para>
 
-    
+
   </sect3>
-    
+
 
     <sect3 id="s12"><title>Header file prototypes</title>
 
@@ -1007,15 +1007,15 @@ int loadSomeFile( struct client_state *csp )
 
     <para><emphasis>Instead of:</emphasis>
 <programlisting>
-(.h) extern int load_aclfile( struct client_state * ); or 
-(.h) extern int load_aclfile(); 
+(.h) extern int load_aclfile( struct client_state * ); or
+(.h) extern int load_aclfile();
 (.c) int load_aclfile( struct client_state *csp )
 </programlisting>
 </para>
 
-    
+
   </sect3>
-    
+
 
     <sect3 id="s13"><title>Enumerations, and #defines</title>
 
@@ -1043,7 +1043,7 @@ int loadSomeFile( struct client_state *csp )
 #endif /* def FEATURE_FORCE */
 </programlisting>
   </sect3>
-    
+
 
     <sect3 id="s14"><title>Constants</title>
 
@@ -1065,23 +1065,23 @@ int loadSomeFile( struct client_state *csp )
 
     <para>
 <programlisting>
-#define USE_IMG_LST 1 or 
+#define USE_IMG_LST 1 or
 #define _USE_IMAGE_LIST 1 or
-#define USE_IMAGE_LIST_ 1 or 
+#define USE_IMAGE_LIST_ 1 or
 #define use_image_list 1 or
 #define UseImageList 1
 </programlisting>
 </para>
 
-    
+
   </sect3>
 
   </sect2>
-    
+
 
     <sect2 id="s15"><title>Using Space</title>
 
-    
+
 
     <sect3 id="s16"><title>Put braces on a line by themselves.</title>
 
@@ -1127,7 +1127,7 @@ while ( more lines are read )
 }
 </programlisting>
   </sect3>
-    
+
 
     <sect3 id="s17"><title>ALL control statements should have a
     block</title>
@@ -1160,9 +1160,9 @@ if ( this == that )
     "feature". The "explanation" and "exception" from the point
     above also applies.</para>
 
-    
+
   </sect3>
-    
+
 
     <sect3 id="s18"><title>Do not belabor/blow-up boolean
     expressions</title>
@@ -1181,9 +1181,9 @@ structure->flag = ( condition );</programlisting>
     to the project has at least a "good" knowledge of C/C++. (Hope
     I do not offend by that last comment ... 8-)</para>
 
-    
+
   </sect3>
-    
+
 
     <sect3 id="s19"><title>Use white space freely because it is
     free</title>
@@ -1205,7 +1205,7 @@ if ( this_variable == this_variable )
 first_value = old_value + ( ( some_value - another_value ) - whatever )
 </programlisting>
   </sect3>
-    
+
 
     <sect3 id="s20"><title>Don't use white space around structure
     operators</title>
@@ -1229,9 +1229,9 @@ function_name();</programlisting>
     <para><emphasis>Instead of:</emphasis> a_struct -> a_member; a_struct . a_member;
     function_name ();</para>
 
-    
+
   </sect3>
-    
+
 
     <sect3 id="s21"><title>Make the last brace of a function stand
     out</title>
@@ -1267,9 +1267,9 @@ int function2( ... )
     <para><emphasis>Status:</emphasis> developer-discretion on the number of blank
     lines. Enforced is the end of function comments.</para>
 
-    
+
   </sect3>
-    
+
 
     <sect3 id="s22"><title>Use 3 character indentions</title>
 
@@ -1306,11 +1306,11 @@ int function1( ... )
   </sect3>
 
   </sect2>
-    
+
 
     <sect2 id="s23"><title>Initializing</title>
 
-    
+
 
     <sect3 id="s24"><title>Initialize all variables</title>
 
@@ -1337,11 +1337,11 @@ struct *ptr = NULL;</programlisting>
 
   </sect3>
   </sect2>
-    
+
 
     <sect2 id="s25"><title>Functions</title>
 
-    
+
 
     <sect3 id="s26"><title>Name functions that return a boolean as a
     question.</title>
@@ -1358,7 +1358,7 @@ contains_an_image();
 is_web_page_blank();
 </programlisting>
   </sect3>
-    
+
 
     <sect3 id="s27"><title>Always specify a return type for a
     function.</title>
@@ -1370,9 +1370,9 @@ is_web_page_blank();
     purpose, and create a void return type if the function does not
     need to return anything.</para>
 
-    
+
   </sect3>
-    
+
 
     <sect3 id="s28"><title>Minimize function calls when iterating by
     using variables</title>
@@ -1416,9 +1416,9 @@ for ( size_t cnt = 0; cnt &lt; len; cnt++ )
     *may* change or could *potentially* change, then you must code the
     function call in the for/while loop.</para>
 
-    
+
   </sect3>
-    
+
 
     <sect3 id="s29"><title>Pass and Return by Const Reference</title>
 
@@ -1437,9 +1437,9 @@ for ( size_t cnt = 0; cnt &lt; len; cnt++ )
     <para>Both these pointers are *const*! If the c runtime library
     maintainers do it, we should too.</para>
 
-    
+
   </sect3>
-    
+
 
     <sect3 id="s30"><title>Pass and Return by Value</title>
 
@@ -1453,9 +1453,9 @@ for ( size_t cnt = 0; cnt &lt; len; cnt++ )
     prototypes with "pass by value": int load_aclfile( struct
     client_state *csp )</para>
 
-    
+
   </sect3>
-    
+
 
     <sect3 id="s31"><title>Names of include files</title>
 
@@ -1478,7 +1478,7 @@ for ( size_t cnt = 0; cnt &lt; len; cnt++ )
 
     <para>
 <programlisting>
-/* This is not a local include, but requires a path element. */ 
+/* This is not a local include, but requires a path element. */
 #include &lt;sys/fileName.h&gt;
 </programlisting>
 </para>
@@ -1487,9 +1487,9 @@ for ( size_t cnt = 0; cnt &lt; len; cnt++ )
     without a _very_ good reason. This duplicates the #include
     "file.h" behavior.</para>
 
-    
+
   </sect3>
-    
+
 
     <sect3 id="s32"><title>Provide multiple inclusion
     protection</title>
@@ -1512,7 +1512,7 @@ for ( size_t cnt = 0; cnt &lt; len; cnt++ )
 #endif /* ndef PROJECT_H_INCLUDED */
 </programlisting>
   </sect3>
-    
+
 
     <sect3 id="s33"><title>Use `extern "C"` when appropriate</title>
 
@@ -1536,7 +1536,7 @@ extern "C"
 #endif /* def __cplusplus */
 </programlisting>
   </sect3>
-    
+
 
     <sect3 id="s34"><title>Where Possible, Use Forward Struct
     Declaration Instead of Includes</title>
@@ -1562,13 +1562,13 @@ extern file_list *xyz;</programlisting>
 
     <para><emphasis>Status:</emphasis> Use with discretion.</para>
 
-    
+
   </sect3>
   </sect2>
 
     <sect2 id="s35"><title>General Coding Practices</title>
 
-    
+
 
     <sect3 id="s36"><title>Turn on warnings</title>
 
@@ -1578,9 +1578,9 @@ extern file_list *xyz;</programlisting>
     should turn on as many as possible. With GCC, the switch is
     "-Wall". Try and fix as many warnings as possible.</para>
 
-    
+
   </sect3>
-    
+
 
     <sect3 id="s37"><title>Provide a default case for all switch
     statements</title>
@@ -1623,9 +1623,9 @@ switch( hash_string( cmd ) )
 
     <para><emphasis>Status:</emphasis> Programmer discretion is advised.</para>
 
-    
+
   </sect3>
-    
+
 
     <sect3 id="s38"><title>Try to avoid falling through cases in a
     switch statement.</title>
@@ -1648,9 +1648,9 @@ switch( hash_string( cmd ) )
     the fact of the fall through and reason why you felt it was
     necessary.</para>
 
-    
+
   </sect3>
-    
+
 
     <sect3 id="s39"><title>Use 'long' or 'short' Instead of
     'int'</title>
@@ -1666,9 +1666,9 @@ switch( hash_string( cmd ) )
     now). Should we add these to IJB now that we have a "configure"
     script?</para>
 
-    
+
   </sect3>
-    
+
 
     <sect3 id="s40"><title>Don't mix size_t and other types</title>
 
@@ -1680,9 +1680,9 @@ switch( hash_string( cmd ) )
     variable of a different type (or even against a constant)
     without casting one of the values.</para>
 
-    
+
   </sect3>
-    
+
 
     <sect3 id="s41"><title>Declare each variable and struct on its
     own line.</title>
@@ -1715,9 +1715,9 @@ long c = 0;</programlisting>
 
     <para><emphasis>Status:</emphasis> developer-discretion.</para>
 
-    
+
   </sect3>
-    
+
 
     <sect3 id="s42"><title>Use malloc/zalloc sparingly</title>
 
@@ -1735,7 +1735,7 @@ If a function creates a struct and stores a pointer to it in a
 list, then it should definitely be allocated via `malloc'.
 </programlisting>
   </sect3>
-    
+
 
     <sect3 id="s43"><title>The Programmer Who Uses 'malloc' is
     Responsible for Ensuring 'free'</title>
@@ -1765,9 +1765,9 @@ static void unload_re_filterfile( void *f ) { ... }</programlisting>
     standard is for allocating and freeing data structures (complex
     or nested).</para>
 
-    
+
   </sect3>
-    
+
 
     <sect3 id="s44"><title>Add loaders to the `file_list' structure
     and in order</title>
@@ -1783,9 +1783,9 @@ static void unload_re_filterfile( void *f ) { ... }</programlisting>
     POPUPs can also be referred to as KILLPOPUPs, it is clear that
     it should come first.</para>
 
-    
+
   </sect3>
-    
+
 
     <sect3 id="s45"><title>"Uncertain" new code and/or changes to
     existing code, use FIXME or XXX</title>
@@ -1815,7 +1815,7 @@ static void unload_re_filterfile( void *f ) { ... }</programlisting>
     include in the project (or conversely exclude from the
     project).</para>
 
-    
+
   </sect3>
 
   </sect2>
@@ -1850,12 +1850,9 @@ const char FILENAME_rcs[] = "$I<!-- Break CVS Substitution -->d$";
  *                The GNU General Public License should be included with
  *                this file.  If not, you can view it at
  *                http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
- *                or write to the Free Software Foundation, Inc., 
+ *                or write to the Free Software Foundation, Inc.,
  *                51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 ,
  *                USA
- *
- * Revisions   :
- *    $L<!-- Break CVS Substitution -->og$
  *
  *********************************************************************/
 
@@ -1907,12 +1904,9 @@ const char FILENAME_h_rcs[] = FILENAME_H_VERSION;
  *                The GNU General Public License should be included with
  *                this file.  If not, you can view it at
  *                http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
- *                or write to the Free Software Foundation, Inc., 
+ *                or write to the Free Software Foundation, Inc.,
  *                51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 ,
  *                USA
- *
- * Revisions   :
- *    $L<!-- Break CVS Substitution -->og$
  *
  *********************************************************************/
 
@@ -2017,7 +2011,7 @@ Install the rpm. Any error messages?
 Please submit test reports only with the <ulink url="http://sourceforge.net/tracker/?func=add&amp;group_id=11118&amp;atid=395005">test form</ulink>
 at sourceforge. Three simple steps:
         <itemizedlist>
-          
+
           <listitem><para>Select category: the distribution you test on.</para></listitem>
           <listitem><para>Select group: the version of <application>Privoxy</application> that we are about to release.</para></listitem>
           <listitem><para>Fill the Summary and Detailed Description with something
@@ -2027,7 +2021,7 @@ at sourceforge. Three simple steps:
         Do not mail to the mailing list (we cannot keep track on issues there).
       </para>
     </sect2>
-    
+
   </sect1>
 
   <!--   ~~~~~       New section      ~~~~~     -->
@@ -2055,7 +2049,7 @@ at sourceforge. Three simple steps:
     <title>Version numbers</title>
 
     <para>
-      First you need to determine which version number the release will have. 
+      First you need to determine which version number the release will have.
       <application>Privoxy</application> version numbers consist of three numbers,
       separated by dots, like in X.Y.Z (e.g. 3.0.0), where:
         <itemizedlist>
@@ -2063,7 +2057,7 @@ at sourceforge. Three simple steps:
             <para>
               X, the version major, is rarely ever changed. It is increased by one if
               turning a development branch into stable substantially changes the functionality,
-              user interface or configuration syntax. Majors 1 and 2 were 
+              user interface or configuration syntax. Majors 1 and 2 were
               <application>Junkbuster</application>, and 3 will be the first stable
               <application>Privoxy</application> release.
             </para>
@@ -2087,7 +2081,7 @@ at sourceforge. Three simple steps:
           <listitem>
             <para>
               Z, the point or sub version, represents a release of the software within a branch.
-              It is therefore incremented immediately before each code freeze. 
+              It is therefore incremented immediately before each code freeze.
               In development branches, only the even point versions correspond to actual releases,
               while the odd ones denote the evolving state of the sources on CVS in between.
               It follows that Z is odd on CVS in development branches most of the time. There, it gets
@@ -2100,11 +2094,11 @@ at sourceforge. Three simple steps:
               Stable branches work a little differently, since there should be
               little to no development happening in such branches. Remember,
               only bugfixes, which presumably should have had some testing
-              before being committed. Stable branches will then have their 
-              version reported as <literal>0.0.0</literal>, during that period 
-              between releases when changes are being added. This is to denote 
-              that this code is <emphasis>not for release</emphasis>. Then 
-              as the release nears, the version is bumped according: e.g. 
+              before being committed. Stable branches will then have their
+              version reported as <literal>0.0.0</literal>, during that period
+              between releases when changes are being added. This is to denote
+              that this code is <emphasis>not for release</emphasis>. Then
+              as the release nears, the version is bumped according: e.g.
               <literal>3.0.1 -> 0.0.0 -> 3.0.2</literal>.
             </para>
           </listitem>
@@ -2126,16 +2120,16 @@ at sourceforge. Three simple steps:
      <emphasis>before</emphasis> committing to a stable branch!
     </para>
     <para>
-     Developers should remember too that if they commit a bugfix to the stable 
-     branch, this will more than likely require a separate submission to the 
-     main trunk, since these are separate development trees within CVS. If you 
+     Developers should remember too that if they commit a bugfix to the stable
+     branch, this will more than likely require a separate submission to the
+     main trunk, since these are separate development trees within CVS. If you
      are working on both, then this would require at least two separate check
      outs (i.e main trunk, <emphasis>and</emphasis> the stable release branch,
      which is <literal>v_3_0_branch</literal> at the moment).
     </para>
 
     </sect2>
-     
+
     <sect2 id="beforerelease">
     <title>Before the Release: Freeze</title>
      <para>
@@ -2151,26 +2145,26 @@ at sourceforge. Three simple steps:
          they have pending changes/fixes in their pipelines. Announce the
          freeze so that nobody will interfere with last minute changes.
         </para>
-      </listitem> 
+      </listitem>
       <listitem>
        <para>
          Increment the version number (point from odd to even in development
-         branches!) in <filename>configure.in</filename>. (RPM spec files 
+         branches!) in <filename>configure.in</filename>. (RPM spec files
          will need to be incremented as well.)
        </para>
-      </listitem> 
+      </listitem>
       <listitem>
        <para>
         If <filename>default.action</filename> has changed since last
         release (i.e. software release or standalone actions file release),
         bump up its version info to A.B in this line:
        </para>
-       <para> 
+       <para>
         <programlisting>
   {+add-header{X-Actions-File-Version: A.B} -filter -no-popups}
 </programlisting>
        </para>
-       <para> 
+       <para>
         Then change the version info in doc/webserver/actions/index.php,
         line: '$required_actions_file_version = "A.B";'
        </para>
@@ -2178,36 +2172,36 @@ at sourceforge. Three simple steps:
       <listitem>
        <para>
         All documentation should be rebuild after the version bump.
-        Finished docs should be then be committed to CVS (for those 
-        without the ability to build these). Some docs may require 
+        Finished docs should be then be committed to CVS (for those
+        without the ability to build these). Some docs may require
         rather obscure processing tools. <filename>config</filename>,
         the man page (and the html version of the man page), and the PDF docs
         fall in this category. REAMDE, the man page, AUTHORS, and config
-        should all also be committed to CVS for other packagers. The 
+        should all also be committed to CVS for other packagers. The
         formal docs should be uploaded to the webserver. See the
         Section "Updating the webserver" in this manual for details.
        </para>
-      </listitem> 
+      </listitem>
       <listitem>
        <para>
-         The <citetitle>User Manual</citetitle> is also used for context 
+         The <citetitle>User Manual</citetitle> is also used for context
          sensitive help for the CGI editor. This is version sensitive, so that
-         the user will get appropriate help for his/her release. So with 
+         the user will get appropriate help for his/her release. So with
          each release a fresh version should be uploaded to the webserver
          (this is in addition to the main <citetitle>User Manual</citetitle>
-         link from the main page since we need to keep manuals for various 
-         versions available). The CGI pages will link to something like 
+         link from the main page since we need to keep manuals for various
+         versions available). The CGI pages will link to something like
          <literal>http://privoxy.org/$(VERSION)/user-manual/</literal>. This
          will need to be updated for each new release. There is no Makefile
          target for this at this time!!! It needs to be done manually.
        </para>
-      </listitem> 
+      </listitem>
       <listitem>
        <para>
         All developers should look at the <filename>ChangeLog</filename> and
         make sure noteworthy changes are referenced.
        </para>
-     </listitem> 
+     </listitem>
       <listitem>
        <para>
         <emphasis>Commit all files that were changed in the above steps!</emphasis>
@@ -2219,14 +2213,14 @@ at sourceforge. Three simple steps:
         <quote><command>cvs tag v_X_Y_Z</command></quote>.
         Don't use vX_Y_Z, ver_X_Y_Z, v_X.Y.Z (won't work) etc.
        </para>
-      </listitem> 
+      </listitem>
      <listitem>
        <para>
         If the release was in a development branch, increase the point version
         from even to odd (X.Y.(Z+1)) again in <filename>configure.in</filename> and
         commit your change.
        </para>
-      </listitem> 
+      </listitem>
      <listitem>
        <para>
         On the webserver, copy the user manual to a new top-level directory
@@ -2234,27 +2228,27 @@ at sourceforge. Three simple steps:
         pages, which have the version as a prefix, will go into the right version of the manual.
         If this is a development branch release, also symlink <filename>X.Y.(Z-1)</filename>
         to <filename>X.Y.Z</filename> and <filename>X.Y.(Z+1)</filename> to
-        <filename>.</filename> (i.e. dot). 
+        <filename>.</filename> (i.e. dot).
        </para>
-      </listitem> 
+      </listitem>
       </itemizedlist>
-     </para> 
+     </para>
     </sect2>
-    
+
     <sect2 id="therelease">
     <title>Building and Releasing the Packages</title>
      <para>
       Now the individual packages can be built and released. Note that for
       GPL reasons the first package to be released is always the source tarball.
      </para>
- 
+
      <para>
       For <emphasis>all</emphasis> types of packages, including the source tarball,
       <emphasis>you must make sure that you build from clean sources by exporting
       the right version from CVS into an empty directory</emphasis> (just press return when
       asked for a password):
      </para>
-      
+
      <para>
       <programlisting>
   mkdir dist # delete or choose different name if it already exists
@@ -2263,20 +2257,20 @@ at sourceforge. Three simple steps:
   cvs -z3 -d:pserver:anonymous@ijbswa.cvs.sourceforge.net:/cvsroot/ijbswa export -r v_X_Y_Z current
 </programlisting>
     </para>
-  
+
     <para>
      <emphasis>Do NOT change</emphasis> a single bit, including, but not limited to
      version information after export from CVS. This is to make sure that
      all release packages, and with them, all future bug reports, are based
      on exactly the same code.
     </para>
-  
+
     <warning>
      <para>
-      Every significant release of Privoxy has included at least one 
-      package that either had incorrect versions of files, missing files, 
-      or incidental leftovers from a previous build process that gave 
-      unknown numbers of users headaches to try to figure out what was 
+      Every significant release of Privoxy has included at least one
+      package that either had incorrect versions of files, missing files,
+      or incidental leftovers from a previous build process that gave
+      unknown numbers of users headaches to try to figure out what was
       wrong. PLEASE, make sure you are using pristene sources, and are
       following the prescribed process!
      </para>
@@ -2284,14 +2278,14 @@ at sourceforge. Three simple steps:
 
     <para>
      Please find additional instructions for the source tarball and the
-     individual platform dependent binary packages below. And details 
+     individual platform dependent binary packages below. And details
      on the Sourceforge release process below that.
     </para>
 
     <sect3 id="pack-guidelines">
     <title>Note on Privoxy Packaging</title>
      <para>
-      Please keep these general guidelines in mind when putting together 
+      Please keep these general guidelines in mind when putting together
       your package. These apply to <emphasis>all</emphasis> platforms!
      </para>
      <para>
@@ -2299,11 +2293,11 @@ at sourceforge. Three simple steps:
        <listitem>
         <para>
           <application>Privoxy</application> <emphasis>requires</emphasis>
-          write access to: all <filename>*.action</filename> files, all 
-          logfiles, and the <filename>trust</filename> file. You will 
+          write access to: all <filename>*.action</filename> files, all
+          logfiles, and the <filename>trust</filename> file. You will
           need to determine the best way to do this for your platform.
         </para>
-       </listitem> 
+       </listitem>
        <listitem>
         <para>
           Please include up to date documentation. At a bare minimum:
@@ -2349,11 +2343,11 @@ at sourceforge. Three simple steps:
         </para>
         <para>
          The documentation has been designed such that the manuals are linked
-         to each other from parallel directories, and should be packaged 
+         to each other from parallel directories, and should be packaged
          that way. <filename>privoxy-index.html</filename> can also be
          included and can serve as a focal point for docs and other links of
          interest (and possibly renamed to <filename>index.html</filename>).
-         This should be one level up from the manuals. There is a link also 
+         This should be one level up from the manuals. There is a link also
          on this page to an HTMLized version of the man page. To avoid 404 for
          this, it is in CVS as
          <filename>doc/webserver/man-page/privoxy-man-page.html</filename>,
@@ -2363,16 +2357,16 @@ at sourceforge. Three simple steps:
          with <filename>privoxy-index.html</filename>, (i.e. one level up from
          the manual directories).
         </para>
-      </listitem> 
+      </listitem>
       <listitem>
        <para>
         <filename>user.action</filename> and <filename>user.filter</filename>
         are designed for local preferences. Make sure these do not get overwritten!
-        <filename>config</filename> should not be overwritten either. This 
+        <filename>config</filename> should not be overwritten either. This
         has especially important configuration data in it.
         <filename>trust</filename> should be left in tact as well.
        </para>
-      </listitem> 
+      </listitem>
       <listitem>
        <para>
         Other configuration files (<filename>default.action</filename> and
@@ -2382,29 +2376,29 @@ at sourceforge. Three simple steps:
         likely to change between releases and contain important new features
         and bug fixes.
        </para>
-     </listitem> 
+     </listitem>
      <listitem>
       <para>
-       Please check platform specific notes in this doc, if you haven't 
-       done <quote>Privoxy</quote> packaging before for other platform 
-       specific issues. Conversely, please add any notes that you know 
-       are important for your platform (or contact one of the doc 
+       Please check platform specific notes in this doc, if you haven't
+       done <quote>Privoxy</quote> packaging before for other platform
+       specific issues. Conversely, please add any notes that you know
+       are important for your platform (or contact one of the doc
        maintainers to do this if you can't).
       </para>
-    </listitem> 
+    </listitem>
     <listitem>
      <para>
-       Packagers should do a <quote>clean</quote> install of their 
-       package after building it. So any previous installs should be 
-       removed first to ensure the integrity of the newly built package. 
-       Then run the package for a while to make sure there are no 
+       Packagers should do a <quote>clean</quote> install of their
+       package after building it. So any previous installs should be
+       removed first to ensure the integrity of the newly built package.
+       Then run the package for a while to make sure there are no
        obvious problems, before uploading.
      </para>
-    </listitem> 
+    </listitem>
 
       </itemizedlist>
-     </para> 
-    
+     </para>
+
     </sect3>
 
     <sect3 id="newrelease-tarball"><title>Source Tarball</title>
@@ -2450,7 +2444,7 @@ at sourceforge. Three simple steps:
         <para>
 	First, <emphasis>make sure that you have freshly exported the right
         version into an empty directory</emphasis>. (See "Building and releasing
-        packages" above). 
+        packages" above).
 	</para>
 	<para>
         As the only exception to not changing anything after export from CVS,
@@ -2521,7 +2515,7 @@ at sourceforge. Three simple steps:
 	<para>
 	Change directory to the <filename>os2setup</filename> directory.
 	Edit the os2build.cmd file to set the final executable filename.
-	For example, 
+	For example,
 	</para>
 	<para>
  	<programlisting>
@@ -2641,7 +2635,7 @@ at sourceforge. Three simple steps:
 </programlisting>
       </para>
       <para>
-        Then, run: 
+        Then, run:
       </para>
       <para>
         <programlisting>
@@ -2699,7 +2693,7 @@ at sourceforge. Three simple steps:
 </programlisting>
 	</para>
 	<para>
-	You can then upload <filename>privoxyosx_setup_x.y.z.zip</filename> anonymously to 
+	You can then upload <filename>privoxyosx_setup_x.y.z.zip</filename> anonymously to
 	<filename>uploads.sourceforge.net/incoming</filename>,
 	create a release for it, and you're done. Use the release notes
         and Change Log from the source tarball package.
@@ -2820,7 +2814,7 @@ at sourceforge. Three simple steps:
    <sect2 id="releasing">
    <title>Uploading and Releasing Your Package</title>
     <para>
-      After the package is ready, it is time to upload it 
+      After the package is ready, it is time to upload it
       to SourceForge, and go through the release steps. The upload
       is done via FTP:
     </para>
@@ -2830,47 +2824,47 @@ at sourceforge. Three simple steps:
         <para>
           Upload to: <ulink url="ftp://upload.sourceforge.net/incoming">ftp://upload.sourceforge.net/incoming</ulink>
         </para>
-      </listitem> 
+      </listitem>
       <listitem>
        <para>
          user: <literal>anonymous</literal>
        </para>
-      </listitem> 
+      </listitem>
       <listitem>
        <para>
          password: <literal>ijbswa-developers@lists.sourceforge.net</literal>
        </para>
-      </listitem> 
+      </listitem>
      </itemizedlist>
-    </para> 
+    </para>
     <para>
      Or use the <command>make</command> targets as described above.
     </para>
     <para>
      Once this done go to <ulink
       url="https://sourceforge.net/project/admin/editpackages.php?group_id=11118"
-      >https://sourceforge.net/project/admin/editpackages.php?group_id=11118</ulink>, 
-     making sure you are logged in. Find your target platform in the 
-     second column, and click <literal>Add Release</literal>. You will 
-     then need to create a new release for your package, using the format 
+      >https://sourceforge.net/project/admin/editpackages.php?group_id=11118</ulink>,
+     making sure you are logged in. Find your target platform in the
+     second column, and click <literal>Add Release</literal>. You will
+     then need to create a new release for your package, using the format
      of <literal>$VERSION ($CODE_STATUS)</literal>, e.g. <emphasis>&p-version;
      (beta)</emphasis>.
     </para>
     <para>
      Now just follow the prompts. Be sure to add any appropriate Release
-     notes. You should see your freshly uploaded packages in 
-     <quote>Step 2. Add Files To This Release</quote>. Check the 
-     appropriate box(es). Remember at each step to hit the 
-     <quote>Refresh/Submit</quote> buttons! You should now see your 
-     file(s) listed in Step 3. Fill out the forms with the appropriate 
+     notes. You should see your freshly uploaded packages in
+     <quote>Step 2. Add Files To This Release</quote>. Check the
+     appropriate box(es). Remember at each step to hit the
+     <quote>Refresh/Submit</quote> buttons! You should now see your
+     file(s) listed in Step 3. Fill out the forms with the appropriate
      information for your platform, being sure to hit <quote>Update</quote>
-     for each file. If anyone is monitoring your platform, check the 
-     <quote>email</quote> box at the very bottom to notify them of 
+     for each file. If anyone is monitoring your platform, check the
+     <quote>email</quote> box at the very bottom to notify them of
      the new package. This should do it!
     </para>
     <para>
-     If you have made errors, or need to make changes, you can go through 
-     essentially the same steps, but select <literal>Edit Release</literal>, 
+     If you have made errors, or need to make changes, you can go through
+     essentially the same steps, but select <literal>Edit Release</literal>,
      instead of <literal>Add Release</literal>.
     </para>
    </sect2>
@@ -2884,20 +2878,20 @@ at sourceforge. Three simple steps:
       include the
       <ulink url="http://sourceforge.net/project/showfiles.php?group_id=11118">download
       location</ulink>, the release notes and the Changelog. Also, post an
-      updated News item on the project page Sourceforge, and update the Home 
+      updated News item on the project page Sourceforge, and update the Home
       page and docs linked from the Home page (see below). Other news sites
       and release oriented sites, such as Freshmeat, should also be notified.
      </para>
    </sect2>
 
   </sect1>
-  
+
   <!--   ~~~~~       New section      ~~~~~     -->
   <sect1 id="webserver-update"><title>Update the Webserver</title>
    <para>
     The webserver should be updated at least with each stable release. When
     updating, please follow these steps to make sure that no broken links,
-    inconsistent contents or permission problems will occur (as it has many 
+    inconsistent contents or permission problems will occur (as it has many
     times in the past!):
    </para>
    <para>
@@ -2912,7 +2906,7 @@ at sourceforge. Three simple steps:
    <para>
     That will generate <filename>doc/webserver/user-manual</filename>,
     <filename>doc/webserver/developer-manual</filename>,
-    <filename>doc/webserver/faq</filename>, 
+    <filename>doc/webserver/faq</filename>,
     <filename>doc/pdf/*.pdf</filename> and
     <filename>doc/webserver/index.html</filename> automatically.
    </para>
@@ -2929,7 +2923,7 @@ at sourceforge. Three simple steps:
     create new directories under <filename>doc/webserver</filename>).
    </para>
    <para>
-    Next, commit any changes from the above steps to CVS. All set? 
+    Next, commit any changes from the above steps to CVS. All set?
     If these are docs in the stable branch, then do:
    </para>
    <para>
@@ -2956,7 +2950,7 @@ at sourceforge. Three simple steps:
  &contacting;
 <!-- end contacting -->
   </sect1>
-  
+
 
 <!--   ~~~~~~~~       New section Header    ~~~~~~~~~     -->
 <sect1 id="copyright"><title>Privoxy Copyright, License and History</title>
@@ -2981,7 +2975,7 @@ at sourceforge. Three simple steps:
 </sect2>
 
 </sect1>
-  
+
   <!--   ~~~~~       New section      ~~~~~     -->
   <sect1 id="seealso"><title>See also</title>
 <!-- Include seealso.sgml -->
@@ -2992,7 +2986,7 @@ at sourceforge. Three simple steps:
 
   <!--
 
-  This program is free software; you can redistribute it 
+  This program is free software; you can redistribute it
   and/or modify it under the terms of the GNU General
   Public License as published by the Free Software
   Foundation; either version 2 of the License, or (at
@@ -3011,6 +3005,41 @@ at sourceforge. Three simple steps:
   Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
   $Log: developer-manual.sgml,v $
+  Revision 2.38  2011/12/26 17:05:40  fabiankeil
+  Bump entities for 3.0.19
+
+  Revision 2.37  2011/11/13 17:03:54  fabiankeil
+  Bump entities for 3.0.18 stable
+
+  Revision 2.36  2011/09/04 11:10:12  fabiankeil
+  Ditch trailing whitespace
+
+  Revision 2.35  2011/08/17 10:40:07  fabiankeil
+  Update the entities.
+
+  This commit is chronological out of order.
+
+  Revision 2.34  2010/11/06 12:55:48  fabiankeil
+  Set p-version to 3.0.17
+
+  Revision 2.33  2010/02/13 17:38:27  fabiankeil
+  Update entities for 3.0.16 stable.
+
+  Revision 2.32  2009/11/15 14:24:12  fabiankeil
+  Prepare to generate docs for 3.0.16 UNRELEASED.
+
+  Revision 2.31  2009/10/10 05:48:55  fabiankeil
+  Prepare for 3.0.15 beta.
+
+  Revision 2.30  2009/07/18 16:24:39  fabiankeil
+  Bump entities for 3.0.14 beta.
+
+  Revision 2.29  2009/06/12 14:30:58  fabiankeil
+  Update entities for 3.0.13 beta.
+
+  Revision 2.28  2009/05/16 13:27:21  fabiankeil
+  Remove CVS revision logs. TODO item #33.
+
   Revision 2.27  2009/02/19 02:20:22  hal9
   Make some links in seealso conditional. Man page is now privoxy only links.
 

@@ -9,81 +9,10 @@
  *
  * Copyright   :  see pcrs.c
  *
- * Revisions   :
- *    $Log: pcrs.h,v $
- *    Revision 1.16  2007/04/30 15:02:19  fabiankeil
- *    Introduce dynamic pcrs jobs that can resolve variables.
- *
- *    Revision 1.15  2007/01/05 15:46:12  fabiankeil
- *    Don't use strlen() to calculate the length of
- *    the pcrs substitutes. They don't have to be valid C
- *    strings and getting their length wrong can result in
- *    user-controlled memory corruption.
- *
- *    Thanks to Felix Gröbert for reporting the problem
- *    and providing the fix [#1627140].
- *
- *    Revision 1.14  2006/12/24 17:27:37  fabiankeil
- *    Increase pcrs error code offset to prevent overlaps
- *    with pcre versions newer than our own.
- *
- *    Revision 1.13  2006/07/18 14:48:47  david__schmidt
- *    Reorganizing the repository: swapping out what was HEAD (the old 3.1 branch)
- *    with what was really the latest development (the v_3_0_branch branch)
- *
- *    Revision 1.11  2002/03/08 14:18:23  oes
- *    Fixing -Wconversion warnings
- *
- *    Revision 1.10  2002/03/08 13:44:48  oes
- *    Hiding internal functions, preventing double inclusion of pcre.h
- *
- *    Revision 1.9  2001/08/18 11:35:29  oes
- *    - Introduced pcrs_strerror()
- *    - added pcrs_execute_list()
- *
- *    Revision 1.8  2001/08/15 15:32:50  oes
- *    Replaced the hard limit for the maximum number of matches
- *    by dynamic reallocation
- *
- *    Revision 1.7  2001/08/05 13:13:11  jongfoster
- *    Making parameters "const" where possible.
- *
- *    Revision 1.6  2001/07/29 18:52:06  jongfoster
- *    Renaming _PCRS_H, and adding "extern C {}"
- *
- *    Revision 1.5  2001/07/18 17:27:00  oes
- *    Changed interface; Cosmetics
- *
- *    Revision 1.4  2001/06/29 13:33:19  oes
- *    - Cleaned up, commented and adapted to reflect the
- *      changes in pcrs.c
- *    - Introduced the PCRS_* flags
- *
- *    Revision 1.3  2001/06/09 10:58:57  jongfoster
- *    Removing a single unused #define which referenced BUFSIZ
- *
- *    Revision 1.2  2001/05/25 11:03:55  oes
- *    Added sanity check for NULL jobs to pcrs_exec_substitution
- *
- *    Revision 1.1.1.1  2001/05/15 13:59:02  oes
- *    Initial import of version 2.9.3 source tree
- *
- *    Revision 1.4  2001/05/11 01:57:02  rodney
- *    Added new file header standard w/RCS control tags.
- *
- *    revision 1.3  2001/05/08 02:38:13  rodney
- *    Changed C++ "//" style comment to C style comments.
- *
- *    revision 1.2  2001/04/30 02:39:24  rodney
- *    Made this pcrs.h file conditionally included.
- *
- *    revision 1.1  2001/04/16 21:10:38  rodney
- *    Initial checkin
- *
  *********************************************************************/
 
-#define PCRS_H_VERSION "$Id: pcrs.h,v 1.16 2007/04/30 15:02:19 fabiankeil Exp $"
-
+#define PCRS_H_VERSION "$Id: pcrs.h,v 1.17 2009/05/16 13:27:20 fabiankeil Exp $"
+
 
 #ifndef _PCRE_H
 #include <pcre.h>

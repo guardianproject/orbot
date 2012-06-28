@@ -8,7 +8,7 @@
 #
 # Template files are written win plain HTML, with a few
 # additions:
-# 
+#
 # - Lines that start with a '#' character like this one
 #   are ignored
 #
@@ -23,7 +23,7 @@
 #   strings @if-<name>start and if-<name>-end@. The strings
 #   should be placed in HTML comments (<!-- -->), so the
 #   html structure won't be messed when the magic happens.
-#   
+#
 # USABLE SYMBOLS IN THIS TEMPLATE:
 # --------------------------------
 #
@@ -110,7 +110,7 @@
            editor.  If you managed to take a valid file and break it this
            badly using the web-based editor, please file a bug report!</p>
         <p>When you've fixed the problem, you can go back into the edit
-           interface using the menu below, or by clicking <a 
+           interface using the menu below, or by clicking <a
            href="edit-actions-list?f=@f@">here</a>.
         </p>
       </td>
@@ -169,7 +169,7 @@
       </td>
     </tr>
 <!-- if-have-help-info-end@ -->
-    
+
   </table>
 
 </body>

@@ -4,14 +4,14 @@
  *
  * Purpose     :  README file to give a short intro.
  *
- * Copyright   :  Written by and Copyright (C) 2001-2009  the SourceForge
+ * Copyright   :  Written by and Copyright (C) 2001-2011 the
  *                Privoxy team. http://www.privoxy.org/
  *
  *                Based on the Internet Junkbuster originally written
- *                by and Copyright (C) 1997 Anonymous Coders and 
+ *                by and Copyright (C) 1997 Anonymous Coders and
  *                Junkbusters Corporation.  http://www.junkbusters.com
  *
- *                This program is free software; you can redistribute it 
+ *                This program is free software; you can redistribute it
  *                and/or modify it under the terms of the GNU General
  *                Public License as published by the Free Software
  *                Foundation; either version 2 of the License, or (at
@@ -26,13 +26,13 @@
  *                The GNU General Public License should be included with
  *                this file.  If not, you can view it at
  *                http://www.gnu.org/copyleft/gpl.html
- *                or write to the Free Software Foundation, Inc., 
- *                51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, 
+ *                or write to the Free Software Foundation, Inc.,
+ *                51 Franklin Street, Fifth Floor, Boston, MA 02110-1301,
  *                USA
  *
  *********************************************************************/
 
-This README is included with Privoxy 3.0.12. See http://www.privoxy.org/ for
+This README is included with Privoxy 3.0.19. See http://www.privoxy.org/ for
 more information. The current code maturity level is "stable".
 
 -------------------------------------------------------------------------------
@@ -44,36 +44,22 @@ flexible configuration and can be customized to suit individual needs and
 tastes. It has application for both stand-alone systems and multi-user
 networks.
 
-Privoxy is Free Software and licensed under the GPL2.
+Privoxy is Free Software and licensed under the GNU GPLv2.
 
 Privoxy is an associated project of Software in the Public Interest (SPI).
-Donations are welcome.
+
+Helping hands and donations are welcome:
+
+  * http://www.privoxy.org/faq/general.html#PARTICIPATE
+
+  * http://www.privoxy.org/faq/general.html#DONATE
 
 -------------------------------------------------------------------------------
 
-1. IMPORTANT CHANGES
+1. CHANGES
 
-March 2009, Privoxy 3.0.12 is released.
-
-This is primarily a bug fix release. See the "ChangeLog", and the "What's New"
-section and the "Upgrader's Notes" in the User Manual for details.
-
-February 2009, Privoxy 3.0.11 is released.
-
-As usual there are changes that effect the configuration. See the "ChangeLog",
-and the "What's New" section and the "Upgrader's Notes" in the User Manual for
-details and specifics.
-
-This is a stable release, and marks a departure for Privoxy development.
-
-Previously, odd numbered releases were considered beta versions and were only
-released at the end of the development cycle when the code was already believed
-to be stable. Usually it was, so the stable release contained pretty much the
-same code, but got a higher version number. In the future we intend to release
-several snapshots between stable releases. There will probably still be about
-two stable releases per year, but hopefully about six snapshots instead of the
-two betas we have now. The intentions is to make testing without CVS access
-easier.
+For a list of changes in this release, please have a look at the "ChangeLog",
+the "What's New" section or the "Upgrader's Notes" in the User Manual.
 
 -------------------------------------------------------------------------------
 
@@ -96,10 +82,6 @@ If no config_file is specified on the command line, Privoxy will look for a
 file named 'config' in the current directory (except Win32 which will look for
 'config.txt'). If no config_file is found, Privoxy will fail to start.
 
-Or for Red Hat and Fedora based distributions: /etc/rc.d/init.d/privoxy start
-
-Or Debian and Ubuntu: /etc/init.d/privoxy start
-
 -------------------------------------------------------------------------------
 
 4. CONFIGURATION
@@ -116,7 +98,7 @@ www.privoxy.org/user-manual/.
 
 Be sure to set your browser(s) for HTTP/HTTPS Proxy at <IP>:<Port>, or whatever
 you specify in the config file under 'listen-address'. DEFAULT is
-localhost:8118. Note that Privoxy ONLY proxies HTTP (and HTTPS) traffic. Do not
+127.0.0.1:8118. Note that Privoxy ONLY proxies HTTP (and HTTPS) traffic. Do not
 try it with FTP or other protocols for the simple reason it does not work.
 
 The actions list can be configured via the web interface accessed via http://
@@ -157,6 +139,13 @@ list, where the developers also hang around.
 
 Please don't sent private support requests to individual Privoxy developers,
 either use the mailing lists or the support trackers.
+
+If you have to contact a Privoxy developer directly for other reasons, please
+send a real mail and do not bother with SourceForge's messaging system. Answers
+to SourceForge messages are usually bounced by SourceForge's mail server in
+which case the developer wasted time writing a response you don't get. From
+your point of view it will look like your message has been completely ignored,
+so this is frustrating for all parties involved.
 
 Note that the Privoxy mailing lists are moderated. Posts from unsubscribed
 addresses have to be accepted manually by a moderator. This may cause a delay
@@ -246,16 +235,49 @@ Please be sure to provide the following information:
 
   * Any other pertinent information to help identify the problem such as config
     or log file excerpts (yes, you should have log file entries for each action
-    taken).
+    taken). To get a meaningful logfile, please make sure that the logfile
+    directive is being used and the following debug options are enabled:
 
-You don't have to tell us your actual name when filing a problem report, but
-please use a nickname so we can differentiate between your messages and the
-ones entered by other "anonymous" users that may respond to your request if
-they have the same problem or already found a solution.
+    debug     1 # Log the destination for each request Privoxy let through. See also debug 1024.
+    debug     2 # show each connection status
+    debug     4 # show I/O status
+    debug     8 # show header parsing
+    debug   128 # debug redirects
+    debug   256 # debug GIF de-animation
+    debug   512 # Common Log Format
+    debug  1024 # Log the destination for requests Privoxy didn't let through, and the reason why.
+    debug  4096 # Startup banner and warnings.
+    debug  8192 # Non-fatal errors
+
+    If you are having trouble with a filter, please additionally enable
+
+    debug    64 # debug regular expression filters
+
+    If you are using Privoxy 3.0.17 or later and suspect that it interprets the
+    request or the response incorrectly, please enable
+
+    debug 32768 # log all data read from the network
+
+    Note that Privoxy log files may contain sensitive information so please
+    don't submit any logfiles you didn't read first. You can mask sensitive
+    information as long as it's clear that you removed something.
+
+You don't have to tell us your actual name when filing a problem report, but if
+you don't, please use a nickname so we can differentiate between your messages
+and the ones entered by other "anonymous" users that may respond to your
+request if they have the same problem or already found a solution. Note that
+due to spam the trackers may not always allow to post without being logged into
+SourceForge. If that's the case, you are still free to create a login that
+isn't directly linked to your name, though.
 
 Please also check the status of your request a few days after submitting it, as
 we may request additional information. If you use a SF id, you should
-automatically get a mail when someone responds to your request.
+automatically get a mail when someone responds to your request. Please don't
+bother to add an email address when using the tracker. If you prefer to
+communicate through email, just use one of the mailing lists directly.
+
+If you are new to reporting problems, you might be interested in How to Report
+Bugs Effectively.
 
 The appendix of the Privoxy User Manual also has helpful information on
 understanding actions, and action debugging.
@@ -270,11 +292,13 @@ tracker/?atid=361118&group_id=11118.
 
 -------------------------------------------------------------------------------
 
-6.4. Other
+6.4. Mailing Lists
 
-For any other issues, feel free to use the mailing lists. Technically
-interested users and people who wish to contribute to the project are also
-welcome on the developers list! You can find an overview of all Privoxy-related
+If you prefer to communicate through email, instead of using a web interface,
+feel free to use one of the mailing lists. To discuss issues that haven't been
+completely diagnosed yet, please use the Privoxy users list. Technically
+interested users and people who wish to contribute to the project are always
+welcome on the developers list. You can find an overview of all Privoxy-related
 mailing lists, including list archives, at: http://sourceforge.net/mail/?
 group_id=11118.
 

@@ -1,1082 +1,563 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
-<HTML
-><HEAD
-><TITLE
->Installation</TITLE
-><META
-NAME="GENERATOR"
-CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
-REL="HOME"
-TITLE="Privoxy 3.0.12 User Manual"
-HREF="index.html"><LINK
-REL="PREVIOUS"
-TITLE="Introduction"
-HREF="introduction.html"><LINK
-REL="NEXT"
-TITLE="What's New in this Release"
-HREF="whatsnew.html"><LINK
-REL="STYLESHEET"
-TYPE="text/css"
-HREF="../p_doc.css"><META
-HTTP-EQUIV="Content-Type"
-CONTENT="text/html;
-charset=ISO-8859-1">
-<LINK REL="STYLESHEET" TYPE="text/css" HREF="p_doc.css">
-</head
-><BODY
-CLASS="SECT1"
-BGCOLOR="#EEEEEE"
-TEXT="#000000"
-LINK="#0000FF"
-VLINK="#840084"
-ALINK="#0000FF"
-><DIV
-CLASS="NAVHEADER"
-><TABLE
-SUMMARY="Header navigation table"
-WIDTH="100%"
-BORDER="0"
-CELLPADDING="0"
-CELLSPACING="0"
-><TR
-><TH
-COLSPAN="3"
-ALIGN="center"
->Privoxy 3.0.12 User Manual</TH
-></TR
-><TR
-><TD
-WIDTH="10%"
-ALIGN="left"
-VALIGN="bottom"
-><A
-HREF="introduction.html"
-ACCESSKEY="P"
->Prev</A
-></TD
-><TD
-WIDTH="80%"
-ALIGN="center"
-VALIGN="bottom"
-></TD
-><TD
-WIDTH="10%"
-ALIGN="right"
-VALIGN="bottom"
-><A
-HREF="whatsnew.html"
-ACCESSKEY="N"
->Next</A
-></TD
-></TR
-></TABLE
-><HR
-ALIGN="LEFT"
-WIDTH="100%"></DIV
-><DIV
-CLASS="SECT1"
-><H1
-CLASS="SECT1"
-><A
-NAME="INSTALLATION"
->2. Installation</A
-></H1
-><P
-> <SPAN
-CLASS="APPLICATION"
->Privoxy</SPAN
-> is available both in convenient pre-compiled
- packages for a wide range of operating systems, and as raw source code.
- For most users, we recommend using the packages, which can be downloaded from our
- <A
-HREF="http://sourceforge.net/projects/ijbswa/"
-TARGET="_top"
->Privoxy Project
- Page</A
->.</P
-><P
-> Note: 
- On some platforms, the installer may remove previously installed versions, if 
- found. (See below for your platform). In any case <SPAN
-CLASS="emphasis"
-><I
-CLASS="EMPHASIS"
->be sure to backup
- your old configuration if it is valuable to you.</I
-></SPAN
-> See the <A
-HREF="whatsnew.html#UPGRADERSNOTE"
->note to upgraders</A
-> section below.</P
-><DIV
-CLASS="SECT2"
-><H2
-CLASS="SECT2"
-><A
-NAME="INSTALLATION-PACKAGES"
->2.1. Binary Packages</A
-></H2
-><P
->How to install the binary packages depends on your operating system:</P
-><DIV
-CLASS="SECT3"
-><H3
-CLASS="SECT3"
-><A
-NAME="INSTALLATION-PACK-RPM"
->2.1.1. Red Hat and Fedora RPMs</A
-></H3
-><P
-> RPMs can be installed with <TT
-CLASS="LITERAL"
->rpm -Uvh privoxy-3.0.12-1.rpm</TT
->,
- and will use <TT
-CLASS="FILENAME"
->/etc/privoxy</TT
-> for the location 
- of configuration files.</P
-><P
-> Note that on Red Hat, <SPAN
-CLASS="APPLICATION"
->Privoxy</SPAN
-> will
- <SPAN
-CLASS="emphasis"
-><I
-CLASS="EMPHASIS"
->not</I
-></SPAN
-> be automatically started on system boot. You will
- need to enable that using <B
-CLASS="COMMAND"
->chkconfig</B
->,
- <B
-CLASS="COMMAND"
->ntsysv</B
->, or similar methods. </P
-><P
-> If you have problems with failed dependencies, try rebuilding the SRC RPM: 
- <TT
-CLASS="LITERAL"
->rpm --rebuild privoxy-3.0.12-1.src.rpm</TT
->. This 
- will use your locally installed libraries and RPM version. </P
-><P
-> Also note that if you have a <SPAN
-CLASS="APPLICATION"
->Junkbuster</SPAN
-> RPM installed
- on your system, you need to remove it first, because the packages conflict.
- Otherwise, RPM will try to remove <SPAN
-CLASS="APPLICATION"
->Junkbuster</SPAN
->
- automatically if found, before installing <SPAN
-CLASS="APPLICATION"
->Privoxy</SPAN
->.</P
-></DIV
-><DIV
-CLASS="SECT3"
-><H3
-CLASS="SECT3"
-><A
-NAME="INSTALLATION-DEB"
->2.1.2. Debian and Ubuntu</A
-></H3
-><P
-> DEBs can be installed with <TT
-CLASS="LITERAL"
->apt-get install privoxy</TT
->,
- and will use <TT
-CLASS="FILENAME"
->/etc/privoxy</TT
-> for the location of 
- configuration files.</P
-></DIV
-><DIV
-CLASS="SECT3"
-><H3
-CLASS="SECT3"
-><A
-NAME="INSTALLATION-PACK-WIN"
->2.1.3. Windows</A
-></H3
-><P
-> Just double-click the installer, which will guide you through
- the installation process. You will find the configuration files
- in the same directory as you installed <SPAN
-CLASS="APPLICATION"
->Privoxy</SPAN
-> in. </P
-><P
-> Version 3.0.5 beta introduced full <SPAN
-CLASS="APPLICATION"
->Windows</SPAN
-> service
- functionality. On Windows only, the <SPAN
-CLASS="APPLICATION"
->Privoxy</SPAN
->
- program has two new command line arguments to install and uninstall
- <SPAN
-CLASS="APPLICATION"
->Privoxy</SPAN
-> as a <SPAN
-CLASS="emphasis"
-><I
-CLASS="EMPHASIS"
->service</I
-></SPAN
->.</P
-><P
-></P
-><DIV
-CLASS="VARIABLELIST"
-><DL
-><DT
->Arguments:</DT
-><DD
-><P
->     <TT
-CLASS="REPLACEABLE"
-><I
->--install</I
-></TT
->[:<TT
-CLASS="REPLACEABLE"
-><I
->service_name</I
-></TT
->]
-    </P
-><P
->     <TT
-CLASS="REPLACEABLE"
-><I
->--uninstall</I
-></TT
->[:<TT
-CLASS="REPLACEABLE"
-><I
->service_name</I
-></TT
->]
-    </P
-></DD
-></DL
-></DIV
-><P
-> After invoking <SPAN
-CLASS="APPLICATION"
->Privoxy</SPAN
-> with
- <B
-CLASS="COMMAND"
->--install</B
->, you will need to bring up the
- <SPAN
-CLASS="APPLICATION"
->Windows</SPAN
-> service console to assign the user you
- want <SPAN
-CLASS="APPLICATION"
->Privoxy</SPAN
-> to run under, and whether or not you
- want it to run whenever the system starts. You can start the
- <SPAN
-CLASS="APPLICATION"
->Windows</SPAN
-> services console with the following
- command: <B
-CLASS="COMMAND"
->services.msc</B
->.  If you do not take the manual step
- of modifying <SPAN
-CLASS="APPLICATION"
->Privoxy's</SPAN
-> service settings, it will
- not start.  Note too that you will need to give Privoxy a user account that
- actually exists, or it will not be permitted to 
- write to its log and configuration files.</P
-></DIV
-><DIV
-CLASS="SECT3"
-><H3
-CLASS="SECT3"
-><A
-NAME="INSTALLATION-PACK-BINTGZ"
->2.1.4. Solaris</A
-></H3
-><P
-> Create a new directory, <TT
-CLASS="LITERAL"
->cd</TT
-> to it, then unzip and
- untar the archive. For the most part, you'll have to figure out where
- things go. </P
-></DIV
-><DIV
-CLASS="SECT3"
-><H3
-CLASS="SECT3"
-><A
-NAME="INSTALLATION-OS2"
->2.1.5. OS/2</A
-></H3
-><P
-> First, make sure that no previous installations of
- <SPAN
-CLASS="APPLICATION"
->Junkbuster</SPAN
-> and / or 
- <SPAN
-CLASS="APPLICATION"
->Privoxy</SPAN
-> are left on your
- system. Check that no <SPAN
-CLASS="APPLICATION"
->Junkbuster</SPAN
->
- or <SPAN
-CLASS="APPLICATION"
->Privoxy</SPAN
-> objects are in
- your startup folder.&#13;</P
-><P
-> Then, just double-click the WarpIN self-installing archive, which will
- guide you through the installation process. A shadow of the
- <SPAN
-CLASS="APPLICATION"
->Privoxy</SPAN
-> executable will be placed in your
- startup folder so it will start automatically whenever OS/2 starts.</P
-><P
-> The directory you choose to install <SPAN
-CLASS="APPLICATION"
->Privoxy</SPAN
->
- into will contain all of the configuration files.</P
-></DIV
-><DIV
-CLASS="SECT3"
-><H3
-CLASS="SECT3"
-><A
-NAME="INSTALLATION-MAC"
->2.1.6. Mac OS X</A
-></H3
-><P
-> Unzip the downloaded file (you can either double-click on the zip file
- icon from the Finder, or from the desktop if you downloaded it there).
- Then, double-click on the package installer icon and follow the
- installation process.</P
-><P
-> The privoxy service will automatically start after a successful
- installation (in addition to every time your computer starts up).  To
- prevent the privoxy service from automatically starting when your
- computer starts up, remove or rename the folder named
- <TT
-CLASS="LITERAL"
->/Library/StartupItems/Privoxy</TT
->. </P
-><P
-> To manually start or stop the privoxy service, use the Privoxy Utility
- for Mac OS X.  This application controls the privoxy service (e.g.
- starting and stopping the service as well as uninstalling the software).</P
-></DIV
-><DIV
-CLASS="SECT3"
-><H3
-CLASS="SECT3"
-><A
-NAME="INSTALLATION-AMIGA"
->2.1.7. AmigaOS</A
-></H3
-><P
-> Copy and then unpack the <TT
-CLASS="FILENAME"
->lha</TT
-> archive to a suitable location. 
- All necessary files will be installed into <SPAN
-CLASS="APPLICATION"
->Privoxy</SPAN
->
- directory, including all configuration and log files. To uninstall, just 
- remove this directory.</P
-></DIV
-><DIV
-CLASS="SECT3"
-><H3
-CLASS="SECT3"
-><A
-NAME="INSTALLATION-TBZ"
->2.1.8. FreeBSD</A
-></H3
-><P
-> Privoxy is part of FreeBSD's Ports Collection, you can build and install
- it with <TT
-CLASS="LITERAL"
->cd /usr/ports/www/privoxy; make install clean</TT
->.</P
-><P
-> If you don't use the ports, you can fetch and install
- the package with <TT
-CLASS="LITERAL"
->pkg_add -r privoxy</TT
->.</P
-><P
-> The port skeleton and the package can also be downloaded from the
- <A
-HREF="https://sourceforge.net/project/showfiles.php?group_id=11118"
-TARGET="_top"
->File Release
- Page</A
->, but there's no reason to use them unless you're interested in the
- beta releases which are only available there.</P
-></DIV
-><DIV
-CLASS="SECT3"
-><H3
-CLASS="SECT3"
-><A
-NAME="INSTALLATTION-GENTOO"
->2.1.9. Gentoo</A
-></H3
-><P
-> Gentoo source packages (Ebuilds) for <SPAN
-CLASS="APPLICATION"
->Privoxy</SPAN
-> are 
- contained in the Gentoo  Portage Tree (they are not on the download page, 
- but there is a Gentoo section, where you can see when a new 
- <SPAN
-CLASS="APPLICATION"
->Privoxy</SPAN
-> Version is added to the  Portage Tree).</P
-><P
-> Before installing <SPAN
-CLASS="APPLICATION"
->Privoxy</SPAN
-> under Gentoo just do 
- first <TT
-CLASS="LITERAL"
->emerge --sync</TT
-> to get the latest changes from the 
- Portage tree. With <TT
-CLASS="LITERAL"
->emerge privoxy</TT
-> you install the latest 
- version.</P
-><P
-> Configuration files are in <TT
-CLASS="FILENAME"
->/etc/privoxy</TT
->, the 
- documentation is in <TT
-CLASS="FILENAME"
->/usr/share/doc/privoxy-3.0.12</TT
->
- and the Log directory is in <TT
-CLASS="FILENAME"
->/var/log/privoxy</TT
->.</P
-></DIV
-></DIV
-><DIV
-CLASS="SECT2"
-><H2
-CLASS="SECT2"
-><A
-NAME="INSTALLATION-SOURCE"
->2.2. Building from Source</A
-></H2
-><P
-> The most convenient way to obtain the <SPAN
-CLASS="APPLICATION"
->Privoxy</SPAN
-> sources
- is to download the source tarball from our 
- <A
-HREF="http://sourceforge.net/project/showfiles.php?group_id=11118&#38;package_id=10571"
-TARGET="_top"
->project download
- page</A
->.</P
-><P
-> If you like to live on the bleeding edge and are not afraid of using
- possibly unstable development versions, you can check out the up-to-the-minute
- version directly from <A
-HREF="http://sourceforge.net/cvs/?group_id=11118"
-TARGET="_top"
->the
- CVS repository</A
->. </P
-><P
-> To build <SPAN
-CLASS="APPLICATION"
->Privoxy</SPAN
-> from source, 
- <A
-HREF="http://www.gnu.org/software/autoconf/autoconf.html"
-TARGET="_top"
->autoconf</A
->,
- <A
-HREF="http://www.gnu.org/software/make/make.html"
-TARGET="_top"
->GNU make
- (gmake)</A
->, and, of course, a C compiler like <A
-HREF="http://www.gnu.org/software/gcc/gcc.html"
-TARGET="_top"
->gcc</A
-> are required.</P
-><P
-> When building from a source tarball,
- first unpack the source: </P
-><P
-> <TABLE
-BORDER="0"
-BGCOLOR="#E0E0E0"
-WIDTH="100%"
-><TR
-><TD
-><PRE
-CLASS="SCREEN"
-> tar xzvf privoxy-3.0.12-stable-src.tar.gz
- cd privoxy-3.0.12-stable</PRE
-></TD
-></TR
-></TABLE
-></P
-><P
-> For retrieving the current CVS sources, you'll need a CVS client installed.
- Note that sources from CVS are typically development quality, and may not be
- stable, or well tested. To download CVS source, check the Sourceforge
- documentation, which might give commands like:</P
-><P
-> <TABLE
-BORDER="0"
-BGCOLOR="#E0E0E0"
-WIDTH="100%"
-><TR
-><TD
-><PRE
-CLASS="SCREEN"
->  cvs -d:pserver:anonymous@ijbswa.cvs.sourceforge.net:/cvsroot/ijbswa login
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 7 December 2008), see www.w3.org">
+
+  <title>Installation</title>
+  <meta name="GENERATOR" content=
+  "Modular DocBook HTML Stylesheet Version 1.79">
+  <link rel="HOME" title="Privoxy 3.0.19 User Manual" href="index.html">
+  <link rel="PREVIOUS" title="Introduction" href="introduction.html">
+  <link rel="NEXT" title="What's New in this Release" href="whatsnew.html">
+  <link rel="STYLESHEET" type="text/css" href="../p_doc.css">
+  <meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+  <link rel="STYLESHEET" type="text/css" href="p_doc.css">
+  <style type="text/css">
+body {
+  background-color: #EEEEEE;
+  color: #000000;
+  }
+  :link { color: #0000FF }
+  :visited { color: #840084 }
+  :active { color: #0000FF }
+  table.c4 {background-color: #E0E0E0}
+  tt.c3 {font-style: italic}
+  span.c2 {font-style: italic}
+  hr.c1 {text-align: left}
+  </style>
+</head>
+
+<body class="SECT1">
+  <div class="NAVHEADER">
+    <table summary="Header navigation table" width="100%" border="0"
+    cellpadding="0" cellspacing="0">
+      <tr>
+        <th colspan="3" align="center">Privoxy 3.0.19 User Manual</th>
+      </tr>
+
+      <tr>
+        <td width="10%" align="left" valign="bottom"><a href=
+        "introduction.html" accesskey="P">Prev</a></td>
+
+        <td width="80%" align="center" valign="bottom"></td>
+
+        <td width="10%" align="right" valign="bottom"><a href="whatsnew.html"
+        accesskey="N">Next</a></td>
+      </tr>
+    </table>
+    <hr class="c1" width="100%">
+  </div>
+
+  <div class="SECT1">
+    <h1 class="SECT1"><a name="INSTALLATION" id="INSTALLATION">2.
+    Installation</a></h1>
+
+    <p><span class="APPLICATION">Privoxy</span> is available both in
+    convenient pre-compiled packages for a wide range of operating systems,
+    and as raw source code. For most users, we recommend using the packages,
+    which can be downloaded from our <a href=
+    "http://sourceforge.net/projects/ijbswa/" target="_top">Privoxy Project
+    Page</a>.</p>
+
+    <p>Note: On some platforms, the installer may remove previously installed
+    versions, if found. (See below for your platform). In any case
+    <span class="emphasis EMPHASIS c2">be sure to backup your old
+    configuration if it is valuable to you.</span> See the <a href=
+    "whatsnew.html#UPGRADERSNOTE">note to upgraders</a> section below.</p>
+
+    <div class="SECT2">
+      <h2 class="SECT2"><a name="INSTALLATION-PACKAGES" id=
+      "INSTALLATION-PACKAGES">2.1. Binary Packages</a></h2>
+
+      <p>How to install the binary packages depends on your operating
+      system:</p>
+
+      <div class="SECT3">
+        <h3 class="SECT3"><a name="INSTALLATION-PACK-RPM" id=
+        "INSTALLATION-PACK-RPM">2.1.1. Red Hat and Fedora RPMs</a></h3>
+
+        <p>RPMs can be installed with <tt class="LITERAL">rpm -Uvh
+        privoxy-3.0.19-1.rpm</tt>, and will use <tt class=
+        "FILENAME">/etc/privoxy</tt> for the location of configuration
+        files.</p>
+
+        <p>Note that on Red Hat, <span class="APPLICATION">Privoxy</span>
+        will <span class="emphasis EMPHASIS c2">not</span> be automatically
+        started on system boot. You will need to enable that using <b class=
+        "COMMAND">chkconfig</b>, <b class="COMMAND">ntsysv</b>, or similar
+        methods.</p>
+
+        <p>If you have problems with failed dependencies, try rebuilding the
+        SRC RPM: <tt class="LITERAL">rpm --rebuild
+        privoxy-3.0.19-1.src.rpm</tt>. This will use your locally installed
+        libraries and RPM version.</p>
+
+        <p>Also note that if you have a <span class=
+        "APPLICATION">Junkbuster</span> RPM installed on your system, you
+        need to remove it first, because the packages conflict. Otherwise,
+        RPM will try to remove <span class="APPLICATION">Junkbuster</span>
+        automatically if found, before installing <span class=
+        "APPLICATION">Privoxy</span>.</p>
+      </div>
+
+      <div class="SECT3">
+        <h3 class="SECT3"><a name="INSTALLATION-DEB" id=
+        "INSTALLATION-DEB">2.1.2. Debian and Ubuntu</a></h3>
+
+        <p>DEBs can be installed with <tt class="LITERAL">apt-get install
+        privoxy</tt>, and will use <tt class="FILENAME">/etc/privoxy</tt> for
+        the location of configuration files.</p>
+      </div>
+
+      <div class="SECT3">
+        <h3 class="SECT3"><a name="INSTALLATION-PACK-WIN" id=
+        "INSTALLATION-PACK-WIN">2.1.3. Windows</a></h3>
+
+        <p>Just double-click the installer, which will guide you through the
+        installation process. You will find the configuration files in the
+        same directory as you installed <span class=
+        "APPLICATION">Privoxy</span> in.</p>
+
+        <p>Version 3.0.5 beta introduced full <span class=
+        "APPLICATION">Windows</span> service functionality. On Windows only,
+        the <span class="APPLICATION">Privoxy</span> program has two new
+        command line arguments to install and uninstall <span class=
+        "APPLICATION">Privoxy</span> as a <span class=
+        "emphasis EMPHASIS c2">service</span>.</p>
+
+        <div class="VARIABLELIST">
+          <dl>
+            <dt>Arguments:</dt>
+
+            <dd>
+              <p><tt class="REPLACEABLE c3">--install</tt>[:<tt class=
+              "REPLACEABLE c3">service_name</tt>]</p>
+
+              <p><tt class="REPLACEABLE c3">--uninstall</tt>[:<tt class=
+              "REPLACEABLE c3">service_name</tt>]</p>
+            </dd>
+          </dl>
+        </div>
+
+        <p>After invoking <span class="APPLICATION">Privoxy</span> with
+        <b class="COMMAND">--install</b>, you will need to bring up the
+        <span class="APPLICATION">Windows</span> service console to assign
+        the user you want <span class="APPLICATION">Privoxy</span> to run
+        under, and whether or not you want it to run whenever the system
+        starts. You can start the <span class="APPLICATION">Windows</span>
+        services console with the following command: <b class=
+        "COMMAND">services.msc</b>. If you do not take the manual step of
+        modifying <span class="APPLICATION">Privoxy's</span> service
+        settings, it will not start. Note too that you will need to give
+        Privoxy a user account that actually exists, or it will not be
+        permitted to write to its log and configuration files.</p>
+      </div>
+
+      <div class="SECT3">
+        <h3 class="SECT3"><a name="INSTALLATION-PACK-BINTGZ" id=
+        "INSTALLATION-PACK-BINTGZ">2.1.4. Solaris</a></h3>
+
+        <p>Create a new directory, <tt class="LITERAL">cd</tt> to it, then
+        unzip and untar the archive. For the most part, you'll have to figure
+        out where things go.</p>
+      </div>
+
+      <div class="SECT3">
+        <h3 class="SECT3"><a name="INSTALLATION-OS2" id=
+        "INSTALLATION-OS2">2.1.5. OS/2</a></h3>
+
+        <p>First, make sure that no previous installations of <span class=
+        "APPLICATION">Junkbuster</span> and / or <span class=
+        "APPLICATION">Privoxy</span> are left on your system. Check that no
+        <span class="APPLICATION">Junkbuster</span> or <span class=
+        "APPLICATION">Privoxy</span> objects are in your startup folder.</p>
+
+        <p>Then, just double-click the WarpIN self-installing archive, which
+        will guide you through the installation process. A shadow of the
+        <span class="APPLICATION">Privoxy</span> executable will be placed in
+        your startup folder so it will start automatically whenever OS/2
+        starts.</p>
+
+        <p>The directory you choose to install <span class=
+        "APPLICATION">Privoxy</span> into will contain all of the
+        configuration files.</p>
+      </div>
+
+      <div class="SECT3">
+        <h3 class="SECT3"><a name="INSTALLATION-MAC" id=
+        "INSTALLATION-MAC">2.1.6. Mac OS X</a></h3>
+
+        <p>Unzip the downloaded file (you can either double-click on the zip
+        file icon from the Finder, or from the desktop if you downloaded it
+        there). Then, double-click on the package installer icon and follow
+        the installation process.</p>
+
+        <p>The privoxy service will automatically start after a successful
+        installation (in addition to every time your computer starts up). To
+        prevent the privoxy service from automatically starting when your
+        computer starts up, remove or rename the folder named <tt class=
+        "LITERAL">/Library/StartupItems/Privoxy</tt>.</p>
+
+        <p>To manually start or stop the privoxy service, use the Privoxy
+        Utility for Mac OS X. This application controls the privoxy service
+        (e.g. starting and stopping the service as well as uninstalling the
+        software).</p>
+      </div>
+
+      <div class="SECT3">
+        <h3 class="SECT3"><a name="INSTALLATION-AMIGA" id=
+        "INSTALLATION-AMIGA">2.1.7. AmigaOS</a></h3>
+
+        <p>Copy and then unpack the <tt class="FILENAME">lha</tt> archive to
+        a suitable location. All necessary files will be installed into
+        <span class="APPLICATION">Privoxy</span> directory, including all
+        configuration and log files. To uninstall, just remove this
+        directory.</p>
+      </div>
+
+      <div class="SECT3">
+        <h3 class="SECT3"><a name="INSTALLATION-TBZ" id=
+        "INSTALLATION-TBZ">2.1.8. FreeBSD</a></h3>
+
+        <p>Privoxy is part of FreeBSD's Ports Collection, you can build and
+        install it with <tt class="LITERAL">cd /usr/ports/www/privoxy; make
+        install clean</tt>.</p>
+
+        <p>If you don't use the ports, you can fetch and install the package
+        with <tt class="LITERAL">pkg_add -r privoxy</tt>.</p>
+
+        <p>The port skeleton and the package can also be downloaded from the
+        <a href=
+        "https://sourceforge.net/project/showfiles.php?group_id=11118"
+        target="_top">File Release Page</a>, but there's no reason to use
+        them unless you're interested in the beta releases which are only
+        available there.</p>
+      </div>
+
+      <div class="SECT3">
+        <h3 class="SECT3"><a name="INSTALLATTION-GENTOO" id=
+        "INSTALLATTION-GENTOO">2.1.9. Gentoo</a></h3>
+
+        <p>Gentoo source packages (Ebuilds) for <span class=
+        "APPLICATION">Privoxy</span> are contained in the Gentoo Portage Tree
+        (they are not on the download page, but there is a Gentoo section,
+        where you can see when a new <span class="APPLICATION">Privoxy</span>
+        Version is added to the Portage Tree).</p>
+
+        <p>Before installing <span class="APPLICATION">Privoxy</span> under
+        Gentoo just do first <tt class="LITERAL">emerge --sync</tt> to get
+        the latest changes from the Portage tree. With <tt class=
+        "LITERAL">emerge privoxy</tt> you install the latest version.</p>
+
+        <p>Configuration files are in <tt class="FILENAME">/etc/privoxy</tt>,
+        the documentation is in <tt class=
+        "FILENAME">/usr/share/doc/privoxy-3.0.19</tt> and the Log directory
+        is in <tt class="FILENAME">/var/log/privoxy</tt>.</p>
+      </div>
+    </div>
+
+    <div class="SECT2">
+      <h2 class="SECT2"><a name="INSTALLATION-SOURCE" id=
+      "INSTALLATION-SOURCE">2.2. Building from Source</a></h2>
+
+      <p>The most convenient way to obtain the <span class=
+      "APPLICATION">Privoxy</span> sources is to download the source tarball
+      from our <a href=
+      "http://sourceforge.net/project/showfiles.php?group_id=11118&amp;package_id=10571"
+      target="_top">project download page</a>.</p>
+
+      <p>If you like to live on the bleeding edge and are not afraid of using
+      possibly unstable development versions, you can check out the
+      up-to-the-minute version directly from <a href=
+      "http://sourceforge.net/cvs/?group_id=11118" target="_top">the CVS
+      repository</a>.</p>
+
+      <p>To build <span class="APPLICATION">Privoxy</span> from source,
+      <a href="http://www.gnu.org/software/autoconf/autoconf.html" target=
+      "_top">autoconf</a>, <a href=
+      "http://www.gnu.org/software/make/make.html" target="_top">GNU make
+      (gmake)</a>, and, of course, a C compiler like <a href=
+      "http://www.gnu.org/software/gcc/gcc.html" target="_top">gcc</a> are
+      required.</p>
+
+      <p>When building from a source tarball, first unpack the source:</p>
+
+      <table class="c4" border="0" width="100%">
+        <tr>
+          <td>
+            <pre class="SCREEN">
+ tar xzvf privoxy-3.0.19-stable-src.tar.gz
+ cd privoxy-3.0.19-stable
+</pre>
+          </td>
+        </tr>
+      </table>
+
+      <p>For retrieving the current CVS sources, you'll need a CVS client
+      installed. Note that sources from CVS are typically development
+      quality, and may not be stable, or well tested. To download CVS source,
+      check the Sourceforge documentation, which might give commands
+      like:</p>
+
+      <table class="c4" border="0" width="100%">
+        <tr>
+          <td>
+            <pre class="SCREEN">
+  cvs -d:pserver:anonymous@ijbswa.cvs.sourceforge.net:/cvsroot/ijbswa login
   cvs -z3 -d:pserver:anonymous@ijbswa.cvs.sourceforge.net:/cvsroot/ijbswa co current
-  cd current</PRE
-></TD
-></TR
-></TABLE
-></P
-><P
-> This will create a directory named <TT
-CLASS="FILENAME"
->current/</TT
->, which will 
- contain the source tree.</P
-><P
-> You can also check out any <SPAN
-CLASS="APPLICATION"
->Privoxy</SPAN
->
- <SPAN
-CLASS="QUOTE"
->"branch"</SPAN
->, just exchange the <SPAN
-CLASS="APPLICATION"
->current</SPAN
->
- name with the wanted branch name (Example: v_3_0_branch for the 3.0 cvs
- tree).</P
-><P
-> It is also strongly recommended to not run <SPAN
-CLASS="APPLICATION"
->Privoxy</SPAN
->
- as root. You should configure/install/run <SPAN
-CLASS="APPLICATION"
->Privoxy</SPAN
-> as
- an unprivileged user, preferably by  creating a <SPAN
-CLASS="QUOTE"
->"privoxy"</SPAN
-> user
- and group just for this purpose. See your local documentation for the correct
- command line to do add new users and groups (something like
- <B
-CLASS="COMMAND"
->adduser</B
->, but the command syntax may vary from platform
- to platform). </P
-><P
-> <TT
-CLASS="FILENAME"
->/etc/passwd</TT
-> might then look like:</P
-><P
-> <TABLE
-BORDER="0"
-BGCOLOR="#E0E0E0"
-WIDTH="100%"
-><TR
-><TD
-><PRE
-CLASS="SCREEN"
->  privoxy:*:7777:7777:privoxy proxy:/no/home:/no/shell</PRE
-></TD
-></TR
-></TABLE
-></P
-><P
-> And then <TT
-CLASS="FILENAME"
->/etc/group</TT
->, like:</P
-><P
-> <TABLE
-BORDER="0"
-BGCOLOR="#E0E0E0"
-WIDTH="100%"
-><TR
-><TD
-><PRE
-CLASS="SCREEN"
->  privoxy:*:7777:</PRE
-></TD
-></TR
-></TABLE
-></P
-><P
-> Some binary packages may do this for you.</P
-><P
-> Then, to build from either unpacked tarball or CVS source:</P
-><P
-> <TABLE
-BORDER="0"
-BGCOLOR="#E0E0E0"
-WIDTH="100%"
-><TR
-><TD
-><PRE
-CLASS="SCREEN"
-> autoheader
+  cd current
+</pre>
+          </td>
+        </tr>
+      </table>
+
+      <p>This will create a directory named <tt class=
+      "FILENAME">current/</tt>, which will contain the source tree.</p>
+
+      <p>You can also check out any <span class="APPLICATION">Privoxy</span>
+      <span class="QUOTE">"branch"</span>, just exchange the <span class=
+      "APPLICATION">current</span> name with the wanted branch name (Example:
+      v_3_0_branch for the 3.0 cvs tree).</p>
+
+      <p>It is also strongly recommended to not run <span class=
+      "APPLICATION">Privoxy</span> as root. You should configure/install/run
+      <span class="APPLICATION">Privoxy</span> as an unprivileged user,
+      preferably by creating a <span class="QUOTE">"privoxy"</span> user and
+      group just for this purpose. See your local documentation for the
+      correct command line to do add new users and groups (something like
+      <b class="COMMAND">adduser</b>, but the command syntax may vary from
+      platform to platform).</p>
+
+      <p><tt class="FILENAME">/etc/passwd</tt> might then look like:</p>
+
+      <table class="c4" border="0" width="100%">
+        <tr>
+          <td>
+            <pre class="SCREEN">
+  privoxy:*:7777:7777:privoxy proxy:/no/home:/no/shell
+</pre>
+          </td>
+        </tr>
+      </table>
+
+      <p>And then <tt class="FILENAME">/etc/group</tt>, like:</p>
+
+      <table class="c4" border="0" width="100%">
+        <tr>
+          <td>
+            <pre class="SCREEN">
+  privoxy:*:7777:
+</pre>
+          </td>
+        </tr>
+      </table>
+
+      <p>Some binary packages may do this for you.</p>
+
+      <p>Then, to build from either unpacked tarball or CVS source:</p>
+
+      <table class="c4" border="0" width="100%">
+        <tr>
+          <td>
+            <pre class="SCREEN">
+ autoheader
  autoconf
  ./configure      # (--help to see options)
- make             # (the make from GNU, sometimes called gmake) 
+ make             # (the make from GNU, sometimes called gmake)
  su               # Possibly required
  make -n install  # (to see where all the files will go)
- make -s install  # (to really install, -s to silence output)</PRE
-></TD
-></TR
-></TABLE
-></P
-><P
->  Using GNU <B
-CLASS="COMMAND"
->make</B
->, you can have the first four steps
-  automatically done for you by just typing:</P
-><P
-> <TABLE
-BORDER="0"
-BGCOLOR="#E0E0E0"
-WIDTH="100%"
-><TR
-><TD
-><PRE
-CLASS="SCREEN"
->  make</PRE
-></TD
-></TR
-></TABLE
-></P
-><P
->  in the freshly downloaded or unpacked source directory.</P
-><P
-> To build an executable with security enhanced features so that 
- users cannot easily bypass the proxy (e.g. <SPAN
-CLASS="QUOTE"
->"Go There Anyway"</SPAN
->), or
- alter their own configurations, <B
-CLASS="COMMAND"
->configure</B
-> like this:</P
-><P
-> <TABLE
-BORDER="0"
-BGCOLOR="#E0E0E0"
-WIDTH="100%"
-><TR
-><TD
-><PRE
-CLASS="SCREEN"
-> ./configure  --disable-toggle  --disable-editor  --disable-force</PRE
-></TD
-></TR
-></TABLE
-></P
-><P
->Then build as above. In Privoxy 3.0.7 and later, all of these options
-can also be disabled through the configuration file.</P
-><P
-> <SPAN
-CLASS="emphasis"
-><I
-CLASS="EMPHASIS"
->WARNING:</I
-></SPAN
-> If installing as root, the install will fail
- unless a non-root user or group is specified, or a <TT
-CLASS="LITERAL"
->privoxy</TT
->
- user and group already exist on the system. If a non-root user is specified,
- and no group, then the installation will try to also use a group of the same name
- as <SPAN
-CLASS="QUOTE"
->"user"</SPAN
->. If a group is specified (and no user), then the
- support files will be installed as writable by that group, and owned by the
- user running the installation.</P
-><P
-> <B
-CLASS="COMMAND"
->configure</B
-> accepts <TT
-CLASS="LITERAL"
->--with-user</TT
-> and
- <TT
-CLASS="LITERAL"
->--with-group</TT
-> options for setting user and group ownership
- of the configuration files (which need to be writable by the daemon). The
- specified <SPAN
-CLASS="emphasis"
-><I
-CLASS="EMPHASIS"
->user must already exist</I
-></SPAN
->. When starting
- <SPAN
-CLASS="APPLICATION"
->Privoxy</SPAN
->, it must be run as this same user to
- insure write access to configuration and log files!</P
-><P
-> Alternately, you can specify <TT
-CLASS="LITERAL"
->user</TT
-> and <TT
-CLASS="LITERAL"
->group</TT
->
- on the <B
-CLASS="COMMAND"
->make</B
-> command line, but be sure both already exist:</P
-><P
-> <TABLE
-BORDER="0"
-BGCOLOR="#E0E0E0"
-WIDTH="100%"
-><TR
-><TD
-><PRE
-CLASS="SCREEN"
-> make -s install  USER=privoxy GROUP=privoxy</PRE
-></TD
-></TR
-></TABLE
-></P
-><P
-> The default installation path for <B
-CLASS="COMMAND"
->make install</B
-> is 
- <TT
-CLASS="FILENAME"
->/usr/local</TT
->. This may of course be customized with 
- the various <B
-CLASS="COMMAND"
->./configure</B
-> path options. If you are doing 
- an install to anywhere besides <TT
-CLASS="FILENAME"
->/usr/local</TT
->, be
- sure to set the appropriate paths with the correct configure options
- (<B
-CLASS="COMMAND"
->./configure --help</B
->). Non-privileged users must of course
- have write access permissions to wherever the target installation is going.</P
-><P
-> If you do install to <TT
-CLASS="FILENAME"
->/usr/local</TT
->, the install will use
- <TT
-CLASS="LITERAL"
->sysconfdir=$prefix/etc/privoxy</TT
-> by default. All other
- destinations, and the direct usage of <TT
-CLASS="LITERAL"
->--sysconfdir</TT
-> flag
- behave like normal, i.e. will not add the extra <TT
-CLASS="FILENAME"
->privoxy</TT
->
- directory. This is for a safer install, as there may already exist another
- program that uses a file with the <SPAN
-CLASS="QUOTE"
->"config"</SPAN
-> name, and thus makes
- <TT
-CLASS="FILENAME"
->/usr/local/etc</TT
-> cleaner.</P
-><P
-> If installing to <TT
-CLASS="FILENAME"
->/usr/local</TT
->, the documentation will go
- by default to <TT
-CLASS="FILENAME"
->$prefix/share/doc</TT
->. But if this directory
- doesn't exist, it will then try <TT
-CLASS="FILENAME"
->$prefix/doc</TT
-> and install
- there before creating a new <TT
-CLASS="FILENAME"
->$prefix/share/doc</TT
-> just for
- <SPAN
-CLASS="APPLICATION"
->Privoxy</SPAN
->.</P
-><P
-> Again, if the installs goes to <TT
-CLASS="FILENAME"
->/usr/local</TT
->, the
- <TT
-CLASS="LITERAL"
->localstatedir</TT
-> (ie: <TT
-CLASS="FILENAME"
->var/</TT
->) will default
- to <TT
-CLASS="FILENAME"
->/var</TT
-> instead of <TT
-CLASS="LITERAL"
->$prefix/var</TT
-> so
- the logs will go to <TT
-CLASS="FILENAME"
->/var/log/privoxy/</TT
->, and the pid file
- will be created in <TT
-CLASS="FILENAME"
->/var/run/privoxy.pid</TT
->. </P
-><P
-> <B
-CLASS="COMMAND"
->make install</B
-> will attempt to set the correct values 
- in <TT
-CLASS="FILENAME"
->config</TT
-> (main configuration file). You should  
- check this to make sure all values are correct. If appropriate,
- an init script will be installed, but it is up to the user to determine 
- how and where to start <SPAN
-CLASS="APPLICATION"
->Privoxy</SPAN
->. The init 
- script should be checked for correct paths and values, if anything other than
- a default install is done.</P
-><P
-> If install finds previous versions of local configuration files, most of
- these will not be overwritten, and the new ones will be installed with a
- <SPAN
-CLASS="QUOTE"
->"new"</SPAN
-> extension. default.action and default.filter
- <SPAN
-CLASS="emphasis"
-><I
-CLASS="EMPHASIS"
->will be overwritten</I
-></SPAN
->. You will then need
- to manually update the other installed configuration files as needed. The
- default template files <SPAN
-CLASS="emphasis"
-><I
-CLASS="EMPHASIS"
->will</I
-></SPAN
-> be overwritten. If you have
- customized, local templates, these should be stored safely in a separate
- directory and defined in <TT
-CLASS="FILENAME"
->config</TT
-> by the
- <SPAN
-CLASS="QUOTE"
->"templdir"</SPAN
-> directive. It is of course wise to always back-up any
- important configuration files <SPAN
-CLASS="QUOTE"
->"just in case"</SPAN
->. If a previous
- version of <SPAN
-CLASS="APPLICATION"
->Privoxy</SPAN
-> is already running, you will
- have to restart it manually.</P
-><P
-> For more detailed instructions on how to build Redhat RPMs,
- Windows self-extracting installers, building on platforms with
- special requirements etc, please consult the <A
-HREF="http://www.privoxy.org/developer-manual/newrelease.html"
-TARGET="_top"
->developer manual</A
->.</P
-></DIV
-><DIV
-CLASS="SECT2"
-><H2
-CLASS="SECT2"
-><A
-NAME="INSTALLATION-KEEPUPDATED"
->2.3. Keeping your Installation Up-to-Date</A
-></H2
-><P
-> As user feedback comes in and development continues, we will make updated versions
- of both the main <A
-HREF="actions-file.html"
->actions file</A
-> (as a <A
-HREF="http://sourceforge.net/project/showfiles.php?group_id=11118&#38;release_id=103670"
-TARGET="_top"
->separate
- package</A
->) and the software itself (including the actions file) available for
- download.</P
-><P
-> If you wish to receive an email notification whenever we release updates of
- <SPAN
-CLASS="APPLICATION"
->Privoxy</SPAN
-> or the actions file, <A
-HREF="http://lists.sourceforge.net/lists/listinfo/ijbswa-announce/"
-TARGET="_top"
->subscribe
- to our announce  mailing list</A
->, ijbswa-announce@lists.sourceforge.net.</P
-><P
-> In order not to lose your personal changes and adjustments when updating
- to the latest <TT
-CLASS="LITERAL"
->default.action</TT
-> file we <SPAN
-CLASS="emphasis"
-><I
-CLASS="EMPHASIS"
->strongly
- recommend</I
-></SPAN
-> that you use <TT
-CLASS="LITERAL"
->user.action</TT
-> and 
- <TT
-CLASS="LITERAL"
->user.filter</TT
-> for your local
- customizations of <SPAN
-CLASS="APPLICATION"
->Privoxy</SPAN
->. See the <A
-HREF="actions-file.html"
->Chapter on actions files</A
-> for details.</P
-></DIV
-></DIV
-><DIV
-CLASS="NAVFOOTER"
-><HR
-ALIGN="LEFT"
-WIDTH="100%"><TABLE
-SUMMARY="Footer navigation table"
-WIDTH="100%"
-BORDER="0"
-CELLPADDING="0"
-CELLSPACING="0"
-><TR
-><TD
-WIDTH="33%"
-ALIGN="left"
-VALIGN="top"
-><A
-HREF="introduction.html"
-ACCESSKEY="P"
->Prev</A
-></TD
-><TD
-WIDTH="34%"
-ALIGN="center"
-VALIGN="top"
-><A
-HREF="index.html"
-ACCESSKEY="H"
->Home</A
-></TD
-><TD
-WIDTH="33%"
-ALIGN="right"
-VALIGN="top"
-><A
-HREF="whatsnew.html"
-ACCESSKEY="N"
->Next</A
-></TD
-></TR
-><TR
-><TD
-WIDTH="33%"
-ALIGN="left"
-VALIGN="top"
->Introduction</TD
-><TD
-WIDTH="34%"
-ALIGN="center"
-VALIGN="top"
->&nbsp;</TD
-><TD
-WIDTH="33%"
-ALIGN="right"
-VALIGN="top"
->What's New in this Release</TD
-></TR
-></TABLE
-></DIV
-></BODY
-></HTML
->
+ make -s install  # (to really install, -s to silence output)
+</pre>
+          </td>
+        </tr>
+      </table>
+
+      <p>Using GNU <b class="COMMAND">make</b>, you can have the first four
+      steps automatically done for you by just typing:</p>
+
+      <table class="c4" border="0" width="100%">
+        <tr>
+          <td>
+            <pre class="SCREEN">
+  make
+</pre>
+          </td>
+        </tr>
+      </table>
+
+      <p>in the freshly downloaded or unpacked source directory.</p>
+
+      <p>To build an executable with security enhanced features so that users
+      cannot easily bypass the proxy (e.g. <span class="QUOTE">"Go There
+      Anyway"</span>), or alter their own configurations, <b class=
+      "COMMAND">configure</b> like this:</p>
+
+      <table class="c4" border="0" width="100%">
+        <tr>
+          <td>
+            <pre class="SCREEN">
+ ./configure  --disable-toggle  --disable-editor  --disable-force
+</pre>
+          </td>
+        </tr>
+      </table>
+
+      <p>Then build as above. In Privoxy 3.0.7 and later, all of these
+      options can also be disabled through the configuration file.</p>
+
+      <p><span class="emphasis EMPHASIS c2">WARNING:</span> If installing as
+      root, the install will fail unless a non-root user or group is
+      specified, or a <tt class="LITERAL">privoxy</tt> user and group already
+      exist on the system. If a non-root user is specified, and no group,
+      then the installation will try to also use a group of the same name as
+      <span class="QUOTE">"user"</span>. If a group is specified (and no
+      user), then the support files will be installed as writable by that
+      group, and owned by the user running the installation.</p>
+
+      <p><b class="COMMAND">configure</b> accepts <tt class=
+      "LITERAL">--with-user</tt> and <tt class="LITERAL">--with-group</tt>
+      options for setting user and group ownership of the configuration files
+      (which need to be writable by the daemon). The specified <span class=
+      "emphasis EMPHASIS c2">user must already exist</span>. When starting
+      <span class="APPLICATION">Privoxy</span>, it must be run as this same
+      user to insure write access to configuration and log files!</p>
+
+      <p>Alternately, you can specify <tt class="LITERAL">user</tt> and
+      <tt class="LITERAL">group</tt> on the <b class="COMMAND">make</b>
+      command line, but be sure both already exist:</p>
+
+      <table class="c4" border="0" width="100%">
+        <tr>
+          <td>
+            <pre class="SCREEN">
+ make -s install  USER=privoxy GROUP=privoxy
+</pre>
+          </td>
+        </tr>
+      </table>
+
+      <p>The default installation path for <b class="COMMAND">make
+      install</b> is <tt class="FILENAME">/usr/local</tt>. This may of course
+      be customized with the various <b class="COMMAND">./configure</b> path
+      options. If you are doing an install to anywhere besides <tt class=
+      "FILENAME">/usr/local</tt>, be sure to set the appropriate paths with
+      the correct configure options (<b class="COMMAND">./configure
+      --help</b>). Non-privileged users must of course have write access
+      permissions to wherever the target installation is going.</p>
+
+      <p>If you do install to <tt class="FILENAME">/usr/local</tt>, the
+      install will use <tt class=
+      "LITERAL">sysconfdir=$prefix/etc/privoxy</tt> by default. All other
+      destinations, and the direct usage of <tt class=
+      "LITERAL">--sysconfdir</tt> flag behave like normal, i.e. will not add
+      the extra <tt class="FILENAME">privoxy</tt> directory. This is for a
+      safer install, as there may already exist another program that uses a
+      file with the <span class="QUOTE">"config"</span> name, and thus makes
+      <tt class="FILENAME">/usr/local/etc</tt> cleaner.</p>
+
+      <p>If installing to <tt class="FILENAME">/usr/local</tt>, the
+      documentation will go by default to <tt class=
+      "FILENAME">$prefix/share/doc</tt>. But if this directory doesn't exist,
+      it will then try <tt class="FILENAME">$prefix/doc</tt> and install
+      there before creating a new <tt class="FILENAME">$prefix/share/doc</tt>
+      just for <span class="APPLICATION">Privoxy</span>.</p>
+
+      <p>Again, if the installs goes to <tt class="FILENAME">/usr/local</tt>,
+      the <tt class="LITERAL">localstatedir</tt> (ie: <tt class=
+      "FILENAME">var/</tt>) will default to <tt class="FILENAME">/var</tt>
+      instead of <tt class="LITERAL">$prefix/var</tt> so the logs will go to
+      <tt class="FILENAME">/var/log/privoxy/</tt>, and the pid file will be
+      created in <tt class="FILENAME">/var/run/privoxy.pid</tt>.</p>
+
+      <p><b class="COMMAND">make install</b> will attempt to set the correct
+      values in <tt class="FILENAME">config</tt> (main configuration file).
+      You should check this to make sure all values are correct. If
+      appropriate, an init script will be installed, but it is up to the user
+      to determine how and where to start <span class=
+      "APPLICATION">Privoxy</span>. The init script should be checked for
+      correct paths and values, if anything other than a default install is
+      done.</p>
+
+      <p>If install finds previous versions of local configuration files,
+      most of these will not be overwritten, and the new ones will be
+      installed with a <span class="QUOTE">"new"</span> extension.
+      default.action and default.filter <span class=
+      "emphasis EMPHASIS c2">will be overwritten</span>. You will then need
+      to manually update the other installed configuration files as needed.
+      The default template files <span class=
+      "emphasis EMPHASIS c2">will</span> be overwritten. If you have
+      customized, local templates, these should be stored safely in a
+      separate directory and defined in <tt class="FILENAME">config</tt> by
+      the <span class="QUOTE">"templdir"</span> directive. It is of course
+      wise to always back-up any important configuration files <span class=
+      "QUOTE">"just in case"</span>. If a previous version of <span class=
+      "APPLICATION">Privoxy</span> is already running, you will have to
+      restart it manually.</p>
+
+      <p>For more detailed instructions on how to build Redhat RPMs, Windows
+      self-extracting installers, building on platforms with special
+      requirements etc, please consult the <a href=
+      "http://www.privoxy.org/developer-manual/newrelease.html" target=
+      "_top">developer manual</a>.</p>
+    </div>
+
+    <div class="SECT2">
+      <h2 class="SECT2"><a name="INSTALLATION-KEEPUPDATED" id=
+      "INSTALLATION-KEEPUPDATED">2.3. Keeping your Installation
+      Up-to-Date</a></h2>
+
+      <p>As user feedback comes in and development continues, we will make
+      updated versions of both the main <a href="actions-file.html">actions
+      file</a> (as a <a href=
+      "http://sourceforge.net/project/showfiles.php?group_id=11118&amp;release_id=103670"
+      target="_top">separate package</a>) and the software itself (including
+      the actions file) available for download.</p>
+
+      <p>If you wish to receive an email notification whenever we release
+      updates of <span class="APPLICATION">Privoxy</span> or the actions
+      file, <a href=
+      "http://lists.sourceforge.net/lists/listinfo/ijbswa-announce/" target=
+      "_top">subscribe to our announce mailing list</a>,
+      ijbswa-announce@lists.sourceforge.net.</p>
+
+      <p>In order not to lose your personal changes and adjustments when
+      updating to the latest <tt class="LITERAL">default.action</tt> file we
+      <span class="emphasis EMPHASIS c2">strongly recommend</span> that you
+      use <tt class="LITERAL">user.action</tt> and <tt class=
+      "LITERAL">user.filter</tt> for your local customizations of
+      <span class="APPLICATION">Privoxy</span>. See the <a href=
+      "actions-file.html">Chapter on actions files</a> for details.</p>
+    </div>
+  </div>
+
+  <div class="NAVFOOTER">
+    <hr class="c1" width="100%">
+
+    <table summary="Footer navigation table" width="100%" border="0"
+    cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="33%" align="left" valign="top"><a href="introduction.html"
+        accesskey="P">Prev</a></td>
+
+        <td width="34%" align="center" valign="top"><a href="index.html"
+        accesskey="H">Home</a></td>
+
+        <td width="33%" align="right" valign="top"><a href="whatsnew.html"
+        accesskey="N">Next</a></td>
+      </tr>
+
+      <tr>
+        <td width="33%" align="left" valign="top">Introduction</td>
+
+        <td width="34%" align="center" valign="top">&nbsp;</td>
+
+        <td width="33%" align="right" valign="top">What's New in this
+        Release</td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>

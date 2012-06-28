@@ -13,7 +13,7 @@
 #
 # Template files are written in plain HTML, with a few
 # additions:
-# 
+#
 # - Lines that start with a '#' character like this one
 #   are ignored
 #
@@ -28,7 +28,7 @@
 #   strings @if-<name>start and if-<name>-end@. The strings
 #   should be placed in HTML comments (<!-- -->), so the
 #   html structure won't be messed when the magic happens.
-#   
+#
 # USABLE SYMBOLS IN THIS TEMPLATE:
 # --------------------------------
 #
@@ -82,7 +82,7 @@
 #  force-support:
 #    Privoxy has been compiled with support for forced loading
 #    of blocked content. In that case, the symbol "force-prefix" is
-#    avaiable, which translates to the FORCE_PREFIX  
+#    avaiable, which translates to the FORCE_PREFIX
 #
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -107,20 +107,20 @@
        minWidth  = 650;
        minHeight = 330;
 
-       /* 
+       /*
         * Navigator, Mozilla, Opera
         */
-       if (window.innerWidth 
-           && (window.innerWidth >= minWidth) 
+       if (window.innerWidth
+           && (window.innerWidth >= minWidth)
            && (window.innerHeight >= minHeight))
        {
           return false;
        }
- 
-       /* 
+
+       /*
         * MSIE
         */
-       else if (document.body && document.body.clientWidth 
+       else if (document.body && document.body.clientWidth
                 && (document.body.clientWidth >= minWidth)
                 && (document.body.clientHeight >= minHeight))
        {

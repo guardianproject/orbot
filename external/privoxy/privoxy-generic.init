@@ -36,57 +36,6 @@
 # has notable differences from bash. By design, this script does not try to do
 # too much, so as to be as cross-platform as possible.
 #
-# 
-#  Revisions   :
-#     $Log: privoxy-generic.init,v $
-#     Revision 1.8  2007/06/09 12:35:54  fabiankeil
-#     Add /usr/xpg4/bin to the PATH to make sure the POSIX
-#     version of id is used on Solaris. Closes BR#1733788.
-#     Thanks to Brent Chivers for report and fix.
-#
-#     Revision 1.7  2006/10/14 14:12:22  fabiankeil
-#     Print warnings if the user tries to run Privoxy as root
-#     or if the script is run without root privileges;
-#     only use "--user" if run with root privileges and
-#     don't depend on $USER being set to root. Fixes BR 779781.
-#
-#     Apparently $USER isn't set on all systems,
-#     but it also didn't work if the user only
-#     increased her privileges with su or sudo,
-#     but still had her real uid in $USER.
-#
-#     Thanks to Florian Effenberger for reporting.
-#
-#     Revision 1.6  2006/07/18 14:48:47  david__schmidt
-#     Reorganizing the repository: swapping out what was HEAD (the old 3.1 branch)
-#     with what was really the latest development (the v_3_0_branch branch)
-#
-#     Revision 1.5.2.1  2002/10/17 17:04:22  hal9
-#     Add from main trunk. Will be needed for make install.
-#
-#     Revision 1.5  2002/10/17 17:01:29  hal9
-#     Set paths to match the defaults for a root install. Force remove PIDFILE on
-#     stop.
-#
-#     Revision 1.4  2002/09/11 01:15:02  hal9
-#     Fix typo in variable. Now tested on Solaris and Linux, with defaults.
-#
-#     Revision 1.3  2002/09/11 01:09:14  hal9
-#     Better handling of pidfile, and process owner.
-#
-#     Revision 1.2  2002/09/08 20:27:58  hal9
-#     -Rewrote script config section.
-#     -Added comments to script.
-#     -Tried to add logic to use a --user privoxy, if available.
-#     -Minor script changes due to 'echo -n' does not work on a true
-#      /bin/sh system.
-#
-#     Revision 1.1  2002/09/06 00:20:26  hal9
-#     Creating a generic init script, meant to be used on platforms where don't have
-#     a custom init script.
-#
-#     Revision 1.0  2002/09/05 17:14:32  hal9
-#
 #######################################################################
 
 # Is this needed by Solaris?

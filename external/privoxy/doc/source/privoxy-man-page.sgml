@@ -4,22 +4,22 @@
  Purpose     :  Manual Page
                 This file belongs into
                 ijbswa.sourceforge.net:/home/groups/i/ij/ijbswa/htdocs/
-                
- $Id: privoxy-man-page.sgml,v 2.29 2009/02/19 02:20:22 hal9 Exp $
+
+ $Id: privoxy-man-page.sgml,v 2.40 2011/12/26 17:05:40 fabiankeil Exp $
 
  Copyright (C) 2001-2009 Privoxy Developers http://www.privoxy.org/
  See LICENSE.
 
  ========================================================================
- NOTE: Please read developer-manual/documentation.html before touching 
- anything in this, or other Privoxy documentation. 
+ NOTE: Please read developer-manual/documentation.html before touching
+ anything in this, or other Privoxy documentation.
  ========================================================================
 
  Doc NOTES: This is some tricky markup! There are some quirks
  to how this markup is handled. It is not always so co-operative.
- Please don't change the markup unless you can verify the changes 
- will improve finished output! 
- 
+ Please don't change the markup unless you can verify the changes
+ will improve finished output!
+
  literallayout tags are particularly sensitive to where they are placed.
  The 'replaceable' and 'command' tags are used here somewhat unconventionally,
  since it seems to generate the proper formatting (at least for me :).
@@ -28,21 +28,21 @@
 
  Requires docbook2man (short perl script), see CVS
  http://sources.redhat.com/docbook-tools/. Also requires openjade and SGMLSpm
- perl module. 
- 
+ perl module.
+
  For man page references, see:
  http://www.linuxdoc.org/HOWTO/mini/DocBook-Install/using.html
  http://docbook.org/tdg/en/html/ch02.html#making-refentry
 
 -->
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook V4.1//EN"[
-<!entity % dummy "IGNORE"> 
+<!entity % dummy "IGNORE">
 <!entity p-intro SYSTEM "privoxy.sgml">
 <!entity seealso SYSTEM "seealso.sgml">
 <!entity copyright SYSTEM "copyright.sgml">
 <!entity license SYSTEM "license.sgml">
 <!entity authors SYSTEM "p-authors.sgml">
-<!entity p-version "3.0.11">
+<!entity p-version "3.0.19">
 <!entity p-status "stable">
 <!entity % p-not-stable "IGNORE">
 <!entity % p-stable "INCLUDE">
@@ -57,7 +57,7 @@
  <date>2009-02-15</date>
 </refentryinfo>
 <refmeta>
- <refentrytitle>privoxy</refentrytitle> 
+ <refentrytitle>privoxy</refentrytitle>
  <manvolnum>1</manvolnum>
  <refmiscinfo>
   Privoxy &p-version;<![%p-not-stable;[ &p-status;]]>
@@ -70,16 +70,16 @@
 </refnamediv>
 
 <refsynopsisdiv>
- <cmdsynopsis> 
+ <cmdsynopsis>
   <command>privoxy</command>
   <arg><option>--help</option></arg>
   <arg><option>--version</option></arg>
   <arg><option>--no-daemon</option></arg>
-  <arg><option>--pidfile </option><replaceable class="parameter">pidfile</replaceable></arg>  
-  <arg><option>--user </option><replaceable class="parameter">user[.group]</replaceable></arg> 
+  <arg><option>--pidfile </option><replaceable class="parameter">pidfile</replaceable></arg>
+  <arg><option>--user </option><replaceable class="parameter">user[.group]</replaceable></arg>
   <arg><option>--chroot</option></arg>
-  <arg><option>--pre-chroot-nslookup </option><replaceable class="parameter">hostname</replaceable></arg> 
-  <arg><replaceable class="parameter">configfile</replaceable></arg>        
+  <arg><option>--pre-chroot-nslookup </option><replaceable class="parameter">hostname</replaceable></arg>
+  <arg><replaceable class="parameter">configfile</replaceable></arg>
  </cmdsynopsis>
 
 </refsynopsisdiv>
@@ -92,7 +92,7 @@
   options:
  </para>
 
- <variablelist>                                          
+ <variablelist>
   <varlistentry>
     <term>--help</term>
       <listitem>
@@ -157,7 +157,7 @@
        <command>Privoxy</command> process that the directory tree starts
        there. If set up carefully, this can limit the impact of possible
        vulnerabilities in <command>Privoxy</command> to the files contained in
-       that hierarchy. 
+       that hierarchy.
       </para>
     </listitem>
   </varlistentry>
@@ -177,7 +177,7 @@
   If the <filename>configfile</filename> is not specified on  the  command  line,
   <command>Privoxy</command>  will  look for a file named
   <filename>config</filename> in the current directory. If no
-  <filename>configfile</filename> is found, <command>Privoxy</command> will 
+  <filename>configfile</filename> is found, <command>Privoxy</command> will
   fail to start.
  </para>
 
@@ -201,21 +201,21 @@
  filter to build an intercepting proxy
  (see <filename>config</filename>).  The default setting is  for
  localhost,  on port  8118 (configurable in the main config file).  To set the
- HTTP proxy in Firefox, go through: <command>Tools</command>; 
+ HTTP proxy in Firefox, go through: <command>Tools</command>;
  <command>Options</command>; <command>General</command>;
  <command>Connection Settings</command>;
- <command>Manual Proxy Configuration</command>. 
+ <command>Manual Proxy Configuration</command>.
 </para>
 <para>
- For Internet Explorer, go through: <command>Tools</command>; 
+ For Internet Explorer, go through: <command>Tools</command>;
  <command>Internet Properties</command>; <command>Connections</command>;
- <command>LAN Settings</command>. 
+ <command>LAN Settings</command>.
 </para>
 <para>
  The Secure (SSL) Proxy should also be set to the same values, otherwise
  https: URLs will not be proxied. Note: <command>Privoxy</command> can only
  proxy HTTP and HTTPS traffic. Do not try it with FTP or other protocols.
- HTTPS presents some limitations, and not all features will work with HTTPS 
+ HTTPS presents some limitations, and not all features will work with HTTPS
  connections.
 </para>
 
@@ -231,25 +231,25 @@
  <command>Privoxy</command> can be configured with the various configuration
  files. The default configuration files are: <filename>config</filename>,
  <filename>default.filter</filename>, <filename>default.action</filename> and
- <filename>default.action</filename>. <filename>user.action</filename> should 
+ <filename>default.action</filename>. <filename>user.action</filename> should
  be used for locally defined exceptions to the default rules in
  <filename>match-all.action</filename> and <filename>default.action</filename>,
  and <filename>user.filter</filename> for locally defined filters. These are
  well commented.  On Unix and Unix-like systems, these are located in
- <filename>/etc/privoxy/</filename> by default. 
+ <filename>/etc/privoxy/</filename> by default.
 </para>
-<para> 
- <command>Privoxy</command> uses the concept of <command>actions</command> 
+<para>
+ <command>Privoxy</command> uses the concept of <command>actions</command>
  in order to manipulate the data stream between the browser and remote sites.
- There are various actions available with specific functions for such things 
+ There are various actions available with specific functions for such things
  as blocking web sites, managing cookies, etc. These actions can be invoked
- individually or combined, and used against individual URLs, or groups of URLs 
+ individually or combined, and used against individual URLs, or groups of URLs
  that can be defined using wildcards and regular expressions. The result is
  that the user has greatly enhanced control and freedom.
 </para>
 <para>
  The actions list (ad blocks, etc) can also be configured with your
- web browser at <ulink url="http://config.privoxy.org/">http://config.privoxy.org/</ulink> 
+ web browser at <ulink url="http://config.privoxy.org/">http://config.privoxy.org/</ulink>
  (assuming the configuration allows it).
  <command>Privoxy's</command> configuration parameters  can also  be viewed at
  the same page. In addition, <command>Privoxy</command> can be toggled on/off.
@@ -268,7 +268,7 @@
 <!--   ~~~~~       New section      ~~~~~     -->
 <refsect1><title>Files</title>
 <!-- this is a cheesy way to do this, but WTF. -->
-<literallayout> 
+<literallayout>
  <filename>/usr/sbin/privoxy</filename>
  <filename>/etc/privoxy/config</filename>
  <filename>/etc/privoxy/match-all.action</filename>
@@ -296,11 +296,11 @@
  <!-- command tag is used here to get proper looking format  -->
  <command>Privoxy</command> terminates on the <command>SIGINT</command>,
  <command>SIGTERM</command> and <command>SIGABRT</command> signals. Log
- rotation scripts may cause a re-opening of the logfile by sending a 
+ rotation scripts may cause a re-opening of the logfile by sending a
  <command>SIGHUP</command> to <command>Privoxy</command>. Note that unlike
  other daemons,  <command>Privoxy</command> does not need to be made aware of
  config file changes by <command>SIGHUP</command> -- it will detect them
- automatically. 
+ automatically.
 </para>
 
 </refsect1>
@@ -309,7 +309,7 @@
 <refsect1><title>Notes</title>
 <![%p-not-stable;[
 <para>
- This is a &p-status; version of <command>Privoxy</command>. Not 
+ This is a &p-status; version of <command>Privoxy</command>. Not
  all features are well tested.
 </para>]]>
 <para>
