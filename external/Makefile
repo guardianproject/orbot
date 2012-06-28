@@ -213,7 +213,6 @@ privoxy: privoxy-build-stamp
 	cp privoxy/privoxy bin
 
 privoxy-clean:
-	$(MAKE) -C privoxy clean
 	-rm -f bin/privoxy
 	-rm -f privoxy-build-stamp
 	-cd privoxy && \
