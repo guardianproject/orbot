@@ -40,10 +40,10 @@
     	
        <ImageView
 		android:id="@+id/imgStatus"
-				    android:layout_marginTop="55dip"
-
 		android:layout_width="fill_parent"
-		android:layout_height="fill_parent"
+		android:layout_height="0dp"
+		android:layout_marginTop="40dp"
+		android:layout_weight="1"
 		android:src="@drawable/toroff"
 		android:layout_gravity="center_horizontal" />
 		
@@ -52,7 +52,8 @@
 		android:gravity="center_horizontal"
 		android:textStyle="bold"
 		android:layout_width="fill_parent"
-		android:layout_height="60dip"
+		android:layout_height="wrap_content"
+		
 		android:textColor="#ffffff"
 		android:layout_below="@id/imgStatus"
 		 />
