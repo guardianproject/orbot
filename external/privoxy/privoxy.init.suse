@@ -1,0 +1,127 @@
+#! /bin/sh
+#  ********************************************************************
+# 
+#  File        :  $Source: /cvsroot/ijbswa/current/privoxy.init.suse,v $
+# 
+#  Purpose     :  This shell script takes care of starting and stopping
+#                 privoxy.
+# 
+#  Copyright   :  Written by and Copyright (C) 2001 the SourceForge
+#                 Privoxy team. http://www.privoxy.org/
+# 
+#                 Based on the Internet Junkbuster originally written
+#                 by and Copyright (C) 1997 Anonymous Coders and
+#                 Junkbusters Corporation.  http://www.junkbusters.com
+# 
+#                 This program is free software; you can redistribute it
+#                 and/or modify it under the terms of the GNU General
+#                 Public License as published by the Free Software
+#                 Foundation; either version 2 of the License, or (at
+#                 your option) any later version.
+# 
+#                 This program is distributed in the hope that it will
+#                 be useful, but WITHOUT ANY WARRANTY; without even the
+#                 implied warranty of MERCHANTABILITY or FITNESS FOR A
+#                 PARTICULAR PURPOSE.  See the GNU General Public
+#                 License for more details.
+# 
+#                 The GNU General Public License should be included with
+#                 this file.  If not, you can view it at
+#                 http://www.gnu.org/copyleft/gpl.html
+#                 or write to the Free Software Foundation, Inc., 59
+#                 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+# 
+#  Revisions   :
+#     $Log: privoxy.init.suse,v $
+#     Revision 1.4  2006/07/18 14:48:47  david__schmidt
+#     Reorganizing the repository: swapping out what was HEAD (the old 3.1 branch)
+#     with what was really the latest development (the v_3_0_branch branch)
+#
+#     Revision 1.3.2.1  2003/03/17 14:04:16  oes
+#     No longer use obsolete rc.config
+#
+#     Revision 1.3  2002/03/26 22:29:55  swa
+#     we have a new homepage!
+#
+#     Revision 1.2  2002/03/24 11:40:14  swa
+#     name change
+#
+#     Revision 1.1  2002/03/24 11:23:44  swa
+#     name change
+#
+#     Revision 1.7  2002/03/11 11:44:46  oes
+#     Working in suggestions by Thorsten Kukuk <kukuk@suse.de>
+#
+#     Revision 1.6  2002/03/09 14:56:34  swa
+#     wrong user.group
+#
+#     Revision 1.5  2002/03/08 21:39:59  oes
+#     setgid to nogroup
+#
+#     Revision 1.4  2002/03/05 19:54:37  oes
+#     Preliminary version of SuSE 8.0-certified init script ,-)
+#
+#     Revision 1.3  2002/03/05 05:28:05  oes
+#     Added pidfile creation
+#
+#     Revision 1.2  2001/09/10 16:25:46  swa
+#     jb did not start. none of the arguments worked. fixed.
+#
+#     Revision 1.1  2001/06/08 20:53:36  swa
+#     use buildroot, export init to separate file (better manageability)
+#
+#
+# 
+# ********************************************************************/
+### BEGIN INIT INFO
+# Provides:       privoxy
+# Required-Start: $network $syslog $remote_fs
+# Required-Stop:
+# Default-Start:  3 5
+# Default-Stop:   0 1 2 6
+# Description:    Starts Privoxy
+### END INIT INFO
+
+. /etc/rc.status
+rc_reset  
+
+case "$1" in
+    start)
+        echo -n "Starting Privoxy"
+        if [ ! -f /var/run/privoxy.pid ] || ! kill -0 `cat /var/run/privoxy.pid` 2> /dev/null; then
+           /usr/sbin/privoxy --user privoxy.privoxy --pidfile /var/run/privoxy.pid /etc/privoxy/config 2> /dev/null
+        else     
+           false 
+        fi
+	rc_status -v
+        ;;
+    stop)
+        echo -n "Shutting down Privoxy"
+        killproc -TERM /usr/sbin/privoxy && rm -f /var/run/privoxy.pid
+	rc_status -v
+        ;;
+    reload)
+        echo -n "Reloading Privoxy"
+        kill -HUP `cat /var/run/privoxy.pid`
+        rc_status -v
+        ;;
+    try-restart)
+        $0 stop && $0 start
+	rc_status
+        ;;
+    restart)
+        $0 stop
+        $0 start
+        rc_status
+        ;;           
+    status)
+	echo -n "Checking for Privoxy"
+        checkproc /usr/sbin/privoxy
+	rc_status -v
+        ;;
+    *)
+        echo "Usage: $0 {start|restart|reload|status|stop}"
+        exit 1
+esac
+
+rc_exit
