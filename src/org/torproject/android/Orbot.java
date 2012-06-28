@@ -39,11 +39,12 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class Orbot extends Activity implements OnLongClickListener, TorConstants
+public class Orbot extends Activity implements TorConstants, OnLongClickListener
 {
  
 		
@@ -90,7 +91,7 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
                 
             //obvious? -yep got everything so far
             lblStatus = (TextView)findViewById(R.id.lblStatus);
-                lblStatus.setOnLongClickListener(this);
+                
             imgStatus = (ImageView)findViewById(R.id.imgStatus);
             imgStatus.setOnLongClickListener(this);
             
@@ -665,14 +666,17 @@ public class Orbot extends Activity implements OnLongClickListener, TorConstants
                         stopTor();
                         
                 }
+                
+                return true;
                     
             }
             catch (Exception e)
             {
                     Log.d(TAG,"error onclick",e);
             }
+            
+            return false;
                     
-            return true;
         }
         
 
