@@ -13,7 +13,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.MeasureSpec;
 
-public class AnimatedBlockView extends View implements Runnable {
+public class AnimatedBlockView extends View
+{
 
 	  private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
@@ -21,14 +22,6 @@ public class AnimatedBlockView extends View implements Runnable {
 	  private boolean drawing = false;
 
 		Random rand = new Random();
-		
-		private Handler mHandler = new Handler()
-		{
-			 public void handleMessage(Message msg) {
-		            
-				 	invalidate();
-		        }
-		};
 		
 
 	public AnimatedBlockView(Context context) {
@@ -54,15 +47,15 @@ public class AnimatedBlockView extends View implements Runnable {
 	 paint.setColor(Color.WHITE);
 	 paint.setAntiAlias(true);
 
-	 new Thread (this).start();
-	 
 	}
 
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-	 // TODO Auto-generated method stub
-	 setMeasuredDimension(MeasureSpec.getSize(widthMeasureSpec),
+	   super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+	   
+	   setMeasuredDimension(MeasureSpec.getSize(widthMeasureSpec),
 	   MeasureSpec.getSize(heightMeasureSpec));
+	 
 	}
 
 	int a1 = 30;
@@ -71,6 +64,7 @@ public class AnimatedBlockView extends View implements Runnable {
 	@Override
 	protected void onDraw(Canvas canvas) {
 
+		super.onDraw(canvas);
 		
 		for (int i = 0; i < 20; i++)
 		{
@@ -104,26 +98,6 @@ public class AnimatedBlockView extends View implements Runnable {
 		
 
 	}
-	
-	public void run ()
-	{
-		
-		
-		/*while (true)
-		{
-			
-			
-			try
-			{
-				Thread.sleep(10);
-			}
-			catch (Exception e)
-			{}
-			
-			mHandler.sendEmptyMessage(0);
-			
-		}*/
-	}
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
@@ -155,6 +129,7 @@ public class AnimatedBlockView extends View implements Runnable {
 	 }
 	 
 	 return true;
+	 
 	}
 
 }
