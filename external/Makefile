@@ -72,9 +72,10 @@ openssl-static-build-stamp: openssl-static/obj/local/armeabi/libcrypto.a openssl
 openssl-static: openssl-static-build-stamp
 	test -d lib || mkdir lib
 	test -d include || mkdir include
+	test -d include/openssl || mkdir include/openssl
 	cp openssl-static/obj/local/armeabi/libcrypto.a lib
 	cp openssl-static/obj/local/armeabi/libssl.a lib
-	cp -R openssl-static/include/openssl include 
+	cp openssl-static/include/openssl/* include/openssl
 
 openssl-static-clean:
 	-cd openssl-static && \
@@ -159,7 +160,7 @@ tor-clean:
 
 obfsproxy/Makefile: 
 	cp obfsproxy_android_no_hardening.patch obfsproxy
-	cd obfsproxy && \
+	-cd obfsproxy && \
 	 	patch -N -p1 --reject-file=- < obfsproxy_android_no_hardening.patch
 	cd obfsproxy && \
 	 	./autogen.sh
