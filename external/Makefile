@@ -216,7 +216,6 @@ privoxy-clean:
 	$(MAKE) -C privoxy clean
 	-rm -f bin/privoxy
 	-rm -f privoxy-build-stamp
-	-git checkout privoxy
 	-cd privoxy && \
 		git clean -fdx .
 
