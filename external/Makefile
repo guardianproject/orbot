@@ -216,10 +216,9 @@ privoxy-clean:
 	$(MAKE) -C privoxy clean
 	-rm -f bin/privoxy
 	-rm -f privoxy-build-stamp
-	-rm -f privoxy/config.status
-	-rm -f privoxy/config.log
-	-rm -f privoxy/Makefile
-
+	-git checkout privoxy
+	-cd privoxy && \
+		git clean -fdx .
 
 #------------------------------------------------------------------------------#
 # JTorControl library
