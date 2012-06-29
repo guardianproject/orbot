@@ -5,6 +5,7 @@ package org.torproject.android.settings;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
@@ -266,6 +267,7 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
 			appIdx++;
 		}
 	
+		Collections.sort(apps);
 		
 		return apps;
 	}

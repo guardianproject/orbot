@@ -2,7 +2,7 @@ package org.torproject.android.settings;
 
 import android.graphics.drawable.Drawable;
 
-public class TorifiedApp {
+public class TorifiedApp implements Comparable {
 
 	private boolean enabled;
 	private int uid;
@@ -114,5 +114,17 @@ public class TorifiedApp {
 	
 	public void setIcon(Drawable icon) {
 		this.icon = icon;
+	}
+	
+	@Override
+	public int compareTo(Object another) {
+		
+		return this.toString().compareTo(another.toString());
+	}
+	
+	@Override
+	public String toString ()
+	{
+		return getName();
 	}
 }
