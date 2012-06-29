@@ -8,10 +8,13 @@
 package org.torproject.android.service;
 
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -734,7 +737,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		int procId = -1;
 		int attempts = 0;
 
-		int torRetryWaitTimeMS = 5000;
+		int torRetryWaitTimeMS = 2000;
 		
 		while (procId == -1 && attempts < MAX_START_TRIES)
 		{
@@ -748,22 +751,25 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			
 			procId = TorServiceUtils.findProcessId(fileTor.getAbsolutePath());
 			
-			logNotice("got tor proc id: " + procId);
-			
 			if (procId == -1)
 			{
-				
-				sendCallbackStatusMessage(getString(R.string.couldn_t_start_tor_process_));
 				Thread.sleep(torRetryWaitTimeMS);
+				procId = TorServiceUtils.findProcessId(fileTor.getAbsolutePath());
 				attempts++;
 			}
-
-			if (waitForProcess)
-				logNotice(log.toString());
+			else
+			{
+				logNotice("got tor proc id: " + procId);
+				
+			}
 		}
 		
 		if (procId == -1)
 		{
+
+			logNotice(log.toString());
+			sendCallbackStatusMessage(getString(R.string.couldn_t_start_tor_process_));
+			
 			throw new Exception ("Unable to start Tor");
 		}
 		else
@@ -1572,6 +1578,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
                 int ORPort =  Integer.parseInt(prefs.getString(TorConstants.PREF_OR_PORT, "9001"));
                 String nickname = prefs.getString(TorConstants.PREF_OR_NICKNAME, "Orbot");
 
+                String dnsFile = writeDNSFile ();
+                
+                mBinder.updateConfiguration("ServerDNSResolvConfFile", dnsFile, false);
                 mBinder.updateConfiguration("ORPort", ORPort + "", false);
     			mBinder.updateConfiguration("Nickname", nickname, false);
     			mBinder.updateConfiguration("ExitPolicy", "reject *:*", false);
@@ -1626,6 +1635,18 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         return true;
     }
     
+    //using Google DNS for now as the public DNS server
+    private String writeDNSFile () throws IOException
+    {
+    	File file = new File(appBinHome,"resolv.conf");
+    	
+    	PrintWriter bw = new PrintWriter(new FileWriter(file));
+    	bw.println("nameserver 8.8.8.8");
+    	bw.println("nameserver 8.8.4.4");
+    	bw.close();
+    
+    	return file.getAbsolutePath();
+    }
    
    
 }

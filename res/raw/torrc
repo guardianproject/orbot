@@ -11,3 +11,6 @@ TransListenAddress 127.0.0.1
 TransPort 9040
 DNSListenAddress 127.0.0.1
 DNSPort 5400
+HardwareAccel 1
+SafeLogging 1
+TestSocks 1
