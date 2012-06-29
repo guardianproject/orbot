@@ -205,25 +205,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
 		initTorPaths();
 		
-		//if Tor was deleted for some reason, do this again!
-		if (!fileTor.exists())
-		{
-			new Thread ()
-			{				
-				public void run ()
-				{
-					try {
-						checkTorBinaries (false);
-					} catch (Exception e) {
 		
-						logNotice("unable to find tor binaries: " + e.getMessage());
-				    	showToolbarNotification(getString(R.string.error_installing_binares), ERROR_NOTIFY_ID, R.drawable.tornotificationerr, -1);
-		
-						Log.e(TAG, "error checking tor binaries", e);
-					}
-				}
-			}.start();
-		}
 	}
 
 
@@ -1156,6 +1138,28 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	
     	_torInstance = this;
     	initTorPaths();
+    	
+    	//android.os.Debug.waitForDebugger();
+    	
+    	//if Tor was deleted for some reason, do this again!
+		if (!fileTor.exists())
+		{
+			new Thread ()
+			{				
+				public void run ()
+				{
+					try {
+						checkTorBinaries (false);
+					} catch (Exception e) {
+		
+						logNotice("unable to find tor binaries: " + e.getMessage());
+				    	showToolbarNotification(getString(R.string.error_installing_binares), ERROR_NOTIFY_ID, R.drawable.tornotificationerr, -1);
+		
+						Log.e(TAG, "error checking tor binaries", e);
+					}
+				}
+			}.start();
+		}
     	
     	
     	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
