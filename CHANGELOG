@@ -17,6 +17,9 @@ NOTE: Specific #s below correspond to Trac tickets logged and maintained at http
 - added docs folder and readme's
 - clarified english strings for hidden srv and proxying
 - moved Tor data directory to app_data from cache
+- fixed notification persistence handling
+- fixed relay/server mode option resolv.conf error
+- fixed app list display
 
 1.0.8 (includes 1.0.7.3 and 1.0.7.2)
 - new external/Makefile and git submodules
