@@ -16,8 +16,8 @@
                <ImageView android:id="@+id/radioModeImage"
  		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
-			android:layout_marginTop="3px"
-			android:layout_marginRight="3px"
+			android:layout_marginTop="3dp"
+			android:layout_marginRight="3dp"
 			android:gravity="right"
 			android:layout_toRightOf="@+id/radioModeLabel"
 			android:layout_alignParentRight="true"
@@ -28,7 +28,7 @@
  		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"           
             android:text="@string/powered_by"
-			android:layout_marginTop="8px"
+			android:layout_marginTop="8dp"
 			android:layout_marginRight="0px"
 			android:gravity="right"
 			android:layout_toLeftOf="@+id/radioModeImage"
@@ -45,6 +45,7 @@
 		android:layout_marginTop="40dp"
 		android:layout_weight="1"
 		android:src="@drawable/toroff"
+		android:contentDescription="activate button"
 		android:layout_gravity="center_horizontal" />
 		
 	<TextView android:id="@+id/lblStatus"
@@ -55,7 +56,6 @@
 		android:layout_height="wrap_content"
 		
 		android:textColor="#ffffff"
-		android:layout_below="@id/imgStatus"
 		 />
 </LinearLayout>
        
