@@ -91,6 +91,9 @@ public class Orbot extends Activity implements TorConstants, OnLongClickListener
                 
             imgStatus = (ImageView)findViewById(R.id.imgStatus);
             imgStatus.setOnLongClickListener(this);
+            
+    		startService(new Intent(INTENT_TOR_SERVICE));
+
 
     }
     
@@ -307,12 +310,9 @@ public class Orbot extends Activity implements TorConstants, OnLongClickListener
 	protected void onResume() {
 		super.onResume();
 		
-		setLocale();
-		
+//		setLocale();
+
     	bindService();
-        // 	startService(new Intent(INTENT_TOR_SERVICE));
-
-
 		
 		if (getIntent() == null)
 			return;
@@ -393,17 +393,15 @@ public class Orbot extends Activity implements TorConstants, OnLongClickListener
 			}
 			
 		}
-	}
-
-	/* (non-Javadoc)
-	 * @see android.app.Activity#onStart()
-	 */
-	protected void onStart() {
-		super.onStart();
-		
 		
 		updateStatus ("");
 		
+	}
+
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		// TODO Auto-generated method stub
+		super.onConfigurationChanged(newConfig);
 	}
 
 	/* (non-Javadoc)
@@ -462,7 +460,8 @@ public class Orbot extends Activity implements TorConstants, OnLongClickListener
             //then update the preferences in an async background task
             if (requestCode == 1 && resultCode == 1010 && mService != null)
             {
-                    new ProcessSettingsAsyncTask().execute(mService);        
+                    new ProcessSettingsAsyncTask().execute(mService);      
+                    setLocale();
             }
     }
     
