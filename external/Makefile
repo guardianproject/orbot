@@ -117,6 +117,29 @@ libevent-clean:
 		git clean -fdx
 
 #------------------------------------------------------------------------------#
+# iptables
+
+iptables/Makefile:
+	cd iptables && ./autogen.sh
+	cp config.sub iptables
+	cp config.guess iptables
+	cd iptables && \
+ 		CC="$(CC)" AR="$(AR)" RANLIB=$(RANLIB) CFLAGS="$(CFLAGS) -DNO_SHARED_LIBS -DXTABLES_INTERNAL -DIPTABLES_VERSION=\"1.4.10\" =-DXTABLES_VERSION=\"1.4.10\" # -DIPT_LIB_DIR=\"$(IPT_LIBDIR)\" -DXTABLES_LIBDIR -I$(EXTERNAL_ROOT)/include" LDFLAGS="$(LDFLAGS)" \
+			./configure \
+				--host=$(HOST) \
+				--disable-shared
+
+iptables-build-stamp: iptables/Makefile
+	$(MAKE) -C iptables 
+	touch iptables-build-stamp
+
+iptables: iptables-build-stamp
+
+iptables-clean:
+	-rm -f iptables-build-stamp
+	-cd iptables
+
+#------------------------------------------------------------------------------#
 # tor
 
 tor/configure: 
@@ -193,6 +216,9 @@ obfsproxy-clean:
 
 
 privoxy/config.log:
+	tar xzvf privoxy.tar.gz
+	mv privoxy*stable privoxy
+	cp privoxy.configure.in privoxy/configure.in
 	cd privoxy && \
 	  autoheader
 	cd privoxy && \
@@ -216,8 +242,7 @@ privoxy: privoxy-build-stamp
 privoxy-clean:
 	-rm -f bin/privoxy
 	-rm -f privoxy-build-stamp
-	-cd privoxy && \
-		git clean -fdx .
+	-rm -rf privoxy
 
 #------------------------------------------------------------------------------#
 # JTorControl library
