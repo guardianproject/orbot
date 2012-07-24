@@ -21,20 +21,20 @@
 
  <item android:id="@+id/menu_start"
         android:title="@string/menu_start"
-         android:icon="@drawable/menu_start"
+         android:icon="@drawable/ic_action_start"
           android:showAsAction="ifRoom"
          
          />
 
  <item android:id="@+id/menu_settings"
         android:title="@string/menu_settings"
-         android:icon="@drawable/menu_settings"
+         android:icon="@drawable/ic_action_settings"
          android:showAsAction="always"
          />
 
  <item android:id="@+id/menu_verify"
         android:title="@string/menu_verify"
-         android:icon="@drawable/ic_menu_check"
+         android:icon="@drawable/ic_action_browse"
                   android:showAsAction="always"
          
          />

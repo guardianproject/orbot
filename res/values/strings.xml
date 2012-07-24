@@ -99,6 +99,11 @@
     <string name="wizard_tips_otrchat">Gibberbot - Secure instant messaging client for Android</string>
     <string name="wizard_tips_proxy">Proxy Settings - Learn how to configure apps to work with Orbot</string>
     
+    <string name="wizard_tips_duckgo">Duckduckgo Search Engine app</string>
+   
+    <string name="wizard_tips_firefox">Firefox with Proxy Mobile add-on (extra install after)</string>
+    <string name="wizard_tips_twitter">Twitter supports http proxy "localhost:8118"</string>
+    
     <string name="wizard_proxy_help_info">Proxy Settings</string>
     <string name="wizard_proxy_help_msg">If the Android app you are using can support the use of an HTTP or SOCKS proxy, then you can configure it to connect to Orbot and use Tor.\n\n
     The host settings is 127.0.0.1 or "localhost". For HTTP, the port setting is 8118. For SOCKS, the proxy is 9050. You should use SOCKS4A or SOCKS5 if possible.

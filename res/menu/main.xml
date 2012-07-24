@@ -21,17 +21,17 @@
 
  <item android:id="@+id/menu_start"
         android:title="@string/menu_start"
-         android:icon="@drawable/menu_start"
+         android:icon="@drawable/ic_action_start"
          />
 
  <item android:id="@+id/menu_settings"
         android:title="@string/menu_settings"
-         android:icon="@drawable/menu_settings"
+         android:icon="@drawable/ic_action_settings"
          />
 
  <item android:id="@+id/menu_verify"
         android:title="@string/menu_verify"
-         android:icon="@drawable/ic_menu_check"
+         android:icon="@drawable/ic_action_browse"
          />
  
  <item android:id="@+id/menu_about"

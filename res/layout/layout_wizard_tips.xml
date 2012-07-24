@@ -49,24 +49,72 @@
 		 android:layout_span="3">    
 
 <LinearLayout
-			android:background="#575757"
-		    android:orientation="vertical"
-		    android:layout_width="fill_parent"
-		    android:layout_height="fill_parent"
-		    android:paddingRight="20dip"
-		    >
-		    
-<TextView android:text="@string/wizard_tips_msg" android:layout_width="wrap_content" android:textColor="#ffffff" android:layout_height="wrap_content"  android:textSize="8pt" android:id="@+id/WizardTextBody1" android:padding="20dip"></TextView>
-<Button android:text="@string/wizard_tips_orweb"  android:layout_gravity="left" android:drawableLeft="@drawable/icon_orweb" android:layout_marginTop="10px" android:id="@+id/WizardRootButtonInstallOrweb" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#575757"
+    android:orientation="vertical"
+    android:paddingRight="20dip" >
 
-<Button android:text="@string/wizard_tips_gibberbot"  android:layout_gravity="left" android:drawableLeft="@drawable/ic_launcher_gibberbot"  android:layout_marginTop="10px" android:id="@+id/WizardRootButtonInstallGibberbot" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/WizardTextBody1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.31"
+        android:padding="20dip"
+        android:text="@string/wizard_tips_msg"
+        android:textColor="#ffffff"
+        android:textSize="8pt" >
+    </TextView>
 
-<!-- 
-<Button android:text="@string/wizard_tips_firefox"  android:layout_gravity="left" android:drawableLeft="@drawable/icon_firefox" android:layout_marginTop="10px" android:id="@+id/WizardRootButtonInstallFirefox" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/WizardRootButtonInstallOrweb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginTop="10px"
+        android:drawableLeft="@drawable/icon_orweb"
+        android:text="@string/wizard_tips_orweb" />
 
-<Button android:text="@string/wizard_tips_proxymob" android:layout_marginTop="10px" android:drawableLeft="@drawable/proxymob" android:id="@+id/WizardRootButtonInstallProxyMob" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
- -->
-			</LinearLayout>
+    <Button
+        android:id="@+id/WizardRootButtonInstallGibberbot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginTop="10px"
+        android:drawableLeft="@drawable/ic_launcher_gibberbot"
+        android:text="@string/wizard_tips_gibberbot" />
+
+    
+    <Button
+        android:id="@+id/WizardRootButtonInstallDuckgo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginTop="10px"
+        android:drawableLeft="@drawable/icon_firefox"
+        android:text="@string/wizard_tips_duckgo" />
+    
+    <Button
+        android:id="@+id/WizardRootButtonInstallFirefox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginTop="10px"
+        android:drawableLeft="@drawable/icon_firefox"
+        android:text="@string/wizard_tips_firefox" />
+    
+    <Button
+        android:id="@+id/WizardRootButtonInstallTwitter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginTop="10px"
+        android:drawableLeft="@drawable/icon_firefox"
+        android:text="@string/wizard_tips_twitter" />
+    
+
+</LinearLayout>
+
 		</ScrollView>
 		
 </TableRow>
