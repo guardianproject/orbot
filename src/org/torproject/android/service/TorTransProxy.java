@@ -309,6 +309,16 @@ public class TorTransProxy implements TorServiceConstants {
 				script.append(" -j REJECT");
 				script.append(" || exit\n");
 				
+				// Reject all other outbound UDP packets
+				script.append(ipTablesPath);
+				script.append(" -A OUTPUT");
+				script.append(" -t filter");
+				script.append(" -m owner --uid-owner ");
+				script.append(tApp.getUid());
+				script.append(" -p udp");
+				script.append(" -j REJECT");
+				script.append(" || exit\n");
+				
 			}		
 		}			
 		
@@ -404,6 +414,16 @@ public class TorTransProxy implements TorServiceConstants {
 				script.append(" -m owner --uid-owner ");
 				script.append(tApp.getUid());
 				script.append(" -p tcp");
+				script.append(" -j REJECT");
+				script.append(" || exit\n");
+				
+				// Reject all other outbound TCP packets
+				script.append(ipTablesPath);
+				script.append(" -D OUTPUT");
+				script.append(" -t filter");
+				script.append(" -m owner --uid-owner ");
+				script.append(tApp.getUid());
+				script.append(" -p udp");
 				script.append(" -j REJECT");
 				script.append(" || exit\n");
 				
@@ -648,7 +668,15 @@ public class TorTransProxy implements TorServiceConstants {
 		script.append(" -p tcp");
 		script.append(" -j REJECT");
 		script.append(" || exit\n");
-		
+
+		// Reject all other outbound UDP packets
+		script.append(ipTablesPath);
+		script.append(" -t filter");
+		script.append(" -A OUTPUT");
+		script.append(" -p udp");
+		script.append(" -j REJECT");
+		script.append(" || exit\n");
+
 		String[] cmdAdd = {script.toString()};    	
     	
 		code = TorServiceUtils.doShellCommand(cmdAdd, res, runRoot, waitFor);
@@ -714,6 +742,14 @@ public class TorTransProxy implements TorServiceConstants {
 		script.append(" -D OUTPUT");
 		script.append(" -t filter");
 		script.append(" -p tcp");
+		script.append(" -j REJECT");
+		script.append(" || exit\n");
+		
+		// Reject all other outbound TCP packets
+		script.append(ipTablesPath);
+		script.append(" -D OUTPUT");
+		script.append(" -t filter");
+		script.append(" -p udp");
 		script.append(" -j REJECT");
 		script.append(" || exit\n");
 		
