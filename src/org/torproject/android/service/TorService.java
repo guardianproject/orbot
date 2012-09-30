@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.StringTokenizer;
 
 import net.freehaven.tor.control.ConfigEntry;
@@ -41,7 +42,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.os.Bundle;
 import android.os.IBinder;
+import android.os.Looper;
+import android.os.Message;
+import android.os.Parcelable;
 import android.os.RemoteCallbackList;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
@@ -50,7 +55,7 @@ import android.util.Log;
 public class TorService extends Service implements TorServiceConstants, TorConstants, Runnable, EventHandler
 {
 	
-	public static boolean ENABLE_DEBUG_LOG = false;
+	public static boolean ENABLE_DEBUG_LOG = true;
 	
 	private static int currentStatus = STATUS_OFF;
 		
@@ -944,7 +949,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		conn.setEventHandler(this);
 	    
 		conn.setEvents(Arrays.asList(new String[]{
-	          "ORCONN", "CIRC", "NOTICE", "WARN", "ERR"}));
+	          "ORCONN", "CIRC", "NOTICE", "WARN", "ERR","BW"}));
 	      // conn.setEvents(Arrays.asList(new String[]{
 	        //  "DEBUG", "INFO", "NOTICE", "WARN", "ERR"}));
 
@@ -1105,7 +1110,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		}
 		
 	}
-
+	
 	public void bandwidthUsed(long read, long written) {
 		
 		if (ENABLE_DEBUG_LOG)
@@ -1116,12 +1121,17 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			sb.append("kb read / ");
 			sb.append(written/1000);
 			sb.append("kb written");
-			
+	   		
 			logNotice(sb.toString());
 		}
+		
+		sendCallbackStatusMessage(written, read); 
+			
+		
 
 	}
-
+	
+   	
 	public void circuitStatus(String status, String circID, String path) {
 		
 		if (ENABLE_DEBUG_LOG)
@@ -1258,8 +1268,25 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			}
         	
         }
-        
-        
+ 
+
+    	public String getInfo (String key) {
+    		try
+    		{
+    			if(conn !=null)
+    			{
+    				String m = conn.getInfo(key);
+					return m;
+					
+    			}
+    		}
+    		catch(IOException ioe)
+    		{
+    			Log.e(TAG,"Unable to get Tor information",ioe);
+    			logNotice("Unable to get Tor information"+ioe.getMessage());
+    		}
+			return null;
+        }
         
         public String getConfiguration (String name)
         {
@@ -1390,6 +1417,36 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         mCallbacks.finishBroadcast();
         inCallback = false;
     }
+   
+    private synchronized void sendCallbackStatusMessage (long upload, long download)
+    {
+    	 
+    	if (mCallbacks == null)
+    		return;
+    	
+        // Broadcast to all clients the new value.
+        final int N = mCallbacks.beginBroadcast();
+        
+        inCallback = true;
+        
+        if (N > 0)
+        {
+        	 for (int i=0; i<N; i++) {
+		            try {
+		                mCallbacks.getBroadcastItem(i).updateBandwidth(upload, download);
+		                
+		                
+		            } catch (RemoteException e) {
+		                // The RemoteCallbackList will take care of removing
+		                // the dead object for us.
+		            }
+		        }
+        }
+        
+        mCallbacks.finishBroadcast();
+        inCallback = false;
+    }
+    
     
     private synchronized void sendCallbackLogMessage (String logMessage)
     {
@@ -1441,8 +1498,11 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     {
     	
     	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-    	
-		boolean useBridges = prefs.getBoolean(TorConstants.PREF_BRIDGES_ENABLED, false); 
+		
+    	ENABLE_DEBUG_LOG = prefs.getBoolean("pref_enable_logging",true);
+    	Log.i(TAG,"debug logging:" + ENABLE_DEBUG_LOG);
+    		
+		boolean useBridges = prefs.getBoolean(TorConstants.PREF_BRIDGES_ENABLED, false);
 		
 		//boolean autoUpdateBridges = prefs.getBoolean(TorConstants.PREF_BRIDGES_UPDATED, false);
 

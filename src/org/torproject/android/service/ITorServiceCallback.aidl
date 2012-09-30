@@ -12,6 +12,11 @@ oneway interface ITorServiceCallback {
     void statusChanged(String value);
     
     /**
+     * Called when the service returns the bandwidth user to display to the user
+     */
+     void updateBandwidth(long value, long value2);
+    	     
+    /**
      * Called when the service has something to add to the log
      */
     void logMessage(String value);

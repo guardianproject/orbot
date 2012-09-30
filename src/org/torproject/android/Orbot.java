@@ -42,57 +42,62 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class Orbot extends Activity implements TorConstants, OnLongClickListener
 {
- 
-		
-        /* Useful UI bits */
-        // so this is probably pretty obvious, here, but also an area
-        // which we might see quite a bit of change+complexity was the main screen
-        // UI gets new features
-        private TextView lblStatus = null; //the main text display widget
-        private ImageView imgStatus = null; //the main touchable image for activating Orbot
-        private ProgressDialog progressDialog; //the spinning progress dialog that shows up now and then
-        private MenuItem mItemOnOff = null; //the menu item which we toggle based on Orbot state
-        
-        /* Some tracking bits */
-        private int torStatus = TorServiceConstants.STATUS_OFF; //latest status reported from the tor service
-        // this is a value we get passed back from the TorService
-        
-        /* Tor Service interaction */
-         /* The primary interface we will be calling on the service. */
-        ITorService mService = null; //interface to remote TorService 
-        private boolean autoStartOnBind = false; //controls whether service starts when class binds to it
+	/* Useful UI bits */
+	private TextView lblStatus = null; //the main text display widget
+	private ImageView imgStatus = null; //the main touchable image for activating Orbot
+	private ProgressDialog progressDialog;
+	private MenuItem mItemOnOff = null;
+    private RelativeLayout trafficRow = null; // the row showing the traffic
+    private TextView downloadText = null;
+    private TextView uploadText = null;
 
-        SharedPreferences prefs; //what the user really wants!
-        
-    /** 
-    * When the Orbot activity is created, we call startService
-    * to ensure the Tor remote service is running. However, it may
-    * already be running, and this should not create more than one instnace
-     */
+	/* Some tracking bits */
+	private int torStatus = TorServiceConstants.STATUS_OFF; //latest status reported from the tor service
+	
+	/* Tor Service interaction */
+		/* The primary interface we will be calling on the service. */
+    ITorService mService = null;
+	private boolean autoStartOnBind = false;
+
+	SharedPreferences prefs;
+	
+	public static Orbot currentInstance = null;
+	
+    private static void setCurrent(Orbot current){
+    	Orbot.currentInstance = current;
+    }
+    
+    /** Called when the activity is first created. */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
+        Orbot.setCurrent(this);
+
       //if Tor binary is not running, then start the service up
       //might want to look at whether we need to call this every time
       //or whether binding to the service is enough
            	
-        	setLocale();
+        setLocale();
         
-            prefs = PreferenceManager.getDefaultSharedPreferences(this);
-            
-            setContentView(R.layout.layout_main);
-                
-            //obvious? -yep got everything so far
-            lblStatus = (TextView)findViewById(R.id.lblStatus);
-                
-            imgStatus = (ImageView)findViewById(R.id.imgStatus);
-            imgStatus.setOnLongClickListener(this);
-            
-    		startService(new Intent(INTENT_TOR_SERVICE));
+	startService(new Intent(INTENT_TOR_SERVICE));
+		
+    	prefs = PreferenceManager.getDefaultSharedPreferences(this);
+    	
+    	setContentView(R.layout.layout_main);
+		
+    	lblStatus = (TextView)findViewById(R.id.lblStatus);
+		lblStatus.setOnLongClickListener(this);
+    	imgStatus = (ImageView)findViewById(R.id.imgStatus);
+    	imgStatus.setOnLongClickListener(this);
+    	trafficRow = (RelativeLayout)findViewById(R.id.trafficRow);
+    	downloadText = (TextView)findViewById(R.id.trafficDown);
+        uploadText = (TextView)findViewById(R.id.trafficUp);
+        
 
 
     }
@@ -608,21 +613,21 @@ public class Orbot extends Activity implements TorConstants, OnLongClickListener
             msg.getData().putString(HANDLER_TOR_MSG, getString(R.string.status_starting_up));
             mHandler.sendMessage(msg);
             
+    	
     }
     
     //now we stop Tor! amazing!
     private void stopTor () throws RemoteException
     {
-        //if the service is bound, then turn it off, using the same "PROFILE_" technique
-            if (mService != null)
-            {
-                    mService.setProfile(TorServiceConstants.PROFILE_OFF);
-                    
-                    //again this is related to the progress dialog or some other threaded UI object
-                    Message msg = mHandler.obtainMessage(TorServiceConstants.DISABLE_TOR_MSG);
-                    mHandler.sendMessage(msg);
-            }
-            
+    	if (mService != null)
+    	{
+    		mService.setProfile(TorServiceConstants.PROFILE_OFF);
+    		Message msg = mHandler.obtainMessage(TorServiceConstants.DISABLE_TOR_MSG);
+    		mHandler.sendMessage(msg);
+            trafficRow.setVisibility(RelativeLayout.GONE);
+
+    	}
+    	
      
     }
     
@@ -689,14 +694,31 @@ public class Orbot extends Activity implements TorConstants, OnLongClickListener
                 mHandler.sendMessage(msg);
         }
 
-    
-            public void logMessage(String value) throws RemoteException {
-                    
-                    Message msg = mHandler.obtainMessage(TorServiceConstants.LOG_MSG);
-            msg.getData().putString(HANDLER_TOR_MSG, value);
-            mHandler.sendMessage(msg);
-                    
-            }
+		@Override
+		public void logMessage(String value) throws RemoteException {
+			
+			Message msg = mHandler.obtainMessage(TorServiceConstants.LOG_MSG);
+        	msg.getData().putString(HANDLER_TOR_MSG, value);
+        	mHandler.sendMessage(msg);
+			
+		}
+
+		@Override
+		public void updateBandwidth(long upload, long download)
+				throws RemoteException {
+			
+        	Message msg = Message.obtain();
+			msg.what = TorServiceConstants.MESSAGE_TRAFFIC_COUNT;
+			
+			
+			Bundle data = new Bundle();
+			data.putLong("upload", upload);
+			data.putLong("download", download);
+			
+			msg.setData(data);
+			mHandler.sendMessage(msg); 
+
+		}
     };
     
 
@@ -731,11 +753,35 @@ public class Orbot extends Activity implements TorConstants, OnLongClickListener
                         
                         break;
                 case TorServiceConstants.DISABLE_TOR_MSG:
-                        
-                        updateStatus((String)msg.getData().getString(HANDLER_TOR_MSG));
-                        
-                        break;
-                                
+                	
+                	updateStatus((String)msg.getData().getString(HANDLER_TOR_MSG));
+                	
+                	break;
+                	
+
+            	case TorServiceConstants.MESSAGE_TRAFFIC_COUNT :
+                    
+            		trafficRow.setVisibility(RelativeLayout.VISIBLE);
+            		Bundle data = msg.getData();
+            		DataCount datacount =  new DataCount(data.getLong("upload"),data.getLong("download"));      		
+            		downloadText.setText(formatCount(datacount.Download));
+            		uploadText.setText(formatCount(datacount.Upload));
+            		downloadText.invalidate();
+            		uploadText.invalidate();
+			
+            		try {
+            			String TotalUpload = mService.getInfo("traffic/written");
+            			String TotalDownload = mService.getInfo("traffic/read");
+            			StringBuilder sb = new StringBuilder();
+            			sb.append("Total Upload " + TotalUpload);
+            			sb.append("Total Download" + TotalDownload);
+            			Log.d(TAG,sb.toString());
+            		} catch (RemoteException e) {
+            			Log.d(TAG,"Total bandwidth error"+e.getMessage());
+            		}
+           		 		
+            		break;
+                		
                 default:
                     super.handleMessage(msg);
             }
@@ -885,5 +931,28 @@ public class Orbot extends Activity implements TorConstants, OnLongClickListener
             getResources().updateConfiguration(config, getResources().getDisplayMetrics());
         }
     }
-    
+
+   	public class DataCount {
+   		// data uploaded
+   		public long Upload;
+   		// data downloaded
+   		public long Download;
+   		
+   		DataCount(long Upload, long Download){
+   			this.Upload = Upload;
+   			this.Download = Download;
+   		}
+   	}
+   	
+   	private String formatCount(long count) {
+		// Converts the supplied argument into a string.
+		// Under 2Mb, returns "xxx.xKb"
+		// Over 2Mb, returns "xxx.xxMb"
+		if (count < 1e6 * 2)
+			return ((float)((int)(count*10/1024))/10 + " kbps");
+		return ((float)((int)(count*100/1024/1024))/100 + " mbps");
+		
+   		//return count+" kB";
+	}
+   	
 }
