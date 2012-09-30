@@ -92,7 +92,7 @@
 			android:layout_height="wrap_content"
 			android:layout_alignParentLeft="true"
 			android:layout_below="@+id/trafficDownLabel"
-			android:textSize="24sp"
+			android:textSize="20sp"
 			android:gravity="center_vertical|center_horizontal"
 			android:textStyle="bold" />
 		<TextView
@@ -102,7 +102,7 @@
 			android:layout_height="wrap_content"
 			android:layout_alignParentRight="true"
 			android:layout_below="@+id/trafficUpLabel"
-			android:textSize="24sp"
+			android:textSize="20sp"
 			android:gravity="center_vertical|center_horizontal"
 			android:textStyle="bold" />
     </RelativeLayout>		
