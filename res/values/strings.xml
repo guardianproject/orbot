@@ -31,8 +31,8 @@
 <string name="menu_about">About</string>
 <string name="menu_wizard">Wizard</string>
 
-<string name="main_layout_download">Download</string> 
-<string name="main_layout_upload">Upload</string> 
+<string name="main_layout_download">Download (speed/total)</string> 
+<string name="main_layout_upload">Upload (speed/total)</string> 
 
 <string name="button_help">Help</string>
 <string name="button_close">Close</string>

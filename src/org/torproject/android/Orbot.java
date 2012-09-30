@@ -763,22 +763,23 @@ public class Orbot extends Activity implements TorConstants, OnLongClickListener
                     
             		trafficRow.setVisibility(RelativeLayout.VISIBLE);
             		Bundle data = msg.getData();
-            		DataCount datacount =  new DataCount(data.getLong("upload"),data.getLong("download"));      		
-            		downloadText.setText(formatCount(datacount.Download));
-            		uploadText.setText(formatCount(datacount.Upload));
-            		downloadText.invalidate();
-            		uploadText.invalidate();
-			
+            		DataCount datacount =  new DataCount(data.getLong("upload"),data.getLong("download"));     
+            		String TotalUpload = "";
+            		String TotalDownload = "";
+            		
             		try {
-            			String TotalUpload = mService.getInfo("traffic/written");
-            			String TotalDownload = mService.getInfo("traffic/read");
-            			StringBuilder sb = new StringBuilder();
-            			sb.append("Total Upload " + TotalUpload);
-            			sb.append("Total Download" + TotalDownload);
-            			Log.d(TAG,sb.toString());
+            			TotalUpload = mService.getInfo("traffic/written");
+            			TotalDownload = mService.getInfo("traffic/read");
+            			
             		} catch (RemoteException e) {
             			Log.d(TAG,"Total bandwidth error"+e.getMessage());
             		}
+            		
+            		downloadText.setText(formatCount(datacount.Download) + " / " + formatTotal(Long.parseLong(TotalDownload)));
+            		uploadText.setText(formatCount(datacount.Upload) + " / " + formatTotal(Long.parseLong(TotalUpload)));
+            		
+            		downloadText.invalidate();
+            		uploadText.invalidate();
            		 		
             		break;
                 		
@@ -949,8 +950,19 @@ public class Orbot extends Activity implements TorConstants, OnLongClickListener
 		// Under 2Mb, returns "xxx.xKb"
 		// Over 2Mb, returns "xxx.xxMb"
 		if (count < 1e6 * 2)
-			return ((float)((int)(count*10/1024))/10 + " kbps");
-		return ((float)((int)(count*100/1024/1024))/100 + " mbps");
+			return ((float)((int)(count*10/1024))/10 + "kbps");
+		return ((float)((int)(count*100/1024/1024))/100 + "mbps");
+		
+   		//return count+" kB";
+	}
+   	
+   	private String formatTotal(long count) {
+		// Converts the supplied argument into a string.
+		// Under 2Mb, returns "xxx.xKb"
+		// Over 2Mb, returns "xxx.xxMb"
+		if (count < 1e6)
+			return ((float)((int)(count*10/1024))/10 + "KB");
+		return ((float)((int)(count*100/1024/1024))/100 + "MB");
 		
    		//return count+" kB";
 	}
