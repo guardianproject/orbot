@@ -203,7 +203,7 @@ public class SettingsPreferences
 	private void clearTransProxyState ()
 	{
 		try {
-			new TorTransProxy().flushIptables(this);
+			new TorTransProxy().clearTransparentProxyingAll(this);
 		} catch (Exception e) {
 			Log.e(TorConstants.TAG,"error flushing iptables",e);
 		}

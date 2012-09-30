@@ -710,7 +710,6 @@ public class Orbot extends Activity implements TorConstants, OnLongClickListener
         	Message msg = Message.obtain();
 			msg.what = TorServiceConstants.MESSAGE_TRAFFIC_COUNT;
 			
-			
 			Bundle data = new Bundle();
 			data.putLong("upload", upload);
 			data.putLong("download", download);
@@ -775,12 +774,19 @@ public class Orbot extends Activity implements TorConstants, OnLongClickListener
             			Log.d(TAG,"Total bandwidth error"+e.getMessage());
             		}
             		
-            		downloadText.setText(formatCount(datacount.Download) + " / " + formatTotal(Long.parseLong(TotalDownload)));
-            		uploadText.setText(formatCount(datacount.Upload) + " / " + formatTotal(Long.parseLong(TotalUpload)));
+            		try
+            		{
+	            		downloadText.setText(formatCount(datacount.Download) + " / " + formatTotal(Long.parseLong(TotalDownload)));
+	            		uploadText.setText(formatCount(datacount.Upload) + " / " + formatTotal(Long.parseLong(TotalUpload)));
+	            		
+	            		downloadText.invalidate();
+	            		uploadText.invalidate();
+            		}
+            		catch (NumberFormatException nfe)
+            		{
+            			//just ignore/swallow
+            		}
             		
-            		downloadText.invalidate();
-            		uploadText.invalidate();
-           		 		
             		break;
                 		
                 default:
