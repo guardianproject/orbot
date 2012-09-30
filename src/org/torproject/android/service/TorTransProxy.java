@@ -468,7 +468,7 @@ public class TorTransProxy implements TorServiceConstants {
 		script.append(ipTablesPath);
 		script.append(" -t nat");
 		script.append(" -A OUTPUT -p udp");
-		script.appent(" -m owner ! --uid-owner ");
+		script.append(" -m owner ! --uid-owner ");
 		script.append(torUid);
 		script.append(" -m udp --dport "); 
 		script.append(STANDARD_DNS_PORT);
