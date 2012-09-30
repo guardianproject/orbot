@@ -38,10 +38,13 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.Looper;
@@ -275,6 +278,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		     {
 			   initTor();
 			   isRunning = true;
+			   IntentFilter mNetworkStateFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+			   registerReceiver(mNetworkStateReceiver , mNetworkStateFilter);
 		     }
 		     catch (Exception e)
 		     {
@@ -1496,6 +1501,23 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	
     }
     
+    /*
+     *  Another way to do this would be to use the Observer pattern by defining the 
+     *  BroadcastReciever in the Android manifest.
+     */
+    private final BroadcastReceiver mNetworkStateReceiver = new BroadcastReceiver() {
+    	@Override
+    	public void onReceive(Context context, Intent intent) {
+    		boolean noConnectivity = intent.getBooleanExtra(ConnectivityManager.EXTRA_NO_CONNECTIVITY, false);
+    		try {
+				mBinder.updateConfiguration("DisableNetwork", noConnectivity ? "1" : "0", false);
+				mBinder.saveConfiguration();
+    		} catch (RemoteException e) {
+				logException ("error applying prefs",e);
+			}
+    	}
+    };
+
     private boolean updateTorConfiguration () throws RemoteException
     {
     	

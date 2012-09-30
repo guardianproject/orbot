@@ -5,9 +5,10 @@
       android:versionCode="45"
         android:installLocation="auto"
       >
-       <uses-permission android:name="android.permission.INTERNET" />
- 		<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
- 
+    <uses-permission android:name="android.permission.INTERNET" />
+ 	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+ 	
     <uses-sdk android:minSdkVersion="5" android:targetSdkVersion="15"/>
     <application android:name=".OrbotApp" android:icon="@drawable/ic_launcher"
      android:label="@string/app_name" 
