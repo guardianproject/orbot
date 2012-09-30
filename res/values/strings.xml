@@ -246,8 +246,8 @@
 <string name="https_torproject_org">https://torproject.org</string>
 <string name="third_party_software">3rd-Party-Software: </string>
 
- <string name="tor_version">Tor v0.2.3.17: https://www.torproject.org</string>
-<string name="libevent_version">LibEvent v2.1: http://www.monkey.org/~provos/libevent/</string>
+ <string name="tor_version">Tor v0.2.4.3-alpha: https://www.torproject.org</string>
+<string name="libevent_version">LibEvent v2.1.1-alpha: http://www.monkey.org/~provos/libevent/</string>
 <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
 <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
 <string name="openssl_version">OpenSSL v0.9.8h: http://www.openssl.org</string>
