@@ -17,7 +17,6 @@ public class TorTransProxy implements TorServiceConstants {
 
 	public String getIpTablesPath (Context context)
 	{
-		android.os.Debug.waitForDebugger();
 		
 			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 			
