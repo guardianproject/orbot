@@ -17,28 +17,28 @@
             android:id="@+id/orbot_image"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:paddingLeft="20sp"
+            android:paddingLeft="40sp"
             android:src="@drawable/warning" 
             android:gravity="center_vertical"
             
             >
 
         </ImageView>
-        <TextView 
-        	android:textColor="#FFFFFF"
-        	android:textSize="20dp" 
-        	android:layout_toRightOf="@id/orbot_image" 
-        	android:gravity="center_vertical"
-       	 	android:layout_height="fill_parent" 
-        	android:id="@+id/WizardTextTitle" 
-        	android:layout_width="wrap_content" 
-        	android:fadingEdge="vertical" 
-        	android:text="TITLE"     
-        	android:singleLine="true" 
-        	android:layout_centerInParent="true" 
-        	android:paddingLeft="5sp"
-        	> 
-        </TextView>
+
+        <TextView
+            android:id="@+id/WizardTextTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:fadingEdge="vertical"
+            android:gravity="center_vertical"
+            android:paddingLeft="5sp"
+            android:singleLine="true"
+            android:text="TITLE"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp" />
+
     </RelativeLayout> 
        
 <TableLayout  android:id="@+id/TableLayout01" android:stretchColumns="*" android:layout_height="fill_parent" android:layout_width="wrap_content" >

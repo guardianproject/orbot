@@ -18,23 +18,25 @@
         	android:layout_width="wrap_content" 
         	android:layout_height="wrap_content" 
         	android:layout_alignParentLeft="true"
-        	android:paddingLeft="20sp" >
+        	android:paddingLeft="20sp"
+          	android:paddingTop="10sp" >
+        	
         </ImageView>
-        <TextView 
-        	android:textColor="#FFFFFF"
-        	android:textSize="10pt" 
-        	android:layout_toRightOf="@id/orbot_image" 
-        	android:gravity="center_vertical"
-       	 	android:layout_height="fill_parent" 
-        	android:id="@+id/WizardTextTitle" 
-        	android:layout_width="wrap_content" 
-        	android:fadingEdge="vertical" 
-        	android:text="TITLE"     
-        	android:singleLine="true" 
-        	android:layout_centerInParent="true" 
-        	android:paddingLeft="5sp"
-        	> 
-        </TextView>
+
+        <TextView
+            android:id="@+id/WizardTextTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:fadingEdge="vertical"
+            android:gravity="center_vertical"
+            android:paddingLeft="5sp"
+            android:singleLine="true"
+            android:text="TITLE"
+            android:textColor="#FFFFFF"
+            android:textSize="10pt" />
+
     </RelativeLayout> 
           
 <TableLayout android:id="@+id/TableLayout01" android:stretchColumns="*" android:layout_height="fill_parent" android:layout_width="wrap_content">
