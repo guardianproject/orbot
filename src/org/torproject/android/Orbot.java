@@ -57,7 +57,7 @@ public class Orbot extends Activity implements TorConstants, OnLongClickListener
     private TextView uploadText = null;
 
 	/* Some tracking bits */
-	private int torStatus = STATUS_READY; //latest status reported from the tor service
+	private int torStatus = TorServiceConstants.STATUS_OFF; //latest status reported from the tor service
 	
 	/* Tor Service interaction */
 		/* The primary interface we will be calling on the service. */
