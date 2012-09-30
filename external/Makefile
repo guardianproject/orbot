@@ -18,9 +18,11 @@ EXTERNAL_ROOT = $(CWD)
 # Android NDK setup:
 NDK_BASE ?= /usr/local/android-ndk
 NDK_PLATFORM_LEVEL ?= 8
+NDK_TOOLCHAIN_VERSION=4.6
 NDK_SYSROOT=$(NDK_BASE)/platforms/android-$(NDK_PLATFORM_LEVEL)/arch-arm
 NDK_UNAME=`uname -s | tr '[A-Z]' '[a-z]'`
-NDK_TOOLCHAIN=$(NDK_BASE)/toolchains/arm-linux-androideabi-4.4.3/prebuilt/$(NDK_UNAME)-x86
+#NDK_TOOLCHAIN=$(NDK_BASE)/toolchains/arm-linux-androideabi-4.4.3/prebuilt/$(NDK_UNAME)-x86
+NDK_TOOLCHAIN=$(NDK_BASE)/toolchains/arm-linux-androideabi-4.6/prebuilt/$(NDK_UNAME)-x86
 
 # to use the real HOST tag, you need the latest libtool files:
 # http://stackoverflow.com/questions/4594736/configure-does-not-recognize-androideabi
@@ -44,8 +46,8 @@ RANLIB := $(NDK_TOOLCHAIN)/bin/arm-linux-androideabi-ranlib
 STRIP := $(NDK_TOOLCHAIN)/bin/arm-linux-androideabi-strip \
 	--strip-unneeded -R .note -R .comment
 
-CFLAGS = -DANDROID -I$(LOCAL)/include -I$(NDK_SYSROOT)/usr/include
-LDFLAGS = -L$(LOCAL)/lib -L$(NDK_SYSROOT)/usr/lib
+CFLAGS = -DANDROID -I$(LOCAL) -I$(LOCAL)/include -I$(NDK_SYSROOT)/usr/include
+LDFLAGS = -L$(LOCAL) -L$(LOCAL)/lib -L$(NDK_SYSROOT)/usr/lib
 
 # build as small as possible, mostly useful for static binaries
 CFLAGS += -fdata-sections -ffunction-sections -Os
@@ -150,17 +152,15 @@ tor/Makefile: tor/configure
 	cp config.sub tor
 	cp config.guess tor
 	cd tor && \
-                CC="$(CC)" AR="$(AR)" RANLIB=$(RANLIB) CFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS)" \
+                CC="$(CC)" AR="$(AR)" RANLIB=$(RANLIB) CFLAGS="$(CFLAGS) -D_FORTIFY_SOURCE=2 -fPIE -fwrapv -fno-strict-aliasing -fno-strict-overflow" LDFLAGS="$(LDFLAGS)" \
+                        LIBS="-L$(EXTERNAL_ROOT)/lib" CFLAGS="-I$(EXTERNAL_ROOT)/include" \
                         ./configure \
                                 --host=$(HOST) \
                                 --prefix=$(NDK_TOOLCHAIN) \
 				--disable-asciidoc \
-				--with-libevent-dir=$(EXTERNAL_ROOT) --enable-static-libevent \
-				--with-openssl-dir=$(EXTERNAL_ROOT) --enable-static-openssl \
-				--disable-gcc-hardening 
-
-##	--disable-linker-hardening --disable-gcc-hardening 
-
+				--enable-static-libevent --with-libevent-dir=$(EXTERNAL_ROOT) \
+				--enable-static-openssl --with-openssl-dir=$(EXTERNAL_ROOT) \
+				--disable-linker-hardening --disable-gcc-hardening 
 
 tor-build-stamp: tor/Makefile
 	$(MAKE) -C tor 
