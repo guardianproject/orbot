@@ -224,15 +224,6 @@ public class TorTransProxy implements TorServiceConstants {
 				
     	int torUid = context.getApplicationInfo().uid;
 
-		// Allow everything for Tor
-		script.append(ipTablesPath);
-		script.append(" -t filter");
-		script.append(" -A OUTPUT");
-		script.append(" -m owner --uid-owner ");
-		script.append(torUid);
-		script.append(" -j ACCEPT");
-		script.append(" || exit\n");
-
 		//build up array of shell cmds to execute under one root context
 		for (TorifiedApp tApp:apps)
 		{
@@ -244,9 +235,9 @@ public class TorTransProxy implements TorServiceConstants {
 			{
 				
 				TorService.logMessage("enabling transproxy for app: " + tApp.getUsername() + "(" + tApp.getUid() + ")");
-
-			 	// Set up port redirection
-				script.append(ipTablesPath);
+			 
+				// Set up port redirection
+		    	script.append(ipTablesPath);
 				script.append(" -t nat");
 				script.append(" -A OUTPUT -p tcp");
 				script.append(" ! -d 127.0.0.1"); //allow access to localhost
@@ -260,28 +251,14 @@ public class TorTransProxy implements TorServiceConstants {
 				// Same for DNS
 				script.append(ipTablesPath);
 				script.append(" -t nat");
-				script.append(" -A OUTPUT -p udp");
-				script.append(" -m owner --uid-owner ");
+				script.append(" -A OUTPUT -p udp -m owner --uid-owner ");
 				script.append(tApp.getUid());
 				script.append(" -m udp --dport "); 
 				script.append(STANDARD_DNS_PORT);
 				script.append(" -j REDIRECT --to-ports ");
 				script.append(TOR_DNS_PORT);
 				script.append(" || exit\n");
-
-				// Allow loopback
-				script.append(ipTablesPath);
-				script.append(" -t filter");
-				script.append(" -A OUTPUT");
-				script.append(" -m owner --uid-owner ");
-				script.append(tApp.getUid());
-				script.append(" -o lo");
-				script.append(" -j ACCEPT");
-				script.append(" || exit\n");
-
-				/* 	
-				//Outgoing loopback already allowed (23/7/12)
-
+				
 				int[] ports = {TOR_DNS_PORT,TOR_TRANSPROXY_PORT,PORT_SOCKS,PORT_HTTP};
 				
 				for (int port : ports)
@@ -299,8 +276,30 @@ public class TorTransProxy implements TorServiceConstants {
 					script.append(" -j ACCEPT");
 					script.append(" || exit\n");				
 				}
-				*/
-
+				
+				// Allow loopback
+				script.append(ipTablesPath);
+				script.append(" -t filter");
+				script.append(" -A OUTPUT");
+				script.append(" -m owner --uid-owner ");
+				script.append(tApp.getUid());
+				script.append(" -p tcp");
+				script.append(" -o lo");
+				script.append(" -j ACCEPT");
+				script.append(" || exit\n");
+				
+				// Reject DNS that is not from Tor (order is important - first matched rule counts!)
+				script.append(ipTablesPath);
+				script.append(" -t filter");
+				script.append(" -A OUTPUT");
+				script.append(" -m owner --uid-owner ");
+				script.append(tApp.getUid());
+				script.append(" -p udp");
+				script.append(" --dport ");
+				script.append(STANDARD_DNS_PORT);
+				script.append(" -j REJECT");
+				script.append(" || exit\n");
+				
 				// Reject all other outbound TCP packets
 				script.append(ipTablesPath);
 				script.append(" -t filter");
@@ -310,21 +309,20 @@ public class TorTransProxy implements TorServiceConstants {
 				script.append(" -p tcp");
 				script.append(" -j REJECT");
 				script.append(" || exit\n");
-
-				// Reject all other outbound UDP packets
-				script.append(ipTablesPath);
-				script.append(" -t filter");
-				script.append(" -A OUTPUT");
-				script.append(" -m owner --uid-owner ");
-				script.append(tApp.getUid());
-				script.append(" -p udp");
-				script.append(" -j REJECT");
-				script.append(" || exit\n");
-
 				
 			}		
 		}			
+		
 
+		// Allow everything for Tor
+		script.append(ipTablesPath);
+		script.append(" -t filter");
+		script.append(" -A OUTPUT");
+		script.append(" -m owner --uid-owner ");
+		script.append(torUid);
+		script.append(" -j ACCEPT");
+		script.append(" || exit\n");
+		
 		String[] cmdAdd = {script.toString()};    	
     		
 		code = TorServiceUtils.doShellCommand(cmdAdd, res, runRoot, waitFor);
@@ -452,8 +450,8 @@ public class TorTransProxy implements TorServiceConstants {
     	
     	int torUid = context.getApplicationInfo().uid;
 
-		// Set up port redirection
-		script.append(ipTablesPath);
+    	// Set up port redirection
+    	script.append(ipTablesPath);
 		script.append(" -t nat");
 		script.append(" -A OUTPUT -p tcp");
 		script.append(" ! -d 127.0.0.1"); //allow access to localhost
@@ -467,36 +465,14 @@ public class TorTransProxy implements TorServiceConstants {
 		// Same for DNS
 		script.append(ipTablesPath);
 		script.append(" -t nat");
-		script.append(" -A OUTPUT -p udp");
-		script.append(" -m owner ! --uid-owner ");
+		script.append(" -A OUTPUT -p udp -m owner ! --uid-owner ");
 		script.append(torUid);
 		script.append(" -m udp --dport "); 
 		script.append(STANDARD_DNS_PORT);
 		script.append(" -j REDIRECT --to-ports ");
 		script.append(TOR_DNS_PORT);
 		script.append(" || exit\n");
-
-		// Allow loopback
-		script.append(ipTablesPath);
-		script.append(" -t filter");
-		script.append(" -A OUTPUT");
-		script.append(" -o lo");
-		script.append(" -j ACCEPT");
-		script.append(" || exit\n");
 		
-		// Allow everything for Tor
-		script.append(ipTablesPath);
-		script.append(" -t filter");
-		script.append(" -A OUTPUT");
-		script.append(" -m owner --uid-owner ");
-		script.append(torUid);
-		script.append(" -j ACCEPT");
-		script.append(" || exit\n");
-	
-
-		/* 	
-		//Outgoing loopback already allowed (23/7/12)
-
 		int[] ports = {TOR_DNS_PORT,TOR_TRANSPROXY_PORT,PORT_SOCKS,PORT_HTTP};
 		
 		for (int port : ports)
@@ -514,8 +490,25 @@ public class TorTransProxy implements TorServiceConstants {
 			script.append(" -j ACCEPT");
 			script.append(" || exit\n");
 		
-		} */
+		}
 		
+		// Allow loopback
+		script.append(ipTablesPath);
+		script.append(" -t filter");
+		script.append(" -A OUTPUT");
+		script.append(" -p tcp");
+		script.append(" -o lo");
+		script.append(" -j ACCEPT");
+		script.append(" || exit\n");
+		
+		// Allow everything for Tor
+		script.append(ipTablesPath);
+		script.append(" -t filter");
+		script.append(" -A OUTPUT");
+		script.append(" -m owner --uid-owner ");
+		script.append(torUid);
+		script.append(" -j ACCEPT");
+		script.append(" || exit\n");
 		
 		if (TorService.ENABLE_DEBUG_LOG)
 		{
@@ -539,11 +532,23 @@ public class TorTransProxy implements TorServiceConstants {
 			script.append(" --log-uid");
 			script.append(" || exit\n");
 		}
-			
-		// Reject all other outbound packets by default
+		
+		// Reject DNS that is not from Tor (order is important - first matched rule counts!)
 		script.append(ipTablesPath);
 		script.append(" -t filter");
-		script.append(" -P OUTPUT DROP");
+		script.append(" -A OUTPUT");
+		script.append(" -p udp");
+		script.append(" --dport ");
+		script.append(STANDARD_DNS_PORT);
+		script.append(" -j REJECT");
+		script.append(" || exit\n");
+		
+		// Reject all other outbound TCP packets
+		script.append(ipTablesPath);
+		script.append(" -t filter");
+		script.append(" -A OUTPUT");
+		script.append(" -p tcp");
+		script.append(" -j REJECT");
 		script.append(" || exit\n");
 		
 		String[] cmdAdd = {script.toString()};    	
