@@ -58,7 +58,7 @@ import android.util.Log;
 public class TorService extends Service implements TorServiceConstants, TorConstants, Runnable, EventHandler
 {
 	
-	public static boolean ENABLE_DEBUG_LOG = false;
+	public static boolean ENABLE_DEBUG_LOG = true;
 	
 	private static int currentStatus = STATUS_OFF;
 		
@@ -709,7 +709,10 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	{
 	 		
 	     	TorService.logMessage ("Clearing TransProxy rules");
-	     	
+
+	 		if (mTransProxy == null)
+	 			mTransProxy = new TorTransProxy();
+	 		
 	     	if (mTransProxyAll)
 	     		mTransProxy.clearTransparentProxyingAll(this);
 	     	else
@@ -1041,7 +1044,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	public void message(String severity, String msg) {
 		
 		
-		logNotice(  "[Tor Control Port] " + severity + ": " + msg);
+		logNotice(severity + ": " + msg);
           
           if (msg.indexOf(TOR_CONTROL_PORT_MSG_BOOTSTRAP_DONE)!=-1)
           {
@@ -1062,13 +1065,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
           }
         
       	
-    		 
-          sendCallbackStatusMessage (msg);
           
 	}
 
-	//showToolbarNotification(msg, TRANSPROXY_NOTIFY_ID, R.drawable.ic_stat_notify);
-	
 	public void newDescriptors(List<String> orList) {
 		
 	}
@@ -1076,23 +1075,20 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 	public void orConnStatus(String status, String orName) {
 		
-		if (ENABLE_DEBUG_LOG)
-		{
+		
 			StringBuilder sb = new StringBuilder();
 			sb.append("orConnStatus (");
-			sb.append((orName) );
+			sb.append(parseNodeName(orName) );
 			sb.append("): ");
 			sb.append(status);
 			
 			logNotice(sb.toString());
-		}
+		
 	}
 
 
 	public void streamStatus(String status, String streamID, String target) {
 		
-		if (ENABLE_DEBUG_LOG)
-		{
 			StringBuilder sb = new StringBuilder();
 			sb.append("StreamStatus (");
 			sb.append((streamID));
@@ -1100,14 +1096,12 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			sb.append(status);
 			
 			logNotice(sb.toString());
-		}
+		
 	}
 
 
 	public void unrecognized(String type, String msg) {
 		
-		if (ENABLE_DEBUG_LOG)
-		{
 			StringBuilder sb = new StringBuilder();
 			sb.append("Message (");
 			sb.append(type);
@@ -1115,7 +1109,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			sb.append(msg);
 			
 			logNotice(sb.toString());
-		}
+	
 		
 	}
 	
@@ -1142,21 +1136,44 @@ public class TorService extends Service implements TorServiceConstants, TorConst
    	
 	public void circuitStatus(String status, String circID, String path) {
 		
-		if (ENABLE_DEBUG_LOG)
+		StringBuilder sb = new StringBuilder();
+		sb.append("Circuit (");
+		sb.append((circID));
+		sb.append(") ");
+		sb.append(status);
+		sb.append(": ");
+		
+		StringTokenizer st = new StringTokenizer(path,",");
+		String node = null;
+		
+		while (st.hasMoreTokens())
 		{
-			StringBuilder sb = new StringBuilder();
-			sb.append("Circuit (");
-			sb.append((circID));
-			sb.append("): ");
-			sb.append(status);
-			sb.append("; ");
-			sb.append(path);
+			node = st.nextToken();
 			
-			logNotice(sb.toString());
+			sb.append(parseNodeName(node));
+			
+			
+			if (st.hasMoreTokens())
+				sb.append (" > ");
 		}
 		
+		logNotice(sb.toString());
+	
 	}
 	
+	private String parseNodeName(String node)
+	{
+		if (node.indexOf('=')!=-1)
+		{
+			return (node.substring(node.indexOf("=")+1));
+		}
+		else if (node.indexOf('~')!=-1)
+		{
+			return (node.substring(node.indexOf("~")+1));
+		}
+		else
+			return node;
+	}
     public IBinder onBind(Intent intent) {
         
     	
@@ -1512,6 +1529,16 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     		try {
 				mBinder.updateConfiguration("DisableNetwork", noConnectivity ? "1" : "0", false);
 				mBinder.saveConfiguration();
+				
+				if (noConnectivity)
+				{
+					logNotice("No network connectivity. Putting Tor to sleep...");
+				}
+				else
+				{
+					logNotice("Network connectivity is good. Waking Tor up...");
+					
+				}
     		} catch (RemoteException e) {
 				logException ("error applying prefs",e);
 			}

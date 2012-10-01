@@ -13,44 +13,56 @@ import android.util.Log;
 
 public class TorTransProxy implements TorServiceConstants {
 	
-	private String ipTablesPath;
-
 	public String getIpTablesPath (Context context)
 	{
+		String ipTablesPath = null;
 		
-			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		boolean useSystemIpTables = prefs.getBoolean(TorConstants.PREF_USE_SYSTEM_IPTABLES, false);
+		
+		if (useSystemIpTables)
+		{
+			ipTablesPath = findSystemIPTables();
+		}
+		else
+		{
+			//use the bundled version
+
+			ipTablesPath = new File(context.getDir("bin", 0),"iptables").getAbsolutePath();
 			
-			if (prefs.getBoolean(TorConstants.PREF_USE_SYSTEM_IPTABLES, false))
+			try
 			{
-				//if the user wants us to use the built-in iptables, then we have to find it
-				File fileIpt = new File("/system/bin/iptables");
-				
-				if (fileIpt.exists())
-					 ipTablesPath = fileIpt.getAbsolutePath();
-				else
-				{
-				
-					fileIpt = new File("/system/xbin/iptables");
-					
-					if (fileIpt.exists())
-						return (ipTablesPath = fileIpt.getAbsolutePath());
-					else
-					{
-						//use the bundled version
-						ipTablesPath = new File(context.getDir("bin", 0),"iptables").getAbsolutePath();
-					}
-				}				
+				if (testOwnerModule(context,ipTablesPath) != 0)
+					ipTablesPath = findSystemIPTables();
 			}
-			else
+			catch (Exception e)
 			{
-				//use the bundled version
-	
-				ipTablesPath = new File(context.getDir("bin", 0),"iptables").getAbsolutePath();
+				ipTablesPath = findSystemIPTables();
 			}
-			
+		}
 			
 		return ipTablesPath;
+	}
+
+	private String findSystemIPTables ()
+	{
+		String path = null;
 		
+		//if the user wants us to use the built-in iptables, then we have to find it
+		File fileIpt = new File("/system/bin/iptables");
+		
+		if (fileIpt.exists())
+			 path = fileIpt.getAbsolutePath();
+		else
+		{
+		
+			fileIpt = new File("/system/xbin/iptables");
+			
+			if (fileIpt.exists())
+				path = fileIpt.getAbsolutePath();
+		}
+		
+		return path;
 	}
 	
 	public int flushIptablesAll(Context context) throws Exception {
@@ -164,7 +176,7 @@ public class TorTransProxy implements TorServiceConstants {
 	}
 	*/
 	
-	public int testOwnerModule(Context context) throws Exception
+	public int testOwnerModule(Context context, String ipTablesPath) throws Exception
 	{
 
 		TorBinaryInstaller.assertIpTablesBinaries(context, false);
@@ -174,8 +186,6 @@ public class TorTransProxy implements TorServiceConstants {
     	
     	int torUid = context.getApplicationInfo().uid;
 
-		String ipTablesPath = getIpTablesPath(context);
-		
     	StringBuilder script = new StringBuilder();
     	
     	StringBuilder res = new StringBuilder();
