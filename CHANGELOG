@@ -1,5 +1,17 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+1.0.11
+- Tor updated to 0.2.4-alpha
+- libevent2 on 2.2.1-alpha
+- added data up/down speed and totals display
+- added new "Log" SlideDrawer log display 
+- added ability to copy logs by touching log (for emailing, debugging)
+- fixed iptables Android 4/Jellybean compatible binary detection
+- iptables add/delete now on specific rules; no more global FLUSHing
+- transproxy ensures that UDP is blocked properly for all or selected apps
+- wizard display is centered
+- added network connectivity monitor to set Tor's DisableNetwork value
+
 1.0.9
 - Tor now updated to 0.2.3.17-beta
 - Privoxy updated to 3.0.12
