@@ -6,8 +6,8 @@
 
     android:paddingTop="0sp">
     
-    <org.torproject.android.AnimatedBlockView  android:layout_width="fill_parent"
-	      android:layout_height="fill_parent"></org.torproject.android.AnimatedBlockView>
+    <org.torproject.android.RandomColorCircleView  android:layout_width="fill_parent"
+	      android:layout_height="fill_parent"></org.torproject.android.RandomColorCircleView>
        
     	<RelativeLayout android:id="@+id/layoutHeaderMain"
 		android:layout_width="fill_parent"
@@ -38,14 +38,13 @@
 		     android:orientation="vertical" android:layout_width="fill_parent"
 		      android:layout_height="fill_parent">
     	
-       <ImageView
+       <org.torproject.android.ImageProgressView
 		android:id="@+id/imgStatus"
 		android:layout_width="fill_parent"
 		android:layout_height="0dp"
 		android:layout_marginTop="40dp"
 		android:layout_weight="1"
 		android:src="@drawable/toroff"
-		android:contentDescription="activate button"
 		android:layout_gravity="center_horizontal" />
 		
 	<TextView android:id="@+id/lblStatus"
@@ -54,9 +53,28 @@
 		android:textStyle="bold"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
-		
+		android:layout_marginBottom="50dp"
 		android:textColor="#ffffff"
 		 />
+	
+</LinearLayout>
+
+	 <SlidingDrawer
+        android:layout_width="fill_parent"
+        android:id="@+id/SlidingDrawer"
+        android:handle="@+id/slideButton"
+        android:content="@+id/trafficRow"
+        android:padding="10dip"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        		android:gravity="bottom"
+        >
+          <Button
+              android:id="@+id/slideButton"
+              android:layout_width="wrap_content"
+              android:layout_height="35dp"
+              android:text="@string/menu_log" ></Button>
+
 	<RelativeLayout android:id="@+id/trafficRow"
 		android:gravity="bottom"
 	    android:layout_width="fill_parent"
@@ -64,7 +82,7 @@
 	    android:layout_height="wrap_content"
 	    android:padding="6dp"
 	    android:layout_marginTop="6dp"
-	    android:background="#A0909090">
+	    android:background="#ee333333">
 	    <TextView
 	    	android:id="@+id/trafficDownLabel"
 			android:textColor="#FFFFFFFF"
@@ -105,8 +123,20 @@
 			android:textSize="20sp"
 			android:gravity="center_vertical|center_horizontal"
 			android:textStyle="bold" />
+		<TextView
+			android:id="@+id/orbotLog"
+			android:textColor="#FFFFFF"
+			android:textSize="12sp"
+			android:gravity="left"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_alignParentLeft="true"
+			android:layout_below="@+id/trafficDown"
+			android:layout_marginTop="10dp"
+			android:textIsSelectable="true"
+			 />
     </RelativeLayout>		
-</LinearLayout>
+    </SlidingDrawer>
        
 </FrameLayout>
 
