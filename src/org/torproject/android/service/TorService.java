@@ -993,7 +993,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		}
 		
 		public void setTorProfile(int profile)  {
-			logNotice("Tor profile set to " + profile);
+		//	logNotice("Tor profile set to " + profile);
 			
 			if (profile == PROFILE_ON)
 			{

@@ -32,6 +32,7 @@ import android.os.Message;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.text.ClipboardManager;
+import android.text.Layout;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -40,15 +41,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SlidingDrawer;
-import android.widget.SlidingDrawer.OnDrawerCloseListener;
-import android.widget.SlidingDrawer.OnDrawerOpenListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -126,7 +123,9 @@ public class Orbot extends Activity implements TorConstants, OnLongClickListener
     		
     	});
     	
-        mTxtOrbotLog.setMovementMethod(new ScrollingMovementMethod());
+    	ScrollingMovementMethod smm = new ScrollingMovementMethod();
+    	
+        mTxtOrbotLog.setMovementMethod(smm);
         mTxtOrbotLog.setOnLongClickListener(new View.OnLongClickListener() {
          
 
@@ -142,6 +141,20 @@ public class Orbot extends Activity implements TorConstants, OnLongClickListener
 		downloadText.setText(formatCount(0) + " / " + formatTotal(0));
 		uploadText.setText(formatCount(0) + " / " + formatTotal(0));
 	
+    }
+    
+    private void appendLogTextAndScroll(String text)
+    {
+        if(mTxtOrbotLog != null){
+        	mTxtOrbotLog.append(text + "\n");
+            final Layout layout = mTxtOrbotLog.getLayout();
+            if(layout != null){
+                int scrollDelta = layout.getLineBottom(mTxtOrbotLog.getLineCount() - 1) 
+                    - mTxtOrbotLog.getScrollY() - mTxtOrbotLog.getHeight();
+                if(scrollDelta > 0)
+                	mTxtOrbotLog.scrollBy(0, scrollDelta);
+            }
+        }
     }
     
    /*
@@ -574,7 +587,7 @@ public class Orbot extends Activity implements TorConstants, OnLongClickListener
                                     if (torServiceMsg != null && torServiceMsg.length() > 0)
                                     {
                                     //        showAlert("Update", torServiceMsg,xte
-                                    	mTxtOrbotLog.append(torServiceMsg + "\n");
+                                    	appendLogTextAndScroll(torServiceMsg);
                                     }
                                     
                                     boolean showFirstTime = prefs.getBoolean("connect_first_time",true);
@@ -605,7 +618,7 @@ public class Orbot extends Activity implements TorConstants, OnLongClickListener
                                   //  if (progressDialog != null)
                                     //        progressDialog.setMessage(torServiceMsg);
                                     
-                                    mTxtOrbotLog.append(torServiceMsg + '\n');
+                                    appendLogTextAndScroll(torServiceMsg);
                                     
                                     if (mItemOnOff != null)
                                             mItemOnOff.setTitle(R.string.menu_stop);
