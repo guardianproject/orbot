@@ -162,9 +162,11 @@ public class Permissions extends Activity implements TorConstants {
 				if (hasRoot)
 				{
 					try {
-						int resp = new TorTransProxy().testOwnerModule(context);
+						TorTransProxy ttProxy = new TorTransProxy();
 						
-						if (resp < 0)
+						int resp = ttProxy.testOwnerModule(context,ttProxy.getIpTablesPath(context));
+						
+						if (resp != 0)
 						{
 							hasRoot = false;
 							Toast.makeText(context, "ERROR: IPTables OWNER module not available", Toast.LENGTH_LONG).show();

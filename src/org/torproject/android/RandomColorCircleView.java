@@ -6,14 +6,11 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.os.Handler;
-import android.os.Message;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.MeasureSpec;
 
-public class AnimatedBlockView extends View
+public class RandomColorCircleView extends View
 {
 
 	  private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -24,19 +21,19 @@ public class AnimatedBlockView extends View
 		Random rand = new Random();
 		
 
-	public AnimatedBlockView(Context context) {
+	public RandomColorCircleView(Context context) {
 	 super(context);
 	 // TODO Auto-generated constructor stub
 	 init();
 	 
 	}
 
-	public AnimatedBlockView(Context context, AttributeSet attrs) {
+	public RandomColorCircleView(Context context, AttributeSet attrs) {
 	 super(context, attrs);
 	 init();
 	}
 
-	public AnimatedBlockView(Context context, AttributeSet attrs, int defStyle) {
+	public RandomColorCircleView(Context context, AttributeSet attrs, int defStyle) {
 	 super(context, attrs, defStyle);
 	 
 	 init();

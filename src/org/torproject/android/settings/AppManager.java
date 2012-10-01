@@ -212,7 +212,7 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
 			try {
 				PackageInfo pInfo = pMgr.getPackageInfo(aInfo.packageName, PackageManager.GET_PERMISSIONS);
 				
-				if (pInfo != null && pInfo.permissions != null)
+				if (pInfo != null && pInfo.requestedPermissions != null)
 				{
 					for (String permInfo:pInfo.requestedPermissions)
 					{
