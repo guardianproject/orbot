@@ -309,6 +309,7 @@ public class TorTransProxy implements TorServiceConstants {
 				script.append(" || exit\n");
 				
 				// Reject DNS that is not from Tor (order is important - first matched rule counts!)
+				/*
 				script.append(ipTablesPath);
 				script.append(modCmd);
 				script.append(" -t filter");
@@ -319,6 +320,7 @@ public class TorTransProxy implements TorServiceConstants {
 				script.append(STANDARD_DNS_PORT);
 				script.append(" -j REJECT");
 				script.append(" || exit\n");
+				*/
 				
 				// Reject all other outbound TCP packets
 				script.append(ipTablesPath);
@@ -327,6 +329,7 @@ public class TorTransProxy implements TorServiceConstants {
 				script.append(" -m owner --uid-owner ");
 				script.append(tApp.getUid());
 				script.append(" -p tcp");
+				script.append(" ! -d 127.0.0.1"); //allow access to localhost
 				script.append(" -j REJECT");
 				script.append(" || exit\n");
 				
@@ -337,6 +340,7 @@ public class TorTransProxy implements TorServiceConstants {
 				script.append(" -m owner --uid-owner ");
 				script.append(tApp.getUid());
 				script.append(" -p udp");
+				script.append(" ! -d 127.0.0.1"); //allow access to localhost
 				script.append(" -j REJECT");
 				script.append(" || exit\n");
 				
@@ -493,7 +497,7 @@ public class TorTransProxy implements TorServiceConstants {
     	//flushIptables(context);
     	
     	int torUid = context.getApplicationInfo().uid;
-
+    	
     	// Set up port redirection
     	script.append(ipTablesPath);
     	script.append(" -" + cmd + " OUTPUT");
@@ -580,20 +584,27 @@ public class TorTransProxy implements TorServiceConstants {
 		}
 		
 		// Reject DNS that is not from Tor (order is important - first matched rule counts!)
+		/*
 		script.append(ipTablesPath);
     	script.append(" -" + cmd + " OUTPUT");
 		script.append(" -t filter");
+		script.append(" -m owner ! --uid-owner ");
+		script.append(torUid);
 		script.append(" -p udp");
 		script.append(" --dport ");
 		script.append(STANDARD_DNS_PORT);
 		script.append(" -j REJECT");
 		script.append(" || exit\n");
+		*/
 		
 		// Reject all other outbound TCP packets
 		script.append(ipTablesPath);
     	script.append(" -" + cmd + " OUTPUT");
 		script.append(" -t filter");
+		script.append(" -m owner ! --uid-owner ");
+		script.append(torUid);
 		script.append(" -p tcp");
+		script.append(" ! -d 127.0.0.1"); //allow access to localhost
 		script.append(" -j REJECT");
 		script.append(" || exit\n");
 
@@ -601,7 +612,10 @@ public class TorTransProxy implements TorServiceConstants {
 		script.append(ipTablesPath);
     	script.append(" -" + cmd + " OUTPUT");
 		script.append(" -t filter");
+		script.append(" -m owner ! --uid-owner ");
+		script.append(torUid);
 		script.append(" -p udp");
+		script.append(" ! -d 127.0.0.1"); //allow access to localhost
 		script.append(" -j REJECT");
 		script.append(" || exit\n");
 
