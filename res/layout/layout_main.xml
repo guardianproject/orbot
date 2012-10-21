@@ -53,10 +53,70 @@
 		android:textStyle="bold"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
-		android:layout_marginBottom="50dp"
+		android:layout_marginBottom="20dp"
 		android:textColor="#ffffff"
 		 />
 	
+	
+	    <RelativeLayout 
+		     android:id="@+id/rowTrafficDown" 
+		     android:layout_width="fill_parent"
+		      android:layout_height="wrap_content"
+		       android:orientation="horizontal"
+		       android:paddingLeft="3sp"
+		       android:paddingRight="3sp"
+		       
+		      >
+	    <TextView
+	    	android:id="@+id/trafficLabelDown"
+			android:textColor="#FFFFFFFF"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			 android:layout_alignParentLeft="true"
+			android:textSize="15sp"
+			android:text="@string/main_layout_download"
+			android:gravity="center_vertical"
+			android:textStyle="bold" />
+	    <TextView
+			android:id="@+id/trafficLabelUp"
+			android:textColor="#FFFFFFFF"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			 android:layout_alignParentRight="true"
+			android:text="@string/main_layout_upload"
+			android:textSize="15sp"
+			android:gravity="center_vertical"
+			android:textStyle="bold" />
+		
+		</RelativeLayout>
+		 <RelativeLayout 
+		     android:id="@+id/rowTrafficUp"
+		     android:layout_width="fill_parent"
+		      android:layout_height="wrap_content"
+		     	  android:paddingLeft="3sp"
+		       android:paddingRight="3sp"
+		       android:paddingBottom="3sp"
+		     
+		      >
+		<TextView
+			android:id="@+id/trafficDown"
+			android:textColor="#FF00B627"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			 android:layout_alignParentLeft="true"
+			android:textSize="15sp"
+			android:gravity="center_vertical"
+			android:textStyle="bold" />
+		<TextView
+			android:id="@+id/trafficUp"
+			android:textColor="#FF00B627"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			 android:layout_alignParentRight="true"
+			android:textSize="15sp"
+			android:gravity="center_vertical"
+			android:textStyle="bold" />
+		</RelativeLayout>
 </LinearLayout>
 
 	 <SlidingDrawer
@@ -84,58 +144,6 @@
 	    android:layout_marginTop="6dp"
 	    android:background="#ee333333">
 	    
-	    <RelativeLayout 
-		     android:id="@+id/rowTrafficDown" android:layout_width="fill_parent"
-		      android:layout_height="wrap_content"
-		       android:orientation="horizontal"
-		      >
-	    <TextView
-	    	android:id="@+id/trafficDownLabel"
-			android:textColor="#FFFFFFFF"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			 android:layout_alignParentLeft="true"
-			android:textSize="20sp"
-			android:text="@string/main_layout_download"
-			android:gravity="center_vertical"
-			android:textStyle="bold" />
-	    
-		<TextView
-			android:id="@+id/trafficDown"
-			android:textColor="#FF00B627"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			 android:layout_alignParentRight="true"
-			android:textSize="20sp"
-			android:gravity="center_vertical"
-			android:textStyle="bold" />
-		</RelativeLayout>
-		 <RelativeLayout 
-		     android:id="@+id/rowTrafficUp"
-		     android:layout_width="fill_parent"
-		      android:layout_height="wrap_content"
-		     android:layout_below="@+id/rowTrafficDown"
-		      >
-		<TextView
-			android:id="@+id/trafficUpLabel"
-			android:textColor="#FFFFFFFF"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			 android:layout_alignParentLeft="true"
-			android:text="@string/main_layout_upload"
-			android:textSize="20sp"
-			android:gravity="center_vertical"
-			android:textStyle="bold" />
-		<TextView
-			android:id="@+id/trafficUp"
-			android:textColor="#FF00B627"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			 android:layout_alignParentRight="true"
-			android:textSize="20sp"
-			android:gravity="center_vertical"
-			android:textStyle="bold" />
-		</RelativeLayout>
 		<TextView
 			android:id="@+id/orbotLog"
 			android:textColor="#FFFFFF"
