@@ -97,6 +97,7 @@ public class TorBinaryInstaller implements TorServiceConstants {
 		return true;
 	}
 	
+	/*
 	private static void copyAssetFile(Context ctx, String asset, File file) throws IOException, InterruptedException
 	{
     	
@@ -110,7 +111,8 @@ public class TorBinaryInstaller implements TorServiceConstants {
 		}
 		out.close();
 		is.close();
-	}
+	}*/
+	
 	/*
 	 * Write the inputstream contents to the file
 	 */
