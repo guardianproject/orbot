@@ -58,7 +58,6 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 	private ImageProgressView imgStatus = null; //the main touchable image for activating Orbot
 //	private ProgressDialog progressDialog;
 	private MenuItem mItemOnOff = null;
-    private RelativeLayout trafficRow = null; // the row showing the traffic
     private TextView downloadText = null;
     private TextView uploadText = null;
     private TextView mTxtOrbotLog = null;
@@ -103,7 +102,7 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 		lblStatus.setOnLongClickListener(this);
     	imgStatus = (ImageProgressView)findViewById(R.id.imgStatus);
     	imgStatus.setOnLongClickListener(this);
-    	trafficRow = (RelativeLayout)findViewById(R.id.trafficRow);
+    	
     	downloadText = (TextView)findViewById(R.id.trafficDown);
         uploadText = (TextView)findViewById(R.id.trafficUp);
         mTxtOrbotLog = (TextView)findViewById(R.id.orbotLog);
@@ -618,8 +617,9 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
                                     
                                     imgStatus.setImageResource(R.drawable.torstarting);
                                     
-                                  //  if (progressDialog != null)
-                                    //        progressDialog.setMessage(torServiceMsg);
+                                    if (lblStatus != null && torServiceMsg != null)
+                                    	if (torServiceMsg.indexOf('%')!=-1)
+                                    		lblStatus.setText(torServiceMsg);
                                     
                                     appendLogTextAndScroll(torServiceMsg);
                                     
