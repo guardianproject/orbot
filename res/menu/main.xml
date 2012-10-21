@@ -22,31 +22,42 @@
  <item android:id="@+id/menu_start"
         android:title="@string/menu_start"
          android:icon="@drawable/ic_action_start"
+          android:showAsAction="ifRoom"
+         
          />
 
  <item android:id="@+id/menu_settings"
         android:title="@string/menu_settings"
          android:icon="@drawable/ic_action_settings"
+         android:showAsAction="always"
          />
 
  <item android:id="@+id/menu_verify"
         android:title="@string/menu_verify"
          android:icon="@drawable/ic_action_browse"
+                  android:showAsAction="always"
+         
          />
  
  <item android:id="@+id/menu_about"
         android:title="@string/menu_about"
          android:icon="@drawable/ic_menu_about"
+                  android:showAsAction="ifRoom"
+         
          />
  
   <item android:id="@+id/menu_wizard"
         android:title="@string/menu_wizard"
          android:icon="@drawable/ic_menu_goto"
+                  android:showAsAction="ifRoom"
+         
          />
  
   <item android:id="@+id/menu_exit"
         android:title="@string/menu_exit"
          android:icon="@drawable/ic_menu_exit"
+                  android:showAsAction="ifRoom"
+         
          />
  
 </menu>

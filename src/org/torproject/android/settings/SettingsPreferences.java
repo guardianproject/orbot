@@ -11,6 +11,8 @@ import org.torproject.android.TorConstants;
 import org.torproject.android.service.TorServiceUtils;
 import org.torproject.android.service.TorTransProxy;
 
+import com.actionbarsherlock.app.SherlockPreferenceActivity;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -27,7 +29,7 @@ import android.widget.Toast;
 
 
 public class SettingsPreferences 
-		extends PreferenceActivity implements OnPreferenceClickListener {
+		extends SherlockPreferenceActivity implements OnPreferenceClickListener {
 
 	private CheckBoxPreference prefCBTransProxy = null;
 	private CheckBoxPreference prefcBTransProxyAll = null;
