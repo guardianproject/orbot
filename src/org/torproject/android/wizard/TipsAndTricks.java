@@ -70,9 +70,9 @@ public class TipsAndTricks extends Activity implements TorConstants {
 	    	img.setImageResource(R.drawable.icon);
 	    
 	    	
-        Button btn1 = (Button)findViewById(R.id.WizardRootButtonInstallGibberbot);
+        Button btnLink = (Button)findViewById(R.id.WizardRootButtonInstallGibberbot);
         
-        btn1.setOnClickListener(new OnClickListener() {
+        btnLink.setOnClickListener(new OnClickListener() {
 			
 			public void onClick(View view) {
 
@@ -82,13 +82,49 @@ public class TipsAndTricks extends Activity implements TorConstants {
 			}
 		});
         
-        Button btn2 = (Button)findViewById(R.id.WizardRootButtonInstallOrweb);
+        btnLink = (Button)findViewById(R.id.WizardRootButtonInstallOrweb);
 
-        btn2.setOnClickListener(new OnClickListener() {
+        btnLink.setOnClickListener(new OnClickListener() {
 			
 			public void onClick(View view) {
 				
 				String url = getString(R.string.orweb_apk_url);
+				startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+
+			}
+		});
+        
+        btnLink = (Button)findViewById(R.id.WizardRootButtonInstallDuckgo);
+
+        btnLink.setOnClickListener(new OnClickListener() {
+			
+			public void onClick(View view) {
+				
+				String url = getString(R.string.duckgo_apk_url);
+				startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+
+			}
+		});
+        
+        btnLink = (Button)findViewById(R.id.WizardRootButtonInstallFirefox);
+
+        btnLink.setOnClickListener(new OnClickListener() {
+			
+			public void onClick(View view) {
+				
+				String url = getString(R.string.proxymob_setup_url);
+				startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+
+			}
+		});
+        
+        btnLink = (Button)findViewById(R.id.WizardRootButtonInstallTwitter);
+
+        btnLink.setOnClickListener(new OnClickListener() {
+			
+			public void onClick(View view) {
+				
+				String url = getString(R.string.twitter_setup_url);
 				startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
 
 			}

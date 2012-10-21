@@ -68,7 +68,7 @@
 
     <Button
         android:id="@+id/WizardRootButtonInstallOrweb"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:layout_marginTop="10px"
@@ -77,7 +77,7 @@
 
     <Button
         android:id="@+id/WizardRootButtonInstallGibberbot"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:layout_marginTop="10px"
@@ -87,16 +87,16 @@
     
     <Button
         android:id="@+id/WizardRootButtonInstallDuckgo"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:layout_marginTop="10px"
-        android:drawableLeft="@drawable/icon_firefox"
+        android:drawableLeft="@drawable/ic_duckduckgo"
         android:text="@string/wizard_tips_duckgo" />
     
     <Button
         android:id="@+id/WizardRootButtonInstallFirefox"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:layout_marginTop="10px"
@@ -105,11 +105,11 @@
     
     <Button
         android:id="@+id/WizardRootButtonInstallTwitter"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:layout_marginTop="10px"
-        android:drawableLeft="@drawable/icon_firefox"
+        android:drawableLeft="@drawable/ic_twitter"
         android:text="@string/wizard_tips_twitter" />
     
 

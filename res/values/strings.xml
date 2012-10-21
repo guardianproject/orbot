@@ -97,15 +97,18 @@
     
     
     <string name="wizard_tips_tricks">Orbot-enabled Apps</string>
-    <string name="wizard_tips_msg">The apps below were developed to work with Orbot. Click each button to install now, or you can find them later in the Android Market.</string>
+    <string name="wizard_tips_msg">The apps below were developed to work with Orbot. Click each button to install now, or you can find them later on Google Play, at GuardianProject.info website or via F-Droid.org.</string>
     <string name="wizard_tips_otrchat">Gibberbot - Secure instant messaging client for Android</string>
     <string name="wizard_tips_proxy">Proxy Settings - Learn how to configure apps to work with Orbot</string>
     
-    <string name="wizard_tips_duckgo">Duckduckgo Search Engine app</string>
-   
-    <string name="wizard_tips_firefox">Firefox with Proxy Mobile add-on (extra install after)</string>
-    <string name="wizard_tips_twitter">Twitter supports http proxy "localhost:8118"</string>
-    
+    <string name="wizard_tips_duckgo">DuckDuckGo Search Engine app</string>
+   	<string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
+   	
+    <string name="wizard_tips_firefox">Proxy Mobile add-on for Firefox (http://tinyurl.com/getproxymob)</string>
+    <string name="proxymob_setup_url">http://tinyurl.com/getproxymob</string>
+   	
+    <string name="wizard_tips_twitter">Set Twitter proxy to host "localhost" and port 8118</string>
+    <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
     <string name="wizard_proxy_help_info">Proxy Settings</string>
     <string name="wizard_proxy_help_msg">If the Android app you are using can support the use of an HTTP or SOCKS proxy, then you can configure it to connect to Orbot and use Tor.\n\n
     The host settings is 127.0.0.1 or "localhost". For HTTP, the port setting is 8118. For SOCKS, the proxy is 9050. You should use SOCKS4A or SOCKS5 if possible.
@@ -142,7 +145,9 @@
 	<!-- TipsAndTricks screen -->
 	<string name="wizard_tips_title">Orbot-Enabled Apps</string>
 	<string name="wizard_tips_gibberbot">Gibberbot: Secure chat app with Off-the-Record Encryption</string>
+	
 	<string name="gibberbot_apk_url">https://market.android.com/details?id=info.guardianproject.otr.app.im</string>
+	
 	<string name="wizard_tips_orweb">Orweb: Privacy-enhanced browser that works through Tor</string>
 	<string name="orweb_apk_url">https://market.android.com/details?id=info.guardianproject.browser</string>
 
