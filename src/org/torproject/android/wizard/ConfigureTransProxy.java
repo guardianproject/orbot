@@ -127,7 +127,8 @@ public class ConfigureTransProxy extends Activity implements TorConstants {
 				
 				public void onClick(View v) {
 					
-						showWizardFinal();
+					startActivityForResult(new Intent(getBaseContext(), TipsAndTricks.class), 1);
+
 				}
 			});
 		    
@@ -196,6 +197,7 @@ public class ConfigureTransProxy extends Activity implements TorConstants {
 	       
 	}
 	
+	/*
 	private void showWizardFinal ()
 	{
 		String title = null;
@@ -224,7 +226,7 @@ public class ConfigureTransProxy extends Activity implements TorConstants {
 	
 				
 		
-	}
+	}*/
 
 	@Override
 	protected void onRestoreInstanceState(Bundle savedInstanceState) {
