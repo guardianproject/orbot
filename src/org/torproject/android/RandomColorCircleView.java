@@ -42,7 +42,7 @@ public class RandomColorCircleView extends View
 	private void init(){
 	 paint.setStyle(Paint.Style.FILL);
 	 paint.setColor(Color.WHITE);
-	 paint.setAntiAlias(true);
+	// paint.setAntiAlias(true);
 
 	}
 
