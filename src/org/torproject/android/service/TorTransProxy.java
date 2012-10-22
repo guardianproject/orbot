@@ -194,8 +194,16 @@ public class TorTransProxy implements TorServiceConstants {
     	
     	// Allow everything for Tor
 		script.append(ipTablesPath);
-		script.append(" -t filter");
 		script.append(" -A OUTPUT");
+		script.append(" -t filter");
+		script.append(" -m owner --uid-owner ");
+		script.append(torUid);
+		script.append(" -j ACCEPT");
+		script.append(" || exit\n");
+		
+		script.append(ipTablesPath);
+		script.append(" -D OUTPUT");
+		script.append(" -t filter");
 		script.append(" -m owner --uid-owner ");
 		script.append(torUid);
 		script.append(" -j ACCEPT");
@@ -497,7 +505,16 @@ public class TorTransProxy implements TorServiceConstants {
     	//flushIptables(context);
     	
     	int torUid = context.getApplicationInfo().uid;
-    	
+
+		// Allow everything for Tor
+		script.append(ipTablesPath);
+    	script.append(" -" + cmd + " OUTPUT");
+		script.append(" -t filter");
+		script.append(" -m owner --uid-owner ");
+		script.append(torUid);
+		script.append(" -j ACCEPT");
+		script.append(" || exit\n");
+		
     	// Set up port redirection
     	script.append(ipTablesPath);
     	script.append(" -" + cmd + " OUTPUT");
@@ -551,14 +568,6 @@ public class TorTransProxy implements TorServiceConstants {
 		script.append(" -j ACCEPT");
 		script.append(" || exit\n");
 		
-		// Allow everything for Tor
-		script.append(ipTablesPath);
-    	script.append(" -" + cmd + " OUTPUT");
-		script.append(" -t filter");
-		script.append(" -m owner --uid-owner ");
-		script.append(torUid);
-		script.append(" -j ACCEPT");
-		script.append(" || exit\n");
 		
 		if (TorService.ENABLE_DEBUG_LOG)
 		{

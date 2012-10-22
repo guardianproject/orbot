@@ -58,7 +58,7 @@ import android.util.Log;
 public class TorService extends Service implements TorServiceConstants, TorConstants, Runnable, EventHandler
 {
 	
-	public static boolean ENABLE_DEBUG_LOG = true;
+	public static boolean ENABLE_DEBUG_LOG = false;
 	
 	private static int currentStatus = STATUS_OFF;
 		
@@ -89,7 +89,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     private File fileObfsProxy;
     
     private TorTransProxy mTransProxy;
-    private boolean mTransProxyAll = false;
     
     public static void logMessage(String msg)
     {
@@ -313,6 +312,10 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     {
     	currentStatus = STATUS_OFF;
     	
+    	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+    	
+ 		boolean hasRoot = prefs.getBoolean(PREF_HAS_ROOT,false);
+ 		
     	try
     	{	
     		killTorProcess ();
@@ -326,7 +329,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     		
     		sendCallbackStatusMessage(getString(R.string.status_disabled));
 
-    		disableTransparentProxy();
+    		if (hasRoot)
+    			disableTransparentProxy();
     	}
     	catch (Exception e)
     	{
@@ -582,6 +586,12 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
     	ENABLE_DEBUG_LOG = prefs.getBoolean("pref_enable_logging",false);
     	Log.i(TAG,"debug logging:" + ENABLE_DEBUG_LOG);
+
+ 		boolean hasRoot = prefs.getBoolean(PREF_HAS_ROOT,false);
+ 		boolean enableTransparentProxy = prefs.getBoolean("pref_transparent", false);
+ 		boolean transProxyAll = prefs.getBoolean("pref_transparent_all", false);
+	 	boolean transProxyTethering = prefs.getBoolean("pref_transparent_tethering", false);
+	 		
     	
 		currentStatus = STATUS_CONNECTING;
 
@@ -593,9 +603,11 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
 		try {
 
-    		enableTransparentProxy();
     		runTorShellCmd();
     		runPrivoxyShellCmd();
+    		
+    		if (hasRoot && enableTransparentProxy)
+    			enableTransparentProxy(transProxyAll, transProxyTethering);
 
 		} catch (Exception e) {
 	    	logException("Unable to start Tor: " + e.getMessage(),e);	
@@ -611,85 +623,54 @@ public class TorService extends Service implements TorServiceConstants, TorConst
      * 
      * the idea is that if Tor is off then transproxy is off
      */
-    private boolean enableTransparentProxy () throws Exception
+    private boolean enableTransparentProxy (boolean proxyAll, boolean enableTether) throws Exception
  	{
-    	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
     	
- 		boolean hasRoot = prefs.getBoolean(PREF_HAS_ROOT,false);
- 		boolean enableTransparentProxy = prefs.getBoolean("pref_transparent", false);
- 		
  		if (mTransProxy == null)
  			mTransProxy = new TorTransProxy();
- 		
- 		if (hasRoot && enableTransparentProxy)
-    	{
 	 		
-	 		mTransProxyAll = prefs.getBoolean("pref_transparent_all", false);
-	 		boolean transProxyTethering = prefs.getBoolean("pref_transparent_tethering", false);
-	 		
-	     	TorService.logMessage ("Transparent Proxying: " + enableTransparentProxy);
-	     	
-	     	//String portProxyList = prefs.getString("pref_port_list", "");
+     	TorService.logMessage ("Transparent Proxying: enabling...");
+
+		//TODO: Find a nice place for the next (commented) line
+		//TorTransProxy.setDNSProxying(); 
+		
+		int code = 0; // Default state is "okay"
 	
-	 		
- 			//TODO: Find a nice place for the next (commented) line
-			//TorTransProxy.setDNSProxying(); 
+		if(proxyAll)
+		{
+			showToolbarNotification(getString(R.string.setting_up_full_transparent_proxying_), TRANSPROXY_NOTIFY_ID, R.drawable.ic_stat_notify, -1);
+
+			code = mTransProxy.setTransparentProxyingAll(this);
+		}
+		else
+		{
+			showToolbarNotification(getString(R.string.setting_up_app_based_transparent_proxying_), TRANSPROXY_NOTIFY_ID, R.drawable.ic_stat_notify, -1);
+
+			code = mTransProxy.setTransparentProxyingByApp(this,AppManager.getApps(this));
+		}
 			
-			int code = 0; // Default state is "okay"
-			/*	
-			if(transProxyPortFallback)
-			{
-				showToolbarNotification(getString(R.string.setting_up_port_based_transparent_proxying_), TRANSPROXY_NOTIFY_ID, R.drawable.ic_stat_notify, -1);
-				StringTokenizer st = new StringTokenizer(portProxyList, ",");
-				int status = code;
-				while (st.hasMoreTokens())
-				{
-					status = mTransProxy.setTransparentProxyingByPort(this, Integer.parseInt(st.nextToken()));
-					if(status != 0)
-						code = status;
-				}
-			}
-			else
-			{*/
-				if(mTransProxyAll)
-				{
-					showToolbarNotification(getString(R.string.setting_up_full_transparent_proxying_), TRANSPROXY_NOTIFY_ID, R.drawable.ic_stat_notify, -1);
-
-					code = mTransProxy.setTransparentProxyingAll(this);
-				}
-				else
-				{
-					showToolbarNotification(getString(R.string.setting_up_app_based_transparent_proxying_), TRANSPROXY_NOTIFY_ID, R.drawable.ic_stat_notify, -1);
-
-					code = mTransProxy.setTransparentProxyingByApp(this,AppManager.getApps(this));
-				}
-				
-			//}
+	
+		TorService.logMessage ("TorTransProxy resp code: " + code);
 		
-			TorService.logMessage ("TorTransProxy resp code: " + code);
-			
-			if (code == 0)
+		if (code == 0)
+		{
+			showToolbarNotification(getString(R.string.transparent_proxying_enabled), TRANSPROXY_NOTIFY_ID, R.drawable.ic_stat_notify, -1);
+
+			if (enableTether)
 			{
-				showToolbarNotification(getString(R.string.transparent_proxying_enabled), TRANSPROXY_NOTIFY_ID, R.drawable.ic_stat_notify, -1);
+				showToolbarNotification(getString(R.string.transproxy_enabled_for_tethering_), TRANSPROXY_NOTIFY_ID, R.drawable.ic_stat_notify, -1);
 
-				if (transProxyTethering)
-				{
-					showToolbarNotification(getString(R.string.transproxy_enabled_for_tethering_), TRANSPROXY_NOTIFY_ID, R.drawable.ic_stat_notify, -1);
-
-					mTransProxy.enableTetheringRules(this);
-					  
-				}
+				mTransProxy.enableTetheringRules(this);
+				  
 			}
-			else
-			{
-				showToolbarNotification(getString(R.string.warning_error_starting_transparent_proxying_), TRANSPROXY_NOTIFY_ID, R.drawable.ic_stat_notify, -1);
+		}
+		else
+		{
+			showToolbarNotification(getString(R.string.warning_error_starting_transparent_proxying_), TRANSPROXY_NOTIFY_ID, R.drawable.ic_stat_notify, -1);
 
-			}
-		
-			return true;
-    	}
- 		else
- 			return false;
+		}
+	
+		return true;
  	}
     
     /*
@@ -700,31 +681,23 @@ public class TorService extends Service implements TorServiceConstants, TorConst
      */
     private boolean disableTransparentProxy () throws Exception
  	{
-    	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
     	
- 		boolean hasRoot = prefs.getBoolean(PREF_HAS_ROOT,false);
- 		boolean enableTransparentProxy = prefs.getBoolean("pref_transparent", false);
+     	TorService.logMessage ("Transparent Proxying: disabling...");
+
+ 		if (mTransProxy == null)
+ 			mTransProxy = new TorTransProxy();
  		
- 		if (hasRoot && enableTransparentProxy)
-    	{
-	 		
-	     	TorService.logMessage ("Clearing TransProxy rules");
-
-	 		if (mTransProxy == null)
-	 			mTransProxy = new TorTransProxy();
-	 		
-	     	if (mTransProxyAll)
-	     		mTransProxy.clearTransparentProxyingAll(this);
-	     	else
-	    		mTransProxy.clearTransparentProxyingByApp(this,AppManager.getApps(this));
-		     		
-			showToolbarNotification(getString(R.string.transproxy_rules_cleared), TRANSPROXY_NOTIFY_ID, R.drawable.ic_stat_notify, -1);
-
-	     	
-	     	return true;
-    	}
- 		else
- 			return false;
+     //	if (transProxyAll)
+     		mTransProxy.clearTransparentProxyingAll(this);
+    // 	else
+    		mTransProxy.clearTransparentProxyingByApp(this,AppManager.getApps(this));
+	    
+     	
+     	
+		//showToolbarNotification(getString(R.string.transproxy_rules_cleared), TRANSPROXY_NOTIFY_ID, R.drawable.ic_stat_notify, -1);
+     	clearNotifications();
+     	
+     	return true;
  	}
     
     private void runTorShellCmd() throws Exception
@@ -1271,20 +1244,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
             	
         		updateTorConfiguration();
 
-		        if (currentStatus == STATUS_ON)
-		        {
-		        	//reset iptables rules in active mode
-		        
-					try
-					{
-						disableTransparentProxy();
-			    		enableTransparentProxy();
-					}
-					catch (Exception e)
-					{
-						logException("unable to setup transproxy",e);
-					}
-		        }
+		    
 		        
 				
 			} catch (RemoteException e) {
