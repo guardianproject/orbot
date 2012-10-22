@@ -1,7 +1,7 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
 1.0.11
-- Tor updated to 0.2.4-alpha
+- Tor updated to 0.2.4.4-alpha
 - libevent2 on 2.2.1-alpha
 - added data up/down speed and totals display
 - added new "Log" SlideDrawer log display 
