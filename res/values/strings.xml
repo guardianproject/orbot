@@ -31,8 +31,8 @@
 <string name="menu_about">About</string>
 <string name="menu_wizard">Wizard</string>
 
-<string name="main_layout_download">Down (kbps/kb)</string> 
-<string name="main_layout_upload">Up (kbps/kb)</string> 
+<string name="main_layout_download">Download</string> 
+<string name="main_layout_upload">Upload</string> 
 
 <string name="button_help">Help</string>
 <string name="button_close">Close</string>
@@ -105,7 +105,7 @@
    	<string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
    	
     <string name="wizard_tips_firefox">Proxy Mobile add-on for Firefox (http://tinyurl.com/getproxymob)</string>
-    <string name="proxymob_setup_url">http://tinyurl.com/getproxymob</string>
+    <string name="proxymob_setup_url">https://guardianproject.info/releases/proxymob-latest.xpi</string>
    	
     <string name="wizard_tips_twitter">Set Twitter proxy to host "localhost" and port 8118</string>
     <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
@@ -146,11 +146,13 @@
 	<string name="wizard_tips_title">Orbot-Enabled Apps</string>
 	<string name="wizard_tips_gibberbot">Gibberbot: Secure chat app with Off-the-Record Encryption</string>
 	
-	<string name="gibberbot_apk_url">https://market.android.com/details?id=info.guardianproject.otr.app.im</string>
+	<string name="gibberbot_apk_url">https://guardianproject.info/releases/gibberbot-latest.apk</string>
 	
 	<string name="wizard_tips_orweb">Orweb: Privacy-enhanced browser that works through Tor</string>
-	<string name="orweb_apk_url">https://market.android.com/details?id=info.guardianproject.browser</string>
+	<string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.xpi</string>
 
+	<string name="wizard_tips_play">Find all Guardian Project apps on Google Play</string>
+	<string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
 <!-- 
 	<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
