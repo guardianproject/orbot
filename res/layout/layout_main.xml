@@ -132,7 +132,7 @@
           <Button
               android:id="@+id/slideButton"
               android:layout_width="wrap_content"
-              android:layout_height="35dp"
+              android:layout_height="wrap_content"
               android:text="@string/menu_log" ></Button>
 
 	<RelativeLayout android:id="@+id/trafficRow"
