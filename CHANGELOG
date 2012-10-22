@@ -11,6 +11,8 @@ NOTE: Specific #s below correspond to Trac tickets logged and maintained at http
 - transproxy ensures that UDP is blocked properly for all or selected apps
 - wizard display is centered
 - added network connectivity monitor to set Tor's DisableNetwork value
+- fixed wizard tips apps recommendations; added DuckGo, Twitter, Firefox Proxymob
+- insure that iptables rules are only added once, and that all are cleared
 
 1.0.9
 - Tor now updated to 0.2.3.17-beta
