@@ -48,22 +48,22 @@ public class TorServiceUtils implements TorServiceConstants {
 			int exitCode = TorServiceUtils.doShellCommand(cmd, log, false, true);
 			
 			if (exitCode == 0) {
-				TorService.logMessage("root exists, but not sure about permissions");
+				Log.d(TorConstants.TAG,"root exists, but not sure about permissions");
 		    	 return true;
 		     
 		    }
 		      
 		} catch (IOException e) {
 			//this means that there is no root to be had (normally) so we won't log anything
-			TorService.logException("Error checking for root access",e);
+			Log.e(TorConstants.TAG,"Error checking for root access",e);
 			
 		}
 		catch (Exception e) {
-			TorService.logException("Error checking for root access",e);
+			Log.e(TorConstants.TAG,"Error checking for root access",e);
 			//this means that there is no root to be had (normally)
 		}
 		
-		TorService.logMessage("Could not acquire root permissions");
+		Log.e(TorConstants.TAG,"Could not acquire root permissions");
 		
 		
 		return false;
@@ -125,7 +125,7 @@ public class TorServiceUtils implements TorServiceConstants {
         	}
         	catch (NumberFormatException e)
         	{
-        		TorService.logException("unable to parse process pid: " + line,e);
+        		Log.e("TorServiceUtils","unable to parse process pid: " + line,e);
         	}
         }
             
@@ -185,7 +185,7 @@ public class TorServiceUtils implements TorServiceConstants {
         
         for (int i = 0; i < cmds.length; i++)
         {
-        	TorService.logMessage("executing shell cmd: " + cmds[i] + "; runAsRoot=" + runAsRoot + ";waitFor=" + waitFor);
+        //	TorService.logMessage("executing shell cmd: " + cmds[i] + "; runAsRoot=" + runAsRoot + ";waitFor=" + waitFor);
     		
         	out.write(cmds[i]);
         	out.write("\n");
