@@ -14,7 +14,7 @@ oneway interface ITorServiceCallback {
     /**
      * Called when the service returns the bandwidth user to display to the user
      */
-     void updateBandwidth(long value, long value2);
+     void updateBandwidth(long upload, long download, long written, long read);
     	     
     /**
      * Called when the service has something to add to the log

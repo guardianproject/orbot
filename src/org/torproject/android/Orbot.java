@@ -12,6 +12,7 @@ import org.torproject.android.settings.ProcessSettingsAsyncTask;
 import org.torproject.android.settings.SettingsPreferences;
 import org.torproject.android.wizard.ChooseLocaleWizardActivity;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.NotificationManager;
 import android.content.ComponentName;
@@ -29,6 +30,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.RemoteException;
+import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.text.ClipboardManager;
 import android.text.Layout;
@@ -40,7 +42,6 @@ import android.view.View;
 import android.view.View.OnLongClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.Button;
-import android.widget.RelativeLayout;
 import android.widget.SlidingDrawer;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -81,8 +82,20 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
     }
     
     /** Called when the activity is first created. */
-    public void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        //this is not the best thing to do, but we sometimes have to do strange things with Orbot
+        /*
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+        	StrictMode.ThreadPolicy policy = 
+        	        new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        	StrictMode.setThreadPolicy(policy);
+        	StrictMode.VmPolicy vmpolicy = 
+        	        new StrictMode.VmPolicy.Builder().penaltyLog().build();
+        	StrictMode.setVmPolicy(vmpolicy);
+        	}
+        */
         
         Orbot.setCurrent(this);
 
@@ -768,8 +781,7 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 		}
 
 		@Override
-		public void updateBandwidth(long upload, long download)
-				throws RemoteException {
+		public void updateBandwidth(long upload, long download, long written, long read) {
 			
         	Message msg = Message.obtain();
 			msg.what = TorServiceConstants.MESSAGE_TRAFFIC_COUNT;
@@ -777,6 +789,8 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 			Bundle data = new Bundle();
 			data.putLong("upload", upload);
 			data.putLong("download", download);
+			data.putLong("readTotal",read);
+			data.putLong("writeTotal",written);
 			
 			msg.setData(data);
 			mHandler.sendMessage(msg); 
@@ -821,36 +835,18 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 
             	case TorServiceConstants.MESSAGE_TRAFFIC_COUNT :
                     
-            		//trafficRow.setVisibility(RelativeLayout.VISIBLE);
             		Bundle data = msg.getData();
             		DataCount datacount =  new DataCount(data.getLong("upload"),data.getLong("download"));     
-            		String TotalUpload = "";
-            		String TotalDownload = "";
             		
-            		if (mService != null)
-            		{
-	            		try {
-	            			TotalUpload = mService.getInfo("traffic/written");
-	            			TotalDownload = mService.getInfo("traffic/read");
-	            			
-	            		} catch (RemoteException e) {
-	            			Log.d(TAG,"Total bandwidth error"+e.getMessage());
-	            		}
-	            		
-	            		try
-	            		{
-		            		downloadText.setText(formatCount(datacount.Download) + " / " + formatTotal(Long.parseLong(TotalDownload)));
-		            		uploadText.setText(formatCount(datacount.Upload) + " / " + formatTotal(Long.parseLong(TotalUpload)));
-		            		
-		            		downloadText.invalidate();
-		            		uploadText.invalidate();
-	            		}
-	            		catch (NumberFormatException nfe)
-	            		{
-	            			//just ignore/swallow
-	            		}
-            		}
-            		break;
+            		long totalRead = data.getLong("readTotal");
+            		long totalWrite = data.getLong("writeTotal");
+            	
+        			downloadText.setText(formatCount(datacount.Download) + " / " + formatTotal(totalRead));
+            		uploadText.setText(formatCount(datacount.Upload) + " / " + formatTotal(totalWrite));
+            		
+            //		downloadText.invalidate();
+            //		uploadText.invalidate();
+        	
                 		
                 default:
                     super.handleMessage(msg);
@@ -1020,7 +1016,7 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 		// Converts the supplied argument into a string.
 		// Under 2Mb, returns "xxx.xKb"
 		// Over 2Mb, returns "xxx.xxMb"
-		if (count < 1e6 * 2)
+		if (count < 1e6)
 			return ((float)((int)(count*10/1024))/10 + "kbps");
 		return ((float)((int)(count*100/1024/1024))/100 + "mbps");
 		
