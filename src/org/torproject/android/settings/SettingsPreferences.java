@@ -6,26 +6,23 @@ package org.torproject.android.settings;
 import java.util.Locale;
 
 import org.torproject.android.R;
-import org.torproject.android.R.xml;
 import org.torproject.android.TorConstants;
 import org.torproject.android.service.TorServiceUtils;
 import org.torproject.android.service.TorTransProxy;
 
-import com.actionbarsherlock.app.SherlockPreferenceActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
-import android.preference.PreferenceManager;
 import android.preference.Preference.OnPreferenceClickListener;
-import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
+
+import com.actionbarsherlock.app.SherlockPreferenceActivity;
 
 
 public class SettingsPreferences 
@@ -39,7 +36,6 @@ public class SettingsPreferences
 	private Preference prefLocale = null;
 	
 	private boolean hasRoot = false;
-	
 
 	private final static int HIDDEN_SERVICE_PREF_IDX = 6;
 	private final static int TRANSPROXY_GROUP_IDX = 1;
@@ -47,6 +43,7 @@ public class SettingsPreferences
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+		
 		addPreferencesFromResource(R.xml.preferences);
 		
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -58,6 +55,8 @@ public class SettingsPreferences
 			hasRoot = prefs.getBoolean("use_whispercore", false);
 			
 		}
+		
+		init();
 	}
 	
 	
@@ -66,6 +65,10 @@ public class SettingsPreferences
 	
 		super.onResume();
 	
+	}
+	
+	private void init ()
+	{
 		int REQUEST_ROOT_IDX = 1;
 		int SET_LOCALE_IDX = 3;
 
@@ -194,21 +197,11 @@ public class SettingsPreferences
 			prefcBTransProxyAll.setEnabled(prefCBTransProxy.isChecked());
 			prefTransProxyApps.setEnabled(prefCBTransProxy.isChecked() && (!prefcBTransProxyAll.isChecked()));
 			
-			if (!prefCBTransProxy.isChecked())
-				clearTransProxyState ();
 			
 		}
 		
 		return true;
 	}
 
-	private void clearTransProxyState ()
-	{
-		try {
-			new TorTransProxy().clearTransparentProxyingAll(this);
-		} catch (Exception e) {
-			Log.e(TorConstants.TAG,"error flushing iptables",e);
-		}
-	}
 
 }
