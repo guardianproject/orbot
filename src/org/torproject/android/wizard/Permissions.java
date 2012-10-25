@@ -163,7 +163,6 @@ public class Permissions extends Activity implements TorConstants {
 				{
 					try {
 						TorTransProxy ttProxy = new TorTransProxy();
-						
 						int resp = ttProxy.testOwnerModule(context,ttProxy.getIpTablesPath(context));
 						
 						if (resp != 0)
