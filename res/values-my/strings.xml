@@ -25,8 +25,6 @@
   <string name="menu_stop">Stop</string>
   <string name="menu_about">About</string>
   <string name="menu_wizard">Wizard</string>
-  <string name="main_layout_download">Download</string>
-  <string name="main_layout_upload">Upload</string>
   <string name="button_help">Help</string>
   <string name="button_close">Close</string>
   <string name="button_about">About</string>
@@ -71,15 +69,9 @@
   <string name="wizard_configure_all">Proxy All Apps Through Tor</string>
   <string name="wizard_configure_select_apps">Select Individual Apps for Tor</string>
   <string name="wizard_tips_tricks">Orbot-enabled Apps</string>
-  <string name="wizard_tips_msg">The apps below were developed to work with Orbot. Click each button to install now, or you can find them later on Google Play, at GuardianProject.info website or via F-Droid.org.</string>
+  <string name="wizard_tips_msg">The apps below were developed to work with Orbot. Click each button to install now, or you can find them later in the Android Market.</string>
   <string name="wizard_tips_otrchat">Gibberbot - Secure instant messaging client for Android</string>
   <string name="wizard_tips_proxy">Proxy Settings - Learn how to configure apps to work with Orbot</string>
-  <string name="wizard_tips_duckgo">DuckDuckGo Search Engine app</string>
-  <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
-  <string name="wizard_tips_firefox">Proxy Mobile add-on for Firefox (http://tinyurl.com/getproxymob)</string>
-  <string name="proxymob_setup_url">https://guardianproject.info/releases/proxymob-latest.xpi</string>
-  <string name="wizard_tips_twitter">Set Twitter proxy to host \"localhost\" and port 8118</string>
-  <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Proxy Settings</string>
   <string name="wizard_proxy_help_msg">If the Android app you are using can support the use of an HTTP or SOCKS proxy, then you can configure it to connect to Orbot and use Tor.\n\n\n    The host settings is 127.0.0.1 or \"localhost\". For HTTP, the port setting is 8118. For SOCKS, the proxy is 9050. You should use SOCKS4A or SOCKS5 if possible.\n    \n\n\n    You can learn more about proxying on Android via the FAQ at: http://tinyurl.com/proxyandroid\n    </string>
   <string name="wizard_final">Orbot is ready!</string>
@@ -105,11 +97,9 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot-Enabled Apps</string>
   <string name="wizard_tips_gibberbot">Gibberbot: Secure chat app with Off-the-Record Encryption</string>
-  <string name="gibberbot_apk_url">https://guardianproject.info/releases/gibberbot-latest.apk</string>
+  <string name="gibberbot_apk_url">https://market.android.com/details?id=info.guardianproject.otr.app.im</string>
   <string name="wizard_tips_orweb">Orweb: Privacy-enhanced browser that works through Tor</string>
-  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.xpi</string>
-  <string name="wizard_tips_play">Find all Guardian Project apps on Google Play</string>
-  <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
+  <string name="orweb_apk_url">https://market.android.com/details?id=info.guardianproject.browser</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
     <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
@@ -197,11 +187,11 @@
   <string name="the_tor_license">The Tor License</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">3rd-Party-Software: </string>
-  <string name="tor_version">Tor v0.2.4.3-alpha: https://www.torproject.org</string>
-  <string name="libevent_version">LibEvent v2.1.1-alpha: http://www.monkey.org/~provos/libevent/</string>
+  <string name="tor_version">Tor v0.2.3.17: https://www.torproject.org</string>
+  <string name="libevent_version">LibEvent v2.1: http://www.monkey.org/~provos/libevent/</string>
   <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
   <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v0.9.8h: http://www.openssl.org</string>
+  <string name="openssl_version">OpenSSL v1.0.0f: http://www.openssl.org</string>
   <string name="hidden_service_request">An app wants to open hidden server port %S to the Tor network. This is safe if you trust the app.</string>
   <string name="found_existing_tor_process">found existing Tor process...</string>
   <string name="something_bad_happened">Something bad happened. Check the log</string>

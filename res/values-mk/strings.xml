@@ -11,9 +11,6 @@
   <string name="status_activated">Поврзан на мрежата Тор</string>
   <string name="status_disabled">\"Орбот е дезактивиран</string>
   <string name="status_shutting_down">Орбот се исклучува</string>
-  <string name="tor_process_starting">Starting Tor client...</string>
-  <string name="tor_process_complete">complete.</string>
-  <string name="tor_process_waiting">waiting.</string>
   <string name="not_anonymous_yet">ВНИМАНИЕ: Вашиот сообраќај сеуште не е анонимен! Треба да ги конфигурирате Вашите апликации да го користат проксито за HTTP, 127.0.0.1:8118, или проксито за SOCKS4A или SOCKS5, 127.0.0.1:9050</string>
   <string name="menu_home">Дома</string>
   <string name="menu_browse">Прелистување</string>
@@ -31,7 +28,6 @@
   <string name="button_clear_log">Избриши лог</string>
   <string name="menu_verify">Провери</string>
   <string name="menu_exit">Излез</string>
-  <string name="powered_by">напојувано од проектот Тор</string>
   <string name="press_to_start">- long press to start -</string>
   <string name="pref_trans_proxy_group">Транспарентно прокси (бара root пристап)</string>
   <string name="pref_trans_proxy_title">Транспарентно прокси</string>
@@ -55,6 +51,7 @@
   <string name="btn_finish">Крај</string>
   <string name="btn_okay">Во ред</string>
   <string name="btn_cancel">Откажи се</string>
+  <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Некои детали за Орбот</string>
   <string name="wizard_details_msg">Орбот е апликација со отворен код којашто го содржи Тор, LibEvent и Privoxy. Таа Ви нуди локални проксиња за HTTP (порт 8118) и SOCKS (порт 9050) за поврзување со мрежата Тор. Орбот исто така нуди можност, на уреди со root пристап, целиот сообраќај да се пренасочи преку Тор.</string>
   <string name="wizard_permissions_root">Дозволата е издадена</string>
@@ -73,124 +70,30 @@
   <string name="wizard_tips_otrchat">Gibberbot - Secure instant messaging client for Android</string>
   <string name="wizard_tips_proxy">Подесувања на прокси - Научете како да ги конфигурирате апликациите да работат со Орбот</string>
   <string name="wizard_proxy_help_info">Подесувања на прокси</string>
-  <string name="wizard_proxy_help_msg">Ако апликацијата за Андроид што ја користите поддржува употреба на прокси за HTTP или SOCKS, тогаш може да ја конфигурирате да се поврзе со Орбот и да користи Тор. \n\n
-    Подесувањето за хост е 127.0.0.1 или „localhost“. За HTTP, подесувањето на порт е 8118. За SOCKS, портот е 9050. Доколку можете, користете SOCKS4A или SOCKS5.
-    \n\n
-    Можете да научите повеќе за проксирањето на Андроид преку ЧПП на: http://tinyurl.com/proxyandroid
-    </string>
+  <string name="wizard_proxy_help_msg">Ако апликацијата за Андроид што ја користите поддржува употреба на прокси за HTTP или SOCKS, тогаш може да ја конфигурирате да се поврзе со Орбот и да користи Тор. \n\n\n    Подесувањето за хост е 127.0.0.1 или „localhost“. За HTTP, подесувањето на порт е 8118. За SOCKS, портот е 9050. Доколку можете, користете SOCKS4A или SOCKS5.\n    \n\n\n    Можете да научите повеќе за проксирањето на Андроид преку ЧПП на: http://tinyurl.com/proxyandroid\n    </string>
   <string name="wizard_final">Орбот е спремен!</string>
   <string name="wizard_final_msg">Стотици илјади луѓе низ целиот Свет го користат Тор од многу различни причини: новинари и блогери, борци за човекови права, полицајци, војници, корпорации, граѓани на репресивни режими, и обични граѓани... а сега и Вие сте спремин да го користите!</string>
+  <!--END Welcome Wizard strings (DJH)-->
   <string name="connect_first_time"> Успешно се поврзавте на мрежата Тор - но ова НЕ значи дека важиот уред е сигурен. За да го проверите Вашиот браусер, изберете ја опцијата „Провери“ во менито. \n\nПосетете нѐ на https://guardianproject.info/apps/orbot или испратете порака на help@guardianproject.info за повеќе информации.</string>
   <string name="tor_check">Ова ќе ја отвори страницата https://check.torproject.org во Вашиот веб браусер за да видите дали Орбот е правилно конфигуриран и дали сте поврзани на Тор.</string>
   <string name="pref_hs_group">Скриени сервиси </string>
   <string name="pref_general_group">General</string>
   <string name="pref_start_boot_title">Start Orbot on Boot</string>
   <string name="pref_start_boot_summary">Automatically start Orbot and connect Tor when your Android device boots</string>
-  <string name="wizard_title_msg">Orbot brings Tor to Android!\n\nTor helps you defend against content filtering, traffic analysis and network surveillance that threatens privacy, confidential information and personal relationships.\n\nThis wizard will help you configure Orbot and Tor on your device.</string>
-  <string name="wizard_warning_title">Warning</string>
-  <string name="wizard_warning_msg">Simply installing Orbot will not automatically anonymize your mobile traffic.\n\nYou must properly configure Orbot, your device and other apps to successfully use Tor.</string>
-  <string name="wizard_permissions_title">Permissions</string>
-  <string name="wizard_permissions_root_msg1">You can optionally grant Orbot \'Superuser\' access to enable advanced features, such as Transparent Proxying.</string>
-  <string name="wizard_permissions_root_msg2">If you do not want to do this, please make sure to use apps made to work with Orbot</string>
-  <string name="wizard_permissions_no_root_msg">Your device does not appear to be rooted or provide \'Superuser\' access.\n\nIn order to you to benefit from Tor, you will need to use apps built to work with Orbot, or that support HTTP or SOCKS proxy settings.\n\n</string>
-  <string name="wizard_tips_title">Orbot-Enabled Apps</string>
-  <string name="wizard_tips_gibberbot">Gibberbot: Secure chat app with Off-the-Record Encryption</string>
-  <string name="gibberbot_apk_url">https://market.android.com/details?id=info.guardianproject.otr.app.im</string>
+  <!--New Wizard Strings-->
+  <!--Title Screen-->
+  <!--Warning screen-->
+  <!--Permissions screen-->
+  <!--TipsAndTricks screen-->
   <string name="wizard_tips_orweb">ORWEB (само Андроид 1.x) - Браусер дизајниран за приватност и за Орбот</string>
   <string name="orweb_apk_url">market://search?q=pname:nfo.guardianproject.browser</string>
-  <string name="wizard_transproxy_title">Transparent Proxying</string>
-  <string name="wizard_transproxy_msg">This allows your apps to automatically run through the Tor network without any configuration.</string>
-  <string name="wizard_transproxy_hint">(Check this box if you have no idea what we are talking about)</string>
-  <string name="wizard_transproxy_none">None</string>
-  <string name="pref_transparent_tethering_title">Tor Tethering</string>
-  <string name="pref_transparent_tethering_summary">Enable Tor Transparent Proxying for Wifi and USB Tethered Devices (requires restart)</string>
-  <string name="button_grant_superuser">Request Superuser Access</string>
-  <string name="pref_select_apps">Select Apps</string>
-  <string name="pref_select_apps_summary">Choose Apps to Route Through Tor</string>
-  <string name="pref_node_configuration">Node Configuration</string>
-  <string name="pref_node_configuration_summary">These are advanced settings that can reduce your anonymity</string>
-  <string name="pref_entrance_node">Entrance Nodes</string>
-  <string name="pref_entrance_node_summary">Fingerprints, nicks, countries and addresses for the first hop</string>
-  <string name="pref_entrance_node_dialog">Enter Entrance Nodes</string>
-  <string name="pref_use_whispercore">Use WhisperCore</string>
-  <string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>
-  <string name="pref_proxy_type_title">Proxy Type</string>
-  <string name="pref_proxy_type_summary">Protocol to use for proxy server: HTTP, HTTPS, Socks4, Socks5</string>
-  <string name="pref_proxy_type_dialog">Enter Proxy Type</string>
-  <string name="pref_proxy_host_title">Proxy Host</string>
-  <string name="pref_proxy_host_summary">Proxy server hostname</string>
-  <string name="pref_proxy_host_dialog">Enter Proxy Host</string>
-  <string name="pref_proxy_port_title">Proxy Port</string>
-  <string name="pref_proxy_port_summary">Proxy server port</string>
-  <string name="pref_proxy_port_dialog">Enter Proxy port</string>
-  <string name="status">Status</string>
-  <string name="setting_up_full_transparent_proxying_">Setting up full transparent proxying...</string>
-  <string name="setting_up_app_based_transparent_proxying_">Setting up app-based transparent proxying...</string>
-  <string name="transparent_proxying_enabled">Transparent proxying ENABLED</string>
-  <string name="transproxy_enabled_for_tethering_">TransProxy enabled for Tethering!</string>
-  <string name="warning_error_starting_transparent_proxying_">WARNING: error starting transparent proxying!</string>
-  <string name="transproxy_rules_cleared">TransProxy rules cleared</string>
-  <string name="couldn_t_start_tor_process_">Couldn\'t start Tor process: </string>
-  <string name="privoxy_is_running_on_port_">Privoxy is running on port: </string>
-  <string name="setting_up_port_based_transparent_proxying_">Setting up port-based transparent proxying...</string>
-  <string name="bridge_error">Bridge Error</string>
-  <string name="bridge_requires_ip">In order to use the bridge feature, you must enter at least one bridge IP address.</string>
-  <string name="send_email_for_bridges">Send an email to bridges@torproject.org with the line \"get bridges\" by itself in the body of the mail from a gmail account.</string>
-  <string name="error">Error</string>
-  <string name="your_reachableaddresses_settings_caused_an_exception_">Your ReachableAddresses settings caused an exception!</string>
-  <string name="your_relay_settings_caused_an_exception_">Your relay settings caused an exception!</string>
-  <string name="exit_nodes">Exit Nodes</string>
-  <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Fingerprints, nicks, countries and addresses for the last hop</string>
-  <string name="enter_exit_nodes">Enter Exit Nodes</string>
-  <string name="exclude_nodes">Exclude Nodes</string>
-  <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Fingerprints, nicks, countries and addresses to exclude</string>
-  <string name="enter_exclude_nodes">Enter Exclude Nodes</string>
-  <string name="strict_nodes">Strict Nodes</string>
-  <string name="use_only_these_specified_nodes">Use *only* these specified nodes</string>
-  <string name="bridges">Bridges</string>
-  <string name="use_bridges">Use Bridges</string>
-  <string name="enable_alternate_entrance_nodes_into_the_tor_network">Enable alternate entrance nodes into the Tor Network</string>
-  <string name="ip_address_and_port_of_bridges">IP address and port of bridges</string>
-  <string name="enter_bridge_addresses">Enter Bridge Addresses</string>
-  <string name="relays">Relays</string>
-  <string name="relaying">Relaying</string>
-  <string name="enable_your_device_to_be_a_non_exit_relay">Enable your device to be a non-exit relay</string>
-  <string name="relay_port">Relay Port</string>
-  <string name="listening_port_for_your_tor_relay">Listening port for your Tor relay</string>
-  <string name="enter_or_port">Enter OR port</string>
-  <string name="relay_nickname">Relay nickname</string>
-  <string name="the_nickname_for_your_tor_relay">The nickname for your Tor relay</string>
-  <string name="enter_a_custom_relay_nickname">Enter a custom relay nickname</string>
-  <string name="reachable_addresses">Reachable Addresses</string>
-  <string name="run_as_a_client_behind_a_firewall_with_restrictive_policies">Run as a client behind a firewall with restrictive policies</string>
-  <string name="reachable_ports">Reachable ports</string>
-  <string name="ports_reachable_behind_a_restrictive_firewall">Ports reachable behind a restrictive firewall</string>
-  <string name="enter_ports">Enter ports</string>
-  <string name="enable_hidden_services">Enable Hidden Services</string>
-  <string name="run_servers_accessible_via_the_tor_network">run servers accessible via the Tor network</string>
-  <string name="enter_localhost_ports_for_hidden_services">enter localhost ports for hidden services</string>
-  <string name="hidden_service_ports">Hidden Service Ports</string>
-  <string name="the_addressable_name_for_your_hidden_service_generated_automatically_">the addressable name for your hidden service (generated automatically)</string>
-  <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">enable debug log to output (must use adb or aLogCat to view)</string>
-  <string name="project_home">Project Home(s): </string>
-  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
-  <string name="the_tor_license">The Tor License</string>
-  <string name="https_torproject_org">https://torproject.org</string>
-  <string name="third_party_software">3rd-Party-Software: </string>
-  <string name="tor_version">Tor v0.2.3.10: https://www.torproject.org</string>
-  <string name="libevent_version">LibEvent v1.4.13: http://www.monkey.org/~provos/libevent/</string>
-  <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
-  <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v1.0.0f: http://www.openssl.org</string>
-  <string name="hidden_service_request">An app wants to open hidden server port %S to the Tor network. This is safe if you trust the app.</string>
-  <string name="found_existing_tor_process">found existing Tor process...</string>
-  <string name="something_bad_happened">Something bad happened. Check the log</string>
-  <string name="hidden_service_on">hidden service on:</string>
-  <string name="unable_to_read_hidden_service_name">unable to read hidden service name</string>
-  <string name="unable_to_start_tor">Unable to start Tor:</string>
-  <string name="pref_use_sys_iptables_title">Use Default Iptables</string>
-  <string name="pref_use_sys_iptables_summary">use the built-in iptables binary instead of the one bundled with Orbot</string>
-  <string name="error_installing_binares">The Tor binaries were not able to be installed or upgraded.</string>
-  <string name="pref_use_persistent_notifications">Always keep the icon in toolbar when Orbot is connected</string>
-  <string name="pref_use_persistent_notifications_title">Always-On Notifications</string>
+  <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
+	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
+    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
+    <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
+  <!--Transparent Proxy screen-->
+  <!--<string name="pref_use_whispercore">Use WhisperCore</string>
+<string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>-->
+  <string name="default_bridges"/>
+  <string name="powered_by">напојувано од проектот Тор</string>
 </resources>

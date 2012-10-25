@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="app_name">Orbot</string>
+  <string name="internal_web_url">http://orbot/</string>
+  <string name="default_web_url">http://check.torproject.org</string>
+  <string name="secure_default_web_url">https://check.torproject.org</string>
+  <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
+  <string name="control_permission_label">Tor\'u başlat ve durdur</string>
+  <string name="tor_proxy_service_process">torproxyservice</string>
+  <string name="status_starting_up">Orbot başlatılıyor...</string>
+  <string name="status_activated">Tor ağına bağlandı</string>
+  <string name="status_disabled">Orbot devre dışı bırakıldı</string>
+  <string name="status_shutting_down">Orbot kapatılıyor</string>
+  <string name="not_anonymous_yet">UYARI: Bağlantınız henüz anonim değildir! Lütfen uygulamalarınızı HTTP 127.0.0.1:8118  veya SOCKS4A / SOCKS5 127.0.0.1:9050 vekil sunucusu kullanacak şekilde yapılandırınız.</string>
+  <string name="menu_home">Başlangıç</string>
+  <string name="menu_browse">Göz At</string>
+  <string name="menu_settings">Ayarlar</string>
+  <string name="menu_log">Günlük</string>
+  <string name="menu_info">Yardım</string>
+  <string name="menu_apps">Uygulamalar</string>
+  <string name="menu_start">Başlat</string>
+  <string name="menu_stop">Durdur</string>
+  <string name="menu_about">Hakkında</string>
+  <string name="menu_wizard">Sihirbaz</string>
+  <string name="button_help">Yardım</string>
+  <string name="button_close">Kapat</string>
+  <string name="button_about">Hakkında</string>
+  <string name="button_clear_log">Günlüğü Temizle</string>
+  <string name="menu_verify">Kontrol Et</string>
+  <string name="menu_exit">Çıkış</string>
+  <string name="press_to_start">- başlatmak için uzun basın -</string>
+  <string name="pref_trans_proxy_group">Transparan Vekil Sunuculuğu (Yeniden Başlatma Gerektirir)</string>
+  <string name="pref_trans_proxy_title">Transparan Vekil Sunuculuğu</string>
+  <string name="pref_trans_proxy_summary">Uygulamalar için Otomatik Tor Uyarlaması</string>
+  <string name="pref_transparent_all_title">Herşeyi Tor ile Uyarla</string>
+  <string name="pref_transparent_all_summary">Tor\'a uyarlanmış uygulamaların vekil sunucu bağlantıları</string>
+  <string name="pref_transparent_port_fallback_title">Vekil Sunucu Yanıtsız Kalma Bildirim Portu</string>
+  <string name="pref_transparent_port_fallback_summary">UYARI: Genel portlardan (80,443, v.b.) kaçınınız. SADECE \'Hepsi\' veya \'Uygulama\' modu çalışmadığında kullanınız.</string>
+  <string name="pref_transparent_port_title">Port Listesi</string>
+  <string name="pref_transparent_port_summary">Vekil sunucu port listesi. SADECE \'Hepsi\' veya \'Uygulama\' modu çalışmadığında kullanınız.</string>
+  <string name="pref_transparent_port_dialog">Vekil sunucu portlarını giriniz</string>
+  <string name="pref_has_root">Yönetici Erişimi Talebi</string>
+  <string name="pref_has_root_summary">Transparan Vekil Sunuculuk için Yönetici Erişimi Talebi</string>
+  <string name="status_install_success">Tor binarileri başarıyla yüklendi!</string>
+  <string name="status_install_fail">Tor binari dosyaları yüklenemedi. Lütfen günlüğü kontrol ediniz ve tor-assistants@torproject.org adresini kullanarak bilgilendirme yapınız.</string>
+  <string name="title_error">Uygulama Hatası</string>
+  <string name="wizard_title">Orbot</string>
+  <string name="wizard_btn_tell_me_more">Orbot Hakkında</string>
+  <string name="btn_next">İleri</string>
+  <string name="btn_back">Geri</string>
+  <string name="btn_finish">Bitir</string>
+  <!--Welcome Wizard strings (DJH)-->
+  <!--END Welcome Wizard strings (DJH)-->
+  <!--New Wizard Strings-->
+  <!--Title Screen-->
+  <!--Warning screen-->
+  <!--Permissions screen-->
+  <!--TipsAndTricks screen-->
+  <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
+	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
+    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
+    <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
+  <!--Transparent Proxy screen-->
+  <string name="button_grant_superuser">Süper Kullanıcı Erişimi Talebi</string>
+  <string name="pref_select_apps">Uygulamaları Seç</string>
+  <string name="pref_select_apps_summary">Tor Üzerinden Yönlendirilecek Uygulamaları Seç</string>
+  <string name="pref_node_configuration">Nokta Konfigürasyonu</string>
+  <string name="pref_node_configuration_summary">Bu ayarlar bağlantınızın anonimliğini azaltabilecek gelişmiş ayarlardır.</string>
+  <string name="pref_entrance_node">Giriş Noktaları</string>
+  <!--<string name="pref_use_whispercore">Use WhisperCore</string>
+<string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>-->
+  <string name="default_bridges"/>
+  <string name="powered_by">The Tor Project tarafından desteklenmektedir.</string>
+</resources>

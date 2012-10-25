@@ -25,13 +25,14 @@
   <string name="menu_stop">Leállítás</string>
   <string name="menu_about">Névjegy</string>
   <string name="menu_wizard">Varázsló</string>
+  <string name="main_layout_download">Letöltés (sebesség/összes)</string>
+  <string name="main_layout_upload">Feltöltés (sebesség/összes)</string>
   <string name="button_help">Súgó</string>
   <string name="button_close">Bezár</string>
   <string name="button_about">Névjegy</string>
   <string name="button_clear_log">Log ürítése</string>
   <string name="menu_verify">Ellenőrzés</string>
   <string name="menu_exit">Kilépés</string>
-  <string name="powered_by">a Tor Project által gondozva</string>
   <string name="press_to_start">- hosszan nyomja az indítást -</string>
   <string name="pref_trans_proxy_group">Átlátszó Proxy használat (Root-olás szükséges)</string>
   <string name="pref_trans_proxy_title">Átlátszó Proxy használat</string>
@@ -55,6 +56,7 @@
   <string name="btn_finish">Befejezés</string>
   <string name="btn_okay">OK</string>
   <string name="btn_cancel">Mégsem</string>
+  <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Néhány Orbot Tudnivaló</string>
   <string name="wizard_details_msg">Az Orbot egy nyílt forrás alkalmazás, ami a Tor, a LibEvent és Privoxy csomagot tartalmazza. Szolgáltatása egy helyi  HTTP proxy (8118) és egy SOCKS proxy (9050) a Tor hálózat felé. Az Orbot további tulajdonsága, hogy rootolt készülék esetén képes a teljes internet forgalom Tor hálózaton keresztül küldésére.</string>
   <string name="wizard_permissions_root">Jogosultság megadva</string>
@@ -72,32 +74,42 @@
   <string name="wizard_tips_msg">Javasoljuk, hogy töltsön le és használjon olyan alkalmazásokat, amelyek tudják, hogyna kell közvetlenül kapcsolódni az Orbot-hoz. Kattintson az gombokra alább a telepítéshez.</string>
   <string name="wizard_tips_otrchat">Gibberbot - Biztonságos azonnali üzenetküldő kliens Android-ra</string>
   <string name="wizard_tips_proxy">Proxy beállítások - Tanulja meg, hogyan állíthatja be alkalmazásait, hogy együttműködjenek az Orbot-tal</string>
+  <string name="wizard_tips_duckgo">Duckduckgo keresőgép alkalmazás</string>
+  <string name="wizard_tips_firefox">Firefox Proxy Mobile kiegészítővel (külön telepítés utána)</string>
+  <string name="wizard_tips_twitter">A Twitter támogatja a \"localhost:8118\" http proxyt</string>
   <string name="wizard_proxy_help_info">Proxy beállítások</string>
-  <string name="wizard_proxy_help_msg">Ha az Android alkalmazás, amit használ képes a HTTP vagy SOCKS proxy-k használatára, akkor be tudja állítani, hogy csatlakozzon az Orbot-hoz és használj a Tor-t.\n\n
-    A host beállítás 127.0.0.1 vagy \"localhost\". A HTTP-hez a  port értéke 8118. A SOCKS esetében a proxy port értéke 9050. SOCKS4A vagy SOCKS5 proxy javasolt használnia, ha lehetséges.
-    \n\n
-    További információkat talál a proxyzásról Android készülékne a FAQ szekcióban az alábbi oldalon: http://tinyurl.com/proxyandroid
-    </string>
+  <string name="wizard_proxy_help_msg">Ha az Android alkalmazás, amit használ képes a HTTP vagy SOCKS proxy-k használatára, akkor be tudja állítani, hogy csatlakozzon az Orbot-hoz és használj a Tor-t.\n\n\n    A host beállítás 127.0.0.1 vagy \"localhost\". A HTTP-hez a  port értéke 8118. A SOCKS esetében a proxy port értéke 9050. SOCKS4A vagy SOCKS5 proxy javasolt használnia, ha lehetséges.\n    \n\n\n    További információkat talál a proxyzásról Android készülékne a FAQ szekcióban az alábbi oldalon: http://tinyurl.com/proxyandroid\n    </string>
   <string name="wizard_final">Az Orbot kész!</string>
   <string name="wizard_final_msg">Több száezren használják szerte a világon a Tor-t különböző okokból: újságírók, bloggerek, emberi jogi aktivisták, rendvédelmi szervek dolgozói, katonák, vállalatok, elnyomó rezsimek polgárai, vagy csak egyszerű polgárok... és most készen áll erre Ön is!</string>
+  <!--END Welcome Wizard strings (DJH)-->
   <string name="connect_first_time"> Sikeresen csatlakozott a Tor hálózathoz - de ez NEM azt jelenti, hogy a készüléke biztonságos. Ellenőrizze az \'Ellenőrzés\' opcióval a menüből a böngészőjét.\n\nLátogassa meg a https://guardianproject.info/apps/orbot oldalt vagy küldjön emailt a help@guardianproject.info címre a további információkért.</string>
   <string name="tor_check">Ez megnyitja az alapértelmezett böngészőt, és elnavigálja a https://check.torproject.orgoldalra, hogy ellenőrizze, hogy az Orbot helyesen konfigurált-e, és hogy csatlakozott-e a Tor hálózathoz.</string>
   <string name="pref_hs_group">Rejtett szolgáltatások</string>
   <string name="pref_general_group">Általános</string>
   <string name="pref_start_boot_title">Az Orbot indítása bekapcsoláskor</string>
   <string name="pref_start_boot_summary">Automatikusan elindítja az Orbot-ot, és csatlakozik a hálózathoz, amikor az Android eszköz elindul</string>
+  <!--New Wizard Strings-->
+  <!--Title Screen-->
   <string name="wizard_title_msg">Az Orbot elhozta a Tor-t Androidra!\n\n\A Tor megvédi a tartalomszűréstől, forgalomelemzéstől és hálózatanalízistól, amely a sértheti magánéletét, titkos üzleti információt vagy személyes kapcsolatait.\n\nEz a varázsló segít az Orbot és a Tor bekonfigurálásában az eszközén.</string>
+  <!--Warning screen-->
   <string name="wizard_warning_title">Figyelem</string>
   <string name="wizard_warning_msg">Az Orbot telepítése nem fogja automatikusan névtelenné tenni a mobil forgalmát.\n\nMegfelelően konfigurálnia kell az Orbot-ot az eszközt és az alkalmazásokat a sikeres Tor használathoz.</string>
+  <!--Permissions screen-->
   <string name="wizard_permissions_title">Jogosultságok</string>
   <string name="wizard_permissions_root_msg1">Opcionálisan adhat az Orbot részére \'Superuser\' hozzáférést, amellyel bekapcsolhatja az olyan speciális szolgáltatásokat, mint például az Átlátszó Proxyzás.</string>
   <string name="wizard_permissions_root_msg2">Ha nem szeretné ezt, akkor legen biztos abban, hogy olyan alkalmazásokat használ, amiket az Orbot-tal együttműködésre terveztek.</string>
   <string name="wizard_permissions_no_root_msg">Az eszköze alap módban fut, nem támogatja a root vagy \'Superuser\' hozzáférést.\n\nAhhoz, hogy részesüljön a Tor előnyeiből, olyan alkalmazást kell használnia, amely úgy készült, hogy együtt használható legyen az Orbot-tal, vagy legyen lehetőség HTTP vagy SOCKS proxy beállítására.\n\n</string>
+  <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot-engedélyezett Alkalmazások</string>
   <string name="wizard_tips_gibberbot">Gibberbot: Biztonságos csevegő alkalmazás Off-the-Record titkosítással</string>
   <string name="gibberbot_apk_url">https://market.android.com/details?id=info.guardianproject.otr.app.im</string>
   <string name="wizard_tips_orweb">ORWEB (csak Android 1.x) - Böngésző, kifejezetten adatvédelemre és az Orbot-hoz</string>
   <string name="orweb_apk_url">market://search?q=pname:nfo.guardianproject.browser</string>
+  <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
+	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
+    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
+    <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
+  <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Átlátszó proxyzás</string>
   <string name="wizard_transproxy_msg">Ez lehetővé teszi az alkalmazások számára a Tor-on keresztül kommunikálást, bármilyen konfiguráció nélkül.</string>
   <string name="wizard_transproxy_hint">(Jelölje ezt négyzetet, ha halvány lila fogalma sincs miről van itt szó.)</string>
@@ -112,8 +124,9 @@
   <string name="pref_entrance_node">Belépő csomópontok</string>
   <string name="pref_entrance_node_summary">Ujjlenyomatok, becenevek, országok és címek az első ugráshoz</string>
   <string name="pref_entrance_node_dialog">Belépő csomópontok megadása</string>
-  <string name="pref_use_whispercore">WhisperCore használata</string>
-  <string name="pref_use_whispercore_summary">Az eredeti NetFilter API használata amit a WhisperSystems biztosít (olyan eszköz szükséges, amire WhisperCore van telepítve)</string>
+  <!--<string name="pref_use_whispercore">Use WhisperCore</string>
+<string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>-->
+  <string name="pref_proxy_title">Kimenő hálózati proxy</string>
   <string name="pref_proxy_type_title">Proxy típus</string>
   <string name="pref_proxy_type_summary">A Proxy szerver által használandó protokoll: HTTP, HTTPS, Socks4, Socks5</string>
   <string name="pref_proxy_type_dialog">Adja meg a Proxy típust</string>
@@ -149,7 +162,9 @@
   <string name="use_only_these_specified_nodes">*Csak * a megadott csomópontok használata</string>
   <string name="bridges">Hidak</string>
   <string name="use_bridges">Hidak használata</string>
+  <string name="bridges_obfuscated">Fedőhidak</string>
   <string name="enable_alternate_entrance_nodes_into_the_tor_network">Alternatív belépési pontok engedélyezése a Tor hálózatba</string>
+  <string name="enable_if_configured_bridges_are_obfuscated_bridges">Bekapcsolva, ha a hidak Fedőhidak.</string>
   <string name="ip_address_and_port_of_bridges">A Hidek IP címe és portja</string>
   <string name="enter_bridge_addresses">Adja meg a híd címet</string>
   <string name="relays">Elosztók</string>
@@ -193,4 +208,12 @@
   <string name="error_installing_binares">A Tor binárisok nem telepíthetők, vagy frissíthetők.</string>
   <string name="pref_use_persistent_notifications">Mindig legyen látható az ikon az eszköztáron, ha az Orbot csatlakozott állapotú.</string>
   <string name="pref_use_persistent_notifications_title">Mindig bekapcsolt értesítések</string>
+  <string name="notification_using_bridges">Hidak engedélyezve!</string>
+  <string name="default_bridges"/>
+  <string name="set_locale_title">Hely beállítása</string>
+  <string name="set_locale_summary">Adja meg a helyi és nyelvi beállításokat</string>
+  <string name="wizard_locale_title">Válasszon nyelvet</string>
+  <string name="wizard_locale_msg">Maradjon alapértelmezetten vagy váltson az aktuális nyelvre</string>
+  <string name="powered_by">a Tor Project által gondozva</string>
+  <string name="btn_save_settings">Beállítások mentése</string>
 </resources>

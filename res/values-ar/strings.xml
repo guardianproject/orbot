@@ -31,7 +31,6 @@
   <string name="button_clear_log">مسح السجل</string>
   <string name="menu_verify">فحص</string>
   <string name="menu_exit">خروج</string>
-  <string name="powered_by">بدعم من مشروع تور</string>
   <string name="press_to_start">- long press to start -</string>
   <string name="pref_trans_proxy_group">عملية توكيل غير مرئية أو ضمنية (يتطلب حقوق المسؤول- Root-)</string>
   <string name="pref_trans_proxy_title">عملية توكيل غير مرئية أو ضمنية</string>
@@ -55,6 +54,7 @@
   <string name="btn_finish">إنهاء</string>
   <string name="btn_okay">موافق</string>
   <string name="btn_cancel">إلغاء</string>
+  <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">بعض التفاصيل عن أوربوت</string>
   <string name="wizard_details_msg">أوربوت هو تطبيق مفتوح المصدر والذي يضم تور, LibEvent وPrixovy. يعمل على توفير وكيل HTTP محلي (8118) ووكيل SOCKS (9050) إلى شبكة تور. يتوفر لدى أوربوت القدرة على إرسال جميع حركات مرور الانترنت من خلال تور على الجهاز ذات حقوق المسؤول (root). </string>
   <string name="wizard_permissions_root">تم منح الإذن</string>
@@ -73,37 +73,38 @@
   <string name="wizard_tips_otrchat">Gibberbot - Secure instant messaging client for Android</string>
   <string name="wizard_tips_proxy">إعدادات الوكيل - تعلم كيفية تكوين التطبيقات لتعمل مع أوربوت</string>
   <string name="wizard_proxy_help_info">إعدادات الوكيل</string>
-  <string name="wizard_proxy_help_msg">اذا كان تطبيق أندرويد الذي تستخدمه يمكن ان يدعم استخدام وكيل HTTP او SOCKS , عندها يمكنك تكوينه للإتصال بأوربوت واستخدام تور.
-
-
-    اعدادات المستضيف هي 127.0.0.1 او \"المستضيف المحلي\". بالنسبة الى HTTP, فإن ضبط المنفذ هو 8118. بالنسبة الى SOCKS, فإن الوكيل هو 9050. يجب عليك استخدام SOCKS4A او SOCKS5 اذا امكن.
-    
-
-
-    يمكنك معرفة المزيد عن عملية توكيل غير مرئية للأندرويد عن طريق الأسئلة المتداولة (FAQ)  في: http://tinyurl.com/proxyandroid
-    </string>
+  <string name="wizard_proxy_help_msg">اذا كان تطبيق أندرويد الذي تستخدمه يمكن ان يدعم استخدام وكيل HTTP او SOCKS , عندها يمكنك تكوينه للإتصال بأوربوت واستخدام تور.\n\n\n    اعدادات المستضيف هي 127.0.0.1 او \"المستضيف المحلي\". بالنسبة الى HTTP, فإن ضبط المنفذ هو 8118. بالنسبة الى SOCKS, فإن الوكيل هو 9050. يجب عليك استخدام SOCKS4A او SOCKS5 اذا امكن.\n    \n\n\n    يمكنك معرفة المزيد عن عملية توكيل غير مرئية للأندرويد عن طريق الأسئلة المتداولة (FAQ)  في: http://tinyurl.com/proxyandroid\n    </string>
   <string name="wizard_final">أوربوت جاهز!</string>
   <string name="wizard_final_msg">مئات الآلاف من الناس في جميع أنحاء العالم يستخدمون تور لأسباب عديدة: الصحفيين والمدونين، والعاملين في مجال حقوق الإنسان، والجنود والشركات والمواطنين من الأنظمة القمعية، والمواطنين العاديين ... والآن أنت مستعد لأن تستخدمه كذلك!</string>
-  <string name="connect_first_time"> لقد قمت بإتصال ناجح الى شبكة تور - لكن هذا لا يعني بأن جهازك في مأمن. يمكنك استخدام خيار \'تحقق\' من القائمة لإختبار المتصفح الخاص بك. 
-
- قم بزيارتنا على https://guardianproject.info/apps/orbot او ارسل رسالة الكترونية الى help@guardianproject.info لمعرفة المزيد.</string>
+  <!--END Welcome Wizard strings (DJH)-->
+  <string name="connect_first_time"> لقد قمت بإتصال ناجح الى شبكة تور - لكن هذا لا يعني بأن جهازك في مأمن. يمكنك استخدام خيار \'تحقق\' من القائمة لإختبار المتصفح الخاص بك. \n\n قم بزيارتنا على https://guardianproject.info/apps/orbot او ارسل رسالة الكترونية الى help@guardianproject.info لمعرفة المزيد.</string>
   <string name="tor_check">سيؤدي هذا إلى فتح المتصفح الافتراضي الخاص بك على العنوان https://check.torproject.org من اجل التحقق من تكوين أوربوت بشكل صحيح وبأنك متصل بتور.</string>
   <string name="pref_hs_group">خدمات خفية</string>
   <string name="pref_general_group">General</string>
   <string name="pref_start_boot_title">Start Orbot on Boot</string>
   <string name="pref_start_boot_summary">Automatically start Orbot and connect Tor when your Android device boots</string>
+  <!--New Wizard Strings-->
+  <!--Title Screen-->
   <string name="wizard_title_msg">أوربوت يجلب لك شبكة تور للأندرويد! تور يساعدك  للتغلب على حجب المحتوى، فحص الاتصال، و الرقابة و التجسس على الشبكات، و التي تهدد الخصوصية و العلاقات الشخصية و المعلومات السرية. سنقوم الآن بمساعدتك لضبط أوربوت و تور على جهازك.</string>
+  <!--Warning screen-->
   <string name="wizard_warning_title">تحذير</string>
   <string name="wizard_warning_msg">مجرد تنزيل أوربوت لن يعطيك الخصوصية. يجب عليك أيضاً اعداد أوربوت و جهازك و البرامج المستفيدة من تور.</string>
+  <!--Permissions screen-->
   <string name="wizard_permissions_title">الصلاحيات</string>
   <string name="wizard_permissions_root_msg1">يمكنك اعطاء أوربوت صلاحية المستخدم السوبر لتشغيل المميزات المتقدمة مثل البروكسي الشفاف.</string>
   <string name="wizard_permissions_root_msg2">إذا كنت تريد أن تقوم بهذا فعليك التأكد من استخدام برامج معدة لتشتغل مع أوربوت.</string>
   <string name="wizard_permissions_no_root_msg">لا يوجد روت أو صلاحيات خارقة على جهازك  و لذلك لتستفيد من من تور عليك استخدام برامج صممت لتعمل مع أوربوت أو التي تدعم بروكسي HTTP أو SOCKS .</string>
+  <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">برامج معدة لتشتغل مع أوربوت</string>
   <string name="wizard_tips_gibberbot">جيبربوت: محادثات آمنة باستخدام التشفير خارج السجل.</string>
   <string name="gibberbot_apk_url">https://market.android.com/details?id=info.guardianproject.otr.app.im</string>
   <string name="wizard_tips_orweb">ORWEB (أندرويد 1.x فقط) - متصفح مصمّم للخصوصية لأوربوت </string>
   <string name="orweb_apk_url">market://search?q=pname:nfo.guardianproject.browser</string>
+  <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
+	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
+    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
+    <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
+  <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">بروكسي شفاف</string>
   <string name="wizard_transproxy_msg">هذه ستسمح للبرامج بالاتصال بشبكة تور تلقائياً دون اعداد مسبق.</string>
   <string name="wizard_transproxy_hint">اختر هذا المربع اذا كنت لا تعلم عما نتحدث عنه هنا</string>
@@ -118,8 +119,9 @@
   <string name="pref_entrance_node">نقاط الدخول</string>
   <string name="pref_entrance_node_summary">بصمات، اسماء مستعارة، البلدان و العناوين لأول نقطة اتصال</string>
   <string name="pref_entrance_node_dialog">أدخل نقاط الدخول</string>
-  <string name="pref_use_whispercore">استخدم WhisperCore</string>
-  <string name="pref_use_whispercore_summary">استخدم مكتبة NetFilter مغلقة المصدر و المقدمة من WhisperSystems (تحتاج لتنزيل WhisperCore)</string>
+  <!--<string name="pref_use_whispercore">Use WhisperCore</string>
+<string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>-->
+  <string name="pref_proxy_title">بروكسي الشبكة</string>
   <string name="pref_proxy_type_title">نوع البروكسي</string>
   <string name="pref_proxy_type_summary">البروتوكول ليستخدم مع خادم البروكسي: HTTP, HTTPS, Socks4, Socks5</string>
   <string name="pref_proxy_type_dialog">أدخل نوع البروكسي</string>
@@ -155,7 +157,9 @@
   <string name="use_only_these_specified_nodes">فقط استخدم هذه النقاط المحددة</string>
   <string name="bridges">الجسور</string>
   <string name="use_bridges">استخدم الجسور</string>
+  <string name="bridges_obfuscated">الجسور المخفية</string>
   <string name="enable_alternate_entrance_nodes_into_the_tor_network">اسمح باستخدام نقاط دخول بديلة على شبكة تور</string>
+  <string name="enable_if_configured_bridges_are_obfuscated_bridges">تفعيل هذا الخيار اذا كانت الجسور مخفية</string>
   <string name="ip_address_and_port_of_bridges">عناوين الانترنت و منافذ الجسور</string>
   <string name="enter_bridge_addresses">أدخل عنوان الجسر</string>
   <string name="relays">نقاط التحويل</string>
@@ -183,6 +187,11 @@
   <string name="the_tor_license">رخصة استخدام تور</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">برامج من جهات أخرى:</string>
+  <string name="tor_version">Tor v0.2.3.10: https://www.torproject.orgب</string>
+  <string name="libevent_version">LibEvent v1.4.13: http://www.monkey.org/~provos/libevent/</string>
+  <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
+  <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
+  <string name="openssl_version">OpenSSL v1.0.0f: http://www.openssl.org</string>
   <string name="hidden_service_request">أحد البرامج يحاول تشغيل خدمة مخفية بمنفذ %S على شبكة تور. هذه الميزة آمنة فقط اذا كنت تثق بالبرنامج</string>
   <string name="found_existing_tor_process">تم العثور على برنامج تور </string>
   <string name="something_bad_happened">حصل خطأ ما. افحص السجل</string>
@@ -194,4 +203,12 @@
   <string name="error_installing_binares">لم يتم تثبيت أو تحديث مكونات تور</string>
   <string name="pref_use_persistent_notifications">ضع الأيقونة في شريط التنبيهات عندما يكون أوربوت متصلاً</string>
   <string name="pref_use_persistent_notifications_title">تفعيل التنبيهات دائماً</string>
+  <string name="notification_using_bridges">تم تفعيل الجسور!</string>
+  <string name="default_bridges"/>
+  <string name="set_locale_title">تغيير اللغة</string>
+  <string name="set_locale_summary">غير اللغة و الاعدادات الاقليمية لأوربوت</string>
+  <string name="wizard_locale_title">اختيار اللغة</string>
+  <string name="wizard_locale_msg">اختر اللغة الافتراضية</string>
+  <string name="powered_by">بدعم من مشروع تور</string>
+  <string name="btn_save_settings">حفظ الاعدادات</string>
 </resources>

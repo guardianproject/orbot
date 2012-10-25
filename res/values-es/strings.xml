@@ -31,7 +31,6 @@
   <string name="button_clear_log">Limpiar Historial</string>
   <string name="menu_verify">Comprobar</string>
   <string name="menu_exit">Salir</string>
-  <string name="powered_by">potenciado por Tor Project</string>
   <string name="press_to_start">- long press to start -</string>
   <string name="pref_trans_proxy_group">Proxy transparente (Requiere ser Administrador)</string>
   <string name="pref_trans_proxy_title">Proxy transparente</string>
@@ -55,6 +54,7 @@
   <string name="btn_finish">Finalizar</string>
   <string name="btn_okay">OK</string>
   <string name="btn_cancel">Cancelar</string>
+  <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Algunos detalles de Orbot</string>
   <string name="wizard_details_msg">Orbot es una aplicación de código abierto que contiene Tor, LibEvent y Privoxy. Provee un Proxy HTTP local (8118) y un Proxy SOCKS (9050) en la red Tor. Orbot también tiene la habilidad, en un dispositivo enrutador, de enviar todo el tráfico de Internet a través de Tor.</string>
   <string name="wizard_permissions_root">Permiso Concedido</string>
@@ -73,37 +73,38 @@
   <string name="wizard_tips_otrchat">Gibberbot - Secure instant messaging client for Android</string>
   <string name="wizard_tips_proxy">Configuraciones Proxy - Aprenda cómo configurar aplicaciones para que trabajen con Orbot</string>
   <string name="wizard_proxy_help_info">Configuraciones Proxy</string>
-  <string name="wizard_proxy_help_msg">Si la aplicación Android que está utilizando puede soportar el uso de un Proxy HTTP o SOCKS, entonces puede configurarla para conectar a Orbot y utilizar Tor.
-
-
-La configuración del dominio es 127.0.0.1 o \"localhost\". Para HTTP, la configuración del puerto es 8118. Para SOCKS, el proxy es 9050. Puede utilizar SOCKS4A o SOCKS5 si es posible.
-
-
-
-Puede aprender más acerca de los proxys en Android a través de las Preguntas Frecuentes ubicadas en: http://tinyurl.com/proxyandroid
-    </string>
+  <string name="wizard_proxy_help_msg">Si la aplicación Android que está utilizando puede soportar el uso de un Proxy HTTP o SOCKS, entonces puede configurarla para conectar a Orbot y utilizar Tor.\n\n\nLa configuración del dominio es 127.0.0.1 o \"localhost\". Para HTTP, la configuración del puerto es 8118. Para SOCKS, el proxy es 9050. Puede utilizar SOCKS4A o SOCKS5 si es posible.\n\n\n\nPuede aprender más acerca de los proxys en Android a través de las Preguntas Frecuentes ubicadas en: http://tinyurl.com/proxyandroid\n    </string>
   <string name="wizard_final">¡Orbot está listo!</string>
   <string name="wizard_final_msg">Cientos de miles de personas alrededor del mundo usan Tor por una amplia variedad de razones: periodistas y bloggers, trabajadores de los derechos humanos, oficiales de policía, soldados, corporaciones, ciudadanos de regímenes represivos y ciudadanos ordinarios... ¡y ahora también lo estás!</string>
-  <string name="connect_first_time">Se ha conectado con éxito a la red Tor, pero eso NO significa que su dispositivo es seguro. Puede utilizar la opción \'Comprobar\' desde el menú para probar su navegador.
-
-Visítenos en https://guardianproject.info/apps/orbot o envíenos un correo electrónico a help@guardianproject.info para aprender más.</string>
+  <!--END Welcome Wizard strings (DJH)-->
+  <string name="connect_first_time">Se ha conectado con éxito a la red Tor, pero eso NO significa que su dispositivo es seguro. Puede utilizar la opción \'Comprobar\' desde el menú para probar su navegador.\n\nVisítenos en https://guardianproject.info/apps/orbot o envíenos un correo electrónico a help@guardianproject.info para aprender más.</string>
   <string name="tor_check">Esto abrirá https://check.torproject.org en su navegador predeterminado con el fin de comprobar si Orbot está configurado y si está conectado a Tor.</string>
   <string name="pref_hs_group">Servicios Ocultados</string>
   <string name="pref_general_group">General</string>
   <string name="pref_start_boot_title">Start Orbot on Boot</string>
   <string name="pref_start_boot_summary">Automatically start Orbot and connect Tor when your Android device boots</string>
+  <!--New Wizard Strings-->
+  <!--Title Screen-->
   <string name="wizard_title_msg">Orbot activa el acceso a la red Tor, en su Android! \n\nTor le ayuda a defenderse del filtrado de contenido, análisis de tráfico y la vigilancia que amenaza su privacidad, su información confidencial y sus relaciones personales. \n\nEste asistente le ayudará a configurar Orbot y Tor en su dispositivo Android.</string>
+  <!--Warning screen-->
   <string name="wizard_warning_title">Advertencia</string>
   <string name="wizard_warning_msg">Simplemente instalando Orbort, no automatiza de por si, la proteccion anonima del trafico generado por su dispositivo \n\nPara anonimizar su trafico con garantias, debe configurar adecuadamente Orbot, el dispositivo y las aplicaciones que utilize en su conexion.</string>
+  <!--Permissions screen-->
   <string name="wizard_permissions_title">Permisos</string>
   <string name="wizard_permissions_root_msg1">Si lo desea, puede conceder acceso \'superusuario\' a Orbot para habilitar las características avanzadas de configuracion y acceso a la red Tor, tales como los proxys transparentes.</string>
   <string name="wizard_permissions_root_msg2">Si no desea habilitar esta opcion, por favor asegúrese de utilizar aplicaciones compatibles con Orbot</string>
   <string name="wizard_permissions_no_root_msg">Su dispositivo se esta ejecutando en modo estándar, y no admite el acceso root o \"superusuario\".\n\nPara que pueda beneficiarse de todo el potencial de Tor, tendrá que utilizar aplicaciones creadas para trabajar con Orbot, o compatibles con la configuracion proxy basada en los protocolos HTTP o SOCKS\n\n</string>
+  <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Aplicaciones habilitadas para utilizar con Orbot</string>
   <string name="wizard_tips_gibberbot">Gibberbot: Asegure su aplicación de chat con nuestro sistema de cifrado </string>
   <string name="gibberbot_apk_url">https://market.android.com/details?id=info.guardianproject.otr.app.im</string>
   <string name="wizard_tips_orweb">ORWEB (Sólo Android 1.x) - Navegador diseñado para la privacidad y para Orbot</string>
   <string name="orweb_apk_url">market://search?q=pname:nfo.guardianproject.browser</string>
+  <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
+	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
+    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
+    <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
+  <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">conexion proxy transparente activada </string>
   <string name="wizard_transproxy_msg">Esto permite que sus aplicaciones se ejecuten automáticamente a través de la red Tor sin necesidad de realizar ninguna configuración.</string>
   <string name="wizard_transproxy_hint">(Si no tiene idea de lo que estamos hablando, marque esta casilla ;o)</string>
@@ -118,8 +119,9 @@ Visítenos en https://guardianproject.info/apps/orbot o envíenos un correo elec
   <string name="pref_entrance_node">Los nodos de entrada</string>
   <string name="pref_entrance_node_summary">Las llaves publicas, apodos, países y direcciones para el primer salto, o nodo (primer servidor que se conectara para acceder a la red Tor)</string>
   <string name="pref_entrance_node_dialog">Introduzca los nodos de entrada</string>
-  <string name="pref_use_whispercore">Utilizar plataforma de seguridad WhisperCore</string>
-  <string name="pref_use_whispercore_summary">Utilizar las API de NetFilter proporcionada por WhisperSystems (es necesario que su dispositivo tenga WhisperCore instalado)</string>
+  <!--<string name="pref_use_whispercore">Use WhisperCore</string>
+<string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>-->
+  <string name="pref_proxy_title">Proxy de Red Saliente</string>
   <string name="pref_proxy_type_title">Tipo de proxy</string>
   <string name="pref_proxy_type_summary">Protocolo que se utilizará para la configuracion del servidor proxy: HTTP, HTTPS, SOCKS4, SOCKS5</string>
   <string name="pref_proxy_type_dialog">Introduzca el Tipo de Proxy</string>
@@ -155,7 +157,9 @@ Visítenos en https://guardianproject.info/apps/orbot o envíenos un correo elec
   <string name="use_only_these_specified_nodes">Usar * sólamente * los nodos especificados</string>
   <string name="bridges">Puentes/Bridges</string>
   <string name="use_bridges">Utilizar Puentes/Bridges</string>
+  <string name="bridges_obfuscated">Puentes ofuscados</string>
   <string name="enable_alternate_entrance_nodes_into_the_tor_network">Activar nodos de entrada alternativos en la red Tor</string>
+  <string name="enable_if_configured_bridges_are_obfuscated_bridges">Habilitar si puentes configurados estan ofuscados</string>
   <string name="ip_address_and_port_of_bridges">Dirección IP y el puerto del puente/Bridge</string>
   <string name="enter_bridge_addresses">Introduzca la dirección del puente/Bridge</string>
   <string name="relays">Retransmisores de trafico</string>
@@ -183,6 +187,11 @@ Visítenos en https://guardianproject.info/apps/orbot o envíenos un correo elec
   <string name="the_tor_license">Licencia de uso Tor</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Software de terceras partes</string>
+  <string name="tor_version">Tor v0.2.3.7-alfa: https://www.torproject.org</string>
+  <string name="libevent_version">Libevent v1.4.13: http://www.monkey.org/ ~ provos / libevent /</string>
+  <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
+  <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
+  <string name="openssl_version">OpenSSL v1.0.0f: http://www.openssl.org</string>
   <string name="hidden_service_request">Una aplicación esta intentando abrir el siguiente puerto %S a la red Tor. Esto es seguro, si confía en la aplicación, que lo esta intentando abrir.</string>
   <string name="found_existing_tor_process">Se ha encontrado proceso activo de Tor ...</string>
   <string name="something_bad_happened">Algo ha ocurrido con el normal funcionamiento de la aplicacion. Compruebe el log de registro del sistema Tor</string>
@@ -190,8 +199,16 @@ Visítenos en https://guardianproject.info/apps/orbot o envíenos un correo elec
   <string name="unable_to_read_hidden_service_name">No se puede leer el nombre del servicio oculto</string>
   <string name="unable_to_start_tor">ADVERTENCIA: No Puedo iniciar la Red Tor:</string>
   <string name="pref_use_sys_iptables_title">Usar Iptables por defecto</string>
-  <string name="pref_use_sys_iptables_summary">use the built-in iptables binary instead of the one bundled with Orbot</string>
+  <string name="pref_use_sys_iptables_summary">Usar built-in iptables binario en lugar del paquete con Orbot</string>
   <string name="error_installing_binares">Los binario de Tor no se pudieron instalar o actualizar</string>
   <string name="pref_use_persistent_notifications">Mantener siempre el icono de Orbot en la barra de tareas cuando esté conectado</string>
   <string name="pref_use_persistent_notifications_title">Notificaciones siempre encendidas</string>
+  <string name="notification_using_bridges">Puentes activados!</string>
+  <string name="default_bridges"/>
+  <string name="set_locale_title">Establecer configuración regional</string>
+  <string name="set_locale_summary">Elija la configuración regional y de idioma para Orbot</string>
+  <string name="wizard_locale_title">Escoja lenguaje\n</string>
+  <string name="wizard_locale_msg">Dejar por defecto o cambiar el lenguaje actual</string>
+  <string name="powered_by">potenciado por Tor Project</string>
+  <string name="btn_save_settings">Guardar configuración</string>
 </resources>

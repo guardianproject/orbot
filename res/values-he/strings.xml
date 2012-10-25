@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="app_name">Orbot</string>
+  <string name="internal_web_url">http://orbot/</string>
+  <string name="default_web_url">http://check.torproject.org</string>
+  <string name="secure_default_web_url">https://check.torproject.org</string>
+  <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
+  <string name="control_permission_label">התחל ועצור את Tor</string>
+  <string name="tor_proxy_service_process">שירות הפרוקסי של Tor</string>
+  <string name="status_starting_up">Orbot מתחיל</string>
+  <string name="status_activated">מחובר לרשת Tor</string>
+  <string name="status_disabled">Orbot כבוי</string>
+  <string name="status_shutting_down">Orbot בתהליך כיבוי</string>
+  <string name="tor_process_starting">מתחיל את Tor...</string>
+  <string name="tor_process_complete">הושלם</string>
+  <string name="menu_home">בית</string>
+  <string name="menu_browse">דפדף</string>
+  <string name="menu_settings">הגדרות</string>
+  <string name="menu_log">רישום</string>
+  <string name="menu_info">עזרה</string>
+  <string name="menu_apps">יישומים</string>
+  <string name="menu_start">התחל</string>
+  <string name="menu_stop">עצור</string>
+  <string name="menu_about">אודות</string>
+  <string name="menu_wizard">אשף</string>
+  <string name="button_help">עזרה</string>
+  <string name="button_close">סגור</string>
+  <string name="button_about">אודות</string>
+  <string name="button_clear_log">נקה רישום</string>
+  <string name="menu_verify">בדיקה</string>
+  <string name="menu_exit">צא</string>
+  <string name="press_to_start">-נגיעה ארוכה להתחלה-</string>
+  <string name="pref_transparent_all_title">הכל דרך Tor</string>
+  <string name="pref_transparent_port_title">רשימת פורטים</string>
+  <string name="pref_has_root">דרוש רוט</string>
+  <string name="title_error">שגיאת יישום</string>
+  <string name="wizard_title">Orbot</string>
+  <string name="wizard_btn_tell_me_more">אודות Orbot</string>
+  <string name="btn_next">הבא</string>
+  <string name="btn_back">הקודם</string>
+  <string name="btn_finish">סיים</string>
+  <string name="btn_okay">OK.</string>
+  <string name="btn_cancel">סגור</string>
+  <!--Welcome Wizard strings (DJH)-->
+  <string name="wizard_permissions_consent">הבנתי ואני מעדיף להמשיך בלי Superuser</string>
+  <string name="wizard_tips_proxy">הגדרות פרוקסי- למד איך להגדיר אפליקציות לעבוד עם Orbot</string>
+  <string name="wizard_proxy_help_info">הגדרות פרוקסי</string>
+  <string name="wizard_final">Orbot מוכן!</string>
+  <!--END Welcome Wizard strings (DJH)-->
+  <string name="pref_hs_group">איחסון שירותים נסתרים</string>
+  <string name="pref_general_group">כללי</string>
+  <string name="pref_start_boot_title">התחל את Orbot בהדלקת המכשיר</string>
+  <string name="pref_start_boot_summary">התחל את Orbot והתחבר ל-Tor אוטומטית כהמכשיר נדלק</string>
+  <!--New Wizard Strings-->
+  <!--Title Screen-->
+  <!--Warning screen-->
+  <!--Permissions screen-->
+  <string name="wizard_permissions_root_msg2">אם אתה לא רוצה לעשות את זה, אנא הקפד להשתמש ביישומים שנעשו כדי לעבוד עם Orbot</string>
+  <!--TipsAndTricks screen-->
+  <string name="wizard_tips_title">Orbot - יישומים מופעלים</string>
+  <string name="gibberbot_apk_url">https://market.android.com/details?id=info.guardianproject.otr.app.im</string>
+  <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
+	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
+    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
+    <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
+  <!--Transparent Proxy screen-->
+  <string name="wizard_transproxy_msg">זה מאפשר ליישומים שלך להפעיל באופן אוטומטי דרך רשת Tor ללא כל תצורה.</string>
+  <string name="wizard_transproxy_hint">(סמן תיבה זו אם אין לך מושג על מה אנחנו מדברים)</string>
+  <string name="button_grant_superuser">דרוש אישור Superuser</string>
+  <string name="pref_select_apps">בחר אפלקציות</string>
+  <string name="pref_select_apps_summary">בחר אפלקציות</string>
+  <!--<string name="pref_use_whispercore">Use WhisperCore</string>
+<string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>-->
+  <string name="pref_proxy_type_dialog">סוג הפרוקסי:</string>
+  <string name="pref_proxy_port_summary">פורט השרת של הפרוקסי</string>
+  <string name="status">סטטוס</string>
+  <string name="bridge_error">שגיאת גשר</string>
+  <string name="error">שגיאה</string>
+  <string name="bridges">גשרים</string>
+  <string name="use_bridges">השתמש בגשרים</string>
+  <string name="bridges_obfuscated">גשרים מעורפלים</string>
+  <string name="relays">ממסרים</string>
+  <string name="relaying">ממסור</string>
+  <string name="enable_hidden_services">אחסון שירותים נסתרים</string>
+  <string name="hidden_service_ports">פורט השירותים הנסתרים</string>
+  <string name="https_torproject_org">https://torproject.org/</string>
+  <string name="default_bridges"/>
+  <string name="wizard_locale_title">בחר שפה</string>
+  <string name="powered_by">מופעל על ידי Tor Project</string>
+  <string name="btn_save_settings">שמירת הגדרות</string>
+</resources>
