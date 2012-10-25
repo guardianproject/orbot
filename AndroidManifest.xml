@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="org.torproject.android" 
-      android:versionName="0.2.4.4-alpha-1.0.11-RC4" 
-      android:versionCode="49"
+      android:versionName="0.2.3.23-rc-1.0.11-RC5-test2" 
+      android:versionCode="51"
         android:installLocation="auto"
       >
     <uses-permission android:name="android.permission.INTERNET" />
@@ -12,11 +12,11 @@
     <uses-sdk android:minSdkVersion="5" android:targetSdkVersion="15"/>
     <application android:name=".OrbotApp" android:icon="@drawable/ic_launcher"
      android:label="@string/app_name" 
-     android:configChanges="locale|orientation"
-      android:theme="@style/Theme.Sherlock.ForceOverflow"
+     android:configChanges="locale|orientation|screenSize"
+      android:theme="@style/Theme.Sherlock"
      >
       
-        <activity android:name=".Orbot" android:configChanges="locale|orientation">
+        <activity android:name=".Orbot" android:configChanges="locale|orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
