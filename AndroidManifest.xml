@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="org.torproject.android" 
-      android:versionName="0.2.3.23-rc-1.0.11-RC5-test2" 
-      android:versionCode="51"
+      android:versionName="0.2.3.23-rc-1.0.11-RC6" 
+      android:versionCode="52"
         android:installLocation="auto"
       >
     <uses-permission android:name="android.permission.INTERNET" />
