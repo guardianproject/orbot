@@ -35,9 +35,13 @@ public class OrbotApp extends Application implements TorConstants
             	locale = new Locale(lang);
         	
             Locale.setDefault(locale);
-            config.locale = locale;
-            getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+
+            Configuration myConfig = new Configuration(config);
+        	myConfig.locale = locale;
+        	
+            getResources().updateConfiguration(myConfig, getResources().getDisplayMetrics());
         }
+        
         
     }
 	
@@ -51,9 +55,12 @@ public class OrbotApp extends Application implements TorConstants
         if (! "".equals(lang) && ! newConfig.locale.getLanguage().equals(lang))
         {
             locale = new Locale(lang);
-            newConfig.locale = locale;
             Locale.setDefault(locale);
-            getResources().updateConfiguration(newConfig, getResources().getDisplayMetrics());
+            
+            Configuration myConfig = new Configuration(newConfig);
+        	myConfig.locale = locale;
+        	 
+            getResources().updateConfiguration(myConfig, getResources().getDisplayMetrics());
         }
     }
 }
