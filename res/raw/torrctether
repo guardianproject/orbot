@@ -1,14 +1,18 @@
 SocksPort 9050
-SafeSocks 1
+SOCKSListenAddress 0.0.0.0
+SafeSocks 0
+TestSocks 1
+WarnUnsafeSocks 1
 Log notice stdout
-ControlListenAddress 127.0.0.1
 ControlPort 9051
+ControlListenAddress 0.0.0.0
 CookieAuthentication 1
-RelayBandwidthRate 20 KBytes
-RelayBandwidthBurst 20 KBytes
+RelayBandwidthRate 100 KBytes
+RelayBandwidthBurst 100 KBytes
 UseBridges 0
 AutomapHostsOnResolve 1
 TransListenAddress 0.0.0.0
 TransPort 9040
 DNSListenAddress 0.0.0.0
 DNSPort 5400
+AvoidDiskWrites 1
