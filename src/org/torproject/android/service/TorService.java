@@ -30,6 +30,8 @@ import org.torproject.android.R;
 import org.torproject.android.TorConstants;
 import org.torproject.android.Utils;
 import org.torproject.android.settings.AppManager;
+import org.torproject.android.share.ShareItem;
+import org.torproject.android.share.ShareService;
 
 import android.app.Application;
 import android.app.Notification;
@@ -43,12 +45,14 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.net.ConnectivityManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.IBinder;
 import android.os.RemoteCallbackList;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.widget.Toast;
 
 public class TorService extends Service implements TorServiceConstants, TorConstants, Runnable, EventHandler
 {
@@ -74,7 +78,12 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     private ArrayList<String> configBuffer = null;
     private ArrayList<String> resetBuffer = null;
      
-   
+    //Orbot file sharing service
+
+	private ShareService mShareServe = null; //if hidden services activated
+	private String mShareServeHost = null;
+	private int mShareServePort = -1;
+	
    //   private String appHome;
     private File appBinHome;
     private File appCacheHome;
@@ -87,6 +96,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 	private long mTotalTrafficWritten = 0;
 	private long mTotalTrafficRead = 0;
+	private boolean mConnectivity = true; 
+	
+	private NotificationManager mNotificationManager = null;
 	
     public void logMessage(String msg)
     {
@@ -123,6 +135,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 				
  				initControlConnection();
 				
+ 				updateTorConfiguration();
+ 				
 				currentStatus = STATUS_ON;
 				
 				return true;
@@ -178,18 +192,16 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	
 	private void clearNotifications ()
 	{
-		NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 		mNotificationManager.cancelAll();
 		
 		
 	}
    
+	
 	private void showToolbarNotification (String notifyMsg, int notifyId, int icon, int flags)
 	{
 	
 		
-		NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
 		
 		CharSequence tickerText = notifyMsg;
 		long when = System.currentTimeMillis();
@@ -207,7 +219,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
 
 		notification.setLatestEventInfo(context, contentTitle, contentText, contentIntent);
-
 
 		mNotificationManager.notify(notifyId, notification);
 
@@ -235,7 +246,13 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		_torInstance = this;
 		
 		initTorPaths();
+
+	   IntentFilter mNetworkStateFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+	   registerReceiver(mNetworkStateReceiver , mNetworkStateFilter);
 		
+
+		mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
 		new Thread ()
 		{
 			
@@ -282,8 +299,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		     {
 			   initTor();
 			   isRunning = true;
-			   IntentFilter mNetworkStateFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-			   registerReceiver(mNetworkStateReceiver , mNetworkStateFilter);
 		     }
 		     catch (Exception e)
 		     {
@@ -310,7 +325,21 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	
     	  // Unregister all callbacks.
         mCallbacks.kill();
-      
+        
+        
+    }
+    
+    private void stopShareService ()
+    {
+        try
+        {
+        	if (mShareServe != null)
+        		mShareServe.stopService();
+        }
+        catch (Exception e)
+        {
+        	Log.e(TAG, "error stopping share service",e);
+        }
     }
     
     private void stopTor ()
@@ -331,11 +360,14 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     		currentStatus = STATUS_OFF;
     
     		clearNotifications();
-    		
-    		sendCallbackStatusMessage(getString(R.string.status_disabled));
 
     		if (hasRoot)
     			disableTransparentProxy();
+    		
+    		stopShareService();
+    		
+    		sendCallbackStatusMessage(getString(R.string.status_disabled));
+
     	}
     	catch (Exception e)
     	{
@@ -371,13 +403,13 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     
     
     
-	private void getHiddenServiceHostname ()
+	private String getHiddenServiceHostname ()
 	{
 
     	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		
         boolean enableHiddenServices = prefs.getBoolean("pref_hs_enable", false);
-
+        
         if (enableHiddenServices)
         {
 	    	File file = new File(appCacheHome, "hostname");
@@ -385,17 +417,18 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	    	if (file.exists())
 	    	{
 		    	try {
-					String onionHostname = Utils.readString(new FileInputStream(file));
+					String onionHostname = Utils.readString(new FileInputStream(file)).trim();
 					showToolbarNotification(getString(R.string.hidden_service_on) + ' ' + onionHostname, HS_NOTIFY_ID, R.drawable.ic_stat_tor, Notification.FLAG_ONGOING_EVENT);
 					Editor pEdit = prefs.edit();
 					pEdit.putString("pref_hs_hostname",onionHostname);
 					pEdit.commit();
 				
+					return onionHostname;
 					
 				} catch (FileNotFoundException e) {
 					logException("unable to read onion hostname file",e);
 					showToolbarNotification(getString(R.string.unable_to_read_hidden_service_name), ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr, -1);
-					return;
+					return null;
 				}
 	    	}
 	    	else
@@ -406,7 +439,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	    	}
         }
         
-        return;
+        return null;
 	}
 	
     
@@ -538,11 +571,11 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
 		if ((!(fileTor.exists() && filePrivoxy.exists())) || forceInstall)
 		{
-			if (currentStatus != STATUS_OFF)
-				stopTor();
+			stopTor();
 			
 			TorBinaryInstaller installer = new TorBinaryInstaller(this, appBinHome); 
 			boolean success = installer.installFromRaw();
+			
 			
     		if (success)
     		{
@@ -568,6 +601,14 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     		}
     		
 		}
+		
+		setBinaryPerms();
+		
+		return true;
+    }
+    
+    private void setBinaryPerms () throws Exception
+    {
 	
 		StringBuilder log = new StringBuilder ();
 		
@@ -583,7 +624,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		String[] cmd3 = {SHELL_CMD_CHMOD + ' ' + CHMOD_EXE_VALUE + ' ' + fileObfsProxy.getAbsolutePath()};
 		TorServiceUtils.doShellCommand(cmd3, log, false, true);
 		
-		return true;
     }
     
     public void initTor () throws Exception
@@ -607,14 +647,17 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		killTorProcess ();
 		
 		try {
-
+			
+			setBinaryPerms();
+			
     		runTorShellCmd();
     		runPrivoxyShellCmd();
     		
     		if (hasRoot && enableTransparentProxy)
     			enableTransparentProxy(transProxyAll, transProxyTethering);
     		
-    		new Thread (new TotalUpdaterRunnable()).start();
+    		//new Thread (new TotalUpdaterRunnable()).start();
+    		
 
 		} catch (Exception e) {
 	    	logException("Unable to start Tor: " + e.getMessage(),e);	
@@ -877,7 +920,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 					
 					sendCallbackStatusMessage(getString(R.string.tor_process_waiting));
 
-					Thread.sleep(1000);
+					Thread.sleep(3000);
 										
 				}	
 			}
@@ -990,28 +1033,33 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 				
 			}
 		}
-
-
-		private void startNotification ()
+		
+		private void startNotification (String message)
 		{
 			
 			Notification notice = new Notification(R.drawable.ic_stat_tor, getString(R.string.status_activated), System.currentTimeMillis());
 			
-			//This constructor is deprecated. Use Notification.Builder instead
-			//Notification notice = new Notification(R.drawable.iocipher, "Active: " + mIpAddress, System.currentTimeMillis());
-
 			Intent intent = new Intent(TorService.this, Orbot.class);
 
 			PendingIntent pendIntent = PendingIntent.getActivity(TorService.this, 0, intent, 0);
 
 			//This method is deprecated. Use Notification.Builder instead.
-			notice.setLatestEventInfo(TorService.this,getString(R.string.app_name), getString(R.string.status_activated), pendIntent);
+			notice.setLatestEventInfo(TorService.this,getString(R.string.app_name), message, pendIntent);
 
-			notice.flags |= Notification.FLAG_NO_CLEAR;
-			notice.flags |= Notification.FLAG_ONGOING_EVENT;
+			if (prefPersistNotifications)
+			{
+				notice.flags |= Notification.FLAG_NO_CLEAR;
+				notice.flags |= Notification.FLAG_ONGOING_EVENT;
 			
-			startForeground(NOTIFY_ID,notice);
-		
+				startForeground(NOTIFY_ID,notice);
+
+			}
+			else
+			{
+				mNotificationManager.notify(NOTIFY_ID,notice);
+
+
+			}
 			
 		}
 		
@@ -1025,17 +1073,13 @@ public class TorService extends Service implements TorServiceConstants, TorConst
           {
         	  currentStatus = STATUS_ON;
 
-  			if (prefPersistNotifications)
-  			{
-        	  startNotification();
-  			}
-  			else
-  			{
-  				showToolbarNotification (getString(R.string.status_activated),NOTIFY_ID,R.drawable.ic_stat_tor, Notification.FLAG_ONGOING_EVENT);
+        	  startNotification(getString(R.string.status_activated));
+        	    			
 
-  			}
   			
-   		   	getHiddenServiceHostname ();
+  			//we load this here from the file directory based on data
+  			//written by Tor binary
+  			mShareServeHost = getHiddenServiceHostname ();
    		   
           }
         
@@ -1090,23 +1134,43 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	
 	public void bandwidthUsed(long read, long written) {
 		
-		/*if (ENABLE_DEBUG_LOG) //too much debugging data NF 2012/10
-		{
 			StringBuilder sb = new StringBuilder();
-			sb.append("Bandwidth used: ");
-			sb.append(read/1000);
-			sb.append("kb read / ");
-			sb.append(written/1000);
-			sb.append("kb written");
-	   		
-			logNotice(sb.toString());
-		}*/
+			sb.append("Bandwidth: ");
+			sb.append(formatCount(read));
+			sb.append(" down / ");
+			sb.append(formatCount(written));
+			sb.append(" up");
+	   	
+		if (mConnectivity && prefPersistNotifications)
+			startNotification(sb.toString());
+		
+		mTotalTrafficWritten += read;
+		mTotalTrafficRead += written;
+		/*
+		try
+		{
+			mTotalTrafficWritten =  Long.parseLong(conn.getInfo("traffic/written"));
+			mTotalTrafficRead = Long.parseLong(conn.getInfo("traffic/read"));
+		}
+		catch (IOException ioe){}
+  	  */
 		
 		sendCallbackStatusMessage(written, read, mTotalTrafficWritten, mTotalTrafficRead); 
 
 	}
 	
+	private String formatCount(long count) {
+		// Converts the supplied argument into a string.
+		// Under 2Mb, returns "xxx.xKb"
+		// Over 2Mb, returns "xxx.xxMb"
+		if (count < 1e6)
+			return ((float)((int)(count*10/1024))/10 + "kbps");
+		return ((float)((int)(count*100/1024/1024))/100 + "mbps");
+		
+   		//return count+" kB";
+	}
 	
+	/*
 	class TotalUpdaterRunnable implements Runnable
 	{
 
@@ -1137,7 +1201,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			}
 		}
 		
-	}
+	}*/
    	
 	public void circuitStatus(String status, String circID, String path) {
 		
@@ -1269,18 +1333,10 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         	
         	
         	try {
-        		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(TorService.this);
-            	
-            	ENABLE_DEBUG_LOG = prefs.getBoolean("pref_enable_logging",false);
-            	Log.i(TAG,"debug logging:" + ENABLE_DEBUG_LOG);
-            	
-            	prefPersistNotifications = prefs.getBoolean(TorConstants.PREF_PERSIST_NOTIFICATIONS, true);
-            	
+        	 	
         		updateTorConfiguration();
 
-		    
-		        
-				
+		    	
 			} catch (RemoteException e) {
 				logException ("error applying prefs",e);
 			}
@@ -1401,6 +1457,11 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         	return false;
         	
 	    }
+	    
+	    public String addOnionShare (Uri data, String contentType)
+	    {
+	    	return addOnionShareImpl (data, contentType);
+	    }
     };
     
     private ArrayList<String> callbackBuffer = new ArrayList<String>();
@@ -1441,6 +1502,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	 
     	if (mCallbacks == null)
     		return;
+    	
     	
         // Broadcast to all clients the new value.
         final int N = mCallbacks.beginBroadcast();
@@ -1518,23 +1580,30 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     private final BroadcastReceiver mNetworkStateReceiver = new BroadcastReceiver() {
     	@Override
     	public void onReceive(Context context, Intent intent) {
-    		boolean noConnectivity = intent.getBooleanExtra(ConnectivityManager.EXTRA_NO_CONNECTIVITY, false);
-    		try {
-				mBinder.updateConfiguration("DisableNetwork", noConnectivity ? "1" : "0", false);
-				mBinder.saveConfiguration();
-				
-				if (noConnectivity)
-				{
-					logNotice("No network connectivity. Putting Tor to sleep...");
-				}
-				else
-				{
-					logNotice("Network connectivity is good. Waking Tor up...");
+
+    		mConnectivity = !intent.getBooleanExtra(ConnectivityManager.EXTRA_NO_CONNECTIVITY, false);
+
+    		if (currentStatus == STATUS_ON)
+    		{
+	    		try {
+					mBinder.updateConfiguration("DisableNetwork", mConnectivity ? "0" : "1", false);
+					mBinder.saveConfiguration();
 					
+					if (!mConnectivity)
+					{
+						logNotice("No network connectivity. Putting Tor to sleep...");
+						startNotification(getString(R.string.no_internet_connection_tor));
+						
+					}
+					else
+					{
+						logNotice("Network connectivity is good. Waking Tor up...");
+						startNotification(getString(R.string.status_activated));
+			        }
+	    		} catch (RemoteException e) {
+					logException ("error applying prefs",e);
 				}
-    		} catch (RemoteException e) {
-				logException ("error applying prefs",e);
-			}
+    		}
     	}
     };
 
@@ -1543,6 +1612,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	
     	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		
+    	prefPersistNotifications = prefs.getBoolean(TorConstants.PREF_PERSIST_NOTIFICATIONS, true);
+   
     	ENABLE_DEBUG_LOG = prefs.getBoolean("pref_enable_logging",false);
     	Log.i(TAG,"debug logging:" + ENABLE_DEBUG_LOG);
     		
@@ -1713,17 +1784,39 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         	
         	StringTokenizer st = new StringTokenizer (hsPorts,",");
         	String hsPortConfig = null;
+        	int hsPort = -1;
         	
         	while (st.hasMoreTokens())
         	{
-        		hsPortConfig = st.nextToken();
-        		
-        		if (hsPortConfig.indexOf(":")==-1) //setup the port to localhost if not specifed
+        		try
         		{
-        			hsPortConfig = hsPortConfig + " 127.0.0.1:" + hsPortConfig;
-        		}
-        		
-        		mBinder.updateConfiguration("HiddenServicePort",hsPortConfig, false);
+	        		hsPortConfig = st.nextToken();
+	        		
+	        		if (hsPortConfig.indexOf(":")==-1) //setup the port to localhost if not specifed
+	        		{
+	        			hsPortConfig = hsPortConfig + " 127.0.0.1:" + hsPortConfig;
+	        		}
+	        		
+	        		mBinder.updateConfiguration("HiddenServicePort",hsPortConfig, false);
+	        		
+	        		hsPort = Integer.parseInt(hsPortConfig.split(" ")[0]);
+					
+	        		//start this for the first port specified
+	    			if (mShareServe == null)
+	    			{
+	    				//we load this here from the file directory based on data
+	    	  			//written by Tor binary
+	    	  			mShareServeHost = getHiddenServiceHostname ();
+	    				mShareServePort = hsPort;
+	    				mShareServe = new ShareService(10, this);
+	    				mShareServe.startService(hsPort);
+	    			}
+					
+				} catch (NumberFormatException e) {
+					Log.e(this.TAG,"error parsing hsport",e);
+				} catch (Exception e) {
+					Log.e(this.TAG,"error starting share server",e);
+				}
         	}
         	
         	
@@ -1738,6 +1831,29 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	
         return true;
     }
+    
+    public String addOnionShareImpl (Uri data, String contentType)
+	{
+		try
+		{
+			
+			ShareItem si = new ShareItem();
+			si.mUriData = data;
+			si.mContentType = contentType;
+			
+			String guid = mShareServe.addShare(si);
+			
+			String shareUrl = "http://" + mShareServeHost + ':' + mShareServePort + '/' + guid;
+			
+			return shareUrl;
+		}
+		catch (Exception e)
+		{
+			Log.e(TAG,"unable to handle share",e);
+		}
+		
+		return null;
+	}
     
     //using Google DNS for now as the public DNS server
     private String writeDNSFile () throws IOException
