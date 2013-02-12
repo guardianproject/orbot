@@ -4,12 +4,15 @@
 package org.torproject.android;
 
 import java.util.Locale;
+import java.util.StringTokenizer;
 
 import org.torproject.android.service.ITorService;
 import org.torproject.android.service.ITorServiceCallback;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.settings.ProcessSettingsAsyncTask;
 import org.torproject.android.settings.SettingsPreferences;
+import org.torproject.android.share.ShareItem;
+import org.torproject.android.share.ShareService;
 import org.torproject.android.wizard.ChooseLocaleWizardActivity;
 
 import android.annotation.SuppressLint;
@@ -71,7 +74,7 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 	/* Tor Service interaction */
 		/* The primary interface we will be calling on the service. */
     ITorService mService = null;
-	private boolean autoStartOnBind = false;
+	private boolean autoStartFromIntent = false;
 
 	SharedPreferences prefs;
 	
@@ -109,6 +112,12 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 		
     	prefs = PreferenceManager.getDefaultSharedPreferences(this);
     	
+    	
+    	
+	}
+	
+	private void doLayout ()
+	{
     	setContentView(R.layout.layout_main);
 		
     	lblStatus = (TextView)findViewById(R.id.lblStatus);
@@ -122,20 +131,23 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
         
         mDrawer = ((SlidingDrawer)findViewById(R.id.SlidingDrawer));
     	Button slideButton = (Button)findViewById(R.id.slideButton);
-    	slideButton.setOnTouchListener(new OnTouchListener (){
-
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-
-				if (event.equals(MotionEvent.ACTION_DOWN))
-				{
-					mDrawerOpen = !mDrawerOpen;
-					mTxtOrbotLog.setEnabled(mDrawerOpen);				
+    	if (slideButton != null)
+    	{
+	    	slideButton.setOnTouchListener(new OnTouchListener (){
+	
+				@Override
+				public boolean onTouch(View v, MotionEvent event) {
+	
+					if (event.equals(MotionEvent.ACTION_DOWN))
+					{
+						mDrawerOpen = !mDrawerOpen;
+						mTxtOrbotLog.setEnabled(mDrawerOpen);				
+					}
+					return false;
 				}
-				return false;
-			}
-    		
-    	});
+	    		
+	    	});
+    	}
     	
     	ScrollingMovementMethod smm = new ScrollingMovementMethod();
     	
@@ -155,6 +167,7 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 		downloadText.setText(formatCount(0) + " / " + formatTotal(0));
 		uploadText.setText(formatCount(0) + " / " + formatTotal(0));
 	
+		//updateStatus("");
     }
     
     private void appendLogTextAndScroll(String text)
@@ -297,7 +310,7 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
                         stopService(new Intent(ITorService.class.getName()));
                         
                         //clears all notifications from the status bar
-                NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                         mNotificationManager.cancelAll();
                 
                         
@@ -373,6 +386,23 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 		
 		String onionHostname = prefs.getString("pref_hs_hostname","");
 
+		while (onionHostname.length() == 0)
+		{
+			//we need to stop and start Tor
+			try {
+				stopTor();
+				
+				Thread.sleep(3000); //wait three seconds
+				
+				startTor();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			 
+			 onionHostname = prefs.getString("pref_hs_hostname","");
+		}
+		
 		Intent nResult = new Intent();
 		nResult.putExtra("hs_host", onionHostname);
 		setResult(RESULT_OK, nResult);
@@ -386,11 +416,21 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 		super.onResume();
 		
     	bindService();
+    	
+    	doLayout ();
 		
+	}
+	
+	private void handleIntents ()
+	{
 		if (getIntent() == null)
 			return;
 		
-		String action = getIntent().getAction();
+	    // Get intent, action and MIME type
+	    Intent intent = getIntent();
+	    String action = intent.getAction();
+	    String type = intent.getType();
+		
 		
 		if (action == null)
 			return;
@@ -432,7 +472,7 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 		}
 		else if (action.equals("org.torproject.android.START_TOR"))
 		{
-			autoStartOnBind = true;
+			autoStartFromIntent = true;
 			
 			if (mService == null)
 			{
@@ -440,7 +480,33 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 			}
 			else
 			{
-				//already running!
+				try {
+					startTor();
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			
+		}
+		else if (Intent.ACTION_SEND.equals(action))
+		{
+			Uri dataUri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
+			
+			try {
+				String shareUrl = mService.addOnionShare(dataUri, type);
+				
+				Toast.makeText(this, "Share available at: " + shareUrl, Toast.LENGTH_LONG).show();
+				  ClipboardManager cm = (ClipboardManager)getSystemService(Context.CLIPBOARD_SERVICE);
+	                cm.setText(shareUrl);
+	                
+	                intent.setAction(null);
+	                
+	                
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 		else
@@ -471,9 +537,14 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 		
 	}
 
+	
+	
+	
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
+		
+		doLayout();
 	}
 
 	/* (non-Javadoc)
@@ -492,7 +563,8 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 	 */
 	private void openBrowser(String url)
 	{
-		startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+		Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+		startActivity(intent);
 		
 	}
 	
@@ -623,6 +695,12 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
                                     if (mItemOnOff != null)
                                             mItemOnOff.setTitle(R.string.menu_stop);
                                     
+                                    
+                                    if (autoStartFromIntent)
+                                    {
+                                    	setResult(RESULT_OK);
+                                    	finish();
+                                    }
 
                             }
                             else if (torStatus == TorServiceConstants.STATUS_CONNECTING)
@@ -843,10 +921,7 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
             	
         			downloadText.setText(formatCount(datacount.Download) + " / " + formatTotal(totalRead));
             		uploadText.setText(formatCount(datacount.Upload) + " / " + formatTotal(totalWrite));
-            		
-            //		downloadText.invalidate();
-            //		uploadText.invalidate();
-        	
+            
                 		
                 default:
                     super.handleMessage(msg);
@@ -879,17 +954,17 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
             // connected to it.
             try {
                 mService.registerCallback(mCallback);
-           
-                //again with the update status?!? :P
-                updateStatus(null);
                 
-                if (autoStartOnBind)
+                if (autoStartFromIntent)
                 {
-                        autoStartOnBind = false;
-                        
+                		
                         startTor();
                         
+                        
                 }
+                
+                handleIntents();
+                
             
             } catch (RemoteException e) {
                 // In this case the service has crashed before we could even
