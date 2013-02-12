@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/viewMain"
+
+    android:paddingTop="0sp">
+    
+    <org.torproject.android.RandomColorCircleView  android:layout_width="fill_parent"
+	      android:layout_height="fill_parent"></org.torproject.android.RandomColorCircleView>
+       
+    <RelativeLayout
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent">
+		
+    	<RelativeLayout android:id="@+id/layoutHeaderMain"
+		android:layout_width="fill_parent"
+		android:layout_height="30dp"
+		android:background="#A0909090">
+          
+          <ImageView android:id="@+id/radioModeImage"
+ 		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+			android:layout_marginTop="3dp"
+			android:layout_marginRight="3dp"
+			android:gravity="right"
+			android:layout_alignParentRight="true"
+			android:layout_alignParentTop="true"
+			android:src="@drawable/tor25"
+			/>
+		<TextView android:id="@+id/radioModeText"
+ 		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"           
+            android:text="@string/powered_by"
+			android:layout_marginTop="8dp"
+			android:layout_marginRight="0px"
+			android:gravity="right"
+			android:layout_toLeftOf="@+id/radioModeImage"
+            android:textColor="#cccccc" />
+	</RelativeLayout>
+	
+		<LinearLayout android:gravity="center_vertical"
+		    	    android:layout_gravity="center_vertical|left"
+		    android:layout_below="@+id/layoutHeaderMain"
+		     android:orientation="vertical" android:layout_width="240dip"
+		      android:layout_height="fill_parent"
+		      		android:id="@+id/boxStatus"
+		      >
+    	
+       <org.torproject.android.ImageProgressView
+		android:id="@+id/imgStatus"
+		android:layout_width="fill_parent"
+		android:layout_height="0dp"
+		android:layout_marginTop="40dp"
+		android:layout_weight="1"
+		android:src="@drawable/toroff"
+		android:layout_gravity="center_horizontal" />
+		
+	<TextView android:id="@+id/lblStatus"
+		android:text="@string/press_to_start"
+		android:gravity="center_horizontal"
+		android:textStyle="bold"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="20dp"
+		android:textColor="#ffffff"
+		 />
+	
+</LinearLayout>
+
+	<RelativeLayout
+	    android:id="@+id/log"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:layout_marginTop="30dp"
+	    android:layout_gravity="center_vertical|right"
+	    android:layout_toRightOf="@+id/boxStatus"
+	    
+	     >
+
+	     <RelativeLayout 
+		     android:id="@+id/rowTrafficLabels" 
+		     android:layout_width="fill_parent"
+		      android:layout_height="wrap_content"
+		       android:orientation="horizontal"
+		       android:paddingLeft="3sp"
+		       android:paddingRight="3sp"
+		       
+		      >
+	    <TextView
+	    	android:id="@+id/trafficLabelDown"
+			android:textColor="#FFFFFFFF"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			 android:layout_alignParentLeft="true"
+			android:textSize="15sp"
+			android:text="@string/main_layout_download"
+			android:gravity="center_vertical"
+			android:textStyle="bold" />
+	    <TextView
+			android:id="@+id/trafficLabelUp"
+			android:textColor="#FFFFFFFF"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			 android:layout_alignParentRight="true"
+			android:text="@string/main_layout_upload"
+			android:textSize="15sp"
+			android:gravity="center_vertical"
+			android:textStyle="bold" />
+		
+		</RelativeLayout>
+		 <RelativeLayout 
+		     android:id="@+id/rowTrafficData"
+		     android:layout_width="fill_parent"
+		      android:layout_height="wrap_content"
+		     	  android:paddingLeft="3sp"
+		       android:paddingRight="3sp"
+		       android:paddingBottom="3sp"
+		     android:layout_below="@+id/rowTrafficLabels"
+		      >
+		<TextView
+			android:id="@+id/trafficDown"
+			android:textColor="#FF00B627"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			 android:layout_alignParentLeft="true"
+			android:textSize="15sp"
+			android:gravity="center_vertical"
+			android:textStyle="bold" />
+		<TextView
+			android:id="@+id/trafficUp"
+			android:textColor="#FF00B627"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			 android:layout_alignParentRight="true"
+			android:textSize="15sp"
+			android:gravity="center_vertical"
+			android:textStyle="bold" />
+		</RelativeLayout>
+		<TextView
+			android:id="@+id/orbotLog"
+			android:textColor="#FFFFFF"
+			android:textSize="12sp"
+			android:gravity="left"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:layout_alignParentLeft="true"
+			android:textIsSelectable="true"
+			 android:layout_below="@+id/rowTrafficData"
+			 />
+    </RelativeLayout>		
+    </RelativeLayout>		
+       
+</FrameLayout>
+
