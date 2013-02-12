@@ -13,19 +13,14 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.zip.GZIPInputStream;
-import java.util.zip.GZIPOutputStream;
 import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
-import java.util.zip.ZipOutputStream;
 
 import org.torproject.android.R;
 import org.torproject.android.TorConstants;
 
 import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
 
 public class TorBinaryInstaller implements TorServiceConstants {
 
@@ -125,10 +120,11 @@ public class TorBinaryInstaller implements TorServiceConstants {
 
 
     	OutputStream stmOut = new FileOutputStream(outFile, append);
+    	ZipInputStream zis = null;
     	
     	if (zip)
     	{
-    		ZipInputStream zis = new ZipInputStream(stm);    		
+    		zis = new ZipInputStream(stm);    		
     		ZipEntry ze = zis.getNextEntry();
     		stm = zis;
     		
@@ -143,6 +139,10 @@ public class TorBinaryInstaller implements TorServiceConstants {
 
         stmOut.close();
         stm.close();
+        
+        if (zis != null)
+        	zis.close();
+        
         
         return true;
 

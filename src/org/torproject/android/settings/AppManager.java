@@ -6,15 +6,12 @@ package org.torproject.android.settings;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
 
 import org.torproject.android.R;
 import org.torproject.android.TorConstants;
-import org.torproject.android.R.id;
-import org.torproject.android.R.layout;
 
 import android.app.Activity;
 import android.content.Context;
@@ -23,9 +20,6 @@ import android.content.SharedPreferences.Editor;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
-import android.content.pm.PermissionInfo;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
