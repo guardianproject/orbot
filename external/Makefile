@@ -245,6 +245,33 @@ privoxy-clean:
 	-rm -rf privoxy
 
 #------------------------------------------------------------------------------#
+# SimpleServer library							       #
+simple/bin/simple.jar:
+	tar xzvf simple.tar.gz
+	mv simple-* simple
+	test -d simple/bin || mkdir simple/bin
+	cd simple/src && \
+		javac -source 1.6 -target 1.6 org/simpleframework/http/core/ContainerServer.java -d ../bin
+	cd simple/src && \
+		javac -source 1.6 -target 1.6 org/simpleframework/transport/connect/Connection.java -d ../bin
+	cd simple/src && \
+		javac -source 1.6 -target 1.6 org/simpleframework/transport/connect/SocketConnection.java -d ../bin
+	cd simple/bin && \
+		jar cvf simple.jar *
+
+simple-build-stamp: simple/bin/simple.jar
+	touch simple-build-stamp
+
+simple: simple-build-stamp
+	test -d bin || mkdir bin
+	cp simple/bin/simple.jar bin
+	
+simple-clean:
+	- rm -f bin/simple.jar
+	- rm -f simple-build-stamp
+	- rm -rf simple
+
+#------------------------------------------------------------------------------#
 # JTorControl library
 
 jtorctl/bin/jtorctl.jar:
@@ -270,12 +297,13 @@ jtorctl-clean:
 #in order to stop Android OS (older devices) from trying to compress/decompress it
 #this is related to a bug in compression of assets and resources > 1MB
 
-assets: tor privoxy jtorctl obfsproxy
+assets: tor privoxy jtorctl obfsproxy simple
 	install -d ../res/raw
 	install -d ../libs
 	install bin/privoxy ../res/raw	
 	install bin/obfsproxy ../res/raw
 	install bin/jtorctl.jar ../libs
+	install bin/simple.jar ../libs
 	cd bin && \
 		zip ../../res/raw/tor.mp3 tor
 
