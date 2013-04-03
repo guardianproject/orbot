@@ -120,12 +120,11 @@ public class SettingsPreferences
 	protected void onStop() {
 		super.onStop();
 		
-		//Log.d(getClass().getName(),"Exiting Preferences");
 	}
 
 	public boolean onPreferenceClick(Preference preference) {
 		
-		setResult(1010);
+		setResult(RESULT_OK);
 		
 		if (preference == prefRequestRoot)
 		{
