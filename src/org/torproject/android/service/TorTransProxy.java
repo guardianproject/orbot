@@ -32,7 +32,7 @@ public class TorTransProxy implements TorServiceConstants {
 
 		String ipTablesPath = null;
 		
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
 		useSystemIpTables = prefs.getBoolean(TorConstants.PREF_USE_SYSTEM_IPTABLES, false);
 		
 		if (useSystemIpTables || mBundledFailed)
@@ -407,65 +407,7 @@ public class TorTransProxy implements TorServiceConstants {
 		return code;
     }	
 	
-		/*
-	// this is a bad idea so removing
-	public int setTransparentProxyingByPort(Context context, int port) throws Exception
-	{
-
-		//android.os.Debug.waitForDebugger();
 		
-		//redirectDNSResolvConf(); //not working yet
-		
-		//String baseDir = context.getDir("bin",0).getAbsolutePath() + '/';
-		String ipTablesPath = getIpTablesPath(context);
-		
-    	StringBuilder script = new StringBuilder();
-    	
-    	StringBuilder res = new StringBuilder();
-    	int code = -1;
-    	//flushIptables(context);
-		
-		//TCP
-		//iptables -t nat -A PREROUTING -i eth0 -p tcp --dport $srcPortNumber -j REDIRECT --to-port $dstPortNumbe
-
-		script.append(ipTablesPath);
-		script.append(" -t nat");
-		script.append(" -A OUTPUT -p tcp");
-		script.append(" --dport ");
-		script.append(port);
-		//script.append(" -m tcp --syn");
-		script.append(" -j REDIRECT --to-ports ");
-		script.append(TOR_TRANSPROXY_PORT);
-		script.append(" || exit\n");
-		
-		script.append(ipTablesPath);
-		script.append(" -t nat");
-		script.append(" -A OUTPUT -p udp");
-		script.append(" --dport ");
-		script.append(port);
-		script.append(" -j REDIRECT --to-ports ");
-		script.append(TOR_TRANSPROXY_PORT);
-		script.append(" || exit\n");
-		
-		//DNS
-		script.append(ipTablesPath);
-		script.append(" -t nat");
-		script.append(" -A OUTPUT -p udp ");
-		script.append(" -m udp --dport "); 
-		script.append(STANDARD_DNS_PORT);
-		script.append(" -j REDIRECT --to-ports ");
-		script.append(TOR_DNS_PORT);
-		script.append(" || exit\n");
-		
-    	
-    	String[] cmdAdd = {script.toString()};    	
-		code = TorServiceUtils.doShellCommand(cmdAdd, res, true, true);
-		String msg = res.toString();
-		TorService.logMessage(cmdAdd[0] + ";errCode=" + code + ";resp=" + msg);
-		
-		return code;
-    }
-	*/
 	
 	public int enableTetheringRules (Context context) throws Exception
 	{

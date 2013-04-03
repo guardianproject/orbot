@@ -135,7 +135,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 				
  				initControlConnection();
 				
- 				updateTorConfiguration();
+ 				processSettingsImpl();
  				
 				currentStatus = STATUS_ON;
 				
@@ -233,6 +233,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
 		initTorPaths();
 		
+		sendCallbackLogMessage("Welcome back, Carter!");
 		
 	}
 
@@ -275,7 +276,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		if (intent != null && intent.getAction()!=null && intent.getAction().equals("onboot"))
 		{
 			
-			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 			
 			boolean startOnBoot = prefs.getBoolean("pref_start_boot",false);
 			
@@ -346,7 +347,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     {
     	currentStatus = STATUS_OFF;
     	
-    	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+    	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
     	
  		boolean hasRoot = prefs.getBoolean(PREF_HAS_ROOT,false);
  		
@@ -406,7 +407,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	private String getHiddenServiceHostname ()
 	{
 
-    	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+    	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 		
         boolean enableHiddenServices = prefs.getBoolean("pref_hs_enable", false);
         
@@ -445,8 +446,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     
     private void killTorProcess () throws Exception
     {
-		//android.os.Debug.waitForDebugger();
-    	
     	StringBuilder log = new StringBuilder();
     	int procId = -1;
     	
@@ -535,7 +534,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
     	initTorPaths();
 		
-    	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+    	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
     	String currTorBinary = prefs.getString(TorServiceConstants.PREF_BINARY_TOR_VERSION_INSTALLED, null);
     	String currPrivoxyBinary = prefs.getString(TorServiceConstants.PREF_BINARY_PRIVOXY_VERSION_INSTALLED, null);
     	
@@ -628,7 +627,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     
     public void initTor () throws Exception
     {
-    	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+    	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
     	ENABLE_DEBUG_LOG = prefs.getBoolean("pref_enable_logging",false);
     	Log.i(TAG,"debug logging:" + ENABLE_DEBUG_LOG);
 
@@ -752,7 +751,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
 		String torrcPath = new File(appBinHome, TORRC_ASSET_KEY).getAbsolutePath();
 		
-    	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+    	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 		boolean transProxyTethering = prefs.getBoolean("pref_transparent_tethering", false);
  		
 		if (transProxyTethering)
@@ -815,7 +814,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			
 			initControlConnection ();
 
-			updateTorConfiguration();
+			processSettingsImpl();
 	    }
     }
     
@@ -1144,8 +1143,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		if (mConnectivity && prefPersistNotifications)
 			startNotification(sb.toString());
 		
-		mTotalTrafficWritten += read;
-		mTotalTrafficRead += written;
+		mTotalTrafficWritten += written;
+		mTotalTrafficRead += read;
 		/*
 		try
 		{
@@ -1249,8 +1248,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	_torInstance = this;
     	initTorPaths();
     	
-    	//android.os.Debug.waitForDebugger();
-    	
     	//if Tor was deleted for some reason, do this again!
 		if (!fileTor.exists())
 		{
@@ -1272,7 +1269,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		}
     	
     	
-    	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+    	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
     	
     	ENABLE_DEBUG_LOG = prefs.getBoolean("pref_enable_logging",false);
     	Log.i(TAG,"debug logging:" + ENABLE_DEBUG_LOG);
@@ -1334,7 +1331,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         	
         	try {
         	 	
-        		updateTorConfiguration();
+        		processSettingsImpl ();
 
 		    	
 			} catch (RemoteException e) {
@@ -1607,10 +1604,10 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	}
     };
 
-    private boolean updateTorConfiguration () throws RemoteException
+    private boolean processSettingsImpl () throws RemoteException
     {
     	
-    	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+    	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 		
     	prefPersistNotifications = prefs.getBoolean(TorConstants.PREF_PERSIST_NOTIFICATIONS, true);
    
@@ -1635,10 +1632,29 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         {
         	String proxyHost = prefs.getString("pref_proxy_host", null);
         	String proxyPort = prefs.getString("pref_proxy_port", null);
+        	String proxyUser = prefs.getString("pref_proxy_username", null);
+        	String proxyPass = prefs.getString("pref_proxy_password", null);
         	
         	if (proxyHost != null && proxyPort != null)
         	{
         		mBinder.updateConfiguration(proxyType + "Proxy", proxyHost + ':' + proxyPort, false);
+        		
+        		if (proxyUser != null && proxyPass != null)
+        		{
+        			if (proxyType.equalsIgnoreCase("socks5"))
+        			{
+        				mBinder.updateConfiguration("Socks5ProxyUsername", proxyUser, false);
+        				mBinder.updateConfiguration("Socks5ProxyPassword", proxyPass, false);
+        			}
+        			else
+        				mBinder.updateConfiguration(proxyType + "ProxyAuthenticator", proxyUser + ':' + proxyPort, false);
+        			
+        		}
+        		else if (proxyPass != null)
+        			mBinder.updateConfiguration(proxyType + "ProxyAuthenticator", proxyUser + ':' + proxyPort, false);
+        		
+        		
+
         	}
         }
         
@@ -1779,6 +1795,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         if (enableHiddenServices)
         {
         	mBinder.updateConfiguration("HiddenServiceDir",appCacheHome.getAbsolutePath(), false);
+        	//mBinder.updateConfiguration("RendPostPeriod", "600 seconds", false); //possible feature to investigate
         	
         	String hsPorts = prefs.getString("pref_hs_ports","");
         	
@@ -1794,23 +1811,26 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	        		
 	        		if (hsPortConfig.indexOf(":")==-1) //setup the port to localhost if not specifed
 	        		{
-	        			hsPortConfig = hsPortConfig + " 127.0.0.1:" + hsPortConfig;
+	        			hsPortConfig = hsPortConfig + " 0.0.0.0:" + hsPortConfig;
 	        		}
 	        		
 	        		mBinder.updateConfiguration("HiddenServicePort",hsPortConfig, false);
 	        		
 	        		hsPort = Integer.parseInt(hsPortConfig.split(" ")[0]);
-					
+
 	        		//start this for the first port specified
 	    			if (mShareServe == null)
 	    			{
-	    				//we load this here from the file directory based on data
-	    	  			//written by Tor binary
-	    	  			mShareServeHost = getHiddenServiceHostname ();
-	    				mShareServePort = hsPort;
+
 	    				mShareServe = new ShareService(10, this);
-	    				mShareServe.startService(hsPort);
 	    			}
+	    			
+    				//we load this here from the file directory based on data
+    	  			//written by Tor binary
+    	  			mShareServeHost = getHiddenServiceHostname ();
+    				mShareServePort = hsPort;
+    				mShareServe.startService(hsPort);
+	    			
 					
 				} catch (NumberFormatException e) {
 					Log.e(this.TAG,"error parsing hsport",e);
