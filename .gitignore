@@ -13,6 +13,7 @@ external/test.c
 external/test.h.gch
 external/tor-build-stamp
 external/translation/
+external/simple*
 bin
 gen
 native
