@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="org.torproject.android" 
-      android:versionName="v12 alpha 2 (Tor 0.2.4.10-alpha)" 
-      android:versionCode="54"
+      android:versionName="v12 alpha 3 (Tor 0.2.4.10-alpha)" 
+      android:versionCode="55"
         android:installLocation="auto"
       >
     <uses-permission android:name="android.permission.INTERNET" />
@@ -19,9 +19,12 @@
       android:persistent="true"
       android:allowBackup="false"
       android:allowClearUserData="true"
+      android:hardwareAccelerated="true"
      >
       
-        <activity android:name=".Orbot" android:configChanges="orientation|screenSize">
+        <activity android:name=".Orbot" android:configChanges="orientation|screenSize"
+            android:launchMode="singleTop" 
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
