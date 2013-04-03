@@ -1,6 +1,7 @@
 package org.torproject.android.share;
 
 import java.io.BufferedOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
@@ -24,9 +25,13 @@ import android.database.Cursor;
 import android.provider.MediaStore;
 import android.util.Log;
 
-public class ShareService implements Container {
+public class ShareService implements Container, Runnable {
 
 	private final static String TAG = "OrbotShare";
+	
+	private final static String LOCALHOST = "127.0.0.1";
+	private int mPort = -1;
+	private Thread thread = null;
 	
    public static class Task implements Runnable {
   
@@ -41,12 +46,17 @@ public class ShareService implements Container {
       public void run() {
          try {
         	
+        //	 android.os.Debug.waitForDebugger();
+        	 
         	Path path = request.getPath();
         	String rPath = path.toString();
         	if (rPath.length() > 0)
         		rPath = rPath.substring(1);
         	
-        	ShareItem sItem = sShareItems.get(rPath);
+        	ShareItem sItem = null;
+        	
+        	if (sShareItems != null)
+        		sItem = sShareItems.get(rPath);
         	
         	if (sItem != null)
         	{
@@ -106,6 +116,13 @@ public class ShareService implements Container {
         	
          } catch(Exception e) {
             Log.e(TAG,"error handling request",e);
+            try {
+            	response.setCode(500);
+				response.close();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
          }
       }
    } 
@@ -124,11 +141,25 @@ public class ShareService implements Container {
    
    public void startService (int port) throws Exception {
 	   
-      mServer = new ContainerServer(this);
-      mConnection = new SocketConnection(mServer);
-      SocketAddress address = new InetSocketAddress(port);
-
-      mConnection.connect(address);
+	  mPort = port;
+	  thread = new Thread(this);
+	  thread.start();
+   }
+   
+   public void run ()
+   {
+	   try
+	   {
+	      mServer = new ContainerServer(this);
+	      mConnection = new SocketConnection(mServer);
+	      SocketAddress address = new InetSocketAddress("0.0.0.0", mPort);
+	
+	      mConnection.connect(address);
+	   }
+	   catch (Exception e)
+	   {
+		   Log.e(TAG,"error starting share service!",e);
+	   }
    }
    
    public void stopService () throws Exception {
