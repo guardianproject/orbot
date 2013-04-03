@@ -187,6 +187,17 @@ android:title="@string/pref_proxy_port_title"
 android:summary="@string/pref_proxy_port_summary"
 android:dialogTitle="@string/pref_proxy_port_dialog"
 />
+
+<EditTextPreference android:key="pref_proxy_username"
+android:title="@string/pref_proxy_username_title"
+android:summary="@string/pref_proxy_username_summary"
+android:dialogTitle="@string/pref_proxy_username_dialog"
+/>
+<EditTextPreference android:key="pref_proxy_password"
+android:title="@string/pref_proxy_password_title"
+android:summary="@string/pref_proxy_password_summary"
+android:dialogTitle="@string/pref_proxy_password_dialog"
+/>
 </PreferenceCategory>
 
 <PreferenceCategory android:title="Debug">

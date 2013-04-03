@@ -129,18 +129,31 @@
   <string name="pref_entrance_node">Entrance Nodes</string>
   <string name="pref_entrance_node_summary">Fingerprints, nicks, countries and addresses for the first hop</string>
   <string name="pref_entrance_node_dialog">Enter Entrance Nodes</string>
-  <!--<string name="pref_use_whispercore">Use WhisperCore</string>
-<string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>-->
-  <string name="pref_proxy_title">Outbound Network Proxy</string>
+  
+  <string name="pref_proxy_title">Outbound Network Proxy (Optional)</string>
+  
   <string name="pref_proxy_type_title">Outbound Proxy Type</string>
   <string name="pref_proxy_type_summary">Protocol to use for proxy server: HTTP, HTTPS, Socks4, Socks5</string>
   <string name="pref_proxy_type_dialog">Enter Proxy Type</string>
+  
   <string name="pref_proxy_host_title">Outbound Proxy Host</string>
-  <string name="pref_proxy_host_summary">Proxy server hostname</string>
+  <string name="pref_proxy_host_summary">Proxy Server hostname</string>
   <string name="pref_proxy_host_dialog">Enter Proxy Host</string>
+  
   <string name="pref_proxy_port_title">Outbound Proxy Port</string>
-  <string name="pref_proxy_port_summary">Proxy server port</string>
+  <string name="pref_proxy_port_summary">Proxy Server port</string>
   <string name="pref_proxy_port_dialog">Enter Proxy port</string>
+
+  <string name="pref_proxy_username_title">Outbound Proxy Username</string>
+  <string name="pref_proxy_username_summary">Proxy Username (Optional)</string>
+  <string name="pref_proxy_username_dialog">Enter Proxy Username</string>
+  
+  <string name="pref_proxy_password_title">Outbound Proxy Password</string>
+  <string name="pref_proxy_password_summary">Proxy Password (Optional)</string>
+  <string name="pref_proxy_password_dialog">Enter Proxy Password</string>
+  
+  
+  
   <string name="status">Status</string>
   <string name="setting_up_full_transparent_proxying_">Setting up full transparent proxying&#8230;</string>
   <string name="setting_up_app_based_transparent_proxying_">Setting up app-based transparent proxying&#8230;</string>
