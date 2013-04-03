@@ -40,9 +40,10 @@ public class RandomColorCircleView extends View
 	}
 
 	private void init(){
-	 paint.setStyle(Paint.Style.FILL);
+	 paint.setStyle(Paint.Style.STROKE);
 	 paint.setColor(Color.WHITE);
-	// paint.setAntiAlias(true);
+	 paint.setAntiAlias(false);
+	 paint.setStrokeWidth(6);
 
 	}
 
@@ -96,6 +97,7 @@ public class RandomColorCircleView extends View
 
 	}
 
+	/*
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 	 
@@ -127,6 +129,6 @@ public class RandomColorCircleView extends View
 	 
 	 return true;
 	 
-	}
+	}*/
 
 }

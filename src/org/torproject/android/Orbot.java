@@ -108,12 +108,11 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
            	
         setLocale();
         
-	startService(new Intent(INTENT_TOR_SERVICE));
+        startService(new Intent(INTENT_TOR_SERVICE));
 		
     	prefs = PreferenceManager.getDefaultSharedPreferences(this);
     	
-    	
-    	
+    	doLayout();
 	}
 	
 	private void doLayout ()
@@ -167,7 +166,7 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 		downloadText.setText(formatCount(0) + " / " + formatTotal(0));
 		uploadText.setText(formatCount(0) + " / " + formatTotal(0));
 	
-		//updateStatus("");
+		updateStatus("");
     }
     
     private void appendLogTextAndScroll(String text)
@@ -330,7 +329,7 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 	protected void onPause() {
 		super.onPause();
 		
-		unbindService();
+		//unbindService();
 		
 		//hideProgressDialog();
 
@@ -416,11 +415,21 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 		super.onResume();
 		
     	bindService();
-    	
-    	doLayout ();
-		
+    
+    	updateStatus("");
 	}
 	
+	
+	
+	@Override
+	protected void onNewIntent(Intent intent) {
+		
+		super.onNewIntent(intent);
+		
+		updateStatus("");
+		handleIntents();
+	}
+
 	private void handleIntents ()
 	{
 		if (getIntent() == null)
@@ -553,7 +562,7 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 	protected void onStop() {
 		super.onStop();
 		
-		unbindService();
+		//unbindService();
 	}
 
 
@@ -564,6 +573,7 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 	private void openBrowser(String url)
 	{
 		Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+		intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
 		startActivity(intent);
 		
 	}
@@ -597,16 +607,15 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
     
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-            super.onActivityResult(requestCode, resultCode, data);
-            
-            //if we get a response from an activity we launched (like from line 527 where we launch the Settings/Prefs screen)
-            //and the resultCode matches our arbitrary 1010 value, AND Tor is running
-            //then update the preferences in an async background task
-            if (requestCode == 1 && resultCode == 1010 && mService != null)
-            {
-                    new ProcessSettingsAsyncTask().execute(mService);      
-                    setLocale();
-            }
+        super.onActivityResult(requestCode, resultCode, data);
+        
+        
+        if (requestCode == 1 && mService != null)
+        {
+                new ProcessSettingsAsyncTask().execute(mService);      
+                setLocale();
+        }
+       
     }
     
     AlertDialog aDialog = null;
@@ -922,6 +931,10 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
         			downloadText.setText(formatCount(datacount.Download) + " / " + formatTotal(totalRead));
             		uploadText.setText(formatCount(datacount.Upload) + " / " + formatTotal(totalWrite));
             
+            		if (torStatus != TorServiceConstants.STATUS_ON)
+            		{
+            			updateStatus("");
+            		}
                 		
                 default:
                     super.handleMessage(msg);
@@ -1021,12 +1034,14 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
                 }
         }
             
-            //maybe needs this?
-            mService = null; 
-            
             // Detach our existing connection.
             unbindService(mConnection);
             mIsBound = false;
+            
+
+            //maybe needs this?
+            mService = null; 
+            
             
         }
     }
