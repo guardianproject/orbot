@@ -1,18 +1,18 @@
 [submodule "external/openssl-static"]
 	path = external/openssl-static
-	url = git://github.com/guardianproject/android-external-openssl-ndk-static.git
+	url = https://github.com/guardianproject/openssl-android.git
 [submodule "external/tor"]
 	path = external/tor
-	url = git://git.torproject.org/git/tor.git
+	url = https://git.torproject.org/git/tor.git
 [submodule "external/libevent"]
 	path = external/libevent
-	url = git://github.com/libevent/libevent.git
+	url = https://github.com/libevent/libevent.git
 [submodule "external/jtorctrl"]
 	path = external/jtorctrl
-	url = git://git.torproject.org/git/jtorctl
+	url = https://git.torproject.org/git/jtorctl
 [submodule "external/jtorctl"]
 	path = external/jtorctl
-	url = git://git.torproject.org/git/jtorctl
+	url = https://git.torproject.org/git/jtorctl
 [submodule "external/obfsproxy"]
 	path = external/obfsproxy
-	url = git://git.torproject.org/obfsproxy.git
+	url = https://git.torproject.org/obfsproxy.git
