@@ -214,7 +214,7 @@
   <string name="pref_use_persistent_notifications">Mantieni sempre l\'icona nella barra degli strumenti quando Orbot è connesso.</string>
   <string name="pref_use_persistent_notifications_title">Notifiche sempre attive</string>
   <string name="notification_using_bridges">Bridge attivati!</string>
-  <string name="default_bridges"/>
+  <string name="default_bridges"></string>
   <string name="set_locale_title">Configura le impostazioni internazionali.</string>
   <string name="set_locale_summary">Scegli le impostazioni internazionali e la lingua di Orbot</string>
   <string name="wizard_locale_title">Scegli Lingua</string>

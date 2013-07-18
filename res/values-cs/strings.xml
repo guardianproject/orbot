@@ -23,9 +23,11 @@
   <string name="menu_apps">Aplikace</string>
   <string name="menu_start">Zapnout</string>
   <string name="menu_stop">Vypnout</string>
+  <string name="menu_about">O aplikaci</string>
   <string name="menu_wizard">Průvodce</string>
   <string name="button_help">Pomoc</string>
   <string name="button_close">Zavřít</string>
+  <string name="button_about">O aplikaci</string>
   <string name="button_clear_log">Vyčistit log</string>
   <string name="menu_verify">Ověřit</string>
   <string name="menu_exit">Konec</string>
@@ -55,6 +57,7 @@
   <string name="wizard_proxy_help_info">Nastavení Proxy</string>
   <string name="wizard_final">Orbot je připraven!</string>
   <!--END Welcome Wizard strings (DJH)-->
+  <string name="pref_general_group">Hlavní</string>
   <!--New Wizard Strings-->
   <!--Title Screen-->
   <!--Warning screen-->
@@ -67,7 +70,12 @@
     <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
     <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
   <!--Transparent Proxy screen-->
+  <string name="wizard_transproxy_title">Transparentní proxy</string>
+  <string name="wizard_transproxy_none">Není</string>
   <!--<string name="pref_use_whispercore">Use WhisperCore</string>
 <string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>-->
-  <string name="default_bridges"/>
+  <string name="status">Status</string>
+  <string name="error">Chyba</string>
+  <string name="default_bridges"></string>
+  <string name="btn_save_settings">Uloz nastaveni</string>
 </resources>

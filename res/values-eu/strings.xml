@@ -78,6 +78,7 @@
   <string name="wizard_permissions_title">Baimenak</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot-Gaitutako Aplikazioak</string>
+  <string name="wizard_tips_gibberbot">Gibberbot: Txat aplikazio segurua Off-the-Record enkriptazioarekin.</string>
   <string name="gibberbot_apk_url">https://market.android.com/details?id=info.guardianproject.otr.app.im</string>
   <string name="wizard_tips_orweb">Orweb - Tor bidez lan egiten duen pribatutasun-hobetua duen nabigatzailea</string>
   <string name="orweb_apk_url">https://market.android.com/details?id=info.guardianproject.browser</string>
@@ -142,10 +143,11 @@
   <string name="unable_to_start_tor">Ezin izan da Tor hasi:</string>
   <string name="pref_use_sys_iptables_title">Lehenetsitako Iptables erabili</string>
   <string name="notification_using_bridges">Zubiak gaituta!</string>
-  <string name="default_bridges"/>
+  <string name="default_bridges"></string>
   <string name="set_locale_title">Lokala ezarri</string>
   <string name="set_locale_summary">Aukeratu Orbotentzako lokala eta hizkuntza</string>
   <string name="wizard_locale_title">Hizkuntza aukeratu</string>
   <string name="wizard_locale_msg">Lehenetsia utzi edo uneko hizkuntzara aldatu</string>
   <string name="powered_by">Tor Projectek indartua</string>
+  <string name="btn_save_settings">Ezarpenak gorde</string>
 </resources>

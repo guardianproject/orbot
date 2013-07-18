@@ -203,7 +203,7 @@
   <string name="pref_use_persistent_notifications">Sentiasa biar ikon pada toolbar apabila Orbot bersambung</string>
   <string name="pref_use_persistent_notifications_title">Sentiasa On Notifikasi</string>
   <string name="notification_using_bridges">Jambatan dibenarkan!</string>
-  <string name="default_bridges"/>
+  <string name="default_bridges"></string>
   <string name="set_locale_title">Tetapan Tempatan</string>
   <string name="set_locale_summary">Pilihan tempatan dan bahasa untuk Orbot</string>
   <string name="wizard_locale_title">Pilih Bahasa</string>

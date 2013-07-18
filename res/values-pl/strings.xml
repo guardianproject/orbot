@@ -37,6 +37,7 @@
   <string name="pref_transparent_port_title">Lista portów</string>
   <string name="pref_transparent_port_dialog">Wprowadź porty dla proxy</string>
   <string name="pref_has_root">Wymaga dostępu Root\'a</string>
+  <string name="pref_has_root_summary">Wymaga dostępu ROOT\'a dla transparent proxying</string>
   <string name="status_install_success">Pliki binarne Tora zainstalowane poprawnie!</string>
   <string name="status_install_fail">Pliki binarne Tora nie mogły być zainstalowane. Sprawdź Log i skontaktuj się z nami mailowo: tor-assistants@torproject.org</string>
   <string name="title_error">Błąd aplikacji</string>
@@ -77,8 +78,11 @@
     <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
     <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
   <!--Transparent Proxy screen-->
+  <string name="wizard_transproxy_title">Transparenty Proxing</string>
+  <string name="wizard_transproxy_none">Brak</string>
   <!--<string name="pref_use_whispercore">Use WhisperCore</string>
 <string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>-->
-  <string name="default_bridges"/>
+  <string name="status">Status</string>
+  <string name="default_bridges"></string>
   <string name="powered_by">powered by The Tor Project </string>
 </resources>

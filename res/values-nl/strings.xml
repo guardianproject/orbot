@@ -214,7 +214,7 @@
   <string name="pref_use_persistent_notifications">Houd icoon in toolbar zolang Orbot verbonden is</string>
   <string name="pref_use_persistent_notifications_title">Meldingen altijd aan</string>
   <string name="notification_using_bridges">Bridges ingeschakeld!</string>
-  <string name="default_bridges"/>
+  <string name="default_bridges"></string>
   <string name="set_locale_title">Stel landsinstellingen in</string>
   <string name="set_locale_summary">Kies de landsinstellingen en taal voor Orbot</string>
   <string name="wizard_locale_title">Kies taal</string>

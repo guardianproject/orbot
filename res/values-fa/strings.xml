@@ -214,7 +214,7 @@
   <string name="pref_use_persistent_notifications">وقتی ربات پیازی متصل است، همیشه آیکون مربوط را در نوار ابزار نگه دار.</string>
   <string name="pref_use_persistent_notifications_title">آگاهسازی همیشه روشن</string>
   <string name="notification_using_bridges">پل ها فعال شدند!</string>
-  <string name="default_bridges"/>
+  <string name="default_bridges"></string>
   <string name="set_locale_title">زبان محلی را مشخص کنید</string>
   <string name="set_locale_summary">زبان محلی  ربات پیازی  را انتخاب کنید</string>
   <string name="wizard_locale_title">انتخاب زبان</string>

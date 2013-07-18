@@ -25,6 +25,8 @@
   <string name="menu_stop">停止</string>
   <string name="menu_about">情報</string>
   <string name="menu_wizard">ウィザード</string>
+  <string name="main_layout_download">ダウンロード</string>
+  <string name="main_layout_upload">アップロード</string>
   <string name="button_help">ヘルプ</string>
   <string name="button_close">閉じる</string>
   <string name="button_about">について</string>
@@ -72,6 +74,12 @@
   <string name="wizard_tips_msg">以下のアプリはOrbot用に作られています。それぞれのボタンを押すと今すぐインストールできます。Google Playからも同じものが探せます。</string>
   <string name="wizard_tips_otrchat">Gibberbot - 安全なインスタントメッセージアプリ</string>
   <string name="wizard_tips_proxy">Proxy Settings - Orbotでアプリを動かすための手順書</string>
+  <string name="wizard_tips_duckgo">DuckDuckGo 検索エンジンアプリ</string>
+  <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
+  <string name="wizard_tips_firefox">Proxy Mobile add-on for Firefox (http://tinyurl.com/getproxymob)</string>
+  <string name="proxymob_setup_url">https://guardianproject.info/releases/proxymob-latest.xpi</string>
+  <string name="wizard_tips_twitter">Twitter proxyを「localhost」と8118番ポートに合わせる</string>
+  <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">プロキシ設定</string>
   <string name="wizard_proxy_help_msg">AndroidアプリがHTTPかSOCKSプロキシを利用できる場合、Orbotを使ってTor接続をすることが可能です。\n\n\n    ホスト設定は127.0.0.1またはlocalhostです。HTTPでは使用ポートは8118です。SOCKSでは9050です。可能であればSOCKS4AかSOCKS5の利用を推奨します。\n    \n\n\n    Android上のプロキシについて学びたい場合は http://tinyurl.com/proxyandroid　のFAQを参照してください。\n    </string>
   <string name="wizard_final">Orbotの準備が完了しました</string>
@@ -100,6 +108,8 @@
   <string name="gibberbot_apk_url">https://market.android.com/details?id=info.guardianproject.otr.app.im</string>
   <string name="wizard_tips_orweb">Orweb: Torを使う匿名インターネットブラウザ</string>
   <string name="orweb_apk_url">https://market.android.com/details?id=info.guardianproject.browser</string>
+  <string name="wizard_tips_play">Google Playで全てのGuardian Projectのアプリを見つける</string>
+  <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
     <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
@@ -204,7 +214,7 @@
   <string name="pref_use_persistent_notifications">Orbotが接続中はアイコンを常にツールバーに表示</string>
   <string name="pref_use_persistent_notifications_title">通知を常に有効化</string>
   <string name="notification_using_bridges">ブリッジが有効です！</string>
-  <string name="default_bridges"/>
+  <string name="default_bridges"></string>
   <string name="set_locale_title">地域を選択</string>
   <string name="set_locale_summary">Orbotの地域と言語を選択</string>
   <string name="wizard_locale_title">言語を選択</string>

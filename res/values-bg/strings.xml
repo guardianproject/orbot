@@ -73,6 +73,7 @@
   <string name="wizard_final_msg">Стотици хиляди хора по света използват Тор по различни причини.\n\nЖурналисти и блогъри, защитници на човешките права, служители на закона, военни, корпорации, граждани под ограничителни режими, и просто обикновени граждани... и сега и ти си готов да го направиш също!</string>
   <!--END Welcome Wizard strings (DJH)-->
   <string name="pref_hs_group">Скрити услуги</string>
+  <string name="pref_general_group">Главни</string>
   <string name="pref_start_boot_title">Стартирай Орбот при стартиране на устройството</string>
   <string name="pref_start_boot_summary">Автоматично стартирай Орбот и се свържи към Тор когато твоето Андроид устройство стартира</string>
   <!--New Wizard Strings-->
@@ -163,7 +164,7 @@
   <string name="error_installing_binares">Двуичните файлове на Тор не бяха инсталирани или обновени.</string>
   <string name="pref_use_persistent_notifications">Винаги показвай икона в тулбара когато Орбот е свързан</string>
   <string name="pref_use_persistent_notifications_title">Уведомления винаги включени</string>
-  <string name="default_bridges"/>
+  <string name="default_bridges"></string>
   <string name="set_locale_title">Избери местоположение</string>
   <string name="set_locale_summary">Избери местоположение и език за Орбот</string>
   <string name="wizard_locale_title">Избери език</string>

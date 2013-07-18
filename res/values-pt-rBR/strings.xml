@@ -25,6 +25,8 @@
   <string name="menu_stop">Parar</string>
   <string name="menu_about">Sobre</string>
   <string name="menu_wizard">Assistente</string>
+  <string name="main_layout_download">Download</string>
+  <string name="main_layout_upload">Upload</string>
   <string name="button_help">Ajuda</string>
   <string name="button_close">Fechar</string>
   <string name="button_about">Sobre</string>
@@ -72,6 +74,12 @@
   <string name="wizard_tips_msg">As apps abaixo foram desenvolvidas para trabalhar com Orbot. Clique em cada botão para instalar agora, ou você pode encontrá-las posteriormente no Android Market.</string>
   <string name="wizard_tips_otrchat">Gibberbot - Cliente de mensagem instantânea seguro para Android</string>
   <string name="wizard_tips_proxy">Configurações de Proxy - Aprenda como configurar apps para trabalhar com Orbot</string>
+  <string name="wizard_tips_duckgo">Ferramenta de Busca DuckDuckGo</string>
+  <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
+  <string name="wizard_tips_firefox">Aplicativo Proxy Mobile para Firefox (http://tinyurl.com/getproxymob)</string>
+  <string name="proxymob_setup_url">https://guardianproject.info/releases/proxymob-latest.xpi</string>
+  <string name="wizard_tips_twitter">Define o proxy do Twitter para \"localhost\" e a porta 8118</string>
+  <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Configurações de Proxy</string>
   <string name="wizard_proxy_help_msg">Se a app Android que você está usando puder suportar o uso de proxy HTTP ou SOCKS, então você pode configurar para conectar ao Orbot e usar o Tor.\n\n\n    As configurações de host são 127.0.0.1 ou \"localhost\". Para HTTP, a porta configurada é 8118. Para SOCKS, o proxy é 9050. Você deve usar SOCKS4A ou SOCKS5 se possível.\n    \n\n\n    Você pode aprender mais sobre proxy no Android através do FAQ em: http://tinyurl.com/proxyandroid\n    </string>
   <string name="wizard_final">Orbot está pronto!</string>
@@ -100,6 +108,8 @@
   <string name="gibberbot_apk_url">https://market.android.com/details?id=info.guardianproject.otr.app.im</string>
   <string name="wizard_tips_orweb">Orweb: Navegador de reforço de privacidade que trabalha através do Tor</string>
   <string name="orweb_apk_url">https://market.android.com/details?id=info.guardianproject.browser</string>
+  <string name="wizard_tips_play">Encontre todos os aplicativos da Guardian Project no Google Play</string>
+  <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
     <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
@@ -204,7 +214,7 @@
   <string name="pref_use_persistent_notifications">Sempre manter o ícone na barra de tarefas quando o Orbot está conectado</string>
   <string name="pref_use_persistent_notifications_title">Notificações Sempre Ligadas</string>
   <string name="notification_using_bridges">Pontes habilitadas!</string>
-  <string name="default_bridges"/>
+  <string name="default_bridges"></string>
   <string name="set_locale_title">Selecionar Local</string>
   <string name="set_locale_summary">Escolha o local e idioma para o Orbot</string>
   <string name="wizard_locale_title">Escolha o Idioma</string>

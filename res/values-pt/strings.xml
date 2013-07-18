@@ -11,6 +11,8 @@
   <string name="status_activated">Ligação estabelecida à rede Tor</string>
   <string name="status_disabled">\"Orbot está Desactivado</string>
   <string name="status_shutting_down">Orbot a encerrar</string>
+  <string name="tor_process_complete">completo.</string>
+  <string name="tor_process_waiting">a aguardar.</string>
   <string name="not_anonymous_yet">ATENÇÃO: A sua ligação ainda não é anónima! Por favor configure as suas aplicações para utilizarem o proxy HTTP 127.0.0.1:8118 ou o proxy SOCKS4A ou SOCKS5 127.0.0.1:9050</string>
   <string name="menu_home">Início</string>
   <string name="menu_browse">Explorar</string>
@@ -52,10 +54,13 @@
   <string name="wizard_permissions_stock">Permissões do Orbot</string>
   <string name="wizard_permission_enable_root">Autorizar acesso Root para o Orbot</string>
   <string name="wizard_configure">Configurar acesso com Tor</string>
+  <string name="wizard_proxy_help_info">Configurações do Proxy</string>
   <!--END Welcome Wizard strings (DJH)-->
+  <string name="pref_general_group">Geral</string>
   <!--New Wizard Strings-->
   <!--Title Screen-->
   <!--Warning screen-->
+  <string name="wizard_warning_title">Aviso</string>
   <!--Permissions screen-->
   <!--TipsAndTricks screen-->
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
@@ -63,8 +68,13 @@
     <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
     <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
   <!--Transparent Proxy screen-->
+  <string name="wizard_transproxy_title">Proxy Transparente</string>
+  <string name="wizard_transproxy_none">Nenhum</string>
   <!--<string name="pref_use_whispercore">Use WhisperCore</string>
 <string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>-->
-  <string name="default_bridges"/>
+  <string name="status">Estado</string>
+  <string name="error">Erro</string>
+  <string name="default_bridges"></string>
   <string name="powered_by">powered by the Tor Project</string>
+  <string name="btn_save_settings">Salvar as Configurações</string>
 </resources>

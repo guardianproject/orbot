@@ -214,7 +214,7 @@
   <string name="pref_use_persistent_notifications">Να διατηρείται πάντοτε το εικονίδιο στην γραμμή εργαλείων όταν το Orbot συνδέεται</string>
   <string name="pref_use_persistent_notifications_title">Ειδοποιήσεις διαρκούς σύνδεσης</string>
   <string name="notification_using_bridges">Οι γέφυρες ενεργοποιήθηκαν!</string>
-  <string name="default_bridges"/>
+  <string name="default_bridges"></string>
   <string name="set_locale_title">Ορισμός τοπικών προσαρμογών</string>
   <string name="set_locale_summary">Επιλέξτε ρυθμίσεις τοπικότητας και γλώσσας για το Orbot</string>
   <string name="wizard_locale_title">Επιλέξτε γλώσσα</string>

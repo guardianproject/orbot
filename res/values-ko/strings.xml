@@ -1,133 +1,36 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">Orbot</string>
-  <string name="internal_web_url">http://orbot/</string>
-  <string name="default_web_url">http://check.torproject.org</string>
-  <string name="secure_default_web_url">https://check.torproject.org</string>
-  <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
-  <string name="control_permission_label">토르 시작 및 중지</string>
-  <string name="tor_proxy_service_process">토르 프록시 서비스</string>
-  <string name="status_starting_up">Orbot이 시작중...</string>
-  <string name="status_activated">Tor 네트워크에 연결됨</string>
-  <string name="status_disabled">\"Orbot가 비활성화되어 있습니다</string>
-  <string name="status_shutting_down">Orbot를 종료합니다</string>
-  <string name="tor_process_starting">Tor 클라이언트 시작중...</string>
-  <string name="tor_process_complete">완료.</string>
-  <string name="tor_process_waiting">대기.</string>
-  <string name="not_anonymous_yet">경고: 귀하의 트래픽이 아직 익명이 아닙니다! HTTP 프록시 127.0.0.1:8118 또는 SOCKS4A 또는 SOCKS5 프록시 127.0.0.1:9050을 사용하여 응용 프로그램을 구성하십시오</string>
-  <string name="menu_home">홈</string>
-  <string name="menu_browse">탐색</string>
+  <string name="menu_home">표지</string>
+  <string name="menu_browse">찾아보기</string>
   <string name="menu_settings">설정</string>
-  <string name="menu_log">로그</string>
   <string name="menu_info">도움말</string>
-  <string name="menu_apps">응용 프로그램</string>
-  <string name="menu_start">시작</string>
-  <string name="menu_stop">중지</string>
-  <string name="menu_about">정보</string>
-  <string name="menu_wizard">마법사</string>
+  <string name="menu_about">소개</string>
   <string name="button_help">도움말</string>
   <string name="button_close">닫기</string>
-  <string name="button_about">정보</string>
-  <string name="button_clear_log">로그 지우기</string>
-  <string name="menu_verify">확인</string>
-  <string name="menu_exit">종료</string>
-  <string name="press_to_start">- 시작하려면 오래 누르기 -</string>
-  <string name="pref_trans_proxy_group">투명한 프록시 (루트 필요)</string>
-  <string name="pref_trans_proxy_title">투명한 프록시</string>
-  <string name="pref_trans_proxy_summary">앱의 자동 Torifying</string>
-  <string name="pref_transparent_all_title">토르의 모든 것</string>
-  <string name="pref_transparent_all_summary">토르를 통한 모든 응용 프로그램에 대한 프록시 트래픽</string>
-  <string name="pref_transparent_port_fallback_title">포트 프록시 대체</string>
-  <string name="pref_transparent_port_title">포트 목록</string>
-  <string name="pref_has_root">루트 권한에 대한 접근 필요</string>
-  <string name="pref_has_root_summary">명백한 프록시를 위해 루트 권한 요구</string>
-  <string name="status_install_success">Tor 바이너리가 성공적으로 설치됨!</string>
-  <string name="status_install_fail">Tor 바이너리 파일이 설치될 수 없습니다. Log를 확인해 주시고 tor-assistants@torproject.org 에 알려 주십시오.</string>
-  <string name="title_error">애플리케이션 오류</string>
-  <string name="wizard_title">Orbot</string>
-  <string name="wizard_btn_tell_me_more">Orbot 정보</string>
-  <string name="btn_next">다음</string>
+  <string name="button_about">소개</string>
+  <string name="menu_exit">나가기</string>
   <string name="btn_back">뒤로</string>
-  <string name="btn_finish">마침</string>
-  <string name="btn_okay">확인</string>
   <string name="btn_cancel">취소</string>
   <!--Welcome Wizard strings (DJH)-->
-  <string name="wizard_permissions_root">사용 권한 부여</string>
-  <string name="wizard_permissions_stock">Orbot 사용 권한</string>
-  <string name="wizard_premissions_msg_root">완벽합니다! Orbot을 위해 루트 권한이 활성화된것을 감지했습니다. 우리는 이 힘을 현명하게 사용할 것입니다.</string>
-  <string name="wizard_permissions_no_root">루트 권한을 가지고 있지 않거나 이것이 무엇을 말하시는지 모르겠다면, Orbot으로 만들어진 애플리케이션만을 사용하십시오.</string>
-  <string name="wizard_permissions_consent">이해하였고, 수퍼유저 권한 없이 계속합니다.</string>
-  <string name="wizard_permission_enable_root">Orbot을 위하 루트 허가</string>
-  <string name="wizard_configure">Torification 설정</string>
-  <string name="wizard_configure_msg">Orbot은 모든 애플리케이션 또는 선택된 애플리케이션을 Tor를 통해 통신하도록 할 수 있습니다.</string>
-  <string name="wizard_configure_all">모든 App이 Tor를 사용하기</string>
-  <string name="wizard_configure_select_apps">Tor를 위해 각각의 앱 선택</string>
-  <string name="wizard_tips_tricks">Orbot이 활성화된 앱</string>
-  <string name="wizard_tips_otrchat">Gibberbot - 안드로이드를 위한 보안 인스턴트 메시징 클라이언트</string>
-  <string name="wizard_tips_proxy">Proxy Settings - Orbot이 작동하도록 앱을 설정하는 방법을 배우기</string>
   <string name="wizard_proxy_help_info">프록시 설정</string>
-  <string name="wizard_final">Orbot이 준비됨!</string>
-  <string name="wizard_final_msg">전세계에서 수백만명의 사람들이 다양한 이유로 Tor를 사용합니다.\n\n언론인과 블로거, 인권 운동가, 법 집행 임원, 군인, 기업, 억압하는 정권의 국민, 그리고 평범한 시민 ... 그리고 지금 당신은 준비하고 있습니다!</string>
   <!--END Welcome Wizard strings (DJH)-->
-  <string name="connect_first_time">Tor 네트워크에 성공적으로 연결되었습니다. 하지만 이것은 귀하의 장치가 안전하다는 의미가 아닙니다. 귀하의 브라우저를 테스트하기 위해 메뉴에서 \'확인\' 옵션을 사용할 수 있습니다.\n\n더 많은 정보가 필요하시면, https://guardianproject.info/apps/orbot 을 방문하시거나, help@guardianproject.info로 이메일을 보내주십시오.</string>
-  <string name="tor_check">Orbot이 정상적으로 설정되었고 Tor에 연결되었는지 확인하기 위해 이것은 https://check.torproject.org 을 귀하의 웹 브라우져에 열리게 할 것입니다.</string>
-  <string name="pref_hs_group">히든 서비스 호스팅</string>
   <string name="pref_general_group">일반</string>
-  <string name="pref_start_boot_title">부트 시 Orbot 시작</string>
-  <string name="pref_start_boot_summary">안드로이드 장치가 시작할 때 자동적으로 Orbot을 시작하고 Tor에 연결</string>
   <!--New Wizard Strings-->
   <!--Title Screen-->
-  <string name="wizard_title_msg">Orbot은 Tor를 안드로이드로 가져옵니다!\n\nTor는 컨텐츠 필터링, 트래픽 분석, 기밀 정보와 개인 관계, 사행활을 위협하는 네트워크 감시에 대항하도록 해 줍니다.\n\n이 마법사는 Orbot과 Tor를 귀하의 장치에 설정하는 것을 도와줄 것입니다.</string>
   <!--Warning screen-->
   <string name="wizard_warning_title">경고</string>
   <!--Permissions screen-->
-  <string name="wizard_permissions_title">권한</string>
   <!--TipsAndTricks screen-->
-  <string name="wizard_tips_title">Orbot이 활성화된 장치</string>
-  <string name="gibberbot_apk_url">https://market.android.com/details?id=info.guardianproject.otr.app.im</string>
-  <string name="wizard_tips_orweb">Orweb: Tor를 통해 작동하는 보안 강화 브라우저</string>
-  <string name="orweb_apk_url">https://market.android.com/details?id=info.guardianproject.browser</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
     <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
     <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
   <!--Transparent Proxy screen-->
-  <string name="button_grant_superuser">수퍼유져 권한 요청</string>
-  <string name="pref_select_apps">앱 </string>
-  <string name="pref_node_configuration_summary">귀하의 익명성을 감소시킬 수 있는 고급 설정이 있습니다.</string>
+  <string name="wizard_transproxy_none">없음</string>
   <!--<string name="pref_use_whispercore">Use WhisperCore</string>
 <string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>-->
-  <string name="pref_proxy_type_summary">프록시 서버를 위한 사용되는 프로토콜 : HTTP, HTTPS, Socks4, Socks5</string>
-  <string name="pref_proxy_type_dialog">프록시 형식 입력</string>
-  <string name="pref_proxy_host_summary">프록시 서버 호스트네입</string>
-  <string name="pref_proxy_host_dialog">프록시 호스트 입력</string>
-  <string name="pref_proxy_port_summary">서버 포트 입력</string>
-  <string name="pref_proxy_port_dialog">프록시 포트 입력</string>
   <string name="status">상태</string>
-  <string name="couldn_t_start_tor_process_">Tor 프로세스 시작 불가능:  </string>
-  <string name="bridge_error">브릿지 오류</string>
-  <string name="bridge_requires_ip">브릿지 기능을 사용하기 위해서, 최소한 1개 이상의 브릿지 IP 주소가 필요합니다.</string>
   <string name="error">오류</string>
-  <string name="exit_nodes">출구 노드</string>
-  <string name="bridges">중계서버</string>
-  <string name="use_bridges">중계서버 사용</string>
-  <string name="ip_address_and_port_of_bridges">중계서버의 IP 주소와 </string>
-  <string name="enter_bridge_addresses">중게서버 주소 입력</string>
-  <string name="relays">중계서버</string>
-  <string name="relaying">중계</string>
-  <string name="enable_your_device_to_be_a_non_exit_relay">귀하의 장치를 출구가 아닌 중계서버로 활성화</string>
-  <string name="relay_port">중계 포트</string>
-  <string name="listening_port_for_your_tor_relay">귀하의 Tor 중계서버를 위한 Listening 포트</string>
-  <string name="relay_nickname">중계서버 별명</string>
-  <string name="the_nickname_for_your_tor_relay">귀하의 중계서버를 위한 별명</string>
-  <string name="enter_a_custom_relay_nickname">임의의 중계서버 별명을 입력</string>
-  <string name="enable_hidden_services">히든 서비스 호스팅</string>
-  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
-  <string name="tor_version">Tor v0.2.3.17: https://www.torproject.org</string>
-  <string name="libevent_version">LibEvent v2.1: http://www.monkey.org/~provos/libevent/</string>
-  <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
-  <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v0.9.8h: http://www.openssl.org</string>
-  <string name="default_bridges"/>
-  <string name="powered_by">토르 프로젝트에 의해 구동  </string>
+  <string name="default_bridges"></string>
+  <string name="btn_save_settings">설정 저장하기</string>
 </resources>

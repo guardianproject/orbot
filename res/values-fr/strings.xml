@@ -9,11 +9,11 @@
   <string name="tor_proxy_service_process">torproxyservice</string>
   <string name="status_starting_up">Orbot démarre...</string>
   <string name="status_activated">Connecté au réseau Tor</string>
-  <string name="status_disabled">\"Orbot est désactivé</string>
+  <string name="status_disabled">Orbot est désactivé</string>
   <string name="status_shutting_down">Orbot s\'arrête</string>
   <string name="tor_process_starting">Lancement du client Tor</string>
-  <string name="tor_process_complete">Terminé</string>
-  <string name="tor_process_waiting">Attente...</string>
+  <string name="tor_process_complete">terminé.</string>
+  <string name="tor_process_waiting">attente.</string>
   <string name="not_anonymous_yet">AVERTISSEMENT: Votre trafic n\'est pas encore anonyme ! Veuillez configurer vos applications pour qu\'elles utilisent le proxy HTTP à 127.0.0.1:8118 ou le proxy SOCKS4A ou SOCKS5 à 127.0.0.1:9050</string>
   <string name="menu_home">Accueil</string>
   <string name="menu_browse">Parcourir</string>
@@ -47,7 +47,7 @@
   <string name="pref_has_root">Demander un accès privilégié</string>
   <string name="pref_has_root_summary">Demande un accès privilégié pour le proxy transparent</string>
   <string name="status_install_success">Tor a été installé avec succès !</string>
-  <string name="status_install_fail">Tor n\'a pas pu installé. S\'il vous plaît, vérifiez le fichier journal et contactez tor-assistants@torproject.org</string>
+  <string name="status_install_fail">Tor n\'a pu être installé. Veuillez vérifier le fichier journal et contacter tor-assistants@torproject.org</string>
   <string name="title_error">Erreur de l\'application</string>
   <string name="wizard_title">Bienvenue dans Orbot</string>
   <string name="wizard_btn_tell_me_more">À propos de Orbot</string>
@@ -62,12 +62,12 @@
   <string name="wizard_permissions_root">Permission accordée</string>
   <string name="wizard_permissions_stock">Permissions d\'Orbot</string>
   <string name="wizard_premissions_msg_root">Excellent ! Nous avons détecté que vous avez donné les droits privilégiés pour Orbot. Nous utiliserions ces droits avec sagesse.</string>
-  <string name="wizard_permissions_msg_stock"> Bien que cela ne soit pas nécessaire, Orbot peut devenir un outil bien plus utile si vous lui donnez un accès privilégié. Utilisez le bouton ci-dessous pour donner à Orbot de grands pouvoirs ! </string>
-  <string name="wizard_permissions_no_root">Si vous n\'avez pas d\'accès privilégié ou n\'avez pas idée de ce que cela est, vérifiez bien que vous utilisez des applications conçues pour fonctionner avec Orbot.</string>
+  <string name="wizard_permissions_msg_stock">Bien que cela ne soit pas nécessaire, Orbot peut devenir un outil bien plus utile si vous lui donnez un accès privilégié. Utilisez le bouton ci-dessous pour donner à Orbot de grands pouvoirs ! </string>
+  <string name="wizard_permissions_no_root">Si vous n\'avez pas d\'accès privilégié ou n\'avez pas idée de ce que cela signifie, vérifiez bien que vous utilisez des applications conçues pour fonctionner avec Orbot.</string>
   <string name="wizard_permissions_consent">Je comprends et je souhaite continuer sans les droits privilégiés</string>
   <string name="wizard_permission_enable_root">Donner les droits privilégiés à Orbot</string>
   <string name="wizard_configure">Configurer la Torification</string>
-  <string name="wizard_configure_msg">Orbot vous donne le choix entre faire passer le trafic de toutes les applications à travers Tor OU de choisir pour chaque application</string>
+  <string name="wizard_configure_msg">Orbot vous donne le choix entre faire passer le trafic de toutes les applications à travers Tor OU de choisir pour chaque application.</string>
   <string name="wizard_configure_all">Toutes les applications par Tor</string>
   <string name="wizard_configure_select_apps">Choisir les applications utilisant Tor</string>
   <string name="wizard_tips_tricks">Applications avec Orbot</string>
@@ -75,11 +75,14 @@
   <string name="wizard_tips_otrchat">Gibberbot - Client de messagerie instantanée pour Android</string>
   <string name="wizard_tips_proxy">Configuration du proxy - Apprendre comment configurer les applications pour qu\'elles fonctionnent avec Orbot</string>
   <string name="wizard_tips_duckgo">Application DuckDuckgo Search Engine</string>
+  <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
   <string name="wizard_tips_firefox">Firefox avec le plugin Proxy Mobile (installation complémentaire)</string>
+  <string name="proxymob_setup_url">https://guardianproject.info/releases/proxymob-latest.xpi</string>
   <string name="wizard_tips_twitter">Twitter supporte le proxy http \"localhost:8118\"</string>
+  <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Configuration du proxy</string>
   <string name="wizard_proxy_help_msg">Si l\'application Android que vous utilisez peut supporter un proxy HTTP ou un proxy SOCKS, vous pouvez la configurer pour se connecter à Orbot et utiliser Tor./n/n\n    La configuration de l\'hôte est 127.0.0.1 ou \"localhost\". Pour le HTTP, le port utilisé est le 8118. Pour SOCKS, le port utilisé est 9050. Vous devriez, si possible, utiliser SOCKS4A ou SOCKS5.\n    /n/n\n    Vous pouvez en apprendre plus sur la configuration de proxy sous Android sur la FAQ à : http://tinyurl.com/proxyandroid\n    </string>
-  <string name="wizard_final">Orbot est prêt!</string>
+  <string name="wizard_final">Orbot est prêt !</string>
   <string name="wizard_final_msg">Des milliers de personnes dans le monde utilisent Tor pour une grande variétés de raisons : journalistes et bloggers, défenseurs des droits de l\'homme, policiers, soldats, entreprises, les citoyens de régimes répressifs, et aussi de simples citoyens ... et maintenant vous êtes prêts aussi !</string>
   <!--END Welcome Wizard strings (DJH)-->
   <string name="connect_first_time"> Vous êtes connectés avec succès au réseau Tor - mais cela ne signifie PAS que votre appareil est sécurisé. Vous pouvez utiliser l\'option \'Vérifier\'  du menu pour vérifier avec votre navigateur. \n\nAllez à la page https://guardianproject.info/apps/orbot ou envoyez un courriel à help@guardianproject.info pour en savoir plus.</string>
@@ -105,6 +108,8 @@
   <string name="gibberbot_apk_url">https://market.android.com/details?id=info.guardianproject.otr.app.im</string>
   <string name="wizard_tips_orweb">ORWEB (Android 1.x seulement) - navigateur créé pour protéger votre vie privée &amp; pour Orbot</string>
   <string name="orweb_apk_url">https://market.android.com/details?id=info.guardianproject.browser</string>
+  <string name="wizard_tips_play">Trouver toutes les applications de Guardian Project sur Google Play</string>
+  <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
     <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
@@ -148,7 +153,7 @@
   <string name="setting_up_port_based_transparent_proxying_">Configuration du proxy transparent par port...</string>
   <string name="bridge_error">Erreur de passerelle</string>
   <string name="bridge_requires_ip">Avant de pouvoir utiliser les passerelles, vous devez entrer au moins l\'adresse IP d\'une passerelle</string>
-  <string name="send_email_for_bridges">Envoyez un e-mail à bridges@torproject.org avec \"get bridges\" dans le corps de l\'e-mail - fonctionne si le mail est envoyé d\'une adresse Gmail</string>
+  <string name="send_email_for_bridges">Envoyez un e-mail à bridges@torproject.org avec \"get bridges\" dans le corps de l\'e-mail - fonctionne si le mail est envoyé d\'une adresse Gmail.</string>
   <string name="error">Erreur</string>
   <string name="your_reachableaddresses_settings_caused_an_exception_">Les paramètres pour ReachableAddresses ont provoqué une erreur !</string>
   <string name="your_relay_settings_caused_an_exception_">Vos paramètres de relais ont provoqué une erreur !</string>
@@ -209,7 +214,7 @@
   <string name="pref_use_persistent_notifications">Toujours conserver l\'icône dans la barre des tâches quand Orbot est connecté.</string>
   <string name="pref_use_persistent_notifications_title">Toujours activé les Notifications</string>
   <string name="notification_using_bridges">Les ponts sont activés!</string>
-  <string name="default_bridges"/>
+  <string name="default_bridges"></string>
   <string name="set_locale_title">Fixer le Lieu</string>
   <string name="set_locale_summary">Choisir le lieu and la langue pour Orbot</string>
   <string name="wizard_locale_title">Choisir la langue</string>

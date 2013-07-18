@@ -25,6 +25,8 @@
   <string name="menu_stop">Остановить</string>
   <string name="menu_about">О программе</string>
   <string name="menu_wizard">Мастер</string>
+  <string name="main_layout_download">Загрузить</string>
+  <string name="main_layout_upload">Загрузить</string>
   <string name="button_help">Справка</string>
   <string name="button_close">Закрыть</string>
   <string name="button_about">О программе</string>
@@ -73,8 +75,11 @@
   <string name="wizard_tips_otrchat">Gibberbot - Secure instant messaging client for Android</string>
   <string name="wizard_tips_proxy">Настройки прокси - узнайте как настроить приложения для работы с Orbot</string>
   <string name="wizard_tips_duckgo">Приложение поисковой системы Duckduckgo</string>
+  <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
   <string name="wizard_tips_firefox">Firefox с дополнением Proxy Mobile (после отдельной установки)</string>
+  <string name="proxymob_setup_url">https://guardianproject.info/releases/proxymob-latest.xpi</string>
   <string name="wizard_tips_twitter">Twitter поддерживает http прокси \"localhost:8118\"</string>
+  <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Настройки Прокси</string>
   <string name="wizard_proxy_help_msg">Если используемое вами приложение для Android поддерживает HTTP или SOCKS прокси, то вы можете настроить его на подключение к Orbot и использование Tor.\n\n\n    Значение хоста - 127.0.0.1 или \"localhost\". Для HTTP, номер порта - 8118. Для SOCKS прокси - 9050. По возможности используйте SOCKS4A или SOCKS5.\n\n    \n    Вы можете узнать больше о работе через прокси на Android, прочитав этот FAQ: http://tinyurl.com/proxyandroid\n    </string>
   <string name="wizard_final">Программа Orbot готова к использованию!</string>
@@ -103,6 +108,8 @@
   <string name="gibberbot_apk_url">https://market.android.com/details?id=info.guardianproject.otr.app.im</string>
   <string name="wizard_tips_orweb">ORWEB (Только для версии Android 1.x) - Браузер, разработанный для обеспечения безопасности и для Orbot</string>
   <string name="orweb_apk_url">market://search?q=pname:nfo.guardianproject.browser</string>
+  <string name="wizard_tips_play">Найти все приложения Guardian Project на Google Play</string>
+  <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
     <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
@@ -207,7 +214,7 @@
   <string name="pref_use_persistent_notifications">Всегда отображать иконку в панели задач когда Orbot подключен</string>
   <string name="pref_use_persistent_notifications_title">Уведомления о постоянной работе</string>
   <string name="notification_using_bridges">Мосты включены!</string>
-  <string name="default_bridges"/>
+  <string name="default_bridges"></string>
   <string name="set_locale_title">Задать локаль</string>
   <string name="set_locale_summary">Выбрать локаль и язык для Orbot</string>
   <string name="wizard_locale_title">Выбрать Язык</string>

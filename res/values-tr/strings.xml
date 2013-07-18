@@ -11,6 +11,8 @@
   <string name="status_activated">Tor ağına bağlandı</string>
   <string name="status_disabled">Orbot devre dışı bırakıldı</string>
   <string name="status_shutting_down">Orbot kapatılıyor</string>
+  <string name="tor_process_complete">tamamlandı.</string>
+  <string name="tor_process_waiting">bekliyor.</string>
   <string name="not_anonymous_yet">UYARI: Bağlantınız henüz anonim değildir! Lütfen uygulamalarınızı HTTP 127.0.0.1:8118  veya SOCKS4A / SOCKS5 127.0.0.1:9050 vekil sunucusu kullanacak şekilde yapılandırınız.</string>
   <string name="menu_home">Başlangıç</string>
   <string name="menu_browse">Göz At</string>
@@ -49,11 +51,17 @@
   <string name="btn_next">İleri</string>
   <string name="btn_back">Geri</string>
   <string name="btn_finish">Bitir</string>
+  <string name="btn_okay">Tamam</string>
+  <string name="btn_cancel">İptal\n            </string>
   <!--Welcome Wizard strings (DJH)-->
+  <string name="wizard_proxy_help_info">Proxy Ayarları</string>
+  <string name="wizard_final">Orbot hazır!</string>
   <!--END Welcome Wizard strings (DJH)-->
+  <string name="pref_general_group">Genel</string>
   <!--New Wizard Strings-->
   <!--Title Screen-->
   <!--Warning screen-->
+  <string name="wizard_warning_title">Uyarı</string>
   <!--Permissions screen-->
   <!--TipsAndTricks screen-->
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
@@ -61,6 +69,8 @@
     <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
     <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
   <!--Transparent Proxy screen-->
+  <string name="wizard_transproxy_title">Transparan Vekil Sunuculuğu</string>
+  <string name="wizard_transproxy_none">Hiçbiri</string>
   <string name="button_grant_superuser">Süper Kullanıcı Erişimi Talebi</string>
   <string name="pref_select_apps">Uygulamaları Seç</string>
   <string name="pref_select_apps_summary">Tor Üzerinden Yönlendirilecek Uygulamaları Seç</string>
@@ -69,6 +79,9 @@
   <string name="pref_entrance_node">Giriş Noktaları</string>
   <!--<string name="pref_use_whispercore">Use WhisperCore</string>
 <string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>-->
-  <string name="default_bridges"/>
+  <string name="status">Durum</string>
+  <string name="error">Hata</string>
+  <string name="default_bridges"></string>
   <string name="powered_by">The Tor Project tarafından desteklenmektedir.</string>
+  <string name="btn_save_settings">Ayarları kaydet</string>
 </resources>

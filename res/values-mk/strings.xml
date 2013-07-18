@@ -11,6 +11,8 @@
   <string name="status_activated">Поврзан на мрежата Тор</string>
   <string name="status_disabled">\"Орбот е дезактивиран</string>
   <string name="status_shutting_down">Орбот се исклучува</string>
+  <string name="tor_process_complete">готово.</string>
+  <string name="tor_process_waiting">чекање.</string>
   <string name="not_anonymous_yet">ВНИМАНИЕ: Вашиот сообраќај сеуште не е анонимен! Треба да ги конфигурирате Вашите апликации да го користат проксито за HTTP, 127.0.0.1:8118, или проксито за SOCKS4A или SOCKS5, 127.0.0.1:9050</string>
   <string name="menu_home">Дома</string>
   <string name="menu_browse">Прелистување</string>
@@ -92,8 +94,9 @@
     <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
     <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
   <!--Transparent Proxy screen-->
+  <string name="wizard_transproxy_title">Транспарентно прокси</string>
   <!--<string name="pref_use_whispercore">Use WhisperCore</string>
 <string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>-->
-  <string name="default_bridges"/>
+  <string name="default_bridges"></string>
   <string name="powered_by">напојувано од проектот Тор</string>
 </resources>

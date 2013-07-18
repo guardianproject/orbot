@@ -75,8 +75,11 @@
   <string name="wizard_tips_otrchat">Gibberbot - Biztonságos azonnali üzenetküldő kliens Android-ra</string>
   <string name="wizard_tips_proxy">Proxy beállítások - Tanulja meg, hogyan állíthatja be alkalmazásait, hogy együttműködjenek az Orbot-tal</string>
   <string name="wizard_tips_duckgo">Duckduckgo keresőgép alkalmazás</string>
+  <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
   <string name="wizard_tips_firefox">Firefox Proxy Mobile kiegészítővel (külön telepítés utána)</string>
+  <string name="proxymob_setup_url">https://guardianproject.info/releases/proxymob-latest.xpi</string>
   <string name="wizard_tips_twitter">A Twitter támogatja a \"localhost:8118\" http proxyt</string>
+  <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Proxy beállítások</string>
   <string name="wizard_proxy_help_msg">Ha az Android alkalmazás, amit használ képes a HTTP vagy SOCKS proxy-k használatára, akkor be tudja állítani, hogy csatlakozzon az Orbot-hoz és használj a Tor-t.\n\n\n    A host beállítás 127.0.0.1 vagy \"localhost\". A HTTP-hez a  port értéke 8118. A SOCKS esetében a proxy port értéke 9050. SOCKS4A vagy SOCKS5 proxy javasolt használnia, ha lehetséges.\n    \n\n\n    További információkat talál a proxyzásról Android készülékne a FAQ szekcióban az alábbi oldalon: http://tinyurl.com/proxyandroid\n    </string>
   <string name="wizard_final">Az Orbot kész!</string>
@@ -105,6 +108,8 @@
   <string name="gibberbot_apk_url">https://market.android.com/details?id=info.guardianproject.otr.app.im</string>
   <string name="wizard_tips_orweb">ORWEB (csak Android 1.x) - Böngésző, kifejezetten adatvédelemre és az Orbot-hoz</string>
   <string name="orweb_apk_url">market://search?q=pname:nfo.guardianproject.browser</string>
+  <string name="wizard_tips_play">Az összes Guardian Project alkalmazás keresése a Google Play-en</string>
+  <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
     <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
@@ -209,7 +214,7 @@
   <string name="pref_use_persistent_notifications">Mindig legyen látható az ikon az eszköztáron, ha az Orbot csatlakozott állapotú.</string>
   <string name="pref_use_persistent_notifications_title">Mindig bekapcsolt értesítések</string>
   <string name="notification_using_bridges">Hidak engedélyezve!</string>
-  <string name="default_bridges"/>
+  <string name="default_bridges"></string>
   <string name="set_locale_title">Hely beállítása</string>
   <string name="set_locale_summary">Adja meg a helyi és nyelvi beállításokat</string>
   <string name="wizard_locale_title">Válasszon nyelvet</string>
