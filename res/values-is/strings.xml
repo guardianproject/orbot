@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="app_name">Orbot</string>
+  <string name="internal_web_url">http://orbot/</string>
+  <string name="default_web_url">http://check.torproject.org</string>
+  <string name="secure_default_web_url">https://check.torproject.org</string>
+  <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
+  <string name="control_permission_label">ræsa og stöðva Tor</string>
+  <string name="tor_proxy_service_process">torproxyþjónusta</string>
+  <string name="status_activated">Tengdur við Tor netið</string>
+  <string name="status_shutting_down">Það er að slökkna á Orbot</string>
+  <string name="tor_process_complete">lokið.</string>
+  <string name="tor_process_waiting">bíða.</string>
+  <string name="not_anonymous_yet">AÐVÖRUN: Netumferðin þín er ekki nafnlaus enn! Vinsamlegast stilltu hugbúnaðinn þinn til að nota HTTP proxy 127.0.0.1:8118 eða SOCK4A eða SOCK5 proxy 127.0.0.1:9050</string>
+  <string name="menu_home">Heim</string>
+  <string name="menu_browse">Vafra</string>
+  <string name="menu_settings">Stillingar</string>
+  <string name="menu_log">Skráning</string>
+  <string name="menu_info">Hjálp</string>
+  <string name="menu_apps">Smáforrit</string>
+  <string name="menu_start">Byrja</string>
+  <string name="menu_stop">Stöðva</string>
+  <string name="menu_about">Um</string>
+  <string name="menu_wizard">Leiðbeinandi</string>
+  <string name="button_help">Hjálp</string>
+  <string name="button_close">Loka</string>
+  <string name="button_about">Um</string>
+  <string name="button_clear_log">Hreinsa Skráningu</string>
+  <string name="menu_verify">Athuga</string>
+  <string name="menu_exit">Hætta</string>
+  <string name="press_to_start">- ýttu lengi til að byrja -</string>
+  <string name="pref_trans_proxy_group">Gegnsætt Proxy (Þarfnast Rótaraðgangs)</string>
+  <string name="pref_trans_proxy_title">Gegnsætt Proxy</string>
+  <string name="pref_trans_proxy_summary">Sjálfkrafa Tor-gera smáforrit</string>
+  <string name="pref_transparent_all_title">Tor Allt</string>
+  <string name="pref_transparent_all_summary">Beina umferð fyrir öll smáforrit í gegnum Tor</string>
+  <string name="pref_transparent_port_fallback_title">Port Beinir til vara</string>
+  <string name="wizard_title">Orbot</string>
+  <string name="wizard_btn_tell_me_more">Um Orbot</string>
+  <string name="btn_next">Næsta</string>
+  <string name="btn_back">Til baka</string>
+  <string name="btn_finish">Enda</string>
+  <string name="btn_okay">Ókei</string>
+  <string name="btn_cancel">Hætta við</string>
+  <!--Welcome Wizard strings (DJH)-->
+  <string name="wizard_details">Fáein Orbot Smáatriði</string>
+  <string name="wizard_permissions_root">Aðgangur Heimilaður</string>
+  <string name="wizard_permissions_stock">Orbot Leyfisveiting</string>
+  <string name="wizard_premissions_msg_root">Frábært! Við höfum skynjað að þú hefur rótaraðgang heimilaðan fyrir Orbot. Við munum nota þetta vald skynsamlega.</string>
+  <string name="wizard_permissions_msg_stock">Þrátt fyrir að vera ekki nauðsynlegt, getur Orbot orðið öflugra verkfæri ef tækið þitt hefur rótaraðgang. Notaðu hnappinn fyrir neðan til að veita Orbot ofurkrafta!</string>
+  <string name="wizard_permissions_no_root">Ef þú hefur ekki rótaraðgang eða hefur enga hugmynd um hvað við erum að tala, vertu viss um að nota smáforrit sem gerð eru til að vinna með Orbot.</string>
+  <string name="wizard_permissions_consent">Ég skil og vil halda áfram án réttinda Ofurnotanda</string>
+  <string name="wizard_permission_enable_root">Veita rótaraðgang fyrir Orbot</string>
+  <string name="wizard_configure_all">Beina umferð fyrir öll smáforrit í gegnum Tor</string>
+  <string name="wizard_configure_select_apps">Velja Einstök Smáforrit fyrir Tor</string>
+  <string name="wizard_tips_tricks">Orbot-virk Smáforrit</string>
+  <string name="wizard_tips_otrchat">Gibberbot - Öruggur skilaboðaþjónn fyrir Android</string>
+  <string name="wizard_tips_proxy">Beinis Stillingar - Lærðu hvernig á að stilla smáforrit til að virka með Orbot</string>
+  <string name="wizard_proxy_help_info">Beinis Stillingar</string>
+  <string name="wizard_final">Orbot er tilbúinn!</string>
+  <!--END Welcome Wizard strings (DJH)-->
+  <string name="tor_check">Þetta mun opna vef vafrann þinn að https://check.torproject.org til að sjá hvort Orbot sé rétt tengdur og að þú sért tengdur Tor.</string>
+  <string name="pref_general_group">Almennt</string>
+  <string name="pref_start_boot_title">Virkja Orbot við Ræsingu</string>
+  <string name="pref_start_boot_summary">Sjálfkrafa virkja Orbot og tengja Tor þegar Android tækið þitt ræsist</string>
+  <!--New Wizard Strings-->
+  <!--Title Screen-->
+  <!--Warning screen-->
+  <string name="wizard_warning_title">Aðvörun</string>
+  <!--Permissions screen-->
+  <string name="wizard_permissions_title">Leyfisveitingar</string>
+  <string name="wizard_permissions_root_msg1">Þú getur valfrjálst veitt Orbot \'Ofurnotanda\' aðgang til að virkja stillingar fyrir lengra komna, eins og Gegnsæ Beining.</string>
+  <string name="wizard_permissions_root_msg2">Ef þú vilt ekki gera þetta, vinsamlegast vertu viss um að nota smáforrit sem gerð eru til að vinna með Orbot</string>
+  <!--TipsAndTricks screen-->
+  <string name="wizard_tips_title">Orbot-Virk Smáforrit</string>
+  <string name="wizard_tips_gibberbot">Gibberbot: Öruggt spjallforrit með Óupptekna Dulkóðun</string>
+  <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
+	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
+    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
+    <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
+  <!--Transparent Proxy screen-->
+  <string name="wizard_transproxy_title">Gegnsætt Proxy</string>
+  <!--<string name="pref_use_whispercore">Use WhisperCore</string>
+<string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>-->
+  <string name="status">Staða</string>
+  <string name="error">Villa</string>
+  <string name="default_bridges"></string>
+</resources>

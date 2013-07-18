@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="menu_home">Inicio</string>
+  <string name="menu_browse">Examinar</string>
+  <string name="menu_settings">Axustes</string>
+  <string name="menu_info">Axuda</string>
+  <string name="menu_about">Sobre</string>
+  <string name="button_help">Axuda</string>
+  <string name="button_close">Pechar</string>
+  <string name="button_about">Sobre</string>
+  <string name="menu_verify">Comprobar</string>
+  <string name="menu_exit">Saír </string>
+  <string name="btn_back">Atrás</string>
+  <string name="btn_cancel">Cancelar</string>
+  <!--Welcome Wizard strings (DJH)-->
+  <string name="wizard_proxy_help_info">Axustes do proxy</string>
+  <!--END Welcome Wizard strings (DJH)-->
+  <string name="pref_general_group">Xeral</string>
+  <!--New Wizard Strings-->
+  <!--Title Screen-->
+  <!--Warning screen-->
+  <string name="wizard_warning_title">Aviso</string>
+  <!--Permissions screen-->
+  <!--TipsAndTricks screen-->
+  <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
+	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
+    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
+    <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
+  <!--Transparent Proxy screen-->
+  <string name="wizard_transproxy_none">Ninguna</string>
+  <!--<string name="pref_use_whispercore">Use WhisperCore</string>
+<string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>-->
+  <string name="status">Estado</string>
+  <string name="error">Erro</string>
+  <string name="default_bridges"></string>
+  <string name="btn_save_settings">Gardar os axustes</string>
+</resources>

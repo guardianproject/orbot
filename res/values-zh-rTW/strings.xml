@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="menu_home">主頁</string>
+  <string name="menu_browse">瀏覽</string>
+  <string name="menu_settings">設定</string>
+  <string name="menu_info">說明</string>
+  <string name="menu_about">關於</string>
+  <string name="button_help">說明</string>
+  <string name="button_close">關閉</string>
+  <string name="button_about">關於</string>
+  <string name="menu_exit">退出</string>
+  <string name="btn_back">返回</string>
+  <string name="btn_cancel">取消</string>
+  <!--Welcome Wizard strings (DJH)-->
+  <string name="wizard_proxy_help_info">代理設定</string>
+  <!--END Welcome Wizard strings (DJH)-->
+  <string name="pref_general_group">一般</string>
+  <!--New Wizard Strings-->
+  <!--Title Screen-->
+  <!--Warning screen-->
+  <string name="wizard_warning_title">警告 Warning</string>
+  <!--Permissions screen-->
+  <!--TipsAndTricks screen-->
+  <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
+	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
+    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
+    <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
+  <!--Transparent Proxy screen-->
+  <string name="wizard_transproxy_none">無</string>
+  <!--<string name="pref_use_whispercore">Use WhisperCore</string>
+<string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>-->
+  <string name="status">狀態</string>
+  <string name="error">錯誤</string>
+  <string name="default_bridges"></string>
+  <string name="btn_save_settings">保存設定</string>
+</resources>

@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="app_name">Orbot</string>
+  <string name="internal_web_url">http://orbot/</string>
+  <string name="default_web_url">http://check.torproject.org</string>
+  <string name="secure_default_web_url">https://check.torproject.org</string>
+  <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
+  <string name="control_permission_label">Tor-u başlat və durdur</string>
+  <string name="tor_proxy_service_process">torproxyservice</string>
+  <string name="status_activated">Tor şəbəkəsinə bağlandı</string>
+  <string name="status_shutting_down">Orbot söndürülür</string>
+  <string name="tor_process_complete">tamamla.</string>
+  <string name="menu_home">Ev</string>
+  <string name="menu_browse">Bax</string>
+  <string name="menu_settings">Kökləmələr</string>
+  <string name="menu_log">Jurnal</string>
+  <string name="menu_info">Kömək</string>
+  <string name="menu_apps">Tətbiqetmələr</string>
+  <string name="menu_start">Başla</string>
+  <string name="menu_stop">Dur</string>
+  <string name="menu_about">Haqqında</string>
+  <string name="button_help">Kömək</string>
+  <string name="button_close">Bağla</string>
+  <string name="button_about">Haqqında</string>
+  <string name="button_clear_log">Jurnalı Təmizlə</string>
+  <string name="menu_verify">Yoxla</string>
+  <string name="menu_exit">Çıx</string>
+  <string name="title_error">Tətbiq Səhvi</string>
+  <string name="wizard_title">Orbot</string>
+  <string name="wizard_btn_tell_me_more">Orbot Haqqında</string>
+  <string name="btn_next">Sonrakı</string>
+  <string name="btn_back">Geri</string>
+  <string name="btn_finish">Bitir</string>
+  <string name="btn_okay">Okey</string>
+  <string name="btn_cancel">Ləğv et</string>
+  <!--Welcome Wizard strings (DJH)-->
+  <string name="wizard_proxy_help_info">Proksi qurğuları</string>
+  <!--END Welcome Wizard strings (DJH)-->
+  <string name="pref_general_group">Əsas</string>
+  <!--New Wizard Strings-->
+  <!--Title Screen-->
+  <!--Warning screen-->
+  <string name="wizard_warning_title">Xəbərdarlıq</string>
+  <!--Permissions screen-->
+  <string name="wizard_permissions_title">İcazə</string>
+  <!--TipsAndTricks screen-->
+  <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
+	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
+    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
+    <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
+  <!--Transparent Proxy screen-->
+  <!--<string name="pref_use_whispercore">Use WhisperCore</string>
+<string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>-->
+  <string name="error">Xəta</string>
+  <string name="bridges">Körpülər</string>
+  <string name="default_bridges"></string>
+</resources>

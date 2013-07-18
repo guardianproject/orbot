@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="app_name">Orbot</string>
+  <string name="internal_web_url">http://orbot/</string>
+  <string name="default_web_url">http://check.torproject.org/?lang=sl</string>
+  <string name="secure_default_web_url">https://check.torproject.org/?lang=sl</string>
+  <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
+  <string name="control_permission_label">začni in ustavi Tor</string>
+  <string name="status_starting_up">Orbot se zaganja...</string>
+  <string name="status_activated">Povezan v omrežje Tor</string>
+  <string name="status_disabled">Orbot ni aktiviran</string>
+  <string name="status_shutting_down">Orbot se zaustavlja</string>
+  <string name="tor_process_complete">končano.</string>
+  <string name="not_anonymous_yet">POZOR: Vaš promet še ni anonimen! Prosimo, nastavite vaše aplikacije da uporabijo HTTP posredniški strežnik 127.0.0.1:8118 ali SOCKS4A ali SOCKS5 posredniški strežnik 127.0.0.1:9050</string>
+  <string name="menu_home">Domov</string>
+  <string name="menu_browse">Brskaj</string>
+  <string name="menu_settings">Nastavitve</string>
+  <string name="menu_log">Dnevnik</string>
+  <string name="menu_info">Pomoč</string>
+  <string name="menu_apps">Programi</string>
+  <string name="menu_start">Začni</string>
+  <string name="menu_stop">Ustavi</string>
+  <string name="menu_about">O programu</string>
+  <string name="menu_wizard">Čarovnik</string>
+  <string name="button_help">Pomoč</string>
+  <string name="button_close">Zapri</string>
+  <string name="button_about">O programu</string>
+  <string name="button_clear_log">Počisti dnevnik</string>
+  <string name="menu_verify">Preveri</string>
+  <string name="menu_exit">Izhod</string>
+  <string name="press_to_start">- dolg pritisk za začetek -</string>
+  <string name="pref_transparent_port_title">Seznam vrat</string>
+  <string name="title_error">Napaka v programu</string>
+  <string name="wizard_title">Orbot</string>
+  <string name="wizard_btn_tell_me_more">O programu Orbot</string>
+  <string name="btn_next">Naprej</string>
+  <string name="btn_back">Nazaj</string>
+  <string name="btn_finish">Zaključi</string>
+  <string name="btn_okay">Potrdi</string>
+  <string name="btn_cancel">Prekini</string>
+  <!--Welcome Wizard strings (DJH)-->
+  <string name="wizard_proxy_help_info">Nastavitve posredniškega (proxy) strežnika</string>
+  <!--END Welcome Wizard strings (DJH)-->
+  <string name="pref_general_group">Splošno</string>
+  <!--New Wizard Strings-->
+  <!--Title Screen-->
+  <!--Warning screen-->
+  <string name="wizard_warning_title">Opozorilo</string>
+  <!--Permissions screen-->
+  <string name="wizard_permissions_title">Dovoljenja</string>
+  <!--TipsAndTricks screen-->
+  <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
+	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
+    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
+    <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
+  <!--Transparent Proxy screen-->
+  <!--<string name="pref_use_whispercore">Use WhisperCore</string>
+<string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>-->
+  <string name="pref_proxy_host_summary">Ime posredniškega strežnika</string>
+  <string name="status">Stanje</string>
+  <string name="default_bridges"></string>
+  <string name="btn_save_settings">Shrani nastavitve</string>
+</resources>

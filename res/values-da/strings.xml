@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="app_name">Orbot</string>
+  <string name="internal_web_url">http://orbot/</string>
+  <string name="default_web_url">http://check.torproject.org</string>
+  <string name="secure_default_web_url">https://check.torproject.org</string>
+  <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
+  <string name="control_permission_label">start og stop Tor</string>
+  <string name="tor_proxy_service_process">torproxyservice</string>
+  <string name="status_starting_up">Orbot starter op ...</string>
+  <string name="status_activated">Der er forbindelse til Tor-netværket</string>
+  <string name="status_disabled">Orbot er slået fra</string>
+  <string name="status_shutting_down">Orbot lukker ned</string>
+  <string name="tor_process_complete">udført.</string>
+  <string name="tor_process_waiting">afventer.</string>
+  <string name="not_anonymous_yet">ADVARSEL: Din trafik er ikke endnu ikke anonym! Konfigurér venligst dine programmer, så de bruger HTTP proxy 127.0.0.1:8118 eller SOCKS4A eller SOCKS5-proxy 127.0.0.1:9050</string>
+  <string name="menu_home">Hjem</string>
+  <string name="menu_browse">Brows</string>
+  <string name="menu_settings">Indstillinger</string>
+  <string name="menu_log">Log</string>
+  <string name="menu_info">Hjælp</string>
+  <string name="menu_apps">Apps</string>
+  <string name="menu_start">Start</string>
+  <string name="menu_stop">Stop</string>
+  <string name="menu_about">Om</string>
+  <string name="menu_wizard">Hjælpe-guide</string>
+  <string name="button_help">Hjælp</string>
+  <string name="button_close">Luk</string>
+  <string name="button_about">Om</string>
+  <string name="button_clear_log">Ryd log</string>
+  <string name="menu_verify">Tjek</string>
+  <string name="menu_exit">Afslut</string>
+  <string name="press_to_start">- hold nede for start -</string>
+  <string name="pref_trans_proxy_group">Transparent proxy (kræver Root)</string>
+  <string name="pref_trans_proxy_title">Transparent proxy</string>
+  <string name="pref_trans_proxy_summary">Anvend automatisk Tor på programmer</string>
+  <string name="pref_transparent_all_title">Brug Tor til alt</string>
+  <string name="pref_transparent_all_summary">Proxy-trafik for alle programmer gennem Tor</string>
+  <string name="pref_transparent_port_fallback_title">Tilbagefaldsport for proxy</string>
+  <string name="pref_transparent_port_title">Portliste</string>
+  <string name="pref_has_root">Forespørg om Root-adgang</string>
+  <string name="status_install_success">Tor\'s binære filer succesfuldt installeret!</string>
+  <string name="status_install_fail">Tor\'s binære filer kunne ikke installeres. Læs venligst loggen og underret tor-assistants@torproject.org</string>
+  <string name="title_error">Programfejl</string>
+  <string name="wizard_title">Orbot</string>
+  <string name="wizard_btn_tell_me_more">Om Orbot</string>
+  <string name="btn_next">Næste</string>
+  <string name="btn_back">Tilbage</string>
+  <string name="btn_finish">Afslut</string>
+  <string name="btn_okay">Okay</string>
+  <string name="btn_cancel">Fortryd</string>
+  <!--Welcome Wizard strings (DJH)-->
+  <string name="wizard_details">Nogle Orbot detaljer</string>
+  <string name="wizard_permissions_root">Tilladelse givet</string>
+  <string name="wizard_permissions_stock">Orbot tilladelser</string>
+  <string name="wizard_premissions_msg_root">Fremragende! Vi kan se at du har givet root tilladelser til Orbot . Vi vil bruge denne magt med omtanke.</string>
+  <string name="wizard_permissions_msg_stock">Selvom det ikke er påkrævet, kan Orbot blive et mere nyttigt værktøj, hvis din enhed har root adgang. Benyt knappen herunder for at tildele Orbot superkræfter!</string>
+  <string name="wizard_permissions_no_root">Hvis du ikke har root adgang eller ikke aner hvad vi snakker om, skal du være sikker på at du benytter dig af apps som kan fungere med Orbot.</string>
+  <string name="wizard_permissions_consent">Jeg forstår og vil gerne fortsætte uden Superuser</string>
+  <string name="wizard_permission_enable_root">Tillad root for Orbot</string>
+  <string name="wizard_configure">Indstil Torifikation</string>
+  <string name="wizard_configure_msg">Orbot giver dig mulighed for at føre al app-trafik igennem Tor ELLER vælge individuelt imellem apps.</string>
+  <string name="wizard_configure_select_apps">Vælg individuelle apps for Tor</string>
+  <string name="wizard_tips_tricks">Orbot-aktiverede apps</string>
+  <string name="wizard_tips_otrchat">Gibberbot - Sikker instant messaging klient til Android</string>
+  <string name="wizard_tips_proxy">Proxy indstillinger - Lær hvordan du konfigurerer apps til at fungere med Orbot</string>
+  <string name="wizard_proxy_help_info">Proxy-indstillinger</string>
+  <string name="wizard_final">Orbot er klar!</string>
+  <!--END Welcome Wizard strings (DJH)-->
+  <string name="tor_check">Dette vil åbne din browser på https://check.torproject.org for at se om Orbot er korrekt konfigureret og at du er forbundet til Tor.</string>
+  <string name="pref_general_group">Generelt</string>
+  <string name="pref_start_boot_title">Start Orbot ved opstart</string>
+  <string name="pref_start_boot_summary">Start automatisk Orbot og forbind til Tor når din android enhed starter</string>
+  <!--New Wizard Strings-->
+  <!--Title Screen-->
+  <!--Warning screen-->
+  <string name="wizard_warning_title">Advarsel</string>
+  <!--Permissions screen-->
+  <string name="wizard_permissions_title">Tilladelser</string>
+  <string name="wizard_permissions_root_msg1">Du kan eventuelt give Orbot \'Superuser\' adgang for at aktivere funktioner som f.eks. Transparent Proxying.</string>
+  <string name="wizard_permissions_root_msg2">Hvis du ikke vil dette, så vær sikker på at du bruger apps som fungerer med Orbot</string>
+  <!--TipsAndTricks screen-->
+  <string name="wizard_tips_title">Orbot-aktiverede apps</string>
+  <string name="wizard_tips_orweb">Orweb: Privatlivs-forbedret browser der virker gennem Tor</string>
+  <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
+	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
+    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
+    <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
+  <!--Transparent Proxy screen-->
+  <string name="wizard_transproxy_title">Transperant Proxying</string>
+  <string name="wizard_transproxy_msg">Dette tillader at dine apps automatisk kører gennem Tor netværket uden nogen konfiguration.</string>
+  <string name="wizard_transproxy_hint">(Check denne boks hvis du ikke aner hvad vi snakker om)</string>
+  <string name="wizard_transproxy_none">Ingen</string>
+  <string name="button_grant_superuser">Anmod om Superuser adgang</string>
+  <string name="pref_select_apps">Vælg apps</string>
+  <string name="pref_select_apps_summary">Vælg apps som føres gennem Tor</string>
+  <!--<string name="pref_use_whispercore">Use WhisperCore</string>
+<string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>-->
+  <string name="status">Status</string>
+  <string name="transparent_proxying_enabled">Transparent proxying AKTIVERET</string>
+  <string name="error">Fejl</string>
+  <string name="default_bridges"></string>
+  <string name="powered_by">drevet af The Tor Project</string>
+  <string name="btn_save_settings">Gem Indstillinger</string>
+</resources>

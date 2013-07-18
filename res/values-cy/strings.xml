@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="app_name">Orbot</string>
+  <string name="internal_web_url">http://orbot/</string>
+  <string name="default_web_url">http://check.torproject.org</string>
+  <string name="secure_default_web_url">https://check.torproject.org</string>
+  <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
+  <string name="control_permission_label">dechrau ac yn stopio Tor</string>
+  <string name="tor_proxy_service_process">torproxyservice</string>
+  <string name="status_activated">Gysylltu â\'r rhwydwaith Tor</string>
+  <string name="status_shutting_down">Orbot yn cau i lawr</string>
+  <string name="tor_process_complete">gwneud.</string>
+  <string name="tor_process_waiting">yn aros.</string>
+  <string name="not_anonymous_yet">RHYBUDD: Nid yw eich traffig yn ddienw eto! Os gwelwch yn dda ffurfweddu eich ceisiadau at arfer HTTP proxy 127.0.0.1:8118 neu SOCKS4A neu ddirprwy SOCKS5 127.0.0.1:9050</string>
+  <string name="menu_home">Dechrau</string>
+  <string name="menu_browse">Pori</string>
+  <string name="menu_settings">Gosodiadau</string>
+  <string name="menu_log">Log</string>
+  <string name="menu_info">Допомога</string>
+  <string name="menu_apps">Apps</string>
+  <string name="menu_start">Dechrau</string>
+  <string name="menu_stop">Stop</string>
+  <string name="menu_about">Amdanom ni</string>
+  <string name="button_help">Допомога</string>
+  <string name="button_close">Cau</string>
+  <string name="button_about">Amdanom ni</string>
+  <string name="menu_verify">Gwirio</string>
+  <string name="menu_exit">Allanfa</string>
+  <string name="pref_trans_proxy_group">Proxying tryloyw (Requires Root)</string>
+  <string name="pref_trans_proxy_title">Proxying tryloyw</string>
+  <string name="pref_trans_proxy_summary">\'N awtomatig Torifying o Apps</string>
+  <string name="pref_transparent_all_title">Tor popeth</string>
+  <string name="wizard_title">Orbot</string>
+  <string name="btn_cancel">Canslo</string>
+  <!--Welcome Wizard strings (DJH)-->
+  <string name="wizard_proxy_help_info">Gosodiadau Procsi</string>
+  <!--END Welcome Wizard strings (DJH)-->
+  <!--New Wizard Strings-->
+  <!--Title Screen-->
+  <!--Warning screen-->
+  <!--Permissions screen-->
+  <!--TipsAndTricks screen-->
+  <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
+	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
+    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
+    <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
+  <!--Transparent Proxy screen-->
+  <string name="wizard_transproxy_title">Proxying tryloyw</string>
+  <string name="wizard_transproxy_none">Dim</string>
+  <!--<string name="pref_use_whispercore">Use WhisperCore</string>
+<string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>-->
+  <string name="error">Gwall</string>
+  <string name="default_bridges"></string>
+</resources>
