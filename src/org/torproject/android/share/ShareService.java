@@ -46,8 +46,6 @@ public class ShareService implements Container, Runnable {
       public void run() {
          try {
         	
-        //	 android.os.Debug.waitForDebugger();
-        	 
         	Path path = request.getPath();
         	String rPath = path.toString();
         	if (rPath.length() > 0)

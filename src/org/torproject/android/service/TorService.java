@@ -644,8 +644,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     
     private void updateSettings ()
     {
-    	android.os.Debug.waitForDebugger();
-
     	mHasRoot = mPrefs.getBoolean(PREF_HAS_ROOT,false);
  		mEnableTransparentProxy = mPrefs.getBoolean("pref_transparent", false);
  		mTransProxyAll = mPrefs.getBoolean("pref_transparent_all", false);
