@@ -39,7 +39,7 @@ public class LotsaText extends Activity implements TorConstants{
 		super.onStart();
 		setContentView(R.layout.scrollingtext_buttons_view);
 		
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
 		boolean wizardScreen1 = prefs.getBoolean("wizardscreen1",true);
 		if(wizardScreen1)
@@ -71,7 +71,7 @@ public class LotsaText extends Activity implements TorConstants{
 	
 	private void stepOne() {
 		
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
 		Editor pEdit = prefs.edit();
 		pEdit.putBoolean("wizardscreen1",true);
@@ -104,7 +104,7 @@ public class LotsaText extends Activity implements TorConstants{
 	
 	private void stepTwo() {
 		
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
 		Editor pEdit = prefs.edit();
 		pEdit.putBoolean("wizardscreen1",false);

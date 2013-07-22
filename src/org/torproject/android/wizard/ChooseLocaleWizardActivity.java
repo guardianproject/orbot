@@ -116,7 +116,7 @@ public class ChooseLocaleWizardActivity extends Activity implements TorConstants
 	private void setLocalePref(int selId)
 	{
 
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
         Configuration config = getResources().getConfiguration();
 

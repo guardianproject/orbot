@@ -4,18 +4,14 @@
 package org.torproject.android;
 
 import java.util.Locale;
-import java.util.StringTokenizer;
 
 import org.torproject.android.service.ITorService;
 import org.torproject.android.service.ITorServiceCallback;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.settings.ProcessSettingsAsyncTask;
 import org.torproject.android.settings.SettingsPreferences;
-import org.torproject.android.share.ShareItem;
-import org.torproject.android.share.ShareService;
 import org.torproject.android.wizard.ChooseLocaleWizardActivity;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.NotificationManager;
 import android.content.ComponentName;
@@ -25,6 +21,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Configuration;
 import android.net.Uri;
@@ -33,7 +30,6 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.RemoteException;
-import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.text.ClipboardManager;
 import android.text.Layout;
@@ -55,7 +51,7 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 
 
-public class Orbot extends SherlockActivity implements TorConstants, OnLongClickListener
+public class Orbot extends SherlockActivity implements TorConstants, OnLongClickListener, OnSharedPreferenceChangeListener
 {
 	/* Useful UI bits */
 	private TextView lblStatus = null; //the main text display widget
@@ -99,6 +95,9 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
         	StrictMode.setVmPolicy(vmpolicy);
         	}
         */
+
+    	prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+    	prefs.registerOnSharedPreferenceChangeListener(this);
         
         Orbot.setCurrent(this);
 
@@ -110,8 +109,6 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
         
         startService(new Intent(INTENT_TOR_SERVICE));
 		
-    	prefs = PreferenceManager.getDefaultSharedPreferences(this);
-    	
     	doLayout();
 	}
 	
@@ -368,7 +365,6 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 	
 	private void enableHiddenServicePort (int hsPort)
 	{
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		Editor pEdit = prefs.edit();
 		
 		String hsPortString = prefs.getString("pref_hs_ports", "");
@@ -522,7 +518,6 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 		{
 		
 			
-			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 	
 			boolean showWizard = prefs.getBoolean("show_wizard",true);
 			
@@ -586,7 +581,6 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 	private void startWizard ()
 	{
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
 		Editor pEdit = prefs.edit();
 		pEdit.putBoolean("wizardscreen1",true);
@@ -1075,11 +1069,10 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
     private void setLocale ()
     {
     	
-    	SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
 
         Configuration config = getResources().getConfiguration();
 
-        String lang = settings.getString(PREF_DEFAULT_LOCALE, "");
+        String lang = prefs.getString(PREF_DEFAULT_LOCALE, "");
         
         if (! "".equals(lang) && ! config.locale.getLanguage().equals(lang))
         {
@@ -1122,6 +1115,13 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 		return ((float)((int)(count*100/1024/1024))/100 + "MB");
 		
    		//return count+" kB";
+	}
+
+	@Override
+	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
+			String key) {
+	
+		
 	}
    	
 }

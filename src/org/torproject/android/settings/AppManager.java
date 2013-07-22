@@ -272,7 +272,7 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
 		if (apps == null)
 			return;
 		
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
 	//	final SharedPreferences prefs = context.getSharedPreferences(PREFS_KEY, 0);
 

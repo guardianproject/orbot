@@ -76,7 +76,7 @@ public class ConfigureTransProxy extends Activity implements TorConstants {
 	
 	private void setupUI ()
 	{
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
 		boolean transEnabled = prefs.getBoolean(PREF_TRANSPARENT, false);
 		
@@ -162,7 +162,7 @@ public class ConfigureTransProxy extends Activity implements TorConstants {
 	        		RadioButton rb1 = (RadioButton)findViewById(R.id.radio1);
 	        		RadioButton rb2 = (RadioButton)findViewById(R.id.radio2);
 
-	        		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+	        		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
 					Editor pEdit = prefs.edit();
 					pEdit.putBoolean(PREF_TRANSPARENT, rb0.isChecked());

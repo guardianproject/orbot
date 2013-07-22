@@ -115,7 +115,7 @@ public class Permissions extends Activity implements TorConstants {
 					boolean isChecked) {
 			
 				
-				SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+				SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
 				Editor pEdit = prefs.edit();
 				
@@ -144,7 +144,7 @@ public class Permissions extends Activity implements TorConstants {
 			public void onClick(View v) {
 				//Check and Install iptables - TorTransProxy.testOwnerModule(this)
 				
-				SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+				SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 				boolean hasRoot = prefs.getBoolean("has_root",false);
 				
 				

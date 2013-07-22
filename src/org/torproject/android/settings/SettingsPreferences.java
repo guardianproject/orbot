@@ -46,15 +46,9 @@ public class SettingsPreferences
 		
 		addPreferencesFromResource(R.xml.preferences);
 		
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 		
 		hasRoot = prefs.getBoolean("has_root",false);
-		
-		if (!hasRoot)
-		{
-			hasRoot = prefs.getBoolean("use_whispercore", false);
-			
-		}
 		
 		init();
 	}
@@ -170,7 +164,7 @@ public class SettingsPreferences
 		}
 		else if (preference == prefLocale)
 		{
-			 SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
+			 SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
 		        Configuration config = getResources().getConfiguration();
 
