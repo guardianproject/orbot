@@ -1,6 +1,6 @@
 [submodule "external/openssl-static"]
 	path = external/openssl-static
-	url = https://github.com/guardianproject/openssl-android.git
+	url = https://github.com/guardianproject/android-external-openssl-ndk-static.git
 [submodule "external/tor"]
 	path = external/tor
 	url = https://git.torproject.org/git/tor.git
@@ -15,4 +15,7 @@
 	url = https://git.torproject.org/git/jtorctl
 [submodule "external/obfsproxy"]
 	path = external/obfsproxy
-	url = https://git.torproject.org/obfsproxy.git
+	url = https://git.torproject.org/pluggable-transports/obfsproxy-legacy.git
+[submodule "external/ActionBarSherlock"]
+	path = external/ActionBarSherlock
+	url = https://github.com/JakeWharton/ActionBarSherlock.git

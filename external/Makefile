@@ -20,9 +20,11 @@ NDK_BASE ?= /usr/local/android-ndk
 NDK_PLATFORM_LEVEL ?= 8
 NDK_TOOLCHAIN_VERSION=4.6
 NDK_SYSROOT=$(NDK_BASE)/platforms/android-$(NDK_PLATFORM_LEVEL)/arch-arm
-NDK_UNAME=`uname -s | tr '[A-Z]' '[a-z]'`
-#NDK_TOOLCHAIN=$(NDK_BASE)/toolchains/arm-linux-androideabi-4.4.3/prebuilt/$(NDK_UNAME)-x86
-NDK_TOOLCHAIN=$(NDK_BASE)/toolchains/arm-linux-androideabi-4.6/prebuilt/$(NDK_UNAME)-x86
+NDK_UNAME:=`uname -s | tr '[A-Z]' '[a-z]'`
+NDK_PROCESSOR:=`uname -m`
+
+#NDK_TOOLCHAIN=$(NDK_BASE)/toolchains/arm-linux-androideabi-4.4.3/prebuilt/$(NDK_UNAME)-$(NDK_PROCESSOR)
+NDK_TOOLCHAIN=$(NDK_BASE)/toolchains/arm-linux-androideabi-4.6/prebuilt/$(NDK_UNAME)-$(NDK_PROCESSOR)
 
 # to use the real HOST tag, you need the latest libtool files:
 # http://stackoverflow.com/questions/4594736/configure-does-not-recognize-androideabi
@@ -58,25 +60,25 @@ all: assets
 #------------------------------------------------------------------------------#
 # openssl-static
 
-openssl-static/obj/local/armeabi/libcrypto.a:
+lib/libcrypto.a:
 	cd openssl-static && \
 		ndk-build
 
-openssl-static/obj/local/armeabi/libssl.a:
+lib/libssl.a:
 	cp config.sub openssl-static
 	cp config.guess openssl-static
 	cd openssl-static && \
 		ndk-build
 
-openssl-static-build-stamp: openssl-static/obj/local/armeabi/libcrypto.a openssl-static/obj/local/armeabi/libssl.a
+openssl-static-build-stamp: lib/libcrypto.a lib/libssl.a
 	touch openssl-static-build-stamp
 
 openssl-static: openssl-static-build-stamp
 	test -d lib || mkdir lib
 	test -d include || mkdir include
 	test -d include/openssl || mkdir include/openssl
-	cp openssl-static/obj/local/armeabi/libcrypto.a lib
-	cp openssl-static/obj/local/armeabi/libssl.a lib
+	cp openssl-static/obj/local/armeabi/libcrypto.a lib/libcrypto.a
+	cp openssl-static/obj/local/armeabi/libssl.a lib/libssl.a
 	cp openssl-static/include/openssl/* include/openssl
 
 openssl-static-clean:
