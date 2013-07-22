@@ -8,18 +8,17 @@
     <uses-permission android:name="android.permission.INTERNET" />
  	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
- 	
+ 	<uses-permission android:name="android.permission.ACCESS_SUPERUSER"/>
+ 	    
     <uses-sdk android:minSdkVersion="5" android:targetSdkVersion="18"/>
     
     <application android:name=".OrbotApp" android:icon="@drawable/ic_launcher"
      android:label="@string/app_name" 
      android:configChanges="locale|orientation|screenSize"
-      android:theme="@style/Theme.Sherlock"
-      android:largeHeap="true"
+      android:theme="@style/Theme.Sherlock"      
       android:persistent="true"
       android:allowBackup="false"
       android:allowClearUserData="true"
-      android:hardwareAccelerated="true"
      >
       
         <activity android:name=".Orbot" android:configChanges="orientation|screenSize"
@@ -76,7 +75,6 @@
     	<service android:enabled="true"
     		android:name=".service.TorService" 
     		android:exported="false"
-    		 android:process=":orbot" 
     		>
 	            <intent-filter>
 	                <action android:name="org.torproject.android.service.ITorService" />
