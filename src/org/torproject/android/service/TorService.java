@@ -51,6 +51,7 @@ import android.os.IBinder;
 import android.os.RemoteCallbackList;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 public class TorService extends Service implements TorServiceConstants, TorConstants, Runnable, EventHandler
@@ -1053,33 +1054,32 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			}
 		}
 		
+		NotificationCompat.Builder mNotifyBuilder;
+		
 		private void startNotification (String message, boolean persistent)
 		{
 			
-			Notification notice = new Notification(R.drawable.ic_stat_tor, getString(R.string.status_activated), System.currentTimeMillis());
-			
-			Intent intent = new Intent(TorService.this, Orbot.class);
-
-			PendingIntent pendIntent = PendingIntent.getActivity(TorService.this, 0, intent, 0);
-
-			//This method is deprecated. Use Notification.Builder instead.
-			notice.setLatestEventInfo(TorService.this,getString(R.string.app_name), message, pendIntent);
-
-			if (persistent)
+			if (mNotifyBuilder == null)
 			{
-				notice.flags |= Notification.FLAG_NO_CLEAR;
-				notice.flags |= Notification.FLAG_ONGOING_EVENT;
+				mNotifyBuilder = new NotificationCompat.Builder(this)
+				    .setContentTitle(getString(R.string.app_name))
+				    .setContentText( getString(R.string.status_activated))
+				    .setSmallIcon(R.drawable.ic_stat_tor);
 			
-				startForeground(NOTIFY_ID,notice);
+				Intent intent = new Intent(TorService.this, Orbot.class);
+				PendingIntent pendIntent = PendingIntent.getActivity(TorService.this, 0, intent, 0);
 
-			}
-			else
-			{
-				mNotificationManager.notify(NOTIFY_ID,notice);
+				mNotifyBuilder.setContentIntent(pendIntent);
+				
+				
+			}				
 
+			mNotifyBuilder.setOngoing(persistent);			    
+			mNotifyBuilder.setContentText(message);
 
-			}
-			
+			  mNotificationManager.notify(
+			    		NOTIFY_ID,
+			            mNotifyBuilder.getNotification());
 		}
 		
 
@@ -1156,11 +1156,15 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		if (read != lastRead || written != lastWritten)
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.append("Bandwidth: ");
+			sb.append(getString(R.string.bandwidth_));
+			sb.append(" ");
 			sb.append(formatCount(read));
-			sb.append(" down / ");
+			sb.append(" ");
+			sb.append(getString(R.string.down));
+			sb.append(" / ");
 			sb.append(formatCount(written));
-			sb.append(" up");
+			sb.append(" ");
+			sb.append(getString(R.string.up));
 		   	
 			if (mConnectivity && prefPersistNotifications)
 				startNotification(sb.toString(),prefPersistNotifications);
@@ -1592,7 +1596,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
     		mConnectivity = !intent.getBooleanExtra(ConnectivityManager.EXTRA_NO_CONNECTIVITY, false);
 
-    		if (currentStatus == STATUS_ON)
+    		boolean disableNetwork = mPrefs.getBoolean(TorConstants.PREF_DISABLE_NETWORK, true);
+    		
+    		if (currentStatus == STATUS_ON && disableNetwork)
     		{
 	    		try {
 					mBinder.updateConfiguration("DisableNetwork", mConnectivity ? "0" : "1", false);
