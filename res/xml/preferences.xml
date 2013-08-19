@@ -218,7 +218,7 @@ android:title="@string/pref_use_sys_iptables_title"/>
 
 
 <CheckBoxPreference
-android:defaultValue="false" 
+android:defaultValue="true" 
 android:key="pref_disable_network"
 android:summary="@string/pref_disable_network_summary"
 android:enabled="true" 
