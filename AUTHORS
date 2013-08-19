@@ -36,3 +36,5 @@ in TorTransProxy for handling the "transproxy all" mode of operation. Before
 certain system processes were leaking traffic, and this was also detected
 by his excellent auditing.
  
+We found a nice new power button vector set here under the CC license:
+http://vector4free.com/vector/free-vector-power-buttons/
