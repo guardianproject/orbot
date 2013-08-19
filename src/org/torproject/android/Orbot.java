@@ -495,6 +495,7 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 			
 			
 		}
+		/*
 		else if (Intent.ACTION_SEND.equals(action))
 		{
 			Uri dataUri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
@@ -513,7 +514,7 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
+		}*/
 		else
 		{
 		
