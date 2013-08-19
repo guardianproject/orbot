@@ -107,7 +107,7 @@
   <string name="wizard_tips_gibberbot">Gibberbot: Secure chat app with Off-the-Record Encryption</string>
   <string name="gibberbot_apk_url">https://guardianproject.info/releases/gibberbot-latest.apk</string>
   <string name="wizard_tips_orweb">Orweb: Privacy-enhanced browser that works through Tor</string>
-  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.xpi</string>
+  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
   <string name="wizard_tips_play">Find all Guardian Project apps on Google Play</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
@@ -238,7 +238,6 @@
   <string name="bandwidth_">Bandwidth:</string>
   <string name="down">down</string>
   <string name="up">up</string>
-  
   <string name="pref_disable_network_title">Network Auto-Sleep</string>
   <string name="pref_disable_network_summary">Put Tor to sleep when there is no network connectivity</string>
 </resources>

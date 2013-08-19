@@ -112,6 +112,7 @@
         android:drawableLeft="@drawable/ic_twitter"
         android:text="@string/wizard_tips_twitter" />
     
+    <!-- 
      <Button
         android:id="@+id/WizardRootButtonGooglePlay"
         android:layout_width="fill_parent"
@@ -120,7 +121,7 @@
         android:layout_marginTop="10px"
         android:drawableLeft="@drawable/ic_play"
         android:text="@string/wizard_tips_play" />
-    
+     -->
 
 </LinearLayout>
 

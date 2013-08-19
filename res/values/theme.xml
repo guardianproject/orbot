@@ -3,7 +3,6 @@
 <resources>
 	<color name="custom_theme_color">#333</color>
     <style name="DefaultTheme" parent="@android:style/Theme.Black.NoTitleBar">
-        <item name="android:windowBackground">@drawable/bgtitanium</item>
         <item name="android:windowNoTitle">true</item>
     </style>
 </resources>

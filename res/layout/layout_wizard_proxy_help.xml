@@ -14,7 +14,11 @@
 		    android:layout_width="fill_parent"
 		    android:layout_height="fill_parent"
 		    android:padding="3px">
-<TextView android:text="@string/wizard_proxy_help_msg" 	android:textColor="#ffffff" android:id="@+id/WizardRootTextView01" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:text="@string/wizard_proxy_help_msg" 	android:textColor="#ffffff" 
+    android:id="@+id/WizardRootTextView01" android:layout_width="wrap_content" android:layout_height="wrap_content"
+    
+    
+    ></TextView>
 
 
 

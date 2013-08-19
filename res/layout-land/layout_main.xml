@@ -36,7 +36,10 @@
 			android:layout_marginRight="0px"
 			android:gravity="right"
 			android:layout_toLeftOf="@+id/radioModeImage"
-            android:textColor="#cccccc" />
+            android:textColor="#cccccc"
+            		android:fontFamily="sans-serif-light"	
+            
+             />
 	</RelativeLayout>
 	
 		<LinearLayout android:gravity="center_vertical"
@@ -64,6 +67,9 @@
 		android:layout_height="wrap_content"
 		android:layout_marginBottom="20dp"
 		android:textColor="#ffffff"
+		android:maxLines="1"
+				android:fontFamily="sans-serif-light"	
+		
 		 />
 	
 </LinearLayout>
@@ -96,7 +102,10 @@
 			android:textSize="15sp"
 			android:text="@string/main_layout_download"
 			android:gravity="center_vertical"
-			android:textStyle="bold" />
+			android:textStyle="bold"
+							android:fontFamily="sans-serif-light"	
+			
+			 />
 	    <TextView
 			android:id="@+id/trafficLabelUp"
 			android:textColor="#FFFFFFFF"
@@ -106,7 +115,10 @@
 			android:text="@string/main_layout_upload"
 			android:textSize="15sp"
 			android:gravity="center_vertical"
-			android:textStyle="bold" />
+			android:textStyle="bold"
+							android:fontFamily="sans-serif-light"	
+			
+			 />
 		
 		</RelativeLayout>
 		 <RelativeLayout 
@@ -126,7 +138,10 @@
 			 android:layout_alignParentLeft="true"
 			android:textSize="15sp"
 			android:gravity="center_vertical"
-			android:textStyle="bold" />
+			android:textStyle="bold"
+							android:fontFamily="sans-serif-light"	
+			
+			 />
 		<TextView
 			android:id="@+id/trafficUp"
 			android:textColor="#FF00B627"
@@ -135,7 +150,10 @@
 			 android:layout_alignParentRight="true"
 			android:textSize="15sp"
 			android:gravity="center_vertical"
-			android:textStyle="bold" />
+			android:textStyle="bold" 
+							android:fontFamily="sans-serif-light"	
+			
+			/>
 		</RelativeLayout>
 		<TextView
 			android:id="@+id/orbotLog"
@@ -147,6 +165,8 @@
 			android:layout_alignParentLeft="true"
 			android:textIsSelectable="true"
 			 android:layout_below="@+id/rowTrafficData"
+			 				android:fontFamily="sans-serif-light"	
+			 
 			 />
     </RelativeLayout>		
     </RelativeLayout>		

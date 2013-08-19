@@ -32,7 +32,10 @@
 			android:layout_marginRight="0px"
 			android:gravity="right"
 			android:layout_toLeftOf="@+id/radioModeImage"
-            android:textColor="#cccccc" />
+            android:textColor="#cccccc"
+            android:fontFamily="sans-serif-light"
+            
+             />
 	</RelativeLayout>
 		<LinearLayout android:gravity="center_vertical|center_horizontal"
 		     android:orientation="vertical" android:layout_width="fill_parent"
@@ -52,9 +55,13 @@
 		android:gravity="center_horizontal"
 		android:textStyle="bold"
 		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
+		android:layout_height="50sp"
 		android:layout_marginBottom="20dp"
+		android:layout_marginLeft="30dp"
+		android:layout_marginRight="30dp"
 		android:textColor="#ffffff"
+		android:maxLines="2"
+		android:fontFamily="sans-serif-light"	
 		 />
 	
 	
@@ -76,7 +83,8 @@
 			android:textSize="15sp"
 			android:text="@string/main_layout_download"
 			android:gravity="center_vertical"
-			android:textStyle="bold" />
+			android:textStyle="bold"
+			android:fontFamily="sans-serif-light" />
 	    <TextView
 			android:id="@+id/trafficLabelUp"
 			android:textColor="#FFFFFFFF"
@@ -86,7 +94,8 @@
 			android:text="@string/main_layout_upload"
 			android:textSize="15sp"
 			android:gravity="center_vertical"
-			android:textStyle="bold" />
+			android:textStyle="bold"
+			android:fontFamily="sans-serif-light" />
 		
 		</RelativeLayout>
 		 <RelativeLayout 
@@ -106,7 +115,9 @@
 			 android:layout_alignParentLeft="true"
 			android:textSize="15sp"
 			android:gravity="center_vertical"
-			android:textStyle="bold" />
+			android:textStyle="bold"
+			android:fontFamily="sans-serif-light"
+			 />
 		<TextView
 			android:id="@+id/trafficUp"
 			android:textColor="#FF00B627"
@@ -115,7 +126,9 @@
 			 android:layout_alignParentRight="true"
 			android:textSize="15sp"
 			android:gravity="center_vertical"
-			android:textStyle="bold" />
+			android:textStyle="bold"
+			android:fontFamily="sans-serif-light"
+			 />
 		</RelativeLayout>
 </LinearLayout>
 
@@ -123,7 +136,7 @@
         android:layout_width="fill_parent"
         android:id="@+id/SlidingDrawer"
         android:handle="@+id/slideButton"
-        android:content="@+id/trafficRow"
+        android:content="@+id/trafficLog"
         android:padding="10dip"
         android:layout_height="fill_parent"
         android:orientation="vertical"
@@ -135,7 +148,7 @@
               android:layout_height="wrap_content"
               android:text="@string/menu_log" ></Button>
 
-	<RelativeLayout android:id="@+id/trafficRow"
+	<RelativeLayout android:id="@+id/trafficLog"
 		android:gravity="top"
 	    android:layout_width="fill_parent"
 	    android:visibility="invisible"
@@ -152,9 +165,9 @@
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
 			android:layout_alignParentLeft="true"
-			android:layout_below="@+id/rowTrafficUp"
 			android:layout_marginTop="10dp"
 			android:textIsSelectable="true"
+			android:fontFamily="sans-serif-light"
 			 />
     </RelativeLayout>		
     </SlidingDrawer>
