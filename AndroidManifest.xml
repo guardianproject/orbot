@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="org.torproject.android" 
-      android:versionName="12.0.1" 
-      android:versionCode="57"
+      android:versionName="12.0.2" 
+      android:versionCode="58"
         android:installLocation="auto"
-      >
-    <uses-permission android:name="android.permission.INTERNET" />
+      > <uses-permission android:name="android.permission.INTERNET" />
  	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
  	<uses-permission android:name="android.permission.ACCESS_SUPERUSER"/>
