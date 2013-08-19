@@ -235,4 +235,10 @@
   <string name="powered_by">powered by The Tor Project  </string>
   <string name="btn_save_settings">Save Settings</string>
   <string name="no_internet_connection_tor">No internet connection; Tor is on standby...</string>
+  <string name="bandwidth_">Bandwidth:</string>
+  <string name="down">down</string>
+  <string name="up">up</string>
+  
+  <string name="pref_disable_network_title">Network Auto-Sleep</string>
+  <string name="pref_disable_network_summary">Put Tor to sleep when there is no network connectivity</string>
 </resources>
