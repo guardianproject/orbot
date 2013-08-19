@@ -11,19 +11,23 @@ import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.settings.ProcessSettingsAsyncTask;
 import org.torproject.android.settings.SettingsPreferences;
 import org.torproject.android.wizard.ChooseLocaleWizardActivity;
+import org.torproject.android.wizard.TipsAndTricks;
 
 import android.app.AlertDialog;
 import android.app.NotificationManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Configuration;
+import android.drm.DrmStore.Action;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -72,7 +76,7 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
     ITorService mService = null;
 	private boolean autoStartFromIntent = false;
 
-	SharedPreferences prefs;
+	SharedPreferences mPrefs;
 	
 	public static Orbot currentInstance = null;
 	
@@ -96,8 +100,8 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
         	}
         */
 
-    	prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-    	prefs.registerOnSharedPreferenceChangeListener(this);
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        mPrefs.registerOnSharedPreferenceChangeListener(this);
         
         Orbot.setCurrent(this);
 
@@ -365,9 +369,9 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 	
 	private void enableHiddenServicePort (int hsPort)
 	{
-		Editor pEdit = prefs.edit();
+		Editor pEdit = mPrefs.edit();
 		
-		String hsPortString = prefs.getString("pref_hs_ports", "");
+		String hsPortString = mPrefs.getString("pref_hs_ports", "");
 		
 		if (hsPortString.length() > 0 && hsPortString.indexOf(hsPort+"")==-1)
 			hsPortString += ',' + hsPort;
@@ -379,7 +383,7 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 		
 		pEdit.commit();
 		
-		String onionHostname = prefs.getString("pref_hs_hostname","");
+		String onionHostname = mPrefs.getString("pref_hs_hostname","");
 
 		while (onionHostname.length() == 0)
 		{
@@ -395,7 +399,7 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 				e.printStackTrace();
 			}
 			 
-			 onionHostname = prefs.getString("pref_hs_hostname","");
+			 onionHostname = mPrefs.getString("pref_hs_hostname","");
 		}
 		
 		Intent nResult = new Intent();
@@ -520,13 +524,13 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 		
 			
 	
-			boolean showWizard = prefs.getBoolean("show_wizard",true);
+			boolean showWizard = mPrefs.getBoolean("show_wizard",true);
 			
 			if (showWizard)
 			{
 			
 				
-				Editor pEdit = prefs.edit();
+				Editor pEdit = mPrefs.edit();
 				pEdit.putBoolean("show_wizard",false);
 				pEdit.commit();
 	
@@ -566,15 +570,89 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 	/*
 	 * Launch the system activity for Uri viewing with the provided url
 	 */
-	private void openBrowser(String url)
+	private void openBrowser(final String browserLaunchUrl)
 	{
-		Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-		intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
-		startActivity(intent);
+		boolean isOrwebInstalled = appInstalledOrNot("info.guardianproject.browser");
+		boolean isTransProxy =  mPrefs.getBoolean("pref_transparent", false);
+		
+		if (isOrwebInstalled)
+		{
+			startIntent("info.guardianproject.browser",Intent.ACTION_VIEW,Uri.parse(browserLaunchUrl));						
+		}
+		else if (isTransProxy)
+		{
+			Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(browserLaunchUrl));
+			intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
+			startActivity(intent);
+		}
+		else
+		{
+			AlertDialog aDialog = new AlertDialog.Builder(Orbot.this)
+              .setIcon(R.drawable.icon)
+		      .setTitle("Install apps?")
+		      .setMessage("It doesn't seem like you have Orweb installed. Want help with that, or should we just open the browser?")
+		      .setPositiveButton(android.R.string.ok, new OnClickListener ()
+		      {
+
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+
+					//prompt to install Orweb
+					Intent intent = new Intent(Orbot.this,TipsAndTricks.class);
+					startActivity(intent);
+					
+				}
+		    	  
+		      })
+		      .setNegativeButton(android.R.string.no, new OnClickListener ()
+		      {
+
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(browserLaunchUrl));
+					intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
+					startActivity(intent);
+					
+				}
+		    	  
+		      })
+		      .show();
+			  
+		}
 		
 	}
 	
+	private void startIntent (String pkg, String action, Uri data)
+	{
+		Intent i;
+		PackageManager manager = getPackageManager();
+		try {
+		    i = manager.getLaunchIntentForPackage(pkg);
+		    if (i == null)
+		        throw new PackageManager.NameNotFoundException();		    
+		    i.setAction(action);
+		    i.setData(data);
+		    startActivity(i);
+		} catch (PackageManager.NameNotFoundException e) {
+
+		}
+	}
 	
+	private boolean appInstalledOrNot(String uri)
+    {
+        PackageManager pm = getPackageManager();
+        boolean app_installed = false;
+        try
+        {
+               pm.getPackageInfo(uri, PackageManager.GET_ACTIVITIES);
+               app_installed = true;
+        }
+        catch (PackageManager.NameNotFoundException e)
+        {
+               app_installed = false;
+        }
+        return app_installed ;
+}
 	
 	/*
 	 * Show the help view - a popup dialog
@@ -583,7 +661,7 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 	{
 
 
-		Editor pEdit = prefs.edit();
+		Editor pEdit = mPrefs.edit();
 		pEdit.putBoolean("wizardscreen1",true);
 		pEdit.commit();
 		startActivityForResult(new Intent(getBaseContext(), ChooseLocaleWizardActivity.class), 1);
@@ -681,12 +759,12 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
                                     	appendLogTextAndScroll(torServiceMsg);
                                     }
                                     
-                                    boolean showFirstTime = prefs.getBoolean("connect_first_time",true);
+                                    boolean showFirstTime = mPrefs.getBoolean("connect_first_time",true);
                                     
                                     if (showFirstTime)
                                     {
                                     
-                                            Editor pEdit = prefs.edit();
+                                            Editor pEdit = mPrefs.edit();
                                             
                                             pEdit.putBoolean("connect_first_time",false);
                                             
@@ -1073,7 +1151,7 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 
         Configuration config = getResources().getConfiguration();
 
-        String lang = prefs.getString(PREF_DEFAULT_LOCALE, "");
+        String lang = mPrefs.getString(PREF_DEFAULT_LOCALE, "");
         
         if (! "".equals(lang) && ! config.locale.getLanguage().equals(lang))
         {

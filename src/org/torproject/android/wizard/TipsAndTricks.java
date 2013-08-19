@@ -130,6 +130,7 @@ public class TipsAndTricks extends Activity implements TorConstants {
 			}
 		});
         
+        /**
         btnLink = (Button)findViewById(R.id.WizardRootButtonGooglePlay);
 
         btnLink.setOnClickListener(new OnClickListener() {
@@ -141,7 +142,7 @@ public class TipsAndTricks extends Activity implements TorConstants {
 
 			}
 		});
-        
+        */
         
         
         Button back = ((Button)findViewById(R.id.btnWizard1));
