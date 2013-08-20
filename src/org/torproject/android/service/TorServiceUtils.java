@@ -16,59 +16,6 @@ import android.util.Log;
 public class TorServiceUtils implements TorServiceConstants {
 
 	
-	public static boolean isRootPossible()
-	{
-		
-		StringBuilder log = new StringBuilder();
-		
-		try {
-			
-			// Check if Superuser.apk exists
-			File fileSU = new File("/system/app/Superuser.apk");
-			if (fileSU.exists())
-				return true;
-			
-			fileSU = new File("/system/app/superuser.apk");
-			if (fileSU.exists())
-				return true;
-			
-			fileSU = new File("/system/bin/su");
-			if (fileSU.exists())
-			{
-				String[] cmd = {"su"};
-				int exitCode = TorServiceUtils.doShellCommand(cmd, log, false, true);
-				if (exitCode != 0)
-					return false;
-				else
-					return true;
-			}
-			
-			//Check for 'su' binary 
-			String[] cmd = {"which su"};
-			int exitCode = TorServiceUtils.doShellCommand(cmd, log, false, true);
-			
-			if (exitCode == 0) {
-				Log.d(TorConstants.TAG,"root exists, but not sure about permissions");
-		    	 return true;
-		     
-		    }
-		      
-		} catch (IOException e) {
-			//this means that there is no root to be had (normally) so we won't log anything
-			Log.e(TorConstants.TAG,"Error checking for root access",e);
-			
-		}
-		catch (Exception e) {
-			Log.e(TorConstants.TAG,"Error checking for root access",e);
-			//this means that there is no root to be had (normally)
-		}
-		
-		Log.e(TorConstants.TAG,"Could not acquire root permissions");
-		
-		
-		return false;
-	}
-	
 	
 	public static int findProcessId(String command) 
 	{

@@ -14,7 +14,6 @@ import android.util.Log;
 public class TorTransProxy implements TorServiceConstants {
 	
 	private boolean useSystemIpTables = false;
-	private boolean mBundledFailed = false;
 	private String mSysIptables = null;
 	private TorService mTorService = null;
 	
@@ -35,7 +34,7 @@ public class TorTransProxy implements TorServiceConstants {
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
 		useSystemIpTables = prefs.getBoolean(TorConstants.PREF_USE_SYSTEM_IPTABLES, false);
 		
-		if (useSystemIpTables || mBundledFailed)
+		if (useSystemIpTables)
 		{
 			ipTablesPath = findSystemIPTables();
 		}
@@ -45,19 +44,6 @@ public class TorTransProxy implements TorServiceConstants {
 
 			ipTablesPath = new File(context.getDir("bin", 0),"iptables").getAbsolutePath();
 			
-			try
-			{
-				if (testOwnerModule(context,ipTablesPath) != 0)
-				{
-					mBundledFailed = true;
-					ipTablesPath = findSystemIPTables();
-				}
-			}
-			catch (Exception e)
-			{
-				ipTablesPath = findSystemIPTables();
-				mBundledFailed = true;
-			}
 		}
 			
 		return ipTablesPath;
@@ -73,14 +59,14 @@ public class TorTransProxy implements TorServiceConstants {
 		{
 		
 			//if the user wants us to use the built-in iptables, then we have to find it
-			File fileIpt = new File("/system/bin/iptables");
+			File fileIpt = new File("/system/xbin/iptables");
 			
 			if (fileIpt.exists())
 				mSysIptables = fileIpt.getAbsolutePath();
 			else
 			{
 			
-				fileIpt = new File("/system/xbin/iptables");
+				fileIpt = new File("/system/bin/iptables");
 				
 				if (fileIpt.exists())
 					mSysIptables = fileIpt.getAbsolutePath();
@@ -201,7 +187,7 @@ public class TorTransProxy implements TorServiceConstants {
 		return code;
 	}
 	*/
-	
+	/*
 	public int testOwnerModule(Context context, String ipTablesPath) throws Exception
 	{
 
@@ -245,6 +231,7 @@ public class TorTransProxy implements TorServiceConstants {
 		
 		return code;
     }	
+	*/
 	
 	public int setTransparentProxyingByApp (Context context, ArrayList<TorifiedApp> apps) throws Exception
 	{

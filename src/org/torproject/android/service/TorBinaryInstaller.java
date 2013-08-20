@@ -253,22 +253,8 @@ public class TorBinaryInstaller implements TorServiceConstants {
 		
 		// Check iptables_g1
 		File file = new File(ctx.getDir("bin",0), "iptables");
-		
-		if ((!file.exists()) && isARMv6()) {
-			copyRawFile(ctx, R.raw.iptables_g1, file, CHMOD_EXEC, false);
-			
-
-			changed = true;
-		}
-		
-		// Check iptables_n1
-		file = new File(ctx.getDir("bin",0), "iptables");
-		if ((!file.exists()) && (!isARMv6())) {
-			copyRawFile(ctx, R.raw.iptables_n1, file, CHMOD_EXEC, false);
-			changed = true;
-		}
-		
-		
+		copyRawFile(ctx, R.raw.iptables, file, CHMOD_EXEC, false);
+				
 		return true;
 	}
 	

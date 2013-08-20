@@ -2,10 +2,7 @@ package org.torproject.android.wizard;
 
 import org.torproject.android.R;
 import org.torproject.android.TorConstants;
-import org.torproject.android.R.drawable;
-import org.torproject.android.R.id;
-import org.torproject.android.R.layout;
-import org.torproject.android.R.string;
+import org.torproject.android.service.Root;
 import org.torproject.android.service.TorService;
 import org.torproject.android.service.TorServiceUtils;
 import org.torproject.android.service.TorTransProxy;
@@ -22,8 +19,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.ImageView;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -69,7 +66,7 @@ public class Permissions extends Activity implements TorConstants {
 	
 	private void stepThree(){
 		
-		boolean isRootPossible = TorServiceUtils.isRootPossible();
+		boolean isRootPossible = new Root().isDeviceRooted();
 		
 		if (isRootPossible)
 		{
@@ -150,9 +147,8 @@ public class Permissions extends Activity implements TorConstants {
 				
 				if (!hasRoot)
 				{
-				
-					hasRoot = TorServiceUtils.isRootPossible();
-					
+					hasRoot = new Root().isDeviceRooted();
+
 					Editor pEdit = prefs.edit();
 					pEdit.putBoolean(PREF_HAS_ROOT,hasRoot);
 					pEdit.commit();
@@ -162,7 +158,9 @@ public class Permissions extends Activity implements TorConstants {
 				if (hasRoot)
 				{
 					try {
+						/*
 						TorTransProxy ttProxy = new TorTransProxy();
+						
 						int resp = ttProxy.testOwnerModule(context,ttProxy.getIpTablesPath(context));
 						
 						if (resp != 0)
@@ -173,6 +171,7 @@ public class Permissions extends Activity implements TorConstants {
 							Log.i(TorService.TAG,"ERROR: IPTables OWNER module not available");
 							stepFour();
 						}
+						*/
 						
 					} catch (Exception e) {
 						
