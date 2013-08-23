@@ -4,11 +4,13 @@ SafeSocks 0
 TestSocks 1
 WarnUnsafeSocks 1
 Log notice stdout
-ControlPort 9051
 ControlListenAddress 127.0.0.1
+ControlPort 9051
 CookieAuthentication 1
 TransPort 9040
 TransListenAddress 127.0.0.1
 DNSPort 5400
 DNSListenAddress 127.0.0.1
 AvoidDiskWrites 1
+AutomapHostsOnResolve 1
+VirtualAddrNetwork 10.192.0.0/10

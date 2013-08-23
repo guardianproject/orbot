@@ -240,4 +240,5 @@
   <string name="up">up</string>
   <string name="pref_disable_network_title">Network Auto-Sleep</string>
   <string name="pref_disable_network_summary">Put Tor to sleep when there is no network connectivity</string>
+  <string name="newnym">You\'ve switched to a new Tor identity!</string>
 </resources>

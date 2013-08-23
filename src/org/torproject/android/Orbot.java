@@ -27,7 +27,6 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Configuration;
-import android.drm.DrmStore.Action;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -39,11 +38,15 @@ import android.text.ClipboardManager;
 import android.text.Layout;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.view.GestureDetector;
+import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnLongClickListener;
 import android.view.View.OnTouchListener;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.SlidingDrawer;
 import android.widget.TextView;
@@ -55,7 +58,7 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 
 
-public class Orbot extends SherlockActivity implements TorConstants, OnLongClickListener, OnSharedPreferenceChangeListener
+public class Orbot extends SherlockActivity implements TorConstants, OnLongClickListener, OnTouchListener, OnSharedPreferenceChangeListener
 {
 	/* Useful UI bits */
 	private TextView lblStatus = null; //the main text display widget
@@ -125,6 +128,8 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
     	imgStatus = (ImageProgressView)findViewById(R.id.imgStatus);
     	imgStatus.setOnLongClickListener(this);
     	
+    	imgStatus.setOnTouchListener(this);
+    	
     	downloadText = (TextView)findViewById(R.id.trafficDown);
         uploadText = (TextView)findViewById(R.id.trafficUp);
         mTxtOrbotLog = (TextView)findViewById(R.id.orbotLog);
@@ -168,8 +173,22 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 		uploadText.setText(formatCount(0) + " / " + formatTotal(0));
 	
 		updateStatus("");
+		
+
+        // Gesture detection
+		mGestureDetector = new GestureDetector(this, new MyGestureDetector());
+
     }
+	
+	GestureDetector mGestureDetector;
     
+
+	@Override
+	public boolean onTouch(View v, MotionEvent event) {
+	    return mGestureDetector.onTouchEvent(event);
+
+	}
+   	
     private void appendLogTextAndScroll(String text)
     {
         if(mTxtOrbotLog != null){
@@ -1202,5 +1221,48 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 	
 		
 	}
-   	
+	
+	  private static final float ROTATE_FROM = 0.0f;
+	    private static final float ROTATE_TO = 360.0f*4f;// 3.141592654f * 32.0f;
+
+	public void spinOrbot (float direction)
+	{
+		try {
+			mService.newIdentity(); //request a new identity
+			
+			Toast.makeText(this, R.string.newnym, Toast.LENGTH_SHORT).show();
+			
+		//	Rotate3dAnimation rotation = new Rotate3dAnimation(ROTATE_FROM, ROTATE_TO*direction, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+			 Rotate3dAnimation rotation = new Rotate3dAnimation(ROTATE_FROM, ROTATE_TO*direction, imgStatus.getWidth()/2f,imgStatus.getWidth()/2f,20f,false);
+			 rotation.setFillAfter(true);
+			  rotation.setInterpolator(new AccelerateInterpolator());
+			  rotation.setDuration((long) 2*1000);
+			  rotation.setRepeatCount(0);
+			  imgStatus.startAnimation(rotation);
+			  
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	 class MyGestureDetector extends SimpleOnGestureListener {
+	        @Override
+	        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+	            try {	            	
+	            	if (torStatus == TorServiceConstants.STATUS_ON)
+	            	{
+	            		float direction = 1f;
+	            		if (velocityX < 0)
+	            			direction = -1f;
+	            		spinOrbot (direction);
+	            	}
+	            } catch (Exception e) {
+	                // nothing
+	            }
+	            return false;
+	        }
+
+	    }
+
 }
