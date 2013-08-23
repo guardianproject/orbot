@@ -248,8 +248,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		super.onStart(intent, startId);
 
 		_torInstance = this;
-
-		android.os.Debug.waitForDebugger();
 		
 		initTorPaths();
 

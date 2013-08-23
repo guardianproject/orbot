@@ -16,7 +16,7 @@ public class OnBootReceiver extends BroadcastReceiver {
 		if (intent.getAction() != null 
 				&& intent.getAction().equals("android.intent.action.BOOT_COMPLETED"))
 		{
-			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+			SharedPreferences prefs = TorService.getSharedPrefs(context.getApplicationContext());
 			
 			boolean startOnBoot = prefs.getBoolean("pref_start_boot",false);
 			
