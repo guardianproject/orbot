@@ -57,5 +57,10 @@ interface ITorService {
     * Add Onion Share
     */
     String addOnionShare (in Uri uriData, String contentType);
+ 
+    /**
+    * change identity
+    */
+    void newIdentity ();
     
 }

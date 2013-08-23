@@ -57,7 +57,7 @@ import android.util.Log;
 public class TorService extends Service implements TorServiceConstants, TorConstants, Runnable, EventHandler
 {
 	
-	public static boolean ENABLE_DEBUG_LOG = false;
+	public static boolean ENABLE_DEBUG_LOG = true;
 	
 	private static int currentStatus = STATUS_OFF;
 		
@@ -104,9 +104,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	
 	private NotificationManager mNotificationManager = null;
 	
-	
-	SharedPreferences mPrefs = null;
-
     public void logMessage(String msg)
     {
     	if (ENABLE_DEBUG_LOG)
@@ -253,7 +250,11 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 		_torInstance = this;
 		
-		mPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+		/*
+		prefs = getSharedPreferences(TorConstants.PREF_TOR_SHARED_PREFS,Context.MODE_MULTI_PROCESS);
+		*/
+		
+		/*
 		mPrefs.registerOnSharedPreferenceChangeListener(new OnSharedPreferenceChangeListener()
 		{
 
@@ -264,7 +265,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 				
 			}
 			
-		});
+		});*/
 		
 		initTorPaths();
 
@@ -296,7 +297,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		if (intent != null && intent.getAction()!=null && intent.getAction().equals("onboot"))
 		{
 			
-			boolean startOnBoot = mPrefs.getBoolean("pref_start_boot",false);
+			boolean startOnBoot = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean("pref_start_boot",false);
 			
 			if (startOnBoot)
 			{
@@ -365,7 +366,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     {
     	currentStatus = STATUS_OFF;
     	
- 		boolean hasRoot = mPrefs.getBoolean(PREF_HAS_ROOT,false);
+ 		boolean hasRoot = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean(PREF_HAS_ROOT,false);
  		
     	try
     	{	
@@ -423,7 +424,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	private String getHiddenServiceHostname ()
 	{
 
-        boolean enableHiddenServices = mPrefs.getBoolean("pref_hs_enable", false);
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+		
+        boolean enableHiddenServices = prefs.getBoolean("pref_hs_enable", false);
         
         if (enableHiddenServices)
         {
@@ -434,7 +437,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		    	try {
 					String onionHostname = Utils.readString(new FileInputStream(file)).trim();
 					showToolbarNotification(getString(R.string.hidden_service_on) + ' ' + onionHostname, HS_NOTIFY_ID, R.drawable.ic_stat_tor, Notification.FLAG_ONGOING_EVENT);
-					Editor pEdit = mPrefs.edit();
+					Editor pEdit = prefs.edit();
 					pEdit.putString("pref_hs_hostname",onionHostname);
 					pEdit.commit();
 				
@@ -543,13 +546,15 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
     public boolean checkTorBinaries (boolean forceInstall) throws Exception
     {
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
     	//check and install iptables
     	TorBinaryInstaller.assertIpTablesBinaries(this, true);
 
     	initTorPaths();
 		
-    	String currTorBinary = mPrefs.getString(TorServiceConstants.PREF_BINARY_TOR_VERSION_INSTALLED, null);
-    	String currPrivoxyBinary = mPrefs.getString(TorServiceConstants.PREF_BINARY_PRIVOXY_VERSION_INSTALLED, null);
+    	String currTorBinary = prefs.getString(TorServiceConstants.PREF_BINARY_TOR_VERSION_INSTALLED, null);
+    	String currPrivoxyBinary = prefs.getString(TorServiceConstants.PREF_BINARY_PRIVOXY_VERSION_INSTALLED, null);
     	
     	StringBuilder cmdLog = new StringBuilder();
     	int exitCode = -1;
@@ -592,7 +597,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     		if (success)
     		{
     			
-    			Editor edit = mPrefs.edit();
+    			Editor edit = prefs.edit();
     			edit.putString(TorServiceConstants.PREF_BINARY_TOR_VERSION_INSTALLED, TorServiceConstants.BINARY_TOR_VERSION);
     			edit.putString(TorServiceConstants.PREF_BINARY_PRIVOXY_VERSION_INSTALLED, TorServiceConstants.BINARY_PRIVOXY_VERSION);
     			edit.commit();
@@ -645,15 +650,17 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     
     private void updateSettings ()
     {
-    	mHasRoot = mPrefs.getBoolean(PREF_HAS_ROOT,false);
- 		mEnableTransparentProxy = mPrefs.getBoolean("pref_transparent", false);
- 		mTransProxyAll = mPrefs.getBoolean("pref_transparent_all", false);
-	 	mTransProxyTethering = mPrefs.getBoolean("pref_transparent_tethering", false);
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+    	mHasRoot = prefs.getBoolean(PREF_HAS_ROOT,false);
+ 		mEnableTransparentProxy = prefs.getBoolean("pref_transparent", false);
+ 		mTransProxyAll = prefs.getBoolean("pref_transparent_all", false);
+	 	mTransProxyTethering = prefs.getBoolean("pref_transparent_tethering", false);
 	 	
-    	ENABLE_DEBUG_LOG = mPrefs.getBoolean("pref_enable_logging",false);
+    	ENABLE_DEBUG_LOG = prefs.getBoolean("pref_enable_logging",false);
     	Log.i(TAG,"debug logging:" + ENABLE_DEBUG_LOG);
 
-    	prefPersistNotifications = mPrefs.getBoolean(TorConstants.PREF_PERSIST_NOTIFICATIONS, true);
+    	prefPersistNotifications = prefs.getBoolean(TorConstants.PREF_PERSIST_NOTIFICATIONS, true);
     }
     
     public void initTor () throws Exception
@@ -768,12 +775,13 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     
     private void runTorShellCmd() throws Exception
     {
-    	
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
     	StringBuilder log = new StringBuilder();
 		
 		String torrcPath = new File(appBinHome, TORRC_ASSET_KEY).getAbsolutePath();
 		
-		boolean transProxyTethering = mPrefs.getBoolean("pref_transparent_tethering", false);
+		boolean transProxyTethering = prefs.getBoolean("pref_transparent_tethering", false);
  		
 		if (transProxyTethering)
 		{
@@ -1433,7 +1441,22 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	        
         	return false;
         }
-         
+        
+        public void newIdentity () 
+        {
+        
+        	new Thread ()
+        	{
+        		public void run ()
+        		{
+        			try { conn.signal("NEWNYM"); }
+        			catch (IOException ioe){
+        				logMessage("error requesting newny: " + ioe.getLocalizedMessage());
+        			}
+        		}
+        	}.start();
+        }
+        
 	    public boolean saveConfiguration ()
 	    {
 	    	try
@@ -1594,9 +1617,11 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	@Override
     	public void onReceive(Context context, Intent intent) {
 
+    		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
     		mConnectivity = !intent.getBooleanExtra(ConnectivityManager.EXTRA_NO_CONNECTIVITY, false);
 
-    		boolean disableNetwork = mPrefs.getBoolean(TorConstants.PREF_DISABLE_NETWORK, true);
+    		boolean disableNetwork = prefs.getBoolean(TorConstants.PREF_DISABLE_NETWORK, true);
     		
     		if (currentStatus == STATUS_ON && disableNetwork)
     		{
@@ -1624,27 +1649,28 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
     private boolean processSettingsImpl () throws RemoteException
     {
-   
-		boolean useBridges = mPrefs.getBoolean(TorConstants.PREF_BRIDGES_ENABLED, false);
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+		boolean useBridges = prefs.getBoolean(TorConstants.PREF_BRIDGES_ENABLED, false);
 		
-		//boolean autoUpdateBridges = mPrefs.getBoolean(TorConstants.PREF_BRIDGES_UPDATED, false);
+		//boolean autoUpdateBridges = prefs.getBoolean(TorConstants.PREF_BRIDGES_UPDATED, false);
 
-        boolean becomeRelay = mPrefs.getBoolean(TorConstants.PREF_OR, false);
-        boolean ReachableAddresses = mPrefs.getBoolean(TorConstants.PREF_REACHABLE_ADDRESSES,false);
-        boolean enableHiddenServices = mPrefs.getBoolean("pref_hs_enable", false);
+        boolean becomeRelay = prefs.getBoolean(TorConstants.PREF_OR, false);
+        boolean ReachableAddresses = prefs.getBoolean(TorConstants.PREF_REACHABLE_ADDRESSES,false);
+        boolean enableHiddenServices = prefs.getBoolean("pref_hs_enable", false);
 
-        boolean enableStrictNodes = mPrefs.getBoolean("pref_strict_nodes", false);
-        String entranceNodes = mPrefs.getString("pref_entrance_nodes", "");
-        String exitNodes = mPrefs.getString("pref_exit_nodes", "");
-        String excludeNodes = mPrefs.getString("pref_exclude_nodes", "");
+        boolean enableStrictNodes = prefs.getBoolean("pref_strict_nodes", false);
+        String entranceNodes = prefs.getString("pref_entrance_nodes", "");
+        String exitNodes = prefs.getString("pref_exit_nodes", "");
+        String excludeNodes = prefs.getString("pref_exclude_nodes", "");
         
-        String proxyType = mPrefs.getString("pref_proxy_type", null);
+        String proxyType = prefs.getString("pref_proxy_type", null);
         if (proxyType != null)
         {
-        	String proxyHost = mPrefs.getString("pref_proxy_host", null);
-        	String proxyPort = mPrefs.getString("pref_proxy_port", null);
-        	String proxyUser = mPrefs.getString("pref_proxy_username", null);
-        	String proxyPass = mPrefs.getString("pref_proxy_password", null);
+        	String proxyHost = prefs.getString("pref_proxy_host", null);
+        	String proxyPort = prefs.getString("pref_proxy_port", null);
+        	String proxyUser = prefs.getString("pref_proxy_username", null);
+        	String proxyPass = prefs.getString("pref_proxy_password", null);
         	
         	if (proxyHost != null && proxyPort != null)
         	{
@@ -1699,7 +1725,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         
 		if (useBridges)
 		{
-			String bridgeList = mPrefs.getString(TorConstants.PREF_BRIDGES_LIST,getString(R.string.default_bridges));
+			String bridgeList = prefs.getString(TorConstants.PREF_BRIDGES_LIST,getString(R.string.default_bridges));
 
 			if (bridgeList == null || bridgeList.length() == 0)
 			{
@@ -1722,7 +1748,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			
 			showToolbarNotification(getString(R.string.notification_using_bridges) + ": " + bridgeList, TRANSPROXY_NOTIFY_ID, R.drawable.ic_stat_tor, -1);
 
-			boolean obfsBridges = mPrefs.getBoolean(TorConstants.PREF_BRIDGES_OBFUSCATED, false);
+			boolean obfsBridges = prefs.getBoolean(TorConstants.PREF_BRIDGES_OBFUSCATED, false);
 			String bridgeCfgKey = "bridge";
 
 			if (obfsBridges)
@@ -1756,7 +1782,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
             if (ReachableAddresses)
             {
                 String ReachableAddressesPorts =
-                    mPrefs.getString(TorConstants.PREF_REACHABLE_ADDRESSES_PORTS, "*:80,*:443");
+                    prefs.getString(TorConstants.PREF_REACHABLE_ADDRESSES_PORTS, "*:80,*:443");
                 
                 mBinder.updateConfiguration("ReachableAddresses", ReachableAddressesPorts, false);
 
@@ -1777,8 +1803,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         {
             if (becomeRelay && (!useBridges) && (!ReachableAddresses))
             {
-                int ORPort =  Integer.parseInt(mPrefs.getString(TorConstants.PREF_OR_PORT, "9001"));
-                String nickname = mPrefs.getString(TorConstants.PREF_OR_NICKNAME, "Orbot");
+                int ORPort =  Integer.parseInt(prefs.getString(TorConstants.PREF_OR_PORT, "9001"));
+                String nickname = prefs.getString(TorConstants.PREF_OR_NICKNAME, "Orbot");
 
                 String dnsFile = writeDNSFile ();
                 
@@ -1808,7 +1834,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         	mBinder.updateConfiguration("HiddenServiceDir",appCacheHome.getAbsolutePath(), false);
         	//mBinder.updateConfiguration("RendPostPeriod", "600 seconds", false); //possible feature to investigate
         	
-        	String hsPorts = mPrefs.getString("pref_hs_ports","");
+        	String hsPorts = prefs.getString("pref_hs_ports","");
         	
         	StringTokenizer st = new StringTokenizer (hsPorts,",");
         	String hsPortConfig = null;
@@ -1899,5 +1925,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	return file.getAbsolutePath();
     }
    
+    
    
 }
