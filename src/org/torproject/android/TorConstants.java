@@ -51,4 +51,6 @@ public interface TorConstants {
 	public final static String PREF_DEFAULT_LOCALE = "pref_default_locale";
 	
 	public final static String PREF_DISABLE_NETWORK = "pref_disable_network";
+	
+	public final static String PREF_TOR_SHARED_PREFS = "torprefs";
 }

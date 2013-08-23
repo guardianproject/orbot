@@ -57,7 +57,7 @@ import android.util.Log;
 public class TorService extends Service implements TorServiceConstants, TorConstants, Runnable, EventHandler
 {
 	
-	public static boolean ENABLE_DEBUG_LOG = true;
+	public static boolean ENABLE_DEBUG_LOG = false;
 	
 	private static int currentStatus = STATUS_OFF;
 		
@@ -546,6 +546,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
     public boolean checkTorBinaries (boolean forceInstall) throws Exception
     {
+    	
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
     	//check and install iptables
