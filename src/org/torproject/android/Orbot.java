@@ -7,6 +7,7 @@ import java.util.Locale;
 
 import org.torproject.android.service.ITorService;
 import org.torproject.android.service.ITorServiceCallback;
+import org.torproject.android.service.TorService;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.settings.ProcessSettingsAsyncTask;
 import org.torproject.android.settings.SettingsPreferences;
@@ -81,12 +82,6 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 
 	SharedPreferences mPrefs;
 	
-	public static Orbot currentInstance = null;
-	
-    private static void setCurrent(Orbot current){
-    	Orbot.currentInstance = current;
-    }
-    
     /** Called when the activity is first created. */
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,11 +98,9 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
         	}
         */
 
-        mPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        mPrefs = getPrefs();
         mPrefs.registerOnSharedPreferenceChangeListener(this);
         
-        Orbot.setCurrent(this);
-
       //if Tor binary is not running, then start the service up
       //might want to look at whether we need to call this every time
       //or whether binding to the service is enough
@@ -164,7 +157,7 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 			public boolean onLongClick(View v) {
 				  ClipboardManager cm = (ClipboardManager)getSystemService(Context.CLIPBOARD_SERVICE);
 	                cm.setText(mTxtOrbotLog.getText());
-	                Toast.makeText(Orbot.this, "LOG COPIED TO CLIPBOARD. PLEASE EMAIL TO help@guardianproject.info TO DEBUG PROBLEM", Toast.LENGTH_SHORT).show();
+	                Toast.makeText(Orbot.this, "LOG COPIED TO CLIPBOARD", Toast.LENGTH_SHORT).show();
 	            return true;
 			}
         });
@@ -1265,4 +1258,9 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 
 	    }
 
+	 private SharedPreferences getPrefs ()
+		{
+			return TorService.getSharedPrefs(getApplicationContext());
+			
+		}
 }

@@ -44,13 +44,12 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.net.ConnectivityManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.IBinder;
 import android.os.RemoteCallbackList;
 import android.os.RemoteException;
-import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
@@ -249,23 +248,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		super.onStart(intent, startId);
 
 		_torInstance = this;
-		
-		/*
-		prefs = getSharedPreferences(TorConstants.PREF_TOR_SHARED_PREFS,Context.MODE_MULTI_PROCESS);
-		*/
-		
-		/*
-		mPrefs.registerOnSharedPreferenceChangeListener(new OnSharedPreferenceChangeListener()
-		{
 
-			@Override
-			public void onSharedPreferenceChanged(
-					SharedPreferences sharedPreferences, String key) {
-				updateSettings();
-				
-			}
-			
-		});*/
+		android.os.Debug.waitForDebugger();
 		
 		initTorPaths();
 
@@ -297,7 +281,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		if (intent != null && intent.getAction()!=null && intent.getAction().equals("onboot"))
 		{
 			
-			boolean startOnBoot = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean("pref_start_boot",false);
+			boolean startOnBoot = getSharedPrefs(getApplicationContext()).getBoolean("pref_start_boot",false);
 			
 			if (startOnBoot)
 			{
@@ -305,6 +289,16 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			}
 		}
 	}
+	
+	public static SharedPreferences getSharedPrefs (Context context)
+	{
+		if (Build.VERSION.SDK_INT>=11)
+			return context.getSharedPreferences(TorConstants.PREF_TOR_SHARED_PREFS,Context.MODE_MULTI_PROCESS);
+		else
+			return context.getSharedPreferences(TorConstants.PREF_TOR_SHARED_PREFS,Context.MODE_PRIVATE);
+		
+	}
+	
 	 
 	public void run ()
 	{
@@ -366,7 +360,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     {
     	currentStatus = STATUS_OFF;
     	
- 		boolean hasRoot = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean(PREF_HAS_ROOT,false);
+ 		boolean hasRoot =  getSharedPrefs(getApplicationContext()).getBoolean("has_root", false);
  		
     	try
     	{	
@@ -424,7 +418,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	private String getHiddenServiceHostname ()
 	{
 
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+		SharedPreferences prefs = getSharedPrefs(getApplicationContext());
 		
         boolean enableHiddenServices = prefs.getBoolean("pref_hs_enable", false);
         
@@ -547,7 +541,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     public boolean checkTorBinaries (boolean forceInstall) throws Exception
     {
     	
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+		SharedPreferences prefs =getSharedPrefs(getApplicationContext());
 
     	//check and install iptables
     	TorBinaryInstaller.assertIpTablesBinaries(this, true);
@@ -651,7 +645,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     
     private void updateSettings ()
     {
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+		SharedPreferences prefs = getSharedPrefs(getApplicationContext());
 
     	mHasRoot = prefs.getBoolean(PREF_HAS_ROOT,false);
  		mEnableTransparentProxy = prefs.getBoolean("pref_transparent", false);
@@ -666,6 +660,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     
     public void initTor () throws Exception
     {
+    	android.os.Debug.waitForDebugger();
     	
     	updateSettings ();
     	
@@ -725,7 +720,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		{
 			showToolbarNotification(getString(R.string.setting_up_app_based_transparent_proxying_), TRANSPROXY_NOTIFY_ID, R.drawable.ic_stat_tor, -1);
 
-			code = mTransProxy.setTransparentProxyingByApp(this,AppManager.getApps(this));
+			code = mTransProxy.setTransparentProxyingByApp(this,AppManager.getApps(this, getSharedPrefs(getApplicationContext())));
 		}
 			
 	
@@ -767,7 +762,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
  			mTransProxy = new TorTransProxy(this);
  		
  		mTransProxy.clearTransparentProxyingAll(this);
-        mTransProxy.clearTransparentProxyingByApp(this,AppManager.getApps(this));
+       // mTransProxy.clearTransparentProxyingByApp(this,AppManager.getApps(this));
 	    
      	clearNotifications();
      	
@@ -776,7 +771,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     
     private void runTorShellCmd() throws Exception
     {
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+		SharedPreferences prefs =getSharedPrefs(getApplicationContext());
 
     	StringBuilder log = new StringBuilder();
 		
@@ -1083,6 +1078,12 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 				
 			}				
 
+			if (mNotificationManager == null)
+			{
+				mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+			}
+			
 			mNotifyBuilder.setOngoing(persistent);			    
 			mNotifyBuilder.setContentText(message);
 
@@ -1235,28 +1236,32 @@ public class TorService extends Service implements TorServiceConstants, TorConst
    	
 	public void circuitStatus(String status, String circID, String path) {
 		
-		StringBuilder sb = new StringBuilder();
-		sb.append("Circuit (");
-		sb.append((circID));
-		sb.append(") ");
-		sb.append(status);
-		sb.append(": ");
-		
-		StringTokenizer st = new StringTokenizer(path,",");
-		String node = null;
-		
-		while (st.hasMoreTokens())
+		if (status.equals("BUILT") || status.equals("CLOSED"))
 		{
-			node = st.nextToken();
+			StringBuilder sb = new StringBuilder();
+			sb.append("Circuit (");
+			sb.append((circID));
+			sb.append(") ");
+			sb.append(status);
+			sb.append(": ");
 			
-			sb.append(parseNodeName(node));
+			StringTokenizer st = new StringTokenizer(path,",");
+			String node = null;
 			
+			while (st.hasMoreTokens())
+			{
+				node = st.nextToken();
+				
+				sb.append(parseNodeName(node));
+				
+				
+				if (st.hasMoreTokens())
+					sb.append (" > ");
+			}
 			
-			if (st.hasMoreTokens())
-				sb.append (" > ");
+			logNotice(sb.toString());
 		}
-		
-		logNotice(sb.toString());
+			
 	
 	}
 	
@@ -1618,7 +1623,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	@Override
     	public void onReceive(Context context, Intent intent) {
 
-    		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+    		SharedPreferences prefs = getSharedPrefs(getApplicationContext());
 
     		mConnectivity = !intent.getBooleanExtra(ConnectivityManager.EXTRA_NO_CONNECTIVITY, false);
 
@@ -1650,7 +1655,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
     private boolean processSettingsImpl () throws RemoteException
     {
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+		SharedPreferences prefs = getSharedPrefs(getApplicationContext());
 
 		boolean useBridges = prefs.getBoolean(TorConstants.PREF_BRIDGES_ENABLED, false);
 		

@@ -52,5 +52,5 @@ public interface TorConstants {
 	
 	public final static String PREF_DISABLE_NETWORK = "pref_disable_network";
 	
-	public final static String PREF_TOR_SHARED_PREFS = "torprefs";
+	public final static String PREF_TOR_SHARED_PREFS = "org.torproject.android_preferences";
 }

@@ -31,7 +31,8 @@ public class TorTransProxy implements TorServiceConstants {
 
 		String ipTablesPath = null;
 		
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
+		SharedPreferences prefs = TorService.getSharedPrefs(context.getApplicationContext());
+
 		useSystemIpTables = prefs.getBoolean(TorConstants.PREF_USE_SYSTEM_IPTABLES, false);
 		
 		if (useSystemIpTables)
@@ -233,7 +234,7 @@ public class TorTransProxy implements TorServiceConstants {
     }	
 	*/
 	
-	
+	/*
 	public int clearTransparentProxyingByApp (Context context, ArrayList<TorifiedApp> apps) throws Exception
 	{
 		boolean runRoot = true;
@@ -270,7 +271,7 @@ public class TorTransProxy implements TorServiceConstants {
 		logMessage(cmdAdd[0] + ";errCode=" + code + ";resp=" + msg);
 		
 		return code;
-	}
+	}*/
 	
 	public int setTransparentProxyingByApp(Context context, ArrayList<TorifiedApp> apps) throws Exception
 	{
@@ -285,21 +286,8 @@ public class TorTransProxy implements TorServiceConstants {
     	StringBuilder res = new StringBuilder();
     	int code = -1;
     	
-    	String chainName = "ORBOT";
-		String jumpChainName = "OUTPUT";
+		String srcChainName = "OUTPUT";
 		
-		script.append(ipTablesPath);
-    	script.append(" --flush ").append(chainName); //delete previous user-defined chain
-    	script.append(" || exit\n");
-    	
-		script.append(ipTablesPath);
-    	script.append(" -D ").append(jumpChainName);
-    	script.append(" -j ").append(chainName);
-    	script.append(" || exit\n");
-    	
-    	script.append(ipTablesPath);
-    	script.append(" -X ").append(chainName); //delete previous user-defined chain
-    	script.append(" || exit\n");
     	
     	//run the delete commands in a separate process as it might error out
     	String[] cmdExecClear = {script.toString()};    	    	
@@ -307,16 +295,7 @@ public class TorTransProxy implements TorServiceConstants {
 		
 		//reset script
 		script = new StringBuilder();    	
-		 
-		script.append(ipTablesPath);
-    	script.append(" -N ").append(chainName); //create user-defined chain
-    	script.append(" || exit\n");
-
-    	script.append(ipTablesPath);
-        script.append(" -A ").append(jumpChainName);
-        script.append(" -j ").append(chainName);
-        script.append(" || exit\n");
-    	    	
+		    	
 		//build up array of shell cmds to execute under one root context
 		for (TorifiedApp tApp:apps)
 		{
@@ -332,7 +311,7 @@ public class TorTransProxy implements TorServiceConstants {
 				// Set up port redirection
 		    	script.append(ipTablesPath);
 		    	script.append(" -t nat");
-		    	script.append(" -A ").append(jumpChainName);				
+		    	script.append(" -A ").append(srcChainName);				
 				script.append(" -p tcp");
 				script.append(" ! -d 127.0.0.1"); //allow access to localhost
 				script.append(" -m owner --uid-owner ");
@@ -345,7 +324,7 @@ public class TorTransProxy implements TorServiceConstants {
 				// Same for DNS
 				script.append(ipTablesPath);
 				script.append(" -t nat");				
-				script.append(" -A ").append(jumpChainName);				
+				script.append(" -A ").append(srcChainName);				
 				script.append(" -p udp -m owner --uid-owner ");
 				script.append(tApp.getUid());
 				script.append(" -m udp --dport "); 
@@ -361,7 +340,7 @@ public class TorTransProxy implements TorServiceConstants {
 					// Allow packets to localhost (contains all the port-redirected ones)
 					script.append(ipTablesPath);
 					script.append(" -t filter");
-			        script.append(" -A ").append(jumpChainName);
+			        script.append(" -A ").append(srcChainName);
 					script.append(" -m owner --uid-owner ");
 					script.append(tApp.getUid());
 					script.append(" -p tcp");
@@ -375,7 +354,7 @@ public class TorTransProxy implements TorServiceConstants {
 				// Allow loopback
 				script.append(ipTablesPath);
 				script.append(" -t filter");
-		        script.append(" -A ").append(jumpChainName);
+		        script.append(" -A ").append(srcChainName);
 				script.append(" -m owner --uid-owner ");
 				script.append(tApp.getUid());
 				script.append(" -p tcp");
@@ -386,7 +365,7 @@ public class TorTransProxy implements TorServiceConstants {
 				// Reject all other outbound TCP packets
 				script.append(ipTablesPath);
 				script.append(" -t filter");
-		        script.append(" -A ").append(jumpChainName);
+		        script.append(" -A ").append(srcChainName);
 				script.append(" -m owner --uid-owner ");
 				script.append(tApp.getUid());
 				script.append(" -p tcp");
@@ -397,7 +376,7 @@ public class TorTransProxy implements TorServiceConstants {
 				// Reject all other outbound UDP packets
 				script.append(ipTablesPath);
 				script.append(" -t filter");
-		        script.append(" -A ").append(jumpChainName);
+		        script.append(" -A ").append(srcChainName);
 				script.append(" -m owner --uid-owner ");
 				script.append(tApp.getUid());
 				script.append(" -p udp");
@@ -475,37 +454,31 @@ public class TorTransProxy implements TorServiceConstants {
 		boolean runRoot = true;
     	boolean waitFor = true;
     	
-		//redirectDNSResolvConf(); //not working yet
-		
 		String ipTablesPath = getIpTablesPath(context);
 		
-    	StringBuilder script = new StringBuilder();
-    	
+    	StringBuilder script = new StringBuilder();    	
     	StringBuilder res = new StringBuilder();
     	int code = -1;
 
-    	String chainName = "ORBOT";
-		String jumpChainName = "OUTPUT";
-
-		script.append(ipTablesPath);
-    	script.append(" --flush ").append(chainName); //delete previous user-defined chain
-    	script.append(" || exit\n");
+    	String chainName = "OUTPUT";
     	
+		script = new StringBuilder();
+		res = new StringBuilder();
 		script.append(ipTablesPath);
-    	script.append(" -D ").append(jumpChainName);
-    	script.append(" -j ").append(chainName);
+    	script.append(" -t nat");		
+    	script.append(" -F ").append(chainName); //delete previous user-defined chain
     	script.append(" || exit\n");
-    	
-    	script.append(ipTablesPath);
-    	script.append(" -X ").append(chainName); //delete previous user-defined chain
-    	script.append(" || exit\n");
+    	code = TorServiceUtils.doShellCommand(script.toString(), res, runRoot, waitFor);		
+		logMessage("Exec resp: cmd> " + script.toString() + "; errCode=" + code + ";resp=" + res.toString());
 		
-		String[] cmdExec = {script.toString()};    	
-    	
-		code = TorServiceUtils.doShellCommand(cmdExec, res, runRoot, waitFor);
-		String msg = res.toString();
-	
-		logMessage("Exec resp: errCode=" + code + ";resp=" + msg);
+		script = new StringBuilder();
+		res = new StringBuilder();
+		script.append(ipTablesPath);
+    	script.append(" -t filter");		
+    	script.append(" -F ").append(chainName); //delete previous user-defined chain
+    	script.append(" || exit\n");
+    	code = TorServiceUtils.doShellCommand(script.toString(), res, runRoot, waitFor);		
+		logMessage("Exec resp: cmd> " + script.toString() + "; errCode=" + code + ";resp=" + res.toString());
 		
     	return code;
 	}
@@ -527,51 +500,21 @@ public class TorTransProxy implements TorServiceConstants {
     	
     	int torUid = context.getApplicationInfo().uid;
 
-    	String chainName = "ORBOT";
-		String jumpChainName = "OUTPUT";
-
-		script.append(ipTablesPath);
-    	script.append(" --flush ").append(chainName); //delete previous user-defined chain
-    	script.append(" || exit\n");
-    	
-		script.append(ipTablesPath);
-    	script.append(" -D ").append(jumpChainName);
-    	script.append(" -j ").append(chainName);
-    	script.append(" || exit\n");
-    	
-    	script.append(ipTablesPath);
-    	script.append(" -X ").append(chainName); //delete previous user-defined chain
-    	script.append(" || exit\n");
-		
-	  	//run the delete commands in a separate process as it might error out
-    	String[] cmdExecClear = {script.toString()};    	    	
-		code = TorServiceUtils.doShellCommand(cmdExecClear, res, runRoot, waitFor);
-		
-		//reset script
-		script = new StringBuilder(); 
-		
-		script.append(ipTablesPath);
-		script.append(" -N ").append(chainName); //create user-defined chain
-		script.append(" || exit\n");
-
-		script.append(ipTablesPath);
-    	script.append(" -A ").append(jumpChainName);
-    	script.append(" -j ").append(chainName);
-    	script.append(" || exit\n");
+    	String srcChainName = "OUTPUT";
     	
 		// Allow everything for Tor
-		script.append(ipTablesPath);
+		script.append(ipTablesPath);			
 		script.append(" -t filter");
-    	script.append(" -A ").append(chainName);		
+		script.append(" -A ").append(srcChainName);
 		script.append(" -m owner --uid-owner ");
 		script.append(torUid);
 		script.append(" -j ACCEPT");
 		script.append(" || exit\n");
 		
     	// Set up port redirection    	
-		script.append(ipTablesPath);
+		script.append(ipTablesPath);		
 		script.append(" -t nat");
-    	script.append(" -A ").append(jumpChainName);		
+		script.append(" -A ").append(srcChainName);
 		script.append(" -p tcp");
 		script.append(" ! -d 127.0.0.1"); //allow access to localhost
 		script.append(" -m owner ! --uid-owner ");
@@ -584,7 +527,7 @@ public class TorTransProxy implements TorServiceConstants {
 		// Same for DNS
 		script.append(ipTablesPath);
 		script.append(" -t nat");
-		script.append(" -A ").append(jumpChainName);		
+		script.append(" -A ").append(srcChainName);
 		script.append(" -p udp -m owner ! --uid-owner ");
 		script.append(torUid);
 		script.append(" -m udp --dport "); 
@@ -598,9 +541,9 @@ public class TorTransProxy implements TorServiceConstants {
 		for (int port : ports)
 		{
 			// Allow packets to localhost (contains all the port-redirected ones)
-			script.append(ipTablesPath);
+			script.append(ipTablesPath);			
 			script.append(" -t filter");
-			script.append(" -A ").append(chainName);			
+			script.append(" -A ").append(srcChainName);
 			script.append(" -m owner ! --uid-owner ");
 			script.append(torUid);
 			script.append(" -p tcp");
@@ -615,7 +558,7 @@ public class TorTransProxy implements TorServiceConstants {
 		// Allow loopback
 		script.append(ipTablesPath);
 		script.append(" -t filter");
-		script.append(" -A ").append(chainName);		
+		script.append(" -A ").append(srcChainName);
 		script.append(" -p tcp");
 		script.append(" -o lo");
 		script.append(" -j ACCEPT");
@@ -625,9 +568,9 @@ public class TorTransProxy implements TorServiceConstants {
 		if (TorService.ENABLE_DEBUG_LOG)
 		{
 			//XXX: Comment the following rules for non-debug builds
-			script.append(ipTablesPath);
+			script.append(ipTablesPath);			
 			script.append(" -t filter");
-			script.append(" -A ").append(chainName);			
+			script.append(" -A ").append(srcChainName);
 			script.append(" -p udp");
 			script.append(" --dport ");
 			script.append(STANDARD_DNS_PORT);
@@ -636,9 +579,9 @@ public class TorTransProxy implements TorServiceConstants {
 			script.append(" --log-uid");
 			script.append(" || exit\n");
 			
-			script.append(ipTablesPath);
+			script.append(ipTablesPath);			
 			script.append(" -t filter");
-			script.append(" -A ").append(chainName);	    	
+			script.append(" -A ").append(srcChainName);
 	    	script.append(" -p tcp");
 			script.append(" -j LOG");
 			script.append(" --log-prefix='ORBOT_TCPLEAK_PROTECTION'");
@@ -650,7 +593,7 @@ public class TorTransProxy implements TorServiceConstants {
 		// Reject all other outbound TCP packets
 		script.append(ipTablesPath);
 		script.append(" -t filter");
-		script.append(" -A ").append(chainName);		
+		script.append(" -A ").append(srcChainName);
 		script.append(" -m owner ! --uid-owner ");
 		script.append(torUid);
 		script.append(" -p tcp");
@@ -661,7 +604,7 @@ public class TorTransProxy implements TorServiceConstants {
 		// Reject all other outbound UDP packets
 		script.append(ipTablesPath);
 		script.append(" -t filter");
-		script.append(" -A ").append(chainName);		
+		script.append(" -A ").append(srcChainName);
 		script.append(" -m owner ! --uid-owner ");
 		script.append(torUid);
 		script.append(" -p udp");

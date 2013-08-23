@@ -6,12 +6,14 @@ package org.torproject.android.settings;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
 
 import org.torproject.android.R;
 import org.torproject.android.TorConstants;
+import org.torproject.android.service.TorService;
 
 import android.app.Activity;
 import android.content.Context;
@@ -21,7 +23,6 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -36,24 +37,15 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-
 public class AppManager extends Activity implements OnCheckedChangeListener, OnClickListener, TorConstants {
 
-	private static ArrayList<TorifiedApp> apps = null;
-
 	private ListView listApps;
-	
-	private AppManager mAppManager;
-
-
-	private boolean appsLoaded = false;
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 	
 		this.setContentView(R.layout.layout_apps);
 		
-		mAppManager = this;
 
 	}
 	
@@ -73,16 +65,17 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
 			}
 		});
 		
-		if (!appsLoaded)
-			loadApps();
+		mPrefs = TorService.getSharedPrefs(getApplicationContext());
+		loadApps(mPrefs);
 	}
 
-
-
-	private void loadApps ()
+	SharedPreferences mPrefs = null;
+	ArrayList<TorifiedApp> mApps = null;
+	
+	private void loadApps (SharedPreferences prefs)
 	{
-		resetApps(this);
-        final ArrayList<TorifiedApp> apps = getApps(this);
+		
+		mApps = getApps(getApplicationContext(), prefs);
         
         /*
         Arrays.sort(apps, new Comparator<TorifiedApp>() {
@@ -91,12 +84,11 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
 				if (o1.isTorified()) return -1;
 				return 1;
 			}
-        });
-        */
+        });*/
         
         final LayoutInflater inflater = getLayoutInflater();
 		
-        final ListAdapter adapter = new ArrayAdapter<TorifiedApp>(this,R.layout.layout_apps_item,R.id.itemtext,apps) {
+        ListAdapter adapter = new ArrayAdapter<TorifiedApp>(this,R.layout.layout_apps_item,R.id.itemtext,mApps) {
         	public View getView(int position, View convertView, ViewGroup parent) {
        			ListEntry entry;
         		if (convertView == null) {
@@ -107,19 +99,19 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
        				entry.box = (CheckBox) convertView.findViewById(R.id.itemcheck);
        				entry.text = (TextView) convertView.findViewById(R.id.itemtext);
        				
-       				entry.text.setOnClickListener(mAppManager);
-       				entry.text.setOnClickListener(mAppManager);
+       				entry.text.setOnClickListener(AppManager.this);
+       				entry.text.setOnClickListener(AppManager.this);
        				
        				convertView.setTag(entry);
        			
-       				entry.box.setOnCheckedChangeListener(mAppManager);
+       				entry.box.setOnCheckedChangeListener(AppManager.this);
         		} else {
         			// Convert an existing view
         			entry = (ListEntry) convertView.getTag();
         		}
         		
         		
-        		final TorifiedApp app = apps.get(position);
+        		final TorifiedApp app = mApps.get(position);
         		
         	
         		entry.icon.setImageDrawable(app.getIcon());
@@ -138,8 +130,6 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
         
         listApps.setAdapter(adapter);
         
-        appsLoaded = true;
-		   
 	}
 	
 	private static class ListEntry {
@@ -157,18 +147,9 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
 		
 	}
 
-	public static ArrayList<TorifiedApp> getApps (Context context)
-	{
-		if (apps == null)
-			resetApps(context);
-		
-		return apps;
-	}
 	
-	public static ArrayList<TorifiedApp> resetApps (Context context)
+	public static ArrayList<TorifiedApp> getApps (Context context, SharedPreferences prefs)
 	{
-
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
 		String tordAppString = prefs.getString(PREFS_KEY_TORIFIED, "");
 		String[] tordApps;
@@ -190,7 +171,7 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
 		
 		Iterator<ApplicationInfo> itAppInfo = lAppInfo.iterator();
 		
-		apps = new ArrayList<TorifiedApp>();
+		ArrayList<TorifiedApp> apps = new ArrayList<TorifiedApp>();
 		
 		ApplicationInfo aInfo = null;
 		
@@ -269,16 +250,10 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
 
 	public void saveAppSettings (Context context)
 	{
-		if (apps == null)
-			return;
-		
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-
-	//	final SharedPreferences prefs = context.getSharedPreferences(PREFS_KEY, 0);
 
 		StringBuilder tordApps = new StringBuilder();
-		
-		for (TorifiedApp tApp:apps)
+
+		for (TorifiedApp tApp:mApps)
 		{
 			if (tApp.isTorified())
 			{
@@ -287,7 +262,7 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
 			}
 		}
 		
-		Editor edit = prefs.edit();
+		Editor edit = mPrefs.edit();
 		edit.putString(PREFS_KEY_TORIFIED, tordApps.toString());
 		edit.commit();
 		
