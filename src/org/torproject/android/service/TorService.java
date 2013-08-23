@@ -658,7 +658,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     
     public void initTor () throws Exception
     {
-    	android.os.Debug.waitForDebugger();
     	
     	updateSettings ();
     	
