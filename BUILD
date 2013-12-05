@@ -16,6 +16,11 @@ Please install the following prerequisites (instructions for each follows):
 
 You will need to run the 'android' command in the SDK to install the necessary Android platform supports (ICS 4.x or android-15)
 
+Be sure that you have all of the git submodules up-to-date:
+
+	git submodule init
+	git submodule update
+
 To begin building, from the Orbot root directory, you first need to build all external C/native dependencies:
 
 	export NDK_BASE={PATH TO YOUR NDK INSTALL}
