@@ -98,7 +98,7 @@ libevent/Makefile:
 	cp config.sub libevent
 	cp config.guess libevent
 	cd libevent && \
- 		CC="$(CC)" AR="$(AR)" RANLIB=$(RANLIB) CFLAGS="$(CFLAGS) -I$(EXTERNAL_ROOT)/include" LDFLAGS="$(LDFLAGS)" \
+		CC="$(CC)" AR="$(AR)" RANLIB=$(RANLIB) CFLAGS="$(CFLAGS) -I$(EXTERNAL_ROOT)/include" LDFLAGS="$(LDFLAGS)" \
 			./configure \
 				--host=$(HOST) \
 				--disable-shared
@@ -128,7 +128,7 @@ iptables/Makefile:
 	cp config.sub iptables
 	cp config.guess iptables
 	cd iptables && \
- 		CC="$(CC)" AR="$(AR)" RANLIB=$(RANLIB) CFLAGS="$(CFLAGS) -DNO_SHARED_LIBS -DXTABLES_INTERNAL -DIPTABLES_VERSION=\"1.4.10\" =-DXTABLES_VERSION=\"1.4.10\" # -DIPT_LIB_DIR=\"$(IPT_LIBDIR)\" -DXTABLES_LIBDIR -I$(EXTERNAL_ROOT)/include" LDFLAGS="$(LDFLAGS)" \
+		CC="$(CC)" AR="$(AR)" RANLIB=$(RANLIB) CFLAGS="$(CFLAGS) -DNO_SHARED_LIBS -DXTABLES_INTERNAL -DIPTABLES_VERSION=\"1.4.10\" =-DXTABLES_VERSION=\"1.4.10\" # -DIPT_LIB_DIR=\"$(IPT_LIBDIR)\" -DXTABLES_LIBDIR -I$(EXTERNAL_ROOT)/include" LDFLAGS="$(LDFLAGS)" \
 			./configure \
 				--host=$(HOST) \
 				--disable-shared
@@ -267,7 +267,7 @@ simple-build-stamp: simple/bin/simple.jar
 simple: simple-build-stamp
 	test -d bin || mkdir bin
 	cp simple/bin/simple.jar bin
-	
+
 simple-clean:
 	- rm -f bin/simple.jar
 	- rm -f simple-build-stamp
@@ -289,7 +289,7 @@ jtorctl-build-stamp: jtorctl/bin/jtorctl.jar
 jtorctl: jtorctl-build-stamp
 	test -d bin || mkdir bin
 	cp jtorctl/bin/jtorctl.jar bin
-	
+
 jtorctl-clean:
 	-rm -rf jtorctl/bin
 	-rm jtorctl-build-stamp
