@@ -247,33 +247,6 @@ privoxy-clean:
 	-rm -rf privoxy
 
 #------------------------------------------------------------------------------#
-# SimpleServer library							       #
-simple/bin/simple.jar:
-	tar xzvf simple.tar.gz
-	mv simple-* simple
-	test -d simple/bin || mkdir simple/bin
-	cd simple/src && \
-		javac -source 1.6 -target 1.6 org/simpleframework/http/core/ContainerServer.java -d ../bin
-	cd simple/src && \
-		javac -source 1.6 -target 1.6 org/simpleframework/transport/connect/Connection.java -d ../bin
-	cd simple/src && \
-		javac -source 1.6 -target 1.6 org/simpleframework/transport/connect/SocketConnection.java -d ../bin
-	cd simple/bin && \
-		jar cvf simple.jar *
-
-simple-build-stamp: simple/bin/simple.jar
-	touch simple-build-stamp
-
-simple: simple-build-stamp
-	test -d bin || mkdir bin
-	cp simple/bin/simple.jar bin
-	
-simple-clean:
-	- rm -f bin/simple.jar
-	- rm -f simple-build-stamp
-	- rm -rf simple
-
-#------------------------------------------------------------------------------#
 # JTorControl library
 
 jtorctl/bin/jtorctl.jar:
@@ -299,13 +272,12 @@ jtorctl-clean:
 #in order to stop Android OS (older devices) from trying to compress/decompress it
 #this is related to a bug in compression of assets and resources > 1MB
 
-assets: tor privoxy jtorctl obfsproxy simple
+assets: tor privoxy jtorctl obfsproxy
 	install -d ../libs/armeabi
 	install -d ../libs
 	install bin/privoxy ../libs/armeabi/libprivoxy.so
 	install bin/obfsproxy ../libs/armeabi/libobfsproxy.so
 	install bin/jtorctl.jar ../libs
-	install bin/simple.jar ../libs
 	install bin/tor ../libs/armeabi/libtor.so
 
 assets-clean:
@@ -313,7 +285,6 @@ assets-clean:
 	-rm ../libs/armeabi/libprivoxy.so
 	-rm ../libs/armeabi/libobfsproxy.so
 	-rm ../libs/jtorctl.jar
-	-rm ../libs/simple.jar
 
 #------------------------------------------------------------------------------#
 # cleanup, cleanup, put the toys away
