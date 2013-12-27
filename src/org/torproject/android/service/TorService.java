@@ -1,4 +1,4 @@
-/* Copyright (c) 2009-2011, Nathan Freitas, Orbot / The Guardian Project - http://openideals.com/guardian */
+/* Copyright (c) 2009-2011, Nathan Freitas, Orbot / The Guardian Project - https://guardianproject.info/apps/orbot */
 /* See LICENSE for licensing information */
 /*
  * Code for iptables binary management taken from DroidWall GPLv3
@@ -30,8 +30,6 @@ import org.torproject.android.R;
 import org.torproject.android.TorConstants;
 import org.torproject.android.Utils;
 import org.torproject.android.settings.AppManager;
-import org.torproject.android.share.ShareItem;
-import org.torproject.android.share.ShareService;
 
 import android.app.Application;
 import android.app.Notification;
@@ -76,13 +74,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
     private ArrayList<String> configBuffer = null;
     private ArrayList<String> resetBuffer = null;
-     
-    //Orbot file sharing service
-
-	private ShareService mShareServe = null; //if hidden services activated
-	private String mShareServeHost = null;
-	private int mShareServePort = -1;
-	
+    
    //   private String appHome;
     private File appBinHome;
     private File appCacheHome;
@@ -342,19 +334,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         
     }
     
-    private void stopShareService ()
-    {
-        try
-        {
-        	if (mShareServe != null)
-        		mShareServe.stopService();
-        }
-        catch (Exception e)
-        {
-        	Log.e(TAG, "error stopping share service",e);
-        }
-    }
-    
     private void stopTor ()
     {
     	currentStatus = STATUS_OFF;
@@ -374,8 +353,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
     		if (hasRoot)
     			disableTransparentProxy();
-    		
-    		stopShareService();
     		
     		sendCallbackStatusMessage(getString(R.string.status_disabled));
 
@@ -1100,12 +1077,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
         	  startNotification(getString(R.string.status_activated),prefPersistNotifications);
         	    			
-
-  			
-  			//we load this here from the file directory based on data
-  			//written by Tor binary
-  			mShareServeHost = getHiddenServiceHostname ();
-   		   
           }
         
       	
@@ -1496,10 +1467,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         	
 	    }
 	    
-	    public String addOnionShare (Uri data, String contentType)
-	    {
-	    	return addOnionShareImpl (data, contentType);
-	    }
     };
     
     private ArrayList<String> callbackBuffer = new ArrayList<String>();
@@ -1859,20 +1826,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	        		
 	        		hsPort = Integer.parseInt(hsPortConfig.split(" ")[0]);
 
-	        		//start this for the first port specified
-	    			if (mShareServe == null)
-	    			{
-
-	    				mShareServe = new ShareService(10, this);
-	    			}
-	    			
-    				//we load this here from the file directory based on data
-    	  			//written by Tor binary
-    	  			mShareServeHost = getHiddenServiceHostname ();
-    				mShareServePort = hsPort;
-    				mShareServe.startService(hsPort);
-	    			
-					
 				} catch (NumberFormatException e) {
 					Log.e(this.TAG,"error parsing hsport",e);
 				} catch (Exception e) {
@@ -1892,29 +1845,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	
         return true;
     }
-    
-    public String addOnionShareImpl (Uri data, String contentType)
-	{
-		try
-		{
-			
-			ShareItem si = new ShareItem();
-			si.mUriData = data;
-			si.mContentType = contentType;
-			
-			String guid = mShareServe.addShare(si);
-			
-			String shareUrl = "http://" + mShareServeHost + ':' + mShareServePort + '/' + guid;
-			
-			return shareUrl;
-		}
-		catch (Exception e)
-		{
-			Log.e(TAG,"unable to handle share",e);
-		}
-		
-		return null;
-	}
     
     //using Google DNS for now as the public DNS server
     private String writeDNSFile () throws IOException
