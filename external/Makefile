@@ -23,7 +23,6 @@ NDK_SYSROOT=$(NDK_BASE)/platforms/android-$(NDK_PLATFORM_LEVEL)/arch-arm
 NDK_UNAME:=`uname -s | tr '[A-Z]' '[a-z]'`
 NDK_PROCESSOR:=`uname -m`
 
-#NDK_TOOLCHAIN=$(NDK_BASE)/toolchains/arm-linux-androideabi-4.4.3/prebuilt/$(NDK_UNAME)-$(NDK_PROCESSOR)
 NDK_TOOLCHAIN=$(NDK_BASE)/toolchains/arm-linux-androideabi-4.6/prebuilt/$(NDK_UNAME)-$(NDK_PROCESSOR)
 
 # to use the real HOST tag, you need the latest libtool files:
@@ -58,36 +57,38 @@ LDFLAGS += -Wl,--gc-sections
 all: assets
 
 #------------------------------------------------------------------------------#
-# openssl-static
+# openssl
 
 lib/libcrypto.a:
-	cd openssl-static && \
-		ndk-build
+	cd openssl && \
+		CC="$(CC)" \
+		./Configure android-armv7 && \
+		ANDROID_DEV=$(NDK_BASE)/platforms/android-8/arch-arm/usr make build_libs
 
 lib/libssl.a:
-	cp config.sub openssl-static
-	cp config.guess openssl-static
-	cd openssl-static && \
-		ndk-build
+	cp config.sub openssl
+	cp config.guess openssl
+	cd openssl && \
+		CC="$(CC)"\
+		./Configure android-armv7 && \
+		ANDROID_DEV=$(NDK_BASE)/platforms/android-8/arch-arm/usr make build_libs
 
-openssl-static-build-stamp: lib/libcrypto.a lib/libssl.a
-	touch openssl-static-build-stamp
+openssl-build-stamp: lib/libcrypto.a lib/libssl.a
+	touch openssl-build-stamp
 
-openssl-static: openssl-static-build-stamp
+openssl: openssl-build-stamp
 	test -d lib || mkdir lib
 	test -d include || mkdir include
 	test -d include/openssl || mkdir include/openssl
-	cp openssl-static/obj/local/armeabi/libcrypto.a lib/libcrypto.a
-	cp openssl-static/obj/local/armeabi/libssl.a lib/libssl.a
-	cp openssl-static/include/openssl/* include/openssl
+	cp openssl/libcrypto.a lib/libcrypto.a
+	cp openssl/libssl.a lib/libssl.a
+	cp openssl/include/openssl/* include/openssl
 
-openssl-static-clean:
-	-cd openssl-static && \
-		ndk-build clean
-	-rm openssl-static-build-stamp
+openssl-clean:
+	-rm openssl-build-stamp
 	-rm lib/libcrypto.a
 	-rm lib/libssl.a
-	-cd openssl-static && \
+	-cd openssl && \
 		git clean -fdx
 
 #------------------------------------------------------------------------------#
@@ -107,7 +108,7 @@ libevent-build-stamp: libevent/Makefile
 	$(MAKE) -C libevent
 	touch libevent-build-stamp
 
-libevent: openssl-static libevent-build-stamp
+libevent: openssl libevent-build-stamp
 	test -d lib || mkdir lib
 	test -d include || mkdir include
 	cp libevent/.libs/libevent.a lib
@@ -168,7 +169,7 @@ tor-build-stamp: tor/Makefile
 	$(MAKE) -C tor 
 	touch tor-build-stamp
 
-tor: libevent openssl-static tor-build-stamp
+tor: libevent openssl tor-build-stamp
 	test -d bin || mkdir bin
 	cp tor/src/or/tor bin
 
@@ -203,7 +204,7 @@ obfsproxy-build-stamp: obfsproxy/Makefile
 	$(MAKE) -C obfsproxy
 	touch obfsproxy-build-stamp
 
-obfsproxy: openssl-static libevent obfsproxy-build-stamp
+obfsproxy: openssl libevent obfsproxy-build-stamp
 	test -d bin || mkdir bin
 	cp obfsproxy/obfsproxy bin
 
@@ -289,4 +290,4 @@ assets-clean:
 #------------------------------------------------------------------------------#
 # cleanup, cleanup, put the toys away
 
-clean: openssl-static-clean libevent-clean tor-clean privoxy-clean jtorctl-clean assets-clean
+clean: openssl-clean libevent-clean tor-clean privoxy-clean jtorctl-clean assets-clean
