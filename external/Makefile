@@ -300,20 +300,20 @@ jtorctl-clean:
 #this is related to a bug in compression of assets and resources > 1MB
 
 assets: tor privoxy jtorctl obfsproxy simple
-	install -d ../res/raw
+	install -d ../libs/armeabi
 	install -d ../libs
-	install bin/privoxy ../res/raw	
-	install bin/obfsproxy ../res/raw
+	install bin/privoxy ../libs/armeabi/libprivoxy.so
+	install bin/obfsproxy ../libs/armeabi/libobfsproxy.so
 	install bin/jtorctl.jar ../libs
 	install bin/simple.jar ../libs
-	cd bin && \
-		zip ../../res/raw/tor.mp3 tor
+	install bin/tor ../libs/armeabi/libtor.so
 
 assets-clean:
-	-rm ../res/raw/tor.mp3
-	-rm ../res/raw/privoxy
-	-rm ../libs/*
-	-rm ../res/raw/obfsproxy
+	-rm ../libs/armeabi/libtor.so
+	-rm ../libs/armeabi/libprivoxy.so
+	-rm ../libs/armeabi/libobfsproxy.so
+	-rm ../libs/jtorctl.jar
+	-rm ../libs/simple.jar
 
 #------------------------------------------------------------------------------#
 # cleanup, cleanup, put the toys away
