@@ -12,7 +12,7 @@ public interface TorServiceConstants {
 	//home directory of Android application
 	
 	//name of the tor C binary
-	public final static String TOR_BINARY_ASSET_KEY = "tor";	
+	public final static String TOR_BINARY_ASSET_KEY = "libtor.so";	
 	
 	//torrc (tor config file)
 	public final static String TORRC_ASSET_KEY = "torrc";
@@ -24,7 +24,7 @@ public interface TorServiceConstants {
 //	public final static String TOR_COMMAND_LINE_ARGS = "-f " + TORRC_INSTALL_PATH  + " || exit\n";
 		
 	//privoxy
-	public final static String PRIVOXY_ASSET_KEY = "privoxy";
+	public final static String PRIVOXY_ASSET_KEY = "libprivoxy.so";
 	
 	//privoxy.config
 	public final static String PRIVOXYCONFIG_ASSET_KEY = "privoxy.config";
@@ -82,7 +82,7 @@ public interface TorServiceConstants {
     public static final String PREF_BINARY_PRIVOXY_VERSION_INSTALLED = "BINARY_PRIVOXY_VERSION_INTALLED";
     
     //obfsproxy 
-    public static final String OBFSPROXY_ASSET_KEY = "obfsproxy";
+    public static final String OBFSPROXY_ASSET_KEY = "libobfsproxy.so";
     
 	public static final int MESSAGE_TRAFFIC_COUNT = 5;
 

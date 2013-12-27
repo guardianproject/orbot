@@ -48,11 +48,6 @@ public class TorBinaryInstaller implements TorServiceConstants {
 		InputStream is;
         File outFile;
         
-        
-		is = context.getResources().openRawResource(R.raw.tor);			
-		outFile = new File(installFolder, TOR_BINARY_ASSET_KEY);
-		streamToFile(is, outFile, false, true);
-			
 		is = context.getResources().openRawResource(R.raw.torrc);
 		outFile = new File(installFolder, TORRC_ASSET_KEY);
 		streamToFile(is,outFile, false, false);
@@ -61,16 +56,8 @@ public class TorBinaryInstaller implements TorServiceConstants {
 		outFile = new File(installFolder, TORRC_TETHER_KEY);
 		streamToFile(is, outFile, false, false);
 
-		is = context.getResources().openRawResource(R.raw.privoxy);
-		outFile = new File(installFolder, PRIVOXY_ASSET_KEY);
-		streamToFile(is,outFile, false, false);
-
 		is = context.getResources().openRawResource(R.raw.privoxy_config);
 		outFile = new File(installFolder, PRIVOXYCONFIG_ASSET_KEY);
-		streamToFile(is,outFile, false, false);
-	
-		is = context.getResources().openRawResource(R.raw.obfsproxy);
-		outFile = new File(installFolder, OBFSPROXY_ASSET_KEY);
 		streamToFile(is,outFile, false, false);
 	
 		return true;
@@ -79,6 +66,7 @@ public class TorBinaryInstaller implements TorServiceConstants {
 	/*
 	 * Extract the Tor binary from the APK file using ZIP
 	 */
+	/*
 	public boolean installGeoIP () throws IOException, FileNotFoundException
 	{
 		
@@ -90,7 +78,7 @@ public class TorBinaryInstaller implements TorServiceConstants {
 		streamToFile(is, outFile, false, true);
 	
 		return true;
-	}
+	}*/
 	
 	/*
 	private static void copyAssetFile(Context ctx, String asset, File file) throws IOException, InterruptedException
@@ -248,6 +236,7 @@ public class TorBinaryInstaller implements TorServiceConstants {
      * @param showErrors indicates if errors should be alerted
 	 * @return false if the binary files could not be installed
 	 */
+	/*
 	public static boolean assertIpTablesBinaries(Context ctx, boolean showErrors) throws Exception {
 		boolean changed = false;
 		
@@ -256,7 +245,7 @@ public class TorBinaryInstaller implements TorServiceConstants {
 		copyRawFile(ctx, R.raw.iptables, file, CHMOD_EXEC, false);
 				
 		return true;
-	}
+	}*/
 	
 
 }

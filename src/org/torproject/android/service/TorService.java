@@ -86,6 +86,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
    //   private String appHome;
     private File appBinHome;
     private File appCacheHome;
+    private File appLibsHome;
     
     private File fileTor;
     private File filePrivoxy;
@@ -528,10 +529,11 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	
     	appBinHome = getDir("bin",Application.MODE_PRIVATE);
     	appCacheHome = getDir("data",Application.MODE_PRIVATE);
+    	appLibsHome = new File(getApplicationInfo().nativeLibraryDir);
     	
-    	fileTor = new File(appBinHome, TOR_BINARY_ASSET_KEY);
-		filePrivoxy = new File(appBinHome, PRIVOXY_ASSET_KEY);
-		fileObfsProxy = new File(appBinHome, OBFSPROXY_ASSET_KEY);
+    	fileTor = new File(appLibsHome, TOR_BINARY_ASSET_KEY);
+		filePrivoxy = new File(appLibsHome, PRIVOXY_ASSET_KEY);
+		fileObfsProxy = new File(appLibsHome, OBFSPROXY_ASSET_KEY);
 
 		
     }
@@ -540,9 +542,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     {
     	
 		SharedPreferences prefs =getSharedPrefs(getApplicationContext());
-
-    	//check and install iptables
-    	TorBinaryInstaller.assertIpTablesBinaries(this, true);
 
     	initTorPaths();
 		
@@ -1707,13 +1706,15 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	        {
 		        if (!fileGeoIP.exists())
 		        {
-		        	TorBinaryInstaller installer = new TorBinaryInstaller(this, appBinHome); 
-					boolean success = installer.installGeoIP();	
+		        	//TorBinaryInstaller installer = new TorBinaryInstaller(this, appBinHome); 
+					//boolean success = installer.installGeoIP();
+		        	
+		        	//TODO get GEOIP add-on here
 		        }
 		        
 		        mBinder.updateConfiguration("GeoIPFile", fileGeoIP.getAbsolutePath(), false);
 	        }
-	        catch (IOException e)
+	        catch (Exception e)
 	        {
 	       	  showToolbarNotification (getString(R.string.error_installing_binares),ERROR_NOTIFY_ID,R.drawable.ic_stat_tor, Notification.FLAG_ONGOING_EVENT);
 
