@@ -42,7 +42,7 @@ public class TorBinaryInstaller implements TorServiceConstants {
 	/*
 	 * Extract the Tor binary from the APK file using ZIP
 	 */
-	public boolean installFromRaw () throws IOException, FileNotFoundException
+	public boolean installResources () throws IOException, FileNotFoundException
 	{
 		
 		InputStream is;
@@ -66,7 +66,7 @@ public class TorBinaryInstaller implements TorServiceConstants {
 	/*
 	 * Extract the Tor binary from the APK file using ZIP
 	 */
-	/*
+	
 	public boolean installGeoIP () throws IOException, FileNotFoundException
 	{
 		
@@ -78,7 +78,7 @@ public class TorBinaryInstaller implements TorServiceConstants {
 		streamToFile(is, outFile, false, true);
 	
 		return true;
-	}*/
+	}
 	
 	/*
 	private static void copyAssetFile(Context ctx, String asset, File file) throws IOException, InterruptedException

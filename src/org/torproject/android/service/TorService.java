@@ -83,6 +83,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     private File fileTor;
     private File filePrivoxy;
     private File fileObfsProxy;
+    private File fileTorRc;
     
     private TorTransProxy mTransProxy;
 
@@ -157,6 +158,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     /* (non-Javadoc)
 	 * @see android.app.Service#onLowMemory()
 	 */
+    @Override
 	public void onLowMemory() {
 		super.onLowMemory();
 		
@@ -168,11 +170,10 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	/* (non-Javadoc)
 	 * @see android.app.Service#onUnbind(android.content.Intent)
 	 */
+	@Override
 	public boolean onUnbind(Intent intent) {
 		
 	//	logNotice( "onUnbind Called: " + intent.getAction());
-		
-		
 		
 		return super.onUnbind(intent);
 		
@@ -224,6 +225,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     /* (non-Javadoc)
 	 * @see android.app.Service#onRebind(android.content.Intent)
 	 */
+	@Override
 	public void onRebind(Intent intent) {
 		super.onRebind(intent);
 		
@@ -237,9 +239,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	/* (non-Javadoc)
 	 * @see android.app.Service#onStart(android.content.Intent, int)
 	 */
-	public void onStart(Intent intent, int startId) {
-		super.onStart(intent, startId);
-
+	public int onStartCommand(Intent intent, int flags, int startId) {
+	
 		_torInstance = this;
 		
 		initTorPaths();
@@ -250,23 +251,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 		mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-		new Thread ()
-		{
-			
-			public void run ()
-			{
-				try {
-					checkTorBinaries (false);
-				} catch (Exception e) {
-	
-					logNotice("unable to find tor binaries: " + e.getMessage());
-			    	showToolbarNotification(getString(R.string.error_installing_binares), ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr, -1);
-	
-					Log.e(TAG, "error checking tor binaries", e);
-				}
-			}
-		}.start();
-		
 		
 
 		if (intent != null && intent.getAction()!=null && intent.getAction().equals("onboot"))
@@ -279,6 +263,11 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 				setTorProfile(PROFILE_ON);
 			}
 		}
+		
+	    // We want this service to continue running until it is explicitly
+	    // stopped, so return sticky.
+	    return START_STICKY;
+
 	}
 	
 	public static SharedPreferences getSharedPrefs (Context context)
@@ -508,91 +497,46 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	appCacheHome = getDir("data",Application.MODE_PRIVATE);
     	appLibsHome = new File(getApplicationInfo().nativeLibraryDir);
     	
-    	fileTor = new File(appLibsHome, TOR_BINARY_ASSET_KEY);
+    	fileTor = new File(appLibsHome, TOR_BINARY_ASSET_KEY);    	
+    	if (fileTor.exists())
+    		logNotice ("Tor binary exists: " + fileTor.getAbsolutePath());
+    	else
+    		throw new RuntimeException("Tor binary not installed");
+    	
 		filePrivoxy = new File(appLibsHome, PRIVOXY_ASSET_KEY);
+		if (filePrivoxy.exists())
+    		logNotice ("Privoxy binary exists: " + filePrivoxy.getAbsolutePath());
+		else
+    		throw new RuntimeException("Privoxy binary not installed");
+    	
 		fileObfsProxy = new File(appLibsHome, OBFSPROXY_ASSET_KEY);
-
+		if (fileObfsProxy.exists())
+    		logNotice ("Obfsproxy binary exists: " + fileObfsProxy.getAbsolutePath());    	
+		else
+    		throw new RuntimeException("Obfsproxy binary not installed");
+    	
+		fileTorRc = new File(appBinHome, TORRC_ASSET_KEY);
 		
-    }
-
-    public boolean checkTorBinaries (boolean forceInstall) throws Exception
-    {
-    	
-		SharedPreferences prefs =getSharedPrefs(getApplicationContext());
-
-    	initTorPaths();
-		
-    	String currTorBinary = prefs.getString(TorServiceConstants.PREF_BINARY_TOR_VERSION_INSTALLED, null);
-    	String currPrivoxyBinary = prefs.getString(TorServiceConstants.PREF_BINARY_PRIVOXY_VERSION_INSTALLED, null);
-    	
-    	StringBuilder cmdLog = new StringBuilder();
-    	int exitCode = -1;
-    	
-    	if (currTorBinary == null || (!currTorBinary.equals(TorServiceConstants.BINARY_TOR_VERSION)))
-    		if (fileTor.exists())
-    		{
-    			if (currentStatus != STATUS_OFF)
-    				stopTor();
-    			
-    			String[] cmds = {"rm " + fileTor.getAbsolutePath()};
-    			exitCode = TorServiceUtils.doShellCommand(cmds, cmdLog, false, true);
-
-    		}
-    
-    	if (currPrivoxyBinary == null || (!currPrivoxyBinary.equals(TorServiceConstants.BINARY_PRIVOXY_VERSION)))
-    		if (filePrivoxy.exists())
-    		{
-    			if (currentStatus != STATUS_OFF)
-    				stopTor();
-    			
-    			
-    			String[] cmds = {"rm " + filePrivoxy.getAbsolutePath()};
-    			exitCode = TorServiceUtils.doShellCommand(cmds, cmdLog, false, true);
-
-    		}
-    	
-    	
-
-		logNotice( "checking Tor binaries");
-		
-		if ((!(fileTor.exists() && filePrivoxy.exists())) || forceInstall)
+		if (!fileTorRc.exists())
 		{
-			stopTor();
-			
 			TorBinaryInstaller installer = new TorBinaryInstaller(this, appBinHome); 
-			boolean success = installer.installFromRaw();
-			
-			
-    		if (success)
-    		{
-    			
-    			Editor edit = prefs.edit();
-    			edit.putString(TorServiceConstants.PREF_BINARY_TOR_VERSION_INSTALLED, TorServiceConstants.BINARY_TOR_VERSION);
-    			edit.putString(TorServiceConstants.PREF_BINARY_PRIVOXY_VERSION_INSTALLED, TorServiceConstants.BINARY_PRIVOXY_VERSION);
-    			edit.commit();
-    			
-    			logNotice(getString(R.string.status_install_success));
-    	
-    			//showToolbarNotification(getString(R.string.status_install_success), NOTIFY_ID, R.drawable.ic_stat_tor);
-
-    		}
-    		else
-    		{
-    		
-    			logNotice(getString(R.string.status_install_fail));
-
-    			sendCallbackStatusMessage(getString(R.string.status_install_fail));
-    			
-    			return false;
-    		}
-    		
+			try {
+				boolean success = installer.installResources();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+				
 		}
+			
 		
-		setBinaryPerms();
-		
-		return true;
     }
+
     
+    /*
     private void setBinaryPerms () throws Exception
     {
 	
@@ -610,7 +554,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		String[] cmd3 = {SHELL_CMD_CHMOD + ' ' + CHMOD_EXE_VALUE + ' ' + fileObfsProxy.getAbsolutePath()};
 		TorServiceUtils.doShellCommand(cmd3, log, false, true);
 		
-    }
+    }*/
     
     private boolean mHasRoot = false;
     private boolean mEnableTransparentProxy = false;
@@ -647,7 +591,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
 		try {
 			
-			setBinaryPerms();
+			//setBinaryPerms();
 			
     		runTorShellCmd();
     		runPrivoxyShellCmd();
@@ -1250,40 +1194,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	
     	_torInstance = this;
     	initTorPaths();
-    	
-    	//if Tor was deleted for some reason, do this again!
-		if (!fileTor.exists())
-		{
-			new Thread ()
-			{				
-				public void run ()
-				{
-					try {
-						checkTorBinaries (false);
-					} catch (Exception e) {
-		
-						logNotice("unable to find tor binaries: " + e.getMessage());
-				    	showToolbarNotification(getString(R.string.error_installing_binares), ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr, -1);
-		
-						Log.e(TAG, "error checking tor binaries", e);
-					}
-				}
-			}.start();
-		}
-    	
-    	
-    	
-    	new Thread ()
-    	{
-    		
-    		public void run ()
-    		{
-    			findExistingProc ();
-    		}
-
-			
-    	}.start();
-    	
+    	findExistingProc ();
+    	    	
     	if (ITorService.class.getName().equals(intent.getAction())) {
             return mBinder;
         }
@@ -1667,19 +1579,19 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         if (entranceNodes.length() > 0 || exitNodes.length() > 0 || excludeNodes.length() > 0)
         {
         	//only apple GeoIP if you need it
-	        File fileGeoIP = new File(appBinHome,"geoip");
+	        File fileGeoIP = new File(appBinHome,GEOIP_ASSET_KEY);
 	        
 	        try
 	        {
-		        if (!fileGeoIP.exists())
+		        if ((!fileGeoIP.exists()))
 		        {
-		        	//TorBinaryInstaller installer = new TorBinaryInstaller(this, appBinHome); 
-					//boolean success = installer.installGeoIP();
+		        	TorBinaryInstaller installer = new TorBinaryInstaller(this, appBinHome); 
+					boolean success = installer.installGeoIP();
 		        	
-		        	//TODO get GEOIP add-on here
 		        }
 		        
 		        mBinder.updateConfiguration("GeoIPFile", fileGeoIP.getAbsolutePath(), false);
+
 	        }
 	        catch (Exception e)
 	        {
