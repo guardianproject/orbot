@@ -19,3 +19,6 @@
 [submodule "external/ActionBarSherlock"]
 	path = external/ActionBarSherlock
 	url = https://github.com/JakeWharton/ActionBarSherlock.git
+[submodule "external/openssl"]
+	path = external/openssl
+	url = git://git.openssl.org/openssl
