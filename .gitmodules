@@ -1,6 +1,3 @@
-[submodule "external/openssl-static"]
-	path = external/openssl-static
-	url = https://github.com/guardianproject/android-external-openssl-ndk-static.git
 [submodule "external/tor"]
 	path = external/tor
 	url = https://git.torproject.org/git/tor.git
