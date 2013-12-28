@@ -35,6 +35,10 @@ __sporkbomb <manuel@acanthephyra.net> implemented an updated set of logic
 in TorTransProxy for handling the "transproxy all" mode of operation. Before
 certain system processes were leaking traffic, and this was also detected
 by his excellent auditing.
+
+Amogh Pradeep <amoghbl1@gmail.com> submitted a patch to address an issue
+with the ongoing data transfer notification dying now and then, and is
+working on improving the notification display in general
  
 We found a nice new power button vector set here under the CC license:
 http://vector4free.com/vector/free-vector-power-buttons/
