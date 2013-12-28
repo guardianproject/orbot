@@ -72,7 +72,7 @@
   <string name="wizard_configure_select_apps">Select Individual Apps for Tor</string>
   <string name="wizard_tips_tricks">Orbot-enabled Apps</string>
   <string name="wizard_tips_msg">The apps below were developed to work with Orbot. Click each button to install now, or you can find them later on Google Play, at GuardianProject.info website or via F-Droid.org.</string>
-  <string name="wizard_tips_otrchat">Gibberbot - Secure instant messaging client for Android</string>
+  <string name="wizard_tips_otrchat">ChatSecure - Secure instant messaging client for Android</string>
   <string name="wizard_tips_proxy">Proxy Settings - Learn how to configure apps to work with Orbot</string>
   <string name="wizard_tips_duckgo">DuckDuckGo Search Engine app</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
@@ -104,8 +104,8 @@
   <string name="wizard_permissions_no_root_msg">Your device does not appear to be rooted or provide \'Superuser\' access.\n\nIn order to you to benefit from Tor, you will need to use apps built to work with Orbot, or that support HTTP or SOCKS proxy settings.\n\n</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot-Enabled Apps</string>
-  <string name="wizard_tips_gibberbot">Gibberbot: Secure chat app with Off-the-Record Encryption</string>
-  <string name="gibberbot_apk_url">https://guardianproject.info/releases/gibberbot-latest.apk</string>
+  <string name="wizard_tips_gibberbot">ChatSecure: Secure chat app with Off-the-Record Encryption</string>
+  <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
   <string name="wizard_tips_orweb">Orweb: Privacy-enhanced browser that works through Tor</string>
   <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
   <string name="wizard_tips_play">Find all Guardian Project apps on Google Play</string>
@@ -241,4 +241,8 @@
   <string name="pref_disable_network_title">No Network Auto-Sleep</string>
   <string name="pref_disable_network_summary">Put Tor to sleep when there is no internet available</string>
   <string name="newnym">You\'ve switched to a new Tor identity!</string>
+  
+    <string name="menu_verify_browser">Check Browser</string>
+    <string name="menu_use_chatsecure">Use ChatSecure</string>
+  
 </resources>

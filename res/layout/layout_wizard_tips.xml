@@ -81,7 +81,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:layout_marginTop="10px"
-        android:drawableLeft="@drawable/ic_launcher_gibberbot"
+        android:drawableLeft="@drawable/ic_chatsecure"
         android:text="@string/wizard_tips_gibberbot" />
 
     

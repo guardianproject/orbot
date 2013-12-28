@@ -32,13 +32,25 @@
          android:showAsAction="always"
          />
 
- <item android:id="@+id/menu_verify"
+ <item 
+     android:id="@+id/menu_verify_list"
         android:title="@string/menu_verify"
          android:icon="@drawable/ic_action_browse"
-                  android:showAsAction="always"
-         
-         />
+                  android:showAsAction="always"         
+        >
+        <menu>
+        <item android:id="@+id/menu_verify"
+        android:title="@string/menu_verify_browser"
+         android:icon="@drawable/ic_action_browse"  
+        />
  
+        <item android:id="@+id/menu_use_chatsecure"
+        android:title="@string/menu_use_chatsecure"
+         android:icon="@drawable/ic_chatsecure" 
+        />
+        
+        </menu>
+ </item>
  <item android:id="@+id/menu_about"
         android:title="@string/menu_about"
          android:icon="@drawable/ic_menu_about"
