@@ -80,7 +80,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     private File appCacheHome;
     private File appLibsHome;
     
-    private File fileTor;
+    private File fileTorOrig;
+    private File fileTorLink;
+    
     private File filePrivoxy;
     private File fileObfsProxy;
     private File fileTorRc;
@@ -117,41 +119,40 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     }
     
     
-    private boolean findExistingProc ()
+    private boolean findExistingProc () 
     {
-    	 int procId = TorServiceUtils.findProcessId(fileTor.getAbsolutePath());
-
- 		if (procId != -1)
- 		{
- 			logNotice("Found existing Tor process");
- 			
-            sendCallbackLogMessage (getString(R.string.found_existing_tor_process));
-
- 			try {
- 				currentStatus = STATUS_CONNECTING;
-				
- 				initControlConnection();
-				
- 				processSettingsImpl();
- 				
-				currentStatus = STATUS_ON;
-				
-				return true;
- 						
-			} catch (RuntimeException e) {
-				Log.d(TAG,"Unable to connect to existing Tor instance,",e);
-				currentStatus = STATUS_OFF;
-				
-			} catch (Exception e) {
-				Log.d(TAG,"Unable to connect to existing Tor instance,",e);
-				currentStatus = STATUS_OFF;
-				
-				
-			}
- 		}
- 		
- 		return false;
-    	 
+    	try
+    	{
+    		if (fileTorLink == null)
+    			initTorPathLink();
+    		
+	    	int procId = TorServiceUtils.findProcessId(fileTorLink.getAbsolutePath());
+	
+	 		if (procId != -1)
+	 		{
+	 			logNotice("Found existing Tor process");
+	 			
+	            sendCallbackLogMessage (getString(R.string.found_existing_tor_process));
+	
+	 				currentStatus = STATUS_CONNECTING;
+					
+	 				initControlConnection();
+					
+	 				processSettingsImpl();
+	 				
+					currentStatus = STATUS_ON;
+					
+					return true;
+	 			
+	 		}
+	 		
+	 		return false;
+    	}
+    	catch (Exception e)
+    	{
+    		Log.e(TAG,"error finding proc",e);
+    		return false;
+    	}
     }
     
 
@@ -229,10 +230,17 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	public void onRebind(Intent intent) {
 		super.onRebind(intent);
 		
-		initTorPaths();
+		try
+		{
+			initTorPaths();
 		
-		sendCallbackLogMessage("Welcome back, Carter!");
-		
+			sendCallbackLogMessage("Welcome back, Carter!");
+		}
+		catch (Exception e)
+		{
+			Log.e(TAG,"unable to init Tor",e);
+			throw new RuntimeException("Unable to init Tor");
+		}
 	}
 
 
@@ -243,8 +251,16 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	
 		_torInstance = this;
 		
-		initTorPaths();
-
+		try
+		{
+			initTorPaths();
+		}
+		catch (Exception e)
+		{
+			Log.e(TAG,"error setting up Tor",e);
+			throw new RuntimeException("Unable to start Tor");
+		}
+		
 	   IntentFilter mNetworkStateFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
 	   registerReceiver(mNetworkStateReceiver , mNetworkStateFilter);
 		
@@ -419,6 +435,20 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         return null;
 	}
 	
+	private void initTorPathLink () throws Exception
+	{
+
+		fileTorLink = new File(appBinHome,"tor");
+		
+    	StringBuilder log = new StringBuilder();
+    	
+    	String[] cmdDel = { "rm " + fileTorLink.getAbsolutePath() };
+		TorServiceUtils.doShellCommand(cmdDel,log, false, false);
+		
+    	String[] cmd = { SHELL_CMD_LINK + ' ' + fileTorOrig.getAbsolutePath() + ' ' + fileTorLink.getAbsolutePath() };
+		TorServiceUtils.doShellCommand(cmd,log, false, false);
+		logNotice("link command output: " + log.toString());
+	}
     
     private void killTorProcess () throws Exception
     {
@@ -444,7 +474,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	
     	int killDelayMs = 300;
     	
-		while ((procId = TorServiceUtils.findProcessId(fileTor.getAbsolutePath())) != -1)
+		while ((procId = TorServiceUtils.findProcessId(fileTorLink.getAbsolutePath())) != -1)
 		{
 			
 			logNotice("Found Tor PID=" + procId + " - killing now...");
@@ -490,16 +520,18 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	}
     }
     
-    private void initTorPaths ()
+    private void initTorPaths () throws IOException
     {
     	
     	appBinHome = getDir("bin",Application.MODE_PRIVATE);
     	appCacheHome = getDir("data",Application.MODE_PRIVATE);
     	appLibsHome = new File(getApplicationInfo().nativeLibraryDir);
     	
-    	fileTor = new File(appLibsHome, TOR_BINARY_ASSET_KEY);    	
-    	if (fileTor.exists())
-    		logNotice ("Tor binary exists: " + fileTor.getAbsolutePath());
+    	fileTorOrig = new File(appLibsHome, TOR_BINARY_ASSET_KEY);    	
+    	if (fileTorOrig.exists())
+    	{
+    		logNotice ("Tor binary exists: " + fileTorOrig.getAbsolutePath());
+    	}
     	else
     		throw new RuntimeException("Tor binary not installed");
     	
@@ -586,6 +618,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		logNotice(getString(R.string.status_starting_up));
 		
 		sendCallbackStatusMessage(getString(R.string.status_starting_up));
+		
+		initTorPathLink ();
 		
 		killTorProcess ();
 		
@@ -688,6 +722,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     
     private void runTorShellCmd() throws Exception
     {
+    	
 		SharedPreferences prefs =getSharedPrefs(getApplicationContext());
 
     	StringBuilder log = new StringBuilder();
@@ -703,7 +738,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
 		String[] torCmd = {
 				"export HOME=" + appBinHome.getAbsolutePath(),
-				fileTor.getAbsolutePath() + " DataDirectory " + appCacheHome.getAbsolutePath() + " -f " + torrcPath  + " || exit\n"
+				fileTorLink.getAbsolutePath() + " DataDirectory " + appCacheHome.getAbsolutePath() + " -f " + torrcPath  + " || exit\n"
 				};
 		
 		boolean runAsRootFalse = false;
@@ -724,12 +759,12 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
 			Thread.sleep(torRetryWaitTimeMS);
 			
-			procId = TorServiceUtils.findProcessId(fileTor.getAbsolutePath());
+			procId = TorServiceUtils.findProcessId(fileTorLink.getAbsolutePath());
 			
 			if (procId == -1)
 			{
 				Thread.sleep(torRetryWaitTimeMS);
-				procId = TorServiceUtils.findProcessId(fileTor.getAbsolutePath());
+				procId = TorServiceUtils.findProcessId(fileTorLink.getAbsolutePath());
 				attempts++;
 			}
 			else
@@ -1193,9 +1228,16 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         
     	
     	_torInstance = this;
-    	initTorPaths();
-    	findExistingProc ();
-    	    	
+    	try
+    	{
+    		initTorPaths();
+    		findExistingProc ();
+    	}
+    	catch (Exception e)
+    	{
+    		Log.e(TAG,"error onBind",e);
+    	}
+    	
     	if (ITorService.class.getName().equals(intent.getAction())) {
             return mBinder;
         }
@@ -1243,7 +1285,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         		processSettingsImpl ();
 
 		    	
-			} catch (RemoteException e) {
+			} catch (Exception e) {
 				logException ("error applying mPrefs",e);
 			}
         	
@@ -1528,7 +1570,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	}
     };
 
-    private boolean processSettingsImpl () throws RemoteException
+    private boolean processSettingsImpl () throws RemoteException, IOException
     {
 		SharedPreferences prefs = getSharedPrefs(getApplicationContext());
 
