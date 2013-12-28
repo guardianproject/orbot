@@ -765,7 +765,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			if (procId == -1)
 			{
 				Thread.sleep(torRetryWaitTimeMS);
-				procId = TorServiceUtils.findProcessId(fileTorLink.getAbsolutePath());
+				procId = TorServiceUtils.findProcessId(fileTorOrig.getAbsolutePath());
 				attempts++;
 			}
 			else
@@ -832,7 +832,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     				Thread.sleep(3000);
     				attempts++;
     			}
-    			
     			
     			logNotice(log.toString());
     		}
