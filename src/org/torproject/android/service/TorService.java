@@ -31,6 +31,7 @@ import org.torproject.android.TorConstants;
 import org.torproject.android.Utils;
 import org.torproject.android.settings.AppManager;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -43,12 +44,13 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.net.ConnectivityManager;
-import android.net.Uri;
 import android.os.Build;
+import android.os.Handler;
 import android.os.IBinder;
 import android.os.RemoteCallbackList;
 import android.os.RemoteException;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationCompat.Builder;
 import android.util.Log;
 
 public class TorService extends Service implements TorServiceConstants, TorConstants, Runnable, EventHandler
@@ -96,9 +98,11 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	private long lastRead = -1;
 	private long lastWritten = -1;
 	
+	private static int notificationCounter = 0;
 	
 	private NotificationManager mNotificationManager = null;
 	
+			
     public void logMessage(String msg)
     {
     	if (ENABLE_DEBUG_LOG)
@@ -196,32 +200,22 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	}
    
 	
-	private void showToolbarNotification (String notifyMsg, int notifyId, int icon, int flags)
-	{
-	
+	@SuppressLint("NewApi")
+ 	private void showToolbarNotification (String notifyMsg, int notifyId, int icon, int flags)
+ 	{
+ 				    
+		if (mNotifyBuilder == null)
+      	  startNotification(getString(R.string.status_activated),prefPersistNotifications);
+
+		mNotifyBuilder.setContentText(notifyMsg);
+		mNotifyBuilder.setSmallIcon(icon);
 		
+		mNotificationManager.notify(
+	    			NOTIFY_ID,
+	    			mNotifyBuilder.getNotification());
+			
 		
-		CharSequence tickerText = notifyMsg;
-		long when = System.currentTimeMillis();
-
-		Notification notification = new Notification(icon, tickerText, when);
-		
-		if (prefPersistNotifications && flags != -1)			
-			notification.flags |= flags;
-
-		Context context = getApplicationContext();
-		CharSequence contentTitle = getString(R.string.app_name);
-		CharSequence contentText = notifyMsg;
-		
-		Intent notificationIntent = new Intent(this, Orbot.class);
-		PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
-
-		notification.setLatestEventInfo(context, contentTitle, contentText, contentIntent);
-
-		mNotificationManager.notify(notifyId, notification);
-
-
-	}
+ 	}
     
     /* (non-Javadoc)
 	 * @see android.app.Service#onRebind(android.content.Intent)
@@ -857,7 +851,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	
 	private void initControlConnection () throws Exception, RuntimeException
 	{
-			while (true)
+			while (conn == null)
 			{
 				try
 				{
@@ -1010,40 +1004,37 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			}
 		}
 		
-		NotificationCompat.Builder mNotifyBuilder;
+		Builder mNotifyBuilder;
+ 		
+	@SuppressLint("NewApi")
+	private void startNotification (String message, boolean persistent)
+	{
+		//Reusable code.
+		Intent intent = new Intent(TorService.this, Orbot.class);
+		PendingIntent pendIntent = PendingIntent.getActivity(TorService.this, 0, intent, 0);
 		
-		private void startNotification (String message, boolean persistent)
-		{
-			
-			if (mNotifyBuilder == null)
-			{
-				mNotifyBuilder = new NotificationCompat.Builder(this)
-				    .setContentTitle(getString(R.string.app_name))
-				    .setContentText( getString(R.string.status_activated))
-				    .setSmallIcon(R.drawable.ic_stat_tor);
-			
-				Intent intent = new Intent(TorService.this, Orbot.class);
-				PendingIntent pendIntent = PendingIntent.getActivity(TorService.this, 0, intent, 0);
-
-				mNotifyBuilder.setContentIntent(pendIntent);
-				
-				
-			}				
-
-			if (mNotificationManager == null)
-			{
-				mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-			}
-			
-			mNotifyBuilder.setOngoing(persistent);			    
-			mNotifyBuilder.setContentText(message);
-
-			  mNotificationManager.notify(
-			    		NOTIFY_ID,
-			            mNotifyBuilder.getNotification());
-		}
+		mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 		
+				if (mNotifyBuilder == null)
+				{
+					mNotifyBuilder = new NotificationCompat.Builder(this)
+						.setContentTitle(getString(R.string.app_name))
+						.setContentText( getString(R.string.status_activated))
+						.setSmallIcon(R.drawable.ic_stat_tor);
+
+					mNotifyBuilder.setContentIntent(pendIntent);
+				}		
+ 			
+				mNotifyBuilder.setOngoing(persistent);			    
+				mNotifyBuilder.setContentText(message);
+ 
+				mNotificationManager.notify(
+			    			NOTIFY_ID,
+			    			mNotifyBuilder.getNotification());
+			
+
+	}
+
 
 	public void message(String severity, String msg) {
 		
@@ -1129,6 +1120,10 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			mTotalTrafficRead += read;
 			
 			sendCallbackStatusMessage(written, read, mTotalTrafficWritten, mTotalTrafficRead); 
+
+			if(++notificationCounter%10==0)
+			    startService(new Intent(INTENT_TOR_SERVICE));
+
 		}
 		
 		lastWritten = written;
@@ -1228,15 +1223,25 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         
     	
     	_torInstance = this;
-    	try
+    	
+    	
+    	Thread thread = new Thread ()
     	{
-    		initTorPaths();
-    		findExistingProc ();
-    	}
-    	catch (Exception e)
-    	{
-    		Log.e(TAG,"error onBind",e);
-    	}
+    		
+    		public void run ()
+    		{
+		    	try
+		    	{
+		    		initTorPaths();
+		    		findExistingProc ();
+		    	}
+		    	catch (Exception e)
+		    	{
+		    		Log.e(TAG,"error onBind",e);
+		    	}
+    		}
+    	};
+    	thread.start();
     	
     	if (ITorService.class.getName().equals(intent.getAction())) {
             return mBinder;
