@@ -34,7 +34,6 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.RemoteException;
-import android.preference.PreferenceManager;
 import android.text.ClipboardManager;
 import android.text.Layout;
 import android.text.method.ScrollingMovementMethod;
@@ -47,7 +46,6 @@ import android.view.View;
 import android.view.View.OnLongClickListener;
 import android.view.View.OnTouchListener;
 import android.view.animation.AccelerateInterpolator;
-import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.SlidingDrawer;
 import android.widget.TextView;
@@ -97,7 +95,9 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
         	StrictMode.setVmPolicy(vmpolicy);
         	}
         */
-
+        //Kill tor if the button stop tor (in the notification) was clicked!
+        //Same code needs to be executed in onResume
+        
         mPrefs = getPrefs();
         mPrefs.registerOnSharedPreferenceChangeListener(this);
         
@@ -341,10 +341,6 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 	 */
 	protected void onPause() {
 		super.onPause();
-		
-		//unbindService();
-		
-		//hideProgressDialog();
 
 		if (aDialog != null)
 			aDialog.dismiss();
@@ -427,7 +423,6 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 		super.onResume();
 		
     	bindService();
-    
     	updateStatus("");
 	}
 	
@@ -511,26 +506,6 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 			
 			
 		}
-		/*
-		else if (Intent.ACTION_SEND.equals(action))
-		{
-			Uri dataUri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
-			
-			try {
-				String shareUrl = mService.addOnionShare(dataUri, type);
-				
-				Toast.makeText(this, "Share available at: " + shareUrl, Toast.LENGTH_LONG).show();
-				  ClipboardManager cm = (ClipboardManager)getSystemService(Context.CLIPBOARD_SERVICE);
-	                cm.setText(shareUrl);
-	                
-	                intent.setAction(null);
-	                
-	                
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}*/
 		else
 		{
 		
@@ -574,7 +549,6 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 	protected void onStop() {
 		super.onStop();
 		
-		//unbindService();
 	}
 
 
@@ -1157,6 +1131,7 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
     }
     */
     
+    
     private void setLocale ()
     {
     	
@@ -1174,7 +1149,14 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
         }
     }
 
-   	public class DataCount {
+   	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		
+		unbindService();
+	}
+
+	public class DataCount {
    		// data uploaded
    		public long Upload;
    		// data downloaded
