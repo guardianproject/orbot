@@ -101,8 +101,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	private static int notificationCounter = 0;
 	
 	private NotificationManager mNotificationManager = null;
-	
-			
+	private Builder mNotifyBuilder;
+		
     public void logMessage(String msg)
     {
     	if (ENABLE_DEBUG_LOG)
@@ -199,8 +199,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
 	}
    
-	
-	@SuppressLint("NewApi")
  	private void showToolbarNotification (String notifyMsg, int notifyId, int icon, int flags)
  	{
  				    
@@ -1004,9 +1002,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			}
 		}
 		
-		Builder mNotifyBuilder;
- 		
-	@SuppressLint("NewApi")
+		
 	private void startNotification (String message, boolean persistent)
 	{
 		//Reusable code.
@@ -1284,16 +1280,23 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         public void processSettings ()
         {
         	
+        	Thread thread = new Thread()
+        	{
         	
-        	try {
-        	 	
-        		processSettingsImpl ();
-
-		    	
-			} catch (Exception e) {
-				logException ("error applying mPrefs",e);
-			}
+        		public void run ()
+        		{
+		        	try {
+		        	 	
+		        		processSettingsImpl ();
+		
+				    	
+					} catch (Exception e) {
+						logException ("error applying mPrefs",e);
+					}
+        		}
+        	};
         	
+        	thread.start();
         }
  
 

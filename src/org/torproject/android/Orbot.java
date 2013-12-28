@@ -9,7 +9,6 @@ import org.torproject.android.service.ITorService;
 import org.torproject.android.service.ITorServiceCallback;
 import org.torproject.android.service.TorService;
 import org.torproject.android.service.TorServiceConstants;
-import org.torproject.android.settings.ProcessSettingsAsyncTask;
 import org.torproject.android.settings.SettingsPreferences;
 import org.torproject.android.wizard.ChooseLocaleWizardActivity;
 import org.torproject.android.wizard.TipsAndTricks;
@@ -83,27 +82,9 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
     /** Called when the activity is first created. */
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
-        //this is not the best thing to do, but we sometimes have to do strange things with Orbot
-        /*
-        if (android.os.Build.VERSION.SDK_INT > 9) {
-        	StrictMode.ThreadPolicy policy = 
-        	        new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        	StrictMode.setThreadPolicy(policy);
-        	StrictMode.VmPolicy vmpolicy = 
-        	        new StrictMode.VmPolicy.Builder().penaltyLog().build();
-        	StrictMode.setVmPolicy(vmpolicy);
-        	}
-        */
-        //Kill tor if the button stop tor (in the notification) was clicked!
-        //Same code needs to be executed in onResume
-        
+      
         mPrefs = getPrefs();
         mPrefs.registerOnSharedPreferenceChangeListener(this);
-        
-      //if Tor binary is not running, then start the service up
-      //might want to look at whether we need to call this every time
-      //or whether binding to the service is enough
            	
         setLocale();
         
@@ -671,8 +652,14 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
         
         if (requestCode == 1 && mService != null)
         {
-                new ProcessSettingsAsyncTask().execute(mService);      
-                setLocale();
+                try {
+					mService.processSettings();
+					setLocale();
+	                
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
         }
        
     }
