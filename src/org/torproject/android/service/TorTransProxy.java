@@ -42,8 +42,9 @@ public class TorTransProxy implements TorServiceConstants {
 		else
 		{
 			//use the bundled version
-
-			ipTablesPath = new File(context.getDir("bin", 0),"iptables").getAbsolutePath();
+	    	File appLibsHome = new File(context.getApplicationInfo().nativeLibraryDir);
+			ipTablesPath = new File(appLibsHome,IPTABLES_BINARY_ASSET_KEY).getAbsolutePath();
+			ipTablesPath += " iptables"; //append subcommand since we are using xtables now
 			
 		}
 			

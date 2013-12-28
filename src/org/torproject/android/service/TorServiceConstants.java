@@ -87,5 +87,10 @@ public interface TorServiceConstants {
     public static final String OBFSPROXY_ASSET_KEY = "libobfsproxy.so";
     
 	public static final int MESSAGE_TRAFFIC_COUNT = 5;
+	
+
+	//name of the iptables binary
+	public final static String IPTABLES_BINARY_ASSET_KEY = "libxtables.so";	
+	
 
 }
