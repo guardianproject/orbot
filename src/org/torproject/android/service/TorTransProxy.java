@@ -288,7 +288,6 @@ public class TorTransProxy implements TorServiceConstants {
     	
 		String srcChainName = "OUTPUT";
 		
-    	
     	//run the delete commands in a separate process as it might error out
     	String[] cmdExecClear = {script.toString()};    	    	
 		code = TorServiceUtils.doShellCommand(cmdExecClear, res, runRoot, waitFor);

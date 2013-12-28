@@ -43,6 +43,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Handler;
@@ -208,8 +209,16 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		mNotifyBuilder.setContentText(notifyMsg);
 		mNotifyBuilder.setSmallIcon(icon);
 		
+		if (notifyId == ERROR_NOTIFY_ID)
+		{
+			mNotifyBuilder.setTicker(notifyMsg);
+			mNotifyBuilder.setOngoing(false);
+			mNotifyBuilder.setLights(Color.GREEN, 1000, 1000);
+		}
+		
+		
 		mNotificationManager.notify(
-	    			NOTIFY_ID,
+					notifyId,
 	    			mNotifyBuilder.getNotification());
 			
 		
@@ -1580,6 +1589,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
     private boolean processSettingsImpl () throws RemoteException, IOException
     {
+    	logNotice("updating settings in Tor service");
+    	
 		SharedPreferences prefs = getSharedPrefs(getApplicationContext());
 
 		boolean useBridges = prefs.getBoolean(TorConstants.PREF_BRIDGES_ENABLED, false);
@@ -1645,7 +1656,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	        }
 	        catch (Exception e)
 	        {
-	       	  showToolbarNotification (getString(R.string.error_installing_binares),ERROR_NOTIFY_ID,R.drawable.ic_stat_tor, Notification.FLAG_ONGOING_EVENT);
+	       	  showToolbarNotification (getString(R.string.error_installing_binares),ERROR_NOTIFY_ID,R.drawable.ic_stat_notifyerr, Notification.FLAG_ONGOING_EVENT);
 
 	        	return false;
 	        }
@@ -1727,7 +1738,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         }
         catch (Exception e)
         {
-     	  showToolbarNotification (getString(R.string.your_reachableaddresses_settings_caused_an_exception_),ERROR_NOTIFY_ID,R.drawable.ic_stat_tor, Notification.FLAG_ONGOING_EVENT);
+     	  showToolbarNotification (getString(R.string.your_reachableaddresses_settings_caused_an_exception_),ERROR_NOTIFY_ID,R.drawable.ic_stat_notifyerr, Notification.FLAG_ONGOING_EVENT);
 
            return false;
         }
@@ -1756,7 +1767,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         }
         catch (Exception e)
         {
-       	  showToolbarNotification (getString(R.string.your_relay_settings_caused_an_exception_),ERROR_NOTIFY_ID,R.drawable.ic_stat_tor, Notification.FLAG_ONGOING_EVENT);
+       	  showToolbarNotification (getString(R.string.your_relay_settings_caused_an_exception_),ERROR_NOTIFY_ID,R.drawable.ic_stat_notifyerr, Notification.FLAG_ONGOING_EVENT);
 
           
             return false;
@@ -1764,6 +1775,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
         if (enableHiddenServices)
         {
+        	logNotice("hidden services are enabled");
+        	
         	mBinder.updateConfiguration("HiddenServiceDir",appCacheHome.getAbsolutePath(), false);
         	//mBinder.updateConfiguration("RendPostPeriod", "600 seconds", false); //possible feature to investigate
         	
