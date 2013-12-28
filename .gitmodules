@@ -19,3 +19,6 @@
 [submodule "external/openssl"]
 	path = external/openssl
 	url = git://git.openssl.org/openssl
+[submodule "external/iptables"]
+	path = external/iptables
+	url = git://git.netfilter.org/iptables

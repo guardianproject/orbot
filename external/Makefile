@@ -17,7 +17,7 @@ EXTERNAL_ROOT = $(CWD)
 
 # Android NDK setup:
 NDK_BASE ?= /usr/local/android-ndk
-NDK_PLATFORM_LEVEL ?= 8
+NDK_PLATFORM_LEVEL ?= 9
 NDK_TOOLCHAIN_VERSION=4.6
 NDK_SYSROOT=$(NDK_BASE)/platforms/android-$(NDK_PLATFORM_LEVEL)/arch-arm
 NDK_UNAME:=`uname -s | tr '[A-Z]' '[a-z]'`
@@ -125,24 +125,34 @@ libevent-clean:
 # iptables
 
 iptables/Makefile:
+	cp iptables-patch-1 iptables
+	cp iptables-patch-2 iptables
+	cp iptables-patch-3 iptables
+	-cd iptables && \
+	 	patch -N -p1 --reject-file=- < iptables-patch-1
+	-cd iptables && \
+	 	patch -N -p1 --reject-file=- < iptables-patch-2
+	-cd iptables && \
+	 	patch -N -p1 --reject-file=- < iptables-patch-3
 	cd iptables && ./autogen.sh
 	cp config.sub iptables
 	cp config.guess iptables
 	cd iptables && \
- 		CC="$(CC)" AR="$(AR)" RANLIB=$(RANLIB) CFLAGS="$(CFLAGS) -DNO_SHARED_LIBS -DXTABLES_INTERNAL -DIPTABLES_VERSION=\"1.4.10\" =-DXTABLES_VERSION=\"1.4.10\" # -DIPT_LIB_DIR=\"$(IPT_LIBDIR)\" -DXTABLES_LIBDIR -I$(EXTERNAL_ROOT)/include" LDFLAGS="$(LDFLAGS)" \
-			./configure \
-				--host=$(HOST) \
-				--disable-shared
+ 		CC="$(CC)" AR="$(AR)" RANLIB=$(RANLIB) CFLAGS="$(CFLAGS) -I$(EXTERNAL_ROOT)/include" LDFLAGS="$(LDFLAGS)" \
+			./configure --host=$(HOST) --disable-shared --enable-static
 
 iptables-build-stamp: iptables/Makefile
 	$(MAKE) -C iptables 
 	touch iptables-build-stamp
+	cp iptables/iptables/xtables-multi bin/xtables
 
 iptables: iptables-build-stamp
 
 iptables-clean:
 	-rm -f iptables-build-stamp
-	-cd iptables
+	-rm bin/xtables
+	-cd iptables && \
+		git clean -fdx
 
 #------------------------------------------------------------------------------#
 # tor
@@ -273,15 +283,17 @@ jtorctl-clean:
 #in order to stop Android OS (older devices) from trying to compress/decompress it
 #this is related to a bug in compression of assets and resources > 1MB
 
-assets: tor privoxy jtorctl obfsproxy
+assets: tor privoxy jtorctl obfsproxy iptables
 	install -d ../libs/armeabi
 	install -d ../libs
 	install bin/privoxy ../libs/armeabi/libprivoxy.so
 	install bin/obfsproxy ../libs/armeabi/libobfsproxy.so
 	install bin/jtorctl.jar ../libs
 	install bin/tor ../libs/armeabi/libtor.so
+	install bin/xtables ../libs/armeabi/libxtables.so
 
 assets-clean:
+	-rm ../libs/armeabi/libxtables.so
 	-rm ../libs/armeabi/libtor.so
 	-rm ../libs/armeabi/libprivoxy.so
 	-rm ../libs/armeabi/libobfsproxy.so

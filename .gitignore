@@ -1,7 +1,5 @@
 external/bin/
 external/include/
-external/iptables.foo/
-external/iptables/
 external/jtorctl-build-stamp
 external/lib/
 external/libevent-build-stamp
@@ -13,7 +11,6 @@ external/test.c
 external/test.h.gch
 external/tor-build-stamp
 external/translation/
-external/simple*
 bin
 gen
 native
