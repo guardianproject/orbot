@@ -5,54 +5,73 @@
 # on Debian or Ubuntu
 
 ### these modify the calling shell
-# point pkg-config to the .pc files generated from these builds
-export PKG_CONFIG_PATH=$(LOCAL)/lib/pkgconfig
 # workaround for cross-compiling bug in autoconf
 export ac_cv_func_malloc_0_nonnull=yes
 export ac_cv_func_setpgrp_void=yes
 
-CWD = $(shell pwd)
-PROJECT_ROOT = $(CWD)/..
-EXTERNAL_ROOT = $(CWD)
+EXTERNAL_ROOT := $(shell pwd)
 
-# Android NDK setup:
-NDK_BASE ?= /usr/local/android-ndk
-NDK_PLATFORM_LEVEL ?= 9
-NDK_TOOLCHAIN_VERSION=4.6
-NDK_SYSROOT=$(NDK_BASE)/platforms/android-$(NDK_PLATFORM_LEVEL)/arch-arm
-NDK_UNAME:=`uname -s | tr '[A-Z]' '[a-z]'`
-NDK_PROCESSOR:=`uname -m`
+# Android now has 64-bit and 32-bit versions of the NDK for GNU/Linux.  We
+# assume that the build platform uses the appropriate version, otherwise the
+# user building this will have to manually set NDK_PROCESSOR or NDK_TOOLCHAIN.
+CPU := $(shell uname -m)
+ifeq ($(CPU),x86_64)
+ NDK_PROCESSOR=x86_64
+else
+ NDK_PROCESSOR=x86
+endif
 
-NDK_TOOLCHAIN=$(NDK_BASE)/toolchains/arm-linux-androideabi-4.6/prebuilt/$(NDK_UNAME)-$(NDK_PROCESSOR)
+# Android NDK setup
+NDK_BASE ?= /opt/android-ndk
+NDK_ABI=arm
+APP_ABI=armeabi
+# NDK platform level, aka APP_PLATFORM, is equivalent to minSdkVersion
+APP_PLATFORM := android-$(shell sed -n 's,.*android:minSdkVersion="\([0-9][0-9]*\)".*,\1,p' \
+	$(EXTERNAL_ROOT)/../AndroidManifest.xml)
+NDK_SYSROOT=$(NDK_BASE)/platforms/$(APP_PLATFORM)/arch-$(NDK_ABI)
+NDK_TOOLCHAIN_VERSION=4.7
+NDK_UNAME := $(shell uname -s | tr '[A-Z]' '[a-z]')
+ifeq ($(NDK_ABI),x86)
+ HOST = i686-linux-android
+ NDK_TOOLCHAIN = $(NDK_ABI)-$(NDK_TOOLCHAIN_VERSION)
+else
+ HOST = $(NDK_ABI)-linux-androideabi
+ NDK_TOOLCHAIN = $(HOST)-$(NDK_TOOLCHAIN_VERSION)
+endif
+NDK_TOOLCHAIN_BASE=$(NDK_BASE)/toolchains/$(NDK_TOOLCHAIN)/prebuilt/$(NDK_UNAME)-$(NDK_PROCESSOR)
 
-# to use the real HOST tag, you need the latest libtool files:
-# http://stackoverflow.com/questions/4594736/configure-does-not-recognize-androideabi
-#HOST := arm-none-linux-gnueabi
-HOST := arm-linux-androideabi
+# include Android's build flags
+TARGET_ARCH_ABI = $(APP_ABI)
+include $(NDK_BASE)/toolchains/$(NDK_TOOLCHAIN)/setup.mk
 
-# install root for built files
-DESTDIR = $(EXTERNAL_ROOT)
-# TODO try adding the Android-style /data/app.name here
-prefix = 
-LOCAL := $(DESTDIR)$(prefix)
-
-export PATH := ${PATH}:$(NDK_TOOLCHAIN)/bin:$(LOCAL)/bin
-
-CC := $(NDK_TOOLCHAIN)/bin/arm-linux-androideabi-gcc --sysroot=$(NDK_SYSROOT)
-CXX := $(NDK_TOOLCHAIN)/bin/arm-linux-androideabi-g++
-CPP := $(NDK_TOOLCHAIN)/bin/arm-linux-androideabi-cpp
-LD := $(NDK_TOOLCHAIN)/bin/arm-linux-androideabi-ld
-AR := $(NDK_TOOLCHAIN)/bin/arm-linux-androideabi-ar
-RANLIB := $(NDK_TOOLCHAIN)/bin/arm-linux-androideabi-ranlib
-STRIP := $(NDK_TOOLCHAIN)/bin/arm-linux-androideabi-strip \
+CC := $(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-gcc --sysroot=$(NDK_SYSROOT)
+CXX := $(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-g++
+CPP := $(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-cpp
+LD := $(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-ld
+AR := $(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-ar
+RANLIB := $(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-ranlib
+STRIP := $(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-strip \
 	--strip-unneeded -R .note -R .comment
 
-CFLAGS = -DANDROID -I$(LOCAL) -I$(LOCAL)/include -I$(NDK_SYSROOT)/usr/include
-LDFLAGS = -L$(LOCAL) -L$(LOCAL)/lib -L$(NDK_SYSROOT)/usr/lib
+CFLAGS = -DANDROID $(TARGET_CFLAGS)
+LDFLAGS = -llog $(TARGET_LDFLAGS)
 
-# build as small as possible, mostly useful for static binaries
-CFLAGS += -fdata-sections -ffunction-sections -Os
-LDFLAGS += -Wl,--gc-sections
+# change 'release' to 'debug' for unoptimized debug builds
+ifeq ($(APP_ABI),armeabi-v7a)
+	CFLAGS += $(TARGET_arm_release_CFLAGS)
+endif
+ifeq ($(APP_ABI),armeabi)
+	CFLAGS += $(TARGET_thumb_release_CFLAGS)
+endif
+
+.PHONY = clean showsetup \
+	assets assets-clean \
+	openssl-static openssl-static-clean \
+	libevent libevent-clean \
+	iptables iptables-clean \
+	tor tor-clean \
+	obfsproxy obfsproxy-clean \
+	privoxy privoxy-clean
 
 all: assets
 
@@ -99,7 +118,7 @@ libevent/Makefile:
 	cp config.sub libevent
 	cp config.guess libevent
 	cd libevent && \
- 		CC="$(CC)" AR="$(AR)" RANLIB=$(RANLIB) CFLAGS="$(CFLAGS) -I$(EXTERNAL_ROOT)/include" LDFLAGS="$(LDFLAGS)" \
+		CC="$(CC)" AR="$(AR)" RANLIB=$(RANLIB) CFLAGS="$(CFLAGS) -I$(EXTERNAL_ROOT)/include" LDFLAGS="$(LDFLAGS)" \
 			./configure \
 				--host=$(HOST) \
 				--disable-shared
@@ -169,7 +188,6 @@ tor/Makefile: tor/configure
                         LIBS="-L$(EXTERNAL_ROOT)/lib" CFLAGS="-I$(EXTERNAL_ROOT)/include -I$(EXTERNAL_ROOT)/include/event2" \
                         ./configure \
                                 --host=$(HOST) \
-                                --prefix=$(NDK_TOOLCHAIN) \
 				--disable-asciidoc \
 				--enable-static-libevent --with-libevent-dir=$(EXTERNAL_ROOT) \
 				--enable-static-openssl --with-openssl-dir=$(EXTERNAL_ROOT) \
@@ -208,7 +226,6 @@ obfsproxy/Makefile:
 			libcrypto_LIBS="-L$(EXTERNAL_ROOT)/lib -lcrypto" libcrypto_CFLAGS="-I$(EXTERNAL_ROOT)/include" \
                         ./configure \
                                 --host=$(HOST) \
-                                --prefix=$(NDK_TOOLCHAIN) \
 
 obfsproxy-build-stamp: obfsproxy/Makefile
 	$(MAKE) -C obfsproxy
@@ -273,7 +290,7 @@ jtorctl-build-stamp: jtorctl/bin/jtorctl.jar
 jtorctl: jtorctl-build-stamp
 	test -d bin || mkdir bin
 	cp jtorctl/bin/jtorctl.jar bin
-	
+
 jtorctl-clean:
 	-rm -rf jtorctl/bin
 	-rm jtorctl-build-stamp
@@ -303,3 +320,18 @@ assets-clean:
 # cleanup, cleanup, put the toys away
 
 clean: openssl-clean libevent-clean tor-clean privoxy-clean jtorctl-clean assets-clean
+
+#------------------------------------------------------------------------------#
+# debugging stuff
+
+showsetup:
+	@echo "NDK_TOOLCHAIN_VERSION: $(NDK_TOOLCHAIN_VERSION)"
+	@echo "NDK_TOOLCHAIN: $(NDK_TOOLCHAIN)"
+	@echo "NDK_SYSROOT: $(NDK_SYSROOT)"
+	@echo "APP_PLATFORM: $(APP_PLATFORM)"
+	@echo "APP_ABI: $(APP_ABI)"
+	@echo "HOST: $(HOST)"
+	@echo "CC: $(CC)"
+	@echo "LD: $(LD)"
+	@echo "CFLAGS: $(CFLAGS)"
+	@echo "LDFLAGS: $(LDFLAGS)"
