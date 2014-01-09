@@ -1387,17 +1387,20 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         
         public void newIdentity () 
         {
-        
-        	new Thread ()
+        	//it is possible to not have a connection yet, and someone might try to newnym
+        	if (conn != null)
         	{
-        		public void run ()
-        		{
-        			try { conn.signal("NEWNYM"); }
-        			catch (IOException ioe){
-        				logMessage("error requesting newny: " + ioe.getLocalizedMessage());
-        			}
-        		}
-        	}.start();
+	        	new Thread ()
+	        	{
+	        		public void run ()
+	        		{
+	        			try { conn.signal("NEWNYM"); }
+	        			catch (IOException ioe){
+	        				logMessage("error requesting newny: " + ioe.getLocalizedMessage());
+	        			}
+	        		}
+	        	}.start();
+        	}
         }
         
 	    public boolean saveConfiguration ()
