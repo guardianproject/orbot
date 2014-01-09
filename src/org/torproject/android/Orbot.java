@@ -88,8 +88,6 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
            	
         setLocale();
         
-        startService(new Intent(INTENT_TOR_SERVICE));
-		
     	doLayout();
 	}
 	
@@ -1054,10 +1052,15 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
     //this is where we bind! 
     private void bindService ()
     {
+        
+    	Intent iTorService = new Intent(ITorService.class.getName());
+    	
+    	getApplication().getApplicationContext().startService(iTorService);
+        
          //since its auto create, we prob don't ever need to call startService
          //also we should again be consistent with using either iTorService.class.getName()
          //or the variable constant       
-         bindService(new Intent(ITorService.class.getName()),
+         bindService(iTorService,
              mConnection, Context.BIND_AUTO_CREATE);
          
          mIsBound = true;
