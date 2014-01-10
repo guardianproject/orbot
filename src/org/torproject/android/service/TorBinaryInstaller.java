@@ -76,6 +76,10 @@ public class TorBinaryInstaller implements TorServiceConstants {
 		is = context.getResources().openRawResource(R.raw.geoip);
 		outFile = new File(installFolder, GEOIP_ASSET_KEY);
 		streamToFile(is, outFile, false, true);
+		
+		is = context.getResources().openRawResource(R.raw.geoip6);
+		outFile = new File(installFolder, GEOIP6_ASSET_KEY);
+		streamToFile(is, outFile, false, true);
 	
 		return true;
 	}

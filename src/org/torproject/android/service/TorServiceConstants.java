@@ -31,6 +31,8 @@ public interface TorServiceConstants {
 	
 	//geoip data file asset key
 	public final static String GEOIP_ASSET_KEY = "geoip";
+	public final static String GEOIP6_ASSET_KEY = "geoip6";
+	
 	
 	//various console cmds
 	public final static String SHELL_CMD_CHMOD = "chmod";

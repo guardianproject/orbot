@@ -1645,9 +1645,10 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         
         if (entranceNodes.length() > 0 || exitNodes.length() > 0 || excludeNodes.length() > 0)
         {
-        	//only apple GeoIP if you need it
+        	//only apply GeoIP if you need it
 	        File fileGeoIP = new File(appBinHome,GEOIP_ASSET_KEY);
-	        
+	        File fileGeoIP6 = new File(appBinHome,GEOIP6_ASSET_KEY);
+		        
 	        try
 	        {
 		        if ((!fileGeoIP.exists()))
@@ -1658,6 +1659,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		        }
 		        
 		        mBinder.updateConfiguration("GeoIPFile", fileGeoIP.getAbsolutePath(), false);
+		        mBinder.updateConfiguration("GeoIPv6File", fileGeoIP6.getAbsolutePath(), false);
 
 	        }
 	        catch (Exception e)
