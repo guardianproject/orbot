@@ -200,14 +200,33 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
 	}
    
- 	private void showToolbarNotification (String notifyMsg, int notifyId, int icon, int flags)
+ 	private void showToolbarNotification (String notifyMsg, int notifyId, int icon, int flags, boolean isOngoing)
  	{
  				    
 		if (mNotifyBuilder == null)
-      	  startNotification(getString(R.string.status_activated),prefPersistNotifications);
+		{
+			
+			//Reusable code.
+			Intent intent = new Intent(TorService.this, Orbot.class);
+			PendingIntent pendIntent = PendingIntent.getActivity(TorService.this, 0, intent, 0);
+			
+			mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+				
+			if (mNotifyBuilder == null)
+			{
+				mNotifyBuilder = new NotificationCompat.Builder(this)
+					.setContentTitle(getString(R.string.app_name))
+					.setContentText( getString(R.string.status_activated))
+					.setSmallIcon(R.drawable.ic_stat_tor);
+
+				mNotifyBuilder.setContentIntent(pendIntent);
+			}		
+								
+		}
 
 		mNotifyBuilder.setContentText(notifyMsg);
 		mNotifyBuilder.setSmallIcon(icon);
+		mNotifyBuilder.setOngoing(isOngoing);
 		
 		if (notifyId == ERROR_NOTIFY_ID)
 		{
@@ -314,7 +333,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		     catch (Exception e)
 		     {
 		    	 currentStatus = STATUS_OFF;
-		    	 this.showToolbarNotification(getString(R.string.status_disabled), ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr, -1);
+		    	 this.showToolbarNotification(getString(R.string.status_disabled), ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr, -1, false);
 		    	 Log.d(TAG,"Unable to start Tor: " + e.getMessage(),e);
 		     }
 			}
@@ -352,7 +371,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     		
     		//stop the foreground priority and make sure to remove the persistant notification
     		stopForeground(true);
-    			
+    		
     		currentStatus = STATUS_OFF;
     
     		clearNotifications();
@@ -412,7 +431,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	    	{
 		    	try {
 					String onionHostname = Utils.readString(new FileInputStream(file)).trim();
-					showToolbarNotification(getString(R.string.hidden_service_on) + ' ' + onionHostname, HS_NOTIFY_ID, R.drawable.ic_stat_tor, Notification.FLAG_ONGOING_EVENT);
+					showToolbarNotification(getString(R.string.hidden_service_on) + ' ' + onionHostname, HS_NOTIFY_ID, R.drawable.ic_stat_tor, Notification.FLAG_ONGOING_EVENT, true);
 					Editor pEdit = prefs.edit();
 					pEdit.putString("pref_hs_hostname",onionHostname);
 					pEdit.commit();
@@ -421,13 +440,13 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 					
 				} catch (FileNotFoundException e) {
 					logException("unable to read onion hostname file",e);
-					showToolbarNotification(getString(R.string.unable_to_read_hidden_service_name), ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr, -1);
+					showToolbarNotification(getString(R.string.unable_to_read_hidden_service_name), ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr, -1, false);
 					return null;
 				}
 	    	}
 	    	else
 	    	{
-				showToolbarNotification(getString(R.string.unable_to_read_hidden_service_name), HS_NOTIFY_ID, R.drawable.ic_stat_notifyerr, -1);
+				showToolbarNotification(getString(R.string.unable_to_read_hidden_service_name), HS_NOTIFY_ID, R.drawable.ic_stat_notifyerr, -1, false);
 	
 	    		
 	    	}
@@ -668,13 +687,13 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	
 		if(proxyAll)
 		{
-			showToolbarNotification(getString(R.string.setting_up_full_transparent_proxying_), TRANSPROXY_NOTIFY_ID, R.drawable.ic_stat_tor, -1);
+			showToolbarNotification(getString(R.string.setting_up_full_transparent_proxying_), TRANSPROXY_NOTIFY_ID, R.drawable.ic_stat_tor, -1, false);
 
 			code = mTransProxy.setTransparentProxyingAll(this);
 		}
 		else
 		{
-			showToolbarNotification(getString(R.string.setting_up_app_based_transparent_proxying_), TRANSPROXY_NOTIFY_ID, R.drawable.ic_stat_tor, -1);
+			showToolbarNotification(getString(R.string.setting_up_app_based_transparent_proxying_), TRANSPROXY_NOTIFY_ID, R.drawable.ic_stat_tor, -1, false);
 
 			code = mTransProxy.setTransparentProxyingByApp(this,AppManager.getApps(this, getSharedPrefs(getApplicationContext())));
 		}
@@ -684,11 +703,11 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
 		if (code == 0)
 		{
-			showToolbarNotification(getString(R.string.transparent_proxying_enabled), TRANSPROXY_NOTIFY_ID, R.drawable.ic_stat_tor, -1);
+			showToolbarNotification(getString(R.string.transparent_proxying_enabled), TRANSPROXY_NOTIFY_ID, R.drawable.ic_stat_tor, -1, false);
 
 			if (enableTether)
 			{
-				showToolbarNotification(getString(R.string.transproxy_enabled_for_tethering_), TRANSPROXY_NOTIFY_ID, R.drawable.ic_stat_tor, -1);
+				showToolbarNotification(getString(R.string.transproxy_enabled_for_tethering_), TRANSPROXY_NOTIFY_ID, R.drawable.ic_stat_tor, -1, false);
 
 				mTransProxy.enableTetheringRules(this);
 				  
@@ -696,7 +715,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		}
 		else
 		{
-			showToolbarNotification(getString(R.string.warning_error_starting_transparent_proxying_), TRANSPROXY_NOTIFY_ID, R.drawable.ic_stat_tor, -1);
+			showToolbarNotification(getString(R.string.warning_error_starting_transparent_proxying_), TRANSPROXY_NOTIFY_ID, R.drawable.ic_stat_tor, -1, false);
 
 		}
 	
@@ -1015,33 +1034,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		}
 		
 		
-	private void startNotification (String message, boolean persistent)
-	{
-		//Reusable code.
-		Intent intent = new Intent(TorService.this, Orbot.class);
-		PendingIntent pendIntent = PendingIntent.getActivity(TorService.this, 0, intent, 0);
-		
-		mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-		
-				if (mNotifyBuilder == null)
-				{
-					mNotifyBuilder = new NotificationCompat.Builder(this)
-						.setContentTitle(getString(R.string.app_name))
-						.setContentText( getString(R.string.status_activated))
-						.setSmallIcon(R.drawable.ic_stat_tor);
-
-					mNotifyBuilder.setContentIntent(pendIntent);
-				}		
- 			
-				mNotifyBuilder.setOngoing(persistent);			    
-				mNotifyBuilder.setContentText(message);
- 
-				mNotificationManager.notify(
-			    			NOTIFY_ID,
-			    			mNotifyBuilder.getNotification());
-			
-
-	}
+	
 
 
 	public void message(String severity, String msg) {
@@ -1053,8 +1046,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
           {
         	  currentStatus = STATUS_ON;
 
-        	  startNotification(getString(R.string.status_activated),prefPersistNotifications);
-        	    			
+        	  showToolbarNotification(getString(R.string.status_activated), NOTIFY_ID, R.drawable.ic_stat_tor, -1, prefPersistNotifications);
           }
         
       	
@@ -1121,9 +1113,14 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			sb.append(" ");
 			sb.append(getString(R.string.up));
 		   	
-			if (mConnectivity && prefPersistNotifications)
-				startNotification(sb.toString(),prefPersistNotifications);
+			int iconId = R.drawable.ic_stat_tor;
 			
+			if (read > 0 || written > 0)
+				iconId = R.drawable.ic_stat_tor_xfer;
+			
+			if (mConnectivity && prefPersistNotifications)
+	        	  showToolbarNotification(sb.toString(), NOTIFY_ID, iconId, -1, prefPersistNotifications);
+
 			mTotalTrafficWritten += written;
 			mTotalTrafficRead += read;
 			
@@ -1578,13 +1575,14 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 					if (!mConnectivity)
 					{
 						logNotice("No network connectivity. Putting Tor to sleep...");
-						startNotification(getString(R.string.no_internet_connection_tor),prefPersistNotifications);
+						showToolbarNotification(getString(R.string.no_internet_connection_tor),NOTIFY_ID,R.drawable.ic_stat_tor_off,-1,prefPersistNotifications);
 						
 					}
 					else
 					{
 						logNotice("Network connectivity is good. Waking Tor up...");
-						startNotification(getString(R.string.status_activated),prefPersistNotifications);
+						showToolbarNotification(getString(R.string.status_activated),NOTIFY_ID,R.drawable.ic_stat_tor,-1,prefPersistNotifications);
+
 			        }
 	    		} catch (RemoteException e) {
 					logException ("error applying mPrefs",e);
@@ -1664,7 +1662,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	        }
 	        catch (Exception e)
 	        {
-	       	  showToolbarNotification (getString(R.string.error_installing_binares),ERROR_NOTIFY_ID,R.drawable.ic_stat_notifyerr, Notification.FLAG_ONGOING_EVENT);
+	       	  showToolbarNotification (getString(R.string.error_installing_binares),ERROR_NOTIFY_ID,R.drawable.ic_stat_notifyerr, Notification.FLAG_ONGOING_EVENT, false);
 
 	        	return false;
 	        }
@@ -1683,7 +1681,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			{
 				String msgBridge = getString(R.string.bridge_requires_ip) +
 						getString(R.string.send_email_for_bridges);
-				showToolbarNotification(msgBridge, ERROR_NOTIFY_ID, R.drawable.ic_stat_tor, -1);
+				showToolbarNotification(msgBridge, ERROR_NOTIFY_ID, R.drawable.ic_stat_tor, -1, false);
 
 			
 				return false;
@@ -1698,7 +1696,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 				bridgeDelim = ",";
 			}
 			
-			showToolbarNotification(getString(R.string.notification_using_bridges) + ": " + bridgeList, TRANSPROXY_NOTIFY_ID, R.drawable.ic_stat_tor, -1);
+			showToolbarNotification(getString(R.string.notification_using_bridges) + ": " + bridgeList, TRANSPROXY_NOTIFY_ID, R.drawable.ic_stat_tor, -1, false);
 
 			boolean obfsBridges = prefs.getBoolean(TorConstants.PREF_BRIDGES_OBFUSCATED, false);
 			String bridgeCfgKey = "bridge";
@@ -1746,7 +1744,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         }
         catch (Exception e)
         {
-     	  showToolbarNotification (getString(R.string.your_reachableaddresses_settings_caused_an_exception_),ERROR_NOTIFY_ID,R.drawable.ic_stat_notifyerr, Notification.FLAG_ONGOING_EVENT);
+     	  showToolbarNotification (getString(R.string.your_reachableaddresses_settings_caused_an_exception_),ERROR_NOTIFY_ID,R.drawable.ic_stat_notifyerr, Notification.FLAG_ONGOING_EVENT, false);
 
            return false;
         }
@@ -1775,7 +1773,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         }
         catch (Exception e)
         {
-       	  showToolbarNotification (getString(R.string.your_relay_settings_caused_an_exception_),ERROR_NOTIFY_ID,R.drawable.ic_stat_notifyerr, Notification.FLAG_ONGOING_EVENT);
+       	  showToolbarNotification (getString(R.string.your_relay_settings_caused_an_exception_),ERROR_NOTIFY_ID,R.drawable.ic_stat_notifyerr, Notification.FLAG_ONGOING_EVENT, false);
 
           
             return false;
