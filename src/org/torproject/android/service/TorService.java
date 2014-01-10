@@ -259,7 +259,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		catch (Exception e)
 		{
 			Log.e(TAG,"error setting up Tor",e);
-			throw new RuntimeException("Unable to start Tor");
+			throw new RuntimeException("Unable to start Tor",e);
 		}
 		
 	   IntentFilter mNetworkStateFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
@@ -332,12 +332,12 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     {
     	super.onDestroy();
     	
-    	Log.d(TAG,"onDestroy called");
+    	//Log.d(TAG,"onDestroy called");
     	
     	  // Unregister all callbacks.
         mCallbacks.kill();
         
-        
+        unregisterReceiver(mNetworkStateReceiver);
     }
     
     private void stopTor ()
@@ -528,13 +528,25 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	appCacheHome = getDir("data",Application.MODE_PRIVATE);
     	appLibsHome = new File(getApplicationInfo().nativeLibraryDir);
     	
-    	fileTorOrig = new File(appLibsHome, TOR_BINARY_ASSET_KEY);    	
+    	if (!appLibsHome.exists())
+    		appLibsHome = new File(getApplicationInfo().dataDir + "/lib");
+		
+    	fileTorOrig = new File(appLibsHome, TOR_BINARY_ASSET_KEY);
+    	
     	if (fileTorOrig.exists())
     	{
     		logNotice ("Tor binary exists: " + fileTorOrig.getAbsolutePath());
     	}
     	else
-    		throw new RuntimeException("Tor binary not installed");
+    	{
+    		appLibsHome = new File(getApplicationInfo().dataDir + "/lib");
+    		fileTorOrig = new File(appLibsHome, TOR_BINARY_ASSET_KEY);
+    		
+    		if (fileTorOrig.exists())
+    			logNotice ("Tor binary exists: " + fileTorOrig.getAbsolutePath());
+    		else
+    			throw new RuntimeException("Tor binary not installed");
+    	}
     	
 		filePrivoxy = new File(appLibsHome, PRIVOXY_ASSET_KEY);
 		if (filePrivoxy.exists())
@@ -553,15 +565,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		if (!fileTorRc.exists())
 		{
 			TorBinaryInstaller installer = new TorBinaryInstaller(this, appBinHome); 
-			try {
-				boolean success = installer.installResources();
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			boolean success = installer.installResources();
 				
 		}
 			
