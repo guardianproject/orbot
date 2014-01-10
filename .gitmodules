@@ -4,9 +4,9 @@
 [submodule "external/libevent"]
 	path = external/libevent
 	url = https://github.com/libevent/libevent.git
-[submodule "external/jtorctrl"]
-	path = external/jtorctrl
-	url = https://git.torproject.org/git/jtorctl
+[submodule "external/jtorctl"]
+	path = external/jtorctl
+	url = https://github.com/guardianproject/jtorctl
 [submodule "external/obfsproxy"]
 	path = external/obfsproxy
 	url = https://git.torproject.org/pluggable-transports/obfsproxy-legacy.git
