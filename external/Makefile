@@ -29,7 +29,7 @@ APP_ABI=armeabi
 APP_PLATFORM := android-$(shell sed -n 's,.*android:minSdkVersion="\([0-9][0-9]*\)".*,\1,p' \
 	$(EXTERNAL_ROOT)/../AndroidManifest.xml)
 NDK_SYSROOT=$(NDK_BASE)/platforms/$(APP_PLATFORM)/arch-$(NDK_ABI)
-NDK_TOOLCHAIN_VERSION=4.6
+NDK_TOOLCHAIN_VERSION=4.7
 NDK_UNAME := $(shell uname -s | tr '[A-Z]' '[a-z]')
 ifeq ($(NDK_ABI),x86)
  HOST = i686-linux-android
@@ -81,7 +81,7 @@ all: assets
 lib/libcrypto.a:
 	cd openssl && \
 		CC="$(CC)" \
-		./Configure android-armv7 && \
+		./Configure android -DL_ENDIAN && \
 		ANDROID_DEV=$(NDK_BASE)/platforms/android-8/arch-arm/usr make build_libs
 
 lib/libssl.a:
@@ -89,7 +89,7 @@ lib/libssl.a:
 	cp config.guess openssl
 	cd openssl && \
 		CC="$(CC)"\
-		./Configure android-armv7 && \
+		./Configure android -DL_ENDIAN && \
 		ANDROID_DEV=$(NDK_BASE)/platforms/android-8/arch-arm/usr make build_libs
 
 openssl-build-stamp: lib/libcrypto.a lib/libssl.a
