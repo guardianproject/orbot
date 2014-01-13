@@ -587,19 +587,30 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			boolean success = installer.installResources();
 				
 		}
-			
+		
+		try
+		{
+			setBinaryPerms();
+		}
+		catch (Exception e)
+		{
+			logNotice("Error setting binary permissions: " + e.toString());
+		}
 		
     }
 
-    
-    /*
     private void setBinaryPerms () throws Exception
     {
+    	
+    	logNotice("Is Tor binary exec? " + fileTorOrig.canExecute());
+    	logNotice("Is Tor binary exec? " + filePrivoxy.canExecute());
+    	logNotice("Is Tor binary exec? " + fileObfsProxy.canExecute());
+    	
 	
 		StringBuilder log = new StringBuilder ();
 		
 		logNotice("(re)Setting permission on Tor binary");
-		String[] cmd1 = {SHELL_CMD_CHMOD + ' ' + CHMOD_EXE_VALUE + ' ' + fileTor.getAbsolutePath()};
+		String[] cmd1 = {SHELL_CMD_CHMOD + ' ' + CHMOD_EXE_VALUE + ' ' + fileTorOrig.getAbsolutePath()};
 		TorServiceUtils.doShellCommand(cmd1, log, false, true);
 		
 		logNotice("(re)Setting permission on Privoxy binary");
@@ -610,7 +621,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		String[] cmd3 = {SHELL_CMD_CHMOD + ' ' + CHMOD_EXE_VALUE + ' ' + fileObfsProxy.getAbsolutePath()};
 		TorServiceUtils.doShellCommand(cmd3, log, false, true);
 		
-    }*/
+    }
     
     private boolean mHasRoot = false;
     private boolean mEnableTransparentProxy = false;
