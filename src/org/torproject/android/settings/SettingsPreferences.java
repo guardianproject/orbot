@@ -6,9 +6,7 @@ package org.torproject.android.settings;
 import java.util.Locale;
 
 import org.torproject.android.R;
-import org.torproject.android.TorConstants;
 import org.torproject.android.service.TorServiceUtils;
-import org.torproject.android.service.TorTransProxy;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,7 +17,6 @@ import android.preference.Preference;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockPreferenceActivity;
