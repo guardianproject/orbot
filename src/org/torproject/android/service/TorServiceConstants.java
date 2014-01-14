@@ -41,6 +41,7 @@ public interface TorServiceConstants {
 	public final static String SHELL_CMD_PS = "ps";
 	public final static String SHELL_CMD_PIDOF = "pidof";
 	public final static String SHELL_CMD_LINK = "ln -s";
+	public final static String SHELL_CMD_CP = "cp";
 	
 
 	public final static String CHMOD_EXE_VALUE = "700";
