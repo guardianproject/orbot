@@ -16,14 +16,16 @@ public class TorTransProxy implements TorServiceConstants {
 	private boolean useSystemIpTables = false;
 	private String mSysIptables = null;
 	private TorService mTorService = null;
+	private File mFileXtables = null;
 	
 	public TorTransProxy (TorService torService)
 	{
 		mTorService = torService;
 	}
 	
-	public TorTransProxy ()
+	public void setXTables (File fileXTables)
 	{
+		mFileXtables = fileXTables;
 	}
 	
 	public String getIpTablesPath (Context context)
@@ -41,9 +43,7 @@ public class TorTransProxy implements TorServiceConstants {
 		}
 		else
 		{
-			//use the bundled version
-	    	File appLibsHome = new File(context.getApplicationInfo().nativeLibraryDir);
-			ipTablesPath = new File(appLibsHome,IPTABLES_BINARY_ASSET_KEY).getAbsolutePath();
+			ipTablesPath = mFileXtables.getAbsolutePath();
 			ipTablesPath += " iptables"; //append subcommand since we are using xtables now
 			
 		}

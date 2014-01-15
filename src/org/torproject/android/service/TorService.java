@@ -87,6 +87,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     
     private File filePrivoxy;
     private File fileObfsProxy;
+    private File fileXtables;
+    
     private File fileTorRc;
     
     private TorTransProxy mTransProxy;
@@ -389,30 +391,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     }
     
  
-   
-    /*
-    public void reloadConfig ()
-    {
-    	try
-		{
-	    	if (conn == null)
-			{
-				initControlConnection ();
-			}
-		
-			if (conn != null)
-			{
-				 conn.signal("RELOAD");
-			}
-		}
-    	catch (Exception e)
-    	{
-    		Log.d(TAG,"Unable to reload configuration",e);
-    	}
-    }*/
-    
-    
-    
 	private String getHiddenServiceHostname ()
 	{
 
@@ -467,16 +445,27 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 	    	if (!fileTorLink.exists()||(fileTorOrig.length()!=fileTorLink.length()))
 	    	{
-	    		String[] cmd = { SHELL_CMD_CP + ' ' + fileTorOrig.getAbsolutePath() + ' ' + fileTorLink.getAbsolutePath() };
+	    		log = new StringBuilder();
+	    		String[] cmd = { SHELL_CMD_RM + ' ' + fileTorLink.getAbsolutePath() };
 	    		errCode = TorServiceUtils.doShellCommand(cmd,log, false, true);
+	    		logNotice("link CP err=" + errCode + " out: " + log.toString());
+	    		
+	    		log = new StringBuilder();
+	    		String[] cmd1 = { SHELL_CMD_CP + ' ' + fileTorOrig.getAbsolutePath() + ' ' + fileTorLink.getAbsolutePath() };
+	    		errCode = TorServiceUtils.doShellCommand(cmd1,log, false, true);
 	    		logNotice("link CP err=" + errCode + " out: " + log.toString());
 	    	}
 			enableBinExec(fileTorLink);
 						
-			log = new StringBuilder();
 			File filePrivoxyLink = new File(appBinHome,"privoxy");
 			if (!filePrivoxyLink.exists()||(filePrivoxy.length()!=filePrivoxyLink.length()))
 			{
+				log = new StringBuilder();
+				String[] cmd = { SHELL_CMD_RM + ' ' + filePrivoxyLink.getAbsolutePath() };
+				errCode = TorServiceUtils.doShellCommand(cmd,log, false, true);
+				logNotice("link CP err=" + errCode + " out: " + log.toString());
+				
+				log = new StringBuilder();
 		    	String[] cmd1 = { SHELL_CMD_CP + ' ' + filePrivoxy.getAbsolutePath() + ' ' + filePrivoxyLink.getAbsolutePath() };
 				errCode = TorServiceUtils.doShellCommand(cmd1,log, false, true);
 				logNotice("link CP err=" + errCode + " out: " + log.toString());
@@ -484,16 +473,40 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			filePrivoxy = filePrivoxyLink;			
 			enableBinExec(filePrivoxy);
 			
-			log = new StringBuilder();
 			File fileObfsProxyLink = new File(appBinHome,"obfsproxy");
 			if (!fileObfsProxyLink.exists()||(fileObfsProxy.length()!=fileObfsProxyLink.length()))
 			{
+
+				log = new StringBuilder();
+				String[] cmd1 = { SHELL_CMD_RM + ' ' + fileObfsProxyLink.getAbsolutePath() };
+				errCode = TorServiceUtils.doShellCommand(cmd1,log, false, true);
+				logNotice("link CP err=" + errCode + " out: " + log.toString());
+				
+
+				log = new StringBuilder();
 		    	String[] cmd2 = { SHELL_CMD_CP + ' ' + fileObfsProxy.getAbsolutePath() + ' ' + fileObfsProxyLink.getAbsolutePath() };
 				errCode = TorServiceUtils.doShellCommand(cmd2,log, false, true);
 				logNotice("link CP err=" + errCode + " out: " + log.toString());
 			}
 			fileObfsProxy = fileObfsProxyLink;
 			enableBinExec(fileObfsProxy);
+			
+			
+			File fileXtablesLink = new File(appBinHome,"xtables");
+			if (!fileXtablesLink.exists()||(fileXtables.length()!=fileXtablesLink.length()))
+			{
+				log = new StringBuilder();
+				String[] cmd1 = { SHELL_CMD_RM + ' ' + fileXtablesLink.getAbsolutePath() };
+				errCode = TorServiceUtils.doShellCommand(cmd1,log, false, true);
+				logNotice("link CP err=" + errCode + " out: " + log.toString());
+				
+				log = new StringBuilder();
+		    	String[] cmd2 = { SHELL_CMD_CP + ' ' + fileXtables.getAbsolutePath() + ' ' + fileXtablesLink.getAbsolutePath() };
+				errCode = TorServiceUtils.doShellCommand(cmd2,log, false, true);
+				logNotice("link CP err=" + errCode + " out: " + log.toString());
+			}
+			fileXtables = fileXtablesLink;
+			enableBinExec(fileXtables);
 			
 		}
 		else
@@ -517,6 +530,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			
 			enableBinExec(filePrivoxy);
 			enableBinExec(fileObfsProxy);
+			enableBinExec(fileXtables);
 			
 		}
 		
@@ -643,10 +657,14 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
 		if (!fileTorRc.exists())
 		{
-			TorBinaryInstaller installer = new TorBinaryInstaller(this, appBinHome); 
+			TorResourceInstaller installer = new TorResourceInstaller(this, appBinHome); 
 			boolean success = installer.installResources();
 				
 		}
+		
+		fileXtables = new File(appLibsHome, IPTABLES_BINARY_ASSET_KEY);
+		if (fileXtables.exists())
+			logNotice("Xtables binary exists: " + fileXtables.getAbsolutePath());
 		
 		initTorPathLinkAndPerms();
 		
@@ -717,7 +735,10 @@ public class TorService extends Service implements TorServiceConstants, TorConst
  	{
     	
  		if (mTransProxy == null)
+ 		{
  			mTransProxy = new TorTransProxy(this);
+ 			mTransProxy.setXTables(fileXtables);
+ 		}
 	 		
      	logMessage ("Transparent Proxying: enabling...");
 
@@ -1697,7 +1718,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	        {
 		        if ((!fileGeoIP.exists()))
 		        {
-		        	TorBinaryInstaller installer = new TorBinaryInstaller(this, appBinHome); 
+		        	TorResourceInstaller installer = new TorResourceInstaller(this, appBinHome); 
 					boolean success = installer.installGeoIP();
 		        	
 		        }
