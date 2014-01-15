@@ -512,22 +512,18 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		else
 		{
 		
+			StringBuilder log = new StringBuilder();
+	    	String[] cmdDel = { SHELL_CMD_RM + ' ' + fileTorLink.getAbsolutePath() };
+			int errCode = TorServiceUtils.doShellCommand(cmdDel,log, false, true);
+			logNotice("link RM err=" + errCode + " out: " + log.toString());
 	    	
-	    	if (fileTorLink.exists())
-	    	{
-	    		StringBuilder log = new StringBuilder();
-		    	String[] cmdDel = { "rm " + fileTorLink.getAbsolutePath() };
-				int errCode = TorServiceUtils.doShellCommand(cmdDel,log, false, true);
-				logNotice("link RM err=" + errCode + " out: " + log.toString());
-	    	}
-				
-	    	StringBuilder log = new StringBuilder();
+	    	log = new StringBuilder();
 	    	String[] cmd = { SHELL_CMD_LINK + ' ' + fileTorOrig.getAbsolutePath() + ' ' + fileTorLink.getAbsolutePath() };
-			int errCode = TorServiceUtils.doShellCommand(cmd,log, false, true);
+			errCode = TorServiceUtils.doShellCommand(cmd,log, false, true);
 			logNotice("link LN err=" + errCode + " out: " + log.toString());
 			
 			enableBinExec(fileTorOrig);
-			
+			enableBinExec(fileTorLink);
 			enableBinExec(filePrivoxy);
 			enableBinExec(fileObfsProxy);
 			enableBinExec(fileXtables);
