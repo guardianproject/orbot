@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="org.torproject.android" 
-      android:versionName="13.0.4" 
-      android:versionCode="68"
+      android:versionName="13.0.4a" 
+      android:versionCode="69"
         android:installLocation="auto"
       > <uses-permission android:name="android.permission.INTERNET" />
  	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
