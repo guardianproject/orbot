@@ -91,6 +91,8 @@ public class TorServiceUtils implements TorServiceConstants {
 		    	
 		Process procPs = null;
 		
+		String baseName = new File(command).getName();
+		
         procPs = r.exec(SHELL_CMD_PS);
             
         BufferedReader reader = new BufferedReader(new InputStreamReader(procPs.getInputStream()));
@@ -98,7 +100,7 @@ public class TorServiceUtils implements TorServiceConstants {
         
         while ((line = reader.readLine())!=null)
         {
-        	if (line.indexOf(' ' + command)!=-1)
+        	if (line.indexOf('/' + baseName)!=-1)
         	{
         		
         		StringTokenizer st = new StringTokenizer(line," ");
