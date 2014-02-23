@@ -19,3 +19,6 @@
 [submodule "external/iptables"]
 	path = external/iptables
 	url = git://git.netfilter.org/iptables
+[submodule "external/obfsclient"]
+	path = external/obfsclient
+	url = https://github.com/Yawning/obfsclient.git
