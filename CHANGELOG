@@ -1,5 +1,152 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+13.0.5 (includes v12 changes as well)
+d605b45 add obfsclient build but don't include binary yet
+0aa4294 add new obfsclient module
+c1cb30d remove issue with service launching via explicit intent
+87411be fix code for finding existing processes
+16c5426 adding new bg images for next release
+c3327d7 13.0.4a fix for Tor link setup
+3b9d6c8 make sure Tor path link is cleanly setup and chmod'd
+e55f724 bump to 13.0.4
+cac2a28 updated TorBinaryInstaller now just handles resources
+f538930 fix xtables installation and permission setting more fixes for running from sdcard
+43625f8 bump to 13.0.3
+c595963 solves problem with binaries being stored on external SDcard
+649ca40 enable compiliation for all android not just armv7
+591161f updated to 13.0.2
+635e307 cleanup imports
+db53c19 updated binary versions in strings
+62a5da6 updated tor binary that works with armv5 and v7
+6927126 updated torrc without automap settings (not needed)
+92d19e3 ensures binary permissions are set
+14fab24 bump to 13.0.1
+39699e6 add new icons showing different status
+d3c11be add geoip v6 file and support in TorService
+e24ae6c update Makefile - try building with older toolchain
+a60c614 change jtorctl path to github updated version
+8c4f09e new binaries built with update Makefile
+8527929 unregister receive and check for alternate library path
+1fa568d peg to new repo and head with fix for empty element bug
+8b8e51b remove double entry for jtorctrl
+cf5e445 fixes #2848 newnym might call a null conn in service
+069a9bf fixes #2847 use class name to start service
+2735a59 update to 13.0.0; release candidate 1
+096144b adding in binaries for UI/Android devs without NDK All binaries can be built from source using Makefile in /external
+f69c1aa updated jtorctrl build
+0b024c9 Merge branch 'master' of https://github.com/eighthave/orbot into hans_build_patches
+d54cf74 bump to 13.0.0-alpha-1
+276e6c3 remove old external openssl-static path
+e0a7fbb check for both link and original path in process lookup
+b48bbc1 updated AUTHORS for amoghbl1
+e9396b7 use new bundled xtables binary appropriately
+ca28ade add patches for iptables/xtables building on Android
+76b15dd adding new iptables/xtables build from source
+8b65332 clean up of error notifications
+8722db9 put threading of settings reload into TorService
+d2006b2 remove static openssl android and replace with real openssl
+0e6bb42 add new openssl
+c4d8c97 stop button for notification bar
+c80c5d4 improvements on notification code
+5891fee service should be unbound when activity is destroyed also some other cleanup of unused code
+867ff53 remove simple server source bundle
+3069fb5 run Tor from link to keep compatibility with OrbotHelper class some apps use our OrbotHelper.java class and are expecting the 
+17f7d46 update menu, strings, icons for ChatSecure (from Gibberbot)
+198974a update to build openssl latest
+468076e set to 1.0.1e release
+8666b1b updating tor to 0.2.4.20
+95461da adding back in jtorctrl jar file
+f3cbb6e updating SDK and removing share intents
+6e79596 updating to Android 18 / 4.4
+420dd1e adding geoip ipv4 db back in for now
+1739473 more updates for moving binaries to libs/armeabi
+5870a67 update for 0.2.4.20 constant
+6a125a9 more removal of share service from core Orbot moving to a separate app
+a0de736 change "network conn" preference to be more clear
+c58f009 remove simple jar from project (moving sharing to sep app)
+5286421 remove "ShareService" from projet (moving to separate app)
+a8ca927 remove simple file sharing server from build process
+fbd4fdc updated to android-18
+6b0b0fa more changes for executing binaries from libs/jni folder
+d40016b move minimum device support to API 9 or 2.3
+d6d989a updated jar for jtor control
+4d6e0cc update makefile for new install process update tags for libevent and tor
+d236708 removing binaries from repo binaries will now be stored in /libs/armeabi as psuedo shared libraries (actually executables) and
+ca8197f update native build to include Android NDK build flags
+2d34745 include note about git submodules in BUILD instructions
+ddd62f2 remove spaces and tabs where 'make' complains about them
+f4e73e9 updating version to 12.0.5
+abe1788 another shared prefs fix
+e632b3b fixes for sharing preferences across processes
+9a10cdd updated orbot glow icon
+a9b41a8 make orbot another background process
+8f44c51 make sure binaries and config files are updated
+e84ee71 added GUI support for flinging to a newnym identity
+f12e556 added support for NEWNYM signalling
+9dacb5b updated transproxy iptables rules to ensure clear/flush
+965dab2 updated to 12.0.4
+4407257 adding raw design resources
+5930964 new green/tor on mode
+cea338d add new Root utility for checking if root is possible
+82fcea0 fixes for superuser and iptables check code
+9d6f3c8 removed unneeded old iptables binaries
+38e2f49 12.0.3 0.2.4.16-rc
+1bc97c6 change default "disable network" pref to true
+a97432c update manifest to 12.0.2
+fb49463 update to latest tor 0.2.4.16-rc
+5bcb607 update the readme copyright
+3d387af add our new icon source CC license link
+eb1c6b0 make the "check" button a bit smarter
+9a2a989 updates to graphics, layouts and strings
+2cfd6af update torctrl jar
+79e6eec update tor to tor-0.2.4.16-rc
+0a3cc50 add resources for airplane mode/network disable
+2c278f3 fix for notifications and debug option for "airplane mode"
+cdd75f3 disable share/send feature for this release
+cfb0473 remove unneeded view and share intents
+adc57ae removed android Debug code
+d407f32 update Tor binary version number to ensure upgrade
+5b57407 updated classpath for latest eclipse
+bebb143 make Orbot just one process
+21d1023 fixes for prefs/settings management
+303ceb4 updates for building
+edd855f new builds of binaries
+42b111a updating commit peg for ndk8 fix
+179ef6e updated git submodules to public https paths
+1bf7bb0 updating version
+74fed91 updated jtorctrl built library
+515b8ce added new strings resources
+bbf8d8a updating string resources from transifex
+273e190 updating built binaries
+4f9a502 updated Tor repo
+86d8c16 updates for new UI and file sharing
+8aaa8cb updated process to singletop; rev'd version
+700121d add simple external module to ignore path
+2ab32fc new preference value updates
+b6e2507 UI and flow updates
+442216f share service via http hidden service
+667fa64 updated for settings return value
+3ea016b updates for reading preference settings
+c5627f4 cleaned up notification support and added Share service
+25a895a updated tor binary version number
+c4810d4 added new method for remote server interface for Share service
+1576775 closed reader stream
+83319c1 added message for when internet is down
+63b31cd updated to android 17 target
+eb3f95c updated params for tuning, including largeHeap=true
+21c2797 support landscape layout and new Share intent
+7df2acd cleanup of imports and unclosed streams
+ba9b95a new landscape layout for tablets with log view
+2b9007e updated to latest libevent and tor repos
+fe591d6 updated to latest jar libs
+225cd32 tuning of torrc to try to resolve bugs
+aaa2ed5 updated built binary to 0.2.4.10-alpha
+216a41d adding new HS/onion based file sharing service
+1748cb4 added missing path to libevent include
+fb0a0fa updated to 0.2.3.25
+8023d16 updated locale handling to stop flashing
+e2bbe4c proper spelling of Farsi
+
 1.0.11
 - Tor updated to 0.2.3.23-RC
 - ActionBarSherlock updated to latest release
