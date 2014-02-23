@@ -25,7 +25,7 @@ public interface TorConstants {
     	+ "ControlPort 9051\nCookieAuthentication 1\nRelayBandwidthRate 20 KBytes\nRelayBandwidthBurst 20 KBytes\nAutomapHostsOnResolve 1\nTransPort 9040\n";
     	*/
     
-    public final static String INTENT_TOR_SERVICE = "org.torproject.android.service.TOR_SERVICE";
+   // public final static String INTENT_TOR_SERVICE = "org.torproject.android.service.TOR_SERVICE";
     	
     public final static String HANDLER_TOR_MSG = "torServiceMsg";
 	

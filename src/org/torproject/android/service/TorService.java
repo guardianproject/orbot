@@ -132,6 +132,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     
     private boolean findExistingProc () 
     {
+    //	android.os.Debug.waitForDebugger();
+    	
     	if (fileTorLink != null)
     	{
 	    	try
@@ -1190,8 +1192,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			
 			sendCallbackStatusMessage(written, read, mTotalTrafficWritten, mTotalTrafficRead); 
 
-			if(++notificationCounter%10==0)
-			    startService(new Intent(INTENT_TOR_SERVICE));
+	//		if(++notificationCounter%10==0)
+		//	    startService(new Intent(ITorService.class.getName()));
 
 		}
 		
@@ -1288,6 +1290,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		else
 			return node;
 	}
+	
     public IBinder onBind(Intent intent) {
         
     	
@@ -1311,11 +1314,14 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	};
     	thread.start();
     	
+    	return mBinder;
+    	/**
     	if (ITorService.class.getName().equals(intent.getAction())) {
             return mBinder;
         }
     	else
     		return null;
+    		*/
     }
 	
     /**

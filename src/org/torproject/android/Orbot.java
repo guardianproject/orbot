@@ -298,7 +298,7 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
                         stopTor();
                         
                         //perhaps this should be referenced as INTENT_TOR_SERVICE as in startService
-                        stopService(new Intent(ITorService.class.getName()));
+                        stopService(new Intent(this,TorService.class));
                         
                         //clears all notifications from the status bar
                         NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -1053,7 +1053,7 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
     private void bindService ()
     {
         
-    	Intent iTorService = new Intent(ITorService.class.getName());
+    	Intent iTorService = new Intent(this, TorService.class);
     	
     	getApplication().getApplicationContext().startService(iTorService);
         
