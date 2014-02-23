@@ -71,6 +71,7 @@ endif
 	iptables iptables-clean \
 	tor tor-clean \
 	obfsproxy obfsproxy-clean \
+	obfsclient obfsclient-clean \
 	privoxy privoxy-clean
 
 all: assets
@@ -239,6 +240,34 @@ obfsproxy-clean:
 	-rm -f bin/obfsproxy
 	-rm -f obfsproxy-build-stamp
 	-cd obfsproxy && \
+		git clean -fdx
+
+#------------------------------------------------------------------------------#
+# obfsclient
+
+
+obfsclient/Makefile: 
+	cd obfsclient && \
+	 	./autogen.sh
+	cp config.sub obfsclient
+	cp config.guess obfsclient
+	cd obfsclient && \
+                CPP="$(CPP)" AR="$(AR)" RANLIB=$(RANLIB) CPPFLAGS="$(CFLAGS) -D_FORTIFY_SOURCE=2 -fPIE -fwrapv -fno-strict-aliasing -fno-strict-overflow" LDFLAGS="$(LDFLAGS)" \
+                        ./configure \
+                                --host=$(HOST) \
+
+obfsclient-build-stamp: obfsclient/Makefile
+	$(MAKE) -C obfsclient
+	touch obfsclient-build-stamp
+
+obfsclient: openssl libevent obfsclient-build-stamp
+	test -d bin || mkdir bin
+	cp obfsclient/obfsclient bin
+
+obfsclient-clean:
+	-rm -f bin/obfsclient
+	-rm -f obfsclient-build-stamp
+	-cd obfsclient && \
 		git clean -fdx
 
 #------------------------------------------------------------------------------#
