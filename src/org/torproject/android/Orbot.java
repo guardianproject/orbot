@@ -68,6 +68,7 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
     private TextView mTxtOrbotLog = null;
     private SlidingDrawer mDrawer = null;
     private boolean mDrawerOpen = false;
+    private View mViewMain = null;
 
 	/* Some tracking bits */
 	private int torStatus = TorServiceConstants.STATUS_OFF; //latest status reported from the tor service
@@ -95,6 +96,7 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 	{
     	setContentView(R.layout.layout_main);
 		
+    	mViewMain = findViewById(R.id.viewMain);
     	lblStatus = (TextView)findViewById(R.id.lblStatus);
 		lblStatus.setOnLongClickListener(this);
     	imgStatus = (ImageProgressView)findViewById(R.id.imgStatus);
@@ -718,6 +720,7 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
                             {
                                     imgStatus.setImageResource(R.drawable.toron);
 
+                            		mViewMain.setBackgroundResource(R.drawable.onionrootonly);
                            //         hideProgressDialog();
                                     
                                     String lblMsg = getString(R.string.status_activated);
@@ -760,7 +763,9 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
                             {
                                     
                                     imgStatus.setImageResource(R.drawable.torstarting);
-                                    
+
+                            		mViewMain.setBackgroundResource(R.drawable.onionrootonlygold);
+                            		
                                     if (lblStatus != null && torServiceMsg != null)
                                     	if (torServiceMsg.indexOf('%')!=-1)
                                     		lblStatus.setText(torServiceMsg);
@@ -776,7 +781,8 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 
 
                                   //  hideProgressDialog();
-                                    
+                            		mViewMain.setBackgroundResource(R.drawable.onionrootonlygrey);
+                            	
                                     imgStatus.setImageResource(R.drawable.toroff);
                                     lblStatus.setText(getString(R.string.status_disabled) + "\n" + getString(R.string.press_to_start));
                                     
