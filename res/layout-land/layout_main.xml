@@ -6,9 +6,10 @@
 
     android:paddingTop="0sp">
     
+    <!-- 
     <org.torproject.android.RandomColorCircleView  android:layout_width="fill_parent"
 	      android:layout_height="fill_parent"></org.torproject.android.RandomColorCircleView>
-       
+        -->
     <RelativeLayout
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent">
@@ -132,7 +133,7 @@
 		      >
 		<TextView
 			android:id="@+id/trafficDown"
-			android:textColor="#FF00B627"
+			android:textColor="#ccff2a"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			 android:layout_alignParentLeft="true"
@@ -144,7 +145,7 @@
 			 />
 		<TextView
 			android:id="@+id/trafficUp"
-			android:textColor="#FF00B627"
+			android:textColor="#ccff2a"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			 android:layout_alignParentRight="true"
@@ -166,6 +167,8 @@
 			android:textIsSelectable="true"
 			 android:layout_below="@+id/rowTrafficData"
 			 				android:fontFamily="sans-serif-light"	
+			 						android:background="#aa333333"
+			 						android:padding="3sp"
 			 
 			 />
     </RelativeLayout>		

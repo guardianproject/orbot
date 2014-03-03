@@ -3,12 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/viewMain"
-
+	android:background="@drawable/onionrootonlygrey"
     android:paddingTop="0sp">
-    
+    <!-- 
     <org.torproject.android.RandomColorCircleView  android:layout_width="fill_parent"
 	      android:layout_height="fill_parent"></org.torproject.android.RandomColorCircleView>
-       
+        -->
     	<RelativeLayout android:id="@+id/layoutHeaderMain"
 		android:layout_width="fill_parent"
 		android:layout_height="30dp"
@@ -55,13 +55,14 @@
 		android:gravity="center_horizontal"
 		android:textStyle="bold"
 		android:layout_width="fill_parent"
-		android:layout_height="50sp"
+		android:layout_height="40dp"
 		android:layout_marginBottom="20dp"
-		android:layout_marginLeft="30dp"
-		android:layout_marginRight="30dp"
+		android:layout_marginLeft="60dp"
+		android:layout_marginRight="60dp"
 		android:textColor="#ffffff"
 		android:maxLines="2"
 		android:fontFamily="sans-serif-light"	
+		android:background="#dd333333"
 		 />
 	
 	
@@ -109,7 +110,7 @@
 		      >
 		<TextView
 			android:id="@+id/trafficDown"
-			android:textColor="#FF00B627"
+			android:textColor="#ccff2a"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			 android:layout_alignParentLeft="true"
@@ -120,7 +121,7 @@
 			 />
 		<TextView
 			android:id="@+id/trafficUp"
-			android:textColor="#FF00B627"
+			android:textColor="#ccff2a"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			 android:layout_alignParentRight="true"
