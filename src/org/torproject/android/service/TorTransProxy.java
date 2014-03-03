@@ -302,7 +302,6 @@ public class TorTransProxy implements TorServiceConstants {
 
 			if (tApp.isTorified()
 					&& (!tApp.getUsername().equals(TorServiceConstants.TOR_APP_USERNAME))
-					&& (!tApp.getUsername().equals(TorServiceConstants.ORWEB_APP_USERNAME))
 					) //if app is set to true
 			{
 				
@@ -528,7 +527,9 @@ public class TorTransProxy implements TorServiceConstants {
 		script.append(ipTablesPath);
 		script.append(" -t nat");
 		script.append(" -A ").append(srcChainName);
-		script.append(" -p udp -m owner ! --uid-owner ");
+		script.append(" -p udp");
+		script.append(" ! -d 127.0.0.1"); //allow access to localhost
+		script.append(" -m owner ! --uid-owner ");
 		script.append(torUid);
 		script.append(" -m udp --dport "); 
 		script.append(STANDARD_DNS_PORT);
@@ -536,6 +537,7 @@ public class TorTransProxy implements TorServiceConstants {
 		script.append(TOR_DNS_PORT);
 		script.append(" || exit\n");
 		
+		/**
 		int[] ports = {TOR_DNS_PORT,TOR_TRANSPROXY_PORT,PORT_SOCKS,PORT_HTTP};
 		
 		for (int port : ports)
@@ -553,7 +555,7 @@ public class TorTransProxy implements TorServiceConstants {
 			script.append(" -j ACCEPT");
 			script.append(" || exit\n");
 		
-		}
+		}**/
 		
 		// Allow loopback
 		script.append(ipTablesPath);
