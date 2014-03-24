@@ -195,7 +195,7 @@ tor/Makefile: tor/configure
 				--disable-linker-hardening --disable-gcc-hardening 
 
 tor-build-stamp: tor/Makefile
-	$(MAKE) -C tor 
+	$(MAKE) -C tor all-am
 	touch tor-build-stamp
 
 tor: libevent openssl tor-build-stamp
@@ -252,7 +252,8 @@ obfsclient/Makefile:
 	cp config.sub obfsclient
 	cp config.guess obfsclient
 	cd obfsclient && \
-                CPP="$(CPP)" AR="$(AR)" RANLIB=$(RANLIB) CPPFLAGS="$(CFLAGS) -D_FORTIFY_SOURCE=2 -fPIE -fwrapv -fno-strict-aliasing -fno-strict-overflow" LDFLAGS="$(LDFLAGS)" \
+                CPP="$(CPP)" CXX="$(CXX)" AR="$(AR)" RANLIB=$(RANLIB) CPPFLAGS="$(CFLAGS) -D_FORTIFY_SOURCE=2 -fPIE -fwrapv -fno-strict-aliasing -fno-strict-overflow" CXXFLAGS="$(CFLAGS) -D_FORTIFY_SOURCE=2 -fPIE -fwrapv -fno-strict-aliasing -fno-strict-overflow" LDFLAGS="$(LDFLAGS)" \
+ LIBS="-L$(EXTERNAL_ROOT)/lib" CFLAGS="-I$(EXTERNAL_ROOT)/include -I$(EXTERNAL_ROOT)/include/event2" \
                         ./configure \
                                 --host=$(HOST) \
 
