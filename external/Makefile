@@ -25,14 +25,14 @@ endif
 NDK_BASE ?= /opt/android-ndk
 NDK_PLATFORM_LEVEL ?= 5
 NDK_ABI=arm
-NDK_COMPILER_VERSION = 4.7
+NDK_COMPILER_VERSION = 4.6
 NDK_SYSROOT=$(NDK_BASE)/platforms/android-$(NDK_PLATFORM_LEVEL)/arch-$(NDK_ABI)
 APP_ABI=armeabi
 # NDK platform level, aka APP_PLATFORM, is equivalent to minSdkVersion
 APP_PLATFORM := android-$(shell sed -n 's,.*android:minSdkVersion="\([0-9][0-9]*\)".*,\1,p' \
 	$(EXTERNAL_ROOT)/../AndroidManifest.xml)
 NDK_SYSROOT=$(NDK_BASE)/platforms/$(APP_PLATFORM)/arch-$(NDK_ABI)
-NDK_TOOLCHAIN_VERSION=4.7
+NDK_TOOLCHAIN_VERSION=4.6
 NDK_UNAME := $(shell uname -s | tr '[A-Z]' '[a-z]')
 ifeq ($(NDK_ABI),x86)
  HOST = i686-linux-android
