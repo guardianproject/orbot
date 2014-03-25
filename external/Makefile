@@ -84,17 +84,15 @@ all: assets
 
 lib/libcrypto.a:
 	cd openssl && \
-		CC="$(CC)" \
 		./Configure android -DL_ENDIAN && \
-		ANDROID_DEV=$(NDK_BASE)/platforms/android-8/arch-arm/usr make build_libs
+		make CC="$(CC)" ANDROID_DEV=$(NDK_BASE)/platforms/android-8/arch-arm /usr build_libs
 
 lib/libssl.a:
 	cp config.sub openssl
 	cp config.guess openssl
 	cd openssl && \
-		CC="$(CC)"\
 		./Configure android -DL_ENDIAN && \
-		ANDROID_DEV=$(NDK_BASE)/platforms/android-8/arch-arm/usr make build_libs
+		make CC="$(CC)" ANDROID_DEV=$(NDK_BASE)/platforms/android-8/arch-arm /usr build_libs
 
 openssl-build-stamp: lib/libcrypto.a lib/libssl.a
 	touch openssl-build-stamp
