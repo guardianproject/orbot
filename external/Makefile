@@ -128,7 +128,7 @@ libevent/Makefile:
 				--disable-shared
 
 libevent-build-stamp: libevent/Makefile
-	$(MAKE) -C libevent
+	$(MAKE) -C libevent all-am
 	touch libevent-build-stamp
 
 libevent: openssl libevent-build-stamp
