@@ -116,6 +116,8 @@ openssl-clean:
 # libevent
 
 libevent/Makefile:
+	sed -i 's@\(SUBDIRS = . include\) sample test@\1@' libevent/Makefile.am
+	sed -i 's@\(AC_OUTPUT(Makefile include/Makefile\) test/Makefile sample/Makefile)@\1)@' libevent/configure.in
 	cd libevent && ./autogen.sh
 	cp config.sub libevent
 	cp config.guess libevent
@@ -126,7 +128,7 @@ libevent/Makefile:
 				--disable-shared
 
 libevent-build-stamp: libevent/Makefile
-	$(MAKE) -C libevent all-am
+	$(MAKE) -C libevent ./include/event2/event-config.h all-am
 	touch libevent-build-stamp
 
 libevent: openssl libevent-build-stamp
