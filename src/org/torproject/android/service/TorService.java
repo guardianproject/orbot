@@ -80,11 +80,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
    //   private String appHome;
     private File appBinHome;
     private File appCacheHome;
-    private File appLibsHome;
     
-    private File fileTorOrig;
-    private File fileTorLink;
-    
+    private File fileTor;
     private File filePrivoxy;
     private File fileObfsProxy;
     private File fileXtables;
@@ -134,11 +131,11 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     {
     //	android.os.Debug.waitForDebugger();
     	
-    	if (fileTorLink != null)
+    	if (fileTor != null)
     	{
 	    	try
 	    	{
-		    	int procId = TorServiceUtils.findProcessId(fileTorLink.getAbsolutePath());
+		    	int procId = TorServiceUtils.findProcessId(fileTor.getAbsolutePath());
 		
 		 		if (procId != -1)
 		 		{
@@ -432,107 +429,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         return null;
 	}
 	
-	private void initTorPathLinkAndPerms () throws Exception
-	{
-		fileTorLink = new File(appBinHome,"tor");
-		fileTorLink.getParentFile().mkdirs();
-		
-		if (fileTorOrig.getAbsolutePath().startsWith("/mnt"))
-		{
-			logNotice("app installed on external storage - copying binaries to internal");
-			
-			//can't execute binaries off the external storage, so copy them internal
-			StringBuilder log = new StringBuilder();
-	    	int errCode = -1;
-
-	    	if (!fileTorLink.exists()||(fileTorOrig.length()!=fileTorLink.length()))
-	    	{
-	    		log = new StringBuilder();
-	    		String[] cmd = { SHELL_CMD_RM + ' ' + fileTorLink.getAbsolutePath() };
-	    		errCode = TorServiceUtils.doShellCommand(cmd,log, false, true);
-	    		logNotice("link CP err=" + errCode + " out: " + log.toString());
-	    		
-	    		log = new StringBuilder();
-	    		String[] cmd1 = { SHELL_CMD_CP + ' ' + fileTorOrig.getAbsolutePath() + ' ' + fileTorLink.getAbsolutePath() };
-	    		errCode = TorServiceUtils.doShellCommand(cmd1,log, false, true);
-	    		logNotice("link CP err=" + errCode + " out: " + log.toString());
-	    	}
-			enableBinExec(fileTorLink);
-						
-			File filePrivoxyLink = new File(appBinHome,"privoxy");
-			if (!filePrivoxyLink.exists()||(filePrivoxy.length()!=filePrivoxyLink.length()))
-			{
-				log = new StringBuilder();
-				String[] cmd = { SHELL_CMD_RM + ' ' + filePrivoxyLink.getAbsolutePath() };
-				errCode = TorServiceUtils.doShellCommand(cmd,log, false, true);
-				logNotice("link CP err=" + errCode + " out: " + log.toString());
-				
-				log = new StringBuilder();
-		    	String[] cmd1 = { SHELL_CMD_CP + ' ' + filePrivoxy.getAbsolutePath() + ' ' + filePrivoxyLink.getAbsolutePath() };
-				errCode = TorServiceUtils.doShellCommand(cmd1,log, false, true);
-				logNotice("link CP err=" + errCode + " out: " + log.toString());
-			}
-			filePrivoxy = filePrivoxyLink;			
-			enableBinExec(filePrivoxy);
-			
-			File fileObfsProxyLink = new File(appBinHome,"obfsproxy");
-			if (!fileObfsProxyLink.exists()||(fileObfsProxy.length()!=fileObfsProxyLink.length()))
-			{
-
-				log = new StringBuilder();
-				String[] cmd1 = { SHELL_CMD_RM + ' ' + fileObfsProxyLink.getAbsolutePath() };
-				errCode = TorServiceUtils.doShellCommand(cmd1,log, false, true);
-				logNotice("link CP err=" + errCode + " out: " + log.toString());
-				
-
-				log = new StringBuilder();
-		    	String[] cmd2 = { SHELL_CMD_CP + ' ' + fileObfsProxy.getAbsolutePath() + ' ' + fileObfsProxyLink.getAbsolutePath() };
-				errCode = TorServiceUtils.doShellCommand(cmd2,log, false, true);
-				logNotice("link CP err=" + errCode + " out: " + log.toString());
-			}
-			fileObfsProxy = fileObfsProxyLink;
-			enableBinExec(fileObfsProxy);
-			
-			
-			File fileXtablesLink = new File(appBinHome,"xtables");
-			if (!fileXtablesLink.exists()||(fileXtables.length()!=fileXtablesLink.length()))
-			{
-				log = new StringBuilder();
-				String[] cmd1 = { SHELL_CMD_RM + ' ' + fileXtablesLink.getAbsolutePath() };
-				errCode = TorServiceUtils.doShellCommand(cmd1,log, false, true);
-				logNotice("link CP err=" + errCode + " out: " + log.toString());
-				
-				log = new StringBuilder();
-		    	String[] cmd2 = { SHELL_CMD_CP + ' ' + fileXtables.getAbsolutePath() + ' ' + fileXtablesLink.getAbsolutePath() };
-				errCode = TorServiceUtils.doShellCommand(cmd2,log, false, true);
-				logNotice("link CP err=" + errCode + " out: " + log.toString());
-			}
-			fileXtables = fileXtablesLink;
-			enableBinExec(fileXtables);
-			
-		}
-		else
-		{
-		
-			StringBuilder log = new StringBuilder();
-	    	String[] cmdDel = { SHELL_CMD_RM + ' ' + fileTorLink.getAbsolutePath() };
-			int errCode = TorServiceUtils.doShellCommand(cmdDel,log, false, true);
-			logNotice("link RM err=" + errCode + " out: " + log.toString());
-	    	
-	    	log = new StringBuilder();
-	    	String[] cmd = { SHELL_CMD_LINK + ' ' + fileTorOrig.getAbsolutePath() + ' ' + fileTorLink.getAbsolutePath() };
-			errCode = TorServiceUtils.doShellCommand(cmd,log, false, true);
-			logNotice("link LN err=" + errCode + " out: " + log.toString());
-			
-			enableBinExec(fileTorOrig);
-			enableBinExec(fileTorLink);
-			enableBinExec(filePrivoxy);
-			enableBinExec(fileObfsProxy);
-			enableBinExec(fileXtables);
-			
-		}
-		
-	}
+	
     
     private void killTorProcess () throws Exception
     {
@@ -560,7 +457,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	int maxTry = 5;
     	int currTry = 0;
     	
-		while ((procId = TorServiceUtils.findProcessId(fileTorLink.getAbsolutePath())) != -1 && currTry++ < maxTry)
+		while ((procId = TorServiceUtils.findProcessId(fileTor.getAbsolutePath())) != -1 && currTry++ < maxTry)
 		{
 			sendCallbackStatusMessage ("Found existing orphan Tor process; Trying to shutdown now (device restart may be needed)...");
 			
@@ -613,45 +510,20 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	}
     }
     
-    private void initTorPaths () throws Exception
+    private void initBinaries () throws Exception
     {
     	appBinHome = getDir("bin",Application.MODE_PRIVATE);
     	appCacheHome = getDir("data",Application.MODE_PRIVATE);
-    	appLibsHome = new File(getApplicationInfo().nativeLibraryDir);
     	
-    	if (!appLibsHome.exists())
-    		appLibsHome = new File(getApplicationInfo().dataDir + "/lib");
+    	fileTor= new File(appBinHome, TOR_ASSET_KEY);
+    	
+    	filePrivoxy = new File(appBinHome, PRIVOXY_ASSET_KEY);
 		
-    	fileTorOrig = new File(appLibsHome, TOR_BINARY_ASSET_KEY);
-    	
-    	if (fileTorOrig.exists())
-    	{
-    		logNotice ("Tor binary exists: " + fileTorOrig.getAbsolutePath());
-    	}
-    	else
-    	{
-    		appLibsHome = new File(getApplicationInfo().dataDir + "/lib");
-    		fileTorOrig = new File(appLibsHome, TOR_BINARY_ASSET_KEY);
-    		
-    		if (fileTorOrig.exists())
-    			logNotice ("Tor binary exists: " + fileTorOrig.getAbsolutePath());
-    		else
-    			throw new RuntimeException("Tor binary not installed");
-    	}
-    	
-		filePrivoxy = new File(appLibsHome, PRIVOXY_ASSET_KEY);
-		if (filePrivoxy.exists())
-    		logNotice ("Privoxy binary exists: " + filePrivoxy.getAbsolutePath());
-		else
-    		throw new RuntimeException("Privoxy binary not installed");
-    	
-		fileObfsProxy = new File(appLibsHome, OBFSPROXY_ASSET_KEY);
-		if (fileObfsProxy.exists())
-    		logNotice ("Obfsproxy binary exists: " + fileObfsProxy.getAbsolutePath());    	
-		else
-    		throw new RuntimeException("Obfsproxy binary not installed");
-    	
+		fileObfsProxy = new File(appBinHome, OBFSPROXY_ASSET_KEY);
+		
 		fileTorRc = new File(appBinHome, TORRC_ASSET_KEY);
+		
+		fileXtables = new File(appBinHome, IPTABLES_ASSET_KEY);
 		
 		if (!fileTorRc.exists())
 		{
@@ -660,11 +532,11 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 				
 		}
 		
-		fileXtables = new File(appLibsHome, IPTABLES_BINARY_ASSET_KEY);
-		if (fileXtables.exists())
-			logNotice("Xtables binary exists: " + fileXtables.getAbsolutePath());
+		enableBinExec(fileTor);
+		enableBinExec(filePrivoxy);	
+		enableBinExec(fileObfsProxy);
+		enableBinExec(fileXtables);
 		
-		initTorPathLinkAndPerms();
 		
     }
 
@@ -703,7 +575,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     public void initTor () throws Exception
     {
     	
-		initTorPaths();		
+		initBinaries();		
     	
     	updateSettings ();
     	
@@ -807,11 +679,11 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     private void runTorShellCmd() throws Exception
     {
     	
-    	if (!fileTorLink.exists())
-    		throw new RuntimeException("Sorry Tor binary not installed properly: " + fileTorLink.getAbsolutePath());
+    	if (!fileTor.exists())
+    		throw new RuntimeException("Sorry Tor binary not installed properly: " + fileTor.getAbsolutePath());
     	
-    	if (!fileTorLink.canExecute())
-    		throw new RuntimeException("Sorry can't execute Tor: " + fileTorLink.getAbsolutePath());
+    	if (!fileTor.canExecute())
+    		throw new RuntimeException("Sorry can't execute Tor: " + fileTor.getAbsolutePath());
     	
 		SharedPreferences prefs =getSharedPrefs(getApplicationContext());
 
@@ -828,7 +700,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
 		String[] torCmd = {
 				"export HOME=" + appBinHome.getAbsolutePath(),
-				fileTorLink.getAbsolutePath() + " DataDirectory " + appCacheHome.getAbsolutePath() + " -f " + torrcPath  + " || exit\n"
+				fileTor.getAbsolutePath() + " DataDirectory " + appCacheHome.getAbsolutePath() + " -f " + torrcPath  + " || exit\n"
 				};
 		
 		boolean runAsRootFalse = false;
@@ -849,12 +721,12 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
 			Thread.sleep(torRetryWaitTimeMS);
 			
-			procId = TorServiceUtils.findProcessId(fileTorLink.getAbsolutePath());
+			procId = TorServiceUtils.findProcessId(fileTor.getAbsolutePath());
 			
 			if (procId == -1)
 			{
 				Thread.sleep(torRetryWaitTimeMS);
-				procId = TorServiceUtils.findProcessId(fileTorOrig.getAbsolutePath());
+				procId = TorServiceUtils.findProcessId(fileTor.getAbsolutePath());
 				attempts++;
 			}
 			else

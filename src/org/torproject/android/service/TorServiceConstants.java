@@ -12,7 +12,7 @@ public interface TorServiceConstants {
 	//home directory of Android application
 	
 	//name of the tor C binary
-	public final static String TOR_BINARY_ASSET_KEY = "libtor.so";	
+	public final static String TOR_ASSET_KEY = "tor";	
 	
 	//torrc (tor config file)
 	public final static String TORRC_ASSET_KEY = "torrc";
@@ -24,7 +24,7 @@ public interface TorServiceConstants {
 //	public final static String TOR_COMMAND_LINE_ARGS = "-f " + TORRC_INSTALL_PATH  + " || exit\n";
 		
 	//privoxy
-	public final static String PRIVOXY_ASSET_KEY = "libprivoxy.so";
+	public final static String PRIVOXY_ASSET_KEY = "privoxy";
 	
 	//privoxy.config
 	public final static String PRIVOXYCONFIG_ASSET_KEY = "privoxy.config";
@@ -93,7 +93,7 @@ public interface TorServiceConstants {
 	
 
 	//name of the iptables binary
-	public final static String IPTABLES_BINARY_ASSET_KEY = "libxtables.so";	
+	public final static String IPTABLES_ASSET_KEY = "xtables";	
 	
 
 }

@@ -57,6 +57,23 @@ public class TorResourceInstaller implements TorServiceConstants {
 		outFile = new File(installFolder, PRIVOXYCONFIG_ASSET_KEY);
 		streamToFile(is,outFile, false, false);
 	
+		is = context.getResources().openRawResource(R.raw.tor);
+		outFile = new File(installFolder, TOR_ASSET_KEY);
+		streamToFile(is,outFile, false, true);
+	
+		is = context.getResources().openRawResource(R.raw.privoxy);
+		outFile = new File(installFolder, PRIVOXY_ASSET_KEY);
+		streamToFile(is,outFile, false, true);
+	
+		is = context.getResources().openRawResource(R.raw.obfsproxy);
+		outFile = new File(installFolder, OBFSPROXY_ASSET_KEY);
+		streamToFile(is,outFile, false, true);
+		
+
+		is = context.getResources().openRawResource(R.raw.xtables);
+		outFile = new File(installFolder, IPTABLES_ASSET_KEY);
+		streamToFile(is,outFile, false, true);
+	
 		return true;
 	}
 	
