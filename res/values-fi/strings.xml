@@ -1,20 +1,62 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="app_name">Orbot</string>
+  <string name="internal_web_url">http://orbot/\n</string>
+  <string name="default_web_url">http://check.torproject.org</string>
+  <string name="secure_default_web_url">https://check.torproject.org</string>
+  <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
+  <string name="control_permission_label">käynnistä ja lopeta Tor</string>
+  <string name="tor_proxy_service_process">torproxyservice</string>
+  <string name="status_starting_up">Orbot käynnistyy...</string>
+  <string name="status_activated">Yhdistetty Tor-verkkoon</string>
+  <string name="status_disabled">Orbot on deaktivoitu</string>
+  <string name="status_shutting_down">Orbot sulkeutuu</string>
+  <string name="tor_process_starting">Käynnistetään Tor ohjelmaa</string>
+  <string name="tor_process_complete">valmis.</string>
+  <string name="tor_process_waiting">odottaa.</string>
+  <string name="not_anonymous_yet">VAROITUS: Verkkoliikenteesi ei ole anonyymiä vielä! Konfiguroi ohjelmasi käyttämään HTTP proxyä 127.0.0.1:8118 tai SOCKS4A tai SOCKS5 proxy 127.0.0.1:9050</string>
   <string name="menu_home">Alkuun</string>
   <string name="menu_browse">Selaa</string>
   <string name="menu_settings">Asetukset</string>
-  <string name="menu_info">Apua</string>
+  <string name="menu_log">Loki</string>
+  <string name="menu_info">Opaste</string>
+  <string name="menu_apps">Sovellukset</string>
+  <string name="menu_start">Aloita</string>
+  <string name="menu_stop">Lopeta</string>
   <string name="menu_about">Tietoa</string>
+  <string name="menu_wizard">Velho</string>
+  <string name="main_layout_download">Lataa</string>
   <string name="button_help">Apua</string>
   <string name="button_close">Sulje</string>
   <string name="button_about">Tietoa</string>
+  <string name="button_clear_log">Tyhjennä loki</string>
   <string name="menu_verify">Tarkista</string>
   <string name="menu_exit">Lopeta</string>
+  <string name="press_to_start">-paina pitkään käynnistääksesi-</string>
+  <string name="pref_trans_proxy_group">Läpinäkyvä Proxymointi (Vaatii Roottauksen)</string>
+  <string name="pref_trans_proxy_title">Läpinäkyvä Proxymointi</string>
+  <string name="pref_trans_proxy_summary">Ohjelmien automaattinen Torimointi</string>
+  <string name="pref_transparent_all_title">Torraa kaikki</string>
+  <string name="pref_transparent_all_summary">Välitä kaikki ohjelmien liikenne Torin läpi</string>
+  <string name="pref_transparent_port_title">Porttilista</string>
+  <string name="status_install_success">Tor-binaaritiedostojen asennus onnistui!</string>
+  <string name="status_install_fail">Tor-binaaritiedostojen asennus epäonnistui. Tarkista loki ja ilmoita osoitteeseen tor-assistants@torproject.org</string>
+  <string name="title_error">Sovellusvirhe</string>
+  <string name="wizard_title">Orbot</string>
+  <string name="wizard_btn_tell_me_more">Ohjelmasta Orbot</string>
   <string name="btn_next">Seuraava</string>
   <string name="btn_back">Takaisin</string>
+  <string name="btn_finish">Lopeta</string>
+  <string name="btn_okay">Okei</string>
   <string name="btn_cancel">Peruuta</string>
   <!--Welcome Wizard strings (DJH)-->
-  <string name="wizard_proxy_help_info">Välityspalvelin Asetukset</string>
+  <string name="wizard_details">Joitakin Orbot-yksityiskohtia</string>
+  <string name="wizard_permissions_root">Lupa myönnetty</string>
+  <string name="proxymob_setup_url">https://guardianproject.info/releases/proxymob-latest.xpi</string>
+  <string name="wizard_tips_twitter">Aseta Twitter-välityspalvelinisännäksi \"localhost\" ja portiksi 8118</string>
+  <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
+  <string name="wizard_proxy_help_info">Välityspalvelinasetukset</string>
+  <string name="wizard_final">Orbot on valmis!</string>
   <!--END Welcome Wizard strings (DJH)-->
   <string name="pref_general_group">Yleiset</string>
   <!--New Wizard Strings-->
@@ -23,15 +65,21 @@
   <string name="wizard_warning_title">Varoitus</string>
   <!--Permissions screen-->
   <!--TipsAndTricks screen-->
+  <string name="gibberbot_apk_url">https://guardianproject.info/releases/gibberbot-latest.apk</string>
+  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.xpi</string>
+  <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
     <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
     <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_none">Ei mikään</string>
-  <!--<string name="pref_use_whispercore">Use WhisperCore</string>
-<string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>-->
+  <string name="pref_proxy_type_dialog">Kirjoita välityspalvelintyyppi</string>
+  <string name="pref_proxy_username_summary">Välityspalvelin käyttäjätunnus (valinnainen)</string>
+  <string name="pref_proxy_username_dialog">Kirjoita välityspalvelinkäyttäjätunnus</string>
   <string name="status">Tila</string>
+  <string name="couldn_t_start_tor_process_">Tor-prosessin käynnistäminen epäonnistui:</string>
+  <string name="bridge_error">Siltavirhe</string>
   <string name="error">Virhe</string>
   <string name="default_bridges"></string>
   <string name="btn_save_settings">Tallenna asetukset</string>

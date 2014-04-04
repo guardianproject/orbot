@@ -104,16 +104,12 @@
   <string name="pref_node_configuration_summary">Това са допълнителни настройки, които могат да намалят Вашата анонимност</string>
   <string name="pref_entrance_node">Входящи точки</string>
   <string name="pref_entrance_node_dialog">Въведи входящи точки</string>
-  <!--<string name="pref_use_whispercore">Use WhisperCore</string>
-<string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>-->
   <string name="pref_proxy_type_title">Тип прокси</string>
   <string name="pref_proxy_type_summary">Протокол за прокси сървър: HTTP, HTTPS, Socks4, Socks5</string>
   <string name="pref_proxy_type_dialog">Тип на входящо прокси</string>
   <string name="pref_proxy_host_title">Прокси хост</string>
-  <string name="pref_proxy_host_summary">Име на прокси сървър</string>
   <string name="pref_proxy_host_dialog">Въведи прокси хост</string>
   <string name="pref_proxy_port_title">Порт на прокси</string>
-  <string name="pref_proxy_port_summary">Порт на прокси сървър</string>
   <string name="pref_proxy_port_dialog">Въведи прокси порт</string>
   <string name="status">Статус</string>
   <string name="setting_up_full_transparent_proxying_">Конфигуриране на напълно прозрачно прокси...</string>

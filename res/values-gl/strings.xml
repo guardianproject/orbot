@@ -1,18 +1,53 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="app_name">Orbot</string>
+  <string name="internal_web_url">http://orbot/</string>
+  <string name="default_web_url">http://check.torproject.org</string>
+  <string name="secure_default_web_url">https://check.torproject.org</string>
+  <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
+  <string name="control_permission_label">iniciar e deter Tor</string>
+  <string name="tor_proxy_service_process">torproxyservice</string>
+  <string name="status_starting_up">Orbot está a se iniciar...</string>
+  <string name="status_activated">Conectado á rede Tor</string>
+  <string name="status_disabled">Orbot está desactivado</string>
+  <string name="status_shutting_down">Orbot está a se pechar</string>
+  <string name="tor_process_starting">Iniciando cliente Tor...</string>
+  <string name="tor_process_complete">completado.</string>
+  <string name="tor_process_waiting">á espera.</string>
+  <string name="not_anonymous_yet">AVISO: o teu tráfico aínda non é anónimo! Por favor, configura os teus aplicativos para uxar o proxy HTTP 127.0.0.1:8118 ou SOCKS4A ou o proxy SOCKS5 127.0.0.1:9050</string>
   <string name="menu_home">Inicio</string>
   <string name="menu_browse">Examinar</string>
   <string name="menu_settings">Axustes</string>
+  <string name="menu_log">Rexistro (log)</string>
   <string name="menu_info">Axuda</string>
+  <string name="menu_apps">Aplicativos</string>
+  <string name="menu_start">Iniciar</string>
+  <string name="menu_stop">Deter</string>
   <string name="menu_about">Sobre</string>
+  <string name="menu_wizard">Asistente</string>
+  <string name="main_layout_download">Descargar</string>
+  <string name="main_layout_upload">Cargar</string>
   <string name="button_help">Axuda</string>
   <string name="button_close">Pechar</string>
   <string name="button_about">Sobre</string>
+  <string name="button_clear_log">Limpar rexistro</string>
   <string name="menu_verify">Comprobar</string>
   <string name="menu_exit">Saír </string>
+  <string name="press_to_start">- toque longo para comezar-</string>
+  <string name="pref_trans_proxy_group">Proxyficación transparente (cómpre ser root)</string>
+  <string name="pref_trans_proxy_title">Proxyficación transparente</string>
+  <string name="wizard_title">Orbot</string>
+  <string name="wizard_btn_tell_me_more">Acerca de Orbot</string>
+  <string name="btn_next">Seguinte</string>
   <string name="btn_back">Atrás</string>
+  <string name="btn_finish">Rematar</string>
+  <string name="btn_okay">Aceptar</string>
   <string name="btn_cancel">Cancelar</string>
   <!--Welcome Wizard strings (DJH)-->
+  <string name="wizard_details">Algúns detalles sobre Orbot</string>
+  <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
+  <string name="proxymob_setup_url">https://guardianproject.info/releases/proxymob-latest.xpi</string>
+  <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Axustes do proxy</string>
   <!--END Welcome Wizard strings (DJH)-->
   <string name="pref_general_group">Xeral</string>
@@ -22,16 +57,21 @@
   <string name="wizard_warning_title">Aviso</string>
   <!--Permissions screen-->
   <!--TipsAndTricks screen-->
+  <string name="gibberbot_apk_url">https://guardianproject.info/releases/gibberbot-latest.apk</string>
+  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.xpi</string>
+  <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
     <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
     <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_none">Ninguna</string>
-  <!--<string name="pref_use_whispercore">Use WhisperCore</string>
-<string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>-->
   <string name="status">Estado</string>
   <string name="error">Erro</string>
+  <string name="enter_ports">Inserir portos</string>
+  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
   <string name="default_bridges"></string>
+  <string name="wizard_locale_title">Escoller idioma</string>
   <string name="btn_save_settings">Gardar os axustes</string>
+  <string name="no_internet_connection_tor">Sen conexión á internet. Tor está en modo espera...</string>
 </resources>

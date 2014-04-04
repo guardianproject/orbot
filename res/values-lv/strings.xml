@@ -5,10 +5,10 @@
   <string name="default_web_url">http://check.torproject.org</string>
   <string name="secure_default_web_url">https://check.torproject.org</string>
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
-  <string name="control_permission_label">uzsākt un apturēt Tor</string>
+  <string name="control_permission_label">startēt un apturēt Tor</string>
   <string name="tor_proxy_service_process">torproxyservice</string>
   <string name="status_starting_up">Orbot startē...</string>
-  <string name="status_activated">Izveidots savienojums ar Tor tīklu</string>
+  <string name="status_activated">Izveidots savienojums ar tīklu Tor</string>
   <string name="status_disabled">Orbot ir deaktivēts</string>
   <string name="status_shutting_down">Orbot izslēdzas</string>
   <string name="tor_process_starting">Startē Tor klientu...</string>
@@ -129,18 +129,22 @@
   <string name="pref_entrance_node">Ieejas mezgli</string>
   <string name="pref_entrance_node_summary">Ciparvirknes, segvārdi, valstis un adreses pirmajam lēkumam</string>
   <string name="pref_entrance_node_dialog">Ievadiet ieejas mezglus</string>
-  <!--<string name="pref_use_whispercore">Use WhisperCore</string>
-<string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>-->
-  <string name="pref_proxy_title">Tīkla ārejošais starpnieks</string>
+  <string name="pref_proxy_title">Tīkla ārejošais starpnieks (neobligāts)</string>
   <string name="pref_proxy_type_title">Ārvērstā starpnieka tips</string>
   <string name="pref_proxy_type_summary">Starpnieka serverim izmantojamais protokols: HTTP, HTTPS, Socks4, Socks5</string>
   <string name="pref_proxy_type_dialog">Ievadiet starpnieka tipu</string>
   <string name="pref_proxy_host_title">Ārvērstā starpnieka viesotājs</string>
-  <string name="pref_proxy_host_summary">Starpniekservera viesotājvārds</string>
+  <string name="pref_proxy_host_summary">Starpniekservera mitinātājvārds</string>
   <string name="pref_proxy_host_dialog">Ievadiet starpnieka viesotāju</string>
   <string name="pref_proxy_port_title">Ārvērstā starpnieka ports</string>
   <string name="pref_proxy_port_summary">Starpniekservera ports</string>
   <string name="pref_proxy_port_dialog">Ievadiet starpnieka portu</string>
+  <string name="pref_proxy_username_title">Ārvērstā starpnieka lietotājvārds</string>
+  <string name="pref_proxy_username_summary">Starpnieka lietotājvārds (neobligāts)</string>
+  <string name="pref_proxy_username_dialog">Ievadīt starpnieka lietotājvardu</string>
+  <string name="pref_proxy_password_title">Ārvērstā starpnieka parole</string>
+  <string name="pref_proxy_password_summary">Starpnieka parole (neobligāti)</string>
+  <string name="pref_proxy_password_dialog">Ievadīt starpnieka paroli</string>
   <string name="status">Statuss</string>
   <string name="setting_up_full_transparent_proxying_">Iestata pilnībā pārredzamu starpniekošanu...</string>
   <string name="setting_up_app_based_transparent_proxying_">Iestata lietotņu nodrošinātu starpniekošanu...</string>
@@ -221,4 +225,5 @@
   <string name="wizard_locale_msg">Atstājiet noklusējuma vērtības, vai pārslēdziet pašreizējo valodu.</string>
   <string name="powered_by">Darbību nodrošina Tor projekts</string>
   <string name="btn_save_settings">Saglabāt iestatījumus</string>
+  <string name="no_internet_connection_tor">Nav interneta savienojuma - Tor\'s atrodas gaidstāves režīmā...</string>
 </resources>

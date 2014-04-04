@@ -129,8 +129,6 @@
   <string name="pref_entrance_node">ඇතුළු විමේ නොඩු </string>
   <string name="pref_entrance_node_summary">පළමු hop සදහා අගිලිසලකුණු, nicks, රටවල් හා ලිපිනයන් </string>
   <string name="pref_entrance_node_dialog">ඇතුළු විමේ නොඩුවලට පිවිසෙන්න </string>
-  <!--<string name="pref_use_whispercore">Use WhisperCore</string>
-<string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>-->
   <string name="pref_proxy_title">Outbound ජාල නියුතු </string>
   <string name="pref_proxy_type_title">Outbound නියුතු වර්ගයකි </string>
   <string name="pref_proxy_type_summary">නියුතු සේවාදායකයන් සදහා ප්‍රොටෝකෝල: HTTP, HTTPS, Socks4, Socks5</string>

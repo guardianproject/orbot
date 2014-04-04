@@ -129,18 +129,22 @@
   <string name="pref_entrance_node">Κόμβοι εισόδου</string>
   <string name="pref_entrance_node_summary">Αποτυπώματα, ψευδώνυμα, χώρες και διευθύνσεις για την πρώτη σύνδεση</string>
   <string name="pref_entrance_node_dialog">Εισάγετε κόμβους εισαγωγής</string>
-  <!--<string name="pref_use_whispercore">Use WhisperCore</string>
-<string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>-->
   <string name="pref_proxy_title">Διακομιστής μεσολάβησης εξερχομένων δεδομένων</string>
   <string name="pref_proxy_type_title">Τύπος του διακομιστή μεσολάβησης εξερχομένων δεδομένων</string>
   <string name="pref_proxy_type_summary">Πρωτόκολλο του διακομιστή μεσολάβησης: HTTP, HTTPS, Socks4, Socks5</string>
   <string name="pref_proxy_type_dialog">Εισάγετε τύπο διακομιστή μεσολάβησης</string>
   <string name="pref_proxy_host_title">Διακομιστής μεσολάβησης εξερχόμενων δεδομένων</string>
-  <string name="pref_proxy_host_summary">Hostname για τον διακομιστή μεσολάβησης</string>
+  <string name="pref_proxy_host_summary">Hostname Διακομιστή Μεσολάβησης</string>
   <string name="pref_proxy_host_dialog">Εισάγετε τον υπολογιστή για τον διακομιστή μεσολάβησης</string>
   <string name="pref_proxy_port_title">Θύρα εξερχομένων του διακομιστή μεσολάβησης</string>
-  <string name="pref_proxy_port_summary">Θύρα του διακομιστή μεσολάβησης</string>
+  <string name="pref_proxy_port_summary">Θύρα Διακομιστή Μεσολάβησης</string>
   <string name="pref_proxy_port_dialog">Εισάγετε την θύρα του διακομιστή μεσολάβησης</string>
+  <string name="pref_proxy_username_title">Όνομα χρήστη για τον Διακομιστή Μεσολάβησης εξερχόμενων δεδομένων</string>
+  <string name="pref_proxy_username_summary">Όνομα χρήστη για το Διακομιστή Μεσολάβησης (Προαιρετικό)</string>
+  <string name="pref_proxy_username_dialog">Εισάγετε το Όνομα Χρήστη για το Διακομιστή Μεσολάβησης</string>
+  <string name="pref_proxy_password_title">Κωδικός για τον Διακομιστή Μεσολάβησης εξερχόμενων δεδομένων</string>
+  <string name="pref_proxy_password_summary">Κωδικός για τον Διακομιστή Μεσολάβησης (Προαιρετικό)</string>
+  <string name="pref_proxy_password_dialog">Εισάγετε τον Κωδικό για τον Διακομιστή Μεσολάβησης</string>
   <string name="status">Κατάσταση</string>
   <string name="setting_up_full_transparent_proxying_">Ρύθμιση </string>
   <string name="setting_up_app_based_transparent_proxying_">Ρύθμιση της διαφανούς μεσολάβησης διακομιστή</string>
@@ -221,4 +225,5 @@
   <string name="wizard_locale_msg">Παραμείνετε στην αρχική ή αλλάξτε την τρέχουσα γλώσσα</string>
   <string name="powered_by">με την δύναμη το Tor Project</string>
   <string name="btn_save_settings">Αποθήκευση ρυθμίσεων</string>
+  <string name="no_internet_connection_tor">Δεν υπάρχει σύνδεση με το διαδίκτυο, το Tor είναι σε αναμονή...</string>
 </resources>

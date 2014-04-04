@@ -129,8 +129,6 @@
   <string name="pref_entrance_node">Ngõ vào trạm</string>
   <string name="pref_entrance_node_summary">Dấu vân tay, biệt hiệu, quốc gia và địa chỉ cho trạm đầu tiên</string>
   <string name="pref_entrance_node_dialog">Vào ngõ của trạm (?!)</string>
-  <!--<string name="pref_use_whispercore">Use WhisperCore</string>
-<string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>-->
   <string name="pref_proxy_title">Proxy Mạng Ngõ Ra</string>
   <string name="pref_proxy_type_title">Loại Proxy Ngõ Ra</string>
   <string name="pref_proxy_type_summary">Giao thức để dùng cho proxy máy chủ như: HTTP, HTTPs, Socks4, Socks5</string>
@@ -141,6 +139,12 @@
   <string name="pref_proxy_port_title">Cổng Proxy Ngõ Ra</string>
   <string name="pref_proxy_port_summary">Số cổng của proxy máy chủ</string>
   <string name="pref_proxy_port_dialog">Đánh vào số cổng Proxy</string>
+  <string name="pref_proxy_username_title">Tên tài khoảng Cổng Proxy Ngõ ra</string>
+  <string name="pref_proxy_username_summary">Tên tài khoản Proxy (có hoặc không)</string>
+  <string name="pref_proxy_username_dialog">Điền vào tên tài khoản Proxy</string>
+  <string name="pref_proxy_password_title">Mật khẩu Proxy Ngõ Ra</string>
+  <string name="pref_proxy_password_summary">Mật khẩu Proxy (có hoặc không)</string>
+  <string name="pref_proxy_password_dialog">Điền vào mật khẩu Proxy</string>
   <string name="status">Tình trạng</string>
   <string name="setting_up_full_transparent_proxying_">Đang thiết trí hoàn toàn proxy trong suốt</string>
   <string name="setting_up_app_based_transparent_proxying_">Đài thiết trí proxy trong suốt theo ứng dụng...</string>
@@ -221,4 +225,5 @@
   <string name="wizard_locale_msg">Giữ cài đặt mặc định hoặc chuyển qua ngôn ngữ khác</string>
   <string name="powered_by">được lập bởi The Tor Project (?!)</string>
   <string name="btn_save_settings">Thiết lập Bảo lưu</string>
+  <string name="no_internet_connection_tor">Hiện không có kết nối Internet; Trình Duyệt Tor hiện đang ở chế độ chờ...</string>
 </resources>

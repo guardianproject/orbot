@@ -129,9 +129,7 @@
   <string name="pref_entrance_node">入口节点</string>
   <string name="pref_entrance_node_summary">用于首次跳转的密钥指纹、昵称、国家与地址</string>
   <string name="pref_entrance_node_dialog">输入入口节点</string>
-  <!--<string name="pref_use_whispercore">Use WhisperCore</string>
-<string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>-->
-  <string name="pref_proxy_title">出站网络代理</string>
+  <string name="pref_proxy_title">出站网络代理（可选）</string>
   <string name="pref_proxy_type_title">出站代理类型</string>
   <string name="pref_proxy_type_summary">代理服务器使用的协议：HTTP、HTTPS、Socks4、Socks5</string>
   <string name="pref_proxy_type_dialog">输入代理类型</string>
@@ -141,6 +139,12 @@
   <string name="pref_proxy_port_title">出站代理端口</string>
   <string name="pref_proxy_port_summary">代理服务器端口</string>
   <string name="pref_proxy_port_dialog">输入代理端口</string>
+  <string name="pref_proxy_username_title">出站代理用户名</string>
+  <string name="pref_proxy_username_summary">代理用户名（可选）</string>
+  <string name="pref_proxy_username_dialog">请输入代理用户名</string>
+  <string name="pref_proxy_password_title">出站代理密码</string>
+  <string name="pref_proxy_password_summary">代理密码（可选）</string>
+  <string name="pref_proxy_password_dialog">请输入代理密码</string>
   <string name="status">状态</string>
   <string name="setting_up_full_transparent_proxying_">正在对所有应用程序进行透明代理设置...</string>
   <string name="setting_up_app_based_transparent_proxying_">正在对所选应用程序进行透明代理设置...</string>
@@ -221,4 +225,5 @@
   <string name="wizard_locale_msg">保持默认或切换为当前所用语言</string>
   <string name="powered_by">由 Tor Project 提供技术支持</string>
   <string name="btn_save_settings">保存设置</string>
+  <string name="no_internet_connection_tor">无网络连接；Tor 正处于待机状态...</string>
 </resources>

@@ -129,18 +129,22 @@
   <string name="pref_entrance_node">Nodos de entrada</string>
   <string name="pref_entrance_node_summary">Reglas de identificación de repetidores de entrada a la red Tor, mediante huellas de validación de claves (fingerprints), alias (nicks), códigos de país y \ndirecciones (o rangos). No prevalecen sobre las configuraciones de exclusión de nodos, y las configuraciones de bridges.</string>
   <string name="pref_entrance_node_dialog">Introduzca nodos de entrada</string>
-  <!--<string name="pref_use_whispercore">Use WhisperCore</string>
-<string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>-->
-  <string name="pref_proxy_title">Proxy de salida (a Internet)</string>
+  <string name="pref_proxy_title">Proxy de salida a la red (opcional)</string>
   <string name="pref_proxy_type_title">Tipo de proxy saliente</string>
   <string name="pref_proxy_type_summary">Protocolo a usar para el servidor proxy saliente: HTTP, HTTPS, Socks4, Socks5.</string>
   <string name="pref_proxy_type_dialog">Introduzca tipo de proxy</string>
   <string name="pref_proxy_host_title">Servidor proxy saliente</string>
-  <string name="pref_proxy_host_summary">Dirección o nombre del servidor (host) proxy saliente.</string>
+  <string name="pref_proxy_host_summary">Nombre del servidor proxy </string>
   <string name="pref_proxy_host_dialog">Introduzca el servidor proxy</string>
   <string name="pref_proxy_port_title">Puerto del proxy saliente </string>
-  <string name="pref_proxy_port_summary">Puerto del servidor proxy saliente</string>
+  <string name="pref_proxy_port_summary">Puerto del servidor proxy</string>
   <string name="pref_proxy_port_dialog">Introduzca el puerto del proxy</string>
+  <string name="pref_proxy_username_title">Nombre de usuario en el proxy de salida</string>
+  <string name="pref_proxy_username_summary">Nombre de usuario en el proxy (opcional)</string>
+  <string name="pref_proxy_username_dialog">Introduzca nombre de usuario en el proxy</string>
+  <string name="pref_proxy_password_title">Contraseña en el proxy de salida</string>
+  <string name="pref_proxy_password_summary">Contraseña en el proxy (opcional)</string>
+  <string name="pref_proxy_password_dialog">Introduzca contraseña en el proxy</string>
   <string name="status">Estado</string>
   <string name="setting_up_full_transparent_proxying_">Estableciendo proxyficación transparente completa... </string>
   <string name="setting_up_app_based_transparent_proxying_">Estableciendo proxyficación transparente por aplicaciones... </string>
@@ -221,4 +225,5 @@
   <string name="wizard_locale_msg">Deje el predeterminado o cambie de idioma</string>
   <string name="powered_by">impulsado por The Tor Project</string>
   <string name="btn_save_settings">Guardar configuración</string>
+  <string name="no_internet_connection_tor">Sin conexión a Internet; Tor está en espera...</string>
 </resources>

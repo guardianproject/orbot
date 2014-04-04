@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="app_name">Orbot</string>
+  <string name="internal_web_url">http://orbot/</string>
+  <string name="default_web_url">http://check.torproject.org</string>
+  <string name="secure_default_web_url">https://check.torproject.org</string>
+  <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
+  <string name="control_permission_label">simulan at ihinto ang Tor</string>
+  <string name="tor_proxy_service_process">torproxyservice</string>
+  <string name="status_starting_up">Nagsisimula na ang Orbot…</string>
+  <string name="status_activated">Konektado sa Tor network</string>
+  <string name="status_disabled">Naka-deactivate ang Orbot</string>
+  <string name="status_shutting_down">Ang Orbot ay magsasara na</string>
+  <string name="tor_process_starting">Binubuksan ang Tor client…</string>
+  <string name="tor_process_complete">kumpleto na.</string>
+  <string name="tor_process_waiting">nag-hihintay</string>
+  <string name="not_anonymous_yet">BABALA: Ang iyong traffic ay hindi pa anonimo! Kung maaari sana ay ikompigura muna ang iyong applications na gumamit ng HTTP proxy 127.0.0.1:8118 o kaya ay SOCKS4A o kaya ay SOCKS5 proxy 127.0.0.1:9050</string>
+  <string name="menu_home">Tahanan</string>
+  <string name="menu_browse">Mag-browse</string>
+  <string name="menu_settings">Settings</string>
+  <string name="menu_log">Tala</string>
+  <string name="menu_info">Tulong</string>
+  <string name="menu_apps">Apps</string>
+  <string name="menu_start">Simulan</string>
+  <string name="menu_stop">Ihinto</string>
+  <string name="menu_about">Tungkol</string>
+  <string name="menu_wizard">Pantas</string>
+  <string name="button_help">Tulong</string>
+  <string name="button_close">Isara</string>
+  <string name="button_about">Tungkol</string>
+  <string name="button_clear_log">Linisin ang tala</string>
+  <string name="menu_verify">Tiyakin</string>
+  <string name="menu_exit">Labasan</string>
+  <string name="press_to_start">- pindutin ng matagal para mag umpisa -</string>
+  <string name="pref_trans_proxy_group">Nanganganinag na pag Po-proxy (Kailangan ang Root)</string>
+  <string name="pref_trans_proxy_title">Nanganganinag na pag Po-proxy </string>
+  <string name="pref_trans_proxy_summary">Kusang pag Torifying ng mga Apps</string>
+  <string name="pref_transparent_all_title">Tor lahat</string>
+  <string name="pref_transparent_all_summary">I-proxy ang traffic ng lahat ng apps gamit ang Tor</string>
+  <string name="pref_transparent_port_fallback_title">Port Proxy Fallback</string>
+  <string name="pref_transparent_port_fallback_summary">BABALA: Dayain ang mga karaniwang ports (80, 443, etc). *GAMITIN LAMANG* kung \'Lahat\' o kaya ang \'App\' na paraan ay hindi gumagana.</string>
+  <string name="pref_transparent_port_title">Lisatahan ng Port</string>
+  <string name="pref_transparent_port_summary">Lisatahan ng mga ports sa proxy. *GAMITIN LAMANG* kung \'Lahat\' o kaya ang \'App\' na paraan ay hindi gumagana.</string>
+  <string name="pref_transparent_port_dialog">Ipasok ang ports sa proxy</string>
+  <string name="pref_has_root">Humiling ng daanan sa Root</string>
+  <string name="pref_has_root_summary">Humiling ng daanan sa Root para sa nanganganinag na pag Po-proxy</string>
+  <string name="status_install_success">Ang Tor binaries ay matagumpay na i-install.</string>
+  <string name="status_install_fail">Ang Tor binary files ay hindi na install. Paki tignan ang tala at magbigay alam sa tor-assistants@torproject.org</string>
+  <string name="title_error">May mali sa Application</string>
+  <string name="wizard_title">Orbot</string>
+  <string name="wizard_btn_tell_me_more">Tungkol sa Orbot</string>
+  <string name="btn_next">Susunod</string>
+  <string name="btn_back">Balik</string>
+  <string name="btn_finish">Wakas</string>
+  <string name="btn_okay">Okay</string>
+  <string name="btn_cancel">Kanselahin</string>
+  <!--Welcome Wizard strings (DJH)-->
+  <string name="wizard_details">Ilang detalye sa Orbot</string>
+  <string name="wizard_details_msg">Ang Orbot ay isang open-source application na nag lalaman ng Tor, LibEvent and Privoxy. Ito ay nagkakaloob ng local HTTP proxy (8118) at ng SOCKS proxy (9050) sa loob ng Tor network. Ang Orbot ay mayroon din kakahayaan sa mga rooted device na ipadala ang lahat ng itnernet traffic gamit ang Tor.</string>
+  <string name="wizard_permissions_root">Napahintulotan na</string>
+  <string name="wizard_permissions_stock">Pahintulot ng Orbot</string>
+  <string name="wizard_premissions_msg_root">Mahusay! Natuklasan namin na mayroon pahintulot ang Orbot para sa root. Gagamitin namin ito ng mabuti.</string>
+  <string name="wizard_permissions_msg_stock">Ito ay hindi kinakailangan, ngunit mas mapapalawig ang kakayahan ng Orbot kung ang iyong device ay meron access sa root. Gamitin ang pindutan sa ibaba para bigyan ng superpowers ang Orbot!</string>
+  <string name="wizard_permissions_no_root">Kung wala kang access sa root o wala kang alam sa sinasabi namin, siguraduhin mu nalamang na gagamit ka ng mga apps na ginawa para sa Orbot.</string>
+  <string name="wizard_permissions_consent">Nauunawaan ko at mag-papatuloy ng walang Superuser</string>
+  <string name="wizard_permission_enable_root">Pahintulutan ang Orbot para sa Root</string>
+  <string name="wizard_configure">Kompigurahin ang Torification</string>
+  <string name="wizard_configure_msg">Binibigyan ka ng Orbot ng pagpipilian na i-route lahat ng application traffic gamit ang Tor o piliin ang application isa-isa.</string>
+  <string name="wizard_configure_all">I-proxy lahat ng Apps gamit ang Tor</string>
+  <string name="wizard_configure_select_apps">Pumili ng isa-isang apps para sa Tor</string>
+  <string name="wizard_tips_tricks">Orbot-enabled Apps</string>
+  <string name="wizard_tips_otrchat">Gibberbot - ligtas na instant messaging client para sa Android</string>
+  <string name="wizard_tips_proxy">Proxy Settings - Alamin paano magkompigura ng apps para gumana sa Orbot</string>
+  <string name="wizard_proxy_help_info">Proxy Settings</string>
+  <string name="wizard_final">Handa na ang Orbot!</string>
+  <!--END Welcome Wizard strings (DJH)-->
+  <string name="tor_check">Bubuksan nito ang iyong browser sa https://check.torproject.org para matignan kung ang Orbot ay na-kompigura at konektado ka sa Tor.</string>
+  <string name="pref_general_group">Pangkalahatan</string>
+  <string name="pref_start_boot_title">Umpisahan ang Orboot sa Boot</string>
+  <string name="pref_start_boot_summary">Kusang umpisahan ang Orbot at kumonekta sa Tor sa pag bukas ng iyong Android Device</string>
+  <!--New Wizard Strings-->
+  <!--Title Screen-->
+  <!--Warning screen-->
+  <string name="wizard_warning_title">Babala</string>
+  <!--Permissions screen-->
+  <string name="wizard_permissions_title">Mga Pahintulot</string>
+  <string name="wizard_permissions_root_msg1">Maari mong piliin bigyan ng pahintulot ang Orbot ng \'Superuser\' access para ma-enable ang mga advanced features tulad ng Transparent Proxying.</string>
+  <!--TipsAndTricks screen-->
+  <string name="wizard_tips_title">Orbot-Enabled Apps</string>
+  <string name="wizard_tips_gibberbot">Gibberbot: ligtas na chat app na mayroong Off-the-Record Encryption</string>
+  <string name="wizard_tips_orweb">Orweb: rivacy-enhanced browser na gumagana sa Tor</string>
+  <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
+	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
+    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
+    <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
+  <!--Transparent Proxy screen-->
+  <string name="wizard_transproxy_title">Transparent Proxying</string>
+  <string name="wizard_transproxy_msg">Ito ay bibigyan ng pahintulot ang iyong mga apps na kusang mag-run sa Tor network kahit walang pag-kompigura na ginawa.</string>
+  <string name="wizard_transproxy_hint">(Lagyan ng check ang box na ito kung wala kang alam sa sinasabi namin)</string>
+  <string name="wizard_transproxy_none">Wala</string>
+  <string name="pref_transparent_tethering_title">Tor Tethering</string>
+  <string name="pref_transparent_tethering_summary">I-enable ang Tor Transparent Proxying para sa Wifi at USB Tethered Devices (kailangan mag restart)</string>
+  <string name="button_grant_superuser">Humiling ng Superuser Access</string>
+  <string name="pref_select_apps">Pumili ng Apps</string>
+  <string name="pref_select_apps_summary">Pumili ng Apps para i-route sa Tor</string>
+  <string name="pref_node_configuration">Pagkompigura ng Node</string>
+  <string name="pref_node_configuration_summary">Ang mga ito ay advanced settings na maaring bawasan ang iyong anonymity</string>
+  <string name="pref_entrance_node">Entrance Nodes</string>
+  <string name="pref_entrance_node_summary">Fingerprints, nicks, mga bansa at mga address para sa unang lukso</string>
+  <string name="pref_entrance_node_dialog">Pumasok sa Entrance Nodes</string>
+  <string name="pref_proxy_type_summary">Mga protocol na gagamitin para sa proxy server: HTTP, HTTPS, Socks4, Socks5</string>
+  <string name="pref_proxy_type_dialog">Ilagay ang Proxy Type</string>
+  <string name="pref_proxy_host_dialog">Ilagay ang Proxy Host</string>
+  <string name="pref_proxy_port_dialog">Ilagay ang Proxy port</string>
+  <string name="status">Katayuan</string>
+  <string name="transparent_proxying_enabled">Na i-enable na ang Transparent proxying</string>
+  <string name="transproxy_enabled_for_tethering_">Na i-enable na ang TransProxy para sa Thethering!</string>
+  <string name="warning_error_starting_transparent_proxying_">BABALA: error sa pag start ng transparent proxying!</string>
+  <string name="transproxy_rules_cleared">Nalinis na ang mga batas ng TransProxy</string>
+  <string name="couldn_t_start_tor_process_">Hindi ma umpisahan ang proseso ng Tor:</string>
+  <string name="privoxy_is_running_on_port_">Ang Privoxy ay tumatakbo sa port:</string>
+  <string name="bridge_error">Error sa Bridge</string>
+  <string name="bridge_requires_ip">Para magamit ang feature ng bridge, kailangan mong mag lagay ng kahit isang bridge IP address.</string>
+  <string name="send_email_for_bridges">Magpadala ng email sa bridges@torproject.org na mayroong linyang  \"get bridges\" at wala ng iba pang kasama sa katawa ng email gamit ang isang gmail account.</string>
+  <string name="error">Error</string>
+  <string name="your_reachableaddresses_settings_caused_an_exception_">Ang iyong ReachableAddresses settings ay nag sanhi ng exception!</string>
+  <string name="your_relay_settings_caused_an_exception_">Ang iyong relay settings ay nag sanhi ng exception!</string>
+  <string name="exit_nodes">Exit Nodes</string>
+  <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Fingerprints, nicks, mga bansa at address para sa huling talon</string>
+  <string name="enter_exit_nodes">Enter Exit Nodes</string>
+  <string name="exclude_nodes">Hindi kasama ang Nodes</string>
+  <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Fingerprints, nicks, mga bansa at mga address na hindi isasama</string>
+  <string name="default_bridges"></string>
+</resources>

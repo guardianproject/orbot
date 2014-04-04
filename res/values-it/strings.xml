@@ -129,9 +129,7 @@
   <string name="pref_entrance_node">Nodi di entrata</string>
   <string name="pref_entrance_node_summary">Identificativi, nicknames, paesi ed indirizzi del primo hop</string>
   <string name="pref_entrance_node_dialog">Inserisci nodi di entrata</string>
-  <!--<string name="pref_use_whispercore">Use WhisperCore</string>
-<string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>-->
-  <string name="pref_proxy_title">Proxy di rete in uscita</string>
+  <string name="pref_proxy_title">Proxy di Rete in Uscita (Facoltativo)</string>
   <string name="pref_proxy_type_title">Tipo proxy</string>
   <string name="pref_proxy_type_summary">Protocolli da utilizzare per i server proxy: HTTP, HTTPS, Socks4, Socks5</string>
   <string name="pref_proxy_type_dialog">Inserisci tipo proxy</string>
@@ -141,6 +139,12 @@
   <string name="pref_proxy_port_title">Porta proxy</string>
   <string name="pref_proxy_port_summary">Porta del server proxy</string>
   <string name="pref_proxy_port_dialog">Inserire la porta del proxy</string>
+  <string name="pref_proxy_username_title">Nome Utente del Proxy in Uscita</string>
+  <string name="pref_proxy_username_summary">Nome Utente del Proxy (Facoltativo)</string>
+  <string name="pref_proxy_username_dialog">Inserisci Nome Utente del Proxy</string>
+  <string name="pref_proxy_password_title">Password del Proxy in Uscita</string>
+  <string name="pref_proxy_password_summary">Password del Proxy (Facoltativo)</string>
+  <string name="pref_proxy_password_dialog">Inserisci Password Proxy</string>
   <string name="status">Stato</string>
   <string name="setting_up_full_transparent_proxying_">Configurazione del proxying completamente trasparente...</string>
   <string name="setting_up_app_based_transparent_proxying_">Configurazione del proxying trasparente basato su applicazione...</string>
@@ -221,4 +225,5 @@
   <string name="wizard_locale_msg">Lasciare la predefinita o cambiare la lingua corrente</string>
   <string name="powered_by">powered by the Tor Project</string>
   <string name="btn_save_settings">Salva impostazioni</string>
+  <string name="no_internet_connection_tor">Nessuna connessione internet; Tor è in standby...</string>
 </resources>

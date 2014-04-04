@@ -1,24 +1,55 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="menu_home">主頁</string>
+  <string name="app_name">Orbot</string>
+  <string name="internal_web_url">http://orbot/</string>
+  <string name="default_web_url">http://check.torproject.org</string>
+  <string name="secure_default_web_url">https://check.torproject.org</string>
+  <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
+  <string name="control_permission_label">開始和停止 Tor</string>
+  <string name="tor_proxy_service_process">tor 代理伺服器服務</string>
+  <string name="status_starting_up">Orbot 正在啟動中...</string>
+  <string name="status_activated">連結到Tor 網路</string>
+  <string name="status_disabled">Orbot 已停用</string>
+  <string name="status_shutting_down">Orbot 已關閉</string>
+  <string name="tor_process_starting">啟動Tor 客戶端...</string>
+  <string name="tor_process_complete">完成。</string>
+  <string name="tor_process_waiting">等待。</string>
+  <string name="not_anonymous_yet">警告：您的網路尚未匿名！請設定您的應用程式使用HTTP 代理伺服器 127.0.0.1:8118 或 SOCKS4A 或 SOCKS5 代理伺服器 127.0.0.1:9050</string>
+  <string name="menu_home">首頁</string>
   <string name="menu_browse">瀏覽</string>
   <string name="menu_settings">設定</string>
+  <string name="menu_log">記錄檔</string>
   <string name="menu_info">說明</string>
+  <string name="menu_apps">應用程式APPs</string>
+  <string name="menu_start">開始</string>
+  <string name="menu_stop">停止</string>
   <string name="menu_about">關於</string>
+  <string name="menu_wizard">精靈</string>
+  <string name="main_layout_download">下載</string>
+  <string name="main_layout_upload">上傳</string>
   <string name="button_help">說明</string>
   <string name="button_close">關閉</string>
   <string name="button_about">關於</string>
-  <string name="menu_exit">退出</string>
+  <string name="button_clear_log">清除紀錄檔</string>
+  <string name="menu_verify">檢查</string>
+  <string name="menu_exit">離開</string>
+  <string name="press_to_start">- 請長按以開始 - </string>
+  <string name="pref_trans_proxy_group">通透式代理伺服器(需要 Root)</string>
+  <string name="pref_trans_proxy_title">通透式代理伺服器</string>
+  <string name="pref_trans_proxy_summary">自動啟動 Tor於應用程式</string>
+  <string name="pref_transparent_all_title">Tor Everything</string>
+  <string name="pref_transparent_all_summary">所有應用程式皆通過Tor 代理伺服器</string>
+  <string name="pref_transparent_port_fallback_title">返回代理伺服器連接埠</string>
   <string name="btn_back">返回</string>
   <string name="btn_cancel">取消</string>
   <!--Welcome Wizard strings (DJH)-->
-  <string name="wizard_proxy_help_info">代理設定</string>
+  <string name="wizard_proxy_help_info">代理伺服器設定</string>
   <!--END Welcome Wizard strings (DJH)-->
   <string name="pref_general_group">一般</string>
   <!--New Wizard Strings-->
   <!--Title Screen-->
   <!--Warning screen-->
-  <string name="wizard_warning_title">警告 Warning</string>
+  <string name="wizard_warning_title">警告</string>
   <!--Permissions screen-->
   <!--TipsAndTricks screen-->
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
@@ -27,10 +58,8 @@
     <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_none">無</string>
-  <!--<string name="pref_use_whispercore">Use WhisperCore</string>
-<string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>-->
   <string name="status">狀態</string>
   <string name="error">錯誤</string>
   <string name="default_bridges"></string>
-  <string name="btn_save_settings">保存設定</string>
+  <string name="btn_save_settings">儲存設定</string>
 </resources>

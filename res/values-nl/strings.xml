@@ -129,8 +129,6 @@
   <string name="pref_entrance_node">Toegangsnodes.</string>
   <string name="pref_entrance_node_summary">Fingerprints, nicks, landen en adressen voor de eerste hop</string>
   <string name="pref_entrance_node_dialog">Voer Toegangsnode in</string>
-  <!--<string name="pref_use_whispercore">Use WhisperCore</string>
-<string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>-->
   <string name="pref_proxy_title">Uitgaande netwerk proxy</string>
   <string name="pref_proxy_type_title">Proxy type</string>
   <string name="pref_proxy_type_summary">Protocol om te gebruiken voor proxy server: HTTP, HTTPS, SOCKS4, SOCKS5</string>
@@ -141,6 +139,12 @@
   <string name="pref_proxy_port_title">Proxy poort</string>
   <string name="pref_proxy_port_summary">Proxy server poort</string>
   <string name="pref_proxy_port_dialog">Voer proxy poort in</string>
+  <string name="pref_proxy_username_title">Uitgaande Proxy gebruikersnaam</string>
+  <string name="pref_proxy_username_summary">Proxy gebruikersnaam (Optioneel)</string>
+  <string name="pref_proxy_username_dialog">Type Proxy gebruikersnaam</string>
+  <string name="pref_proxy_password_title">Uitgaande Proxy Wachtwoord</string>
+  <string name="pref_proxy_password_summary">Proxy wachtwoord (Optioneel)</string>
+  <string name="pref_proxy_password_dialog">Type Proxy Wachtwoord</string>
   <string name="status">Status</string>
   <string name="setting_up_full_transparent_proxying_">Bezig met opzetten van volledig transparante proxy...</string>
   <string name="setting_up_app_based_transparent_proxying_">Bezig met opzetten van per-app transparante proxy...</string>
@@ -221,4 +225,5 @@
   <string name="wizard_locale_msg">Laat standaard of schakel over naar huidige taal</string>
   <string name="powered_by">mogelijk gemaakt door het Tor Project</string>
   <string name="btn_save_settings">Sla instellingen op</string>
+  <string name="no_internet_connection_tor">Geen internet verbinding: Tor is in standby...</string>
 </resources>

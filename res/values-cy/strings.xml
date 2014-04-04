@@ -5,39 +5,60 @@
   <string name="default_web_url">http://check.torproject.org</string>
   <string name="secure_default_web_url">https://check.torproject.org</string>
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
-  <string name="control_permission_label">dechrau ac yn stopio Tor</string>
-  <string name="tor_proxy_service_process">torproxyservice</string>
-  <string name="status_activated">Gysylltu â\'r rhwydwaith Tor</string>
-  <string name="status_shutting_down">Orbot yn cau i lawr</string>
-  <string name="tor_process_complete">gwneud.</string>
+  <string name="control_permission_label">cychwyn a stopio Tor</string>
+  <string name="tor_proxy_service_process">gwasanaethdirpwrytor</string>
+  <string name="status_starting_up">Mae Orbot yn cychwyn...</string>
+  <string name="status_activated">Wedi cysylltu â rhwydwaith Tor</string>
+  <string name="status_shutting_down">Mae Orbot yn cau</string>
+  <string name="tor_process_starting">Yn cychwyn cleient Tor</string>
+  <string name="tor_process_complete">Wedi ei gwblhau.</string>
   <string name="tor_process_waiting">yn aros.</string>
   <string name="not_anonymous_yet">RHYBUDD: Nid yw eich traffig yn ddienw eto! Os gwelwch yn dda ffurfweddu eich ceisiadau at arfer HTTP proxy 127.0.0.1:8118 neu SOCKS4A neu ddirprwy SOCKS5 127.0.0.1:9050</string>
-  <string name="menu_home">Dechrau</string>
+  <string name="menu_home">Hafan</string>
   <string name="menu_browse">Pori</string>
   <string name="menu_settings">Gosodiadau</string>
   <string name="menu_log">Log</string>
-  <string name="menu_info">Допомога</string>
+  <string name="menu_info">Help</string>
   <string name="menu_apps">Apps</string>
-  <string name="menu_start">Dechrau</string>
+  <string name="menu_start">Cychwyn</string>
   <string name="menu_stop">Stop</string>
   <string name="menu_about">Amdanom ni</string>
-  <string name="button_help">Допомога</string>
+  <string name="menu_wizard">Dewin</string>
+  <string name="main_layout_download">Llwytho i lawr</string>
+  <string name="main_layout_upload">Llwytho i fyny</string>
+  <string name="button_help">Help</string>
   <string name="button_close">Cau</string>
   <string name="button_about">Amdanom ni</string>
+  <string name="button_clear_log">Clirio log</string>
   <string name="menu_verify">Gwirio</string>
-  <string name="menu_exit">Allanfa</string>
-  <string name="pref_trans_proxy_group">Proxying tryloyw (Requires Root)</string>
-  <string name="pref_trans_proxy_title">Proxying tryloyw</string>
-  <string name="pref_trans_proxy_summary">\'N awtomatig Torifying o Apps</string>
-  <string name="pref_transparent_all_title">Tor popeth</string>
+  <string name="menu_exit">Gadael</string>
+  <string name="press_to_start">- pwyswch yn hir i gychwyn -</string>
+  <string name="pref_trans_proxy_group">Dirprwyo tryloyw (angen Gwreiddyn)</string>
+  <string name="pref_trans_proxy_title">Dirprwyo tryloyw</string>
+  <string name="pref_trans_proxy_summary">\'Torifying\' o Apps yn awtomatig</string>
+  <string name="pref_transparent_all_title">Popeth Tor</string>
+  <string name="pref_transparent_all_summary">Traffig dirprwy i\'r holl apps drwy Tor</string>
+  <string name="pref_transparent_port_title">Rhestr Porthau</string>
+  <string name="pref_transparent_port_summary">Rhestr o borthau i\'w dirprwyo. *DEFNYDDIER YN UNIG* os nad yw modd \'Popeth\' neu \'App\' yn gweithio</string>
   <string name="wizard_title">Orbot</string>
-  <string name="btn_cancel">Canslo</string>
+  <string name="wizard_btn_tell_me_more">Am Orbot</string>
+  <string name="btn_next">Nesaf</string>
+  <string name="btn_back">Yn ôl</string>
+  <string name="btn_finish">Gorffen</string>
+  <string name="btn_okay">Iawn</string>
+  <string name="btn_cancel">Diddymu</string>
   <!--Welcome Wizard strings (DJH)-->
-  <string name="wizard_proxy_help_info">Gosodiadau Procsi</string>
+  <string name="wizard_details">Rhai manylion am Orbot</string>
+  <string name="wizard_permissions_root">Caniatâd wedi\'i roi</string>
+  <string name="wizard_proxy_help_info">Gosodiadau Dirprwy</string>
+  <string name="wizard_final">Mae Orbot yn barod!</string>
+  <string name="wizard_final_msg">Mae cannoedd o filoedd o bobl o gwmpas y byd yn defnyddio Tor am amrywiaeth o resymau.\n\nNewyddiadurwyr a blogwyr, amddiffynwyr hawliau dynol, swyddogion gweithredu\'r gyfraith, milwyr, corfforaethau, dinasyddion cyfundrefnau gorthrymus a dinasyddion cyffredin... ac nawr rydych chi\'n barod i wneud hefyd!</string>
   <!--END Welcome Wizard strings (DJH)-->
+  <string name="pref_general_group">Cyffredinol</string>
   <!--New Wizard Strings-->
   <!--Title Screen-->
   <!--Warning screen-->
+  <string name="wizard_warning_title">Rhybudd</string>
   <!--Permissions screen-->
   <!--TipsAndTricks screen-->
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
@@ -45,10 +66,25 @@
     <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
     <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
   <!--Transparent Proxy screen-->
-  <string name="wizard_transproxy_title">Proxying tryloyw</string>
+  <string name="wizard_transproxy_title">Dirprwyo\'n dryloyw</string>
   <string name="wizard_transproxy_none">Dim</string>
-  <!--<string name="pref_use_whispercore">Use WhisperCore</string>
-<string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>-->
+  <string name="pref_select_apps">Dewiswch Apps</string>
+  <string name="pref_select_apps_summary">Dewiswch Apps i\'w llwybro drwy Tor</string>
+  <string name="pref_node_configuration">Ffurfweddiad nod</string>
+  <string name="pref_entrance_node">Nodau mynediad</string>
+  <string name="pref_entrance_node_dialog">I mewn i nodau mynediad</string>
+  <string name="pref_proxy_password_summary">Cyfrinair y Dirprwy (Dewisol)</string>
+  <string name="status">Statws</string>
   <string name="error">Gwall</string>
+  <string name="exit_nodes">Nodau Gadael</string>
+  <string name="enter_exit_nodes">I mewn i Nodau Gadael</string>
+  <string name="exclude_nodes">Yn eithrio Nodau</string>
+  <string name="enter_exclude_nodes">I mewn i Nodau Eithrio</string>
+  <string name="the_tor_license">Trwydded Tor</string>
+  <string name="third_party_software">Meddalwedd 3ydd-parti</string>
   <string name="default_bridges"></string>
+  <string name="set_locale_title">Gosod locale</string>
+  <string name="set_locale_summary">Dewiswch locale ac iaith i Orbot</string>
+  <string name="wizard_locale_title">Dewiswch iaith</string>
+  <string name="btn_save_settings">Cadw\'r gosodiadau</string>
 </resources>

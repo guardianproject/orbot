@@ -53,8 +53,8 @@
     <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Proxying Transparente</string>
-  <!--<string name="pref_use_whispercore">Use WhisperCore</string>
-<string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>-->
+  <string name="pref_proxy_password_dialog">Ingrese contraseña Proxy</string>
   <string name="default_bridges"></string>
   <string name="powered_by">potenciado por The Tor Project</string>
+  <string name="no_internet_connection_tor">Sin conexión a internet; Tor en modo espera</string>
 </resources>

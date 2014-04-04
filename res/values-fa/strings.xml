@@ -129,8 +129,6 @@
   <string name="pref_entrance_node">گره های ورودی</string>
   <string name="pref_entrance_node_summary">اثرانگشت ها، اسامی مستعار، کشورها و آدرسهای جهش اول</string>
   <string name="pref_entrance_node_dialog">گره های ورودی را وارد کنید</string>
-  <!--<string name="pref_use_whispercore">Use WhisperCore</string>
-<string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>-->
   <string name="pref_proxy_title">پراکسی شبکه خروجی</string>
   <string name="pref_proxy_type_title">نوع پروکسی</string>
   <string name="pref_proxy_type_summary">پروتکل مورد استفاده برای پراکسی سرور: HTTP, HTTPS, Socks4, Socks5</string>
@@ -141,6 +139,12 @@
   <string name="pref_proxy_port_title">پورت پروکسی خروجی</string>
   <string name="pref_proxy_port_summary">پورت سرور پروکسی</string>
   <string name="pref_proxy_port_dialog">پورت پروکسی را وارد کنید</string>
+  <string name="pref_proxy_username_title">نام کاربری پراکسی خروجی</string>
+  <string name="pref_proxy_username_summary">نام کاربری پروکسی(اختیازی)</string>
+  <string name="pref_proxy_username_dialog">نام کاربری پروکسی را وارد نمایید</string>
+  <string name="pref_proxy_password_title">کلمه عبور پراکسی خروجی</string>
+  <string name="pref_proxy_password_summary">رمز عبور پروکسی(اختیاری)</string>
+  <string name="pref_proxy_password_dialog">رمز عبور پروکسی را وارد نمایید</string>
   <string name="status">وضعیت</string>
   <string name="setting_up_full_transparent_proxying_">نصب پروکسی کاملن شفاف...</string>
   <string name="setting_up_app_based_transparent_proxying_">نصب پروکسی شفاف مبتنی بر برنامه...</string>
@@ -221,4 +225,5 @@
   <string name="wizard_locale_msg">زبان کنونی را تعویض و یا به شکل پیشفرض رهایش کنید</string>
   <string name="powered_by">نیرو گرفته از پروژه تور</string>
   <string name="btn_save_settings">ذخیره تنظیمات</string>
+  <string name="no_internet_connection_tor">بدون اتصال اینترنت: تور در حالت انتظار</string>
 </resources>

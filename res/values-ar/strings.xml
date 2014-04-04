@@ -24,7 +24,7 @@
   <string name="menu_start">بدء</string>
   <string name="menu_stop">توقف</string>
   <string name="menu_about">حول</string>
-  <string name="menu_wizard">Wizard</string>
+  <string name="menu_wizard">معالج</string>
   <string name="main_layout_download">تحميل</string>
   <string name="main_layout_upload">رفع</string>
   <string name="button_help">مساعدة</string>
@@ -129,18 +129,22 @@
   <string name="pref_entrance_node">نقاط الدخول</string>
   <string name="pref_entrance_node_summary">بصمات، اسماء مستعارة، البلدان و العناوين لأول نقطة اتصال</string>
   <string name="pref_entrance_node_dialog">أدخل نقاط الدخول</string>
-  <!--<string name="pref_use_whispercore">Use WhisperCore</string>
-<string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>-->
-  <string name="pref_proxy_title">بروكسي الشبكة الصادرة</string>
+  <string name="pref_proxy_title">بروكسي الشبكة الصادرة (اختياري)</string>
   <string name="pref_proxy_type_title">نوع البروكسي الصادر</string>
   <string name="pref_proxy_type_summary">البروتوكول المستخدم لخادم البروكسي: HTTP, HTTPS, Socks4, Socks5</string>
   <string name="pref_proxy_type_dialog">أدخل نوع البروكسي</string>
   <string name="pref_proxy_host_title">عنوان البروكسي الصادر</string>
-  <string name="pref_proxy_host_summary">اسم المضيف خادم البروكسي</string>
+  <string name="pref_proxy_host_summary">اسم مضيف خادم البروكسي</string>
   <string name="pref_proxy_host_dialog">أدخل مضيف البروكسي</string>
   <string name="pref_proxy_port_title">منفذ البروكسي الصادر</string>
   <string name="pref_proxy_port_summary">منفذ خادم البروكسي</string>
   <string name="pref_proxy_port_dialog">أدخل منفذ البروكسي</string>
+  <string name="pref_proxy_username_title">اسم مستخدم البروكسي الصادر</string>
+  <string name="pref_proxy_username_summary">اسم مستخدم البروكسي (اختياري)</string>
+  <string name="pref_proxy_username_dialog">ادخل اسم مستخدم البروكسي</string>
+  <string name="pref_proxy_password_title">كلمة مرور بروكسي الشبكة الصادرة</string>
+  <string name="pref_proxy_password_summary">كلمة مرور البروكسي (اختياري)</string>
+  <string name="pref_proxy_password_dialog">ادخل كلمة مرور البروكسي</string>
   <string name="status">الحالة</string>
   <string name="setting_up_full_transparent_proxying_">يتم إعداد بروكسي ضمني كامل...</string>
   <string name="setting_up_app_based_transparent_proxying_">يتم إعداد البروكسي الضمني حسب البرامج...</string>
@@ -221,4 +225,5 @@
   <string name="wizard_locale_msg">إما ان تترك اللغة الافتراضية او إما ان تغير اللغة</string>
   <string name="powered_by">مدعوم من قبل مشروع تور</string>
   <string name="btn_save_settings">حفظ الإعدادات</string>
+  <string name="no_internet_connection_tor">لا يوجد اتصال بالانترنت; تور في حالة استعداد...</string>
 </resources>

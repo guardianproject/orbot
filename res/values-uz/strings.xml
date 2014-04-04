@@ -5,34 +5,30 @@
   <string name="default_web_url">http://check.torproject.org</string>
   <string name="secure_default_web_url">https://check.torproject.org</string>
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
-  <string name="menu_home">Головна</string>
-  <string name="menu_settings">Налаштування</string>
-  <string name="menu_log">Журнал</string>
-  <string name="menu_info">Довідка</string>
-  <string name="menu_apps">Програми</string>
-  <string name="menu_about">Про програму</string>
-  <string name="menu_wizard">Майстер</string>
-  <string name="main_layout_download">Завантажити</string>
-  <string name="main_layout_upload">Відвантажити</string>
-  <string name="button_help">Довідка</string>
-  <string name="button_close">Закрити</string>
-  <string name="button_about">Про програму</string>
-  <string name="button_clear_log">Очистити журнал</string>
-  <string name="menu_verify">Перевірити</string>
-  <string name="menu_exit">Вихід</string>
-  <string name="pref_transparent_port_dialog">Введіть порти для проксі</string>
+  <string name="status_starting_up">Orbot ishga tushirilmoqda…</string>
+  <string name="status_activated">Tor tarmog\'iga ulangan</string>
+  <string name="menu_home">Uy</string>
+  <string name="menu_settings">Moslamalar</string>
+  <string name="menu_info">Yordam</string>
+  <string name="menu_apps">Dasturlar</string>
+  <string name="menu_about">Dastur haqida</string>
+  <string name="main_layout_download">Yuklab olish</string>
+  <string name="main_layout_upload">Yuklash</string>
+  <string name="button_help">Yordam</string>
+  <string name="button_close">Yopish</string>
+  <string name="button_about">Dasur haqida</string>
+  <string name="menu_verify">Tekshirish</string>
+  <string name="menu_exit">Chiqish</string>
+  <string name="title_error">Dastur xatosi</string>
   <string name="wizard_title">Orbot</string>
-  <string name="wizard_btn_tell_me_more">Про Orbot</string>
-  <string name="btn_next">Вперед</string>
-  <string name="btn_back">Назад</string>
-  <string name="btn_finish">Завершити</string>
-  <string name="btn_okay">Гаразд</string>
-  <string name="btn_cancel">Скасувати</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
   <string name="proxymob_setup_url">https://guardianproject.info/releases/proxymob-latest.xpi</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
+  <string name="wizard_proxy_help_info">Proksi moslamalari</string>
+  <string name="wizard_final">Orbot tayyor!</string>
   <!--END Welcome Wizard strings (DJH)-->
+  <string name="pref_general_group">Umumiy</string>
   <!--New Wizard Strings-->
   <!--Title Screen-->
   <!--Warning screen-->
@@ -40,20 +36,27 @@
   <!--TipsAndTricks screen-->
   <string name="gibberbot_apk_url">https://guardianproject.info/releases/gibberbot-latest.apk</string>
   <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.xpi</string>
-  <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
     <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
     <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
   <!--Transparent Proxy screen-->
+  <string name="pref_proxy_type_dialog">Proksi turini kiriting</string>
+  <string name="pref_proxy_password_summary">Proksi maxfiy so\'zi (Qo\'shimcha)</string>
+  <string name="pref_proxy_password_dialog">Proksi maxfiy so\'zini kiriting</string>
+  <string name="status">Holati</string>
+  <string name="error">Xato</string>
   <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
-  <string name="the_tor_license">Ліцензія Tor</string>
+  <string name="the_tor_license">Tor litsenziyasi</string>
   <string name="https_torproject_org">https://torproject.org</string>
-  <string name="third_party_software">Сторонні програми:</string>
   <string name="tor_version">Tor v0.2.4.3-alpha: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.1.1-alpha: http://www.monkey.org/~provos/libevent/</string>
   <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
   <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
   <string name="openssl_version">OpenSSL v0.9.8h: http://www.openssl.org</string>
+  <string name="found_existing_tor_process">Mavjud bo\'lgan Tor jarayoni topildi...</string>
   <string name="default_bridges"></string>
+  <string name="set_locale_summary">Orbot uchun lokal va tilni tanlash</string>
+  <string name="wizard_locale_title">Tilni tanlansh</string>
+  <string name="btn_save_settings">Moslamalarni saqlash</string>
 </resources>

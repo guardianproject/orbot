@@ -129,9 +129,7 @@
   <string name="pref_entrance_node">入り口ノード</string>
   <string name="pref_entrance_node_summary">最初のホップのためのデジタル指紋、ニックネーム、国とIPアドレス</string>
   <string name="pref_entrance_node_dialog">入り口ノードを入力</string>
-  <!--<string name="pref_use_whispercore">Use WhisperCore</string>
-<string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>-->
-  <string name="pref_proxy_title">外方向ネットワークプロキシ</string>
+  <string name="pref_proxy_title">外方向ネットワークプロキシ (オプション)</string>
   <string name="pref_proxy_type_title">外方向プロキシの種類</string>
   <string name="pref_proxy_type_summary">HTTP,HTTPS,Socks4,Socks5で使用するプロトコル</string>
   <string name="pref_proxy_type_dialog">プロキシの種類を入力してください</string>
@@ -139,8 +137,14 @@
   <string name="pref_proxy_host_summary">プロキシサーバのホスト名</string>
   <string name="pref_proxy_host_dialog">プロクシ　ホストを入力</string>
   <string name="pref_proxy_port_title">外方向プロキシのポート</string>
-  <string name="pref_proxy_port_summary">プロキシサーバ　ポート</string>
+  <string name="pref_proxy_port_summary">プロキシサーバのポート</string>
   <string name="pref_proxy_port_dialog">プロキシのポートを入力してください</string>
+  <string name="pref_proxy_username_title">外方向プロキシのポート</string>
+  <string name="pref_proxy_username_summary">プロキシユーザー名 (オプション)</string>
+  <string name="pref_proxy_username_dialog">プロキシのユーザー名を入力してください</string>
+  <string name="pref_proxy_password_title">外方向プロキシのパスワード</string>
+  <string name="pref_proxy_password_summary">プロキシのパスワード (オプション)</string>
+  <string name="pref_proxy_password_dialog">プロキシのパスワードを入力してください</string>
   <string name="status">状態</string>
   <string name="setting_up_full_transparent_proxying_">完全な透過プロキシをセットアップ中...</string>
   <string name="setting_up_app_based_transparent_proxying_">アプリベースの透過プロキシをセットアップ中...</string>
@@ -221,4 +225,5 @@
   <string name="wizard_locale_msg">今の言語を変更するか、そのままにする</string>
   <string name="powered_by">powered by the Tor Project</string>
   <string name="btn_save_settings">設定を保存</string>
+  <string name="no_internet_connection_tor">インターネット接続なし。Torは待機中です...</string>
 </resources>

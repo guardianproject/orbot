@@ -129,8 +129,6 @@
   <string name="pref_entrance_node">Входные узлы</string>
   <string name="pref_entrance_node_summary">Отпечатки, ники, страны и адреса для первого прыжка</string>
   <string name="pref_entrance_node_dialog">Введите входные узлы</string>
-  <!--<string name="pref_use_whispercore">Use WhisperCore</string>
-<string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>-->
   <string name="pref_proxy_title">Исходящая прокси сеть</string>
   <string name="pref_proxy_type_title">Тип Прокси</string>
   <string name="pref_proxy_type_summary">Протокол для использования прокси-сервером: HTTP, HTTPS, Socks4, Socks5</string>
@@ -141,6 +139,12 @@
   <string name="pref_proxy_port_title">Порт Прокси</string>
   <string name="pref_proxy_port_summary">Порт прокси-сервера</string>
   <string name="pref_proxy_port_dialog">Введите порт Прокси</string>
+  <string name="pref_proxy_username_title">Имя пользователя для исходящего прокси-соединения</string>
+  <string name="pref_proxy_username_summary">Имя пользователя для прокси-соединения (указывать не обязательно)</string>
+  <string name="pref_proxy_username_dialog">Введите Имя пользователя прокси-соединения</string>
+  <string name="pref_proxy_password_title">Пароль исходящего прокси-соединения</string>
+  <string name="pref_proxy_password_summary">Пароль прокси-соединения (указывать не обязательно)</string>
+  <string name="pref_proxy_password_dialog">Введите пароль прокси-соединения</string>
   <string name="status">Статус</string>
   <string name="setting_up_full_transparent_proxying_">Установка общей прозрачной проксификации...</string>
   <string name="setting_up_app_based_transparent_proxying_">Установка основанной на приложениях прозрачной проксификации...</string>
@@ -221,4 +225,5 @@
   <string name="wizard_locale_msg">Оставить по умолчанию или переключить текущий язык</string>
   <string name="powered_by">powered by the Tor Project  </string>
   <string name="btn_save_settings">Сохранить Настройки</string>
+  <string name="no_internet_connection_tor">Нет доступа к сети интернет; Tor в режиме ожидания...</string>
 </resources>

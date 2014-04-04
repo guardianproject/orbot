@@ -1,24 +1,24 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="menu_home">Initio</string>
-  <string name="menu_browse">Navigar</string>
-  <string name="menu_settings">Configurationes</string>
-  <string name="menu_info">Adjuta</string>
-  <string name="menu_about">Circa</string>
-  <string name="button_help">Adjuta</string>
-  <string name="button_close">Clauder</string>
-  <string name="button_about">Circa</string>
-  <string name="menu_exit">Sortir</string>
-  <string name="btn_back">Retro</string>
-  <string name="btn_cancel">Cancellar</string>
+  <string name="menu_home">Pagina de start</string>
+  <string name="menu_browse">Răsfoieşte</string>
+  <string name="menu_settings">Setări</string>
+  <string name="menu_info">Asistenţă</string>
+  <string name="menu_about">Despre</string>
+  <string name="button_help">Asistenţă</string>
+  <string name="button_close">Închide</string>
+  <string name="button_about">Despre</string>
+  <string name="menu_exit">Ieşire</string>
+  <string name="btn_back">Înapoi</string>
+  <string name="btn_cancel">Revocare</string>
   <!--Welcome Wizard strings (DJH)-->
-  <string name="wizard_proxy_help_info">Configurationes de proxy:</string>
+  <string name="wizard_proxy_help_info">Setări proxy</string>
   <!--END Welcome Wizard strings (DJH)-->
   <string name="pref_general_group">General</string>
   <!--New Wizard Strings-->
   <!--Title Screen-->
   <!--Warning screen-->
-  <string name="wizard_warning_title">Advertimento</string>
+  <string name="wizard_warning_title">Avertizare</string>
   <!--Permissions screen-->
   <!--TipsAndTricks screen-->
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
@@ -26,9 +26,9 @@
     <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
     <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
   <!--Transparent Proxy screen-->
-  <string name="wizard_transproxy_none">Nulle</string>
-  <string name="status">Stato</string>
-  <string name="error">Error</string>
+  <string name="wizard_transproxy_none">Nimic</string>
+  <string name="status">Stare</string>
+  <string name="error">Eroare</string>
   <string name="default_bridges"></string>
-  <string name="btn_save_settings">Salveguardar configurationes</string>
+  <string name="btn_save_settings">Salvează setările</string>
 </resources>

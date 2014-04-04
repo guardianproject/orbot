@@ -129,18 +129,22 @@
   <string name="pref_entrance_node">Belépő csomópontok</string>
   <string name="pref_entrance_node_summary">Ujjlenyomatok, becenevek, országok és címek az első ugráshoz</string>
   <string name="pref_entrance_node_dialog">Belépő csomópontok megadása</string>
-  <!--<string name="pref_use_whispercore">Use WhisperCore</string>
-<string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>-->
-  <string name="pref_proxy_title">Kimenő hálózati proxy</string>
+  <string name="pref_proxy_title">Kimenő hálózati proxy (opcionális)</string>
   <string name="pref_proxy_type_title">Proxy típus</string>
   <string name="pref_proxy_type_summary">A Proxy szerver által használandó protokoll: HTTP, HTTPS, Socks4, Socks5</string>
   <string name="pref_proxy_type_dialog">Adja meg a Proxy típust</string>
   <string name="pref_proxy_host_title">Proxy címe</string>
-  <string name="pref_proxy_host_summary">Proxy szerver neve</string>
+  <string name="pref_proxy_host_summary">Proxy szerver hálózati neve</string>
   <string name="pref_proxy_host_dialog">Adja meg a Proxy gép nevét</string>
   <string name="pref_proxy_port_title">Proxy port</string>
   <string name="pref_proxy_port_summary">Proxy szerver port</string>
   <string name="pref_proxy_port_dialog">Adja meg a Proxy portját</string>
+  <string name="pref_proxy_username_title">Kimenő proxy felhasználó név</string>
+  <string name="pref_proxy_username_summary">Proxy felhasználónév (opcionális)</string>
+  <string name="pref_proxy_username_dialog">Adja meg a Proxy felhasználónevét</string>
+  <string name="pref_proxy_password_title">Kimenő Proxy jelszó</string>
+  <string name="pref_proxy_password_summary">Proxy jelszó (opcionális)</string>
+  <string name="pref_proxy_password_dialog">Adja meg a Proxy jelszavát</string>
   <string name="status">Állapot</string>
   <string name="setting_up_full_transparent_proxying_">A teljes körű Átlátszó proxyzás beállítása...</string>
   <string name="setting_up_app_based_transparent_proxying_">Alkalmazásszintű Átlátszó proxyzás beállítása...</string>
@@ -221,4 +225,5 @@
   <string name="wizard_locale_msg">Maradjon alapértelmezetten vagy váltson az aktuális nyelvre</string>
   <string name="powered_by">a Tor Project által gondozva</string>
   <string name="btn_save_settings">Beállítások mentése</string>
+  <string name="no_internet_connection_tor">Nincs internet kapcsolat; a Tor várakozik...</string>
 </resources>

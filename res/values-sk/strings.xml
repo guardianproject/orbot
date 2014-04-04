@@ -8,6 +8,7 @@
   <string name="button_help">Pomocník</string>
   <string name="button_close">Zatvoriť</string>
   <string name="button_about">O aplikácií</string>
+  <string name="menu_verify">Skontrolovať</string>
   <string name="menu_exit">Ukončiť</string>
   <string name="btn_back">Späť</string>
   <string name="btn_cancel">Zrušiť</string>
@@ -27,8 +28,6 @@
     <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_none">Žiadny</string>
-  <!--<string name="pref_use_whispercore">Use WhisperCore</string>
-<string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>-->
   <string name="status">Stav</string>
   <string name="error">Chyba</string>
   <string name="default_bridges"></string>
