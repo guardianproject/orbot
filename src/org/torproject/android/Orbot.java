@@ -3,6 +3,8 @@
 
 package org.torproject.android;
 
+import static org.torproject.android.TorConstants.TAG;
+
 import java.util.Locale;
 
 import org.torproject.android.service.ITorService;
@@ -34,6 +36,7 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.RemoteException;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.view.ActionMode;
 import android.text.ClipboardManager;
 import android.text.Layout;
 import android.text.method.ScrollingMovementMethod;
@@ -188,8 +191,86 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
        
         mItemOnOff = menu.getItem(0);
         
+        /*
+        startSupportActionMode(new ActionMode.Callback() {
+            @Override
+            public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+                // Inflate our menu from a resource file
+             //   actionMode.getMenuInflater().inflate(R.menu.action_mode_main, menu);
+
+                // Return true so that the action mode is shown
+                return true;
+            }
+
+            @Override
+            public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+                // As we do not need to modify the menu before displayed, we return false.
+                return false;
+            }
+
+            @Override
+            public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+                // Similar to menu handling in Activity.onOptionsItemSelected()
+                switch (menuItem.getItemId()) {
+                    case R.id.menu_start:
+                    	 try
+                         {
+                                 
+                                 if (mService == null)
+                                 {
+                                 
+                                 }
+                                 else if (mService.getStatus() == TorServiceConstants.STATUS_OFF)
+                                 {
+                                     if (mItemOnOff != null)
+                                             mItemOnOff.setTitle(R.string.menu_stop);
+                                         startTor();
+                                         
+                                 }
+                                 else
+                                 {
+                                     if (mItemOnOff != null)
+                                             mItemOnOff.setTitle(R.string.menu_start);
+                                         stopTor();
+                                         
+                                 }
+                                 
+                         }
+                         catch (RemoteException re)
+                         {
+                                 Log.w(TAG, "Unable to start/top Tor from menu UI", re);
+                         }
+                        return true;
+                    case R.id.menu_settings:
+                    	 showSettings();
+                    	 return true;
+                    case R.id.menu_wizard:
+                          startWizard();
+                          return true;
+                    case R.id.menu_verify:
+                          doTorCheck();
+                          return true;
+                    case R.id.menu_exit:
+                          doExit();
+                          return true;        
+                    case R.id.menu_about:
+                          showAbout();
+                          return true;
+                }
+
+                return false;
+            }
+
+            @Override
+            public void onDestroyActionMode(ActionMode actionMode) {
+                // Allows you to be notified when the action mode is dismissed
+            }
+        });*/
+        
         return true;
     }
+    
+    
     
 
     private void showAbout ()
@@ -214,10 +295,11 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	        .setView(view)
 	        .show();
         }
-    /**
-        public boolean onMenuItemSelected(int featureId, MenuItem item) {
+    
+    	@Override
+        public boolean onOptionsItemSelected(MenuItem item) {
                 
-                super.onMenuItemSelected(featureId, item);
+                super.onOptionsItemSelected(item);
                 
                 if (item.getItemId() == R.id.menu_start)
                 {
@@ -278,7 +360,6 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                 
         return true;
         }
-      */
       
         /**
         * This is our attempt to REALLY exit Orbot, and stop the background service
