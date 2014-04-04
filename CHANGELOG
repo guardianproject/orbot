@@ -1,5 +1,30 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+13.0.6
+e25dc08 fixes the menus for appcompat library
+cc8d3e1 update to return to binaries as ZIPd res/raw stop using the libs/armeabi hack method
+b59bd1a remove binary apps/libs
+445f63f updates ant build for new actionbarcompat
+765a3bf updated graphic
+8c20759 removed ABS depdency in favor of AppCompat
+d0d7880 Signed-off-by: Nathan Freitas <nathan@freitas.net>
+75a0d34 Signed-off-by: Nathan Freitas <nathan@freitas.net>
+e5fdf28 updated binaries from new build script
+57ef1c3 Fix building of openssl on newer systems
+b5a043a updated Makefile to not build libevent TESTS
+dab37b5 setting to 4.6 for compat
+1a346cf updated makefile
+02c389c updated obfsclient external
+06b46f1 updated to only build tor binary and not tests, etc
+d311f71 13.0.6 minor UI updates, Tor version update
+a24eacd add hi-res icon for the web
+f322f6b add new graphics and icons
+806fe40 update external commit tags
+27d5945 remove redundant iptables rules for transproxy
+4e1357b add new background graphics state change to main UI
+714af31 updated icon and main graphics
+dc58c40 updated binaries built from "make -C external"
+
 13.0.5 (includes v12 changes as well)
 d605b45 add obfsclient build but don't include binary yet
 0aa4294 add new obfsclient module
