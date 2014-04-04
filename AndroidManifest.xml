@@ -14,7 +14,7 @@
     <application android:name=".OrbotApp" android:icon="@drawable/ic_launcher"
      android:label="@string/app_name" 
      android:configChanges="locale|orientation|screenSize"
-      android:theme="@style/Theme.Sherlock"      
+      android:theme="@style/Theme.AppCompat" 
       android:persistent="true"
       android:allowBackup="false"
       android:allowClearUserData="true"

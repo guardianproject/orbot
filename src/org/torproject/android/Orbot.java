@@ -33,6 +33,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.RemoteException;
+import android.support.v7.app.ActionBarActivity;
 import android.text.ClipboardManager;
 import android.text.Layout;
 import android.text.method.ScrollingMovementMethod;
@@ -40,6 +41,9 @@ import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnLongClickListener;
@@ -50,13 +54,8 @@ import android.widget.SlidingDrawer;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
 
-
-public class Orbot extends SherlockActivity implements TorConstants, OnLongClickListener, OnTouchListener, OnSharedPreferenceChangeListener
+public class Orbot extends ActionBarActivity implements TorConstants, OnLongClickListener, OnTouchListener, OnSharedPreferenceChangeListener
 {
 	/* Useful UI bits */
 	private TextView lblStatus = null; //the main text display widget
@@ -184,7 +183,7 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        MenuInflater inflater = getSupportMenuInflater();
+        MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
        
         mItemOnOff = menu.getItem(0);
@@ -215,11 +214,7 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
 	        .setView(view)
 	        .show();
         }
-    
-    /* When a menu item is selected launch the appropriate view or activity
-     * (non-Javadoc)
-         * @see android.app.Activity#onMenuItemSelected(int, android.view.MenuItem)
-         */
+    /**
         public boolean onMenuItemSelected(int featureId, MenuItem item) {
                 
                 super.onMenuItemSelected(featureId, item);
@@ -283,7 +278,8 @@ public class Orbot extends SherlockActivity implements TorConstants, OnLongClick
                 
         return true;
         }
-        
+      */
+      
         /**
         * This is our attempt to REALLY exit Orbot, and stop the background service
         * However, Android doesn't like people "quitting" apps, and/or our code may not
