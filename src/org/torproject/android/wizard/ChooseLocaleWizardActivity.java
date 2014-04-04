@@ -2,39 +2,23 @@ package org.torproject.android.wizard;
 
 import java.util.Locale;
 
-import org.torproject.android.Orbot;
 import org.torproject.android.R;
 import org.torproject.android.TorConstants;
-import org.torproject.android.R.drawable;
-import org.torproject.android.R.id;
-import org.torproject.android.R.layout;
-import org.torproject.android.R.string;
-import org.torproject.android.settings.AppManager;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.res.Configuration;
-import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ListView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.TextView;
-import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.Toast;
 
 public class ChooseLocaleWizardActivity extends Activity implements TorConstants {
 
@@ -84,7 +68,13 @@ public class ChooseLocaleWizardActivity extends Activity implements TorConstants
 		    Button next = ((Button)findViewById(R.id.btnWizard2));
 		   // next.setEnabled(false);
 		    
+		    String[] strLangs = getResources().getStringArray(R.array.languages);
+		    strLangs[0] = Locale.getDefault().getDisplayName();
+	        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1,  strLangs);	        
+	        listLocales.setAdapter(adapter);
+		    
 		    listLocales.setSelection(0);
+		    		    
 		    
 		    listLocales.setOnItemClickListener(new OnItemClickListener() {
 				
