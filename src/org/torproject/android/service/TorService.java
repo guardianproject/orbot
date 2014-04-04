@@ -537,7 +537,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		enableBinExec(fileObfsProxy);
 		enableBinExec(fileXtables);
 		
-		
     }
 
     private boolean enableBinExec (File fileBin) throws Exception

@@ -45,6 +45,9 @@ public class TorResourceInstaller implements TorServiceConstants {
 		InputStream is;
         File outFile;
         
+        if (!installFolder.exists())
+        	installFolder.mkdirs();
+        
 		is = context.getResources().openRawResource(R.raw.torrc);
 		outFile = new File(installFolder, TORRC_ASSET_KEY);
 		streamToFile(is,outFile, false, false);
@@ -69,7 +72,6 @@ public class TorResourceInstaller implements TorServiceConstants {
 		outFile = new File(installFolder, OBFSPROXY_ASSET_KEY);
 		streamToFile(is,outFile, false, true);
 		
-
 		is = context.getResources().openRawResource(R.raw.xtables);
 		outFile = new File(installFolder, IPTABLES_ASSET_KEY);
 		streamToFile(is,outFile, false, true);
