@@ -22,3 +22,6 @@
 [submodule "external/obfsclient"]
 	path = external/obfsclient
 	url = https://github.com/Yawning/obfsclient.git
+[submodule "external/superuser-commands"]
+	path = external/superuser-commands
+	url = https://github.com/dschuermann/superuser-commands.git
