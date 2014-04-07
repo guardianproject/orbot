@@ -1,11 +1,9 @@
 package org.torproject.android.wizard;
 
+import org.sufficientlysecure.rootcommands.RootCommands;
 import org.torproject.android.R;
 import org.torproject.android.TorConstants;
-import org.torproject.android.service.Root;
 import org.torproject.android.service.TorService;
-import org.torproject.android.service.TorServiceUtils;
-import org.torproject.android.service.TorTransProxy;
 
 import android.app.Activity;
 import android.content.Context;
@@ -22,7 +20,6 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class Permissions extends Activity implements TorConstants {
 
@@ -41,8 +38,8 @@ public class Permissions extends Activity implements TorConstants {
 		super.onStart();
 		setContentView(R.layout.layout_wizard_permissions);
 		
-		stepThree();
-        
+		stepFourRoot();
+		        
 	}
 	
 	@Override
@@ -63,21 +60,6 @@ public class Permissions extends Activity implements TorConstants {
 	    super.onActivityResult(requestCode, resultCode, data);
 	}
 
-	
-	private void stepThree(){
-		
-		boolean isRootPossible = new Root().isDeviceRooted();
-		
-		if (isRootPossible)
-		{
-			stepFourRoot();
-		}
-		else
-		{
-			stepFour();
-		}
-		
-	}
 	
 	private void stepFourRoot(){
 				
@@ -112,24 +94,27 @@ public class Permissions extends Activity implements TorConstants {
 					boolean isChecked) {
 			
 				
+				//this is saying do not use root
+				
 				SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
 				Editor pEdit = prefs.edit();
 				
-				pEdit.putBoolean(PREF_TRANSPARENT, !isChecked);
-				pEdit.putBoolean(PREF_TRANSPARENT_ALL, !isChecked);
-				
-				pEdit.putBoolean(PREF_HAS_ROOT, !isChecked);
-				
+				pEdit.putBoolean(PREF_TRANSPARENT, false);
+				pEdit.putBoolean(PREF_TRANSPARENT_ALL, false);				
+				pEdit.putBoolean(PREF_HAS_ROOT, false);
 				
 				pEdit.commit();
 				
+				/*
 				Button next = ((Button)findViewById(R.id.btnWizard2));
 				if(isChecked)
 					next.setEnabled(true);
 				else
 					next.setEnabled(false);
+				*/
 				
+				stepFour();
 				
 			}
         	
@@ -142,46 +127,24 @@ public class Permissions extends Activity implements TorConstants {
 				//Check and Install iptables - TorTransProxy.testOwnerModule(this)
 				
 				SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-				boolean hasRoot = prefs.getBoolean("has_root",false);
 				
-				
+				boolean hasRoot = RootCommands.rootAccessGiven();
+				Editor pEdit = prefs.edit();
+				pEdit.putBoolean(PREF_HAS_ROOT,hasRoot);
+				pEdit.commit();
+								
 				if (!hasRoot)
 				{
-					hasRoot = new Root().isDeviceRooted();
 
-					Editor pEdit = prefs.edit();
-					pEdit.putBoolean(PREF_HAS_ROOT,hasRoot);
-					pEdit.commit();
+					stepFour();
 					
 				}
-				
-				if (hasRoot)
+				else
 				{
-					try {
-						/*
-						TorTransProxy ttProxy = new TorTransProxy();
-						
-						int resp = ttProxy.testOwnerModule(context,ttProxy.getIpTablesPath(context));
-						
-						if (resp != 0)
-						{
-							hasRoot = false;
-							Toast.makeText(context, "ERROR: IPTables OWNER module not available", Toast.LENGTH_LONG).show();
+					startActivityForResult(new Intent(getBaseContext(), ConfigureTransProxy.class), 1);
 
-							Log.i(TorService.TAG,"ERROR: IPTables OWNER module not available");
-							stepFour();
-						}
-						*/
-						
-					} catch (Exception e) {
-						
-						hasRoot = false;
-						Log.d(TorService.TAG,"ERROR: IPTables OWNER module not available",e);
-						stepFour();
-					}
+					
 				}
-				
-				startActivityForResult(new Intent(getBaseContext(), ConfigureTransProxy.class), 1);
 
 				
 			}

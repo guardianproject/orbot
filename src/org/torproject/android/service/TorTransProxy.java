@@ -3,12 +3,13 @@ package org.torproject.android.service;
 import java.io.File;
 import java.util.ArrayList;
 
+import org.sufficientlysecure.rootcommands.Shell;
+import org.sufficientlysecure.rootcommands.command.SimpleCommand;
 import org.torproject.android.TorConstants;
 import org.torproject.android.settings.TorifiedApp;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
 public class TorTransProxy implements TorServiceConstants {
@@ -276,26 +277,20 @@ public class TorTransProxy implements TorServiceConstants {
 	
 	public int setTransparentProxyingByApp(Context context, ArrayList<TorifiedApp> apps) throws Exception
 	{
-
-		boolean runRoot = true;
-    	boolean waitFor = true;
-    	
 		String ipTablesPath = getIpTablesPath(context);
 		
-    	StringBuilder script = new StringBuilder();
+    	//StringBuilder script = new StringBuilder();
     	
-    	StringBuilder res = new StringBuilder();
-    	int code = -1;
-    	
-		String srcChainName = "OUTPUT";
+    	String srcChainName = "OUTPUT";
 		
     	//run the delete commands in a separate process as it might error out
-    	String[] cmdExecClear = {script.toString()};    	    	
-		code = TorServiceUtils.doShellCommand(cmdExecClear, res, runRoot, waitFor);
+    	//String[] cmdExecClear = {script.toString()};    	    	
+		//code = TorServiceUtils.doShellCommand(cmdExecClear, res, runRoot, waitFor);
 		
 		//reset script
-		script = new StringBuilder();    	
-		    	
+		
+    	Shell shell = Shell.startRootShell();
+    	
 		//build up array of shell cmds to execute under one root context
 		for (TorifiedApp tApp:apps)
 		{
@@ -304,6 +299,8 @@ public class TorTransProxy implements TorServiceConstants {
 					&& (!tApp.getUsername().equals(TorServiceConstants.TOR_APP_USERNAME))
 					) //if app is set to true
 			{
+				
+				StringBuilder script = new StringBuilder();    	
 				
 				logMessage("enabling transproxy for app: " + tApp.getUsername() + "(" + tApp.getUid() + ")");
 			 
@@ -318,7 +315,9 @@ public class TorTransProxy implements TorServiceConstants {
 				script.append(" -m tcp --syn");
 				script.append(" -j REDIRECT --to-ports ");
 				script.append(TOR_TRANSPROXY_PORT);
-				script.append(" || exit\n");
+				
+				shell.add(new SimpleCommand(script.toString())); 
+				script = new StringBuilder();
 				
 				// Same for DNS
 				script.append(ipTablesPath);
@@ -330,7 +329,9 @@ public class TorTransProxy implements TorServiceConstants {
 				script.append(STANDARD_DNS_PORT);
 				script.append(" -j REDIRECT --to-ports ");
 				script.append(TOR_DNS_PORT);
-				script.append(" || exit\n");
+
+				shell.add(new SimpleCommand(script.toString())); 
+				script = new StringBuilder();
 				
 				int[] ports = {TOR_DNS_PORT,TOR_TRANSPROXY_PORT,PORT_SOCKS,PORT_HTTP};
 				
@@ -347,7 +348,10 @@ public class TorTransProxy implements TorServiceConstants {
 					script.append(" --dport ");
 					script.append(port);	
 					script.append(" -j ACCEPT");
-					script.append(" || exit\n");				
+					
+					shell.add(new SimpleCommand(script.toString())); 
+					script = new StringBuilder();
+		
 				}
 				
 				// Allow loopback
@@ -359,7 +363,9 @@ public class TorTransProxy implements TorServiceConstants {
 				script.append(" -p tcp");
 				script.append(" -o lo");
 				script.append(" -j ACCEPT");
-				script.append(" || exit\n");
+
+				shell.add(new SimpleCommand(script.toString())); 
+				script = new StringBuilder();
 
 				// Reject all other outbound TCP packets
 				script.append(ipTablesPath);
@@ -370,7 +376,9 @@ public class TorTransProxy implements TorServiceConstants {
 				script.append(" -p tcp");
 				script.append(" ! -d 127.0.0.1"); //allow access to localhost
 				script.append(" -j REJECT");
-				script.append(" || exit\n");
+
+				shell.add(new SimpleCommand(script.toString())); 
+				script = new StringBuilder();
 				
 				// Reject all other outbound UDP packets
 				script.append(ipTablesPath);
@@ -381,62 +389,52 @@ public class TorTransProxy implements TorServiceConstants {
 				script.append(" -p udp");
 				script.append(" ! -d 127.0.0.1"); //allow access to localhost
 				script.append(" -j REJECT");
-				script.append(" || exit\n");
-				
+
+				shell.add(new SimpleCommand(script.toString()));
+		
 			}		
 		}		
 		
-		String[] cmdAdd = {script.toString()};    	
-    		
-		code = TorServiceUtils.doShellCommand(cmdAdd, res, runRoot, waitFor);
-		String msg = res.toString();
-		
-		logMessage(cmdAdd[0] + ";errCode=" + code + ";resp=" + msg);
-		
-		return code;
+		return 1;
     }	
 	
 	
 	public int enableTetheringRules (Context context) throws Exception
 	{
 		
-		boolean runRoot = true;
-    	boolean waitFor = true;
-    	
 		String ipTablesPath = getIpTablesPath(context);
 		
     	StringBuilder script = new StringBuilder();
-    	
-    	StringBuilder res = new StringBuilder();
-    	int code = -1;
     
     	String[] hwinterfaces = {"usb0","wl0.1"};
     	
+    	Shell shell = Shell.startRootShell();
+    	
     	for (int i = 0; i < hwinterfaces.length; i++)
     	{
+
+			script = new StringBuilder();
 	    	script.append(ipTablesPath);
 			script.append(" -t nat -A PREROUTING -i ");
 			script.append(hwinterfaces[i]);
 			script.append(" -p udp --dport 53 -j REDIRECT --to-ports ");
 			script.append(TOR_DNS_PORT);
-			script.append(" || exit\n");
 			
+			shell.add(new SimpleCommand(script.toString()));
+			
+			script = new StringBuilder();
 			script.append(ipTablesPath);
 			script.append(" -t nat -A PREROUTING -i ");
 			script.append(hwinterfaces[i]);
 			script.append(" -p tcp -j REDIRECT --to-ports ");
 			script.append(TOR_TRANSPROXY_PORT);
-			script.append(" || exit\n");
+			
+			shell.add(new SimpleCommand(script.toString()));
+			
     	}
 		
-		String[] cmdAdd = {script.toString()};    	
-    	
-		code = TorServiceUtils.doShellCommand(cmdAdd, res, runRoot, waitFor);
-		String msg = res.toString();
-		logMessage(cmdAdd[0] + ";errCode=" + code + ";resp=" + msg);
 		
-		
-		return code;
+		return 0;
 	}
 	
 	private void logMessage (String msg)
@@ -450,36 +448,30 @@ public class TorTransProxy implements TorServiceConstants {
 	public int clearTransparentProxyingAll(Context context) throws Exception 
 	{
 
-		boolean runRoot = true;
-    	boolean waitFor = true;
-    	
 		String ipTablesPath = getIpTablesPath(context);
 		
     	StringBuilder script = new StringBuilder();    	
-    	StringBuilder res = new StringBuilder();
-    	int code = -1;
 
+    	Shell shell = Shell.startRootShell();
+    	
     	String chainName = "OUTPUT";
     	
 		script = new StringBuilder();
-		res = new StringBuilder();
 		script.append(ipTablesPath);
     	script.append(" -t nat");		
     	script.append(" -F ").append(chainName); //delete previous user-defined chain
-    	script.append(" || exit\n");
-    	code = TorServiceUtils.doShellCommand(script.toString(), res, runRoot, waitFor);		
-		logMessage("Exec resp: cmd> " + script.toString() + "; errCode=" + code + ";resp=" + res.toString());
-		
+    	
+    	shell.add(new SimpleCommand(script.toString()));
+    	
 		script = new StringBuilder();
-		res = new StringBuilder();
+		
 		script.append(ipTablesPath);
     	script.append(" -t filter");		
     	script.append(" -F ").append(chainName); //delete previous user-defined chain
-    	script.append(" || exit\n");
-    	code = TorServiceUtils.doShellCommand(script.toString(), res, runRoot, waitFor);		
-		logMessage("Exec resp: cmd> " + script.toString() + "; errCode=" + code + ";resp=" + res.toString());
-		
-    	return code;
+    	
+    	shell.add(new SimpleCommand(script.toString()));
+    	
+    	return 0;
 	}
 	
 	public int setTransparentProxyingAll(Context context) throws Exception 
@@ -492,14 +484,14 @@ public class TorTransProxy implements TorServiceConstants {
 		
 		String ipTablesPath = getIpTablesPath(context);
 		
-    	StringBuilder script = new StringBuilder();
     	
-    	StringBuilder res = new StringBuilder();
-    	int code = -1;
+    	Shell shell = Shell.startRootShell();
     	
     	int torUid = context.getApplicationInfo().uid;
 
     	String srcChainName = "OUTPUT";
+    	
+    	StringBuilder script = new StringBuilder();
     	
 		// Allow everything for Tor
 		script.append(ipTablesPath);			
@@ -508,7 +500,9 @@ public class TorTransProxy implements TorServiceConstants {
 		script.append(" -m owner --uid-owner ");
 		script.append(torUid);
 		script.append(" -j ACCEPT");
-		script.append(" || exit\n");
+		
+		shell.add(new SimpleCommand(script.toString()));
+		script = new StringBuilder();
 		
     	// Set up port redirection    	
 		script.append(ipTablesPath);		
@@ -521,7 +515,9 @@ public class TorTransProxy implements TorServiceConstants {
 		script.append(" -m tcp --syn");
 		script.append(" -j REDIRECT --to-ports ");
 		script.append(TOR_TRANSPROXY_PORT);
-		script.append(" || exit\n");
+
+		shell.add(new SimpleCommand(script.toString()));
+		script = new StringBuilder();
 		
 		// Same for DNS
 		script.append(ipTablesPath);
@@ -535,7 +531,10 @@ public class TorTransProxy implements TorServiceConstants {
 		script.append(STANDARD_DNS_PORT);
 		script.append(" -j REDIRECT --to-ports ");
 		script.append(TOR_DNS_PORT);
-		script.append(" || exit\n");
+
+		shell.add(new SimpleCommand(script.toString()));
+		script = new StringBuilder();
+
 		
 		/**
 		int[] ports = {TOR_DNS_PORT,TOR_TRANSPROXY_PORT,PORT_SOCKS,PORT_HTTP};
@@ -564,8 +563,10 @@ public class TorTransProxy implements TorServiceConstants {
 		script.append(" -p tcp");
 		script.append(" -o lo");
 		script.append(" -j ACCEPT");
-		script.append(" || exit\n");
 		
+		shell.add(new SimpleCommand(script.toString()));
+		script = new StringBuilder();
+
 		
 		if (TorService.ENABLE_DEBUG_LOG)
 		{
@@ -579,8 +580,10 @@ public class TorTransProxy implements TorServiceConstants {
 			script.append(" -j LOG");
 			script.append(" --log-prefix='ORBOT_DNSLEAK_PROTECTION'");
 			script.append(" --log-uid");
-			script.append(" || exit\n");
-			
+
+			shell.add(new SimpleCommand(script.toString()));
+			script = new StringBuilder();
+
 			script.append(ipTablesPath);			
 			script.append(" -t filter");
 			script.append(" -A ").append(srcChainName);
@@ -588,7 +591,10 @@ public class TorTransProxy implements TorServiceConstants {
 			script.append(" -j LOG");
 			script.append(" --log-prefix='ORBOT_TCPLEAK_PROTECTION'");
 			script.append(" --log-uid");
-			script.append(" || exit\n");
+
+			shell.add(new SimpleCommand(script.toString()));
+			script = new StringBuilder();
+
 		}
 		
 		
@@ -601,7 +607,9 @@ public class TorTransProxy implements TorServiceConstants {
 		script.append(" -p tcp");
 		script.append(" ! -d 127.0.0.1"); //allow access to localhost
 		script.append(" -j REJECT");
-		script.append(" || exit\n");
+
+		shell.add(new SimpleCommand(script.toString()));
+		script = new StringBuilder();
 
 		// Reject all other outbound UDP packets
 		script.append(ipTablesPath);
@@ -612,16 +620,10 @@ public class TorTransProxy implements TorServiceConstants {
 		script.append(" -p udp");
 		script.append(" ! -d 127.0.0.1"); //allow access to localhost
 		script.append(" -j REJECT");
-		script.append(" || exit\n");
+
+		shell.add(new SimpleCommand(script.toString()));
 		
-		String[] cmdExec = {script.toString()};    	
-    	
-		code = TorServiceUtils.doShellCommand(cmdExec, res, runRoot, waitFor);
-		String msg = res.toString();
-	
-		logMessage("Exec resp: errCode=" + code + ";resp=" + msg);
-		
-    	return code;
+    	return 0;
 	}	
 	
 

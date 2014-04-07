@@ -44,9 +44,8 @@ public interface TorServiceConstants {
 	public final static String SHELL_CMD_CP = "cp";
 	
 
-	public final static String CHMOD_EXE_VALUE = "700";
+	public final static String CHMOD_EXE_VALUE = "770";
 
-	
 	public final static int FILE_WRITE_BUFFER_SIZE = 2048;
 	
 	//HTTP Proxy server port
@@ -87,7 +86,7 @@ public interface TorServiceConstants {
     public static final String PREF_BINARY_PRIVOXY_VERSION_INSTALLED = "BINARY_PRIVOXY_VERSION_INTALLED";
     
     //obfsproxy 
-    public static final String OBFSPROXY_ASSET_KEY = "libobfsproxy.so";
+    public static final String OBFSPROXY_ASSET_KEY = "obfsproxy";
     
 	public static final int MESSAGE_TRAFFIC_COUNT = 5;
 	

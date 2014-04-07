@@ -118,7 +118,7 @@ public class TorServiceUtils implements TorServiceConstants {
 
 	}
 	
-	
+	/**
 	public static int doShellCommand(String[] cmds, StringBuilder log, boolean runAsRoot, boolean waitFor) throws Exception
 	{
 		
@@ -222,4 +222,5 @@ public class TorServiceUtils implements TorServiceConstants {
         return exitCode;
 
 	}
+	**/
 }

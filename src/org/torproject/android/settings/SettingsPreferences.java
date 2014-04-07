@@ -5,6 +5,7 @@ package org.torproject.android.settings;
 
 import java.util.Locale;
 
+import org.sufficientlysecure.rootcommands.RootCommands;
 import org.torproject.android.R;
 import org.torproject.android.service.TorServiceUtils;
 
@@ -121,22 +122,8 @@ public class SettingsPreferences
 
 			if (prefRequestRoot.isChecked())
 			{
-				//boolean canRoot = TorServiceUtils.isRootPossible();
-				boolean canRoot;
-				
-				try
-				{
-					StringBuilder res = new StringBuilder();
-					String[] cmd = {"ls /data/data"}; //only root can do this!
-					int code = TorServiceUtils.doShellCommand(cmd, res, true, true);		
-					canRoot = code > -1;
-				}
-				catch (Exception e)
-				{
-					//probably not root
-					canRoot = false;
-				}
-				
+				boolean canRoot = RootCommands.rootAccessGiven();
+			
 				getPreferenceScreen().getPreference(TRANSPROXY_GROUP_IDX).setEnabled(canRoot);
 				prefRequestRoot.setChecked(canRoot);
 
