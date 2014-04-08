@@ -1137,7 +1137,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
     {
         
     	Intent iTorService = new Intent(this, TorService.class);
-    	
+
     	getApplication().getApplicationContext().startService(iTorService);
         
          //since its auto create, we prob don't ever need to call startService

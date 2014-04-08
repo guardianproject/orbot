@@ -244,5 +244,8 @@
   
     <string name="menu_verify_browser">Check Browser</string>
     <string name="menu_use_chatsecure">Use ChatSecure</string>
+
+    <string name="permission_manage_tor_label">Manage Tor</string>
+    <string name="permission_manage_tor_description">Enable this app to control the Tor service</string>
   
 </resources>
