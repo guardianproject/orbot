@@ -19,13 +19,9 @@ public class TorTransProxy implements TorServiceConstants {
 	private TorService mTorService = null;
 	private File mFileXtables = null;
 	
-	public TorTransProxy (TorService torService)
+	public TorTransProxy (TorService torService, File fileXTables)
 	{
 		mTorService = torService;
-	}
-	
-	public void setXTables (File fileXTables)
-	{
 		mFileXtables = fileXTables;
 	}
 	
@@ -395,6 +391,8 @@ public class TorTransProxy implements TorServiceConstants {
 			}		
 		}		
 		
+		fixTransproxyLeak (context);
+		
 		return 1;
     }	
 	
@@ -469,22 +467,41 @@ public class TorTransProxy implements TorServiceConstants {
     	script.append(" -t filter");		
     	script.append(" -F ").append(chainName); //delete previous user-defined chain
     	
-    	shell.add(new SimpleCommand(script.toString()));
+    	SimpleCommand cmd = new SimpleCommand(script.toString());
     	
-    	return 0;
+    	shell.add(cmd);
+    	
+    	return cmd.getExitCode();
+	}
+	
+	public int fixTransproxyLeak (Context context) throws Exception 
+	{
+		String ipTablesPath = getIpTablesPath(context);
+		
+    	Shell shell = Shell.startRootShell();
+    	
+    	StringBuilder script = new StringBuilder();
+    	script.append(ipTablesPath);
+		script.append(" -I OUTPUT ! -o lo ! -d 127.0.0.1 ! -s 127.0.0.1 -p tcp -m tcp --tcp-flags ACK,FIN ACK,FIN -j DROP");
+		shell.add(new SimpleCommand(script.toString()));
+		
+		script = new StringBuilder();
+		script.append(ipTablesPath);
+		script.append(" -I OUTPUT ! -o lo ! -d 127.0.0.1 ! -s 127.0.0.1 -p tcp -m tcp --tcp-flags ACK,RST ACK,RST -j DROP");
+		shell.add(new SimpleCommand(script.toString()));
+		
+		return 1;
+		 
 	}
 	
 	public int setTransparentProxyingAll(Context context) throws Exception 
 	{
 		
-		boolean runRoot = true;
-    	boolean waitFor = true;
     	
 		//redirectDNSResolvConf(); //not working yet
 		
 		String ipTablesPath = getIpTablesPath(context);
 		
-    	
     	Shell shell = Shell.startRootShell();
     	
     	int torUid = context.getApplicationInfo().uid;
@@ -563,7 +580,7 @@ public class TorTransProxy implements TorServiceConstants {
 		script.append(" -p tcp");
 		script.append(" -o lo");
 		script.append(" -j ACCEPT");
-		
+
 		shell.add(new SimpleCommand(script.toString()));
 		script = new StringBuilder();
 
@@ -596,8 +613,7 @@ public class TorTransProxy implements TorServiceConstants {
 			script = new StringBuilder();
 
 		}
-		
-		
+
 		// Reject all other outbound TCP packets
 		script.append(ipTablesPath);
 		script.append(" -t filter");
@@ -621,9 +637,12 @@ public class TorTransProxy implements TorServiceConstants {
 		script.append(" ! -d 127.0.0.1"); //allow access to localhost
 		script.append(" -j REJECT");
 
-		shell.add(new SimpleCommand(script.toString()));
+		SimpleCommand cmd = new SimpleCommand(script.toString());
+		shell.add(cmd);
 		
-    	return 0;
+		fixTransproxyLeak (context);
+		
+    	return cmd.getExitCode();
 	}	
 	
 
