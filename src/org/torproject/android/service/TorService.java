@@ -525,10 +525,26 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
 		fileXtables = new File(appBinHome, IPTABLES_ASSET_KEY);
 		
-		if (!fileTorRc.exists())
+		SharedPreferences prefs = getSharedPrefs(getApplicationContext());
+		String version = prefs.getString(PREF_BINARY_TOR_VERSION_INSTALLED,null);
+		
+		if (version == null || (!version.equals(BINARY_TOR_VERSION)))
 		{
+			stopTor();
+			
 			TorResourceInstaller installer = new TorResourceInstaller(this, appBinHome); 
 			boolean success = installer.installResources();
+			
+			prefs.edit().putString(PREF_BINARY_TOR_VERSION_INSTALLED,BINARY_TOR_VERSION).commit();
+		}
+		else if (!fileTorRc.exists())
+		{
+			stopTor();
+			
+			TorResourceInstaller installer = new TorResourceInstaller(this, appBinHome); 
+			boolean success = installer.installResources();
+
+			prefs.edit().putString(PREF_BINARY_TOR_VERSION_INSTALLED,BINARY_TOR_VERSION).commit();
 				
 		}
 		
@@ -608,8 +624,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	
  		if (mTransProxy == null)
  		{
- 			mTransProxy = new TorTransProxy(this);
- 			mTransProxy.setXTables(fileXtables);
+ 			mTransProxy = new TorTransProxy(this, fileXtables);
+ 			
+ 			
  		}
 	 		
      	logMessage ("Transparent Proxying: enabling...");
@@ -668,7 +685,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
      	logMessage ("Transparent Proxying: disabling...");
 
  		if (mTransProxy == null)
- 			mTransProxy = new TorTransProxy(this);
+ 			mTransProxy = new TorTransProxy(this, fileXtables);
  		
  		mTransProxy.clearTransparentProxyingAll(this);
 	    
@@ -1156,9 +1173,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	
     public IBinder onBind(Intent intent) {
         
-    	
     	_torInstance = this;
-    	
     	
     	Thread thread = new Thread ()
     	{
