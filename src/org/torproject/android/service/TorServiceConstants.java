@@ -4,12 +4,11 @@ package org.torproject.android.service;
 
 public interface TorServiceConstants {
 
-
 	public final static String TOR_APP_USERNAME = "org.torproject.android";
 	public final static String ORWEB_APP_USERNAME = "info.guardianproject.browser";
 	
-	
-	//home directory of Android application
+	public final static String DIRECTORY_TOR_BINARY = "bins";
+	public final static String DIRECTORY_TOR_DATA = "data";
 	
 	//name of the tor C binary
 	public final static String TOR_ASSET_KEY = "tor";	
