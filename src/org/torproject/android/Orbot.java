@@ -632,9 +632,9 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 		else
 		{
 			AlertDialog aDialog = new AlertDialog.Builder(Orbot.this)
-              .setIcon(R.drawable.icon)
-		      .setTitle("Install apps?")
-		      .setMessage("It doesn't seem like you have Orweb installed. Want help with that, or should we just open the browser?")
+              .setIcon(R.drawable.onion)
+		      .setTitle(R.string.install_apps_)
+		      .setMessage(R.string.it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_)
 		      .setPositiveButton(android.R.string.ok, new OnClickListener ()
 		      {
 
@@ -759,7 +759,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
              if (button)
              {
                             aDialog = new AlertDialog.Builder(Orbot.this)
-                     .setIcon(R.drawable.icon)
+                     .setIcon(R.drawable.onion)
              .setTitle(title)
              .setMessage(msg)
              .setPositiveButton(android.R.string.ok, null)
@@ -768,7 +768,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
              else
              {
                      aDialog = new AlertDialog.Builder(Orbot.this)
-                     .setIcon(R.drawable.icon)
+                     .setIcon(R.drawable.onion)
              .setTitle(title)
              .setMessage(msg)
              .show();
@@ -785,28 +785,32 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
     {
             try
             {
+            		int newTorStatus = -1;
+            	
                     //if the serivce is bound, query it for the curren status value (int)
                     if (mService != null)
-                            torStatus = mService.getStatus();
+                    	newTorStatus = mService.getStatus();
                     
                     //now update the layout_main UI based on the status
                     if (imgStatus != null)
                     {
                             
-                            if (torStatus == TorServiceConstants.STATUS_ON)
+                            if (newTorStatus == TorServiceConstants.STATUS_ON)
                             {
-                                    imgStatus.setImageResource(R.drawable.toron);
+	                            	if (torStatus != newTorStatus)
+	                            	{
+	                                    imgStatus.setImageResource(R.drawable.toron);
+	                            		mViewMain.setBackgroundResource(R.drawable.onionrootonly);                            	                                    
+	                                    String lblMsg = getString(R.string.status_activated);                                     
+	                                    lblStatus.setText(lblMsg);
 
-                            		mViewMain.setBackgroundResource(R.drawable.onionrootonly);
-                           //         hideProgressDialog();
-                                    
-                                    String lblMsg = getString(R.string.status_activated);
-                                     
-                                    lblStatus.setText(lblMsg);
+	                                    if (mItemOnOff != null)
+	                                            mItemOnOff.setTitle(R.string.menu_stop);
+	                                    
+	                            	}
                                     
                                     if (torServiceMsg != null && torServiceMsg.length() > 0)
                                     {
-                                    //        showAlert("Update", torServiceMsg,xte
                                     	appendLogTextAndScroll(torServiceMsg);
                                     }
                                     
@@ -825,9 +829,6 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                                             
                                     }
                                     
-                                    if (mItemOnOff != null)
-                                            mItemOnOff.setTitle(R.string.menu_stop);
-                                    
                                     
                                     if (autoStartFromIntent)
                                     {
@@ -836,38 +837,38 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                                     }
 
                             }
-                            else if (torStatus == TorServiceConstants.STATUS_CONNECTING)
+                            else if (newTorStatus == TorServiceConstants.STATUS_CONNECTING)
                             {
-                                    
+                            	if (torStatus != newTorStatus)
+                            	{
                                     imgStatus.setImageResource(R.drawable.torstarting);
-
                             		mViewMain.setBackgroundResource(R.drawable.onionrootonlygold);
-                            		
-                                    if (lblStatus != null && torServiceMsg != null)
-                                    	if (torServiceMsg.indexOf('%')!=-1)
-                                    		lblStatus.setText(torServiceMsg);
-                                    
-                                    appendLogTextAndScroll(torServiceMsg);
-                                    
+
                                     if (mItemOnOff != null)
                                             mItemOnOff.setTitle(R.string.menu_stop);
+                            	}
+                            	
+                                if (lblStatus != null && torServiceMsg != null)
+                                	if (torServiceMsg.indexOf('%')!=-1)
+                                		lblStatus.setText(torServiceMsg);
+                                
+                                appendLogTextAndScroll(torServiceMsg);
+                                
                                             
                             }
-                            else
+                            else if (torStatus != newTorStatus)
                             {
-
-
-                                  //  hideProgressDialog();
-                            		mViewMain.setBackgroundResource(R.drawable.onionrootonlygrey);
-                            	
-                                    imgStatus.setImageResource(R.drawable.toroff);
-                                    lblStatus.setText(getString(R.string.status_disabled) + "\n" + getString(R.string.press_to_start));
-                                    
-                                    if (mItemOnOff != null)
-                                            mItemOnOff.setTitle(R.string.menu_start);
-                                    
+                        		mViewMain.setBackgroundResource(R.drawable.onionrootonlygrey);                            	
+                                imgStatus.setImageResource(R.drawable.toroff);
+                                lblStatus.setText(getString(R.string.status_disabled) + "\n" + getString(R.string.press_to_start));
+                                
+                                if (mItemOnOff != null)
+                                        mItemOnOff.setTitle(R.string.menu_start);
+                                
                             }
                     }
+                    
+                    torStatus = newTorStatus;
                             
             }
             catch (RemoteException e)

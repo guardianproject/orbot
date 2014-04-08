@@ -67,7 +67,7 @@ public class TipsAndTricks extends Activity implements TorConstants {
 		txtTitle.setText(title);
 		 
 		   ImageView img = (ImageView) findViewById(R.id.orbot_image);
-	    	img.setImageResource(R.drawable.icon);
+	    	img.setImageResource(R.drawable.onion);
 	    
 	    	
         Button btnLink = (Button)findViewById(R.id.WizardRootButtonInstallGibberbot);
@@ -183,7 +183,7 @@ public class TipsAndTricks extends Activity implements TorConstants {
         
         btn2.setText(getString(R.string.btn_finish));
     	btn1.setVisibility(Button.VISIBLE);
-    	img.setImageResource(R.drawable.icon);
+    	img.setImageResource(R.drawable.onion);
     	
     	btn1.setOnClickListener(new View.OnClickListener() {
 			
