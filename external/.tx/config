@@ -8,3 +8,9 @@ host = https://www.transifex.com
 source_file = ../res/values/strings.xml
 source_lang = en
 
+[orbot.DESCRIPTION]
+file_filter=../docs/play/description-<lang>.txt
+host = https://www.transifex.com
+source_file = ../docs/play/description.txt
+source_lang = en
+

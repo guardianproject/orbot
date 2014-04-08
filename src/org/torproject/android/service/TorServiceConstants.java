@@ -7,7 +7,7 @@ public interface TorServiceConstants {
 	public final static String TOR_APP_USERNAME = "org.torproject.android";
 	public final static String ORWEB_APP_USERNAME = "info.guardianproject.browser";
 	
-	public final static String DIRECTORY_TOR_BINARY = "bins";
+	public final static String DIRECTORY_TOR_BINARY = "bin";
 	public final static String DIRECTORY_TOR_DATA = "data";
 	
 	//name of the tor C binary
@@ -79,10 +79,10 @@ public interface TorServiceConstants {
     public static final int DISABLE_TOR_MSG = 3;
     public static final int LOG_MSG = 4;
     
-    public static final String BINARY_TOR_VERSION = "0.2.4.21-openssl1.0.1g-installfix";
+    public static final String BINARY_TOR_VERSION = "0.2.4.21-openssl1.0.1g-if6";
     public static final String BINARY_PRIVOXY_VERSION = "3.0.12";
-    public static final String PREF_BINARY_TOR_VERSION_INSTALLED = "BINARY_TOR_VERSION_INTALLED";
-    public static final String PREF_BINARY_PRIVOXY_VERSION_INSTALLED = "BINARY_PRIVOXY_VERSION_INTALLED";
+    public static final String PREF_BINARY_TOR_VERSION_INSTALLED = "BINARY_TOR_VERSION_INSTALLED";
+    public static final String PREF_BINARY_PRIVOXY_VERSION_INSTALLED = "BINARY_PRIVOXY_VERSION_INSTALLED";
     
     //obfsproxy 
     public static final String OBFSPROXY_ASSET_KEY = "obfsproxy";

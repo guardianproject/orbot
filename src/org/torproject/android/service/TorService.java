@@ -270,6 +270,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	 */
 	public int onStartCommand(Intent intent, int flags, int startId) {
 	
+		
     	appBinHome = getDir(DIRECTORY_TOR_BINARY,Application.MODE_PRIVATE);
     	appCacheHome = getDir(DIRECTORY_TOR_DATA,Application.MODE_PRIVATE);
     	
@@ -517,10 +518,14 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
 		SharedPreferences prefs = getSharedPrefs(getApplicationContext());
 		String version = prefs.getString(PREF_BINARY_TOR_VERSION_INSTALLED,null);
+
+		logNotice("checking binary version: " + version);
 		
 		if (version == null || (!version.equals(BINARY_TOR_VERSION)))
 		{
 			stopTor();
+			
+			logNotice("upgrading binaries to latest version: " + BINARY_TOR_VERSION);
 			
 			TorResourceInstaller installer = new TorResourceInstaller(this, appBinHome); 
 			boolean success = installer.installResources();
@@ -531,6 +536,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		else if (!fileTorRc.exists())
 		{
 			stopTor();
+
+			logNotice("upgrading binaries to latest version: " + BINARY_TOR_VERSION);
 			
 			TorResourceInstaller installer = new TorResourceInstaller(this, appBinHome); 
 			boolean success = installer.installResources();

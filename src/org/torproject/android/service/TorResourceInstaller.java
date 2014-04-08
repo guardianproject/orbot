@@ -37,6 +37,25 @@ public class TorResourceInstaller implements TorServiceConstants {
 		this.context = context;
 	}
 	
+	public void deleteDirectory(File file) {
+	    if( file.exists() ) {
+	        if (file.isDirectory()) {
+	            File[] files = file.listFiles();
+	            for(int i=0; i<files.length; i++) {
+	                if(files[i].isDirectory()) {
+	                    deleteDirectory(files[i]);
+	                }
+	                else {
+	                    files[i].delete();
+	                }
+	            }
+	        }
+	            file.delete();
+	    }
+	}
+	
+	private final static String COMMAND_RM_FORCE = "rm -f ";
+	
 	//		
 	/*
 	 * Extract the Tor resources from the APK file using ZIP
@@ -47,43 +66,45 @@ public class TorResourceInstaller implements TorServiceConstants {
 		InputStream is;
         File outFile;
         
+        deleteDirectory(installFolder);
+        
         installFolder.mkdirs();
         
         Shell shell = Shell.startShell(new ArrayList<String>(),installFolder.getAbsolutePath());
         
 		is = context.getResources().openRawResource(R.raw.torrc);
 		outFile = new File(installFolder, TORRC_ASSET_KEY);
-		shell.add(new SimpleCommand("rm " + outFile.getAbsolutePath())).waitForFinish();
+		shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
 		streamToFile(is,outFile, false, false);
 
 		is = context.getResources().openRawResource(R.raw.torrctether);		
 		outFile = new File(installFolder, TORRC_TETHER_KEY);
-		shell.add(new SimpleCommand("rm " + outFile.getAbsolutePath())).waitForFinish();
+		shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
 		streamToFile(is, outFile, false, false);
 
 		is = context.getResources().openRawResource(R.raw.privoxy_config);
 		outFile = new File(installFolder, PRIVOXYCONFIG_ASSET_KEY);
-		shell.add(new SimpleCommand("rm " + outFile.getAbsolutePath())).waitForFinish();
+		shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
 		streamToFile(is,outFile, false, false);
 	
 		is = context.getResources().openRawResource(R.raw.tor);
 		outFile = new File(installFolder, TOR_ASSET_KEY);
-		shell.add(new SimpleCommand("rm " + outFile.getAbsolutePath())).waitForFinish();
+		shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
 		streamToFile(is,outFile, false, true);
 	
 		is = context.getResources().openRawResource(R.raw.privoxy);
 		outFile = new File(installFolder, PRIVOXY_ASSET_KEY);
-		shell.add(new SimpleCommand("rm " + outFile.getAbsolutePath())).waitForFinish();
+		shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
 		streamToFile(is,outFile, false, true);
 	
 		is = context.getResources().openRawResource(R.raw.obfsproxy);
 		outFile = new File(installFolder, OBFSPROXY_ASSET_KEY);
-		shell.add(new SimpleCommand("rm " + outFile.getAbsolutePath())).waitForFinish();
+		shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
 		streamToFile(is,outFile, false, true);
 		
 		is = context.getResources().openRawResource(R.raw.xtables);
 		outFile = new File(installFolder, IPTABLES_ASSET_KEY);
-		shell.add(new SimpleCommand("rm " + outFile.getAbsolutePath())).waitForFinish();
+		shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
 		streamToFile(is,outFile, false, true);
 	
 		return true;
@@ -136,8 +157,7 @@ public class TorResourceInstaller implements TorServiceConstants {
 
         int bytecount;
 
-
-    	OutputStream stmOut = new FileOutputStream(outFile, append);
+    	OutputStream stmOut = new FileOutputStream(outFile.getAbsolutePath(), append);
     	ZipInputStream zis = null;
     	
     	if (zip)
