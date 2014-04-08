@@ -632,7 +632,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 		else
 		{
 			AlertDialog aDialog = new AlertDialog.Builder(Orbot.this)
-              .setIcon(R.drawable.onion)
+              .setIcon(R.drawable.onion32)
 		      .setTitle(R.string.install_apps_)
 		      .setMessage(R.string.it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_)
 		      .setPositiveButton(android.R.string.ok, new OnClickListener ()
@@ -759,7 +759,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
              if (button)
              {
                             aDialog = new AlertDialog.Builder(Orbot.this)
-                     .setIcon(R.drawable.onion)
+                     .setIcon(R.drawable.onion32)
              .setTitle(title)
              .setMessage(msg)
              .setPositiveButton(android.R.string.ok, null)
@@ -768,7 +768,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
              else
              {
                      aDialog = new AlertDialog.Builder(Orbot.this)
-                     .setIcon(R.drawable.onion)
+                     .setIcon(R.drawable.onion32)
              .setTitle(title)
              .setMessage(msg)
              .show();
