@@ -393,6 +393,8 @@ public class TorTransProxy implements TorServiceConstants {
 		
 		fixTransproxyLeak (context);
 		
+		shell.close();
+		
 		return 1;
     }	
 	
@@ -431,6 +433,8 @@ public class TorTransProxy implements TorServiceConstants {
 			
     	}
 		
+
+		shell.close();
 		
 		return 0;
 	}
@@ -471,7 +475,11 @@ public class TorTransProxy implements TorServiceConstants {
     	
     	shell.add(cmd);
     	
-    	return cmd.getExitCode();
+    	int exitCode = cmd.getExitCode();
+    	
+    	shell.close();
+		
+    	return exitCode;
 	}
 	
 	public int fixTransproxyLeak (Context context) throws Exception 
@@ -489,6 +497,8 @@ public class TorTransProxy implements TorServiceConstants {
 		script.append(ipTablesPath);
 		script.append(" -I OUTPUT ! -o lo ! -d 127.0.0.1 ! -s 127.0.0.1 -p tcp -m tcp --tcp-flags ACK,RST ACK,RST -j DROP");
 		shell.add(new SimpleCommand(script.toString()));
+		
+		shell.close();
 		
 		return 1;
 		 
@@ -642,7 +652,11 @@ public class TorTransProxy implements TorServiceConstants {
 		
 		fixTransproxyLeak (context);
 		
-    	return cmd.getExitCode();
+		int exitCode = cmd.getExitCode();
+		
+		shell.close();
+		
+    	return exitCode;
 	}	
 	
 

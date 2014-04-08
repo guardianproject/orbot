@@ -434,10 +434,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	}
 	
 	
-    
     private void killTorProcess () throws Exception
     {
-    	StringBuilder log = new StringBuilder();
     	int procId = -1;
     	
     	if (conn != null)
@@ -457,7 +455,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			conn = null;
 		}
     	
-    	int killDelayMs = 300;
     	int maxTry = 5;
     	int currTry = 0;
     	
@@ -481,7 +478,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			{
 				
 				logNotice("Found Privoxy PID=" + procId + " - killing now...");
-	
 				tb.killAll(filePrivoxy.getCanonicalPath());
 			}
 			
@@ -489,14 +485,11 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			{
 				
 				logNotice("Found ObfsProxy PID=" + procId + " - killing now...");
-	
 				tb.killAll(fileObfsProxy.getCanonicalPath());
 			}
 		}
-		else
-		{
-			throw new Exception("*** Unable to kill existing Tor process. Please REBOOT your device. ***");
-		}
+		
+		shell.close();
     }
    
     private void logNotice (String msg)
@@ -569,6 +562,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			
 			File fileTest = new File(fileBin.getCanonicalPath());
 			logNotice(fileTest.getName() + ": POST: Is binary exec? " + fileTest.canExecute());
+			
+			shell.close();
     	}
     	
 		return fileBin.canExecute();
@@ -751,6 +746,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			}
 		}
 		
+		shell.close();
+		
 		if (procId == -1)
 		{
 
@@ -809,7 +806,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			
     		logNotice("Privoxy process id=" + privoxyProcId);
 			
-    		
+    		shell.close();
     		
     }
     
