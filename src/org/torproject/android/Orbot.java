@@ -3,8 +3,6 @@
 
 package org.torproject.android;
 
-import static org.torproject.android.TorConstants.TAG;
-
 import java.util.Locale;
 
 import org.torproject.android.service.ITorService;
@@ -36,7 +34,6 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.RemoteException;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.view.ActionMode;
 import android.text.ClipboardManager;
 import android.text.Layout;
 import android.text.method.ScrollingMovementMethod;
@@ -785,6 +782,9 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
     {
             try
             {
+            	if (torServiceMsg == null || torServiceMsg.length()==0)
+            		torStatus = -1; //reset Tor status
+            	
             		int newTorStatus = -1;
             	
                     //if the serivce is bound, query it for the curren status value (int)
