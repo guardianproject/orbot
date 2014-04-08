@@ -63,13 +63,9 @@ public class Permissions extends Activity implements TorConstants {
 	
 	private void stepFourRoot(){
 				
-		String title = context.getString(R.string.wizard_permissions_title);
 		String msg1 = context.getString(R.string.wizard_permissions_root_msg1);
 		String msg2 = context.getString(R.string.wizard_permissions_root_msg2);
 		
-		TextView txtTitle  = ((TextView)findViewById(R.id.WizardTextTitle));
-		txtTitle.setText(title);
-        
         TextView txtBody1 = ((TextView)findViewById(R.id.WizardTextBody1));
 	    txtBody1.setText(msg1);
 		
@@ -174,9 +170,8 @@ public class Permissions extends Activity implements TorConstants {
 		String title = context.getString(R.string.wizard_permissions_title);
 		String msg = context.getString(R.string.wizard_permissions_no_root_msg);
 		
-		TextView txtTitle  = ((TextView)findViewById(R.id.WizardTextTitle));
-		txtTitle.setText(title);
-        
+		setTitle(title);
+		
         TextView txtBody = ((TextView)findViewById(R.id.WizardTextBody1));
 		txtBody.setText(msg);
 		
@@ -184,9 +179,6 @@ public class Permissions extends Activity implements TorConstants {
         Button btn2 = ((Button)findViewById(R.id.btnWizard2));
         btn2.setEnabled(true);
    
-        ImageView img = (ImageView) findViewById(R.id.orbot_image);
-    	img.setImageResource(R.drawable.warning);
-    
         TextView txtBody2 = ((TextView)findViewById(R.id.WizardTextBody2));
 		txtBody2.setVisibility(TextView.GONE);
 		

@@ -108,8 +108,8 @@ public class ConfigureTransProxy extends Activity implements TorConstants {
 	private void stepSix(){
 		
 			String title = context.getString(R.string.wizard_transproxy_title);
-			TextView txtTitle  = ((TextView)findViewById(R.id.WizardTextTitle));
-			txtTitle.setText(title);
+			
+			setTitle(title);
 			
 			Button back = ((Button)findViewById(R.id.btnWizard1));
 		    Button next = ((Button)findViewById(R.id.btnWizard2));

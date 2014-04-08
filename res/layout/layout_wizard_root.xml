@@ -4,25 +4,7 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-            
-<RelativeLayout 
-	android:layout_width="fill_parent" 
-	android:layout_height="wrap_content" 
-	android:id="@+id/relativeLayout1" 
-	android:layout_gravity="center_horizontal"
-	android:background="#000000">
-         <TextView android:textSize="10pt" 
-        	android:textColor="#FFFFFF"
-        	android:layout_alignParentTop="true"
-       	 	android:layout_height="wrap_content" 
-        	android:id="@+id/WizardTextTitle" 
-        	android:layout_width="wrap_content" 
-        	android:fadingEdge="vertical" 
-        	android:text="TITLE" 
-        	android:singleLine="true" 
-          	android:padding="20px" android:layout_centerInParent="true"> 
-        </TextView>
-    </RelativeLayout>    
+              
 <TableLayout android:id="@+id/TableLayout01" android:stretchColumns="*" android:layout_height="fill_parent" android:layout_width="wrap_content">
 
 <TableRow android:layout_margin="10dip" android:id="@+id/TableRow01" android:layout_weight="1" android:layout_width="fill_parent" android:layout_height="fill_parent">

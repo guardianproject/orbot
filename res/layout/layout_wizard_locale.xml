@@ -14,7 +14,7 @@
         	android:textColor="#FFFFFF"
         	android:layout_alignParentTop="true"
        	 	android:layout_height="wrap_content" 
-        	android:id="@+id/WizardTextTitle" 
+        	android:id="@+id/WizardLocaleTitle" 
         	android:layout_width="wrap_content" 
         	android:fadingEdge="vertical" 
         	android:text="@string/wizard_locale_title" 
