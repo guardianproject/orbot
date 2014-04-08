@@ -46,7 +46,7 @@ public interface TorServiceConstants {
 
 	public final static String CHMOD_EXE_VALUE = "770";
 
-	public final static int FILE_WRITE_BUFFER_SIZE = 2048;
+	public final static int FILE_WRITE_BUFFER_SIZE = 1024;
 	
 	//HTTP Proxy server port
 	public final static int PORT_HTTP = 8118; //just like Privoxy!
@@ -80,7 +80,7 @@ public interface TorServiceConstants {
     public static final int DISABLE_TOR_MSG = 3;
     public static final int LOG_MSG = 4;
     
-    public static final String BINARY_TOR_VERSION = "0.2.4.21-openssl1.0.1g";
+    public static final String BINARY_TOR_VERSION = "0.2.4.21-openssl1.0.1g-installfix";
     public static final String BINARY_PRIVOXY_VERSION = "3.0.12";
     public static final String PREF_BINARY_TOR_VERSION_INSTALLED = "BINARY_TOR_VERSION_INTALLED";
     public static final String PREF_BINARY_PRIVOXY_VERSION_INSTALLED = "BINARY_PRIVOXY_VERSION_INTALLED";

@@ -3,19 +3,21 @@
 
 package org.torproject.android.service;
 
-import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.concurrent.TimeoutException;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+import org.sufficientlysecure.rootcommands.Shell;
+import org.sufficientlysecure.rootcommands.command.SimpleCommand;
 import org.torproject.android.R;
 import org.torproject.android.TorConstants;
 
@@ -39,7 +41,7 @@ public class TorResourceInstaller implements TorServiceConstants {
 	/*
 	 * Extract the Tor resources from the APK file using ZIP
 	 */
-	public boolean installResources () throws IOException, FileNotFoundException
+	public boolean installResources () throws IOException, FileNotFoundException, TimeoutException
 	{
 		
 		InputStream is;
@@ -48,32 +50,48 @@ public class TorResourceInstaller implements TorServiceConstants {
         if (!installFolder.exists())
         	installFolder.mkdirs();
         
+        Shell shell = Shell.startShell(new ArrayList<String>(),installFolder.getCanonicalPath());
+        
 		is = context.getResources().openRawResource(R.raw.torrc);
 		outFile = new File(installFolder, TORRC_ASSET_KEY);
+		if (outFile.exists())
+			shell.add(new SimpleCommand("rm " + outFile.getCanonicalPath())).waitForFinish();
 		streamToFile(is,outFile, false, false);
 
 		is = context.getResources().openRawResource(R.raw.torrctether);		
 		outFile = new File(installFolder, TORRC_TETHER_KEY);
+		if (outFile.exists())
+			shell.add(new SimpleCommand("rm " + outFile.getCanonicalPath())).waitForFinish();
 		streamToFile(is, outFile, false, false);
 
 		is = context.getResources().openRawResource(R.raw.privoxy_config);
 		outFile = new File(installFolder, PRIVOXYCONFIG_ASSET_KEY);
+		if (outFile.exists())
+			shell.add(new SimpleCommand("rm " + outFile.getCanonicalPath())).waitForFinish();
 		streamToFile(is,outFile, false, false);
 	
 		is = context.getResources().openRawResource(R.raw.tor);
 		outFile = new File(installFolder, TOR_ASSET_KEY);
+		if (outFile.exists())
+			shell.add(new SimpleCommand("rm " + outFile.getCanonicalPath())).waitForFinish();
 		streamToFile(is,outFile, false, true);
 	
 		is = context.getResources().openRawResource(R.raw.privoxy);
 		outFile = new File(installFolder, PRIVOXY_ASSET_KEY);
+		if (outFile.exists())
+			shell.add(new SimpleCommand("rm " + outFile.getCanonicalPath())).waitForFinish();
 		streamToFile(is,outFile, false, true);
 	
 		is = context.getResources().openRawResource(R.raw.obfsproxy);
 		outFile = new File(installFolder, OBFSPROXY_ASSET_KEY);
+		if (outFile.exists())
+			shell.add(new SimpleCommand("rm " + outFile.getCanonicalPath())).waitForFinish();
 		streamToFile(is,outFile, false, true);
 		
 		is = context.getResources().openRawResource(R.raw.xtables);
 		outFile = new File(installFolder, IPTABLES_ASSET_KEY);
+		if (outFile.exists())
+			shell.add(new SimpleCommand("rm " + outFile.getCanonicalPath())).waitForFinish();
 		streamToFile(is,outFile, false, true);
 	
 		return true;

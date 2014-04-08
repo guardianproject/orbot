@@ -25,7 +25,6 @@ import net.freehaven.tor.control.ConfigEntry;
 import net.freehaven.tor.control.EventHandler;
 import net.freehaven.tor.control.TorControlConnection;
 
-import org.sufficientlysecure.rootcommands.RootCommands;
 import org.sufficientlysecure.rootcommands.Shell;
 import org.sufficientlysecure.rootcommands.Toolbox;
 import org.sufficientlysecure.rootcommands.command.SimpleCommand;
@@ -55,7 +54,6 @@ import android.os.RemoteException;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationCompat.Builder;
 import android.util.Log;
-import android.widget.Toast;
 
 public class TorService extends Service implements TorServiceConstants, TorConstants, Runnable, EventHandler
 {
@@ -528,7 +526,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			TorResourceInstaller installer = new TorResourceInstaller(this, appBinHome); 
 			boolean success = installer.installResources();
 			
-			prefs.edit().putString(PREF_BINARY_TOR_VERSION_INSTALLED,BINARY_TOR_VERSION).commit();
+			if (success)
+				prefs.edit().putString(PREF_BINARY_TOR_VERSION_INSTALLED,BINARY_TOR_VERSION).commit();	
 		}
 		else if (!fileTorRc.exists())
 		{
@@ -537,7 +536,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			TorResourceInstaller installer = new TorResourceInstaller(this, appBinHome); 
 			boolean success = installer.installResources();
 
-			prefs.edit().putString(PREF_BINARY_TOR_VERSION_INSTALLED,BINARY_TOR_VERSION).commit();
+			if (success)
+				prefs.edit().putString(PREF_BINARY_TOR_VERSION_INSTALLED,BINARY_TOR_VERSION).commit();
 				
 		}
 		
@@ -556,7 +556,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	if (!fileBin.canExecute())
     	{
 			logNotice("(re)Setting permission on binary: " + fileBin.getCanonicalPath());	
-			Shell shell = Shell.startShell(new ArrayList<String>(), appBinHome.getAbsolutePath());
+			Shell shell = Shell.startShell(new ArrayList<String>(), appBinHome.getCanonicalPath());
 		
 			shell.add(new SimpleCommand("chmod " + CHMOD_EXE_VALUE + ' ' + fileBin.getCanonicalPath())).waitForFinish();
 			
@@ -588,7 +588,16 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     public void initTor () throws Exception
     {
     	
-		initBinaries();		
+    	try
+    	{
+    		initBinaries();
+    	}
+    	catch (IOException e)
+    	{
+    		logNotice("There was a problem installing the Tor binaries: " + e.getLocalizedMessage());
+    		Log.d(TAG,"error installing binaries",e);
+    		return;
+    	}
     	
     	updateSettings ();
     	
