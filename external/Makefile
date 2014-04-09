@@ -25,14 +25,14 @@ endif
 NDK_BASE ?= /opt/android-ndk
 NDK_PLATFORM_LEVEL ?= 5
 NDK_ABI=arm
-NDK_COMPILER_VERSION = 4.6
+NDK_COMPILER_VERSION = 4.8
 NDK_SYSROOT=$(NDK_BASE)/platforms/android-$(NDK_PLATFORM_LEVEL)/arch-$(NDK_ABI)
 APP_ABI=armeabi
 # NDK platform level, aka APP_PLATFORM, is equivalent to minSdkVersion
 APP_PLATFORM := android-$(shell sed -n 's,.*android:minSdkVersion="\([0-9][0-9]*\)".*,\1,p' \
 	$(EXTERNAL_ROOT)/../AndroidManifest.xml)
 NDK_SYSROOT=$(NDK_BASE)/platforms/$(APP_PLATFORM)/arch-$(NDK_ABI)
-NDK_TOOLCHAIN_VERSION=4.6
+NDK_TOOLCHAIN_VERSION=4.8
 NDK_UNAME := $(shell uname -s | tr '[A-Z]' '[a-z]')
 ifeq ($(NDK_ABI),x86)
  HOST = i686-linux-android
@@ -48,8 +48,8 @@ TARGET_ARCH_ABI = $(APP_ABI)
 include $(NDK_BASE)/toolchains/$(NDK_TOOLCHAIN)/setup.mk
 
 CC := $(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-gcc --sysroot=$(NDK_SYSROOT)
-CXX := $(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-g++
-CPP := $(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-cpp
+CXX := $(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-g++ --sysroot=$(NDK_SYSROOT)
+CPP := $(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-cpp --sysroot=$(NDK_SYSROOT)
 LD := $(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-ld
 AR := $(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-ar
 RANLIB := $(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-ranlib
@@ -74,6 +74,7 @@ endif
 	iptables iptables-clean \
 	tor tor-clean \
 	obfsproxy obfsproxy-clean \
+	liballium liballium-clean \
 	obfsclient obfsclient-clean \
 	privoxy privoxy-clean
 
@@ -246,6 +247,37 @@ obfsproxy-clean:
 		git clean -fdx
 
 #------------------------------------------------------------------------------#
+# liballium
+
+liballium/Makefile:
+	cd liballium && ./autogen.sh
+	cp config.sub liballium
+	cp config.guess liballium
+	cd liballium && \
+		CC="$(CC)" AR="$(AR)" RANLIB=$(RANLIB) CFLAGS="$(CFLAGS) -I$(EXTERNAL_ROOT)/include" LDFLAGS="$(LDFLAGS)" \
+			./configure \
+				--host=$(HOST) \
+				--disable-shared
+
+liballium-build-stamp: liballium/Makefile
+	$(MAKE) -C liballium all-am
+	touch liballium-build-stamp
+
+liballium: liballium-build-stamp
+	test -d lib || mkdir lib
+	test -d include || mkdir include
+	test -d include/allium || mkdir include/allium
+	cp liballium/.libs/liballium-1.0.a lib
+	cp liballium/include/* include/allium/
+
+liballium-clean:
+	-rm -f include/allium
+	-rm -f lib/liballium-1.0.a
+	-rm -f liballium-build-stamp
+	-cd liballium && \
+		git clean -fdx
+
+#------------------------------------------------------------------------------#
 # obfsclient
 
 
@@ -255,16 +287,23 @@ obfsclient/Makefile:
 	cp config.sub obfsclient
 	cp config.guess obfsclient
 	cd obfsclient && \
-                CPP="$(CPP)" CXX="$(CXX)" AR="$(AR)" RANLIB=$(RANLIB) CPPFLAGS="$(CFLAGS) -D_FORTIFY_SOURCE=2 -fPIE -fwrapv -fno-strict-aliasing -fno-strict-overflow" CXXFLAGS="$(CFLAGS) -D_FORTIFY_SOURCE=2 -fPIE -fwrapv -fno-strict-aliasing -fno-strict-overflow" LDFLAGS="$(LDFLAGS)" \
- LIBS="-L$(EXTERNAL_ROOT)/lib" CFLAGS="-I$(EXTERNAL_ROOT)/include -I$(EXTERNAL_ROOT)/include/event2" \
+                CC="$(CC)" CPP="$(CPP)" CXX="$(CXX)" AR="$(AR)" RANLIB=$(RANLIB) \
+ CFLAGS="$(CFLAGS) -I$(EXTERNAL_ROOT)/include -I$(EXTERNAL_ROOT)/include/event2" \
+ CPPFLAGS="$(CFLAGS) -D_FORTIFY_SOURCE=2 -fPIE -fwrapv -fno-strict-aliasing -fno-strict-overflow" \
+ CXXFLAGS="$(CFLAGS) -D_FORTIFY_SOURCE=2 -fPIE -fwrapv -fno-strict-aliasing -fno-strict-overflow -I$(NDK_BASE)/sources/cxx-stl/gnu-libstdc++/$(NDK_TOOLCHAIN_VERSION)/include -I$(NDK_BASE)/sources/cxx-stl/gnu-libstdc++/$(NDK_TOOLCHAIN_VERSION)/libs/$(APP_ABI)/include" \
+LDFLAGS="$(LDFLAGS)" \
+ libevent_CFLAGS="-I$(EXTERNAL_ROOT)/include" libevent_LIBS="-L$(EXTERNAL_ROOT)/lib" \
+ liballium_CFLAGS="-I$(EXTERNAL_ROOT)/include" liballium_LIBS="-L$(EXTERNAL_ROOT)/lib" \
+ LIBS="-L$(EXTERNAL_ROOT)/lib -levent -lallium-1.0 -L$(NDK_BASE)/sources/cxx-stl/gnu-libstdc++/$(NDK_TOOLCHAIN_VERSION)/libs/$(APP_ABI)/ -lgnustl_static" \
                         ./configure \
                                 --host=$(HOST) \
+                                --with-openssl=$(EXTERNAL_ROOT)
 
 obfsclient-build-stamp: obfsclient/Makefile
 	$(MAKE) -C obfsclient
 	touch obfsclient-build-stamp
 
-obfsclient: openssl libevent obfsclient-build-stamp
+obfsclient: openssl libevent liballium obfsclient-build-stamp
 	test -d bin || mkdir bin
 	cp obfsclient/obfsclient bin
 
@@ -333,17 +372,19 @@ jtorctl-clean:
 #in order to stop Android OS (older devices) from trying to compress/decompress it
 #this is related to a bug in compression of assets and resources > 1MB
 
-assets: tor privoxy jtorctl obfsproxy iptables
+assets: tor privoxy jtorctl obfsproxy iptables obfsclient
 	install bin/jtorctl.jar ../libs
 	install -d ../res/raw
 	-zip ../res/raw/privoxy.mp3 bin/privoxy
 	-zip ../res/raw/obfsproxy.mp3 bin/obfsproxy
+	-zip ../res/raw/obfsclient.mp3 bin/obfsclient
 	-zip ../res/raw/tor.mp3 bin/tor
 	-zip ../res/raw/xtables.mp3 bin/xtables
 
 assets-clean:
 	-rm ../res/raw/privoxy.mp3
 	-rm ../res/raw/obfsproxy.mp3
+	-rm ../res/raw/obfsclient.mp3
 	-rm ../res/raw/tor.mp3
 	-rm ../res/raw/xtables.mp3
 	-rm ../libs/jtorctl.jar
@@ -351,7 +392,7 @@ assets-clean:
 #------------------------------------------------------------------------------#
 # cleanup, cleanup, put the toys away
 
-clean: openssl-clean libevent-clean tor-clean privoxy-clean jtorctl-clean assets-clean
+clean: openssl-clean libevent-clean tor-clean privoxy-clean jtorctl-clean liballium-clean obfsclient-clean assets-clean
 
 #------------------------------------------------------------------------------#
 # debugging stuff
