@@ -72,7 +72,6 @@
   <string name="wizard_configure_select_apps">בחר אפליקציות מסוימות עבור Tor</string>
   <string name="wizard_tips_tricks">Orbot מתאפשר על ידי אפליקציות</string>
   <string name="wizard_tips_msg">האפליקציות מתחת פותחו לעבודה עם Orbot. לחץ על כל כפתור להתקנה מיידית, או שאתה יכול למצוא אותם אחר כך ב Google Play, באתר GuardianProject.info או\nדרך  F-Droid.org</string>
-  <string name="wizard_tips_otrchat">Gibberbot - לקוח מסרים מיידיים מאובטח עבור Android</string>
   <string name="wizard_tips_proxy">הגדרות פרוקסי - למד איך להגדיר אפליקציות לעבוד עם Orbot</string>
   <string name="wizard_tips_duckgo">DuckDuckGo אפליקציית מנוע חיפוש</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
@@ -103,10 +102,7 @@
   <string name="wizard_permissions_no_root_msg">לא נראה שהמכשיר שלך בעל סמכות עליונה או קיבל גישת  \'Superuser\'. כדי ש Tor יהיה יעיל, תצטרך להשתמש באפליקציות שנבנו בשביל לעבוד עם Orbot, או כאלה שתומכות בהגדרות פרוקסי HTTP או SOCKS.\n</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot-יישומים מופעלים</string>
-  <string name="wizard_tips_gibberbot">Gibberbot: אפליקצית צ\'אט מאובטחת עם הצפנת Off-the-Record</string>
-  <string name="gibberbot_apk_url">https://market.android.com/details?id=info.guardianproject.otr.app.im</string>
   <string name="wizard_tips_orweb">Orweb- דפדפן עם פרטיות רבה שעובד דרך Tor</string>
-  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.xpi</string>
   <string name="wizard_tips_play">מצא את כל אפליציות Guardian Project אצל Google Play</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
@@ -170,11 +166,8 @@
   <string name="the_tor_license">הרשיון של Tor</string>
   <string name="https_torproject_org">https://torproject.org/</string>
   <string name="third_party_software">תוכנה-צד-ג׳: </string>
-  <string name="tor_version">Tor v0.2.4.3-alpha: https://www.torproject.org</string>
-  <string name="libevent_version">LibEvent v2.1.1-alpha: http://www.monkey.org/~provos/libevent/</string>
   <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
   <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v0.9.8h: http://www.openssl.org</string>
   <string name="found_existing_tor_process">נמצא תהליך Tor קיים…</string>
   <string name="something_bad_happened">משהו רע התרחש. בדוק את היומן</string>
   <string name="hidden_service_on">שירות נסתר ב:</string>

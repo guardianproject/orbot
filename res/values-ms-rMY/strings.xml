@@ -72,7 +72,6 @@
   <string name="wizard_configure_select_apps">Pilih Aplikasi Untuk Tor</string>
   <string name="wizard_tips_tricks">Aplikasi Yang Dibenar Menggunakan Orbot</string>
   <string name="wizard_tips_msg">Aplikasi di bawah dibangunkan untuk digunakan bersama Orbot. Klik setiap butang untuk pasang sekarang, atau anda boleh cari nanti di Android Market.</string>
-  <string name="wizard_tips_otrchat">Gibberbot - Klien mesej ringkas selamat untuk Android</string>
   <string name="wizard_tips_proxy">Tetapan Proksi - Belajar bagaimana untuk mengkonfigurasi aplikasi untuk bekerja dengan Orbot</string>
   <string name="wizard_tips_duckgo">DuckDuckGo Enjin Carian</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
@@ -104,10 +103,7 @@
   <string name="wizard_permissions_no_root_msg">Peranti anda tidak perlu berakar umbi atau menyediakan \'SuperUser\' akses. ⏎\n⏎\nDalam untuk anda mendapat manfaat daripada Tor, anda akan perlu menggunakan aplikasi yang dibina untuk bekerja dengan Orbot, atau yang HTTP sokongan atau tetapan proksi SOCKS. ⏎\n</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Aplikasi yang membenarkan Orbot</string>
-  <string name="wizard_tips_gibberbot">Gibberbot: sembang app selamat dengan Penyulitan Off-the-Rekod</string>
-  <string name="gibberbot_apk_url">https://market.android.com/details?id=info.guardianproject.otr.app.im</string>
   <string name="wizard_tips_orweb">Orweb: Privasi ditambah penyemak imbas yang bekerja melalui Tor</string>
-  <string name="orweb_apk_url">https://market.android.com/details?id=info.guardianproject.browser</string>
   <string name="wizard_tips_play">Cari semua projek Guardian di Google play</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
@@ -201,11 +197,8 @@
   <string name="the_tor_license">Lesen Tor</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">3rd-Party-Software: </string>
-  <string name="tor_version">Tor v0.2.3.10: https://www.torproject.org</string>
-  <string name="libevent_version">LibEvent v1.4.13: http://www.monkey.org/~provos/libevent/</string>
   <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
   <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v1.0.0f: http://www.openssl.org</string>
   <string name="hidden_service_request">Satu aplikasi mahu membuka port tersembunyi %S pada rangkaian Tor. Ia selamat jika anda percaya pada aplikasi itu.</string>
   <string name="found_existing_tor_process">Proses Tor sedia ada ditemui..</string>
   <string name="something_bad_happened">Sesuatu yang buruk berlaku. Semak log.</string>

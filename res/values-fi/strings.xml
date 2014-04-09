@@ -65,8 +65,6 @@
   <string name="wizard_warning_title">Varoitus</string>
   <!--Permissions screen-->
   <!--TipsAndTricks screen-->
-  <string name="gibberbot_apk_url">https://guardianproject.info/releases/gibberbot-latest.apk</string>
-  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.xpi</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>

@@ -72,7 +72,6 @@
   <string name="wizard_configure_select_apps">اختر التطبيقات الفردية لتور</string>
   <string name="wizard_tips_tricks">تطبيقات مهيئة لاوربوت</string>
   <string name="wizard_tips_msg">التطبيقات التالية تم تطويرها حتي تعمل مع اوربوت. اضغط علي ما تريد تثبيتة علي جهازك الأن, أو يمكنك ان تجدهم لاحقاً علي جوجل بلاي, أو علي موقعنا GuardianProject.info أو من خلال F-Droid.org.</string>
-  <string name="wizard_tips_otrchat">Gibberbot - تطبيق أمن للمراسلة الفورية للأندرويد.</string>
   <string name="wizard_tips_proxy">إعدادات البروكسي - تعلم كيفية تكوين التطبيقات لتعمل مع اوربوت</string>
   <string name="wizard_tips_duckgo">تطبيق محرك البحث DuckDuckGo</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
@@ -104,10 +103,7 @@
   <string name="wizard_permissions_no_root_msg">يبدو أن جهازك لا يتمتع بصلاحيات حساب رووت.\n\nولتستفيد من من تور عليك استخدام برامج صممت لتعمل مع اوربوت أو التي تدعم بروكسي HTTP أو SOCKS .\n\n</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title"> برامج معدة للعمل مع اوربوت</string>
-  <string name="wizard_tips_gibberbot">Gibberbot: برنامج للمراسلة الفورية الآمنة يعمل ببروتوكول التشفير Off-the-Record</string>
-  <string name="gibberbot_apk_url">https://guardianproject.info/releases/gibberbot-latest.apk</string>
   <string name="wizard_tips_orweb">Orweb: متصفح مصمّم للخصوصية و يعمل مع تور</string>
-  <string name="orweb_apk_url">market://search?q=pname:nfo.guardianproject.browser</string>
   <string name="wizard_tips_play">يمكنك الحصول علي جميع تطبيقات مشروع الجاردين على جوجل بلاي</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject\n</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
@@ -201,11 +197,8 @@
   <string name="the_tor_license">رخصة استخدام تور</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">برامج من الطرف الثالث:</string>
-  <string name="tor_version">Tor v0.2.4.3-alpha: https://www.torproject.org</string>
-  <string name="libevent_version">LibEvent v2.1.1-alpha: http://www.monkey.org/~provos/libevent/</string>
   <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
   <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v0.9.8h: http://www.openssl.org</string>
   <string name="hidden_service_request">هناك برنامج يحاول فتح منفذ لخادم مخفي %S إلي شبكة تور. هذا السلوك آمن إذا كنت تثق بهذا البرنامج.</string>
   <string name="found_existing_tor_process">عُثر علي عملية تور سابقة تعمل...</string>
   <string name="something_bad_happened">حصل خطأ ما. افحص السجل</string>

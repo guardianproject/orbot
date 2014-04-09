@@ -72,7 +72,6 @@
   <string name="wizard_configure_select_apps">Alkalmazások kiválasztása a Tor-hoz</string>
   <string name="wizard_tips_tricks">Orbot-engedélyezett alkalmazások</string>
   <string name="wizard_tips_msg">Javasoljuk, hogy töltsön le és használjon olyan alkalmazásokat, amelyek tudják, hogyna kell közvetlenül kapcsolódni az Orbot-hoz. Kattintson az gombokra alább a telepítéshez.</string>
-  <string name="wizard_tips_otrchat">Gibberbot - Biztonságos azonnali üzenetküldő kliens Android-ra</string>
   <string name="wizard_tips_proxy">Proxy beállítások - Tanulja meg, hogyan állíthatja be alkalmazásait, hogy együttműködjenek az Orbot-tal</string>
   <string name="wizard_tips_duckgo">Duckduckgo keresőgép alkalmazás</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
@@ -104,10 +103,7 @@
   <string name="wizard_permissions_no_root_msg">Az eszköze alap módban fut, nem támogatja a root vagy \'Superuser\' hozzáférést.\n\nAhhoz, hogy részesüljön a Tor előnyeiből, olyan alkalmazást kell használnia, amely úgy készült, hogy együtt használható legyen az Orbot-tal, vagy legyen lehetőség HTTP vagy SOCKS proxy beállítására.\n\n</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot-engedélyezett Alkalmazások</string>
-  <string name="wizard_tips_gibberbot">Gibberbot: Biztonságos csevegő alkalmazás Off-the-Record titkosítással</string>
-  <string name="gibberbot_apk_url">https://market.android.com/details?id=info.guardianproject.otr.app.im</string>
   <string name="wizard_tips_orweb">ORWEB (csak Android 1.x) - Böngésző, kifejezetten adatvédelemre és az Orbot-hoz</string>
-  <string name="orweb_apk_url">market://search?q=pname:nfo.guardianproject.browser</string>
   <string name="wizard_tips_play">Az összes Guardian Project alkalmazás keresése a Google Play-en</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
@@ -201,11 +197,8 @@
   <string name="the_tor_license">A Tor Licensz</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Külső szoftverek: </string>
-  <string name="tor_version">Tor v0.2.3.7-alpha: https://www.torproject.org</string>
-  <string name="libevent_version">LibEvent v1.4.13: http://www.monkey.org/~provos/libevent/</string>
   <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
   <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v1.0.0f: http://www.openssl.org</string>
   <string name="hidden_service_request">Egy alkalmazás a %S rejtett szerver portot próbálja megnyitni. Ez biztonságos, ha megbízik az alkalmazásban.</string>
   <string name="found_existing_tor_process">létező Tor folyamat találva...</string>
   <string name="something_bad_happened">Valami rossz történt. Nézze meg a log fájlt.</string>

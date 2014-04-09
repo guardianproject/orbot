@@ -72,7 +72,6 @@
   <string name="wizard_configure_select_apps">Означи посебно апликације чији ће се промет проследити кроз Тор</string>
   <string name="wizard_tips_tricks">Орбот-омогућене Апликације</string>
   <string name="wizard_tips_msg">Апликације наведене испод су развијене да би радиле са Орботом. Кликните свако дугме које желите сада да инсталирате, а у супротном их можете пронаћи и у Google Play продавници, на GuardianProject.info веб страници или преко F-Droid.org.</string>
-  <string name="wizard_tips_otrchat">Gibberbot - Клијент за сигурне инстант поруке за Андроид</string>
   <string name="wizard_tips_proxy">Прокси поставке - Научите како да подесите апликације да раде са Орботом</string>
   <string name="wizard_tips_duckgo">DuckDuckGo апликација за претраживање интернета</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
@@ -104,10 +103,7 @@
   <string name="wizard_permissions_no_root_msg">Ваш уређај не приказује root нити пружа \'Superuser\' приступ\n\nДа би сте имали користи од Тор, требате употребити апликације које сарађују са Орботом, или које подржавају HTTP или SOCKS прокси подешавања.\n\n</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Апликације са омогућеним Орботом.</string>
-  <string name="wizard_tips_gibberbot">Gibberbot: Сигурна чет апликација са Off-the-Record (ОТR) енкрипцијом</string>
-  <string name="gibberbot_apk_url">https://guardianproject.info/releases/gibberbot-latest.apk</string>
   <string name="wizard_tips_orweb">Orweb: Претраживач са побољшаном приватношћу који ради кроз Тор мрежу</string>
-  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.xpi</string>
   <string name="wizard_tips_play">Пронађите све Guardian Project апликације на Google Play сервису</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
@@ -201,11 +197,8 @@
   <string name="the_tor_license">Тор лиценца</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Софтвер од стране неслужбених издавача:</string>
-  <string name="tor_version">Тор v0.2.4.3-alpha: https://www.torproject.org</string>
-  <string name="libevent_version">LibEvent v2.1.1-alpha: http://www.monkey.org/~provos/libevent/</string>
   <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
   <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v0.9.8h: http://www.openssl.org</string>
   <string name="hidden_service_request">Апликација жели да отвори сакривен порт %S на серверу за Тор мрежу. Ово је сигуран потез уколико верујете апликацији.</string>
   <string name="found_existing_tor_process">нађен покренути Тор процес...</string>
   <string name="something_bad_happened">Нешто лоше се догодило. Прегледајте логове</string>

@@ -72,7 +72,6 @@
   <string name="wizard_configure_select_apps">Wybierz poszczególne aplikacje dla Tora</string>
   <string name="wizard_tips_tricks">Aplikacje skonfigurowane dla Orbota</string>
   <string name="wizard_tips_msg">Zachęcamy do pobierania i używania aplikacji, które wiedzą, jak łączyć się bezpośrednio z Orbotem. Kliknij na poniższe przyciski, by zainstalować.</string>
-  <string name="wizard_tips_otrchat">Gibberbot - Bezpieczny komunikator dla Androida</string>
   <string name="wizard_tips_proxy">Ustawienia Proxy - Dowiedz się, jak konfigurować aplikacje do współpracy z Orbotem</string>
   <string name="wizard_tips_duckgo">Aplikacja Duckduckgo Search Engine</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
@@ -104,10 +103,7 @@
   <string name="wizard_permissions_no_root_msg">Twoje urządzenie wydaje się nie być podłączone lub nie zapewnia dostępu \'Superużytkownika\'. \n\nAby czerpać jak największe korzyści z Tora, będziesz musiał używać aplikacji zbudowanych do pracy z Orbotem, lub takich które wspierają ustawienia proxy HTTP lub SOCKS. ⏎\n\n</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot-Włączone Aplikacje</string>
-  <string name="wizard_tips_gibberbot">Gibberbot: Bezpieczny aplikacja chatu z szyfrowaniem Off-the-Record</string>
-  <string name="gibberbot_apk_url">https://market.android.com/details?id=info.guardianproject.otr.app.im</string>
   <string name="wizard_tips_orweb">ORWEB (tylko Android 1.x) - Przeglądarka zaprojektowana do prywatności i dla Orbota</string>
-  <string name="orweb_apk_url">market://search?q=pname:nfo.guardianproject.browser</string>
   <string name="wizard_tips_play">Znajdź wszystkie aplikacje Guardian Project na Google Play</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
@@ -201,11 +197,8 @@
   <string name="the_tor_license">Licencja Tora</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Oprogramowanie 3rd-Party</string>
-  <string name="tor_version">Tor v0.2.3.10-alpha: https://www.torproject.org</string>
-  <string name="libevent_version">LibEvent v1.4.13: http://www.monkey.org/~provos/libevent/</string>
   <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
   <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v1.0.0f: http://www.openssl.org</string>
   <string name="hidden_service_request">Aplikacja chce otworzyć port ukrytego serwera %S do Sieci Tor. Jest to bezpieczne, jeśli ufasz aplikacji.</string>
   <string name="found_existing_tor_process">znaleziono istniejący proces Tora...</string>
   <string name="something_bad_happened">Coś nie poszło nie tak. Sprawdź logi</string>

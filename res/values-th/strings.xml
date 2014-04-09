@@ -65,7 +65,6 @@
   <string name="wizard_configure_all">ให้ทุกโปรแกรมผ่านพร็อกซีของ Tor</string>
   <string name="wizard_configure_select_apps">เลือกโปรแกรมที่จะให้ใช้ Tor</string>
   <string name="wizard_tips_tricks">โปรแกรมที่ใช้ได้กับ Orbot</string>
-  <string name="wizard_tips_otrchat">Gibberbot - โปรแกรมแชทนิรภัยสำหรับแอนดรอยด์</string>
   <string name="wizard_tips_proxy">การตั้งค่าพร็อกซี - เรียนรู้การตั้งค่าโปรแกรมให้ทำงานกับ Orbot ได้</string>
   <string name="wizard_proxy_help_info">ตั้งค่าพร็อกซี</string>
   <string name="wizard_final">Orbot พร้อมใช้งานแล้ว!</string>
@@ -84,7 +83,6 @@
   <string name="wizard_permissions_root_msg2">ถ้าคุณไม่ต้องการ โปรดแน่ใจว่าคุณใช้โปรแกรมที่สร้างมาเพื่อใช้กับ Orbot</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">โปรแกรมที่ใช้ได้กับ Orbot</string>
-  <string name="wizard_tips_gibberbot">Gibberbot: โปรแกรมแชทนิรภัยที่สามารถเข้ารหัสลับการสนทนา</string>
   <string name="wizard_tips_orweb">Orweb: เบราว์เซอร์ที่ปรับแต่งเพื่อความเป็นส่วนตัวและทำงานผ่าน Tor</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>

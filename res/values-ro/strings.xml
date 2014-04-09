@@ -72,7 +72,6 @@
   <string name="wizard_configure_select_apps">Alege aplicatii individuale pentru Tor</string>
   <string name="wizard_tips_tricks">Aplicatii compatibile Orbot</string>
   <string name="wizard_tips_msg">Aplicatiile de mai jos au fost create sa fie compatibile cu Orbot. Apasa pe fiecare buton pentru a instala acum, sau le poti gasi mai tarziu pe Google Play, pe site-ul GuardianProject.info sau pe F-Droid.org.</string>
-  <string name="wizard_tips_otrchat">Gibberbot - client de mesagerie instant pentru Android</string>
   <string name="wizard_tips_proxy">Setari pentru proxy - Invata cum sa configurezi aplicatii sa fie compatibile cu Orbot</string>
   <string name="wizard_tips_duckgo">Motor de cautare DuckDuckGo</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
@@ -104,10 +103,7 @@
   <string name="wizard_permissions_no_root_msg">Se pare ca dispozitivul tau nu are root sau nu ai acordat acces \"Superuser\" lui Orbot.\n\nCa sa poti beneficia de avantajele Tor, va trebui sa folosesti aplicatii concepute sa lucreze cu Orbot sau care suporta setari proxy HTTP sau SOCKS.\n</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Aplicatii cu Orbot activat</string>
-  <string name="wizard_tips_gibberbot">Gibberbot: mesagerie instant cu criptare \"Off-the-Record\"</string>
-  <string name="gibberbot_apk_url">https://guardianproject.info/releases/gibberbot-latest.apk</string>
   <string name="wizard_tips_orweb">Orweb: browser de internet cu setari avansate de intimitate care functioneaza cu Tor</string>
-  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.xpi</string>
   <string name="wizard_tips_play">Gaseste toate aplicatile Guardian Project pe Google Play</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
@@ -201,11 +197,8 @@
   <string name="the_tor_license">Licenta Tor</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Aplicatii tertiare:</string>
-  <string name="tor_version">Tor v0.2.4.3-alpha: https://www.torproject.org</string>
-  <string name="libevent_version">LibEvent v2.1.1-alpha: http://www.monkey.org/~provos/libevent/</string>
   <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
   <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v0.9.8h: http://www.openssl.org</string>
   <string name="hidden_service_request">O aplicatie vrea sa deschida portul ascuns %S spre reteaua Tor. Este sigur daca ai incredere in aplicatie.</string>
   <string name="found_existing_tor_process">gasit proces Tor existent...</string>
   <string name="something_bad_happened">Ceva rau s-a intamplat. Verifica log-ul</string>

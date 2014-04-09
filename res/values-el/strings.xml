@@ -72,7 +72,6 @@
   <string name="wizard_configure_select_apps">Επιλογή μεμονωμένων εφαρμογών για το Tor</string>
   <string name="wizard_tips_tricks">Εφαρμογές συμβατές για Orbont</string>
   <string name="wizard_tips_msg">Οι παρακάτω εφαρμογές αναπτύχθηκαν ώστε να λειτουργούν με το Orbot. Πατήστε σε κάθε κουμπί για να εγκατασταθεί τώρα ή μπορείτε να τις βρείτε αργότερα στο Android Market</string>
-  <string name="wizard_tips_otrchat">Gibberbot - Ασφαλές πρόγραμμα-πελάτης άμεσων μηνυμάτων για το Android</string>
   <string name="wizard_tips_proxy">Ρυθμίσεις proxy: Μάθετε πώς θα ρυθμίσετε τις εφαρμογές ώστε να λειτουργούν με το Orbot</string>
   <string name="wizard_tips_duckgo">Εφαρμογή Μηχανής Αναζήτησης Duckduckgo</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
@@ -104,10 +103,7 @@
   <string name="wizard_permissions_no_root_msg">Φαίνεται ότι η συσκευή σας δεν έχει διαμόρφωση υπερχρήστη (rooted) ή δεν παρέχει πρόσβαση \'Υπερχρήστη\'.\n\nΑν επιθυμείτε να επωφεληθείτε από το Tor θα πρέπει να χρησιμοποιήσετε εφαρμογές που συνεργάζονται με το Orbot ή υποστηρίζουν ρυθμίσεις διακομιστή διαμεσολάβησης HTTP ή SOCKS.</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Εφαρμογές συμβατές με Orbot</string>
-  <string name="wizard_tips_gibberbot">Gibberbot: Ασφαλής εφαρμογής συζήτησης με ανεπίσημη κρυπτογράφηση</string>
-  <string name="gibberbot_apk_url">https://market.android.com/details?id=info.guardianproject.otr.app.im</string>
   <string name="wizard_tips_orweb">Orweb - Περιηγητής ιστού με ενισχυμένη ασφάλεια που είναι συμβατό με Tor</string>
-  <string name="orweb_apk_url">https://market.android.com/details?id=info.guardianproject.browser</string>
   <string name="wizard_tips_play">Βρες όλες τις εφαρμογές Guardian Project στο Google Play</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
@@ -201,11 +197,8 @@
   <string name="the_tor_license">Η Άδεια Tor</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Λογισμικό τρίτων:</string>
-  <string name="tor_version">Tor v0.2.3.17: https://www.torproject.org</string>
-  <string name="libevent_version">LibEvent v2.1: http://www.monkey.org/~provos/libevent/</string>
   <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
   <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v0.9.8h: http://www.openssl.org</string>
   <string name="hidden_service_request">Κάποια εφαρμογή προσπαθεί να ανοίξει την κρυφή θύρα διακομιστή %S στο δίκτυο Tor. Πρόκειται για ασφαλή ενέργεια, εφόσον γνωρίζετε την εφαρμογή.</string>
   <string name="found_existing_tor_process">αναζήτηση διεργασιών Tor...</string>
   <string name="something_bad_happened">Κάτι κακό συνέβη. Ελέγξτε τις καταγραφές</string>

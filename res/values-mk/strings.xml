@@ -69,7 +69,6 @@
   <string name="wizard_configure_select_apps">Избери поединечно апликации за Тор</string>
   <string name="wizard_tips_tricks">Орбот-вклучени апликации</string>
   <string name="wizard_tips_msg">Ви препорачуваме да презимате и користите апликации кои што знаат како директно да се поврзат со Орбот. Притиснете на копчињата подолу за инсталирање.</string>
-  <string name="wizard_tips_otrchat">Gibberbot - Secure instant messaging client for Android</string>
   <string name="wizard_tips_proxy">Подесувања на прокси - Научете како да ги конфигурирате апликациите да работат со Орбот</string>
   <string name="wizard_proxy_help_info">Подесувања на прокси</string>
   <string name="wizard_proxy_help_msg">Ако апликацијата за Андроид што ја користите поддржува употреба на прокси за HTTP или SOCKS, тогаш може да ја конфигурирате да се поврзе со Орбот и да користи Тор. \n\n\n    Подесувањето за хост е 127.0.0.1 или „localhost“. За HTTP, подесувањето на порт е 8118. За SOCKS, портот е 9050. Доколку можете, користете SOCKS4A или SOCKS5.\n    \n\n\n    Можете да научите повеќе за проксирањето на Андроид преку ЧПП на: http://tinyurl.com/proxyandroid\n    </string>
@@ -88,7 +87,6 @@
   <!--Permissions screen-->
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_orweb">ORWEB (само Андроид 1.x) - Браусер дизајниран за приватност и за Орбот</string>
-  <string name="orweb_apk_url">market://search?q=pname:nfo.guardianproject.browser</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
     <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>

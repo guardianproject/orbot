@@ -72,7 +72,6 @@
   <string name="wizard_configure_select_apps">තනි යොමුන් Tor සදහා තෝරාගන්න </string>
   <string name="wizard_tips_tricks">Orbot සබල කල යොමු </string>
   <string name="wizard_tips_msg">පහත යොමු සාදා ඇත්තේ Orbot සමග වැඩ කිරීමට ය. ස්ථාපනය කිරීම සදහා එක් එක් බොත්තම මත ක්ලික් කරන්න. නැතහොත් ඔබට මෙම යොමු Google Play, GuardianProject.info වෙබ්අඩවියෙන් හෝ F-Droid.org වලින් සොයා ගත හැක.</string>
-  <string name="wizard_tips_otrchat">Gibberbot - Android හී ආරක්‍ෂිත ක්ෂණික පණිවුඩ සේවාදායකයා </string>
   <string name="wizard_tips_proxy">නියුතු සේවා සිටුවම් - Orbot සමග ක්‍රියාකිරීමට අනෙක් යොමු වින්‍යාස කරන ආකාරය හදාරන්න </string>
   <string name="wizard_tips_duckgo">DuckDuckGo සෙවුම් යන්ත්‍ර යෙදුම </string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
@@ -104,10 +103,7 @@
   <string name="wizard_permissions_no_root_msg">ඔබේ උපාංගයටමුල හෝ  සුපිරි පරිශීලක ප්‍රවේශය ලබාදී නොමැති බව පෙනේ.\n\nTor සාර්ථකව ක්‍රියාත්මකවීමට ඔබට Orbot සමග ක්‍රියා කල හැකි, HTTP හා SOCKS නියුතු සේවා සිටවුම් වලට ආධාර කරන යොමු භාවිතා කල යුතුය.\n\n</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot සබල කල යොමු</string>
-  <string name="wizard_tips_gibberbot">Gibberbot: කථා බස් කිරීමට යොදාගන්නා සුරක්ෂිත, අප්‍රසිද්ධ සංකේතන සහිත යොමුවකි.</string>
-  <string name="gibberbot_apk_url">https://guardianproject.info/releases/gibberbot-latest.apk</string>
   <string name="wizard_tips_orweb">Orweb: Tor හරහා පෞද්ගලිකත්වය වැඩිකරන බ්‍රව්සරයකි.</string>
-  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.xpi</string>
   <string name="wizard_tips_play">Google Play තුලින් Guardian Project apps තෝරාගන්න </string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
@@ -195,11 +191,8 @@
   <string name="the_tor_license">Tor බලපත්‍රය</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">3 වන පාර්ශව මෘදුකාංග</string>
-  <string name="tor_version">Tor v0.2.4.3-alpha: https://www.torproject.org</string>
-  <string name="libevent_version">LibEvent v2.1.1-alpha: http://www.monkey.org/~provos/libevent/</string>
   <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
   <string name="iptables_version">IP වගුව v1.4.7: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v0.9.8h: http://www.openssl.org</string>
   <string name="hidden_service_request">යොමුවකට සැගවුණු සේවාදායක %S පෝටය Tor ජාලයට විවෘත කිරීමට උවමනාය. මෙය සුරක්ෂිතවන්නේ ඔබ මෙම යොමුව විශ්වාස කරනවා නම්  පමණි.</string>
   <string name="found_existing_tor_process">පවතින Tor ක්‍රියාවලි හමුවිය...</string>
   <string name="something_bad_happened">යම් නොමනා දෙයක් සිදුවිය. ලොගය පරික්ෂා කර බලන්න </string>

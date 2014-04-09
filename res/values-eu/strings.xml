@@ -72,7 +72,6 @@
   <string name="wizard_configure_select_apps">Hautatu Banakako Aplikazioak Torentzat</string>
   <string name="wizard_tips_tricks">Orbot-gaitutako Aplikazioak</string>
   <string name="wizard_tips_msg">Azpiko appak Orbotekin lan egiteko garatuta daude. Sakatu botoi bakoitza orain instalatzeko, edo bilatu geroago Google Play-n, GuardianProject.info webgunean edo F-Droid.org erabiliz.</string>
-  <string name="wizard_tips_otrchat">Gibberbot - Andriodrentzako berehalako mezulari bezero ziurra</string>
   <string name="wizard_tips_proxy">Proxy Ezarpenak - Ikasi zure aplikazioak Orbotekin funtziona dezaten nola konfiguratu</string>
   <string name="wizard_tips_duckgo">DuckDuckGo Bilaketa Motorraren appa</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
@@ -104,10 +103,7 @@
   <string name="wizard_permissions_no_root_msg">Ez dirudi zure gailua rooteatuta dagoenik edo \'Supererabiltzaile\' atzipena ematen duenik.\n\nTor erabiltzeko Orbot-ekin lan egin dezaketen aplikazioak erabili beharko dituzu, edo HTTP ala SOCKS proxyak erabili ahal dutenak.\n</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot-Gaitutako Aplikazioak</string>
-  <string name="wizard_tips_gibberbot">Gibberbot: Txat aplikazio segurua Off-the-Record enkriptazioarekin.</string>
-  <string name="gibberbot_apk_url">https://market.android.com/details?id=info.guardianproject.otr.app.im</string>
   <string name="wizard_tips_orweb">Orweb - Tor bidez lan egiten duen pribatutasun-hobetua duen nabigatzailea</string>
-  <string name="orweb_apk_url">https://market.android.com/details?id=info.guardianproject.browser</string>
   <string name="wizard_tips_play">Google Play-n Guardiak Proiektuko aplikazio guztiak bilatu</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
@@ -201,11 +197,8 @@
   <string name="the_tor_license">Tor Lizentzia</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">3.-Ataleko-Softwarea:</string>
-  <string name="tor_version">Tor v0.2.3.10: https://www.torproject.org</string>
-  <string name="libevent_version">LibEvent v1.4.13: http://www.monkey.org/~provos/libevent/</string>
   <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
   <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v1.0.0f: http://www.openssl.org</string>
   <string name="hidden_service_request">Aplikazio batek ezkutuko zerbitzariko %S portua ireki nau du Tor sarera. Segurua da aplikazioaz fidatzen bazara.</string>
   <string name="found_existing_tor_process">Aurreko Tor prozesua topatuta...</string>
   <string name="something_bad_happened">Zerbait txarra gertatu da. Begiratu logetan</string>

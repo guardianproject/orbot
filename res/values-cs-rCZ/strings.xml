@@ -72,7 +72,6 @@
   <string name="wizard_configure_select_apps">Zvolit aplikace pro Tor individuálně</string>
   <string name="wizard_tips_tricks">Aplikace povolené pro Orbota</string>
   <string name="wizard_tips_msg">Aplikace níže byly vyvinuty tak, aby spolupracovaly s Orbotem. Klikněte na každé tlačítko pro instalaci, aplikace můžete najít i v Obchodu Play nebo na webu GuardianProject.info či F-Droid.org.</string>
-  <string name="wizard_tips_otrchat">Gibberbot - zabezpečený instant messaging klient pro Android</string>
   <string name="wizard_tips_proxy">Proxy Nastavení - Naučte se, jak nastavit aplikace, aby pracovaly s Orbotem</string>
   <string name="wizard_tips_duckgo">Aplikace DuckDuckGo pro vyhledávací engine</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
@@ -104,10 +103,7 @@
   <string name="wizard_permissions_no_root_msg">Vaše zařízení nejspíš nemá root, nebo neposkytuje práva \'Superuživatele\'.⏎\n⏎\nPro plné využití Toru musíte používat aplikace napsané tak, aby spolupracovaly s Orbotem, nebo podporující nastavení HTTP nebo SOCKS proxy.⏎\n⏎</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot-povolené aplikace</string>
-  <string name="wizard_tips_gibberbot">Gibberbot: bezpečná chatovací aplikace s Off-the-Record šifrováním</string>
-  <string name="gibberbot_apk_url">https://guardianproject.info/releases/gibberbot-latest.apk</string>
   <string name="wizard_tips_orweb">Orweb: webový prohlížeč s rozšířeným soukromím pracující přes Tor</string>
-  <string name="orweb_apk_url">https://market.android.com/details?id=info.guardianproject.browser</string>
   <string name="wizard_tips_play">Najděte všechny aplikace Guardian Projektu na Obchodu Play</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
@@ -201,11 +197,8 @@
   <string name="the_tor_license">Tor Licence</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Software třetích stran:</string>
-  <string name="tor_version">Tor v0.2.4.3-alpha: https://www.torproject.org</string>
-  <string name="libevent_version">LibEvent v2.1.1-alpha: http://www.monkey.org/~provos/libevent/</string>
   <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
   <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v0.9.8h: http://www.openssl.org</string>
   <string name="hidden_service_request">Aplikace požaduje otevření skrytého portu serveru %S k síti Tor. Toto je bezpečně, pokud aplikaci důvěřujete.</string>
   <string name="found_existing_tor_process">nalezev existující Tor proces…</string>
   <string name="something_bad_happened">Stalo se něco špatného. Zkontrolujte log</string>

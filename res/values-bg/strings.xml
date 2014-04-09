@@ -65,7 +65,6 @@
   <string name="wizard_configure_select_apps">Избери отделни приложения за Тор</string>
   <string name="wizard_tips_tricks">Поддържани от Орбот приложения</string>
   <string name="wizard_tips_msg">Приложенията по-долу са създадени така, че да работят с Орбот. Цъкни на всеки бутон, за да инсталираш сега или може да ги намериш по-късно в Андроид маркет.</string>
-  <string name="wizard_tips_otrchat">Gibberbot - Сигурен клиент за мигновени съобщения за Андроид</string>
   <string name="wizard_tips_proxy">Proxy Settings - Научете как да конфигурирате приложения да работят през Орбот</string>
   <string name="wizard_proxy_help_info">Прокси настройки</string>
   <string name="wizard_proxy_help_msg">Ако Андроид приложенията, които използвате могат да поддържат HTTP или SOCKS прокси,тогава може да ги конфигурирате да се свързват към Орбот и да ползват Тор.\n\n\n    Настройките на хоста са 127.0.0.1 или \"localhost\". За HTTP, порта е 8118. За SOCKS, порта е 9050. По-добре да използвате SOCKS4A или SOCKS5 ако е възможно.\n    \n\n\n    Може да научите повече за прокситата на Андроид чрез FAQ на: http://tinyurl.com/proxyandroid\n    </string>
@@ -86,9 +85,7 @@
   <string name="wizard_permissions_title">Права</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Приложения през Орбот</string>
-  <string name="gibberbot_apk_url">https://market.android.com/details?id=info.guardianproject.otr.app.im</string>
   <string name="wizard_tips_orweb">Orweb: Браузър с повишена анонимност, който работи през Тор</string>
-  <string name="orweb_apk_url">https://market.android.com/details?id=info.guardianproject.browser</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
     <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
@@ -145,11 +142,8 @@
   <string name="the_tor_license">Тор лиценз</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Софтуер на трети страни: </string>
-  <string name="tor_version">Тор v0.2.3.10: https://www.torproject.org</string>
-  <string name="libevent_version">LibEvent v1.4.13: http://www.monkey.org/~provos/libevent/</string>
   <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
   <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v1.0.0f: http://www.openssl.org</string>
   <string name="hidden_service_request">Приложение иска да отвори порт на скрит сървър %S към Тор мрежата. Безопасно е да се доверите на приложението.</string>
   <string name="something_bad_happened">Нещо лошо се случи. Проверете лога</string>
   <string name="hidden_service_on">Скрита услуга включена:</string>

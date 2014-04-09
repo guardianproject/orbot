@@ -72,7 +72,6 @@
   <string name="wizard_configure_select_apps">选择使用 Tor 的应用程序</string>
   <string name="wizard_tips_tricks">Orbot 支持的应用</string>
   <string name="wizard_tips_msg">以下应用可与 Orbot 一起使用。点击下面的按钮安装，也可以通过 Google Play 商店、GuardianProject.info 网站或 F-Droid.org 查找。</string>
-  <string name="wizard_tips_otrchat">Gibberbot - Android 设置上的安全即时通讯客户端</string>
   <string name="wizard_tips_proxy">代理设置 - 学习如何配置应用程序使用 Orbot</string>
   <string name="wizard_tips_duckgo">DuckDuckGo 搜索引擎应用程序</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
@@ -104,10 +103,7 @@
   <string name="wizard_permissions_no_root_msg">设备未获取 Root 权限或未提供 Superuser 访问权限。\n\n为了使用 Tor 网络，所用的应用程序需支持 Orbot 或支持 HTTP 或 SOCKS 代理设置。\n</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">使用 Orbot 的应用程序</string>
-  <string name="wizard_tips_gibberbot">Gibberbot：加密且不会留下记录的安全聊天应用程序</string>
-  <string name="gibberbot_apk_url">https://guardianproject.info/releases/gibberbot-latest.apk</string>
   <string name="wizard_tips_orweb">Orweb：使用 Tor 网络的隐私保护浏览器</string>
-  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.xpi</string>
   <string name="wizard_tips_play">在 Google Play 商店查找所有 Guardian Project 的应用程序</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
@@ -201,11 +197,8 @@
   <string name="the_tor_license">Tor 许可证</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">第三方软件：</string>
-  <string name="tor_version">Tor v0.2.4.3-alpha：https://www.torproject.org</string>
-  <string name="libevent_version">LibEvent v2.1.1-alpha：http://www.monkey.org/~provos/libevent/</string>
   <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
   <string name="iptables_version">Iptables v1.4.7：http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v0.9.8h：http://www.openssl.org</string>
   <string name="hidden_service_request">应用程序试图打开隐藏服务主机端口 %S 连接 Tor 网络。对于可信应用这是安全的。</string>
   <string name="found_existing_tor_process">发现当前已存在 Tor 进程...</string>
   <string name="something_bad_happened">发生错误，请检查日志</string>

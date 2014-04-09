@@ -72,7 +72,6 @@
   <string name="wizard_configure_select_apps">Tor를 위해 각각의 앱 선택</string>
   <string name="wizard_tips_tricks">Orbot이 활성화된 앱</string>
   <string name="wizard_tips_msg">아래의 앱은 Orbot과 작동되도록 개발되었습니다. 지금 설치하려면 각각의 버튼을 누르십시오. 또는 나중에 Google Play, GuardianProject.info, F-Droid.org 에서 찾을 수 있습니다.</string>
-  <string name="wizard_tips_otrchat">Gibberbot - 안드로이드를 위한 보안 인스턴트 메시징 클라이언트</string>
   <string name="wizard_tips_proxy">Proxy Settings - Orbot이 작동하도록 앱을 설정하는 방법을 배우기</string>
   <string name="wizard_tips_duckgo">DuckDuckGo 검색 엔진 앱</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
@@ -104,10 +103,7 @@
   <string name="wizard_permissions_no_root_msg">귀하의 장치가 루팅되거나 수퍼유저 권한을 제공하는 것으로 보이지 않습니다.\n\nTor로부터의 이익을 받기 위해서는 Orbot과 작동하도록 만들어진 앱이나 HTTP나 SOCKS 프록시 설정을 지원하는 앱을 사용해야 할 것입니다.\n\n</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot이 활성화된 장치</string>
-  <string name="wizard_tips_gibberbot">Gibberbot: 비공식 보안이 있는 보안 채팅 앱</string>
-  <string name="gibberbot_apk_url">https://market.android.com/details?id=info.guardianproject.otr.app.im</string>
   <string name="wizard_tips_orweb">Orweb: Tor를 통해 작동하는 보안 강화 브라우저</string>
-  <string name="orweb_apk_url">https://market.android.com/details?id=info.guardianproject.browser</string>
   <string name="wizard_tips_play">Google Play에서 모든 Guardian 프로젝트 앱 찾기</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
@@ -195,11 +191,8 @@
   <string name="the_tor_license">The Tor License</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">3rd-Party-Software: </string>
-  <string name="tor_version">Tor v0.2.3.17: https://www.torproject.org</string>
-  <string name="libevent_version">LibEvent v2.1: http://www.monkey.org/~provos/libevent/</string>
   <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
   <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v0.9.8h: http://www.openssl.org</string>
   <string name="hidden_service_request">앱이 Tor 네트워크로 히든 서버 포트를 열고 싶어합니다. 앱을 믿는다면 안전합니다.</string>
   <string name="found_existing_tor_process">존재하고 있는 Tor 프로세스 발견</string>
   <string name="something_bad_happened">어떤 나쁜 것이 발생. 로그 확인하세요.</string>

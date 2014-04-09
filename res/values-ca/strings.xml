@@ -72,7 +72,6 @@
   <string name="wizard_configure_select_apps">Selecciona aplicacions individuals per a funcionar amb Tor</string>
   <string name="wizard_tips_tricks">Aplicacions per a usar-se amb Orbot</string>
   <string name="wizard_tips_msg">T\'animem a descarregar-te &amp; utilitza aplicacions que sàpiguen com connectar-se directament a Orbot. Fes clic als botons de sota per instal·lar.</string>
-  <string name="wizard_tips_otrchat">Gibberbot - Secure instant messaging client for Android</string>
   <string name="wizard_tips_proxy">Coniguració de Proxy - Aprèn a configurar aplicacions per a què funcionin amb Orbot</string>
   <string name="wizard_proxy_help_info">Configuració de Proxy</string>
   <string name="wizard_proxy_help_msg">Si l\'aplicació d\'Android que estàs utilitzant admet l\'ús d\'un proxy HTTP o SOCKS, pots configurar-la per a connectar-se a Orbot i utilitzar Tor.\n\n\nLa configuració de l\'amfitrió és 127.0.0.1 o \"localhost\". Per a HTTP, el port actiu és 8118. Per a SOCKS, el proxy és 9050. Hauries d\'utlitzar SOCKS4A o SOCKS5 si és possible.\n\n\n\nPots aprendre més coses sobre l\'ús dels proxys a Android al FAQ de: http://tinyurl.com/proxyandroid\n    </string>
@@ -94,7 +93,6 @@
   <string name="wizard_permissions_root_msg2">Si no vols fer això, si us plau assegura\'t fer servir aplicacions fetes per treballar amb l\'Orbot</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_orweb">ORWEB (Només Android 1.x) - Navegador dissenyat per la privacitat &amp; per a Orbot</string>
-  <string name="orweb_apk_url">market://search?q=pname:nfo.guardianproject.browser</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
     <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>

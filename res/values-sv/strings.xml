@@ -72,7 +72,6 @@
   <string name="wizard_configure_select_apps">Välj enskilda appar för Tor</string>
   <string name="wizard_tips_tricks">Orbot-anpassade appar</string>
   <string name="wizard_tips_msg">Apparna nedanför var utvecklade att fungera med Orbot. Klicka varje knapp för att installera nu, eller hitta dom senare på Google Play, på GuardianProject.info, eller via F-Droid.org.</string>
-  <string name="wizard_tips_otrchat">Gibberbot - Säker chattklient för Android</string>
   <string name="wizard_tips_proxy">Proxy-inställningar - Lär dig hur du konfigurerar appar att fungera med Orbot</string>
   <string name="wizard_tips_duckgo">DuckDuckGo Sökmotor App</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
@@ -104,10 +103,7 @@
   <string name="wizard_permissions_no_root_msg">Din enhet verkar inte vara rootad eller ge \'Superuser\' tillgång.\n\nFör att du ska ha användning av Tor måste du använda appar som är anpassade till Orbot, eller som stödjer HTTP eller SOCKS proxy inställningar.\n\n</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot-Anpassade Appar</string>
-  <string name="wizard_tips_gibberbot">Gibberbot: Säker chatt app med Off-the-Record Kryptering</string>
-  <string name="gibberbot_apk_url">https://guardianproject.info/releases/gibberbot-latest.apk</string>
   <string name="wizard_tips_orweb">Orweb: Integritets-förbättrande webbläsare som fungerar genom Tor</string>
-  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.xpi</string>
   <string name="wizard_tips_play">Hitta alla Guardian Project appar på Google Play</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
@@ -201,11 +197,8 @@
   <string name="the_tor_license">Tor-licensen</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Tredjepartsprogramvara:</string>
-  <string name="tor_version">Tor v0.2.4.3-alpha: https://www.torproject.org</string>
-  <string name="libevent_version">LibEvent v2.1.1-alpha: http://www.monkey.org/~provos/libevent/</string>
   <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
   <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v0.9.8h: http://www.openssl.org</string>
   <string name="hidden_service_request">En app vill öppna gömd tjänsteport %S till Tor nätverket. Detta är säkert om du litar på appen.</string>
   <string name="found_existing_tor_process">hittade existerande Tor process...</string>
   <string name="something_bad_happened">Något dåligt hände. Kolla loggen.</string>

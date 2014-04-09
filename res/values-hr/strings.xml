@@ -72,7 +72,6 @@
   <string name="wizard_configure_select_apps">Odaberi Individualne Aplikacije za Tor</string>
   <string name="wizard_tips_tricks">Orbot-omogućene Aplikacije</string>
   <string name="wizard_tips_msg">Aplikacije dolje su napravljene da rade sa Orbot-om. Kliknite svaki gumb da instalirate odmah ili ih kasnije možete naći na Google Play-u, na GuardianProject.info web stranici ili preko F-Droid.org.</string>
-  <string name="wizard_tips_otrchat">Gibberbot - Sigurni klijent za dopisivanje za Android</string>
   <string name="wizard_tips_proxy">Proxy Postavke - Naučite kako konfigurirati aplikacije za rad s Orbotom</string>
   <string name="wizard_tips_duckgo">DuckDuckGo aplikacija za pretraživanje</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
@@ -102,10 +101,7 @@
   <string name="wizard_permissions_root_msg2">Ako ne želite ovo, budite sigurni da koristite aplikacije koje su napravljene da rade s Orbotom</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot-Omogućene Aplikacije</string>
-  <string name="wizard_tips_gibberbot">Gibberbot: Sigurna chat aplikacija sa Povjerljivim Šifriranjem</string>
-  <string name="gibberbot_apk_url">https://guardianproject.info/releases/gibberbot-latest.apk</string>
   <string name="wizard_tips_orweb">Orweb: Preglednik poboljšane privatnosti koji radi kroz Tor</string>
-  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.xpi</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
@@ -173,9 +169,6 @@
   <string name="enter_localhost_ports_for_hidden_services">unesi localhost portove za skrivene usluge</string>
   <string name="hidden_service_ports">Portovi za skrivene usluge</string>
   <string name="the_addressable_name_for_your_hidden_service_generated_automatically_">adresirano ime za vašu skrivenu uslugu (generirano automatski)</string>
-  <string name="tor_version">Tor v0.2.4.3-alpha: https://www.torproject.org</string>
-  <string name="libevent_version">LibEvent v2.1.1-alpha: http://www.monkey.org/~provos/libevent/</string>
-  <string name="openssl_version">OpenSSL v0.9.8h: http://www.openssl.org</string>
   <string name="default_bridges"></string>
   <string name="wizard_locale_title">Odaberi Jezik</string>
   <string name="btn_save_settings">Spremi postavke</string>

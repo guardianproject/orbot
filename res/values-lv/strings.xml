@@ -72,7 +72,6 @@
   <string name="wizard_configure_select_apps">Izvēlēties individuālas lietotnes Tor\'am</string>
   <string name="wizard_tips_tricks">Orbot-iespējotas lietotnes</string>
   <string name="wizard_tips_msg">Zemāk norādītās lietotnes ir izveidotas darbam ar Orbot. Noklikšķiniet katru no pogām, lai instalētu tūliņ, vai varat tās uzmeklēt vēlāk Android Tirgū.</string>
-  <string name="wizard_tips_otrchat">Gibberbot - Drošs Android\'a tūlītējās ziņojumapmaiņas klients</string>
   <string name="wizard_tips_proxy">Starpnieka iestatījumi - Uzzini kā konfigurēt lietotnes, lai tās strādātu ar Orbot</string>
   <string name="wizard_tips_duckgo">Meklētājprogrammas Duckduckgo lietotne</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
@@ -104,10 +103,7 @@
   <string name="wizard_permissions_no_root_msg">Izskatās, ka Jūsu ierīce nav ar saknes piekļuves tiesībām un nenodrošina \'Superlietotāja\' piekļuves tiesības.\n\nLai gūtu labumu no Tor, Jums jāizmanto lietotnes, kuras izveidotas darbam ar Orbot, vai tādas, kuras atbalsta HTTP vai SOCKS starpnieku iestatījumus.\n\n</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot\'a iespējotas lietotnes</string>
-  <string name="wizard_tips_gibberbot">Gibberbot: Drošas tērzēšanas lietotne, kura izmanto Off-the-Record šifrēšanu</string>
-  <string name="gibberbot_apk_url">https://market.android.com/details?id=info.guardianproject.otr.app.im</string>
   <string name="wizard_tips_orweb">Orweb: Pārlūks ar uzlabotu privātumu un kurš strādā caur Tor tīklu</string>
-  <string name="orweb_apk_url">https://market.android.com/details?id=info.guardianproject.browser</string>
   <string name="wizard_tips_play">Visas Guardian Project\'a lietotnes atrodamas Google Play\'ā</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
@@ -201,11 +197,8 @@
   <string name="the_tor_license">Tor licence</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Trešo personu programmatūra:</string>
-  <string name="tor_version">Tor v0.2.3.17: https://www.torproject.org</string>
-  <string name="libevent_version">LibEvent v2.1: http://www.monkey.org/~provos/libevent/</string>
   <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
   <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v0.9.8h: http://www.openssl.org</string>
   <string name="hidden_service_request">Lietotne vēlas atvērt slēptu servera portu %S uz tīklu Tor. Tas ir droši, ja uzticaties lietotnei.</string>
   <string name="found_existing_tor_process">Atrada esošu Tor procesu...</string>
   <string name="something_bad_happened">Nav labi. Pārbaudiet žurnālu</string>
