@@ -273,15 +273,11 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
     	appBinHome = getDir(DIRECTORY_TOR_BINARY,Application.MODE_PRIVATE);
     	appCacheHome = getDir(DIRECTORY_TOR_DATA,Application.MODE_PRIVATE);
-    	
-		
+    			
 	   IntentFilter mNetworkStateFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
 	   registerReceiver(mNetworkStateReceiver , mNetworkStateFilter);
-		
 
 		mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-		
 
 		if (intent != null && intent.getAction()!=null && intent.getAction().equals("onboot"))
 		{
@@ -292,6 +288,20 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			{
 				setTorProfile(PROFILE_ON);
 			}
+		}
+		else if (intent == null)
+		{
+			try {
+				initBinaries();
+				findExistingProc () ;
+				
+
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
 		}
 		
 	    // We want this service to continue running until it is explicitly
