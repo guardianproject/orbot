@@ -113,8 +113,11 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
         		
         		final TorifiedApp app = mApps.get(position);
         		
-        	
-        		entry.icon.setImageDrawable(app.getIcon());
+        		if (app.getIcon() != null)
+        			entry.icon.setImageDrawable(app.getIcon());
+        		else
+        			entry.icon.setVisibility(View.GONE);
+        		
         		entry.text.setText(app.getName());
         		
         		final CheckBox box = entry.box;
@@ -227,8 +230,18 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
 			app.setUid(aInfo.uid);
 			app.setUsername(pMgr.getNameForUid(app.getUid()));
 			app.setProcname(aInfo.processName);
-			app.setName(pMgr.getApplicationLabel(aInfo).toString());
-			app.setIcon(pMgr.getApplicationIcon(aInfo));
+			
+			try
+			{
+				app.setName(pMgr.getApplicationLabel(aInfo).toString());
+			}
+			catch (Exception e)
+			{
+				app.setName(aInfo.packageName);
+			}
+			
+			
+			//app.setIcon(pMgr.getApplicationIcon(aInfo));
 			
 			// check if this application is allowed
 			if (Arrays.binarySearch(tordApps, app.getUsername()) >= 0) {
