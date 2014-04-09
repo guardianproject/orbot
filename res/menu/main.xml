@@ -45,10 +45,11 @@
          android:icon="@drawable/ic_action_browse"  
         />
  
+        <!-- 
         <item android:id="@+id/menu_use_chatsecure"
         android:title="@string/menu_use_chatsecure"
          android:icon="@drawable/ic_chatsecure" 
-        />
+        /> -->
         
         </menu>
  </item>
