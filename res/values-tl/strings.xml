@@ -69,7 +69,6 @@
   <string name="wizard_configure_all">I-proxy lahat ng Apps gamit ang Tor</string>
   <string name="wizard_configure_select_apps">Pumili ng isa-isang apps para sa Tor</string>
   <string name="wizard_tips_tricks">Orbot-enabled Apps</string>
-  <string name="wizard_tips_otrchat">Gibberbot - ligtas na instant messaging client para sa Android</string>
   <string name="wizard_tips_proxy">Proxy Settings - Alamin paano magkompigura ng apps para gumana sa Orbot</string>
   <string name="wizard_proxy_help_info">Proxy Settings</string>
   <string name="wizard_final">Handa na ang Orbot!</string>
@@ -87,7 +86,6 @@
   <string name="wizard_permissions_root_msg1">Maari mong piliin bigyan ng pahintulot ang Orbot ng \'Superuser\' access para ma-enable ang mga advanced features tulad ng Transparent Proxying.</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot-Enabled Apps</string>
-  <string name="wizard_tips_gibberbot">Gibberbot: ligtas na chat app na mayroong Off-the-Record Encryption</string>
   <string name="wizard_tips_orweb">Orweb: rivacy-enhanced browser na gumagana sa Tor</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
