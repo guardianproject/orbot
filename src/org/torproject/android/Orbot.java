@@ -75,6 +75,12 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	/* Tor Service interaction */
 		/* The primary interface we will be calling on the service. */
     ITorService mService = null;
+
+    //should move this up with all the other class variables
+    private boolean mIsBound = false;
+    private Intent mTorService = null;
+    
+    
 	private boolean autoStartFromIntent = false;
 
 	SharedPreferences mPrefs;
@@ -89,6 +95,10 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
         setLocale();
         
     	doLayout();
+
+    	mTorService = new Intent(this, TorService.class);
+    	getApplication().getApplicationContext().startService(mTorService);
+        
 	}
 	
 	private void doLayout ()
@@ -800,7 +810,8 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	                            	if (torStatus != newTorStatus)
 	                            	{
 	                                    imgStatus.setImageResource(R.drawable.toron);
-	                            		mViewMain.setBackgroundResource(R.drawable.onionrootonly);                            	                                    
+	                            	//	mViewMain.setBackgroundResource(R.drawable.onionrootonly);    
+	                            		
 	                                    String lblMsg = getString(R.string.status_activated);                                     
 	                                    lblStatus.setText(lblMsg);
 
@@ -842,7 +853,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                             	if (torStatus != newTorStatus)
                             	{
                                     imgStatus.setImageResource(R.drawable.torstarting);
-                            		mViewMain.setBackgroundResource(R.drawable.onionrootonlygold);
+                            //		mViewMain.setBackgroundResource(R.drawable.onionrootonlygold);
 
                                     if (mItemOnOff != null)
                                             mItemOnOff.setTitle(R.string.menu_stop);
@@ -858,7 +869,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                             }
                             else if (torStatus != newTorStatus)
                             {
-                        		mViewMain.setBackgroundResource(R.drawable.onionrootonlygrey);                            	
+                        	//	mViewMain.setBackgroundResource(R.drawable.onionrootonlygrey);                            	
                                 imgStatus.setImageResource(R.drawable.toroff);
                                 lblStatus.setText(getString(R.string.status_disabled) + "\n" + getString(R.string.press_to_start));
                                 
@@ -1130,21 +1141,14 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
         }
     };
     
-    //should move this up with all the other class variables
-    boolean mIsBound = false;
-    
     //this is where we bind! 
     private void bindService ()
     {
         
-    	Intent iTorService = new Intent(this, TorService.class);
-
-    	getApplication().getApplicationContext().startService(iTorService);
-        
          //since its auto create, we prob don't ever need to call startService
          //also we should again be consistent with using either iTorService.class.getName()
          //or the variable constant       
-         bindService(iTorService,
+         bindService(mTorService,
              mConnection, Context.BIND_AUTO_CREATE);
          
          mIsBound = true;
