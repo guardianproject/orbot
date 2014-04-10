@@ -17,33 +17,14 @@ public class TorServiceUtils implements TorServiceConstants {
 
 	
 	
-	public static int findProcessId(String command) 
+	public static int findProcessId(String command) throws IOException 
 	{
-		int procId = -1;
-		
-		try
-		{
-			procId = findProcessIdWithPidOf(command);
-			
-			if (procId == -1)
-				procId = findProcessIdWithPS(command);
-		}
-		catch (Exception e)
-		{
-			try
-			{
-				procId = findProcessIdWithPS(command);
-			}
-			catch (Exception e2)
-			{
-				Log.w(TorConstants.TAG,"Unable to get proc id for: " + command,e2);
-			}
-		}
-		
+		int procId = findProcessIdWithPS(command);
 		return procId;
 	}
 	
 	//use 'pidof' command
+	/**
 	public static int findProcessIdWithPidOf(String command) throws Exception
 	{
 		
@@ -80,9 +61,10 @@ public class TorServiceUtils implements TorServiceConstants {
         return procId;
 
 	}
+	 * @throws IOException */
 	
 	//use 'ps' command
-	public static int findProcessIdWithPS(String command) throws Exception
+	public static int findProcessIdWithPS(String command) throws IOException 
 	{
 		
 		int procId = -1;
@@ -91,7 +73,7 @@ public class TorServiceUtils implements TorServiceConstants {
 		    	
 		Process procPs = null;
 		
-		String baseName = new File(command).getName();
+		String processKey = '/' + new File(command).getName();
 		
         procPs = r.exec(SHELL_CMD_PS);
             
@@ -100,20 +82,16 @@ public class TorServiceUtils implements TorServiceConstants {
         
         while ((line = reader.readLine())!=null)
         {
-        	if (line.indexOf('/' + baseName)!=-1)
+        	if (line.contains(processKey))
         	{
+        		String[] lineParts = line.split("\\s+");
         		
-        		StringTokenizer st = new StringTokenizer(line," ");
-        		st.nextToken(); //proc owner
-        		
-        		procId = Integer.parseInt(st.nextToken().trim());
+        		procId = Integer.parseInt(lineParts[1]);
         		
         		break;
         	}
         }
-        
        
-        
         return procId;
 
 	}

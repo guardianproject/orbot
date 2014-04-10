@@ -631,6 +631,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		if (mHasRoot && mEnableTransparentProxy)
 			enableTransparentProxy(mTransProxyAll, mTransProxyTethering);
 		
+		//checkAddressAndCountry();
     }
     
     /*
@@ -730,47 +731,27 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
 		
 		int procId = -1;
-		int attempts = 0;
 
-		int torRetryWaitTimeMS = 2000;
+		int torRetryWaitTimeMS = 1000;
 		
 		ArrayList<String> alEnv = new ArrayList<String>();
 		alEnv.add("HOME=" + appBinHome.getAbsolutePath());
 		
+		sendCallbackStatusMessage(getString(R.string.status_starting_up));
+		
 		Shell shell = Shell.startShell(alEnv,appBinHome.getAbsolutePath());
 		SimpleCommand cmdTor = new SimpleCommand(fileTor.getAbsolutePath() + " DataDirectory " + appCacheHome.getAbsolutePath() + " -f " + torrcPath + "&");
 		shell.add(cmdTor);
-		
-		while (procId == -1 && attempts < MAX_START_TRIES)
-		{
-			
-			sendCallbackStatusMessage(getString(R.string.status_starting_up));
-			
-			shell.add(cmdTor);
-		
-			Thread.sleep(torRetryWaitTimeMS);
-			
-			procId = TorServiceUtils.findProcessId(fileTor.getAbsolutePath());
-			
-			if (procId == -1)
-			{
-				Thread.sleep(torRetryWaitTimeMS);
-				procId = TorServiceUtils.findProcessId(fileTor.getAbsolutePath());
-				attempts++;
-			}
-			else
-			{
-				logNotice("got tor proc id: " + procId);
-				
-			}
-		}
-		
+		Thread.sleep(torRetryWaitTimeMS);
+
+		procId = initControlConnection ();
+
 		shell.close();
 		
 		if (procId == -1)
 		{
-
-			logNotice(cmdTor.getExitCode() + ": " + cmdTor.getOutput());
+			
+			logNotice(getString(R.string.couldn_t_start_tor_process_) + "; exit=" + cmdTor.getExitCode() + ": " + cmdTor.getOutput());
 			sendCallbackStatusMessage(getString(R.string.couldn_t_start_tor_process_));
 			
 			throw new Exception ("Unable to start Tor");
@@ -778,10 +759,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		else
 		{
 		
-			logNotice("Tor process id=" + procId);
+			logNotice("Tor started; process id=" + procId);
 			
-			initControlConnection ();
-
 			processSettingsImpl();
 	    }
     }
@@ -840,7 +819,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		return null;
 	}*/
 	
-	private void initControlConnection () throws Exception, RuntimeException
+	private int initControlConnection () throws Exception, RuntimeException
 	{
 			while (conn == null)
 			{
@@ -872,7 +851,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 				        
 			        }
 			        
-			        break; //don't need to retry
+			        String torProcId = conn.getInfo("process/pid");
+			        
+			        return Integer.parseInt(torProcId);
 				}
 				catch (Exception ce)
 				{
@@ -887,9 +868,24 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			}
 		
 		
+			return -1;
 
 	}
 	
+	private void checkAddressAndCountry () throws IOException
+	{
+
+        if (TorService.ENABLE_DEBUG_LOG)
+        {
+        	String torExternalAddress = conn.getInfo("address");
+        	String torCountry = conn.getInfo("ip-to-country/" + torExternalAddress);
+        
+        	Log.d(TAG,"external address=" + torExternalAddress);
+        	Log.d(TAG,"external country=" + torCountry);
+        	
+        }
+        
+	}
 	
 	/*
 	private void getTorStatus () throws IOException
@@ -1356,7 +1352,11 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	        	{
 	        		public void run ()
 	        		{
-	        			try { conn.signal("NEWNYM"); }
+	        			try { conn.signal("NEWNYM"); 
+	        			
+	        			//checkAddressAndCountry();
+	        			
+	        			}
 	        			catch (IOException ioe){
 	        				logMessage("error requesting newny: " + ioe.getLocalizedMessage());
 	        			}
