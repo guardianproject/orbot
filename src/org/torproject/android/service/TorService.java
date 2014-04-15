@@ -8,6 +8,7 @@
 package org.torproject.android.service;
 
 
+import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -829,17 +830,18 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	
 	private int initControlConnection () throws Exception, RuntimeException
 	{
-			while (conn == null)
+			int maxAttempts = 5;
+			int i = 0;
+			
+			while (conn == null && i++ < maxAttempts)
 			{
 				try
 				{
 					logNotice( "Connecting to control port: " + TOR_CONTROL_PORT);
 					
-					
 					torConnSocket = new Socket(IP_LOCALHOST, TOR_CONTROL_PORT);
 			        conn = TorControlConnection.getConnection(torConnSocket);
 			        
-			      //  conn.authenticate(new byte[0]); // See section 3.2
 
 					logNotice( "SUCCESS connected to control port");
 			        
@@ -848,31 +850,40 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			        if (fileCookie.exists())
 			        {
 				        byte[] cookie = new byte[(int)fileCookie.length()];
-				        new FileInputStream(fileCookie).read(cookie);
+				        DataInputStream fis = new DataInputStream(new FileInputStream(fileCookie));
+				        fis.read(cookie);
+				        fis.close();
 				        conn.authenticate(cookie);
 				        		
-				        logNotice( "SUCCESS authenticated to control port");
+				        logNotice( "SUCCESS - authenticated to control port");
 				        
 						sendCallbackStatusMessage(getString(R.string.tor_process_starting) + ' ' + getString(R.string.tor_process_complete));
 	
 				        addEventHandler();
 				        
+			      
+			        
+				        String torProcId = conn.getInfo("process/pid");
+				        
+				        return Integer.parseInt(torProcId);
+				        
 			        }
-			        
-			        String torProcId = conn.getInfo("process/pid");
-			        
-			        return Integer.parseInt(torProcId);
+			        else
+			        {
+			        	logNotice ("Tor authentication cookie does not exist yet; trying again...");
+			        }
 				}
 				catch (Exception ce)
 				{
 					conn = null;
+					logNotice( "Error connecting to Tor local control port: " + ce.getLocalizedMessage());
+					 
 					Log.d(TAG,"Attempt: Error connecting to control port: " + ce.getLocalizedMessage(),ce);
-					
-					sendCallbackStatusMessage(getString(R.string.tor_process_waiting));
-
-					Thread.sleep(3000);
-										
-				}	
+				}
+				
+				sendCallbackStatusMessage(getString(R.string.tor_process_waiting));
+				Thread.sleep(3000);
+				
 			}
 		
 		
