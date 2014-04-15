@@ -54,7 +54,7 @@ public interface TorServiceConstants {
 	public final static int PORT_SOCKS = 9050;
 	
 	//what is says!
-	public final static String IP_LOCALHOST = "127.0.0.1";
+	public final static String IP_LOCALHOST = "localhost";
 	public final static int TOR_CONTROL_PORT = 9051;
 	public final static int UPDATE_TIMEOUT = 1000;
 	public final static int TOR_TRANSPROXY_PORT = 9040;
@@ -79,7 +79,7 @@ public interface TorServiceConstants {
     public static final int DISABLE_TOR_MSG = 3;
     public static final int LOG_MSG = 4;
     
-    public static final String BINARY_TOR_VERSION = "0.2.4.21-openssl1.0.1g-if6";
+    public static final String BINARY_TOR_VERSION = "0.2.4.21-openssl1.0.1g-if7";
     public static final String BINARY_PRIVOXY_VERSION = "3.0.12";
     public static final String PREF_BINARY_TOR_VERSION_INSTALLED = "BINARY_TOR_VERSION_INSTALLED";
     public static final String PREF_BINARY_PRIVOXY_VERSION_INSTALLED = "BINARY_PRIVOXY_VERSION_INSTALLED";
