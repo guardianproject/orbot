@@ -73,12 +73,12 @@ public class TorServiceUtils implements TorServiceConstants {
 		    	
 		Process procPs = null;
 		
-		String processKey = '/' + new File(command).getName();
+		String processKey = new File(command).getName();
 		
-        procPs = r.exec(SHELL_CMD_PS);
+        procPs = r.exec(SHELL_CMD_PS + ' ' + processKey); // this is the android ps <name> command
             
         BufferedReader reader = new BufferedReader(new InputStreamReader(procPs.getInputStream()));
-        String line = null;
+        String line = reader.readLine(); //read first line "headers" USER PID PPID etc
         
         while ((line = reader.readLine())!=null)
         {
