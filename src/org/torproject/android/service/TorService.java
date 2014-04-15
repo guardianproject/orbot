@@ -734,16 +734,24 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 		int torRetryWaitTimeMS = 1000;
 		
-		ArrayList<String> alEnv = new ArrayList<String>();
-		alEnv.add("HOME=" + appBinHome.getAbsolutePath());
-		
 		sendCallbackStatusMessage(getString(R.string.status_starting_up));
 		
+		//start Tor in the background
+		ArrayList<String> alEnv = new ArrayList<String>();
+		alEnv.add("HOME=" + appBinHome.getAbsolutePath());
 		Shell shell = Shell.startShell(alEnv,appBinHome.getAbsolutePath());
-		SimpleCommand cmdTor = new SimpleCommand(fileTor.getAbsolutePath() + " DataDirectory " + appCacheHome.getAbsolutePath() + " -f " + torrcPath + "&");
+		SimpleCommand cmdTor = new SimpleCommand(fileTor.getAbsolutePath() + " DataDirectory " + appCacheHome.getAbsolutePath() + " -f " + torrcPath + " &");
 		shell.add(cmdTor);
+		
+		if (TorService.ENABLE_DEBUG_LOG)
+        {
+			logNotice("Tor exit code=" + cmdTor.getExitCode() + ";output=" + cmdTor.getOutput());
+        }
+		
+		//wait a few seconds
 		Thread.sleep(torRetryWaitTimeMS);
 
+		//now try to connect
 		procId = initControlConnection ();
 
 		shell.close();
