@@ -594,6 +594,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 			
 		}
 		
+		torStatus = -1;
 		updateStatus ("");
 		
 	}
@@ -1095,6 +1096,9 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
     private ServiceConnection mConnection = new ServiceConnection() {
         public void onServiceConnected(ComponentName className,
                 IBinder service) {
+        	
+        	 mIsBound = true;
+        	 
             // This is called when the connection with the service has been
             // established, giving us the service object we can use to
             // interact with the service.  We are communicating with our
@@ -1151,7 +1155,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
          bindService(mTorService,
              mConnection, Context.BIND_AUTO_CREATE);
          
-         mIsBound = true;
+        
     
     }
     
