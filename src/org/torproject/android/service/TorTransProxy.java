@@ -303,12 +303,24 @@ public class TorTransProxy implements TorServiceConstants {
 				
 				logMessage("enabling transproxy for app: " + tApp.getUsername() + "(" + tApp.getUid() + ")");
 			 
+
+				// Allow loopback
+				script.append(ipTablesPath);
+				script.append(" -t filter");
+		        script.append(" -A ").append(srcChainName);
+				script.append(" -m owner --uid-owner ");
+				script.append(tApp.getUid());
+				script.append(" -o lo");
+				script.append(" -j ACCEPT");
+
+				executeCommand (shell, script.toString());
+				script = new StringBuilder();
+				
 				// Set up port redirection
 		    	script.append(ipTablesPath);
 		    	script.append(" -t nat");
 		    	script.append(" -A ").append(srcChainName);				
 				script.append(" -p tcp");
-				script.append(" ! -d 127.0.0.1"); //allow access to localhost
 				script.append(" -m owner --uid-owner ");
 				script.append(tApp.getUid());
 				script.append(" -m tcp --syn");
@@ -320,20 +332,23 @@ public class TorTransProxy implements TorServiceConstants {
 				
 				// Same for DNS
 				script.append(ipTablesPath);
-				script.append(" -t nat");				
-				script.append(" -A ").append(srcChainName);				
-				script.append(" -p udp -m owner --uid-owner ");
+				script.append(" -t nat");
+				script.append(" -A ").append(srcChainName);
+				script.append(" -p udp");
+				script.append(" ! -d 127.0.0.1"); //allow access to localhost
+				script.append(" -m owner ! --uid-owner ");
 				script.append(tApp.getUid());
 				script.append(" -m udp --dport "); 
 				script.append(STANDARD_DNS_PORT);
 				script.append(" -j REDIRECT --to-ports ");
 				script.append(TOR_DNS_PORT);
 
+
 				executeCommand (shell, script.toString());
 				script = new StringBuilder();
 				
 				
-				int[] ports = {TOR_DNS_PORT,TOR_TRANSPROXY_PORT,PORT_SOCKS,PORT_HTTP};
+				int[] ports = {TOR_TRANSPROXY_PORT,PORT_SOCKS,PORT_HTTP};
 				
 				for (int port : ports)
 				{
@@ -341,57 +356,38 @@ public class TorTransProxy implements TorServiceConstants {
 					script.append(ipTablesPath);
 					script.append(" -t filter");
 			        script.append(" -A ").append(srcChainName);
+					script.append(" -p tcp");
 					script.append(" -m owner --uid-owner ");
 					script.append(tApp.getUid());
-					script.append(" -p tcp");
-					script.append(" -d 127.0.0.1");
 					script.append(" --dport ");
 					script.append(port);	
 					script.append(" -j ACCEPT");
 					
 					executeCommand (shell, script.toString());
 					script = new StringBuilder();
-					
-		
 				}
 				
-				// Allow loopback
+				// Allow packets to localhost (contains all the port-redirected ones)
 				script.append(ipTablesPath);
 				script.append(" -t filter");
 		        script.append(" -A ").append(srcChainName);
-				script.append(" -m owner --uid-owner ");
-				script.append(tApp.getUid());
-				script.append(" -p tcp");
-				script.append(" -o lo");
-				script.append(" -j ACCEPT");
-
-				executeCommand (shell, script.toString());
-				script = new StringBuilder();
-				
-
-				// Reject all other outbound TCP packets
-				script.append(ipTablesPath);
-				script.append(" -t filter");
-		        script.append(" -A ").append(srcChainName);
-				script.append(" -m owner --uid-owner ");
-				script.append(tApp.getUid());
-				script.append(" -p tcp");
-				script.append(" ! -d 127.0.0.1"); //allow access to localhost
-				script.append(" -j REJECT");
-
-				executeCommand (shell, script.toString());
-				script = new StringBuilder();
-				
-				
-				// Reject all other outbound UDP packets
-				script.append(ipTablesPath);
-				script.append(" -t filter");
-		        script.append(" -A ").append(srcChainName);
-				script.append(" -m owner --uid-owner ");
-				script.append(tApp.getUid());
 				script.append(" -p udp");
-				script.append(" ! -d 127.0.0.1"); //allow access to localhost
-				script.append(" -j REJECT");
+				script.append(" -m owner --uid-owner ");
+				script.append(tApp.getUid());
+				script.append(" --dport ");
+				script.append(TOR_DNS_PORT);	
+				script.append(" -j ACCEPT");
+				
+				executeCommand (shell, script.toString());
+				script = new StringBuilder();
+				
+				// Reject all other outbound packets
+				script.append(ipTablesPath);
+				script.append(" -t filter");
+		        script.append(" -A ").append(srcChainName);
+				script.append(" -m owner --uid-owner ");
+				script.append(tApp.getUid());				
+				script.append(" -j DROP");
 
 				lastExit = executeCommand (shell, script.toString());
 				script = new StringBuilder();
@@ -399,8 +395,6 @@ public class TorTransProxy implements TorServiceConstants {
 		
 			}		
 		}		
-		
-		fixTransproxyLeak (context);
 		
 		shell.close();
 		
@@ -546,8 +540,9 @@ public class TorTransProxy implements TorServiceConstants {
     	StringBuilder script = new StringBuilder();
     	
 		// Allow everything for Tor
+    	
 		script.append(ipTablesPath);			
-		script.append(" -t filter");
+		script.append(" -t nat");
 		script.append(" -A ").append(srcChainName);
 		script.append(" -m owner --uid-owner ");
 		script.append(torUid);
@@ -555,7 +550,17 @@ public class TorTransProxy implements TorServiceConstants {
 		
 		executeCommand (shell, script.toString());
 		script = new StringBuilder();
+
+		// Allow loopback
 		
+		script.append(ipTablesPath);
+		script.append(" -t nat");
+		script.append(" -A ").append(srcChainName);
+		script.append(" -o lo");
+		script.append(" -j ACCEPT");
+
+		executeCommand (shell, script.toString());
+		script = new StringBuilder();
 		
     	// Set up port redirection    	
 		script.append(ipTablesPath);		
@@ -584,38 +589,6 @@ public class TorTransProxy implements TorServiceConstants {
 		script.append(STANDARD_DNS_PORT);
 		script.append(" -j REDIRECT --to-ports ");
 		script.append(TOR_DNS_PORT);
-
-		executeCommand (shell, script.toString());
-		script = new StringBuilder();
-		
-		
-		/**
-		int[] ports = {TOR_DNS_PORT,TOR_TRANSPROXY_PORT,PORT_SOCKS,PORT_HTTP};
-		
-		for (int port : ports)
-		{
-			// Allow packets to localhost (contains all the port-redirected ones)
-			script.append(ipTablesPath);			
-			script.append(" -t filter");
-			script.append(" -A ").append(srcChainName);
-			script.append(" -m owner ! --uid-owner ");
-			script.append(torUid);
-			script.append(" -p tcp");
-			script.append(" -d 127.0.0.1");
-			script.append(" --dport ");
-			script.append(port);	
-			script.append(" -j ACCEPT");
-			script.append(" || exit\n");
-		
-		}**/
-		
-		// Allow loopback
-		script.append(ipTablesPath);
-		script.append(" -t filter");
-		script.append(" -A ").append(srcChainName);
-		script.append(" -p tcp");
-		script.append(" -o lo");
-		script.append(" -j ACCEPT");
 
 		executeCommand (shell, script.toString());
 		script = new StringBuilder();
@@ -650,18 +623,66 @@ public class TorTransProxy implements TorServiceConstants {
 			
 		}
 
-		// Reject all other outbound TCP packets
+		//allow access to transproxy port
 		script.append(ipTablesPath);
 		script.append(" -t filter");
 		script.append(" -A ").append(srcChainName);
-		script.append(" -m owner ! --uid-owner ");
-		script.append(torUid);
 		script.append(" -p tcp");
-		script.append(" ! -d 127.0.0.1"); //allow access to localhost
-		script.append(" -j REJECT");
+		script.append(" -m tcp");
+		script.append(" --dport ").append(TOR_TRANSPROXY_PORT);
+		script.append(" -j ACCEPT");
 
 		executeCommand (shell, script.toString());
 		script = new StringBuilder();
+		
+		//allow access to local SOCKS port
+		script.append(ipTablesPath);
+		script.append(" -t filter");
+		script.append(" -A ").append(srcChainName);
+		script.append(" -p tcp");
+		script.append(" -m tcp");
+		script.append(" --dport ").append(PORT_SOCKS);
+		script.append(" -j ACCEPT");
+
+		executeCommand (shell, script.toString());
+		script = new StringBuilder();
+		
+		//allow access to local SOCKS port
+		script.append(ipTablesPath);
+		script.append(" -t filter");
+		script.append(" -A ").append(srcChainName);
+		script.append(" -p tcp");
+		script.append(" -m tcp");
+		script.append(" --dport ").append(PORT_HTTP);
+		script.append(" -j ACCEPT");
+
+		executeCommand (shell, script.toString());
+		script = new StringBuilder();
+		
+		//allow access to local DNS port
+		script.append(ipTablesPath);
+		script.append(" -t filter");
+		script.append(" -A ").append(srcChainName);
+		script.append(" -p udp");
+		script.append(" -m udp");
+		script.append(" --dport ").append(TOR_DNS_PORT);
+		script.append(" -j ACCEPT");
+
+		executeCommand (shell, script.toString());
+		script = new StringBuilder();
+		
+		//allow access to local DNS port
+		script.append(ipTablesPath);
+		script.append(" -t filter");
+		script.append(" -A ").append(srcChainName);
+		script.append(" -p udp");
+		script.append(" -m udp");
+		script.append(" --dport ").append(TOR_DNS_PORT);
+		script.append(" -j ACCEPT");
+
+		executeCommand (shell, script.toString());
+		script = new StringBuilder();
+		
 		
 		// Reject all other outbound UDP packets
 		script.append(ipTablesPath);
@@ -669,13 +690,12 @@ public class TorTransProxy implements TorServiceConstants {
 		script.append(" -A ").append(srcChainName);
 		script.append(" -m owner ! --uid-owner ");
 		script.append(torUid);
-		script.append(" -p udp");
-		script.append(" ! -d 127.0.0.1"); //allow access to localhost
-		script.append(" -j REJECT");
+		script.append(" -j DROP");
 
 		int lastExit = executeCommand (shell, script.toString());
 		
 		fixTransproxyLeak (context);
+		
 		shell.close();
 		
     	return lastExit;
