@@ -12,3 +12,5 @@ TransListenAddress 127.0.0.1
 DNSPort 5400
 DNSListenAddress 127.0.0.1
 AvoidDiskWrites 1
+VirtualAddrNetwork 10.192.0.0/10
+AutomapHostsOnResolve 1
