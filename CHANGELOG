@@ -1,6 +1,59 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
 13.0.6
+89fc2e6 updated to 13.0.6-RC-3
+b9eeb37 ensure Service has foreground priority so it is not killed (and improve onBind() calls to reset state if it is killed)
+3824bc5 improving control port connection code adding additional logging for problems with Samsungs
+fa6c101 bump version to 13.0.6-RC-2
+cc020f5 small tweaks to Tor binary startup code
+16799ef add automapresolve to ensure .onion address are handled
+06d5a6f improve process lookup code
+cd8b7e4 connect to "localhost" instead of 127.0.0.1
+4673f04 update UI on rebind of service
+c68ce2c fixes for transproxy to fix DNS leaks in some cases latest RC was leaking DNS due to updates iptables/xtables binary and need
+915ff8a updated to 13.0.6-RC-1
+3413b34 fixes for getting process id of Tor process
+e9d0fea updates resources and tx config for tagalog
+10938ed update string resources from transifex
+5326d2b updated string values for components
+8d73be6 bump to 13.0.6-BETA-8
+af95098 remove "persistant" flag, as its only for system apps
+831a52a improved logging and exit code reporting for transproxy
+f853271 fix Service init/bind logic also remove updates for background drawing to save memory
+8445f2e ensure appmgr doesn't fail on loading apps also don't load icons to improve memory usage
+227253d updates to optimize resource memory usage
+ed76f8b update to 13.0.6-BETA-7
+60a79a2 more updates to install clean-up process
+f885059 fix problem with UI rotation and screen update
+efb9a8c update to 13.0.6-BETA-6
+bf8a92c use AbsolutePath instead of Canonical; fix kill code
+e1b1ca0 add constants for folder names
+e8116f4 ensure existing files are deleted before upgrade
+25f4ac8 adding new small icon
+981123f update to 13.0.6-BETA-5
+b6a9b48 ensure existing binaries are removed before install problems may be caused by soft links or old bins
+ef14ac5 fix large icon incorrect display in alert dialogs
+bab67b7 small fixes for the wizard with new UI
+3d1f391 updates for icons, backgrounds and improved drawing code to solve issues related to outofmemory
+9d1311c updated to dark icon
+b329920 update to BETA-4 for Permission changes
+c9bf8d2 fix Shell calls so that we close() shell when done
+e78486a update to support specific permissions for Service this is an attempted fix for Samsung S3/Note3 issues
+7990644 update version to 13.0.6-BETA-3
+917ea6e fix for mikeperry transproxy leak bug find https://lists.torproject.org/pipermail/tor-talk/2014-March/032503.html
+fc0554f fix for binary version upgrade support
+4ed6ea1 updated pre-built binaries
+7229c52 updated to openssl 1.0.1g
+6bce7d5 fix ant build script and target
+e5b70ba improve shell command, root and permissions handling
+b734c6c add new library for superuser/shell commands
+dda5633 updated to 13.0.6-BETA-1
+298f73c update Tor version code
+75d3ecb update language wizard display to be more clear
+fe44c29 add binaries (for non NDK developers)
+05bf5b7 add/update translations from transifex
+344e914 add transifex tx config
+8140b32 a little bit of cleanup of new binary installs
 e25dc08 fixes the menus for appcompat library
 cc8d3e1 update to return to binaries as ZIPd res/raw stop using the libs/armeabi hack method
 b59bd1a remove binary apps/libs
