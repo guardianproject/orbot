@@ -199,8 +199,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	
 	private void clearNotifications ()
 	{
-		mNotificationManager.cancelAll();
-		
+		if (mNotificationManager != null)
+			mNotificationManager.cancelAll();
 		
 	}
    

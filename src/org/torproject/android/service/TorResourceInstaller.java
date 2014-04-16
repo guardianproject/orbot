@@ -150,7 +150,7 @@ public class TorResourceInstaller implements TorServiceConstants {
 	/*
 	 * Write the inputstream contents to the file
 	 */
-    private static boolean streamToFile(InputStream stm, File outFile, boolean append, boolean zip) throws IOException
+    public static boolean streamToFile(InputStream stm, File outFile, boolean append, boolean zip) throws IOException
 
     {
         byte[] buffer = new byte[FILE_WRITE_BUFFER_SIZE];
@@ -187,7 +187,7 @@ public class TorResourceInstaller implements TorServiceConstants {
     }
 	
     //copy the file from inputstream to File output - alternative impl
-	public void copyFile (InputStream is, File outputFile)
+	public static void copyFile (InputStream is, File outputFile)
 	{
 		
 		try {
@@ -230,7 +230,7 @@ public class TorResourceInstaller implements TorServiceConstants {
 	 * @throws IOException on error
 	 * @throws InterruptedException when interrupted
 	 */
-	private static void copyRawFile(Context ctx, int resid, File file, String mode, boolean isZipd) throws IOException, InterruptedException
+	public static void copyRawFile(Context ctx, int resid, File file, String mode, boolean isZipd) throws IOException, InterruptedException
 	{
 		final String abspath = file.getAbsolutePath();
 		// Write the iptables binary
