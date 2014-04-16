@@ -183,7 +183,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	@Override
 	public boolean onUnbind(Intent intent) {
 		
-	//	logNotice( "onUnbind Called: " + intent.getAction());
+		logNotice( "onUnbind Called: " + intent.getAction());
 		
 		return super.onUnbind(intent);
 		
@@ -230,7 +230,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 		mNotifyBuilder.setContentText(notifyMsg);
 		mNotifyBuilder.setSmallIcon(icon);
-		mNotifyBuilder.setOngoing(isOngoing);
 		
 		if (notifyId == ERROR_NOTIFY_ID)
 		{
@@ -239,11 +238,18 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			mNotifyBuilder.setLights(Color.GREEN, 1000, 1000);
 		}
 		
-		
-		mNotificationManager.notify(
-					notifyId,
+		if (isOngoing)
+		{
+			startForeground(notifyId,
 	    			mNotifyBuilder.getNotification());
-			
+		
+		}
+		else
+		{
+			mNotificationManager.notify(
+						notifyId,
+		    			mNotifyBuilder.getNotification());
+		}	
 		
  	}
     
@@ -271,43 +277,45 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	 */
 	public int onStartCommand(Intent intent, int flags, int startId) {
 	
-		
-    	appBinHome = getDir(DIRECTORY_TOR_BINARY,Application.MODE_PRIVATE);
-    	appCacheHome = getDir(DIRECTORY_TOR_DATA,Application.MODE_PRIVATE);
-    			
-	   IntentFilter mNetworkStateFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-	   registerReceiver(mNetworkStateReceiver , mNetworkStateFilter);
 
-		mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-		if (intent != null && intent.getAction()!=null && intent.getAction().equals("onboot"))
+		try
 		{
+			initBinaries();
 			
-			boolean startOnBoot = getSharedPrefs(getApplicationContext()).getBoolean("pref_start_boot",false);
-			
-			if (startOnBoot)
+	    			
+		   IntentFilter mNetworkStateFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+		   registerReceiver(mNetworkStateReceiver , mNetworkStateFilter);
+	
+			mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+	
+			if (intent != null && intent.getAction()!=null && intent.getAction().equals("onboot"))
 			{
-				setTorProfile(PROFILE_ON);
-			}
-		}
-		else if (intent == null)
-		{
-			try {
-				initBinaries();
-				findExistingProc () ;
 				
-
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				boolean startOnBoot = getSharedPrefs(getApplicationContext()).getBoolean("pref_start_boot",false);
+				
+				if (startOnBoot)
+				{
+					setTorProfile(PROFILE_ON);
+				}
 			}
-			
-			
+			else if (intent == null)
+			{
+					findExistingProc () ;
+				
+				
+			}
+
+
+		    // We want this service to continue running until it is explicitly
+		    // stopped, so return sticky.
+		    return START_STICKY;
+		    
 		}
-		
-	    // We want this service to continue running until it is explicitly
-	    // stopped, so return sticky.
-	    return START_STICKY;
+		catch (Exception e)
+		{
+			logException ("Error starting service",e);
+			return Service.START_REDELIVER_INTENT;
+		}
 
 	}
 	
@@ -517,6 +525,13 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     
     private void initBinaries () throws Exception
     {
+
+    	if (appBinHome == null)
+    		appBinHome = getDir(DIRECTORY_TOR_BINARY,Application.MODE_PRIVATE);
+    	
+    	if (appCacheHome == null)
+    		appCacheHome = getDir(DIRECTORY_TOR_DATA,Application.MODE_PRIVATE);
+    	
     	fileTor= new File(appBinHome, TOR_ASSET_KEY);
     	
     	filePrivoxy = new File(appBinHome, PRIVOXY_ASSET_KEY);
@@ -1211,6 +1226,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     		{
 		    	try
 		    	{
+		    		initBinaries();
 		    		findExistingProc ();
 		    	}
 		    	catch (Exception e)
