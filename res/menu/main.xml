@@ -24,7 +24,6 @@
         android:title="@string/menu_start"
          android:icon="@drawable/ic_action_start"
           yourapp:showAsAction="ifRoom"
-          yourapp:actionProviderClass="android.support.v7.widget.ShareActionProvider"
          />
 
  <item android:id="@+id/menu_settings"
