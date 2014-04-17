@@ -42,17 +42,6 @@ public class OrbotDiagnosticsActivity extends Activity {
 		
 		mTextView = (TextView)findViewById(R.id.diaglog);
 		
-		log("Hello, Orbot!");
-		
-		log(android.os.Build.DEVICE);
-		log(android.os.Build.HARDWARE);
-		log(android.os.Build.MANUFACTURER);
-		log(android.os.Build.MODEL);
-		log(android.os.Build.VERSION.CODENAME);
-		log(android.os.Build.VERSION.RELEASE);
-		log("freemem: " + Runtime.getRuntime().freeMemory());
-		log("maxmem: " + Runtime.getRuntime().maxMemory());
-		log("storage: " + getFreeStorage());
 	}
 
 	private String getFreeStorage ()
@@ -90,6 +79,23 @@ public class OrbotDiagnosticsActivity extends Activity {
 	protected void onResume() {
 		super.onResume();
 
+
+		log("Hello, Orbot!");
+		
+		try
+		{
+			log(android.os.Build.DEVICE);
+			log(android.os.Build.HARDWARE);
+			log(android.os.Build.MANUFACTURER);
+			log(android.os.Build.MODEL);
+			log(android.os.Build.VERSION.CODENAME);
+			log(android.os.Build.VERSION.RELEASE);
+		}
+		catch (Exception e)
+		{
+			log("error getting device info");
+		}
+		
 		showFileTree ();
 		
 		runTorTest();
@@ -97,24 +103,36 @@ public class OrbotDiagnosticsActivity extends Activity {
 
 	private void killAllTor (File fileTor) throws IOException
 	{
-		int maxTry = 5;
-    	int currTry = 0;
-    	
-    	Shell shell = Shell.startShell();
-    	Toolbox tb = new Toolbox(shell);
-    	int procId;
-    	
-		while ((procId = TorServiceUtils.findProcessId(fileTor.getAbsolutePath())) != -1 && currTry++ < maxTry)
+		try
 		{
-			
-			log ("Found existing orphan Tor process; Trying to shutdown now (device restart may be needed)...");			
-			log("Found Tor PID=" + procId + " - attempt to shutdown now...");
-			
-			SimpleCommand killCommand = new SimpleCommand("toolbox kill -9 " + procId);
-			shell.add(killCommand);
-			killCommand = new SimpleCommand("kill -9 " + procId);
-			shell.add(killCommand);
+			int maxTry = 5;
+	    	int currTry = 0;
+	    	
+	    	Shell shell = Shell.startShell();	    	
+	    	int procId;
+	    	
+			while ((procId = TorServiceUtils.findProcessId(fileTor.getAbsolutePath())) != -1 && currTry++ < maxTry)
+			{
+				
+				log ("Found existing orphan Tor process; Trying to shutdown now (device restart may be needed)...");			
+				log("Found Tor PID=" + procId + " - attempt to shutdown now...");
+				
+				SimpleCommand killCommand = new SimpleCommand("toolbox kill -9 " + procId);
+				shell.add(killCommand);
+				killCommand.waitForFinish();
+				log ("kill output: " + killCommand.getExitCode() + "; " + killCommand.getOutput());
+				killCommand = new SimpleCommand("kill -9 " + procId);
+				shell.add(killCommand);
+				killCommand.waitForFinish();
+				log ("kill output: " + killCommand.getExitCode() + "; " + killCommand.getOutput());
+			}
 		}
+		catch (Exception e)
+		{
+			log("error killing Tor: " + e.getLocalizedMessage());
+			Log.d(TAG, "error killing Tor", e);
+		}
+		
 	}
 	
 	private void runTorTest ()
@@ -145,17 +163,21 @@ public class OrbotDiagnosticsActivity extends Activity {
 			log ("Executing command> " + cmd);
 			
 			Process process = Runtime.getRuntime().exec(cmd);
+			
 			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
 			StreamGobbler sg = new StreamGobbler();
 			sg.reader = bufferedReader;
 			sg.process = process;
 			new Thread(sg).start();
 			
-			bufferedReader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
-			sg = new StreamGobbler();
-			sg.reader = bufferedReader;
-			sg.process = process;
-			new Thread(sg).start();
+			if (process.getErrorStream() != null)
+			{
+				bufferedReader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+				sg = new StreamGobbler();
+				sg.reader = bufferedReader;
+				sg.process = process;
+				new Thread(sg).start();
+			}
 			
 			
 		}
@@ -215,14 +237,27 @@ public class OrbotDiagnosticsActivity extends Activity {
 	{
 		
 		File fileDir = this.getDir("bin", Context.MODE_PRIVATE);
-		log("checking file tree: " + fileDir.getAbsolutePath());
-		printDir (fileDir.getName(), fileDir);
-
+		
+		if (fileDir.exists())
+		{
+			log("checking file tree: " + fileDir.getAbsolutePath());
+			printDir (fileDir.getName(), fileDir);
+		}
+		else
+		{
+			log("app_bin does not exist");
+		}
 		
 		fileDir = this.getDir("data", Context.MODE_PRIVATE);
-		log("checking file tree: " + fileDir.getAbsolutePath());
-		printDir (fileDir.getName(), fileDir);
-		
+		if (fileDir.exists())
+		{
+			log("checking file tree: " + fileDir.getAbsolutePath());
+			printDir (fileDir.getName(), fileDir);
+		}
+		else
+		{
+			log ("app_data does not exist");
+		}
 				
 
 	}
@@ -231,19 +266,29 @@ public class OrbotDiagnosticsActivity extends Activity {
 	{
 		File[] files = fileDir.listFiles();
 		
-		for (File file : files)
+		if (files != null && files.length > 0)
 		{
+			for (File file : files)
+			{
+
+				try
+				{
+					if (file.isDirectory())
+					{
+						printDir(path + '/' + file.getName(), file);
+					}
+					else
+					{
+						log(path + '/' + file.getName() + " len:" + file.length() + " exec:" + file.canExecute());
+						
+					}
+				}
+				catch (Exception e)
+				{
+					log("problem printing out file information");
+				}
 			
-			if (file.isDirectory())
-			{
-				printDir(path + '/' + file.getName(), file);
 			}
-			else
-			{
-				log(path + '/' + file.getName() + " len:" + file.length() + " exec:" + file.canExecute());
-				
-			}
-		
 		}
 	}
 	
