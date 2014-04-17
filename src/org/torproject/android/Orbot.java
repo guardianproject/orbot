@@ -98,6 +98,8 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 
     	mTorService = new Intent(this, TorService.class);
     	getApplication().getApplicationContext().startService(mTorService);
+    	
+    	appConflictChecker ();
         
 	}
 	
@@ -275,6 +277,22 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
         });*/
         
         return true;
+    }
+    
+    
+    private void appConflictChecker ()
+    {
+    	
+    	String[] badApps = {"com.sec.msc.nts.android.proxy"};
+    	
+    	for (String badApp : badApps)
+    	{
+    		if (appInstalledOrNot(badApp))
+    		{
+	    		showAlert(getString(R.string.title_error),"Please uninstall or disable this app if you are having problems with Orbot: " + badApp,true);
+	    		break;
+    		}
+    	}
     }
     
     
