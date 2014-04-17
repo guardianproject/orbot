@@ -24,6 +24,7 @@ import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Configuration;
@@ -282,16 +283,20 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
     
     private void appConflictChecker ()
     {
-    	
-    	String[] badApps = {"com.sec.msc.nts.android.proxy"};
-    	
-    	for (String badApp : badApps)
+    	boolean debug = mPrefs.getBoolean("pref_enable_logging",false);
+
+    	if (debug)
     	{
-    		if (appInstalledOrNot(badApp))
-    		{
-	    		showAlert(getString(R.string.title_error),"Please uninstall or disable this app if you are having problems with Orbot: " + badApp,true);
-	    		break;
-    		}
+	    	String[] badApps = {"com.sec.msc.nts.android.proxy"};
+	    	
+	    	for (String badApp : badApps)
+	    	{
+	    		if (appInstalledOrNot(badApp))
+	    		{
+		    		showAlert("App Conflict","Please disable this app in Android settings if you are having problems with Orbot: " + badApp,true);
+		    		break;
+	    		}
+	    	}
     	}
     }
     
@@ -714,7 +719,8 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
         boolean app_installed = false;
         try
         {
-               pm.getPackageInfo(uri, PackageManager.GET_ACTIVITIES);
+               PackageInfo pi = pm.getPackageInfo(uri, PackageManager.GET_ACTIVITIES);
+               
                app_installed = true;
         }
         catch (PackageManager.NameNotFoundException e)
