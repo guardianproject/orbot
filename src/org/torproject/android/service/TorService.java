@@ -15,6 +15,8 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.InetSocketAddress;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -121,8 +123,10 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	if (ENABLE_DEBUG_LOG)
     	{
     		Log.e(TAG,msg,e);
-    		sendCallbackLogMessage(msg);	
     	}
+    	
+		sendCallbackLogMessage(msg);	
+
     }
     
     
@@ -615,6 +619,14 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     public void initTor () throws Exception
     {
     	
+    	boolean portsAvail = checkPortsAvailable();
+    	
+    	if (!portsAvail)
+    	{
+    		logNotice("Another app is blocking Tor from starting");
+    		return;
+    	}
+    	
     	try
     	{
     		initBinaries();
@@ -648,6 +660,31 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			enableTransparentProxy(mTransProxyAll, mTransProxyTethering);
 		
 		//checkAddressAndCountry();
+    }
+    
+    private boolean checkPortsAvailable ()
+    {
+    	int[] ports = {9050,9051,8118};
+    	
+    	for (int port: ports)
+    	{
+	    	try
+	    	{
+	    		logNotice("checking local port is available: " + port);
+	    		
+	    		ServerSocket ss = new ServerSocket();
+	    		ss.bind(new InetSocketAddress(IP_LOCALHOST,port));
+	    		ss.close();
+	    	}
+	    	catch (Exception e)
+	    	{
+	    		logException ("Tor socket is not available",e);
+	    		return false;
+	    	}
+    	}
+    	
+    	return true;
+    	
     }
     
     /*
@@ -1576,8 +1613,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 						logNotice("Network connectivity is good. Waking Tor up...");
 						showToolbarNotification(getString(R.string.status_activated),NOTIFY_ID,R.drawable.ic_stat_tor,-1,prefPersistNotifications);
 
-						if (mHasRoot && mEnableTransparentProxy)
-							enableTransparentProxy(mTransProxyAll, mTransProxyTethering);
 			        }
 					
 	    		} catch (Exception e) {
