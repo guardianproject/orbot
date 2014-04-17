@@ -77,6 +77,11 @@ public class TorResourceInstaller implements TorServiceConstants {
 		shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
 		streamToFile(is,outFile, false, false);
 
+		is = context.getResources().openRawResource(R.raw.torrcdiag);
+		outFile = new File(installFolder, TORRCDIAG_ASSET_KEY);
+		shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
+		streamToFile(is,outFile, false, false);
+
 		is = context.getResources().openRawResource(R.raw.torrctether);		
 		outFile = new File(installFolder, TORRC_TETHER_KEY);
 		shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
