@@ -738,13 +738,15 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 		String torrcPath = new File(appBinHome, TORRC_ASSET_KEY).getAbsolutePath();
 		
+	//	if (ENABLE_DEBUG_LOG)
+		//	torrcPath = new File(appBinHome, TORRCDIAG_ASSET_KEY).getAbsolutePath();
+		
 		boolean transProxyTethering = prefs.getBoolean("pref_transparent_tethering", false);
  		
 		if (transProxyTethering)
 		{
 			torrcPath = new File(appBinHome, TORRC_TETHER_KEY).getAbsolutePath();
 		}
-		
 		
 		int procId = -1;
 
@@ -758,11 +760,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		Shell shell = Shell.startShell(alEnv,appBinHome.getAbsolutePath());
 		SimpleCommand cmdTor = new SimpleCommand(fileTor.getAbsolutePath() + " DataDirectory " + appCacheHome.getAbsolutePath() + " -f " + torrcPath + " &");
 		shell.add(cmdTor);
-		
-		if (TorService.ENABLE_DEBUG_LOG)
-        {
-			logNotice("Tor exit code=" + cmdTor.getExitCode() + ";output=" + cmdTor.getOutput());
-        }
 		
 		//wait a few seconds
 		Thread.sleep(torRetryWaitTimeMS);
@@ -1393,7 +1390,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	        			
 	        			}
 	        			catch (IOException ioe){
-	        				logMessage("error requesting newny: " + ioe.getLocalizedMessage());
+	        				logMessage("error requesting newnym: " + ioe.getLocalizedMessage());
 	        			}
 	        		}
 	        	}.start();
@@ -1502,7 +1499,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     }
     
     
-    private synchronized void sendCallbackLogMessage (String logMessage)
+    private void sendCallbackLogMessage (String logMessage)
     {
     	 
     	if (mCallbacks == null)
