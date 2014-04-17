@@ -15,13 +15,11 @@ public interface TorServiceConstants {
 	
 	//torrc (tor config file)
 	public final static String TORRC_ASSET_KEY = "torrc";
+	public final static String TORRCDIAG_ASSET_KEY = "torrcdiag";
 	public final static String TORRC_TETHER_KEY = "torrctether";
 	
 	public final static String TOR_CONTROL_COOKIE = "control_auth_cookie";
 	
-	//how to launch tor
-//	public final static String TOR_COMMAND_LINE_ARGS = "-f " + TORRC_INSTALL_PATH  + " || exit\n";
-		
 	//privoxy
 	public final static String PRIVOXY_ASSET_KEY = "privoxy";
 	
@@ -54,7 +52,7 @@ public interface TorServiceConstants {
 	public final static int PORT_SOCKS = 9050;
 	
 	//what is says!
-	public final static String IP_LOCALHOST = "localhost";
+	public final static String IP_LOCALHOST = "127.0.0.1";
 	public final static int TOR_CONTROL_PORT = 9051;
 	public final static int UPDATE_TIMEOUT = 1000;
 	public final static int TOR_TRANSPROXY_PORT = 9040;
