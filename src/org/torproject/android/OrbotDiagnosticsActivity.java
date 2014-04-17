@@ -33,6 +33,7 @@ public class OrbotDiagnosticsActivity extends Activity {
 
 	private TextView mTextView = null;
 	private final static String TAG = "OrbotDiag";
+	private StringBuffer log = new StringBuffer();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) { 
@@ -310,6 +311,7 @@ public class OrbotDiagnosticsActivity extends Activity {
 	{
 		Log.d(TAG, msg);
 		mTextView.append(msg + '\n');
+		log.append(msg + '\n');
 	}
 	
 
@@ -339,9 +341,18 @@ public class OrbotDiagnosticsActivity extends Activity {
 	
 	private void sendLog ()
 	{
+		int maxLength = 5000;
+		
+		String logShare = null;
+		
+		if (log.length() > maxLength)
+			logShare = log.substring(0,  maxLength);
+		else
+			logShare = log.toString();
+		
 		Intent sendIntent = new Intent();
 		sendIntent.setAction(Intent.ACTION_SEND);
-		sendIntent.putExtra(Intent.EXTRA_TEXT, mTextView.getText().toString());
+		sendIntent.putExtra(Intent.EXTRA_TEXT, logShare);
 		sendIntent.setType("text/plain");
 		startActivity(sendIntent);
 	}
