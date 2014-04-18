@@ -136,25 +136,22 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	{
 	    	try
 	    	{
-		    	int procId = TorServiceUtils.findProcessId(fileTor.getAbsolutePath());
-		
-		 		if (procId != -1)
-		 		{
-		 			logNotice("Found existing Tor process");
-		 			
+		    	
+	
+	 			int procId = initControlConnection(1);
+				
+	 			if (procId != -1)
+	 			{
+
 		            sendCallbackLogMessage (getString(R.string.found_existing_tor_process));
 		
-		 				currentStatus = STATUS_CONNECTING;
-						
-		 				initControlConnection();
-						
-		 				processSettingsImpl();
+		 			processSettingsImpl();
 		 				
-						currentStatus = STATUS_ON;
+					currentStatus = STATUS_ON;
 						
-						return true;
-		 			
-		 		}
+					return true;
+	 			}
+		 		
 		 		
 		 		return false;
 	    	}
@@ -302,10 +299,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 					setTorProfile(PROFILE_ON);
 				}
 			}
-			else if (intent == null)
+			else
 			{
-					findExistingProc () ;
-				
+				findExistingProc();
 				
 			}
 
@@ -338,14 +334,10 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
 		if (currentStatus == STATUS_CONNECTING)
 		{
-			boolean isRunning = findExistingProc ();
 			
-			if (!isRunning)
-			{
 		     try
 		     {
 			   initTor();
-			   isRunning = true;
 		     }
 		     catch (Exception e)
 		     {				
@@ -355,7 +347,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		    	 this.showToolbarNotification(getString(R.string.unable_to_start_tor) + ": " + e.getMessage(), ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr, -1, false);
 		    	 Log.d(TAG,"Unable to start Tor: " + e.getMessage(),e);
 		     }
-			}
+			
 		}
 		else if (currentStatus == STATUS_OFF)
 		{
@@ -382,8 +374,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     {
     	currentStatus = STATUS_OFF;
     	
- 		boolean hasRoot =  getSharedPrefs(getApplicationContext()).getBoolean("has_root", false);
- 		
     	try
     	{	
     		killTorProcess ();
@@ -392,11 +382,11 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     		stopForeground(true);
     		
     		currentStatus = STATUS_OFF;
-    
-    		clearNotifications();
 
-    		if (hasRoot)
+    		if (mHasRoot && mEnableTransparentProxy)
     			disableTransparentProxy();
+    	    
+    		clearNotifications();
     		
     		sendCallbackStatusMessage(getString(R.string.status_disabled));
 
@@ -472,11 +462,13 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			conn = null;
 		}
     	
-    	int maxTry = 5;
-    	int currTry = 0;
     	
     	Shell shell = Shell.startShell();
-    	Toolbox tb = new Toolbox(shell);
+    	
+    	/*
+    	 * 
+    	int maxTry = 5;
+    	int currTry = 0;
     	
 		while ((procId = TorServiceUtils.findProcessId(fileTor.getAbsolutePath())) != -1 && currTry++ < maxTry)
 		{
@@ -489,16 +481,16 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			shell.add(killCommand);
 			killCommand = new SimpleCommand("kill -9 " + procId);
 			shell.add(killCommand);
-		}
+		}*/
 		
 		while ((procId = TorServiceUtils.findProcessId(filePrivoxy.getAbsolutePath())) != -1)
 		{
 			
 			logNotice("Found Privoxy PID=" + procId + " - killing now...");
 
-			SimpleCommand killCommand = new SimpleCommand("toolbox kill -9 " + procId);
+			SimpleCommand killCommand = new SimpleCommand("toolbox kill " + procId);
 			shell.add(killCommand);
-			killCommand = new SimpleCommand("kill -9 " + procId);
+			killCommand = new SimpleCommand("kill " + procId);
 			shell.add(killCommand);
 		}
 			
@@ -507,9 +499,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			
 			logNotice("Found ObfsProxy PID=" + procId + " - killing now...");
 			
-			SimpleCommand killCommand = new SimpleCommand("toolbox kill -9 " + procId);
+			SimpleCommand killCommand = new SimpleCommand("toolbox kill " + procId);
 			shell.add(killCommand);
-			killCommand = new SimpleCommand("kill -9 " + procId);
+			killCommand = new SimpleCommand("kill " + procId);
 			shell.add(killCommand);
 		}
 		
@@ -621,12 +613,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	
     	boolean portsAvail = checkPortsAvailable();
     	
-    	if (!portsAvail)
-    	{
-    		logNotice("Another app is blocking Tor from starting");
-    		return;
-    	}
-    	
     	try
     	{
     		initBinaries();
@@ -648,10 +634,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		currentStatus = STATUS_CONNECTING;
 
 		logNotice(getString(R.string.status_starting_up));
-		
 		sendCallbackStatusMessage(getString(R.string.status_starting_up));
-		
-		killTorProcess ();
 		
 		runTorShellCmd();
 		runPrivoxyShellCmd();
@@ -678,7 +661,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	    	}
 	    	catch (Exception e)
 	    	{
-	    		logException ("Tor socket is not available",e);
+	    		logException ("Tor socket " + port + " is not available",e);
 	    		return false;
 	    	}
     	}
@@ -763,8 +746,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
  		
  		mTransProxy.clearTransparentProxyingAll(this);
 	    
-     	clearNotifications();
-     	
      	return true;
  	}
     
@@ -774,9 +755,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		SharedPreferences prefs =getSharedPrefs(getApplicationContext());
 
 		String torrcPath = new File(appBinHome, TORRC_ASSET_KEY).getAbsolutePath();
-		
-	//	if (ENABLE_DEBUG_LOG)
-		//	torrcPath = new File(appBinHome, TORRCDIAG_ASSET_KEY).getAbsolutePath();
 		
 		boolean transProxyTethering = prefs.getBoolean("pref_transparent_tethering", false);
  		
@@ -792,20 +770,15 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		sendCallbackStatusMessage(getString(R.string.status_starting_up));
 		
 		//start Tor in the background
-		ArrayList<String> alEnv = new ArrayList<String>();
-		alEnv.add("HOME=" + appBinHome.getAbsolutePath());
-		Shell shell = Shell.startShell(alEnv,appBinHome.getAbsolutePath());
+		Shell shell = Shell.startShell();
 		SimpleCommand cmdTor = new SimpleCommand(fileTor.getAbsolutePath() + " DataDirectory " + appCacheHome.getAbsolutePath() + " -f " + torrcPath + " &");
 		shell.add(cmdTor);
 		
-		//wait a few seconds
 		Thread.sleep(torRetryWaitTimeMS);
-
-		//now try to connect
-		procId = initControlConnection ();
-
-		shell.close();
 		
+		//now try to connect
+		procId = initControlConnection (3);
+
 		if (procId == -1)
 		{
 			
@@ -877,64 +850,70 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		return null;
 	}*/
 	
-	private int initControlConnection () throws Exception, RuntimeException
+	private synchronized int initControlConnection (int maxAttempts) throws Exception, RuntimeException
 	{
-			int maxAttempts = 5;
 			int i = 0;
 			
-			while (conn == null && i++ < maxAttempts)
+			if (conn != null)
 			{
-				try
-				{
-					logNotice( "Connecting to control port: " + TOR_CONTROL_PORT);
-					
-					torConnSocket = new Socket(IP_LOCALHOST, TOR_CONTROL_PORT);
-			        conn = TorControlConnection.getConnection(torConnSocket);
-			        
-
-					logNotice( "SUCCESS connected to control port");
-			        
-			        File fileCookie = new File(appCacheHome, TOR_CONTROL_COOKIE);
-			        
-			        if (fileCookie.exists())
-			        {
-				        byte[] cookie = new byte[(int)fileCookie.length()];
-				        DataInputStream fis = new DataInputStream(new FileInputStream(fileCookie));
-				        fis.read(cookie);
-				        fis.close();
-				        conn.authenticate(cookie);
-				        		
-				        logNotice( "SUCCESS - authenticated to control port");
-				        
-						sendCallbackStatusMessage(getString(R.string.tor_process_starting) + ' ' + getString(R.string.tor_process_complete));
-	
-				        addEventHandler();
-				        
-			      
-			        
-				        String torProcId = conn.getInfo("process/pid");
-				        
-				        return Integer.parseInt(torProcId);
-				        
-			        }
-			        else
-			        {
-			        	logNotice ("Tor authentication cookie does not exist yet; trying again...");
-			        }
-				}
-				catch (Exception ce)
-				{
-					conn = null;
-					logNotice( "Error connecting to Tor local control port: " + ce.getLocalizedMessage());
-					 
-					Log.d(TAG,"Attempt: Error connecting to control port: " + ce.getLocalizedMessage(),ce);
-				}
-				
-				sendCallbackStatusMessage(getString(R.string.tor_process_waiting));
-				Thread.sleep(3000);
-				
+				 String torProcId = conn.getInfo("process/pid");
+				  return Integer.parseInt(torProcId);
 			}
+			else
+			{
+			
+				while (conn == null && i++ < maxAttempts)
+				{
+					try
+					{
+						logNotice( "Connecting to control port: " + TOR_CONTROL_PORT);
+						
+						torConnSocket = new Socket(IP_LOCALHOST, TOR_CONTROL_PORT);
+				        conn = TorControlConnection.getConnection(torConnSocket);
+	
+						logNotice( "SUCCESS connected to control port");
+				        
+				        File fileCookie = new File(appCacheHome, TOR_CONTROL_COOKIE);
+				        
+				        if (fileCookie.exists())
+				        {
+					        byte[] cookie = new byte[(int)fileCookie.length()];
+					        DataInputStream fis = new DataInputStream(new FileInputStream(fileCookie));
+					        fis.read(cookie);
+					        fis.close();
+					        conn.authenticate(cookie);
+					        		
+					        logNotice( "SUCCESS - authenticated to control port");
+					        
+							sendCallbackStatusMessage(getString(R.string.tor_process_starting) + ' ' + getString(R.string.tor_process_complete));
 		
+					        addEventHandler();
+					        
+				      
+				        
+					        String torProcId = conn.getInfo("process/pid");
+					        
+					        return Integer.parseInt(torProcId);
+					        
+				        }
+				        else
+				        {
+				        	logNotice ("Tor authentication cookie does not exist yet; trying again...");
+				        }
+					}
+					catch (Exception ce)
+					{
+						conn = null;
+						logNotice( "Error connecting to Tor local control port: " + ce.getLocalizedMessage());
+						 
+						Log.d(TAG,"Attempt: Error connecting to control port: " + ce.getLocalizedMessage(),ce);
+					}
+					
+					sendCallbackStatusMessage(getString(R.string.tor_process_waiting));
+					Thread.sleep(3000);
+					
+				}
+			}		
 		
 			return -1;
 
