@@ -68,17 +68,7 @@
            
         </activity>
         
-        <activity android:name=".OrbotDiagnosticsActivity" android:label="OrbotDiag"
-            android:icon="@drawable/ic_launcher"          	
-      		android:theme="@style/Theme.AppCompat"
-      		android:exported="true" 
-      		android:taskAffinity="org.torproject.android.OrbotDiagnosticsActivity"
-            >
-             <intent-filter>
-                 <action android:name="android.intent.action.MAIN" />                 
-                <category android:name="android.intent.category.LAUNCHER" />
-          </intent-filter>
-        </activity>
+        <activity android:name=".OrbotDiagnosticsActivity" android:label="OrbotDiag"/>
       	
       	<activity android:name=".wizard.LotsaText" android:exported="false"/>
       	<activity android:name=".wizard.Permissions" android:exported="false"/>

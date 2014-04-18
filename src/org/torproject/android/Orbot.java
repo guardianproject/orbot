@@ -381,6 +381,11 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                         
                         
                 }
+                else if (item.getItemId() == R.id.menu_diag)
+                {
+            		startActivity(new Intent(getBaseContext(), OrbotDiagnosticsActivity.class));
+	
+                }
                 else if (item.getItemId() == R.id.menu_about)
                 {
                         showAbout();
