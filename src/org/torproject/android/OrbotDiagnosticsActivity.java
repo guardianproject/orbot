@@ -34,6 +34,7 @@ public class OrbotDiagnosticsActivity extends Activity {
 	private TextView mTextView = null;
 	private final static String TAG = "OrbotDiag";
 	private StringBuffer log = new StringBuffer();
+	Process mProcess;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) { 
@@ -64,17 +65,22 @@ public class OrbotDiagnosticsActivity extends Activity {
 	protected void onDestroy() {
 
 		super.onDestroy();
+		
+	}
+	
+	private void stopTor ()
+	{
 		File appBinHome = this.getDir("bin", Context.MODE_PRIVATE);
 
 		File fileTor= new File(appBinHome, TorServiceConstants.TOR_ASSET_KEY);
-    		    	
-    	try {    		
-			killAllTor (fileTor);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    	
+		if (mProcess != null)
+			mProcess.destroy();
+		
+		
 	}
+	
+	
 
 	@Override
 	protected void onResume() {
@@ -102,40 +108,6 @@ public class OrbotDiagnosticsActivity extends Activity {
 		runTorTest();
 	}
 
-	private void killAllTor (File fileTor) throws IOException
-	{
-		try
-		{
-			int maxTry = 5;
-	    	int currTry = 0;
-	    	
-	    	Shell shell = Shell.startShell();	    	
-	    	int procId;
-	    	
-			while ((procId = TorServiceUtils.findProcessId(fileTor.getAbsolutePath())) != -1 && currTry++ < maxTry)
-			{
-				
-				log ("Found existing orphan Tor process; Trying to shutdown now (device restart may be needed)...");			
-				log("Found Tor PID=" + procId + " - attempt to shutdown now...");
-				
-				SimpleCommand killCommand = new SimpleCommand("toolbox kill -9 " + procId);
-				shell.add(killCommand);
-				killCommand.waitForFinish();
-				log ("kill output: " + killCommand.getExitCode() + "; " + killCommand.getOutput());
-				killCommand = new SimpleCommand("kill -9 " + procId);
-				shell.add(killCommand);
-				killCommand.waitForFinish();
-				log ("kill output: " + killCommand.getExitCode() + "; " + killCommand.getOutput());
-			}
-		}
-		catch (Exception e)
-		{
-			log("error killing Tor: " + e.getLocalizedMessage());
-			Log.d(TAG, "error killing Tor", e);
-		}
-		
-	}
-	
 	private void runTorTest ()
 	{
 		try
@@ -145,8 +117,7 @@ public class OrbotDiagnosticsActivity extends Activity {
 	
 	    	File fileTor= new File(appBinHome, TorServiceConstants.TOR_ASSET_KEY);
 	    	enableBinExec (fileTor, appBinHome);	    	
-	    	killAllTor (fileTor);
-	
+	    	
 			InputStream is = getResources().openRawResource(R.raw.torrcdiag);
 			File fileTorrc = new File(appBinHome, TorServiceConstants.TORRC_ASSET_KEY + "diag");
 			TorResourceInstaller.streamToFile(is,fileTorrc, false, false);
@@ -163,20 +134,20 @@ public class OrbotDiagnosticsActivity extends Activity {
 			
 			log ("Executing command> " + cmd);
 			
-			Process process = Runtime.getRuntime().exec(cmd);
+			mProcess = Runtime.getRuntime().exec(cmd);
 			
-			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(mProcess.getInputStream()));
 			StreamGobbler sg = new StreamGobbler();
 			sg.reader = bufferedReader;
-			sg.process = process;
+			sg.process = mProcess;
 			new Thread(sg).start();
 			
-			if (process.getErrorStream() != null)
+			if (mProcess.getErrorStream() != null)
 			{
-				bufferedReader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+				bufferedReader = new BufferedReader(new InputStreamReader(mProcess.getErrorStream()));
 				sg = new StreamGobbler();
 				sg.reader = bufferedReader;
-				sg.process = process;
+				sg.process = mProcess;
 				new Thread(sg).start();
 			}
 			
@@ -209,7 +180,8 @@ public class OrbotDiagnosticsActivity extends Activity {
 				Log.d(TAG, "error reading line",e);
 			}
 			
-			log("Tor exit code=" + process.exitValue() + ";");
+			//log("Tor exit code=" + process.exitValue() + ";");
+			
 		}
 	}
 	

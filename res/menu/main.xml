@@ -72,6 +72,14 @@
                   yourapp:showAsAction="ifRoom"
          
          />
+  
+   
+  <item android:id="@+id/menu_diag"
+        android:title="Test Mode"
+         android:icon="@drawable/ic_menu_check"
+                  yourapp:showAsAction="never"
+         
+         />
  
 </menu>
 <!-- 
