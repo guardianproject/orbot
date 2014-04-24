@@ -23,16 +23,15 @@ endif
 
 # Android NDK setup
 NDK_BASE ?= /opt/android-ndk
-NDK_PLATFORM_LEVEL ?= 5
+NDK_PLATFORM_LEVEL ?= 9 
 NDK_ABI=arm
-NDK_COMPILER_VERSION = 4.8
+NDK_TOOLCHAIN_VERSION=4.8
 NDK_SYSROOT=$(NDK_BASE)/platforms/android-$(NDK_PLATFORM_LEVEL)/arch-$(NDK_ABI)
 APP_ABI=armeabi
 # NDK platform level, aka APP_PLATFORM, is equivalent to minSdkVersion
 APP_PLATFORM := android-$(shell sed -n 's,.*android:minSdkVersion="\([0-9][0-9]*\)".*,\1,p' \
 	$(EXTERNAL_ROOT)/../AndroidManifest.xml)
 NDK_SYSROOT=$(NDK_BASE)/platforms/$(APP_PLATFORM)/arch-$(NDK_ABI)
-NDK_TOOLCHAIN_VERSION=4.8
 NDK_UNAME := $(shell uname -s | tr '[A-Z]' '[a-z]')
 ifeq ($(NDK_ABI),x86)
  HOST = i686-linux-android
@@ -73,7 +72,6 @@ endif
 	libevent libevent-clean \
 	iptables iptables-clean \
 	tor tor-clean \
-	obfsproxy obfsproxy-clean \
 	liballium liballium-clean \
 	obfsclient obfsclient-clean \
 	privoxy privoxy-clean
@@ -214,42 +212,10 @@ tor-clean:
 
 
 #------------------------------------------------------------------------------#
-# obfsproxy
-
-
-obfsproxy/Makefile: 
-	cp obfsproxy_android_no_hardening.patch obfsproxy
-	-cd obfsproxy && \
-	 	patch -N -p1 --reject-file=- < obfsproxy_android_no_hardening.patch
-	cd obfsproxy && \
-	 	./autogen.sh
-	cp config.sub obfsproxy
-	cp config.guess obfsproxy
-	cd obfsproxy && \
-                CC="$(CC)" AR="$(AR)" RANLIB=$(RANLIB) CFLAGS="$(CFLAGS) -D_FORTIFY_SOURCE=2 -fPIE -fwrapv -fno-strict-aliasing -fno-strict-overflow" LDFLAGS="$(LDFLAGS)" \
-			libevent_LIBS="-L$(EXTERNAL_ROOT)/lib -levent" libevent_CFLAGS="-I$(EXTERNAL_ROOT)/include" \
-			libcrypto_LIBS="-L$(EXTERNAL_ROOT)/lib -lcrypto" libcrypto_CFLAGS="-I$(EXTERNAL_ROOT)/include" \
-                        ./configure \
-                                --host=$(HOST) \
-
-obfsproxy-build-stamp: obfsproxy/Makefile
-	$(MAKE) -C obfsproxy
-	touch obfsproxy-build-stamp
-
-obfsproxy: openssl libevent obfsproxy-build-stamp
-	test -d bin || mkdir bin
-	cp obfsproxy/obfsproxy bin
-
-obfsproxy-clean:
-	-rm -f bin/obfsproxy
-	-rm -f obfsproxy-build-stamp
-	-cd obfsproxy && \
-		git clean -fdx
-
-#------------------------------------------------------------------------------#
 # liballium
 
 liballium/Makefile:
+	cd liballium && mkdir m4
 	cd liballium && ./autogen.sh
 	cp config.sub liballium
 	cp config.guess liballium
@@ -372,18 +338,16 @@ jtorctl-clean:
 #in order to stop Android OS (older devices) from trying to compress/decompress it
 #this is related to a bug in compression of assets and resources > 1MB
 
-assets: tor privoxy jtorctl obfsproxy iptables obfsclient
+assets: tor privoxy jtorctl iptables obfsclient
 	install bin/jtorctl.jar ../libs
 	install -d ../res/raw
 	-zip ../res/raw/privoxy.mp3 bin/privoxy
-	-zip ../res/raw/obfsproxy.mp3 bin/obfsproxy
 	-zip ../res/raw/obfsclient.mp3 bin/obfsclient
 	-zip ../res/raw/tor.mp3 bin/tor
 	-zip ../res/raw/xtables.mp3 bin/xtables
 
 assets-clean:
 	-rm ../res/raw/privoxy.mp3
-	-rm ../res/raw/obfsproxy.mp3
 	-rm ../res/raw/obfsclient.mp3
 	-rm ../res/raw/tor.mp3
 	-rm ../res/raw/xtables.mp3
