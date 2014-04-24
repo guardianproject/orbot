@@ -86,7 +86,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     
     private File fileTor;
     private File filePrivoxy;
-    private File fileObfsProxy;
+    private File fileObfsclient;
     private File fileXtables;
     
     private File fileTorRc;
@@ -494,10 +494,10 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			shell.add(killCommand);
 		}
 			
-		while ((procId = TorServiceUtils.findProcessId(fileObfsProxy.getAbsolutePath())) != -1)
+		while ((procId = TorServiceUtils.findProcessId(fileObfsclient.getAbsolutePath())) != -1)
 		{
 			
-			logNotice("Found ObfsProxy PID=" + procId + " - killing now...");
+			logNotice("Found fileObfsclient PID=" + procId + " - killing now...");
 			
 			SimpleCommand killCommand = new SimpleCommand("toolbox kill " + procId);
 			shell.add(killCommand);
@@ -532,7 +532,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	
     	filePrivoxy = new File(appBinHome, PRIVOXY_ASSET_KEY);
 		
-		fileObfsProxy = new File(appBinHome, OBFSCLIENT_ASSET_KEY);
+    	fileObfsclient = new File(appBinHome, OBFSCLIENT_ASSET_KEY);
 		
 		fileTorRc = new File(appBinHome, TORRC_ASSET_KEY);
 		
@@ -626,7 +626,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	
     	enableBinExec(fileTor);
 		enableBinExec(filePrivoxy);	
-		enableBinExec(fileObfsProxy);
+		enableBinExec(fileObfsclient);
 		enableBinExec(fileXtables);
 		
 		updateSettings ();
@@ -1726,7 +1726,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 			if (obfsBridges)
 			{
-				mBinder.updateConfiguration("ClientTransportPlugin","obfs2 exec " + fileObfsProxy.getAbsolutePath() + " --managed", false);
+				mBinder.updateConfiguration("ClientTransportPlugin","obfsclient exec " + fileObfsclient.getAbsolutePath() + " --managed", false);
 			}
 
 			mBinder.updateConfiguration("UpdateBridgesFromAuthority", "0", false);
