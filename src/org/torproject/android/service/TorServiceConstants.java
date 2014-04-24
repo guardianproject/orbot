@@ -83,7 +83,7 @@ public interface TorServiceConstants {
     public static final String PREF_BINARY_PRIVOXY_VERSION_INSTALLED = "BINARY_PRIVOXY_VERSION_INSTALLED";
     
     //obfsproxy 
-    public static final String OBFSPROXY_ASSET_KEY = "obfsproxy";
+    public static final String OBFSCLIENT_ASSET_KEY = "obfsclient";
     
 	public static final int MESSAGE_TRAFFIC_COUNT = 5;
 	

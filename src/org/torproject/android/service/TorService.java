@@ -532,7 +532,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	
     	filePrivoxy = new File(appBinHome, PRIVOXY_ASSET_KEY);
 		
-		fileObfsProxy = new File(appBinHome, OBFSPROXY_ASSET_KEY);
+		fileObfsProxy = new File(appBinHome, OBFSCLIENT_ASSET_KEY);
 		
 		fileTorRc = new File(appBinHome, TORRC_ASSET_KEY);
 		
