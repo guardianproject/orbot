@@ -4,6 +4,7 @@ import org.sufficientlysecure.rootcommands.RootCommands;
 import org.torproject.android.R;
 import org.torproject.android.TorConstants;
 import org.torproject.android.service.TorService;
+import org.torproject.android.service.TorServiceUtils;
 
 import android.app.Activity;
 import android.content.Context;
@@ -92,7 +93,7 @@ public class Permissions extends Activity implements TorConstants {
 				
 				//this is saying do not use root
 				
-				SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+				SharedPreferences prefs =  TorServiceUtils.getSharedPrefs(getApplicationContext());
 
 				Editor pEdit = prefs.edit();
 				
@@ -122,7 +123,7 @@ public class Permissions extends Activity implements TorConstants {
 			public void onClick(View v) {
 				//Check and Install iptables - TorTransProxy.testOwnerModule(this)
 				
-				SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+				SharedPreferences prefs =  TorServiceUtils.getSharedPrefs(getApplicationContext());
 				
 				boolean hasRoot = RootCommands.rootAccessGiven();
 				Editor pEdit = prefs.edit();
@@ -137,7 +138,7 @@ public class Permissions extends Activity implements TorConstants {
 				}
 				else
 				{
-					startActivityForResult(new Intent(getBaseContext(), ConfigureTransProxy.class), 1);
+					startActivityForResult(new Intent(Permissions.this, ConfigureTransProxy.class), 1);
 
 					
 				}
@@ -150,7 +151,7 @@ public class Permissions extends Activity implements TorConstants {
 			
 			public void onClick(View v) {
 				
-				startActivityForResult(new Intent(getBaseContext(), LotsaText.class), 1);
+				startActivityForResult(new Intent(Permissions.this, LotsaText.class), 1);
 			}
 		});
     	
@@ -159,7 +160,7 @@ public class Permissions extends Activity implements TorConstants {
     	 
 			
 			public void onClick(View v) {
-				startActivityForResult(new Intent(getBaseContext(), TipsAndTricks.class), 1);
+				startActivityForResult(new Intent(Permissions.this, TipsAndTricks.class), 1);
 			}
 		});
 		
@@ -193,14 +194,14 @@ public class Permissions extends Activity implements TorConstants {
 			
 			public void onClick(View v) {
 				
-				startActivityForResult(new Intent(getBaseContext(), LotsaText.class), 1);
+				startActivityForResult(new Intent(Permissions.this, LotsaText.class), 1);
 			}
 		});
     	
     	btn2.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
-				startActivityForResult(new Intent(getBaseContext(), TipsAndTricks.class), 1);
+				startActivityForResult(new Intent(Permissions.this, TipsAndTricks.class), 1);
 			}
 		});
 	}

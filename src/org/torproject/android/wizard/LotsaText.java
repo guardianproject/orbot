@@ -6,6 +6,7 @@ import org.torproject.android.R.drawable;
 import org.torproject.android.R.id;
 import org.torproject.android.R.layout;
 import org.torproject.android.R.string;
+import org.torproject.android.service.TorServiceUtils;
 
 import android.app.Activity;
 import android.content.Context;
@@ -40,7 +41,7 @@ public class LotsaText extends Activity implements TorConstants{
 		super.onStart();
 		setContentView(R.layout.scrollingtext_buttons_view);
 		
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+		SharedPreferences prefs =  TorServiceUtils.getSharedPrefs(getApplicationContext());
 
 		boolean wizardScreen1 = prefs.getBoolean("wizardscreen1",true);
 		if(wizardScreen1)
@@ -72,7 +73,7 @@ public class LotsaText extends Activity implements TorConstants{
 	
 	private void stepOne() {
 		
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+		SharedPreferences prefs =  TorServiceUtils.getSharedPrefs(getApplicationContext());
 
 		Editor pEdit = prefs.edit();
 		pEdit.putBoolean("wizardscreen1",true);
@@ -102,7 +103,7 @@ public class LotsaText extends Activity implements TorConstants{
 	
 	private void stepTwo() {
 		
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+		SharedPreferences prefs =  TorServiceUtils.getSharedPrefs(getApplicationContext());
 
 		Editor pEdit = prefs.edit();
 		pEdit.putBoolean("wizardscreen1",false);
@@ -134,7 +135,7 @@ public class LotsaText extends Activity implements TorConstants{
     	btn2.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
-				startActivityForResult(new Intent(getBaseContext(), Permissions.class), 1);
+				startActivityForResult(new Intent(LotsaText.this, Permissions.class), 1);
 			}
 		});
 		

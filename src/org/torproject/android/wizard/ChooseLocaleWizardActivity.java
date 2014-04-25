@@ -4,6 +4,7 @@ import java.util.Locale;
 
 import org.torproject.android.R;
 import org.torproject.android.TorConstants;
+import org.torproject.android.service.TorServiceUtils;
 
 import android.app.Activity;
 import android.content.Context;
@@ -22,14 +23,12 @@ import android.widget.ListView;
 
 public class ChooseLocaleWizardActivity extends Activity implements TorConstants {
 
-	private Context context;
 	private int flag = 0;
 	private ListView listLocales;
 	
 	protected void onCreate(Bundle savedInstanceState)
 	{
         super.onCreate(savedInstanceState);
-        context = this;
        
 	}
 	
@@ -47,20 +46,10 @@ public class ChooseLocaleWizardActivity extends Activity implements TorConstants
 	protected void onResume() {
 		super.onResume();
 	
-		 setupUI();
-	
 		
 		
 	}
 
-	
-	private void setupUI ()
-	{
-//		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-
-		
-	}
-	
 	
 	private void stepSix(){
 		
@@ -84,7 +73,7 @@ public class ChooseLocaleWizardActivity extends Activity implements TorConstants
 						int arg2, long arg3) {
 					
 					setLocalePref(arg2);
-					startActivityForResult(new Intent(getBaseContext(), LotsaText.class), 1);
+					startActivityForResult(new Intent(ChooseLocaleWizardActivity.this, LotsaText.class), 1);
 					
 				}
 			});
@@ -94,7 +83,7 @@ public class ChooseLocaleWizardActivity extends Activity implements TorConstants
 				public void onClick(View v) {
 					
 					
-					startActivityForResult(new Intent(getBaseContext(), LotsaText.class), 1);
+					startActivityForResult(new Intent(ChooseLocaleWizardActivity.this, LotsaText.class), 1);
 
 				}
 			});
@@ -106,7 +95,7 @@ public class ChooseLocaleWizardActivity extends Activity implements TorConstants
 	private void setLocalePref(int selId)
 	{
 
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+		SharedPreferences prefs =  TorServiceUtils.getSharedPrefs(getApplicationContext());
 
         Configuration config = getResources().getConfiguration();
 

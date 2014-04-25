@@ -149,7 +149,7 @@ public class TipsAndTricks extends Activity implements TorConstants {
 			
 			public void onClick(View v) {
 				
-				startActivityForResult(new Intent(getBaseContext(), Permissions.class), 1);
+				startActivityForResult(new Intent(TipsAndTricks.this, Permissions.class), 1);
 			}
 		});
     	
@@ -183,7 +183,7 @@ public class TipsAndTricks extends Activity implements TorConstants {
     	btn1.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
-				startActivityForResult(new Intent(getBaseContext(), Permissions.class), 1);
+				startActivityForResult(new Intent(TipsAndTricks.this, Permissions.class), 1);
 
 			}
 		});
@@ -191,7 +191,7 @@ public class TipsAndTricks extends Activity implements TorConstants {
     	btn2.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
-				startActivityForResult(new Intent(getBaseContext(), Orbot.class), 1);
+				startActivityForResult(new Intent(TipsAndTricks.this, Orbot.class), 1);
 
 			}
 		});
