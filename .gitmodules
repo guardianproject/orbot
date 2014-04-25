@@ -26,3 +26,6 @@
 	path = external/obfsclient
 	url = https://git.torproject.org/user/yawning/obfsclient.git
 
+[submodule "external/polipo"]
+	path = external/polipo
+	url = https://github.com/jech/polipo.git

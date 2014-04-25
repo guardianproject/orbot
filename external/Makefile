@@ -74,7 +74,7 @@ endif
 	tor tor-clean \
 	liballium liballium-clean \
 	obfsclient obfsclient-clean \
-	privoxy privoxy-clean
+	polipo polipo-clean
 
 all: assets
 
@@ -280,37 +280,20 @@ obfsclient-clean:
 		git clean -fdx
 
 #------------------------------------------------------------------------------#
-# privoxy
+# polipo
 
+polipo-build-stamp: 
+	$(MAKE) CC="$(CC)" -C polipo
+	touch polipo-build-stamp
 
-privoxy/config.log:
-	tar xzvf privoxy.tar.gz
-	mv privoxy*stable privoxy
-	cp privoxy.configure.in privoxy/configure.in
-	cd privoxy && \
-	  autoheader
-	cd privoxy && \
-	  autoconf
-	cp config.sub privoxy
-	cp config.guess privoxy	
-	cd privoxy && \
-                CC="$(CC)" AR="$(AR)" RANLIB=$(RANLIB) CFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS)" \
-                        ./configure \
-                                --host=arm-linux-eabi --enable-pthread
-## --disable-pthread 
-
-privoxy-build-stamp: privoxy/config.log
-	$(MAKE) -C privoxy
-	touch privoxy-build-stamp
-
-privoxy: privoxy-build-stamp
+polipo: polipo-build-stamp
 	test -d bin || mkdir bin
-	cp privoxy/privoxy bin
+	cp polipo/polipo bin
 
-privoxy-clean:
-	-rm -f bin/privoxy
-	-rm -f privoxy-build-stamp
-	-rm -rf privoxy
+polipo-clean:
+	-rm -f bin/polipo
+	-rm -f polipo-build-stamp
+	-rm -rf polipo
 
 #------------------------------------------------------------------------------#
 # JTorControl library
@@ -338,16 +321,16 @@ jtorctl-clean:
 #in order to stop Android OS (older devices) from trying to compress/decompress it
 #this is related to a bug in compression of assets and resources > 1MB
 
-assets: tor privoxy jtorctl iptables obfsclient
+assets: tor polipo jtorctl iptables obfsclient
 	install bin/jtorctl.jar ../libs
 	install -d ../res/raw
-	-zip ../res/raw/privoxy.mp3 bin/privoxy
+	-zip ../res/raw/polipo.mp3 bin/polipo
 	-zip ../res/raw/obfsclient.mp3 bin/obfsclient
 	-zip ../res/raw/tor.mp3 bin/tor
 	-zip ../res/raw/xtables.mp3 bin/xtables
 
 assets-clean:
-	-rm ../res/raw/privoxy.mp3
+	-rm ../res/raw/polipo.mp3
 	-rm ../res/raw/obfsclient.mp3
 	-rm ../res/raw/tor.mp3
 	-rm ../res/raw/xtables.mp3
@@ -356,7 +339,7 @@ assets-clean:
 #------------------------------------------------------------------------------#
 # cleanup, cleanup, put the toys away
 
-clean: openssl-clean libevent-clean tor-clean privoxy-clean jtorctl-clean liballium-clean obfsclient-clean assets-clean
+clean: openssl-clean libevent-clean tor-clean polipo-clean jtorctl-clean liballium-clean obfsclient-clean assets-clean
 
 #------------------------------------------------------------------------------#
 # debugging stuff

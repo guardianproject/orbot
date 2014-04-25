@@ -21,10 +21,10 @@ public interface TorServiceConstants {
 	public final static String TOR_CONTROL_COOKIE = "control_auth_cookie";
 	
 	//privoxy
-	public final static String PRIVOXY_ASSET_KEY = "privoxy";
+	public final static String POLIPO_ASSET_KEY = "polipo";
 	
 	//privoxy.config
-	public final static String PRIVOXYCONFIG_ASSET_KEY = "privoxy.config";
+	public final static String POLIPOCONFIG_ASSET_KEY = "torpolipo.conf";
 	
 	//geoip data file asset key
 	public final static String GEOIP_ASSET_KEY = "geoip";

@@ -85,7 +85,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     private File appCacheHome;
     
     private File fileTor;
-    private File filePrivoxy;
+    private File filePolipo;
     private File fileObfsclient;
     private File fileXtables;
     
@@ -483,10 +483,10 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			shell.add(killCommand);
 		}*/
 		
-		while ((procId = TorServiceUtils.findProcessId(filePrivoxy.getAbsolutePath())) != -1)
+		while ((procId = TorServiceUtils.findProcessId(filePolipo.getAbsolutePath())) != -1)
 		{
 			
-			logNotice("Found Privoxy PID=" + procId + " - killing now...");
+			logNotice("Found Polipo PID=" + procId + " - killing now...");
 
 			SimpleCommand killCommand = new SimpleCommand("toolbox kill " + procId);
 			shell.add(killCommand);
@@ -530,7 +530,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	
     	fileTor= new File(appBinHome, TOR_ASSET_KEY);
     	
-    	filePrivoxy = new File(appBinHome, PRIVOXY_ASSET_KEY);
+    	filePolipo = new File(appBinHome, POLIPO_ASSET_KEY);
 		
     	fileObfsclient = new File(appBinHome, OBFSCLIENT_ASSET_KEY);
 		
@@ -625,7 +625,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	}
     	
     	enableBinExec(fileTor);
-		enableBinExec(filePrivoxy);	
+		enableBinExec(filePolipo);	
 		enableBinExec(fileObfsclient);
 		enableBinExec(fileXtables);
 		
@@ -637,7 +637,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		sendCallbackStatusMessage(getString(R.string.status_starting_up));
 		
 		runTorShellCmd();
-		runPrivoxyShellCmd();
+		runPolipoShellCmd();
 		
 		if (mHasRoot && mEnableTransparentProxy)
 			enableTransparentProxy(mTransProxyAll, mTransProxyTethering);
@@ -796,12 +796,12 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	    }
     }
     
-    private void runPrivoxyShellCmd () throws Exception
+    private void runPolipoShellCmd () throws Exception
     {
     	
-    	logNotice( "Starting privoxy process");
+    	logNotice( "Starting polipo process");
     	
-			int privoxyProcId = TorServiceUtils.findProcessId(filePrivoxy.getAbsolutePath());
+			int polipoProcId = TorServiceUtils.findProcessId(filePolipo.getAbsolutePath());
 
 			StringBuilder log = null;
 			
@@ -809,21 +809,21 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			
 			Shell shell = Shell.startShell();
 			
-    		if (privoxyProcId == -1)
+    		if (polipoProcId == -1)
     		{
     			log = new StringBuilder();
     			
-    			String privoxyConfigPath = new File(appBinHome, PRIVOXYCONFIG_ASSET_KEY).getAbsolutePath();
-    			SimpleCommand cmdPrivoxy = new SimpleCommand(filePrivoxy.getAbsolutePath() + " " + privoxyConfigPath + " &");
+    			String polipoConfigPath = new File(appBinHome, POLIPOCONFIG_ASSET_KEY).getAbsolutePath();
+    			SimpleCommand cmdPolipo = new SimpleCommand(filePolipo.getAbsolutePath() + " -c " + polipoConfigPath + " &");
     			
-    			shell.add(cmdPrivoxy);
+    			shell.add(cmdPolipo);
     			
     			//wait one second to make sure it has started up
     			Thread.sleep(1000);
     			
-    			while ((privoxyProcId = TorServiceUtils.findProcessId(filePrivoxy.getAbsolutePath())) == -1  && attempts < MAX_START_TRIES)
+    			while ((polipoProcId = TorServiceUtils.findProcessId(filePolipo.getAbsolutePath())) == -1  && attempts < MAX_START_TRIES)
     			{
-    				logNotice("Couldn't find Privoxy process... retrying...\n" + log);
+    				logNotice("Couldn't find Polipo process... retrying...\n" + log);
     				Thread.sleep(3000);
     				attempts++;
     			}
@@ -833,7 +833,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     		
 			sendCallbackLogMessage(getString(R.string.privoxy_is_running_on_port_) + PORT_HTTP);
 			
-    		logNotice("Privoxy process id=" + privoxyProcId);
+    		logNotice("Polipo process id=" + polipoProcId);
 			
     		shell.close();
     		
@@ -1713,7 +1713,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 			if (obfsBridges)
 			{
-				bridgeCfgKey = bridgeCfgKey + " obfs2";
+				bridgeCfgKey = bridgeCfgKey + " obfsclient";
 			}
 
 			StringTokenizer st = new StringTokenizer(bridgeList,bridgeDelim);
@@ -1726,7 +1726,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 			if (obfsBridges)
 			{
-				mBinder.updateConfiguration("ClientTransportPlugin","obfsclient exec " + fileObfsclient.getAbsolutePath() + " --managed", false);
+				mBinder.updateConfiguration("ClientTransportPlugin","obfsclient exec " + fileObfsclient.getAbsolutePath(), false);
 			}
 
 			mBinder.updateConfiguration("UpdateBridgesFromAuthority", "0", false);

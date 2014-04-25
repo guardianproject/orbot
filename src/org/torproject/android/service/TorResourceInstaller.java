@@ -87,8 +87,8 @@ public class TorResourceInstaller implements TorServiceConstants {
 		shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
 		streamToFile(is, outFile, false, false);
 
-		is = context.getResources().openRawResource(R.raw.privoxy_config);
-		outFile = new File(installFolder, PRIVOXYCONFIG_ASSET_KEY);
+		is = context.getResources().openRawResource(R.raw.torpolipo);
+		outFile = new File(installFolder, POLIPOCONFIG_ASSET_KEY);
 		shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
 		streamToFile(is,outFile, false, false);
 	
@@ -97,8 +97,8 @@ public class TorResourceInstaller implements TorServiceConstants {
 		shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
 		streamToFile(is,outFile, false, true);
 	
-		is = context.getResources().openRawResource(R.raw.privoxy);
-		outFile = new File(installFolder, PRIVOXY_ASSET_KEY);
+		is = context.getResources().openRawResource(R.raw.polipo);
+		outFile = new File(installFolder, POLIPO_ASSET_KEY);
 		shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
 		streamToFile(is,outFile, false, true);
 	
