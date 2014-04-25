@@ -1,8 +1,3 @@
-SocksPort 9050
-SOCKSListenAddress 127.0.0.1
-SafeSocks 0
-TestSocks 1
-WarnUnsafeSocks 1
 Log notice stdout
 ControlListenAddress 127.0.0.1
 ControlPort 9051
