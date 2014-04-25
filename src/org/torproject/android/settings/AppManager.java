@@ -14,6 +14,7 @@ import java.util.StringTokenizer;
 import org.torproject.android.R;
 import org.torproject.android.TorConstants;
 import org.torproject.android.service.TorService;
+import org.torproject.android.service.TorServiceUtils;
 
 import android.app.Activity;
 import android.content.Context;
@@ -22,6 +23,7 @@ import android.content.SharedPreferences.Editor;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,7 +52,6 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
 	}
 	
 	
-	
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -65,7 +66,7 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
 			}
 		});
 		
-		mPrefs = TorService.getSharedPrefs(getApplicationContext());
+		mPrefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
 		loadApps(mPrefs);
 	}
 

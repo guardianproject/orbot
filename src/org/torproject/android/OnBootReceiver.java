@@ -1,12 +1,12 @@
 package org.torproject.android;
 
 import org.torproject.android.service.TorService;
+import org.torproject.android.service.TorServiceUtils;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
 public class OnBootReceiver extends BroadcastReceiver {
 	
@@ -16,7 +16,8 @@ public class OnBootReceiver extends BroadcastReceiver {
 		if (intent.getAction() != null 
 				&& intent.getAction().equals("android.intent.action.BOOT_COMPLETED"))
 		{
-			SharedPreferences prefs = TorService.getSharedPrefs(context.getApplicationContext());
+			
+			SharedPreferences prefs = TorServiceUtils.getSharedPrefs(context.getApplicationContext());
 			
 			boolean startOnBoot = prefs.getBoolean("pref_start_boot",false);
 			
@@ -33,6 +34,7 @@ public class OnBootReceiver extends BroadcastReceiver {
 		
 	}
 
+	
 	
 }
 

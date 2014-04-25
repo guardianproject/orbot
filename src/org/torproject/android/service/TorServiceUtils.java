@@ -11,6 +11,11 @@ import java.util.StringTokenizer;
 
 import org.torproject.android.TorConstants;
 
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Build;
 import android.util.Log;
 
 public class TorServiceUtils implements TorServiceConstants {
@@ -94,5 +99,15 @@ public class TorServiceUtils implements TorServiceConstants {
        
         return procId;
 
+	}
+	
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
+	public static SharedPreferences getSharedPrefs (Context context)
+	{
+		if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.HONEYCOMB)
+			return context.getSharedPreferences(TorConstants.PREF_TOR_SHARED_PREFS,0 | Context.MODE_MULTI_PROCESS);
+		else
+			return context.getSharedPreferences(TorConstants.PREF_TOR_SHARED_PREFS,Context.MODE_PRIVATE);
+		
 	}
 }

@@ -9,6 +9,7 @@ import org.sufficientlysecure.rootcommands.RootCommands;
 import org.torproject.android.R;
 import org.torproject.android.service.TorServiceUtils;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -42,8 +43,8 @@ public class SettingsPreferences
 		super.onCreate(savedInstanceState);
 		
 		addPreferencesFromResource(R.xml.preferences);
-		
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+		getPreferenceManager().setSharedPreferencesMode(Context.MODE_MULTI_PROCESS);
+		SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
 		
 		hasRoot = prefs.getBoolean("has_root",false);
 		
@@ -104,6 +105,20 @@ public class SettingsPreferences
 	
 	
 	
+	@Override
+	protected void onPause() {
+
+		super.onPause();
+		
+
+
+		
+		
+		
+		
+	}
+
+
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onStop()
 	 */
@@ -147,7 +162,7 @@ public class SettingsPreferences
 		}
 		else if (preference == prefLocale)
 		{
-			 SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+			 SharedPreferences settings = TorServiceUtils.getSharedPrefs(getApplicationContext());
 
 		        Configuration config = getResources().getConfiguration();
 

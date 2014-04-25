@@ -2,6 +2,8 @@ package org.torproject.android;
 
 import java.util.Locale;
 
+import org.torproject.android.service.TorServiceUtils;
+
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -18,7 +20,7 @@ public class OrbotApp extends Application implements TorConstants
     public void onCreate() {
         super.onCreate();
         
-        settings = PreferenceManager.getDefaultSharedPreferences(this);
+        settings =  TorServiceUtils.getSharedPrefs(getApplicationContext());
 
         Configuration config = getResources().getConfiguration();
 

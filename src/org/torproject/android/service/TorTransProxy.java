@@ -34,7 +34,7 @@ public class TorTransProxy implements TorServiceConstants {
 
 		String ipTablesPath = null;
 		
-		SharedPreferences prefs = TorService.getSharedPrefs(context.getApplicationContext());
+		SharedPreferences prefs = TorServiceUtils.getSharedPrefs(context);
 
 		useSystemIpTables = prefs.getBoolean(TorConstants.PREF_USE_SYSTEM_IPTABLES, false);
 		
@@ -57,7 +57,7 @@ public class TorTransProxy implements TorServiceConstants {
 
 		String ipTablesPath = null;
 		
-		SharedPreferences prefs = TorService.getSharedPrefs(context.getApplicationContext());
+		SharedPreferences prefs = TorServiceUtils.getSharedPrefs(context);
 
 		useSystemIpTables = prefs.getBoolean(TorConstants.PREF_USE_SYSTEM_IPTABLES, false);
 		
