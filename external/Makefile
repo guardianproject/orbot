@@ -58,6 +58,7 @@ STRIP := $(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-strip \
 CFLAGS = -DANDROID $(TARGET_CFLAGS)
 LDFLAGS = -llog $(TARGET_LDFLAGS)
 
+
 # change 'release' to 'debug' for unoptimized debug builds
 ifeq ($(APP_ABI),armeabi-v7a)
 	CFLAGS += $(TARGET_arm_release_CFLAGS)
@@ -324,9 +325,13 @@ jtorctl-clean:
 assets: tor polipo jtorctl iptables obfsclient
 	install bin/jtorctl.jar ../libs
 	install -d ../res/raw
+	-$(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-strip --strip-debug bin/polipo
 	-zip ../res/raw/polipo.mp3 bin/polipo
+	-$(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-strip --strip-debug bin/obfsclient
 	-zip ../res/raw/obfsclient.mp3 bin/obfsclient
+	-$(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-strip --strip-debug bin/tor
 	-zip ../res/raw/tor.mp3 bin/tor
+	-$(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-strip --strip-debug bin/xtables
 	-zip ../res/raw/xtables.mp3 bin/xtables
 
 assets-clean:
