@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="org.torproject.android" 
-      android:versionName="14.0.0-ALPHA-1" 
-      android:versionCode="87"
+      android:versionName="14.0.0-ALPHA-2" 
+      android:versionCode="89"
         android:installLocation="auto"
+      
       >
  	    
     <uses-sdk android:minSdkVersion="9" android:targetSdkVersion="19"/>
@@ -21,6 +22,7 @@
       android:theme="@style/Theme.AppCompat" 
       android:allowBackup="false"
       android:allowClearUserData="true"
+        android:largeHeap="true" 
      >
       
         <activity android:name=".Orbot" android:configChanges="orientation|screenSize"
