@@ -274,8 +274,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	 * @see android.app.Service#onStart(android.content.Intent, int)
 	 */
 	public int onStartCommand(Intent intent, int flags, int startId) {
-	
-		android.os.Debug.waitForDebugger();
 
 		try
 		{
