@@ -186,7 +186,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	@Override
 	public boolean onUnbind(Intent intent) {
 		
-		logNotice( "onUnbind Called: " + intent.getAction());
+		if (intent != null)
+			logNotice( "onUnbind Called: " + intent.getAction());
 		
 		return super.onUnbind(intent);
 		
