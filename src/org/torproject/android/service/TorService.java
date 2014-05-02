@@ -18,6 +18,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -75,8 +76,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	
 	private static final int MAX_START_TRIES = 3;
 
-    private ArrayList<String> configBuffer = null;
-    private ArrayList<String> resetBuffer = null;
+    private LinkedHashMap<String,String> configBuffer = null;
+    private LinkedHashMap<String,String> resetBuffer = null;
     
    //   private String appHome;
     private File appBinHome;
@@ -144,7 +145,11 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
 		 			processSettingsImpl();
 		 				
-					currentStatus = STATUS_ON;
+		 			String state = conn.getInfo("dormant");
+		 			if (state != null && Integer.parseInt(state) == 0)
+		 				currentStatus = STATUS_ON;
+		 			else
+		 				currentStatus = STATUS_CONNECTING;
 						
 					return true;
 	 			}
@@ -1188,7 +1193,24 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			
 			logNotice(sb.toString());
 		}
+		
+		/**
+		if (currentStatus != STATUS_ON)
+		{
+			try {
+				String state;
+		
+				state = conn.getInfo("dormant");
 			
+				if (state != null && Integer.parseInt(state) == 0)
+					currentStatus = STATUS_ON;
+				else
+					currentStatus = STATUS_CONNECTING;
+				
+			} catch (IOException e) {
+				logException("Error getting state from Tor control port",e);
+			}
+		}*/
 	
 	}
 	
@@ -1349,19 +1371,19 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         public boolean updateConfiguration (String name, String value, boolean saveToDisk)
         {
         	if (configBuffer == null)
-        		configBuffer = new ArrayList<String>();
+        		configBuffer = new LinkedHashMap<String,String>();
 	        
         	if (resetBuffer == null)
-        		resetBuffer = new ArrayList<String>();
+        		resetBuffer = new LinkedHashMap<String,String>();
 	        
         	if (value == null || value.length() == 0)
         	{
-        		resetBuffer.add(name);
+        		resetBuffer.put(name,"");
         		
         	}
         	else
         	{
-        		configBuffer.add(name + ' ' + value);
+        		configBuffer.put(name,value);
         	}
 	        
         	return false;
@@ -1398,14 +1420,24 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	        		
 	        		 if (resetBuffer != null && resetBuffer.size() > 0)
 				        {	
-				        	conn.resetConf(resetBuffer);
+				        	conn.resetConf(resetBuffer.keySet());
 				        	resetBuffer = null;
 				        }
 	   	       
 	        		 if (configBuffer != null && configBuffer.size() > 0)
 				        {
 	        			 	
-				        	conn.setConf(configBuffer);
+	        			 	for (String key : configBuffer.keySet())
+	        			 	{
+	        			 		
+	        			 		String value = configBuffer.get(key);
+	        			 		
+	        			 		if (TorService.ENABLE_DEBUG_LOG)
+	        			 			logMessage("Setting conf: " + key + "=" + value);
+	        			 		
+	        			 		conn.setConf(key, value);
+	        			 		
+	        			 	}
 				        	configBuffer = null;
 				        }
 	   	       
@@ -1420,11 +1452,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         	{
         		
         		logException("Unable to update Tor configuration: " + ioe.getMessage(),ioe);
-        		if (configBuffer != null)
-	        		for (String config : configBuffer)
-	        		{
-	        			logNotice("Error applying config: " + config);
-	        		}
 
         	}
         	
@@ -1701,8 +1728,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 				return false;
 			}
 			
-			mBinder.updateConfiguration("UseBridges", "1", false);
-				
 			String bridgeDelim = "\n";
 			
 			if (bridgeList.indexOf(",") != -1)
@@ -1724,6 +1749,11 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			}
 
 			mBinder.updateConfiguration("UpdateBridgesFromAuthority", "0", false);
+			
+
+			mBinder.updateConfiguration("UseBridges", "1", false);
+				
+			
 		}
 		else
 		{
@@ -1835,8 +1865,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     
     private void enableSocks (String ip, int port, boolean safeSocks) throws RemoteException
     {
-    	mBinder.updateConfiguration("SOCKSPort", port + "", false);
-    	mBinder.updateConfiguration("SOCKSListenAddress", ip, false);
+    	mBinder.updateConfiguration("SOCKSPort", ip + ":" + port + "", false);
     	mBinder.updateConfiguration("SafeSocks", safeSocks ? "1" : "0", false);
     	mBinder.updateConfiguration("TestSocks", "1", false);
     	mBinder.updateConfiguration("WarnUnsafeSocks", "1", false);
