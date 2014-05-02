@@ -1,5 +1,34 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+14.0.0 (ALPHA-2)
+ea919c5 add the basic proguard support
+147b57a remove unused preference
+0dc50cc add log max size feature
+b9f14b3 ensure setConft on control port works consistently
+b056e7f remove debug waiter
+b2d4bb3 updated to v14-alpha-2
+cbbc5e4 improve how we start/stop Tor, Polipo to find process id, do ps of all, then filter (most compat) use async service for Tor st
+b31c11f updated icons with dark background
+2b6ff4e update manifest for v14-alpha-1
+05b6553 add binary stripping to makefile
+21c1cad update binaries and torrc for obfs/PT work
+144460b fixes for preference handling in multi process context
+38700f9 updated to 0.2.5.3 for scramblesuit/obfs support
+d3865c0 fix settings handling and add more debug output also make SOCKS a runtime config
+d529334 clean up wizard context use
+0178d3e add new binaries and configs for polipo and others
+40546c9 change from privoxy to polipo for http proxy
+a4d8669 fix variable name to obfsclient
+2f7a9dd update to new obfsclient repo
+000cf57 update jtorctrl jar
+f485015 install obfsclient binary
+d003826 update binaries
+4d3754b remove obfsproxy, update obfsclient
+7af85b5 small updates to Makefile for NDK
+2c2d094 Integrate obfsclient/liballium into the build process
+43c259a Update the obfsclient submodule to include Android fixes
+a6af878 liballium/obfsclient should be sourced from tp.o repos
+
 13.0.6
 89fc2e6 updated to 13.0.6-RC-3
 b9eeb37 ensure Service has foreground priority so it is not killed (and improve onBind() calls to reset state if it is killed)
