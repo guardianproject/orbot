@@ -89,9 +89,17 @@ public class TorServiceUtils implements TorServiceConstants {
         {
         	if (line.contains(command))
         	{
+        		
         		String[] lineParts = line.split("\\s+");
         		
-        		procId = Integer.parseInt(lineParts[1]);
+        	    try { 
+        	        
+        	        procId = Integer.parseInt(lineParts[1]); //for most devices it is the second number
+        	    } catch(NumberFormatException e) {
+        	    	procId = Integer.parseInt(lineParts[0]); //but for samsungs it is the first
+        	        
+        	    }
+        		
         		
         		break;
         	}
