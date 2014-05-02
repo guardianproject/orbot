@@ -15,8 +15,6 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.InetSocketAddress;
-import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,7 +27,6 @@ import net.freehaven.tor.control.EventHandler;
 import net.freehaven.tor.control.TorControlConnection;
 
 import org.sufficientlysecure.rootcommands.Shell;
-import org.sufficientlysecure.rootcommands.Toolbox;
 import org.sufficientlysecure.rootcommands.command.SimpleCommand;
 import org.torproject.android.Orbot;
 import org.torproject.android.R;
@@ -50,15 +47,16 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
-import android.os.Build;
+import android.os.AsyncTask;
 import android.os.IBinder;
 import android.os.RemoteCallbackList;
 import android.os.RemoteException;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationCompat.Builder;
 import android.util.Log;
+import android.widget.TextView;
 
-public class TorService extends Service implements TorServiceConstants, TorConstants, Runnable, EventHandler
+public class TorService extends Service implements TorServiceConstants, TorConstants, EventHandler
 {
 	
 	public static boolean ENABLE_DEBUG_LOG = false;
@@ -136,7 +134,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	{
 	    	try
 	    	{
-		    	
 	
 	 			int procId = initControlConnection(1);
 				
@@ -278,6 +275,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	 */
 	public int onStartCommand(Intent intent, int flags, int startId) {
 	
+		android.os.Debug.waitForDebugger();
 
 		try
 		{
@@ -321,34 +319,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	
 
 	
-	 
-	public void run ()
-	{
-		
-		if (currentStatus == STATUS_CONNECTING)
-		{
-			
-		     try
-		     {
-			   initTor();
-		     }
-		     catch (Exception e)
-		     {				
-		    	
-		    	logException("Unable to start Tor: " + e.toString(),e);	
-		    	 currentStatus = STATUS_OFF;
-		    	 this.showToolbarNotification(getString(R.string.unable_to_start_tor) + ": " + e.getMessage(), ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr, -1, false);
-		     }
-			
-		}
-		else if (currentStatus == STATUS_OFF)
-		{
-
-			stopTor();
-
-		}
-	}
-
 	
     public void onDestroy ()
     {
@@ -634,33 +604,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
 		//checkAddressAndCountry();
     }
-    
-    /**
-    private boolean checkPortsAvailable ()
-    {
-    	int[] ports = {9050,9051,8118};
-    	
-    	for (int port: ports)
-    	{
-	    	try
-	    	{
-	    		logNotice("checking local port is available: " + port);
-	    		
-	    		ServerSocket ss = new ServerSocket();
-	    		ss.bind(new InetSocketAddress(IP_LOCALHOST,port));
-	    		ss.close();
-	    	}
-	    	catch (Exception e)
-	    	{
-	    		logException ("Tor socket " + port + " is not available",e);
-	    		return false;
-	    	}
-    	}
-    	
-    	return true;
-    	
-    }
-    */
+   
     
     /*
      * activate means whether to apply the users preferences
@@ -773,7 +717,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 		if (procId == -1)
 		{
-			
 			logNotice(getString(R.string.couldn_t_start_tor_process_) + "; exit=" + cmdTor.getExitCode() + ": " + cmdTor.getOutput());
 			sendCallbackStatusMessage(getString(R.string.couldn_t_start_tor_process_));
 			
@@ -786,6 +729,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			
 			processSettingsImpl();
 	    }
+		
+		shell.close();
     }
     
     private void runPolipoShellCmd () throws Exception
@@ -898,7 +843,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 						conn = null;
 						logNotice( "Error connecting to Tor local control port: " + ce.getLocalizedMessage());
 						 
-						Log.d(TAG,"Attempt: Error connecting to control port: " + ce.getLocalizedMessage(),ce);
+					//	Log.d(TAG,"Attempt: Error connecting to control port: " + ce.getLocalizedMessage(),ce);
 					}
 					
 					sendCallbackStatusMessage(getString(R.string.tor_process_waiting));
@@ -1011,24 +956,65 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			
 			if (profile == PROFILE_ON)
 			{
- 				currentStatus = STATUS_CONNECTING;
-	            sendCallbackStatusMessage (getString(R.string.status_starting_up));
-
-	            Thread thread = new Thread(this);
-	            thread.start();
-	           
+ 				
+	           new StartStopTorOperation().execute(true);
 			}
 			else if (profile == PROFILE_OFF)
 			{
-				currentStatus = STATUS_OFF;
-	            sendCallbackStatusMessage (getString(R.string.status_shutting_down));
-	          
-	            Thread thread = new Thread(this);
-	            thread.start();
-	            
+
+		       new StartStopTorOperation().execute(false);
 				
 			}
 		}
+		
+		private class StartStopTorOperation extends AsyncTask<Boolean, Void, Boolean> {
+	        @Override
+	        protected Boolean doInBackground(Boolean... params) {
+	          
+	        	if (params[0].booleanValue() == true)
+	        	{
+	        		
+	        		currentStatus = STATUS_CONNECTING;
+		            sendCallbackStatusMessage (getString(R.string.status_starting_up));
+
+		            try
+		   		     {
+		   			   initTor();
+		   		     }
+		   		     catch (Exception e)
+		   		     {				
+		   		    	
+		   		    	logException("Unable to start Tor: " + e.toString(),e);	
+		   		    	 currentStatus = STATUS_OFF;
+		   		    	 showToolbarNotification(getString(R.string.unable_to_start_tor) + ": " + e.getMessage(), ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr, -1, false);
+		   		     }
+	        	}
+	        	else
+	        	{
+	        		currentStatus = STATUS_OFF;
+		            sendCallbackStatusMessage (getString(R.string.status_shutting_down));
+		          
+		            stopTor();
+		            
+	        	}
+	        	
+	        	
+	            return true;
+	        }
+
+	        @Override
+	        protected void onPostExecute(Boolean result) {
+	        }
+
+	        @Override
+	        protected void onPreExecute() {
+	        }
+
+	        @Override
+	        protected void onProgressUpdate(Void... values) {
+	        }
+	    }
+		
 		
 		
 	
@@ -1622,14 +1608,14 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         String excludeNodes = prefs.getString("pref_exclude_nodes", "");
         
         String proxyType = prefs.getString("pref_proxy_type", null);
-        if (proxyType != null)
+        if (proxyType != null && proxyType.length() > 0)
         {
         	String proxyHost = prefs.getString("pref_proxy_host", null);
         	String proxyPort = prefs.getString("pref_proxy_port", null);
         	String proxyUser = prefs.getString("pref_proxy_username", null);
         	String proxyPass = prefs.getString("pref_proxy_password", null);
         	
-        	if (proxyHost != null && proxyPort != null)
+        	if ((proxyHost != null && proxyHost.length()>0) && (proxyPort != null && proxyPort.length() > 0))
         	{
         		mBinder.updateConfiguration(proxyType + "Proxy", proxyHost + ':' + proxyPort, false);
         		

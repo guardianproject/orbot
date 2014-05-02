@@ -77,7 +77,7 @@ public interface TorServiceConstants {
     public static final int DISABLE_TOR_MSG = 3;
     public static final int LOG_MSG = 4;
     
-    public static final String BINARY_TOR_VERSION = "0.2.5.3-alpha-openssl1.0.1g-b87a";
+    public static final String BINARY_TOR_VERSION = "0.2.5.3-alpha-openssl1.0.1g-b88";
     public static final String PREF_BINARY_TOR_VERSION_INSTALLED = "BINARY_TOR_VERSION_INSTALLED";
     
     //obfsproxy 
