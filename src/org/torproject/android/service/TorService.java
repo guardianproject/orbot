@@ -18,8 +18,8 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedHashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -48,6 +48,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.IBinder;
 import android.os.RemoteCallbackList;
@@ -55,7 +56,6 @@ import android.os.RemoteException;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationCompat.Builder;
 import android.util.Log;
-import android.widget.TextView;
 
 public class TorService extends Service implements TorServiceConstants, TorConstants, EventHandler
 {
@@ -1580,12 +1580,22 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
     		SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
 
-    		mConnectivity = !intent.getBooleanExtra(ConnectivityManager.EXTRA_NO_CONNECTIVITY, false);
-
     		boolean doNetworKSleep = prefs.getBoolean(TorConstants.PREF_DISABLE_NETWORK, true);
     		
     		if (doNetworKSleep && mBinder != null)
     		{
+    			final ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        	    final NetworkInfo netInfo = cm.getActiveNetworkInfo();
+
+        	    if(netInfo != null && netInfo.isConnected()) {
+        	        // WE ARE CONNECTED: DO SOMETHING
+        	    	mConnectivity = true;
+        	    }   
+        	    else {
+        	        // WE ARE NOT: DO SOMETHING ELSE
+        	    	mConnectivity = false;
+        	    }
+        		
 	    		try {
 					mBinder.updateConfiguration("DisableNetwork", mConnectivity ? "0" : "1", false);
 					mBinder.saveConfiguration();
@@ -1870,7 +1880,12 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	mBinder.updateConfiguration("TestSocks", "1", false);
     	mBinder.updateConfiguration("WarnUnsafeSocks", "1", false);
     	
-
+    }
+    
+    private void blockPlaintextPorts (String portList) throws RemoteException
+    {
+    	
+    	mBinder.updateConfiguration("RejectPlaintextPorts",portList,false);
     }
     
     //using Google DNS for now as the public DNS server
