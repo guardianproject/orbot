@@ -1710,9 +1710,41 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		{
 		
 			logMessage ("Using bridges");
-			boolean obfsBridges = prefs.getBoolean(TorConstants.PREF_BRIDGES_OBFUSCATED, false);
 			String bridgeCfgKey = "Bridge";
 
+			String bridgeList = prefs.getString(TorConstants.PREF_BRIDGES_LIST,null);
+
+			if (bridgeList == null || bridgeList.length() == 0)
+			{
+				String msgBridge = getString(R.string.bridge_requires_ip) +
+						getString(R.string.send_email_for_bridges);
+				showToolbarNotification(msgBridge, ERROR_NOTIFY_ID, R.drawable.ic_stat_tor, -1, false);
+				logMessage(msgBridge);
+			
+				return false;
+			}
+
+			
+			String bridgeDelim = "\n";
+			
+			if (bridgeList.indexOf(",") != -1)
+			{
+				bridgeDelim = ",";
+			}
+			
+			showToolbarNotification(getString(R.string.notification_using_bridges) + ": " + bridgeList, TRANSPROXY_NOTIFY_ID, R.drawable.ic_stat_tor, -1, false);
+  
+			StringTokenizer st = new StringTokenizer(bridgeList,bridgeDelim);
+			while (st.hasMoreTokens())
+			{
+				String bridgeConfigLine = st.nextToken().trim();
+				logMessage("Adding bridge: " + bridgeConfigLine);
+				mBinder.updateConfiguration(bridgeCfgKey, bridgeConfigLine, false);
+
+			}
+
+			//check if any PT bridges are needed
+			boolean obfsBridges = bridgeList.contains("obfs2")||bridgeList.contains("obfs3")||bridgeList.contains("scramblesuit");
 
 			if (obfsBridges)
 			{
@@ -1727,37 +1759,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 				logMessage ("Using standard bridges");
 			}
 			
-			String bridgeList = prefs.getString(TorConstants.PREF_BRIDGES_LIST,null);
 
-			if (bridgeList == null || bridgeList.length() == 0)
-			{
-				String msgBridge = getString(R.string.bridge_requires_ip) +
-						getString(R.string.send_email_for_bridges);
-				showToolbarNotification(msgBridge, ERROR_NOTIFY_ID, R.drawable.ic_stat_tor, -1, false);
-				logMessage(msgBridge);
-			
-				return false;
-			}
-			
-			String bridgeDelim = "\n";
-			
-			if (bridgeList.indexOf(",") != -1)
-			{
-				bridgeDelim = ",";
-			}
-			
-			showToolbarNotification(getString(R.string.notification_using_bridges) + ": " + bridgeList, TRANSPROXY_NOTIFY_ID, R.drawable.ic_stat_tor, -1, false);
-
-						
-			  
-			StringTokenizer st = new StringTokenizer(bridgeList,bridgeDelim);
-			while (st.hasMoreTokens())
-			{
-				String bridgeConfigLine = st.nextToken().trim();
-				logMessage("Adding bridge: " + bridgeConfigLine);
-				mBinder.updateConfiguration(bridgeCfgKey, bridgeConfigLine, false);
-
-			}
 
 			mBinder.updateConfiguration("UpdateBridgesFromAuthority", "0", false);
 			
