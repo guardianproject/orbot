@@ -1,6 +1,19 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
 14.0.0 (ALPHA-2)
+583c758 updated to 14.0.0-ALPHA-3
+90848b0 reduce memory usage of app and make single process
+ba90f73 cleanup of notification and process kill code
+76ec147 add some more externalized strings
+e80c3bf check if installed apps are enabled
+60a822a updated to 14.0.0-ALPHA-2b
+69614fb updated Tor version to 0.2.5.4-alpha heartbleed blacklists for non-updated tor nodes
+53673da fix bridge/PT enable code based on bridge types
+9096f8c update 14.0.0-ALPHA-2a for some testers (samsung)
+42d8ca1 for some devices, the process-id is listed first
+fd51281 make sure the unbind intent is not null
+b814019 improvement for network state checking code
+648b10c updated changelog for v14
 ea919c5 add the basic proguard support
 147b57a remove unused preference
 0dc50cc add log max size feature
