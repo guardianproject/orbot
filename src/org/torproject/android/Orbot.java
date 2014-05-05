@@ -728,18 +728,15 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	private boolean appInstalledOrNot(String uri)
     {
         PackageManager pm = getPackageManager();
-        boolean app_installed = false;
         try
         {
                PackageInfo pi = pm.getPackageInfo(uri, PackageManager.GET_ACTIVITIES);
-               
-               app_installed = true;
+               return pi.applicationInfo.enabled;
         }
         catch (PackageManager.NameNotFoundException e)
         {
-               app_installed = false;
+              return false;
         }
-        return app_installed ;
 }
 	
 	/*
