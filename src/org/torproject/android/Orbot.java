@@ -613,10 +613,12 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 			{
 				
 				if (urlString.toLowerCase().startsWith("bridge://"))
+
 				{
 					String newBridgeValue = urlString.substring(9); //remove the bridge protocol piece
 					newBridgeValue = URLDecoder.decode(newBridgeValue); //decode the value here
-					
+		
+					showAlert("Bridges Updated","Restart Orbot to use this bridge: " + newBridgeValue,false);	
 					SharedPreferences mPrefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
 					Editor pEdit = mPrefs.edit();
 					
