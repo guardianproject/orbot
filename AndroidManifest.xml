@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="org.torproject.android" 
-      android:versionName="14.0.0-ALPHA-3" 
-      android:versionCode="92"
+      android:versionName="14.0.0-ALPHA-4" 
+      android:versionCode="93"
         android:installLocation="auto"
       
       >
@@ -46,7 +46,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="bridge" />
-                <data android:scheme="bridge+obfs" />
             </intent-filter>
         
          <intent-filter>
