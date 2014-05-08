@@ -5,6 +5,7 @@ package org.torproject.android;
 
 import static org.torproject.android.TorConstants.TAG;
 
+import java.net.URLDecoder;
 import java.util.Locale;
 
 import org.torproject.android.service.ITorService;
@@ -546,7 +547,6 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	    String action = intent.getAction();
 	    String type = intent.getType();
 		
-		
 		if (action == null)
 			return;
 		
@@ -604,6 +604,27 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 			}
 			
 			
+		}
+		else if (action.equals(Intent.ACTION_VIEW))
+		{
+			String urlString = intent.getDataString();
+			
+			if (urlString != null)
+			{
+				
+				if (urlString.toLowerCase().startsWith("bridge://"))
+				{
+					String newBridgeValue = urlString.substring(9); //remove the bridge protocol piece
+					newBridgeValue = URLDecoder.decode(newBridgeValue); //decode the value here
+					
+					SharedPreferences mPrefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
+					Editor pEdit = mPrefs.edit();
+					
+					pEdit.putString(TorConstants.PREF_BRIDGES_LIST,newBridgeValue); //set the string to a preference
+				
+					pEdit.commit();
+				}
+			}
 		}
 		else
 		{
