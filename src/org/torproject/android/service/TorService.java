@@ -22,6 +22,8 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.StringTokenizer;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import net.freehaven.tor.control.ConfigEntry;
 import net.freehaven.tor.control.EventHandler;
@@ -35,8 +37,8 @@ import org.torproject.android.TorConstants;
 import org.torproject.android.Utils;
 import org.torproject.android.settings.AppManager;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -63,9 +65,12 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	public static boolean ENABLE_DEBUG_LOG = false;
 	
 	private static int currentStatus = STATUS_OFF;
+	
+	private final static int CONTROL_SOCKET_TIMEOUT = 3000;
 		
 	private TorControlConnection conn = null;
 	private Socket torConnSocket = null;
+	private int mLastProcessId = -1;
 	
 	private static final int NOTIFY_ID = 1;
 	private static final int TRANSPROXY_NOTIFY_ID = 2;
@@ -106,6 +111,12 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     private boolean mEnableTransparentProxy = false;
     private boolean mTransProxyAll = false;
     private boolean mTransProxyTethering = false;
+    
+
+    private ArrayList<String> callbackBuffer = new ArrayList<String>();
+    private boolean inCallbackStatus = false;
+    private boolean inCallback = false;
+    
 		
     public void logMessage(String msg)
     {
@@ -136,9 +147,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	    	try
 	    	{
 	
-	 			int procId = initControlConnection(1);
+	    		mLastProcessId = initControlConnection(1);
 				
-	 			if (procId != -1)
+	 			if (mLastProcessId != -1)
 	 			{
 
 		            sendCallbackLogMessage (getString(R.string.found_existing_tor_process));
@@ -284,34 +295,10 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 		try
 		{
-			initBinaries();
 			
-	    			
-		   IntentFilter mNetworkStateFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-		   registerReceiver(mNetworkStateReceiver , mNetworkStateFilter);
-	
-			mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-	
-			if (intent != null && intent.getAction()!=null && intent.getAction().equals("onboot"))
-			{
-				
-				boolean startOnBoot = TorServiceUtils.getSharedPrefs(getApplicationContext()).getBoolean("pref_start_boot",false);
-				
-				if (startOnBoot)
-				{
-					setTorProfile(PROFILE_ON);
-				}
-			}
-			else
-			{
-				findExistingProc();
-				
-			}
-
-
-		    // We want this service to continue running until it is explicitly
-		    // stopped, so return sticky.
-		    return START_NOT_STICKY;
+			new startTorOperation().execute(intent);
+			
+		    return START_STICKY;
 		    
 		}
 		catch (Exception e)
@@ -321,6 +308,50 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		}
 
 	}
+	
+    private class startTorOperation extends AsyncTask<Intent, Void, Boolean> {
+        @Override
+        protected Boolean doInBackground(Intent... params) {
+          
+        	try
+	    	{
+        		Intent intent = params[0];
+        		
+        		initBinaries();
+    			
+    			
+     		   IntentFilter mNetworkStateFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+     		   registerReceiver(mNetworkStateReceiver , mNetworkStateFilter);
+     	
+     			mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+     	
+     			if (intent != null && intent.getAction()!=null && intent.getAction().equals("onboot"))
+     			{
+     				
+     				boolean startOnBoot = TorServiceUtils.getSharedPrefs(getApplicationContext()).getBoolean("pref_start_boot",false);
+     				
+     				if (startOnBoot)
+     				{
+     					setTorProfile(PROFILE_ON);
+     				}
+     			}
+     			else
+     			{
+     				findExistingProc();
+     				
+     			}
+	    	}
+	    	catch (Exception e)
+	    	{
+	    		Log.e(TAG,"error onBind",e);
+	    	}
+        	
+        	
+            return true;
+        }
+
+    }
+
 	
 
 	
@@ -414,9 +445,12 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	
     private void killTorProcess () throws Exception
     {
-    	
+
+		stopTorMinder();
+		    	
     	if (conn != null)
 		{
+
     		logNotice("Using control port to shutdown Tor");
     		
     		
@@ -435,6 +469,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 		killProcess(filePolipo);
 		killProcess(fileObfsclient);
+		
 		
     }
     
@@ -616,6 +651,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
 		int code = 0; // Default state is "okay"
 	
+		//clear rules first
+		mTransProxy.clearTransparentProxyingAll(this);
+		
 		if(proxyAll)
 		{
 			showToolbarNotification(getString(R.string.setting_up_full_transparent_proxying_), TRANSPROXY_NOTIFY_ID, R.drawable.ic_stat_tor, false);
@@ -685,8 +723,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		{
 			torrcPath = new File(appBinHome, TORRC_TETHER_KEY).getAbsolutePath();
 		}
-		
-		int procId = -1;
 
 		int torRetryWaitTimeMS = 1000;
 		
@@ -700,9 +736,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		Thread.sleep(torRetryWaitTimeMS);
 		
 		//now try to connect
-		procId = initControlConnection (3);
+		mLastProcessId = initControlConnection (3);
 
-		if (procId == -1)
+		if (mLastProcessId == -1)
 		{
 			logNotice(getString(R.string.couldn_t_start_tor_process_) + "; exit=" + cmdTor.getExitCode() + ": " + cmdTor.getOutput());
 			sendCallbackStatusMessage(getString(R.string.couldn_t_start_tor_process_));
@@ -712,12 +748,14 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		else
 		{
 		
-			logNotice("Tor started; process id=" + procId);
+			logNotice("Tor started; process id=" + mLastProcessId);
 			
 			processSettingsImpl();
 	    }
 		
 		shell.close();
+		
+		startTorMinder ();
     }
     
     private void runPolipoShellCmd () throws Exception
@@ -793,9 +831,11 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 						logNotice( "Connecting to control port: " + TOR_CONTROL_PORT);
 						
 						torConnSocket = new Socket(IP_LOCALHOST, TOR_CONTROL_PORT);
+						torConnSocket.setSoTimeout(CONTROL_SOCKET_TIMEOUT);
+						
 				        conn = TorControlConnection.getConnection(torConnSocket);
-	
-						logNotice( "SUCCESS connected to control port");
+				        
+						logNotice( "SUCCESS connected to Tor control port");
 				        
 				        File fileCookie = new File(appCacheHome, TOR_CONTROL_COOKIE);
 				        
@@ -812,9 +852,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 							sendCallbackStatusMessage(getString(R.string.tor_process_starting) + ' ' + getString(R.string.tor_process_complete));
 		
 					        addEventHandler();
-					        
-				      
-				        
+					    
 					        String torProcId = conn.getInfo("process/pid");
 					        
 					        return Integer.parseInt(torProcId);
@@ -989,22 +1027,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	            return true;
 	        }
 
-	        @Override
-	        protected void onPostExecute(Boolean result) {
-	        }
-
-	        @Override
-	        protected void onPreExecute() {
-	        }
-
-	        @Override
-	        protected void onProgressUpdate(Void... values) {
-	        }
 	    }
-		
-		
-		
-	
 
 
 	public void message(String severity, String msg) {
@@ -1214,33 +1237,31 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	
     public IBinder onBind(Intent intent) {
         
-    	Thread thread = new Thread ()
-    	{
-    		
-    		public void run ()
-    		{
-		    	try
-		    	{
-		    		initBinaries();
-		    		findExistingProc ();
-		    	}
-		    	catch (Exception e)
-		    	{
-		    		Log.e(TAG,"error onBind",e);
-		    	}
-    		}
-    	};
-    	thread.start();
+    	new initTorOperation().execute(true);
     	
     	return mBinder;
-    	/**
-    	if (ITorService.class.getName().equals(intent.getAction())) {
-            return mBinder;
-        }
-    	else
-    		return null;
-    		*/
     }
+    
+    private class initTorOperation extends AsyncTask<Boolean, Void, Boolean> {
+        @Override
+        protected Boolean doInBackground(Boolean... params) {
+          
+        	try
+	    	{
+	    		initBinaries();
+	    		findExistingProc ();
+	    	}
+	    	catch (Exception e)
+	    	{
+	    		Log.e(TAG,"error onBind",e);
+	    	}
+        	
+        	
+            return true;
+        }
+
+    }
+	
 	
     /**
      * This is a list of callbacks that have been registered with the
@@ -1445,10 +1466,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	    
     };
     
-    private ArrayList<String> callbackBuffer = new ArrayList<String>();
-    private boolean inCallbackStatus = false;
-    private boolean inCallback = false;
-    
     private synchronized void sendCallbackStatusMessage (String newStatus)
     {
     	 
@@ -1484,7 +1501,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	if (mCallbacks == null)
     		return;
     	
-    	
         // Broadcast to all clients the new value.
         final int N = mCallbacks.beginBroadcast();
         
@@ -1508,7 +1524,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     }
     
     
-    private void sendCallbackLogMessage (String logMessage)
+    private synchronized void sendCallbackLogMessage (String logMessage)
     {
     	 
     	if (mCallbacks == null)
@@ -1597,6 +1613,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 							logNotice(context.getString(R.string.network_connectivity_is_good_waking_tor_up_));
 							showToolbarNotification(getString(R.string.status_activated),NOTIFY_ID,R.drawable.ic_stat_tor,prefPersistNotifications);
 
+							if (mHasRoot && mEnableTransparentProxy)
+								enableTransparentProxy(mTransProxyAll, mTransProxyTethering);
+							
 				        }
 					}
 					
@@ -1889,7 +1908,141 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     
     	return file.getAbsolutePath();
     }
+
+	@SuppressLint("NewApi")
+	@Override
+	public void onTrimMemory(int level) {
+		super.onTrimMemory(level);
+		
+		switch (level)
+		{
+		
+			case TRIM_MEMORY_BACKGROUND:
+				logNotice("trim memory requested: app in the background");
+			return;
+			
+		/**
+		public static final int TRIM_MEMORY_BACKGROUND
+		Added in API level 14
+		Level for onTrimMemory(int): the process has gone on to the LRU list. This is a good opportunity to clean up resources that can efficiently and quickly be re-built if the user returns to the app.
+		Constant Value: 40 (0x00000028)
+		*/
+		
+			case TRIM_MEMORY_COMPLETE:
+
+				logNotice("trim memory requested: cleanup all memory");
+			return;
+		/**
+		public static final int TRIM_MEMORY_COMPLETE
+		Added in API level 14
+		Level for onTrimMemory(int): the process is nearing the end of the background LRU list, and if more memory isn't found soon it will be killed.
+		Constant Value: 80 (0x00000050)
+		*/
+			case TRIM_MEMORY_MODERATE:
+
+				logNotice("trim memory requested: clean up some memory");
+			return;
+				
+		/**
+		public static final int TRIM_MEMORY_MODERATE
+		Added in API level 14
+		Level for onTrimMemory(int): the process is around the middle of the background LRU list; freeing memory can help the system keep other processes running later in the list for better overall performance.
+		Constant Value: 60 (0x0000003c)
+		*/
+		
+			case TRIM_MEMORY_RUNNING_CRITICAL:
+
+				logNotice("trim memory requested: memory on device is very low and critical");
+			return;
+		/**
+		public static final int TRIM_MEMORY_RUNNING_CRITICAL
+		Added in API level 16
+		Level for onTrimMemory(int): the process is not an expendable background process, but the device is running extremely low on memory and is about to not be able to keep any background processes running. Your running process should free up as many non-critical resources as it can to allow that memory to be used elsewhere. The next thing that will happen after this is onLowMemory() called to report that nothing at all can be kept in the background, a situation that can start to notably impact the user.
+		Constant Value: 15 (0x0000000f)
+		*/
+		
+			case TRIM_MEMORY_RUNNING_LOW:
+
+				logNotice("trim memory requested: memory on device is running low");
+			return;
+		/**
+		public static final int TRIM_MEMORY_RUNNING_LOW
+		Added in API level 16
+		Level for onTrimMemory(int): the process is not an expendable background process, but the device is running low on memory. Your running process should free up unneeded resources to allow that memory to be used elsewhere.
+		Constant Value: 10 (0x0000000a)
+		*/
+			case TRIM_MEMORY_RUNNING_MODERATE:
+
+				logNotice("trim memory requested: memory on device is moderate");
+			return;
+		/**
+		public static final int TRIM_MEMORY_RUNNING_MODERATE
+		Added in API level 16
+		Level for onTrimMemory(int): the process is not an expendable background process, but the device is running moderately low on memory. Your running process may want to release some unneeded resources for use elsewhere.
+		Constant Value: 5 (0x00000005)
+		*/
+			case TRIM_MEMORY_UI_HIDDEN:
+
+				logNotice("trim memory requested: app is not showing UI anymore");
+			return;
+				
+		/**
+		public static final int TRIM_MEMORY_UI_HIDDEN
+		Level for onTrimMemory(int): the process had been showing a user interface, and is no longer doing so. Large allocations with the UI should be released at this point to allow memory to be better managed.
+		Constant Value: 20 (0x00000014)
+		*/
+		}
+		
+	}
    
+	private Timer mTorMinder;
+	
+	private void startTorMinder ()
+	{
+		mTorMinder = new Timer(true);
+		mTorMinder.scheduleAtFixedRate(
+		    new TimerTask() {
+		      public void run() { 
+		    	  
+					if (currentStatus == STATUS_OFF)
+					{
+						mTorMinder.cancel();
+					}
+					else
+					{
+						
+						try {
+							int foundPrcId = TorServiceUtils.findProcessId(fileTor.getAbsolutePath());
+							
+							if (foundPrcId != -1)
+							{
+								mLastProcessId = foundPrcId;
+								
+								logNotice("Refreshed Tor process id: " + mLastProcessId);
+								
+							}
+							else
+							{
+								logNotice("restarting Tor after it has been killed");
+								killTorProcess();
+								initTor();
+							}
+							
+						} catch (Exception e1) {
+							logException("Error in Tor heartbeat checker",e1);
+						} 
+					}
+				
+		    	  
+		      }
+		    }, 0, 30 * 1000); //every 30 seconds
+	}
+	
+	private void stopTorMinder ()
+	{
+		if (mTorMinder != null)
+			mTorMinder.cancel();
+	}
     
    
 }
