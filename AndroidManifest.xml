@@ -22,6 +22,9 @@
       android:theme="@style/Theme.AppCompat" 
       android:allowBackup="false"
       android:allowClearUserData="true"
+	android:largeHeap="true" 
+
+
      >
       
         <activity android:name=".Orbot" android:configChanges="orientation|screenSize"
@@ -84,6 +87,7 @@
     		android:name=".service.TorService" 
     		android:exported="false"
 		android:permission="org.torproject.android.MANAGE_TOR"
+		android:process=":remote"
     		>
 	            <intent-filter>
 	                <action android:name="org.torproject.android.service.ITorService" />
