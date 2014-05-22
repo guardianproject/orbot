@@ -34,7 +34,7 @@
         android:textColor="#ffffff"
         android:textSize="8pt" >
     </TextView>
-
+    
     <Button
         android:id="@+id/WizardRootButtonInstallOrweb"
         android:layout_width="fill_parent"
@@ -80,6 +80,15 @@
         android:layout_marginTop="10px"
         android:drawableLeft="@drawable/ic_twitter"
         android:text="@string/wizard_tips_twitter" />
+    
+    <Button
+        android:id="@+id/WizardRootButtonInstallStoryMaker"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginTop="10px"
+        android:drawableLeft="@drawable/icon_story_maker"
+        android:text="@string/wizard_tips_story_maker" />
     
     <!-- 
      <Button
