@@ -202,7 +202,7 @@ public class TipsAndTricks extends Activity implements TorConstants {
 	    	startActivityForResult(new Intent(getBaseContext(), Orbot.class), 1);
 	    	return true;
 	    }
-	    return true;
+	    return false;
 	}
 	
 	/*
