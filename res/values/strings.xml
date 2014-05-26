@@ -79,6 +79,8 @@
   <string name="wizard_tips_firefox">Proxy Mobile add-on for Firefox (http://tinyurl.com/getproxymob)</string>
   <string name="proxymob_setup_url">https://guardianproject.info/releases/proxymob-latest.xpi</string>
   <string name="wizard_tips_twitter">Set Twitter proxy to host \"localhost\" and port 8118</string>
+  <string name="wizard_tips_story_maker">StoryMaker - Make a story and leave it to tor for security!</string>
+  <string name="story_maker_url">https://play.google.com/store/apps/details?id=info.guardianproject.mrapp</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Proxy Settings</string>
   <string name="wizard_proxy_help_msg">If the Android app you are using can support the use of an HTTP or SOCKS proxy, then you can configure it to connect to Orbot and use Tor.\n\n\n    The host settings is 127.0.0.1 or \"localhost\". For HTTP, the port setting is 8118. For SOCKS, the proxy is 9050. You should use SOCKS4A or SOCKS5 if possible.\n    \n\n\n    You can learn more about proxying on Android via the FAQ at: http://tinyurl.com/proxyandroid\n    </string>

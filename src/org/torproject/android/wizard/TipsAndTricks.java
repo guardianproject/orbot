@@ -127,6 +127,18 @@ public class TipsAndTricks extends Activity implements TorConstants {
 			}
 		});
         
+        btnLink = (Button)findViewById(R.id.WizardRootButtonInstallStoryMaker);
+
+        btnLink.setOnClickListener(new OnClickListener() {
+			
+			public void onClick(View view) {
+				
+				String url = getString(R.string.story_maker_url);
+				startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+
+			}
+		});
+        
         /**
         btnLink = (Button)findViewById(R.id.WizardRootButtonGooglePlay);
 
