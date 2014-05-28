@@ -39,6 +39,7 @@ import org.torproject.android.settings.AppManager;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -58,6 +59,9 @@ import android.os.RemoteException;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationCompat.Builder;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.RemoteViews;
 
 public class TorService extends Service implements TorServiceConstants, TorConstants, EventHandler
 {
@@ -106,6 +110,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	
 	private NotificationManager mNotificationManager = null;
 	private Builder mNotifyBuilder;
+	private Notification mNotification;
 
     private boolean mHasRoot = false;
     private boolean mEnableTransparentProxy = false;
@@ -219,9 +224,18 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
 	}
    
- 	private void showToolbarNotification (String notifyMsg, int notifyId, int icon, boolean isOngoing)
- 	{
- 				    
+ 	@SuppressLint("NewApi")
+	private void showToolbarNotification (String notifyMsg, int notifyId, int icon, boolean isOngoing)
+ 	{	    
+ 		 
+ 		PendingIntent pendingIntent = PendingIntent.getActivity(TorService.this, 0, new Intent(TorService.this , Orbot.class), 0);
+ 		// Create remote view that needs to be set as bigContentView for the notification.
+ 		RemoteViews expandedView = new RemoteViews(this.getPackageName(), 
+ 		        R.layout.layout_notification_expanded);
+ 		expandedView.setTextViewText(R.id.tv, notifyMsg);
+ 		expandedView.setOnClickPendingIntent(R.id.but, pendingIntent);
+ 		expandedView.setImageViewResource(R.id.img, icon);
+ 		
 		if (mNotifyBuilder == null)
 		{
 			
@@ -246,6 +260,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		mNotifyBuilder.setContentText(notifyMsg);
 		mNotifyBuilder.setSmallIcon(icon);
 		
+		
 		if (notifyId == ERROR_NOTIFY_ID)
 		{
 			mNotifyBuilder.setTicker(notifyMsg);
@@ -254,19 +269,19 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			mNotifyBuilder.setSmallIcon(R.drawable.ic_stat_notifyerr);
 		}
 		
+		mNotification = mNotifyBuilder.build();
+		mNotification.bigContentView = expandedView;
+		
 		if (isOngoing)
 		{
-			startForeground(notifyId,
-	    			mNotifyBuilder.build());
+			startForeground(notifyId, mNotification);
 		
 		}
 		else
 		{
-			mNotificationManager.notify(
-						notifyId,
-		    			mNotifyBuilder.build());
+			mNotificationManager.notify(notifyId, mNotification);
 		}	
-		
+ 		
  	}
     
     /* (non-Javadoc)

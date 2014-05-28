@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+	<RelativeLayout 
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content">
+	    
+	    <ImageView 
+	        android:id="@+id/img"
+	        android:layout_height="64dp"
+	        android:layout_width="64dp"
+	        android:src="@drawable/torerror"/>
+	    
+	    <TextView 
+	        android:id="@+id/orb"
+	        android:layout_height="wrap_content"
+	        android:layout_width="fill_parent"
+	        android:textSize="20sp"
+	        android:paddingLeft="10dp"
+	        android:paddingTop="5dp"
+	        android:layout_toRightOf="@+id/img"
+	        android:text="Orbot"/>
+	    
+    	<TextView
+        	android:id="@+id/tv"
+        	android:layout_toRightOf="@+id/img"
+        	android:layout_below="@+id/orb"
+        	android:paddingLeft="15dp"
+        	android:textSize="10sp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"/>
+
+		<Button
+		    android:id="@+id/but"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_alignParentRight="true"
+		    android:layout_below="@+id/tv"
+		    android:text="test" />
+		
+    </RelativeLayout>
+
+</LinearLayout>

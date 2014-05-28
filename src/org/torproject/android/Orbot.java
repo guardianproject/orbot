@@ -532,7 +532,12 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	protected void onNewIntent(Intent intent) {
 		
 		super.onNewIntent(intent);
-		
+		try {
+			Log.d("lala", ""+mService.getStatus());
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		updateStatus("");
 		handleIntents();
 	}
