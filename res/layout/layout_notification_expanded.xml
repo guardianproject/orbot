@@ -12,7 +12,7 @@
 	        android:id="@+id/img"
 	        android:layout_height="64dp"
 	        android:layout_width="64dp"
-	        android:src="@drawable/torerror"/>
+	        android:src="@drawable/tor"/>
 	    
 	    <TextView 
 	        android:id="@+id/orb"
@@ -22,7 +22,8 @@
 	        android:paddingLeft="10dp"
 	        android:paddingTop="5dp"
 	        android:layout_toRightOf="@+id/img"
-	        android:text="Orbot"/>
+	        android:text="Orbot"
+	        style="@style/NotificationTitle"/>
 	    
     	<TextView
         	android:id="@+id/tv"
@@ -31,7 +32,8 @@
         	android:paddingLeft="15dp"
         	android:textSize="10sp"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            style="@style/NotificationText"/>
 
 		<Button
 		    android:id="@+id/but"

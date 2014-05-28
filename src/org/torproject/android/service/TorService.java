@@ -227,21 +227,20 @@ public class TorService extends Service implements TorServiceConstants, TorConst
  	@SuppressLint("NewApi")
 	private void showToolbarNotification (String notifyMsg, int notifyId, int icon, boolean isOngoing)
  	{	    
- 		 
- 		PendingIntent pendingIntent = PendingIntent.getActivity(TorService.this, 0, new Intent(TorService.this , Orbot.class), 0);
- 		// Create remote view that needs to be set as bigContentView for the notification.
+ 		
+ 		//Reusable code.
+		Intent intent = new Intent(TorService.this, Orbot.class);
+		PendingIntent pendIntent = PendingIntent.getActivity(TorService.this, 0, intent, 0);
+ 
+		// Create remote view that needs to be set as bigContentView for the notification.
  		RemoteViews expandedView = new RemoteViews(this.getPackageName(), 
  		        R.layout.layout_notification_expanded);
  		expandedView.setTextViewText(R.id.tv, notifyMsg);
- 		expandedView.setOnClickPendingIntent(R.id.but, pendingIntent);
+ 		expandedView.setOnClickPendingIntent(R.id.but, pendIntent);
  		expandedView.setImageViewResource(R.id.img, icon);
  		
 		if (mNotifyBuilder == null)
 		{
-			
-			//Reusable code.
-			Intent intent = new Intent(TorService.this, Orbot.class);
-			PendingIntent pendIntent = PendingIntent.getActivity(TorService.this, 0, intent, 0);
 			
 			mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 				
@@ -270,7 +269,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		}
 		
 		mNotification = mNotifyBuilder.build();
-		mNotification.bigContentView = expandedView;
+		//mNotification.bigContentView = expandedView;
 		
 		if (isOngoing)
 		{
