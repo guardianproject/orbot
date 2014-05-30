@@ -3,25 +3,16 @@ package org.torproject.android.wizard;
 import org.torproject.android.Orbot;
 import org.torproject.android.R;
 import org.torproject.android.TorConstants;
-import org.torproject.android.R.drawable;
-import org.torproject.android.R.id;
-import org.torproject.android.R.layout;
-import org.torproject.android.R.string;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 public class TipsAndTricks extends Activity implements TorConstants {
@@ -74,6 +65,7 @@ public class TipsAndTricks extends Activity implements TorConstants {
 			public void onClick(View view) {
 
 				String url = getString(R.string.gibberbot_apk_url);
+				finish();
 				startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
 
 			}
@@ -86,6 +78,7 @@ public class TipsAndTricks extends Activity implements TorConstants {
 			public void onClick(View view) {
 				
 				String url = getString(R.string.orweb_apk_url);
+				finish();
 				startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
 
 			}
@@ -98,6 +91,7 @@ public class TipsAndTricks extends Activity implements TorConstants {
 			public void onClick(View view) {
 				
 				String url = getString(R.string.duckgo_apk_url);
+				finish();
 				startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
 
 			}
@@ -110,6 +104,7 @@ public class TipsAndTricks extends Activity implements TorConstants {
 			public void onClick(View view) {
 				
 				String url = getString(R.string.proxymob_setup_url);
+				finish();
 				startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
 
 			}
@@ -122,6 +117,7 @@ public class TipsAndTricks extends Activity implements TorConstants {
 			public void onClick(View view) {
 				
 				String url = getString(R.string.twitter_setup_url);
+				finish();
 				startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
 
 			}
@@ -160,7 +156,7 @@ public class TipsAndTricks extends Activity implements TorConstants {
         back.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
-				
+				finish();
 				startActivityForResult(new Intent(TipsAndTricks.this, Permissions.class), 1);
 			}
 		});
@@ -195,19 +191,31 @@ public class TipsAndTricks extends Activity implements TorConstants {
     	btn1.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
+				finish();
 				startActivityForResult(new Intent(TipsAndTricks.this, Permissions.class), 1);
-
 			}
 		});
     	
     	btn2.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
+				finish();
 				startActivityForResult(new Intent(TipsAndTricks.this, Orbot.class), 1);
-
 			}
 		});
 	}
+	
+	//Code to override the back button!
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event)  {
+	    if(keyCode == KeyEvent.KEYCODE_BACK){
+	    	finish();
+	    	startActivityForResult(new Intent(getBaseContext(), Permissions.class), 1);
+	    	return true;
+	    }
+	    return false;
+	}
+	
 	/*
 	private void showWizardFinal ()
 	{
