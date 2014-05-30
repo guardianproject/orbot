@@ -862,13 +862,8 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
         	int newTorStatus = -1;
             try
             {
-            	if (mTorServiceMsg != null && mTorServiceMsg.length()>0)
-            	{
-                    //if the serivce is bound, query it for the curren status value (int)
-                    if (mService != null)
-                    	return new Integer(mService.getStatus());
-                    
-            	}
+            	if (mService != null)
+                	return new Integer(mService.getStatus());
                     
             }
             catch (Exception e)
