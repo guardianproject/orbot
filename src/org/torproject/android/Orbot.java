@@ -33,6 +33,8 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Configuration;
 import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -83,7 +85,6 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 
     //should move this up with all the other class variables
     private boolean mIsBound = false;
-    private Intent mTorService = null;
     
     
 	private boolean autoStartFromIntent = false;
@@ -98,11 +99,31 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
         
     	doLayout();
 
-    	mTorService = new Intent(this, TorService.class);
-    	getApplication().getApplicationContext().startService(mTorService);
-    	
     	appConflictChecker ();
+    	
+    	startService ();
         
+	}
+
+	private void startService ()
+	{
+		Intent torService = new Intent(this, TorService.class);    	    	
+
+		if (Build.VERSION.SDK_INT > 14)
+		{
+		
+			bindService(torService,
+					mConnection, Context.BIND_AUTO_CREATE|Context.BIND_IMPORTANT|Context.BIND_ABOVE_CLIENT);
+		}
+		else
+		{
+		
+			bindService(torService,
+					mConnection, Context.BIND_AUTO_CREATE);
+		}
+	
+		startService(torService);
+	
 	}
 	
 	private void doLayout ()
@@ -159,9 +180,6 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 		downloadText.setText(formatCount(0) + " / " + formatTotal(0));
 		uploadText.setText(formatCount(0) + " / " + formatTotal(0));
 	
-		updateStatus("");
-		
-
         // Gesture detection
 		mGestureDetector = new GestureDetector(this, new MyGestureDetector());
 
@@ -516,24 +534,11 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	
 	}
 	
-	/* (non-Javadoc)
-	 * @see android.app.Activity#onResume()
-	 */
-	protected void onResume() {
-		super.onResume();
-		
-    	bindService();
-    	updateStatus("");
-	}
-	
-	
-	
 	@Override
 	protected void onNewIntent(Intent intent) {
 		
 		super.onNewIntent(intent);
 		
-		updateStatus("");
 		handleIntents();
 	}
 
@@ -589,12 +594,8 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 		{
 			autoStartFromIntent = true;
 			
-			if (mService == null)
-			{
-				bindService();
-			}
-			else
-			{
+			if (mService != null)
+			{			
 				try {
 					startTor();
 				} catch (RemoteException e) {
@@ -847,17 +848,50 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
      */
     public void updateStatus (String torServiceMsg)
     {
+    	new updateStatusAsync().execute(torServiceMsg);
+    }
+    
+    private class updateStatusAsync extends AsyncTask<String, Void, Integer> {
+    	
+    	String mTorServiceMsg = null;
+    	
+        @Override
+        protected Integer doInBackground(String... params) {
+          
+        	mTorServiceMsg = params[0];
+        	int newTorStatus = -1;
             try
             {
-            	if (torServiceMsg == null || torServiceMsg.length()==0)
-            		torStatus = -1; //reset Tor status
-            	
-            		int newTorStatus = -1;
-            	
+            	if (mTorServiceMsg != null && mTorServiceMsg.length()>0)
+            	{
                     //if the serivce is bound, query it for the curren status value (int)
                     if (mService != null)
-                    	newTorStatus = mService.getStatus();
+                    	return new Integer(mService.getStatus());
                     
+            	}
+                    
+            }
+            catch (Exception e)
+            {
+            	//error
+            	Log.d(TAG,"error in update status",e);
+            }
+			
+            return newTorStatus;
+            
+        }
+        
+        @Override
+		protected void onPostExecute(Integer result) {
+			
+        	updateUI(result.intValue());
+        	
+			super.onPostExecute(result);
+		}
+
+		private void updateUI (int newTorStatus)
+        {
+            
                     //now update the layout_main UI based on the status
                     if (imgStatus != null)
                     {
@@ -877,10 +911,11 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	                                    
 	                            	}
                                     
-                                    if (torServiceMsg != null && torServiceMsg.length() > 0)
+                                    if (mTorServiceMsg != null && mTorServiceMsg.length() > 0)
                                     {
-                                    	appendLogTextAndScroll(torServiceMsg);
+                                    	appendLogTextAndScroll(mTorServiceMsg);
                                     }
+                                    
                                     SharedPreferences mPrefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
                                     boolean showFirstTime = mPrefs.getBoolean("connect_first_time",true);
                                     
@@ -916,11 +951,11 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                                             mItemOnOff.setTitle(R.string.menu_stop);
                             	}
                             	
-                                if (lblStatus != null && torServiceMsg != null)
-                                	if (torServiceMsg.indexOf('%')!=-1)
-                                		lblStatus.setText(torServiceMsg);
+                                if (lblStatus != null && mTorServiceMsg != null)
+                                	if (mTorServiceMsg.indexOf('%')!=-1)
+                                		lblStatus.setText(mTorServiceMsg);
                                 
-                                appendLogTextAndScroll(torServiceMsg);
+                                appendLogTextAndScroll(mTorServiceMsg);
                                 
                                             
                             }
@@ -937,14 +972,10 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                     }
                     
                     torStatus = newTorStatus;
-                            
-            }
-            catch (RemoteException e)
-            {
-                    Log.e(TAG,"remote exception updating status",e);
-            }
+               
             
         
+        }
     }
   
   // guess what? this start's Tor! actually no it just requests via the local ITorService to the remote TorService instance
@@ -1201,19 +1232,6 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
         }
     };
     
-    //this is where we bind! 
-    private void bindService ()
-    {
-        
-         //since its auto create, we prob don't ever need to call startService
-         //also we should again be consistent with using either iTorService.class.getName()
-         //or the variable constant       
-         bindService(mTorService,
-             mConnection, Context.BIND_AUTO_CREATE);
-         
-        
-    
-    }
     
     //unbind removes the callback, and unbinds the service
     private void unbindService ()
