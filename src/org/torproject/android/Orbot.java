@@ -621,9 +621,23 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 		
 					showAlert("Bridges Updated","Restart Orbot to use this bridge: " + newBridgeValue,false);	
 					SharedPreferences mPrefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
+					
+					String bridges = mPrefs.getString(TorConstants.PREF_BRIDGES_LIST, null);
+					
 					Editor pEdit = mPrefs.edit();
 					
-					pEdit.putString(TorConstants.PREF_BRIDGES_LIST,newBridgeValue); //set the string to a preference
+					if (bridges != null && bridges.trim().length() > 0)
+					{
+						if (bridges.indexOf('\n')!=-1)
+							bridges += '\n' + newBridgeValue;
+						else
+							bridges += ',' + newBridgeValue;
+					}
+					else
+						bridges = newBridgeValue;
+					
+					pEdit.putString(TorConstants.PREF_BRIDGES_LIST,bridges); //set the string to a preference
+					pEdit.putBoolean(TorConstants.PREF_BRIDGES_ENABLED,true);
 				
 					pEdit.commit();
 				}
