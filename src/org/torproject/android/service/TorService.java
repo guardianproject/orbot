@@ -66,7 +66,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	
 	private static int currentStatus = STATUS_OFF;
 	
-	private final static int CONTROL_SOCKET_TIMEOUT = 3000;
+	private final static int CONTROL_SOCKET_TIMEOUT = 10000;
 		
 	private TorControlConnection conn = null;
 	private Socket torConnSocket = null;
@@ -170,7 +170,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	    	}
 	    	catch (Exception e)
 	    	{
-	    		Log.e(TAG,"error finding proc",e);
+	    		//Log.e(TAG,"error finding proc",e);
 	    		return false;
 	    	}
     	}
@@ -295,7 +295,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 		try
 		{
-			
 			new startTorOperation().execute(intent);
 			
 		    return START_STICKY;
@@ -730,8 +729,12 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
 		//start Tor in the background
 		Shell shell = Shell.startShell();
+		
+		
 		SimpleCommand cmdTor = new SimpleCommand(fileTor.getAbsolutePath() + " DataDirectory " + appCacheHome.getAbsolutePath() + " -f " + torrcPath + " &");
+		
 		shell.add(cmdTor);
+		
 		
 		Thread.sleep(torRetryWaitTimeMS);
 		
@@ -742,6 +745,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		{
 			logNotice(getString(R.string.couldn_t_start_tor_process_) + "; exit=" + cmdTor.getExitCode() + ": " + cmdTor.getOutput());
 			sendCallbackStatusMessage(getString(R.string.couldn_t_start_tor_process_));
+		
+			logNotice("Tor exit code: " + cmdTor.getExitCode());
+			
 			
 			throw new Exception ("Unable to start Tor");
 		}
@@ -818,6 +824,18 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			
 			if (conn != null)
 			{
+				File fileCookie = new File(appCacheHome, TOR_CONTROL_COOKIE);
+		        
+		        if (fileCookie.exists())
+		        {
+			        byte[] cookie = new byte[(int)fileCookie.length()];
+			        DataInputStream fis = new DataInputStream(new FileInputStream(fileCookie));
+			        fis.read(cookie);
+			        fis.close();
+			        conn.authenticate(cookie);
+			        		
+		        }
+		        
 				 String torProcId = conn.getInfo("process/pid");
 				  return Integer.parseInt(torProcId);
 			}
@@ -834,6 +852,12 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 						torConnSocket.setSoTimeout(CONTROL_SOCKET_TIMEOUT);
 						
 				        conn = TorControlConnection.getConnection(torConnSocket);
+				        
+				        if (ENABLE_DEBUG_LOG)
+				        {
+				        	conn.setDebugging(System.out);
+				        	
+				        }
 				        
 						logNotice( "SUCCESS connected to Tor control port");
 				        
@@ -861,6 +885,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 				        else
 				        {
 				        	logNotice ("Tor authentication cookie does not exist yet; trying again...");
+				        	conn = null;
+				        			
 				        }
 					}
 					catch (Exception ce)
@@ -868,11 +894,10 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 						conn = null;
 						logNotice( "Error connecting to Tor local control port: " + ce.getLocalizedMessage());
 						 
-					//	Log.d(TAG,"Attempt: Error connecting to control port: " + ce.getLocalizedMessage(),ce);
+						Log.d(TAG,"Attempt: Error connecting to control port: " + ce.getLocalizedMessage(),ce);
 					}
 					
-					sendCallbackStatusMessage(getString(R.string.tor_process_waiting));
-					Thread.sleep(3000);
+					
 					
 				}
 			}		
@@ -976,59 +1001,37 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			return PROFILE_ON;
 		}
 		
-		public void setTorProfile(int profile)  {
-		//	logNotice("Tor profile set to " + profile);
-			
-			if (profile == PROFILE_ON)
-			{
- 				
-	           new StartStopTorOperation().execute(true);
-			}
-			else if (profile == PROFILE_OFF)
-			{
+		
+		public synchronized void setTorProfile(int profile)  {
+		
+			if (profile == PROFILE_ON && currentStatus == STATUS_OFF)
+        	{
+        		
+        		currentStatus = STATUS_CONNECTING;
+	            sendCallbackStatusMessage (getString(R.string.status_starting_up));
 
-		       new StartStopTorOperation().execute(false);
-				
-			}
+	            try
+	   		     {
+	   			   initTor();
+	   		     }
+	   		     catch (Exception e)
+	   		     {				
+	   		    	
+	   		    	logException("Unable to start Tor: " + e.toString(),e);	
+	   		    	 currentStatus = STATUS_OFF;
+	   		    	 showToolbarNotification(getString(R.string.unable_to_start_tor) + ": " + e.getMessage(), ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr, false);
+	   		     }
+        	}
+        	else
+        	{
+        		currentStatus = STATUS_OFF;
+	            sendCallbackStatusMessage (getString(R.string.status_shutting_down));
+	          
+	            stopTor();
+	            
+        	}
 		}
 		
-		private class StartStopTorOperation extends AsyncTask<Boolean, Void, Boolean> {
-	        @Override
-	        protected Boolean doInBackground(Boolean... params) {
-	          
-	        	if (params[0].booleanValue() == true)
-	        	{
-	        		
-	        		currentStatus = STATUS_CONNECTING;
-		            sendCallbackStatusMessage (getString(R.string.status_starting_up));
-
-		            try
-		   		     {
-		   			   initTor();
-		   		     }
-		   		     catch (Exception e)
-		   		     {				
-		   		    	
-		   		    	logException("Unable to start Tor: " + e.toString(),e);	
-		   		    	 currentStatus = STATUS_OFF;
-		   		    	 showToolbarNotification(getString(R.string.unable_to_start_tor) + ": " + e.getMessage(), ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr, false);
-		   		     }
-	        	}
-	        	else
-	        	{
-	        		currentStatus = STATUS_OFF;
-		            sendCallbackStatusMessage (getString(R.string.status_shutting_down));
-		          
-		            stopTor();
-		            
-	        	}
-	        	
-	        	
-	            return true;
-	        }
-
-	    }
-
 
 	public void message(String severity, String msg) {
 		
@@ -1290,7 +1293,27 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         
         public void setProfile (int profile)
         {
-        	setTorProfile(profile);
+        
+        	new AsyncTask<Integer, Void, Boolean>() {
+                @Override
+                protected Boolean doInBackground(Integer... params) {
+                  
+                	try
+        	    	{        	
+                		
+                		setTorProfile(params[0].intValue());
+
+        	    	}
+        	    	catch (Exception e)
+        	    	{
+        	    		Log.e(TAG,"error onBind",e);
+        	    	}
+                	
+                	
+                    return true;
+                }
+
+            }.execute(profile);
         	
         }
         
