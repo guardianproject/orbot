@@ -196,7 +196,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
    	
     private void appendLogTextAndScroll(String text)
     {
-        if(mTxtOrbotLog != null){
+        if(mTxtOrbotLog != null && text != null && text.length() > 0){
         	
         	if (mTxtOrbotLog.getText().length() > MAX_LOG_LENGTH)
         		mTxtOrbotLog.setText("");
