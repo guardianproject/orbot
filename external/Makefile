@@ -294,7 +294,6 @@ polipo: polipo-build-stamp
 polipo-clean:
 	-rm -f bin/polipo
 	-rm -f polipo-build-stamp
-	-rm -rf polipo
 
 #------------------------------------------------------------------------------#
 # JTorControl library
