@@ -1002,17 +1002,18 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		}
 		
 		
-		public synchronized void setTorProfile(int profile)  {
+		public void setTorProfile(int profile)  {
 		
-			if (profile == PROFILE_ON && currentStatus == STATUS_OFF)
+			if (currentStatus == STATUS_OFF)
         	{
         		
-        		currentStatus = STATUS_CONNECTING;
 	            sendCallbackStatusMessage (getString(R.string.status_starting_up));
 
 	            try
 	   		     {
 	   			   initTor();
+
+	        		currentStatus = STATUS_CONNECTING;
 	   		     }
 	   		     catch (Exception e)
 	   		     {				
@@ -1024,11 +1025,11 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         	}
         	else
         	{
-        		currentStatus = STATUS_OFF;
 	            sendCallbackStatusMessage (getString(R.string.status_shutting_down));
 	          
 	            stopTor();
-	            
+
+        		currentStatus = STATUS_OFF;   
         	}
 		}
 		
