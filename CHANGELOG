@@ -1,5 +1,41 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+14.0.0 BETA-1
+2650fda update to 14.0.0-BETA-1
+476dc1a update binaries for 0.2.4.22 Tor
+b6116b5 switch to 0.2.4.22 version of Tor for release
+148e7eb remove deletion of polipo folder
+352c23b updated binaries for OpenSSL 1.0.1h
+7622d2c update constant for 1.0.1h and latest openssl vuln http://ccsinjection.lepidum.co.jp/blog/2014-06-05/CCS-Injection-en/index.h
+d392439 fix bridge append value from qrcode scan
+d6f5720 remove synchronized - not needed, and causing blocking
+f52c22a Merge branch 'amoghbl1-issue_3014_wizard_workflow'
+f6750e1 sometimes text can be null
+fd47e70 fix control port connections with socket timeouts
+36a6349 status should update whether there is msg or not
+63b4304 Merge branch 'issue_3014_wizard_workflow' of https://github.com/amoghbl1/orbot-1 into amoghbl1-issue_3014_wizard_workflow
+25f6499 Merge branch 'master' of github.com:n8fr8/orbot
+e2e0d26 Merge branch 'hans_feature_desc'
+c1f9296 new work on binding and service starting
+e2e00cc removed largeheap value
+13ef143 add app description to manifest to support p2p distribution
+c111030 Merge pull request #1 from amoghbl1/issue_2374_story_maker
+4759d9f implemented button click function for the story maker button, also url added in strings, change to liking at review
+53e82b1 general cleanup, removed log.d's
+6488e6a cleaned Permissions workflow, implemented override for back button
+935fa91 cleaned LotsaText workflow, implemented override for back button
+f29a494 cleaned ConfigureTransProxy workflow, implemented override for back button
+ea384f9 cleaned ChooseLocaleWizardActivity workflow, implemented override for back button and added toast warning message string
+ffcfce7 cleaned TipsAndTricks workflow
+255623a added the story maker button to the tips wizard page, also added tip string to the strings file.
+23c689c added icon for story maker button to be added to the hints and tips page
+cfc8a99 updated to 14.0.0-ALPHA-4
+278997d simple notification of bridge settings via URL
+17934e6 initial support for setting bridge through URL
+96c0a54 add large heap and remote process settings back in
+726cf0c work to stabilize Tor background service auto-restart tor binary process if killed by Android OS print out debug info related
+11c31fa update the changelog
+
 14.0.0 (ALPHA-2)
 583c758 updated to 14.0.0-ALPHA-3
 90848b0 reduce memory usage of app and make single process
