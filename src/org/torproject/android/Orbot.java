@@ -1018,7 +1018,6 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
     		mService.setProfile(TorServiceConstants.PROFILE_OFF);
     		Message msg = mHandler.obtainMessage(TorServiceConstants.DISABLE_TOR_MSG);
     		mHandler.sendMessage(msg);
-            //trafficRow.setVisibility(RelativeLayout.GONE);
 
             
     	}
@@ -1037,10 +1036,8 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	            try
 	            {
 	                    
-	                if (mService != null && mService.getStatus() == TorServiceConstants.STATUS_OFF)
+	                if (torStatus == TorServiceConstants.STATUS_OFF)
 	                {
-	                        
-	                       // createProgressDialog(getString(R.string.status_starting_up));
 	
 	                        startTor();
 	                }

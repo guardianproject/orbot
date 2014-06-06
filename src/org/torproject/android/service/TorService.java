@@ -76,7 +76,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	private static final int NOTIFY_ID = 1;
 	private static final int TRANSPROXY_NOTIFY_ID = 2;
 	private static final int ERROR_NOTIFY_ID = 3;
-	private static final int HS_NOTIFY_ID = 3;
+	private static final int HS_NOTIFY_ID = 4;
 	
 	private boolean prefPersistNotifications = true;
 	
@@ -409,33 +409,61 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
         boolean enableHiddenServices = prefs.getBoolean("pref_hs_enable", false);
         
+        StringBuffer result = new StringBuffer();
+    	
         if (enableHiddenServices)
         {
-	    	File file = new File(appCacheHome, "hostname");
-	    	
-	    	if (file.exists())
-	    	{
-		    	try {
-					String onionHostname = Utils.readString(new FileInputStream(file)).trim();
-					showToolbarNotification(getString(R.string.hidden_service_on) + ' ' + onionHostname, HS_NOTIFY_ID, R.drawable.ic_stat_tor, true);
-					Editor pEdit = prefs.edit();
-					pEdit.putString("pref_hs_hostname",onionHostname);
-					pEdit.commit();
-				
-					return onionHostname;
-					
-				} catch (FileNotFoundException e) {
-					logException("unable to read onion hostname file",e);
-					showToolbarNotification(getString(R.string.unable_to_read_hidden_service_name), ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr, false);
+        	String hsPorts = prefs.getString("pref_hs_ports","");
+        	
+        	StringTokenizer st = new StringTokenizer (hsPorts,",");
+        	String hsPortConfig = null;
+        	
+        	while (st.hasMoreTokens())
+        	{	
+		    	
+		    	int hsPort = Integer.parseInt(st.nextToken().split(" ")[0]);;
+		    	
+		    	File fileDir = new File(appCacheHome, "hs" + hsPort);
+		    	File file = new File(fileDir, "hostname");
+		    	
+		    	
+		    	if (file.exists())
+		    	{
+			    	try {
+						String onionHostname = Utils.readString(new FileInputStream(file)).trim();
+						
+						if (result.length() > 0)
+							result.append(",");
+						
+						result.append(onionHostname);
+						
+						
+					} catch (FileNotFoundException e) {
+						logException("unable to read onion hostname file",e);
+						showToolbarNotification(getString(R.string.unable_to_read_hidden_service_name), HS_NOTIFY_ID, R.drawable.ic_stat_notifyerr, false);
+						return null;
+					}
+		    	}
+		    	else
+		    	{
+					showToolbarNotification(getString(R.string.unable_to_read_hidden_service_name), HS_NOTIFY_ID, R.drawable.ic_stat_notifyerr, false);
 					return null;
-				}
-	    	}
-	    	else
-	    	{
-				showToolbarNotification(getString(R.string.unable_to_read_hidden_service_name), HS_NOTIFY_ID, R.drawable.ic_stat_notifyerr, false);
-	
-	    		
-	    	}
+		    		
+		    	}
+        	}
+        
+        	if (result.length() > 0)
+        	{
+        		String onionHostname = result.toString();
+        		
+	        	showToolbarNotification(getString(R.string.hidden_service_on) + ' ' + onionHostname, HS_NOTIFY_ID, R.drawable.ic_stat_tor, false);
+				Editor pEdit = prefs.edit();
+				pEdit.putString("pref_hs_hostname",onionHostname);
+				pEdit.commit();
+				
+				return onionHostname;
+        	}
+		
         }
         
         return null;
@@ -622,6 +650,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
 		if (mHasRoot && mEnableTransparentProxy)
 			enableTransparentProxy(mTransProxyAll, mTransProxyTethering);
+		
+		getHiddenServiceHostname ();
 		
 		//checkAddressAndCountry();
     }
@@ -1876,7 +1906,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         {
         	logNotice("hidden services are enabled");
         	
-            
         	//mBinder.updateConfiguration("RendPostPeriod", "600 seconds", false); //possible feature to investigate
         	
         	String hsPorts = prefs.getString("pref_hs_ports","");
@@ -1896,15 +1925,16 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	        			hsPortConfig = hsPortConfig + " 127.0.0.1:" + hsPortConfig;
 	        		}
 	        		
+	        		hsPort = Integer.parseInt(hsPortConfig.split(" ")[0]);
+
+	        		String hsDirPath = new File(appCacheHome,"hs" + hsPort).getAbsolutePath();
+	        		
 	        		logMessage("Adding hidden service on port: " + hsPortConfig);
 	        		
-	        		//String hsDirPath = new File(appCacheHome,"hs" + hsPortConfig).getAbsolutePath();
-	        		String hsDirPath = appCacheHome.getAbsolutePath();
-	    	        
+	        		
 	        		mBinder.updateConfiguration("HiddenServiceDir",hsDirPath, false);
 	        		mBinder.updateConfiguration("HiddenServicePort",hsPortConfig, false);
 	        		
-	        		hsPort = Integer.parseInt(hsPortConfig.split(" ")[0]);
 
 				} catch (NumberFormatException e) {
 					Log.e(this.TAG,"error parsing hsport",e);
