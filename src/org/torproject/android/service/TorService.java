@@ -66,7 +66,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	
 	private static int currentStatus = STATUS_OFF;
 	
-	private final static int CONTROL_SOCKET_TIMEOUT = 10000;
+	private final static int CONTROL_SOCKET_TIMEOUT = 0;
 		
 	private TorControlConnection conn = null;
 	private Socket torConnSocket = null;
