@@ -71,6 +71,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	private TorControlConnection conn = null;
 	private Socket torConnSocket = null;
 	private int mLastProcessId = -1;
+	private int mSocksPort = 9050;
 	
 	private static final int NOTIFY_ID = 1;
 	private static final int TRANSPROXY_NOTIFY_ID = 2;
@@ -81,8 +82,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	
 	private static final int MAX_START_TRIES = 3;
 
-    private LinkedHashMap<String,String> configBuffer = null;
-    private LinkedHashMap<String,String> resetBuffer = null;
+    private ArrayList<String> configBuffer = null;
+    private ArrayList<String> resetBuffer = null;
     
    //   private String appHome;
     private File appBinHome;
@@ -120,7 +121,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
     public void logMessage(String msg)
     {
-    	if (ENABLE_DEBUG_LOG)
+    	if (ENABLE_DEBUG_LOG)  
+        
     	{
     		Log.d(TAG,msg);
     		sendCallbackLogMessage(msg);	
@@ -154,8 +156,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 		            sendCallbackLogMessage (getString(R.string.found_existing_tor_process));
 		
-		 			processSettingsImpl();
-		 				
 		 			String state = conn.getInfo("dormant");
 		 			if (state != null && Integer.parseInt(state) == 0)
 		 				currentStatus = STATUS_ON;
@@ -892,9 +892,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 					catch (Exception ce)
 					{
 						conn = null;
-						logNotice( "Error connecting to Tor local control port: " + ce.getLocalizedMessage());
+						logNotice( "Error connecting to Tor local control port");
 						 
-						Log.d(TAG,"Attempt: Error connecting to control port: " + ce.getLocalizedMessage(),ce);
+						//Log.d(TAG,"Attempt: Error connecting to control port: " + ce.getLocalizedMessage(),ce);
 					}
 					
 					
@@ -990,7 +990,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		 * Returns the port number that the SOCKS proxy is running on
 		 */
 		public int getSOCKSPort() throws RemoteException {
-			return TorServiceConstants.PORT_SOCKS;
+			return mSocksPort;
 		}
 
 
@@ -1318,9 +1318,10 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         	
         }
         
+        
         public void processSettings ()
         {
-        	
+        	/*
         	Thread thread = new Thread()
         	{
         	
@@ -1338,6 +1339,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         	};
         	
         	thread.start();
+        	*/
         }
  
 
@@ -1394,25 +1396,31 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         	return null;
         }
         
+        private final static String RESET_STRING = "=\"\"";
         /**
          * Set configuration
          **/
         public boolean updateConfiguration (String name, String value, boolean saveToDisk)
         {
         	if (configBuffer == null)
-        		configBuffer = new LinkedHashMap<String,String>();
+        		configBuffer = new ArrayList<String>();
 	        
         	if (resetBuffer == null)
-        		resetBuffer = new LinkedHashMap<String,String>();
+        		resetBuffer = new ArrayList<String>();
 	        
         	if (value == null || value.length() == 0)
         	{
-        		resetBuffer.put(name,"");
+        		resetBuffer.add(name + RESET_STRING);
         		
         	}
         	else
         	{
-        		configBuffer.put(name,value);
+        		StringBuffer sbConf = new StringBuffer();
+        		sbConf.append(name);
+        		sbConf.append(' ');
+        		sbConf.append(value);
+        		
+        		configBuffer.add(sbConf.toString());
         	}
 	        
         	return false;
@@ -1449,24 +1457,31 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	        		
 	        		 if (resetBuffer != null && resetBuffer.size() > 0)
 				        {	
-				        	conn.resetConf(resetBuffer.keySet());
+	        			 for (String value : configBuffer)
+	        			 	{
+	        			 		
+	        			 		logMessage("removing torrc conf: " + value);
+	        			 		
+	        			 		
+	        			 	}
+	        			 
+				        	conn.resetConf(resetBuffer);
 				        	resetBuffer = null;
 				        }
 	   	       
 	        		 if (configBuffer != null && configBuffer.size() > 0)
 				        {
 	        			 	
-	        			 	for (String key : configBuffer.keySet())
-	        			 	{
-	        			 		
-	        			 		String value = configBuffer.get(key);
-	        			 		
-	        			 		if (TorService.ENABLE_DEBUG_LOG)
-	        			 			logMessage("Setting conf: " + key + "=" + value);
-	        			 		
-	        			 		conn.setConf(key, value);
-	        			 		
-	        			 	}
+		        			 	for (String value : configBuffer)
+		        			 	{
+		        			 		
+		        			 		logMessage("Setting torrc conf: " + value);
+		        			 		
+		        			 		
+		        			 	}
+		        			 	
+		        			 conn.setConf(configBuffer);
+		        			 	
 				        	configBuffer = null;
 				        }
 	   	       
@@ -1657,7 +1672,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	
 		SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
 
-		enableSocks ("127.0.0.1",9050,false);
+        String socksConfig = prefs.getString(TorConstants.PREF_SOCKS, "auto");
+
+		enableSocks (socksConfig,false);
 		
 		boolean useBridges = prefs.getBoolean(TorConstants.PREF_BRIDGES_ENABLED, false);
 		
@@ -1859,7 +1876,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         {
         	logNotice("hidden services are enabled");
         	
-        	mBinder.updateConfiguration("HiddenServiceDir",appCacheHome.getAbsolutePath(), false);
+            
         	//mBinder.updateConfiguration("RendPostPeriod", "600 seconds", false); //possible feature to investigate
         	
         	String hsPorts = prefs.getString("pref_hs_ports","");
@@ -1872,15 +1889,19 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         	{
         		try
         		{
-	        		hsPortConfig = st.nextToken();
+	        		hsPortConfig = st.nextToken().trim();
 	        		
 	        		if (hsPortConfig.indexOf(":")==-1) //setup the port to localhost if not specifed
 	        		{
-	        			hsPortConfig = hsPortConfig + " 0.0.0.0:" + hsPortConfig;
+	        			hsPortConfig = hsPortConfig + " 127.0.0.1:" + hsPortConfig;
 	        		}
 	        		
 	        		logMessage("Adding hidden service on port: " + hsPortConfig);
 	        		
+	        		//String hsDirPath = new File(appCacheHome,"hs" + hsPortConfig).getAbsolutePath();
+	        		String hsDirPath = appCacheHome.getAbsolutePath();
+	    	        
+	        		mBinder.updateConfiguration("HiddenServiceDir",hsDirPath, false);
 	        		mBinder.updateConfiguration("HiddenServicePort",hsPortConfig, false);
 	        		
 	        		hsPort = Integer.parseInt(hsPortConfig.split(" ")[0]);
@@ -1905,9 +1926,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         return true;
     }
     
-    private void enableSocks (String ip, int port, boolean safeSocks) throws RemoteException
+    private void enableSocks (String socks, boolean safeSocks) throws RemoteException
     {
-    	mBinder.updateConfiguration("SOCKSPort", ip + ":" + port + "", false);
+    	mBinder.updateConfiguration("SOCKSPort", socks, false);
     	mBinder.updateConfiguration("SafeSocks", safeSocks ? "1" : "0", false);
     	mBinder.updateConfiguration("TestSocks", "1", false);
     	mBinder.updateConfiguration("WarnUnsafeSocks", "1", false);

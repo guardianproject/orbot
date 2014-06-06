@@ -56,4 +56,6 @@ public interface TorConstants {
 	
 	public final static int MAX_LOG_LENGTH = 10000;
 	
+	public final static String PREF_SOCKS = "pref_socks";
+	
 }

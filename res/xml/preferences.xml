@@ -196,6 +196,14 @@ android:dialogTitle="@string/pref_proxy_password_dialog"
 </PreferenceCategory>
 
 <PreferenceCategory android:title="Debug">
+    
+    <EditTextPreference android:key="pref_socks"
+android:title="@string/pref_socks_title"
+android:summary="@string/pref_socks_summary"
+android:dialogTitle="@string/pref_socks_dialog"
+android:defaultValue="auto"
+/>
+    
 <CheckBoxPreference
 android:key="pref_enable_logging"
 android:defaultValue="false"
