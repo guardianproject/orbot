@@ -537,8 +537,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	@Override
 	protected void onNewIntent(Intent intent) {
 		
-		super.onNewIntent(intent);
-		
+		setIntent(intent);
 		handleIntents();
 	}
 

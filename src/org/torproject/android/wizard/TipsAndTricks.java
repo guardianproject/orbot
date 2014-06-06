@@ -200,7 +200,7 @@ public class TipsAndTricks extends Activity implements TorConstants {
 			
 			public void onClick(View v) {
 				finish();
-				startActivityForResult(new Intent(TipsAndTricks.this, Orbot.class), 1);
+				startActivity(new Intent(TipsAndTricks.this, Orbot.class));
 			}
 		});
 	}
