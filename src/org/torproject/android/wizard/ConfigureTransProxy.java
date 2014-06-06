@@ -64,18 +64,6 @@ public class ConfigureTransProxy extends Activity implements TorConstants {
 		
 		
 	}
-
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-	    switch(resultCode)
-	    {
-	    case RESULT_CLOSE_ALL:
-	        setResult(RESULT_CLOSE_ALL);
-	        finish();
-	    }
-	    super.onActivityResult(requestCode, resultCode, data);
-	}
-
 	
 	private void setupUI ()
 	{
@@ -122,7 +110,7 @@ public class ConfigureTransProxy extends Activity implements TorConstants {
 					
 				public void onClick(View v) {
 					finish();	
-					startActivityForResult(new Intent(ConfigureTransProxy.this, Permissions.class), 1);
+					startActivity(new Intent(ConfigureTransProxy.this, Permissions.class));
 				}
 			});
 		    	
@@ -130,7 +118,7 @@ public class ConfigureTransProxy extends Activity implements TorConstants {
 				
 				public void onClick(View v) {
 					finish();
-					startActivityForResult(new Intent(ConfigureTransProxy.this, TipsAndTricks.class), 1);
+					startActivity(new Intent(ConfigureTransProxy.this, TipsAndTricks.class));
 
 				}
 			});
@@ -144,8 +132,8 @@ public class ConfigureTransProxy extends Activity implements TorConstants {
     		{
 
 				public void onClick(View v) {
-					finish();
-					context.startActivity(new Intent(context, AppManager.class));
+					
+					startActivity(new Intent(ConfigureTransProxy.this, AppManager.class));
 				}
     			
     		});

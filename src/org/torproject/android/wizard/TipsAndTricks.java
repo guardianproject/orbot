@@ -39,17 +39,6 @@ public class TipsAndTricks extends Activity implements TorConstants {
 	
 		
 	}
-	
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-	    switch(resultCode)
-	    {
-	    case RESULT_CLOSE_ALL:
-	        setResult(RESULT_CLOSE_ALL);
-	        finish();
-	    }
-	    super.onActivityResult(requestCode, resultCode, data);
-	}
 
 	void stepFive(){
 		
@@ -192,7 +181,7 @@ public class TipsAndTricks extends Activity implements TorConstants {
 			
 			public void onClick(View v) {
 				finish();
-				startActivityForResult(new Intent(TipsAndTricks.this, Permissions.class), 1);
+				startActivity(new Intent(TipsAndTricks.this, Permissions.class));
 			}
 		});
     	
@@ -200,7 +189,6 @@ public class TipsAndTricks extends Activity implements TorConstants {
 			
 			public void onClick(View v) {
 				finish();
-				startActivity(new Intent(TipsAndTricks.this, Orbot.class));
 			}
 		});
 	}
@@ -210,7 +198,7 @@ public class TipsAndTricks extends Activity implements TorConstants {
 	public boolean onKeyDown(int keyCode, KeyEvent event)  {
 	    if(keyCode == KeyEvent.KEYCODE_BACK){
 	    	finish();
-	    	startActivityForResult(new Intent(getBaseContext(), Permissions.class), 1);
+	    	startActivity(new Intent(getBaseContext(), Permissions.class));
 	    	return true;
 	    }
 	    return false;

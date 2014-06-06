@@ -51,19 +51,6 @@ public class LotsaText extends Activity implements TorConstants{
 	
 		
 	}
-
-	
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-	    switch(resultCode)
-	    {
-	    case RESULT_CLOSE_ALL:
-	        setResult(RESULT_CLOSE_ALL);
-	        finish();
-	    }
-	    super.onActivityResult(requestCode, resultCode, data);
-	}
-	
 	
 	private void stepOne() {
 		
@@ -130,7 +117,7 @@ public class LotsaText extends Activity implements TorConstants{
 			
 			public void onClick(View v) {
 				finish();
-				startActivityForResult(new Intent(LotsaText.this, Permissions.class), 1);
+				startActivity(new Intent(LotsaText.this, Permissions.class));
 			}
 		});
 		
@@ -141,7 +128,7 @@ public class LotsaText extends Activity implements TorConstants{
 	public boolean onKeyDown(int keyCode, KeyEvent event)  {
 	    if(keyCode == KeyEvent.KEYCODE_BACK){
 	    	finish();
-	    	startActivityForResult(new Intent(getBaseContext(), ChooseLocaleWizardActivity.class), 1);
+	    	startActivity(new Intent(getBaseContext(), ChooseLocaleWizardActivity.class));
 	    	return true;
 	    }
 	    return true;

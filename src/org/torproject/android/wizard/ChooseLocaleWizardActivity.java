@@ -39,55 +39,42 @@ public class ChooseLocaleWizardActivity extends Activity implements TorConstants
 		super.onStart();
 		setContentView(R.layout.layout_wizard_locale);
 		
-		stepSix();
-        
-	}
-	
-	@Override
-	protected void onResume() {
-		super.onResume();
-	
 		
-		
-	}
+		listLocales = (ListView)findViewById(R.id.wizard_locale_list);
+	    Button next = ((Button)findViewById(R.id.btnWizard2));
+	   // next.setEnabled(false);
+	    
+	    String[] strLangs = getResources().getStringArray(R.array.languages);
+	    strLangs[0] = Locale.getDefault().getDisplayName();
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1,  strLangs);	        
+        listLocales.setAdapter(adapter);
+	    
+	    listLocales.setSelection(0);
+	    		    
+	    
+	    listLocales.setOnItemClickListener(new OnItemClickListener() {
+			
 
-	
-	private void stepSix(){
-		
-			listLocales = (ListView)findViewById(R.id.wizard_locale_list);
-		    Button next = ((Button)findViewById(R.id.btnWizard2));
-		   // next.setEnabled(false);
-		    
-		    String[] strLangs = getResources().getStringArray(R.array.languages);
-		    strLangs[0] = Locale.getDefault().getDisplayName();
-	        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1,  strLangs);	        
-	        listLocales.setAdapter(adapter);
-		    
-		    listLocales.setSelection(0);
-		    		    
-		    
-		    listLocales.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1,
+					int arg2, long arg3) {
 				
-
-				@Override
-				public void onItemClick(AdapterView<?> arg0, View arg1,
-						int arg2, long arg3) {
-					
-					setLocalePref(arg2);
-					finish();
-					startActivityForResult(new Intent(ChooseLocaleWizardActivity.this, LotsaText.class), 1);
-					
-				}
-			});
-		        
-		    next.setOnClickListener(new View.OnClickListener() {
+				setLocalePref(arg2);
+				finish();
+				startActivity(new Intent(ChooseLocaleWizardActivity.this, LotsaText.class));
 				
-				public void onClick(View v) {
-					finish();
-					startActivityForResult(new Intent(ChooseLocaleWizardActivity.this, LotsaText.class), 1);
+			}
+		});
+	        
+	    next.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+				setLocalePref(0);
+				finish();
+				startActivity(new Intent(ChooseLocaleWizardActivity.this, LotsaText.class));
 
-				}
-			});
+			}
+		});
 		    
 
 	       

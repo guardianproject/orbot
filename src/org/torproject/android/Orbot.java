@@ -786,9 +786,8 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 		Editor pEdit = mPrefs.edit();
 		pEdit.putBoolean("wizardscreen1",true);
 		pEdit.commit();
-		startActivityForResult(new Intent(getApplicationContext(), ChooseLocaleWizardActivity.class), 1);
+		startActivity(new Intent(getApplicationContext(), ChooseLocaleWizardActivity.class));
 	}
-	
 	
     /*
      * Load the basic settings application to display torrc
@@ -800,12 +799,13 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
     }
     
     
+    
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        
-        
-        if (requestCode == 1 && mService != null)
+	protected void onResume() {
+		super.onResume();
+		
+
+        if (mService != null && torStatus != TorServiceConstants.STATUS_ON)
         {
                 try {
 					mService.processSettings();
@@ -816,10 +816,9 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 					e.printStackTrace();
 				}
         }
-       
-    }
-    
-    AlertDialog aDialog = null;
+	}
+
+	AlertDialog aDialog = null;
     
     //general alert dialog for mostly Tor warning messages
     //sometimes this can go haywire or crazy with too many error

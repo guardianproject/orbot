@@ -48,17 +48,6 @@ public class Permissions extends Activity implements TorConstants {
 		
 	}
 	
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-	    switch(resultCode)
-	    {
-	    case RESULT_CLOSE_ALL:
-	        setResult(RESULT_CLOSE_ALL);
-	        finish();
-	    }
-	    super.onActivityResult(requestCode, resultCode, data);
-	}
-
 	
 	private void stepFourRoot(){
 				
@@ -137,7 +126,7 @@ public class Permissions extends Activity implements TorConstants {
 				else
 				{
 					finish();
-					startActivityForResult(new Intent(Permissions.this, ConfigureTransProxy.class), 1);
+					startActivity(new Intent(Permissions.this, ConfigureTransProxy.class));
 				}
 
 				
@@ -148,7 +137,7 @@ public class Permissions extends Activity implements TorConstants {
 			
 			public void onClick(View v) {
 				finish();
-				startActivityForResult(new Intent(Permissions.this, LotsaText.class), 1);
+				startActivity(new Intent(Permissions.this, LotsaText.class));
 			}
 		});
     	
@@ -158,7 +147,7 @@ public class Permissions extends Activity implements TorConstants {
 			
 			public void onClick(View v) {
 				finish();
-				startActivityForResult(new Intent(Permissions.this, TipsAndTricks.class), 1);
+				startActivity(new Intent(Permissions.this, TipsAndTricks.class));
 			}
 		});
 		
@@ -184,7 +173,6 @@ public class Permissions extends Activity implements TorConstants {
 		Button grantPermissions = ((Button)findViewById(R.id.grantPermissions));
 		grantPermissions.setVisibility(Button.GONE);
         
-        
         CheckBox consent = (CheckBox)findViewById(R.id.checkBox);
         consent.setVisibility(CheckBox.GONE);
         
@@ -192,7 +180,7 @@ public class Permissions extends Activity implements TorConstants {
 			
 			public void onClick(View v) {
 				finish();
-				startActivityForResult(new Intent(Permissions.this, LotsaText.class), 1);
+				startActivity(new Intent(Permissions.this, LotsaText.class));
 			}
 		});
     	
@@ -200,7 +188,7 @@ public class Permissions extends Activity implements TorConstants {
 			
 			public void onClick(View v) {
 				finish();
-				startActivityForResult(new Intent(Permissions.this, TipsAndTricks.class), 1);
+				startActivity(new Intent(Permissions.this, TipsAndTricks.class));
 			}
 		});
 	}
@@ -209,7 +197,7 @@ public class Permissions extends Activity implements TorConstants {
 	public boolean onKeyDown(int keyCode, KeyEvent event)  {
 	    if(keyCode == KeyEvent.KEYCODE_BACK){
 	    	finish();
-	    	startActivityForResult(new Intent(getBaseContext(), LotsaText.class), 1);
+	    	startActivity(new Intent(getBaseContext(), LotsaText.class));
 	    	return true;
 	    }
 	    return false;
