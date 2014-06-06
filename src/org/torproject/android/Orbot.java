@@ -92,6 +92,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
     /** Called when the activity is first created. */
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
       
         TorServiceUtils.getSharedPrefs(getApplicationContext()).registerOnSharedPreferenceChangeListener(this);
            	
@@ -659,7 +660,6 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	
 				startWizard();
 				
-				//startActivityForResult(new Intent(getApplicationContext(), LotsaText.class), 1);
 
 			}
 			
