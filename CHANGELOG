@@ -1,6 +1,20 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
-14.0.0 BETA-1
+f94e27a updated to 14.0.0-RC-1
+bedeb71 more fixes for hidden service configuration now multiple ports are properly configured and notification will display correctl
+051cce4 don't allow the tor control port socket to timeout
+f4baf4d updated to 2.0.21-stable
+120da6b more wizard flow fixes
+816a6b2 updating to 1.1.1
+24773c3 update to OpenSSL 1.0.1h
+8b5bb04 Makefile patch for Orbot
+ccaec1e update 14.0.0-BETA-2
+da3c955 fixes for tor setConf/control port fixes hidden service support manages socks port conflicts
+9345186 remove unnecessary line
+707bca4 amek sure wizard only is shown once on start (not twice!)
+0fddd80 fix for missing libs folder
+7abea23 removing binaries from repo
+70d7792 updated changelog
 2650fda update to 14.0.0-BETA-1
 476dc1a update binaries for 0.2.4.22 Tor
 b6116b5 switch to 0.2.4.22 version of Tor for release
