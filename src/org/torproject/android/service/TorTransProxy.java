@@ -711,7 +711,7 @@ public class TorTransProxy implements TorServiceConstants {
 		script.append(" -A ").append(srcChainName);
 		script.append(" -p tcp");
 		script.append(" -m tcp");
-		script.append(" --dport ").append(PORT_SOCKS);
+		script.append(" --dport ").append(PORT_SOCKS_DEFAULT);
 		script.append(" -j ACCEPT");
 
 		executeCommand (shell, script.toString());

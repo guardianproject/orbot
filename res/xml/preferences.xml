@@ -201,7 +201,7 @@ android:dialogTitle="@string/pref_proxy_password_dialog"
 android:title="@string/pref_socks_title"
 android:summary="@string/pref_socks_summary"
 android:dialogTitle="@string/pref_socks_dialog"
-android:defaultValue="auto"
+android:defaultValue="9050"
 />
     
 <CheckBoxPreference

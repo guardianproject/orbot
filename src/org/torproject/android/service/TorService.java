@@ -19,7 +19,6 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.Timer;
@@ -122,7 +121,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     public void logMessage(String msg)
     {
     	if (ENABLE_DEBUG_LOG)  
-        
     	{
     		Log.d(TAG,msg);
     		sendCallbackLogMessage(msg);	
@@ -1702,7 +1700,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	
 		SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
 
-        String socksConfig = prefs.getString(TorConstants.PREF_SOCKS, "auto");
+        String socksConfig = prefs.getString(TorConstants.PREF_SOCKS, TorServiceConstants.PORT_SOCKS_DEFAULT);
 
 		enableSocks (socksConfig,false);
 		
