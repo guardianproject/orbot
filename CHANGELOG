@@ -1,5 +1,8 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+5776a87 update to 14.0.0-RC3
+bf6a1da update state when service connects
+451cfed keep SOCKS port as default 9050 (instead of 'auto')
 f94e27a updated to 14.0.0-RC-1
 bedeb71 more fixes for hidden service configuration now multiple ports are properly configured and notification will display correctl
 051cce4 don't allow the tor control port socket to timeout
