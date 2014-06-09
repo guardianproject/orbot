@@ -557,7 +557,10 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		stopTor();
 		
     	TorResourceInstaller installer = new TorResourceInstaller(this, appBinHome); 
-		boolean success = installer.installTorrc();
+    	
+    	String extraLines = prefs.getString("pref_custom_torrc", null);
+    	
+		boolean success = installer.installTorrc(extraLines);
 		
 		if (version == null || (!version.equals(BINARY_TOR_VERSION)) || (!fileTor.exists()))
 		{

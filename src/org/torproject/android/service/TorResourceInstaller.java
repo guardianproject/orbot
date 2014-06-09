@@ -11,6 +11,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.StringBufferInputStream;
 import java.util.ArrayList;
 import java.util.concurrent.TimeoutException;
 import java.util.zip.ZipEntry;
@@ -115,7 +116,7 @@ public class TorResourceInstaller implements TorServiceConstants {
 		return true;
 	}
 	
-	public boolean installTorrc () throws IOException, FileNotFoundException, TimeoutException
+	public boolean installTorrc (String extraLines) throws IOException, FileNotFoundException, TimeoutException
 	{
 		
 		InputStream is;
@@ -128,6 +129,12 @@ public class TorResourceInstaller implements TorServiceConstants {
 		shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
 		streamToFile(is,outFile, false, false);
 
+		if (extraLines != null && extraLines.length() > 0)
+		{
+			StringBufferInputStream sbis = new StringBufferInputStream('\n' + extraLines + '\n');
+			streamToFile(sbis,outFile,true,false);
+		}
+		
 		return true;
 	}
 	

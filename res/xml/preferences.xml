@@ -204,6 +204,14 @@ android:dialogTitle="@string/pref_socks_dialog"
 android:defaultValue="9050"
 />
     
+  <EditTextPreference android:key="pref_custom_torrc"
+android:title="@string/pref_torrc_title"
+android:summary="@string/pref_torrc_summary"
+android:dialogTitle="@string/pref_torrc_dialog"
+android:defaultValue=""
+/>
+    
+  
 <CheckBoxPreference
 android:key="pref_enable_logging"
 android:defaultValue="false"

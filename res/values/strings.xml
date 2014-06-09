@@ -261,4 +261,9 @@
     <string name="pref_socks_summary">IP and Port that Tor offers its SOCKS proxy on (default: 9050)</string>
     <string name="pref_socks_dialog">SOCKS Config (ip:port)</string>
     
+    <string name="pref_torrc_title">Torrc Custom Config</string>
+    <string name="pref_torrc_summary">EXPERTS ONLY: enter direct torrc config lines</string>
+    <string name="pref_torrc_dialog">Custom Torrc</string>
+    
+    
 </resources>
