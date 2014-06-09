@@ -1,6 +1,6 @@
 Log notice stdout
-ControlListenAddress 127.0.0.1
-ControlPort 9051
+ControlPortWriteToFile /data/data/org.torproject.android/app_bin/control.txt
+ControlPort auto
 CookieAuthentication 1
 TransPort 9040
 TransListenAddress 127.0.0.1

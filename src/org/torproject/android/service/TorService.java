@@ -8,10 +8,12 @@
 package org.torproject.android.service;
 
 
+import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -491,7 +493,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			conn = null;
 		}
     	
-
+    	killProcess(fileTor);
 		killProcess(filePolipo);
 		killProcess(fileObfsclient);
 		
@@ -551,27 +553,27 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		String version = prefs.getString(PREF_BINARY_TOR_VERSION_INSTALLED,null);
 
 		logNotice("checking binary version: " + version);
+
+		stopTor();
 		
-		if (version == null || (!version.equals(BINARY_TOR_VERSION)))
+    	TorResourceInstaller installer = new TorResourceInstaller(this, appBinHome); 
+		boolean success = installer.installTorrc();
+		
+		if (version == null || (!version.equals(BINARY_TOR_VERSION)) || (!fileTor.exists()))
 		{
-			stopTor();
-			
 			logNotice("upgrading binaries to latest version: " + BINARY_TOR_VERSION);
 			
-			TorResourceInstaller installer = new TorResourceInstaller(this, appBinHome); 
-			boolean success = installer.installResources();
+			success = installer.installResources();
 			
 			if (success)
 				prefs.edit().putString(PREF_BINARY_TOR_VERSION_INSTALLED,BINARY_TOR_VERSION).commit();	
 		}
 		else if (!fileTorRc.exists())
 		{
-			stopTor();
 
 			logNotice("upgrading binaries to latest version: " + BINARY_TOR_VERSION);
 			
-			TorResourceInstaller installer = new TorResourceInstaller(this, appBinHome); 
-			boolean success = installer.installResources();
+			success = installer.installResources();
 
 			if (success)
 				prefs.edit().putString(PREF_BINARY_TOR_VERSION_INSTALLED,BINARY_TOR_VERSION).commit();
@@ -763,7 +765,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
 		shell.add(cmdTor);
 		
-		
 		Thread.sleep(torRetryWaitTimeMS);
 		
 		//now try to connect
@@ -785,11 +786,13 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			logNotice("Tor started; process id=" + mLastProcessId);
 			
 			processSettingsImpl();
+			
+			startTorMinder ();
+
 	    }
 		
 		shell.close();
 		
-		startTorMinder ();
     }
     
     private void runPolipoShellCmd () throws Exception
@@ -869,69 +872,104 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			}
 			else
 			{
-			
 				while (conn == null && i++ < maxAttempts)
 				{
 					try
 					{
-						logNotice( "Connecting to control port: " + TOR_CONTROL_PORT);
 						
-						torConnSocket = new Socket(IP_LOCALHOST, TOR_CONTROL_PORT);
-						torConnSocket.setSoTimeout(CONTROL_SOCKET_TIMEOUT);
+						int controlPort = getControlPort();
+						logNotice( "Connecting to control port: " + controlPort);
 						
-				        conn = TorControlConnection.getConnection(torConnSocket);
-				        
-				        if (ENABLE_DEBUG_LOG)
-				        {
-				        	conn.setDebugging(System.out);
-				        	
-				        }
-				        
-						logNotice( "SUCCESS connected to Tor control port");
-				        
-				        File fileCookie = new File(appCacheHome, TOR_CONTROL_COOKIE);
-				        
-				        if (fileCookie.exists())
-				        {
-					        byte[] cookie = new byte[(int)fileCookie.length()];
-					        DataInputStream fis = new DataInputStream(new FileInputStream(fileCookie));
-					        fis.read(cookie);
-					        fis.close();
-					        conn.authenticate(cookie);
-					        		
-					        logNotice( "SUCCESS - authenticated to control port");
+						if (controlPort != -1)
+						{
+							torConnSocket = new Socket(IP_LOCALHOST, controlPort);
+							torConnSocket.setSoTimeout(CONTROL_SOCKET_TIMEOUT);
+							
+					        conn = TorControlConnection.getConnection(torConnSocket);
 					        
-							sendCallbackStatusMessage(getString(R.string.tor_process_starting) + ' ' + getString(R.string.tor_process_complete));
-		
-					        addEventHandler();
-					    
-					        String torProcId = conn.getInfo("process/pid");
+					        if (ENABLE_DEBUG_LOG)
+					        {
+					        	conn.setDebugging(System.out);
+					        	
+					        }
 					        
-					        return Integer.parseInt(torProcId);
+							logNotice( "SUCCESS connected to Tor control port");
 					        
-				        }
-				        else
-				        {
-				        	logNotice ("Tor authentication cookie does not exist yet; trying again...");
-				        	conn = null;
-				        			
-				        }
+					        File fileCookie = new File(appCacheHome, TOR_CONTROL_COOKIE);
+					        
+					        if (fileCookie.exists())
+					        {
+						        byte[] cookie = new byte[(int)fileCookie.length()];
+						        DataInputStream fis = new DataInputStream(new FileInputStream(fileCookie));
+						        fis.read(cookie);
+						        fis.close();
+						        conn.authenticate(cookie);
+						        		
+						        logNotice( "SUCCESS - authenticated to control port");
+						        
+								sendCallbackStatusMessage(getString(R.string.tor_process_starting) + ' ' + getString(R.string.tor_process_complete));
+			
+						        addEventHandler();
+						    
+						        String torProcId = conn.getInfo("process/pid");
+						        
+						        return Integer.parseInt(torProcId);
+						        
+					        }
+					        else
+					        {
+					        	logNotice ("Tor authentication cookie does not exist yet");
+					        	conn = null;
+					        			
+					        }
+						}
+					        
 					}
 					catch (Exception ce)
 					{
 						conn = null;
-						logNotice( "Error connecting to Tor local control port");
-						 
-						//Log.d(TAG,"Attempt: Error connecting to control port: " + ce.getLocalizedMessage(),ce);
+						logException( "Error connecting to Tor local control port",ce);
 					}
 					
-					
+					try {
+						logNotice("waiting...");
+						Thread.sleep(5000); }
+					catch (Exception e){}
 					
 				}
 			}		
 		
 			return -1;
 
+	}
+	
+	private int getControlPort ()
+	{
+		try
+		{
+			File fileControl = new File(appBinHome,"control.txt");
+			
+			logNotice("Reading control port config file: " + fileControl.getAbsolutePath());
+			BufferedReader bufferedReader = new BufferedReader(new FileReader(fileControl));
+			String line = bufferedReader.readLine();
+			
+			//PORT=127.0.0.1:45051
+			
+			if (line != null)
+			{
+				String[] lineParts = line.split(":");
+				return Integer.parseInt(lineParts[1]);
+			}
+			
+			
+		}
+		catch (Exception e)
+		{	
+			logException("unable to get control port",e);
+		}
+		
+
+		return -1;
 	}
 	
 	private void checkAddressAndCountry () throws IOException
@@ -1046,6 +1084,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	   		     catch (Exception e)
 	   		     {				
 	   		    	
+	   		    	 stopTor();
 	   		    	logException("Unable to start Tor: " + e.toString(),e);	
 	   		    	 currentStatus = STATUS_OFF;
 	   		    	 showToolbarNotification(getString(R.string.unable_to_start_tor) + ": " + e.getMessage(), ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr, false);
@@ -2103,6 +2142,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 							
 						} catch (Exception e1) {
 							logException("Error in Tor heartbeat checker",e1);
+
 						} 
 					}
 				

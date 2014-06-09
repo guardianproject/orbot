@@ -652,15 +652,11 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 			
 			if (showWizard)
 			{
-			
-				
 				Editor pEdit = mPrefs.edit();
 				pEdit.putBoolean("show_wizard",false);
 				pEdit.commit();
-	
-				startWizard();
 				
-
+				startWizard();
 			}
 			
 		}

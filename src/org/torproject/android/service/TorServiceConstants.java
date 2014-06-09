@@ -53,7 +53,6 @@ public interface TorServiceConstants {
 	
 	//what is says!
 	public final static String IP_LOCALHOST = "127.0.0.1";
-	public final static int TOR_CONTROL_PORT = 9051;
 	public final static int UPDATE_TIMEOUT = 1000;
 	public final static int TOR_TRANSPROXY_PORT = 9040;
 	public final static int STANDARD_DNS_PORT = 53;
@@ -77,7 +76,7 @@ public interface TorServiceConstants {
     public static final int DISABLE_TOR_MSG = 3;
     public static final int LOG_MSG = 4;
     
-    public static final String BINARY_TOR_VERSION = "0.2.4.22-openssl1.0.1h";
+    public static final String BINARY_TOR_VERSION = "0.2.4.22-openssl1.0.1h.2";
     public static final String PREF_BINARY_TOR_VERSION_INSTALLED = "BINARY_TOR_VERSION_INSTALLED";
     
     //obfsproxy 
