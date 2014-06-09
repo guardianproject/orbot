@@ -115,6 +115,22 @@ public class TorResourceInstaller implements TorServiceConstants {
 		return true;
 	}
 	
+	public boolean installTorrc () throws IOException, FileNotFoundException, TimeoutException
+	{
+		
+		InputStream is;
+        File outFile;
+        
+        Shell shell = Shell.startShell(new ArrayList<String>(),installFolder.getAbsolutePath());
+        
+		is = context.getResources().openRawResource(R.raw.torrc);
+		outFile = new File(installFolder, TORRC_ASSET_KEY);
+		shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
+		streamToFile(is,outFile, false, false);
+
+		return true;
+	}
+	
 	/*
 	 * Extract the Tor binary from the APK file using ZIP
 	 */
