@@ -22,6 +22,7 @@
       android:theme="@style/Theme.AppCompat" 
       android:allowBackup="false"
       android:allowClearUserData="true"
+      android:largeHeap="true"
      >
       
         <activity android:name=".Orbot" android:configChanges="orientation|screenSize"
