@@ -966,9 +966,13 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			
 			
 		}
-		catch (Exception e)
+		catch (FileNotFoundException e)
 		{	
-			logException("unable to get control port",e);
+			logNotice("unable to get control port: no file yet");
+		}
+		catch (IOException e)
+		{	
+			logNotice("unable to get control port IOException");
 		}
 		
 
