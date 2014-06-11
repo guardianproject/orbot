@@ -110,6 +110,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	{
 		Intent torService = new Intent(this, TorService.class);    	    	
 
+		/*
 		if (Build.VERSION.SDK_INT > 14)
 		{
 		
@@ -118,10 +119,10 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 		}
 		else
 		{
-		
+		*/
 			bindService(torService,
 					mConnection, Context.BIND_AUTO_CREATE);
-		}
+		//}
 	
 		startService(torService);
 	
@@ -183,6 +184,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	
         // Gesture detection
 		mGestureDetector = new GestureDetector(this, new MyGestureDetector());
+		
 
     }
 	
@@ -534,13 +536,6 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 		setResult(RESULT_OK, nResult);
 	
 	}
-	
-	@Override
-	protected void onNewIntent(Intent intent) {
-		
-		setIntent(intent);
-		handleIntents();
-	}
 
 	private void handleIntents ()
 	{
@@ -674,6 +669,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 		super.onConfigurationChanged(newConfig);
 		
 		doLayout();
+		updateStatus("");
 	}
 
 	/* (non-Javadoc)
@@ -799,19 +795,23 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
     @Override
 	protected void onResume() {
 		super.onResume();
-		
 
-        if (mService != null && torStatus != TorServiceConstants.STATUS_ON)
+        if (mService != null)
         {
                 try {
-					mService.processSettings();
+                	
+                	if (torStatus != TorServiceConstants.STATUS_ON)	
+                		mService.processSettings();
+                	
 					setLocale();
-	                
 				} catch (RemoteException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
         }
+        
+
+		updateStatus("");
 	}
 
 	AlertDialog aDialog = null;
@@ -901,8 +901,8 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                             
                             if (newTorStatus == TorServiceConstants.STATUS_ON)
                             {
-	                            	if (torStatus != newTorStatus)
-	                            	{
+	                            	//if (torStatus != newTorStatus)
+	                            	//{
 	                                    imgStatus.setImageResource(R.drawable.toron);
 	                            	//	mViewMain.setBackgroundResource(R.drawable.onionrootonly);    
 	                            		
@@ -912,7 +912,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	                                    if (mItemOnOff != null)
 	                                            mItemOnOff.setTitle(R.string.menu_stop);
 	                                    
-	                            	}
+	                            	//}
                                     
                                     if (mTorServiceMsg != null && mTorServiceMsg.length() > 0)
                                     {
@@ -1193,6 +1193,8 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
             // representation of that from the raw service object.
             mService = ITorService.Stub.asInterface(service);
        
+            torStatus = -1;
+            
             // We want to monitor the service for as long as we are
             // connected to it.
             try {
@@ -1206,9 +1208,9 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                         
                 }
                
-		updateStatus(""); 
                 handleIntents();
-                
+
+                updateStatus("");  
             
             } catch (RemoteException e) {
                 // In this case the service has crashed before we could even
@@ -1229,7 +1231,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
             // This is called when the connection with the service has been
             // unexpectedly disconnected -- that is, its process crashed.
             mService = null;
-          
+            Log.d(TAG,"service was disconnected");
         }
     };
     
@@ -1254,6 +1256,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
             unbindService(mConnection);
             mIsBound = false;
             
+            Log.d(TAG,"service was ubnound");
 
             //maybe needs this?
             mService = null; 
@@ -1310,7 +1313,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	protected void onDestroy() {
 		super.onDestroy();
 		
-		unbindService();
+		//unbindService();
 	}
 
 	public class DataCount {
