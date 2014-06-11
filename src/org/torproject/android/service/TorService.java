@@ -948,9 +948,11 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	
 	private int getControlPort ()
 	{
+		File fileControl = new File(appBinHome,"control.txt");
+		int result = -1;
+		
 		try
 		{
-			File fileControl = new File(appBinHome,"control.txt");
 			
 			logNotice("Reading control port config file: " + fileControl.getAbsolutePath());
 			BufferedReader bufferedReader = new BufferedReader(new FileReader(fileControl));
@@ -961,22 +963,23 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			if (line != null)
 			{
 				String[] lineParts = line.split(":");
-				return Integer.parseInt(lineParts[1]);
+				result = Integer.parseInt(lineParts[1]);
 			}
+			
+			bufferedReader.close();
 			
 			
 		}
 		catch (FileNotFoundException e)
 		{	
-			logNotice("unable to get control port: no file yet");
+			logNotice("unable to get control port; no file at: " + fileControl.getAbsolutePath());
 		}
 		catch (IOException e)
 		{	
-			logNotice("unable to get control port IOException");
+			logNotice("unable to read control port config file");
 		}
-		
 
-		return -1;
+		return result;
 	}
 	
 	private void checkAddressAndCountry () throws IOException
@@ -2006,7 +2009,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	mBinder.updateConfiguration("SafeSocks", safeSocks ? "1" : "0", false);
     	mBinder.updateConfiguration("TestSocks", "1", false);
     	mBinder.updateConfiguration("WarnUnsafeSocks", "1", false);
-    	
+    	mBinder.saveConfiguration();
+        
     }
     
     private void blockPlaintextPorts (String portList) throws RemoteException
