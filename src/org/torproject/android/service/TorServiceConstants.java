@@ -88,5 +88,7 @@ public interface TorServiceConstants {
 	//name of the iptables binary
 	public final static String IPTABLES_ASSET_KEY = "xtables";	
 	
+	public final static int DEFAULT_CONTROL_PORT = 9051;
+	
 
 }

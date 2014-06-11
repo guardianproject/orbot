@@ -561,6 +561,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	String extraLines = prefs.getString("pref_custom_torrc", null);
     	
 		boolean success = installer.installTorrc(extraLines);
+		success = installer.installPolipoConf();
 		
 		if (version == null || (!version.equals(BINARY_TOR_VERSION)) || (!fileTor.exists()))
 		{
@@ -881,10 +882,14 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 					{
 						
 						int controlPort = getControlPort();
-						logNotice( "Connecting to control port: " + controlPort);
+						
+						if (controlPort == -1 && i == maxAttempts)
+							controlPort = DEFAULT_CONTROL_PORT;
 						
 						if (controlPort != -1)
 						{
+							logNotice( "Connecting to control port: " + controlPort);
+							
 							torConnSocket = new Socket(IP_LOCALHOST, controlPort);
 							torConnSocket.setSoTimeout(CONTROL_SOCKET_TIMEOUT);
 							
