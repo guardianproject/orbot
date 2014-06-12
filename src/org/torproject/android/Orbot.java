@@ -113,19 +113,10 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 		torService = new Intent(this, TorService.class);    	    	
 		startService(torService);
 		
-		/*
-		if (Build.VERSION.SDK_INT > 14)
-		{
+
+		bindService(torService,
+				mConnection, Context.BIND_AUTO_CREATE);
 		
-			bindService(torService,
-					mConnection, Context.BIND_AUTO_CREATE|Context.BIND_IMPORTANT|Context.BIND_ABOVE_CLIENT);
-		}
-		else
-		{
-		*/
-			
-		//}
-	
 	
 	}
 	
@@ -395,7 +386,8 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                 }
                 else if (item.getItemId() == R.id.menu_wizard)
                 {
-                		startWizard();
+            		startActivity(new Intent(this, ChooseLocaleWizardActivity.class));
+
                 }
                 else if (item.getItemId() == R.id.menu_verify)
                 {
@@ -465,7 +457,6 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 		if (aDialog != null)
 			aDialog.dismiss();
 		
-		unbindService(mConnection);
 	}
 	
 	private void doTorCheck ()
@@ -540,7 +531,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	
 	}
 
-	private void handleIntents ()
+	private synchronized void handleIntents ()
 	{
 		if (getIntent() == null)
 			return;
@@ -646,15 +637,17 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 		
 			
 			SharedPreferences mPrefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
-			boolean showWizard = mPrefs.getBoolean("show_wizard",true);
+			showWizard = mPrefs.getBoolean("show_wizard",showWizard);
 			
 			if (showWizard)
 			{
 				Editor pEdit = mPrefs.edit();
 				pEdit.putBoolean("show_wizard",false);
 				pEdit.commit();
-				
-				startWizard();
+				showWizard = false;
+
+				startActivity(new Intent(this, ChooseLocaleWizardActivity.class));
+
 			}
 			
 		}
@@ -664,7 +657,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 		
 	}
 
-	
+	private boolean showWizard = true;
 	
 	
 	@Override
@@ -771,19 +764,6 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
         }
 }
 	
-	/*
-	 * Show the help view - a popup dialog
-	 */
-	private void startWizard ()
-	{
-
-		SharedPreferences mPrefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
-		Editor pEdit = mPrefs.edit();
-		pEdit.putBoolean("wizardscreen1",true);
-		pEdit.commit();
-		startActivity(new Intent(getApplicationContext(), ChooseLocaleWizardActivity.class));
-	}
-	
     /*
      * Load the basic settings application to display torrc
      */
@@ -799,9 +779,6 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	protected void onResume() {
 		super.onResume();
 
-		bindService(torService,
-				mConnection, 0);
-		
         if (mService != null)
         {
                 try {
@@ -810,6 +787,8 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                 		mService.processSettings();
                 	
 					setLocale();
+					
+					handleIntents();
 				} catch (RemoteException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
