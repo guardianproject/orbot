@@ -553,8 +553,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		String version = prefs.getString(PREF_BINARY_TOR_VERSION_INSTALLED,null);
 
 		logNotice("checking binary version: " + version);
-
-		stopTor();
 		
     	TorResourceInstaller installer = new TorResourceInstaller(this, appBinHome); 
     	
@@ -676,14 +674,24 @@ public class TorService extends Service implements TorServiceConstants, TorConst
  			
  			
  		}
+ 		
+
+     	logMessage ("Transparent Proxying: updating Tor settings...");
+     	
+ 		mBinder.updateConfiguration("TransPort","9040",false);
+ 		mBinder.updateConfiguration("DNSPort","5400",false);
+ 		mBinder.updateConfiguration("VirtualAddrNetwork","10.192.0.0/10",false);
+ 		mBinder.updateConfiguration("AutomapHostsOnResolve","1",false);
+ 		mBinder.saveConfiguration();
 	 		
-     	logMessage ("Transparent Proxying: enabling...");
 
 		//TODO: Find a nice place for the next (commented) line
 		//TorTransProxy.setDNSProxying(); 
 		
 		int code = 0; // Default state is "okay"
 	
+		logMessage ("Transparent Proxying: clearing existing rules...");
+     	
 		//clear rules first
 		mTransProxy.clearTransparentProxyingAll(this);
 		
