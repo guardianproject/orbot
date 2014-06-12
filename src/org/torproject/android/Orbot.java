@@ -106,10 +106,13 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
         
 	}
 
+	Intent torService;
+	
 	private void startService ()
 	{
-		Intent torService = new Intent(this, TorService.class);    	    	
-
+		torService = new Intent(this, TorService.class);    	    	
+		startService(torService);
+		
 		/*
 		if (Build.VERSION.SDK_INT > 14)
 		{
@@ -120,11 +123,9 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 		else
 		{
 		*/
-			bindService(torService,
-					mConnection, Context.BIND_AUTO_CREATE);
+			
 		//}
 	
-		startService(torService);
 	
 	}
 	
@@ -463,6 +464,8 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 
 		if (aDialog != null)
 			aDialog.dismiss();
+		
+		unbindService(mConnection);
 	}
 	
 	private void doTorCheck ()
@@ -796,6 +799,9 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	protected void onResume() {
 		super.onResume();
 
+		bindService(torService,
+				mConnection, 0);
+		
         if (mService != null)
         {
                 try {
