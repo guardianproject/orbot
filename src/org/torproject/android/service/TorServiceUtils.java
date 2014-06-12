@@ -112,7 +112,6 @@ public class TorServiceUtils implements TorServiceConstants {
 
 	}
 	
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	public static SharedPreferences getSharedPrefs (Context context)
 	{
 		if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.HONEYCOMB)

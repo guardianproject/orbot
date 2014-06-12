@@ -557,30 +557,22 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	TorResourceInstaller installer = new TorResourceInstaller(this, appBinHome); 
     	
     	String extraLines = prefs.getString("pref_custom_torrc", null);
+
+    	if (extraLines != null)
+    	{
+    		boolean success = installer.installTorrc(extraLines);
+    	}
     	
-		boolean success = installer.installTorrc(extraLines);
-		success = installer.installPolipoConf();
-		
 		if (version == null || (!version.equals(BINARY_TOR_VERSION)) || (!fileTor.exists()))
 		{
 			logNotice("upgrading binaries to latest version: " + BINARY_TOR_VERSION);
 			
-			success = installer.installResources();
+			boolean success = installer.installResources();
 			
 			if (success)
 				prefs.edit().putString(PREF_BINARY_TOR_VERSION_INSTALLED,BINARY_TOR_VERSION).commit();	
 		}
-		else if (!fileTorRc.exists())
-		{
 
-			logNotice("upgrading binaries to latest version: " + BINARY_TOR_VERSION);
-			
-			success = installer.installResources();
-
-			if (success)
-				prefs.edit().putString(PREF_BINARY_TOR_VERSION_INSTALLED,BINARY_TOR_VERSION).commit();
-				
-		}
 		
     }
 
