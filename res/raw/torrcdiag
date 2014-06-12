@@ -2,3 +2,4 @@ Log debug stdout
 ControlPortWriteToFile /data/data/org.torproject.android/app_bin/control.txt
 ControlPort auto
 CookieAuthentication 1
+AvoidDiskWrites 1
