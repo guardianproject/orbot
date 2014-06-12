@@ -135,6 +135,19 @@ public class TorResourceInstaller implements TorServiceConstants {
 			streamToFile(sbis,outFile,true,false);
 		}
 		
+		is = context.getResources().openRawResource(R.raw.torrcdiag);
+		outFile = new File(installFolder, TORRCDIAG_ASSET_KEY);
+		shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
+		streamToFile(is,outFile, false, false);
+
+		if (extraLines != null && extraLines.length() > 0)
+		{
+			StringBufferInputStream sbis = new StringBufferInputStream('\n' + extraLines + '\n');
+			streamToFile(sbis,outFile,true,false);
+		}
+		
+		shell.close();
+		
 		return true;
 	}
 	
