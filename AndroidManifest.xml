@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="org.torproject.android" 
-      android:versionName="14.0.3" 
-      android:versionCode="104"
+      android:versionName="14.0.3.1" 
+      android:versionCode="105"
         android:installLocation="auto"      
       >
  	    
