@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.StringTokenizer;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.TimeoutException;
 
 import net.freehaven.tor.control.ConfigEntry;
 import net.freehaven.tor.control.EventHandler;
@@ -72,7 +73,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	private TorControlConnection conn = null;
 	private Socket torConnSocket = null;
 	private int mLastProcessId = -1;
-	private int mSocksPort = 9050;
 	
 	private static final int NOTIFY_ID = 1;
 	private static final int TRANSPROXY_NOTIFY_ID = 2;
@@ -96,6 +96,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     private File fileXtables;
     
     private File fileTorRc;
+    private File fileControlPort;
     
     private TorTransProxy mTransProxy;
 
@@ -361,11 +362,14 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	
     	if (currentStatus == STATUS_ON)
     	{
-    		this.showToolbarNotification("Tor service stopped unexpectedly", ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr, false);
+    		//make sure we stop Tor processes
+    		stopTor();
+    		
+    		showToolbarNotification("Tor service stopped unexpectedly", ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr, false);
+    		
     	}
-    	//Log.d(TAG,"onDestroy called");
     	
-    	  // Unregister all callbacks.
+    	// Unregister all callbacks.
         mCallbacks.kill();
         
         unregisterReceiver(mNetworkStateReceiver);
@@ -505,7 +509,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	int procId = -1;
     	Shell shell = Shell.startShell();
     	
-    	while ((procId = TorServiceUtils.findProcessId(fileProcBin.getAbsolutePath())) != -1)
+    	while ((procId = TorServiceUtils.findProcessId(fileProcBin.getCanonicalPath())) != -1)
 		{
 			
 			logNotice("Found fileObfsclient PID=" + procId + " - killing now...");
@@ -556,13 +560,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
     	TorResourceInstaller installer = new TorResourceInstaller(this, appBinHome); 
     	
-    	String extraLines = prefs.getString("pref_custom_torrc", null);
-
-    	if (extraLines != null)
-    	{
-    		boolean success = installer.installTorrc(extraLines);
-    	}
-    	
 		if (version == null || (!version.equals(BINARY_TOR_VERSION)) || (!fileTor.exists()))
 		{
 			logNotice("upgrading binaries to latest version: " + BINARY_TOR_VERSION);
@@ -573,9 +570,37 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 				prefs.edit().putString(PREF_BINARY_TOR_VERSION_INSTALLED,BINARY_TOR_VERSION).commit();	
 		}
 
-		
+    	updateTorConfigFile ();
+    	
+
     }
 
+    private boolean updateTorConfigFile () throws FileNotFoundException, IOException, TimeoutException
+    {
+		SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
+
+    	TorResourceInstaller installer = new TorResourceInstaller(this, appBinHome); 
+    	
+    	StringBuffer extraLines = new StringBuffer();
+    	
+    	String TORRC_CONTROLPORT_FILE_KEY = "ControlPortWriteToFile";
+    	fileControlPort = new File(appBinHome,"control.txt");
+    	extraLines.append(TORRC_CONTROLPORT_FILE_KEY).append(' ').append(fileControlPort.getCanonicalPath());    	
+    	extraLines.append('\n');
+    	extraLines.append(prefs.getString("pref_custom_torrc", ""));
+
+		logNotice("updating torrc configuration...");
+
+    	boolean success = installer.updateTorConfig(fileTorRc, extraLines.toString());    
+    	
+    	if (success)
+    	{
+    		logNotice ("success.");
+    	}
+    	
+    	return success;
+    }
+    
     private boolean enableBinExec (File fileBin) throws Exception
     {
     	
@@ -583,12 +608,12 @@ public class TorService extends Service implements TorServiceConstants, TorConst
   
     	if (!fileBin.canExecute())
     	{
-			logNotice("(re)Setting permission on binary: " + fileBin.getAbsolutePath());	
-			Shell shell = Shell.startShell(new ArrayList<String>(), appBinHome.getAbsolutePath());
+			logNotice("(re)Setting permission on binary: " + fileBin.getCanonicalPath());	
+			Shell shell = Shell.startShell(new ArrayList<String>(), appBinHome.getCanonicalPath());
 		
-			shell.add(new SimpleCommand("chmod " + CHMOD_EXE_VALUE + ' ' + fileBin.getAbsolutePath())).waitForFinish();
+			shell.add(new SimpleCommand("chmod " + CHMOD_EXE_VALUE + ' ' + fileBin.getCanonicalPath())).waitForFinish();
 			
-			File fileTest = new File(fileBin.getAbsolutePath());
+			File fileTest = new File(fileBin.getCanonicalPath());
 			logNotice(fileTest.getName() + ": POST: Is binary exec? " + fileTest.canExecute());
 			
 			shell.close();
@@ -748,13 +773,13 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	
 		SharedPreferences prefs =TorServiceUtils.getSharedPrefs(getApplicationContext());
 
-		String torrcPath = new File(appBinHome, TORRC_ASSET_KEY).getAbsolutePath();
+		String torrcPath = new File(appBinHome, TORRC_ASSET_KEY).getCanonicalPath();
 		
 		boolean transProxyTethering = prefs.getBoolean("pref_transparent_tethering", false);
  		
 		if (transProxyTethering)
 		{
-			torrcPath = new File(appBinHome, TORRC_TETHER_KEY).getAbsolutePath();
+			torrcPath = new File(appBinHome, TORRC_TETHER_KEY).getCanonicalPath();
 		}
 
 		int torRetryWaitTimeMS = 1000;
@@ -765,7 +790,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		Shell shell = Shell.startShell();
 		
 		
-		SimpleCommand cmdTor = new SimpleCommand(fileTor.getAbsolutePath() + " DataDirectory " + appCacheHome.getAbsolutePath() + " -f " + torrcPath + " &");
+		SimpleCommand cmdTor = new SimpleCommand(fileTor.getCanonicalPath() + " DataDirectory " + appCacheHome.getCanonicalPath() + " -f " + torrcPath + " &");
 		
 		shell.add(cmdTor);
 		
@@ -804,7 +829,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	
     	logNotice( "Starting polipo process");
     	
-			int polipoProcId = TorServiceUtils.findProcessId(filePolipo.getAbsolutePath());
+			int polipoProcId = TorServiceUtils.findProcessId(filePolipo.getCanonicalPath());
 
 			StringBuilder log = null;
 			
@@ -816,15 +841,15 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     		{
     			log = new StringBuilder();
     			
-    			String polipoConfigPath = new File(appBinHome, POLIPOCONFIG_ASSET_KEY).getAbsolutePath();
-    			SimpleCommand cmdPolipo = new SimpleCommand(filePolipo.getAbsolutePath() + " -c " + polipoConfigPath + " &");
+    			String polipoConfigPath = new File(appBinHome, POLIPOCONFIG_ASSET_KEY).getCanonicalPath();
+    			SimpleCommand cmdPolipo = new SimpleCommand(filePolipo.getCanonicalPath() + " -c " + polipoConfigPath + " &");
     			
     			shell.add(cmdPolipo);
     			
     			//wait one second to make sure it has started up
     			Thread.sleep(1000);
     			
-    			while ((polipoProcId = TorServiceUtils.findProcessId(filePolipo.getAbsolutePath())) == -1  && attempts < MAX_START_TRIES)
+    			while ((polipoProcId = TorServiceUtils.findProcessId(filePolipo.getCanonicalPath())) == -1  && attempts < MAX_START_TRIES)
     			{
     				logNotice("Couldn't find Polipo process... retrying...\n" + log);
     				Thread.sleep(3000);
@@ -953,31 +978,36 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	
 	private int getControlPort ()
 	{
-		File fileControl = new File(appBinHome,"control.txt");
 		int result = -1;
 		
 		try
 		{
-			
-			logNotice("Reading control port config file: " + fileControl.getAbsolutePath());
-			BufferedReader bufferedReader = new BufferedReader(new FileReader(fileControl));
-			String line = bufferedReader.readLine();
-			
-			//PORT=127.0.0.1:45051
-			
-			if (line != null)
+			if (fileControlPort.exists())
 			{
-				String[] lineParts = line.split(":");
-				result = Integer.parseInt(lineParts[1]);
+				logNotice("Reading control port config file: " + fileControlPort.getCanonicalPath());
+				BufferedReader bufferedReader = new BufferedReader(new FileReader(fileControlPort));
+				String line = bufferedReader.readLine();
+				
+				//PORT=127.0.0.1:45051
+				
+				if (line != null)
+				{
+					String[] lineParts = line.split(":");
+					result = Integer.parseInt(lineParts[1]);
+				}
+				
+				bufferedReader.close();
 			}
-			
-			bufferedReader.close();
+			else
+			{
+				logNotice("Control Port config file does not yet exist (waiting for tor): " + fileControlPort.getCanonicalPath());
+			}
 			
 			
 		}
 		catch (FileNotFoundException e)
 		{	
-			logNotice("unable to get control port; no file at: " + fileControl.getAbsolutePath());
+			logNotice("unable to get control port; file not found");
 		}
 		catch (IOException e)
 		{	
@@ -1071,7 +1101,30 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		 * Returns the port number that the SOCKS proxy is running on
 		 */
 		public int getSOCKSPort() throws RemoteException {
-			return mSocksPort;
+			
+    		int socksPort = -1;
+    		
+    		SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
+
+            String socksConfig = prefs.getString(TorConstants.PREF_SOCKS, TorServiceConstants.PORT_SOCKS_DEFAULT);
+
+	    	try
+	    	{
+
+		    	if (!socksConfig.equalsIgnoreCase("auto"))
+		    		if (socksConfig.contains(":"))
+		    			socksPort = Integer.parseInt(socksConfig.split(":")[1]);
+		    		else
+		    			socksPort = Integer.parseInt(socksConfig);
+		    
+	    	}
+	    	catch (Exception e)
+	    	{
+	    		logException ("unable to parse socks config: " + socksConfig,e);
+	    		
+	    	}
+	    	
+	    	return socksPort;
 		}
 
 
@@ -1817,8 +1870,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		        	
 		        }
 		        
-		        mBinder.updateConfiguration("GeoIPFile", fileGeoIP.getAbsolutePath(), false);
-		        mBinder.updateConfiguration("GeoIPv6File", fileGeoIP6.getAbsolutePath(), false);
+		        mBinder.updateConfiguration("GeoIPFile", fileGeoIP.getCanonicalPath(), false);
+		        mBinder.updateConfiguration("GeoIPv6File", fileGeoIP6.getCanonicalPath(), false);
 
 	        }
 	        catch (Exception e)
@@ -1876,7 +1929,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 			if (obfsBridges)
 			{
-				String bridgeConfig = "obfs2,obfs3,scramblesuit exec " + fileObfsclient.getAbsolutePath();
+				String bridgeConfig = "obfs2,obfs3,scramblesuit exec " + fileObfsclient.getCanonicalPath();
 				
 				logMessage ("Using OBFUSCATED bridges: " + bridgeConfig);
 				
@@ -1979,7 +2032,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	        		
 	        		hsPort = Integer.parseInt(hsPortConfig.split(" ")[0]);
 
-	        		String hsDirPath = new File(appCacheHome,"hs" + hsPort).getAbsolutePath();
+	        		String hsDirPath = new File(appCacheHome,"hs" + hsPort).getCanonicalPath();
 	        		
 	        		logMessage("Adding hidden service on port: " + hsPortConfig);
 	        		
@@ -2009,7 +2062,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     }
     
     private void enableSocks (String socks, boolean safeSocks) throws RemoteException
-    {
+    {	
     	mBinder.updateConfiguration("SOCKSPort", socks, false);
     	mBinder.updateConfiguration("SafeSocks", safeSocks ? "1" : "0", false);
     	mBinder.updateConfiguration("TestSocks", "1", false);
@@ -2034,7 +2087,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	bw.println("nameserver 8.8.4.4");
     	bw.close();
     
-    	return file.getAbsolutePath();
+    	return file.getCanonicalPath();
     }
 
 	@SuppressLint("NewApi")
@@ -2140,7 +2193,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 					{
 						
 						try {
-							int foundPrcId = TorServiceUtils.findProcessId(fileTor.getAbsolutePath());
+							int foundPrcId = TorServiceUtils.findProcessId(fileTor.getCanonicalPath());
 							
 							if (foundPrcId != -1)
 							{
