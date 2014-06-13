@@ -192,20 +192,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	}
 
 
-	/* (non-Javadoc)
-	 * @see android.app.Service#onUnbind(android.content.Intent)
-	 */
-	@Override
-	public boolean onUnbind(Intent intent) {
-		
-		if (intent != null)
-			logNotice( "onUnbind Called: " + intent.getAction());
-		
-		return super.onUnbind(intent);
-		
-		
-	}
-
 	public int getTorStatus ()
     {
     	
@@ -270,24 +256,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
  	}
     
-    /* (non-Javadoc)
-	 * @see android.app.Service#onRebind(android.content.Intent)
-	 */
-	@Override
-	public void onRebind(Intent intent) {
-		super.onRebind(intent);
-		
-		try
-		{
-			sendCallbackLogMessage("Welcome back, Carter!");
-		}
-		catch (Exception e)
-		{
-			Log.e(TAG,"unable to init Tor",e);
-			throw new RuntimeException("Unable to init Tor");
-		}
-	}
-
 
 	/* (non-Javadoc)
 	 * @see android.app.Service#onStart(android.content.Intent, int)
@@ -298,7 +266,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		{
 			new startTorOperation().execute(intent);
 			
-		    return START_STICKY;
+		    return Service.START_NOT_STICKY;
 		    
 		}
 		catch (Exception e)
@@ -309,7 +277,12 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 	}
 	
-    private class startTorOperation extends AsyncTask<Intent, Void, Boolean> {
+    @Override
+	public void onTaskRemoved(Intent rootIntent) {		
+		logNotice("Orbot was swiped away... background service will keep running");    	
+	}
+
+	private class startTorOperation extends AsyncTask<Intent, Void, Boolean> {
         @Override
         protected Boolean doInBackground(Intent... params) {
           
@@ -360,25 +333,20 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     {
     	super.onDestroy();
     	
-    	if (currentStatus == STATUS_ON)
-    	{
-    		//make sure we stop Tor processes
-    		stopTor();
-    		
-    		showToolbarNotification("Tor service stopped unexpectedly", ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr, false);
-    		
-    	}
+    	logNotice("TorService is being destroyed... shutting down!");
     	
+    	stopTor();
+    	    	
     	// Unregister all callbacks.
-        mCallbacks.kill();
+        mCallbacks.kill();        
         
-        unregisterReceiver(mNetworkStateReceiver);
+        unregisterReceiver(mNetworkStateReceiver);        
+        
     }
     
     private void stopTor ()
     {
-    	currentStatus = STATUS_OFF;
-    	
+   	
     	try
     	{	
     		killTorProcess ();
@@ -477,7 +445,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     private void killTorProcess () throws Exception
     {
 
-		stopTorMinder();
+		//stopTorMinder();
 		    	
     	if (conn != null)
 		{
@@ -489,6 +457,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 				logNotice("sending SHUTDOWN signal to Tor process");
 				conn.shutdownTor("SHUTDOWN");
 				
+				logNotice("closing tor socket");
+				torConnSocket.close();
 				
 			} catch (Exception e) {
 				Log.d(TAG,"error shutting down Tor via connection",e);
@@ -816,7 +786,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			
 			processSettingsImpl();
 			
-			startTorMinder ();
+		//	startTorMinder ();
 
 	    }
 		
@@ -2176,6 +2146,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
 	}
    
+	/**
 	private Timer mTorMinder;
 	
 	private void startTorMinder ()
@@ -2225,6 +2196,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		if (mTorMinder != null)
 			mTorMinder.cancel();
 	}
-    
+    **/
    
 }
