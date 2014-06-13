@@ -149,6 +149,28 @@ public class TorResourceInstaller implements TorServiceConstants {
 		return true;
 	}
 	
+	public boolean updatePolipoConfig (File filePolipo, String extraLines) throws IOException, FileNotFoundException, TimeoutException
+	{
+		
+		InputStream is;
+        
+        Shell shell = Shell.startShell(new ArrayList<String>(),installFolder.getAbsolutePath());
+        
+		is = context.getResources().openRawResource(R.raw.torpolipo);		
+		shell.add(new SimpleCommand(COMMAND_RM_FORCE + filePolipo.getAbsolutePath())).waitForFinish();
+		streamToFile(is,filePolipo, false, false);
+
+		if (extraLines != null && extraLines.length() > 0)
+		{
+			StringBufferInputStream sbis = new StringBufferInputStream('\n' + extraLines + '\n');
+			streamToFile(sbis,filePolipo,true,false);
+		}
+		
+		shell.close();
+		
+		return true;
+	}
+	
 	public boolean installPolipoConf () throws IOException, FileNotFoundException, TimeoutException
 	{
 		
