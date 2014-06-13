@@ -83,9 +83,6 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 		/* The primary interface we will be calling on the service. */
     ITorService mService = null;
 
-    //should move this up with all the other class variables
-    private boolean mIsBound = false;
-    
 	private SharedPreferences mPrefs = null;
 
 	private boolean autoStartFromIntent = false;
@@ -430,6 +427,9 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                         //not something to tackle in your first iteration, but i thin we can talk about fixing
                         //terminology but also making sure there are clear distinctions in control
                         stopTor();
+                        
+                        if (mConnection != null)
+                        	unbindService(mConnection); 
                         
                         //perhaps this should be referenced as INTENT_TOR_SERVICE as in startService
                         stopService(new Intent(this,TorService.class));
@@ -1164,8 +1164,6 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
         public void onServiceConnected(ComponentName className,
                 IBinder service) {
         	
-        	 mIsBound = true;
-        	 
             // This is called when the connection with the service has been
             // established, giving us the service object we can use to
             // interact with the service.  We are communicating with our
@@ -1215,35 +1213,6 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
         }
     };
     
-    
-    //unbind removes the callback, and unbinds the service
-    private void unbindService ()
-    {
-            if (mIsBound) {
-            // If we have received the service, and hence registered with
-            // it, then now is the time to unregister.
-            if (mService != null) {
-                try {
-                    mService.unregisterCallback(mCallback);
-                    
-                } catch (RemoteException e) {
-                    // There is nothing special we need to do if the service
-                    // has crashed.
-                }
-        }
-            
-            // Detach our existing connection.
-            unbindService(mConnection);
-            mIsBound = false;
-            
-            Log.d(TAG,"service was ubnound");
-
-            //maybe needs this?
-            mService = null; 
-            
-            
-        }
-    }
         
     /*
     private void createProgressDialog (String msg)
