@@ -86,15 +86,16 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
     //should move this up with all the other class variables
     private boolean mIsBound = false;
     
-    
+	private SharedPreferences mPrefs = null;
+
 	private boolean autoStartFromIntent = false;
 
     /** Called when the activity is first created. */
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-      
-        TorServiceUtils.getSharedPrefs(getApplicationContext()).registerOnSharedPreferenceChangeListener(this);
+        mPrefs = TorServiceUtils.getSharedPrefs(getApplicationContext());        
+        mPrefs.registerOnSharedPreferenceChangeListener(this);
            	
         setLocale();
         
@@ -490,7 +491,6 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	
 	private void enableHiddenServicePort (int hsPort)
 	{
-		SharedPreferences mPrefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
 		
 		Editor pEdit = mPrefs.edit();
 		
@@ -609,7 +609,6 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 					newBridgeValue = URLDecoder.decode(newBridgeValue); //decode the value here
 		
 					showAlert("Bridges Updated","Restart Orbot to use this bridge: " + newBridgeValue,false);	
-					SharedPreferences mPrefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
 					
 					String bridges = mPrefs.getString(TorConstants.PREF_BRIDGES_LIST, null);
 					
@@ -635,15 +634,13 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 		else
 		{
 		
-			
-			SharedPreferences mPrefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
 			showWizard = mPrefs.getBoolean("show_wizard",showWizard);
 			
 			if (showWizard)
 			{
 				Editor pEdit = mPrefs.edit();
 				pEdit.putBoolean("show_wizard",false);
-				pEdit.commit();
+				pEdit.commit();				
 				showWizard = false;
 
 				startActivity(new Intent(this, ChooseLocaleWizardActivity.class));
@@ -683,7 +680,6 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	 */
 	private void openBrowser(final String browserLaunchUrl)
 	{
-		SharedPreferences mPrefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
 		boolean isOrwebInstalled = appInstalledOrNot("info.guardianproject.browser");
 		boolean isTransProxy =  mPrefs.getBoolean("pref_transparent", false);
 		
@@ -904,7 +900,6 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                                     	appendLogTextAndScroll(mTorServiceMsg);
                                     }
                                     
-                                    SharedPreferences mPrefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
                                     boolean showFirstTime = mPrefs.getBoolean("connect_first_time",true);
                                     
                                     if (showFirstTime)
@@ -1282,7 +1277,6 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
     	
 
         Configuration config = getResources().getConfiguration();
-        SharedPreferences mPrefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
         String lang = mPrefs.getString(PREF_DEFAULT_LOCALE, "");
         
         if (! "".equals(lang) && ! config.locale.getLanguage().equals(lang))
