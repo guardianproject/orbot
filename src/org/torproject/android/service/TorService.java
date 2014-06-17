@@ -659,19 +659,24 @@ public class TorService extends Service implements TorServiceConstants, TorConst
  		{
  			mTransProxy = new TorTransProxy(this, fileXtables);
  			
- 			
  		}
  		
 
-     	logMessage ("Transparent Proxying: updating Tor settings...");
-     	
- 		mBinder.updateConfiguration("TransPort","9040",false);
- 		mBinder.updateConfiguration("DNSPort","5400",false);
- 		mBinder.updateConfiguration("VirtualAddrNetwork","10.192.0.0/10",false);
- 		mBinder.updateConfiguration("AutomapHostsOnResolve","1",false);
- 		mBinder.saveConfiguration();
-	 		
 
+		SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
+		String transProxy = prefs.getString("pref_transport", TorServiceConstants.TOR_TRANSPROXY_PORT_DEFAULT+"");
+		String dnsPort = prefs.getString("pref_dnsport", TorServiceConstants.TOR_TRANSPROXY_PORT_DEFAULT+"");
+		
+		if (transProxy.indexOf(':')!=-1) //we just want the port for this
+			transProxy = transProxy.split(":")[1];
+		
+		if (dnsPort.indexOf(':')!=-1) //we just want the port for this
+			dnsPort = dnsPort.split(":")[1];
+		
+		mTransProxy.setTransProxyPort(Integer.parseInt(transProxy));
+		mTransProxy.setDNSPort(Integer.parseInt(dnsPort));
+
+     
 		//TODO: Find a nice place for the next (commented) line
 		//TorTransProxy.setDNSProxying(); 
 		
@@ -1781,6 +1786,12 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 		enableSocks (socksConfig,false);
 		
+		String transPort = prefs.getString("pref_transport", TorServiceConstants.TOR_TRANSPROXY_PORT_DEFAULT+"");
+		String dnsPort = prefs.getString("pref_dnsport", TorServiceConstants.TOR_DNS_PORT_DEFAULT+"");
+		
+		enableTransProxyAndDNSPorts(transPort, dnsPort);
+		
+		
 		boolean useBridges = prefs.getBoolean(TorConstants.PREF_BRIDGES_ENABLED, false);
 		
 		//boolean autoUpdateBridges = prefs.getBoolean(TorConstants.PREF_BRIDGES_UPDATED, false);
@@ -2039,6 +2050,19 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	mBinder.updateConfiguration("WarnUnsafeSocks", "1", false);
     	mBinder.saveConfiguration();
         
+    }
+    
+    private void enableTransProxyAndDNSPorts (String transPort, String dnsPort) throws RemoteException
+    {
+    	logMessage ("Transparent Proxying: enabling port...");
+     	
+ 		mBinder.updateConfiguration("TransPort",transPort,false);
+ 		mBinder.updateConfiguration("DNSPort",dnsPort,false);
+ 		mBinder.updateConfiguration("VirtualAddrNetwork","10.192.0.0/10",false);
+ 		mBinder.updateConfiguration("AutomapHostsOnResolve","1",false);
+ 		mBinder.saveConfiguration();
+	 		
+
     }
     
     private void blockPlaintextPorts (String portList) throws RemoteException

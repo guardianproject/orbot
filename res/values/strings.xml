@@ -258,8 +258,18 @@
     <string name="updating_settings_in_tor_service">updating settings in Tor service</string>
   
     <string name="pref_socks_title">Tor SOCKS</string>
-    <string name="pref_socks_summary">IP and Port that Tor offers its SOCKS proxy on (default: 9050)</string>
-    <string name="pref_socks_dialog">SOCKS Config (ip:port)</string>
+    <string name="pref_socks_summary">Port that Tor offers its SOCKS proxy on (default: 9050 or 0 to disable)</string>
+    <string name="pref_socks_dialog">SOCKS Port Config</string>
+    
+    <string name="pref_transport_title">Tor TransProxy Port</string>
+    <string name="pref_transport_summary">Port that Tor offers its Transparent Proxy on (default: 9040 or 0 to disable)</string>
+    <string name="pref_transport_dialog">TransProxy Port Config</string>
+    
+    
+    <string name="pref_dnsport_title">Tor DNS Port</string>
+    <string name="pref_dnsport_summary">Port that Tor offers its DNS on (default: 5400 or 0 to disable)</string>
+    <string name="pref_dnsport_dialog">DNS Port Config</string>
+    
     
     <string name="pref_torrc_title">Torrc Custom Config</string>
     <string name="pref_torrc_summary">EXPERTS ONLY: enter direct torrc config lines</string>

@@ -54,9 +54,9 @@ public interface TorServiceConstants {
 	//what is says!
 	public final static String IP_LOCALHOST = "127.0.0.1";
 	public final static int UPDATE_TIMEOUT = 1000;
-	public final static int TOR_TRANSPROXY_PORT = 9040;
+	public final static int TOR_TRANSPROXY_PORT_DEFAULT = 9040;
 	public final static int STANDARD_DNS_PORT = 53;
-	public final static int TOR_DNS_PORT = 5400;
+	public final static int TOR_DNS_PORT_DEFAULT = 5400;
 	
 	//path to check Tor against
 	public final static String URL_TOR_CHECK = "https://check.torproject.org";
