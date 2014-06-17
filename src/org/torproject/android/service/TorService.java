@@ -23,8 +23,6 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.concurrent.TimeoutException;
 
 import net.freehaven.tor.control.ConfigEntry;
@@ -54,6 +52,7 @@ import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.os.IBinder;
 import android.os.RemoteCallbackList;
 import android.os.RemoteException;
@@ -194,7 +193,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 	public int getTorStatus ()
     {
-    	
+		
     	return currentStatus;
     	
     }
@@ -236,9 +235,13 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		if (notifyId == ERROR_NOTIFY_ID)
 		{
 			mNotifyBuilder.setTicker(notifyMsg);
-			mNotifyBuilder.setOngoing(false);
 			mNotifyBuilder.setLights(Color.RED, 1000, 1000);
 			mNotifyBuilder.setSmallIcon(R.drawable.ic_stat_notifyerr);
+		}
+		else
+		{
+			mNotifyBuilder.setTicker("");
+			//mNotifyBuilder.setLights(Color.GREEN, 5000, 5000);
 		}
 		
 		if (isOngoing)
@@ -559,9 +562,10 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	extraLines.append('\n');
     	extraLines.append(prefs.getString("pref_custom_torrc", ""));
 
-		logNotice("updating torrc configuration...");
+		logNotice("updating torrc custom configuration...");
 
-    	boolean success = installer.updateTorConfig(fileTorRc, extraLines.toString());    
+		File fileTorRcCustom = new File(fileTorRc.getAbsolutePath() + ".custom");
+    	boolean success = installer.updateTorConfigCustom(fileTorRcCustom, extraLines.toString());    
     	
     	if (success)
     	{
@@ -765,7 +769,11 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		Shell shell = Shell.startShell();
 		
 		
-		SimpleCommand cmdTor = new SimpleCommand(fileTor.getCanonicalPath() + " DataDirectory " + appCacheHome.getCanonicalPath() + " -f " + torrcPath + " &");
+		SimpleCommand cmdTor = new SimpleCommand(fileTor.getCanonicalPath() 
+				+ " DataDirectory " + appCacheHome.getCanonicalPath() 
+				+ " --defaults-torrc " + torrcPath
+				+ " -f " + torrcPath + ".custom"
+				+ " &");
 		
 		shell.add(cmdTor);
 		
@@ -1110,7 +1118,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			return PROFILE_ON;
 		}
 		
-		
 		public void setTorProfile(int profile)  {
 		
 			if (currentStatus == STATUS_OFF)
@@ -1123,6 +1130,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	   			   initTor();
 
 	        		currentStatus = STATUS_CONNECTING;
+	        		
 	   		     }
 	   		     catch (Exception e)
 	   		     {				
@@ -1158,6 +1166,48 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         
       	
           
+	}
+	
+
+	
+	private Handler mHandlerStatusChecker = null;
+	
+	private void enableStatusChecker ()
+	{
+
+		if (mHandlerStatusChecker != null)
+			mHandlerStatusChecker = new Handler();
+		
+		mHandlerStatusChecker.postDelayed(new Runnable ()
+		{
+			public void run ()
+			{
+				if (conn != null)
+				{
+					try
+					{
+						String state = conn.getInfo("dormant");
+						if (state != null && Integer.parseInt(state) == 0)
+						{
+							currentStatus = STATUS_ON;
+							
+						}
+						else
+						{
+							currentStatus = STATUS_CONNECTING;
+							showToolbarNotification(getString(R.string.no_internet_connection_tor),NOTIFY_ID,R.drawable.ic_stat_tor_off,prefPersistNotifications);
+
+						}
+					}
+					catch (Exception e){}
+					
+
+    				mHandlerStatusChecker.postDelayed(this,1000);
+				}
+
+				
+			}
+		},1000);
 	}
 
 	public void newDescriptors(List<String> orList) {
@@ -1232,9 +1282,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			mTotalTrafficRead += read;
 			
 			sendCallbackStatusMessage(written, read, mTotalTrafficWritten, mTotalTrafficRead); 
-
-	//		if(++notificationCounter%10==0)
-		//	    startService(new Intent(ITorService.class.getName()));
 
 		}
 		
@@ -1762,8 +1809,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 							logNotice(context.getString(R.string.network_connectivity_is_good_waking_tor_up_));
 							showToolbarNotification(getString(R.string.status_activated),NOTIFY_ID,R.drawable.ic_stat_tor,prefPersistNotifications);
 
-							if (mHasRoot && mEnableTransparentProxy)
-								enableTransparentProxy(mTransProxyAll, mTransProxyTethering);
+							//if (mHasRoot && mEnableTransparentProxy)
+								//enableTransparentProxy(mTransProxyAll, mTransProxyTethering);
 							
 				        }
 					}

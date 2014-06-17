@@ -116,35 +116,12 @@ public class TorResourceInstaller implements TorServiceConstants {
 		return true;
 	}
 	
-	public boolean updateTorConfig (File fileTorRc, String extraLines) throws IOException, FileNotFoundException, TimeoutException
+	public boolean updateTorConfigCustom (File fileTorRcCustom, String extraLines) throws IOException, FileNotFoundException, TimeoutException
 	{
 		
-		InputStream is;
-        
-        Shell shell = Shell.startShell(new ArrayList<String>(),installFolder.getAbsolutePath());
-        
-		is = context.getResources().openRawResource(R.raw.torrc);		
-		shell.add(new SimpleCommand(COMMAND_RM_FORCE + fileTorRc.getAbsolutePath())).waitForFinish();
-		streamToFile(is,fileTorRc, false, false);
 
-		if (extraLines != null && extraLines.length() > 0)
-		{
-			StringBufferInputStream sbis = new StringBufferInputStream('\n' + extraLines + '\n');
-			streamToFile(sbis,fileTorRc,true,false);
-		}
-		
-		is = context.getResources().openRawResource(R.raw.torrcdiag);
-		fileTorRc = new File(installFolder, TORRCDIAG_ASSET_KEY);
-		shell.add(new SimpleCommand(COMMAND_RM_FORCE + fileTorRc.getAbsolutePath())).waitForFinish();
-		streamToFile(is,fileTorRc, false, false);
-
-		if (extraLines != null && extraLines.length() > 0)
-		{
-			StringBufferInputStream sbis = new StringBufferInputStream('\n' + extraLines + '\n');
-			streamToFile(sbis,fileTorRc,true,false);
-		}
-		
-		shell.close();
+		StringBufferInputStream sbis = new StringBufferInputStream(extraLines + '\n');
+		streamToFile(sbis,fileTorRcCustom,false,false);
 		
 		return true;
 	}
