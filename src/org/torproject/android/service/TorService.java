@@ -24,6 +24,8 @@ import java.util.List;
 import java.util.StringTokenizer;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import net.freehaven.tor.control.ConfigEntry;
 import net.freehaven.tor.control.EventHandler;
@@ -58,10 +60,10 @@ import android.os.RemoteCallbackList;
 import android.os.RemoteException;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationCompat.Builder;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.RemoteViews;
+import android.widget.Toast;
 
 public class TorService extends Service implements TorServiceConstants, TorConstants, EventHandler
 {
@@ -82,6 +84,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	private static final int HS_NOTIFY_ID = 3;
 	
 	private boolean prefPersistNotifications = true;
+	String IPADDRESS_PATTERN = 
+	        "(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)";
 	
 	private static final int MAX_START_TRIES = 3;
 
@@ -111,6 +115,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	private NotificationManager mNotificationManager = null;
 	private Builder mNotifyBuilder;
 	private Notification mNotification;
+	private String exitIP = "";
 
     private boolean mHasRoot = false;
     private boolean mEnableTransparentProxy = false;
@@ -223,21 +228,24 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			mNotificationManager.cancelAll();
 		
 	}
-   
+		
  	@SuppressLint("NewApi")
 	private void showToolbarNotification (String notifyMsg, int notifyId, int icon, boolean isOngoing)
  	{	    
  		
  		//Reusable code.
-		Intent intent = new Intent(TorService.this, Orbot.class);
-		PendingIntent pendIntent = PendingIntent.getActivity(TorService.this, 0, intent, 0);
+ 		Intent intent = new Intent(TorService.this, Orbot.class);
+ 		PendingIntent pendIntent = PendingIntent.getActivity(TorService.this, 0, intent, 0);
  
 		// Create remote view that needs to be set as bigContentView for the notification.
  		RemoteViews expandedView = new RemoteViews(this.getPackageName(), 
  		        R.layout.layout_notification_expanded);
- 		expandedView.setTextViewText(R.id.tv, notifyMsg);
- 		expandedView.setOnClickPendingIntent(R.id.but, pendIntent);
- 		expandedView.setImageViewResource(R.id.img, icon);
+ 		
+ 		expandedView.setTextViewText(R.id.text, notifyMsg);
+ 		expandedView.setTextViewText(R.id.title, "ORBOT "+exitIP); 		
+ 		//expandedView.setTextViewText(R.id.exitIP, exitIP);
+ 		//expandedView.setOnClickPendingIntent(R.id._tor_notificationBT, pendIntent);
+ 		expandedView.setImageViewResource(R.id.icon, icon);
  		
 		if (mNotifyBuilder == null)
 		{
@@ -269,7 +277,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		}
 		
 		mNotification = mNotifyBuilder.build();
-		//mNotification.bigContentView = expandedView;
+		mNotification.bigContentView = expandedView;
 		
 		if (isOngoing)
 		{
@@ -1204,10 +1212,33 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			while (st.hasMoreTokens())
 			{
 				node = st.nextToken();
+				final String nodeName = parseNodeName(node);
+				sb.append(nodeName);
 				
-				sb.append(parseNodeName(node));
-				
-				
+				if(status.equals("BUILT") && currentStatus==STATUS_ON){
+					Thread thread = new Thread()
+					{
+					    @Override
+					    public void run() {
+					    	try {
+								String nodeDetails = conn.getInfo("ns/name/"+nodeName);
+								Pattern pattern = Pattern.compile(IPADDRESS_PATTERN);
+								Matcher matcher = pattern.matcher(nodeDetails);
+								        if (matcher.find()) {
+								            Log.d(TAG, "ip: "+matcher.group());
+								            exitIP = matcher.group();
+								        }
+							} catch (Exception e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace(); 
+							}
+					    }
+					};
+					thread.start();
+					
+					Log.d(TAG ,"Node name: "+nodeName+"IP: "+exitIP);
+				}
+					
 				if (st.hasMoreTokens())
 					sb.append (" > ");
 			}
