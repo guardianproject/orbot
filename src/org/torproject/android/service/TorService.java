@@ -240,8 +240,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		}
 		else
 		{
-			mNotifyBuilder.setTicker("");
-			//mNotifyBuilder.setLights(Color.GREEN, 5000, 5000);
+			mNotifyBuilder.setTicker(null); //make sure to clear ticker
 		}
 		
 		if (isOngoing)
@@ -1809,8 +1808,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 							logNotice(context.getString(R.string.network_connectivity_is_good_waking_tor_up_));
 							showToolbarNotification(getString(R.string.status_activated),NOTIFY_ID,R.drawable.ic_stat_tor,prefPersistNotifications);
 
-							//if (mHasRoot && mEnableTransparentProxy)
-								//enableTransparentProxy(mTransProxyAll, mTransProxyTethering);
+							if (mHasRoot && mEnableTransparentProxy)
+								enableTransparentProxy(mTransProxyAll, mTransProxyTethering);
 							
 				        }
 					}
