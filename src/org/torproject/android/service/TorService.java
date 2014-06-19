@@ -1440,11 +1440,12 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 				
 				Pattern pattern = Pattern.compile(IPADDRESS_PATTERN);
 				Matcher matcher = null;
-				if(nodeDetails!=null)
+				if(nodeDetails!=null){
 					matcher = pattern.matcher(nodeDetails);
-				if (matcher!=null && matcher.find()) {
-					Log.d(TAG, "ip: "+matcher.group());
-				    exitIP = matcher.group();
+					if (matcher.find()) {
+						Log.d(TAG, "ip: "+matcher.group());
+						exitIP = matcher.group();
+					}
 				}
 			}
 	    }
