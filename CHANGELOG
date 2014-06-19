@@ -1,5 +1,43 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+7ec6de7 update to 14.0.4.1
+298a01e make sure transproxy is renabled when network returns
+2eb79a5 fulfilles the wishes of #12413 by support --default-torrc and -f
+b6715b4 fixes #12411 and #12412 enables DNS and transport by default with new Orbot settings to enable user to easily change/disable
+fc608d3 update to 14.0.4
+0129976 improve ability to do a full clean stop of all services
+af51290 add support for updating Polipo config
+156ed57 clean up unbind process and service shutdown
+8a59cfb use canonical paths to ensure shell commands are correct also cleanup torrc updating
+f3d21ee improve resource installer ability to update torrc
+c0f7d75 use one prefs instance
+2ce9ea9 make default config files have ports off by default (0)
+9025fc5 update to 14.0.3.1
+dee0d19 improve logic for updating torrc files (not so often)
+44648f1 clean up bind/unbind and handleIntent wizard logic
+917ec8d update torrc and torrcdiag when you need to
+f91a35b update tor binary constants to force upgrade
+65eb7ad fix torrc defaults - add back in avoiddiskwrites
+c04fc95 update to 14.0.3
+42e0698 don't stop tor when service onStartCommand() is called again
+fc63929 ensure diag/test mode stop's Tor on activity exit
+328c6af tune bind/create service logic
+4716696 make transport settings dynamic (remove from torrc)
+2fe57e8 pegging tor to 0.2.4.22
+00b535e updated to 14.0.2.1
+c2be4ac ensure polipo conf is updated; default to 9051 for ctrl port
+6ab9a7b reduce memory usage of polipo
+b26b9d4 update to 14.0.2
+aa8ff95 ensure readers are closed; ensure socks settings are applied
+b4fa943 improve process id finding using android 'toolbox'
+2d6a7b3 renable large heap request
+d7f3f19 more fixes for UI disconnect issue ensure service and status updates occur on new layout updates
+7e76162 bumping to 14.0.1
+af51a98 allow support for adding custom lines to torrc
+22938c9 multiple fixes for tor start including "auto" control port also try to kill hung tor process
+0224365 ensure torrc values are overwritten
+81bd617 updating to 14.0.0 build 100!
+98ea6d5 update changelog
 5776a87 update to 14.0.0-RC3
 bf6a1da update state when service connects
 451cfed keep SOCKS port as default 9050 (instead of 'auto')
