@@ -87,8 +87,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	private static final int HS_NOTIFY_ID = 4;
 	
 	private boolean prefPersistNotifications = true;
-	String IPADDRESS_PATTERN = 
+	private String IPADDRESS_PATTERN = 
 	        "(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)";
+	private long exitIPTime = 0;
 	
 	private static final int MAX_START_TRIES = 3;
 
@@ -1378,27 +1379,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 				sb.append(nodeName);
 				
 				if(status.equals("BUILT") && currentStatus==STATUS_ON){
-					Thread thread = new Thread()
-					{
-					    @Override
-					    public void run() {
-					    	try {
-								String nodeDetails = conn.getInfo("ns/name/"+nodeName);
-								Pattern pattern = Pattern.compile(IPADDRESS_PATTERN);
-								Matcher matcher = pattern.matcher(nodeDetails);
-								        if (matcher.find()) {
-								            Log.d(TAG, "ip: "+matcher.group());
-								            exitIP = matcher.group();
-								        }
-							} catch (Exception e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace(); 
-							}
-					    }
-					};
-					thread.start();
-					
-					Log.d(TAG ,"Node name: "+nodeName+"IP: "+exitIP);
+					new getExternalIP().execute(nodeName);
 				}
 					
 				if (st.hasMoreTokens())
@@ -1426,6 +1407,48 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			}
 		}*/
 	
+	}
+	
+	private class getExternalIP extends AsyncTask<String, Void, Void>{
+
+		private long time;
+		private String nodeDetails;
+		
+		@Override
+		protected Void doInBackground(String... params) {
+			time = System.nanoTime();
+			try {
+				nodeDetails = conn.getInfo("ns/name/"+params[0]);
+				if (ENABLE_DEBUG_LOG)  
+		    	{
+		    		Log.d(TAG,"Node Details: "+nodeDetails);
+		    		sendCallbackLogMessage("Node Details: "+nodeDetails);	
+
+		    	}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace(); 
+			}
+			return null;
+		}
+		
+		@Override
+		protected void onPostExecute(Void result) {
+			// check if we need to update the exit IP
+			if(time > exitIPTime) {
+				exitIPTime = time;
+				
+				Pattern pattern = Pattern.compile(IPADDRESS_PATTERN);
+				Matcher matcher = null;
+				if(nodeDetails!=null)
+					matcher = pattern.matcher(nodeDetails);
+				if (matcher!=null && matcher.find()) {
+					Log.d(TAG, "ip: "+matcher.group());
+				    exitIP = matcher.group();
+				}
+			}
+	    }
+		
 	}
 	
 	private String parseNodeName(String node)
