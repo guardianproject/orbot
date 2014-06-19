@@ -78,16 +78,19 @@ public class TorServiceUtils implements TorServiceConstants {
 		    	
 		Process procPs = null;
 		
-		//String processKey = new File(command).getName();
+		String processKey = new File(command).getName();
 		
-        procPs = r.exec(SHELL_CMD_PS); // this is the android ps <name> command
+        procPs = r.exec(SHELL_CMD_PS + ' ' + processKey); // this is the android ps <name> command
             
         BufferedReader reader = new BufferedReader(new InputStreamReader(procPs.getInputStream()));
-        String line = reader.readLine(); //read first line "headers" USER PID PPID etc
+        String line = null;
         
         while ((line = reader.readLine())!=null)
         {
-        	if (line.contains(command))
+        	if (line.contains("PID"))
+        		continue;
+        		
+        	if (line.contains(processKey))
         	{
         		
         		String[] lineParts = line.split("\\s+");
@@ -109,7 +112,6 @@ public class TorServiceUtils implements TorServiceConstants {
 
 	}
 	
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	public static SharedPreferences getSharedPrefs (Context context)
 	{
 		if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.HONEYCOMB)

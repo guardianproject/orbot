@@ -3,7 +3,6 @@ package org.torproject.android.wizard;
 import org.sufficientlysecure.rootcommands.RootCommands;
 import org.torproject.android.R;
 import org.torproject.android.TorConstants;
-import org.torproject.android.service.TorService;
 import org.torproject.android.service.TorServiceUtils;
 
 import android.app.Activity;
@@ -12,14 +11,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 public class Permissions extends Activity implements TorConstants {
@@ -50,17 +48,6 @@ public class Permissions extends Activity implements TorConstants {
 		
 	}
 	
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-	    switch(resultCode)
-	    {
-	    case RESULT_CLOSE_ALL:
-	        setResult(RESULT_CLOSE_ALL);
-	        finish();
-	    }
-	    super.onActivityResult(requestCode, resultCode, data);
-	}
-
 	
 	private void stepFourRoot(){
 				
@@ -138,9 +125,8 @@ public class Permissions extends Activity implements TorConstants {
 				}
 				else
 				{
-					startActivityForResult(new Intent(Permissions.this, ConfigureTransProxy.class), 1);
-
-					
+					finish();
+					startActivity(new Intent(Permissions.this, ConfigureTransProxy.class));
 				}
 
 				
@@ -150,8 +136,8 @@ public class Permissions extends Activity implements TorConstants {
     	back.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
-				
-				startActivityForResult(new Intent(Permissions.this, LotsaText.class), 1);
+				finish();
+				startActivity(new Intent(Permissions.this, LotsaText.class));
 			}
 		});
     	
@@ -160,7 +146,8 @@ public class Permissions extends Activity implements TorConstants {
     	 
 			
 			public void onClick(View v) {
-				startActivityForResult(new Intent(Permissions.this, TipsAndTricks.class), 1);
+				finish();
+				startActivity(new Intent(Permissions.this, TipsAndTricks.class));
 			}
 		});
 		
@@ -186,25 +173,34 @@ public class Permissions extends Activity implements TorConstants {
 		Button grantPermissions = ((Button)findViewById(R.id.grantPermissions));
 		grantPermissions.setVisibility(Button.GONE);
         
-        
         CheckBox consent = (CheckBox)findViewById(R.id.checkBox);
         consent.setVisibility(CheckBox.GONE);
         
     	btn1.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
-				
-				startActivityForResult(new Intent(Permissions.this, LotsaText.class), 1);
+				finish();
+				startActivity(new Intent(Permissions.this, LotsaText.class));
 			}
 		});
     	
     	btn2.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
-				startActivityForResult(new Intent(Permissions.this, TipsAndTricks.class), 1);
+				finish();
+				startActivity(new Intent(Permissions.this, TipsAndTricks.class));
 			}
 		});
 	}
 		
+	//Code to override the back button!
+	public boolean onKeyDown(int keyCode, KeyEvent event)  {
+	    if(keyCode == KeyEvent.KEYCODE_BACK){
+	    	finish();
+	    	startActivity(new Intent(getBaseContext(), LotsaText.class));
+	    	return true;
+	    }
+	    return false;
+	}
 	
 }

@@ -33,6 +33,8 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Configuration;
 import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -81,28 +83,39 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 		/* The primary interface we will be calling on the service. */
     ITorService mService = null;
 
-    //should move this up with all the other class variables
-    private boolean mIsBound = false;
-    private Intent mTorService = null;
-    
-    
+	private SharedPreferences mPrefs = null;
+
 	private boolean autoStartFromIntent = false;
 
     /** Called when the activity is first created. */
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-      
-        TorServiceUtils.getSharedPrefs(getApplicationContext()).registerOnSharedPreferenceChangeListener(this);
+        
+        mPrefs = TorServiceUtils.getSharedPrefs(getApplicationContext());        
+        mPrefs.registerOnSharedPreferenceChangeListener(this);
            	
         setLocale();
         
     	doLayout();
 
-    	mTorService = new Intent(this, TorService.class);
-    	getApplication().getApplicationContext().startService(mTorService);
-    	
     	appConflictChecker ();
+    	
+    	startService ();
         
+	}
+
+	Intent torService;
+	
+	private void startService ()
+	{
+		torService = new Intent(this, TorService.class);    	    	
+		startService(torService);
+		
+
+		bindService(torService,
+				mConnection, Context.BIND_AUTO_CREATE);
+		
+	
 	}
 	
 	private void doLayout ()
@@ -159,11 +172,9 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 		downloadText.setText(formatCount(0) + " / " + formatTotal(0));
 		uploadText.setText(formatCount(0) + " / " + formatTotal(0));
 	
-		updateStatus("");
-		
-
         // Gesture detection
 		mGestureDetector = new GestureDetector(this, new MyGestureDetector());
+		
 
     }
 	
@@ -178,7 +189,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
    	
     private void appendLogTextAndScroll(String text)
     {
-        if(mTxtOrbotLog != null){
+        if(mTxtOrbotLog != null && text != null && text.length() > 0){
         	
         	if (mTxtOrbotLog.getText().length() > MAX_LOG_LENGTH)
         		mTxtOrbotLog.setText("");
@@ -373,7 +384,8 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                 }
                 else if (item.getItemId() == R.id.menu_wizard)
                 {
-                		startWizard();
+            		startActivity(new Intent(this, ChooseLocaleWizardActivity.class));
+
                 }
                 else if (item.getItemId() == R.id.menu_verify)
                 {
@@ -416,6 +428,9 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                         //terminology but also making sure there are clear distinctions in control
                         stopTor();
                         
+                        if (mConnection != null)
+                        	unbindService(mConnection); 
+                        
                         //perhaps this should be referenced as INTENT_TOR_SERVICE as in startService
                         stopService(new Intent(this,TorService.class));
                         
@@ -442,6 +457,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 
 		if (aDialog != null)
 			aDialog.dismiss();
+		
 	}
 	
 	private void doTorCheck ()
@@ -475,7 +491,6 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	
 	private void enableHiddenServicePort (int hsPort)
 	{
-		SharedPreferences mPrefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
 		
 		Editor pEdit = mPrefs.edit();
 		
@@ -515,34 +530,9 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 		setResult(RESULT_OK, nResult);
 	
 	}
-	
-	/* (non-Javadoc)
-	 * @see android.app.Activity#onResume()
-	 */
-	protected void onResume() {
-		super.onResume();
-		
-    	bindService();
-    	updateStatus("");
-	}
-	
-	
-	
-	@Override
-	protected void onNewIntent(Intent intent) {
-		
-		super.onNewIntent(intent);
-		try {
-			Log.d("lala", ""+mService.getStatus());
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		updateStatus("");
-		handleIntents();
-	}
 
-	private void handleIntents ()
+
+	private synchronized void handleIntents ()
 	{
 		if (getIntent() == null)
 			return;
@@ -594,12 +584,8 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 		{
 			autoStartFromIntent = true;
 			
-			if (mService == null)
-			{
-				bindService();
-			}
-			else
-			{
+			if (mService != null)
+			{			
 				try {
 					startTor();
 				} catch (RemoteException e) {
@@ -624,10 +610,23 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 					newBridgeValue = URLDecoder.decode(newBridgeValue); //decode the value here
 		
 					showAlert("Bridges Updated","Restart Orbot to use this bridge: " + newBridgeValue,false);	
-					SharedPreferences mPrefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
+					
+					String bridges = mPrefs.getString(TorConstants.PREF_BRIDGES_LIST, null);
+					
 					Editor pEdit = mPrefs.edit();
 					
-					pEdit.putString(TorConstants.PREF_BRIDGES_LIST,newBridgeValue); //set the string to a preference
+					if (bridges != null && bridges.trim().length() > 0)
+					{
+						if (bridges.indexOf('\n')!=-1)
+							bridges += '\n' + newBridgeValue;
+						else
+							bridges += ',' + newBridgeValue;
+					}
+					else
+						bridges = newBridgeValue;
+					
+					pEdit.putString(TorConstants.PREF_BRIDGES_LIST,bridges); //set the string to a preference
+					pEdit.putBoolean(TorConstants.PREF_BRIDGES_ENABLED,true);
 				
 					pEdit.commit();
 				}
@@ -636,21 +635,16 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 		else
 		{
 		
-			
-			SharedPreferences mPrefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
-			boolean showWizard = mPrefs.getBoolean("show_wizard",true);
+			showWizard = mPrefs.getBoolean("show_wizard",showWizard);
 			
 			if (showWizard)
 			{
-			
-				
 				Editor pEdit = mPrefs.edit();
 				pEdit.putBoolean("show_wizard",false);
-				pEdit.commit();
-	
-				startWizard();
-				
-				//startActivityForResult(new Intent(getApplicationContext(), LotsaText.class), 1);
+				pEdit.commit();				
+				showWizard = false;
+
+				startActivity(new Intent(this, ChooseLocaleWizardActivity.class));
 
 			}
 			
@@ -661,7 +655,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 		
 	}
 
-	
+	private boolean showWizard = true;
 	
 	
 	@Override
@@ -669,6 +663,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 		super.onConfigurationChanged(newConfig);
 		
 		doLayout();
+		updateStatus("");
 	}
 
 	/* (non-Javadoc)
@@ -686,7 +681,6 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	 */
 	private void openBrowser(final String browserLaunchUrl)
 	{
-		SharedPreferences mPrefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
 		boolean isOrwebInstalled = appInstalledOrNot("info.guardianproject.browser");
 		boolean isTransProxy =  mPrefs.getBoolean("pref_transparent", false);
 		
@@ -767,20 +761,6 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
         }
 }
 	
-	/*
-	 * Show the help view - a popup dialog
-	 */
-	private void startWizard ()
-	{
-
-		SharedPreferences mPrefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
-		Editor pEdit = mPrefs.edit();
-		pEdit.putBoolean("wizardscreen1",true);
-		pEdit.commit();
-		startActivityForResult(new Intent(getApplicationContext(), ChooseLocaleWizardActivity.class), 1);
-	}
-	
-	
     /*
      * Load the basic settings application to display torrc
      */
@@ -791,26 +771,32 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
     }
     
     
+    
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        
-        
-        if (requestCode == 1 && mService != null)
+	protected void onResume() {
+		super.onResume();
+
+        if (mService != null)
         {
                 try {
-					mService.processSettings();
+                	
+                	if (torStatus != TorServiceConstants.STATUS_ON)	
+                		mService.processSettings();
+                	
 					setLocale();
-	                
+					
+					handleIntents();
 				} catch (RemoteException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
         }
-       
-    }
-    
-    AlertDialog aDialog = null;
+        
+
+		updateStatus("");
+	}
+
+	AlertDialog aDialog = null;
     
     //general alert dialog for mostly Tor warning messages
     //sometimes this can go haywire or crazy with too many error
@@ -852,25 +838,53 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
      */
     public void updateStatus (String torServiceMsg)
     {
+    	new updateStatusAsync().execute(torServiceMsg);
+    }
+    
+    private class updateStatusAsync extends AsyncTask<String, Void, Integer> {
+    	
+    	String mTorServiceMsg = null;
+    	
+        @Override
+        protected Integer doInBackground(String... params) {
+          
+        	mTorServiceMsg = params[0];
+        	int newTorStatus = -1;
             try
             {
-            	if (torServiceMsg == null || torServiceMsg.length()==0)
-            		torStatus = -1; //reset Tor status
-            	
-            		int newTorStatus = -1;
-            	
-                    //if the serivce is bound, query it for the curren status value (int)
-                    if (mService != null)
-                    	newTorStatus = mService.getStatus();
+            	if (mService != null)
+                	return new Integer(mService.getStatus());
                     
+            }
+            catch (Exception e)
+            {
+            	//error
+            	Log.d(TAG,"error in update status",e);
+            }
+			
+            return newTorStatus;
+            
+        }
+        
+        @Override
+		protected void onPostExecute(Integer result) {
+			
+        	updateUI(result.intValue());
+        	
+			super.onPostExecute(result);
+		}
+
+		private void updateUI (int newTorStatus)
+        {
+            
                     //now update the layout_main UI based on the status
                     if (imgStatus != null)
                     {
                             
                             if (newTorStatus == TorServiceConstants.STATUS_ON)
                             {
-	                            	if (torStatus != newTorStatus)
-	                            	{
+	                            	//if (torStatus != newTorStatus)
+	                            	//{
 	                                    imgStatus.setImageResource(R.drawable.toron);
 	                            	//	mViewMain.setBackgroundResource(R.drawable.onionrootonly);    
 	                            		
@@ -880,13 +894,13 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	                                    if (mItemOnOff != null)
 	                                            mItemOnOff.setTitle(R.string.menu_stop);
 	                                    
-	                            	}
+	                            	//}
                                     
-                                    if (torServiceMsg != null && torServiceMsg.length() > 0)
+                                    if (mTorServiceMsg != null && mTorServiceMsg.length() > 0)
                                     {
-                                    	appendLogTextAndScroll(torServiceMsg);
+                                    	appendLogTextAndScroll(mTorServiceMsg);
                                     }
-                                    SharedPreferences mPrefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
+                                    
                                     boolean showFirstTime = mPrefs.getBoolean("connect_first_time",true);
                                     
                                     if (showFirstTime)
@@ -921,11 +935,11 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                                             mItemOnOff.setTitle(R.string.menu_stop);
                             	}
                             	
-                                if (lblStatus != null && torServiceMsg != null)
-                                	if (torServiceMsg.indexOf('%')!=-1)
-                                		lblStatus.setText(torServiceMsg);
+                                if (lblStatus != null && mTorServiceMsg != null)
+                                	if (mTorServiceMsg.indexOf('%')!=-1)
+                                		lblStatus.setText(mTorServiceMsg);
                                 
-                                appendLogTextAndScroll(torServiceMsg);
+                                appendLogTextAndScroll(mTorServiceMsg);
                                 
                                             
                             }
@@ -942,14 +956,10 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                     }
                     
                     torStatus = newTorStatus;
-                            
-            }
-            catch (RemoteException e)
-            {
-                    Log.e(TAG,"remote exception updating status",e);
-            }
+               
             
         
+        }
     }
   
   // guess what? this start's Tor! actually no it just requests via the local ITorService to the remote TorService instance
@@ -985,7 +995,6 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
     		mService.setProfile(TorServiceConstants.PROFILE_OFF);
     		Message msg = mHandler.obtainMessage(TorServiceConstants.DISABLE_TOR_MSG);
     		mHandler.sendMessage(msg);
-            //trafficRow.setVisibility(RelativeLayout.GONE);
 
             
     	}
@@ -1004,10 +1013,8 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	            try
 	            {
 	                    
-	                if (mService != null && mService.getStatus() == TorServiceConstants.STATUS_OFF)
+	                if (torStatus == TorServiceConstants.STATUS_OFF)
 	                {
-	                        
-	                       // createProgressDialog(getString(R.string.status_starting_up));
 	
 	                        startTor();
 	                }
@@ -1158,8 +1165,6 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
         public void onServiceConnected(ComponentName className,
                 IBinder service) {
         	
-        	 mIsBound = true;
-        	 
             // This is called when the connection with the service has been
             // established, giving us the service object we can use to
             // interact with the service.  We are communicating with our
@@ -1167,6 +1172,8 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
             // representation of that from the raw service object.
             mService = ITorService.Stub.asInterface(service);
        
+            torStatus = -1;
+            
             // We want to monitor the service for as long as we are
             // connected to it.
             try {
@@ -1179,9 +1186,10 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                         
                         
                 }
-                
+               
                 handleIntents();
-                
+
+                updateStatus("");  
             
             } catch (RemoteException e) {
                 // In this case the service has crashed before we could even
@@ -1202,51 +1210,10 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
             // This is called when the connection with the service has been
             // unexpectedly disconnected -- that is, its process crashed.
             mService = null;
-          
+            Log.d(TAG,"service was disconnected");
         }
     };
     
-    //this is where we bind! 
-    private void bindService ()
-    {
-        
-         //since its auto create, we prob don't ever need to call startService
-         //also we should again be consistent with using either iTorService.class.getName()
-         //or the variable constant       
-         bindService(mTorService,
-             mConnection, Context.BIND_AUTO_CREATE);
-         
-        
-    
-    }
-    
-    //unbind removes the callback, and unbinds the service
-    private void unbindService ()
-    {
-            if (mIsBound) {
-            // If we have received the service, and hence registered with
-            // it, then now is the time to unregister.
-            if (mService != null) {
-                try {
-                    mService.unregisterCallback(mCallback);
-                    
-                } catch (RemoteException e) {
-                    // There is nothing special we need to do if the service
-                    // has crashed.
-                }
-        }
-            
-            // Detach our existing connection.
-            unbindService(mConnection);
-            mIsBound = false;
-            
-
-            //maybe needs this?
-            mService = null; 
-            
-            
-        }
-    }
         
     /*
     private void createProgressDialog (String msg)
@@ -1280,7 +1247,6 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
     	
 
         Configuration config = getResources().getConfiguration();
-        SharedPreferences mPrefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
         String lang = mPrefs.getString(PREF_DEFAULT_LOCALE, "");
         
         if (! "".equals(lang) && ! config.locale.getLanguage().equals(lang))
@@ -1296,7 +1262,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	protected void onDestroy() {
 		super.onDestroy();
 		
-		unbindService();
+		//unbindService();
 	}
 
 	public class DataCount {

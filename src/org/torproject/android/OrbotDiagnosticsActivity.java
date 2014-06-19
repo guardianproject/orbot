@@ -57,8 +57,9 @@ public class OrbotDiagnosticsActivity extends Activity {
 	
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
+		
+		stopTor();
 	}
 
 	@Override

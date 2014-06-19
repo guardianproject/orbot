@@ -2,10 +2,6 @@ package org.torproject.android.wizard;
 
 import org.torproject.android.R;
 import org.torproject.android.TorConstants;
-import org.torproject.android.R.drawable;
-import org.torproject.android.R.id;
-import org.torproject.android.R.layout;
-import org.torproject.android.R.string;
 import org.torproject.android.service.TorServiceUtils;
 
 import android.app.Activity;
@@ -14,11 +10,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.support.v4.app.ActivityCompat;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 public class LotsaText extends Activity implements TorConstants{
@@ -57,19 +51,6 @@ public class LotsaText extends Activity implements TorConstants{
 	
 		
 	}
-
-	
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-	    switch(resultCode)
-	    {
-	    case RESULT_CLOSE_ALL:
-	        setResult(RESULT_CLOSE_ALL);
-	        finish();
-	    }
-	    super.onActivityResult(requestCode, resultCode, data);
-	}
-	
 	
 	private void stepOne() {
 		
@@ -135,11 +116,22 @@ public class LotsaText extends Activity implements TorConstants{
     	btn2.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
-				startActivityForResult(new Intent(LotsaText.this, Permissions.class), 1);
+				finish();
+				startActivity(new Intent(LotsaText.this, Permissions.class));
 			}
 		});
 		
 	}
-
+	
+	//Code to override the back button!
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event)  {
+	    if(keyCode == KeyEvent.KEYCODE_BACK){
+	    	finish();
+	    	startActivity(new Intent(getBaseContext(), ChooseLocaleWizardActivity.class));
+	    	return true;
+	    }
+	    return true;
+	}
 	
 }

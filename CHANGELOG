@@ -1,5 +1,96 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+7ec6de7 update to 14.0.4.1
+298a01e make sure transproxy is renabled when network returns
+2eb79a5 fulfilles the wishes of #12413 by support --default-torrc and -f
+b6715b4 fixes #12411 and #12412 enables DNS and transport by default with new Orbot settings to enable user to easily change/disable
+fc608d3 update to 14.0.4
+0129976 improve ability to do a full clean stop of all services
+af51290 add support for updating Polipo config
+156ed57 clean up unbind process and service shutdown
+8a59cfb use canonical paths to ensure shell commands are correct also cleanup torrc updating
+f3d21ee improve resource installer ability to update torrc
+c0f7d75 use one prefs instance
+2ce9ea9 make default config files have ports off by default (0)
+9025fc5 update to 14.0.3.1
+dee0d19 improve logic for updating torrc files (not so often)
+44648f1 clean up bind/unbind and handleIntent wizard logic
+917ec8d update torrc and torrcdiag when you need to
+f91a35b update tor binary constants to force upgrade
+65eb7ad fix torrc defaults - add back in avoiddiskwrites
+c04fc95 update to 14.0.3
+42e0698 don't stop tor when service onStartCommand() is called again
+fc63929 ensure diag/test mode stop's Tor on activity exit
+328c6af tune bind/create service logic
+4716696 make transport settings dynamic (remove from torrc)
+2fe57e8 pegging tor to 0.2.4.22
+00b535e updated to 14.0.2.1
+c2be4ac ensure polipo conf is updated; default to 9051 for ctrl port
+6ab9a7b reduce memory usage of polipo
+b26b9d4 update to 14.0.2
+aa8ff95 ensure readers are closed; ensure socks settings are applied
+b4fa943 improve process id finding using android 'toolbox'
+2d6a7b3 renable large heap request
+d7f3f19 more fixes for UI disconnect issue ensure service and status updates occur on new layout updates
+7e76162 bumping to 14.0.1
+af51a98 allow support for adding custom lines to torrc
+22938c9 multiple fixes for tor start including "auto" control port also try to kill hung tor process
+0224365 ensure torrc values are overwritten
+81bd617 updating to 14.0.0 build 100!
+98ea6d5 update changelog
+5776a87 update to 14.0.0-RC3
+bf6a1da update state when service connects
+451cfed keep SOCKS port as default 9050 (instead of 'auto')
+f94e27a updated to 14.0.0-RC-1
+bedeb71 more fixes for hidden service configuration now multiple ports are properly configured and notification will display correctl
+051cce4 don't allow the tor control port socket to timeout
+f4baf4d updated to 2.0.21-stable
+120da6b more wizard flow fixes
+816a6b2 updating to 1.1.1
+24773c3 update to OpenSSL 1.0.1h
+8b5bb04 Makefile patch for Orbot
+ccaec1e update 14.0.0-BETA-2
+da3c955 fixes for tor setConf/control port fixes hidden service support manages socks port conflicts
+9345186 remove unnecessary line
+707bca4 amek sure wizard only is shown once on start (not twice!)
+0fddd80 fix for missing libs folder
+7abea23 removing binaries from repo
+70d7792 updated changelog
+2650fda update to 14.0.0-BETA-1
+476dc1a update binaries for 0.2.4.22 Tor
+b6116b5 switch to 0.2.4.22 version of Tor for release
+148e7eb remove deletion of polipo folder
+352c23b updated binaries for OpenSSL 1.0.1h
+7622d2c update constant for 1.0.1h and latest openssl vuln http://ccsinjection.lepidum.co.jp/blog/2014-06-05/CCS-Injection-en/index.h
+d392439 fix bridge append value from qrcode scan
+d6f5720 remove synchronized - not needed, and causing blocking
+f52c22a Merge branch 'amoghbl1-issue_3014_wizard_workflow'
+f6750e1 sometimes text can be null
+fd47e70 fix control port connections with socket timeouts
+36a6349 status should update whether there is msg or not
+63b4304 Merge branch 'issue_3014_wizard_workflow' of https://github.com/amoghbl1/orbot-1 into amoghbl1-issue_3014_wizard_workflow
+25f6499 Merge branch 'master' of github.com:n8fr8/orbot
+e2e0d26 Merge branch 'hans_feature_desc'
+c1f9296 new work on binding and service starting
+e2e00cc removed largeheap value
+13ef143 add app description to manifest to support p2p distribution
+c111030 Merge pull request #1 from amoghbl1/issue_2374_story_maker
+4759d9f implemented button click function for the story maker button, also url added in strings, change to liking at review
+53e82b1 general cleanup, removed log.d's
+6488e6a cleaned Permissions workflow, implemented override for back button
+935fa91 cleaned LotsaText workflow, implemented override for back button
+f29a494 cleaned ConfigureTransProxy workflow, implemented override for back button
+ea384f9 cleaned ChooseLocaleWizardActivity workflow, implemented override for back button and added toast warning message string
+ffcfce7 cleaned TipsAndTricks workflow
+255623a added the story maker button to the tips wizard page, also added tip string to the strings file.
+23c689c added icon for story maker button to be added to the hints and tips page
+cfc8a99 updated to 14.0.0-ALPHA-4
+278997d simple notification of bridge settings via URL
+17934e6 initial support for setting bridge through URL
+96c0a54 add large heap and remote process settings back in
+726cf0c work to stabilize Tor background service auto-restart tor binary process if killed by Android OS print out debug info related
+11c31fa update the changelog
+
 14.0.0 (ALPHA-2)
 583c758 updated to 14.0.0-ALPHA-3
 90848b0 reduce memory usage of app and make single process

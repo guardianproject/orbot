@@ -23,15 +23,11 @@ endif
 
 # Android NDK setup
 NDK_BASE ?= /opt/android-ndk
-NDK_PLATFORM_LEVEL ?= 9 
-NDK_ABI=arm
+NDK_PLATFORM_LEVEL ?= 9
+NDK_ABI ?= arm
 NDK_TOOLCHAIN_VERSION=4.8
 NDK_SYSROOT=$(NDK_BASE)/platforms/android-$(NDK_PLATFORM_LEVEL)/arch-$(NDK_ABI)
-APP_ABI=armeabi
-# NDK platform level, aka APP_PLATFORM, is equivalent to minSdkVersion
-APP_PLATFORM := android-$(shell sed -n 's,.*android:minSdkVersion="\([0-9][0-9]*\)".*,\1,p' \
-	$(EXTERNAL_ROOT)/../AndroidManifest.xml)
-NDK_SYSROOT=$(NDK_BASE)/platforms/$(APP_PLATFORM)/arch-$(NDK_ABI)
+APP_ABI ?= armeabi
 NDK_UNAME := $(shell uname -s | tr '[A-Z]' '[a-z]')
 ifeq ($(NDK_ABI),x86)
  HOST = i686-linux-android
@@ -85,14 +81,14 @@ all: assets
 lib/libcrypto.a:
 	cd openssl && \
 		./Configure android -DL_ENDIAN && \
-		make CC="$(CC)" ANDROID_DEV=$(NDK_BASE)/platforms/android-8/arch-arm /usr build_libs
+		make CC="$(CC)" ANDROID_DEV=$(NDK_SYSROOT)/usr build_libs
 
 lib/libssl.a:
 	cp config.sub openssl
 	cp config.guess openssl
 	cd openssl && \
 		./Configure android -DL_ENDIAN && \
-		make CC="$(CC)" ANDROID_DEV=$(NDK_BASE)/platforms/android-8/arch-arm /usr build_libs
+		make CC="$(CC)" ANDROID_DEV=$(NDK_SYSROOT)/usr build_libs
 
 openssl-build-stamp: lib/libcrypto.a lib/libssl.a
 	touch openssl-build-stamp
@@ -294,7 +290,6 @@ polipo: polipo-build-stamp
 polipo-clean:
 	-rm -f bin/polipo
 	-rm -f polipo-build-stamp
-	-rm -rf polipo
 
 #------------------------------------------------------------------------------#
 # JTorControl library
@@ -352,8 +347,8 @@ clean: openssl-clean libevent-clean tor-clean polipo-clean jtorctl-clean liballi
 showsetup:
 	@echo "NDK_TOOLCHAIN_VERSION: $(NDK_TOOLCHAIN_VERSION)"
 	@echo "NDK_TOOLCHAIN: $(NDK_TOOLCHAIN)"
+	@echo "NDK_PLATFORM_LEVEL: $(NDK_PLATFORM_LEVEL)"
 	@echo "NDK_SYSROOT: $(NDK_SYSROOT)"
-	@echo "APP_PLATFORM: $(APP_PLATFORM)"
 	@echo "APP_ABI: $(APP_ABI)"
 	@echo "HOST: $(HOST)"
 	@echo "CC: $(CC)"

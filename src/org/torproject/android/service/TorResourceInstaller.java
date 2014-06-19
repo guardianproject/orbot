@@ -11,6 +11,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.StringBufferInputStream;
 import java.util.ArrayList;
 import java.util.concurrent.TimeoutException;
 import java.util.zip.ZipEntry;
@@ -112,6 +113,54 @@ public class TorResourceInstaller implements TorServiceConstants {
 		shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
 		streamToFile(is,outFile, false, true);
 	
+		return true;
+	}
+	
+	public boolean updateTorConfigCustom (File fileTorRcCustom, String extraLines) throws IOException, FileNotFoundException, TimeoutException
+	{
+		
+
+		StringBufferInputStream sbis = new StringBufferInputStream(extraLines + '\n');
+		streamToFile(sbis,fileTorRcCustom,false,false);
+		
+		return true;
+	}
+	
+	public boolean updatePolipoConfig (File filePolipo, String extraLines) throws IOException, FileNotFoundException, TimeoutException
+	{
+		
+		InputStream is;
+        
+        Shell shell = Shell.startShell(new ArrayList<String>(),installFolder.getAbsolutePath());
+        
+		is = context.getResources().openRawResource(R.raw.torpolipo);		
+		shell.add(new SimpleCommand(COMMAND_RM_FORCE + filePolipo.getAbsolutePath())).waitForFinish();
+		streamToFile(is,filePolipo, false, false);
+
+		if (extraLines != null && extraLines.length() > 0)
+		{
+			StringBufferInputStream sbis = new StringBufferInputStream('\n' + extraLines + '\n');
+			streamToFile(sbis,filePolipo,true,false);
+		}
+		
+		shell.close();
+		
+		return true;
+	}
+	
+	public boolean installPolipoConf () throws IOException, FileNotFoundException, TimeoutException
+	{
+		
+		InputStream is;
+        File outFile;
+        
+        Shell shell = Shell.startShell(new ArrayList<String>(),installFolder.getAbsolutePath());
+        
+        is = context.getResources().openRawResource(R.raw.torpolipo);
+		outFile = new File(installFolder, POLIPOCONFIG_ASSET_KEY);
+		shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
+		streamToFile(is,outFile, false, false);
+		
 		return true;
 	}
 	

@@ -196,6 +196,36 @@ android:dialogTitle="@string/pref_proxy_password_dialog"
 </PreferenceCategory>
 
 <PreferenceCategory android:title="Debug">
+    
+    <EditTextPreference android:key="pref_socks"
+android:title="@string/pref_socks_title"
+android:summary="@string/pref_socks_summary"
+android:dialogTitle="@string/pref_socks_dialog"
+android:defaultValue="9050"
+/>
+    
+      <EditTextPreference android:key="pref_transport"
+android:title="@string/pref_transport_title"
+android:summary="@string/pref_transport_summary"
+android:dialogTitle="@string/pref_transport_dialog"
+android:defaultValue="9040"
+/>
+      
+        <EditTextPreference android:key="pref_dnsport"
+android:title="@string/pref_dnsport_title"
+android:summary="@string/pref_dnsport_summary"
+android:dialogTitle="@string/pref_dnsport_dialog"
+android:defaultValue="5400"
+/>
+    
+  <EditTextPreference android:key="pref_custom_torrc"
+android:title="@string/pref_torrc_title"
+android:summary="@string/pref_torrc_summary"
+android:dialogTitle="@string/pref_torrc_dialog"
+android:defaultValue=""
+/>
+    
+  
 <CheckBoxPreference
 android:key="pref_enable_logging"
 android:defaultValue="false"

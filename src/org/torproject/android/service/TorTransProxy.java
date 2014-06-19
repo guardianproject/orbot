@@ -23,10 +23,24 @@ public class TorTransProxy implements TorServiceConstants {
 	
 	private final static String ALLOW_LOCAL = " ! -o lo ! -d 127.0.0.1 ! -s 127.0.0.1 ";
 
+	private int mTransProxyPort = TorServiceConstants.TOR_TRANSPROXY_PORT_DEFAULT;
+	private int mDNSPort = TorServiceConstants.TOR_DNS_PORT_DEFAULT;
+	
 	public TorTransProxy (TorService torService, File fileXTables)
 	{
 		mTorService = torService;
 		mFileXtables = fileXTables;
+		
+	}
+	
+	public void setTransProxyPort (int transProxyPort)
+	{
+		mTransProxyPort = transProxyPort;
+	}
+	
+	public void setDNSPort (int dnsPort)
+	{
+		mDNSPort = dnsPort;
 	}
 	
 	public String getIpTablesPath (Context context)
@@ -383,7 +397,7 @@ public class TorTransProxy implements TorServiceConstants {
 				script.append(tApp.getUid());
 				script.append(" -m tcp --syn");
 				script.append(" -j REDIRECT --to-ports ");
-				script.append(TOR_TRANSPROXY_PORT);
+				script.append(mTransProxyPort);
 				
 				executeCommand (shell, script.toString());
 				script = new StringBuilder();
@@ -398,7 +412,7 @@ public class TorTransProxy implements TorServiceConstants {
 				script.append(" -m udp --dport "); 
 				script.append(STANDARD_DNS_PORT);
 				script.append(" -j REDIRECT --to-ports ");
-				script.append(TOR_DNS_PORT);
+				script.append(mDNSPort);
 
 				executeCommand (shell, script.toString());
 				script = new StringBuilder();
@@ -454,7 +468,7 @@ public class TorTransProxy implements TorServiceConstants {
 			script.append(" -t nat -A PREROUTING -i ");
 			script.append(hwinterfaces[i]);
 			script.append(" -p udp --dport 53 -j REDIRECT --to-ports ");
-			script.append(TOR_DNS_PORT);
+			script.append(mDNSPort);
 			
 			executeCommand (shell, script.toString());
 			script = new StringBuilder();
@@ -465,7 +479,7 @@ public class TorTransProxy implements TorServiceConstants {
 			script.append(" -t nat -A PREROUTING -i ");
 			script.append(hwinterfaces[i]);
 			script.append(" -p tcp -j REDIRECT --to-ports ");
-			script.append(TOR_TRANSPROXY_PORT);
+			script.append(mTransProxyPort);
 			
 			lastExit = executeCommand (shell, script.toString());
 			script = new StringBuilder();
@@ -642,7 +656,7 @@ public class TorTransProxy implements TorServiceConstants {
 		script.append(torUid);
 		script.append(" -m tcp --syn");
 		script.append(" -j REDIRECT --to-ports ");
-		script.append(TOR_TRANSPROXY_PORT);
+		script.append(mTransProxyPort);
 
 		executeCommand (shell, script.toString());
 		script = new StringBuilder();
@@ -658,7 +672,7 @@ public class TorTransProxy implements TorServiceConstants {
 		script.append(" -m udp --dport "); 
 		script.append(STANDARD_DNS_PORT);
 		script.append(" -j REDIRECT --to-ports ");
-		script.append(TOR_DNS_PORT);
+		script.append(mDNSPort);
 
 		executeCommand (shell, script.toString());
 		script = new StringBuilder();
@@ -699,7 +713,7 @@ public class TorTransProxy implements TorServiceConstants {
 		script.append(" -A ").append(srcChainName);
 		script.append(" -p tcp");
 		script.append(" -m tcp");
-		script.append(" --dport ").append(TOR_TRANSPROXY_PORT);
+		script.append(" --dport ").append(mTransProxyPort);
 		script.append(" -j ACCEPT");
 
 		executeCommand (shell, script.toString());
@@ -711,7 +725,7 @@ public class TorTransProxy implements TorServiceConstants {
 		script.append(" -A ").append(srcChainName);
 		script.append(" -p tcp");
 		script.append(" -m tcp");
-		script.append(" --dport ").append(PORT_SOCKS);
+		script.append(" --dport ").append(PORT_SOCKS_DEFAULT);
 		script.append(" -j ACCEPT");
 
 		executeCommand (shell, script.toString());
@@ -735,7 +749,7 @@ public class TorTransProxy implements TorServiceConstants {
 		script.append(" -A ").append(srcChainName);
 		script.append(" -p udp");
 		script.append(" -m udp");
-		script.append(" --dport ").append(TOR_DNS_PORT);
+		script.append(" --dport ").append(mDNSPort);
 		script.append(" -j ACCEPT");
 
 		executeCommand (shell, script.toString());
@@ -747,7 +761,7 @@ public class TorTransProxy implements TorServiceConstants {
 		script.append(" -A ").append(srcChainName);
 		script.append(" -p udp");
 		script.append(" -m udp");
-		script.append(" --dport ").append(TOR_DNS_PORT);
+		script.append(" --dport ").append(mDNSPort);
 		script.append(" -j ACCEPT");
 
 		executeCommand (shell, script.toString());
