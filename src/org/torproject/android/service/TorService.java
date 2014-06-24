@@ -268,7 +268,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		{
 			new startTorOperation().execute(intent);
 			
-		    return Service.START_NOT_STICKY;
+		    return Service.START_STICKY;
 		    
 		}
 		catch (Exception e)
@@ -469,9 +469,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			conn = null;
 		}
     	
-    	killProcess(fileTor);
+    //	killProcess(fileTor);
 		killProcess(filePolipo);
-		killProcess(fileObfsclient);
+	//	killProcess(fileObfsclient);
 		
 		
     }
@@ -484,7 +484,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	while ((procId = TorServiceUtils.findProcessId(fileProcBin.getCanonicalPath())) != -1)
 		{
 			
-			logNotice("Found fileObfsclient PID=" + procId + " - killing now...");
+			logNotice("Found " + fileProcBin.getName() + " PID=" + procId + " - killing now...");
 			
 			SimpleCommand killCommand = new SimpleCommand("toolbox kill " + procId);
 			shell.add(killCommand);
@@ -582,8 +582,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	if (!fileBin.canExecute())
     	{
 			logNotice("(re)Setting permission on binary: " + fileBin.getCanonicalPath());	
-			Shell shell = Shell.startShell(new ArrayList<String>(), appBinHome.getCanonicalPath());
-		
+			//Shell shell = Shell.startShell(new ArrayList<String>(), appBinHome.getCanonicalPath());
+			Shell shell = Shell.startShell();
 			shell.add(new SimpleCommand("chmod " + CHMOD_EXE_VALUE + ' ' + fileBin.getCanonicalPath())).waitForFinish();
 			
 			File fileTest = new File(fileBin.getCanonicalPath());
