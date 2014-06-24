@@ -111,11 +111,10 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 		torService = new Intent(this, TorService.class);    	    	
 		startService(torService);
 		
-
 		bindService(torService,
 				mConnection, Context.BIND_AUTO_CREATE);
 		
-	
+		
 	}
 	
 	private void doLayout ()
@@ -1261,7 +1260,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	protected void onDestroy() {
 		super.onDestroy();
 		
-		//unbindService();
+		unbindService(mConnection);
 	}
 
 	public class DataCount {
