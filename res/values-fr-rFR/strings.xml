@@ -25,8 +25,8 @@
   <string name="menu_stop">Arrêter</string>
   <string name="menu_about">À propos</string>
   <string name="menu_wizard">Assistant</string>
-  <string name="main_layout_download">Téléchargement (vitesse/total)</string>
-  <string name="main_layout_upload">Envoi (vitesse/total)</string>
+  <string name="main_layout_download">Réception</string>
+  <string name="main_layout_upload">Envoi</string>
   <string name="button_help">Aide</string>
   <string name="button_close">Fermer</string>
   <string name="button_about">À propos</string>
@@ -34,7 +34,7 @@
   <string name="menu_verify">Vérifier</string>
   <string name="menu_exit">Quitter</string>
   <string name="press_to_start">- appuyez longtemps pour démarrer -</string>
-  <string name="pref_trans_proxy_group">Proxy transparent (accès privilégié requis) </string>
+  <string name="pref_trans_proxy_group">Proxy transparent (accès Root requis) </string>
   <string name="pref_trans_proxy_title">Proxy transparent</string>
   <string name="pref_trans_proxy_summary">Torifaction automatique des applications</string>
   <string name="pref_transparent_all_title">Tout passer par Tor</string>
@@ -44,8 +44,8 @@
   <string name="pref_transparent_port_title">Liste des ports</string>
   <string name="pref_transparent_port_summary">Liste des ports vers le proxy. *À N\'UTILISER QUE* si les modes \'Tout \' ou \'Application\' ne fonctionnent pas.</string>
   <string name="pref_transparent_port_dialog">Entrez les ports vers le proxy</string>
-  <string name="pref_has_root">Demander un accès privilégié</string>
-  <string name="pref_has_root_summary">Demande un accès privilégié pour le proxy transparent</string>
+  <string name="pref_has_root">Demande un accès Root</string>
+  <string name="pref_has_root_summary">Demande un accès Root pour le proxy transparent</string>
   <string name="status_install_success">Tor a été installé avec succès !</string>
   <string name="status_install_fail">Tor n\'a pu être installé. Veuillez vérifier le fichier journal et contacter tor-assistants@torproject.org</string>
   <string name="title_error">Erreur de l\'application</string>
@@ -61,17 +61,18 @@
   <string name="wizard_details_msg">Orbot est une application logicielle libre qui contient Tor, LibEvent et Privoxy. Il fournit un proxy local HTTP (8118) et un proxy SOCKS (9050) dans le réseau Tor. Orbot a aussi la capacité, avec les droits administrateurs, d\'envoyer tout le trafic Internet à travers Tor.</string>
   <string name="wizard_permissions_root">Permission accordée</string>
   <string name="wizard_permissions_stock">Permissions d\'Orbot</string>
-  <string name="wizard_premissions_msg_root">Excellent ! Nous avons détecté que vous avez donné les droits privilégiés pour Orbot. Nous utiliserions ces droits avec sagesse.</string>
-  <string name="wizard_permissions_msg_stock">Bien que cela ne soit pas nécessaire, Orbot peut devenir un outil bien plus utile si vous lui donnez un accès privilégié. Utilisez le bouton ci-dessous pour donner à Orbot de grands pouvoirs ! </string>
-  <string name="wizard_permissions_no_root">Si vous n\'avez pas d\'accès privilégié ou n\'avez pas idée de ce que cela signifie, vérifiez bien que vous utilisez des applications conçues pour fonctionner avec Orbot.</string>
-  <string name="wizard_permissions_consent">Je comprends et je souhaite continuer sans les droits privilégiés</string>
-  <string name="wizard_permission_enable_root">Donner les droits privilégiés à Orbot</string>
+  <string name="wizard_premissions_msg_root">Parfait ! Nous avons détecté que Orbot détient les permissions root. Nous utiliserons ces droits avec discernement.</string>
+  <string name="wizard_permissions_msg_stock">Bien que cela ne soit pas nécessaire, Orbot peut devenir un outil bien plus utile si vous lui donnez un accès Root. Utilisez le bouton ci-dessous pour donner à Orbot ces superpouvoirs !</string>
+  <string name="wizard_permissions_no_root">Si vous n\'avez pas d\'accès root ou n\'avez pas idée de ce que cela signifie, vérifiez bien que vous utilisez des applications conçues pour fonctionner avec Orbot.</string>
+  <string name="wizard_permissions_consent">Je comprends et je souhaite continuer sans les droits root</string>
+  <string name="wizard_permission_enable_root">Donner les droits Root à Orbot</string>
   <string name="wizard_configure">Configurer la Torification</string>
   <string name="wizard_configure_msg">Orbot vous donne le choix entre faire passer le trafic de toutes les applications à travers Tor OU de choisir pour chaque application.</string>
   <string name="wizard_configure_all">Toutes les applications par Tor</string>
   <string name="wizard_configure_select_apps">Choisir les applications utilisant Tor</string>
   <string name="wizard_tips_tricks">Applications avec Orbot</string>
   <string name="wizard_tips_msg">Nous vous encourageons à télécharger et utiliser ces applications conçues pour se connecter directement à Orbot. Cliquez sur les boutons ci-dessous pour en installer.</string>
+  <string name="wizard_tips_otrchat">ChatSecure - Client de messagerie instantanée sécurisée pour Android</string>
   <string name="wizard_tips_proxy">Configuration du proxy - Apprendre comment configurer les applications pour qu\'elles fonctionnent avec Orbot</string>
   <string name="wizard_tips_duckgo">Application DuckDuckgo Search Engine</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
@@ -100,10 +101,13 @@
   <string name="wizard_permissions_title">Permissions</string>
   <string name="wizard_permissions_root_msg1">Vous pouvez aussi, optionnellement donner l\'accès \"Super Utilisateur\" à Orbot pour activer les options avancées, comme le Proxy Transparent</string>
   <string name="wizard_permissions_root_msg2">Si vous ne voulez pas faire ça, merci de vous assurer que les applications que vous utilisez ont été faites pour fonctionner avec Orbot.</string>
-  <string name="wizard_permissions_no_root_msg">Votre appareil est en mode standard et ne supporte pas l\'accès root ni «super-utilisateur».\n\nPour bénéficier de Tor, vous devrez utiliser des applications conçues pour fonctionner avec Orbot, ou qui permettent d\'utiliser un proxy de type HTTP ou SOCKS.\n\n\n</string>
+  <string name="wizard_permissions_no_root_msg">Votre appareil ne semble pas être Rooté et ne permet pas l\'accés «super-utilisateur».\n\nPour bénéficier de Tor, vous devrez utiliser des applications conçues pour fonctionner avec Orbot, ou qui permettent d\'utiliser un proxy de type HTTP ou SOCKS.\n</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Applications Orbot</string>
+  <string name="wizard_tips_gibberbot">Chatsecure : Application de messagerie instantanée sécurisée avec chiffrement Off-the-Record </string>
+  <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
   <string name="wizard_tips_orweb">ORWEB (Android 1.x seulement) - navigateur créé pour protéger votre vie privée &amp; pour Orbot</string>
+  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
   <string name="wizard_tips_play">Trouver toutes les applications de Guardian Project sur Google Play</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
@@ -197,8 +201,11 @@
   <string name="the_tor_license">La licence de Tor</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Logiciels tierce-partie :</string>
+  <string name="tor_version">Tor v0.2.4.21: https://www.torproject.org</string>
+  <string name="libevent_version">LibEvent v2.0.9: http://www.monkey.org/~provos/libevent/</string>
   <string name="privoxy_version">Privoxy v3.0.12 : http://www.privoxy.org</string>
   <string name="iptables_version">Iptables v1.4.7 : http://www.netfilter.org</string>
+  <string name="openssl_version">OpenSSL v1.0.1g: http://www.openssl.org</string>
   <string name="hidden_service_request">Une application veut ouvrir le port %S du serveur caché sur le réseau Tor. C\'est sécuritaire si vous faites confiance à l\'application.</string>
   <string name="found_existing_tor_process">trouvé un processus existant de Tor ...</string>
   <string name="something_bad_happened">Quelque chose d\'incorrect s\'est passé. Vérifiez le journal</string>
@@ -219,4 +226,16 @@
   <string name="powered_by">propulsé par le Projet Tor </string>
   <string name="btn_save_settings">Sauver les Paramètres</string>
   <string name="no_internet_connection_tor">Pas de connexion Internet ; Tor est en veille...</string>
+  <string name="bandwidth_">Bande passante :</string>
+  <string name="down">réception</string>
+  <string name="up">envoi</string>
+  <string name="pref_disable_network_title">Pas de mise en veille automatique du réseau</string>
+  <string name="pref_disable_network_summary">Mettre Tor en veille quand aucune connection internet n\'est disponible</string>
+  <string name="newnym">Vous avez obtenu une nouvelle identité Tor !</string>
+  <string name="menu_verify_browser">Vérifier le navigateur</string>
+  <string name="menu_use_chatsecure">Utiliser ChatSecure</string>
+  <string name="permission_manage_tor_label">Gérer Tor</string>
+  <string name="permission_manage_tor_description">Autoriser cette application à contrôler le service Tor</string>
+  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Il semble que Orweb ne soit pas installé. Voulez-vous de l\'aide sur ce point ou simplement ouvrir le navigateur web ?</string>
+  <string name="install_apps_">Installer les applications ?</string>
 </resources>

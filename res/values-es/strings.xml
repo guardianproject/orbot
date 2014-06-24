@@ -72,6 +72,7 @@
   <string name="wizard_configure_select_apps">Seleccionar aplicaciones individuales para Tor</string>
   <string name="wizard_tips_tricks">Aplicaciones habilitadas para Orbot</string>
   <string name="wizard_tips_msg">Las siguientes aplicaciones fueron desarrolladas para trabajar con Orbot. Haga clic en cada botón para instalarlas ahora, o puede encontrarlas más tarde en Google Play, en la web guardianproject.info o vía f-droid.org </string>
+  <string name="wizard_tips_otrchat">ChatSecure - Cliente de mensajería instantánea segura para Android</string>
   <string name="wizard_tips_proxy">Preferencias para proxy - aprenda cómo configurar aplicaciones para que trabajen con Orbot</string>
   <string name="wizard_tips_duckgo">Aplicación del motor de búsqueda DuckDuckGo</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
@@ -103,7 +104,10 @@
   <string name="wizard_permissions_no_root_msg">Su dispositivo no parece estar rooteado (modificado para permitir acceso como root), o estar concediendo permisos de \'Superusuario\' a Orbot.\n\nPara que pueda beneficiarse de Tor, tendrá que utilizar aplicaciones específicamente preparadas para trabajar con Orbot, o que soporten conexión a través proxy HTTP o SOCKS.\n </string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Aplicaciones habilitadas para Orbot</string>
+  <string name="wizard_tips_gibberbot">ChatSecure: Aplicación de chat segura con cifrado Off-The-Record (OTR)</string>
+  <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
   <string name="wizard_tips_orweb">Orweb - navegador de privacidad-mejorada que funciona a través de Tor</string>
+  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
   <string name="wizard_tips_play">Descubre todas las aplicaciones de Guardian Project en Google Play</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
@@ -197,8 +201,11 @@
   <string name="the_tor_license">Licencia de Tor</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Software de terceras partes</string>
+  <string name="tor_version">Tor v0.2.4.21: https://www.torproject.org</string>
+  <string name="libevent_version">LibEvent v2.0.9: http://www.monkey.org/~provos/libevent/</string>
   <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
   <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
+  <string name="openssl_version">OpenSSL v1.0.1g: http://www.openssl.org</string>
   <string name="hidden_service_request">Una aplicación está intentando abrir el puerto %S de servicio oculto hacia la red Tor. Esto es seguro si su aplicación es de su confianza.</string>
   <string name="found_existing_tor_process">Se encontró un proceso de Tor ya existente...</string>
   <string name="something_bad_happened">Hubo algún tipo de problema. Compruebe el registro (log)</string>
@@ -219,4 +226,16 @@
   <string name="powered_by">impulsado por The Tor Project</string>
   <string name="btn_save_settings">Guardar configuración</string>
   <string name="no_internet_connection_tor">Sin conexión a Internet; Tor está en espera...</string>
+  <string name="bandwidth_">Ancho de banda:</string>
+  <string name="down">bajada</string>
+  <string name="up">subida</string>
+  <string name="pref_disable_network_title">Sin suspensión-automática de la red</string>
+  <string name="pref_disable_network_summary">Ponga Tor en suspensión cuando no haya Internet disponible</string>
+  <string name="newnym">¡Ha cambiado a una nueva identidad de Tor!</string>
+  <string name="menu_verify_browser">Compruebe el navegador</string>
+  <string name="menu_use_chatsecure">Usar ChatSecure</string>
+  <string name="permission_manage_tor_label">Administrar Tor</string>
+  <string name="permission_manage_tor_description">Habilita esta aplicación para controlar el servicio Tor</string>
+  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">No parece que tenga Orweb instalado. ¿Quiere ayuda con eso, o simplemente deberíamos abrir el navegador?</string>
+  <string name="install_apps_">¿Instalar aplicaciones?</string>
 </resources>

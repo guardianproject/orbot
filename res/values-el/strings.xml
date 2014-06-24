@@ -72,6 +72,7 @@
   <string name="wizard_configure_select_apps">Επιλογή μεμονωμένων εφαρμογών για το Tor</string>
   <string name="wizard_tips_tricks">Εφαρμογές συμβατές για Orbont</string>
   <string name="wizard_tips_msg">Οι παρακάτω εφαρμογές αναπτύχθηκαν ώστε να λειτουργούν με το Orbot. Πατήστε σε κάθε κουμπί για να εγκατασταθεί τώρα ή μπορείτε να τις βρείτε αργότερα στο Android Market</string>
+  <string name="wizard_tips_otrchat">ChatSecure - Εφαρμογή ασφαλούς ανταλλαγής άμεσων μηνυμάτων για Android</string>
   <string name="wizard_tips_proxy">Ρυθμίσεις proxy: Μάθετε πώς θα ρυθμίσετε τις εφαρμογές ώστε να λειτουργούν με το Orbot</string>
   <string name="wizard_tips_duckgo">Εφαρμογή Μηχανής Αναζήτησης Duckduckgo</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
@@ -103,7 +104,9 @@
   <string name="wizard_permissions_no_root_msg">Φαίνεται ότι η συσκευή σας δεν έχει διαμόρφωση υπερχρήστη (rooted) ή δεν παρέχει πρόσβαση \'Υπερχρήστη\'.\n\nΑν επιθυμείτε να επωφεληθείτε από το Tor θα πρέπει να χρησιμοποιήσετε εφαρμογές που συνεργάζονται με το Orbot ή υποστηρίζουν ρυθμίσεις διακομιστή διαμεσολάβησης HTTP ή SOCKS.</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Εφαρμογές συμβατές με Orbot</string>
+  <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
   <string name="wizard_tips_orweb">Orweb - Περιηγητής ιστού με ενισχυμένη ασφάλεια που είναι συμβατό με Tor</string>
+  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
   <string name="wizard_tips_play">Βρες όλες τις εφαρμογές Guardian Project στο Google Play</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
@@ -197,8 +200,11 @@
   <string name="the_tor_license">Η Άδεια Tor</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Λογισμικό τρίτων:</string>
+  <string name="tor_version">Tor v0.2.4.21: https://www.torproject.org</string>
+  <string name="libevent_version">LibEvent v2.0.9: http://www.monkey.org/~provos/libevent/</string>
   <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
   <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
+  <string name="openssl_version">OpenSSL v1.0.1g: http://www.openssl.org</string>
   <string name="hidden_service_request">Κάποια εφαρμογή προσπαθεί να ανοίξει την κρυφή θύρα διακομιστή %S στο δίκτυο Tor. Πρόκειται για ασφαλή ενέργεια, εφόσον γνωρίζετε την εφαρμογή.</string>
   <string name="found_existing_tor_process">αναζήτηση διεργασιών Tor...</string>
   <string name="something_bad_happened">Κάτι κακό συνέβη. Ελέγξτε τις καταγραφές</string>
@@ -219,4 +225,10 @@
   <string name="powered_by">με την δύναμη το Tor Project</string>
   <string name="btn_save_settings">Αποθήκευση ρυθμίσεων</string>
   <string name="no_internet_connection_tor">Δεν υπάρχει σύνδεση με το διαδίκτυο, το Tor είναι σε αναμονή...</string>
+  <string name="newnym">Έχετε αλλάξει επιτυχώς την ταυτότητα σας στο Tor! </string>
+  <string name="menu_verify_browser">\'Ελεγχος περιηγητή ιστού</string>
+  <string name="menu_use_chatsecure">Χρήση του ChatSecure</string>
+  <string name="permission_manage_tor_description">Εξουσιοδοτήστε την εφαρμογή να ελέγχει την υπηρεσία του Tor</string>
+  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Φαίνεται πως δεν έχετε το Orweb εγκατεστημένο.Θέλετε βοήθεια με αυτό, ή θα θέλατε να ανοιξουμε τον περιηγητή ιστου</string>
+  <string name="install_apps_">Εγκατάσταση εφαρμογών?</string>
 </resources>

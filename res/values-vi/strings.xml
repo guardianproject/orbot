@@ -72,6 +72,7 @@
   <string name="wizard_configure_select_apps">Áp dụng Tor cho từng ứng dụng riêng rẽ</string>
   <string name="wizard_tips_tricks">Các ứng dụng đã được áp dụng Tor</string>
   <string name="wizard_tips_msg">Những ứng dụng sau đây đã được thiết lập để dùng với Orbot. Nhấn từng nút để cài đặt ngay bây giờ, hoặc bạn có thể tìm những ứng dụng này trên Google Play, ở tại trang GuardienProject.info hoặc qua F-Droid.org.</string>
+  <string name="wizard_tips_otrchat">ChatSecure - Ứng dụng tin nhắn an toàn cho Android</string>
   <string name="wizard_tips_proxy">Cài Đặt Proxy - Hãy học cách thức thiết trí ứng dụng để dùng với Orbot</string>
   <string name="wizard_tips_duckgo">Ứng dụng tìm kiếm DuckDuckGo</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
@@ -103,7 +104,10 @@
   <string name="wizard_permissions_no_root_msg">Xem ra thiết bị của bạn chưa được bẽ gốc hoặc có thẩm quyền truy cập gốc \'Superuser\'.\n\nĐể sử dụng những tiện ích của Tor, bạn phải cần dùng những ứng dụng được tạo để dùng với Orbot, hoặc ứng dụng có hỗ trợ HTTP hoặc có phần thiết trí SOCKS proxy.</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Các ứng dụng đã được áp dụng Orbot</string>
+  <string name="wizard_tips_gibberbot">ChatSecure: ứng dụng chat an toàn với mã hóa Off-the-Record</string>
+  <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
   <string name="wizard_tips_orweb">Orweb: Trình duyệt có khả năng bảo mật cao được dùng qua mạng Tor</string>
+  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
   <string name="wizard_tips_play">Hãy tìm những ứng dụng của Guardian Project trên Google Play</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
@@ -197,8 +201,11 @@
   <string name="the_tor_license">Giấy Phép của Tor</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Phần Mềm Thứ 3:</string>
+  <string name="tor_version">Tor v0.2.4.21: https://www.torproject.org</string>
+  <string name="libevent_version">LibEvent v2.0.9: http://www.monkey.org/~provos/libevent/</string>
   <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
   <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
+  <string name="openssl_version">OpenSSL v1.0.1g: http://www.openssl.org</string>
   <string name="hidden_service_request">Một trong những ứng dụng muốn mở cổng ẩn của máy chủ %S đến mạng Tor. An toàn nếu như bạn tin tưởng vào ứng dụng này.</string>
   <string name="found_existing_tor_process">tìm ra những quá trình hiện hành của Tor...</string>
   <string name="something_bad_happened">Có chút gì đó không ổn. Xin xem lại danh sách ghi chú</string>
@@ -219,4 +226,16 @@
   <string name="powered_by">được lập bởi The Tor Project (?!)</string>
   <string name="btn_save_settings">Thiết lập Bảo lưu</string>
   <string name="no_internet_connection_tor">Hiện không có kết nối Internet; Trình Duyệt Tor hiện đang ở chế độ chờ...</string>
+  <string name="bandwidth_">Băng thông:</string>
+  <string name="down">xuống</string>
+  <string name="up">lên</string>
+  <string name="pref_disable_network_title">Mạng Không Tự Động Ngủ</string>
+  <string name="pref_disable_network_summary">Cho Tor đi ngủ nếu không có kết nối vào mạng</string>
+  <string name="newnym">Bạn đã đổi qua một danh tính Tor mới!</string>
+  <string name="menu_verify_browser">Kiểm Trình duyệt</string>
+  <string name="menu_use_chatsecure">Dùng ChatSecure</string>
+  <string name="permission_manage_tor_label">Quản trị Tor</string>
+  <string name="permission_manage_tor_description">Cho phép ứng dụng này điều khiển dịch vụ Tor</string>
+  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Dường như Orweb chưa được cài đặt. Bạn muốn được trợ giúp về việc đó không, hay chỉ mở trình duyệt lên?</string>
+  <string name="install_apps_">Cài đặt ứng dụng?</string>
 </resources>

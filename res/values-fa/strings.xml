@@ -72,10 +72,11 @@
   <string name="wizard_configure_select_apps">اپلیکیشن های منفرد برای تور انتخاب کنید.</string>
   <string name="wizard_tips_tricks">اپلیکیشن هایی که برای ربات پیازی تنظیم شده اند</string>
   <string name="wizard_tips_msg">توصیه می کنیم داونلود و فعال کنید؛ اپلیکیشن هایی را استفاده کنید که مستقیم به ربات پیازی وصل می شوند. دکمه های زیر را فشار دهید تا نصب شود.</string>
+  <string name="wizard_tips_otrchat">ChatSecure - برنامه امن ارسال پیغام فوری برای اندروئید</string>
   <string name="wizard_tips_proxy">تنظیمات پروکسی - یادگیری تنظیم اپلیکیشن ها برای کار با ربات پیازی</string>
   <string name="wizard_tips_duckgo">اپلیکیشن موتور جستجوی داک داک گو</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
-  <string name="wizard_tips_firefox">Proxy Mobile add-on for Firefox (http://tinyurl.com/getproxymob)</string>
+  <string name="wizard_tips_firefox">افزونه پراکسی برای فایرفوکس (http://tinyurl.com/getproxymob)</string>
   <string name="proxymob_setup_url">https://guardianproject.info/releases/proxymob-latest.xpi</string>
   <string name="wizard_tips_twitter">توییتر از \"http proxy \"localhost:8118 پشتیبانی می کند</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
@@ -103,7 +104,10 @@
   <string name="wizard_permissions_no_root_msg">به نظر نمیرسه که دستگاه شما root شده و یا دسترسی Superuser بدهد⏎\n⏎\nبرای بهره بردن از تور، شما باید از برنامه هایی استفاده کنید که یا برای استفاده با ربات پیازی طراحی شده اند و یا از تنظیم پروکسی SOCKS یا HTTP پشتیبانی میکنند.\n\n\n</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">  اپلیکیشنهایی که ربات پیازی روی آنها فعال است</string>
+  <string name="wizard_tips_gibberbot">ChatSecure:برنامه امن گفتگوی محرمانه با قابلیت رمزگزاری</string>
+  <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
   <string name="wizard_tips_orweb">مرورگر پیازی: مرورگر طراحی شده برای حفظ حریم خصوصی و افزونساز ربات پیازی</string>
+  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
   <string name="wizard_tips_play">تمامي برنامه هاي Guardian Project را در Google Play پيدا كنيد.</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
@@ -197,8 +201,11 @@
   <string name="the_tor_license">گواهی تور</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">3rd-Party-Software:</string>
+  <string name="tor_version">Tor نسخه 0.2.4.21: https://www.torproject.org</string>
+  <string name="libevent_version">LibEvent نسخه 2.0.9: http://www.monkey.org/~provos/libevent/</string>
   <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
   <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
+  <string name="openssl_version">OpenSSL نسخه 1.0.1g : http://www.openssl.org</string>
   <string name="hidden_service_request">یک اپلیکیشن میخواهد پورت %S سرویس مخفی را به شبکه تور باز کند. اگر به این اپلیکیشن اعتماد دارید این بی خطر است.</string>
   <string name="found_existing_tor_process">یک تور درحال اجرا پیدا شد...</string>
   <string name="something_bad_happened">اتفاق بدی افتاد. وقایع ثبت شده را چک کنید</string>
@@ -219,4 +226,16 @@
   <string name="powered_by">نیرو گرفته از پروژه تور</string>
   <string name="btn_save_settings">ذخیره تنظیمات</string>
   <string name="no_internet_connection_tor">بدون اتصال اینترنت: تور در حالت انتظار</string>
+  <string name="bandwidth_">پهنای باند:</string>
+  <string name="down">پائین</string>
+  <string name="up">بالا</string>
+  <string name="pref_disable_network_title">خاموش کردن در صورت عدم وجود شبکه</string>
+  <string name="pref_disable_network_summary">در صورتی که شبکه وجود نداشته باشد خاموش شود</string>
+  <string name="newnym">شما به شناسه جدید تور منتقل شدید</string>
+  <string name="menu_verify_browser">آزمون مرورگر</string>
+  <string name="menu_use_chatsecure">استفاده از ChatSecure</string>
+  <string name="permission_manage_tor_label">مدیریت تور</string>
+  <string name="permission_manage_tor_description">این برنامه بتواند سرویس تور را مدیریت کند</string>
+  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">بنظر میرسد برنامه Orweb  نصب نشده است. آیا کمکی برای نصب میخواهید یا فقط مرورگر باز شود؟</string>
+  <string name="install_apps_">برنامه نصب شود؟</string>
 </resources>

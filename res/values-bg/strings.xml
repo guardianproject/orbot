@@ -5,10 +5,10 @@
   <string name="default_web_url">http://check.torproject.org</string>
   <string name="secure_default_web_url">https://check.torproject.org</string>
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
-  <string name="control_permission_label">спри и стопирай Тор</string>
+  <string name="control_permission_label">стартирай и стопирай Тор</string>
   <string name="status_starting_up">Орбот стартира...</string>
   <string name="status_activated">Свързан към Тор мрежата</string>
-  <string name="status_disabled">\"Орбот е деактивиран</string>
+  <string name="status_disabled">Орбот е деактивиран</string>
   <string name="status_shutting_down">Орбот се изключва</string>
   <string name="tor_process_starting">Стартиране на Тор клиент...</string>
   <string name="tor_process_complete">завършено.</string>
@@ -24,6 +24,8 @@
   <string name="menu_stop">Стоп</string>
   <string name="menu_about">Относно</string>
   <string name="menu_wizard">Помощник</string>
+  <string name="main_layout_download">Изтегли</string>
+  <string name="main_layout_upload">Качи</string>
   <string name="button_help">Помощ</string>
   <string name="button_close">Затвори</string>
   <string name="button_about">Относно</string>

@@ -102,6 +102,7 @@
   <string name="wizard_permissions_no_root_msg">לא נראה שהמכשיר שלך בעל סמכות עליונה או קיבל גישת  \'Superuser\'. כדי ש Tor יהיה יעיל, תצטרך להשתמש באפליקציות שנבנו בשביל לעבוד עם Orbot, או כאלה שתומכות בהגדרות פרוקסי HTTP או SOCKS.\n</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot-יישומים מופעלים</string>
+  <string name="wizard_tips_gibberbot">ChatSecure: אפליקציית מסרים עם הצפנת Off-the-Record</string>
   <string name="wizard_tips_orweb">Orweb- דפדפן עם פרטיות רבה שעובד דרך Tor</string>
   <string name="wizard_tips_play">מצא את כל אפליציות Guardian Project אצל Google Play</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
@@ -143,9 +144,17 @@
   <string name="transparent_proxying_enabled">פרוקסי שקוף מאופשר</string>
   <string name="transproxy_enabled_for_tethering_">פרוקסי שקוף מאופשר ל Tathering!</string>
   <string name="warning_error_starting_transparent_proxying_">אזהרה: שגיאה התחילה את הפרוקסי השקוף!</string>
+  <string name="transproxy_rules_cleared">כללי TransProxy טוהרו</string>
+  <string name="couldn_t_start_tor_process_">אין אפשרות להתחיל תהליך Tor:</string>
   <string name="privoxy_is_running_on_port_">Privoxy הינו מופעל על פורט: </string>
   <string name="bridge_error">שגיאת גשר</string>
   <string name="error">שגיאה</string>
+  <string name="exit_nodes">צמתי יציאה</string>
+  <string name="enter_exit_nodes">הזן צמתי יציאה</string>
+  <string name="exclude_nodes">צמתים מוצאים</string>
+  <string name="enter_exclude_nodes">הזן צמתים מוצאים</string>
+  <string name="strict_nodes">צמתים קפדנים</string>
+  <string name="use_only_these_specified_nodes">השתמש *רק* בצמתים מצוינים אלו</string>
   <string name="bridges">גשרים</string>
   <string name="use_bridges">השתמש בגשרים</string>
   <string name="bridges_obfuscated">גשרים מעורפלים</string>
@@ -184,4 +193,11 @@
   <string name="powered_by">מופעל על ידי Tor Project</string>
   <string name="btn_save_settings">שמירת הגדרות</string>
   <string name="no_internet_connection_tor">אין חיבור אינטרנט; Tor מצוי בכוננות...</string>
+  <string name="bandwidth_">רוחב פס:</string>
+  <string name="newnym">החלפת אל זהות Tor חדשה!</string>
+  <string name="menu_verify_browser">בדוק דפדפן</string>
+  <string name="menu_use_chatsecure">הפעל את ChatSecure</string>
+  <string name="permission_manage_tor_label">נהל Tor</string>
+  <string name="permission_manage_tor_description">אפשר את אפליקציה זו כדי לשלוט בשירות Tor</string>
+  <string name="install_apps_">להתקין אפליקציה?</string>
 </resources>

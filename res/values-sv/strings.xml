@@ -72,6 +72,7 @@
   <string name="wizard_configure_select_apps">Välj enskilda appar för Tor</string>
   <string name="wizard_tips_tricks">Orbot-anpassade appar</string>
   <string name="wizard_tips_msg">Apparna nedanför var utvecklade att fungera med Orbot. Klicka varje knapp för att installera nu, eller hitta dom senare på Google Play, på GuardianProject.info, eller via F-Droid.org.</string>
+  <string name="wizard_tips_otrchat">ChatSecure - Säker chattklient för Android</string>
   <string name="wizard_tips_proxy">Proxy-inställningar - Lär dig hur du konfigurerar appar att fungera med Orbot</string>
   <string name="wizard_tips_duckgo">DuckDuckGo Sökmotor App</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
@@ -103,7 +104,10 @@
   <string name="wizard_permissions_no_root_msg">Din enhet verkar inte vara rootad eller ge \'Superuser\' tillgång.\n\nFör att du ska ha användning av Tor måste du använda appar som är anpassade till Orbot, eller som stödjer HTTP eller SOCKS proxy inställningar.\n\n</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot-Anpassade Appar</string>
+  <string name="wizard_tips_gibberbot">ChatSecure: Säkert chatt app med Off-the-Record kryptering</string>
+  <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
   <string name="wizard_tips_orweb">Orweb: Integritets-förbättrande webbläsare som fungerar genom Tor</string>
+  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
   <string name="wizard_tips_play">Hitta alla Guardian Project appar på Google Play</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
@@ -197,8 +201,11 @@
   <string name="the_tor_license">Tor-licensen</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Tredjepartsprogramvara:</string>
+  <string name="tor_version">Tor v0.2.4.21: https://www.torproject.org</string>
+  <string name="libevent_version">LibEvent v2.0.9: http://www.monkey.org/~provos/libevent/</string>
   <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
   <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
+  <string name="openssl_version">OpenSSL v1.0.1g: http://www.openssl.org</string>
   <string name="hidden_service_request">En app vill öppna gömd tjänsteport %S till Tor nätverket. Detta är säkert om du litar på appen.</string>
   <string name="found_existing_tor_process">hittade existerande Tor process...</string>
   <string name="something_bad_happened">Något dåligt hände. Kolla loggen.</string>
@@ -219,4 +226,16 @@
   <string name="powered_by">drivs av Tor-projektet</string>
   <string name="btn_save_settings">Spara Inställningar</string>
   <string name="no_internet_connection_tor">Ingen internetanslutning; Tor avvaktar...</string>
+  <string name="bandwidth_">Bandbredd:</string>
+  <string name="down">nere</string>
+  <string name="up">uppe</string>
+  <string name="pref_disable_network_title">Ingen auto-sömn för nätverket</string>
+  <string name="pref_disable_network_summary">Låt Tor sova när inget internet finns tillgängligt</string>
+  <string name="newnym">Du har bytt till en ny Tor identitet!</string>
+  <string name="menu_verify_browser">Kolla webbläsare</string>
+  <string name="menu_use_chatsecure">Använd ChatSecure</string>
+  <string name="permission_manage_tor_label">Hantera Tor</string>
+  <string name="permission_manage_tor_description">Låt denna app kontrollera Tor-servicen</string>
+  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Det ser inte ut som att du har Orweb installerat. Vill du ha hjälp med det eller ska vi bara öppna webbläsaren?</string>
+  <string name="install_apps_">Installera appar?</string>
 </resources>

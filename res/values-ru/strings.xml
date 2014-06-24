@@ -72,6 +72,7 @@
   <string name="wizard_configure_select_apps">Выберите приложения для маршрутизации через Tor</string>
   <string name="wizard_tips_tricks">Orbot-задействованные приложения</string>
   <string name="wizard_tips_msg">Мы советуем вам скачать и использовать приложения, которые умеют работать напрямую через Orbot. Нажмите на кнопки ниже, чтобы запустить процесс установки.</string>
+  <string name="wizard_tips_otrchat">ChatSecure - Защищенный обмен сообщениями в Android</string>
   <string name="wizard_tips_proxy">Настройки прокси - узнайте как настроить приложения для работы с Orbot</string>
   <string name="wizard_tips_duckgo">Приложение поисковой системы Duckduckgo</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
@@ -103,7 +104,10 @@
   <string name="wizard_permissions_no_root_msg">Похоже ваше устройство не имеет root прав и не предоставляет доступ \'Суперпользователь\'.\n\nЧто бы использовать Tor, вам надо использовать приложения построенные для работы с Orbot или те, которые поддерживают использование HTTP или SOCKS прокси.\n\n</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Приложения, работающие с Orbot:</string>
+  <string name="wizard_tips_gibberbot">ChatSecure: приложение для общения с поддержкой Off-the-Record шифрования</string>
+  <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
   <string name="wizard_tips_orweb">ORWEB (Только для версии Android 1.x) - Браузер, разработанный для обеспечения безопасности и для Orbot</string>
+  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
   <string name="wizard_tips_play">Найти все приложения Guardian Project на Google Play</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
@@ -197,8 +201,11 @@
   <string name="the_tor_license">Лицензия Tor</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Программы сторонних разработчиков: </string>
+  <string name="tor_version">Tor v0.2.4.21: https://www.torproject.org</string>
+  <string name="libevent_version">LibEvent v2.0.9: http://www.monkey.org/~provos/libevent/</string>
   <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
   <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
+  <string name="openssl_version">OpenSSL v1.0.1g: http://www.openssl.org</string>
   <string name="hidden_service_request">Приложение хочет открыть скрытый порт сервера %S сети Tor. Это безопасно, если вы доверяете этому приложению.</string>
   <string name="found_existing_tor_process">найден существующий процесс Tor...</string>
   <string name="something_bad_happened">Произошла какая-то ошибка. Проверьте лог</string>
@@ -219,4 +226,16 @@
   <string name="powered_by">powered by the Tor Project  </string>
   <string name="btn_save_settings">Сохранить Настройки</string>
   <string name="no_internet_connection_tor">Нет доступа к сети интернет; Tor в режиме ожидания...</string>
+  <string name="bandwidth_">Канал:</string>
+  <string name="down">вх</string>
+  <string name="up">исх</string>
+  <string name="pref_disable_network_title">Не использовать режим сна</string>
+  <string name="pref_disable_network_summary">Переводить в режим сна при отсутствии интернет-соединения</string>
+  <string name="newnym">Вы переключились на новый идентификатор Tor!</string>
+  <string name="menu_verify_browser">Проверить Браузер</string>
+  <string name="menu_use_chatsecure">Использовать ChatSecure</string>
+  <string name="permission_manage_tor_label">Управление Tor</string>
+  <string name="permission_manage_tor_description">Разрешить приложению управлять сервисом Tor</string>
+  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Не похоже, что Orweb установлен. Нужна помощь с этим, или просто открыть браузер?</string>
+  <string name="install_apps_">Установить приложения?</string>
 </resources>

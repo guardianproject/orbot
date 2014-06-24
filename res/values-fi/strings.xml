@@ -26,6 +26,7 @@
   <string name="menu_about">Tietoa</string>
   <string name="menu_wizard">Velho</string>
   <string name="main_layout_download">Lataa</string>
+  <string name="main_layout_upload">Lähetä</string>
   <string name="button_help">Apua</string>
   <string name="button_close">Sulje</string>
   <string name="button_about">Tietoa</string>
@@ -38,7 +39,13 @@
   <string name="pref_trans_proxy_summary">Ohjelmien automaattinen Torimointi</string>
   <string name="pref_transparent_all_title">Torraa kaikki</string>
   <string name="pref_transparent_all_summary">Välitä kaikki ohjelmien liikenne Torin läpi</string>
+  <string name="pref_transparent_port_fallback_title">Portin välityksen varoasetus (fallback)</string>
+  <string name="pref_transparent_port_fallback_summary">VAROITUS: Kiertää yleisiä portteja (80, 443, yms). *KÄYTÄ VAIN* jos \"Kaikki\" tai \"Sovellus\" asetus ei toimi.</string>
   <string name="pref_transparent_port_title">Porttilista</string>
+  <string name="pref_transparent_port_summary">Välitettävien porttien lista. *KÄYTÄ VAIN* jos \"Kaikki\" tai \"Sovellus\" asetus ei toimi.</string>
+  <string name="pref_transparent_port_dialog">Syotä välitettävät portit.</string>
+  <string name="pref_has_root">Pyydä Root-tason oikeuksia</string>
+  <string name="pref_has_root_summary">Pyydä Root-tason oikeuksia läpinäkyvään välitykseen.</string>
   <string name="status_install_success">Tor-binaaritiedostojen asennus onnistui!</string>
   <string name="status_install_fail">Tor-binaaritiedostojen asennus epäonnistui. Tarkista loki ja ilmoita osoitteeseen tor-assistants@torproject.org</string>
   <string name="title_error">Sovellusvirhe</string>
@@ -52,6 +59,19 @@
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Joitakin Orbot-yksityiskohtia</string>
   <string name="wizard_permissions_root">Lupa myönnetty</string>
+  <string name="wizard_permissions_stock">Orbot-oikeudet</string>
+  <string name="wizard_premissions_msg_root">Loistavaa! Olemme havainneet että olet antanut root-tason oikeudet Orbotiille. Käytämme näiden oikeuksien suomia mahdollisuuksia harkiten.</string>
+  <string name="wizard_permissions_msg_stock">Vaikka root-tason oikeuksien antaminen Orbotille ei ole pakollista, tulee Orbotista tehokkaampi työkalu jos laitteellasi on root-tason oikeudet. Käytä alla olevaa painiketta antaaksesi Orbotille supervoimat!</string>
+  <string name="wizard_permissions_consent">Ymmärrän ja haluan jatkaa ilman Superuser-tason oikeuksia</string>
+  <string name="wizard_permission_enable_root">Anna root-tason oikeudet Orbotille</string>
+  <string name="wizard_configure">Konfiguroi Tor-toiminnot</string>
+  <string name="wizard_configure_all">Välitä kaikkien sovellusten tiedonsiirto Tor-verkon kautta</string>
+  <string name="wizard_configure_select_apps">Valitse Tor-verkkoa käyttävät sovellukset</string>
+  <string name="wizard_tips_tricks">Orbotia käyttävät sovellukset</string>
+  <string name="wizard_tips_otrchat">ChatSecure - Turvallinen pikaviestisovellus Androidille</string>
+  <string name="wizard_tips_proxy">Välitysasetukset - Opi konfiguroimaan sovellukset toimimaan Orbitin kanssa</string>
+  <string name="wizard_tips_duckgo">DuckDuckGo hakukonesovellus</string>
+  <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
   <string name="proxymob_setup_url">https://guardianproject.info/releases/proxymob-latest.xpi</string>
   <string name="wizard_tips_twitter">Aseta Twitter-välityspalvelinisännäksi \"localhost\" ja portiksi 8118</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
@@ -59,6 +79,7 @@
   <string name="wizard_final">Orbot on valmis!</string>
   <!--END Welcome Wizard strings (DJH)-->
   <string name="pref_general_group">Yleiset</string>
+  <string name="pref_start_boot_title">Aloita Orbot käynnistettäessä</string>
   <!--New Wizard Strings-->
   <!--Title Screen-->
   <!--Warning screen-->
@@ -79,6 +100,17 @@
   <string name="couldn_t_start_tor_process_">Tor-prosessin käynnistäminen epäonnistui:</string>
   <string name="bridge_error">Siltavirhe</string>
   <string name="error">Virhe</string>
+  <string name="pref_use_persistent_notifications_title">Ilmoitukset aina käytössä</string>
+  <string name="notification_using_bridges">Siltaus käytössä!</string>
   <string name="default_bridges"></string>
+  <string name="set_locale_title">Aseta paikka</string>
+  <string name="set_locale_summary">Valitse paikka ja kieli Orbit-sovellukselle</string>
+  <string name="wizard_locale_title">Valitse kieli</string>
   <string name="btn_save_settings">Tallenna asetukset</string>
+  <string name="down">alas</string>
+  <string name="up">ylös</string>
+  <string name="menu_verify_browser">Tarkista selain</string>
+  <string name="menu_use_chatsecure">Käytä ChatSecurea</string>
+  <string name="permission_manage_tor_label">Hallinnoi Tor:ia</string>
+  <string name="install_apps_">Asenna sovelluksia?</string>
 </resources>

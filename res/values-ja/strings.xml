@@ -72,6 +72,7 @@
   <string name="wizard_configure_select_apps">指定したアプリだけにTorプロキシを通す</string>
   <string name="wizard_tips_tricks">Orbotが有効化されたアプリ</string>
   <string name="wizard_tips_msg">以下のアプリはOrbot用に作られています。それぞれのボタンを押すと今すぐインストールできます。Google Playからも同じものが探せます。</string>
+  <string name="wizard_tips_otrchat">ChatSecure - Android 用のセキュアなインスタントメッセージクライアント</string>
   <string name="wizard_tips_proxy">Proxy Settings - Orbotでアプリを動かすための手順書</string>
   <string name="wizard_tips_duckgo">DuckDuckGo 検索エンジンアプリ</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
@@ -103,7 +104,10 @@
   <string name="wizard_permissions_no_root_msg">あなたの端末はroot化されていないようです。\n\nTorで通信をする場合、Orbot用のアプリを使うか、HTTPまたはSOCKSプロクシが設定できるアプリを使う必要があります。\n\n</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbotが有効化されたアプリ</string>
+  <string name="wizard_tips_gibberbot">ChatSecure: 非記録式暗号によるセキュアなチャットアプリ</string>
+  <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
   <string name="wizard_tips_orweb">Orweb: Torを使う匿名インターネットブラウザ</string>
+  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
   <string name="wizard_tips_play">Google Playで全てのGuardian Projectのアプリを見つける</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
@@ -197,8 +201,11 @@
   <string name="the_tor_license">Tor ライセンス文書</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">第三者製のソフトウェア</string>
+  <string name="tor_version">Tor v0.2.4.21: https://www.torproject.org</string>
+  <string name="libevent_version">LibEvent v2.0.9: http://www.monkey.org/~provos/libevent/</string>
   <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
   <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
+  <string name="openssl_version">OpenSSL v1.0.1g: http://www.openssl.org</string>
   <string name="hidden_service_request">アプリがhidden serverの port %S　をTorネットワークに開放しようとしています。信頼できるアプリであればこれは安全です。</string>
   <string name="found_existing_tor_process">Torプロセスを発見</string>
   <string name="something_bad_happened">何かが起こりました。ログを確認してください。</string>
@@ -219,4 +226,16 @@
   <string name="powered_by">powered by the Tor Project</string>
   <string name="btn_save_settings">設定を保存</string>
   <string name="no_internet_connection_tor">インターネット接続なし。Torは待機中です...</string>
+  <string name="bandwidth_">帯域幅:</string>
+  <string name="down">ダウン</string>
+  <string name="up">アップ</string>
+  <string name="pref_disable_network_title">ネットワークなし時オートスリープ</string>
+  <string name="pref_disable_network_summary">ネット接続がない時 Tor をスリープさせる</string>
+  <string name="newnym">新たな Tor の身元に切り替えました。</string>
+  <string name="menu_verify_browser">ブラウザをチェック</string>
+  <string name="menu_use_chatsecure">ChatSecure を使用</string>
+  <string name="permission_manage_tor_label">Tor を管理</string>
+  <string name="permission_manage_tor_description">このアプリが Tor サービスをコントールできるようにする</string>
+  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Orweb をインストールしていないようです。それについて助けが必要ですか、あるいはただブラウザを開くべきですか？</string>
+  <string name="install_apps_">アプリをインストールしますか？</string>
 </resources>

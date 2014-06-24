@@ -72,6 +72,7 @@
   <string name="wizard_configure_select_apps">Velg individuelle applikasjoner som skal brukes med Tor</string>
   <string name="wizard_tips_tricks">Orbot aktiverte applikasjoner</string>
   <string name="wizard_tips_msg">Applikasjonene nedenfor ble utviklet for å fungere med Orbot. Klikk på hver knapp for å installere nå, eller du kan finne dem senere på Google Play, på GuardianProject.info nettsiden, eller via F-Droid.org.</string>
+  <string name="wizard_tips_otrchat">ChatSecure - Sikret lynmeldingsklient for Android</string>
   <string name="wizard_tips_proxy">Proxy-innstillinger - Lær hvordan du konfigurerer applikasjoner til å fungere med Orbot</string>
   <string name="wizard_tips_duckgo">DuckDuckGo søkemotor applikasjon</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
@@ -103,7 +104,10 @@
   <string name="wizard_permissions_no_root_msg">Enheten din ser ikke ut til å være rootet, eller gi \'Superbruker\' tilgang.\n\nFor å dra nytte av Tor, må du bruke applikasjoner som er laget for å fungere med Orbot, eller som støtter HTTP, eller SOCKS proxy-innstillinger.\n\n\n</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot aktiverte applikasjoner</string>
+  <string name="wizard_tips_gibberbot">ChatSecure: Sikret sludreprogram med OTR-kryptering</string>
+  <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
   <string name="wizard_tips_orweb">Orweb: Nettleser med forsterket personvern som fungerer gjennom Tor</string>
+  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
   <string name="wizard_tips_play">Finn alle Guardian Prosjekt sine applikasjoner på Google Play</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
@@ -197,8 +201,11 @@
   <string name="the_tor_license">Tor-lisensen</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Tredjepartsprogramvare:</string>
+  <string name="tor_version">Tor v0.2.4.21: https://www.torproject.org</string>
+  <string name="libevent_version">LibEvent v2.0.9: http://www.monkey.org/~provos/libevent/</string>
   <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
   <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
+  <string name="openssl_version">OpenSSL v1.0.1g: http://www.openssl.org</string>
   <string name="hidden_service_request">En applikasjon vil åpne den skjulte tjenesteporten %S til Tor-nettverket. Dette er trygt hvis du stoler på applikasjonen. </string>
   <string name="found_existing_tor_process">fant eksisterende Tor-prosess...</string>
   <string name="something_bad_happened">Noe alvorlig skjedde. Sjekk loggen.</string>
@@ -219,4 +226,16 @@
   <string name="powered_by">Drives av Tor-Prosjektet</string>
   <string name="btn_save_settings">Lagre Inntillinger</string>
   <string name="no_internet_connection_tor">Ingen Internett-tilkobling, Tor er i ventemodus ...</string>
+  <string name="bandwidth_">Båndbredde:</string>
+  <string name="down">ned</string>
+  <string name="up">opp</string>
+  <string name="pref_disable_network_title">Inget automatisk hvilemodus for nettverk</string>
+  <string name="pref_disable_network_summary">Legg Tor i hvilemodus når nettilkobling til internett ikke er tilgjengelig</string>
+  <string name="newnym">Du har byttet til en ny Tor-identitet!</string>
+  <string name="menu_verify_browser">Sjekk nettleser</string>
+  <string name="menu_use_chatsecure">Bruk ChatSecure</string>
+  <string name="permission_manage_tor_label">Håndter Tor</string>
+  <string name="permission_manage_tor_description">La dette programmet kontrollere Tor-tjenesten</string>
+  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Det virker ikke som du har Orweb installert. Vil du ha hjelp til det, eller skal vi bare åpne nettleseren?</string>
+  <string name="install_apps_">Installere programmer?</string>
 </resources>

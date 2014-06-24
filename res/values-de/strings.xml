@@ -6,7 +6,7 @@
   <string name="secure_default_web_url">https://check.torproject.org</string>
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">Tor starten und beenden</string>
-  <string name="tor_proxy_service_process">Tor Vermittlungsdienst</string>
+  <string name="tor_proxy_service_process">Tor-Vermittlungsdienst</string>
   <string name="status_starting_up">Orbot startet …</string>
   <string name="status_activated">Verbunden mit dem Tor-Netzwerk</string>
   <string name="status_disabled">Orbot ist deaktiviert</string>
@@ -25,8 +25,8 @@
   <string name="menu_stop">Stopp</string>
   <string name="menu_about">Über</string>
   <string name="menu_wizard">Assistent</string>
-  <string name="main_layout_download">Herunterladen</string>
-  <string name="main_layout_upload">Hochladen</string>
+  <string name="main_layout_download">Heruntergeladen</string>
+  <string name="main_layout_upload">Hochgeladen</string>
   <string name="button_help">Hilfe</string>
   <string name="button_close">Schließen</string>
   <string name="button_about">Über</string>
@@ -72,6 +72,7 @@
   <string name="wizard_configure_select_apps">Anwendungen einzeln für Tor auswählen</string>
   <string name="wizard_tips_tricks">Orbot aktivierte Anwendungen</string>
   <string name="wizard_tips_msg">Die unten aufgeführten Anwendungen wurden für die Zusammenarbeit mit Orbot entwickelt. Die Knöpfe zum installieren anklicken oder diese später bei Google Play,  GuardianProject.info oder F-Droid.org finden.</string>
+  <string name="wizard_tips_otrchat">ChatSecure - Ein sicheres Sofortnachrichtenprogramm für Android</string>
   <string name="wizard_tips_proxy">Vermittlungseinstellungen - Lernen, wie Sie Anwendungen so konfigurieren, dass sie mit Orbot zusammenarbeiten.</string>
   <string name="wizard_tips_duckgo">Duckduckgo-Suchmaschinen-App</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
@@ -103,7 +104,10 @@
   <string name="wizard_permissions_no_root_msg">Ihr Gerät läuft im Standardmodus und hat keinen Systemverwalterzugriff.\n\nIn diesem Fall müssen Sie Anwendungen verwenden, die erstellt wurden um mit Orbot zusammenzuarbeiten oder die HTTP bzw. SOCKS-Proxy-Einstellungen ermöglichen.\n</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot aktivierte Anwendungen</string>
+  <string name="wizard_tips_gibberbot">ChatSecure: Sichere Unterhaltungsanwendung mit vertraulicher Verschlüsselung</string>
+  <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
   <string name="wizard_tips_orweb">Orweb: Ein im Datenschutz erweiterter Browser, der durch Tor arbeitet</string>
+  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
   <string name="wizard_tips_play">Alle Guardian Project-Anwendungen im Google Play Store finden</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
@@ -197,8 +201,11 @@
   <string name="the_tor_license">Die Tor-Lizenz</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Drittanbieteranwendungen:</string>
+  <string name="tor_version">Tor v0.2.4.21: https://www.torproject.org</string>
+  <string name="libevent_version">LibEvent v2.0.9: http://www.monkey.org/~provos/libevent/</string>
   <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
   <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
+  <string name="openssl_version">OpenSSL v1.0.1g: http://www.openssl.org</string>
   <string name="hidden_service_request">Eine Anwendungen möchte den versteckten Server-Anschluss %S öffnen. Das ist sicher wenn Sie der Anwendung vertrauen.</string>
   <string name="found_existing_tor_process">existierender Tor Prozess gefunden …</string>
   <string name="something_bad_happened">Etwas ist schief gelaufen. Bitte Protokoll prüfen</string>
@@ -219,4 +226,16 @@
   <string name="powered_by">ermöglicht durch das Tor-Projekt</string>
   <string name="btn_save_settings">Einstellungen speichern</string>
   <string name="no_internet_connection_tor">Keine Internetverbindung; Tor ist in Bereitschaft …</string>
+  <string name="bandwidth_">Bandbreite:</string>
+  <string name="down">runter</string>
+  <string name="up">hoch</string>
+  <string name="pref_disable_network_title">Kein Netzwerkautoschlaf</string>
+  <string name="pref_disable_network_summary">Tor schlafen legen, wenn kein Internet verfügbar ist</string>
+  <string name="newnym">Sie haben zu einer neuen Tor-Identität gewechselt!</string>
+  <string name="menu_verify_browser">Browser überprüfen</string>
+  <string name="menu_use_chatsecure">ChatSecure benutzen</string>
+  <string name="permission_manage_tor_label">Tor verwalten</string>
+  <string name="permission_manage_tor_description">Diese Anwendung aktivieren, um den Tor-Dienst zu kontrollieren</string>
+  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Es sieht nicht so aus, dass Sie Orweb installiert haben. Möchten Sie dabei Hilfe, oder sollen wir einfach den Browser öffnen?</string>
+  <string name="install_apps_">Anwendungen installieren?</string>
 </resources>

@@ -72,6 +72,7 @@
   <string name="wizard_configure_select_apps">Wybierz poszczególne aplikacje dla Tora</string>
   <string name="wizard_tips_tricks">Aplikacje skonfigurowane dla Orbota</string>
   <string name="wizard_tips_msg">Zachęcamy do pobierania i używania aplikacji, które wiedzą, jak łączyć się bezpośrednio z Orbotem. Kliknij na poniższe przyciski, by zainstalować.</string>
+  <string name="wizard_tips_otrchat">ChatSecure - Bezpieczny komunikator pod Androida</string>
   <string name="wizard_tips_proxy">Ustawienia Proxy - Dowiedz się, jak konfigurować aplikacje do współpracy z Orbotem</string>
   <string name="wizard_tips_duckgo">Aplikacja Duckduckgo Search Engine</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
@@ -103,7 +104,10 @@
   <string name="wizard_permissions_no_root_msg">Twoje urządzenie wydaje się nie być podłączone lub nie zapewnia dostępu \'Superużytkownika\'. \n\nAby czerpać jak największe korzyści z Tora, będziesz musiał używać aplikacji zbudowanych do pracy z Orbotem, lub takich które wspierają ustawienia proxy HTTP lub SOCKS. ⏎\n\n</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot-Włączone Aplikacje</string>
+  <string name="wizard_tips_gibberbot">ChatSecure: Bezpieczny komunikator z szyfrowaniem Off-the-Record</string>
+  <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
   <string name="wizard_tips_orweb">ORWEB (tylko Android 1.x) - Przeglądarka zaprojektowana do prywatności i dla Orbota</string>
+  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
   <string name="wizard_tips_play">Znajdź wszystkie aplikacje Guardian Project na Google Play</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
@@ -197,8 +201,11 @@
   <string name="the_tor_license">Licencja Tora</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Oprogramowanie 3rd-Party</string>
+  <string name="tor_version">Tor v0.2.4.21: https://www.torproject.org</string>
+  <string name="libevent_version">LibEvent v2.0.9: http://www.monkey.org/~provos/libevent/</string>
   <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
   <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
+  <string name="openssl_version">OpenSSL v1.0.1g: http://www.openssl.org</string>
   <string name="hidden_service_request">Aplikacja chce otworzyć port ukrytego serwera %S do Sieci Tor. Jest to bezpieczne, jeśli ufasz aplikacji.</string>
   <string name="found_existing_tor_process">znaleziono istniejący proces Tora...</string>
   <string name="something_bad_happened">Coś nie poszło nie tak. Sprawdź logi</string>
@@ -219,4 +226,16 @@
   <string name="powered_by">napędzane oprogramowaniem Projektu Tor</string>
   <string name="btn_save_settings">Zapisz ustawienia</string>
   <string name="no_internet_connection_tor">Brak połączenia internetowego; Tor jest w stanie czuwania...</string>
+  <string name="bandwidth_">Przepustowość:</string>
+  <string name="down">pobieranie</string>
+  <string name="up">wysyłanie</string>
+  <string name="pref_disable_network_title">Brak Auto-Uśpienia Sieci</string>
+  <string name="pref_disable_network_summary">Ustaw Tor\'a w tryb uśpienia kiedy połączenie internetowe będzie niedostępne</string>
+  <string name="newnym">Nowa tożsamość Tor\'a została zmieniona!</string>
+  <string name="menu_verify_browser">Sprawdź Przeglądarkę</string>
+  <string name="menu_use_chatsecure">Użyj ChatSecure</string>
+  <string name="permission_manage_tor_label">Administruj Tor\'em</string>
+  <string name="permission_manage_tor_description">Pozwól tej aplikacji kontrolować serwis Tor</string>
+  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Wygląda na to, że Orweb nie jest zainstalowany. Potrzebujesz pomocy czy sami mamy otworzyć przeglądarkę?</string>
+  <string name="install_apps_">Zainstalować aplikacje?</string>
 </resources>
