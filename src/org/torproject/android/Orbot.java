@@ -397,11 +397,6 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                         
                         
                 }
-                else if (item.getItemId() == R.id.menu_diag)
-                {
-            		startActivity(new Intent(getApplicationContext(), OrbotDiagnosticsActivity.class));
-	
-                }
                 else if (item.getItemId() == R.id.menu_about)
                 {
                         showAbout();
@@ -437,6 +432,8 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                         NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                         mNotificationManager.cancelAll();
                 
+                        mConnection = null;
+                        mService = null;
                         
                 } catch (RemoteException e) {
                         Log.w(TAG, e);
@@ -953,11 +950,13 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                             }
                     }
                     
-                    torStatus = newTorStatus;
                
-            
+
+           	     torStatus = newTorStatus;
         
         }
+		
+         
     }
   
   // guess what? this start's Tor! actually no it just requests via the local ITorService to the remote TorService instance
@@ -1260,7 +1259,8 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	protected void onDestroy() {
 		super.onDestroy();
 		
-		unbindService(mConnection);
+		if (mConnection != null)
+			unbindService(mConnection);
 	}
 
 	public class DataCount {
