@@ -52,6 +52,7 @@ import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.RemoteCallbackList;
@@ -614,6 +615,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     public void initTor () throws Exception
     {
     	
+		currentStatus = STATUS_CONNECTING;
+    	
     	try
     	{
     		initBinaries();
@@ -631,8 +634,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		enableBinExec(fileXtables);
 		
 		updateSettings ();
-    	
-		currentStatus = STATUS_CONNECTING;
 
 		logNotice(getString(R.string.status_starting_up));
 		sendCallbackStatusMessage(getString(R.string.status_starting_up));
@@ -902,11 +903,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 							
 					        conn = TorControlConnection.getConnection(torConnSocket);
 					        
-					        if (ENABLE_DEBUG_LOG)
-					        {
-					        	conn.setDebugging(System.out);
-					        	
-					        }
 					        
 							logNotice( "SUCCESS connected to Tor control port");
 					        
@@ -927,6 +923,17 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 						        addEventHandler();
 						    
 						        String torProcId = conn.getInfo("process/pid");
+						        
+						        if (ENABLE_DEBUG_LOG)
+						        {
+						        	File fileLog = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),"orbot-control-log.txt");					        	
+						        	PrintWriter pr = new PrintWriter(new FileWriter(fileLog,true));
+						        	conn.setDebugging(pr);
+						        	
+						        	File fileLog2 = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),"orbot-tor-log.txt");
+						        	conn.setConf("Log", "info file " + fileLog2.getCanonicalPath());
+						        	
+						        }
 						        
 						        return Integer.parseInt(torProcId);
 						        
@@ -1128,8 +1135,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	   		     {
 	   			   initTor();
 
-	        		currentStatus = STATUS_CONNECTING;
-	        		
 	   		     }
 	   		     catch (Exception e)
 	   		     {				
@@ -1166,48 +1171,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
       	
           
 	}
-	
 
-	
-	private Handler mHandlerStatusChecker = null;
-	
-	private void enableStatusChecker ()
-	{
-
-		if (mHandlerStatusChecker != null)
-			mHandlerStatusChecker = new Handler();
-		
-		mHandlerStatusChecker.postDelayed(new Runnable ()
-		{
-			public void run ()
-			{
-				if (conn != null)
-				{
-					try
-					{
-						String state = conn.getInfo("dormant");
-						if (state != null && Integer.parseInt(state) == 0)
-						{
-							currentStatus = STATUS_ON;
-							
-						}
-						else
-						{
-							currentStatus = STATUS_CONNECTING;
-							showToolbarNotification(getString(R.string.no_internet_connection_tor),NOTIFY_ID,R.drawable.ic_stat_tor_off,prefPersistNotifications);
-
-						}
-					}
-					catch (Exception e){}
-					
-
-    				mHandlerStatusChecker.postDelayed(this,1000);
-				}
-
-				
-			}
-		},1000);
-	}
 
 	public void newDescriptors(List<String> orList) {
 		
@@ -1255,19 +1219,15 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	}
 	
 	public void bandwidthUsed(long read, long written) {
-		
+	
 		if (read != lastRead || written != lastWritten)
 		{
-			StringBuilder sb = new StringBuilder();
-			sb.append(getString(R.string.bandwidth_));
-			sb.append(" ");
+			StringBuilder sb = new StringBuilder();				
 			sb.append(formatCount(read));
-			sb.append(" ");
-			sb.append(getString(R.string.down));
+			sb.append(" \u2193");			
 			sb.append(" / ");
 			sb.append(formatCount(written));
-			sb.append(" ");
-			sb.append(getString(R.string.up));
+			sb.append(" \u2191");			
 		   	
 			int iconId = R.drawable.ic_stat_tor;
 			
@@ -1294,8 +1254,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		// Under 2Mb, returns "xxx.xKb"
 		// Over 2Mb, returns "xxx.xxMb"
 		if (count < 1e6)
-			return ((float)((int)(count*10/1024))/10 + "kbps");
-		return ((float)((int)(count*100/1024/1024))/100 + "mbps");
+			return ((float)((int)(count*10/1024))/10 + "Kbps");
+		return ((float)((int)(count*100/1024/1024))/100 + "Mbps");
 		
    		//return count+" kB";
 	}
@@ -2216,56 +2176,5 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
 	}
    
-	/**
-	private Timer mTorMinder;
-	
-	private void startTorMinder ()
-	{
-		mTorMinder = new Timer(true);
-		mTorMinder.scheduleAtFixedRate(
-		    new TimerTask() {
-		      public void run() { 
-		    	  
-					if (currentStatus == STATUS_OFF)
-					{
-						mTorMinder.cancel();
-					}
-					else
-					{
-						
-						try {
-							int foundPrcId = TorServiceUtils.findProcessId(fileTor.getCanonicalPath());
-							
-							if (foundPrcId != -1)
-							{
-								mLastProcessId = foundPrcId;
-								
-								logNotice("Refreshed Tor process id: " + mLastProcessId);
-								
-							}
-							else
-							{
-								logNotice("restarting Tor after it has been killed");
-								killTorProcess();
-								initTor();
-							}
-							
-						} catch (Exception e1) {
-							logException("Error in Tor heartbeat checker",e1);
-
-						} 
-					}
-				
-		    	  
-		      }
-		    }, 0, 30 * 1000); //every 30 seconds
-	}
-	
-	private void stopTorMinder ()
-	{
-		if (mTorMinder != null)
-			mTorMinder.cancel();
-	}
-    **/
    
 }
