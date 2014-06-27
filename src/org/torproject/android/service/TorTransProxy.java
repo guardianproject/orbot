@@ -343,8 +343,6 @@ public class TorTransProxy implements TorServiceConstants {
     	//StringBuilder script = new StringBuilder();
     	
     	String srcChainName = "OUTPUT";
-		
-    	int torUid = context.getApplicationInfo().uid;
 
     	//run the delete commands in a separate process as it might error out
     	//String[] cmdExecClear = {script.toString()};    	    	
@@ -369,8 +367,8 @@ public class TorTransProxy implements TorServiceConstants {
 			{
 				
 				
-				logMessage("enabling transproxy for app: " + tApp.getUsername() + "(" + tApp.getUid() + ")");
-			 
+				logMessage("enabling transproxy for app: " + tApp.getUsername() + " (" + tApp.getUid() + ")");
+				
 				dropAllIPv6Traffic(context, tApp.getUid());
 				
 		    	script = new StringBuilder();
@@ -407,7 +405,7 @@ public class TorTransProxy implements TorServiceConstants {
 				script.append(" -t nat");
 				script.append(" -A ").append(srcChainName);
 				script.append(" -p udp");
-				script.append(" -m owner ! --uid-owner ");
+				script.append(" -m owner --uid-owner ");
 				script.append(tApp.getUid());
 				script.append(" -m udp --dport "); 
 				script.append(STANDARD_DNS_PORT);
@@ -441,9 +439,12 @@ public class TorTransProxy implements TorServiceConstants {
 	{
 		SimpleCommand cmd = new SimpleCommand(cmdString +  "|| exit");
 		shell.add(cmd);
-		logMessage(cmdString);// + "; exit=" + cmd.getExitCode() + ";output=" + cmd.getOutput());
+		int exitCode = cmd.getExitCode();
+		String output = cmd.getOutput();
 		
-		return cmd.getExitCode();
+		logMessage(cmdString + "; exit=" + exitCode + ";output=" + output);
+		
+		return exitCode;
 	}
 	
 	
