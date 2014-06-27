@@ -217,15 +217,13 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
 		   }
 			
 			
-			/*
-			 * TODO n8fr8 June 2012: adding all apps for now b/c the Internet permission concept is not really working
 			if (!app.usesInternet())
 				continue;
 			else
 			{
 				apps.add(app);
-			}*/
-			apps.add(app);
+			}
+			
 			
 			app.setEnabled(aInfo.enabled);
 			app.setUid(aInfo.uid);
