@@ -1,5 +1,18 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+522f293 update to 14.0.4.3
+70615d6 fixes for status, service, binding and start/stop
+fbc1a87 update to 14.0.5-alpha
+bfa1d56 remove diag/test menu
+10ceafa ensure status is not set to CONNECTING incorrectly
+7f8e9b8 remove test/diag option
+e13d228 fix bug with wrong apps being transproxied (typo!)
+312c6da apps should only show those with internet permission
+d56c87e update to 14.0.4.2
+0e95dda update translations from transifex
+bb0b7e8 unbind the service when the activity is destroyed we don't want leaky services
+247e2ed don't kill Tor process and make sure service is sticky
+8b6cff0 update CHANGELOG entries
 7ec6de7 update to 14.0.4.1
 298a01e make sure transproxy is renabled when network returns
 2eb79a5 fulfilles the wishes of #12413 by support --default-torrc and -f
