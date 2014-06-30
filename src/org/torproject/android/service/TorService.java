@@ -154,7 +154,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 				
 	 			if (mLastProcessId != -1)
 	 			{
-
 		            sendCallbackLogMessage (getString(R.string.found_existing_tor_process));
 		
 		 			String state = conn.getInfo("dormant");
@@ -293,29 +292,25 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	    	{
         		Intent intent = params[0];
         		
-        		initBinaries();
-    			
-    			
-     		   IntentFilter mNetworkStateFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-     		   registerReceiver(mNetworkStateReceiver , mNetworkStateFilter);
-     	
-     			mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-     	
-     			if (intent != null && intent.getAction()!=null && intent.getAction().equals("onboot"))
-     			{
-     				
-     				boolean startOnBoot = TorServiceUtils.getSharedPrefs(getApplicationContext()).getBoolean("pref_start_boot",false);
-     				
-     				if (startOnBoot)
-     				{
-     					setTorProfile(PROFILE_ON);
-     				}
-     			}
-     			else
-     			{
-     				findExistingProc();
-     				
-     			}
+        		if (mNotificationManager == null)
+        		{
+	        	   
+	     		   IntentFilter mNetworkStateFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+	     		   registerReceiver(mNetworkStateReceiver , mNetworkStateFilter);
+	     	
+	     			mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+	     	
+	     			if (intent != null && intent.getAction()!=null && intent.getAction().equals("onboot"))
+	     			{
+	     				
+	     				boolean startOnBoot = TorServiceUtils.getSharedPrefs(getApplicationContext()).getBoolean("pref_start_boot",false);
+	     				
+	     				if (startOnBoot)
+	     				{
+	     					setTorProfile(PROFILE_ON);
+	     				}
+	     			}
+        		}
 	    	}
 	    	catch (Exception e)
 	    	{
@@ -507,7 +502,23 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	}
     }
     
-    private void initBinaries () throws Exception
+    @Override
+	public void onCreate() {
+		super.onCreate();
+		
+		try
+		{
+			initBinariesAndDirectories();
+		}
+		catch (Exception e)
+		{
+			//what error here
+			Log.e(TAG, "Error installing Orbot binaries",e);
+			logNotice("There was an error installing Orbot binaries");
+		}
+	}
+
+	private void initBinariesAndDirectories () throws Exception
     {
 
     	if (appBinHome == null)
@@ -617,16 +628,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	
 		currentStatus = STATUS_CONNECTING;
     	
-    	try
-    	{
-    		initBinaries();
-    	}
-    	catch (IOException e)
-    	{
-    		logNotice("There was a problem installing the Tor binaries: " + e.getLocalizedMessage());
-    		Log.d(TAG,"error installing binaries",e);
-    		return;
-    	}
     	
     	enableBinExec(fileTor);
 		enableBinExec(filePolipo);	
@@ -1126,7 +1127,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
 		public void setTorProfile(int profile)  {
 		
-			if (currentStatus == STATUS_OFF)
+			if (profile == PROFILE_ON)
         	{
         		
 	            sendCallbackStatusMessage (getString(R.string.status_starting_up));
@@ -1368,7 +1369,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
           
         	try
 	    	{
-	    		initBinaries();
 	    		findExistingProc ();
 	    	}
 	    	catch (Exception e)
@@ -1444,7 +1444,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         		public void run ()
         		{
 		        	try {
-		        	 	
+		        	 	 
+        
+       
 		        		processSettingsImpl ();
 		
 				    	
@@ -1488,7 +1490,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	        		List<ConfigEntry> listCe = conn.getConf(name);
 	        		
 	        		Iterator<ConfigEntry> itCe = listCe.iterator();
-	        		ConfigEntry ce = null;
+	        		ConfigEntry ce = null; 
+	                
+	        	       
 	        		
 	        		while (itCe.hasNext())
 	        		{
@@ -1517,7 +1521,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
          * Set configuration
          **/
         public boolean updateConfiguration (String name, String value, boolean saveToDisk)
-        {
+        { 
+            
+            
         	if (configBuffer == null)
         		configBuffer = new ArrayList<String>();
 	        
