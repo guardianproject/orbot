@@ -82,7 +82,7 @@
       	<activity android:name=".wizard.ChooseLocaleWizardActivity" android:exported="false"/>
       	
       	<activity android:name=".settings.SettingsPreferences"  android:label="@string/app_name"/>
-        <activity android:name=".settings.AppManager"  android:label="@string/app_name"/>
+        <activity android:name=".settings.AppManager"  android:label="@string/app_name"/>       
       
     	<service android:enabled="true"
     		android:name=".service.TorService" 

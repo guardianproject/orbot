@@ -23,6 +23,10 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.concurrent.TimeoutException;
 
 import net.freehaven.tor.control.ConfigEntry;
@@ -39,6 +43,7 @@ import org.torproject.android.settings.AppManager;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -59,7 +64,10 @@ import android.os.RemoteCallbackList;
 import android.os.RemoteException;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationCompat.Builder;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
+import android.widget.RemoteViews;
+import android.widget.Toast;
 
 public class TorService extends Service implements TorServiceConstants, TorConstants, EventHandler
 {
@@ -80,6 +88,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	private static final int HS_NOTIFY_ID = 4;
 	
 	private boolean prefPersistNotifications = true;
+	private String IPADDRESS_PATTERN = 
+	        "(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)";
+	private long exitIPTime = 0;
 	
 	private static final int MAX_START_TRIES = 3;
 
@@ -109,6 +120,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	
 	private NotificationManager mNotificationManager = null;
 	private Builder mNotifyBuilder;
+	private Notification mNotification;
+	private String exitIP = "";
 
     private boolean mHasRoot = false;
     private boolean mEnableTransparentProxy = false;
@@ -204,16 +217,27 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			mNotificationManager.cancelAll();
 		
 	}
-   
- 	private void showToolbarNotification (String notifyMsg, int notifyId, int icon, boolean isOngoing)
- 	{
- 				    
+		
+ 	@SuppressLint("NewApi")
+	private void showToolbarNotification (String notifyMsg, int notifyId, int icon, boolean isOngoing)
+ 	{	    
+ 		
+ 		//Reusable code.
+ 		Intent intent = new Intent(TorService.this, Orbot.class);
+ 		PendingIntent pendIntent = PendingIntent.getActivity(TorService.this, 0, intent, 0);
+ 
+		// Create remote view that needs to be set as bigContentView for the notification.
+ 		RemoteViews expandedView = new RemoteViews(this.getPackageName(), 
+ 		        R.layout.layout_notification_expanded);
+ 		
+ 		expandedView.setTextViewText(R.id.text, notifyMsg);
+ 		expandedView.setTextViewText(R.id.title, "ORBOT "+exitIP); 		
+ 		//expandedView.setTextViewText(R.id.exitIP, exitIP);
+ 		//expandedView.setOnClickPendingIntent(R.id._tor_notificationBT, pendIntent);
+ 		expandedView.setImageViewResource(R.id.icon, icon);
+ 		
 		if (mNotifyBuilder == null)
 		{
-			
-			//Reusable code.
-			Intent intent = new Intent(TorService.this, Orbot.class);
-			PendingIntent pendIntent = PendingIntent.getActivity(TorService.this, 0, intent, 0);
 			
 			mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 				
@@ -232,6 +256,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		mNotifyBuilder.setContentText(notifyMsg);
 		mNotifyBuilder.setSmallIcon(icon);
 		
+		
 		if (notifyId == ERROR_NOTIFY_ID)
 		{
 			mNotifyBuilder.setTicker(notifyMsg);
@@ -243,19 +268,19 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			mNotifyBuilder.setTicker(null); //make sure to clear ticker
 		}
 		
+		mNotification = mNotifyBuilder.build();
+		mNotification.bigContentView = expandedView;
+		
 		if (isOngoing)
 		{
-			startForeground(notifyId,
-	    			mNotifyBuilder.build());
+			startForeground(notifyId, mNotification);
 		
 		}
 		else
 		{
-			mNotificationManager.notify(
-						notifyId,
-		    			mNotifyBuilder.build());
+			mNotificationManager.notify(notifyId, mNotification);
 		}	
-		
+ 		
  	}
     
 
@@ -1311,10 +1336,13 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			while (st.hasMoreTokens())
 			{
 				node = st.nextToken();
+				final String nodeName = parseNodeName(node);
+				sb.append(nodeName);
 				
-				sb.append(parseNodeName(node));
-				
-				
+				if(status.equals("BUILT") && currentStatus==STATUS_ON){
+					new getExternalIP().execute(nodeName);
+				}
+					
 				if (st.hasMoreTokens())
 					sb.append (" > ");
 			}
@@ -1340,6 +1368,49 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			}
 		}*/
 	
+	}
+	
+	private class getExternalIP extends AsyncTask<String, Void, Void>{
+
+		private long time;
+		private String nodeDetails;
+		
+		@Override
+		protected Void doInBackground(String... params) {
+			time = System.nanoTime();
+			try {
+				nodeDetails = conn.getInfo("ns/name/"+params[0]);
+				if (ENABLE_DEBUG_LOG)  
+		    	{
+		    		Log.d(TAG,"Node Details: "+nodeDetails);
+		    		sendCallbackLogMessage("Node Details: "+nodeDetails);	
+
+		    	}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace(); 
+			}
+			return null;
+		}
+		
+		@Override
+		protected void onPostExecute(Void result) {
+			// check if we need to update the exit IP
+			if(time > exitIPTime) {
+				exitIPTime = time;
+				
+				Pattern pattern = Pattern.compile(IPADDRESS_PATTERN);
+				Matcher matcher = null;
+				if(nodeDetails!=null){
+					matcher = pattern.matcher(nodeDetails);
+					if (matcher.find()) {
+						Log.d(TAG, "ip: "+matcher.group());
+						exitIP = matcher.group();
+					}
+				}
+			}
+	    }
+		
 	}
 	
 	private String parseNodeName(String node)
