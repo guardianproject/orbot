@@ -72,6 +72,7 @@
   <string name="wizard_configure_select_apps">Selecteer individuele apps voor Tor</string>
   <string name="wizard_tips_tricks">Orbot-geschikte Apps</string>
   <string name="wizard_tips_msg">We raden je aan om apps te downloaden die zich automatisch verbinden met Orbot. Klik op de knoppen hieronder om te installeren.</string>
+  <string name="wizard_tips_otrchat">ChatSecure - Beveiligde instant messaging cliënt voor Andrdoid</string>
   <string name="wizard_tips_proxy">Proxy Instellingen - Leer hoe je apps te configureren voor Orbot</string>
   <string name="wizard_tips_duckgo">Duckduckgo Zoekmachine app</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
@@ -103,7 +104,10 @@
   <string name="wizard_permissions_no_root_msg">Je apparaat draait in standaard modus en ondersteunt geen root of \'superuser\' toegang.\n\nOm voordeel te hebben van Tor moet je gebruik maken van apps die gemaakt zijn om te werken met Tor, of die HTTP of SOCKS proxy instellingen ondersteunen.\n\n\n</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot geschikte Apps</string>
+  <string name="wizard_tips_gibberbot">ChatSecure: Beveiligde chat app met Off-the-Record versleuteling</string>
+  <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
   <string name="wizard_tips_orweb">ORWEB (Alleen Android 1.x) - Browser gemaakt voor privacy &amp; voor Orbot</string>
+  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
   <string name="wizard_tips_play">Vind alle Guardian Project apps op Google Play</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
@@ -197,8 +201,11 @@
   <string name="the_tor_license">De Tor licentie</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Software van derden: </string>
+  <string name="tor_version">Tor v0.2.4.21: https://www.torproject.org</string>
+  <string name="libevent_version">LibEvent v2.0.9: http://www.monkey.org/~provos/libevent/</string>
   <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
   <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
+  <string name="openssl_version">OpenSSL v1.0.1g: http://www.openssl.org</string>
   <string name="hidden_service_request">Een app wil hidden service poort %S openen naar het Tor netwerk. Dit is veilig als je de app vertrouwd.</string>
   <string name="found_existing_tor_process">bestaand Tor proces gevonden...</string>
   <string name="something_bad_happened">Er is iets slechts gebeurt. Controleer de log</string>
@@ -219,4 +226,14 @@
   <string name="powered_by">mogelijk gemaakt door het Tor Project</string>
   <string name="btn_save_settings">Sla instellingen op</string>
   <string name="no_internet_connection_tor">Geen internet verbinding: Tor is in standby...</string>
+  <string name="bandwidth_">Bandbreedte:</string>
+  <string name="pref_disable_network_title">Geen Netwerk Automatisch Slapen</string>
+  <string name="pref_disable_network_summary">Laat Tor slapen als er geen internet verbinding is</string>
+  <string name="newnym">Je bent naar een nieuwe Tor identiteit gewisseld!</string>
+  <string name="menu_verify_browser">Controleer Browser</string>
+  <string name="menu_use_chatsecure">Gebruik ChatSecure</string>
+  <string name="permission_manage_tor_label">Beheer Tor</string>
+  <string name="permission_manage_tor_description">Deze app toestaan om de Tor dienst te bedienen</string>
+  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Het lijkt alsof je Orweb niet geïnstalleerd hebt. Wil je er hulp bij of moeten we gewoon de browser openen?</string>
+  <string name="install_apps_">Apps installeren?</string>
 </resources>
