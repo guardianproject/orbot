@@ -24,6 +24,7 @@
       android:allowBackup="false"
       android:allowClearUserData="true"
       android:largeHeap="true"
+      android:persistent="true"
      >
       
         <activity android:name=".Orbot" android:configChanges="orientation|screenSize"
