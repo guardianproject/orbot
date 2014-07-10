@@ -985,6 +985,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 			else
 			{
 				showAlert(getString(R.string.error),"Tor Service has not started yet. Please wait and try again.",false);
+				startService ();
 			}
             
     	
