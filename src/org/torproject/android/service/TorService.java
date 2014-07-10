@@ -452,11 +452,11 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     		
     		
 			try {
-				logNotice("sending SHUTDOWN signal to Tor process");
-				conn.shutdownTor("SHUTDOWN");
+				logNotice("sending HALT signal to Tor process");
+				conn.shutdownTor("HALT");
 				
-				logNotice("closing tor socket");
-				torConnSocket.close();
+				//logNotice("closing tor socket");
+			//	torConnSocket.close();
 				
 			} catch (Exception e) {
 				Log.d(TAG,"error shutting down Tor via connection",e);
