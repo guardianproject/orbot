@@ -231,7 +231,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
  		        R.layout.layout_notification_expanded);
  		
  		expandedView.setTextViewText(R.id.text, notifyMsg);
- 		expandedView.setTextViewText(R.id.title, "ORBOT "+exitIP); 		
+ 		expandedView.setTextViewText(R.id.title, getString(R.string.app_name)+ ' ' + exitIP); 		
  		//expandedView.setTextViewText(R.id.exitIP, exitIP);
  		//expandedView.setOnClickPendingIntent(R.id._tor_notificationBT, pendIntent);
  		expandedView.setImageViewResource(R.id.icon, icon);
@@ -1370,42 +1370,42 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	
 	}
 	
-	private class getExternalIP extends AsyncTask<String, Void, Void>{
+	private class getExternalIP extends AsyncTask<String, Void, String>{
 
 		private long time;
-		private String nodeDetails;
 		
 		@Override
-		protected Void doInBackground(String... params) {
+		protected String doInBackground(String... params) {
 			time = System.nanoTime();
 			try {
-				nodeDetails = conn.getInfo("ns/name/"+params[0]);
+				String nodeDetails = conn.getInfo("ns/name/"+params[0]);
 				if (ENABLE_DEBUG_LOG)  
 		    	{
 		    		Log.d(TAG,"Node Details: "+nodeDetails);
 		    		sendCallbackLogMessage("Node Details: "+nodeDetails);	
 
 		    	}
+				return nodeDetails;
+				
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace(); 
+				Log.e(TorService.TAG,"Error getting node details",e);
 			}
 			return null;
 		}
 		
 		@Override
-		protected void onPostExecute(Void result) {
+		protected void onPostExecute(String result) {
 			// check if we need to update the exit IP
 			if(time > exitIPTime) {
 				exitIPTime = time;
 				
 				Pattern pattern = Pattern.compile(IPADDRESS_PATTERN);
 				Matcher matcher = null;
-				if(nodeDetails!=null){
-					matcher = pattern.matcher(nodeDetails);
+				if(result!=null){
+					matcher = pattern.matcher(result);
 					if (matcher.find()) {
-						Log.d(TAG, "ip: "+matcher.group());
 						exitIP = matcher.group();
+						sendCallbackLogMessage("Exit IP: "+exitIP);	
 					}
 				}
 			}
