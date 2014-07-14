@@ -1,5 +1,22 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+
+d439176 update to 14.0.5-beta
+c4cf845 handle NPE in case service disconnects
+1e6ff35 updating ant build shell permissions
+498f647 remove external storage perm (debug log written internally) need to add ability to share internal file after marking it global
+e1ec776 re-arch status callbacks and improve notification
+c7409b7 update commit pegs for external
+f2f076c fixes for layout and notification data be sure to only get the IP of the last hop (that is the exit)
+a6da4bf small cleanup of asynctask and error handling
+181b922 make the notification larger for more display room!
+a82d2e4 remove unnecessary jar file
+3bc8760 Merge branch 'new_notification_expanded' of github.com:amoghbl1/orbot-1 into amoghbl1-new_notification_expanded
+41064d8 add persistent flag
+b4079f4 update transifex config
+8a934c9 don't close socket, and use HALT for shutdown
+f9b38e6 if service is null, please start it
+a447bbf update strings
 522f293 update to 14.0.4.3
 70615d6 fixes for status, service, binding and start/stop
 fbc1a87 update to 14.0.5-alpha
