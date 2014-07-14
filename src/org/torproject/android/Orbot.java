@@ -1082,22 +1082,25 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	        				             mHandler.sendMessage(msg);
 	        						}
 	        						
-	        						long[] bws = mService.getBandwidth();
-	        						Message msg = mHandler.obtainMessage(TorServiceConstants.MESSAGE_TRAFFIC_COUNT);
-	        						msg.getData().putLong("download", bws[0]);
-	        						msg.getData().putLong("upload", bws[1]);
-	        						msg.getData().putLong("readTotal", bws[2]);
-	        						msg.getData().putLong("writeTotal", bws[3]);
-	        						mHandler.sendMessage(msg);
-       				             	
-	        						try { Thread.sleep(1000); }
-	        						catch (Exception e){}
-	        						
+	        						if (mService != null)
+	        						{
+		        						long[] bws = mService.getBandwidth();
+		        						Message msg = mHandler.obtainMessage(TorServiceConstants.MESSAGE_TRAFFIC_COUNT);
+		        						msg.getData().putLong("download", bws[0]);
+		        						msg.getData().putLong("upload", bws[1]);
+		        						msg.getData().putLong("readTotal", bws[2]);
+		        						msg.getData().putLong("writeTotal", bws[3]);
+		        						mHandler.sendMessage(msg);
+	       				             	
+		        						try { Thread.sleep(1000); }
+		        						catch (Exception e){}
+	        						}		        						
 
-	                				torStatus = mService.getStatus();
+	        						if (mService != null)
+	        							torStatus = mService.getStatus();
 	        					}
         					}
-        					catch (RemoteException re)
+        					catch (Exception re)
         					{
         						Log.e(TAG, "error getting service updates",re);
         					}
@@ -1230,36 +1233,9 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
         	mKeepUpdating = false;
             mService = null;
             Log.d(TAG,"service was disconnected");
+            
         }
     };
-    
-        
-    /*
-    private void createProgressDialog (String msg)
-    {
-            if (progressDialog != null && progressDialog.isShowing())
-            {
-            	progressDialog.setMessage(msg);
-            }
-            else
-            {
-            	progressDialog = ProgressDialog.show(Orbot.this, "", msg);        
-                progressDialog.setCancelable(true);
-            }
-    }
-    
-    private void hideProgressDialog ()
-    {
-
-        if (progressDialog != null && progressDialog.isShowing())
-        {
-                progressDialog.dismiss();
-                progressDialog = null;
-        }
-                
-    }
-    */
-    
     
     private void setLocale ()
     {
