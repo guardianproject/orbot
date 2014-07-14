@@ -119,7 +119,7 @@ public class OrbotDiagnosticsActivity extends Activity {
 	    	File fileTor= new File(appBinHome, TorServiceConstants.TOR_ASSET_KEY);
 	    	enableBinExec (fileTor, appBinHome);	    	
 	    	
-			InputStream is = getResources().openRawResource(R.raw.torrcdiag);
+			InputStream is = getResources().openRawResource(R.raw.torrc);
 			File fileTorrc = new File(appBinHome, TorServiceConstants.TORRC_ASSET_KEY + "diag");
 			TorResourceInstaller.streamToFile(is,fileTorrc, false, false);
 		

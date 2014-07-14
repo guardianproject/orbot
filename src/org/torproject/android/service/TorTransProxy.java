@@ -497,7 +497,7 @@ public class TorTransProxy implements TorServiceConstants {
 	private void logMessage (String msg)
 	{
 		if (mTorService != null)
-			mTorService.logMessage(msg);
+			mTorService.debug(msg);
 	}
 	
 	public int clearTransparentProxyingAll(Context context) throws Exception 

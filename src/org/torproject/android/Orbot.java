@@ -9,7 +9,6 @@ import java.net.URLDecoder;
 import java.util.Locale;
 
 import org.torproject.android.service.ITorService;
-import org.torproject.android.service.ITorServiceCallback;
 import org.torproject.android.service.TorService;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.TorServiceUtils;
@@ -774,6 +773,8 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
         {
                 try {
                 	
+                	torStatus = mService.getStatus();
+                	
                 	if (torStatus != TorServiceConstants.STATUS_ON)	
                 		mService.processSettings();
                 	
@@ -937,7 +938,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                                 
                                             
                             }
-                            else if (torStatus != newTorStatus)
+                            else if (newTorStatus == TorServiceConstants.STATUS_OFF)
                             {
                         	//	mViewMain.setBackgroundResource(R.drawable.onionrootonlygrey);                            	
                                 imgStatus.setImageResource(R.drawable.toroff);
@@ -982,6 +983,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	            Message msg = mHandler.obtainMessage(TorServiceConstants.ENABLE_TOR_MSG);
 	            msg.getData().putString(HANDLER_TOR_MSG, getString(R.string.status_starting_up));
 	            mHandler.sendMessage(msg);
+	            
 			}
 			else
 			{
@@ -1000,8 +1002,9 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
     		mService.setProfile(TorServiceConstants.PROFILE_OFF);
     		Message msg = mHandler.obtainMessage(TorServiceConstants.DISABLE_TOR_MSG);
     		mHandler.sendMessage(msg);
+    		
+    		updateStatus("");
 
-            
     	}
     	
      
@@ -1043,61 +1046,72 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
             return false;
                     
         }
-        
 
-    /**
-     * This implementation is used to receive callbacks from the remote
-     * service. 
-     *
-     * If we have this setup probably, we shouldn't have to poll or query status
-     * to the service, as it should send it as it changes or when we bind/unbind to it
-     * from this activity
-     */
-    private ITorServiceCallback mCallback = new ITorServiceCallback.Stub() {
-        /**
-         * This is called by the remote service regularly to tell us about
-         * new values.  Note that IPC calls are dispatched through a thread
-         * pool running in each process, so the code executing here will
-         * NOT be running in our main thread like most other things -- so,
-         * to update the UI, we need to use a Handler to hop over there.
-         */
-         
-         //receive a new string vaule end-user displayable message from the ITorService
-        public void statusChanged(String value) {
-           
-           //pass it off to the progressDialog
-                Message msg = mHandler.obtainMessage(TorServiceConstants.STATUS_MSG);
-                msg.getData().putString(HANDLER_TOR_MSG, value);
-                mHandler.sendMessage(msg);
+    	Thread threadUpdater = null;
+    	boolean mKeepUpdating = false;
+    	
+        public void initUpdates ()
+        {
+        	mKeepUpdating = true;
+        	
+        	if (threadUpdater == null || !threadUpdater.isAlive())
+        	{
+        		threadUpdater = new Thread(new Runnable()
+        		{
+        				
+        			public void run ()
+        			{
+        				
+        				while (mKeepUpdating)
+        				{
+        					try
+        					{
+	        					if (mService != null)
+	        					{
+	        						for (String log : mService.getLog())
+	        						{
+	        							Message msg = mHandler.obtainMessage(TorServiceConstants.LOG_MSG);
+	        				             msg.getData().putString(HANDLER_TOR_MSG, log);
+	        				             mHandler.sendMessage(msg);
+	        						}
+	        						
+	        						for (String status : mService.getStatusMessage())
+	        						{
+	        							Message msg = mHandler.obtainMessage(TorServiceConstants.STATUS_MSG);
+	        				             msg.getData().putString(HANDLER_TOR_MSG, status);
+	        				             mHandler.sendMessage(msg);
+	        						}
+	        						
+	        						long[] bws = mService.getBandwidth();
+	        						Message msg = mHandler.obtainMessage(TorServiceConstants.MESSAGE_TRAFFIC_COUNT);
+	        						msg.getData().putLong("download", bws[0]);
+	        						msg.getData().putLong("upload", bws[1]);
+	        						msg.getData().putLong("readTotal", bws[2]);
+	        						msg.getData().putLong("writeTotal", bws[3]);
+	        						mHandler.sendMessage(msg);
+       				             	
+	        						try { Thread.sleep(1000); }
+	        						catch (Exception e){}
+	        						
+
+	                				torStatus = mService.getStatus();
+	        					}
+        					}
+        					catch (RemoteException re)
+        					{
+        						Log.e(TAG, "error getting service updates",re);
+        					}
+        				}
+        				
+        			}
+        		});
+        		
+        		threadUpdater.start();
+        		
+        	}
         }
-
-		@Override
-		public void logMessage(String value) throws RemoteException {
-			
-			Message msg = mHandler.obtainMessage(TorServiceConstants.LOG_MSG);
-        	msg.getData().putString(HANDLER_TOR_MSG, value);
-        	mHandler.sendMessage(msg);
-			
-		}
-
-		@Override
-		public void updateBandwidth(long upload, long download, long written, long read) {
-			
-        	Message msg = Message.obtain();
-			msg.what = TorServiceConstants.MESSAGE_TRAFFIC_COUNT;
-			
-			Bundle data = new Bundle();
-			data.putLong("upload", upload);
-			data.putLong("download", download);
-			data.putLong("readTotal",read);
-			data.putLong("writeTotal",written);
-			
-			msg.setData(data);
-			mHandler.sendMessage(msg); 
-
-		}
-    };
-    
+        
+   
 
 // this is what takes messages or values from the callback threads or other non-mainUI threads
 //and passes them back into the main UI thread for display to the user
@@ -1177,13 +1191,13 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
             // representation of that from the raw service object.
             mService = ITorService.Stub.asInterface(service);
        
-            torStatus = TorServiceConstants.STATUS_OFF;
             
             // We want to monitor the service for as long as we are
             // connected to it.
             try {
-                mService.registerCallback(mCallback);
-                
+                torStatus = mService.getStatus();
+            	initUpdates();
+            	
                 if (autoStartFromIntent)
                 {
                 		
@@ -1205,15 +1219,15 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
             }
             
 
-
-           
        
           
         }
 
         public void onServiceDisconnected(ComponentName className) {
+        	
             // This is called when the connection with the service has been
             // unexpectedly disconnected -- that is, its process crashed.
+        	mKeepUpdating = false;
             mService = null;
             Log.d(TAG,"service was disconnected");
         }

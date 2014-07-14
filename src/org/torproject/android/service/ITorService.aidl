@@ -1,22 +1,11 @@
 package org.torproject.android.service;
 
-import org.torproject.android.service.ITorServiceCallback;
 
 /**
  * an interface for calling on to a remote service
  */
 interface ITorService {
 
-    /**
-     * This allows Tor service to send messages back to the GUI
-     */
-    void registerCallback(ITorServiceCallback cb);
-    
-    /**
-     * Remove registered callback interface.
-     */
-    void unregisterCallback(ITorServiceCallback cb);
-    
     /**
     * Get a simple int status value for the state of Tor
     **/
@@ -58,4 +47,9 @@ interface ITorService {
     */
     void newIdentity ();
     
+    String[] getStatusMessage ();
+    
+    String[] getLog ();
+    
+    long[] getBandwidth ();
 }
