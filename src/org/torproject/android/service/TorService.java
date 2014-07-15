@@ -30,6 +30,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Properties;
 import java.util.Set;
 import java.util.StringTokenizer;
 import java.util.concurrent.TimeoutException;
@@ -38,7 +39,6 @@ import java.util.regex.Pattern;
 import net.freehaven.tor.control.ConfigEntry;
 import net.freehaven.tor.control.EventHandler;
 import net.freehaven.tor.control.TorControlConnection;
-import net.freehaven.tor.control.TorControlError;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -896,6 +896,27 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
     }
     
+    private void updatePolipoConfig () throws FileNotFoundException, IOException
+    {
+    	
+		SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
+    	String socksPort = prefs.getString(TorConstants.PREF_SOCKS, TorServiceConstants.PORT_SOCKS_DEFAULT);
+
+    	File file = new File(appBinHome, POLIPOCONFIG_ASSET_KEY);
+    	
+    	Properties props = new Properties();
+    	
+    	props.load(new FileReader(file));
+    	
+    	props.put("socksParentProxy", "\"localhost:" + socksPort + "\"");
+    	props.put("proxyPort","8118");
+    	
+    	props.store(new FileWriter(file), "updated");
+    	
+    	props.list(System.out);
+    }
+    
+    
     private void runPolipoShellCmd () throws Exception
     {
     	
@@ -912,6 +933,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     		if (polipoProcId == -1)
     		{
     			log = new StringBuilder();
+    			
+    			updatePolipoConfig();
     			
     			String polipoConfigPath = new File(appBinHome, POLIPOCONFIG_ASSET_KEY).getCanonicalPath();
     			SimpleCommand cmdPolipo = new SimpleCommand(filePolipo.getCanonicalPath() + " -c " + polipoConfigPath + " &");
