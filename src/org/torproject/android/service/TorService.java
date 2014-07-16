@@ -258,15 +258,17 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	 			Node node = hmBuiltNodes.get(key);
 	 			
 	 			if (node.ipAddress != null)
+	 			{
 	 				sbInfo.append(node.ipAddress);
 	 			
-	 			if (node.country != null)
-	 				sbInfo.append(' ').append(node.country);
+	 				if (node.country != null)
+	 					sbInfo.append(' ').append(node.country);
 	 			
-	 			if (node.organization != null)
-	 				sbInfo.append(" (").append(node.organization).append(')');
+	 				if (node.organization != null)
+	 					sbInfo.append(" (").append(node.organization).append(')');
 	 			
-	 			sbInfo.append('\n');
+	 				sbInfo.append('\n');
+	 			}
 	 			
 	 		}
 	 		
