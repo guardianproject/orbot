@@ -124,7 +124,19 @@ public class TipsAndTricks extends Activity implements TorConstants {
 			}
 		});
         
-        /**
+        btnLink = (Button)findViewById(R.id.WizardRootButtonInstallMartus);
+
+        btnLink.setOnClickListener(new OnClickListener() {
+			
+			public void onClick(View view) {
+				
+				String url = getString(R.string.martus_url);
+				startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+
+			}
+		});
+        
+        
         btnLink = (Button)findViewById(R.id.WizardRootButtonGooglePlay);
 
         btnLink.setOnClickListener(new OnClickListener() {
@@ -135,8 +147,7 @@ public class TipsAndTricks extends Activity implements TorConstants {
 				startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
 
 			}
-		});
-        */
+		});        
         
         
         Button back = ((Button)findViewById(R.id.btnWizard1));

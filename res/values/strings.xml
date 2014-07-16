@@ -77,8 +77,8 @@
   <string name="wizard_tips_proxy">Proxy Settings - Learn how to configure apps to work with Orbot</string>
   <string name="wizard_tips_duckgo">DuckDuckGo Search Engine app</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
-  <string name="wizard_tips_firefox">Proxy Mobile add-on for Firefox (http://tinyurl.com/getproxymob)</string>
-  <string name="proxymob_setup_url">https://guardianproject.info/releases/proxymob-latest.xpi</string>
+  <string name="wizard_tips_firefox">Proxy Mobile add-on for Firefox (https://guardianproject.info/apps/firefoxprivacy)</string>
+  <string name="proxymob_setup_url">https://guardianproject.info/apps/firefoxprivacy</string>
   <string name="wizard_tips_twitter">Set Twitter proxy to host \"localhost\" and port 8118</string>
   <string name="wizard_tips_story_maker">StoryMaker - Make a story and leave it to tor for security!</string>
   <string name="story_maker_url">https://play.google.com/store/apps/details?id=info.guardianproject.mrapp</string>
@@ -275,5 +275,8 @@
     <string name="pref_torrc_summary">EXPERTS ONLY: enter direct torrc config lines</string>
     <string name="pref_torrc_dialog">Custom Torrc</string>
     
-    
+    <string name="wizard_tips_martus">Mobile Martus - Benetech Human Rights Documentation App</string>
+  <string name="martus_url">https://play.google.com/store/apps/details?id=org.martus.android</string>
+  
+  
 </resources>
