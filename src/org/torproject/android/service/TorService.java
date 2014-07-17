@@ -364,15 +364,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	     	
 	     			mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 	     	
-	     			if (intent != null && intent.getAction()!=null && intent.getAction().equals("onboot"))
-	     			{
-	     				
-	     				boolean startOnBoot = TorServiceUtils.getSharedPrefs(getApplicationContext()).getBoolean("pref_start_boot",false);
-	     				
-	     				if (startOnBoot)
-	     				{
-	     					setTorProfile(PROFILE_ON);
-	     				}
+	     			if (intent != null && intent.getAction()!=null && intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED))
+	     			{	     				
+	     				setTorProfile(PROFILE_ON);	     			
 	     			}
         		}
 	    	}

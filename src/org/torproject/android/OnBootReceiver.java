@@ -14,7 +14,7 @@ public class OnBootReceiver extends BroadcastReceiver {
 	public void onReceive(Context context, Intent intent) {
 
 		if (intent.getAction() != null 
-				&& intent.getAction().equals("android.intent.action.BOOT_COMPLETED"))
+				&& Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction()))
 		{
 			
 			SharedPreferences prefs = TorServiceUtils.getSharedPrefs(context.getApplicationContext());
@@ -23,11 +23,10 @@ public class OnBootReceiver extends BroadcastReceiver {
 			
 			if (startOnBoot)
 			{
-				//Phase 1: Launch a service
-				Intent service = new Intent();
-				service.setAction("onboot");
-				service.setClass(context, TorService.class);
-				context.startService(service);
+				Intent torService = new Intent(context.getApplicationContext(), TorService.class);
+				torService.setAction(Intent.ACTION_BOOT_COMPLETED);
+				context.getApplicationContext().startService(torService);
+				
 			}
 		}
 	
