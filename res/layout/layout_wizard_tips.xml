@@ -90,7 +90,15 @@
         android:drawableLeft="@drawable/icon_story_maker"
         android:text="@string/wizard_tips_story_maker" />
     
-    <!-- 
+         <Button
+        android:id="@+id/WizardRootButtonInstallMartus"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginTop="10px"
+        android:drawableLeft="@drawable/icon_martus"
+        android:text="@string/wizard_tips_martus" />
+         
      <Button
         android:id="@+id/WizardRootButtonGooglePlay"
         android:layout_width="fill_parent"
@@ -99,14 +107,14 @@
         android:layout_marginTop="10px"
         android:drawableLeft="@drawable/ic_play"
         android:text="@string/wizard_tips_play" />
-     -->
+    
 
 </LinearLayout>
 
 		</ScrollView>
 		
 </TableRow>
-<TableRow android:background="#000000" android:layout_marginTop="10dip" android:paddingTop="10dip" android:id="@+id/TableRow01" android:textColor="#00ff00" android:layout_width="fill_parent" android:layout_height="30px">
+<TableRow android:background="#000000" android:layout_marginTop="10dip" android:paddingTop="10dip" android:id="@+id/TableRow02" android:textColor="#00ff00" android:layout_width="fill_parent" android:layout_height="30px">
 	   	<Button android:text="@string/btn_back" android:id="@+id/btnWizard1" android:layout_weight="1" android:layout_width="fill_parent" android:layout_height="wrap_content"></Button>
     	<Button android:text="@string/btn_next" android:id="@+id/btnWizard2"  android:layout_weight="1" android:layout_width="fill_parent" android:layout_height="wrap_content"></Button>	    
 </TableRow>			
