@@ -1,5 +1,13 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+816d7d7 new icons for martus
+6574312 new tips for app download
+29a0641 make sure start on boot works properly
+54a39f2 only show notifications if we have data
+9d541d8 added mobile martus to rec'd apps
+4d6c32a support dynamic SOCKS ip in polipo configuration
+1cd0dcf fix proguard path for new sdk
+8cc8886 update CHANGELOG
 
 d439176 update to 14.0.5-beta
 c4cf845 handle NPE in case service disconnects
