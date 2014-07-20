@@ -878,19 +878,16 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                             
                             if (newTorStatus == TorServiceConstants.STATUS_ON)
                             {
-	                            	//if (torStatus != newTorStatus)
-	                            	//{
-	                                    imgStatus.setImageResource(R.drawable.toron);
-	                            	//	mViewMain.setBackgroundResource(R.drawable.onionrootonly);    
-	                            		
-	                                    String lblMsg = getString(R.string.status_activated);                                     
-	                                    lblStatus.setText(lblMsg);
+	                            	
+                                    imgStatus.setImageResource(R.drawable.toron);
+                            		
+                                    String lblMsg = getString(R.string.status_activated);                                     
+                                    lblStatus.setText(lblMsg);
 
-	                                    if (mItemOnOff != null)
-	                                            mItemOnOff.setTitle(R.string.menu_stop);
-	                                    
-	                            	//}
+                                    if (mItemOnOff != null)
+                                            mItemOnOff.setTitle(R.string.menu_stop);
                                     
+                                
                                     if (mTorServiceMsg != null && mTorServiceMsg.length() > 0)
                                     {
                                     	appendLogTextAndScroll(mTorServiceMsg);
@@ -921,14 +918,12 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                             }
                             else if (newTorStatus == TorServiceConstants.STATUS_CONNECTING)
                             {
-                            	if (torStatus != newTorStatus)
-                            	{
-                                    imgStatus.setImageResource(R.drawable.torstarting);
-                            //		mViewMain.setBackgroundResource(R.drawable.onionrootonlygold);
-
-                                    if (mItemOnOff != null)
-                                            mItemOnOff.setTitle(R.string.menu_stop);
-                            	}
+                            	
+                                imgStatus.setImageResource(R.drawable.torstarting);
+                        
+                                if (mItemOnOff != null)
+                                        mItemOnOff.setTitle(R.string.menu_stop);
+                        	
                             	
                                 if (lblStatus != null && mTorServiceMsg != null)
                                 	if (mTorServiceMsg.indexOf('%')!=-1)
@@ -940,7 +935,6 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                             }
                             else if (newTorStatus == TorServiceConstants.STATUS_OFF)
                             {
-                        	//	mViewMain.setBackgroundResource(R.drawable.onionrootonlygrey);                            	
                                 imgStatus.setImageResource(R.drawable.toroff);
                                 lblStatus.setText(getString(R.string.status_disabled) + "\n" + getString(R.string.press_to_start));
                                 
