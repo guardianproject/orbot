@@ -1,5 +1,15 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+668ed68 update to 14.0.5-RC1
+7ff49ff update Tor binary version number
+6626b65 update strings, localisations
+543c887 update to latest tor and obfsclient
+023ef2d boot receive does not need HOME category
+cbf4e99 handle CONNECTING state properly
+6ed7ab0 onBoot perm should default to true
+8f1b345 update for beta 2
+5f52092 update for 14.0.5-beta-2
+
 816d7d7 new icons for martus
 6574312 new tips for app download
 29a0641 make sure start on boot works properly
