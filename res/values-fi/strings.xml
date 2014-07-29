@@ -65,6 +65,7 @@
   <string name="wizard_permissions_consent">Ymmärrän ja haluan jatkaa ilman Superuser-tason oikeuksia</string>
   <string name="wizard_permission_enable_root">Anna root-tason oikeudet Orbotille</string>
   <string name="wizard_configure">Konfiguroi Tor-toiminnot</string>
+  <string name="wizard_configure_msg">Orbot mahdollistaa kaiken sovellusliikenteen reitittämisen Tor-sovelluksen kautta TAI valita sovelluksesi yksilöllisesti.</string>
   <string name="wizard_configure_all">Välitä kaikkien sovellusten tiedonsiirto Tor-verkon kautta</string>
   <string name="wizard_configure_select_apps">Valitse Tor-verkkoa käyttävät sovellukset</string>
   <string name="wizard_tips_tricks">Orbotia käyttävät sovellukset</string>
@@ -78,14 +79,20 @@
   <string name="wizard_proxy_help_info">Välityspalvelinasetukset</string>
   <string name="wizard_final">Orbot on valmis!</string>
   <!--END Welcome Wizard strings (DJH)-->
+  <string name="tor_check">Tämä avaa selaimesi osoitteeseen https://check.torproject.org nähdäkseen, onko Orbot varmaan konfiguroitu ja onko sinut yhdistetty Tor-sovellukseen.</string>
   <string name="pref_general_group">Yleiset</string>
   <string name="pref_start_boot_title">Aloita Orbot käynnistettäessä</string>
   <!--New Wizard Strings-->
   <!--Title Screen-->
   <!--Warning screen-->
   <string name="wizard_warning_title">Varoitus</string>
+  <string name="wizard_warning_msg">Orbit-asennus ei pelkästään tee mobiililiikenteestäsi anonyymia.\n\nSinun on konfiguroitava oikein Orbot, laitteesi ja muut Tor-sovellusta käyttävät sovellukset.</string>
   <!--Permissions screen-->
+  <string name="wizard_permissions_title">Käyttöoikeudet</string>
+  <string name="wizard_permissions_root_msg2">Jos et halua tehdä tätä, varmistu, että käytät sovelluksia, jotka toimivat Orbotin kanssa</string>
   <!--TipsAndTricks screen-->
+  <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
+  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
@@ -100,17 +107,42 @@
   <string name="couldn_t_start_tor_process_">Tor-prosessin käynnistäminen epäonnistui:</string>
   <string name="bridge_error">Siltavirhe</string>
   <string name="error">Virhe</string>
+  <string name="bridges">Sillat</string>
+  <string name="use_bridges">Käytä siltoja</string>
+  <string name="enter_bridge_addresses">Kirjoita siltaosoitteet</string>
+  <string name="enter_ports">Kirjoita portit</string>
+  <string name="project_home">Projektin kotisivu(t):</string>
+  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
+  <string name="the_tor_license">Tor-lisenssi</string>
+  <string name="https_torproject_org">https://torproject.org</string>
+  <string name="third_party_software">3:n osapuolen ohjelmisto:</string>
+  <string name="tor_version">Tor v0.2.4.21: https://www.torproject.org</string>
+  <string name="libevent_version">LibEvent v2.0.9: http://www.monkey.org/~provos/libevent/</string>
+  <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
+  <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
+  <string name="openssl_version">OpenSSL v1.0.1g: http://www.openssl.org</string>
+  <string name="found_existing_tor_process">löytyi olemassaoleva Tor-prosessi...</string>
+  <string name="something_bad_happened">Jotain pahaa tapahtui. Tarkista loki</string>
+  <string name="unable_to_read_hidden_service_name">piilotetun palvelunimen lukeminen epäonnistui</string>
+  <string name="unable_to_start_tor">Tor-käynnistys epäonnistui:</string>
+  <string name="error_installing_binares">Tor-binaaritiedostojen asentaminen tai päivitys epäonnistui.</string>
+  <string name="pref_use_persistent_notifications">Pidä kuvake aina työkalupalkissa, kun Orbot on yhdistetty</string>
   <string name="pref_use_persistent_notifications_title">Ilmoitukset aina käytössä</string>
   <string name="notification_using_bridges">Siltaus käytössä!</string>
   <string name="default_bridges"></string>
   <string name="set_locale_title">Aseta paikka</string>
   <string name="set_locale_summary">Valitse paikka ja kieli Orbit-sovellukselle</string>
   <string name="wizard_locale_title">Valitse kieli</string>
+  <string name="wizard_locale_msg">Jätä oletusarvoon tai vaihda nykyiseen kieleen</string>
   <string name="btn_save_settings">Tallenna asetukset</string>
+  <string name="bandwidth_">Kaistanleveys:</string>
   <string name="down">alas</string>
   <string name="up">ylös</string>
+  <string name="pref_disable_network_summary">Laita Tor nukkumaan, kun internet-yhteyttä ei ole saatavilla</string>
   <string name="menu_verify_browser">Tarkista selain</string>
   <string name="menu_use_chatsecure">Käytä ChatSecurea</string>
   <string name="permission_manage_tor_label">Hallinnoi Tor:ia</string>
+  <string name="permission_manage_tor_description">Anna tämän sovelluksen ohjata Tor-palvelua</string>
+  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Näyttää siltä, että Orweb ei ole asennettuna. Haluatko auttaa siinä, vai pitäisikö meidän vain avata selain?</string>
   <string name="install_apps_">Asenna sovelluksia?</string>
 </resources>

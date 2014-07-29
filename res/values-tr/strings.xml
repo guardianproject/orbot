@@ -72,6 +72,7 @@
   <string name="wizard_configure_select_apps">Tor için ayrı ayrı uygulamalar seç.</string>
   <string name="wizard_tips_tricks">Orbot\'un Etkin Olduğu Eklentiler</string>
   <string name="wizard_tips_msg">Aşağıdaki uygulamalar Orbot ile birlikte çalışmak üzere geliştirilmiştir. Uygulamaları hemen kurmak için ilgili düğmelere tıklayabilir veya uygulamalara daha sonra Google Play, GuardianProject.info web adresi veya F-Droid.org üzerinden erişebilirsiniz.</string>
+  <string name="wizard_tips_otrchat">ChatSecure - Android için güvenli anında mesajlaşma istemcisi</string>
   <string name="wizard_tips_proxy">Vekil Ayarları - Uygulamaların, Orbot ile birlikte çalışmalarını nasıl ayarlayacağınızı öğrenin.</string>
   <string name="wizard_tips_duckgo">DuckDuckGo Arama Motoru uygulaması</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
@@ -103,7 +104,10 @@
   <string name="wizard_permissions_no_root_msg">Cihazınız root edilmemiş veya \'Superuser\' erişimi sağlamıyor.\n\nTor\'dan faydalanmak için, Orbot ile çalışmak üzere yapılmış veya HTTP veya SOCKS proxy ayarları ile yapılandırılabilen uygulamaları kullanmalısınız.\n</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot\'un aktif olduğu eklentiler</string>
+  <string name="wizard_tips_gibberbot">ChatSecure: Güvenli Kayıt-dışı Şifreleme yapabilen sohbet uygulaması</string>
+  <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
   <string name="wizard_tips_orweb">Orweb: Tor üzerinden çalışabilen, gizliliği artırılmış tarayıcı.</string>
+  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
   <string name="wizard_tips_play">Google Play\'deki tüm Guardian Projesi uygulamalarına bakın</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
@@ -197,8 +201,11 @@
   <string name="the_tor_license">Tor Lisansı</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Üçüncü Parti Yazılım:</string>
+  <string name="tor_version">Tor v0.2.4.21: https://www.torproject.org</string>
+  <string name="libevent_version">LibEvent v2.0.9: http://www.monkey.org/~provos/libevent/</string>
   <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
   <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
+  <string name="openssl_version">OpenSSL v1.0.1g: http://www.openssl.org</string>
   <string name="hidden_service_request">Bir uygulama Tor ağında gizlenmiş sunucu bağlantı noktası %S açmak istiyor. Eğer uygulamaya güveniyorsanız bu güvenlidir.</string>
   <string name="found_existing_tor_process">varolan bir Tor işlemi bulundu...</string>
   <string name="something_bad_happened">Kötü bir şey oldu. Kayıtlara bakınız</string>
@@ -219,4 +226,16 @@
   <string name="powered_by">The Tor Project tarafından desteklenmektedir.</string>
   <string name="btn_save_settings">Ayarları kaydet</string>
   <string name="no_internet_connection_tor">İnternet bağlantısı yok; Tor beklemede...</string>
+  <string name="bandwidth_">Bant genişliği:</string>
+  <string name="down">aşağı</string>
+  <string name="up">yukarı</string>
+  <string name="pref_disable_network_title">Bağlantı yokken Otomatik Uykuya Geç</string>
+  <string name="pref_disable_network_summary">İnternet olmadığında Tor\'u uykuya al</string>
+  <string name="newnym">Yeni bir Tor kimliğine geçiş yaptınız!</string>
+  <string name="menu_verify_browser">Tarayıcıyı Kontrol Et</string>
+  <string name="menu_use_chatsecure">ChatSecure Kullan</string>
+  <string name="permission_manage_tor_label">Tor\'u Yönet</string>
+  <string name="permission_manage_tor_description">Tor servisini kontrol etmek için bu uygulamayı etkinleştir</string>
+  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Orweb\'i kurmamış görünüyorsunuz. Bunun için yardım ister misin, yoksa sadece tarayıcıyı mı açalım?</string>
+  <string name="install_apps_">Uygulamalar kurulsun mu?</string>
 </resources>

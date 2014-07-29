@@ -72,6 +72,7 @@
   <string name="wizard_configure_select_apps">Zvolit aplikace pro Tor individuálně</string>
   <string name="wizard_tips_tricks">Aplikace povolené pro Orbota</string>
   <string name="wizard_tips_msg">Aplikace níže byly vyvinuty tak, aby spolupracovaly s Orbotem. Klikněte na každé tlačítko pro instalaci, aplikace můžete najít i v Obchodu Play nebo na webu GuardianProject.info či F-Droid.org.</string>
+  <string name="wizard_tips_otrchat">ChatSecure - Bezpečný instant messaging klient pro Android</string>
   <string name="wizard_tips_proxy">Proxy Nastavení - Naučte se, jak nastavit aplikace, aby pracovaly s Orbotem</string>
   <string name="wizard_tips_duckgo">Aplikace DuckDuckGo pro vyhledávací engine</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
@@ -103,7 +104,9 @@
   <string name="wizard_permissions_no_root_msg">Vaše zařízení nejspíš nemá root, nebo neposkytuje práva \'Superuživatele\'.⏎\n⏎\nPro plné využití Toru musíte používat aplikace napsané tak, aby spolupracovaly s Orbotem, nebo podporující nastavení HTTP nebo SOCKS proxy.⏎\n⏎</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot-povolené aplikace</string>
+  <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
   <string name="wizard_tips_orweb">Orweb: webový prohlížeč s rozšířeným soukromím pracující přes Tor</string>
+  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
   <string name="wizard_tips_play">Najděte všechny aplikace Guardian Projektu na Obchodu Play</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
@@ -197,8 +200,11 @@
   <string name="the_tor_license">Tor Licence</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Software třetích stran:</string>
+  <string name="tor_version">Tor v0.2.4.21: https://www.torproject.org</string>
+  <string name="libevent_version">LibEvent v2.0.9: http://www.monkey.org/~provos/libevent/</string>
   <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
   <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
+  <string name="openssl_version">OpenSSL v1.0.1g: http://www.openssl.org</string>
   <string name="hidden_service_request">Aplikace požaduje otevření skrytého portu serveru %S k síti Tor. Toto je bezpečně, pokud aplikaci důvěřujete.</string>
   <string name="found_existing_tor_process">nalezev existující Tor proces…</string>
   <string name="something_bad_happened">Stalo se něco špatného. Zkontrolujte log</string>
@@ -219,4 +225,15 @@
   <string name="powered_by">poháněno Tor Projektem </string>
   <string name="btn_save_settings">Uložit nastavení</string>
   <string name="no_internet_connection_tor">Žádné připojení k internetu; Tor je ve standby režimu...</string>
+  <string name="bandwidth_">Šířka pásma:</string>
+  <string name="down">stahování</string>
+  <string name="up">nahrávání</string>
+  <string name="pref_disable_network_summary">Uspat Tor když není k dispozici přístup k Internetu</string>
+  <string name="newnym">Vaše identita na Toru byla změněna!</string>
+  <string name="menu_verify_browser">Zkontrolovat prohlížeč</string>
+  <string name="menu_use_chatsecure">Použít ChatSecure</string>
+  <string name="permission_manage_tor_label">Spravovat Tor</string>
+  <string name="permission_manage_tor_description">Umožnit této aplikaci ovládat službu Tor</string>
+  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Vypadá to, že nemáte nainstalován Orweb. Chcete pomoci s jeho instalací, nebo jen otevřít standardní prohlížeč?</string>
+  <string name="install_apps_">Nainstalovat aplikace?</string>
 </resources>

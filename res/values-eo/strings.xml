@@ -1,33 +1,124 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="app_name">Orbot</string>
+  <string name="internal_web_url">http://orbot/</string>
+  <string name="default_web_url">http://check.torproject.org</string>
+  <string name="secure_default_web_url">https://check.torproject.org</string>
+  <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
+  <string name="control_permission_label">ŝalti kaj malŝalti Tor</string>
+  <string name="status_starting_up">Orbot ŝaltiĝas...</string>
+  <string name="status_activated">Konektita al Tor-reto</string>
+  <string name="status_disabled">Orbot estas malaktivigita</string>
+  <string name="status_shutting_down">Orbot malŝaltiĝas</string>
+  <string name="tor_process_starting">Ŝaltiĝas Tor-kliento...</string>
+  <string name="tor_process_complete">kompleta.</string>
+  <string name="tor_process_waiting">atendas.</string>
   <string name="menu_home">Hejma tasto</string>
   <string name="menu_browse">Foliumi</string>
   <string name="menu_settings">Agordoj</string>
+  <string name="menu_log">Protokolo</string>
   <string name="menu_info">Helpo</string>
+  <string name="menu_apps">Aplikaĵoj</string>
+  <string name="menu_start">Starti</string>
+  <string name="menu_stop">Halti</string>
   <string name="menu_about">Pri</string>
+  <string name="menu_wizard">Asistanto</string>
+  <string name="main_layout_download">Elŝutado</string>
+  <string name="main_layout_upload">Alŝutado</string>
   <string name="button_help">Helpo</string>
   <string name="button_close">Fermi</string>
   <string name="button_about">Pri</string>
+  <string name="button_clear_log">Forviŝi protokolon</string>
   <string name="menu_exit">Eliri</string>
+  <string name="press_to_start">- longe puŝi por ŝalti -</string>
+  <string name="pref_trans_proxy_summary">Aŭtomata Tor-igo de Aplikaĵoj</string>
+  <string name="pref_transparent_all_title">Tor-igu ĉion</string>
+  <string name="pref_transparent_port_title">Listo de Pordoj</string>
+  <string name="pref_has_root">Peti Administrajn Rajtojn</string>
+  <string name="status_install_success">Binara kodo de Tor estas sukcese instalita!</string>
+  <string name="status_install_fail">Binaraj dosieroj de Tor ne povis esti instalitaj. Kontrolu protokolon kaj sciigu nin per tor-assistants@torproject.org</string>
+  <string name="title_error">Eraro de Aplikaĵo</string>
+  <string name="wizard_title">Orbot</string>
+  <string name="wizard_btn_tell_me_more">Pri Orbot</string>
+  <string name="btn_next">Sekva</string>
   <string name="btn_back">Malantaŭe</string>
+  <string name="btn_finish">Fini</string>
   <string name="btn_cancel">Rezigni</string>
   <!--Welcome Wizard strings (DJH)-->
+  <string name="wizard_details">Kelkaj Detaloj pri Orbot</string>
+  <string name="wizard_details_msg">Orbot estas aplikaĵo kun malfermita kodo kiu enhavas Tor, LibEvent kaj Privoxy. Ĝi ofertas lokan HTTP-prokurservilon (8118) kaj SOCKS-prokurservilon (9050) por Tor-reto. Orbot ankaŭ povas, kun administraj rajtoj, sendi tutan interretan trafikon per Tor.</string>
+  <string name="wizard_permissions_root">Permeso estas Aluĝita</string>
+  <string name="wizard_permissions_stock">Permesoj de Orbot</string>
+  <string name="wizard_permissions_consent">Mi komprenas kaj volas daŭri sen administraj rajtoj</string>
+  <string name="wizard_configure">Agordi Tor-igon</string>
+  <string name="wizard_configure_select_apps">Elekti Individualajn Aplikaĵojn por Tor</string>
+  <string name="wizard_tips_otrchat">ChatSecutre - Sekura tujmesaĝilo por Android</string>
+  <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
+  <string name="proxymob_setup_url">https://guardianproject.info/releases/proxymob-latest.xpi</string>
+  <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Retperant‐agordoj</string>
+  <string name="wizard_final">Orbot estas preparita!</string>
   <!--END Welcome Wizard strings (DJH)-->
+  <string name="pref_hs_group">Gastigado de kaŝita servo</string>
   <string name="pref_general_group">Ĝenerala</string>
   <!--New Wizard Strings-->
   <!--Title Screen-->
   <!--Warning screen-->
   <string name="wizard_warning_title">Averto</string>
   <!--Permissions screen-->
+  <string name="wizard_permissions_title">Permesoj</string>
   <!--TipsAndTricks screen-->
+  <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
+  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
+  <string name="wizard_tips_play">Trovu ĉiujn aplikaĵojn de Guardian Project ĉe Google Play</string>
+  <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
     <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
     <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
   <!--Transparent Proxy screen-->
+  <string name="wizard_transproxy_hint">(Marku ĉi tiun butonon se vi ne scias pri kio ni parolas)</string>
   <string name="wizard_transproxy_none">Neniom</string>
+  <string name="button_grant_superuser">Peti Administrajn Rajtojn</string>
+  <string name="pref_select_apps">Elekti aplikaĵojn</string>
+  <string name="pref_node_configuration">Agordo de Nodoj</string>
+  <string name="pref_proxy_port_summary">Pordo de la Prokurservilo</string>
   <string name="status">Stato</string>
+  <string name="privoxy_is_running_on_port_">Privoxy funkcias per pordo:</string>
+  <string name="bridge_error">Eraro de Ponto</string>
   <string name="error">Eraro</string>
+  <string name="exit_nodes">Finnodoj</string>
+  <string name="use_only_these_specified_nodes">Uzi *nur* tiujn ĉi nodojn</string>
+  <string name="bridges">Pontoj</string>
+  <string name="use_bridges">Uzi Pontojn</string>
+  <string name="ip_address_and_port_of_bridges">IP-adresoj kaj pordoj de pontoj</string>
+  <string name="reachable_ports">Atingeblaj pordoj</string>
+  <string name="enter_ports">Entajpu pordojn</string>
+  <string name="enable_hidden_services">Gastigado de Kaŝitaj Servoj</string>
+  <string name="run_servers_accessible_via_the_tor_network">permesi al servilo sur ĉi tiu aparato esti atingebla per Tor-reto</string>
+  <string name="enter_localhost_ports_for_hidden_services">entajpi localhost-pordojn de kaŝitaj servoj</string>
+  <string name="hidden_service_ports">Pordoj de Kaŝitaj Servoj</string>
+  <string name="the_addressable_name_for_your_hidden_service_generated_automatically_">adreso de via kaŝita servo (aŭtomate generata)</string>
+  <string name="project_home">Retpaĝaro(j) de la Projekto:</string>
+  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
+  <string name="the_tor_license">The Tor License</string>
+  <string name="https_torproject_org">https://torproject.org</string>
+  <string name="tor_version">Tor v0.2.4.21: https://www.torproject.org</string>
+  <string name="libevent_version">LibEvent v2.0.9: http://www.monkey.org/~provos/libevent/</string>
+  <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
+  <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
+  <string name="openssl_version">OpenSSL v1.0.1g: http://www.openssl.org</string>
+  <string name="found_existing_tor_process">trovi ekzistantan Tor-procedon...</string>
+  <string name="hidden_service_on">kaŝitaj servoj je:</string>
+  <string name="unable_to_read_hidden_service_name">ne eblas legi nomon de la kaŝita servo</string>
+  <string name="unable_to_start_tor">Ne eblas startigi Tor:</string>
+  <string name="pref_use_sys_iptables_title">Uzi defaŭltajn Iptables</string>
   <string name="default_bridges"></string>
+  <string name="set_locale_title">Elekti Lokaĵaron</string>
+  <string name="set_locale_summary">Elekti lokaĵaron kaj lingvon por Orbot</string>
+  <string name="wizard_locale_title">Elekti lingvon</string>
+  <string name="powered_by">funkciigita de The Tor Project</string>
+  <string name="btn_save_settings">Konservi Agordojn</string>
+  <string name="menu_verify_browser">Kontroli Retumilon</string>
+  <string name="menu_use_chatsecure">Uzi ChatSecure</string>
 </resources>

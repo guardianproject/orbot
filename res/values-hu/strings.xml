@@ -72,6 +72,7 @@
   <string name="wizard_configure_select_apps">Alkalmazások kiválasztása a Tor-hoz</string>
   <string name="wizard_tips_tricks">Orbot-engedélyezett alkalmazások</string>
   <string name="wizard_tips_msg">Javasoljuk, hogy töltsön le és használjon olyan alkalmazásokat, amelyek tudják, hogyna kell közvetlenül kapcsolódni az Orbot-hoz. Kattintson az gombokra alább a telepítéshez.</string>
+  <string name="wizard_tips_otrchat">ChatSecure - Biztonságos üzenetküldő Androidra</string>
   <string name="wizard_tips_proxy">Proxy beállítások - Tanulja meg, hogyan állíthatja be alkalmazásait, hogy együttműködjenek az Orbot-tal</string>
   <string name="wizard_tips_duckgo">Duckduckgo keresőgép alkalmazás</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
@@ -103,7 +104,10 @@
   <string name="wizard_permissions_no_root_msg">Az eszköze alap módban fut, nem támogatja a root vagy \'Superuser\' hozzáférést.\n\nAhhoz, hogy részesüljön a Tor előnyeiből, olyan alkalmazást kell használnia, amely úgy készült, hogy együtt használható legyen az Orbot-tal, vagy legyen lehetőség HTTP vagy SOCKS proxy beállítására.\n\n</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot-engedélyezett Alkalmazások</string>
+  <string name="wizard_tips_gibberbot">ChatSecure: Biztonságos üzenetküldő app OTR titkosítással</string>
+  <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
   <string name="wizard_tips_orweb">ORWEB (csak Android 1.x) - Böngésző, kifejezetten adatvédelemre és az Orbot-hoz</string>
+  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
   <string name="wizard_tips_play">Az összes Guardian Project alkalmazás keresése a Google Play-en</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
@@ -197,8 +201,11 @@
   <string name="the_tor_license">A Tor Licensz</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Külső szoftverek: </string>
+  <string name="tor_version">Tor v0.2.4.21: https://www.torproject.org</string>
+  <string name="libevent_version">LibEvent v2.0.9: http://www.monkey.org/~provos/libevent/</string>
   <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
   <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
+  <string name="openssl_version">OpenSSL v1.0.1g: http://www.openssl.org</string>
   <string name="hidden_service_request">Egy alkalmazás a %S rejtett szerver portot próbálja megnyitni. Ez biztonságos, ha megbízik az alkalmazásban.</string>
   <string name="found_existing_tor_process">létező Tor folyamat találva...</string>
   <string name="something_bad_happened">Valami rossz történt. Nézze meg a log fájlt.</string>
@@ -219,4 +226,16 @@
   <string name="powered_by">a Tor Project által gondozva</string>
   <string name="btn_save_settings">Beállítások mentése</string>
   <string name="no_internet_connection_tor">Nincs internet kapcsolat; a Tor várakozik...</string>
+  <string name="bandwidth_">Sávszélesség:</string>
+  <string name="down">le</string>
+  <string name="up">fel</string>
+  <string name="pref_disable_network_title">Nincs hálózati automatikus alvás</string>
+  <string name="pref_disable_network_summary">Kapcsolja a Tor-t alvó módba ha nincs internet elérhető</string>
+  <string name="newnym">Új Tor identitásra váltott!</string>
+  <string name="menu_verify_browser">Böngésző ellenőrzése</string>
+  <string name="menu_use_chatsecure">ChatSecure használata</string>
+  <string name="permission_manage_tor_label">Tor kezelése</string>
+  <string name="permission_manage_tor_description">A Tor szolgáltatás vezérlésének engedélyezése az alkalmazás számára</string>
+  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Úgy tűnik nincs Orweb telepítve. Szeretne segítséget benne, vagy csak nyissunk egy böngészőt?</string>
+  <string name="install_apps_">Appok telepítése?</string>
 </resources>

@@ -1,9 +1,25 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="app_name">Orbot</string>
+  <string name="internal_web_url">http://orbot/</string>
+  <string name="default_web_url">http://check.torproject.org</string>
+  <string name="secure_default_web_url">https://check.torproject.org</string>
+  <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
+  <string name="control_permission_label">štart a stop Tor</string>
+  <string name="tor_proxy_service_process">torproxyservice</string>
+  <string name="status_starting_up">Orbot štartuje…</string>
+  <string name="status_activated">Pripojený do Tor siete</string>
+  <string name="status_disabled">Orbot je deaktivovaný</string>
+  <string name="status_shutting_down">Orbot sa vypína</string>
+  <string name="tor_process_starting">Štartujem Tor klienta...</string>
+  <string name="tor_process_complete">hotovo.</string>
+  <string name="tor_process_waiting">čakám.</string>
+  <string name="not_anonymous_yet">VAROVANIE: Váš prenos nie je ešte anonymný! Prosím, nakonfigurujte aplikácie aby používali HTTP proxy 127.0.0.1:8118 alebo SOCKS4A alebo SOCKS5 proxy server 127.0.0.1:9050</string>
   <string name="menu_home">Domov</string>
   <string name="menu_browse">Prehliadať</string>
   <string name="menu_settings">Nastavenia</string>
   <string name="menu_info">Pomocník</string>
+  <string name="menu_apps">Apps</string>
   <string name="menu_about">O aplikácií</string>
   <string name="button_help">Pomocník</string>
   <string name="button_close">Zatvoriť</string>
