@@ -642,6 +642,14 @@ public class TorService extends Service implements TorServiceConstants, TorConst
  		String transPort = prefs.getString("pref_transport", TorServiceConstants.TOR_TRANSPROXY_PORT_DEFAULT+"");
  		String dnsPort = prefs.getString("pref_dnsport", TorServiceConstants.TOR_DNS_PORT_DEFAULT+"");
  		
+ 		
+ 		if (mTransProxyTethering)
+ 		{
+ 			extraLines.append("TransListenAddress 0.0.0.0").append('\n');
+ 			extraLines.append("DNSListenAddress 0.0.0.0").append('\n');
+ 			
+ 		}
+ 		
  		extraLines.append("RunAsDaemon 1").append('\n');
  		
  		extraLines.append("AvoidDiskWrites 1").append('\n');
@@ -850,13 +858,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		SharedPreferences prefs =TorServiceUtils.getSharedPrefs(getApplicationContext());
 
 		String torrcPath = new File(appBinHome, TORRC_ASSET_KEY).getCanonicalPath();
-		
-		boolean transProxyTethering = prefs.getBoolean("pref_transparent_tethering", false);
- 		
-		if (transProxyTethering)
-		{
-			torrcPath = new File(appBinHome, TORRC_TETHER_KEY).getCanonicalPath();
-		}
 
 		int torRetryWaitTimeMS = 1000;
 		
