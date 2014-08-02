@@ -277,6 +277,7 @@
     
     <string name="wizard_tips_martus">Mobile Martus - Benetech Human Rights Documentation App</string>
   <string name="martus_url">https://play.google.com/store/apps/details?id=org.martus.android</string>
+  <string name="your_tor_public_ips_">Your Tor Public IPs:</string>
   
   
 </resources>
