@@ -17,6 +17,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.io.PrintWriter;
@@ -33,6 +34,8 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 import java.util.StringTokenizer;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeoutException;
 import java.util.regex.Pattern;
 
@@ -62,10 +65,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.RemoteException;
@@ -132,6 +133,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     private boolean mTransProxyAll = false;
     private boolean mTransProxyTethering = false;
 
+    private ExecutorService mExecutor = Executors.newCachedThreadPool();
+    
     public void debug(String msg)
     {
     	if (ENABLE_DEBUG_LOG)  
@@ -251,7 +254,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
  		if (hmBuiltNodes.size() > 0)
  		{
-	 		sbInfo.append("Your Tor Public IPs:\n");
+	 		//sbInfo.append(getString(R.string.your_tor_public_ips_) + '\n');
+	 		
 	 		Set<String> itBuiltNodes = hmBuiltNodes.keySet();
 	 		for (String key : itBuiltNodes)
 	 		{
@@ -303,7 +307,11 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		if (notifyType != NOTIFY_ID)
 		{
 			mNotifyBuilder.setTicker(notifyMsg);
-			mNotifyBuilder.setLights(Color.GREEN, 1000, 1000);
+		//	mNotifyBuilder.setLights(Color.GREEN, 1000, 1000);
+		}
+		else
+		{
+			mNotifyBuilder.setTicker(null);
 		}
 		
 		mNotifyBuilder.setOngoing(prefPersistNotifications);
@@ -330,7 +338,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 		try
 		{
-			new startTorOperation().execute(intent);
+			mExecutor.execute (new TorStarter(intent));
 			
 		    return Service.START_STICKY;
 		    
@@ -343,45 +351,46 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 	}
 	
+	private class TorStarter implements Runnable
+	{
+		Intent mIntent;
+		
+		public TorStarter (Intent intent)
+		{
+			mIntent = intent;
+		}
+		
+		public void run ()
+		{
+			try
+			{
+				
+				if (mNotificationManager == null)
+				{
+		    	   
+		 		   IntentFilter mNetworkStateFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+		 		   registerReceiver(mNetworkStateReceiver , mNetworkStateFilter);
+		 	
+		 			mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+		 	
+		 			if (mIntent != null && mIntent.getAction()!=null && mIntent.getAction().equals(Intent.ACTION_BOOT_COMPLETED))
+		 			{	     				
+		 				setTorProfile(PROFILE_ON);	     			
+		 			}
+				}
+			}
+			catch (Exception e)
+			{
+				Log.e(TAG,"error onBind",e);
+			}
+		}
+	}
+	
     @Override
 	public void onTaskRemoved(Intent rootIntent) {		
 		logNotice("Orbot was swiped away... background service will keep running");    	
 	}
 
-	private class startTorOperation extends AsyncTask<Intent, Void, Boolean> {
-        @Override
-        protected Boolean doInBackground(Intent... params) {
-          
-        	try
-	    	{
-        		Intent intent = params[0];
-        		
-        		if (mNotificationManager == null)
-        		{
-	        	   
-	     		   IntentFilter mNetworkStateFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-	     		   registerReceiver(mNetworkStateReceiver , mNetworkStateFilter);
-	     	
-	     			mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-	     	
-	     			if (intent != null && intent.getAction()!=null && intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED))
-	     			{	     				
-	     				setTorProfile(PROFILE_ON);	     			
-	     			}
-        		}
-	    	}
-	    	catch (Exception e)
-	    	{
-	    		Log.e(TAG,"error onBind",e);
-	    	}
-        	
-        	
-            return true;
-        }
-
-    }
-
-	
 
 	
 	
@@ -561,6 +570,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	public void onCreate() {
 		super.onCreate();
 		
+//		android.os.Debug.waitForDebugger();
+		
 		try
 		{
 			initBinariesAndDirectories();
@@ -635,6 +646,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
  		
  		extraLines.append("AvoidDiskWrites 1").append('\n');
  		
+ 		extraLines.append("CircuitStreamTimeout 120").append('\n');
         
     	extraLines.append("SOCKSPort ").append(socksPort).append('\n');
     	extraLines.append("SafeSocks 0").append('\n');
@@ -909,7 +921,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	
     	props.store(new FileWriter(file), "updated");
     	
-    	props.list(System.out);
     }
     
     
@@ -1371,7 +1382,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
 			//get IP from last nodename
 			if(status.equals("BUILT")){
-				new getExternalIP().execute(node);
+				
+				if (node.ipAddress == null)
+					mExecutor.execute(new ExternalIPFetcher(node));
 				
 				hmBuiltNodes.put(node.id, node);
 			}
@@ -1379,6 +1392,16 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			if (status.equals("CLOSED"))
 			{
 				hmBuiltNodes.remove(node.id);
+				
+				//how check the IP's of any other nodes we have
+				for (String nodeId : hmBuiltNodes.keySet())
+				{
+					node = hmBuiltNodes.get(nodeId);
+					
+					if (node.ipAddress == null)
+						mExecutor.execute(new ExternalIPFetcher(node));
+
+				}
 
 			}
 				
@@ -1397,49 +1420,74 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		String organization;
 	}
 	
-	private class getExternalIP extends AsyncTask<Node, Void, Void>{
+	private class ExternalIPFetcher implements Runnable {
 
+		private Node mNode;
+		private int MAX_ATTEMPTS = 3;
 		
-		@Override
-		protected Void doInBackground(Node... nodes) {
+		public ExternalIPFetcher (Node node)
+		{
+			mNode = node;
+		}
+		
+		public void run ()
+		{
 			
-			if (conn != null)
+			if (mNode.ipAddress != null)
+				return;
+			
+			for (int i = 0; i < MAX_ATTEMPTS; i++)
 			{
-				try {
-					//String nodeDetails = conn.getInfo("ns/id/"+nodes[0].id);
-					Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("127.0.0.1", 8118));
-
-					URLConnection conn = new URL("https://onionoo.torproject.org/details?lookup=" + nodes[0].id).openConnection(proxy);
-					// getting JSON string from URL
-					
-					StringBuffer json = new StringBuffer();
-					String line = null;
-					BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-					while ((line = reader.readLine())!=null)
-						json.append(line);
-					
-					JSONObject jsonNodeInfo = new org.json.JSONObject(json.toString());
+				if (conn != null)
+				{
+					try {
+						//String nodeDetails = conn.getInfo("ns/id/"+nodes[0].id);
+						Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("127.0.0.1", 8118));
+	
+						URLConnection conn = new URL("https://onionoo.torproject.org/details?lookup=" + mNode.id).openConnection(proxy);
+						conn.setRequestProperty("Connection","Close");
+						conn.setConnectTimeout(60000);
+						conn.setReadTimeout(60000);
 						
-					JSONArray jsonRelays = jsonNodeInfo.getJSONArray("relays");
-					if (jsonRelays.length() > 0)
-					{
-						nodes[0].ipAddress = jsonRelays.getJSONObject(0).getJSONArray("or_addresses").getString(0).split(":")[0];
+						InputStream is = conn.getInputStream();
 						
-						nodes[0].country = jsonRelays.getJSONObject(0).getString("country_name");
-						nodes[0].organization = jsonRelays.getJSONObject(0).getString("as_name");
+						BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+	
+						// getting JSON string from URL
 						
+						StringBuffer json = new StringBuffer();
+						String line = null;
+	
+						while ((line = reader.readLine())!=null)
+							json.append(line);
+						
+						JSONObject jsonNodeInfo = new org.json.JSONObject(json.toString());
+							
+						JSONArray jsonRelays = jsonNodeInfo.getJSONArray("relays");
+						if (jsonRelays.length() > 0)
+						{
+							mNode.ipAddress = jsonRelays.getJSONObject(0).getJSONArray("or_addresses").getString(0).split(":")[0];
+							
+							mNode.country = jsonRelays.getJSONObject(0).getString("country_name");
+							mNode.organization = jsonRelays.getJSONObject(0).getString("as_name");
+							
+							
+							
+						}
+						
+						reader.close();
+						is.close();
+						
+						break;
+						
+					} catch (Exception e) {
+						
+						debug ("Error getting node details from onionoo: " + e.getMessage());
 						
 						
 					}
-					
-					return null;
-					
-				} catch (Exception e) {
-							
-					logException ("Error getting node details from onionoo",e);
 				}
 			}
-			return null;
 		}
 		
 		
@@ -1461,30 +1509,26 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	
     public IBinder onBind(Intent intent) {
         
-    	new initTorOperation().execute(true);
+    	mExecutor.execute(new Runnable ()
+    	{
+    		public void run ()
+    		{
+    			try
+    	    	{
+    	    		findExistingProc ();
+    	    	}
+    	    	catch (Exception e)
+    	    	{
+    	    		Log.e(TAG,"error onBind",e);
+    	    	}
+            	
+    		}
+    	});
     	
     	return mBinder;
     }
     
-    private class initTorOperation extends AsyncTask<Boolean, Void, Boolean> {
-        @Override
-        protected Boolean doInBackground(Boolean... params) {
-          
-        	try
-	    	{
-	    		findExistingProc ();
-	    	}
-	    	catch (Exception e)
-	    	{
-	    		Log.e(TAG,"error onBind",e);
-	    	}
-        	
-        	
-            return true;
-        }
-
-    }
-	
+  
 
     /**
      * The IRemoteInterface is defined through IDL
@@ -1495,29 +1539,20 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         	return getTorStatus();
         }
         
-        public void setProfile (int profile)
+
+        public void setProfile (final int profileNew)
         {
-        
-        	new AsyncTask<Integer, Void, Boolean>() {
-                @Override
-                protected Boolean doInBackground(Integer... params) {
-                  
-                	try
-        	    	{        	
-                		
-                		setTorProfile(params[0].intValue());
+        	
+        	mExecutor.execute(new Runnable()
+        	{
 
-        	    	}
-        	    	catch (Exception e)
-        	    	{
-        	    		Log.e(TAG,"error onBind",e);
-        	    	}
-                	
-                	
-                    return true;
-                }
-
-            }.execute(profile);
+				@Override
+				public void run() {
+					setTorProfile(profileNew);					
+				}
+        		
+        	});
+        	
         	
         }
         

@@ -90,7 +90,7 @@ public class TorServiceUtils implements TorServiceConstants {
         	if (line.contains("PID"))
         		continue;
         		
-        	if (line.contains(processKey))
+        	if (line.contains('/' + processKey))
         	{
         		
         		String[] lineParts = line.split("\\s+");
