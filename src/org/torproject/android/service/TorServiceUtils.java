@@ -107,6 +107,8 @@ public class TorServiceUtils implements TorServiceConstants {
         		break;
         	}
         }
+        
+        procPs.destroy();
        
         return procId;
 

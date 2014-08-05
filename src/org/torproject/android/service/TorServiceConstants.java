@@ -36,6 +36,8 @@ public interface TorServiceConstants {
 	public final static String SHELL_CMD_KILL = "kill -9";
 	public final static String SHELL_CMD_RM = "rm";
 	public final static String SHELL_CMD_PS = "toolbox ps";
+	public final static String SHELL_CMD_PS_ALT = "ps";
+	
 	//public final static String SHELL_CMD_PIDOF = "pidof";
 	public final static String SHELL_CMD_LINK = "ln -s";
 	public final static String SHELL_CMD_CP = "cp";
