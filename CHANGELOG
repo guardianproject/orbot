@@ -1,5 +1,13 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+03b39ea make sure to clean up ps process/shell
+e3385ab fixes for Tor processs tracking, control port, and start/stop
+8481e61 update to 14.0.5.1
+8036209 fixes for transparent proxy tethering
+0709b0e remove this, as torrc.custom is built at runtime
+754139a add new strings
+31cf981 Address issues related to onionoo relay/node info lookup -Ensure streams, files are closed -Add timeout values to socket, stre
+
 668ed68 update to 14.0.5-RC1
 7ff49ff update Tor binary version number
 6626b65 update strings, localisations
