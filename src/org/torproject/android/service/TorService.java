@@ -237,54 +237,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
  		Intent intent = new Intent(TorService.this, Orbot.class);
  		PendingIntent pendIntent = PendingIntent.getActivity(TorService.this, 0, intent, 0);
  
-		// Create remote view that needs to be set as bigContentView for the notification.
- 		RemoteViews expandedView = new RemoteViews(this.getPackageName(), 
- 		        R.layout.layout_notification_expanded);
- 		
- 		StringBuffer sbInfo = new StringBuffer();
- 		
- 		
- 		if (notifyType == NOTIFY_ID)
- 			expandedView.setTextViewText(R.id.text, notifyMsg);
- 		else
- 		{
- 			expandedView.setTextViewText(R.id.info, notifyMsg);
- 		
- 		}
-
- 		if (hmBuiltNodes.size() > 0)
- 		{
-	 		//sbInfo.append(getString(R.string.your_tor_public_ips_) + '\n');
-	 		
-	 		Set<String> itBuiltNodes = hmBuiltNodes.keySet();
-	 		for (String key : itBuiltNodes)
-	 		{
-	 			Node node = hmBuiltNodes.get(key);
-	 			
-	 			if (node.ipAddress != null)
-	 			{
-	 				sbInfo.append(node.ipAddress);
-	 			
-	 				if (node.country != null)
-	 					sbInfo.append(' ').append(node.country);
-	 			
-	 				if (node.organization != null)
-	 					sbInfo.append(" (").append(node.organization).append(')');
-	 			
-	 				sbInfo.append('\n');
-	 			}
-	 			
-	 		}
-	 		
-	 		expandedView.setTextViewText(R.id.text2, sbInfo.toString());
- 		}
-	 	
- 		expandedView.setTextViewText(R.id.title, getString(R.string.app_name)); 
- 		
- 	//	expandedView.setTextViewText(R.id.info, infoMessage.toString());
- 	//	expandedView.setOnClickPendingIntent(R.id._tor_notificationBT, pendIntent);
- 		expandedView.setImageViewResource(R.id.icon, icon);
- 		
 		if (mNotifyBuilder == null)
 		{
 			
@@ -319,6 +271,55 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		mNotification = mNotifyBuilder.build();
 		
 	    if (Build.VERSION.SDK_INT >= 16) {
+	    	
+	    	
+	    	// Create remote view that needs to be set as bigContentView for the notification.
+	 		RemoteViews expandedView = new RemoteViews(this.getPackageName(), 
+	 		        R.layout.layout_notification_expanded);
+	 		
+	 		StringBuffer sbInfo = new StringBuffer();
+	 		
+	 		
+	 		if (notifyType == NOTIFY_ID)
+	 			expandedView.setTextViewText(R.id.text, notifyMsg);
+	 		else
+	 		{
+	 			expandedView.setTextViewText(R.id.info, notifyMsg);
+	 		
+	 		}
+
+	 		if (hmBuiltNodes.size() > 0)
+	 		{
+		 		//sbInfo.append(getString(R.string.your_tor_public_ips_) + '\n');
+		 		
+		 		Set<String> itBuiltNodes = hmBuiltNodes.keySet();
+		 		for (String key : itBuiltNodes)
+		 		{
+		 			Node node = hmBuiltNodes.get(key);
+		 			
+		 			if (node.ipAddress != null)
+		 			{
+		 				sbInfo.append(node.ipAddress);
+		 			
+		 				if (node.country != null)
+		 					sbInfo.append(' ').append(node.country);
+		 			
+		 				if (node.organization != null)
+		 					sbInfo.append(" (").append(node.organization).append(')');
+		 			
+		 				sbInfo.append('\n');
+		 			}
+		 			
+		 		}
+		 		
+		 		expandedView.setTextViewText(R.id.text2, sbInfo.toString());
+	 		}
+		 	
+	 		expandedView.setTextViewText(R.id.title, getString(R.string.app_name)); 
+	 		
+	 	//	expandedView.setTextViewText(R.id.info, infoMessage.toString());
+	 	//	expandedView.setOnClickPendingIntent(R.id._tor_notificationBT, pendIntent);
+	 		expandedView.setImageViewResource(R.id.icon, icon);
 	    	mNotification.bigContentView = expandedView;
 	    }
 	    
@@ -565,8 +566,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	public void onCreate() {
 		super.onCreate();
 		
-//		android.os.Debug.waitForDebugger();
-		
 		try
 		{
 			initBinariesAndDirectories();
@@ -577,6 +576,23 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			Log.e(TAG, "Error installing Orbot binaries",e);
 			logNotice("There was an error installing Orbot binaries");
 		}
+		
+		mExecutor.execute(new Runnable ()
+    	{
+    		public void run ()
+    		{
+    			try
+    	    	{
+    	    		findExistingProc ();
+    	    	}
+    	    	catch (Exception e)
+    	    	{
+    	    		Log.e(TAG,"error onBind",e);
+    	    	}
+            	
+    		}
+    	});
+    	
 	}
 
 	private void initBinariesAndDirectories () throws Exception
@@ -971,7 +987,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	private synchronized int initControlConnection (int maxTries) throws Exception, RuntimeException
 	{
 			int i = 0;
-			int controlPort = getControlPort();
+			int controlPort = -1;
 			File fileCookie = new File(appCacheHome, TOR_CONTROL_COOKIE);
 	        
 			if (conn != null)
@@ -1088,11 +1104,18 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 					result = Integer.parseInt(lineParts[1]);
 				}
 				
+
 				bufferedReader.close();
+
+				//store last valid control port
+	    		SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
+				prefs.edit().putInt("controlport", result).commit();
+				
 			}
 			else
 			{
 				logNotice("Control Port config file does not yet exist (waiting for tor): " + fileControlPort.getCanonicalPath());
+				
 			}
 			
 			
@@ -1492,21 +1515,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	
     public IBinder onBind(Intent intent) {
         
-    	mExecutor.execute(new Runnable ()
-    	{
-    		public void run ()
-    		{
-    			try
-    	    	{
-    	    		findExistingProc ();
-    	    	}
-    	    	catch (Exception e)
-    	    	{
-    	    		Log.e(TAG,"error onBind",e);
-    	    	}
-            	
-    		}
-    	});
     	
     	return mBinder;
     }
@@ -1798,24 +1806,27 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
     		boolean doNetworKSleep = prefs.getBoolean(TorConstants.PREF_DISABLE_NETWORK, true);
     		
-    		if (doNetworKSleep && mBinder != null)
-    		{
-    			final ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        	    final NetworkInfo netInfo = cm.getActiveNetworkInfo();
+    		final ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+    	    final NetworkInfo netInfo = cm.getActiveNetworkInfo();
 
-        	    if(netInfo != null && netInfo.isConnected()) {
-        	        // WE ARE CONNECTED: DO SOMETHING
-        	    	mConnectivity = true;
-        	    }   
-        	    else {
-        	        // WE ARE NOT: DO SOMETHING ELSE
-        	    	mConnectivity = false;
-        	    }
-        		
+    	    if(netInfo != null && netInfo.isConnected()) {
+    	        // WE ARE CONNECTED: DO SOMETHING
+    	    	mConnectivity = true;
+    	    }   
+    	    else {
+    	        // WE ARE NOT: DO SOMETHING ELSE
+    	    	mConnectivity = false;
+    	    }
+    	    
+    		if (doNetworKSleep)
+    		{
 	    		try {
-					mBinder.updateConfiguration("DisableNetwork", mConnectivity ? "0" : "1", false);
-					mBinder.saveConfiguration();
-					
+	    			if (mBinder != null)
+	    			{
+	    				mBinder.updateConfiguration("DisableNetwork", mConnectivity ? "0" : "1", false);
+	    				mBinder.saveConfiguration();
+	    			}
+	    			
 					if (currentStatus == STATUS_ON)
 					{
 						if (!mConnectivity)
