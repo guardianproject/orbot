@@ -1430,6 +1430,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 		private Node mNode;
 		private int MAX_ATTEMPTS = 3;
+		private final static String ONIONOO_BASE_URL = "https://onionoo.torproject.org/details?fields=country_name,as_name,or_addresses&lookup=";
 		
 		public ExternalIPFetcher (Node node)
 		{
@@ -1450,7 +1451,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 						//String nodeDetails = conn.getInfo("ns/id/"+nodes[0].id);
 						Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("127.0.0.1", 8118));
 	
-						URLConnection conn = new URL("https://onionoo.torproject.org/details?lookup=" + mNode.id).openConnection(proxy);
+						URLConnection conn = new URL(ONIONOO_BASE_URL + mNode.id).openConnection(proxy);
 						conn.setRequestProperty("Connection","Close");
 						conn.setConnectTimeout(60000);
 						conn.setReadTimeout(60000);
