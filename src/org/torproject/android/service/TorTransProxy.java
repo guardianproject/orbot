@@ -336,14 +336,18 @@ public class TorTransProxy implements TorServiceConstants {
 		return code;
 	}*/
 	
-	public int setTransparentProxyingByApp(Context context, ArrayList<TorifiedApp> apps) throws Exception
+	public int setTransparentProxyingByApp(Context context, ArrayList<TorifiedApp> apps, boolean enableRule) throws Exception
 	{
 		String ipTablesPath = getIpTablesPath(context);
 		
     	//StringBuilder script = new StringBuilder();
     	
+		String action = " -A ";
     	String srcChainName = "OUTPUT";
 
+		if (!enableRule)
+			action = " -D ";
+		
     	//run the delete commands in a separate process as it might error out
     	//String[] cmdExecClear = {script.toString()};    	    	
 		//code = TorServiceUtils.doShellCommand(cmdExecClear, res, runRoot, waitFor);
@@ -376,7 +380,7 @@ public class TorTransProxy implements TorServiceConstants {
 				// Allow loopback
 				script.append(ipTablesPath);
 				script.append(" -t filter");
-		        script.append(" -A ").append(srcChainName);
+		        script.append(action).append(srcChainName);
 				script.append(" -m owner --uid-owner ");
 				script.append(tApp.getUid());
 				script.append(" -o lo");
@@ -388,7 +392,7 @@ public class TorTransProxy implements TorServiceConstants {
 				// Set up port redirection
 		    	script.append(ipTablesPath);
 		    	script.append(" -t nat");
-		    	script.append(" -A ").append(srcChainName);				
+		    	script.append(action).append(srcChainName);				
 				script.append(" -p tcp");
 				script.append(ALLOW_LOCAL);
 				script.append(" -m owner --uid-owner ");
@@ -403,7 +407,7 @@ public class TorTransProxy implements TorServiceConstants {
 				// Same for DNS
 				script.append(ipTablesPath);
 				script.append(" -t nat");
-				script.append(" -A ").append(srcChainName);
+				script.append(action).append(srcChainName);
 				script.append(" -p udp");
 				script.append(" -m owner --uid-owner ");
 				script.append(tApp.getUid());
@@ -418,7 +422,7 @@ public class TorTransProxy implements TorServiceConstants {
 				// Reject all other outbound packets
 				script.append(ipTablesPath);
 				script.append(" -t filter");
-		        script.append(" -A ").append(srcChainName);
+		        script.append(action).append(srcChainName);
 				script.append(" -m owner --uid-owner ");
 				script.append(tApp.getUid());				
 				script.append(ALLOW_LOCAL);
@@ -500,40 +504,7 @@ public class TorTransProxy implements TorServiceConstants {
 			mTorService.debug(msg);
 	}
 	
-	public int clearTransparentProxyingAll(Context context) throws Exception 
-	{
 
-		String ipTablesPath = getIpTablesPath(context);
-		
-    	StringBuilder script = new StringBuilder();    	
-
-    	Shell shell = Shell.startRootShell();
-    	
-    	String chainName = "OUTPUT";
-    	
-		script = new StringBuilder();
-		script.append(ipTablesPath);
-    	script.append(" -t nat");		
-    	script.append(" -F ").append(chainName); //delete previous user-defined chain
-    	
-    	executeCommand (shell, script.toString());
-		script = new StringBuilder();
-		
-    	
-		script = new StringBuilder();
-		
-		script.append(ipTablesPath);
-    	script.append(" -t filter");		
-    	script.append(" -F ").append(chainName); //delete previous user-defined chain
-    	
-    	int lastExit = executeCommand (shell, script.toString());
-		
-    	shell.close();
-    	
-    	clearAllIPv6Filters(context);
-		
-    	return lastExit;
-	}
 	
 	public int fixTransproxyLeak (Context context) throws Exception 
 	{
@@ -609,18 +580,25 @@ public class TorTransProxy implements TorServiceConstants {
 		return lastExit;
 	}
 	
-	public int setTransparentProxyingAll(Context context) throws Exception 
+	public int setTransparentProxyingAll(Context context, boolean enable) throws Exception 
 	{
+	  	
+		String action = " -A ";
+    	String srcChainName = "OUTPUT";
+
+		if (!enable)
+			action = " -D ";
 		
-		dropAllIPv6Traffic(context,-1);
+		if (enable)
+			dropAllIPv6Traffic(context,-1);
+		else
+			clearAllIPv6Filters(context);
 		
 		String ipTablesPath = getIpTablesPath(context);
 		
     	Shell shell = Shell.startRootShell();
     	
     	int torUid = context.getApplicationInfo().uid;
-
-    	String srcChainName = "OUTPUT";
     	
     	StringBuilder script = new StringBuilder();
     	
@@ -628,7 +606,7 @@ public class TorTransProxy implements TorServiceConstants {
     	
 		script.append(ipTablesPath);			
 		script.append(" -t nat");
-		script.append(" -A ").append(srcChainName);
+		script.append(action).append(srcChainName);
 		script.append(" -m owner --uid-owner ");
 		script.append(torUid);
 		script.append(" -j ACCEPT");
@@ -640,7 +618,7 @@ public class TorTransProxy implements TorServiceConstants {
 		
 		script.append(ipTablesPath);
 		script.append(" -t nat");
-		script.append(" -A ").append(srcChainName);
+		script.append(action).append(srcChainName);
 		script.append(" -o lo");
 		script.append(" -j ACCEPT");
 
@@ -650,7 +628,7 @@ public class TorTransProxy implements TorServiceConstants {
     	// Set up port redirection    	
 		script.append(ipTablesPath);		
 		script.append(" -t nat");
-		script.append(" -A ").append(srcChainName);
+		script.append(action).append(srcChainName);
 		script.append(" -p tcp");
 		script.append(ALLOW_LOCAL); //allow access to localhost
 		script.append(" -m owner ! --uid-owner ");
@@ -665,7 +643,7 @@ public class TorTransProxy implements TorServiceConstants {
 		// Same for DNS
 		script.append(ipTablesPath);
 		script.append(" -t nat");
-		script.append(" -A ").append(srcChainName);
+		script.append(action).append(srcChainName);
 		script.append(" -p udp");
 		script.append(ALLOW_LOCAL); //allow access to localhost
 		script.append(" -m owner ! --uid-owner ");
@@ -684,7 +662,7 @@ public class TorTransProxy implements TorServiceConstants {
 			//XXX: Comment the following rules for non-debug builds
 			script.append(ipTablesPath);			
 			script.append(" -t filter");
-			script.append(" -A ").append(srcChainName);
+			script.append(action).append(srcChainName);
 			script.append(" -p udp");
 			script.append(" --dport ");
 			script.append(STANDARD_DNS_PORT);
@@ -697,7 +675,7 @@ public class TorTransProxy implements TorServiceConstants {
 			
 			script.append(ipTablesPath);			
 			script.append(" -t filter");
-			script.append(" -A ").append(srcChainName);
+			script.append(action).append(srcChainName);
 	    	script.append(" -p tcp");
 			script.append(" -j LOG");
 			script.append(" --log-prefix='ORBOT_TCPLEAK_PROTECTION'");
@@ -711,7 +689,7 @@ public class TorTransProxy implements TorServiceConstants {
 		//allow access to transproxy port
 		script.append(ipTablesPath);
 		script.append(" -t filter");
-		script.append(" -A ").append(srcChainName);
+		script.append(action).append(srcChainName);
 		script.append(" -p tcp");
 		script.append(" -m tcp");
 		script.append(" --dport ").append(mTransProxyPort);
@@ -723,7 +701,7 @@ public class TorTransProxy implements TorServiceConstants {
 		//allow access to local SOCKS port
 		script.append(ipTablesPath);
 		script.append(" -t filter");
-		script.append(" -A ").append(srcChainName);
+		script.append(action).append(srcChainName);
 		script.append(" -p tcp");
 		script.append(" -m tcp");
 		script.append(" --dport ").append(PORT_SOCKS_DEFAULT);
@@ -735,7 +713,7 @@ public class TorTransProxy implements TorServiceConstants {
 		//allow access to local SOCKS port
 		script.append(ipTablesPath);
 		script.append(" -t filter");
-		script.append(" -A ").append(srcChainName);
+		script.append(action).append(srcChainName);
 		script.append(" -p tcp");
 		script.append(" -m tcp");
 		script.append(" --dport ").append(PORT_HTTP);
@@ -747,7 +725,7 @@ public class TorTransProxy implements TorServiceConstants {
 		//allow access to local DNS port
 		script.append(ipTablesPath);
 		script.append(" -t filter");
-		script.append(" -A ").append(srcChainName);
+		script.append(action).append(srcChainName);
 		script.append(" -p udp");
 		script.append(" -m udp");
 		script.append(" --dport ").append(mDNSPort);
@@ -759,7 +737,7 @@ public class TorTransProxy implements TorServiceConstants {
 		//allow access to local DNS port
 		script.append(ipTablesPath);
 		script.append(" -t filter");
-		script.append(" -A ").append(srcChainName);
+		script.append(action).append(srcChainName);
 		script.append(" -p udp");
 		script.append(" -m udp");
 		script.append(" --dport ").append(mDNSPort);
@@ -772,7 +750,7 @@ public class TorTransProxy implements TorServiceConstants {
 		// Reject all other packets
 		script.append(ipTablesPath);
 		script.append(" -t filter");
-		script.append(" -A ").append(srcChainName);
+		script.append(action).append(srcChainName);
 		script.append(" -m owner ! --uid-owner ");
 		script.append(torUid);
 		script.append(ALLOW_LOCAL); //allow access to localhost
