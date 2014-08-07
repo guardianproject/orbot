@@ -295,21 +295,25 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
     
     private void appConflictChecker ()
     {
-    	boolean debug = TorServiceUtils.getSharedPrefs(getApplicationContext()).getBoolean("pref_enable_logging",false);
+    	SharedPreferences sprefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
+    	
+    	boolean showAppConflict = sprefs.getBoolean("pref_show_conflict",true);
 
-    	if (debug)
+    	String[] badApps = {"com.sec.msc.nts.android.proxy"};
+    	
+    	for (String badApp : badApps)
     	{
-	    	String[] badApps = {"com.sec.msc.nts.android.proxy"};
+    		if (appInstalledOrNot(badApp))
+    		{
+    			if (showAppConflict)
+    				showAlert(getString(R.string.app_conflict),getString(R.string.please_disable_this_app_in_android_settings_apps_if_you_are_having_problems_with_orbot_) + badApp,true);
 	    	
-	    	for (String badApp : badApps)
-	    	{
-	    		if (appInstalledOrNot(badApp))
-	    		{
-		    		showAlert("App Conflict","Please disable this app in Android settings if you are having problems with Orbot: " + badApp,true);
-		    		break;
-	    		}
-	    	}
+	    		appendLogTextAndScroll(getString(R.string.please_disable_this_app_in_android_settings_apps_if_you_are_having_problems_with_orbot_) + badApp);
+    		}
     	}
+    	
+    	sprefs.edit().putBoolean("pref_show_conflict", false).commit();
+	
     }
     
     
