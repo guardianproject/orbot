@@ -393,15 +393,13 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	}
 
 
-	
-	
     public void onDestroy ()
     {
     	super.onDestroy();
     	
     	logNotice("TorService is being destroyed... shutting down!");
     	
-    	stopTor();
+    	//stopTor();
     	    	
         unregisterReceiver(mNetworkStateReceiver);        
         
@@ -1827,7 +1825,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	    				mBinder.saveConfiguration();
 	    			}
 	    			
-					if (currentStatus == STATUS_ON)
+					if (currentStatus != STATUS_OFF)
 					{
 						if (!mConnectivity)
 						{
