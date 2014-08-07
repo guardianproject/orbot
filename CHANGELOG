@@ -1,5 +1,15 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+f13269f update to 14.0.5.3
+28877b1 new strings for app conflict checker function
+ac6cdb7 enable app conflict checker for samsung users
+1801ec1 don't stop Tor when service is destroyed()
+113b189 update to latest OpenSSL 1.0.1i for important fixes
+888b7cd update version to latest OpenSSL 1.0.1i
+c517d0f Notification fix and change in finding existing process - Only build expanded notification on supported platforms - If service
+387e74e bump to 14.0.5.2
+5b014da update changelog
+
 03b39ea make sure to clean up ps process/shell
 e3385ab fixes for Tor processs tracking, control port, and start/stop
 8481e61 update to 14.0.5.1
