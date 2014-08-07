@@ -52,6 +52,7 @@ import org.torproject.android.R;
 import org.torproject.android.TorConstants;
 import org.torproject.android.Utils;
 import org.torproject.android.settings.AppManager;
+import org.torproject.android.settings.TorifiedApp;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
@@ -172,15 +173,14 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	
 	    		mLastProcessId = initControlConnection(1);
 				
-	 			if (mLastProcessId != -1)
+	 			if (mLastProcessId != -1 && conn != null)
 	 			{
 		            sendCallbackLogMessage (getString(R.string.found_existing_tor_process));
 		
-		 			String state = conn.getInfo("dormant");
-		 			if (state != null && Integer.parseInt(state) == 0)
-		 				currentStatus = STATUS_ON;
-		 			else
-		 				currentStatus = STATUS_CONNECTING;
+		            String msg = conn.getInfo("status/circuit-established");
+		            sendCallbackLogMessage(msg);
+		            
+		 			currentStatus = STATUS_ON;
 						
 					return true;
 	 			}
@@ -799,19 +799,26 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		debug ("Transparent Proxying: clearing existing rules...");
      	
 		//clear rules first
-		mTransProxy.clearTransparentProxyingAll(this);
+	//	mTransProxy.clearTransparentProxyingAll(this);
 		
 		if(proxyAll)
 		{
 		//	showToolbarNotification(getString(R.string.setting_up_full_transparent_proxying_), TRANSPROXY_NOTIFY_ID, R.drawable.ic_stat_tor);
 
-			code = mTransProxy.setTransparentProxyingAll(this);
+			//clear existing rules
+			//code = mTransProxy.setTransparentProxyingAll(this, false);
+
+			code = mTransProxy.setTransparentProxyingAll(this, true);
 		}
 		else
 		{
 			//showToolbarNotification(getString(R.string.setting_up_app_based_transparent_proxying_), TRANSPROXY_NOTIFY_ID, R.drawable.ic_stat_tor);
+			ArrayList<TorifiedApp> apps = AppManager.getApps(this, TorServiceUtils.getSharedPrefs(getApplicationContext()));
+			
+			//clear exiting rules
+			//code = mTransProxy.setTransparentProxyingByApp(this,apps, false);
 
-			code = mTransProxy.setTransparentProxyingByApp(this,AppManager.getApps(this, TorServiceUtils.getSharedPrefs(getApplicationContext())));
+			code = mTransProxy.setTransparentProxyingByApp(this,apps, true);
 		}
 			
 	
@@ -856,7 +863,13 @@ public class TorService extends Service implements TorServiceConstants, TorConst
  		if (mTransProxy == null)
  			mTransProxy = new TorTransProxy(this, fileXtables);
  		
- 		mTransProxy.clearTransparentProxyingAll(this);
+ 		if (mTransProxyAll)
+ 			mTransProxy.setTransparentProxyingAll(this, false);
+ 		else
+ 		{
+			ArrayList<TorifiedApp> apps = AppManager.getApps(this, TorServiceUtils.getSharedPrefs(getApplicationContext()));
+ 			mTransProxy.setTransparentProxyingByApp(this, apps, false);
+ 		}
 	    
      	return true;
  	}
@@ -986,24 +999,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	{
 			int i = 0;
 			int controlPort = -1;
-			File fileCookie = new File(appCacheHome, TOR_CONTROL_COOKIE);
-	        
-			if (conn != null)
-			{
-				
-		        if (fileCookie.exists())
-		        {
-			        byte[] cookie = new byte[(int)fileCookie.length()];
-			        DataInputStream fis = new DataInputStream(new FileInputStream(fileCookie));
-			        fis.read(cookie);
-			        fis.close();
-			        conn.authenticate(cookie);
-			    
-					String torProcId = conn.getInfo("process/pid");
-					return Integer.parseInt(torProcId);
-				
-				}	
-			}
 			
 			int attempt = 0;
 			
@@ -1025,7 +1020,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 				        
 						logNotice( "SUCCESS connected to Tor control port");
 				        
-				        fileCookie = new File(appCacheHome, TOR_CONTROL_COOKIE);
+						File fileCookie = new File(appCacheHome, TOR_CONTROL_COOKIE);
 				        
 				        if (fileCookie.exists())
 				        {
@@ -1052,7 +1047,14 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 					        	File fileLog2 = new File(getFilesDir(),"orbot-tor-log.txt");
 					        	conn.setConf("Log", "debug file " + fileLog2.getCanonicalPath());
 					        	
+					        	
 					        }
+					        
+					    	String state = conn.getInfo("dormant");
+				 			if (state != null && Integer.parseInt(state) == 0)
+				 				currentStatus = STATUS_ON;
+				 			else
+				 				currentStatus = STATUS_CONNECTING;
 					        
 					        return Integer.parseInt(torProcId);
 					        
@@ -1075,7 +1077,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 				
 				try {
 					logNotice("waiting...");
-					Thread.sleep(5000); }
+					Thread.sleep(1000); }
 				catch (Exception e){}
 				
 			}
@@ -1838,8 +1840,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 							logNotice(context.getString(R.string.network_connectivity_is_good_waking_tor_up_));
 							showToolbarNotification(getString(R.string.status_activated),NOTIFY_ID,R.drawable.ic_stat_tor);
 
-							if (mHasRoot && mEnableTransparentProxy)
-								enableTransparentProxy(mTransProxyAll, mTransProxyTethering);
+							//if (mHasRoot && mEnableTransparentProxy)
+								//enableTransparentProxy(mTransProxyAll, mTransProxyTethering);
 							
 				        }
 					}
