@@ -134,7 +134,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     private boolean mEnableTransparentProxy = false;
     private boolean mTransProxyAll = false;
     private boolean mTransProxyTethering = false;
-
+    private boolean mTransProxyNetworkRefresh = false;
+    
     private ExecutorService mExecutor = Executors.newCachedThreadPool();
     
     public void debug(String msg)
@@ -719,9 +720,12 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
 
     	mHasRoot = prefs.getBoolean(PREF_HAS_ROOT,false);
- 		mEnableTransparentProxy = prefs.getBoolean("pref_transparent", false);
+ 		
+    	mEnableTransparentProxy = prefs.getBoolean("pref_transparent", false);
  		mTransProxyAll = prefs.getBoolean("pref_transparent_all", false);
 	 	mTransProxyTethering = prefs.getBoolean("pref_transparent_tethering", false);
+	 	mTransProxyNetworkRefresh = prefs.getBoolean("pref_transproxy_refresh", false);
+	 	
 	 	mShowExpandedNotifications  = prefs.getBoolean("pref_expanded_notifications", false);
 	 	
     	ENABLE_DEBUG_LOG = prefs.getBoolean("pref_enable_logging",false);
@@ -1843,8 +1847,11 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 							logNotice(context.getString(R.string.network_connectivity_is_good_waking_tor_up_));
 							showToolbarNotification(getString(R.string.status_activated),NOTIFY_ID,R.drawable.ic_stat_tor);
 
-							//if (mHasRoot && mEnableTransparentProxy)
-								//enableTransparentProxy(mTransProxyAll, mTransProxyTethering);
+							if (mHasRoot && mEnableTransparentProxy && mTransProxyNetworkRefresh)
+							{
+				    			disableTransparentProxy();
+								enableTransparentProxy(mTransProxyAll, mTransProxyTethering);
+							}
 							
 				        }
 					}

@@ -256,6 +256,13 @@ android:summary="@string/pref_disable_network_summary"
 android:enabled="true" 
 android:title="@string/pref_disable_network_title"/>
 
+<CheckBoxPreference
+android:defaultValue="false" 
+android:key="pref_transproxy_refresh"
+android:summary="@string/pref_transproxy_refresh_summary"
+android:enabled="true" 
+android:title="@string/pref_transproxy_refresh_title"/>
+
 
 <!-- 
 <CheckBoxPreference
