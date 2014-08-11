@@ -1,5 +1,7 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+05dd331 update to latest jtorctl with patches for thread, error handling
+
 73d4297 bump to 14.0.5.4
 ade6172 enable transproxy refresh feature, default off
 0d42479 make expanded notif off by default; handle exceptions better - some devices seem to not like these new expanded/remoteviews no
