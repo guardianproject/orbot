@@ -1020,7 +1020,10 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 						torConnSocket = new Socket(IP_LOCALHOST, controlPort);
 						torConnSocket.setSoTimeout(CONTROL_SOCKET_TIMEOUT);
 						
-				        conn = TorControlConnection.getConnection(torConnSocket);
+						boolean oo = true;
+						
+				        conn = new TorControlConnection(torConnSocket);
+				        conn.launchThread(true);//is daemon
 				        
 						logNotice( "SUCCESS connected to Tor control port");
 				        
