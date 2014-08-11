@@ -128,6 +128,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	private NotificationManager mNotificationManager = null;
 	private Builder mNotifyBuilder;
 	private Notification mNotification;
+	private boolean mShowExpandedNotifications = false;
 
     private boolean mHasRoot = false;
     private boolean mEnableTransparentProxy = false;
@@ -270,7 +271,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
 		mNotification = mNotifyBuilder.build();
 		
-	    if (Build.VERSION.SDK_INT >= 16) {
+	    if (Build.VERSION.SDK_INT >= 16 && mShowExpandedNotifications) {
 	    	
 	    	
 	    	// Create remote view that needs to be set as bigContentView for the notification.
@@ -317,8 +318,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		 	
 	 		expandedView.setTextViewText(R.id.title, getString(R.string.app_name)); 
 	 		
-	 	//	expandedView.setTextViewText(R.id.info, infoMessage.toString());
-	 	//	expandedView.setOnClickPendingIntent(R.id._tor_notificationBT, pendIntent);
 	 		expandedView.setImageViewResource(R.id.icon, icon);
 	    	mNotification.bigContentView = expandedView;
 	    }
@@ -723,6 +722,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
  		mEnableTransparentProxy = prefs.getBoolean("pref_transparent", false);
  		mTransProxyAll = prefs.getBoolean("pref_transparent_all", false);
 	 	mTransProxyTethering = prefs.getBoolean("pref_transparent_tethering", false);
+	 	mShowExpandedNotifications  = prefs.getBoolean("pref_expanded_notifications", false);
 	 	
     	ENABLE_DEBUG_LOG = prefs.getBoolean("pref_enable_logging",false);
     	Log.i(TAG,"debug logging:" + ENABLE_DEBUG_LOG);
@@ -766,7 +766,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
      * 
      * the idea is that if Tor is off then transproxy is off
      */
-    protected boolean enableTransparentProxy (boolean proxyAll, boolean enableTether) throws Exception
+    private boolean enableTransparentProxy (boolean proxyAll, boolean enableTether) throws Exception
  	{
     	
  		if (mTransProxy == null)
@@ -1124,7 +1124,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		{	
 			logNotice("unable to get control port; file not found");
 		}
-		catch (IOException e)
+		catch (Exception e)
 		{	
 			logNotice("unable to read control port config file");
 		}
@@ -1170,7 +1170,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	}*/
 	
 	
-	public void addEventHandler () throws IOException
+	public void addEventHandler () throws Exception
 	{
 	       // We extend NullEventHandler so that we don't need to provide empty
 	       // implementations for all the events we don't care about.
@@ -1386,31 +1386,33 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			
 			logNotice(sb.toString());
 		
-			//get IP from last nodename
-			if(status.equals("BUILT")){
-				
-				if (node.ipAddress == null)
-					mExecutor.execute(new ExternalIPFetcher(node));
-				
-				hmBuiltNodes.put(node.id, node);
-			}
-			
-			if (status.equals("CLOSED"))
+			if (mShowExpandedNotifications)
 			{
-				hmBuiltNodes.remove(node.id);
-				
-				//how check the IP's of any other nodes we have
-				for (String nodeId : hmBuiltNodes.keySet())
-				{
-					node = hmBuiltNodes.get(nodeId);
+				//get IP from last nodename
+				if(status.equals("BUILT")){
 					
 					if (node.ipAddress == null)
 						mExecutor.execute(new ExternalIPFetcher(node));
-
+					
+					hmBuiltNodes.put(node.id, node);
 				}
-
-			}
 				
+				if (status.equals("CLOSED"))
+				{
+					hmBuiltNodes.remove(node.id);
+					
+					//how check the IP's of any other nodes we have
+					for (String nodeId : hmBuiltNodes.keySet())
+					{
+						node = hmBuiltNodes.get(nodeId);
+						
+						if (node.ipAddress == null)
+							mExecutor.execute(new ExternalIPFetcher(node));
+	
+					}
+	
+				}
+			}
 	
 	}
 	
@@ -1585,9 +1587,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 					
     			}
     		}
-    		catch(IOException ioe)
+    		catch(Exception ioe)
     		{
-    			Log.e(TAG,"Unable to get Tor information",ioe);
+    		//	Log.e(TAG,"Unable to get Tor information",ioe);
     			logNotice("Unable to get Tor information"+ioe.getMessage());
     		}
 			return null;
@@ -1621,7 +1623,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	   	       		return result.toString();
 	        	}
         	}
-        	catch (IOException ioe)
+        	catch (Exception ioe)
         	{
         		
         		logException("Unable to get Tor configuration: " + ioe.getMessage(),ioe);
@@ -1678,7 +1680,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	        			//checkAddressAndCountry();
 	        			
 	        			}
-	        			catch (IOException ioe){
+	        			catch (Exception ioe){
 	        				debug("error requesting newnym: " + ioe.getLocalizedMessage());
 	        			}
 	        		}
@@ -1855,7 +1857,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	}
     };
 
-    private boolean processSettingsImpl () throws RemoteException, IOException
+    private boolean processSettingsImpl () throws Exception
     {
     	logNotice(getString(R.string.updating_settings_in_tor_service));
     	
