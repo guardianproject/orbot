@@ -1,5 +1,12 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+73d4297 bump to 14.0.5.4
+ade6172 enable transproxy refresh feature, default off
+0d42479 make expanded notif off by default; handle exceptions better - some devices seem to not like these new expanded/remoteviews no
+11d3f59 reduce the onionoo lookup to just the required fields
+3e58ee9 multiple fixes for status check and new transproxy calls - update to the new transproxy selective calls - improve status resum
+6955c44 selectively disable/enable transproxy rules
+
 f13269f update to 14.0.5.3
 28877b1 new strings for app conflict checker function
 ac6cdb7 enable app conflict checker for samsung users
