@@ -48,10 +48,10 @@ public interface TorServiceConstants {
 	public final static int FILE_WRITE_BUFFER_SIZE = 1024;
 	
 	//HTTP Proxy server port
-	public final static int PORT_HTTP = 8118; //just like Privoxy!
+	public static int PORT_HTTP = 8118; //just like Privoxy!
 	
 	//Socks port client connects to, server is the Tor binary
-	public final static String PORT_SOCKS_DEFAULT = "9050";
+	public static String PORT_SOCKS_DEFAULT = "9050";//it can be auto, 0 or a port
 	
 	//what is says!
 	public final static String IP_LOCALHOST = "127.0.0.1";
