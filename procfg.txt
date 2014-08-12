@@ -2,6 +2,7 @@
 -dontusemixedcaseclassnames
 -dontskipnonpubliclibraryclasses
 -dontpreverify
+-dontobfuscate
 -verbose
 -optimizations !code/simplification/arithmetic,!field/*,!class/merging/*
 
