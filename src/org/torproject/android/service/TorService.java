@@ -575,7 +575,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			logNotice("There was an error installing Orbot binaries");
 		}
 		
-		mExecutor.execute(new Runnable ()
+		new Thread(new Runnable ()
     	{
     		public void run ()
     		{
@@ -589,7 +589,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	    	}
             	
     		}
-    	});
+    	}).start();
     	
 	}
 
@@ -650,7 +650,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
  		String transPort = prefs.getString("pref_transport", TorServiceConstants.TOR_TRANSPROXY_PORT_DEFAULT+"");
  		String dnsPort = prefs.getString("pref_dnsport", TorServiceConstants.TOR_DNS_PORT_DEFAULT+"");
- 		
  		
  		if (mTransProxyTethering)
  		{
