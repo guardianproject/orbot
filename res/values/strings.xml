@@ -134,6 +134,10 @@
   <string name="pref_entrance_node_summary">Fingerprints, nicks, countries and addresses for the first hop</string>
   <string name="pref_entrance_node_dialog">Enter Entrance Nodes</string>
   
+  <string name="button_proxy_all">Proxy All</string>
+  <string name="button_proxy_none">Proxy None</string>
+  <string name="button_invert_selection">Invert Selection</string>
+
   <string name="pref_proxy_title">Outbound Network Proxy (Optional)</string>
   
   <string name="pref_proxy_type_title">Outbound Proxy Type</string>
