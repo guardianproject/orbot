@@ -13,10 +13,12 @@ import java.util.StringTokenizer;
 
 
 
+
 import org.torproject.android.R;
 import org.torproject.android.TorConstants;
 import org.torproject.android.service.TorService;
 import org.torproject.android.service.TorServiceUtils;
+
 
 //import android.R;
 import android.app.Activity;
@@ -28,6 +30,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
@@ -49,6 +52,7 @@ import android.widget.TextView;
 public class AppManager extends Activity implements OnCheckedChangeListener, OnClickListener, TorConstants {
 
     private ListView listApps;
+    private final static String TAG = "Orbot";
     
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,26 +65,74 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
         buttonSelectNone =  (Button) findViewById(R.id.button_proxy_none);
         buttonInvert =      (Button) findViewById(R.id.button_invert_selection);
 
-        buttonSelectAll.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                autoCheckApplications(v);
-            }
-        });
-        buttonSelectNone.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                autoCheckApplications(v);
-            }
-        });
-        buttonInvert.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                autoCheckApplications(v);
-            }
-        });
+        buttonSelectAll.setOnClickListener(new OnAutoClickListener(0));
+        buttonSelectNone.setOnClickListener(new OnAutoClickListener(1));
+        buttonInvert.setOnClickListener(new OnAutoClickListener(2));
     }
-    
+
+    class OnAutoClickListener implements Button.OnClickListener {
+        private int status;
+        public OnAutoClickListener(int status){
+            this.status = status;
+        }
+        @SuppressWarnings("unchecked")
+        public void onClick(View button){
+            ListView listView;
+            ViewGroup viewGroup;
+            View parentView, currentView;
+            ArrayAdapter<TorifiedApp> adapter;
+            TorifiedApp app;
+            CheckBox box;
+            float buttonId;
+            boolean[] isSelected;
+            int posI, selectedI, lvSz;
+
+            buttonId = button.getId();
+            listView = (ListView) findViewById(R.id.applistview);
+            lvSz = listView.getCount();
+            isSelected = new boolean[lvSz];
+
+            selectedI = -1;
+
+            if (this.status == 0){
+                Log.d(TAG, "Proxifying ALL");
+            }else if (this.status == 1){
+                Log.d(TAG, "Proxifying NONE");
+            }else {
+                Log.d(TAG, "Proxifying invert");
+            }
+
+            Context context = getApplicationContext();
+            SharedPreferences prefs = TorServiceUtils.getSharedPrefs(context);
+            ArrayList<TorifiedApp> apps = getApps(context, prefs);
+            parentView = (View) findViewById(R.layout.layout_apps);
+            viewGroup = (ViewGroup) listView;
+
+            adapter = (ArrayAdapter<TorifiedApp>) listApps.getAdapter();
+            if (adapter == null){
+                Log.w(TAG, "List adapter is null. Getting apps.");
+                loadApps(prefs);
+                adapter = (ArrayAdapter<TorifiedApp>) listApps.getAdapter();
+            }
+
+            for (int i = 0 ; i < adapter.getCount(); ++i){
+                app = (TorifiedApp) adapter.getItem(i);
+                currentView = adapter.getView(i, parentView, viewGroup);
+                box = (CheckBox) currentView.findViewById(R.id.itemcheck);
+                if (this.status == 0){
+                    if (!box.isChecked())
+                        box.performClick();
+                }else if (buttonId == R.id.button_proxy_none){
+                    if (box.isChecked())
+                        box.performClick();
+                }else {
+                    box.performClick();
+                }
+            }
+            saveAppSettings(context);
+            loadApps(prefs);
+        }
+    }
     
     @Override
     protected void onResume() {
@@ -324,32 +376,7 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
 
     }
 
-    public void autoCheckApplications(View button){
-        ListView listView;
-        ListAdapter adapter;
-        TorifiedApp app;
-        float buttonId;
-        boolean[] isSelected;
-        int posI, selectedI, lvSz;
-
-        buttonId = button.getId();
-        listView = (ListView) findViewById(R.id.applistview);
-        lvSz = listView.getCount();
-        isSelected = new boolean[lvSz];
-
-        selectedI = -1;
-        
-        for (posI = 0; posI < lvSz; ++posI){
-            app = (TorifiedApp) listView.getItemAtPosition(posI);
-            if (buttonId == R.id.button_proxy_all){
-                app.setTorified(true);
-            }else if (buttonId == R.id.button_proxy_none){
-                app.setTorified(false);
-            }else {
-                app.setTorified(!app.isTorified());
-            }
-        }
-    }
+    
 
 
     public void onClick(View v) {
