@@ -122,7 +122,7 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
                 if (this.status == 0){
                     if (!box.isChecked())
                         box.performClick();
-                }else if (buttonId == R.id.button_proxy_none){
+                }else if (this.status == 1){
                     if (box.isChecked())
                         box.performClick();
                 }else {
