@@ -297,17 +297,21 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
     	SharedPreferences sprefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
     	
     	boolean showAppConflict = sprefs.getBoolean("pref_show_conflict",true);
-
-    	String[] badApps = {"com.sec.msc.nts.android.proxy"};
+    	
+    	String[] badApps = {"com.sec.msc.nts.android.proxy|com.sec.msc.nts.android.proxy","com.sec.pcw|Samsung Link"};
     	
     	for (String badApp : badApps)
     	{
-    		if (appInstalledOrNot(badApp))
+    		String[] badAppParts = badApp.split("|");
+    		
+    		if (appInstalledOrNot(badAppParts[0]))
     		{
+    			String msg = getString(R.string.please_disable_this_app_in_android_settings_apps_if_you_are_having_problems_with_orbot_) + badAppParts[1];
+    			
     			if (showAppConflict)
-    				showAlert(getString(R.string.app_conflict),getString(R.string.please_disable_this_app_in_android_settings_apps_if_you_are_having_problems_with_orbot_) + badApp,true);
+    				showAlert(getString(R.string.app_conflict),msg,true);
 	    	
-	    		appendLogTextAndScroll(getString(R.string.please_disable_this_app_in_android_settings_apps_if_you_are_having_problems_with_orbot_) + badApp);
+	    		appendLogTextAndScroll(msg);
     		}
     	}
     	
@@ -422,19 +426,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                         //terminology but also making sure there are clear distinctions in control
                         stopTor();
                         
-                        if (mConnection != null)
-                        	unbindService(mConnection); 
-                        
-                        //perhaps this should be referenced as INTENT_TOR_SERVICE as in startService
-                        stopService(new Intent(this,TorService.class));
-                        
-                        //clears all notifications from the status bar
-                        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                        mNotificationManager.cancelAll();
-                
-                        mConnection = null;
-                        mService = null;
-                        
+                        onDestroy();
                         
                 } catch (RemoteException e) {
                         Log.w(TAG, e);
@@ -647,6 +639,8 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 			
 		}
 		
+		setIntent(null);
+		
 		updateStatus ("");
 		
 	}
@@ -768,11 +762,51 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
     
     
     
+    
+    
     @Override
+	protected void onActivityResult(int request, int response, Intent data) {
+		super.onActivityResult(request, response, data);
+		
+		if (request == 1 && response == RESULT_OK)
+		{
+			if (data != null && data.getBooleanExtra("transproxywipe", false))
+			{
+				try {
+					
+					boolean result = mService.flushTransProxy();
+					
+					if (result)
+					{
+
+			    		Toast.makeText(this, "Transparent proxy rules flushed!", Toast.LENGTH_SHORT).show();
+				 		
+					}
+					else
+					{
+
+			    		Toast.makeText(this, "You do not have ROOT access enabled", Toast.LENGTH_SHORT).show();
+				 		
+					}
+				} catch (RemoteException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+
+	@Override
 	protected void onResume() {
 		super.onResume();
 
-        if (mService != null)
+		setLocale();
+		
+		if (mService == null)
+		{
+			startService();
+		}
+		else
         {
                 try {
                 	
@@ -781,17 +815,16 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                 	if (torStatus != TorServiceConstants.STATUS_ON)	
                 		mService.processSettings();
                 	
-					setLocale();
 					
 					handleIntents();
 				} catch (RemoteException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-        }
-        
 
-		updateStatus("");
+        		updateStatus("");
+        }
+		
 	}
 
 	AlertDialog aDialog = null;
@@ -1143,7 +1176,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
      // we should use this to activity monitor unbind so that we don't have to call
      // bindService() a million times
      
-    private ServiceConnection mConnection = new ServiceConnection() {
+    private final ServiceConnection mConnection = new ServiceConnection() {
         public void onServiceConnected(ComponentName className,
                 IBinder service) {
         	
@@ -1154,7 +1187,6 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
             // representation of that from the raw service object.
             mService = ITorService.Stub.asInterface(service);
        
-            
             // We want to monitor the service for as long as we are
             // connected to it.
             try {
@@ -1163,10 +1195,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
             	
                 if (autoStartFromIntent)
                 {
-                		
-                        startTor();
-                        
-                        
+                    startTor();
                 }
                
                 handleIntents();
@@ -1180,9 +1209,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                 // so there is no need to do anything here.
                     Log.d(TAG,"error registering callback to service",e);
             }
-            
 
-       
           
         }
 
@@ -1195,6 +1222,8 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
             Log.d(TAG,"service was disconnected");
             
         }
+        
+        
     };
     
     private void setLocale ()
@@ -1220,7 +1249,6 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 		if (mConnection != null && mService != null)
 		{
 			unbindService(mConnection);
-			mConnection = null;
 			mService = null;
 		}
 	}
