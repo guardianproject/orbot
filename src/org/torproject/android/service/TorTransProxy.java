@@ -29,8 +29,7 @@ public class TorTransProxy implements TorServiceConstants {
 	public TorTransProxy (TorService torService, File fileXTables)
 	{
 		mTorService = torService;
-		mFileXtables = fileXTables;
-		
+		mFileXtables = fileXTables;	
 	}
 	
 	public void setTransProxyPort (int transProxyPort)
@@ -373,7 +372,7 @@ public class TorTransProxy implements TorServiceConstants {
 				
 				logMessage("enabling transproxy for app: " + tApp.getUsername() + " (" + tApp.getUid() + ")");
 				
-				dropAllIPv6Traffic(context, tApp.getUid());
+				dropAllIPv6Traffic(context, tApp.getUid(),enableRule);
 				
 		    	script = new StringBuilder();
 
@@ -532,9 +531,15 @@ public class TorTransProxy implements TorServiceConstants {
 		 
 	}
 	
-	public int dropAllIPv6Traffic (Context context, int appUid) throws Exception
+	public int dropAllIPv6Traffic (Context context, int appUid, boolean enableDrop) throws Exception
 	{
 
+		String action = " -A ";
+		String chain = "OUTPUT";
+		
+		if (!enableDrop)
+			action = " -D ";
+		
 		String ip6tablesPath = getIp6TablesPath(context);
 		Shell shell = Shell.startRootShell();
     	
@@ -543,7 +548,8 @@ public class TorTransProxy implements TorServiceConstants {
 
 		script = new StringBuilder();
 		script.append(ip6tablesPath);			
-		script.append(" -A OUTPUT");
+		script.append(action);
+		script.append(chain);
 
 		if (appUid != -1)
 		{
@@ -560,13 +566,13 @@ public class TorTransProxy implements TorServiceConstants {
 		return lastExit;
 	}
 	
+	/*
 	public int clearAllIPv6Filters (Context context) throws Exception
 	{
 
 		String ip6tablesPath = getIp6TablesPath(context);
 		Shell shell = Shell.startRootShell();
     	
-		
     	StringBuilder script;
 
 		script = new StringBuilder();
@@ -578,6 +584,29 @@ public class TorTransProxy implements TorServiceConstants {
 		shell.close();
 		
 		return lastExit;
+	}*/
+	
+	public int flushTransproxyRules (Context context) throws Exception 
+	{
+		int exit = -1;
+		String ipTablesPath = getIpTablesPath(context);
+
+		StringBuilder script = new StringBuilder();
+		script.append(ipTablesPath);			
+		script.append(" -t nat");
+		script.append(" -F ");
+		
+    	Shell shell = Shell.startRootShell();
+		executeCommand (shell, script.toString());
+		
+		script = new StringBuilder();
+		script.append(ipTablesPath);			
+		script.append(" -t filter");
+		script.append(" -F ");
+		
+		dropAllIPv6Traffic(context,-1,false);
+
+		return exit;
 	}
 	
 	public int setTransparentProxyingAll(Context context, boolean enable) throws Exception 
@@ -589,10 +618,7 @@ public class TorTransProxy implements TorServiceConstants {
 		if (!enable)
 			action = " -D ";
 		
-		if (enable)
-			dropAllIPv6Traffic(context,-1);
-		else
-			clearAllIPv6Filters(context);
+		dropAllIPv6Traffic(context,-1,enable);
 		
 		String ipTablesPath = getIpTablesPath(context);
 		
@@ -698,13 +724,13 @@ public class TorTransProxy implements TorServiceConstants {
 		executeCommand (shell, script.toString());
 		script = new StringBuilder();
 		
-		//allow access to local SOCKS port
+		//allow access to local HTTP port
 		script.append(ipTablesPath);
 		script.append(" -t filter");
 		script.append(action).append(srcChainName);
 		script.append(" -p tcp");
 		script.append(" -m tcp");
-		script.append(" --dport ").append(PORT_SOCKS_DEFAULT);
+		script.append(" --dport ").append(mTorService.getHTTPPort());
 		script.append(" -j ACCEPT");
 
 		executeCommand (shell, script.toString());
@@ -716,7 +742,7 @@ public class TorTransProxy implements TorServiceConstants {
 		script.append(action).append(srcChainName);
 		script.append(" -p tcp");
 		script.append(" -m tcp");
-		script.append(" --dport ").append(PORT_HTTP);
+		script.append(" --dport ").append(mTorService.getSOCKSPort());
 		script.append(" -j ACCEPT");
 
 		executeCommand (shell, script.toString());
@@ -733,19 +759,6 @@ public class TorTransProxy implements TorServiceConstants {
 
 		executeCommand (shell, script.toString());
 		script = new StringBuilder();
-		
-		//allow access to local DNS port
-		script.append(ipTablesPath);
-		script.append(" -t filter");
-		script.append(action).append(srcChainName);
-		script.append(" -p udp");
-		script.append(" -m udp");
-		script.append(" --dport ").append(mDNSPort);
-		script.append(" -j ACCEPT");
-
-		executeCommand (shell, script.toString());
-		script = new StringBuilder();
-		
 		
 		// Reject all other packets
 		script.append(ipTablesPath);
