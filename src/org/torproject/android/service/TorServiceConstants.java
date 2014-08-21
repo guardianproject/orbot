@@ -51,7 +51,8 @@ public interface TorServiceConstants {
 	public static int PORT_HTTP = 8118; //just like Privoxy!
 	
 	//Socks port client connects to, server is the Tor binary
-	public static String PORT_SOCKS_DEFAULT = "9050";//it can be auto, 0 or a port
+	public static String PORT_SOCKS_DEFAULT = "9050";
+	
 	
 	//what is says!
 	public final static String IP_LOCALHOST = "127.0.0.1";
