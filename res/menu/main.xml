@@ -69,7 +69,7 @@
   <item android:id="@+id/menu_exit"
         android:title="@string/menu_exit"
          android:icon="@drawable/ic_menu_exit"
-                  yourapp:showAsAction="ifRoom"
+                  yourapp:showAsAction="never"
          
          />
   
