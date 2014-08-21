@@ -52,4 +52,6 @@ interface ITorService {
     String[] getLog ();
     
     long[] getBandwidth ();
+    
+    boolean flushTransProxy ();
 }
