@@ -291,4 +291,7 @@
   <string name="pref_transproxy_refresh_title">Transproxy Auto-Refresh</string>
   <string name="pref_transproxy_refresh_summary">Re-apply Transproxy rules when the network state changes</string>
   
+  <string name="pref_transproxy_flush_title">Transproxy FORCE REMOVE</string>
+  <string name="pref_transproxy_flush_summary">Tap here to flush all transproxy network rules NOW</string>
+  
 </resources>
