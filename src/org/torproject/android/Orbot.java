@@ -1193,11 +1193,6 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                 torStatus = mService.getStatus();
             	initUpdates();
             	
-                if (autoStartFromIntent)
-                {
-                    startTor();
-                }
-               
                 handleIntents();
 
                 updateStatus("");
