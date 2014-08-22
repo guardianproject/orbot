@@ -296,13 +296,13 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
     {
     	SharedPreferences sprefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
     	
-    	boolean showAppConflict = sprefs.getBoolean("pref_show_conflict",true);
+    	boolean showAppConflict = true;//sprefs.getBoolean("pref_show_conflict",true);
     	
-    	String[] badApps = {"com.sec.msc.nts.android.proxy|com.sec.msc.nts.android.proxy","com.sec.pcw|Samsung Link"};
+    	String[] badApps = {"com.sec.msc.nts.android.proxy:com.sec.msc.nts.android.proxy","com.sec.pcw:Samsung Link"};
     	
     	for (String badApp : badApps)
     	{
-    		String[] badAppParts = badApp.split("|");
+    		String[] badAppParts = badApp.split(":");
     		
     		if (appInstalledOrNot(badAppParts[0]))
     		{
@@ -742,7 +742,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
         PackageManager pm = getPackageManager();
         try
         {
-               PackageInfo pi = pm.getPackageInfo(uri, PackageManager.GET_ACTIVITIES);
+               PackageInfo pi = pm.getPackageInfo(uri, PackageManager.GET_ACTIVITIES);               
                return pi.applicationInfo.enabled;
         }
         catch (PackageManager.NameNotFoundException e)
