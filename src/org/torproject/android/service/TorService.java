@@ -1048,13 +1048,15 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 					    
 					        String torProcId = conn.getInfo("process/pid");
 					        
+					        //remove this for now until we can make a clean way to share logs from internal storage
+					        /**
 					        if (ENABLE_DEBUG_LOG)
 					        {
 					        	File fileLog2 = new File(getFilesDir(),"orbot-tor-log.txt");
 					        	fileLog2.setReadable(true);
 					        	conn.setConf("Log", "debug file " + fileLog2.getCanonicalPath());
 					        	
-					        }
+					        }*/
 					        
 					        currentStatus = STATUS_CONNECTING;
 					        
