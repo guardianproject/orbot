@@ -102,9 +102,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	private static final int HS_NOTIFY_ID = 4;
 	
 	private boolean prefPersistNotifications = true;
-	private static final String IPADDRESS_PATTERN = 
-	        "(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)";
-	private final static Pattern pattern = Pattern.compile(IPADDRESS_PATTERN);
 	
 	private static final int MAX_START_TRIES = 3;
 
