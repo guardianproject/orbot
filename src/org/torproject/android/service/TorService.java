@@ -185,11 +185,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	 			if (mLastProcessId != -1 && conn != null)
 	 			{
 		            sendCallbackLogMessage (getString(R.string.found_existing_tor_process));
-		
-		            String msg = conn.getInfo("status/circuit-established");
-		            sendCallbackLogMessage(msg);
 		            
-		 			currentStatus = STATUS_ON;
+		            currentStatus = STATUS_ON;
 						
 					return true;
 	 			}
@@ -756,7 +753,10 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		runPolipoShellCmd();
 		
 		if (mHasRoot && mEnableTransparentProxy)
-			enableTransparentProxy(mTransProxyAll, mTransProxyTethering);
+		{
+			disableTransparentProxy();
+			enableTransparentProxy();
+		}
 		
 		getHiddenServiceHostname ();
 		
@@ -789,7 +789,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
      * 
      * the idea is that if Tor is off then transproxy is off
      */
-    private boolean enableTransparentProxy (boolean proxyAll, boolean enableTether) throws Exception
+    private boolean enableTransparentProxy () throws Exception
  	{
     	
  		if (mTransProxy == null)
@@ -823,7 +823,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		//clear rules first
 	//	mTransProxy.clearTransparentProxyingAll(this);
 		
-		if(proxyAll)
+		if(mTransProxyAll)
 		{
 		//	showToolbarNotification(getString(R.string.setting_up_full_transparent_proxying_), TRANSPROXY_NOTIFY_ID, R.drawable.ic_stat_tor);
 
@@ -849,7 +849,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		if (code == 0)
 		{
 
-			if (enableTether)
+			if (mTransProxyTethering)
 			{
 				showToolbarNotification(getString(R.string.transproxy_enabled_for_tethering_), TRANSPROXY_NOTIFY_ID, R.drawable.ic_stat_tor);
 
@@ -1054,8 +1054,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 					        {
 					        	File fileLog2 = new File(getFilesDir(),"orbot-tor-log.txt");
 					        	fileLog2.setReadable(true);
-					        	conn.setConf("Log", "debug file " + fileLog2.getCanonicalPath());
-					        	
+					        	conn.setConf("Log", "debug file " + fileLog2.getCanonicalPath());					        	
 					        }*/
 					        
 					        currentStatus = STATUS_CONNECTING;
@@ -1462,7 +1461,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 				{
 					hmBuiltNodes.remove(node.id);
 					
-	
 				}
 			}
 	
@@ -1494,9 +1492,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		public void run ()
 		{
 			
-			if (mNode.ipAddress != null)
-				return;
-			
 			for (int i = 0; i < MAX_ATTEMPTS; i++)
 			{
 				if (conn != null)
@@ -1525,14 +1520,12 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 						JSONObject jsonNodeInfo = new org.json.JSONObject(json.toString());
 							
 						JSONArray jsonRelays = jsonNodeInfo.getJSONArray("relays");
+						
 						if (jsonRelays.length() > 0)
 						{
 							mNode.ipAddress = jsonRelays.getJSONObject(0).getJSONArray("or_addresses").getString(0).split(":")[0];
-							
 							mNode.country = jsonRelays.getJSONObject(0).getString("country_name");
 							mNode.organization = jsonRelays.getJSONObject(0).getString("as_name");
-							
-							
 							
 						}
 						
@@ -1912,7 +1905,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 							if (mHasRoot && mEnableTransparentProxy && mTransProxyNetworkRefresh)
 							{
 				    			disableTransparentProxy();
-								enableTransparentProxy(mTransProxyAll, mTransProxyTethering);
+								enableTransparentProxy();
 							}
 							
 				        }
@@ -2243,7 +2236,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		{
 		
 			case TRIM_MEMORY_BACKGROUND:
-				logNotice("trim memory requested: app in the background");
+				debug("trim memory requested: app in the background");
 			return;
 			
 		/**
@@ -2255,7 +2248,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
 			case TRIM_MEMORY_COMPLETE:
 
-				logNotice("trim memory requested: cleanup all memory");
+				debug("trim memory requested: cleanup all memory");
 			return;
 		/**
 		public static final int TRIM_MEMORY_COMPLETE
@@ -2265,7 +2258,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		*/
 			case TRIM_MEMORY_MODERATE:
 
-				logNotice("trim memory requested: clean up some memory");
+				debug("trim memory requested: clean up some memory");
 			return;
 				
 		/**
@@ -2277,7 +2270,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
 			case TRIM_MEMORY_RUNNING_CRITICAL:
 
-				logNotice("trim memory requested: memory on device is very low and critical");
+				debug("trim memory requested: memory on device is very low and critical");
 			return;
 		/**
 		public static final int TRIM_MEMORY_RUNNING_CRITICAL
@@ -2288,7 +2281,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
 			case TRIM_MEMORY_RUNNING_LOW:
 
-				logNotice("trim memory requested: memory on device is running low");
+				debug("trim memory requested: memory on device is running low");
 			return;
 		/**
 		public static final int TRIM_MEMORY_RUNNING_LOW
@@ -2298,7 +2291,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		*/
 			case TRIM_MEMORY_RUNNING_MODERATE:
 
-				logNotice("trim memory requested: memory on device is moderate");
+				debug("trim memory requested: memory on device is moderate");
 			return;
 		/**
 		public static final int TRIM_MEMORY_RUNNING_MODERATE
@@ -2308,7 +2301,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		*/
 			case TRIM_MEMORY_UI_HIDDEN:
 
-				logNotice("trim memory requested: app is not showing UI anymore");
+				debug("trim memory requested: app is not showing UI anymore");
 			return;
 				
 		/**
