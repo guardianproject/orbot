@@ -340,6 +340,12 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 		try
 		{
+
+			if (fileTor == null)
+				initBinariesAndDirectories();
+			
+			updateSettings ();
+
 			mExecutor.execute (new TorStarter(intent));
 			
 		    return Service.START_STICKY;
@@ -568,6 +574,24 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		try
 		{
 			initBinariesAndDirectories();
+			updateSettings();
+		
+			new Thread(new Runnable ()
+			{
+				public void run ()
+				{
+					try
+			    	{
+			    		findExistingProc ();
+			    	}
+			    	catch (Exception e)
+			    	{
+			    		Log.e(TAG,"error onBind",e);
+			    	}
+		        	
+				}
+			}).start();
+		
 		}
 		catch (Exception e)
 		{
@@ -576,21 +600,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			logNotice("There was an error installing Orbot binaries");
 		}
 		
-		new Thread(new Runnable ()
-    	{
-    		public void run ()
-    		{
-    			try
-    	    	{
-    	    		findExistingProc ();
-    	    	}
-    	    	catch (Exception e)
-    	    	{
-    	    		Log.e(TAG,"error onBind",e);
-    	    	}
-            	
-    		}
-    	}).start();
     	
 	}
 
@@ -712,6 +721,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     
     private void updateSettings () throws TimeoutException, IOException
     {
+    	
 		SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
 
     	mHasRoot = prefs.getBoolean(PREF_HAS_ROOT,false);
@@ -736,6 +746,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	
 		currentStatus = STATUS_CONNECTING;
     	
+		if (fileTor == null)
+			initBinariesAndDirectories();
+		
     	enableBinExec(fileTor);
 		enableBinExec(filePolipo);	
 		enableBinExec(fileObfsclient);
