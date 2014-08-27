@@ -1,4 +1,5 @@
-Log notice stdout
+RunAsDaemon 1
+AvoidDiskWrites 1
 ControlPort auto
 SOCKSPort 0
 DNSPort 0
