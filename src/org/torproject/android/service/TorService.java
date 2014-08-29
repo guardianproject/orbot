@@ -177,7 +177,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	    	try
 	    	{
 	
-	    		mLastProcessId = initControlConnection(1);
+	    		mLastProcessId = initControlConnection(3);
 				
 	 			if (mLastProcessId != -1 && conn != null)
 	 			{
@@ -346,7 +346,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			
 			updateSettings ();
 
-			mExecutor.execute (new TorStarter(intent));
+			new Thread (new TorStarter(intent)).start();
 			
 		    return Service.START_STICKY;
 		    
@@ -380,12 +380,14 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		 		   registerReceiver(mNetworkStateReceiver , mNetworkStateFilter);
 		 	
 		 			mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-		 	
-		 			if (mIntent != null && mIntent.getAction()!=null && mIntent.getAction().equals(Intent.ACTION_BOOT_COMPLETED))
-		 			{	     				
-		 				setTorProfile(PROFILE_ON);	     			
-		 			}
+		 		
 				}
+				
+				//if this is a start on boot launch turn tor on
+				if (mIntent != null && mIntent.getAction()!=null && mIntent.getAction().equals(Intent.ACTION_BOOT_COMPLETED))
+	 			{	     				
+	 				setTorProfile(PROFILE_ON);	     			
+	 			}
 			}
 			catch (Exception e)
 			{
@@ -405,9 +407,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	super.onDestroy();
     	
     	logNotice("TorService is being destroyed... shutting down!");
-    	
-    	//stopTor();
-    	    	
+    		
         unregisterReceiver(mNetworkStateReceiver);        
         
     }
@@ -587,6 +587,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			    	catch (Exception e)
 			    	{
 			    		Log.e(TAG,"error onBind",e);
+			    		logNotice("error finding exiting process: " + e.toString());
 			    	}
 		        	
 				}
@@ -738,7 +739,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
     	prefPersistNotifications = prefs.getBoolean(TorConstants.PREF_PERSIST_NOTIFICATIONS, true);
     	
-    	updateTorConfigFile();
     }
     
     public void initTor () throws Exception
@@ -759,17 +759,25 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		logNotice(getString(R.string.status_starting_up));
 		sendCallbackStatusMessage(getString(R.string.status_starting_up));
 		
-		runTorShellCmd();
-		runPolipoShellCmd();
+		boolean success = runTorShellCmd();
 		
-		if (mHasRoot && mEnableTransparentProxy)
+		if (success)
 		{
-			disableTransparentProxy();
-			enableTransparentProxy();
+			runPolipoShellCmd();
+			
+			if (mHasRoot && mEnableTransparentProxy)
+			{
+				disableTransparentProxy();
+				enableTransparentProxy();
+			}
+			
+			getHiddenServiceHostname ();
 		}
-		
-		getHiddenServiceHostname ();
-		
+		else
+		{
+		    	 showToolbarNotification(getString(R.string.unable_to_start_tor), ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
+
+		}
     }
 
     private boolean flushTransparentProxyRules () throws Exception 
@@ -908,11 +916,13 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     
     Shell mShellTor;
     
-    private void runTorShellCmd() throws Exception
+    private boolean runTorShellCmd() throws Exception
     {
     	
 		String torrcPath = new File(appBinHome, TORRC_ASSET_KEY).getCanonicalPath();
 
+    	updateTorConfigFile();
+    	
 		sendCallbackStatusMessage(getString(R.string.status_starting_up));
 
 		if (mShellTor != null)
@@ -921,13 +931,41 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		//start Tor in the background
 		mShellTor = Shell.startShell();
 		
-		SimpleCommand shellTorCommand = new SimpleCommand(fileTor.getCanonicalPath() 
+		String torCmdString = fileTor.getCanonicalPath() 
 				+ " DataDirectory " + appCacheHome.getCanonicalPath() 
 				+ " --defaults-torrc " + torrcPath
-				+ " -f " + torrcPath + ".custom");
+				+ " -f " + torrcPath + ".custom";
+	
+		debug(torCmdString);
 		
-		mShellTor.add(shellTorCommand);
+		SimpleCommand shellTorCommand = new SimpleCommand(torCmdString + " --verify-config");
+		mShellTor.add(shellTorCommand).waitForFinish();
 		
+		int exitCode = shellTorCommand.getExitCode();
+		String output = shellTorCommand.getOutput();
+		
+		if (exitCode != 0 && output != null && output.length() > 0)
+		{
+			logNotice("Tor (" + exitCode + "): " + output);
+			throw new Exception ("Torrc config did not verify");
+			
+		}
+
+		shellTorCommand = new SimpleCommand(torCmdString);
+		mShellTor.add(shellTorCommand).waitForFinish();
+		
+		exitCode = shellTorCommand.getExitCode();
+		output = shellTorCommand.getOutput();
+		
+
+		if (exitCode != 0 && output != null && output.length() > 0)
+		{
+			logNotice("Tor (" + exitCode + "): " + output);
+			//throw new Exception ("unable to start");
+			return false;
+		}
+
+	
 		//now try to connect
 		mLastProcessId = initControlConnection (100);
 
@@ -948,7 +986,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 	    }
 		
-		
+		return true;
     }
     
     private void updatePolipoConfig () throws FileNotFoundException, IOException
@@ -1014,7 +1052,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     		
     }
     
-	private synchronized int initControlConnection (int maxTries) throws Exception, RuntimeException
+	private int initControlConnection (int maxTries) throws Exception, RuntimeException
 	{
 			int i = 0;
 			int controlPort = -1;
@@ -1275,10 +1313,10 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	   		     catch (Exception e)
 	   		     {				
 	   		    	
-	   		    	 stopTor();
 	   		    	logException("Unable to start Tor: " + e.toString(),e);	
 	   		    	 currentStatus = STATUS_OFF;
 	   		    	 showToolbarNotification(getString(R.string.unable_to_start_tor) + ": " + e.getMessage(), ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
+	   		    	stopTor();
 	   		     }
         	}
         	else
@@ -1573,11 +1611,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	
     public IBinder onBind(Intent intent) {
         
-    	
     	return mBinder;
     }
-    
-  
 
     /**
      * The IRemoteInterface is defined through IDL
@@ -1592,7 +1627,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         public void setProfile (final int profileNew)
         {
         	
-        	mExecutor.execute(new Runnable()
+        	new Thread(new Runnable()
         	{
 
 				@Override
@@ -1600,7 +1635,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 					setTorProfile(profileNew);					
 				}
         		
-        	});
+        	}).start();
         	
         	
         }
