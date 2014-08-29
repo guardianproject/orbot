@@ -432,7 +432,8 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                         //terminology but also making sure there are clear distinctions in control
                         stopTor();
                         
-                        onDestroy();
+                        //onDestroy();
+                        
                         
                 } catch (RemoteException e) {
                         Log.w(TAG, e);
@@ -448,11 +449,17 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	 * @see android.app.Activity#onPause()
 	 */
 	protected void onPause() {
-		super.onPause();
-
-		if (aDialog != null)
-			aDialog.dismiss();
-		
+		try
+		{
+			super.onPause();
+	
+			if (aDialog != null)
+				aDialog.dismiss();
+		}
+		catch (IllegalStateException ise)
+		{
+			//can happen on exit/shutdown
+		}
 	}
 	
 	private void doTorCheck ()
