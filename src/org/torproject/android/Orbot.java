@@ -64,7 +64,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	/* Useful UI bits */
 	private TextView lblStatus = null; //the main text display widget
 	private ImageProgressView imgStatus = null; //the main touchable image for activating Orbot
-//	private ProgressDialog progressDialog;
+
 	private MenuItem mItemOnOff = null;
     private TextView downloadText = null;
     private TextView uploadText = null;
@@ -104,6 +104,8 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	
 	private void startService ()
 	{
+		appendLogTextAndScroll("starting Tor background service... ");
+		
 		Intent torService = new Intent(this, TorService.class);    	    	
 		startService(torService);
 		
@@ -124,6 +126,10 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
     	imgStatus.setOnLongClickListener(this);
     	
     	imgStatus.setOnTouchListener(this);
+    	
+    	imgStatus.setEnabled(false);
+    	
+    	lblStatus.setText("Initializing the application...");
     	
     	downloadText = (TextView)findViewById(R.id.trafficDown);
         uploadText = (TextView)findViewById(R.id.trafficUp);
@@ -802,20 +808,12 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 
 		setLocale();
 		
-		if (mService == null)
-		{
-			startService();
-		}
-		else
+		if (mService != null)
         {
                 try {
                 	
                 	torStatus = mService.getStatus();
                 	
-                	if (torStatus != TorServiceConstants.STATUS_ON)	
-                		mService.processSettings();
-                	
-					
 					handleIntents();
 				} catch (RemoteException e) {
 					// TODO Auto-generated catch block
@@ -981,7 +979,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 			else
 			{
 				showAlert(getString(R.string.error),"Tor Service has not started yet. Please wait and try again.",false);
-				startService ();
+				
 			}
             
     	
@@ -1177,15 +1175,22 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
      // bindService() a million times
      
     private final ServiceConnection mConnection = new ServiceConnection() {
+    	
+    	
         public void onServiceConnected(ComponentName className,
                 IBinder service) {
         	
+        	appendLogTextAndScroll("Tor background service connected.");
+    		
             // This is called when the connection with the service has been
             // established, giving us the service object we can use to
             // interact with the service.  We are communicating with our
             // service through an IDL interface, so get a client-side
             // representation of that from the raw service object.
             mService = ITorService.Stub.asInterface(service);
+            
+
+        	imgStatus.setEnabled(true);
        
             // We want to monitor the service for as long as we are
             // connected to it.
@@ -1210,11 +1215,13 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 
         public void onServiceDisconnected(ComponentName className) {
         	
+        	appendLogTextAndScroll("Tor background service disconnected.");
+
             // This is called when the connection with the service has been
             // unexpectedly disconnected -- that is, its process crashed.
         	mKeepUpdating = false;
             mService = null;
-            Log.d(TAG,"service was disconnected");
+            
             
         }
         
