@@ -263,6 +263,11 @@ android:summary="@string/pref_transproxy_refresh_summary"
 android:enabled="true" 
 android:title="@string/pref_transproxy_refresh_title"/>
 
+<Preference
+android:key="pref_transproxy_flush"
+android:summary="@string/pref_transproxy_flush_summary"
+android:enabled="true" 
+android:title="@string/pref_transproxy_flush_title"/>
 
 <!-- 
 <CheckBoxPreference

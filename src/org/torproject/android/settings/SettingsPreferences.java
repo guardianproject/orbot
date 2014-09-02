@@ -28,6 +28,8 @@ public class SettingsPreferences
 
 	private CheckBoxPreference prefCBTransProxy = null;
 	private CheckBoxPreference prefcBTransProxyAll = null;
+	private Preference prefTransProxyFlush = null;
+	
 	private Preference prefTransProxyApps = null;
 	private CheckBoxPreference prefHiddenServices = null;
 	private CheckBoxPreference prefRequestRoot = null;
@@ -37,6 +39,8 @@ public class SettingsPreferences
 
 	private final static int HIDDEN_SERVICE_PREF_IDX = 6;
 	private final static int TRANSPROXY_GROUP_IDX = 1;
+	private final static int DEBUG_GROUP_IDX = 8;
+	
 	
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -74,6 +78,23 @@ public class SettingsPreferences
 				
 		prefCBTransProxy = ((CheckBoxPreference)((PreferenceCategory)this.getPreferenceScreen().getPreference(TRANSPROXY_GROUP_IDX)).getPreference(0));
 		prefcBTransProxyAll = (CheckBoxPreference)((PreferenceCategory)this.getPreferenceScreen().getPreference(TRANSPROXY_GROUP_IDX)).getPreference(1);
+		
+		prefTransProxyFlush = (Preference)((PreferenceCategory)this.getPreferenceScreen().getPreference(DEBUG_GROUP_IDX)).getPreference(8);
+		prefTransProxyFlush.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+
+			@Override
+			public boolean onPreferenceClick(Preference arg0) {
+				
+				Intent data = new Intent();
+				data.putExtra("transproxywipe", true);
+				setResult(RESULT_OK,data);
+				
+				finish();
+				return false;
+			}
+			
+		});
+		
 		prefTransProxyApps = ((PreferenceCategory)this.getPreferenceScreen().getPreference(TRANSPROXY_GROUP_IDX)).getPreference(2);
 
 

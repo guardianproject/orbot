@@ -1,5 +1,32 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+d2c71d7 update to 14.0.7.2
+6e65469 ensure settings are updated and binary paths are on service restart
+af433d3 remove unused variables/patterns
+b76be6d disable stdout log by default and enable daemon mode
+dafd295 simplify process reconnect and transproxy setup - on reconnect to service, don't require call to getInfo before STATUS_ON is s
+390b89e remove debug file logging for now until we can improve it
+e53e03a tuning Orbot app conflict checker code
+
+c2672cc update to 14.0.7.1
+eaccf77 don't call handle intents twice!
+
+24a3db8 update to 14.0.7
+add04f2 exit menu option should be a menu
+186e74b add new transproxy flush pref and strings
+c78a822 add transproxy flush option to settings
+68495c3 make delete iptables rules process match add for specific behavior no more drop all output tables, etc
+25bc4c0 add new flush transproxy interface method
+79a32e6 make sure control connection is not null on rebind - also tune app conflict checker code for Samsung Link
+b307d51 make default SOCKs port auto, and THEN try to set specified port - also remove exit IP lookup loop bad code
+9cc5f98 don't obfuscate class names; we just need to remove unused classes
+3698e46 create new thread for connecting to existing process don't rely on executor yet, as we need it to happen fast
+ea37b44 create new thread to just for existing process dont' rely on executor there yet
+3a82421 no need for asynctask - just grab the status directly
+e2f4f5f don't make these final, because the user might change them
+7d243af update changelog
+
+56dfff0 bumped to 14.0.6
 05dd331 update to latest jtorctl with patches for thread, error handling
 
 73d4297 bump to 14.0.5.4

@@ -32,7 +32,6 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Configuration;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -297,18 +296,22 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
     {
     	SharedPreferences sprefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
     	
-    	boolean showAppConflict = sprefs.getBoolean("pref_show_conflict",true);
-
-    	String[] badApps = {"com.sec.msc.nts.android.proxy"};
+    	boolean showAppConflict = true;//sprefs.getBoolean("pref_show_conflict",true);
+    	
+    	String[] badApps = {"com.sec.msc.nts.android.proxy:com.sec.msc.nts.android.proxy","com.sec.pcw:Samsung Link"};
     	
     	for (String badApp : badApps)
     	{
-    		if (appInstalledOrNot(badApp))
+    		String[] badAppParts = badApp.split(":");
+    		
+    		if (appInstalledOrNot(badAppParts[0]))
     		{
+    			String msg = getString(R.string.please_disable_this_app_in_android_settings_apps_if_you_are_having_problems_with_orbot_) + badAppParts[1];
+    			
     			if (showAppConflict)
-    				showAlert(getString(R.string.app_conflict),getString(R.string.please_disable_this_app_in_android_settings_apps_if_you_are_having_problems_with_orbot_) + badApp,true);
+    				showAlert(getString(R.string.app_conflict),msg,true);
 	    	
-	    		appendLogTextAndScroll(getString(R.string.please_disable_this_app_in_android_settings_apps_if_you_are_having_problems_with_orbot_) + badApp);
+	    		appendLogTextAndScroll(msg);
     		}
     	}
     	
@@ -423,19 +426,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                         //terminology but also making sure there are clear distinctions in control
                         stopTor();
                         
-                        if (mConnection != null)
-                        	unbindService(mConnection); 
-                        
-                        //perhaps this should be referenced as INTENT_TOR_SERVICE as in startService
-                        stopService(new Intent(this,TorService.class));
-                        
-                        //clears all notifications from the status bar
-                        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                        mNotificationManager.cancelAll();
-                
-                        mConnection = null;
-                        mService = null;
-                        
+                        onDestroy();
                         
                 } catch (RemoteException e) {
                         Log.w(TAG, e);
@@ -648,6 +639,8 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 			
 		}
 		
+		setIntent(null);
+		
 		updateStatus ("");
 		
 	}
@@ -749,7 +742,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
         PackageManager pm = getPackageManager();
         try
         {
-               PackageInfo pi = pm.getPackageInfo(uri, PackageManager.GET_ACTIVITIES);
+               PackageInfo pi = pm.getPackageInfo(uri, PackageManager.GET_ACTIVITIES);               
                return pi.applicationInfo.enabled;
         }
         catch (PackageManager.NameNotFoundException e)
@@ -769,11 +762,51 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
     
     
     
+    
+    
     @Override
+	protected void onActivityResult(int request, int response, Intent data) {
+		super.onActivityResult(request, response, data);
+		
+		if (request == 1 && response == RESULT_OK)
+		{
+			if (data != null && data.getBooleanExtra("transproxywipe", false))
+			{
+				try {
+					
+					boolean result = mService.flushTransProxy();
+					
+					if (result)
+					{
+
+			    		Toast.makeText(this, "Transparent proxy rules flushed!", Toast.LENGTH_SHORT).show();
+				 		
+					}
+					else
+					{
+
+			    		Toast.makeText(this, "You do not have ROOT access enabled", Toast.LENGTH_SHORT).show();
+				 		
+					}
+				} catch (RemoteException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+
+	@Override
 	protected void onResume() {
 		super.onResume();
 
-        if (mService != null)
+		setLocale();
+		
+		if (mService == null)
+		{
+			startService();
+		}
+		else
         {
                 try {
                 	
@@ -782,17 +815,16 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                 	if (torStatus != TorServiceConstants.STATUS_ON)	
                 		mService.processSettings();
                 	
-					setLocale();
 					
 					handleIntents();
 				} catch (RemoteException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-        }
-        
 
-		updateStatus("");
+        		updateStatus("");
+        }
+		
 	}
 
 	AlertDialog aDialog = null;
@@ -831,131 +863,94 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
              aDialog.setCanceledOnTouchOutside(true);
     }
     
-    /*
-     * Set the state of the running/not running graphic and label
-     * this all needs to be looked at w/ the shift to progressDialog
-     */
-    public void updateStatus (String torServiceMsg)
+	private void updateStatus (String torServiceMsg)
     {
-    	new updateStatusAsync().execute(torServiceMsg);
-    }
-    
-    private class updateStatusAsync extends AsyncTask<String, Void, Integer> {
-    	
-    	String mTorServiceMsg = null;
-    	
-        @Override
-        protected Integer doInBackground(String... params) {
-          
-        	mTorServiceMsg = params[0];
-        	int newTorStatus = TorServiceConstants.STATUS_OFF;
-            try
-            {
-            	if (mService != null)
-                	return new Integer(mService.getStatus());
-                    
-            }
-            catch (Exception e)
-            {
-            	//error
-            	Log.d(TAG,"error in update status",e);
-            }
-			
-            return newTorStatus;
-            
-        }
         
-        @Override
-		protected void onPostExecute(Integer result) {
-			
-        	updateUI(result.intValue());
-        	
-			super.onPostExecute(result);
-		}
-
-		private void updateUI (int newTorStatus)
-        {
-            
-                    //now update the layout_main UI based on the status
-                    if (imgStatus != null)
+		 int newTorStatus = torStatus;
+		 
+		 if (mService != null)
+			 try {newTorStatus = mService.getStatus();}
+		 	catch (RemoteException e){}
+		 
+            //now update the layout_main UI based on the status
+            if (imgStatus != null)
+            {
+                    
+                    if (newTorStatus == TorServiceConstants.STATUS_ON)
                     {
-                            
-                            if (newTorStatus == TorServiceConstants.STATUS_ON)
-                            {
-	                            	
-                                    imgStatus.setImageResource(R.drawable.toron);
-                            		
-                                    String lblMsg = getString(R.string.status_activated);                                     
-                                    lblStatus.setText(lblMsg);
-
-                                    if (mItemOnOff != null)
-                                            mItemOnOff.setTitle(R.string.menu_stop);
-                                    
-                                
-                                    if (mTorServiceMsg != null && mTorServiceMsg.length() > 0)
-                                    {
-                                    	appendLogTextAndScroll(mTorServiceMsg);
-                                    }
-                                    
-                                    boolean showFirstTime = mPrefs.getBoolean("connect_first_time",true);
-                                    
-                                    if (showFirstTime)
-                                    {
-                                    
-                                            Editor pEdit = mPrefs.edit();
-                                            
-                                            pEdit.putBoolean("connect_first_time",false);
-                                            
-                                            pEdit.commit();
-                                            
-                                            showAlert(getString(R.string.status_activated),getString(R.string.connect_first_time),true);
-                                            
-                                    }
-                                    
-                                    
-                                    if (autoStartFromIntent)
-                                    {
-                                    	setResult(RESULT_OK);
-                                    	finish();
-                                    }
-
-                            }
-                            else if (newTorStatus == TorServiceConstants.STATUS_CONNECTING)
-                            {
-                            	
-                                imgStatus.setImageResource(R.drawable.torstarting);
-                        
-                                if (mItemOnOff != null)
-                                        mItemOnOff.setTitle(R.string.menu_stop);
                         	
-                            	
-                                if (lblStatus != null && mTorServiceMsg != null)
-                                	if (mTorServiceMsg.indexOf('%')!=-1)
-                                		lblStatus.setText(mTorServiceMsg);
-                                
-                                appendLogTextAndScroll(mTorServiceMsg);
-                                
-                                            
-                            }
-                            else if (newTorStatus == TorServiceConstants.STATUS_OFF)
-                            {
-                                imgStatus.setImageResource(R.drawable.toroff);
-                                lblStatus.setText(getString(R.string.status_disabled) + "\n" + getString(R.string.press_to_start));
-                                
-                                if (mItemOnOff != null)
-                                        mItemOnOff.setTitle(R.string.menu_start);
-                                
-                            }
-                    }
-                    
-               
+                            imgStatus.setImageResource(R.drawable.toron);
+                    		
+                            String lblMsg = getString(R.string.status_activated);                                     
+                            lblStatus.setText(lblMsg);
 
-           	     torStatus = newTorStatus;
-        
-        }
+                            if (mItemOnOff != null)
+                                    mItemOnOff.setTitle(R.string.menu_stop);
+                            
+                        
+                            if (torServiceMsg != null && torServiceMsg.length() > 0)
+                            {
+                            	appendLogTextAndScroll(torServiceMsg);
+                            }
+                            
+                            boolean showFirstTime = mPrefs.getBoolean("connect_first_time",true);
+                            
+                            if (showFirstTime)
+                            {
+                            
+                                    Editor pEdit = mPrefs.edit();
+                                    
+                                    pEdit.putBoolean("connect_first_time",false);
+                                    
+                                    pEdit.commit();
+                                    
+                                    showAlert(getString(R.string.status_activated),getString(R.string.connect_first_time),true);
+                                    
+                            }
+                            
+                            
+                            if (autoStartFromIntent)
+                            {
+                            	setResult(RESULT_OK);
+                            	finish();
+                            }
+
+                    }
+                    else if (newTorStatus == TorServiceConstants.STATUS_CONNECTING)
+                    {
+                    	
+                        imgStatus.setImageResource(R.drawable.torstarting);
+                
+                        if (mItemOnOff != null)
+                                mItemOnOff.setTitle(R.string.menu_stop);
+                	
+                    	
+                        if (lblStatus != null && torServiceMsg != null)
+                        	if (torServiceMsg.indexOf('%')!=-1)
+                        		lblStatus.setText(torServiceMsg);
+                        
+                        appendLogTextAndScroll(torServiceMsg);
+                        
+                                    
+                    }
+                    else if (newTorStatus == TorServiceConstants.STATUS_OFF)
+                    {
+                        imgStatus.setImageResource(R.drawable.toroff);
+                        lblStatus.setText(getString(R.string.status_disabled) + "\n" + getString(R.string.press_to_start));
+                        
+                        if (mItemOnOff != null)
+                                mItemOnOff.setTitle(R.string.menu_start);
+                        
+                    }
+            }
+                
+           
+
+       	     torStatus = newTorStatus;
+    
+    }
 		
          
-    }
   
   // guess what? this start's Tor! actually no it just requests via the local ITorService to the remote TorService instance
   // to start Tor
@@ -1181,7 +1176,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
      // we should use this to activity monitor unbind so that we don't have to call
      // bindService() a million times
      
-    private ServiceConnection mConnection = new ServiceConnection() {
+    private final ServiceConnection mConnection = new ServiceConnection() {
         public void onServiceConnected(ComponentName className,
                 IBinder service) {
         	
@@ -1192,24 +1187,15 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
             // representation of that from the raw service object.
             mService = ITorService.Stub.asInterface(service);
        
-            
             // We want to monitor the service for as long as we are
             // connected to it.
             try {
                 torStatus = mService.getStatus();
             	initUpdates();
             	
-                if (autoStartFromIntent)
-                {
-                		
-                        startTor();
-                        
-                        
-                }
-               
                 handleIntents();
 
-                updateStatus("");  
+                updateStatus("");
             
             } catch (RemoteException e) {
                 // In this case the service has crashed before we could even
@@ -1218,9 +1204,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                 // so there is no need to do anything here.
                     Log.d(TAG,"error registering callback to service",e);
             }
-            
 
-       
           
         }
 
@@ -1233,6 +1217,8 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
             Log.d(TAG,"service was disconnected");
             
         }
+        
+        
     };
     
     private void setLocale ()
@@ -1258,7 +1244,6 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 		if (mConnection != null && mService != null)
 		{
 			unbindService(mConnection);
-			mConnection = null;
 			mService = null;
 		}
 	}
