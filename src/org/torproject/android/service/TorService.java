@@ -177,7 +177,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	    	try
 	    	{
 	
-	    		mLastProcessId = initControlConnection(3);
+	    		mLastProcessId = initControlConnection(3,true);
 				
 	 			if (mLastProcessId != -1 && conn != null)
 	 			{
@@ -570,7 +570,11 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     @Override
 	public void onCreate() {
 		super.onCreate();
-		
+		initialize();
+    }
+    
+    private void initialize()
+    {
 		try
 		{
 			initBinariesAndDirectories();
@@ -656,11 +660,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	String TORRC_CONTROLPORT_FILE_KEY = "ControlPortWriteToFile";
     	fileControlPort = new File(appBinHome,"control.txt");
     	extraLines.append(TORRC_CONTROLPORT_FILE_KEY).append(' ').append(fileControlPort.getCanonicalPath()).append('\n');
-    	
 
- 		String transPort = prefs.getString("pref_transport", TorServiceConstants.TOR_TRANSPROXY_PORT_DEFAULT+"");
- 		String dnsPort = prefs.getString("pref_dnsport", TorServiceConstants.TOR_DNS_PORT_DEFAULT+"");
- 		
  		if (mTransProxyTethering)
  		{
  			extraLines.append("TransListenAddress 0.0.0.0").append('\n');
@@ -676,8 +676,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	extraLines.append("TestSocks 0").append('\n');
     	extraLines.append("WarnUnsafeSocks 1").append('\n');
     
-    	extraLines.append("TransPort ").append(transPort).append('\n');
-    	extraLines.append("DNSPort ").append(dnsPort).append('\n');
+    	extraLines.append("TransPort ").append("auto").append('\n');
+    	extraLines.append("DNSPort ").append("auto").append('\n');
         extraLines.append("VirtualAddrNetwork 10.192.0.0/10").append('\n');
         extraLines.append("AutomapHostsOnResolve 1").append('\n');
         
@@ -741,7 +741,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	
     }
     
-    public void initTor () throws Exception
+    public void startTor () throws Exception
     {
     	
 		currentStatus = STATUS_CONNECTING;
@@ -965,9 +965,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			return false;
 		}
 
-	
 		//now try to connect
-		mLastProcessId = initControlConnection (100);
+		mLastProcessId = initControlConnection (100,false);
 
 		if (mLastProcessId == -1)
 		{
@@ -1052,7 +1051,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     		
     }
     
-	private int initControlConnection (int maxTries) throws Exception, RuntimeException
+	private int initControlConnection (int maxTries, boolean isReconnect) throws Exception, RuntimeException
 	{
 			int i = 0;
 			int controlPort = -1;
@@ -1076,46 +1075,83 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 				        conn = new TorControlConnection(torConnSocket);
 				        conn.launchThread(true);//is daemon
 				        
-						logNotice( "SUCCESS connected to Tor control port.");
-				        
-						File fileCookie = new File(appCacheHome, TOR_CONTROL_COOKIE);
-				        
-				        if (fileCookie.exists())
-				        {
-					        byte[] cookie = new byte[(int)fileCookie.length()];
-					        DataInputStream fis = new DataInputStream(new FileInputStream(fileCookie));
-					        fis.read(cookie);
-					        fis.close();
-					        conn.authenticate(cookie);
-					        		
-					        logNotice( "SUCCESS - authenticated to control port.");
-					        
-							sendCallbackStatusMessage(getString(R.string.tor_process_starting) + ' ' + getString(R.string.tor_process_complete));
+				        break;
+					}
+			        
+				}
+				catch (Exception ce)
+				{
+					conn = null;
+					logException( "Error connecting to Tor local control port: " + ce.getMessage(),ce);
+					
+				}
+				
+				
+				try {
+					logNotice("waiting...");
+					Thread.sleep(1000); }
+				catch (Exception e){}
+			
 		
-					        addEventHandler();
-					    
-					        String torProcId = conn.getInfo("process/pid");
-					        
-					        //remove this for now until we can make a clean way to share logs from internal storage
-					        /**
-					        if (ENABLE_DEBUG_LOG)
-					        {
-					        	File fileLog2 = new File(getFilesDir(),"orbot-tor-log.txt");
-					        	fileLog2.setReadable(true);
-					        	conn.setConf("Log", "debug file " + fileLog2.getCanonicalPath());					        	
-					        }*/
-					        
-					        currentStatus = STATUS_CONNECTING;
-					        
-				 			String confSocks = conn.getInfo("net/listeners/socks");
-				 			StringTokenizer st = new StringTokenizer(confSocks," ");
+				 
+			}
+			
+			if (conn != null)
+			{
+					logNotice( "SUCCESS connected to Tor control port.");
+			        
+					File fileCookie = new File(appCacheHome, TOR_CONTROL_COOKIE);
+			        
+			        if (fileCookie.exists())
+			        {
+				        byte[] cookie = new byte[(int)fileCookie.length()];
+				        DataInputStream fis = new DataInputStream(new FileInputStream(fileCookie));
+				        fis.read(cookie);
+				        fis.close();
+				        conn.authenticate(cookie);
+				        		
+				        logNotice( "SUCCESS - authenticated to control port.");
+				        
+						sendCallbackStatusMessage(getString(R.string.tor_process_starting) + ' ' + getString(R.string.tor_process_complete));
+	
+				        addEventHandler();
+				    
+				        String torProcId = conn.getInfo("process/pid");
+				        
+				        //remove this for now until we can make a clean way to share logs from internal storage
+				        /**
+				        if (ENABLE_DEBUG_LOG)
+				        {
+				        	File fileLog2 = new File(getFilesDir(),"orbot-tor-log.txt");
+				        	fileLog2.setReadable(true);
+				        	conn.setConf("Log", "debug file " + fileLog2.getCanonicalPath());					        	
+				        }*/
+				        
+				        currentStatus = STATUS_CONNECTING;
 
-				 			confSocks = st.nextToken().split(":")[1];
-				 			confSocks = confSocks.substring(0,confSocks.length()-1);
-				 			mPortSOCKS = Integer.parseInt(confSocks);
-				 			
+			 			String confSocks = conn.getInfo("net/listeners/socks");
+			 			StringTokenizer st = new StringTokenizer(confSocks," ");
+
+			 			confSocks = st.nextToken().split(":")[1];
+			 			confSocks = confSocks.substring(0,confSocks.length()-1);
+			 			mPortSOCKS = Integer.parseInt(confSocks);
+			 			
+				        if (!isReconnect) //if we are reconnected then we don't need to reset the ports
+				        {
+
 				    		SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
+				    		
 				 			String socksPortPref = prefs.getString(TorConstants.PREF_SOCKS, TorServiceConstants.PORT_SOCKS_DEFAULT);
+				 			if (socksPortPref.indexOf(':')!=-1)
+				 				socksPortPref = socksPortPref.split(":")[1];
+				 			
+				 	 		String transPort = prefs.getString("pref_transport", TorServiceConstants.TOR_TRANSPROXY_PORT_DEFAULT+"");
+				 	 		if (transPort.indexOf(':')!=-1)
+				 	 			transPort = transPort.split(":")[1];
+				 			
+				 	 		String dnsPort = prefs.getString("pref_dnsport", TorServiceConstants.TOR_DNS_PORT_DEFAULT+"");
+				 	 		if (dnsPort.indexOf(':')!=-1)
+				 	 			dnsPort = dnsPort.split(":")[1];
 				 			
 				 			try
 				 			{
@@ -1126,7 +1162,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 					 			ArrayList<String> socksLines = new ArrayList<String>();
 					 			socksLines.add("SOCKSPort " + mPortSOCKS);
 					 			socksLines.add("SOCKSPort " + socksPortPref);
-					 			
+					 		
 					 			conn.setConf(socksLines);
 					 			
 					 			mPortSOCKS = newSocksPort;
@@ -1136,37 +1172,69 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 				 			}
 				 			catch (Exception e)
 				 			{
-								//sendCallbackLogMessage("ERROR adding SOCKS on port: " + socksPortPref);
-								sendCallbackLogMessage("Local SOCKS port: " + socksPortPref);
+								sendCallbackLogMessage("Error setting TransProxy port to: " + socksPortPref);
+
+								
+				 			}
+				 			
+				 			try
+				 			{
+				 				int newPort = Integer.parseInt(transPort);
+				 				ServerSocket ss = new ServerSocket(newPort);
+				 				ss.close();
+				 				
+					 			ArrayList<String> confLines = new ArrayList<String>();
+					 		
+					 			confLines.add("TransPort " + transPort);
+					 			
+					 			conn.setConf(confLines);
+					 			
+								sendCallbackLogMessage("Local TransProxy port: " + transPort);
+
+				 			}
+				 			catch (Exception e)
+				 			{
+								sendCallbackLogMessage("ERROR setting TransProxy port to: " + transPort);
+
+								
 
 				 			}
 				 			
-					        return Integer.parseInt(torProcId);
-					        
+				 			try
+				 			{
+				 				int newPort = Integer.parseInt(dnsPort);
+				 				ServerSocket ss = new ServerSocket(newPort);
+				 				ss.close();
+				 				
+					 			ArrayList<String> confLines = new ArrayList<String>();
+					 		
+					 			confLines.add("DNSPort " + dnsPort);
+					 			
+					 			conn.setConf(confLines);
+					 			
+								sendCallbackLogMessage("Local DNSPort port: " + transPort);
+
+				 			}
+				 			catch (Exception e)
+				 			{
+								sendCallbackLogMessage("ERROR setting DNSport to: " + dnsPort);
+								
+
+				 			}
 				        }
-				        else
-				        {
-				        	logNotice ("Tor authentication cookie does not exist yet");
-				        	conn = null;
-				        			
-				        }
-					}
+			 			
+				        return Integer.parseInt(torProcId);
 				        
-				}
-				catch (Exception ce)
-				{
-					conn = null;
-					logException( "Error connecting to Tor local control port: " + ce.getMessage(),ce);
-					
+			        }
+			        else
+			        {
+			        	logNotice ("Tor authentication cookie does not exist yet");
+			        	conn = null;
+			        			
+			        }
 				}
 				
-				try {
-					logNotice("waiting...");
-					Thread.sleep(1000); }
-				catch (Exception e){}
-				
-			}
-		
+			
 			return -1;
 
 	}
@@ -1307,7 +1375,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 	            try
 	   		     {
-	   			   initTor();
+	   			   startTor();
 
 	   		     }
 	   		     catch (Exception e)
@@ -1614,6 +1682,26 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	return mBinder;
     }
 
+    public boolean checkAndInitImpl ()
+    {
+    	if (fileTor != null)
+    	{
+    		try {
+				if (TorServiceUtils.findProcessId(fileTor.getCanonicalPath()) != -1)
+				{
+					initialize();
+					return true;
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    				
+    	}
+    	
+    	return false;
+    }
+    
     /**
      * The IRemoteInterface is defined through IDL
      */
@@ -1624,6 +1712,10 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         }
         
 
+        public boolean checkAndInit () {
+        	return checkAndInitImpl();
+        }
+        
         public void setProfile (final int profileNew)
         {
         	

@@ -590,6 +590,14 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 			{			
 				try {
 					startTor();
+					
+
+					Intent nResult = new Intent();
+					
+					//nResult.putExtra("socks", ); //TODO respond with socks, transport, dns, etc
+					
+					setResult(RESULT_OK,nResult);
+					
 				} catch (RemoteException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -631,6 +639,8 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 					pEdit.putBoolean(TorConstants.PREF_BRIDGES_ENABLED,true);
 				
 					pEdit.commit();
+					
+					setResult(RESULT_OK);
 				}
 			}
 		}
@@ -820,6 +830,9 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                 try {
                 	
                 	torStatus = mService.getStatus();
+                	
+                	if (torStatus == 0) //make sure we don't have a tor process already running
+                		mService.checkAndInit();
                 	
 					handleIntents();
 				} catch (RemoteException e) {

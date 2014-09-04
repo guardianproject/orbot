@@ -12,6 +12,12 @@ interface ITorService {
     int getStatus();
     
     /**
+    * check for exiting Tor process
+    **/
+    boolean checkAndInit ();
+    
+    
+    /**
     * The profile value is the start/stop state for Tor
     **/
     void setProfile(int profile);
