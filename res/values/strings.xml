@@ -293,5 +293,8 @@
   
   <string name="pref_transproxy_flush_title">Transproxy FORCE REMOVE</string>
   <string name="pref_transproxy_flush_summary">Tap here to flush all transproxy network rules NOW</string>
+  <string name="transparent_proxy_rules_flushed_">Transparent proxy rules flushed!</string>
+  <string name="you_do_not_have_root_access_enabled">You do not have ROOT access enabled</string>
+  <string name="you_may_need_to_stop_and_start_orbot_for_settings_change_to_be_enabled_">You may need to stop and start Orbot for settings change to be enabled.</string>
   
 </resources>

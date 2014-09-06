@@ -790,6 +790,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	protected void onActivityResult(int request, int response, Intent data) {
 		super.onActivityResult(request, response, data);
 		
+		
 		if (request == 1 && response == RESULT_OK)
 		{
 			if (data != null && data.getBooleanExtra("transproxywipe", false))
@@ -801,18 +802,23 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 					if (result)
 					{
 
-			    		Toast.makeText(this, "Transparent proxy rules flushed!", Toast.LENGTH_SHORT).show();
+			    		Toast.makeText(this, R.string.transparent_proxy_rules_flushed_, Toast.LENGTH_SHORT).show();
 				 		
 					}
 					else
 					{
 
-			    		Toast.makeText(this, "You do not have ROOT access enabled", Toast.LENGTH_SHORT).show();
+			    		Toast.makeText(this, R.string.you_do_not_have_root_access_enabled, Toast.LENGTH_SHORT).show();
 				 		
 					}
 				} catch (RemoteException e) {
 					e.printStackTrace();
 				}
+			}
+			else
+			{
+	    		Toast.makeText(this, R.string.you_may_need_to_stop_and_start_orbot_for_settings_change_to_be_enabled_, Toast.LENGTH_SHORT).show();
+
 			}
 		}
 	}
