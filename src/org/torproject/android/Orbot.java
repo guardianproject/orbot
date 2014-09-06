@@ -17,7 +17,7 @@ import org.torproject.android.wizard.ChooseLocaleWizardActivity;
 import org.torproject.android.wizard.TipsAndTricks;
 
 import android.app.AlertDialog;
-import android.app.NotificationManager;
+import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -101,10 +101,10 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
         
 	}
 
+	ProgressDialog mProgressDialog;
 	
 	private void startService ()
 	{
-		appendLogTextAndScroll("starting Tor background service... ");
 		
 		Intent torService = new Intent(this, TorService.class);    	    	
 		startService(torService);
@@ -112,7 +112,9 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 		bindService(torService,
 				mConnection, Context.BIND_AUTO_CREATE);
 		
-		
+		appendLogTextAndScroll("starting Tor background service... ");
+        mProgressDialog = ProgressDialog.show(this, "", getString(R.string.status_starting_up), true);
+
 	}
 	
 	private void doLayout ()
@@ -124,10 +126,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 		lblStatus.setOnLongClickListener(this);
     	imgStatus = (ImageProgressView)findViewById(R.id.imgStatus);
     	imgStatus.setOnLongClickListener(this);
-    	
     	imgStatus.setOnTouchListener(this);
-    	
-    	imgStatus.setEnabled(false);
     	
     	lblStatus.setText("Initializing the application...");
     	
@@ -983,7 +982,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 		
 	            // this is a bit of a strange/old/borrowed code/design i used to change the service state
 	            // not sure it really makes sense when what we want to say is just "startTor"
-	            mService.setProfile(TorServiceConstants.PROFILE_ON); //this means turn on
+	            mService.setProfile(TorServiceConstants.STATUS_ON); //this means turn on
 	                
 	            //here we update the UI which is a bit sloppy and mixed up code wise
 	            //might be best to just call updateStatus() instead of directly manipulating UI in this method - yep makes sense
@@ -1010,7 +1009,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
     {
     	if (mService != null)
     	{
-    		mService.setProfile(TorServiceConstants.PROFILE_OFF);
+    		mService.setProfile(TorServiceConstants.STATUS_OFF);
     		Message msg = mHandler.obtainMessage(TorServiceConstants.DISABLE_TOR_MSG);
     		mHandler.sendMessage(msg);
     		
@@ -1200,6 +1199,9 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
         public void onServiceConnected(ComponentName className,
                 IBinder service) {
         	
+        	if (mProgressDialog != null && mProgressDialog.isShowing())
+        		mProgressDialog.dismiss();
+        	
         	appendLogTextAndScroll("Tor background service connected.");
     		
             // This is called when the connection with the service has been
@@ -1208,10 +1210,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
             // service through an IDL interface, so get a client-side
             // representation of that from the raw service object.
             mService = ITorService.Stub.asInterface(service);
-            
 
-        	imgStatus.setEnabled(true);
-       
             // We want to monitor the service for as long as we are
             // connected to it.
             try {
@@ -1233,6 +1232,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
           
         }
 
+        
         public void onServiceDisconnected(ComponentName className) {
         	
         	appendLogTextAndScroll("Tor background service disconnected.");

@@ -83,7 +83,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	
 	public static boolean ENABLE_DEBUG_LOG = false;
 	
-	private static int currentStatus = STATUS_OFF;
+	private int mCurrentStatus = STATUS_OFF;
 	
 	private final static int CONTROL_SOCKET_TIMEOUT = 0;
 		
@@ -183,7 +183,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	 			{
 		            sendCallbackLogMessage (getString(R.string.found_existing_tor_process));
 		            
-		            currentStatus = STATUS_ON;
+		            mCurrentStatus = STATUS_ON;
 						
 					return true;
 	 			}
@@ -217,7 +217,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	public int getTorStatus ()
     {
 		
-    	return currentStatus;
+    	return mCurrentStatus;
     	
     }
 	
@@ -340,12 +340,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 		try
 		{
-
-			if (fileTor == null)
-				initBinariesAndDirectories();
-			
-			updateSettings ();
-
+			initialize();
 			new Thread (new TorStarter(intent)).start();
 			
 		    return Service.START_STICKY;
@@ -386,7 +381,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 				//if this is a start on boot launch turn tor on
 				if (mIntent != null && mIntent.getAction()!=null && mIntent.getAction().equals(Intent.ACTION_BOOT_COMPLETED))
 	 			{	     				
-	 				setTorProfile(PROFILE_ON);	     			
+	 				setTorProfile(STATUS_ON);	     			
 	 			}
 			}
 			catch (Exception e)
@@ -422,7 +417,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     		//stop the foreground priority and make sure to remove the persistant notification
     		stopForeground(true);
     		
-    		currentStatus = STATUS_OFF;
+    		mCurrentStatus = STATUS_OFF;
 
     		if (mHasRoot && mEnableTransparentProxy)
     			disableTransparentProxy();
@@ -744,7 +739,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     public void startTor () throws Exception
     {
     	
-		currentStatus = STATUS_CONNECTING;
+		mCurrentStatus = STATUS_CONNECTING;
     	
 		if (fileTor == null)
 			initBinariesAndDirectories();
@@ -1127,7 +1122,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 				        	conn.setConf("Log", "debug file " + fileLog2.getCanonicalPath());					        	
 				        }*/
 				        
-				        currentStatus = STATUS_CONNECTING;
+				        mCurrentStatus = STATUS_CONNECTING;
 
 			 			String confSocks = conn.getInfo("net/listeners/socks");
 			 			StringTokenizer st = new StringTokenizer(confSocks," ");
@@ -1297,7 +1292,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			      
 			       // get several values
 			       
-			       if (currentStatus == STATUS_CONNECTING)
+			       if (mCurrentStatus == STATUS_CONNECTING)
 			       {
 				       //Map vals = conn.getInfo(Arrays.asList(new String[]{
 				         // "status/bootstrap-phase", "status","version"}));
@@ -1317,7 +1312,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		catch (Exception e)
 		{
 			Log.d(TAG, "Unable to get Tor status from control port");
-			currentStatus = STATUS_UNAVAILABLE;
+			mCurrentStatus = STATUS_UNAVAILABLE;
 		}
 		
 	}*/
@@ -1359,16 +1354,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		}
 
 
-		
-		
-		public int getProfile() throws RemoteException {
-			//return mProfile;
-			return PROFILE_ON;
-		}
-		
 		public void setTorProfile(int profile)  {
 		
-			if (profile == PROFILE_ON)
+			if (profile == STATUS_ON)
         	{
         		
 	            sendCallbackStatusMessage (getString(R.string.status_starting_up));
@@ -1382,7 +1370,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	   		     {				
 	   		    	
 	   		    	logException("Unable to start Tor: " + e.toString(),e);	
-	   		    	 currentStatus = STATUS_OFF;
+	   		    	 mCurrentStatus = STATUS_OFF;
 	   		    	 showToolbarNotification(getString(R.string.unable_to_start_tor) + ": " + e.getMessage(), ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
 	   		    	stopTor();
 	   		     }
@@ -1393,7 +1381,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	          
 	            stopTor();
 
-        		currentStatus = STATUS_OFF;   
+        		mCurrentStatus = STATUS_OFF;   
         	}
 		}
 		
@@ -1405,7 +1393,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
           
           if (msg.indexOf(TOR_CONTROL_PORT_MSG_BOOTSTRAP_DONE)!=-1)
           {
-        	  currentStatus = STATUS_ON;
+        	  mCurrentStatus = STATUS_ON;
 
         	  showToolbarNotification(getString(R.string.status_activated), NOTIFY_ID, R.drawable.ic_stat_tor);
           }
@@ -1550,8 +1538,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			else if(status.equals("BUILT"))
 			{
 
-		    	if (currentStatus == STATUS_CONNECTING)
-		    		currentStatus = STATUS_ON;
+		    	if (mCurrentStatus == STATUS_CONNECTING)
+		    		mCurrentStatus = STATUS_ON;
 	 		
 				logNotice(sb.toString());
 						
@@ -1679,10 +1667,18 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	
     public IBinder onBind(Intent intent) {
         
+		logNotice("Background service is bound. Status=" + mCurrentStatus);
+
     	return mBinder;
     }
 
-    public boolean checkAndInitImpl ()
+    @Override
+	public void onRebind(Intent intent) {
+		
+		super.onRebind(intent);
+	}
+
+	public boolean checkAndInitImpl ()
     {
     	if (fileTor != null)
     	{
@@ -1693,8 +1689,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 					return true;
 				}
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				logException("error init Tor", e);
 			}
     				
     	}
@@ -2026,7 +2021,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	    				mBinder.saveConfiguration();
 	    			}
 	    			
-					if (currentStatus != STATUS_OFF)
+					if (mCurrentStatus != STATUS_OFF)
 					{
 						if (!mConnectivity)
 						{

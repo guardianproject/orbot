@@ -71,9 +71,6 @@ public interface TorServiceConstants {
     public final static int STATUS_ON = 1;
     public final static int STATUS_CONNECTING = 2;
     
-    public final static int PROFILE_OFF = -1;
-    public final static int PROFILE_ON = 1;
-
     public static final int STATUS_MSG = 1;
     public static final int ENABLE_TOR_MSG = 2;
     public static final int DISABLE_TOR_MSG = 3;
