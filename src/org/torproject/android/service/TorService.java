@@ -897,15 +897,11 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
  		if (mTransProxy == null)
  			mTransProxy = new TorTransProxy(this, fileXtables);
- 		
- 		if (mTransProxyAll)
- 			mTransProxy.setTransparentProxyingAll(this, false);
- 		else
- 		{
-			ArrayList<TorifiedApp> apps = AppManager.getApps(this, TorServiceUtils.getSharedPrefs(getApplicationContext()));
- 			mTransProxy.setTransparentProxyingByApp(this, apps, false);
- 		}
-	    
+ 
+ 		mTransProxy.setTransparentProxyingAll(this, false);	
+		ArrayList<TorifiedApp> apps = AppManager.getApps(this, TorServiceUtils.getSharedPrefs(getApplicationContext()));
+		mTransProxy.setTransparentProxyingByApp(this, apps, false);
+	
      	return true;
  	}
     
@@ -1730,7 +1726,31 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         
         public void processSettings ()
         {
-        	/*
+        	
+        	try {
+        		
+        		boolean hadEnableTransparentProxy = mEnableTransparentProxy;
+        		
+        		updateSettings ();
+        		
+        		if (mHasRoot)
+        		{
+        			if (hadEnableTransparentProxy)
+	    				disableTransparentProxy();
+
+	        		if (mEnableTransparentProxy)
+	    			{
+	    				disableTransparentProxy();
+	    				enableTransparentProxy();
+	    			}
+        		}
+    			
+
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        	
         	Thread thread = new Thread()
         	{
         	
@@ -1750,7 +1770,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         	};
         	
         	thread.start();
-        	*/
+        	
         }
  
 

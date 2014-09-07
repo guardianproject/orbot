@@ -815,8 +815,14 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 					e.printStackTrace();
 				}
 			}
-			else
+			else if (torStatus == TorServiceConstants.STATUS_ON)
 			{
+				try {
+					mService.processSettings();
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 	    		Toast.makeText(this, R.string.you_may_need_to_stop_and_start_orbot_for_settings_change_to_be_enabled_, Toast.LENGTH_SHORT).show();
 
 			}
