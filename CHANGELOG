@@ -1,5 +1,11 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+b35a239 ensure all iptables rules are always wiped and reapply rules settings if modifed after settings menu accessed
+313c92f add warning about restarting Orbot after settings changes
+8ee5e9e more tuning of Tor service startup and status checking
+9c4c349 fix for reconnecting to exiting Tor process after service restart
+a0b32ba don't manually call onDestroy, just call finish()
+
 d2c71d7 update to 14.0.7.2
 6e65469 ensure settings are updated and binary paths are on service restart
 af433d3 remove unused variables/patterns
