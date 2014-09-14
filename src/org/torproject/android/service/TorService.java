@@ -76,7 +76,6 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationCompat.Builder;
 import android.util.Log;
 import android.widget.RemoteViews;
-import android.widget.Toast;
 
 public class TorService extends Service implements TorServiceConstants, TorConstants, EventHandler
 {
@@ -420,7 +419,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     		mCurrentStatus = STATUS_OFF;
 
     		if (mHasRoot && mEnableTransparentProxy)
-    			disableTransparentProxy();
+    			disableTransparentProxy(Shell.startRootShell());
     	    
     		clearNotifications();
     		
@@ -762,8 +761,12 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			
 			if (mHasRoot && mEnableTransparentProxy)
 			{
-				disableTransparentProxy();
-				enableTransparentProxy();
+		 		Shell shell = Shell.startRootShell();
+
+				disableTransparentProxy(shell);
+				enableTransparentProxy(shell);
+				
+				shell.close();
 			}
 			
 			getHiddenServiceHostname ();
@@ -802,7 +805,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
      * 
      * the idea is that if Tor is off then transproxy is off
      */
-    private boolean enableTransparentProxy () throws Exception
+    private boolean enableTransparentProxy (Shell shell) throws Exception
  	{
     	
  		if (mTransProxy == null)
@@ -824,39 +827,21 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
 		mTransProxy.setTransProxyPort(Integer.parseInt(transProxy));
 		mTransProxy.setDNSPort(Integer.parseInt(dnsPort));
-
-     
-		//TODO: Find a nice place for the next (commented) line
-		//TorTransProxy.setDNSProxying(); 
 		
 		int code = 0; // Default state is "okay"
-	
-		debug ("Transparent Proxying: clearing existing rules...");
-     	
-		//clear rules first
-	//	mTransProxy.clearTransparentProxyingAll(this);
 		
 		if(mTransProxyAll)
 		{
-		//	showToolbarNotification(getString(R.string.setting_up_full_transparent_proxying_), TRANSPROXY_NOTIFY_ID, R.drawable.ic_stat_tor);
 
-			//clear existing rules
-			//code = mTransProxy.setTransparentProxyingAll(this, false);
-
-			code = mTransProxy.setTransparentProxyingAll(this, true);
+			code = mTransProxy.setTransparentProxyingAll(this, true, shell);
 		}
 		else
 		{
-			//showToolbarNotification(getString(R.string.setting_up_app_based_transparent_proxying_), TRANSPROXY_NOTIFY_ID, R.drawable.ic_stat_tor);
 			ArrayList<TorifiedApp> apps = AppManager.getApps(this, TorServiceUtils.getSharedPrefs(getApplicationContext()));
-			
-			//clear exiting rules
-			//code = mTransProxy.setTransparentProxyingByApp(this,apps, false);
 
-			code = mTransProxy.setTransparentProxyingByApp(this,apps, true);
+			code = mTransProxy.setTransparentProxyingByApp(this,apps, true, shell);
 		}
-			
-	
+		
 		debug ("TorTransProxy resp code: " + code);
 		
 		if (code == 0)
@@ -866,7 +851,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			{
 				showToolbarNotification(getString(R.string.transproxy_enabled_for_tethering_), TRANSPROXY_NOTIFY_ID, R.drawable.ic_stat_tor);
 
-				mTransProxy.enableTetheringRules(this);
+				mTransProxy.enableTetheringRules(this, Shell.startRootShell());
 				  
 			}
 			else
@@ -890,7 +875,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
      * 
      * the idea is that if Tor is off then transproxy is off
      */
-    private boolean disableTransparentProxy () throws Exception
+    private boolean disableTransparentProxy (Shell shell) throws Exception
  	{
     	
      	debug ("Transparent Proxying: disabling...");
@@ -898,9 +883,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
  		if (mTransProxy == null)
  			mTransProxy = new TorTransProxy(this, fileXtables);
  
- 		mTransProxy.setTransparentProxyingAll(this, false);	
+ 		mTransProxy.setTransparentProxyingAll(this, false, shell);	
 		ArrayList<TorifiedApp> apps = AppManager.getApps(this, TorServiceUtils.getSharedPrefs(getApplicationContext()));
-		mTransProxy.setTransparentProxyingByApp(this, apps, false);
+		mTransProxy.setTransparentProxyingByApp(this, apps, false, shell);
 	
      	return true;
  	}
@@ -1735,14 +1720,15 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         		
         		if (mHasRoot)
         		{
-        			if (hadEnableTransparentProxy)
-	    				disableTransparentProxy();
+			 		Shell shell = Shell.startRootShell();
 
-	        		if (mEnableTransparentProxy)
-	    			{
-	    				disableTransparentProxy();
-	    				enableTransparentProxy();
-	    			}
+        			if (hadEnableTransparentProxy)
+	    				disableTransparentProxy(shell);
+
+	        		if (mEnableTransparentProxy)	    			
+	    				enableTransparentProxy(shell);	 
+	        		
+	        		shell.close();
         		}
     			
 
@@ -2056,8 +2042,13 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 							if (mHasRoot && mEnableTransparentProxy && mTransProxyNetworkRefresh)
 							{
-				    			disableTransparentProxy();
-								enableTransparentProxy();
+								
+						 		Shell shell = Shell.startRootShell();
+						 
+				    			disableTransparentProxy(shell);
+								enableTransparentProxy(shell);
+								
+								shell.close();
 							}
 							
 				        }

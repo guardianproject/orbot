@@ -21,7 +21,7 @@ public class TorTransProxy implements TorServiceConstants {
 	private TorService mTorService = null;
 	private File mFileXtables = null;
 	
-	private final static String ALLOW_LOCAL = " ! -o lo ! -d 127.0.0.1 ! -s 127.0.0.1 ";
+	private final static String ALLOW_LOCAL = " ! -d 127.0.0.1";
 
 	private int mTransProxyPort = TorServiceConstants.TOR_TRANSPROXY_PORT_DEFAULT;
 	private int mDNSPort = TorServiceConstants.TOR_DNS_PORT_DEFAULT;
@@ -335,7 +335,7 @@ public class TorTransProxy implements TorServiceConstants {
 		return code;
 	}*/
 	
-	public int setTransparentProxyingByApp(Context context, ArrayList<TorifiedApp> apps, boolean enableRule) throws Exception
+	public int setTransparentProxyingByApp(Context context, ArrayList<TorifiedApp> apps, boolean enableRule, Shell shell) throws Exception
 	{
 		String ipTablesPath = getIpTablesPath(context);
 		
@@ -353,30 +353,45 @@ public class TorTransProxy implements TorServiceConstants {
 		
 		//reset script
 		
-    	Shell shell = Shell.startRootShell();
     	int lastExit = -1;
     	StringBuilder script;    	
-		
     	
+
+		// Same for DNS
+		script = new StringBuilder();
+		script.append(ipTablesPath);
+		script.append(" -t nat");
+		script.append(action).append(srcChainName);
+		script.append(" -p udp");
+		//script.append(" -m owner --uid-owner ");
+		//script.append(tApp.getUid());
+		//script.append(" -m udp --dport "); 
+		script.append(" --dport ");
+		script.append(STANDARD_DNS_PORT);
+		script.append(" -j REDIRECT --to-ports ");
+		script.append(mDNSPort);
+		executeCommand (shell, script.toString());
+		
     	// Allow everything for Tor
     	
 		//build up array of shell cmds to execute under one root context
 		for (TorifiedApp tApp:apps)
 		{
 
-			if (tApp.isTorified()
+			if (((!enableRule) || tApp.isTorified())
 					&& (!tApp.getUsername().equals(TorServiceConstants.TOR_APP_USERNAME))
 					) //if app is set to true
 			{
 				
 				
-				logMessage("enabling transproxy for app: " + tApp.getUsername() + " (" + tApp.getUid() + ")");
+				logMessage("transproxy for app: " + tApp.getUsername() + " (" + tApp.getUid() + "): enable=" + enableRule);
 				
-				dropAllIPv6Traffic(context, tApp.getUid(),enableRule);
+				dropAllIPv6Traffic(context, tApp.getUid(),enableRule, shell);
 				
 		    	script = new StringBuilder();
 
 				// Allow loopback
+		    	/**
 				script.append(ipTablesPath);
 				script.append(" -t filter");
 		        script.append(action).append(srcChainName);
@@ -387,6 +402,7 @@ public class TorTransProxy implements TorServiceConstants {
 
 				executeCommand (shell, script.toString());
 				script = new StringBuilder();
+				**/
 				
 				// Set up port redirection
 		    	script.append(ipTablesPath);
@@ -401,21 +417,8 @@ public class TorTransProxy implements TorServiceConstants {
 				script.append(mTransProxyPort);
 				
 				executeCommand (shell, script.toString());
-				script = new StringBuilder();
 				
-				// Same for DNS
-				script.append(ipTablesPath);
-				script.append(" -t nat");
-				script.append(action).append(srcChainName);
-				script.append(" -p udp");
-				script.append(" -m owner --uid-owner ");
-				script.append(tApp.getUid());
-				script.append(" -m udp --dport "); 
-				script.append(STANDARD_DNS_PORT);
-				script.append(" -j REDIRECT --to-ports ");
-				script.append(mDNSPort);
-
-				executeCommand (shell, script.toString());
+				
 				script = new StringBuilder();
 				
 				// Reject all other outbound packets
@@ -433,14 +436,12 @@ public class TorTransProxy implements TorServiceConstants {
 			}		
 		}		
 		
-		shell.close();
-		
 		return lastExit;
     }	
 	
 	private int executeCommand (Shell shell, String cmdString) throws IOException, TimeoutException
 	{
-		SimpleCommand cmd = new SimpleCommand(cmdString +  "|| exit");
+		SimpleCommand cmd = new SimpleCommand(cmdString);
 		shell.add(cmd);
 		int exitCode = cmd.getExitCode();
 		String output = cmd.getOutput();
@@ -451,7 +452,7 @@ public class TorTransProxy implements TorServiceConstants {
 	}
 	
 	
-	public int enableTetheringRules (Context context) throws Exception
+	public int enableTetheringRules (Context context, Shell shell) throws Exception
 	{
 		
 		String ipTablesPath = getIpTablesPath(context);
@@ -460,7 +461,6 @@ public class TorTransProxy implements TorServiceConstants {
     
     	String[] hwinterfaces = {"usb0","wl0.1"};
     	
-    	Shell shell = Shell.startRootShell();
     	
     	int lastExit = -1;
     	
@@ -492,8 +492,6 @@ public class TorTransProxy implements TorServiceConstants {
     	}
 		
 
-		shell.close();
-		
 		return lastExit;
 	}
 	
@@ -505,12 +503,10 @@ public class TorTransProxy implements TorServiceConstants {
 	
 
 	
-	public int fixTransproxyLeak (Context context) throws Exception 
+	public int fixTransproxyLeak (Context context, Shell shell) throws Exception 
 	{
 		String ipTablesPath = getIpTablesPath(context);
 		
-    	Shell shell = Shell.startRootShell();
-    	
     	StringBuilder script = new StringBuilder();
     	script.append(ipTablesPath);
 		script.append(" -I OUTPUT ! -o lo ! -d 127.0.0.1 ! -s 127.0.0.1 -p tcp -m tcp --tcp-flags ACK,FIN ACK,FIN -j DROP");
@@ -525,13 +521,11 @@ public class TorTransProxy implements TorServiceConstants {
 		int lastExit = executeCommand (shell, script.toString());
 		script = new StringBuilder();
 		
-		shell.close();
-		
 		return lastExit;
 		 
 	}
 	
-	public int dropAllIPv6Traffic (Context context, int appUid, boolean enableDrop) throws Exception
+	public int dropAllIPv6Traffic (Context context, int appUid, boolean enableDrop, Shell shell) throws Exception
 	{
 
 		String action = " -A ";
@@ -541,9 +535,7 @@ public class TorTransProxy implements TorServiceConstants {
 			action = " -D ";
 		
 		String ip6tablesPath = getIp6TablesPath(context);
-		Shell shell = Shell.startRootShell();
     	
-		
     	StringBuilder script;
 
 		script = new StringBuilder();
@@ -560,8 +552,6 @@ public class TorTransProxy implements TorServiceConstants {
 		script.append(" -j DROP");
 		
 		int lastExit = executeCommand (shell, script.toString());
-		
-		shell.close();
 		
 		return lastExit;
 	}
@@ -589,27 +579,29 @@ public class TorTransProxy implements TorServiceConstants {
 	public int flushTransproxyRules (Context context) throws Exception 
 	{
 		int exit = -1;
+		
 		String ipTablesPath = getIpTablesPath(context);
-
+		Shell shell = Shell.startRootShell();
+		
 		StringBuilder script = new StringBuilder();
 		script.append(ipTablesPath);			
-		script.append(" -t nat");
+		script.append(" -t nat ");
 		script.append(" -F ");
 		
-    	Shell shell = Shell.startRootShell();
-		executeCommand (shell, script.toString());
+    	executeCommand (shell, script.toString());
 		
 		script = new StringBuilder();
 		script.append(ipTablesPath);			
-		script.append(" -t filter");
+		script.append(" -t filter ");
 		script.append(" -F ");
+		executeCommand (shell, script.toString());
 		
-		dropAllIPv6Traffic(context,-1,false);
+		dropAllIPv6Traffic(context,-1,false, shell);
 
 		return exit;
 	}
 	
-	public int setTransparentProxyingAll(Context context, boolean enable) throws Exception 
+	public int setTransparentProxyingAll(Context context, boolean enable, Shell shell) throws Exception 
 	{
 	  	
 		String action = " -A ";
@@ -617,12 +609,11 @@ public class TorTransProxy implements TorServiceConstants {
 
 		if (!enable)
 			action = " -D ";
-		
-		dropAllIPv6Traffic(context,-1,enable);
+
+		dropAllIPv6Traffic(context,-1,enable, shell);
 		
 		String ipTablesPath = getIpTablesPath(context);
 		
-    	Shell shell = Shell.startRootShell();
     	
     	int torUid = context.getApplicationInfo().uid;
     	
@@ -674,7 +665,8 @@ public class TorTransProxy implements TorServiceConstants {
 		script.append(ALLOW_LOCAL); //allow access to localhost
 		script.append(" -m owner ! --uid-owner ");
 		script.append(torUid);
-		script.append(" -m udp --dport "); 
+		//script.append(" -m udp --dport "); 
+		script.append(" --dport ");
 		script.append(STANDARD_DNS_PORT);
 		script.append(" -j REDIRECT --to-ports ");
 		script.append(mDNSPort);
@@ -772,8 +764,6 @@ public class TorTransProxy implements TorServiceConstants {
 		int lastExit = executeCommand (shell, script.toString());
 		
 	//	fixTransproxyLeak (context);
-		
-		shell.close();
 		
     	return lastExit;
 	}	
