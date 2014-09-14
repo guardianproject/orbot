@@ -336,7 +336,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	        String version = "";
 	        
 	        try {
-	        	version = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+	        	version = getPackageManager().getPackageInfo(getPackageName(), 0).versionName + " (Tor " + TorServiceConstants.BINARY_TOR_VERSION + ")";
 	        } catch (NameNotFoundException e) {
 	        	version = "Version Not Found";
 	        }
