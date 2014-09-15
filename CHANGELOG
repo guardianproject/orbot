@@ -1,20 +1,33 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+/** 14.0.8.1 **/
+2bcb1ee removing binaries from source repo
+a64e6b1 update Orbot about dialog display to show tor version
+93614dd update english versions strings
+ef98429 update tor binary constant to force on device upgrade
+a3dc39d updating binaries
+08317a9 fixes for transproxy/iptables rules - not all rules were not being cleared in flush - per-app transproxy now still transproxie
+826b629 update changelog
+b35a239 ensure all iptables rules are always wiped and reapply rules settings if modifed after settings menu accessed
+313c92f add warning about restarting Orbot after settings changes
+8ee5e9e more tuning of Tor service startup and status checking
+9c4c349 fix for reconnecting to exiting Tor process after service restart
+a0b32ba don't manually call onDestroy, just call finish()
+b8912ad improve error handling of tor startup sequence don't use executor thread pool for time critical commands
+c98509d remove duplicate service start/bind code in onResume() also disable startup button if service is null
 b35a239 ensure all iptables rules are always wiped and reapply rules settings if modifed after settings menu accessed
 313c92f add warning about restarting Orbot after settings changes
 8ee5e9e more tuning of Tor service startup and status checking
 9c4c349 fix for reconnecting to exiting Tor process after service restart
 a0b32ba don't manually call onDestroy, just call finish()
 
-d2c71d7 update to 14.0.7.2
+/** 14.0.7.2 **/
 6e65469 ensure settings are updated and binary paths are on service restart
 af433d3 remove unused variables/patterns
 b76be6d disable stdout log by default and enable daemon mode
 dafd295 simplify process reconnect and transproxy setup - on reconnect to service, don't require call to getInfo before STATUS_ON is s
 390b89e remove debug file logging for now until we can improve it
 e53e03a tuning Orbot app conflict checker code
-
-c2672cc update to 14.0.7.1
 eaccf77 don't call handle intents twice!
 
 24a3db8 update to 14.0.7
