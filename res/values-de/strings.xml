@@ -148,7 +148,7 @@
   <string name="status">Status</string>
   <string name="setting_up_full_transparent_proxying_">Voll transparente Vermittlung wird eingestellt …</string>
   <string name="setting_up_app_based_transparent_proxying_">Anwendungsbasierte transparente Vermittlung wird eingestellt …</string>
-  <string name="transparent_proxying_enabled">Transparentes Vermittlung AKTIVIERT</string>
+  <string name="transparent_proxying_enabled">Transparente Vermittlung AKTIVIERT</string>
   <string name="transproxy_enabled_for_tethering_">TransProxy für Anbindung aktiviert!</string>
   <string name="warning_error_starting_transparent_proxying_">WARNUNG: Fehler beim Starten der transparenten Vermittlung!</string>
   <string name="transproxy_rules_cleared">TransProxy Regeln gelöscht</string>
