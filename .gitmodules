@@ -31,4 +31,4 @@
 	url = https://github.com/jech/polipo.git
 [submodule "external/badvpn"]
 	path = external/badvpn
-	url = https://github.com/ambrop72/badvpn.git
+	url = https://github.com/guardianproject/badvpn.git
