@@ -13,9 +13,11 @@ import org.torproject.android.service.TorService;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.TorServiceUtils;
 import org.torproject.android.settings.SettingsPreferences;
+import org.torproject.android.vpn.OrbotVpnService;
 import org.torproject.android.wizard.ChooseLocaleWizardActivity;
 import org.torproject.android.wizard.TipsAndTricks;
 
+import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ComponentName;
@@ -32,6 +34,8 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Configuration;
 import android.net.Uri;
+import android.net.VpnService;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -412,6 +416,10 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                         
                         
                 }
+                else if (item.getItemId() == R.id.menu_vpn)
+                {
+                	this.startVpnService();
+                }
                 
         return true;
         }
@@ -782,9 +790,18 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
             startActivityForResult(new Intent(this, SettingsPreferences.class), 1);
     }
     
+    private final static int REQUEST_VPN = 8888;
     
-    
-    
+    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+	public void startVpnService () {
+        Intent intent = VpnService.prepare(this);
+        if (intent != null) {
+            startActivityForResult(intent, REQUEST_VPN);
+        } else {
+            onActivityResult(REQUEST_VPN, RESULT_OK, null);
+        }
+    }
+
     
     @Override
 	protected void onActivityResult(int request, int response, Intent data) {
@@ -826,6 +843,11 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	    		Toast.makeText(this, R.string.you_may_need_to_stop_and_start_orbot_for_settings_change_to_be_enabled_, Toast.LENGTH_SHORT).show();
 
 			}
+		}
+		else if (request == REQUEST_VPN && response == RESULT_OK)
+		{
+			Intent intent = new Intent(this, OrbotVpnService.class);
+            startService(intent);
 		}
 	}
 
@@ -1206,7 +1228,6 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
      // bindService() a million times
      
     private final ServiceConnection mConnection = new ServiceConnection() {
-    	
     	
         public void onServiceConnected(ComponentName className,
                 IBinder service) {
