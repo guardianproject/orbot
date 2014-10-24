@@ -87,7 +87,7 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 		        	mProxyServer.setVpnService(OrbotVpnService.this);
 		        	mProxyServer.start(mSocksProxyPort, 5, InetAddress.getLocalHost());
 				} catch (Exception e) {
-					e.printStackTrace();
+					Log.d(TAG,"proxy server error: " + e.getLocalizedMessage(),e);
 				}
 	    	}
 	    };
@@ -133,22 +133,14 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 	        builder.setSession("OrbotVPN");	        	
 	        builder.addRoute("0.0.0.0",0);	        
 	        builder.addRoute("10.0.0.0",8);
-	        //builder.addDnsServer("10.0.0.2");
-	        builder.addDnsServer("127.0.0.1");
-	        // Close the old interface since the parameters have been changed.
-	        try {
-	            mInterface.close();
-	        } catch (Exception e) {  
-	            // ignore
-	        }
+	        builder.addDnsServer("8.8.8.8");
 	        
-	
 	        // Create a new interface using the builder and save the parameters.
 	        mInterface = builder.setSession(mSessionName)
 	                .setConfigureIntent(mConfigureIntent)
 	                .establish();
 	        	    
-	        Tun2Socks.Start(mInterface, 3000, "10.0.0.2", "255.255.255.0", "localhost:" + TorServiceConstants.PORT_SOCKS_DEFAULT, null, true);
+	        Tun2Socks.Start(mInterface, 3000, "10.0.0.2", "255.255.255.0", "localhost:" + TorServiceConstants.PORT_SOCKS_DEFAULT, "50.116.51.157:7300", true);
     	}
     }
     

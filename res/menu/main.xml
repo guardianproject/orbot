@@ -66,6 +66,11 @@
          
          />
  
+  <item android:id="@+id/menu_vpn"
+      android:title="@string/menu_vpn"
+      yourapp:showAsAction="never"/>
+  
+  
   <item android:id="@+id/menu_exit"
         android:title="@string/menu_exit"
          android:icon="@drawable/ic_menu_exit"
@@ -73,9 +78,6 @@
          
          />
   
-  <item android:id="@+id/menu_vpn"
-      android:title="start VPN"
-      yourapp:showAsAction="never"/>
    <!-- 
   <item android:id="@+id/menu_diag"
         android:title="Test Mode"
