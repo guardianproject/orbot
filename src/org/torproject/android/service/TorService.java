@@ -38,7 +38,6 @@ import java.util.StringTokenizer;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeoutException;
-import java.util.regex.Pattern;
 
 import net.freehaven.tor.control.ConfigEntry;
 import net.freehaven.tor.control.EventHandler;
@@ -74,6 +73,7 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationCompat.Builder;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.widget.RemoteViews;
 
@@ -183,7 +183,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		            sendCallbackLogMessage (getString(R.string.found_existing_tor_process));
 		            
 		            mCurrentStatus = STATUS_ON;
-						
+		            sendCallbackStatus(mCurrentStatus);
+		    		
 					return true;
 	 			}
 		 		
@@ -339,7 +340,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 		try
 		{
-			initialize();
+			
+			//android.os.Debug.waitForDebugger();
+				
 			new Thread (new TorStarter(intent)).start();
 			
 		    return Service.START_STICKY;
@@ -367,21 +370,40 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			try
 			{
 				
-				if (mNotificationManager == null)
+				//if this is a start on boot launch turn tor on
+				if (mIntent != null)
 				{
-		    	   
-		 		   IntentFilter mNetworkStateFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-		 		   registerReceiver(mNetworkStateReceiver , mNetworkStateFilter);
-		 	
-		 			mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-		 		
+					String action = mIntent.getAction();
+					
+					if (action!=null) 
+					{
+						if(action.equals(Intent.ACTION_BOOT_COMPLETED)||action.equals("start"))
+			 			{	     				
+			 				setTorProfile(STATUS_ON);	     			
+			 			}
+						else if (action.equals("stop"))
+						{
+							setTorProfile(STATUS_OFF);
+						}
+						else if (action.equals("init"))
+						{
+							sendCallbackStatus(mCurrentStatus);
+						}
+						else if (action.equals("newnym"))
+						{
+							newIdentity();
+						}
+						else if (action.equals("flush"))
+						{
+							flushTransparentProxyRules();
+						}
+						else if (action.equals("update"))
+						{
+							processSettings();
+						}
+					}
 				}
 				
-				//if this is a start on boot launch turn tor on
-				if (mIntent != null && mIntent.getAction()!=null && mIntent.getAction().equals(Intent.ACTION_BOOT_COMPLETED))
-	 			{	     				
-	 				setTorProfile(STATUS_ON);	     			
-	 			}
 			}
 			catch (Exception e)
 			{
@@ -417,20 +439,21 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     		stopForeground(true);
     		
     		mCurrentStatus = STATUS_OFF;
-
+    		sendCallbackStatus(mCurrentStatus);
+    		
     		if (mHasRoot && mEnableTransparentProxy)
     			disableTransparentProxy(Shell.startRootShell());
     	    
     		clearNotifications();
     		
-    		sendCallbackStatusMessage(getString(R.string.status_disabled));
+    		sendCallbackLogMessage(getString(R.string.status_disabled));
 
     	}
     	catch (Exception e)
     	{
     		Log.d(TAG, "An error occured stopping Tor",e);
     		logNotice("An error occured stopping Tor: " + e.getMessage());
-    		sendCallbackStatusMessage(getString(R.string.something_bad_happened));
+    		sendCallbackLogMessage(getString(R.string.something_bad_happened));
 
     	}
     }
@@ -571,6 +594,18 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     {
 		try
 		{
+
+			if (mNotificationManager == null)
+			{
+	    	   
+	 		   IntentFilter mNetworkStateFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+	 		   registerReceiver(mNetworkStateReceiver , mNetworkStateFilter);
+	 	
+	 		   mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+	 		
+			}
+			
+			
 			initBinariesAndDirectories();
 			updateSettings();
 		
@@ -739,7 +774,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     {
     	
 		mCurrentStatus = STATUS_CONNECTING;
-    	
+		sendCallbackStatus(mCurrentStatus);
+		
 		if (fileTor == null)
 			initBinariesAndDirectories();
 		
@@ -751,7 +787,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		updateSettings ();
 
 		logNotice(getString(R.string.status_starting_up));
-		sendCallbackStatusMessage(getString(R.string.status_starting_up));
+		sendCallbackLogMessage(getString(R.string.status_starting_up));
 		
 		boolean success = runTorShellCmd();
 		
@@ -899,7 +935,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
     	updateTorConfigFile();
     	
-		sendCallbackStatusMessage(getString(R.string.status_starting_up));
+    	sendCallbackLogMessage(getString(R.string.status_starting_up));
 
 		if (mShellTor != null)
 			mShellTor.close();
@@ -947,7 +983,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		if (mLastProcessId == -1)
 		{
 			logNotice(getString(R.string.couldn_t_start_tor_process_) + "; exit=" + shellTorCommand.getExitCode() + ": " + shellTorCommand.getOutput());
-			sendCallbackStatusMessage(getString(R.string.couldn_t_start_tor_process_));
+			sendCallbackLogMessage(getString(R.string.couldn_t_start_tor_process_));
 		
 			throw new Exception ("Unable to start Tor");
 		}
@@ -1088,7 +1124,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 				        		
 				        logNotice( "SUCCESS - authenticated to control port.");
 				        
-						sendCallbackStatusMessage(getString(R.string.tor_process_starting) + ' ' + getString(R.string.tor_process_complete));
+				        sendCallbackLogMessage(getString(R.string.tor_process_starting) + ' ' + getString(R.string.tor_process_complete));
 	
 				        addEventHandler();
 				    
@@ -1104,7 +1140,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 				        }*/
 				        
 				        mCurrentStatus = STATUS_CONNECTING;
-
+				        sendCallbackStatus(mCurrentStatus);
+			    		
 			 			String confSocks = conn.getInfo("net/listeners/socks");
 			 			StringTokenizer st = new StringTokenizer(confSocks," ");
 
@@ -1340,7 +1377,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			if (profile == STATUS_ON)
         	{
         		
-	            sendCallbackStatusMessage (getString(R.string.status_starting_up));
+				sendCallbackLogMessage (getString(R.string.status_starting_up));
 
 	            try
 	   		     {
@@ -1352,17 +1389,21 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	   		    	
 	   		    	logException("Unable to start Tor: " + e.toString(),e);	
 	   		    	 mCurrentStatus = STATUS_OFF;
+	   		    	sendCallbackStatus(mCurrentStatus);
+	   	    		
 	   		    	 showToolbarNotification(getString(R.string.unable_to_start_tor) + ": " + e.getMessage(), ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
 	   		    	stopTor();
 	   		     }
         	}
-        	else
+        	else if (profile == STATUS_OFF)
         	{
-	            sendCallbackStatusMessage (getString(R.string.status_shutting_down));
+        		sendCallbackLogMessage (getString(R.string.status_shutting_down));
 	          
 	            stopTor();
 
-        		mCurrentStatus = STATUS_OFF;   
+        		mCurrentStatus = STATUS_OFF;  
+        		sendCallbackStatus(mCurrentStatus);
+        		
         	}
 		}
 		
@@ -1375,6 +1416,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
           if (msg.indexOf(TOR_CONTROL_PORT_MSG_BOOTSTRAP_DONE)!=-1)
           {
         	  mCurrentStatus = STATUS_ON;
+        	  sendCallbackStatus(mCurrentStatus);
+      		
 
         	  showToolbarNotification(getString(R.string.status_activated), NOTIFY_ID, R.drawable.ic_stat_tor);
           }
@@ -1456,6 +1499,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
 		lastWritten = written;
 		lastRead = read;
+		
+		sendCallbackStatusMessage(lastWritten, lastRead, mTotalTrafficWritten, mTotalTrafficRead);
 
 	}
 	
@@ -1521,6 +1566,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 		    	if (mCurrentStatus == STATUS_CONNECTING)
 		    		mCurrentStatus = STATUS_ON;
+		    	
+		    	sendCallbackStatus(mCurrentStatus);
+	    		
 	 		
 				logNotice(sb.toString());
 						
@@ -1646,18 +1694,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			return node;
 	}
 	
-    public IBinder onBind(Intent intent) {
-        
-		logNotice("Background service is bound. Status=" + mCurrentStatus);
 
-    	return mBinder;
-    }
-
-    @Override
-	public void onRebind(Intent intent) {
-		
-		super.onRebind(intent);
-	}
 
 	public boolean checkAndInitImpl ()
     {
@@ -1678,36 +1715,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	return false;
     }
     
-    /**
-     * The IRemoteInterface is defined through IDL
-     */
-    private final ITorService.Stub mBinder = new ITorService.Stub() {
-    	
-        public int getStatus () {
-        	return getTorStatus();
-        }
-        
-
-        public boolean checkAndInit () {
-        	return checkAndInitImpl();
-        }
-        
-        public void setProfile (final int profileNew)
-        {
-        	
-        	new Thread(new Runnable()
-        	{
-
-				@Override
-				public void run() {
-					setTorProfile(profileNew);					
-				}
-        		
-        	}).start();
-        	
-        	
-        }
-        
+            
         
         public void processSettings ()
         {
@@ -1924,75 +1932,48 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         	
 	    }
 
-		@Override
-		public String[] getStatusMessage() throws RemoteException {
-			
-			synchronized (mStatusBuffer)
-			{
-				String[] status = mStatusBuffer.toArray(new String[mStatusBuffer.size()]);
-				mStatusBuffer.clear();
-				return status;
-			}
-			
-		}
-
-		@Override
-		public String[] getLog() throws RemoteException {
 		
-			synchronized (mLogBuffer)
-			{
-				String[] status = mLogBuffer.toArray(new String[mLogBuffer.size()]);
-				mLogBuffer.clear();
-				return status;
-			}
-		}
 		
-		@Override
-		public long[] getBandwidth() throws RemoteException {
-			
-			long[] bw = {lastRead,lastWritten,mTotalTrafficRead,mTotalTrafficWritten};
-			return bw;
-		}
-		
-		@Override
-		public boolean flushTransProxy () throws RemoteException {
-			
-			try 
-			{
-				return flushTransparentProxyRules();
-			}
-			catch (Exception e)
-			{
-				Log.e(TAG,"error in transproxy",e);
-				return false;
-			}
-			
-		}
-	    
-    };
-    private ArrayList<String> mStatusBuffer = new ArrayList<String>();
-
-    private void sendCallbackStatusMessage (String newStatus)
-    {
-    	mStatusBuffer.add(newStatus);
-    }
+	
    
     private void sendCallbackStatusMessage (long upload, long download, long written, long read)
     {
     	 
-    	
+    	Intent intent = new Intent("log");
+  	  // You can also include some extra data.
+  	  intent.putExtra("up",upload);
+  	intent.putExtra("down",download);
+  	intent.putExtra("written",written);
+  	intent.putExtra("read",read);
+	  
+  	  LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+
     }
     
-    private ArrayList<String> mLogBuffer = new ArrayList<String>();
-    
+ //   private ArrayList<String> mLogBuffer = new ArrayList<String>();
     
     private void sendCallbackLogMessage (String logMessage)
     {
     	 
     	
-    	mLogBuffer.add(logMessage);
+    	Intent intent = new Intent("log");
+    	  // You can also include some extra data.
+    	  intent.putExtra("log", logMessage);
+    	  LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
 
     }
+    
+    private void sendCallbackStatus (int currentStatus)
+    {
+    	 
+    	
+    	Intent intent = new Intent("status");
+    	  // You can also include some extra data.
+    	  intent.putExtra("status", currentStatus);
+    	  LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+
+    }
+
     
     /*
      *  Another way to do this would be to use the Observer pattern by defining the 
@@ -2021,11 +2002,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     		if (doNetworKSleep)
     		{
 	    		try {
-	    			if (mBinder != null)
-	    			{
-	    				mBinder.updateConfiguration("DisableNetwork", mConnectivity ? "0" : "1", false);
-	    				mBinder.saveConfiguration();
-	    			}
+	    			updateConfiguration("DisableNetwork", mConnectivity ? "0" : "1", false);
 	    			
 					if (mCurrentStatus != STATUS_OFF)
 					{
@@ -2102,21 +2079,21 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         	
         	if ((proxyHost != null && proxyHost.length()>0) && (proxyPort != null && proxyPort.length() > 0))
         	{
-        		mBinder.updateConfiguration(proxyType + "Proxy", proxyHost + ':' + proxyPort, false);
+        		updateConfiguration(proxyType + "Proxy", proxyHost + ':' + proxyPort, false);
         		
         		if (proxyUser != null && proxyPass != null)
         		{
         			if (proxyType.equalsIgnoreCase("socks5"))
         			{
-        				mBinder.updateConfiguration("Socks5ProxyUsername", proxyUser, false);
-        				mBinder.updateConfiguration("Socks5ProxyPassword", proxyPass, false);
+        				updateConfiguration("Socks5ProxyUsername", proxyUser, false);
+        				updateConfiguration("Socks5ProxyPassword", proxyPass, false);
         			}
         			else
-        				mBinder.updateConfiguration(proxyType + "ProxyAuthenticator", proxyUser + ':' + proxyPort, false);
+        				updateConfiguration(proxyType + "ProxyAuthenticator", proxyUser + ':' + proxyPort, false);
         			
         		}
         		else if (proxyPass != null)
-        			mBinder.updateConfiguration(proxyType + "ProxyAuthenticator", proxyUser + ':' + proxyPort, false);
+        			updateConfiguration(proxyType + "ProxyAuthenticator", proxyUser + ':' + proxyPort, false);
         		
         		
 
@@ -2138,8 +2115,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		        	
 		        }
 		        
-		        mBinder.updateConfiguration("GeoIPFile", fileGeoIP.getCanonicalPath(), false);
-		        mBinder.updateConfiguration("GeoIPv6File", fileGeoIP6.getCanonicalPath(), false);
+		        updateConfiguration("GeoIPFile", fileGeoIP.getCanonicalPath(), false);
+		        updateConfiguration("GeoIPv6File", fileGeoIP6.getCanonicalPath(), false);
 
 	        }
 	        catch (Exception e)
@@ -2150,10 +2127,10 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	        }
         }
 
-        mBinder.updateConfiguration("EntryNodes", entranceNodes, false);
-        mBinder.updateConfiguration("ExitNodes", exitNodes, false);
-		mBinder.updateConfiguration("ExcludeNodes", excludeNodes, false);
-		mBinder.updateConfiguration("StrictNodes", enableStrictNodes ? "1" : "0", false);
+        updateConfiguration("EntryNodes", entranceNodes, false);
+        updateConfiguration("ExitNodes", exitNodes, false);
+		updateConfiguration("ExcludeNodes", excludeNodes, false);
+		updateConfiguration("StrictNodes", enableStrictNodes ? "1" : "0", false);
         
 		if (useBridges)
 		{
@@ -2188,7 +2165,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			{
 				String bridgeConfigLine = st.nextToken().trim();
 				debug("Adding bridge: " + bridgeConfigLine);
-				mBinder.updateConfiguration(bridgeCfgKey, bridgeConfigLine, false);
+				updateConfiguration(bridgeCfgKey, bridgeConfigLine, false);
 
 			}
 
@@ -2201,7 +2178,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 				
 				debug ("Using OBFUSCATED bridges: " + bridgeConfig);
 				
-				mBinder.updateConfiguration("ClientTransportPlugin",bridgeConfig, false);
+				updateConfiguration("ClientTransportPlugin",bridgeConfig, false);
 			}
 			else
 			{
@@ -2210,16 +2187,16 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			
 
 
-			mBinder.updateConfiguration("UpdateBridgesFromAuthority", "0", false);
+			updateConfiguration("UpdateBridgesFromAuthority", "0", false);
 			
 
-			mBinder.updateConfiguration("UseBridges", "1", false);
+			updateConfiguration("UseBridges", "1", false);
 				
 			
 		}
 		else
 		{
-			mBinder.updateConfiguration("UseBridges", "0", false);
+			updateConfiguration("UseBridges", "0", false);
 
 		}
 
@@ -2230,12 +2207,12 @@ public class TorService extends Service implements TorServiceConstants, TorConst
                 String ReachableAddressesPorts =
                     prefs.getString(TorConstants.PREF_REACHABLE_ADDRESSES_PORTS, "*:80,*:443");
                 
-                mBinder.updateConfiguration("ReachableAddresses", ReachableAddressesPorts, false);
+                updateConfiguration("ReachableAddresses", ReachableAddressesPorts, false);
 
             }
             else
             {
-                mBinder.updateConfiguration("ReachableAddresses", "", false);
+                updateConfiguration("ReachableAddresses", "", false);
             }
         }
         catch (Exception e)
@@ -2254,17 +2231,17 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
                 String dnsFile = writeDNSFile ();
                 
-                mBinder.updateConfiguration("ServerDNSResolvConfFile", dnsFile, false);
-                mBinder.updateConfiguration("ORPort", ORPort + "", false);
-    			mBinder.updateConfiguration("Nickname", nickname, false);
-    			mBinder.updateConfiguration("ExitPolicy", "reject *:*", false);
+                updateConfiguration("ServerDNSResolvConfFile", dnsFile, false);
+                updateConfiguration("ORPort", ORPort + "", false);
+    			updateConfiguration("Nickname", nickname, false);
+    			updateConfiguration("ExitPolicy", "reject *:*", false);
 
             }
             else
             {
-            	mBinder.updateConfiguration("ORPort", "", false);
-    			mBinder.updateConfiguration("Nickname", "", false);
-    			mBinder.updateConfiguration("ExitPolicy", "", false);
+            	updateConfiguration("ORPort", "", false);
+    			updateConfiguration("Nickname", "", false);
+    			updateConfiguration("ExitPolicy", "", false);
             }
         }
         catch (Exception e)
@@ -2279,7 +2256,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         {
         	logNotice("hidden services are enabled");
         	
-        	//mBinder.updateConfiguration("RendPostPeriod", "600 seconds", false); //possible feature to investigate
+        	//updateConfiguration("RendPostPeriod", "600 seconds", false); //possible feature to investigate
         	
         	String hsPorts = prefs.getString("pref_hs_ports","");
         	
@@ -2305,8 +2282,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	        		debug("Adding hidden service on port: " + hsPortConfig);
 	        		
 	        		
-	        		mBinder.updateConfiguration("HiddenServiceDir",hsDirPath, false);
-	        		mBinder.updateConfiguration("HiddenServicePort",hsPortConfig, false);
+	        		updateConfiguration("HiddenServiceDir",hsDirPath, false);
+	        		updateConfiguration("HiddenServicePort",hsPortConfig, false);
 	        		
 
 				} catch (NumberFormatException e) {
@@ -2320,11 +2297,11 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         }
         else
         {
-        	mBinder.updateConfiguration("HiddenServiceDir","", false);
+        	updateConfiguration("HiddenServiceDir","", false);
         	
         }
 
-        mBinder.saveConfiguration();
+        saveConfiguration();
 	
         return true;
     }
@@ -2332,11 +2309,11 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     /*
     private void enableSocks (String socks, boolean safeSocks) throws RemoteException
     {	
-    	mBinder.updateConfiguration("SOCKSPort", socks, false);
-    	mBinder.updateConfiguration("SafeSocks", safeSocks ? "1" : "0", false);
-    	mBinder.updateConfiguration("TestSocks", "1", false);
-    	mBinder.updateConfiguration("WarnUnsafeSocks", "1", false);
-    	mBinder.saveConfiguration();
+    	updateConfiguration("SOCKSPort", socks, false);
+    	updateConfiguration("SafeSocks", safeSocks ? "1" : "0", false);
+    	updateConfiguration("TestSocks", "1", false);
+    	updateConfiguration("WarnUnsafeSocks", "1", false);
+    	saveConfiguration();
         
     }
     
@@ -2344,17 +2321,17 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     {
     	logMessage ("Transparent Proxying: enabling port...");
      	
- 		mBinder.updateConfiguration("TransPort",transPort,false);
- 		mBinder.updateConfiguration("DNSPort",dnsPort,false);
- 		mBinder.updateConfiguration("VirtualAddrNetwork","10.192.0.0/10",false);
- 		mBinder.updateConfiguration("AutomapHostsOnResolve","1",false);
- 		mBinder.saveConfiguration();
+ 		updateConfiguration("TransPort",transPort,false);
+ 		updateConfiguration("DNSPort",dnsPort,false);
+ 		updateConfiguration("VirtualAddrNetwork","10.192.0.0/10",false);
+ 		updateConfiguration("AutomapHostsOnResolve","1",false);
+ 		saveConfiguration();
     }*/
     
     private void blockPlaintextPorts (String portList) throws RemoteException
     {
     	
-    	mBinder.updateConfiguration("RejectPlaintextPorts",portList,false);
+    	updateConfiguration("RejectPlaintextPorts",portList,false);
     }
     
     //using Google DNS for now as the public DNS server
@@ -2454,6 +2431,12 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		*/
 		}
 		
+	}
+
+	@Override
+	public IBinder onBind(Intent arg0) {
+		// TODO Auto-generated method stub
+		return null;
 	}
    
    
