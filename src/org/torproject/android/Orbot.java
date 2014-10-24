@@ -817,44 +817,6 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
             startActivityForResult(new Intent(this, SettingsPreferences.class), 1);
     }
     
-    private final static int REQUEST_VPN = 8888;
-    
-    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-	public void startVpnService () {
-    	
-		SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
-		Editor ePrefs = prefs.edit();
-		
-
-		ePrefs.putString("pref_proxy_type", "socks5");
-		ePrefs.putString("pref_proxy_host", "127.0.0.1");
-		ePrefs.putString("pref_proxy_port", "9999");
-		ePrefs.remove("pref_proxy_username");
-		ePrefs.remove("pref_proxy_password");
-		ePrefs.commit();
-		updateSettings();
-		
-        Intent intent = VpnService.prepare(this);
-        if (intent != null) {
-            startActivityForResult(intent, REQUEST_VPN);
-        } else {
-            onActivityResult(REQUEST_VPN, RESULT_OK, null);
-        }
-    }
-    
-    public void stopVpnService ()
-    {
-    	SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
-		Editor ePrefs = prefs.edit();
-		
-		ePrefs.remove("pref_proxy_host");
-		ePrefs.remove("pref_proxy_port");
-		ePrefs.remove("pref_proxy_username");
-		ePrefs.remove("pref_proxy_password");
-		ePrefs.commit();
-		updateSettings();
-    }
-
     
     @Override
 	protected void onActivityResult(int request, int response, Intent data) {
@@ -891,10 +853,22 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 		}
 		else if (request == REQUEST_VPN && response == RESULT_OK)
 		{
-			Intent intent = new Intent(this, OrbotVpnService.class);
-            startService(intent);
+			startService("vpn");
 		}
+		
 	}
+    
+    private final static int REQUEST_VPN = 8888;
+    
+    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+	public void startVpnService ()
+    {
+    	 Intent intent = VpnService.prepare(this);
+	        if (intent != null) {
+	            startActivityForResult(intent,REQUEST_VPN);
+
+	        } 
+    }
 
     private boolean flushTransProxy ()
     {

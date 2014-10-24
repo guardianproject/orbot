@@ -53,8 +53,10 @@ import org.torproject.android.TorConstants;
 import org.torproject.android.Utils;
 import org.torproject.android.settings.AppManager;
 import org.torproject.android.settings.TorifiedApp;
+import org.torproject.android.vpn.OrbotVpnService;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.Application;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -400,6 +402,10 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 						else if (action.equals("update"))
 						{
 							processSettings();
+						}
+						else if (action.equals("vpn"))
+						{
+							startVpnService();
 						}
 					}
 				}
@@ -1374,7 +1380,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 		public void setTorProfile(int profile)  {
 		
-			if (profile == STATUS_ON)
+			if (profile == STATUS_ON && mCurrentStatus != STATUS_ON)
         	{
         		
 				sendCallbackLogMessage (getString(R.string.status_starting_up));
@@ -1395,7 +1401,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	   		    	stopTor();
 	   		     }
         	}
-        	else if (profile == STATUS_OFF)
+        	else if (profile == STATUS_OFF && mCurrentStatus != STATUS_OFF)
         	{
         		sendCallbackLogMessage (getString(R.string.status_shutting_down));
 	          
@@ -1406,6 +1412,40 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         		
         	}
 		}
+		
+	    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+		public void startVpnService () {
+	    	
+			SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
+			Editor ePrefs = prefs.edit();
+			
+			ePrefs.putString("pref_proxy_type", "socks5");
+			ePrefs.putString("pref_proxy_host", "127.0.0.1");
+			ePrefs.putString("pref_proxy_port", "9999");
+			ePrefs.remove("pref_proxy_username");
+			ePrefs.remove("pref_proxy_password");
+			ePrefs.commit();
+			processSettings();
+			
+			Intent intent = new Intent(TorService.this, OrbotVpnService.class);
+            startService(intent);
+	       
+	    }
+	    
+	    public void stopVpnService ()
+	    {
+	    	SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
+			Editor ePrefs = prefs.edit();
+			
+			ePrefs.remove("pref_proxy_type");
+			ePrefs.remove("pref_proxy_host");
+			ePrefs.remove("pref_proxy_port");
+			ePrefs.remove("pref_proxy_username");
+			ePrefs.remove("pref_proxy_password");
+			ePrefs.commit();
+			processSettings();
+	    }
+
 		
 
 	public void message(String severity, String msg) {

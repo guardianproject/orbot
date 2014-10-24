@@ -49,7 +49,9 @@ public class Tun2Socks
     // than one instance due to the use of global state (the lwip
     // module, etc.) in the native code.
     
-    public static synchronized void Start(
+    private static boolean mLibLoaded = false;
+    
+    public static void Start(
             ParcelFileDescriptor vpnInterfaceFileDescriptor,
             int vpnInterfaceMTU,
             String vpnIpAddress,
@@ -59,8 +61,11 @@ public class Tun2Socks
             boolean udpgwTransparentDNS)
     {
         
-        
-        Stop();
+    	if (!mLibLoaded)
+    	{
+    		System.loadLibrary("tun2socks");    		
+    		mLibLoaded = true;
+    	}
 
         mVpnInterfaceFileDescriptor = vpnInterfaceFileDescriptor;
         mVpnInterfaceMTU = vpnInterfaceMTU;
@@ -70,40 +75,24 @@ public class Tun2Socks
         mUdpgwServerAddress = udpgwServerAddress;
         mUdpgwTransparentDNS = udpgwTransparentDNS;
 
-        mThread = new Thread(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                runTun2Socks(
-                        mVpnInterfaceFileDescriptor.detachFd(),
-                        mVpnInterfaceMTU,
-                        mVpnIpAddress,
-                        mVpnNetMask,
-                        mSocksServerAddress,
-                        mUdpgwServerAddress,
-                        mUdpgwTransparentDNS ? 1 : 0);
-            	
-            }
-        });
-        mThread.start();
+        if (mVpnInterfaceFileDescriptor != null)
+	        runTun2Socks(
+	                mVpnInterfaceFileDescriptor.detachFd(),
+	                mVpnInterfaceMTU,
+	                mVpnIpAddress,
+	                mVpnNetMask,
+	                mSocksServerAddress,
+	                mUdpgwServerAddress,
+	                mUdpgwTransparentDNS ? 1 : 0);
+    	
+    
     }
     
-    public static synchronized void Stop()
+    public static void Stop()
     {
-        if (mThread != null)
-        {
-            terminateTun2Socks();
-            try
-            {
-                mThread.join();
-            }
-            catch (InterruptedException e)
-            {
-                Thread.currentThread().interrupt();
-            }
-            mThread = null;
-        }
+       
+        terminateTun2Socks();
+    
     }
         
     private native static int runTun2Socks(
@@ -117,8 +106,4 @@ public class Tun2Socks
 
     private native static void terminateTun2Socks();
     
-    static
-    {
-        System.loadLibrary("tun2socks");
-    }
 }

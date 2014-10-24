@@ -16,12 +16,8 @@
 
 package org.torproject.android.vpn;
 
-import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.net.InetSocketAddress;
-import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
-import java.nio.channels.DatagramChannel;
 import java.util.Locale;
 
 import org.torproject.android.service.TorServiceConstants;
@@ -47,7 +43,8 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     private PendingIntent mConfigureIntent;
 
     private Handler mHandler;
-    private Thread mThread;
+    private Thread mThreadProxy;
+    private Thread mThreadVPN;
 
     private String mSessionName = "OrbotVPN";
     private ParcelFileDescriptor mInterface;
@@ -55,29 +52,28 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     private int mSocksProxyPort = 9999;
     private ProxyServer mProxyServer;
     
-    private boolean mKeepRunning = true;
-    
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        // The handler is only used to show messages.
+
+    	// The handler is only used to show messages.
         if (mHandler == null) {
             mHandler = new Handler(this);
         }
 
         // Stop the previous session by interrupting the thread.
-        if (mThread != null) {
-            mThread.interrupt();
+        if (mThreadVPN == null || (!mThreadVPN.isAlive()))
+        {
+        	startSocksBypass ();
+            setupTun2Socks();               
         }
      
-        startSocksBypass ();
-        setupTun2Socks();
         
         return START_STICKY;
     }
     
     private void startSocksBypass ()
     {
-	    Thread thread = new Thread ()
+    	mThreadProxy = new Thread ()
 	    {
 	    	public void run ()
 	    	{
@@ -92,16 +88,12 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 	    	}
 	    };
 	    
-	    thread.start();
+	    mThreadProxy.start();
     }
 
     @Override
     public void onDestroy() {
-        if (mThread != null) {
-        	mKeepRunning = false;
-            mThread.interrupt();
-        }
-        
+    	
         if (mProxyServer != null)
         	mProxyServer.stop();
     }
@@ -117,33 +109,73 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
   
     private void setupTun2Socks()  {
        
-    	if (mInterface == null)
+    	mThreadVPN = new Thread ()
     	{
-    		// Set the locale to English (or probably any other language that^M
-            // uses Hindu-Arabic (aka Latin) numerals).^M
-            // We have found that VpnService.Builder does something locale-dependent^M
-            // internally that causes errors when the locale uses its own numerals^M
-            // (i.e., Farsi and Arabic).^M
-    		Locale.setDefault(new Locale("en"));
     		
-	        Builder builder = new Builder();
-	        
-	        builder.setMtu(3000);
-	        builder.addAddress("10.0.0.1",8);
-	        builder.setSession("OrbotVPN");	        	
-	        builder.addRoute("0.0.0.0",0);	        
-	        builder.addRoute("10.0.0.0",8);
-	        builder.addDnsServer("8.8.8.8");
-	        
-	        // Create a new interface using the builder and save the parameters.
-	        mInterface = builder.setSession(mSessionName)
-	                .setConfigureIntent(mConfigureIntent)
-	                .establish();
-	        	    
-	        Tun2Socks.Start(mInterface, 3000, "10.0.0.2", "255.255.255.0", "localhost:" + TorServiceConstants.PORT_SOCKS_DEFAULT, "50.116.51.157:7300", true);
-    	}
+    		public void run ()
+    		{
+		    	if (mInterface == null)
+		    	{
+		    		// Set the locale to English (or probably any other language that^M
+		            // uses Hindu-Arabic (aka Latin) numerals).^M
+		            // We have found that VpnService.Builder does something locale-dependent^M
+		            // internally that causes errors when the locale uses its own numerals^M
+		            // (i.e., Farsi and Arabic).^M
+		    		Locale.setDefault(new Locale("en"));
+		    		
+			        Builder builder = new Builder();
+			        
+			        builder.setMtu(3000);
+			        builder.addAddress("10.0.0.1",8);
+			        builder.setSession("OrbotVPN");	        	
+			        builder.addRoute("0.0.0.0",0);	        
+			        builder.addRoute("10.0.0.0",8);
+			        builder.addDnsServer("8.8.8.8");
+			        
+			        // Create a new interface using the builder and save the parameters.
+			        mInterface = builder.setSession(mSessionName)
+			                .setConfigureIntent(mConfigureIntent)
+			                .establish();
+			        	    
+			        try
+			        {
+			        	Tun2Socks.Start(mInterface, 3000, "10.0.0.2", "255.255.255.0", "localhost:" + TorServiceConstants.PORT_SOCKS_DEFAULT, "50.116.51.157:7300", true);
+			        }
+			        catch (Exception e)
+			        {
+			        	Log.d(TAG,"tun2Socks has stopped",e);
+			        }
+		    	}
+    		}
+    	};
+    	
+    	mThreadVPN.start();
     }
+
+	@Override
+	public void onRevoke() {
+		
+		new Thread ()
+		{
+			public void run()
+			{
+				try
+				{
+					mInterface.close();
+					Tun2Socks.Stop();
+				}
+				catch (Exception e)
+				{
+					Log.d(TAG,"error stopping tun2socks",e);
+				}
+			}
+		}.start();
+		
+		super.onRevoke();
+		
+	}
     
+    /*
     private void debugPacket(ByteBuffer packet)
     {
 
@@ -216,16 +248,11 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
         Log.d(TAG, "Destination IP:"+destIP);
 
         status += "   Destination IP:"+destIP;
-        /*
-        msgObj = mHandler.obtainMessage();
-        msgObj.obj = status;
-        mHandler.sendMessage(msgObj);
-        */
 
         //Log.d(TAG, "version:"+packet.getInt());
         //Log.d(TAG, "version:"+packet.getInt());
         //Log.d(TAG, "version:"+packet.getInt());
 
-    }
+    }*/
 
 }
