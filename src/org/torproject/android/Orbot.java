@@ -866,7 +866,6 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
     	 Intent intent = VpnService.prepare(this);
 	        if (intent != null) {
 	            startActivityForResult(intent,REQUEST_VPN);
-
 	        } 
     }
 

@@ -130,6 +130,8 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 			        builder.setSession("OrbotVPN");	        	
 			        builder.addRoute("0.0.0.0",0);	        
 			        builder.addRoute("10.0.0.0",8);
+			        //builder.addRoute("192.0.0.0",8);
+			        //builder.addRoute("192.168.43.0",8);
 			        builder.addDnsServer("8.8.8.8");
 			        
 			        // Create a new interface using the builder and save the parameters.
