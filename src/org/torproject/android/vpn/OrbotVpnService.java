@@ -52,6 +52,8 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     private int mSocksProxyPort = 9999;
     private ProxyServer mProxyServer;
     
+    private final static int VPN_MTU = 1500;
+    
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
@@ -125,7 +127,7 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 		    		
 			        Builder builder = new Builder();
 			        
-			        builder.setMtu(3000);
+			        builder.setMtu(VPN_MTU);
 			        builder.addAddress("10.0.0.1",8);
 			        builder.setSession("OrbotVPN");	        	
 			        builder.addRoute("0.0.0.0",0);	        
@@ -141,7 +143,7 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 			        	    
 			        try
 			        {
-			        	Tun2Socks.Start(mInterface, 3000, "10.0.0.2", "255.255.255.0", "localhost:" + TorServiceConstants.PORT_SOCKS_DEFAULT, "50.116.51.157:7300", true);
+			        	Tun2Socks.Start(mInterface, VPN_MTU, "10.0.0.2", "255.255.255.0", "localhost:" + TorServiceConstants.PORT_SOCKS_DEFAULT, "50.116.51.157:7300", true);
 			        }
 			        catch (Exception e)
 			        {
