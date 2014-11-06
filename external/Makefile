@@ -51,9 +51,9 @@ RANLIB := $(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-ranlib
 STRIP := $(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-strip \
 	--strip-unneeded -R .note -R .comment
 
-CFLAGS = -DANDROID $(TARGET_CFLAGS)
-LDFLAGS = -llog $(TARGET_LDFLAGS)
-
+PIEFLAGS? = -fPIE -pie
+CFLAGS = -DANDROID $(TARGET_CFLAGS) $(PIEFLAGS)
+LDFLAGS = -llog $(TARGET_LDFLAGS) $(PIEFLAGS)
 
 # change 'release' to 'debug' for unoptimized debug builds
 ifeq ($(APP_ABI),armeabi-v7a)
@@ -157,7 +157,7 @@ iptables/Makefile:
 	cp config.sub iptables
 	cp config.guess iptables
 	cd iptables && \
- 		CC="$(CC)" AR="$(AR)" RANLIB=$(RANLIB) CFLAGS="$(CFLAGS) -fPIE -pie -I$(EXTERNAL_ROOT)/include" LDFLAGS="$(LDFLAGS) -pie" \
+ 		CC="$(CC)" AR="$(AR)" RANLIB=$(RANLIB) CFLAGS="$(CFLAGS) -I$(EXTERNAL_ROOT)/include" LDFLAGS="$(LDFLAGS)" \
 			./configure --host=$(HOST) --disable-shared --enable-static
 
 iptables-build-stamp: iptables/Makefile
@@ -184,7 +184,7 @@ tor/Makefile: tor/configure
 	cp config.sub tor
 	cp config.guess tor
 	cd tor && \
-                CC="$(CC)" AR="$(AR)" RANLIB=$(RANLIB) CFLAGS="$(CFLAGS) -D_FORTIFY_SOURCE=2 -fPIE -pie -fwrapv -fno-strict-aliasing -fno-strict-overflow" LDFLAGS="$(LDFLAGS) -pie" \
+                CC="$(CC)" AR="$(AR)" RANLIB=$(RANLIB) CFLAGS="$(CFLAGS) -D_FORTIFY_SOURCE=2 -fwrapv -fno-strict-aliasing -fno-strict-overflow" LDFLAGS="$(LDFLAGS)" \
                         LIBS="-L$(EXTERNAL_ROOT)/lib" CFLAGS="-I$(EXTERNAL_ROOT)/include -I$(EXTERNAL_ROOT)/include/event2" \
                         ./configure \
                                 --host=$(HOST) \
@@ -252,9 +252,9 @@ obfsclient/Makefile:
 	cd obfsclient && \
                 CC="$(CC)" CPP="$(CPP)" CXX="$(CXX)" AR="$(AR)" RANLIB=$(RANLIB) \
  CFLAGS="$(CFLAGS) -I$(EXTERNAL_ROOT)/include -I$(EXTERNAL_ROOT)/include/event2" \
- CPPFLAGS="$(CFLAGS) -D_FORTIFY_SOURCE=2 -fPIE -pie -fwrapv -fno-strict-aliasing -fno-strict-overflow" \
- CXXFLAGS="$(CFLAGS) -D_FORTIFY_SOURCE=2 -fPIE -pie -fwrapv -fno-strict-aliasing -fno-strict-overflow -I$(NDK_BASE)/sources/cxx-stl/gnu-libstdc++/$(NDK_TOOLCHAIN_VERSION)/include -I$(NDK_BASE)/sources/cxx-stl/gnu-libstdc++/$(NDK_TOOLCHAIN_VERSION)/libs/$(APP_ABI)/include" \
-LDFLAGS="$(LDFLAGS) -pie" \
+ CPPFLAGS="$(CFLAGS) -D_FORTIFY_SOURCE=2 -fwrapv -fno-strict-aliasing -fno-strict-overflow" \
+ CXXFLAGS="$(CFLAGS) -D_FORTIFY_SOURCE=2 -fwrapv -fno-strict-aliasing -fno-strict-overflow -I$(NDK_BASE)/sources/cxx-stl/gnu-libstdc++/$(NDK_TOOLCHAIN_VERSION)/include -I$(NDK_BASE)/sources/cxx-stl/gnu-libstdc++/$(NDK_TOOLCHAIN_VERSION)/libs/$(APP_ABI)/include" \
+LDFLAGS="$(LDFLAGS)" \
  libevent_CFLAGS="-I$(EXTERNAL_ROOT)/include" libevent_LIBS="-L$(EXTERNAL_ROOT)/lib" \
  liballium_CFLAGS="-I$(EXTERNAL_ROOT)/include" liballium_LIBS="-L$(EXTERNAL_ROOT)/lib" \
  LIBS="-L$(EXTERNAL_ROOT)/lib -levent -lallium-1.0 -L$(NDK_BASE)/sources/cxx-stl/gnu-libstdc++/$(NDK_TOOLCHAIN_VERSION)/libs/$(APP_ABI)/ -lgnustl_static" \
@@ -280,7 +280,7 @@ obfsclient-clean:
 # polipo
 
 polipo-build-stamp: 
-	$(MAKE) CC="$(CC)" CFLAGS="$(CFLAGS) -fPIE -pie" LDFLAGS="$(LDFLAGS) -pie" -C polipo
+	CC="$(CC)" CFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS)" $(MAKE) -C polipo
 	touch polipo-build-stamp
 
 polipo: polipo-build-stamp
