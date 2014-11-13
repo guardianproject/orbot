@@ -342,19 +342,17 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 		try
 		{
-			
-			//android.os.Debug.waitForDebugger();
 				
 			new Thread (new TorStarter(intent)).start();
 			
-		    return Service.START_STICKY;
-		    
 		}
 		catch (Exception e)
 		{
 			logException ("Error starting service",e);
-			return Service.START_REDELIVER_INTENT;
+			return Service.START_NOT_STICKY;
 		}
+
+	    return Service.START_REDELIVER_INTENT;
 
 	}
 	

@@ -448,10 +448,12 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                         
                         
                 }
+                /**
+                 * remove for now... VPN is not ready yet
                 else if (item.getItemId() == R.id.menu_vpn)
                 {
                 	this.startVpnService();
-                }
+                }*/
                 
         return true;
         }
@@ -867,6 +869,11 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	        if (intent != null) {
 	            startActivityForResult(intent,REQUEST_VPN);
 	        } 
+	        else
+	        {
+				startService("vpn");
+
+	        }
     }
 
     private boolean flushTransProxy ()

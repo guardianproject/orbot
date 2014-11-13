@@ -51,7 +51,8 @@ RANLIB := $(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-ranlib
 STRIP := $(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-strip \
 	--strip-unneeded -R .note -R .comment
 
-PIEFLAGS? = -fPIE -pie
+# PIEFLAGS for SDK 16/Android L must be set to -fPIE -pie
+PIEFLAGS? = 
 CFLAGS = -DANDROID $(TARGET_CFLAGS) $(PIEFLAGS)
 LDFLAGS = -llog $(TARGET_LDFLAGS) $(PIEFLAGS)
 

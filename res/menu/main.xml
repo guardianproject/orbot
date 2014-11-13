@@ -65,11 +65,11 @@
                   yourapp:showAsAction="ifRoom"
          
          />
- 
+ <!-- 
   <item android:id="@+id/menu_vpn"
       android:title="@string/menu_vpn"
       yourapp:showAsAction="never"/>
-  
+   -->
   
   <item android:id="@+id/menu_exit"
         android:title="@string/menu_exit"

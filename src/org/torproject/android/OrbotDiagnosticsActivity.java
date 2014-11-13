@@ -8,11 +8,9 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import org.sufficientlysecure.rootcommands.Shell;
-import org.sufficientlysecure.rootcommands.Toolbox;
 import org.sufficientlysecure.rootcommands.command.SimpleCommand;
 import org.torproject.android.service.TorResourceInstaller;
 import org.torproject.android.service.TorServiceConstants;
-import org.torproject.android.service.TorServiceUtils;
 
 import android.app.Activity;
 import android.content.Context;

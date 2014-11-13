@@ -23,6 +23,7 @@ import org.torproject.android.R;
 import org.torproject.android.TorConstants;
 
 import android.content.Context;
+import android.os.Build;
 import android.util.Log;
 
 public class TorResourceInstaller implements TorServiceConstants {
@@ -83,7 +84,8 @@ public class TorResourceInstaller implements TorServiceConstants {
 		shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
 		streamToFile(is,outFile, false, false);
 	
-		is = context.getResources().openRawResource(R.raw.tor);
+	    
+    	is = context.getResources().openRawResource(R.raw.tor);
 		outFile = new File(installFolder, TOR_ASSET_KEY);
 		shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
 		streamToFile(is,outFile, false, true);
@@ -102,6 +104,7 @@ public class TorResourceInstaller implements TorServiceConstants {
 		outFile = new File(installFolder, IPTABLES_ASSET_KEY);
 		shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
 		streamToFile(is,outFile, false, true);
+    
 	
 		return true;
 	}
