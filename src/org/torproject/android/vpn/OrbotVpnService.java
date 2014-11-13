@@ -16,6 +16,7 @@
 
 package org.torproject.android.vpn;
 
+import java.io.IOException;
 import java.net.InetAddress;
 import java.nio.ByteBuffer;
 import java.util.Locale;
@@ -98,6 +99,14 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     	
         if (mProxyServer != null)
         	mProxyServer.stop();
+        
+        if (mInterface != null)
+			try {
+				mInterface.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
     }
 
     @Override
@@ -136,7 +145,7 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 			        //builder.addRoute("192.168.43.0",8);
 			        builder.addDnsServer("8.8.8.8");
 			        
-			        // Create a new interface using the builder and save the parameters.
+			         // Create a new interface using the builder and save the parameters.
 			        mInterface = builder.setSession(mSessionName)
 			                .setConfigureIntent(mConfigureIntent)
 			                .establish();
