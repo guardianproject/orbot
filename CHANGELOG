@@ -1,5 +1,30 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+/** 14.1 / 13-Nov-2015 / 5917e63693141dc08a99f8670ff3e274306a8c05 **/
+
+* Updates to support Android 5.0 Lollipop
+5917e63 updates for Android L and PIE binary support
+5f49597 updates to appcompat v12 for Android L
+7f50f79 update Makefile to support PIE arguments make PIEFLAGS="-fPIE -pie" NDK_PLATFORM_LEVEL="16"
+f6ad0ff initial modifications for PIE support
+
+* Stability fixes
+f9e340b goodbye AIDL file... no longer using bound services
+c9bb1c2 remove bind service and use localbroadcast instead this should fix problems with the service being killed on unbind
+
+* Experimental (not enabled) VPN support for non-root whole device mode
+ff86774 let's not build vpn support for now
+3ef94e0 more fixes for VPN but not quite ready yet
+aeb15e8 add sl4j jar dependecies for socks proxying
+97ca6fb set MTU back to 1500 default
+284a539 update badvpn commit
+1b44dcb remove unused routes
+a964bef moves VPN service to background Service so it doesn't die (and other important fixes)
+6a53ddb adding in new jni build files
+2d98a29 temporarily use udpgw-client to make DNS and UDP tunneling to work
+6877aaf update to gp fork of badvpn
+e459918 first commit of new OrbotVPN integration into Orbot
+
 /** 14.0.8.1 **/
 2bcb1ee removing binaries from source repo
 a64e6b1 update Orbot about dialog display to show tor version
