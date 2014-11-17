@@ -1,5 +1,11 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+/** 14.1.1 / 17-Nov-2015 / ec1c92f51957d4e93f8da35b81b603ace17acb7a **/
+
+* use non-PIE build for up to SDK 20, and PIE build only for Lollipop 
+* Makefile fixes: make sure polipo is really cleaned; add only PIE flags for polipo
+* add support for other onboot events, including external storage mount also version up to ensure install for PIE fix
+
 /** 14.1 / 13-Nov-2015 / 5917e63693141dc08a99f8670ff3e274306a8c05 **/
 
 * Updates to support Android 5.0 Lollipop
