@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="org.torproject.android" 
-      android:versionName="14.1.0-PIE" 
-      android:versionCode="126"
+      android:versionName="14.1.1" 
+      android:versionCode="128"
         android:installLocation="auto"      
       >
  	    
-    <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="21"/>
+    <uses-sdk android:minSdkVersion="9" android:maxSdkVersion="20" android:targetSdkVersion="19"/>
  <permission android:name="org.torproject.android.MANAGE_TOR" android:label="@string/permission_manage_tor_label" android:description="@string/permission_manage_tor_description" android:protectionLevel="signature"></permission>
     
  <uses-permission android:name="android.permission.INTERNET" />
@@ -92,10 +92,11 @@
             </intent-filter>
     	</service>
     	
-    	
     	<receiver android:name=".OnBootReceiver">
 			<intent-filter>
 				<action	android:name="android.intent.action.BOOT_COMPLETED" />
+				<action android:name="android.intent.action.QUICKBOOT_POWERON" />
+				<action android:name="android.intent.action.MEDIA_MOUNTED"/>
 			</intent-filter>
 		</receiver>
 		

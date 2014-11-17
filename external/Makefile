@@ -281,7 +281,7 @@ obfsclient-clean:
 # polipo
 
 polipo-build-stamp: 
-	CC="$(CC)" CFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS)" $(MAKE) -C polipo
+	CC="$(CC)" CFLAGS="$(PIEFLAGS)" LDFLAGS="$(PIEFLAGS)" $(MAKE) -C polipo
 	touch polipo-build-stamp
 
 polipo: polipo-build-stamp
@@ -289,6 +289,7 @@ polipo: polipo-build-stamp
 	cp polipo/polipo bin
 
 polipo-clean:
+	-rm -f polipo/polipo
 	-rm -f bin/polipo
 	-rm -f polipo-build-stamp
 
