@@ -377,31 +377,31 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 					
 					if (action!=null) 
 					{
-						if(action.equals(Intent.ACTION_BOOT_COMPLETED)||action.equals("start"))
+						if(action.equals(Intent.ACTION_BOOT_COMPLETED)||action.equals(CMD_START))
 			 			{	     				
 			 				setTorProfile(STATUS_ON);	     			
 			 			}
-						else if (action.equals("stop"))
+						else if (action.equals(CMD_STOP))
 						{
 							setTorProfile(STATUS_OFF);
 						}
-						else if (action.equals("init"))
+						else if (action.equals(CMD_INIT))
 						{
 							sendCallbackStatus(mCurrentStatus);
 						}
-						else if (action.equals("newnym"))
+						else if (action.equals(CMD_NEWNYM))
 						{
 							newIdentity();
 						}
-						else if (action.equals("flush"))
+						else if (action.equals(CMD_FLUSH))
 						{
 							flushTransparentProxyRules();
 						}
-						else if (action.equals("update"))
+						else if (action.equals(CMD_UPDATE))
 						{
 							processSettings();
 						}
-						else if (action.equals("vpn"))
+						else if (action.equals(CMD_VPN))
 						{
 							startVpnService();
 						}
@@ -774,7 +774,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	
     }
     
-    public void startTor () throws Exception
+    private void startTor () throws Exception
     {
     	
 		mCurrentStatus = STATUS_CONNECTING;
@@ -1074,6 +1074,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			
 			int attempt = 0;
 			
+
+			logNotice( "Waiting for control port...");
+			
 			while (conn == null && attempt++ < maxTries)
 			{
 				try
@@ -1098,13 +1101,13 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 				catch (Exception ce)
 				{
 					conn = null;
-					logException( "Error connecting to Tor local control port: " + ce.getMessage(),ce);
+				//	logException( "Error connecting to Tor local control port: " + ce.getMessage(),ce);
 					
 				}
 				
 				
 				try {
-					logNotice("waiting...");
+				//	logNotice("waiting...");
 					Thread.sleep(1000); }
 				catch (Exception e){}
 			
@@ -1264,7 +1267,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		{
 			if (fileControlPort.exists())
 			{
-				logNotice("Reading control port config file: " + fileControlPort.getCanonicalPath());
+				debug("Reading control port config file: " + fileControlPort.getCanonicalPath());
 				BufferedReader bufferedReader = new BufferedReader(new FileReader(fileControlPort));
 				String line = bufferedReader.readLine();
 				
@@ -1284,7 +1287,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			}
 			else
 			{
-				logNotice("Control Port config file does not yet exist (waiting for tor): " + fileControlPort.getCanonicalPath());
+				debug("Control Port config file does not yet exist (waiting for tor): " + fileControlPort.getCanonicalPath());
 				
 			}
 			
@@ -1292,11 +1295,11 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		}
 		catch (FileNotFoundException e)
 		{	
-			logNotice("unable to get control port; file not found");
+			debug("unable to get control port; file not found");
 		}
 		catch (Exception e)
 		{	
-			logNotice("unable to read control port config file");
+			debug("unable to read control port config file");
 		}
 
 		return result;
@@ -1376,37 +1379,53 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		}
 
 
-		public void setTorProfile(int profile)  {
+		public void setTorProfile(int newState)  {
 		
-			if (profile == STATUS_ON && mCurrentStatus != STATUS_ON)
+			if (newState == STATUS_ON)
         	{
         		
-				sendCallbackLogMessage (getString(R.string.status_starting_up));
+				if (mCurrentStatus == STATUS_OFF)
+				{
+					sendCallbackLogMessage (getString(R.string.status_starting_up));
+	
+				
+		            try
+		   		     {
 
-	            try
-	   		     {
-	   			   startTor();
-
-	   		     }
-	   		     catch (Exception e)
-	   		     {				
-	   		    	
-	   		    	logException("Unable to start Tor: " + e.toString(),e);	
-	   		    	 mCurrentStatus = STATUS_OFF;
-	   		    	sendCallbackStatus(mCurrentStatus);
-	   	    		
-	   		    	 showToolbarNotification(getString(R.string.unable_to_start_tor) + ": " + e.getMessage(), ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
-	   		    	stopTor();
-	   		     }
+		            	boolean found = findExistingProc ();
+		            	
+		            	if (!found)
+		            	{
+			            	killProcess(fileTor);
+			            	killProcess(filePolipo);
+			            	
+			   			    startTor();
+		            	}
+		   		     }
+		   		     catch (Exception e)
+		   		     {				
+		   		    	
+		   		    	logException("Unable to start Tor: " + e.toString(),e);	
+		   		    	 mCurrentStatus = STATUS_OFF;
+		   		    	sendCallbackStatus(mCurrentStatus);
+		   	    		
+		   		    	 showToolbarNotification(getString(R.string.unable_to_start_tor) + ": " + e.getMessage(), ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
+		   		    	stopTor();
+		   		     }
+			            
+				}
         	}
-        	else if (profile == STATUS_OFF && mCurrentStatus != STATUS_OFF)
+        	else if (newState == STATUS_OFF)
         	{
-        		sendCallbackLogMessage (getString(R.string.status_shutting_down));
-	          
-	            stopTor();
-
-        		mCurrentStatus = STATUS_OFF;  
-        		sendCallbackStatus(mCurrentStatus);
+        		if (mCurrentStatus == STATUS_ON)
+        		{
+	        		sendCallbackLogMessage (getString(R.string.status_shutting_down));
+		          
+		            stopTor();
+	
+	        		mCurrentStatus = STATUS_OFF;  
+	        		sendCallbackStatus(mCurrentStatus);
+        		}
         		
         	}
 		}
@@ -1733,27 +1752,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	}
 	
 
-
-	public boolean checkAndInitImpl ()
-    {
-    	if (fileTor != null)
-    	{
-    		try {
-				if (TorServiceUtils.findProcessId(fileTor.getCanonicalPath()) != -1)
-				{
-					initialize();
-					return true;
-				}
-			} catch (IOException e) {
-				logException("error init Tor", e);
-			}
-    				
-    	}
-    	
-    	return false;
-    }
-    
-            
         
         public void processSettings ()
         {

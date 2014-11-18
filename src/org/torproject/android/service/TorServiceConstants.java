@@ -76,6 +76,17 @@ public interface TorServiceConstants {
     public static final int DISABLE_TOR_MSG = 3;
     public static final int LOG_MSG = 4;
     
+    public static final String CMD_START = "start";
+    public static final String CMD_STOP = "stop";
+    public static final String CMD_FLUSH = "flush";
+    public static final String CMD_NEWNYM = "newnym";
+    public static final String CMD_INIT = "init";
+    public static final String CMD_VPN = "vpn";
+    public static final String CMD_UPDATE = "update";
+     
+    
+    
+    
     public static final String BINARY_TOR_VERSION = "0.2.5.10-openssl1.0.1i-nonPIE-polipofix";
     public static final String PREF_BINARY_TOR_VERSION_INSTALLED = "BINARY_TOR_VERSION_INSTALLED";
     

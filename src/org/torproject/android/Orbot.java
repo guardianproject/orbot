@@ -106,7 +106,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 		LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
 			      new IntentFilter("log"));
 
-		startService("init");
+		startService(TorServiceConstants.CMD_INIT);
 	}
 	
 	// Our handler for received Intents. This will be called whenever an Intent
@@ -154,7 +154,14 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 		torService.setAction(action);
 		startService(torService);
 		
-        
+	}
+	
+	private void stopService ()
+	{
+		
+		Intent torService = new Intent(this, TorService.class);
+		stopService(torService);
+		
 	}
 	
 	private void doLayout ()
@@ -412,7 +419,9 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                                 {
                                     if (mItemOnOff != null)
                                             mItemOnOff.setTitle(R.string.menu_start);
+                                    
                                         stopTor();
+                                        stopService ();
                                         
                                 }
                                 
@@ -472,7 +481,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                         //not something to tackle in your first iteration, but i thin we can talk about fixing
                         //terminology but also making sure there are clear distinctions in control
                         stopTor();
-                        
+                        stopService ();
                         //onDestroy();
                         
                         
@@ -855,7 +864,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 		}
 		else if (request == REQUEST_VPN && response == RESULT_OK)
 		{
-			startService("vpn");
+			startService(TorServiceConstants.CMD_VPN);
 		}
 		
 	}
@@ -871,21 +880,21 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	        } 
 	        else
 	        {
-				startService("vpn");
+				startService(TorServiceConstants.CMD_VPN);
 
 	        }
     }
 
     private boolean flushTransProxy ()
     {
-    	startService("flush");
+    	startService(TorServiceConstants.CMD_FLUSH);
     	return true;
     }
     
     private boolean updateSettings ()
     {
     	//todo send service command
-    	startService("update");
+    	startService(TorServiceConstants.CMD_UPDATE);
     	return true;
     }
 
@@ -1022,7 +1031,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
     {
             
 
-		startService ("start");
+		startService (TorServiceConstants.CMD_START);
 		torStatus = TorServiceConstants.STATUS_CONNECTING;
 				
 		mTxtOrbotLog.setText("");
@@ -1050,7 +1059,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
     private void stopTor () throws RemoteException
     {
     	
-    	startService ("stop");
+    	startService (TorServiceConstants.CMD_STOP);
 		torStatus = TorServiceConstants.STATUS_OFF;
 
     	//	mService.setProfile(TorServiceConstants.STATUS_OFF);
@@ -1058,6 +1067,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
     		mHandler.sendMessage(msg);
     		
     
+    		
     }
     
         /*
@@ -1080,6 +1090,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	                {
 	                        
 	                        stopTor();
+	                        stopService ();
 	                        
 	                }
 	                
@@ -1303,7 +1314,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 
 	public void spinOrbot (float direction)
 	{
-			startService ("newnym");
+			startService (TorServiceConstants.CMD_NEWNYM);
 		
 			//mService.newIdentity(); //request a new identity
 			//TODO trigger newnym

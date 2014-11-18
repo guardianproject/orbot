@@ -108,7 +108,7 @@ public class TorServiceUtils implements TorServiceConstants {
         	}
         }
         
-        procPs.destroy();
+        try { procPs.destroy(); } catch (Exception e) {} // try to destroy just to make sure we clean it up
        
         return procId;
 
