@@ -58,6 +58,7 @@ import org.torproject.android.vpn.OrbotVpnService;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Application;
+import android.app.IntentService;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -142,7 +143,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     private boolean mTransProxyNetworkRefresh = false;
     
     private ExecutorService mExecutor = Executors.newCachedThreadPool();
-    
+
     public void debug(String msg)
     {
     	if (ENABLE_DEBUG_LOG)  
@@ -330,8 +331,10 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		{
 			startForeground(NOTIFY_ID, mNotification);		
 		}
-				
-		mNotificationManager.notify(NOTIFY_ID, mNotification);
+		else
+		{
+			mNotificationManager.notify(NOTIFY_ID, mNotification);
+		}
  	}
     
 
@@ -340,19 +343,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	 */
 	public int onStartCommand(Intent intent, int flags, int startId) {
 
-		try
-		{
-				
-			new Thread (new TorStarter(intent)).start();
-			
-		}
-		catch (Exception e)
-		{
-			logException ("Error starting service",e);
-			return Service.START_NOT_STICKY;
-		}
-
-	    return Service.START_REDELIVER_INTENT;
+		new Thread (new TorStarter(intent)).start();
+		
+	    return START_REDELIVER_INTENT;
 
 	}
 	
@@ -387,6 +380,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 						}
 						else if (action.equals(CMD_INIT))
 						{
+							initialize();
 							sendCallbackStatus(mCurrentStatus);
 						}
 						else if (action.equals(CMD_NEWNYM))
@@ -421,7 +415,16 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		logNotice("Orbot was swiped away... background service will keep running");    	
 	}
 
+    @Override
+	public boolean stopService(Intent name) {
+		
+    	logNotice("TorService is being stopped: " + name);
 
+		return super.stopService(name);
+		
+	}
+
+	@Override
     public void onDestroy ()
     {
     	super.onDestroy();
@@ -429,6 +432,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     	logNotice("TorService is being destroyed... shutting down!");
     		
         unregisterReceiver(mNetworkStateReceiver);        
+        
+        clearNotifications ();
         
     }
     
@@ -930,22 +935,19 @@ public class TorService extends Service implements TorServiceConstants, TorConst
      	return true;
  	}
     
-    Shell mShellTor;
-    
     private boolean runTorShellCmd() throws Exception
     {
-    	
+
+        Shell shellTor;
+        
 		String torrcPath = new File(appBinHome, TORRC_ASSET_KEY).getCanonicalPath();
 
     	updateTorConfigFile();
     	
     	sendCallbackLogMessage(getString(R.string.status_starting_up));
 
-		if (mShellTor != null)
-			mShellTor.close();
-		
 		//start Tor in the background
-		mShellTor = Shell.startShell();
+    	shellTor = Shell.startShell();
 		
 		String torCmdString = fileTor.getCanonicalPath() 
 				+ " DataDirectory " + appCacheHome.getCanonicalPath() 
@@ -955,7 +957,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		debug(torCmdString);
 		
 		SimpleCommand shellTorCommand = new SimpleCommand(torCmdString + " --verify-config");
-		mShellTor.add(shellTorCommand).waitForFinish();
+		shellTor.add(shellTorCommand).waitForFinish();
 		
 		int exitCode = shellTorCommand.getExitCode();
 		String output = shellTorCommand.getOutput();
@@ -968,7 +970,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		}
 
 		shellTorCommand = new SimpleCommand(torCmdString);
-		mShellTor.add(shellTorCommand).waitForFinish();
+		shellTor.add(shellTorCommand).waitForFinish();
 		
 		exitCode = shellTorCommand.getExitCode();
 		output = shellTorCommand.getOutput();
@@ -1000,6 +1002,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			
 
 	    }
+		
+		shellTor.close();
 		
 		return true;
     }
@@ -2474,6 +2478,5 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		// TODO Auto-generated method stub
 		return null;
 	}
-   
-   
+
 }

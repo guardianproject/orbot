@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="org.torproject.android" 
-      android:versionName="14.1.1" 
-      android:versionCode="128"
+      android:versionName="14.1.3-PIE" 
+      android:versionCode="130"
         android:installLocation="auto"      
       >
  	    
-    <uses-sdk android:minSdkVersion="9" android:maxSdkVersion="20" android:targetSdkVersion="19"/>
+    <uses-sdk android:minSdkVersion="21" android:maxSdkVersion="21" android:targetSdkVersion="21"/>
  <permission android:name="org.torproject.android.MANAGE_TOR" android:label="@string/permission_manage_tor_label" android:description="@string/permission_manage_tor_description" android:protectionLevel="signature"></permission>
     
  <uses-permission android:name="android.permission.INTERNET" />
@@ -23,6 +23,7 @@
       android:allowBackup="false"
       android:allowClearUserData="true"
       android:persistent="true"
+      android:stopWithTask="false"
      >
       
         <activity android:name=".Orbot" android:configChanges="orientation|screenSize"
@@ -85,6 +86,7 @@
     	<service android:enabled="true"
     		android:name=".service.TorService" 
 		android:permission="org.torproject.android.MANAGE_TOR"
+		android:stopWithTask="false"
     		>
 	            <intent-filter>
 	                <action android:name="org.torproject.android.service.ITorService" />
