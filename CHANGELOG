@@ -1,12 +1,19 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
-/** 14.1.1 / 17-Nov-2015 / ec1c92f51957d4e93f8da35b81b603ace17acb7a **/
+/** 14.1.3 / 24-Nov-2014 / c1f3e64b6b8a34c85a90fb2ee083431b6722ec60 **/
+
+* 87d5ac9 changes to improve longevity of background service/Tor process
+* 6115582 onResume() must finish before we call some APIs
+* 406d83c add layout tweaks for v21
+* cf21809 improves in start/stop logic for background service
+
+/** 14.1.1 / 17-Nov-2014 / ec1c92f51957d4e93f8da35b81b603ace17acb7a **/
 
 * use non-PIE build for up to SDK 20, and PIE build only for Lollipop 
 * Makefile fixes: make sure polipo is really cleaned; add only PIE flags for polipo
 * add support for other onboot events, including external storage mount also version up to ensure install for PIE fix
 
-/** 14.1 / 13-Nov-2015 / 5917e63693141dc08a99f8670ff3e274306a8c05 **/
+/** 14.1 / 13-Nov-2014 / 5917e63693141dc08a99f8670ff3e274306a8c05 **/
 
 * Updates to support Android 5.0 Lollipop
 5917e63 updates for Android L and PIE binary support
