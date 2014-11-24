@@ -902,11 +902,20 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	protected void onResume() {
 		super.onResume();
 
-		setLocale();
-		
-		handleIntents();
+		mHandler.postDelayed(new Runnable ()
+		{
+			public void run ()
+			{
 
-           
+				setLocale();
+		
+				handleIntents();
+
+			}
+		}
+		, 500);
+		
+		
 	}
 
 	AlertDialog aDialog = null;
