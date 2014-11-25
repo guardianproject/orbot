@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="org.torproject.android" 
       android:versionName="14.1.3-PIE" 
-      android:versionCode="130"
+      android:versionCode="131"
         android:installLocation="auto"      
       >
  	    
@@ -24,10 +24,13 @@
       android:allowClearUserData="true"
       android:persistent="true"
       android:stopWithTask="false"
+      
      >
       
-        <activity android:name=".Orbot" android:configChanges="orientation|screenSize"
+        <activity android:name=".Orbot" 
+            android:configChanges="orientation|screenSize"
             android:launchMode="singleTop" 
+            android:excludeFromRecents="true"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -73,7 +76,20 @@
         <!-- 
         <activity android:name=".OrbotDiagnosticsActivity" android:label="OrbotDiag"/>
          -->
-      	
+      	<activity
+			android:name=".service.DummyActivity"
+			android:theme="@android:style/Theme.NoDisplay"
+			android:enabled="true"
+			android:allowTaskReparenting="true"
+			android:noHistory="true"
+			android:excludeFromRecents="true"
+			android:alwaysRetainTaskState="false"
+			android:stateNotNeeded="true"
+			android:clearTaskOnLaunch="true"
+			android:finishOnTaskLaunch="true"
+			/> 
+			      	
+			      	
       	<activity android:name=".wizard.LotsaText" android:exported="false"/>
       	<activity android:name=".wizard.Permissions" android:exported="false"/>
       	<activity android:name=".wizard.TipsAndTricks" android:exported="false"/>
