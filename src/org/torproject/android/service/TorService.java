@@ -412,7 +412,11 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	
     @Override
 	public void onTaskRemoved(Intent rootIntent) {		
-		logNotice("Orbot was swiped away... background service will keep running");    	
+		//logNotice("Orbot was swiped away... background service will keep running");    	
+		
+    	 Intent intent = new Intent( this, DummyActivity.class );
+		   intent.addFlags( Intent.FLAG_ACTIVITY_NEW_TASK );
+		   startActivity( intent );
 	}
 
     @Override
