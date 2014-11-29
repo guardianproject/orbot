@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/viewMain"
@@ -11,9 +11,6 @@
     <org.torproject.android.RandomColorCircleView  android:layout_width="fill_parent"
 	      android:layout_height="fill_parent"></org.torproject.android.RandomColorCircleView>
         -->
-    <RelativeLayout
-		android:layout_width="match_parent"
-		android:layout_height="match_parent">
 		
         
         <!-- 
@@ -79,7 +76,7 @@
 	    android:id="@+id/log"
 	    android:layout_width="fill_parent"
 	    android:layout_height="fill_parent"
-	    android:layout_marginTop="30dp"
+	    android:layout_margin="6dp"
 	    android:layout_gravity="center_vertical|right"
 	    android:layout_toRightOf="@+id/boxStatus"
 	    
@@ -168,7 +165,5 @@
 			 
 			 />
     </RelativeLayout>		
-    </RelativeLayout>		
        
-</FrameLayout>
-
+</RelativeLayout>
