@@ -82,6 +82,8 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	private SharedPreferences mPrefs = null;
 
 	private boolean autoStartFromIntent = false;
+	
+	private final static long INIT_DELAY = 100;
 
     /** Called when the activity is first created. */
 	public void onCreate(Bundle savedInstanceState) {
@@ -106,12 +108,23 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 		LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
 			      new IntentFilter("log"));
 
-		startService(TorServiceConstants.CMD_INIT);
+		mHandler.postDelayed(new Runnable ()
+		{
+		
+			public void run ()
+			{
+				startService(TorServiceConstants.CMD_INIT);
+			}
+		},INIT_DELAY);
+		
 	}
 	
 	// Our handler for received Intents. This will be called whenever an Intent
 	// with an action named "custom-event-name" is broadcasted.
 	private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
+		
+		
+		
 	  @Override
 	  public void onReceive(Context context, Intent intent) {
 	    // Get extra data included in the Intent
@@ -724,15 +737,6 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 		updateStatus("");
 	}
 
-	/* (non-Javadoc)
-	 * @see android.app.Activity#onStop()
-	 */
-	protected void onStop() {
-		super.onStop();
-		
-	}
-
-
 
 	/*
 	 * Launch the system activity for Uri viewing with the provided url
@@ -1117,73 +1121,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                     
         }
 
-    	Thread threadUpdater = null;
-    	boolean mKeepUpdating = false;
     	
-        public void initUpdates ()
-        {
-        	mKeepUpdating = true;
-        	
-        	if (threadUpdater == null || !threadUpdater.isAlive())
-        	{
-        		threadUpdater = new Thread(new Runnable()
-        		{
-        				
-        			public void run ()
-        			{
-        				
-        				while (mKeepUpdating)
-        				{
-        					try
-        					{
-        						/**
-	        					if (mService != null)
-	        					{
-	        						for (String log : mService.getLog())
-	        						{
-	        							Message msg = mHandler.obtainMessage(TorServiceConstants.LOG_MSG);
-	        				             msg.getData().putString(HANDLER_TOR_MSG, log);
-	        				             mHandler.sendMessage(msg);
-	        						}
-	        						
-	        						for (String status : mService.getStatusMessage())
-	        						{
-	        							Message msg = mHandler.obtainMessage(TorServiceConstants.STATUS_MSG);
-	        				             msg.getData().putString(HANDLER_TOR_MSG, status);
-	        				             mHandler.sendMessage(msg);
-	        						}
-	        						
-	        						if (mService != null)
-	        						{
-		        						long[] bws = mService.getBandwidth();
-		        						Message msg = mHandler.obtainMessage(TorServiceConstants.MESSAGE_TRAFFIC_COUNT);
-		        						msg.getData().putLong("download", bws[0]);
-		        						msg.getData().putLong("upload", bws[1]);
-		        						msg.getData().putLong("readTotal", bws[2]);
-		        						msg.getData().putLong("writeTotal", bws[3]);
-		        						mHandler.sendMessage(msg);
-	       				             	
-		        						try { Thread.sleep(1000); }
-		        						catch (Exception e){}
-	        						}		        						
-
-	        						if (mService != null)
-	        							torStatus = mService.getStatus();
-	        					}**/
-        					}
-        					catch (Exception re)
-        					{
-        						Log.e(TAG, "error getting service updates",re);
-        					}
-        				}
-        				
-        			}
-        		});
-        		
-        		threadUpdater.start();
-        		
-        	}
-        }
         
    
 

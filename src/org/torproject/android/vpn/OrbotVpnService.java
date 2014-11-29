@@ -34,9 +34,6 @@ import android.os.ParcelFileDescriptor;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.runjva.sourceforge.jsocks.protocol.ProxyServer;
-import com.runjva.sourceforge.jsocks.server.ServerAuthenticatorNone;
-
 @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 public class OrbotVpnService extends VpnService implements Handler.Callback {
     private static final String TAG = "OrbotVpnService";
@@ -51,7 +48,7 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     private ParcelFileDescriptor mInterface;
 
     private int mSocksProxyPort = 9999;
-    private ProxyServer mProxyServer;
+   // private ProxyServer mProxyServer;
     
     private final static int VPN_MTU = 1500;
     
@@ -76,29 +73,12 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     
     private void startSocksBypass ()
     {
-    	mThreadProxy = new Thread ()
-	    {
-	    	public void run ()
-	    	{
-	    
-		        try {
-		        	mProxyServer = new ProxyServer(new ServerAuthenticatorNone(null, null));
-		        	mProxyServer.setVpnService(OrbotVpnService.this);
-		        	mProxyServer.start(mSocksProxyPort, 5, InetAddress.getLocalHost());
-				} catch (Exception e) {
-					Log.d(TAG,"proxy server error: " + e.getLocalizedMessage(),e);
-				}
-	    	}
-	    };
-	    
-	    mThreadProxy.start();
     }
 
     @Override
     public void onDestroy() {
     	
-        if (mProxyServer != null)
-        	mProxyServer.stop();
+      
         
         if (mInterface != null)
 			try {

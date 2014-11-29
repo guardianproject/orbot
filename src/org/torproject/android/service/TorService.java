@@ -135,14 +135,15 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	private Builder mNotifyBuilder;
 	private Notification mNotification;
 	private boolean mShowExpandedNotifications = false;
-
+	private boolean mNotificationShowing = false;
+    
     private boolean mHasRoot = false;
     private boolean mEnableTransparentProxy = false;
     private boolean mTransProxyAll = false;
     private boolean mTransProxyTethering = false;
     private boolean mTransProxyNetworkRefresh = false;
     
-    private ExecutorService mExecutor = Executors.newCachedThreadPool();
+    private ExecutorService mExecutor = Executors.newFixedThreadPool(1);
 
     public void debug(String msg)
     {
@@ -231,7 +232,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		
 
 		hmBuiltNodes.clear();
-		
+		mNotificationShowing = false;
 		
 	}
 		
@@ -327,14 +328,17 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	    	mNotification.bigContentView = expandedView;
 	    }
 	    
-		if (mNotification == null && prefPersistNotifications)		
+		if (prefPersistNotifications && (!mNotificationShowing))		
 		{
 			startForeground(NOTIFY_ID, mNotification);		
+			logNotice("Set background service to FOREGROUND");
 		}
 		else
 		{
 			mNotificationManager.notify(NOTIFY_ID, mNotification);
 		}
+		
+		mNotificationShowing = true;
  	}
     
 
@@ -401,6 +405,10 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 						}
 					}
 				}
+				else
+				{
+					Log.d(TAG, "Got null onStartCommand() intent");
+				}
 				
 			}
 			catch (Exception e)
@@ -412,7 +420,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	
     @Override
 	public void onTaskRemoved(Intent rootIntent) {		
-		//logNotice("Orbot was swiped away... background service will keep running");    	
+		 Log.d(TAG,"task removed");    	
 		
     	 Intent intent = new Intent( this, DummyActivity.class );
 		   intent.addFlags( Intent.FLAG_ACTIVITY_NEW_TASK );
@@ -431,14 +439,17 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	@Override
     public void onDestroy ()
     {
-    	super.onDestroy();
-    	
-    	logNotice("TorService is being destroyed... shutting down!");
+		String msg = ("TorService is being DESTROYED... shutting down!");
+	    
+		Log.d(TAG, msg);
+		sendCallbackLogMessage(msg);
     		
-        unregisterReceiver(mNetworkStateReceiver);        
+       // unregisterReceiver(mNetworkStateReceiver);        
         
         clearNotifications ();
-        
+
+    	super.onDestroy();
+    	        
     }
     
     private void stopTor ()
@@ -446,6 +457,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
    	
     	try
     	{	
+    		Log.d(TAG,"Tor is stopping NOW");
+    		
     		shutdownTorProcess ();
     		
     		//stop the foreground priority and make sure to remove the persistant notification
@@ -611,8 +624,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			if (mNotificationManager == null)
 			{
 	    	   
-	 		   IntentFilter mNetworkStateFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-	 		   registerReceiver(mNetworkStateReceiver , mNetworkStateFilter);
+	 		//   IntentFilter mNetworkStateFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+	 		 // mNetworkStateFilter.addFlags(Intent.FLAG_RECEIVER_FOREGROUND);
+	 		  // registerReceiver(mNetworkStateReceiver , mNetworkStateFilter);
 	 	
 	 		   mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 	 		
@@ -723,6 +737,10 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         extraLines.append("VirtualAddrNetwork 10.192.0.0/10").append('\n');
         extraLines.append("AutomapHostsOnResolve 1").append('\n');
         
+        
+        extraLines.append("CircuitStreamTimeout 60").append('\n');
+        
+        
     	extraLines.append(prefs.getString("pref_custom_torrc", ""));
 
 		logNotice("updating torrc custom configuration...");
@@ -802,20 +820,23 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		logNotice(getString(R.string.status_starting_up));
 		sendCallbackLogMessage(getString(R.string.status_starting_up));
 		
-		boolean success = runTorShellCmd();
+		Shell shellUser = Shell.startShell();
+		
+		boolean success = runTorShellCmd(shellUser);
 		
 		if (success)
 		{
-			runPolipoShellCmd();
+			if (mPortHTTP != -1)
+				runPolipoShellCmd(shellUser);
 			
 			if (mHasRoot && mEnableTransparentProxy)
 			{
-		 		Shell shell = Shell.startRootShell();
+		 		Shell shellRoot = Shell.startRootShell();
 
-				disableTransparentProxy(shell);
-				enableTransparentProxy(shell);
+				disableTransparentProxy(shellRoot);
+				enableTransparentProxy(shellRoot);
 				
-				shell.close();
+				shellRoot.close();
 			}
 			
 			getHiddenServiceHostname ();
@@ -825,6 +846,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		    	 showToolbarNotification(getString(R.string.unable_to_start_tor), ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
 
 		}
+		
+		shellUser.close();
     }
 
     private boolean flushTransparentProxyRules () throws Exception 
@@ -939,19 +962,14 @@ public class TorService extends Service implements TorServiceConstants, TorConst
      	return true;
  	}
     
-    private boolean runTorShellCmd() throws Exception
+    private boolean runTorShellCmd(Shell shell) throws Exception
     {
 
-        Shell shellTor;
-        
 		String torrcPath = new File(appBinHome, TORRC_ASSET_KEY).getCanonicalPath();
 
     	updateTorConfigFile();
     	
     	sendCallbackLogMessage(getString(R.string.status_starting_up));
-
-		//start Tor in the background
-    	shellTor = Shell.startShell();
 		
 		String torCmdString = fileTor.getCanonicalPath() 
 				+ " DataDirectory " + appCacheHome.getCanonicalPath() 
@@ -961,7 +979,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		debug(torCmdString);
 		
 		SimpleCommand shellTorCommand = new SimpleCommand(torCmdString + " --verify-config");
-		shellTor.add(shellTorCommand).waitForFinish();
+		shell.add(shellTorCommand).waitForFinish();
 		
 		int exitCode = shellTorCommand.getExitCode();
 		String output = shellTorCommand.getOutput();
@@ -974,7 +992,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		}
 
 		shellTorCommand = new SimpleCommand(torCmdString);
-		shellTor.add(shellTorCommand).waitForFinish();
+		shell.add(shellTorCommand).waitForFinish();
 		
 		exitCode = shellTorCommand.getExitCode();
 		output = shellTorCommand.getOutput();
@@ -1007,8 +1025,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 	    }
 		
-		shellTor.close();
-		
 		return true;
     }
     
@@ -1030,7 +1046,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     }
     
     
-    private void runPolipoShellCmd () throws Exception
+    private void runPolipoShellCmd (Shell shell) throws Exception
     {
     	
     	logNotice( "Starting polipo process");
@@ -1040,8 +1056,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			StringBuilder log = null;
 			
 			int attempts = 0;
-			
-			Shell shell = Shell.startShell();
 			
     		if (polipoProcId == -1)
     		{
@@ -1071,8 +1085,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			
     		logNotice("Polipo process id=" + polipoProcId);
 			
-    		shell.close();
-    		
     }
     
 	private int initControlConnection (int maxTries, boolean isReconnect) throws Exception, RuntimeException
@@ -1983,6 +1995,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     private void sendCallbackStatusMessage (long upload, long download, long written, long read)
     {
     	 
+    	
     	Intent intent = new Intent("log");
   	  // You can also include some extra data.
   	  intent.putExtra("up",upload);
@@ -2023,6 +2036,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
      *  Another way to do this would be to use the Observer pattern by defining the 
      *  BroadcastReciever in the Android manifest.
      */
+    /**
     private final BroadcastReceiver mNetworkStateReceiver = new BroadcastReceiver() {
     	@Override
     	public void onReceive(Context context, Intent intent) {
@@ -2081,7 +2095,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     		}
     		
     	}
-    };
+    };*/
 
     private boolean processSettingsImpl () throws Exception
     {
