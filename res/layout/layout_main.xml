@@ -3,16 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/viewMain"
-	android:background="@drawable/onionrootonlygrey"
-    android:paddingTop="0sp">
+    android:paddingTop="0sp"
+    android:background="@drawable/tilebg"
+    >
     <!-- 
     <org.torproject.android.RandomColorCircleView  android:layout_width="fill_parent"
 	      android:layout_height="fill_parent"></org.torproject.android.RandomColorCircleView>
         -->
+        <!-- 
     	<RelativeLayout android:id="@+id/layoutHeaderMain"
 		android:layout_width="fill_parent"
 		android:layout_height="30dp"
-		android:background="#A0909090">
+		android:background="#A0343434">
                <ImageView android:id="@+id/radioModeImage"
  		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
@@ -22,7 +24,7 @@
 			android:layout_toRightOf="@+id/radioModeLabel"
 			android:layout_alignParentRight="true"
 			android:layout_alignParentTop="true"
-			android:src="@drawable/tor25"
+			android:src="@drawable/ic_stat_tor"
 			/>
 		<TextView android:id="@+id/radioModeText"
  		    android:layout_width="wrap_content"
@@ -36,10 +38,12 @@
             android:fontFamily="sans-serif-light"
             
              />
-	</RelativeLayout>
+	</RelativeLayout> -->
 		<LinearLayout android:gravity="center_vertical|center_horizontal"
 		     android:orientation="vertical" android:layout_width="fill_parent"
-		      android:layout_height="fill_parent">
+		      android:layout_height="fill_parent"
+		      
+		      >
     	
        <org.torproject.android.ImageProgressView
 		android:id="@+id/imgStatus"
@@ -53,16 +57,15 @@
 	<TextView android:id="@+id/lblStatus"
 		android:text="@string/press_to_start"
 		android:gravity="center_horizontal"
-		android:textStyle="bold"
-		android:layout_width="fill_parent"
-		android:layout_height="40dp"
-		android:layout_marginBottom="20dp"
+		android:textSize="20sp"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="40dp"
 		android:layout_marginLeft="60dp"
 		android:layout_marginRight="60dp"
 		android:textColor="#ffffff"
 		android:maxLines="2"
 		android:fontFamily="sans-serif-light"	
-		android:background="#dd333333"
 		 />
 	
 	
@@ -84,7 +87,6 @@
 			android:textSize="15sp"
 			android:text="@string/main_layout_download"
 			android:gravity="center_vertical"
-			android:textStyle="bold"
 			android:fontFamily="sans-serif-light" />
 	    <TextView
 			android:id="@+id/trafficLabelUp"
@@ -95,7 +97,6 @@
 			android:text="@string/main_layout_upload"
 			android:textSize="15sp"
 			android:gravity="center_vertical"
-			android:textStyle="bold"
 			android:fontFamily="sans-serif-light" />
 		
 		</RelativeLayout>
@@ -116,7 +117,6 @@
 			 android:layout_alignParentLeft="true"
 			android:textSize="15sp"
 			android:gravity="center_vertical"
-			android:textStyle="bold"
 			android:fontFamily="sans-serif-light"
 			 />
 		<TextView
@@ -127,7 +127,6 @@
 			 android:layout_alignParentRight="true"
 			android:textSize="15sp"
 			android:gravity="center_vertical"
-			android:textStyle="bold"
 			android:fontFamily="sans-serif-light"
 			 />
 		</RelativeLayout>

@@ -5,4 +5,10 @@
     <style name="DefaultTheme" parent="@android:style/Theme.Black.NoTitleBar">
         <item name="android:windowNoTitle">true</item>
     </style>
+    
+    <!-- the theme applied to the application or activity -->
+    <style name="CustomActionBarTheme"
+           parent="@style/Theme.AppCompat">
+        <item name="android:windowActionBarOverlay">true</item>
+    </style>
 </resources>

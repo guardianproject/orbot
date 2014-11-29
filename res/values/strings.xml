@@ -246,7 +246,7 @@
   <string name="set_locale_summary">Choose the locale and language for Orbot</string>
   <string name="wizard_locale_title">Choose Language</string>
   <string name="wizard_locale_msg">Leave default or switch the current language</string>
-  <string name="powered_by">powered by The Tor Project  </string>
+  <string name="powered_by">powered by Tor</string>
   <string name="btn_save_settings">Save Settings</string>
   <string name="no_internet_connection_tor">No internet connection; Tor is on standby...</string>
   <string name="bandwidth_">Bandwidth:</string>

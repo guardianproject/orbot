@@ -23,7 +23,7 @@
  <item android:id="@+id/menu_start"
         android:title="@string/menu_start"
          android:icon="@drawable/ic_action_start"
-          yourapp:showAsAction="ifRoom"
+          yourapp:showAsAction="never"
          />
 
  <item android:id="@+id/menu_settings"
@@ -55,14 +55,14 @@
  <item android:id="@+id/menu_about"
         android:title="@string/menu_about"
          android:icon="@drawable/ic_menu_about"
-                  yourapp:showAsAction="ifRoom"
+                  yourapp:showAsAction="never"
          
          />
  
   <item android:id="@+id/menu_wizard"
         android:title="@string/menu_wizard"
          android:icon="@drawable/ic_menu_goto"
-                  yourapp:showAsAction="ifRoom"
+                  yourapp:showAsAction="never"
          
          />
  <!-- 
@@ -77,42 +77,5 @@
                   yourapp:showAsAction="never"
          
          />
-  
-   <!-- 
-  <item android:id="@+id/menu_diag"
-        android:title="Test Mode"
-         android:icon="@drawable/ic_menu_check"
-                  yourapp:showAsAction="never"
-         
-         />
-          -->
  
 </menu>
-<!-- 
- MenuItem mItem = null;
-        
-        mItemOnOff = menu.add(0, 1, Menu.NONE, getString(R.string.menu_start));
-        mItemOnOff.setIcon(android.R.drawable.ic_media_play);
-        mItemOnOff.setAlphabeticShortcut('t');
-        mItemOnOff.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-        
-        mItem = menu.add(0, 4, Menu.NONE, getString(R.string.menu_settings));
-        mItem.setIcon(R.drawable.ic_menu_settings);
-        mItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-       
-        mItem = menu.add(0, 7, Menu.NONE, getString(R.string.menu_verify));
-        mItem.setIcon(R.drawable.ic_menu_check);
-        mItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-      
-        mItem =  menu.add(0,6, Menu.NONE, getString(R.string.menu_about));
-        mItem.setIcon(R.drawable.ic_menu_about);
-        mItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-        
-        mItem = menu.add(0, 3, Menu.NONE, getString(R.string.menu_wizard));
-        mItem.setIcon(R.drawable.ic_menu_goto);
-        mItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-       
-        mItem = menu.add(0, 8, Menu.NONE, getString(R.string.menu_exit));
-        mItem.setIcon(R.drawable.ic_menu_exit);
-        mItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-  -->
