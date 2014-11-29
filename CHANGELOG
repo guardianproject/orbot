@@ -1,5 +1,19 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+/** 14.1.4 / 29-Nov-2014 / b7fcbdc4e85071191cc95c3824e7b5a90d36d1e8 **/
+
+* Stop background service being killed
+	1e0f640 adding dummyactivity to stop task/broadcast from killing foreground service
+	ec9204a clean-up of code to make service more long-lived and stable
+	da4866c update polipo to latest head
+
+* Activity and theme updates
+	917cfa1 support SDK 16, add custom theme, make Orbot singleTop activity
+	91f4fa0 cleanup landscape layout
+	ad7d92f clean-up / remove un-used code
+	d5823e3 updates to layout to make it cleaner
+	2d6c26a show exit node info in log
+
 /** 14.1.3 / 24-Nov-2014 / c1f3e64b6b8a34c85a90fb2ee083431b6722ec60 **/
 
 * 87d5ac9 changes to improve longevity of background service/Tor process
