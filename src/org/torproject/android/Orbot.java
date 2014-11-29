@@ -277,82 +277,6 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
        
         mItemOnOff = menu.getItem(0);
         
-        /*
-        startSupportActionMode(new ActionMode.Callback() {
-            @Override
-            public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-                // Inflate our menu from a resource file
-             //   actionMode.getMenuInflater().inflate(R.menu.action_mode_main, menu);
-
-                // Return true so that the action mode is shown
-                return true;
-            }
-
-            @Override
-            public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
-                // As we do not need to modify the menu before displayed, we return false.
-                return false;
-            }
-
-            @Override
-            public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-                // Similar to menu handling in Activity.onOptionsItemSelected()
-                switch (menuItem.getItemId()) {
-                    case R.id.menu_start:
-                    	 try
-                         {
-                                 
-                                 if (mService == null)
-                                 {
-                                 
-                                 }
-                                 else if (mService.getStatus() == TorServiceConstants.STATUS_OFF)
-                                 {
-                                     if (mItemOnOff != null)
-                                             mItemOnOff.setTitle(R.string.menu_stop);
-                                         startTor();
-                                         
-                                 }
-                                 else
-                                 {
-                                     if (mItemOnOff != null)
-                                             mItemOnOff.setTitle(R.string.menu_start);
-                                         stopTor();
-                                         
-                                 }
-                                 
-                         }
-                         catch (RemoteException re)
-                         {
-                                 Log.w(TAG, "Unable to start/top Tor from menu UI", re);
-                         }
-                        return true;
-                    case R.id.menu_settings:
-                    	 showSettings();
-                    	 return true;
-                    case R.id.menu_wizard:
-                          startWizard();
-                          return true;
-                    case R.id.menu_verify:
-                          doTorCheck();
-                          return true;
-                    case R.id.menu_exit:
-                          doExit();
-                          return true;        
-                    case R.id.menu_about:
-                          showAbout();
-                          return true;
-                }
-
-                return false;
-            }
-
-            @Override
-            public void onDestroyActionMode(ActionMode actionMode) {
-                // Allows you to be notified when the action mode is dismissed
-            }
-        });*/
-        
         return true;
     }
     
@@ -495,7 +419,6 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                         //terminology but also making sure there are clear distinctions in control
                         stopTor();
                         stopService ();
-                        //onDestroy();
                         
                         
                 } catch (RemoteException e) {
@@ -1048,12 +971,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 		torStatus = TorServiceConstants.STATUS_CONNECTING;
 				
 		mTxtOrbotLog.setText("");
-		
 
-        // this is a bit of a strange/old/borrowed code/design i used to change the service state
-        // not sure it really makes sense when what we want to say is just "startTor"
-//        mService.setProfile(TorServiceConstants.STATUS_ON); //this means turn on
-            
         //here we update the UI which is a bit sloppy and mixed up code wise
         //might be best to just call updateStatus() instead of directly manipulating UI in this method - yep makes sense
         imgStatus.setImageResource(R.drawable.torstarting);
@@ -1075,7 +993,6 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
     	startService (TorServiceConstants.CMD_STOP);
 		torStatus = TorServiceConstants.STATUS_OFF;
 
-    	//	mService.setProfile(TorServiceConstants.STATUS_OFF);
     		Message msg = mHandler.obtainMessage(TorServiceConstants.DISABLE_TOR_MSG);
     		mHandler.sendMessage(msg);
     		
@@ -1263,8 +1180,6 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	{
 			startService (TorServiceConstants.CMD_NEWNYM);
 		
-			//mService.newIdentity(); //request a new identity
-			//TODO trigger newnym
 		
 			Toast.makeText(this, R.string.newnym, Toast.LENGTH_SHORT).show();
 			
