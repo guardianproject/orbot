@@ -1737,6 +1737,17 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 							mNode.country = jsonRelays.getJSONObject(0).getString("country_name");
 							mNode.organization = jsonRelays.getJSONObject(0).getString("as_name");
 							
+							StringBuffer sbInfo = new StringBuffer();
+							sbInfo.append(mNode.ipAddress);
+				 			
+			 				if (mNode.country != null)
+			 					sbInfo.append(' ').append(mNode.country);
+			 			
+			 				if (mNode.organization != null)
+			 					sbInfo.append(" (").append(mNode.organization).append(')');
+			 			
+			 				logNotice(sbInfo.toString());
+							
 						}
 						
 						reader.close();
