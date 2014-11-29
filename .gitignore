@@ -11,3 +11,5 @@ gen
 native
 local.properties
 builds
+/patches/*
+/res/raw/*mp3
