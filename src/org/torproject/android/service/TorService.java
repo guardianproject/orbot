@@ -2047,7 +2047,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
      *  Another way to do this would be to use the Observer pattern by defining the 
      *  BroadcastReciever in the Android manifest.
      */
-    /**
+    
     private final BroadcastReceiver mNetworkStateReceiver = new BroadcastReceiver() {
     	@Override
     	public void onReceive(Context context, Intent intent) {
@@ -2106,7 +2106,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     		}
     		
     	}
-    };*/
+    };
 
     private boolean processSettingsImpl () throws Exception
     {
