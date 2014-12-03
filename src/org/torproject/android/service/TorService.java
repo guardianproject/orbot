@@ -444,7 +444,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		Log.d(TAG, msg);
 		sendCallbackLogMessage(msg);
     		
-       // unregisterReceiver(mNetworkStateReceiver);        
+		unregisterReceiver(mNetworkStateReceiver);        
         
         clearNotifications ();
 
@@ -624,9 +624,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 			if (mNotificationManager == null)
 			{
 	    	   
-	 		//   IntentFilter mNetworkStateFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-	 		 // mNetworkStateFilter.addFlags(Intent.FLAG_RECEIVER_FOREGROUND);
-	 		  // registerReceiver(mNetworkStateReceiver , mNetworkStateFilter);
+			   IntentFilter mNetworkStateFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);			   
+	 		   registerReceiver(mNetworkStateReceiver , mNetworkStateFilter);
 	 	
 	 		   mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 	 		
