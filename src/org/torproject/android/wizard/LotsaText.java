@@ -1,6 +1,6 @@
 package org.torproject.android.wizard;
 
-import org.torproject.android.R;
+import org.sandroproxy.ony.R;
 import org.torproject.android.TorConstants;
 import org.torproject.android.service.TorServiceUtils;
 

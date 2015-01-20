@@ -16,14 +16,14 @@ EXTERNAL_ROOT := $(shell pwd)
 # user building this will have to manually set NDK_PROCESSOR or NDK_TOOLCHAIN.
 CPU := $(shell uname -m)
 ifeq ($(CPU),x86_64)
- NDK_PROCESSOR=x86_64
+ NDK_PROCESSOR=x86
 else
  NDK_PROCESSOR=x86
 endif
 
 # Android NDK setup
 NDK_BASE ?= /opt/android-ndk
-NDK_PLATFORM_LEVEL ?= 9
+NDK_PLATFORM_LEVEL ?= 19
 NDK_ABI ?= arm
 NDK_TOOLCHAIN_VERSION=4.8
 NDK_SYSROOT=$(NDK_BASE)/platforms/android-$(NDK_PLATFORM_LEVEL)/arch-$(NDK_ABI)

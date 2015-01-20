@@ -36,7 +36,7 @@
      android:id="@+id/menu_verify_list"
         android:title="@string/menu_verify"
          android:icon="@drawable/ic_action_browse"
-                  yourapp:showAsAction="always"         
+                  yourapp:showAsAction="always"
         >
         <menu>
         <item android:id="@+id/menu_verify"
@@ -65,11 +65,9 @@
                   yourapp:showAsAction="never"
          
          />
- <!-- 
   <item android:id="@+id/menu_vpn"
       android:title="@string/menu_vpn"
       yourapp:showAsAction="never"/>
-   -->
   
   <item android:id="@+id/menu_exit"
         android:title="@string/menu_exit"

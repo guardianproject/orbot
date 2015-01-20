@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="org.torproject.android" 
+      package="org.sandroproxy.ony" 
       android:versionName="14.1.4-noPIE" 
       android:versionCode="132"
-        android:installLocation="auto"      
+      android:installLocation="auto"
       >
- 	    
+         
     <uses-sdk android:minSdkVersion="9" android:maxSdkVersion="20" android:targetSdkVersion="19"/>
- <permission android:name="org.torproject.android.MANAGE_TOR" android:label="@string/permission_manage_tor_label" android:description="@string/permission_manage_tor_description" android:protectionLevel="signature"></permission>
+    <permission android:name="org.torproject.android.MANAGE_TOR" android:label="@string/permission_manage_tor_label" android:description="@string/permission_manage_tor_description" android:protectionLevel="signature"></permission>
     
  <uses-permission android:name="android.permission.INTERNET" />
- 	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
- 	<uses-permission android:name="android.permission.ACCESS_SUPERUSER"/>
-	<uses-permission android:name="org.torproject.android.MANAGE_TOR"/>
+     <uses-permission android:name="android.permission.ACCESS_SUPERUSER"/>
+    <uses-permission android:name="org.torproject.android.MANAGE_TOR"/>
 
-    <application android:name=".OrbotApp" android:icon="@drawable/ic_launcher"
+    <application android:name="org.sandroproxy.ony.OrbotApp" android:icon="@drawable/ic_launcher"
      android:label="@string/app_name" 
      android:description="@string/app_description"
      android:configChanges="locale|orientation|screenSize"
@@ -27,7 +27,7 @@
       android:largeHeap="false"
      >
       
-        <activity android:name=".Orbot" 
+        <activity android:name="org.torproject.android.Orbot" 
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true"
             android:launchMode="singleTop"
@@ -52,11 +52,11 @@
         
          <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
-            	<action android:name="org.torproject.android.REQUEST_HS_PORT" />
+                <action android:name="org.torproject.android.REQUEST_HS_PORT" />
             </intent-filter>
              <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
-            	<action android:name="org.torproject.android.START_TOR" />
+                <action android:name="org.torproject.android.START_TOR" />
             </intent-filter>
             
              <!-- 
@@ -76,56 +76,56 @@
         <!-- 
         <activity android:name=".OrbotDiagnosticsActivity" android:label="OrbotDiag"/>
          -->
-      	<activity
-			android:name=".service.DummyActivity"
-			android:theme="@android:style/Theme.NoDisplay"
-			android:enabled="true"
-			android:allowTaskReparenting="true"
-			android:noHistory="true"
-			android:excludeFromRecents="true"
-			android:alwaysRetainTaskState="false"
-			android:stateNotNeeded="true"
-			android:clearTaskOnLaunch="true"
-			android:finishOnTaskLaunch="true"
-			/> 
-			      	
-			      	
-      	<activity android:name=".wizard.LotsaText" android:exported="false"/>
-      	<activity android:name=".wizard.Permissions" android:exported="false"/>
-      	<activity android:name=".wizard.TipsAndTricks" android:exported="false"/>
-      	<activity android:name=".wizard.ConfigureTransProxy" android:exported="false"/>
-      	<activity android:name=".wizard.ChooseLocaleWizardActivity" android:exported="false"/>
-      	
-      	<activity android:name=".settings.SettingsPreferences"  android:label="@string/app_name"/>
-        <activity android:name=".settings.AppManager"  android:label="@string/app_name"/>       
+          <activity
+            android:name="org.torproject.android.service.DummyActivity"
+            android:theme="@android:style/Theme.NoDisplay"
+            android:enabled="true"
+            android:allowTaskReparenting="true"
+            android:noHistory="true"
+            android:excludeFromRecents="true"
+            android:alwaysRetainTaskState="false"
+            android:stateNotNeeded="true"
+            android:clearTaskOnLaunch="true"
+            android:finishOnTaskLaunch="true"
+            /> 
+                      
+                      
+          <activity android:name="org.torproject.android.wizard.LotsaText" android:exported="false"/>
+          <activity android:name="org.torproject.android.wizard.Permissions" android:exported="false"/>
+          <activity android:name="org.torproject.android.wizard.TipsAndTricks" android:exported="false"/>
+          <activity android:name="org.torproject.android.wizard.ConfigureTransProxy" android:exported="false"/>
+          <activity android:name="org.torproject.android.wizard.ChooseLocaleWizardActivity" android:exported="false"/>
+          
+          <activity android:name="org.torproject.android.settings.SettingsPreferences"  android:label="@string/app_name"/>
+          <activity android:name="org.torproject.android.settings.AppManager"  android:label="@string/app_name"/>
       
-    	<service android:enabled="true"
-    		android:name=".service.TorService" 
-		android:permission="org.torproject.android.MANAGE_TOR"
-		android:stopWithTask="false"
-    		>
-	            <intent-filter>
-	                <action android:name="org.torproject.android.service.ITorService" />
-	              	<action android:name="org.torproject.android.service.TOR_SERVICE" />
+        <service android:enabled="true"
+            android:name="org.torproject.android.service.TorService" 
+            android:permission="org.torproject.android.MANAGE_TOR"
+            android:stopWithTask="false"
+            >
+                <intent-filter>
+                    <action android:name="org.torproject.android.service.ITorService" />
+                      <action android:name="org.torproject.android.service.TOR_SERVICE" />
             </intent-filter>
-    	</service>
-    	
-    	<receiver android:name=".OnBootReceiver">
-			<intent-filter>
-				<action	android:name="android.intent.action.BOOT_COMPLETED" />
-				<action android:name="android.intent.action.QUICKBOOT_POWERON" />
-				<action android:name="android.intent.action.MEDIA_MOUNTED"/>
-			</intent-filter>
-		</receiver>
-		
-    	
+        </service>
+        
+        <receiver android:name="org.torproject.android.OnBootReceiver">
+            <intent-filter>
+                <action    android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="android.intent.action.MEDIA_MOUNTED"/>
+            </intent-filter>
+        </receiver>
+        
+        
         <service android:name="org.torproject.android.vpn.OrbotVpnService"
                 android:permission="android.permission.BIND_VPN_SERVICE">
             <intent-filter>
                 <action android:name="android.net.VpnService"/>
             </intent-filter>
         </service>
-    	
+        
     </application>
     
 

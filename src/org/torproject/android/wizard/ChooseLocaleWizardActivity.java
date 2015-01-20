@@ -2,7 +2,7 @@ package org.torproject.android.wizard;
 
 import java.util.Locale;
 
-import org.torproject.android.R;
+import org.sandroproxy.ony.R;
 import org.torproject.android.TorConstants;
 import org.torproject.android.service.TorServiceUtils;
 
@@ -24,66 +24,66 @@ import android.widget.Toast;
 
 public class ChooseLocaleWizardActivity extends Activity implements TorConstants {
 
-	private int flag = 0;
-	private ListView listLocales;
-	
-	protected void onCreate(Bundle savedInstanceState)
-	{
+    private int flag = 0;
+    private ListView listLocales;
+    
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
        
-	}
-	
-	@Override
-	protected void onStart() {
-		
-		super.onStart();
-		setContentView(R.layout.layout_wizard_locale);
-		
-		
-		listLocales = (ListView)findViewById(R.id.wizard_locale_list);
-	    Button next = ((Button)findViewById(R.id.btnWizard2));
-	   // next.setEnabled(false);
-	    
-	    String[] strLangs = getResources().getStringArray(R.array.languages);
-	    strLangs[0] = Locale.getDefault().getDisplayName();
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1,  strLangs);	        
+    }
+    
+    @Override
+    protected void onStart() {
+        
+        super.onStart();
+        setContentView(R.layout.layout_wizard_locale);
+        
+        
+        listLocales = (ListView)findViewById(R.id.wizard_locale_list);
+        Button next = ((Button)findViewById(R.id.btnWizard2));
+       // next.setEnabled(false);
+        
+        String[] strLangs = getResources().getStringArray(R.array.languages);
+        strLangs[0] = Locale.getDefault().getDisplayName();
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1,  strLangs);            
         listLocales.setAdapter(adapter);
-	    
-	    listLocales.setSelection(0);
-	    		    
-	    
-	    listLocales.setOnItemClickListener(new OnItemClickListener() {
-			
+        
+        listLocales.setSelection(0);
+                    
+        
+        listLocales.setOnItemClickListener(new OnItemClickListener() {
+            
 
-			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1,
-					int arg2, long arg3) {
-				
-				setLocalePref(arg2);
-				finish();
-				startActivity(new Intent(ChooseLocaleWizardActivity.this, LotsaText.class));
-				
-			}
-		});
-	        
-	    next.setOnClickListener(new View.OnClickListener() {
-			
-			public void onClick(View v) {
-				setLocalePref(0);
-				finish();
-				startActivity(new Intent(ChooseLocaleWizardActivity.this, LotsaText.class));
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1,
+                    int arg2, long arg3) {
+                
+                setLocalePref(arg2);
+                finish();
+                startActivity(new Intent(ChooseLocaleWizardActivity.this, LotsaText.class));
+                
+            }
+        });
+            
+        next.setOnClickListener(new View.OnClickListener() {
+            
+            public void onClick(View v) {
+                setLocalePref(0);
+                finish();
+                startActivity(new Intent(ChooseLocaleWizardActivity.this, LotsaText.class));
 
-			}
-		});
-		    
+            }
+        });
+            
 
-	       
-	}
-	
-	private void setLocalePref(int selId)
-	{
+           
+    }
+    
+    private void setLocalePref(int selId)
+    {
 
-		SharedPreferences prefs =  TorServiceUtils.getSharedPrefs(getApplicationContext());
+        SharedPreferences prefs =  TorServiceUtils.getSharedPrefs(getApplicationContext());
 
         Configuration config = getResources().getConfiguration();
 
@@ -91,18 +91,18 @@ public class ChooseLocaleWizardActivity extends Activity implements TorConstants
         
         String lang = localeVals[selId];
 
-    	Editor pEdit = prefs.edit();
-		pEdit.putString(PREF_DEFAULT_LOCALE, lang);
-		pEdit.commit();
-		Locale locale = null;
-		
+        Editor pEdit = prefs.edit();
+        pEdit.putString(PREF_DEFAULT_LOCALE, lang);
+        pEdit.commit();
+        Locale locale = null;
+        
         if (lang.equals("xx"))
         {
-        	locale = Locale.getDefault();
+            locale = Locale.getDefault();
         
         }
         else
-        	locale = new Locale(lang);
+            locale = new Locale(lang);
         
         Locale.setDefault(locale);
         config.locale = locale;
@@ -110,27 +110,27 @@ public class ChooseLocaleWizardActivity extends Activity implements TorConstants
         
         
     
-		
-	}
+        
+    }
 
-	@Override
-	protected void onRestoreInstanceState(Bundle savedInstanceState) {
-		super.onRestoreInstanceState(savedInstanceState);
-	}
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+    }
 
-	@Override
-	protected void onSaveInstanceState(Bundle outState) {
-		super.onSaveInstanceState(outState);
-		
-	}
-	
-	//Code to override the back button!
-	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event)  {
-	    if(keyCode == KeyEvent.KEYCODE_BACK){
-	    	Toast.makeText(getApplicationContext(), R.string.wizard_exit_at_first_screen_toast, Toast.LENGTH_SHORT).show();
-	    	return true;
-	    }
-	    return false;
-	}
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        
+    }
+    
+    //Code to override the back button!
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)  {
+        if(keyCode == KeyEvent.KEYCODE_BACK){
+            Toast.makeText(getApplicationContext(), R.string.wizard_exit_at_first_screen_toast, Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        return false;
+    }
 }

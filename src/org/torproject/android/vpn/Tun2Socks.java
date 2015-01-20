@@ -25,6 +25,7 @@ import java.net.Socket;
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.ParcelFileDescriptor;
+import android.util.Log;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR1)
 public class Tun2Socks
@@ -35,6 +36,8 @@ public class Tun2Socks
         boolean doVpnProtect(DatagramSocket socket);
     };
 
+    private static final String TAG = Tun2Socks.class.getSimpleName();
+    private static final boolean LOGD = true;
 
     private static Thread mThread;
     private static ParcelFileDescriptor mVpnInterfaceFileDescriptor;
@@ -61,11 +64,11 @@ public class Tun2Socks
             boolean udpgwTransparentDNS)
     {
         
-    	if (!mLibLoaded)
-    	{
-    		System.loadLibrary("tun2socks");    		
-    		mLibLoaded = true;
-    	}
+        if (!mLibLoaded)
+        {
+            System.loadLibrary("tun2socks");
+            mLibLoaded = true;
+        }
 
         mVpnInterfaceFileDescriptor = vpnInterfaceFileDescriptor;
         mVpnInterfaceMTU = vpnInterfaceMTU;
@@ -76,16 +79,14 @@ public class Tun2Socks
         mUdpgwTransparentDNS = udpgwTransparentDNS;
 
         if (mVpnInterfaceFileDescriptor != null)
-	        runTun2Socks(
-	                mVpnInterfaceFileDescriptor.detachFd(),
-	                mVpnInterfaceMTU,
-	                mVpnIpAddress,
-	                mVpnNetMask,
-	                mSocksServerAddress,
-	                mUdpgwServerAddress,
-	                mUdpgwTransparentDNS ? 1 : 0);
-    	
-    
+            runTun2Socks(
+                    mVpnInterfaceFileDescriptor.detachFd(),
+                    mVpnInterfaceMTU,
+                    mVpnIpAddress,
+                    mVpnNetMask,
+                    mSocksServerAddress,
+                    mUdpgwServerAddress,
+                    mUdpgwTransparentDNS ? 1 : 0);
     }
     
     public static void Stop()
@@ -94,7 +95,23 @@ public class Tun2Socks
         terminateTun2Socks();
     
     }
-        
+
+    public static void logTun2Socks(
+            String level,
+            String channel,
+            String msg)
+    {
+        String logMsg = level + "(" + channel + "): " + msg;
+        if (0 == level.compareTo("ERROR"))
+        {
+            Log.e(TAG, logMsg);
+        }
+        else
+        {
+            if (LOGD) Log.d(TAG, logMsg);
+        }
+    }
+
     private native static int runTun2Socks(
             int vpnInterfaceFileDescriptor,
             int vpnInterfaceMTU,
