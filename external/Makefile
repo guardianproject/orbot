@@ -52,7 +52,7 @@ STRIP := $(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-strip \
 	--strip-unneeded -R .note -R .comment
 
 # PIEFLAGS for SDK 16/Android L must be set to -fPIE -pie
-PIEFLAGS? = 
+PIEFLAGS = -fPIE -pie
 CFLAGS = -DANDROID $(TARGET_CFLAGS) $(PIEFLAGS)
 LDFLAGS = -llog $(TARGET_LDFLAGS) $(PIEFLAGS)
 
