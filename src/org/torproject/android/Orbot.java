@@ -4,6 +4,7 @@
 package org.torproject.android;
 
 import static org.torproject.android.TorConstants.TAG;
+import info.guardianproject.browser.Browser;
 
 import java.net.URLDecoder;
 import java.util.Locale;
@@ -12,9 +13,7 @@ import org.torproject.android.service.TorService;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.TorServiceUtils;
 import org.torproject.android.settings.SettingsPreferences;
-import org.torproject.android.vpn.OrbotVpnService;
 import org.torproject.android.wizard.ChooseLocaleWizardActivity;
-import org.torproject.android.wizard.TipsAndTricks;
 
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
@@ -22,7 +21,6 @@ import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -41,9 +39,6 @@ import android.os.Message;
 import android.os.RemoteException;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.ActionBarActivity;
-import android.text.ClipboardManager;
-import android.text.Layout;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
@@ -57,7 +52,6 @@ import android.view.View.OnLongClickListener;
 import android.view.View.OnTouchListener;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.Button;
-import android.widget.SlidingDrawer;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -65,16 +59,16 @@ import android.widget.Toast;
 public class Orbot extends ActionBarActivity implements TorConstants, OnLongClickListener, OnTouchListener, OnSharedPreferenceChangeListener
 {
 	/* Useful UI bits */
-	private TextView lblStatus = null; //the main text display widget
+	//private TextView lblStatus = null; //the main text display widget
 	private ImageProgressView imgStatus = null; //the main touchable image for activating Orbot
 
 	private MenuItem mItemOnOff = null;
     private TextView downloadText = null;
     private TextView uploadText = null;
-    private TextView mTxtOrbotLog = null;
-    private SlidingDrawer mDrawer = null;
+  //  private TextView mTxtOrbotLog = null;
+ //   private SlidingDrawer mDrawer = null;
     private boolean mDrawerOpen = false;
-    private View mViewMain = null;
+  //  private View mViewMain = null;
 
 	/* Some tracking bits */
 	private int torStatus = TorServiceConstants.STATUS_OFF; //latest status reported from the tor service
@@ -96,7 +90,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
         
     	doLayout();
 
-    	appConflictChecker ();
+    //	appConflictChecker ();
     	
 
   	  // Register to receive messages.
@@ -181,19 +175,19 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	{
     	setContentView(R.layout.layout_main);
 		
-    	mViewMain = findViewById(R.id.viewMain);
-    	lblStatus = (TextView)findViewById(R.id.lblStatus);
-		lblStatus.setOnLongClickListener(this);
+    //	lblStatus = (TextView)findViewById(R.id.lblStatus);
+//		lblStatus.setOnLongClickListener(this);
     	imgStatus = (ImageProgressView)findViewById(R.id.imgStatus);
     	imgStatus.setOnLongClickListener(this);
     	imgStatus.setOnTouchListener(this);
     	
-    	lblStatus.setText("Initializing the application...");
+  //  	lblStatus.setText("Initializing the application...");
     	
     	downloadText = (TextView)findViewById(R.id.trafficDown);
         uploadText = (TextView)findViewById(R.id.trafficUp);
-        mTxtOrbotLog = (TextView)findViewById(R.id.orbotLog);
+      //  mTxtOrbotLog = (TextView)findViewById(R.id.orbotLog);
         
+        /*
         mDrawer = ((SlidingDrawer)findViewById(R.id.SlidingDrawer));
     	Button slideButton = (Button)findViewById(R.id.slideButton);
     	if (slideButton != null)
@@ -212,8 +206,9 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 				}
 	    		
 	    	});
-    	}
+    	}*/
     	
+        /*
     	ScrollingMovementMethod smm = new ScrollingMovementMethod();
     	
         mTxtOrbotLog.setMovementMethod(smm);
@@ -227,13 +222,40 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	                Toast.makeText(Orbot.this, "LOG COPIED TO CLIPBOARD", Toast.LENGTH_SHORT).show();
 	            return true;
 			}
-        });
+        });*/
         
 		downloadText.setText(formatCount(0) + " / " + formatTotal(0));
 		uploadText.setText(formatCount(0) + " / " + formatTotal(0));
 	
         // Gesture detection
 		mGestureDetector = new GestureDetector(this, new MyGestureDetector());
+		
+		Button btnBrowser = (Button)findViewById(R.id.btnBrowser);
+		btnBrowser.setOnClickListener(new View.OnClickListener ()
+		{
+
+			@Override
+			public void onClick(View v) {
+				doTorCheck();
+				
+			}
+
+			
+		});
+		
+		Button btnVPN = (Button)findViewById(R.id.btnVPN);
+		btnVPN.setOnClickListener(new View.OnClickListener ()
+		{
+
+			@Override
+			public void onClick(View v) {
+
+				startVpnService();
+				
+			}
+
+			
+		});
 		
 
     }
@@ -247,8 +269,10 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 
 	}
    	
+	/*
     private void appendLogTextAndScroll(String text)
     {
+    	
         if(mTxtOrbotLog != null && text != null && text.length() > 0){
         	
         	if (mTxtOrbotLog.getText().length() > MAX_LOG_LENGTH)
@@ -263,7 +287,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                 	mTxtOrbotLog.scrollBy(0, scrollDelta);
             }
         }
-    }
+    }*/
     
    /*
     * Create the UI Options Menu (non-Javadoc)
@@ -273,14 +297,14 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main, menu);
+        inflater.inflate(R.menu.orbot_main, menu);
        
         mItemOnOff = menu.getItem(0);
         
         return true;
     }
     
-    
+    /**
     private void appConflictChecker ()
     {
     	SharedPreferences sprefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
@@ -300,13 +324,13 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
     			if (showAppConflict)
     				showAlert(getString(R.string.app_conflict),msg,true);
 	    	
-	    		appendLogTextAndScroll(msg);
+	    	//	appendLogTextAndScroll(msg);
     		}
     	}
     	
     	sprefs.edit().putBoolean("pref_show_conflict", false).commit();
 	
-    }
+    }*/
     
     
     
@@ -394,12 +418,10 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                         
                         
                 }
-                /**
-                 * remove for now... VPN is not ready yet
                 else if (item.getItemId() == R.id.menu_vpn)
                 {
-                	this.startVpnService();
-                }*/
+                		startVpnService();
+                }
                 
         return true;
         }
@@ -451,29 +473,8 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	private void doTorCheck ()
 	{
 		
-		DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-			
-		    public void onClick(DialogInterface dialog, int which) {
-		        switch (which){
-		        case DialogInterface.BUTTON_POSITIVE:
-		            
-		    		openBrowser(URL_TOR_CHECK);
-
-					
-		        	
-		            break;
-
-		        case DialogInterface.BUTTON_NEGATIVE:
-		        
-		        	//do nothing
-		            break;
-		        }
-		    }
-		};
-
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage(R.string.tor_check).setPositiveButton(R.string.btn_okay, dialogClickListener)
-		    .setNegativeButton(R.string.btn_cancel, dialogClickListener).show();
+		openBrowser(URL_TOR_CHECK);
+		
 
 	}
 	
@@ -666,12 +667,19 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	 */
 	private void openBrowser(final String browserLaunchUrl)
 	{
+		//startIntent("info.guardianproject.browser.Browser",Intent.ACTION_VIEW,Uri.parse(browserLaunchUrl));						
+
+		Intent intentBrowser = new Intent(this, Browser.class);
+		intentBrowser.setAction(Intent.ACTION_VIEW);
+		intentBrowser.setData(Uri.parse(browserLaunchUrl));
+		startActivity(intentBrowser);
+		
+		/**
 		boolean isOrwebInstalled = appInstalledOrNot("info.guardianproject.browser");
 		boolean isTransProxy =  mPrefs.getBoolean("pref_transparent", false);
 		
 		if (isOrwebInstalled)
 		{
-			startIntent("info.guardianproject.browser",Intent.ACTION_VIEW,Uri.parse(browserLaunchUrl));						
 		}
 		else if (isTransProxy)
 		{
@@ -685,7 +693,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
               .setIcon(R.drawable.onion32)
 		      .setTitle(R.string.install_apps_)
 		      .setMessage(R.string.it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_)
-		      .setPositiveButton(android.R.string.ok, new OnClickListener ()
+		      .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener ()
 		      {
 
 				@Override
@@ -698,7 +706,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 				}
 		    	  
 		      })
-		      .setNegativeButton(android.R.string.no, new OnClickListener ()
+		      .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener ()
 		      {
 
 				@Override
@@ -712,7 +720,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 		      })
 		      .show();
 			  
-		}
+		}*/
 		
 	}
 	
@@ -894,7 +902,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                             imgStatus.setImageResource(R.drawable.toron);
                     		
                             String lblMsg = getString(R.string.status_activated);                                     
-                            lblStatus.setText(lblMsg);
+                            //lblStatus.setText(lblMsg);
 
                             if (mItemOnOff != null)
                                     mItemOnOff.setTitle(R.string.menu_stop);
@@ -902,7 +910,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                         
                             if (torServiceMsg != null && torServiceMsg.length() > 0)
                             {
-                            	appendLogTextAndScroll(torServiceMsg);
+                            //	appendLogTextAndScroll(torServiceMsg);
                             }
                             
                             boolean showFirstTime = mPrefs.getBoolean("connect_first_time",true);
@@ -936,19 +944,20 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                         if (mItemOnOff != null)
                                 mItemOnOff.setTitle(R.string.menu_stop);
                 	
-                    	
+                    	/**
                         if (lblStatus != null && torServiceMsg != null)
                         	if (torServiceMsg.indexOf('%')!=-1)
                         		lblStatus.setText(torServiceMsg);
+                        		**/
                         
-                        appendLogTextAndScroll(torServiceMsg);
+                        //appendLogTextAndScroll(torServiceMsg);
                         
                                     
                     }
                     else if (torStatus == TorServiceConstants.STATUS_OFF)
                     {
                         imgStatus.setImageResource(R.drawable.toroff);
-                        lblStatus.setText(getString(R.string.status_disabled) + "\n" + getString(R.string.press_to_start));
+                        //lblStatus.setText(getString(R.string.status_disabled) + "\n" + getString(R.string.press_to_start));
                         
                         if (mItemOnOff != null)
                                 mItemOnOff.setTitle(R.string.menu_start);
@@ -970,12 +979,12 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 		startService (TorServiceConstants.CMD_START);
 		torStatus = TorServiceConstants.STATUS_CONNECTING;
 				
-		mTxtOrbotLog.setText("");
+//		mTxtOrbotLog.setText("");
 
         //here we update the UI which is a bit sloppy and mixed up code wise
         //might be best to just call updateStatus() instead of directly manipulating UI in this method - yep makes sense
         imgStatus.setImageResource(R.drawable.torstarting);
-        lblStatus.setText(getString(R.string.status_starting_up));
+    //    lblStatus.setText(getString(R.string.status_starting_up));
         
         //we send a message here to the progressDialog i believe, but we can clarify that shortly
         Message msg = mHandler.obtainMessage(TorServiceConstants.ENABLE_TOR_MSG);

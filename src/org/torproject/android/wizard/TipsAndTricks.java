@@ -157,7 +157,7 @@ public class TipsAndTricks extends Activity implements TorConstants {
 			
 			public void onClick(View v) {
 				finish();
-				startActivityForResult(new Intent(TipsAndTricks.this, Permissions.class), 1);
+				startActivityForResult(new Intent(TipsAndTricks.this, LotsaText.class), 1);
 			}
 		});
     	
@@ -184,7 +184,6 @@ public class TipsAndTricks extends Activity implements TorConstants {
         Button btn1 = ((Button)findViewById(R.id.btnWizard1));
         Button btn2 = ((Button)findViewById(R.id.btnWizard2));
         
-        
         btn2.setText(getString(R.string.btn_finish));
     	btn1.setVisibility(Button.VISIBLE);
     	
@@ -192,7 +191,7 @@ public class TipsAndTricks extends Activity implements TorConstants {
 			
 			public void onClick(View v) {
 				finish();
-				startActivity(new Intent(TipsAndTricks.this, Permissions.class));
+				startActivity(new Intent(TipsAndTricks.this, LotsaText.class));
 			}
 		});
     	
@@ -209,7 +208,7 @@ public class TipsAndTricks extends Activity implements TorConstants {
 	public boolean onKeyDown(int keyCode, KeyEvent event)  {
 	    if(keyCode == KeyEvent.KEYCODE_BACK){
 	    	finish();
-	    	startActivity(new Intent(getBaseContext(), Permissions.class));
+	    	startActivity(new Intent(getBaseContext(), LotsaText.class));
 	    	return true;
 	    }
 	    return false;

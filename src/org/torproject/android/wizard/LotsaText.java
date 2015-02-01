@@ -117,7 +117,7 @@ public class LotsaText extends Activity implements TorConstants{
 			
 			public void onClick(View v) {
 				finish();
-				startActivity(new Intent(LotsaText.this, Permissions.class));
+				startActivity(new Intent(LotsaText.this, TipsAndTricks.class));
 			}
 		});
 		

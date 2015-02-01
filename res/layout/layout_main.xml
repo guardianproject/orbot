@@ -1,77 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/viewMain"
-    android:paddingTop="0sp"
-    android:background="@drawable/tilebg"
-    >
+
+<LinearLayout android:gravity="center_vertical|center_horizontal"
+     xmlns:android="http://schemas.android.com/apk/res/android"
+     android:orientation="vertical" android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+    <LinearLayout android:gravity="center_vertical|center_horizontal"
+     android:orientation="vertical" android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="#686868"
+      >
+    		
     <!-- 
-    <org.torproject.android.RandomColorCircleView  android:layout_width="fill_parent"
-	      android:layout_height="fill_parent"></org.torproject.android.RandomColorCircleView>
-        -->
-        <!-- 
-    	<RelativeLayout android:id="@+id/layoutHeaderMain"
-		android:layout_width="fill_parent"
-		android:layout_height="30dp"
-		android:background="#A0343434">
-               <ImageView android:id="@+id/radioModeImage"
- 		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-			android:layout_marginTop="3dp"
-			android:layout_marginRight="3dp"
-			android:gravity="right"
-			android:layout_toRightOf="@+id/radioModeLabel"
-			android:layout_alignParentRight="true"
-			android:layout_alignParentTop="true"
-			android:src="@drawable/ic_stat_tor"
-			/>
-		<TextView android:id="@+id/radioModeText"
- 		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"           
-            android:text="@string/powered_by"
-			android:layout_marginTop="8dp"
-			android:layout_marginRight="0px"
-			android:gravity="right"
-			android:layout_toLeftOf="@+id/radioModeImage"
-            android:textColor="#cccccc"
-            android:fontFamily="sans-serif-light"
-            
-             />
-	</RelativeLayout> -->
-		<LinearLayout android:gravity="center_vertical|center_horizontal"
-		     android:orientation="vertical" android:layout_width="fill_parent"
-		      android:layout_height="fill_parent"
-		      
-		      >
-    	
-       <org.torproject.android.ImageProgressView
-		android:id="@+id/imgStatus"
-		android:layout_width="fill_parent"
-		android:layout_height="0dp"
-		android:layout_marginTop="40dp"
-		android:layout_weight="1"
-		android:src="@drawable/toroff"
-		android:layout_gravity="center_horizontal" />
-		
 	<TextView android:id="@+id/lblStatus"
-		android:text="@string/press_to_start"
+		android:text="status status status"
 		android:gravity="center_horizontal"
 		android:textSize="20sp"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_marginBottom="40dp"
-		android:layout_marginLeft="60dp"
-		android:layout_marginRight="60dp"
+		android:layout_marginBottom="10dp"
+		android:layout_marginTop="10dp"
+		android:layout_marginLeft="40dp"
+		android:layout_marginRight="40dp"
 		android:textColor="#ffffff"
-		android:maxLines="2"
+		android:maxLines="1"
 		android:fontFamily="sans-serif-light"	
 		 />
-	
-	
+		     -->
+		     
 	    <RelativeLayout 
 		     android:id="@+id/rowTrafficDown" 
-		     android:layout_width="fill_parent"
+		     android:layout_width="match_parent"
 		      android:layout_height="wrap_content"
 		       android:orientation="horizontal"
 		       android:paddingLeft="3sp"
@@ -130,8 +89,44 @@
 			android:fontFamily="sans-serif-light"
 			 />
 		</RelativeLayout>
+		    </LinearLayout>
+		 
+	
+       <org.torproject.android.ImageProgressView
+		android:id="@+id/imgStatus"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_marginTop="5dp"
+		android:padding="0dp"
+		android:layout_weight="1"
+		android:src="@drawable/toroff"
+		android:layout_gravity="center_horizontal" />
+		
+	
+	<LinearLayout android:gravity="center_horizontal"
+     android:orientation="horizontal" android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:padding="5dp"
+      android:background="#686868"
+      >
+
+		<Button
+		    android:id="@+id/btnBrowser"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="Open Browser" />
+
+		<Button
+		    android:id="@+id/btnVPN"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="Start VPN" />
+		 
+	    </LinearLayout>
+	
 </LinearLayout>
 
+		<!-- 
 	 <SlidingDrawer
         android:layout_width="fill_parent"
         android:id="@+id/SlidingDrawer"
@@ -173,4 +168,6 @@
     </SlidingDrawer>
        
 </FrameLayout>
+    -->
+
 
