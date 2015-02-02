@@ -143,13 +143,14 @@
 			android:textColor="@android:color/white"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:textSize="20sp"
+			android:textSize="14sp"
 			android:gravity="center_vertical"
 			android:fontFamily="sans-serif-light"
-			android:text="                         "
+			android:text="status"
 			android:background="#aa333333"
-					android:layout_gravity="center_horizontal|center_vertical"
-			android:layout_marginBottom="30dp"
+					android:layout_gravity="center_horizontal|bottom"
+			android:layout_margin="10dp"
+			
 			 />
 		
        </FrameLayout>
@@ -167,7 +168,6 @@
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
 			    android:text="Open Browser"
-			    android:enabled="false"
 			     />
 	
 			<Button
@@ -175,7 +175,6 @@
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
 			    android:text="Start VPN" 
-			    android:enabled="false"
 			    
 			    />
 			 
