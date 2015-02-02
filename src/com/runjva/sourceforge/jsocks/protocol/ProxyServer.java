@@ -12,11 +12,11 @@ import java.net.InetSocketAddress;
 import java.net.NoRouteToHostException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.SocketAddress;
 import java.nio.channels.SocketChannel;
 
 import android.annotation.SuppressLint;
 import android.net.VpnService;
+import android.util.Log;
 
 import com.runjva.sourceforge.jsocks.server.ServerAuthenticator;
 
@@ -352,9 +352,8 @@ public class ProxyServer implements Runnable {
 		Socket s;
 
 		if (proxy == null) {
-			//s = new Socket(msg.ip, msg.port);
 			
-			s= SocketChannel.open().socket();
+			s = SocketChannel.open().socket();
 			if ((null != s) && (null != vpnService)) {
 			    vpnService.protect(s);
 			}
@@ -363,10 +362,11 @@ public class ProxyServer implements Runnable {
 			
 		} else {
 			s = new SocksSocket(proxy, msg.ip, msg.port);
+
+			if (vpnService != null)
+				vpnService.protect(s);
 		}
 
-		if (vpnService != null)
-			vpnService.protect(s);
 			
 		debug("Connected to " + s.getInetAddress() + ":" + s.getPort());
 
@@ -667,26 +667,29 @@ public class ProxyServer implements Runnable {
 	
 	public static void debug (String msg)
 	{
-		
+		Log.d("Proxy",msg);
 	}
 	
 	public static void debug (String msg, String host, int port)
 	{
-		
+		debug (msg);
 	}
 	
 	public static void debug (String msg, Exception e)
 	{
-		
+
+		debug (msg);
 	}
 	
 	public static void debug (String msg, InetAddress addr, int port)
 	{
-		
+
+		debug (msg);
 	}
 	
 	public static void debug (String msg, int type, String log)
 	{
-		
+
+		debug (msg);
 	}
 }
