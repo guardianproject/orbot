@@ -11,10 +11,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
 
-
-
-
-import org.torproject.android.R;
+import org.sandroproxy.ony.R;
 import org.torproject.android.TorConstants;
 import org.torproject.android.service.TorService;
 import org.torproject.android.service.TorServiceUtils;

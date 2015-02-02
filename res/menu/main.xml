@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/*
+ * Copyright (C) 2008 Esmertec AG.
+ * Copyright (C) 2008 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+<menu xmlns:yourapp="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    
+ <item android:id="@+id/menu_start"
+        android:title="@string/menu_start"
+         android:icon="@drawable/ic_action_start"
+          yourapp:showAsAction="never"
+         />
+
+ <item android:id="@+id/menu_settings"
+        android:title="@string/menu_settings"
+         android:icon="@drawable/ic_action_settings"
+         yourapp:showAsAction="always"
+         />
+
+ <item 
+     android:id="@+id/menu_verify_list"
+        android:title="@string/menu_verify"
+         android:icon="@drawable/ic_action_browse"
+                  yourapp:showAsAction="always"
+        >
+        <menu>
+        <item android:id="@+id/menu_verify"
+        android:title="@string/menu_verify_browser"
+         android:icon="@drawable/ic_action_browse"  
+        />
+ 
+        <!-- 
+        <item android:id="@+id/menu_use_chatsecure"
+        android:title="@string/menu_use_chatsecure"
+         android:icon="@drawable/ic_chatsecure" 
+        /> -->
+        
+        </menu>
+ </item>
+ <item android:id="@+id/menu_about"
+        android:title="@string/menu_about"
+         android:icon="@drawable/ic_menu_about"
+                  yourapp:showAsAction="never"
+         
+         />
+ 
+  <item android:id="@+id/menu_wizard"
+        android:title="@string/menu_wizard"
+         android:icon="@drawable/ic_menu_goto"
+                  yourapp:showAsAction="never"
+         
+         />
+  <item android:id="@+id/menu_vpn"
+      android:title="@string/menu_vpn"
+      yourapp:showAsAction="never"/>
+  
+  <item android:id="@+id/menu_exit"
+        android:title="@string/menu_exit"
+         android:icon="@drawable/ic_menu_exit"
+                  yourapp:showAsAction="never"
+         
+         />
+ 
+</menu>

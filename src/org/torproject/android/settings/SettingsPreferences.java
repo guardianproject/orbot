@@ -5,8 +5,8 @@ package org.torproject.android.settings;
 
 import java.util.Locale;
 
+import org.sandroproxy.ony.R;
 import org.sufficientlysecure.rootcommands.RootCommands;
-import org.torproject.android.R;
 import org.torproject.android.service.TorServiceUtils;
 
 import android.content.Context;

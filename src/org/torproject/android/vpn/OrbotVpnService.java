@@ -20,23 +20,36 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.nio.ByteBuffer;
 import java.util.Locale;
+import java.util.Set;
 
+import org.sandroproxy.ony.R;
+import org.torproject.android.Orbot;
+import org.torproject.android.service.TorService;
 import org.torproject.android.service.TorServiceConstants;
 
+import com.runjva.sourceforge.jsocks.protocol.ProxyServer;
+import com.runjva.sourceforge.jsocks.server.ServerAuthenticatorNone;
+
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.net.VpnService;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.os.ParcelFileDescriptor;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+import android.widget.RemoteViews;
 import android.widget.Toast;
 
 @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 public class OrbotVpnService extends VpnService implements Handler.Callback {
-    private static final String TAG = "OrbotVpnService";
+    private static final String TAG = "DrobotVpnService";
 
     private PendingIntent mConfigureIntent;
 
@@ -46,16 +59,29 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     private String mSessionName = "OrbotVPN";
     private ParcelFileDescriptor mInterface;
 
-    //private Thread mThreadProxy;
-    //private int mSocksProxyPort = 9999;
-   // private ProxyServer mProxyServer;
+    private int mSocksProxyPort = 9999;
+    private ProxyServer mProxyServer;
     
     private final static int VPN_MTU = 1500;
+    
+    private static final int NOTIFY_ID = 10;
+    private static final int TRANSPROXY_NOTIFY_ID = 20;
+    private static final int ERROR_NOTIFY_ID = 30;
+    private static final int HS_NOTIFY_ID = 40;
+    
+    private boolean prefPersistNotifications = true;
+    
+    private NotificationManager mNotificationManager = null;
+    private android.support.v4.app.NotificationCompat.Builder mNotifyBuilder;
+    private Notification mNotification;
+    private boolean mShowExpandedNotifications = false;
+    private boolean mNotificationShowing = false;
+    
     
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
-    	// The handler is only used to show messages.
+        // The handler is only used to show messages.
         if (mHandler == null) {
             mHandler = new Handler(this);
         }
@@ -63,7 +89,7 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
         // Stop the previous session by interrupting the thread.
         if (mThreadVPN == null || (!mThreadVPN.isAlive()))
         {
-        	enableAppRouting ();
+       	    enableAppRouting ();
             setupTun2Socks();               
         }
      
@@ -86,18 +112,38 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     	}
     }
 
+    private void startSocksBypass(){
+        mThreadProxy = new Thread ()
+        {
+            public void run ()
+            {
+        
+                try {
+                    mProxyServer = new ProxyServer(new ServerAuthenticatorNone(null, null));
+                    ProxyServer.setVpnService(OrbotVpnService.this);
+                    mProxyServer.start(mSocksProxyPort, 5, InetAddress.getLocalHost());
+                } catch (Exception e) {
+                    Log.d(TAG,"proxy server error: " + e.getLocalizedMessage(),e);
+                }
+            }
+        };
+        
+        mThreadProxy.start();
+    }
+
     @Override
     public void onDestroy() {
-    	
-      
-        
-        if (mInterface != null)
-			try {
-				mInterface.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+        if (mProxyServer != null){
+            mProxyServer.stop();
+        }
+        if (mInterface != null){
+            try {
+                mInterface.close();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
@@ -165,107 +211,27 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     	mThreadVPN.start();
     }
 
-	@Override
-	public void onRevoke() {
-		
-		new Thread ()
-		{
-			public void run()
-			{
-				try
-				{
-					mInterface.close();
-					Tun2Socks.Stop();
-				}
-				catch (Exception e)
-				{
-					Log.d(TAG,"error stopping tun2socks",e);
-				}
-			}
-		}.start();
-		
-		super.onRevoke();
-		
-	}
+    @Override
+    public void onRevoke() {
+        
+        new Thread ()
+        {
+            public void run()
+            {
+                try
+                {
+                    mInterface.close();
+                    Tun2Socks.Stop();
+                }
+                catch (Exception e)
+                {
+                    Log.d(TAG,"error stopping tun2socks",e);
+                }
+            }
+        }.start();
+        clearNotifications();
+        super.onRevoke();
+    }
     
-    /*
-    private void debugPacket(ByteBuffer packet)
-    {b
-
-    	int buffer = packet.get();
-        int version;
-        int headerlength;
-        version = buffer >> 4;
-        headerlength = buffer & 0x0F;
-        headerlength *= 4;
-        Log.d(TAG, "IP Version:"+version);
-        Log.d(TAG, "Header Length:"+headerlength);
-
-        String status = "";
-        status += "Header Length:"+headerlength;
-
-        buffer = packet.get();      //DSCP + EN
-        buffer = packet.getChar();  //Total Length
-
-        Log.d(TAG, "Total Length:"+buffer);
-
-        buffer = packet.getChar();  //Identification
-        Log.d(TAG, "Identification:"+buffer);
-
-        buffer = packet.getChar();  //Flags + Fragment Offset
-        buffer = packet.get();      //Time to Live
-        buffer = packet.get();      //Protocol
-
-        Log.d(TAG, "Protocol:"+buffer);
-
-        status += "  Protocol:"+buffer;
-
-        buffer = packet.getChar();  //Header checksum
-
-        String sourceIP  = "";
-        buffer = packet.get();  //Source IP 1st Octet
-        sourceIP += buffer;
-        sourceIP += ".";
-
-        buffer = packet.get();  //Source IP 2nd Octet
-        sourceIP += buffer;
-        sourceIP += ".";
-
-        buffer = packet.get();  //Source IP 3rd Octet
-        sourceIP += buffer;
-        sourceIP += ".";
-
-        buffer = packet.get();  //Source IP 4th Octet
-        sourceIP += buffer;
-
-        Log.d(TAG, "Source IP:"+sourceIP);
-
-        status += "   Source IP:"+sourceIP;
-
-        String destIP  = "";
-        buffer = packet.get();  //Destination IP 1st Octet
-        destIP += buffer;
-        destIP += ".";
-
-        buffer = packet.get();  //Destination IP 2nd Octet
-        destIP += buffer;
-        destIP += ".";
-
-        buffer = packet.get();  //Destination IP 3rd Octet
-        destIP += buffer;
-        destIP += ".";
-
-        buffer = packet.get();  //Destination IP 4th Octet
-        destIP += buffer;
-
-        Log.d(TAG, "Destination IP:"+destIP);
-
-        status += "   Destination IP:"+destIP;
-
-        //Log.d(TAG, "version:"+packet.getInt());
-        //Log.d(TAG, "version:"+packet.getInt());
-        //Log.d(TAG, "version:"+packet.getInt());
-
-    }*/
-
+    
 }
