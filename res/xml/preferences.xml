@@ -8,14 +8,6 @@ android:title="@string/pref_start_boot_title"
 android:summary="@string/pref_start_boot_summary"
 android:enabled="true"/>
 
-<CheckBoxPreference 
-android:defaultValue="false" 
-android:key="has_root"
-android:title="@string/pref_has_root"
-android:summary="@string/pref_has_root_summary"
-android:enabled="true"/>
-
-
 <CheckBoxPreference
 android:defaultValue="true" 
 android:key="pref_persistent_notifications"
@@ -39,18 +31,17 @@ android:title="@string/pref_use_expanded_notifications_title"/>
    android:defaultValue="en">
  </ListPreference>
 
-<!-- 
-<CheckBoxPreference 
-android:defaultValue="false" 
-android:key="use_whispercore"
-android:title="@string/pref_use_whispercore"
-android:summary="@string/pref_use_whispercore_summary"
-android:enabled="true"/>
- -->
 </PreferenceCategory>
 
 <PreferenceCategory android:title="@string/pref_trans_proxy_group">
 
+<CheckBoxPreference 
+android:defaultValue="false" 
+android:key="has_root"
+android:title="@string/pref_has_root"
+android:summary="@string/pref_has_root_summary"
+android:enabled="true"/>
+    
 <CheckBoxPreference 
 android:defaultValue="false" 
 android:key="pref_transparent"
@@ -269,20 +260,5 @@ android:summary="@string/pref_transproxy_flush_summary"
 android:enabled="true" 
 android:title="@string/pref_transproxy_flush_title"/>
 
-<!-- 
-<CheckBoxPreference
-android:defaultValue="false" 
-android:key="pref_transparent_port_fallback"
-android:summary="@string/pref_transparent_port_fallback_summary"
-android:enabled="true" 
-android:title="@string/pref_transparent_port_fallback_title"/>
-
-<EditTextPreference android:key="pref_port_list"
-android:defaultValue="80,443,8080,8888,8443"
-android:title="@string/pref_transparent_port_title"
-android:summary="@string/pref_transparent_port_summary"
-android:dialogTitle="@string/pref_transparent_port_dialog"
-/>
- -->
 </PreferenceCategory>
 </PreferenceScreen>

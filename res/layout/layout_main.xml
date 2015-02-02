@@ -4,14 +4,43 @@
      xmlns:android="http://schemas.android.com/apk/res/android"
      android:orientation="vertical" android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:backgroundTint="@color/panel_background"
       >
-
+      
+    <android.support.v7.widget.Toolbar
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+          android:background="@color/panel_background"
+        android:layout_height="?attr/actionBarSize"
+    
+     />
+    
+    <android.support.v4.widget.DrawerLayout
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/content_frame"
+     >
+        
     <LinearLayout android:gravity="center_vertical|center_horizontal"
      android:orientation="vertical" android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:background="@color/panel_background"
+      
       >
+      
+        <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+          android:background="@color/panel_background_dark"
+    
+     >
+        
     		
     <!-- 
 	<TextView android:id="@+id/lblStatus"
@@ -80,6 +109,7 @@
 			android:gravity="center_vertical"
 			android:fontFamily="sans-serif-light"
 			 />
+		
 		<TextView
 			android:id="@+id/trafficUp"
 			android:textColor="#ccff2a"
@@ -93,44 +123,76 @@
 		</RelativeLayout>
 		    </LinearLayout>
 		 
-	
-       <org.torproject.android.ImageProgressView
+	<FrameLayout
+	    	android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="1"
+	    >
+       <org.torproject.android.ui.ImageProgressView
 		android:id="@+id/imgStatus"
 		android:layout_width="match_parent"
-		android:layout_height="0dp"
+		android:layout_height="wrap_content"
 		android:layout_marginTop="5dp"
 		android:padding="0dp"
-		android:layout_weight="1"
-		android:src="@drawable/toroff"
-		android:layout_gravity="center_horizontal" />
 		
+		android:src="@drawable/toroff"
+		android:layout_gravity="center_horizontal|center_vertical" />
+       
+       	<TextView
+			android:id="@+id/lblStatus"
+			android:textColor="@android:color/white"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textSize="20sp"
+			android:gravity="center_vertical"
+			android:fontFamily="sans-serif-light"
+			android:text="                         "
+			android:background="#aa333333"
+					android:layout_gravity="center_horizontal|center_vertical"
+			android:layout_marginBottom="30dp"
+			 />
+		
+       </FrameLayout>
 	
-	<LinearLayout android:gravity="center_horizontal"
-     android:orientation="horizontal" android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:padding="5dp"
-            android:background="@color/panel_background"
-
-      >
-
-		<Button
-		    android:id="@+id/btnBrowser"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:text="Open Browser"
-		    android:enabled="false"
-		     />
-
-		<Button
-		    android:id="@+id/btnVPN"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:text="Start VPN" 
-		    android:enabled="false"
-		    
-		    />
-		 
+		<LinearLayout android:gravity="center_horizontal"
+	     android:orientation="horizontal" android:layout_width="match_parent"
+	      android:layout_height="wrap_content"
+	      android:padding="5dp"
+	            android:background="@color/panel_background_dark"
+	
+	      >
+	
+			<Button
+			    android:id="@+id/btnBrowser"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="Open Browser"
+			    android:enabled="false"
+			     />
+	
+			<Button
+			    android:id="@+id/btnVPN"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="Start VPN" 
+			    android:enabled="false"
+			    
+			    />
+			 
+		    </LinearLayout>
 	    </LinearLayout>
+	    </LinearLayout>
+	 <LinearLayout
+    android:layout_width="240dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/left_drawer"
+    android:layout_gravity="start"        
+    android:background="@color/panel_background"
+     >
+    </LinearLayout>
+	
+	</android.support.v4.widget.DrawerLayout>
 	
 </LinearLayout>
 
