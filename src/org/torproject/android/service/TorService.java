@@ -81,7 +81,7 @@ import android.widget.RemoteViews;
 public class TorService extends Service implements TorServiceConstants, TorConstants, EventHandler
 {
     
-    public static boolean ENABLE_DEBUG_LOG = false;
+    public static boolean ENABLE_DEBUG_LOG = true;
     
     private int mCurrentStatus = STATUS_OFF;
     
@@ -381,7 +381,10 @@ public class TorService extends Service implements TorServiceConstants, TorConst
                         }else if (action.equals(CMD_UPDATE)){
                             processSettings();
                         }else if (action.equals(CMD_VPN)){
-                            startVpnService();
+                            enableVpnProxy();
+                        }
+                        else if (action.equals(CMD_VPN_CLEAR)){
+                            clearVpnProxy();
                         }
                     }
                 }else{
@@ -1416,8 +1419,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
             }
         }
         
-        @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-        public void startVpnService () {
+        public void enableVpnProxy () {
             
             SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
             Editor ePrefs = prefs.edit();
@@ -1435,7 +1437,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
            
         }
         
-        public void stopVpnService ()
+        public void clearVpnProxy ()
         {
             SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
             Editor ePrefs = prefs.edit();

@@ -18,6 +18,7 @@ package org.torproject.android.vpn;
 
 import java.io.IOException;
 import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Locale;
 
 import org.torproject.android.service.TorServiceConstants;
@@ -56,20 +57,6 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     
     private final static int VPN_MTU = 1500;
     
-    private static final int NOTIFY_ID = 10;
-    private static final int TRANSPROXY_NOTIFY_ID = 20;
-    private static final int ERROR_NOTIFY_ID = 30;
-    private static final int HS_NOTIFY_ID = 40;
-    
-    private boolean prefPersistNotifications = true;
-    
-    private NotificationManager mNotificationManager = null;
-    private android.support.v4.app.NotificationCompat.Builder mNotifyBuilder;
-    private Notification mNotification;
-    private boolean mShowExpandedNotifications = false;
-    private boolean mNotificationShowing = false;
-    
-    
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
@@ -101,6 +88,7 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     	else
     	{
     		//do socks bypass trick
+    		startSocksBypass();
     	}
     }
 
@@ -165,23 +153,20 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 		    		
 		    		String vpnName = "OrbotVPN";
 		    		String virtualGateway = "10.0.0.1";
-		    		String virtualRoute = "10.0.0.0";
 		        	String virtualIP = "10.0.0.2";
-		        	String virtualNetMask = "255.255.2555.0";
-		        	String localSocks = "localhost:" + TorServiceConstants.PORT_SOCKS_DEFAULT;
-		        	String localDNS = "localhost:" + TorServiceConstants.TOR_DNS_PORT_DEFAULT;
+		        	String virtualNetMask = "255.255.255.0";
+		        	String localSocks = "127.0.0.1:" + TorServiceConstants.PORT_SOCKS_DEFAULT;
+		        	String localDNS = "10.0.0.1:" + TorServiceConstants.TOR_DNS_PORT_DEFAULT;
 		        	
 		        	
 			        Builder builder = new Builder();
 			        
 			        builder.setMtu(VPN_MTU);
-			        builder.addAddress(virtualGateway,8);
+			        builder.addAddress(virtualGateway,28);
 			        builder.setSession(vpnName);	 
 			        
-			        builder.addRoute("0.0.0.0",0);	        
-			        builder.addRoute(virtualRoute,8);
+			        builder.addRoute("0.0.0.0",0);	 
 			        
-			        //builder.addDnsServer("8.8.8.8");
 			        
 			         // Create a new interface using the builder and save the parameters.
 			        mInterface = builder.setSession(mSessionName)
