@@ -1,6 +1,6 @@
-package org.torproject.android.wizard;
+package org.torproject.android.ui;
 
-import org.torproject.android.Orbot;
+import org.torproject.android.OrbotMainActivity;
 import org.torproject.android.R;
 import org.torproject.android.TorConstants;
 

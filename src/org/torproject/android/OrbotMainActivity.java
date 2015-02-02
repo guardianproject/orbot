@@ -3,7 +3,6 @@
 
 package org.torproject.android;
 
-import static org.torproject.android.TorConstants.TAG;
 import info.guardianproject.browser.Browser;
 
 import java.net.URLDecoder;
@@ -13,11 +12,13 @@ import org.torproject.android.service.TorService;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.TorServiceUtils;
 import org.torproject.android.settings.SettingsPreferences;
-import org.torproject.android.wizard.ChooseLocaleWizardActivity;
+import org.torproject.android.ui.ChooseLocaleWizardActivity;
+import org.torproject.android.ui.ImageProgressView;
+import org.torproject.android.ui.Rotate3dAnimation;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -38,7 +39,9 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.RemoteException;
 import android.support.v4.content.LocalBroadcastManager;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
@@ -48,6 +51,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.View.OnTouchListener;
 import android.view.animation.AccelerateInterpolator;
@@ -56,16 +60,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class Orbot extends ActionBarActivity implements TorConstants, OnLongClickListener, OnTouchListener, OnSharedPreferenceChangeListener
+public class OrbotMainActivity extends Activity implements TorConstants, OnLongClickListener, OnTouchListener, OnSharedPreferenceChangeListener
 {
 	/* Useful UI bits */
-	//private TextView lblStatus = null; //the main text display widget
+	private TextView lblStatus = null; //the main text display widget
 	private ImageProgressView imgStatus = null; //the main touchable image for activating Orbot
 
 	private MenuItem mItemOnOff = null;
     private TextView downloadText = null;
     private TextView uploadText = null;
-    private boolean mDrawerOpen = false;
   
     private Button mBtnBrowser = null;
     private Button mBtnVPN = null;
@@ -152,8 +155,6 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	  }
 	};
 
-	ProgressDialog mProgressDialog;
-	
 	private void startService (String action)
 	{
 		
@@ -171,58 +172,47 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 		
 	}
 	
+	private DrawerLayout mDrawer;
+	private ActionBarDrawerToggle mDrawerToggle;
+	private Toolbar mToolbar;
+	
 	private void doLayout ()
 	{
     	setContentView(R.layout.layout_main);
     	
-    //	lblStatus = (TextView)findViewById(R.id.lblStatus);
-//		lblStatus.setOnLongClickListener(this);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mToolbar.inflateMenu(R.menu.orbot_main);
+        mToolbar.setTitle(R.string.app_name);
+
+    	  mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+          mDrawerToggle = new ActionBarDrawerToggle(
+              this,  mDrawer, mToolbar,
+              android.R.string.ok, android.R.string.cancel
+          );
+          
+          mDrawer.setDrawerListener(mDrawerToggle);
+          mDrawerToggle.setDrawerIndicatorEnabled(true);
+          mDrawerToggle.syncState();
+          mDrawerToggle.setToolbarNavigationClickListener(new OnClickListener ()
+          {
+
+              @Override
+              public void onClick(View v) {
+
+                 
+
+              }
+
+
+          });
+
+    	
+    	lblStatus = (TextView)findViewById(R.id.lblStatus);
     	imgStatus = (ImageProgressView)findViewById(R.id.imgStatus);
     	imgStatus.setOnLongClickListener(this);
-    	imgStatus.setOnTouchListener(this);
-    	
-  //  	lblStatus.setText("Initializing the application...");
     	
     	downloadText = (TextView)findViewById(R.id.trafficDown);
         uploadText = (TextView)findViewById(R.id.trafficUp);
-      //  mTxtOrbotLog = (TextView)findViewById(R.id.orbotLog);
-        
-        /*
-        mDrawer = ((SlidingDrawer)findViewById(R.id.SlidingDrawer));
-    	Button slideButton = (Button)findViewById(R.id.slideButton);
-    	if (slideButton != null)
-    	{
-	    	slideButton.setOnTouchListener(new OnTouchListener (){
-	
-				@Override
-				public boolean onTouch(View v, MotionEvent event) {
-	
-					if (event.equals(MotionEvent.ACTION_DOWN))
-					{
-						mDrawerOpen = !mDrawerOpen;
-						mTxtOrbotLog.setEnabled(mDrawerOpen);				
-					}
-					return false;
-				}
-	    		
-	    	});
-    	}*/
-    	
-        /*
-    	ScrollingMovementMethod smm = new ScrollingMovementMethod();
-    	
-        mTxtOrbotLog.setMovementMethod(smm);
-        mTxtOrbotLog.setOnLongClickListener(new View.OnLongClickListener() {
-         
-
-			@Override
-			public boolean onLongClick(View v) {
-				  ClipboardManager cm = (ClipboardManager)getSystemService(Context.CLIPBOARD_SERVICE);
-	                cm.setText(mTxtOrbotLog.getText());
-	                Toast.makeText(Orbot.this, "LOG COPIED TO CLIPBOARD", Toast.LENGTH_SHORT).show();
-	            return true;
-			}
-        });*/
         
 		downloadText.setText(formatCount(0) + " / " + formatTotal(0));
 		uploadText.setText(formatCount(0) + " / " + formatTotal(0));
@@ -269,26 +259,6 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 
 	}
    	
-	/*
-    private void appendLogTextAndScroll(String text)
-    {
-    	
-        if(mTxtOrbotLog != null && text != null && text.length() > 0){
-        	
-        	if (mTxtOrbotLog.getText().length() > MAX_LOG_LENGTH)
-        		mTxtOrbotLog.setText("");
-        	
-        	mTxtOrbotLog.append(text + "\n");
-            final Layout layout = mTxtOrbotLog.getLayout();
-            if(layout != null){
-                int scrollDelta = layout.getLineBottom(mTxtOrbotLog.getLineCount() - 1) 
-                    - mTxtOrbotLog.getScrollY() - mTxtOrbotLog.getHeight();
-                if(scrollDelta > 0)
-                	mTxtOrbotLog.scrollBy(0, scrollDelta);
-            }
-        }
-    }*/
-    
    /*
     * Create the UI Options Menu (non-Javadoc)
     * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
@@ -872,7 +842,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
             
              if (button)
              {
-                            aDialog = new AlertDialog.Builder(Orbot.this)
+                            aDialog = new AlertDialog.Builder(OrbotMainActivity.this)
                      .setIcon(R.drawable.onion32)
              .setTitle(title)
              .setMessage(msg)
@@ -881,7 +851,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
              }
              else
              {
-                     aDialog = new AlertDialog.Builder(Orbot.this)
+                     aDialog = new AlertDialog.Builder(OrbotMainActivity.this)
                      .setIcon(R.drawable.onion32)
              .setTitle(title)
              .setMessage(msg)
@@ -906,8 +876,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                             mBtnBrowser.setEnabled(true);
                             mBtnVPN.setEnabled(true);
                             
-                            String lblMsg = getString(R.string.status_activated);                                     
-                            //lblStatus.setText(lblMsg);
+                            lblStatus.setText("");
 
                             if (mItemOnOff != null)
                                     mItemOnOff.setTitle(R.string.menu_stop);
@@ -949,11 +918,10 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                         if (mItemOnOff != null)
                                 mItemOnOff.setTitle(R.string.menu_stop);
                 	
-                    	/**
                         if (lblStatus != null && torServiceMsg != null)
                         	if (torServiceMsg.indexOf('%')!=-1)
                         		lblStatus.setText(torServiceMsg);
-                        		**/
+                        	
                         
                         //appendLogTextAndScroll(torServiceMsg);
                         
@@ -962,6 +930,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                     else if (torStatus == TorServiceConstants.STATUS_OFF)
                     {
                         imgStatus.setImageResource(R.drawable.toroff);
+                        lblStatus.setText("");
                         //lblStatus.setText(getString(R.string.status_disabled) + "\n" + getString(R.string.press_to_start));
                         
                         if (mItemOnOff != null)
@@ -1009,12 +978,9 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
     	
     	startService (TorServiceConstants.CMD_STOP);
 		torStatus = TorServiceConstants.STATUS_OFF;
-
-    		Message msg = mHandler.obtainMessage(TorServiceConstants.DISABLE_TOR_MSG);
-    		mHandler.sendMessage(msg);
-    		
-    
-    		
+    	Message msg = mHandler.obtainMessage(TorServiceConstants.DISABLE_TOR_MSG);
+    	mHandler.sendMessage(msg);
+    	
     }
     
         /*
@@ -1022,35 +988,31 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
      * @see android.view.View.OnClickListener#onClick(android.view.View)
      */
         public boolean onLongClick(View view) {
-                
-        	if (!mDrawerOpen)
-        	{
-	            try
-	            {
-	                    
-	                if (torStatus == TorServiceConstants.STATUS_OFF)
-	                {
-	
-	                        startTor();
-	                }
-	                else
-	                {
-	                        
-	                        stopTor();
-	                        stopService ();
-	                        
-	                }
-	                
-	                return true;
-	                    
-	            }
-	            catch (Exception e)
-	            {
-	                    Log.d(TAG,"error onclick",e);
-	            }
+             
+            try
+            {
+                    
+                if (torStatus == TorServiceConstants.STATUS_OFF)
+                {
 
-        	}
-        	
+                        startTor();
+                }
+                else
+                {
+                        
+                        stopTor();
+                        stopService ();
+                        
+                }
+                
+                return true;
+                    
+            }
+            catch (Exception e)
+            {
+                    Log.d(TAG,"error onclick",e);
+            }
+
             return false;
                     
         }

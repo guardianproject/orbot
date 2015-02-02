@@ -41,13 +41,13 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     private PendingIntent mConfigureIntent;
 
     private Handler mHandler;
-    private Thread mThreadProxy;
     private Thread mThreadVPN;
 
     private String mSessionName = "OrbotVPN";
     private ParcelFileDescriptor mInterface;
 
-    private int mSocksProxyPort = 9999;
+    //private Thread mThreadProxy;
+    //private int mSocksProxyPort = 9999;
    // private ProxyServer mProxyServer;
     
     private final static int VPN_MTU = 1500;
@@ -63,7 +63,7 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
         // Stop the previous session by interrupting the thread.
         if (mThreadVPN == null || (!mThreadVPN.isAlive()))
         {
-        	startSocksBypass ();
+        	enableAppRouting ();
             setupTun2Socks();               
         }
      
@@ -71,8 +71,19 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
         return START_STICKY;
     }
     
-    private void startSocksBypass ()
+    private void enableAppRouting ()
     {
+    	
+    	boolean isLollipop = false;
+    	
+    	if (isLollipop)
+    	{
+    		//allow for specific apps to be sent through VPN based on list selection
+    	}
+    	else
+    	{
+    		//do socks bypass trick
+    	}
     }
 
     @Override

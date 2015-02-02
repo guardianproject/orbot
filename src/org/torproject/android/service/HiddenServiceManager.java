@@ -1,4 +1,4 @@
-package org.torproject.android;
+package org.torproject.android.service;
 
 
 //list view with add/remove hidden services - user is prompted for port

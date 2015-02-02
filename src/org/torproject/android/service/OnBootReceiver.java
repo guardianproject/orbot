@@ -1,7 +1,5 @@
-package org.torproject.android;
+package org.torproject.android.service;
 
-import org.torproject.android.service.TorService;
-import org.torproject.android.service.TorServiceUtils;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

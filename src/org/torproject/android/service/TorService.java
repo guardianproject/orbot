@@ -47,10 +47,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.sufficientlysecure.rootcommands.Shell;
 import org.sufficientlysecure.rootcommands.command.SimpleCommand;
-import org.torproject.android.Orbot;
+import org.torproject.android.OrbotMainActivity;
 import org.torproject.android.R;
 import org.torproject.android.TorConstants;
-import org.torproject.android.Utils;
 import org.torproject.android.settings.AppManager;
 import org.torproject.android.settings.TorifiedApp;
 import org.torproject.android.vpn.OrbotVpnService;
@@ -241,7 +240,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
  	{	    
  		
  		//Reusable code.
- 		Intent intent = new Intent(TorService.this, Orbot.class);
+ 		Intent intent = new Intent(TorService.this, OrbotMainActivity.class);
  		PendingIntent pendIntent = PendingIntent.getActivity(TorService.this, 0, intent, 0);
  
 		if (mNotifyBuilder == null)

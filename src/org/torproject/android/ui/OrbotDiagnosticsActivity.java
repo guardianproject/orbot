@@ -1,4 +1,4 @@
-package org.torproject.android;
+package org.torproject.android.ui;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -9,6 +9,11 @@ import java.util.ArrayList;
 
 import org.sufficientlysecure.rootcommands.Shell;
 import org.sufficientlysecure.rootcommands.command.SimpleCommand;
+import org.torproject.android.R;
+import org.torproject.android.R.id;
+import org.torproject.android.R.layout;
+import org.torproject.android.R.menu;
+import org.torproject.android.R.raw;
 import org.torproject.android.service.TorResourceInstaller;
 import org.torproject.android.service.TorServiceConstants;
 

@@ -1,4 +1,4 @@
-package org.torproject.android;
+package org.torproject.android.ui;
 
 import android.graphics.Camera;
 import android.graphics.Matrix;
