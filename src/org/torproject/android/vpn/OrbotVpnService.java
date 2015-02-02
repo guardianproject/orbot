@@ -114,16 +114,25 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 		            // (i.e., Farsi and Arabic).^M
 		    		Locale.setDefault(new Locale("en"));
 		    		
+		    		String vpnName = "OrbotVPN";
+		    		String virtualGateway = "10.0.0.1";
+		    		String virtualRoute = "10.0.0.0";
+		        	String virtualIP = "10.0.0.2";
+		        	String virtualNetMask = "255.255.2555.0";
+		        	String localSocks = "localhost:" + TorServiceConstants.PORT_SOCKS_DEFAULT;
+		        	String localDNS = "localhost:" + TorServiceConstants.TOR_DNS_PORT_DEFAULT;
+		        	
+		        	
 			        Builder builder = new Builder();
 			        
 			        builder.setMtu(VPN_MTU);
-			        builder.addAddress("10.0.0.1",8);
-			        builder.setSession("OrbotVPN");	        	
+			        builder.addAddress(virtualGateway,8);
+			        builder.setSession(vpnName);	 
+			        
 			        builder.addRoute("0.0.0.0",0);	        
-			        builder.addRoute("10.0.0.0",8);
-			        //builder.addRoute("192.0.0.0",8);
-			        //builder.addRoute("192.168.43.0",8);
-			        builder.addDnsServer("8.8.8.8");
+			        builder.addRoute(virtualRoute,8);
+			        
+			        //builder.addDnsServer("8.8.8.8");
 			        
 			         // Create a new interface using the builder and save the parameters.
 			        mInterface = builder.setSession(mSessionName)
@@ -132,7 +141,7 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 			        	    
 			        try
 			        {
-			        	Tun2Socks.Start(mInterface, VPN_MTU, "10.0.0.2", "255.255.255.0", "localhost:" + TorServiceConstants.PORT_SOCKS_DEFAULT, "50.116.51.157:7300", true);
+			        	Tun2Socks.Start(mInterface, VPN_MTU, virtualIP, virtualNetMask, localSocks , localDNS , true);
 			        }
 			        catch (Exception e)
 			        {
@@ -170,7 +179,7 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     
     /*
     private void debugPacket(ByteBuffer packet)
-    {
+    {b
 
     	int buffer = packet.get();
         int version;

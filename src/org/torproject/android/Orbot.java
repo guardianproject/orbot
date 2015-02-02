@@ -65,10 +65,10 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	private MenuItem mItemOnOff = null;
     private TextView downloadText = null;
     private TextView uploadText = null;
-  //  private TextView mTxtOrbotLog = null;
- //   private SlidingDrawer mDrawer = null;
     private boolean mDrawerOpen = false;
-  //  private View mViewMain = null;
+  
+    private Button mBtnBrowser = null;
+    private Button mBtnVPN = null;
 
 	/* Some tracking bits */
 	private int torStatus = TorServiceConstants.STATUS_OFF; //latest status reported from the tor service
@@ -174,7 +174,7 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 	private void doLayout ()
 	{
     	setContentView(R.layout.layout_main);
-		
+    	
     //	lblStatus = (TextView)findViewById(R.id.lblStatus);
 //		lblStatus.setOnLongClickListener(this);
     	imgStatus = (ImageProgressView)findViewById(R.id.imgStatus);
@@ -230,8 +230,8 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
         // Gesture detection
 		mGestureDetector = new GestureDetector(this, new MyGestureDetector());
 		
-		Button btnBrowser = (Button)findViewById(R.id.btnBrowser);
-		btnBrowser.setOnClickListener(new View.OnClickListener ()
+		mBtnBrowser = (Button)findViewById(R.id.btnBrowser);
+		mBtnBrowser.setOnClickListener(new View.OnClickListener ()
 		{
 
 			@Override
@@ -243,8 +243,8 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
 			
 		});
 		
-		Button btnVPN = (Button)findViewById(R.id.btnVPN);
-		btnVPN.setOnClickListener(new View.OnClickListener ()
+		mBtnVPN = (Button)findViewById(R.id.btnVPN);
+		mBtnVPN.setOnClickListener(new View.OnClickListener ()
 		{
 
 			@Override
@@ -401,10 +401,6 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
             		startActivity(new Intent(this, ChooseLocaleWizardActivity.class));
 
                 }
-                else if (item.getItemId() == R.id.menu_verify)
-                {
-                        doTorCheck();
-                }
                 else if (item.getItemId() == R.id.menu_exit)
                 {
                         //exit app
@@ -418,12 +414,18 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                         
                         
                 }
+
+                /**
+                else if (item.getItemId() == R.id.menu_verify)
+                {
+                        doTorCheck();
+                }
                 else if (item.getItemId() == R.id.menu_vpn)
                 {
                 		startVpnService();
-                }
+                }*/
                 
-        return true;
+                return true;
         }
       
         /**
@@ -901,6 +903,9 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                         	
                             imgStatus.setImageResource(R.drawable.toron);
                     		
+                            mBtnBrowser.setEnabled(true);
+                            mBtnVPN.setEnabled(true);
+                            
                             String lblMsg = getString(R.string.status_activated);                                     
                             //lblStatus.setText(lblMsg);
 
@@ -961,6 +966,9 @@ public class Orbot extends ActionBarActivity implements TorConstants, OnLongClic
                         
                         if (mItemOnOff != null)
                                 mItemOnOff.setTitle(R.string.menu_start);
+
+                        mBtnBrowser.setEnabled(false);
+                        mBtnVPN.setEnabled(false);
                         
                     }
             }
