@@ -18,34 +18,25 @@ package org.torproject.android.vpn;
 
 import java.io.IOException;
 import java.net.InetAddress;
-import java.nio.ByteBuffer;
 import java.util.Locale;
-import java.util.Set;
 
-import org.sandroproxy.ony.R;
-import org.torproject.android.Orbot;
-import org.torproject.android.service.TorService;
 import org.torproject.android.service.TorServiceConstants;
 
-import com.runjva.sourceforge.jsocks.protocol.ProxyServer;
-import com.runjva.sourceforge.jsocks.server.ServerAuthenticatorNone;
-
-import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.net.VpnService;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.os.ParcelFileDescriptor;
-import android.support.v4.app.NotificationCompat;
 import android.util.Log;
-import android.widget.RemoteViews;
 import android.widget.Toast;
+
+import com.runjva.sourceforge.jsocks.protocol.ProxyServer;
+import com.runjva.sourceforge.jsocks.server.ServerAuthenticatorNone;
 
 @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 public class OrbotVpnService extends VpnService implements Handler.Callback {
@@ -61,6 +52,7 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 
     private int mSocksProxyPort = 9999;
     private ProxyServer mProxyServer;
+    private Thread mThreadProxy;
     
     private final static int VPN_MTU = 1500;
     
@@ -229,7 +221,6 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
                 }
             }
         }.start();
-        clearNotifications();
         super.onRevoke();
     }
     

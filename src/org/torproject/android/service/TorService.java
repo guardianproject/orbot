@@ -45,7 +45,6 @@ import net.freehaven.tor.control.TorControlConnection;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.sandroproxy.ony.R;
 import org.sufficientlysecure.rootcommands.Shell;
 import org.sufficientlysecure.rootcommands.command.SimpleCommand;
 import org.torproject.android.OrbotMainActivity;
@@ -58,7 +57,6 @@ import org.torproject.android.vpn.OrbotVpnService;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Application;
-import android.app.IntentService;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -235,33 +233,13 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         mNotificationShowing = false;
         
     }
-<<<<<<< HEAD
-	
-	private void clearNotifications ()
-	{
-		if (mNotificationManager != null)
-			mNotificationManager.cancelAll();
-		
-
-		hmBuiltNodes.clear();
-		mNotificationShowing = false;
-		
-	}
-		
-	@SuppressLint("NewApi")
-	private void showToolbarNotification (String notifyMsg, int notifyType, int icon)
- 	{	    
- 		
- 		//Reusable code.
- 		Intent intent = new Intent(TorService.this, OrbotMainActivity.class);
- 		PendingIntent pendIntent = PendingIntent.getActivity(TorService.this, 0, intent, 0);
-        
+	        
     @SuppressLint("NewApi")
     private void showToolbarNotification (String notifyMsg, int notifyType, int icon)
      {        
          
          //Reusable code.
-         Intent intent = new Intent(TorService.this, Orbot.class);
+         Intent intent = new Intent(TorService.this, OrbotMainActivity.class);
          PendingIntent pendIntent = PendingIntent.getActivity(TorService.this, 0, intent, 0);
  
         if (mNotifyBuilder == null)

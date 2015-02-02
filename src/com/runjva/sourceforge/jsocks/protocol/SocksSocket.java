@@ -8,9 +8,6 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * SocksSocket tryies to look very similar to normal Socket, while allowing
  * connections through the SOCKS4 or 5 proxy. To use this class you will have to
@@ -57,7 +54,7 @@ public class SocksSocket extends Socket {
 	protected int localPort, remotePort;
 
 	private Socket directSock = null;
-	private Logger log = LoggerFactory.getLogger(SocksSocket.class);
+	//private Logger log = LoggerFactory.getLogger(SocksSocket.class);
 
 	/**
 	 * Tryies to connect to given host and port using default proxy. If no
@@ -373,7 +370,7 @@ public class SocksSocket extends Socket {
 
 	private void doDirect() throws SocksException {
 		try {
-			log.debug("IP: {}_{}", remoteIP, remotePort);
+		//	log.debug("IP: {}_{}", remoteIP, remotePort);
 			directSock = new Socket(remoteIP, remotePort);
 			proxy.out = directSock.getOutputStream();
 			proxy.in = directSock.getInputStream();

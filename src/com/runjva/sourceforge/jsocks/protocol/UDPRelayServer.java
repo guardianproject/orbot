@@ -8,9 +8,6 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.runjva.sourceforge.jsocks.server.ServerAuthenticator;
 
 /**
@@ -33,7 +30,7 @@ class UDPRelayServer implements Runnable {
 
 	long lastReadTime;
 
-	static Logger log = LoggerFactory.getLogger(UDPRelayServer.class);
+//	static Logger log = LoggerFactory.getLogger(UDPRelayServer.class);
 	static SocksProxyBase proxy = null;
 	static int datagramSize = 0xFFFF;// 64K, a bit more than max udp size
 	static int iddleTimeout = 180000;// 3 minutes
@@ -124,9 +121,9 @@ class UDPRelayServer implements Runnable {
 		remote_sock.setSoTimeout(iddleTimeout);
 		client_sock.setSoTimeout(iddleTimeout);
 
-		log.info("Starting UDP relay server on {}:{}", relayIP, relayPort);
-		log.info("Remote socket {}:{}", remote_sock.getLocalAddress(),
-				remote_sock.getLocalPort());
+		//log.info("Starting UDP relay server on {}:{}", relayIP, relayPort);
+	//	log.info("Remote socket {}:{}", remote_sock.getLocalAddress(),
+		//		remote_sock.getLocalPort());
 
 		pipe_thread1 = new Thread(this, "pipe1");
 		pipe_thread2 = new Thread(this, "pipe2");
@@ -160,8 +157,8 @@ class UDPRelayServer implements Runnable {
 		} catch (final IOException ioe) {
 		} finally {
 			abort();
-			log.info("UDP Pipe thread " + Thread.currentThread().getName()
-					+ " stopped.");
+		//	log.info("UDP Pipe thread " + Thread.currentThread().getName()
+			//		+ " stopped.");
 		}
 
 	}
@@ -173,7 +170,7 @@ class UDPRelayServer implements Runnable {
 			return;
 		}
 
-		log.info("Aborting UDP Relay Server");
+	//	log.info("Aborting UDP Relay Server");
 
 		remote_sock.close();
 		client_sock.close();
@@ -210,7 +207,7 @@ class UDPRelayServer implements Runnable {
 				}
 
 			} catch (final UnknownHostException uhe) {
-				log.info("Dropping datagram for unknown host");
+		//		log.info("Dropping datagram for unknown host");
 			} catch (final InterruptedIOException iioe) {
 				// log("Interrupted: "+iioe);
 				// If we were interrupted by other thread.

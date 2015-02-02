@@ -5,8 +5,8 @@ package org.torproject.android.settings;
 
 import java.util.Locale;
 
-import org.sandroproxy.ony.R;
 import org.sufficientlysecure.rootcommands.RootCommands;
+import org.torproject.android.R;
 import org.torproject.android.service.TorServiceUtils;
 
 import android.content.Context;
@@ -19,7 +19,6 @@ import android.preference.Preference;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
-import android.preference.PreferenceManager;
 import android.widget.Toast;
 
 

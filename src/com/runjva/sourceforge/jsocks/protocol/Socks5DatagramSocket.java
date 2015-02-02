@@ -7,9 +7,6 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * Datagram socket to interract through the firewall.<BR>
  * Can be used same way as the normal DatagramSocket. One should be carefull
@@ -43,8 +40,6 @@ public class Socks5DatagramSocket extends DatagramSocket {
 	Socks5Proxy proxy;
 	private boolean server_mode = false;
 	UDPEncapsulation encapsulation;
-
-	private Logger log = LoggerFactory.getLogger(Socks5DatagramSocket.class);
 
 	/**
 	 * Construct Datagram socket for communication over SOCKS5 proxy server.
@@ -126,8 +121,8 @@ public class Socks5DatagramSocket extends DatagramSocket {
 
 		encapsulation = proxy.udp_encapsulation;
 
-		log.debug("Datagram Socket:{}:{}", getLocalAddress(), getLocalPort());
-		log.debug("Socks5Datagram: {}:{}", relayIP, relayPort);
+	//	log.debug("Datagram Socket:{}:{}", getLocalAddress(), getLocalPort());
+	//	log.debug("Socks5Datagram: {}:{}", relayIP, relayPort);
 	}
 
 	/**
@@ -163,7 +158,7 @@ public class Socks5DatagramSocket extends DatagramSocket {
 		// If the host should be accessed directly, send it as is.
 		if (!server_mode && proxy.isDirect(dp.getAddress())) {
 			super.send(dp);
-			log.debug("Sending datagram packet directly:");
+		//	log.debug("Sending datagram packet directly:");
 			return;
 		}
 
@@ -386,7 +381,7 @@ public class Socks5DatagramSocket extends DatagramSocket {
 				if (eof < 0) {
 					return false; // EOF encountered.
 				} else {
-					log.warn("This really should not happen");
+					//log.warn("This really should not happen");
 					return true; // This really should not happen
 				}
 

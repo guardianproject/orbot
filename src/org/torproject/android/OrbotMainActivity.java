@@ -8,7 +8,6 @@ import info.guardianproject.browser.Browser;
 import java.net.URLDecoder;
 import java.util.Locale;
 
-import org.sandroproxy.ony.R;
 import org.torproject.android.service.TorService;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.TorServiceUtils;
@@ -74,6 +73,11 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
     private Button mBtnBrowser = null;
     private Button mBtnVPN = null;
 
+	private DrawerLayout mDrawer;
+	private ActionBarDrawerToggle mDrawerToggle;
+	private Toolbar mToolbar;
+	
+	
     /* Some tracking bits */
     private int torStatus = TorServiceConstants.STATUS_OFF; //latest status reported from the tor service
     
@@ -92,7 +96,6 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
                
         setLocale();
         
-<<<<<<< HEAD:src/org/torproject/android/OrbotMainActivity.java
     	doLayout();
 
     //	appConflictChecker ();
@@ -118,44 +121,7 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
 		
 	}
 	
-	// Our handler for received Intents. This will be called whenever an Intent
-	// with an action named "custom-event-name" is broadcasted.
-	private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
-		
-		
-		
-	  @Override
-	  public void onReceive(Context context, Intent intent) {
-	    // Get extra data included in the Intent
-		  
-		if (intent.hasExtra("log"))
-		{
-			String log = intent.getStringExtra("log");
-			updateStatus(log);
-		}
-		else if (intent.hasExtra("up"))
-		{
-			long upload = intent.getLongExtra("up",0);
-			long download = intent.getLongExtra("down",0);
-			long written = intent.getLongExtra("written",0);
-			long read = intent.getLongExtra("read",0);
-			
-			Message msg = mHandler.obtainMessage(TorServiceConstants.MESSAGE_TRAFFIC_COUNT);
-			msg.getData().putLong("download", download);
-			msg.getData().putLong("upload", upload);
-			msg.getData().putLong("readTotal", read);
-			msg.getData().putLong("writeTotal", written);
-			mHandler.sendMessage(msg);
-			
-		}
-		else if (intent.hasExtra("status"))
-		{
-			torStatus = intent.getIntExtra("status", TorServiceConstants.STATUS_OFF);
-			updateStatus("");
-		}
-		
-	  }
-	};
+	
 
 	private void startService (String action)
 	{
@@ -174,72 +140,6 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
 		
 	}
 	
-	private DrawerLayout mDrawer;
-	private ActionBarDrawerToggle mDrawerToggle;
-	private Toolbar mToolbar;
-	
-	private void doLayout ()
-	{
-    	setContentView(R.layout.layout_main);
-    	
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        mToolbar.inflateMenu(R.menu.orbot_main);
-        mToolbar.setTitle(R.string.app_name);
-
-    	  mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-          mDrawerToggle = new ActionBarDrawerToggle(
-              this,  mDrawer, mToolbar,
-              android.R.string.ok, android.R.string.cancel
-          );
-          
-          mDrawer.setDrawerListener(mDrawerToggle);
-          mDrawerToggle.setDrawerIndicatorEnabled(true);
-          mDrawerToggle.syncState();
-          mDrawerToggle.setToolbarNavigationClickListener(new OnClickListener ()
-          {
-
-              @Override
-              public void onClick(View v) {
-
-                 
-
-              }
-
-
-          });
-
-    	
-    	lblStatus = (TextView)findViewById(R.id.lblStatus);
-    	imgStatus = (ImageProgressView)findViewById(R.id.imgStatus);
-    	imgStatus.setOnLongClickListener(this);
-    	
-    	downloadText = (TextView)findViewById(R.id.trafficDown);
-        uploadText = (TextView)findViewById(R.id.trafficUp);
-=======
-        doLayout();
-
-        appConflictChecker ();
-        
-
-        // Register to receive messages.
-        // We are registering an observer (mMessageReceiver) to receive Intents
-        // with actions named "custom-event-name".
-        LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
-            new IntentFilter("status"));
-        
-        LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
-                  new IntentFilter("log"));
-
-        mHandler.postDelayed(new Runnable ()
-        {
-        
-            public void run ()
-            {
-                startService(TorServiceConstants.CMD_INIT);
-            }
-        },INIT_DELAY);
-        
-    }
     
     // Our handler for received Intents. This will be called whenever an Intent
     // with an action named "custom-event-name" is broadcasted.
@@ -280,30 +180,12 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
       }
     };
 
-    ProgressDialog mProgressDialog;
-    
-    private void startService (String action)
-    {
-        
-        Intent torService = new Intent(this, TorService.class);    
-        torService.setAction(action);
-        startService(torService);
-        
-    }
-    
-    private void stopService ()
-    {
-        
-        Intent torService = new Intent(this, TorService.class);
-        stopService(torService);
-        
-    }
+ 
     
     private void doLayout ()
     {
         setContentView(R.layout.layout_main);
         
-        mViewMain = findViewById(R.id.viewMain);
         lblStatus = (TextView)findViewById(R.id.lblStatus);
         lblStatus.setOnLongClickListener(this);
         imgStatus = (ImageProgressView)findViewById(R.id.imgStatus);
@@ -314,42 +196,7 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
         
         downloadText = (TextView)findViewById(R.id.trafficDown);
         uploadText = (TextView)findViewById(R.id.trafficUp);
-        mTxtOrbotLog = (TextView)findViewById(R.id.orbotLog);
         
-        mDrawer = ((SlidingDrawer)findViewById(R.id.SlidingDrawer));
-        Button slideButton = (Button)findViewById(R.id.slideButton);
-        if (slideButton != null)
-        {
-            slideButton.setOnTouchListener(new OnTouchListener (){
-    
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-    
-                    if (event.equals(MotionEvent.ACTION_DOWN))
-                    {
-                        mDrawerOpen = !mDrawerOpen;
-                        mTxtOrbotLog.setEnabled(mDrawerOpen);                
-                    }
-                    return false;
-                }
-                
-            });
-        }
-        
-        ScrollingMovementMethod smm = new ScrollingMovementMethod();
-        
-        mTxtOrbotLog.setMovementMethod(smm);
-        mTxtOrbotLog.setOnLongClickListener(new View.OnLongClickListener() {
-         
-
-            @Override
-            public boolean onLongClick(View v) {
-                  ClipboardManager cm = (ClipboardManager)getSystemService(Context.CLIPBOARD_SERVICE);
-                    cm.setText(mTxtOrbotLog.getText());
-                    Toast.makeText(Orbot.this, "LOG COPIED TO CLIPBOARD", Toast.LENGTH_SHORT).show();
-                return true;
-            }
-        });
         
         downloadText.setText(formatCount(0) + " / " + formatTotal(0));
         uploadText.setText(formatCount(0) + " / " + formatTotal(0));
@@ -396,23 +243,7 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
 
 	}
    	
-    private void appendLogTextAndScroll(String text)
-    {
-        if(mTxtOrbotLog != null && text != null && text.length() > 0){
-            
-            if (mTxtOrbotLog.getText().length() > MAX_LOG_LENGTH)
-                mTxtOrbotLog.setText("");
-            
-            mTxtOrbotLog.append(text + "\n");
-            final Layout layout = mTxtOrbotLog.getLayout();
-            if(layout != null){
-                int scrollDelta = layout.getLineBottom(mTxtOrbotLog.getLineCount() - 1) 
-                    - mTxtOrbotLog.getScrollY() - mTxtOrbotLog.getHeight();
-                if(scrollDelta > 0)
-                    mTxtOrbotLog.scrollBy(0, scrollDelta);
-            }
-        }
-    }
+    
     
    /*
     * Create the UI Options Menu (non-Javadoc)
@@ -839,308 +670,9 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
 		
 	}
 	
-	private void startIntent (String pkg, String action, Uri data)
-	{
-		Intent i;
-		PackageManager manager = getPackageManager();
-		try {
-		    i = manager.getLaunchIntentForPackage(pkg);
-		    if (i == null)
-		        throw new PackageManager.NameNotFoundException();		    
-		    i.setAction(action);
-		    i.setData(data);
-		    startActivity(i);
-		} catch (PackageManager.NameNotFoundException e) {
-
-		}
-	}
 	
-	private boolean appInstalledOrNot(String uri)
-=======
-     * @see android.app.Activity#onPause()
-     */
-    protected void onPause() {
-        try
-        {
-            super.onPause();
     
-            if (aDialog != null)
-                aDialog.dismiss();
-        }
-        catch (IllegalStateException ise)
-        {
-            //can happen on exit/shutdown
-        }
-    }
-    
-    private void doTorCheck ()
-    {
-        
-        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-            
-            public void onClick(DialogInterface dialog, int which) {
-                switch (which){
-                case DialogInterface.BUTTON_POSITIVE:
-                    
-                    openBrowser(URL_TOR_CHECK);
 
-                    
-                    
-                    break;
-
-                case DialogInterface.BUTTON_NEGATIVE:
-                
-                    //do nothing
-                    break;
-                }
-            }
-        };
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(R.string.tor_check).setPositiveButton(R.string.btn_okay, dialogClickListener)
-            .setNegativeButton(R.string.btn_cancel, dialogClickListener).show();
-
-    }
-    
-    private void enableHiddenServicePort (int hsPort)
-    {
-        
-        Editor pEdit = mPrefs.edit();
-        
-        String hsPortString = mPrefs.getString("pref_hs_ports", "");
-        
-        if (hsPortString.length() > 0 && hsPortString.indexOf(hsPort+"")==-1)
-            hsPortString += ',' + hsPort;
-        else
-            hsPortString = hsPort + "";
-        
-        pEdit.putString("pref_hs_ports", hsPortString);
-        pEdit.putBoolean("pref_hs_enable", true);
-        
-        pEdit.commit();
-        
-        String onionHostname = mPrefs.getString("pref_hs_hostname","");
-
-        while (onionHostname.length() == 0)
-        {
-            //we need to stop and start Tor
-            try {
-                stopTor();
-                
-                Thread.sleep(3000); //wait three seconds
-                
-                startTor();
-            } catch (Exception e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-             
-             onionHostname = mPrefs.getString("pref_hs_hostname","");
-        }
-        
-        Intent nResult = new Intent();
-        nResult.putExtra("hs_host", onionHostname);
-        setResult(RESULT_OK, nResult);
-    
-    }
-
-
-    private synchronized void handleIntents ()
-    {
-        if (getIntent() == null)
-            return;
-        
-        // Get intent, action and MIME type
-        Intent intent = getIntent();
-        String action = intent.getAction();
-        String type = intent.getType();
-        
-        if (action == null)
-            return;
-        
-        if (action.equals("org.torproject.android.REQUEST_HS_PORT"))
-        {
-            
-            DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-                
-                public void onClick(DialogInterface dialog, int which) {
-                    switch (which){
-                    case DialogInterface.BUTTON_POSITIVE:
-                        
-                        int hsPort = getIntent().getIntExtra("hs_port", -1);
-                        
-                        enableHiddenServicePort (hsPort);
-                        
-                        finish();
-                        
-                        
-                        break;
-
-                    case DialogInterface.BUTTON_NEGATIVE:
-                        //No button clicked
-                        finish();
-                        break;
-                    }
-                }
-            };
-
-            int hsPort = getIntent().getIntExtra("hs_port", -1);
-
-            String requestMsg = getString(R.string.hidden_service_request, hsPort);
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage(requestMsg).setPositiveButton("Allow", dialogClickListener)
-                .setNegativeButton("Deny", dialogClickListener).show();
-            
-        
-        }
-        else if (action.equals("org.torproject.android.START_TOR"))
-        {
-            autoStartFromIntent = true;
-                
-                try {
-                    startTor();
-
-                    Intent nResult = new Intent();
-                    
-                    //nResult.putExtra("socks", ); //TODO respond with socks, transport, dns, etc
-                    
-                    setResult(RESULT_OK,nResult);
-                    
-                } catch (RemoteException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            
-        }
-        else if (action.equals(Intent.ACTION_VIEW))
-        {
-            String urlString = intent.getDataString();
-            
-            if (urlString != null)
-            {
-                
-                if (urlString.toLowerCase().startsWith("bridge://"))
-
-                {
-                    String newBridgeValue = urlString.substring(9); //remove the bridge protocol piece
-                    newBridgeValue = URLDecoder.decode(newBridgeValue); //decode the value here
-        
-                    showAlert("Bridges Updated","Restart Orbot to use this bridge: " + newBridgeValue,false);    
-                    
-                    String bridges = mPrefs.getString(TorConstants.PREF_BRIDGES_LIST, null);
-                    
-                    Editor pEdit = mPrefs.edit();
-                    
-                    if (bridges != null && bridges.trim().length() > 0)
-                    {
-                        if (bridges.indexOf('\n')!=-1)
-                            bridges += '\n' + newBridgeValue;
-                        else
-                            bridges += ',' + newBridgeValue;
-                    }
-                    else
-                        bridges = newBridgeValue;
-                    
-                    pEdit.putString(TorConstants.PREF_BRIDGES_LIST,bridges); //set the string to a preference
-                    pEdit.putBoolean(TorConstants.PREF_BRIDGES_ENABLED,true);
-                
-                    pEdit.commit();
-                    
-                    setResult(RESULT_OK);
-                }
-            }
-        }
-        else
-        {
-        
-            showWizard = mPrefs.getBoolean("show_wizard",showWizard);
-            
-            if (showWizard)
-            {
-                Editor pEdit = mPrefs.edit();
-                pEdit.putBoolean("show_wizard",false);
-                pEdit.commit();                
-                showWizard = false;
-
-                startActivity(new Intent(this, ChooseLocaleWizardActivity.class));
-
-            }
-            
-        }
-        
-        setIntent(null);
-        
-        updateStatus ("");
-        
-    }
-
-    private boolean showWizard = true;
-    
-    
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        
-        doLayout();
-        updateStatus("");
-    }
-
-
-    /*
-     * Launch the system activity for Uri viewing with the provided url
-     */
-    private void openBrowser(final String browserLaunchUrl)
-    {
-        boolean isOrwebInstalled = appInstalledOrNot("info.guardianproject.browser");
-        boolean isTransProxy =  mPrefs.getBoolean("pref_transparent", false);
-        
-        if (isOrwebInstalled)
-        {
-            startIntent("info.guardianproject.browser",Intent.ACTION_VIEW,Uri.parse(browserLaunchUrl));                        
-        }
-        else if (isTransProxy)
-        {
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(browserLaunchUrl));
-            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-        }
-        else
-        {
-            AlertDialog aDialog = new AlertDialog.Builder(Orbot.this)
-              .setIcon(R.drawable.onion32)
-              .setTitle(R.string.install_apps_)
-              .setMessage(R.string.it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_)
-              .setPositiveButton(android.R.string.ok, new OnClickListener ()
-              {
-
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-
-                    //prompt to install Orweb
-                    Intent intent = new Intent(Orbot.this,TipsAndTricks.class);
-                    startActivity(intent);
-                    
-                }
-                  
-              })
-              .setNegativeButton(android.R.string.no, new OnClickListener ()
-              {
-
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(browserLaunchUrl));
-                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
-                    
-                }
-                  
-              })
-              .show();
-              
-        }
-        
-    }
-    
     private void startIntent (String pkg, String action, Uri data)
     {
         Intent i;
@@ -1448,42 +980,12 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
                         
                 }
                 
-<<<<<<< HEAD:src/org/torproject/android/OrbotMainActivity.java
                 return true;
                     
             }
             catch (Exception e)
             {
                     Log.d(TAG,"error onclick",e);
-            }
-
-=======
-            if (!mDrawerOpen)
-            {
-                try
-                {
-                        
-                    if (torStatus == TorServiceConstants.STATUS_OFF)
-                    {
-    
-                            startTor();
-                    }
-                    else
-                    {
-                            
-                            stopTor();
-                            stopService ();
-                            
-                    }
-                    
-                    return true;
-                        
-                }
-                catch (Exception e)
-                {
-                        Log.d(TAG,"error onclick",e);
-                }
-
             }
             
             return false;

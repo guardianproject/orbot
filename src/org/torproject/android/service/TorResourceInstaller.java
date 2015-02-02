@@ -17,13 +17,12 @@ import java.util.concurrent.TimeoutException;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import org.sandroproxy.ony.R;
 import org.sufficientlysecure.rootcommands.Shell;
 import org.sufficientlysecure.rootcommands.command.SimpleCommand;
+import org.torproject.android.R;
 import org.torproject.android.TorConstants;
 
 import android.content.Context;
-import android.os.Build;
 import android.util.Log;
 
 public class TorResourceInstaller implements TorServiceConstants {

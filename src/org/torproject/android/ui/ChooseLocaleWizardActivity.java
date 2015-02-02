@@ -2,7 +2,7 @@ package org.torproject.android.ui;
 
 import java.util.Locale;
 
-import org.sandroproxy.ony.R;
+import org.torproject.android.R;
 import org.torproject.android.TorConstants;
 import org.torproject.android.service.TorServiceUtils;
 
@@ -12,7 +12,6 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;

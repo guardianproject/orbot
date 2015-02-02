@@ -7,14 +7,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-import org.sandroproxy.ony.R;
 import org.sufficientlysecure.rootcommands.Shell;
 import org.sufficientlysecure.rootcommands.command.SimpleCommand;
 import org.torproject.android.R;
-import org.torproject.android.R.id;
-import org.torproject.android.R.layout;
-import org.torproject.android.R.menu;
-import org.torproject.android.R.raw;
 import org.torproject.android.service.TorResourceInstaller;
 import org.torproject.android.service.TorServiceConstants;
 
