@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="org.torproject.android" 
-      android:versionName="14.1.4-noPIE" 
-      android:versionCode="132"
+      android:versionName="15.1.0" 
+      android:versionCode="1510"
         android:installLocation="auto"      
       >
  	    
-    <uses-sdk android:minSdkVersion="9" android:maxSdkVersion="20" android:targetSdkVersion="19"/>
+    <uses-sdk android:minSdkVersion="9" android:maxSdkVersion="22" android:targetSdkVersion="22"/>
  <permission android:name="org.torproject.android.MANAGE_TOR" android:label="@string/permission_manage_tor_label" android:description="@string/permission_manage_tor_description" android:protectionLevel="signature"></permission>
     
  <uses-permission android:name="android.permission.INTERNET" />
@@ -14,6 +14,8 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
  	<uses-permission android:name="android.permission.ACCESS_SUPERUSER"/>
 	<uses-permission android:name="org.torproject.android.MANAGE_TOR"/>
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+	
 
     <application android:name=".OrbotApp" android:icon="@drawable/ic_launcher"
      android:label="@string/app_name" 
@@ -59,22 +61,10 @@
             	<action android:name="org.torproject.android.START_TOR" />
             </intent-filter>
             
-             <!-- 
-              <intent-filter>
-                 <action android:name="android.intent.action.SEND" />
-                
-                 <category android:name="android.intent.category.DEFAULT" />
-                 <category android:name="android.intent.category.ALTERNATIVE" /> 
-                 <category android:name="android.intent.category.SELECTED_ALTERNATIVE" /> 
-                 
-                 <data android:mimeType="*/*" />
-             </intent-filter>
-               -->
-           
         </activity>
         
         <!-- 
-        <activity android:name=".OrbotDiagnosticsActivity" android:label="OrbotDiag"/>
+        This is for ensuring the background service still runs when/if the app is swiped away
          -->
       	<activity
 			android:name=".service.DummyActivity"
@@ -103,7 +93,6 @@
                   android:label="@string/app_name_orweb"
                   android:icon="@drawable/icon_orweb"
                   android:configChanges="locale|orientation|screenSize"
-                  android:launchMode="singleTop"
                   >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
