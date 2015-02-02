@@ -186,6 +186,31 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
     {
         setContentView(R.layout.layout_main);
         
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mToolbar.inflateMenu(R.menu.orbot_main);
+        mToolbar.setTitle(R.string.app_name);
+
+        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+          mDrawerToggle = new ActionBarDrawerToggle(
+              this,  mDrawer, mToolbar,
+              android.R.string.ok, android.R.string.cancel
+          );
+          
+          mDrawer.setDrawerListener(mDrawerToggle);
+          mDrawerToggle.setDrawerIndicatorEnabled(true);
+          mDrawerToggle.syncState();
+          mDrawerToggle.setToolbarNavigationClickListener(new OnClickListener ()
+          {
+
+              @Override
+              public void onClick(View v) {
+              }
+
+
+          });
+
+        setupMenu();
+        
         lblStatus = (TextView)findViewById(R.id.lblStatus);
         lblStatus.setOnLongClickListener(this);
         imgStatus = (ImageProgressView)findViewById(R.id.imgStatus);
@@ -311,10 +336,14 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
             .show();
         }
     
-        @Override
-        public boolean onOptionsItemSelected(MenuItem item) {
-                
-                super.onOptionsItemSelected(item);
+    private void setupMenu ()
+    {
+
+        mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener ()
+        {
+
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
                 
                 if (item.getItemId() == R.id.menu_start)
                 {
@@ -351,7 +380,7 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
                 }
                 else if (item.getItemId() == R.id.menu_wizard)
                 {
-                    startActivity(new Intent(this, ChooseLocaleWizardActivity.class));
+                    startActivity(new Intent(OrbotMainActivity.this, ChooseLocaleWizardActivity.class));
 
                 }
                 else if (item.getItemId() == R.id.menu_exit)
@@ -369,6 +398,12 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
                 }
 
                 return true;
+            
+            }
+        
+        });
+            
+        
         }
       
         /**
@@ -758,15 +793,15 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     public void startVpnService ()
     {
-         Intent intent = VpnService.prepare(this);
-            if (intent != null) {
-                startActivityForResult(intent,REQUEST_VPN);
-            } 
-            else
-            {
-                startService(TorServiceConstants.CMD_VPN);
+        Intent intent = VpnService.prepare(this);
+        if (intent != null) {
+            startActivityForResult(intent,REQUEST_VPN);
+        } 
+        else
+        {
+            startService(TorServiceConstants.CMD_VPN);
 
-            }
+        }
     }
 
     private boolean flushTransProxy ()
@@ -850,9 +885,6 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
                             
                             imgStatus.setImageResource(R.drawable.toron);
                     		
-                            mBtnBrowser.setEnabled(true);
-                            mBtnVPN.setEnabled(true);
-                            
 
                             if (mItemOnOff != null)
                                     mItemOnOff.setTitle(R.string.menu_stop);
@@ -911,9 +943,6 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
                         if (mItemOnOff != null)
                                 mItemOnOff.setTitle(R.string.menu_start);
 
-                        mBtnBrowser.setEnabled(false);
-                        mBtnVPN.setEnabled(false);
-                        
                     }
             }
                 
