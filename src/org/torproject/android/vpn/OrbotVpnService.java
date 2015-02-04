@@ -81,7 +81,8 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     	else if (action.equals("stop"))
     	{
     		stopVPN();    		
-    		mHandler.postDelayed(new Runnable () { public void run () { stopSelf(); }}, 1000);
+    		if (mHandler != null)
+    			mHandler.postDelayed(new Runnable () { public void run () { stopSelf(); }}, 1000);
     	}
      
         
