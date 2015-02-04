@@ -90,7 +90,7 @@
 			      	
       	<activity android:name=".ui.LotsaText" android:exported="false"/>
       	<activity android:name=".ui.TipsAndTricks" android:exported="false"/>
-      	<activity android:name=".ui.ChooseLocaleWizardActivitycaleWizardActivity" android:exported="false"/>
+      	<activity android:name=".ui.ChooseLocaleWizardActivity" android:exported="false"/>
       	
       	<activity android:name=".settings.SettingsPreferences"  android:label="@string/app_name"/>
         <activity android:name=".settings.AppManager"  android:label="@string/app_name"/>       
