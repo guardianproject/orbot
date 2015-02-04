@@ -144,37 +144,40 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     		{
 		    	if (mInterface == null)
 		    	{
-		    		// Set the locale to English (or probably any other language that^M
-		            // uses Hindu-Arabic (aka Latin) numerals).^M
-		            // We have found that VpnService.Builder does something locale-dependent^M
-		            // internally that causes errors when the locale uses its own numerals^M
-		            // (i.e., Farsi and Arabic).^M
-		    		Locale.setDefault(new Locale("en"));
-		    		
-		    		String vpnName = "OrbotVPN";
-		    		String virtualGateway = "10.0.0.1";
-		        	String virtualIP = "10.0.0.2";
-		        	String virtualNetMask = "255.255.255.0";
-		        	String localSocks = "127.0.0.1:" + TorServiceConstants.PORT_SOCKS_DEFAULT;
-		        	String localDNS = "10.0.0.1:" + TorServiceConstants.TOR_DNS_PORT_DEFAULT;
-		        	
-		        	
-			        Builder builder = new Builder();
-			        
-			        builder.setMtu(VPN_MTU);
-			        builder.addAddress(virtualGateway,28);
-			        builder.setSession(vpnName);	 
-			        
-			        builder.addRoute("0.0.0.0",0);	 
-			        
-			        
-			         // Create a new interface using the builder and save the parameters.
-			        mInterface = builder.setSession(mSessionName)
-			                .setConfigureIntent(mConfigureIntent)
-			                .establish();
-			        	    
-			        try
+		    		try
 			        {
+		    			
+			    		// Set the locale to English (or probably any other language that^M
+			            // uses Hindu-Arabic (aka Latin) numerals).^M
+			            // We have found that VpnService.Builder does something locale-dependent^M
+			            // internally that causes errors when the locale uses its own numerals^M
+			            // (i.e., Farsi and Arabic).^M
+			    		Locale.setDefault(new Locale("en"));
+			    		
+			    		String localhost = InetAddress.getLocalHost().getHostAddress();
+			    		
+			    		String vpnName = "OrbotVPN";
+			    		String virtualGateway = "10.0.0.1";
+			        	String virtualIP = "10.0.0.2";
+			        	String virtualNetMask = "255.255.255.0";
+			        	String localSocks = localhost + ':' + TorServiceConstants.PORT_SOCKS_DEFAULT;
+			        	String localDNS = localhost + ':' + TorServiceConstants.TOR_DNS_PORT_DEFAULT;
+			        	
+			        	
+				        Builder builder = new Builder();
+				        
+				        builder.setMtu(VPN_MTU);
+				        builder.addAddress(virtualGateway,28);
+				        builder.setSession(vpnName);	 
+				        builder.addRoute("0.0.0.0",0);	 
+				        builder.addDnsServer("8.8.8.8");
+				        
+				         // Create a new interface using the builder and save the parameters.
+				        mInterface = builder.setSession(mSessionName)
+				                .setConfigureIntent(mConfigureIntent)
+				                .establish();
+				        	    
+				        
 			        	Tun2Socks.Start(mInterface, VPN_MTU, virtualIP, virtualNetMask, localSocks , localDNS , true);
 			        }
 			        catch (Exception e)
