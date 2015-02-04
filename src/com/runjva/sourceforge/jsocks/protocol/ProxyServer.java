@@ -672,24 +672,24 @@ public class ProxyServer implements Runnable {
 	
 	public static void debug (String msg, String host, int port)
 	{
-		debug (msg);
+		debug (msg + ": " + host + ":" + port);
 	}
 	
 	public static void debug (String msg, Exception e)
 	{
 
-		debug (msg);
+		Log.e("Proxy",msg,e);
 	}
 	
 	public static void debug (String msg, InetAddress addr, int port)
 	{
 
-		debug (msg);
+		debug (msg + ": " + addr.getHostAddress() + ": " + port);
 	}
 	
 	public static void debug (String msg, int type, String log)
 	{
 
-		debug (msg);
+		debug (msg + " type:" + type + "=" + log);
 	}
 }
