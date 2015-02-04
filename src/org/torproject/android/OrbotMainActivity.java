@@ -58,6 +58,7 @@ import android.view.animation.AccelerateInterpolator;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 
 public class OrbotMainActivity extends Activity implements TorConstants, OnLongClickListener, OnTouchListener, OnSharedPreferenceChangeListener
@@ -73,8 +74,8 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
     private TextView mTxtOrbotLog = null;
     
     private Button mBtnBrowser = null;
-    private Button mBtnVPN = null;
-
+    private ToggleButton mBtnVPN = null;
+    
 	private DrawerLayout mDrawer;
 	private ActionBarDrawerToggle mDrawerToggle;
 	private Toolbar mToolbar;
@@ -246,14 +247,17 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
 			
 		});
 		
-		mBtnVPN = (Button)findViewById(R.id.btnVPN);
+		mBtnVPN = (ToggleButton)findViewById(R.id.btnVPN);
 		mBtnVPN.setOnClickListener(new View.OnClickListener ()
 		{
 
 			@Override
 			public void onClick(View v) {
 
-				startVpnService();
+				if (mBtnVPN.isChecked())
+					startVpnService();
+				else
+					stopVpnService();
 				
 			}
 
@@ -806,6 +810,11 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
             startService(TorServiceConstants.CMD_VPN);
 
         }
+    }
+    
+    public void stopVpnService ()
+    {    	
+        startService(TorServiceConstants.CMD_VPN_CLEAR);
     }
 
     private boolean flushTransProxy ()

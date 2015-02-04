@@ -170,12 +170,12 @@
 			    android:text="Open Browser"
 			     />
 	
-			<Button
+			<ToggleButton
 			    android:id="@+id/btnVPN"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
-			    android:text="Start VPN" 
-			    
+			    android:textOff="VPN Off"
+			    android:textOn="VPN On"			    
 			    />
 			 
 		    </LinearLayout>
