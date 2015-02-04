@@ -41,7 +41,7 @@ import com.runjva.sourceforge.jsocks.server.ServerAuthenticatorNone;
 
 @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 public class OrbotVpnService extends VpnService implements Handler.Callback {
-    private static final String TAG = "DrobotVpnService";
+    private static final String TAG = "OrbotVpnService";
 
     private PendingIntent mConfigureIntent;
 
@@ -60,20 +60,32 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
-        // The handler is only used to show messages.
-        if (mHandler == null) {
-            mHandler = new Handler(this);
-        }
-
-        // Stop the previous session by interrupting the thread.
-        if (mThreadVPN == null || (!mThreadVPN.isAlive()))
-        {
-       	    enableAppRouting ();
-            setupTun2Socks();               
-        }
+    	String action = intent.getAction();
+    	
+    	if (action.equals("start"))
+    	{
+	    	Log.d(TAG,"starting OrbotVPNService service!");
+	
+	        // The handler is only used to show messages.
+	        if (mHandler == null) {
+	            mHandler = new Handler(this);
+	        }
+	
+	        // Stop the previous session by interrupting the thread.
+	        if (mThreadVPN == null || (!mThreadVPN.isAlive()))
+	        {
+	       	    enableAppRouting ();
+	            setupTun2Socks();               
+	        }
+    	}
+    	else if (action.equals("stop"))
+    	{
+    		stopVPN();    		
+    		mHandler.postDelayed(new Runnable () { public void run () { stopSelf(); }}, 1000);
+    	}
      
         
-        return START_STICKY;
+        return START_NOT_STICKY;
     }
     
     private void enableAppRouting ()
@@ -113,12 +125,21 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 
     @Override
     public void onDestroy() {
+    	stopVPN();
+    	
+    }
+    
+    private void stopVPN ()
+    {
         if (mProxyServer != null){
             mProxyServer.stop();
+            mProxyServer = null;
         }
         if (mInterface != null){
             try {
+            	Log.d(TAG,"closing interface, destroying VPN interface");
                 mInterface.close();
+                mInterface = null;
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -154,14 +175,14 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 			            // (i.e., Farsi and Arabic).^M
 			    		Locale.setDefault(new Locale("en"));
 			    		
-			    		String localhost = InetAddress.getLocalHost().getHostAddress();
+			    		//String localhost = InetAddress.getLocalHost().getHostAddress();
 			    		
 			    		String vpnName = "OrbotVPN";
 			    		String virtualGateway = "10.0.0.1";
 			        	String virtualIP = "10.0.0.2";
 			        	String virtualNetMask = "255.255.255.0";
-			        	String localSocks = localhost + ':' + TorServiceConstants.PORT_SOCKS_DEFAULT;
-			        	String localDNS = localhost + ':' + TorServiceConstants.TOR_DNS_PORT_DEFAULT;
+			        	String localSocks = "127.0.0.1" + ':' + TorServiceConstants.PORT_SOCKS_DEFAULT;
+			        	String localDNS = "10.0.0.1" + ':' + TorServiceConstants.TOR_DNS_PORT_DEFAULT;
 			        	
 			        	
 				        Builder builder = new Builder();
@@ -170,7 +191,7 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 				        builder.addAddress(virtualGateway,28);
 				        builder.setSession(vpnName);	 
 				        builder.addRoute("0.0.0.0",0);	 
-				        builder.addDnsServer("8.8.8.8");
+				      //  builder.addDnsServer("8.8.8.8");
 				        
 				         // Create a new interface using the builder and save the parameters.
 				        mInterface = builder.setSession(mSessionName)

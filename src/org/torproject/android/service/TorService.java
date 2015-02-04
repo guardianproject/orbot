@@ -141,6 +141,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     private boolean mTransProxyTethering = false;
     private boolean mTransProxyNetworkRefresh = false;
     
+    private boolean mUseVPN = false;
+    
     private ExecutorService mExecutor = Executors.newFixedThreadPool(1);
 
     public void debug(String msg)
@@ -368,7 +370,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
                     
                     if (action!=null){
                         if(action.equals(Intent.ACTION_BOOT_COMPLETED)||action.equals(CMD_START)){
-                            clearVpnProxy();
                             setTorProfile(STATUS_ON);
                         }else if (action.equals(CMD_STOP)){
                             setTorProfile(STATUS_OFF);
@@ -381,7 +382,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
                             flushTransparentProxyRules();
                         }else if (action.equals(CMD_UPDATE)){
                             processSettings();
-                        }else if (action.equals(CMD_VPN)){
+                        }else if (action.equals(CMD_VPN)){                        	
                             enableVpnProxy();
                         }
                         else if (action.equals(CMD_VPN_CLEAR)){
@@ -1422,6 +1423,10 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         
         public void enableVpnProxy () {
             
+        	debug ("enabling VPN Proxy");
+        	
+        	mUseVPN = true;
+
             SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
             Editor ePrefs = prefs.edit();
             
@@ -1434,12 +1439,18 @@ public class TorService extends Service implements TorServiceConstants, TorConst
             processSettings();
             
             Intent intent = new Intent(TorService.this, OrbotVpnService.class);
+            intent.setAction("start");
             startService(intent);
+            
            
         }
         
         public void clearVpnProxy ()
-        {
+        {   
+        	debug ("clearing VPN Proxy");
+        	
+            mUseVPN = false;
+
             SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
             Editor ePrefs = prefs.edit();            
             ePrefs.remove("pref_proxy_type");
@@ -1449,6 +1460,10 @@ public class TorService extends Service implements TorServiceConstants, TorConst
             ePrefs.remove("pref_proxy_password");
             ePrefs.commit();
             processSettings();
+            
+            Intent intent = new Intent(TorService.this, OrbotVpnService.class);
+            intent.setAction("stop");
+            startService(intent);                                              
         }
 
         
@@ -2314,6 +2329,12 @@ public class TorService extends Service implements TorServiceConstants, TorConst
             updateConfiguration("HiddenServiceDir","", false);
             
         }
+        
+        if (mUseVPN)
+        {
+        	updateConfiguration("DNSListenAddress","10.0.0.1:" + TorServiceConstants.TOR_DNS_PORT_DEFAULT,false);
+        }
+        
 
         saveConfiguration();
     
