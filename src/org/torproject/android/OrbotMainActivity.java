@@ -184,7 +184,6 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
     };
 
  
-    
     private void doLayout ()
     {
         setContentView(R.layout.layout_main);
@@ -654,62 +653,27 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
 	/*
 	 * Launch the system activity for Uri viewing with the provided url
 	 */
-	private void openBrowser(final String browserLaunchUrl)
+	private void openBrowser(String browserLaunchUrl)
 	{
 		//startIntent("info.guardianproject.browser.Browser",Intent.ACTION_VIEW,Uri.parse(browserLaunchUrl));						
 
-		Intent intentBrowser = new Intent(this, Browser.class);
-		intentBrowser.setAction(Intent.ACTION_VIEW);
-		intentBrowser.setData(Uri.parse(browserLaunchUrl));
-		startActivity(intentBrowser);
-		
-		/**
-		boolean isOrwebInstalled = appInstalledOrNot("info.guardianproject.browser");
-		boolean isTransProxy =  mPrefs.getBoolean("pref_transparent", false);
-		
-		if (isOrwebInstalled)
+		if (mBtnVPN.isChecked())
 		{
-		}
-		else if (isTransProxy)
-		{
+			//use the system browser since VPN is on
 			Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(browserLaunchUrl));
 			intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
 			startActivity(intent);
 		}
 		else
 		{
-			AlertDialog aDialog = new AlertDialog.Builder(Orbot.this)
-              .setIcon(R.drawable.onion32)
-		      .setTitle(R.string.install_apps_)
-		      .setMessage(R.string.it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_)
-		      .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener ()
-		      {
-
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-
-					//prompt to install Orweb
-					Intent intent = new Intent(Orbot.this,TipsAndTricks.class);
-					startActivity(intent);
-					
-				}
-		    	  
-		      })
-		      .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener ()
-		      {
-
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(browserLaunchUrl));
-					intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
-					startActivity(intent);
-					
-				}
-		    	  
-		      })
-		      .show();
-			  
-		}*/
+			//use the built-in browser
+			Intent intentBrowser = new Intent(this, Browser.class);
+			intentBrowser.setAction(Intent.ACTION_VIEW);
+			intentBrowser.setData(Uri.parse(browserLaunchUrl));
+			startActivity(intentBrowser);
+		}
+		
+	
 		
 	}
 	
