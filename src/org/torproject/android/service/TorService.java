@@ -368,7 +368,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
                     
                     if (action!=null){
                         if(action.equals(Intent.ACTION_BOOT_COMPLETED)||action.equals(CMD_START)){
-                             setTorProfile(STATUS_ON);
+                            clearVpnProxy();
+                            setTorProfile(STATUS_ON);
                         }else if (action.equals(CMD_STOP)){
                             setTorProfile(STATUS_OFF);
                         }else if (action.equals(CMD_INIT)){
@@ -1440,8 +1441,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         public void clearVpnProxy ()
         {
             SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
-            Editor ePrefs = prefs.edit();
-            
+            Editor ePrefs = prefs.edit();            
             ePrefs.remove("pref_proxy_type");
             ePrefs.remove("pref_proxy_host");
             ePrefs.remove("pref_proxy_port");
