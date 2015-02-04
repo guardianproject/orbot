@@ -70,6 +70,8 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
     private TextView downloadText = null;
     private TextView uploadText = null;
   
+    private TextView mTxtOrbotLog = null;
+    
     private Button mBtnBrowser = null;
     private Button mBtnVPN = null;
 
@@ -210,6 +212,8 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
           });
 
         setupMenu();
+        
+        mTxtOrbotLog = (TextView)findViewById(R.id.orbotLog);
         
         lblStatus = (TextView)findViewById(R.id.lblStatus);
         lblStatus.setOnLongClickListener(this);
@@ -889,10 +893,13 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
                             if (mItemOnOff != null)
                                     mItemOnOff.setTitle(R.string.menu_stop);
                             
+                            if (lblStatus != null && torServiceMsg != null)
+                            	if (torServiceMsg.indexOf('%')!=-1)
+                            		lblStatus.setText(torServiceMsg);
                         
                             if (torServiceMsg != null && torServiceMsg.length() > 0)
                             {
-                            //	appendLogTextAndScroll(torServiceMsg);
+                            	mTxtOrbotLog.append(torServiceMsg + '\n');
                             }
                             
                             boolean showFirstTime = mPrefs.getBoolean("connect_first_time",true);
@@ -930,9 +937,11 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
                         	if (torServiceMsg.indexOf('%')!=-1)
                         		lblStatus.setText(torServiceMsg);
                         	
-                        //appendLogTextAndScroll(torServiceMsg);
-                        
-                                    
+                        if (torServiceMsg != null && torServiceMsg.length() > 0)
+                        {
+                        	mTxtOrbotLog.append(torServiceMsg + '\n');
+                        }
+                    	           
                     }
                     else if (torStatus == TorServiceConstants.STATUS_OFF)
                     {
@@ -960,7 +969,7 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
 		startService (TorServiceConstants.CMD_START);
 		torStatus = TorServiceConstants.STATUS_CONNECTING;
 				
-//		mTxtOrbotLog.setText("");
+		mTxtOrbotLog.setText("");
 
         //here we update the UI which is a bit sloppy and mixed up code wise
         //might be best to just call updateStatus() instead of directly manipulating UI in this method - yep makes sense

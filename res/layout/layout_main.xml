@@ -182,48 +182,17 @@
 	    </LinearLayout>
 	    </LinearLayout>
 	 <LinearLayout
-    android:layout_width="240dp"
+    android:layout_width="320dp"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/left_drawer"
-    android:layout_gravity="start"        
-    android:background="@color/panel_background"
+    android:layout_gravity="start"            
+    android:background="#333333"
      >
-    </LinearLayout>
-	
-	</android.support.v4.widget.DrawerLayout>
-	
-</LinearLayout>
-
-		<!-- 
-	 <SlidingDrawer
-        android:layout_width="fill_parent"
-        android:id="@+id/SlidingDrawer"
-        android:handle="@+id/slideButton"
-        android:content="@+id/trafficLog"
-        android:padding="10dip"
-        android:layout_height="fill_parent"
-        android:orientation="vertical"
-        		android:gravity="bottom"
-        >
-          <Button
-              android:id="@+id/slideButton"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="@string/menu_log" ></Button>
-
-	<RelativeLayout android:id="@+id/trafficLog"
-		android:gravity="top"
-	    android:layout_width="fill_parent"
-	    android:visibility="invisible"
-	    android:layout_height="wrap_content"
-	    android:padding="6dp"
-	    android:layout_marginTop="6dp"
-	    android:background="#ee333333">
-	    
-		<TextView
+    	<TextView
 			android:id="@+id/orbotLog"
-			android:textColor="#FFFFFF"
+			android:textColor="#00FF00"
+			android:background="#333333"
 			android:textSize="12sp"
 			android:gravity="left"
 			android:layout_width="fill_parent"
@@ -231,12 +200,12 @@
 			android:layout_alignParentLeft="true"
 			android:layout_marginTop="10dp"
 			android:textIsSelectable="true"
-			android:fontFamily="sans-serif-light"
+			android:fontFamily="monospace"
 			 />
-    </RelativeLayout>		
-    </SlidingDrawer>
-       
-</FrameLayout>
-    -->
+    </LinearLayout>
+	
+	</android.support.v4.widget.DrawerLayout>
+	
+</LinearLayout>
 
 
