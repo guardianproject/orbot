@@ -16,7 +16,7 @@ EXTERNAL_ROOT := $(shell pwd)
 # user building this will have to manually set NDK_PROCESSOR or NDK_TOOLCHAIN.
 CPU := $(shell uname -m)
 ifeq ($(CPU),x86_64)
- NDK_PROCESSOR=x86
+ NDK_PROCESSOR=x86_64
 else
  NDK_PROCESSOR=x86
 endif
