@@ -32,3 +32,9 @@
 [submodule "external/badvpn"]
 	path = external/badvpn
 	url = https://github.com/guardianproject/badvpn.git
+[submodule "external/pluto"]
+	path = external/pluto
+	url = https://github.com/guardianproject/pluto.git
+[submodule "external/orweb"]
+	path = external/orweb
+	url = https://github.com/guardianproject/Orweb.git
