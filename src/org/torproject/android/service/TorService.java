@@ -809,6 +809,10 @@ public class TorService extends Service implements TorServiceConstants, TorConst
                 
                 shellRoot.close();
             }
+            else if (mUseVPN)
+            {
+            	enableVpnProxy();
+            }
             
             getHiddenServiceHostname ();
         }
