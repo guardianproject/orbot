@@ -13,3 +13,5 @@ local.properties
 builds
 /patches/*
 /res/raw/*mp3
+obj
+releases
