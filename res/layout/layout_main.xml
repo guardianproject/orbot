@@ -146,7 +146,7 @@
 			android:textSize="14sp"
 			android:gravity="center_vertical"
 			android:fontFamily="sans-serif-light"
-			android:text="status"
+			android:text=""
 			android:background="#aa333333"
 					android:layout_gravity="center_horizontal|bottom"
 			android:layout_margin="10dp"
@@ -167,15 +167,23 @@
 			    android:id="@+id/btnBrowser"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
-			    android:text="Open Browser"
+			    android:text="@string/menu_verify_browser"
 			     />
 	
+			<ToggleButton
+			    android:id="@+id/btnBridges"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:textOff="@string/bridges"
+			    android:textOn="@string/bridges"			    
+			    />
+			
 			<ToggleButton
 			    android:id="@+id/btnVPN"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
-			    android:textOff="VPN Off"
-			    android:textOn="VPN On"			    
+			    android:textOff="@string/menu_vpn"
+			    android:textOn="@string/menu_vpn"			    
 			    />
 			 
 		    </LinearLayout>

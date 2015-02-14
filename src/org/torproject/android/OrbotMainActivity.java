@@ -75,6 +75,8 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
     
     private Button mBtnBrowser = null;
     private ToggleButton mBtnVPN = null;
+    private ToggleButton mBtnBridges = null;
+    
     
 	private DrawerLayout mDrawer;
 	private ActionBarDrawerToggle mDrawerToggle;
@@ -261,6 +263,27 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
 					startVpnService();
 				else
 					stopVpnService();
+				
+			}
+
+			
+		});
+		
+		mBtnBridges =  (ToggleButton)findViewById(R.id.btnBridges);
+		boolean useBridges = mPrefs.getBoolean("pref_bridges_enabled", false);
+		mBtnBridges.setChecked(useBridges);
+		
+		mBtnBridges.setOnClickListener(new View.OnClickListener ()
+		{
+
+			@Override
+			public void onClick(View v) {
+
+				Editor edit = mPrefs.edit();
+				edit.putBoolean("pref_bridges_enabled", mBtnBridges.isChecked());
+				edit.commit();
+				
+				updateSettings();
 				
 			}
 
