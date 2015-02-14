@@ -137,14 +137,8 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
             mProxyServer = null;
         }
         if (mInterface != null){
-            try {
-            	Log.d(TAG,"closing interface, destroying VPN interface");
-                mInterface.close();
-                mInterface = null;
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+            onRevoke();
+            
         }
     }
 
@@ -222,7 +216,14 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
             {
                 try
                 {
-                    mInterface.close();
+                	Log.d(TAG,"closing interface, destroying VPN interface");
+                    
+                	if (mInterface != null)
+                    {
+                		mInterface.close();
+                		mInterface = null;
+                    }
+                	
                     Tun2Socks.Stop();
                 }
                 catch (Exception e)
