@@ -79,8 +79,7 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
 	private DrawerLayout mDrawer;
 	private ActionBarDrawerToggle mDrawerToggle;
 	private Toolbar mToolbar;
-	
-	
+		
     /* Some tracking bits */
     private int torStatus = TorServiceConstants.STATUS_OFF; //latest status reported from the tor service
     
@@ -89,7 +88,8 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
     private boolean autoStartFromIntent = false;
     
     private final static long INIT_DELAY = 100;
-
+    private final static int REQUEST_VPN = 8888;
+    
     /** Called when the activity is first created. */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,9 +100,6 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
         setLocale();
         
     	doLayout();
-
-    //	appConflictChecker ();
-    	
 
   	  // Register to receive messages.
   	  // We are registering an observer (mMessageReceiver) to receive Intents
@@ -221,8 +218,6 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
         imgStatus.setOnLongClickListener(this);
         imgStatus.setOnTouchListener(this);
         
-        lblStatus.setText("Initializing the application...");
-        
         downloadText = (TextView)findViewById(R.id.trafficDown);
         uploadText = (TextView)findViewById(R.id.trafficUp);
         
@@ -247,6 +242,15 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
 		});
 		
 		mBtnVPN = (ToggleButton)findViewById(R.id.btnVPN);
+		
+		boolean useVPN = mPrefs.getBoolean("pref_vpn", false);
+		mBtnVPN.setChecked(useVPN);
+		
+		if (useVPN)
+		{
+			startVpnService ();
+		}
+		
 		mBtnVPN.setOnClickListener(new View.OnClickListener ()
 		{
 
@@ -262,6 +266,7 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
 
 			
 		});
+		
 		
 
     }
@@ -760,8 +765,6 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
         
     }
     
-    private final static int REQUEST_VPN = 8888;
-    
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     public void startVpnService ()
     {
@@ -870,10 +873,11 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
                             	if (torServiceMsg.indexOf('%')!=-1)
                             		lblStatus.setText(torServiceMsg);
                         
+                            /**
                             if (torServiceMsg != null && torServiceMsg.length() > 0)
                             {
                             	mTxtOrbotLog.append(torServiceMsg + '\n');
-                            }
+                            }**/
                             
                             boolean showFirstTime = mPrefs.getBoolean("connect_first_time",true);
                             
