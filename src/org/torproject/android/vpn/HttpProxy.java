@@ -211,7 +211,7 @@ public class HttpProxy extends Thread
 		try {
 			// create a server socket, and loop forever listening for
 			// client connections
-			server = new ServerSocket(thisPort);
+			server = new ServerSocket(thisPort,5,InetAddress.getLocalHost());
 			if (debugLevel > 0)
 				debugOut.println("Started HttpProxy on port " + thisPort);
 			

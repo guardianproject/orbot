@@ -125,7 +125,7 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
         
         mThreadProxy.start();
         
-    	mHttpProxyServer = new HttpProxy(8888);
+    	mHttpProxyServer = new HttpProxy(9998);
     	HttpProxy.setVpnService(OrbotVpnService.this);
     	mHttpProxyServer.setDebug(5, System.out);
     	mHttpProxyServer.start();

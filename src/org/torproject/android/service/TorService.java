@@ -2120,9 +2120,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         {
 	        if (mUseVPN) //set the proxy here if we aren't using a bridge
 	        {
-	        	String proxyType = "http";//"socks5";
-	        	String proxyHost = "10.0.0.1";
-	        	int proxyPort = 8888;//9999;
+	        	String proxyType = "socks5";
+	        	String proxyHost = "127.0.0.1";
+	        	int proxyPort = 9999;
 	            updateConfiguration(proxyType + "Proxy", proxyHost + ':' + proxyPort, false);
 	
 	        }
@@ -2245,8 +2245,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
             	if (mUseVPN)
                 {
                 	proxyType = "http"; //"socks5";
-            		String proxyHost = "10.0.0.1";
-                	int proxyPort = 8888; //9999;
+            		String proxyHost = "127.0.0.1";
+                	int proxyPort = 9998; //9999;
             		
             		proxyBridge = " proxy=" + proxyType + "://" + proxyHost + ':' + proxyPort;
             		
