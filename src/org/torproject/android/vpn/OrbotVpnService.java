@@ -52,8 +52,10 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     private ParcelFileDescriptor mInterface;
 
     private int mSocksProxyPort = 9999;
-    private ProxyServer mProxyServer;
+    private ProxyServer mSocksProxyServer;
     private Thread mThreadProxy;
+    
+    private HttpProxy mHttpProxyServer;
     
     private final static int VPN_MTU = 1500;
     
@@ -112,9 +114,9 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
             {
         
                 try {
-                    mProxyServer = new ProxyServer(new ServerAuthenticatorNone(null, null));
+                    mSocksProxyServer = new ProxyServer(new ServerAuthenticatorNone(null, null));
                     ProxyServer.setVpnService(OrbotVpnService.this);
-                    mProxyServer.start(mSocksProxyPort, 5, InetAddress.getLocalHost());
+                    mSocksProxyServer.start(mSocksProxyPort, 5, InetAddress.getLocalHost());
                 } catch (Exception e) {
                     Log.d(TAG,"proxy server error: " + e.getLocalizedMessage(),e);
                 }
@@ -122,6 +124,11 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
         };
         
         mThreadProxy.start();
+        
+    	mHttpProxyServer = new HttpProxy(8888);
+    	HttpProxy.setVpnService(OrbotVpnService.this);
+    	mHttpProxyServer.setDebug(5, System.out);
+    	mHttpProxyServer.start();
     }
 
     @Override
@@ -132,10 +139,16 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     
     private void stopVPN ()
     {
-        if (mProxyServer != null){
-            mProxyServer.stop();
-            mProxyServer = null;
+        if (mSocksProxyServer != null){
+            mSocksProxyServer.stop();
+            mSocksProxyServer = null;
         }
+        
+        if (mHttpProxyServer != null)
+        {
+        	mHttpProxyServer.closeSocket();
+        }
+        
         if (mInterface != null){
             onRevoke();
             
