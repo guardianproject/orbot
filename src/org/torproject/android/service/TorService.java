@@ -115,6 +115,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     private File fileTor;
     private File filePolipo;
     private File fileObfsclient;
+    private File fileMeekclient;
     private File fileXtables;
     
     private File fileTorRc;
@@ -650,6 +651,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         
         fileObfsclient = new File(appBinHome, OBFSCLIENT_ASSET_KEY);
         
+        fileMeekclient = new File(appBinHome, MEEK_ASSET_KEY);
+        
         fileTorRc = new File(appBinHome, TORRC_ASSET_KEY);
         
         fileXtables = new File(appBinHome, IPTABLES_ASSET_KEY);
@@ -770,6 +773,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
         prefPersistNotifications = prefs.getBoolean(TorConstants.PREF_PERSIST_NOTIFICATIONS, true);
         
+        mUseVPN = prefs.getBoolean("pref_vpn", false);
     }
     
     private void startTor () throws Exception
@@ -784,6 +788,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         enableBinExec(fileTor);
         enableBinExec(filePolipo);    
         enableBinExec(fileObfsclient);
+        enableBinExec(fileMeekclient);
         enableBinExec(fileXtables);
         
         updateSettings ();
@@ -791,7 +796,12 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         logNotice(getString(R.string.status_starting_up));
         sendCallbackLogMessage(getString(R.string.status_starting_up));
         
-        Shell shellUser = Shell.startShell();
+        ArrayList<String> customEnv = new ArrayList<String>();
+      // customEnv.add("TOR_PT_MANAGED_TRANSPORT_VER=1"); 
+       // customEnv.add("TOR_PT_CLIENT_TRANSPORTS=meek");
+        
+        String baseDirectory = fileTor.getParent();
+        Shell shellUser = Shell.startShell(customEnv, baseDirectory);
         
         boolean success = runTorShellCmd(shellUser);
         
@@ -809,10 +819,12 @@ public class TorService extends Service implements TorServiceConstants, TorConst
                 
                 shellRoot.close();
             }
-            else if (mUseVPN)
+            
+            if (mUseVPN) //we need to turn on VPN here so the proxy is running
             {
             	enableVpnProxy();
             }
+
             
             getHiddenServiceHostname ();
         }
@@ -1430,16 +1442,22 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         	debug ("enabling VPN Proxy");
         	
         	mUseVPN = true;
-
+            
             SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
             Editor ePrefs = prefs.edit();
+          
+            ePrefs.putBoolean("pref_vpn", true);
             
+            /*
             ePrefs.putString("pref_proxy_type", "socks5");
             ePrefs.putString("pref_proxy_host", "127.0.0.1");
             ePrefs.putString("pref_proxy_port", "9999");
             ePrefs.remove("pref_proxy_username");
             ePrefs.remove("pref_proxy_password");
+            */
+            
             ePrefs.commit();
+            
             processSettings();
             
             Intent intent = new Intent(TorService.this, OrbotVpnService.class);
@@ -1455,14 +1473,12 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         	
             mUseVPN = false;
 
+            
             SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
-            Editor ePrefs = prefs.edit();            
-            ePrefs.remove("pref_proxy_type");
-            ePrefs.remove("pref_proxy_host");
-            ePrefs.remove("pref_proxy_port");
-            ePrefs.remove("pref_proxy_username");
-            ePrefs.remove("pref_proxy_password");
+            Editor ePrefs = prefs.edit();  
+            ePrefs.putBoolean("pref_vpn", false);
             ePrefs.commit();
+
             processSettings();
             
             Intent intent = new Intent(TorService.this, OrbotVpnService.class);
@@ -2090,8 +2106,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         */
         
         boolean useBridges = prefs.getBoolean(TorConstants.PREF_BRIDGES_ENABLED, false);
-        
-        //boolean autoUpdateBridges = prefs.getBoolean(TorConstants.PREF_BRIDGES_UPDATED, false);
 
         boolean becomeRelay = prefs.getBoolean(TorConstants.PREF_OR, false);
         boolean ReachableAddresses = prefs.getBoolean(TorConstants.PREF_REACHABLE_ADDRESSES,false);
@@ -2102,35 +2116,49 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         String exitNodes = prefs.getString("pref_exit_nodes", "");
         String excludeNodes = prefs.getString("pref_exclude_nodes", "");
         
-        String proxyType = prefs.getString("pref_proxy_type", null);
-        if (proxyType != null && proxyType.length() > 0)
+        if (!useBridges)
         {
-            String proxyHost = prefs.getString("pref_proxy_host", null);
-            String proxyPort = prefs.getString("pref_proxy_port", null);
-            String proxyUser = prefs.getString("pref_proxy_username", null);
-            String proxyPass = prefs.getString("pref_proxy_password", null);
-            
-            if ((proxyHost != null && proxyHost.length()>0) && (proxyPort != null && proxyPort.length() > 0))
-            {
-                updateConfiguration(proxyType + "Proxy", proxyHost + ':' + proxyPort, false);
-                
-                if (proxyUser != null && proxyPass != null)
-                {
-                    if (proxyType.equalsIgnoreCase("socks5"))
-                    {
-                        updateConfiguration("Socks5ProxyUsername", proxyUser, false);
-                        updateConfiguration("Socks5ProxyPassword", proxyPass, false);
-                    }
-                    else
-                        updateConfiguration(proxyType + "ProxyAuthenticator", proxyUser + ':' + proxyPort, false);
-                    
-                }
-                else if (proxyPass != null)
-                    updateConfiguration(proxyType + "ProxyAuthenticator", proxyUser + ':' + proxyPort, false);
-                
-                
-
-            }
+	        if (mUseVPN) //set the proxy here if we aren't using a bridge
+	        {
+	        	String proxyType = "socks5";
+	        	String proxyHost = "127.0.0.1";
+	        	int proxyPort = 9999;
+	            updateConfiguration(proxyType + "Proxy", proxyHost + ':' + proxyPort, false);
+	
+	        }
+	        else
+	        {
+		        String proxyType = prefs.getString("pref_proxy_type", null);
+		        if (proxyType != null && proxyType.length() > 0)
+		        {
+		            String proxyHost = prefs.getString("pref_proxy_host", null);
+		            String proxyPort = prefs.getString("pref_proxy_port", null);
+		            String proxyUser = prefs.getString("pref_proxy_username", null);
+		            String proxyPass = prefs.getString("pref_proxy_password", null);
+		            
+		            if ((proxyHost != null && proxyHost.length()>0) && (proxyPort != null && proxyPort.length() > 0))
+		            {
+		                updateConfiguration(proxyType + "Proxy", proxyHost + ':' + proxyPort, false);
+		                
+		                if (proxyUser != null && proxyPass != null)
+		                {
+		                    if (proxyType.equalsIgnoreCase("socks5"))
+		                    {
+		                        updateConfiguration("Socks5ProxyUsername", proxyUser, false);
+		                        updateConfiguration("Socks5ProxyPassword", proxyPass, false);
+		                    }
+		                    else
+		                        updateConfiguration(proxyType + "ProxyAuthenticator", proxyUser + ':' + proxyPort, false);
+		                    
+		                }
+		                else if (proxyPass != null)
+		                    updateConfiguration(proxyType + "ProxyAuthenticator", proxyUser + ':' + proxyPort, false);
+		                
+		                
+		
+		            }
+		        }
+	        }
         }
         
         if (entranceNodes.length() > 0 || exitNodes.length() > 0 || excludeNodes.length() > 0)
@@ -2172,57 +2200,102 @@ public class TorService extends Service implements TorServiceConstants, TorConst
             String bridgeCfgKey = "Bridge";
 
             String bridgeList = prefs.getString(TorConstants.PREF_BRIDGES_LIST,null);
-
-            if (bridgeList == null || bridgeList.length() == 0)
-            {
-                String msgBridge = getString(R.string.bridge_requires_ip) +
-                        getString(R.string.send_email_for_bridges);
-                showToolbarNotification(msgBridge, ERROR_NOTIFY_ID, R.drawable.ic_stat_tor);
-                debug(msgBridge);
             
-                return false;
-            }
-
-            
-            String bridgeDelim = "\n";
-            
-            if (bridgeList.indexOf(",") != -1)
+            if (bridgeList != null && bridgeList.length() > 1) //longer then 1 = some real values here
             {
-                bridgeDelim = ",";
-            }
+	            String bridgeDelim = "\n";
+	            
+	            if (bridgeList.indexOf(",") != -1)
+	            {
+	                bridgeDelim = ",";
+	            }
+	            
+	            showToolbarNotification(getString(R.string.notification_using_bridges) + ": " + bridgeList, TRANSPROXY_NOTIFY_ID, R.drawable.ic_stat_tor);
+	  
+	            StringTokenizer st = new StringTokenizer(bridgeList,bridgeDelim);
+	            while (st.hasMoreTokens())
+	            {
+	                String bridgeConfigLine = st.nextToken().trim();
+	                debug("Adding bridge: " + bridgeConfigLine);
+	                updateConfiguration(bridgeCfgKey, bridgeConfigLine, false);
+	
+	            }
             
-            showToolbarNotification(getString(R.string.notification_using_bridges) + ": " + bridgeList, TRANSPROXY_NOTIFY_ID, R.drawable.ic_stat_tor);
-  
-            StringTokenizer st = new StringTokenizer(bridgeList,bridgeDelim);
-            while (st.hasMoreTokens())
-            {
-                String bridgeConfigLine = st.nextToken().trim();
-                debug("Adding bridge: " + bridgeConfigLine);
-                updateConfiguration(bridgeCfgKey, bridgeConfigLine, false);
-
-            }
-
-            //check if any PT bridges are needed
-            boolean obfsBridges = bridgeList.contains("obfs2")||bridgeList.contains("obfs3")||bridgeList.contains("scramblesuit");
-
-            if (obfsBridges)
-            {
-                String bridgeConfig = "obfs2,obfs3,scramblesuit exec " + fileObfsclient.getCanonicalPath();
-                
-                debug ("Using OBFUSCATED bridges: " + bridgeConfig);
-                
-                updateConfiguration("ClientTransportPlugin",bridgeConfig, false);
+	            //check if any PT bridges are needed
+	            boolean obfsBridges = bridgeList.contains("obfs2")||bridgeList.contains("obfs3")||bridgeList.contains("scramblesuit");
+            
+	            if (obfsBridges)
+	            {
+	                String bridgeConfig = "obfs2,obfs3,scramblesuit exec " + fileObfsclient.getCanonicalPath();
+	                
+	                debug ("Using OBFUSCATED bridges: " + bridgeConfig);
+	                
+	                updateConfiguration("ClientTransportPlugin",bridgeConfig, false);
+	            }
             }
             else
             {
-                debug ("Using standard bridges");
+            	//time to do autobridges, aka meek
+
+            	debug ("Using meek bridges");
+                
+            	String proxyBridge = "";
+            	String proxyType = prefs.getString("pref_proxy_type", null);
+		        
+            	if (mUseVPN)
+                {
+                	proxyType = "socks5";
+                	String proxyHost = "127.0.0.1";
+                	int proxyPort = 9999;
+
+            		proxyBridge = " proxyurl=" + proxyType + "://" + proxyHost + ':' + proxyPort;
+            		
+            	}
+            	else if (proxyType != null && proxyType.length() > 0)
+		        {
+		            String proxyHost = prefs.getString("pref_proxy_host", null);
+		            String proxyPort = prefs.getString("pref_proxy_port", null);
+
+            		proxyBridge = " proxyurl=" + proxyType + "://" + proxyHost + ':' + proxyPort;
+		            
+		        }
+		        
+            	String[] meekBridge = 
+            		{
+            			"meek 0.0.2.0:1 url=https://meek-reflect.appspot.com/ front=www.google.com",
+            			"meek 0.0.2.0:2 url=https://d2zfqthxsdq309.cloudfront.net/ front=a0.awsstatic.com",
+            			"meek 0.0.2.0:3 url=https://az668014.vo.msecnd.net/ front=ajax.aspnetcdn.com"
+            		};
+
+            	int meekIdx = 2; //let's use Azure by default
+            	
+            	if (bridgeList != null && bridgeList.length() == 1)
+            	{
+            	  try 
+            	  {
+            		  meekIdx = Integer.parseInt(bridgeList);
+            		  
+            		  if (meekIdx+1 > meekBridge.length)
+            			  throw new Exception("not valid meek idx");
+            	  }
+            	  catch (Exception e)
+            	  {
+            		  debug("invalid meek type; please enter 0=Google, 1=AWS, 2=Azure");
+            	  }
+            	}
+            	
+            	updateConfiguration(bridgeCfgKey, meekBridge[meekIdx] + proxyBridge, false);
+            	
+            	 String bridgeConfig = "meek exec " + fileMeekclient.getCanonicalPath();// + " --log /data/local/tmp/meek-tor.log";
+            	 
+                 //updateConfiguration(bridgeCfgKey, "meek 0.0.2.0:1", false);
+                 //String bridgeConfig = "meek exec " + fileMeekclient.getCanonicalPath() + " --url=https://meek-reflect.appspot.com/ --front=www.google.com --log meek-client.log";
+
+            	updateConfiguration("ClientTransportPlugin",bridgeConfig, false);
             }
-            
 
 
-            updateConfiguration("UpdateBridgesFromAuthority", "0", false);
-            
-
+//            updateConfiguration("UpdateBridgesFromAuthority", "0", false);
             updateConfiguration("UseBridges", "1", false);
                 
             

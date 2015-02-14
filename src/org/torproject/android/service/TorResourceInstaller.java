@@ -99,6 +99,12 @@ public class TorResourceInstaller implements TorServiceConstants {
         shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
         streamToFile(is,outFile, false, true);
         
+
+        is = context.getResources().openRawResource(R.raw.meek);
+        outFile = new File(installFolder, MEEK_ASSET_KEY);
+        shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
+        streamToFile(is,outFile, false, true);
+        
         is = context.getResources().openRawResource(R.raw.xtables);
         outFile = new File(installFolder, IPTABLES_ASSET_KEY);
         shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();

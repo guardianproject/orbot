@@ -92,6 +92,11 @@ public interface TorServiceConstants {
     //obfsproxy 
     public static final String OBFSCLIENT_ASSET_KEY = "obfsclient";
     
+    public static final String MEEK_ASSET_KEY = "meek-client";
+    
+    
+    
+    
 	public static final int MESSAGE_TRAFFIC_COUNT = 5;
 	
 
