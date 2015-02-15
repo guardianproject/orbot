@@ -242,6 +242,7 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
 
 			
 		});
+		mBtnBrowser.setEnabled(false);
 		
 		mBtnVPN = (ToggleButton)findViewById(R.id.btnVPN);
 		
@@ -888,7 +889,8 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
                             
                             imgStatus.setImageResource(R.drawable.toron);
                     		
-
+                            mBtnBrowser.setEnabled(true);
+                            
                             if (mItemOnOff != null)
                                     mItemOnOff.setTitle(R.string.menu_stop);
                             
@@ -948,6 +950,7 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
                         imgStatus.setImageResource(R.drawable.toroff);
                         lblStatus.setText("");
                         //lblStatus.setText(getString(R.string.status_disabled) + "\n" + getString(R.string.press_to_start));
+                        mBtnBrowser.setEnabled(false);
                         
                         if (mItemOnOff != null)
                                 mItemOnOff.setTitle(R.string.menu_start);

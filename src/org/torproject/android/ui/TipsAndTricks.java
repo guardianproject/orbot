@@ -1,6 +1,5 @@
 package org.torproject.android.ui;
 
-import org.torproject.android.OrbotMainActivity;
 import org.torproject.android.R;
 import org.torproject.android.TorConstants;
 
@@ -8,7 +7,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -157,58 +155,29 @@ public class TipsAndTricks extends Activity implements TorConstants {
 			
 			public void onClick(View v) {
 				finish();
-				startActivityForResult(new Intent(TipsAndTricks.this, LotsaText.class), 1);
+				startActivityForResult(new Intent(TipsAndTricks.this, ChooseLocaleWizardActivity.class), 1);
 			}
 		});
     	
     	next.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
-				showWizardFinal();
+				//showWizardFinal();
+				
+				finish();
 			}
 		});
         
 	}
 	
-	private void showWizardFinal ()
-	{
-		setContentView(R.layout.scrollingtext_buttons_view);
-		String title =  getString(R.string.wizard_final);
-		String msg = getString(R.string.wizard_final_msg);
-		
-		setTitle(title);
-        
-        TextView txtBody = ((TextView)findViewById(R.id.WizardTextBody));
-        txtBody.setText(msg);
-        
-        Button btn1 = ((Button)findViewById(R.id.btnWizard1));
-        Button btn2 = ((Button)findViewById(R.id.btnWizard2));
-        
-        btn2.setText(getString(R.string.btn_finish));
-    	btn1.setVisibility(Button.VISIBLE);
-    	
-    	btn1.setOnClickListener(new View.OnClickListener() {
-			
-			public void onClick(View v) {
-				finish();
-				startActivity(new Intent(TipsAndTricks.this, LotsaText.class));
-			}
-		});
-    	
-    	btn2.setOnClickListener(new View.OnClickListener() {
-			
-			public void onClick(View v) {
-				finish();
-			}
-		});
-	}
+	
 	
 	//Code to override the back button!
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event)  {
 	    if(keyCode == KeyEvent.KEYCODE_BACK){
 	    	finish();
-	    	startActivity(new Intent(getBaseContext(), LotsaText.class));
+	    	startActivity(new Intent(getBaseContext(), ChooseLocaleWizardActivity.class));
 	    	return true;
 	    }
 	    return false;

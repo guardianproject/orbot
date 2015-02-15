@@ -60,7 +60,7 @@ public class ChooseLocaleWizardActivity extends Activity implements TorConstants
                 
                 setLocalePref(arg2);
                 finish();
-                startActivity(new Intent(ChooseLocaleWizardActivity.this, LotsaText.class));
+                startActivity(new Intent(ChooseLocaleWizardActivity.this, TipsAndTricks.class));
                 
             }
         });
@@ -70,7 +70,7 @@ public class ChooseLocaleWizardActivity extends Activity implements TorConstants
             public void onClick(View v) {
                 setLocalePref(0);
                 finish();
-                startActivity(new Intent(ChooseLocaleWizardActivity.this, LotsaText.class));
+                startActivity(new Intent(ChooseLocaleWizardActivity.this, TipsAndTricks.class));
 
             }
         });
