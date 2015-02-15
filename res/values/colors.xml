@@ -1,6 +1,7 @@
 
     <resources>
-        <color name="panel_background">#460072</color>
-        <color name="panel_background_dark">#240020</color>
+        <color name="panel_background">#55460072</color>
+        <color name="panel_background_dark">#aa460072</color>
+        <color name="panel_background_main">#460072</color>
         
     </resources>

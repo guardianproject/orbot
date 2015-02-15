@@ -127,6 +127,8 @@
 	    	android:layout_width="match_parent"
 		android:layout_height="0dp"
 		android:layout_weight="1"
+		
+          android:background="@color/panel_background_main"
 	    >
        <org.torproject.android.ui.ImageProgressView
 		android:id="@+id/imgStatus"
@@ -143,11 +145,10 @@
 			android:textColor="@android:color/white"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:textSize="14sp"
+			android:textSize="16sp"
 			android:gravity="center_vertical"
 			android:fontFamily="sans-serif-light"
 			android:text=""
-			android:background="#aa333333"
 					android:layout_gravity="center_horizontal|bottom"
 			android:layout_margin="10dp"
 			
@@ -168,6 +169,9 @@
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
 			    android:text="@string/menu_verify_browser"
+			    
+          		android:background="@drawable/button"
+          		android:layout_margin="3dp"
 			     />
 	
 			<ToggleButton
@@ -175,7 +179,9 @@
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
 			    android:textOff="@string/bridges"
-			    android:textOn="@string/bridges"			    
+			    android:textOn="@string/bridges"	
+			    android:background="@drawable/toggle"
+          		    android:layout_margin="3dp"
 			    />
 			
 			<ToggleButton
@@ -184,6 +190,8 @@
 			    android:layout_height="wrap_content"
 			    android:textOff="@string/menu_vpn"
 			    android:textOn="@string/menu_vpn"			    
+				android:background="@drawable/toggle"
+          android:layout_margin="3dp"
 			    />
 			 
 		    </LinearLayout>
