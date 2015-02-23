@@ -4,5 +4,5 @@
         android:drawable="@drawable/button_off" />
     <item
         android:state_checked="true"
-        android:drawable="@drawable/button" />
+        android:drawable="@drawable/button_on" />
 </selector>

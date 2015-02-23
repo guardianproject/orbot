@@ -101,7 +101,7 @@
 		      >
 		<TextView
 			android:id="@+id/trafficDown"
-			android:textColor="#ccff2a"
+			android:textColor="@color/bright_green"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			 android:layout_alignParentLeft="true"
@@ -112,7 +112,7 @@
 		
 		<TextView
 			android:id="@+id/trafficUp"
-			android:textColor="#ccff2a"
+			android:textColor="@color/bright_green"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			 android:layout_alignParentRight="true"
