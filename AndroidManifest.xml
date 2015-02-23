@@ -88,7 +88,6 @@
 			/> 
 			      	
 			      	
-      	<activity android:name=".ui.LotsaText" android:exported="false"/>
       	<activity android:name=".ui.TipsAndTricks" android:exported="false"/>
       	<activity android:name=".ui.ChooseLocaleWizardActivity" android:exported="false"/>
       	
