@@ -55,7 +55,6 @@ import org.torproject.android.settings.TorifiedApp;
 import org.torproject.android.vpn.OrbotVpnService;
 
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.app.Application;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -545,11 +544,13 @@ public class TorService extends Service implements TorServiceConstants, TorConst
             
             conn = null;
         }
-        else
-            killProcess(fileTor);
+        
+        killProcess(fileTor);
         
         killProcess(filePolipo);
-    //    killProcess(fileObfsclient);
+        killProcess(fileObfsclient);
+        killProcess(fileMeekclient);
+        
         
     }
     
@@ -563,9 +564,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
             
             logNotice("Found " + fileProcBin.getName() + " PID=" + procId + " - killing now...");
             
-            SimpleCommand killCommand = new SimpleCommand("toolbox kill " + procId);
+            SimpleCommand killCommand = new SimpleCommand("toolbox kill -9 " + procId);
             shell.add(killCommand);
-            killCommand = new SimpleCommand("kill " + procId);
+            killCommand = new SimpleCommand("kill -9 " + procId);
             shell.add(killCommand);
         }
         
@@ -710,6 +711,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         extraLines.append("DNSPort ").append("auto").append('\n');
         extraLines.append("VirtualAddrNetwork 10.192.0.0/10").append('\n');
         extraLines.append("AutomapHostsOnResolve 1").append('\n');
+       
+        extraLines.append("DisableNetwork 0").append('\n');
         
         
         extraLines.append("CircuitStreamTimeout 60").append('\n');
@@ -797,8 +800,13 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         sendCallbackLogMessage(getString(R.string.status_starting_up));
         
         ArrayList<String> customEnv = new ArrayList<String>();
-      // customEnv.add("TOR_PT_MANAGED_TRANSPORT_VER=1"); 
-       // customEnv.add("TOR_PT_CLIENT_TRANSPORTS=meek");
+     
+        SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
+        boolean useBridges = prefs.getBoolean(TorConstants.PREF_BRIDGES_ENABLED, false);
+
+        if (useBridges)
+        	if (mUseVPN)
+        		customEnv.add("TOR_PT_PROXY=http://127.0.0.1:9998"); 
         
         String baseDirectory = fileTor.getParent();
         Shell shellUser = Shell.startShell(customEnv, baseDirectory);
@@ -1424,15 +1432,13 @@ public class TorService extends Service implements TorServiceConstants, TorConst
             }
             else if (newState == STATUS_OFF)
             {
-                if (mCurrentStatus == STATUS_ON)
-                {
-                    sendCallbackLogMessage (getString(R.string.status_shutting_down));
-                  
-                    stopTor();
-    
-                    mCurrentStatus = STATUS_OFF;  
-                    sendCallbackStatus(mCurrentStatus);
-                }
+                sendCallbackLogMessage (getString(R.string.status_shutting_down));
+              
+                stopTor();
+
+                mCurrentStatus = STATUS_OFF;  
+                sendCallbackStatus(mCurrentStatus);
+            
                 
             }
         }
@@ -1444,18 +1450,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         	mUseVPN = true;
             
             SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
-            Editor ePrefs = prefs.edit();
-          
-            ePrefs.putBoolean("pref_vpn", true);
-            
-            /*
-            ePrefs.putString("pref_proxy_type", "socks5");
-            ePrefs.putString("pref_proxy_host", "127.0.0.1");
-            ePrefs.putString("pref_proxy_port", "9999");
-            ePrefs.remove("pref_proxy_username");
-            ePrefs.remove("pref_proxy_password");
-            */
-            
+            Editor ePrefs = prefs.edit();          
+            ePrefs.putBoolean("pref_vpn", true);            
             ePrefs.commit();
             
             processSettings();
@@ -2118,6 +2114,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         
         if (!useBridges)
         {
+           
+            updateConfiguration("UseBridges", "0", false);
+
 	        if (mUseVPN) //set the proxy here if we aren't using a bridge
 	        {
 	        	String proxyType = "socks5";
@@ -2160,40 +2159,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		        }
 	        }
         }
-        
-        if (entranceNodes.length() > 0 || exitNodes.length() > 0 || excludeNodes.length() > 0)
-        {
-            //only apply GeoIP if you need it
-            File fileGeoIP = new File(appBinHome,GEOIP_ASSET_KEY);
-            File fileGeoIP6 = new File(appBinHome,GEOIP6_ASSET_KEY);
-                
-            try
-            {
-                if ((!fileGeoIP.exists()))
-                {
-                    TorResourceInstaller installer = new TorResourceInstaller(this, appBinHome); 
-                    boolean success = installer.installGeoIP();
-                    
-                }
-                
-                updateConfiguration("GeoIPFile", fileGeoIP.getCanonicalPath(), false);
-                updateConfiguration("GeoIPv6File", fileGeoIP6.getCanonicalPath(), false);
-
-            }
-            catch (Exception e)
-            {
-                 showToolbarNotification (getString(R.string.error_installing_binares),ERROR_NOTIFY_ID,R.drawable.ic_stat_notifyerr);
-
-                return false;
-            }
-        }
-
-        updateConfiguration("EntryNodes", entranceNodes, false);
-        updateConfiguration("ExitNodes", exitNodes, false);
-        updateConfiguration("ExcludeNodes", excludeNodes, false);
-        updateConfiguration("StrictNodes", enableStrictNodes ? "1" : "0", false);
-        
-        if (useBridges)
+        else
         {
         
             debug ("Using bridges");
@@ -2237,8 +2203,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
             {
             	//time to do autobridges, aka meek
 
-            	debug ("Using meek bridges");
-                
             	String proxyBridge = "";
             	String proxyType = prefs.getString("pref_proxy_type", null);
 		        
@@ -2248,7 +2212,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
             		String proxyHost = "127.0.0.1";
                 	int proxyPort = 9998; //9999;
             		
-            		proxyBridge = " proxy=" + proxyType + "://" + proxyHost + ':' + proxyPort;
+            		//proxyBridge = " proxy=" + proxyType + "://" + proxyHost + ':' + proxyPort; //proxy=http://127.0.0.1:9998
+	              //  updateConfiguration(proxyType + "Proxy", proxyHost + ':' + proxyPort, false);
+
             		
             	}
             	else if (proxyType != null && proxyType.length() > 0)
@@ -2256,9 +2222,16 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 		            String proxyHost = prefs.getString("pref_proxy_host", null);
 		            String proxyPort = prefs.getString("pref_proxy_port", null);
 
-            		proxyBridge = " proxyurl=" + proxyType + "://" + proxyHost + ':' + proxyPort;
-		            
+            		//proxyBridge = " proxy=" + proxyType + "://" + proxyHost + ':' + proxyPort;
+	                updateConfiguration(proxyType + "Proxy", proxyHost + ':' + proxyPort, false);
+
 		        }
+
+            	debug ("Using meek bridges");
+                
+            	String bridgeConfig = "meek exec " + fileMeekclient.getCanonicalPath();
+             	updateConfiguration("ClientTransportPlugin",bridgeConfig, false);
+            	
 		        
             	String[] meekBridge = 
             		{
@@ -2284,14 +2257,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
             	  }
             	}
             	
-            	updateConfiguration(bridgeCfgKey, meekBridge[meekIdx] + proxyBridge, false);
+            	updateConfiguration(bridgeCfgKey, meekBridge[meekIdx] + proxyBridge, false);            	
             	
-            	 String bridgeConfig = "meek exec " + fileMeekclient.getCanonicalPath();// + " --log /data/local/tmp/meek-tor.log";
-            	 
-                 //updateConfiguration(bridgeCfgKey, "meek 0.0.2.0:1", false);
-                 //String bridgeConfig = "meek exec " + fileMeekclient.getCanonicalPath() + " --url=https://meek-reflect.appspot.com/ --front=www.google.com --log meek-client.log";
-
-            	updateConfiguration("ClientTransportPlugin",bridgeConfig, false);
             }
 
 
@@ -2300,11 +2267,40 @@ public class TorService extends Service implements TorServiceConstants, TorConst
                 
             
         }
-        else
+        
+        if (entranceNodes.length() > 0 || exitNodes.length() > 0 || excludeNodes.length() > 0)
         {
-            updateConfiguration("UseBridges", "0", false);
+            //only apply GeoIP if you need it
+            File fileGeoIP = new File(appBinHome,GEOIP_ASSET_KEY);
+            File fileGeoIP6 = new File(appBinHome,GEOIP6_ASSET_KEY);
+                
+            try
+            {
+                if ((!fileGeoIP.exists()))
+                {
+                    TorResourceInstaller installer = new TorResourceInstaller(this, appBinHome); 
+                    boolean success = installer.installGeoIP();
+                    
+                }
+                
+                updateConfiguration("GeoIPFile", fileGeoIP.getCanonicalPath(), false);
+                updateConfiguration("GeoIPv6File", fileGeoIP6.getCanonicalPath(), false);
 
+            }
+            catch (Exception e)
+            {
+                 showToolbarNotification (getString(R.string.error_installing_binares),ERROR_NOTIFY_ID,R.drawable.ic_stat_notifyerr);
+
+                return false;
+            }
         }
+
+        updateConfiguration("EntryNodes", entranceNodes, false);
+        updateConfiguration("ExitNodes", exitNodes, false);
+        updateConfiguration("ExcludeNodes", excludeNodes, false);
+        updateConfiguration("StrictNodes", enableStrictNodes ? "1" : "0", false);
+        
+        
 
         try
         {
@@ -2387,15 +2383,14 @@ public class TorService extends Service implements TorServiceConstants, TorConst
                     
                     debug("Adding hidden service on port: " + hsPortConfig);
                     
-                    
                     updateConfiguration("HiddenServiceDir",hsDirPath, false);
                     updateConfiguration("HiddenServicePort",hsPortConfig, false);
                     
 
                 } catch (NumberFormatException e) {
-                    Log.e(this.TAG,"error parsing hsport",e);
+                    Log.e(TAG,"error parsing hsport",e);
                 } catch (Exception e) {
-                    Log.e(this.TAG,"error starting share server",e);
+                    Log.e(TAG,"error starting share server",e);
                 }
             }
             
@@ -2412,6 +2407,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         	updateConfiguration("DNSListenAddress","10.0.0.1:" + TorServiceConstants.TOR_DNS_PORT_DEFAULT,false);
         }
         
+       // updateConfiguration("DisableNetwork","0", false);
 
         saveConfiguration();
     
