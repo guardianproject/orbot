@@ -7,6 +7,7 @@ import info.guardianproject.browser.Browser;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.text.NumberFormat;
 import java.util.Locale;
 
@@ -413,7 +414,24 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
                 	IntentIntegrator integrator = new IntentIntegrator(OrbotMainActivity.this);
                 	integrator.initiateScan();
                 }
+                else if (item.getItemId() == R.id.menu_share_bridge)
+                {
+                	
+            		String bridges = mPrefs.getString(TorConstants.PREF_BRIDGES_LIST, null);
+                	
+            		try {
+						bridges = "bridge://" + URLEncoder.encode(bridges,"UTF-8");
+	            		
+	                	IntentIntegrator integrator = new IntentIntegrator(OrbotMainActivity.this);
+	                	integrator.shareText(bridges);
+	                	
+					} catch (UnsupportedEncodingException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 
+                }
+                
                 return true;
             
             }
@@ -599,7 +617,7 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
 					String newBridgeValue = urlString.substring(9); //remove the bridge protocol piece
 					newBridgeValue = URLDecoder.decode(newBridgeValue); //decode the value here
 					
-					addNewBridges(newBridgeValue);
+					setNewBridges(newBridgeValue);
 				}
 			}
 		}
@@ -627,14 +645,16 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
 		
 	}
 		
-	private void addNewBridges (String newBridgeValue)
+	private void setNewBridges (String newBridgeValue)
 	{
 
-		showAlert("Bridges Updated","Restart Orbot to use this bridge: " + newBridgeValue,false);	
-		
-		String bridges = mPrefs.getString(TorConstants.PREF_BRIDGES_LIST, null);
+		showAlert(getString(R.string.bridges_updated),getString(R.string.restart_orbot_to_use_this_bridge_) + newBridgeValue,false);	
 		
 		Editor pEdit = mPrefs.edit();
+		
+		/*
+		String bridges = "";//let's override, not add // mPrefs.getString(TorConstants.PREF_BRIDGES_LIST, null);
+		
 		
 		if (bridges != null && bridges.trim().length() > 0)
 		{
@@ -645,13 +665,16 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
 		}
 		else
 			bridges = newBridgeValue;
+			*/
 		
-		pEdit.putString(TorConstants.PREF_BRIDGES_LIST,bridges); //set the string to a preference
+		pEdit.putString(TorConstants.PREF_BRIDGES_LIST,newBridgeValue); //set the string to a preference
 		pEdit.putBoolean(TorConstants.PREF_BRIDGES_ENABLED,true);
 	
 		pEdit.commit();
 		
 		setResult(RESULT_OK);
+		
+		mBtnBridges.setChecked(true);
 	}
 
 	private boolean showWizard = true;
@@ -779,16 +802,20 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
              // handle scan result
         	
         	String results = scanResult.getContents();
-        	try {
-				results = URLDecoder.decode(results, "UTF-8");
-				
-				addNewBridges(results);
-				
-				
-			} catch (UnsupportedEncodingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+        	
+        	if (results != null && results.length() > 0)
+        	{
+	        	try {
+					results = URLDecoder.decode(results, "UTF-8");
+					
+					setNewBridges(results);
+					
+					
+				} catch (UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+        	}
         	
           }
         

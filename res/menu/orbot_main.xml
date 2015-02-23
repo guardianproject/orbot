@@ -28,8 +28,14 @@
 
   <item android:id="@+id/menu_scan"
         android:title="@string/menu_scan"
-         yourapp:showAsAction="always"
+         yourapp:showAsAction="never"
          />
+  
+  <item android:id="@+id/menu_share_bridge"
+        android:title="@string/menu_share_bridge"
+         yourapp:showAsAction="never"
+         />
+ 
  
 <!-- 
         <item android:id="@+id/menu_verify"
