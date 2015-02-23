@@ -1,5 +1,85 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+/** 15.0.0 Alpha / 23-Feb-2015 / 28d32bc **/ 
+
+* Better Bridge Support
+fb9a6c9 support for sharing/display bridge config as QR code this is needed for sharing of bridge data between people in the same phy
+068cd05 more bridge and proxy configuration clean up
+31053ad add support for scanning QR codes for bridges
+f22978e update pluto
+bff6d0f add support for meek PT
+266c297 update to latest pluto for meek-client
+22e75a3 update pluto to latest
+431dff5 remove integrated pluto code
+
+* Full Device VPN Mode
+dd09c6b tuning boot code to work with VPN
+b2ec768 more work to get bridge VPN mode to work
+f2490d9 handle all exceptions in socks proxy
+9c77526 move HTTP VPN bypass proxy to 9998
+096eae7 implementing http server for meek-client VPN bypass
+1e5651e improve VPN clean-up code
+a2662c3 improve VPN activation
+c220ec9 re-enable DNS settings after you start Tor
+6832363 use IP instead of "localhost" name
+7f42265 launch the internal or system browser depending upon VPN mode
+1852cde enable local DNS listen on 10.0.0.1 for VPN service also add support for stopping VPNBuilder instance
+ec4350e update VPN to toggle button
+9467d7d clean VPN proxy settings before startup
+d63d10d massive cleanup of merged code from Ony fork removal/comment out of LoggerFactory log system
+a78e458 Merge branch 'ony-dev' into v15-dev
+5c80572 Merge branch 'master' of https://github.com/SuppSandroB/Ony into ony-dev
+4c49822 clarify vpnprotect code and add basic debug log
+1464901 added badvpn as local folder
+72a0173 delete as it should not be as subproject
+90db557 clone of badvpn for dns fix
+1472b4e some missing files added to git repo
+08c220f clean up VPNBuilder setup code
+91a72ef add in basic debug output
+fb3e27b more clean-up of VPN service code
+
+* Integrated Orweb simple browser
+5a8aa88 add new gitmodules for orweb and pluto support
+40b8f48 set to lib_orweb branch
+
+* Misc
+759966a remove unused activity from old wizard
+0fc3805 update new colors
+035ab8e add more strings for translation
+09fc813 update base torrc
+2c3b47e look and feel updates
+a624503 remove unneeded wizard classes
+70d6203 layout changes for a modern, cleaner (purple!) look
+a1ba41c add a bridge toggle button
+b1294f6 improve start on boot
+70643fc ignore more things
+33a5962 add pluto for PT integration
+44efced update build files (tmp fix for now)
+50519d8 ensure x86_64 case of NDK is supported
+a41367c remove unneeded README
+9b4ef18 fix NPE for when mHandler is null
+17f2a0b remove unused alt manifests
+5cb6cb9 add back in log output temporarily in sidebar
+8dc2748 remove unneeded alt manifests, fix bug in main manifest
+5131c62 add toolbar and drawer handlers back in
+ede4128 remove unused
+46aa51f make browser and VPN buttons enabed by default
+d6d3c5d return app name to Orbot
+d6ea648 update permissions
+48f40b3 update resources for new design
+7c303f1 refactoring into cleaner packages
+ee1d548 clean up of manifest for unused functions
+c1fe536 add button handle logic
+753e21f update makefile for badvpn tun2socks
+cf50ec1 more tweaks to new layout
+6a83a0d update project and layout for v15 merged browser + VPN
+21b75b4 vpn changes
+09bdd8f renable the network state receiver code
+2f899cb the lead developer appears!
+7ee0622 Revert "Deleted unnecessary files."
+84d7f49 updating primary manifest for Lollipop
+6feb32c re-enable network receiver
+
 /** 14.1.4 / 29-Nov-2014 / b7fcbdc4e85071191cc95c3824e7b5a90d36d1e8 **/
 
 * Stop background service being killed
