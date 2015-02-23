@@ -189,7 +189,7 @@ public class ProxyServer implements Runnable {
 				final ProxyServer ps = new ProxyServer(auth, s);
 				(new Thread(ps)).start();
 			}
-		} catch (final IOException ioe) {
+		} catch (final Exception ioe) {
 			ioe.printStackTrace();
 		} finally {
 		}
