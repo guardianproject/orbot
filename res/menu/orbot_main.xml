@@ -19,12 +19,6 @@
 -->
 <menu xmlns:yourapp="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    
- <item android:id="@+id/menu_start"
-        android:title="@string/menu_start"
-         android:icon="@drawable/ic_action_start"
-          yourapp:showAsAction="never"
-         />
 
  <item android:id="@+id/menu_settings"
         android:title="@string/menu_settings"
@@ -32,6 +26,11 @@
          yourapp:showAsAction="always"
          />
 
+  <item android:id="@+id/menu_scan"
+        android:title="@string/menu_scan"
+         yourapp:showAsAction="always"
+         />
+ 
 <!-- 
         <item android:id="@+id/menu_verify"
         android:title="@string/menu_verify_browser"
@@ -45,12 +44,6 @@
       yourapp:showAsAction="never"/>
   -->
         
- <item android:id="@+id/menu_about"
-        android:title="@string/menu_about"
-         android:icon="@drawable/ic_menu_about"
-                  yourapp:showAsAction="never"
-         
-         />
  
   <item android:id="@+id/menu_wizard"
         android:title="@string/menu_wizard"
@@ -58,7 +51,14 @@
                   yourapp:showAsAction="never"
          
          />
-  
+ 
+  <item android:id="@+id/menu_about"
+        android:title="@string/menu_about"
+         android:icon="@drawable/ic_menu_about"
+                  yourapp:showAsAction="never"
+         
+         />
+ 
   <item android:id="@+id/menu_exit"
         android:title="@string/menu_exit"
          android:icon="@drawable/ic_menu_exit"

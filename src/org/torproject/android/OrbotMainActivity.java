@@ -5,7 +5,9 @@ package org.torproject.android;
 
 import info.guardianproject.browser.Browser;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.text.NumberFormat;
 import java.util.Locale;
 
 import org.torproject.android.service.TorService;
@@ -60,6 +62,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
+
 
 public class OrbotMainActivity extends Activity implements TorConstants, OnLongClickListener, OnTouchListener, OnSharedPreferenceChangeListener
 {
@@ -70,7 +75,7 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
     private MenuItem mItemOnOff = null;
     private TextView downloadText = null;
     private TextView uploadText = null;
-  
+    private NumberFormat mNumberFormat = null;
     private TextView mTxtOrbotLog = null;
     
     private Button mBtnBrowser = null;
@@ -381,36 +386,7 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 
-                if (item.getItemId() == R.id.menu_start)
-                {
-                        
-                        try
-                        {
-                                
-                                if (torStatus == TorServiceConstants.STATUS_OFF)
-                                {
-                                    if (mItemOnOff != null)
-                                            mItemOnOff.setTitle(R.string.menu_stop);
-                                        startTor();
-                                        
-                                }
-                                else
-                                {
-                                    if (mItemOnOff != null)
-                                            mItemOnOff.setTitle(R.string.menu_start);
-                                    
-                                        stopTor();
-                                        stopService ();
-                                        
-                                }
-                                
-                        }
-                        catch (RemoteException re)
-                        {
-                                Log.w(TAG, "Unable to start/top Tor from menu UI", re);
-                        }
-                }
-                else if (item.getItemId() == R.id.menu_settings)
+                if (item.getItemId() == R.id.menu_settings)
                 {
                         showSettings();
                 }
@@ -431,6 +407,11 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
                         showAbout();
                         
                         
+                }
+                else if (item.getItemId() == R.id.menu_scan)
+                {
+                	IntentIntegrator integrator = new IntentIntegrator(OrbotMainActivity.this);
+                	integrator.initiateScan();
                 }
 
                 return true;
@@ -617,29 +598,8 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
 				{
 					String newBridgeValue = urlString.substring(9); //remove the bridge protocol piece
 					newBridgeValue = URLDecoder.decode(newBridgeValue); //decode the value here
-		
-					showAlert("Bridges Updated","Restart Orbot to use this bridge: " + newBridgeValue,false);	
 					
-					String bridges = mPrefs.getString(TorConstants.PREF_BRIDGES_LIST, null);
-					
-					Editor pEdit = mPrefs.edit();
-					
-					if (bridges != null && bridges.trim().length() > 0)
-					{
-						if (bridges.indexOf('\n')!=-1)
-							bridges += '\n' + newBridgeValue;
-						else
-							bridges += ',' + newBridgeValue;
-					}
-					else
-						bridges = newBridgeValue;
-					
-					pEdit.putString(TorConstants.PREF_BRIDGES_LIST,bridges); //set the string to a preference
-					pEdit.putBoolean(TorConstants.PREF_BRIDGES_ENABLED,true);
-				
-					pEdit.commit();
-					
-					setResult(RESULT_OK);
+					addNewBridges(newBridgeValue);
 				}
 			}
 		}
@@ -665,6 +625,33 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
 		
 		updateStatus ("");
 		
+	}
+		
+	private void addNewBridges (String newBridgeValue)
+	{
+
+		showAlert("Bridges Updated","Restart Orbot to use this bridge: " + newBridgeValue,false);	
+		
+		String bridges = mPrefs.getString(TorConstants.PREF_BRIDGES_LIST, null);
+		
+		Editor pEdit = mPrefs.edit();
+		
+		if (bridges != null && bridges.trim().length() > 0)
+		{
+			if (bridges.indexOf('\n')!=-1)
+				bridges += '\n' + newBridgeValue;
+			else
+				bridges += ',' + newBridgeValue;
+		}
+		else
+			bridges = newBridgeValue;
+		
+		pEdit.putString(TorConstants.PREF_BRIDGES_LIST,bridges); //set the string to a preference
+		pEdit.putBoolean(TorConstants.PREF_BRIDGES_ENABLED,true);
+	
+		pEdit.commit();
+		
+		setResult(RESULT_OK);
 	}
 
 	private boolean showWizard = true;
@@ -786,6 +773,24 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
         {
             startService(TorServiceConstants.CMD_VPN);
         }
+        
+        IntentResult scanResult = IntentIntegrator.parseActivityResult(request, response, data);
+        if (scanResult != null) {
+             // handle scan result
+        	
+        	String results = scanResult.getContents();
+        	try {
+				results = URLDecoder.decode(results, "UTF-8");
+				
+				addNewBridges(results);
+				
+				
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        	
+          }
         
     }
     
@@ -1118,6 +1123,9 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
             config.locale = locale;
             getResources().updateConfiguration(config, getResources().getDisplayMetrics());
         }
+        
+        mNumberFormat = NumberFormat.getInstance(Locale.getDefault());
+ 	   
     }
 
        @Override
@@ -1143,9 +1151,13 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
         // Converts the supplied argument into a string.
         // Under 2Mb, returns "xxx.xKb"
         // Over 2Mb, returns "xxx.xxMb"
+    	   
+    	   //Locale.getDefault();
+    	   
         if (count < 1e6)
-            return ((float)((int)(count*10/1024))/10 + "kbps");
-        return ((float)((int)(count*100/1024/1024))/100 + "mbps");
+            return mNumberFormat.format(((float)((int)(count*10/1024))/10)) + getString(R.string.kbps);
+        
+        return mNumberFormat.format(((float)((int)(count*100/1024/1024))/100)) + getString(R.string.mbps);
         
            //return count+" kB";
     }
@@ -1155,8 +1167,9 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
         // Under 2Mb, returns "xxx.xKb"
         // Over 2Mb, returns "xxx.xxMb"
         if (count < 1e6)
-            return ((float)((int)(count*10/1024))/10 + "KB");
-        return ((float)((int)(count*100/1024/1024))/100 + "MB");
+            return mNumberFormat.format(((float)((int)(count*10/1024))/10)) + getString(R.string.kb);
+        
+        return mNumberFormat.format(((float)((int)(count*100/1024/1024))/100)) + getString(R.string.mb);
         
            //return count+" kB";
     }
