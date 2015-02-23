@@ -218,7 +218,6 @@ public class HttpProxy extends Thread
 			while (true)
 			{
 				Socket client = server.accept();
-				HttpProxy.vpnService.protect(client);
 				ProxyThread t = new ProxyThread(client, fwdServer, fwdPort);
 				t.setDebug(debugLevel, debugOut);
 				t.setTimeout(ptTimeout);
@@ -331,6 +330,7 @@ class ProxyThread extends Thread
 			try
 			{
 				server = SocketChannel.open().socket();
+				InetSocketAddress remoteHost = new InetSocketAddress(hostName, hostPort);
 				
 				if ((null != server) && (null != HttpProxy.vpnService)) {
 					HttpProxy.vpnService.protect(server);
@@ -338,17 +338,12 @@ class ProxyThread extends Thread
 				
 				if ((fwdServer.length() > 0) && (fwdPort > 0))
 				{
-					//server = new Socket(fwdServer, fwdPort);
 					server.connect(new InetSocketAddress(fwdServer, fwdPort));
 					
 				}  else  {
-					//server = new Socket(hostName, hostPort);
-					server.connect(new InetSocketAddress(hostName, hostPort));
+					server.connect(remoteHost);
 					
 				}
-				
-				
-				HttpProxy.vpnService.protect(server);
 				
 			}  catch (Exception e)  {
 				// tell the client there was an error
@@ -360,31 +355,56 @@ class ProxyThread extends Thread
 			if (server != null)
 			{
 				server.setSoTimeout(socketTimeout);
+				
+
 				BufferedInputStream serverIn = new BufferedInputStream(server.getInputStream());
 				BufferedOutputStream serverOut = new BufferedOutputStream(server.getOutputStream());
 				
-				// send the request out
-				serverOut.write(request, 0, requestLength);
-				serverOut.flush();
-				
-				// and get the response; if we're not at a debug level that
-				// requires us to return the data in the response, just stream
-				// it back to the client to save ourselves from having to
-				// create and destroy an unnecessary byte array. Also, we
-				// should set the waitForDisconnect parameter to 'true',
-				// because some servers (like Google) don't always set the
-				// Content-Length header field, so we have to listen until
-				// they decide to disconnect (or the connection times out).
-				if (debugLevel > 1)
+				if (requestLength > 0)
 				{
-					response = getHTTPData(serverIn, true);
-					responseLength = Array.getLength(response);
-				}  else  {
-					responseLength = streamHTTPData(serverIn, clientOut, true);
+					// send the request out
+					serverOut.write(request, 0, requestLength);
+					serverOut.flush();
+					
+					// and get the response; if we're not at a debug level that
+					// requires us to return the data in the response, just stream
+					// it back to the client to save ourselves from having to
+					// create and destroy an unnecessary byte array. Also, we
+					// should set the waitForDisconnect parameter to 'true',
+					// because some servers (like Google) don't always set the
+					// Content-Length header field, so we have to listen until
+					// they decide to disconnect (or the connection times out).
+					if (debugLevel > 1)
+					{
+						response = getHTTPData(serverIn, true);
+						responseLength = Array.getLength(response);
+					}  else  {
+						responseLength = streamHTTPData(serverIn, clientOut, true);
+					}
+					
+					serverIn.close();
+					serverOut.close();
 				}
-				
-				serverIn.close();
-				serverOut.close();
+				else 
+				{
+					int i = 0;
+					byte[] buffer = new byte[4096];
+					
+					int avail = clientIn.available();
+					while (avail > 0 && (i = clientIn.read(buffer,0,avail))!=-1)
+					{
+						serverOut.write(buffer,0,i);
+						avail = clientIn.available();
+					}
+					
+					while ((i = serverIn.read(buffer))!=-1)
+						clientOut.write(buffer,0,i);
+					
+					clientOut.close();
+					clientIn.close();
+					pSocket.close();
+					return;
+				}
 			}
 			
 			// send the response back to the client, if we haven't already
@@ -487,6 +507,16 @@ class ProxyThread extends Thread
 						if (debugLevel > 0)
 							debugOut.println("Error parsing response code " + rcString);
 					}
+				}
+				//CONNECT www.comodo.com:443 HTTP/1.1
+
+				else if (data.toLowerCase().startsWith("connect "))
+				{
+					
+					String connectHost = data.substring(pos+1, data.indexOf(" ", pos+1));
+					host.append(connectHost);
+					return 0;
+					
 				}
 			}
 			

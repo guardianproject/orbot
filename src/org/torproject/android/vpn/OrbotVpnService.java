@@ -16,16 +16,12 @@
 
 package org.torproject.android.vpn;
 
-import java.io.IOException;
 import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.Locale;
 
 import org.torproject.android.service.TorServiceConstants;
 
 import android.annotation.TargetApi;
-import android.app.Notification;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.net.VpnService;
