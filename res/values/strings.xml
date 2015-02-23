@@ -34,6 +34,7 @@
   <string name="button_clear_log">Clear Log</string>
   <string name="menu_verify">Check</string>
   <string name="menu_exit">Exit</string>
+  <string name="menu_scan">Scan Bridge QR</string>
   <string name="press_to_start">- long press to start -</string>
   <string name="pref_trans_proxy_group">Transparent Proxying (Requires Root)</string>
   <string name="pref_trans_proxy_title">Transparent Proxying</string>
@@ -302,4 +303,12 @@
   <string name="you_may_need_to_stop_and_start_orbot_for_settings_change_to_be_enabled_">You may need to stop and start Orbot for settings change to be enabled.</string>
   
   <string name="menu_vpn">VPN</string>
+  
+  <string name="kbps">kbps</string>
+  
+  <string name="mbps">mbps</string>
+  
+  <string name="kb">KB</string>
+  
+  <string name="mb">MB</string>
 </resources>
