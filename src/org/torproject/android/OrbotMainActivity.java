@@ -705,6 +705,12 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
 		}
 		else
 		{
+			Editor e = mPrefs.edit();
+			e.putString("pref_proxy_host", "localhost");
+			e.putInt("pref_proxy_port", 8118);
+			e.putString("prof_proxy_type","HTTP");
+			e.commit();
+			
 			//use the built-in browser
 			Intent intentBrowser = new Intent(this, Browser.class);
 			intentBrowser.setAction(Intent.ACTION_VIEW);

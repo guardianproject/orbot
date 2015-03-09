@@ -51,7 +51,7 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     private ProxyServer mSocksProxyServer;
     private Thread mThreadProxy;
     
-    private HttpProxy mHttpProxyServer;
+ //   private HttpProxy mHttpProxyServer;
     
     private final static int VPN_MTU = 1500;
     
@@ -121,11 +121,12 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
         
         mThreadProxy.start();
         
+        /**
     	mHttpProxyServer = new HttpProxy(9998);
     	HttpProxy.setVpnService(OrbotVpnService.this);
     	mHttpProxyServer.setDebug(5, System.out);
     	mHttpProxyServer.start();
-    	
+    	*/
     	
     }
 
@@ -142,10 +143,11 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
             mSocksProxyServer = null;
         }
         
+        /*
         if (mHttpProxyServer != null)
         {
         	mHttpProxyServer.closeSocket();
-        }
+        }*/
         
         if (mInterface != null){
             onRevoke();

@@ -86,15 +86,13 @@ public interface TorServiceConstants {
     public static final String CMD_UPDATE = "update";
      
     
-    public static final String BINARY_TOR_VERSION = "0.2.5.10-openssl1.0.1i-PIE-bridgepatch";
+    public static final String BINARY_TOR_VERSION = "0.2.5.10-openssl1.0.1i-PIE-bridgepatch-obfs4proxy";
     public static final String PREF_BINARY_TOR_VERSION_INSTALLED = "BINARY_TOR_VERSION_INSTALLED";
     
     //obfsproxy 
-    public static final String OBFSCLIENT_ASSET_KEY = "obfsclient";
+    public static final String OBFSCLIENT_ASSET_KEY = "obfs4proxy";
     
     public static final String MEEK_ASSET_KEY = "meek-client";
-    
-    
     
     
 	public static final int MESSAGE_TRAFFIC_COUNT = 5;

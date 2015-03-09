@@ -94,7 +94,7 @@ public class TorResourceInstaller implements TorServiceConstants {
         shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
         streamToFile(is,outFile, false, true);
     
-        is = context.getResources().openRawResource(R.raw.obfsclient);
+        is = context.getResources().openRawResource(R.raw.obfs4proxy);
         outFile = new File(installFolder, OBFSCLIENT_ASSET_KEY);
         shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
         streamToFile(is,outFile, false, true);

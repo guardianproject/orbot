@@ -806,7 +806,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
         if (useBridges)
         	if (mUseVPN)
-        		customEnv.add("TOR_PT_PROXY=http://127.0.0.1:9998"); 
+        		customEnv.add("TOR_PT_PROXY=socks5://127.0.0.1:9999"); 
         
         String baseDirectory = fileTor.getParent();
         Shell shellUser = Shell.startShell(customEnv, baseDirectory);
@@ -2165,6 +2165,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
             debug ("Using bridges");
             String bridgeCfgKey = "Bridge";
 
+            updateConfiguration("UseBridges", "1", false);
+            
             String bridgeList = prefs.getString(TorConstants.PREF_BRIDGES_LIST,null);
             
             if (bridgeList != null && bridgeList.length() > 1) //longer then 1 = some real values here
@@ -2192,8 +2194,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
             
 	            if (obfsBridges)
 	            {
-	                String bridgeConfig = "obfs2,obfs3,scramblesuit exec " + fileObfsclient.getCanonicalPath();
-	                
+	              //  String bridgeConfig = "obfs3,scramblesuit,obfs4 exec " + fileObfsclient.getCanonicalPath();
+	            	String bridgeConfig = "obfs3,obfs4 exec " + fileObfsclient.getCanonicalPath();
+		                
 	                debug ("Using OBFUSCATED bridges: " + bridgeConfig);
 	                
 	                updateConfiguration("ClientTransportPlugin",bridgeConfig, false);
@@ -2263,7 +2266,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 
 //            updateConfiguration("UpdateBridgesFromAuthority", "0", false);
-            updateConfiguration("UseBridges", "1", false);
                 
             
         }
