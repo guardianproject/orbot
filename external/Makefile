@@ -70,8 +70,6 @@ endif
 	libevent libevent-clean \
 	iptables iptables-clean \
 	tor tor-clean \
-	liballium liballium-clean \
-	obfsclient obfsclient-clean \
 	polipo polipo-clean
 
 all: assets
@@ -114,7 +112,7 @@ openssl-clean:
 
 libevent/Makefile:
 	sed -i 's@\(SUBDIRS = . include\) sample test@\1@' libevent/Makefile.am
-	sed -i 's@\(AC_OUTPUT(Makefile include/Makefile\) test/Makefile sample/Makefile)@\1)@' libevent/configure.in
+	##sed -i 's@\(AC_OUTPUT(Makefile include/Makefile\) test/Makefile sample/Makefile)@\1)@' libevent/configure.in
 	cd libevent && ./autogen.sh
 	cp config.sub libevent
 	cp config.guess libevent
@@ -208,75 +206,6 @@ tor-clean:
 	-cd tor && \
 		git clean -fdx
 
-
-#------------------------------------------------------------------------------#
-# liballium
-
-liballium/Makefile:
-	cd liballium && mkdir m4
-	cd liballium && ./autogen.sh
-	cp config.sub liballium
-	cp config.guess liballium
-	cd liballium && \
-		CC="$(CC)" AR="$(AR)" RANLIB=$(RANLIB) CFLAGS="$(CFLAGS) -I$(EXTERNAL_ROOT)/include" LDFLAGS="$(LDFLAGS)" \
-			./configure \
-				--host=$(HOST) \
-				--disable-shared
-
-liballium-build-stamp: liballium/Makefile
-	$(MAKE) -C liballium all-am
-	touch liballium-build-stamp
-
-liballium: liballium-build-stamp
-	test -d lib || mkdir lib
-	test -d include || mkdir include
-	test -d include/allium || mkdir include/allium
-	cp liballium/.libs/liballium-1.0.a lib
-	cp liballium/include/* include/allium/
-
-liballium-clean:
-	-rm -f include/allium
-	-rm -f lib/liballium-1.0.a
-	-rm -f liballium-build-stamp
-	-cd liballium && \
-		git clean -fdx
-
-#------------------------------------------------------------------------------#
-# obfsclient
-
-
-obfsclient/Makefile: 
-	cd obfsclient && \
-	 	./autogen.sh
-	cp config.sub obfsclient
-	cp config.guess obfsclient
-	cd obfsclient && \
-                CC="$(CC)" CPP="$(CPP)" CXX="$(CXX)" AR="$(AR)" RANLIB=$(RANLIB) \
- CFLAGS="$(CFLAGS) -I$(EXTERNAL_ROOT)/include -I$(EXTERNAL_ROOT)/include/event2" \
- CPPFLAGS="$(CFLAGS) -D_FORTIFY_SOURCE=2 -fwrapv -fno-strict-aliasing -fno-strict-overflow" \
- CXXFLAGS="$(CFLAGS) -D_FORTIFY_SOURCE=2 -fwrapv -fno-strict-aliasing -fno-strict-overflow -I$(NDK_BASE)/sources/cxx-stl/gnu-libstdc++/$(NDK_TOOLCHAIN_VERSION)/include -I$(NDK_BASE)/sources/cxx-stl/gnu-libstdc++/$(NDK_TOOLCHAIN_VERSION)/libs/$(APP_ABI)/include" \
-LDFLAGS="$(LDFLAGS)" \
- libevent_CFLAGS="-I$(EXTERNAL_ROOT)/include" libevent_LIBS="-L$(EXTERNAL_ROOT)/lib" \
- liballium_CFLAGS="-I$(EXTERNAL_ROOT)/include" liballium_LIBS="-L$(EXTERNAL_ROOT)/lib" \
- LIBS="-L$(EXTERNAL_ROOT)/lib -levent -lallium-1.0 -L$(NDK_BASE)/sources/cxx-stl/gnu-libstdc++/$(NDK_TOOLCHAIN_VERSION)/libs/$(APP_ABI)/ -lgnustl_static" \
-                        ./configure \
-                                --host=$(HOST) \
-                                --with-openssl=$(EXTERNAL_ROOT)
-
-obfsclient-build-stamp: obfsclient/Makefile
-	$(MAKE) -C obfsclient
-	touch obfsclient-build-stamp
-
-obfsclient: openssl libevent liballium obfsclient-build-stamp
-	test -d bin || mkdir bin
-	cp obfsclient/obfsclient bin
-
-obfsclient-clean:
-	-rm -f bin/obfsclient
-	-rm -f obfsclient-build-stamp
-	-cd obfsclient && \
-		git clean -fdx
-
 #------------------------------------------------------------------------------#
 # polipo
 
@@ -319,13 +248,11 @@ jtorctl-clean:
 #in order to stop Android OS (older devices) from trying to compress/decompress it
 #this is related to a bug in compression of assets and resources > 1MB
 
-assets: tor polipo jtorctl iptables obfsclient
+assets: tor polipo jtorctl iptables
 	install bin/jtorctl.jar ../libs
 	install -d ../res/raw
 	-$(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-strip --strip-debug bin/polipo
 	-zip ../res/raw/polipo.mp3 bin/polipo
-	-$(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-strip --strip-debug bin/obfsclient
-	-zip ../res/raw/obfsclient.mp3 bin/obfsclient
 	-$(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-strip --strip-debug bin/tor
 	-zip ../res/raw/tor.mp3 bin/tor
 	-$(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-strip --strip-debug bin/xtables
@@ -333,7 +260,6 @@ assets: tor polipo jtorctl iptables obfsclient
 
 assets-clean:
 	-rm ../res/raw/polipo.mp3
-	-rm ../res/raw/obfsclient.mp3
 	-rm ../res/raw/tor.mp3
 	-rm ../res/raw/xtables.mp3
 	-rm ../libs/jtorctl.jar
@@ -341,7 +267,8 @@ assets-clean:
 #------------------------------------------------------------------------------#
 # cleanup, cleanup, put the toys away
 
-clean: openssl-clean libevent-clean tor-clean polipo-clean jtorctl-clean liballium-clean obfsclient-clean assets-clean
+##clean: openssl-clean libevent-clean tor-clean polipo-clean jtorctl-clean assets-clean
+clean: openssl-clean libevent-clean tor-clean polipo-clean jtorctl-clean assets-clean
 
 #------------------------------------------------------------------------------#
 # debugging stuff
