@@ -19,13 +19,6 @@
 [submodule "external/superuser-commands"]
 	path = external/superuser-commands
 	url = https://github.com/dschuermann/superuser-commands.git
-[submodule "external/liballium"]
-	path = external/liballium
-	url = https://git.torproject.org/user/yawning/liballium.git
-[submodule "external/obfsclient"]
-	path = external/obfsclient
-	url = https://git.torproject.org/user/yawning/obfsclient.git
-
 [submodule "external/polipo"]
 	path = external/polipo
 	url = https://github.com/jech/polipo.git
