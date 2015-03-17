@@ -27,11 +27,13 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Properties;
 import java.util.Set;
 import java.util.StringTokenizer;
@@ -94,6 +96,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     private int mPortHTTP = 8118;
     private int mPortSOCKS = 9050;
     
+    private int mVpnProxyPort = 7231;
     
     private static final int NOTIFY_ID = 1;
     private static final int TRANSPROXY_NOTIFY_ID = 2;
@@ -142,8 +145,12 @@ public class TorService extends Service implements TorServiceConstants, TorConst
     private boolean mTransProxyNetworkRefresh = false;
     
     private boolean mUseVPN = false;
+	boolean mIsLollipop = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
+
     
     private ExecutorService mExecutor = Executors.newFixedThreadPool(1);
+
+    private NumberFormat mNumberFormat = null;
 
     public void debug(String msg)
     {
@@ -297,7 +304,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
              if (hmBuiltNodes.size() > 0)
              {
-                 //sbInfo.append(getString(R.string.your_tor_public_ips_) + '\n');
+                 //sbInfo.append(getString(R.string.your_tor_public_ips_) + '\n ');
                  
                  Set<String> itBuiltNodes = hmBuiltNodes.keySet();
                  for (String key : itBuiltNodes)
@@ -626,6 +633,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
                 }
             }).start();
         
+            mNumberFormat = NumberFormat.getInstance(Locale.getDefault()); //localized numbers!
+            
         }
         catch (Exception e)
         {
@@ -805,8 +814,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         boolean useBridges = prefs.getBoolean(TorConstants.PREF_BRIDGES_ENABLED, false);
 
         if (useBridges)
-        	if (mUseVPN)
-        		customEnv.add("TOR_PT_PROXY=socks5://127.0.0.1:9999"); 
+        	if (mUseVPN && !mIsLollipop)
+        		customEnv.add("TOR_PT_PROXY=socks5://127.0.0.1:" + mVpnProxyPort); 
         
         String baseDirectory = fileTor.getParent();
         Shell shellUser = Shell.startShell(customEnv, baseDirectory);
@@ -1407,15 +1416,15 @@ public class TorService extends Service implements TorServiceConstants, TorConst
                     try
                         {
 
-                        boolean found = findExistingProc ();
-                        
-                        if (!found)
-                        {
-                            killProcess(fileTor);
-                            killProcess(filePolipo);
-                            
-                               startTor();
-                        }
+	                        boolean found = findExistingProc ();
+	                        
+	                        if (!found)
+	                        {
+	                            killProcess(fileTor);
+	                            killProcess(filePolipo);
+	                            
+	                               startTor();
+	                        }
                         }
                         catch (Exception e)
                         {                
@@ -1458,8 +1467,11 @@ public class TorService extends Service implements TorServiceConstants, TorConst
             
             Intent intent = new Intent(TorService.this, OrbotVpnService.class);
             intent.setAction("start");
-            startService(intent);
             
+            if (!mIsLollipop)
+            	intent.putExtra("proxyPort",mVpnProxyPort);
+            
+            startService(intent);
            
         }
         
@@ -1585,8 +1597,9 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         // Under 2Mb, returns "xxx.xKb"
         // Over 2Mb, returns "xxx.xxMb"
         if (count < 1e6)
-            return ((float)((int)(count*10/1024))/10 + "Kbps");
-        return ((float)((int)(count*100/1024/1024))/100 + "Mbps");
+            return mNumberFormat.format(Math.round((float)((int)(count*10/1024))/10)) + "Kbps";
+        else
+        	return mNumberFormat.format(Math.round((float)((int)(count*100/1024/1024))/100)) + "Mbps";
         
            //return count+" kB";
     }
@@ -1932,12 +1945,12 @@ public class TorService extends Service implements TorServiceConstants, TorConst
                          for (String value : configBuffer)
                              {
                                  
-                                 debug("removing torrc conf: " + value);
+                              //   debug("removing torrc conf: " + value);
                                  
                                  
                              }
                          
-                            conn.resetConf(resetBuffer);
+                           // conn.resetConf(resetBuffer);
                             resetBuffer = null;
                         }
                   
@@ -2119,10 +2132,12 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
 	        if (mUseVPN) //set the proxy here if we aren't using a bridge
 	        {
-	        	String proxyType = "socks5";
-	        	String proxyHost = "127.0.0.1";
-	        	int proxyPort = 9999;
-	            updateConfiguration(proxyType + "Proxy", proxyHost + ':' + proxyPort, false);
+	        	if (!mIsLollipop)
+	        	{
+		        	String proxyType = "socks5";
+		        	String proxyHost = "127.0.0.1";
+		            updateConfiguration(proxyType + "Proxy", proxyHost + ':' + mVpnProxyPort, false);
+	        	};
 	
 	        }
 	        else
@@ -2177,15 +2192,17 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 	            {
 	                bridgeDelim = ",";
 	            }
-	            
-	            showToolbarNotification(getString(R.string.notification_using_bridges) + ": " + bridgeList, TRANSPROXY_NOTIFY_ID, R.drawable.ic_stat_tor);
 	  
 	            StringTokenizer st = new StringTokenizer(bridgeList,bridgeDelim);
 	            while (st.hasMoreTokens())
 	            {
 	                String bridgeConfigLine = st.nextToken().trim();
-	                debug("Adding bridge: " + bridgeConfigLine);
-	                updateConfiguration(bridgeCfgKey, bridgeConfigLine, false);
+	                
+	                if (bridgeConfigLine != null && bridgeConfigLine.length() > 0)
+	                {
+	               	 debug("Adding bridge: " + bridgeConfigLine);
+	               	 updateConfiguration(bridgeCfgKey, bridgeConfigLine, false);
+	                }
 	
 	            }
             
@@ -2205,30 +2222,6 @@ public class TorService extends Service implements TorServiceConstants, TorConst
             else
             {
             	//time to do autobridges, aka meek
-
-            	String proxyBridge = "";
-            	String proxyType = prefs.getString("pref_proxy_type", null);
-		        
-            	if (mUseVPN)
-                {
-                	proxyType = "http"; //"socks5";
-            		String proxyHost = "127.0.0.1";
-                	int proxyPort = 9998; //9999;
-            		
-            		//proxyBridge = " proxy=" + proxyType + "://" + proxyHost + ':' + proxyPort; //proxy=http://127.0.0.1:9998
-	              //  updateConfiguration(proxyType + "Proxy", proxyHost + ':' + proxyPort, false);
-
-            		
-            	}
-            	else if (proxyType != null && proxyType.length() > 0)
-		        {
-		            String proxyHost = prefs.getString("pref_proxy_host", null);
-		            String proxyPort = prefs.getString("pref_proxy_port", null);
-
-            		//proxyBridge = " proxy=" + proxyType + "://" + proxyHost + ':' + proxyPort;
-	                updateConfiguration(proxyType + "Proxy", proxyHost + ':' + proxyPort, false);
-
-		        }
 
             	debug ("Using meek bridges");
                 
@@ -2260,7 +2253,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
             	  }
             	}
             	
-            	updateConfiguration(bridgeCfgKey, meekBridge[meekIdx] + proxyBridge, false);            	
+            	updateConfiguration(bridgeCfgKey, meekBridge[meekIdx], false);            	
             	
             }
 

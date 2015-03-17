@@ -24,6 +24,7 @@ import org.torproject.android.service.TorServiceConstants;
 import android.annotation.TargetApi;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.VpnService;
 import android.os.Build;
 import android.os.Handler;
@@ -47,11 +48,9 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     private String mSessionName = "OrbotVPN";
     private ParcelFileDescriptor mInterface;
 
-    private int mSocksProxyPort = 9999;
+    private int mSocksProxyPort = -1;
     private ProxyServer mSocksProxyServer;
     private Thread mThreadProxy;
-    
- //   private HttpProxy mHttpProxyServer;
     
     private final static int VPN_MTU = 1500;
     
@@ -64,6 +63,8 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     	{
 	    	Log.d(TAG,"starting OrbotVPNService service!");
 	
+	    	mSocksProxyPort = intent.getIntExtra("proxyPort", 0);
+	    	
 	        // The handler is only used to show messages.
 	        if (mHandler == null) {
 	            mHandler = new Handler(this);
@@ -72,7 +73,10 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 	        // Stop the previous session by interrupting the thread.
 	        if (mThreadVPN == null || (!mThreadVPN.isAlive()))
 	        {
-	       	    enableAppRouting ();
+	        	boolean isLollipop = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
+	        	if (!isLollipop)
+	        		startSocksBypass();
+	        	
 	            setupTun2Socks();               
 	        }
     	}
@@ -87,21 +91,6 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
         return START_NOT_STICKY;
     }
     
-    private void enableAppRouting ()
-    {
-    	
-    	boolean isLollipop = false;
-    	
-    	if (isLollipop)
-    	{
-    		//allow for specific apps to be sent through VPN based on list selection
-    	}
-    	else
-    	{
-    		//do socks bypass trick
-    		startSocksBypass();
-    	}
-    }
 
     private void startSocksBypass(){
         mThreadProxy = new Thread ()
@@ -121,13 +110,6 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
         
         mThreadProxy.start();
         
-        /**
-    	mHttpProxyServer = new HttpProxy(9998);
-    	HttpProxy.setVpnService(OrbotVpnService.this);
-    	mHttpProxyServer.setDebug(5, System.out);
-    	mHttpProxyServer.start();
-    	*/
-    	
     }
 
     @Override
@@ -183,6 +165,9 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 			            // (i.e., Farsi and Arabic).^M
 			    		Locale.setDefault(new Locale("en"));
 			    		
+			    		boolean isLollipop = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
+			        	
+			    		
 			    		//String localhost = InetAddress.getLocalHost().getHostAddress();
 			    		
 			    		String vpnName = "OrbotVPN";
@@ -201,6 +186,9 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 				        builder.addRoute("0.0.0.0",0);	 
 				      //  builder.addDnsServer("8.8.8.8");
 				        
+				        if (isLollipop)
+				        	doLollipopAppRouting(builder);
+				        
 				         // Create a new interface using the builder and save the parameters.
 				        mInterface = builder.setSession(mSessionName)
 				                .setConfigureIntent(mConfigureIntent)
@@ -218,6 +206,16 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     	};
     	
     	mThreadVPN.start();
+    }
+    
+    @TargetApi(Build.VERSION_CODES.L)
+	private void doLollipopAppRouting (Builder builder) throws NameNotFoundException
+    {
+
+        
+    	builder.addDisallowedApplication("org.torproject.android");
+    
+        
     }
 
     @Override
