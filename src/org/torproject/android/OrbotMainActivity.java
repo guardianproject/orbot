@@ -705,11 +705,6 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
 		}
 		else
 		{
-			Editor e = mPrefs.edit();
-			e.putString("pref_proxy_host", "localhost");
-			e.putInt("pref_proxy_port", 8118);
-			e.putString("prof_proxy_type","HTTP");
-			e.commit();
 			
 			//use the built-in browser
 			Intent intentBrowser = new Intent(this, Browser.class);
@@ -717,7 +712,6 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
 			intentBrowser.setData(Uri.parse(browserLaunchUrl));
 			startActivity(intentBrowser);
 		}
-		
 	
 		
 	}
@@ -813,6 +807,11 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
         	{
 	        	try {
 					results = URLDecoder.decode(results, "UTF-8");
+					
+					int urlIdx = results.indexOf("://");
+					
+					if (urlIdx!=-1)
+						results = results.substring(urlIdx+3);
 					
 					setNewBridges(results);
 					
@@ -1188,9 +1187,9 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
     	   //Locale.getDefault();
     	   
         if (count < 1e6)
-            return mNumberFormat.format(((float)((int)(count*10/1024))/10)) + getString(R.string.kbps);
+            return mNumberFormat.format(Math.round(((float)((int)(count*10/1024))/10))) + getString(R.string.kbps);
         
-        return mNumberFormat.format(((float)((int)(count*100/1024/1024))/100)) + getString(R.string.mbps);
+        return mNumberFormat.format(Math.round(((float)((int)(count*100/1024/1024))/100))) + getString(R.string.mbps);
         
            //return count+" kB";
     }
@@ -1200,9 +1199,9 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
         // Under 2Mb, returns "xxx.xKb"
         // Over 2Mb, returns "xxx.xxMb"
         if (count < 1e6)
-            return mNumberFormat.format(((float)((int)(count*10/1024))/10)) + getString(R.string.kb);
+            return mNumberFormat.format(Math.round(((float)((int)(count*10/1024))/10))) + getString(R.string.kb);
         
-        return mNumberFormat.format(((float)((int)(count*100/1024/1024))/100)) + getString(R.string.mb);
+        return mNumberFormat.format(Math.round(((float)((int)(count*100/1024/1024))/100))) + getString(R.string.mb);
         
            //return count+" kB";
     }
