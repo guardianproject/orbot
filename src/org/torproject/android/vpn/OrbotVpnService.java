@@ -229,18 +229,23 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
                 {
                 	Log.d(TAG,"closing interface, destroying VPN interface");
                     
+                	//Tun2Socks.Stop();
+                	
                 	if (mInterface != null)
                     {
                 		mInterface.close();
                 		mInterface = null;
                     }
                 	
-                    Tun2Socks.Stop();
                 }
                 catch (Exception e)
                 {
                     Log.d(TAG,"error stopping tun2socks",e);
                 }
+	            catch (Error e)
+	            {
+	                Log.d(TAG,"error stopping tun2socks",e);
+	            }
             }
         }.start();
         super.onRevoke();
