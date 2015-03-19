@@ -1,5 +1,21 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+/** 15.0.0 Alpha 5 / 19-Mar-2015 / b7aa69c **/
+
+2d5ee42 calling stop() makes tun2socks crash since VPN is still enabled
+cae2c7c don't add new task flag - will start on boot automatically
+33acf24 use LOLLIPOP constant instead of L
+0bf26b2 add PT builds based on external/pluto golang build system this will be added into the Makefile but it isn't there yet and our 
+3286bb7 add libs and vpn libraries (binaries for now...) .so's can be built form external/badvpn source project, but we haven't integr
+5e8272d revert to old logic for opening/showing browser
+4918221 remove orweb dependecy for now - don't want to build in webkit yet
+7557ad5 update external dependencies, add patch for tor build
+84e97e6 update Makefile for building tor 0.2.6.4 with patch for Android
+6d05e27 Improve Bridge and VPN support, working in tandem You can use Bridges with VPN "App Mode" proxying On Pre-Lollipop this uses a
+3e2b8cf remove proxy prefs, parse bridge URLs, and format strings! - shouldn't set proxy prefs for Orweb as it conflicts with Orbot's 
+56df927 remove liballium and obfsclient dependencies We are switching to Go-based Meek and Obfs4 PT's
+b278b66 switch obfsclient to obfs4 proxy includes supporting SOCKS outbound proxy for VPN mode
+
 /** 15.0.0 Alpha / 23-Feb-2015 / 28d32bc **/ 
 
 * Better Bridge Support
