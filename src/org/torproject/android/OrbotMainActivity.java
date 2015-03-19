@@ -3,8 +3,6 @@
 
 package org.torproject.android;
 
-import info.guardianproject.browser.Browser;
-
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
@@ -18,10 +16,12 @@ import org.torproject.android.settings.SettingsPreferences;
 import org.torproject.android.ui.ChooseLocaleWizardActivity;
 import org.torproject.android.ui.ImageProgressView;
 import org.torproject.android.ui.Rotate3dAnimation;
+import org.torproject.android.ui.TipsAndTricks;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -652,21 +652,6 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
 		
 		Editor pEdit = mPrefs.edit();
 		
-		/*
-		String bridges = "";//let's override, not add // mPrefs.getString(TorConstants.PREF_BRIDGES_LIST, null);
-		
-		
-		if (bridges != null && bridges.trim().length() > 0)
-		{
-			if (bridges.indexOf('\n')!=-1)
-				bridges += '\n' + newBridgeValue;
-			else
-				bridges += ',' + newBridgeValue;
-		}
-		else
-			bridges = newBridgeValue;
-			*/
-		
 		pEdit.putString(TorConstants.PREF_BRIDGES_LIST,newBridgeValue); //set the string to a preference
 		pEdit.putBoolean(TorConstants.PREF_BRIDGES_ENABLED,true);
 	
@@ -692,29 +677,66 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
 	/*
 	 * Launch the system activity for Uri viewing with the provided url
 	 */
-	private void openBrowser(String browserLaunchUrl)
+	private void openBrowser(final String browserLaunchUrl)
 	{
-		//startIntent("info.guardianproject.browser.Browser",Intent.ACTION_VIEW,Uri.parse(browserLaunchUrl));						
-
-		if (mBtnVPN.isChecked())
+		boolean isOrwebInstalled = appInstalledOrNot("info.guardianproject.browser");
+		boolean isTransProxy =  mPrefs.getBoolean("pref_transparent", false);
+		
+		
+		if (isOrwebInstalled)
+		{
+			startIntent("info.guardianproject.browser",Intent.ACTION_VIEW,Uri.parse(browserLaunchUrl));						
+		}
+		else if (mBtnVPN.isChecked())
 		{
 			//use the system browser since VPN is on
 			Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(browserLaunchUrl));
 			intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
 			startActivity(intent);
 		}
+		else if (isTransProxy)
+		{
+			Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(browserLaunchUrl));
+			intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
+			startActivity(intent);
+		}
 		else
 		{
-			
-			//use the built-in browser
-			Intent intentBrowser = new Intent(this, Browser.class);
-			intentBrowser.setAction(Intent.ACTION_VIEW);
-			intentBrowser.setData(Uri.parse(browserLaunchUrl));
-			startActivity(intentBrowser);
+			AlertDialog aDialog = new AlertDialog.Builder(OrbotMainActivity.this)
+              .setIcon(R.drawable.onion32)
+		      .setTitle(R.string.install_apps_)
+		      .setMessage(R.string.it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_)
+		      .setPositiveButton(android.R.string.ok, new Dialog.OnClickListener ()
+		      {
+
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+
+					//prompt to install Orweb
+					Intent intent = new Intent(OrbotMainActivity.this,TipsAndTricks.class);
+					startActivity(intent);
+					
+				}
+		    	  
+		      })
+		      .setNegativeButton(android.R.string.no, new Dialog.OnClickListener ()
+		      {
+
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(browserLaunchUrl));
+					intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
+					startActivity(intent);
+					
+				}
+		    	  
+		      })
+		      .show();
+			  
 		}
-	
 		
 	}
+	
 	
 	
     
