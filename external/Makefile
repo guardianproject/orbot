@@ -254,6 +254,7 @@ jtorctl-clean:
 #this is related to a bug in compression of assets and resources > 1MB
 
 assets: tor polipo jtorctl iptables
+	install -d ../libs
 	install bin/jtorctl.jar ../libs
 	install -d ../res/raw
 	-$(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-strip --strip-debug bin/polipo
