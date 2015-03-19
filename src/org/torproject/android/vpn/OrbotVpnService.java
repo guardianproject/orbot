@@ -208,7 +208,7 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     	mThreadVPN.start();
     }
     
-    @TargetApi(Build.VERSION_CODES.L)
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	private void doLollipopAppRouting (Builder builder) throws NameNotFoundException
     {
 
