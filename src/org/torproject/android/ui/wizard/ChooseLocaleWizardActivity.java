@@ -60,7 +60,7 @@ public class ChooseLocaleWizardActivity extends Activity implements OrbotConstan
                 
                 setLocalePref(arg2);
                 finish();
-                startActivity(new Intent(ChooseLocaleWizardActivity.this, TipsAndTricks.class));
+                startActivity(new Intent(ChooseLocaleWizardActivity.this, PromoAppsActivity.class));
                 
             }
         });
@@ -70,7 +70,7 @@ public class ChooseLocaleWizardActivity extends Activity implements OrbotConstan
             public void onClick(View v) {
                 setLocalePref(0);
                 finish();
-                startActivity(new Intent(ChooseLocaleWizardActivity.this, TipsAndTricks.class));
+                startActivity(new Intent(ChooseLocaleWizardActivity.this, PromoAppsActivity.class));
 
             }
         });

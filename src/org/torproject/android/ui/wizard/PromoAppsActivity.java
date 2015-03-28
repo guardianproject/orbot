@@ -13,7 +13,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class TipsAndTricks extends Activity implements OrbotConstants {
+public class PromoAppsActivity extends Activity implements OrbotConstants {
 
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -148,16 +148,17 @@ public class TipsAndTricks extends Activity implements OrbotConstants {
         });        
         
         
-        Button back = ((Button)findViewById(R.id.btnWizard1));
+      //  Button back = ((Button)findViewById(R.id.btnWizard1));
         Button next = ((Button)findViewById(R.id.btnWizard2));
         
+        /*
         back.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
 				finish();
-				startActivityForResult(new Intent(TipsAndTricks.this, ChooseLocaleWizardActivity.class), 1);
+				startActivityForResult(new Intent(PromoAppsActivity.this, ChooseLocaleWizardActivity.class), 1);
 			}
-		});
+		});*/
     	
     	next.setOnClickListener(new View.OnClickListener() {
 			

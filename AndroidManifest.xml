@@ -88,7 +88,7 @@
 			/> 
 			      	
 			      	
-      	<activity android:name="org.torproject.android.ui.wizard.TipsAndTricks" android:exported="false"/>
+      	<activity android:name="org.torproject.android.ui.wizard.PromoAppsActivity" android:exported="false"/>
   org.torproject.android.ui.wizard.ChooseLocaleWizardActivityui.ChooseLocaleWizardActivity" android:exported="false"/>
       	
       	<activity android:name=".settings.SettingsPreferences"  android:label="@string/app_name"/>

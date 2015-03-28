@@ -16,7 +16,7 @@ import org.torproject.android.settings.SettingsPreferences;
 import org.torproject.android.ui.ImageProgressView;
 import org.torproject.android.ui.Rotate3dAnimation;
 import org.torproject.android.ui.wizard.ChooseLocaleWizardActivity;
-import org.torproject.android.ui.wizard.TipsAndTricks;
+import org.torproject.android.ui.wizard.PromoAppsActivity;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -393,7 +393,7 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
                 }
                 else if (item.getItemId() == R.id.menu_wizard)
                 {
-                    startActivity(new Intent(OrbotMainActivity.this, ChooseLocaleWizardActivity.class));
+                    startActivity(new Intent(OrbotMainActivity.this, PromoAppsActivity.class));
 
                 }
                 else if (item.getItemId() == R.id.menu_exit)
@@ -629,6 +629,8 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 		
 			showWizard = mPrefs.getBoolean("show_wizard",showWizard);
 			
+			//let's not show the wizard now for new users
+			/**
 			if (showWizard)
 			{
 				Editor pEdit = mPrefs.edit();
@@ -638,7 +640,7 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 
 				startActivity(new Intent(this, ChooseLocaleWizardActivity.class));
 
-			}
+			}**/
 			
 		}
 		
@@ -716,7 +718,7 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 				public void onClick(DialogInterface dialog, int which) {
 
 					//prompt to install Orweb
-					Intent intent = new Intent(OrbotMainActivity.this,TipsAndTricks.class);
+					Intent intent = new Intent(OrbotMainActivity.this,PromoAppsActivity.class);
 					startActivity(intent);
 					
 				}
