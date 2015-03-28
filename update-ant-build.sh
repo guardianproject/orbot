@@ -4,6 +4,4 @@
 android update project -t android-21 --path . --name Orbot --subprojects
 android update lib-project -t android-21 --path external/appcompat
 android update lib-project -t android-21 --path external/superuser-commands/RootCommands-Library/
-android update lib-project -t android-21 --path ../Orweb
-android update lib-project -t android-21 --path ../OnionKit/libnetcipher
-
+android update lib-project -t android-21 --path external/jsocks/jsockslib
