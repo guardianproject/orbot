@@ -6,7 +6,7 @@
         android:installLocation="auto"      
       >
  	    
-    <uses-sdk android:minSdkVersion="16" android:maxSdkVersion="22" android:targetSdkVersion="22"/>
+    <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="22"/>
  <permission android:name="org.torproject.android.MANAGE_TOR" 
      android:label="@string/permission_manage_tor_label" 
      android:description="@string/permission_manage_tor_description" 
