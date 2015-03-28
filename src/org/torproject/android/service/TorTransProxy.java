@@ -7,7 +7,7 @@ import java.util.concurrent.TimeoutException;
 
 import org.sufficientlysecure.rootcommands.Shell;
 import org.sufficientlysecure.rootcommands.command.SimpleCommand;
-import org.torproject.android.TorConstants;
+import org.torproject.android.OrbotConstants;
 import org.torproject.android.settings.TorifiedApp;
 
 import android.content.Context;
@@ -49,7 +49,7 @@ public class TorTransProxy implements TorServiceConstants {
 		
 		SharedPreferences prefs = TorServiceUtils.getSharedPrefs(context);
 
-		useSystemIpTables = prefs.getBoolean(TorConstants.PREF_USE_SYSTEM_IPTABLES, false);
+		useSystemIpTables = prefs.getBoolean(OrbotConstants.PREF_USE_SYSTEM_IPTABLES, false);
 		
 		if (useSystemIpTables)
 		{
@@ -72,7 +72,7 @@ public class TorTransProxy implements TorServiceConstants {
 		
 		SharedPreferences prefs = TorServiceUtils.getSharedPrefs(context);
 
-		useSystemIpTables = prefs.getBoolean(TorConstants.PREF_USE_SYSTEM_IPTABLES, false);
+		useSystemIpTables = prefs.getBoolean(OrbotConstants.PREF_USE_SYSTEM_IPTABLES, false);
 		
 		if (useSystemIpTables)
 		{

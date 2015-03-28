@@ -1,7 +1,7 @@
-package org.torproject.android.ui;
+package org.torproject.android.ui.wizard;
 
 import org.torproject.android.R;
-import org.torproject.android.TorConstants;
+import org.torproject.android.OrbotConstants;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,7 +13,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class TipsAndTricks extends Activity implements TorConstants {
+public class TipsAndTricks extends Activity implements OrbotConstants {
 
     protected void onCreate(Bundle savedInstanceState)
     {

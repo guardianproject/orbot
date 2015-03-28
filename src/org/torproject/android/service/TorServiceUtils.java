@@ -9,7 +9,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.StringTokenizer;
 
-import org.torproject.android.TorConstants;
+import org.torproject.android.OrbotConstants;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
@@ -117,9 +117,9 @@ public class TorServiceUtils implements TorServiceConstants {
 	public static SharedPreferences getSharedPrefs (Context context)
 	{
 		if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.HONEYCOMB)
-			return context.getSharedPreferences(TorConstants.PREF_TOR_SHARED_PREFS,0 | Context.MODE_MULTI_PROCESS);
+			return context.getSharedPreferences(OrbotConstants.PREF_TOR_SHARED_PREFS,0 | Context.MODE_MULTI_PROCESS);
 		else
-			return context.getSharedPreferences(TorConstants.PREF_TOR_SHARED_PREFS,Context.MODE_PRIVATE);
+			return context.getSharedPreferences(OrbotConstants.PREF_TOR_SHARED_PREFS,Context.MODE_PRIVATE);
 		
 	}
 }

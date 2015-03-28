@@ -3,7 +3,7 @@
 
 package org.torproject.android;
 
-public interface TorConstants {
+public interface OrbotConstants {
 
 	public final static String TAG = "Orbot";
 	

@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 import org.torproject.android.R;
-import org.torproject.android.TorConstants;
+import org.torproject.android.OrbotConstants;
 import org.torproject.android.service.TorServiceUtils;
 
 import android.app.Activity;
@@ -38,7 +38,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 //import android.R;
 
-public class AppManager extends Activity implements OnCheckedChangeListener, OnClickListener, TorConstants {
+public class AppManager extends Activity implements OnCheckedChangeListener, OnClickListener, OrbotConstants {
 
     private ListView listApps;
     private final static String TAG = "Orbot";

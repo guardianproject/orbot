@@ -1,9 +1,9 @@
-package org.torproject.android.ui;
+package org.torproject.android.ui.wizard;
 
 import java.util.Locale;
 
 import org.torproject.android.R;
-import org.torproject.android.TorConstants;
+import org.torproject.android.OrbotConstants;
 import org.torproject.android.service.TorServiceUtils;
 
 import android.app.Activity;
@@ -21,7 +21,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class ChooseLocaleWizardActivity extends Activity implements TorConstants {
+public class ChooseLocaleWizardActivity extends Activity implements OrbotConstants {
 
     private int flag = 0;
     private ListView listLocales;

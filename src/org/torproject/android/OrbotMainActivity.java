@@ -13,10 +13,10 @@ import org.torproject.android.service.TorService;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.TorServiceUtils;
 import org.torproject.android.settings.SettingsPreferences;
-import org.torproject.android.ui.ChooseLocaleWizardActivity;
 import org.torproject.android.ui.ImageProgressView;
 import org.torproject.android.ui.Rotate3dAnimation;
-import org.torproject.android.ui.TipsAndTricks;
+import org.torproject.android.ui.wizard.ChooseLocaleWizardActivity;
+import org.torproject.android.ui.wizard.TipsAndTricks;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -67,7 +67,7 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 
-public class OrbotMainActivity extends Activity implements TorConstants, OnLongClickListener, OnTouchListener, OnSharedPreferenceChangeListener
+public class OrbotMainActivity extends Activity implements OrbotConstants, OnLongClickListener, OnTouchListener, OnSharedPreferenceChangeListener
 {
     /* Useful UI bits */
     private TextView lblStatus = null; //the main text display widget
@@ -417,18 +417,21 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
                 else if (item.getItemId() == R.id.menu_share_bridge)
                 {
                 	
-            		String bridges = mPrefs.getString(TorConstants.PREF_BRIDGES_LIST, null);
+            		String bridges = mPrefs.getString(OrbotConstants.PREF_BRIDGES_LIST, null);
                 	
-            		try {
-						bridges = "bridge://" + URLEncoder.encode(bridges,"UTF-8");
-	            		
-	                	IntentIntegrator integrator = new IntentIntegrator(OrbotMainActivity.this);
-	                	integrator.shareText(bridges);
-	                	
-					} catch (UnsupportedEncodingException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+            		if (bridges != null && bridges.length() > 0)
+            		{
+	            		try {
+							bridges = "bridge://" + URLEncoder.encode(bridges,"UTF-8");
+		            		
+		                	IntentIntegrator integrator = new IntentIntegrator(OrbotMainActivity.this);
+		                	integrator.shareText(bridges);
+		                	
+						} catch (UnsupportedEncodingException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+            		}
 
                 }
                 
@@ -652,8 +655,8 @@ public class OrbotMainActivity extends Activity implements TorConstants, OnLongC
 		
 		Editor pEdit = mPrefs.edit();
 		
-		pEdit.putString(TorConstants.PREF_BRIDGES_LIST,newBridgeValue); //set the string to a preference
-		pEdit.putBoolean(TorConstants.PREF_BRIDGES_ENABLED,true);
+		pEdit.putString(OrbotConstants.PREF_BRIDGES_LIST,newBridgeValue); //set the string to a preference
+		pEdit.putBoolean(OrbotConstants.PREF_BRIDGES_ENABLED,true);
 	
 		pEdit.commit();
 		

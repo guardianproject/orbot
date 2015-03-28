@@ -9,7 +9,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.preference.PreferenceManager;
 
-public class OrbotApp extends Application implements TorConstants
+public class OrbotApp extends Application implements OrbotConstants
 {
 
 	private Locale locale;

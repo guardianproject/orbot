@@ -316,4 +316,6 @@
   <string name="bridges_updated">Bridges Updated</string>
   
   <string name="restart_orbot_to_use_this_bridge_">"Restart Orbot to use these bridges: "</string>
+  
+  <string name="menu_qr">QR Codes</string>
 </resources>

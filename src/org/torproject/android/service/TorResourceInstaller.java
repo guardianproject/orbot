@@ -20,7 +20,7 @@ import java.util.zip.ZipInputStream;
 import org.sufficientlysecure.rootcommands.Shell;
 import org.sufficientlysecure.rootcommands.command.SimpleCommand;
 import org.torproject.android.R;
-import org.torproject.android.TorConstants;
+import org.torproject.android.OrbotConstants;
 
 import android.content.Context;
 import android.util.Log;
@@ -265,7 +265,7 @@ public class TorResourceInstaller implements TorServiceConstants {
             
             
         } catch (IOException ex) {
-            Log.e(TorConstants.TAG, "error copying binary", ex);
+            Log.e(OrbotConstants.TAG, "error copying binary", ex);
         }
 
     }

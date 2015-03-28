@@ -3,7 +3,7 @@
 
 package org.torproject.android.ui;
 
-import org.torproject.android.TorConstants;
+import org.torproject.android.OrbotConstants;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -14,7 +14,7 @@ import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 
 
-public class OrbotLogActivity extends Activity implements TorConstants
+public class OrbotLogActivity extends Activity implements OrbotConstants
 {
 	
     /** Called when the activity is first created. */

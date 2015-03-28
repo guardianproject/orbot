@@ -26,6 +26,11 @@
          yourapp:showAsAction="always"
          />
 
+ <item
+        android:title="@string/menu_qr"
+         yourapp:showAsAction="never"
+         >
+  <menu>
   <item android:id="@+id/menu_scan"
         android:title="@string/menu_scan"
          yourapp:showAsAction="never"
@@ -35,7 +40,8 @@
         android:title="@string/menu_share_bridge"
          yourapp:showAsAction="never"
          />
- 
+  </menu>
+ </item>
  
 <!-- 
         <item android:id="@+id/menu_verify"

@@ -51,7 +51,7 @@ import org.sufficientlysecure.rootcommands.Shell;
 import org.sufficientlysecure.rootcommands.command.SimpleCommand;
 import org.torproject.android.OrbotMainActivity;
 import org.torproject.android.R;
-import org.torproject.android.TorConstants;
+import org.torproject.android.OrbotConstants;
 import org.torproject.android.settings.AppManager;
 import org.torproject.android.settings.TorifiedApp;
 import org.torproject.android.vpn.OrbotVpnService;
@@ -79,7 +79,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.widget.RemoteViews;
 
-public class TorService extends Service implements TorServiceConstants, TorConstants, EventHandler
+public class TorService extends Service implements TorServiceConstants, OrbotConstants, EventHandler
 {
     
     public static boolean ENABLE_DEBUG_LOG = true;
@@ -783,7 +783,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         ENABLE_DEBUG_LOG = prefs.getBoolean("pref_enable_logging",false);
         Log.i(TAG,"debug logging:" + ENABLE_DEBUG_LOG);
 
-        prefPersistNotifications = prefs.getBoolean(TorConstants.PREF_PERSIST_NOTIFICATIONS, true);
+        prefPersistNotifications = prefs.getBoolean(OrbotConstants.PREF_PERSIST_NOTIFICATIONS, true);
         
         mUseVPN = prefs.getBoolean("pref_vpn", false);
     }
@@ -811,7 +811,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         ArrayList<String> customEnv = new ArrayList<String>();
      
         SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
-        boolean useBridges = prefs.getBoolean(TorConstants.PREF_BRIDGES_ENABLED, false);
+        boolean useBridges = prefs.getBoolean(OrbotConstants.PREF_BRIDGES_ENABLED, false);
 
         if (useBridges)
         	if (mUseVPN && !mIsLollipop)
@@ -1185,7 +1185,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
                             SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
                             
-                             String socksPortPref = prefs.getString(TorConstants.PREF_SOCKS, TorServiceConstants.PORT_SOCKS_DEFAULT);
+                             String socksPortPref = prefs.getString(OrbotConstants.PREF_SOCKS, TorServiceConstants.PORT_SOCKS_DEFAULT);
                              if (socksPortPref.indexOf(':')!=-1)
                                  socksPortPref = socksPortPref.split(":")[1];
                              
@@ -2043,7 +2043,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
             SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
 
-            boolean doNetworKSleep = prefs.getBoolean(TorConstants.PREF_DISABLE_NETWORK, true);
+            boolean doNetworKSleep = prefs.getBoolean(OrbotConstants.PREF_DISABLE_NETWORK, true);
             
             final ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
             final NetworkInfo netInfo = cm.getActiveNetworkInfo();
@@ -2114,10 +2114,10 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         enableTransProxyAndDNSPorts(transPort, dnsPort);
         */
         
-        boolean useBridges = prefs.getBoolean(TorConstants.PREF_BRIDGES_ENABLED, false);
+        boolean useBridges = prefs.getBoolean(OrbotConstants.PREF_BRIDGES_ENABLED, false);
 
-        boolean becomeRelay = prefs.getBoolean(TorConstants.PREF_OR, false);
-        boolean ReachableAddresses = prefs.getBoolean(TorConstants.PREF_REACHABLE_ADDRESSES,false);
+        boolean becomeRelay = prefs.getBoolean(OrbotConstants.PREF_OR, false);
+        boolean ReachableAddresses = prefs.getBoolean(OrbotConstants.PREF_REACHABLE_ADDRESSES,false);
         boolean enableHiddenServices = prefs.getBoolean("pref_hs_enable", false);
 
         boolean enableStrictNodes = prefs.getBoolean("pref_strict_nodes", false);
@@ -2182,7 +2182,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
 
             updateConfiguration("UseBridges", "1", false);
             
-            String bridgeList = prefs.getString(TorConstants.PREF_BRIDGES_LIST,null);
+            String bridgeList = prefs.getString(OrbotConstants.PREF_BRIDGES_LIST,null);
             
             if (bridgeList != null && bridgeList.length() > 1) //longer then 1 = some real values here
             {
@@ -2302,7 +2302,7 @@ public class TorService extends Service implements TorServiceConstants, TorConst
             if (ReachableAddresses)
             {
                 String ReachableAddressesPorts =
-                    prefs.getString(TorConstants.PREF_REACHABLE_ADDRESSES_PORTS, "*:80,*:443");
+                    prefs.getString(OrbotConstants.PREF_REACHABLE_ADDRESSES_PORTS, "*:80,*:443");
                 
                 updateConfiguration("ReachableAddresses", ReachableAddressesPorts, false);
 
@@ -2323,8 +2323,8 @@ public class TorService extends Service implements TorServiceConstants, TorConst
         {
             if (becomeRelay && (!useBridges) && (!ReachableAddresses))
             {
-                int ORPort =  Integer.parseInt(prefs.getString(TorConstants.PREF_OR_PORT, "9001"));
-                String nickname = prefs.getString(TorConstants.PREF_OR_NICKNAME, "Orbot");
+                int ORPort =  Integer.parseInt(prefs.getString(OrbotConstants.PREF_OR_PORT, "9001"));
+                String nickname = prefs.getString(OrbotConstants.PREF_OR_NICKNAME, "Orbot");
 
                 String dnsFile = writeDNSFile ();
                 
