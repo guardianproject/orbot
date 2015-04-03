@@ -20,12 +20,13 @@ public class OnBootReceiver extends BroadcastReceiver {
 		
 		if (startOnBoot)
 		{
-			if (useVPN)
-				startVpnService(context);
 			
 			startService(TorServiceConstants.CMD_INIT,context);
 			startService(TorServiceConstants.CMD_START,context);		
-		
+			
+			if (useVPN)
+				startVpnService(context);
+			
 		}
 
 	}

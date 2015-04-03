@@ -28,8 +28,11 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.VpnService;
 import android.os.Build;
 import android.os.Handler;
+import android.os.IBinder;
 import android.os.Message;
+import android.os.Parcel;
 import android.os.ParcelFileDescriptor;
+import android.os.RemoteException;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -37,6 +40,7 @@ import com.runjva.sourceforge.jsocks.protocol.ProxyServer;
 import com.runjva.sourceforge.jsocks.server.ServerAuthenticatorNone;
 
 @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+
 public class OrbotVpnService extends VpnService implements Handler.Callback {
     private static final String TAG = "OrbotVpnService";
 
@@ -217,37 +221,32 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     
         
     }
-
+    
     @Override
     public void onRevoke() {
-        
-        new Thread ()
+    
+        try
         {
-            public void run()
+        	Log.d(TAG,"closing interface, destroying VPN interface");
+            
+        	//Tun2Socks.Stop();
+        	
+        	if (mInterface != null)
             {
-                try
-                {
-                	Log.d(TAG,"closing interface, destroying VPN interface");
-                    
-                	//Tun2Socks.Stop();
-                	
-                	if (mInterface != null)
-                    {
-                		mInterface.close();
-                		mInterface = null;
-                    }
-                	
-                }
-                catch (Exception e)
-                {
-                    Log.d(TAG,"error stopping tun2socks",e);
-                }
-	            catch (Error e)
-	            {
-	                Log.d(TAG,"error stopping tun2socks",e);
-	            }
+        		mInterface.close();
+        		mInterface = null;
             }
-        }.start();
+        	
+        }
+        catch (Exception e)
+        {
+            Log.d(TAG,"error stopping tun2socks",e);
+        }
+        catch (Error e)
+        {
+            Log.d(TAG,"error stopping tun2socks",e);
+        }
+
         super.onRevoke();
     }
     
