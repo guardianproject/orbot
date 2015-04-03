@@ -626,7 +626,7 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 			showWizard = mPrefs.getBoolean("show_wizard",showWizard);
 			
 			//let's not show the wizard now for new users
-			/**
+			
 			if (showWizard)
 			{
 				Editor pEdit = mPrefs.edit();
@@ -634,15 +634,17 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 				pEdit.commit();				
 				showWizard = false;
 
-				startActivity(new Intent(this, ChooseLocaleWizardActivity.class));
 
-			}**/
+				showAlert(getString(R.string.app_name),getString(R.string.wizard_final_msg),true);
+				
+			}
 			
 		}
 		
+		updateStatus("");
+		
 		setIntent(null);
 		
-		updateStatus ("");
 		
 	}
 		
@@ -1242,8 +1244,7 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
                     else if (torStatus == TorServiceConstants.STATUS_OFF)
                     {
                         imgStatus.setImageResource(R.drawable.toroff);
-                        lblStatus.setText("");
-                        //lblStatus.setText(getString(R.string.status_disabled) + "\n" + getString(R.string.press_to_start));
+                        lblStatus.setText(getString(R.string.press_to_start));
                         mBtnBrowser.setEnabled(false);
                         
                         if (mItemOnOff != null)
