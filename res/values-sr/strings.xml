@@ -8,7 +8,7 @@
   <string name="control_permission_label">покрени и заустави Tor</string>
   <string name="tor_proxy_service_process">Тор прокси сервис</string>
   <string name="status_starting_up">Орбот се покреће...</string>
-  <string name="status_activated">Конектован са Тор мрежом</string>
+  <string name="status_activated">Повезан са Тор мрежом</string>
   <string name="status_disabled">Орбот је деактивиран</string>
   <string name="status_shutting_down">Орбот се гаси</string>
   <string name="tor_process_starting">Покреће се Тор клијент...</string>
@@ -21,8 +21,8 @@
   <string name="menu_log">Логови</string>
   <string name="menu_info">Помоћ</string>
   <string name="menu_apps">Апликације</string>
-  <string name="menu_start">Старт</string>
-  <string name="menu_stop">Стоп</string>
+  <string name="menu_start">Крени</string>
+  <string name="menu_stop">Заустави</string>
   <string name="menu_about">О нама</string>
   <string name="menu_wizard">Чаробњак</string>
   <string name="main_layout_download">Преузимање</string>
@@ -33,7 +33,7 @@
   <string name="button_clear_log">Очисти логове</string>
   <string name="menu_verify">Провери</string>
   <string name="menu_exit">Излаз</string>
-  <string name="press_to_start">- дуго притисните за почетак -</string>
+  <string name="press_to_start">- задржите дужи притисак  за почетак -</string>
   <string name="pref_trans_proxy_group">Транспарентно проксирање (захтева root приступ)</string>
   <string name="pref_trans_proxy_title">Транспарентно слање кроз прокси</string>
   <string name="pref_trans_proxy_summary">Аутоматско торифицирање апликација</string>
@@ -58,7 +58,6 @@
   <string name="btn_cancel">Откажи</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Детаљи о Орботу</string>
-  <string name="wizard_details_msg">Орбот је апликација са отвореним кодом која садржи Tor, LibEvent и Privoxy. Омогућава улаз преко HTTP проксија (8118) и SOCKS проксија (9050) у Тор мрежу. Орбот има и могућност да пошаље сав интернет промет кроз Тор мрежу.</string>
   <string name="wizard_permissions_root">Дозвола одобрена</string>
   <string name="wizard_permissions_stock">Орбот дозволе</string>
   <string name="wizard_premissions_msg_root">Одлично! Детектовали смо да имате root дозволе за Орбот. Мудро ћемо искрористити ову моћ.</string>
@@ -75,16 +74,11 @@
   <string name="wizard_tips_proxy">Прокси поставке - Научите како да подесите апликације да раде са Орботом</string>
   <string name="wizard_tips_duckgo">DuckDuckGo апликација за претраживање интернета</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
-  <string name="wizard_tips_firefox">Прокси мобилни додатак за Фајерфокс (http://tinyurl.com/getproxymob)</string>
-  <string name="proxymob_setup_url">https://guardianproject.info/releases/proxymob-latest.xpi</string>
   <string name="wizard_tips_twitter">Подесите Твитер да користи порт 8118 на локалном хосту.</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Прокси подешавања</string>
-  <string name="wizard_proxy_help_msg">Ако андроид апликација коју користите подржава кориштење HTTP или SOCKS просија, можете је ручно конектовати са Орботом и користити Тор мрежу.\n\n\nПоставке за хост су 127.0.0.1 или \"localhost\". За HTTP, порт требате поставити на 8118. Прокси за SOCKS је 9050. Користите по могућности SOCKS4A или SOCKS5.\n\n\n\nМожете научити више о коришћењу проксија на Андроиду преко ЧПП-а на страници: http://tinyurl.com/proxyandroid</string>
   <string name="wizard_final">Орбот је спреман!</string>
-  <string name="wizard_final_msg">Стотине хиљада људи широм света користе Тор из разних разлога.\n\nНовинари и блогери, браниоци људских права, полицајци, војници, корпорације, грађани репресивног режима и многи сасвим обични грађани. Сада сте и ви спремни да им се придружите!</string>
   <!--END Welcome Wizard strings (DJH)-->
-  <string name="connect_first_time">Успешно сте се спојили са Тор мрежом - али ово НЕ значи да је Ваш уређај сигуран. Можете користити \"Провери\" опцију из менија да тестирате свој претраживач.\n\nПосетите нас на https://guardianproject.info/apps/orbot или пошаљите мејл на help@guardianproject.info да научите више.</string>
   <string name="tor_check">Ово ће отворити Ваш веб претраживач и посетити страницу https://check.torproject.org да би проверили да ли је Орбот правилно подешен и да ли сте спојени са Тор мрежом.</string>
   <string name="pref_hs_group">Хостинг на скривеном сервису</string>
   <string name="pref_general_group">Опште</string>
@@ -92,15 +86,12 @@
   <string name="pref_start_boot_summary">Аутоматски покрените Орбот и конектујте се са Тор мрежом када се упали Ваш Андроид уређај.</string>
   <!--New Wizard Strings-->
   <!--Title Screen-->
-  <string name="wizard_title_msg">Орбот доноси Тор мрежу на Андроид!\n\nТор Вам помаже да се борите око филтрирања садржаја, анализе промета и надзора мреже који прете приватности, поверљивим информацијама и приватним везама.\n\nОвај чаробњак ће Вам помоћи да подесите Орбот и Тор на Вашем уређају.</string>
   <!--Warning screen-->
   <string name="wizard_warning_title">Упозорење</string>
-  <string name="wizard_warning_msg">Само инсталирање Орбота неће аутоматски анонимизирати Ваш мобилни промет.\n\nМорате правилно да подесите Орбот, ваш уређај и друге апликације да бисте успешно користили Тор.</string>
   <!--Permissions screen-->
   <string name="wizard_permissions_title">Дозволе</string>
   <string name="wizard_permissions_root_msg1">Можете опционално дозволити Орботу приступ као \"Супер корисник\" да би омогућили напредне функције као што је транспарентно слање кроз прокси.</string>
   <string name="wizard_permissions_root_msg2">Ако не желите ово да урадите, молимо Вас да се уверите да користите апликације које су подешене да раде са Орботом.</string>
-  <string name="wizard_permissions_no_root_msg">Ваш уређај не приказује root нити пружа \'Superuser\' приступ\n\nДа би сте имали користи од Тор, требате употребити апликације које сарађују са Орботом, или које подржавају HTTP или SOCKS прокси подешавања.\n\n</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Апликације са омогућеним Орботом.</string>
   <string name="wizard_tips_orweb">Orweb: Претраживач са побољшаном приватношћу који ради кроз Тор мрежу</string>
@@ -149,7 +140,6 @@
   <string name="warning_error_starting_transparent_proxying_">УПОЗОРЕЊЕ: грешка при стартовању транспарентног слања кроз прокси!</string>
   <string name="transproxy_rules_cleared">TransProxy правила очишћена</string>
   <string name="couldn_t_start_tor_process_">Није могуће покренути Тор процес:</string>
-  <string name="privoxy_is_running_on_port_">Privoxy ради на порту:</string>
   <string name="setting_up_port_based_transparent_proxying_">Подешавање транспарентног проксирања од стране порта...</string>
   <string name="bridge_error">Грешка у мосту</string>
   <string name="bridge_requires_ip">Да бисте користили bridge могућност, морате унети бар једну bridge IP адресу.</string>
@@ -193,12 +183,9 @@
   <string name="the_addressable_name_for_your_hidden_service_generated_automatically_">адресабилно име за Ваш скривени сервис (генерише се аутоматско)</string>
   <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">омогућите debug логовоање (мора се користити adb или aLogCat да би се прегледали)</string>
   <string name="project_home">Почетна за пројекте:</string>
-  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
   <string name="the_tor_license">Тор лиценца</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Софтвер од стране неслужбених издавача:</string>
-  <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
-  <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
   <string name="hidden_service_request">Апликација жели да отвори сакривен порт %S на серверу за Тор мрежу. Ово је сигуран потез уколико верујете апликацији.</string>
   <string name="found_existing_tor_process">нађен покренути Тор процес...</string>
   <string name="something_bad_happened">Нешто лоше се догодило. Прегледајте логове</string>
@@ -216,7 +203,6 @@
   <string name="set_locale_summary">Изаберите локална и језичка подешавања за Орбот</string>
   <string name="wizard_locale_title">Изаберите језик</string>
   <string name="wizard_locale_msg">Користи подразумевајући или пребаци на тренутни језик</string>
-  <string name="powered_by">powered by The Tor Project </string>
   <string name="btn_save_settings">Сачувај подешавања</string>
   <string name="no_internet_connection_tor">Нема интернет конекције; Тор је у стању чекања...</string>
 </resources>

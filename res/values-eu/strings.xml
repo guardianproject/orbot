@@ -58,7 +58,6 @@
   <string name="btn_cancel">Utzi</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Orbot xehetasun batzuk</string>
-  <string name="wizard_details_msg">Tor, LibEvent eta Privoxy dituen kode irekiko aplikazio bat da Orbot. Tor sarera sartzeko HTTP proxya (8118) eta SOCKS proxya (9050) eskaintzen ditu. Rooteatutako gailuetan Orbot-ek interneteko trafiko guztia Tor bidez bidali dezake baita ere.</string>
   <string name="wizard_permissions_root">Baimena Emanda</string>
   <string name="wizard_permissions_stock">Orbot Baimenak</string>
   <string name="wizard_premissions_msg_root">Bikain! Orbotentzako root baimenak gaituta dituzula detektatu dugu.</string>
@@ -72,19 +71,15 @@
   <string name="wizard_configure_select_apps">Hautatu Banakako Aplikazioak Torentzat</string>
   <string name="wizard_tips_tricks">Orbot-gaitutako Aplikazioak</string>
   <string name="wizard_tips_msg">Azpiko appak Orbotekin lan egiteko garatuta daude. Sakatu botoi bakoitza orain instalatzeko, edo bilatu geroago Google Play-n, GuardianProject.info webgunean edo F-Droid.org erabiliz.</string>
+  <string name="wizard_tips_otrchat">ChatSecure - Andriodentzako berehalako mezulari bezero ziurra</string>
   <string name="wizard_tips_proxy">Proxy Ezarpenak - Ikasi zure aplikazioak Orbotekin funtziona dezaten nola konfiguratu</string>
   <string name="wizard_tips_duckgo">DuckDuckGo Bilaketa Motorraren appa</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
-  <string name="wizard_tips_firefox">Firefoxentzako Proxy Mobile gehigarria (http://tinyurl.com/getproxymob)</string>
-  <string name="proxymob_setup_url">https://guardianproject.info/releases/proxymob-latest.xpi</string>
   <string name="wizard_tips_twitter">Twittereko proxyaren ostalarian \"localhost\" jarri eta portuan 8118</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Proxy Ezarpenak</string>
-  <string name="wizard_proxy_help_msg">Erabiltzen duzun Androik aplikazioak HTTP edo SOCKS proxyak erabili ahal baditu, Orbot bidez konektatzeko eta Tor sarea erabiltzeko konfiguratu ahal duzu.\n\nEzarpenetan helbidea 127.0.0.1 edo \"localhost\" jarri. HTTPrako portua 8118 da. SOCKSerako portua 9050 da. SOCKS4A edo SOCKS5 erabili beharko zenuke ahal bada.\n\n\n\nAndroid-en proxya erabiltzeari buruz gehiago jakiteko MEG/FAQ-a begiratu: http://tinyurl.com/proxyandroid</string>
   <string name="wizard_final">Orbot prest dago!</string>
-  <string name="wizard_final_msg">Munduan zehar ehunmilaka pertsonek Tor erabiltzen dute arrazoi ezberdinengatik.\n\nKazetariak eta blogariak, giza eskubideen defendatzaileak, legea betearazteko ofizialak, soldaduak, korporazioak,  erregimen errepresiboetako biztanleak, biztanle arruntak,... eta orain zu prest zaude, baita ere!</string>
   <!--END Welcome Wizard strings (DJH)-->
-  <string name="connect_first_time">Tor sarera modu egokian konektatu zara - baina honek EZ du esan nahi zure gailua segurua denik. Menuko \'Egiaztatu\' botoia sakatu dezakezu zure nabigatzailean froga egiteko.\n\nIkusi https://guardianproject.info/apps/orbot edo idatzi help@guardianproject.info kontura gehiago jakiteko.</string>
   <string name="tor_check">Honek https://check.torproject.org web nabigatzailean irekiko du Orbot konfiguratuta eta Tor-era konektatuta zauden antzemateko.</string>
   <string name="pref_hs_group">Ezkutuko Zerbitzuak</string>
   <string name="pref_general_group">Orokorra</string>
@@ -92,18 +87,18 @@
   <string name="pref_start_boot_summary">Automatikoki Orbot hasi eta Tor konektatu zure Android gailua abiarazterakoan</string>
   <!--New Wizard Strings-->
   <!--Title Screen-->
-  <string name="wizard_title_msg">Orbot-ek Tor Android-era dakar!\n\nTor-ek pribatutasuna, konfidentzialtasuna eta erlazio pertsonalak mehatxatzen dituzten eduki iragazki, trafiko analisi eta sare zaintzaz babesten laguntzen zaitu.\n\nLaguntzaile honek zure gailuan Orbot eta Tor konfiguratzen lagunduko zaitu.</string>
   <!--Warning screen-->
   <string name="wizard_warning_title">Abisua</string>
-  <string name="wizard_warning_msg">Orbot instalatuz bakarrik ez duzu zure mobileko trafikoa anonimizatuko.\n\nOrbot, zure gailua eta beste aplikazioak konfiguratu behar dituzu Tor arrakastatsuki erabiltzeko.</string>
   <!--Permissions screen-->
   <string name="wizard_permissions_title">Baimenak</string>
   <string name="wizard_permissions_root_msg1">Aukera moduan Orbot-i \'Supererabiltzaile\' atzipena eman ahal diozu ezaugarri aurreratuak erabiltzeko, Proxy gardena adibidez.</string>
   <string name="wizard_permissions_root_msg2">Ez baduzu hau egin nahi ziurtatu Orbot-ekin lan egiten duten aplikazioak erabiltzen dituzula.</string>
-  <string name="wizard_permissions_no_root_msg">Ez dirudi zure gailua rooteatuta dagoenik edo \'Supererabiltzaile\' atzipena ematen duenik.\n\nTor erabiltzeko Orbot-ekin lan egin dezaketen aplikazioak erabili beharko dituzu, edo HTTP ala SOCKS proxyak erabili ahal dutenak.\n</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot-Gaitutako Aplikazioak</string>
+  <string name="wizard_tips_gibberbot">ChatSecure: Txat aplikazio segurua Off-the-Record enkriptazioarekin.</string>
+  <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
   <string name="wizard_tips_orweb">Orweb - Tor bidez lan egiten duen pribatutasun-hobetua duen nabigatzailea</string>
+  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
   <string name="wizard_tips_play">Google Play-n Guardiak Proiektuko aplikazio guztiak bilatu</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
@@ -149,7 +144,6 @@
   <string name="warning_error_starting_transparent_proxying_">ABISUA: akatsa proxyatze gardena hasterakoan!</string>
   <string name="transproxy_rules_cleared">Proxy gardeneko erregelak garbituta</string>
   <string name="couldn_t_start_tor_process_">Ezin izan da Tor prozesua hasi:</string>
-  <string name="privoxy_is_running_on_port_">Privoxy hurrengo portua exekutatzen ari da:</string>
   <string name="setting_up_port_based_transparent_proxying_">Portuetan oinarritutako proxy gardena ezartzen...</string>
   <string name="bridge_error">Zubi Akatsa</string>
   <string name="bridge_requires_ip">Zubi ezaiugarria erabiltzeko gutxienez zubi baten IP helbidea sartu behar duzu.</string>
@@ -193,12 +187,9 @@
   <string name="the_addressable_name_for_your_hidden_service_generated_automatically_">zure eskutuko zerbitzuaren izen atzigarria (automatikoki sortuta)</string>
   <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">arazketarako logak gaitu (adb edo aLogCat erabili ikusteko)</string>
   <string name="project_home">Proiektuaren etxea(k):</string>
-  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
   <string name="the_tor_license">Tor Lizentzia</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">3.-Ataleko-Softwarea:</string>
-  <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
-  <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
   <string name="hidden_service_request">Aplikazio batek ezkutuko zerbitzariko %S portua ireki nau du Tor sarera. Segurua da aplikazioaz fidatzen bazara.</string>
   <string name="found_existing_tor_process">Aurreko Tor prozesua topatuta...</string>
   <string name="something_bad_happened">Zerbait txarra gertatu da. Begiratu logetan</string>
@@ -216,7 +207,18 @@
   <string name="set_locale_summary">Aukeratu Orbotentzako lokala eta hizkuntza</string>
   <string name="wizard_locale_title">Hizkuntza aukeratu</string>
   <string name="wizard_locale_msg">Lehenetsia utzi edo uneko hizkuntzara aldatu</string>
-  <string name="powered_by">Tor Projectek indartua</string>
   <string name="btn_save_settings">Ezarpenak gorde</string>
   <string name="no_internet_connection_tor">Internet konexiorik ez; Tor itxaroten dago...</string>
+  <string name="bandwidth_">Banda zabalera:</string>
+  <string name="down">behera</string>
+  <string name="up">gora</string>
+  <string name="pref_disable_network_title">Sareko lokartze automatikorik ez</string>
+  <string name="pref_disable_network_summary">Jarri Tor lotan internet atzigarri ez dagoenean</string>
+  <string name="newnym">ChatSecure - Andriodentzako berehalako mezulari bezero ziurra</string>
+  <string name="menu_verify_browser">Nabigatzailea egiaztatu</string>
+  <string name="menu_use_chatsecure">ChatSecure erabili</string>
+  <string name="permission_manage_tor_label">Tor kudeatu</string>
+  <string name="permission_manage_tor_description">Gaitu app hau Tor zerbitzua kontrolatzeko</string>
+  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Dirudienez ez duzu Orweb instalatuta. Horrekin laguntza nahi duzu, edo nabigatzailea irekiko dugu bakarrik?</string>
+  <string name="install_apps_">App-ak instalatu?</string>
 </resources>

@@ -47,7 +47,8 @@
   <string name="pref_has_root">דרושה גישת שורש</string>
   <string name="pref_has_root_summary">בקש גישה עליונה עבור שימוש בפרוקסי שקוף</string>
   <string name="status_install_success">קבצים ברי הרצה של Tor הותקנו בהצלחה!</string>
-  <string name="status_install_fail">הקבצים ברי ההרצה של Tor לא ניתנו להתקנה. בבקשה בדוק את הלוג והודע ל \ntor-assistants@torproject.org</string>
+  <string name="status_install_fail">הקבצים ברי ההרצה של Tor לא ניתנו להתקנה. בבקשה בדוק את הלוג והודע ל 
+tor-assistants@torproject.org</string>
   <string name="title_error">שגיאת אפליקציה</string>
   <string name="wizard_title">Orbot</string>
   <string name="wizard_btn_tell_me_more">אודות Orbot</string>
@@ -58,7 +59,6 @@
   <string name="btn_cancel">ביטול</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">פרטים מסוימים של Orbot </string>
-  <string name="wizard_details_msg"> Orbot היא אפליקצית קוד פתוח שמכילה Tor, libEvevt ופרוקסי. היא מספקת פרוקסי HTTP מקומי (פורט 8118) וגם פרוקסי SOCKS (פורט 9050) לרשת Tor. לאפליקציה Orbot יש גם יכולת, במכשיר פתוח, לשלוח את כל תעבורת האינטרנט דרך Tor.</string>
   <string name="wizard_permissions_root">ניתנה הרשאה</string>
   <string name="wizard_permissions_stock">הרשאות Orbot</string>
   <string name="wizard_premissions_msg_root">מצוין! גילינו כי יש לך הרשאות שורש מאופשרות בשביל Orbot. אנחנו נשתמש בכוח הזה בחוכמה.</string>
@@ -71,19 +71,16 @@
   <string name="wizard_configure_all">השתמש בפרוקסי בכל האפליקציות דרך Tor</string>
   <string name="wizard_configure_select_apps">בחר אפליקציות מסוימות עבור Tor</string>
   <string name="wizard_tips_tricks">Orbot מתאפשר על ידי אפליקציות</string>
-  <string name="wizard_tips_msg">האפליקציות מתחת פותחו לעבודה עם Orbot. לחץ על כל כפתור להתקנה מיידית, או שאתה יכול למצוא אותם אחר כך ב Google Play, באתר GuardianProject.info או\nדרך  F-Droid.org</string>
+  <string name="wizard_tips_msg">האפליקציות מתחת פותחו לעבודה עם Orbot. לחץ על כל כפתור להתקנה מיידית, או שאתה יכול למצוא אותם אחר כך ב Google Play, באתר GuardianProject.info או
+דרך  F-Droid.org</string>
   <string name="wizard_tips_proxy">הגדרות פרוקסי - למד איך להגדיר אפליקציות לעבוד עם Orbot</string>
   <string name="wizard_tips_duckgo">DuckDuckGo אפליקציית מנוע חיפוש</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
-  <string name="proxymob_setup_url">https://guardianproject.info/releases/proxymob-latest.xpi</string>
   <string name="wizard_tips_twitter">קבע פרוקסי Twitter למארח \"localhost\" ולפורט 8118</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">הגדרות פרוקסי</string>
-  <string name="wizard_proxy_help_msg">אם אפליקציית האנדרואיד שאתה משתמש תומכת בשימוש של פרוקסי   HTTP  או SOCKS, תוכל להגדיר זאת בשביל להתחבר ל Orbot ולהשתמש ב Tor. \nהגדרות המארח הם 127.0.0.1 או \"localhost\". עבור HTTP, הגדרת הפורט היא 8118. עבור SOCKS הפרוקסי הוא 9050. אתה יכול להשתמש ב SOCKS4A או ב SOCKS5 אם מתאפשר. אתה יכול ללמוד עוד על עבודה עם פרוקסי באנדרואיד דרך FAQ באתר: http://tinyurl.com/proxyandroid</string>
   <string name="wizard_final">Orbot מוכן!</string>
-  <string name="wizard_final_msg">מאות אלפי אנשים סביב העולם משתמשים ברשת Tor  משום מגוון של סיבות. עיתונאים ובלוגרים, מגיני זכויות אדם, שוטרים, חיילים, תאגידים, אזרחים במשטרים מדכאים וגם אזרחים רגילים.. ועכשיו אתה מוכן לזה, גם כן!</string>
   <!--END Welcome Wizard strings (DJH)-->
-  <string name="connect_first_time">אתה מחובר בהצלחה לרשת Tor- אבל זה לא אומר שהמכשיר שלך מאובטח. אתה יכול להשתמש באפשרות ה   \'Check\' מהתפריט כדי לבדוק את הדפדפן שלך. בקר ב \nhttps://guardianproject.info/apps/orbot  או שלח אימייל לכתובת help@guardianproject.info כדי ללמוד עוד.</string>
   <string name="tor_check">דבר זה יוביל את דפדפן הרשת שלך למוד https://check.torproject.org כדי לראות אם Orbot הוגדרה כראוי וכן כי אתה מחובר לרשת Tor.</string>
   <string name="pref_hs_group">איחסון שירותים נסתרים</string>
   <string name="pref_general_group">כללי</string>
@@ -91,15 +88,12 @@
   <string name="pref_start_boot_summary">התחל את Orbot והתחבר לרשת Tor אוטומטית כאשר המכשיר נדלק</string>
   <!--New Wizard Strings-->
   <!--Title Screen-->
-  <string name="wizard_title_msg">Orbot מביאה את Tor לאנדרואיד! Tor  עוזרת לך בהגנה נגד סינון תכנים, ניתוח תעבורה ומעקב רשת שמאיימים על פרטיות, מידע סודי וקשרים אישיים.  כלי זה עוזר לך להגדיר את Orbot ואת Tor על המכשיר שלך. </string>
   <!--Warning screen-->
   <string name="wizard_warning_title">אזהרה</string>
-  <string name="wizard_warning_msg">התקנת Orbot בלבד לא תאפשר אנונימיות לתעבורת המכשיר שלך. עליך להגדיר את Orbot, את המכשיר שלך וכן גם אפליקציות אחרות בהתאמה כדי להשתמש בהצלחה ברשת Tor.</string>
   <!--Permissions screen-->
   <string name="wizard_permissions_title">הרשאות</string>
   <string name="wizard_permissions_root_msg1">אתה יכול להעניק לאפליקציה Orbot גישת \'Superuser\' כדי לאפשר מאפיינים מתקדמים כמו למשל, פרוקסי שקוף.</string>
   <string name="wizard_permissions_root_msg2">אם אתה לא רוצה לעשות את זה, אנא הקפד להשתמש באפליקציות שיועדו לעבוד עם Orbot</string>
-  <string name="wizard_permissions_no_root_msg">לא נראה שהמכשיר שלך בעל סמכות עליונה או קיבל גישת  \'Superuser\'. כדי ש Tor יהיה יעיל, תצטרך להשתמש באפליקציות שנבנו בשביל לעבוד עם Orbot, או כאלה שתומכות בהגדרות פרוקסי HTTP או SOCKS.\n</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot-יישומים מופעלים</string>
   <string name="wizard_tips_gibberbot">ChatSecure: אפליקציית מסרים עם הצפנת Off-the-Record</string>
@@ -146,7 +140,6 @@
   <string name="warning_error_starting_transparent_proxying_">אזהרה: שגיאה התחילה את הפרוקסי השקוף!</string>
   <string name="transproxy_rules_cleared">כללי TransProxy טוהרו</string>
   <string name="couldn_t_start_tor_process_">אין אפשרות להתחיל תהליך Tor:</string>
-  <string name="privoxy_is_running_on_port_">Privoxy הינו מופעל על פורט: </string>
   <string name="bridge_error">שגיאת גשר</string>
   <string name="error">שגיאה</string>
   <string name="exit_nodes">צמתי יציאה</string>
@@ -171,12 +164,9 @@
   <string name="enable_hidden_services">אחסון שירותים נסתרים</string>
   <string name="enter_localhost_ports_for_hidden_services">הזן פורטים של localhost עבור שירותים נסתרים</string>
   <string name="hidden_service_ports">פורט השירותים הנסתרים</string>
-  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
   <string name="the_tor_license">הרשיון של Tor</string>
   <string name="https_torproject_org">https://torproject.org/</string>
   <string name="third_party_software">תוכנה-צד-ג׳: </string>
-  <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
-  <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
   <string name="found_existing_tor_process">נמצא תהליך Tor קיים…</string>
   <string name="something_bad_happened">משהו רע התרחש. בדוק את היומן</string>
   <string name="hidden_service_on">שירות נסתר ב:</string>
@@ -190,7 +180,6 @@
   <string name="set_locale_summary">בחר את המקומיות והשפה של Orbot</string>
   <string name="wizard_locale_title">בחר שפה</string>
   <string name="wizard_locale_msg">השאר ברירת מחדל או החלף לשפה הנוכחית</string>
-  <string name="powered_by">מופעל על ידי Tor Project</string>
   <string name="btn_save_settings">שמירת הגדרות</string>
   <string name="no_internet_connection_tor">אין חיבור אינטרנט; Tor מצוי בכוננות...</string>
   <string name="bandwidth_">רוחב פס:</string>

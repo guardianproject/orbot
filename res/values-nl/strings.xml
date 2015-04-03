@@ -58,7 +58,6 @@
   <string name="btn_cancel">Annuleren</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Enkele Orbot Details</string>
-  <string name="wizard_details_msg">Orbot is een open-source applicatie die Tor, LibEvent en Privoxy bevat. Het creëert een lokale HTTP proxy (8118) en een SOCKS proxy (9050) naar het Tor netwerk. Orbot heeft ook de mogelijkheid om al het internet verkeer over het Tor netwerk te sturen.</string>
   <string name="wizard_permissions_root">Rechten toegewezen</string>
   <string name="wizard_permissions_stock">Orbot Rechten</string>
   <string name="wizard_premissions_msg_root">Uitstekend! We hebben gedetecteerd dat je root rechten hebt aangezet voor Orbot. We gebruiken deze kracht met verstand.</string>
@@ -76,16 +75,11 @@
   <string name="wizard_tips_proxy">Proxy Instellingen - Leer hoe je apps te configureren voor Orbot</string>
   <string name="wizard_tips_duckgo">Duckduckgo Zoekmachine app</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
-  <string name="wizard_tips_firefox">Firefox met Proxy Mobile extensie (vergt extra installatie achteraf)</string>
-  <string name="proxymob_setup_url">https://guardianproject.info/releases/proxymob-latest.xpi</string>
   <string name="wizard_tips_twitter">Twitter ondersteunt http proxy \"localhost:8118\"</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Proxy Instellingen</string>
-  <string name="wizard_proxy_help_msg">Als de Android app die je gebruikt beschikt over een HTTP of SOCKS proxy instelling, dan kun je het configureren zodat het via Orbot over het Tor netwerk gaat.\n\n\nDe host instelling is 127.0.0.1 of \"localhost\". De poort voor SOCKS is 9050 en voor HTTP 8118. Gebruik SOCKS4A of SOCKS5 indien mogelijk.\n\n\nJe kunt meer leren over het proxy-en op Android door naar de FAQ op http://tinyurl.com/proxyandroid te gaan\n    </string>
   <string name="wizard_final">Orbot is klaar!</string>
-  <string name="wizard_final_msg">Honderdduizenden verschillende mensen over de wereld gebruiken Tor, voor verschillende redenen. Zoals: journalisten, bloggers, mensen rechten medewerkers, soldaten, bedrijven, burgers met onderdrukte religies, en natuurlijk normale mensen... En nu ben jij er ook klaar voor!</string>
   <!--END Welcome Wizard strings (DJH)-->
-  <string name="connect_first_time">Je bent succesvol verbonden met het Tor netwerk, maar dit betekent NIET dat je apparaat volledig veilig is. Gebruik te \'Check\' optie vanuit het menu om je browser te testen.\n\nBezoek onze website op https://guardianproject.info/apps/orbot of stuur een email naar help@guardianproject.info voor vragen.</string>
   <string name="tor_check">Dit opent je standaard browser naar https://check.torproject.org om te controleren of Orbot succesvol is geconfigureerd om te verbinden met het Tor netwerk.</string>
   <string name="pref_hs_group">Verborgen diensten</string>
   <string name="pref_general_group">Algemeen</string>
@@ -93,15 +87,12 @@
   <string name="pref_start_boot_summary">Start Orbot automatisch en verbind metTor wanneer je Android apparaat opstart.</string>
   <!--New Wizard Strings-->
   <!--Title Screen-->
-  <string name="wizard_title_msg">Orbot brengt Tor naar Android!\n\nTor helpt je verdedigen tegen filtering, verkeersanalyse en netwerktoezicht dat privacy, vertrouwelijke informatie en persoonlijke relaties bedreigt.\n\n Deze wizard helpt je met configureren van Orbot en Tor op jouw apparaat.</string>
   <!--Warning screen-->
   <string name="wizard_warning_title">Waarschuwing</string>
-  <string name="wizard_warning_msg">Alleen Orbot installeren zal niet automatisch alle je mobiele verkeer anonimiseren.\n\nJe moet Orbot, je apparaat en andere apps juist instellen om succesvol Tor te gebruiken.</string>
   <!--Permissions screen-->
   <string name="wizard_permissions_title">Rechten</string>
   <string name="wizard_permissions_root_msg1">Je kan optioneeel Orbot \'superuser\' toegang geven om geavanceerde functies beschikbaar te stellen, zoals Tranparante Proxy.</string>
   <string name="wizard_permissions_root_msg2">Als je dit niet wilt doen, zorg er dan voor dat je apps gebruikt die gemaakt zijn om te werken met Orbot</string>
-  <string name="wizard_permissions_no_root_msg">Je apparaat draait in standaard modus en ondersteunt geen root of \'superuser\' toegang.\n\nOm voordeel te hebben van Tor moet je gebruik maken van apps die gemaakt zijn om te werken met Tor, of die HTTP of SOCKS proxy instellingen ondersteunen.\n\n\n</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot geschikte Apps</string>
   <string name="wizard_tips_gibberbot">ChatSecure: Beveiligde chat app met Off-the-Record versleuteling</string>
@@ -153,7 +144,6 @@
   <string name="warning_error_starting_transparent_proxying_">WAARSCHUWING: fout tijdens starten van transparante proxy!</string>
   <string name="transproxy_rules_cleared">Transparante Proxy regels geleegd</string>
   <string name="couldn_t_start_tor_process_">Kan Tor proces niet starten: </string>
-  <string name="privoxy_is_running_on_port_">Privoxy draait op poort: </string>
   <string name="setting_up_port_based_transparent_proxying_">Bezig met opzetten van per-poort transparante proxy</string>
   <string name="bridge_error">Bridge-fout</string>
   <string name="bridge_requires_ip">Om de bridge functie te gebruiken moet je tenminste één bridge IP-adres invoeren.</string>
@@ -197,15 +187,9 @@
   <string name="the_addressable_name_for_your_hidden_service_generated_automatically_">De adresseerbare naam (automatisch gegenereerd)</string>
   <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Schakel debug log naar uitvoer in (moet adb of aLogCat gebruiken om te bekijken)</string>
   <string name="project_home">Project homepage(s): </string>
-  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
   <string name="the_tor_license">De Tor licentie</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Software van derden: </string>
-  <string name="tor_version">Tor v0.2.4.21: https://www.torproject.org</string>
-  <string name="libevent_version">LibEvent v2.0.9: http://www.monkey.org/~provos/libevent/</string>
-  <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
-  <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v1.0.1g: http://www.openssl.org</string>
   <string name="hidden_service_request">Een app wil hidden service poort %S openen naar het Tor netwerk. Dit is veilig als je de app vertrouwd.</string>
   <string name="found_existing_tor_process">bestaand Tor proces gevonden...</string>
   <string name="something_bad_happened">Er is iets slechts gebeurt. Controleer de log</string>
@@ -223,10 +207,11 @@
   <string name="set_locale_summary">Kies de landsinstellingen en taal voor Orbot</string>
   <string name="wizard_locale_title">Kies taal</string>
   <string name="wizard_locale_msg">Laat standaard of schakel over naar huidige taal</string>
-  <string name="powered_by">mogelijk gemaakt door het Tor Project</string>
   <string name="btn_save_settings">Sla instellingen op</string>
   <string name="no_internet_connection_tor">Geen internet verbinding: Tor is in standby...</string>
   <string name="bandwidth_">Bandbreedte:</string>
+  <string name="down">omlaag</string>
+  <string name="up">omhoog</string>
   <string name="pref_disable_network_title">Geen Netwerk Automatisch Slapen</string>
   <string name="pref_disable_network_summary">Laat Tor slapen als er geen internet verbinding is</string>
   <string name="newnym">Je bent naar een nieuwe Tor identiteit gewisseld!</string>

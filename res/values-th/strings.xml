@@ -52,7 +52,6 @@
   <string name="btn_cancel">ยกเลิก</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">รายละเอียดเกี่ยวกับ Orbot</string>
-  <string name="wizard_details_msg">Orbot เป็นซอฟต์แวร์เปิดเผยรหัสที่ประกอบด้วย Tor, Libevent และ Privoxy โดย Orbot จะสร้างพร็อกซี HTTP (8118) และพร็อกซี SOCKS (9050) บนเครื่อง เชื่อมเข้าสู่เครือข่าย Tor ถ้าใช้งานบนเครื่องที่มีสิทธิ์ root แล้ว Orbot สามารถทำให้ข้อมูลจราจรทั้งหมดส่งผ่านเครือข่าย Tor ได้</string>
   <string name="wizard_permissions_root">ให้สิทธิ์แล้ว</string>
   <string name="wizard_permissions_stock">สิทธิ์ของ Orbot</string>
   <string name="wizard_premissions_msg_root">ยอดเยี่ยม! เราพบว่าคุณให้สิทธิ์ root กับ Orbot เราจะใช้สิทธิ์นี้อย่างชาญฉลาด</string>
@@ -115,7 +114,6 @@
   <string name="warning_error_starting_transparent_proxying_">คำเตือน: เกิดข้อผิดพลาดขณะที่พร็อกซีล่องหนเริ่มทำงาน</string>
   <string name="transproxy_rules_cleared">กฎของพร็อกซีล่องหนถูกล้าง</string>
   <string name="couldn_t_start_tor_process_">ไม่สามารถเริ่มโพรเซสของ Tor</string>
-  <string name="privoxy_is_running_on_port_">Privoxy กำลังทำงานอยู่บนพอร์ต:</string>
   <string name="setting_up_port_based_transparent_proxying_">กำลังติดตั้งพร็อกซีล่องหนแบบระบุพอร์ต…</string>
   <string name="bridge_error">สะพานขัดข้อง</string>
   <string name="bridge_requires_ip">ในการใช้งานคุณสมบัติสะพาน คุณต้องระบุที่อยู่ไอพีของสะพานอย่างน้อย 1 ไอพี </string>
@@ -157,12 +155,9 @@
   <string name="the_addressable_name_for_your_hidden_service_generated_automatically_">ชื่อที่ใช้ระบุสำหรับบริการไม่เปิดเผยของคุณ (สร้างโดยอัตโนมัติ)</string>
   <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">เปิดให้ปูมดีบั๊กแสดงผล (ต้องใช้ adb หรือ aLogCat เพื่อดู)</string>
   <string name="project_home">ที่อยู่โครงการ:</string>
-  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
   <string name="the_tor_license">สัญญาอนุญาตของ Tor</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">ซอฟต์แวร์โดยผู้ผลิตอื่น:</string>
-  <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
-  <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
   <string name="hidden_service_request">โปรแกรมต้องการเปิดพอร์ต %S ที่ซ่อนอยู่ของเซิร์ฟเวอร์ให้เชื่อมกับเครือข่าย Tor การกระทำนี้ปลอดภัยถ้าคุณเชื่อถือโปรแกรมนั้น</string>
   <string name="something_bad_happened">เกิดอะไรไม่ดีสักอย่าง ให้ตรวจดูจากปูม</string>
   <string name="hidden_service_on">บริการไม่เปิดเผยอยู่บน:</string>

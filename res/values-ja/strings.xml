@@ -58,7 +58,6 @@
   <string name="btn_cancel">キャンセル</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Orbot詳細</string>
-  <string name="wizard_details_msg">Orbot はTor、LibEvent 、Privoxyを含むオープンソースアプリです。 local HTTP proxy (8118) と SOCKS proxy (9050) をTor接続します。root化された端末ではOrbotは全ての通信をTorを通して行うこともできます。</string>
   <string name="wizard_permissions_root">権限を取得完了</string>
   <string name="wizard_permissions_stock">Orbotの権限</string>
   <string name="wizard_premissions_msg_root">Orbotがroot権限を取得したことを確認しました。全ての機能が利用できます。</string>
@@ -76,16 +75,11 @@
   <string name="wizard_tips_proxy">Proxy Settings - Orbotでアプリを動かすための手順書</string>
   <string name="wizard_tips_duckgo">DuckDuckGo 検索エンジンアプリ</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
-  <string name="wizard_tips_firefox">Proxy Mobile add-on for Firefox (http://tinyurl.com/getproxymob)</string>
-  <string name="proxymob_setup_url">https://guardianproject.info/releases/proxymob-latest.xpi</string>
   <string name="wizard_tips_twitter">Twitter proxyを「localhost」と8118番ポートに合わせる</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">プロキシ設定</string>
-  <string name="wizard_proxy_help_msg">AndroidアプリがHTTPかSOCKSプロキシを利用できる場合、Orbotを使ってTor接続をすることが可能です。\n\n\n    ホスト設定は127.0.0.1またはlocalhostです。HTTPでは使用ポートは8118です。SOCKSでは9050です。可能であればSOCKS4AかSOCKS5の利用を推奨します。\n    \n\n\n    Android上のプロキシについて学びたい場合は http://tinyurl.com/proxyandroid　のFAQを参照してください。\n    </string>
   <string name="wizard_final">Orbotの準備が完了しました</string>
-  <string name="wizard_final_msg">世界中で数十万人が様々な理由でTorを利用しています。\n\nジャーナリストやブロガー、人権団体、法的機関、軍隊、企業、独裁国家の市民、普通の国の小市民も。。。そしてあなたも！</string>
   <!--END Welcome Wizard strings (DJH)-->
-  <string name="connect_first_time">Torネットワークに接続成功 - しかしあなたのデバイスが安全だとは限りません。メニューの「チェック」オプションを選択してあなたのブラウザのテストができます。 \n\n疑問がある場合はhttps://guardianproject.info/apps/orbot を閲覧するか、help@guardianproject.infoに問い合わせメールを英語で送信してください。</string>
   <string name="tor_check">ブラウザを開いてhttps://check.torproject.org にTor接続し、Orbotの設定が成功したかを試します。</string>
   <string name="pref_hs_group">Hidden Services</string>
   <string name="pref_general_group">一般</string>
@@ -93,15 +87,12 @@
   <string name="pref_start_boot_summary">Android端末の起動時にOrbotを自動実行</string>
   <!--New Wizard Strings-->
   <!--Title Screen-->
-  <string name="wizard_title_msg">AndroidでもOrbotでTorが使えます!\n\nフィルタリングや通信の検閲から個人情報等を守るためにTorは使われています。\n\nこのウィザードではOrbotとTorの設定ができます。</string>
   <!--Warning screen-->
   <string name="wizard_warning_title">注意</string>
-  <string name="wizard_warning_msg">Orbotをインストールしただけでは通信は匿名化されません。\n\nOrbot、Android端末、アプリの全てを正しく設定しないとTorは使えません。</string>
   <!--Permissions screen-->
   <string name="wizard_permissions_title">許可</string>
   <string name="wizard_permissions_root_msg1">オプションとしてOrbotにスーパーユーザー権限を与えることで透過プロキシなどの追加機能が使えます。</string>
   <string name="wizard_permissions_root_msg2">これを実行しない場合、Orbot用に作られたアプリだけを使ってください。</string>
-  <string name="wizard_permissions_no_root_msg">あなたの端末はroot化されていないようです。\n\nTorで通信をする場合、Orbot用のアプリを使うか、HTTPまたはSOCKSプロクシが設定できるアプリを使う必要があります。\n\n</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbotが有効化されたアプリ</string>
   <string name="wizard_tips_gibberbot">ChatSecure: 非記録式暗号によるセキュアなチャットアプリ</string>
@@ -153,7 +144,6 @@
   <string name="warning_error_starting_transparent_proxying_">警告: 透過プロキシの開始時にエラー発生</string>
   <string name="transproxy_rules_cleared">透過プロキシ　ルール　消去完了</string>
   <string name="couldn_t_start_tor_process_">Torプロセスの起動に失敗:</string>
-  <string name="privoxy_is_running_on_port_">Privoxyが実行中のポート:</string>
   <string name="setting_up_port_based_transparent_proxying_">ポートベースの透過プロキシをセットアップ中...</string>
   <string name="bridge_error">ブリッジ　エラー</string>
   <string name="bridge_requires_ip">ブリッジ機能を利用するには、最低一つのブリッジIPアドレスの入力が必要です。</string>
@@ -197,15 +187,9 @@
   <string name="the_addressable_name_for_your_hidden_service_generated_automatically_">あなたのHidden Serviceのアドレス(自動生成されます)</string>
   <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">デバッグログの出力を有効化(閲覧にはadbかaLogCatが必要)</string>
   <string name="project_home">プロジェクトのホーム:</string>
-  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
   <string name="the_tor_license">Tor ライセンス文書</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">第三者製のソフトウェア</string>
-  <string name="tor_version">Tor v0.2.4.21: https://www.torproject.org</string>
-  <string name="libevent_version">LibEvent v2.0.9: http://www.monkey.org/~provos/libevent/</string>
-  <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
-  <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v1.0.1g: http://www.openssl.org</string>
   <string name="hidden_service_request">アプリがhidden serverの port %S　をTorネットワークに開放しようとしています。信頼できるアプリであればこれは安全です。</string>
   <string name="found_existing_tor_process">Torプロセスを発見</string>
   <string name="something_bad_happened">何かが起こりました。ログを確認してください。</string>
@@ -223,7 +207,6 @@
   <string name="set_locale_summary">Orbotの地域と言語を選択</string>
   <string name="wizard_locale_title">言語を選択</string>
   <string name="wizard_locale_msg">今の言語を変更するか、そのままにする</string>
-  <string name="powered_by">powered by the Tor Project</string>
   <string name="btn_save_settings">設定を保存</string>
   <string name="no_internet_connection_tor">インターネット接続なし。Torは待機中です...</string>
   <string name="bandwidth_">帯域幅:</string>

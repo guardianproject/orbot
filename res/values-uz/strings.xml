@@ -23,7 +23,6 @@
   <string name="wizard_title">Orbot</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
-  <string name="proxymob_setup_url">https://guardianproject.info/releases/proxymob-latest.xpi</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Proksi moslamalari</string>
   <string name="wizard_final">Orbot tayyor!</string>
@@ -44,11 +43,8 @@
   <string name="pref_proxy_password_dialog">Proksi maxfiy so\'zini kiriting</string>
   <string name="status">Holati</string>
   <string name="error">Xato</string>
-  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
   <string name="the_tor_license">Tor litsenziyasi</string>
   <string name="https_torproject_org">https://torproject.org</string>
-  <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
-  <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
   <string name="found_existing_tor_process">Mavjud bo\'lgan Tor jarayoni topildi...</string>
   <string name="default_bridges"></string>
   <string name="set_locale_summary">Orbot uchun lokal va tilni tanlash</string>

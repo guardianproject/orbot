@@ -58,7 +58,6 @@
   <string name="btn_cancel">لغو</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">برخی جزییات درباره ربات پیازی</string>
-  <string name="wizard_details_msg">ربات پیازی اپلیکیشنی با متن-باز است که شامل تور, LibEvent و Privoxy میشود. این اپلیکیشن، HTTP پروکسی (8118) محلی و SOCKS پروکسی (9050) را در شبکه Tor در دسترس قرار می دهد. ربات پیازی همچنین قادر است بر روی ابزار root شده، تمام ترافیک اینترنت را از Tor ارسال کند.</string>
   <string name="wizard_permissions_root">مجوز صادر گردید</string>
   <string name="wizard_permissions_stock">مجوزهای ربات پیازی</string>
   <string name="wizard_premissions_msg_root">بسیار عالی! اینطور که معلوم است شما دارای مجوز root برای فعال کردن ربات پیازی هستید. این امکان را بخوبی مورد استفاده قرار خواهیم داد.</string>
@@ -76,16 +75,11 @@
   <string name="wizard_tips_proxy">تنظیمات پروکسی - یادگیری تنظیم اپلیکیشن ها برای کار با ربات پیازی</string>
   <string name="wizard_tips_duckgo">اپلیکیشن موتور جستجوی داک داک گو</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
-  <string name="wizard_tips_firefox">افزونه پراکسی برای فایرفوکس (http://tinyurl.com/getproxymob)</string>
-  <string name="proxymob_setup_url">https://guardianproject.info/releases/proxymob-latest.xpi</string>
   <string name="wizard_tips_twitter">توییتر از \"http proxy \"localhost:8118 پشتیبانی می کند</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">تنظیمات پروکسی</string>
-  <string name="wizard_proxy_help_msg">اگر اپلیکشین آندروید مورد استفاده شما قابلیت کار با HTTP و یا SOCKS پروکسی دارد می توانید تنظیمش کنید تا به ربات پیازی وصل شود و از تور استفاده کند. تنظیمات سرویس دهنده 127.0.0.1 و یا \"سرویس-ده محلی\" است. برای HTTP تنظیمات پورت 8118 است. برای SOCKS، پروکسی مناسب، 9050 است. شما می بایست SOCKS4A  و یا  در صورت امکان از socks5 استفاده کنید. در صورت نیاز به اطلاعات بیشتر در مورد انتقالده اندروید، می توانید به FAQ (سوالهای معمول) در http://tinyurl.com/proxyandroid مراجعه کنید.</string>
   <string name="wizard_final">ربات پیازی آماده استفاده میباشد!</string>
-  <string name="wizard_final_msg">صدها هزار نفر در سراسر جهان به دلایل گوناگون از تور استفاده می کنند: روزنامه نویسها و بلاگرها، کارکنان حقوق بشر، ماموران انتظامی، سربازان، شرکتها، شهروندان دولتهای سرکوبگر، و شهروندان عادی، و حالا شما نیز آماده استفاده از آن هستید!</string>
   <!--END Welcome Wizard strings (DJH)-->
-  <string name="connect_first_time">اکنون با موفقیت به شبکه تور وصل شده اید اما به آن معنا نیست که سیستم شما ایمن است. می توانید از منیو گزینه /\"Check/\" را برای آزمایش مرورگر انتخاب کنید. به ما در صفحه https://guardianproject.info/apps/orbot مراجعه کنید و به آدرس help@guardianproject.info  ایمیلی بفرستید تا اطلاعات بیشتری دریافت کنید.</string>
   <string name="tor_check">با این قدم پیشفرض مرورگر وب شما به صفحه   https://check.torproject.org باز می شود تا شما مشاهده کنید آیا ربات پیازی تنظیم شده است و آیا شما به تور وصل شده اید یا نه.</string>
   <string name="pref_hs_group">سرويس های مخفی</string>
   <string name="pref_general_group">کلی</string>
@@ -93,15 +87,12 @@
   <string name="pref_start_boot_summary">وقتی اندروید بوت شد، بصورت خودکار ربات پیازی را اجرا و آن را به شبکه تور متصل کن</string>
   <!--New Wizard Strings-->
   <!--Title Screen-->
-  <string name="wizard_title_msg">ربات پیازی قدرت تور را به اندروید می آورد \n\n\n تور به شما کمک میکند تا در مقابل سانسور مطالب، آنالیز ترافیک و نظارت بر شبکه که حریم خصوصی افراد، اطلاعات محرمانه و روابط خصوصیتان را تهدید می کند از خود دفاع کنید. \n\nاین راهنما به شما کمک میکند تا تنظیمات تور و ربات پیازی  را بر روی دستگاه خودتان انجام دهید </string>
   <!--Warning screen-->
   <string name="wizard_warning_title">هشدار</string>
-  <string name="wizard_warning_msg">اگر فقط ربات پیازی را نصب کنید بطور خودکار نمی تواند جریان اطلاعات موبایل شما را بصورت گمنام درآورد.\n \nباید آنرا به درستی تنظیم کنید، همچنین تنظیمات را بر روی دستگاه خودتان و دیگر برنامه هایی که از   تور استفاده میکنند انجام دهید تا بتوانید با موفقیت از اینترنت استفاده کنید.</string>
   <!--Permissions screen-->
   <string name="wizard_permissions_title">دسترسی‌ها</string>
   <string name="wizard_permissions_root_msg1">اگر بخواهید میتوانید به ربات پیازی اجازه دسترسی  سوپر یوزر بدهید تا ویژگیهای پیشرفته  مانند پروکسی شفاف را فعال کند </string>
   <string name="wizard_permissions_root_msg2">اگر نمیخواهید این کار را انجام دهید ، لطفا مطمئن شوید که از اپلیکیشنهایی استفاده می کنید که با ربات پیازی کار می کنند</string>
-  <string name="wizard_permissions_no_root_msg">به نظر نمیرسه که دستگاه شما root شده و یا دسترسی Superuser بدهد⏎\n⏎\nبرای بهره بردن از تور، شما باید از برنامه هایی استفاده کنید که یا برای استفاده با ربات پیازی طراحی شده اند و یا از تنظیم پروکسی SOCKS یا HTTP پشتیبانی میکنند.\n\n\n</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">  اپلیکیشنهایی که ربات پیازی روی آنها فعال است</string>
   <string name="wizard_tips_gibberbot">ChatSecure:برنامه امن گفتگوی محرمانه با قابلیت رمزگزاری</string>
@@ -153,7 +144,6 @@
   <string name="warning_error_starting_transparent_proxying_">هشدار: خطا در هنگام راه اندازی پروکسی شفاف!</string>
   <string name="transproxy_rules_cleared">قوانین TransProxy پاک شدند</string>
   <string name="couldn_t_start_tor_process_"> تور نتواست اجرا شود:</string>
-  <string name="privoxy_is_running_on_port_">پریواکسی، روی پورت مقابل درحال اجراست:</string>
   <string name="setting_up_port_based_transparent_proxying_">نصب پروکسی شفاف مبتنی بر پورت...</string>
   <string name="bridge_error">خطای پل</string>
   <string name="bridge_requires_ip">برای استفاده از ویژگی پل، باید حداقل آدرس IP یک پل را وارد کنید.</string>
@@ -197,15 +187,9 @@
   <string name="the_addressable_name_for_your_hidden_service_generated_automatically_">نام نشانی پذیر برای سرویس مخفی شما (بصورت خودکار تولید شده است)</string>
   <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">ثبت گزارش اشکال زدایی را به خروجی فعال کن (برای نمایش باید از adb یا aLogCat استفاده کنید)</string>
   <string name="project_home">صفحه (های) اصلی پروژه:</string>
-  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
   <string name="the_tor_license">گواهی تور</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">3rd-Party-Software:</string>
-  <string name="tor_version">Tor نسخه 0.2.4.21: https://www.torproject.org</string>
-  <string name="libevent_version">LibEvent نسخه 2.0.9: http://www.monkey.org/~provos/libevent/</string>
-  <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
-  <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL نسخه 1.0.1g : http://www.openssl.org</string>
   <string name="hidden_service_request">یک اپلیکیشن میخواهد پورت %S سرویس مخفی را به شبکه تور باز کند. اگر به این اپلیکیشن اعتماد دارید این بی خطر است.</string>
   <string name="found_existing_tor_process">یک تور درحال اجرا پیدا شد...</string>
   <string name="something_bad_happened">اتفاق بدی افتاد. وقایع ثبت شده را چک کنید</string>
@@ -223,7 +207,6 @@
   <string name="set_locale_summary">زبان محلی  ربات پیازی  را انتخاب کنید</string>
   <string name="wizard_locale_title">انتخاب زبان</string>
   <string name="wizard_locale_msg">زبان کنونی را تعویض و یا به شکل پیشفرض رهایش کنید</string>
-  <string name="powered_by">نیرو گرفته از پروژه تور</string>
   <string name="btn_save_settings">ذخیره تنظیمات</string>
   <string name="no_internet_connection_tor">بدون اتصال اینترنت: تور در حالت انتظار</string>
   <string name="bandwidth_">پهنای باند:</string>

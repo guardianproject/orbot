@@ -9,7 +9,7 @@
   <string name="tor_proxy_service_process">torproxyservice</string>
   <string name="status_starting_up">Orbot se spouští...</string>
   <string name="status_activated">Připojen k síti Tor</string>
-  <string name="status_disabled">\"Orbot je deaktivován</string>
+  <string name="status_disabled">Orbot je deaktivován</string>
   <string name="status_shutting_down">Orbot se vypíná</string>
   <string name="tor_process_starting">Startuji Tor klienta...</string>
   <string name="tor_process_complete">hotovo.</string>
@@ -58,7 +58,6 @@
   <string name="btn_cancel">Zrušit</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Pár detailů o Orbot</string>
-  <string name="wizard_details_msg">Orbot je aplikace s otevřeným zdrovovým kódem obsahující Tor, LibEvent a Privoxy. Poskytuje lokální HTTP proxy (8118) a SOCKS proxy (9050) do síťe Tor. Orbot také umožňuje na zařízeních s rootem směrování veškerého síťového provozu přes Tor.</string>
   <string name="wizard_permissions_root">Práva udělena</string>
   <string name="wizard_permissions_stock">Oprávnění Orbota</string>
   <string name="wizard_premissions_msg_root">Výborně! Bylo detekováno, že root oprávnění bylo Orbotu uděleno. Budeme tuto sílu užívat moudře.</string>
@@ -68,7 +67,7 @@
   <string name="wizard_permission_enable_root">Udělit Orbotovi root oprávnění</string>
   <string name="wizard_configure">Nastavení Torování</string>
   <string name="wizard_configure_msg">Orbot umožňuje směrovat datový provoz všech aplikací přes Tor NEBO zvolit aplikace individuálně.</string>
-  <string name="wizard_configure_all">Tor Proxy pro všechny plikace </string>
+  <string name="wizard_configure_all">Tor Proxy pro všechny aplikace</string>
   <string name="wizard_configure_select_apps">Zvolit aplikace pro Tor individuálně</string>
   <string name="wizard_tips_tricks">Aplikace povolené pro Orbota</string>
   <string name="wizard_tips_msg">Aplikace níže byly vyvinuty tak, aby spolupracovaly s Orbotem. Klikněte na každé tlačítko pro instalaci, aplikace můžete najít i v Obchodu Play nebo na webu GuardianProject.info či F-Droid.org.</string>
@@ -76,16 +75,11 @@
   <string name="wizard_tips_proxy">Proxy Nastavení - Naučte se, jak nastavit aplikace, aby pracovaly s Orbotem</string>
   <string name="wizard_tips_duckgo">Aplikace DuckDuckGo pro vyhledávací engine</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
-  <string name="wizard_tips_firefox">Proxy Mobile rozšíření pro Firefox (http://tinyurl.com/getproxymob)</string>
-  <string name="proxymob_setup_url">https://guardianproject.info/releases/proxymob-latest.xpi</string>
   <string name="wizard_tips_twitter">Nastavit Twitter proxy na host \"localhost\" a port 8118</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Nastavení Proxy</string>
-  <string name="wizard_proxy_help_msg">Pokud Android aplikace kterou používáte připojení přes HTTP nebo SOCKS proxy, můžete ji nakonfigurovat pro připojení přes Orbot a použití Tor.⏎\n⏎\n⏎\nNastavení hosta je 127.0.0.1 nebo \"localhost\". Pro HTTP, port je 8118. Pro SOCKS, proxy je 9050. Pokud je to možné, použijte SOCKS4A nebo SOCKS5.⏎\n⏎\n⏎\n⏎\nZjistěte více o nastavení proxy na Androidu v FAQ na:  http://tinyurl.com/proxyandroid⏎</string>
   <string name="wizard_final">Orbot je připraven!</string>
-  <string name="wizard_final_msg">Stovky a tisíce lidí na celém světě používají Tor ze široké škály důvodů.⏎\n⏎\nNovináři a bloggeři, obránci lidských práv, vyšetřovatelé, vojáci, společnosti, občané žijící v represivních režimech a hlavně zcela normální lidé… a nyní můžete i Vy!</string>
   <!--END Welcome Wizard strings (DJH)-->
-  <string name="connect_first_time">Úspěšně jste se připojili k To síti - toto ale NEZNAMENÁ, že vaše zařízení je bezpečné. Můžete použít volbu \'Zkontrolovat\' u menu pro otestování vašeho prohlížeče. ⏎\n⏎\nNavštivte nás na https://guardianproject.info/apps/orbot nebo pošlete email na help@guardianproject.info pro více informací.</string>
   <string name="tor_check">Tato volba otevře ve webovém prohlížeči stránku https://check.torproject.org pro kontrolu, jestli je Orbot správně nastaven a jste připojen k Tor.</string>
   <string name="pref_hs_group">Skrytý hosting služby</string>
   <string name="pref_general_group">Obecné</string>
@@ -93,17 +87,15 @@
   <string name="pref_start_boot_summary">Automaticky spustit Orbot a připojit se k Tor po startu zařízení</string>
   <!--New Wizard Strings-->
   <!--Title Screen-->
-  <string name="wizard_title_msg">Orbot Přináší Tor na Android!⏎\n⏎\nTor Vám pomůže chránit se před filtrováním obsahu, analýzou provozu a sledováním síťového provozu, které ohrožují soukromí, důvěrné informace a osobní vztahy.⏎\n⏎\nTento průvodce vám pomůže nastavit Orbot a Tor na vašem zařízení.</string>
   <!--Warning screen-->
   <string name="wizard_warning_title">Varování</string>
-  <string name="wizard_warning_msg">Pouhá instalace Orbota neučíní automaticky váš síťový provoz anonymním.⏎\n⏎\nMusíte správně nastavit Orbot, vaše zařízení a jiné aplikace pro úspěšné používaní Toru.</string>
   <!--Permissions screen-->
   <string name="wizard_permissions_title">Oprávnění</string>
   <string name="wizard_permissions_root_msg1">Volitelně můžete Orbotu udělit \'siperuýivatelský\' (root) přístup pto povolení rozšířených funkcí, například transparentní proxy.</string>
   <string name="wizard_permissions_root_msg2">Pokud si to nepřejete, používejte prosím aplikace napsané tak, aby spolupracovaly s Orbotem</string>
-  <string name="wizard_permissions_no_root_msg">Vaše zařízení nejspíš nemá root, nebo neposkytuje práva \'Superuživatele\'.⏎\n⏎\nPro plné využití Toru musíte používat aplikace napsané tak, aby spolupracovaly s Orbotem, nebo podporující nastavení HTTP nebo SOCKS proxy.⏎\n⏎</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot-povolené aplikace</string>
+  <string name="wizard_tips_gibberbot">ChatSecure: Bezpečná chatovací aplikace s technologií Off-the-Record Encryption</string>
   <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
   <string name="wizard_tips_orweb">Orweb: webový prohlížeč s rozšířeným soukromím pracující přes Tor</string>
   <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
@@ -152,7 +144,6 @@
   <string name="warning_error_starting_transparent_proxying_">VAROVÁNÍ: chyba při startu transparentní proxy!</string>
   <string name="transproxy_rules_cleared">Pravidla TransProxy vymazána</string>
   <string name="couldn_t_start_tor_process_">Nelze spustit Tor proces:</string>
-  <string name="privoxy_is_running_on_port_">Privoxy běží na portu:</string>
   <string name="setting_up_port_based_transparent_proxying_">Nastavení na portu založené transparentní proxy...</string>
   <string name="bridge_error">Chyba bridge</string>
   <string name="bridge_requires_ip">Pro použití bridge musíte zadat minimálné jednu IP adresu bridge.</string>
@@ -196,15 +187,9 @@
   <string name="the_addressable_name_for_your_hidden_service_generated_automatically_">adresovatelné jméno pro vaši skrytou službu (generováno automaticky)</string>
   <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">umožnit ladicí informace na výstup (musí používat adb nebo aLogCat k prohlížení)</string>
   <string name="project_home">Domovské(á) umístění projektu</string>
-  <string name="project_urls">https://www.torproject.org/docs/android⏎\nhttps://guardianproject.info/apps/orbot/</string>
   <string name="the_tor_license">Tor Licence</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Software třetích stran:</string>
-  <string name="tor_version">Tor v0.2.4.21: https://www.torproject.org</string>
-  <string name="libevent_version">LibEvent v2.0.9: http://www.monkey.org/~provos/libevent/</string>
-  <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
-  <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v1.0.1g: http://www.openssl.org</string>
   <string name="hidden_service_request">Aplikace požaduje otevření skrytého portu serveru %S k síti Tor. Toto je bezpečně, pokud aplikaci důvěřujete.</string>
   <string name="found_existing_tor_process">nalezev existující Tor proces…</string>
   <string name="something_bad_happened">Stalo se něco špatného. Zkontrolujte log</string>
@@ -222,12 +207,12 @@
   <string name="set_locale_summary">Zvolte jazyk pro Orbot</string>
   <string name="wizard_locale_title">Zvolte jazyk</string>
   <string name="wizard_locale_msg">Ponechat standartní, nebo přepnout stávající jazyk</string>
-  <string name="powered_by">poháněno Tor Projektem </string>
   <string name="btn_save_settings">Uložit nastavení</string>
   <string name="no_internet_connection_tor">Žádné připojení k internetu; Tor je ve standby režimu...</string>
   <string name="bandwidth_">Šířka pásma:</string>
   <string name="down">stahování</string>
   <string name="up">nahrávání</string>
+  <string name="pref_disable_network_title">Vypnout uspávání sítě</string>
   <string name="pref_disable_network_summary">Uspat Tor když není k dispozici přístup k Internetu</string>
   <string name="newnym">Vaše identita na Toru byla změněna!</string>
   <string name="menu_verify_browser">Zkontrolovat prohlížeč</string>

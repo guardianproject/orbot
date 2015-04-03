@@ -58,7 +58,6 @@
   <string name="btn_cancel">Atcelt</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Vairāk informācijas par Orbot</string>
-  <string name="wizard_details_msg">Orbot ir atvērta koda lietojumprogramma, kura ietver Tor, LibEvent un Privoxy. Programma nodrošina vietēju HTTP starpnieku (8118) un SOCKS starpnieku (9050) uz Tor tīklu. Bez tam, strādājot uz saknes tiesību līmenī strādājošas ierīces, Orbot spēj pārsūtīt visu interneta datplūsmu caur Tor.</string>
   <string name="wizard_permissions_root">Tiesības piešķirtas</string>
   <string name="wizard_permissions_stock">Orbot tiesības</string>
   <string name="wizard_premissions_msg_root">Ļoti labi! Mēs konstatējām, ka Orbot\'am ir iespējotas saknes tiesības. Mēs apdomīgi izmantosim šīs tiesības.</string>
@@ -76,16 +75,11 @@
   <string name="wizard_tips_proxy">Starpnieka iestatījumi - Uzzini kā konfigurēt lietotnes, lai tās strādātu ar Orbot</string>
   <string name="wizard_tips_duckgo">Meklētājprogrammas Duckduckgo lietotne</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
-  <string name="wizard_tips_firefox">Firefox ar Proxy Mobile pievienojumu (papildu instalēšana vēlāk)</string>
-  <string name="proxymob_setup_url">https://guardianproject.info/releases/proxymob-latest.xpi</string>
   <string name="wizard_tips_twitter">Twitter atbalsta http starpnieku \"localhost:8118\"</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Starpnieka iestatījumi</string>
-  <string name="wizard_proxy_help_msg">Ja izmantotā Android lietotne spēj nodrošināt HTTP vai SOCKS starpnieku lietošanu, tad lietotni ir ir iespējams konfigurēt lai to savienotu ar Orbot un izmantotu Tor.\n\n\n    Viesotāja iestatījumi ir 127.0.0.1 vai \"localhost\". HTTP porta iestatījums ir 8118. SOCKS\'am starpnieks ir 9050. Pēc iespējas izmantojiet SOCKS4A vai SOCKS5.\n    \n\n\n    Vairāk uzzināt par starpniekošanu izmantojot Android var iepazīstoties ar atbildēm, kuras sagatavotas biežāk uzdotiem jautājumiem jeb FAQ tīmekļa vietnē: http://tinyurl.com/proxyandroid\n    </string>
   <string name="wizard_final">Orbot ir gatavs darbam!</string>
-  <string name="wizard_final_msg">Simtiem tūkstošu ļaužu visā pasaulē lieto Tor dažādiem mērķiem.\n\nŽurnālisti un emuāru autori, cilvēktiesību aizstāvji, likumsargi, karavīri, korporācijas, apspiestībā dzīvojuši iedzīvotāji, un vienkārši parasti cilvēki .. un tagad arī Jūs to varatl!</string>
   <!--END Welcome Wizard strings (DJH)-->
-  <string name="connect_first_time">Esat sekmīgi izveidojis savienojumu ar tīklu Tor - taču tas vien NEnozīmē, ka Jūsu ierīce ir drošībā. Lai pārbaudītu savu pārlūku, no izvēlnes izraugieties izvēli \'Pārbaudīt\'. \n\nApmeklējiet mūs https://guardianproject.info/apps/orbot vai sūtiet e-pastu uz help@guardianproject.info , lai uzzinātu vairāk.</string>
   <string name="tor_check">Šī darbība tīmekļa pārlūkā atvērs https://check.torproject.org , lai redzētu vai Orbot ir konfigurēts un esat izveidojies savienojumu ar Tor.</string>
   <string name="pref_hs_group">Slēptu pakalpojumu viesošana</string>
   <string name="pref_general_group">Vispārīgi</string>
@@ -93,15 +87,12 @@
   <string name="pref_start_boot_summary">Automātiski startēt Orbot, un veidot savienojumu ar Tor, kad Jūsu Android ierīce ielādējas</string>
   <!--New Wizard Strings-->
   <!--Title Screen-->
-  <string name="wizard_title_msg">Orbot ieved Tor Android\'u pasaulē!\n\nTor palīdz aizsargāties pret satura filtrēšanu, datplūsmas analīzi un tīkla novērošanu, kuras apdraud privātumu, konfidenciālu informāciju un personiskas attiecības.\n\nŠis vednis palīdzēs Jūsu iekārtā nokonfigurēt Orbot\'u un Tor\'u.</string>
   <!--Warning screen-->
   <string name="wizard_warning_title">Brīdinājums</string>
-  <string name="wizard_warning_msg">Vienkārša Orbot instalēšana nepadarīs anonīmu Jūsu mobīlo datplūsmu.\n\nLai Jūsu ierīce un lietotnes sekmīgi lietotu Tor, Jums pareizi jānokonfigurē Orbot.</string>
   <!--Permissions screen-->
   <string name="wizard_permissions_title">Tesības</string>
   <string name="wizard_permissions_root_msg1">Pēc izvēles variet piešķirt Orbot\'am \'Superlietotāja\' piekļuves tiesības, lai iespēju lietpratīgus līdzekļus, tādus kā Transparent Proxying jeb Pārredzamā .</string>
   <string name="wizard_permissions_root_msg2">Ja nevēlaties šo darīt, lūdzu, pārliecinieties, ka izmantojat lietotnes, kuras paredzētas darbam ar Orbot</string>
-  <string name="wizard_permissions_no_root_msg">Izskatās, ka Jūsu ierīce nav ar saknes piekļuves tiesībām un nenodrošina \'Superlietotāja\' piekļuves tiesības.\n\nLai gūtu labumu no Tor, Jums jāizmanto lietotnes, kuras izveidotas darbam ar Orbot, vai tādas, kuras atbalsta HTTP vai SOCKS starpnieku iestatījumus.\n\n</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot\'a iespējotas lietotnes</string>
   <string name="wizard_tips_gibberbot">ChatSecure: Padarīt tērzēšanas lietotni drošāku ar Off-the-Record šifrēšanu</string>
@@ -153,7 +144,6 @@
   <string name="warning_error_starting_transparent_proxying_">BRĪDINĀJUMS: kļūda uzsākot pārredzamu starpniekošanu!</string>
   <string name="transproxy_rules_cleared">TransProxy kārtulas notīrītas</string>
   <string name="couldn_t_start_tor_process_">Neizdevās palaist Tor\'a procesu:</string>
-  <string name="privoxy_is_running_on_port_">Privoxy strādā portā: </string>
   <string name="setting_up_port_based_transparent_proxying_">Iestata portu nodrošinātu pārredzamu starpniekošanu...</string>
   <string name="bridge_error">Tilta kļūda</string>
   <string name="bridge_requires_ip">Lai izmantotu tilta līdzekli, jāievada vismaz viena tilta IP adrese.</string>
@@ -197,15 +187,9 @@
   <string name="the_addressable_name_for_your_hidden_service_generated_automatically_">Jūsu slēptā pakalpojuma adresējams vārds (tiek ģenerēts automātiski)</string>
   <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">iespējot atkļūdošanas žurnālu izvadei (jālieto adb vai aLogCat , lai skatītu)</string>
   <string name="project_home">Projekta mājas:</string>
-  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
   <string name="the_tor_license">Tor licence</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Trešo personu programmatūra:</string>
-  <string name="tor_version">Tor v0.2.4.21: https://www.torproject.org</string>
-  <string name="libevent_version">LibEvent v2.0.9: http://www.monkey.org/~provos/libevent/</string>
-  <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
-  <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v1.0.1g: http://www.openssl.org</string>
   <string name="hidden_service_request">Lietotne vēlas atvērt slēptu servera portu %S uz tīklu Tor. Tas ir droši, ja uzticaties lietotnei.</string>
   <string name="found_existing_tor_process">Atrada esošu Tor procesu...</string>
   <string name="something_bad_happened">Nav labi. Pārbaudiet žurnālu</string>
@@ -223,7 +207,6 @@
   <string name="set_locale_summary">Iestatiet Orbot lokalizāciju un valodu</string>
   <string name="wizard_locale_title">Izvēlēties valodu</string>
   <string name="wizard_locale_msg">Atstājiet noklusējuma vērtības, vai pārslēdziet pašreizējo valodu.</string>
-  <string name="powered_by">Darbību nodrošina Tor projekts</string>
   <string name="btn_save_settings">Saglabāt iestatījumus</string>
   <string name="no_internet_connection_tor">Nav interneta savienojuma - Tor\'s atrodas gaidstāves režīmā...</string>
   <string name="bandwidth_">Joslas platums:</string>

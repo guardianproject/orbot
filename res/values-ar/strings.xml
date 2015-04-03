@@ -58,7 +58,6 @@
   <string name="btn_cancel">إلغاء</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">بعض التفاصيل عن اوربوت</string>
-  <string name="wizard_details_msg">اوربوت هو تطبيق مفتوح المصدر ويضم تور, LibEvent وPrixovy. يعمل على توفير بروكسي HTTP محلي (8118) وبروكسي SOCKS (9050) إلى شبكة تور. و يتوفر لدى اوربوت ايضاً - علي الاجهزة ذات حساب رووت - القدرة على إرسال جميع حركات مرور التطبيقات إلي تور.</string>
   <string name="wizard_permissions_root">تم منح الإذن</string>
   <string name="wizard_permissions_stock">أذونات اوربوت</string>
   <string name="wizard_premissions_msg_root">ممتاز! لقد وجدنا بأنه لديك صلاحية حساب رووت لتمكين اوربوت. سوف نستخدم هذه السلطة بحكمة.</string>
@@ -75,16 +74,11 @@
   <string name="wizard_tips_proxy">إعدادات البروكسي - تعلم كيفية تكوين التطبيقات لتعمل مع اوربوت</string>
   <string name="wizard_tips_duckgo">تطبيق محرك البحث DuckDuckGo</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
-  <string name="wizard_tips_firefox">البرنامج الإضافي \"Proxy Mobile\" لفايرفوكس (http://tinyurl.com/getproxymob)</string>
-  <string name="proxymob_setup_url">https://guardianproject.info/releases/proxymob-latest.xpi</string>
   <string name="wizard_tips_twitter">اضبط البروكسي الخاص بتويتر إلي مستضيف \"localhost\" و المنفذ إلي 8118</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">إعدادات البروكسي</string>
-  <string name="wizard_proxy_help_msg">إذا كان تطبيق الأندرويد الذي تستخدمه يمكن ان يدعم استخدام بروكسي HTTP او SOCKS , عندها يمكنك تكوينه للإتصال باوربوت واستخدام تور.\n\n\nإعدادات المستضيف هي 127.0.0.1 او \"المستضيف المحلي\". بالنسبة إلى HTTP, فإن المنفذ هو 8118. أما بالنسبة إلى SOCKS, فإن المنفذ هو 9050. من الأفضل استخدام SOCKS4A او SOCKS5 إذا أمكن.\n    \n\n\nيمكنك معرفة المزيد عن استخدام البروكسي علي أندرويد عن طريق زيارة صفحة الأسئلة المتداولة: http://tinyurl.com/proxyandroid\n    </string>
   <string name="wizard_final">اوربوت جاهز للاستخدام!</string>
-  <string name="wizard_final_msg">مئات الآلاف من الناس في جميع أنحاء العالم يستخدمون تور لأسباب عديدة.\n\nالصحفيين والمدونين، والمدافعين عن حقوق الإنسان، والضباط والجنود والشركات والمواطنين تحت الأنظمة القمعية، والمواطنين العاديين ... والآن أنت مستعد لتستخدمه مثلهم!</string>
   <!--END Welcome Wizard strings (DJH)-->
-  <string name="connect_first_time">أنت الأن متصل شبكة تور - لكن هذا لا يعني بأن جهازك في مأمن. يمكنك استخدام خيار \'تحقق\' من القائمة لإختبار المتصفح الخاص بك. \n\n قم بزيارتنا على https://guardianproject.info/apps/orbot او ارسل رسالة إلكترونية إلى help@guardianproject.info لمعرفة المزيد.</string>
   <string name="tor_check">سيؤدي هذا إلى فتح المتصفح الخاص بك لزيارة عنوان https://check.torproject.org من اجل التحقق إذا كان تكوين اوربوت يعمل بشكل صحيح ام لا وبأنك متصل بتور.</string>
   <string name="pref_hs_group">استضافة الخدمة المخفية</string>
   <string name="pref_general_group">عام</string>
@@ -92,20 +86,18 @@
   <string name="pref_start_boot_summary">فعل اوربوت و اتصل بتور تلقائياً عندما يبدء جهاز الأندرويد الخاص بك بالعمل</string>
   <!--New Wizard Strings-->
   <!--Title Screen-->
-  <string name="wizard_title_msg">اوربوت يجلب شبكة تور للأندرويد!\n\nتور يساعدك في التغلب على تصفية المحتوى، فحص الاتصال و الرقابة على الشبكات التي تهدد خصوصيتك، و علاقاتك الشخصية و معلوماتك السرية.\n\nستقوم هذه النافذة بمساعدتك علي ضبط تكوين اوربوت و تور على جهازك.</string>
   <!--Warning screen-->
   <string name="wizard_warning_title">تحذير</string>
-  <string name="wizard_warning_msg">أن تثبيت اوربوت فقط لن يمنحك الخصوصية تلقائياً.\n\nيجب عليك تكوين اوربوت بشكل صحيح ، و جهازك ، و البرامج الاخري التي تريدها ان تستخدم تور.</string>
   <!--Permissions screen-->
   <string name="wizard_permissions_title">الصلاحيات</string>
   <string name="wizard_permissions_root_msg1">يمكنك اعطاء اوربوت صلاحيات حساب رووت لتشغيل المميزات المتقدمة مثل البروكسي الضمني.</string>
   <string name="wizard_permissions_root_msg2">إذا كنت لا تريد أن تفعل هذا, الرجاء إستخدام برامج معدة للعمل مع اوربوت</string>
-  <string name="wizard_permissions_no_root_msg">يبدو أن جهازك لا يتمتع بصلاحيات حساب رووت.\n\nولتستفيد من من تور عليك استخدام برامج صممت لتعمل مع اوربوت أو التي تدعم بروكسي HTTP أو SOCKS .\n\n</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title"> برامج معدة للعمل مع اوربوت</string>
   <string name="wizard_tips_orweb">Orweb: متصفح مصمّم للخصوصية و يعمل مع تور</string>
   <string name="wizard_tips_play">يمكنك الحصول علي جميع تطبيقات مشروع الجاردين على جوجل بلاي</string>
-  <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject\n</string>
+  <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject
+</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
     <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
@@ -149,7 +141,6 @@
   <string name="warning_error_starting_transparent_proxying_">تحذير: حصل خطأ بتشغيل البروكسي الضمني!</string>
   <string name="transproxy_rules_cleared">تم مسح قواعد البروكسي الضمني</string>
   <string name="couldn_t_start_tor_process_">لقد تعذر بدء تشغيل تور:</string>
-  <string name="privoxy_is_running_on_port_">Privoxy يعمل على منفذ:</string>
   <string name="setting_up_port_based_transparent_proxying_">يتم إعداد البروكسي الضمني حسب المنفذ...</string>
   <string name="bridge_error">خطأ بالجسر</string>
   <string name="bridge_requires_ip">حتي تستطيع إستخدم ميزة الجسور، يجب عليك ادخال عنوان انترنت لجسر واحد علي الأقل.</string>
@@ -193,12 +184,9 @@
   <string name="the_addressable_name_for_your_hidden_service_generated_automatically_">اسم العنوان لخدمتك المخفية (يتم انشائه تلقائياً)</string>
   <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">شغل سجل الـdebug ( للمراجعة يجب استخدام adb أو LogCat)</string>
   <string name="project_home">الموقع الرسمي للمشروع (المشاريع):</string>
-  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
   <string name="the_tor_license">رخصة استخدام تور</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">برامج من الطرف الثالث:</string>
-  <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
-  <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
   <string name="hidden_service_request">هناك برنامج يحاول فتح منفذ لخادم مخفي %S إلي شبكة تور. هذا السلوك آمن إذا كنت تثق بهذا البرنامج.</string>
   <string name="found_existing_tor_process">عُثر علي عملية تور سابقة تعمل...</string>
   <string name="something_bad_happened">حصل خطأ ما. افحص السجل</string>
@@ -216,7 +204,6 @@
   <string name="set_locale_summary">اختار  الإعدادات المحلية و اللغة لاوربوت</string>
   <string name="wizard_locale_title">اختار اللغة</string>
   <string name="wizard_locale_msg">إما ان تترك اللغة الافتراضية او إما ان تغير اللغة</string>
-  <string name="powered_by">مدعوم من قبل مشروع تور</string>
   <string name="btn_save_settings">حفظ الإعدادات</string>
   <string name="no_internet_connection_tor">لا يوجد اتصال بالانترنت; تور في حالة استعداد...</string>
 </resources>

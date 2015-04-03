@@ -58,7 +58,6 @@
   <string name="btn_cancel">Katkesta</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Mõned Orbot\'i detailid</string>
-  <string name="wizard_details_msg">Orbot on vabatarkvaraline rakendus mis hõlmab Tor\'i, LibEvent\'i ja Privoxy. See võimaldab kohaliku HTTP proxy (8118) ja SOCKS proxy (9050) läbi Tor võrgustiku. Ruuditud seadmel võimaldab Orbot kogu Internetiliikluse saatmist Tor kaudu.</string>
   <string name="wizard_permissions_root">Luba Antud</string>
   <string name="wizard_permissions_stock">Orbot õigused</string>
   <string name="wizard_premissions_msg_root">Vinge! Leidsime et teie seadmes on Orbot\'ile lubatud root õigused. Lubame kasutada seda väge arukalt.</string>
@@ -76,16 +75,11 @@
   <string name="wizard_tips_proxy">Proxy seaded - Õpi kuidas seadistada rakendusi töötama koos Orbot\'iga</string>
   <string name="wizard_tips_duckgo">DuckDuckGo otsingumootori rakendus</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
-  <string name="wizard_tips_firefox">Proxyrežiimi lisa Firefox\'ile (http://tinyurl.com/getproxymob)</string>
-  <string name="proxymob_setup_url">https://guardianproject.info/releases/proxymob-latest.xpi</string>
   <string name="wizard_tips_twitter">Seadistage Twitteri proxy server \"localhost\" ja port 8118</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Proxyseaded</string>
-  <string name="wizard_proxy_help_msg">Kui teie kasutatav Androidirakendus toetab HTTP või SOCKS proxyt, siis saate selle seadistada nii et see ühendus Orbot kaudu ja kasutab Tor\'i.\n\n\nServeriparameeter on 127.0.0.1 või \"localhost\". HTTP jaoks on port 8118. SOCKS jaoks on proxy port 9050. Kasutage võimalusel kas SOCKS4A või SOCKS5.\n\n\n\nAndroid süsteemis proxy kasutamise kohta saate abi KKK\'st mis asub siin: http://tinyurl.com/proxyandroid</string>
   <string name="wizard_final">Orbot on valmis!</string>
-  <string name="wizard_final_msg">Sajad tuhanded inimesed üle maailma kasutavad Tor\'i väga erinevatel põhjustel.\n\nAjakirjanikud ja blogijad, inimõiguste kaitsjad, kohtutäiturid ja poiltseinikud, sõdurid, korporatsioonid, repressiivsete riikide kodanikud ja ka lihtsalt tavakodanikud... ja nüüd olete ka teie selleks valmis!</string>
   <!--END Welcome Wizard strings (DJH)-->
-  <string name="connect_first_time">Olete edukalt ühendunud Tor võrgustikku - kuid SEE EI TÄHENDA et teie seade on turvaline. Saate oma veebisirvikut testida menüüs oleva \'Kontrolli\' valiku kaudu.\n\nLisainfoks külastage meie lehte https://guardianproject.info/apps/orbot või saatke meile e-kiri aadressile help@guardianproject.info.</string>
   <string name="tor_check">See avab teie veebisivikus lehe https://check.torproject.org mille kaudu saate näha kas Orbot on ehk seadistatud ja olete ühenduses Tor\'iga.</string>
   <string name="pref_hs_group">Peidetud Teenuste Majutus</string>
   <string name="pref_general_group">Üldist</string>
@@ -93,15 +87,12 @@
   <string name="pref_start_boot_summary">Automaatne Orbot käivitumine ja Tor külge ühendumine seadme käivitumisel</string>
   <!--New Wizard Strings-->
   <!--Title Screen-->
-  <string name="wizard_title_msg">Orbot toob Tor võimaluse ka Androidile!\n\nTor aitab teil end kaitsta sisu filtreerimise, liikluse analüüsi ja võrgujälgimise eest, mis kõik ohustavad privaatsust, usalduslikku infot ning isiklikke suhteid.\n\nSee abiline aitab seadistada teie seadmes Orbot\'i ja Tor\'i.</string>
   <!--Warning screen-->
   <string name="wizard_warning_title">Hoiatus</string>
-  <string name="wizard_warning_msg">Pelgalt Orbot\'i paigaldamine ei anonümiseeri iseeneslikult teie mobiililiiklust.\n\nPeate õigesti seadistama nii Orbot\'i, oma seadme kui ka teised rakendused, et Tor\'i edukalt kasutada.</string>
   <!--Permissions screen-->
   <string name="wizard_permissions_title">Load</string>
   <string name="wizard_permissions_root_msg1">Võite Orbot\'ile lubada \'Superkasutaja\' juurdepääsu selleks et võimaldada rohkem võimalusi, nagu näiteks Läbipaistev Proxy.</string>
   <string name="wizard_permissions_root_msg2">Kui te ei soovi seda teha, siis palun kindlustage et kasutate ainult rakendusi mis on seadistatud töötama koos Orbot\'iga</string>
-  <string name="wizard_permissions_no_root_msg">Nõib et teie seade ei ole \'rooditud\' või ei paku \'Superkasutaja\' õigusi.\n\nSelleks et Tor kasutamisest tulu tõuseks, peate kasutama rakendusi mis on mõeldud töötama koos Orbot\'iga või mis toetavad HTTP või SOCKS proxy seadistusi.\n\n</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot\'ile mõeldud rakendused</string>
   <string name="wizard_tips_gibberbot">ChatSecure: Turvaline vestlusrakendus Off-the-Record krüptoga</string>
@@ -153,7 +144,6 @@
   <string name="warning_error_starting_transparent_proxying_">Hoiatus: viga läbipaistva proxy käivitamisel!</string>
   <string name="transproxy_rules_cleared">LäbivProxy seaded nullitud</string>
   <string name="couldn_t_start_tor_process_">Tor protsessi käivitamine ebaõnnestus:</string>
-  <string name="privoxy_is_running_on_port_">Privoxy töötab pordil:</string>
   <string name="setting_up_port_based_transparent_proxying_">Pordipõhise läbipaistva proxy seadistamine...</string>
   <string name="bridge_error">Silla viga</string>
   <string name="bridge_requires_ip">Silla võimaluse kasutamiseks peate sisestama vähemalt ühe silla IP aadressi.</string>
@@ -197,15 +187,9 @@
   <string name="the_addressable_name_for_your_hidden_service_generated_automatically_">teie varjatud teenuste adresseeritav nimi (luuakse automaatselt)</string>
   <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">lubage väljastatav silumislogi (vaatamiseks peab kasutama kas adb või aLogCat utiliite) </string>
   <string name="project_home">Projekti kodu(d):</string>
-  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
   <string name="the_tor_license">Tor litsents</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Kolmanda osapoole tarkvara:</string>
-  <string name="tor_version">Tor v0.2.4.21: https://www.torproject.org</string>
-  <string name="libevent_version">LibEvent v2.0.9: http://www.monkey.org/~provos/libevent/</string>
-  <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
-  <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v1.0.1g: http://www.openssl.org</string>
   <string name="hidden_service_request">Üks rakendus soovib avada varjatud teenuse porti %S Tor võrgustikule. See on turvaline kui te usaldate seda rakendust.</string>
   <string name="found_existing_tor_process">leidus töötav Tor protsess...</string>
   <string name="something_bad_happened">Juhtus midagi halba. Kontrollige logi</string>
@@ -223,7 +207,6 @@
   <string name="set_locale_summary">Valige Orbot lokaat ja keel</string>
   <string name="wizard_locale_title">Valige keel</string>
   <string name="wizard_locale_msg">Jätkake vaikeväärtusega või vahetage kehtiv keel</string>
-  <string name="powered_by">toetatud The Tor Project poolt</string>
   <string name="btn_save_settings">Salvesta seaded</string>
   <string name="no_internet_connection_tor">Puudub Internetiühendus; Tor on ooteolekus...</string>
   <string name="bandwidth_">Ribalaius:</string>

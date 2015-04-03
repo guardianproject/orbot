@@ -58,7 +58,6 @@
   <string name="btn_cancel">Hủy</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Vài chi tiết về Orbot</string>
-  <string name="wizard_details_msg">Orbot là một ứng dụng mở rộng chứa đựng Tor, LibEvent và Privoxy. Orbot cung cấp một HTTP proxy địa phương(8118) và một SOCKS proxy(9050) vào mạng Tor. Với những thiết bị đã được bẻ khoá, Orbot còn có thể chuyển tất cả các lưu lương truy cập qua mạng Tor.  </string>
   <string name="wizard_permissions_root">Đã cho phép</string>
   <string name="wizard_permissions_stock">Phép truy cập của Orbot</string>
   <string name="wizard_premissions_msg_root">Tuyệt! Chúng tôi đã nhận ra bạn có phép truy cập gốc để kích hoạt Orbort. Chúng tôi sẽ cẩn thận. </string>
@@ -76,16 +75,11 @@
   <string name="wizard_tips_proxy">Cài Đặt Proxy - Hãy học cách thức thiết trí ứng dụng để dùng với Orbot</string>
   <string name="wizard_tips_duckgo">Ứng dụng tìm kiếm DuckDuckGo</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
-  <string name="wizard_tips_firefox">Phần bổ trợ Proxy Mobile cho Firefox (http://tinyurl.com/getproxymob)</string>
-  <string name="proxymob_setup_url">https://guardianproject.info/releases/proxymob-latest.xpi</string>
   <string name="wizard_tips_twitter">Cài Twitter proxy đến máy chủ \"localhost\" và cổng 8118</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Những Cài đặt máy chủ proxy</string>
-  <string name="wizard_proxy_help_msg">Nếu ứng dụng Android của bạn đang xài có thể hỗ trợ cách dùng proxy HTTP hoặc SOCKS, vậy bạn hãy thiết trí để kết nối qua Orbot và dùng Tor.\n\n\nCài đặt của máy chủ là 127.0.0.1 hoặc \"localhost\". Để dùng cho HTTP, số cổng sẽ là 8118. Để dùng SOCKS, số proxy sẽ là 9050. Bạn nên dùng SOCKS4A hoặc SOCKS5 nếu được.\n\n\n\nBạn có thể tìm thêm chi tiết về proxy trong thiết bị Android của bạn bằng cách xem Những Câu Hỏi Thường trong: http://tinyurl.com/proxyandroid\n</string>
   <string name="wizard_final">Orbot đã sẵn sàng!</string>
-  <string name="wizard_final_msg">Hàng trăm ngàn người trên toàn thế giới dùng Tor với nhiều lý do.\n\nNhững nhà báo và bloggers, các nhà hoạt động nhân quyền, an ninh, lính, công ty, những công dân của những nước bị đang bị đàn áp, và những người dân bình thường... và bây giờ là bạn cũng đang chuẩn bị dùng!</string>
   <!--END Welcome Wizard strings (DJH)-->
-  <string name="connect_first_time">Bạn đã kết nối với mạng Tor thành công - nhưng điều này chưa chắc chắn thiết bị của bạn là an toàn. Bạn có thể dùng chọn lựa \"Check\" từ menu để thử trình duyệt của bạn.\n\nHãy ghé thăm chúng tôi ở trang https://guardianproject.info/apps/orbot hoặc gửi điện thư đến help@guardianproject.info để biết thêm chi tiết.</string>
   <string name="tor_check">Trình duyệt sẽ mở trang https://check.torproject.org để kiểm tra xem Orbot đã được cài đặt đúng chưa và bạn có đang kết nối qua Tor hay không</string>
   <string name="pref_hs_group">Dịch vụ ẩn máy chủ</string>
   <string name="pref_general_group">Chung</string>
@@ -93,15 +87,12 @@
   <string name="pref_start_boot_summary">Tự khởi động Orbot và kết nối vào mạng Tor sau khi thiết bị Android của bạn khởi động lại</string>
   <!--New Wizard Strings-->
   <!--Title Screen-->
-  <string name="wizard_title_msg">Orbot mang Tor đến với Android!\n\nTor giúp bạn bằng cách chống lại những lúc nội dung bị kiểm duyệt, luồng thông tin bị phân tích hoặc mạng bị giám sát. Bảo vệ bạn khi những tin mật, chi tiết các nhân và các mối quan hệ cá nhân bị đe doạ.\n\nChỉ dẫn sau đây sẽ giúp bạn thiết trí Orbort và Tor trong thiết bị của bạn. </string>
   <!--Warning screen-->
   <string name="wizard_warning_title">Cảnh báo</string>
-  <string name="wizard_warning_msg">Cài đặt Orbot không sẽ không tự động biến luồng thông tin của bạn trở nên ẩn.\n\nBạn phải thiết trí Orbot, thiết bị của bạn và cách ứng dụng khác đúng cách để dùng Tor thành công. </string>
   <!--Permissions screen-->
   <string name="wizard_permissions_title">Phép ứng dụng</string>
   <string name="wizard_permissions_root_msg1">Bạn có thể tuỳ chọn cho phép Orbot có truy cập \"Superuser\"  để kích hoạt những tính năng cao, như dùng proxy trong suốt chẳng hạn.</string>
   <string name="wizard_permissions_root_msg2">Nếu bạn không muốn cài đặt này, xin hãy dùng những ứng dụng được tạo để dùng với Tor.</string>
-  <string name="wizard_permissions_no_root_msg">Xem ra thiết bị của bạn chưa được bẽ gốc hoặc có thẩm quyền truy cập gốc \'Superuser\'.\n\nĐể sử dụng những tiện ích của Tor, bạn phải cần dùng những ứng dụng được tạo để dùng với Orbot, hoặc ứng dụng có hỗ trợ HTTP hoặc có phần thiết trí SOCKS proxy.</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Các ứng dụng đã được áp dụng Orbot</string>
   <string name="wizard_tips_gibberbot">ChatSecure: ứng dụng chat an toàn với mã hóa Off-the-Record</string>
@@ -153,7 +144,6 @@
   <string name="warning_error_starting_transparent_proxying_">CHÚ Ý: khởi động proxy trong suốt đã bị lỗi!</string>
   <string name="transproxy_rules_cleared">Qui tắc TransProxy đã được xoá</string>
   <string name="couldn_t_start_tor_process_">Không thể khởi động quá trình Tor: </string>
-  <string name="privoxy_is_running_on_port_">Privoxy đang chạy qua cổng:</string>
   <string name="setting_up_port_based_transparent_proxying_">Đang cài đặt proxy trong suốt theo cổng</string>
   <string name="bridge_error">Lỗi Cầu Nối (?!)</string>
   <string name="bridge_requires_ip">Để dùng chức năng cầu nối, bạn phải đánh vào ít nhất một địa chỉ IP của cầu nối.</string>
@@ -197,15 +187,9 @@
   <string name="the_addressable_name_for_your_hidden_service_generated_automatically_">tên địa chỉ hợp lệ cho dịch vụ ẩn của bạn (được tự động tạo ra)</string>
   <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">kích hoạt danh sách gỡ lỗi để đầu ra (phải dùng abd hoặc aLogCat để xem)</string>
   <string name="project_home">Dự Án Nhà:</string>
-  <string name="project_urls">https://www.torproject.org/docs/android⏎\nhttps://guardianproject.info/apps/orbot/</string>
   <string name="the_tor_license">Giấy Phép của Tor</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Phần Mềm Thứ 3:</string>
-  <string name="tor_version">Tor v0.2.4.21: https://www.torproject.org</string>
-  <string name="libevent_version">LibEvent v2.0.9: http://www.monkey.org/~provos/libevent/</string>
-  <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
-  <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v1.0.1g: http://www.openssl.org</string>
   <string name="hidden_service_request">Một trong những ứng dụng muốn mở cổng ẩn của máy chủ %S đến mạng Tor. An toàn nếu như bạn tin tưởng vào ứng dụng này.</string>
   <string name="found_existing_tor_process">tìm ra những quá trình hiện hành của Tor...</string>
   <string name="something_bad_happened">Có chút gì đó không ổn. Xin xem lại danh sách ghi chú</string>
@@ -223,7 +207,6 @@
   <string name="set_locale_summary">Hãy chọn miền địa phương và ngôn ngữ cho Orbot </string>
   <string name="wizard_locale_title">Chọn Ngôn Ngữ</string>
   <string name="wizard_locale_msg">Giữ cài đặt mặc định hoặc chuyển qua ngôn ngữ khác</string>
-  <string name="powered_by">được lập bởi The Tor Project (?!)</string>
   <string name="btn_save_settings">Thiết lập Bảo lưu</string>
   <string name="no_internet_connection_tor">Hiện không có kết nối Internet; Trình Duyệt Tor hiện đang ở chế độ chờ...</string>
   <string name="bandwidth_">Băng thông:</string>

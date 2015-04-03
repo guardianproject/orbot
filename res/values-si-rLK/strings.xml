@@ -58,7 +58,6 @@
   <string name="btn_cancel">අවලංගු කරන්න</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Orbot පිළිබද ඇතැම් විස්තර </string>
-  <string name="wizard_details_msg">Orbot යනු Tor, LibEvent and Privoxy අඩංගු වීවෘත ප්‍රභව යොමුවකි. එමගින් දේශීය  HTTP proxy (8118) හා SOCKS proxy (9050) Tor ජාලයට සපයයි. Orbot හට මුල ප්‍රභවවල සිට සියළු අන්තර්ජාල සේවා Tor තුලින් සිදුකල හැක.</string>
   <string name="wizard_permissions_root">අනුමැතිය ලැබී ඇත.</string>
   <string name="wizard_permissions_stock">Orbot අනුමැතියන් </string>
   <string name="wizard_premissions_msg_root">අනර්ඝයි! ඔබ මුල Orbot සදහා මුල අනුමැතියන් සබල කර ඇති බව අපට අනාවරණය විය. අප මෙම බලය නැණවත් ලෙස භාවිතා කිරීමට පොරොන්දු වෙමු.</string>
@@ -75,16 +74,11 @@
   <string name="wizard_tips_proxy">නියුතු සේවා සිටුවම් - Orbot සමග ක්‍රියාකිරීමට අනෙක් යොමු වින්‍යාස කරන ආකාරය හදාරන්න </string>
   <string name="wizard_tips_duckgo">DuckDuckGo සෙවුම් යන්ත්‍ර යෙදුම </string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
-  <string name="wizard_tips_firefox">Firefox සදහා ජංගම නියුතසේවා ඈදුම (http://tinyurl.com/getproxymob)</string>
-  <string name="proxymob_setup_url">https://guardianproject.info/releases/proxymob-latest.xpi</string>
   <string name="wizard_tips_twitter">Twitter නියුතුසේවාව \"localhost\" සත්කාරකයට හා පෝටය 8118 ට පිහිටුවන්න </string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">නියුතු සේවා සිටුවම් </string>
-  <string name="wizard_proxy_help_msg">ඔබ භාවිතා කරන Android යොමුව HTTP හෝ SOCKS නියුතුසේවාවලට ආධාර කරයි නම්, ඔබට එය Orbot වලට සම්බන්ධවී Tor භාවිතා කිරීමට හැකිවන පරිදි වින්‍යාස කල හැක.\n\n\nසත්කාරකයේ සිටුවම 127.0.0.1 හෝ \"localhost\" වේ. HTTP සදහා පෝට සිටුවම 8118 වේ. SOCKS සදහා පෝට සිටුවම 9050 වේ. ඔබට හැකි නම්  SOCKS4A හෝ SOCKS5 භාවිතා කරන්න.\n\n\n\nඔබට Android නියුතුසේවා පිළිබද වැඩිදුර හැදෑරීමට http://tinyurl.com/proxyandroid හී FAQ බලන්න.\n    \n\n\n    You can learn more about proxying on Android via the FAQ at: http://tinyurl.com/proxyandroid\n    </string>
   <string name="wizard_final">Orbot සුදානම්!</string>
-  <string name="wizard_final_msg">ලෝකය පුරා වෙසෙන දහස් ගණන් මිනිසුන් විවිධ හේතුන් මත Tor භාවිතා කරයි.\n\nමාධ්‍යවේදීන් හා බ්ලොග්කරුවන්, මානව හිමිකම් ආරක්ෂකයන්, ආරක්ෂක අංශ බලධාරීන්, සෙබළුන්, සංස්ථා, සම්බාධක යොදා ඇති රාජ්‍යවල පුරවැසියන්, හා සාමාන්‍ය ජනතාව... දැන් ඔබත් Tor භාවිත කිරීමට සුදානම් ය!</string>
   <!--END Welcome Wizard strings (DJH)-->
-  <string name="connect_first_time">ඔබ Tor ජාලයට සාර්ථකව සම්බන්ධවී ඇත - නමුත් තවමත් ඔබේ උපාංගයේ සුරක්ෂිත නොවිය හැක. මෙනුවෙහි ඇති \'පරික්ෂා කරන්න\' විකල්පය තෝරාගෙන ඔබේ බ්‍රව්සරය පරික්ෂා කරන්න.\n\nhttps://guardianproject.info/apps/orbot ලිපිනයට ගොඩ වෙන්න. නැතහොත් help@guardianproject.info ලිපිනයට විද්‍යුත් ලිපියක් යවන්න.</string>
   <string name="tor_check">මෙමගින් ඔබේ වෙබ් බ්‍රව්සරය https://check.torproject.org ට විවෘත වේ. එවිට ඔබට Orbot නිසි ලෙස වින්‍යාස වී ඇතිදැයි හා ඔබ Tor ජාලයට සම්බන්ධ වී ඇතිදැයි දැකගත හැක.</string>
   <string name="pref_hs_group">සැගවුණු සේවා සත්කාර කරමින් </string>
   <string name="pref_general_group">පොදු</string>
@@ -92,15 +86,12 @@
   <string name="pref_start_boot_summary">Orbot ස්වයංක්‍රියව ආරම්භ කර, ඔබේ Android උපකරණය පටන්ගත් විට Tor වලට සම්බන්ධ කරගන්න.</string>
   <!--New Wizard Strings-->
   <!--Title Screen-->
-  <string name="wizard_title_msg">Orbit Tor වෙත Android!\n\nඅන්තර්ගතය පෙරීම, ගනුදෙනු විශ්ලේෂණය හා ඔබේ පෞද්ගලිකත්වයට තර්ජන එල්ල කරන ජාල සන්නිරික්ෂණය වැනි තර්ජනවලට එරෙහිව Tor ඔබේ දත්ත ආරක්ෂා කරයි.\n\nOrbot හා Tor ඔබේ උපාංගයේ වින්‍යාස කරගැනීමට මෙම wizard උපකාරීවේ.</string>
   <!--Warning screen-->
   <string name="wizard_warning_title">අවවාදයයි</string>
-  <string name="wizard_warning_msg">Orbot ස්ථාපනය කිරීමෙන් ඔබේ ජංගම ගනුදෙනු ස්වයංක්‍රියව නිර්නාමික නොවේ.\n\nසාර්ථකව Tor භාවිතා කිරීමට ඔබේ උපාංග හා අනෙක් යොමු තුල Orbot නිවැරදිව වින්‍යාස කල යුතුය.</string>
   <!--Permissions screen-->
   <string name="wizard_permissions_title">අනුමැතිය</string>
   <string name="wizard_permissions_root_msg1">ඔබට අවශ්‍ය නම් Orbot සුපිරි පරිශීලකයාට පාරදෘශ්‍ය නියුතු සේවා වැනි ප්‍රගමන විශේෂාංග සබල කිරීමට අවසර ලබාදිය හැක. </string>
   <string name="wizard_permissions_root_msg2">ඔබට මෙය සිදු කිරීමට අවශ්‍යතාවක් නොමැති නම්, Orbot වල වැඩා කරන යොමුන් පමණක් භාවිතා කරන්න.</string>
-  <string name="wizard_permissions_no_root_msg">ඔබේ උපාංගයටමුල හෝ  සුපිරි පරිශීලක ප්‍රවේශය ලබාදී නොමැති බව පෙනේ.\n\nTor සාර්ථකව ක්‍රියාත්මකවීමට ඔබට Orbot සමග ක්‍රියා කල හැකි, HTTP හා SOCKS නියුතු සේවා සිටවුම් වලට ආධාර කරන යොමු භාවිතා කල යුතුය.\n\n</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot සබල කල යොමු</string>
   <string name="wizard_tips_orweb">Orweb: Tor හරහා පෞද්ගලිකත්වය වැඩිකරන බ්‍රව්සරයකි.</string>
@@ -143,7 +134,6 @@
   <string name="warning_error_starting_transparent_proxying_">අවවාදයයි: පාරදෘශ්‍ය නියුතුසේවාවෙන් දෝෂයක් හටගෙන ඇත!</string>
   <string name="transproxy_rules_cleared">TransProxy කොන්දේසි ඉවත් කර ඇත </string>
   <string name="couldn_t_start_tor_process_">Tor ක්‍රියාවලින් ආරම්භ කිරීමට නොහැකි විය:</string>
-  <string name="privoxy_is_running_on_port_">Privoxy පෝටයේ ක්‍රියාත්මකවෙමින් පවතී:</string>
   <string name="setting_up_port_based_transparent_proxying_">පෝට පදනම් කරගෙන ක්‍රියාත්මක වන පාරදෘශ්‍ය නියුතුසේවා පිහිටුවීම...</string>
   <string name="bridge_error">සේතු දෝෂයකි</string>
   <string name="bridge_requires_ip">සේතු විශේෂාංග භාවිතාය සදහා ඔබ අඩු තරමින් එක් සේතු IP ලිපිනයක් හෝ ඇතුලත් කල යුතුය.</string>
@@ -187,12 +177,9 @@
   <string name="the_addressable_name_for_your_hidden_service_generated_automatically_">ඔබේ සැගවුණු සේවා සදහා අමතන නාමය (ස්වයංක්‍රියව ජනනය වූ)</string>
   <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">නිදොස් කිරීමේ ලොගය ප්‍රතිදානය සදහා සබල කරන්න (නැරඹීම සදහා adb or aLogCat භාවිතා කරන්න)</string>
   <string name="project_home">ව්‍යාපෘති නිවහන(න්):</string>
-  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
   <string name="the_tor_license">Tor බලපත්‍රය</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">3 වන පාර්ශව මෘදුකාංග</string>
-  <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
-  <string name="iptables_version">IP වගුව v1.4.7: http://www.netfilter.org</string>
   <string name="hidden_service_request">යොමුවකට සැගවුණු සේවාදායක %S පෝටය Tor ජාලයට විවෘත කිරීමට උවමනාය. මෙය සුරක්ෂිතවන්නේ ඔබ මෙම යොමුව විශ්වාස කරනවා නම්  පමණි.</string>
   <string name="found_existing_tor_process">පවතින Tor ක්‍රියාවලි හමුවිය...</string>
   <string name="something_bad_happened">යම් නොමනා දෙයක් සිදුවිය. ලොගය පරික්ෂා කර බලන්න </string>
@@ -210,6 +197,5 @@
   <string name="set_locale_summary">Orbot සදහා පෙදෙසිය සහ භාෂාව තෝරන්න </string>
   <string name="wizard_locale_title">භාෂාව තෝරන්න </string>
   <string name="wizard_locale_msg">සම්මතය අතහැර වර්තමාන භාෂාවට මාරුවෙන්න </string>
-  <string name="powered_by">Tor ව්‍යාපෘතියෙන් අනුග්‍රහය දක්වන ලදී </string>
   <string name="btn_save_settings">සිටුවම් සුරැකින්න</string>
 </resources>

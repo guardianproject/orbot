@@ -58,7 +58,6 @@
   <string name="btn_cancel">Avbryt</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Orbot-information</string>
-  <string name="wizard_details_msg">Orbot är en öppen källkods-applikation som innehåller Tor, LibEvent och Privoxy. Den tillhandahåller en lokal HTTP-proxy (8118) och en SOCKS-proxy (9050) in i Tor-nätverket. Orbot har också möjligheten, på en rootad enhet, att skicka all internet-trafik genom Tor.</string>
   <string name="wizard_permissions_root">Tillstånd givet</string>
   <string name="wizard_permissions_stock">Orbot rättigheter</string>
   <string name="wizard_premissions_msg_root">Utmärkt! Vi har upptäckt att du har root tillstånd aktiverat för Orbot. Vi kommer använda denna makt ansvarsfullt.</string>
@@ -76,16 +75,11 @@
   <string name="wizard_tips_proxy">Proxy-inställningar - Lär dig hur du konfigurerar appar att fungera med Orbot</string>
   <string name="wizard_tips_duckgo">DuckDuckGo Sökmotor App</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
-  <string name="wizard_tips_firefox">Proxy Mobile tillägg för Firefox (http://tinyurl.com/getproxymob)</string>
-  <string name="proxymob_setup_url">https://guardianproject.info/releases/proxymob-latest.xpi</string>
   <string name="wizard_tips_twitter">Ställ in Twitter proxy till värd \"localhost\" och port 8118</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Proxy-inställningar</string>
-  <string name="wizard_proxy_help_msg">Om Android appen du använder kan stödja användandet av HTTP eller SOCKS proxy, så kan du konfigurera den att ansluta till Orbot och använda Tor.\n\n\nVärd inställningarna är 127.0.0.1 eller \"localhost\". För HTTP är port inställningen 8118. För SOCKS är proxyn 9050. Du bör använda SOCKS4A eller SOCKS5 om möjligt.\n\n\nDu kan lära dig mer om proxys på Android via FAQ:n på http://tinyurl.com/proxyandroid\n</string>
   <string name="wizard_final">Orbot är redo!</string>
-  <string name="wizard_final_msg">Hundratusentals personer runt om i världen använder Tor för många olika anledningar.\n\nJournalister och bloggare, försvarare av mänskliga rättigheter, polis, soldater, företag, medborgare i totalitära regimer, och bara vanliga medborgare... och nu är du också redo!</string>
   <!--END Welcome Wizard strings (DJH)-->
-  <string name="connect_first_time">Du har framgångsrikt anslutit till Tor nätverket - men det betyder INTE att din enhet är säker. Du kan använda \"Check\" valet i menyn för att testa din webbläsare.\n\nBesök oss på https://guardianproject.info/apps/orbot eller skicka ett mail till help@guardianproject.info för att få reda på mer.</string>
   <string name="tor_check">Det här kommer att öppna din webbläsare mot https://check.torproject.org för att se om Orbot är rätt konfigurerad och du är uppkopplad mot Tor.</string>
   <string name="pref_hs_group">Gömd Service Hosting</string>
   <string name="pref_general_group">Allmänt</string>
@@ -93,15 +87,12 @@
   <string name="pref_start_boot_summary">Starta Orbot automatiskt och anslut till Tor när din Android enhet startar upp</string>
   <!--New Wizard Strings-->
   <!--Title Screen-->
-  <string name="wizard_title_msg">Orbot tar Tor till Android!\n\nTor hjälper dig försvara dig mot innehållsfiltrering, trafikanalys, och nätverksövervakning som hotar din integritet, konfidentiell information, och personliga relationer.\n\nDenna guide hjälper dig att konfigurera Orbot och Tor på din enhet.</string>
   <!--Warning screen-->
   <string name="wizard_warning_title">Varning</string>
-  <string name="wizard_warning_msg">Det räcker inte med att bara installera Orbot för att anonymisera din mobila trafik.\n\nDu måste konfigurera Orbot, din enhet, och andra appar för att använda Tor.</string>
   <!--Permissions screen-->
   <string name="wizard_permissions_title">Rättigheter</string>
   <string name="wizard_permissions_root_msg1">Du kan alternativt ge Orbot \'Superuser\' tillgång för att aktivera avancerade inställningar, som till exempel Transparent Proxy.</string>
   <string name="wizard_permissions_root_msg2">Om du inte vill göra detta, se till att bara använda appar som anpassats till Orbot.</string>
-  <string name="wizard_permissions_no_root_msg">Din enhet verkar inte vara rootad eller ge \'Superuser\' tillgång.\n\nFör att du ska ha användning av Tor måste du använda appar som är anpassade till Orbot, eller som stödjer HTTP eller SOCKS proxy inställningar.\n\n</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot-Anpassade Appar</string>
   <string name="wizard_tips_gibberbot">ChatSecure: Säkert chatt app med Off-the-Record kryptering</string>
@@ -153,7 +144,6 @@
   <string name="warning_error_starting_transparent_proxying_">VARNING: kunde ej starta transparent proxy!</string>
   <string name="transproxy_rules_cleared">TransProxy regler rensade</string>
   <string name="couldn_t_start_tor_process_">Kunde inte starta Tor-process:</string>
-  <string name="privoxy_is_running_on_port_">Privoxy körs på port:</string>
   <string name="setting_up_port_based_transparent_proxying_">Ställer in port-baserad transparent proxyfiering...</string>
   <string name="bridge_error">Bro Error</string>
   <string name="bridge_requires_ip">För att använda bro funktionen måste du skriva in minst en bro IP adress.</string>
@@ -197,15 +187,9 @@
   <string name="the_addressable_name_for_your_hidden_service_generated_automatically_">det adresserade namnet för din gömda tjänst (genereras automatiskt)</string>
   <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Aktivera debug loggen för output (måste använda adb eller aLogCat för att se)</string>
   <string name="project_home">Projektets hemsidor:</string>
-  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
   <string name="the_tor_license">Tor-licensen</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Tredjepartsprogramvara:</string>
-  <string name="tor_version">Tor v0.2.4.21: https://www.torproject.org</string>
-  <string name="libevent_version">LibEvent v2.0.9: http://www.monkey.org/~provos/libevent/</string>
-  <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
-  <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v1.0.1g: http://www.openssl.org</string>
   <string name="hidden_service_request">En app vill öppna gömd tjänsteport %S till Tor nätverket. Detta är säkert om du litar på appen.</string>
   <string name="found_existing_tor_process">hittade existerande Tor process...</string>
   <string name="something_bad_happened">Något dåligt hände. Kolla loggen.</string>
@@ -223,7 +207,6 @@
   <string name="set_locale_summary">Välj plats och språk för Orbot</string>
   <string name="wizard_locale_title">Välj språk</string>
   <string name="wizard_locale_msg">Lämna standard eller byt nuvarande språk</string>
-  <string name="powered_by">drivs av Tor-projektet</string>
   <string name="btn_save_settings">Spara Inställningar</string>
   <string name="no_internet_connection_tor">Ingen internetanslutning; Tor avvaktar...</string>
   <string name="bandwidth_">Bandbredd:</string>

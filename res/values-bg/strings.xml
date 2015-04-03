@@ -58,7 +58,6 @@
   <string name="btn_cancel">Откажи</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Някои Орбот детайли</string>
-  <string name="wizard_details_msg">Орбот (Orbot) е приложение с отворен код, което съдържа Tor, LibEvent и Privoxy. То предоставя локално HTTP прокси (8118) и SOCKS прокси (9050) до мрежата на Tor. На руутнати устройства, Орбот има възможността да прекарва целият интернет трафик през Tor.</string>
   <string name="wizard_permissions_root">Правата дадени</string>
   <string name="wizard_permissions_stock">Orbot Permissions</string>
   <string name="wizard_premissions_msg_root">Отлично! Засякохме, че имате root права достъпни за Орбот. Ще използваме тази сила разумно.</string>
@@ -76,16 +75,11 @@
   <string name="wizard_tips_proxy">Proxy Settings - Научете как да конфигурирате приложения да работят през Орбот</string>
   <string name="wizard_tips_duckgo">DuckDuckGo Търсачка</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
-  <string name="wizard_tips_firefox">Прокси дабавка за Firefox (http://tinyurl.com/getproxymob)</string>
-  <string name="proxymob_setup_url">https://guardianproject.info/releases/proxymob-latest.xpi</string>
   <string name="wizard_tips_twitter">Нагласете проксито на Twitter на \"localhost\" и порт 8118</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Прокси настройки</string>
-  <string name="wizard_proxy_help_msg">Ако Андроид приложенията, които използвате могат да поддържат HTTP или SOCKS прокси,тогава може да ги конфигурирате да се свързват към Орбот и да ползват Тор.\n\n\n    Настройките на хоста са 127.0.0.1 или \"localhost\". За HTTP, порта е 8118. За SOCKS, порта е 9050. По-добре да използвате SOCKS4A или SOCKS5 ако е възможно.\n    \n\n\n    Може да научите повече за прокситата на Андроид чрез FAQ на: http://tinyurl.com/proxyandroid\n    </string>
   <string name="wizard_final">Орбот е готов!</string>
-  <string name="wizard_final_msg">Стотици хиляди хора по света използват Тор по различни причини.\n\nЖурналисти и блогъри, защитници на човешките права, служители на закона, военни, корпорации, граждани под ограничителни режими, и просто обикновени граждани... и сега и ти си готов да го направиш също!</string>
   <!--END Welcome Wizard strings (DJH)-->
-  <string name="connect_first_time">Успешно се свърза с Тор мрежата - това НЕ означава, че устройството ти е подсигурено. Натисни \'Провери\' в менюото, за да тестваш браузъра си.\n\nПосети https://guardianproject.info/apps/orbot или изпрати е-мейл на help@guardianproject.info, за да научиш повече.</string>
   <string name="tor_check">Това ще те заведе на https://check.torproject.org, за да провери дали Orbot е правилно настроен и дали си свързан с Tор.</string>
   <string name="pref_hs_group">Скрити услуги</string>
   <string name="pref_general_group">Главни</string>
@@ -93,15 +87,12 @@
   <string name="pref_start_boot_summary">Автоматично стартирай Орбот и се свържи към Тор когато твоето Андроид устройство стартира</string>
   <!--New Wizard Strings-->
   <!--Title Screen-->
-  <string name="wizard_title_msg">Орбот дава Тор на Андроид!\n\nТор Ви помага да се защитите против филтрирането на съдържание, анализирането на трафик и наблюдението на мрежи, които заплашват личната и конфиденциална информация както и личните взаимоотношения.\n\nТози помощник ще конфигурира Орбот и Тор на Вашето устройство.</string>
   <!--Warning screen-->
   <string name="wizard_warning_title">Внимание</string>
-  <string name="wizard_warning_msg">Единствено инсталирането на Орбот няма автоматично да направи вашият мобилен трафик анонимен.\n\nТрябва правилно да конфигурирате Орбот, вашето устройство и други приложения, за да използвате успешно Тор.</string>
   <!--Permissions screen-->
   <string name="wizard_permissions_title">Права</string>
   <string name="wizard_permissions_root_msg1">Ако желаеш може да разрешиш на Orbot \'Superuser\' права, за да включиш допълнителни функиции, като Прозрачно Проксифициране.</string>
   <string name="wizard_permissions_root_msg2">Ако не желаеш това се увери, че програмите, които ще използваш са съвместими с Orbot </string>
-  <string name="wizard_permissions_no_root_msg">Устройството ти не е отключено(rooted) и не може да даде \'Superuser\' права.\n\nЗа да използваш Tор, ще трябва да използваш програми, които са съвмеситими с Орбот, или които подържат HTTP ли SOCKS прокси настройки.\n</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Приложения през Орбот</string>
   <string name="wizard_tips_gibberbot">ChatSecure: Криптирана чат програма с подръжка на Off-the-Record енкрипция.</string>
@@ -153,7 +144,6 @@
   <string name="warning_error_starting_transparent_proxying_">ВНИМАНИЕ: грешка при стартиране на прозрачно проски!</string>
   <string name="transproxy_rules_cleared">TransProxy правила изчистени</string>
   <string name="couldn_t_start_tor_process_">Неуспешно стартиране на Тор процес: </string>
-  <string name="privoxy_is_running_on_port_">Прокси работи на порт:</string>
   <string name="setting_up_port_based_transparent_proxying_">Конфигуриране на прозрачно прокси на база порт...</string>
   <string name="bridge_error">Бридж грешка</string>
   <string name="bridge_requires_ip">За да използвате бридж функционалността трябва да въведете поне един IP адрес на бридж.</string>
@@ -197,15 +187,9 @@
   <string name="the_addressable_name_for_your_hidden_service_generated_automatically_">Автоматично генериран адрес за твоята скрита услуга(hidden service)</string>
   <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">включи запис на дебъг доклади (трябва да ползвате aLogCat или adb, за да ги разглеждаш)</string>
   <string name="project_home">Начални Станици на Проектите:</string>
-  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
   <string name="the_tor_license">Тор лиценз</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Софтуер на трети страни: </string>
-  <string name="tor_version">Tor v0.2.4.21: https://www.torproject.org</string>
-  <string name="libevent_version">LibEvent v2.0.9: http://www.monkey.org/~provos/libevent/</string>
-  <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
-  <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v1.0.1g: http://www.openssl.org</string>
   <string name="hidden_service_request">Приложение иска да отвори порт на скрит сървър %S към Тор мрежата. Безопасно е да се доверите на приложението.</string>
   <string name="found_existing_tor_process">намерил си съвместим Tor проект...</string>
   <string name="something_bad_happened">Нещо лошо се случи. Проверете лога</string>
@@ -223,7 +207,6 @@
   <string name="set_locale_summary">Избери местоположение и език за Орбот</string>
   <string name="wizard_locale_title">Избери език</string>
   <string name="wizard_locale_msg">Остави по подразбиране или смени наличния език</string>
-  <string name="powered_by">powered by The Tor Project  </string>
   <string name="btn_save_settings">Запази настройки</string>
   <string name="no_internet_connection_tor">Няма интернет връзка; Тor е в режим на изчакване...</string>
   <string name="bandwidth_">Скорост:</string>

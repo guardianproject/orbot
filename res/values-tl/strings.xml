@@ -25,6 +25,8 @@
   <string name="menu_stop">Ihinto</string>
   <string name="menu_about">Tungkol</string>
   <string name="menu_wizard">Pantas</string>
+  <string name="main_layout_download">Download</string>
+  <string name="main_layout_upload">Upload</string>
   <string name="button_help">Tulong</string>
   <string name="button_close">Isara</string>
   <string name="button_about">Tungkol</string>
@@ -56,7 +58,6 @@
   <string name="btn_cancel">Kanselahin</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Ilang detalye sa Orbot</string>
-  <string name="wizard_details_msg">Ang Orbot ay isang open-source application na nag lalaman ng Tor, LibEvent and Privoxy. Ito ay nagkakaloob ng local HTTP proxy (8118) at ng SOCKS proxy (9050) sa loob ng Tor network. Ang Orbot ay mayroon din kakahayaan sa mga rooted device na ipadala ang lahat ng itnernet traffic gamit ang Tor.</string>
   <string name="wizard_permissions_root">Napahintulotan na</string>
   <string name="wizard_permissions_stock">Pahintulot ng Orbot</string>
   <string name="wizard_premissions_msg_root">Mahusay! Natuklasan namin na mayroon pahintulot ang Orbot para sa root. Gagamitin namin ito ng mabuti.</string>
@@ -69,11 +70,18 @@
   <string name="wizard_configure_all">I-proxy lahat ng Apps gamit ang Tor</string>
   <string name="wizard_configure_select_apps">Pumili ng isa-isang apps para sa Tor</string>
   <string name="wizard_tips_tricks">Orbot-enabled Apps</string>
+  <string name="wizard_tips_msg">Ang mga apps sa ibaba ay dinevelop upang gumana sa Orbot. I-click ang button para i-install, o sila ay mahahanap sa Google Play, sa GuardianProject.info website o sa F-Droid.org.</string>
+  <string name="wizard_tips_otrchat">ChatSecure - Isang Secure instant messaging client para sa Android</string>
   <string name="wizard_tips_proxy">Proxy Settings - Alamin paano magkompigura ng apps para gumana sa Orbot</string>
+  <string name="wizard_tips_duckgo">DuckDuckGo Search Engine app</string>
+  <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
+  <string name="wizard_tips_twitter">I-set ang Twitter proxy sa host \"localhost\" at port 8118</string>
+  <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Proxy Settings</string>
   <string name="wizard_final">Handa na ang Orbot!</string>
   <!--END Welcome Wizard strings (DJH)-->
   <string name="tor_check">Bubuksan nito ang iyong browser sa https://check.torproject.org para matignan kung ang Orbot ay na-kompigura at konektado ka sa Tor.</string>
+  <string name="pref_hs_group">Tagong Service Hosting</string>
   <string name="pref_general_group">Pangkalahatan</string>
   <string name="pref_start_boot_title">Umpisahan ang Orboot sa Boot</string>
   <string name="pref_start_boot_summary">Kusang umpisahan ang Orbot at kumonekta sa Tor sa pag bukas ng iyong Android Device</string>
@@ -84,9 +92,15 @@
   <!--Permissions screen-->
   <string name="wizard_permissions_title">Mga Pahintulot</string>
   <string name="wizard_permissions_root_msg1">Maari mong piliin bigyan ng pahintulot ang Orbot ng \'Superuser\' access para ma-enable ang mga advanced features tulad ng Transparent Proxying.</string>
+  <string name="wizard_permissions_root_msg2">Kapag ayaw mo itong gawin, siguraduhing gumamit ng apps na ginawa upang gumana kasama ang Orbot.</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot-Enabled Apps</string>
+  <string name="wizard_tips_gibberbot">ChatSecure: Isang secure chat app na may Off-the-Record Encryption</string>
+  <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
   <string name="wizard_tips_orweb">Orweb: rivacy-enhanced browser na gumagana sa Tor</string>
+  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
+  <string name="wizard_tips_play">Hanapin ang lahat ng Guardian Project apps sa Google Play</string>
+  <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
     <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
@@ -106,6 +120,8 @@
   <string name="pref_entrance_node">Entrance Nodes</string>
   <string name="pref_entrance_node_summary">Fingerprints, nicks, mga bansa at mga address para sa unang lukso</string>
   <string name="pref_entrance_node_dialog">Pumasok sa Entrance Nodes</string>
+  <string name="pref_proxy_title">Outbound Network Proxy (Optional)</string>
+  <string name="pref_proxy_type_title">Outbound Proxy Type</string>
   <string name="pref_proxy_type_summary">Mga protocol na gagamitin para sa proxy server: HTTP, HTTPS, Socks4, Socks5</string>
   <string name="pref_proxy_type_dialog">Ilagay ang Proxy Type</string>
   <string name="pref_proxy_host_dialog">Ilagay ang Proxy Host</string>
@@ -116,7 +132,6 @@
   <string name="warning_error_starting_transparent_proxying_">BABALA: error sa pag start ng transparent proxying!</string>
   <string name="transproxy_rules_cleared">Nalinis na ang mga batas ng TransProxy</string>
   <string name="couldn_t_start_tor_process_">Hindi ma umpisahan ang proseso ng Tor:</string>
-  <string name="privoxy_is_running_on_port_">Ang Privoxy ay tumatakbo sa port:</string>
   <string name="bridge_error">Error sa Bridge</string>
   <string name="bridge_requires_ip">Para magamit ang feature ng bridge, kailangan mong mag lagay ng kahit isang bridge IP address.</string>
   <string name="send_email_for_bridges">Magpadala ng email sa bridges@torproject.org na mayroong linyang  \"get bridges\" at wala ng iba pang kasama sa katawa ng email gamit ang isang gmail account.</string>

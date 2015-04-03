@@ -58,7 +58,6 @@
   <string name="btn_cancel">取消</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">更多 Orbot 信息</string>
-  <string name="wizard_details_msg">Orbot 是一个包含 Tor、LibEvent 和 Privoxy 的开源程序。它使用本地 HTTP 代理 (8118) 和 SOCKS 代理 (9050) 来接入到 Tor 网络。对于已获得 ROOT 权限的设备，利用 Orbot，所有应用程序都可通过 Tor 来进行网络通讯。</string>
   <string name="wizard_permissions_root">已获取权限</string>
   <string name="wizard_permissions_stock">Orbot 权限</string>
   <string name="wizard_premissions_msg_root">好极了！我们检测到 Orbot 已获取 Root 权限 。我们会谨慎地使用这一权限。</string>
@@ -72,19 +71,15 @@
   <string name="wizard_configure_select_apps">选择使用 Tor 的应用程序</string>
   <string name="wizard_tips_tricks">Orbot 支持的应用</string>
   <string name="wizard_tips_msg">以下应用可与 Orbot 一起使用。点击下面的按钮安装，也可以通过 Google Play 商店、GuardianProject.info 网站或 F-Droid.org 查找。</string>
+  <string name="wizard_tips_otrchat">ChatSecure - Android 上的安全即时通讯客户端</string>
   <string name="wizard_tips_proxy">代理设置 - 学习如何配置应用程序使用 Orbot</string>
   <string name="wizard_tips_duckgo">DuckDuckGo 搜索引擎应用程序</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
-  <string name="wizard_tips_firefox">用于 Firefox 的 Proxy Mobile 扩展 (http://tinyurl.com/getproxymob)</string>
-  <string name="proxymob_setup_url">https://guardianproject.info/releases/proxymob-latest.xpi</string>
   <string name="wizard_tips_twitter">将 Twitter 代理的主机设置 localhost 并将端口设置为 8118</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">代理设置</string>
-  <string name="wizard_proxy_help_msg">如果 Android 应用程序支持 HTTP 或 SOCKS 代理，那么可其进行配置以连接 Orbot 并使用 Tor 网络。\n\n主机设置为 127.0.0.1 或 localhost。对于 HTTP，端口设置为 8118；对于 SOCKS，端口设置为 9050。如果可以，请尽量使用 SOCKS4A 或 SOCKS5 代理。\n\n更多有关 Android 代理信息，请参阅 http://tinyurl.com/proxyandroid 中的常见问题</string>
   <string name="wizard_final">Orbot 已就绪！</string>
-  <string name="wizard_final_msg">在世界各地成有千上万的人出于各种各样的原因需要使用 Tor：\n\n记者和博客、人权工作者、法律工作者、军人、企业、专制国家的人民，以及像你我一样的普通公民...\n 现在你已准备就绪，欢迎加入！</string>
   <!--END Welcome Wizard strings (DJH)-->
-  <string name="connect_first_time">已成功连接 Tor 网络。不过，这并不表示你的设备是安全的。通过菜单中的“检查”选项可对浏览器进行测试。\n\n更多信息，请访问 https://guardianproject.info/apps/orbot 或发送邮件到 help@guardianproject.info。</string>
   <string name="tor_check">浏览器将启动并访问：https://check.torproject.org，以便检查 Orbot 配置是否正确以及是否可连接 Tor 网络。</string>
   <string name="pref_hs_group">隐藏服务主机</string>
   <string name="pref_general_group">常规</string>
@@ -92,18 +87,18 @@
   <string name="pref_start_boot_summary">Android 设备开机时自动启动 Orbot 并连接 Tor 网络</string>
   <!--New Wizard Strings-->
   <!--Title Screen-->
-  <string name="wizard_title_msg">Orbot 将 Tor 引入 Android 平台！\n\nTor 可以避免用户遭受内容过滤、通讯分析以及威胁隐私、机密信息与人际关系信息的网络监控。\n\n此向导将帮助用户在设备上对 Orbot 和 Tor 进行配置。</string>
   <!--Warning screen-->
   <string name="wizard_warning_title">警告</string>
-  <string name="wizard_warning_msg">仅仅安装 Orbot 并不能自动使移动通信匿名化。\n\n为了正常使用 Tor 网络，必须正确地对 Orbot、设备以及其他应用进行配置。</string>
   <!--Permissions screen-->
   <string name="wizard_permissions_title">权限</string>
   <string name="wizard_permissions_root_msg1">可选择授予 Orbot “Superuser”访问权限，以便启用高级功能，例如透明代理。</string>
   <string name="wizard_permissions_root_msg2">如果不愿授予 Orbot 该权限，请确保应用程序可使用 Orbot。</string>
-  <string name="wizard_permissions_no_root_msg">设备未获取 Root 权限或未提供 Superuser 访问权限。\n\n为了使用 Tor 网络，所用的应用程序需支持 Orbot 或支持 HTTP 或 SOCKS 代理设置。\n</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">使用 Orbot 的应用程序</string>
+  <string name="wizard_tips_gibberbot">ChatSecure：具有 OTF 加密共的安全通讯应用</string>
+  <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
   <string name="wizard_tips_orweb">Orweb：使用 Tor 网络的隐私保护浏览器</string>
+  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
   <string name="wizard_tips_play">在 Google Play 商店查找所有 Guardian Project 的应用程序</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
@@ -149,7 +144,6 @@
   <string name="warning_error_starting_transparent_proxying_">警告：启动透明代理时发生错误！</string>
   <string name="transproxy_rules_cleared">已清除 TransProxy 规则</string>
   <string name="couldn_t_start_tor_process_">无法启动 Tor 进程：</string>
-  <string name="privoxy_is_running_on_port_">Privoxy  当前所用的端口：</string>
   <string name="setting_up_port_based_transparent_proxying_">正在对基于端口的透明代理进行设置...</string>
   <string name="bridge_error">网桥错误</string>
   <string name="bridge_requires_ip">为了需使用网桥，必须至少输入一个网桥 IP 地址。</string>
@@ -193,12 +187,9 @@
   <string name="the_addressable_name_for_your_hidden_service_generated_automatically_">隐藏服务的地址（自动生成）</string>
   <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">启用调试日志输出（必须使用 adb 或 aLongCat 查看）</string>
   <string name="project_home">项目主页(s)：</string>
-  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
   <string name="the_tor_license">Tor 许可证</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">第三方软件：</string>
-  <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
-  <string name="iptables_version">Iptables v1.4.7：http://www.netfilter.org</string>
   <string name="hidden_service_request">应用程序试图打开隐藏服务主机端口 %S 连接 Tor 网络。对于可信应用这是安全的。</string>
   <string name="found_existing_tor_process">发现当前已存在 Tor 进程...</string>
   <string name="something_bad_happened">发生错误，请检查日志</string>
@@ -216,7 +207,18 @@
   <string name="set_locale_summary">选择 Orbot 的区域设置与语言</string>
   <string name="wizard_locale_title">选择语言</string>
   <string name="wizard_locale_msg">保持默认或切换为当前所用语言</string>
-  <string name="powered_by">由 Tor Project 提供技术支持</string>
   <string name="btn_save_settings">保存设置</string>
   <string name="no_internet_connection_tor">无网络连接；Tor 正处于待机状态...</string>
+  <string name="bandwidth_">宽带速度：</string>
+  <string name="down">下行</string>
+  <string name="up">上行</string>
+  <string name="pref_disable_network_title">无网络自动休眠</string>
+  <string name="pref_disable_network_summary">没有网络连接时，暂时停用 Tor</string>
+  <string name="newnym">已切换为新的 Tor 标识！</string>
+  <string name="menu_verify_browser">浏览器检测</string>
+  <string name="menu_use_chatsecure">使用 ChatSecure</string>
+  <string name="permission_manage_tor_label">管理 Tor</string>
+  <string name="permission_manage_tor_description">启用该应用可对 Tor 服务进行控制</string>
+  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">好像没有安装 Orweb。是否需要帮忙，还是直接打开浏览器？</string>
+  <string name="install_apps_">安装应用？</string>
 </resources>

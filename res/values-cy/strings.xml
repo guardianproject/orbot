@@ -52,7 +52,6 @@
   <string name="wizard_permissions_root">Caniatâd wedi\'i roi</string>
   <string name="wizard_proxy_help_info">Gosodiadau Dirprwy</string>
   <string name="wizard_final">Mae Orbot yn barod!</string>
-  <string name="wizard_final_msg">Mae cannoedd o filoedd o bobl o gwmpas y byd yn defnyddio Tor am amrywiaeth o resymau.\n\nNewyddiadurwyr a blogwyr, amddiffynwyr hawliau dynol, swyddogion gweithredu\'r gyfraith, milwyr, corfforaethau, dinasyddion cyfundrefnau gorthrymus a dinasyddion cyffredin... ac nawr rydych chi\'n barod i wneud hefyd!</string>
   <!--END Welcome Wizard strings (DJH)-->
   <string name="pref_general_group">Cyffredinol</string>
   <!--New Wizard Strings-->

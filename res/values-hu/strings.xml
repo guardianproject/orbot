@@ -58,7 +58,6 @@
   <string name="btn_cancel">Mégsem</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Néhány Orbot Tudnivaló</string>
-  <string name="wizard_details_msg">Az Orbot egy nyílt forrás alkalmazás, ami a Tor, a LibEvent és Privoxy csomagot tartalmazza. Szolgáltatása egy helyi  HTTP proxy (8118) és egy SOCKS proxy (9050) a Tor hálózat felé. Az Orbot további tulajdonsága, hogy rootolt készülék esetén képes a teljes internet forgalom Tor hálózaton keresztül küldésére.</string>
   <string name="wizard_permissions_root">Jogosultság megadva</string>
   <string name="wizard_permissions_stock">Orbot Jogosultságok</string>
   <string name="wizard_premissions_msg_root">Csodálatos! Úgy észleltük, hogy root joggot engedélyezett az Orbot számára. Ezt az erőt bölcsen fogjuk használni.</string>
@@ -76,16 +75,11 @@
   <string name="wizard_tips_proxy">Proxy beállítások - Tanulja meg, hogyan állíthatja be alkalmazásait, hogy együttműködjenek az Orbot-tal</string>
   <string name="wizard_tips_duckgo">Duckduckgo keresőgép alkalmazás</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
-  <string name="wizard_tips_firefox">Firefox Proxy Mobile kiegészítővel (külön telepítés utána)</string>
-  <string name="proxymob_setup_url">https://guardianproject.info/releases/proxymob-latest.xpi</string>
   <string name="wizard_tips_twitter">A Twitter támogatja a \"localhost:8118\" http proxyt</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Proxy beállítások</string>
-  <string name="wizard_proxy_help_msg">Ha az Android alkalmazás, amit használ képes a HTTP vagy SOCKS proxy-k használatára, akkor be tudja állítani, hogy csatlakozzon az Orbot-hoz és használj a Tor-t.\n\n\n    A host beállítás 127.0.0.1 vagy \"localhost\". A HTTP-hez a  port értéke 8118. A SOCKS esetében a proxy port értéke 9050. SOCKS4A vagy SOCKS5 proxy javasolt használnia, ha lehetséges.\n    \n\n\n    További információkat talál a proxyzásról Android készülékne a FAQ szekcióban az alábbi oldalon: http://tinyurl.com/proxyandroid\n    </string>
   <string name="wizard_final">Az Orbot kész!</string>
-  <string name="wizard_final_msg">Több száezren használják szerte a világon a Tor-t különböző okokból: újságírók, bloggerek, emberi jogi aktivisták, rendvédelmi szervek dolgozói, katonák, vállalatok, elnyomó rezsimek polgárai, vagy csak egyszerű polgárok... és most készen áll erre Ön is!</string>
   <!--END Welcome Wizard strings (DJH)-->
-  <string name="connect_first_time"> Sikeresen csatlakozott a Tor hálózathoz - de ez NEM azt jelenti, hogy a készüléke biztonságos. Ellenőrizze az \'Ellenőrzés\' opcióval a menüből a böngészőjét.\n\nLátogassa meg a https://guardianproject.info/apps/orbot oldalt vagy küldjön emailt a help@guardianproject.info címre a további információkért.</string>
   <string name="tor_check">Ez megnyitja az alapértelmezett böngészőt, és elnavigálja a https://check.torproject.orgoldalra, hogy ellenőrizze, hogy az Orbot helyesen konfigurált-e, és hogy csatlakozott-e a Tor hálózathoz.</string>
   <string name="pref_hs_group">Rejtett szolgáltatások</string>
   <string name="pref_general_group">Általános</string>
@@ -93,15 +87,12 @@
   <string name="pref_start_boot_summary">Automatikusan elindítja az Orbot-ot, és csatlakozik a hálózathoz, amikor az Android eszköz elindul</string>
   <!--New Wizard Strings-->
   <!--Title Screen-->
-  <string name="wizard_title_msg">Az Orbot elhozta a Tor-t Androidra!\n\n\A Tor megvédi a tartalomszűréstől, forgalomelemzéstől és hálózatanalízistól, amely a sértheti magánéletét, titkos üzleti információt vagy személyes kapcsolatait.\n\nEz a varázsló segít az Orbot és a Tor bekonfigurálásában az eszközén.</string>
   <!--Warning screen-->
   <string name="wizard_warning_title">Figyelem</string>
-  <string name="wizard_warning_msg">Az Orbot telepítése nem fogja automatikusan névtelenné tenni a mobil forgalmát.\n\nMegfelelően konfigurálnia kell az Orbot-ot az eszközt és az alkalmazásokat a sikeres Tor használathoz.</string>
   <!--Permissions screen-->
   <string name="wizard_permissions_title">Jogosultságok</string>
   <string name="wizard_permissions_root_msg1">Opcionálisan adhat az Orbot részére \'Superuser\' hozzáférést, amellyel bekapcsolhatja az olyan speciális szolgáltatásokat, mint például az Átlátszó Proxyzás.</string>
   <string name="wizard_permissions_root_msg2">Ha nem szeretné ezt, akkor legen biztos abban, hogy olyan alkalmazásokat használ, amiket az Orbot-tal együttműködésre terveztek.</string>
-  <string name="wizard_permissions_no_root_msg">Az eszköze alap módban fut, nem támogatja a root vagy \'Superuser\' hozzáférést.\n\nAhhoz, hogy részesüljön a Tor előnyeiből, olyan alkalmazást kell használnia, amely úgy készült, hogy együtt használható legyen az Orbot-tal, vagy legyen lehetőség HTTP vagy SOCKS proxy beállítására.\n\n</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot-engedélyezett Alkalmazások</string>
   <string name="wizard_tips_gibberbot">ChatSecure: Biztonságos üzenetküldő app OTR titkosítással</string>
@@ -153,7 +144,6 @@
   <string name="warning_error_starting_transparent_proxying_">FIGYELMEZTETÉS: probléma az átlátszó proxyzás indításakor!</string>
   <string name="transproxy_rules_cleared">TransProxy szabályok létrehozva</string>
   <string name="couldn_t_start_tor_process_">Nem indítható el a Tor process:</string>
-  <string name="privoxy_is_running_on_port_">A Privoxy a következő porton fut:</string>
   <string name="setting_up_port_based_transparent_proxying_">A port alapú átlátszó proxyzás beállítása...</string>
   <string name="bridge_error">Híd hiba</string>
   <string name="bridge_requires_ip">A híd szolgáltatás használatához legalább egy híd IP címét meg kell adnia.</string>
@@ -197,15 +187,9 @@
   <string name="the_addressable_name_for_your_hidden_service_generated_automatically_">a címezhető neve a rejtett szolgáltatásnak (automatikusan generált)</string>
   <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">a hibakeresés log engedélyezése a kimenetre (adb vagy aLogCat szükséges a megtekintéshez)</string>
   <string name="project_home">Projekt honlap(ok):</string>
-  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
   <string name="the_tor_license">A Tor Licensz</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Külső szoftverek: </string>
-  <string name="tor_version">Tor v0.2.4.21: https://www.torproject.org</string>
-  <string name="libevent_version">LibEvent v2.0.9: http://www.monkey.org/~provos/libevent/</string>
-  <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
-  <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v1.0.1g: http://www.openssl.org</string>
   <string name="hidden_service_request">Egy alkalmazás a %S rejtett szerver portot próbálja megnyitni. Ez biztonságos, ha megbízik az alkalmazásban.</string>
   <string name="found_existing_tor_process">létező Tor folyamat találva...</string>
   <string name="something_bad_happened">Valami rossz történt. Nézze meg a log fájlt.</string>
@@ -223,7 +207,6 @@
   <string name="set_locale_summary">Adja meg a helyi és nyelvi beállításokat</string>
   <string name="wizard_locale_title">Válasszon nyelvet</string>
   <string name="wizard_locale_msg">Maradjon alapértelmezetten vagy váltson az aktuális nyelvre</string>
-  <string name="powered_by">a Tor Project által gondozva</string>
   <string name="btn_save_settings">Beállítások mentése</string>
   <string name="no_internet_connection_tor">Nincs internet kapcsolat; a Tor várakozik...</string>
   <string name="bandwidth_">Sávszélesség:</string>

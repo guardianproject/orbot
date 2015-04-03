@@ -58,7 +58,6 @@
   <string name="btn_cancel">Άκυρο</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Μερικές λεπτομέρειες για το Orbot</string>
-  <string name="wizard_details_msg">Το Orbot είναι μια εφαρμογή ανοικτού λογισμικού που περιέχει τα Tor, LibEvent και Privoxy. Διαθέτει τοπικούς πληρεξούσιους διακομιστές (proxies) HTTP (8118) και SOCKS (9050) για το δίκτυο Tor. Σε συσκευές που έχουν διαμορφωθεί για ριζική χρήση (rooted devices), το Orbot μπορεί να μεταδίδει όλη την διαδυκτιακή κυκλοφορία μέσω Tor.</string>
   <string name="wizard_permissions_root">Η άδεια παραχωρήθηκε</string>
   <string name="wizard_permissions_stock">Άδειες Orbot</string>
   <string name="wizard_premissions_msg_root">Καλώς! Διαπιστώνουμε ότι έχετε ενεργοποιημένο τον υπερχρήστη για το Orbot. Θα χρησιμοποιήσουμε το προνόμιο αυτό με σύνεση.</string>
@@ -76,16 +75,11 @@
   <string name="wizard_tips_proxy">Ρυθμίσεις proxy: Μάθετε πώς θα ρυθμίσετε τις εφαρμογές ώστε να λειτουργούν με το Orbot</string>
   <string name="wizard_tips_duckgo">Εφαρμογή Μηχανής Αναζήτησης Duckduckgo</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
-  <string name="wizard_tips_firefox">Firefox με το πρόσθετο Proxy Mobile</string>
-  <string name="proxymob_setup_url">https://guardianproject.info/releases/proxymob-latest.xpi</string>
   <string name="wizard_tips_twitter">Το Twitter υποστηρίζει http proxy localhost:8118</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Ρυθμίσεις proxy</string>
-  <string name="wizard_proxy_help_msg">Αν η εφαρμογή Android που χρησιμοποιείτε υποστηρίζει διακομιστή μεσολάβησης proxy τύπου HTTP ή SOCKS, τότε μπορείτε να την ρυθμίσετε να συνδέετε με το Orbot και να χρησιμοποιεί το Tor.\n\n\nΟι ρυθμίσεις για τον υπολογιστή που φιλοξενεί το πρόγραμμα πελάτη είναι 127.0.0.1 ή \"localhost\". Για ΗΤΤΡ οι ρυθμίσεις θύρας είναι 8118. Για SOCKS η θύρα είναι 9050. Εάν αυτό είναι εφικτό, πρέπει να χρησιμοποιείτε SOCKS4A ή SOCKS5.\n\n\nΜπορείτε να μάθετε περισσότερα για την διαδικασία proxy σε περιβάλλον Android μέσω του FAQ:http://tinyurl.com/proxyandroid\n</string>
   <string name="wizard_final">Το Orbot είναι έτοιμο!</string>
-  <string name="wizard_final_msg">Εκατοντάδες χιλιάδες ανθρώπων παγκοσμίως χρησιμοποιούν το Tor για πολλούς λόγους.\n\nΟι δημοσιογράφοι και οι bloggers, οι υπερασπιστές των δικαιωμάτων του ανθρώπου, οι δυνάμεις εφαρμογής του Νόμου, οι στρατιωτικοί, οι εταιρίες, οι πολίτες καταπιεστικών καθεστώτων αλλά και συνηθισμένοι πολίτες... Και τώρα ΕΣΕΙΣ είστε έτοιμος ή έτοιμη να το χρησιμοποιήσετε, επίσης!</string>
   <!--END Welcome Wizard strings (DJH)-->
-  <string name="connect_first_time">Συνδεθήκατε με επιτυχία στο δίκτυο Tor - αυτό όμως δεν σημαίνει ότι η συσκευή σας είναι ασφαλής. Μπορείτε να χρησιμοποιήσετε την επιλογή \'Check\' από το μενού για να ελέγξετε τον περιηγητή σας.\n\nΓια να μάθετε περισσότερα, επισκεφθείτε μας στην σελίδα https://guardianproject.info/apps/orbot ή στείλτε ένα μήνυμα στην διεύθυνση help@guardianproject.info.</string>
   <string name="tor_check">Θα ανοίξει ο περιηγητής δικτύου στην σελίδα https://check.torproject.org για να διαπιστώσετε αν το Orbot είναι σωστά ρυθμισμένο και ότι είστε συνδεδεμένος/η στο Tor.</string>
   <string name="pref_hs_group">Φιλοξενία κρυφών υπηρεσιών</string>
   <string name="pref_general_group">Γενικά</string>
@@ -93,17 +87,15 @@
   <string name="pref_start_boot_summary">Αυτόματη έναρξη του Orbot και σύνδεση στο Tor όταν ξεκινά η Android συσκευή σας</string>
   <!--New Wizard Strings-->
   <!--Title Screen-->
-  <string name="wizard_title_msg">Το Orbot φέρνει το Tor στο Android!\n\nΤο Tor επιτρέπει την άμυνα απέναντι σε φιλτράρισμα περιεχομένου, ανάλυση κυκλοφορίας και δικτυακή επιτήρηση που απειλούν την ιδιωτικότητα, τις εμπιστευτικές πληροφορίες και τις προσωπικές σχέσεις.\n\nΟ οδηγός αυτός θα σας βοηθήσει να ρυθμίσετε τα Orbot και Tor της συσκευής σας.</string>
   <!--Warning screen-->
   <string name="wizard_warning_title">Προειδοποίηση</string>
-  <string name="wizard_warning_msg">Εγκαθιστώντας απλώς το Orbot δεν θα καταστήσει ανώνυμη την κυκλοφορία της κινητής συσκευής σας.\n\nπΓια να χρησιμοποιήσετε με επιτυχία το Tor Πρέπει να ρυθμίσετε σωστά το Orbot, την συσκευή σας και άλλες εφαρμογές.</string>
   <!--Permissions screen-->
   <string name="wizard_permissions_title">Άδειες</string>
   <string name="wizard_permissions_root_msg1">Αν θέλετε, μπορεί να δώσετε στο Orbot πρόσβαση \'Υπερχρήστη\' ώστε να ενεργοποιήσετε τα προχωρημένα χαρακτηριστικά, όπως το Transparent Proxying.</string>
   <string name="wizard_permissions_root_msg2">Αν δεν θέλετε κάτι τέτοιο, βεβαιωθείτε ότι χρησιμοποιείτε εφαρμογές που συνεργάζονται με το Orbot</string>
-  <string name="wizard_permissions_no_root_msg">Φαίνεται ότι η συσκευή σας δεν έχει διαμόρφωση υπερχρήστη (rooted) ή δεν παρέχει πρόσβαση \'Υπερχρήστη\'.\n\nΑν επιθυμείτε να επωφεληθείτε από το Tor θα πρέπει να χρησιμοποιήσετε εφαρμογές που συνεργάζονται με το Orbot ή υποστηρίζουν ρυθμίσεις διακομιστή διαμεσολάβησης HTTP ή SOCKS.</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Εφαρμογές συμβατές με Orbot</string>
+  <string name="wizard_tips_gibberbot">ChatSecure: Ασφαλές chat app με Off-the-Record κρυπτογράφηση</string>
   <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
   <string name="wizard_tips_orweb">Orweb - Περιηγητής ιστού με ενισχυμένη ασφάλεια που είναι συμβατό με Tor</string>
   <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
@@ -152,7 +144,6 @@
   <string name="warning_error_starting_transparent_proxying_">ΠΡΟΕΙΔΟΠΟΙΗΣΗ: σφάλμα κατά την εκκίνηση της διαφανούς μεσολάβησης διακομιστή!</string>
   <string name="transproxy_rules_cleared">Οι ρυθμίσεις του TransProxy απομακρύνθηκαν</string>
   <string name="couldn_t_start_tor_process_">Αδυναμία εκκίνησης της διεργασίας Tor:</string>
-  <string name="privoxy_is_running_on_port_">Το privoxy εκτελείται στην θύρα:</string>
   <string name="setting_up_port_based_transparent_proxying_">Ρύθμιση της διαφανούς μεσολάβησης διακομιστή κατά θύρα...</string>
   <string name="bridge_error">Σφάλμα γέφυρας</string>
   <string name="bridge_requires_ip">Για να χρησιμοποιήσετε το στοιχείο γέφυρας, πρέπει να εισάγετε την διεύθυνση ΙΡ τουλάχιστον μιας γέφυρας.</string>
@@ -196,15 +187,9 @@
   <string name="the_addressable_name_for_your_hidden_service_generated_automatically_">το όνομα προσπέλασης για τις κρυφές υπηρεσίες σας (παράγεται αυτόματα)</string>
   <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">ενεργοποίηση καταγραφών αποσφαλμάτωσης (για την προβολή τους απαιτείται χρήση adb ή aLogCat)</string>
   <string name="project_home">Ιστοσελίδες του έργου:</string>
-  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
   <string name="the_tor_license">Η Άδεια Tor</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Λογισμικό τρίτων:</string>
-  <string name="tor_version">Tor v0.2.4.21: https://www.torproject.org</string>
-  <string name="libevent_version">LibEvent v2.0.9: http://www.monkey.org/~provos/libevent/</string>
-  <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
-  <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v1.0.1g: http://www.openssl.org</string>
   <string name="hidden_service_request">Κάποια εφαρμογή προσπαθεί να ανοίξει την κρυφή θύρα διακομιστή %S στο δίκτυο Tor. Πρόκειται για ασφαλή ενέργεια, εφόσον γνωρίζετε την εφαρμογή.</string>
   <string name="found_existing_tor_process">αναζήτηση διεργασιών Tor...</string>
   <string name="something_bad_happened">Κάτι κακό συνέβη. Ελέγξτε τις καταγραφές</string>
@@ -222,12 +207,17 @@
   <string name="set_locale_summary">Επιλέξτε ρυθμίσεις τοπικότητας και γλώσσας για το Orbot</string>
   <string name="wizard_locale_title">Επιλέξτε γλώσσα</string>
   <string name="wizard_locale_msg">Παραμείνετε στην αρχική ή αλλάξτε την τρέχουσα γλώσσα</string>
-  <string name="powered_by">με την δύναμη το Tor Project</string>
   <string name="btn_save_settings">Αποθήκευση ρυθμίσεων</string>
   <string name="no_internet_connection_tor">Δεν υπάρχει σύνδεση με το διαδίκτυο, το Tor είναι σε αναμονή...</string>
+  <string name="bandwidth_">Εύρος ζώνης:</string>
+  <string name="down">κατέβασμα</string>
+  <string name="up">ανέβασμα</string>
+  <string name="pref_disable_network_title">Χωρίς Αυτόματη Αναστολή Δικτύου</string>
+  <string name="pref_disable_network_summary">Θέσε το Tor σε λειτουργία sleep όταν δεν υπάρχει διαθέσιμη σύνδεση Ιnternet</string>
   <string name="newnym">Έχετε αλλάξει επιτυχώς την ταυτότητα σας στο Tor! </string>
   <string name="menu_verify_browser">\'Ελεγχος περιηγητή ιστού</string>
   <string name="menu_use_chatsecure">Χρήση του ChatSecure</string>
+  <string name="permission_manage_tor_label">Διαχείριση Tor</string>
   <string name="permission_manage_tor_description">Εξουσιοδοτήστε την εφαρμογή να ελέγχει την υπηρεσία του Tor</string>
   <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Φαίνεται πως δεν έχετε το Orweb εγκατεστημένο.Θέλετε βοήθεια με αυτό, ή θα θέλατε να ανοιξουμε τον περιηγητή ιστου</string>
   <string name="install_apps_">Εγκατάσταση εφαρμογών?</string>

@@ -58,7 +58,6 @@
   <string name="btn_cancel">Prekini</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Nekaj podrobnosti o Orbot-u</string>
-  <string name="wizard_details_msg">Orbot je odprtokodna aplikacija, ki vsebuje Tor, LibEvent in Privoxy. Zagotavlja lokalno HTTP proxy (8118) in SOCKS proxy (9050), v omrežje Tor. Orbot ima tudi možnost, da na napravi z dostopom do korenskega direktorija, prepošilja ves internetni promet preko Tor.</string>
   <string name="wizard_permissions_root">Dovoljenje dodeljeno</string>
   <string name="wizard_permissions_stock">Orbot dovoljenja</string>
   <string name="wizard_premissions_msg_root">Odlično! Ugotovili smo, da imate omogočeno root dovoljenje za Orbot. To moč bomo modro uporabili.</string>

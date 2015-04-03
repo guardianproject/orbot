@@ -55,10 +55,10 @@
   <string name="btn_back">Geri</string>
   <string name="btn_finish">Bitir</string>
   <string name="btn_okay">Tamam</string>
-  <string name="btn_cancel">İptal\n            </string>
+  <string name="btn_cancel">İptal
+            </string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Bazı Orbot detayları</string>
-  <string name="wizard_details_msg">Orbot; Tor, LibEvent ve Privoxy\'yi kapsayan açık kaynaklı bir uygulamadır. Tor ağına yerel bir HTTP proxy (8118) ve bir SOCKS proxy (9050) temin eder. Ayrıca Orbot, rootlanmış cihazlarda tüm internet trafiğini Tor aracılığıyla gönderebilir.</string>
   <string name="wizard_permissions_root">İzin Verildi</string>
   <string name="wizard_permissions_stock">Orbot İzinleri</string>
   <string name="wizard_premissions_msg_root">Mükemmel! Root izinlerinizin Orbot için aktif olduğunu saptadık. Bu gücü akıllıca kullanacağız.</string>
@@ -76,16 +76,11 @@
   <string name="wizard_tips_proxy">Vekil Ayarları - Uygulamaların, Orbot ile birlikte çalışmalarını nasıl ayarlayacağınızı öğrenin.</string>
   <string name="wizard_tips_duckgo">DuckDuckGo Arama Motoru uygulaması</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
-  <string name="wizard_tips_firefox">Firefox için mobil proxy eklentisi (http://tinyurl.com/getproxymob)</string>
-  <string name="proxymob_setup_url">https://guardianproject.info/releases/proxymob-latest.xpi</string>
   <string name="wizard_tips_twitter">Twitter proxy sunucusunu \"localhost\" ve bağlantı noktası 8118 olarak ayarlayın</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Proxy Ayarları</string>
-  <string name="wizard_proxy_help_msg">Eğer kullandığınız uygulama HTTP veya SOCKS proxy sunucusu destekliyorsa, uygulamayı Orbot\'u kullanarak Tor ağına bağlayabilirsiniz.\n\n\nSunucu adresi 127.0.0.1 veya \"localhost\" olarak girilebilir. HTTP için bağlantı noktası 8118\'dir. SOCKS için 9050\'dir. Mümkünse SOCKS4A veya SOCKS5 kullanın.\n\n\n\nAndroid\'de proxy sunucularının kullanımı için sık sorulan sorulara bakabilirsiniz: http://tinyurl.com/proxyandroid</string>
   <string name="wizard_final">Orbot hazır!</string>
-  <string name="wizard_final_msg">Dünyada yüz binlerce kişi farklı nedenlerle Tor kullanıyor.\n\nGazeteciler ve blog yazarları, insan hakları savunucuları, kolluk kuvvetleri, askerler, şirketler, baskıcı rejimler altında yaşayan vatandaşlar, ve hatta sıradan insanlar... şimdi siz de buna hazırsınız!</string>
   <!--END Welcome Wizard strings (DJH)-->
-  <string name="connect_first_time">Tor ağına başarıyla bağlandınız - AMA bu cihazınızın güvenli olduğu anlamına gelmiyor. \'Kontrol et\' seçeneği ile tarayıcınızı kontrol edebilirsiniz.\n\nBizi şu adreste ziyaret edin: https://guardianproject.info/apps/orbot veya daha fazla bilgi almak için bize yazın: help@guardianproject.info </string>
   <string name="tor_check">Bu, Orbot\'un ayarlanıp ayarlanmadığını ve Tor\'a bağlanıp bağlanmadığınızı anlamanız amacıyla tarayıcınızda https://check.torproject.org adresini açacak.</string>
   <string name="pref_hs_group">Gizlenmiş servis sunucusu</string>
   <string name="pref_general_group">Genel</string>
@@ -93,15 +88,12 @@
   <string name="pref_start_boot_summary">Android cihaz açıldığında otomatik olarak Orbot\'u başlat ve Tor\'a bağlan.</string>
   <!--New Wizard Strings-->
   <!--Title Screen-->
-  <string name="wizard_title_msg">Orbot Tor\'u Android\'e getirir!\n\nTor sizin; özel hayat gizliliğiniz, gizli bilgileriniz ve kişisel ilişkilerinizi tehlike altına alan içerik filtrelemeye, trafik analizine ve ağ gözetimine karşı korunmanıza yardım eder.\n\nBu sihirbaz, cihazınızdaki Tor ve Orbot\'u ayarlamanıza yardım eder.</string>
   <!--Warning screen-->
   <string name="wizard_warning_title">Uyarı</string>
-  <string name="wizard_warning_msg">Orbot\'u yüklemek mobil trafiğinizi otomatik olarak anonim hale getirmeyecektir.\n\nTor\'u başarılı bir şekilde kullanabilmek için Orbot\'u, cihazınızı ve uygulamaları doğru bir şekilde ayarlamalısınız.</string>
   <!--Permissions screen-->
   <string name="wizard_permissions_title">İzinler</string>
   <string name="wizard_permissions_root_msg1">İsterseniz Orbot\'a \'Superuser\' erişimi vererek saydam proxy gibi gelişmiş ayarları aktif hale getirebilirsiniz.</string>
   <string name="wizard_permissions_root_msg2">Bunu yapmak istemiyorsanız, lütfen Orbot ile çalışmak üzere yapılmış uygulamalar kullandığınızdan emin olun</string>
-  <string name="wizard_permissions_no_root_msg">Cihazınız root edilmemiş veya \'Superuser\' erişimi sağlamıyor.\n\nTor\'dan faydalanmak için, Orbot ile çalışmak üzere yapılmış veya HTTP veya SOCKS proxy ayarları ile yapılandırılabilen uygulamaları kullanmalısınız.\n</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot\'un aktif olduğu eklentiler</string>
   <string name="wizard_tips_gibberbot">ChatSecure: Güvenli Kayıt-dışı Şifreleme yapabilen sohbet uygulaması</string>
@@ -153,7 +145,6 @@
   <string name="warning_error_starting_transparent_proxying_">UYARI: şeffaf proxy başlatılırken hata oluştu</string>
   <string name="transproxy_rules_cleared">TransProxy kuralları temizlendi</string>
   <string name="couldn_t_start_tor_process_">Tor işlemi başlatılamadı</string>
-  <string name="privoxy_is_running_on_port_">Privoxy şu port\'ta çalışıyor:</string>
   <string name="setting_up_port_based_transparent_proxying_">Port tabanlı şeffaf vekillendirme ayarlanıyor...</string>
   <string name="bridge_error">Köprü hatası</string>
   <string name="bridge_requires_ip">Köprü özelliğini kullanmak adına, en az bir tane köprü IP adresi girmelisiniz.</string>
@@ -197,15 +188,9 @@
   <string name="the_addressable_name_for_your_hidden_service_generated_automatically_">Gizlenmiş servisiniz için adreslenebilir ad (otomatik olarak verilmiştir)</string>
   <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">hata giderme kaydını tut (görüntülemek için adb veya aLogCat gerekir)</string>
   <string name="project_home">Proje adres(ler)i:</string>
-  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
   <string name="the_tor_license">Tor Lisansı</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Üçüncü Parti Yazılım:</string>
-  <string name="tor_version">Tor v0.2.4.21: https://www.torproject.org</string>
-  <string name="libevent_version">LibEvent v2.0.9: http://www.monkey.org/~provos/libevent/</string>
-  <string name="privoxy_version">Privoxy v3.0.12: http://www.privoxy.org</string>
-  <string name="iptables_version">Iptables v1.4.7: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v1.0.1g: http://www.openssl.org</string>
   <string name="hidden_service_request">Bir uygulama Tor ağında gizlenmiş sunucu bağlantı noktası %S açmak istiyor. Eğer uygulamaya güveniyorsanız bu güvenlidir.</string>
   <string name="found_existing_tor_process">varolan bir Tor işlemi bulundu...</string>
   <string name="something_bad_happened">Kötü bir şey oldu. Kayıtlara bakınız</string>
@@ -223,7 +208,6 @@
   <string name="set_locale_summary">Orbot için yerel ayarları ve dili seç</string>
   <string name="wizard_locale_title">Dili seçin</string>
   <string name="wizard_locale_msg">Varsayılanda bırak veya geçerli dile geç</string>
-  <string name="powered_by">The Tor Project tarafından desteklenmektedir.</string>
   <string name="btn_save_settings">Ayarları kaydet</string>
   <string name="no_internet_connection_tor">İnternet bağlantısı yok; Tor beklemede...</string>
   <string name="bandwidth_">Bant genişliği:</string>
