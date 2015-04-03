@@ -4,12 +4,11 @@
 	android:orientation="vertical"
 	android:layout_width="match_parent" 
 	android:layout_height="match_parent">    
-	    <TextView 
-	        android:id="@+id/diaglog"
-			android:layout_width="fill_parent" 
-			android:layout_height="wrap_content"		
-			android:paddingTop="15px"
-			android:paddingLeft="15px"
-			android:textStyle="bold"
-			android:textColor="#00ff00" />	
-	</ScrollView>			
+    <TextView 
+        android:id="@+id/diaglog"
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content"
+		android:textAppearance="?android:attr/textAppearanceMedium"
+		android:layout_margin="9dp"
+		/>
+</ScrollView>

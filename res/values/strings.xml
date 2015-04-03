@@ -318,4 +318,16 @@
   <string name="restart_orbot_to_use_this_bridge_">"Restart Orbot to use these bridges: "</string>
   
   <string name="menu_qr">QR Codes</string>
+  
+  <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">If your mobile network actively blocks Tor, you can use a Tor Bridge to access the network.\n\nYou can get a bridge address from https://bridges.torproject.org or scan a bridge QR code from a friend.\n\nAnother way to get bridges is to send an email to bridges@torproject.org. Please note that you must send the email using an address from one of the following email providers: Riseup, Gmail or Yahoo.</string>
+  
+  <string name="bridge_mode">Bridge Mode</string>
+  
+  <string name="get_bridges">Get Bridges</string>
+  
+  <string name="activate">Activate</string>
+  
+  <string name="apps_mode">Apps Mode</string>
+  
+  <string name="you_can_enable_all_apps_on_your_device_to_run_through_the_tor_network_using_the_vpn_feature_of_android_">You can enable all apps on your device to run through the Tor network using the VPN feature of Android.</string>
 </resources>

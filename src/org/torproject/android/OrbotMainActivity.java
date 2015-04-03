@@ -15,7 +15,6 @@ import org.torproject.android.service.TorServiceUtils;
 import org.torproject.android.settings.SettingsPreferences;
 import org.torproject.android.ui.ImageProgressView;
 import org.torproject.android.ui.Rotate3dAnimation;
-import org.torproject.android.ui.wizard.ChooseLocaleWizardActivity;
 import org.torproject.android.ui.wizard.PromoAppsActivity;
 
 import android.annotation.TargetApi;
@@ -267,7 +266,7 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 			public void onClick(View v) {
 
 				if (mBtnVPN.isChecked())
-					startVpnService();
+					promptStartVpnService();
 				else
 					stopVpnService();
 				
@@ -286,11 +285,8 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 			@Override
 			public void onClick(View v) {
 
-				Editor edit = mPrefs.edit();
-				edit.putBoolean("pref_bridges_enabled", mBtnBridges.isChecked());
-				edit.commit();
+				promptSetupBridges ();
 				
-				updateSettings();
 				
 			}
 
@@ -842,15 +838,116 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 					
 					setNewBridges(results);
 					
-					
 				} catch (UnsupportedEncodingException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Log.e(TAG,"unsupported",e);
 				}
         	}
         	
           }
         
+    }
+    
+    public void promptSetupBridges ()
+    {
+    	LayoutInflater li = LayoutInflater.from(this);
+        View view = li.inflate(R.layout.layout_diag, null); 
+        
+        TextView versionName = (TextView)view.findViewById(R.id.diaglog);
+        versionName.setText(R.string.if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_);    
+        
+        if (mBtnBridges.isChecked())
+        {
+	        new AlertDialog.Builder(this)
+	        .setTitle(R.string.bridge_mode)
+	        .setView(view)
+	        .setNeutralButton(R.string.get_bridges, new Dialog.OnClickListener ()
+	        {
+	
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					
+					openBrowser(URL_TOR_BRIDGES);
+	
+				}
+	
+	       	 
+	        })
+	        .setPositiveButton(R.string.activate, new Dialog.OnClickListener ()
+	        {
+	
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					
+					enableBridges (true);
+					
+				}
+	
+	       	 
+	        })
+	        .setNegativeButton(android.R.string.cancel, new Dialog.OnClickListener()
+	        {
+	        	@Override
+				public void onClick(DialogInterface dialog, int which) {
+					
+	            	mBtnBridges.setChecked(false);
+					
+				}
+	        })
+	        .show();
+        }
+        else
+        {
+        	enableBridges(false);
+        }
+        
+    }
+    
+    private void enableBridges (boolean enable)
+    {
+
+		Editor edit = mPrefs.edit();
+		edit.putBoolean("pref_bridges_enabled", enable);
+		edit.commit();
+		
+		updateSettings();
+    }
+    
+    public void promptStartVpnService ()
+    {
+    	 LayoutInflater li = LayoutInflater.from(this);
+         View view = li.inflate(R.layout.layout_diag, null); 
+         
+         TextView versionName = (TextView)view.findViewById(R.id.diaglog);
+         versionName.setText(R.string.you_can_enable_all_apps_on_your_device_to_run_through_the_tor_network_using_the_vpn_feature_of_android_);    
+         
+         new AlertDialog.Builder(this)
+         .setTitle(R.string.apps_mode)
+         .setView(view)
+         .setPositiveButton(R.string.activate, new Dialog.OnClickListener ()
+         {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				
+				startVpnService();
+				
+			}
+
+        	 
+         })
+         .setNegativeButton(android.R.string.cancel, new Dialog.OnClickListener ()
+         {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				
+				mBtnVPN.setChecked(false);
+				
+			}
+
+        	 
+         })
+         .show();
     }
     
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
