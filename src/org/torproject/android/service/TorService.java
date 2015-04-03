@@ -96,7 +96,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     private int mPortHTTP = 8118;
     private int mPortSOCKS = 9050;
     
-    private int mVpnProxyPort = 7231;
+    private int mVpnProxyPort = 9099;
     
     private static final int NOTIFY_ID = 1;
     private static final int TRANSPROXY_NOTIFY_ID = 2;
@@ -1475,6 +1475,18 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
            
         }
         
+        public void refreshVpnProxy () {
+            
+        	debug ("refreshing VPN Proxy");
+        	
+            Intent intent = new Intent(TorService.this, OrbotVpnService.class);
+            intent.setAction("refresh");
+            startService(intent);
+           
+        }
+        
+        
+        
         public void clearVpnProxy ()
         {   
         	debug ("clearing VPN Proxy");
@@ -1911,6 +1923,31 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             return false;
         }
         
+        public void setTorNetworkEnabled (final boolean isEnabled)
+        {
+
+        	
+        	//it is possible to not have a connection yet, and someone might try to newnym
+            if (conn != null)
+            {
+                new Thread ()
+                {
+                    public void run ()
+                    {
+                        try { 
+                            
+                            conn.setConf("DisableNetwork", isEnabled ? "0" : "1");
+                        	
+                        }
+                        catch (Exception ioe){
+                            debug("error requesting newnym: " + ioe.getLocalizedMessage());
+                        }
+                    }
+                }.start();
+            }
+        	
+        }
+        
         public void newIdentity () 
         {
             //it is possible to not have a connection yet, and someone might try to newnym
@@ -2048,51 +2085,74 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             final ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
             final NetworkInfo netInfo = cm.getActiveNetworkInfo();
 
+            boolean newConnectivityState = false;
+            
             if(netInfo != null && netInfo.isConnected()) {
                 // WE ARE CONNECTED: DO SOMETHING
-                mConnectivity = true;
+            	newConnectivityState = true;
             }   
             else {
                 // WE ARE NOT: DO SOMETHING ELSE
-                mConnectivity = false;
+            	newConnectivityState = false;
             }
             
-            if (doNetworKSleep)
+            //is this a change in state?
+            if (mConnectivity != newConnectivityState)
             {
-                try {
-                    updateConfiguration("DisableNetwork", mConnectivity ? "0" : "1", false);
-                    
-                    if (mCurrentStatus != STATUS_OFF)
-                    {
-                        if (!mConnectivity)
-                        {
-                            logNotice(context.getString(R.string.no_network_connectivity_putting_tor_to_sleep_));
-                            showToolbarNotification(getString(R.string.no_internet_connection_tor),NOTIFY_ID,R.drawable.ic_stat_tor_off);
-                            
-                        }
-                        else
-                        {
-                            logNotice(context.getString(R.string.network_connectivity_is_good_waking_tor_up_));
-                            showToolbarNotification(getString(R.string.status_activated),NOTIFY_ID,R.drawable.ic_stat_tor);
-
-                            if (mHasRoot && mEnableTransparentProxy && mTransProxyNetworkRefresh)
-                            {
-                                
-                                 Shell shell = Shell.startRootShell();
-                         
-                                disableTransparentProxy(shell);
-                                enableTransparentProxy(shell);
-                                
-                                shell.close();
-                            }
-                            
-                        }
-                    }
-                    
-                } catch (Exception e) {
-                    logException ("error updating state after network restart",e);
-                }
+            
+	            if (doNetworKSleep)
+	            {
+	                try {
+	                    
+	                    setTorNetworkEnabled (mConnectivity);
+	                    
+	                    if (mCurrentStatus != STATUS_OFF)
+	                    {
+	                        if (!mConnectivity)
+	                        {
+	                            logNotice(context.getString(R.string.no_network_connectivity_putting_tor_to_sleep_));
+	                            showToolbarNotification(getString(R.string.no_internet_connection_tor),NOTIFY_ID,R.drawable.ic_stat_tor_off);
+	                            
+	                        }
+	                        else
+	                        {
+	                            logNotice(context.getString(R.string.network_connectivity_is_good_waking_tor_up_));
+	                            showToolbarNotification(getString(R.string.status_activated),NOTIFY_ID,R.drawable.ic_stat_tor);
+	
+	                            if (mHasRoot && mEnableTransparentProxy && mTransProxyNetworkRefresh)
+	                            {
+	                                
+	                                 Shell shell = Shell.startRootShell();
+	                         
+	                                disableTransparentProxy(shell);
+	                                enableTransparentProxy(shell);
+	                                
+	                                shell.close();
+	                            }
+	                            
+	                        }
+	                    }
+	                    
+	                    saveConfiguration();
+	                    
+	                } catch (Exception e) {
+	                    logException ("error updating state after network restart",e);
+	                }
+	            }
+	            
+	            if (mUseVPN && mConnectivity &&  (mCurrentStatus != STATUS_OFF)) //we need to turn on VPN here so the proxy is running
+	            {
+	            	setTorNetworkEnabled (false);
+	            	refreshVpnProxy();
+	            	setTorNetworkEnabled (true);
+	            	
+	            	
+	            }
             }
+            
+            mConnectivity = newConnectivityState;
+            
+
             
         }
     };

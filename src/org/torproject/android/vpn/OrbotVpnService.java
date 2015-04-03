@@ -57,6 +57,10 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     
     private final static int VPN_MTU = 1500;
     
+    private final static boolean isLollipop = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
+    
+    private boolean isRestart = false;
+    
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
@@ -76,7 +80,7 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 	        // Stop the previous session by interrupting the thread.
 	        if (mThreadVPN == null || (!mThreadVPN.isAlive()))
 	        {
-	        	boolean isLollipop = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
+	        	
 	        	if (!isLollipop)
 	        		startSocksBypass();
 	        	
@@ -88,6 +92,13 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     		stopVPN();    		
     		if (mHandler != null)
     			mHandler.postDelayed(new Runnable () { public void run () { stopSelf(); }}, 1000);
+    	}
+    	else if (action.equals("refresh"))
+    	{
+    		if (!isLollipop)
+    			startSocksBypass();
+    		
+    		setupTun2Socks();
     	}
      
         
@@ -102,6 +113,12 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
             {
         
                 try {
+                	
+                	if (mSocksProxyServer != null)
+                	{
+                		stopSocksBypass ();
+                	}
+                	
                     mSocksProxyServer = new ProxyServer(new ServerAuthenticatorNone(null, null));
                     ProxyServer.setVpnService(OrbotVpnService.this);
                     mSocksProxyServer.start(mSocksProxyPort, 5, InetAddress.getLocalHost());
@@ -115,10 +132,20 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
         
     }
 
+    private void stopSocksBypass ()
+    {
+
+        if (mSocksProxyServer != null){
+            mSocksProxyServer.stop();
+            mSocksProxyServer = null;
+        }
+        
+        
+    }
+    
     @Override
     public void onDestroy() {
     	stopVPN();
-    	
     }
     
     private void stopVPN ()
@@ -126,10 +153,7 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 
         Tun2Socks.Stop();
         
-        if (mSocksProxyServer != null){
-            mSocksProxyServer.stop();
-            mSocksProxyServer = null;
-        }
+        stopSocksBypass ();
         
         if (mInterface != null){
             try
@@ -167,54 +191,64 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     		
     		public void run ()
     		{
-		    	if (mInterface == null)
-		    	{
-		    		try
+	    		try
+		        {
+	    			
+		    		// Set the locale to English (or probably any other language that^M
+		            // uses Hindu-Arabic (aka Latin) numerals).^M
+		            // We have found that VpnService.Builder does something locale-dependent^M
+		            // internally that causes errors when the locale uses its own numerals^M
+		            // (i.e., Farsi and Arabic).^M
+		    		Locale.setDefault(new Locale("en"));
+		    		
+		    		//String localhost = InetAddress.getLocalHost().getHostAddress();
+		    		
+		    		String vpnName = "OrbotVPN";
+		    		String virtualGateway = "10.0.0.1";
+		        	String virtualIP = "10.0.0.2";
+		        	String virtualNetMask = "255.255.255.0";
+		        	String localSocks = "127.0.0.1" + ':' + TorServiceConstants.PORT_SOCKS_DEFAULT;
+		        	String localDNS = "10.0.0.1" + ':' + TorServiceConstants.TOR_DNS_PORT_DEFAULT;
+		        	
+		        	
+			        Builder builder = new Builder();
+			        
+			        builder.setMtu(VPN_MTU);
+			        builder.addAddress(virtualGateway,28);
+			        builder.setSession(vpnName);	 
+			        builder.addRoute("0.0.0.0",0);	 
+			      //  builder.addDnsServer("8.8.8.8");
+			        
+			        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
 			        {
-		    			
-			    		// Set the locale to English (or probably any other language that^M
-			            // uses Hindu-Arabic (aka Latin) numerals).^M
-			            // We have found that VpnService.Builder does something locale-dependent^M
-			            // internally that causes errors when the locale uses its own numerals^M
-			            // (i.e., Farsi and Arabic).^M
-			    		Locale.setDefault(new Locale("en"));
-			    		
-			    		//String localhost = InetAddress.getLocalHost().getHostAddress();
-			    		
-			    		String vpnName = "OrbotVPN";
-			    		String virtualGateway = "10.0.0.1";
-			        	String virtualIP = "10.0.0.2";
-			        	String virtualNetMask = "255.255.255.0";
-			        	String localSocks = "127.0.0.1" + ':' + TorServiceConstants.PORT_SOCKS_DEFAULT;
-			        	String localDNS = "10.0.0.1" + ':' + TorServiceConstants.TOR_DNS_PORT_DEFAULT;
-			        	
-			        	
-				        Builder builder = new Builder();
-				        
-				        builder.setMtu(VPN_MTU);
-				        builder.addAddress(virtualGateway,28);
-				        builder.setSession(vpnName);	 
-				        builder.addRoute("0.0.0.0",0);	 
-				      //  builder.addDnsServer("8.8.8.8");
-				        
-				        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-				        {
-				        	doLollipopAppRouting(builder);
-				        }
-				        
-				         // Create a new interface using the builder and save the parameters.
-				        mInterface = builder.setSession(mSessionName)
-				                .setConfigureIntent(mConfigureIntent)
-				                .establish();
-				        	    
-			        	Tun2Socks.Start(mInterface, VPN_MTU, virtualIP, virtualNetMask, localSocks , localDNS , true);
+			        	doLollipopAppRouting(builder);
 			        }
-			        catch (Exception e)
+			        
+			         // Create a new interface using the builder and save the parameters.
+			        ParcelFileDescriptor newInterface = builder.setSession(mSessionName)
+			                .setConfigureIntent(mConfigureIntent)
+			                .establish();
+			        	    
+			        if (mInterface != null)
 			        {
-			        	Log.d(TAG,"tun2Socks has stopped",e);
+			        	isRestart = true;
+			        	
+			        	Tun2Socks.Stop();
+			        	mInterface.close();
+			        	
 			        }
-		    	}
-    		}
+			        
+
+		        	mInterface = newInterface;
+			        
+		        	Tun2Socks.Start(mInterface, VPN_MTU, virtualIP, virtualNetMask, localSocks , localDNS , true);
+		        }
+		        catch (Exception e)
+		        {
+		        	Log.d(TAG,"tun2Socks has stopped",e);
+		        }
+	    	}
+    		
     	};
     	
     	mThreadVPN.start();
@@ -222,22 +256,23 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	private void doLollipopAppRouting (Builder builder) throws NameNotFoundException
-    {
-
-        
-    	builder.addDisallowedApplication("org.torproject.android");
-    
-        
+    {    
+    	builder.addDisallowedApplication("org.torproject.android");   
     }
     
     @Override
     public void onRevoke() {
     
-    	SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext()); 
-        prefs.edit().putBoolean("pref_vpn", false).commit();
-        
-    	stopVPN();
-
+    	if (!isRestart)
+    	{
+	    	SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext()); 
+	        prefs.edit().putBoolean("pref_vpn", false).commit();      
+	    	stopVPN();
+	    	
+    	}
+    	
+    	isRestart = false;
+    	
         super.onRevoke();
     }
     

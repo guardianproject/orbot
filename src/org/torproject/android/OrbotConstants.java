@@ -16,7 +16,7 @@ public interface OrbotConstants {
 	//path to check Tor against
 	public final static String URL_TOR_CHECK = "https://check.torproject.org";
 	
-    public final static String URL_TOR_BRIDGES = "https://bridges.torproject.org";
+    public final static String URL_TOR_BRIDGES = "https://bridges.torproject.org/bridges?transport=";
     
     public final static String NEWLINE = "\n";
     

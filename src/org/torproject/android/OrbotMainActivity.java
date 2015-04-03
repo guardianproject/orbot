@@ -661,6 +661,8 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 		setResult(RESULT_OK);
 		
 		mBtnBridges.setChecked(true);
+		
+		enableBridges(true);
 	}
 
 	private boolean showWizard = true;
@@ -707,7 +709,7 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
               .setIcon(R.drawable.onion32)
 		      .setTitle(R.string.install_apps_)
 		      .setMessage(R.string.it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_)
-		      .setPositiveButton(android.R.string.ok, new Dialog.OnClickListener ()
+		      .setPositiveButton(R.string.install_orweb, new Dialog.OnClickListener ()
 		      {
 
 				@Override
@@ -720,7 +722,7 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 				}
 		    	  
 		      })
-		      .setNegativeButton(android.R.string.no, new Dialog.OnClickListener ()
+		      .setNegativeButton(R.string.standard_browser, new Dialog.OnClickListener ()
 		      {
 
 				@Override
@@ -860,41 +862,56 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 	        new AlertDialog.Builder(this)
 	        .setTitle(R.string.bridge_mode)
 	        .setView(view)
-	        .setNeutralButton(R.string.get_bridges, new Dialog.OnClickListener ()
-	        {
-	
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					
-					//openBrowser(URL_TOR_BRIDGES);
-	
-					sendGetBridgeEmail();
-				}
-	
-	       	 
-	        })
-	        .setPositiveButton(R.string.activate, new Dialog.OnClickListener ()
-	        {
-	
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					
-					enableBridges (true);
-					
-				}
-	
-	       	 
-	        })
-	        .setNegativeButton(android.R.string.cancel, new Dialog.OnClickListener()
+	        .setItems(R.array.bridge_options, new DialogInterface.OnClickListener() {
+               public void onClick(DialogInterface dialog, int which) {
+               // The 'which' argument contains the index position
+               // of the selected item
+            	   
+            	   switch (which)
+            	   {
+            	   case 0: //obfs 4;
+            		   showGetBridgePrompt("obfs4");
+            		   
+            		   break;
+            	   case 1: //obfs3
+            		   showGetBridgePrompt("obfs3");
+            		   
+            		   break;
+            	   case 2: //scramblesuit
+            		   showGetBridgePrompt("scramblesuit");
+            		   
+            		   break;
+            	   case 3: //azure
+            		   mPrefs.edit().putString(OrbotConstants.PREF_BRIDGES_LIST,"2").commit();
+            		   enableBridges(true);
+            		   
+            		   break;
+            	   case 4: //amazon
+            		   mPrefs.edit().putString(OrbotConstants.PREF_BRIDGES_LIST,"1").commit();
+            		   enableBridges(true);
+            		   
+            		   break;
+            	   case 5: //google
+            		   mPrefs.edit().putString(OrbotConstants.PREF_BRIDGES_LIST,"0").commit();
+            		   enableBridges(true);
+            		   
+            		   break;
+            		  
+            	   }
+            	   
+               }
+           }).setNegativeButton(android.R.string.cancel, new Dialog.OnClickListener()
 	        {
 	        	@Override
 				public void onClick(DialogInterface dialog, int which) {
 					
-	            	mBtnBridges.setChecked(false);
+	            	//mBtnBridges.setChecked(false);
 					
 				}
 	        })
 	        .show();
+	        
+	       
         }
         else
         {
@@ -903,13 +920,72 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
         
     }
     
-    private void sendGetBridgeEmail ()
+    private void showGetBridgePrompt (final String type)
+    {
+    	LayoutInflater li = LayoutInflater.from(this);
+        View view = li.inflate(R.layout.layout_diag, null); 
+        
+        TextView versionName = (TextView)view.findViewById(R.id.diaglog);
+        versionName.setText(R.string.you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_);    
+        
+        new AlertDialog.Builder(this)
+        .setTitle(R.string.bridge_mode)
+        .setView(view)
+        .setNegativeButton(android.R.string.cancel, new Dialog.OnClickListener()
+        {
+        	@Override
+			public void onClick(DialogInterface dialog, int which) {
+				
+            	//mBtnBridges.setChecked(false);
+				
+			}
+        })
+        .setNeutralButton(R.string.get_bridges_email, new Dialog.OnClickListener ()
+        {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				
+
+				sendGetBridgeEmail(type);
+
+			}
+
+       	 
+        })
+        .setPositiveButton(R.string.get_bridges_web, new Dialog.OnClickListener ()
+        {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				
+				openBrowser(URL_TOR_BRIDGES + type);
+
+			}
+
+       	 
+        }).show();
+    }
+    
+    private void sendGetBridgeEmail (String type)
     {
     	Intent intent = new Intent(Intent.ACTION_SEND);
     	intent.setType("message/rfc822");
 		intent.putExtra(Intent.EXTRA_EMAIL  , new String[]{"bridges@torproject.org"});
-    	intent.putExtra(Intent.EXTRA_SUBJECT, "Tor Bridge Request");
-
+		
+		if (type != null)
+		{
+	    	intent.putExtra(Intent.EXTRA_SUBJECT, "get transport " + type);
+	    	intent.putExtra(Intent.EXTRA_TEXT, "get transport " + type);
+	    	
+		}
+		else
+		{
+			intent.putExtra(Intent.EXTRA_SUBJECT, "get bridges");
+			intent.putExtra(Intent.EXTRA_TEXT, "get bridges");
+			
+		}
+		
     	startActivity(Intent.createChooser(intent, getString(R.string.send_email)));
     }
     
@@ -917,10 +993,45 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
     {
 
 		Editor edit = mPrefs.edit();
-		edit.putBoolean("pref_bridges_enabled", enable);
+		edit.putBoolean(OrbotConstants.PREF_BRIDGES_ENABLED, enable);
 		edit.commit();
 		
 		updateSettings();
+		
+		if (torStatus == TorServiceConstants.STATUS_ON)
+		{
+			String bridgeList = mPrefs.getString(OrbotConstants.PREF_BRIDGES_LIST,null);
+			if (bridgeList != null && bridgeList.length() > 0)
+			{
+				try
+				{
+					//do auto restart
+					stopTor ();
+					
+					mHandler.postDelayed(new Runnable () {
+						
+						public void run ()
+						{
+							try 
+							{
+								startTor();
+							}
+							catch (Exception e)
+							{
+								Log.e(TAG,"can't start orbot",e);
+							}
+						}
+					}, 2000);
+				}
+				catch (Exception e)
+				{
+					Log.e(TAG,"can't stop orbot",e);
+				}
+			}
+			
+		}
+				
+		
     }
     
     public void promptStartVpnService ()
@@ -1160,14 +1271,13 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
         //here we update the UI which is a bit sloppy and mixed up code wise
         //might be best to just call updateStatus() instead of directly manipulating UI in this method - yep makes sense
         imgStatus.setImageResource(R.drawable.torstarting);
-    //    lblStatus.setText(getString(R.string.status_starting_up));
+        lblStatus.setText(getString(R.string.status_starting_up));
         
         //we send a message here to the progressDialog i believe, but we can clarify that shortly
         Message msg = mHandler.obtainMessage(TorServiceConstants.ENABLE_TOR_MSG);
         msg.getData().putString(HANDLER_TOR_MSG, getString(R.string.status_starting_up));
         mHandler.sendMessage(msg);
       
-        
         
     }
     
