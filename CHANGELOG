@@ -1,5 +1,33 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+/** 15.0.0 Beta 1 / 3-Apr-2015 / 989d43aca7d999c413ba23ae4ebdcac72fb0f9c5 **/
+
+6fd6a5a tune first-time experience (No more wizard!)
+b318e6b update tun2socks binaries
+cd303bd commit to latest dev head
+a2e84b8 fix JNI build info
+398ff17 remove browser view handlers in manifest
+75426bb Improve VPN service support - fix network switching handling We now refresh the VPN and tun2socks interfaces when the network 
+d14dabb update tun2socks shared libraries
+6d15a46 update jni build documents
+ab8f8f1 update build path for tun2socks
+7774ca3 remove old embedded badvpn_dns
+2724551 tag badvpn to latest
+39ce7f1 improved clean-up, shutdown of Tun2Socks and VPN service
+b1d46e2 use getbridge email instead of web, as it makes more sense for users in censored/filtered locations to send an email than to a
+9d83a5b update app vpn warning
+26aeb67 updating string resources / localizations
+7dd4949 update jsocks with reduced debug output
+8493259 new helper activities for Apps and Bridge setup
+150488d fixes for onboot logic and handling
+8c5b38e more UI clean-up, removing old wizard code
+7b830a0 remove HTTP proxy for VPN - not needed anymore!
+6a7c593 a little bit of code re-org and new package for wizard
+1a66924 update ant build for new external jsocks
+9393928 add jsocks external modules and project
+e30c78b remove jsocks from main code and move to external/jsocks
+784c1c1 peg external to jsocks commit
+
 /** 15.0.0 Alpha 5 / 19-Mar-2015 / b7aa69c **/
 
 2d5ee42 calling stop() makes tun2socks crash since VPN is still enabled
