@@ -866,8 +866,9 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
 					
-					openBrowser(URL_TOR_BRIDGES);
+					//openBrowser(URL_TOR_BRIDGES);
 	
+					sendGetBridgeEmail();
 				}
 	
 	       	 
@@ -900,6 +901,16 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
         	enableBridges(false);
         }
         
+    }
+    
+    private void sendGetBridgeEmail ()
+    {
+    	Intent intent = new Intent(Intent.ACTION_SEND);
+    	intent.setType("message/rfc822");
+		intent.putExtra(Intent.EXTRA_EMAIL  , new String[]{"bridges@torproject.org"});
+    	intent.putExtra(Intent.EXTRA_SUBJECT, "Tor Bridge Request");
+
+    	startActivity(Intent.createChooser(intent, "Send Email"));
     }
     
     private void enableBridges (boolean enable)
