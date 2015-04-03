@@ -245,8 +245,8 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 				
 			}
 
-			
 		});
+		
 		mBtnBrowser.setEnabled(false);
 		
 		mBtnVPN = (ToggleButton)findViewById(R.id.btnVPN);
@@ -910,7 +910,7 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 		intent.putExtra(Intent.EXTRA_EMAIL  , new String[]{"bridges@torproject.org"});
     	intent.putExtra(Intent.EXTRA_SUBJECT, "Tor Bridge Request");
 
-    	startActivity(Intent.createChooser(intent, "Send Email"));
+    	startActivity(Intent.createChooser(intent, getString(R.string.send_email)));
     }
     
     private void enableBridges (boolean enable)
@@ -940,6 +940,8 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				
+				mPrefs.edit().putBoolean("pref_vpn", true).commit();
+		        
 				startVpnService();
 				
 			}
@@ -997,6 +999,15 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
     protected void onResume() {
         super.onResume();
 
+        if (mPrefs != null)
+        {
+	        boolean useVPN = mPrefs.getBoolean("pref_vpn", false);
+			mBtnVPN.setChecked(useVPN);
+			
+			boolean useBridges = mPrefs.getBoolean("pref_bridges_enabled", false);
+			mBtnBridges.setChecked(useBridges);
+        }
+        
         mHandler.postDelayed(new Runnable ()
         {
             public void run ()

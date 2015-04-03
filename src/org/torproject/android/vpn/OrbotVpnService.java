@@ -20,19 +20,18 @@ import java.net.InetAddress;
 import java.util.Locale;
 
 import org.torproject.android.service.TorServiceConstants;
+import org.torproject.android.service.TorServiceUtils;
 
 import android.annotation.TargetApi;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.VpnService;
 import android.os.Build;
 import android.os.Handler;
-import android.os.IBinder;
 import android.os.Message;
-import android.os.Parcel;
 import android.os.ParcelFileDescriptor;
-import android.os.RemoteException;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -124,20 +123,31 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     
     private void stopVPN ()
     {
+
+        Tun2Socks.Stop();
+        
         if (mSocksProxyServer != null){
             mSocksProxyServer.stop();
             mSocksProxyServer = null;
         }
         
-        /*
-        if (mHttpProxyServer != null)
-        {
-        	mHttpProxyServer.closeSocket();
-        }*/
-        
         if (mInterface != null){
-            onRevoke();
-            
+            try
+            {
+            	Log.d(TAG,"closing interface, destroying VPN interface");
+                
+        		mInterface.close();
+        		mInterface = null;
+            	
+            }
+            catch (Exception e)
+            {
+                Log.d(TAG,"error stopping tun2socks",e);
+            }
+            catch (Error e)
+            {
+                Log.d(TAG,"error stopping tun2socks",e);
+            }   
         }
     }
 
@@ -169,9 +179,6 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 			            // (i.e., Farsi and Arabic).^M
 			    		Locale.setDefault(new Locale("en"));
 			    		
-			    		boolean isLollipop = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
-			        	
-			    		
 			    		//String localhost = InetAddress.getLocalHost().getHostAddress();
 			    		
 			    		String vpnName = "OrbotVPN";
@@ -190,15 +197,16 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 				        builder.addRoute("0.0.0.0",0);	 
 				      //  builder.addDnsServer("8.8.8.8");
 				        
-				        if (isLollipop)
+				        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+				        {
 				        	doLollipopAppRouting(builder);
+				        }
 				        
 				         // Create a new interface using the builder and save the parameters.
 				        mInterface = builder.setSession(mSessionName)
 				                .setConfigureIntent(mConfigureIntent)
 				                .establish();
 				        	    
-				        
 			        	Tun2Socks.Start(mInterface, VPN_MTU, virtualIP, virtualNetMask, localSocks , localDNS , true);
 			        }
 			        catch (Exception e)
@@ -225,27 +233,10 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     @Override
     public void onRevoke() {
     
-        try
-        {
-        	Log.d(TAG,"closing interface, destroying VPN interface");
-            
-        	//Tun2Socks.Stop();
-        	
-        	if (mInterface != null)
-            {
-        		mInterface.close();
-        		mInterface = null;
-            }
-        	
-        }
-        catch (Exception e)
-        {
-            Log.d(TAG,"error stopping tun2socks",e);
-        }
-        catch (Error e)
-        {
-            Log.d(TAG,"error stopping tun2socks",e);
-        }
+    	SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext()); 
+        prefs.edit().putBoolean("pref_vpn", false).commit();
+        
+    	stopVPN();
 
         super.onRevoke();
     }

@@ -330,4 +330,6 @@
   <string name="apps_mode">Apps Mode</string>
   
   <string name="you_can_enable_all_apps_on_your_device_to_run_through_the_tor_network_using_the_vpn_feature_of_android_">You can enable all apps on your device to run through the Tor network using the VPN feature of Android.\n\n*WARNING* This is a new, experimental feature and in some cases may not start automatically, or may stop. It should NOT be used for anonymity, and ONLY used for getting through firewalls and filters.</string>
+  
+  <string name="send_email">Send Email</string>
 </resources>
