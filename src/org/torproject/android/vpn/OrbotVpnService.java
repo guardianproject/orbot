@@ -89,14 +89,18 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     	}
     	else if (action.equals("stop"))
     	{
+    		Log.d(TAG,"stop OrbotVPNService service!");
+    		
     		stopVPN();    		
     		if (mHandler != null)
     			mHandler.postDelayed(new Runnable () { public void run () { stopSelf(); }}, 1000);
     	}
     	else if (action.equals("refresh"))
     	{
-    		if (!isLollipop)
-    			startSocksBypass();
+    		Log.d(TAG,"refresh OrbotVPNService service!");
+    		
+    	//	if (!isLollipop)
+    		//	startSocksBypass();
     		
     		setupTun2Socks();
     	}
@@ -201,13 +205,13 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 		            // (i.e., Farsi and Arabic).^M
 		    		Locale.setDefault(new Locale("en"));
 		    		
-		    		//String localhost = InetAddress.getLocalHost().getHostAddress();
+		    		String localhost = InetAddress.getLocalHost().getHostAddress();
 		    		
 		    		String vpnName = "OrbotVPN";
 		    		String virtualGateway = "10.0.0.1";
 		        	String virtualIP = "10.0.0.2";
 		        	String virtualNetMask = "255.255.255.0";
-		        	String localSocks = "127.0.0.1" + ':' + TorServiceConstants.PORT_SOCKS_DEFAULT;
+		        	String localSocks = localhost + ':' + TorServiceConstants.PORT_SOCKS_DEFAULT;//+ "127.0.0.1" 
 		        	String localDNS = "10.0.0.1" + ':' + TorServiceConstants.TOR_DNS_PORT_DEFAULT;
 		        	
 		        	
@@ -224,20 +228,22 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 			        	doLollipopAppRouting(builder);
 			        }
 			        
+			        if (mInterface != null)
+			        {
+			        	Log.d(TAG,"Stopping existing VPN interface");
+			        	isRestart = true;
+			        	mInterface.close();
+			        	mInterface = null;
+
+			        	Tun2Socks.Stop();
+			        }
+			        
+
 			         // Create a new interface using the builder and save the parameters.
 			        ParcelFileDescriptor newInterface = builder.setSession(mSessionName)
 			                .setConfigureIntent(mConfigureIntent)
 			                .establish();
 			        	    
-			        if (mInterface != null)
-			        {
-			        	isRestart = true;
-			        	
-			        	Tun2Socks.Stop();
-			        	mInterface.close();
-			        	
-			        }
-			        
 
 		        	mInterface = newInterface;
 			        

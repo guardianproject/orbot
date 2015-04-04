@@ -128,6 +128,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     private long mTotalTrafficWritten = 0;
     private long mTotalTrafficRead = 0;
     private boolean mConnectivity = true; 
+    private int mNetworkType = -1;
 
     private long lastRead = -1;
     private long lastWritten = -1;
@@ -2086,6 +2087,9 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             final NetworkInfo netInfo = cm.getActiveNetworkInfo();
 
             boolean newConnectivityState = false;
+            int newNetType = -1;
+            
+            boolean isChanged = false;
             
             if(netInfo != null && netInfo.isConnected()) {
                 // WE ARE CONNECTED: DO SOMETHING
@@ -2096,10 +2100,17 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             	newConnectivityState = false;
             }
             
-            //is this a change in state?
-            if (mConnectivity != newConnectivityState)
-            {
+            if (netInfo!=null)
+            	newNetType = netInfo.getType();
             
+            isChanged = ((mNetworkType != newNetType)||(mConnectivity != newConnectivityState));
+            
+            //is this a change in state?
+            if (isChanged)
+            {
+            	mNetworkType = newNetType;
+            	mConnectivity = newConnectivityState;
+            	
 	            if (doNetworKSleep)
 	            {
 	                try {
@@ -2130,6 +2141,10 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 	                                shell.close();
 	                            }
 	                            
+	                            if (mUseVPN) //we need to turn on VPN here so the proxy is running
+	                            	refreshVpnProxy();
+	            	            
+	                            
 	                        }
 	                    }
 	                    
@@ -2140,18 +2155,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 	                }
 	            }
 	            
-	            if (mUseVPN && mConnectivity &&  (mCurrentStatus != STATUS_OFF)) //we need to turn on VPN here so the proxy is running
-	            {
-	            	setTorNetworkEnabled (false);
-	            	refreshVpnProxy();
-	            	setTorNetworkEnabled (true);
-	            	
-	            	
-	            }
+	            
             }
-            
-            mConnectivity = newConnectivityState;
-            
 
             
         }

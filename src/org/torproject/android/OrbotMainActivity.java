@@ -688,11 +688,7 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 		boolean isTransProxy =  mPrefs.getBoolean("pref_transparent", false);
 		
 		
-		if (isOrwebInstalled)
-		{
-			startIntent("info.guardianproject.browser",Intent.ACTION_VIEW,Uri.parse(browserLaunchUrl));						
-		}
-		else if (mBtnVPN.isChecked())
+		if (mBtnVPN.isChecked())
 		{
 			//use the system browser since VPN is on
 			Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(browserLaunchUrl));
@@ -704,6 +700,10 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 			Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(browserLaunchUrl));
 			intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
 			startActivity(intent);
+		}
+		else if (isOrwebInstalled)
+		{
+			startIntent("info.guardianproject.browser",Intent.ACTION_VIEW,Uri.parse(browserLaunchUrl));						
 		}
 		else
 		{
