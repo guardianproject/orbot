@@ -319,7 +319,7 @@
   
   <string name="menu_qr">QR Codes</string>
   
-  <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">If your mobile network actively blocks Tor, you can use a Tor Bridge to access the network.\n\nYou can get a bridge address from https://bridges.torproject.org, by emailing bridges@torproject.org, or by scanning a bridge QR code.</string>
+  <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">If your mobile network actively blocks Tor, you can use a Tor Bridge to access the network.\n\nPlease select one of the bridge types above to enable this feature.</string>
   
   <string name="bridge_mode">Bridge Mode</string>
   
@@ -334,7 +334,7 @@
   
   <string name="send_email">Send Email</string>
   
-  <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">You must can a bridge address by email, web or by scanning a bridge QR code. Once you have this address, please paste it into the \"Bridges\" preference in Orbot\'s setting and restart.</string>
+  <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">You can get a bridge address through email, the web or by scanning a bridge QR code. Select \'Email\' or \'Web\' below to request a bridge address.\n\nOnce you have an address, copy &amp; paste it into the \"Bridges\" preference in Orbot\'s setting and restart.</string>
   
   <string name="install_orweb">Install Orweb</string>
   
