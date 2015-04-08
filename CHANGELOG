@@ -1,5 +1,15 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+/** 15.0.0 RC 1 / 8-Apr-2015 / 280f69dfa10c38d880e98e71954526c68f1b3df5 **/
+776b7af use loopback address
+e6fe252 auto-restart Tor when config changes
+384fe1c fix handling of network connectivity state management
+02a42e4 update translated strings
+628c9d8 update tor to 0.2.6.7
+906ec7f v15-beta-2 small fixes for VPN
+d6eb1dc fixes for network switching with VPN enabled
+f37b935 modifications to bridge setup strings
+
 /** 15.0.0 Beta 1 / 3-Apr-2015 / 989d43aca7d999c413ba23ae4ebdcac72fb0f9c5 **/
 
 6fd6a5a tune first-time experience (No more wizard!)
