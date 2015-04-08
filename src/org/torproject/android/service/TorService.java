@@ -2105,35 +2105,38 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             
             isChanged = ((mNetworkType != newNetType)||(mConnectivity != newConnectivityState));
             
-            //is this a change in state?
-            if (isChanged)
+            mNetworkType = newNetType;
+        	mConnectivity = newConnectivityState;
+        	
+            if (doNetworKSleep)
             {
-            	mNetworkType = newNetType;
-            	mConnectivity = newConnectivityState;
-            	
-	            if (doNetworKSleep)
+	            setTorNetworkEnabled (mConnectivity);
+	            
+	            if (!mConnectivity)
+                {
+                    logNotice(context.getString(R.string.no_network_connectivity_putting_tor_to_sleep_));
+                    showToolbarNotification(getString(R.string.no_internet_connection_tor),NOTIFY_ID,R.drawable.ic_stat_tor_off);
+                    
+                }
+                else
+                {
+                    logNotice(context.getString(R.string.network_connectivity_is_good_waking_tor_up_));
+                    showToolbarNotification(getString(R.string.status_activated),NOTIFY_ID,R.drawable.ic_stat_tor);
+                }
+	            
+	            //is this a change in state?
+	            if (isChanged)
 	            {
 	                try {
 	                    
-	                    setTorNetworkEnabled (mConnectivity);
-	                    
 	                    if (mCurrentStatus != STATUS_OFF)
 	                    {
-	                        if (!mConnectivity)
+	                        if (mConnectivity)
 	                        {
-	                            logNotice(context.getString(R.string.no_network_connectivity_putting_tor_to_sleep_));
-	                            showToolbarNotification(getString(R.string.no_internet_connection_tor),NOTIFY_ID,R.drawable.ic_stat_tor_off);
-	                            
-	                        }
-	                        else
-	                        {
-	                            logNotice(context.getString(R.string.network_connectivity_is_good_waking_tor_up_));
-	                            showToolbarNotification(getString(R.string.status_activated),NOTIFY_ID,R.drawable.ic_stat_tor);
-	
 	                            if (mHasRoot && mEnableTransparentProxy && mTransProxyNetworkRefresh)
 	                            {
 	                                
-	                                 Shell shell = Shell.startRootShell();
+	                                Shell shell = Shell.startRootShell();
 	                         
 	                                disableTransparentProxy(shell);
 	                                enableTransparentProxy(shell);
@@ -2144,7 +2147,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 	                            if (mUseVPN) //we need to turn on VPN here so the proxy is running
 	                            	refreshVpnProxy();
 	            	            
-	                            
 	                        }
 	                    }
 	                    
@@ -2153,9 +2155,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 	                } catch (Exception e) {
 	                    logException ("error updating state after network restart",e);
 	                }
+		            
 	            }
-	            
-	            
             }
 
             
@@ -2467,7 +2468,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         	updateConfiguration("DNSListenAddress","10.0.0.1:" + TorServiceConstants.TOR_DNS_PORT_DEFAULT,false);
         }
         
-       // updateConfiguration("DisableNetwork","0", false);
+        updateConfiguration("DisableNetwork","0", false);
 
         saveConfiguration();
     
