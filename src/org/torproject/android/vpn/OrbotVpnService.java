@@ -205,15 +205,14 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 		            // (i.e., Farsi and Arabic).^M
 		    		Locale.setDefault(new Locale("en"));
 		    		
-		    		String localhost = InetAddress.getLocalHost().getHostAddress();
+		    		String localhost = "127.0.0.1";//InetAddress.getLocalHost().getHostAddress();
 		    		
 		    		String vpnName = "OrbotVPN";
 		    		String virtualGateway = "10.0.0.1";
 		        	String virtualIP = "10.0.0.2";
 		        	String virtualNetMask = "255.255.255.0";
-		        	String localSocks = localhost + ':' + TorServiceConstants.PORT_SOCKS_DEFAULT;//+ "127.0.0.1" 
+		        	String localSocks = localhost + ':' + TorServiceConstants.PORT_SOCKS_DEFAULT;
 		        	String localDNS = "10.0.0.1" + ':' + TorServiceConstants.TOR_DNS_PORT_DEFAULT;
-		        	
 		        	
 			        Builder builder = new Builder();
 			        
@@ -221,7 +220,6 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 			        builder.addAddress(virtualGateway,28);
 			        builder.setSession(vpnName);	 
 			        builder.addRoute("0.0.0.0",0);	 
-			      //  builder.addDnsServer("8.8.8.8");
 			        
 			        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
 			        {
