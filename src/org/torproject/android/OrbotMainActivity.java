@@ -822,6 +822,7 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
         else if (request == REQUEST_VPN && response == RESULT_OK)
         {
             startService(TorServiceConstants.CMD_VPN);
+            restartTor ();   
         }
         
         IntentResult scanResult = IntentIntegrator.parseActivityResult(request, response, data);
@@ -1005,35 +1006,40 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 			String bridgeList = mPrefs.getString(OrbotConstants.PREF_BRIDGES_LIST,null);
 			if (bridgeList != null && bridgeList.length() > 0)
 			{
-				try
-				{
-					//do auto restart
-					stopTor ();
-					
-					mHandler.postDelayed(new Runnable () {
-						
-						public void run ()
-						{
-							try 
-							{
-								startTor();
-							}
-							catch (Exception e)
-							{
-								Log.e(TAG,"can't start orbot",e);
-							}
-						}
-					}, 2000);
-				}
-				catch (Exception e)
-				{
-					Log.e(TAG,"can't stop orbot",e);
-				}
+				restartTor ();
 			}
 			
 		}
 				
 		
+    }
+    
+    private void restartTor ()
+    {
+    	try
+		{
+			//do auto restart
+			stopTor ();
+			
+			mHandler.postDelayed(new Runnable () {
+				
+				public void run ()
+				{
+					try 
+					{
+						startTor();
+					}
+					catch (Exception e)
+					{
+						Log.e(TAG,"can't start orbot",e);
+					}
+				}
+			}, 2000);
+		}
+		catch (Exception e)
+		{
+			Log.e(TAG,"can't stop orbot",e);
+		}
     }
     
     public void promptStartVpnService ()
@@ -1086,13 +1092,14 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
         else
         {
             startService(TorServiceConstants.CMD_VPN);
-
+            restartTor ();
         }
     }
     
     public void stopVpnService ()
     {    	
         startService(TorServiceConstants.CMD_VPN_CLEAR);
+        restartTor ();
     }
 
     private boolean flushTransProxy ()
