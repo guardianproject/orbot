@@ -75,10 +75,14 @@
   <string name="wizard_tips_proxy">Vermittlungseinstellungen - Lernen, wie Sie Anwendungen so konfigurieren, dass sie mit Orbot zusammenarbeiten.</string>
   <string name="wizard_tips_duckgo">Duckduckgo-Suchmaschinen-App</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
+  <string name="wizard_tips_firefox">Proxy Mobile Add-on für Firefox (https://guardianproject.info/apps/firefoxprivacy)</string>
+  <string name="proxymob_setup_url">https://guardianproject.info/apps/firefoxprivacy</string>
   <string name="wizard_tips_twitter">Twitter-Proxy auf den Rechner »localhost« und Port 8118 einstellen</string>
+  <string name="story_maker_url">https://play.google.com/store/apps/details?id=info.guardianproject.mrapp</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Vermittlungseinstellungen</string>
   <string name="wizard_final">Orbot ist bereit!</string>
+  <string name="wizard_exit_at_first_screen_toast">Bitte konfigurieren Sie Orbot, bevor Sie es verwenden können!</string>
   <!--END Welcome Wizard strings (DJH)-->
   <string name="tor_check">Durch das Bestätigen mit »OK« wird die Seite https://check.torproject.org in Ihrem Webbrowser geöffnet, sodass Sie überprüfen können, ob Orbot richtig konfiguriert ist und Sie mit Tor verbunden sind.</string>
   <string name="pref_hs_group">Versteckter Rechnerdienst</string>
@@ -120,6 +124,9 @@
   <string name="pref_entrance_node">Eingangsnetzknoten</string>
   <string name="pref_entrance_node_summary">Fingerabdrücke, Spitznamen, Länder und Adressen für den ersten Knotenpunkt.</string>
   <string name="pref_entrance_node_dialog">Eingangsnetzknoten eingeben</string>
+  <string name="button_proxy_all">Alles über Proxy</string>
+  <string name="button_proxy_none">Nichts über Proxy</string>
+  <string name="button_invert_selection">Auswahl umkehren</string>
   <string name="pref_proxy_title">Ausgehender Netzwerk-Proxy (Optional)</string>
   <string name="pref_proxy_type_title">Ausgehender Vermittlungstyp</string>
   <string name="pref_proxy_type_summary">Protokoll zur Verwendung des Proxy Servers: HTTP, HTTPS, Socks4, Socks5</string>
@@ -144,6 +151,7 @@
   <string name="warning_error_starting_transparent_proxying_">WARNUNG: Fehler beim Starten der transparenten Vermittlung!</string>
   <string name="transproxy_rules_cleared">TransProxy Regeln gelöscht</string>
   <string name="couldn_t_start_tor_process_">Tor-Prozess konnte nicht gestartet werden:</string>
+  <string name="privoxy_is_running_on_port_">Polipo läuft auf Port: </string>
   <string name="setting_up_port_based_transparent_proxying_">Anschlussbasierte transparente Vermittlung wird eingestellt …</string>
   <string name="bridge_error">Brückenfehler</string>
   <string name="bridge_requires_ip">Um die Brückenfunktion nutzen zu können, müssen Sie mindestens eine Brücken-IP-Adresse eingeben.</string>
@@ -187,9 +195,15 @@
   <string name="the_addressable_name_for_your_hidden_service_generated_automatically_">Der adressierbare Name für Ihren versteckten Dienst (wird automatisch generiert)</string>
   <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Ausgabe des Fehlerdiagnoseprotokolls aktivieren (benötigt adb oder alogcat zur Ansicht)</string>
   <string name="project_home">Internetseite(n) des Projektes:</string>
+  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
   <string name="the_tor_license">Die Tor-Lizenz</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Drittanbieteranwendungen:</string>
+  <string name="tor_version">Tor: https://www.torproject.org</string>
+  <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
+  <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
+  <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
+  <string name="openssl_version">OpenSSL v1.0.1i: http://www.openssl.org</string>
   <string name="hidden_service_request">Eine Anwendungen möchte den versteckten Server-Anschluss %S öffnen. Das ist sicher wenn Sie der Anwendung vertrauen.</string>
   <string name="found_existing_tor_process">existierender Tor Prozess gefunden …</string>
   <string name="something_bad_happened">Etwas ist schief gelaufen. Bitte Protokoll prüfen</string>
@@ -201,12 +215,15 @@
   <string name="error_installing_binares">Die Tor-Programmdateien konnten nicht installiert oder aktualisiert werden.</string>
   <string name="pref_use_persistent_notifications">Wenn Orbot verbunden ist immer das Orbot-Symbol in der Werkzeugleiste anzeigen</string>
   <string name="pref_use_persistent_notifications_title">Aktivitätsbenachrichtigungen</string>
+  <string name="pref_use_expanded_notifications">Erweiterte Benachrichtigung mit Tor-Austrittsland und -IP anzeigen</string>
+  <string name="pref_use_expanded_notifications_title">Erweiterte Benachrichtigungen</string>
   <string name="notification_using_bridges">Brücken aktiviert!</string>
   <string name="default_bridges"></string>
   <string name="set_locale_title">Standorteinstellungen festlegen</string>
   <string name="set_locale_summary">Standorteinstellungen und Sprache für Orbot auswählen</string>
   <string name="wizard_locale_title">Sprache auswählen</string>
   <string name="wizard_locale_msg">Vorgabe beibehalten oder Sprache ändern</string>
+  <string name="powered_by">betrieben mit Tor</string>
   <string name="btn_save_settings">Einstellungen speichern</string>
   <string name="no_internet_connection_tor">Keine Internetverbindung; Tor ist in Bereitschaft …</string>
   <string name="bandwidth_">Bandbreite:</string>
@@ -221,4 +238,37 @@
   <string name="permission_manage_tor_description">Diese Anwendung aktivieren, um den Tor-Dienst zu kontrollieren</string>
   <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Es sieht nicht so aus, als ob Sie Orweb installiert haben. Möchten Sie Hilfe dabei, oder sollen wir einfach den Browser öffnen?</string>
   <string name="install_apps_">Anwendungen installieren?</string>
+  <string name="updating_settings_in_tor_service">Einstellungen im Tor-Dienst werden aktualisiert</string>
+  <string name="pref_socks_title">Tor SOCKS</string>
+  <string name="pref_socks_dialog">SOCKS-Portkonfiguration</string>
+  <string name="pref_transport_title">Tor TransProxy-Port</string>
+  <string name="pref_transport_dialog">TransProxy-Portkonfiguration</string>
+  <string name="pref_dnsport_title">Tor DNS-Port</string>
+  <string name="pref_dnsport_dialog">DNS-Portkonfiguration</string>
+  <string name="pref_torrc_title">Benutzerdefinierte Torrc-Konfiguration</string>
+  <string name="pref_torrc_summary">NUR FÜR EXPERTEN: torrc-Konfigurationszeilen direkt eingeben</string>
+  <string name="pref_torrc_dialog">Benutzerdefinierte Torrc</string>
+  <string name="wizard_tips_martus">Mobile Martus - Benetech-Anwendung zur Menschenrechtsdokumentierung</string>
+  <string name="martus_url">https://play.google.com/store/apps/details?id=org.martus.android</string>
+  <string name="your_tor_public_ips_">Ihre öffentlichen IPs für Tor:</string>
+  <string name="app_conflict">Anwendungskonflikt</string>
+  <string name="pref_transproxy_refresh_title">Automatische Transproxy-Aktualisierung</string>
+  <string name="pref_transproxy_refresh_summary">Transproxy-Regeln erneut anwenden, wenn sich der Netzwerkstatus ändert</string>
+  <string name="pref_transproxy_flush_title">Transproxy ENTFERNEN ERZWINGEN</string>
+  <string name="transparent_proxy_rules_flushed_">Transparente Proxy-Regeln geleert!</string>
+  <string name="you_do_not_have_root_access_enabled">Sie haben keinen aktivierten ROOT-Zugang</string>
+  <string name="menu_vpn">Anwendungen</string>
+  <string name="kbps">kbit/s</string>
+  <string name="mbps">Mbit/s</string>
+  <string name="kb">KB</string>
+  <string name="mb">MB</string>
+  <string name="restart_orbot_to_use_this_bridge_">Bitte starten Sie Orbot zum Aktivieren der Änderungen neu</string>
+  <string name="menu_qr">QR-Codes</string>
+  <string name="get_bridges_email">E-Mail</string>
+  <string name="get_bridges_web">Web</string>
+  <string name="activate">Aktivieren</string>
+  <string name="apps_mode">Anwendungenmodus</string>
+  <string name="send_email">E-Mail senden</string>
+  <string name="install_orweb">Orweb installieren</string>
+  <string name="standard_browser">Standard-Browser</string>
 </resources>

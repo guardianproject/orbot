@@ -33,6 +33,8 @@
   <string name="button_clear_log">清除日志</string>
   <string name="menu_verify">检查</string>
   <string name="menu_exit">退出</string>
+  <string name="menu_scan">扫描网桥QR码</string>
+  <string name="menu_share_bridge">分享网桥QR码</string>
   <string name="press_to_start">- 长按启动 -</string>
   <string name="pref_trans_proxy_group">透明代理（需要 Root 权限）</string>
   <string name="pref_trans_proxy_title">透明代理</string>
@@ -58,6 +60,7 @@
   <string name="btn_cancel">取消</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">更多 Orbot 信息</string>
+  <string name="wizard_details_msg">Orbot 是一个包含 Tor、LibEvent 和 Polipo 的开源应用程序。它提供了一个本地 HTTP 代理 (8118) 和一个 SOCKS 代理 (9050) 前往 Tor 网络。Orbot 也有能力在 root 过的设备上将所有互联网流量通过 Tor 发送。</string>
   <string name="wizard_permissions_root">已获取权限</string>
   <string name="wizard_permissions_stock">Orbot 权限</string>
   <string name="wizard_premissions_msg_root">好极了！我们检测到 Orbot 已获取 Root 权限 。我们会谨慎地使用这一权限。</string>
@@ -75,10 +78,14 @@
   <string name="wizard_tips_proxy">代理设置 - 学习如何配置应用程序使用 Orbot</string>
   <string name="wizard_tips_duckgo">DuckDuckGo 搜索引擎应用程序</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
+  <string name="wizard_tips_firefox">适用于移动版 Firefox 的代理扩展 (https://guardianproject.info/apps/firefoxprivacy)</string>
+  <string name="proxymob_setup_url">https://guardianproject.info/apps/firefoxprivacy</string>
   <string name="wizard_tips_twitter">将 Twitter 代理的主机设置 localhost 并将端口设置为 8118</string>
+  <string name="story_maker_url">https://play.google.com/store/apps/details?id=info.guardianproject.mrapp</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">代理设置</string>
   <string name="wizard_final">Orbot 已就绪！</string>
+  <string name="wizard_exit_at_first_screen_toast">请在您开始使用它前配置 Orbot！</string>
   <!--END Welcome Wizard strings (DJH)-->
   <string name="tor_check">浏览器将启动并访问：https://check.torproject.org，以便检查 Orbot 配置是否正确以及是否可连接 Tor 网络。</string>
   <string name="pref_hs_group">隐藏服务主机</string>
@@ -120,6 +127,9 @@
   <string name="pref_entrance_node">入口节点</string>
   <string name="pref_entrance_node_summary">用于首次跳转的密钥指纹、昵称、国家与地址</string>
   <string name="pref_entrance_node_dialog">输入入口节点</string>
+  <string name="button_proxy_all">全部代理</string>
+  <string name="button_proxy_none">全不代理</string>
+  <string name="button_invert_selection">反选</string>
   <string name="pref_proxy_title">出站网络代理（可选）</string>
   <string name="pref_proxy_type_title">出站代理类型</string>
   <string name="pref_proxy_type_summary">代理服务器使用的协议：HTTP、HTTPS、Socks4、Socks5</string>
@@ -144,6 +154,7 @@
   <string name="warning_error_starting_transparent_proxying_">警告：启动透明代理时发生错误！</string>
   <string name="transproxy_rules_cleared">已清除 TransProxy 规则</string>
   <string name="couldn_t_start_tor_process_">无法启动 Tor 进程：</string>
+  <string name="privoxy_is_running_on_port_">Polipo 正运行在端口:</string>
   <string name="setting_up_port_based_transparent_proxying_">正在对基于端口的透明代理进行设置...</string>
   <string name="bridge_error">网桥错误</string>
   <string name="bridge_requires_ip">为了需使用网桥，必须至少输入一个网桥 IP 地址。</string>
@@ -187,9 +198,15 @@
   <string name="the_addressable_name_for_your_hidden_service_generated_automatically_">隐藏服务的地址（自动生成）</string>
   <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">启用调试日志输出（必须使用 adb 或 aLongCat 查看）</string>
   <string name="project_home">项目主页(s)：</string>
+  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
   <string name="the_tor_license">Tor 许可证</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">第三方软件：</string>
+  <string name="tor_version">Tor: https://www.torproject.org</string>
+  <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
+  <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
+  <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
+  <string name="openssl_version">OpenSSL v1.0.1i: http://www.openssl.org</string>
   <string name="hidden_service_request">应用程序试图打开隐藏服务主机端口 %S 连接 Tor 网络。对于可信应用这是安全的。</string>
   <string name="found_existing_tor_process">发现当前已存在 Tor 进程...</string>
   <string name="something_bad_happened">发生错误，请检查日志</string>
@@ -201,12 +218,15 @@
   <string name="error_installing_binares">无法安装或更新 Tor 程序。</string>
   <string name="pref_use_persistent_notifications">Orbot 连接后始终在通知栏显示图标</string>
   <string name="pref_use_persistent_notifications_title">始终显示通知</string>
+  <string name="pref_use_expanded_notifications">显示扩展的通知，有关 Tor 出口的国家和 IP</string>
+  <string name="pref_use_expanded_notifications_title">扩展的通知</string>
   <string name="notification_using_bridges">已启用网桥！</string>
   <string name="default_bridges"></string>
   <string name="set_locale_title">区域设置</string>
   <string name="set_locale_summary">选择 Orbot 的区域设置与语言</string>
   <string name="wizard_locale_title">选择语言</string>
   <string name="wizard_locale_msg">保持默认或切换为当前所用语言</string>
+  <string name="powered_by">由 Tor 提供</string>
   <string name="btn_save_settings">保存设置</string>
   <string name="no_internet_connection_tor">无网络连接；Tor 正处于待机状态...</string>
   <string name="bandwidth_">宽带速度：</string>
@@ -221,4 +241,46 @@
   <string name="permission_manage_tor_description">启用该应用可对 Tor 服务进行控制</string>
   <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">好像没有安装 Orweb。是否需要帮忙，还是直接打开浏览器？</string>
   <string name="install_apps_">安装应用？</string>
+  <string name="no_network_connectivity_putting_tor_to_sleep_">没有网络连接。Tor 进入睡眠状态...</string>
+  <string name="network_connectivity_is_good_waking_tor_up_">网络连接良好。Tor 正在醒来...</string>
+  <string name="updating_settings_in_tor_service">正在更新 Tor 服务中的设置</string>
+  <string name="pref_socks_title">Tor SOCKS</string>
+  <string name="pref_socks_summary">Tor 提供其 SOCKS 代理的端口 (默认: 9050, 0 禁用)</string>
+  <string name="pref_socks_dialog">SOCKS 端口配置</string>
+  <string name="pref_transport_title">Tor 透明代理端口</string>
+  <string name="pref_transport_summary">Tor 提供透明代理的端口 (默认: 9040, 0 禁用)</string>
+  <string name="pref_transport_dialog">透明代理配置</string>
+  <string name="pref_dnsport_title">Tor DNS 端口</string>
+  <string name="pref_dnsport_summary">Tor 提供 DNS 的端口 (默认: 5400, 0 禁用)</string>
+  <string name="pref_dnsport_dialog">DNS 端口配置</string>
+  <string name="pref_torrc_title">Torrc 自定义配置</string>
+  <string name="pref_torrc_summary">仅供专家：直接输入 torrc 配置行</string>
+  <string name="pref_torrc_dialog">自定义 Torrc</string>
+  <string name="martus_url">https://play.google.com/store/apps/details?id=org.martus.android</string>
+  <string name="your_tor_public_ips_">您的 Tor 公网 IP:</string>
+  <string name="please_disable_this_app_in_android_settings_apps_if_you_are_having_problems_with_orbot_">如果您使用 Orbot 遇到问题，请在 Android-&gt;设置-&gt;应用 中禁用本应用：</string>
+  <string name="app_conflict">应用冲突</string>
+  <string name="pref_transproxy_refresh_title">透明代理自动刷新</string>
+  <string name="pref_transproxy_refresh_summary">在网络状态改变时重新应用透明代理规则</string>
+  <string name="pref_transproxy_flush_title">透明代理强制移除</string>
+  <string name="pref_transproxy_flush_summary">点按这里立即刷新所有透明代理的网络规则</string>
+  <string name="transparent_proxy_rules_flushed_">透明代理规则已刷新！</string>
+  <string name="you_do_not_have_root_access_enabled">您还没有 ROOT 访问权限</string>
+  <string name="you_may_need_to_stop_and_start_orbot_for_settings_change_to_be_enabled_">您可能需要停止并重新启动 Orbot 才能使设置更改生效。</string>
+  <string name="menu_vpn">应用</string>
+  <string name="kbps">kbps</string>
+  <string name="mbps">mbps</string>
+  <string name="kb">KB</string>
+  <string name="mb">MB</string>
+  <string name="bridges_updated">网桥已更新</string>
+  <string name="restart_orbot_to_use_this_bridge_">请重启 Orbot 以使变更生效</string>
+  <string name="menu_qr">QR码</string>
+  <string name="bridge_mode">网桥模式</string>
+  <string name="get_bridges_email">电子邮件</string>
+  <string name="get_bridges_web">网页</string>
+  <string name="activate">激活</string>
+  <string name="apps_mode">应用模式</string>
+  <string name="send_email">发送电子邮件</string>
+  <string name="install_orweb">安装 Orweb</string>
+  <string name="standard_browser">标准版浏览器</string>
 </resources>
