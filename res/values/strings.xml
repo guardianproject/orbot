@@ -107,7 +107,7 @@
   <string name="wizard_permissions_title">Permissions</string>
   <string name="wizard_permissions_root_msg1">You can optionally grant Orbot \'Superuser\' access to enable advanced features, such as Transparent Proxying.</string>
   <string name="wizard_permissions_root_msg2">If you do not want to do this, please make sure to use apps made to work with Orbot</string>
-  <string name="wizard_permissions_no_root_msg">Your device does not appear to be rooted or provide \'Superuser\' access.\n\nIn order to you to benefit from Tor, you will need to use apps built to work with Orbot, or that support HTTP or SOCKS proxy settings.\n\n</string>
+  <string name="wizard_permissions_no_root_msg">Your device does not appear to be rooted or provide root or \'Superuser\' access.\n\nPlease try the \'Apps\' mode on the main screen instead.</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot-Enabled Apps</string>
   <string name="wizard_tips_gibberbot">ChatSecure: Secure chat app with Off-the-Record Encryption</string>

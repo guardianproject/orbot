@@ -47,6 +47,7 @@ android:defaultValue="false"
 android:key="pref_transparent"
 android:title="@string/pref_trans_proxy_title"
 android:summary="@string/pref_trans_proxy_summary"
+android:dependency="has_root"
 android:enabled="true"/>
 
 <CheckBoxPreference
@@ -54,6 +55,7 @@ android:defaultValue="false"
 android:key="pref_transparent_all"
 android:summary="@string/pref_transparent_all_summary"
 android:enabled="true" 
+android:dependency="has_root"
 android:title="@string/pref_transparent_all_title"/>
 
 <Preference
@@ -61,6 +63,7 @@ android:defaultValue=""
 android:key="pref_transparent_app_list"
 android:title="@string/pref_select_apps"
 android:summary="@string/pref_select_apps_summary"
+android:dependency="has_root"
 android:enabled="true"/>
 
 <CheckBoxPreference
@@ -68,6 +71,7 @@ android:defaultValue="false"
 android:key="pref_transparent_tethering"
 android:summary="@string/pref_transparent_tethering_summary"
 android:enabled="true" 
+android:dependency="has_root"
 android:title="@string/pref_transparent_tethering_title"/>
 
 

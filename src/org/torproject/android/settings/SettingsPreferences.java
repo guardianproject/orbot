@@ -64,19 +64,18 @@ public class SettingsPreferences
 	
 	private void init ()
 	{
-		int REQUEST_ROOT_IDX = 1;
 		int SET_LOCALE_IDX = 3;
 
 		int GENERAL_GROUP_IDX = 0;
 		
-		prefRequestRoot = ((CheckBoxPreference)((PreferenceCategory)getPreferenceScreen().getPreference(GENERAL_GROUP_IDX)).getPreference(REQUEST_ROOT_IDX));
+		prefRequestRoot = ((CheckBoxPreference)((PreferenceCategory)getPreferenceScreen().getPreference(TRANSPROXY_GROUP_IDX)).getPreference(0));
 		prefRequestRoot.setOnPreferenceClickListener(this);
 
 		prefLocale = (((PreferenceCategory)getPreferenceScreen().getPreference(GENERAL_GROUP_IDX)).getPreference(SET_LOCALE_IDX));
 		prefLocale.setOnPreferenceClickListener(this);
 				
-		prefCBTransProxy = ((CheckBoxPreference)((PreferenceCategory)this.getPreferenceScreen().getPreference(TRANSPROXY_GROUP_IDX)).getPreference(0));
-		prefcBTransProxyAll = (CheckBoxPreference)((PreferenceCategory)this.getPreferenceScreen().getPreference(TRANSPROXY_GROUP_IDX)).getPreference(1);
+		prefCBTransProxy = ((CheckBoxPreference)((PreferenceCategory)this.getPreferenceScreen().getPreference(TRANSPROXY_GROUP_IDX)).getPreference(1));
+		prefcBTransProxyAll = (CheckBoxPreference)((PreferenceCategory)this.getPreferenceScreen().getPreference(TRANSPROXY_GROUP_IDX)).getPreference(2);
 		
 		prefTransProxyFlush = (Preference)((PreferenceCategory)this.getPreferenceScreen().getPreference(DEBUG_GROUP_IDX)).getPreference(8);
 		prefTransProxyFlush.setOnPreferenceClickListener(new OnPreferenceClickListener() {
@@ -94,24 +93,15 @@ public class SettingsPreferences
 			
 		});
 		
-		prefTransProxyApps = ((PreferenceCategory)this.getPreferenceScreen().getPreference(TRANSPROXY_GROUP_IDX)).getPreference(2);
+		prefTransProxyApps = ((PreferenceCategory)this.getPreferenceScreen().getPreference(TRANSPROXY_GROUP_IDX)).getPreference(3);
 
 
 		prefCBTransProxy.setOnPreferenceClickListener(this);
 		prefcBTransProxyAll.setOnPreferenceClickListener(this);
 		prefTransProxyApps.setOnPreferenceClickListener(this);
 		
-		if (!hasRoot)
-		{
-			getPreferenceScreen().getPreference(TRANSPROXY_GROUP_IDX).setEnabled(false);
-		}
-		else
-		{
-
-			prefcBTransProxyAll.setEnabled(prefCBTransProxy.isChecked());
-			prefTransProxyApps.setEnabled(prefCBTransProxy.isChecked() && (!prefcBTransProxyAll.isChecked()));
-			
-		}
+		prefcBTransProxyAll.setEnabled(prefCBTransProxy.isChecked());
+		prefTransProxyApps.setEnabled(prefCBTransProxy.isChecked() && (!prefcBTransProxyAll.isChecked()));
 		
 		
 		prefHiddenServices = ((CheckBoxPreference)((PreferenceCategory)this.getPreferenceScreen().getPreference(HIDDEN_SERVICE_PREF_IDX)).getPreference(0));
@@ -154,12 +144,10 @@ public class SettingsPreferences
 		
 		if (preference == prefRequestRoot)
 		{
-
 			if (prefRequestRoot.isChecked())
 			{
 				boolean canRoot = RootCommands.rootAccessGiven();
 			
-				getPreferenceScreen().getPreference(TRANSPROXY_GROUP_IDX).setEnabled(canRoot);
 				prefRequestRoot.setChecked(canRoot);
 
 				if (!canRoot)
