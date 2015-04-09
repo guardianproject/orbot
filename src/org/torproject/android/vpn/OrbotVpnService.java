@@ -241,7 +241,7 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 		    		final String virtualIP = "10.0.0.2";
 		    		final String virtualNetMask = "255.255.255.0";
 		    		final String localSocks = "127.0.0.1:" + TorServiceConstants.PORT_SOCKS_DEFAULT;
-		    		final String localDNS = "127.0.0.1:" + TorServiceConstants.TOR_DNS_PORT_DEFAULT;
+		    		final String localDNS = "10.0.0.1:" + TorServiceConstants.TOR_DNS_PORT_DEFAULT;
 		        	
 			        Builder builder = new Builder();
 			        

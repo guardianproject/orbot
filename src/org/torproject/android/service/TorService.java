@@ -1477,6 +1477,12 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 	            Intent intent = new Intent(TorService.this, OrbotVpnService.class);
 	            intent.setAction("refresh");
 	            startService(intent);
+
+	            updateConfiguration("DNSListenAddress","10.0.0.1:" + TorServiceConstants.TOR_DNS_PORT_DEFAULT,false);
+	            updateConfiguration("DisableNetwork","0", false);
+
+	            saveConfiguration();
+	        
 	
 	        //	conn.setConf("DisableNetwork", "0");
         	}
@@ -2477,7 +2483,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         
         if (mUseVPN)
         {
-        //	updateConfiguration("DNSListenAddress","10.0.0.1:" + TorServiceConstants.TOR_DNS_PORT_DEFAULT,false);
+        	updateConfiguration("DNSListenAddress","10.0.0.1:" + TorServiceConstants.TOR_DNS_PORT_DEFAULT,false);
         }
         
         updateConfiguration("DisableNetwork","0", false);
