@@ -1,5 +1,13 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+/** 15.0.0 RC 2 / 9-Apr-2015 / 60f19ca **/
+d6c51bc Fixes for bridge setup, and root/shell interaction 
+- If you paste bridge addresses from Gmail, you get some strange characters
+c39cdcb improve root access check for transproxy
+7d8eea2 switch back to DNS on 10.0.0.1, update after VPN refresh
+690a8c3 Improved handling of VPN and Tun2Socks on Network Switch
+9974654 fix for setting root and transproxy preferences
+
 /** 15.0.0 RC 1 / 8-Apr-2015 / 280f69dfa10c38d880e98e71954526c68f1b3df5 **/
 776b7af use loopback address
 e6fe252 auto-restart Tor when config changes
