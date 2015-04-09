@@ -23,10 +23,10 @@ import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
-import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.Normalizer;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,9 +49,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.sufficientlysecure.rootcommands.Shell;
 import org.sufficientlysecure.rootcommands.command.SimpleCommand;
+import org.torproject.android.OrbotConstants;
 import org.torproject.android.OrbotMainActivity;
 import org.torproject.android.R;
-import org.torproject.android.OrbotConstants;
 import org.torproject.android.settings.AppManager;
 import org.torproject.android.settings.TorifiedApp;
 import org.torproject.android.vpn.OrbotVpnService;
@@ -448,7 +448,11 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             sendCallbackStatus(mCurrentStatus);
             
             if (mHasRoot && mEnableTransparentProxy)
-                disableTransparentProxy(Shell.startRootShell());
+            {
+            	Shell shellRoot = Shell.startRootShell();
+                disableTransparentProxy(shellRoot);
+            	shellRoot.close();
+            }
             
             clearNotifications();
             
@@ -723,12 +727,13 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         extraLines.append("AutomapHostsOnResolve 1").append('\n');
        
         extraLines.append("DisableNetwork 0").append('\n');
+       
+        //.extraLines.append("CircuitStreamTimeout 60").append('\n');
         
+        processSettingsImpl(extraLines);
         
-        extraLines.append("CircuitStreamTimeout 60").append('\n');
-        
-        
-        extraLines.append(prefs.getString("pref_custom_torrc", ""));
+        String torrcCustom = new String(prefs.getString("pref_custom_torrc", "").getBytes("US-ASCII"));
+        extraLines.append(torrcCustom).append('\n');
 
         logNotice("updating torrc custom configuration...");
 
@@ -928,7 +933,9 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             {
                 showToolbarNotification(getString(R.string.transproxy_enabled_for_tethering_), TRANSPROXY_NOTIFY_ID, R.drawable.ic_stat_tor);
 
-                mTransProxy.enableTetheringRules(this, Shell.startRootShell());
+                Shell shellRoot = Shell.startRootShell();
+                mTransProxy.enableTetheringRules(this, shellRoot);
+                shellRoot.close();
                   
             }
             else
@@ -1025,9 +1032,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         
             logNotice("Tor started; process id=" + mLastProcessId);
             
-            processSettingsImpl();
-            
-
+           
         }
         
         return true;
@@ -1847,16 +1852,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 e.printStackTrace();
             }
             
-            Thread thread = new Thread(){
-                public void run (){
-                    try {
-                        processSettingsImpl();
-                    } catch (Exception e) {
-                        logException ("error applying mPrefs",e);
-                    }
-                }
-            };
-            thread.start();
         }
 
         public String getInfo (String key) {
@@ -2181,7 +2176,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         }
     };
 
-    private boolean processSettingsImpl () throws Exception
+    private boolean processSettingsImpl (StringBuffer extraLines) throws IOException
     {
         logNotice(getString(R.string.updating_settings_in_tor_service));
         
@@ -2212,7 +2207,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         if (!useBridges)
         {
            
-            updateConfiguration("UseBridges", "0", false);
+            extraLines.append("UseBridges 0").append('\n');
 
 	        if (mUseVPN) //set the proxy here if we aren't using a bridge
 	        {
@@ -2220,7 +2215,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 	        	{
 		        	String proxyType = "socks5";
 		        	String proxyHost = "127.0.0.1";
-		            updateConfiguration(proxyType + "Proxy", proxyHost + ':' + mVpnProxyPort, false);
+		        	extraLines.append(proxyType + "Proxy" + ' ' + proxyHost + ':' + mVpnProxyPort).append('\n');
 	        	};
 	
 	        }
@@ -2236,21 +2231,21 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 		            
 		            if ((proxyHost != null && proxyHost.length()>0) && (proxyPort != null && proxyPort.length() > 0))
 		            {
-		                updateConfiguration(proxyType + "Proxy", proxyHost + ':' + proxyPort, false);
+		            	extraLines.append(proxyType + "Proxy" + ' ' + proxyHost + ':' + proxyPort).append('\n');
 		                
 		                if (proxyUser != null && proxyPass != null)
 		                {
 		                    if (proxyType.equalsIgnoreCase("socks5"))
 		                    {
-		                        updateConfiguration("Socks5ProxyUsername", proxyUser, false);
-		                        updateConfiguration("Socks5ProxyPassword", proxyPass, false);
+		                    	extraLines.append("Socks5ProxyUsername" + ' ' + proxyUser).append('\n');
+		                    	extraLines.append("Socks5ProxyPassword" + ' ' + proxyPass).append('\n');
 		                    }
 		                    else
-		                        updateConfiguration(proxyType + "ProxyAuthenticator", proxyUser + ':' + proxyPort, false);
+		                    	extraLines.append(proxyType + "ProxyAuthenticator" + ' ' + proxyUser + ':' + proxyPort).append('\n');
 		                    
 		                }
 		                else if (proxyPass != null)
-		                    updateConfiguration(proxyType + "ProxyAuthenticator", proxyUser + ':' + proxyPort, false);
+		                	extraLines.append(proxyType + "ProxyAuthenticator" + ' ' + proxyUser + ':' + proxyPort).append('\n');
 		                
 		                
 		
@@ -2261,47 +2256,52 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         else
         {
         
-            debug ("Using bridges");
-            String bridgeCfgKey = "Bridge";
 
-            updateConfiguration("UseBridges", "1", false);
+            extraLines.append("UseBridges 1").append('\n');
             
-            String bridgeList = prefs.getString(OrbotConstants.PREF_BRIDGES_LIST,null);
+            String bridgeList = new String(prefs.getString(OrbotConstants.PREF_BRIDGES_LIST,"").getBytes("ISO-8859-1"));
             
             if (bridgeList != null && bridgeList.length() > 1) //longer then 1 = some real values here
             {
-	            String bridgeDelim = "\n";
 	            
-	            if (bridgeList.indexOf(",") != -1)
-	            {
-	                bridgeDelim = ",";
-	            }
-	  
-	            StringTokenizer st = new StringTokenizer(bridgeList,bridgeDelim);
-	            while (st.hasMoreTokens())
-	            {
-	                String bridgeConfigLine = st.nextToken().trim();
-	                
-	                if (bridgeConfigLine != null && bridgeConfigLine.length() > 0)
-	                {
-	               	 debug("Adding bridge: " + bridgeConfigLine);
-	               	 updateConfiguration(bridgeCfgKey, bridgeConfigLine, false);
-	                }
-	
-	            }
-            
 	            //check if any PT bridges are needed
-	            boolean obfsBridges = bridgeList.contains("obfs2")||bridgeList.contains("obfs3")||bridgeList.contains("scramblesuit");
+	            boolean obfsBridges = bridgeList.contains("obfs3")||bridgeList.contains("obfs4")||bridgeList.contains("scramblesuit");
             
 	            if (obfsBridges)
 	            {
-	              //  String bridgeConfig = "obfs3,scramblesuit,obfs4 exec " + fileObfsclient.getCanonicalPath();
-	            	String bridgeConfig = "obfs3,obfs4 exec " + fileObfsclient.getCanonicalPath();
-		                
-	                debug ("Using OBFUSCATED bridges: " + bridgeConfig);
-	                
-	                updateConfiguration("ClientTransportPlugin",bridgeConfig, false);
+	                extraLines.append("ClientTransportPlugin obfs3 exec " + fileObfsclient.getCanonicalPath()).append('\n');
+	                extraLines.append("ClientTransportPlugin obfs4 exec " + fileObfsclient.getCanonicalPath()).append('\n');
+	                extraLines.append("ClientTransportPlugin scramblesuit exec " + fileObfsclient.getCanonicalPath()).append('\n');
 	            }
+	            
+	            String[] bridgeListLines = bridgeList.split("\\r?\\n");
+
+	            for (String bridgeConfigLine : bridgeListLines)
+	            {
+	                if (bridgeConfigLine != null && bridgeConfigLine.length() > 0)
+	                {
+	                	extraLines.append("Bridge ");
+	                	
+	                	bridgeConfigLine = bridgeConfigLine.replace('�', ' ');
+	                	
+	                	StringTokenizer st = new StringTokenizer (bridgeConfigLine," ");
+	                	while (st.hasMoreTokens())
+	                		extraLines.append(st.nextToken()).append(' ');
+	                	
+	                	extraLines.append("\n");
+	                	
+	                }
+	
+	            }
+	            
+	            /**
+	            extraLines.append("Bridge obfs3 192.36.31.74:35870 FEB63CA5EBD805C42DC0E5FBDDE82F3B1CDD80B4\n");
+	            extraLines.append("Bridge obfs3 131.72.136.85:52447 1AC601EA50397948DD5FB5B453922EB8A69A5EF6\n");
+	            extraLines.append("Bridge obfs3 192.36.31.76:33439 54C59DF0FCEE2D08F789CA04E5B57519071C232B\n");
+	         */
+	            
+	          //  extraLines.append("Bridge obfs4 54.66.226.196:18965 95151988DC29FCCB4F610A1C700A1DDF7D5FFBD4 cert=3wYo19iAMNbfO7snEeqVBmsIat+RMmMDV5BV4jDvXuz9BaACXt7XffC8Dz8J1MUvLKHKaQ iat-mode=0\n");
+            
             }
             else
             {
@@ -2310,9 +2310,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             	debug ("Using meek bridges");
                 
             	String bridgeConfig = "meek exec " + fileMeekclient.getCanonicalPath();
-             	updateConfiguration("ClientTransportPlugin",bridgeConfig, false);
+            	extraLines.append("ClientTransportPlugin" + ' ' + bridgeConfig).append('\n');
             	
-		        
             	String[] meekBridge = 
             		{
             			"meek 0.0.2.0:1 url=https://meek-reflect.appspot.com/ front=www.google.com",
@@ -2337,14 +2336,10 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             	  }
             	}
             	
-            	updateConfiguration(bridgeCfgKey, meekBridge[meekIdx], false);            	
+            	extraLines.append("Bridge " + meekBridge[meekIdx]).append('\n');            	
             	
             }
-
-
-//            updateConfiguration("UpdateBridgesFromAuthority", "0", false);
-                
-            
+ 
         }
         
         if (entranceNodes.length() > 0 || exitNodes.length() > 0 || excludeNodes.length() > 0)
@@ -2362,8 +2357,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                     
                 }
                 
-                updateConfiguration("GeoIPFile", fileGeoIP.getCanonicalPath(), false);
-                updateConfiguration("GeoIPv6File", fileGeoIP6.getCanonicalPath(), false);
+                extraLines.append("GeoIPFile" + ' ' + fileGeoIP.getCanonicalPath()).append('\n');
+                extraLines.append("GeoIPv6File" + ' ' + fileGeoIP6.getCanonicalPath()).append('\n');
 
             }
             catch (Exception e)
@@ -2374,12 +2369,16 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             }
         }
 
-        updateConfiguration("EntryNodes", entranceNodes, false);
-        updateConfiguration("ExitNodes", exitNodes, false);
-        updateConfiguration("ExcludeNodes", excludeNodes, false);
-        updateConfiguration("StrictNodes", enableStrictNodes ? "1" : "0", false);
+        if (entranceNodes != null && entranceNodes.length() > 0)
+        	extraLines.append("EntryNodes" + ' ' + entranceNodes).append('\n');
+       
+        if (exitNodes != null && exitNodes.length() > 0)
+        	extraLines.append("ExitNodes" + ' ' + exitNodes).append('\n');
         
+        if (excludeNodes != null && excludeNodes.length() > 0)
+        	extraLines.append("ExcludeNodes" + ' ' + excludeNodes).append('\n');
         
+        extraLines.append("StrictNodes" + ' ' + (enableStrictNodes ? "1" : "0")).append('\n');
 
         try
         {
@@ -2388,13 +2387,10 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 String ReachableAddressesPorts =
                     prefs.getString(OrbotConstants.PREF_REACHABLE_ADDRESSES_PORTS, "*:80,*:443");
                 
-                updateConfiguration("ReachableAddresses", ReachableAddressesPorts, false);
+                extraLines.append("ReachableAddresses" + ' ' + ReachableAddressesPorts).append('\n');
 
             }
-            else
-            {
-                updateConfiguration("ReachableAddresses", "", false);
-            }
+            
         }
         catch (Exception e)
         {
@@ -2412,17 +2408,11 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
                 String dnsFile = writeDNSFile ();
                 
-                updateConfiguration("ServerDNSResolvConfFile", dnsFile, false);
-                updateConfiguration("ORPort", ORPort + "", false);
-                updateConfiguration("Nickname", nickname, false);
-                updateConfiguration("ExitPolicy", "reject *:*", false);
+                extraLines.append("ServerDNSResolvConfFile" + ' ' + dnsFile).append('\n');
+                extraLines.append("ORPort" + ' ' + ORPort).append('\n');
+                extraLines.append("Nickname" + ' ' + nickname).append('\n');
+                extraLines.append("ExitPolicy" + ' ' + "reject *:*").append('\n');
 
-            }
-            else
-            {
-                updateConfiguration("ORPort", "", false);
-                updateConfiguration("Nickname", "", false);
-                updateConfiguration("ExitPolicy", "", false);
             }
         }
         catch (Exception e)
@@ -2462,8 +2452,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                     
                     debug("Adding hidden service on port: " + hsPortConfig);
                     
-                    updateConfiguration("HiddenServiceDir",hsDirPath, false);
-                    updateConfiguration("HiddenServicePort",hsPortConfig, false);
+                    extraLines.append("HiddenServiceDir" + ' ' + hsDirPath).append('\n');
+                    extraLines.append("HiddenServicePort" + ' ' + hsPortConfig).append('\n');
                     
 
                 } catch (NumberFormatException e) {
@@ -2475,22 +2465,25 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             
             
         }
-        else
-        {
-            updateConfiguration("HiddenServiceDir","", false);
-            
-        }
+        
         
         if (mUseVPN)
         {
-        	updateConfiguration("DNSListenAddress","10.0.0.1:" + TorServiceConstants.TOR_DNS_PORT_DEFAULT,false);
+        	extraLines.append("DNSListenAddress" + ' ' + "10.0.0.1:" + TorServiceConstants.TOR_DNS_PORT_DEFAULT).append('\n');
         }
-        
-        updateConfiguration("DisableNetwork","0", false);
-
-        saveConfiguration();
     
         return true;
+    }
+    
+    public static String flattenToAscii(String string) {
+        char[] out = new char[string.length()];
+        string = Normalizer.normalize(string, Normalizer.Form.NFD);
+        int j = 0;
+        for (int i = 0, n = string.length(); i < n; ++i) {
+            char c = string.charAt(i);
+            if (c <= '\u007F') out[j++] = c;
+        }
+        return new String(out);
     }
     
     /*

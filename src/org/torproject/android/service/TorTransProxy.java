@@ -490,8 +490,7 @@ public class TorTransProxy implements TorServiceConstants {
 			
 			
     	}
-		
-
+    	
 		return lastExit;
 	}
 	
@@ -598,6 +597,8 @@ public class TorTransProxy implements TorServiceConstants {
 		
 		dropAllIPv6Traffic(context,-1,false, shell);
 
+		shell.close();
+		
 		return exit;
 	}
 	

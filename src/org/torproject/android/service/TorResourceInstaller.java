@@ -8,9 +8,12 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.io.StringBufferInputStream;
 import java.util.ArrayList;
 import java.util.concurrent.TimeoutException;
@@ -19,8 +22,8 @@ import java.util.zip.ZipInputStream;
 
 import org.sufficientlysecure.rootcommands.Shell;
 import org.sufficientlysecure.rootcommands.command.SimpleCommand;
-import org.torproject.android.R;
 import org.torproject.android.OrbotConstants;
+import org.torproject.android.R;
 
 import android.content.Context;
 import android.util.Log;
@@ -116,10 +119,28 @@ public class TorResourceInstaller implements TorServiceConstants {
     
     public boolean updateTorConfigCustom (File fileTorRcCustom, String extraLines) throws IOException, FileNotFoundException, TimeoutException
     {
-        
-
-        StringBufferInputStream sbis = new StringBufferInputStream(extraLines + '\n');
-        streamToFile(sbis,fileTorRcCustom,false,false);
+    	if (fileTorRcCustom.exists())
+    	{
+    		fileTorRcCustom.delete();
+    		Log.d("torResources","deleeting existing torrc.custom");
+    	}
+    	else
+    		fileTorRcCustom.createNewFile();
+    	
+    	FileOutputStream fos = new FileOutputStream(fileTorRcCustom, false);
+    	PrintStream ps = new PrintStream(fos);
+    	ps.print(extraLines);
+    	ps.close();
+    	
+    	/*
+    	FileWriter fw = new FileWriter( fileTorRcCustom, false );
+        PrintWriter bw = new PrintWriter( fw );
+        bw.write(extraLines);
+        bw.close();
+        */
+    	
+//        StringBufferInputStream sbis = new StringBufferInputStream(extraLines + '\n');
+  //      streamToFile(sbis,fileTorRcCustom,false,false);
         
         return true;
     }
@@ -239,11 +260,14 @@ public class TorResourceInstaller implements TorServiceConstants {
     }
     
     //copy the file from inputstream to File output - alternative impl
-    public static void copyFile (InputStream is, File outputFile)
+    public static boolean copyFile (InputStream is, File outputFile)
     {
         
         try {
-            outputFile.createNewFile();
+        	if (outputFile.exists())
+        		outputFile.delete();
+        	
+            boolean newFile = outputFile.createNewFile();
             DataOutputStream out = new DataOutputStream(new FileOutputStream(outputFile));
             DataInputStream in = new DataInputStream(is);
             
@@ -262,10 +286,12 @@ public class TorResourceInstaller implements TorServiceConstants {
             in.close();
             // chmod?
             
+            return newFile;
             
             
         } catch (IOException ex) {
             Log.e(OrbotConstants.TAG, "error copying binary", ex);
+            return false;
         }
 
     }
