@@ -35,7 +35,8 @@ public class OnBootReceiver extends BroadcastReceiver {
 	public void startVpnService (Context context)
     {
         Intent intent = VpnService.prepare(context);
-       // intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        
         if (intent != null) {
             context.startActivity(intent);
         } 

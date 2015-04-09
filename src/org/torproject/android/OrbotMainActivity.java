@@ -272,7 +272,6 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 				
 			}
 
-			
 		});
 		
 		mBtnBridges =  (ToggleButton)findViewById(R.id.btnBridges);
@@ -674,8 +673,8 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
 		
-		doLayout();
-		updateStatus("");
+	//	doLayout();
+		//updateStatus("");
 	}
 
 
@@ -822,7 +821,10 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
         else if (request == REQUEST_VPN && response == RESULT_OK)
         {
             startService(TorServiceConstants.CMD_VPN);
-            restartTor ();   
+            
+           // if (torStatus == TorServiceConstants.STATUS_ON)
+            //	restartTor ();   
+            
         }
         
         IntentResult scanResult = IntentIntegrator.parseActivityResult(request, response, data);
@@ -1092,14 +1094,16 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
         else
         {
             startService(TorServiceConstants.CMD_VPN);
-            restartTor ();
+          //  if (torStatus == TorServiceConstants.STATUS_ON)
+            //	restartTor ();
+            
         }
     }
     
     public void stopVpnService ()
     {    	
         startService(TorServiceConstants.CMD_VPN_CLEAR);
-        restartTor ();
+       // restartTor ();
     }
 
     private boolean flushTransProxy ()
@@ -1200,12 +1204,8 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
                             if (lblStatus != null && torServiceMsg != null)
                             	if (torServiceMsg.indexOf('%')!=-1)
                             		lblStatus.setText(torServiceMsg);
-                        
-                            /**
-                            if (torServiceMsg != null && torServiceMsg.length() > 0)
-                            {
-                            	mTxtOrbotLog.append(torServiceMsg + '\n');
-                            }**/
+                            	else
+                            		lblStatus.setText("");
                             
                             boolean showFirstTime = mPrefs.getBoolean("connect_first_time",true);
                             
@@ -1242,10 +1242,7 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
                         	if (torServiceMsg.indexOf('%')!=-1)
                         		lblStatus.setText(torServiceMsg);
                         	
-                        if (torServiceMsg != null && torServiceMsg.length() > 0)
-                        {
-                        	mTxtOrbotLog.append(torServiceMsg + '\n');
-                        }
+                       
                     	           
                     }
                     else if (torStatus == TorServiceConstants.STATUS_OFF)
@@ -1257,6 +1254,11 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
                         if (mItemOnOff != null)
                                 mItemOnOff.setTitle(R.string.menu_start);
 
+                    }
+                    
+                    if (torServiceMsg != null && torServiceMsg.length() > 0)
+                    {
+                    	mTxtOrbotLog.append(torServiceMsg + '\n');
                     }
             }
                 

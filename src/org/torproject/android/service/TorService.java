@@ -357,7 +357,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
         new Thread (new TorStarter(intent)).start();
         
-        return START_REDELIVER_INTENT;
+        return Service.START_STICKY;
 
     }
     
@@ -1201,9 +1201,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                              try
                              {
                                  int newSocksPort = Integer.parseInt(socksPortPref);
-                                 ServerSocket ss = new ServerSocket(newSocksPort);
-                                 ss.close();
-                                 
+                                                                 
                                  ArrayList<String> socksLines = new ArrayList<String>();
                                  socksLines.add("SOCKSPort " + mPortSOCKS);
                                  socksLines.add("SOCKSPort " + socksPortPref);
@@ -1224,10 +1222,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                              
                              try
                              {
-                                 int newPort = Integer.parseInt(transPort);
-                                 ServerSocket ss = new ServerSocket(newPort);
-                                 ss.close();
-                                 
                                  ArrayList<String> confLines = new ArrayList<String>();
                              
                                  confLines.add("TransPort " + transPort);
@@ -1247,10 +1241,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                              
                              try
                              {
-                                 int newPort = Integer.parseInt(dnsPort);
-                                 ServerSocket ss = new ServerSocket(newPort);
-                                 ss.close();
-                                 
                                  ArrayList<String> confLines = new ArrayList<String>();
                              
                                  confLines.add("DNSPort " + dnsPort);
@@ -1480,10 +1470,21 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             
         	debug ("refreshing VPN Proxy");
         	
-            Intent intent = new Intent(TorService.this, OrbotVpnService.class);
-            intent.setAction("refresh");
-            startService(intent);
-           
+        	try
+        	{
+	        //	conn.setConf("DisableNetwork", "1");
+	        	
+	            Intent intent = new Intent(TorService.this, OrbotVpnService.class);
+	            intent.setAction("refresh");
+	            startService(intent);
+	
+	        //	conn.setConf("DisableNetwork", "0");
+        	}
+        	catch (Exception ioe)
+        	{
+        		Log.e(TAG,"error restarting network",ioe);
+        	}
+        	
         }
         
         
@@ -1733,9 +1734,20 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 {
                     try {
 
-                        Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("127.0.0.1", 8118));
+                    	URLConnection conn = null;
+                    	
+                        Proxy proxy = null;
+                        
+                        if (mUseVPN)
+                        {
+                        	proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("127.0.0.1", 8118));
+                        	conn = new URL(ONIONOO_BASE_URL + mNode.id).openConnection(proxy);
+                        }
+                        else
+                        {
+                        	conn = new URL(ONIONOO_BASE_URL + mNode.id).openConnection();
+                        }
     
-                        URLConnection conn = new URL(ONIONOO_BASE_URL + mNode.id).openConnection(proxy);
                         conn.setRequestProperty("Connection","Close");
                         conn.setConnectTimeout(60000);
                         conn.setReadTimeout(60000);
@@ -2079,6 +2091,9 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         @Override
         public void onReceive(Context context, Intent intent) {
 
+        	if (mCurrentStatus != STATUS_ON)
+        		return;
+        	
             SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
 
             boolean doNetworKSleep = prefs.getBoolean(OrbotConstants.PREF_DISABLE_NETWORK, true);
@@ -2091,6 +2106,11 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             
             boolean isChanged = false;
             
+            if (netInfo!=null)
+            	newNetType = netInfo.getType();
+
+            isChanged = ((mNetworkType != newNetType)&&(mConnectivity != newConnectivityState));
+            
             if(netInfo != null && netInfo.isConnected()) {
                 // WE ARE CONNECTED: DO SOMETHING
             	newConnectivityState = true;
@@ -2099,11 +2119,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 // WE ARE NOT: DO SOMETHING ELSE
             	newConnectivityState = false;
             }
-            
-            if (netInfo!=null)
-            	newNetType = netInfo.getType();
-            
-            isChanged = ((mNetworkType != newNetType)||(mConnectivity != newConnectivityState));
             
             mNetworkType = newNetType;
         	mConnectivity = newConnectivityState;
@@ -2143,14 +2158,11 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 	                                
 	                                shell.close();
 	                            }
-	                            
-	                            if (mUseVPN) //we need to turn on VPN here so the proxy is running
+	                            else if (mUseVPN) //we need to turn on VPN here so the proxy is running
 	                            	refreshVpnProxy();
 	            	            
 	                        }
 	                    }
-	                    
-	                    saveConfiguration();
 	                    
 	                } catch (Exception e) {
 	                    logException ("error updating state after network restart",e);
@@ -2465,7 +2477,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         
         if (mUseVPN)
         {
-        	updateConfiguration("DNSListenAddress","10.0.0.1:" + TorServiceConstants.TOR_DNS_PORT_DEFAULT,false);
+        //	updateConfiguration("DNSListenAddress","10.0.0.1:" + TorServiceConstants.TOR_DNS_PORT_DEFAULT,false);
         }
         
         updateConfiguration("DisableNetwork","0", false);
