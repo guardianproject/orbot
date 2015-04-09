@@ -6,6 +6,7 @@ package org.torproject.android.settings;
 import java.util.Locale;
 
 import org.sufficientlysecure.rootcommands.RootCommands;
+import org.sufficientlysecure.rootcommands.Shell;
 import org.torproject.android.R;
 import org.torproject.android.service.TorServiceUtils;
 
@@ -146,13 +147,24 @@ public class SettingsPreferences
 		{
 			if (prefRequestRoot.isChecked())
 			{
+				
 				boolean canRoot = RootCommands.rootAccessGiven();
-			
 				prefRequestRoot.setChecked(canRoot);
 
 				if (!canRoot)
 				{
-					Toast.makeText(this, R.string.wizard_permissions_no_root_msg, Toast.LENGTH_LONG).show();
+					try
+					{
+						Shell shell = Shell.startRootShell();
+						shell.close();
+						
+						prefRequestRoot.setChecked(true);
+
+					}
+					catch (Exception e)
+					{
+						Toast.makeText(this, R.string.wizard_permissions_no_root_msg, Toast.LENGTH_LONG).show();
+					}
 				}
 			}
 		}
