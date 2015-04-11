@@ -16,7 +16,6 @@
 
 package org.torproject.android.vpn;
 
-import java.io.IOException;
 import java.net.InetAddress;
 import java.util.Locale;
 
@@ -86,7 +85,9 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 			        }
 		        	
 		        	if (!isLollipop)
+		        	{
 		        		startSocksBypass();
+		        	}
 		        	
 		            setupTun2Socks();               
 		        }
@@ -114,8 +115,7 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
         
         return START_STICKY;
     }
-    
-
+  
     private void startSocksBypass()
     {
        
@@ -183,7 +183,7 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 
         Tun2Socks.Stop();
         
-        stopSocksBypass ();
+        //stopSocksBypass ();
         
         if (mInterface != null){
             try
@@ -203,6 +203,9 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
                 Log.d(TAG,"error stopping tun2socks",e);
             }   
         }
+        
+        mThreadVPN = null;
+        
     }
 
     @Override
@@ -310,5 +313,53 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
         super.onRevoke();
     }
     
-    
+    /*
+    private void monitorSocketsFD ()
+    {
+    	
+    	final String fdPath = "/proc/self/fd/";
+    	
+    	new Thread ()
+    	{
+    		public void run ()
+    		{
+    			while (mThreadVPN != null)
+    			{
+    				try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+    				
+    				try
+	    				{
+    					
+	    				File fileDir = new File(fdPath);
+	    				File[] files = fileDir.listFiles();
+	    				if (files != null)
+		    				for (File file : files)
+		    				{
+		    					String cPath = file.getCanonicalPath();
+		    					
+		    					if (cPath.contains("socket"))
+		    					{
+		    						Log.d(TAG,"found FD for socket: " + file.getAbsolutePath());
+		    						
+		    						protect(Integer.parseInt(file.getName()));
+		    						
+		    					}
+		    					
+		    				}
+	    				}
+    				catch (Exception e)
+    				{
+    					Log.e(TAG,"error getting fd: " + fdPath,e);
+    				}
+    			}
+    		}
+    	}.start();
+    	
+    }
+    */
 }

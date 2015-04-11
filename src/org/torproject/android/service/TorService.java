@@ -727,7 +727,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         extraLines.append("AutomapHostsOnResolve 1").append('\n');
        
         extraLines.append("DisableNetwork 0").append('\n');
-       
+        
         //.extraLines.append("CircuitStreamTimeout 60").append('\n');
         
         processSettingsImpl(extraLines);
@@ -974,7 +974,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
          return true;
      }
     
-    private boolean runTorShellCmd(Shell shell) throws Exception
+    private boolean runTorShellCmd(final Shell shell) throws Exception
     {
 
         String torrcPath = new File(appBinHome, TORRC_ASSET_KEY).getCanonicalPath();
@@ -1005,18 +1005,16 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
         shellTorCommand = new SimpleCommand(torCmdString);
         shell.add(shellTorCommand).waitForFinish();
-        
         exitCode = shellTorCommand.getExitCode();
         output = shellTorCommand.getOutput();
         
-
         if (exitCode != 0 && output != null && output.length() > 0)
         {
             logNotice("Tor (" + exitCode + "): " + output);
             //throw new Exception ("unable to start");
             return false;
         }
-
+        
         //now try to connect
         mLastProcessId = initControlConnection (100,false);
 
@@ -1031,7 +1029,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         {
         
             logNotice("Tor started; process id=" + mLastProcessId);
-            
            
         }
         
@@ -1749,7 +1746,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                     	
                         Proxy proxy = null;
                         
-                        if (mUseVPN)
+                        if (!mUseVPN) //if not on the VPN then we should proxy
                         {
                         	proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("127.0.0.1", 8118));
                         	conn = new URL(ONIONOO_BASE_URL + mNode.id).openConnection(proxy);
@@ -2211,13 +2208,14 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
 	        if (mUseVPN) //set the proxy here if we aren't using a bridge
 	        {
+	        	/*
 	        	if (!mIsLollipop)
 	        	{
 		        	String proxyType = "socks5";
 		        	String proxyHost = "127.0.0.1";
 		        	extraLines.append(proxyType + "Proxy" + ' ' + proxyHost + ':' + mVpnProxyPort).append('\n');
 	        	};
-	
+				*/
 	        }
 	        else
 	        {
@@ -2294,14 +2292,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 	
 	            }
 	            
-	            /**
-	            extraLines.append("Bridge obfs3 192.36.31.74:35870 FEB63CA5EBD805C42DC0E5FBDDE82F3B1CDD80B4\n");
-	            extraLines.append("Bridge obfs3 131.72.136.85:52447 1AC601EA50397948DD5FB5B453922EB8A69A5EF6\n");
-	            extraLines.append("Bridge obfs3 192.36.31.76:33439 54C59DF0FCEE2D08F789CA04E5B57519071C232B\n");
-	         */
-	            
-	          //  extraLines.append("Bridge obfs4 54.66.226.196:18965 95151988DC29FCCB4F610A1C700A1DDF7D5FFBD4 cert=3wYo19iAMNbfO7snEeqVBmsIat+RMmMDV5BV4jDvXuz9BaACXt7XffC8Dz8J1MUvLKHKaQ iat-mode=0\n");
-            
             }
             else
             {
@@ -2617,5 +2607,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         // TODO Auto-generated method stub
         return null;
     }
+    
+    
 
 }
