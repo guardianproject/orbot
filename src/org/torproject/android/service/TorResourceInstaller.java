@@ -26,6 +26,7 @@ import org.torproject.android.OrbotConstants;
 import org.torproject.android.R;
 
 import android.content.Context;
+import android.os.Build;
 import android.util.Log;
 
 public class TorResourceInstaller implements TorServiceConstants {
@@ -86,33 +87,41 @@ public class TorResourceInstaller implements TorServiceConstants {
         shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
         streamToFile(is,outFile, false, false);
     
+        String cpuPath = null;
         
-        is = context.getResources().openRawResource(R.raw.tor);
+        //only install if ARM (GoLang only supports ARM for now)
+        if (Build.CPU_ABI.contains("arm"))
+        {
+	        is = context.getResources().openRawResource(R.raw.obfs4proxy);
+	        outFile = new File(installFolder, OBFSCLIENT_ASSET_KEY);
+	        shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
+	        streamToFile(is,outFile, false, true);
+	        
+	        is = context.getResources().openRawResource(R.raw.meek);
+	        outFile = new File(installFolder, MEEK_ASSET_KEY);
+	        shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
+	        streamToFile(is,outFile, false, true);
+	        
+	        cpuPath = "armeabi";
+        }
+        else if (Build.CPU_ABI.contains("x86"))
+        	cpuPath = "x86";
+        
+        is = context.getAssets().open(cpuPath + "/tor.mp3");
         outFile = new File(installFolder, TOR_ASSET_KEY);
         shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
         streamToFile(is,outFile, false, true);
     
-        is = context.getResources().openRawResource(R.raw.polipo);
+        is = context.getAssets().open(cpuPath + "/polipo.mp3");
         outFile = new File(installFolder, POLIPO_ASSET_KEY);
         shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
         streamToFile(is,outFile, false, true);
     
-        is = context.getResources().openRawResource(R.raw.obfs4proxy);
-        outFile = new File(installFolder, OBFSCLIENT_ASSET_KEY);
-        shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
-        streamToFile(is,outFile, false, true);
-        
-
-        is = context.getResources().openRawResource(R.raw.meek);
-        outFile = new File(installFolder, MEEK_ASSET_KEY);
-        shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
-        streamToFile(is,outFile, false, true);
-        
-        is = context.getResources().openRawResource(R.raw.xtables);
+        is = context.getAssets().open(cpuPath + "/xtables.mp3");
         outFile = new File(installFolder, IPTABLES_ASSET_KEY);
         shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
         streamToFile(is,outFile, false, true);
-    
+   
     
         return true;
     }
