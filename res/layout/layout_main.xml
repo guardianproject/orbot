@@ -172,28 +172,34 @@
 			    
           		android:background="@drawable/button"
           		android:layout_margin="3dp"
+          		 android:ellipsize="end"
+          android:singleLine="true"
 			     />
 	
 			
 			<ToggleButton
 			    android:id="@+id/btnVPN"
-			    android:layout_width="wrap_content"
+			    android:layout_width="80dp"
 			    android:layout_height="wrap_content"
 			    android:textOff="@string/menu_vpn"
 			    android:textOn="@string/menu_vpn"			    
 				android:background="@drawable/toggle"
           android:layout_margin="3dp"
+          android:ellipsize="end"
+          android:singleLine="true"
 			    />
 			
 			
 			<ToggleButton
 			    android:id="@+id/btnBridges"
-			    android:layout_width="wrap_content"
+			    android:layout_width="80dp"
 			    android:layout_height="wrap_content"
 			    android:textOff="@string/bridges"
 			    android:textOn="@string/bridges"	
 			    android:background="@drawable/toggle"
           		    android:layout_margin="3dp"
+          		     android:ellipsize="end"
+          android:singleLine="true"
 			    />
 			 
 		    </LinearLayout>
