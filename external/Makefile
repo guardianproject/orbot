@@ -23,11 +23,11 @@ endif
 
 # Android NDK setup
 NDK_BASE ?= /opt/android-ndk
-NDK_PLATFORM_LEVEL ?= 19
+NDK_PLATFORM_LEVEL ?= 16
 NDK_ABI ?= arm
 NDK_TOOLCHAIN_VERSION=4.8
-NDK_SYSROOT=$(NDK_BASE)/platforms/android-$(NDK_PLATFORM_LEVEL)/arch-$(NDK_ABI)
 APP_ABI ?= armeabi
+NDK_SYSROOT=$(NDK_BASE)/platforms/android-$(NDK_PLATFORM_LEVEL)/arch-$(NDK_ABI)
 NDK_UNAME := $(shell uname -s | tr '[A-Z]' '[a-z]')
 ifeq ($(NDK_ABI),x86)
  HOST = i686-linux-android
@@ -223,6 +223,7 @@ polipo: polipo-build-stamp
 	cp polipo/polipo bin
 
 polipo-clean:
+	$(MAKE) -C polipo clean
 	-rm -f polipo/polipo
 	-rm -f bin/polipo
 	-rm -f polipo-build-stamp
@@ -256,18 +257,18 @@ jtorctl-clean:
 assets: tor polipo jtorctl iptables
 	install -d ../libs
 	install bin/jtorctl.jar ../libs
-	install -d ../res/raw
+	install -d ../assets/$(APP_ABI)
 	-$(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-strip --strip-debug bin/polipo
-	-zip ../res/raw/polipo.mp3 bin/polipo
+	-zip ../assets/$(APP_ABI)/polipo.mp3 bin/polipo
 	-$(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-strip --strip-debug bin/tor
-	-zip ../res/raw/tor.mp3 bin/tor
+	-zip ../assets/$(APP_ABI)/tor.mp3 bin/tor
 	-$(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-strip --strip-debug bin/xtables
-	-zip ../res/raw/xtables.mp3 bin/xtables
+	-zip ../assets/$(APP_ABI)/xtables.mp3 bin/xtables
 
 assets-clean:
-	-rm ../res/raw/polipo.mp3
-	-rm ../res/raw/tor.mp3
-	-rm ../res/raw/xtables.mp3
+	-rm ../assets/$(APP_ABI)/polipo.mp3
+	-rm ../assets/$(APP_ABI)/tor.mp3
+	-rm ../assets/$(APP_ABI)/xtables.mp3
 	-rm ../libs/jtorctl.jar
 
 #------------------------------------------------------------------------------#
