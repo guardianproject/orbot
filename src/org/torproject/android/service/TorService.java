@@ -96,8 +96,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     private int mPortHTTP = 8118;
     private int mPortSOCKS = 9050;
     
-    private int mVpnProxyPort = 9099;
-    
     private static final int NOTIFY_ID = 1;
     private static final int TRANSPROXY_NOTIFY_ID = 2;
     private static final int ERROR_NOTIFY_ID = 3;
@@ -640,6 +638,9 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         
             mNumberFormat = NumberFormat.getInstance(Locale.getDefault()); //localized numbers!
             
+            if (OrbotVpnService.mSocksProxyPort == -1)
+            	OrbotVpnService.mSocksProxyPort = (int)((Math.random()*1000)+10000); 
+            		
         }
         catch (Exception e)
         {
@@ -821,7 +822,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
         if (useBridges)
         	if (mUseVPN && !mIsLollipop)
-        		customEnv.add("TOR_PT_PROXY=socks5://127.0.0.1:" + mVpnProxyPort); 
+        		customEnv.add("TOR_PT_PROXY=socks5://127.0.0.1:" + OrbotVpnService.mSocksProxyPort); 
         
         String baseDirectory = fileTor.getParent();
         Shell shellUser = Shell.startShell(customEnv, baseDirectory);
@@ -1462,7 +1463,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             intent.setAction("start");
             
             if (!mIsLollipop)
-            	intent.putExtra("proxyPort",mVpnProxyPort);
+            	intent.putExtra("proxyPort",OrbotVpnService.mSocksProxyPort);
             
             startService(intent);
            
@@ -1474,7 +1475,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         	
         	try
         	{
-	        //	conn.setConf("DisableNetwork", "1");
+	        	conn.setConf("DisableNetwork", "1");
 	        	
 	            Intent intent = new Intent(TorService.this, OrbotVpnService.class);
 	            intent.setAction("refresh");
@@ -1486,7 +1487,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 	            saveConfiguration();
 	        
 	
-	        //	conn.setConf("DisableNetwork", "0");
+	        	conn.setConf("DisableNetwork", "0");
         	}
         	catch (Exception ioe)
         	{
@@ -2208,14 +2209,14 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
 	        if (mUseVPN) //set the proxy here if we aren't using a bridge
 	        {
-	        	/*
+	        	
 	        	if (!mIsLollipop)
 	        	{
 		        	String proxyType = "socks5";
 		        	String proxyHost = "127.0.0.1";
-		        	extraLines.append(proxyType + "Proxy" + ' ' + proxyHost + ':' + mVpnProxyPort).append('\n');
+		        	extraLines.append(proxyType + "Proxy" + ' ' + proxyHost + ':' + OrbotVpnService.mSocksProxyPort).append('\n');
 	        	};
-				*/
+			
 	        }
 	        else
 	        {

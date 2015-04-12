@@ -51,7 +51,7 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     private String mSessionName = "OrbotVPN";
     private ParcelFileDescriptor mInterface;
 
-    private int mSocksProxyPort = -1;
+    public static int mSocksProxyPort = -1;
     private ProxyServer mSocksProxyServer;
     
     private final static int VPN_MTU = 1500;
@@ -59,8 +59,6 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     private final static boolean isLollipop = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
     
     private boolean isRestart = false;
-    
-    
     
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
