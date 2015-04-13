@@ -274,19 +274,27 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 
 		});
 		
+		
 		mBtnBridges =  (ToggleButton)findViewById(R.id.btnBridges);
 		boolean useBridges = mPrefs.getBoolean("pref_bridges_enabled", false);
 		mBtnBridges.setChecked(useBridges);
+		
+		
 		
 		mBtnBridges.setOnClickListener(new View.OnClickListener ()
 		{
 
 			@Override
 			public void onClick(View v) {
-
-				promptSetupBridges ();
+				if (Build.CPU_ABI.contains("arm"))
+				{       
+					promptSetupBridges (); //if ARM processor, show all bridge options
 				
-				
+				}
+				else
+				{
+					showGetBridgePrompt(""); //if other chip ar, only stock bridges are supported
+				}
 			}
 
 			
@@ -302,10 +310,8 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         return mGestureDetector.onTouchEvent(event);
-
 	}
    	
-    
     
    /*
     * Create the UI Options Menu (non-Javadoc)
@@ -487,7 +493,7 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 	private void doTorCheck ()
 	{
 		
-		openBrowser(URL_TOR_CHECK);
+		openBrowser(URL_TOR_CHECK,false);
 		
 
 	}
@@ -681,13 +687,12 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 	/*
 	 * Launch the system activity for Uri viewing with the provided url
 	 */
-	private void openBrowser(final String browserLaunchUrl)
+	private void openBrowser(final String browserLaunchUrl,boolean forceExternal)
 	{
 		boolean isOrwebInstalled = appInstalledOrNot("info.guardianproject.browser");
 		boolean isTransProxy =  mPrefs.getBoolean("pref_transparent", false);
 		
-		
-		if (mBtnVPN.isChecked())
+		if (mBtnVPN.isChecked()||forceExternal)
 		{
 			//use the system browser since VPN is on
 			Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(browserLaunchUrl));
@@ -964,7 +969,7 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				
-				openBrowser(URL_TOR_BRIDGES + type);
+				openBrowser(URL_TOR_BRIDGES + type,true);
 
 			}
 
