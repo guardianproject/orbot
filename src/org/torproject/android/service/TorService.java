@@ -604,6 +604,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     {
         try
         {
+            mNumberFormat = NumberFormat.getInstance(Locale.getDefault()); //localized numbers!
 
             if (mNotificationManager == null)
             {
@@ -636,7 +637,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 }
             }).start();
         
-            mNumberFormat = NumberFormat.getInstance(Locale.getDefault()); //localized numbers!
             
             if (OrbotVpnService.mSocksProxyPort == -1)
             	OrbotVpnService.mSocksProxyPort = (int)((Math.random()*1000)+10000); 
@@ -1619,10 +1619,13 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         // Converts the supplied argument into a string.
         // Under 2Mb, returns "xxx.xKb"
         // Over 2Mb, returns "xxx.xxMb"
-        if (count < 1e6)
-            return mNumberFormat.format(Math.round((float)((int)(count*10/1024))/10)) + "Kbps";
-        else
-        	return mNumberFormat.format(Math.round((float)((int)(count*100/1024/1024))/100)) + "Mbps";
+ 	if (mNumberFormat != null)
+        	if (count < 1e6)
+            		return mNumberFormat.format(Math.round((float)((int)(count*10/1024))/10)) + "Kbps";
+        	else
+            		return mNumberFormat.format(Math.round((float)((int)(count*100/1024/1024))/100)) + "Mbps";
+	else
+		return "";
         
            //return count+" kB";
     }
