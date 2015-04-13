@@ -1,5 +1,16 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+/** 15.0.0 RC 3 / 13-Apr-2015 / b941a1c7d5588db7efd9fab672ec518a69f76f84 **/
+
+b941a1c show warning about bridge limits on Intel x86/ATOM devices
+325ca1f only ARM chips can support the new Obfs4, Meek bridges so hide the UI options that promote them, and just request standard bri
+3c6f173 make buttons not resize weirdly with long strings
+421764b make socksbypass local port random
+4ab1854 update resource installer to handle different architecture
+e7a7d8c support variable arch builds to support x86 move asset builds to /assets folder
+74deb39 support building tun2socks for x86
+933b2e9 Small VPN and socket monitoring related fixes
+
 /** 15.0.0 RC 2 / 9-Apr-2015 / 60f19ca **/
 d6c51bc Fixes for bridge setup, and root/shell interaction 
 - If you paste bridge addresses from Gmail, you get some strange characters
