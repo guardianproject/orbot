@@ -293,6 +293,7 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 				}
 				else
 				{
+					Toast.makeText(OrbotMainActivity.this, R.string.note_only_standard_tor_bridges_work_on_intel_x86_atom_devices, Toast.LENGTH_LONG).show();
 					showGetBridgePrompt(""); //if other chip ar, only stock bridges are supported
 				}
 			}
@@ -945,9 +946,7 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
         {
         	@Override
 			public void onClick(DialogInterface dialog, int which) {
-				
-            	//mBtnBridges.setChecked(false);
-				
+				//do nothing
 			}
         })
         .setNeutralButton(R.string.get_bridges_email, new Dialog.OnClickListener ()

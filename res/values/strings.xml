@@ -339,4 +339,6 @@
   <string name="install_orweb">Install Orweb</string>
   
   <string name="standard_browser">Standard Browser</string>
+  
+  <string name="note_only_standard_tor_bridges_work_on_intel_x86_atom_devices">NOTE: Only standard Tor bridges work on Intel X86/ATOM devices</string>
 </resources>
