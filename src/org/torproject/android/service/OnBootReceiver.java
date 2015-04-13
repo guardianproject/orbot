@@ -33,15 +33,15 @@ public class OnBootReceiver extends BroadcastReceiver {
 	
 	 @SuppressLint("NewApi")
 	public void startVpnService (Context context)
-    {
-        Intent intent = VpnService.prepare(context);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        
-        if (intent != null) {
-            context.startActivity(intent);
-        } 
+    	{
+       		Intent intent = VpnService.prepare(context);
 
-    }
+		if (intent != null) {
+        		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            		context.startActivity(intent);
+        	} 
+
+    	}
 
 	private void startService (String action, Context context)
 	{
