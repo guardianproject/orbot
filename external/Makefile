@@ -49,10 +49,10 @@ LD := $(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-ld
 AR := $(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-ar
 RANLIB := $(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-ranlib
 STRIP := $(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-strip \
-	--strip-unneeded -R .note -R .comment
+	--strip-unneeded -R .note -R .comment --strip-debug
 
-# PIEFLAGS for SDK 16/Android L must be set to -fPIE -pie
-PIEFLAGS = -fPIE -pie
+# PIEFLAGS for SDK 16/Android L must be set to -fPIE -pie, but can override for earlier targets 
+PIEFLAGS =? -fPIE -pie
 CFLAGS = -DANDROID $(TARGET_CFLAGS) $(PIEFLAGS)
 LDFLAGS = -llog $(TARGET_LDFLAGS) $(PIEFLAGS)
 
@@ -258,11 +258,14 @@ assets: tor polipo jtorctl iptables
 	install -d ../libs
 	install bin/jtorctl.jar ../libs
 	install -d ../assets/$(APP_ABI)
-	-$(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-strip --strip-debug bin/polipo
+##	-$(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-strip --strip-debug 
+	-$(STRIP) bin/polipo
 	-zip ../assets/$(APP_ABI)/polipo.mp3 bin/polipo
-	-$(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-strip --strip-debug bin/tor
+##	-$(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-strip --strip-debug bin/tor
+	-$(STRIP) bin/tor
 	-zip ../assets/$(APP_ABI)/tor.mp3 bin/tor
-	-$(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-strip --strip-debug bin/xtables
+##	-$(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-strip --strip-debug bin/xtables
+	-$(STRIP) bin/xtables
 	-zip ../assets/$(APP_ABI)/xtables.mp3 bin/xtables
 
 assets-clean:
