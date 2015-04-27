@@ -24,17 +24,37 @@ endif
 # Android NDK setup
 NDK_BASE ?= /opt/android-ndk
 NDK_PLATFORM_LEVEL ?= 16
-NDK_ABI ?= arm
 NDK_TOOLCHAIN_VERSION=4.8
 APP_ABI ?= armeabi
+
+NDK_ABI := $(APP_ABI)
+ifneq ($(filter arm%, $(APP_ABI)),)
+  NDK_ABI := arm
+endif
+ifneq ($(filter arm64%, $(APP_ABI)),)
+ NDK_ABI := arm64
+endif
 NDK_SYSROOT=$(NDK_BASE)/platforms/android-$(NDK_PLATFORM_LEVEL)/arch-$(NDK_ABI)
 NDK_UNAME := $(shell uname -s | tr '[A-Z]' '[a-z]')
-ifeq ($(NDK_ABI),x86)
- HOST = i686-linux-android
- NDK_TOOLCHAIN = $(NDK_ABI)-$(NDK_TOOLCHAIN_VERSION)
-else
- HOST = $(NDK_ABI)-linux-androideabi
- NDK_TOOLCHAIN = $(HOST)-$(NDK_TOOLCHAIN_VERSION)
+ifneq ($(filter mips%, $(NDK_ABI)),)
+ HOST := $(NDK_ABI)el-linux-android
+endif
+ifneq ($(filter arm64, $(NDK_ABI)),)
+ HOST := aarch64-linux-android
+endif
+ifneq ($(filter arm, $(NDK_ABI)),)
+ HOST := arm-linux-androideabi
+endif
+ifneq ($(filter x86, $(NDK_ABI)),)
+ HOST := i686-linux-android
+endif
+ifneq ($(filter x86_64, $(NDK_ABI)),)
+ HOST := x86_64-linux-android
+endif
+
+NDK_TOOLCHAIN := $(HOST)-$(NDK_TOOLCHAIN_VERSION)
+ifneq ($(filter x86%, $(NDK_ABI)),)
+ NDK_TOOLCHAIN := $(NDK_ABI)-$(NDK_TOOLCHAIN_VERSION)
 endif
 NDK_TOOLCHAIN_BASE=$(NDK_BASE)/toolchains/$(NDK_TOOLCHAIN)/prebuilt/$(NDK_UNAME)-$(NDK_PROCESSOR)
 
