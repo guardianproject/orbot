@@ -298,7 +298,7 @@ assets-clean:
 # cleanup, cleanup, put the toys away
 
 ##clean: openssl-clean libevent-clean tor-clean polipo-clean jtorctl-clean assets-clean
-clean: openssl-clean libevent-clean tor-clean polipo-clean jtorctl-clean assets-clean
+clean: openssl-clean libevent-clean tor-clean polipo-clean iptables-clean jtorctl-clean assets-clean
 
 #------------------------------------------------------------------------------#
 # debugging stuff
