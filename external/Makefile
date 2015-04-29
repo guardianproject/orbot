@@ -97,16 +97,25 @@ all: assets
 #------------------------------------------------------------------------------#
 # openssl
 
+# Disable rc4 cipher for 64-bit archs, to avoid this link error for tor:
+# external/lib/libcrypto.a(e_rc4_hmac_md5.o):e_rc4_hmac_md5.c:function rc4_hmac_md5_cipher: error: undefined reference to 'rc4_md5_enc'
+OPENSSL_CONF_FLAG=
+ifneq ($(findstring 64, $(NDK_ABI)),)
+ OPENSSL_CONF_FLAG=no-rc4
+endif
+
 lib/libcrypto.a:
 	cd openssl && \
-		./Configure android -DL_ENDIAN && \
+		./Configure android -DL_ENDIAN $(OPENSSL_CONF_FLAG) && \
+		make CC="$(CC)" ANDROID_DEV=$(NDK_SYSROOT)/usr depend && \
 		make CC="$(CC)" ANDROID_DEV=$(NDK_SYSROOT)/usr build_libs
 
 lib/libssl.a:
 	cp config.sub openssl
 	cp config.guess openssl
 	cd openssl && \
-		./Configure android -DL_ENDIAN && \
+		./Configure android -DL_ENDIAN $(OPENSSL_CONF_FLAG) && \
+		make CC="$(CC)" ANDROID_DEV=$(NDK_SYSROOT)/usr depend && \
 		make CC="$(CC)" ANDROID_DEV=$(NDK_SYSROOT)/usr build_libs
 
 openssl-build-stamp: lib/libcrypto.a lib/libssl.a
