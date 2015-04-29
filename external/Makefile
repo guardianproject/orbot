@@ -101,7 +101,16 @@ all: assets
 # external/lib/libcrypto.a(e_rc4_hmac_md5.o):e_rc4_hmac_md5.c:function rc4_hmac_md5_cipher: error: undefined reference to 'rc4_md5_enc'
 OPENSSL_CONF_FLAG=
 ifneq ($(findstring 64, $(NDK_ABI)),)
- OPENSSL_CONF_FLAG=no-rc4
+ OPENSSL_CONF_FLAG+=no-rc4
+endif
+
+# OpenSSL's 'make depend' fails if _MIPS_SZLONG is not set:
+ifneq ($(filter mips%, $(NDK_ABI)),)
+ ifneq ($(findstring 64, $(NDK_ABI)),)
+  OPENSSL_CONF_FLAG+=-D_MIPS_SZLONG=64
+ else
+  OPENSSL_CONF_FLAG+=-D_MIPS_SZLONG=32
+ endif
 endif
 
 lib/libcrypto.a:
