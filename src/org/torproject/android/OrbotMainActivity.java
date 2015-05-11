@@ -499,45 +499,67 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 
 	}
 	
-	private void enableHiddenServicePort (int hsPort)
+	private void enableHiddenServicePort (int hsPort) throws RemoteException, InterruptedException
 	{
 		
 		Editor pEdit = mPrefs.edit();
 		
 		String hsPortString = mPrefs.getString("pref_hs_ports", "");
-		
-		if (hsPortString.length() > 0 && hsPortString.indexOf(hsPort+"")==-1)
-			hsPortString += ',' + hsPort;
-		else
-			hsPortString = hsPort + "";
-		
-		pEdit.putString("pref_hs_ports", hsPortString);
-		pEdit.putBoolean("pref_hs_enable", true);
-		
-		pEdit.commit();
-		
 		String onionHostname = mPrefs.getString("pref_hs_hostname","");
-
-		while (onionHostname.length() == 0)
-		{
-			//we need to stop and start Tor
-			try {
-				stopTor();
-				
-				Thread.sleep(3000); //wait three seconds
-				
-				startTor();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			 
-			 onionHostname = mPrefs.getString("pref_hs_hostname","");
-		}
 		
-		Intent nResult = new Intent();
-		nResult.putExtra("hs_host", onionHostname);
-		setResult(RESULT_OK, nResult);
+		if (hsPortString.indexOf(hsPort+"")==-1)
+		{
+			if (hsPortString.length() > 0 && hsPortString.indexOf(hsPort+"")==-1)
+				hsPortString += ',' + hsPort;
+			else
+				hsPortString = hsPort + "";
+			
+			pEdit.putString("pref_hs_ports", hsPortString);
+			pEdit.putBoolean("pref_hs_enable", true);
+			
+			pEdit.commit();
+		}
+
+		if (onionHostname == null || onionHostname.length() == 0)
+		{
+			stopTor();			
+			startTor();
+			
+			new Thread () {
+				
+			
+				public void run ()
+				{
+					String onionHostname = mPrefs.getString("pref_hs_hostname","");
+
+					while (onionHostname.length() == 0)				
+					{
+						//we need to stop and start Tor
+						try {					
+							Thread.sleep(3000); //wait three seconds					
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						 
+						onionHostname = mPrefs.getString("pref_hs_hostname","");						
+					}
+					
+					Intent nResult = new Intent();
+					nResult.putExtra("hs_host", onionHostname);
+					setResult(RESULT_OK, nResult);
+					finish();
+				}
+			}.start();
+		
+		}
+		else
+		{
+			Intent nResult = new Intent();
+			nResult.putExtra("hs_host", onionHostname);
+			setResult(RESULT_OK, nResult);
+			finish();
+		}
 	
 	}
 
@@ -557,20 +579,26 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 		
 		if (action.equals("org.torproject.android.REQUEST_HS_PORT"))
 		{
-			
+        	final int hiddenServicePortRequest = getIntent().getIntExtra("hs_port", -1);
+
 			DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
 			    
 			    public void onClick(DialogInterface dialog, int which) {
 			        switch (which){
 			        case DialogInterface.BUTTON_POSITIVE:
 			            
-			        	int hsPort = getIntent().getIntExtra("hs_port", -1);
+						try {
+							enableHiddenServicePort (hiddenServicePortRequest);
+							
+						} catch (RemoteException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+
 						
-			        	enableHiddenServicePort (hsPort);
-			        	
-						finish();
-						
-			        	
 			            break;
 
 			        case DialogInterface.BUTTON_NEGATIVE:
@@ -581,14 +609,13 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 			    }
 			};
 
-        	int hsPort = getIntent().getIntExtra("hs_port", -1);
 
-			String requestMsg = getString(R.string.hidden_service_request, hsPort);
+			String requestMsg = getString(R.string.hidden_service_request, hiddenServicePortRequest);
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setMessage(requestMsg).setPositiveButton("Allow", dialogClickListener)
 			    .setNegativeButton("Deny", dialogClickListener).show();
 			
-		
+			return; //don't null the setIntent() as we need it later
 		}
 		else if (action.equals("org.torproject.android.START_TOR"))
 		{
