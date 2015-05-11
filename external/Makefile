@@ -24,17 +24,37 @@ endif
 # Android NDK setup
 NDK_BASE ?= /opt/android-ndk
 NDK_PLATFORM_LEVEL ?= 16
-NDK_ABI ?= arm
 NDK_TOOLCHAIN_VERSION=4.8
 APP_ABI ?= armeabi
+
+NDK_ABI := $(APP_ABI)
+ifneq ($(filter arm%, $(APP_ABI)),)
+  NDK_ABI := arm
+endif
+ifneq ($(filter arm64%, $(APP_ABI)),)
+ NDK_ABI := arm64
+endif
 NDK_SYSROOT=$(NDK_BASE)/platforms/android-$(NDK_PLATFORM_LEVEL)/arch-$(NDK_ABI)
 NDK_UNAME := $(shell uname -s | tr '[A-Z]' '[a-z]')
-ifeq ($(NDK_ABI),x86)
- HOST = i686-linux-android
- NDK_TOOLCHAIN = $(NDK_ABI)-$(NDK_TOOLCHAIN_VERSION)
-else
- HOST = $(NDK_ABI)-linux-androideabi
- NDK_TOOLCHAIN = $(HOST)-$(NDK_TOOLCHAIN_VERSION)
+ifneq ($(filter mips%, $(NDK_ABI)),)
+ HOST := $(NDK_ABI)el-linux-android
+endif
+ifneq ($(filter arm64, $(NDK_ABI)),)
+ HOST := aarch64-linux-android
+endif
+ifneq ($(filter arm, $(NDK_ABI)),)
+ HOST := arm-linux-androideabi
+endif
+ifneq ($(filter x86, $(NDK_ABI)),)
+ HOST := i686-linux-android
+endif
+ifneq ($(filter x86_64, $(NDK_ABI)),)
+ HOST := x86_64-linux-android
+endif
+
+NDK_TOOLCHAIN := $(HOST)-$(NDK_TOOLCHAIN_VERSION)
+ifneq ($(filter x86%, $(NDK_ABI)),)
+ NDK_TOOLCHAIN := $(NDK_ABI)-$(NDK_TOOLCHAIN_VERSION)
 endif
 NDK_TOOLCHAIN_BASE=$(NDK_BASE)/toolchains/$(NDK_TOOLCHAIN)/prebuilt/$(NDK_UNAME)-$(NDK_PROCESSOR)
 
@@ -77,16 +97,34 @@ all: assets
 #------------------------------------------------------------------------------#
 # openssl
 
+# Disable rc4 cipher for 64-bit archs, to avoid this link error for tor:
+# external/lib/libcrypto.a(e_rc4_hmac_md5.o):e_rc4_hmac_md5.c:function rc4_hmac_md5_cipher: error: undefined reference to 'rc4_md5_enc'
+OPENSSL_CONF_FLAG=
+ifneq ($(findstring 64, $(NDK_ABI)),)
+ OPENSSL_CONF_FLAG+=no-rc4
+endif
+
+# OpenSSL's 'make depend' fails if _MIPS_SZLONG is not set:
+ifneq ($(filter mips%, $(NDK_ABI)),)
+ ifneq ($(findstring 64, $(NDK_ABI)),)
+  OPENSSL_CONF_FLAG+=-D_MIPS_SZLONG=64
+ else
+  OPENSSL_CONF_FLAG+=-D_MIPS_SZLONG=32
+ endif
+endif
+
 lib/libcrypto.a:
 	cd openssl && \
-		./Configure android -DL_ENDIAN && \
+		./Configure android -DL_ENDIAN $(OPENSSL_CONF_FLAG) && \
+		make CC="$(CC)" ANDROID_DEV=$(NDK_SYSROOT)/usr depend && \
 		make CC="$(CC)" ANDROID_DEV=$(NDK_SYSROOT)/usr build_libs
 
 lib/libssl.a:
 	cp config.sub openssl
 	cp config.guess openssl
 	cd openssl && \
-		./Configure android -DL_ENDIAN && \
+		./Configure android -DL_ENDIAN $(OPENSSL_CONF_FLAG) && \
+		make CC="$(CC)" ANDROID_DEV=$(NDK_SYSROOT)/usr depend && \
 		make CC="$(CC)" ANDROID_DEV=$(NDK_SYSROOT)/usr build_libs
 
 openssl-build-stamp: lib/libcrypto.a lib/libssl.a
@@ -112,6 +150,9 @@ openssl-clean:
 
 libevent/Makefile:
 	sed -i 's@\(SUBDIRS = . include\) sample test@\1@' libevent/Makefile.am
+	cp libevent-patch-1 libevent
+	-cd libevent && \
+	 	patch -N -p1 --reject-file=- < libevent-patch-1
 	##sed -i 's@\(AC_OUTPUT(Makefile include/Makefile\) test/Makefile sample/Makefile)@\1)@' libevent/configure.in
 	cd libevent && ./autogen.sh
 	cp config.sub libevent
@@ -278,7 +319,7 @@ assets-clean:
 # cleanup, cleanup, put the toys away
 
 ##clean: openssl-clean libevent-clean tor-clean polipo-clean jtorctl-clean assets-clean
-clean: openssl-clean libevent-clean tor-clean polipo-clean jtorctl-clean assets-clean
+clean: openssl-clean libevent-clean tor-clean polipo-clean iptables-clean jtorctl-clean assets-clean
 
 #------------------------------------------------------------------------------#
 # debugging stuff
