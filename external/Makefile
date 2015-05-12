@@ -24,10 +24,9 @@ endif
 # Android NDK setup
 NDK_BASE ?= /opt/android-ndk
 NDK_PLATFORM_LEVEL ?= 16
-NDK_TOOLCHAIN_VERSION=4.8
+NDK_TOOLCHAIN_VERSION=4.9
 APP_ABI ?= armeabi
-
-NDK_ABI := $(APP_ABI)
+NDK_ABI ?= $(APP_ABI)
 ifneq ($(filter arm%, $(APP_ABI)),)
   NDK_ABI := arm
 endif
@@ -198,7 +197,7 @@ iptables/Makefile:
 	cp config.guess iptables
 	cd iptables && \
  		CC="$(CC)" AR="$(AR)" RANLIB=$(RANLIB) CFLAGS="$(CFLAGS) -I$(EXTERNAL_ROOT)/include" LDFLAGS="$(LDFLAGS)" \
-			./configure --host=$(HOST) --disable-shared --enable-static
+			./configure --host=$(HOST) --disable-shared --enable-static 
 
 iptables-build-stamp: iptables/Makefile
 	$(MAKE) -C iptables 
@@ -299,13 +298,10 @@ assets: tor polipo jtorctl iptables
 	install -d ../libs
 	install bin/jtorctl.jar ../libs
 	install -d ../assets/$(APP_ABI)
-##	-$(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-strip --strip-debug 
 	-$(STRIP) bin/polipo
 	-zip ../assets/$(APP_ABI)/polipo.mp3 bin/polipo
-##	-$(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-strip --strip-debug bin/tor
 	-$(STRIP) bin/tor
 	-zip ../assets/$(APP_ABI)/tor.mp3 bin/tor
-##	-$(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-strip --strip-debug bin/xtables
 	-$(STRIP) bin/xtables
 	-zip ../assets/$(APP_ABI)/xtables.mp3 bin/xtables
 
