@@ -24,7 +24,7 @@ endif
 # Android NDK setup
 NDK_BASE ?= /opt/android-ndk
 NDK_PLATFORM_LEVEL ?= 16
-NDK_TOOLCHAIN_VERSION=4.9
+NDK_TOOLCHAIN_VERSION=4.8
 APP_ABI ?= armeabi
 NDK_ABI ?= $(APP_ABI)
 ifneq ($(filter arm%, $(APP_ABI)),)
