@@ -76,7 +76,9 @@
   <string name="wizard_tips_proxy">Vekil Ayarları - Uygulamaların, Orbot ile birlikte çalışmalarını nasıl ayarlayacağınızı öğrenin.</string>
   <string name="wizard_tips_duckgo">DuckDuckGo Arama Motoru uygulaması</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
+  <string name="proxymob_setup_url">https://guardianproject.info/apps/firefoxprivacy</string>
   <string name="wizard_tips_twitter">Twitter proxy sunucusunu \"localhost\" ve bağlantı noktası 8118 olarak ayarlayın</string>
+  <string name="story_maker_url">https://play.google.com/store/apps/details?id=info.guardianproject.mrapp</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Proxy Ayarları</string>
   <string name="wizard_final">Orbot hazır!</string>
@@ -188,9 +190,15 @@
   <string name="the_addressable_name_for_your_hidden_service_generated_automatically_">Gizlenmiş servisiniz için adreslenebilir ad (otomatik olarak verilmiştir)</string>
   <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">hata giderme kaydını tut (görüntülemek için adb veya aLogCat gerekir)</string>
   <string name="project_home">Proje adres(ler)i:</string>
+  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
   <string name="the_tor_license">Tor Lisansı</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Üçüncü Parti Yazılım:</string>
+  <string name="tor_version">Tor: https://www.torproject.org</string>
+  <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
+  <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
+  <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
+  <string name="openssl_version">OpenSSL v1.0.1i: http://www.openssl.org</string>
   <string name="hidden_service_request">Bir uygulama Tor ağında gizlenmiş sunucu bağlantı noktası %S açmak istiyor. Eğer uygulamaya güveniyorsanız bu güvenlidir.</string>
   <string name="found_existing_tor_process">varolan bir Tor işlemi bulundu...</string>
   <string name="something_bad_happened">Kötü bir şey oldu. Kayıtlara bakınız</string>
@@ -222,4 +230,13 @@
   <string name="permission_manage_tor_description">Tor servisini kontrol etmek için bu uygulamayı etkinleştir</string>
   <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Orweb\'i kurmamış görünüyorsunuz. Bunun için yardım ister misin, yoksa sadece tarayıcıyı mı açalım?</string>
   <string name="install_apps_">Uygulamalar kurulsun mu?</string>
+  <string name="menu_vpn">Uygulamalar</string>
+  <string name="kbps">kbps</string>
+  <string name="mbps">mbps</string>
+  <string name="kb">KB</string>
+  <string name="mb">MB</string>
+  <string name="get_bridges_email">Eposta</string>
+  <string name="send_email">Eposta Gönder</string>
+  <string name="install_orweb">Orweb\'i yükle</string>
+  <string name="standard_browser">Standart Tarayıcı</string>
 </resources>

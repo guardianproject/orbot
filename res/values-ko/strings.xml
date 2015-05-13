@@ -33,6 +33,8 @@
   <string name="button_clear_log">로그 지우기</string>
   <string name="menu_verify">확인</string>
   <string name="menu_exit">종료</string>
+  <string name="menu_scan">브릿지 QR코드 스캔하기</string>
+  <string name="menu_share_bridge">브릿지 QR코드 공유하기</string>
   <string name="press_to_start">- 길게 눌러서 시작하기 -</string>
   <string name="pref_trans_proxy_group">투명한 프록시 (루팅 필요)</string>
   <string name="pref_trans_proxy_title">투명한 프록시</string>
@@ -46,7 +48,7 @@
   <string name="pref_transparent_port_dialog">프록시 포트 입력</string>
   <string name="pref_has_root">루트 권한에 대한 접근 필요</string>
   <string name="pref_has_root_summary">명백한 프록시를 위해 루트 권한 요구</string>
-  <string name="status_install_success">Tor 바이너리가 성공적으로 설치됨!</string>
+  <string name="status_install_success">Tor 바이너리가 성공적으로 설치되었습니다!</string>
   <string name="status_install_fail">토르 바이너리 파일을 설치할 수 없습니다. 로그를 확인해 주시고 tor-assistants@torproject.org 에 알려 주십시오.</string>
   <string name="title_error">애플리케이션 오류</string>
   <string name="wizard_title">Orbot</string>
@@ -58,6 +60,7 @@
   <string name="btn_cancel">취소</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Orbot에 대한 몇몇 상세사항</string>
+  <string name="wizard_details_msg">Orbot은 Tor와, LibEvent, Polipo를 탑재한 오픈소스 어플리케이션입니다. 다이 앱은 Tor 네트워크로 연결되는 HTTP 프록시 (8118)와 SOCKS 프록시 (9050) 을 제공합니다. Orbot은 또한, 루팅된 폰의 경우, 모든 트래픽을 Tor를 통할 수 있도록 합니다.</string>
   <string name="wizard_permissions_root">사용 권한 부여</string>
   <string name="wizard_permissions_stock">Orbot 사용 권한</string>
   <string name="wizard_premissions_msg_root">완벽합니다! Orbot을 위해 루트 권한이 활성화된것을 감지했습니다. 우리는 이 힘을 현명하게 사용할 것입니다.</string>
@@ -75,7 +78,10 @@
   <string name="wizard_tips_proxy">Proxy Settings - Orbot과 작동하도록 앱을 설정하는 방법을 배우기</string>
   <string name="wizard_tips_duckgo">DuckDuckGo 검색 엔진 앱</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
+  <string name="wizard_tips_firefox">파이어폭스 앱의 Proxy Mobile 확장 프로그램 (https://guardianproject.info/apps/firefoxprivacy)</string>
+  <string name="proxymob_setup_url">https://guardianproject.info/apps/firefoxprivacy</string>
   <string name="wizard_tips_twitter">트위터 프록시를 localhost:8118로 설정</string>
+  <string name="wizard_tips_story_maker">StoryMaker - 스토리는 당신이 만들고 보안은 Tor에 맏기세요!</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">프록시 설정</string>
   <string name="wizard_final">Orbot이 준비되었습니다!</string>
