@@ -186,12 +186,15 @@ iptables/Makefile:
 	cp iptables-patch-1 iptables
 	cp iptables-patch-2 iptables
 	cp iptables-patch-3 iptables
+	cp iptables-patch-4 iptables
 	-cd iptables && \
 	 	patch -N -p1 --reject-file=- < iptables-patch-1
 	-cd iptables && \
 	 	patch -N -p1 --reject-file=- < iptables-patch-2
 	-cd iptables && \
 	 	patch -N -p1 --reject-file=- < iptables-patch-3
+	-cd iptables && \
+	 	patch -N -p0 --reject-file=- < iptables-patch-4
 	cd iptables && ./autogen.sh
 	cp config.sub iptables
 	cp config.guess iptables
