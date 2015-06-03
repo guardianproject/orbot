@@ -14,3 +14,7 @@ builds
 /patches/*
 obj
 releases
+
+# ant build products
+build.xml
+proguard-project.txt

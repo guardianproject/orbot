@@ -54,7 +54,7 @@ into < 1M chunks because some Android devices don't like resources larger than
 
 Now build the Android app
 
-    ./update-ant-build
+    ./setup-ant
 	ant release
 
 This will produce an unsigned Tor package in ./bin/Orbot-unsigned.apk!
