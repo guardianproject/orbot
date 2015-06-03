@@ -27,7 +27,7 @@ Be sure that you have all of the git submodules up-to-date:
 To begin building, from the Orbot root directory, you first need to build all
 external C/native dependencies:
 
-	export NDK_BASE={PATH TO YOUR NDK INSTALL}
+	export ANDROID_NDK_HOME={PATH TO YOUR NDK INSTALL}
 	make -C external
 
 At this point, you'll have Tor and Polipo binaries that can be run on an
