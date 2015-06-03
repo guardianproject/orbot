@@ -74,7 +74,7 @@
   <string name="wizard_tips_otrchat">ChatSecure - cliente de mensagem instantânea segura para Android</string>
   <string name="wizard_tips_proxy">Configurações de Proxy - Aprenda como configurar apps para trabalhar com Orbot</string>
   <string name="wizard_tips_duckgo">Ferramenta de Busca DuckDuckGo</string>
-  <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
+
   <string name="wizard_tips_twitter">Define o proxy do Twitter para \"localhost\" e a porta 8118</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Configurações de Proxy</string>
@@ -96,14 +96,14 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Apps Orbot Habilitadas</string>
   <string name="wizard_tips_gibberbot">ChatSecure: app de chat seguro com criptografia Off-the-Record</string>
-  <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
+
   <string name="wizard_tips_orweb">Orweb: Navegador de reforço de privacidade que trabalha através do Tor</string>
-  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
+
   <string name="wizard_tips_play">Encontre todos os aplicativos da Guardian Project no Google Play</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
-    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
+
     <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Proxy Transparente</string>

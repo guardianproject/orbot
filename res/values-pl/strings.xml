@@ -78,12 +78,12 @@
   <string name="wizard_tips_otrchat">ChatSecure - Bezpieczny komunikator pod Androida</string>
   <string name="wizard_tips_proxy">Ustawienia Proxy - Dowiedz się, jak konfigurować aplikacje do współpracy z Orbotem</string>
   <string name="wizard_tips_duckgo">Aplikacja Duckduckgo Search Engine</string>
-  <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
+
   <string name="wizard_tips_firefox">Dodatek Proxy Mobile dla Firefox (https://guardianproject.info/apps/firefoxprivacy)</string>
   <string name="proxymob_setup_url">https://guardianproject.info/apps/firefoxprivacy</string>
   <string name="wizard_tips_twitter">Twitter obsługuje proxy http \"localhost:8118\"</string>
   <string name="wizard_tips_story_maker">StoryMaker - Napisz artukuł, historię, a bezpieczeństwo pozostaw Torowi.</string>
-  <string name="story_maker_url">https://play.google.com/store/apps/details?id=info.guardianproject.mrapp</string>
+
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Ustawienia Proxy</string>
   <string name="wizard_proxy_help_msg">Jeśli aplikacja na Androida, której używasz obsługuje proxy HTTP lub SOCKS proxy, to możesz skonfigurować ją do łączenia się z Orbotem i używania Tora. Ustawienie hosta to 127.0.0.1 lub \"localhost\". Dla HTTP, numer portu to 8118. Dla SOCKS proxy to 9050. Powinno się używać SOCKS4A lub SOCKS5, jeśli to możliwe.\n \n\n\n Możesz dowiedzieć się więcej o przekierowaniu ruchu na Androidzie z FAQ pod adresem: http://tinyurl.com/proxyandroid\n </string>
@@ -111,14 +111,14 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot-Włączone Aplikacje</string>
   <string name="wizard_tips_gibberbot">ChatSecure: Bezpieczny komunikator z szyfrowaniem Off-the-Record</string>
-  <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
+
   <string name="wizard_tips_orweb">ORWEB (tylko Android 1.x) - Przeglądarka zaprojektowana do prywatności i dla Orbota</string>
-  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
+
   <string name="wizard_tips_play">Znajdź wszystkie aplikacje Guardian Project na Google Play</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
-    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
+
     <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Transparentne Proxy</string>
@@ -265,7 +265,7 @@
   <string name="pref_torrc_summary">TYLKO DLA EKSPERTÓW: wpisz linijki konfiguracyjne torrc</string>
   <string name="pref_torrc_dialog">Torrc klienta</string>
   <string name="wizard_tips_martus">Mobile Martus - Benetech Dokumentacja Aplikacji Praw Człowieka</string>
-  <string name="martus_url">https://play.google.com/store/apps/details?id=org.martus.android</string>
+
   <string name="your_tor_public_ips_">Twoje publiczne Tor IP:</string>
   <string name="please_disable_this_app_in_android_settings_apps_if_you_are_having_problems_with_orbot_">Proszę wyłącz tą aplikację w Android-&gt;Ustawienia-&gt;Aplikacje jesli masz problemy z Orbot:</string>
   <string name="app_conflict">Konflikt aplikacji</string>

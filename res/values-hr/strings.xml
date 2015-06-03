@@ -74,7 +74,7 @@
   <string name="wizard_tips_otrchat">ChatSecure - Sigurni klijent instant poruka za Adnroid</string>
   <string name="wizard_tips_proxy">Proxy Postavke - Naučite kako konfigurirati aplikacije za rad s Orbot-om</string>
   <string name="wizard_tips_duckgo">DuckDuckGo aplikacija za pretraživanje</string>
-  <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
+
   <string name="wizard_tips_twitter">Namjesti Twitter proxy na host \"localhost\" i port 8118</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Postavke Proxy-a</string>
@@ -96,14 +96,14 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot-Omogućene Aplikacije</string>
   <string name="wizard_tips_gibberbot">ChatSecure: Sigurna aplikacija za čavrljanje s Povjerljivom Enkripcijom</string>
-  <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
+
   <string name="wizard_tips_orweb">Orweb: Preglednik poboljšane privatnosti koji radi kroz Tor</string>
-  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
+
   <string name="wizard_tips_play">Pronađi sve Guardian Projekt aplikacije na Google Play</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
-    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
+
     <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Transparentni Proxy</string>

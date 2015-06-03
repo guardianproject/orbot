@@ -78,12 +78,12 @@
   <string name="wizard_tips_otrchat">ChatSecure - Cliente de mensajería instantánea segura para Android</string>
   <string name="wizard_tips_proxy">Preferencias para proxy - aprenda cómo configurar aplicaciones para que trabajen con Orbot</string>
   <string name="wizard_tips_duckgo">Aplicación del motor de búsqueda DuckDuckGo</string>
-  <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
+
   <string name="wizard_tips_firefox">Complemento Proxy Mobile para Firefox (https://guardianproject.info/apps/firefoxprivacy)</string>
   <string name="proxymob_setup_url">https://guardianproject.info/apps/firefoxprivacy</string>
   <string name="wizard_tips_twitter">Configure por proxy la aplicación de Twitter en localhost:8118</string>
   <string name="wizard_tips_story_maker">StoryMaker - ¡Elabore una historia y déjesela a Tor por seguridad!</string>
-  <string name="story_maker_url">https://play.google.com/store/apps/details?id=info.guardianproject.mrapp&amp;hl=es</string>
+
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Preferencias para proxy</string>
   <string name="wizard_proxy_help_msg">Si la aplicación Android que está utilizando puede soportar el uso de un proxy (interpuesto) HTTP o SOCKS, entonces puede configurarla para que conecte a Orbot y use Tor.\n\n\nLa configuración del servidor es 127.0.0.1 o \"localhost\". Para HTTP, la configuración del puerto es 8118. Para SOCKS, el proxy está en el 9050. Debe utilizar la configuración para SOCKS4A o SOCKS5 si es posible.\n\n\n\nPuede aprender más acerca de proxyficación en Android a través de las preguntas frecuentes (FAQ) en: http://tinyurl.com/proxyandroid\n </string>
@@ -111,14 +111,14 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Aplicaciones habilitadas para Orbot</string>
   <string name="wizard_tips_gibberbot">ChatSecure: Aplicación de chat segura con cifrado Off-The-Record (OTR)</string>
-  <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
+
   <string name="wizard_tips_orweb">Orweb - navegador de privacidad-mejorada que funciona a través de Tor</string>
-  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
+
   <string name="wizard_tips_play">Descubre todas las aplicaciones de Guardian Project en Google Play</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
-    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
+
     <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Proxyficación transparente</string>
@@ -266,7 +266,7 @@ direcciones (o rangos). No prevalecen sobre las configuraciones de exclusión de
   <string name="pref_torrc_summary">SÓLO EXPERTOS: Introduzca directamente las líneas de configuración en el fichero torrc</string>
   <string name="pref_torrc_dialog">torrc personalizado</string>
   <string name="wizard_tips_martus">Martus Móvil - Aplicación de documentación de derechos humanos de Benetech</string>
-  <string name="martus_url">https://play.google.com/store/apps/details?id=org.martus.android&amp;hl=es</string>
+
   <string name="your_tor_public_ips_">Las IPs públicas de su Tor:</string>
   <string name="please_disable_this_app_in_android_settings_apps_if_you_are_having_problems_with_orbot_">Por favor, deshabilite esta aplicación en Android-&gt;Configuración-&gt;Aplicaciones si está teniendo problemas con Orbot:</string>
   <string name="app_conflict">Conflicto de la aplicación</string>

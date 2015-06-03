@@ -73,7 +73,7 @@
   <string name="wizard_tips_msg">التطبيقات التالية تم تطويرها حتي تعمل مع اوربوت. اضغط علي ما تريد تثبيتة علي جهازك الأن, أو يمكنك ان تجدهم لاحقاً علي جوجل بلاي, أو علي موقعنا GuardianProject.info أو من خلال F-Droid.org.</string>
   <string name="wizard_tips_proxy">إعدادات البروكسي - تعلم كيفية تكوين التطبيقات لتعمل مع اوربوت</string>
   <string name="wizard_tips_duckgo">تطبيق محرك البحث DuckDuckGo</string>
-  <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
+
   <string name="wizard_tips_twitter">اضبط البروكسي الخاص بتويتر إلي مستضيف \"localhost\" و المنفذ إلي 8118</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">إعدادات البروكسي</string>
@@ -100,7 +100,7 @@
 </string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
-    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
+
     <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">بروكسي ضمني</string>

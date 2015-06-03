@@ -1,20 +1,35 @@
 package org.torproject.android.ui.wizard;
 
-import org.torproject.android.R;
-import org.torproject.android.OrbotConstants;
-
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.TextView;
+
+import org.torproject.android.OrbotConstants;
+import org.torproject.android.R;
+
+import java.util.List;
 
 public class PromoAppsActivity extends Activity implements OrbotConstants {
 
+    final static String MARKET_URI = "market://details?id=";
+    final static String FDROID_APP_URI = "https://f-droid.org/repository/browse/?fdid=";
+    final static String PLAY_APP_URI = "https://play.google.com/store/apps/details?id=";
+    final static String FDROID_URI = "https://f-droid.org/repository/browse/?fdfilter=info.guardianproject";
+    final static String PLAY_URI = "https://play.google.com/store/apps/developer?id=The+Guardian+Project";
+
+    private final static String FDROID_PACKAGE_NAME = "org.fdroid.fdroid";
+    private final static String PLAY_PACKAGE_NAME = "com.android.vending";
+
+    @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
@@ -39,47 +54,45 @@ public class PromoAppsActivity extends Activity implements OrbotConstants {
     }
 
     void stepFive(){
-        
-        
-        String title = getString(R.string.wizard_tips_title);
-        
-        setTitle(title);
-            
-        Button btnLink = (Button)findViewById(R.id.WizardRootButtonInstallGibberbot);
-        
-        btnLink.setOnClickListener(new OnClickListener() {
-            
-            public void onClick(View view) {
 
-                String url = getString(R.string.gibberbot_apk_url);
+
+        String title = getString(R.string.wizard_tips_title);
+
+        setTitle(title);
+
+        Button btnLink = (Button)findViewById(R.id.WizardRootButtonInstallGibberbot);
+
+        btnLink.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
                 finish();
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+                startActivity(getInstallIntent("info.guardianproject.otr.app.im"));
 
             }
         });
-        
+
         btnLink = (Button)findViewById(R.id.WizardRootButtonInstallOrweb);
 
         btnLink.setOnClickListener(new OnClickListener() {
-            
+
+            @Override
             public void onClick(View view) {
-                
-                String url = getString(R.string.orweb_apk_url);
                 finish();
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+                startActivity(getInstallIntent("info.guardianproject.browser"));
 
             }
         });
-        
+
         btnLink = (Button)findViewById(R.id.WizardRootButtonInstallDuckgo);
 
         btnLink.setOnClickListener(new OnClickListener() {
-            
+
+            @Override
             public void onClick(View view) {
-                
-                String url = getString(R.string.duckgo_apk_url);
+
                 finish();
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+                startActivity(getInstallIntent("com.duckduckgo.mobile.android"));
 
             }
         });
@@ -87,41 +100,42 @@ public class PromoAppsActivity extends Activity implements OrbotConstants {
         btnLink = (Button)findViewById(R.id.WizardRootButtonInstallTwitter);
 
         btnLink.setOnClickListener(new OnClickListener() {
-            
+
+            @Override
             public void onClick(View view) {
-                
+
                 String url = getString(R.string.twitter_setup_url);
                 finish();
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
 
             }
         });
-        
+
         btnLink = (Button)findViewById(R.id.WizardRootButtonInstallStoryMaker);
 
         btnLink.setOnClickListener(new OnClickListener() {
-            
+
+            @Override
             public void onClick(View view) {
-                
-                String url = getString(R.string.story_maker_url);
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+                finish();
+                startActivity(getInstallIntent("info.guardianproject.mrapp"));
 
             }
         });
-        
+
         btnLink = (Button)findViewById(R.id.WizardRootButtonInstallMartus);
 
         btnLink.setOnClickListener(new OnClickListener() {
-            
+
+            @Override
             public void onClick(View view) {
-                
-                String url = getString(R.string.martus_url);
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+                finish();
+                startActivity(getInstallIntent("org.martus.android"));
 
             }
         });
-        
-        
+
+
         btnLink = (Button)findViewById(R.id.WizardRootButtonGooglePlay);
 
         btnLink.setOnClickListener(new OnClickListener() {
@@ -170,8 +184,33 @@ public class PromoAppsActivity extends Activity implements OrbotConstants {
 	    }
 	    return false;
 	}
-	
-	/*
+
+    Intent getInstallIntent(String packageName) {
+        final Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(MARKET_URI + packageName));
+
+        PackageManager pm = getPackageManager();
+        List<ResolveInfo> resInfos = pm.queryIntentActivities(intent, 0);
+
+        String foundPackageName = null;
+        for (ResolveInfo r : resInfos) {
+            Log.i(TAG, "market: " + r.activityInfo.packageName);
+            if (TextUtils.equals(r.activityInfo.packageName, FDROID_PACKAGE_NAME)
+                    || TextUtils.equals(r.activityInfo.packageName, PLAY_PACKAGE_NAME)) {
+                foundPackageName = r.activityInfo.packageName;
+                break;
+            }
+        }
+
+        if (foundPackageName == null) {
+            intent.setData(Uri.parse(FDROID_APP_URI + packageName));
+        } else {
+            intent.setPackage(foundPackageName);
+        }
+        return intent;
+    }
+
+    /*
 	private void showWizardFinal ()
 	{
 		String title = null;

@@ -74,12 +74,12 @@
   <string name="wizard_tips_otrchat">ChatSecure - Biztonságos üzenetküldő Androidra</string>
   <string name="wizard_tips_proxy">Proxy beállítások - Tanulja meg, hogyan állíthatja be alkalmazásait, hogy együttműködjenek az Orbot-tal</string>
   <string name="wizard_tips_duckgo">Duckduckgo keresőgép alkalmazás</string>
-  <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
+
   <string name="wizard_tips_firefox">Proxy Mobile bővítmény Firefox-hoz (https://guardianproject.info/apps/firefoxprivacy)</string>
   <string name="proxymob_setup_url">https://guardianproject.info/apps/firefoxprivacy</string>
   <string name="wizard_tips_twitter">A Twitter támogatja a \"localhost:8118\" http proxyt</string>
   <string name="wizard_tips_story_maker">StoryMaker - Készítsen egy sztorit, és hagyja a Tor-ra a biztonságért!</string>
-  <string name="story_maker_url">https://play.google.com/store/apps/details?id=info.guardianproject.mrapp</string>
+
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Proxy beállítások</string>
   <string name="wizard_final">Az Orbot kész!</string>
@@ -100,14 +100,14 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot-engedélyezett Alkalmazások</string>
   <string name="wizard_tips_gibberbot">ChatSecure: Biztonságos üzenetküldő app OTR titkosítással</string>
-  <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
+
   <string name="wizard_tips_orweb">ORWEB (csak Android 1.x) - Böngésző, kifejezetten adatvédelemre és az Orbot-hoz</string>
-  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
+
   <string name="wizard_tips_play">Az összes Guardian Project alkalmazás keresése a Google Play-en</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
-    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
+
     <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Átlátszó proxyzás</string>
@@ -254,7 +254,7 @@
   <string name="pref_torrc_summary">CSAK SZAKÉRTŐKNEK: torrc konfigurációs sorok közvetlen beírása</string>
   <string name="pref_torrc_dialog">Egyedi Torrc</string>
   <string name="wizard_tips_martus">Mobile Martus - Benetech meberi jog dokumentáló alkalmazás</string>
-  <string name="martus_url">https://play.google.com/store/apps/details?id=org.martus.android</string>
+
   <string name="your_tor_public_ips_">A Tor publikus IP-je:</string>
   <string name="please_disable_this_app_in_android_settings_apps_if_you_are_having_problems_with_orbot_">Kérjk tiltsa le az alkalmazést az Android-&gt;Beállítások-&gt;Alkalmazások alatt, ha az Orbot-tal problémái vannak: </string>
   <string name="app_conflict">App ütközés</string>

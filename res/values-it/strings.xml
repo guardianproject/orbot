@@ -74,7 +74,7 @@
   <string name="wizard_tips_otrchat">ChatSecure - Client sicuro di messaggistica istantanea, per Android</string>
   <string name="wizard_tips_proxy">Impostazioni proxy - Ulteriori informazioni su come configurare le app per funzionare con Orbot</string>
   <string name="wizard_tips_duckgo">App del motore di ricerca Duckduckgo</string>
-  <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
+
   <string name="wizard_tips_twitter">Twitter supporta il proxy http \"localhost:8118\"</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Impostazioni proxy</string>
@@ -96,14 +96,14 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot-App abilitate</string>
   <string name="wizard_tips_gibberbot">ChatSecure: App chat sicura con Cifratura Off-the-Record</string>
-  <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
+
   <string name="wizard_tips_orweb">Orweb - Browser progettato per la privacy e Orbot</string>
-  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
+
   <string name="wizard_tips_play">Cerca tutte le app del Guardian Project su Google Play</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
-    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
+
     <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Proxying trasparente</string>

@@ -77,11 +77,11 @@
   <string name="wizard_tips_otrchat">ChatSecure - Android 上的安全即时通讯客户端</string>
   <string name="wizard_tips_proxy">代理设置 - 学习如何配置应用程序使用 Orbot</string>
   <string name="wizard_tips_duckgo">DuckDuckGo 搜索引擎应用程序</string>
-  <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
+
   <string name="wizard_tips_firefox">适用于移动版 Firefox 的代理扩展 (https://guardianproject.info/apps/firefoxprivacy)</string>
   <string name="proxymob_setup_url">https://guardianproject.info/apps/firefoxprivacy</string>
   <string name="wizard_tips_twitter">将 Twitter 代理的主机设置 localhost 并将端口设置为 8118</string>
-  <string name="story_maker_url">https://play.google.com/store/apps/details?id=info.guardianproject.mrapp</string>
+
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">代理设置</string>
   <string name="wizard_final">Orbot 已就绪！</string>
@@ -103,14 +103,14 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">使用 Orbot 的应用程序</string>
   <string name="wizard_tips_gibberbot">ChatSecure：具有 OTF 加密共的安全通讯应用</string>
-  <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
+
   <string name="wizard_tips_orweb">Orweb：使用 Tor 网络的隐私保护浏览器</string>
-  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
+
   <string name="wizard_tips_play">在 Google Play 商店查找所有 Guardian Project 的应用程序</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
-    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
+
     <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">透明代理</string>
@@ -256,7 +256,7 @@
   <string name="pref_torrc_title">Torrc 自定义配置</string>
   <string name="pref_torrc_summary">仅供专家：直接输入 torrc 配置行</string>
   <string name="pref_torrc_dialog">自定义 Torrc</string>
-  <string name="martus_url">https://play.google.com/store/apps/details?id=org.martus.android</string>
+
   <string name="your_tor_public_ips_">您的 Tor 公网 IP:</string>
   <string name="please_disable_this_app_in_android_settings_apps_if_you_are_having_problems_with_orbot_">如果您使用 Orbot 遇到问题，请在 Android-&gt;设置-&gt;应用 中禁用本应用：</string>
   <string name="app_conflict">应用冲突</string>

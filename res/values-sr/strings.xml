@@ -73,7 +73,7 @@
   <string name="wizard_tips_msg">Апликације наведене испод су развијене да би радиле са Орботом. Кликните свако дугме које желите сада да инсталирате, а у супротном их можете пронаћи и у Google Play продавници, на GuardianProject.info веб страници или преко F-Droid.org.</string>
   <string name="wizard_tips_proxy">Прокси поставке - Научите како да подесите апликације да раде са Орботом</string>
   <string name="wizard_tips_duckgo">DuckDuckGo апликација за претраживање интернета</string>
-  <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
+
   <string name="wizard_tips_twitter">Подесите Твитер да користи порт 8118 на локалном хосту.</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Прокси подешавања</string>
@@ -99,7 +99,7 @@
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
-    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
+
     <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Транспарентно слање кроз прокси</string>

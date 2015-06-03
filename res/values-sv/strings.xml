@@ -74,7 +74,7 @@
   <string name="wizard_tips_otrchat">ChatSecure - Säker chattklient för Android</string>
   <string name="wizard_tips_proxy">Proxy-inställningar - Lär dig hur du konfigurerar appar att fungera med Orbot</string>
   <string name="wizard_tips_duckgo">DuckDuckGo Sökmotor App</string>
-  <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
+
   <string name="wizard_tips_twitter">Ställ in Twitter proxy till värd \"localhost\" och port 8118</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Proxy-inställningar</string>
@@ -96,14 +96,14 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot-Anpassade Appar</string>
   <string name="wizard_tips_gibberbot">ChatSecure: Säkert chatt app med Off-the-Record kryptering</string>
-  <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
+
   <string name="wizard_tips_orweb">Orweb: Integritets-förbättrande webbläsare som fungerar genom Tor</string>
-  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
+
   <string name="wizard_tips_play">Hitta alla Guardian Project appar på Google Play</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
-    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
+
     <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Transparent Proxy</string>

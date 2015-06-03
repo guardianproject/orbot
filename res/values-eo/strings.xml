@@ -57,7 +57,7 @@
   <string name="wizard_tips_tricks">Aplikaĵoj permesitaj por Orbot</string>
   <string name="wizard_tips_otrchat">ChatSecutre - Sekura tujmesaĝilo por Android</string>
   <string name="wizard_tips_proxy">Agordoj de prokurilo - Lernu kiel agordi aplikaĵojn por kunlabori kun Orbot</string>
-  <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
+
   <string name="wizard_tips_twitter">Agordi prokurilon por Twitter je adreso \"localhost\" kaj pordo 8118</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Retperant‐agordoj</string>
@@ -76,13 +76,13 @@
   <string name="wizard_permissions_root_msg2">Se vi ne volas fari tion, bonvolu certiĝi ke eblas agordi aplikaĵojn por kunlabori kun Orbot</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Aplikaĵoj permesitaj por Orbot</string>
-  <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
-  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
+
+
   <string name="wizard_tips_play">Trovu ĉiujn aplikaĵojn de Guardian Project ĉe Google Play</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
-    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
+
     <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_hint">(Marku ĉi tiun butonon se vi ne scias pri kio ni parolas)</string>

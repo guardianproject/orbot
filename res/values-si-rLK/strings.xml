@@ -73,7 +73,7 @@
   <string name="wizard_tips_msg">පහත යොමු සාදා ඇත්තේ Orbot සමග වැඩ කිරීමට ය. ස්ථාපනය කිරීම සදහා එක් එක් බොත්තම මත ක්ලික් කරන්න. නැතහොත් ඔබට මෙම යොමු Google Play, GuardianProject.info වෙබ්අඩවියෙන් හෝ F-Droid.org වලින් සොයා ගත හැක.</string>
   <string name="wizard_tips_proxy">නියුතු සේවා සිටුවම් - Orbot සමග ක්‍රියාකිරීමට අනෙක් යොමු වින්‍යාස කරන ආකාරය හදාරන්න </string>
   <string name="wizard_tips_duckgo">DuckDuckGo සෙවුම් යන්ත්‍ර යෙදුම </string>
-  <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
+
   <string name="wizard_tips_twitter">Twitter නියුතුසේවාව \"localhost\" සත්කාරකයට හා පෝටය 8118 ට පිහිටුවන්න </string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">නියුතු සේවා සිටුවම් </string>
@@ -99,7 +99,7 @@
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
-    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
+
     <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">පාරදෘශ්‍ය නියුතුසේවා</string>

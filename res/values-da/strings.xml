@@ -73,7 +73,7 @@
   <string name="wizard_tips_msg">De nedenstående programmer er udviklet for at fungere med Orbot. Klik hver knap for at installere nu. Ellers kan de senere findes på Google play, på hjemmesiden GuardianProject.info eller via F-Droid.org.</string>
   <string name="wizard_tips_proxy">Proxy indstillinger - Lær hvordan du konfigurerer apps til at fungere med Orbot</string>
   <string name="wizard_tips_duckgo">DuckDuckGo søgemaskine-programmet</string>
-  <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
+
   <string name="wizard_tips_twitter">Indstil Twitter proxyen til værten \"localhost\" og port 8118</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Proxy-indstillinger</string>
@@ -99,7 +99,7 @@
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
-    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
+
     <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Transperant Proxying</string>

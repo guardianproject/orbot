@@ -74,7 +74,7 @@
   <string name="wizard_tips_otrchat">ChatSecure - Öruggur spjall þjónn fyrir Android</string>
   <string name="wizard_tips_proxy">Proxy Stillingar - Lærðu hvernig á að stilla smáforrit til að virka með Orbot</string>
   <string name="wizard_tips_duckgo">DuckDuckGo Leitarvél smáforrit</string>
-  <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
+
   <string name="wizard_tips_twitter">Setja Twitter proxy hýsir til \"localhost\" and port 8118</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Proxy Stillingar</string>
@@ -96,14 +96,14 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot-Virk Smáforrit</string>
   <string name="wizard_tips_gibberbot">ChatSecure: Öruggt spjall smáforrit með Utanvegar Dulkóðun</string>
-  <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
+
   <string name="wizard_tips_orweb">Orweb: Næðis-bættur vafri sem virkar í gegnum Tor</string>
-  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
+
   <string name="wizard_tips_play">Finndu öll Guardian Verkefnis smáforrit á Google Play</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
-    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
+
     <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Gegnsæ Proxýun</string>

@@ -75,7 +75,7 @@
   <string name="wizard_tips_otrchat">Gibberbot - Client de messagerie instantanée pour Android</string>
   <string name="wizard_tips_proxy">Configuration du proxy - Apprendre comment configurer les applications pour qu\'elles fonctionnent avec Orbot</string>
   <string name="wizard_tips_duckgo">Application DuckDuckgo Search Engine</string>
-  <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
+
   <string name="wizard_tips_firefox">Firefox avec le plugin Proxy Mobile (installation complémentaire)</string>
   <string name="proxymob_setup_url">https://guardianproject.info/releases/proxymob-latest.xpi</string>
   <string name="wizard_tips_twitter">Twitter supporte le proxy http \"localhost:8118\"</string>
@@ -105,14 +105,14 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Applications Orbot</string>
   <string name="wizard_tips_gibberbot">Gibberbot: application de clavardage sécurisé avec chiffrement Off-the-Record</string>
-  <string name="gibberbot_apk_url">https://market.android.com/details?id=info.guardianproject.otr.app.im</string>
+
   <string name="wizard_tips_orweb">ORWEB (Android 1.x seulement) - navigateur créé pour protéger votre vie privée &amp; pour Orbot</string>
-  <string name="orweb_apk_url">https://market.android.com/details?id=info.guardianproject.browser</string>
+
   <string name="wizard_tips_play">Trouver toutes les applications de Guardian Project sur Google Play</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
-    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
+
     <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Proxy transparent</string>

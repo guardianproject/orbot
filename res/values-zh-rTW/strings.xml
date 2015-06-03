@@ -58,7 +58,7 @@
   <string name="wizard_configure">組態 Tor 網路</string>
   <string name="wizard_configure_all">所有應用程式都通過 Tor 代理</string>
   <string name="wizard_tips_duckgo">DuckDuckGo 搜尋引擎應用程式</string>
-  <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
+
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">代理伺服器設定</string>
   <!--END Welcome Wizard strings (DJH)-->
@@ -71,13 +71,13 @@
   <!--Permissions screen-->
   <string name="wizard_permissions_title">許可權</string>
   <!--TipsAndTricks screen-->
-  <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
-  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
+
+
   <string name="wizard_tips_play">在 Google Play 尋找所有的 Guardian Project 應用程式</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
-    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
+
     <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">通透式代理</string>

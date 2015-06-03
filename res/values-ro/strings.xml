@@ -74,7 +74,7 @@
   <string name="wizard_tips_otrchat">ChatSecure - Mesagerie instantanee securizată pentru Android</string>
   <string name="wizard_tips_proxy">Setari pentru proxy - Invata cum sa configurezi aplicatii sa fie compatibile cu Orbot</string>
   <string name="wizard_tips_duckgo">Motor de cautare DuckDuckGo</string>
-  <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
+
   <string name="wizard_tips_twitter">Seteaza proxy-ul Twitter \"localhost\" su portul 8118</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Setări proxy</string>
@@ -96,14 +96,14 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Aplicatii cu Orbot activat</string>
   <string name="wizard_tips_gibberbot">ChatSecure: Aplicație sigură de chat cu codare Off-the-Record</string>
-  <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
+
   <string name="wizard_tips_orweb">Orweb: browser de internet cu setari avansate de intimitate care functioneaza cu Tor</string>
-  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
+
   <string name="wizard_tips_play">Gaseste toate aplicatile Guardian Project pe Google Play</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
-    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
+
     <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Proxy transparent</string>

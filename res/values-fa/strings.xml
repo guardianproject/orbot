@@ -76,12 +76,12 @@
   <string name="wizard_tips_otrchat">ChatSecure - برنامه امن ارسال پیغام فوری برای اندروئید</string>
   <string name="wizard_tips_proxy">تنظیمات پروکسی - یادگیری تنظیم اپلیکیشن ها برای کار با ربات پیازی</string>
   <string name="wizard_tips_duckgo">اپلیکیشن موتور جستجوی داک داک گو</string>
-  <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
+
   <string name="wizard_tips_firefox">افزوده پروکسی موبایل برای فایرفاکس (https://guardianproject.info/apps/firefoxprivacy)</string>
   <string name="proxymob_setup_url">https://guardianproject.info/apps/firefoxprivacy</string>
   <string name="wizard_tips_twitter">توییتر از \"http proxy \"localhost:8118 پشتیبانی می کند</string>
   <string name="wizard_tips_story_maker">StoryMaker - ساختن یک داستان و ترک آن به Tor برای امنیت!</string>
-  <string name="story_maker_url">https://play.google.com/store/apps/details?id=info.guardianproject.mrapp</string>
+
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">تنظیمات پروکسی</string>
   <string name="wizard_final">ربات پیازی آماده استفاده میباشد!</string>
@@ -103,14 +103,14 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">  اپلیکیشنهایی که ربات پیازی روی آنها فعال است</string>
   <string name="wizard_tips_gibberbot">ChatSecure:برنامه امن گفتگوی محرمانه با قابلیت رمزگزاری</string>
-  <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
+
   <string name="wizard_tips_orweb">مرورگر پیازی: مرورگر طراحی شده برای حفظ حریم خصوصی و افزونساز ربات پیازی</string>
-  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
+
   <string name="wizard_tips_play">تمامي برنامه هاي Guardian Project را در Google Play پيدا كنيد.</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
-    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
+
     <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">پروکسی کردن شفاف</string>
@@ -253,7 +253,7 @@
   <string name="pref_dnsport_dialog">پیکربندی پورت DNS</string>
   <string name="pref_torrc_title">پیکربندی سفارشی Torrc</string>
   <string name="pref_torrc_dialog">سفارشی Torrc</string>
-  <string name="martus_url">https://play.google.com/store/apps/details?id=org.martus.android</string>
+
   <string name="your_tor_public_ips_">IP های عمومی Tor شما:</string>
   <string name="app_conflict">تعارض برنامه</string>
   <string name="pref_transproxy_refresh_title">خودکار تازه کردن Transproxy</string>

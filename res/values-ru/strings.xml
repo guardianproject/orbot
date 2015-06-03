@@ -74,7 +74,7 @@
   <string name="wizard_tips_otrchat">ChatSecure - Защищенный обмен сообщениями в Android</string>
   <string name="wizard_tips_proxy">Настройки прокси - узнайте как настроить приложения для работы с Orbot</string>
   <string name="wizard_tips_duckgo">Приложение поисковой системы Duckduckgo</string>
-  <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
+
   <string name="wizard_tips_twitter">Twitter поддерживает http прокси \"localhost:8118\"</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Настройки Прокси</string>
@@ -96,14 +96,14 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Приложения, работающие с Orbot:</string>
   <string name="wizard_tips_gibberbot">ChatSecure: приложение для общения с поддержкой Off-the-Record шифрования</string>
-  <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
+
   <string name="wizard_tips_orweb">ORWEB (Только для версии Android 1.x) - Браузер, разработанный для обеспечения безопасности и для Orbot</string>
-  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
+
   <string name="wizard_tips_play">Найти все приложения Guardian Project на Google Play</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
-    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
+
     <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Прозрачное Проксирование</string>
