@@ -83,20 +83,7 @@ public class PromoAppsActivity extends Activity implements OrbotConstants {
 
             }
         });
-        
-        btnLink = (Button)findViewById(R.id.WizardRootButtonInstallFirefox);
 
-        btnLink.setOnClickListener(new OnClickListener() {
-            
-            public void onClick(View view) {
-                
-                String url = getString(R.string.proxymob_setup_url);
-                finish();
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
-
-            }
-        });
-        
         btnLink = (Button)findViewById(R.id.WizardRootButtonInstallTwitter);
 
         btnLink.setOnClickListener(new OnClickListener() {

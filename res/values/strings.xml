@@ -79,8 +79,6 @@
   <string name="wizard_tips_proxy">Proxy Settings - Learn how to configure apps to work with Orbot</string>
   <string name="wizard_tips_duckgo">DuckDuckGo Search Engine app</string>
   <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
-  <string name="wizard_tips_firefox">Proxy Mobile add-on for Firefox (https://guardianproject.info/apps/firefoxprivacy)</string>
-  <string name="proxymob_setup_url">https://guardianproject.info/apps/firefoxprivacy</string>
   <string name="wizard_tips_twitter">Set Twitter proxy to host \"localhost\" and port 8118</string>
   <string name="wizard_tips_story_maker">StoryMaker - Make a story and leave it to tor for security!</string>
   <string name="story_maker_url">https://play.google.com/store/apps/details?id=info.guardianproject.mrapp</string>
@@ -116,10 +114,6 @@
   <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
   <string name="wizard_tips_play">Find all Guardian Project apps on Google Play</string>
   <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
-  <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
-	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
-    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
-    <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Transparent Proxying</string>
   <string name="wizard_transproxy_msg">This allows your apps to automatically run through the Tor network without any configuration.</string>
