@@ -78,8 +78,8 @@
   <string name="wizard_tips_proxy">代理设置 - 学习如何配置应用程序使用 Orbot</string>
   <string name="wizard_tips_duckgo">DuckDuckGo 搜索引擎应用程序</string>
 
-  <string name="wizard_tips_firefox">适用于移动版 Firefox 的代理扩展 (https://guardianproject.info/apps/firefoxprivacy)</string>
-  <string name="proxymob_setup_url">https://guardianproject.info/apps/firefoxprivacy</string>
+
+
   <string name="wizard_tips_twitter">将 Twitter 代理的主机设置 localhost 并将端口设置为 8118</string>
 
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
@@ -108,10 +108,10 @@
 
   <string name="wizard_tips_play">在 Google Play 商店查找所有 Guardian Project 的应用程序</string>
 
-  <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
-	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
 
-    <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
+
+
+
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">透明代理</string>
   <string name="wizard_transproxy_msg">可使应用程序无需配置即可自动通过 Tor 连接网络。</string>

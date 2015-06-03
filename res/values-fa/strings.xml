@@ -77,8 +77,8 @@
   <string name="wizard_tips_proxy">تنظیمات پروکسی - یادگیری تنظیم اپلیکیشن ها برای کار با ربات پیازی</string>
   <string name="wizard_tips_duckgo">اپلیکیشن موتور جستجوی داک داک گو</string>
 
-  <string name="wizard_tips_firefox">افزوده پروکسی موبایل برای فایرفاکس (https://guardianproject.info/apps/firefoxprivacy)</string>
-  <string name="proxymob_setup_url">https://guardianproject.info/apps/firefoxprivacy</string>
+
+
   <string name="wizard_tips_twitter">توییتر از \"http proxy \"localhost:8118 پشتیبانی می کند</string>
   <string name="wizard_tips_story_maker">StoryMaker - ساختن یک داستان و ترک آن به Tor برای امنیت!</string>
 
@@ -108,10 +108,10 @@
 
   <string name="wizard_tips_play">تمامي برنامه هاي Guardian Project را در Google Play پيدا كنيد.</string>
 
-  <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
-	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
 
-    <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
+
+
+
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">پروکسی کردن شفاف</string>
   <string name="wizard_transproxy_msg">این به برنامه ها به شما اجازه میدهد که بدون هیچ تنظیمی، بصورت خودکار از طریق شبکه تور اجرا شوند</string>

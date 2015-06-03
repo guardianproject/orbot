@@ -101,10 +101,10 @@
 
   <string name="wizard_tips_play">Hãy tìm những ứng dụng của Guardian Project trên Google Play</string>
 
-  <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
-	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
 
-    <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
+
+
+
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Đang chuyển tiếp theo dạng hiển thị</string>
   <string name="wizard_transproxy_msg">Cài đặt này cho phép các ứng dụng của bạn tự động chạy qua mạng Tor mà không cần cài đặt cấu hình.</string>

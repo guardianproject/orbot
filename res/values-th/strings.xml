@@ -83,10 +83,10 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">โปรแกรมที่ใช้ได้กับ Orbot</string>
   <string name="wizard_tips_orweb">Orweb: เบราว์เซอร์ที่ปรับแต่งเพื่อความเป็นส่วนตัวและทำงานผ่าน Tor</string>
-  <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
-	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
 
-    <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
+
+
+
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">พร็อกซีล่อง</string>
   <string name="wizard_transproxy_msg">จะอนุญาตให้โปรแกรมของคุณทำงานผ่านเครือข่าย Tor อัตโนมัติโดยไม่ต้องตั้งค่าใดๆ</string>

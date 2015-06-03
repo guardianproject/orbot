@@ -97,10 +97,10 @@
   <string name="wizard_tips_orweb">Orweb: Tor හරහා පෞද්ගලිකත්වය වැඩිකරන බ්‍රව්සරයකි.</string>
   <string name="wizard_tips_play">Google Play තුලින් Guardian Project apps තෝරාගන්න </string>
 
-  <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
-	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
 
-    <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
+
+
+
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">පාරදෘශ්‍ය නියුතුසේවා</string>
   <string name="wizard_transproxy_msg">මෙමගින් ඔබේ යොමුන්ට කිසිදු වින්‍යසකරණයක් නොමැතිව Tor ජාලය හරහා ස්වයංක්‍රියව ක්‍රියාත්මක විය හැක.</string>

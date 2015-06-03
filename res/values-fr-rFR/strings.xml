@@ -79,8 +79,8 @@
   <string name="wizard_tips_proxy">Paramètres du relais - Apprendre à configurer des applis pour qu\'elles fonctionnent avec Orbot</string>
   <string name="wizard_tips_duckgo">Appli du moteur de recherche DuckDuckgo</string>
 
-  <string name="wizard_tips_firefox">Module *Mandataire mobile* pour Firefox (https://guardianproject.info/apps/firefoxprivacy)</string>
-  <string name="proxymob_setup_url">https://guardianproject.info/apps/firefoxprivacy</string>
+
+
   <string name="wizard_tips_twitter">Configurer le mandataire Twitter sur l\'hôte « localhost:8118 » et le port 8118</string>
   <string name="wizard_tips_story_maker">Faiseur d\'histoires -  Rédigez une histoire et laissez Tor s\'occuper de la sécurité !</string>
 
@@ -116,10 +116,10 @@
 
   <string name="wizard_tips_play">Trouver toutes les applis du Projet Guardian sur Google Play</string>
 
-  <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
-	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
 
-    <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
+
+
+
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Relayage transparent</string>
   <string name="wizard_transproxy_msg">Ceci permet à vos applis d\'utiliser automatiquement le réseau Tor sans aucune configuration.</string>

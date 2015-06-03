@@ -78,8 +78,8 @@
   <string name="wizard_tips_proxy">Proxy Settings - Orbot과 작동하도록 앱을 설정하는 방법을 배우기</string>
   <string name="wizard_tips_duckgo">DuckDuckGo 검색 엔진 앱</string>
 
-  <string name="wizard_tips_firefox">파이어폭스 앱의 Proxy Mobile 확장 프로그램 (https://guardianproject.info/apps/firefoxprivacy)</string>
-  <string name="proxymob_setup_url">https://guardianproject.info/apps/firefoxprivacy</string>
+
+
   <string name="wizard_tips_twitter">트위터 프록시를 localhost:8118로 설정</string>
   <string name="wizard_tips_story_maker">StoryMaker - 스토리는 당신이 만들고 보안은 Tor에 맏기세요!</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
@@ -107,10 +107,10 @@
 
   <string name="wizard_tips_play">구글 플레이에서 모든 가디언 프로젝트 앱 찾기</string>
 
-  <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
-	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
 
-    <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
+
+
+
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">투명 프록시</string>
   <string name="wizard_transproxy_msg">이것은 어떠한 설정 없이도 귀하의 앱이 자동적으로 토르 네트워크를 통해 작동하도록 해 줍니다.</string>

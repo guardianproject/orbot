@@ -101,10 +101,10 @@
 
   <string name="wizard_tips_play">Temukan semua aplikasi Guardian Project di Google Play</string>
 
-  <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
-	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
 
-    <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
+
+
+
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Transparan Proxying</string>
   <string name="wizard_transproxy_msg">Hal ini akan memungkinkan aplikasi anda untuk secara otomatis berjalan melalui jaringan Tor tanpa konfigurasi apapun.</string>

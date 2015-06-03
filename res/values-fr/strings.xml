@@ -76,8 +76,8 @@
   <string name="wizard_tips_proxy">Configuration du proxy - Apprendre comment configurer les applications pour qu\'elles fonctionnent avec Orbot</string>
   <string name="wizard_tips_duckgo">Application DuckDuckgo Search Engine</string>
 
-  <string name="wizard_tips_firefox">Firefox avec le plugin Proxy Mobile (installation complémentaire)</string>
-  <string name="proxymob_setup_url">https://guardianproject.info/releases/proxymob-latest.xpi</string>
+
+
   <string name="wizard_tips_twitter">Twitter supporte le proxy http \"localhost:8118\"</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Configuration du proxy</string>
@@ -110,10 +110,10 @@
 
   <string name="wizard_tips_play">Trouver toutes les applications de Guardian Project sur Google Play</string>
 
-  <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
-	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
 
-    <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
+
+
+
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Proxy transparent</string>
   <string name="wizard_transproxy_msg">Cela permet à vos applications d\'utiliser automatiquement le réseau Tor sans aucune configuration.</string>
