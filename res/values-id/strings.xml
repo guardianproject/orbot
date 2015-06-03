@@ -7,7 +7,7 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">mulai dan akhiri Tor</string>
   <string name="tor_proxy_service_process">torproxyservice</string>
-  <string name="status_starting_up">Orbot sedang dimulai...</string>
+  <string name="status_starting_up">Orbot sedang dimulai…</string>
   <string name="status_activated">Tersambung ke Jaringan Tor</string>
   <string name="status_disabled">Orbot telah dibatalkan</string>
   <string name="status_shutting_down">Orbot sedang dimatikan</string>

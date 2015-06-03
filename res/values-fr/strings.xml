@@ -7,7 +7,7 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">démarrer et arrêter Tor</string>
   <string name="tor_proxy_service_process">torproxyservice</string>
-  <string name="status_starting_up">Orbot démarre...</string>
+  <string name="status_starting_up">Orbot démarre…</string>
   <string name="status_activated">Connecté au réseau Tor</string>
   <string name="status_disabled">Orbot est désactivé</string>
   <string name="status_shutting_down">Orbot s\'arrête</string>
@@ -83,7 +83,7 @@
   <string name="wizard_proxy_help_info">Configuration du proxy</string>
   <string name="wizard_proxy_help_msg">Si l\'application Android que vous utilisez peut supporter un proxy HTTP ou un proxy SOCKS, vous pouvez la configurer pour se connecter à Orbot et utiliser Tor./n/n\n    La configuration de l\'hôte est 127.0.0.1 ou \"localhost\". Pour le HTTP, le port utilisé est le 8118. Pour SOCKS, le port utilisé est 9050. Vous devriez, si possible, utiliser SOCKS4A ou SOCKS5.\n    /n/n\n    Vous pouvez en apprendre plus sur la configuration de proxy sous Android sur la FAQ à : http://tinyurl.com/proxyandroid\n    </string>
   <string name="wizard_final">Orbot est prêt !</string>
-  <string name="wizard_final_msg">Des milliers de personnes dans le monde utilisent Tor pour une grande variétés de raisons : journalistes et bloggers, défenseurs des droits de l\'homme, policiers, soldats, entreprises, les citoyens de régimes répressifs, et aussi de simples citoyens ... et maintenant vous êtes prêts aussi !</string>
+  <string name="wizard_final_msg">Des milliers de personnes dans le monde utilisent Tor pour une grande variétés de raisons : journalistes et bloggers, défenseurs des droits de l\'homme, policiers, soldats, entreprises, les citoyens de régimes répressifs, et aussi de simples citoyens … et maintenant vous êtes prêts aussi !</string>
   <!--END Welcome Wizard strings (DJH)-->
   <string name="connect_first_time"> Vous êtes connectés avec succès au réseau Tor - mais cela ne signifie PAS que votre appareil est sécurisé. Vous pouvez utiliser l\'option \'Vérifier\'  du menu pour vérifier avec votre navigateur. \n\nAllez à la page https://guardianproject.info/apps/orbot ou envoyez un courriel à help@guardianproject.info pour en savoir plus.</string>
   <string name="tor_check">Ceci va ouvrir la page https://check.torproject.org avec le navigateur web par défaut pour vérifier si Orbot est suffisamment configuré pour vous connecter à Tor.</string>
@@ -142,15 +142,15 @@
   <string name="pref_proxy_port_summary">Port du serveur proxy</string>
   <string name="pref_proxy_port_dialog">Entrez le port du proxy</string>
   <string name="status">Statut</string>
-  <string name="setting_up_full_transparent_proxying_">Configuration du proxy transparent global...</string>
-  <string name="setting_up_app_based_transparent_proxying_">Configuration du proxy transparent par application...</string>
+  <string name="setting_up_full_transparent_proxying_">Configuration du proxy transparent global…</string>
+  <string name="setting_up_app_based_transparent_proxying_">Configuration du proxy transparent par application…</string>
   <string name="transparent_proxying_enabled">Proxy transparent ACTIVÉ</string>
   <string name="transproxy_enabled_for_tethering_">Transproxy activé pour Tethering!</string>
   <string name="warning_error_starting_transparent_proxying_">ATTENTION : erreur au démarrage du proxy transparent !</string>
   <string name="transproxy_rules_cleared">Règles transproxy effacées</string>
   <string name="couldn_t_start_tor_process_">L\'application n\'a pas pu démarrer le processus \"Tor\" : </string>
   <string name="privoxy_is_running_on_port_">Privoxy fonctionne sur le port : </string>
-  <string name="setting_up_port_based_transparent_proxying_">Configuration du proxy transparent par port...</string>
+  <string name="setting_up_port_based_transparent_proxying_">Configuration du proxy transparent par port…</string>
   <string name="bridge_error">Erreur de passerelle</string>
   <string name="bridge_requires_ip">Avant de pouvoir utiliser les passerelles, vous devez entrer au moins l\'adresse IP d\'une passerelle</string>
   <string name="send_email_for_bridges">Envoyez un e-mail à bridges@torproject.org avec \"get bridges\" dans le corps de l\'e-mail - fonctionne si le mail est envoyé d\'une adresse Gmail.</string>
@@ -198,7 +198,7 @@
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Logiciels tierce-partie :</string>
   <string name="hidden_service_request">Une application veut ouvrir le port %S du serveur caché sur le réseau Tor. C\'est sécuritaire si vous faites confiance à l\'application.</string>
-  <string name="found_existing_tor_process">trouvé un processus existant de Tor ...</string>
+  <string name="found_existing_tor_process">trouvé un processus existant de Tor …</string>
   <string name="something_bad_happened">Quelque chose d\'incorrect s\'est passé. Vérifiez le journal</string>
   <string name="hidden_service_on">service caché sur :</string>
   <string name="unable_to_read_hidden_service_name">impossible de lire le nom du service caché</string>

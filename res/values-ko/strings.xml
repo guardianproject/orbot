@@ -7,11 +7,11 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">토르 시작 및 중지</string>
   <string name="tor_proxy_service_process">토르 프록시 서비스</string>
-  <string name="status_starting_up">Orbot이 시작중입니다...</string>
+  <string name="status_starting_up">Orbot이 시작중입니다…</string>
   <string name="status_activated">Tor 네트워크에 연결됨</string>
   <string name="status_disabled">Orbot이 비활성화되어 있습니다</string>
   <string name="status_shutting_down">Orbot를 종료합니다</string>
-  <string name="tor_process_starting">Tor 클라이언트 시작중...</string>
+  <string name="tor_process_starting">Tor 클라이언트 시작중…</string>
   <string name="tor_process_complete">완료.</string>
   <string name="tor_process_waiting">대기중.</string>
   <string name="not_anonymous_yet">경고: 귀하의 트래픽은 아직 익명이 아닙니다! HTTP 프록시 127.0.0.1:8118 또는 SOCKS4A 또는 SOCKS5 프록시 127.0.0.1:9050을 사용하여 응용 프로그램을 구성하십시오</string>
@@ -143,8 +143,8 @@
   <string name="pref_proxy_password_summary">프록시 비밀번호 (선택)</string>
   <string name="pref_proxy_password_dialog">프록시 비밀번호 입력</string>
   <string name="status">상태</string>
-  <string name="setting_up_full_transparent_proxying_">전체 투명 프록시 설정중...</string>
-  <string name="setting_up_app_based_transparent_proxying_">앱에 기반한 투명 프록시 설정중...</string>
+  <string name="setting_up_full_transparent_proxying_">전체 투명 프록시 설정중…</string>
+  <string name="setting_up_app_based_transparent_proxying_">앱에 기반한 투명 프록시 설정중…</string>
   <string name="transparent_proxying_enabled">투명 프록시 활성화됨</string>
   <string name="transproxy_enabled_for_tethering_">테더링을 위한 TransProxy 활성화됨</string>
   <string name="warning_error_starting_transparent_proxying_">경고 : 투명 프록시 시작 오류</string>
@@ -214,7 +214,7 @@
   <string name="wizard_locale_title">언어 선택</string>
   <string name="wizard_locale_msg">기본값으로 두거나 현재 언어 바꾸기</string>
   <string name="btn_save_settings">설정 저장</string>
-  <string name="no_internet_connection_tor">인터넷 연결 없음; Tor는 대기 중...</string>
+  <string name="no_internet_connection_tor">인터넷 연결 없음; Tor는 대기 중…</string>
   <string name="bandwidth_">대역폭:</string>
   <string name="down">아래로</string>
   <string name="up">위로</string>

@@ -8,11 +8,11 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">démarrer et arrêter Tor</string>
   <string name="tor_proxy_service_process">torproxyservice</string>
-  <string name="status_starting_up">Orbot démarre...</string>
+  <string name="status_starting_up">Orbot démarre…</string>
   <string name="status_activated">Connecté au réseau Tor</string>
   <string name="status_disabled">Orbot est désactivé</string>
   <string name="status_shutting_down">Orbot est en cours d\'extinction</string>
-  <string name="tor_process_starting">Démarrage du client Tor...</string>
+  <string name="tor_process_starting">Démarrage du client Tor…</string>
   <string name="tor_process_complete">terminé.</string>
   <string name="tor_process_waiting">attente.</string>
   <string name="not_anonymous_yet">AVERTISSEMENT : votre trafic n\'est pas encore anonyme ! Veuillez configurer vos applications pour qu\'elles utilisent le serveur mandataire HTTP 127.0.0.1:8118 ou le serveur mandataire SOCKS4A ou SOCKS5 à 127.0.0.1:9050</string>
@@ -88,7 +88,7 @@
   <string name="wizard_proxy_help_info">Paramètres du mandataire</string>
   <string name="wizard_proxy_help_msg">Si l\'appli Android que vous utilisez peut prendre en charge un mandataire HTTP ou SOCKS, vous pouvez alors la configurer pour se connecter à Orbot et utiliser Tor.\n\n\n Le paramètre de l\'hôte est 127.0.0.1 or « localhost ». Pour HTTP, le paramètre de port est 8118. Pour SOCKS, le mandataire est 9050. Vous devriez utiliser SOCKS4A ou SOCKS5 si possible.\n \n\n\n Vous pouvez en apprendre davantage sur l\'utilisation d\'un serveur mandataire sur Android dans la FAQ sur : http://tinyurl.com/proxyandroid\n </string>
   <string name="wizard_final">Orbot est prêt !</string>
-  <string name="wizard_final_msg">Des millions de personnes de par le monde utilisent Tor pour une grande variété de raisons.\n\nDes journalistes et des blogueurs, des défenseurs des droits humains, des officiers des forces de l\'ordre, des soldats, des sociétés, des citoyens de régimes répressifs, et de simples citoyens... et maintenant vous êtes aussi prêt à l\'utiliser !</string>
+  <string name="wizard_final_msg">Des millions de personnes de par le monde utilisent Tor pour une grande variété de raisons.\n\nDes journalistes et des blogueurs, des défenseurs des droits humains, des officiers des forces de l\'ordre, des soldats, des sociétés, des citoyens de régimes répressifs, et de simples citoyens… et maintenant vous êtes aussi prêt à l\'utiliser !</string>
   <string name="wizard_exit_at_first_screen_toast">Veuillez configurer Orbot avant de pouvoir commencer à l\'utiliser !</string>
   <!--END Welcome Wizard strings (DJH)-->
   <string name="connect_first_time">Vous êtes connecté avec succès au réseau Tor - mais cela ne signifie PAS que votre appareil est sécurisé. Vous pouvez utiliser l\'option « Vérifier » du menu pour tester votre navigateur.\n\n Rendez-nous visite sur https://guardianproject.info/apps/orbot ou envoyez un courriel à help@guardianproject.info pour en savoir plus.</string>
@@ -155,15 +155,15 @@
   <string name="pref_proxy_password_summary">Mot de passe du mandataire (optionnel)</string>
   <string name="pref_proxy_password_dialog">Saisir le mot de passe du mandataire</string>
   <string name="status">État</string>
-  <string name="setting_up_full_transparent_proxying_">Configuration le relayage entièrement transparent...</string>
-  <string name="setting_up_app_based_transparent_proxying_">Configuration d\'un relayage transparent par appli...</string>
+  <string name="setting_up_full_transparent_proxying_">Configuration le relayage entièrement transparent…</string>
+  <string name="setting_up_app_based_transparent_proxying_">Configuration d\'un relayage transparent par appli…</string>
   <string name="transparent_proxying_enabled">Relayage transparent ACTIVÉ</string>
   <string name="transproxy_enabled_for_tethering_">Relais transparent activé pour pour la fonction modem !</string>
   <string name="warning_error_starting_transparent_proxying_">AVERTISSEMENT : erreur lors du démarrage du relayage transparent !</string>
   <string name="transproxy_rules_cleared">Règles du relais transparent effacées</string>
   <string name="couldn_t_start_tor_process_">Impossible de démarrer le processus Tor : </string>
   <string name="privoxy_is_running_on_port_">Polipo tourne sur le port : </string>
-  <string name="setting_up_port_based_transparent_proxying_">Configuration du relayage transparent par port...</string>
+  <string name="setting_up_port_based_transparent_proxying_">Configuration du relayage transparent par port…</string>
   <string name="bridge_error">Erreur de pont</string>
   <string name="bridge_requires_ip">Afin de pouvoir utiliser la fonction pont, vous devez au moins saisir l\'adresse IP d\'un pont.</string>
   <string name="send_email_for_bridges">Envoyez un courriel à bridges@torproject.org avec la ligne « get bridges », seule, dans le corps du courriel à partir d\'un compte Gmail. </string>
@@ -216,7 +216,7 @@
   <string name="iptables_version">IPtables v1.4.21 : http://www.netfilter.org</string>
   <string name="openssl_version">OpenSSL v1.0.1i : http://www.openssl.org</string>
   <string name="hidden_service_request">Une appli veut ouvrir le port %S du serveur caché au réseau Tor. ceci est sécuritaire si vous faites confiance à l\'appli.</string>
-  <string name="found_existing_tor_process">un processus existant de Tor a été trouvé...</string>
+  <string name="found_existing_tor_process">un processus existant de Tor a été trouvé…</string>
   <string name="something_bad_happened">Quelque chose n\'a pas été. Vérifiez le journal</string>
   <string name="hidden_service_on">service caché sur :</string>
   <string name="unable_to_read_hidden_service_name">impossible de lire le nom du service caché</string>
@@ -236,7 +236,7 @@
   <string name="wizard_locale_msg">Laisser à la valeur par défaut ou changer la langue actuelle</string>
   <string name="powered_by">propulsé par Tor</string>
   <string name="btn_save_settings">Enregistrer les paramètres</string>
-  <string name="no_internet_connection_tor">Aucune connexion Internet. Tor est en attente...</string>
+  <string name="no_internet_connection_tor">Aucune connexion Internet. Tor est en attente…</string>
   <string name="bandwidth_">Bande passante :</string>
   <string name="down">aval</string>
   <string name="up">amont</string>
@@ -249,8 +249,8 @@
   <string name="permission_manage_tor_description">Autoriser cette appli à contrôler le service Tor</string>
   <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Il semble qu\'Orweb ne soit pas installé. Voulez-vous de l\'aide à ce sujet ou devrions-nous juste ouvrir le navigateur ?</string>
   <string name="install_apps_">Installer les applis ?</string>
-  <string name="no_network_connectivity_putting_tor_to_sleep_">Aucune connectivité réseau. Mise au repos de Tor...</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">La connectivité réseau est bonne. Réveil de Tor...</string>
+  <string name="no_network_connectivity_putting_tor_to_sleep_">Aucune connectivité réseau. Mise au repos de Tor…</string>
+  <string name="network_connectivity_is_good_waking_tor_up_">La connectivité réseau est bonne. Réveil de Tor…</string>
   <string name="updating_settings_in_tor_service">mise à jour des paramètres dans le service Tor</string>
   <string name="pref_socks_title">SOCKS Tor</string>
   <string name="pref_socks_summary">Port sur lequel Tor offre son mandataire SOCKS (par défaut : 9050 ou 0 pour le désactiver)</string>

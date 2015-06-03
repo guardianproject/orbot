@@ -204,5 +204,5 @@
   <string name="wizard_locale_title">Pilih Bahasa</string>
   <string name="wizard_locale_msg">Biar default atau ubah ke bahasa sekarang</string>
   <string name="btn_save_settings">Simpan Tetapan</string>
-  <string name="no_internet_connection_tor">Tiada sambungan internet; Tor berada dalam keadaan sedia...</string>
+  <string name="no_internet_connection_tor">Tiada sambungan internet; Tor berada dalam keadaan sedia…</string>
 </resources>

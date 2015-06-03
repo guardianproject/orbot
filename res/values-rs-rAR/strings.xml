@@ -7,7 +7,7 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">reiniciar Tor</string>
   <string name="tor_proxy_service_process">torproxyservice</string>
-  <string name="status_starting_up">Orbot está iniciándose...</string>
+  <string name="status_starting_up">Orbot está iniciándose…</string>
   <string name="status_activated">Conectado a la red Tor</string>
   <string name="status_disabled">\"Orbot está Desactivado</string>
   <string name="status_shutting_down">Orbot se está apagando</string>

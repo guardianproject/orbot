@@ -7,11 +7,11 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">spustit a vypnout Tor</string>
   <string name="tor_proxy_service_process">torproxyservice</string>
-  <string name="status_starting_up">Orbot se spouští...</string>
+  <string name="status_starting_up">Orbot se spouští…</string>
   <string name="status_activated">Připojen k síti Tor</string>
   <string name="status_disabled">\"Orbot je deaktivován</string>
   <string name="status_shutting_down">Orbot se vypíná</string>
-  <string name="tor_process_starting">Startuji Tor klienta...</string>
+  <string name="tor_process_starting">Startuji Tor klienta…</string>
   <string name="tor_process_complete">hotovo.</string>
   <string name="tor_process_waiting">čekám.</string>
   <string name="not_anonymous_yet">VAROVÁNÍ: Vaše komunikace ještě není anonymní! Prosím nastavte vašim aplikacím HTTP proxy 127.0.0.1:8118 nebo SOCKS4A či SOCKS5 proxy 172.0.0.1:9050</string>

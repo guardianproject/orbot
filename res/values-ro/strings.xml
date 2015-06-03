@@ -7,11 +7,11 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">pornește și oprește Tor</string>
   <string name="tor_proxy_service_process">serviciu proxy tor</string>
-  <string name="status_starting_up">Orbot porneste...</string>
+  <string name="status_starting_up">Orbot porneste…</string>
   <string name="status_activated">Conectat la reteaua Tor</string>
   <string name="status_disabled">Orbot este dezactivat</string>
   <string name="status_shutting_down">Orbot se opreste</string>
-  <string name="tor_process_starting">Porneste clientul Tor...</string>
+  <string name="tor_process_starting">Porneste clientul Tor…</string>
   <string name="tor_process_complete">terminat.</string>
   <string name="tor_process_waiting">asteptare.</string>
   <string name="not_anonymous_yet">ATENTIE: Traficul inca nu este anonim! Configureaza aplicatile sa foloseasca proxy-ul HTTP 127.0.0.1:8118 sau SOCKS4A sau proxy-ul SOCKS5 127.0.0.1:9050</string>
@@ -137,14 +137,14 @@
   <string name="pref_proxy_password_summary">Parola pentru proxy (optional)</string>
   <string name="pref_proxy_password_dialog">Introdu parola pentru proxy</string>
   <string name="status">Status</string>
-  <string name="setting_up_full_transparent_proxying_">Configurez proxy transparent complet...</string>
-  <string name="setting_up_app_based_transparent_proxying_">Configurez un proxy transparent bazat pe aplicatie...</string>
+  <string name="setting_up_full_transparent_proxying_">Configurez proxy transparent complet…</string>
+  <string name="setting_up_app_based_transparent_proxying_">Configurez un proxy transparent bazat pe aplicatie…</string>
   <string name="transparent_proxying_enabled">Proxy transparent ACTIVAT</string>
   <string name="transproxy_enabled_for_tethering_">TransProxy activat pentru partajare!</string>
   <string name="warning_error_starting_transparent_proxying_">ATENTIE: eroare la pornirea proxy-ului transparent!</string>
   <string name="transproxy_rules_cleared">Reguli TransProxy golite</string>
   <string name="couldn_t_start_tor_process_">Nu am putut porni procesul Tor:</string>
-  <string name="setting_up_port_based_transparent_proxying_">Configurez proxy transparent bazat pe port...</string>
+  <string name="setting_up_port_based_transparent_proxying_">Configurez proxy transparent bazat pe port…</string>
   <string name="bridge_error">Eroare de punte</string>
   <string name="bridge_requires_ip">Pentru a putea folosi optiunea de punte, trebuie introdusa cel putin o adresa IP pentru punte.</string>
   <string name="send_email_for_bridges">Trimite un e-mail la bridges@torproject.org cu linia \"get bridges\" in continutul mail-ului de pe un cont de GMail.</string>
@@ -191,7 +191,7 @@
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Aplicatii tertiare:</string>
   <string name="hidden_service_request">O aplicatie vrea sa deschida portul ascuns %S spre reteaua Tor. Este sigur daca ai incredere in aplicatie.</string>
-  <string name="found_existing_tor_process">gasit proces Tor existent...</string>
+  <string name="found_existing_tor_process">gasit proces Tor existent…</string>
   <string name="something_bad_happened">Ceva rau s-a intamplat. Verifica log-ul</string>
   <string name="hidden_service_on">serviciu ascuns pe:</string>
   <string name="unable_to_read_hidden_service_name">nu am putut citi numele serviciului ascuns</string>
@@ -208,7 +208,7 @@
   <string name="wizard_locale_title">Alege limba</string>
   <string name="wizard_locale_msg">Lasa implicit sau schimba limba curenta</string>
   <string name="btn_save_settings">Salvează setarile</string>
-  <string name="no_internet_connection_tor">Nu exista conexiune la internet; Tor asteapta...</string>
+  <string name="no_internet_connection_tor">Nu exista conexiune la internet; Tor asteapta…</string>
   <string name="bandwidth_">Lățime de bandă:</string>
   <string name="down">jos</string>
   <string name="up">sus</string>

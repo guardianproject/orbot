@@ -7,11 +7,11 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">покрени и заустави Tor</string>
   <string name="tor_proxy_service_process">Тор прокси сервис</string>
-  <string name="status_starting_up">Орбот се покреће...</string>
+  <string name="status_starting_up">Орбот се покреће…</string>
   <string name="status_activated">Повезан са Тор мрежом</string>
   <string name="status_disabled">Орбот је деактивиран</string>
   <string name="status_shutting_down">Орбот се гаси</string>
-  <string name="tor_process_starting">Покреће се Тор клијент...</string>
+  <string name="tor_process_starting">Покреће се Тор клијент…</string>
   <string name="tor_process_complete">завршено.</string>
   <string name="tor_process_waiting">чекам.</string>
   <string name="not_anonymous_yet">УПОЗОРЕЊЕ: Ваш промет још није анониман! Молимо вас да подесите Ваше апликације да користе HTTP прокси 127.0.0.1:8118 или SOCKS4A или SOCKS5 прокси 127.0.0.1:9050</string>
@@ -140,7 +140,7 @@
   <string name="warning_error_starting_transparent_proxying_">УПОЗОРЕЊЕ: грешка при стартовању транспарентног слања кроз прокси!</string>
   <string name="transproxy_rules_cleared">TransProxy правила очишћена</string>
   <string name="couldn_t_start_tor_process_">Није могуће покренути Тор процес:</string>
-  <string name="setting_up_port_based_transparent_proxying_">Подешавање транспарентног проксирања од стране порта...</string>
+  <string name="setting_up_port_based_transparent_proxying_">Подешавање транспарентног проксирања од стране порта…</string>
   <string name="bridge_error">Грешка у мосту</string>
   <string name="bridge_requires_ip">Да бисте користили bridge могућност, морате унети бар једну bridge IP адресу.</string>
   <string name="send_email_for_bridges">Пошаљите мејл на bridges@torproject.org са речима \"get bridges\" у тексту поруке мејла са gmail корисничког рачуна.</string>
@@ -187,7 +187,7 @@
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Софтвер од стране неслужбених издавача:</string>
   <string name="hidden_service_request">Апликација жели да отвори сакривен порт %S на серверу за Тор мрежу. Ово је сигуран потез уколико верујете апликацији.</string>
-  <string name="found_existing_tor_process">нађен покренути Тор процес...</string>
+  <string name="found_existing_tor_process">нађен покренути Тор процес…</string>
   <string name="something_bad_happened">Нешто лоше се догодило. Прегледајте логове</string>
   <string name="hidden_service_on">сакривен сервис на:</string>
   <string name="unable_to_read_hidden_service_name">нисам у могућности да прочитам име сакривеног сервиса</string>
@@ -204,5 +204,5 @@
   <string name="wizard_locale_title">Изаберите језик</string>
   <string name="wizard_locale_msg">Користи подразумевајући или пребаци на тренутни језик</string>
   <string name="btn_save_settings">Сачувај подешавања</string>
-  <string name="no_internet_connection_tor">Нема интернет конекције; Тор је у стању чекања...</string>
+  <string name="no_internet_connection_tor">Нема интернет конекције; Тор је у стању чекања…</string>
 </resources>

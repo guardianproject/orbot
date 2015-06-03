@@ -11,7 +11,7 @@
   <string name="status_activated">מחובר לרשת Tor</string>
   <string name="status_disabled">Orbot כבוי</string>
   <string name="status_shutting_down">Orbot בתהליך כיבוי</string>
-  <string name="tor_process_starting">מתחיל לקוח Tor...</string>
+  <string name="tor_process_starting">מתחיל לקוח Tor…</string>
   <string name="tor_process_complete">הושלם.</string>
   <string name="tor_process_waiting">מחכה.</string>
   <string name="not_anonymous_yet">אזהרה: התעבורה שלך אינה אנונימית עדיין! בבקשה הגדר את האפליקציות שלך כך שיתאפשר שימוש בפרוקסי HTTP (קרי 127.0.0.1:8118) או SOCKS4A או SOCKS5 (קרי 127.0.0.1:9050)</string>
@@ -133,8 +133,8 @@ tor-assistants@torproject.org</string>
   <string name="pref_proxy_password_summary">סיסמת פרוקסי (רשות)</string>
   <string name="pref_proxy_password_dialog">הזן סיסמת פרוקסי</string>
   <string name="status">סטטוס</string>
-  <string name="setting_up_full_transparent_proxying_">הכנה של הפרוקסי השקוף...</string>
-  <string name="setting_up_app_based_transparent_proxying_">הכנה של הפרוקסי השקוף מבוסס אפליקציות...</string>
+  <string name="setting_up_full_transparent_proxying_">הכנה של הפרוקסי השקוף…</string>
+  <string name="setting_up_app_based_transparent_proxying_">הכנה של הפרוקסי השקוף מבוסס אפליקציות…</string>
   <string name="transparent_proxying_enabled">פרוקסי שקוף מאופשר</string>
   <string name="transproxy_enabled_for_tethering_">פרוקסי שקוף מאופשר ל Tathering!</string>
   <string name="warning_error_starting_transparent_proxying_">אזהרה: שגיאה התחילה את הפרוקסי השקוף!</string>
@@ -181,7 +181,7 @@ tor-assistants@torproject.org</string>
   <string name="wizard_locale_title">בחר שפה</string>
   <string name="wizard_locale_msg">השאר ברירת מחדל או החלף לשפה הנוכחית</string>
   <string name="btn_save_settings">שמירת הגדרות</string>
-  <string name="no_internet_connection_tor">אין חיבור אינטרנט; Tor מצוי בכוננות...</string>
+  <string name="no_internet_connection_tor">אין חיבור אינטרנט; Tor מצוי בכוננות…</string>
   <string name="bandwidth_">רוחב פס:</string>
   <string name="newnym">החלפת אל זהות Tor חדשה!</string>
   <string name="menu_verify_browser">בדוק דפדפן</string>

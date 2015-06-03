@@ -7,11 +7,11 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">вклучи и исклучи го Тор</string>
   <string name="tor_proxy_service_process">torproxyservice</string>
-  <string name="status_starting_up">Орбот се стартува...</string>
+  <string name="status_starting_up">Орбот се стартува…</string>
   <string name="status_activated">Поврзан на мрежата Тор</string>
   <string name="status_disabled">Орбот е деактивиран</string>
   <string name="status_shutting_down">Орбот се исклучува</string>
-  <string name="tor_process_starting">Стартува Тор клиентот...</string>
+  <string name="tor_process_starting">Стартува Тор клиентот…</string>
   <string name="tor_process_complete">готово.</string>
   <string name="tor_process_waiting">чекање.</string>
   <string name="not_anonymous_yet">ВНИМАНИЕ: Вашиот сообраќај сеуште не е анонимен! Треба да ги конфигурирате Вашите апликации да го користат проксито за HTTP, 127.0.0.1:8118, или проксито за SOCKS4A или SOCKS5, 127.0.0.1:9050</string>

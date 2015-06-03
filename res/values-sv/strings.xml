@@ -7,11 +7,11 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">start and stop Tor</string>
   <string name="tor_proxy_service_process">torproxyservice</string>
-  <string name="status_starting_up">Orbot startar...</string>
+  <string name="status_starting_up">Orbot startar…</string>
   <string name="status_activated">Uppkopplad till Tor nätverket</string>
   <string name="status_disabled">Orbot är inaktiverad</string>
   <string name="status_shutting_down">Orbot avslutas</string>
-  <string name="tor_process_starting">Startar Tor klient...</string>
+  <string name="tor_process_starting">Startar Tor klient…</string>
   <string name="tor_process_complete">färdig.</string>
   <string name="tor_process_waiting">väntar.</string>
   <string name="not_anonymous_yet">VARNING: Din trafik är inte anonym än! Vänligen konfigurera dina appar att använda HTTP proxy 127.0.0.1:8118 eller SOCKS4A/5 proxy 127.0.0.1:9050</string>
@@ -137,14 +137,14 @@
   <string name="pref_proxy_password_summary">Proxylösenord (Valfri)</string>
   <string name="pref_proxy_password_dialog">Ange proxylösenord</string>
   <string name="status">Status</string>
-  <string name="setting_up_full_transparent_proxying_">Ställer in full transparent proxyfiering...</string>
-  <string name="setting_up_app_based_transparent_proxying_">Ställer in app-baserad transparent proxyfiering...</string>
+  <string name="setting_up_full_transparent_proxying_">Ställer in full transparent proxyfiering…</string>
+  <string name="setting_up_app_based_transparent_proxying_">Ställer in app-baserad transparent proxyfiering…</string>
   <string name="transparent_proxying_enabled">Transparent proxy AKTIVERAD</string>
   <string name="transproxy_enabled_for_tethering_">TransProxy aktiverad för Tethering!</string>
   <string name="warning_error_starting_transparent_proxying_">VARNING: kunde ej starta transparent proxy!</string>
   <string name="transproxy_rules_cleared">TransProxy regler rensade</string>
   <string name="couldn_t_start_tor_process_">Kunde inte starta Tor-process:</string>
-  <string name="setting_up_port_based_transparent_proxying_">Ställer in port-baserad transparent proxyfiering...</string>
+  <string name="setting_up_port_based_transparent_proxying_">Ställer in port-baserad transparent proxyfiering…</string>
   <string name="bridge_error">Bro Error</string>
   <string name="bridge_requires_ip">För att använda bro funktionen måste du skriva in minst en bro IP adress.</string>
   <string name="send_email_for_bridges">Skicka ett email till bridges@torproject.org med linjen \"get bridges\" ensamt som meddelande från ett gmail konto.</string>
@@ -191,7 +191,7 @@
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Tredjepartsprogramvara:</string>
   <string name="hidden_service_request">En app vill öppna gömd tjänsteport %S till Tor nätverket. Detta är säkert om du litar på appen.</string>
-  <string name="found_existing_tor_process">hittade existerande Tor process...</string>
+  <string name="found_existing_tor_process">hittade existerande Tor process…</string>
   <string name="something_bad_happened">Något dåligt hände. Kolla loggen.</string>
   <string name="hidden_service_on">gömd tjänst på:</string>
   <string name="unable_to_read_hidden_service_name">kan inte läsa gömda tjänstens namn</string>
@@ -208,7 +208,7 @@
   <string name="wizard_locale_title">Välj språk</string>
   <string name="wizard_locale_msg">Lämna standard eller byt nuvarande språk</string>
   <string name="btn_save_settings">Spara Inställningar</string>
-  <string name="no_internet_connection_tor">Ingen internetanslutning; Tor avvaktar...</string>
+  <string name="no_internet_connection_tor">Ingen internetanslutning; Tor avvaktar…</string>
   <string name="bandwidth_">Bandbredd:</string>
   <string name="down">nere</string>
   <string name="up">uppe</string>

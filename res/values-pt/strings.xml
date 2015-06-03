@@ -7,11 +7,11 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">iniciar e parar Tor</string>
   <string name="tor_proxy_service_process">serviço proxy Tor</string>
-  <string name="status_starting_up">O Orbot está a iniciar...</string>
+  <string name="status_starting_up">O Orbot está a iniciar…</string>
   <string name="status_activated">Conetado à rede Tor</string>
   <string name="status_disabled">O Orbot está desativado</string>
   <string name="status_shutting_down">O Orbot está a encerrar</string>
-  <string name="tor_process_starting">A iniciar o cliente Tor...</string>
+  <string name="tor_process_starting">A iniciar o cliente Tor…</string>
   <string name="tor_process_complete">completo.</string>
   <string name="tor_process_waiting">a aguardar.</string>
   <string name="not_anonymous_yet">AVISO: O seu tráfego não está anónimo! Por favor, configure as suas aplicações para utilizarem o proxy HTTP 127.0.0.1:8118 ou o proxy SOCKS4A ou SOCKS5 127.0.0.1:9050</string>
@@ -38,7 +38,7 @@
   <string name="pref_trans_proxy_title">Proxy Transparente</string>
   <string name="pref_transparent_all_title">Tor em Tudo</string>
   <string name="pref_transparent_all_summary">Passar todo o tráfego das apps via Tor</string>
-  <string name="pref_transparent_port_fallback_summary">AVISO: Rodear as portas comuns (80, 443, etc...). *USAR APENAS* se o modo  \'Todas\' ou \'App\' não funcionar.</string>
+  <string name="pref_transparent_port_fallback_summary">AVISO: Rodear as portas comuns (80, 443, etc…). *USAR APENAS* se o modo  \'Todas\' ou \'App\' não funcionar.</string>
   <string name="pref_transparent_port_title">Lista de Portas</string>
   <string name="pref_transparent_port_summary">Lista de portas para o proxy. *USAR APENAS* se o modo \'Todas\' ou \'App\' não funcionar.</string>
   <string name="pref_transparent_port_dialog">Insira as portas para o proxy</string>
@@ -131,7 +131,7 @@
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Programas de Terceiros: </string>
   <string name="hidden_service_request">Uma app pretende abrir a porta %S do servidor ocultado para a rede Tor. Isto é seguro, se confiar na app.</string>
-  <string name="found_existing_tor_process">encontrado o processo Tor existente...</string>
+  <string name="found_existing_tor_process">encontrado o processo Tor existente…</string>
   <string name="something_bad_happened">Aconteceu algo de mau. Verifique o registo de eventos.</string>
   <string name="hidden_service_on">serviço ocultado em:</string>
   <string name="unable_to_read_hidden_service_name">não é possível ler o nome do serviço ocultado</string>
@@ -145,7 +145,7 @@
   <string name="wizard_locale_title">Escolher Idioma</string>
   <string name="wizard_locale_msg">Deixe a predefinição ou mude o idioma atual</string>
   <string name="btn_save_settings">Guardar Definições</string>
-  <string name="no_internet_connection_tor">Sem ligação de Internet; Tor está em hibernação...</string>
+  <string name="no_internet_connection_tor">Sem ligação de Internet; Tor está em hibernação…</string>
   <string name="bandwidth_">Largura de banda:</string>
   <string name="down">para baixo</string>
   <string name="up">para cima</string>
