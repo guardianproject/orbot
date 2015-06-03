@@ -106,7 +106,7 @@
   <string name="wizard_tips_orweb">Orweb: 토르를 통해 작동하는 보안 강화 브라우저</string>
 
   <string name="wizard_tips_play">구글 플레이에서 모든 가디언 프로젝트 앱 찾기</string>
-  <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
+
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
 

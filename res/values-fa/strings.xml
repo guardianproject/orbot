@@ -107,7 +107,7 @@
   <string name="wizard_tips_orweb">مرورگر پیازی: مرورگر طراحی شده برای حفظ حریم خصوصی و افزونساز ربات پیازی</string>
 
   <string name="wizard_tips_play">تمامي برنامه هاي Guardian Project را در Google Play پيدا كنيد.</string>
-  <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
+
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
 

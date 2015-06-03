@@ -96,7 +96,7 @@
   <string name="wizard_tips_title">Orbot-aktiverede apps</string>
   <string name="wizard_tips_orweb">Orweb: Privatlivs-forbedret browser der virker gennem Tor</string>
   <string name="wizard_tips_play">Find alle Guardian Project programmer på Google Play</string>
-  <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
+
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
 

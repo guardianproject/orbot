@@ -100,7 +100,7 @@
   <string name="wizard_tips_orweb">Orweb: Navegador con privacidade mellorada que traballa a través de Tor</string>
 
   <string name="wizard_tips_play">Atope todos os aplicativos de Guardian Project apps en Google Play</string>
-  <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
+
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
 

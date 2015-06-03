@@ -3,7 +3,9 @@ package org.torproject.android.ui.wizard;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -35,22 +37,22 @@ public class PromoAppsActivity extends Activity implements OrbotConstants {
         super.onCreate(savedInstanceState);
 
     }
-    
+
     @Override
     protected void onStart() {
-        
+
         super.onStart();
         setContentView(R.layout.layout_wizard_tips);
-        
+
         stepFive();
-        
+
     }
-    
+
     @Override
     protected void onResume() {
         super.onResume();
-    
-        
+
+
     }
 
     void stepFive(){
@@ -135,45 +137,64 @@ public class PromoAppsActivity extends Activity implements OrbotConstants {
             }
         });
 
-
         btnLink = (Button)findViewById(R.id.WizardRootButtonGooglePlay);
+        PackageManager pm = getPackageManager();
+        final Intent intent = new Intent(Intent.ACTION_VIEW);
+        // change text and icon based on which app store is installed (or not)
+        try {
+            if (isAppInstalled(pm, FDROID_PACKAGE_NAME)) {
+                Drawable icon = pm.getApplicationIcon(FDROID_PACKAGE_NAME);
+                btnLink.setCompoundDrawablesWithIntrinsicBounds(icon, null, null, null);
+                btnLink.setText(R.string.wizard_tips_fdroid);
+                intent.setPackage(FDROID_PACKAGE_NAME);
+                intent.setData(Uri.parse(FDROID_URI));
+            } else if (isAppInstalled(pm, PLAY_PACKAGE_NAME)) {
+                Drawable icon = pm.getApplicationIcon(PLAY_PACKAGE_NAME);
+                btnLink.setCompoundDrawablesWithIntrinsicBounds(icon, null, null, null);
+                btnLink.setText(R.string.wizard_tips_play);
+                intent.setPackage(PLAY_PACKAGE_NAME);
+                intent.setData(Uri.parse(PLAY_URI));
+            }
+        } catch (NameNotFoundException e) {
+            e.printStackTrace();
+            btnLink.setText(R.string.wizard_tips_fdroid_org);
+            intent.setData(Uri.parse(FDROID_URI));
+        }
 
         btnLink.setOnClickListener(new OnClickListener() {
-            
-            public void onClick(View view) {
-                
-                String url = getString(R.string.wizard_tips_play_url);
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
 
+            @Override
+            public void onClick(View view) {
+                startActivity(intent);
             }
-        });        
-        
-        
+        });
+
+
       //  Button back = ((Button)findViewById(R.id.btnWizard1));
         Button next = ((Button)findViewById(R.id.btnWizard2));
-        
+
         /*
         back.setOnClickListener(new View.OnClickListener() {
-			
+
 			public void onClick(View v) {
 				finish();
 				startActivityForResult(new Intent(PromoAppsActivity.this, ChooseLocaleWizardActivity.class), 1);
 			}
 		});*/
-    	
+
     	next.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
 				//showWizardFinal();
-				
+
 				finish();
 			}
 		});
-        
+
 	}
-	
-	
-	
+
+
+
 	//Code to override the back button!
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event)  {
@@ -184,6 +205,15 @@ public class PromoAppsActivity extends Activity implements OrbotConstants {
 	    }
 	    return false;
 	}
+
+    boolean isAppInstalled(PackageManager pm, String packageName) {
+        try {
+            pm.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES);
+            return true;
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
+    }
 
     Intent getInstallIntent(String packageName) {
         final Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -215,21 +245,21 @@ public class PromoAppsActivity extends Activity implements OrbotConstants {
 	{
 		String title = null;
 		String msg = null;
-		
-		
+
+
 		title = context.getString(R.string.wizard_final);
 		msg = context.getString(R.string.wizard_final_msg);
-		
+
 		DialogInterface.OnClickListener ocListener = new DialogInterface.OnClickListener() {
-			
+
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				context.startActivity(new Intent(context, Orbot.class));
 
 			}
 		};
-	
-		
+
+
 		 new AlertDialog.Builder(context)
 		.setIcon(R.drawable.icon)
         .setTitle(title)

@@ -97,7 +97,7 @@
         android:layout_gravity="left"
         android:layout_marginTop="10px"
         android:drawableLeft="@drawable/ic_play"
-        android:text="@string/wizard_tips_play" />
+        android:text="@string/wizard_tips_fdroid_org" />
     
 
 </LinearLayout>

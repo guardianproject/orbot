@@ -104,7 +104,7 @@
   <string name="wizard_tips_orweb">ORWEB (csak Android 1.x) - Böngésző, kifejezetten adatvédelemre és az Orbot-hoz</string>
 
   <string name="wizard_tips_play">Az összes Guardian Project alkalmazás keresése a Google Play-en</string>
-  <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
+
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
 

@@ -99,7 +99,7 @@ tor-assistants@torproject.org</string>
   <string name="wizard_tips_gibberbot">ChatSecure: אפליקציית מסרים עם הצפנת Off-the-Record</string>
   <string name="wizard_tips_orweb">Orweb- דפדפן עם פרטיות רבה שעובד דרך Tor</string>
   <string name="wizard_tips_play">מצא את כל אפליציות Guardian Project אצל Google Play</string>
-  <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
+
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
 

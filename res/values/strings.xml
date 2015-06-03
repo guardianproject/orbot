@@ -109,7 +109,8 @@
   <string name="wizard_tips_gibberbot">ChatSecure: Secure chat app with Off-the-Record Encryption</string>
   <string name="wizard_tips_orweb">Orweb: Privacy-enhanced browser that works through Tor</string>
   <string name="wizard_tips_play">Find all Guardian Project apps on Google Play</string>
-  <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
+  <string name="wizard_tips_fdroid">Find all Guardian Project apps on F-Droid</string>
+  <string name="wizard_tips_fdroid_org">Find all Guardian Project apps on https://f-droid.org</string>
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Transparent Proxying</string>
   <string name="wizard_transproxy_msg">This allows your apps to automatically run through the Tor network without any configuration.</string>

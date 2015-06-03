@@ -100,7 +100,7 @@
   <string name="wizard_tips_orweb">Orweb: Pārlūks ar uzlabotu privātumu un kurš strādā caur Tor tīklu</string>
 
   <string name="wizard_tips_play">Visas Guardian Project\'a lietotnes atrodamas Google Play\'ā</string>
-  <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
+
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
 

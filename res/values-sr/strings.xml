@@ -96,7 +96,7 @@
   <string name="wizard_tips_title">Апликације са омогућеним Орботом.</string>
   <string name="wizard_tips_orweb">Orweb: Претраживач са побољшаном приватношћу који ради кроз Тор мрежу</string>
   <string name="wizard_tips_play">Пронађите све Guardian Project апликације на Google Play сервису</string>
-  <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
+
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
 

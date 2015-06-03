@@ -100,7 +100,7 @@
   <string name="wizard_tips_orweb">Orweb: Næðis-bættur vafri sem virkar í gegnum Tor</string>
 
   <string name="wizard_tips_play">Finndu öll Guardian Verkefnis smáforrit á Google Play</string>
-  <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
+
   <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
 	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
 
