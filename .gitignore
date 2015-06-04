@@ -1,3 +1,4 @@
+assets/
 /external/bin/
 /external/include/
 /external/*-build-stamp
@@ -9,6 +10,7 @@
 bin
 gen
 native
+libs/jtorctl.jar
 local.properties
 builds
 /patches/*
