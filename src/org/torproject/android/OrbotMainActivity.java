@@ -567,6 +567,8 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 	    // Get intent, action and MIME type
 	    Intent intent = getIntent();
 	    String action = intent.getAction();
+	    Log.e(TAG, "handleIntents " + action);
+
 	    String type = intent.getType();
 		
 		if (action == null)
@@ -1239,13 +1241,12 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
                                     
                             }
                             
-                            
                             if (autoStartFromIntent)
                             {
                                 autoStartFromIntent = false;
                                 finish();
+                                Log.e(TAG, "autoStartFromIntent finish");
                             }
-
                     }
                     else if (torStatus == TorServiceConstants.STATUS_CONNECTING)
                     {
