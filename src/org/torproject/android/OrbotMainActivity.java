@@ -615,21 +615,24 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 		else if (action.equals("org.torproject.android.START_TOR"))
 		{
 			autoStartFromIntent = true;
-				
-				try {
-					startTor();
+		    try {
+		        Log.i(TAG, "action equals org.torproject.android.START_TOR");
+		        startTor();
 
-					Intent nResult = new Intent();
-					
-					//nResult.putExtra("socks", ); //TODO respond with socks, transport, dns, etc
-					
-					setResult(RESULT_OK,nResult);
-					
-				} catch (RemoteException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			
+		        Intent resultIntent = new Intent(intent);
+		        resultIntent.putExtra("socks_proxy", "socks://127.0.0.1:" + TorServiceConstants.PORT_SOCKS_DEFAULT);
+                resultIntent.putExtra("socks_proxy_host", "127.0.0.1");
+                resultIntent.putExtra("socks_proxy_port", TorServiceConstants.PORT_SOCKS_DEFAULT);
+                resultIntent.putExtra("http_proxy", "http://127.0.0.1" + TorServiceConstants.PORT_HTTP);
+                resultIntent.putExtra("http_proxy_host", "127.0.0.1");
+                resultIntent.putExtra("http_proxy_port", TorServiceConstants.PORT_HTTP);
+		        setResult(RESULT_OK, resultIntent);
+		        finish();
+		    } catch (RemoteException e) {
+		        // TODO Auto-generated catch block
+		        e.printStackTrace();
+		    }
+
 		}
 		else if (action.equals(Intent.ACTION_VIEW))
 		{
@@ -1251,7 +1254,7 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
                             
                             if (autoStartFromIntent)
                             {
-                                setResult(RESULT_OK);
+                                autoStartFromIntent = false;
                                 finish();
                             }
 
