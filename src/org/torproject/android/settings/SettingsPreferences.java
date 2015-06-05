@@ -55,14 +55,6 @@ public class SettingsPreferences
 		init();
 	}
 	
-	
-	@Override
-	protected void onResume() {
-	
-		super.onResume();
-	
-	}
-	
 	private void init ()
 	{
 		int SET_LOCALE_IDX = 3;
@@ -113,31 +105,11 @@ public class SettingsPreferences
 		
 	};
 	
-	
-	
-	
-	@Override
-	protected void onPause() {
-
-		super.onPause();
-		
 
 
-		
-		
-		
-		
-	}
 
 
-	/* (non-Javadoc)
-	 * @see android.app.Activity#onStop()
-	 */
-	@Override
-	protected void onStop() {
-		super.onStop();
-		
-	}
+
 
 	public boolean onPreferenceClick(Preference preference) {
 		

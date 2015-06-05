@@ -29,13 +29,7 @@ public class ChooseLocaleWizardActivity extends Activity implements OrbotConstan
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-       
-    }
-    
-    @Override
-    protected void onStart() {
-        
-        super.onStart();
+
         setContentView(R.layout.layout_wizard_locale);
         
         
@@ -106,21 +100,6 @@ public class ChooseLocaleWizardActivity extends Activity implements OrbotConstan
         Locale.setDefault(locale);
         config.locale = locale;
         getResources().updateConfiguration(config, getResources().getDisplayMetrics());
-        
-        
-    
-        
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        
     }
     
     //Code to override the back button!
