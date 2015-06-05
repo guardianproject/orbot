@@ -75,7 +75,6 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
     private MenuItem mItemOnOff = null;
     private TextView downloadText = null;
     private TextView uploadText = null;
-    private NumberFormat mNumberFormat = null;
     private TextView mTxtOrbotLog = null;
     
     private Button mBtnBrowser = null;
@@ -473,10 +472,6 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
                 
         }
         
-    /* (non-Javadoc)
-<<<<<<< HEAD:src/org/torproject/android/OrbotMainActivity.java
-	 * @see android.app.Activity#onPause()
-	 */
 	protected void onPause() {
 		try
 		{
@@ -1429,19 +1424,13 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
         
         
     };
-
     
-    /**
-     * Class for interacting with the main interface of the service.
-     */
      // this is the connection that gets called back when a successfull bind occurs
      // we should use this to activity monitor unbind so that we don't have to call
      // bindService() a million times
     
     private void setLocale ()
     {
-        
-
         Configuration config = getResources().getConfiguration();
         String lang = mPrefs.getString(PREF_DEFAULT_LOCALE, "");
         
@@ -1452,9 +1441,6 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
             config.locale = locale;
             getResources().updateConfiguration(config, getResources().getDisplayMetrics());
         }
-        
-        mNumberFormat = NumberFormat.getInstance(Locale.getDefault());
- 	   
     }
 
        @Override
@@ -1476,31 +1462,32 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
            }
        }
        
-       private String formatCount(long count) {
+    private String formatCount(long count) {
+        NumberFormat numberFormat = NumberFormat.getInstance(Locale.getDefault());
         // Converts the supplied argument into a string.
         // Under 2Mb, returns "xxx.xKb"
         // Over 2Mb, returns "xxx.xxMb"
-    	   
-    	   //Locale.getDefault();
-    	   
         if (count < 1e6)
-            return mNumberFormat.format(Math.round(((float)((int)(count*10/1024))/10))) + getString(R.string.kbps);
-        
-        return mNumberFormat.format(Math.round(((float)((int)(count*100/1024/1024))/100))) + getString(R.string.mbps);
-        
-           //return count+" kB";
+            return numberFormat.format(Math.round(((float) ((int) (count * 10 / 1024)) / 10)))
+                    + getString(R.string.kbps);
+        else
+            return numberFormat.format(Math
+                    .round(((float) ((int) (count * 100 / 1024 / 1024)) / 100)))
+                    + getString(R.string.mbps);
     }
-       
-       private String formatTotal(long count) {
+
+    private String formatTotal(long count) {
+        NumberFormat numberFormat = NumberFormat.getInstance(Locale.getDefault());
         // Converts the supplied argument into a string.
         // Under 2Mb, returns "xxx.xKb"
         // Over 2Mb, returns "xxx.xxMb"
         if (count < 1e6)
-            return mNumberFormat.format(Math.round(((float)((int)(count*10/1024))/10))) + getString(R.string.kb);
-        
-        return mNumberFormat.format(Math.round(((float)((int)(count*100/1024/1024))/100))) + getString(R.string.mb);
-        
-           //return count+" kB";
+            return numberFormat.format(Math.round(((float) ((int) (count * 10 / 1024)) / 10)))
+                    + getString(R.string.kb);
+        else
+            return numberFormat.format(Math
+                    .round(((float) ((int) (count * 100 / 1024 / 1024)) / 100)))
+                    + getString(R.string.mb);
     }
 
     @Override
