@@ -7,11 +7,11 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">käivita ja peata Tor</string>
   <string name="tor_proxy_service_process">torproxyteenus</string>
-  <string name="status_starting_up">Orbot käivitub...</string>
+  <string name="status_starting_up">Orbot käivitub…</string>
   <string name="status_activated">Ühendatud Tor võrgustikku</string>
   <string name="status_disabled">Orbot deaktiveeritud</string>
   <string name="status_shutting_down">Orbot lülitub välja</string>
-  <string name="tor_process_starting">Tor kliendi käivitamine...</string>
+  <string name="tor_process_starting">Tor kliendi käivitamine…</string>
   <string name="tor_process_complete">valmis.</string>
   <string name="tor_process_waiting">ootel.</string>
   <string name="not_anonymous_yet">HOIATUS: Teie liiklus pole veel anonüümne! Palun seadistage oma rakendused nii et need kasutaksid HTTP proxy\'t 127.0.0.1:8118 või SOCKS4A või SOCKS5 proxy\'t 127.0.0.1:9050</string>
@@ -74,7 +74,7 @@
   <string name="wizard_tips_otrchat">ChatSecure - Turvaline kiirsõnumiklient Androidile</string>
   <string name="wizard_tips_proxy">Proxy seaded - Õpi kuidas seadistada rakendusi töötama koos Orbot\'iga</string>
   <string name="wizard_tips_duckgo">DuckDuckGo otsingumootori rakendus</string>
-  <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
+
   <string name="wizard_tips_twitter">Seadistage Twitteri proxy server \"localhost\" ja port 8118</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Proxyseaded</string>
@@ -96,15 +96,15 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot\'ile mõeldud rakendused</string>
   <string name="wizard_tips_gibberbot">ChatSecure: Turvaline vestlusrakendus Off-the-Record krüptoga</string>
-  <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
+
   <string name="wizard_tips_orweb">Orweb: Kõrgendatud privaatsusega veebisirvik mis töötab läbi Tor\'i</string>
-  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
+
   <string name="wizard_tips_play">Kõik Guardian Project rakendused on leitavad ka Google Play kaudu</string>
-  <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
-  <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
-	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
-    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
-    <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
+
+
+
+
+
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Läbipaistev Proxy</string>
   <string name="wizard_transproxy_msg">Saate kõik rakendused suunata iseeneslikult Tor kaudu, lisaseadistusteta.</string>
@@ -137,14 +137,14 @@
   <string name="pref_proxy_password_summary">Proxy salasõna (Valikuline)</string>
   <string name="pref_proxy_password_dialog">Sisestage proxy salasõna</string>
   <string name="status">Olek</string>
-  <string name="setting_up_full_transparent_proxying_">Täisläbipaistva proxy seadistamine...</string>
-  <string name="setting_up_app_based_transparent_proxying_">Rakenduspõhise läbipaistva proxy seadistamine...</string>
+  <string name="setting_up_full_transparent_proxying_">Täisläbipaistva proxy seadistamine…</string>
+  <string name="setting_up_app_based_transparent_proxying_">Rakenduspõhise läbipaistva proxy seadistamine…</string>
   <string name="transparent_proxying_enabled">Läbipaistev proxy LUBATUD</string>
   <string name="transproxy_enabled_for_tethering_">LäbivProxy lõastamine lubatud!</string>
   <string name="warning_error_starting_transparent_proxying_">Hoiatus: viga läbipaistva proxy käivitamisel!</string>
   <string name="transproxy_rules_cleared">LäbivProxy seaded nullitud</string>
   <string name="couldn_t_start_tor_process_">Tor protsessi käivitamine ebaõnnestus:</string>
-  <string name="setting_up_port_based_transparent_proxying_">Pordipõhise läbipaistva proxy seadistamine...</string>
+  <string name="setting_up_port_based_transparent_proxying_">Pordipõhise läbipaistva proxy seadistamine…</string>
   <string name="bridge_error">Silla viga</string>
   <string name="bridge_requires_ip">Silla võimaluse kasutamiseks peate sisestama vähemalt ühe silla IP aadressi.</string>
   <string name="send_email_for_bridges">Saatke e-kiri oma gmail kontolt aadressile bridges@torproject.org mis sisaldab ainult ühte rida \"get bridges\".</string>
@@ -191,7 +191,7 @@
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Kolmanda osapoole tarkvara:</string>
   <string name="hidden_service_request">Üks rakendus soovib avada varjatud teenuse porti %S Tor võrgustikule. See on turvaline kui te usaldate seda rakendust.</string>
-  <string name="found_existing_tor_process">leidus töötav Tor protsess...</string>
+  <string name="found_existing_tor_process">leidus töötav Tor protsess…</string>
   <string name="something_bad_happened">Juhtus midagi halba. Kontrollige logi</string>
   <string name="hidden_service_on">varjatud teenused:</string>
   <string name="unable_to_read_hidden_service_name">ei õnnestu lugeda varjatud teenuse nime</string>
@@ -208,7 +208,7 @@
   <string name="wizard_locale_title">Valige keel</string>
   <string name="wizard_locale_msg">Jätkake vaikeväärtusega või vahetage kehtiv keel</string>
   <string name="btn_save_settings">Salvesta seaded</string>
-  <string name="no_internet_connection_tor">Puudub Internetiühendus; Tor on ooteolekus...</string>
+  <string name="no_internet_connection_tor">Puudub Internetiühendus; Tor on ooteolekus…</string>
   <string name="bandwidth_">Ribalaius:</string>
   <string name="down">alla</string>
   <string name="up">üles</string>

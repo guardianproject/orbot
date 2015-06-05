@@ -7,11 +7,11 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">شروع و پایان تور</string>
   <string name="tor_proxy_service_process">سرويس پروکسی تور</string>
-  <string name="status_starting_up">ربات پیازی درحال آغاز است...</string>
+  <string name="status_starting_up">ربات پیازی درحال آغاز است…</string>
   <string name="status_activated">پیوسته به شبکه تور</string>
   <string name="status_disabled">ربات پیازی غیرفعال شده است.</string>
   <string name="status_shutting_down">ربات پیازی در حال بسته شدن است.</string>
-  <string name="tor_process_starting">شروع کلاینت تور...</string>
+  <string name="tor_process_starting">شروع کلاینت تور…</string>
   <string name="tor_process_complete">تمام.</string>
   <string name="tor_process_waiting">در حال انتظار.</string>
   <string name="not_anonymous_yet">هشدار: فعالیت شما هنوز \"گمنام\" نیست! لطفن اپلیکیشن خود را تنظیم کنید تا از HTTP پروکسی 127.0.0.1:8118 و یا SOCKS4A و یا SOCKS5 پروکسی 127.0.01:9050 استفاده کند.</string>
@@ -76,12 +76,12 @@
   <string name="wizard_tips_otrchat">ChatSecure - برنامه امن ارسال پیغام فوری برای اندروئید</string>
   <string name="wizard_tips_proxy">تنظیمات پروکسی - یادگیری تنظیم اپلیکیشن ها برای کار با ربات پیازی</string>
   <string name="wizard_tips_duckgo">اپلیکیشن موتور جستجوی داک داک گو</string>
-  <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
-  <string name="wizard_tips_firefox">افزوده پروکسی موبایل برای فایرفاکس (https://guardianproject.info/apps/firefoxprivacy)</string>
-  <string name="proxymob_setup_url">https://guardianproject.info/apps/firefoxprivacy</string>
+
+
+
   <string name="wizard_tips_twitter">توییتر از \"http proxy \"localhost:8118 پشتیبانی می کند</string>
   <string name="wizard_tips_story_maker">StoryMaker - ساختن یک داستان و ترک آن به Tor برای امنیت!</string>
-  <string name="story_maker_url">https://play.google.com/store/apps/details?id=info.guardianproject.mrapp</string>
+
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">تنظیمات پروکسی</string>
   <string name="wizard_final">ربات پیازی آماده استفاده میباشد!</string>
@@ -103,15 +103,15 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">  اپلیکیشنهایی که ربات پیازی روی آنها فعال است</string>
   <string name="wizard_tips_gibberbot">ChatSecure:برنامه امن گفتگوی محرمانه با قابلیت رمزگزاری</string>
-  <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
+
   <string name="wizard_tips_orweb">مرورگر پیازی: مرورگر طراحی شده برای حفظ حریم خصوصی و افزونساز ربات پیازی</string>
-  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
+
   <string name="wizard_tips_play">تمامي برنامه هاي Guardian Project را در Google Play پيدا كنيد.</string>
-  <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
-  <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
-	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
-    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
-    <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
+
+
+
+
+
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">پروکسی کردن شفاف</string>
   <string name="wizard_transproxy_msg">این به برنامه ها به شما اجازه میدهد که بدون هیچ تنظیمی، بصورت خودکار از طریق شبکه تور اجرا شوند</string>
@@ -147,15 +147,15 @@
   <string name="pref_proxy_password_summary">رمز عبور پروکسی(اختیاری)</string>
   <string name="pref_proxy_password_dialog">رمز عبور پروکسی را وارد نمایید</string>
   <string name="status">وضعیت</string>
-  <string name="setting_up_full_transparent_proxying_">نصب پروکسی کاملن شفاف...</string>
-  <string name="setting_up_app_based_transparent_proxying_">نصب پروکسی شفاف مبتنی بر برنامه...</string>
+  <string name="setting_up_full_transparent_proxying_">نصب پروکسی کاملن شفاف…</string>
+  <string name="setting_up_app_based_transparent_proxying_">نصب پروکسی شفاف مبتنی بر برنامه…</string>
   <string name="transparent_proxying_enabled">پروکسی شفاف فعال است</string>
   <string name="transproxy_enabled_for_tethering_">TransProxy برای Tethering فعال شده است!</string>
   <string name="warning_error_starting_transparent_proxying_">هشدار: خطا در هنگام راه اندازی پروکسی شفاف!</string>
   <string name="transproxy_rules_cleared">قوانین TransProxy پاک شدند</string>
   <string name="couldn_t_start_tor_process_"> تور نتواست اجرا شود:</string>
   <string name="privoxy_is_running_on_port_">Polipo در حال اجرا است در پورت:</string>
-  <string name="setting_up_port_based_transparent_proxying_">نصب پروکسی شفاف مبتنی بر پورت...</string>
+  <string name="setting_up_port_based_transparent_proxying_">نصب پروکسی شفاف مبتنی بر پورت…</string>
   <string name="bridge_error">خطای پل</string>
   <string name="bridge_requires_ip">برای استفاده از ویژگی پل، باید حداقل آدرس IP یک پل را وارد کنید.</string>
   <string name="send_email_for_bridges">از یک حساب کاربری جیمیل، ایمیلی با متن \"get bridges\" به آدرس bridges@torproject.org بفرستید.</string>
@@ -208,7 +208,7 @@
   <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
   <string name="openssl_version">OpenSSL v1.0.1i: http://www.openssl.org</string>
   <string name="hidden_service_request">یک اپلیکیشن میخواهد پورت %S سرویس مخفی را به شبکه تور باز کند. اگر به این اپلیکیشن اعتماد دارید این بی خطر است.</string>
-  <string name="found_existing_tor_process">یک تور درحال اجرا پیدا شد...</string>
+  <string name="found_existing_tor_process">یک تور درحال اجرا پیدا شد…</string>
   <string name="something_bad_happened">اتفاق بدی افتاد. وقایع ثبت شده را چک کنید</string>
   <string name="hidden_service_on">سرویس مخفی روی:</string>
   <string name="unable_to_read_hidden_service_name">ناتوان در خواندن نام سرویس مخفی</string>
@@ -241,8 +241,8 @@
   <string name="permission_manage_tor_description">این برنامه بتواند سرویس تور را مدیریت کند</string>
   <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">بنظر میرسد برنامه Orweb  نصب نشده است. آیا کمکی برای نصب میخواهید یا فقط مرورگر باز شود؟</string>
   <string name="install_apps_">برنامه نصب شود؟</string>
-  <string name="no_network_connectivity_putting_tor_to_sleep_">بدون اتصال به شبکه می باشد. قرار دادن Tor در خواب ...</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">اتصال به شبکه خوب است. بیداری Tor تا ...</string>
+  <string name="no_network_connectivity_putting_tor_to_sleep_">بدون اتصال به شبکه می باشد. قرار دادن Tor در خواب …</string>
+  <string name="network_connectivity_is_good_waking_tor_up_">اتصال به شبکه خوب است. بیداری Tor تا …</string>
   <string name="updating_settings_in_tor_service">به روز رسانی تنظیمات در سرویس Tor</string>
   <string name="pref_socks_title">Tor SOCKS</string>
   <string name="pref_socks_dialog">پیکربندی پورت SOCKS</string>
@@ -253,7 +253,7 @@
   <string name="pref_dnsport_dialog">پیکربندی پورت DNS</string>
   <string name="pref_torrc_title">پیکربندی سفارشی Torrc</string>
   <string name="pref_torrc_dialog">سفارشی Torrc</string>
-  <string name="martus_url">https://play.google.com/store/apps/details?id=org.martus.android</string>
+
   <string name="your_tor_public_ips_">IP های عمومی Tor شما:</string>
   <string name="app_conflict">تعارض برنامه</string>
   <string name="pref_transproxy_refresh_title">خودکار تازه کردن Transproxy</string>

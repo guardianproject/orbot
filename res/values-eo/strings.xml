@@ -7,11 +7,11 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">ŝalti kaj malŝalti Tor</string>
   <string name="tor_proxy_service_process">torproxyservice</string>
-  <string name="status_starting_up">Orbot ŝaltiĝas...</string>
+  <string name="status_starting_up">Orbot ŝaltiĝas…</string>
   <string name="status_activated">Konektita al Tor-reto</string>
   <string name="status_disabled">Orbot estas malaktivigita</string>
   <string name="status_shutting_down">Orbot malŝaltiĝas</string>
-  <string name="tor_process_starting">Ŝaltiĝas Tor-kliento...</string>
+  <string name="tor_process_starting">Ŝaltiĝas Tor-kliento…</string>
   <string name="tor_process_complete">kompleta.</string>
   <string name="tor_process_waiting">atendas.</string>
   <string name="not_anonymous_yet">ATENTIGO: Via trafiko ankoraŭ ne estas anonima! Bonvolu agordi viajn aplikaĵojn por uzi HTTP-prokurilon 127.0.0.1:8118 aŭ SOCKS4A- aŭ SOCKS5-prokurilo 127.0.0.1:9050</string>
@@ -57,7 +57,7 @@
   <string name="wizard_tips_tricks">Aplikaĵoj permesitaj por Orbot</string>
   <string name="wizard_tips_otrchat">ChatSecutre - Sekura tujmesaĝilo por Android</string>
   <string name="wizard_tips_proxy">Agordoj de prokurilo - Lernu kiel agordi aplikaĵojn por kunlabori kun Orbot</string>
-  <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
+
   <string name="wizard_tips_twitter">Agordi prokurilon por Twitter je adreso \"localhost\" kaj pordo 8118</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Retperant‐agordoj</string>
@@ -76,14 +76,14 @@
   <string name="wizard_permissions_root_msg2">Se vi ne volas fari tion, bonvolu certiĝi ke eblas agordi aplikaĵojn por kunlabori kun Orbot</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Aplikaĵoj permesitaj por Orbot</string>
-  <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
-  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
+
+
   <string name="wizard_tips_play">Trovu ĉiujn aplikaĵojn de Guardian Project ĉe Google Play</string>
-  <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
-  <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
-	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
-    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
-    <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
+
+
+
+
+
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_hint">(Marku ĉi tiun butonon se vi ne scias pri kio ni parolas)</string>
   <string name="wizard_transproxy_none">Neniom</string>
@@ -140,7 +140,7 @@
   <string name="project_home">Retpaĝaro(j) de la Projekto:</string>
   <string name="the_tor_license">The Tor License</string>
   <string name="https_torproject_org">https://torproject.org</string>
-  <string name="found_existing_tor_process">trovi ekzistantan Tor-procedon...</string>
+  <string name="found_existing_tor_process">trovi ekzistantan Tor-procedon…</string>
   <string name="hidden_service_on">kaŝitaj servoj je:</string>
   <string name="unable_to_read_hidden_service_name">ne eblas legi nomon de la kaŝita servo</string>
   <string name="unable_to_start_tor">Ne eblas startigi Tor:</string>

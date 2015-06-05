@@ -7,11 +7,11 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">spustit a vypnout Tor</string>
   <string name="tor_proxy_service_process">torproxyservice</string>
-  <string name="status_starting_up">Orbot se spouští...</string>
+  <string name="status_starting_up">Orbot se spouští…</string>
   <string name="status_activated">Připojen k síti Tor</string>
   <string name="status_disabled">\"Orbot je deaktivován</string>
   <string name="status_shutting_down">Orbot se vypíná</string>
-  <string name="tor_process_starting">Startuji Tor klienta...</string>
+  <string name="tor_process_starting">Startuji Tor klienta…</string>
   <string name="tor_process_complete">hotovo.</string>
   <string name="tor_process_waiting">čekám.</string>
   <string name="not_anonymous_yet">VAROVÁNÍ: Vaše komunikace ještě není anonymní! Prosím nastavte vašim aplikacím HTTP proxy 127.0.0.1:8118 nebo SOCKS4A či SOCKS5 proxy 172.0.0.1:9050</string>
@@ -64,11 +64,11 @@
   <string name="wizard_warning_title">Varování</string>
   <!--Permissions screen-->
   <!--TipsAndTricks screen-->
-  <string name="orweb_apk_url">https://market.android.com/details?id=info.guardianproject.browser</string>
-  <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
-	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
-    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
-    <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
+
+
+
+
+
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Transparentní proxy</string>
   <string name="wizard_transproxy_none">Není</string>

@@ -64,15 +64,6 @@
         android:text="@string/wizard_tips_duckgo" />
     
     <Button
-        android:id="@+id/WizardRootButtonInstallFirefox"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:layout_marginTop="10px"
-        android:drawableLeft="@drawable/icon_firefox"
-        android:text="@string/wizard_tips_firefox" />
-    
-    <Button
         android:id="@+id/WizardRootButtonInstallTwitter"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -106,7 +97,7 @@
         android:layout_gravity="left"
         android:layout_marginTop="10px"
         android:drawableLeft="@drawable/ic_play"
-        android:text="@string/wizard_tips_play" />
+        android:text="@string/wizard_tips_fdroid_org" />
     
 
 </LinearLayout>

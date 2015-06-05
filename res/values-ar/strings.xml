@@ -7,11 +7,11 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">فعل و اوقف تور</string>
   <string name="tor_proxy_service_process">torproxyservice</string>
-  <string name="status_starting_up">جاري تشغيل اوربوت...</string>
+  <string name="status_starting_up">جاري تشغيل اوربوت…</string>
   <string name="status_activated">متصل بشبكة تور</string>
   <string name="status_disabled">تم إيقاف اوربوت</string>
   <string name="status_shutting_down">جاري إغلاق اوربوت</string>
-  <string name="tor_process_starting">جاري تشغيل تور...</string>
+  <string name="tor_process_starting">جاري تشغيل تور…</string>
   <string name="tor_process_complete">كامل.</string>
   <string name="tor_process_waiting">انتظار.</string>
   <string name="not_anonymous_yet">تحذير: حركة مرورك ليست خفية حتي الآن! من فضلك قم بتكوين التطبيقات الخاصة بك لإستخدام بروكسي HTTP 127.0.0.1:8118 أو SOCK4A أو SOKS5 127.0.0.1:9050</string>
@@ -73,7 +73,7 @@
   <string name="wizard_tips_msg">التطبيقات التالية تم تطويرها حتي تعمل مع اوربوت. اضغط علي ما تريد تثبيتة علي جهازك الأن, أو يمكنك ان تجدهم لاحقاً علي جوجل بلاي, أو علي موقعنا GuardianProject.info أو من خلال F-Droid.org.</string>
   <string name="wizard_tips_proxy">إعدادات البروكسي - تعلم كيفية تكوين التطبيقات لتعمل مع اوربوت</string>
   <string name="wizard_tips_duckgo">تطبيق محرك البحث DuckDuckGo</string>
-  <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
+
   <string name="wizard_tips_twitter">اضبط البروكسي الخاص بتويتر إلي مستضيف \"localhost\" و المنفذ إلي 8118</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">إعدادات البروكسي</string>
@@ -96,12 +96,10 @@
   <string name="wizard_tips_title"> برامج معدة للعمل مع اوربوت</string>
   <string name="wizard_tips_orweb">Orweb: متصفح مصمّم للخصوصية و يعمل مع تور</string>
   <string name="wizard_tips_play">يمكنك الحصول علي جميع تطبيقات مشروع الجاردين على جوجل بلاي</string>
-  <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject
-</string>
-  <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
-	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
-    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
-    <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
+
+
+
+
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">بروكسي ضمني</string>
   <string name="wizard_transproxy_msg">هذه ستسمح للبرامج بالاتصال بشبكة تور تلقائياً دون اعداد مسبق.</string>
@@ -134,14 +132,14 @@
   <string name="pref_proxy_password_summary">كلمة مرور البروكسي (اختياري)</string>
   <string name="pref_proxy_password_dialog">ادخل كلمة مرور البروكسي</string>
   <string name="status">الحالة</string>
-  <string name="setting_up_full_transparent_proxying_">يتم إعداد بروكسي ضمني كامل...</string>
-  <string name="setting_up_app_based_transparent_proxying_">يتم إعداد البروكسي الضمني حسب البرامج...</string>
+  <string name="setting_up_full_transparent_proxying_">يتم إعداد بروكسي ضمني كامل…</string>
+  <string name="setting_up_app_based_transparent_proxying_">يتم إعداد البروكسي الضمني حسب البرامج…</string>
   <string name="transparent_proxying_enabled">البروكسي الضمني مُفعل</string>
   <string name="transproxy_enabled_for_tethering_">البروكسي الضمني جاهز للربط!</string>
   <string name="warning_error_starting_transparent_proxying_">تحذير: حصل خطأ بتشغيل البروكسي الضمني!</string>
   <string name="transproxy_rules_cleared">تم مسح قواعد البروكسي الضمني</string>
   <string name="couldn_t_start_tor_process_">لقد تعذر بدء تشغيل تور:</string>
-  <string name="setting_up_port_based_transparent_proxying_">يتم إعداد البروكسي الضمني حسب المنفذ...</string>
+  <string name="setting_up_port_based_transparent_proxying_">يتم إعداد البروكسي الضمني حسب المنفذ…</string>
   <string name="bridge_error">خطأ بالجسر</string>
   <string name="bridge_requires_ip">حتي تستطيع إستخدم ميزة الجسور، يجب عليك ادخال عنوان انترنت لجسر واحد علي الأقل.</string>
   <string name="send_email_for_bridges">أرسل بريد إلكتروني إلى bridges@torproject.org مع عبارة \"get bridges\" بداخل الرسالة من حساب بريد gmail.</string>
@@ -188,7 +186,7 @@
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">برامج من الطرف الثالث:</string>
   <string name="hidden_service_request">هناك برنامج يحاول فتح منفذ لخادم مخفي %S إلي شبكة تور. هذا السلوك آمن إذا كنت تثق بهذا البرنامج.</string>
-  <string name="found_existing_tor_process">عُثر علي عملية تور سابقة تعمل...</string>
+  <string name="found_existing_tor_process">عُثر علي عملية تور سابقة تعمل…</string>
   <string name="something_bad_happened">حصل خطأ ما. افحص السجل</string>
   <string name="hidden_service_on">الخدمات المخفية التي تعمل حالياً:</string>
   <string name="unable_to_read_hidden_service_name">غير قادر على قراءة اسم الخدمة المخفية</string>
@@ -205,5 +203,5 @@
   <string name="wizard_locale_title">اختار اللغة</string>
   <string name="wizard_locale_msg">إما ان تترك اللغة الافتراضية او إما ان تغير اللغة</string>
   <string name="btn_save_settings">حفظ الإعدادات</string>
-  <string name="no_internet_connection_tor">لا يوجد اتصال بالانترنت; تور في حالة استعداد...</string>
+  <string name="no_internet_connection_tor">لا يوجد اتصال بالانترنت; تور في حالة استعداد…</string>
 </resources>

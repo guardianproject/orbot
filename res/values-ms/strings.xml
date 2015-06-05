@@ -75,7 +75,7 @@
   <string name="wizard_proxy_help_info">Tetapan proxy</string>
   <string name="wizard_proxy_help_msg">Jika aplikasi Android yang anda gunakan boleh menyokong penggunaan proksi HTTP atau SOCKS, kemudian anda boleh menatarajah untuk menyambung kepada Orbot dan menggunakan Tor. ⏎\n⏎\n⏎\n    Tetapan tuan rumah adalah 127.0.0.1 atau \"localhost\". Untuk HTTP, tetapan pelabuhan 8118. Untuk SOCKS, proksi adalah 9050. Anda harus menggunakan SOCKS4A atau socks5 jika boleh. ⏎\n    ⏎\n⏎\n⏎\n    Anda boleh mengetahui lebih lanjut tentang proxying pada Android melalui FAQ di: http://tinyurl.com/proxyandroid ⏎</string>
   <string name="wizard_final">Orbot sudah sedia!</string>
-  <string name="wizard_final_msg">Beratus-ratus ribu orang di seluruh dunia menggunakan Tor untuk pelbagai sebab-sebab yang luas. ⏎\n⏎\nWartawan dan blogger, pembela hak asasi manusia, pegawai penguatkuasa undang-undang, tentera, perbadanan, rakyat rejim menindas, dan warganegara sahaja, biasa ... dan kini anda bersedia untuk, juga!</string>
+  <string name="wizard_final_msg">Beratus-ratus ribu orang di seluruh dunia menggunakan Tor untuk pelbagai sebab-sebab yang luas. ⏎\n⏎\nWartawan dan blogger, pembela hak asasi manusia, pegawai penguatkuasa undang-undang, tentera, perbadanan, rakyat rejim menindas, dan warganegara sahaja, biasa … dan kini anda bersedia untuk, juga!</string>
   <!--END Welcome Wizard strings (DJH)-->
   <string name="connect_first_time">Anda telah berjaya disambungkan kepada rangkaian Tor - tetapi ini bukanlah bermakna peranti anda adalah selamat. Anda boleh menggunakan pilihan \'Check\' daripada menu untuk menguji pelayar anda. ⏎\n⏎\nMelawat kami pada https://guardianproject.info/apps/orbot atau menghantar e-mel ke help@guardianproject.info untuk mengetahui lebih lanjut.</string>
   <string name="tor_check">Ini akan membuka pelayar web anda untuk https://check.torproject.org untuk melihat jika Orbot mungkin ditetapkan dan anda disambungkan kepada Tor.</string>
@@ -97,13 +97,13 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Aplikasi yang membenarkan Orbot</string>
   <string name="wizard_tips_gibberbot">Gibberbot: sembang app selamat dengan Penyulitan Off-the-Rekod</string>
-  <string name="gibberbot_apk_url">https://market.android.com/details?id=info.guardianproject.otr.app.im</string>
+
   <string name="wizard_tips_orweb">Orweb: Privasi ditambah penyemak imbas yang bekerja melalui Tor</string>
-  <string name="orweb_apk_url">https://market.android.com/details?id=info.guardianproject.browser</string>
-  <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
-	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
-    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
-    <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
+
+
+
+
+
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Proxy Telus</string>
   <string name="wizard_transproxy_msg">Ini membolehkan aplikasi anda secara automatik melalui rangkaian Tor tanpa apa apa konfigurasi</string>

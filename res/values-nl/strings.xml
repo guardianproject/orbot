@@ -7,11 +7,11 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">start en stop Tor</string>
   <string name="tor_proxy_service_process">torproxyservice</string>
-  <string name="status_starting_up">Orbot is bezig met starten...</string>
+  <string name="status_starting_up">Orbot is bezig met starten…</string>
   <string name="status_activated">Verbonden met het Tor netwerk</string>
   <string name="status_disabled">Orbot is uitgeschakeld</string>
   <string name="status_shutting_down">Orbot is bezig met afsluiten</string>
-  <string name="tor_process_starting">Bezig met Tor client starten...</string>
+  <string name="tor_process_starting">Bezig met Tor client starten…</string>
   <string name="tor_process_complete">klaar.</string>
   <string name="tor_process_waiting">bezig met wachten.</string>
   <string name="not_anonymous_yet">WAARSCHUWING: Je verkeer is nog niet anononiem! Stel je programma\'s in om gebruik te maken van HTTP proxy 127.0.0.1:8118 of SOCKS4A of SOCKS5 proxy 127.0.0.1:9050</string>
@@ -74,7 +74,7 @@
   <string name="wizard_tips_otrchat">ChatSecure - Beveiligde instant messaging cliënt voor Andrdoid</string>
   <string name="wizard_tips_proxy">Proxy Instellingen - Leer hoe je apps te configureren voor Orbot</string>
   <string name="wizard_tips_duckgo">Duckduckgo Zoekmachine app</string>
-  <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
+
   <string name="wizard_tips_twitter">Twitter ondersteunt http proxy \"localhost:8118\"</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Proxy Instellingen</string>
@@ -96,15 +96,15 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot geschikte Apps</string>
   <string name="wizard_tips_gibberbot">ChatSecure: Beveiligde chat app met Off-the-Record versleuteling</string>
-  <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
+
   <string name="wizard_tips_orweb">ORWEB (Alleen Android 1.x) - Browser gemaakt voor privacy &amp; voor Orbot</string>
-  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
+
   <string name="wizard_tips_play">Vind alle Guardian Project apps op Google Play</string>
-  <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
-  <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
-	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
-    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
-    <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
+
+
+
+
+
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Tranparante Proxy</string>
   <string name="wizard_transproxy_msg">Dit maakt het mogelijk voor jouw apps om automatisch via het Tor netwerk te draaien zonder enige configuratie.</string>
@@ -137,8 +137,8 @@
   <string name="pref_proxy_password_summary">Proxy wachtwoord (Optioneel)</string>
   <string name="pref_proxy_password_dialog">Type Proxy Wachtwoord</string>
   <string name="status">Status</string>
-  <string name="setting_up_full_transparent_proxying_">Bezig met opzetten van volledig transparante proxy...</string>
-  <string name="setting_up_app_based_transparent_proxying_">Bezig met opzetten van per-app transparante proxy...</string>
+  <string name="setting_up_full_transparent_proxying_">Bezig met opzetten van volledig transparante proxy…</string>
+  <string name="setting_up_app_based_transparent_proxying_">Bezig met opzetten van per-app transparante proxy…</string>
   <string name="transparent_proxying_enabled">Transparante proxy ingeschakeld</string>
   <string name="transproxy_enabled_for_tethering_">Transparante Proxy ingeschakeld voor tethering!</string>
   <string name="warning_error_starting_transparent_proxying_">WAARSCHUWING: fout tijdens starten van transparante proxy!</string>
@@ -191,7 +191,7 @@
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Software van derden: </string>
   <string name="hidden_service_request">Een app wil hidden service poort %S openen naar het Tor netwerk. Dit is veilig als je de app vertrouwd.</string>
-  <string name="found_existing_tor_process">bestaand Tor proces gevonden...</string>
+  <string name="found_existing_tor_process">bestaand Tor proces gevonden…</string>
   <string name="something_bad_happened">Er is iets slechts gebeurt. Controleer de log</string>
   <string name="hidden_service_on">hidden service op:</string>
   <string name="unable_to_read_hidden_service_name">Kan hidden service naam niet lezen.</string>
@@ -208,7 +208,7 @@
   <string name="wizard_locale_title">Kies taal</string>
   <string name="wizard_locale_msg">Laat standaard of schakel over naar huidige taal</string>
   <string name="btn_save_settings">Sla instellingen op</string>
-  <string name="no_internet_connection_tor">Geen internet verbinding: Tor is in standby...</string>
+  <string name="no_internet_connection_tor">Geen internet verbinding: Tor is in standby…</string>
   <string name="bandwidth_">Bandbreedte:</string>
   <string name="down">omlaag</string>
   <string name="up">omhoog</string>

@@ -74,11 +74,11 @@
   <string name="wizard_tips_otrchat">ChatSecure - Ein sicheres Sofortnachrichtenprogramm für Android</string>
   <string name="wizard_tips_proxy">Vermittlungseinstellungen - Lernen, wie Sie Anwendungen so konfigurieren, dass sie mit Orbot zusammenarbeiten.</string>
   <string name="wizard_tips_duckgo">Duckduckgo-Suchmaschinen-App</string>
-  <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
-  <string name="wizard_tips_firefox">Proxy Mobile Add-on für Firefox (https://guardianproject.info/apps/firefoxprivacy)</string>
-  <string name="proxymob_setup_url">https://guardianproject.info/apps/firefoxprivacy</string>
+
+
+
   <string name="wizard_tips_twitter">Twitter-Proxy auf den Rechner »localhost« und Port 8118 einstellen</string>
-  <string name="story_maker_url">https://play.google.com/store/apps/details?id=info.guardianproject.mrapp</string>
+
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Vermittlungseinstellungen</string>
   <string name="wizard_final">Orbot ist bereit!</string>
@@ -100,15 +100,15 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot aktivierte Anwendungen</string>
   <string name="wizard_tips_gibberbot">ChatSecure: Sichere Unterhaltungsanwendung mit vertraulicher Verschlüsselung</string>
-  <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
+
   <string name="wizard_tips_orweb">Orweb: Ein im Datenschutz erweiterter Browser, der durch Tor arbeitet</string>
-  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
+
   <string name="wizard_tips_play">Alle Guardian Project-Anwendungen im Google Play Store finden</string>
-  <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
-  <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
-	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
-    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
-    <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
+
+
+
+
+
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Transparente Vermittlung</string>
   <string name="wizard_transproxy_msg">Dieses ermöglicht es Ihren Anwendungen automatisch das Tor Netzwerk zu verwenden ohne dieses konfigurieren zu müssen.</string>
@@ -249,7 +249,7 @@
   <string name="pref_torrc_summary">NUR FÜR EXPERTEN: torrc-Konfigurationszeilen direkt eingeben</string>
   <string name="pref_torrc_dialog">Benutzerdefinierte Torrc</string>
   <string name="wizard_tips_martus">Mobile Martus - Benetech-Anwendung zur Menschenrechtsdokumentierung</string>
-  <string name="martus_url">https://play.google.com/store/apps/details?id=org.martus.android</string>
+
   <string name="your_tor_public_ips_">Ihre öffentlichen IPs für Tor:</string>
   <string name="app_conflict">Anwendungskonflikt</string>
   <string name="pref_transproxy_refresh_title">Automatische Transproxy-Aktualisierung</string>

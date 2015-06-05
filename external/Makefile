@@ -22,7 +22,7 @@ else
 endif
 
 # Android NDK setup
-NDK_BASE ?= /opt/android-ndk
+ANDROID_NDK_HOME ?= /opt/android-ndk
 NDK_PLATFORM_LEVEL ?= 16
 NDK_TOOLCHAIN_VERSION=4.8
 APP_ABI ?= armeabi
@@ -33,7 +33,7 @@ endif
 ifneq ($(filter arm64%, $(APP_ABI)),)
  NDK_ABI := arm64
 endif
-NDK_SYSROOT=$(NDK_BASE)/platforms/android-$(NDK_PLATFORM_LEVEL)/arch-$(NDK_ABI)
+NDK_SYSROOT=$(ANDROID_NDK_HOME)/platforms/android-$(NDK_PLATFORM_LEVEL)/arch-$(NDK_ABI)
 NDK_UNAME := $(shell uname -s | tr '[A-Z]' '[a-z]')
 ifneq ($(filter mips%, $(NDK_ABI)),)
  HOST := $(NDK_ABI)el-linux-android
@@ -55,11 +55,11 @@ NDK_TOOLCHAIN := $(HOST)-$(NDK_TOOLCHAIN_VERSION)
 ifneq ($(filter x86%, $(NDK_ABI)),)
  NDK_TOOLCHAIN := $(NDK_ABI)-$(NDK_TOOLCHAIN_VERSION)
 endif
-NDK_TOOLCHAIN_BASE=$(NDK_BASE)/toolchains/$(NDK_TOOLCHAIN)/prebuilt/$(NDK_UNAME)-$(NDK_PROCESSOR)
+NDK_TOOLCHAIN_BASE=$(ANDROID_NDK_HOME)/toolchains/$(NDK_TOOLCHAIN)/prebuilt/$(NDK_UNAME)-$(NDK_PROCESSOR)
 
 # include Android's build flags
 TARGET_ARCH_ABI = $(APP_ABI)
-include $(NDK_BASE)/toolchains/$(NDK_TOOLCHAIN)/setup.mk
+include $(ANDROID_NDK_HOME)/toolchains/$(NDK_TOOLCHAIN)/setup.mk
 
 CC := $(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-gcc --sysroot=$(NDK_SYSROOT)
 CXX := $(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-g++ --sysroot=$(NDK_SYSROOT)

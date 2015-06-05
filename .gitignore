@@ -1,3 +1,4 @@
+assets/
 /external/bin/
 /external/include/
 /external/*-build-stamp
@@ -9,8 +10,13 @@
 bin
 gen
 native
+libs/jtorctl.jar
 local.properties
 builds
 /patches/*
 obj
 releases
+
+# ant build products
+build.xml
+proguard-project.txt

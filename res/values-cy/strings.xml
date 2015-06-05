@@ -7,7 +7,7 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">cychwyn a stopio Tor</string>
   <string name="tor_proxy_service_process">gwasanaethdirpwrytor</string>
-  <string name="status_starting_up">Mae Orbot yn cychwyn...</string>
+  <string name="status_starting_up">Mae Orbot yn cychwyn…</string>
   <string name="status_activated">Wedi cysylltu â rhwydwaith Tor</string>
   <string name="status_shutting_down">Mae Orbot yn cau</string>
   <string name="tor_process_starting">Yn cychwyn cleient Tor</string>
@@ -60,10 +60,10 @@
   <string name="wizard_warning_title">Rhybudd</string>
   <!--Permissions screen-->
   <!--TipsAndTricks screen-->
-  <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
-	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
-    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
-    <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
+
+
+
+
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Dirprwyo\'n dryloyw</string>
   <string name="wizard_transproxy_none">Dim</string>

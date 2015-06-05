@@ -429,33 +429,41 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         clearNotifications ();
         super.onDestroy();
     }
-    
+
     private void stopTor ()
     {
-       
+
         try
-        {    
+        {
             Log.d(TAG,"Tor is stopping NOW");
-            
+
             shutdownTorProcess ();
-            
+
             //stop the foreground priority and make sure to remove the persistant notification
             stopForeground(true);
-            
+
             mCurrentStatus = STATUS_OFF;
             sendCallbackStatus(mCurrentStatus);
-            
+
             if (mHasRoot && mEnableTransparentProxy)
             {
             	Shell shellRoot = Shell.startRootShell();
                 disableTransparentProxy(shellRoot);
             	shellRoot.close();
             }
-            
+
             clearNotifications();
-            
+
             sendCallbackLogMessage(getString(R.string.status_disabled));
 
+        }
+        catch (CannotKillException e)
+        {
+            Log.d(TAG, "An error occured stopping Tor", e);
+            logNotice("An error occured stopping Tor: " + e.getMessage());
+            sendCallbackLogMessage(getString(R.string.unable_to_reset_tor));
+            showToolbarNotification(getString(R.string.unable_to_reset_tor),
+                    ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
         }
         catch (Exception e)
         {
@@ -465,44 +473,44 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
         }
     }
-    
- 
+
+
     private String getHiddenServiceHostname ()
     {
 
         SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
-        
+
         boolean enableHiddenServices = prefs.getBoolean("pref_hs_enable", false);
-        
+
         StringBuffer result = new StringBuffer();
-        
+
         if (enableHiddenServices)
         {
             String hsPorts = prefs.getString("pref_hs_ports","");
-            
+
             StringTokenizer st = new StringTokenizer (hsPorts,",");
             String hsPortConfig = null;
-            
+
             while (st.hasMoreTokens())
-            {    
-                
+            {
+
                 int hsPort = Integer.parseInt(st.nextToken().split(" ")[0]);;
-                
+
                 File fileDir = new File(appCacheHome, "hs" + hsPort);
                 File file = new File(fileDir, "hostname");
-                
-                
+
+
                 if (file.exists())
                 {
                     try {
                         String onionHostname = Utils.readString(new FileInputStream(file)).trim();
-                        
+
                         if (result.length() > 0)
                             result.append(",");
-                        
+
                         result.append(onionHostname);
-                        
-                        
+
+
                     } catch (FileNotFoundException e) {
                         logException("unable to read onion hostname file",e);
                         showToolbarNotification(getString(R.string.unable_to_read_hidden_service_name), HS_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
@@ -513,28 +521,28 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 {
                     showToolbarNotification(getString(R.string.unable_to_read_hidden_service_name), HS_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
                     return null;
-                    
+
                 }
             }
-        
+
             if (result.length() > 0)
             {
                 String onionHostname = result.toString();
-                
+
                 showToolbarNotification(getString(R.string.hidden_service_on) + ' ' + onionHostname, HS_NOTIFY_ID, R.drawable.ic_stat_tor);
                 Editor pEdit = prefs.edit();
                 pEdit.putString("pref_hs_hostname",onionHostname);
                 pEdit.commit();
-                
+
                 return onionHostname;
             }
-        
+
         }
-        
+
         return null;
     }
-    
-    
+
+
     private void shutdownTorProcess () throws Exception
     {
 
@@ -542,47 +550,69 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         {
 
             logNotice("Using control port to shutdown Tor");
-            
-            
+
+
             try {
                 logNotice("sending HALT signal to Tor process");
                 conn.shutdownTor("HALT");
-                
+
             } catch (Exception e) {
                 Log.d(TAG,"error shutting down Tor via connection",e);
             }
-            
+
             conn = null;
         }
-        
+
         killProcess(fileTor);
-        
+
         killProcess(filePolipo);
         killProcess(fileObfsclient);
         killProcess(fileMeekclient);
-        
-        
     }
-    
-    private void killProcess (File fileProcBin) throws IOException
-    {
-        int procId = -1;
-        Shell shell = Shell.startShell();
-        
-        while ((procId = TorServiceUtils.findProcessId(fileProcBin.getCanonicalPath())) != -1)
-        {
-            
-            logNotice("Found " + fileProcBin.getName() + " PID=" + procId + " - killing now...");
-            
-            SimpleCommand killCommand = new SimpleCommand("toolbox kill -9 " + procId);
-            shell.add(killCommand);
-            killCommand = new SimpleCommand("kill -9 " + procId);
-            shell.add(killCommand);
+
+    public class CannotKillException extends IllegalStateException {
+        private static final long serialVersionUID = -286877277562592501L;
+
+        public CannotKillException(File f) {
+            super("Cannot kill " + f.getAbsolutePath());
         }
-        
-        shell.close();
     }
-   
+
+    private void killProcess(File fileProcBin) throws IOException {
+        int procId = -1;
+        int killAttempts = 0;
+
+        while ((procId = TorServiceUtils.findProcessId(fileProcBin.getCanonicalPath())) != -1) {
+            killAttempts++;
+            logNotice("Found " + fileProcBin.getName() + " PID=" + procId + " - killing now...");
+            String pidString = String.valueOf(procId);
+            /*
+             * first try as the normal app user to be safe, then if that fails,
+             * try root since the process might be left over from
+             * uninstall/reinstall with different UID.
+             */
+            Shell shell;
+            if (mHasRoot && killAttempts > 2) {
+                shell = Shell.startRootShell();
+                Log.i(TAG, "using a root shell");
+            } else {
+                shell = Shell.startShell();
+            }
+            shell.add(new SimpleCommand("busybox killall " + fileProcBin.getName()));
+            shell.add(new SimpleCommand("toolbox kill -9 " + pidString));
+            shell.add(new SimpleCommand("busybox kill -9 " + pidString));
+            shell.add(new SimpleCommand("kill -9 " + pidString));
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                // ignored
+            }
+            shell.close();
+            if (killAttempts > 4)
+                throw new CannotKillException(fileProcBin);
+        }
+    }
+
     private void logNotice (String msg)
     {
         if (msg != null && msg.trim().length() > 0)
@@ -1405,21 +1435,30 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 if (mCurrentStatus == STATUS_OFF)
                 {
                     sendCallbackLogMessage (getString(R.string.status_starting_up));
-    
-                
+
+
                     try
                         {
 
 	                        boolean found = findExistingProc ();
-	                        
+
 	                        if (!found)
 	                        {
 	                            killProcess(fileTor);
 	                            killProcess(filePolipo);
-	                            
+
 	                               startTor();
 	                        }
                         }
+                    catch (CannotKillException e)
+                    {
+                        logException(e.getMessage(), e);
+                        mCurrentStatus = STATUS_OFF;
+                        sendCallbackStatus(mCurrentStatus);
+                        showToolbarNotification(getString(R.string.unable_to_reset_tor),
+                                ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
+                        stopTor();
+                    }
                         catch (Exception e)
                         {                
                            

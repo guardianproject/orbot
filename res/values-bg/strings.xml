@@ -8,11 +8,11 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">стартирай и стопирай Тор</string>
   <string name="tor_proxy_service_process">Tor прокси</string>
-  <string name="status_starting_up">Орбот стартира...</string>
+  <string name="status_starting_up">Орбот стартира…</string>
   <string name="status_activated">Свързан към Тор мрежата</string>
   <string name="status_disabled">Орбот е деактивиран</string>
   <string name="status_shutting_down">Орбот се изключва</string>
-  <string name="tor_process_starting">Стартиране на Тор клиент...</string>
+  <string name="tor_process_starting">Стартиране на Тор клиент…</string>
   <string name="tor_process_complete">завършено.</string>
   <string name="tor_process_waiting">изчакване.</string>
   <string name="not_anonymous_yet">ВНИМАНИЕ: Трафикът Ви не е анонимен! Моля конфигурирайте приложенията си да използват HTTP proxy 127.0.0.1:8118 или SOCKS4A или SOCKS5 proxy 127.0.0.1:9050</string>
@@ -77,7 +77,7 @@
   <string name="wizard_tips_otrchat">ChatSecure - Криптиран чат програма за Андроид</string>
   <string name="wizard_tips_proxy">Proxy Settings - Научете как да конфигурирате приложения да работят през Орбот</string>
   <string name="wizard_tips_duckgo">DuckDuckGo Търсачка</string>
-  <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
+
   <string name="wizard_tips_twitter">Нагласете проксито на Twitter на \"localhost\" и порт 8118</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Прокси настройки</string>
@@ -99,15 +99,15 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Приложения през Орбот</string>
   <string name="wizard_tips_gibberbot">ChatSecure: Криптирана чат програма с подръжка на Off-the-Record енкрипция.</string>
-  <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
+
   <string name="wizard_tips_orweb">Orweb: Браузър с повишена анонимност, който работи през Тор</string>
-  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
+
   <string name="wizard_tips_play">Намери всики Guardin Project програми в Google Play</string>
-  <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
-  <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
-	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
-    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
-    <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
+
+
+
+
+
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Прозрачно прокси</string>
   <string name="wizard_transproxy_msg">Това позволява на приложенията Ви автоматично да използват мрежата на Тор без никаква конфигурация.</string>
@@ -140,14 +140,14 @@
   <string name="pref_proxy_password_summary">Прокси Парола (Незадължително)</string>
   <string name="pref_proxy_password_dialog">Въведи Прокси Парола</string>
   <string name="status">Статус</string>
-  <string name="setting_up_full_transparent_proxying_">Конфигуриране на напълно прозрачно прокси...</string>
-  <string name="setting_up_app_based_transparent_proxying_">Конфигуриране на прозрачно прокси на база приложение...</string>
+  <string name="setting_up_full_transparent_proxying_">Конфигуриране на напълно прозрачно прокси…</string>
+  <string name="setting_up_app_based_transparent_proxying_">Конфигуриране на прозрачно прокси на база приложение…</string>
   <string name="transparent_proxying_enabled">Прозрачно прокси АКТИВНО</string>
   <string name="transproxy_enabled_for_tethering_">TransProxy е включен за Тетъринг!</string>
   <string name="warning_error_starting_transparent_proxying_">ВНИМАНИЕ: грешка при стартиране на прозрачно проски!</string>
   <string name="transproxy_rules_cleared">TransProxy правила изчистени</string>
   <string name="couldn_t_start_tor_process_">Неуспешно стартиране на Тор процес: </string>
-  <string name="setting_up_port_based_transparent_proxying_">Конфигуриране на прозрачно прокси на база порт...</string>
+  <string name="setting_up_port_based_transparent_proxying_">Конфигуриране на прозрачно прокси на база порт…</string>
   <string name="bridge_error">Бридж грешка</string>
   <string name="bridge_requires_ip">За да използвате бридж функционалността трябва да въведете поне един IP адрес на бридж.</string>
   <string name="send_email_for_bridges">Изпрати и-мейл до bridges@torproject.org със съдържание \"get bridges\" в  и-мейл от акаунт в gmail.</string>
@@ -194,7 +194,7 @@
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Софтуер на трети страни: </string>
   <string name="hidden_service_request">Приложение иска да отвори порт на скрит сървър %S към Тор мрежата. Безопасно е да се доверите на приложението.</string>
-  <string name="found_existing_tor_process">намерил си съвместим Tor проект...</string>
+  <string name="found_existing_tor_process">намерил си съвместим Tor проект…</string>
   <string name="something_bad_happened">Нещо лошо се случи. Проверете лога</string>
   <string name="hidden_service_on">Скрита услуга включена:</string>
   <string name="unable_to_read_hidden_service_name">не може да прочете име на скрита услуга</string>
@@ -211,7 +211,7 @@
   <string name="wizard_locale_title">Избери език</string>
   <string name="wizard_locale_msg">Остави по подразбиране или смени наличния език</string>
   <string name="btn_save_settings">Запази настройки</string>
-  <string name="no_internet_connection_tor">Няма интернет връзка; Тor е в режим на изчакване...</string>
+  <string name="no_internet_connection_tor">Няма интернет връзка; Тor е в режим на изчакване…</string>
   <string name="bandwidth_">Скорост:</string>
   <string name="down">теглене</string>
   <string name="up">изпращане</string>

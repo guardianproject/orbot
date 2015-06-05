@@ -7,11 +7,11 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">Tor\'u başlat ve durdur</string>
   <string name="tor_proxy_service_process">torproxyservice</string>
-  <string name="status_starting_up">Orbot başlatılıyor...</string>
+  <string name="status_starting_up">Orbot başlatılıyor…</string>
   <string name="status_activated">Tor ağına bağlandı</string>
   <string name="status_disabled">Orbot devre dışı bırakıldı</string>
   <string name="status_shutting_down">Orbot kapatılıyor</string>
-  <string name="tor_process_starting">Tor kullanımı başlatılıyor...</string>
+  <string name="tor_process_starting">Tor kullanımı başlatılıyor…</string>
   <string name="tor_process_complete">tamamlandı.</string>
   <string name="tor_process_waiting">bekliyor.</string>
   <string name="not_anonymous_yet">UYARI: Bağlantınız henüz anonim değildir! Lütfen uygulamalarınızı HTTP 127.0.0.1:8118  veya SOCKS4A / SOCKS5 127.0.0.1:9050 vekil sunucusu kullanacak şekilde yapılandırınız.</string>
@@ -75,10 +75,10 @@
   <string name="wizard_tips_otrchat">ChatSecure - Android için güvenli anında mesajlaşma istemcisi</string>
   <string name="wizard_tips_proxy">Vekil Ayarları - Uygulamaların, Orbot ile birlikte çalışmalarını nasıl ayarlayacağınızı öğrenin.</string>
   <string name="wizard_tips_duckgo">DuckDuckGo Arama Motoru uygulaması</string>
-  <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
-  <string name="proxymob_setup_url">https://guardianproject.info/apps/firefoxprivacy</string>
+
+
   <string name="wizard_tips_twitter">Twitter proxy sunucusunu \"localhost\" ve bağlantı noktası 8118 olarak ayarlayın</string>
-  <string name="story_maker_url">https://play.google.com/store/apps/details?id=info.guardianproject.mrapp</string>
+
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Proxy Ayarları</string>
   <string name="wizard_final">Orbot hazır!</string>
@@ -99,15 +99,15 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot\'un aktif olduğu eklentiler</string>
   <string name="wizard_tips_gibberbot">ChatSecure: Güvenli Kayıt-dışı Şifreleme yapabilen sohbet uygulaması</string>
-  <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
+
   <string name="wizard_tips_orweb">Orweb: Tor üzerinden çalışabilen, gizliliği artırılmış tarayıcı.</string>
-  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
+
   <string name="wizard_tips_play">Google Play\'deki tüm Guardian Projesi uygulamalarına bakın</string>
-  <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
-  <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
-	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
-    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
-    <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
+
+
+
+
+
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Şeffaf Vekillendirme</string>
   <string name="wizard_transproxy_msg">Bu, uygulamalarınızı Tor üzerinden, herhangi bir ayar yapmadan çalıştırmanıza olanak sağlar.</string>
@@ -140,14 +140,14 @@
   <string name="pref_proxy_password_summary">Vekil parolası (tercihe bağlı)</string>
   <string name="pref_proxy_password_dialog">Vekil Parolası girin</string>
   <string name="status">Durum</string>
-  <string name="setting_up_full_transparent_proxying_">Tamamen saydam vekil kuruluyor...</string>
-  <string name="setting_up_app_based_transparent_proxying_">Uygulamaya özel saydam proxy kuruluyor...</string>
+  <string name="setting_up_full_transparent_proxying_">Tamamen saydam vekil kuruluyor…</string>
+  <string name="setting_up_app_based_transparent_proxying_">Uygulamaya özel saydam proxy kuruluyor…</string>
   <string name="transparent_proxying_enabled">Saydam vekil AKTİF</string>
   <string name="transproxy_enabled_for_tethering_">TransProxy Tethering\'e açıldı!</string>
   <string name="warning_error_starting_transparent_proxying_">UYARI: şeffaf proxy başlatılırken hata oluştu</string>
   <string name="transproxy_rules_cleared">TransProxy kuralları temizlendi</string>
   <string name="couldn_t_start_tor_process_">Tor işlemi başlatılamadı</string>
-  <string name="setting_up_port_based_transparent_proxying_">Port tabanlı şeffaf vekillendirme ayarlanıyor...</string>
+  <string name="setting_up_port_based_transparent_proxying_">Port tabanlı şeffaf vekillendirme ayarlanıyor…</string>
   <string name="bridge_error">Köprü hatası</string>
   <string name="bridge_requires_ip">Köprü özelliğini kullanmak adına, en az bir tane köprü IP adresi girmelisiniz.</string>
   <string name="send_email_for_bridges">Gmail hesabınızdan bridges@torproject.org adresine içinde sadece \"get bridges\" yazılı bir eposta gönderin.</string>
@@ -200,7 +200,7 @@
   <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
   <string name="openssl_version">OpenSSL v1.0.1i: http://www.openssl.org</string>
   <string name="hidden_service_request">Bir uygulama Tor ağında gizlenmiş sunucu bağlantı noktası %S açmak istiyor. Eğer uygulamaya güveniyorsanız bu güvenlidir.</string>
-  <string name="found_existing_tor_process">varolan bir Tor işlemi bulundu...</string>
+  <string name="found_existing_tor_process">varolan bir Tor işlemi bulundu…</string>
   <string name="something_bad_happened">Kötü bir şey oldu. Kayıtlara bakınız</string>
   <string name="hidden_service_on">gizlenmiş servis:</string>
   <string name="unable_to_read_hidden_service_name">gizli hizmet adı okunamıyor</string>
@@ -217,7 +217,7 @@
   <string name="wizard_locale_title">Dili seçin</string>
   <string name="wizard_locale_msg">Varsayılanda bırak veya geçerli dile geç</string>
   <string name="btn_save_settings">Ayarları kaydet</string>
-  <string name="no_internet_connection_tor">İnternet bağlantısı yok; Tor beklemede...</string>
+  <string name="no_internet_connection_tor">İnternet bağlantısı yok; Tor beklemede…</string>
   <string name="bandwidth_">Bant genişliği:</string>
   <string name="down">aşağı</string>
   <string name="up">yukarı</string>

@@ -7,11 +7,11 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">iniciar e parar Tor</string>
   <string name="tor_proxy_service_process">serviço proxy Tor</string>
-  <string name="status_starting_up">O Orbot está a iniciar...</string>
+  <string name="status_starting_up">O Orbot está a iniciar…</string>
   <string name="status_activated">Conetado à rede Tor</string>
   <string name="status_disabled">O Orbot está desativado</string>
   <string name="status_shutting_down">O Orbot está a encerrar</string>
-  <string name="tor_process_starting">A iniciar o cliente Tor...</string>
+  <string name="tor_process_starting">A iniciar o cliente Tor…</string>
   <string name="tor_process_complete">completo.</string>
   <string name="tor_process_waiting">a aguardar.</string>
   <string name="not_anonymous_yet">AVISO: O seu tráfego não está anónimo! Por favor, configure as suas aplicações para utilizarem o proxy HTTP 127.0.0.1:8118 ou o proxy SOCKS4A ou SOCKS5 127.0.0.1:9050</string>
@@ -38,7 +38,7 @@
   <string name="pref_trans_proxy_title">Proxy Transparente</string>
   <string name="pref_transparent_all_title">Tor em Tudo</string>
   <string name="pref_transparent_all_summary">Passar todo o tráfego das apps via Tor</string>
-  <string name="pref_transparent_port_fallback_summary">AVISO: Rodear as portas comuns (80, 443, etc...). *USAR APENAS* se o modo  \'Todas\' ou \'App\' não funcionar.</string>
+  <string name="pref_transparent_port_fallback_summary">AVISO: Rodear as portas comuns (80, 443, etc…). *USAR APENAS* se o modo  \'Todas\' ou \'App\' não funcionar.</string>
   <string name="pref_transparent_port_title">Lista de Portas</string>
   <string name="pref_transparent_port_summary">Lista de portas para o proxy. *USAR APENAS* se o modo \'Todas\' ou \'App\' não funcionar.</string>
   <string name="pref_transparent_port_dialog">Insira as portas para o proxy</string>
@@ -66,7 +66,7 @@
   <string name="wizard_tips_otrchat">ChatSecure - Cliente de mensagens instantâneas seguras para Android</string>
   <string name="wizard_tips_proxy">Configurações do Proxy - Aprenda a configurar as apps para funcionarem com o Orbot</string>
   <string name="wizard_tips_duckgo">App de Mecanismo de Procura DuckDuckGo</string>
-  <string name="duckgo_apk_url">https://duckduckgo.com/android/latest.apk</string>
+
   <string name="wizard_tips_twitter">Defina o proxy do Twitter para hospedeiro \"localhost\" e porta 8118</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Definições Proxy</string>
@@ -85,15 +85,15 @@
   <string name="wizard_permissions_root_msg1">Opcionalmente, pode conceder acesso de  Administrador\' ao Orbot para ativar as funções avançadas, tais como, Proxy Transparente.</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot - Apps Ativadas</string>
-  <string name="gibberbot_apk_url">https://guardianproject.info/releases/chatsecure-latest.apk</string>
+
   <string name="wizard_tips_orweb">Orweb: Privacidade melhorada que funciona via Tor</string>
-  <string name="orweb_apk_url">https://guardianproject.info/releases/orweb-latest.apk</string>
+
   <string name="wizard_tips_play">Encontre todas as apps do Projeto Guardian na Play Store da Google</string>
-  <string name="wizard_tips_play_url">https://play.google.com/store/search?q=guardianproject</string>
-  <!--<string name="wizard_tips_firefox">Firefox - Android browser - To be used along with ProxyMob Add-on </string>
-	<string name="wizard_tips_proxymob">ProxyMob - Simple Firefox Add-on for setting HTTP, SOCKS and SSL proxy settings</string>
-    <string name="firefox_apk_url">https://market.android.com/details?id=org.mozilla.firefox</string>
-    <string name="proxymob_url">https://addons.mozilla.org/mobile/downloads/latest/251558/type:attachment/addon-251558-latest.xpi?src=addon-detail</string>-->
+
+
+
+
+
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Proxy Transparente</string>
   <string name="wizard_transproxy_hint">(Selecione esta caixa se não souber do que estamos a falar)</string>
@@ -131,7 +131,7 @@
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Programas de Terceiros: </string>
   <string name="hidden_service_request">Uma app pretende abrir a porta %S do servidor ocultado para a rede Tor. Isto é seguro, se confiar na app.</string>
-  <string name="found_existing_tor_process">encontrado o processo Tor existente...</string>
+  <string name="found_existing_tor_process">encontrado o processo Tor existente…</string>
   <string name="something_bad_happened">Aconteceu algo de mau. Verifique o registo de eventos.</string>
   <string name="hidden_service_on">serviço ocultado em:</string>
   <string name="unable_to_read_hidden_service_name">não é possível ler o nome do serviço ocultado</string>
@@ -145,7 +145,7 @@
   <string name="wizard_locale_title">Escolher Idioma</string>
   <string name="wizard_locale_msg">Deixe a predefinição ou mude o idioma atual</string>
   <string name="btn_save_settings">Guardar Definições</string>
-  <string name="no_internet_connection_tor">Sem ligação de Internet; Tor está em hibernação...</string>
+  <string name="no_internet_connection_tor">Sem ligação de Internet; Tor está em hibernação…</string>
   <string name="bandwidth_">Largura de banda:</string>
   <string name="down">para baixo</string>
   <string name="up">para cima</string>
