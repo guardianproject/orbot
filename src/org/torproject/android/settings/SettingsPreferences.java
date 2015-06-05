@@ -3,13 +3,6 @@
 
 package org.torproject.android.settings;
 
-import java.util.Locale;
-
-import org.sufficientlysecure.rootcommands.RootCommands;
-import org.sufficientlysecure.rootcommands.Shell;
-import org.torproject.android.R;
-import org.torproject.android.service.TorServiceUtils;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -23,9 +16,19 @@ import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.widget.Toast;
 
+import info.guardianproject.util.Languages;
+
+import org.sufficientlysecure.rootcommands.RootCommands;
+import org.sufficientlysecure.rootcommands.Shell;
+import org.torproject.android.R;
+import org.torproject.android.service.TorServiceUtils;
+
+import java.util.Locale;
+
 
 public class SettingsPreferences 
 		extends PreferenceActivity implements OnPreferenceClickListener {
+    private static final String TAG = "SettingsPreferences";
 
 	private CheckBoxPreference prefCBTransProxy = null;
 	private CheckBoxPreference prefcBTransProxyAll = null;
@@ -50,6 +53,9 @@ public class SettingsPreferences
 
         prefLocale = (ListPreference) findPreference("pref_default_locale");
         prefLocale.setOnPreferenceClickListener(this);
+        Languages languages = Languages.get(this, R.string.menu_settings, "Settings");
+        prefLocale.setEntries(languages.getAllNames());
+        prefLocale.setEntryValues(languages.getSupportedLocales());
 
         prefCBTransProxy = (CheckBoxPreference) findPreference("pref_transparent");
         prefcBTransProxyAll = (CheckBoxPreference) findPreference("pref_transparent_all");
@@ -128,25 +134,24 @@ public class SettingsPreferences
 		}
 		else if (preference == prefLocale)
 		{
-			 SharedPreferences settings = TorServiceUtils.getSharedPrefs(getApplicationContext());
+            SharedPreferences settings = TorServiceUtils.getSharedPrefs(getApplicationContext());
 
-		        Configuration config = getResources().getConfiguration();
+            Configuration config = getResources().getConfiguration();
 
-		        String lang = settings.getString("pref_default_locale", "");
-		        
-		        Locale locale;
-		        
-		        if (lang.equals("xx"))
-		        {
-		        	locale = Locale.getDefault();
-		        
-		        }
-		        else
-		        	locale = new Locale(lang);
-		        
-	            Locale.setDefault(locale);
-	            config.locale = locale;
-	            getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+            String lang = settings.getString("pref_default_locale", "en");
+
+            Locale locale;
+
+            if (lang.equals("xx"))
+            {
+                locale = Locale.getDefault();
+            }
+            else
+                locale = new Locale(lang);
+
+            Locale.setDefault(locale);
+            config.locale = locale;
+            getResources().updateConfiguration(config, getResources().getDisplayMetrics());
 	            
 		}
 		else

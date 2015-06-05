@@ -25,8 +25,6 @@ android:title="@string/pref_use_expanded_notifications_title"/>
 
  <ListPreference android:title="@string/set_locale_title"
    android:key="pref_default_locale"
-   android:entryValues="@array/languages_values"
-   android:entries="@array/languages"
    android:summary="@string/set_locale_summary"
    android:defaultValue="en">
  </ListPreference>

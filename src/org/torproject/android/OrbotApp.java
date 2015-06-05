@@ -4,10 +4,13 @@ import java.util.Locale;
 
 import org.torproject.android.service.TorServiceUtils;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.preference.PreferenceManager;
+
+import info.guardianproject.util.Languages;
 
 public class OrbotApp extends Application implements OrbotConstants
 {
@@ -64,5 +67,9 @@ public class OrbotApp extends Application implements OrbotConstants
         	 
             getResources().updateConfiguration(myConfig, getResources().getDisplayMetrics());
         }
+    }
+
+    public static Languages getLanguages(Activity activity) {
+        return Languages.get(activity, R.string.menu_settings, "Settings");
     }
 }

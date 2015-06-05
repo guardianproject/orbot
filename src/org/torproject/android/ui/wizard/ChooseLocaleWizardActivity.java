@@ -1,11 +1,5 @@
 package org.torproject.android.ui.wizard;
 
-import java.util.Locale;
-
-import org.torproject.android.R;
-import org.torproject.android.OrbotConstants;
-import org.torproject.android.service.TorServiceUtils;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -21,32 +15,39 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import info.guardianproject.util.Languages;
+
+import org.torproject.android.OrbotApp;
+import org.torproject.android.OrbotConstants;
+import org.torproject.android.R;
+import org.torproject.android.service.TorServiceUtils;
+
+import java.util.Locale;
+
 public class ChooseLocaleWizardActivity extends Activity implements OrbotConstants {
 
-    private int flag = 0;
     private ListView listLocales;
+    private String[] localeValues;
     
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.layout_wizard_locale);
-        
-        
+
         listLocales = (ListView)findViewById(R.id.wizard_locale_list);
         Button next = ((Button)findViewById(R.id.btnWizard2));
        // next.setEnabled(false);
         
-        String[] strLangs = getResources().getStringArray(R.array.languages);
-        strLangs[0] = Locale.getDefault().getDisplayName();
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1,  strLangs);            
+        Languages languages = OrbotApp.getLanguages(this);
+        localeValues = languages.getSupportedLocales();
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, android.R.id.text1,
+                languages.getAllNames());
         listLocales.setAdapter(adapter);
-        
+
         listLocales.setSelection(0);
-                    
-        
         listLocales.setOnItemClickListener(new OnItemClickListener() {
-            
 
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1,
@@ -55,7 +56,6 @@ public class ChooseLocaleWizardActivity extends Activity implements OrbotConstan
                 setLocalePref(arg2);
                 finish();
                 startActivity(new Intent(ChooseLocaleWizardActivity.this, PromoAppsActivity.class));
-                
             }
         });
             
@@ -68,21 +68,15 @@ public class ChooseLocaleWizardActivity extends Activity implements OrbotConstan
 
             }
         });
-            
-
-           
     }
     
     private void setLocalePref(int selId)
     {
-
         SharedPreferences prefs =  TorServiceUtils.getSharedPrefs(getApplicationContext());
 
         Configuration config = getResources().getConfiguration();
-
-        String[] localeVals = getResources().getStringArray(R.array.languages_values);
         
-        String lang = localeVals[selId];
+        String lang = localeValues[selId];
 
         Editor pEdit = prefs.edit();
         pEdit.putString(PREF_DEFAULT_LOCALE, lang);
