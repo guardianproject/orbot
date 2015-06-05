@@ -95,6 +95,7 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
     
     private final static long INIT_DELAY = 100;
     private final static int REQUEST_VPN = 8888;
+    private final static int REQUEST_SETTINGS = 0x9874;
     
     /** Called when the activity is first created. */
     public void onCreate(Bundle savedInstanceState) {
@@ -102,8 +103,6 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
         
         mPrefs = TorServiceUtils.getSharedPrefs(getApplicationContext());        
         mPrefs.registerOnSharedPreferenceChangeListener(this);
-               
-        setLocale();
         
     	doLayout();
 
@@ -390,7 +389,8 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
                 
                 if (item.getItemId() == R.id.menu_settings)
                 {
-                        showSettings();
+                    Intent intent = new Intent(OrbotMainActivity.this, SettingsPreferences.class);
+                    startActivityForResult(intent, REQUEST_SETTINGS);
                 }
                 else if (item.getItemId() == R.id.menu_wizard)
                 {
@@ -804,25 +804,15 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
         {
               return false;
         }
-   }
-    
-    /*
-     * Load the basic settings application to display torrc
-     */
-    private void showSettings ()
-    {
-            
-            startActivityForResult(new Intent(this, SettingsPreferences.class), 1);
-    }
-    
+   }    
     
     @Override
     protected void onActivityResult(int request, int response, Intent data) {
         super.onActivityResult(request, response, data);
-        
-        
-        if (request == 1 && response == RESULT_OK)
+
+        if (request == REQUEST_SETTINGS && response == RESULT_OK)
         {
+            OrbotApp.forceChangeLanguage(this);
             if (data != null && data.getBooleanExtra("transproxywipe", false))
             {
                     
@@ -1160,13 +1150,11 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 			boolean useBridges = mPrefs.getBoolean("pref_bridges_enabled", false);
 			mBtnBridges.setChecked(useBridges);
         }
-        
+
         mHandler.postDelayed(new Runnable ()
         {
             public void run ()
             {
-
-                setLocale();
         
                 handleIntents();
 
@@ -1427,24 +1415,6 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
         
         
     };
-    
-     // this is the connection that gets called back when a successfull bind occurs
-     // we should use this to activity monitor unbind so that we don't have to call
-     // bindService() a million times
-    
-    private void setLocale ()
-    {
-        Configuration config = getResources().getConfiguration();
-        String lang = mPrefs.getString(PREF_DEFAULT_LOCALE, "");
-        
-        if (! "".equals(lang) && ! config.locale.getLanguage().equals(lang))
-        {
-            Locale locale = new Locale(lang);
-            Locale.setDefault(locale);
-            config.locale = locale;
-            getResources().updateConfiguration(config, getResources().getDisplayMetrics());
-        }
-    }
 
        @Override
     protected void onDestroy() {

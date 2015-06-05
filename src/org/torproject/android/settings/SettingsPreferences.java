@@ -6,12 +6,12 @@ package org.torproject.android.settings;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
+import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.widget.Toast;
@@ -20,6 +20,7 @@ import info.guardianproject.util.Languages;
 
 import org.sufficientlysecure.rootcommands.RootCommands;
 import org.sufficientlysecure.rootcommands.Shell;
+import org.torproject.android.OrbotApp;
 import org.torproject.android.R;
 import org.torproject.android.service.TorServiceUtils;
 
@@ -56,6 +57,26 @@ public class SettingsPreferences
         Languages languages = Languages.get(this, R.string.menu_settings, "Settings");
         prefLocale.setEntries(languages.getAllNames());
         prefLocale.setEntryValues(languages.getSupportedLocales());
+        prefLocale.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                String language = (String) newValue;
+                if (preference == prefLocale) {
+                    SharedPreferences settings = TorServiceUtils
+                            .getSharedPrefs(getApplicationContext());
+
+                    String lang = settings.getString("pref_default_locale",
+                            Locale.getDefault().getLanguage());
+                    OrbotApp app = (OrbotApp) getApplication();
+                    app.setNewLocale(language);
+                    lang = settings.getString("pref_default_locale",
+                            Locale.getDefault().getLanguage());
+                    OrbotApp.forceChangeLanguage(SettingsPreferences.this);
+                }
+                return false;
+            }
+        });
 
         prefCBTransProxy = (CheckBoxPreference) findPreference("pref_transparent");
         prefcBTransProxyAll = (CheckBoxPreference) findPreference("pref_transparent_all");
@@ -131,28 +152,6 @@ public class SettingsPreferences
 		{
 	        prefHiddenServicesPorts.setEnabled(prefHiddenServices.isChecked());
 	        prefHiddenServicesHostname.setEnabled(prefHiddenServices.isChecked());
-		}
-		else if (preference == prefLocale)
-		{
-            SharedPreferences settings = TorServiceUtils.getSharedPrefs(getApplicationContext());
-
-            Configuration config = getResources().getConfiguration();
-
-            String lang = settings.getString("pref_default_locale", "en");
-
-            Locale locale;
-
-            if (lang.equals("xx"))
-            {
-                locale = Locale.getDefault();
-            }
-            else
-                locale = new Locale(lang);
-
-            Locale.setDefault(locale);
-            config.locale = locale;
-            getResources().updateConfiguration(config, getResources().getDisplayMetrics());
-	            
 		}
 		else
 		{
