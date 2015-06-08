@@ -19,8 +19,6 @@ public interface OrbotConstants {
     public final static String URL_TOR_BRIDGES = "https://bridges.torproject.org/bridges?transport=";
     
     public final static String NEWLINE = "\n";
-    
-   // public final static String INTENT_TOR_SERVICE = "org.torproject.android.service.TOR_SERVICE";
     	
     public final static String HANDLER_TOR_MSG = "torServiceMsg";
 	

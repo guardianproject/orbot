@@ -88,16 +88,12 @@
       	<activity android:name=".settings.SettingsPreferences"  android:label="@string/app_name"/>
         <activity android:name=".settings.AppManager"  android:label="@string/app_name"/>       
       
-        <service android:enabled="true"
-   			android:name=".service.TorService" 
-				android:permission="org.torproject.android.MANAGE_TOR"
-				android:stopWithTask="false"
-   		>
-	            <intent-filter>
-	                <action android:name="org.torproject.android.service.ITorService" />
-	              	<action android:name="org.torproject.android.service.TOR_SERVICE" />
-           </intent-filter>
-   	</service>
+        <service
+            android:name=".service.TorService"
+            android:enabled="true"
+            android:permission="org.torproject.android.MANAGE_TOR"
+            android:stopWithTask="false" >
+        </service>
    	
    	<receiver android:name="org.torproject.android.service.OnBootReceiver"
    	    android:enabled="true" android:exported="true"
