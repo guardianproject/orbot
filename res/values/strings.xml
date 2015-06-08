@@ -25,7 +25,7 @@
   <string name="menu_start">Start</string>
   <string name="menu_stop">Stop</string>
   <string name="menu_about">About</string>
-  <string name="menu_wizard">Wizard</string>
+  <string name="menu_promo_apps">Get apps…</string>
   <string name="main_layout_download">Download</string>
   <string name="main_layout_upload">Upload</string>
   <string name="button_help">Help</string>

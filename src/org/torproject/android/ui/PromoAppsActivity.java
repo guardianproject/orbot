@@ -1,4 +1,4 @@
-package org.torproject.android.ui.wizard;
+package org.torproject.android.ui;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,14 +10,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
 import org.torproject.android.OrbotConstants;
 import org.torproject.android.R;
-
 import java.util.List;
 
 public class PromoAppsActivity extends Activity implements OrbotConstants {
@@ -42,7 +40,7 @@ public class PromoAppsActivity extends Activity implements OrbotConstants {
     protected void onStart() {
 
         super.onStart();
-        setContentView(R.layout.layout_wizard_tips);
+        setContentView(R.layout.layout_promo_apps);
 
         stepFive();
 
@@ -169,41 +167,14 @@ public class PromoAppsActivity extends Activity implements OrbotConstants {
             }
         });
 
-
-      //  Button back = ((Button)findViewById(R.id.btnWizard1));
         Button next = ((Button)findViewById(R.id.btnWizard2));
-
-        /*
-        back.setOnClickListener(new View.OnClickListener() {
-
-			public void onClick(View v) {
-				finish();
-				startActivityForResult(new Intent(PromoAppsActivity.this, ChooseLocaleWizardActivity.class), 1);
-			}
-		});*/
-
     	next.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
-				//showWizardFinal();
-
 				finish();
 			}
 		});
 
-	}
-
-
-
-	//Code to override the back button!
-	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event)  {
-	    if(keyCode == KeyEvent.KEYCODE_BACK){
-	    	finish();
-	    	startActivity(new Intent(getBaseContext(), ChooseLocaleWizardActivity.class));
-	    	return true;
-	    }
-	    return false;
 	}
 
     boolean isAppInstalled(PackageManager pm, String packageName) {
@@ -239,32 +210,4 @@ public class PromoAppsActivity extends Activity implements OrbotConstants {
         }
         return intent;
     }
-
-    /*
-	private void showWizardFinal ()
-	{
-		String title = null;
-		String msg = null;
-
-
-		title = context.getString(R.string.wizard_final);
-		msg = context.getString(R.string.wizard_final_msg);
-
-		DialogInterface.OnClickListener ocListener = new DialogInterface.OnClickListener() {
-
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				context.startActivity(new Intent(context, Orbot.class));
-
-			}
-		};
-
-
-		 new AlertDialog.Builder(context)
-		.setIcon(R.drawable.icon)
-        .setTitle(title)
-        .setPositiveButton(R.string.button_close, ocListener)
-        .setMessage(msg)
-        .show();
-    }*/
 }

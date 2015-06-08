@@ -14,8 +14,8 @@ import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.TorServiceUtils;
 import org.torproject.android.settings.SettingsPreferences;
 import org.torproject.android.ui.ImageProgressView;
+import org.torproject.android.ui.PromoAppsActivity;
 import org.torproject.android.ui.Rotate3dAnimation;
-import org.torproject.android.ui.wizard.PromoAppsActivity;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -32,7 +32,6 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.content.res.Configuration;
 import android.net.Uri;
 import android.net.VpnService;
 import android.os.Build;
@@ -392,7 +391,7 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
                     Intent intent = new Intent(OrbotMainActivity.this, SettingsPreferences.class);
                     startActivityForResult(intent, REQUEST_SETTINGS);
                 }
-                else if (item.getItemId() == R.id.menu_wizard)
+                else if (item.getItemId() == R.id.menu_promo_apps)
                 {
                     startActivity(new Intent(OrbotMainActivity.this, PromoAppsActivity.class));
 
@@ -653,26 +652,6 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 				}
 			}
 		}
-		else
-		{
-		
-			showWizard = mPrefs.getBoolean("show_wizard",showWizard);
-			
-			//let's not show the wizard now for new users
-			
-			if (showWizard)
-			{
-				Editor pEdit = mPrefs.edit();
-				pEdit.putBoolean("show_wizard",false);
-				pEdit.commit();				
-				showWizard = false;
-
-
-				showAlert(getString(R.string.app_name),getString(R.string.wizard_final_msg),true);
-				
-			}
-			
-		}
 		
 		updateStatus("");
 		
@@ -698,19 +677,7 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 		mBtnBridges.setChecked(true);
 		
 		enableBridges(true);
-	}
-
-	private boolean showWizard = true;
-	
-	
-	@Override
-	public void onConfigurationChanged(Configuration newConfig) {
-		super.onConfigurationChanged(newConfig);
-		
-	//	doLayout();
-		//updateStatus("");
-	}
-
+	}	
 
 	/*
 	 * Launch the system activity for Uri viewing with the provided url
