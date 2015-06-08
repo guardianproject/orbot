@@ -84,7 +84,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     
     public static boolean ENABLE_DEBUG_LOG = true;
     
-    private int mCurrentStatus = STATUS_OFF;
+    private String mCurrentStatus = STATUS_OFF;
     
     private final static int CONTROL_SOCKET_TIMEOUT = 0;
         
@@ -223,14 +223,10 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         
     }
 
-
-    public int getTorStatus ()
-    {
-        
+    public String getTorStatus() {
         return mCurrentStatus;
-        
     }
-    
+
     private void clearNotifications ()
     {
         if (mNotificationManager != null)
@@ -1427,7 +1423,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         }
 
 
-        public void setTorProfile(int newState)  {
+        public void setTorProfile(String newState)  {
         
             if (newState == STATUS_ON)
             {
@@ -2111,17 +2107,13 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
     }
     
-    private void sendCallbackStatus (int currentStatus)
-    {
-         
-        
-        Intent intent = new Intent("status");
-          // You can also include some extra data.
-          intent.putExtra("status", currentStatus);
-          LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+    private void sendCallbackStatus(String currentStatus) {
+        Intent intent = new Intent("status"); // TODO rename to proper action
+        // You can also include some extra data.
+        intent.putExtra("status", currentStatus);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
 
     }
-
     
     /*
      *  Another way to do this would be to use the Observer pattern by defining the 

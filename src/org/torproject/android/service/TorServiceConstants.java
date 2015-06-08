@@ -66,10 +66,11 @@ public interface TorServiceConstants {
 
     //control port 
     public final static String TOR_CONTROL_PORT_MSG_BOOTSTRAP_DONE = "Bootstrapped 100%";
-    
-    public final static int STATUS_OFF = 0;
-    public final static int STATUS_ON = 1;
-    public final static int STATUS_CONNECTING = 2;
+
+    public final static String STATUS_OFF = "OFF";
+    public final static String STATUS_ON = "ON";
+    public final static String STATUS_CONNECTING = "CONNECTING";
+    public final static String STATUS_DISCONNECTING = "DISCONNECTING";
     
     public static final int STATUS_MSG = 1;
     public static final int ENABLE_TOR_MSG = 2;

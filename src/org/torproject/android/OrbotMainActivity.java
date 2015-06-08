@@ -87,7 +87,7 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 	private Toolbar mToolbar;
 		
     /* Some tracking bits */
-    private int torStatus = TorServiceConstants.STATUS_OFF; //latest status reported from the tor service
+    private String torStatus = TorServiceConstants.STATUS_OFF; //latest status reported from the tor service
     
     private SharedPreferences mPrefs = null;
 
@@ -178,7 +178,7 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
         }
         else if (intent.hasExtra("status"))
         {
-            torStatus = intent.getIntExtra("status", TorServiceConstants.STATUS_OFF);
+            torStatus = intent.getStringExtra("status");
             updateStatus("");
         }
         
