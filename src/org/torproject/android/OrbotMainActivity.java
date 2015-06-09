@@ -92,7 +92,11 @@ public class OrbotMainActivity extends Activity
     
     private final static int REQUEST_VPN = 8888;
     private final static int REQUEST_SETTINGS = 0x9874;
-    
+
+    // message types for mStatusUpdateHandler
+    private final static int STATUS_UPDATE = 1;
+    private static final int MESSAGE_TRAFFIC_COUNT = 2;
+
     /** Called when the activity is first created. */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -141,8 +145,9 @@ public class OrbotMainActivity extends Activity
                 return;
 
             if (action.equals(TorServiceConstants.LOCAL_ACTION_LOG)) {
-                String log = intent.getStringExtra(TorServiceConstants.LOCAL_EXTRA_LOG);
-                updateStatus(log);
+                Message msg = mStatusUpdateHandler.obtainMessage(STATUS_UPDATE);
+                msg.obj = intent.getStringExtra(TorServiceConstants.LOCAL_EXTRA_LOG);
+                mStatusUpdateHandler.sendMessage(msg);
 
             } else if (action.equals(TorServiceConstants.LOCAL_ACTION_BANDWIDTH)) {
                 long upload = intent.getLongExtra("up", 0);
@@ -150,8 +155,7 @@ public class OrbotMainActivity extends Activity
                 long written = intent.getLongExtra("written", 0);
                 long read = intent.getLongExtra("read", 0);
 
-                Message msg = mStatusUpdateHandler
-                        .obtainMessage(TorServiceConstants.MESSAGE_TRAFFIC_COUNT);
+                Message msg = mStatusUpdateHandler.obtainMessage(MESSAGE_TRAFFIC_COUNT);
                 msg.getData().putLong("download", download);
                 msg.getData().putLong("upload", upload);
                 msg.getData().putLong("readTotal", read);
@@ -160,7 +164,9 @@ public class OrbotMainActivity extends Activity
 
             } else if (action.equals(TorServiceConstants.ACTION_STATUS)) {
                 torStatus = intent.getStringExtra(TorServiceConstants.EXTRA_STATUS);
-                updateStatus("");
+                Message msg = mStatusUpdateHandler.obtainMessage(STATUS_UPDATE);
+                msg.obj = "";
+                mStatusUpdateHandler.sendMessage(msg);
             }
         }
     };
@@ -1122,8 +1128,8 @@ public class OrbotMainActivity extends Activity
         lblStatus.setText(getString(R.string.status_starting_up));
         
         //we send a message here to the progressDialog i believe, but we can clarify that shortly
-        Message msg = mStatusUpdateHandler.obtainMessage(TorServiceConstants.ENABLE_TOR_MSG);
-        msg.getData().putString(HANDLER_TOR_MSG, getString(R.string.status_starting_up));
+        Message msg = mStatusUpdateHandler.obtainMessage(STATUS_UPDATE);
+        msg.obj = getString(R.string.status_starting_up);
         mStatusUpdateHandler.sendMessage(msg);
     }
 
@@ -1144,38 +1150,16 @@ public class OrbotMainActivity extends Activity
 // this is what takes messages or values from the callback threads or other non-mainUI threads
 //and passes them back into the main UI thread for display to the user
     private Handler mStatusUpdateHandler = new Handler() {
-        
-        private String lastServiceMsg = null;
-        
-        public void handleMessage(Message msg) {
+
+        @Override
+        public void handleMessage(final Message msg) {
             switch (msg.what) {
-                case TorServiceConstants.STATUS_MSG:
-                case TorServiceConstants.LOG_MSG:
-
-                        String torServiceMsg = (String)msg.getData().getString(HANDLER_TOR_MSG);
-                        
-                        if (lastServiceMsg == null || !lastServiceMsg.equals(torServiceMsg))
-                        {
-                            updateStatus(torServiceMsg);
-                        
-                            lastServiceMsg = torServiceMsg;
-                        }
-                        
+                case STATUS_UPDATE:
+                    updateStatus((String) msg.obj);
                     break;
-                case TorServiceConstants.ENABLE_TOR_MSG:
-                        
-                        updateStatus((String)msg.getData().getString(HANDLER_TOR_MSG));
-                        
-                        break;
-                case TorServiceConstants.DISABLE_TOR_MSG:
-                    
-                    updateStatus((String)msg.getData().getString(HANDLER_TOR_MSG));
-                    
-                    break;
-                    
 
-                case TorServiceConstants.MESSAGE_TRAFFIC_COUNT :
-                    
+                case MESSAGE_TRAFFIC_COUNT:
+
                     Bundle data = msg.getData();
                     DataCount datacount =  new DataCount(data.getLong("upload"),data.getLong("download"));     
                     
@@ -1190,12 +1174,9 @@ public class OrbotMainActivity extends Activity
                     super.handleMessage(msg);
             }
         }
-        
-        
-        
     };
 
-       @Override
+    @Override
     protected void onDestroy() {
         super.onDestroy();
           LocalBroadcastManager.getInstance(this).unregisterReceiver(mLocalBroadcastReceiver);

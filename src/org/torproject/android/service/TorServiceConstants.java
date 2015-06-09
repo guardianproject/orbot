@@ -78,12 +78,7 @@ public interface TorServiceConstants {
     public final static String STATUS_ON = "ON";
     public final static String STATUS_STARTING = "STARTING";
     public final static String STATUS_STOPPING = "STOPPING";
-    
-    public static final int STATUS_MSG = 1;
-    public static final int ENABLE_TOR_MSG = 2;
-    public static final int DISABLE_TOR_MSG = 3;
-    public static final int LOG_MSG = 4;
-    
+
     public static final String CMD_START = "start";
     public static final String CMD_SIGNAL_HUP = "signal_hup";
     public static final String CMD_FLUSH = "flush";
@@ -100,11 +95,6 @@ public interface TorServiceConstants {
     public static final String OBFSCLIENT_ASSET_KEY = "obfs4proxy";
     
     public static final String MEEK_ASSET_KEY = "meek-client";
-    
-    
-	public static final int MESSAGE_TRAFFIC_COUNT = 5;
-	
-
 	//name of the iptables binary
 	public final static String IPTABLES_ASSET_KEY = "xtables";	
 	

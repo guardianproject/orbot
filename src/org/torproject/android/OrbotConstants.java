@@ -16,11 +16,7 @@ public interface OrbotConstants {
 	public final static String URL_TOR_CHECK = "https://check.torproject.org";
 	
     public final static String URL_TOR_BRIDGES = "https://bridges.torproject.org/bridges?transport=";
-    
-    public final static String NEWLINE = "\n";
-    	
-    public final static String HANDLER_TOR_MSG = "torServiceMsg";
-	
+
 	public final static String PREF_BRIDGES_UPDATED = "pref_bridges_enabled";
 	//public final static String PREF_BRIDGES_OBFUSCATED = "pref_bridges_obfuscated";
     public final static String PREF_OR = "pref_or";
