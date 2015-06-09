@@ -649,17 +649,12 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             appCacheHome = getDir(DIRECTORY_TOR_DATA,Application.MODE_PRIVATE);
         
         fileTor= new File(appBinHome, TOR_ASSET_KEY);
-        
         filePolipo = new File(appBinHome, POLIPO_ASSET_KEY);
-        
         fileObfsclient = new File(appBinHome, OBFSCLIENT_ASSET_KEY);
-        
         fileMeekclient = new File(appBinHome, MEEK_ASSET_KEY);
-        
         fileTorRc = new File(appBinHome, TORRC_ASSET_KEY);
-        
         fileXtables = new File(appBinHome, IPTABLES_ASSET_KEY);
-        
+
         SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
         String version = prefs.getString(PREF_BINARY_TOR_VERSION_INSTALLED,null);
 
@@ -678,8 +673,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         }
 
         updateTorConfigFile ();
-        
-
     }
 
     private boolean updateTorConfigFile () throws FileNotFoundException, IOException, TimeoutException
@@ -737,28 +730,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         
         return success;
     }
-    
-    private boolean enableBinExec (File fileBin) throws Exception
-    {
-        
-        logNotice(fileBin.getName() + ": PRE: Is binary exec? " + fileBin.canExecute());
-  
-        if (!fileBin.canExecute())
-        {
-            logNotice("(re)Setting permission on binary: " + fileBin.getCanonicalPath());    
-            
-            Shell shell = Shell.startShell();
-            shell.add(new SimpleCommand("chmod " + CHMOD_EXE_VALUE + ' ' + fileBin.getCanonicalPath())).waitForFinish();
-            
-            File fileTest = new File(fileBin.getCanonicalPath());
-            logNotice(fileTest.getName() + ": POST: Is binary exec? " + fileTest.canExecute());
-            
-            shell.close();
-        }
-        
-        return fileBin.canExecute();
-    }
-    
+
     private void startTor () throws Exception
     {
         
@@ -767,12 +739,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         
         if (fileTor == null)
             initBinariesAndDirectories();
-        
-        enableBinExec(fileTor);
-        enableBinExec(filePolipo);    
-        enableBinExec(fileObfsclient);
-        enableBinExec(fileMeekclient);
-        enableBinExec(fileXtables);
 
         logNotice(getString(R.string.status_starting_up));
         sendCallbackLogMessage(getString(R.string.status_starting_up));
@@ -1361,8 +1327,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
                 mCurrentStatus = STATUS_OFF;  
                 sendCallbackStatus(mCurrentStatus);
-            
-                
             }
         }
         
