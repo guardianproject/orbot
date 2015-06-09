@@ -87,7 +87,6 @@ public interface TorServiceConstants {
     public static final String CMD_STOP = "stop";
     public static final String CMD_FLUSH = "flush";
     public static final String CMD_NEWNYM = "newnym";
-    public static final String CMD_INIT = "init";
     public static final String CMD_VPN = "vpn";
     public static final String CMD_VPN_CLEAR = "vpnclear";
     public static final String CMD_UPDATE = "update";

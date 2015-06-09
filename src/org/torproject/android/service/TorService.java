@@ -375,9 +375,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                             setTorProfile(STATUS_ON);
                         }else if (action.equals(CMD_STOP)){
                             setTorProfile(STATUS_OFF);
-                        }else if (action.equals(CMD_INIT)){
-                            initialize();
-                            sendCallbackStatus(mCurrentStatus);
                         }else if (action.equals(CMD_NEWNYM)){
                             newIdentity();
                         }else if (action.equals(CMD_FLUSH)){
@@ -623,11 +620,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     @Override
     public void onCreate() {
         super.onCreate();
-        initialize();
-    }
-    
-    private void initialize()
-    {
         try
         {
             mNumberFormat = NumberFormat.getInstance(Locale.getDefault()); //localized numbers!

@@ -113,16 +113,6 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
   	  
 		LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
 			      new IntentFilter(TorServiceConstants.LOCAL_ACTION_LOG));
-
-		mHandler.postDelayed(new Runnable ()
-		{
-		
-			public void run ()
-			{
-				startService(TorServiceConstants.CMD_INIT);
-			}
-		},INIT_DELAY);
-		
 	}
 	
 	
