@@ -67,6 +67,12 @@ public interface TorServiceConstants {
     //control port 
     public final static String TOR_CONTROL_PORT_MSG_BOOTSTRAP_DONE = "Bootstrapped 100%";
 
+    public final static String ACTION_STATUS = "org.torproject.android.intent.action.STATUS";
+    public final static String EXTRA_STATUS = "org.torproject.android.intent.extra.STATUS";
+    public final static String LOCAL_ACTION_STATUS = "status";
+    public final static String LOCAL_ACTION_LOG = "log";
+    public final static String LOCAL_EXTRA_LOG = "log";
+
     public final static String STATUS_OFF = "OFF";
     public final static String STATUS_ON = "ON";
     public final static String STATUS_CONNECTING = "CONNECTING";

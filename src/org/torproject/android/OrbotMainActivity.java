@@ -105,14 +105,14 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
         
     	doLayout();
 
-  	  // Register to receive messages.
-  	  // We are registering an observer (mMessageReceiver) to receive Intents
-  	  // with actions named "custom-event-name".
-  	  LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
-  	      new IntentFilter("status"));
+    	/* receive the internal status broadcasts, which are separate from the public
+    	 * status broadcasts to prevent other apps from sending fake/wrong status
+    	 * info to this app */
+    	LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
+  	      new IntentFilter(TorServiceConstants.LOCAL_ACTION_STATUS));
   	  
 		LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
-			      new IntentFilter("log"));
+			      new IntentFilter(TorServiceConstants.LOCAL_ACTION_LOG));
 
 		mHandler.postDelayed(new Runnable ()
 		{
@@ -155,9 +155,9 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
       public void onReceive(Context context, Intent intent) {
         // Get extra data included in the Intent
           
-        if (intent.hasExtra("log"))
+        if (intent.hasExtra(TorServiceConstants.LOCAL_EXTRA_LOG))
         {
-            String log = intent.getStringExtra("log");
+            String log = intent.getStringExtra(TorServiceConstants.LOCAL_EXTRA_LOG);
             updateStatus(log);
         }
         else if (intent.hasExtra("up"))
@@ -175,9 +175,9 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
             mHandler.sendMessage(msg);
             
         }
-        else if (intent.hasExtra("status"))
+        else if (intent.hasExtra(TorServiceConstants.EXTRA_STATUS))
         {
-            torStatus = intent.getStringExtra("status");
+            torStatus = intent.getStringExtra(TorServiceConstants.EXTRA_STATUS);
             updateStatus("");
         }
         

@@ -4,6 +4,7 @@
 package org.torproject.android.ui;
 
 import org.torproject.android.OrbotConstants;
+import org.torproject.android.service.TorServiceConstants;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -23,7 +24,7 @@ public class OrbotLogActivity extends Activity implements OrbotConstants
         
     	doLayout();
 		LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
-			      new IntentFilter("log"));
+			      new IntentFilter(TorServiceConstants.LOCAL_ACTION_LOG));
 
 		
 	}
@@ -38,9 +39,9 @@ public class OrbotLogActivity extends Activity implements OrbotConstants
 	  public void onReceive(Context context, Intent intent) {
 	    // Get extra data included in the Intent
 		  
-		if (intent.hasExtra("log"))
+		if (intent.hasExtra(TorServiceConstants.LOCAL_EXTRA_LOG))
 		{
-			String log = intent.getStringExtra("log");
+			String log = intent.getStringExtra(TorServiceConstants.LOCAL_EXTRA_LOG);
 			updateStatus(log);
 		}
 		

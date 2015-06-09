@@ -2083,7 +2083,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     {
          
         
-        Intent intent = new Intent("log");
+        Intent intent = new Intent(LOCAL_ACTION_LOG);
         // You can also include some extra data.
         intent.putExtra("up",upload);
       intent.putExtra("down",download);
@@ -2100,19 +2100,17 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     {
          
         
-        Intent intent = new Intent("log");
+        Intent intent = new Intent(LOCAL_ACTION_LOG);
           // You can also include some extra data.
-          intent.putExtra("log", logMessage);
+          intent.putExtra(LOCAL_EXTRA_LOG, logMessage);
           LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
 
     }
     
     private void sendCallbackStatus(String currentStatus) {
-        Intent intent = new Intent("status"); // TODO rename to proper action
-        // You can also include some extra data.
-        intent.putExtra("status", currentStatus);
+        Intent intent = new Intent(ACTION_STATUS);
+        intent.putExtra(EXTRA_STATUS, currentStatus);
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
-
     }
     
     /*
