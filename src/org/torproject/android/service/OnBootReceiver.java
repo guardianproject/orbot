@@ -5,27 +5,22 @@ import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.VpnService;
+
+import org.torproject.android.Prefs;
 
 public class OnBootReceiver extends BroadcastReceiver {
 	
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		
-		SharedPreferences prefs = TorServiceUtils.getSharedPrefs(context.getApplicationContext());
-		
-		boolean startOnBoot = prefs.getBoolean("pref_start_boot",true);
-		boolean useVPN = prefs.getBoolean("pref_vpn",true);
-		
-		if (startOnBoot)
+	    Prefs.setContext(context);
+		if (Prefs.startOnBoot())
 		{
 			startService(TorServiceConstants.CMD_START,context);		
 			
-			if (useVPN)
+			if (Prefs.useVpn())
 				startVpnService(context);
 		}
-
 	}
 	
 	 @SuppressLint("NewApi")

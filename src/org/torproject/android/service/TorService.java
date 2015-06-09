@@ -8,6 +8,7 @@
 package org.torproject.android.service;
 
 
+import org.torproject.android.Prefs;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
@@ -82,8 +83,6 @@ import android.widget.RemoteViews;
 public class TorService extends Service implements TorServiceConstants, OrbotConstants, EventHandler
 {
     
-    public static boolean ENABLE_DEBUG_LOG = true;
-    
     private String mCurrentStatus = STATUS_OFF;
     
     private final static int CONTROL_SOCKET_TIMEOUT = 0;
@@ -100,8 +99,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     private static final int TRANSPROXY_NOTIFY_ID = 2;
     private static final int ERROR_NOTIFY_ID = 3;
     private static final int HS_NOTIFY_ID = 4;
-    
-    private boolean prefPersistNotifications = true;
     
     private static final int MAX_START_TRIES = 3;
 
@@ -134,16 +131,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     private NotificationManager mNotificationManager = null;
     private Builder mNotifyBuilder;
     private Notification mNotification;
-    private boolean mShowExpandedNotifications = false;
     private boolean mNotificationShowing = false;
-    
-    private boolean mHasRoot = false;
-    private boolean mEnableTransparentProxy = false;
-    private boolean mTransProxyAll = false;
-    private boolean mTransProxyTethering = false;
-    private boolean mTransProxyNetworkRefresh = false;
-    
-    private boolean mUseVPN = false;
+
 	boolean mIsLollipop = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
 
     private ExecutorService mExecutor = Executors.newFixedThreadPool(1);
@@ -152,7 +141,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
     public void debug(String msg)
     {
-        if (ENABLE_DEBUG_LOG)  
+        if (Prefs.useDebugLogging())
         {
             Log.d(TAG,msg);
             sendCallbackLogMessage(msg);    
@@ -162,7 +151,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     
     public void logException(String msg, Exception e)
     {
-        if (ENABLE_DEBUG_LOG)
+        if (Prefs.useDebugLogging())
         {
             Log.e(TAG,msg,e);
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -268,11 +257,11 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             mNotifyBuilder.setTicker(null);
         }
         
-        mNotifyBuilder.setOngoing(prefPersistNotifications);
+        mNotifyBuilder.setOngoing(Prefs.persistNotifications());
         
         mNotification = mNotifyBuilder.build();
         
-        if (Build.VERSION.SDK_INT >= 16 && mShowExpandedNotifications) {
+        if (Build.VERSION.SDK_INT >= 16 && Prefs.expandedNotifications()) {
             // Create remote view that needs to be set as bigContentView for the notification.
              RemoteViews expandedView = new RemoteViews(this.getPackageName(), 
                      R.layout.layout_notification_expanded);
@@ -317,7 +306,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             mNotification.bigContentView = expandedView;
         }
         
-        if (prefPersistNotifications && (!mNotificationShowing))
+        if (Prefs.persistNotifications() && (!mNotificationShowing))
         {
             startForeground(NOTIFY_ID, mNotification);
             logNotice("Set background service to FOREGROUND");
@@ -364,8 +353,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                     newIdentity();
                 } else if (action.equals(CMD_FLUSH)) {
                     flushTransparentProxyRules();
-                } else if (action.equals(CMD_UPDATE)) {
-                    processSettings();
+                } else if (action.equals(CMD_UPDATE_TRANS_PROXY)) {
+                    processTransparentProxying();
                 } else if (action.equals(CMD_VPN)) {
                     enableVpnProxy();
                 } else if (action.equals(CMD_VPN_CLEAR)) {
@@ -394,6 +383,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     @Override
     public void onDestroy ()
     {
+        Log.i("TorService", "onDestroy");
         String msg = ("TorService is being DESTROYED... shutting down!");
         Log.d(TAG, msg);
         sendCallbackLogMessage(msg);
@@ -417,7 +407,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             mCurrentStatus = STATUS_OFF;
             sendCallbackStatus(mCurrentStatus);
 
-            if (mHasRoot && mEnableTransparentProxy)
+            if (Prefs.useRoot() && Prefs.useTransparentProxying())
             {
             	Shell shellRoot = Shell.startRootShell();
                 disableTransparentProxy(shellRoot);
@@ -564,7 +554,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
              * uninstall/reinstall with different UID.
              */
             Shell shell;
-            if (mHasRoot && killAttempts > 2) {
+            if (Prefs.useRoot() && killAttempts > 2) {
                 shell = Shell.startRootShell();
                 Log.i(TAG, "using a root shell");
             } else {
@@ -589,7 +579,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     {
         if (msg != null && msg.trim().length() > 0)
         {
-            if (ENABLE_DEBUG_LOG)            
+            if (Prefs.useDebugLogging())
                 Log.d(TAG, msg);
         
             sendCallbackLogMessage(msg);
@@ -599,6 +589,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     @Override
     public void onCreate() {
         super.onCreate();
+        Log.i("TorService", "onCreate");
+
         try
         {
             mNumberFormat = NumberFormat.getInstance(Locale.getDefault()); //localized numbers!
@@ -614,7 +606,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             }
             
             initBinariesAndDirectories();
-            updateSettings();
         
             new Thread(new Runnable ()
             {
@@ -703,7 +694,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         fileControlPort = new File(appBinHome,"control.txt");
         extraLines.append(TORRC_CONTROLPORT_FILE_KEY).append(' ').append(fileControlPort.getCanonicalPath()).append('\n');
 
-         if (mTransProxyTethering)
+         if (Prefs.transparentTethering())
          {
              extraLines.append("TransListenAddress 0.0.0.0").append('\n');
              extraLines.append("DNSListenAddress 0.0.0.0").append('\n');
@@ -768,29 +759,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         return fileBin.canExecute();
     }
     
-    
-    private void updateSettings () throws TimeoutException, IOException
-    {
-        
-        SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
-
-        mHasRoot = prefs.getBoolean(PREF_HAS_ROOT,false);
-         
-        mEnableTransparentProxy = prefs.getBoolean("pref_transparent", false);
-         mTransProxyAll = prefs.getBoolean("pref_transparent_all", false);
-         mTransProxyTethering = prefs.getBoolean("pref_transparent_tethering", false);
-         mTransProxyNetworkRefresh = prefs.getBoolean("pref_transproxy_refresh", false);
-         
-         mShowExpandedNotifications  = prefs.getBoolean("pref_expanded_notifications", false);
-         
-        ENABLE_DEBUG_LOG = prefs.getBoolean("pref_enable_logging",false);
-        Log.i(TAG,"debug logging:" + ENABLE_DEBUG_LOG);
-
-        prefPersistNotifications = prefs.getBoolean(OrbotConstants.PREF_PERSIST_NOTIFICATIONS, true);
-        
-        mUseVPN = prefs.getBoolean("pref_vpn", false);
-    }
-    
     private void startTor () throws Exception
     {
         
@@ -805,19 +773,14 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         enableBinExec(fileObfsclient);
         enableBinExec(fileMeekclient);
         enableBinExec(fileXtables);
-        
-        updateSettings ();
 
         logNotice(getString(R.string.status_starting_up));
         sendCallbackLogMessage(getString(R.string.status_starting_up));
         
         ArrayList<String> customEnv = new ArrayList<String>();
-     
-        SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
-        boolean useBridges = prefs.getBoolean(OrbotConstants.PREF_BRIDGES_ENABLED, false);
 
-        if (useBridges)
-        	if (mUseVPN && !mIsLollipop)
+        if (Prefs.bridgesEnabled())
+        	if (Prefs.useVpn() && !mIsLollipop)
         		customEnv.add("TOR_PT_PROXY=socks5://127.0.0.1:" + OrbotVpnService.mSocksProxyPort); 
         
         String baseDirectory = fileTor.getParent();
@@ -830,7 +793,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             if (mPortHTTP != -1)
                 runPolipoShellCmd(shellUser);
             
-            if (mHasRoot && mEnableTransparentProxy)
+            if (Prefs.useRoot() && Prefs.useTransparentProxying())
             {
                  Shell shellRoot = Shell.startRootShell();
 
@@ -840,7 +803,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 shellRoot.close();
             }
             
-            if (mUseVPN) //we need to turn on VPN here so the proxy is running
+            if (Prefs.useVpn()) //we need to turn on VPN here so the proxy is running
             {
             	enableVpnProxy();
             }
@@ -858,7 +821,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     }
 
     private boolean flushTransparentProxyRules () {
-        if (mHasRoot)
+        if (Prefs.useRoot())
         {
              if (mTransProxy == null)
                  mTransProxy = new TorTransProxy(this, fileXtables);
@@ -909,7 +872,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         
         int code = 0; // Default state is "okay"
         
-        if(mTransProxyAll)
+        if(Prefs.transparentProxyAll())
         {
 
             code = mTransProxy.setTransparentProxyingAll(this, true, shell);
@@ -926,7 +889,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         if (code == 0)
         {
 
-            if (mTransProxyTethering)
+            if (Prefs.transparentTethering())
             {
                 showToolbarNotification(getString(R.string.transproxy_enabled_for_tethering_), TRANSPROXY_NOTIFY_ID, R.drawable.ic_stat_tor);
 
@@ -1404,17 +1367,10 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         }
         
         public void enableVpnProxy () {
-            
         	debug ("enabling VPN Proxy");
-        	
-        	mUseVPN = true;
             
-            SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
-            Editor ePrefs = prefs.edit();          
-            ePrefs.putBoolean("pref_vpn", true);            
-            ePrefs.commit();
-            
-            processSettings();
+            Prefs.putUseVpn(true);
+            processTransparentProxying();
             
             Intent intent = new Intent(TorService.this, OrbotVpnService.class);
             intent.setAction("start");
@@ -1458,16 +1414,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         public void clearVpnProxy ()
         {   
         	debug ("clearing VPN Proxy");
-        	
-            mUseVPN = false;
-
-            
-            SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
-            Editor ePrefs = prefs.edit();  
-            ePrefs.putBoolean("pref_vpn", false);
-            ePrefs.commit();
-
-            processSettings();
+            Prefs.putUseVpn(false);
+            processTransparentProxying();
             
             Intent intent = new Intent(TorService.this, OrbotVpnService.class);
             intent.setAction("stop");
@@ -1556,7 +1504,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             if (read > 0 || written > 0)
                 iconId = R.drawable.ic_stat_tor_xfer;
             
-            if (mConnectivity && prefPersistNotifications)
+            if (mConnectivity && Prefs.persistNotifications())
                   showToolbarNotification(sb.toString(), NOTIFY_ID, iconId);
 
             mTotalTrafficWritten += written;
@@ -1631,7 +1579,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                     sb.append (" > ");
             }
             
-            if (ENABLE_DEBUG_LOG)
+            if (Prefs.useDebugLogging())
                 debug(sb.toString());
             else if(status.equals("BUILT"))
             {
@@ -1651,7 +1599,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
             }
 
-            if (mShowExpandedNotifications)
+            if (Prefs.expandedNotifications())
             {
                 //get IP from last nodename
                 if(status.equals("BUILT")){
@@ -1707,7 +1655,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                     	
                         Proxy proxy = null;
                         
-                        if (!mUseVPN) //if not on the VPN then we should proxy
+                        if (!Prefs.useVpn()) //if not on the VPN then we should proxy
                         {
                         	proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("127.0.0.1", 8118));
                         	conn = new URL(ONIONOO_BASE_URL + mNode.id).openConnection(proxy);
@@ -1787,21 +1735,16 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         else
             return node;
     }
-    
 
-        
-        public void processSettings (){
+        public void processTransparentProxying() {
             try{
-                boolean hadEnableTransparentProxy = mEnableTransparentProxy;
-                updateSettings ();
-                if (mHasRoot)
+                if (Prefs.useRoot())
                 {
                      Shell shell = Shell.startRootShell();
-                    if (hadEnableTransparentProxy){
-                        disableTransparentProxy(shell);
-                    }
-                    if (mEnableTransparentProxy){
+                    if (Prefs.useTransparentProxying()){
                         enableTransparentProxy(shell);
+                    } else {
+                        disableTransparentProxy(shell);                        
                     }
                     shell.close();
                 }
@@ -2101,7 +2044,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 	                    {
 	                        if (mConnectivity)
 	                        {
-	                            if (mHasRoot && mEnableTransparentProxy && mTransProxyNetworkRefresh)
+	                            if (Prefs.useRoot() && Prefs.useTransparentProxying() && Prefs.transProxyNetworkRefresh())
 	                            {
 	                                
 	                                Shell shell = Shell.startRootShell();
@@ -2111,7 +2054,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 	                                
 	                                shell.close();
 	                            }
-	                            else if (mUseVPN) //we need to turn on VPN here so the proxy is running
+	                            else if (Prefs.useVpn()) //we need to turn on VPN here so the proxy is running
 	                            	refreshVpnProxy();
 	            	            
 	                        }
@@ -2145,7 +2088,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         enableTransProxyAndDNSPorts(transPort, dnsPort);
         */
         
-        boolean useBridges = prefs.getBoolean(OrbotConstants.PREF_BRIDGES_ENABLED, false);
+        boolean useBridges = Prefs.bridgesEnabled();
 
         boolean becomeRelay = prefs.getBoolean(OrbotConstants.PREF_OR, false);
         boolean ReachableAddresses = prefs.getBoolean(OrbotConstants.PREF_REACHABLE_ADDRESSES,false);
@@ -2161,7 +2104,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
            
             extraLines.append("UseBridges 0").append('\n');
 
-	        if (mUseVPN) //set the proxy here if we aren't using a bridge
+	        if (Prefs.useVpn()) //set the proxy here if we aren't using a bridge
 	        {
 	        	
 	        	if (!mIsLollipop)
@@ -2212,7 +2155,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
             extraLines.append("UseBridges 1").append('\n');
             
-            String bridgeList = new String(prefs.getString(OrbotConstants.PREF_BRIDGES_LIST,"").getBytes("ISO-8859-1"));
+            String bridgeList = new String(Prefs.getBridgesList().getBytes("ISO-8859-1"));
             
             if (bridgeList != null && bridgeList.length() > 1) //longer then 1 = some real values here
             {
@@ -2411,7 +2354,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             
         }
         
-        if (mUseVPN)
+        if (Prefs.useVpn())
         {
         	extraLines.append("DNSListenAddress" + ' ' + "10.0.0.1:" + TorServiceConstants.TOR_DNS_PORT_DEFAULT).append('\n');
         }

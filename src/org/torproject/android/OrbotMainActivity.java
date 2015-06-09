@@ -92,14 +92,13 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 
     private boolean autoStartFromIntent = false;
     
-    private final static long INIT_DELAY = 100;
     private final static int REQUEST_VPN = 8888;
     private final static int REQUEST_SETTINGS = 0x9874;
     
     /** Called when the activity is first created. */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+
         mPrefs = TorServiceUtils.getSharedPrefs(getApplicationContext());        
         mPrefs.registerOnSharedPreferenceChangeListener(this);
         
@@ -238,7 +237,7 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 		
 		mBtnVPN = (ToggleButton)findViewById(R.id.btnVPN);
 		
-		boolean useVPN = mPrefs.getBoolean("pref_vpn", false);
+		boolean useVPN = Prefs.useVpn();
 		mBtnVPN.setChecked(useVPN);
 		
 		if (useVPN)
@@ -262,12 +261,8 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 		});
 		
 		
-		mBtnBridges =  (ToggleButton)findViewById(R.id.btnBridges);
-		boolean useBridges = mPrefs.getBoolean("pref_bridges_enabled", false);
-		mBtnBridges.setChecked(useBridges);
-		
-		
-		
+		mBtnBridges = (ToggleButton)findViewById(R.id.btnBridges);
+		mBtnBridges.setChecked(Prefs.bridgesEnabled());
 		mBtnBridges.setOnClickListener(new View.OnClickListener ()
 		{
 
@@ -407,7 +402,7 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
                 else if (item.getItemId() == R.id.menu_share_bridge)
                 {
                 	
-            		String bridges = mPrefs.getString(OrbotConstants.PREF_BRIDGES_LIST, null);
+            		String bridges = Prefs.getBridgesList();
                 	
             		if (bridges != null && bridges.length() > 0)
             		{
@@ -655,12 +650,8 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 
 		showAlert(getString(R.string.bridges_updated),getString(R.string.restart_orbot_to_use_this_bridge_) + newBridgeValue,false);	
 		
-		Editor pEdit = mPrefs.edit();
-		
-		pEdit.putString(OrbotConstants.PREF_BRIDGES_LIST,newBridgeValue); //set the string to a preference
-		pEdit.putBoolean(OrbotConstants.PREF_BRIDGES_ENABLED,true);
-	
-		pEdit.commit();
+		Prefs.setBridgesList(newBridgeValue); //set the string to a preference
+		Prefs.putBridgesEnabled(true);
 		
 		setResult(RESULT_OK);
 		
@@ -675,7 +666,6 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 	private void openBrowser(final String browserLaunchUrl,boolean forceExternal)
 	{
 		boolean isOrwebInstalled = appInstalledOrNot("info.guardianproject.browser");
-		boolean isTransProxy =  mPrefs.getBoolean("pref_transparent", false);
 		
 		if (mBtnVPN.isChecked()||forceExternal)
 		{
@@ -684,7 +674,7 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 			intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
 			startActivity(intent);
 		}
-		else if (isTransProxy)
+		else if (Prefs.useTransparentProxying())
 		{
 			Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(browserLaunchUrl));
 			intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -793,7 +783,7 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
             }
             else if (torStatus == TorServiceConstants.STATUS_ON)
             {
-                updateSettings();
+                updateTransProxy();
                 Toast.makeText(this, R.string.you_may_need_to_stop_and_start_orbot_for_settings_change_to_be_enabled_, Toast.LENGTH_SHORT).show();
 
             }
@@ -867,17 +857,17 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
             		   
             		   break;
             	   case 3: //azure
-            		   mPrefs.edit().putString(OrbotConstants.PREF_BRIDGES_LIST,"2").commit();
+            		   Prefs.setBridgesList("2");
             		   enableBridges(true);
             		   
             		   break;
             	   case 4: //amazon
-            		   mPrefs.edit().putString(OrbotConstants.PREF_BRIDGES_LIST,"1").commit();
+                       Prefs.setBridgesList("1");
             		   enableBridges(true);
             		   
             		   break;
             	   case 5: //google
-            		   mPrefs.edit().putString(OrbotConstants.PREF_BRIDGES_LIST,"0").commit();
+                       Prefs.setBridgesList("0");
             		   enableBridges(true);
             		   
             		   break;
@@ -974,24 +964,17 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
     
     private void enableBridges (boolean enable)
     {
+		Prefs.putBridgesEnabled(enable);
 
-		Editor edit = mPrefs.edit();
-		edit.putBoolean(OrbotConstants.PREF_BRIDGES_ENABLED, enable);
-		edit.commit();
-		
-		updateSettings();
-		
 		if (torStatus == TorServiceConstants.STATUS_ON)
 		{
-			String bridgeList = mPrefs.getString(OrbotConstants.PREF_BRIDGES_LIST,null);
+			String bridgeList = Prefs.getBridgesList();
 			if (bridgeList != null && bridgeList.length() > 0)
 			{
 				restartTor ();
 			}
 			
 		}
-				
-		
     }
     
     private void restartTor ()
@@ -1038,11 +1021,8 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				
-				mPrefs.edit().putBoolean("pref_vpn", true).commit();
-		        
+		        Prefs.putUseVpn(true);
 				startVpnService();
-				
 			}
 
         	 
@@ -1090,10 +1070,9 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
         return true;
     }
     
-    private boolean updateSettings ()
+    private boolean updateTransProxy ()
     {
-        //todo send service command
-        startService(TorServiceConstants.CMD_UPDATE);
+        startService(TorServiceConstants.CMD_UPDATE_TRANS_PROXY);
         return true;
     }
 
@@ -1103,11 +1082,8 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 
         if (mPrefs != null)
         {
-	        boolean useVPN = mPrefs.getBoolean("pref_vpn", false);
-			mBtnVPN.setChecked(useVPN);
-			
-			boolean useBridges = mPrefs.getBoolean("pref_bridges_enabled", false);
-			mBtnBridges.setChecked(useBridges);
+			mBtnVPN.setChecked(Prefs.useVpn());			
+			mBtnBridges.setChecked(Prefs.bridgesEnabled());
         }
 
         mHandler.postDelayed(new Runnable ()

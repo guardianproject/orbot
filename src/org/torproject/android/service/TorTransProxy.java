@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import org.sufficientlysecure.rootcommands.Shell;
 import org.sufficientlysecure.rootcommands.command.SimpleCommand;
 import org.torproject.android.OrbotConstants;
+import org.torproject.android.Prefs;
 import org.torproject.android.settings.TorifiedApp;
 
 import android.content.Context;
@@ -13,7 +14,6 @@ import android.content.SharedPreferences;
 
 public class TorTransProxy implements TorServiceConstants {
 	
-	private boolean useSystemIpTables = false;
 	private String mSysIptables = null;
 	private TorService mTorService = null;
 	private File mFileXtables = null;
@@ -43,12 +43,8 @@ public class TorTransProxy implements TorServiceConstants {
 	{
 
 		String ipTablesPath = null;
-		
-		SharedPreferences prefs = TorServiceUtils.getSharedPrefs(context);
 
-		useSystemIpTables = prefs.getBoolean(OrbotConstants.PREF_USE_SYSTEM_IPTABLES, false);
-		
-		if (useSystemIpTables)
+		if (Prefs.useSystemIpTables())
 		{
 			ipTablesPath = findSystemIPTables();
 		}
@@ -67,11 +63,7 @@ public class TorTransProxy implements TorServiceConstants {
 
 		String ipTablesPath = null;
 		
-		SharedPreferences prefs = TorServiceUtils.getSharedPrefs(context);
-
-		useSystemIpTables = prefs.getBoolean(OrbotConstants.PREF_USE_SYSTEM_IPTABLES, false);
-		
-		if (useSystemIpTables)
+		if (Prefs.useSystemIpTables())
 		{
 			ipTablesPath = findSystemIP6Tables();
 		}
@@ -674,7 +666,7 @@ public class TorTransProxy implements TorServiceConstants {
 		script = new StringBuilder();
 		
 		
-		if (TorService.ENABLE_DEBUG_LOG)
+		if (Prefs.useDebugLogging())
 		{
 			//XXX: Comment the following rules for non-debug builds
 			script.append(ipTablesPath);			

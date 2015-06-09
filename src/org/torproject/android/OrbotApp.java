@@ -5,8 +5,6 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.text.TextUtils;
@@ -14,29 +12,26 @@ import android.util.Log;
 
 import info.guardianproject.util.Languages;
 
-import org.torproject.android.service.TorServiceUtils;
-
 import java.util.Locale;
 
 public class OrbotApp extends Application implements OrbotConstants
 {
 
     private Locale locale;
-    private SharedPreferences prefs;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        Prefs.setContext(this);
 
-        prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
-        setNewLocale(prefs.getString(PREF_DEFAULT_LOCALE, Locale.getDefault().getLanguage()));
+        setNewLocale(Prefs.getDefaultLocale());
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         Log.i(TAG, "onConfigurationChanged " + newConfig.locale.getLanguage());
-        setNewLocale(prefs.getString(PREF_DEFAULT_LOCALE, Locale.getDefault().getLanguage()));
+        setNewLocale(Prefs.getDefaultLocale());
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
@@ -65,10 +60,7 @@ public class OrbotApp extends Application implements OrbotConstants
          * wrong. If setting the locale causes an Exception, it should be set in
          * the preferences, otherwise ChatSecure will be stuck in a crash loop.
          */
-        SharedPreferences prefs = TorServiceUtils.getSharedPrefs(this);
-        Editor prefEdit = prefs.edit();
-        prefEdit.putString(PREF_DEFAULT_LOCALE, language);
-        prefEdit.apply();
+        Prefs.setDefaultLocale(language);
         Log.i(TAG, "setNewLocale complete: locale: " + locale.getLanguage()
                 + " Locale.getDefault: " + Locale.getDefault().getLanguage());
     }
