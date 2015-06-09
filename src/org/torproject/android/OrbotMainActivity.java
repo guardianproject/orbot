@@ -109,7 +109,7 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
     	 * info to this app */
         LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(this);
         lbm.registerReceiver(mLocalBroadcastReceiver,
-                new IntentFilter(TorServiceConstants.LOCAL_ACTION_STATUS));
+                new IntentFilter(TorServiceConstants.ACTION_STATUS));
         lbm.registerReceiver(mLocalBroadcastReceiver,
                 new IntentFilter(TorServiceConstants.LOCAL_ACTION_BANDWIDTH));
         lbm.registerReceiver(mLocalBroadcastReceiver,
@@ -161,7 +161,7 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
                 msg.getData().putLong("writeTotal", written);
                 mStatusUpdateHandler.sendMessage(msg);
 
-            } else if (action.equals(TorServiceConstants.LOCAL_ACTION_STATUS)) {
+            } else if (action.equals(TorServiceConstants.ACTION_STATUS)) {
                 torStatus = intent.getStringExtra(TorServiceConstants.EXTRA_STATUS);
                 updateStatus("");
             }

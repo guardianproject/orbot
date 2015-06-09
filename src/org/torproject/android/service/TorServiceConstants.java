@@ -69,7 +69,7 @@ public interface TorServiceConstants {
 
     public final static String ACTION_STATUS = "org.torproject.android.intent.action.STATUS";
     public final static String EXTRA_STATUS = "org.torproject.android.intent.extra.STATUS";
-    public final static String LOCAL_ACTION_STATUS = "status";
+
     public final static String LOCAL_ACTION_LOG = "log";
     public final static String LOCAL_ACTION_BANDWIDTH = "bandwidth";
     public final static String LOCAL_EXTRA_LOG = "log";
