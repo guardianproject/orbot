@@ -56,13 +56,7 @@
             </intent-filter>
             
         </activity>
-        
-        
-        <activity android:name=".ui.OrbotLogActivity" 
-            android:configChanges="orientation|screenSize"
-            android:exported="false"
-            />
-        
+
         <!-- 
         This is for ensuring the background service still runs when/if the app is swiped away
          -->
