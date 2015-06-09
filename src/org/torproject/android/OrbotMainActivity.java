@@ -126,6 +126,7 @@ public class OrbotMainActivity extends Activity
 	}
 
     private void stopTor() {
+        imgStatus.setImageResource(R.drawable.torstarting);
         Intent torService = new Intent(this, TorService.class);
         stopService(torService);
     }
@@ -1118,7 +1119,6 @@ public class OrbotMainActivity extends Activity
     private void startTor () throws RemoteException
     {
         Log.i("OrbotMainActivity", "startTor");
-		sendIntentToService (TorServiceConstants.CMD_START);
 				
 		mTxtOrbotLog.setText("");
 
@@ -1126,6 +1126,8 @@ public class OrbotMainActivity extends Activity
         //might be best to just call updateStatus() instead of directly manipulating UI in this method - yep makes sense
         imgStatus.setImageResource(R.drawable.torstarting);
         lblStatus.setText(getString(R.string.status_starting_up));
+
+        sendIntentToService(TorServiceConstants.CMD_START);
         
         //we send a message here to the progressDialog i believe, but we can clarify that shortly
         Message msg = mStatusUpdateHandler.obtainMessage(STATUS_UPDATE);
