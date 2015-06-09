@@ -1181,7 +1181,7 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
                                 Log.e(TAG, "autoStartFromIntent finish");
                             }
                     }
-                    else if (torStatus == TorServiceConstants.STATUS_CONNECTING)
+                    else if (torStatus == TorServiceConstants.STATUS_STARTING)
                     {
                         
                         imgStatus.setImageResource(R.drawable.torstarting);
@@ -1225,7 +1225,7 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
             
 
 		startService (TorServiceConstants.CMD_START);
-		torStatus = TorServiceConstants.STATUS_CONNECTING;
+		torStatus = TorServiceConstants.STATUS_STARTING;
 				
 		mTxtOrbotLog.setText("");
 

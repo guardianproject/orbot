@@ -751,7 +751,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     private void startTor () throws Exception
     {
         
-        mCurrentStatus = STATUS_CONNECTING;
+        mCurrentStatus = STATUS_STARTING;
         sendCallbackStatus(mCurrentStatus);
         
         if (fileTor == null)
@@ -1110,7 +1110,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                             conn.setConf("Log", "debug file " + fileLog2.getCanonicalPath());                                
                         }*/
                         
-                        mCurrentStatus = STATUS_CONNECTING;
+                        mCurrentStatus = STATUS_STARTING;
                         sendCallbackStatus(mCurrentStatus);
                         
                          String confSocks = conn.getInfo("net/listeners/socks");
@@ -1563,7 +1563,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             else if(status.equals("BUILT"))
             {
 
-                if (mCurrentStatus == STATUS_CONNECTING)
+                if (mCurrentStatus == STATUS_STARTING)
                     mCurrentStatus = STATUS_ON;
                 
                 sendCallbackStatus(mCurrentStatus);

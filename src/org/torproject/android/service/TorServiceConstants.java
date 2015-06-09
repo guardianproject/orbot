@@ -75,8 +75,8 @@ public interface TorServiceConstants {
 
     public final static String STATUS_OFF = "OFF";
     public final static String STATUS_ON = "ON";
-    public final static String STATUS_CONNECTING = "CONNECTING";
-    public final static String STATUS_DISCONNECTING = "DISCONNECTING";
+    public final static String STATUS_STARTING = "STARTING";
+    public final static String STATUS_STOPPING = "STOPPING";
     
     public static final int STATUS_MSG = 1;
     public static final int ENABLE_TOR_MSG = 2;
