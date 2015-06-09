@@ -3,141 +3,116 @@
 
 package org.torproject.android.settings;
 
-import java.util.Locale;
-
-import org.sufficientlysecure.rootcommands.RootCommands;
-import org.sufficientlysecure.rootcommands.Shell;
-import org.torproject.android.R;
-import org.torproject.android.service.TorServiceUtils;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
+import android.preference.EditTextPreference;
+import android.preference.ListPreference;
 import android.preference.Preference;
+import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
-import android.preference.PreferenceCategory;
 import android.widget.Toast;
+
+import info.guardianproject.util.Languages;
+
+import org.sufficientlysecure.rootcommands.RootCommands;
+import org.sufficientlysecure.rootcommands.Shell;
+import org.torproject.android.OrbotApp;
+import org.torproject.android.R;
+import org.torproject.android.service.TorServiceUtils;
+
+import java.util.Locale;
 
 
 public class SettingsPreferences 
 		extends PreferenceActivity implements OnPreferenceClickListener {
+    private static final String TAG = "SettingsPreferences";
 
 	private CheckBoxPreference prefCBTransProxy = null;
 	private CheckBoxPreference prefcBTransProxyAll = null;
 	private Preference prefTransProxyFlush = null;
 	
 	private Preference prefTransProxyApps = null;
-	private CheckBoxPreference prefHiddenServices = null;
+    private CheckBoxPreference prefHiddenServices = null;
+    private EditTextPreference prefHiddenServicesPorts;
+    private EditTextPreference prefHiddenServicesHostname;
 	private CheckBoxPreference prefRequestRoot = null;
-	private Preference prefLocale = null;
+	private ListPreference prefLocale = null;
 	
-	private boolean hasRoot = false;
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-	private final static int HIDDEN_SERVICE_PREF_IDX = 6;
-	private final static int TRANSPROXY_GROUP_IDX = 1;
-	private final static int DEBUG_GROUP_IDX = 8;
-	
-	
-	protected void onCreate(Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
-		
-		addPreferencesFromResource(R.xml.preferences);
-		getPreferenceManager().setSharedPreferencesMode(Context.MODE_MULTI_PROCESS);
-		SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
-		
-		hasRoot = prefs.getBoolean("has_root",false);
-		
-		init();
-	}
-	
-	
-	@Override
-	protected void onResume() {
-	
-		super.onResume();
-	
-	}
-	
-	private void init ()
-	{
-		int SET_LOCALE_IDX = 3;
+        addPreferencesFromResource(R.xml.preferences);
+        getPreferenceManager().setSharedPreferencesMode(Context.MODE_MULTI_PROCESS);
+        SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
 
-		int GENERAL_GROUP_IDX = 0;
-		
-		prefRequestRoot = ((CheckBoxPreference)((PreferenceCategory)getPreferenceScreen().getPreference(TRANSPROXY_GROUP_IDX)).getPreference(0));
-		prefRequestRoot.setOnPreferenceClickListener(this);
+        prefRequestRoot = (CheckBoxPreference) findPreference("has_root");
+        prefRequestRoot.setOnPreferenceClickListener(this);
 
-		prefLocale = (((PreferenceCategory)getPreferenceScreen().getPreference(GENERAL_GROUP_IDX)).getPreference(SET_LOCALE_IDX));
-		prefLocale.setOnPreferenceClickListener(this);
-				
-		prefCBTransProxy = ((CheckBoxPreference)((PreferenceCategory)this.getPreferenceScreen().getPreference(TRANSPROXY_GROUP_IDX)).getPreference(1));
-		prefcBTransProxyAll = (CheckBoxPreference)((PreferenceCategory)this.getPreferenceScreen().getPreference(TRANSPROXY_GROUP_IDX)).getPreference(2);
-		
-		prefTransProxyFlush = (Preference)((PreferenceCategory)this.getPreferenceScreen().getPreference(DEBUG_GROUP_IDX)).getPreference(8);
-		prefTransProxyFlush.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+        prefLocale = (ListPreference) findPreference("pref_default_locale");
+        prefLocale.setOnPreferenceClickListener(this);
+        Languages languages = Languages.get(this, R.string.menu_settings, "Settings");
+        prefLocale.setEntries(languages.getAllNames());
+        prefLocale.setEntryValues(languages.getSupportedLocales());
+        prefLocale.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
 
-			@Override
-			public boolean onPreferenceClick(Preference arg0) {
-				
-				Intent data = new Intent();
-				data.putExtra("transproxywipe", true);
-				setResult(RESULT_OK,data);
-				
-				finish();
-				return false;
-			}
-			
-		});
-		
-		prefTransProxyApps = ((PreferenceCategory)this.getPreferenceScreen().getPreference(TRANSPROXY_GROUP_IDX)).getPreference(3);
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                String language = (String) newValue;
+                if (preference == prefLocale) {
+                    SharedPreferences settings = TorServiceUtils
+                            .getSharedPrefs(getApplicationContext());
 
+                    String lang = settings.getString("pref_default_locale",
+                            Locale.getDefault().getLanguage());
+                    OrbotApp app = (OrbotApp) getApplication();
+                    app.setNewLocale(language);
+                    lang = settings.getString("pref_default_locale",
+                            Locale.getDefault().getLanguage());
+                    OrbotApp.forceChangeLanguage(SettingsPreferences.this);
+                }
+                return false;
+            }
+        });
 
-		prefCBTransProxy.setOnPreferenceClickListener(this);
-		prefcBTransProxyAll.setOnPreferenceClickListener(this);
-		prefTransProxyApps.setOnPreferenceClickListener(this);
-		
-		prefcBTransProxyAll.setEnabled(prefCBTransProxy.isChecked());
-		prefTransProxyApps.setEnabled(prefCBTransProxy.isChecked() && (!prefcBTransProxyAll.isChecked()));
-		
-		
-		prefHiddenServices = ((CheckBoxPreference)((PreferenceCategory)this.getPreferenceScreen().getPreference(HIDDEN_SERVICE_PREF_IDX)).getPreference(0));
-		prefHiddenServices.setOnPreferenceClickListener(this);
-		((PreferenceCategory)this.getPreferenceScreen().getPreference(HIDDEN_SERVICE_PREF_IDX)).getPreference(1).setEnabled(prefHiddenServices.isChecked());
-		((PreferenceCategory)this.getPreferenceScreen().getPreference(HIDDEN_SERVICE_PREF_IDX)).getPreference(2).setEnabled(prefHiddenServices.isChecked());
-				
-		
-	};
-	
-	
-	
-	
-	@Override
-	protected void onPause() {
+        prefCBTransProxy = (CheckBoxPreference) findPreference("pref_transparent");
+        prefcBTransProxyAll = (CheckBoxPreference) findPreference("pref_transparent_all");
 
-		super.onPause();
-		
+        prefTransProxyFlush = (Preference) findPreference("pref_transproxy_flush");
+        prefTransProxyFlush.setOnPreferenceClickListener(new OnPreferenceClickListener() {
 
+            @Override
+            public boolean onPreferenceClick(Preference arg0) {
 
-		
-		
-		
-		
-	}
+                Intent data = new Intent();
+                data.putExtra("transproxywipe", true);
+                setResult(RESULT_OK, data);
 
+                finish();
+                return false;
+            }
 
-	/* (non-Javadoc)
-	 * @see android.app.Activity#onStop()
-	 */
-	@Override
-	protected void onStop() {
-		super.onStop();
-		
-	}
+        });
+
+        prefTransProxyApps = findPreference("pref_transparent_app_list");
+        prefTransProxyApps.setOnPreferenceClickListener(this);
+        prefTransProxyApps.setEnabled(prefCBTransProxy.isChecked()
+                && (!prefcBTransProxyAll.isChecked()));
+
+        prefCBTransProxy.setOnPreferenceClickListener(this);
+        prefcBTransProxyAll.setOnPreferenceClickListener(this);
+        prefcBTransProxyAll.setEnabled(prefCBTransProxy.isChecked());
+
+        prefHiddenServices = (CheckBoxPreference) findPreference("pref_hs_enable");
+        prefHiddenServices.setOnPreferenceClickListener(this);
+        prefHiddenServicesPorts = (EditTextPreference) findPreference("pref_hs_ports");
+        prefHiddenServicesPorts.setEnabled(prefHiddenServices.isChecked());
+        prefHiddenServicesHostname = (EditTextPreference) findPreference("pref_hs_hostname");
+        prefHiddenServicesHostname.setEnabled(prefHiddenServices.isChecked());
+    }
 
 	public boolean onPreferenceClick(Preference preference) {
 		
@@ -175,33 +150,8 @@ public class SettingsPreferences
 		}
 		else if (preference == prefHiddenServices)
 		{
-			
-			((PreferenceCategory)this.getPreferenceScreen().getPreference(HIDDEN_SERVICE_PREF_IDX)).getPreference(1).setEnabled(prefHiddenServices.isChecked());
-			((PreferenceCategory)this.getPreferenceScreen().getPreference(HIDDEN_SERVICE_PREF_IDX)).getPreference(2).setEnabled(prefHiddenServices.isChecked());
-			
-		}
-		else if (preference == prefLocale)
-		{
-			 SharedPreferences settings = TorServiceUtils.getSharedPrefs(getApplicationContext());
-
-		        Configuration config = getResources().getConfiguration();
-
-		        String lang = settings.getString("pref_default_locale", "");
-		        
-		        Locale locale;
-		        
-		        if (lang.equals("xx"))
-		        {
-		        	locale = Locale.getDefault();
-		        
-		        }
-		        else
-		        	locale = new Locale(lang);
-		        
-	            Locale.setDefault(locale);
-	            config.locale = locale;
-	            getResources().updateConfiguration(config, getResources().getDisplayMetrics());
-	            
+	        prefHiddenServicesPorts.setEnabled(prefHiddenServices.isChecked());
+	        prefHiddenServicesHostname.setEnabled(prefHiddenServices.isChecked());
 		}
 		else
 		{

@@ -236,7 +236,7 @@
   
   <string name="notification_using_bridges">Bridges enabled!</string>
   <string name="default_bridges"/>
-  <string name="set_locale_title">Set Locale</string>
+  <string name="set_locale_title">Language</string>
   <string name="set_locale_summary">Choose the locale and language for Orbot</string>
   <string name="wizard_locale_title">Choose Language</string>
   <string name="wizard_locale_msg">Leave default or switch the current language</string>

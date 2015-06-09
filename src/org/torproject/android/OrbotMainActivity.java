@@ -75,7 +75,6 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
     private MenuItem mItemOnOff = null;
     private TextView downloadText = null;
     private TextView uploadText = null;
-    private NumberFormat mNumberFormat = null;
     private TextView mTxtOrbotLog = null;
     
     private Button mBtnBrowser = null;
@@ -96,6 +95,7 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
     
     private final static long INIT_DELAY = 100;
     private final static int REQUEST_VPN = 8888;
+    private final static int REQUEST_SETTINGS = 0x9874;
     
     /** Called when the activity is first created. */
     public void onCreate(Bundle savedInstanceState) {
@@ -103,8 +103,6 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
         
         mPrefs = TorServiceUtils.getSharedPrefs(getApplicationContext());        
         mPrefs.registerOnSharedPreferenceChangeListener(this);
-               
-        setLocale();
         
     	doLayout();
 
@@ -391,7 +389,8 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
                 
                 if (item.getItemId() == R.id.menu_settings)
                 {
-                        showSettings();
+                    Intent intent = new Intent(OrbotMainActivity.this, SettingsPreferences.class);
+                    startActivityForResult(intent, REQUEST_SETTINGS);
                 }
                 else if (item.getItemId() == R.id.menu_wizard)
                 {
@@ -473,10 +472,6 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
                 
         }
         
-    /* (non-Javadoc)
-<<<<<<< HEAD:src/org/torproject/android/OrbotMainActivity.java
-	 * @see android.app.Activity#onPause()
-	 */
 	protected void onPause() {
 		try
 		{
@@ -572,6 +567,8 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 	    // Get intent, action and MIME type
 	    Intent intent = getIntent();
 	    String action = intent.getAction();
+	    Log.e(TAG, "handleIntents " + action);
+
 	    String type = intent.getType();
 		
 		if (action == null)
@@ -620,21 +617,24 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 		else if (action.equals("org.torproject.android.START_TOR"))
 		{
 			autoStartFromIntent = true;
-				
-				try {
-					startTor();
+		    try {
+		        Log.i(TAG, "action equals org.torproject.android.START_TOR");
+		        startTor();
 
-					Intent nResult = new Intent();
-					
-					//nResult.putExtra("socks", ); //TODO respond with socks, transport, dns, etc
-					
-					setResult(RESULT_OK,nResult);
-					
-				} catch (RemoteException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			
+		        Intent resultIntent = new Intent(intent);
+		        resultIntent.putExtra("socks_proxy", "socks://127.0.0.1:" + TorServiceConstants.PORT_SOCKS_DEFAULT);
+                resultIntent.putExtra("socks_proxy_host", "127.0.0.1");
+                resultIntent.putExtra("socks_proxy_port", TorServiceConstants.PORT_SOCKS_DEFAULT);
+                resultIntent.putExtra("http_proxy", "http://127.0.0.1" + TorServiceConstants.PORT_HTTP);
+                resultIntent.putExtra("http_proxy_host", "127.0.0.1");
+                resultIntent.putExtra("http_proxy_port", TorServiceConstants.PORT_HTTP);
+		        setResult(RESULT_OK, resultIntent);
+		        finish();
+		    } catch (RemoteException e) {
+		        // TODO Auto-generated catch block
+		        e.printStackTrace();
+		    }
+
 		}
 		else if (action.equals(Intent.ACTION_VIEW))
 		{
@@ -806,25 +806,15 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
         {
               return false;
         }
-   }
-    
-    /*
-     * Load the basic settings application to display torrc
-     */
-    private void showSettings ()
-    {
-            
-            startActivityForResult(new Intent(this, SettingsPreferences.class), 1);
-    }
-    
+   }    
     
     @Override
     protected void onActivityResult(int request, int response, Intent data) {
         super.onActivityResult(request, response, data);
-        
-        
-        if (request == 1 && response == RESULT_OK)
+
+        if (request == REQUEST_SETTINGS && response == RESULT_OK)
         {
+            OrbotApp.forceChangeLanguage(this);
             if (data != null && data.getBooleanExtra("transproxywipe", false))
             {
                     
@@ -1162,13 +1152,11 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 			boolean useBridges = mPrefs.getBoolean("pref_bridges_enabled", false);
 			mBtnBridges.setChecked(useBridges);
         }
-        
+
         mHandler.postDelayed(new Runnable ()
         {
             public void run ()
             {
-
-                setLocale();
         
                 handleIntents();
 
@@ -1253,13 +1241,12 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
                                     
                             }
                             
-                            
                             if (autoStartFromIntent)
                             {
-                                setResult(RESULT_OK);
+                                autoStartFromIntent = false;
                                 finish();
+                                Log.e(TAG, "autoStartFromIntent finish");
                             }
-
                     }
                     else if (torStatus == TorServiceConstants.STATUS_CONNECTING)
                     {
@@ -1430,33 +1417,6 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
         
     };
 
-    
-    /**
-     * Class for interacting with the main interface of the service.
-     */
-     // this is the connection that gets called back when a successfull bind occurs
-     // we should use this to activity monitor unbind so that we don't have to call
-     // bindService() a million times
-    
-    private void setLocale ()
-    {
-        
-
-        Configuration config = getResources().getConfiguration();
-        String lang = mPrefs.getString(PREF_DEFAULT_LOCALE, "");
-        
-        if (! "".equals(lang) && ! config.locale.getLanguage().equals(lang))
-        {
-            Locale locale = new Locale(lang);
-            Locale.setDefault(locale);
-            config.locale = locale;
-            getResources().updateConfiguration(config, getResources().getDisplayMetrics());
-        }
-        
-        mNumberFormat = NumberFormat.getInstance(Locale.getDefault());
- 	   
-    }
-
        @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -1476,31 +1436,32 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
            }
        }
        
-       private String formatCount(long count) {
+    private String formatCount(long count) {
+        NumberFormat numberFormat = NumberFormat.getInstance(Locale.getDefault());
         // Converts the supplied argument into a string.
         // Under 2Mb, returns "xxx.xKb"
         // Over 2Mb, returns "xxx.xxMb"
-    	   
-    	   //Locale.getDefault();
-    	   
         if (count < 1e6)
-            return mNumberFormat.format(Math.round(((float)((int)(count*10/1024))/10))) + getString(R.string.kbps);
-        
-        return mNumberFormat.format(Math.round(((float)((int)(count*100/1024/1024))/100))) + getString(R.string.mbps);
-        
-           //return count+" kB";
+            return numberFormat.format(Math.round(((float) ((int) (count * 10 / 1024)) / 10)))
+                    + getString(R.string.kbps);
+        else
+            return numberFormat.format(Math
+                    .round(((float) ((int) (count * 100 / 1024 / 1024)) / 100)))
+                    + getString(R.string.mbps);
     }
-       
-       private String formatTotal(long count) {
+
+    private String formatTotal(long count) {
+        NumberFormat numberFormat = NumberFormat.getInstance(Locale.getDefault());
         // Converts the supplied argument into a string.
         // Under 2Mb, returns "xxx.xKb"
         // Over 2Mb, returns "xxx.xxMb"
         if (count < 1e6)
-            return mNumberFormat.format(Math.round(((float)((int)(count*10/1024))/10))) + getString(R.string.kb);
-        
-        return mNumberFormat.format(Math.round(((float)((int)(count*100/1024/1024))/100))) + getString(R.string.mb);
-        
-           //return count+" kB";
+            return numberFormat.format(Math.round(((float) ((int) (count * 10 / 1024)) / 10)))
+                    + getString(R.string.kb);
+        else
+            return numberFormat.format(Math
+                    .round(((float) ((int) (count * 100 / 1024 / 1024)) / 100)))
+                    + getString(R.string.mb);
     }
 
     @Override
