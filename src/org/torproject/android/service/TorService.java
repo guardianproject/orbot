@@ -146,7 +146,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     private boolean mUseVPN = false;
 	boolean mIsLollipop = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
 
-    
     private ExecutorService mExecutor = Executors.newFixedThreadPool(1);
 
     private NumberFormat mNumberFormat = null;
@@ -210,7 +209,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         else
             return false;
     }
-    
 
     /* (non-Javadoc)
      * @see android.app.Service#onLowMemory()
@@ -223,10 +221,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         
     }
 
-    public String getTorStatus() {
-        return mCurrentStatus;
-    }
-
     private void clearNotifications ()
     {
         if (mNotificationManager != null)
@@ -235,7 +229,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
         hmBuiltNodes.clear();
         mNotificationShowing = false;
-        
     }
 	        
     @SuppressLint("NewApi")
@@ -280,27 +273,21 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         mNotification = mNotifyBuilder.build();
         
         if (Build.VERSION.SDK_INT >= 16 && mShowExpandedNotifications) {
-            
-            
             // Create remote view that needs to be set as bigContentView for the notification.
              RemoteViews expandedView = new RemoteViews(this.getPackageName(), 
                      R.layout.layout_notification_expanded);
              
              StringBuffer sbInfo = new StringBuffer();
              
-             
              if (notifyType == NOTIFY_ID)
                  expandedView.setTextViewText(R.id.text, notifyMsg);
              else
              {
                  expandedView.setTextViewText(R.id.info, notifyMsg);
-             
              }
 
              if (hmBuiltNodes.size() > 0)
              {
-                 //sbInfo.append(getString(R.string.your_tor_public_ips_) + '\n ');
-                 
                  Set<String> itBuiltNodes = hmBuiltNodes.keySet();
                  for (String key : itBuiltNodes)
                  {
@@ -625,7 +612,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
              
             }
-            
             
             initBinariesAndDirectories();
             updateSettings();
@@ -1107,11 +1093,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     
     private int initControlConnection (int maxTries, boolean isReconnect) throws Exception, RuntimeException
     {
-            int i = 0;
             int controlPort = -1;
-            
             int attempt = 0;
-            
 
             logNotice( "Waiting for control port...");
             
@@ -1148,9 +1131,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 //    logNotice("waiting...");
                     Thread.sleep(1000); }
                 catch (Exception e){}
-            
-        
-                 
             }
             
             if (conn != null)
@@ -1332,45 +1312,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
         return result;
     }
-    
-    /*
-    private void getTorStatus () throws IOException
-    {
-        try
-        {
-             
-            if (conn != null)
-            {
-                 // get a single value.
-                  
-                   // get several values
-                   
-                   if (mCurrentStatus == STATUS_CONNECTING)
-                   {
-                       //Map vals = conn.getInfo(Arrays.asList(new String[]{
-                         // "status/bootstrap-phase", "status","version"}));
-            
-                       String bsPhase = conn.getInfo("status/bootstrap-phase");
-                       Log.d(TAG, "bootstrap-phase: " + bsPhase);
-                       
-                       
-                   }
-                   else
-                   {
-                     //  String status = conn.getInfo("status/circuit-established");
-                     //  Log.d(TAG, "status/circuit-established=" + status);
-                   }
-            }
-        }
-        catch (Exception e)
-        {
-            Log.d(TAG, "Unable to get Tor status from control port");
-            mCurrentStatus = STATUS_UNAVAILABLE;
-        }
-        
-    }*/
-    
-    
+
     public void addEventHandler () throws Exception
     {
            // We extend NullEventHandler so that we don't need to provide empty
@@ -1386,9 +1328,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             //  "DEBUG", "INFO", "NOTICE", "WARN", "ERR"}));
 
         logNotice( "SUCCESS added control port event handler");
-        
-        
-
     }
     
         /**
@@ -1405,7 +1344,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         public int getSOCKSPort() throws RemoteException {
             return mPortSOCKS;
         }
-
 
         public void setTorProfile(String newState)  {
         
@@ -2473,7 +2411,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             
         }
         
-        
         if (mUseVPN)
         {
         	extraLines.append("DNSListenAddress" + ' ' + "10.0.0.1:" + TorServiceConstants.TOR_DNS_PORT_DEFAULT).append('\n');
@@ -2492,34 +2429,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         }
         return new String(out);
     }
-    
-    /*
-    private void enableSocks (String socks, boolean safeSocks) throws RemoteException
-    {    
-        updateConfiguration("SOCKSPort", socks, false);
-        updateConfiguration("SafeSocks", safeSocks ? "1" : "0", false);
-        updateConfiguration("TestSocks", "1", false);
-        updateConfiguration("WarnUnsafeSocks", "1", false);
-        saveConfiguration();
-        
-    }
-    
-    private void enableTransProxyAndDNSPorts (String transPort, String dnsPort) throws RemoteException
-    {
-        logMessage ("Transparent Proxying: enabling port...");
-         
-         updateConfiguration("TransPort",transPort,false);
-         updateConfiguration("DNSPort",dnsPort,false);
-         updateConfiguration("VirtualAddrNetwork","10.192.0.0/10",false);
-         updateConfiguration("AutomapHostsOnResolve","1",false);
-         saveConfiguration();
-    }*/
-    
-    private void blockPlaintextPorts (String portList) throws RemoteException
-    {
-        updateConfiguration("RejectPlaintextPorts",portList,false);
-    }
-    
+
     //using Google DNS for now as the public DNS server
     private String writeDNSFile () throws IOException
     {
