@@ -399,7 +399,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         {
             Log.d(TAG,"Tor is stopping NOW");
 
-            shutdownTorProcess ();
+            killAllDaemons ();
 
             //stop the foreground priority and make sure to remove the persistant notification
             stopForeground(true);
@@ -505,31 +505,49 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     }
 
 
-    private void shutdownTorProcess () throws Exception
-    {
-
-        if (conn != null)
-        {
-
+    private void killAllDaemons() throws CannotKillException {
+        if (conn != null) {
             logNotice("Using control port to shutdown Tor");
-
 
             try {
                 logNotice("sending HALT signal to Tor process");
                 conn.shutdownTor("HALT");
 
-            } catch (Exception e) {
-                Log.d(TAG,"error shutting down Tor via connection",e);
+            } catch (IOException e) {
+                Log.d(TAG, "error shutting down Tor via connection", e);
             }
 
             conn = null;
         }
 
-        killProcess(fileTor);
-
-        killProcess(filePolipo);
-        killProcess(fileObfsclient);
-        killProcess(fileMeekclient);
+        // try these separately in case one fails, then it can try the next
+        File cannotKillFile = null;
+        try {
+            killProcess(fileObfsclient);
+        } catch (IOException e) {
+            e.printStackTrace();
+            cannotKillFile = fileObfsclient;
+        }
+        try {
+            killProcess(fileMeekclient);
+        } catch (IOException e) {
+            e.printStackTrace();
+            cannotKillFile = fileMeekclient;
+        }
+        try {
+            killProcess(filePolipo);
+        } catch (IOException e) {
+            e.printStackTrace();
+            cannotKillFile = filePolipo;
+        }
+        try {
+            killProcess(fileTor);
+        } catch (IOException e) {
+            e.printStackTrace();
+            cannotKillFile = fileTor;
+        }
+        if (cannotKillFile != null)
+            throw new CannotKillException(cannotKillFile);
     }
 
     public class CannotKillException extends IllegalStateException {
@@ -540,7 +558,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         }
     }
 
-    private void killProcess(File fileProcBin) throws IOException {
+    private void killProcess(File fileProcBin) throws IOException, CannotKillException {
         int procId = -1;
         int killAttempts = 0;
 
