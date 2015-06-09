@@ -107,10 +107,10 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
     	/* receive the internal status broadcasts, which are separate from the public
     	 * status broadcasts to prevent other apps from sending fake/wrong status
     	 * info to this app */
-    	LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
+    	LocalBroadcastManager.getInstance(this).registerReceiver(mLocalBroadcastReceiver,
   	      new IntentFilter(TorServiceConstants.LOCAL_ACTION_STATUS));
   	  
-		LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
+		LocalBroadcastManager.getInstance(this).registerReceiver(mLocalBroadcastReceiver,
 			      new IntentFilter(TorServiceConstants.LOCAL_ACTION_LOG));
 	}
 	
@@ -129,7 +129,7 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 
     // Our handler for received Intents. This will be called whenever an Intent
     // with an action named "custom-event-name" is broadcasted.
-    private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
+    private BroadcastReceiver mLocalBroadcastReceiver = new BroadcastReceiver() {
 
       @Override
       public void onReceive(Context context, Intent intent) {
@@ -1255,7 +1255,7 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
        @Override
     protected void onDestroy() {
         super.onDestroy();
-          LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
+          LocalBroadcastManager.getInstance(this).unregisterReceiver(mLocalBroadcastReceiver);
 
     }
 
