@@ -348,11 +348,12 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
      * @see android.app.Service#onStart(android.content.Intent, int)
      */
     public int onStartCommand(Intent intent, int flags, int startId) {
+        if (intent != null)
+            new Thread (new TorStarter(intent)).start();
+        else
+            Log.d(TAG, "Got null onStartCommand() intent");
 
-        new Thread (new TorStarter(intent)).start();
-        
         return Service.START_STICKY;
-
     }
     
     private class TorStarter implements Runnable
@@ -364,36 +365,27 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             mIntent = intent;
         }
         
-        public void run (){
-            try{
-                //if this is a start on boot launch turn tor on
-                if (mIntent != null){
-                    String action = mIntent.getAction();
-                    
-                    if (action!=null){
-                        if(action.equals(Intent.ACTION_BOOT_COMPLETED)||action.equals(CMD_START)){
-                            setTorProfile(STATUS_ON);
-                        }else if (action.equals(CMD_STOP)){
-                            setTorProfile(STATUS_OFF);
-                        }else if (action.equals(CMD_NEWNYM)){
-                            newIdentity();
-                        }else if (action.equals(CMD_FLUSH)){
-                            flushTransparentProxyRules();
-                        }else if (action.equals(CMD_UPDATE)){
-                            processSettings();
-                        }else if (action.equals(CMD_VPN)){                        	
-                            enableVpnProxy();
-                        }
-                        else if (action.equals(CMD_VPN_CLEAR)){
-                            clearVpnProxy();
-                        }
-                    }
-                }else{
-                    Log.d(TAG, "Got null onStartCommand() intent");
+        public void run() {
+            String action = mIntent.getAction();
+
+            if (action != null) {
+                if (action.equals(Intent.ACTION_BOOT_COMPLETED) || action.equals(CMD_START)) {
+                    setTorProfile(STATUS_ON);
+                } else if (action.equals(CMD_STOP)) {
+                    setTorProfile(STATUS_OFF);
+                } else if (action.equals(CMD_NEWNYM)) {
+                    newIdentity();
+                } else if (action.equals(CMD_FLUSH)) {
+                    flushTransparentProxyRules();
+                } else if (action.equals(CMD_UPDATE)) {
+                    processSettings();
+                } else if (action.equals(CMD_VPN)) {
+                    enableVpnProxy();
+                } else if (action.equals(CMD_VPN_CLEAR)) {
+                    clearVpnProxy();
+                } else {
+                    Log.w(TAG, "unhandled TorService Intent: " + action);
                 }
-                
-            }catch (Exception e){
-                Log.e(TAG,"error onBind",e);
             }
         }
     }
@@ -879,18 +871,18 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         shellUser.close();
     }
 
-    private boolean flushTransparentProxyRules () throws Exception 
-    {
-
+    private boolean flushTransparentProxyRules () {
         if (mHasRoot)
         {
              if (mTransProxy == null)
-             {
                  mTransProxy = new TorTransProxy(this, fileXtables);
-                 
+
+             try {
+                 mTransProxy.flushTransproxyRules(this);
+             } catch (Exception e) {
+                 e.printStackTrace();
+                 return false;
              }
-    
-             mTransProxy.flushTransproxyRules(this);
          
              return true;
         }

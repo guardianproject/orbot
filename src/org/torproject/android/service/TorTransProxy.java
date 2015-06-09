@@ -3,8 +3,6 @@ package org.torproject.android.service;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.concurrent.TimeoutException;
-
 import org.sufficientlysecure.rootcommands.Shell;
 import org.sufficientlysecure.rootcommands.command.SimpleCommand;
 import org.torproject.android.OrbotConstants;
@@ -12,7 +10,6 @@ import org.torproject.android.settings.TorifiedApp;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 
 public class TorTransProxy implements TorServiceConstants {
 	
@@ -335,7 +332,7 @@ public class TorTransProxy implements TorServiceConstants {
 		return code;
 	}*/
 	
-	public int setTransparentProxyingByApp(Context context, ArrayList<TorifiedApp> apps, boolean enableRule, Shell shell) throws Exception
+	public int setTransparentProxyingByApp(Context context, ArrayList<TorifiedApp> apps, boolean enableRule, Shell shell)
 	{
 		String ipTablesPath = getIpTablesPath(context);
 		
@@ -439,10 +436,13 @@ public class TorTransProxy implements TorServiceConstants {
 		return lastExit;
     }	
 	
-	private int executeCommand (Shell shell, String cmdString) throws IOException, TimeoutException
-	{
+	private int executeCommand (Shell shell, String cmdString) {
 		SimpleCommand cmd = new SimpleCommand(cmdString);
-		shell.add(cmd);
+		try {
+		    shell.add(cmd);
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}
 		int exitCode = cmd.getExitCode();
 		String output = cmd.getOutput();
 		
@@ -524,8 +524,7 @@ public class TorTransProxy implements TorServiceConstants {
 		 
 	}
 	
-	public int dropAllIPv6Traffic (Context context, int appUid, boolean enableDrop, Shell shell) throws Exception
-	{
+	public int dropAllIPv6Traffic (Context context, int appUid, boolean enableDrop, Shell shell) {
 
 		String action = " -A ";
 		String chain = "OUTPUT";
@@ -575,8 +574,7 @@ public class TorTransProxy implements TorServiceConstants {
 		return lastExit;
 	}*/
 	
-	public int flushTransproxyRules (Context context) throws Exception 
-	{
+	public int flushTransproxyRules (Context context) throws IOException {
 		int exit = -1;
 		
 		String ipTablesPath = getIpTablesPath(context);
