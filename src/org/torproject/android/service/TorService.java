@@ -8,7 +8,45 @@
 package org.torproject.android.service;
 
 
+import android.annotation.SuppressLint;
+import android.app.Application;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.Service;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.Build;
+import android.os.IBinder;
+import android.os.RemoteException;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationCompat.Builder;
+import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
+import android.widget.RemoteViews;
+
+import net.freehaven.tor.control.ConfigEntry;
+import net.freehaven.tor.control.EventHandler;
+import net.freehaven.tor.control.TorControlConnection;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.sufficientlysecure.rootcommands.Shell;
+import org.sufficientlysecure.rootcommands.command.SimpleCommand;
+import org.torproject.android.OrbotConstants;
+import org.torproject.android.OrbotMainActivity;
 import org.torproject.android.Prefs;
+import org.torproject.android.R;
+import org.torproject.android.settings.AppManager;
+import org.torproject.android.settings.TorifiedApp;
+import org.torproject.android.vpn.OrbotVpnService;
+
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
@@ -41,44 +79,6 @@ import java.util.StringTokenizer;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeoutException;
-
-import net.freehaven.tor.control.ConfigEntry;
-import net.freehaven.tor.control.EventHandler;
-import net.freehaven.tor.control.TorControlConnection;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-import org.sufficientlysecure.rootcommands.Shell;
-import org.sufficientlysecure.rootcommands.command.SimpleCommand;
-import org.torproject.android.OrbotConstants;
-import org.torproject.android.OrbotMainActivity;
-import org.torproject.android.R;
-import org.torproject.android.settings.AppManager;
-import org.torproject.android.settings.TorifiedApp;
-import org.torproject.android.vpn.OrbotVpnService;
-
-import android.annotation.SuppressLint;
-import android.app.Application;
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.app.Service;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.Build;
-import android.os.IBinder;
-import android.os.RemoteException;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationCompat.Builder;
-import android.support.v4.content.LocalBroadcastManager;
-import android.util.Log;
-import android.widget.RemoteViews;
 
 public class TorService extends Service implements TorServiceConstants, OrbotConstants, EventHandler
 {
@@ -344,10 +344,10 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             String action = mIntent.getAction();
 
             if (action != null) {
-                if (action.equals(Intent.ACTION_BOOT_COMPLETED) || action.equals(CMD_START)) {
-                    setTorProfile(STATUS_ON);
+                if (action.equals(CMD_START)) {
+                    startTor();
                 } else if (action.equals(CMD_STOP)) {
-                    setTorProfile(STATUS_OFF);
+                    stopTor();
                 } else if (action.equals(CMD_NEWNYM)) {
                     newIdentity();
                 } else if (action.equals(CMD_FLUSH)) {
@@ -391,20 +391,19 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         super.onDestroy();
     }
 
-    private void stopTor ()
-    {
+    private void stopTor() {
+        Log.i("TorService", "stopTor");
+        try {
+            mCurrentStatus = STATUS_STOPPING;
+            sendCallbackStatus(mCurrentStatus);
 
-        try
-        {
+            sendCallbackLogMessage(getString(R.string.status_shutting_down));
             Log.d(TAG,"Tor is stopping NOW");
 
-            killAllDaemons ();
+            killAllDaemons();
 
             //stop the foreground priority and make sure to remove the persistant notification
             stopForeground(true);
-
-            mCurrentStatus = STATUS_OFF;
-            sendCallbackStatus(mCurrentStatus);
 
             if (Prefs.useRoot() && Prefs.useTransparentProxying())
             {
@@ -416,7 +415,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             clearNotifications();
 
             sendCallbackLogMessage(getString(R.string.status_disabled));
-
         }
         catch (CannotKillException e)
         {
@@ -431,8 +429,10 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             Log.d(TAG, "An error occured stopping Tor",e);
             logNotice("An error occured stopping Tor: " + e.getMessage());
             sendCallbackLogMessage(getString(R.string.something_bad_happened));
-
         }
+
+        mCurrentStatus = STATUS_OFF;
+        sendCallbackStatus(mCurrentStatus);
     }
 
 
@@ -748,17 +748,31 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         return success;
     }
 
-    private void startTor () throws Exception
-    {
+    private void startTor() {
+        if (mCurrentStatus == STATUS_STARTING || mCurrentStatus == STATUS_STOPPING) {
+            // these states should probably be handled better
+            sendCallbackLogMessage("Ignoring start request, currently " + mCurrentStatus);
+            return;
+        } else if (mCurrentStatus == STATUS_ON) {
+            sendCallbackLogMessage("Ignoring start request, already started.");
+            return;
+        }
         
         mCurrentStatus = STATUS_STARTING;
         sendCallbackStatus(mCurrentStatus);
-        
+        sendCallbackLogMessage(getString(R.string.status_starting_up));
+        logNotice(getString(R.string.status_starting_up));
+
+        if (findExistingTorDaemon()) {
+            return; // an old tor is already running, nothing to do
+        }
+
+        // make sure there are no stray daemons running
+        killAllDaemons();
+
+        try {
         if (fileTor == null)
             initBinariesAndDirectories();
-
-        logNotice(getString(R.string.status_starting_up));
-        sendCallbackLogMessage(getString(R.string.status_starting_up));
         
         ArrayList<String> customEnv = new ArrayList<String>();
 
@@ -797,10 +811,23 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         else
         {
                  showToolbarNotification(getString(R.string.unable_to_start_tor), ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
-
         }
-        
         shellUser.close();
+
+        mCurrentStatus = STATUS_ON;
+        sendCallbackStatus(mCurrentStatus);
+        } catch (CannotKillException e) {
+            logException(e.getMessage(), e);
+            showToolbarNotification(getString(R.string.unable_to_reset_tor),
+                    ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
+            stopTor();
+        } catch (Exception e) {
+            logException("Unable to start Tor: " + e.toString(), e);
+            showToolbarNotification(
+                    getString(R.string.unable_to_start_tor) + ": " + e.getMessage(),
+                    ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
+            stopTor();
+        }
     }
 
     private boolean flushTransparentProxyRules () {
@@ -1110,9 +1137,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                             conn.setConf("Log", "debug file " + fileLog2.getCanonicalPath());                                
                         }*/
                         
-                        mCurrentStatus = STATUS_STARTING;
-                        sendCallbackStatus(mCurrentStatus);
-                        
                          String confSocks = conn.getInfo("net/listeners/socks");
                          StringTokenizer st = new StringTokenizer(confSocks," ");
 
@@ -1290,60 +1314,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         public int getSOCKSPort() throws RemoteException {
             return mPortSOCKS;
         }
-
-        public void setTorProfile(String newState)  {
-        
-            if (newState == STATUS_ON)
-            {
-                
-                if (mCurrentStatus == STATUS_OFF)
-                {
-                    sendCallbackLogMessage (getString(R.string.status_starting_up));
-
-
-                    try
-                        {
-
-	                        boolean found = findExistingTorDaemon();
-
-	                        if (!found)
-	                        {
-	                            killAllDaemons();
-	                               startTor();
-	                        }
-                        }
-                    catch (CannotKillException e)
-                    {
-                        logException(e.getMessage(), e);
-                        mCurrentStatus = STATUS_OFF;
-                        sendCallbackStatus(mCurrentStatus);
-                        showToolbarNotification(getString(R.string.unable_to_reset_tor),
-                                ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
-                        stopTor();
-                    }
-                        catch (Exception e)
-                        {                
-                           
-                           logException("Unable to start Tor: " + e.toString(),e);    
-                            mCurrentStatus = STATUS_OFF;
-                           sendCallbackStatus(mCurrentStatus);
-                           
-                            showToolbarNotification(getString(R.string.unable_to_start_tor) + ": " + e.getMessage(), ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
-                           stopTor();
-                        }
-                        
-                }
-            }
-            else if (newState == STATUS_OFF)
-            {
-                sendCallbackLogMessage (getString(R.string.status_shutting_down));
-              
-                stopTor();
-
-                mCurrentStatus = STATUS_OFF;  
-                sendCallbackStatus(mCurrentStatus);
-            }
-        }
         
         public void enableVpnProxy () {
         	debug ("enabling VPN Proxy");
@@ -1403,21 +1373,11 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
     @Override
     public void message(String severity, String msg) {
-        
         logNotice(severity + ": " + msg);
-          
-          if (msg.indexOf(TOR_CONTROL_PORT_MSG_BOOTSTRAP_DONE)!=-1)
-          {
-              mCurrentStatus = STATUS_ON;
-              sendCallbackStatus(mCurrentStatus);
-
-              showToolbarNotification(getString(R.string.status_activated), NOTIFY_ID, R.drawable.ic_stat_tor);
-          }
     }
 
     @Override
     public void newDescriptors(List<String> orList) {
-        
     }
 
     @Override
@@ -1547,22 +1507,9 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             if (Prefs.useDebugLogging())
                 debug(sb.toString());
             else if(status.equals("BUILT"))
-            {
-
-                if (mCurrentStatus == STATUS_STARTING)
-                    mCurrentStatus = STATUS_ON;
-                
-                sendCallbackStatus(mCurrentStatus);
-                
-             
                 logNotice(sb.toString());
-                        
-            }
             else if (status.equals("CLOSED"))
-            {
                 logNotice(sb.toString());
-
-            }
 
             if (Prefs.expandedNotifications())
             {
