@@ -1401,10 +1401,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             startService(intent);                                              
         }
 
-        
-
+    @Override
     public void message(String severity, String msg) {
-        
         
         logNotice(severity + ": " + msg);
           
@@ -1412,23 +1410,18 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
           {
               mCurrentStatus = STATUS_ON;
               sendCallbackStatus(mCurrentStatus);
-              
 
               showToolbarNotification(getString(R.string.status_activated), NOTIFY_ID, R.drawable.ic_stat_tor);
           }
-        
-          
-          
     }
 
-
+    @Override
     public void newDescriptors(List<String> orList) {
         
     }
 
-
+    @Override
     public void orConnStatus(String status, String orName) {
-        
         
             StringBuilder sb = new StringBuilder();
             sb.append("orConnStatus (");
@@ -1437,10 +1430,9 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             sb.append(status);
             
             debug(sb.toString());
-        
     }
 
-
+    @Override
     public void streamStatus(String status, String streamID, String target) {
         
             StringBuilder sb = new StringBuilder();
@@ -1450,10 +1442,9 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             sb.append(status);
             
             logNotice(sb.toString());
-        
     }
 
-
+    @Override
     public void unrecognized(String type, String msg) {
         
             StringBuilder sb = new StringBuilder();
@@ -1463,10 +1454,9 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             sb.append(msg);
             
             logNotice(sb.toString());
-    
-        
     }
-    
+
+    @Override
     public void bandwidthUsed(long read, long written) {
     
         if (read != lastRead || written != lastWritten)
@@ -1488,15 +1478,12 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
             mTotalTrafficWritten += written;
             mTotalTrafficRead += read;
-            
-
         }
         
         lastWritten = written;
         lastRead = read;
         
         sendCallbackStatusMessage(lastWritten, lastRead, mTotalTrafficWritten, mTotalTrafficRead);
-
     }
     
     private String formatCount(long count) {
@@ -1515,7 +1502,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     }
     
     public void circuitStatus(String status, String circID, String path) {
-        
         
             StringBuilder sb = new StringBuilder();
             sb.append("Circuit (");
