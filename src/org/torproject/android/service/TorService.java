@@ -167,8 +167,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     }
     
     
-    private boolean findExistingProc () 
-    {
+    private boolean findExistingTorDaemon() {
         if (fileTor != null)
         {
             try
@@ -631,7 +630,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 {
                     try
                     {
-                        findExistingProc ();
+                        findExistingTorDaemon();
                     }
                     catch (Exception e)
                     {
@@ -1305,13 +1304,11 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                     try
                         {
 
-	                        boolean found = findExistingProc ();
+	                        boolean found = findExistingTorDaemon();
 
 	                        if (!found)
 	                        {
-	                            killProcess(fileTor);
-	                            killProcess(filePolipo);
-
+	                            killAllDaemons();
 	                               startTor();
 	                        }
                         }
