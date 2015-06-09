@@ -1882,7 +1882,10 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
         Intent intent = new Intent(ACTION_STATUS);
         intent.putExtra(EXTRA_STATUS, currentStatus);
+        // send for Orbot internals, using secure local broadcast
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+        // send for any apps that are interested
+        sendBroadcast(intent);
     }
     
     /*
