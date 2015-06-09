@@ -98,7 +98,9 @@ public class OrbotMainActivity extends Activity
         super.onCreate(savedInstanceState);
 
         mPrefs = TorServiceUtils.getSharedPrefs(getApplicationContext());        
-        
+
+        /* Create the widgets before registering for broadcasts to guarantee
+         * that the widgets exist when the status updates try to update them */
     	doLayout();
 
     	/* receive the internal status broadcasts, which are separate from the public
@@ -1044,89 +1046,73 @@ public class OrbotMainActivity extends Activity
     
              aDialog.setCanceledOnTouchOutside(true);
     }
-    
-    private void updateStatus (String torServiceMsg)
-    {
-        
-            //now update the layout_main UI based on the status
-            if (imgStatus != null)
-            {
-                    
-                    if (torStatus == TorServiceConstants.STATUS_ON)
-                    {
-                            
-                            imgStatus.setImageResource(R.drawable.toron);
-                    		
-                            mBtnBrowser.setEnabled(true);
-                            
-                            
-                            if (lblStatus != null && torServiceMsg != null)
-                            	if (torServiceMsg.indexOf('%')!=-1)
-                            		lblStatus.setText(torServiceMsg);
-                            	else
-                            		lblStatus.setText("");
-                            
-                            boolean showFirstTime = mPrefs.getBoolean("connect_first_time",true);
-                            
-                            if (showFirstTime)
-                            {
-                            
-                                    Editor pEdit = mPrefs.edit();
-                                    
-                                    pEdit.putBoolean("connect_first_time",false);
-                                    
-                                    pEdit.commit();
-                                    
-                                    showAlert(getString(R.string.status_activated),getString(R.string.connect_first_time),true);
-                                    
-                            }
-                            
-                            if (autoStartFromIntent)
-                            {
-                                autoStartFromIntent = false;
-                                finish();
-                                Log.e(TAG, "autoStartFromIntent finish");
-                            }
-                    }
-                    else if (torStatus == TorServiceConstants.STATUS_STARTING)
-                    {
-                        
-                        imgStatus.setImageResource(R.drawable.torstarting);
-                
-                	
-                        if (lblStatus != null && torServiceMsg != null)
-                        	if (torServiceMsg.indexOf('%')!=-1)
-                        		lblStatus.setText(torServiceMsg);
-                        	
-                       
-                    	           
-                    }
-                    else if (torStatus == TorServiceConstants.STATUS_OFF)
-                    {
-                        imgStatus.setImageResource(R.drawable.toroff);
-                        lblStatus.setText(getString(R.string.press_to_start));
-                        mBtnBrowser.setEnabled(false);
-                        
 
-                    }
-                    
-                    if (torServiceMsg != null && torServiceMsg.length() > 0)
-                    {
-                    	mTxtOrbotLog.append(torServiceMsg + '\n');
-                    }
+    /**
+     * Update the layout_main UI based on the status of {@link TorService}.
+     * {@code torServiceMsg} must never be {@code null}
+     */
+    private void updateStatus(String torServiceMsg) {
+
+        if (torStatus == TorServiceConstants.STATUS_ON) {
+            imgStatus.setImageResource(R.drawable.toron);
+
+            mBtnBrowser.setEnabled(true);
+
+            // everything is running, clear the status message
+            lblStatus.setText("");
+
+            boolean showFirstTime = mPrefs.getBoolean("connect_first_time", true);
+
+            if (showFirstTime)
+            {
+                Editor pEdit = mPrefs.edit();
+                pEdit.putBoolean("connect_first_time", false);
+                pEdit.commit();
+                showAlert(getString(R.string.status_activated),
+                        getString(R.string.connect_first_time), true);
             }
-                
-           
+
+            if (autoStartFromIntent)
+            {
+                autoStartFromIntent = false;
+                finish();
+                Log.e(TAG, "autoStartFromIntent finish");
+            }
+
+        } else if (torStatus == TorServiceConstants.STATUS_STARTING) {
+
+            imgStatus.setImageResource(R.drawable.torstarting);
+
+            // only show Tor daemon's percentage complete messages
+            if (torServiceMsg.indexOf('%') != -1)
+                lblStatus.setText(torServiceMsg);
+            mBtnBrowser.setEnabled(false);
+
+        } else if (torStatus == TorServiceConstants.STATUS_STOPPING) {
+
+            imgStatus.setImageResource(R.drawable.torstarting);
+            lblStatus.setText(torServiceMsg);
+            mBtnBrowser.setEnabled(false);
+
+        } else if (torStatus == TorServiceConstants.STATUS_OFF) {
+
+            imgStatus.setImageResource(R.drawable.toroff);
+            lblStatus.setText(getString(R.string.press_to_start));
+            mBtnBrowser.setEnabled(false);
+        }
+
+        if (torServiceMsg != null && torServiceMsg.length() > 0)
+        {
+            mTxtOrbotLog.append(torServiceMsg + '\n');
+        }
     }
-        
-         
-  
+
   // guess what? this start's Tor! actually no it just requests via the local ITorService to the remote TorService instance
   // to start Tor
     private void startTor () throws RemoteException
     {
+        Log.i("OrbotMainActivity", "startTor");
 		sendIntentToService (TorServiceConstants.CMD_START);
-		torStatus = TorServiceConstants.STATUS_STARTING;
 				
 		mTxtOrbotLog.setText("");
 
@@ -1198,12 +1184,8 @@ public class OrbotMainActivity extends Activity
                 
                     downloadText.setText(formatCount(datacount.Download) + " / " + formatTotal(totalRead));
                     uploadText.setText(formatCount(datacount.Upload) + " / " + formatTotal(totalWrite));
-            
-                    if (torStatus != TorServiceConstants.STATUS_ON)
-                    {
-                        updateStatus("");
-                    }
-                        
+
+                    break;
                 default:
                     super.handleMessage(msg);
             }
