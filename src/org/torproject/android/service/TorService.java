@@ -178,10 +178,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                  if (mLastProcessId != -1 && conn != null)
                  {
                     sendCallbackLogMessage (getString(R.string.found_existing_tor_process));
-                    
-                    mCurrentStatus = STATUS_ON;
-                    sendCallbackStatus(mCurrentStatus);
-                    
+                    sendCallbackStatus(STATUS_ON);
                     return true;
                  }
                  
@@ -394,8 +391,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     private void stopTor() {
         Log.i("TorService", "stopTor");
         try {
-            mCurrentStatus = STATUS_STOPPING;
-            sendCallbackStatus(mCurrentStatus);
+            sendCallbackStatus(STATUS_STOPPING);
 
             sendCallbackLogMessage(getString(R.string.status_shutting_down));
             Log.d(TAG,"Tor is stopping NOW");
@@ -431,8 +427,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             sendCallbackLogMessage(getString(R.string.something_bad_happened));
         }
 
-        mCurrentStatus = STATUS_OFF;
-        sendCallbackStatus(mCurrentStatus);
+        sendCallbackStatus(STATUS_OFF);
     }
 
 
@@ -758,8 +753,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             return;
         }
         
-        mCurrentStatus = STATUS_STARTING;
-        sendCallbackStatus(mCurrentStatus);
+        sendCallbackStatus(STATUS_STARTING);
         sendCallbackLogMessage(getString(R.string.status_starting_up));
         logNotice(getString(R.string.status_starting_up));
 
@@ -814,8 +808,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         }
         shellUser.close();
 
-        mCurrentStatus = STATUS_ON;
-        sendCallbackStatus(mCurrentStatus);
+        sendCallbackStatus(STATUS_ON);
         } catch (CannotKillException e) {
             logException(e.getMessage(), e);
             showToolbarNotification(getString(R.string.unable_to_reset_tor),
@@ -1885,6 +1878,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     }
     
     private void sendCallbackStatus(String currentStatus) {
+        mCurrentStatus = currentStatus;
+
         Intent intent = new Intent(ACTION_STATUS);
         intent.putExtra(EXTRA_STATUS, currentStatus);
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
