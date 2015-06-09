@@ -11,7 +11,7 @@
   <string name="status_starting_up">Orbot is starting&#8230;</string>
   <string name="status_activated">Connected to the Tor network</string>
   <string name="status_disabled">Orbot is deactivated</string>
-  <string name="status_shutting_down">Orbot is shutting down</string>
+  <string name="status_shutting_down">TorService is shutting down</string>
   <string name="tor_process_starting">Starting Tor client&#8230;</string>
   <string name="tor_process_complete">complete.</string>
   <string name="tor_process_waiting">waiting.</string>

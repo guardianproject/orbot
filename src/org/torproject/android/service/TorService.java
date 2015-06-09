@@ -343,8 +343,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             if (action != null) {
                 if (action.equals(CMD_START)) {
                     startTor();
-                } else if (action.equals(CMD_STOP)) {
-                    stopTor();
+                    // stopTor() is called when the Service is destroyed
                 } else if (action.equals(CMD_NEWNYM)) {
                     newIdentity();
                 } else if (action.equals(CMD_FLUSH)) {
@@ -371,20 +370,9 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     }
 
     @Override
-    public boolean stopService(Intent name) {
-        logNotice("TorService is being stopped: " + name);
-        return super.stopService(name);
-    }
-
-    @Override
-    public void onDestroy ()
-    {
-        Log.i("TorService", "onDestroy");
-        String msg = ("TorService is being DESTROYED... shutting down!");
-        Log.d(TAG, msg);
-        sendCallbackLogMessage(msg);
+    public void onDestroy() {
+        stopTor();
         unregisterReceiver(mNetworkStateReceiver);
-        clearNotifications ();
         super.onDestroy();
     }
 
@@ -392,9 +380,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         Log.i("TorService", "stopTor");
         try {
             sendCallbackStatus(STATUS_STOPPING);
-
             sendCallbackLogMessage(getString(R.string.status_shutting_down));
-            Log.d(TAG,"Tor is stopping NOW");
 
             killAllDaemons();
 
@@ -408,13 +394,10 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             	shellRoot.close();
             }
 
-            clearNotifications();
-
             sendCallbackLogMessage(getString(R.string.status_disabled));
         }
         catch (CannotKillException e)
         {
-            Log.d(TAG, "An error occured stopping Tor", e);
             logNotice("An error occured stopping Tor: " + e.getMessage());
             sendCallbackLogMessage(getString(R.string.unable_to_reset_tor));
             showToolbarNotification(getString(R.string.unable_to_reset_tor),
@@ -422,11 +405,10 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         }
         catch (Exception e)
         {
-            Log.d(TAG, "An error occured stopping Tor",e);
             logNotice("An error occured stopping Tor: " + e.getMessage());
             sendCallbackLogMessage(getString(R.string.something_bad_happened));
         }
-
+        clearNotifications();
         sendCallbackStatus(STATUS_OFF);
     }
 

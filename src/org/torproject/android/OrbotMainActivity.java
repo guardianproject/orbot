@@ -121,22 +121,16 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 		torService.setAction(action);
 		startService(torService);
 	}
-	
-	private void stopService ()
-	{
-		
-		Intent torService = new Intent(this, TorService.class);
-		stopService(torService);
-		
-	}
-	
-    
+
+    private void stopTor() {
+        Intent torService = new Intent(this, TorService.class);
+        stopService(torService);
+    }
+
     // Our handler for received Intents. This will be called whenever an Intent
     // with an action named "custom-event-name" is broadcasted.
     private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
-        
-        
-        
+
       @Override
       public void onReceive(Context context, Intent intent) {
         // Get extra data included in the Intent
@@ -425,34 +419,21 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
             
         
         }
-      
-        /**
-        * This is our attempt to REALLY exit Orbot, and stop the background service
-        * However, Android doesn't like people "quitting" apps, and/or our code may not
-        * be quite right b/c no matter what we do, it seems like the TorService still exists
-        **/
-        private void doExit ()
-        {
-                try {
-                        
-                        //one of the confusing things about all of this code is the multiple
-                        //places where things like "stopTor" are called, both in the Activity and the Service
-                        //not something to tackle in your first iteration, but i thin we can talk about fixing
-                        //terminology but also making sure there are clear distinctions in control
-                        stopTor();
-                        stopService ();
-                        
-                        
-                } catch (RemoteException e) {
-                        Log.w(TAG, e);
-                }
-                
-                //Kill all the wizard activities
-                setResult(RESULT_CLOSE_ALL);
-                finish();
-                
-        }
-        
+
+    /**
+     * This is our attempt to REALLY exit Orbot, and stop the background service
+     * However, Android doesn't like people "quitting" apps, and/or our code may
+     * not be quite right b/c no matter what we do, it seems like the TorService
+     * still exists
+     **/
+    private void doExit() {
+        stopTor();
+
+        // Kill all the wizard activities
+        setResult(RESULT_CLOSE_ALL);
+        finish();
+    }
+
 	protected void onPause() {
 		try
 		{
@@ -1223,49 +1204,20 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
         msg.getData().putString(HANDLER_TOR_MSG, getString(R.string.status_starting_up));
         mStatusUpdateHandler.sendMessage(msg);
     }
-    
-    //now we stop Tor! amazing!
-    private void stopTor () throws RemoteException
-    {
-    	sendIntentToService (TorServiceConstants.CMD_STOP);
-		torStatus = TorServiceConstants.STATUS_OFF;
-    	Message msg = mStatusUpdateHandler.obtainMessage(TorServiceConstants.DISABLE_TOR_MSG);
-    	mStatusUpdateHandler.sendMessage(msg);
-    }
-    
-        /*
-     * (non-Javadoc)
-     * @see android.view.View.OnClickListener#onClick(android.view.View)
-     */
-        public boolean onLongClick(View view) {
-             
-            try
-            {
-                    
-                if (torStatus == TorServiceConstants.STATUS_OFF)
-                {
 
-                        startTor();
-                }
-                else
-                {
-                        
-                        stopTor();
-                        stopService ();
-                        
-                }
-                
-                return true;
-                    
+    public boolean onLongClick(View view) {
+        try {
+            if (torStatus == TorServiceConstants.STATUS_OFF) {
+                startTor();
+            } else {
+                stopTor();
             }
-            catch (Exception e)
-            {
-                    Log.d(TAG,"error onclick",e);
-            }
-            
-            return false;
-                    
+            return true;
+        } catch (RemoteException e) {
+            Log.d(TAG, "error onclick", e);
         }
+        return false;
+    }
 
 // this is what takes messages or values from the callback threads or other non-mainUI threads
 //and passes them back into the main UI thread for display to the user
