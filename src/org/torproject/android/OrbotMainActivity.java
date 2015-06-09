@@ -447,7 +447,7 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 			//can happen on exit/shutdown
 		}
 	}
-	
+
 	private void doTorCheck ()
 	{
 		
@@ -479,13 +479,11 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 
 		if (onionHostname == null || onionHostname.length() == 0)
 		{
-			stopTor();			
-			startTor();
-			
+			requestTorRereadConfig();
+
 			new Thread () {
-				
-			
-				public void run ()
+
+			    public void run ()
 				{
 					String onionHostname = mPrefs.getString("pref_hs_hostname","");
 
@@ -945,37 +943,13 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 			String bridgeList = Prefs.getBridgesList();
 			if (bridgeList != null && bridgeList.length() > 0)
 			{
-				restartTor ();
+				requestTorRereadConfig ();
 			}
-			
 		}
     }
     
-    private void restartTor ()
-    {
-    	try
-		{
-			//do auto restart
-			stopTor ();
-			
-			mStatusUpdateHandler.postDelayed(new Runnable () {
-				public void run ()
-				{
-					try 
-					{
-						startTor();
-					}
-					catch (Exception e)
-					{
-						Log.e(TAG,"can't start orbot",e);
-					}
-				}
-			}, 2000);
-		}
-		catch (Exception e)
-		{
-			Log.e(TAG,"can't stop orbot",e);
-		}
+    private void requestTorRereadConfig()    {
+        sendIntentToService (TorServiceConstants.CMD_START);
     }
     
     public void promptStartVpnService ()

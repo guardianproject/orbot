@@ -344,6 +344,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 if (action.equals(CMD_START)) {
                     startTor();
                     // stopTor() is called when the Service is destroyed
+                } else if (action.equals(CMD_SIGNAL_HUP)) {
+                    requestTorRereadConfig();
                 } else if (action.equals(CMD_NEWNYM)) {
                     newIdentity();
                 } else if (action.equals(CMD_FLUSH)) {
@@ -534,7 +536,28 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         }
     }
 
+    private void requestTorRereadConfig() {
+        try {
+            conn.signal("HUP");
+            return;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // if that fails, try again using native utils
+        try {
+            killProcess(fileTor, "-1"); // this is -HUP
+        } catch (CannotKillException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void killProcess(File fileProcBin) throws IOException, CannotKillException {
+        killProcess(fileProcBin, "-9"); // this is -KILL
+    }
+
+    private void killProcess(File fileProcBin, String signal) throws IOException, CannotKillException {
         int procId = -1;
         int killAttempts = 0;
 
@@ -554,10 +577,10 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             } else {
                 shell = Shell.startShell();
             }
-            shell.add(new SimpleCommand("busybox killall " + fileProcBin.getName()));
-            shell.add(new SimpleCommand("toolbox kill -9 " + pidString));
-            shell.add(new SimpleCommand("busybox kill -9 " + pidString));
-            shell.add(new SimpleCommand("kill -9 " + pidString));
+            shell.add(new SimpleCommand("busybox killall " + signal + " " + fileProcBin.getName()));
+            shell.add(new SimpleCommand("toolbox kill " + signal + " " + pidString));
+            shell.add(new SimpleCommand("busybox kill " + signal + " " + pidString));
+            shell.add(new SimpleCommand("kill " + signal + " " + pidString));
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
