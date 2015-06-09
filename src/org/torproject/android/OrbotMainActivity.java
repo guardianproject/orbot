@@ -116,13 +116,10 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 	
 	
 
-	private void startService (String action)
-	{
-		
+	private void sendIntentToService(String action) {
 		Intent torService = new Intent(this, TorService.class);    
 		torService.setAction(action);
 		startService(torService);
-		
 	}
 	
 	private void stopService ()
@@ -790,11 +787,7 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
         }
         else if (request == REQUEST_VPN && response == RESULT_OK)
         {
-            startService(TorServiceConstants.CMD_VPN);
-            
-           // if (torStatus == TorServiceConstants.STATUS_ON)
-            //	restartTor ();   
-            
+            sendIntentToService(TorServiceConstants.CMD_VPN);
         }
         
         IntentResult scanResult = IntentIntegrator.parseActivityResult(request, response, data);
@@ -1051,28 +1044,24 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
         } 
         else
         {
-            startService(TorServiceConstants.CMD_VPN);
-          //  if (torStatus == TorServiceConstants.STATUS_ON)
-            //	restartTor ();
-            
+            sendIntentToService(TorServiceConstants.CMD_VPN);
         }
     }
     
     public void stopVpnService ()
     {    	
-        startService(TorServiceConstants.CMD_VPN_CLEAR);
-       // restartTor ();
+        sendIntentToService(TorServiceConstants.CMD_VPN_CLEAR);
     }
 
     private boolean flushTransProxy ()
     {
-        startService(TorServiceConstants.CMD_FLUSH);
+        sendIntentToService(TorServiceConstants.CMD_FLUSH);
         return true;
     }
     
     private boolean updateTransProxy ()
     {
-        startService(TorServiceConstants.CMD_UPDATE_TRANS_PROXY);
+        sendIntentToService(TorServiceConstants.CMD_UPDATE_TRANS_PROXY);
         return true;
     }
 
@@ -1222,9 +1211,7 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
   // to start Tor
     private void startTor () throws RemoteException
     {
-            
-
-		startService (TorServiceConstants.CMD_START);
+		sendIntentToService (TorServiceConstants.CMD_START);
 		torStatus = TorServiceConstants.STATUS_STARTING;
 				
 		mTxtOrbotLog.setText("");
@@ -1238,19 +1225,15 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
         Message msg = mHandler.obtainMessage(TorServiceConstants.ENABLE_TOR_MSG);
         msg.getData().putString(HANDLER_TOR_MSG, getString(R.string.status_starting_up));
         mHandler.sendMessage(msg);
-      
-        
     }
     
     //now we stop Tor! amazing!
     private void stopTor () throws RemoteException
     {
-    	
-    	startService (TorServiceConstants.CMD_STOP);
+    	sendIntentToService (TorServiceConstants.CMD_STOP);
 		torStatus = TorServiceConstants.STATUS_OFF;
     	Message msg = mHandler.obtainMessage(TorServiceConstants.DISABLE_TOR_MSG);
     	mHandler.sendMessage(msg);
-    	
     }
     
         /*
@@ -1409,7 +1392,7 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 
     public void spinOrbot (float direction)
     {
-            startService (TorServiceConstants.CMD_NEWNYM);
+            sendIntentToService (TorServiceConstants.CMD_NEWNYM);
         
         
             Toast.makeText(this, R.string.newnym, Toast.LENGTH_SHORT).show();
