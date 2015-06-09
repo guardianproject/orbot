@@ -107,11 +107,13 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
     	/* receive the internal status broadcasts, which are separate from the public
     	 * status broadcasts to prevent other apps from sending fake/wrong status
     	 * info to this app */
-    	LocalBroadcastManager.getInstance(this).registerReceiver(mLocalBroadcastReceiver,
-  	      new IntentFilter(TorServiceConstants.LOCAL_ACTION_STATUS));
-  	  
-		LocalBroadcastManager.getInstance(this).registerReceiver(mLocalBroadcastReceiver,
-			      new IntentFilter(TorServiceConstants.LOCAL_ACTION_LOG));
+        LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(this);
+        lbm.registerReceiver(mLocalBroadcastReceiver,
+                new IntentFilter(TorServiceConstants.LOCAL_ACTION_STATUS));
+        lbm.registerReceiver(mLocalBroadcastReceiver,
+                new IntentFilter(TorServiceConstants.LOCAL_ACTION_BANDWIDTH));
+        lbm.registerReceiver(mLocalBroadcastReceiver,
+                new IntentFilter(TorServiceConstants.LOCAL_ACTION_LOG));
 	}
 	
 	
@@ -127,43 +129,44 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
         stopService(torService);
     }
 
-    // Our handler for received Intents. This will be called whenever an Intent
-    // with an action named "custom-event-name" is broadcasted.
+    /**
+     * The state and log info from {@link TorService} are sent to the UI here in
+     * the form of a local broadcast. Regular broadcasts can be sent by any app,
+     * so local ones are used here so other apps cannot interfere with Orbot's
+     * operation.
+     */
     private BroadcastReceiver mLocalBroadcastReceiver = new BroadcastReceiver() {
 
-      @Override
-      public void onReceive(Context context, Intent intent) {
-        // Get extra data included in the Intent
-          
-        if (intent.hasExtra(TorServiceConstants.LOCAL_EXTRA_LOG))
-        {
-            String log = intent.getStringExtra(TorServiceConstants.LOCAL_EXTRA_LOG);
-            updateStatus(log);
-        }
-        else if (intent.hasExtra("up"))
-        {
-            long upload = intent.getLongExtra("up",0);
-            long download = intent.getLongExtra("down",0);
-            long written = intent.getLongExtra("written",0);
-            long read = intent.getLongExtra("read",0);
-            
-            Message msg = mStatusUpdateHandler.obtainMessage(TorServiceConstants.MESSAGE_TRAFFIC_COUNT);
-            msg.getData().putLong("download", download);
-            msg.getData().putLong("upload", upload);
-            msg.getData().putLong("readTotal", read);
-            msg.getData().putLong("writeTotal", written);
-            mStatusUpdateHandler.sendMessage(msg);
-            
-        }
-        else if (intent.hasExtra(TorServiceConstants.EXTRA_STATUS))
-        {
-            torStatus = intent.getStringExtra(TorServiceConstants.EXTRA_STATUS);
-            updateStatus("");
-        }
-        
-      }
-    };
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if (action == null)
+                return;
 
+            if (action.equals(TorServiceConstants.LOCAL_ACTION_LOG)) {
+                String log = intent.getStringExtra(TorServiceConstants.LOCAL_EXTRA_LOG);
+                updateStatus(log);
+
+            } else if (action.equals(TorServiceConstants.LOCAL_ACTION_BANDWIDTH)) {
+                long upload = intent.getLongExtra("up", 0);
+                long download = intent.getLongExtra("down", 0);
+                long written = intent.getLongExtra("written", 0);
+                long read = intent.getLongExtra("read", 0);
+
+                Message msg = mStatusUpdateHandler
+                        .obtainMessage(TorServiceConstants.MESSAGE_TRAFFIC_COUNT);
+                msg.getData().putLong("download", download);
+                msg.getData().putLong("upload", upload);
+                msg.getData().putLong("readTotal", read);
+                msg.getData().putLong("writeTotal", written);
+                mStatusUpdateHandler.sendMessage(msg);
+
+            } else if (action.equals(TorServiceConstants.LOCAL_ACTION_STATUS)) {
+                torStatus = intent.getStringExtra(TorServiceConstants.EXTRA_STATUS);
+                updateStatus("");
+            }
+        }
+    };
  
     private void doLayout ()
     {

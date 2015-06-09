@@ -1441,7 +1441,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         lastWritten = written;
         lastRead = read;
         
-        sendCallbackStatusMessage(lastWritten, lastRead, mTotalTrafficWritten, mTotalTrafficRead);
+        sendCallbackBandwidth(lastWritten, lastRead, mTotalTrafficWritten, mTotalTrafficRead);
     }
     
     private String formatCount(long count) {
@@ -1841,39 +1841,25 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             }
             catch (Exception ioe)
             {
-                
                 logException("Unable to update Tor configuration: " + ioe.getMessage(),ioe);
-
             }
             
             return false;
-            
         }
 
-        
-        
-    
-   
-    private void sendCallbackStatusMessage (long upload, long download, long written, long read)
-    {
-         
-        
-        Intent intent = new Intent(LOCAL_ACTION_LOG);
-        // You can also include some extra data.
+    private void sendCallbackBandwidth(long upload, long download, long written, long read)    {
+        Intent intent = new Intent(LOCAL_ACTION_BANDWIDTH);
+
         intent.putExtra("up",upload);
       intent.putExtra("down",download);
       intent.putExtra("written",written);
       intent.putExtra("read",read);
-      
-        LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
 
+        LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
     }
-    
- //   private ArrayList<String> mLogBuffer = new ArrayList<String>();
-    
+
     private void sendCallbackLogMessage (String logMessage)
     {
-         
         
         Intent intent = new Intent(LOCAL_ACTION_LOG);
           // You can also include some extra data.
