@@ -153,12 +153,12 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
             long written = intent.getLongExtra("written",0);
             long read = intent.getLongExtra("read",0);
             
-            Message msg = mHandler.obtainMessage(TorServiceConstants.MESSAGE_TRAFFIC_COUNT);
+            Message msg = mStatusUpdateHandler.obtainMessage(TorServiceConstants.MESSAGE_TRAFFIC_COUNT);
             msg.getData().putLong("download", download);
             msg.getData().putLong("upload", upload);
             msg.getData().putLong("readTotal", read);
             msg.getData().putLong("writeTotal", written);
-            mHandler.sendMessage(msg);
+            mStatusUpdateHandler.sendMessage(msg);
             
         }
         else if (intent.hasExtra(TorServiceConstants.EXTRA_STATUS))
@@ -977,8 +977,7 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 			//do auto restart
 			stopTor ();
 			
-			mHandler.postDelayed(new Runnable () {
-				
+			mStatusUpdateHandler.postDelayed(new Runnable () {
 				public void run ()
 				{
 					try 
@@ -1027,9 +1026,7 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 			public void onClick(DialogInterface dialog, int which) {
 				
 				mBtnVPN.setChecked(false);
-				
 			}
-
         	 
          })
          .show();
@@ -1075,7 +1072,7 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
 			mBtnBridges.setChecked(Prefs.bridgesEnabled());
         }
 
-        mHandler.postDelayed(new Runnable ()
+        mStatusUpdateHandler.postDelayed(new Runnable ()
         {
             public void run ()
             {
@@ -1222,9 +1219,9 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
         lblStatus.setText(getString(R.string.status_starting_up));
         
         //we send a message here to the progressDialog i believe, but we can clarify that shortly
-        Message msg = mHandler.obtainMessage(TorServiceConstants.ENABLE_TOR_MSG);
+        Message msg = mStatusUpdateHandler.obtainMessage(TorServiceConstants.ENABLE_TOR_MSG);
         msg.getData().putString(HANDLER_TOR_MSG, getString(R.string.status_starting_up));
-        mHandler.sendMessage(msg);
+        mStatusUpdateHandler.sendMessage(msg);
     }
     
     //now we stop Tor! amazing!
@@ -1232,8 +1229,8 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
     {
     	sendIntentToService (TorServiceConstants.CMD_STOP);
 		torStatus = TorServiceConstants.STATUS_OFF;
-    	Message msg = mHandler.obtainMessage(TorServiceConstants.DISABLE_TOR_MSG);
-    	mHandler.sendMessage(msg);
+    	Message msg = mStatusUpdateHandler.obtainMessage(TorServiceConstants.DISABLE_TOR_MSG);
+    	mStatusUpdateHandler.sendMessage(msg);
     }
     
         /*
@@ -1270,13 +1267,9 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
                     
         }
 
-        
-        
-   
-
 // this is what takes messages or values from the callback threads or other non-mainUI threads
 //and passes them back into the main UI thread for display to the user
-    private Handler mHandler = new Handler() {
+    private Handler mStatusUpdateHandler = new Handler() {
         
         private String lastServiceMsg = null;
         
