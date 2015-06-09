@@ -28,7 +28,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -65,13 +64,13 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 
-public class OrbotMainActivity extends Activity implements OrbotConstants, OnLongClickListener, OnTouchListener, OnSharedPreferenceChangeListener
-{
+public class OrbotMainActivity extends Activity
+        implements OrbotConstants, OnLongClickListener, OnTouchListener {
+
     /* Useful UI bits */
     private TextView lblStatus = null; //the main text display widget
     private ImageProgressView imgStatus = null; //the main touchable image for activating Orbot
 
-    private MenuItem mItemOnOff = null;
     private TextView downloadText = null;
     private TextView uploadText = null;
     private TextView mTxtOrbotLog = null;
@@ -79,8 +78,7 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
     private Button mBtnBrowser = null;
     private ToggleButton mBtnVPN = null;
     private ToggleButton mBtnBridges = null;
-    
-    
+
 	private DrawerLayout mDrawer;
 	private ActionBarDrawerToggle mDrawerToggle;
 	private Toolbar mToolbar;
@@ -100,7 +98,6 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
         super.onCreate(savedInstanceState);
 
         mPrefs = TorServiceUtils.getSharedPrefs(getApplicationContext());        
-        mPrefs.registerOnSharedPreferenceChangeListener(this);
         
     	doLayout();
 
@@ -115,8 +112,6 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
         lbm.registerReceiver(mLocalBroadcastReceiver,
                 new IntentFilter(TorServiceConstants.LOCAL_ACTION_LOG));
 	}
-	
-	
 
 	private void sendIntentToService(String action) {
 		Intent torService = new Intent(this, TorService.class);    
@@ -299,40 +294,10 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
         super.onCreateOptionsMenu(menu);
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.orbot_main, menu);
-       
-        mItemOnOff = menu.getItem(0);
-        
+
         return true;
     }
-    
-    /**
-    private void appConflictChecker ()
-    {
-    	SharedPreferences sprefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
-    	
-    	boolean showAppConflict = true;//sprefs.getBoolean("pref_show_conflict",true);
-    	
-    	String[] badApps = {"com.sec.msc.nts.android.proxy:com.sec.msc.nts.android.proxy","com.sec.pcw:Samsung Link"};
-    	
-    	for (String badApp : badApps)
-    	{
-    		String[] badAppParts = badApp.split(":");
-    		
-    		if (appInstalledOrNot(badAppParts[0]))
-    		{
-    			String msg = getString(R.string.please_disable_this_app_in_android_settings_apps_if_you_are_having_problems_with_orbot_) + badAppParts[1];
-    			
-    			if (showAppConflict)
-    				showAlert(getString(R.string.app_conflict),msg,true);
-	    	
-	    	//	appendLogTextAndScroll(msg);
-    		}
-    	}
-    	
-    	sprefs.edit().putBoolean("pref_show_conflict", false).commit();
-	
-    }*/
-    
+
     private void showAbout ()
         {
                 
@@ -1094,8 +1059,6 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
                     		
                             mBtnBrowser.setEnabled(true);
                             
-                            if (mItemOnOff != null)
-                                    mItemOnOff.setTitle(R.string.menu_stop);
                             
                             if (lblStatus != null && torServiceMsg != null)
                             	if (torServiceMsg.indexOf('%')!=-1)
@@ -1130,8 +1093,6 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
                         
                         imgStatus.setImageResource(R.drawable.torstarting);
                 
-                        if (mItemOnOff != null)
-                                mItemOnOff.setTitle(R.string.menu_stop);
                 	
                         if (lblStatus != null && torServiceMsg != null)
                         	if (torServiceMsg.indexOf('%')!=-1)
@@ -1146,8 +1107,6 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
                         lblStatus.setText(getString(R.string.press_to_start));
                         mBtnBrowser.setEnabled(false);
                         
-                        if (mItemOnOff != null)
-                                mItemOnOff.setTitle(R.string.menu_start);
 
                     }
                     
@@ -1218,7 +1177,6 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
                         
                     break;
                 case TorServiceConstants.ENABLE_TOR_MSG:
-                        
                         
                         updateStatus((String)msg.getData().getString(HANDLER_TOR_MSG));
                         
@@ -1302,13 +1260,6 @@ public class OrbotMainActivity extends Activity implements OrbotConstants, OnLon
                     + getString(R.string.mb);
     }
 
-    @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
-            String key) {
-    
-        
-    }
-    
       private static final float ROTATE_FROM = 0.0f;
         private static final float ROTATE_TO = 360.0f*4f;// 3.141592654f * 32.0f;
 
