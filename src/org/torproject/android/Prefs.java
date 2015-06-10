@@ -16,6 +16,7 @@ public class Prefs {
     private final static String PREF_HAS_ROOT = "has_root";
     private final static String PREF_PERSIST_NOTIFICATIONS = "pref_persistent_notifications";
     private final static String PREF_START_ON_BOOT = "pref_start_boot";
+    private final static String PREF_ALLOW_BACKGROUND_STARTS = "pref_allow_background_starts";
     private final static String PREF_TRANSPARENT = "pref_transparent";
     private final static String PREF_TRANSPARENT_ALL = "pref_transparent_all";
     private final static String PREF_TRANSPARENT_TETHERING = "pref_transparent_tethering";
@@ -96,6 +97,10 @@ public class Prefs {
 
     public static boolean persistNotifications() {
         return prefs.getBoolean(PREF_PERSIST_NOTIFICATIONS, true);
+    }
+
+    public static boolean allowBackgroundStarts() {
+        return prefs.getBoolean(PREF_ALLOW_BACKGROUND_STARTS, true);
     }
 
     public static boolean useVpn() {
