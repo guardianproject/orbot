@@ -7,4 +7,17 @@ file_filter = res/values-<lang>/strings.xml
 host = https://www.transifex.com
 source_file = res/values/strings.xml
 source_lang = en
+type = ANDROID
 
+[orbot.description]
+file_filter = description/<lang>.xlf
+host = https://www.transifex.com
+source_file = description/source.xlf
+source_lang = en
+type = XLIFF
+
+[orbot.olddescription]
+file_filter = releases/assets/<lang>-description.txt
+host = https://www.transifex.com
+source_file = releases/assets/description.txt
+source_lang = en
