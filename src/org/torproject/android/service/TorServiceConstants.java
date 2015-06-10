@@ -104,6 +104,11 @@ public interface TorServiceConstants {
     public final static String STATUS_ON = "ON";
     public final static String STATUS_STARTING = "STARTING";
     public final static String STATUS_STOPPING = "STOPPING";
+    /**
+     * The user has disabled the ability for background starts triggered by
+     * apps. Fallback to the old Intent that brings up Orbot.
+     */
+    public final static String STATUS_STARTS_DISABLED = "STARTS_DISABLED";
 
     // actions for internal command Intents
     public static final String CMD_SIGNAL_HUP = "signal_hup";
@@ -112,8 +117,7 @@ public interface TorServiceConstants {
     public static final String CMD_VPN = "vpn";
     public static final String CMD_VPN_CLEAR = "vpnclear";
     public static final String CMD_UPDATE_TRANS_PROXY = "update";
-     
-    
+
     public static final String BINARY_TOR_VERSION = "0.2.6.7";
     public static final String PREF_BINARY_TOR_VERSION_INSTALLED = "BINARY_TOR_VERSION_INSTALLED";
     
