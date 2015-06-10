@@ -87,7 +87,15 @@
             android:permission="org.torproject.android.MANAGE_TOR"
             android:stopWithTask="false" >
         </service>
-   	
+
+        <receiver
+            android:name=".service.StartTorReceiver"
+            android:exported="true">
+             <intent-filter>
+                 <action android:name="org.torproject.android.intent.action.START" />
+             </intent-filter>
+        </receiver>
+
    	<receiver android:name="org.torproject.android.service.OnBootReceiver"
    	    android:enabled="true" android:exported="true"
    	    

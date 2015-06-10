@@ -924,11 +924,11 @@ public class OrbotMainActivity extends Activity
 			}
 		}
     }
-    
-    private void requestTorRereadConfig()    {
-        sendIntentToService (TorServiceConstants.CMD_START);
+
+    private void requestTorRereadConfig() {
+        sendIntentToService(TorServiceConstants.CMD_SIGNAL_HUP);
     }
-    
+
     public void promptStartVpnService ()
     {
     	 LayoutInflater li = LayoutInflater.from(this);
@@ -1127,7 +1127,7 @@ public class OrbotMainActivity extends Activity
         imgStatus.setImageResource(R.drawable.torstarting);
         lblStatus.setText(getString(R.string.status_starting_up));
 
-        sendIntentToService(TorServiceConstants.CMD_START);
+        sendIntentToService(TorServiceConstants.ACTION_START);
         
         //we send a message here to the progressDialog i believe, but we can clarify that shortly
         Message msg = mStatusUpdateHandler.obtainMessage(STATUS_UPDATE);

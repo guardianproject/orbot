@@ -341,7 +341,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             String action = mIntent.getAction();
 
             if (action != null) {
-                if (action.equals(CMD_START)) {
+                if (action.equals(ACTION_START)) {
                     startTor();
                     // stopTor() is called when the Service is destroyed
                 } else if (action.equals(CMD_SIGNAL_HUP)) {

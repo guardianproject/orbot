@@ -16,8 +16,8 @@ public class OnBootReceiver extends BroadcastReceiver {
 	    Prefs.setContext(context);
 		if (Prefs.startOnBoot())
 		{
-			startService(TorServiceConstants.CMD_START,context);		
-			
+			startService(TorServiceConstants.ACTION_START, context);
+
 			if (Prefs.useVpn())
 				startVpnService(context);
 		}
