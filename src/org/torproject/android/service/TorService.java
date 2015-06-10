@@ -28,6 +28,7 @@ import android.os.RemoteException;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationCompat.Builder;
 import android.support.v4.content.LocalBroadcastManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.RemoteViews;
 
@@ -342,6 +343,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
             if (action != null) {
                 if (action.equals(ACTION_START)) {
+                    replyWithStatus(mIntent);
                     startTor();
                     // stopTor() is called when the Service is destroyed
                 } else if (action.equals(CMD_SIGNAL_HUP)) {
@@ -748,6 +750,25 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         return success;
     }
 
+    /**
+     * Send Orbot's status in reply to an
+     * {@link TorServiceConstants#ACTION_START} {@link Intent}, targeted only to
+     * the app that sent the initial request.
+     */
+    private void replyWithStatus(Intent startRequest) {
+        String packageName = startRequest.getStringExtra(EXTRA_PACKAGE_NAME);
+        if (TextUtils.isEmpty(packageName)) {
+            return;
+        }
+        Intent reply = new Intent(ACTION_STATUS);
+        reply.putExtra(EXTRA_STATUS, mCurrentStatus);
+        reply.setPackage(packageName);
+        sendBroadcast(reply);
+    }
+
+    /**
+     * The entire process for starting tor and related services is run from this method.
+     */
     private void startTor() {
         if (mCurrentStatus == STATUS_STARTING || mCurrentStatus == STATUS_STOPPING) {
             // these states should probably be handled better

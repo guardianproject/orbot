@@ -1,6 +1,9 @@
 /* Copyright (c) 2009, Nathan Freitas, Orbot / The Guardian Project - http://openideals.com/guardian */
 /* See LICENSE for licensing information */
+
 package org.torproject.android.service;
+
+import android.content.Intent;
 
 public interface TorServiceConstants {
 
@@ -67,19 +70,42 @@ public interface TorServiceConstants {
     //control port 
     public final static String TOR_CONTROL_PORT_MSG_BOOTSTRAP_DONE = "Bootstrapped 100%";
 
+    /**
+     * A request to Orbot to transparently start Tor services
+     */
     public final static String ACTION_START = "org.torproject.android.intent.action.START";
+    /**
+     * {@link Intent} send by Orbot with {@code ON/OFF/STARTING/STOPPING} status
+     */
     public final static String ACTION_STATUS = "org.torproject.android.intent.action.STATUS";
+    /**
+     * {@code String} that contains a status constant: {@link #STATUS_ON},
+     * {@link #STATUS_OFF}, {@link #STATUS_STARTING}, or
+     * {@link #STATUS_STOPPING}
+     */
     public final static String EXTRA_STATUS = "org.torproject.android.intent.extra.STATUS";
+    /**
+     * A {@link String} {@code packageName} for Orbot to direct its status reply
+     * to, used in {@link #ACTION_START} {@link Intent}s sent to Orbot
+     */
+    public final static String EXTRA_PACKAGE_NAME = "org.torproject.android.intent.extra.PACKAGE_NAME";
 
     public final static String LOCAL_ACTION_LOG = "log";
     public final static String LOCAL_ACTION_BANDWIDTH = "bandwidth";
     public final static String LOCAL_EXTRA_LOG = "log";
 
+    /**
+     * All tor-related services and daemons are stopped
+     */
     public final static String STATUS_OFF = "OFF";
+    /**
+     * All tor-related services and daemons have completed starting
+     */
     public final static String STATUS_ON = "ON";
     public final static String STATUS_STARTING = "STARTING";
     public final static String STATUS_STOPPING = "STOPPING";
 
+    // actions for internal command Intents
     public static final String CMD_SIGNAL_HUP = "signal_hup";
     public static final String CMD_FLUSH = "flush";
     public static final String CMD_NEWNYM = "newnym";
