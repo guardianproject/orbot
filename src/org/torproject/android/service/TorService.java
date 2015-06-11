@@ -93,8 +93,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     private int mLastProcessId = -1;
     
 
-    private int mPortHTTP = 8118;
-    private int mPortSOCKS = 9050;
+    private int mPortHTTP = HTTP_PROXY_PORT_DEFAULT;
+    private int mPortSOCKS = SOCKS_PROXY_PORT_DEFAULT;
     
     private static final int NOTIFY_ID = 1;
     private static final int TRANSPROXY_NOTIFY_ID = 2;
@@ -1077,7 +1077,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 logNotice(log.toString());
             }
             
-            sendCallbackLogMessage(getString(R.string.privoxy_is_running_on_port_) + PORT_HTTP);
+            sendCallbackLogMessage(getString(R.string.privoxy_is_running_on_port_) + mPortHTTP);
             
             logNotice("Polipo process id=" + polipoProcId);
             
