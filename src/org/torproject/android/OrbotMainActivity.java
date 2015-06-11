@@ -85,7 +85,8 @@ public class OrbotMainActivity extends Activity
 		
     /* Some tracking bits */
     private String torStatus = TorServiceConstants.STATUS_OFF; //latest status reported from the tor service
-    
+    private Intent lastStatusIntent;  // the last ACTION_STATUS Intent received
+
     private SharedPreferences mPrefs = null;
 
     private boolean autoStartFromIntent = false;
@@ -164,6 +165,7 @@ public class OrbotMainActivity extends Activity
                 mStatusUpdateHandler.sendMessage(msg);
 
             } else if (action.equals(TorServiceConstants.ACTION_STATUS)) {
+                lastStatusIntent = intent;
                 torStatus = intent.getStringExtra(TorServiceConstants.EXTRA_STATUS);
                 Message msg = mStatusUpdateHandler.obtainMessage(STATUS_UPDATE);
                 msg.obj = "";
@@ -554,24 +556,21 @@ public class OrbotMainActivity extends Activity
 		else if (action.equals("org.torproject.android.START_TOR"))
 		{
 			autoStartFromIntent = true;
-		    try {
-		        Log.i(TAG, "action equals org.torproject.android.START_TOR");
-		        startTor();
+            try {
+                startTor();
 
-		        Intent resultIntent = new Intent(intent);
-		        resultIntent.putExtra("socks_proxy", "socks://127.0.0.1:" + TorServiceConstants.SOCKS_PROXY_PORT_DEFAULT);
-                resultIntent.putExtra("socks_proxy_host", "127.0.0.1");
-                resultIntent.putExtra("socks_proxy_port", TorServiceConstants.SOCKS_PROXY_PORT_DEFAULT);
-                resultIntent.putExtra("http_proxy", "http://127.0.0.1" + TorServiceConstants.HTTP_PROXY_PORT_DEFAULT);
-                resultIntent.putExtra("http_proxy_host", "127.0.0.1");
-                resultIntent.putExtra("http_proxy_port", TorServiceConstants.HTTP_PROXY_PORT_DEFAULT);
-		        setResult(RESULT_OK, resultIntent);
-		        finish();
-		    } catch (RemoteException e) {
-		        // TODO Auto-generated catch block
-		        e.printStackTrace();
-		    }
-
+                Intent resultIntent;
+                if (lastStatusIntent == null) {
+                    resultIntent = new Intent(intent);
+                } else {
+                    resultIntent = lastStatusIntent;
+                }
+                resultIntent.putExtra(TorServiceConstants.EXTRA_STATUS, torStatus);
+                setResult(RESULT_OK, resultIntent);
+                finish();
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
 		}
 		else if (action.equals(Intent.ACTION_VIEW))
 		{

@@ -762,6 +762,12 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         }
         Intent reply = new Intent(ACTION_STATUS);
         reply.putExtra(EXTRA_STATUS, mCurrentStatus);
+        reply.putExtra(EXTRA_SOCKS_PROXY, "socks://127.0.0.1:" + mPortSOCKS);
+        reply.putExtra(EXTRA_SOCKS_PROXY_HOST, "127.0.0.1");
+        reply.putExtra(EXTRA_SOCKS_PROXY_PORT, mPortSOCKS);
+        reply.putExtra(EXTRA_HTTP_PROXY, "http://127.0.0.1" + mPortHTTP);
+        reply.putExtra(EXTRA_HTTP_PROXY_HOST, "127.0.0.1");
+        reply.putExtra(EXTRA_HTTP_PROXY_PORT, mPortHTTP);
         reply.setPackage(packageName);
         sendBroadcast(reply);
     }

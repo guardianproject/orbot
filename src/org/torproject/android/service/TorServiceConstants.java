@@ -84,6 +84,18 @@ public interface TorServiceConstants {
      * to, used in {@link #ACTION_START} {@link Intent}s sent to Orbot
      */
     public final static String EXTRA_PACKAGE_NAME = "org.torproject.android.intent.extra.PACKAGE_NAME";
+    /**
+     * The SOCKS proxy settings in URL form.
+     */
+    public final static String EXTRA_SOCKS_PROXY = "org.torproject.android.intent.extra.SOCKS_PROXY";
+    public final static String EXTRA_SOCKS_PROXY_HOST = "org.torproject.android.intent.extra.SOCKS_PROXY_HOST";
+    public final static String EXTRA_SOCKS_PROXY_PORT = "org.torproject.android.intent.extra.SOCKS_PROXY_PORT";
+    /**
+     * The HTTP proxy settings in URL form.
+     */
+    public final static String EXTRA_HTTP_PROXY = "org.torproject.android.intent.extra.HTTP_PROXY";
+    public final static String EXTRA_HTTP_PROXY_HOST = "org.torproject.android.intent.extra.HTTP_PROXY_HOST";
+    public final static String EXTRA_HTTP_PROXY_PORT = "org.torproject.android.intent.extra.HTTP_PROXY_PORT";
 
     public final static String LOCAL_ACTION_LOG = "log";
     public final static String LOCAL_ACTION_BANDWIDTH = "bandwidth";
