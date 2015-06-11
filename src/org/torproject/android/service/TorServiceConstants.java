@@ -49,21 +49,16 @@ public interface TorServiceConstants {
 	public final static String CHMOD_EXE_VALUE = "770";
 
 	public final static int FILE_WRITE_BUFFER_SIZE = 1024;
-	
-	//HTTP Proxy server port
-	public static int PORT_HTTP = 8118; //just like Privoxy!
-	
-	//Socks port client connects to, server is the Tor binary
-	public static String PORT_SOCKS_DEFAULT = "9050";
-	
-	
-	//what is says!
+
 	public final static String IP_LOCALHOST = "127.0.0.1";
 	public final static int UPDATE_TIMEOUT = 1000;
 	public final static int TOR_TRANSPROXY_PORT_DEFAULT = 9040;
 	public final static int STANDARD_DNS_PORT = 53;
 	public final static int TOR_DNS_PORT_DEFAULT = 5400;
-	
+    public final static int CONTROL_PORT_DEFAULT = 9051;
+    public final static int HTTP_PROXY_PORT_DEFAULT = 8118; // like Privoxy!
+    public final static int SOCKS_PROXY_PORT_DEFAULT = 9050;
+
 	//path to check Tor against
 	public final static String URL_TOR_CHECK = "https://check.torproject.org";
 
@@ -127,8 +122,5 @@ public interface TorServiceConstants {
     public static final String MEEK_ASSET_KEY = "meek-client";
 	//name of the iptables binary
 	public final static String IPTABLES_ASSET_KEY = "xtables";	
-	
-	public final static int DEFAULT_CONTROL_PORT = 9051;
-	
 
 }

@@ -1168,7 +1168,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
                             SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
                             
-                             String socksPortPref = prefs.getString(OrbotConstants.PREF_SOCKS, TorServiceConstants.PORT_SOCKS_DEFAULT);
+                             String socksPortPref = prefs.getString(OrbotConstants.PREF_SOCKS,
+                                     String.valueOf(TorServiceConstants.SOCKS_PROXY_PORT_DEFAULT));
                              if (socksPortPref.indexOf(':')!=-1)
                                  socksPortPref = socksPortPref.split(":")[1];
                              

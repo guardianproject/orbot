@@ -559,12 +559,12 @@ public class OrbotMainActivity extends Activity
 		        startTor();
 
 		        Intent resultIntent = new Intent(intent);
-		        resultIntent.putExtra("socks_proxy", "socks://127.0.0.1:" + TorServiceConstants.PORT_SOCKS_DEFAULT);
+		        resultIntent.putExtra("socks_proxy", "socks://127.0.0.1:" + TorServiceConstants.SOCKS_PROXY_PORT_DEFAULT);
                 resultIntent.putExtra("socks_proxy_host", "127.0.0.1");
-                resultIntent.putExtra("socks_proxy_port", TorServiceConstants.PORT_SOCKS_DEFAULT);
-                resultIntent.putExtra("http_proxy", "http://127.0.0.1" + TorServiceConstants.PORT_HTTP);
+                resultIntent.putExtra("socks_proxy_port", TorServiceConstants.SOCKS_PROXY_PORT_DEFAULT);
+                resultIntent.putExtra("http_proxy", "http://127.0.0.1" + TorServiceConstants.HTTP_PROXY_PORT_DEFAULT);
                 resultIntent.putExtra("http_proxy_host", "127.0.0.1");
-                resultIntent.putExtra("http_proxy_port", TorServiceConstants.PORT_HTTP);
+                resultIntent.putExtra("http_proxy_port", TorServiceConstants.HTTP_PROXY_PORT_DEFAULT);
 		        setResult(RESULT_OK, resultIntent);
 		        finish();
 		    } catch (RemoteException e) {
