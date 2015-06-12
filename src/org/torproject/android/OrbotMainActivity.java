@@ -1090,8 +1090,11 @@ public class OrbotMainActivity extends Activity
             imgStatus.setImageResource(R.drawable.torstarting);
 
             // only show Tor daemon's percentage complete messages
-            if (torServiceMsg.indexOf('%') != -1)
+            if (torServiceMsg.indexOf('%') != -1) {
                 lblStatus.setText(torServiceMsg);
+            } else if (torServiceMsg.contains("tart")) { // Start and start
+                lblStatus.setText(torServiceMsg);
+            }
             mBtnBrowser.setEnabled(false);
 
         } else if (torStatus == TorServiceConstants.STATUS_STOPPING) {
