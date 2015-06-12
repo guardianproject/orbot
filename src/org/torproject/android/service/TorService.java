@@ -608,7 +608,10 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.i("TorService", "onCreate");
+
+        sendCallbackStatus(STATUS_STARTING);
+        sendCallbackLogMessage(getString(R.string.status_starting_up));
+        logNotice(getString(R.string.status_starting_up));
 
         try
         {
@@ -776,7 +779,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
      * The entire process for starting tor and related services is run from this method.
      */
     private void startTor() {
-        if (mCurrentStatus == STATUS_STARTING || mCurrentStatus == STATUS_STOPPING) {
+        // STATUS_STARTING is set in onCreate()
+        if (mCurrentStatus == STATUS_STOPPING) {
             // these states should probably be handled better
             sendCallbackLogMessage("Ignoring start request, currently " + mCurrentStatus);
             return;
@@ -784,10 +788,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             sendCallbackLogMessage("Ignoring start request, already started.");
             return;
         }
-        
-        sendCallbackStatus(STATUS_STARTING);
-        sendCallbackLogMessage(getString(R.string.status_starting_up));
-        logNotice(getString(R.string.status_starting_up));
 
         if (findExistingTorDaemon()) {
             return; // an old tor is already running, nothing to do
