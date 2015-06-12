@@ -1113,25 +1113,13 @@ public class OrbotMainActivity extends Activity
         }
     }
 
-  // guess what? this start's Tor! actually no it just requests via the local ITorService to the remote TorService instance
-  // to start Tor
-    private void startTor () throws RemoteException
-    {
-        Log.i("OrbotMainActivity", "startTor");
-				
-		mTxtOrbotLog.setText("");
-
-        //here we update the UI which is a bit sloppy and mixed up code wise
-        //might be best to just call updateStatus() instead of directly manipulating UI in this method - yep makes sense
-        imgStatus.setImageResource(R.drawable.torstarting);
-        lblStatus.setText(getString(R.string.status_starting_up));
-
+    /**
+     * Starts tor and related daemons by sending an
+     * {@link TorServiceConstants#ACTION_START} {@link Intent} to
+     * {@link TorService}
+     */
+    private void startTor() throws RemoteException {
         sendIntentToService(TorServiceConstants.ACTION_START);
-        
-        //we send a message here to the progressDialog i believe, but we can clarify that shortly
-        Message msg = mStatusUpdateHandler.obtainMessage(STATUS_UPDATE);
-        msg.obj = getString(R.string.status_starting_up);
-        mStatusUpdateHandler.sendMessage(msg);
     }
 
     public boolean onLongClick(View view) {
