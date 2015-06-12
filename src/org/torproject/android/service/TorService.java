@@ -322,18 +322,18 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
      */
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (intent != null)
-            new Thread (new TorStarter(intent)).start();
+            new Thread (new IncomingIntentRouter(intent)).start();
         else
             Log.d(TAG, "Got null onStartCommand() intent");
 
         return Service.START_STICKY;
     }
     
-    private class TorStarter implements Runnable
+    private class IncomingIntentRouter implements Runnable
     {
         Intent mIntent;
         
-        public TorStarter (Intent intent)
+        public IncomingIntentRouter (Intent intent)
         {
             mIntent = intent;
         }
