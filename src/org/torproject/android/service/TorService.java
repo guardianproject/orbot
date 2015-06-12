@@ -840,7 +840,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         }
         shellUser.close();
 
-        sendCallbackStatus(STATUS_ON);
         } catch (CannotKillException e) {
             logException(e.getMessage(), e);
             showToolbarNotification(getString(R.string.unable_to_reset_tor),
@@ -1489,6 +1488,10 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     
     public void circuitStatus(String status, String circID, String path) {
         
+        /* once the first circuit is complete, then announce that Orbot is on*/
+        if (mCurrentStatus == STATUS_STARTING && TextUtils.equals(status, "BUILT"))
+            sendCallbackStatus(STATUS_ON);
+
             StringBuilder sb = new StringBuilder();
             sb.append("Circuit (");
             sb.append((circID));
