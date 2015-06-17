@@ -554,9 +554,10 @@ public class OrbotMainActivity extends Activity
 			    .setNegativeButton("Deny", dialogClickListener).show();
 			
 			return; //don't null the setIntent() as we need it later
-		}
-		else if (action.equals("org.torproject.android.START_TOR"))
-		{
+        }
+        else if (action.equals("org.torproject.android.START_TOR")
+                && Prefs.allowBackgroundStarts())
+        {
 			autoStartFromIntent = true;
             try {
                 startTor();
@@ -569,7 +570,6 @@ public class OrbotMainActivity extends Activity
                 }
                 resultIntent.putExtra(TorServiceConstants.EXTRA_STATUS, torStatus);
                 setResult(RESULT_OK, resultIntent);
-                finish();
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
