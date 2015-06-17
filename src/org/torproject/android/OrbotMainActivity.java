@@ -1010,18 +1010,7 @@ public class OrbotMainActivity extends Activity
 			mBtnBridges.setChecked(Prefs.bridgesEnabled());
         }
 
-        mStatusUpdateHandler.postDelayed(new Runnable ()
-        {
-            public void run ()
-            {
-        
-                handleIntents();
-
-            }
-        }
-        , 500);
-        
-        
+        handleIntents();
     }
 
     AlertDialog aDialog = null;
