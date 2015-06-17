@@ -59,6 +59,7 @@ import org.torproject.android.ui.ImageProgressView;
 import org.torproject.android.ui.PromoAppsActivity;
 import org.torproject.android.ui.Rotate3dAnimation;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
@@ -1008,6 +1009,22 @@ public class OrbotMainActivity extends Activity
         {
 			mBtnVPN.setChecked(Prefs.useVpn());			
 			mBtnBridges.setChecked(Prefs.bridgesEnabled());
+        }
+
+        /*
+         * Check if the tor daemon is running and if TorService is stopped. If
+         * so, automatically start TorService to represent it
+         */
+        try {
+            if (TorServiceUtils.findProcessId(OrbotApp.fileTor.getAbsolutePath()) != -1
+                    && !isTorServiceRunning()) {
+                Log.i(TAG, "Found tor daemon without TorService: starting TorService");
+                startTor();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (RemoteException e) {
+            e.printStackTrace();
         }
 
         handleIntents();
