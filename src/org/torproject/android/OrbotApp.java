@@ -10,8 +10,11 @@ import android.os.Build;
 import android.text.TextUtils;
 import android.util.Log;
 
+import org.torproject.android.service.TorServiceConstants;
+
 import info.guardianproject.util.Languages;
 
+import java.io.File;
 import java.util.Locale;
 
 public class OrbotApp extends Application implements OrbotConstants
@@ -19,12 +22,32 @@ public class OrbotApp extends Application implements OrbotConstants
 
     private Locale locale;
 
+    public static File appBinHome;
+    public static File appCacheHome;
+
+    public static File fileTor;
+    public static File filePolipo;
+    public static File fileObfsclient;
+    public static File fileMeekclient;
+    public static File fileXtables;
+    public static File fileTorRc;
+
     @Override
     public void onCreate() {
         super.onCreate();
         Prefs.setContext(this);
 
         setNewLocale(Prefs.getDefaultLocale());
+
+        appBinHome = getDir(TorServiceConstants.DIRECTORY_TOR_BINARY,Application.MODE_PRIVATE);
+        appCacheHome = getDir(TorServiceConstants.DIRECTORY_TOR_DATA,Application.MODE_PRIVATE);
+
+        fileTor= new File(appBinHome, TorServiceConstants.TOR_ASSET_KEY);
+        filePolipo = new File(appBinHome, TorServiceConstants.POLIPO_ASSET_KEY);
+        fileObfsclient = new File(appBinHome, TorServiceConstants.OBFSCLIENT_ASSET_KEY);
+        fileMeekclient = new File(appBinHome, TorServiceConstants.MEEK_ASSET_KEY);
+        fileXtables = new File(appBinHome, TorServiceConstants.IPTABLES_ASSET_KEY);
+        fileTorRc = new File(appBinHome, TorServiceConstants.TORRC_ASSET_KEY);
     }
 
     @Override
