@@ -589,7 +589,11 @@ public class OrbotMainActivity extends Activity
 				}
 			}
 		}
-		
+        else if (action.equals(Intent.ACTION_MAIN))
+        {
+            // OrbotMainActivity was restarted after being killed
+            sendIntentToService(TorServiceConstants.CMD_STATUS);
+        }
 		updateStatus("");
 		
 		setIntent(null);

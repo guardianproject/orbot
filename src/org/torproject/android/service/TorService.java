@@ -16,6 +16,7 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -346,6 +347,9 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                     replyWithStatus(mIntent);
                     startTor();
                     // stopTor() is called when the Service is destroyed
+                } else if (action.equals(CMD_STATUS)) {
+                    Intent intent = getActionStatusIntent(mCurrentStatus);
+                    sendBroadcastOnlyToOrbot(intent);
                 } else if (action.equals(CMD_SIGNAL_HUP)) {
                     requestTorRereadConfig();
                 } else if (action.equals(CMD_NEWNYM)) {
@@ -1901,20 +1905,32 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     
     private void sendCallbackStatus(String currentStatus) {
         mCurrentStatus = currentStatus;
-
-        Intent intent = new Intent(ACTION_STATUS);
-        intent.putExtra(EXTRA_STATUS, currentStatus);
+        Intent intent = getActionStatusIntent(currentStatus);
         // send for Orbot internals, using secure local broadcast
-        LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+        sendBroadcastOnlyToOrbot(intent);
         // send for any apps that are interested
         sendBroadcast(intent);
     }
-    
+
+    /**
+     * Send a secure broadcast only to Orbot itself
+     * @see {@link ContextWrapper#sendBroadcast(Intent)}
+     * @see {@link LocalBroadcastManager}
+     */
+    private boolean sendBroadcastOnlyToOrbot(Intent intent) {
+        return LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+    }
+
+    private Intent getActionStatusIntent(String currentStatus) {
+        Intent intent = new Intent(ACTION_STATUS);
+        intent.putExtra(EXTRA_STATUS, currentStatus);
+        return intent;
+    }
+
     /*
      *  Another way to do this would be to use the Observer pattern by defining the 
      *  BroadcastReciever in the Android manifest.
      */
-    
     private final BroadcastReceiver mNetworkStateReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {

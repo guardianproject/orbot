@@ -119,6 +119,7 @@ public interface TorServiceConstants {
 
     // actions for internal command Intents
     public static final String CMD_SIGNAL_HUP = "signal_hup";
+    public static final String CMD_STATUS = "status";
     public static final String CMD_FLUSH = "flush";
     public static final String CMD_NEWNYM = "newnym";
     public static final String CMD_VPN = "vpn";
