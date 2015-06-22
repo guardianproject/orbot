@@ -570,6 +570,9 @@ public class OrbotMainActivity extends Activity
           
             startTor();
 
+            //never allow backgrounds start from this type of intent start
+            //app devs who want background starts, can use the service intents
+            /**
             if (Prefs.allowBackgroundStarts())
             {            
 	            Intent resultIntent;
@@ -581,7 +584,7 @@ public class OrbotMainActivity extends Activity
 	            resultIntent.putExtra(TorServiceConstants.EXTRA_STATUS, torStatus);
 	            setResult(RESULT_OK, resultIntent);
 	            finish();
-            }
+            }*/
           
 		}
 		else if (action.equals(Intent.ACTION_VIEW))

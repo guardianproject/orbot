@@ -23,7 +23,7 @@ android:enabled="true"
 android:title="@string/pref_use_expanded_notifications_title"/>
 
 <CheckBoxPreference
-android:defaultValue="false" 
+android:defaultValue="true" 
 android:key="pref_allow_background_starts"
 android:summary="@string/pref_allow_background_starts_summary"
 android:title="@string/pref_allow_background_starts_title"/>
