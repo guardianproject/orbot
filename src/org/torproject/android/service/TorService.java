@@ -346,7 +346,11 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                     replyWithStatus(mIntent);
                     startTor();
                     // stopTor() is called when the Service is destroyed
-                } else if (action.equals(CMD_SIGNAL_HUP)) {
+                }
+                else if (action.equals(ACTION_STATUS)) {
+                    replyWithStatus(mIntent);                    
+                }
+                else if (action.equals(CMD_SIGNAL_HUP)) {
                     requestTorRereadConfig();
                 } else if (action.equals(CMD_NEWNYM)) {
                     newIdentity();
@@ -609,10 +613,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     public void onCreate() {
         super.onCreate();
 
-        sendCallbackStatus(STATUS_STARTING);
-        sendCallbackLogMessage(getString(R.string.status_starting_up));
-        logNotice(getString(R.string.status_starting_up));
-
         try
         {
             mNumberFormat = NumberFormat.getInstance(Locale.getDefault()); //localized numbers!
@@ -760,9 +760,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
      */
     private void replyWithStatus(Intent startRequest) {
         String packageName = startRequest.getStringExtra(EXTRA_PACKAGE_NAME);
-        if (TextUtils.isEmpty(packageName)) {
-            return;
-        }
+
         Intent reply = new Intent(ACTION_STATUS);
         reply.putExtra(EXTRA_STATUS, mCurrentStatus);
         reply.putExtra(EXTRA_SOCKS_PROXY, "socks://127.0.0.1:" + mPortSOCKS);
@@ -771,8 +769,18 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         reply.putExtra(EXTRA_HTTP_PROXY, "http://127.0.0.1" + mPortHTTP);
         reply.putExtra(EXTRA_HTTP_PROXY_HOST, "127.0.0.1");
         reply.putExtra(EXTRA_HTTP_PROXY_PORT, mPortHTTP);
-        reply.setPackage(packageName);
-        sendBroadcast(reply);
+        
+        if (packageName != null)
+        {
+        	reply.setPackage(packageName);
+        	sendBroadcast(reply);
+        }
+        else
+        {
+            LocalBroadcastManager.getInstance(this).sendBroadcast(reply);
+
+        }
+
     }
 
     /**
@@ -784,18 +792,20 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             // these states should probably be handled better
             sendCallbackLogMessage("Ignoring start request, currently " + mCurrentStatus);
             return;
-        } else if (mCurrentStatus == STATUS_ON) {
+        } else if (mCurrentStatus == STATUS_ON && findExistingTorDaemon()) {
+        
             sendCallbackLogMessage("Ignoring start request, already started.");
+            
             return;
-        }
-
-        if (findExistingTorDaemon()) {
-            return; // an old tor is already running, nothing to do
-        }
-
+        }        
+        
         // make sure there are no stray daemons running
         killAllDaemons();
 
+        sendCallbackStatus(STATUS_STARTING);
+        sendCallbackLogMessage(getString(R.string.status_starting_up));
+        logNotice(getString(R.string.status_starting_up));
+        
         try {
         if (fileTor == null)
             initBinariesAndDirectories();
@@ -1882,9 +1892,10 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         Intent intent = new Intent(LOCAL_ACTION_BANDWIDTH);
 
         intent.putExtra("up",upload);
-      intent.putExtra("down",download);
-      intent.putExtra("written",written);
-      intent.putExtra("read",read);
+	      intent.putExtra("down",download);
+	      intent.putExtra("written",written);
+	      intent.putExtra("read",read);
+	      intent.putExtra(EXTRA_STATUS, mCurrentStatus);
 
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
     }
@@ -1895,6 +1906,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         Intent intent = new Intent(LOCAL_ACTION_LOG);
           // You can also include some extra data.
           intent.putExtra(LOCAL_EXTRA_LOG, logMessage);
+	      intent.putExtra(EXTRA_STATUS, mCurrentStatus);
+
           LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
 
     }

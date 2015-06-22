@@ -64,7 +64,9 @@ public interface TorServiceConstants {
 
     //control port 
     public final static String TOR_CONTROL_PORT_MSG_BOOTSTRAP_DONE = "Bootstrapped 100%";
-
+    public final static String LOG_NOTICE_HEADER = "NOTICE";
+    public final static String LOG_NOTICE_BOOTSTRAPPED = "Bootstrapped";
+    
     /**
      * A request to Orbot to transparently start Tor services
      */
