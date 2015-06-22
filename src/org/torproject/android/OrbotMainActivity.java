@@ -3,22 +3,10 @@
 
 package org.torproject.android;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
-import java.text.NumberFormat;
-import java.util.Locale;
-
-import org.torproject.android.service.TorService;
-import org.torproject.android.service.TorServiceConstants;
-import org.torproject.android.service.TorServiceUtils;
-import org.torproject.android.settings.SettingsPreferences;
-import org.torproject.android.ui.ImageProgressView;
-import org.torproject.android.ui.PromoAppsActivity;
-import org.torproject.android.ui.Rotate3dAnimation;
-
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.app.ActivityManager.RunningServiceInfo;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.BroadcastReceiver;
@@ -63,6 +51,21 @@ import android.widget.ToggleButton;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+
+import org.torproject.android.service.TorService;
+import org.torproject.android.service.TorServiceConstants;
+import org.torproject.android.service.TorServiceUtils;
+import org.torproject.android.settings.SettingsPreferences;
+import org.torproject.android.ui.ImageProgressView;
+import org.torproject.android.ui.PromoAppsActivity;
+import org.torproject.android.ui.Rotate3dAnimation;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 
 public class OrbotMainActivity extends Activity
@@ -1153,6 +1156,16 @@ public class OrbotMainActivity extends Activity
      */
     private void requestTorStatus() {
         sendIntentToService(TorServiceConstants.ACTION_STATUS);
+    }
+
+    private boolean isTorServiceRunning() {
+        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        for (RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (TorService.class.getName().equals(service.service.getClassName())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean onLongClick(View view) {

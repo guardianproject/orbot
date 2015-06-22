@@ -9,13 +9,13 @@ package org.torproject.android.service;
 
 
 import android.annotation.SuppressLint;
-import android.app.Application;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -40,6 +40,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.sufficientlysecure.rootcommands.Shell;
 import org.sufficientlysecure.rootcommands.command.SimpleCommand;
+import org.torproject.android.OrbotApp;
 import org.torproject.android.OrbotConstants;
 import org.torproject.android.OrbotMainActivity;
 import org.torproject.android.Prefs;
@@ -105,18 +106,9 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
     private ArrayList<String> configBuffer = null;
     private ArrayList<String> resetBuffer = null;
-    
-   //   private String appHome;
-    private File appBinHome;
-    private File appCacheHome;
-    
-    private File fileTor;
-    private File filePolipo;
-    private File fileObfsclient;
-    private File fileMeekclient;
-    private File fileXtables;
-    
-    private File fileTorRc;
+
+    private boolean isTorUpgradeAndConfigComplete = false;
+
     private File fileControlPort;
     
     private TorTransProxy mTransProxy;
@@ -169,31 +161,17 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     
     
     private boolean findExistingTorDaemon() {
-        if (fileTor != null)
-        {
-            try
-            {
-    
-                mLastProcessId = initControlConnection(3,true);
-                
-                 if (mLastProcessId != -1 && conn != null)
-                 {
-                    sendCallbackLogMessage (getString(R.string.found_existing_tor_process));
-                    sendCallbackStatus(STATUS_ON);
-                    return true;
-                 }
-                 
-                 
-                 return false;
+        try {
+            mLastProcessId = initControlConnection(3, true);
+
+            if (mLastProcessId != -1 && conn != null) {
+                sendCallbackLogMessage(getString(R.string.found_existing_tor_process));
+                sendCallbackStatus(STATUS_ON);
+                return true;
             }
-            catch (Exception e)
-            {
-                //Log.e(TAG,"error finding proc",e);
-                return false;
-            }
+        } catch (Exception e) {
         }
-        else
-            return false;
+        return false;
     }
 
     /* (non-Javadoc)
@@ -442,7 +420,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
                 int hsPort = Integer.parseInt(st.nextToken().split(" ")[0]);;
 
-                File fileDir = new File(appCacheHome, "hs" + hsPort);
+                File fileDir = new File(OrbotApp.appCacheHome, "hs" + hsPort);
                 File file = new File(fileDir, "hostname");
 
 
@@ -507,28 +485,28 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         // try these separately in case one fails, then it can try the next
         File cannotKillFile = null;
         try {
-            killProcess(fileObfsclient);
+            killProcess(OrbotApp.fileObfsclient);
         } catch (IOException e) {
             e.printStackTrace();
-            cannotKillFile = fileObfsclient;
+            cannotKillFile = OrbotApp.fileObfsclient;
         }
         try {
-            killProcess(fileMeekclient);
+            killProcess(OrbotApp.fileMeekclient);
         } catch (IOException e) {
             e.printStackTrace();
-            cannotKillFile = fileMeekclient;
+            cannotKillFile = OrbotApp.fileMeekclient;
         }
         try {
-            killProcess(filePolipo);
+            killProcess(OrbotApp.filePolipo);
         } catch (IOException e) {
             e.printStackTrace();
-            cannotKillFile = filePolipo;
+            cannotKillFile = OrbotApp.filePolipo;
         }
         try {
-            killProcess(fileTor);
+            killProcess(OrbotApp.fileTor);
         } catch (IOException e) {
             e.printStackTrace();
-            cannotKillFile = fileTor;
+            cannotKillFile = OrbotApp.fileTor;
         }
         if (cannotKillFile != null)
             throw new CannotKillException(cannotKillFile);
@@ -551,7 +529,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         }
         // if that fails, try again using native utils
         try {
-            killProcess(fileTor, "-1"); // this is -HUP
+            killProcess(OrbotApp.fileTor, "-1"); // this is -HUP
         } catch (CannotKillException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -627,7 +605,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
              
             }
             
-            initBinariesAndDirectories();
+            torUpgradeAndConfig();
         
             new Thread(new Runnable ()
             {
@@ -658,33 +636,21 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             logNotice("There was an error installing Orbot binaries");
         }
         
-        
+        Log.i("TorService", "onCreate end");
     }
 
-    private void initBinariesAndDirectories () throws Exception
-    {
-
-        if (appBinHome == null)
-            appBinHome = getDir(DIRECTORY_TOR_BINARY,Application.MODE_PRIVATE);
-        
-        if (appCacheHome == null)
-            appCacheHome = getDir(DIRECTORY_TOR_DATA,Application.MODE_PRIVATE);
-        
-        fileTor= new File(appBinHome, TOR_ASSET_KEY);
-        filePolipo = new File(appBinHome, POLIPO_ASSET_KEY);
-        fileObfsclient = new File(appBinHome, OBFSCLIENT_ASSET_KEY);
-        fileMeekclient = new File(appBinHome, MEEK_ASSET_KEY);
-        fileTorRc = new File(appBinHome, TORRC_ASSET_KEY);
-        fileXtables = new File(appBinHome, IPTABLES_ASSET_KEY);
+    private void torUpgradeAndConfig() throws IOException, TimeoutException {
+        if (isTorUpgradeAndConfigComplete)
+            return;
 
         SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
         String version = prefs.getString(PREF_BINARY_TOR_VERSION_INSTALLED,null);
 
         logNotice("checking binary version: " + version);
         
-        TorResourceInstaller installer = new TorResourceInstaller(this, appBinHome); 
+        TorResourceInstaller installer = new TorResourceInstaller(this, OrbotApp.appBinHome);
         
-        if (version == null || (!version.equals(BINARY_TOR_VERSION)) || (!fileTor.exists()))
+        if (version == null || (!version.equals(BINARY_TOR_VERSION)) || (!OrbotApp.fileTor.exists()))
         {
             logNotice("upgrading binaries to latest version: " + BINARY_TOR_VERSION);
             
@@ -695,18 +661,19 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         }
 
         updateTorConfigFile ();
+        isTorUpgradeAndConfigComplete = true;
     }
 
     private boolean updateTorConfigFile () throws FileNotFoundException, IOException, TimeoutException
     {
         SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
 
-        TorResourceInstaller installer = new TorResourceInstaller(this, appBinHome); 
+        TorResourceInstaller installer = new TorResourceInstaller(this, OrbotApp.appBinHome);
         
         StringBuffer extraLines = new StringBuffer();
         
         String TORRC_CONTROLPORT_FILE_KEY = "ControlPortWriteToFile";
-        fileControlPort = new File(appBinHome,"control.txt");
+        fileControlPort = new File(OrbotApp.appBinHome, "control.txt");
         extraLines.append(TORRC_CONTROLPORT_FILE_KEY).append(' ').append(fileControlPort.getCanonicalPath()).append('\n');
 
          if (Prefs.transparentTethering())
@@ -742,7 +709,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
         debug("torrc.custom=" + extraLines.toString());
         
-        File fileTorRcCustom = new File(fileTorRc.getAbsolutePath() + ".custom");
+        File fileTorRcCustom = new File(OrbotApp.fileTorRc.getAbsolutePath() + ".custom");
         boolean success = installer.updateTorConfigCustom(fileTorRcCustom, extraLines.toString());    
         
         if (success)
@@ -807,8 +774,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         logNotice(getString(R.string.status_starting_up));
         
         try {
-        if (fileTor == null)
-            initBinariesAndDirectories();
+        if (!isTorUpgradeAndConfigComplete)
+            torUpgradeAndConfig();
         
         ArrayList<String> customEnv = new ArrayList<String>();
 
@@ -816,7 +783,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         	if (Prefs.useVpn() && !mIsLollipop)
         		customEnv.add("TOR_PT_PROXY=socks5://127.0.0.1:" + OrbotVpnService.mSocksProxyPort); 
         
-        String baseDirectory = fileTor.getParent();
+        String baseDirectory = OrbotApp.fileTor.getParent();
         Shell shellUser = Shell.startShell(customEnv, baseDirectory);
         
         boolean success = runTorShellCmd(shellUser);
@@ -868,7 +835,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         if (Prefs.useRoot())
         {
              if (mTransProxy == null)
-                 mTransProxy = new TorTransProxy(this, fileXtables);
+                 mTransProxy = new TorTransProxy(this, OrbotApp.fileXtables);
 
              try {
                  mTransProxy.flushTransproxyRules(this);
@@ -896,7 +863,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         
          if (mTransProxy == null)
          {
-             mTransProxy = new TorTransProxy(this, fileXtables);
+             mTransProxy = new TorTransProxy(this, OrbotApp.fileXtables);
              
          }
 
@@ -969,7 +936,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
          debug ("Transparent Proxying: disabling...");
 
          if (mTransProxy == null)
-             mTransProxy = new TorTransProxy(this, fileXtables);
+             mTransProxy = new TorTransProxy(this, OrbotApp.fileXtables);
  
          mTransProxy.setTransparentProxyingAll(this, false, shell);    
         ArrayList<TorifiedApp> apps = AppManager.getApps(this, TorServiceUtils.getSharedPrefs(getApplicationContext()));
@@ -981,14 +948,14 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     private boolean runTorShellCmd(final Shell shell) throws Exception
     {
 
-        String torrcPath = new File(appBinHome, TORRC_ASSET_KEY).getCanonicalPath();
+        String torrcPath = new File(OrbotApp.appBinHome, TORRC_ASSET_KEY).getCanonicalPath();
 
         updateTorConfigFile();
         
         sendCallbackLogMessage(getString(R.string.status_starting_up));
         
-        String torCmdString = fileTor.getCanonicalPath() 
-                + " DataDirectory " + appCacheHome.getCanonicalPath() 
+        String torCmdString = OrbotApp.fileTor.getCanonicalPath()
+                + " DataDirectory " + OrbotApp.appCacheHome.getCanonicalPath()
                 + " --defaults-torrc " + torrcPath
                 + " -f " + torrcPath + ".custom";
     
@@ -1043,7 +1010,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     {
         
 
-        File file = new File(appBinHome, POLIPOCONFIG_ASSET_KEY);
+        File file = new File(OrbotApp.appBinHome, POLIPOCONFIG_ASSET_KEY);
         
         Properties props = new Properties();
         
@@ -1062,7 +1029,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         
         logNotice( "Starting polipo process");
         
-            int polipoProcId = TorServiceUtils.findProcessId(filePolipo.getCanonicalPath());
+            int polipoProcId = TorServiceUtils.findProcessId(OrbotApp.filePolipo.getCanonicalPath());
 
             StringBuilder log = null;
             
@@ -1074,15 +1041,15 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 
                 updatePolipoConfig();
                 
-                String polipoConfigPath = new File(appBinHome, POLIPOCONFIG_ASSET_KEY).getCanonicalPath();
-                SimpleCommand cmdPolipo = new SimpleCommand(filePolipo.getCanonicalPath() + " -c " + polipoConfigPath + " &");
+                String polipoConfigPath = new File(OrbotApp.appBinHome, POLIPOCONFIG_ASSET_KEY).getCanonicalPath();
+                SimpleCommand cmdPolipo = new SimpleCommand(OrbotApp.filePolipo.getCanonicalPath() + " -c " + polipoConfigPath + " &");
                 
                 shell.add(cmdPolipo);
                 
                 //wait one second to make sure it has started up
                 Thread.sleep(1000);
                 
-                while ((polipoProcId = TorServiceUtils.findProcessId(filePolipo.getCanonicalPath())) == -1  && attempts < MAX_START_TRIES)
+                while ((polipoProcId = TorServiceUtils.findProcessId(OrbotApp.filePolipo.getCanonicalPath())) == -1  && attempts < MAX_START_TRIES)
                 {
                     logNotice("Couldn't find Polipo process... retrying...\n" + log);
                     Thread.sleep(3000);
@@ -1144,7 +1111,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             {
                     logNotice( "SUCCESS connected to Tor control port.");
                     
-                    File fileCookie = new File(appCacheHome, TOR_CONTROL_COOKIE);
+                    File fileCookie = new File(OrbotApp.appCacheHome, TOR_CONTROL_COOKIE);
                     
                     if (fileCookie.exists())
                     {
@@ -1914,20 +1881,32 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     
     private void sendCallbackStatus(String currentStatus) {
         mCurrentStatus = currentStatus;
-
-        Intent intent = new Intent(ACTION_STATUS);
-        intent.putExtra(EXTRA_STATUS, currentStatus);
+        Intent intent = getActionStatusIntent(currentStatus);
         // send for Orbot internals, using secure local broadcast
-        LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+        sendBroadcastOnlyToOrbot(intent);
         // send for any apps that are interested
         sendBroadcast(intent);
     }
-    
+
+    /**
+     * Send a secure broadcast only to Orbot itself
+     * @see {@link ContextWrapper#sendBroadcast(Intent)}
+     * @see {@link LocalBroadcastManager}
+     */
+    private boolean sendBroadcastOnlyToOrbot(Intent intent) {
+        return LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+    }
+
+    private Intent getActionStatusIntent(String currentStatus) {
+        Intent intent = new Intent(ACTION_STATUS);
+        intent.putExtra(EXTRA_STATUS, currentStatus);
+        return intent;
+    }
+
     /*
      *  Another way to do this would be to use the Observer pattern by defining the 
      *  BroadcastReciever in the Android manifest.
      */
-    
     private final BroadcastReceiver mNetworkStateReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -2110,9 +2089,9 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             
 	            if (obfsBridges)
 	            {
-	                extraLines.append("ClientTransportPlugin obfs3 exec " + fileObfsclient.getCanonicalPath()).append('\n');
-	                extraLines.append("ClientTransportPlugin obfs4 exec " + fileObfsclient.getCanonicalPath()).append('\n');
-	                extraLines.append("ClientTransportPlugin scramblesuit exec " + fileObfsclient.getCanonicalPath()).append('\n');
+	                extraLines.append("ClientTransportPlugin obfs3 exec " + OrbotApp.fileObfsclient.getCanonicalPath()).append('\n');
+	                extraLines.append("ClientTransportPlugin obfs4 exec " + OrbotApp.fileObfsclient.getCanonicalPath()).append('\n');
+	                extraLines.append("ClientTransportPlugin scramblesuit exec " + OrbotApp.fileObfsclient.getCanonicalPath()).append('\n');
 	            }
 	            
 	            String[] bridgeListLines = bridgeList.split("\\r?\\n");
@@ -2142,7 +2121,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
             	debug ("Using meek bridges");
                 
-            	String bridgeConfig = "meek exec " + fileMeekclient.getCanonicalPath();
+            	String bridgeConfig = "meek exec " + OrbotApp.fileMeekclient.getCanonicalPath();
             	extraLines.append("ClientTransportPlugin" + ' ' + bridgeConfig).append('\n');
             	
             	String[] meekBridge = 
@@ -2178,14 +2157,14 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         if (entranceNodes.length() > 0 || exitNodes.length() > 0 || excludeNodes.length() > 0)
         {
             //only apply GeoIP if you need it
-            File fileGeoIP = new File(appBinHome,GEOIP_ASSET_KEY);
-            File fileGeoIP6 = new File(appBinHome,GEOIP6_ASSET_KEY);
+            File fileGeoIP = new File(OrbotApp.appBinHome, GEOIP_ASSET_KEY);
+            File fileGeoIP6 = new File(OrbotApp.appBinHome, GEOIP6_ASSET_KEY);
                 
             try
             {
                 if ((!fileGeoIP.exists()))
                 {
-                    TorResourceInstaller installer = new TorResourceInstaller(this, appBinHome); 
+                    TorResourceInstaller installer = new TorResourceInstaller(this, OrbotApp.appBinHome);
                     boolean success = installer.installGeoIP();
                     
                 }
@@ -2281,7 +2260,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                     
                     hsPort = Integer.parseInt(hsPortConfig.split(" ")[0]);
 
-                    String hsDirPath = new File(appCacheHome,"hs" + hsPort).getCanonicalPath();
+                    String hsDirPath = new File(OrbotApp.appCacheHome,"hs" + hsPort).getCanonicalPath();
                     
                     debug("Adding hidden service on port: " + hsPortConfig);
                     
@@ -2321,8 +2300,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     //using Google DNS for now as the public DNS server
     private String writeDNSFile () throws IOException
     {
-        File file = new File(appBinHome,"resolv.conf");
-        
+        File file = new File(OrbotApp.appBinHome, "resolv.conf");
+
         PrintWriter bw = new PrintWriter(new FileWriter(file));
         bw.println("nameserver 8.8.8.8");
         bw.println("nameserver 8.8.4.4");
