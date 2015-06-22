@@ -57,8 +57,8 @@
   -->
         
  
-  <item android:id="@+id/menu_wizard"
-        android:title="@string/menu_wizard"
+  <item android:id="@+id/menu_promo_apps"
+        android:title="@string/menu_promo_apps"
          android:icon="@drawable/ic_menu_goto"
                   yourapp:showAsAction="never"
          

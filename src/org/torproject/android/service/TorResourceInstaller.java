@@ -8,12 +8,10 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
-import java.io.PrintWriter;
 import java.io.StringBufferInputStream;
 import java.util.ArrayList;
 import java.util.concurrent.TimeoutException;
@@ -96,11 +94,13 @@ public class TorResourceInstaller implements TorServiceConstants {
 	        outFile = new File(installFolder, OBFSCLIENT_ASSET_KEY);
 	        shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
 	        streamToFile(is,outFile, false, true);
+	        setExecutable(outFile);
 	        
 	        is = context.getResources().openRawResource(R.raw.meek);
 	        outFile = new File(installFolder, MEEK_ASSET_KEY);
 	        shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
 	        streamToFile(is,outFile, false, true);
+	        setExecutable(outFile);
 	        
 	        cpuPath = "armeabi";
         }
@@ -111,17 +111,19 @@ public class TorResourceInstaller implements TorServiceConstants {
         outFile = new File(installFolder, TOR_ASSET_KEY);
         shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
         streamToFile(is,outFile, false, true);
+        setExecutable(outFile);
     
         is = context.getAssets().open(cpuPath + "/polipo.mp3");
         outFile = new File(installFolder, POLIPO_ASSET_KEY);
         shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
         streamToFile(is,outFile, false, true);
+        setExecutable(outFile);
     
         is = context.getAssets().open(cpuPath + "/xtables.mp3");
         outFile = new File(installFolder, IPTABLES_ASSET_KEY);
         shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
         streamToFile(is,outFile, false, true);
-   
+        setExecutable(outFile);
     
         return true;
     }
@@ -358,5 +360,12 @@ public class TorResourceInstaller implements TorServiceConstants {
         return true;
     }*/
     
+
+    private void setExecutable(File fileBin) {
+        fileBin.setReadable(true);
+        fileBin.setExecutable(true);
+        fileBin.setWritable(false);
+        fileBin.setWritable(true, true);
+    }
 
 }

@@ -1,6 +1,9 @@
 /* Copyright (c) 2009, Nathan Freitas, Orbot / The Guardian Project - http://openideals.com/guardian */
 /* See LICENSE for licensing information */
+
 package org.torproject.android.service;
+
+import android.content.Intent;
 
 public interface TorServiceConstants {
 
@@ -46,46 +49,84 @@ public interface TorServiceConstants {
 	public final static String CHMOD_EXE_VALUE = "770";
 
 	public final static int FILE_WRITE_BUFFER_SIZE = 1024;
-	
-	//HTTP Proxy server port
-	public static int PORT_HTTP = 8118; //just like Privoxy!
-	
-	//Socks port client connects to, server is the Tor binary
-	public static String PORT_SOCKS_DEFAULT = "9050";
-	
-	
-	//what is says!
+
 	public final static String IP_LOCALHOST = "127.0.0.1";
 	public final static int UPDATE_TIMEOUT = 1000;
 	public final static int TOR_TRANSPROXY_PORT_DEFAULT = 9040;
 	public final static int STANDARD_DNS_PORT = 53;
 	public final static int TOR_DNS_PORT_DEFAULT = 5400;
-	
+    public final static int CONTROL_PORT_DEFAULT = 9051;
+    public final static int HTTP_PROXY_PORT_DEFAULT = 8118; // like Privoxy!
+    public final static int SOCKS_PROXY_PORT_DEFAULT = 9050;
+
 	//path to check Tor against
 	public final static String URL_TOR_CHECK = "https://check.torproject.org";
 
     //control port 
     public final static String TOR_CONTROL_PORT_MSG_BOOTSTRAP_DONE = "Bootstrapped 100%";
+    public final static String LOG_NOTICE_HEADER = "NOTICE";
+    public final static String LOG_NOTICE_BOOTSTRAPPED = "Bootstrapped";
     
-    public final static int STATUS_OFF = 0;
-    public final static int STATUS_ON = 1;
-    public final static int STATUS_CONNECTING = 2;
-    
-    public static final int STATUS_MSG = 1;
-    public static final int ENABLE_TOR_MSG = 2;
-    public static final int DISABLE_TOR_MSG = 3;
-    public static final int LOG_MSG = 4;
-    
-    public static final String CMD_START = "start";
-    public static final String CMD_STOP = "stop";
+    /**
+     * A request to Orbot to transparently start Tor services
+     */
+    public final static String ACTION_START = "org.torproject.android.intent.action.START";
+    /**
+     * {@link Intent} send by Orbot with {@code ON/OFF/STARTING/STOPPING} status
+     */
+    public final static String ACTION_STATUS = "org.torproject.android.intent.action.STATUS";
+    /**
+     * {@code String} that contains a status constant: {@link #STATUS_ON},
+     * {@link #STATUS_OFF}, {@link #STATUS_STARTING}, or
+     * {@link #STATUS_STOPPING}
+     */
+    public final static String EXTRA_STATUS = "org.torproject.android.intent.extra.STATUS";
+    /**
+     * A {@link String} {@code packageName} for Orbot to direct its status reply
+     * to, used in {@link #ACTION_START} {@link Intent}s sent to Orbot
+     */
+    public final static String EXTRA_PACKAGE_NAME = "org.torproject.android.intent.extra.PACKAGE_NAME";
+    /**
+     * The SOCKS proxy settings in URL form.
+     */
+    public final static String EXTRA_SOCKS_PROXY = "org.torproject.android.intent.extra.SOCKS_PROXY";
+    public final static String EXTRA_SOCKS_PROXY_HOST = "org.torproject.android.intent.extra.SOCKS_PROXY_HOST";
+    public final static String EXTRA_SOCKS_PROXY_PORT = "org.torproject.android.intent.extra.SOCKS_PROXY_PORT";
+    /**
+     * The HTTP proxy settings in URL form.
+     */
+    public final static String EXTRA_HTTP_PROXY = "org.torproject.android.intent.extra.HTTP_PROXY";
+    public final static String EXTRA_HTTP_PROXY_HOST = "org.torproject.android.intent.extra.HTTP_PROXY_HOST";
+    public final static String EXTRA_HTTP_PROXY_PORT = "org.torproject.android.intent.extra.HTTP_PROXY_PORT";
+
+    public final static String LOCAL_ACTION_LOG = "log";
+    public final static String LOCAL_ACTION_BANDWIDTH = "bandwidth";
+    public final static String LOCAL_EXTRA_LOG = "log";
+
+    /**
+     * All tor-related services and daemons are stopped
+     */
+    public final static String STATUS_OFF = "OFF";
+    /**
+     * All tor-related services and daemons have completed starting
+     */
+    public final static String STATUS_ON = "ON";
+    public final static String STATUS_STARTING = "STARTING";
+    public final static String STATUS_STOPPING = "STOPPING";
+    /**
+     * The user has disabled the ability for background starts triggered by
+     * apps. Fallback to the old Intent that brings up Orbot.
+     */
+    public final static String STATUS_STARTS_DISABLED = "STARTS_DISABLED";
+
+    // actions for internal command Intents
+    public static final String CMD_SIGNAL_HUP = "signal_hup";
     public static final String CMD_FLUSH = "flush";
     public static final String CMD_NEWNYM = "newnym";
-    public static final String CMD_INIT = "init";
     public static final String CMD_VPN = "vpn";
     public static final String CMD_VPN_CLEAR = "vpnclear";
-    public static final String CMD_UPDATE = "update";
-     
-    
+    public static final String CMD_UPDATE_TRANS_PROXY = "update";
+
     public static final String BINARY_TOR_VERSION = "0.2.6.7";
     public static final String PREF_BINARY_TOR_VERSION_INSTALLED = "BINARY_TOR_VERSION_INSTALLED";
     
@@ -93,15 +134,7 @@ public interface TorServiceConstants {
     public static final String OBFSCLIENT_ASSET_KEY = "obfs4proxy";
     
     public static final String MEEK_ASSET_KEY = "meek-client";
-    
-    
-	public static final int MESSAGE_TRAFFIC_COUNT = 5;
-	
-
 	//name of the iptables binary
 	public final static String IPTABLES_ASSET_KEY = "xtables";	
-	
-	public final static int DEFAULT_CONTROL_PORT = 9051;
-	
 
 }

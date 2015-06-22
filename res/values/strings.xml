@@ -11,7 +11,7 @@
   <string name="status_starting_up">Orbot is starting&#8230;</string>
   <string name="status_activated">Connected to the Tor network</string>
   <string name="status_disabled">Orbot is deactivated</string>
-  <string name="status_shutting_down">Orbot is shutting down</string>
+  <string name="status_shutting_down">TorService is shutting down</string>
   <string name="tor_process_starting">Starting Tor client&#8230;</string>
   <string name="tor_process_complete">complete.</string>
   <string name="tor_process_waiting">waiting.</string>
@@ -25,7 +25,7 @@
   <string name="menu_start">Start</string>
   <string name="menu_stop">Stop</string>
   <string name="menu_about">About</string>
-  <string name="menu_wizard">Wizard</string>
+  <string name="menu_promo_apps">Get apps…</string>
   <string name="main_layout_download">Download</string>
   <string name="main_layout_upload">Upload</string>
   <string name="button_help">Help</string>
@@ -126,6 +126,8 @@
   <string name="pref_entrance_node">Entrance Nodes</string>
   <string name="pref_entrance_node_summary">Fingerprints, nicks, countries and addresses for the first hop</string>
   <string name="pref_entrance_node_dialog">Enter Entrance Nodes</string>
+  <string name="pref_allow_background_starts_title">Allow Background Starts</string>
+  <string name="pref_allow_background_starts_summary">Let any app tell Orbot to start Tor and related services</string>
   
   <string name="button_proxy_all">Proxy All</string>
   <string name="button_proxy_none">Proxy None</string>

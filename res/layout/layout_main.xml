@@ -4,6 +4,8 @@
      xmlns:android="http://schemas.android.com/apk/res/android"
      android:orientation="vertical" android:layout_width="match_parent"
       android:layout_height="match_parent"
+                android:background="@color/panel_background_main"
+      
       >
       
     <android.support.v7.widget.Toolbar
@@ -123,45 +125,58 @@
 		</RelativeLayout>
 		    </LinearLayout>
 		 
-	<FrameLayout
-	    	android:layout_width="match_parent"
-		android:layout_height="0dp"
-		android:layout_weight="1"
-		
-          android:background="@color/panel_background_main"
-	    >
-       <org.torproject.android.ui.ImageProgressView
-		android:id="@+id/imgStatus"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="5dp"
-		android:padding="0dp"
-		
-		android:src="@drawable/toroff"
-		android:layout_gravity="center_horizontal|center_vertical" />
+        
+       <ProgressBar
+   android:id="@+id/pbConnecting"
+   style="?android:attr/progressBarStyleLarge"
+   android:layout_width="wrap_content"
+   android:layout_height="wrap_content"
+   		android:layout_marginTop="60dp"
+   			android:visibility="gone"	  
+   		
+android:layout_gravity="center_horizontal|center_vertical"/>
        
-       	<TextView
-			android:id="@+id/lblStatus"
-			android:textColor="@android:color/white"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:textSize="16sp"
-			android:gravity="center_vertical"
-			android:fontFamily="sans-serif-light"
-			android:text=""
-					android:layout_gravity="center_horizontal|bottom"
-			android:layout_margin="10dp"
-			
-			 />
+	<LinearLayout
+	    	android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/frameMain"
+		android:visibility="visible"	
+		 android:orientation="vertical"   
+		android:layout_gravity="center_horizontal|center_vertical"
+		 >
+		       <org.torproject.android.ui.ImageProgressView
+				android:id="@+id/imgStatus"
+				android:layout_width="match_parent"
+				android:layout_height="0dp"		
+						android:layout_weight=".8"
+				
+				android:padding="0dp"
+				android:layout_margin="0dp"
+				android:src="@drawable/toroff" />
+		       
+		       	<TextView
+					android:id="@+id/lblStatus"
+					android:textColor="@android:color/white"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:textSize="14sp"
+					android:gravity="center_horizontal"
+					android:fontFamily="sans-serif-light"
+					android:text=""
+					android:lines="2"
+					android:maxLines="2"				
+					android:layout_gravity="center_horizontal"
+					android:layout_margin="0dp"
+					android:layout_marginLeft="5dp"			
+					android:layout_marginRight="5dp"
+					 />
 		
-       </FrameLayout>
-	
 		<LinearLayout android:gravity="center_horizontal"
 	     android:orientation="horizontal" android:layout_width="match_parent"
 	      android:layout_height="wrap_content"
 	      android:padding="5dp"
 	            android:background="@color/panel_background_dark"
-	
+			android:layout_gravity="bottom"
 	      >
 	
 			<Button
@@ -203,8 +218,11 @@
 			    />
 			 
 		    </LinearLayout>
+		     </LinearLayout>
+	
 	    </LinearLayout>
 	    </LinearLayout>
+	    
 	 <LinearLayout
     android:layout_width="320dp"
     android:layout_height="match_parent"
