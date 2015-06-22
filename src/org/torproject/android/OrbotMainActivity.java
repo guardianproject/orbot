@@ -99,6 +99,10 @@ public class OrbotMainActivity extends Activity
     private final static int STATUS_UPDATE = 1;
     private static final int MESSAGE_TRAFFIC_COUNT = 2;
 
+	public final static String INTENT_ACTION_REQUEST_HIDDEN_SERVICE = "org.torproject.android.REQUEST_HS_PORT";
+	public final static String INTENT_ACTION_REQUEST_START_TOR = "org.torproject.android.START_TOR";	
+		
+
     /** Called when the activity is first created. */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -501,8 +505,7 @@ public class OrbotMainActivity extends Activity
 		}
 	
 	}
-
-
+	
 	private synchronized void handleIntents ()
 	{
 		if (getIntent() == null)
@@ -518,7 +521,7 @@ public class OrbotMainActivity extends Activity
 		if (action == null)
 			return;
 		
-		if (action.equals("org.torproject.android.REQUEST_HS_PORT"))
+		if (action.equals(INTENT_ACTION_REQUEST_HIDDEN_SERVICE))
 		{
         	final int hiddenServicePortRequest = getIntent().getIntExtra("hs_port", -1);
 
@@ -558,21 +561,24 @@ public class OrbotMainActivity extends Activity
 			
 			return; //don't null the setIntent() as we need it later
 		}
-		else if (action.equals("org.torproject.android.START_TOR"))
+		else if (action.equals(INTENT_ACTION_REQUEST_START_TOR))
 		{
 			autoStartFromIntent = true;
           
             startTor();
 
-            Intent resultIntent;
-            if (lastStatusIntent == null) {
-                resultIntent = new Intent(intent);
-            } else {
-                resultIntent = lastStatusIntent;
+            if (Prefs.allowBackgroundStarts())
+            {            
+	            Intent resultIntent;
+	            if (lastStatusIntent == null) {
+	                resultIntent = new Intent(intent);
+	            } else {
+	                resultIntent = lastStatusIntent;
+	            }
+	            resultIntent.putExtra(TorServiceConstants.EXTRA_STATUS, torStatus);
+	            setResult(RESULT_OK, resultIntent);
+	            finish();
             }
-            resultIntent.putExtra(TorServiceConstants.EXTRA_STATUS, torStatus);
-            setResult(RESULT_OK, resultIntent);
-            finish();
           
 		}
 		else if (action.equals(Intent.ACTION_VIEW))
@@ -1086,6 +1092,9 @@ public class OrbotMainActivity extends Activity
             if (autoStartFromIntent)
             {
                 autoStartFromIntent = false;
+                Intent resultIntent = lastStatusIntent;	            
+	            resultIntent.putExtra(TorServiceConstants.EXTRA_STATUS, torStatus);
+	            setResult(RESULT_OK, resultIntent);
                 finish();
                 Log.d(TAG, "autoStartFromIntent finish");
             }
