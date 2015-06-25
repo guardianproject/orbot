@@ -17,10 +17,13 @@
 package org.torproject.android.vpn;
 
 import java.net.InetAddress;
+import java.util.ArrayList;
 import java.util.Locale;
 
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.TorServiceUtils;
+import org.torproject.android.settings.AppManager;
+import org.torproject.android.settings.TorifiedApp;
 
 import android.annotation.TargetApi;
 import android.app.PendingIntent;
@@ -178,9 +181,6 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     
     private void stopVPN ()
     {
-
-        Tun2Socks.Stop();
-        
         //stopSocksBypass ();
         
         if (mInterface != null){
@@ -202,7 +202,13 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
             }   
         }
         
+        Tun2Socks.Stop();
+        
         mThreadVPN = null;
+        
+
+    //    Tun2Socks.Stop();
+        
         
     }
 
@@ -293,7 +299,24 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	private void doLollipopAppRouting (Builder builder) throws NameNotFoundException
     {    
-    	builder.addDisallowedApplication("org.torproject.android");   
+    	   
+        ArrayList<TorifiedApp> apps = AppManager.getApps(this, TorServiceUtils.getSharedPrefs(getApplicationContext()));
+    
+        boolean appAllowed = false;
+        
+        for (TorifiedApp app : apps)
+        {
+        	if (app.isTorified())
+        	{
+        		builder.addAllowedApplication(app.getUsername());
+        		appAllowed = true;
+        	}
+        	
+        }
+    
+        if (!appAllowed)
+        	builder.addDisallowedApplication(getPackageName());
+    
     }
     
     @Override

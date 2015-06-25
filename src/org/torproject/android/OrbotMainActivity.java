@@ -965,7 +965,7 @@ public class OrbotMainActivity extends Activity
 
         	 
          })
-         .setNegativeButton(android.R.string.cancel, new Dialog.OnClickListener ()
+         .setNegativeButton(R.string.btn_cancel, new Dialog.OnClickListener ()
          {
 
 			@Override

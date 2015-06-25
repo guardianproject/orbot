@@ -6,6 +6,7 @@ package org.torproject.android.settings;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
@@ -21,6 +22,7 @@ import info.guardianproject.util.Languages;
 import org.sufficientlysecure.rootcommands.RootCommands;
 import org.sufficientlysecure.rootcommands.Shell;
 import org.torproject.android.OrbotApp;
+import org.torproject.android.Prefs;
 import org.torproject.android.R;
 import org.torproject.android.service.TorServiceUtils;
 
@@ -97,21 +99,33 @@ public class SettingsPreferences
 
         });
 
+        
         prefTransProxyApps = findPreference("pref_transparent_app_list");
         prefTransProxyApps.setOnPreferenceClickListener(this);
-        prefTransProxyApps.setEnabled(prefCBTransProxy.isChecked()
-                && (!prefcBTransProxyAll.isChecked()));
-
         prefCBTransProxy.setOnPreferenceClickListener(this);
         prefcBTransProxyAll.setOnPreferenceClickListener(this);
-        prefcBTransProxyAll.setEnabled(prefCBTransProxy.isChecked());
-
         prefHiddenServices = (CheckBoxPreference) findPreference("pref_hs_enable");
         prefHiddenServices.setOnPreferenceClickListener(this);
-        prefHiddenServicesPorts = (EditTextPreference) findPreference("pref_hs_ports");
-        prefHiddenServicesPorts.setEnabled(prefHiddenServices.isChecked());
         prefHiddenServicesHostname = (EditTextPreference) findPreference("pref_hs_hostname");
+        
+        
+        prefCBTransProxy.setEnabled(prefRequestRoot.isChecked());
+        
+        prefcBTransProxyAll.setEnabled(prefCBTransProxy.isChecked());
+        
+        if (prefCBTransProxy.isChecked())
+        	prefTransProxyApps.setEnabled((!prefcBTransProxyAll.isChecked()));
+        
+        prefHiddenServicesPorts = (EditTextPreference) findPreference("pref_hs_ports");
         prefHiddenServicesHostname.setEnabled(prefHiddenServices.isChecked());
+        prefHiddenServicesPorts.setEnabled(prefHiddenServices.isChecked());
+        
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+        {
+       	 	prefTransProxyApps.setEnabled(true);
+        }
+        
+        
     }
 
 	public boolean onPreferenceClick(Preference preference) {
@@ -134,7 +148,8 @@ public class SettingsPreferences
 						shell.close();
 						
 						prefRequestRoot.setChecked(true);
-
+						prefCBTransProxy.setEnabled(true);
+						
 					}
 					catch (Exception e)
 					{
