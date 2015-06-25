@@ -1,5 +1,131 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+/** 15.0.1 BETA 2 / 25-Jun-2015 / c56e5d635f758f2ed5ab4e20e0805777686b4536 **/
+
+* VPN Mode Improvements
+1b6126e Enable support for app selection to work with VPN mode on Lollipop+ For now we will re-use/overload the app selection transpro
+fa427a2 update tun2socks binaries
+
+* Build Cleanup
+bf8113c update to sdk 22
+f558a0a don't try to build external folders in eclipse
+67d1652 update tor to 0.2.6.9
+
+* Intent API improvements
+765bc61 enable background starts by default only for Service intent calls
+e11cae8 Merge branch 'the-big-start-stop-makeover' of https://github.com/eighthave/orbot into eighthave-the-big-start-stop-makeover
+a8384bd Merge branch 'eighthave-the-big-start-stop-makeover'
+225ad9d fix handling of foreground intent starts, and set bg start off by default
+e132a79 improve status request/callback interaction and status UI layout
+aa87e67 on start, check for running tor daemon, and if TorService stopped, then start
+a81c000 init file path variables (tor, polipo, etc) when the app starts
+943edf0 "Allow Background Starts" prefs also controls the old START_TOR Intent
+adf7c09 remove delayed handling of Intents in OrbotMainActivity
+c9e3102 prevent a status request from starting TorService
+e5c2e1a when OrbotMainActivity starts, query TorService for current status
+232098e set STATUS_STARTING in TorService.onCreate(), that's where it begins
+ff04bde announce Orbot is ON once the first circuit is complete
+8f57b42 rename TorStarter to IncomingIntentRouter, it handles all Intents
+b620f82 include dynamic proxy config info in ACTION_STATUS replies
+0937c88 use constants for setting default ports, and variables when running
+6230845 standardize network port constant variables
+ac8329c create a new pref: "Allow Background Starts"
+775135d let the requesting app know that the user has disabled starting via Intent
+77b1bdf on receiving ACTION_START, only send status reply if EXTRA_PACKAGE_NAME set
+f433a5e expose start action via a BroadcastReceiver that any app can send to
+90b731c strictly target local broadcasts
+bf3572e use the same action string for local and broadcast status
+65d8801 rename mMessageReceiver to mLocalBroadcastReceiver
+4d8a9da broadcast Tor state to any app that might want to know
+fa533e9 fix handle intent for hidden service API request
+
+* User Interface
+f16394b include all status messages with "start" in them in the starting sequence
+ddaae1d drive main screen UI updated entirely from TorService status updates
+13d2987 a couple tweaks to make the long press feel more responsive
+25a6bb6 force all UI status updates through mStatusUpdateHandler
+5c2d450 make updateStatus() more closely match the state given from TorService
+f09379d create String constants for Intent actions and extras
+fd23da5 purge troublesome half-disabled Wizard, rename menu to "Get Apps..."
+
+* Localization
+6352bd4 convert app description to XLIFF to make translation management easier
+96b5d90 remove empty translations
+aebf3b0 fixed directory names for Indonesian and Hebrew
+5c7171b add config for transifex-client aka tx
+a721199 rename zh to zh_CN following convention
+9a786d4 Merge pull request #10 from eighthave/fix-translations
+fbf9932 rework setting locale from pref to have a lighter touch and be dynamic
+d43a6cd switch language/locale preference to use Languages utility class
+d85a2e8 remove global NumberFormat for more flexible Locale handling
+7787a3f run ./fix-translations
+d55c7b7 ./fix-translations script to fix common problems in the strings.xml
+
+* General Cleanup
+2f1d52f purge unused code from OrbotMainActivity
+2f7ddc4 purge unused OrbotLogActivity
+21c3bfb use "SIGNAL HUP" to request Tor re-read its config
+6ac9a2c use context.stopService() to shutdown TorService instead of custom message
+bfb0a80 rename mHandler to mStatusUpdateHandler
+3580cbe only set mCurrentStatus in sendCallbackStatus(), the one stop shop
+780abf0 rework start/stop procedure to have clear points for ON, OFF, STARTING, STOPPING
+4470771 rename startService() to sendIntentToService() to reflect what it does
+82f82e1 mark TorService methods from EventHandler as overridden
+86593df rename status to STARTING and STOPPING since it also starts/stops daemons
+cf0adc2 on start and tor daemon not running, kill all daemons before starting again
+2bc85a4 rework killing all daemons to continue trying after a failure
+73658ce use Java methods for setting permissions on native executables
+a3d37e8 make prefs called directly when needed instead of requiring refresh
+6e13a7e purge dead and unused code from TorService
+12d92f4 handle logging native process Exceptions closer to the source
+ae83f01 purge CMD_INIT/initialize() from TorService, an IntentService doesn't need it
+a336a29 convert status variable to String for easy sharing in Intents
+356e79a remove unused IntentFilter from TorService
+807b51f include proxy config info when returning from START_TOR Intent
+fba0926 update SettingsActivity to use simpler findPreferences() method
+237366c no need to override methods with nothing
+2f1ad74 put up error notification if Orbot cannot kill a process
+81cf67f remove unused icons to save space
+
+* Repro Builds Progress
+5414104 Merge pull request #9 from eighthave/reboot-and-reproducible
+2372b18 add script to compare APKs for the reproducible process
+cd48dd2 ignore build products in the submodules (ignore = dirty)
+6989f9b add standard ./make-release-build script
+6775f86 add custom ant rules for automating the release process
+e66b5a0 ignore all build products from submodules
+cf43fa2 switch to standard NDK env var: ANDROID_NDK_HOME
+663cade ./jenkins-build script for standard Guardian Project Jenkins build
+3c26f67 update ant setup script to get all settings from their original sources
+77d1b82 adding patch for iptables building on x86
+20bf4c7 update Makefile
+d6ff413 update Makefile with a few tweaks
+
+* Misc
+333343f remove Firefox ProxyMob recommendation, ProxyMob is no longer supported
+e58a15e Promo Apps: choose "all apps" URL based on which app store is installed
+545afe7 Promo Apps: use Play or FDroid links, fallback to https://f-droid.org
+0e6ba61 remove Firefox ProxyMob recommendation, ProxyMob is no longer supported
+2f8c130 update to 15.0.1-beta-1 and update openssl to 1.0.2a
+d6bfed0 update for 15.0.1
+
+* Native build fixes
+3a3f701 Merge branch 'aelmahmoudy-build_system'
+4163fc1 Merge branch 'build_system' of https://github.com/aelmahmoudy/orbot into aelmahmoudy-build_system
+d5e937d Fix build for mips* archs.
+8d7c32c Update OpenSSL to 1.0.2a
+81a945e Patch libevent to compile for 64-bit archs.
+ebe85e5 Add iptables-clean prerequisite to clean target
+adb9a19 Add support for variable arch builds to support mips & 64-bit archs
+84c6645 fixing flag typo
+dbe3024 fix PIE_FLAGS variable to allow for override also, standardize use of STRIP command
+1bc427b handle NPE on number format instance
+ec24428 fix NPE crash if VPN prepare Intent is null on boot
+ddecd0c update changelog for v15 rc 3
+b941a1c show warning about bridge limits on Intel x86/ATOM devices
+325ca1f only ARM chips can support the new Obfs4, Meek bridges so hide the UI options that promote them, and just request standard bri
+
+
 /** 15.0.0 RC 3 / 13-Apr-2015 / b941a1c7d5588db7efd9fab672ec518a69f76f84 **/
 
 b941a1c show warning about bridge limits on Intel x86/ATOM devices
