@@ -73,7 +73,12 @@
 			android:finishOnTaskLaunch="true"
 			
 			/> 
-			      	
+		
+      	<activity
+			android:name=".vpn.VPNEnableActivity" android:label="@string/app_name" android:exported="false"
+			android:theme="@android:style/Theme.NoDisplay"			
+			/> 
+		
 			      	
       	<activity android:name="org.torproject.android.ui.PromoAppsActivity" android:exported="false"/>
       	

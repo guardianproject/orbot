@@ -1,13 +1,12 @@
 package org.torproject.android.service;
 
 
-import android.annotation.SuppressLint;
+import org.torproject.android.Prefs;
+import org.torproject.android.vpn.VPNEnableActivity;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.net.VpnService;
-
-import org.torproject.android.Prefs;
 
 public class OnBootReceiver extends BroadcastReceiver {
 	
@@ -15,24 +14,21 @@ public class OnBootReceiver extends BroadcastReceiver {
 	public void onReceive(Context context, Intent intent) {
 	    Prefs.setContext(context);
 		if (Prefs.startOnBoot())
-		{
-			startService(TorServiceConstants.ACTION_START, context);
+		{			
 
 			if (Prefs.useVpn())
-				startVpnService(context);
+				startVpnService(context); //VPN will start Tor once it is done
+			else
+				startService(TorServiceConstants.ACTION_START, context);
+				
 		}
 	}
 	
-	 @SuppressLint("NewApi")
-	public void startVpnService (Context context)
+	public void startVpnService (final Context context)
     	{
-       		Intent intent = VpnService.prepare(context);
-
-		if (intent != null) {
-        		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            		context.startActivity(intent);
-        	} 
-
+		   Intent intent = new Intent(context,VPNEnableActivity.class);
+           intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+           context.startActivity(intent);
     	}
 
 	private void startService (String action, Context context)

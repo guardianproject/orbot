@@ -93,7 +93,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     private Socket torConnSocket = null;
     private int mLastProcessId = -1;
     
-
     private int mPortHTTP = HTTP_PROXY_PORT_DEFAULT;
     private int mPortSOCKS = SOCKS_PROXY_PORT_DEFAULT;
     

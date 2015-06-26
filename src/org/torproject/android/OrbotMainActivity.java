@@ -59,6 +59,7 @@ import org.torproject.android.settings.SettingsPreferences;
 import org.torproject.android.ui.ImageProgressView;
 import org.torproject.android.ui.PromoAppsActivity;
 import org.torproject.android.ui.Rotate3dAnimation;
+import org.torproject.android.vpn.VPNEnableActivity;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -252,10 +253,11 @@ public class OrbotMainActivity extends Activity
 		boolean useVPN = Prefs.useVpn();
 		mBtnVPN.setChecked(useVPN);
 		
+		/**
 		if (useVPN)
 		{
-			startVpnService ();
-		}
+			startActivity(new Intent(OrbotMainActivity.this,VPNEnableActivity.class));
+		}*/
 		
 		mBtnVPN.setOnClickListener(new View.OnClickListener ()
 		{
@@ -264,7 +266,7 @@ public class OrbotMainActivity extends Activity
 			public void onClick(View v) {
 
 				if (mBtnVPN.isChecked())
-					promptStartVpnService();
+					startActivity(new Intent(OrbotMainActivity.this,VPNEnableActivity.class));
 				else
 					stopVpnService();
 				
@@ -943,45 +945,12 @@ public class OrbotMainActivity extends Activity
         sendIntentToService(TorServiceConstants.CMD_SIGNAL_HUP);
     }
 
-    public void promptStartVpnService ()
-    {
-    	 LayoutInflater li = LayoutInflater.from(this);
-         View view = li.inflate(R.layout.layout_diag, null); 
-         
-         TextView versionName = (TextView)view.findViewById(R.id.diaglog);
-         versionName.setText(R.string.you_can_enable_all_apps_on_your_device_to_run_through_the_tor_network_using_the_vpn_feature_of_android_);    
-         
-         new AlertDialog.Builder(this)
-         .setTitle(R.string.apps_mode)
-         .setView(view)
-         .setPositiveButton(R.string.activate, new Dialog.OnClickListener ()
-         {
-
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-		        Prefs.putUseVpn(true);
-				startVpnService();
-			}
-
-        	 
-         })
-         .setNegativeButton(R.string.btn_cancel, new Dialog.OnClickListener ()
-         {
-
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				
-				mBtnVPN.setChecked(false);
-			}
-        	 
-         })
-         .show();
-    }
     
+    /**
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     public void startVpnService ()
     {
-        Intent intent = VpnService.prepare(this);
+        Intent intent = VpnService.prepare(getApplicationContext());
         if (intent != null) {
             startActivityForResult(intent,REQUEST_VPN);
         } 
@@ -989,7 +958,7 @@ public class OrbotMainActivity extends Activity
         {
             sendIntentToService(TorServiceConstants.CMD_VPN);
         }
-    }
+    }*/
     
     public void stopVpnService ()
     {    	
