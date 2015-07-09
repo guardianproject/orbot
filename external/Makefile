@@ -108,7 +108,7 @@ ifneq ($(filter mips%, $(NDK_ABI)),)
  ifneq ($(findstring 64, $(NDK_ABI)),)
   OPENSSL_CONF_FLAG+=-D_MIPS_SZLONG=64
  else
-  OPENSSL_CONF_FLAG+=-D_MIPS_SZLONG=32
+  OPENSSL_CONF_FLAG+=-D_MIPS_SZLONG=32 -D__MIPSEL__
  endif
 endif
 
