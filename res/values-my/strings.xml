@@ -21,10 +21,6 @@
   <string name="wizard_warning_title">သတိပေးချက်</string>
   <!--Permissions screen-->
   <!--TipsAndTricks screen-->
-
-
-
-
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_none">ဘာမှမရှိ</string>
   <string name="status">အနေအထား</string>

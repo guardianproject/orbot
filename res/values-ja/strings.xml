@@ -7,11 +7,11 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">Torを起動・停止する</string>
   <string name="tor_proxy_service_process">Torプロクシサービス</string>
-  <string name="status_starting_up">Orbotが開始されています…</string>
+  <string name="status_starting_up">Orbotが開始されています...</string>
   <string name="status_activated">Torネットワークに接続しています</string>
   <string name="status_disabled">\"Orbotが解除されました</string>
   <string name="status_shutting_down">Orbotが終了しています</string>
-  <string name="tor_process_starting">Torクライエントを開始しています…</string>
+  <string name="tor_process_starting">Torクライエントを開始しています...</string>
   <string name="tor_process_complete">完了</string>
   <string name="tor_process_waiting">お待ちください</string>
   <string name="not_anonymous_yet">警告:この通信はまだ匿名化されていません！　HTTP proxy 127.0.0.1:8118　か、 SOCKS4A または SOCKS5 proxy 127.0.0.1:9050　を利用するようにアプリケーション側で設定してください</string>
@@ -74,7 +74,6 @@
   <string name="wizard_tips_otrchat">ChatSecure - Android 用のセキュアなインスタントメッセージクライアント</string>
   <string name="wizard_tips_proxy">Proxy Settings - Orbotでアプリを動かすための手順書</string>
   <string name="wizard_tips_duckgo">DuckDuckGo 検索エンジンアプリ</string>
-
   <string name="wizard_tips_twitter">Twitter proxyを「localhost」と8118番ポートに合わせる</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">プロキシ設定</string>
@@ -96,15 +95,8 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbotが有効化されたアプリ</string>
   <string name="wizard_tips_gibberbot">ChatSecure: 非記録式暗号によるセキュアなチャットアプリ</string>
-
   <string name="wizard_tips_orweb">Orweb: Torを使う匿名インターネットブラウザ</string>
-
   <string name="wizard_tips_play">Google Playで全てのGuardian Projectのアプリを見つける</string>
-
-
-
-
-
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">透過プロキシ</string>
   <string name="wizard_transproxy_msg">これはあなたのアプリを自動的にTor経由で通信させます。</string>
@@ -137,14 +129,14 @@
   <string name="pref_proxy_password_summary">プロキシのパスワード (オプション)</string>
   <string name="pref_proxy_password_dialog">プロキシのパスワードを入力してください</string>
   <string name="status">状態</string>
-  <string name="setting_up_full_transparent_proxying_">完全な透過プロキシをセットアップ中…</string>
-  <string name="setting_up_app_based_transparent_proxying_">アプリベースの透過プロキシをセットアップ中…</string>
+  <string name="setting_up_full_transparent_proxying_">完全な透過プロキシをセットアップ中...</string>
+  <string name="setting_up_app_based_transparent_proxying_">アプリベースの透過プロキシをセットアップ中...</string>
   <string name="transparent_proxying_enabled">透過プロキシ　有効</string>
   <string name="transproxy_enabled_for_tethering_">テザリングでの透過プロキシ有効</string>
   <string name="warning_error_starting_transparent_proxying_">警告: 透過プロキシの開始時にエラー発生</string>
   <string name="transproxy_rules_cleared">透過プロキシ　ルール　消去完了</string>
   <string name="couldn_t_start_tor_process_">Torプロセスの起動に失敗:</string>
-  <string name="setting_up_port_based_transparent_proxying_">ポートベースの透過プロキシをセットアップ中…</string>
+  <string name="setting_up_port_based_transparent_proxying_">ポートベースの透過プロキシをセットアップ中...</string>
   <string name="bridge_error">ブリッジ　エラー</string>
   <string name="bridge_requires_ip">ブリッジ機能を利用するには、最低一つのブリッジIPアドレスの入力が必要です。</string>
   <string name="send_email_for_bridges">gmailを使って、本文に「get bridges」と書いたメールをbridges@torproject.orgに送信してください。</string>
@@ -203,12 +195,10 @@
   <string name="pref_use_persistent_notifications_title">通知を常に有効化</string>
   <string name="notification_using_bridges">ブリッジが有効です！</string>
   <string name="default_bridges"></string>
-  <string name="set_locale_title">地域を選択</string>
   <string name="set_locale_summary">Orbotの地域と言語を選択</string>
   <string name="wizard_locale_title">言語を選択</string>
   <string name="wizard_locale_msg">今の言語を変更するか、そのままにする</string>
   <string name="btn_save_settings">設定を保存</string>
-  <string name="no_internet_connection_tor">インターネット接続なし。Torは待機中です…</string>
   <string name="bandwidth_">帯域幅:</string>
   <string name="down">ダウン</string>
   <string name="up">アップ</string>

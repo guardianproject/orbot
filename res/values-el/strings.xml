@@ -11,8 +11,8 @@
   <string name="status_activated">Συνδέθηκε στο δίκτυο Tor</string>
   <string name="status_disabled">\"Το Orbot είναι Απενεργοποιημένο</string>
   <string name="status_shutting_down">Το Orbot θα τερματίσει</string>
-  <string name="tor_process_starting">Εκκίνηση του πελάτη Tor…</string>
-  <string name="tor_process_complete">ολοκληρώθηκε…</string>
+  <string name="tor_process_starting">Εκκίνηση του πελάτη Tor...</string>
+  <string name="tor_process_complete">ολοκληρώθηκε...</string>
   <string name="tor_process_waiting">αναμονή</string>
   <string name="not_anonymous_yet">ΠΡΟΕΙΔΟΠΟΙΗΣΗ: Η κυκλοφορία σας δεν είναι ακόμη ανώνυμη! Ρυθμίστε τις εφαρμογές σας ώστε να χρησιμοποιούν ως πληρεξούσιο HTTP 127.0.0.1:8118 ή SOCKS5 127.0.0.1:9050</string>
   <string name="menu_home">Αρχική</string>
@@ -74,7 +74,6 @@
   <string name="wizard_tips_otrchat">ChatSecure - Εφαρμογή ασφαλούς ανταλλαγής άμεσων μηνυμάτων για Android</string>
   <string name="wizard_tips_proxy">Ρυθμίσεις proxy: Μάθετε πώς θα ρυθμίσετε τις εφαρμογές ώστε να λειτουργούν με το Orbot</string>
   <string name="wizard_tips_duckgo">Εφαρμογή Μηχανής Αναζήτησης Duckduckgo</string>
-
   <string name="wizard_tips_twitter">Το Twitter υποστηρίζει http proxy localhost:8118</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Ρυθμίσεις proxy</string>
@@ -96,15 +95,8 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Εφαρμογές συμβατές με Orbot</string>
   <string name="wizard_tips_gibberbot">ChatSecure: Ασφαλές chat app με Off-the-Record κρυπτογράφηση</string>
-
   <string name="wizard_tips_orweb">Orweb - Περιηγητής ιστού με ενισχυμένη ασφάλεια που είναι συμβατό με Tor</string>
-
   <string name="wizard_tips_play">Βρες όλες τις εφαρμογές Guardian Project στο Google Play</string>
-
-
-
-
-
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Διαφανής μεσολάβηση διακομιστή</string>
   <string name="wizard_transproxy_msg">Το στοιχείο αυτό επιτρέπει στις εφαρμογές σας να λειτουργούν μέσω του δικτύου Tor χωρίς κάποια ρύθμιση.</string>
@@ -144,7 +136,7 @@
   <string name="warning_error_starting_transparent_proxying_">ΠΡΟΕΙΔΟΠΟΙΗΣΗ: σφάλμα κατά την εκκίνηση της διαφανούς μεσολάβησης διακομιστή!</string>
   <string name="transproxy_rules_cleared">Οι ρυθμίσεις του TransProxy απομακρύνθηκαν</string>
   <string name="couldn_t_start_tor_process_">Αδυναμία εκκίνησης της διεργασίας Tor:</string>
-  <string name="setting_up_port_based_transparent_proxying_">Ρύθμιση της διαφανούς μεσολάβησης διακομιστή κατά θύρα…</string>
+  <string name="setting_up_port_based_transparent_proxying_">Ρύθμιση της διαφανούς μεσολάβησης διακομιστή κατά θύρα...</string>
   <string name="bridge_error">Σφάλμα γέφυρας</string>
   <string name="bridge_requires_ip">Για να χρησιμοποιήσετε το στοιχείο γέφυρας, πρέπει να εισάγετε την διεύθυνση ΙΡ τουλάχιστον μιας γέφυρας.</string>
   <string name="send_email_for_bridges">Μέσω ενός λογαριασμού gmai στείλτε ένα μήνυμα στην διεύθυνση bridges@torproject.org με την φαση \"get bridges\" μόνη της στο σώμα το μηνύματος.</string>
@@ -191,7 +183,7 @@
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Λογισμικό τρίτων:</string>
   <string name="hidden_service_request">Κάποια εφαρμογή προσπαθεί να ανοίξει την κρυφή θύρα διακομιστή %S στο δίκτυο Tor. Πρόκειται για ασφαλή ενέργεια, εφόσον γνωρίζετε την εφαρμογή.</string>
-  <string name="found_existing_tor_process">αναζήτηση διεργασιών Tor…</string>
+  <string name="found_existing_tor_process">αναζήτηση διεργασιών Tor...</string>
   <string name="something_bad_happened">Κάτι κακό συνέβη. Ελέγξτε τις καταγραφές</string>
   <string name="hidden_service_on">ενεργοποιημένη κρυφή υπηρεσία:</string>
   <string name="unable_to_read_hidden_service_name">αδυναμία ανάγνωσης του ονόματος της κρυφής υπηρεσίας</string>
@@ -203,12 +195,10 @@
   <string name="pref_use_persistent_notifications_title">Ειδοποιήσεις διαρκούς σύνδεσης</string>
   <string name="notification_using_bridges">Οι γέφυρες ενεργοποιήθηκαν!</string>
   <string name="default_bridges"></string>
-  <string name="set_locale_title">Ορισμός τοπικών προσαρμογών</string>
   <string name="set_locale_summary">Επιλέξτε ρυθμίσεις τοπικότητας και γλώσσας για το Orbot</string>
   <string name="wizard_locale_title">Επιλέξτε γλώσσα</string>
   <string name="wizard_locale_msg">Παραμείνετε στην αρχική ή αλλάξτε την τρέχουσα γλώσσα</string>
   <string name="btn_save_settings">Αποθήκευση ρυθμίσεων</string>
-  <string name="no_internet_connection_tor">Δεν υπάρχει σύνδεση με το διαδίκτυο, το Tor είναι σε αναμονή…</string>
   <string name="bandwidth_">Εύρος ζώνης:</string>
   <string name="down">κατέβασμα</string>
   <string name="up">ανέβασμα</string>

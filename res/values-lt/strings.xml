@@ -19,10 +19,6 @@
   <string name="wizard_warning_title">Įspėjimas</string>
   <!--Permissions screen-->
   <!--TipsAndTricks screen-->
-
-
-
-
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_none">Joks</string>
   <string name="status">Statusas</string>

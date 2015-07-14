@@ -21,10 +21,6 @@
   <string name="wizard_warning_title">Avertizare</string>
   <!--Permissions screen-->
   <!--TipsAndTricks screen-->
-
-
-
-
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_none">Nimic</string>
   <string name="status">Stare</string>

@@ -7,11 +7,11 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">iniciar e deter Tor</string>
   <string name="tor_proxy_service_process">torproxyservice</string>
-  <string name="status_starting_up">Orbot está a se iniciar…</string>
+  <string name="status_starting_up">Orbot está a se iniciar...</string>
   <string name="status_activated">Conectado á rede Tor</string>
   <string name="status_disabled">Orbot está desactivado</string>
   <string name="status_shutting_down">Orbot está a se pechar</string>
-  <string name="tor_process_starting">Iniciando cliente Tor…</string>
+  <string name="tor_process_starting">Iniciando cliente Tor...</string>
   <string name="tor_process_complete">completado.</string>
   <string name="tor_process_waiting">á espera.</string>
   <string name="not_anonymous_yet">AVISO: o teu tráfico aínda non é anónimo! Por favor, configura os teus aplicativos para uxar o proxy HTTP 127.0.0.1:8118 ou SOCKS4A ou o proxy SOCKS5 127.0.0.1:9050</string>
@@ -74,7 +74,6 @@
   <string name="wizard_tips_otrchat">ChatSecure - Cliente de mensaxería instantánea segura para Android</string>
   <string name="wizard_tips_proxy">Axustes do Proxy - Aprenda cómo configurar aplicativos para que funcionen con Orbot</string>
   <string name="wizard_tips_duckgo">Aplicativo do Motor de Búsquedas DuckDuckGo</string>
-
   <string name="wizard_tips_twitter">Axustar o host para proxy de Twitter a \"localhost\" e porto 8118</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Axustes do proxy</string>
@@ -96,15 +95,8 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Aplicativos Habilitados para Orbot</string>
   <string name="wizard_tips_gibberbot">CahtSecure: Aplicativo de chat seguro con Off-the-Record Encryption (OTR)</string>
-
   <string name="wizard_tips_orweb">Orweb: Navegador con privacidade mellorada que traballa a través de Tor</string>
-
   <string name="wizard_tips_play">Atope todos os aplicativos de Guardian Project apps en Google Play</string>
-
-
-
-
-
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Proxy Transparente</string>
   <string name="wizard_transproxy_msg">Isto permite que os seus aplicativos funcionen a través de rede Tor sen ningunha configuración.</string>
@@ -137,14 +129,14 @@
   <string name="pref_proxy_password_summary">Contrasinal do Proxy (Opcional)</string>
   <string name="pref_proxy_password_dialog">Introduza Contrasinal do Proxy</string>
   <string name="status">Estado</string>
-  <string name="setting_up_full_transparent_proxying_">Preparando proxy transparente completo…</string>
-  <string name="setting_up_app_based_transparent_proxying_">Preparando proxy transparente baseado en aplicativo…</string>
+  <string name="setting_up_full_transparent_proxying_">Preparando proxy transparente completo...</string>
+  <string name="setting_up_app_based_transparent_proxying_">Preparando proxy transparente baseado en aplicativo...</string>
   <string name="transparent_proxying_enabled">Proxy Transparente HABILITADO</string>
   <string name="transproxy_enabled_for_tethering_">TransProxy habilitado para Enlazamento!</string>
   <string name="warning_error_starting_transparent_proxying_">ATENCIÓN: erro arrancando o proxy transparente!</string>
   <string name="transproxy_rules_cleared">Regras TransProxy limpadas</string>
   <string name="couldn_t_start_tor_process_">No se pudio inciar o proceso Tor:</string>
-  <string name="setting_up_port_based_transparent_proxying_">Preparando proxy transparente baseado en porto…</string>
+  <string name="setting_up_port_based_transparent_proxying_">Preparando proxy transparente baseado en porto...</string>
   <string name="bridge_error">Erro de Ponte</string>
   <string name="bridge_requires_ip">Para usar a característica de ponte, debe introducir cando menos unha dirección IP de ponte.</string>
   <string name="send_email_for_bridges">Envíe un email a bridges@torproject.org só coa liña \"get bridges\" no corpo do correo dende unha conta de gmail.</string>
@@ -191,7 +183,7 @@
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Software de Terceiros:</string>
   <string name="hidden_service_request">Un aplicativo quere abrir o porto do servidor oculto %S na rede Tor. Isto é seguro se confía no aplicativo.</string>
-  <string name="found_existing_tor_process">atopado proceso Tor existente…</string>
+  <string name="found_existing_tor_process">atopado proceso Tor existente...</string>
   <string name="something_bad_happened">Algo malo pasou. Comprobe o rexistro</string>
   <string name="hidden_service_on">servizo oculto en:</string>
   <string name="unable_to_read_hidden_service_name">imposible ler nome de servizo oculto</string>
@@ -203,12 +195,10 @@
   <string name="pref_use_persistent_notifications_title">Notificacións Sempre Acesas</string>
   <string name="notification_using_bridges">Pontes habilitadas!</string>
   <string name="default_bridges"></string>
-  <string name="set_locale_title">Configurar Locale</string>
   <string name="set_locale_summary">Elixir locale e idioma para Orbot</string>
   <string name="wizard_locale_title">Escoller idioma</string>
   <string name="wizard_locale_msg">Deixar por defecto ou cambiar ao idioma actual</string>
   <string name="btn_save_settings">Gardar os axustes</string>
-  <string name="no_internet_connection_tor">Sen conexión á internet. Tor está en modo espera…</string>
   <string name="bandwidth_">Ancho de Banda:</string>
   <string name="down">caído</string>
   <string name="up">levantado</string>

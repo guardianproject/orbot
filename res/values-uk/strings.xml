@@ -7,13 +7,13 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">запуск і зупинка Tor</string>
   <string name="tor_proxy_service_process">torproxyservice</string>
-  <string name="status_starting_up">Запуск Orbot…</string>
+  <string name="status_starting_up">Запуск Orbot...</string>
   <string name="status_activated">Під\'єднаний до мережі Tor</string>
   <string name="status_disabled">«Orbot» від\'єднаний</string>
   <string name="status_shutting_down">Orbot вимикається</string>
-  <string name="tor_process_starting">Запускається клієнт Tor…</string>
+  <string name="tor_process_starting">Запускається клієнт Tor...</string>
   <string name="tor_process_complete">завершено.</string>
-  <string name="tor_process_waiting">очікування…</string>
+  <string name="tor_process_waiting">очікування...</string>
   <string name="not_anonymous_yet">Попередження: Ваш трафік ще не анонімний! Будь ласка, налаштуйте свої додатки для використання HTTP проксі 127.0.0.1:8118 або ж SOCKS4A або SOCKS5 проксі 127.0.0.1:9050</string>
   <string name="menu_home">Домашняя сторінка</string>
   <string name="menu_browse">Перегляд</string>
@@ -74,7 +74,6 @@
   <string name="wizard_tips_otrchat">ChatSecure - Захищений обмін повідомленнями в Android</string>
   <string name="wizard_tips_proxy">Налаштування проксі — дізнайтесь як налаштувати додатки для роботи з Orbot</string>
   <string name="wizard_tips_duckgo">Додаток пошукової системи DuckDuckGo</string>
-
   <string name="wizard_tips_twitter">Twitter підтримує http проксі «localhost:8118»</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Налаштування Проксі</string>
@@ -96,15 +95,8 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Додатки, що працюють з Orbot:</string>
   <string name="wizard_tips_gibberbot">ChatSecure: додаток для спілкування з підтримкою Off-the-Record шифрування</string>
-
   <string name="wizard_tips_orweb">ORWEB (Тільки для версії Android 1.x) - браузер, розроблений для забезпечення безпеки і для Orbot</string>
-
   <string name="wizard_tips_play">Знайти всі додатки Guardian Project на Google Play</string>
-
-
-
-
-
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Прозоре Проксування</string>
   <string name="wizard_transproxy_msg">Це дозволить вашим додаткам автоматично працювати в мережі Tor без будь-якої конфігурації.</string>
@@ -137,14 +129,14 @@
   <string name="pref_proxy_password_summary">Пароль проксі-з\'єднання (вказувати не обов\'язково)</string>
   <string name="pref_proxy_password_dialog">Введіть пароль проксі-з\'єднання</string>
   <string name="status">Статус</string>
-  <string name="setting_up_full_transparent_proxying_">Встановлення загальної прозорої проксифікації…</string>
-  <string name="setting_up_app_based_transparent_proxying_">Встановлення заснованої на додатках прозорої проксифікації…</string>
+  <string name="setting_up_full_transparent_proxying_">Встановлення загальної прозорої проксифікації...</string>
+  <string name="setting_up_app_based_transparent_proxying_">Встановлення заснованої на додатках прозорої проксифікації...</string>
   <string name="transparent_proxying_enabled">Прозора проксифікація ВВІМКНЕНА</string>
   <string name="transproxy_enabled_for_tethering_">TransProxy підтримує Роздачу!</string>
   <string name="warning_error_starting_transparent_proxying_">УВАГА: помилка запуску прозорої проксифікації!</string>
   <string name="transproxy_rules_cleared">Правила TransProxy видалені</string>
   <string name="couldn_t_start_tor_process_">Неможливо запустити Tor: </string>
-  <string name="setting_up_port_based_transparent_proxying_">Встановлення засноване на портах прозорої проксифікації…</string>
+  <string name="setting_up_port_based_transparent_proxying_">Встановлення засноване на портах прозорої проксифікації...</string>
   <string name="bridge_error">Помилка Мосту</string>
   <string name="bridge_requires_ip">Для використання мосту, необхідно задати IP адресу як мінімум одного мосту.</string>
   <string name="send_email_for_bridges">Відправте email на адресу bridges@torproject.org з рядком «get bridges» в тілі повідомлення із облікового запису gmail.</string>
@@ -191,7 +183,7 @@
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Програми сторонніх розробників: </string>
   <string name="hidden_service_request">Додаток хоче відкрити прихований порт сервера %S мережі Tor. Це безпечно, якщо ви довіряєте цьому додатку.</string>
-  <string name="found_existing_tor_process">знайдено існуючий процес Tor…</string>
+  <string name="found_existing_tor_process">знайдено існуючий процес Tor...</string>
   <string name="something_bad_happened">Виникла якась помилка. Перевірте лог</string>
   <string name="hidden_service_on">прихована служба на:</string>
   <string name="unable_to_read_hidden_service_name">неможливо прочитати ім\'я прихованої служби</string>
@@ -203,12 +195,10 @@
   <string name="pref_use_persistent_notifications_title">Сповіщення про постійну роботу</string>
   <string name="notification_using_bridges">Мости ввімкнуті!</string>
   <string name="default_bridges"></string>
-  <string name="set_locale_title">Задати локаль</string>
   <string name="set_locale_summary">Вибрати локаль і мову для Orbot</string>
   <string name="wizard_locale_title">Вибрати Мову</string>
   <string name="wizard_locale_msg">Залишити за замовчуванням або переключити поточну мову</string>
   <string name="btn_save_settings">Зберегти Налаштування</string>
-  <string name="no_internet_connection_tor">Немає доступу до мережі інтернет; Tor в режимі очікування…</string>
   <string name="bandwidth_">Канал:</string>
   <string name="down">вх</string>
   <string name="up">вих</string>

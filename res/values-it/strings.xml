@@ -7,11 +7,11 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">avvia e ferma Tor</string>
   <string name="tor_proxy_service_process">torproxyservice</string>
-  <string name="status_starting_up">Orbot è in esecuzione…</string>
+  <string name="status_starting_up">Orbot è in esecuzione...</string>
   <string name="status_activated">Connesso alla rete Tor</string>
   <string name="status_disabled">\"Orbot è disattivato</string>
   <string name="status_shutting_down">Orbot si sta spegnendo</string>
-  <string name="tor_process_starting">Avvio client Tor…</string>
+  <string name="tor_process_starting">Avvio client Tor...</string>
   <string name="tor_process_complete">completa.</string>
   <string name="tor_process_waiting">attesa.</string>
   <string name="not_anonymous_yet">ATTENZIONE: Il traffico non è ancora anonimo! Configura le applicazioni per utilizzare il proxy HTTP 127.0.0.1:8118,  SOCKS4A o proxy SOCKS5 127.0.0.1:9050</string>
@@ -33,6 +33,8 @@
   <string name="button_clear_log">Cancella log</string>
   <string name="menu_verify">Controlla</string>
   <string name="menu_exit">Esci</string>
+  <string name="menu_scan">Scansiona BridgeQR</string>
+  <string name="menu_share_bridge">Condividi BridgeQR</string>
   <string name="press_to_start">- tieni premuto per avviare -</string>
   <string name="pref_trans_proxy_group">Proxying trasparente (Richiede root)</string>
   <string name="pref_trans_proxy_title">Proxying trasparente</string>
@@ -74,7 +76,6 @@
   <string name="wizard_tips_otrchat">ChatSecure - Client sicuro di messaggistica istantanea, per Android</string>
   <string name="wizard_tips_proxy">Impostazioni proxy - Ulteriori informazioni su come configurare le app per funzionare con Orbot</string>
   <string name="wizard_tips_duckgo">App del motore di ricerca Duckduckgo</string>
-
   <string name="wizard_tips_twitter">Twitter supporta il proxy http \"localhost:8118\"</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Impostazioni proxy</string>
@@ -96,15 +97,8 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot-App abilitate</string>
   <string name="wizard_tips_gibberbot">ChatSecure: App chat sicura con Cifratura Off-the-Record</string>
-
   <string name="wizard_tips_orweb">Orweb - Browser progettato per la privacy e Orbot</string>
-
   <string name="wizard_tips_play">Cerca tutte le app del Guardian Project su Google Play</string>
-
-
-
-
-
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Proxying trasparente</string>
   <string name="wizard_transproxy_msg">Questo permette alle tue applicazioni di passare automaticamente attraverso la rete Tor senza necessità di ulteriore configurazione.</string>
@@ -120,6 +114,7 @@
   <string name="pref_entrance_node">Nodi di entrata</string>
   <string name="pref_entrance_node_summary">Identificativi, nicknames, paesi ed indirizzi del primo hop</string>
   <string name="pref_entrance_node_dialog">Inserisci nodi di entrata</string>
+  <string name="button_invert_selection">Inverti selezione</string>
   <string name="pref_proxy_title">Proxy di Rete in Uscita (Facoltativo)</string>
   <string name="pref_proxy_type_title">Tipo proxy</string>
   <string name="pref_proxy_type_summary">Protocolli da utilizzare per i server proxy: HTTP, HTTPS, Socks4, Socks5</string>
@@ -137,14 +132,14 @@
   <string name="pref_proxy_password_summary">Password del Proxy (Facoltativo)</string>
   <string name="pref_proxy_password_dialog">Inserisci Password Proxy</string>
   <string name="status">Stato</string>
-  <string name="setting_up_full_transparent_proxying_">Configurazione del proxying completamente trasparente…</string>
-  <string name="setting_up_app_based_transparent_proxying_">Configurazione del proxying trasparente basato su applicazione…</string>
+  <string name="setting_up_full_transparent_proxying_">Configurazione del proxying completamente trasparente...</string>
+  <string name="setting_up_app_based_transparent_proxying_">Configurazione del proxying trasparente basato su applicazione...</string>
   <string name="transparent_proxying_enabled">proxying trasparente ABILITATO</string>
   <string name="transproxy_enabled_for_tethering_">Proxying trasparente abilitato per il tethering</string>
   <string name="warning_error_starting_transparent_proxying_">AVVERTIMENTO: errore nell\'avvio del TransProxy!</string>
   <string name="transproxy_rules_cleared">Regole del TransProxy cancellate</string>
   <string name="couldn_t_start_tor_process_">Impossibile avviare il processo Tor:</string>
-  <string name="setting_up_port_based_transparent_proxying_">Configurazione del proxying trasparente basato su porta…</string>
+  <string name="setting_up_port_based_transparent_proxying_">Configurazione del proxying trasparente basato su porta...</string>
   <string name="bridge_error">Errore bridge</string>
   <string name="bridge_requires_ip">Al fine di utilizzare la funzionalità bridge, è necessario inserire almeno l\'indirizzo IP di un bridge.</string>
   <string name="send_email_for_bridges">Si consiglia di inviare una email a bridges@torproject.org con la linea \"get bridges\" da sola nel corpo del messaggio da un account gmail.</string>
@@ -187,11 +182,17 @@
   <string name="the_addressable_name_for_your_hidden_service_generated_automatically_">il nome di indirizzamento per i propri servizi nascosti (generato automaticamente)</string>
   <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">abilita i log di debug in output (richiede l\'uso di adb o aLogCat per esser visualizzato)</string>
   <string name="project_home">Home progetto:</string>
+  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
   <string name="the_tor_license">Licenza Tor</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Software di terze parti:</string>
+  <string name="tor_version">Tor: https://www.torproject.org</string>
+  <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
+  <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
+  <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
+  <string name="openssl_version">OpenSSL v1.0.1i: http://www.openssl.org</string>
   <string name="hidden_service_request">Un applicazione ha richiesto di aprire la porta per servizi nascosti %S alla rete Tor. Questo è sicuro se ci si fida dell\'applicazione.</string>
-  <string name="found_existing_tor_process">trovato un processo Tor esistente…</string>
+  <string name="found_existing_tor_process">trovato un processo Tor esistente...</string>
   <string name="something_bad_happened">E\' accaduto un evento indesiderato. Controllare i log.</string>
   <string name="hidden_service_on">servizio nascosto attivo:</string>
   <string name="unable_to_read_hidden_service_name">Impossibile leggere il nome del servizio nascosto.</string>
@@ -203,12 +204,11 @@
   <string name="pref_use_persistent_notifications_title">Notifiche sempre attive</string>
   <string name="notification_using_bridges">Bridge attivati!</string>
   <string name="default_bridges"></string>
-  <string name="set_locale_title">Configura le impostazioni internazionali.</string>
+  <string name="set_locale_title">Lingua</string>
   <string name="set_locale_summary">Scegli le impostazioni internazionali e la lingua di Orbot</string>
   <string name="wizard_locale_title">Scegli Lingua</string>
   <string name="wizard_locale_msg">Lasciare la predefinita o cambiare la lingua corrente</string>
   <string name="btn_save_settings">Salva impostazioni</string>
-  <string name="no_internet_connection_tor">Nessuna connessione internet; Tor è in standby…</string>
   <string name="bandwidth_">Larghezza di Banda:</string>
   <string name="down">giù</string>
   <string name="up">su</string>
@@ -221,4 +221,15 @@
   <string name="permission_manage_tor_description">Abilita questa app per controllare il servizio Tor</string>
   <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Sembra che Orweb non sia installato. Vuoi che ti aiuti oppure apro semplicemente il browser?</string>
   <string name="install_apps_">Installare applicazioni?</string>
+  <string name="menu_vpn">App</string>
+  <string name="kbps">kbps</string>
+  <string name="mbps">mbps</string>
+  <string name="kb">KB</string>
+  <string name="mb">MB</string>
+  <string name="menu_qr">Codici QR</string>
+  <string name="get_bridges_email">Email</string>
+  <string name="get_bridges_web">Web</string>
+  <string name="send_email">Invia email</string>
+  <string name="install_orweb">Installa Orweb</string>
+  <string name="standard_browser">Browser standard</string>
 </resources>

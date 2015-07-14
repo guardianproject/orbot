@@ -83,10 +83,6 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">โปรแกรมที่ใช้ได้กับ Orbot</string>
   <string name="wizard_tips_orweb">Orweb: เบราว์เซอร์ที่ปรับแต่งเพื่อความเป็นส่วนตัวและทำงานผ่าน Tor</string>
-
-
-
-
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">พร็อกซีล่อง</string>
   <string name="wizard_transproxy_msg">จะอนุญาตให้โปรแกรมของคุณทำงานผ่านเครือข่าย Tor อัตโนมัติโดยไม่ต้องตั้งค่าใดๆ</string>
@@ -170,7 +166,6 @@
   <string name="pref_use_persistent_notifications_title">การแจ้งเตือนแบบตลอดเวลา</string>
   <string name="notification_using_bridges">เปิดใช้งานสะพานแล้ว!</string>
   <string name="default_bridges"></string>
-  <string name="set_locale_title">ตั้งค่าโลแคล</string>
   <string name="set_locale_summary">เลือกโลแคลและภาษาสำหรับ Orbot</string>
   <string name="wizard_locale_title">เลือกภาษา</string>
   <string name="wizard_locale_msg">ใช้ค่าปริยายหรือเลือกภาษาปัจจุบัน</string>

@@ -74,7 +74,6 @@
   <string name="wizard_tips_otrchat">ChatSecure - Isang Secure instant messaging client para sa Android</string>
   <string name="wizard_tips_proxy">Proxy Settings - Alamin paano magkompigura ng apps para gumana sa Orbot</string>
   <string name="wizard_tips_duckgo">DuckDuckGo Search Engine app</string>
-
   <string name="wizard_tips_twitter">I-set ang Twitter proxy sa host \"localhost\" at port 8118</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Proxy Settings</string>
@@ -96,15 +95,8 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot-Enabled Apps</string>
   <string name="wizard_tips_gibberbot">ChatSecure: Isang secure chat app na may Off-the-Record Encryption</string>
-
   <string name="wizard_tips_orweb">Orweb: rivacy-enhanced browser na gumagana sa Tor</string>
-
   <string name="wizard_tips_play">Hanapin ang lahat ng Guardian Project apps sa Google Play</string>
-
-
-
-
-
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Transparent Proxying</string>
   <string name="wizard_transproxy_msg">Ito ay bibigyan ng pahintulot ang iyong mga apps na kusang mag-run sa Tor network kahit walang pag-kompigura na ginawa.</string>

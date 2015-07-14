@@ -7,11 +7,11 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">開始和停止 Tor</string>
   <string name="tor_proxy_service_process">tor 代理服務</string>
-  <string name="status_starting_up">Orbot 正在啟動中…</string>
+  <string name="status_starting_up">Orbot 正在啟動中...</string>
   <string name="status_activated">連接至 Tor 網路</string>
   <string name="status_disabled">Orbot 已停用</string>
   <string name="status_shutting_down">Orbot 已關閉</string>
-  <string name="tor_process_starting">啟動Tor 用戶端…</string>
+  <string name="tor_process_starting">啟動Tor 用戶端...</string>
   <string name="tor_process_complete">完成。</string>
   <string name="tor_process_waiting">等待。</string>
   <string name="not_anonymous_yet">警告：您的網路尚未匿名！請設定您的應用程式使用HTTP 代理伺服器 127.0.0.1:8118 或 SOCKS4A 或 SOCKS5 代理伺服器 127.0.0.1:9050</string>
@@ -58,7 +58,6 @@
   <string name="wizard_configure">組態 Tor 網路</string>
   <string name="wizard_configure_all">所有應用程式都通過 Tor 代理</string>
   <string name="wizard_tips_duckgo">DuckDuckGo 搜尋引擎應用程式</string>
-
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">代理伺服器設定</string>
   <!--END Welcome Wizard strings (DJH)-->
@@ -71,14 +70,7 @@
   <!--Permissions screen-->
   <string name="wizard_permissions_title">許可權</string>
   <!--TipsAndTricks screen-->
-
-
   <string name="wizard_tips_play">在 Google Play 尋找所有的 Guardian Project 應用程式</string>
-
-
-
-
-
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">通透式代理</string>
   <string name="wizard_transproxy_none">無</string>
@@ -88,8 +80,8 @@
   <string name="enter_ports">輸入埠</string>
   <string name="project_home">專案首頁：</string>
   <string name="default_bridges"></string>
-  <string name="set_locale_title">區域設定</string>
   <string name="wizard_locale_title">選擇語言</string>
   <string name="btn_save_settings">儲存設定</string>
   <string name="install_apps_">安裝應用程式？</string>
+  <string name="menu_vpn">應用程式</string>
 </resources>

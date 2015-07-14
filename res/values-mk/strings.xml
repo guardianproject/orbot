@@ -1,38 +1,41 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">Орбот</string>
+  <string name="app_name">Orbot</string>
+  <string name="app_description">Orbot е слободна прокси апликација која им овозможува на другите апликации да го користат интернетот побезбедно. Orbot користи Tor за шифрирање на вашиот интернет-сообраќај, а потоа го сокрива и го доставува преку неколку компјутери во целиот свет. Tor е слободен софтвер и софтвер со отворна мрежа која помага во борбата против надзорот мрежа која се заканува на лична слобода и приватност, доверливи деловни активности и односи, и помага против државна безбедност позната како анализа на сообраќајот.</string>
   <string name="internal_web_url">http://orbot/</string>
   <string name="default_web_url">http://check.torproject.org</string>
   <string name="secure_default_web_url">https://check.torproject.org</string>
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
-  <string name="control_permission_label">вклучи и исклучи го Тор</string>
+  <string name="control_permission_label">вклучи и исклучи го Tor</string>
   <string name="tor_proxy_service_process">torproxyservice</string>
-  <string name="status_starting_up">Орбот се стартува…</string>
-  <string name="status_activated">Поврзан на мрежата Тор</string>
+  <string name="status_starting_up">Орбот се стартува...</string>
+  <string name="status_activated">Поврзан на мрежата Tor</string>
   <string name="status_disabled">Орбот е деактивиран</string>
   <string name="status_shutting_down">Орбот се исклучува</string>
-  <string name="tor_process_starting">Стартува Тор клиентот…</string>
+  <string name="tor_process_starting">Стартува Тор клиентот...</string>
   <string name="tor_process_complete">готово.</string>
   <string name="tor_process_waiting">чекање.</string>
-  <string name="not_anonymous_yet">ВНИМАНИЕ: Вашиот сообраќај сеуште не е анонимен! Треба да ги конфигурирате Вашите апликации да го користат проксито за HTTP, 127.0.0.1:8118, или проксито за SOCKS4A или SOCKS5, 127.0.0.1:9050</string>
+  <string name="not_anonymous_yet">ВНИМАНИЕ: Вашиот сообраќај сè уште не е анонимен! Треба да ги конфигурирате Вашите апликации да го користат проксито за HTTP, 127.0.0.1:8118, или проксито за SOCKS4A или SOCKS5, 127.0.0.1:9050</string>
   <string name="menu_home">Дома</string>
   <string name="menu_browse">Прелистување</string>
   <string name="menu_settings">Подесувања</string>
-  <string name="menu_log">Лог</string>
+  <string name="menu_log">Дневник</string>
   <string name="menu_info">Помош</string>
   <string name="menu_apps">Апликации</string>
   <string name="menu_start">Вклучи</string>
   <string name="menu_stop">Исклучи</string>
   <string name="menu_about">За</string>
   <string name="menu_wizard">Wizard</string>
-  <string name="main_layout_download">Симни</string>
+  <string name="main_layout_download">Преземи</string>
   <string name="main_layout_upload">Прикачи</string>
   <string name="button_help">Помош</string>
   <string name="button_close">Затвори</string>
   <string name="button_about">За</string>
-  <string name="button_clear_log">Избриши лог</string>
+  <string name="button_clear_log">Избриши дневник</string>
   <string name="menu_verify">Провери</string>
   <string name="menu_exit">Излез</string>
+  <string name="menu_scan">Скенирај BridgeQR</string>
+  <string name="menu_share_bridge">Сподели BridgeQR</string>
   <string name="press_to_start">- пристисни подолго за старт -</string>
   <string name="pref_trans_proxy_group">Транспарентно прокси (бара root пристап)</string>
   <string name="pref_trans_proxy_title">Транспарентно проксирање</string>
@@ -43,7 +46,7 @@
   <string name="pref_transparent_port_fallback_summary">WARNING: Circumvents common ports (80, 443, etc). *USE ONLY* if \'All\' or \'App\' mode doesn\'t work.</string>
   <string name="pref_transparent_port_title">Port List</string>
   <string name="pref_transparent_port_summary">List of ports to proxy. *USE ONLY* if \'All\' or \'App\' mode doesn\'t work</string>
-  <string name="pref_transparent_port_dialog">Enter ports to proxy</string>
+  <string name="pref_transparent_port_dialog">Внесете порти на прокси</string>
   <string name="pref_has_root">Request Root Access</string>
   <string name="pref_has_root_summary">Request root access for transparent proxying</string>
   <string name="status_install_success">Извршните програми за Тор се успешно инсталирани!</string>
@@ -58,12 +61,13 @@
   <string name="btn_cancel">Откажи се</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Некои детали за Орбот</string>
+  <string name="wizard_details_msg">Orbot е апликација со отворед код која ги содржи Tor, LibEvent и Polipo. Обезбедува локален HTTP прокси (8118) и SOCKS прокси (9050) во мрежата на Tor. Orbot, исто така, има опција за rooted уред да се испраќа целиот интернет-сообраќај преку Tor.</string>
   <string name="wizard_permissions_root">Дозволата е издадена</string>
   <string name="wizard_permissions_stock">Дозволи на орбот</string>
   <string name="wizard_premissions_msg_root">Одлично! Детектиравме дека сте овозможиле root пристап за Орбот. Внимателно ќе се користиме со таа можност.</string>
   <string name="wizard_permissions_msg_stock"> Иако тоа не е задолжително, Орбот може да стане помоќна алатка доколку вашиот уред има root пристап. Со копчето подолу можете на Орбот да му дадете таква супер-моќ.</string>
   <string name="wizard_permissions_no_root">Ако немате root пристап или ако не разбирате за што зборуваме, единствено осигурајте се дека користите апликации кои што работат со Орбот.</string>
-  <string name="wizard_permissions_consent">Разбирам и сакам да продолжам без root пристап</string>
+  <string name="wizard_permissions_consent">Разбирам и сакам да продолжам без пристап до корен</string>
   <string name="wizard_permission_enable_root">Дозволи root за Орбот</string>
   <string name="wizard_configure">Подесување на торифицињето</string>
   <string name="wizard_configure_msg">Орбот ви овозможува, или да го рутирате сиот сообраќај на сите апликации низ Тор, или поединечно да ги избирате апликациите.</string>
@@ -73,12 +77,18 @@
   <string name="wizard_tips_msg">Ви препорачуваме да презимате и користите апликации кои што знаат како директно да се поврзат со Орбот. Притиснете на копчињата подолу за инсталирање.</string>
   <string name="wizard_tips_otrchat">ChatSecure - Сигурносен инстант клиент за разговор за Android</string>
   <string name="wizard_tips_proxy">Подесувања на прокси - Научете како да ги конфигурирате апликациите да работат со Орбот</string>
-
+  <string name="wizard_tips_duckgo">DuckDuckGo апликација за пребарување</string>
+  <string name="wizard_tips_twitter">Подесете Twitter прокси на компјутерот \"localhost\" и порта 8118</string>
+  <string name="wizard_tips_story_maker">StoryMaker - Направете приказна и препуштете ја безбедноста на Tor!</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Подесувања на прокси</string>
+  <string name="wizard_proxy_help_msg">Доколку Android апликацијата што ја користите поддржува HTTP или SOCKS прокси, тогаш можете да ја конгигурирате да се поврзува со Orbot и да користат Tor.\n\n\n Подесувањата за компјутерот се 127.0.0.1 или \"localhost\". За HTTP подесувањата на порта се 8118. За SOCKS проксито е 9050. Доколку е возможно треба да користите SOCKS4A или SOCKS5.\n \n\n\n Можете да дознаете повеќе за проксирање на Android преку НПП на: http://tinyurl.com/proxyandroid\n</string>
   <string name="wizard_final">Орбот е спремен!</string>
+  <string name="wizard_final_msg">Милиони луѓе низ целиот свет го користат Tor за различни причини.\n\nНовинари и блогери, адвокати, полициски службеници, војници, корпорации, граѓаните на репресивните режими и обичните граѓани ... а од сега и вие!</string>
+  <string name="wizard_exit_at_first_screen_toast">Ве молиме конфигурирајте го Орбот пред да започнете да го користите!</string>
   <!--END Welcome Wizard strings (DJH)-->
-  <string name="tor_check">Ова ќе ја отвори страницата https://check.torproject.org во Вашиот веб браусер за да видите дали Орбот е правилно конфигуриран и дали сте поврзани на Тор.</string>
+  <string name="connect_first_time">Успешно се поврзавте на Tor мрежата, но тоа не значи дека вашиот уред е бесбеден. Можете да ја користет опцијата \'Провери\' од главното мени за да го тестирате вашиот прелистувач. \n\nЗа да дознаете повеќе посете ја нашата веб-локација https://guardianproject.info/apps/orbot или испратете ни е-пошта на help@guardianproject.info</string>
+  <string name="tor_check">Ова ќе ја отвори страницата https://check.torproject.org во Вашиот веб-прелистувач за да видите дали Орбот е правилно конфигуриран и дали сте поврзани на Тор.</string>
   <string name="pref_hs_group">Скриени сервиси </string>
   <string name="pref_general_group">Општо</string>
   <string name="pref_start_boot_title">Стартувај го Орбот на бутирање</string>
@@ -86,37 +96,116 @@
   <!--New Wizard Strings-->
   <!--Title Screen-->
   <!--Warning screen-->
-  <string name="wizard_warning_title">Предупредување</string>
+  <string name="wizard_warning_title">Внимание</string>
+  <string name="wizard_warning_msg">Со самото инсталирање на Orbot немаавтоматски да го анонимизира вашиот мобилен сообраќај.\n\nМорате правилно да го конфигурирате Orbot, вашиот уредот и други апликации, за да успешно го користите Tor.</string>
   <!--Permissions screen-->
   <string name="wizard_permissions_title">Дозволи</string>
   <string name="wizard_permissions_root_msg2">Доколку не сакате ова да го направите, ве молиме осигурајте се дека користите апликации кои работат со Орбот</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_gibberbot">ChatSecure: Сигурносна апликација за разговор со Off-the-Record Енкрипција</string>
-
   <string name="wizard_tips_orweb">Орвеб: Моќен анонимен прелистувач кој работи преку Тор</string>
-
   <string name="wizard_tips_play">Најди ги сите Guardian Project апликации на Google Play</string>
-
-
-
-
-
+  <string name="wizard_tips_fdroid">Најди ги сите Guardian Project апликации на F-Droid</string>
+  <string name="wizard_tips_fdroid_org">Најди ги сите Guardian Project апликации на https://f-droid.org</string>
   <!--Transparent Proxy screen-->
-  <string name="wizard_transproxy_title">Транспарентно прокси</string>
+  <string name="wizard_transproxy_title">Транспарентно проксирање</string>
+  <string name="wizard_transproxy_msg">Ова овозможува вашите апликации автоматски да се стартуваат преку мрежата Tor без конфигурација.</string>
   <string name="wizard_transproxy_hint">(Селектирајте го ова поле ако не разбирате за што зборуваме)</string>
-  <string name="pref_select_apps">Селектирај апликации</string>
+  <string name="wizard_transproxy_none">Ништо</string>
+  <string name="pref_transparent_tethering_title">Tor поврзување</string>
+  <string name="pref_transparent_tethering_summary">Овозможи Tor транспарентно проксирање за Wifi и USB поврзани уреди (се бара рестартирање)</string>
+  <string name="button_grant_superuser">Барање за пристап до администратор на системот</string>
+  <string name="pref_select_apps">Изберете апликации</string>
   <string name="pref_select_apps_summary">Одбери апликации кои ќе се поврзуваат преку Тор</string>
-  <string name="pref_node_configuration">Node конфигурација</string>
+  <string name="pref_node_configuration">Конфигурација на јазол</string>
   <string name="pref_node_configuration_summary">Ова се напредните поставувања кои може да ја намалат вашата анонимност</string>
+  <string name="pref_entrance_node">Влезни јазли</string>
+  <string name="pref_entrance_node_summary">Отпечатоци од прсти, прекари, земји и адреси за првиот јазол.</string>
+  <string name="pref_entrance_node_dialog">Внесете влезни јазли</string>
+  <string name="button_proxy_all">Прокси за сите</string>
+  <string name="button_proxy_none">Ништо за проксирање</string>
+  <string name="button_invert_selection">Обратен избор</string>
+  <string name="pref_proxy_title">Излезен мрежен прокси (незадолжително)</string>
+  <string name="pref_proxy_type_title">Тип на излезен прокси</string>
+  <string name="pref_proxy_type_summary">Протокол за користење на прокси сервер: HTTP, HTTPS, SOCKS4, socks5</string>
+  <string name="pref_proxy_type_dialog">Внесете го типот на проски</string>
+  <string name="pref_proxy_host_title">Излезен прокси-домаќин</string>
+  <string name="pref_proxy_host_summary">Име на домаќин на прокси-серверот</string>
+  <string name="pref_proxy_host_dialog">Внесете прокси-домаќин</string>
+  <string name="pref_proxy_port_title">Излезна прокси-порта</string>
+  <string name="pref_proxy_port_summary">Порта на прокси-серверот</string>
+  <string name="pref_proxy_port_dialog">Внесете прокси-порта</string>
+  <string name="pref_proxy_username_title">Излезно прокси корисничко име</string>
+  <string name="pref_proxy_username_summary">Прокси-корисничко име (незадолжително)</string>
+  <string name="pref_proxy_username_dialog">Внесете прокси-корисничко име</string>
+  <string name="pref_proxy_password_title">Излезна прокси-лозинка</string>
+  <string name="pref_proxy_password_summary">Прокси-лозинка (незадолжително)</string>
+  <string name="pref_proxy_password_dialog">Внесете прокси лозинка</string>
+  <string name="status">Статус</string>
+  <string name="transparent_proxying_enabled">Овозможено транспарентно проксирање</string>
+  <string name="transproxy_enabled_for_tethering_">TransProxy е овозможен за поврзување!</string>
+  <string name="warning_error_starting_transparent_proxying_">ВНИМАНИЕ: Грешка при стартување на транспарентно проксирање!</string>
+  <string name="transproxy_rules_cleared">Избришани TransProxy правила </string>
+  <string name="couldn_t_start_tor_process_">Не може да се започне Tor-процесот:</string>
+  <string name="privoxy_is_running_on_port_">Polipo работи на порта: </string>
+  <string name="setting_up_port_based_transparent_proxying_">Поставување на транспарентно проксирање базирано на порта...</string>
+  <string name="bridge_error">Грешка во мостот</string>
+  <string name="bridge_requires_ip">За да ја користите функцијата на мостот, морате да внесете барем една ИП-адреса на мост.</string>
+  <string name="send_email_for_bridges">Испратете е-пошта од вашата gmail сметка на bridges@torproject.org со содржина \"get bridges\".</string>
   <string name="error">Грешка</string>
+  <string name="your_reachableaddresses_settings_caused_an_exception_">Вашите ReachableAddresses подесувања предизвикаа грешка!</string>
+  <string name="exit_nodes">Излезни јазли</string>
+  <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Отпечатоци од прсти, прекари, земји и адреси за последниот јазол.</string>
+  <string name="enter_exit_nodes">Внесете излезни јазли</string>
+  <string name="exclude_nodes">Исклучи јазли</string>
+  <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Отпечатоци од прсти, прекари, земји и адреси кои треба да се исклучат</string>
+  <string name="enter_exclude_nodes">Внесете ги јазлите кои треба да се исклучат</string>
+  <string name="strict_nodes">Задолжителни јазли</string>
+  <string name="use_only_these_specified_nodes">Кристи *само* овие наведени јазли</string>
   <string name="bridges">Мостови</string>
   <string name="use_bridges">Користи мостови</string>
+  <string name="bridges_obfuscated">Прикриени мостови</string>
+  <string name="enable_alternate_entrance_nodes_into_the_tor_network">Овозможи алтернативни влезни јазли во мрежата Tor</string>
+  <string name="enable_if_configured_bridges_are_obfuscated_bridges">Овозможи, ако мостовите се приктиени мостови</string>
+  <string name="ip_address_and_port_of_bridges">ИП-адреса и порта на мостовите</string>
+  <string name="enter_bridge_addresses">Внесете адреси на мостовите</string>
+  <string name="relaying">Пренесување</string>
+  <string name="relay_port">Пренеси порта</string>
+  <string name="enter_or_port">Внесете OR порта</string>
+  <string name="reachable_addresses">Достапни адреси</string>
+  <string name="reachable_ports">Достапни порти</string>
+  <string name="ports_reachable_behind_a_restrictive_firewall">Порти достапни зад рестрективен заштитен ѕид(firewall)</string>
+  <string name="enter_ports">Внесете порти</string>
+  <string name="hidden_service_ports">Порти на скриени сервиси</string>
+  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
+  <string name="the_tor_license">Tor лиценца</string>
   <string name="https_torproject_org">https://torproject.org</string>
+  <string name="third_party_software">Софтвер за трети земји:</string>
+  <string name="tor_version">Tor: https://www.torproject.org</string>
+  <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
+  <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
+  <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
+  <string name="openssl_version">ОтвориSSL v1.0.1i: http://www.openssl.org</string>
+  <string name="hidden_service_request">Апликација сака да отвори скриена порта на серверот %S на мрежата на Tor. Ова е безбедно, ако и верувате на апликацијата.</string>
+  <string name="found_existing_tor_process">Пронајден постоечки Tor-процес ...</string>
+  <string name="something_bad_happened">Нешто лошо се случи. Проверете го дневникот</string>
+  <string name="hidden_service_on">скриен сервис на:</string>
+  <string name="unable_to_read_hidden_service_name">не може да се прочита името на скриениот сервис</string>
+  <string name="unable_to_start_tor">Tor не може да се стартува:</string>
+  <string name="unable_to_reset_tor">Рестартирајте го вашиот уред, Tor не може да се ресетира! </string>
+  <string name="pref_use_sys_iptables_title">Користи стандарден Iptables</string>
+  <string name="pref_use_persistent_notifications">Секогаш чувајте ja иконата во лентата со алатки кога Orbot е поврзан</string>
+  <string name="pref_use_persistent_notifications_title">Известувања секогаш вклучени</string>
+  <string name="pref_use_expanded_notifications_title">Прошири известувања</string>
+  <string name="notification_using_bridges">Вклучени мостови!</string>
   <string name="default_bridges"></string>
+  <string name="set_locale_title">Јазик</string>
+  <string name="set_locale_summary">Одбери локација и јазик за Orbot</string>
   <string name="wizard_locale_title">Одбери јазик</string>
   <string name="wizard_locale_msg">Остави дифолт или промени го постоечкиот јазик</string>
   <string name="btn_save_settings">Сочувај подесувања</string>
-  <string name="no_internet_connection_tor">нема интернет конекција: Тор е ставен на чекање</string>
+  <string name="no_internet_connection_tor">Нема интернет-врска; Tor е во мирување...</string>
+  <string name="bandwidth_">Проток:</string>
   <string name="down">долу</string>
   <string name="up">горе</string>
   <string name="pref_disable_network_title">Нема мрежа Auto-Sleep</string>
@@ -128,4 +217,34 @@
   <string name="permission_manage_tor_description">Дозволи и оваа апликација да го контролира Тор сервисот</string>
   <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Се чини дека го немате инсталирано Orweb. Сакате да Ви помогнеме околу тоа или пак само да го отвориме интернет прелистувачот?</string>
   <string name="install_apps_">Инсталирај апликации?</string>
+  <string name="updating_settings_in_tor_service">ажурирање на подесувањата во сервисот Tor </string>
+  <string name="pref_socks_title">Tor SOCKS</string>
+  <string name="pref_transport_title">Tor TransProxy порта</string>
+  <string name="pref_dnsport_title">Tor DNS порта</string>
+  <string name="wizard_tips_martus">Mobile Martus - Benetech апликација за документирање на човековите права</string>
+  <string name="please_disable_this_app_in_android_settings_apps_if_you_are_having_problems_with_orbot_">Ве молиме исклучете ја оваа апликација во Android-&gt;Settings-&gt;Apps ако имате проблем со Orbot:</string>
+  <string name="pref_transproxy_refresh_title">Автоматско освежување на Transproxy </string>
+  <string name="pref_transproxy_flush_title">ПРИСИЛНО ОТСТРАНУВАЊЕ на Transproxy </string>
+  <string name="pref_transproxy_flush_summary">Допрете овде за да се избришат сите transproxy правила на мрежата СЕГА </string>
+  <string name="transparent_proxy_rules_flushed_">Избришани транспарентни прокси правила</string>
+  <string name="you_do_not_have_root_access_enabled">Немате вклучено пристап до корен</string>
+  <string name="you_may_need_to_stop_and_start_orbot_for_settings_change_to_be_enabled_">Можеби ќе треба да се исклучи и вклучи Orbot за да бидат овозможени промените во подесувањата.</string>
+  <string name="menu_vpn">Апликации</string>
+  <string name="kbps">kbps</string>
+  <string name="mbps">mbps</string>
+  <string name="kb">KB</string>
+  <string name="mb">MB</string>
+  <string name="bridges_updated">Ажурирани мостови</string>
+  <string name="restart_orbot_to_use_this_bridge_">Ве молиме рестартирајте го Orbot за да се овозможат промените</string>
+  <string name="menu_qr">QR кодови</string>
+  <string name="bridge_mode">Режим на работа на мостот</string>
+  <string name="get_bridges_email">Е-пошта</string>
+  <string name="get_bridges_web">Веб</string>
+  <string name="activate">Активирај</string>
+  <string name="apps_mode">Режим на работа на апликации</string>
+  <string name="send_email">Испрати е-пошта</string>
+  <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Aдреса на мостови можете да добивате преку е-пошта, веб или со скенирање на QR код. Изберете подолу \'Е-пошта\' или \'Web\', за да ја адресата на мостот. \n\nОткако ќе ја добиете адресата, копирајте го &amp; и залепете го во делот \"Мостови\" во подесувањето на Orbot и рестартирајте.</string>
+  <string name="install_orweb">Инсталирај го Orweb</string>
+  <string name="standard_browser">Стандарден прелистувач</string>
+  <string name="note_only_standard_tor_bridges_work_on_intel_x86_atom_devices">ЗАБЕЛЕШКА: Само стандардните мостови на Tor функционираат на Intel X86/ATOM уредите</string>
 </resources>

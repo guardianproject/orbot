@@ -7,13 +7,13 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">reiniciar Tor</string>
   <string name="tor_proxy_service_process">torproxyservice</string>
-  <string name="status_starting_up">Orbot está iniciándose…</string>
+  <string name="status_starting_up">Orbot está iniciándose...</string>
   <string name="status_activated">Conectado a la red Tor</string>
   <string name="status_disabled">\"Orbot está Desactivado</string>
   <string name="status_shutting_down">Orbot se está apagando</string>
-  <string name="tor_process_starting">Iniciando el cliente Tor…</string>
+  <string name="tor_process_starting">Iniciando el cliente Tor...</string>
   <string name="tor_process_complete">Completar</string>
-  <string name="tor_process_waiting">esperando…</string>
+  <string name="tor_process_waiting">esperando...</string>
   <string name="not_anonymous_yet">CIUDADO: Tu tráfico no es anónimo aún! Por favor configura tus aplicaciones para que usen el HTTP proxy 127.0.0.1:8118 o SOCKS4A o el proxy SOCKS5 127.0.0.1:9050</string>
   <string name="menu_home">Inicio</string>
   <string name="menu_browse">Navegar</string>
@@ -56,10 +56,6 @@
   <!--Warning screen-->
   <!--Permissions screen-->
   <!--TipsAndTricks screen-->
-
-
-
-
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Proxying Transparente</string>
   <string name="pref_proxy_password_dialog">Ingrese contraseña Proxy</string>
@@ -68,10 +64,8 @@
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="unable_to_start_tor">No se puede iniciar Tor:</string>
   <string name="default_bridges"></string>
-  <string name="set_locale_title">Setear Localización</string>
   <string name="wizard_locale_title">Elegir el lenguaje</string>
   <string name="btn_save_settings">Guardar configuración</string>
-  <string name="no_internet_connection_tor">Sin conexión a internet; Tor en modo espera</string>
   <string name="bandwidth_">Ancho de banda:</string>
   <string name="menu_use_chatsecure">Usar ChatSecure</string>
   <string name="install_apps_">Instalar apps?</string>

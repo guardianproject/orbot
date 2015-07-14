@@ -21,10 +21,6 @@
   <string name="wizard_warning_title">Advertimento</string>
   <!--Permissions screen-->
   <!--TipsAndTricks screen-->
-
-
-
-
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_none">Nulle</string>
   <string name="status">Stato</string>

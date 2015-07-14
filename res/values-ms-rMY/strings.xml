@@ -73,7 +73,6 @@
   <string name="wizard_tips_msg">Aplikasi di bawah dibangunkan untuk digunakan bersama Orbot. Klik setiap butang untuk pasang sekarang, atau anda boleh cari nanti di Android Market.</string>
   <string name="wizard_tips_proxy">Tetapan Proksi - Belajar bagaimana untuk mengkonfigurasi aplikasi untuk bekerja dengan Orbot</string>
   <string name="wizard_tips_duckgo">DuckDuckGo Enjin Carian</string>
-
   <string name="wizard_tips_twitter">Tetapkan proxy twitter kepada hos \"localhost\" dan pada port 8118</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Tetapan proxy</string>
@@ -96,11 +95,6 @@
   <string name="wizard_tips_title">Aplikasi yang membenarkan Orbot</string>
   <string name="wizard_tips_orweb">Orweb: Privasi ditambah penyemak imbas yang bekerja melalui Tor</string>
   <string name="wizard_tips_play">Cari semua projek Guardian di Google play</string>
-
-
-
-
-
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Proxy Telus</string>
   <string name="wizard_transproxy_msg">Ini membolehkan aplikasi anda secara automatik melalui rangkaian Tor tanpa apa apa konfigurasi</string>
@@ -199,10 +193,8 @@
   <string name="pref_use_persistent_notifications_title">Sentiasa On Notifikasi</string>
   <string name="notification_using_bridges">Jambatan dibenarkan!</string>
   <string name="default_bridges"></string>
-  <string name="set_locale_title">Tetapan Tempatan</string>
   <string name="set_locale_summary">Pilihan tempatan dan bahasa untuk Orbot</string>
   <string name="wizard_locale_title">Pilih Bahasa</string>
   <string name="wizard_locale_msg">Biar default atau ubah ke bahasa sekarang</string>
   <string name="btn_save_settings">Simpan Tetapan</string>
-  <string name="no_internet_connection_tor">Tiada sambungan internet; Tor berada dalam keadaan sedia…</string>
 </resources>

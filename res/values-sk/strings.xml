@@ -11,7 +11,7 @@
   <string name="status_activated">Pripojený do Tor siete</string>
   <string name="status_disabled">Orbot je deaktivovaný</string>
   <string name="status_shutting_down">Orbot sa vypína</string>
-  <string name="tor_process_starting">Štartujem Tor klienta…</string>
+  <string name="tor_process_starting">Štartujem Tor klienta...</string>
   <string name="tor_process_complete">hotovo.</string>
   <string name="tor_process_waiting">čakám.</string>
   <string name="not_anonymous_yet">VAROVANIE: Váš prenos nie je ešte anonymný! Prosím, nakonfigurujte aplikácie aby používali HTTP proxy 127.0.0.1:8118 alebo SOCKS4A alebo SOCKS5 proxy server 127.0.0.1:9050</string>
@@ -38,10 +38,6 @@
   <string name="wizard_warning_title">Varovanie</string>
   <!--Permissions screen-->
   <!--TipsAndTricks screen-->
-
-
-
-
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_none">Žiadny</string>
   <string name="status">Stav</string>

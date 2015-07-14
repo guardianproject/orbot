@@ -7,7 +7,7 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">cychwyn a stopio Tor</string>
   <string name="tor_proxy_service_process">gwasanaethdirpwrytor</string>
-  <string name="status_starting_up">Mae Orbot yn cychwyn…</string>
+  <string name="status_starting_up">Mae Orbot yn cychwyn...</string>
   <string name="status_activated">Wedi cysylltu â rhwydwaith Tor</string>
   <string name="status_shutting_down">Mae Orbot yn cau</string>
   <string name="tor_process_starting">Yn cychwyn cleient Tor</string>
@@ -60,10 +60,6 @@
   <string name="wizard_warning_title">Rhybudd</string>
   <!--Permissions screen-->
   <!--TipsAndTricks screen-->
-
-
-
-
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Dirprwyo\'n dryloyw</string>
   <string name="wizard_transproxy_none">Dim</string>
@@ -82,7 +78,6 @@
   <string name="the_tor_license">Trwydded Tor</string>
   <string name="third_party_software">Meddalwedd 3ydd-parti</string>
   <string name="default_bridges"></string>
-  <string name="set_locale_title">Gosod locale</string>
   <string name="set_locale_summary">Dewiswch locale ac iaith i Orbot</string>
   <string name="wizard_locale_title">Dewiswch iaith</string>
   <string name="btn_save_settings">Cadw\'r gosodiadau</string>
