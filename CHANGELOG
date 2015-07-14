@@ -1,5 +1,11 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+/** 15.0.1-RC-2-PIE / 13-July-2015 / 30e37993bbfc248eea0476af01e91ef8126e88d9 */ 
+
+256ecc4 update tor version constant to 0.2.6.10
+6aa5ca5 update to tor 0.2.6.10
+fd4ef77 Update OpenSSL to v1.0.2a to fix build for x86_64 arch.
+d93017f Define __MIPSEL__ to workaround OpenSSL build failure for mips arch.
 
 /** 15.0.1 BETA 3 / 26-Jun-2015 / dd2a144f4b02dd51038c5b8205daad4a15c1b71e */
 
