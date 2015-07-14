@@ -128,7 +128,7 @@ public interface TorServiceConstants {
     public static final String CMD_VPN_CLEAR = "vpnclear";
     public static final String CMD_UPDATE_TRANS_PROXY = "update";
 
-    public static final String BINARY_TOR_VERSION = "0.2.6.7";
+    public static final String BINARY_TOR_VERSION = "0.2.6.10";
     public static final String PREF_BINARY_TOR_VERSION_INSTALLED = "BINARY_TOR_VERSION_INSTALLED";
     
     //obfsproxy 
