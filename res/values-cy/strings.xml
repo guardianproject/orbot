@@ -7,7 +7,7 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">cychwyn a stopio Tor</string>
   <string name="tor_proxy_service_process">gwasanaethdirpwrytor</string>
-  <string name="status_starting_up">Mae Orbot yn cychwyn...</string>
+  <string name="status_starting_up">Mae Orbot yn cychwyn…</string>
   <string name="status_activated">Wedi cysylltu â rhwydwaith Tor</string>
   <string name="status_shutting_down">Mae Orbot yn cau</string>
   <string name="tor_process_starting">Yn cychwyn cleient Tor</string>

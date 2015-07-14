@@ -7,11 +7,11 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">start og stop Tor</string>
   <string name="tor_proxy_service_process">torproxyservice</string>
-  <string name="status_starting_up">Orbot starter op ...</string>
+  <string name="status_starting_up">Orbot starter op …</string>
   <string name="status_activated">Der er forbindelse til Tor-netværket</string>
   <string name="status_disabled">Orbot er slået fra</string>
   <string name="status_shutting_down">Orbot lukker ned</string>
-  <string name="tor_process_starting">Starter Tor klienten...</string>
+  <string name="tor_process_starting">Starter Tor klienten…</string>
   <string name="tor_process_complete">udført.</string>
   <string name="tor_process_waiting">afventer.</string>
   <string name="not_anonymous_yet">ADVARSEL: Din trafik er ikke endnu ikke anonym! Konfigurér venligst dine programmer, så de bruger HTTP proxy 127.0.0.1:8118 eller SOCKS4A eller SOCKS5-proxy 127.0.0.1:9050</string>
@@ -127,14 +127,14 @@
   <string name="pref_proxy_password_summary">Adgangskode for udgående proxy (Valgfri)</string>
   <string name="pref_proxy_password_dialog">Indtast proxy-kodeordet</string>
   <string name="status">Status</string>
-  <string name="setting_up_full_transparent_proxying_">Opsætter total, gennemsigtig proxy...</string>
-  <string name="setting_up_app_based_transparent_proxying_">Opsætter program-afhængig transparent proxy...</string>
+  <string name="setting_up_full_transparent_proxying_">Opsætter total, gennemsigtig proxy…</string>
+  <string name="setting_up_app_based_transparent_proxying_">Opsætter program-afhængig transparent proxy…</string>
   <string name="transparent_proxying_enabled">Transparent proxying AKTIVERET</string>
   <string name="transproxy_enabled_for_tethering_">TransProxy slået til for internetdeling!</string>
   <string name="warning_error_starting_transparent_proxying_">ADVARSEL: fejl under start af den gennemsigtige proxy!</string>
   <string name="transproxy_rules_cleared">Indstillinger for TransProxy er nulstillet</string>
   <string name="couldn_t_start_tor_process_">Kunne ikke starte Tor processen:</string>
-  <string name="setting_up_port_based_transparent_proxying_">Opsætter port-baseret gennemsigtig proxy...</string>
+  <string name="setting_up_port_based_transparent_proxying_">Opsætter port-baseret gennemsigtig proxy…</string>
   <string name="bridge_error">Fejl ved Bro</string>
   <string name="bridge_requires_ip">For at kunne bruge bro-komponenten, skal du indaste mindst én IP-adresse på en bro.</string>
   <string name="send_email_for_bridges">Send en e-mail til bridges@torproject.org med teksten \"get bridges\" alene i mailens tekstfelt fra en gmail-konto.</string>
@@ -181,7 +181,7 @@
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Tredjeparts-software:</string>
   <string name="hidden_service_request">Et program vil åbne den skjulte server-port %S til Tor netværket. Dette er sikkert hvis du stoler på programmet.</string>
-  <string name="found_existing_tor_process">fandt eksisterende Tor process...</string>
+  <string name="found_existing_tor_process">fandt eksisterende Tor process…</string>
   <string name="something_bad_happened">Noget slemt er sket. Check loggen</string>
   <string name="hidden_service_on">skjult service på:</string>
   <string name="unable_to_read_hidden_service_name">ikke i stand til at læse navnet på den skjulte service</string>

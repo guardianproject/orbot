@@ -7,11 +7,11 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">startēt un apturēt Tor</string>
   <string name="tor_proxy_service_process">torproxyservice</string>
-  <string name="status_starting_up">Orbot startē...</string>
+  <string name="status_starting_up">Orbot startē…</string>
   <string name="status_activated">Izveidots savienojums ar tīklu Tor</string>
   <string name="status_disabled">Orbot ir deaktivēts</string>
   <string name="status_shutting_down">Orbot izslēdzas</string>
-  <string name="tor_process_starting">Startē Tor klientu...</string>
+  <string name="tor_process_starting">Startē Tor klientu…</string>
   <string name="tor_process_complete">pabeidz.</string>
   <string name="tor_process_waiting">gaida.</string>
   <string name="not_anonymous_yet">BRĪDINĀJUMS: Jūsu datplūsma vēl nav anonīma! Lūdzu konfigurējiet savas lietotnes, lai tās izmantotu HTTP starpnieku 127.0.0.1:8118 vai SOCKS4A , vai SOCKS5 starpnieku 127.0.0.1:9050</string>
@@ -129,14 +129,14 @@
   <string name="pref_proxy_password_summary">Starpnieka parole (neobligāti)</string>
   <string name="pref_proxy_password_dialog">Ievadīt starpnieka paroli</string>
   <string name="status">Statuss</string>
-  <string name="setting_up_full_transparent_proxying_">Iestata pilnībā pārredzamu starpniekošanu...</string>
-  <string name="setting_up_app_based_transparent_proxying_">Iestata lietotņu nodrošinātu starpniekošanu...</string>
+  <string name="setting_up_full_transparent_proxying_">Iestata pilnībā pārredzamu starpniekošanu…</string>
+  <string name="setting_up_app_based_transparent_proxying_">Iestata lietotņu nodrošinātu starpniekošanu…</string>
   <string name="transparent_proxying_enabled">Pārredzama starpniekošana IESPĒJOTA</string>
   <string name="transproxy_enabled_for_tethering_">TransProxy iespējots valgošanai!</string>
   <string name="warning_error_starting_transparent_proxying_">BRĪDINĀJUMS: kļūda uzsākot pārredzamu starpniekošanu!</string>
   <string name="transproxy_rules_cleared">TransProxy kārtulas notīrītas</string>
   <string name="couldn_t_start_tor_process_">Neizdevās palaist Tor\'a procesu:</string>
-  <string name="setting_up_port_based_transparent_proxying_">Iestata portu nodrošinātu pārredzamu starpniekošanu...</string>
+  <string name="setting_up_port_based_transparent_proxying_">Iestata portu nodrošinātu pārredzamu starpniekošanu…</string>
   <string name="bridge_error">Tilta kļūda</string>
   <string name="bridge_requires_ip">Lai izmantotu tilta līdzekli, jāievada vismaz viena tilta IP adrese.</string>
   <string name="send_email_for_bridges">No Gmail konta sūtiet e-pastu uz bridges@torproject.org ar rindu \"get bridges\" e-pasta ziņojuma korpusā.</string>
@@ -183,7 +183,7 @@
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Trešo personu programmatūra:</string>
   <string name="hidden_service_request">Lietotne vēlas atvērt slēptu servera portu %S uz tīklu Tor. Tas ir droši, ja uzticaties lietotnei.</string>
-  <string name="found_existing_tor_process">Atrada esošu Tor procesu...</string>
+  <string name="found_existing_tor_process">Atrada esošu Tor procesu…</string>
   <string name="something_bad_happened">Nav labi. Pārbaudiet žurnālu</string>
   <string name="hidden_service_on">Slēpts pakalpojums uz:</string>
   <string name="unable_to_read_hidden_service_name">Nespēj lasīt slēpta pakalpojuma nosaukumu</string>

@@ -7,11 +7,11 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">ræsa og stöðva Tor</string>
   <string name="tor_proxy_service_process">torproxyþjónusta</string>
-  <string name="status_starting_up">Það er að kvikna á Orbor...</string>
+  <string name="status_starting_up">Það er að kvikna á Orbor…</string>
   <string name="status_activated">Tengdur við Tor netið</string>
   <string name="status_disabled">Orbot er slökkt</string>
   <string name="status_shutting_down">Það er að slökkna á Orbot</string>
-  <string name="tor_process_starting">Kveiki á Tor notanda...</string>
+  <string name="tor_process_starting">Kveiki á Tor notanda…</string>
   <string name="tor_process_complete">lokið.</string>
   <string name="tor_process_waiting">bíða.</string>
   <string name="not_anonymous_yet">AÐVÖRUN: Netumferðin þín er ekki nafnlaus enn! Vinsamlegast stilltu hugbúnaðinn þinn til að nota HTTP proxy 127.0.0.1:8118 eða SOCK4A eða SOCK5 proxy 127.0.0.1:9050</string>
@@ -129,14 +129,14 @@
   <string name="pref_proxy_password_summary">Proxy Lykilorð (Valfrjálst)</string>
   <string name="pref_proxy_password_dialog">Sláðu Inn Proxy Lykilorð</string>
   <string name="status">Staða</string>
-  <string name="setting_up_full_transparent_proxying_">Set upp full-gegnsæjan proxy...</string>
-  <string name="setting_up_app_based_transparent_proxying_">Set upp smáforrita-byggðan gegnsæjan proxy... </string>
+  <string name="setting_up_full_transparent_proxying_">Set upp full-gegnsæjan proxy…</string>
+  <string name="setting_up_app_based_transparent_proxying_">Set upp smáforrita-byggðan gegnsæjan proxy… </string>
   <string name="transparent_proxying_enabled">Gegnsæ proxýun KVEIKT</string>
   <string name="transproxy_enabled_for_tethering_">TransProxy kveikt fyrir Netaðgangspunkt!</string>
   <string name="warning_error_starting_transparent_proxying_">AÐVÖRUN: villa við að kveikja á gegnsærri proxýun</string>
   <string name="transproxy_rules_cleared">TransProxy reglur hreinsaðar</string>
   <string name="couldn_t_start_tor_process_">Gat ekki kveikt á Tor þráð:</string>
-  <string name="setting_up_port_based_transparent_proxying_">Set upp port-byggða gegnsæja proxýun...</string>
+  <string name="setting_up_port_based_transparent_proxying_">Set upp port-byggða gegnsæja proxýun…</string>
   <string name="bridge_error">Brúar Villa</string>
   <string name="bridge_requires_ip">Til að nota brúar viðbótina, verðuru að slá inn að minnsta kosti eina IP addressu fyrir brú.</string>
   <string name="send_email_for_bridges">Sendu tölvupóst til bridges@torproject.org með setningunni \"get bridges\" eitt og sér í innihaldi skeytisins frá gmail aðgangi.</string>
@@ -183,7 +183,7 @@
   <string name="https_torproject_org">https:torproject.org</string>
   <string name="third_party_software">Hugbúnaður frá 3ja aðila:</string>
   <string name="hidden_service_request">Smáforrit vill opna falið port þjóns %S að Tor netinu. Þetta er öruggt ef þú treystir smáforritinu.</string>
-  <string name="found_existing_tor_process">fann annan Tor þráð...</string>
+  <string name="found_existing_tor_process">fann annan Tor þráð…</string>
   <string name="something_bad_happened">Eitthvað slæmt gerðist. Athugaðu skráninguna</string>
   <string name="hidden_service_on">falin þjónusta á:</string>
   <string name="unable_to_read_hidden_service_name">get ekki lesið nafn földu þjónustunnar</string>

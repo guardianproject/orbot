@@ -7,11 +7,11 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">開始和停止 Tor</string>
   <string name="tor_proxy_service_process">tor 代理服務</string>
-  <string name="status_starting_up">Orbot 正在啟動中...</string>
+  <string name="status_starting_up">Orbot 正在啟動中…</string>
   <string name="status_activated">連接至 Tor 網路</string>
   <string name="status_disabled">Orbot 已停用</string>
   <string name="status_shutting_down">Orbot 已關閉</string>
-  <string name="tor_process_starting">啟動Tor 用戶端...</string>
+  <string name="tor_process_starting">啟動Tor 用戶端…</string>
   <string name="tor_process_complete">完成。</string>
   <string name="tor_process_waiting">等待。</string>
   <string name="not_anonymous_yet">警告：您的網路尚未匿名！請設定您的應用程式使用HTTP 代理伺服器 127.0.0.1:8118 或 SOCKS4A 或 SOCKS5 代理伺服器 127.0.0.1:9050</string>

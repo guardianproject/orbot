@@ -8,11 +8,11 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">вклучи и исклучи го Tor</string>
   <string name="tor_proxy_service_process">torproxyservice</string>
-  <string name="status_starting_up">Орбот се стартува...</string>
+  <string name="status_starting_up">Орбот се стартува…</string>
   <string name="status_activated">Поврзан на мрежата Tor</string>
   <string name="status_disabled">Орбот е деактивиран</string>
   <string name="status_shutting_down">Орбот се исклучува</string>
-  <string name="tor_process_starting">Стартува Тор клиентот...</string>
+  <string name="tor_process_starting">Стартува Тор клиентот…</string>
   <string name="tor_process_complete">готово.</string>
   <string name="tor_process_waiting">чекање.</string>
   <string name="not_anonymous_yet">ВНИМАНИЕ: Вашиот сообраќај сè уште не е анонимен! Треба да ги конфигурирате Вашите апликации да го користат проксито за HTTP, 127.0.0.1:8118, или проксито за SOCKS4A или SOCKS5, 127.0.0.1:9050</string>
@@ -84,7 +84,7 @@
   <string name="wizard_proxy_help_info">Подесувања на прокси</string>
   <string name="wizard_proxy_help_msg">Доколку Android апликацијата што ја користите поддржува HTTP или SOCKS прокси, тогаш можете да ја конгигурирате да се поврзува со Orbot и да користат Tor.\n\n\n Подесувањата за компјутерот се 127.0.0.1 или \"localhost\". За HTTP подесувањата на порта се 8118. За SOCKS проксито е 9050. Доколку е возможно треба да користите SOCKS4A или SOCKS5.\n \n\n\n Можете да дознаете повеќе за проксирање на Android преку НПП на: http://tinyurl.com/proxyandroid\n</string>
   <string name="wizard_final">Орбот е спремен!</string>
-  <string name="wizard_final_msg">Милиони луѓе низ целиот свет го користат Tor за различни причини.\n\nНовинари и блогери, адвокати, полициски службеници, војници, корпорации, граѓаните на репресивните режими и обичните граѓани ... а од сега и вие!</string>
+  <string name="wizard_final_msg">Милиони луѓе низ целиот свет го користат Tor за различни причини.\n\nНовинари и блогери, адвокати, полициски службеници, војници, корпорации, граѓаните на репресивните режими и обичните граѓани … а од сега и вие!</string>
   <string name="wizard_exit_at_first_screen_toast">Ве молиме конфигурирајте го Орбот пред да започнете да го користите!</string>
   <!--END Welcome Wizard strings (DJH)-->
   <string name="connect_first_time">Успешно се поврзавте на Tor мрежата, но тоа не значи дека вашиот уред е бесбеден. Можете да ја користет опцијата \'Провери\' од главното мени за да го тестирате вашиот прелистувач. \n\nЗа да дознаете повеќе посете ја нашата веб-локација https://guardianproject.info/apps/orbot или испратете ни е-пошта на help@guardianproject.info</string>
@@ -148,7 +148,7 @@
   <string name="transproxy_rules_cleared">Избришани TransProxy правила </string>
   <string name="couldn_t_start_tor_process_">Не може да се започне Tor-процесот:</string>
   <string name="privoxy_is_running_on_port_">Polipo работи на порта: </string>
-  <string name="setting_up_port_based_transparent_proxying_">Поставување на транспарентно проксирање базирано на порта...</string>
+  <string name="setting_up_port_based_transparent_proxying_">Поставување на транспарентно проксирање базирано на порта…</string>
   <string name="bridge_error">Грешка во мостот</string>
   <string name="bridge_requires_ip">За да ја користите функцијата на мостот, морате да внесете барем една ИП-адреса на мост.</string>
   <string name="send_email_for_bridges">Испратете е-пошта од вашата gmail сметка на bridges@torproject.org со содржина \"get bridges\".</string>
@@ -187,7 +187,7 @@
   <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
   <string name="openssl_version">ОтвориSSL v1.0.1i: http://www.openssl.org</string>
   <string name="hidden_service_request">Апликација сака да отвори скриена порта на серверот %S на мрежата на Tor. Ова е безбедно, ако и верувате на апликацијата.</string>
-  <string name="found_existing_tor_process">Пронајден постоечки Tor-процес ...</string>
+  <string name="found_existing_tor_process">Пронајден постоечки Tor-процес …</string>
   <string name="something_bad_happened">Нешто лошо се случи. Проверете го дневникот</string>
   <string name="hidden_service_on">скриен сервис на:</string>
   <string name="unable_to_read_hidden_service_name">не може да се прочита името на скриениот сервис</string>
@@ -204,7 +204,7 @@
   <string name="wizard_locale_title">Одбери јазик</string>
   <string name="wizard_locale_msg">Остави дифолт или промени го постоечкиот јазик</string>
   <string name="btn_save_settings">Сочувај подесувања</string>
-  <string name="no_internet_connection_tor">Нема интернет-врска; Tor е во мирување...</string>
+  <string name="no_internet_connection_tor">Нема интернет-врска; Tor е во мирување…</string>
   <string name="bandwidth_">Проток:</string>
   <string name="down">долу</string>
   <string name="up">горе</string>

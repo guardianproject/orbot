@@ -7,11 +7,11 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">začni in ustavi Tor</string>
   <string name="tor_proxy_service_process">torproxyservice</string>
-  <string name="status_starting_up">Orbot se zaganja...</string>
+  <string name="status_starting_up">Orbot se zaganja…</string>
   <string name="status_activated">Povezan v omrežje Tor</string>
   <string name="status_disabled">Orbot ni aktiviran</string>
   <string name="status_shutting_down">Orbot se zaustavlja</string>
-  <string name="tor_process_starting">Zagon Tor klijenta...</string>
+  <string name="tor_process_starting">Zagon Tor klijenta…</string>
   <string name="tor_process_complete">končano.</string>
   <string name="tor_process_waiting">čakam.</string>
   <string name="not_anonymous_yet">POZOR: Vaš promet še ni anonimen! Prosimo, nastavite vaše aplikacije da uporabijo HTTP posredniški strežnik 127.0.0.1:8118 ali SOCKS4A ali SOCKS5 posredniški strežnik 127.0.0.1:9050</string>

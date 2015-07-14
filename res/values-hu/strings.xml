@@ -8,11 +8,11 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">a Tor indítása, leállítása</string>
   <string name="tor_proxy_service_process">torproxyservice</string>
-  <string name="status_starting_up">Az Orbot indul...</string>
+  <string name="status_starting_up">Az Orbot indul…</string>
   <string name="status_activated">Csatlakozva a Tor hálózathoz</string>
   <string name="status_disabled">\"Orbot deaktiválva</string>
   <string name="status_shutting_down">Az Orbot leállítás alatt</string>
-  <string name="tor_process_starting">A Tor kliens indítása...</string>
+  <string name="tor_process_starting">A Tor kliens indítása…</string>
   <string name="tor_process_complete">kész.</string>
   <string name="tor_process_waiting">várakozik.</string>
   <string name="not_anonymous_yet">FIGYELEM: A forgalma még nem névtelen! Állítsa be alkalmazásait, hogy HTTP proxy használjanak a 127.0.0.1:8118 címen vagy SOCKS4A vagy SOCKS5 proxy-t a 127.0.0.1:9050 címen</string>
@@ -84,7 +84,7 @@
   <string name="wizard_proxy_help_info">Proxy beállítások</string>
   <string name="wizard_proxy_help_msg">Ha az Android alkalmazás, amit használsz támogatja a HTTP vagy SOCKS proxy használatát, akkor konfigurálhatod, hogy csatlakozzon az Orbot-hoz és Tor-t használjon.\n\n\n A host beállítások 127.0.0.1 vagy \"localhost\". HTTP-nek a port beállítása 8118. SOCKS-nak a proxy-ja 9050. SOCKS4A -t vagy SOCKS5 -t kéne használnod, ha lehetséges.\n \n\n\n Többet tudhatsz meg a proxyzásról Androidon a GYIK-en keresztül itt: http://tinyurl.com/proxyandroid\n</string>
   <string name="wizard_final">Az Orbot kész!</string>
-  <string name="wizard_final_msg">Emberek milliói használják a világ körül a Tor-t többféle különböző okból.\n\nÚjságírók és bloggerek, emberi jogok védelmezői, rendőrök, katonák, cégek, elnyomó rezsimek polgárai, és csak átlagos polgárok... és most már te is készen állsz!</string>
+  <string name="wizard_final_msg">Emberek milliói használják a világ körül a Tor-t többféle különböző okból.\n\nÚjságírók és bloggerek, emberi jogok védelmezői, rendőrök, katonák, cégek, elnyomó rezsimek polgárai, és csak átlagos polgárok… és most már te is készen állsz!</string>
   <string name="wizard_exit_at_first_screen_toast">Kérlek konfiguráld az Orbot-ot, mielőtt elkezded használni!</string>
   <!--END Welcome Wizard strings (DJH)-->
   <string name="connect_first_time">Sikeresen csatlakoztál a Tor hálózathoz - de ez NEM jelenti azt, hogy az eszközöd biztonságban van. Használhatod a \'Check\' lehetőséget a menüből, hogy ellenőrizd a böngésződet. \n\nLátogass meg minket a https://guardianproject.info/apps/orbot -on vagy küldj e-mailt a help@guardianproject.info -ra, hogy többet megtudj.</string>
@@ -146,15 +146,15 @@
   <string name="pref_proxy_password_summary">Proxy jelszó (opcionális)</string>
   <string name="pref_proxy_password_dialog">Adja meg a Proxy jelszavát</string>
   <string name="status">Állapot</string>
-  <string name="setting_up_full_transparent_proxying_">A teljes körű Átlátszó proxyzás beállítása...</string>
-  <string name="setting_up_app_based_transparent_proxying_">Alkalmazásszintű Átlátszó proxyzás beállítása...</string>
+  <string name="setting_up_full_transparent_proxying_">A teljes körű Átlátszó proxyzás beállítása…</string>
+  <string name="setting_up_app_based_transparent_proxying_">Alkalmazásszintű Átlátszó proxyzás beállítása…</string>
   <string name="transparent_proxying_enabled">Átlátszó proxyzás ENGEDÉLYEZVE</string>
   <string name="transproxy_enabled_for_tethering_">TransProxy engedélyezve tetheringre!</string>
   <string name="warning_error_starting_transparent_proxying_">FIGYELMEZTETÉS: probléma az átlátszó proxyzás indításakor!</string>
   <string name="transproxy_rules_cleared">TransProxy szabályok létrehozva</string>
   <string name="couldn_t_start_tor_process_">Nem indítható el a Tor process:</string>
   <string name="privoxy_is_running_on_port_">A Polipo az alábbi proton fut:</string>
-  <string name="setting_up_port_based_transparent_proxying_">A port alapú átlátszó proxyzás beállítása...</string>
+  <string name="setting_up_port_based_transparent_proxying_">A port alapú átlátszó proxyzás beállítása…</string>
   <string name="bridge_error">Híd hiba</string>
   <string name="bridge_requires_ip">A híd szolgáltatás használatához legalább egy híd IP címét meg kell adnia.</string>
   <string name="send_email_for_bridges">Küldjön egy emailt a bridges@torproject.org címre a \"get bridges\" (hidak beszerzése) sorral a levél törzsében egy gmail címről.</string>
@@ -207,7 +207,7 @@
   <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
   <string name="openssl_version">OpenSSL v1.0.1i: http://www.openssl.org</string>
   <string name="hidden_service_request">Egy alkalmazás a %S rejtett szerver portot próbálja megnyitni. Ez biztonságos, ha megbízik az alkalmazásban.</string>
-  <string name="found_existing_tor_process">létező Tor folyamat találva...</string>
+  <string name="found_existing_tor_process">létező Tor folyamat találva…</string>
   <string name="something_bad_happened">Valami rossz történt. Nézze meg a log fájlt.</string>
   <string name="hidden_service_on">rejtett szolgáltatás itt:</string>
   <string name="unable_to_read_hidden_service_name">nem olvasható a rejtett szolgáltatás neve</string>
@@ -228,7 +228,7 @@
   <string name="wizard_locale_msg">Maradjon alapértelmezetten vagy váltson az aktuális nyelvre</string>
   <string name="powered_by">Tor-ral meghajtva </string>
   <string name="btn_save_settings">Beállítások mentése</string>
-  <string name="no_internet_connection_tor">Nincs internetkapcsolat; Tor készenlétben...</string>
+  <string name="no_internet_connection_tor">Nincs internetkapcsolat; Tor készenlétben…</string>
   <string name="bandwidth_">Sávszélesség:</string>
   <string name="down">le</string>
   <string name="up">fel</string>
@@ -241,8 +241,8 @@
   <string name="permission_manage_tor_description">A Tor szolgáltatás vezérlésének engedélyezése az alkalmazás számára</string>
   <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Úgy tűnik nincs Orweb telepítve. Szeretne segítséget benne, vagy csak nyissunk egy böngészőt?</string>
   <string name="install_apps_">Appok telepítése?</string>
-  <string name="no_network_connectivity_putting_tor_to_sleep_">Nincs hálózati kapcsolat. Tor alvó állapotba küldése...</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">A hálózati kapcsolat jó. Tor felébresztése...</string>
+  <string name="no_network_connectivity_putting_tor_to_sleep_">Nincs hálózati kapcsolat. Tor alvó állapotba küldése…</string>
+  <string name="network_connectivity_is_good_waking_tor_up_">A hálózati kapcsolat jó. Tor felébresztése…</string>
   <string name="updating_settings_in_tor_service">A Tor szolgáltatás beállításainak frissítése</string>
   <string name="pref_socks_title">Tor SOCKS</string>
   <string name="pref_socks_summary">Port amelyen a Tor a SOCKS proxy-t biztosítja (alapértelmezett: 9050 vagy 0 a tiltáshoz)</string>

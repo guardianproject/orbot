@@ -7,11 +7,11 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">käynnistä ja lopeta Tor</string>
   <string name="tor_proxy_service_process">torproxyservice</string>
-  <string name="status_starting_up">Orbot käynnistyy...</string>
+  <string name="status_starting_up">Orbot käynnistyy…</string>
   <string name="status_activated">Yhdistetty Tor-verkkoon</string>
   <string name="status_disabled">Orbot on deaktivoitu</string>
   <string name="status_shutting_down">Orbot sulkeutuu</string>
-  <string name="tor_process_starting">Käynnistetään Tor ohjelmaa...</string>
+  <string name="tor_process_starting">Käynnistetään Tor ohjelmaa…</string>
   <string name="tor_process_complete">valmis.</string>
   <string name="tor_process_waiting">odottaa.</string>
   <string name="not_anonymous_yet">VAROITUS: Verkkoliikenteesi ei ole vielä anonyymiä! Konfiguroi ohjelmasi käyttämään HTTP-välityspalvelinta 127.0.0.1:8118 tai SOCKS4A- tai SOCKS5-välityspalvelinta 127.0.0.1:9050</string>
@@ -129,14 +129,14 @@
   <string name="pref_proxy_password_summary">Välityspalvelimen salasana (valinnainen)</string>
   <string name="pref_proxy_password_dialog">Kirjoita välityspalvelimen salasana</string>
   <string name="status">Tila</string>
-  <string name="setting_up_full_transparent_proxying_">Täyttä läpinäkyvää tiedonvälitystä otetaan käyttöön...</string>
-  <string name="setting_up_app_based_transparent_proxying_">Sovelluspohjaista läpinäkyvää tiedonvälitystä otetaan käyttöön...</string>
+  <string name="setting_up_full_transparent_proxying_">Täyttä läpinäkyvää tiedonvälitystä otetaan käyttöön…</string>
+  <string name="setting_up_app_based_transparent_proxying_">Sovelluspohjaista läpinäkyvää tiedonvälitystä otetaan käyttöön…</string>
   <string name="transparent_proxying_enabled">Läpinäkyvä tiedonvälitys SALLITTU</string>
   <string name="transproxy_enabled_for_tethering_">TransProxy on otettu käyttöön Tor-välityspalvelimimena olemista varten!</string>
   <string name="warning_error_starting_transparent_proxying_">VAROITUS: virhe aloittaessa läpinäkyvää tiedonvälitystä!</string>
   <string name="transproxy_rules_cleared">TransProxyn säännöt tyhjennetty</string>
   <string name="couldn_t_start_tor_process_">Tor-prosessin käynnistäminen epäonnistui:</string>
-  <string name="setting_up_port_based_transparent_proxying_">Porttipohjaista läpinäkyvää tiedonvälitystä otetaan käyttöön...</string>
+  <string name="setting_up_port_based_transparent_proxying_">Porttipohjaista läpinäkyvää tiedonvälitystä otetaan käyttöön…</string>
   <string name="bridge_error">Siltavirhe</string>
   <string name="bridge_requires_ip">Jos haluat käyttää siltaominaisuutta, kirjoita vähintään yhden sillan IP-osoite.</string>
   <string name="send_email_for_bridges">Lähetä sähköpostia osoitteeseen bridges@torproject.org gmail-osoitteesta siten, että viestin ainoa rivi on \"get bridges\".</string>
@@ -183,7 +183,7 @@
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">3:n osapuolen ohjelmisto:</string>
   <string name="hidden_service_request">Sovellus haluaa avata piilopalveluportin %S Tor-verkkoon. Tämä on turvallista, jos luotat sovellukseen.</string>
-  <string name="found_existing_tor_process">löytyi olemassaoleva Tor-prosessi...</string>
+  <string name="found_existing_tor_process">löytyi olemassaoleva Tor-prosessi…</string>
   <string name="something_bad_happened">Jotain pahaa tapahtui. Tarkista loki</string>
   <string name="hidden_service_on">piilopalvelun sijainti:</string>
   <string name="unable_to_read_hidden_service_name">piilopalvelunimen lukeminen epäonnistui</string>

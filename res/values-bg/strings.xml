@@ -8,11 +8,11 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">стартирай и стопирай Тор</string>
   <string name="tor_proxy_service_process">Tor прокси</string>
-  <string name="status_starting_up">Орбот стартира...</string>
+  <string name="status_starting_up">Орбот стартира…</string>
   <string name="status_activated">Свързан към Тор мрежата</string>
   <string name="status_disabled">Орбот е деактивиран</string>
   <string name="status_shutting_down">Орбот се изключва</string>
-  <string name="tor_process_starting">Стартиране на Тор клиент...</string>
+  <string name="tor_process_starting">Стартиране на Тор клиент…</string>
   <string name="tor_process_complete">завършено.</string>
   <string name="tor_process_waiting">изчакване.</string>
   <string name="not_anonymous_yet">ВНИМАНИЕ: Трафикът Ви не е анонимен! Моля конфигурирайте приложенията си да използват HTTP proxy 127.0.0.1:8118 или SOCKS4A или SOCKS5 proxy 127.0.0.1:9050</string>
@@ -84,7 +84,7 @@
   <string name="wizard_proxy_help_info">Прокси настройки</string>
   <string name="wizard_proxy_help_msg">Ако Андроид приложението, което използваш поддържа HTTP или SOCKS прокси, тогава мжоеш да го конфигурираш да се свързва с Orbot и да използва Tor.\n\n\nНастойките са host 127.0.0.1 или \"localhost\". За HTTP, портът е 8118. За SOCKS проксито е 9050. Най-добре е по възможност да се използва SOCKS4A или SOCKS5.\n\n\n\nМожеш да научиш повече за прокситата в Андроид през странцита с въпроси и отговори: http://tinyurl.com/proxyandroid\n </string>
   <string name="wizard_final">Орбот е готов!</string>
-  <string name="wizard_final_msg">Милиони хора по света използват Tor по голям брой причини.\n\nЖурналисти и блогъри, защитници на човешките права, органите на реда, войници, корпорации, граждани на държави с репресивни режими, и най-обикновени граждани... а сега и ти!</string>
+  <string name="wizard_final_msg">Милиони хора по света използват Tor по голям брой причини.\n\nЖурналисти и блогъри, защитници на човешките права, органите на реда, войници, корпорации, граждани на държави с репресивни режими, и най-обикновени граждани… а сега и ти!</string>
   <string name="wizard_exit_at_first_screen_toast">Моля, настрой Orbot преди да почнеш да го използваш!</string>
   <!--END Welcome Wizard strings (DJH)-->
   <string name="connect_first_time">Успешно се свърза с Tor мрежата, но това НЕ значи, че устройството ти е подсигурено. Може да използваш опцията \'Провери\' в менюто, за да тестваш браузъра си. \n\nОтиди на https://guardianproject.info/apps/orbot или изпрати имейл на help@guardianproject.info, за да научиш повече.</string>
@@ -146,15 +146,15 @@
   <string name="pref_proxy_password_summary">Прокси Парола (Незадължително)</string>
   <string name="pref_proxy_password_dialog">Въведи Прокси Парола</string>
   <string name="status">Статус</string>
-  <string name="setting_up_full_transparent_proxying_">Конфигуриране на напълно прозрачно прокси...</string>
-  <string name="setting_up_app_based_transparent_proxying_">Конфигуриране на прозрачно прокси на база приложение...</string>
+  <string name="setting_up_full_transparent_proxying_">Конфигуриране на напълно прозрачно прокси…</string>
+  <string name="setting_up_app_based_transparent_proxying_">Конфигуриране на прозрачно прокси на база приложение…</string>
   <string name="transparent_proxying_enabled">Прозрачно прокси АКТИВНО</string>
   <string name="transproxy_enabled_for_tethering_">TransProxy е включен за Тетъринг!</string>
   <string name="warning_error_starting_transparent_proxying_">ВНИМАНИЕ: грешка при стартиране на прозрачно проски!</string>
   <string name="transproxy_rules_cleared">TransProxy правила изчистени</string>
   <string name="couldn_t_start_tor_process_">Неуспешно стартиране на Тор процес: </string>
   <string name="privoxy_is_running_on_port_">Polipo работи на порт:</string>
-  <string name="setting_up_port_based_transparent_proxying_">Конфигуриране на прозрачно прокси на база порт...</string>
+  <string name="setting_up_port_based_transparent_proxying_">Конфигуриране на прозрачно прокси на база порт…</string>
   <string name="bridge_error">Бридж грешка</string>
   <string name="bridge_requires_ip">За да използвате бридж функционалността трябва да въведете поне един IP адрес на бридж.</string>
   <string name="send_email_for_bridges">Изпрати и-мейл до bridges@torproject.org със съдържание \"get bridges\" в  и-мейл от акаунт в gmail.</string>
@@ -207,7 +207,7 @@
   <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
   <string name="openssl_version">OpenSSL v1.0.1i: http://www.openssl.org</string>
   <string name="hidden_service_request">Приложение иска да отвори порт на скрит сървър %S към Тор мрежата. Безопасно е да се доверите на приложението.</string>
-  <string name="found_existing_tor_process">намерил си съвместим Tor проект...</string>
+  <string name="found_existing_tor_process">намерил си съвместим Tor проект…</string>
   <string name="something_bad_happened">Нещо лошо се случи. Проверете лога</string>
   <string name="hidden_service_on">Скрита услуга включена:</string>
   <string name="unable_to_read_hidden_service_name">не може да прочете име на скрита услуга</string>
@@ -228,7 +228,7 @@
   <string name="wizard_locale_msg">Остави по подразбиране или смени наличния език</string>
   <string name="powered_by">базиран на Tor</string>
   <string name="btn_save_settings">Запази настройки</string>
-  <string name="no_internet_connection_tor">Няма интернет връзка; Tor е в режим на изчакване...</string>
+  <string name="no_internet_connection_tor">Няма интернет връзка; Tor е в режим на изчакване…</string>
   <string name="bandwidth_">Скорост:</string>
   <string name="down">теглене</string>
   <string name="up">изпращане</string>
@@ -241,8 +241,8 @@
   <string name="permission_manage_tor_description">Разреши тази програма да контролира Tor</string>
   <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Не изглежда да имате Orweb инсталиран. Искате ли помощ с това, или просто да отворим браузъра?</string>
   <string name="install_apps_">Инсталирай програми?</string>
-  <string name="no_network_connectivity_putting_tor_to_sleep_">Няма интернет връзка. Преминаване в режим на изчкаване...</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">Добра интернет връзка. Събуждане на Tor...</string>
+  <string name="no_network_connectivity_putting_tor_to_sleep_">Няма интернет връзка. Преминаване в режим на изчкаване…</string>
+  <string name="network_connectivity_is_good_waking_tor_up_">Добра интернет връзка. Събуждане на Tor…</string>
   <string name="updating_settings_in_tor_service">обновяване на настройките в Tor услугата</string>
   <string name="pref_socks_title">Tor SOCKS</string>
   <string name="pref_socks_summary">Порт, на който Tor предлага своето SOCKS прокси(подразбиране: 9050 или 0, за да забраниш)</string>

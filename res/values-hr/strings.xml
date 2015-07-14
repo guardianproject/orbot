@@ -8,11 +8,11 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">pokreni i zaustavi Tor</string>
   <string name="tor_proxy_service_process">torproxyusluga</string>
-  <string name="status_starting_up">Orbot se pokreće...</string>
+  <string name="status_starting_up">Orbot se pokreće…</string>
   <string name="status_activated">Spojen na Tor mrežu</string>
   <string name="status_disabled">Orbot je deaktiviran</string>
   <string name="status_shutting_down">Orbot je u procesu gašenja</string>
-  <string name="tor_process_starting">Pokrećem Tor klijent...</string>
+  <string name="tor_process_starting">Pokrećem Tor klijent…</string>
   <string name="tor_process_complete">gotovo.</string>
   <string name="tor_process_waiting">čekam.</string>
   <string name="not_anonymous_yet">UPOZORENJE: Vaš promet još nije anoniman! Molimo konfigurirajte Vaše aplikacije da koriste HTTP proxy 127.0.0.1:8118 ili SOCKS4A ili SOCKS5 proxy 127.0.0.1:9050</string>
@@ -84,7 +84,7 @@
   <string name="wizard_proxy_help_info">Postavke Proxy-a</string>
   <string name="wizard_proxy_help_msg">Ako Android aplikacija koju koristite podržava korištenje HTTP ili SOCKS proxy-a, možete ju konfigurirati da se spaja na Orbot i koristi Tor.\n\n\n Postavke su 127.0.0.1 ili \"localhost\". Za HTTP postavke porta su 8118. Za SOCKS, proxy je 9050. Trebali bi koristiti SOCKS4A ili SOCKS5 ako je moguće.\n\n\n Možete naučiti više o proxy-ranju na Androidu putem često postavljenih pitanja: http://tinyurl.com/proxyandroid</string>
   <string name="wizard_final">Orbot je spreman!</string>
-  <string name="wizard_final_msg">Milijuni ljudi diljem svijeta koriste Tor iz raznih razloga.\n\nNovinari i blogeri, pravobranitelji, policijski službenici, vojnici, korporacije, građani represivnih režima i uobičajeni građani... a od sad i Vi!</string>
+  <string name="wizard_final_msg">Milijuni ljudi diljem svijeta koriste Tor iz raznih razloga.\n\nNovinari i blogeri, pravobranitelji, policijski službenici, vojnici, korporacije, građani represivnih režima i uobičajeni građani… a od sad i Vi!</string>
   <string name="wizard_exit_at_first_screen_toast">Molimo konfigurirajte Orbot prije nego ga počnete koristiti!</string>
   <!--END Welcome Wizard strings (DJH)-->
   <string name="connect_first_time">Uspješno ste se spojili na Tor mrežu - ali to NE znači da je Vaš uređaj siguran. Možete iskoristiti \'Provjeri\' opciju iz izbornika da testirate preglednik.\n\nPosjetite nas na https://guardianproject.info/apps/orbot ili nam pošaljite email na help@guardianproject.info da bi naučili više.</string>
@@ -146,15 +146,15 @@
   <string name="pref_proxy_password_summary">Proxy lozinka (Opcionalno)</string>
   <string name="pref_proxy_password_dialog">Unesite Proxy lozinku</string>
   <string name="status">Status</string>
-  <string name="setting_up_full_transparent_proxying_">Postavljam potpuno transparentan proxy...</string>
-  <string name="setting_up_app_based_transparent_proxying_">Postavljam transparentan proxy zasnovan na aplikaciji...</string>
+  <string name="setting_up_full_transparent_proxying_">Postavljam potpuno transparentan proxy…</string>
+  <string name="setting_up_app_based_transparent_proxying_">Postavljam transparentan proxy zasnovan na aplikaciji…</string>
   <string name="transparent_proxying_enabled">Transparentni Proxy OMOGUĆENO</string>
   <string name="transproxy_enabled_for_tethering_">TransProxy omogućen za Privezivanje!</string>
   <string name="warning_error_starting_transparent_proxying_">UPOZORENJE: greška pri pokretanju transparentnog proxy-a!</string>
   <string name="transproxy_rules_cleared">TransProxy pravila očišćena</string>
   <string name="couldn_t_start_tor_process_">Nije moguće započeti Tor proces:</string>
   <string name="privoxy_is_running_on_port_">Polipo je pokrenut na portu:</string>
-  <string name="setting_up_port_based_transparent_proxying_">Postavljam transparentan proxy zasnovan na portu...</string>
+  <string name="setting_up_port_based_transparent_proxying_">Postavljam transparentan proxy zasnovan na portu…</string>
   <string name="bridge_error">Greška Mosta</string>
   <string name="bridge_requires_ip">Da bi koristili mostove, morate unijeti bar jednu IP adresu mosta.</string>
   <string name="send_email_for_bridges">Pošaljite email koristeći gmail račun na bridges@torproject.org samo s tekstom \"get bridges\" u sadržaju.</string>
@@ -207,7 +207,7 @@
   <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
   <string name="openssl_version">OpenSSL v1.0.1i: http://www.openssl.org</string>
   <string name="hidden_service_request">Aplikacija želi otvoriti port %S skrivenog poslužitelja Tor mreži. Ovo je sigurno ako vjerujete aplikaciji.</string>
-  <string name="found_existing_tor_process">pronađeni postojeći Tor procesi...</string>
+  <string name="found_existing_tor_process">pronađeni postojeći Tor procesi…</string>
   <string name="something_bad_happened">Nešto loše se dogodilo. Provjerite dnevnik</string>
   <string name="hidden_service_on">skrivena usluga na:</string>
   <string name="unable_to_read_hidden_service_name">nije moguće pročitati ime skrivene usluge</string>
@@ -228,7 +228,7 @@
   <string name="wizard_locale_msg">Ostavi zadano ili promjeni na trenutni jezik</string>
   <string name="powered_by">pogoni Tor</string>
   <string name="btn_save_settings">Spremi postavke</string>
-  <string name="no_internet_connection_tor">Nema internet veze; Tor je u stanju pripravnosti...</string>
+  <string name="no_internet_connection_tor">Nema internet veze; Tor je u stanju pripravnosti…</string>
   <string name="bandwidth_">Bandwidth:</string>
   <string name="down">dolje</string>
   <string name="up">gore</string>
@@ -241,8 +241,8 @@
   <string name="permission_manage_tor_description">Omogući ovoj palikaciji da upravlja Tor-om</string>
   <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Izgleda da nemate Orweb instaliran. Želite li pomoć oko toga ili da samo otvorimo preglednik?</string>
   <string name="install_apps_">Instaliraj aplikacije?</string>
-  <string name="no_network_connectivity_putting_tor_to_sleep_">Nema mrežne povezivosti. Stavljam Tor na spavanje...</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">Mrežan povezanost je dobra. Budim Tor...</string>
+  <string name="no_network_connectivity_putting_tor_to_sleep_">Nema mrežne povezivosti. Stavljam Tor na spavanje…</string>
+  <string name="network_connectivity_is_good_waking_tor_up_">Mrežan povezanost je dobra. Budim Tor…</string>
   <string name="updating_settings_in_tor_service">ažuriram postavke u Tor usluzi</string>
   <string name="pref_socks_title">Tor SOCKS</string>
   <string name="pref_socks_summary">Port na kojem Tor pruža svoj SOCKS proxy (zadano: 9050, 0 za onemogućavanje)</string>

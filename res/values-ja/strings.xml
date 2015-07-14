@@ -7,11 +7,11 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">Torを起動・停止する</string>
   <string name="tor_proxy_service_process">Torプロクシサービス</string>
-  <string name="status_starting_up">Orbotが開始されています...</string>
+  <string name="status_starting_up">Orbotが開始されています…</string>
   <string name="status_activated">Torネットワークに接続しています</string>
   <string name="status_disabled">\"Orbotが解除されました</string>
   <string name="status_shutting_down">Orbotが終了しています</string>
-  <string name="tor_process_starting">Torクライエントを開始しています...</string>
+  <string name="tor_process_starting">Torクライエントを開始しています…</string>
   <string name="tor_process_complete">完了</string>
   <string name="tor_process_waiting">お待ちください</string>
   <string name="not_anonymous_yet">警告:この通信はまだ匿名化されていません！　HTTP proxy 127.0.0.1:8118　か、 SOCKS4A または SOCKS5 proxy 127.0.0.1:9050　を利用するようにアプリケーション側で設定してください</string>
@@ -129,14 +129,14 @@
   <string name="pref_proxy_password_summary">プロキシのパスワード (オプション)</string>
   <string name="pref_proxy_password_dialog">プロキシのパスワードを入力してください</string>
   <string name="status">状態</string>
-  <string name="setting_up_full_transparent_proxying_">完全な透過プロキシをセットアップ中...</string>
-  <string name="setting_up_app_based_transparent_proxying_">アプリベースの透過プロキシをセットアップ中...</string>
+  <string name="setting_up_full_transparent_proxying_">完全な透過プロキシをセットアップ中…</string>
+  <string name="setting_up_app_based_transparent_proxying_">アプリベースの透過プロキシをセットアップ中…</string>
   <string name="transparent_proxying_enabled">透過プロキシ　有効</string>
   <string name="transproxy_enabled_for_tethering_">テザリングでの透過プロキシ有効</string>
   <string name="warning_error_starting_transparent_proxying_">警告: 透過プロキシの開始時にエラー発生</string>
   <string name="transproxy_rules_cleared">透過プロキシ　ルール　消去完了</string>
   <string name="couldn_t_start_tor_process_">Torプロセスの起動に失敗:</string>
-  <string name="setting_up_port_based_transparent_proxying_">ポートベースの透過プロキシをセットアップ中...</string>
+  <string name="setting_up_port_based_transparent_proxying_">ポートベースの透過プロキシをセットアップ中…</string>
   <string name="bridge_error">ブリッジ　エラー</string>
   <string name="bridge_requires_ip">ブリッジ機能を利用するには、最低一つのブリッジIPアドレスの入力が必要です。</string>
   <string name="send_email_for_bridges">gmailを使って、本文に「get bridges」と書いたメールをbridges@torproject.orgに送信してください。</string>
