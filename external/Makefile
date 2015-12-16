@@ -272,6 +272,25 @@ polipo-clean:
 	-rm -f polipo-build-stamp
 
 #------------------------------------------------------------------------------#
+# PLUTO Pluggable Transports
+
+pluto/bin/android_arm/obfs4proxy:
+	cd pluto && \
+		build.sh
+
+pluto-build-stamp: pluto/bin/android_arm/obfs4proxy
+	touch pluto-build-stamp
+
+pluto: pluto-build-stamp
+	test -d bin || mkdir bin
+	cp pluto/bin/android_arm/obfs4proxy bin
+	cp pluto/bin/android_arm/meek-client bin
+
+pluto-clean:
+	-rm -rf pluto/bin
+	-rm pluto/bin/android_arm/obfs4proxy
+
+#------------------------------------------------------------------------------#
 # JTorControl library
 
 jtorctl/bin/jtorctl.jar:
@@ -297,7 +316,7 @@ jtorctl-clean:
 #in order to stop Android OS (older devices) from trying to compress/decompress it
 #this is related to a bug in compression of assets and resources > 1MB
 
-assets: tor polipo jtorctl iptables
+assets: tor polipo jtorctl iptables pluto
 	install -d ../libs
 	install bin/jtorctl.jar ../libs
 	install -d ../assets/$(APP_ABI)
@@ -307,18 +326,24 @@ assets: tor polipo jtorctl iptables
 	-zip ../assets/$(APP_ABI)/tor.mp3 bin/tor
 	-$(STRIP) bin/xtables
 	-zip ../assets/$(APP_ABI)/xtables.mp3 bin/xtables
+	-$(STRIP) bin/meek-client
+	-zip ../assets/$(APP_ABI)/meek-client.mp3 bin/meek-client
+	-$(STRIP) bin/obfs4proxy
+	-zip ../assets/$(APP_ABI)/obfs4proxy.mp3 bin/obfs4proxy
 
 assets-clean:
 	-rm ../assets/$(APP_ABI)/polipo.mp3
 	-rm ../assets/$(APP_ABI)/tor.mp3
 	-rm ../assets/$(APP_ABI)/xtables.mp3
+	-rm ../assets/$(APP_ABI)/meek-client.mp3
+	-rm ../assets/$(APP_ABI)/obfs4proxy.mp3
 	-rm ../libs/jtorctl.jar
 
 #------------------------------------------------------------------------------#
 # cleanup, cleanup, put the toys away
 
 ##clean: openssl-clean libevent-clean tor-clean polipo-clean jtorctl-clean assets-clean
-clean: openssl-clean libevent-clean tor-clean polipo-clean iptables-clean jtorctl-clean assets-clean
+clean: openssl-clean libevent-clean tor-clean polipo-clean iptables-clean jtorctl-clean assets-clean pluto-clean
 
 #------------------------------------------------------------------------------#
 # debugging stuff
