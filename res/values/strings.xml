@@ -252,7 +252,7 @@
   <string name="pref_disable_network_summary">Put Tor to sleep when there is no internet available</string>
   <string name="newnym">You\'ve switched to a new Tor identity!</string>
   
-    <string name="menu_verify_browser">Check Browser</string>
+    <string name="menu_verify_browser">Browser</string>
     <string name="menu_use_chatsecure">Use ChatSecure</string>
 
     <string name="permission_manage_tor_label">Manage Tor</string>
