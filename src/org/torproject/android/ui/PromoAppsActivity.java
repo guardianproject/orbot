@@ -16,6 +16,8 @@ import android.widget.Button;
 
 import org.torproject.android.OrbotConstants;
 import org.torproject.android.R;
+import org.torproject.android.service.TorServiceConstants;
+
 import java.util.List;
 
 public class PromoAppsActivity extends Activity implements OrbotConstants {
@@ -79,7 +81,7 @@ public class PromoAppsActivity extends Activity implements OrbotConstants {
             @Override
             public void onClick(View view) {
                 finish();
-                startActivity(getInstallIntent("info.guardianproject.browser"));
+                startActivity(getInstallIntent(TorServiceConstants.BROWSER_APP_USERNAME));
 
             }
         });
