@@ -634,7 +634,7 @@ public class OrbotMainActivity extends Activity
 	 */
 	private void openBrowser(final String browserLaunchUrl,boolean forceExternal)
 	{
-		boolean isOrwebInstalled = appInstalledOrNot("info.guardianproject.browser");
+		boolean isBrowserInstalled = appInstalledOrNot(TorServiceConstants.BROWSER_APP_USERNAME);
 		
 		if (mBtnVPN.isChecked()||forceExternal)
 		{
@@ -649,9 +649,9 @@ public class OrbotMainActivity extends Activity
 			intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
 			startActivity(intent);
 		}
-		else if (isOrwebInstalled)
+		else if (isBrowserInstalled)
 		{
-			startIntent("info.guardianproject.browser",Intent.ACTION_VIEW,Uri.parse(browserLaunchUrl));						
+			startIntent(TorServiceConstants.BROWSER_APP_USERNAME,Intent.ACTION_VIEW,Uri.parse(browserLaunchUrl));						
 		}
 		else
 		{
