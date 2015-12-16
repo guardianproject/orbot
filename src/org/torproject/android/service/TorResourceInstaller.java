@@ -68,6 +68,11 @@ public class TorResourceInstaller implements TorServiceConstants {
         
         InputStream is;
         File outFile;
+
+        String cpuPath = "armeabi";
+            
+        if (Build.CPU_ABI.contains("x86"))
+        	cpuPath = "x86";
         
         deleteDirectory(installFolder);
         
@@ -85,28 +90,24 @@ public class TorResourceInstaller implements TorServiceConstants {
         shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
         streamToFile(is,outFile, false, false);
     
-        String cpuPath = null;
-        
         //only install if ARM (GoLang only supports ARM for now)
-        if (Build.CPU_ABI.contains("arm"))
+        if (cpuPath.equals("armeabi"))
         {
-	        is = context.getResources().openRawResource(R.raw.obfs4proxy);
+        	 cpuPath = "armeabi";
+            is = context.getAssets().open(cpuPath + "/" + OBFSCLIENT_ASSET_KEY + ".mp3");
 	        outFile = new File(installFolder, OBFSCLIENT_ASSET_KEY);
 	        shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
 	        streamToFile(is,outFile, false, true);
 	        setExecutable(outFile);
 	        
-	        is = context.getResources().openRawResource(R.raw.meek);
+            is = context.getAssets().open(cpuPath + "/" + MEEK_ASSET_KEY + ".mp3");
 	        outFile = new File(installFolder, MEEK_ASSET_KEY);
 	        shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
 	        streamToFile(is,outFile, false, true);
 	        setExecutable(outFile);
 	        
-	        cpuPath = "armeabi";
         }
-        else if (Build.CPU_ABI.contains("x86"))
-        	cpuPath = "x86";
-        
+                
         is = context.getAssets().open(cpuPath + "/tor.mp3");
         outFile = new File(installFolder, TOR_ASSET_KEY);
         shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
