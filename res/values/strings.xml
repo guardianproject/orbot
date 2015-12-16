@@ -107,7 +107,7 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot-Enabled Apps</string>
   <string name="wizard_tips_gibberbot">ChatSecure: Secure chat app with Off-the-Record Encryption</string>
-  <string name="wizard_tips_orweb">Orweb: Privacy-enhanced browser that works through Tor</string>
+  <string name="wizard_tips_orweb">Orfox: Privacy-enhanced browser that works through Tor</string>
   <string name="wizard_tips_play">Find all Guardian Project apps on Google Play</string>
   <string name="wizard_tips_fdroid">Find all Guardian Project apps on F-Droid</string>
   <string name="wizard_tips_fdroid_org">Find all Guardian Project apps on https://f-droid.org</string>
@@ -257,7 +257,7 @@
 
     <string name="permission_manage_tor_label">Manage Tor</string>
     <string name="permission_manage_tor_description">Enable this app to control the Tor service</string>
-    <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">It doesn\'t seem like you have Orweb installed. Want help with that, or should we just open the browser?</string>
+    <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">It doesn\'t seem like you have Orfox installed. Want help with that, or should we just open the browser?</string>
     <string name="install_apps_">Install apps?</string>
     <string name="no_network_connectivity_putting_tor_to_sleep_">No network connectivity. Putting Tor to sleep…</string>
     <string name="network_connectivity_is_good_waking_tor_up_">Network connectivity is good. Waking Tor up…</string>
@@ -329,7 +329,7 @@
   
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">You can get a bridge address through email, the web or by scanning a bridge QR code. Select \'Email\' or \'Web\' below to request a bridge address.\n\nOnce you have an address, copy &amp; paste it into the \"Bridges\" preference in Orbot\'s setting and restart.</string>
   
-  <string name="install_orweb">Install Orweb</string>
+  <string name="install_orweb">Install Orfox</string>
   
   <string name="standard_browser">Standard Browser</string>
   

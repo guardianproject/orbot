@@ -4,14 +4,12 @@
      xmlns:android="http://schemas.android.com/apk/res/android"
      android:orientation="vertical" android:layout_width="match_parent"
       android:layout_height="match_parent"
-                android:background="@color/panel_background_main"
       
       >
       
     <android.support.v7.widget.Toolbar
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
-          android:background="@color/panel_background"
         android:layout_height="?attr/actionBarSize"
     
      />
@@ -39,7 +37,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-          android:background="@color/panel_background_dark"
     
      >
         
@@ -72,7 +69,6 @@
 		      >
 	    <TextView
 	    	android:id="@+id/trafficLabelDown"
-			android:textColor="#FFFFFFFF"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			 android:layout_alignParentLeft="true"
@@ -82,7 +78,6 @@
 			android:fontFamily="sans-serif-light" />
 	    <TextView
 			android:id="@+id/trafficLabelUp"
-			android:textColor="#FFFFFFFF"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			 android:layout_alignParentRight="true"
@@ -103,7 +98,6 @@
 		      >
 		<TextView
 			android:id="@+id/trafficDown"
-			android:textColor="@color/bright_green"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			 android:layout_alignParentLeft="true"
@@ -114,7 +108,6 @@
 		
 		<TextView
 			android:id="@+id/trafficUp"
-			android:textColor="@color/bright_green"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			 android:layout_alignParentRight="true"
@@ -156,7 +149,6 @@ android:layout_gravity="center_horizontal|center_vertical"/>
 		       
 		       	<TextView
 					android:id="@+id/lblStatus"
-					android:textColor="@android:color/white"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:textSize="14sp"
@@ -175,7 +167,6 @@ android:layout_gravity="center_horizontal|center_vertical"/>
 	     android:orientation="horizontal" android:layout_width="match_parent"
 	      android:layout_height="wrap_content"
 	      android:padding="5dp"
-	            android:background="@color/panel_background_dark"
 			android:layout_gravity="bottom"
 	      >
 	
@@ -185,7 +176,6 @@ android:layout_gravity="center_horizontal|center_vertical"/>
 			    android:layout_height="wrap_content"
 			    android:text="@string/menu_verify_browser"
 			    
-          		android:background="@drawable/button"
           		android:layout_margin="3dp"
           		 android:ellipsize="end"
           android:singleLine="true"
@@ -197,8 +187,7 @@ android:layout_gravity="center_horizontal|center_vertical"/>
 			    android:layout_width="80dp"
 			    android:layout_height="wrap_content"
 			    android:textOff="@string/menu_vpn"
-			    android:textOn="@string/menu_vpn"			    
-				android:background="@drawable/toggle"
+			    android:textOn="@string/menu_vpn"	
           android:layout_margin="3dp"
           android:ellipsize="end"
           android:singleLine="true"
@@ -211,7 +200,6 @@ android:layout_gravity="center_horizontal|center_vertical"/>
 			    android:layout_height="wrap_content"
 			    android:textOff="@string/bridges"
 			    android:textOn="@string/bridges"	
-			    android:background="@drawable/toggle"
           		    android:layout_margin="3dp"
           		     android:ellipsize="end"
           android:singleLine="true"
@@ -233,8 +221,6 @@ android:layout_gravity="center_horizontal|center_vertical"/>
      >
     	<TextView
 			android:id="@+id/orbotLog"
-			android:textColor="#00FF00"
-			android:background="#333333"
 			android:textSize="12sp"
 			android:gravity="left"
 			android:layout_width="fill_parent"
