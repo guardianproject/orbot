@@ -276,7 +276,7 @@ polipo-clean:
 
 pluto/bin/android_arm/obfs4proxy:
 	cd pluto && \
-		build.sh
+		./build.sh
 
 pluto-build-stamp: pluto/bin/android_arm/obfs4proxy
 	touch pluto-build-stamp
@@ -288,7 +288,6 @@ pluto: pluto-build-stamp
 
 pluto-clean:
 	-rm -rf pluto/bin
-	-rm pluto/bin/android_arm/obfs4proxy
 
 #------------------------------------------------------------------------------#
 # JTorControl library
