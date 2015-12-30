@@ -8,7 +8,7 @@ import android.content.Intent;
 public interface TorServiceConstants {
 
 	public final static String TOR_APP_USERNAME = "org.torproject.android";
-	public final static String ORWEB_APP_USERNAME = "info.guardianproject.browser";
+	public final static String BROWSER_APP_USERNAME = "info.guardianproject.orfox";
 	
 	public final static String DIRECTORY_TOR_BINARY = "bin";
 	public final static String DIRECTORY_TOR_DATA = "data";
@@ -33,6 +33,9 @@ public interface TorServiceConstants {
 	public final static String GEOIP_ASSET_KEY = "geoip";
 	public final static String GEOIP6_ASSET_KEY = "geoip6";
 	
+	//tun2socks VPN
+	public final static String TUN2SOCKS_ASSET_KEY = "tun2socks";
+
 	
 	//various console cmds
 	public final static String SHELL_CMD_CHMOD = "chmod";
@@ -53,12 +56,16 @@ public interface TorServiceConstants {
 	public final static String IP_LOCALHOST = "127.0.0.1";
 	public final static int UPDATE_TIMEOUT = 1000;
 	public final static int TOR_TRANSPROXY_PORT_DEFAULT = 9040;
+	
 	public final static int STANDARD_DNS_PORT = 53;
 	public final static int TOR_DNS_PORT_DEFAULT = 5400;
-    public final static int CONTROL_PORT_DEFAULT = 9051;
+	public final static String TOR_VPN_DNS_LISTEN_ADDRESS = "127.0.0.1";
+	
+	public final static int CONTROL_PORT_DEFAULT = 9051;
     public final static int HTTP_PROXY_PORT_DEFAULT = 8118; // like Privoxy!
     public final static int SOCKS_PROXY_PORT_DEFAULT = 9050;
 
+    
 	//path to check Tor against
 	public final static String URL_TOR_CHECK = "https://check.torproject.org";
 
@@ -128,7 +135,7 @@ public interface TorServiceConstants {
     public static final String CMD_VPN_CLEAR = "vpnclear";
     public static final String CMD_UPDATE_TRANS_PROXY = "update";
 
-    public static final String BINARY_TOR_VERSION = "0.2.6.10";
+    public static final String BINARY_TOR_VERSION = "0.2.7.5";
     public static final String PREF_BINARY_TOR_VERSION_INSTALLED = "BINARY_TOR_VERSION_INSTALLED";
     
     //obfsproxy 

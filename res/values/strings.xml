@@ -21,7 +21,7 @@
   <string name="menu_settings">Settings</string>
   <string name="menu_log">Log</string>
   <string name="menu_info">Help</string>
-  <string name="menu_apps">Apps</string>
+  <string name="menu_apps">VPN</string>
   <string name="menu_start">Start</string>
   <string name="menu_stop">Stop</string>
   <string name="menu_about">About</string>
@@ -296,7 +296,7 @@
   <string name="you_do_not_have_root_access_enabled">You do not have ROOT access enabled</string>
   <string name="you_may_need_to_stop_and_start_orbot_for_settings_change_to_be_enabled_">You may need to stop and start Orbot for settings change to be enabled.</string>
   
-  <string name="menu_vpn">Apps</string>
+  <string name="menu_vpn">VPN</string>
   
   <string name="kbps">kbps</string>
   
@@ -321,7 +321,7 @@
   
   <string name="activate">Activate</string>
   
-  <string name="apps_mode">Apps Mode</string>
+  <string name="apps_mode">Apps VPN Mode</string>
   
   <string name="you_can_enable_all_apps_on_your_device_to_run_through_the_tor_network_using_the_vpn_feature_of_android_">You can enable all apps on your device to run through the Tor network using the VPN feature of Android.\n\n*WARNING* This is a new, experimental feature and in some cases may not start automatically, or may stop. It should NOT be used for anonymity, and ONLY used for getting through firewalls and filters.</string>
   

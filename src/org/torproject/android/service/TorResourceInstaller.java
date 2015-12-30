@@ -53,12 +53,13 @@ public class TorResourceInstaller implements TorServiceConstants {
                     }
                 }
             }
-                file.delete();
+                
+            file.delete();
         }
     }
     
     private final static String COMMAND_RM_FORCE = "rm -f ";
-    
+    private final static String MP3_EXT = ".mp3";
     //        
     /*
      * Extract the Tor resources from the APK file using ZIP
@@ -94,13 +95,13 @@ public class TorResourceInstaller implements TorServiceConstants {
         if (cpuPath.equals("armeabi"))
         {
         	 cpuPath = "armeabi";
-            is = context.getAssets().open(cpuPath + "/" + OBFSCLIENT_ASSET_KEY + ".mp3");
+            is = context.getAssets().open(cpuPath + "/" + OBFSCLIENT_ASSET_KEY + MP3_EXT);
 	        outFile = new File(installFolder, OBFSCLIENT_ASSET_KEY);
 	        shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
 	        streamToFile(is,outFile, false, true);
 	        setExecutable(outFile);
 	        
-            is = context.getAssets().open(cpuPath + "/" + MEEK_ASSET_KEY + ".mp3");
+            is = context.getAssets().open(cpuPath + "/" + MEEK_ASSET_KEY + MP3_EXT);
 	        outFile = new File(installFolder, MEEK_ASSET_KEY);
 	        shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
 	        streamToFile(is,outFile, false, true);
@@ -108,20 +109,26 @@ public class TorResourceInstaller implements TorServiceConstants {
 	        
         }
                 
-        is = context.getAssets().open(cpuPath + "/tor.mp3");
+        is = context.getAssets().open(cpuPath + '/' + TOR_ASSET_KEY + MP3_EXT);
         outFile = new File(installFolder, TOR_ASSET_KEY);
         shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
         streamToFile(is,outFile, false, true);
         setExecutable(outFile);
     
-        is = context.getAssets().open(cpuPath + "/polipo.mp3");
+        is = context.getAssets().open(cpuPath + '/' + POLIPO_ASSET_KEY + MP3_EXT);
         outFile = new File(installFolder, POLIPO_ASSET_KEY);
         shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
         streamToFile(is,outFile, false, true);
         setExecutable(outFile);
     
-        is = context.getAssets().open(cpuPath + "/xtables.mp3");
+        is = context.getAssets().open(cpuPath + '/' + IPTABLES_ASSET_KEY + MP3_EXT);
         outFile = new File(installFolder, IPTABLES_ASSET_KEY);
+        shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
+        streamToFile(is,outFile, false, true);
+        setExecutable(outFile);
+        
+        is = context.getAssets().open(cpuPath + '/' + TUN2SOCKS_ASSET_KEY + MP3_EXT);
+        outFile = new File(installFolder, TUN2SOCKS_ASSET_KEY);
         shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
         streamToFile(is,outFile, false, true);
         setExecutable(outFile);
@@ -134,7 +141,7 @@ public class TorResourceInstaller implements TorServiceConstants {
     	if (fileTorRcCustom.exists())
     	{
     		fileTorRcCustom.delete();
-    		Log.d("torResources","deleeting existing torrc.custom");
+    		Log.d("torResources","deleting existing torrc.custom");
     	}
     	else
     		fileTorRcCustom.createNewFile();
@@ -144,16 +151,6 @@ public class TorResourceInstaller implements TorServiceConstants {
     	ps.print(extraLines);
     	ps.close();
     	
-    	/*
-    	FileWriter fw = new FileWriter( fileTorRcCustom, false );
-        PrintWriter bw = new PrintWriter( fw );
-        bw.write(extraLines);
-        bw.close();
-        */
-    	
-//        StringBufferInputStream sbis = new StringBufferInputStream(extraLines + '\n');
-  //      streamToFile(sbis,fileTorRcCustom,false,false);
-        
         return true;
     }
     

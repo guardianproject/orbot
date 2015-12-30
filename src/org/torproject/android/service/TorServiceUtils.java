@@ -9,7 +9,11 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.StringTokenizer;
 
+import org.sufficientlysecure.rootcommands.Shell;
+import org.sufficientlysecure.rootcommands.command.SimpleCommand;
+import org.torproject.android.OrbotApp;
 import org.torproject.android.OrbotConstants;
+import org.torproject.android.Prefs;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
@@ -122,4 +126,45 @@ public class TorServiceUtils implements TorServiceConstants {
 			return context.getSharedPreferences(OrbotConstants.PREF_TOR_SHARED_PREFS,Context.MODE_PRIVATE);
 		
 	}
+	
+	public static void killProcess(File fileProcBin) throws Exception {
+        killProcess(fileProcBin, "-9"); // this is -KILL
+    }
+
+    public static void killProcess(File fileProcBin, String signal) throws Exception {
+        int procId = -1;
+        int killAttempts = 0;
+
+        while ((procId = TorServiceUtils.findProcessId(fileProcBin.getCanonicalPath())) != -1) {
+            killAttempts++;
+            //logNotice("Found " + fileProcBin.getName() + " PID=" + procId + " - killing now...");
+            String pidString = String.valueOf(procId);
+            /*
+             * first try as the normal app user to be safe, then if that fails,
+             * try root since the process might be left over from
+             * uninstall/reinstall with different UID.
+             */
+            Shell shell;
+            if (Prefs.useRoot() && killAttempts > 2) {
+                shell = Shell.startRootShell();
+                Log.i(OrbotApp.TAG, "using a root shell");
+            } else {
+                shell = Shell.startShell();
+            }
+            shell.add(new SimpleCommand("busybox killall " + signal + " " + fileProcBin.getName()));
+            shell.add(new SimpleCommand("toolbox kill " + signal + " " + pidString));
+            shell.add(new SimpleCommand("busybox kill " + signal + " " + pidString));
+            shell.add(new SimpleCommand("kill " + signal + " " + pidString));
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                // ignored
+            }
+            shell.close();
+            if (killAttempts > 4)
+                throw new Exception("Cannot kill: " + fileProcBin.getAbsolutePath());
+        }
+    }
+
+
 }

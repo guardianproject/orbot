@@ -381,13 +381,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
             sendCallbackLogMessage(getString(R.string.status_disabled));
         }
-        catch (CannotKillException e)
-        {
-            logNotice("An error occured stopping Tor: " + e.getMessage());
-            sendCallbackLogMessage(getString(R.string.unable_to_reset_tor));
-            showToolbarNotification(getString(R.string.unable_to_reset_tor),
-                    ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
-        }
         catch (Exception e)
         {
             logNotice("An error occured stopping Tor: " + e.getMessage());
@@ -466,7 +459,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     }
 
 
-    private void killAllDaemons() throws CannotKillException {
+    private void killAllDaemons() throws Exception {
         if (conn != null) {
             logNotice("Using control port to shutdown Tor");
 
@@ -484,38 +477,28 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         // try these separately in case one fails, then it can try the next
         File cannotKillFile = null;
         try {
-            killProcess(OrbotApp.fileObfsclient);
+        	TorServiceUtils.killProcess(OrbotApp.fileObfsclient);
         } catch (IOException e) {
             e.printStackTrace();
             cannotKillFile = OrbotApp.fileObfsclient;
         }
         try {
-            killProcess(OrbotApp.fileMeekclient);
+        	TorServiceUtils.killProcess(OrbotApp.fileMeekclient);
         } catch (IOException e) {
             e.printStackTrace();
             cannotKillFile = OrbotApp.fileMeekclient;
         }
         try {
-            killProcess(OrbotApp.filePolipo);
+        	TorServiceUtils.killProcess(OrbotApp.filePolipo);
         } catch (IOException e) {
             e.printStackTrace();
             cannotKillFile = OrbotApp.filePolipo;
         }
         try {
-            killProcess(OrbotApp.fileTor);
+            TorServiceUtils.killProcess(OrbotApp.fileTor);
         } catch (IOException e) {
             e.printStackTrace();
             cannotKillFile = OrbotApp.fileTor;
-        }
-        if (cannotKillFile != null)
-            throw new CannotKillException(cannotKillFile);
-    }
-
-    public class CannotKillException extends IllegalStateException {
-        private static final long serialVersionUID = -286877277562592501L;
-
-        public CannotKillException(File f) {
-            super("Cannot kill " + f.getAbsolutePath());
         }
     }
 
@@ -528,54 +511,13 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         }
         // if that fails, try again using native utils
         try {
-            killProcess(OrbotApp.fileTor, "-1"); // this is -HUP
-        } catch (CannotKillException e) {
+        	TorServiceUtils.killProcess(OrbotApp.fileTor, "-1"); // this is -HUP
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        } 
     }
 
-    private void killProcess(File fileProcBin) throws IOException, CannotKillException {
-        killProcess(fileProcBin, "-9"); // this is -KILL
-    }
-
-    private void killProcess(File fileProcBin, String signal) throws IOException, CannotKillException {
-        int procId = -1;
-        int killAttempts = 0;
-
-        while ((procId = TorServiceUtils.findProcessId(fileProcBin.getCanonicalPath())) != -1) {
-            killAttempts++;
-            logNotice("Found " + fileProcBin.getName() + " PID=" + procId + " - killing now...");
-            String pidString = String.valueOf(procId);
-            /*
-             * first try as the normal app user to be safe, then if that fails,
-             * try root since the process might be left over from
-             * uninstall/reinstall with different UID.
-             */
-            Shell shell;
-            if (Prefs.useRoot() && killAttempts > 2) {
-                shell = Shell.startRootShell();
-                Log.i(TAG, "using a root shell");
-            } else {
-                shell = Shell.startShell();
-            }
-            shell.add(new SimpleCommand("busybox killall " + signal + " " + fileProcBin.getName()));
-            shell.add(new SimpleCommand("toolbox kill " + signal + " " + pidString));
-            shell.add(new SimpleCommand("busybox kill " + signal + " " + pidString));
-            shell.add(new SimpleCommand("kill " + signal + " " + pidString));
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                // ignored
-            }
-            shell.close();
-            if (killAttempts > 4)
-                throw new CannotKillException(fileProcBin);
-        }
-    }
-
-    private void logNotice (String msg)
+        private void logNotice (String msg)
     {
         if (msg != null && msg.trim().length() > 0)
         {
@@ -675,29 +617,40 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         fileControlPort = new File(OrbotApp.appBinHome, "control.txt");
         extraLines.append(TORRC_CONTROLPORT_FILE_KEY).append(' ').append(fileControlPort.getCanonicalPath()).append('\n');
 
-         if (Prefs.transparentTethering())
-         {
-             extraLines.append("TransListenAddress 0.0.0.0").append('\n');
-             extraLines.append("DNSListenAddress 0.0.0.0").append('\n');
-             
-         }
-         
          extraLines.append("RunAsDaemon 1").append('\n');
          extraLines.append("AvoidDiskWrites 1").append('\n');
         
-        extraLines.append("SOCKSPort ").append("auto").append('\n');
+         String socksPortPref = prefs.getString(OrbotConstants.PREF_SOCKS,
+                 String.valueOf(TorServiceConstants.SOCKS_PROXY_PORT_DEFAULT));
+         if (socksPortPref.indexOf(':')!=-1)
+             socksPortPref = socksPortPref.split(":")[1];
+         
+        extraLines.append("SOCKSPort ").append(socksPortPref).append('\n');
         extraLines.append("SafeSocks 0").append('\n');
         extraLines.append("TestSocks 0").append('\n');
         extraLines.append("WarnUnsafeSocks 1").append('\n');
     
         extraLines.append("TransPort ").append("auto").append('\n');
-        extraLines.append("DNSPort ").append("auto").append('\n');
+    	extraLines.append("DNSPort ").append(TorServiceConstants.TOR_DNS_PORT_DEFAULT).append("\n");
+        
+        if (Prefs.transparentTethering())
+        {
+            extraLines.append("TransListenAddress 0.0.0.0").append('\n');
+            extraLines.append("DNSListenAddress 0.0.0.0").append('\n');            
+        }
+
         extraLines.append("VirtualAddrNetwork 10.192.0.0/10").append('\n');
         extraLines.append("AutomapHostsOnResolve 1").append('\n');
        
         extraLines.append("DisableNetwork 0").append('\n');
+                
+        if (Prefs.useDebugLogging())
+        {
+        	extraLines.append("Log debug syslog").append('\n');    
+        	extraLines.append("Log info syslog").append('\n');    
         
-        //.extraLines.append("CircuitStreamTimeout 60").append('\n');
+        	//extraLines.append("Log debug stdout").append('\n');
+        }
         
         processSettingsImpl(extraLines);
         
@@ -765,62 +718,57 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             return;
         }        
         
-        // make sure there are no stray daemons running
-        killAllDaemons();
 
-        sendCallbackStatus(STATUS_STARTING);
-        sendCallbackLogMessage(getString(R.string.status_starting_up));
-        logNotice(getString(R.string.status_starting_up));
-        
         try {
-        if (!isTorUpgradeAndConfigComplete)
-            torUpgradeAndConfig();
-        
-        ArrayList<String> customEnv = new ArrayList<String>();
+        	
+	        // make sure there are no stray daemons running
+	        killAllDaemons();
+	
+	        sendCallbackStatus(STATUS_STARTING);
+	        sendCallbackLogMessage(getString(R.string.status_starting_up));
+	        logNotice(getString(R.string.status_starting_up));
+	        
+	        ArrayList<String> customEnv = new ArrayList<String>();
+	
+	        if (Prefs.bridgesEnabled())
+	        	if (Prefs.useVpn() && !mIsLollipop)
+	        		customEnv.add("TOR_PT_PROXY=socks5://127.0.0.1:" + OrbotVpnService.mSocksProxyPort); 
+	        
+	        String baseDirectory = OrbotApp.fileTor.getParent();
+	        Shell shellUser = Shell.startShell(customEnv, baseDirectory);
+	        
+	        boolean success = runTorShellCmd(shellUser);
+	        
+	        if (success)
+	        {
+	            if (mPortHTTP != -1)
+	                runPolipoShellCmd(shellUser);
+	            
+	            if (Prefs.useRoot() && Prefs.useTransparentProxying())
+	            {
+	                 Shell shellRoot = Shell.startRootShell();
+	
+	                disableTransparentProxy(shellRoot);
+	                enableTransparentProxy(shellRoot);
+	                
+	                shellRoot.close();
+	            }
+	            
+	            /**
+	            if (Prefs.useVpn()) //we need to turn on VPN here so the proxy is running
+	            {
+	            	enableVpnProxy();
+	            }*/
+	
+	            
+	            getHiddenServiceHostname ();
+	        }
+	        else
+	        {
+	                 showToolbarNotification(getString(R.string.unable_to_start_tor), ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
+	        }
+	        shellUser.close();
 
-        if (Prefs.bridgesEnabled())
-        	if (Prefs.useVpn() && !mIsLollipop)
-        		customEnv.add("TOR_PT_PROXY=socks5://127.0.0.1:" + OrbotVpnService.mSocksProxyPort); 
-        
-        String baseDirectory = OrbotApp.fileTor.getParent();
-        Shell shellUser = Shell.startShell(customEnv, baseDirectory);
-        
-        boolean success = runTorShellCmd(shellUser);
-        
-        if (success)
-        {
-            if (mPortHTTP != -1)
-                runPolipoShellCmd(shellUser);
-            
-            if (Prefs.useRoot() && Prefs.useTransparentProxying())
-            {
-                 Shell shellRoot = Shell.startRootShell();
-
-                disableTransparentProxy(shellRoot);
-                enableTransparentProxy(shellRoot);
-                
-                shellRoot.close();
-            }
-            
-            if (Prefs.useVpn()) //we need to turn on VPN here so the proxy is running
-            {
-            	enableVpnProxy();
-            }
-
-            
-            getHiddenServiceHostname ();
-        }
-        else
-        {
-                 showToolbarNotification(getString(R.string.unable_to_start_tor), ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
-        }
-        shellUser.close();
-
-        } catch (CannotKillException e) {
-            logException(e.getMessage(), e);
-            showToolbarNotification(getString(R.string.unable_to_reset_tor),
-                    ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
-            stopTor();
         } catch (Exception e) {
             logException("Unable to start Tor: " + e.toString(), e);
             showToolbarNotification(
@@ -1128,15 +1076,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                     
                         String torProcId = conn.getInfo("process/pid");
                         
-                        //remove this for now until we can make a clean way to share logs from internal storage
-                        /**
-                        if (ENABLE_DEBUG_LOG)
-                        {
-                            File fileLog2 = new File(getFilesDir(),"orbot-tor-log.txt");
-                            fileLog2.setReadable(true);
-                            conn.setConf("Log", "debug file " + fileLog2.getCanonicalPath());                                
-                        }*/
-                        
                          String confSocks = conn.getInfo("net/listeners/socks");
                          StringTokenizer st = new StringTokenizer(confSocks," ");
 
@@ -1144,6 +1083,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                          confSocks = confSocks.substring(0,confSocks.length()-1);
                          mPortSOCKS = Integer.parseInt(confSocks);
                          
+                         /**
                         if (!isReconnect) //if we are reconnected then we don't need to reset the ports
                         {
 
@@ -1211,7 +1151,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                                  
                                  conn.setConf(confLines);
                                  
-                                sendCallbackLogMessage("Local DNSPort port: " + transPort);
+                                sendCallbackLogMessage("Local DNSPort port: " + dnsPort);
 
                              }
                              catch (Exception e)
@@ -1220,7 +1160,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                                 
 
                              }
-                        }
+                        }*/
                          
                         return Integer.parseInt(torProcId);
                         
@@ -1344,7 +1284,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 	            intent.setAction("refresh");
 	            startService(intent);
 
-	            updateConfiguration("DNSListenAddress","10.0.0.1:" + TorServiceConstants.TOR_DNS_PORT_DEFAULT,false);
+	            //updateConfiguration("DNSPort",TOR_VPN_DNS_LISTEN_ADDRESS + ":" + TorServiceConstants.TOR_DNS_PORT_DEFAULT,false);
+	            //updateConfiguration("DNSPort",TorServiceConstants.TOR_DNS_PORT_DEFAULT+"",false);
 	            updateConfiguration("DisableNetwork","0", false);
 
 	            saveConfiguration();
@@ -1570,17 +1511,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
                     	URLConnection conn = null;
                     	
-                        Proxy proxy = null;
-                        
-                        if (!Prefs.useVpn()) //if not on the VPN then we should proxy
-                        {
-                        	proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("127.0.0.1", 8118));
-                        	conn = new URL(ONIONOO_BASE_URL + mNode.id).openConnection(proxy);
-                        }
-                        else
-                        {
-                        	conn = new URL(ONIONOO_BASE_URL + mNode.id).openConnection();
-                        }
+                        Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("127.0.0.1", 8118));
+                        conn = new URL(ONIONOO_BASE_URL + mNode.id).openConnection(proxy);
     
                         conn.setRequestProperty("Connection","Close");
                         conn.setConnectTimeout(60000);
@@ -1977,8 +1909,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 	                                
 	                                shell.close();
 	                            }
-	                            else if (Prefs.useVpn()) //we need to turn on VPN here so the proxy is running
-	                            	refreshVpnProxy();
+	                        //    else if (Prefs.useVpn()) //we need to turn on VPN here so the proxy is running
+	                          //  	refreshVpnProxy();
 	            	            
 	                        }
 	                    }
@@ -2279,7 +2211,10 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         
         if (Prefs.useVpn())
         {
-        	extraLines.append("DNSListenAddress" + ' ' + "10.0.0.1:" + TorServiceConstants.TOR_DNS_PORT_DEFAULT).append('\n');
+
+        	//extraLines.append("DNSPort ").append(TOR_VPN_DNS_LISTEN_ADDRESS).append(":").append(TorServiceConstants.TOR_DNS_PORT_DEFAULT).append("\n");
+        	//extraLines.append("DNSPort ").append(TorServiceConstants.TOR_DNS_PORT_DEFAULT).append("\n");
+
         }
     
         return true;

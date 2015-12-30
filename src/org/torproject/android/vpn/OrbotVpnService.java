@@ -20,6 +20,9 @@ import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import org.sufficientlysecure.rootcommands.Shell;
+import org.sufficientlysecure.rootcommands.command.SimpleCommand;
+import org.torproject.android.OrbotApp;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.TorServiceUtils;
 import org.torproject.android.settings.AppManager;
@@ -59,7 +62,7 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     
     private final static int VPN_MTU = 1500;
     
-    private final static boolean isLollipop = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
+    private final static boolean mIsLollipop = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
     
     private boolean isRestart = false;
     
@@ -85,7 +88,7 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 			            mHandler = new Handler(this);
 			        }
 		        	
-		        	if (!isLollipop)
+		        	if (!mIsLollipop)
 		        	{
 		        		startSocksBypass();
 		        	}
@@ -105,8 +108,8 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 	    	{
 	    		Log.d(TAG,"refresh OrbotVPNService service!");
 	    		
-	    		//if (!isLollipop)
-	    		 ///startSocksBypass();
+	    		if (!mIsLollipop)
+	    		  startSocksBypass();
 	    		
 	    		if (!isRestart)
 	    			setupTun2Socks();
@@ -181,7 +184,8 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     
     private void stopVPN ()
     {
-        //stopSocksBypass ();
+    	if (mIsLollipop)
+    		stopSocksBypass ();
         
         if (mInterface != null){
             try
@@ -207,9 +211,6 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
         mThreadVPN = null;
         
 
-    //    Tun2Socks.Stop();
-        
-        
     }
 
     @Override
@@ -223,6 +224,7 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
   
     private synchronized void setupTun2Socks()  {
 
+    	
         if (mInterface != null) //stop tun2socks now to give it time to clean up
         {
         	isRestart = true;
@@ -244,25 +246,35 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 	    			}
 	    			
 		    		final String vpnName = "OrbotVPN";
-		    		final String virtualGateway = "10.0.0.1";
-		    		final String virtualIP = "10.0.0.2";
+		    		final String localhost = "127.0.0.1";
+
+		    	//	final String virtualGateway = "10.0.0.1";
+		    		final String virtualIP = "192.168.10.1";
 		    		final String virtualNetMask = "255.255.255.0";
-		    		final String localSocks = "127.0.0.1:"
+		    		final String dummyDNS = "8.8.8.8"; //this is intercepted by the tun2socks library, but we must put in a valid DNS to start
+		    		final String defaultRoute = "0.0.0.0";
+		    		
+		    		final String localSocks = localhost + ':'
 		    		        + String.valueOf(TorServiceConstants.SOCKS_PROXY_PORT_DEFAULT);
-		    		final String localDNS = "10.0.0.1:" + TorServiceConstants.TOR_DNS_PORT_DEFAULT;
+		    		
+		    		final String localDNS = localhost + ':' + String.valueOf(TorServiceConstants.TOR_DNS_PORT_DEFAULT);
+		        	final boolean localDnsTransparentProxy = true;
 		        	
 			        Builder builder = new Builder();
 			        
 			        builder.setMtu(VPN_MTU);
-			        builder.addAddress(virtualGateway,28);
-			        builder.setSession(vpnName);	 
-			        builder.addRoute("0.0.0.0",0);	 
+			        builder.addAddress(virtualIP,24);
+			        builder.setSession(vpnName);			        
 			        
-			        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-			        {
-			        	doLollipopAppRouting(builder);
-			        }
-
+			        //route all traffic through VPN (we might offer country specific exclude lists in the future)
+			        builder.addRoute(defaultRoute,0);	
+			        
+			        builder.addDnsServer(dummyDNS);
+			        builder.addRoute(dummyDNS,32);
+			        
+			        
+			        if (mIsLollipop)			        
+			        	doLollipopAppRouting(builder);			        
 
 			         // Create a new interface using the builder and save the parameters.
 			        ParcelFileDescriptor newInterface = builder.setSession(mSessionName)
@@ -278,9 +290,7 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 
 		        	mInterface = newInterface;
 			        
-		        	Thread.sleep(4000);
-		        	
-		        	Tun2Socks.Start(mInterface, VPN_MTU, virtualIP, virtualNetMask, localSocks , localDNS , true);
+		        	Tun2Socks.Start(mInterface, VPN_MTU, virtualIP, virtualNetMask, localSocks , localDNS , localDnsTransparentProxy);
 		        	
 		        	isRestart = false;
 		        	
@@ -295,6 +305,7 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     	
     	mThreadVPN.start();
     }
+    
     
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	private void doLollipopAppRouting (Builder builder) throws NameNotFoundException
@@ -335,53 +346,4 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
         super.onRevoke();
     }
     
-    /*
-    private void monitorSocketsFD ()
-    {
-    	
-    	final String fdPath = "/proc/self/fd/";
-    	
-    	new Thread ()
-    	{
-    		public void run ()
-    		{
-    			while (mThreadVPN != null)
-    			{
-    				try {
-						Thread.sleep(500);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-    				
-    				try
-	    				{
-    					
-	    				File fileDir = new File(fdPath);
-	    				File[] files = fileDir.listFiles();
-	    				if (files != null)
-		    				for (File file : files)
-		    				{
-		    					String cPath = file.getCanonicalPath();
-		    					
-		    					if (cPath.contains("socket"))
-		    					{
-		    						Log.d(TAG,"found FD for socket: " + file.getAbsolutePath());
-		    						
-		    						protect(Integer.parseInt(file.getName()));
-		    						
-		    					}
-		    					
-		    				}
-	    				}
-    				catch (Exception e)
-    				{
-    					Log.e(TAG,"error getting fd: " + fdPath,e);
-    				}
-    			}
-    		}
-    	}.start();
-    	
-    }
-    */
 }

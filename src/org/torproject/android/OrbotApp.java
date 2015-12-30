@@ -48,6 +48,7 @@ public class OrbotApp extends Application implements OrbotConstants
         fileMeekclient = new File(appBinHome, TorServiceConstants.MEEK_ASSET_KEY);
         fileXtables = new File(appBinHome, TorServiceConstants.IPTABLES_ASSET_KEY);
         fileTorRc = new File(appBinHome, TorServiceConstants.TORRC_ASSET_KEY);
+        
     }
 
     @Override

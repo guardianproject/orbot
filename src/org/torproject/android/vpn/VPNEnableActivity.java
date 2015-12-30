@@ -86,7 +86,7 @@ public class VPNEnableActivity extends Activity {
    		{
    			Log.d("VPNEnableActivity","VPN enabled, starting Tor...");
             sendIntentToService(TorServiceConstants.CMD_VPN);
-            
+            /**
             Handler h = new Handler();
             h.postDelayed(new Runnable () {
             	
@@ -96,6 +96,8 @@ public class VPNEnableActivity extends Activity {
             		finish();
             	}
             }, 1000);
+            */
+           
    			
    		}
    		else
