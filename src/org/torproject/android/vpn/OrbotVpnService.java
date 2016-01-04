@@ -218,6 +218,12 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
         
         Tun2Socks.Stop();
         
+        try {
+        	TorServiceUtils.killProcess(OrbotApp.filePdnsd);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
         mThreadVPN = null;
         
 
