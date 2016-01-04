@@ -30,5 +30,6 @@ sed -i \
     -e "s,android:versionName=\"\([^\"][^\"]*\)\",android:versionName=\"\1.$versionNameDate\"," \
     AndroidManifest.xml
 
+ndk-build
 make -C external
 ./setup-ant
