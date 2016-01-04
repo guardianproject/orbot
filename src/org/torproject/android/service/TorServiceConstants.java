@@ -32,18 +32,15 @@ public interface TorServiceConstants {
 	//geoip data file asset key
 	public final static String GEOIP_ASSET_KEY = "geoip";
 	public final static String GEOIP6_ASSET_KEY = "geoip6";
-	
-	//tun2socks VPN
-	public final static String TUN2SOCKS_ASSET_KEY = "tun2socks";
 
-	
 	//various console cmds
 	public final static String SHELL_CMD_CHMOD = "chmod";
 	public final static String SHELL_CMD_KILL = "kill -9";
 	public final static String SHELL_CMD_RM = "rm";
 	public final static String SHELL_CMD_PS = "toolbox ps";
 	public final static String SHELL_CMD_PS_ALT = "ps";
-	
+    
+    
 	//public final static String SHELL_CMD_PIDOF = "pidof";
 	public final static String SHELL_CMD_LINK = "ln -s";
 	public final static String SHELL_CMD_CP = "cp";
@@ -135,14 +132,18 @@ public interface TorServiceConstants {
     public static final String CMD_VPN_CLEAR = "vpnclear";
     public static final String CMD_UPDATE_TRANS_PROXY = "update";
 
-    public static final String BINARY_TOR_VERSION = "0.2.7.5";
+    public static final String BINARY_TOR_VERSION = "0.2.7.5-020120160125";
     public static final String PREF_BINARY_TOR_VERSION_INSTALLED = "BINARY_TOR_VERSION_INSTALLED";
     
     //obfsproxy 
     public static final String OBFSCLIENT_ASSET_KEY = "obfs4proxy";
     
     public static final String MEEK_ASSET_KEY = "meek-client";
+    
 	//name of the iptables binary
 	public final static String IPTABLES_ASSET_KEY = "xtables";	
 
+	//DNS daemon for TCP DNS over TOr
+	public final static String PDNSD_ASSET_KEY = "pdnsd";
+	
 }

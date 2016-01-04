@@ -647,8 +647,9 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         if (Prefs.useDebugLogging())
         {
         	extraLines.append("Log debug syslog").append('\n');    
-        	extraLines.append("Log info syslog").append('\n');    
-        
+        	extraLines.append("Log info syslog").append('\n');
+        	extraLines.append("SafeLogging 0").append('\n');   
+
         	//extraLines.append("Log debug stdout").append('\n');
         }
         

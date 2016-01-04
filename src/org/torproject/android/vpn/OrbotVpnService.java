@@ -16,13 +16,20 @@
 
 package org.torproject.android.vpn;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
 import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.concurrent.TimeoutException;
 
 import org.sufficientlysecure.rootcommands.Shell;
 import org.sufficientlysecure.rootcommands.command.SimpleCommand;
 import org.torproject.android.OrbotApp;
+import org.torproject.android.R;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.TorServiceUtils;
 import org.torproject.android.settings.AppManager;
@@ -30,6 +37,7 @@ import org.torproject.android.settings.TorifiedApp;
 
 import android.annotation.TargetApi;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -63,6 +71,8 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     private final static int VPN_MTU = 1500;
     
     private final static boolean mIsLollipop = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
+    
+    private final static String DEFAULT_ACTUAL_DNS = "208.67.222.222";
     
     private boolean isRestart = false;
     
@@ -245,11 +255,15 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 			        	Thread.sleep(3000);
 	    			}
 	    			
+	    			//start PDNSD daemon pointing to OpenDNS
+	    			startDNS(DEFAULT_ACTUAL_DNS,53);
+	    			
+	    			
 		    		final String vpnName = "OrbotVPN";
 		    		final String localhost = "127.0.0.1";
 
-		    	//	final String virtualGateway = "10.0.0.1";
-		    		final String virtualIP = "192.168.10.1";
+		    		final String virtualGateway = "10.10.10.1";
+		    		final String virtualIP = "10.10.10.2";
 		    		final String virtualNetMask = "255.255.255.0";
 		    		final String dummyDNS = "8.8.8.8"; //this is intercepted by the tun2socks library, but we must put in a valid DNS to start
 		    		final String defaultRoute = "0.0.0.0";
@@ -257,21 +271,25 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 		    		final String localSocks = localhost + ':'
 		    		        + String.valueOf(TorServiceConstants.SOCKS_PROXY_PORT_DEFAULT);
 		    		
-		    		final String localDNS = localhost + ':' + String.valueOf(TorServiceConstants.TOR_DNS_PORT_DEFAULT);
+		    		final String localDNS = virtualGateway + ':' + "8091";//String.valueOf(TorServiceConstants.TOR_DNS_PORT_DEFAULT);
 		        	final boolean localDnsTransparentProxy = true;
 		        	
 			        Builder builder = new Builder();
 			        
 			        builder.setMtu(VPN_MTU);
-			        builder.addAddress(virtualIP,24);
-			        builder.setSession(vpnName);			        
+			        builder.addAddress(virtualGateway,32);
 			        
+			        builder.setSession(vpnName);		        
+
+			        builder.addDnsServer(dummyDNS);
+			        builder.addRoute(dummyDNS,32);
+				        
 			        //route all traffic through VPN (we might offer country specific exclude lists in the future)
 			        builder.addRoute(defaultRoute,0);	
 			        
-			        builder.addDnsServer(dummyDNS);
-			        builder.addRoute(dummyDNS,32);
-			        
+			        //handle ipv6
+			        //builder.addAddress("fdfe:dcba:9876::1", 126);
+					//builder.addRoute("::", 0);
 			        
 			        if (mIsLollipop)			        
 			        	doLollipopAppRouting(builder);			        
@@ -313,19 +331,19 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     	   
         ArrayList<TorifiedApp> apps = AppManager.getApps(this, TorServiceUtils.getSharedPrefs(getApplicationContext()));
     
-        boolean appAllowed = false;
+        boolean perAppEnabled = false;
         
         for (TorifiedApp app : apps)
         {
         	if (app.isTorified())
         	{
         		builder.addAllowedApplication(app.getUsername());
-        		appAllowed = true;
+        		perAppEnabled = true;
         	}
         	
         }
     
-        if (!appAllowed)
+        if (!perAppEnabled)
         	builder.addDisallowedApplication(getPackageName());
     
     }
@@ -345,5 +363,51 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     	
         super.onRevoke();
     }
+    
+    private void startDNS (String dns, int port) throws IOException, TimeoutException
+    {
+    	makePdnsdConf(this, dns, port,OrbotApp.filePdnsd.getParentFile() );
+    	
+        ArrayList<String> customEnv = new ArrayList<String>();
+    	String baseDirectory = OrbotApp.filePdnsd.getParent();
+        Shell shell = Shell.startShell(customEnv, baseDirectory);
+        
+        String cmdString = OrbotApp.filePdnsd.getCanonicalPath() + 
+        		" -c " + baseDirectory + "/pdnsd.conf";
+    
+        SimpleCommand shellCommand = new SimpleCommand(cmdString);
+        shell.add(shellCommand).waitForFinish();
+    
+        
+    }
+    
+    public static void makePdnsdConf(Context context, String dns, int port, File fileDir) throws FileNotFoundException {
+        String conf = String.format(context.getString(R.string.pdnsd_conf), dns, port);
+
+        File f = new File(fileDir,"pdnsd.conf");
+
+        if (f.exists()) {
+                f.delete();
+        }
+
+        FileOutputStream fos = new FileOutputStream(f, false);
+    	PrintStream ps = new PrintStream(fos);
+    	ps.print(conf);
+    	ps.close();
+    	
+        //f.withWriter { out -> out.print conf };
+        
+        
+        File cache = new File(fileDir,"pdnsd.cache");
+
+        if (!cache.exists()) {
+                try {
+                        cache.createNewFile();
+                } catch (Exception e) {
+
+                }
+        }
+}
+
     
 }

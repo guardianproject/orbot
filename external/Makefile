@@ -329,6 +329,9 @@ assets: tor polipo jtorctl iptables pluto
 	-zip ../assets/$(APP_ABI)/meek-client.mp3 bin/meek-client
 	-$(STRIP) bin/obfs4proxy
 	-zip ../assets/$(APP_ABI)/obfs4proxy.mp3 bin/obfs4proxy
+	-$(STRIP) ../libs/$(APP_ABI)/pdnsd
+	-zip ../assets/$(APP_ABI)/pdnsd.mp3 ../libs/$(APP_ABI)/pdnsd
+	-rm ../libs/$(APP_ABI)/pdnsd
 
 assets-clean:
 	-rm ../assets/$(APP_ABI)/polipo.mp3
@@ -336,6 +339,7 @@ assets-clean:
 	-rm ../assets/$(APP_ABI)/xtables.mp3
 	-rm ../assets/$(APP_ABI)/meek-client.mp3
 	-rm ../assets/$(APP_ABI)/obfs4proxy.mp3
+	-rm ../assets/$(APP_ABI)/pdnsd.mp3
 	-rm ../libs/jtorctl.jar
 
 #------------------------------------------------------------------------------#

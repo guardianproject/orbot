@@ -127,8 +127,8 @@ public class TorResourceInstaller implements TorServiceConstants {
         streamToFile(is,outFile, false, true);
         setExecutable(outFile);
         
-        is = context.getAssets().open(cpuPath + '/' + TUN2SOCKS_ASSET_KEY + MP3_EXT);
-        outFile = new File(installFolder, TUN2SOCKS_ASSET_KEY);
+        is = context.getAssets().open(cpuPath + '/' + PDNSD_ASSET_KEY + MP3_EXT);
+        outFile = new File(installFolder, PDNSD_ASSET_KEY);
         shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
         streamToFile(is,outFile, false, true);
         setExecutable(outFile);
