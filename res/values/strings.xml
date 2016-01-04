@@ -217,7 +217,7 @@
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
   <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v1.0.1i: http://www.openssl.org</string>
+  <string name="openssl_version">OpenSSL v1.0.1q: http://www.openssl.org</string>
   <string name="hidden_service_request">An app wants to open hidden server port %S to the Tor network. This is safe if you trust the app.</string>
   <string name="found_existing_tor_process">found existing Tor process&#8230;</string>
   <string name="something_bad_happened">Something bad happened. Check the log</string>
