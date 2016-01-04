@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="org.torproject.android" 
-      android:versionName="15.0.1-RC-3" 
-      android:versionCode="15012310"
+      android:versionName="15.1.0-ALPHA-1" 
+      android:versionCode="15100001"
         android:installLocation="auto"      
       >
  	    
-    <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="22"/>
+    <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="23"/>
  <permission android:name="org.torproject.android.MANAGE_TOR" 
      android:label="@string/permission_manage_tor_label" 
      android:description="@string/permission_manage_tor_description" 
