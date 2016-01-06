@@ -62,7 +62,7 @@
          -->
       	<activity
 			android:name=".service.DummyActivity"
-			android:theme="@android:style/Theme.NoDisplay"
+			android:theme="@android:style/Theme.Translucent"
 			android:enabled="true"
 			android:allowTaskReparenting="true"
 			android:noHistory="true"
@@ -76,7 +76,7 @@
 		
       	<activity
 			android:name=".vpn.VPNEnableActivity" android:label="@string/app_name" android:exported="false"
-			android:theme="@android:style/Theme.NoDisplay"			
+			android:theme="@android:style/Theme.Translucent"			
 			/> 
 		
 			      	

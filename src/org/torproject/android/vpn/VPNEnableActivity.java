@@ -18,6 +18,8 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 /*
@@ -27,33 +29,45 @@ public class VPNEnableActivity extends Activity {
 	
 	private final static int REQUEST_VPN = 7777;
 	private	Intent intent = null;
-
+	private boolean checkVpn = true;
+	private Handler h = new Handler();
+	
 	@Override
 	public void onCreate( Bundle icicle ) {
+		
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
 		super.onCreate( icicle );
 
 		Log.d("VPNEnableActivity","prompting user to start Orbot VPN");
 
-		intent = VpnService.prepare(this);
 		
-		if (intent != null)
-			promptStartVpnService();
-		else
-			startVpnService ();
+	}
+	
+	public void onResume ()
+	{
+		super.onResume();
 		
+		if (checkVpn)
+		{
+			intent = VpnService.prepare(this);
+			
+			if (intent != null)
+				promptStartVpnService();
+			else
+				startVpnService ();
+			
+			checkVpn = false;
+		}
 	}
 	
 	public void promptStartVpnService ()
     {
-    	 LayoutInflater li = LayoutInflater.from(this);
-         View view = li.inflate(R.layout.layout_diag, null); 
-         
-         TextView versionName = (TextView)view.findViewById(R.id.diaglog);
-         versionName.setText(R.string.you_can_enable_all_apps_on_your_device_to_run_through_the_tor_network_using_the_vpn_feature_of_android_);    
-         
-         new AlertDialog.Builder(this)
+    	 
+         AlertDialog dialog = new AlertDialog.Builder(this)
          .setTitle(getString(R.string.app_name) + ' ' + getString(R.string.apps_mode))
-         .setView(view)
+         .setMessage(getString(R.string.you_can_enable_all_apps_on_your_device_to_run_through_the_tor_network_using_the_vpn_feature_of_android_))
          .setPositiveButton(R.string.activate, new Dialog.OnClickListener ()
          {
 
@@ -73,11 +87,21 @@ public class VPNEnableActivity extends Activity {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				
-				finish();
+				 h.postDelayed(new Runnable () {
+		            	
+		            	public void run ()
+		            	{
+		            		VPNEnableActivity.this.finish();	
+		            		
+		            	}
+		            }, 100);
 			}
         	 
-         })
-         .show();
+         }).create();
+         
+         dialog.show();
+         
+         
     }
 	 
 	private void startVpnService ()
@@ -86,7 +110,7 @@ public class VPNEnableActivity extends Activity {
    		{
    			Log.d("VPNEnableActivity","VPN enabled, starting Tor...");
             sendIntentToService(TorServiceConstants.CMD_VPN);
-            /**
+            
             Handler h = new Handler();
             h.postDelayed(new Runnable () {
             	
@@ -95,8 +119,7 @@ public class VPNEnableActivity extends Activity {
             		sendIntentToService(TorServiceConstants.ACTION_START);		
             		finish();
             	}
-            }, 1000);
-            */
+            }, 100);
            
    			
    		}
@@ -116,15 +139,17 @@ public class VPNEnableActivity extends Activity {
 	        if (request == REQUEST_VPN && response == RESULT_OK)
 	        {
 	            sendIntentToService(TorServiceConstants.CMD_VPN);	    
-	            Handler h = new Handler();
+	            
 	            h.postDelayed(new Runnable () {
 	            	
 	            	public void run ()
 	            	{
 	            		sendIntentToService(TorServiceConstants.ACTION_START);		
-	            		finish();
+	            		 finish();
 	            	}
 	            }, 1000);
+	            
+	           
 	            
 	        }
 	  }

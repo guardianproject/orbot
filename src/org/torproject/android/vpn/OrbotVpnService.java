@@ -76,6 +76,11 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     
     private boolean isRestart = false;
     
+
+    static{
+    	  System.loadLibrary("tun2socks");
+    	}
+    
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
@@ -174,9 +179,6 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 	public void onCreate() {
 		super.onCreate();
 		
-		System.loadLibrary("tun2socks");
-		
-
 		// Set the locale to English (or probably any other language that^M
         // uses Hindu-Arabic (aka Latin) numerals).^M
         // We have found that VpnService.Builder does something locale-dependent^M
