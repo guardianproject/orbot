@@ -58,9 +58,12 @@ else
     echo "skipping release ant.properties"
 fi
 
+ndk-build
+
 faketime "$TIMESTAMP" make -C external
 
 ./setup-ant
+
 faketime -f "$TIMESTAMP_5" ant release
 
 apk=$projectroot/bin/$projectname-v$describe.apk
