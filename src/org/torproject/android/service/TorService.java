@@ -339,6 +339,10 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                     enableVpnProxy();
                 } else if (action.equals(CMD_VPN_CLEAR)) {
                     clearVpnProxy();
+                } else if (action.equals(CMD_SET_EXIT)) {
+                	
+                	setExitNode(mIntent.getStringExtra("exit"));
+                	
                 } else {
                     Log.w(TAG, "unhandled TorService Intent: " + action);
                 }
@@ -2088,38 +2092,25 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         
         if (entranceNodes.length() > 0 || exitNodes.length() > 0 || excludeNodes.length() > 0)
         {
-            //only apply GeoIP if you need it
-            File fileGeoIP = new File(OrbotApp.appBinHome, GEOIP_ASSET_KEY);
-            File fileGeoIP6 = new File(OrbotApp.appBinHome, GEOIP6_ASSET_KEY);
-                
-            try
-            {
-                if ((!fileGeoIP.exists()))
-                {
-                    TorResourceInstaller installer = new TorResourceInstaller(this, OrbotApp.appBinHome);
-                    boolean success = installer.installGeoIP();
+           
+            if (enableGeoIP ())
+            { //only apply GeoIP if you need it
+                File fileGeoIP = new File(OrbotApp.appBinHome, GEOIP_ASSET_KEY);
+                File fileGeoIP6 = new File(OrbotApp.appBinHome, GEOIP6_ASSET_KEY);
                     
-                }
-                
                 extraLines.append("GeoIPFile" + ' ' + fileGeoIP.getCanonicalPath()).append('\n');
                 extraLines.append("GeoIPv6File" + ' ' + fileGeoIP6.getCanonicalPath()).append('\n');
-
             }
-            catch (Exception e)
-            {
-                 showToolbarNotification (getString(R.string.error_installing_binares),ERROR_NOTIFY_ID,R.drawable.ic_stat_notifyerr);
-
-                return false;
-            }
+            
         }
 
-        if (entranceNodes != null && entranceNodes.length() > 0)
+        if (!TextUtils.isEmpty(entranceNodes))
         	extraLines.append("EntryNodes" + ' ' + entranceNodes).append('\n');
        
-        if (exitNodes != null && exitNodes.length() > 0)
+        if (!TextUtils.isEmpty(exitNodes))
         	extraLines.append("ExitNodes" + ' ' + exitNodes).append('\n');
         
-        if (excludeNodes != null && excludeNodes.length() > 0)
+        if (!TextUtils.isEmpty(excludeNodes))
         	extraLines.append("ExcludeNodes" + ' ' + excludeNodes).append('\n');
         
         extraLines.append("StrictNodes" + ' ' + (enableStrictNodes ? "1" : "0")).append('\n');
@@ -2210,14 +2201,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             
         }
         
-        if (Prefs.useVpn())
-        {
-
-        	//extraLines.append("DNSPort ").append(TOR_VPN_DNS_LISTEN_ADDRESS).append(":").append(TorServiceConstants.TOR_DNS_PORT_DEFAULT).append("\n");
-        	//extraLines.append("DNSPort ").append(TorServiceConstants.TOR_DNS_PORT_DEFAULT).append("\n");
-
-        }
-    
         return true;
     }
     
@@ -2337,6 +2320,93 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         return null;
     }
     
+    private void setExitNode (String newExits)
+    {
+    	SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
+        
+    	if (TextUtils.isEmpty(newExits))
+    	{
+    		prefs.edit().remove("pref_exit_nodes").apply();
+    		
+    		if (conn != null)
+        	{
+    	    	try
+    	    	{
+    	    		ArrayList<String> resetBuffer = new ArrayList<String>();
+    	    		resetBuffer.add("ExitNodes");
+    	    		resetBuffer.add("StrictNodes");
+    	    		conn.resetConf(resetBuffer);
+    	    		conn.setConf("DisableNetwork","1");
+    	    		conn.setConf("DisableNetwork","0");
+    	    		
+    	    	}
+    	    	catch (IOException ioe)
+    	    	{
+    	    		ioe.printStackTrace();
+    	    	}
+        	}
+    	}
+    	else
+    	{
+    		prefs.edit().putString("pref_exit_nodes", newExits).apply();
+    		
+    		if (conn != null)
+        	{
+    	    	try
+    	    	{
+    	    		
+    	    		enableGeoIP ();
+    	    			
+                    File fileGeoIP = new File(OrbotApp.appBinHome, GEOIP_ASSET_KEY);
+                    File fileGeoIP6 = new File(OrbotApp.appBinHome, GEOIP6_ASSET_KEY);
+                        
+                    conn.setConf("GeoIPFile",fileGeoIP.getCanonicalPath());
+                    conn.setConf("GeoIPv6File",fileGeoIP6.getCanonicalPath());
+                    
+    	    		conn.setConf("ExitNodes", newExits);
+    	    		conn.setConf("StrictNodes","1");
+    	    		
+    	    		conn.setConf("DisableNetwork","1");
+    	    		conn.setConf("DisableNetwork","0");
+    	    		
+    	    		
+    	    		
+
+    	    	}
+    	    	catch (IOException ioe)
+    	    	{
+    	    		ioe.printStackTrace();
+    	    	}
+        	}
+    	}
+    	
+    	
+
+    }
     
+    private boolean enableGeoIP ()
+    {
+    	 File fileGeoIP = new File(OrbotApp.appBinHome, GEOIP_ASSET_KEY);
+         File fileGeoIP6 = new File(OrbotApp.appBinHome, GEOIP6_ASSET_KEY);
+        
+    	 try
+         {
+             if ((!fileGeoIP.exists()))
+             {
+                 TorResourceInstaller installer = new TorResourceInstaller(this, OrbotApp.appBinHome);
+                 boolean success = installer.installGeoIP();
+                 
+             }
+             
+             return true;
+             
+         }
+         catch (Exception e)
+         {
+              showToolbarNotification (getString(R.string.error_installing_binares),ERROR_NOTIFY_ID,R.drawable.ic_stat_notifyerr);
+
+             return false;
+         }
+    }
 
 }

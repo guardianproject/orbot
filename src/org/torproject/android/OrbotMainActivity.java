@@ -44,7 +44,11 @@ import android.view.View.OnLongClickListener;
 import android.view.View.OnTouchListener;
 import android.view.Window;
 import android.view.animation.AccelerateInterpolator;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -66,6 +70,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Locale;
 
 
@@ -83,6 +89,9 @@ public class OrbotMainActivity extends Activity
     private Button mBtnBrowser = null;
     private ToggleButton mBtnVPN = null;
     private ToggleButton mBtnBridges = null;
+    
+    private Spinner spnCountries = null;
+    
 
 	private DrawerLayout mDrawer;
 	private ActionBarDrawerToggle mDrawerToggle;
@@ -297,8 +306,46 @@ public class OrbotMainActivity extends Activity
 			
 		});
 		
+		Locale[] locale = Locale.getAvailableLocales();
+		ArrayList<String> countries = new ArrayList<String>();
+		countries.add("World (best)");
+		countries.add("US");
+		countries.add("DE");
+		countries.add("CA");
+		countries.add("FR");
+		
+		
 		
 
+		spnCountries = (Spinner)findViewById(R.id.spinnerCountry);
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, countries);
+		spnCountries.setAdapter(adapter);
+
+		spnCountries.setOnItemSelectedListener(new OnItemSelectedListener() {
+		    @Override
+		    public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+		        // your code here
+		    	
+		    	String country = (String)spnCountries.getItemAtPosition(position);
+		    	
+		    	if (position == 0)
+		    		country = "";
+		    	else
+		    		country =  '{' + country.toLowerCase() + '}';
+		    	
+		    	Intent torService = new Intent(OrbotMainActivity.this, TorService.class);    
+				torService.setAction(TorServiceConstants.CMD_SET_EXIT);
+				torService.putExtra("exit",country);
+				startService(torService);
+		    
+		    }
+
+		    @Override
+		    public void onNothingSelected(AdapterView<?> parentView) {
+		        // your code here
+		    }
+
+		});
     }
     
     GestureDetector mGestureDetector;
