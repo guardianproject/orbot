@@ -12,7 +12,7 @@
 	ignore = dirty
 [submodule "external/openssl"]
 	path = external/openssl
-	url = git://git.openssl.org/openssl
+	url = https://github.com/openssl/openssl.git
 	ignore = dirty
 [submodule "external/iptables"]
 	path = external/iptables
