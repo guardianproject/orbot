@@ -1414,71 +1414,71 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         if (mCurrentStatus == STATUS_STARTING && TextUtils.equals(status, "BUILT"))
             sendCallbackStatus(STATUS_ON);
 
-            StringBuilder sb = new StringBuilder();
-            sb.append("Circuit (");
-            sb.append((circID));
-            sb.append(") ");
-            sb.append(status);
-            sb.append(": ");
+        StringBuilder sb = new StringBuilder();
+        sb.append("Circuit (");
+        sb.append((circID));
+        sb.append(") ");
+        sb.append(status);
+        sb.append(": ");
+        
+        StringTokenizer st = new StringTokenizer(path,",");
+        Node node = null;
+        
+        while (st.hasMoreTokens())
+        {
+            String nodePath = st.nextToken();
+            node = new Node();
             
-            StringTokenizer st = new StringTokenizer(path,",");
-            Node node = null;
+            String[] nodeParts;
             
-            while (st.hasMoreTokens())
+            if (nodePath.contains("="))
+                nodeParts = nodePath.split("=");
+            else
+                nodeParts = nodePath.split("~");
+            
+            if (nodeParts.length == 1)
             {
-                String nodePath = st.nextToken();
-                node = new Node();
-                
-                String[] nodeParts;
-                
-                if (nodePath.contains("="))
-                    nodeParts = nodePath.split("=");
-                else
-                    nodeParts = nodePath.split("~");
-                
-                if (nodeParts.length == 1)
-                {
-                    node.id = nodeParts[0].substring(1);
-                    node.name = node.id;
-                }
-                else if (nodeParts.length == 2)
-                {
-                    node.id = nodeParts[0].substring(1);
-                    node.name = nodeParts[1];
-                }
-                
-                node.status = status;
-                
-                sb.append(node.name);
-                
-                if (st.hasMoreTokens())
-                    sb.append (" > ");
+                node.id = nodeParts[0].substring(1);
+                node.name = node.id;
+            }
+            else if (nodeParts.length == 2)
+            {
+                node.id = nodeParts[0].substring(1);
+                node.name = nodeParts[1];
             }
             
-            if (Prefs.useDebugLogging())
-                debug(sb.toString());
-            else if(status.equals("BUILT"))
-                logNotice(sb.toString());
-            else if (status.equals("CLOSED"))
-                logNotice(sb.toString());
+            node.status = status;
+            
+            sb.append(node.name);
+            
+            if (st.hasMoreTokens())
+                sb.append (" > ");
+        }
+        
+        if (Prefs.useDebugLogging())
+            debug(sb.toString());
+        else if(status.equals("BUILT"))
+            logNotice(sb.toString());
+        else if (status.equals("CLOSED"))
+            logNotice(sb.toString());
 
-            if (Prefs.expandedNotifications())
-            {
-                //get IP from last nodename
-                if(status.equals("BUILT")){
-                    
-                    if (node.ipAddress == null)
-                        mExecutor.execute(new ExternalIPFetcher(node));
-                    
-                    hmBuiltNodes.put(node.id, node);
-                }
+        if (Prefs.expandedNotifications())
+        {
+            //get IP from last nodename
+            if(status.equals("BUILT")){
                 
-                if (status.equals("CLOSED"))
-                {
-                    hmBuiltNodes.remove(node.id);
-                    
-                }
+                if (node.ipAddress == null)
+                    mExecutor.execute(new ExternalIPFetcher(node));
+                
+                hmBuiltNodes.put(node.id, node);
             }
+            
+            if (status.equals("CLOSED"))
+            {
+                hmBuiltNodes.remove(node.id);
+                
+            }
+        }
     
     }
     

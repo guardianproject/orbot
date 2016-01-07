@@ -3,6 +3,8 @@ package org.torproject.android;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.text.TextUtils;
+
 import org.torproject.android.service.TorServiceUtils;
 
 import java.util.Locale;
@@ -23,7 +25,8 @@ public class Prefs {
     private final static String PREF_TRANSPROXY_REFRESH = "pref_transproxy_refresh";
     private final static String PREF_USE_SYSTEM_IPTABLES = "pref_use_sys_iptables";
     private final static String PREF_USE_VPN = "pref_vpn";
-
+    private final static String PREF_EXIT_NODES = "pref_exit_nodes";
+    
     private static SharedPreferences prefs;
 
     public static void setContext(Context context) {
@@ -117,5 +120,15 @@ public class Prefs {
 
     public static void putStartOnBoot(boolean value) {
         putBoolean(PREF_START_ON_BOOT, value);
+    }
+    
+    public static String getExitNodes ()
+    {
+    	return prefs.getString(PREF_EXIT_NODES, "");
+    }
+    
+    public static void setExitNodes (String exits)
+    {
+    	putString(PREF_EXIT_NODES,exits);
     }
 }

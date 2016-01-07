@@ -72,6 +72,7 @@ import java.net.URLEncoder;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Locale;
 
 
@@ -306,38 +307,46 @@ public class OrbotMainActivity extends Activity
 			
 		});
 		
-		Locale[] locale = Locale.getAvailableLocales();
-		ArrayList<String> countries = new ArrayList<String>();
-		countries.add("World (best)");
-		countries.add("US");
-		countries.add("DE");
-		countries.add("CA");
-		countries.add("FR");
 		
+		String currentExit = Prefs.getExitNodes();
+		int selIdx = -1;
 		
+		ArrayList<String> cList = new ArrayList<String>();
+		cList.add(0, "WORLD");
+	
+		for (int i = 0; i < TorServiceConstants.COUNTRY_CODES.length; i++)
+		{
+			Locale locale = new Locale("",TorServiceConstants.COUNTRY_CODES[i]);
+			cList.add(locale.getDisplayCountry());
+			
+			if (currentExit.contains(TorServiceConstants.COUNTRY_CODES[i]))
+				selIdx = i+1;
+		}
 		
-
 		spnCountries = (Spinner)findViewById(R.id.spinnerCountry);
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, countries);
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, cList);
 		spnCountries.setAdapter(adapter);
-
+		
+		if (selIdx != -1)
+			spnCountries.setSelection(selIdx);
+		
 		spnCountries.setOnItemSelectedListener(new OnItemSelectedListener() {
 		    @Override
 		    public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
 		        // your code here
 		    	
-		    	String country = (String)spnCountries.getItemAtPosition(position);
+		    	String country = null;
 		    	
 		    	if (position == 0)
 		    		country = "";
 		    	else
-		    		country =  '{' + country.toLowerCase() + '}';
+		    		country =  '{' + TorServiceConstants.COUNTRY_CODES[position-1] + '}';
 		    	
 		    	Intent torService = new Intent(OrbotMainActivity.this, TorService.class);    
 				torService.setAction(TorServiceConstants.CMD_SET_EXIT);
 				torService.putExtra("exit",country);
 				startService(torService);
-		    
+	    	
 		    }
 
 		    @Override

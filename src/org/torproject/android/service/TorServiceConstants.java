@@ -148,5 +148,9 @@ public interface TorServiceConstants {
 
 	//DNS daemon for TCP DNS over TOr
 	public final static String PDNSD_ASSET_KEY = "pdnsd";
+
+	//EXIT COUNTRY CODES
+	public final static String[] COUNTRY_CODES = {"DE","AT","SE","CH","IS","CA","US","FR","BG","AU","BR","CZ","DK","FI","GB","HU","NL","JP","HK","RO","RU","SG","SK","CN"};
+	
 	
 }
