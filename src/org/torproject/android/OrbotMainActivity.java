@@ -312,7 +312,7 @@ public class OrbotMainActivity extends Activity
 		int selIdx = -1;
 		
 		ArrayList<String> cList = new ArrayList<String>();
-		cList.add(0, "WORLD");
+		cList.add(0, getString(R.string.vpn_default_world));
 	
 		for (int i = 0; i < TorServiceConstants.COUNTRY_CODES.length; i++)
 		{
