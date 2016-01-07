@@ -26,7 +26,7 @@
                         // common request - ah , that's awesome, i think i remember seeing sth of this sorts when i was going through the guardianproject mailing list. iirc this is something ioerror wanted
                         
             
-            ├── Orbot.java
+            ├── OrbotMainActivity.java
                     //our wonderful main activity!
             
             ├── ProcessSettingsAsyncTask.java
