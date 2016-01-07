@@ -1,17 +1,18 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Orbot</string>
+  <string name="app_description">Orbot başka uygulamaların interneti daha güvenli olarak kullanmasını sağlayan ücretsiz bir proxy uygulamasıdır. Orbot Tor\'u kullanarak internet trafiğinizi şifreler ve dünya üzerindeki pek çok farklı bilgisayardan geçirerek gizler. Tor sizin kişisel özgürlüğünüzü ve mahremiyetinizi, gizli ticari aktivitelerinizi ve bağlantılarınızı koruma altına alan bir yazılım ve açık ağdır.</string>
   <string name="internal_web_url">http://orbot/</string>
   <string name="default_web_url">https://check.torproject.org/?lang=tr</string>
   <string name="secure_default_web_url">https://check.torproject.org/?lang=tr</string>
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">Tor\'u başlat ve durdur</string>
   <string name="tor_proxy_service_process">torproxyservice</string>
-  <string name="status_starting_up">Orbot başlatılıyor…</string>
+  <string name="status_starting_up">Orbot başlatılıyor...</string>
   <string name="status_activated">Tor ağına bağlandı</string>
   <string name="status_disabled">Orbot devre dışı bırakıldı</string>
   <string name="status_shutting_down">Orbot kapatılıyor</string>
-  <string name="tor_process_starting">Tor kullanımı başlatılıyor…</string>
+  <string name="tor_process_starting">Tor kullanımı başlatılıyor...</string>
   <string name="tor_process_complete">tamamlandı.</string>
   <string name="tor_process_waiting">bekliyor.</string>
   <string name="not_anonymous_yet">UYARI: Bağlantınız henüz anonim değildir! Lütfen uygulamalarınızı HTTP 127.0.0.1:8118  veya SOCKS4A / SOCKS5 127.0.0.1:9050 vekil sunucusu kullanacak şekilde yapılandırınız.</string>
@@ -79,6 +80,7 @@
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Proxy Ayarları</string>
   <string name="wizard_final">Orbot hazır!</string>
+  <string name="wizard_exit_at_first_screen_toast">Lütfen kullanmadan önce Orbot\'u yapılandırın!</string>
   <!--END Welcome Wizard strings (DJH)-->
   <string name="tor_check">Bu, Orbot\'un ayarlanıp ayarlanmadığını ve Tor\'a bağlanıp bağlanmadığınızı anlamanız amacıyla tarayıcınızda https://check.torproject.org adresini açacak.</string>
   <string name="pref_hs_group">Gizlenmiş servis sunucusu</string>
@@ -130,14 +132,14 @@
   <string name="pref_proxy_password_summary">Vekil parolası (tercihe bağlı)</string>
   <string name="pref_proxy_password_dialog">Vekil Parolası girin</string>
   <string name="status">Durum</string>
-  <string name="setting_up_full_transparent_proxying_">Tamamen saydam vekil kuruluyor…</string>
-  <string name="setting_up_app_based_transparent_proxying_">Uygulamaya özel saydam proxy kuruluyor…</string>
+  <string name="setting_up_full_transparent_proxying_">Tamamen saydam vekil kuruluyor...</string>
+  <string name="setting_up_app_based_transparent_proxying_">Uygulamaya özel saydam proxy kuruluyor...</string>
   <string name="transparent_proxying_enabled">Saydam vekil AKTİF</string>
   <string name="transproxy_enabled_for_tethering_">TransProxy Tethering\'e açıldı!</string>
   <string name="warning_error_starting_transparent_proxying_">UYARI: şeffaf proxy başlatılırken hata oluştu</string>
   <string name="transproxy_rules_cleared">TransProxy kuralları temizlendi</string>
   <string name="couldn_t_start_tor_process_">Tor işlemi başlatılamadı</string>
-  <string name="setting_up_port_based_transparent_proxying_">Port tabanlı şeffaf vekillendirme ayarlanıyor…</string>
+  <string name="setting_up_port_based_transparent_proxying_">Port tabanlı şeffaf vekillendirme ayarlanıyor...</string>
   <string name="bridge_error">Köprü hatası</string>
   <string name="bridge_requires_ip">Köprü özelliğini kullanmak adına, en az bir tane köprü IP adresi girmelisiniz.</string>
   <string name="send_email_for_bridges">Gmail hesabınızdan bridges@torproject.org adresine içinde sadece \"get bridges\" yazılı bir eposta gönderin.</string>
@@ -190,7 +192,7 @@
   <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
   <string name="openssl_version">OpenSSL v1.0.1i: http://www.openssl.org</string>
   <string name="hidden_service_request">Bir uygulama Tor ağında gizlenmiş sunucu bağlantı noktası %S açmak istiyor. Eğer uygulamaya güveniyorsanız bu güvenlidir.</string>
-  <string name="found_existing_tor_process">varolan bir Tor işlemi bulundu…</string>
+  <string name="found_existing_tor_process">varolan bir Tor işlemi bulundu...</string>
   <string name="something_bad_happened">Kötü bir şey oldu. Kayıtlara bakınız</string>
   <string name="hidden_service_on">gizlenmiş servis:</string>
   <string name="unable_to_read_hidden_service_name">gizli hizmet adı okunamıyor</string>

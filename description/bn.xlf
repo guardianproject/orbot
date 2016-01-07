@@ -1,17 +1,15 @@
 <?xml version="1.0" ?><xliff version="1.2">
-  <file datatype="plaintext" original="source.xlf" source-language="en" target-language="pt-PT">
+  <file datatype="plaintext" original="source.xlf" source-language="en" target-language="bn">
     <header>
       <note from="developer">Google places strick character limits on the various text fields in Google Play. The title is 30 characters, the short description is 80 characters, and the rest of the strings, which all go together in the description, are limited to 4000 characters.</note>
     </header>
     <body>
       <trans-unit id="title" maxwidth="30" size-unit="char">
         <source>Orbot</source>
-        <target>Orbot</target>
         <note from="developer">This is limited by Google to 30 characters</note>
       </trans-unit>
       <trans-unit id="shortdescription" maxwidth="80" size-unit="char">
         <source>Protect your privacy with this proxy with Tor</source>
-        <target>Proteja a sua privacidade com este proxy com o Tor</target>
         <note from="developer">This is limited by Google to 80 characters</note>
       </trans-unit>
       <trans-unit id="intro">
@@ -39,7 +37,6 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="expertrootmode">
         <source>***Expert Root Mode***</source>
-        <target>***Modo de Root Avançado***</target>
       </trans-unit>
       <trans-unit id="universalmode">
         <source>UNIVERSAL MODE: Orbot can be configured to transparently proxy all of your Internet traffic through Tor. You can also choose which specific apps you want to use through Tor.</source>

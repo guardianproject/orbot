@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Orbot</string>
+  <string name="app_description">Orbot הינה אפליקציית פרוקסי חינמית המאפשרת לאפליקציות אחרות להשתמש באינטרנט בבטחה. Orbot נעזרת ב-Tor כדי להצפין את תעבורת האינטרנט שלך ולהסוותה באמצעותה ניתובה דרך מספר מחשבים ברחבי העולם. Tor היא תוכנה חופשית ורשת פתוחה המסייעת לך להתגונן מפני סוגים מסוימים של אמצעי ניטור ומעקב אחר רשת האינטרנט המאיימים על הפרטיות, החירות האישית, פעילויות עסקיות ומערכות יחסים חשאיות.</string>
   <string name="internal_web_url">http://orbot/</string>
   <string name="default_web_url">http://check.torproject.org</string>
   <string name="secure_default_web_url">https://check.torproject.org</string>
@@ -11,7 +12,7 @@
   <string name="status_activated">מחובר לרשת Tor</string>
   <string name="status_disabled">Orbot כבוי</string>
   <string name="status_shutting_down">Orbot בתהליך כיבוי</string>
-  <string name="tor_process_starting">מתחיל לקוח Tor…</string>
+  <string name="tor_process_starting">מתחיל לקוח Tor...</string>
   <string name="tor_process_complete">הושלם.</string>
   <string name="tor_process_waiting">מחכה.</string>
   <string name="not_anonymous_yet">אזהרה: התעבורה שלך אינה אנונימית עדיין! בבקשה הגדר את האפליקציות שלך כך שיתאפשר שימוש בפרוקסי HTTP (קרי 127.0.0.1:8118) או SOCKS4A או SOCKS5 (קרי 127.0.0.1:9050)</string>
@@ -33,6 +34,8 @@
   <string name="button_clear_log">נקה רישום</string>
   <string name="menu_verify">בדוק</string>
   <string name="menu_exit">יציאה</string>
+  <string name="menu_scan">סרוק BridgeQR</string>
+  <string name="menu_share_bridge">שתף BridgeQR</string>
   <string name="press_to_start">-נגיעה ארוכה להתחלה-</string>
   <string name="pref_trans_proxy_group">פרוקסי שקוף (שורש נדרש)</string>
   <string name="pref_trans_proxy_title">פרוקסי שקוף</string>
@@ -59,6 +62,7 @@ tor-assistants@torproject.org</string>
   <string name="btn_cancel">ביטול</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">פרטים מסוימים של Orbot </string>
+  <string name="wizard_details_msg">Orbot היא אפליקציית קוד פתוח הכוללת את Tor, LibEvent ו-Polipo. היא מתחבר לרשת Tor באמצעות שרת פרוקסי HTTP מקומי (8118) ושרת פרוקסי SOCKS (פורט 9050). Orbot יכולה בנוסף עם הרשאות רוט לנתב את כל תעבורת האינטרנט של המכשיר דרך Tor כברירת מחדל.</string>
   <string name="wizard_permissions_root">ניתנה הרשאה</string>
   <string name="wizard_permissions_stock">הרשאות Orbot</string>
   <string name="wizard_premissions_msg_root">מצוין! גילינו כי יש לך הרשאות שורש מאופשרות בשביל Orbot. אנחנו נשתמש בכוח הזה בחוכמה.</string>
@@ -73,13 +77,17 @@ tor-assistants@torproject.org</string>
   <string name="wizard_tips_tricks">Orbot מתאפשר על ידי אפליקציות</string>
   <string name="wizard_tips_msg">האפליקציות מתחת פותחו לעבודה עם Orbot. לחץ על כל כפתור להתקנה מיידית, או שאתה יכול למצוא אותם אחר כך ב Google Play, באתר GuardianProject.info או
 דרך  F-Droid.org</string>
+  <string name="wizard_tips_otrchat">ChatSecure - תוכנת מסרים מידיים מאובטחת לאנדרואיד</string>
   <string name="wizard_tips_proxy">הגדרות פרוקסי - למד איך להגדיר אפליקציות לעבוד עם Orbot</string>
   <string name="wizard_tips_duckgo">DuckDuckGo אפליקציית מנוע חיפוש</string>
-
   <string name="wizard_tips_twitter">קבע פרוקסי Twitter למארח \"localhost\" ולפורט 8118</string>
+  <string name="wizard_tips_story_maker">StoryMaker - מערך שיעורים לעיתונאים על שימוש ב-Tor להגנה על עבודתם.</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">הגדרות פרוקסי</string>
+  <string name="wizard_proxy_help_msg">אם אפליקצת האנדרואיד שאתה משתמש תומכת בפרוקסי מבוסס HTTP או SOCKS, תוכל להגדיר אותה לעבוד עם Orbot תחת Tor. \n\n\n ההגדרות הן: שם השרת הוא 127.0.0.1 או \"localhost\". עבור HTTP, הפורט הוא 8118. עבור SOCKS, הפורט הוא 9050. עליך להשתמש בSOCKS4A או SOCKS5 אם אפשר.\n \n\n\n תוכל ללמוד עוד אודות פרוקסי באנדרואיד תחת עמוד השאלות הנפוצות שלנו בכתובת: http://tinyurl.com/proxyandroid </string>
   <string name="wizard_final">Orbot מוכן!</string>
+  <string name="wizard_final_msg">מיליוני אנשים ברחבי העולם משתמשים בTor מסיבות רבות.\n\n עיתונאים ובלוגרים, פעילי זכויות אדם, שוטרים, חיילים, תאגידים, אזרחי במשטרים מדוגאים וגם אזרחים פשוטים... ועכשיו גם אתה!</string>
+  <string name="wizard_exit_at_first_screen_toast">אנא הגדר את Orbot לפני שתוכל להתחיל להשתמש בה!</string>
   <!--END Welcome Wizard strings (DJH)-->
   <string name="tor_check">דבר זה יוביל את דפדפן הרשת שלך למוד https://check.torproject.org כדי לראות אם Orbot הוגדרה כראוי וכן כי אתה מחובר לרשת Tor.</string>
   <string name="pref_hs_group">איחסון שירותים נסתרים</string>
@@ -99,11 +107,6 @@ tor-assistants@torproject.org</string>
   <string name="wizard_tips_gibberbot">ChatSecure: אפליקציית מסרים עם הצפנת Off-the-Record</string>
   <string name="wizard_tips_orweb">Orweb- דפדפן עם פרטיות רבה שעובד דרך Tor</string>
   <string name="wizard_tips_play">מצא את כל אפליציות Guardian Project אצל Google Play</string>
-
-
-
-
-
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">פרוקסי שקוף</string>
   <string name="wizard_transproxy_msg">זה מאפשר לאפליקציות שלך לרוץ באופן אוטומטי דרך רשת Tor ללא כל תצורה.</string>
@@ -119,6 +122,9 @@ tor-assistants@torproject.org</string>
   <string name="pref_entrance_node">Entrance Nodes</string>
   <string name="pref_entrance_node_summary">טביעות אצבע, כינויים, ארצות וכתובות עבור המעבר הראשון</string>
   <string name="pref_entrance_node_dialog">הכנס Entrance Nodes</string>
+  <string name="button_proxy_all">העבר הכל דרך פרוקסי</string>
+  <string name="button_proxy_none">אל תשתמש בפרוקסי</string>
+  <string name="button_invert_selection">הפוך בחירה</string>
   <string name="pref_proxy_type_title">Outbound Proxy Type</string>
   <string name="pref_proxy_type_summary">פרוטוקול שימוש בשרת פרוקסי:  HTTP, HTTPS, Socks4,Socks5</string>
   <string name="pref_proxy_type_dialog">סוג הפרוקסי</string>
@@ -128,18 +134,22 @@ tor-assistants@torproject.org</string>
   <string name="pref_proxy_port_title">פורט של Outbound Proxy</string>
   <string name="pref_proxy_port_summary">פורט שרת פרוקסי</string>
   <string name="pref_proxy_port_dialog">הכנס פורט של פרוקסי</string>
+  <string name="pref_proxy_username_title">שם משתמש של Outbound Proxy</string>
   <string name="pref_proxy_username_summary">שם משתמש פרוקסי (רשות)</string>
   <string name="pref_proxy_username_dialog">הזן שם משתמש פרוקסי</string>
+  <string name="pref_proxy_password_title">סיסמא של Outbound Proxy</string>
   <string name="pref_proxy_password_summary">סיסמת פרוקסי (רשות)</string>
   <string name="pref_proxy_password_dialog">הזן סיסמת פרוקסי</string>
   <string name="status">סטטוס</string>
-  <string name="setting_up_full_transparent_proxying_">הכנה של הפרוקסי השקוף…</string>
-  <string name="setting_up_app_based_transparent_proxying_">הכנה של הפרוקסי השקוף מבוסס אפליקציות…</string>
+  <string name="setting_up_full_transparent_proxying_">הכנה של הפרוקסי השקוף...</string>
+  <string name="setting_up_app_based_transparent_proxying_">הכנה של הפרוקסי השקוף מבוסס אפליקציות...</string>
   <string name="transparent_proxying_enabled">פרוקסי שקוף מאופשר</string>
   <string name="transproxy_enabled_for_tethering_">פרוקסי שקוף מאופשר ל Tathering!</string>
   <string name="warning_error_starting_transparent_proxying_">אזהרה: שגיאה התחילה את הפרוקסי השקוף!</string>
   <string name="transproxy_rules_cleared">כללי TransProxy טוהרו</string>
   <string name="couldn_t_start_tor_process_">אין אפשרות להתחיל תהליך Tor:</string>
+  <string name="privoxy_is_running_on_port_">Polipo רץ על פורט:</string>
+  <string name="setting_up_port_based_transparent_proxying_">הכנה של הפרוקסי השקוף מבוסס פורט...</string>
   <string name="bridge_error">שגיאת גשר</string>
   <string name="error">שגיאה</string>
   <string name="exit_nodes">צמתי יציאה</string>
@@ -155,38 +165,78 @@ tor-assistants@torproject.org</string>
   <string name="enter_bridge_addresses">הכנס כתובות גשר</string>
   <string name="relays">ממסרים</string>
   <string name="relaying">ממסור</string>
+  <string name="enable_your_device_to_be_a_non_exit_relay">אפשר למכשיר שלך להיות תחנת ממסר שאיננה יציאה</string>
+  <string name="relay_port">פורט הממסר</string>
+  <string name="listening_port_for_your_tor_relay">פורט מאזין עבור Tor relay</string>
   <string name="enter_or_port"> הכנס יציאת OR</string>
   <string name="relay_nickname">כינוי הממסר</string>
   <string name="the_nickname_for_your_tor_relay">הכינוי לממסר Tor שלך</string>
+  <string name="enter_a_custom_relay_nickname">הזן כינוי עבור ממסר</string>
   <string name="reachable_addresses">כתובות בהישג יד</string>
   <string name="reachable_ports">פורטים בהישג יד</string>
   <string name="enter_ports">הזן פורטים</string>
   <string name="enable_hidden_services">אחסון שירותים נסתרים</string>
   <string name="enter_localhost_ports_for_hidden_services">הזן פורטים של localhost עבור שירותים נסתרים</string>
   <string name="hidden_service_ports">פורט השירותים הנסתרים</string>
+  <string name="project_home">אתרי הפרויקט:</string>
+  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
   <string name="the_tor_license">הרשיון של Tor</string>
   <string name="https_torproject_org">https://torproject.org/</string>
   <string name="third_party_software">תוכנה-צד-ג׳: </string>
+  <string name="tor_version">Tor: https://www.torproject.org</string>
+  <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
+  <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
+  <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
+  <string name="openssl_version">OpenSSL v1.0.1i: http://www.openssl.org</string>
   <string name="found_existing_tor_process">נמצא תהליך Tor קיים…</string>
   <string name="something_bad_happened">משהו רע התרחש. בדוק את היומן</string>
   <string name="hidden_service_on">שירות נסתר ב:</string>
   <string name="unable_to_read_hidden_service_name">לא מסוגל לקרוא שם שירות נסתר</string>
   <string name="unable_to_start_tor">לא מסוגל להתחיל את Tor:</string>
+  <string name="unable_to_reset_tor">אתחל את המכשיר שלך, אין אפשרות להפעיל מחדש את Tor!</string>
   <string name="pref_use_sys_iptables_title">השתמש בברירות המחדל של iptables</string>
   <string name="pref_use_persistent_notifications">לשמור תמיד את האיקון בסרגל כלים כשאורבוט מחובר</string>
   <string name="notification_using_bridges">גשרים מאופשרים!</string>
   <string name="default_bridges"></string>
-  <string name="set_locale_title">קבע מקומיות</string>
+  <string name="set_locale_title">שפה</string>
   <string name="set_locale_summary">בחר את המקומיות והשפה של Orbot</string>
   <string name="wizard_locale_title">בחר שפה</string>
   <string name="wizard_locale_msg">השאר ברירת מחדל או החלף לשפה הנוכחית</string>
+  <string name="powered_by">מופעל באמצעות Tor</string>
   <string name="btn_save_settings">שמירת הגדרות</string>
-  <string name="no_internet_connection_tor">אין חיבור אינטרנט; Tor מצוי בכוננות…</string>
+  <string name="no_internet_connection_tor">אין חיבור לאינטרנט; תור ממתין...</string>
   <string name="bandwidth_">רוחב פס:</string>
+  <string name="down">מטה</string>
+  <string name="up">מעלה</string>
+  <string name="pref_disable_network_summary">כבה את Tor כאשר אין חיבור לאינטרנט</string>
   <string name="newnym">החלפת אל זהות Tor חדשה!</string>
   <string name="menu_verify_browser">בדוק דפדפן</string>
   <string name="menu_use_chatsecure">הפעל את ChatSecure</string>
   <string name="permission_manage_tor_label">נהל Tor</string>
   <string name="permission_manage_tor_description">אפשר את אפליקציה זו כדי לשלוט בשירות Tor</string>
   <string name="install_apps_">להתקין אפליקציה?</string>
+  <string name="no_network_connectivity_putting_tor_to_sleep_">אין חיבור לרשת. מכבה את Tor....</string>
+  <string name="network_connectivity_is_good_waking_tor_up_">החיבור עובד טוב. מעיר את Tor...</string>
+  <string name="updating_settings_in_tor_service">מעדכן הגדרות Tor במכשיר</string>
+  <string name="pref_socks_title">Tor SOCKS</string>
+  <string name="pref_socks_dialog">הגדרות SOCKS Port </string>
+  <string name="pref_transport_title">Tor TransProxy Port</string>
+  <string name="pref_transport_dialog">הגדרת הפורט של TransProxy</string>
+  <string name="pref_dnsport_title">Tor DNS Port</string>
+  <string name="your_tor_public_ips_">הIPs החיצוניים שלך עם Tor:</string>
+  <string name="you_do_not_have_root_access_enabled">אין לך גישת רוט מאופשרת</string>
+  <string name="you_may_need_to_stop_and_start_orbot_for_settings_change_to_be_enabled_">תצטרך לכבות ולהפעיל את Orbot על מנת להחיל את השינוי בהגדרות.</string>
+  <string name="menu_vpn">אפליקציות</string>
+  <string name="kbps">kbps</string>
+  <string name="mbps">mbps</string>
+  <string name="kb">KB</string>
+  <string name="mb">MB</string>
+  <string name="menu_qr">קוד QR</string>
+  <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">אם חברת הסלולר שלך חוסמת בכוונה את Tor, תוכל להשתמש בגשר - Tor בכדי לגשת לרשת.\n\nאנא בחר את אחד מסוגי הגשרים מעל כדי להפעיל אותו.</string>
+  <string name="get_bridges_email">דוא\"ל</string>
+  <string name="get_bridges_web">אתר</string>
+  <string name="activate">הפעל</string>
+  <string name="send_email">שלח דוא\"ל</string>
+  <string name="install_orweb">התקן Orweb</string>
+  <string name="standard_browser">דפדפן רגיל</string>
 </resources>

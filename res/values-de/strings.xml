@@ -79,11 +79,12 @@
   <string name="wizard_tips_proxy">Vermittlungseinstellungen - Lernen, wie Sie Anwendungen so konfigurieren, dass sie mit Orbot zusammenarbeiten.</string>
   <string name="wizard_tips_duckgo">Duckduckgo-Suchmaschinen-App</string>
   <string name="wizard_tips_twitter">Twitter-Proxy auf den Rechner »localhost« und Port 8118 einstellen</string>
+  <string name="wizard_tips_story_maker">StoryMaker - Schreiben Sie eine Geschichte und überlassen Sie tor das Sicherheitsmanagement!</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Vermittlungseinstellungen</string>
   <string name="wizard_proxy_help_msg">Wenn die Android App, welche du nutzt HTTP oder SOCKS Proxys unterstützt, lässt sie sich über Orbot mit TOR nutzen.\n\nIm Feld \'Host\' wird 127.0.0.1 oder \'localhost\' eingetragen. Für HTTP wird der Port 8118 eingetragen. Für SOCKS ist der Port 9050 zu verwenden. Du solltest SOCKS4A oder SOCKS5 verwenden, falls möglich.\n\n\n\n Für mehr Informationen zu Proxy-Verwendung auf Android, besuche das FAQ auf http://tinyurl.com/proxyandroid\n</string>
   <string name="wizard_final">Orbot ist bereit!</string>
-  <string name="wizard_final_msg">Millionen Menschen weltweit nutzen TOR aus sehr verschiedenen Gründen.\n\nJournalisten und Blogger, Verteiger für Menschenrechte, Justizvollzugsbeamte, Soldaten, Firmen, Bürger von Unterdrückungsregimen und einfache normale Menschen… und nun bist du auch da, soweit so gut.</string>
+  <string name="wizard_final_msg">Millionen Menschen weltweit nutzen TOR aus sehr verschiedenen Gründen.\n\nJournalisten und Blogger, Verteiger für Menschenrechte, Justizvollzugsbeamte, Soldaten, Firmen, Bürger von Unterdrückungsregimen und einfache normale Menschen... und nun bist du auch da, soweit so gut.</string>
   <string name="wizard_exit_at_first_screen_toast">Bitte konfigurieren Sie Orbot, bevor Sie es verwenden können!</string>
   <!--END Welcome Wizard strings (DJH)-->
   <string name="connect_first_time">Verbindung zu TOR erfolgreich hergestellt - aber das bedeutet NICHT das Ihr Gerät gesichert ist. Sie können die Option \'Check\' im Menü nutzen um die Verbindung zu testen.\n\nBesuche und unter https://guardianproject.info/apps/orbot oder sende eine E-Mail an help@guardianproject.info für mehr Informationen.</string>
@@ -227,7 +228,7 @@
   <string name="wizard_locale_msg">Vorgabe beibehalten oder Sprache ändern</string>
   <string name="powered_by">betrieben mit Tor</string>
   <string name="btn_save_settings">Einstellungen speichern</string>
-  <string name="no_internet_connection_tor">Keine Internetverbindung; TOR ist auf Standby…</string>
+  <string name="no_internet_connection_tor">Keine Internetverbindung; TOR ist auf Standby...</string>
   <string name="bandwidth_">Bandbreite:</string>
   <string name="down">runter</string>
   <string name="up">hoch</string>
@@ -240,8 +241,8 @@
   <string name="permission_manage_tor_description">Diese Anwendung aktivieren, um den Tor-Dienst zu kontrollieren</string>
   <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Es sieht nicht so aus, als ob Sie Orweb installiert haben. Möchten Sie Hilfe dabei, oder sollen wir einfach den Browser öffnen?</string>
   <string name="install_apps_">Anwendungen installieren?</string>
-  <string name="no_network_connectivity_putting_tor_to_sleep_">Keine Netzwerkverbindung. TOR geht auf Standby…</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">Netzwerkverbindung aktiv. TOR wird aktiviert…</string>
+  <string name="no_network_connectivity_putting_tor_to_sleep_">Keine Netzwerkverbindung. TOR geht auf Standby...</string>
+  <string name="network_connectivity_is_good_waking_tor_up_">Netzwerkverbindung aktiv. TOR wird aktiviert...</string>
   <string name="updating_settings_in_tor_service">Einstellungen im Tor-Dienst werden aktualisiert</string>
   <string name="pref_socks_title">Tor SOCKS</string>
   <string name="pref_socks_summary">Port auf dem der SOCKS-Proxy bereitgestellt wird (Standard: 9050 oder 0 zum deaktivieren)</string>

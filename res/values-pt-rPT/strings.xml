@@ -1,5 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="app_name">Orbot</string>
+  <string name="wizard_title">Orbot</string>
   <!--Welcome Wizard strings (DJH)-->
   <!--END Welcome Wizard strings (DJH)-->
   <!--New Wizard Strings-->

@@ -1,18 +1,18 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Orbot</string>
-  <string name="app_description">Orbot er en gratis mellomtjener som gjør det mulig for andre Programmer å bruke Internett mer sikkert. Orbot bruker Tor for å kryptere din Internettrafikk, og skjuler da din trafikk ved å sende den gjennom en lang rekke datamaskiner over hele verden. Tor er et gratis dataprogram, og et åpent nettverk som hjelper deg i forsvaret mot en form for nettverksovervåking som truer din personlige frihet og privatliv, konfidensiell bedriftsvirksomhet og relasjoner, og statlig sikkerhet kjent som trafikkanalyse.</string>
-  <string name="internal_web_url">http://orbot/</string>
-  <string name="default_web_url">http://check.torproject.org</string>
+  <string name="app_description">Orbot er en gratis proxy app som gjør det mulig for andre apps å bruke internett mer sikkert. Orbot bruker Tor for å kryptere din Internettrafikk, og skjuler da din trafikk ved å sende trafikken gjennom en lang rekke datamaskiner over hele verden. Tor er et gratis dataprogram, og et åpent nettverk som hjelper deg å forsvare deg mot en form for nettverksovervåking som truer din personlige frihet og privatliv, konfidensiell bedriftsvirksomhet og relasjoner, og statlig sikkerhet kjent som trafikkanalyse.</string>
+  <string name="internal_web_url">https://torproject.org</string>
+  <string name="default_web_url">https://check.torproject.org</string>
   <string name="secure_default_web_url">https://check.torproject.org</string>
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">start, og stopp Tor</string>
   <string name="tor_proxy_service_process">torproxyservice</string>
-  <string name="status_starting_up">Orbot starter…</string>
+  <string name="status_starting_up">Orbot starter...</string>
   <string name="status_activated">Koblet til Tor-nettverket</string>
   <string name="status_disabled">Orbot er deaktivert</string>
   <string name="status_shutting_down">Orbot blir slått av</string>
-  <string name="tor_process_starting">Starter Tor klient…</string>
+  <string name="tor_process_starting">Starter Tor klient...</string>
   <string name="tor_process_complete">fullført.</string>
   <string name="tor_process_waiting">venter.</string>
   <string name="not_anonymous_yet">ADVARSEL: Trafikken din er enda ikke anonym! Vær vennlig og konfigurer applikasjonene dine til å bruke HTTP proxy 127.0.0.1:8118, eller SOCKS4A, eller SOCKS5 proxy 127.0.0.1:9050</string>
@@ -79,6 +79,7 @@
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Proxyinnstillinger</string>
   <string name="wizard_final">Orbot er klar!</string>
+  <string name="wizard_final_msg">Millioner av mennesker over hele verden bruker Tor for en rekke grunner.\n\ nJournalists og bloggere, menneskerettighetsforkjempere, politi, soldater, bedrifter, borgere i undertrykkende regimer, og bare vanlige borgere ... og nå er du klar til å , også!</string>
   <string name="wizard_exit_at_first_screen_toast">Vennligst konfigurere Orbot før du bruker det!</string>
   <!--END Welcome Wizard strings (DJH)-->
   <string name="tor_check">Dette vil åpne nettleseren din med adressen https://check.torproject.org for å se om Orbot er korrekt konfigurert, og at du er koblet til Tor.</string>
@@ -88,12 +89,15 @@
   <string name="pref_start_boot_summary">Start Orbot automatisk, og koble til Tor når din Android-enhet starter opp</string>
   <!--New Wizard Strings-->
   <!--Title Screen-->
+  <string name="wizard_title_msg">Orbot bringer Tor til Android!\n\nTor hjelper deg å forsvare seg mot innholdsfiltrering, trafikk analyse og overvåking som truer personvern, konfidensiell informasjon og personlige relasjoner. \ N \ nDenne veiviseren vil hjelpe deg med å konfigurere Orbot og Tor på enheten.</string>
   <!--Warning screen-->
   <string name="wizard_warning_title">Advarsel</string>
+  <string name="wizard_warning_msg">Ganske enkelt å installere Orbot vil ikke automatisk anonymmobiltrafikk .\n\nDu må konfigurere Orbot, enheten og andre applikasjoner for å kunne bruke Tor.</string>
   <!--Permissions screen-->
   <string name="wizard_permissions_title">Tillatelser</string>
   <string name="wizard_permissions_root_msg1">Du kan eventuelt gi Orbot \'Superbruker\' adgang til å aktivere avanserte funksjoner, for eksempel Transparent proxy.</string>
   <string name="wizard_permissions_root_msg2">Hvis du ikke ønsker å gjøre dette, må du sørge for å bruke applikasjoner som er laget for å fungere med Orbot.</string>
+  <string name="wizard_permissions_no_root_msg">Enheten ser ikke ut til å være forankret eller gi root eller \"superbruker\" tilgang.\n\nVennligst prøve \"apps\" modus på hovedskjermen i stedet.</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot aktiverte applikasjoner</string>
   <string name="wizard_tips_gibberbot">ChatSecure: Sikret sludreprogram med OTR-kryptering</string>
@@ -116,6 +120,8 @@
   <string name="pref_entrance_node">Inngangsnoder</string>
   <string name="pref_entrance_node_summary">Fingeravtrykk, kallenavn, land, og adresser til det første hopp</string>
   <string name="pref_entrance_node_dialog">Skriv inn inngangsnoder</string>
+  <string name="button_proxy_all">Mellomtjen alt</string>
+  <string name="button_proxy_none">Mellomtjen ingenting</string>
   <string name="pref_proxy_title">Utgående nettverksproxy (Valgfritt)</string>
   <string name="pref_proxy_type_title">Utgående proxytype</string>
   <string name="pref_proxy_type_summary">Protokoll for proxy-server: HTTP, HTTPS, SOCKS4, SOCKS5</string>
@@ -133,15 +139,15 @@
   <string name="pref_proxy_password_summary">Proxy Passord (valgfritt)</string>
   <string name="pref_proxy_password_dialog">Skriv inn Proxy Passord</string>
   <string name="status">Status</string>
-  <string name="setting_up_full_transparent_proxying_">Konfigurerer full transparent proxying…</string>
-  <string name="setting_up_app_based_transparent_proxying_">Konfigurerer applikasjonsbasert transparent proxying…</string>
+  <string name="setting_up_full_transparent_proxying_">Konfigurerer full transparent proxying...</string>
+  <string name="setting_up_app_based_transparent_proxying_">Konfigurerer applikasjonsbasert transparent proxying...</string>
   <string name="transparent_proxying_enabled">Transparent proxying AKTIVERT</string>
   <string name="transproxy_enabled_for_tethering_">TransProxy aktivert for nettdeling!</string>
   <string name="warning_error_starting_transparent_proxying_">ADVARSEL: Feil under oppstart av transparent proxying!</string>
   <string name="transproxy_rules_cleared">TransProxy regler fjernet</string>
   <string name="couldn_t_start_tor_process_">Kunne ikke starte Tor prosessen:</string>
   <string name="privoxy_is_running_on_port_">Polipo kjører på port:</string>
-  <string name="setting_up_port_based_transparent_proxying_">Konfigurerer portbasert transparent proxying…</string>
+  <string name="setting_up_port_based_transparent_proxying_">Konfigurerer portbasert transparent proxying...</string>
   <string name="bridge_error">Brofeil</string>
   <string name="bridge_requires_ip">For å kunne bruke bro-funksjonen, må du oppgi minst én bro IP-adresse.</string>
   <string name="send_email_for_bridges">Send en epost til bridges@torproject.org med teksten \"get bridges\" alene som eneste tekst i selve eposten fra en Gmail-konto.</string>
@@ -193,7 +199,7 @@
   <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
   <string name="openssl_version">OpenSSL v1.0.1i: http://www.openssl.org</string>
   <string name="hidden_service_request">En applikasjon vil åpne den skjulte tjenesteporten %S til Tor-nettverket. Dette er trygt hvis du stoler på applikasjonen. </string>
-  <string name="found_existing_tor_process">fant eksisterende Tor-prosess…</string>
+  <string name="found_existing_tor_process">fant eksisterende Tor-prosess...</string>
   <string name="something_bad_happened">Noe alvorlig skjedde. Sjekk loggen.</string>
   <string name="hidden_service_on">skjult tjeneste på:</string>
   <string name="unable_to_read_hidden_service_name">klarte ikke å lese skjult tjenestenavn</string>
@@ -213,7 +219,7 @@
   <string name="wizard_locale_msg">Bruk standard, eller endre det gjeldende språket</string>
   <string name="powered_by">Levert av Tor</string>
   <string name="btn_save_settings">Lagre Inntillinger</string>
-  <string name="no_internet_connection_tor">Ingen Internett-tilkobling; Tor er i ventemodus… </string>
+  <string name="no_internet_connection_tor">Ingen Internett-tilkobling; Tor er i ventemodus... </string>
   <string name="bandwidth_">Båndbredde:</string>
   <string name="down">ned</string>
   <string name="up">opp</string>
@@ -226,9 +232,30 @@
   <string name="permission_manage_tor_description">La dette programmet kontrollere Tor-tjenesten</string>
   <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Det virker ikke som du har Orweb installert. Vil du ha hjelp til det, eller skal vi bare åpne nettleseren?</string>
   <string name="install_apps_">Installere programmer?</string>
+  <string name="no_network_connectivity_putting_tor_to_sleep_">Ingen nettverkstilkobling. Putting Tor å sove ...</string>
+  <string name="network_connectivity_is_good_waking_tor_up_">Nettverkstilkobling er bra. Våkne Tor opp ...</string>
   <string name="updating_settings_in_tor_service">Oppdaterer innstillinger i Tor service</string>
   <string name="pref_socks_summary">Port som Tor tilbyr er SOCKS proxy på (standard: 9050 eller 0 for å slå av)</string>
   <string name="pref_socks_dialog">SOCKS Port Konfigurasjon</string>
   <string name="pref_transport_title">Tor TransProxy Port</string>
   <string name="pref_transport_dialog">TransProxy Port Konfigurasjon</string>
+  <string name="pref_dnsport_title">Tor DNS Port</string>
+  <string name="pref_dnsport_dialog">DNS Port Configurer</string>
+  <string name="your_tor_public_ips_">Din Tor offentlige IP:</string>
+  <string name="menu_vpn">Apper</string>
+  <string name="kbps">kbps</string>
+  <string name="mbps">mbps</string>
+  <string name="kb">KB</string>
+  <string name="mb">MB</string>
+  <string name="bridges_updated">Broer oppdatert</string>
+  <string name="restart_orbot_to_use_this_bridge_">Gjør omstart av Orbot før endringer trer i kraft</string>
+  <string name="menu_qr">QR-koder</string>
+  <string name="get_bridges_email">E-post</string>
+  <string name="get_bridges_web">Vev</string>
+  <string name="activate">Aktiver</string>
+  <string name="apps_mode">Program-modus</string>
+  <string name="send_email">Send e-post</string>
+  <string name="install_orweb">Installer Orweb</string>
+  <string name="standard_browser">Forvalgt nettleser</string>
+  <string name="note_only_standard_tor_bridges_work_on_intel_x86_atom_devices">Merk: Bare vanlige Tor-broer fungerer på Intel X86/Atom-enheter</string>
 </resources>

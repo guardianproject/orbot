@@ -6,10 +6,12 @@
     <body>
       <trans-unit id="title" maxwidth="30" size-unit="char">
         <source>Orbot</source>
+        <target>Orbot</target>
         <note from="developer">This is limited by Google to 30 characters</note>
       </trans-unit>
       <trans-unit id="shortdescription" maxwidth="80" size-unit="char">
         <source>Protect your privacy with this proxy with Tor</source>
+        <target>Tor의 이 프록시로 여러분의 개인 정보를 지키세요</target>
         <note from="developer">This is limited by Google to 80 characters</note>
       </trans-unit>
       <trans-unit id="intro">
@@ -37,12 +39,14 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="expertrootmode">
         <source>***Expert Root Mode***</source>
+        <target>***전문가 루트 모드***</target>
       </trans-unit>
       <trans-unit id="universalmode">
         <source>UNIVERSAL MODE: Orbot can be configured to transparently proxy all of your Internet traffic through Tor. You can also choose which specific apps you want to use through Tor.</source>
       </trans-unit>
       <trans-unit id="wespeakyourlanguage">
         <source>★ WE SPEAK YOUR LANGUAGE: Orbot is available for friends who speak:</source>
+        <target>★ 우리는 여러분의 언어를 구사합니다: Orbot은 다음 언어로 사용할 수 있습니다:</target>
       </trans-unit>
       <trans-unit id="languagelist" translate="no">
         <source>العربية, azərbaycanca, български, català, Čeština, dansk, Deutsch, Ελληνικά, English, español, eesti, euskara, فارسی, suomi, français, galego, hrvatski, magyar, עברית, íslenska, italiano, 日本語, 한국어, lietuvių, latviešu, Македонци, Bahasa Melayu, Nederlands, norsk, polski, português, Русский, slovenčina, slovenščina, српски, svenska, Türkçe, українська, Tagalog, Tiếng Việt, 中文(简体), 中文(台灣)</source>
@@ -50,6 +54,7 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="helptranslate">
         <source>Don’t see your language? Join us and help translate the app:</source>
+        <target>여러분의 언어가 보이지 않습니까? 우리에게 가입하여 앱을 번역하는 것을 도와주십시오:</target>
       </trans-unit>
       <trans-unit id="helptranslateurl" translate="no">
         <source>https://www.transifex.com/projects/p/orbot</source>
@@ -57,21 +62,27 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="learnmore">
         <source>***Learn More***</source>
+        <target>***더 알아보기***</target>
       </trans-unit>
       <trans-unit id="aboutus">
         <source>★ ABOUT US: Guardian Project is a group of developers that make secure mobile apps and open-source code for a better tomorrow</source>
+        <target>★ 우리에 대하여: 가디언 프로젝트는 더 나은 내일을 위해 안전한 모바일 앱 및 오픈 소스 코드를 만드는 개발자 그룹입니다</target>
       </trans-unit>
       <trans-unit id="ourwebsite">
         <source>★ OUR WEBSITE: https://GuardianProject.info</source>
+        <target>★ 우리 웹사이트: https://GuardianProject.info</target>
       </trans-unit>
       <trans-unit id="abouttor">
         <source>★ ABOUT TOR: https://TorProject.org</source>
+        <target>★ TOR에 대하여: https://TorProject.org</target>
       </trans-unit>
       <trans-unit id="ontwitter">
         <source>★ ON TWITTER: https://twitter.com/guardianproject</source>
+        <target>★ 트위터: https://twitter.com/guardianproject</target>
       </trans-unit>
       <trans-unit id="freesoftware">
         <source>★ FREE SOFTWARE: Orbot is free software. Take a look at our source code, or join the community to make it better:</source>
+        <target>★ 자유 소프트웨어: Orbot은 자유 소프트웨어입니다. 그것을 더 좋게 만드려면 우리의 소스 코드를 찾아보거나, 공동체에 들어오세요:</target>
       </trans-unit>
       <trans-unit id="gitrepo" translate="no">
         <source>https://gitweb.torproject.org/orbot.git</source>

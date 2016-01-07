@@ -6,10 +6,12 @@
     <body>
       <trans-unit id="title" maxwidth="30" size-unit="char">
         <source>Orbot</source>
+        <target>Orbot</target>
         <note from="developer">This is limited by Google to 30 characters</note>
       </trans-unit>
       <trans-unit id="shortdescription" maxwidth="80" size-unit="char">
         <source>Protect your privacy with this proxy with Tor</source>
+        <target>使用Tor代理保护你的隐私</target>
         <note from="developer">This is limited by Google to 80 characters</note>
       </trans-unit>
       <trans-unit id="intro">
@@ -47,6 +49,7 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="wespeakyourlanguage">
         <source>★ WE SPEAK YOUR LANGUAGE: Orbot is available for friends who speak:</source>
+        <target>★ 请选择你需要使用的语言:</target>
       </trans-unit>
       <trans-unit id="languagelist" translate="no">
         <source>العربية, azərbaycanca, български, català, Čeština, dansk, Deutsch, Ελληνικά, English, español, eesti, euskara, فارسی, suomi, français, galego, hrvatski, magyar, עברית, íslenska, italiano, 日本語, 한국어, lietuvių, latviešu, Македонци, Bahasa Melayu, Nederlands, norsk, polski, português, Русский, slovenčina, slovenščina, српски, svenska, Türkçe, українська, Tagalog, Tiếng Việt, 中文(简体), 中文(台灣)</source>
@@ -54,13 +57,16 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="helptranslate">
         <source>Don’t see your language? Join us and help translate the app:</source>
+        <target>没有你的语言？加入我们并帮助我们完善应用:</target>
       </trans-unit>
       <trans-unit id="helptranslateurl" translate="no">
         <source>https://www.transifex.com/projects/p/orbot</source>
+        <target>https://www.transifex.com/projects/p/orbot</target>
         <note from="developer">Do not translate this.</note>
       </trans-unit>
       <trans-unit id="learnmore">
         <source>***Learn More***</source>
+        <target>***更多***</target>
       </trans-unit>
       <trans-unit id="aboutus">
         <source>★ ABOUT US: Guardian Project is a group of developers that make secure mobile apps and open-source code for a better tomorrow</source>
@@ -76,17 +82,20 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="ontwitter">
         <source>★ ON TWITTER: https://twitter.com/guardianproject</source>
+        <target>★ 推特上的链接: https://twitter.com/guardianproject</target>
       </trans-unit>
       <trans-unit id="freesoftware">
         <source>★ FREE SOFTWARE: Orbot is free software. Take a look at our source code, or join the community to make it better:</source>
+        <target>★ 免费软件：Orbot 是一款免费软件。浏览源代码或加入我们的社区一起完善它吧。</target>
       </trans-unit>
       <trans-unit id="gitrepo" translate="no">
         <source>https://gitweb.torproject.org/orbot.git</source>
+        <target>https://gitweb.torproject.org/orbot.git</target>
         <note from="developer">Do not translate this.</note>
       </trans-unit>
       <trans-unit id="messageus">
         <source>★ MESSAGE US: Are we missing your favorite feature? Found an annoying bug? Please tell us! We’d love to hear from you. Send us an email: support@guardianproject.info or find us in our chat room https://guardianproject.info/contact</source>
-        <target>★ 联系我们：缺少你最需要的功能？找到一个烦人的 bug？请发电子邮件给我们，期待你的反馈：support@guardianproject.info</target>
+        <target>★ 联系我们：缺少你最需要的功能？遇到了一个烦人的错误？请发送邮件或者到官网联系我们， 邮件地址：support@guardianproject.info ，网址：https://guardianproject.info/contact 。</target>
       </trans-unit>
     </body>
   </file>

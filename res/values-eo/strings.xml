@@ -7,11 +7,11 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">ŝalti kaj malŝalti Tor</string>
   <string name="tor_proxy_service_process">torproxyservice</string>
-  <string name="status_starting_up">Orbot ŝaltiĝas…</string>
+  <string name="status_starting_up">Orbot ŝaltiĝas...</string>
   <string name="status_activated">Konektita al Tor-reto</string>
   <string name="status_disabled">Orbot estas malaktivigita</string>
   <string name="status_shutting_down">Orbot malŝaltiĝas</string>
-  <string name="tor_process_starting">Ŝaltiĝas Tor-kliento…</string>
+  <string name="tor_process_starting">Ŝaltiĝas Tor-kliento...</string>
   <string name="tor_process_complete">kompleta.</string>
   <string name="tor_process_waiting">atendas.</string>
   <string name="not_anonymous_yet">ATENTIGO: Via trafiko ankoraŭ ne estas anonima! Bonvolu agordi viajn aplikaĵojn por uzi HTTP-prokurilon 127.0.0.1:8118 aŭ SOCKS4A- aŭ SOCKS5-prokurilo 127.0.0.1:9050</string>
@@ -132,7 +132,7 @@
   <string name="project_home">Retpaĝaro(j) de la Projekto:</string>
   <string name="the_tor_license">The Tor License</string>
   <string name="https_torproject_org">https://torproject.org</string>
-  <string name="found_existing_tor_process">trovi ekzistantan Tor-procedon…</string>
+  <string name="found_existing_tor_process">trovi ekzistantan Tor-procedon...</string>
   <string name="hidden_service_on">kaŝitaj servoj je:</string>
   <string name="unable_to_read_hidden_service_name">ne eblas legi nomon de la kaŝita servo</string>
   <string name="unable_to_start_tor">Ne eblas startigi Tor:</string>
@@ -147,4 +147,5 @@
   <string name="menu_verify_browser">Kontroli Retumilon</string>
   <string name="menu_use_chatsecure">Uzi ChatSecure</string>
   <string name="install_apps_">Instali aplikaĵojn?</string>
+  <string name="install_orweb">Instali Orweb</string>
 </resources>

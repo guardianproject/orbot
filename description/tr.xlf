@@ -14,6 +14,7 @@
       </trans-unit>
       <trans-unit id="intro">
         <source>Orbot is a free proxy app that empowers other apps to use the internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.</source>
+        <target>Orbot başka uygulamaların interneti daha güvenli olarak kullanmasını sağlayan ücretsiz bir proxy uygulamasıdır. Orbot Tor'u kullanarak internet trafiğinizi şifreler ve dünya üzerindeki pek çok farklı bilgisayardan geçirerek gizler. Tor sizin kişisel özgürlüğünüzü ve mahremiyetinizi, gizli ticari aktivitelerinizi ve bağlantılarınızı koruma altına alan bir yazılım ve açık ağdır.</target>
       </trans-unit>
       <trans-unit id="intro2">
         <source>Orbot is the only app that creates a truly private internet connection. As the New York Times writes, “when a communication arrives from Tor, you can never know where or whom it’s from.” Tor won the 2012 Electronic Frontier Foundation (EFF) Pioneer Award.</source>

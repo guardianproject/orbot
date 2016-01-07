@@ -8,11 +8,11 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">启动和停止 Tor</string>
   <string name="tor_proxy_service_process">Tor 代理服务</string>
-  <string name="status_starting_up">Orbot 正在启动…</string>
+  <string name="status_starting_up">Orbot 正在启动...</string>
   <string name="status_activated">已连接到 Tor 网络</string>
   <string name="status_disabled">Orbot 已停用</string>
   <string name="status_shutting_down">Orbot 正在关闭</string>
-  <string name="tor_process_starting">正在启动 Tor 客户端…</string>
+  <string name="tor_process_starting">正在启动 Tor 客户端...</string>
   <string name="tor_process_complete">完成。</string>
   <string name="tor_process_waiting">等待。</string>
   <string name="not_anonymous_yet">警告：你的网络通讯并非匿名！请设置应用程序，使用 HTTP 代理 127.0.0.1:8118 或者 SOCKS4A、SOCKS5 代理 127.0.0.1:9050</string>
@@ -84,6 +84,8 @@
   <string name="wizard_final">Orbot 已就绪！</string>
   <string name="wizard_exit_at_first_screen_toast">请在您开始使用它前配置 Orbot！</string>
   <!--END Welcome Wizard strings (DJH)-->
+  <string name="connect_first_time">你已成功接入Tor网络 - 但是这不意味着你的设备已安全匿名。你可以通过菜单中”Check\"选项测试浏览器的匿名性。
+通过访问 https://guardianproject.info/apps/orbot 或者向 help@guardianproject.info 发送邮件了解更多。</string>
   <string name="tor_check">浏览器将启动并访问：https://check.torproject.org，以便检查 Orbot 配置是否正确以及是否可连接 Tor 网络。</string>
   <string name="pref_hs_group">隐藏服务主机</string>
   <string name="pref_general_group">常规</string>
@@ -91,8 +93,13 @@
   <string name="pref_start_boot_summary">Android 设备开机时自动启动 Orbot 并连接 Tor 网络</string>
   <!--New Wizard Strings-->
   <!--Title Screen-->
+  <string name="wizard_title_msg">Orbot使Android支持Tor网络!
+Tor帮助你避开那些威胁到你的隐私，重要信息和社交关系的内容过滤，流量分析以及网络审查。
+这个向导将帮助你配置Orbot在你设备商以便访问Tor。</string>
   <!--Warning screen-->
   <string name="wizard_warning_title">警告</string>
+  <string name="wizard_warning_msg">简单的安装完Orbot并不能自动的匿名你的移动流量。
+你必须适当的配置Orbot，以及你的设备及应用以成功匿名使用Tor。</string>
   <!--Permissions screen-->
   <string name="wizard_permissions_title">权限</string>
   <string name="wizard_permissions_root_msg1">可选择授予 Orbot “Superuser”访问权限，以便启用高级功能，例如透明代理。</string>
@@ -140,15 +147,15 @@
   <string name="pref_proxy_password_summary">代理密码（可选）</string>
   <string name="pref_proxy_password_dialog">请输入代理密码</string>
   <string name="status">状态</string>
-  <string name="setting_up_full_transparent_proxying_">正在对所有应用程序进行透明代理设置…</string>
-  <string name="setting_up_app_based_transparent_proxying_">正在对所选应用程序进行透明代理设置…</string>
+  <string name="setting_up_full_transparent_proxying_">正在对所有应用程序进行透明代理设置...</string>
+  <string name="setting_up_app_based_transparent_proxying_">正在对所选应用程序进行透明代理设置...</string>
   <string name="transparent_proxying_enabled">透明代理已启用</string>
   <string name="transproxy_enabled_for_tethering_">已为网络共享激活 TransProxy ！</string>
   <string name="warning_error_starting_transparent_proxying_">警告：启动透明代理时发生错误！</string>
   <string name="transproxy_rules_cleared">已清除 TransProxy 规则</string>
   <string name="couldn_t_start_tor_process_">无法启动 Tor 进程：</string>
   <string name="privoxy_is_running_on_port_">Polipo 正运行在端口:</string>
-  <string name="setting_up_port_based_transparent_proxying_">正在对基于端口的透明代理进行设置…</string>
+  <string name="setting_up_port_based_transparent_proxying_">正在对基于端口的透明代理进行设置...</string>
   <string name="bridge_error">网桥错误</string>
   <string name="bridge_requires_ip">为了需使用网桥，必须至少输入一个网桥 IP 地址。</string>
   <string name="send_email_for_bridges">如需获取网桥地址，请使用 gmail 发送电子邮件至 bridges@torproject.org 并在正文内填上“ get bridges”。</string>
@@ -201,7 +208,7 @@
   <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
   <string name="openssl_version">OpenSSL v1.0.1i: http://www.openssl.org</string>
   <string name="hidden_service_request">应用程序试图打开隐藏服务主机端口 %S 连接 Tor 网络。对于可信应用这是安全的。</string>
-  <string name="found_existing_tor_process">发现当前已存在 Tor 进程…</string>
+  <string name="found_existing_tor_process">发现当前已存在 Tor 进程...</string>
   <string name="something_bad_happened">发生错误，请检查日志</string>
   <string name="hidden_service_on">隐藏服务位于：</string>
   <string name="unable_to_read_hidden_service_name">无法读取隐藏服务名称</string>
@@ -236,7 +243,7 @@
   <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">好像没有安装 Orweb。是否需要帮忙，还是直接打开浏览器？</string>
   <string name="install_apps_">安装应用？</string>
   <string name="no_network_connectivity_putting_tor_to_sleep_">没有网络连接；让 Tor 进入睡眠…</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">网络连接良好。正在唤醒 Tor…</string>
+  <string name="network_connectivity_is_good_waking_tor_up_">网络连接良好。正在唤醒 Tor...</string>
   <string name="updating_settings_in_tor_service">正在更新 Tor 服务中的设置</string>
   <string name="pref_socks_title">Tor SOCKS</string>
   <string name="pref_socks_summary">Tor 提供其 SOCKS 代理的端口 (默认: 9050, 0 禁用)</string>
