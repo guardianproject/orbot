@@ -275,8 +275,9 @@ polipo-clean:
 # PLUTO Pluggable Transports
 
 pluto/bin/android_arm/obfs4proxy:
-	cd pluto && \
-		./build.sh
+#don't build for now until we sort out Go SDK 
+#	cd pluto && \
+#		./build.sh
 
 pluto-build-stamp: pluto/bin/android_arm/obfs4proxy
 	touch pluto-build-stamp
@@ -287,7 +288,7 @@ pluto: pluto-build-stamp
 	cp pluto/bin/android_arm/meek-client bin
 
 pluto-clean:
-	-rm -rf pluto/bin
+#	-rm -rf pluto/bin
 
 #------------------------------------------------------------------------------#
 # JTorControl library
