@@ -16,6 +16,7 @@ builds
 /patches/*
 obj
 releases
+.transifexrc
 
 # ant build products
 build.xml
