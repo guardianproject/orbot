@@ -300,6 +300,7 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
             app.setUid(aInfo.uid);
             app.setUsername(pMgr.getNameForUid(app.getUid()));
             app.setProcname(aInfo.processName);
+            app.setPackageName(aInfo.packageName);
             
             try
             {

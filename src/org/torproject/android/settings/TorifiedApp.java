@@ -10,6 +10,7 @@ public class TorifiedApp implements Comparable {
 	private String procname;
 	private String name;
 	private Drawable icon;
+	private String packageName;
 	
 	private boolean torified = false;
 	private boolean usesInternet = false;
@@ -126,5 +127,13 @@ public class TorifiedApp implements Comparable {
 	public String toString ()
 	{
 		return getName();
+	}
+	
+
+	public String getPackageName() {
+		return packageName;
+	}
+	public void setPackageName(String packageName) {
+		this.packageName = packageName;
 	}
 }

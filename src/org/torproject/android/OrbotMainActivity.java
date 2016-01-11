@@ -809,7 +809,7 @@ public class OrbotMainActivity extends Activity
             else if (torStatus == TorServiceConstants.STATUS_ON)
             {
                 updateTransProxy();
-                Toast.makeText(this, R.string.you_may_need_to_stop_and_start_orbot_for_settings_change_to_be_enabled_, Toast.LENGTH_SHORT).show();
+               // Toast.makeText(this, R.string.you_may_need_to_stop_and_start_orbot_for_settings_change_to_be_enabled_, Toast.LENGTH_SHORT).show();
 
             }
         }

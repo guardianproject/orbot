@@ -343,9 +343,9 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
         
         for (TorifiedApp app : apps)
         {
-        	if (app.isTorified())
+        	if (app.isTorified() && (!app.getPackageName().equals(getPackageName())))
         	{
-        		builder.addAllowedApplication(app.getUsername());
+        		builder.addAllowedApplication(app.getPackageName());
         		perAppEnabled = true;
         	}
         	
