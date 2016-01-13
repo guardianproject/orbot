@@ -132,6 +132,8 @@ public class TorResourceInstaller implements TorServiceConstants {
         shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
         streamToFile(is,outFile, false, true);
         setExecutable(outFile);
+        
+        installGeoIP();
     
         return true;
     }
@@ -196,14 +198,14 @@ public class TorResourceInstaller implements TorServiceConstants {
      * Extract the Tor binary from the APK file using ZIP
      */
     
-    public boolean installGeoIP () throws IOException, FileNotFoundException
+    private boolean installGeoIP () throws IOException, FileNotFoundException
     {
         
         InputStream is;
         File outFile;
         
-        is = context.getResources().openRawResource(R.raw.geoip);
         outFile = new File(installFolder, GEOIP_ASSET_KEY);
+        is = context.getResources().openRawResource(R.raw.geoip);
         streamToFile(is, outFile, false, true);
         
         is = context.getResources().openRawResource(R.raw.geoip6);

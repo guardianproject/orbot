@@ -621,8 +621,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         fileControlPort = new File(OrbotApp.appBinHome, "control.txt");
         extraLines.append(TORRC_CONTROLPORT_FILE_KEY).append(' ').append(fileControlPort.getCanonicalPath()).append('\n');
 
-         extraLines.append("RunAsDaemon 1").append('\n');
-         extraLines.append("AvoidDiskWrites 1").append('\n');
+//         extraLines.append("RunAsDaemon 1").append('\n');
+ //        extraLines.append("AvoidDiskWrites 1").append('\n');
         
          String socksPortPref = prefs.getString(OrbotConstants.PREF_SOCKS,
                  String.valueOf(TorServiceConstants.SOCKS_PROXY_PORT_DEFAULT));
@@ -634,18 +634,26 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         extraLines.append("TestSocks 0").append('\n');
         extraLines.append("WarnUnsafeSocks 1").append('\n');
     
-        extraLines.append("TransPort ").append("auto").append('\n');
-    	extraLines.append("DNSPort ").append(TorServiceConstants.TOR_DNS_PORT_DEFAULT).append("\n");
-        
-        if (Prefs.transparentTethering())
+        if (Prefs.useTransparentProxying())
         {
-            extraLines.append("TransListenAddress 0.0.0.0").append('\n');
-            extraLines.append("DNSListenAddress 0.0.0.0").append('\n');            
+
+            String transPort = prefs.getString("pref_transport", TorServiceConstants.TOR_TRANSPROXY_PORT_DEFAULT+"");
+            String dnsPort = prefs.getString("pref_dnsport", TorServiceConstants.TOR_DNS_PORT_DEFAULT+"");
+            
+	        extraLines.append("TransPort ").append(transPort).append('\n');
+	    	extraLines.append("DNSPort ").append(dnsPort).append("\n");
+	        
+	        if (Prefs.transparentTethering())
+	        {
+	            extraLines.append("TransListenAddress 0.0.0.0").append('\n');
+	            extraLines.append("DNSListenAddress 0.0.0.0").append('\n');            
+	        }
+       
+	        extraLines.append("VirtualAddrNetwork 10.192.0.0/10").append('\n');
+	        extraLines.append("AutomapHostsOnResolve 1").append('\n');
+	       
         }
 
-        extraLines.append("VirtualAddrNetwork 10.192.0.0/10").append('\n');
-        extraLines.append("AutomapHostsOnResolve 1").append('\n');
-       
         extraLines.append("DisableNetwork 0").append('\n');
                 
         if (Prefs.useDebugLogging())
@@ -654,7 +662,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         	extraLines.append("Log info syslog").append('\n');
         	extraLines.append("SafeLogging 0").append('\n');   
 
-        	//extraLines.append("Log debug stdout").append('\n');
         }
         
         processSettingsImpl(extraLines);
@@ -1936,17 +1943,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         logNotice(getString(R.string.updating_settings_in_tor_service));
         
         SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
-
-        /*
-        String socksConfig = prefs.getString(TorConstants.PREF_SOCKS, TorServiceConstants.PORT_SOCKS_DEFAULT);
-
-        enableSocks (socksConfig,false);
-        
-        String transPort = prefs.getString("pref_transport", TorServiceConstants.TOR_TRANSPROXY_PORT_DEFAULT+"");
-        String dnsPort = prefs.getString("pref_dnsport", TorServiceConstants.TOR_DNS_PORT_DEFAULT+"");
-        
-        enableTransProxyAndDNSPorts(transPort, dnsPort);
-        */
         
         boolean useBridges = Prefs.bridgesEnabled();
 
@@ -2034,11 +2030,11 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
 	            for (String bridgeConfigLine : bridgeListLines)
 	            {
-	                if (bridgeConfigLine != null && bridgeConfigLine.length() > 0)
+	                if (!TextUtils.isEmpty(bridgeConfigLine))
 	                {
 	                	extraLines.append("Bridge ");
 	                	
-	                	bridgeConfigLine = bridgeConfigLine.replace('�', ' ');
+	                	//bridgeConfigLine = bridgeConfigLine.replace('�', ' ');
 	                	
 	                	StringTokenizer st = new StringTokenizer (bridgeConfigLine," ");
 	                	while (st.hasMoreTokens())
@@ -2093,15 +2089,13 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         if (entranceNodes.length() > 0 || exitNodes.length() > 0 || excludeNodes.length() > 0)
         {
            
-            if (enableGeoIP ())
-            { //only apply GeoIP if you need it
-                File fileGeoIP = new File(OrbotApp.appBinHome, GEOIP_ASSET_KEY);
-                File fileGeoIP6 = new File(OrbotApp.appBinHome, GEOIP6_ASSET_KEY);
-                    
-                extraLines.append("GeoIPFile" + ' ' + fileGeoIP.getCanonicalPath()).append('\n');
-                extraLines.append("GeoIPv6File" + ' ' + fileGeoIP6.getCanonicalPath()).append('\n');
-            }
-            
+            //only apply GeoIP if you need it
+            File fileGeoIP = new File(OrbotApp.appBinHome, GEOIP_ASSET_KEY);
+            File fileGeoIP6 = new File(OrbotApp.appBinHome, GEOIP6_ASSET_KEY);
+                
+            extraLines.append("GeoIPFile" + ' ' + fileGeoIP.getCanonicalPath()).append('\n');
+            extraLines.append("GeoIPv6File" + ' ' + fileGeoIP6.getCanonicalPath()).append('\n');
+        
         }
 
         if (!TextUtils.isEmpty(entranceNodes))
@@ -2354,9 +2348,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         	{
     	    	try
     	    	{
-    	    		
-    	    		enableGeoIP ();
-    	    			
                     File fileGeoIP = new File(OrbotApp.appBinHome, GEOIP_ASSET_KEY);
                     File fileGeoIP6 = new File(OrbotApp.appBinHome, GEOIP6_ASSET_KEY);
                         
@@ -2369,8 +2360,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     	    		conn.setConf("DisableNetwork","1");
     	    		conn.setConf("DisableNetwork","0");
     	    		
-    	    		
-    	    		
 
     	    	}
     	    	catch (IOException ioe)
@@ -2379,34 +2368,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     	    	}
         	}
     	}
-    	
-    	
 
-    }
-    
-    private boolean enableGeoIP ()
-    {
-    	 File fileGeoIP = new File(OrbotApp.appBinHome, GEOIP_ASSET_KEY);
-         File fileGeoIP6 = new File(OrbotApp.appBinHome, GEOIP6_ASSET_KEY);
-        
-    	 try
-         {
-             if ((!fileGeoIP.exists()))
-             {
-                 TorResourceInstaller installer = new TorResourceInstaller(this, OrbotApp.appBinHome);
-                 boolean success = installer.installGeoIP();
-                 
-             }
-             
-             return true;
-             
-         }
-         catch (Exception e)
-         {
-              showToolbarNotification (getString(R.string.error_installing_binares),ERROR_NOTIFY_ID,R.drawable.ic_stat_notifyerr);
-
-             return false;
-         }
     }
 
 }

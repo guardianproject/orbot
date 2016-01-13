@@ -56,6 +56,8 @@ import android.widget.ToggleButton;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.torproject.android.service.TorService;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.TorServiceUtils;
@@ -263,11 +265,11 @@ public class OrbotMainActivity extends Activity
 		boolean useVPN = Prefs.useVpn();
 		mBtnVPN.setChecked(useVPN);
 		
-		/**
+		//auto start VPN if VPN is enabled
 		if (useVPN)
 		{
 			startActivity(new Intent(OrbotMainActivity.this,VPNEnableActivity.class));
-		}*/
+		}
 		
 		mBtnVPN.setOnClickListener(new View.OnClickListener ()
 		{
@@ -827,16 +829,31 @@ public class OrbotMainActivity extends Activity
         	if (results != null && results.length() > 0)
         	{
 	        	try {
-					results = URLDecoder.decode(results, "UTF-8");
 					
 					int urlIdx = results.indexOf("://");
 					
 					if (urlIdx!=-1)
+					{
+						results = URLDecoder.decode(results, "UTF-8");
 						results = results.substring(urlIdx+3);
+						setNewBridges(results);
+					}
+					else
+					{
+						JSONArray bridgeJson = new JSONArray(results);
+						StringBuffer bridgeLines = new StringBuffer();
+						
+						for (int i = 0; i < bridgeJson.length(); i++)
+						{
+							String bridgeLine = bridgeJson.getString(i);
+							bridgeLines.append(bridgeLine).append("\n");
+						}
+						
+						setNewBridges(bridgeLines.toString());
+					}
 					
-					setNewBridges(results);
 					
-				} catch (UnsupportedEncodingException e) {
+				} catch (Exception e) {
 					Log.e(TAG,"unsupported",e);
 				}
         	}

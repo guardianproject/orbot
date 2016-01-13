@@ -150,7 +150,7 @@ public interface TorServiceConstants {
 	public final static String PDNSD_ASSET_KEY = "pdnsd";
 
 	//EXIT COUNTRY CODES
-	public final static String[] COUNTRY_CODES = {"DE","AT","SE","CH","IS","CA","US","FR","BG","AU","BR","CZ","DK","FI","GB","HU","NL","JP","HK","RO","RU","SG","SK","CN"};
+	public final static String[] COUNTRY_CODES = {"DE","AT","SE","CH","IS","CA","US","ES","FR","BG","PL","AU","BR","CZ","DK","FI","GB","HU","NL","JP","RO","RU","SG","SK"};
 	
 	
 }
