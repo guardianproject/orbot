@@ -16,6 +16,9 @@ else
     echo ""
     echo ""
     echo "Checking git tag signature for release build:"
+    gpg --list-key 9F0FE587374BBE81 || gpg --recv-key 9F0FE587374BBE81
+    gpg --list-key E9E28DEA00AA5556 || gpg --recv-key E9E28DEA00AA5556
+    gpg --list-key A801183E69B37AA9 || gpg --recv-key A801183E69B37AA9
     git tag -v $versionName
     echo ""
     echo ""
