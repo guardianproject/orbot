@@ -199,7 +199,7 @@ iptables/Makefile:
 	cp config.sub iptables
 	cp config.guess iptables
 	cd iptables && \
- 		CC="$(CC)" AR="$(AR)" RANLIB=$(RANLIB) CFLAGS="$(CFLAGS) -I$(EXTERNAL_ROOT)/include" LDFLAGS="$(LDFLAGS)" \
+		CC="$(CC)" AR="$(AR)" RANLIB=$(RANLIB) CFLAGS="$(CFLAGS) -I$(EXTERNAL_ROOT)/include" LDFLAGS="$(LDFLAGS)" \
 			./configure --host=$(HOST) --disable-shared --enable-static 
 
 iptables-build-stamp: iptables/Makefile
@@ -291,34 +291,12 @@ pluto-clean:
 #	-rm -rf pluto/bin
 
 #------------------------------------------------------------------------------#
-# JTorControl library
-
-jtorctl/bin/jtorctl.jar:
-	test -d jtorctl/bin || mkdir jtorctl/bin
-	cd jtorctl && \
-		javac -source 1.6 -target 1.6 net/freehaven/tor/control/TorControlConnection.java -d bin
-	cd jtorctl/bin && \
-		jar cvf jtorctl.jar *
-
-jtorctl-build-stamp: jtorctl/bin/jtorctl.jar
-	touch jtorctl-build-stamp
-
-jtorctl: jtorctl-build-stamp
-	test -d bin || mkdir bin
-	cp jtorctl/bin/jtorctl.jar bin
-
-jtorctl-clean:
-	-rm -rf jtorctl/bin
-	-rm jtorctl-build-stamp
-
-#------------------------------------------------------------------------------#
 #create and clean assets: FYI - tor is stored as a ZIP file with an mp3 extension
 #in order to stop Android OS (older devices) from trying to compress/decompress it
 #this is related to a bug in compression of assets and resources > 1MB
 
-assets: tor polipo jtorctl iptables pluto
+assets: tor polipo iptables pluto
 	install -d ../libs
-	install bin/jtorctl.jar ../libs
 	install -d ../assets/$(APP_ABI)
 	-$(STRIP) bin/polipo
 	-zip ../assets/$(APP_ABI)/polipo.mp3 bin/polipo
@@ -341,13 +319,12 @@ assets-clean:
 	-rm ../assets/$(APP_ABI)/meek-client.mp3
 	-rm ../assets/$(APP_ABI)/obfs4proxy.mp3
 	-rm ../assets/$(APP_ABI)/pdnsd.mp3
-	-rm ../libs/jtorctl.jar
 
 #------------------------------------------------------------------------------#
 # cleanup, cleanup, put the toys away
 
-##clean: openssl-clean libevent-clean tor-clean polipo-clean jtorctl-clean assets-clean
-clean: openssl-clean libevent-clean tor-clean polipo-clean iptables-clean jtorctl-clean pluto-clean
+##clean: openssl-clean libevent-clean tor-clean polipo-clean assets-clean
+clean: openssl-clean libevent-clean tor-clean polipo-clean iptables-clean pluto-clean
 
 #------------------------------------------------------------------------------#
 # debugging stuff
