@@ -71,6 +71,14 @@ faketime -f "$TIMESTAMP_5" ant release
 
 apk=$projectroot/bin/$projectname-v$describe.apk
 
+# standardize timestamps in ZIP headers, requires strip-nondeterminism 0.014
+if which strip-nondeterminism > /dev/null; then
+    strip-nondeterminism -t zip -T $(git log -n1 --format=format:%at) $apk
+fi
+
+# echo the checksum to build logs
+sha256sum $apk
+
 if which gpg > /dev/null; then
     if [ -z "`gpg --list-secret-keys`" ]; then
         echo "No GPG secret keys found, not signing APK"
