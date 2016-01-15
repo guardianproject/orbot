@@ -1,5 +1,55 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+/** 15.1.0-RC-1 / 15-January-2016 / f541e9ffe14a2719863327bf262b48de135ee0fd **/
+
+We updated the essentials
+* 317405d update external versions of Tor 0.2.7.6 and OpenSSL 1.0.1q
+
+We made the ability scan QR codes from bridges.torproject.org work again!
+* 8f7165c fixes for settings processing and QRCode scanning of bridges - support new JSON array form bridges.torproject.org - only enab
+
+We fixed the DNS leak bug in the VPN feature and improved the usability overall (no Orbot restart required)
+* 76b2171 update pdnsd and tun2socks to Android-16 add stpcpy function not present before Android-21
+* 39244a6 fix the ability to select per app VPN routing
+* d839b15 fixes for VPN service UI to work on Android6
+* 3691cca native binary asset building fixes move pdnsd exec to assets
+* f369652 add code to kill pdnsd daemon when VPN is stopped
+* f1fcec3 add support for PDNSD DNS Daemon for VPN DNS resolution Tor's DNS port doesn't work well with the VPN mode, so we will use PD
+* 8d8fe0c updates to improve VPN support
+* 699b60d add linancillary for badvpn tun2socks update for DNS
+
+We added the controversial ability for the user to easily set their exit country, with the default to the whole world
+* 52acf68 move "World" string to resource
+* 3b41365 allow country exit node select to persist
+* b208178 add initial support for easy exit country selection
+
+We now recommend Orfox over Orweb
+* 51205b8 update for Orfox
+* 0a5dd08 use a browser constant here, with the new constant being Orfox
+
+We made some new graphics
+* c54ab18 deleted these graphics
+* 534c2fb update style, icons and graphics
+
+We improve the build process, updated localizations and links to other repos:
+* 3240367 clean shouldn't clean assets, so we can easily builds for multiple platforms
+* 0081d00 remove Pluto Go building form this Makefile for now
+* 2288210 update to OpenSSL's github mirror
+* dfc5101 update tfx config
+* eaf49da update store and app translations
+* fe9119d update jenkins-build script
+* 6dc8cf6 update makefile for new pluto builds
+* 0261236 change this to "browser button"
+* 3462cbd small updates to icon and strings
+* bb55557 update installer to get PLUTO binaries from assets
+* 7d213e2 delete pluggable transport binaries here; build with Makefile use the external/pluto project
+* 6cf1201 update makefile to support PLUTO builds
+* 871701e add link for new icon
+* 6fb4f0c update binaries
+* cd0bfd3 [Trivial] Fixed broken reference to Main Activity in  WALKTHROUGH
+* 0cde639 fix translations for common issues
+* 2acdd29 update localizations for strings and app description
+
 /** 15.0.1-RC-2-PIE / 13-July-2015 / 30e37993bbfc248eea0476af01e91ef8126e88d9 */ 
 
 256ecc4 update tor version constant to 0.2.6.10
