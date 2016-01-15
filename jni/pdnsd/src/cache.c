@@ -2697,6 +2697,12 @@ int dump_cache(int fd, const unsigned char *name, int exact)
 	return rv;
 }
 
+char *stpcpy(char *dest, char const *src)
+{
+  strcpy(dest, src);
+  return dest + strlen(dest);
+}
+
 
 #if DEBUG>0
 
