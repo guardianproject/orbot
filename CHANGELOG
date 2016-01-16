@@ -1,5 +1,10 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+/** 15.1.0-RC-2 / 16-January-2016 / 9ed17b551c29b9edf94d64f5f013ad607c21bbc5 **/
+
+Quick fix for Samsung Galaxy devices which have a port conflict on the default SOCKS 9050 part
+* 6ffea9e add ability to check if configured SOCKS port is available Samsung devices like to use 9050 (Since their hardware model is i9
+
 /** 15.1.0-RC-1 / 15-January-2016 / f541e9ffe14a2719863327bf262b48de135ee0fd **/
 
 We updated the essentials
