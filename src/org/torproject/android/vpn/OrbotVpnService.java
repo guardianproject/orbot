@@ -65,8 +65,11 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     private String mSessionName = "OrbotVPN";
     private ParcelFileDescriptor mInterface;
 
+    private int mTorSocks = TorServiceConstants.SOCKS_PROXY_PORT_DEFAULT;
+    
     public static int mSocksProxyPort = -1;
     private ProxyServer mSocksProxyServer;
+   
     
     private final static int VPN_MTU = 1500;
     
@@ -96,6 +99,7 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 		        {
 		        	Log.d(TAG,"starting OrbotVPNService service!");
 		        	
+		        	mTorSocks = intent.getIntExtra("torSocks", TorServiceConstants.SOCKS_PROXY_PORT_DEFAULT);
 			    	mSocksProxyPort = intent.getIntExtra("proxyPort", 0);
 			    	
 			        // The handler is only used to show messages.
@@ -277,7 +281,7 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 		    		final String defaultRoute = "0.0.0.0";
 		    		
 		    		final String localSocks = localhost + ':'
-		    		        + String.valueOf(TorServiceConstants.SOCKS_PROXY_PORT_DEFAULT);
+		    		        + String.valueOf(mTorSocks);
 		    		
 		    		final String localDNS = virtualGateway + ':' + "8091";//String.valueOf(TorServiceConstants.TOR_DNS_PORT_DEFAULT);
 		        	final boolean localDnsTransparentProxy = true;

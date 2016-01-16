@@ -629,6 +629,14 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
          if (socksPortPref.indexOf(':')!=-1)
              socksPortPref = socksPortPref.split(":")[1];
          
+        if (!socksPortPref.equalsIgnoreCase("auto"))
+        {
+	        boolean isPortUsed = TorServiceUtils.isPortOpen("127.0.0.1",Integer.parseInt(socksPortPref),500);
+	        
+	        if (isPortUsed) //the specified port is not available, so let Tor find one instead
+	        	socksPortPref = "auto";
+        }
+        
         extraLines.append("SOCKSPort ").append(socksPortPref).append('\n');
         extraLines.append("SafeSocks 0").append('\n');
         extraLines.append("TestSocks 0").append('\n');
@@ -1094,86 +1102,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                          confSocks = st.nextToken().split(":")[1];
                          confSocks = confSocks.substring(0,confSocks.length()-1);
                          mPortSOCKS = Integer.parseInt(confSocks);
-                         
-                         /**
-                        if (!isReconnect) //if we are reconnected then we don't need to reset the ports
-                        {
-
-                            SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
-                            
-                             String socksPortPref = prefs.getString(OrbotConstants.PREF_SOCKS,
-                                     String.valueOf(TorServiceConstants.SOCKS_PROXY_PORT_DEFAULT));
-                             if (socksPortPref.indexOf(':')!=-1)
-                                 socksPortPref = socksPortPref.split(":")[1];
-                             
-                              String transPort = prefs.getString("pref_transport", TorServiceConstants.TOR_TRANSPROXY_PORT_DEFAULT+"");
-                              if (transPort.indexOf(':')!=-1)
-                                  transPort = transPort.split(":")[1];
-                             
-                              String dnsPort = prefs.getString("pref_dnsport", TorServiceConstants.TOR_DNS_PORT_DEFAULT+"");
-                              if (dnsPort.indexOf(':')!=-1)
-                                  dnsPort = dnsPort.split(":")[1];
-                             
-                             try
-                             {
-                                 int newSocksPort = Integer.parseInt(socksPortPref);
-                                                                 
-                                 ArrayList<String> socksLines = new ArrayList<String>();
-                                 socksLines.add("SOCKSPort " + mPortSOCKS);
-                                 socksLines.add("SOCKSPort " + socksPortPref);
-                             
-                                 conn.setConf(socksLines);
-                                 
-                                 mPortSOCKS = newSocksPort;
-                                 
-                                sendCallbackLogMessage("Local SOCKS port: " + socksPortPref);
-
-                             }
-                             catch (Exception e)
-                             {
-                                sendCallbackLogMessage("Error setting TransProxy port to: " + socksPortPref);
-
-                                
-                             }
-                             
-                             try
-                             {
-                                 ArrayList<String> confLines = new ArrayList<String>();
-                             
-                                 confLines.add("TransPort " + transPort);
-                                 
-                                 conn.setConf(confLines);
-                                 
-                                sendCallbackLogMessage("Local TransProxy port: " + transPort);
-
-                             }
-                             catch (Exception e)
-                             {
-                                sendCallbackLogMessage("ERROR setting TransProxy port to: " + transPort);
-
-                                
-
-                             }
-                             
-                             try
-                             {
-                                 ArrayList<String> confLines = new ArrayList<String>();
-                             
-                                 confLines.add("DNSPort " + dnsPort);
-                                 
-                                 conn.setConf(confLines);
-                                 
-                                sendCallbackLogMessage("Local DNSPort port: " + dnsPort);
-
-                             }
-                             catch (Exception e)
-                             {
-                                sendCallbackLogMessage("ERROR setting DNSport to: " + dnsPort);
-                                
-
-                             }
-                        }*/
-                         
+                                                  
                         return Integer.parseInt(torProcId);
                         
                     }
@@ -1276,6 +1205,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             
             Intent intent = new Intent(TorService.this, OrbotVpnService.class);
             intent.setAction("start");
+            
+            intent.putExtra("torSocks", mPortSOCKS);
             
             if (!mIsLollipop)
             	intent.putExtra("proxyPort",OrbotVpnService.mSocksProxyPort);
@@ -2086,18 +2017,17 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
  
         }
         
-        if (entranceNodes.length() > 0 || exitNodes.length() > 0 || excludeNodes.length() > 0)
+                  
+        //only apply GeoIP if you need it
+        File fileGeoIP = new File(OrbotApp.appBinHome, GEOIP_ASSET_KEY);
+        File fileGeoIP6 = new File(OrbotApp.appBinHome, GEOIP6_ASSET_KEY);
+            
+        if (fileGeoIP.exists())
         {
-           
-            //only apply GeoIP if you need it
-            File fileGeoIP = new File(OrbotApp.appBinHome, GEOIP_ASSET_KEY);
-            File fileGeoIP6 = new File(OrbotApp.appBinHome, GEOIP6_ASSET_KEY);
-                
-            extraLines.append("GeoIPFile" + ' ' + fileGeoIP.getCanonicalPath()).append('\n');
-            extraLines.append("GeoIPv6File" + ' ' + fileGeoIP6.getCanonicalPath()).append('\n');
-        
+	        extraLines.append("GeoIPFile" + ' ' + fileGeoIP.getCanonicalPath()).append('\n');
+	        extraLines.append("GeoIPv6File" + ' ' + fileGeoIP6.getCanonicalPath()).append('\n');
         }
-
+        
         if (!TextUtils.isEmpty(entranceNodes))
         	extraLines.append("EntryNodes" + ' ' + entranceNodes).append('\n');
        
