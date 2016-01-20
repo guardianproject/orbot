@@ -75,8 +75,8 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     
     private final static boolean mIsLollipop = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
     
-    private final static String DEFAULT_ACTUAL_DNS = "208.67.222.222";
-    
+    //this is the actual DNS server we talk with over TCP/IP
+    private final static String DEFAULT_ACTUAL_DNS = "8.8.8.8";//use Google here, or 8.8.4.4 as backup?
     private boolean isRestart = false;
     
 
