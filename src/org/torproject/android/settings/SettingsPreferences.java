@@ -56,7 +56,7 @@ public class SettingsPreferences
 
         prefLocale = (ListPreference) findPreference("pref_default_locale");
         prefLocale.setOnPreferenceClickListener(this);
-        Languages languages = Languages.get(this, R.string.menu_settings, "Settings");
+        Languages languages = Languages.get(this);
         prefLocale.setEntries(languages.getAllNames());
         prefLocale.setEntryValues(languages.getSupportedLocales());
         prefLocale.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
@@ -71,7 +71,7 @@ public class SettingsPreferences
                     String lang = settings.getString("pref_default_locale",
                             Locale.getDefault().getLanguage());
                     OrbotApp app = (OrbotApp) getApplication();
-                    app.setNewLocale(language);
+                    Languages.setLanguage(app, language, true);
                     lang = settings.getString("pref_default_locale",
                             Locale.getDefault().getLanguage());
                     OrbotApp.forceChangeLanguage(SettingsPreferences.this);

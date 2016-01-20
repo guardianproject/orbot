@@ -39,7 +39,8 @@ public class OrbotApp extends Application implements OrbotConstants
         super.onCreate();
         Prefs.setContext(this);
 
-        setNewLocale(Prefs.getDefaultLocale());
+        Languages.setup(OrbotMainActivity.class, R.string.menu_settings);
+        Languages.setLanguage(this, Prefs.getDefaultLocale(), true);
 
         appBinHome = getDir(TorServiceConstants.DIRECTORY_TOR_BINARY,Application.MODE_PRIVATE);
         appCacheHome = getDir(TorServiceConstants.DIRECTORY_TOR_DATA,Application.MODE_PRIVATE);
@@ -60,40 +61,9 @@ public class OrbotApp extends Application implements OrbotConstants
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         Log.i(TAG, "onConfigurationChanged " + newConfig.locale.getLanguage());
-        setNewLocale(Prefs.getDefaultLocale());
+        Languages.setLanguage(this, Prefs.getDefaultLocale(), true);
     }
-
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-    public void setNewLocale(String language) {
-        if (TextUtils.isEmpty(language))
-            return;
-
-        if (locale != null && TextUtils.equals(locale.getLanguage(), language))
-            return; // already configured
-
-        /* handle locales with the country in it, i.e. zh_CN, zh_TW, etc */
-        String localeSplit[] = language.split("_");
-        if (localeSplit.length > 1)
-            locale = new Locale(localeSplit[0], localeSplit[1]);
-        else
-            locale = new Locale(language);
-        Configuration config = getResources().getConfiguration();
-        if (Build.VERSION.SDK_INT >= 17)
-            config.setLocale(locale);
-        else
-            config.locale = locale;
-        getResources().updateConfiguration(config, getResources().getDisplayMetrics());
-
-        /*
-         * Set the preference after setting the locale in case something goes
-         * wrong. If setting the locale causes an Exception, it should be set in
-         * the preferences, otherwise ChatSecure will be stuck in a crash loop.
-         */
-        Prefs.setDefaultLocale(language);
-        Log.i(TAG, "setNewLocale complete: locale: " + locale.getLanguage()
-                + " Locale.getDefault: " + Locale.getDefault().getLanguage());
-    }
-
+	
     public static void forceChangeLanguage(Activity activity) {
         Intent intent = activity.getIntent();
         if (intent == null) // when launched as LAUNCHER
@@ -106,6 +76,6 @@ public class OrbotApp extends Application implements OrbotConstants
     }
 
     public static Languages getLanguages(Activity activity) {
-        return Languages.get(activity, R.string.menu_settings, "Settings");
+        return Languages.get(activity);
     }
 }

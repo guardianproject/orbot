@@ -1,10 +1,14 @@
-
 package info.guardianproject.util;
 
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.ContextWrapper;
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.os.Build;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 
@@ -16,11 +20,9 @@ import java.util.Set;
 import java.util.TreeMap;
 
 public class Languages {
-    private static final String TAG = "Languages";
-    private static Languages singleton;
-    private static Map<String, String> tmpMap = new TreeMap<String, String>();
-    private static Map<String, String> nameMap;
-    public static final String USE_SYSTEM_DEFAULT = "";
+    public static final String TAG = "Languages";
+
+    public static final Locale defaultLocale;
     public static final Locale TIBETAN = new Locale("bo");
     static final Locale localesToTest[] = {
             Locale.ENGLISH, Locale.FRENCH, Locale.GERMAN,
@@ -50,68 +52,142 @@ public class Languages {
             new Locale("uz"), new Locale("vi"), new Locale("zu"),
     };
 
-    private Languages(Activity activity, int resId, String defaultString) {
+    private static final String USE_SYSTEM_DEFAULT = "";
+    private static final String defaultString = "Use System Default";
+
+    private static Locale locale;
+    private static Languages singleton;
+    private static Class<?> clazz;
+    private static int resId;
+    private static Map<String, String> tmpMap = new TreeMap<String, String>();
+    private static Map<String, String> nameMap;
+
+    static {
+        defaultLocale = Locale.getDefault();
+    }
+
+    private Languages(Activity activity) {
         AssetManager assets = activity.getAssets();
         Configuration config = activity.getResources().getConfiguration();
-        DisplayMetrics metrics = new DisplayMetrics();
-        activity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        // Resources() requires DisplayMetrics, but they are only needed for drawables
+        DisplayMetrics ignored = new DisplayMetrics();
+        activity.getWindowManager().getDefaultDisplay().getMetrics(ignored);
         Resources resources;
         Set<Locale> localeSet = new LinkedHashSet<Locale>();
         for (Locale locale : localesToTest) {
             config.locale = locale;
-            resources = new Resources(assets, metrics, config);
+            resources = new Resources(assets, ignored, config);
             if (!TextUtils.equals(defaultString, resources.getString(resId))
                     || locale.equals(Locale.ENGLISH))
                 localeSet.add(locale);
         }
         for (Locale locale : localeSet) {
             if (locale.equals(TIBETAN)) {
-                // include English name for devices that don't support Tibetan
-                // font
+                // include English name for devices without Tibetan font support
                 tmpMap.put(TIBETAN.getLanguage(), "Tibetan བོད་སྐད།"); // Tibetan
             } else if (locale.equals(Locale.SIMPLIFIED_CHINESE)) {
-                tmpMap.put(Locale.SIMPLIFIED_CHINESE.toString(), "中文 (中国)"); // Chinese
-                                                                             // (China)
+                tmpMap.put(Locale.SIMPLIFIED_CHINESE.toString(), "中文 (中国)"); // Chinese (China)
             } else if (locale.equals(Locale.TRADITIONAL_CHINESE)) {
-                tmpMap.put(Locale.TRADITIONAL_CHINESE.toString(), "中文 (台灣)"); // Chinese
-                                                                              // (Taiwan)
+                tmpMap.put(Locale.TRADITIONAL_CHINESE.toString(), "中文 (台灣)"); // Chinese (Taiwan)
             } else {
                 tmpMap.put(locale.getLanguage(), locale.getDisplayLanguage(locale));
             }
         }
-        // TODO implement this completely, the menu item works, but doesn't work
-        // properly
+
         /* USE_SYSTEM_DEFAULT is a fake one for displaying in a chooser menu. */
-        // localeSet.add(null);
-        // tmpMap.put(USE_SYSTEM_DEFAULT,
-        // activity.getString(R.string.use_system_default));
+        localeSet.add(null);
+        tmpMap.put(USE_SYSTEM_DEFAULT, activity.getString(resId));
         nameMap = Collections.unmodifiableMap(tmpMap);
     }
 
     /**
      * Get the instance of {@link Languages} to work with, providing the
-     * {@link Activity} that is will be working as part of. This uses the
-     * provided string resource {@code resId} find the supported translations:
-     * if an included translation has a translated string that matches that
-     * {@code resId}, i.e. {@code R.string.menu_settings}, then that language
-     * will be included as a supported language.
-     * 
-     * @param activity the {@link Activity} this is working as part of
-     * @param resId the string resource ID to test, e.g.
-     *            {@code R.string.menu_settings}
-     * @param defaultString the string resource in the default language, e.g.
-     *            {@code "Settings"}
+     * {@link Activity} that is will be working as part of, as well as the
+     * {@code resId} that has the exact string "Use System Default",
+     * i.e. {@code R.string.use_system_default}.
+     * <p/>
+     * That string resource {@code resId} is also used to find the supported
+     * translations: if an included translation has a translated string that
+     * matches that {@code resId}, then that language will be included as a
+     * supported language.
+     *
+     * @param clazz the {@link Class} of the default {@code Activity},
+     *              usually the main {@code Activity} from where the
+     *              Settings is launched from.
+     * @param resId the string resource ID to for the string "Use System Default",
+     *              e.g. {@code R.string.use_system_default}
      * @return
      */
-    public static Languages get(Activity activity, int resId, String defaultString) {
-        if (singleton == null)
-            singleton = new Languages(activity, resId, defaultString);
+    public static void setup(Class<?> clazz, int resId) {
+        if (Languages.clazz == null) {
+            Languages.clazz = clazz;
+            Languages.resId = resId;
+        } else {
+            throw new RuntimeException("Languages singleton was already initialized, duplicate call to Languages.setup()!");
+        }
+    }
+
+    /**
+     * Get the singleton to work with.
+     *
+     * @param activity the {@link Activity} this is working as part of
+     * @return
+     */
+    public static Languages get(Activity activity) {
+        if (singleton == null) {
+            singleton = new Languages(activity);
+        }
         return singleton;
+    }
+
+    //@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    @SuppressLint("NewApi")
+	public static void setLanguage(final ContextWrapper contextWrapper, String language, boolean refresh) {
+        if (locale != null && TextUtils.equals(locale.getLanguage(), language) && (!refresh)) {
+            return; // already configured
+        } else if (language == null || language == USE_SYSTEM_DEFAULT) {
+            locale = defaultLocale;
+        } else {
+            /* handle locales with the country in it, i.e. zh_CN, zh_TW, etc */
+            String localeSplit[] = language.split("_");
+            if (localeSplit.length > 1) {
+                locale = new Locale(localeSplit[0], localeSplit[1]);
+            } else {
+                locale = new Locale(language);
+            }
+        }
+
+        final Resources resources = contextWrapper.getBaseContext().getResources();
+        Configuration config = resources.getConfiguration();
+        if (Build.VERSION.SDK_INT >= 17) {
+            config.setLocale(locale);
+        } else {
+            config.locale = locale;
+        }
+        resources.updateConfiguration(config, resources.getDisplayMetrics());
+        Locale.setDefault(locale);
+
+    }
+
+    /**
+     * Force reload the {@link Activity to make language changes take effect.}
+     *
+     * @param activity the {@code Activity} to force reload
+     */
+    public static void forceChangeLanguage(Activity activity) {
+        Intent intent = activity.getIntent();
+        if (intent == null) // when launched as LAUNCHER
+            return;
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        activity.finish();
+        activity.overridePendingTransition(0, 0);
+        activity.startActivity(intent);
+        activity.overridePendingTransition(0, 0);
     }
 
     /**
      * Return the name of the language based on the locale.
-     * 
+     *
      * @param locale
      * @return
      */
@@ -127,7 +203,7 @@ public class Languages {
     /**
      * Return an array of the names of all the supported languages, sorted to
      * match what is returned by {@link Languages#getSupportedLocales()}.
-     * 
+     *
      * @return
      */
     public String[] getAllNames() {
@@ -147,7 +223,7 @@ public class Languages {
 
     /**
      * Get sorted list of supported locales.
-     * 
+     *
      * @return
      */
     public String[] getSupportedLocales() {
