@@ -16,6 +16,9 @@ else
     echo ""
     echo ""
     echo "Checking git tag signature for release build:"
+    gpg --list-key 9F0FE587374BBE81 || gpg --recv-key 9F0FE587374BBE81
+    gpg --list-key E9E28DEA00AA5556 || gpg --recv-key E9E28DEA00AA5556
+    gpg --list-key A801183E69B37AA9 || gpg --recv-key A801183E69B37AA9
     git tag -v $versionName
     echo ""
     echo ""
@@ -32,15 +35,21 @@ if [ -z $ANDROID_HOME ]; then
     fi
 fi
 
+if [ -z $ANDROID_NDK_HOME ]; then
+    if which ndk-build 2>&1 /dev/null; then
+        ANDROID_NDK_HOME=`which ndk-build |  sed 's,/ndk-build,,'`
+    else
+        echo "ANDROID_NDK_HOME not set and 'ndk-build' not in PATH"
+        exit
+    fi
+fi
+
 projectroot=`pwd`
 projectname=`sed -n 's,.*name="app_name">\(.*\)<.*,\1,p' res/values/strings.xml`
 
 # standardize timezone to reduce build differences
 export TZ=UTC
 TIMESTAMP=`printf '%(%Y-%m-%d %H:%M:%S)T' \
-    $(git log -n1 --format=format:%at)`
-# run the clock at 5% speed, ant requires a moving clock
-TIMESTAMP_5=`printf '@%(%Y-%m-%d %H:%M:%S)T x0.05' \
     $(git log -n1 --format=format:%at)`
 
 git reset --hard
@@ -58,15 +67,23 @@ else
     echo "skipping release ant.properties"
 fi
 
-ndk-build
+faketime "$TIMESTAMP" $ANDROID_NDK_HOME/ndk-build
 
 faketime "$TIMESTAMP" make -C external
 
 ./setup-ant
 
-faketime -f "$TIMESTAMP_5" ant release
+ant release
 
 apk=$projectroot/bin/$projectname-v$describe.apk
+
+# standardize timestamps in ZIP headers, requires strip-nondeterminism 0.014
+if which strip-nondeterminism > /dev/null; then
+    strip-nondeterminism -t zip -T $(git log -n1 --format=format:%at) $apk
+fi
+
+# echo the checksum to build logs
+sha256sum $apk
 
 if which gpg > /dev/null; then
     if [ -z "`gpg --list-secret-keys`" ]; then
