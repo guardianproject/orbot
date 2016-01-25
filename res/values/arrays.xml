@@ -3,12 +3,13 @@
 <resources>
 
 	<string-array name="bridge_options">
-	    <item>Obfs4 (Recommended)</item>
+	    <item>Obfs4 (Best)</item>
 	    <item>Obfs3</item>
 	    <item>ScrambleSuit</item>
 	    <item>Tunnel through Azure</item>
 	    <item>Tunnel through Amazon</item>
 	    <item>Tunnel through Google</item>
+	    <item>Get New Bridges</item>
 	    <item></item>
 	</string-array>
     

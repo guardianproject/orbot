@@ -3,12 +3,15 @@
 
 package org.torproject.android;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.StringTokenizer;
 
 import org.json.JSONArray;
 import org.torproject.android.service.TorService;
@@ -110,6 +113,15 @@ public class OrbotMainActivity extends AppCompatActivity
 	public final static String INTENT_ACTION_REQUEST_HIDDEN_SERVICE = "org.torproject.android.REQUEST_HS_PORT";
 	public final static String INTENT_ACTION_REQUEST_START_TOR = "org.torproject.android.START_TOR";	
 		
+	// for bridge loading from the assets default bridges.txt file
+    class Bridge
+    {
+    	String type;
+    	String config;
+    }
+    
+    private ArrayList<Bridge> alBridges = null;
+    
 
     /** Called when the activity is first created. */
     public void onCreate(Bundle savedInstanceState) {
@@ -635,6 +647,8 @@ public class OrbotMainActivity extends AppCompatActivity
 				{
 					String newBridgeValue = urlString.substring(9); //remove the bridge protocol piece
 					newBridgeValue = URLDecoder.decode(newBridgeValue); //decode the value here
+
+					showAlert(getString(R.string.bridges_updated),getString(R.string.restart_orbot_to_use_this_bridge_) + newBridgeValue,false);	
 					
 					setNewBridges(newBridgeValue);
 				}
@@ -651,8 +665,6 @@ public class OrbotMainActivity extends AppCompatActivity
 	private void setNewBridges (String newBridgeValue)
 	{
 
-		showAlert(getString(R.string.bridges_updated),getString(R.string.restart_orbot_to_use_this_bridge_) + newBridgeValue,false);	
-		
 		Prefs.setBridgesList(newBridgeValue); //set the string to a preference
 		Prefs.putBridgesEnabled(true);
 		
@@ -812,6 +824,9 @@ public class OrbotMainActivity extends AppCompatActivity
 					{
 						results = URLDecoder.decode(results, "UTF-8");
 						results = results.substring(urlIdx+3);
+
+						showAlert(getString(R.string.bridges_updated),getString(R.string.restart_orbot_to_use_this_bridge_) + results,false);	
+						
 						setNewBridges(results);
 					}
 					else
@@ -840,6 +855,8 @@ public class OrbotMainActivity extends AppCompatActivity
     
     public void promptSetupBridges ()
     {
+    	loadBridgeDefaults();
+    	
     	LayoutInflater li = LayoutInflater.from(this);
         View view = li.inflate(R.layout.layout_diag, null); 
         
@@ -859,16 +876,19 @@ public class OrbotMainActivity extends AppCompatActivity
             	   switch (which)
             	   {
             	   case 0: //obfs 4;
-            		   showGetBridgePrompt("obfs4");
-            		   
+            		   setupBridgeType("obfs4");
+            		   enableBridges(true);
+
             		   break;
             	   case 1: //obfs3
-            		   showGetBridgePrompt("obfs3");
-            		   
+            		   setupBridgeType("obfs3");
+            		   enableBridges(true);
+
             		   break;
             	   case 2: //scramblesuit
-            		   showGetBridgePrompt("scramblesuit");
-            		   
+            		   setupBridgeType("scramblesuit");
+            		   enableBridges(true);
+
             		   break;
             	   case 3: //azure
             		   Prefs.setBridgesList("2");
@@ -883,6 +903,9 @@ public class OrbotMainActivity extends AppCompatActivity
             	   case 5: //google
                        Prefs.setBridgesList("0");
             		   enableBridges(true);
+            		   
+            	   case 6:
+            		   showGetBridgePrompt("obfs4");
             		   
             		   break;
             		  
@@ -1336,5 +1359,62 @@ public class OrbotMainActivity extends AppCompatActivity
                 }
                 return false;
             }
+    }
+    
+    private void loadBridgeDefaults ()
+    {
+    	if (alBridges == null)
+    	{
+	    	alBridges = new ArrayList<Bridge>();
+	    	
+	    	try
+	    	{
+	    	 	BufferedReader in=
+	    	        new BufferedReader(new InputStreamReader(getAssets().open("bridges.txt"), "UTF-8"));
+	    	    String str;
+	
+	    	    while ((str=in.readLine()) != null) {
+	    	    
+	    	    	StringTokenizer st = new StringTokenizer (str," ");
+	    	    	Bridge b = new Bridge();
+	    	    	b.type = st.nextToken();
+	    	    	
+	    	    	StringBuffer sbConfig = new StringBuffer();
+	    	    	
+	    	    	while(st.hasMoreTokens())
+	    	    		sbConfig.append(st.nextToken()).append(' ');
+	    	    	
+	    	    	b.config = sbConfig.toString();
+	    	    	
+	    	    	alBridges.add(b);
+	    	    	
+	    	    }
+	
+	    	    in.close();
+	    	}
+	    	catch (Exception e)
+	    	{
+	    		e.printStackTrace();
+	    	}
+    	}    	
+    	
+    }
+    
+    private void setupBridgeType (String type)
+    {
+    	StringBuffer sbConfig = new StringBuffer ();
+    	
+    	for (Bridge b : alBridges)
+    	{
+    		if (b.type.equals(type))
+    		{
+    			sbConfig.append(b.type);
+    			sbConfig.append(' ');
+    			sbConfig.append(b.config);
+    			sbConfig.append('\n');
+    		}
+    	}
+    	
+    	setNewBridges(sbConfig.toString());
     }
 }
