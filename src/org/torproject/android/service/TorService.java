@@ -1333,13 +1333,14 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     
     private String formatCount(long count) {
         // Converts the supplied argument into a string.
+
         // Under 2Mb, returns "xxx.xKb"
         // Over 2Mb, returns "xxx.xxMb"
  	if (mNumberFormat != null)
         	if (count < 1e6)
-            		return mNumberFormat.format(Math.round((float)((int)(count*10/1024))/10)) + "Kbps";
+            		return mNumberFormat.format(Math.round((float)((int)(count*10/1024))/10)) + "kbps";
         	else
-            		return mNumberFormat.format(Math.round((float)((int)(count*100/1024/1024))/100)) + "Mbps";
+            		return mNumberFormat.format(Math.round((float)((int)(count*100/1024/1024))/100)) + "mbps";
 	else
 		return "";
         
