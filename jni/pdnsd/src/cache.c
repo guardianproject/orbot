@@ -2699,8 +2699,10 @@ int dump_cache(int fd, const unsigned char *name, int exact)
 
 char *stpcpy(char *dest, char const *src)
 {
-  strcpy(dest, src);
-  return dest + strlen(dest);
+  size_t src_len = strlen(src);
+  return memcpy(dest, src, src_len) + src_len;
+ // strcpy(dest, src);
+ // return dest + strlen(dest);
 }
 
 
