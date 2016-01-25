@@ -17,64 +17,51 @@
  * limitations under the License.
  */
 -->
-<menu xmlns:yourapp="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
  <item android:id="@+id/menu_settings"
         android:title="@string/menu_settings"
          android:icon="@drawable/ic_action_settings"
-         yourapp:showAsAction="always"
+         android:showAsAction="always"
          />
 
  <item
         android:title="@string/menu_qr"
-         yourapp:showAsAction="never"
+         android:showAsAction="never"
          >
   <menu>
   <item android:id="@+id/menu_scan"
         android:title="@string/menu_scan"
-         yourapp:showAsAction="never"
+         android:showAsAction="never"
          />
   
   <item android:id="@+id/menu_share_bridge"
         android:title="@string/menu_share_bridge"
-         yourapp:showAsAction="never"
+         android:showAsAction="never"
          />
   </menu>
  </item>
  
-<!-- 
-        <item android:id="@+id/menu_verify"
-        android:title="@string/menu_verify_browser"
-         android:icon="@drawable/ic_action_browse"  
-         yourapp:showAsAction="never"         
-         
-        />
-        
-  <item android:id="@+id/menu_vpn"
-      android:title="@string/menu_vpn"
-      yourapp:showAsAction="never"/>
-  -->
         
  
   <item android:id="@+id/menu_promo_apps"
         android:title="@string/menu_promo_apps"
          android:icon="@drawable/ic_menu_goto"
-                  yourapp:showAsAction="never"
+                  android:showAsAction="never"
          
          />
  
   <item android:id="@+id/menu_about"
         android:title="@string/menu_about"
          android:icon="@drawable/ic_menu_about"
-                  yourapp:showAsAction="never"
+                  android:showAsAction="never"
          
          />
  
   <item android:id="@+id/menu_exit"
         android:title="@string/menu_exit"
          android:icon="@drawable/ic_menu_exit"
-                  yourapp:showAsAction="never"
+                  android:showAsAction="never"
          
          />
  

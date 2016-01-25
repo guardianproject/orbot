@@ -10,6 +10,7 @@ package org.torproject.android.service;
 
 import android.annotation.SuppressLint;
 import android.app.Notification;
+import android.app.Notification.Builder;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -25,8 +26,6 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.RemoteException;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationCompat.Builder;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -209,7 +208,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 
             if (mNotifyBuilder == null)
             {
-                mNotifyBuilder = new NotificationCompat.Builder(this)
+                mNotifyBuilder = new Notification.Builder(this)
                     .setContentTitle(getString(R.string.app_name))
                     .setSmallIcon(R.drawable.ic_stat_tor);
 
@@ -549,8 +548,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
              
             }
-            
-            torUpgradeAndConfig();
         
             new Thread(new Runnable ()
             {
@@ -558,6 +555,9 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 {
                     try
                     {
+                        
+                        torUpgradeAndConfig();
+                    
                         findExistingTorDaemon();
                     }
                     catch (Exception e)

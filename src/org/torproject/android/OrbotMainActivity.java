@@ -3,7 +3,23 @@
 
 package org.torproject.android;
 
-import android.annotation.TargetApi;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.Locale;
+
+import org.json.JSONArray;
+import org.torproject.android.service.TorService;
+import org.torproject.android.service.TorServiceConstants;
+import org.torproject.android.service.TorServiceUtils;
+import org.torproject.android.settings.SettingsPreferences;
+import org.torproject.android.ui.ImageProgressView;
+import org.torproject.android.ui.PromoAppsActivity;
+import org.torproject.android.ui.Rotate3dAnimation;
+import org.torproject.android.vpn.VPNEnableActivity;
+
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningServiceInfo;
@@ -20,16 +36,14 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
-import android.net.VpnService;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.RemoteException;
+import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
@@ -42,7 +56,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.View.OnTouchListener;
-import android.view.Window;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -55,27 +68,6 @@ import android.widget.ToggleButton;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-import org.torproject.android.service.TorService;
-import org.torproject.android.service.TorServiceConstants;
-import org.torproject.android.service.TorServiceUtils;
-import org.torproject.android.settings.SettingsPreferences;
-import org.torproject.android.ui.ImageProgressView;
-import org.torproject.android.ui.PromoAppsActivity;
-import org.torproject.android.ui.Rotate3dAnimation;
-import org.torproject.android.vpn.VPNEnableActivity;
-
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
-import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Locale;
 
 
 public class OrbotMainActivity extends Activity
@@ -94,12 +86,10 @@ public class OrbotMainActivity extends Activity
     private ToggleButton mBtnBridges = null;
     
     private Spinner spnCountries = null;
-    
 
 	private DrawerLayout mDrawer;
 	private ActionBarDrawerToggle mDrawerToggle;
-	private Toolbar mToolbar;
-		
+	
     /* Some tracking bits */
     private String torStatus = null; //latest status reported from the tor service
     private Intent lastStatusIntent;  // the last ACTION_STATUS Intent received
@@ -203,30 +193,19 @@ public class OrbotMainActivity extends Activity
     {
         setContentView(R.layout.layout_main);
         
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        mToolbar.inflateMenu(R.menu.orbot_main);
-        mToolbar.setTitle(R.string.app_name);
+       // mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setTitle(R.string.app_name);
 
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
           mDrawerToggle = new ActionBarDrawerToggle(
-              this,  mDrawer, mToolbar,
+              this,  mDrawer, R.drawable.ic_launcher,
               android.R.string.ok, android.R.string.cancel
           );
-          
-          mDrawer.setDrawerListener(mDrawerToggle);
-          mDrawerToggle.setDrawerIndicatorEnabled(true);
-          mDrawerToggle.syncState();
-          mDrawerToggle.setToolbarNavigationClickListener(new OnClickListener ()
-          {
 
-              @Override
-              public void onClick(View v) {
-              }
-
-
-          });
-
-        setupMenu();
+      getActionBar().setHomeButtonEnabled(true);
+      mDrawerToggle.setDrawerIndicatorEnabled(true);
+      mDrawer.setDrawerListener(mDrawerToggle);
+      mDrawerToggle.syncState();
         
         mTxtOrbotLog = (TextView)findViewById(R.id.orbotLog);
         
@@ -380,8 +359,65 @@ public class OrbotMainActivity extends Activity
 
         return true;
     }
+    
+    
 
-    private void showAbout ()
+    @Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		
+    	 if (item.getItemId() == R.id.menu_settings)
+         {
+             Intent intent = new Intent(OrbotMainActivity.this, SettingsPreferences.class);
+             startActivityForResult(intent, REQUEST_SETTINGS);
+         }
+         else if (item.getItemId() == R.id.menu_promo_apps)
+         {
+             startActivity(new Intent(OrbotMainActivity.this, PromoAppsActivity.class));
+
+         }
+         else if (item.getItemId() == R.id.menu_exit)
+         {
+                 //exit app
+                 doExit();
+                 
+                 
+         }
+         else if (item.getItemId() == R.id.menu_about)
+         {
+                 showAbout();
+                 
+                 
+         }
+         else if (item.getItemId() == R.id.menu_scan)
+         {
+         	IntentIntegrator integrator = new IntentIntegrator(OrbotMainActivity.this);
+         	integrator.initiateScan();
+         }
+         else if (item.getItemId() == R.id.menu_share_bridge)
+         {
+         	
+     		String bridges = Prefs.getBridgesList();
+         	
+     		if (bridges != null && bridges.length() > 0)
+     		{
+         		try {
+						bridges = "bridge://" + URLEncoder.encode(bridges,"UTF-8");
+	            		
+	                	IntentIntegrator integrator = new IntentIntegrator(OrbotMainActivity.this);
+	                	integrator.shareText(bridges);
+	                	
+					} catch (UnsupportedEncodingException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+     		}
+
+         }
+     
+		return super.onOptionsItemSelected(item);
+	}
+
+	private void showAbout ()
         {
                 
             LayoutInflater li = LayoutInflater.from(this);
@@ -403,73 +439,7 @@ public class OrbotMainActivity extends Activity
             .setView(view)
             .show();
         }
-    
-    private void setupMenu ()
-    {
 
-        mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener ()
-        {
-
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                
-                if (item.getItemId() == R.id.menu_settings)
-                {
-                    Intent intent = new Intent(OrbotMainActivity.this, SettingsPreferences.class);
-                    startActivityForResult(intent, REQUEST_SETTINGS);
-                }
-                else if (item.getItemId() == R.id.menu_promo_apps)
-                {
-                    startActivity(new Intent(OrbotMainActivity.this, PromoAppsActivity.class));
-
-                }
-                else if (item.getItemId() == R.id.menu_exit)
-                {
-                        //exit app
-                        doExit();
-                        
-                        
-                }
-                else if (item.getItemId() == R.id.menu_about)
-                {
-                        showAbout();
-                        
-                        
-                }
-                else if (item.getItemId() == R.id.menu_scan)
-                {
-                	IntentIntegrator integrator = new IntentIntegrator(OrbotMainActivity.this);
-                	integrator.initiateScan();
-                }
-                else if (item.getItemId() == R.id.menu_share_bridge)
-                {
-                	
-            		String bridges = Prefs.getBridgesList();
-                	
-            		if (bridges != null && bridges.length() > 0)
-            		{
-	            		try {
-							bridges = "bridge://" + URLEncoder.encode(bridges,"UTF-8");
-		            		
-		                	IntentIntegrator integrator = new IntentIntegrator(OrbotMainActivity.this);
-		                	integrator.shareText(bridges);
-		                	
-						} catch (UnsupportedEncodingException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-            		}
-
-                }
-                
-                return true;
-            
-            }
-        
-        });
-            
-        
-        }
 
     /**
      * This is our attempt to REALLY exit Orbot, and stop the background service

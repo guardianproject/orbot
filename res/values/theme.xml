@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-    <style name="DefaultTheme" parent="Theme.AppCompat">
-        <item name="android:windowNoTitle">true</item>
+    <style name="DefaultTheme" parent="android:Theme.Holo">
+        <item name="android:windowActionBar">true</item>  
+        <item name="android:windowContentOverlay">@null</item>
     </style>
     
-    <!-- the theme applied to the application or activity -->
-    <style name="CustomActionBarTheme"
-           parent="Theme.AppCompat">
-        <item name="android:windowActionBarOverlay">true</item>
-    </style>
 </resources>
+
