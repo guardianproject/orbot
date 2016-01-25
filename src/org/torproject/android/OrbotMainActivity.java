@@ -20,6 +20,7 @@ import org.torproject.android.ui.PromoAppsActivity;
 import org.torproject.android.ui.Rotate3dAnimation;
 import org.torproject.android.vpn.VPNEnableActivity;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningServiceInfo;
@@ -41,9 +42,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.RemoteException;
-import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
@@ -53,7 +57,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.View.OnTouchListener;
 import android.view.animation.AccelerateInterpolator;
@@ -69,8 +72,7 @@ import android.widget.ToggleButton;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-
-public class OrbotMainActivity extends Activity
+public class OrbotMainActivity extends AppCompatActivity
         implements OrbotConstants, OnLongClickListener, OnTouchListener {
 
     /* Useful UI bits */
@@ -193,17 +195,21 @@ public class OrbotMainActivity extends Activity
     {
         setContentView(R.layout.layout_main);
         
-       // mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setTitle(R.string.app_name);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
           mDrawerToggle = new ActionBarDrawerToggle(
-              this,  mDrawer, R.drawable.ic_launcher,
+              this,  mDrawer,        
+              toolbar,
               android.R.string.ok, android.R.string.cancel
           );
 
-      getActionBar().setHomeButtonEnabled(true);
-      mDrawerToggle.setDrawerIndicatorEnabled(true);
+      getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+      getSupportActionBar().setHomeButtonEnabled(true);
+      
       mDrawer.setDrawerListener(mDrawerToggle);
       mDrawerToggle.syncState();
         

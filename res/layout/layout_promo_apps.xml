@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:layout_marginTop="10px"
-        android:drawableLeft="@drawable/icon_orweb"
+        android:drawableLeft="@drawable/icon_orfox"
         android:text="@string/wizard_tips_orweb" />
 
     <Button

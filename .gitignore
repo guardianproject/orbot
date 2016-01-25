@@ -1,4 +1,6 @@
 assets/
+/external/appcompat/bin/
+/external/appcompat/gen/
 /external/bin/
 /external/include/
 /external/*-build-stamp
