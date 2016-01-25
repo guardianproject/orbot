@@ -10,7 +10,9 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Locale;
+import java.util.Random;
 import java.util.StringTokenizer;
 
 import org.json.JSONArray;
@@ -1384,7 +1386,7 @@ public class OrbotMainActivity extends AppCompatActivity
 	    	    	while(st.hasMoreTokens())
 	    	    		sbConfig.append(st.nextToken()).append(' ');
 	    	    	
-	    	    	b.config = sbConfig.toString();
+	    	    	b.config = sbConfig.toString().trim();
 	    	    	
 	    	    	alBridges.add(b);
 	    	    	
@@ -1404,6 +1406,11 @@ public class OrbotMainActivity extends AppCompatActivity
     {
     	StringBuffer sbConfig = new StringBuffer ();
     	
+    	//we should randomly sort alBridges so we don't have the same bridge order each time
+    	long seed = System.nanoTime();
+    	Collections.shuffle(alBridges, new Random(seed));
+    	
+    	//now go through the list to find the bridges we want
     	for (Bridge b : alBridges)
     	{
     		if (b.type.equals(type))
