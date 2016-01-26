@@ -1,5 +1,39 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+/** 15.1.0-RC-3 / 25-January-2016 / 80491ea95bd62346bf3f3a579d3302dbd84f4ca9 **/
+
+Improve Bridge selection to support built-in default bridges
+* c235e3e tweak the string about bridges a little bit
+* 2a72814 choose up to 2 bridges from default list randomly
+* 1dbe5ea make bridge allocation shuffle randomly to distribute load inspired by this work: https://trac.torproject.org/projects/tor/tic
+* cf1a644 add support for loading default bridges from asset file
+
+VPN mode now uses Google's DNS (tunneled through Tor) as default
+* 9af00fe change VPN mode DNS to use Google's 8.8.8.8
+
+Other UI fixes
+* ba83559 this should be kbps in fact
+* ab8709d add orfox icon to replace orweb
+* 6eb0a93 improvements to Locale changing in app
+
+Fix our stpcpy implementation to ensure no buffer overruns 
+* 4913b0c better implementation of stpcpy for pre-Android 21 NDK
+
+0669add re-add appcompat, update to latest, move to Android 23 to build - this is required for latest appcompat, and to address the bu
+c05d8e7 remove appcompat, and just support support-v4
+0bbe5d5 Merge pull request #21 from eighthave/master
+
+Make the build process better and more reproduceable
+* 735b298 make-release-build: remove faketime from `ant release`
+* 461e35d make-release-build: freeze time when running ndk-build
+* 5c86b5c make-release-build: make sure ndk-build can be found
+* 58d53ea make-release-build: use strip-nondeterminism to get reproducible build
+* 5ce1f5f make-release-build: make sure tag signers exist before verifying tags
+* 72eab39 build jtorctl directly, using a symlink to point to its source code
+* a6ac016 use symlinks to provide alternate folders for Hebrew and Indonesian
+* 5fb4e9b update ndk-builds to NDK 4.8 toolchain
+
+
 /** 15.1.0-RC-2 / 16-January-2016 / 9ed17b551c29b9edf94d64f5f013ad607c21bbc5 **/
 
 Quick fix for Samsung Galaxy devices which have a port conflict on the default SOCKS 9050 part
