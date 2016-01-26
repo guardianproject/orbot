@@ -568,11 +568,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                     
                 }
             }).start();
-        
-            
-            if (OrbotVpnService.mSocksProxyPort == -1)
-            	OrbotVpnService.mSocksProxyPort = (int)((Math.random()*1000)+10000); 
-            		
+        	
         }
         catch (Exception e)
         {
@@ -752,7 +748,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 	
 	        if (Prefs.bridgesEnabled())
 	        	if (Prefs.useVpn() && !mIsLollipop)
-	        		customEnv.add("TOR_PT_PROXY=socks5://127.0.0.1:" + OrbotVpnService.mSocksProxyPort); 
+	        		customEnv.add("TOR_PT_PROXY=socks5://127.0.0.1:" + OrbotVpnService.sSocksProxyServerPort); 
 	        
 	        String baseDirectory = OrbotApp.fileTor.getParent();
 	        Shell shellUser = Shell.startShell(customEnv, baseDirectory);
@@ -1207,9 +1203,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             intent.setAction("start");
             
             intent.putExtra("torSocks", mPortSOCKS);
-            
-            if (!mIsLollipop)
-            	intent.putExtra("proxyPort",OrbotVpnService.mSocksProxyPort);
             
             startService(intent);
            
@@ -1899,7 +1892,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 	        	{
 		        	String proxyType = "socks5";
 		        	String proxyHost = "127.0.0.1";
-		        	extraLines.append(proxyType + "Proxy" + ' ' + proxyHost + ':' + OrbotVpnService.mSocksProxyPort).append('\n');
+		        	extraLines.append(proxyType + "Proxy" + ' ' + proxyHost + ':' + OrbotVpnService.sSocksProxyServerPort).append('\n');
 	        	};
 			
 	        }
@@ -1987,14 +1980,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 
             	String bridgeConfig = "meek exec " + OrbotApp.fileMeekclient.getCanonicalPath();
             	extraLines.append("ClientTransportPlugin" + ' ' + bridgeConfig).append('\n');
-            	
-            	String[] meekBridge = 
-            		{
-            			"meek 0.0.2.0:1 url=https://meek-reflect.appspot.com/ front=www.google.com",
-            			"meek 0.0.2.0:2 url=https://d2zfqthxsdq309.cloudfront.net/ front=a0.awsstatic.com",
-            			"meek 0.0.2.0:3 url=https://az668014.vo.msecnd.net/ front=ajax.aspnetcdn.com"
-            		};
-
+            
             	int meekIdx = 2; //let's use Azure by default
             	
             	if (bridgeList != null && bridgeList.length() == 1)
@@ -2003,7 +1989,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             	  {
             		  meekIdx = Integer.parseInt(bridgeList);
             		  
-            		  if (meekIdx+1 > meekBridge.length)
+            		  if (meekIdx+1 > BRIDGES_MEEK.length)
             			  throw new Exception("not valid meek idx");
             	  }
             	  catch (Exception e)
@@ -2012,7 +1998,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             	  }
             	}
             	
-            	extraLines.append("Bridge " + meekBridge[meekIdx]).append('\n');            	
+            	extraLines.append("Bridge " + BRIDGES_MEEK[meekIdx]).append('\n');            	
             	
             }
  

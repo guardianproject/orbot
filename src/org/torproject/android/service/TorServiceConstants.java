@@ -152,5 +152,12 @@ public interface TorServiceConstants {
 	//EXIT COUNTRY CODES
 	public final static String[] COUNTRY_CODES = {"DE","AT","SE","CH","IS","CA","US","ES","FR","BG","PL","AU","BR","CZ","DK","FI","GB","HU","NL","JP","RO","RU","SG","SK"};
 	
-	
+	//MEEK BRIDGEs	
+	public final static String[] BRIDGES_MEEK = 
+		{
+			"meek 0.0.2.0:1 url=https://meek-reflect.appspot.com/ front=www.google.com",
+			"meek 0.0.2.0:2 url=https://d2zfqthxsdq309.cloudfront.net/ front=a0.awsstatic.com",
+			"meek 0.0.2.0:3 url=https://az668014.vo.msecnd.net/ front=ajax.aspnetcdn.com"
+		};
+
 }

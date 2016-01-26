@@ -67,7 +67,7 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 
     private int mTorSocks = TorServiceConstants.SOCKS_PROXY_PORT_DEFAULT;
     
-    public static int mSocksProxyPort = -1;
+    public static int sSocksProxyServerPort = -1;
     private ProxyServer mSocksProxyServer;
    
     
@@ -100,7 +100,6 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 		        	Log.d(TAG,"starting OrbotVPNService service!");
 		        	
 		        	mTorSocks = intent.getIntExtra("torSocks", TorServiceConstants.SOCKS_PROXY_PORT_DEFAULT);
-			    	mSocksProxyPort = intent.getIntExtra("proxyPort", 0);
 			    	
 			        // The handler is only used to show messages.
 			        if (mHandler == null) {
@@ -109,6 +108,11 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 		        	
 		        	if (!mIsLollipop)
 		        	{
+
+		                //generate the proxy port that the 
+		                if (sSocksProxyServerPort == -1)
+		                	sSocksProxyServerPort = (int)((Math.random()*1000)+10000); 
+		                	
 		        		startSocksBypass();
 		        	}
 		        	
@@ -156,7 +160,7 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 		    	{
 			        mSocksProxyServer = new ProxyServer(new ServerAuthenticatorNone(null, null));
 			        ProxyServer.setVpnService(OrbotVpnService.this);
-			        mSocksProxyServer.start(mSocksProxyPort, 5, InetAddress.getLocalHost());
+			        mSocksProxyServer.start(sSocksProxyServerPort, 5, InetAddress.getLocalHost());
 			        
 		    	}
 		    	catch (Exception e)
