@@ -15,13 +15,12 @@ Other UI fixes
 * ba83559 this should be kbps in fact
 * ab8709d add orfox icon to replace orweb
 * 6eb0a93 improvements to Locale changing in app
+* 0669add re-add appcompat, update to latest, move to Android 23 to build - this is required for latest appcompat, and to address the bu
+* c05d8e7 remove appcompat, and just support support-v4
 
 Fix our stpcpy implementation to ensure no buffer overruns 
 * 4913b0c better implementation of stpcpy for pre-Android 21 NDK
 
-0669add re-add appcompat, update to latest, move to Android 23 to build - this is required for latest appcompat, and to address the bu
-c05d8e7 remove appcompat, and just support support-v4
-0bbe5d5 Merge pull request #21 from eighthave/master
 
 Make the build process better and more reproduceable
 * 735b298 make-release-build: remove faketime from `ant release`
