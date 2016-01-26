@@ -1,6 +1,6 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
-/** 15.1.0-RC-3 / 25-January-2016 / 80491ea95bd62346bf3f3a579d3302dbd84f4ca9 **/
+/** 15.1.0-RC-4 / 25-January-2016 / 80491ea95bd62346bf3f3a579d3302dbd84f4ca9 **/
 
 Improve Bridge selection to support built-in default bridges
 * c235e3e tweak the string about bridges a little bit
