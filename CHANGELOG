@@ -1,5 +1,12 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+
+/** 15.1.0-RC-5 / 26-January-2016 / 33fa19f9894c44879d81bc3fb578eb4e9b134b8f **/
+
+* da7eb96 small fixes to VPN service port setup to ensure proper setup
+* ec6083f add 'Mosaddegh','Azadi','MaBishomarim' & 'JonbesheSabz' to default bridges
+* 8a00ab1 remove extra chars from bridge line. fixes #18148
+
 /** 15.1.0-RC-4 / 25-January-2016 / 80491ea95bd62346bf3f3a579d3302dbd84f4ca9 **/
 
 Improve Bridge selection to support built-in default bridges
