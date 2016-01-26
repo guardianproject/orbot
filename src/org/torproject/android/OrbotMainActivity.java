@@ -1410,15 +1410,26 @@ public class OrbotMainActivity extends AppCompatActivity
     	long seed = System.nanoTime();
     	Collections.shuffle(alBridges, new Random(seed));
     	
+    	//let's just pull up to 2 bridges from the defaults at time
+    	int maxBridges = 2;
+    	int bridgeCount = 0;
+    	
     	//now go through the list to find the bridges we want
     	for (Bridge b : alBridges)
     	{
     		if (b.type.equals(type))
     		{
+    			
     			sbConfig.append(b.type);
     			sbConfig.append(' ');
-    			sbConfig.append(b.config);
-    			sbConfig.append('\n');
+    			sbConfig.append(b.config);      			
+    			
+    			bridgeCount++;
+    			
+    			if (bridgeCount == maxBridges)
+    				break;
+    			else
+    				sbConfig.append("\n");
     		}
     	}
     	
