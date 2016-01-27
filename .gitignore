@@ -19,6 +19,12 @@ obj
 releases
 .transifexrc
 
+# native build products
+*.so
+pdnsd
+*.mp3
+
 # ant build products
 build.xml
 proguard-project.txt
+ant.properties
