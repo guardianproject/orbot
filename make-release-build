@@ -71,9 +71,9 @@ faketime "$TIMESTAMP" $ANDROID_NDK_HOME/ndk-build
 
 #clean, build, clean and build!
 make -C external clean
-faketime "$TIMESTAMP" APP_ABI=armeabi make -C external
+APP_ABI=armeabi faketime "$TIMESTAMP" make -C external
 make -C external clean
-faketime "$TIMESTAMP" APP_ABI=x86 make -C external
+APP_ABI=x86 faketime "$TIMESTAMP" make -C external
 
 ./setup-ant
 
