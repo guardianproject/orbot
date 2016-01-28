@@ -1,5 +1,9 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+/** 15.1.0-RC-7 / 27-January-2016 / 91225ab053d0ffec4a414be461ee41e6465446bd **/
+
+* fd45fa3 enable TransProxy and DNSPort by default without root - some users run their own iptables transproxy scripts with AFWall and n
+
 /** 15.1.0-RC-6 / 27-January-2016 / a8dbdacbcb2412bb08c4a665145371c3ac4abef1 **/
 
 Fixes to enable/attempt reproducible builds for this release
