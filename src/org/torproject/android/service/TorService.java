@@ -637,26 +637,21 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         extraLines.append("SafeSocks 0").append('\n');
         extraLines.append("TestSocks 0").append('\n');
         extraLines.append("WarnUnsafeSocks 1").append('\n');
-    
-        if (Prefs.useTransparentProxying())
-        {
 
-            String transPort = prefs.getString("pref_transport", TorServiceConstants.TOR_TRANSPROXY_PORT_DEFAULT+"");
-            String dnsPort = prefs.getString("pref_dnsport", TorServiceConstants.TOR_DNS_PORT_DEFAULT+"");
+        String transPort = prefs.getString("pref_transport", TorServiceConstants.TOR_TRANSPROXY_PORT_DEFAULT+"");
+        String dnsPort = prefs.getString("pref_dnsport", TorServiceConstants.TOR_DNS_PORT_DEFAULT+"");
             
-	        extraLines.append("TransPort ").append(transPort).append('\n');
-	    	extraLines.append("DNSPort ").append(dnsPort).append("\n");
+        extraLines.append("TransPort ").append(transPort).append('\n');
+    	extraLines.append("DNSPort ").append(dnsPort).append("\n");
 	        
-	        if (Prefs.transparentTethering())
-	        {
-	            extraLines.append("TransListenAddress 0.0.0.0").append('\n');
-	            extraLines.append("DNSListenAddress 0.0.0.0").append('\n');            
-	        }
-       
-	        extraLines.append("VirtualAddrNetwork 10.192.0.0/10").append('\n');
-	        extraLines.append("AutomapHostsOnResolve 1").append('\n');
-	       
+        if (Prefs.transparentTethering())
+        {
+            extraLines.append("TransListenAddress 0.0.0.0").append('\n');
+            extraLines.append("DNSListenAddress 0.0.0.0").append('\n');            
         }
+       
+        extraLines.append("VirtualAddrNetwork 10.192.0.0/10").append('\n');
+        extraLines.append("AutomapHostsOnResolve 1").append('\n');
 
         extraLines.append("DisableNetwork 0").append('\n');
                 
@@ -829,7 +824,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
              mTransProxy = new TorTransProxy(this, OrbotApp.fileXtables);
              
          }
-
 
         SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
         String transProxy = prefs.getString("pref_transport", TorServiceConstants.TOR_TRANSPROXY_PORT_DEFAULT+"");
