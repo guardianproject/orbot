@@ -7,11 +7,10 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">Tor abiarazi eta gelditu</string>
   <string name="tor_proxy_service_process">torproxyservice</string>
-  <string name="status_starting_up">Orbot abiarazten ari da…</string>
+  <string name="status_starting_up">Orbot abiarazten ari da...</string>
   <string name="status_activated">Tor sarera konektatuta</string>
   <string name="status_disabled">\"Orbot desaktibatuta dago</string>
-  <string name="status_shutting_down">Orbot itzaltzen ari da</string>
-  <string name="tor_process_starting">Tor bezeroa hasten…</string>
+  <string name="tor_process_starting">Tor bezeroa hasten...</string>
   <string name="tor_process_complete">eginda.</string>
   <string name="tor_process_waiting">itxaroten.</string>
   <string name="not_anonymous_yet">ABISUA: Zure trafikoa ez da anonimoa oraindik! Mesedez konfigura itzazu zure aplikazioak 127.0.0.1:8118 HTTP proxya edo 127.0.0.1:9050 SOCKS4 edo SOCKS5 proxyak erabiltzeko</string>
@@ -20,11 +19,9 @@
   <string name="menu_settings">Ezarpenak</string>
   <string name="menu_log">Saioa hasi</string>
   <string name="menu_info">Laguntza</string>
-  <string name="menu_apps">Aplikazioak</string>
   <string name="menu_start">Abiarazi</string>
   <string name="menu_stop">Gelditu</string>
   <string name="menu_about">Honi buruz</string>
-  <string name="menu_wizard">Laguntzailea</string>
   <string name="main_layout_download">Deskargatu</string>
   <string name="main_layout_upload">Igo</string>
   <string name="button_help">Laguntza</string>
@@ -95,7 +92,6 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot-Gaitutako Aplikazioak</string>
   <string name="wizard_tips_gibberbot">ChatSecure: Txat aplikazio segurua Off-the-Record enkriptazioarekin.</string>
-  <string name="wizard_tips_orweb">Orweb - Tor bidez lan egiten duen pribatutasun-hobetua duen nabigatzailea</string>
   <string name="wizard_tips_play">Google Play-n Guardiak Proiektuko aplikazio guztiak bilatu</string>
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Proxyatze Gardena</string>
@@ -129,14 +125,14 @@
   <string name="pref_proxy_password_summary">Proxy pasahitza (Aukerazkoa)</string>
   <string name="pref_proxy_password_dialog">Sartu proxy pasahitza</string>
   <string name="status">Egoera</string>
-  <string name="setting_up_full_transparent_proxying_">Guztientzako proxy gardena martxan ezartzen…</string>
-  <string name="setting_up_app_based_transparent_proxying_">Aplikazioetan oinarritutako proxy transparentea ezartzen…</string>
+  <string name="setting_up_full_transparent_proxying_">Guztientzako proxy gardena martxan ezartzen...</string>
+  <string name="setting_up_app_based_transparent_proxying_">Aplikazioetan oinarritutako proxy transparentea ezartzen...</string>
   <string name="transparent_proxying_enabled">Proxyatze gardena GAITUTA</string>
   <string name="transproxy_enabled_for_tethering_">Proxy gardena gaituta Tethering-ean!</string>
   <string name="warning_error_starting_transparent_proxying_">ABISUA: akatsa proxyatze gardena hasterakoan!</string>
   <string name="transproxy_rules_cleared">Proxy gardeneko erregelak garbituta</string>
   <string name="couldn_t_start_tor_process_">Ezin izan da Tor prozesua hasi:</string>
-  <string name="setting_up_port_based_transparent_proxying_">Portuetan oinarritutako proxy gardena ezartzen…</string>
+  <string name="setting_up_port_based_transparent_proxying_">Portuetan oinarritutako proxy gardena ezartzen...</string>
   <string name="bridge_error">Zubi Akatsa</string>
   <string name="bridge_requires_ip">Zubi ezaiugarria erabiltzeko gutxienez zubi baten IP helbidea sartu behar duzu.</string>
   <string name="send_email_for_bridges">Gmail kontutik bridges@torproject.org helbidera eposta bat bidali gorputzean \"get bridges\" lerroa duena.</string>
@@ -186,9 +182,8 @@
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
   <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v1.0.1i: http://www.openssl.org</string>
   <string name="hidden_service_request">Aplikazio batek ezkutuko zerbitzariko %S portua ireki nau du Tor sarera. Segurua da aplikazioaz fidatzen bazara.</string>
-  <string name="found_existing_tor_process">Aurreko Tor prozesua topatuta…</string>
+  <string name="found_existing_tor_process">Aurreko Tor prozesua topatuta...</string>
   <string name="something_bad_happened">Zerbait txarra gertatu da. Begiratu logetan</string>
   <string name="hidden_service_on">ezkutuko zerbitzua hemen:</string>
   <string name="unable_to_read_hidden_service_name">ezkutuko zerbitzuare izena ezin da irakurri</string>
@@ -205,23 +200,19 @@
   <string name="wizard_locale_msg">Lehenetsia utzi edo uneko hizkuntzara aldatu</string>
   <string name="powered_by">Tor-ek eskainita</string>
   <string name="btn_save_settings">Ezarpenak gorde</string>
-  <string name="no_internet_connection_tor">Ez dago Interneterako konexiorik; Tor egonean dago…</string>
+  <string name="no_internet_connection_tor">Ez dago Interneterako konexiorik; Tor egonean dago...</string>
   <string name="bandwidth_">Banda zabalera:</string>
   <string name="down">behera</string>
   <string name="up">gora</string>
   <string name="pref_disable_network_title">Sareko lokartze automatikorik ez</string>
   <string name="pref_disable_network_summary">Jarri Tor lotan internet atzigarri ez dagoenean</string>
   <string name="newnym">ChatSecure - Andriodentzako berehalako mezulari bezero ziurra</string>
-  <string name="menu_verify_browser">Nabigatzailea egiaztatu</string>
   <string name="menu_use_chatsecure">ChatSecure erabili</string>
   <string name="permission_manage_tor_label">Tor kudeatu</string>
   <string name="permission_manage_tor_description">Gaitu app hau Tor zerbitzua kontrolatzeko</string>
-  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Dirudienez ez duzu Orweb instalatuta. Horrekin laguntza nahi duzu, edo nabigatzailea irekiko dugu bakarrik?</string>
   <string name="install_apps_">App-ak instalatu?</string>
-  <string name="menu_vpn">Aplikazioak</string>
   <string name="kb">KB</string>
   <string name="mb">MB</string>
   <string name="menu_qr">QR Kodeak</string>
-  <string name="install_orweb">Instalatu Orweb</string>
   <string name="standard_browser">Nabigatzaile Estandarra</string>
 </resources>

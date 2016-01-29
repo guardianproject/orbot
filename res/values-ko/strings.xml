@@ -5,26 +5,24 @@
   <string name="default_web_url">http://check.torproject.org</string>
   <string name="secure_default_web_url">https://check.torproject.org</string>
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
-  <string name="control_permission_label">토르 시작 및 중지</string>
-  <string name="tor_proxy_service_process">토르 프록시 서비스</string>
-  <string name="status_starting_up">Orbot이 시작중입니다...</string>
+  <string name="control_permission_label">Tor 시작 및 중지</string>
+  <string name="tor_proxy_service_process">Tor 프록시 서비스</string>
+  <string name="status_starting_up">Orbot 시작 중…</string>
   <string name="status_activated">Tor 네트워크에 연결됨</string>
   <string name="status_disabled">Orbot이 비활성화되어 있습니다</string>
-  <string name="status_shutting_down">Orbot를 종료합니다</string>
-  <string name="tor_process_starting">Tor 클라이언트 시작중...</string>
+  <string name="tor_process_starting">Tor 클라이언트 시작 중…</string>
   <string name="tor_process_complete">완료.</string>
-  <string name="tor_process_waiting">대기중.</string>
+  <string name="tor_process_waiting">대기 중.</string>
   <string name="not_anonymous_yet">경고: 귀하의 트래픽은 아직 익명이 아닙니다! HTTP 프록시 127.0.0.1:8118 또는 SOCKS4A 또는 SOCKS5 프록시 127.0.0.1:9050을 사용하여 응용 프로그램을 구성하십시오</string>
   <string name="menu_home">홈</string>
   <string name="menu_browse">탐색</string>
   <string name="menu_settings">설정</string>
   <string name="menu_log">로그</string>
   <string name="menu_info">도움말</string>
-  <string name="menu_apps">응용 프로그램</string>
+  <string name="menu_apps">VPN</string>
   <string name="menu_start">시작</string>
   <string name="menu_stop">중지</string>
   <string name="menu_about">정보</string>
-  <string name="menu_wizard">마법사</string>
   <string name="main_layout_download">다운로드</string>
   <string name="main_layout_upload">업로드</string>
   <string name="button_help">도움말</string>
@@ -99,7 +97,6 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot을 사용하는 앱</string>
   <string name="wizard_tips_gibberbot">ChatSecure: 오프 더 레코드 암호화를 적용한 안전한 채팅 앱</string>
-  <string name="wizard_tips_orweb">Orweb: 토르를 통해 작동하는 보안 강화 브라우저</string>
   <string name="wizard_tips_play">구글 플레이에서 모든 가디언 프로젝트 앱 찾기</string>
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">투명 프록시</string>
@@ -209,10 +206,9 @@
   <string name="pref_disable_network_title">네트워크가 없을 때의 자동 슬립</string>
   <string name="pref_disable_network_summary">인터넷이 불가능하다면 Tor를 슬립 모드로 두십시오</string>
   <string name="newnym">새로운 Tor 신원으로 전환되었습니다!</string>
-  <string name="menu_verify_browser">브라우저 확인</string>
   <string name="menu_use_chatsecure">ChatSecure  사용</string>
   <string name="permission_manage_tor_label">Tor 관리</string>
   <string name="permission_manage_tor_description">Tor 서비스를 제어하기 위해 이 앱을 활성화하십시오</string>
-  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Orweb이 설치되지 않은 것 같습니다. 그에 대한 도움을 원합니까, 아니면 그냥 브라우저를 열까요?</string>
   <string name="install_apps_">앱을 설치할까요?</string>
+  <string name="menu_vpn">VPN</string>
 </resources>

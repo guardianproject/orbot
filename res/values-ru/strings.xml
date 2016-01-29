@@ -11,7 +11,7 @@
   <string name="status_starting_up">Запуск Orbot...</string>
   <string name="status_activated">Подключен к сети Tor</string>
   <string name="status_disabled">\"Orbot Отключен</string>
-  <string name="status_shutting_down">Orbot выключается</string>
+  <string name="status_shutting_down">TorService выключается</string>
   <string name="tor_process_starting">Запускается клиент Tor...</string>
   <string name="tor_process_complete">завершено.</string>
   <string name="tor_process_waiting">ожидание.</string>
@@ -21,11 +21,11 @@
   <string name="menu_settings">Настройки</string>
   <string name="menu_log">Журнал</string>
   <string name="menu_info">Справка</string>
-  <string name="menu_apps">Приложения</string>
+  <string name="menu_apps">VPN</string>
   <string name="menu_start">Запустить</string>
   <string name="menu_stop">Остановить</string>
   <string name="menu_about">О программе</string>
-  <string name="menu_wizard">Мастер</string>
+  <string name="menu_promo_apps">Получить приложения...</string>
   <string name="main_layout_download">Загрузить</string>
   <string name="main_layout_upload">Загрузить</string>
   <string name="button_help">Справка</string>
@@ -87,7 +87,7 @@
   <string name="wizard_final_msg">Миллионы людей во всем мире используют Tor по многочисленным причинам. Журналисты и блоггеры, правозащитники, сотрудники правоохранительных органов, солдаты, корпорации, граждане стран репрессивных режимов и просто обычные граждане ... а теперь готовы и вы !</string>
   <string name="wizard_exit_at_first_screen_toast">Пожалуйста, настройте Orbot прежде чем приступить к использованию!</string>
   <!--END Welcome Wizard strings (DJH)-->
-  <string name="connect_first_time">Вы успешно подключены к сети Tor - но это НЕ значит, что ваше устройство является безопасным. Вы можете использовать опцию \"Проверка\" в меню, чтобы проверить ваш браузер. Посетите нас на https://guardianproject.info/apps/orbot или отправте письмо по электронной почте help@guardianproject.info, чтобы узнать больше.</string>
+  <string name="connect_first_time">Вы успешно подключены к Tor сети - но это НЕ значит, что ваше устройство безопасно. Вы можете использовать кнопку \'Браузер\' для тестирования вашего соединения. \n\nПосетите нас на https://guardianproject.info/apps/orbot или отправьте письмо на help@guardianproject.info, чтобы узнать больше.</string>
   <string name="tor_check">Это приведет к запуску веб-браузера, выбранного на вашем компьютере по-умолчанию, и подключению к сайту https://check.torproject.org, с целью проверки правильности работы Orbot и определения, подключены ли вы к сети Tor.</string>
   <string name="pref_hs_group">Скрытые сервисы</string>
   <string name="pref_general_group">General</string>
@@ -107,7 +107,7 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Приложения, работающие с Orbot:</string>
   <string name="wizard_tips_gibberbot">ChatSecure: приложение для общения с поддержкой Off-the-Record шифрования</string>
-  <string name="wizard_tips_orweb">ORWEB (Только для версии Android 1.x) - Браузер, разработанный для обеспечения безопасности и для Orbot</string>
+  <string name="wizard_tips_orweb">Orfox: Браузер с повышенной приватностью, работающий через Tor</string>
   <string name="wizard_tips_play">Найти все приложения Guardian Project на Google Play</string>
   <string name="wizard_tips_fdroid">Найти все приложения Guardian Project на F-Droid</string>
   <string name="wizard_tips_fdroid_org">Найти все приложения Guardian Project на сайте https://f-droid.org</string>
@@ -126,6 +126,8 @@
   <string name="pref_entrance_node">Входные узлы</string>
   <string name="pref_entrance_node_summary">Отпечатки, ники, страны и адреса для первого прыжка</string>
   <string name="pref_entrance_node_dialog">Введите входные узлы</string>
+  <string name="pref_allow_background_starts_title">Разрешить фоновую загрузку</string>
+  <string name="pref_allow_background_starts_summary">Позволить любому приложению говорить Orbot запустить Tor и относящиеся к нему сервисы</string>
   <string name="button_proxy_all">Проксировать Все</string>
   <string name="button_proxy_none">Не Проксировать </string>
   <string name="button_invert_selection">Инвертировать Выделенное</string>
@@ -205,7 +207,7 @@
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
   <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v1.0.1i: http://www.openssl.org</string>
+  <string name="openssl_version">OpenSSL v1.0.1q: http://www.openssl.org</string>
   <string name="hidden_service_request">Приложение хочет открыть скрытый порт сервера %S сети Tor. Это безопасно, если вы доверяете этому приложению.</string>
   <string name="found_existing_tor_process">найден существующий процесс Tor...</string>
   <string name="something_bad_happened">Произошла какая-то ошибка. Проверьте лог</string>
@@ -235,11 +237,11 @@
   <string name="pref_disable_network_title">Не использовать режим сна</string>
   <string name="pref_disable_network_summary">Переводить в режим сна при отсутствии интернет-соединения</string>
   <string name="newnym">Вы переключились на новый идентификатор Tor!</string>
-  <string name="menu_verify_browser">Проверить Браузер</string>
+  <string name="menu_verify_browser">Браузер</string>
   <string name="menu_use_chatsecure">Использовать ChatSecure</string>
   <string name="permission_manage_tor_label">Управление Tor</string>
   <string name="permission_manage_tor_description">Разрешить приложению управлять сервисом Tor</string>
-  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Не похоже, что Orweb установлен. Нужна помощь с этим, или просто открыть браузер?</string>
+  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Не кажется, что у вас установлен Orfox. Хотите помощи с этим или просто открыть браузер?</string>
   <string name="install_apps_">Установить приложения?</string>
   <string name="no_network_connectivity_putting_tor_to_sleep_">Нет подключения к сети. Tor входит в режим сна ...</string>
   <string name="network_connectivity_is_good_waking_tor_up_">Подключение к сети установленно.Tor просыпается ...</string>
@@ -267,7 +269,7 @@
   <string name="transparent_proxy_rules_flushed_">Прозрачные правила прокси смыты!</string>
   <string name="you_do_not_have_root_access_enabled">У вас не подключен Рутинг</string>
   <string name="you_may_need_to_stop_and_start_orbot_for_settings_change_to_be_enabled_">Возможно, потребуется остановить и начать Orbot заново для подключения изменений настроек.</string>
-  <string name="menu_vpn">Приложения</string>
+  <string name="menu_vpn">VPN</string>
   <string name="kbps">кбит</string>
   <string name="mbps">Мбит</string>
   <string name="kb">КБ</string>
@@ -275,16 +277,16 @@
   <string name="bridges_updated">Bridges Обновлён</string>
   <string name="restart_orbot_to_use_this_bridge_">Пожалуйста перезагрузите Orbot, чтобы подключить изменения</string>
   <string name="menu_qr">QR Коды</string>
-  <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Если ваша сеть мобильной связи активно блокирует Tor, вы можете использовать Tor Bridge для доступа к сети. \ П \ nПожалуйста, выберите один из bridge выше, чтобы включить эту функцию.</string>
   <string name="bridge_mode">Режим Bridge </string>
   <string name="get_bridges_email">Е-мейл</string>
   <string name="get_bridges_web">Сеть</string>
   <string name="activate">Активировать</string>
-  <string name="apps_mode">Режим Приложений</string>
+  <string name="apps_mode">VPN режим приложений</string>
   <string name="you_can_enable_all_apps_on_your_device_to_run_through_the_tor_network_using_the_vpn_feature_of_android_">Вы можете включить все приложения на вашем устройстве, чтобы запустить их через сеть Tor, используя функцию VPN в Android. \ П \ п * ПРЕДУПРЕЖДЕНИЕ * Это новая, экспериментальная функция и в некоторых случаях может остановиться или не запуститься автоматически. Она не должна быть использованна для анонимности, а ТОЛЬКО для прохождения фильтров межсетевных экранов.</string>
   <string name="send_email">Отправить Письмо</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Вы можете получить bridge адрес через электронную почту, в сети или путем сканирования QR код. Выберите \"Е-мейл\" или \"Сеть\" ниже, чтобы запросить bridge адрес  \ N \ Полученный адрес, скопируйте и вставьте его в «Bridges» предпочтения в настройке Orbot и перезапустите.</string>
-  <string name="install_orweb">Инсталлировать Orweb</string>
+  <string name="install_orweb">Установить Orfox</string>
   <string name="standard_browser">Стандартный Браузер </string>
   <string name="note_only_standard_tor_bridges_work_on_intel_x86_atom_devices">ПРИМЕЧАНИЕ: Только стандартные Tor bridges работают на устройствах Intel X86/Atom</string>
+  <string name="vpn_default_world">Мир</string>
 </resources>

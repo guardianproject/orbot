@@ -1,17 +1,18 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">اوربوت</string>
+  <string name="app_description">اوربوت هو تطبيق الوكيل-البروكسي الحر الذي يمكّن تطبيقات أخرى لاستخدام الإنترنت بأمان أكثر . يُستخدم اوربوت تور لتشفير تحركات مرورك على الإنترنت ، ثم يخفيك ويجعلك وهمي من خلال سلسلة من أجهزة الكمبيوتر في جميع أنحاء العالم . تور هو تطبيق حر وشبكة مفتوحة والتي تساعدك على حماية نفسك من مراقبة الشبكات التي تهدد الحرية الشخصية والخصوصية ، والأنشطة التجارية السرية والعلاقات ، وأمن الدولة والحكومات القمعيّة والتي تستخدم مايعرف باسم تحليل حركة مرور البيانات .</string>
   <string name="internal_web_url">http://orbot/</string>
   <string name="default_web_url">http://check.torproject.org</string>
   <string name="secure_default_web_url">https://check.torproject.org</string>
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">فعل و اوقف تور</string>
   <string name="tor_proxy_service_process">torproxyservice</string>
-  <string name="status_starting_up">جاري تشغيل اوربوت…</string>
+  <string name="status_starting_up">جاري تشغيل اوربوت...</string>
   <string name="status_activated">متصل بشبكة تور</string>
   <string name="status_disabled">تم إيقاف اوربوت</string>
-  <string name="status_shutting_down">جاري إغلاق اوربوت</string>
-  <string name="tor_process_starting">جاري تشغيل تور…</string>
+  <string name="status_shutting_down">جاري ايقاف خدمة تور</string>
+  <string name="tor_process_starting">جاري تشغيل تور...</string>
   <string name="tor_process_complete">كامل.</string>
   <string name="tor_process_waiting">انتظار.</string>
   <string name="not_anonymous_yet">تحذير: حركة مرورك ليست خفية حتي الآن! من فضلك قم بتكوين التطبيقات الخاصة بك لإستخدام بروكسي HTTP 127.0.0.1:8118 أو SOCK4A أو SOKS5 127.0.0.1:9050</string>
@@ -20,11 +21,11 @@
   <string name="menu_settings">إعدادات</string>
   <string name="menu_log">السجل</string>
   <string name="menu_info">مساعدة</string>
-  <string name="menu_apps">تطبيقات</string>
+  <string name="menu_apps">في بي ان شبكة وهمية خاصة</string>
   <string name="menu_start">بدء</string>
   <string name="menu_stop">توقف</string>
   <string name="menu_about">حول</string>
-  <string name="menu_wizard">معالج</string>
+  <string name="menu_promo_apps">حمل التطبيق ...</string>
   <string name="main_layout_download">تحميل</string>
   <string name="main_layout_upload">رفع</string>
   <string name="button_help">مساعدة</string>
@@ -33,6 +34,8 @@
   <string name="button_clear_log">مسح السجل</string>
   <string name="menu_verify">تحقق</string>
   <string name="menu_exit">خروج</string>
+  <string name="menu_scan">فحص QR الجسر</string>
+  <string name="menu_share_bridge">مشاركة QR الجسر</string>
   <string name="press_to_start">- اضغط لفترة طويلة للبدء -</string>
   <string name="pref_trans_proxy_group">بروكسي ضمني (يتطلب اذن حساب رووت)</string>
   <string name="pref_trans_proxy_title">بروكسي ضمني</string>
@@ -58,6 +61,9 @@
   <string name="btn_cancel">إلغاء</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">بعض التفاصيل عن اوربوت</string>
+  <string name="wizard_details_msg">اوربوت تطبيق مفتوح المصدر يحتويه تور، \"ليب افنت\" و \"بوليبو\". 
+وهو يوفر الوكيل-البروكسي المحلي HTTP (8118) ووكيل SOCKS (9050) في شبكة تور. 
+ اوربوت أيضا قادر على الوصول لجذور الجهاز ، لإرسال كل تحركات الإنترنت من خلاله.</string>
   <string name="wizard_permissions_root">تم منح الإذن</string>
   <string name="wizard_permissions_stock">أذونات اوربوت</string>
   <string name="wizard_premissions_msg_root">ممتاز! لقد وجدنا بأنه لديك صلاحية حساب رووت لتمكين اوربوت. سوف نستخدم هذه السلطة بحكمة.</string>
@@ -71,13 +77,21 @@
   <string name="wizard_configure_select_apps">اختر التطبيقات الفردية لتور</string>
   <string name="wizard_tips_tricks">تطبيقات مهيئة لاوربوت</string>
   <string name="wizard_tips_msg">التطبيقات التالية تم تطويرها حتي تعمل مع اوربوت. اضغط علي ما تريد تثبيتة علي جهازك الأن, أو يمكنك ان تجدهم لاحقاً علي جوجل بلاي, أو علي موقعنا GuardianProject.info أو من خلال F-Droid.org.</string>
+  <string name="wizard_tips_otrchat">الدردشة الآمنة - تأمين الرسائل الفورية لمستخدمي الاندرويد</string>
   <string name="wizard_tips_proxy">إعدادات البروكسي - تعلم كيفية تكوين التطبيقات لتعمل مع اوربوت</string>
   <string name="wizard_tips_duckgo">تطبيق محرك البحث DuckDuckGo</string>
   <string name="wizard_tips_twitter">اضبط البروكسي الخاص بتويتر إلي مستضيف \"localhost\" و المنفذ إلي 8118</string>
+  <string name="wizard_tips_story_maker">صانع القصة - اصنع قصة واتركها لأمان تور !</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">إعدادات البروكسي</string>
+  <string name="wizard_proxy_help_msg">إذا كان تطبيق الاندرويد الذي تستخدمه يدعم استخدام وكيل - بروكسيHTTP أو SOCKS  إذاً يمكنك تكوينه للاتصال باوربوت واستخدام تور.  إعدادات المضيف 127.0.0.1 أو \"مضيف\". ل HTTP، إعداد المنفذ هو 8118. لSOCKS، الوكيل هو 9050. يجب عليك استخدام SOCKS4A أو SOCKS5 إذا أمكن \ N \ N \ N \ N يمكنك معرفة المزيد حول إنشاء الوكلاء على الروبوت من خلال التعليمات على: 
+HTTP: / /tinyurl.com/proxyandroid\n</string>
   <string name="wizard_final">اوربوت جاهز للاستخدام!</string>
+  <string name="wizard_final_msg">الملايين من الناس في جميع أنحاء العالم تستخدم تور لمجموعة واسعة من الأسباب . الصحفيين والمدونين , المدافعين عن حقوق الإنسان ، وضباط تنفيذ القانون ، والجنود ، والشركات والمواطنين من الأنظمة القمعية ، وايضاً المواطنين العاديين ... والآن هل أنت جاهز ، هيا بنا !</string>
+  <string name="wizard_exit_at_first_screen_toast">يرجى تكوين اوربوت واعداده لتستطيع البدء بإستخدامه !</string>
   <!--END Welcome Wizard strings (DJH)-->
+  <string name="connect_first_time">لديك اتصال ناجح بشبكة تور - ولكن هذا لا يعني أن جهازك آمن . يمكنك استخدام زر \"متصفح\" لاختبار اتصالك .
+  زرنا على https://guardianproject.info/apps/orbot أو ارسل بريد الكتروني الى help@guardianproject.info  لمعرفة المزيد.</string>
   <string name="tor_check">سيؤدي هذا إلى فتح المتصفح الخاص بك لزيارة عنوان https://check.torproject.org من اجل التحقق إذا كان تكوين اوربوت يعمل بشكل صحيح ام لا وبأنك متصل بتور.</string>
   <string name="pref_hs_group">استضافة الخدمة المخفية</string>
   <string name="pref_general_group">عام</string>
@@ -93,7 +107,6 @@
   <string name="wizard_permissions_root_msg2">إذا كنت لا تريد أن تفعل هذا, الرجاء إستخدام برامج معدة للعمل مع اوربوت</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title"> برامج معدة للعمل مع اوربوت</string>
-  <string name="wizard_tips_orweb">Orweb: متصفح مصمّم للخصوصية و يعمل مع تور</string>
   <string name="wizard_tips_play">يمكنك الحصول علي جميع تطبيقات مشروع الجاردين على جوجل بلاي</string>
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">بروكسي ضمني</string>
@@ -127,14 +140,14 @@
   <string name="pref_proxy_password_summary">كلمة مرور البروكسي (اختياري)</string>
   <string name="pref_proxy_password_dialog">ادخل كلمة مرور البروكسي</string>
   <string name="status">الحالة</string>
-  <string name="setting_up_full_transparent_proxying_">يتم إعداد بروكسي ضمني كامل…</string>
-  <string name="setting_up_app_based_transparent_proxying_">يتم إعداد البروكسي الضمني حسب البرامج…</string>
+  <string name="setting_up_full_transparent_proxying_">يتم إعداد بروكسي ضمني كامل...</string>
+  <string name="setting_up_app_based_transparent_proxying_">يتم إعداد البروكسي الضمني حسب البرامج...</string>
   <string name="transparent_proxying_enabled">البروكسي الضمني مُفعل</string>
   <string name="transproxy_enabled_for_tethering_">البروكسي الضمني جاهز للربط!</string>
   <string name="warning_error_starting_transparent_proxying_">تحذير: حصل خطأ بتشغيل البروكسي الضمني!</string>
   <string name="transproxy_rules_cleared">تم مسح قواعد البروكسي الضمني</string>
   <string name="couldn_t_start_tor_process_">لقد تعذر بدء تشغيل تور:</string>
-  <string name="setting_up_port_based_transparent_proxying_">يتم إعداد البروكسي الضمني حسب المنفذ…</string>
+  <string name="setting_up_port_based_transparent_proxying_">يتم إعداد البروكسي الضمني حسب المنفذ...</string>
   <string name="bridge_error">خطأ بالجسر</string>
   <string name="bridge_requires_ip">حتي تستطيع إستخدم ميزة الجسور، يجب عليك ادخال عنوان انترنت لجسر واحد علي الأقل.</string>
   <string name="send_email_for_bridges">أرسل بريد إلكتروني إلى bridges@torproject.org مع عبارة \"get bridges\" بداخل الرسالة من حساب بريد gmail.</string>
@@ -181,7 +194,7 @@
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">برامج من الطرف الثالث:</string>
   <string name="hidden_service_request">هناك برنامج يحاول فتح منفذ لخادم مخفي %S إلي شبكة تور. هذا السلوك آمن إذا كنت تثق بهذا البرنامج.</string>
-  <string name="found_existing_tor_process">عُثر علي عملية تور سابقة تعمل…</string>
+  <string name="found_existing_tor_process">عُثر علي عملية تور سابقة تعمل...</string>
   <string name="something_bad_happened">حصل خطأ ما. افحص السجل</string>
   <string name="hidden_service_on">الخدمات المخفية التي تعمل حالياً:</string>
   <string name="unable_to_read_hidden_service_name">غير قادر على قراءة اسم الخدمة المخفية</string>
@@ -197,4 +210,5 @@
   <string name="wizard_locale_title">اختار اللغة</string>
   <string name="wizard_locale_msg">إما ان تترك اللغة الافتراضية او إما ان تغير اللغة</string>
   <string name="btn_save_settings">حفظ الإعدادات</string>
+  <string name="menu_vpn">في بي ان شبكة وهمية خاصة</string>
 </resources>

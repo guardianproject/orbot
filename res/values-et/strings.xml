@@ -10,7 +10,6 @@
   <string name="status_starting_up">Orbot käivitub...</string>
   <string name="status_activated">Ühendatud Tor võrgustikku</string>
   <string name="status_disabled">Orbot deaktiveeritud</string>
-  <string name="status_shutting_down">Orbot lülitub välja</string>
   <string name="tor_process_starting">Tor kliendi käivitamine...</string>
   <string name="tor_process_complete">valmis.</string>
   <string name="tor_process_waiting">ootel.</string>
@@ -20,11 +19,9 @@
   <string name="menu_settings">Seaded</string>
   <string name="menu_log">Logi</string>
   <string name="menu_info">Abi</string>
-  <string name="menu_apps">Rakendused</string>
   <string name="menu_start">Start</string>
   <string name="menu_stop">Stopp</string>
   <string name="menu_about">Lähemalt</string>
-  <string name="menu_wizard">Abimees</string>
   <string name="main_layout_download">Lae alla</string>
   <string name="main_layout_upload">Lae üles</string>
   <string name="button_help">Abi</string>
@@ -95,7 +92,6 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot\'ile mõeldud rakendused</string>
   <string name="wizard_tips_gibberbot">ChatSecure: Turvaline vestlusrakendus Off-the-Record krüptoga</string>
-  <string name="wizard_tips_orweb">Orweb: Kõrgendatud privaatsusega veebisirvik mis töötab läbi Tor\'i</string>
   <string name="wizard_tips_play">Kõik Guardian Project rakendused on leitavad ka Google Play kaudu</string>
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Läbipaistev Proxy</string>
@@ -205,11 +201,9 @@
   <string name="pref_disable_network_title">Pole võrgu auto-und</string>
   <string name="pref_disable_network_summary">Pane Tor magama kui Internetiühendus puudub</string>
   <string name="newnym">Lülitusite uuele Tor identiteedile!</string>
-  <string name="menu_verify_browser">Kontrollige veebisirvikut</string>
   <string name="menu_use_chatsecure">Kasutage ChatSecure\'t</string>
   <string name="permission_manage_tor_label">Hallake Tor\'i</string>
   <string name="permission_manage_tor_description">Lubage sellel rakendusel hallata Tor teenust</string>
-  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Näib et Orweb pole sellele seadmele paigaldatud. Kas soovite abi või avame lihtsalt veebisirviku?</string>
   <string name="install_apps_">Paigaldada rakendusi?</string>
   <string name="no_network_connectivity_putting_tor_to_sleep_">Interneti ühendus puudub. Panen Tori magama...</string>
   <string name="network_connectivity_is_good_waking_tor_up_">Interneti ühendus hea. Äratan Tori üles...</string>

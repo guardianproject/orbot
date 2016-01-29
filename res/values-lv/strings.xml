@@ -11,7 +11,6 @@
   <string name="status_starting_up">Orbot startē...</string>
   <string name="status_activated">Izveidots savienojums ar tīklu Tor</string>
   <string name="status_disabled">Orbot ir deaktivēts</string>
-  <string name="status_shutting_down">Orbot izslēdzas</string>
   <string name="tor_process_starting">Startē Tor klientu...</string>
   <string name="tor_process_complete">pabeidz.</string>
   <string name="tor_process_waiting">gaida.</string>
@@ -21,11 +20,9 @@
   <string name="menu_settings">Iestatījumi</string>
   <string name="menu_log">Žurnāls</string>
   <string name="menu_info">Palīdzība</string>
-  <string name="menu_apps">Lietotnes</string>
   <string name="menu_start">Startēt</string>
   <string name="menu_stop">Apturēt</string>
   <string name="menu_about">Par</string>
-  <string name="menu_wizard">Vednis</string>
   <string name="main_layout_download">Lejupielāde</string>
   <string name="main_layout_upload">Augšupielāde</string>
   <string name="button_help">Palīdzība</string>
@@ -87,7 +84,6 @@
   <string name="wizard_final_msg">Miljoniem ļaužu visā pasaulē lieto Tor dažādiem mērķiem. Žurnālisti un emuāru autori, cilvēktiesību aizstāvji, likumsargi, karavīri, korporācijas, apspiestībā dzīvojuši iedzīvotāji, un vienkārši parasti cilvēki ... un tagad arī Jūs esat tam gatavs!</string>
   <string name="wizard_exit_at_first_screen_toast">Lūdzu nokonfigurējiet Orbot pirms sākat to lietot!</string>
   <!--END Welcome Wizard strings (DJH)-->
-  <string name="connect_first_time">Esat sekmīgi izveidojis savienojumu ar tīklu Tor - taču tas vien NENOZĪMĒ, ka Jūsu ierīce nu ir droša. Lai pārbaudītu savu pārlūku, izvēlnē Jūs varat izvēlēties iespēju „Pārbaudīt”. Apmeklējiet mūs https://guardianproject.info/apps/orbot vai sūtiet e-pastu uz help@guardianproject.info , lai uzzinātu vairāk.</string>
   <string name="tor_check">Šī darbība tīmekļa pārlūkā atvērs https://check.torproject.org , lai redzētu vai Orbot ir konfigurēts un esat izveidojies savienojumu ar Tor.</string>
   <string name="pref_hs_group">Slēptu pakalpojumu viesošana</string>
   <string name="pref_general_group">Vispārīgi</string>
@@ -107,7 +103,6 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot\'a iespējotas lietotnes</string>
   <string name="wizard_tips_gibberbot">ChatSecure: Padarīt tērzēšanas lietotni drošāku ar Off-the-Record šifrēšanu</string>
-  <string name="wizard_tips_orweb">Orweb: Pārlūks ar uzlabotu privātumu un kurš strādā caur Tor tīklu</string>
   <string name="wizard_tips_play">Visas Guardian Project\'a lietotnes atrodamas Google Play\'ā</string>
   <string name="wizard_tips_fdroid">Atrodiet visas Guardian Project lietotnes F-Droid\'ā</string>
   <string name="wizard_tips_fdroid_org">Atrodiet visas Guardian Project lietotnes https://f-droid.org</string>
@@ -205,7 +200,6 @@
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
   <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v1.0.1i: http://www.openssl.org</string>
   <string name="hidden_service_request">Lietotne vēlas atvērt slēptu servera portu %S uz tīklu Tor. Tas ir droši, ja uzticaties lietotnei.</string>
   <string name="found_existing_tor_process">Atrada esošu Tor procesu...</string>
   <string name="something_bad_happened">Nav labi. Pārbaudiet žurnālu</string>
@@ -235,11 +229,9 @@
   <string name="pref_disable_network_title">Neizmantot tīkla automātiskā miega režīmu</string>
   <string name="pref_disable_network_summary">Kad nav interneta, pārslēgt Tor\'u uz miega režīmu</string>
   <string name="newnym">Jūs pārslēdzāties uz jaunu Tor\'a identitāti!</string>
-  <string name="menu_verify_browser">Pārbaudīt pārlūku</string>
   <string name="menu_use_chatsecure">Lietot ChatSecure</string>
   <string name="permission_manage_tor_label">Pārvaldīt Tor\'u</string>
   <string name="permission_manage_tor_description">Iespējot šo lietotni kontrolēt pakalpojumu Tor</string>
-  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Škiet, ka Orweb nav instalēts. Vai saistībā ar to vēlaties saņemt palīdzību, vai arī mums vienkārši atvērt pārlūku?</string>
   <string name="install_apps_">Vai instalēt lietotnes?</string>
   <string name="no_network_connectivity_putting_tor_to_sleep_">Nav tīkla savienojuma. Tor\'am iestata miega režīmu...</string>
   <string name="network_connectivity_is_good_waking_tor_up_">Labs tīkla savienojums. Aktivizē Tor\'u...</string>
@@ -267,7 +259,6 @@
   <string name="transparent_proxy_rules_flushed_">Pārredzamā starpniekservera kārtulas ir iztīrītas!</string>
   <string name="you_do_not_have_root_access_enabled">SAKNES piekļuve nav iespējota</string>
   <string name="you_may_need_to_stop_and_start_orbot_for_settings_change_to_be_enabled_">Lai iestatījumu maiņa tiktu iespējota, Jums var nākties apturēt un startēt Orbot.</string>
-  <string name="menu_vpn">Lietotnes</string>
   <string name="kbps">kbps</string>
   <string name="mbps">mbps</string>
   <string name="kb">KB</string>
@@ -275,16 +266,13 @@
   <string name="bridges_updated">Tilti ir atjaunināti</string>
   <string name="restart_orbot_to_use_this_bridge_">Lūdzu pārstartējiet Orbot, lai iespējotu izmaiņas</string>
   <string name="menu_qr">QR kodi</string>
-  <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Ja Jūsu mobīlais tīkls aktīvi bloķē Tor, tad, lai piekļūtu tīklam Jūs, varat lietot Tor Bridge.\n\nLūdzu atlasiet vienu no augstāk norādītajiem tiltu veidiem, lai iespējotu šo raksturiezīmi.</string>
   <string name="bridge_mode">Tiltu režīms</string>
   <string name="get_bridges_email">E-pasts</string>
   <string name="get_bridges_web">Tīmeklis</string>
   <string name="activate">Aktivizēt</string>
-  <string name="apps_mode">Lietotņu režīms</string>
   <string name="you_can_enable_all_apps_on_your_device_to_run_through_the_tor_network_using_the_vpn_feature_of_android_">Jūs varat iespējot visas savas ierīces lietotnes strādāt Tor tīklā, izmantojot Android VPN raksturiezīmi.\n\n*BRĪDINĀJUMS* Šī ir jauna, eksperimentāla raksturiezīme un dažos gadījumos tā var nesākt darbu automātiski, bet citos tā var pati pārtraukt darboties. To NEVAJAG izmantot anonimitātes nodrošināšanai, bet to var izmantot VIENĪGI lai strādātu caur ugunsmūriem un filtriem.</string>
   <string name="send_email">Nosūtīt e-pastu</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Jūs varat saņemt tiltu adreses e-pastā, tīmeklī vai skenējot tiltu QR kodu. Zemāk atlasiet „E-pasts” vai „Tīmeklis”, lai pieprasītu tiltu adreses. Kad esat saņēmis adreses, tad tās iekopējiet un ielīmējiet Orbot iestatījumu preferencēs „Tilti” un pārstartējiet.</string>
-  <string name="install_orweb">Instalēt Orweb</string>
   <string name="standard_browser">Standarta pārlūks</string>
   <string name="note_only_standard_tor_bridges_work_on_intel_x86_atom_devices">PIEZĪME: Uz Intel X86/ATOM ierīcēm darbosies tikai standarta Tor tilti</string>
 </resources>

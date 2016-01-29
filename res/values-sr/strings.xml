@@ -10,7 +10,6 @@
   <string name="status_starting_up">Орбот се покреће...</string>
   <string name="status_activated">Повезан са Тор мрежом</string>
   <string name="status_disabled">Орбот је деактивиран</string>
-  <string name="status_shutting_down">Орбот се гаси</string>
   <string name="tor_process_starting">Покреће се Тор клијент...</string>
   <string name="tor_process_complete">завршено.</string>
   <string name="tor_process_waiting">чекам.</string>
@@ -20,11 +19,9 @@
   <string name="menu_settings">Подешавања</string>
   <string name="menu_log">Логови</string>
   <string name="menu_info">Помоћ</string>
-  <string name="menu_apps">Апликације</string>
   <string name="menu_start">Крени</string>
   <string name="menu_stop">Заустави</string>
   <string name="menu_about">О нама</string>
-  <string name="menu_wizard">Чаробњак</string>
   <string name="main_layout_download">Преузимање</string>
   <string name="main_layout_upload">Отпремање</string>
   <string name="button_help">Помоћ</string>
@@ -94,7 +91,6 @@
   <string name="wizard_permissions_root_msg2">Ако не желите ово да урадите, молимо Вас да се уверите да користите апликације које су подешене да раде са Орботом.</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Апликације са омогућеним Орботом.</string>
-  <string name="wizard_tips_orweb">Orweb: Претраживач са побољшаном приватношћу који ради кроз Тор мрежу</string>
   <string name="wizard_tips_play">Пронађите све Guardian Project апликације на Google Play сервису</string>
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Транспарентно слање кроз прокси</string>

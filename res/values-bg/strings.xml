@@ -8,11 +8,11 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">стартирай и стопирай Тор</string>
   <string name="tor_proxy_service_process">Tor прокси</string>
-  <string name="status_starting_up">Орбот стартира…</string>
+  <string name="status_starting_up">Орбот стартира...</string>
   <string name="status_activated">Свързан към Тор мрежата</string>
   <string name="status_disabled">Орбот е деактивиран</string>
-  <string name="status_shutting_down">Орбот се изключва</string>
-  <string name="tor_process_starting">Стартиране на Тор клиент…</string>
+  <string name="status_shutting_down">TorService спира</string>
+  <string name="tor_process_starting">Стартиране на Тор клиент...</string>
   <string name="tor_process_complete">завършено.</string>
   <string name="tor_process_waiting">изчакване.</string>
   <string name="not_anonymous_yet">ВНИМАНИЕ: Трафикът Ви не е анонимен! Моля конфигурирайте приложенията си да използват HTTP proxy 127.0.0.1:8118 или SOCKS4A или SOCKS5 proxy 127.0.0.1:9050</string>
@@ -21,11 +21,11 @@
   <string name="menu_settings">Настройки</string>
   <string name="menu_log">Лог</string>
   <string name="menu_info">Помощ</string>
-  <string name="menu_apps">Приложения</string>
+  <string name="menu_apps">VPN</string>
   <string name="menu_start">Старт</string>
   <string name="menu_stop">Стоп</string>
   <string name="menu_about">Относно</string>
-  <string name="menu_wizard">Помощник</string>
+  <string name="menu_promo_apps">Изтегли приложения...</string>
   <string name="main_layout_download">Изтегли</string>
   <string name="main_layout_upload">Качи</string>
   <string name="button_help">Помощ</string>
@@ -84,10 +84,10 @@
   <string name="wizard_proxy_help_info">Прокси настройки</string>
   <string name="wizard_proxy_help_msg">Ако Андроид приложението, което използваш поддържа HTTP или SOCKS прокси, тогава мжоеш да го конфигурираш да се свързва с Orbot и да използва Tor.\n\n\nНастойките са host 127.0.0.1 или \"localhost\". За HTTP, портът е 8118. За SOCKS проксито е 9050. Най-добре е по възможност да се използва SOCKS4A или SOCKS5.\n\n\n\nМожеш да научиш повече за прокситата в Андроид през странцита с въпроси и отговори: http://tinyurl.com/proxyandroid\n </string>
   <string name="wizard_final">Орбот е готов!</string>
-  <string name="wizard_final_msg">Милиони хора по света използват Tor по голям брой причини.\n\nЖурналисти и блогъри, защитници на човешките права, органите на реда, войници, корпорации, граждани на държави с репресивни режими, и най-обикновени граждани… а сега и ти!</string>
+  <string name="wizard_final_msg">Милиони хора по света използват Tor по голям брой причини.\n\nЖурналисти и блогъри, защитници на човешките права, органите на реда, войници, корпорации, граждани на държави с репресивни режими, и най-обикновени граждани... а сега и ти!</string>
   <string name="wizard_exit_at_first_screen_toast">Моля, настрой Orbot преди да почнеш да го използваш!</string>
   <!--END Welcome Wizard strings (DJH)-->
-  <string name="connect_first_time">Успешно се свърза с Tor мрежата, но това НЕ значи, че устройството ти е подсигурено. Може да използваш опцията \'Провери\' в менюто, за да тестваш браузъра си. \n\nОтиди на https://guardianproject.info/apps/orbot или изпрати имейл на help@guardianproject.info, за да научиш повече.</string>
+  <string name="connect_first_time">Успешн се свързахте с Tor мрежата - това НЕ значи, че устройството Ви е предпазено. Може да използвате \'Браузър\' бутона да тествате връзката. \n\nОтидете на https://guardianproject.info/apps/orbot или изпратете имейл на help@guardianproject.info, за да научите повече.</string>
   <string name="tor_check">Това ще те заведе на https://check.torproject.org, за да провери дали Orbot е правилно настроен и дали си свързан с Tор.</string>
   <string name="pref_hs_group">Скрити услуги</string>
   <string name="pref_general_group">Главни</string>
@@ -107,7 +107,7 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Приложения през Орбот</string>
   <string name="wizard_tips_gibberbot">ChatSecure: Криптирана чат програма с подръжка на Off-the-Record енкрипция.</string>
-  <string name="wizard_tips_orweb">Orweb: Браузър с повишена анонимност, който работи през Тор</string>
+  <string name="wizard_tips_orweb">Orfox: Браузър с насоченост към осигуряване на личното пространство, който работи през Tor</string>
   <string name="wizard_tips_play">Намери всики Guardin Project програми в Google Play</string>
   <string name="wizard_tips_fdroid">Намери всички приложения на Guardian Project в F-Droid</string>
   <string name="wizard_tips_fdroid_org">Намери всички Guardian Project приложения на https://f-droid.org</string>
@@ -126,6 +126,8 @@
   <string name="pref_entrance_node">Входящи точки</string>
   <string name="pref_entrance_node_summary">Отпечатъци, никсове, държави и адреси за първия скок</string>
   <string name="pref_entrance_node_dialog">Въведи входящи точки</string>
+  <string name="pref_allow_background_starts_title">Разреши тихо стартиране</string>
+  <string name="pref_allow_background_starts_summary">Разреши на всяко приложение да иска от Orbot да стартира Tor услуги</string>
   <string name="button_proxy_all">Прокси за всички</string>
   <string name="button_proxy_none">Прокси за нито една</string>
   <string name="button_invert_selection">Обърни селекцията</string>
@@ -146,15 +148,15 @@
   <string name="pref_proxy_password_summary">Прокси Парола (Незадължително)</string>
   <string name="pref_proxy_password_dialog">Въведи Прокси Парола</string>
   <string name="status">Статус</string>
-  <string name="setting_up_full_transparent_proxying_">Конфигуриране на напълно прозрачно прокси…</string>
-  <string name="setting_up_app_based_transparent_proxying_">Конфигуриране на прозрачно прокси на база приложение…</string>
+  <string name="setting_up_full_transparent_proxying_">Конфигуриране на напълно прозрачно прокси...</string>
+  <string name="setting_up_app_based_transparent_proxying_">Конфигуриране на прозрачно прокси на база приложение...</string>
   <string name="transparent_proxying_enabled">Прозрачно прокси АКТИВНО</string>
   <string name="transproxy_enabled_for_tethering_">TransProxy е включен за Тетъринг!</string>
   <string name="warning_error_starting_transparent_proxying_">ВНИМАНИЕ: грешка при стартиране на прозрачно проски!</string>
   <string name="transproxy_rules_cleared">TransProxy правила изчистени</string>
   <string name="couldn_t_start_tor_process_">Неуспешно стартиране на Тор процес: </string>
   <string name="privoxy_is_running_on_port_">Polipo работи на порт:</string>
-  <string name="setting_up_port_based_transparent_proxying_">Конфигуриране на прозрачно прокси на база порт…</string>
+  <string name="setting_up_port_based_transparent_proxying_">Конфигуриране на прозрачно прокси на база порт...</string>
   <string name="bridge_error">Бридж грешка</string>
   <string name="bridge_requires_ip">За да използвате бридж функционалността трябва да въведете поне един IP адрес на бридж.</string>
   <string name="send_email_for_bridges">Изпрати и-мейл до bridges@torproject.org със съдържание \"get bridges\" в  и-мейл от акаунт в gmail.</string>
@@ -205,9 +207,9 @@
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
   <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v1.0.1i: http://www.openssl.org</string>
+  <string name="openssl_version">OpenSSL v1.0.1q: http://www.openssl.org</string>
   <string name="hidden_service_request">Приложение иска да отвори порт на скрит сървър %S към Тор мрежата. Безопасно е да се доверите на приложението.</string>
-  <string name="found_existing_tor_process">намерил си съвместим Tor проект…</string>
+  <string name="found_existing_tor_process">намерил си съвместим Tor проект...</string>
   <string name="something_bad_happened">Нещо лошо се случи. Проверете лога</string>
   <string name="hidden_service_on">Скрита услуга включена:</string>
   <string name="unable_to_read_hidden_service_name">не може да прочете име на скрита услуга</string>
@@ -228,21 +230,21 @@
   <string name="wizard_locale_msg">Остави по подразбиране или смени наличния език</string>
   <string name="powered_by">базиран на Tor</string>
   <string name="btn_save_settings">Запази настройки</string>
-  <string name="no_internet_connection_tor">Няма интернет връзка; Tor е в режим на изчакване…</string>
+  <string name="no_internet_connection_tor">Няма интернет връзка; Tor е в режим на изчакване...</string>
   <string name="bandwidth_">Скорост:</string>
   <string name="down">теглене</string>
   <string name="up">изпращане</string>
   <string name="pref_disable_network_title">Лиспва Автоматичен Режим на Изчакване</string>
   <string name="pref_disable_network_summary">Сложи Tor в режим на изчакване, когато няма интернет</string>
   <string name="newnym">Сменихте своята Тор идентичност!</string>
-  <string name="menu_verify_browser">Провери Браузърът</string>
+  <string name="menu_verify_browser">Браузър</string>
   <string name="menu_use_chatsecure">Използвай ChatSecure</string>
   <string name="permission_manage_tor_label">Настрой Tor</string>
   <string name="permission_manage_tor_description">Разреши тази програма да контролира Tor</string>
-  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Не изглежда да имате Orweb инсталиран. Искате ли помощ с това, или просто да отворим браузъра?</string>
+  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Не изглежда да имате Orfox инсталиран. Желаете ли помощ с това, или просто да отворим браузъра?</string>
   <string name="install_apps_">Инсталирай програми?</string>
-  <string name="no_network_connectivity_putting_tor_to_sleep_">Няма интернет връзка. Преминаване в режим на изчкаване…</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">Добра интернет връзка. Събуждане на Tor…</string>
+  <string name="no_network_connectivity_putting_tor_to_sleep_">Няма интернет връзка. Преминаване в режим на изчкаване...</string>
+  <string name="network_connectivity_is_good_waking_tor_up_">Добра интернет връзка. Събуждане на Tor...</string>
   <string name="updating_settings_in_tor_service">обновяване на настройките в Tor услугата</string>
   <string name="pref_socks_title">Tor SOCKS</string>
   <string name="pref_socks_summary">Порт, на който Tor предлага своето SOCKS прокси(подразбиране: 9050 или 0, за да забраниш)</string>
@@ -267,7 +269,7 @@
   <string name="transparent_proxy_rules_flushed_">Транспрокси правилата изтрити!</string>
   <string name="you_do_not_have_root_access_enabled">Нямаш ROOT достъп до устройството</string>
   <string name="you_may_need_to_stop_and_start_orbot_for_settings_change_to_be_enabled_">Може да се наложи да спреш и стартираш Orbot, за да могат някои настройки да влязат в действие.</string>
-  <string name="menu_vpn">Приложения</string>
+  <string name="menu_vpn">VPN</string>
   <string name="kbps">kbps</string>
   <string name="mbps">mbps</string>
   <string name="kb">KB</string>
@@ -275,16 +277,16 @@
   <string name="bridges_updated">Мостове включени!</string>
   <string name="restart_orbot_to_use_this_bridge_">Моля, рестартирай Orbot, за да влязат в действие промените</string>
   <string name="menu_qr">QR Кодове</string>
-  <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Ако мобилната ти мрежа нарочно блокирва Tor, можеш да използваш Tor мостове, за да получиш достъп до мрежата.\n\nМоля, избери един от видовете мостове, за да активирап тази функция.</string>
   <string name="bridge_mode">Режим мост</string>
   <string name="get_bridges_email">Имейл</string>
   <string name="get_bridges_web">Уеб</string>
   <string name="activate">Активирай</string>
-  <string name="apps_mode">Режим приложения</string>
+  <string name="apps_mode">Приложения във VPN режим</string>
   <string name="you_can_enable_all_apps_on_your_device_to_run_through_the_tor_network_using_the_vpn_feature_of_android_">Можеш да настроиш всички приложения да минават през Tor мрежата използвайки VPN функцията на Андроид.\n\n*ПРЕДУПРЕЖДЕНИЕ* Това е нова, експериментална функция и в някои случаи може да не стартира автоматично, или да спре. НЕ бива да се използва за анонимност, а САМО за преминаване през файъруоли и филтри.</string>
   <string name="send_email">Изпрати имейл</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Можеш да получиш адреса на мост по имейл, интернет или като сканираш QR kod. Избери \'Имейл\' или \'Интернет\' по-долу, за да поискаш адрес на мост.\n\nВеднъж щом получиш адреса го копирай в \"Мостове\", в настройките на Orbot и рестартирай приложението.</string>
-  <string name="install_orweb">Инсталирай Orweb</string>
+  <string name="install_orweb">Инсталирай Orfox</string>
   <string name="standard_browser">Нормален Браузър</string>
   <string name="note_only_standard_tor_bridges_work_on_intel_x86_atom_devices">БЕЛЕЖКА: Само стандартни Tor мостове работя на Intel X86/ATOM устройства</string>
+  <string name="vpn_default_world">Свят</string>
 </resources>

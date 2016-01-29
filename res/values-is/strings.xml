@@ -11,7 +11,6 @@
   <string name="status_starting_up">Orbot er að ræsa...</string>
   <string name="status_activated">Tengdur við Tor netið</string>
   <string name="status_disabled">Orbot er slökkt</string>
-  <string name="status_shutting_down">Það er að slökkna á Orbot</string>
   <string name="tor_process_starting">Kveiki á Tor notanda...</string>
   <string name="tor_process_complete">lokið.</string>
   <string name="tor_process_waiting">bíða.</string>
@@ -21,11 +20,9 @@
   <string name="menu_settings">Stillingar</string>
   <string name="menu_log">Skráning</string>
   <string name="menu_info">Hjálp</string>
-  <string name="menu_apps">Smáforrit</string>
   <string name="menu_start">Byrja</string>
   <string name="menu_stop">Stöðva</string>
   <string name="menu_about">Um</string>
-  <string name="menu_wizard">Leiðbeinandi</string>
   <string name="main_layout_download">Niðurhal</string>
   <string name="main_layout_upload">Upphal</string>
   <string name="button_help">Hjálp</string>
@@ -87,7 +84,6 @@
   <string name="wizard_final_msg">Milljónir manneskja um allan heim nota Tor útaf mörgum mismunandi ástæðum.\n\nBlaðamenn og bloggarar, mannréttindasinnar, lögreglufólk, hermenn, stórfyrirtæki, þegnar bælandi ríkisstjórna og bara venjulegir borgarar... og núna þú ert líka tilbúinn!</string>
   <string name="wizard_exit_at_first_screen_toast">Vinsamlegast stilltu Orbot áður en þú getur byrjað að nota það!</string>
   <!--END Welcome Wizard strings (DJH)-->
-  <string name="connect_first_time">Þú hefur tengst við Tor netið - en þetta þýðir EKKI að tækið þitt er öruggt. Þú getur notað \'Athuga\' möguleikann frá valmöguleikalistanum til að prófa vafrann þinn.\n\nHeimsæktu okkur á https://guardianproject.info/apps/orbot eða sendu tölvupóst á help@guardianproject.info til að komast að meiru.</string>
   <string name="tor_check">Þetta mun opna vef vafrann þinn að https://check.torproject.org til að sjá hvort Orbot sé rétt tengdur og að þú sért tengdur Tor.</string>
   <string name="pref_hs_group">Falin Þjónusta Hýsing</string>
   <string name="pref_general_group">Almennt</string>
@@ -107,7 +103,6 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot-Virk Smáforrit</string>
   <string name="wizard_tips_gibberbot">ChatSecure: Öruggt spjall smáforrit með Utanvegar Dulkóðun</string>
-  <string name="wizard_tips_orweb">Orweb: Næðis-bættur vafri sem virkar í gegnum Tor</string>
   <string name="wizard_tips_play">Finndu öll Guardian Verkefnis smáforrit á Google Play</string>
   <string name="wizard_tips_fdroid">Finndu öll smáforrit úr Guardian Verkefninu á F-Droid</string>
   <string name="wizard_tips_fdroid_org">Finndu öll smáforrit úr Guardian Verkefninu á https://f-droid.org</string>
@@ -205,7 +200,6 @@
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
   <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v1.0.1i: http://www.openssl.org</string>
   <string name="hidden_service_request">Smáforrit vill opna falið port þjóns %S að Tor netinu. Þetta er öruggt ef þú treystir smáforritinu.</string>
   <string name="found_existing_tor_process">fann annan Tor þráð...</string>
   <string name="something_bad_happened">Eitthvað slæmt gerðist. Athugaðu skráninguna</string>
@@ -235,11 +229,9 @@
   <string name="pref_disable_network_title">Enginn Netkerfis Sjálfvirkur-Svefn</string>
   <string name="pref_disable_network_summary">Svæfðu Tor þegar engin internet tenging er til staðar</string>
   <string name="newnym">Þú ert komin með nýtt Tor auðkenni!</string>
-  <string name="menu_verify_browser">Athuga Vafra</string>
   <string name="menu_use_chatsecure">Nota ChatSecure</string>
   <string name="permission_manage_tor_label">Stilla Tor</string>
   <string name="permission_manage_tor_description">Leyfa þessu smáforriti að stjórna Tor þjónustunni</string>
-  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Það lítur ekki út fyrir að þú ert með Orweb uppsettann. Vantar þig hjálp við það, eða eigum við bara að opna vafrann?</string>
   <string name="install_apps_">Setja upp smáforrit?</string>
   <string name="no_network_connectivity_putting_tor_to_sleep_">Engin tenging við netið. Tor verður svæfður...</string>
   <string name="network_connectivity_is_good_waking_tor_up_">Tenging við netið er góð. Tor verður vakinn...</string>
@@ -267,7 +259,6 @@
   <string name="transparent_proxy_rules_flushed_">Gegnsær proxy reglum hent!</string>
   <string name="you_do_not_have_root_access_enabled">Þú ert ekki með RÓTAR aðgang kveikt</string>
   <string name="you_may_need_to_stop_and_start_orbot_for_settings_change_to_be_enabled_">Þú gætir þurft að stöðva og byrja Orbot til að stillinga breytingar taka gildi.</string>
-  <string name="menu_vpn">Smáforrit</string>
   <string name="kbps">kbps</string>
   <string name="mbps">mbps</string>
   <string name="kb">KB</string>
@@ -275,16 +266,13 @@
   <string name="bridges_updated">Brýr Uppfærðar</string>
   <string name="restart_orbot_to_use_this_bridge_">Vinsamlegast endurræstu Orbot til að breytingarnar taki gildi</string>
   <string name="menu_qr">QR Kóðar</string>
-  <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Ef farsímanetið þitt hindrar Tor með vilja, getur þú notað Tor Brú til að fá aðgang að netinu.\n\nVinsamlegast vildu eina brúartegund að ofan til að kveikja á þessum möguleika.</string>
   <string name="bridge_mode">Brúar Viðmót</string>
   <string name="get_bridges_email">Tölvupóstur</string>
   <string name="get_bridges_web">Vefur</string>
   <string name="activate">Virkja</string>
-  <string name="apps_mode">Smáforrita Viðmót</string>
   <string name="you_can_enable_all_apps_on_your_device_to_run_through_the_tor_network_using_the_vpn_feature_of_android_">Þú getur leyft öllum smáforritum á tækinu þínu að fara í gegnum Tor netið með að nota VPN möguleikann í Android.\n\n*AÐVÖRUN* Þetta er ný, tilraunar möguleiki og í sumum tilfellum mun ekki byrja sjálfkrafa, eða geta stöðvast. Það ætti EKKI að notast fyrir nafnleysi, og AÐEINS notað til að komast í gegnum eldveggi og síur.</string>
   <string name="send_email">Senda Tölvupóst</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Þú getur fengið brúar heimilisfang í gegnum tölvupóst, vefinn eða með að skanna brúar QR kóða. Veldu \'Tölvupóstur\' eða \'Vefur\' fyrir neðan til að óska eftir brúar heimilisfangi.\n\nÞegar þú hefur heimilisfang, afritaðu &amp; límdu það inn í \'Brýr\' stillingu í stillingar og endurræsun í Orbot.</string>
-  <string name="install_orweb">Uppsetning Orweb</string>
   <string name="standard_browser">Staðlaður Vafri</string>
   <string name="note_only_standard_tor_bridges_work_on_intel_x86_atom_devices">ATHUGAÐU: Aðeins staðlaðar Tor brýr virka á Intel X86/ATOM devices</string>
 </resources>

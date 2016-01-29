@@ -10,8 +10,7 @@
   <string name="status_starting_up">Orbot ආරම්භ කරමින්…</string>
   <string name="status_activated">Tor ජාලයට සබැදියි</string>
   <string name="status_disabled">Orbot ක්‍රියාවිරහිත කර ඇත </string>
-  <string name="status_shutting_down">Orbot නැවතෙමින් පවතී</string>
-  <string name="tor_process_starting">Tor දායකයා ආරම්භ කරමින්…</string>
+  <string name="tor_process_starting">Tor දායකයා ආරම්භ කරමින්...</string>
   <string name="tor_process_complete">සම්පුර්ණයි.</string>
   <string name="tor_process_waiting">රැදී සිටියි.</string>
   <string name="not_anonymous_yet">අවවාදයයි: ඔබේ ගනුදෙනු තවම නිර්නාමික නොමැත. කරුණාකර ඔබේ යෙදුම් සදහා HTTP proxy 127.0.0.1:8118 හෝ SOCKS4A හෝ SOCKS5 proxy 127.0.0.1:9050 භාවිතා වන පරිදි වින්‍යාස කරගන්න.</string>
@@ -20,11 +19,9 @@
   <string name="menu_settings">සිටවුම්</string>
   <string name="menu_log">ලොගය </string>
   <string name="menu_info">උදව්</string>
-  <string name="menu_apps">යෙදුම් </string>
   <string name="menu_start">අරඹන්න</string>
   <string name="menu_stop">නවත්වන්න</string>
   <string name="menu_about">පිළිබද</string>
-  <string name="menu_wizard">Wizard</string>
   <string name="main_layout_download">භාගත කරන්න </string>
   <string name="main_layout_upload">උඩුගත කරන්න </string>
   <string name="button_help">උදව්</string>
@@ -93,7 +90,6 @@
   <string name="wizard_permissions_root_msg2">ඔබට මෙය සිදු කිරීමට අවශ්‍යතාවක් නොමැති නම්, Orbot වල වැඩා කරන යොමුන් පමණක් භාවිතා කරන්න.</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot සබල කල යොමු</string>
-  <string name="wizard_tips_orweb">Orweb: Tor හරහා පෞද්ගලිකත්වය වැඩිකරන බ්‍රව්සරයකි.</string>
   <string name="wizard_tips_play">Google Play තුලින් Guardian Project apps තෝරාගන්න </string>
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">පාරදෘශ්‍ය නියුතුසේවා</string>
@@ -121,14 +117,14 @@
   <string name="pref_proxy_port_summary">නියුතු සේවාදායක පෝටය</string>
   <string name="pref_proxy_port_dialog">නියුතු සේවා පෝටය ඇතුළු කරන්න </string>
   <string name="status">තත්වය</string>
-  <string name="setting_up_full_transparent_proxying_">සම්පුර්ණ පාරදෘශ්‍ය නියුතුසේවා පිහිටුවීම…</string>
-  <string name="setting_up_app_based_transparent_proxying_">යොමු පදනම් කරගෙන ක්‍රියාත්මක වන පාරදෘශ්‍ය නියුතුසේවා පිහිටුවීම…</string>
+  <string name="setting_up_full_transparent_proxying_">සම්පුර්ණ පාරදෘශ්‍ය නියුතුසේවා පිහිටුවීම...</string>
+  <string name="setting_up_app_based_transparent_proxying_">යොමු පදනම් කරගෙන ක්‍රියාත්මක වන පාරදෘශ්‍ය නියුතුසේවා පිහිටුවීම...</string>
   <string name="transparent_proxying_enabled">පාරදෘශ්‍ය නියුතුසේවා සබල කර ඇත </string>
   <string name="transproxy_enabled_for_tethering_">TransProxy Tethering සදහා සබල කර ඇත!</string>
   <string name="warning_error_starting_transparent_proxying_">අවවාදයයි: පාරදෘශ්‍ය නියුතුසේවාවෙන් දෝෂයක් හටගෙන ඇත!</string>
   <string name="transproxy_rules_cleared">TransProxy කොන්දේසි ඉවත් කර ඇත </string>
   <string name="couldn_t_start_tor_process_">Tor ක්‍රියාවලින් ආරම්භ කිරීමට නොහැකි විය:</string>
-  <string name="setting_up_port_based_transparent_proxying_">පෝට පදනම් කරගෙන ක්‍රියාත්මක වන පාරදෘශ්‍ය නියුතුසේවා පිහිටුවීම…</string>
+  <string name="setting_up_port_based_transparent_proxying_">පෝට පදනම් කරගෙන ක්‍රියාත්මක වන පාරදෘශ්‍ය නියුතුසේවා පිහිටුවීම...</string>
   <string name="bridge_error">සේතු දෝෂයකි</string>
   <string name="bridge_requires_ip">සේතු විශේෂාංග භාවිතාය සදහා ඔබ අඩු තරමින් එක් සේතු IP ලිපිනයක් හෝ ඇතුලත් කල යුතුය.</string>
   <string name="send_email_for_bridges">\"get bridges\" නම් පේලිය විද්‍යුත් ලිපියේ දේහයේ ඇතුලත් කර gmail ගිණුමකින් bridges@torproject.org ලිපිනයට යවන්න.</string>
@@ -175,7 +171,7 @@
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">3 වන පාර්ශව මෘදුකාංග</string>
   <string name="hidden_service_request">යොමුවකට සැගවුණු සේවාදායක %S පෝටය Tor ජාලයට විවෘත කිරීමට උවමනාය. මෙය සුරක්ෂිතවන්නේ ඔබ මෙම යොමුව විශ්වාස කරනවා නම්  පමණි.</string>
-  <string name="found_existing_tor_process">පවතින Tor ක්‍රියාවලි හමුවිය…</string>
+  <string name="found_existing_tor_process">පවතින Tor ක්‍රියාවලි හමුවිය...</string>
   <string name="something_bad_happened">යම් නොමනා දෙයක් සිදුවිය. ලොගය පරික්ෂා කර බලන්න </string>
   <string name="hidden_service_on">සැගවුණු සේවා පිහිටන්නේ:</string>
   <string name="unable_to_read_hidden_service_name">සැගවුණු සේවා නාමය කියවීමට නොහැකිය </string>

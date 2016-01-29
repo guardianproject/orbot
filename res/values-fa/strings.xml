@@ -8,11 +8,11 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">شروع و پایان تور</string>
   <string name="tor_proxy_service_process">سرويس پروکسی تور</string>
-  <string name="status_starting_up">اربوت درحال آغاز است…</string>
+  <string name="status_starting_up">اربوت درحال آغاز است...</string>
   <string name="status_activated">متصل به شبکه تور</string>
   <string name="status_disabled">اربوت غیرفعال شده است.</string>
-  <string name="status_shutting_down">اربوت در حال بسته شدن است.</string>
-  <string name="tor_process_starting">شروع کلاینت تور…</string>
+  <string name="status_shutting_down">TorService خاموش است</string>
+  <string name="tor_process_starting">شروع کلاینت تور...</string>
   <string name="tor_process_complete">تمام.</string>
   <string name="tor_process_waiting">در حال انتظار.</string>
   <string name="not_anonymous_yet">هشدار: فعالیت شما هنوز \"گمنام\" نیست! لطفن اپلیکیشن خود را تنظیم کنید تا از HTTP پروکسی 127.0.0.1:8118 و یا SOCKS4A و یا SOCKS5 پروکسی 127.0.01:9050 استفاده کند.</string>
@@ -21,11 +21,11 @@
   <string name="menu_settings">تنظیمات</string>
   <string name="menu_log">ورود</string>
   <string name="menu_info">کمک</string>
-  <string name="menu_apps">برنامه ها</string>
+  <string name="menu_apps">وی پی ان</string>
   <string name="menu_start">آغاز</string>
   <string name="menu_stop">ایست</string>
   <string name="menu_about">درباره</string>
-  <string name="menu_wizard">Wizard</string>
+  <string name="menu_promo_apps">دریافت برنامه ها ...</string>
   <string name="main_layout_download">دانلود</string>
   <string name="main_layout_upload">آپلود</string>
   <string name="button_help">کمک</string>
@@ -85,10 +85,9 @@
   <string name="wizard_proxy_help_msg">اگر برنامه آندرویدی که استفاده می کنید می تواند از استفاده HTTP یا  SOCKS proxy ساپورت کند٬ پس می توانید آن را برای اتصال به اوربوت استفاده از تور تنظیم کنید. .\n\n\n تنظیمات هاست 127.0.0.1  یا \"localhost\". برای HTTP تنظیم پورت  8118 است. برای  SOCKS ٬ پروکسی 9050. اگر امکانش وجود دارد از  SOCKS4A یا SOCKS5 استفاده کنید. \n \n\n\n  می توانید در مورد پروکسی در آندروید بیشتر بیاموزید در
  http://tinyurl.com/proxyandroid\n</string>
   <string name="wizard_final">اوربوت آماده استفاده میباشد!</string>
-  <string name="wizard_final_msg">بسیاری از مردم در سرتاسر جهان از تور به دلایل متفاوت استفاده می کنند.\n\n خبرنگارها و بلاگرها٬ فعالان حقوق بشر٬ سربازان٬ ماموران اجرای قانون٬ شهروندان رژیم های سرکوبگر و مردم معمولی… و حالا تو </string>
+  <string name="wizard_final_msg">بسیاری از مردم در سرتاسر جهان از تور به دلایل متفاوت استفاده می کنند.\n\n خبرنگارها و بلاگرها٬ فعالان حقوق بشر٬ سربازان٬ ماموران اجرای قانون٬ شهروندان رژیم های سرکوبگر و مردم معمولی... و حالا تو </string>
   <string name="wizard_exit_at_first_screen_toast">لطفا اوربوت را  پیکربندی کنید قبل از اینکه شما شروع به استفاده از آن کنید!</string>
   <!--END Welcome Wizard strings (DJH)-->
-  <string name="connect_first_time">شما با موفقیت به شبکه تور وصل شده اید - این به این معنا نیست که دستگاه شما امن است. می توانید با استفاده از گزنیه چک مرورگر خود را آزمایش نمایید. \n\n به ما سر بزنید در https://guardianproject.info/apps/orbot یا برای اطلاعات بیشتر به ما ایمیل ارسال کنید از طریق help@guardianproject.info  </string>
   <string name="tor_check">با این قدم پیشفرض مرورگر وب شما به صفحه   https://check.torproject.org باز می شود تا شما مشاهده کنید آیا ربات پیازی تنظیم شده است و آیا شما به تور وصل شده اید یا نه.</string>
   <string name="pref_hs_group">سرويس های مخفی هاست</string>
   <string name="pref_general_group">کلی</string>
@@ -108,7 +107,6 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">  اپلیکیشنهایی که ربات پیازی روی آنها فعال است</string>
   <string name="wizard_tips_gibberbot">ChatSecure: برنامه گفتگوی امن محرمانه با قابلیت رمزگزاری</string>
-  <string name="wizard_tips_orweb">مرورگر پیازی: مرورگر طراحی شده برای حفظ حریم خصوصی و افزونساز ربات پیازی</string>
   <string name="wizard_tips_play">تمامي برنامه های Guardian Project را در Google Play پيدا كنيد.</string>
   <string name="wizard_tips_fdroid">یافتن همه برنامه های Guardian Project در F-Droid</string>
   <string name="wizard_tips_fdroid_org">یافتن همه برنامه های Guardian Project در https://f-droid.org</string>
@@ -147,15 +145,15 @@
   <string name="pref_proxy_password_summary">رمز عبور پروکسی(اختیاری)</string>
   <string name="pref_proxy_password_dialog">رمز عبور پروکسی را وارد نمایید</string>
   <string name="status">وضعیت</string>
-  <string name="setting_up_full_transparent_proxying_">نصب پروکسی کاملن شفاف…</string>
-  <string name="setting_up_app_based_transparent_proxying_">نصب پروکسی شفاف مبتنی بر برنامه…</string>
+  <string name="setting_up_full_transparent_proxying_">نصب پروکسی کاملن شفاف...</string>
+  <string name="setting_up_app_based_transparent_proxying_">نصب پروکسی شفاف مبتنی بر برنامه...</string>
   <string name="transparent_proxying_enabled">پروکسی شفاف فعال است</string>
   <string name="transproxy_enabled_for_tethering_">TransProxy برای Tethering فعال شده است!</string>
   <string name="warning_error_starting_transparent_proxying_">هشدار: خطا در هنگام راه اندازی پروکسی شفاف!</string>
   <string name="transproxy_rules_cleared">قوانین TransProxy پاک شدند</string>
   <string name="couldn_t_start_tor_process_"> تور نتواست اجرا شود:</string>
   <string name="privoxy_is_running_on_port_">Polipo در حال اجرا است در پورت:</string>
-  <string name="setting_up_port_based_transparent_proxying_">نصب پروکسی شفاف مبتنی بر پورت…</string>
+  <string name="setting_up_port_based_transparent_proxying_">نصب پروکسی شفاف مبتنی بر پورت...</string>
   <string name="bridge_error">خطای Bridge </string>
   <string name="bridge_requires_ip">برای استفاده از ویژگی Bridge، باید حداقل آدرس IP یک پل را وارد کنید.</string>
   <string name="send_email_for_bridges">از یک حساب کاربری جیمیل، ایمیلی با متن \"get bridges\" به آدرس bridges@torproject.org بفرستید.</string>
@@ -206,9 +204,9 @@
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
   <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v1.0.1i: http://www.openssl.org</string>
+  <string name="openssl_version">OpenSSL v1.0.1q: http://www.openssl.org</string>
   <string name="hidden_service_request">یک اپلیکیشن میخواهد پورت %S سرویس مخفی را به شبکه تور باز کند. اگر به این اپلیکیشن اعتماد دارید این بی خطر است.</string>
-  <string name="found_existing_tor_process">یک تور درحال اجرا پیدا شد…</string>
+  <string name="found_existing_tor_process">یک تور درحال اجرا پیدا شد...</string>
   <string name="something_bad_happened">اتفاق بدی افتاد. وقایع ثبت شده را چک کنید</string>
   <string name="hidden_service_on">سرویس مخفی روی:</string>
   <string name="unable_to_read_hidden_service_name">ناتوان در خواندن نام سرویس مخفی</string>
@@ -229,21 +227,20 @@
   <string name="wizard_locale_msg">زبان کنونی را تعویض و یا به شکل پیشفرض رهایش کنید</string>
   <string name="powered_by">طراحی شده توسط Tor</string>
   <string name="btn_save_settings">ذخیره تنظیمات</string>
-  <string name="no_internet_connection_tor">ارتباط اینترنتی وجود ندارد; تور آماده کار است… </string>
+  <string name="no_internet_connection_tor">ارتباط اینترنتی وجود ندارد; تور آماده کار است... </string>
   <string name="bandwidth_">پهنای باند:</string>
   <string name="down">پائین</string>
   <string name="up">بالا</string>
   <string name="pref_disable_network_title">خاموش کردن در صورت عدم وجود شبکه</string>
   <string name="pref_disable_network_summary">در صورتی که شبکه وجود نداشته باشد خاموش شود</string>
   <string name="newnym">شما به شناسه جدید تور منتقل شدید</string>
-  <string name="menu_verify_browser">آزمون مرورگر</string>
+  <string name="menu_verify_browser">مرورگر</string>
   <string name="menu_use_chatsecure">استفاده از ChatSecure</string>
   <string name="permission_manage_tor_label">مدیریت تور</string>
   <string name="permission_manage_tor_description">این برنامه بتواند سرویس تور را مدیریت کند</string>
-  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">بنظر میرسد برنامه Orweb  نصب نشده است. آیا کمکی برای نصب میخواهید یا فقط مرورگر باز شود؟</string>
   <string name="install_apps_">برنامه نصب شود؟</string>
   <string name="no_network_connectivity_putting_tor_to_sleep_">ارتباط شبکه ای وجود ندارد. تور به حالت خواب می رود</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">ارتباط شبکه ای خوب است. تور را بیدار نمایید…</string>
+  <string name="network_connectivity_is_good_waking_tor_up_">ارتباط شبکه ای خوب است. تور را بیدار نمایید...</string>
   <string name="updating_settings_in_tor_service">به روز رسانی تنظیمات در سرویس Tor</string>
   <string name="pref_socks_title">Tor SOCKS</string>
   <string name="pref_socks_summary">پورتی که تور ارائه می دهد SOCKS proxy روی (پیش فرض: 9050 یا 0 برای غیرفعال کردن)</string>
@@ -268,7 +265,7 @@
   <string name="transparent_proxy_rules_flushed_">قوانین Transparent proxy  برهم ریخته شد! </string>
   <string name="you_do_not_have_root_access_enabled">شما دسترسی روت را فعال نکردید. </string>
   <string name="you_may_need_to_stop_and_start_orbot_for_settings_change_to_be_enabled_"> برای اعمال تنظیمات جدید باید اوربات را خاموش و روشن کنید.</string>
-  <string name="menu_vpn">برنامه ها</string>
+  <string name="menu_vpn">وی پی ان</string>
   <string name="kbps">kbps</string>
   <string name="mbps">mbps</string>
   <string name="kb">KB</string>
@@ -276,18 +273,17 @@
   <string name="bridges_updated">Bridges به روز شدند</string>
   <string name="restart_orbot_to_use_this_bridge_">برای فعال کردن تغییرات لطفا Orbot را راه اندازی مجدد کنید</string>
   <string name="menu_qr">کدهای QR</string>
-  <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">اگر شبکه موبایل شما تور را مسدود کرد می توانید از Tor Bridge برای اتصال به شبکه استفاده کنید. \n\n یک نوع از bridge های پایین را برای  فعال کردن این امکان انتخاب کنید. </string>
   <string name="bridge_mode">حالت Bridges</string>
   <string name="get_bridges_email">ایمیل</string>
   <string name="get_bridges_web">وب</string>
   <string name="activate">فعال</string>
-  <string name="apps_mode">حالت برنامه</string>
   <string name="you_can_enable_all_apps_on_your_device_to_run_through_the_tor_network_using_the_vpn_feature_of_android_">با استفاده از امکان وی پی ان اندروید٬ اوربات ترافیک تمام اپلیکیشن های موبایل شما را از طریق شبکه تور انتقال میدهد. 
 \n\n*هشدار* 
 امکان تونل تمام گوشی هنوز جدید و در حال آزمایش است. به همین دلیل امکان دارد که به صورت خودکار فعال نشود یا هنگام استفاده قطع شود. از این امکان برای ناشناس بودن در وب هرگز نباید استفاده کنید و باید فقط از آن برای عبور از فایروال ها و دور زدن فیلترینگ استفاده شود.</string>
   <string name="send_email">ایمیل بفرست</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">می توانید آدرس  bridge  را از طریق ایمیل٬ وب یا با اسکن کردن  bridge QR code بدست آورید. ایمیل یا وب پایین را برای درخواست آدرس bridge انتخاب کنید.\n\n وقتی آدرس را دارید آن را کپی کنید و برگردانید در  اولویت های  Bridges در تنظیمات اربت و آن را دوباره راه اندازی کنید.</string>
-  <string name="install_orweb">نصب Orweb</string>
+  <string name="install_orweb">نصب Orfox</string>
   <string name="standard_browser">مرورگر استاندارد</string>
   <string name="note_only_standard_tor_bridges_work_on_intel_x86_atom_devices">نکته:  Tor bridges استاندارد فقط بر روی دستگاه های Intel X86/ATOM  کار می کند</string>
+  <string name="vpn_default_world">جهان</string>
 </resources>

@@ -10,7 +10,6 @@
   <string name="status_starting_up">Orbot se spouští...</string>
   <string name="status_activated">Připojen k síti Tor</string>
   <string name="status_disabled">Orbot je deaktivován</string>
-  <string name="status_shutting_down">Orbot se vypíná</string>
   <string name="tor_process_starting">Startuji Tor klienta...</string>
   <string name="tor_process_complete">hotovo.</string>
   <string name="tor_process_waiting">čekám.</string>
@@ -20,11 +19,9 @@
   <string name="menu_settings">Nastavení</string>
   <string name="menu_log">Log</string>
   <string name="menu_info">Pomoc</string>
-  <string name="menu_apps">Aplikace</string>
   <string name="menu_start">Zapnout</string>
   <string name="menu_stop">Vypnout</string>
   <string name="menu_about">O aplikaci</string>
-  <string name="menu_wizard">Průvodce</string>
   <string name="main_layout_download">Stáhnout</string>
   <string name="main_layout_upload">Nahrát</string>
   <string name="button_help">Nápověda</string>
@@ -80,7 +77,6 @@
   <string name="wizard_final">Orbot je připraven!</string>
   <string name="wizard_exit_at_first_screen_toast">Orbot musíte nejdříve nastavit, než ho začnete používat!</string>
   <!--END Welcome Wizard strings (DJH)-->
-  <string name="connect_first_time">Úspěšně jste se připojili do sítě Tor - to ale NEZNAMENÁ, že vaše zařízení je v bezpečí. Můžete použít volbu \'Zkontrolovat\' , která se nachází v menu, aby jste otestovali váš prohlížeč. \n\nNavštivte nás na  https://guardianproject.info/apps/orbot nebo nám pošlete e-mail na help@guardianproject.info , aby jste se dozvěděli více informací.</string>
   <string name="tor_check">Tato volba otevře ve webovém prohlížeči stránku https://check.torproject.org pro kontrolu, jestli je Orbot správně nastaven a jste připojen k Tor.</string>
   <string name="pref_hs_group">Skrytý hosting služby</string>
   <string name="pref_general_group">Obecné</string>
@@ -97,7 +93,6 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot-povolené aplikace</string>
   <string name="wizard_tips_gibberbot">ChatSecure: Bezpečná chatovací aplikace s technologií Off-the-Record Encryption</string>
-  <string name="wizard_tips_orweb">Orweb: webový prohlížeč s rozšířeným soukromím pracující přes Tor</string>
   <string name="wizard_tips_play">Najděte všechny aplikace Guardian Projektu na Obchodu Play</string>
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Transparentní proxy</string>
@@ -189,7 +184,6 @@
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
   <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v1.0.1i: http://www.openssl.org</string>
   <string name="hidden_service_request">Aplikace požaduje otevření skrytého portu serveru %S k síti Tor. Toto je bezpečně, pokud aplikaci důvěřujete.</string>
   <string name="found_existing_tor_process">nalezev existující Tor proces…</string>
   <string name="something_bad_happened">Stalo se něco špatného. Zkontrolujte log</string>
@@ -215,11 +209,9 @@
   <string name="pref_disable_network_title">Vypnout uspávání sítě</string>
   <string name="pref_disable_network_summary">Uspat Tor když není k dispozici přístup k Internetu</string>
   <string name="newnym">Vaše identita na Toru byla změněna!</string>
-  <string name="menu_verify_browser">Zkontrolovat prohlížeč</string>
   <string name="menu_use_chatsecure">Použít ChatSecure</string>
   <string name="permission_manage_tor_label">Spravovat Tor</string>
   <string name="permission_manage_tor_description">Umožnit této aplikaci ovládat službu Tor</string>
-  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Vypadá to, že nemáte nainstalován Orweb. Chcete pomoci s jeho instalací, nebo jen otevřít standardní prohlížeč?</string>
   <string name="install_apps_">Nainstalovat aplikace?</string>
   <string name="restart_orbot_to_use_this_bridge_">Pro projevení změn restartujte Orbot</string>
   <string name="menu_qr">QR kódy</string>
@@ -227,6 +219,5 @@
   <string name="get_bridges_web">Web</string>
   <string name="activate">Aktivovat</string>
   <string name="send_email">Pošli email</string>
-  <string name="install_orweb">Nainstalovat Orweb</string>
   <string name="standard_browser">Standartní prohlížeč</string>
 </resources>

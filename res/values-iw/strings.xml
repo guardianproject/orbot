@@ -11,7 +11,6 @@
   <string name="status_starting_up">Orbot מתחיל…</string>
   <string name="status_activated">מחובר לרשת Tor</string>
   <string name="status_disabled">Orbot כבוי</string>
-  <string name="status_shutting_down">Orbot בתהליך כיבוי</string>
   <string name="tor_process_starting">מתחיל לקוח Tor...</string>
   <string name="tor_process_complete">הושלם.</string>
   <string name="tor_process_waiting">מחכה.</string>
@@ -21,11 +20,9 @@
   <string name="menu_settings">הגדרות</string>
   <string name="menu_log">רישום</string>
   <string name="menu_info">עזרה</string>
-  <string name="menu_apps">אפליקציות</string>
   <string name="menu_start">התחל</string>
   <string name="menu_stop">עצור</string>
   <string name="menu_about">אודות</string>
-  <string name="menu_wizard">אשף</string>
   <string name="main_layout_download">הורדה</string>
   <string name="main_layout_upload">העלאה</string>
   <string name="button_help">עזרה</string>
@@ -105,7 +102,6 @@ tor-assistants@torproject.org</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot-יישומים מופעלים</string>
   <string name="wizard_tips_gibberbot">ChatSecure: אפליקציית מסרים עם הצפנת Off-the-Record</string>
-  <string name="wizard_tips_orweb">Orweb- דפדפן עם פרטיות רבה שעובד דרך Tor</string>
   <string name="wizard_tips_play">מצא את כל אפליציות Guardian Project אצל Google Play</string>
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">פרוקסי שקוף</string>
@@ -187,7 +183,6 @@ tor-assistants@torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
   <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v1.0.1i: http://www.openssl.org</string>
   <string name="found_existing_tor_process">נמצא תהליך Tor קיים…</string>
   <string name="something_bad_happened">משהו רע התרחש. בדוק את היומן</string>
   <string name="hidden_service_on">שירות נסתר ב:</string>
@@ -210,7 +205,6 @@ tor-assistants@torproject.org</string>
   <string name="up">מעלה</string>
   <string name="pref_disable_network_summary">כבה את Tor כאשר אין חיבור לאינטרנט</string>
   <string name="newnym">החלפת אל זהות Tor חדשה!</string>
-  <string name="menu_verify_browser">בדוק דפדפן</string>
   <string name="menu_use_chatsecure">הפעל את ChatSecure</string>
   <string name="permission_manage_tor_label">נהל Tor</string>
   <string name="permission_manage_tor_description">אפשר את אפליקציה זו כדי לשלוט בשירות Tor</string>
@@ -226,17 +220,14 @@ tor-assistants@torproject.org</string>
   <string name="your_tor_public_ips_">הIPs החיצוניים שלך עם Tor:</string>
   <string name="you_do_not_have_root_access_enabled">אין לך גישת רוט מאופשרת</string>
   <string name="you_may_need_to_stop_and_start_orbot_for_settings_change_to_be_enabled_">תצטרך לכבות ולהפעיל את Orbot על מנת להחיל את השינוי בהגדרות.</string>
-  <string name="menu_vpn">אפליקציות</string>
   <string name="kbps">kbps</string>
   <string name="mbps">mbps</string>
   <string name="kb">KB</string>
   <string name="mb">MB</string>
   <string name="menu_qr">קוד QR</string>
-  <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">אם חברת הסלולר שלך חוסמת בכוונה את Tor, תוכל להשתמש בגשר - Tor בכדי לגשת לרשת.\n\nאנא בחר את אחד מסוגי הגשרים מעל כדי להפעיל אותו.</string>
   <string name="get_bridges_email">דוא\"ל</string>
   <string name="get_bridges_web">אתר</string>
   <string name="activate">הפעל</string>
   <string name="send_email">שלח דוא\"ל</string>
-  <string name="install_orweb">התקן Orweb</string>
   <string name="standard_browser">דפדפן רגיל</string>
 </resources>

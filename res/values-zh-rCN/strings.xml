@@ -11,7 +11,7 @@
   <string name="status_starting_up">Orbot 正在启动...</string>
   <string name="status_activated">已连接到 Tor 网络</string>
   <string name="status_disabled">Orbot 已停用</string>
-  <string name="status_shutting_down">Orbot 正在关闭</string>
+  <string name="status_shutting_down">Tor服务 正在关闭</string>
   <string name="tor_process_starting">正在启动 Tor 客户端...</string>
   <string name="tor_process_complete">完成。</string>
   <string name="tor_process_waiting">等待。</string>
@@ -21,11 +21,11 @@
   <string name="menu_settings">设置</string>
   <string name="menu_log">日志</string>
   <string name="menu_info">帮助</string>
-  <string name="menu_apps">应用程序</string>
+  <string name="menu_apps">VPN</string>
   <string name="menu_start">启动</string>
   <string name="menu_stop">停止</string>
   <string name="menu_about">关于</string>
-  <string name="menu_wizard">向导</string>
+  <string name="menu_promo_apps">获取应用…</string>
   <string name="main_layout_download">下载</string>
   <string name="main_layout_upload">上传</string>
   <string name="button_help">帮助</string>
@@ -79,13 +79,17 @@
   <string name="wizard_tips_proxy">代理设置 - 学习如何配置应用程序使用 Orbot</string>
   <string name="wizard_tips_duckgo">DuckDuckGo 搜索引擎应用程序</string>
   <string name="wizard_tips_twitter">将 Twitter 代理的主机设置 localhost 并将端口设置为 8118</string>
+  <string name="wizard_tips_story_maker">故事制造者--乱说些什么，并用Tor保证您的安全！</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">代理设置</string>
+  <string name="wizard_proxy_help_msg">如果 Android 应用程序支持 HTTP 或 SOCKS 代理，那么您可对它进行配置来连接到 Orbot 并使用 Tor 网络。 主机设置为 127.0.0.1 或 localhost。对于 HTTP，端口设置为 8118；对于 SOCKS，端口设置为 9050。如果可以，请尽量使用 SOCKS4A 或 SOCKS5 代理。 更多有关 Android 代理信息，请参阅 http://tinyurl.com/proxyandroid 中的常见问题</string>
   <string name="wizard_final">Orbot 已就绪！</string>
+  <string name="wizard_final_msg">全球数以万计的人正在使用Tor，他们中有媒体记者，博客家，人权主义者，改革宣扬者，军官，公司职工，以及同您一样的普通市民！现在，您也准备好了！</string>
   <string name="wizard_exit_at_first_screen_toast">请在您开始使用它前配置 Orbot！</string>
   <!--END Welcome Wizard strings (DJH)-->
-  <string name="connect_first_time">你已成功接入Tor网络 - 但是这不意味着你的设备已安全匿名。你可以通过菜单中”Check\"选项测试浏览器的匿名性。
-通过访问 https://guardianproject.info/apps/orbot 或者向 help@guardianproject.info 发送邮件了解更多。</string>
+  <string name="connect_first_time">您已经成功连接到Tor网络，但不代表您的设备是安全的。您可以使用“浏览器”按钮测试您的连接。
+
+访问https://guardianproject.info/apps/orbot 或发送邮件至help@guardianproject.info 来了解更多。</string>
   <string name="tor_check">浏览器将启动并访问：https://check.torproject.org，以便检查 Orbot 配置是否正确以及是否可连接 Tor 网络。</string>
   <string name="pref_hs_group">隐藏服务主机</string>
   <string name="pref_general_group">常规</string>
@@ -108,7 +112,7 @@ Tor帮助你避开那些威胁到你的隐私，重要信息和社交关系的�
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">使用 Orbot 的应用程序</string>
   <string name="wizard_tips_gibberbot">ChatSecure：具有 OTF 加密共的安全通讯应用</string>
-  <string name="wizard_tips_orweb">Orweb：使用 Tor 网络的隐私保护浏览器</string>
+  <string name="wizard_tips_orweb">Orfox：隐私增强浏览器采用 Tor 工作</string>
   <string name="wizard_tips_play">在 Google Play 商店查找所有 Guardian Project 的应用程序</string>
   <string name="wizard_tips_fdroid">在 F-Droid 查找所有 Guardian Project 的应用程序</string>
   <string name="wizard_tips_fdroid_org">在 https://f-droid.org 查找所有 Guardian Project 的应用程序</string>
@@ -127,6 +131,8 @@ Tor帮助你避开那些威胁到你的隐私，重要信息和社交关系的�
   <string name="pref_entrance_node">入口节点</string>
   <string name="pref_entrance_node_summary">用于首次跳转的密钥指纹、昵称、国家与地址</string>
   <string name="pref_entrance_node_dialog">输入入口节点</string>
+  <string name="pref_allow_background_starts_title">允许后台启动</string>
+  <string name="pref_allow_background_starts_summary">允许任何应用告知 Orbot 启动 Tor 及相关服务</string>
   <string name="button_proxy_all">全部代理</string>
   <string name="button_proxy_none">全不代理</string>
   <string name="button_invert_selection">反选</string>
@@ -206,7 +212,7 @@ Tor帮助你避开那些威胁到你的隐私，重要信息和社交关系的�
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
   <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v1.0.1i: http://www.openssl.org</string>
+  <string name="openssl_version">OpenSSL v1.0.1q: http://www.openssl.org</string>
   <string name="hidden_service_request">应用程序试图打开隐藏服务主机端口 %S 连接 Tor 网络。对于可信应用这是安全的。</string>
   <string name="found_existing_tor_process">发现当前已存在 Tor 进程...</string>
   <string name="something_bad_happened">发生错误，请检查日志</string>
@@ -236,11 +242,11 @@ Tor帮助你避开那些威胁到你的隐私，重要信息和社交关系的�
   <string name="pref_disable_network_title">无网络自动休眠</string>
   <string name="pref_disable_network_summary">没有网络连接时，暂时停用 Tor</string>
   <string name="newnym">已切换为新的 Tor 标识！</string>
-  <string name="menu_verify_browser">浏览器检测</string>
+  <string name="menu_verify_browser">浏览器</string>
   <string name="menu_use_chatsecure">使用 ChatSecure</string>
   <string name="permission_manage_tor_label">管理 Tor</string>
   <string name="permission_manage_tor_description">启用该应用可对 Tor 服务进行控制</string>
-  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">好像没有安装 Orweb。是否需要帮忙，还是直接打开浏览器？</string>
+  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">似乎您还没有安装 Orfox。是否需要帮助，或者我们应该打开浏览器？</string>
   <string name="install_apps_">安装应用？</string>
   <string name="no_network_connectivity_putting_tor_to_sleep_">没有网络连接；让 Tor 进入睡眠…</string>
   <string name="network_connectivity_is_good_waking_tor_up_">网络连接良好。正在唤醒 Tor...</string>
@@ -268,7 +274,7 @@ Tor帮助你避开那些威胁到你的隐私，重要信息和社交关系的�
   <string name="transparent_proxy_rules_flushed_">透明代理规则已刷新！</string>
   <string name="you_do_not_have_root_access_enabled">您还没有 ROOT 访问权限</string>
   <string name="you_may_need_to_stop_and_start_orbot_for_settings_change_to_be_enabled_">您可能需要停止并重新启动 Orbot 才能使设置更改生效。</string>
-  <string name="menu_vpn">应用</string>
+  <string name="menu_vpn">VPN</string>
   <string name="kbps">kbps</string>
   <string name="mbps">mbps</string>
   <string name="kb">KB</string>
@@ -276,14 +282,17 @@ Tor帮助你避开那些威胁到你的隐私，重要信息和社交关系的�
   <string name="bridges_updated">网桥已更新</string>
   <string name="restart_orbot_to_use_this_bridge_">请重启 Orbot 以使变更生效</string>
   <string name="menu_qr">QR码</string>
-  <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">如果您的移动网络积极封锁 Tor，您可以使用一个 Tor 网桥来访问网络。\n\n请在上方选择一个网桥类型以启用此功能。</string>
   <string name="bridge_mode">网桥模式</string>
   <string name="get_bridges_email">电子邮件</string>
   <string name="get_bridges_web">网页</string>
   <string name="activate">激活</string>
-  <string name="apps_mode">应用模式</string>
+  <string name="apps_mode">应用 VPN 模式</string>
+  <string name="you_can_enable_all_apps_on_your_device_to_run_through_the_tor_network_using_the_vpn_feature_of_android_">通过开启VPN功能，您可以让您设备上全部的应用程序使用Tor网络。
+警告！！！
+这是一项实验性的功能。在某些情况下，它可能停止或不能自动启动。它不应用于保持匿名，仅用于穿透防火墙和连接过滤系统。</string>
   <string name="send_email">发送电子邮件</string>
-  <string name="install_orweb">安装 Orweb</string>
+  <string name="install_orweb">安装 Orfox</string>
   <string name="standard_browser">标准版浏览器</string>
   <string name="note_only_standard_tor_bridges_work_on_intel_x86_atom_devices">注意：只有标准的 Tor 网桥可以在 Intel X86/ATOM 设备上工作</string>
+  <string name="vpn_default_world">世界</string>
 </resources>

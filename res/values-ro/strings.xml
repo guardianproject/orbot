@@ -10,7 +10,6 @@
   <string name="status_starting_up">Orbot porneste...</string>
   <string name="status_activated">Conectat la reteaua Tor</string>
   <string name="status_disabled">Orbot este dezactivat</string>
-  <string name="status_shutting_down">Orbot se opreste</string>
   <string name="tor_process_starting">Porneste clientul Tor...</string>
   <string name="tor_process_complete">terminat.</string>
   <string name="tor_process_waiting">asteptare.</string>
@@ -20,11 +19,9 @@
   <string name="menu_settings">Setări</string>
   <string name="menu_log">log</string>
   <string name="menu_info">Asistenţă</string>
-  <string name="menu_apps">Aplicatii</string>
   <string name="menu_start">Start</string>
   <string name="menu_stop">Stop</string>
   <string name="menu_about">Despre</string>
-  <string name="menu_wizard">Asistent</string>
   <string name="main_layout_download">Descarca</string>
   <string name="main_layout_upload">Incarca</string>
   <string name="button_help">Asistenţă</string>
@@ -96,7 +93,6 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Aplicatii cu Orbot activat</string>
   <string name="wizard_tips_gibberbot">ChatSecure: Aplicație sigură de chat cu codare Off-the-Record</string>
-  <string name="wizard_tips_orweb">Orweb: browser de internet cu setari avansate de intimitate care functioneaza cu Tor</string>
   <string name="wizard_tips_play">Gaseste toate aplicatile Guardian Project pe Google Play</string>
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Proxy transparent</string>
@@ -187,7 +183,6 @@
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
   <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v1.0.1i: http://www.openssl.org</string>
   <string name="hidden_service_request">O aplicatie vrea sa deschida portul ascuns %S spre reteaua Tor. Este sigur daca ai incredere in aplicatie.</string>
   <string name="found_existing_tor_process">gasit proces Tor existent...</string>
   <string name="something_bad_happened">Ceva rau s-a intamplat. Verifica log-ul</string>
@@ -213,18 +208,15 @@
   <string name="pref_disable_network_title">Fără adormirea automată a rețelei</string>
   <string name="pref_disable_network_summary">Pune Tor să doarmă dacă nu este internet disponibil</string>
   <string name="newnym">Ați comutat la o nouă identitate Tor!</string>
-  <string name="menu_verify_browser">Verificare navigator</string>
   <string name="menu_use_chatsecure">Utilizați ChatSecure</string>
   <string name="permission_manage_tor_label">Administrare Tor</string>
   <string name="permission_manage_tor_description">Activați această aplicație pentru a controla serviciile Tor</string>
-  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Se pare că nu aveți Orweb instalat. Doriți să fiți ajutat cu asta, sau ar trebui să se deschidă navigatorul?</string>
   <string name="install_apps_">Se instalează aplicația?</string>
   <string name="no_network_connectivity_putting_tor_to_sleep_">Nu este conexiune la rețea. Se pune Tor în adormire...</string>
   <string name="network_connectivity_is_good_waking_tor_up_">Conexiunea la rețea este bună. Se trezește Tor...</string>
   <string name="updating_settings_in_tor_service">se actualizează configurările în serviciul Tor</string>
   <string name="pref_socks_title">Tor SOCKS</string>
   <string name="you_do_not_have_root_access_enabled">Nu aveți activat accesul ca ROOT</string>
-  <string name="menu_vpn">Aplicații</string>
   <string name="kbps">kbps</string>
   <string name="mbps">mbps</string>
   <string name="kb">KiO</string>
@@ -234,8 +226,6 @@
   <string name="get_bridges_email">Email</string>
   <string name="get_bridges_web">Web</string>
   <string name="activate">Activează</string>
-  <string name="apps_mode">Mod aplicație</string>
   <string name="send_email">Trimite email</string>
-  <string name="install_orweb">Instalează Orweb</string>
   <string name="standard_browser">Navigator standard</string>
 </resources>

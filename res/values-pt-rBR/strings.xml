@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Orbot</string>
+  <string name="app_description">Orbot é um aplicativo de proxy livre que capacita outros aplicativos a usar a internet com mais segurança. Orbot usa o Tor para criptografar seu tráfego na internet e então o esconde \"saltando\" entre uma série de computadores ao redor do mundo. Tor é um software livre e de rede aberta que ajuda você a se defender de certas formas de vigilância que ameaçam privacidade e liberdade pessoais, atividades e relações comerciais confidenciais e segurança estatal conhecida como análise de tráfego.</string>
   <string name="internal_web_url">http://orbot/</string>
   <string name="default_web_url">http://check.torproject.org</string>
   <string name="secure_default_web_url">https://check.torproject.org</string>
@@ -10,7 +11,7 @@
   <string name="status_starting_up">Orbot está iniciando...</string>
   <string name="status_activated">Conectado à rede Tor</string>
   <string name="status_disabled">Orbot está desativado</string>
-  <string name="status_shutting_down">Orbot está sendo desligado</string>
+  <string name="status_shutting_down">TorService está desligando</string>
   <string name="tor_process_starting">Iniciando cliente Tor...</string>
   <string name="tor_process_complete">completo.</string>
   <string name="tor_process_waiting">esperando.</string>
@@ -20,11 +21,10 @@
   <string name="menu_settings">Configurações</string>
   <string name="menu_log">Log</string>
   <string name="menu_info">Ajuda</string>
-  <string name="menu_apps">Apps</string>
+  <string name="menu_apps">VPN</string>
   <string name="menu_start">Iniciar</string>
   <string name="menu_stop">Parar</string>
   <string name="menu_about">Sobre</string>
-  <string name="menu_wizard">Assistente</string>
   <string name="main_layout_download">Download</string>
   <string name="main_layout_upload">Upload</string>
   <string name="button_help">Ajuda</string>
@@ -98,7 +98,6 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Apps Orbot Habilitadas</string>
   <string name="wizard_tips_gibberbot">ChatSecure: app de chat seguro com criptografia Off-the-Record</string>
-  <string name="wizard_tips_orweb">Orweb: Navegador de reforço de privacidade que trabalha através do Tor</string>
   <string name="wizard_tips_play">Encontre todos os aplicativos da Guardian Project no Google Play</string>
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Proxy Transparente</string>
@@ -191,7 +190,6 @@
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
   <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v1.0.1i: http://www.openssl.org</string>
   <string name="hidden_service_request">Uma app quer abrir a porta %S oculta do servidor para a rede Tor. Isto é seguro se você confia na app.</string>
   <string name="found_existing_tor_process">procurando processos Tor existentes...</string>
   <string name="something_bad_happened">Algo ruim aconteceu. Cheque o lo</string>
@@ -216,14 +214,13 @@
   <string name="pref_disable_network_title">Modo de espera automático</string>
   <string name="pref_disable_network_summary">Colocar o Tor em modo de espera quando não houver acesso Internet disponível</string>
   <string name="newnym">Você trocou para uma nova identidade Tor!</string>
-  <string name="menu_verify_browser">Checar Navegador</string>
+  <string name="menu_verify_browser">Navegador</string>
   <string name="menu_use_chatsecure">Usar ChatSecure</string>
   <string name="permission_manage_tor_label">Gerenciar Tor</string>
   <string name="permission_manage_tor_description">Habilitar este app a controlar o serviço Tor</string>
-  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Parece que você não tem o Orweb instalado. Quer ajuda com isso ou devemos apenas abrir o navegador?</string>
   <string name="install_apps_">Instalar apps?</string>
   <string name="app_conflict">Conflito de aplicattivo</string>
-  <string name="menu_vpn">Apps</string>
+  <string name="menu_vpn">VPN</string>
   <string name="kbps">kbps</string>
   <string name="mbps">mbps</string>
   <string name="kb">KB</string>
@@ -233,6 +230,5 @@
   <string name="get_bridges_web">Web</string>
   <string name="activate">Atvar</string>
   <string name="send_email">Enviar Email</string>
-  <string name="install_orweb">Instalar Orweb</string>
   <string name="standard_browser">Navegador Padrão</string>
 </resources>

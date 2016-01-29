@@ -7,11 +7,10 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">Inicia i atura Tor</string>
   <string name="tor_proxy_service_process">torproxyservice</string>
-  <string name="status_starting_up">L\'Orbot s\'està iniciant…</string>
+  <string name="status_starting_up">L\'Orbot s\'està iniciant...</string>
   <string name="status_activated">Esteu connectat a la xarxa Tor</string>
   <string name="status_disabled">L\'Orbot està desactivat</string>
-  <string name="status_shutting_down">L\'Orbot s\'està aturant</string>
-  <string name="tor_process_starting">S\'està iniciant el client Tor…</string>
+  <string name="tor_process_starting">S\'està iniciant el client Tor...</string>
   <string name="tor_process_complete">fet.</string>
   <string name="tor_process_waiting">s\'està esperant.</string>
   <string name="not_anonymous_yet">ATENCIÓ: El trànsit de la vostra connexió encara no és anònim! Heu de configurar les vostres aplicacions per utilitzar un proxy HTTP a 127.0.0.1:8118, o un proxy SOCKS4A o SOCKS5 a 127.0.0.1:9050</string>
@@ -20,16 +19,14 @@
   <string name="menu_settings">Preferències</string>
   <string name="menu_log">Registre</string>
   <string name="menu_info">Ajuda</string>
-  <string name="menu_apps">Apps</string>
   <string name="menu_start">Inicia</string>
   <string name="menu_stop">Atura</string>
-  <string name="menu_about">Quant a…</string>
-  <string name="menu_wizard">Assistent</string>
+  <string name="menu_about">Quant a...</string>
   <string name="main_layout_download">Baixada</string>
   <string name="main_layout_upload">Pujada</string>
   <string name="button_help">Ajuda</string>
   <string name="button_close">Tanca</string>
-  <string name="button_about">Quant a…</string>
+  <string name="button_about">Quant a...</string>
   <string name="button_clear_log">Esborra el registre</string>
   <string name="menu_verify">Prova</string>
   <string name="menu_exit">Surt</string>
@@ -50,14 +47,14 @@
   <string name="status_install_fail">Els fitxers binaris de Tor no s\'han pogut instal·lar. Comproveu el registre i notifiqueu-ho a tor-assistants@torproject.org</string>
   <string name="title_error">Error de l\'aplicació</string>
   <string name="wizard_title">Us donem la benvinguda a l\'Orbot</string>
-  <string name="wizard_btn_tell_me_more">Quant a Orbot…</string>
+  <string name="wizard_btn_tell_me_more">Quant a Orbot...</string>
   <string name="btn_next">Següent</string>
   <string name="btn_back">Enrere</string>
   <string name="btn_finish">Fi</string>
   <string name="btn_okay">D\'acord</string>
   <string name="btn_cancel">Cancel·la</string>
   <!--Welcome Wizard strings (DJH)-->
-  <string name="wizard_details">Alguns detalls de l\'Orbot…</string>
+  <string name="wizard_details">Alguns detalls de l\'Orbot...</string>
   <string name="wizard_permissions_root">Permís concedit</string>
   <string name="wizard_permissions_stock">Permisos de l\'Orbot</string>
   <string name="wizard_premissions_msg_root">Perfecte! Hem detectat que teniu els permisos root activats per a l\'Orbot. Utilitzarem aquesta capacitat amb sensatesa.</string>
@@ -96,7 +93,6 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Aplicacions dissenyades per a l\'Orbot</string>
   <string name="wizard_tips_gibberbot">ChatSecure: Aplicació de xat segur amb encriptació confidencial.</string>
-  <string name="wizard_tips_orweb">Orweb: Navegador amb privacitat millorada que funciona a través de Tor</string>
   <string name="wizard_tips_play">Trobareu totes les aplicacions de Guardian Project a Google Play Store</string>
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Servidor intermediari transparent</string>
@@ -133,14 +129,14 @@
   <string name="pref_proxy_password_summary">Contrasenya del servidor intermediari (opcional)</string>
   <string name="pref_proxy_password_dialog">Introduïu la contrasenya del servidor intermediari</string>
   <string name="status">Estat</string>
-  <string name="setting_up_full_transparent_proxying_">S\'està configurant el servidor intermediari transparent complet…</string>
-  <string name="setting_up_app_based_transparent_proxying_">S\'està configurant el servidor intermediari transparent per apps…</string>
+  <string name="setting_up_full_transparent_proxying_">S\'està configurant el servidor intermediari transparent complet...</string>
+  <string name="setting_up_app_based_transparent_proxying_">S\'està configurant el servidor intermediari transparent per apps...</string>
   <string name="transparent_proxying_enabled">S\'ha ACTIVAT el servidor intermediari transparent</string>
   <string name="transproxy_enabled_for_tethering_">S\'ha activat el servidor intermediari per la compartició de xarxa</string>
   <string name="warning_error_starting_transparent_proxying_">ATENCIÓ: hi ha hagut un error en iniciar el servidor intermediari transparent</string>
   <string name="transproxy_rules_cleared">S\'han esborrat les regles del servidor intermediari transparent</string>
   <string name="couldn_t_start_tor_process_">No s\'ha pogut iniciar el procés Tor:</string>
-  <string name="setting_up_port_based_transparent_proxying_">S\'està configurant el servidor intermediari transparent per ports…</string>
+  <string name="setting_up_port_based_transparent_proxying_">S\'està configurant el servidor intermediari transparent per ports...</string>
   <string name="bridge_error">Hi ha hagut un error de pont</string>
   <string name="bridge_requires_ip">Per poder utilitzar la funcionalitat de pont, cal que introduïu almenys una adreça IP de pont.</string>
   <string name="send_email_for_bridges">Envieu un correu a bridges@torproject.org amb la línia «get bridges» sola al cos del missatge des d\'un compte de gmail.</string>
@@ -190,9 +186,8 @@
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
   <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v1.0.1i: http://www.openssl.org</string>
   <string name="hidden_service_request">Una aplicació vol obrir el port %S de servei ocult a la xarxa Tor. Això és segur si confieu en l\'aplicació.</string>
-  <string name="found_existing_tor_process">s\'ha trobat un procés Tor existent…</string>
+  <string name="found_existing_tor_process">s\'ha trobat un procés Tor existent...</string>
   <string name="something_bad_happened">Ha fallat alguna cosa. Comproveu el registre</string>
   <string name="hidden_service_on">servei ocult a:</string>
   <string name="unable_to_read_hidden_service_name">ha estat impossible llegir el nom del servei ocult</string>
@@ -215,11 +210,9 @@
   <string name="pref_disable_network_title">No hi ha autodesconnexió de xarxa</string>
   <string name="pref_disable_network_summary">Posa el Tor en pausa mentre no hi ha connexió a internet</string>
   <string name="newnym">Heu canviat a una nova identitat Tor.</string>
-  <string name="menu_verify_browser">Prova el navegador</string>
   <string name="menu_use_chatsecure">Utilitza ChatSecure</string>
   <string name="permission_manage_tor_label">Gestiona Tor</string>
   <string name="permission_manage_tor_description">Activa aquesta app per controlar el servei Tor</string>
-  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Sembla ser que no teniu l\'Orweb instal·lat. Voleu que us donem un cop de mà, o només voleu que obrim el navegador?</string>
   <string name="install_apps_">Voleu instal·lar les apps?</string>
   <string name="your_tor_public_ips_">Les vostres IP públiques de Tor:</string>
   <string name="kbps">kbps</string>
@@ -229,6 +222,5 @@
   <string name="get_bridges_email">Correu-e</string>
   <string name="get_bridges_web">Web</string>
   <string name="activate">Activa</string>
-  <string name="install_orweb">Instal·la l\'Orweb</string>
   <string name="standard_browser">Navegador estàndard</string>
 </resources>

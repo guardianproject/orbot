@@ -8,7 +8,6 @@
   <string name="control_permission_label">เริ่มและหยุด Tor</string>
   <string name="tor_proxy_service_process">torproxyservice</string>
   <string name="status_activated">เชื่อมต่อกับเครือข่าย Tor</string>
-  <string name="status_shutting_down">Orbot กำลังปิดตัว</string>
   <string name="tor_process_complete">เสร็จ</string>
   <string name="tor_process_waiting">กำลังรอ</string>
   <string name="not_anonymous_yet">คำเตือน: ข้อมูลจราจรของคุณยังไม่เป็นนิรนาม! กรุณาตั้งค่าโปรแกรมของคุณให้ใช้ HTTP พร็อกซีที่ 127.0.0.1:8118 หรือใช้ SOCKS4A หรือ SOCKS5 พร็อกซีที่ 127.0.0.1:9050</string>
@@ -17,11 +16,9 @@
   <string name="menu_settings">ตั้งค่า</string>
   <string name="menu_log">ปูม</string>
   <string name="menu_info">ช่วยเหลือ</string>
-  <string name="menu_apps">โปรแกรม</string>
   <string name="menu_start">เริ่ม</string>
   <string name="menu_stop">หยุด</string>
   <string name="menu_about">เกี่ยวกับ</string>
-  <string name="menu_wizard">ตัวช่วย</string>
   <string name="button_help">ช่วยเหลือ</string>
   <string name="button_close">ปิด</string>
   <string name="button_about">เกี่ยวกับ</string>
@@ -82,7 +79,6 @@
   <string name="wizard_permissions_root_msg2">ถ้าคุณไม่ต้องการ โปรดแน่ใจว่าคุณใช้โปรแกรมที่สร้างมาเพื่อใช้กับ Orbot</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">โปรแกรมที่ใช้ได้กับ Orbot</string>
-  <string name="wizard_tips_orweb">Orweb: เบราว์เซอร์ที่ปรับแต่งเพื่อความเป็นส่วนตัวและทำงานผ่าน Tor</string>
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">พร็อกซีล่อง</string>
   <string name="wizard_transproxy_msg">จะอนุญาตให้โปรแกรมของคุณทำงานผ่านเครือข่าย Tor อัตโนมัติโดยไม่ต้องตั้งค่าใดๆ</string>

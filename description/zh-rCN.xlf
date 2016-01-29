@@ -53,6 +53,7 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="languagelist" translate="no">
         <source>العربية, azərbaycanca, български, català, Čeština, dansk, Deutsch, Ελληνικά, English, español, eesti, euskara, فارسی, suomi, français, galego, hrvatski, magyar, עברית, íslenska, italiano, 日本語, 한국어, lietuvių, latviešu, Македонци, Bahasa Melayu, Nederlands, norsk, polski, português, Русский, slovenčina, slovenščina, српски, svenska, Türkçe, українська, Tagalog, Tiếng Việt, 中文(简体), 中文(台灣)</source>
+        <target>العربية, azərbaycanca, български, català, Čeština, dansk, Deutsch, Ελληνικά, English, español, eesti, euskara, فارسی, suomi, français, galego, hrvatski, magyar, עברית, íslenska, italiano, 日本語, 한국어, lietuvių, latviešu, Македонци, Bahasa Melayu, Nederlands, norsk, polski, português, Русский, slovenčina, slovenščina, српски, svenska, Türkçe, українська, Tagalog, Tiếng Việt, 中文(简体), 中文(台灣)</target>
         <note from="developer">Do not translate the names of the languages, leave them just like this.</note>
       </trans-unit>
       <trans-unit id="helptranslate">

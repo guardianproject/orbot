@@ -10,7 +10,6 @@
   <string name="status_starting_up">Orbot telah dimulakan..</string>
   <string name="status_activated">Bersambung ke rangkaian Tor</string>
   <string name="status_disabled">\"Orbot telah dinyah-aktifkan</string>
-  <string name="status_shutting_down">Orbot sedang ditutup</string>
   <string name="tor_process_starting">Memulakan klien Tor..</string>
   <string name="tor_process_complete">selesai.</string>
   <string name="tor_process_waiting">menunggu.</string>
@@ -20,11 +19,9 @@
   <string name="menu_settings">Tetapan</string>
   <string name="menu_log">Log</string>
   <string name="menu_info">Bantuan</string>
-  <string name="menu_apps">Apps</string>
   <string name="menu_start">Mula</string>
   <string name="menu_stop">Henti</string>
   <string name="menu_about">Tentang</string>
-  <string name="menu_wizard">Wizard</string>
   <string name="main_layout_download">Muat turun</string>
   <string name="main_layout_upload">Muat naik</string>
   <string name="button_help">Bantuan</string>
@@ -93,7 +90,6 @@
   <string name="wizard_permissions_root_msg2">Jika anda tidak mahu berbuat demikian, sila pastikan untuk menggunakan aplikasi yang dibuat untuk bekerjasama dengan Orbot</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Aplikasi yang membenarkan Orbot</string>
-  <string name="wizard_tips_orweb">Orweb: Privasi ditambah penyemak imbas yang bekerja melalui Tor</string>
   <string name="wizard_tips_play">Cari semua projek Guardian di Google play</string>
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Proxy Telus</string>

@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Orbot</string>
-  <string name="app_description">Orbot is een gratis en vrije proxy-app die het andere apps mogelijk maakt het internet veiliger te gebruiken. Orbot gebruikt Tor om je internetverkeer te coderen en verbergt het dan door door een serie computers rondom de wereld te springen. Tor is vrije software en een open netwerk dat je helpt te verdedigen tegen een vorm van netwerktoezicht die persoonlijke vrijheid en privacy, vertrouwelijke bedrijfsactiviteiten en relaties en staatsveiligheid genaamd \'traffic analyse\' bedreigt.</string>
+  <string name="app_description">Orbot is een gratis en vrije proxy-app die het andere apps mogelijk maakt het internet veiliger te gebruiken. Orbot gebruikt Tor om je internetverkeer te coderen en het vervolgens te verhullen het door het door een serie computers over de hele wereld te routeren. Tor is vrije software en een open netwerk dat je helpt te verdedigen tegen een vorm van netwerktoezicht die persoonlijke vrijheid en privacy, vertrouwelijke bedrijfsactiviteiten en relaties en staatsveiligheid genaamd \'traffic analyse\' bedreigt.</string>
   <string name="internal_web_url">http://orbot/</string>
   <string name="default_web_url">http://check.torproject.org</string>
   <string name="secure_default_web_url">https://check.torproject.org</string>
@@ -11,7 +11,7 @@
   <string name="status_starting_up">Orbot is bezig met starten…</string>
   <string name="status_activated">Verbonden met het Tor-netwerk</string>
   <string name="status_disabled">Orbot is uitgeschakeld</string>
-  <string name="status_shutting_down">Orbot is bezig met afsluiten</string>
+  <string name="status_shutting_down">TorService wordt afgesloten</string>
   <string name="tor_process_starting">Bezig met Tor client starten…</string>
   <string name="tor_process_complete">klaar.</string>
   <string name="tor_process_waiting">bezig met wachten.</string>
@@ -21,11 +21,11 @@
   <string name="menu_settings">Instellingen</string>
   <string name="menu_log">Logboek</string>
   <string name="menu_info">Hulp</string>
-  <string name="menu_apps">Apps</string>
+  <string name="menu_apps">VPN</string>
   <string name="menu_start">Start</string>
   <string name="menu_stop">Stop</string>
   <string name="menu_about">Over</string>
-  <string name="menu_wizard">Wizard</string>
+  <string name="menu_promo_apps">Apps ophalen...</string>
   <string name="main_layout_download">Download</string>
   <string name="main_layout_upload">Upload</string>
   <string name="button_help">Hulp</string>
@@ -87,7 +87,7 @@
   <string name="wizard_final_msg">Miljoenen mensen de wereld rond gebruiken Tor voor uiteenlopende redenen.\n\nJournalisten en bloggers, verdedigers van mensenrechten, politie, soldaten, bedrijven, burgers van onderdrukkende regimes, en gewone burgers… en nu ben jij er ook klaar voor!</string>
   <string name="wizard_exit_at_first_screen_toast">Je moet Orbot eerst configureren vooraleer je het kan gebruiken!</string>
   <!--END Welcome Wizard strings (DJH)-->
-  <string name="connect_first_time">Je bent succesvol verbonden met het Tor-netwerk - maar dit betekent NIET dat je toestel veilig is. Je kan de \'Controleren\'-optie van het menu gebruiken om je browser te testen.\n\nBezoek ons op https://guardianproject.info/apps/orbot of stuur een e-mail naar help@guardianproject.info om meer te weten te komen.</string>
+  <string name="connect_first_time">De verbinding met het Tor netwerk is gelukt - maar dit betekent NIET dat je apparaat veilig is. Je kunt de \'Browser\' knop gebruiken om je verbinding te testen. \n\nBezoek ons op https://guardianproject.info/apps/orbot of stuur een email aan help@guardianproject.info om meer te weten te komen.</string>
   <string name="tor_check">Dit opent je standaardbrowser naar https://check.torproject.org om te controleren of Orbot succesvol is geconfigureerd om te verbinden met het Tor-netwerk.</string>
   <string name="pref_hs_group">Verborgen diensten hosten</string>
   <string name="pref_general_group">Algemeen</string>
@@ -107,7 +107,7 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot-geschikte apps</string>
   <string name="wizard_tips_gibberbot">ChatSecure: beveiligde chat-applicatie met Off-the-Record-versleuteling</string>
-  <string name="wizard_tips_orweb">Orweb: browser gemaakt voor privacy die werkt door Tor</string>
+  <string name="wizard_tips_orweb">Orfox: Browser met pricavy functies die werkt met Tor</string>
   <string name="wizard_tips_play">Vind alle Guardian Project-applicaties op Google Play</string>
   <string name="wizard_tips_fdroid">Vind alle Guardian Project-applicaties op F-Droid</string>
   <string name="wizard_tips_fdroid_org">Vind alle Guardian Project-applicaties op https://f-droid.org</string>
@@ -126,6 +126,8 @@
   <string name="pref_entrance_node">Toegangsnodes</string>
   <string name="pref_entrance_node_summary">Vingerafdrukken, nicks, landen en adressen voor de eerste hop</string>
   <string name="pref_entrance_node_dialog">Voer toegangsnodes in</string>
+  <string name="pref_allow_background_starts_title">Sta starten op de achtergrond toe</string>
+  <string name="pref_allow_background_starts_summary">Sta elke app toe om Orbot de Tor verbinding en diensten te laten starten </string>
   <string name="button_proxy_all">Proxy alles</string>
   <string name="button_proxy_none">Proxy niets</string>
   <string name="button_invert_selection">Selectie omkeren</string>
@@ -205,10 +207,10 @@
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
   <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v1.0.1i: http://www.openssl.org</string>
+  <string name="openssl_version">OpenSSL v1.0.1q: http://www.openssl.org</string>
   <string name="hidden_service_request">Een applicatie wil verborgen dienst-poort %S openen naar het Tor-netwerk. Dit is veilig als je de applicatie vertrouwt.</string>
   <string name="found_existing_tor_process">bestaand Tor-proces gevonden…</string>
-  <string name="something_bad_happened">Er is iets slechts gebeurd. Controleer de log</string>
+  <string name="something_bad_happened">Er is een fout opgetreden. Controleer de log</string>
   <string name="hidden_service_on">verborgen dienst op:</string>
   <string name="unable_to_read_hidden_service_name">Kan verborgen dienst-naam niet lezen</string>
   <string name="unable_to_start_tor">Kan Tor niet starten:</string>
@@ -235,11 +237,11 @@
   <string name="pref_disable_network_title">Geen netwerk automatisch slapen</string>
   <string name="pref_disable_network_summary">Laat Tor slapen als er geen internetverbinding beschikbaar is</string>
   <string name="newnym">Je bent naar een nieuwe Tor identiteit gewisseld!</string>
-  <string name="menu_verify_browser">Browser controleren</string>
+  <string name="menu_verify_browser">Browser</string>
   <string name="menu_use_chatsecure">Gebruik ChatSecure</string>
   <string name="permission_manage_tor_label">Tor beheren</string>
   <string name="permission_manage_tor_description">Deze applicatie toestaan om de Tor-dienst te bedienen</string>
-  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Het lijkt alsof je Orweb niet geïnstalleerd hebt. Wil je er hulp bij of moeten we gewoon de browser openen?</string>
+  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Orfox lijkt niet geïnstalleerd te zijn, Wil je daar hulp bij, of wil je gewoon de browser openen?</string>
   <string name="install_apps_">Applicaties installeren?</string>
   <string name="no_network_connectivity_putting_tor_to_sleep_">Geen internetverbinding. Tor wordt te slapen gelegd…</string>
   <string name="network_connectivity_is_good_waking_tor_up_">Netwerkverbinding is in orde. Tor wordt wakker gemaakt…</string>
@@ -267,7 +269,7 @@
   <string name="transparent_proxy_rules_flushed_">Transparante proxy-regels gespoeld!</string>
   <string name="you_do_not_have_root_access_enabled">Je hebt ROOT-toegang niet ingeschakeld</string>
   <string name="you_may_need_to_stop_and_start_orbot_for_settings_change_to_be_enabled_">Het kan nodig zijn Orbot te stoppen en opnieuw te starten opdat wijzigingen in de instellingen worden ingeschakeld.</string>
-  <string name="menu_vpn">Apps</string>
+  <string name="menu_vpn">VPN</string>
   <string name="kbps">kbps</string>
   <string name="mbps">mbps</string>
   <string name="kb">KB</string>
@@ -275,16 +277,16 @@
   <string name="bridges_updated">Bridges bijgewerkt</string>
   <string name="restart_orbot_to_use_this_bridge_">Herstart Orbot om de wijzigingen in te schakelen</string>
   <string name="menu_qr">QR-codes</string>
-  <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Als je mobiele netwerk Tor actief blokkeert kan je een Tor-bridge gebruiken om toegang te verkrijgen tot het netwerk.\n\nKies een van de bridge-types hierboven om deze functie in te schakelen.</string>
   <string name="bridge_mode">Bridge-modus</string>
   <string name="get_bridges_email">E-mail</string>
   <string name="get_bridges_web">Web</string>
   <string name="activate">Activeren</string>
-  <string name="apps_mode">Apps-modus</string>
-  <string name="you_can_enable_all_apps_on_your_device_to_run_through_the_tor_network_using_the_vpn_feature_of_android_">Je kan instellen dat alle applicaties op je toestel worden uitgevoerd door het Tor-netwerk met de VPN-functie van Android.\n\n*WAARSCHUWING* Dit is een nieuwe, experimentele functie die in sommige gevallen niet automatisch zou kunnen starten, of zou kunnen stoppen. Het moet NIET worden gebruikt voor anonimiteit en ENKEL om firewalls en filters te omzeilen.</string>
+  <string name="apps_mode">Apps VPN Modus</string>
+  <string name="you_can_enable_all_apps_on_your_device_to_run_through_the_tor_network_using_the_vpn_feature_of_android_">Je kan instellen dat alle applicaties op je toestel gebruik maken van het Tor-netwerk met de VPN-functie van Android.\n\n*WAARSCHUWING* Dit is een nieuwe, experimentele functie die in sommige gevallen niet automatisch kan starten, of zou kunnen stoppen. Het moet NIET worden gebruikt voor anonimiteit en ENKEL om firewalls en filters te omzeilen.</string>
   <string name="send_email">E-mail versturen</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Je kan een bridge-adres verkrijgen door e-mail, het web of door een bridge-QR-code te scannen. Kies \'E-mail\' of \'Web\' hieronder om een bridge-adres aan te vragen.\n\nEenmaal je een adres hebt kopieer en plak je het in de \"Bridges\"-optie in de Orbot-instellingen, waarna je Orbot herstart.</string>
-  <string name="install_orweb">Orweb installeren</string>
+  <string name="install_orweb">Orfox installeren</string>
   <string name="standard_browser">Standaardbrowser</string>
   <string name="note_only_standard_tor_bridges_work_on_intel_x86_atom_devices">LET OP: enkel standaard Tor-bridges werken op Intel x86/Atom-toestellen</string>
+  <string name="vpn_default_world">Wereld</string>
 </resources>

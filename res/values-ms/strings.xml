@@ -24,7 +24,6 @@
   <string name="menu_start">Mula</string>
   <string name="menu_stop">Henti</string>
   <string name="menu_about">Tentang</string>
-  <string name="menu_wizard">Wizard</string>
   <string name="button_help">Bantuan</string>
   <string name="button_close">Tutup</string>
   <string name="button_about">Tentang</string>
@@ -97,13 +96,7 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Aplikasi yang membenarkan Orbot</string>
   <string name="wizard_tips_gibberbot">Gibberbot: sembang app selamat dengan Penyulitan Off-the-Rekod</string>
-
   <string name="wizard_tips_orweb">Orweb: Privasi ditambah penyemak imbas yang bekerja melalui Tor</string>
-
-
-
-
-
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Proxy Telus</string>
   <string name="wizard_transproxy_msg">Ini membolehkan aplikasi anda secara automatik melalui rangkaian Tor tanpa apa apa konfigurasi</string>
@@ -119,8 +112,6 @@
   <string name="pref_entrance_node">Nod Kemasukan</string>
   <string name="pref_entrance_node_summary">Cap jari, nama samaran, negara, dan alamat untuk lompatan pertama</string>
   <string name="pref_entrance_node_dialog">Masukkan Nod Kemasukan</string>
-  <!--<string name="pref_use_whispercore">Use WhisperCore</string>
-<string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>-->
   <string name="pref_proxy_type_title">Jenis Proxy</string>
   <string name="pref_proxy_type_summary">Protokol untuk digunakan pada pelayan proxy: HTTP,HTTPS,Socks4,Socks5</string>
   <string name="pref_proxy_type_dialog">Masukkan Jenis Proxy</string>
@@ -205,4 +196,5 @@
   <string name="wizard_locale_msg">Biar default atau ubah ke bahasa sekarang</string>
   <string name="powered_by">Dijana oleh Projek Tor</string>
   <string name="btn_save_settings">Simpan Tetapan</string>
+  <string name="menu_vpn">Apps</string>
 </resources>

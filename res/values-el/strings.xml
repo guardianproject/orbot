@@ -10,9 +10,8 @@
   <string name="status_starting_up">Το Orbot ξεκινά</string>
   <string name="status_activated">Συνδέθηκε στο δίκτυο Tor</string>
   <string name="status_disabled">\"Το Orbot είναι Απενεργοποιημένο</string>
-  <string name="status_shutting_down">Το Orbot θα τερματίσει</string>
-  <string name="tor_process_starting">Εκκίνηση του πελάτη Tor…</string>
-  <string name="tor_process_complete">ολοκληρώθηκε…</string>
+  <string name="tor_process_starting">Εκκίνηση του πελάτη Tor...</string>
+  <string name="tor_process_complete">ολοκληρώθηκε...</string>
   <string name="tor_process_waiting">αναμονή</string>
   <string name="not_anonymous_yet">ΠΡΟΕΙΔΟΠΟΙΗΣΗ: Η κυκλοφορία σας δεν είναι ακόμη ανώνυμη! Ρυθμίστε τις εφαρμογές σας ώστε να χρησιμοποιούν ως πληρεξούσιο HTTP 127.0.0.1:8118 ή SOCKS5 127.0.0.1:9050</string>
   <string name="menu_home">Αρχική</string>
@@ -20,11 +19,9 @@
   <string name="menu_settings">Ρυθμίσεις</string>
   <string name="menu_log">Καταγραφή</string>
   <string name="menu_info">Βοήθεια</string>
-  <string name="menu_apps">Εφαρμογές</string>
   <string name="menu_start">Εκκίνηση</string>
   <string name="menu_stop">Διακοπή</string>
   <string name="menu_about">Σχετικά</string>
-  <string name="menu_wizard">Μάγος</string>
   <string name="main_layout_download">Λήψη (ταχύτητα/σύνολο)</string>
   <string name="main_layout_upload">Αποστολή (ταχύτητα/σύνολο)</string>
   <string name="button_help">Βοήθεια</string>
@@ -95,7 +92,6 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Εφαρμογές συμβατές με Orbot</string>
   <string name="wizard_tips_gibberbot">ChatSecure: Ασφαλές chat app με Off-the-Record κρυπτογράφηση</string>
-  <string name="wizard_tips_orweb">Orweb - Περιηγητής ιστού με ενισχυμένη ασφάλεια που είναι συμβατό με Tor</string>
   <string name="wizard_tips_play">Βρες όλες τις εφαρμογές Guardian Project στο Google Play</string>
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Διαφανής μεσολάβηση διακομιστή</string>
@@ -136,7 +132,7 @@
   <string name="warning_error_starting_transparent_proxying_">ΠΡΟΕΙΔΟΠΟΙΗΣΗ: σφάλμα κατά την εκκίνηση της διαφανούς μεσολάβησης διακομιστή!</string>
   <string name="transproxy_rules_cleared">Οι ρυθμίσεις του TransProxy απομακρύνθηκαν</string>
   <string name="couldn_t_start_tor_process_">Αδυναμία εκκίνησης της διεργασίας Tor:</string>
-  <string name="setting_up_port_based_transparent_proxying_">Ρύθμιση της διαφανούς μεσολάβησης διακομιστή κατά θύρα…</string>
+  <string name="setting_up_port_based_transparent_proxying_">Ρύθμιση της διαφανούς μεσολάβησης διακομιστή κατά θύρα...</string>
   <string name="bridge_error">Σφάλμα γέφυρας</string>
   <string name="bridge_requires_ip">Για να χρησιμοποιήσετε το στοιχείο γέφυρας, πρέπει να εισάγετε την διεύθυνση ΙΡ τουλάχιστον μιας γέφυρας.</string>
   <string name="send_email_for_bridges">Μέσω ενός λογαριασμού gmai στείλτε ένα μήνυμα στην διεύθυνση bridges@torproject.org με την φαση \"get bridges\" μόνη της στο σώμα το μηνύματος.</string>
@@ -183,7 +179,7 @@
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Λογισμικό τρίτων:</string>
   <string name="hidden_service_request">Κάποια εφαρμογή προσπαθεί να ανοίξει την κρυφή θύρα διακομιστή %S στο δίκτυο Tor. Πρόκειται για ασφαλή ενέργεια, εφόσον γνωρίζετε την εφαρμογή.</string>
-  <string name="found_existing_tor_process">αναζήτηση διεργασιών Tor…</string>
+  <string name="found_existing_tor_process">αναζήτηση διεργασιών Tor...</string>
   <string name="something_bad_happened">Κάτι κακό συνέβη. Ελέγξτε τις καταγραφές</string>
   <string name="hidden_service_on">ενεργοποιημένη κρυφή υπηρεσία:</string>
   <string name="unable_to_read_hidden_service_name">αδυναμία ανάγνωσης του ονόματος της κρυφής υπηρεσίας</string>
@@ -205,10 +201,8 @@
   <string name="pref_disable_network_title">Χωρίς Αυτόματη Αναστολή Δικτύου</string>
   <string name="pref_disable_network_summary">Θέσε το Tor σε λειτουργία sleep όταν δεν υπάρχει διαθέσιμη σύνδεση Ιnternet</string>
   <string name="newnym">Έχετε αλλάξει επιτυχώς την ταυτότητα σας στο Tor! </string>
-  <string name="menu_verify_browser">\'Ελεγχος περιηγητή ιστού</string>
   <string name="menu_use_chatsecure">Χρήση του ChatSecure</string>
   <string name="permission_manage_tor_label">Διαχείριση Tor</string>
   <string name="permission_manage_tor_description">Εξουσιοδοτήστε την εφαρμογή να ελέγχει την υπηρεσία του Tor</string>
-  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Φαίνεται πως δεν έχετε το Orweb εγκατεστημένο.Θέλετε βοήθεια με αυτό, ή θα θέλατε να ανοιξουμε τον περιηγητή ιστου</string>
   <string name="install_apps_">Εγκατάσταση εφαρμογών?</string>
 </resources>

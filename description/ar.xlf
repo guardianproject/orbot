@@ -6,17 +6,22 @@
     <body>
       <trans-unit id="title" maxwidth="30" size-unit="char">
         <source>Orbot</source>
+        <target>اوربوت</target>
         <note from="developer">This is limited by Google to 30 characters</note>
       </trans-unit>
       <trans-unit id="shortdescription" maxwidth="80" size-unit="char">
         <source>Protect your privacy with this proxy with Tor</source>
+        <target>حماية خصوصيتك مع هذا الوكيل  - البروكسي مع تور</target>
         <note from="developer">This is limited by Google to 80 characters</note>
       </trans-unit>
       <trans-unit id="intro">
         <source>Orbot is a free proxy app that empowers other apps to use the internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.</source>
+        <target>اوربوت هو تطبيق الوكيل-البروكسي الحر الذي يمكّن تطبيقات أخرى لاستخدام الإنترنت بأمان أكثر . يُستخدم اوربوت تور لتشفير تحركات مرورك على الإنترنت ، ثم يخفيك ويجعلك وهمي من خلال سلسلة من أجهزة الكمبيوتر في جميع أنحاء العالم . تور هو تطبيق حر وشبكة مفتوحة والتي تساعدك على حماية نفسك من مراقبة الشبكات التي تهدد الحرية الشخصية والخصوصية ، والأنشطة التجارية السرية والعلاقات ، وأمن الدولة والحكومات القمعيّة والتي تستخدم مايعرف باسم تحليل حركة مرور البيانات .</target>
       </trans-unit>
       <trans-unit id="intro2">
         <source>Orbot is the only app that creates a truly private internet connection. As the New York Times writes, “when a communication arrives from Tor, you can never know where or whom it’s from.” Tor won the 2012 Electronic Frontier Foundation (EFF) Pioneer Award.</source>
+        <target>اوربوت هو التطبيق الوحيد حقيقةً الذي يقوم بإنشاء اتصال اانترنت خاص لايمكن تعقبه . فكما كتبت صحيفة نيويورك تايمز الأمريكية ،  &quot; عند وصول بلاغ من تور ، لن تستطيع أبداً معرفة أين ؟ أو من أي مكان يأتي ؟ &quot; .
+فازت تور في عام 2012 من طرف مؤسسة الحدود الإلكترونية (EFF) بجائزة الريادة .</target>
       </trans-unit>
       <trans-unit id="intro2">
         <source>ACCEPT NO SUBSTITUTES: Orbot is the safest way to use the Internet on Android. Period. Orbot bounces your encrypted traffic several times through computers around the world, instead of connecting you directly like VPNs and proxies. This process takes a little longer, but the strongest privacy and identity protection available is worth the wait.</source>
@@ -37,48 +42,63 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="expertrootmode">
         <source>***Expert Root Mode***</source>
+        <target>*** وضع خبراء المصدر - الجذر ***</target>
       </trans-unit>
       <trans-unit id="universalmode">
         <source>UNIVERSAL MODE: Orbot can be configured to transparently proxy all of your Internet traffic through Tor. You can also choose which specific apps you want to use through Tor.</source>
+        <target>الوضع الشامل : يمكن تهيئته وكيل-بروكسي اوربوت بشفافية لحركة مرورك على الإنترنت من خلال تور . ويمكنك أيضا اختيار التطبيقات المحددة التي تريد استخدامها خلال تور .</target>
       </trans-unit>
       <trans-unit id="wespeakyourlanguage">
         <source>★ WE SPEAK YOUR LANGUAGE: Orbot is available for friends who speak:</source>
+        <target>★ نحن نتكلم لغتك : اوربوت متوفر لاصدقائنا الذين يتحدثون :</target>
       </trans-unit>
       <trans-unit id="languagelist" translate="no">
         <source>العربية, azərbaycanca, български, català, Čeština, dansk, Deutsch, Ελληνικά, English, español, eesti, euskara, فارسی, suomi, français, galego, hrvatski, magyar, עברית, íslenska, italiano, 日本語, 한국어, lietuvių, latviešu, Македонци, Bahasa Melayu, Nederlands, norsk, polski, português, Русский, slovenčina, slovenščina, српски, svenska, Türkçe, українська, Tagalog, Tiếng Việt, 中文(简体), 中文(台灣)</source>
+        <target>العربية, azərbaycanca, български, català, Čeština, dansk, Deutsch, Ελληνικά, English, español, eesti, euskara, فارسی, suomi, français, galego, hrvatski, magyar, עברית, íslenska, italiano, 日本語, 한국어, lietuvių, latviešu, Македонци, Bahasa Melayu, Nederlands, norsk, polski, português, Русский, slovenčina, slovenščina, српски, svenska, Türkçe, українська, Tagalog, Tiếng Việt, 中文(简体), 中文(台灣)</target>
         <note from="developer">Do not translate the names of the languages, leave them just like this.</note>
       </trans-unit>
       <trans-unit id="helptranslate">
         <source>Don’t see your language? Join us and help translate the app:</source>
+        <target>الم ترى لغتك ؟ انظم لنا وساعدنا في ترجمة التطبيق :</target>
       </trans-unit>
       <trans-unit id="helptranslateurl" translate="no">
         <source>https://www.transifex.com/projects/p/orbot</source>
+        <target>https://www.transifex.com/projects/p/orbot</target>
         <note from="developer">Do not translate this.</note>
       </trans-unit>
       <trans-unit id="learnmore">
         <source>***Learn More***</source>
+        <target>***للمزيد***</target>
       </trans-unit>
       <trans-unit id="aboutus">
         <source>★ ABOUT US: Guardian Project is a group of developers that make secure mobile apps and open-source code for a better tomorrow</source>
+        <target>★ ٍمن نحن : مشروع الجارديان هم مجموعة من المطورين الذين يأمّنون تطبيقات الهواتف مفتوحة المصدر  من أجل الأمان وغد أفضل</target>
       </trans-unit>
       <trans-unit id="ourwebsite">
         <source>★ OUR WEBSITE: https://GuardianProject.info</source>
+        <target>★ موقعنا الرسمي : https://GuardianProject.info</target>
       </trans-unit>
       <trans-unit id="abouttor">
         <source>★ ABOUT TOR: https://TorProject.org</source>
+        <target>★ للمزيد عن تور : https://TorProject.org</target>
       </trans-unit>
       <trans-unit id="ontwitter">
         <source>★ ON TWITTER: https://twitter.com/guardianproject</source>
+        <target>★ على تويتر : https://twitter.com/guardianproject</target>
       </trans-unit>
       <trans-unit id="freesoftware">
         <source>★ FREE SOFTWARE: Orbot is free software. Take a look at our source code, or join the community to make it better:</source>
+        <target>★ البرمجيات الحرة : اوربوت هو برمجيات حرة . انظر إلى مصدر الكود أو انضم إلى مجتمعنا لجعله أفضل :</target>
       </trans-unit>
       <trans-unit id="gitrepo" translate="no">
         <source>https://gitweb.torproject.org/orbot.git</source>
+        <target>https://gitweb.torproject.org/orbot.git</target>
         <note from="developer">Do not translate this.</note>
       </trans-unit>
       <trans-unit id="messageus">
         <source>★ MESSAGE US: Are we missing your favorite feature? Found an annoying bug? Please tell us! We’d love to hear from you. Send us an email: support@guardianproject.info or find us in our chat room https://guardianproject.info/contact</source>
+        <target>★ رسالتنا : هل نحن أضعنا خصوصيتك المفضلة التي تبحث عنها ؟ هل تجد مايزعجك ؟ أرجوك أخبرنا ! نحب أن نسمع منك .  راسلنا على البريد الإلكتروني: support@guardianproject.info 
+أو تجدنا في غرفتنا للمراسلة https://guardianproject.info/contact</target>
       </trans-unit>
     </body>
   </file>

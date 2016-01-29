@@ -11,7 +11,7 @@
   <string name="status_starting_up">Orbot startar...</string>
   <string name="status_activated">Uppkopplad till Tor nätverket</string>
   <string name="status_disabled">Orbot är inaktiverad</string>
-  <string name="status_shutting_down">Orbot avslutas</string>
+  <string name="status_shutting_down">TorService avslutas</string>
   <string name="tor_process_starting">Startar Tor klient...</string>
   <string name="tor_process_complete">färdig.</string>
   <string name="tor_process_waiting">väntar.</string>
@@ -21,11 +21,11 @@
   <string name="menu_settings">Inställningar</string>
   <string name="menu_log">Logg</string>
   <string name="menu_info">Hjälp</string>
-  <string name="menu_apps">Appar</string>
+  <string name="menu_apps">VPN</string>
   <string name="menu_start">Start</string>
   <string name="menu_stop">Stopp</string>
   <string name="menu_about">Om</string>
-  <string name="menu_wizard">Guide</string>
+  <string name="menu_promo_apps">Skaffa appar...</string>
   <string name="main_layout_download">Ladda Ner</string>
   <string name="main_layout_upload">Ladda Upp</string>
   <string name="button_help">Hjälp</string>
@@ -87,7 +87,7 @@
   <string name="wizard_final_msg">Miljoner människor världen över använder sig av Tor av flera olika orsaker.\n\nJournalister och bloggare, människorättsförsvarare, brottsbekämpare, soldater, företag, innevånare i repressiva regimer, och bara vanliga innevånare... och nu är du redo också!</string>
   <string name="wizard_exit_at_first_screen_toast">Vänligen konfigurera Orbot innan du kan använda den!</string>
   <!--END Welcome Wizard strings (DJH)-->
-  <string name="connect_first_time">Du har lyckats ansluta till Tor-nätverket - men detta innebär INTE att din enhet är säker. Du kan använda \'Kontrollera\'-alternativet i menyn för att testa din webbläsare.\n\Besök oss på https://guardianproject.info/apps/orbot eller skicka e-post till help@guardianproject.info för att lära dig mer.</string>
+  <string name="connect_first_time">Du har anslutit till Tor-nätverket - men detta betyder INTE att din enhet är säker. Du kan använda knappen \'Webbläsare\' för att testa din anslutning. \n\nBesök oss på https://guardianproject.info/apps/orbot eller skicka e-post till help@guardianproject.info för mer information.</string>
   <string name="tor_check">Det här kommer att öppna din webbläsare mot https://check.torproject.org för att se om Orbot är rätt konfigurerad och du är uppkopplad mot Tor.</string>
   <string name="pref_hs_group">Gömd Service Hosting</string>
   <string name="pref_general_group">Allmänt</string>
@@ -107,7 +107,7 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot-Anpassade Appar</string>
   <string name="wizard_tips_gibberbot">ChatSecure: Säkert chatt app med Off-the-Record kryptering</string>
-  <string name="wizard_tips_orweb">Orweb: Integritets-förbättrande webbläsare som fungerar genom Tor</string>
+  <string name="wizard_tips_orweb">Orfox: Integritetsförbättrad webbläsare som går genom Tor</string>
   <string name="wizard_tips_play">Hitta alla Guardian Project appar på Google Play</string>
   <string name="wizard_tips_fdroid">Hitta alla Guardian Project-appar i F-Droid</string>
   <string name="wizard_tips_fdroid_org">Hitta alla Guardian Project-appar på https://f-droid.org</string>
@@ -126,6 +126,8 @@
   <string name="pref_entrance_node">Ingångsnoder</string>
   <string name="pref_entrance_node_summary">Fingeravtryck, nicks, länder, och adresser för första hoppet</string>
   <string name="pref_entrance_node_dialog">Skriv in Ingångs Noder</string>
+  <string name="pref_allow_background_starts_title">Tillåt start i bakgrunden</string>
+  <string name="pref_allow_background_starts_summary">Låt alla appar säga åt Orbot att starta Tor och relaterade tjänster</string>
   <string name="button_proxy_all">Allt genom proxy</string>
   <string name="button_proxy_none">Inget genom proxy</string>
   <string name="button_invert_selection">Invertera val</string>
@@ -205,7 +207,7 @@
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
   <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v1.0.1i: http://www.openssl.org</string>
+  <string name="openssl_version">OpenSSL v1.0.1q: http://www.openssl.org</string>
   <string name="hidden_service_request">En app vill öppna gömd tjänsteport %S till Tor nätverket. Detta är säkert om du litar på appen.</string>
   <string name="found_existing_tor_process">hittade existerande Tor process...</string>
   <string name="something_bad_happened">Något dåligt hände. Kolla loggen.</string>
@@ -235,11 +237,11 @@
   <string name="pref_disable_network_title">Ingen auto-sömn för nätverket</string>
   <string name="pref_disable_network_summary">Låt Tor sova när inget internet finns tillgängligt</string>
   <string name="newnym">Du har bytt till en ny Tor identitet!</string>
-  <string name="menu_verify_browser">Kolla webbläsare</string>
+  <string name="menu_verify_browser">Webbläsare</string>
   <string name="menu_use_chatsecure">Använd ChatSecure</string>
   <string name="permission_manage_tor_label">Hantera Tor</string>
   <string name="permission_manage_tor_description">Låt denna app kontrollera Tor-servicen</string>
-  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Det ser inte ut som att du har Orweb installerat. Vill du ha hjälp med det eller ska vi bara öppna webbläsaren?</string>
+  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Det verkar inte som att du har Orfox installerad. Vill du ha hjälp med det, eller ska vi bara öppna webbläsaren?</string>
   <string name="install_apps_">Installera appar?</string>
   <string name="no_network_connectivity_putting_tor_to_sleep_">Ingen nätverksanslutning. Försätter Tor i dvala...</string>
   <string name="network_connectivity_is_good_waking_tor_up_">Nätverksanslutningen fungerar. Väcker Tor...</string>
@@ -267,7 +269,7 @@
   <string name="transparent_proxy_rules_flushed_">Regler för transparent proxy rensade!</string>
   <string name="you_do_not_have_root_access_enabled">Du har inte root-åtkomst aktiverad</string>
   <string name="you_may_need_to_stop_and_start_orbot_for_settings_change_to_be_enabled_">Du kan behöva stänga av och starta Orbot för att ändringar i inställningar ska slå igenom.</string>
-  <string name="menu_vpn">Appar</string>
+  <string name="menu_vpn">VPN</string>
   <string name="kbps">kb/s</string>
   <string name="mbps">mb/s</string>
   <string name="kb">KB</string>
@@ -275,16 +277,16 @@
   <string name="bridges_updated">Bryggor uppdaterade</string>
   <string name="restart_orbot_to_use_this_bridge_">Vänligen starta om Orbot för att aktivera ändringarna</string>
   <string name="menu_qr">QR-koder</string>
-  <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Om ditt mobila nätverk aktivt blockerar Tor så kan du använda en Tor-brygga för att komma åt nätverket.\n\nVänligen välj en av bryggtyperna ovan för att aktivera den här funktionen.</string>
   <string name="bridge_mode">Bryggläge</string>
   <string name="get_bridges_email">E-post</string>
   <string name="get_bridges_web">Webb</string>
   <string name="activate">Aktivera</string>
-  <string name="apps_mode">App-läge</string>
+  <string name="apps_mode">Appars VPN-läge</string>
   <string name="you_can_enable_all_apps_on_your_device_to_run_through_the_tor_network_using_the_vpn_feature_of_android_">Du kan få alla appar på din enhet att köra via Tor-nätverket genom att använda VPN-funktionen i Android.\n\n*VARNING* Det här är en ny, experimentell funktion och kanske i vissa fall inte startas automatiskt, eller avslutas. Det bör INTE användas för anonymitet, tan BARA för att ta sig genom brandväggar och filter.</string>
   <string name="send_email">Skicka e-post</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Du kan få en brygg-adress via e-post, via webben eller genom att skanna en QR-kod för en brygga. Välj \'E-post\' eller \'Webb\' nedan för att begära en brygg-adress.\n\nNär du väl har en adress, kopiera &amp; klistra in den i inställningen för \"Bryggor\" i Orbot och starta om.</string>
-  <string name="install_orweb">Installera Orweb</string>
+  <string name="install_orweb">Installera Orfox</string>
   <string name="standard_browser">Standard-webbläsare</string>
   <string name="note_only_standard_tor_bridges_work_on_intel_x86_atom_devices">NOTERA: Endast vanliga Tor-bryggor fungerar på Intel X86/ATOM-enheter</string>
+  <string name="vpn_default_world">Världen</string>
 </resources>
