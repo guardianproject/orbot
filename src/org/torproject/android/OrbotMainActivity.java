@@ -3,6 +3,8 @@
 
 package org.torproject.android;
 
+import static org.torproject.android.OrbotConstants.TAG;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
@@ -25,8 +27,7 @@ import org.torproject.android.ui.PromoAppsActivity;
 import org.torproject.android.ui.Rotate3dAnimation;
 import org.torproject.android.vpn.VPNEnableActivity;
 
-import android.app.ActionBar;
-import android.app.Activity;
+import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningServiceInfo;
 import android.app.AlertDialog;
@@ -49,10 +50,10 @@ import android.os.Message;
 import android.os.RemoteException;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
@@ -114,7 +115,7 @@ public class OrbotMainActivity extends AppCompatActivity
 
 	public final static String INTENT_ACTION_REQUEST_HIDDEN_SERVICE = "org.torproject.android.REQUEST_HS_PORT";
 	public final static String INTENT_ACTION_REQUEST_START_TOR = "org.torproject.android.START_TOR";	
-		
+
 	// for bridge loading from the assets default bridges.txt file
     class Bridge
     {
@@ -124,7 +125,15 @@ public class OrbotMainActivity extends AppCompatActivity
     
     private ArrayList<Bridge> alBridges = null;
     
-
+    //this is needed for backwards compat back to Android 2.3.*
+    @SuppressLint("NewApi")
+    public View onCreateView(View parent, String name, Context context, AttributeSet attrs)
+    {
+        if(Build.VERSION.SDK_INT >= 11)
+          return super.onCreateView(parent, name, context, attrs);
+        return null;
+    }
+    
     /** Called when the activity is first created. */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -261,29 +270,39 @@ public class OrbotMainActivity extends AppCompatActivity
 		
 		mBtnVPN = (ToggleButton)findViewById(R.id.btnVPN);
 		
-		boolean useVPN = Prefs.useVpn();
-		mBtnVPN.setChecked(useVPN);
-		
-		//auto start VPN if VPN is enabled
-		if (useVPN)
+		boolean canDoVPN = Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH;
+
+		if (!canDoVPN)
 		{
-			startActivity(new Intent(OrbotMainActivity.this,VPNEnableActivity.class));
+			//if not SDK 14 or higher, we can't use the VPN feature
+			mBtnVPN.setVisibility(View.GONE);
 		}
-		
-		mBtnVPN.setOnClickListener(new View.OnClickListener ()
+		else
 		{
-
-			@Override
-			public void onClick(View v) {
-
-				if (mBtnVPN.isChecked())
-					startActivity(new Intent(OrbotMainActivity.this,VPNEnableActivity.class));
-				else
-					stopVpnService();
-				
+			boolean useVPN = Prefs.useVpn();
+			mBtnVPN.setChecked(useVPN);
+			
+			//auto start VPN if VPN is enabled
+			if (useVPN)
+			{
+				startActivity(new Intent(OrbotMainActivity.this,VPNEnableActivity.class));
 			}
-
-		});
+			
+			mBtnVPN.setOnClickListener(new View.OnClickListener ()
+			{
+	
+				@Override
+				public void onClick(View v) {
+	
+					if (mBtnVPN.isChecked())
+						startActivity(new Intent(OrbotMainActivity.this,VPNEnableActivity.class));
+					else
+						stopVpnService();
+					
+				}
+	
+			});
+		}
 		
 		
 		mBtnBridges = (ToggleButton)findViewById(R.id.btnBridges);
@@ -1018,21 +1037,6 @@ public class OrbotMainActivity extends AppCompatActivity
     private void requestTorRereadConfig() {
         sendIntentToService(TorServiceConstants.CMD_SIGNAL_HUP);
     }
-
-    
-    /**
-    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-    public void startVpnService ()
-    {
-        Intent intent = VpnService.prepare(getApplicationContext());
-        if (intent != null) {
-            startActivityForResult(intent,REQUEST_VPN);
-        } 
-        else
-        {
-            sendIntentToService(TorServiceConstants.CMD_VPN);
-        }
-    }*/
     
     public void stopVpnService ()
     {    	
