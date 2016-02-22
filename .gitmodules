@@ -20,7 +20,7 @@
 	ignore = dirty
 [submodule "external/superuser-commands"]
 	path = external/superuser-commands
-	url = https://github.com/dschuermann/superuser-commands.git
+	url = https://github.com/guardianproject/RootCommands.git
 	ignore = dirty
 [submodule "external/polipo"]
 	path = external/polipo
