@@ -2245,9 +2245,9 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     	    		conn.setConf("DisableNetwork","0");
     	    		
     	    	}
-    	    	catch (IOException ioe)
+    	    	catch (Exception ioe)
     	    	{
-    	    		ioe.printStackTrace();
+    	    		Log.e(TAG, "Connection exception occured resetting exits",ioe);
     	    	}
         	}
     	}
@@ -2270,12 +2270,11 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     	    		
     	    		conn.setConf("DisableNetwork","1");
     	    		conn.setConf("DisableNetwork","0");
-    	    		
 
     	    	}
-    	    	catch (IOException ioe)
+    	    	catch (Exception ioe)
     	    	{
-    	    		ioe.printStackTrace();
+    	    		Log.e(TAG, "Connection exception occured resetting exits",ioe);    	    	
     	    	}
         	}
     	}
