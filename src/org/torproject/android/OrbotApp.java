@@ -28,7 +28,7 @@ public class OrbotApp extends Application implements OrbotConstants
     public static File fileTor;
     public static File filePolipo;
     public static File fileObfsclient;
-    public static File fileMeekclient;
+  // public static File fileMeekclient;
     public static File fileXtables;
     public static File fileTorRc;
     public static File filePdnsd;
@@ -48,12 +48,9 @@ public class OrbotApp extends Application implements OrbotConstants
         fileTor= new File(appBinHome, TorServiceConstants.TOR_ASSET_KEY);
         filePolipo = new File(appBinHome, TorServiceConstants.POLIPO_ASSET_KEY);
         fileObfsclient = new File(appBinHome, TorServiceConstants.OBFSCLIENT_ASSET_KEY);
-        fileMeekclient = new File(appBinHome, TorServiceConstants.MEEK_ASSET_KEY);
         fileXtables = new File(appBinHome, TorServiceConstants.IPTABLES_ASSET_KEY);
         fileTorRc = new File(appBinHome, TorServiceConstants.TORRC_ASSET_KEY);
         filePdnsd = new File(appBinHome, TorServiceConstants.PDNSD_ASSET_KEY);
-        
-        
         
     }
 

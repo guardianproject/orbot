@@ -100,12 +100,13 @@ public class TorResourceInstaller implements TorServiceConstants {
 	        shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
 	        streamToFile(is,outFile, false, true);
 	        setExecutable(outFile);
-	        
+	        /**
             is = context.getAssets().open(cpuPath + "/" + MEEK_ASSET_KEY + MP3_EXT);
 	        outFile = new File(installFolder, MEEK_ASSET_KEY);
 	        shell.add(new SimpleCommand(COMMAND_RM_FORCE + outFile.getAbsolutePath())).waitForFinish();
 	        streamToFile(is,outFile, false, true);
 	        setExecutable(outFile);
+	        */
 	        
         }
                 

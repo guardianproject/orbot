@@ -61,6 +61,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.io.PrintWriter;
+import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.net.Socket;
@@ -482,25 +483,30 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         try {
         	TorServiceUtils.killProcess(OrbotApp.fileObfsclient);
         } catch (IOException e) {
-            e.printStackTrace();
+           // e.printStackTrace();
+            Log.w(TAG,"could not kill obfsclient",e);
             cannotKillFile = OrbotApp.fileObfsclient;
         }
+        
+        /**
         try {
         	TorServiceUtils.killProcess(OrbotApp.fileMeekclient);
         } catch (IOException e) {
             e.printStackTrace();
             cannotKillFile = OrbotApp.fileMeekclient;
         }
+        */
+        
         try {
         	TorServiceUtils.killProcess(OrbotApp.filePolipo);
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.w(TAG,"could not kill polipo",e);
             cannotKillFile = OrbotApp.filePolipo;
         }
         try {
             TorServiceUtils.killProcess(OrbotApp.fileTor);
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.w(TAG,"could not kill tor",e);
             cannotKillFile = OrbotApp.fileTor;
         }
     }
@@ -743,7 +749,9 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 	
 	        if (Prefs.bridgesEnabled())
 	        	if (Prefs.useVpn() && !mIsLollipop)
-	        		customEnv.add("TOR_PT_PROXY=socks5://127.0.0.1:" + OrbotVpnService.sSocksProxyServerPort); 
+	        	{
+	        		customEnv.add("TOR_PT_PROXY=socks5://" + OrbotVpnService.sSocksProxyLocalhost + ":" + OrbotVpnService.sSocksProxyServerPort); 
+	        	}
 	        
 	        String baseDirectory = OrbotApp.fileTor.getParent();
 	        Shell shellUser = Shell.startShell(customEnv, baseDirectory);
@@ -1658,7 +1666,9 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                         
                         }
                         catch (Exception ioe){
-                            debug("error requesting newnym: " + ioe.getLocalizedMessage());
+                            
+                        	debug("error requesting newnym: " + ioe.getLocalizedMessage());
+                            
                         }
                     }
                 }.start();
@@ -1885,8 +1895,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 	        	if (!mIsLollipop)
 	        	{
 		        	String proxyType = "socks5";
-		        	String proxyHost = "127.0.0.1";
-		        	extraLines.append(proxyType + "Proxy" + ' ' + proxyHost + ':' + OrbotVpnService.sSocksProxyServerPort).append('\n');
+		        	extraLines.append(proxyType + "Proxy" + ' ' + OrbotVpnService.sSocksProxyLocalhost + ':' + OrbotVpnService.sSocksProxyServerPort).append('\n');
 	        	};
 			
 	        }
@@ -1936,7 +1945,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             {
 	            
 	            //check if any PT bridges are needed
-	            boolean obfsBridges = bridgeList.contains("obfs3")||bridgeList.contains("obfs4")||bridgeList.contains("scramblesuit");
+	            boolean obfsBridges = bridgeList.contains("obfs3")||bridgeList.contains("obfs4")||bridgeList.contains("scramblesuit")||bridgeList.contains("meek");
             
 	            if (obfsBridges)
 	            {
@@ -1972,7 +1981,9 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
             	debug ("Using meek bridges");
                 
-            	String bridgeConfig = "meek exec " + OrbotApp.fileMeekclient.getCanonicalPath();
+            //	String bridgeConfig = "meek exec " + OrbotApp.fileMeekclient.getCanonicalPath();
+            	String bridgeConfig = "meek_lite exec " + OrbotApp.fileObfsclient.getCanonicalPath();
+            	
             	extraLines.append("ClientTransportPlugin" + ' ' + bridgeConfig).append('\n');
             
             	int meekIdx = 2; //let's use Azure by default

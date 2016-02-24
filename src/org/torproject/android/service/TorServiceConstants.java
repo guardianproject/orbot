@@ -141,7 +141,7 @@ public interface TorServiceConstants {
     //obfsproxy 
     public static final String OBFSCLIENT_ASSET_KEY = "obfs4proxy";
     
-    public static final String MEEK_ASSET_KEY = "meek-client";
+   // public static final String MEEK_ASSET_KEY = "meek-client";
     
 	//name of the iptables binary
 	public final static String IPTABLES_ASSET_KEY = "xtables";	
@@ -155,9 +155,9 @@ public interface TorServiceConstants {
 	//MEEK BRIDGEs	
 	public final static String[] BRIDGES_MEEK = 
 		{
-			"meek 0.0.2.0:1 url=https://meek-reflect.appspot.com/ front=www.google.com",
-			"meek 0.0.2.0:2 url=https://d2zfqthxsdq309.cloudfront.net/ front=a0.awsstatic.com",
-			"meek 0.0.2.0:3 url=https://az668014.vo.msecnd.net/ front=ajax.aspnetcdn.com"
+			"meek_lite 0.0.2.0:1 url=https://meek-reflect.appspot.com/ front=www.google.com",
+			"meek_lite 0.0.2.0:2 url=https://d2zfqthxsdq309.cloudfront.net/ front=a0.awsstatic.com",
+			"meek_lite 0.0.2.0:3 url=https://az668014.vo.msecnd.net/ front=ajax.aspnetcdn.com"
 		};
 
 }

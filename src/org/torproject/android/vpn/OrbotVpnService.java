@@ -22,6 +22,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.concurrent.TimeoutException;
@@ -68,6 +69,7 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     private int mTorSocks = TorServiceConstants.SOCKS_PROXY_PORT_DEFAULT;
     
     public static int sSocksProxyServerPort = -1;
+    public static String sSocksProxyLocalhost = null;
     private ProxyServer mSocksProxyServer;
    
     
@@ -108,11 +110,7 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 		        	
 		        	if (!mIsLollipop)
 		        	{
-
-		                //generate the proxy port that the 
-		                if (sSocksProxyServerPort == -1)
-		                	sSocksProxyServerPort = (int)((Math.random()*1000)+10000); 
-		                	
+	
 		        		startSocksBypass();
 		        	}
 		        	
@@ -151,6 +149,24 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     		
     		public void run ()
     		{
+
+                //generate the proxy port that the 
+                if (sSocksProxyServerPort == -1)
+                {
+                	try {
+						
+                		sSocksProxyLocalhost = "127.0.0.1";// InetAddress.getLocalHost().getHostAddress();
+	                	sSocksProxyServerPort = (int)((Math.random()*1000)+10000); 
+	                	
+					} catch (Exception e) {
+						Log.e(TAG,"Unable to access localhost",e);
+						throw new RuntimeException("Unable to access localhost: " + e);
+						
+					}
+                	
+                }
+                
+                
 		    	if (mSocksProxyServer != null)
 		    	{
 		    		stopSocksBypass ();
@@ -274,7 +290,6 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 	    			//start PDNSD daemon pointing to OpenDNS
 	    			startDNS(DEFAULT_ACTUAL_DNS,53);
 	    			
-	    			
 		    		final String vpnName = "OrbotVPN";
 		    		final String localhost = "127.0.0.1";
 
@@ -392,8 +407,10 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
         		" -c " + baseDirectory + "/pdnsd.conf";
     
         SimpleCommand shellCommand = new SimpleCommand(cmdString);
+        
         shell.add(shellCommand).waitForFinish();
     
+        Log.i(TAG,"PDNSD: " + shellCommand.getExitCode() + ": " + shellCommand.getOutput());
         
     }
     

@@ -178,12 +178,12 @@ public class TorServiceUtils implements TorServiceConstants {
         } 
 
         catch(ConnectException ce){
-            ce.printStackTrace();
+            //ce.printStackTrace();
             return false;
         }
 
         catch (Exception ex) {
-            ex.printStackTrace();
+            //ex.printStackTrace();
             return false;
         }
     }
