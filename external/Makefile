@@ -285,7 +285,6 @@ pluto-build-stamp: pluto/bin/android_arm/obfs4proxy
 pluto: pluto-build-stamp
 	test -d bin || mkdir bin
 	cp pluto/bin/android_arm/obfs4proxy bin
-	cp pluto/bin/android_arm/meek-client bin
 
 pluto-clean:
 #	-rm -rf pluto/bin
@@ -304,8 +303,6 @@ assets: tor polipo iptables pluto
 	-zip ../assets/$(APP_ABI)/tor.mp3 bin/tor
 	-$(STRIP) bin/xtables
 	-zip ../assets/$(APP_ABI)/xtables.mp3 bin/xtables
-	-$(STRIP) bin/meek-client
-	-zip ../assets/$(APP_ABI)/meek-client.mp3 bin/meek-client
 	-$(STRIP) bin/obfs4proxy
 	-zip ../assets/$(APP_ABI)/obfs4proxy.mp3 bin/obfs4proxy
 	-$(STRIP) ../libs/$(APP_ABI)/pdnsd
@@ -316,7 +313,6 @@ assets-clean:
 	-rm ../assets/$(APP_ABI)/polipo.mp3
 	-rm ../assets/$(APP_ABI)/tor.mp3
 	-rm ../assets/$(APP_ABI)/xtables.mp3
-	-rm ../assets/$(APP_ABI)/meek-client.mp3
 	-rm ../assets/$(APP_ABI)/obfs4proxy.mp3
 	-rm ../assets/$(APP_ABI)/pdnsd.mp3
 
