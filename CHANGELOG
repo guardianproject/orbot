@@ -1,5 +1,20 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+/** 15.1.2 / 24-February-2016 / 204733a245d6c06fa73301134e2f107c0c4564b8 **/
+
+5785593 move to using meek_lite mode from obfs4client and update/improve proxying code
+66a5b7a remove meek-client and use obfs4 meek_lite mode instead
+f9f33a1 set this to Android 16 SDK for PIE executable We'll use a different build for non-PIE < Android-16
+e9d28a4 handle NPE better for dev.gp.info #6686 in some cases the connection becomes null while you are interacting with it
+9a8e4dd update to orbot ant build version
+80e8c47 peg to last ant compat release
+5eb628b bridges dedicated to GeorgeTorwell
+c8584f6 update superuser commands library
+3cc2439 update license to include badvpn
+9c82aa8 fix escaping of apostro
+eba95b2 update strings and descs from transifex (somehow french got left out before!)
+8047ec6 update the log
+
 /** 15.1.0-RC-7 / 27-January-2016 / 91225ab053d0ffec4a414be461ee41e6465446bd **/
 
 * fd45fa3 enable TransProxy and DNSPort by default without root - some users run their own iptables transproxy scripts with AFWall and n
