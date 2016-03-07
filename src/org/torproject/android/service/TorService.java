@@ -776,13 +776,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 	                shellRoot.close();
 	            }
 	            
-	            /**
-	            if (Prefs.useVpn()) //we need to turn on VPN here so the proxy is running
-	            {
-	            	enableVpnProxy();
-	            }*/
-	
-	            
 	            getHiddenServiceHostname ();
 	        }
 	        else
@@ -1204,6 +1197,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             Prefs.putUseVpn(true);
             processTransparentProxying();
             
+            updateConfiguration("DNSPort",TOR_VPN_DNS_LISTEN_ADDRESS + ":" + TorServiceConstants.TOR_DNS_PORT_DEFAULT,false);
+            
             Intent intent = new Intent(TorService.this, OrbotVpnService.class);
             intent.setAction("start");
             
@@ -1212,36 +1207,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             startService(intent);
            
         }
-        
-        public void refreshVpnProxy () {
-            
-        	debug ("refreshing VPN Proxy");
-        	
-        	try
-        	{
-	        	conn.setConf("DisableNetwork", "1");
-	        	
-	            Intent intent = new Intent(TorService.this, OrbotVpnService.class);
-	            intent.setAction("refresh");
-	            startService(intent);
-
-	            //updateConfiguration("DNSPort",TOR_VPN_DNS_LISTEN_ADDRESS + ":" + TorServiceConstants.TOR_DNS_PORT_DEFAULT,false);
-	            //updateConfiguration("DNSPort",TorServiceConstants.TOR_DNS_PORT_DEFAULT+"",false);
-	            updateConfiguration("DisableNetwork","0", false);
-
-	            saveConfiguration();
-	        
-	
-	        	conn.setConf("DisableNetwork", "0");
-        	}
-        	catch (Exception ioe)
-        	{
-        		Log.e(TAG,"error restarting network",ioe);
-        	}
-        	
-        }
-        
-        
         
         public void clearVpnProxy ()
         {   
@@ -1853,9 +1818,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 	                                
 	                                shell.close();
 	                            }
-	                        //    else if (Prefs.useVpn()) //we need to turn on VPN here so the proxy is running
-	                          //  	refreshVpnProxy();
-	            	            
 	                        }
 	                    }
 	                    
