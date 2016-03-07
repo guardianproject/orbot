@@ -649,7 +649,10 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             
         extraLines.append("TransPort ").append(transPort).append('\n');
     	extraLines.append("DNSPort ").append(dnsPort).append("\n");
-	        
+    	
+    	if (Prefs.useVpn())
+    		extraLines.append("DNSListenAddress 0.0.0.0").append('\n');
+    	
         if (Prefs.transparentTethering())
         {
             extraLines.append("TransListenAddress 0.0.0.0").append('\n');

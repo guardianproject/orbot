@@ -78,7 +78,9 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     private final static boolean mIsLollipop = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
     
     //this is the actual DNS server we talk with over TCP/IP
-    private final static String DEFAULT_ACTUAL_DNS = "8.8.8.8";//use Google here, or 8.8.4.4 as backup?
+    private final static String DEFAULT_ACTUAL_DNS_HOST = "127.0.0.1";//"8.8.8.8";//use Google here, or 8.8.4.4 as backup?
+    private final static int DEFAULT_ACTUAL_DNS_PORT = TorServiceConstants.TOR_DNS_PORT_DEFAULT;
+    
     private boolean isRestart = false;
     
 
@@ -288,7 +290,7 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 	    			}
 	    			
 	    			//start PDNSD daemon pointing to OpenDNS
-	    			startDNS(DEFAULT_ACTUAL_DNS,53);
+	    			startDNS(DEFAULT_ACTUAL_DNS_HOST,DEFAULT_ACTUAL_DNS_PORT);
 	    			
 		    		final String vpnName = "OrbotVPN";
 		    		final String localhost = "127.0.0.1";
