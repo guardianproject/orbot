@@ -384,12 +384,13 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     @Override
     public void onRevoke() {
     
+    	Log.w(TAG,"VPNService REVOKED!");
+    	
     	if (!isRestart)
     	{
 	    	SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext()); 
 	        prefs.edit().putBoolean("pref_vpn", false).commit();      
-	    	stopVPN();
-	    	
+	    	stopVPN();	
     	}
     	
     	isRestart = false;

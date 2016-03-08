@@ -85,9 +85,7 @@ public class TorServiceUtils implements TorServiceConstants {
 		    	
 		Process procPs = null;
 		
-		String processKey = new File(command).getName();
-		
-        procPs = r.exec(SHELL_CMD_PS + ' ' + processKey); // this is the android ps <name> command
+        procPs = r.exec(SHELL_CMD_PS); // this is the android ps <name> command
             
         BufferedReader reader = new BufferedReader(new InputStreamReader(procPs.getInputStream()));
         String line = null;
@@ -97,7 +95,7 @@ public class TorServiceUtils implements TorServiceConstants {
         	if (line.contains("PID"))
         		continue;
         		
-        	if (line.contains('/' + processKey))
+        	if (line.contains(command))
         	{
         		
         		String[] lineParts = line.split("\\s+");

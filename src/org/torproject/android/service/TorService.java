@@ -488,15 +488,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             cannotKillFile = OrbotApp.fileObfsclient;
         }
         
-        /**
-        try {
-        	TorServiceUtils.killProcess(OrbotApp.fileMeekclient);
-        } catch (IOException e) {
-            e.printStackTrace();
-            cannotKillFile = OrbotApp.fileMeekclient;
-        }
-        */
-        
         try {
         	TorServiceUtils.killProcess(OrbotApp.filePolipo);
         } catch (IOException e) {
