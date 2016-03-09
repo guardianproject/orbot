@@ -1,5 +1,18 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+/** 15.1.3 **/
+
+Important fixes for VPN mode
+
+9097b79 Move OrbotVPNService to a Manager and consolidate services This allows for the VPN service to be set in the foreground with th
+cec82ec VPN code cleanup and ensure DNS is listening on all interfaces
+4892f93 DNS lookup through pdnsd should loop back into Tor DNS port While the TCP query to Google DNS before provided more robust DNS 
+
+... and one for Briar and other apps with their own tor daemon
+
+2973eac change how we look for processes to kill. fixes tor trac #18502
+
+
 /** 15.1.2 / 24-February-2016 / 204733a245d6c06fa73301134e2f107c0c4564b8 **/
 
 5785593 move to using meek_lite mode from obfs4client and update/improve proxying code
