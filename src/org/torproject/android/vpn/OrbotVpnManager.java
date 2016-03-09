@@ -31,6 +31,7 @@ import org.sufficientlysecure.rootcommands.Shell;
 import org.sufficientlysecure.rootcommands.command.SimpleCommand;
 import org.torproject.android.OrbotApp;
 import org.torproject.android.R;
+import org.torproject.android.service.TorService;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.TorServiceUtils;
 import org.torproject.android.settings.AppManager;
@@ -38,11 +39,13 @@ import org.torproject.android.settings.TorifiedApp;
 
 import android.annotation.TargetApi;
 import android.app.PendingIntent;
+import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.VpnService;
+import android.net.VpnService.Builder;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
@@ -55,12 +58,11 @@ import com.runjva.sourceforge.jsocks.server.ServerAuthenticatorNone;
 
 @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 
-public class OrbotVpnService extends VpnService implements Handler.Callback {
+public class OrbotVpnManager implements Handler.Callback {
     private static final String TAG = "OrbotVpnService";
 
     private PendingIntent mConfigureIntent;
 
-    private Handler mHandler;
     private Thread mThreadVPN;
 
     private String mSessionName = "OrbotVPN";
@@ -83,13 +85,20 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     
     private boolean isRestart = false;
     
+    private TorService mService;
+    
 
     static{
     	  System.loadLibrary("tun2socks");
     	}
     
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
+    public OrbotVpnManager (TorService service)
+    {
+    	mService = service;
+    }
+   
+    //public int onStartCommand(Intent intent, int flags, int startId) {
+    public int handleIntent(Builder builder, Intent intent) {
 
     	if (intent != null)
     	{
@@ -105,18 +114,13 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 		        	
 		        	mTorSocks = intent.getIntExtra("torSocks", TorServiceConstants.SOCKS_PROXY_PORT_DEFAULT);
 			    	
-			        // The handler is only used to show messages.
-			        if (mHandler == null) {
-			            mHandler = new Handler(this);
-			        }
-		        	
 		        	if (!mIsLollipop)
 		        	{
 	
 		        		startSocksBypass();
 		        	}
 		        	
-		            setupTun2Socks();               
+		            setupTun2Socks(builder);               
 		        }
 	    	}
 	    	else if (action.equals("stop"))
@@ -124,8 +128,8 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 	    		Log.d(TAG,"stop OrbotVPNService service!");
 	    		
 	    		stopVPN();    		
-	    		if (mHandler != null)
-	    			mHandler.postDelayed(new Runnable () { public void run () { stopSelf(); }}, 1000);
+	    		//if (mHandler != null)
+	    			//mHandler.postDelayed(new Runnable () { public void run () { stopSelf(); }}, 1000);
 	    	}
 	    	else if (action.equals("refresh"))
 	    	{
@@ -135,12 +139,12 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 	    		  startSocksBypass();
 	    		
 	    		if (!isRestart)
-	    			setupTun2Socks();
+	    			setupTun2Socks(builder);
 	    	}
     	}
      
         
-        return START_STICKY;
+        return Service.START_STICKY;
     }
   
     private void startSocksBypass()
@@ -177,7 +181,7 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 		    	try
 		    	{
 			        mSocksProxyServer = new ProxyServer(new ServerAuthenticatorNone(null, null));
-			        ProxyServer.setVpnService(OrbotVpnService.this);
+			        ProxyServer.setVpnService(mService);
 			        mSocksProxyServer.start(sSocksProxyServerPort, 5, InetAddress.getLocalHost());
 			        
 		    	}
@@ -201,6 +205,7 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
         
     }
     
+    /**
     @Override
 	public void onCreate() {
 		super.onCreate();
@@ -218,7 +223,7 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 	@Override
     public void onDestroy() {
     	stopVPN();
-    }
+    }*/
     
     private void stopVPN ()
     {
@@ -260,13 +265,13 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     @Override
     public boolean handleMessage(Message message) {
         if (message != null) {
-            Toast.makeText(this, message.what, Toast.LENGTH_SHORT).show();
+            Toast.makeText(mService, message.what, Toast.LENGTH_SHORT).show();
         }
         return true;
     }
 
   
-    private synchronized void setupTun2Socks()  {
+    private synchronized void setupTun2Socks(final Builder builder)  {
 
     	
         if (mInterface != null) //stop tun2socks now to give it time to clean up
@@ -289,7 +294,7 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 			        	Thread.sleep(3000);
 	    			}
 	    			
-	    			//start PDNSD daemon pointing to OpenDNS
+	    			//start PDNSD daemon pointing to actual DNS
 	    			startDNS(DEFAULT_ACTUAL_DNS_HOST,DEFAULT_ACTUAL_DNS_PORT);
 	    			
 		    		final String vpnName = "OrbotVPN";
@@ -305,10 +310,8 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 		    		        + String.valueOf(mTorSocks);
 		    		
 		    		final String localDNS = virtualGateway + ':' + "8091";//String.valueOf(TorServiceConstants.TOR_DNS_PORT_DEFAULT);
-		        	final boolean localDnsTransparentProxy = true;
+		    		final boolean localDnsTransparentProxy = true;
 		        	
-			        Builder builder = new Builder();
-			        
 			        builder.setMtu(VPN_MTU);
 			        builder.addAddress(virtualGateway,32);
 			        
@@ -355,6 +358,7 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
     	};
     	
     	mThreadVPN.start();
+    	
     }
     
     
@@ -362,13 +366,13 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
 	private void doLollipopAppRouting (Builder builder) throws NameNotFoundException
     {    
     	   
-        ArrayList<TorifiedApp> apps = AppManager.getApps(this, TorServiceUtils.getSharedPrefs(getApplicationContext()));
+        ArrayList<TorifiedApp> apps = AppManager.getApps(mService, TorServiceUtils.getSharedPrefs(mService.getApplicationContext()));
     
         boolean perAppEnabled = false;
         
         for (TorifiedApp app : apps)
         {
-        	if (app.isTorified() && (!app.getPackageName().equals(getPackageName())))
+        	if (app.isTorified() && (!app.getPackageName().equals(mService.getPackageName())))
         	{
         		builder.addAllowedApplication(app.getPackageName());
         		perAppEnabled = true;
@@ -377,30 +381,32 @@ public class OrbotVpnService extends VpnService implements Handler.Callback {
         }
     
         if (!perAppEnabled)
-        	builder.addDisallowedApplication(getPackageName());
+        	builder.addDisallowedApplication(mService.getPackageName());
     
     }
     
-    @Override
+    
     public void onRevoke() {
     
     	Log.w(TAG,"VPNService REVOKED!");
     	
     	if (!isRestart)
     	{
-	    	SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext()); 
+	    	SharedPreferences prefs = TorServiceUtils.getSharedPrefs(mService.getApplicationContext()); 
 	        prefs.edit().putBoolean("pref_vpn", false).commit();      
 	    	stopVPN();	
     	}
     	
     	isRestart = false;
     	
-        super.onRevoke();
+    	//super.onRevoke();
+    
     }
+    
     
     private void startDNS (String dns, int port) throws IOException, TimeoutException
     {
-    	makePdnsdConf(this, dns, port,OrbotApp.filePdnsd.getParentFile() );
+    	makePdnsdConf(mService, dns, port,OrbotApp.filePdnsd.getParentFile() );
     	
         ArrayList<String> customEnv = new ArrayList<String>();
     	String baseDirectory = OrbotApp.filePdnsd.getParent();

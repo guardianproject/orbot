@@ -23,6 +23,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.VpnService;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.RemoteException;
@@ -46,7 +47,7 @@ import org.torproject.android.Prefs;
 import org.torproject.android.R;
 import org.torproject.android.settings.AppManager;
 import org.torproject.android.settings.TorifiedApp;
-import org.torproject.android.vpn.OrbotVpnService;
+import org.torproject.android.vpn.OrbotVpnManager;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -82,7 +83,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeoutException;
 
-public class TorService extends Service implements TorServiceConstants, OrbotConstants, EventHandler
+public class TorService extends VpnService implements TorServiceConstants, OrbotConstants, EventHandler
 {
     
     private String mCurrentStatus = STATUS_OFF;
@@ -121,7 +122,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     private long lastWritten = -1;
     
     private NotificationManager mNotificationManager = null;
-    private Builder mNotifyBuilder;
+    private Notification.Builder mNotifyBuilder;
     private Notification mNotification;
     private boolean mNotificationShowing = false;
 
@@ -130,6 +131,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     private ExecutorService mExecutor = Executors.newFixedThreadPool(1);
 
     private NumberFormat mNumberFormat = null;
+    
+    private OrbotVpnManager mVpnManager;
 
     public void debug(String msg)
     {
@@ -363,6 +366,15 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         stopTor();
         unregisterReceiver(mNetworkStateReceiver);
         super.onDestroy();
+    }
+    
+    @Override
+    public void onRevoke ()
+    {
+    	if (mVpnManager != null)
+    		mVpnManager.onRevoke();
+    	
+    	super.onRevoke();
     }
 
     private void stopTor() {
@@ -744,7 +756,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 	        if (Prefs.bridgesEnabled())
 	        	if (Prefs.useVpn() && !mIsLollipop)
 	        	{
-	        		customEnv.add("TOR_PT_PROXY=socks5://" + OrbotVpnService.sSocksProxyLocalhost + ":" + OrbotVpnService.sSocksProxyServerPort); 
+	        		customEnv.add("TOR_PT_PROXY=socks5://" + OrbotVpnManager.sSocksProxyLocalhost + ":" + OrbotVpnManager.sSocksProxyServerPort); 
 	        	}
 	        
 	        String baseDirectory = OrbotApp.fileTor.getParent();
@@ -1190,12 +1202,14 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             
             updateConfiguration("DNSPort",TOR_VPN_DNS_LISTEN_ADDRESS + ":" + TorServiceConstants.TOR_DNS_PORT_DEFAULT,false);
             
-            Intent intent = new Intent(TorService.this, OrbotVpnService.class);
-            intent.setAction("start");
+            if (mVpnManager == null)
+            	mVpnManager = new OrbotVpnManager (this);
             
+            Intent intent = new Intent();
+            intent.setAction("start");            
             intent.putExtra("torSocks", mPortSOCKS);
             
-            startService(intent);
+            mVpnManager.handleIntent(new Builder(),intent);
            
         }
         
@@ -1205,9 +1219,14 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             Prefs.putUseVpn(false);
             processTransparentProxying();
             
-            Intent intent = new Intent(TorService.this, OrbotVpnService.class);
-            intent.setAction("stop");
-            startService(intent);                                              
+            if (mVpnManager != null)
+            {
+            	Intent intent = new Intent();
+                intent.setAction("stop");
+            	mVpnManager.handleIntent(new Builder(), intent);
+            	mVpnManager = null;
+            }            
+                             
         }
 
     @Override
@@ -1851,7 +1870,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 	        	if (!mIsLollipop)
 	        	{
 		        	String proxyType = "socks5";
-		        	extraLines.append(proxyType + "Proxy" + ' ' + OrbotVpnService.sSocksProxyLocalhost + ':' + OrbotVpnService.sSocksProxyServerPort).append('\n');
+		        	extraLines.append(proxyType + "Proxy" + ' ' + OrbotVpnManager.sSocksProxyLocalhost + ':' + OrbotVpnManager.sSocksProxyServerPort).append('\n');
 	        	};
 			
 	        }

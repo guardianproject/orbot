@@ -83,6 +83,8 @@ ifeq ($(APP_ABI),armeabi)
 	CFLAGS += $(TARGET_thumb_release_CFLAGS)
 endif
 
+
+
 .PHONY = clean showsetup \
 	assets assets-clean \
 	openssl-static openssl-static-clean \
