@@ -23,7 +23,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.VpnService;
+import android.net.VpnService;me
 import android.os.Build;
 import android.os.IBinder;
 import android.os.RemoteException;
@@ -1920,13 +1920,19 @@ public class TorService extends VpnService implements TorServiceConstants, Orbot
             {
 	            
 	            //check if any PT bridges are needed
-	            boolean obfsBridges = bridgeList.contains("obfs3")||bridgeList.contains("obfs4")||bridgeList.contains("scramblesuit")||bridgeList.contains("meek");
+	            boolean obfsBridges = bridgeList.contains("obfs3")||bridgeList.contains("obfs4")||bridgeList.contains("scramblesuit");
             
 	            if (obfsBridges)
 	            {
 	                extraLines.append("ClientTransportPlugin obfs3 exec " + OrbotApp.fileObfsclient.getCanonicalPath()).append('\n');
 	                extraLines.append("ClientTransportPlugin obfs4 exec " + OrbotApp.fileObfsclient.getCanonicalPath()).append('\n');
 	                extraLines.append("ClientTransportPlugin scramblesuit exec " + OrbotApp.fileObfsclient.getCanonicalPath()).append('\n');
+	            }
+	            
+	            boolean meekBridges = bridgeList.contains("meek");
+	            if (meekBridges)
+	            {
+	            	extraLines.append("ClientTransportPlugin meek_lite exec " + OrbotApp.fileObfsclient.getCanonicalPath()).append('\n');
 	            }
 	            
 	            String[] bridgeListLines = bridgeList.split("\\r?\\n");
