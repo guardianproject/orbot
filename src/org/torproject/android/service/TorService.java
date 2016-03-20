@@ -23,7 +23,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.VpnService;me
+import android.net.VpnService;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.RemoteException;
