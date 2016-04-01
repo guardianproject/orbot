@@ -11,7 +11,6 @@
   <string name="status_starting_up">ஆர்பாட் துவங்குகிறது...</string>
   <string name="status_activated">தோர் நெட்வொர்க் இணைக்கப்பட்ட</string>
   <string name="status_disabled">ஆர்பாட் நிறுத்தப்பட்டது</string>
-  <string name="status_shutting_down">Orbot நிறுத்தப்படுகிறது</string>
   <string name="tor_process_starting">தோர் துவங்கப்படுகிறது...</string>
   <string name="tor_process_complete">முடிந்தது.</string>
   <string name="tor_process_waiting">காத்திருக்கிறது</string>
@@ -21,11 +20,9 @@
   <string name="menu_settings">அமைப்புகள்</string>
   <string name="menu_log">பதிவுகள்</string>
   <string name="menu_info">உதவி</string>
-  <string name="menu_apps">ஆப்ஸ்</string>
   <string name="menu_start">துவங்கு</string>
   <string name="menu_stop">நிறுத்து</string>
   <string name="menu_about">ஆர்பாட் பற்றி</string>
-  <string name="menu_wizard">வழிகாட்டி</string>
   <string name="main_layout_download">பதிவிறக்கு</string>
   <string name="main_layout_upload">பதிவேற்று</string>
   <string name="button_help">உதவி</string>
@@ -49,13 +46,23 @@
   <string name="wizard_details">ஆர்பாட் பற்றிய தகவல்</string>
   <string name="wizard_details_msg">Orbot தோர், LibEvent மற்றும் Polipo கொண்டுள்ளது என்று ஒரு திறந்த மூல பயன்பாடு ஆகும். இது ஒரு local HTTP பதிலாள் (8118) மற்றும் தோர் நெட்வொர்க் ஒரு SOCKS ப்ராக்ஸி (9050) வழங்குகிறது. Orbot மேலும் தோர் மூலம் அனைத்து இணைய போக்குவரத்து அனுப்பும் திறனை, ROOTED சாதனத்தில் கொண்டிருக்கிறது.</string>
   <string name="wizard_permissions_root">அனுமதி வழங்கப்பட்டது</string>
+  <string name="wizard_tips_duckgo">டக் டக் கோ தேடுபொறி செயலி</string>
+  <string name="wizard_proxy_help_info">பதிலாள் அமைப்புகள்</string>
+  <string name="wizard_final">ஆர்பாட் தயாராக உள்ளது!</string>
+  <string name="wizard_exit_at_first_screen_toast">தயவு செய்து, ஆர்பாடை கட்மைத்த பின் பயன்படுத்தவும்</string>
   <!--END Welcome Wizard strings (DJH)-->
   <!--New Wizard Strings-->
   <!--Title Screen-->
   <!--Warning screen-->
+  <string name="wizard_warning_title">எச்சரிக்கை</string>
   <!--Permissions screen-->
+  <string name="wizard_permissions_title">அனுமதிகள்</string>
   <!--TipsAndTricks screen-->
+  <string name="wizard_tips_title">ஆர்பாடுடன் செயல்படும் செயலிகள்</string>
   <!--Transparent Proxy screen-->
+  <string name="pref_select_apps">செயலிகளை தேர்ந்தெடு</string>
+  <string name="pref_proxy_password_summary">பதிலாள் கடவுச்சொல் (கட்டாயமற்ற)</string>
+  <string name="pref_proxy_password_dialog">பதிலாள் கடவுச்சொல்லை உள்ளிடவும்</string>
+  <string name="status">நிலை</string>
   <string name="default_bridges"></string>
-  <string name="menu_vpn">ஆப்ஸ்</string>
 </resources>

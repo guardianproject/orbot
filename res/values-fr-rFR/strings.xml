@@ -277,6 +277,7 @@
   <string name="bridges_updated">Ponts mis à jour</string>
   <string name="restart_orbot_to_use_this_bridge_">Veuillez redémarrer Orbot pour activer les changements</string>
   <string name="menu_qr">Codes QR</string>
+  <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Si votre réseau mobile bloque Tor activement, vous pouvez utiliser un pont pour accéder au réseau.\n\nCHOISIR un des types de ponts ci-dessus pour activer les ponts.</string>
   <string name="bridge_mode">Mode pont</string>
   <string name="get_bridges_email">Courriel</string>
   <string name="get_bridges_web">Web</string>

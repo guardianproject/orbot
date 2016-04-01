@@ -88,6 +88,7 @@
   <string name="wizard_final_msg">بسیاری از مردم در سرتاسر جهان از تور به دلایل متفاوت استفاده می کنند.\n\n خبرنگارها و بلاگرها٬ فعالان حقوق بشر٬ سربازان٬ ماموران اجرای قانون٬ شهروندان رژیم های سرکوبگر و مردم معمولی... و حالا تو </string>
   <string name="wizard_exit_at_first_screen_toast">لطفا اوربوت را  پیکربندی کنید قبل از اینکه شما شروع به استفاده از آن کنید!</string>
   <!--END Welcome Wizard strings (DJH)-->
+  <string name="connect_first_time">با موفقیت به شبکه Tor متصل شده اید - اما این بدان معنا نیست دستگاه شما امن است. شما می توانید استفاده کنید از کلید \"مرورگر\" برای تست اتصال . \n\n درباره ما در https://guardianproject.info/apps/orbot و یا ارسال ایمیل به help@guardianproject.info برای کسب اطلاعات بیشتر.</string>
   <string name="tor_check">با این قدم پیشفرض مرورگر وب شما به صفحه   https://check.torproject.org باز می شود تا شما مشاهده کنید آیا ربات پیازی تنظیم شده است و آیا شما به تور وصل شده اید یا نه.</string>
   <string name="pref_hs_group">سرويس های مخفی هاست</string>
   <string name="pref_general_group">کلی</string>
@@ -125,6 +126,7 @@
   <string name="pref_entrance_node">گره های ورودی</string>
   <string name="pref_entrance_node_summary">اثرانگشت ها، اسامی مستعار، کشورها و آدرسهای جهش اول</string>
   <string name="pref_entrance_node_dialog">گره های ورودی را وارد کنید</string>
+  <string name="pref_allow_background_starts_title">اجازه دادن اجرا در پس زمینه</string>
   <string name="button_proxy_all">همه پروکسی ها</string>
   <string name="button_proxy_none">هیچ پروکسی</string>
   <string name="button_invert_selection">انتخاب برعکس شود</string>
@@ -277,6 +279,7 @@
   <string name="get_bridges_email">ایمیل</string>
   <string name="get_bridges_web">وب</string>
   <string name="activate">فعال</string>
+  <string name="apps_mode">حالت نرم افزار VPN</string>
   <string name="you_can_enable_all_apps_on_your_device_to_run_through_the_tor_network_using_the_vpn_feature_of_android_">با استفاده از امکان وی پی ان اندروید٬ اوربات ترافیک تمام اپلیکیشن های موبایل شما را از طریق شبکه تور انتقال میدهد. 
 \n\n*هشدار* 
 امکان تونل تمام گوشی هنوز جدید و در حال آزمایش است. به همین دلیل امکان دارد که به صورت خودکار فعال نشود یا هنگام استفاده قطع شود. از این امکان برای ناشناس بودن در وب هرگز نباید استفاده کنید و باید فقط از آن برای عبور از فایروال ها و دور زدن فیلترینگ استفاده شود.</string>

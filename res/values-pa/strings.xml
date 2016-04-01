@@ -13,13 +13,7 @@
   <!--Warning screen-->
   <!--Permissions screen-->
   <!--TipsAndTricks screen-->
-
-
-
-
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_none">ਖਾਲੀ</string>
-  <!--<string name="pref_use_whispercore">Use WhisperCore</string>
-<string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>-->
   <string name="default_bridges"></string>
 </resources>

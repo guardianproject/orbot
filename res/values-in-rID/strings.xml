@@ -11,6 +11,7 @@
   <string name="status_starting_up">Orbot sedang dimulai...</string>
   <string name="status_activated">Tersambung ke Jaringan Tor</string>
   <string name="status_disabled">Orbot telah dibatalkan</string>
+  <string name="status_shutting_down">TorService dimatikan</string>
   <string name="tor_process_starting">Memulai klien Tor...</string>
   <string name="tor_process_complete">selesai.</string>
   <string name="tor_process_waiting">menunggu.</string>
@@ -20,9 +21,11 @@
   <string name="menu_settings">Pengaturan</string>
   <string name="menu_log">Log</string>
   <string name="menu_info">Bantuan</string>
+  <string name="menu_apps">VPN</string>
   <string name="menu_start">Mulai</string>
   <string name="menu_stop">Berhenti</string>
   <string name="menu_about">Tentang</string>
+  <string name="menu_promo_apps">Dapatkan aplikasi...</string>
   <string name="main_layout_download">Unduh</string>
   <string name="main_layout_upload">Unggah</string>
   <string name="button_help">Bantuan</string>
@@ -121,6 +124,7 @@
   <string name="pref_entrance_node">Simpul Masuk</string>
   <string name="pref_entrance_node_summary">Sidik jari, alias, negara dan alamat untuk loncatan pertama</string>
   <string name="pref_entrance_node_dialog">Masukkan Simpul Masuk</string>
+  <string name="pref_allow_background_starts_title">Ijinkan Latar Belakang Berjalan</string>
   <string name="button_proxy_all">Proxy Semuanya</string>
   <string name="button_proxy_none">Tanpa Proxy</string>
   <string name="button_invert_selection">Balik Pilihan</string>
@@ -229,6 +233,7 @@
   <string name="pref_disable_network_title">Auto-Tidur Tidak Ada Jaringan</string>
   <string name="pref_disable_network_summary">Menempatkan Tor untuk tidur ketika tidak ada internet yang tersedia</string>
   <string name="newnym">Anda telah beralih ke identitas Tor baru!</string>
+  <string name="menu_verify_browser">Peramban</string>
   <string name="menu_use_chatsecure">Gunakan ChatSecure</string>
   <string name="permission_manage_tor_label">Kelola Tor</string>
   <string name="permission_manage_tor_description">Aktifkan aplikasi ini untuk mengontrol layanan Tor</string>
@@ -259,6 +264,7 @@
   <string name="transparent_proxy_rules_flushed_">Rule proxy transparan telah kosong!</string>
   <string name="you_do_not_have_root_access_enabled">Anda tidak punya akses ROOT</string>
   <string name="you_may_need_to_stop_and_start_orbot_for_settings_change_to_be_enabled_">Anda mungkin harus stop lalu start kembali Orbot agar perubahan setting menjadi aktif.</string>
+  <string name="menu_vpn">VPN</string>
   <string name="kbps">kbps</string>
   <string name="mbps">mbps</string>
   <string name="kb">KB</string>

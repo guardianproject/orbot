@@ -24,7 +24,6 @@
   <string name="menu_start">Zapnout</string>
   <string name="menu_stop">Vypnout</string>
   <string name="menu_about">O aplikaci</string>
-  <string name="menu_wizard">Průvodce</string>
   <string name="button_help">Pomoc</string>
   <string name="button_close">Zavřít</string>
   <string name="button_about">O aplikaci</string>
@@ -64,18 +63,12 @@
   <string name="wizard_warning_title">Varování</string>
   <!--Permissions screen-->
   <!--TipsAndTricks screen-->
-
-
-
-
-
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Transparentní proxy</string>
   <string name="wizard_transproxy_none">Není</string>
-  <!--<string name="pref_use_whispercore">Use WhisperCore</string>
-<string name="pref_use_whispercore_summary">Use the proprietary NetFilter APIs provided by WhisperSystems (required device with WhisperCore installed)</string>-->
   <string name="status">Status</string>
   <string name="error">Chyba</string>
   <string name="default_bridges"></string>
   <string name="btn_save_settings">Uloz nastaveni</string>
+  <string name="menu_vpn">Aplikace</string>
 </resources>

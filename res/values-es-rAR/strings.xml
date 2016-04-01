@@ -7,24 +7,21 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">reiniciar Tor</string>
   <string name="tor_proxy_service_process">torproxyservice</string>
-  <string name="status_starting_up">Orbot está iniciándose…</string>
+  <string name="status_starting_up">Orbot está iniciándose...</string>
   <string name="status_activated">Conectado a la red Tor</string>
   <string name="status_disabled">\"Orbot está Desactivado</string>
-  <string name="status_shutting_down">Orbot se está apagando</string>
-  <string name="tor_process_starting">Iniciando el cliente Tor…</string>
+  <string name="tor_process_starting">Iniciando el cliente Tor...</string>
   <string name="tor_process_complete">Completar</string>
-  <string name="tor_process_waiting">esperando…</string>
+  <string name="tor_process_waiting">esperando...</string>
   <string name="not_anonymous_yet">CIUDADO: Tu tráfico no es anónimo aún! Por favor configura tus aplicaciones para que usen el HTTP proxy 127.0.0.1:8118 o SOCKS4A o el proxy SOCKS5 127.0.0.1:9050</string>
   <string name="menu_home">Inicio</string>
   <string name="menu_browse">Navegar</string>
   <string name="menu_settings">Configuración</string>
   <string name="menu_log">Registro</string>
   <string name="menu_info">Ayuda</string>
-  <string name="menu_apps">Apps</string>
   <string name="menu_start">Iniciar</string>
   <string name="menu_stop">Detener</string>
   <string name="menu_about">Acerca de</string>
-  <string name="menu_wizard">Asistente</string>
   <string name="main_layout_download">Descargar</string>
   <string name="main_layout_upload">Subir</string>
   <string name="button_help">Ayuda</string>

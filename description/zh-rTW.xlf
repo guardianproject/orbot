@@ -11,16 +11,17 @@
       </trans-unit>
       <trans-unit id="shortdescription" maxwidth="80" size-unit="char">
         <source>Protect your privacy with this proxy with Tor</source>
-        <target>使用tor的proxy來保護你的個人隱私</target>
+        <target>使用Tor的proxy來保護你的個人隱私</target>
         <note from="developer">This is limited by Google to 80 characters</note>
       </trans-unit>
       <trans-unit id="intro">
         <source>Orbot is a free proxy app that empowers other apps to use the internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.</source>
-        <target>Orbot是一款強力而免費的proxy應用程式用來保護其他應用的上網安全。
-orbot使用tor</target>
+        <target>Orbot是一款免費的網路代理應用程式，用來保護其他應用的上網安全。
+Orbot使用Tor在一系列全球的電腦間跳躍，用以加密並隱藏您的網路流量。Tor是個免費軟體也是個開放網路，能幫您抵禦某一種網路監控，也就是流量分析。該監控威脅了個人的自由和隱私、商業的機密關係和活動、甚至國家安全。</target>
       </trans-unit>
       <trans-unit id="intro2">
         <source>Orbot is the only app that creates a truly private internet connection. As the New York Times writes, “when a communication arrives from Tor, you can never know where or whom it’s from.” Tor won the 2012 Electronic Frontier Foundation (EFF) Pioneer Award.</source>
+        <target>Orbot是唯一能建立真正私人網路連接的應用程式。如紐約時報寫道，「當一則資訊從Tor抵達時，您永遠也無法知道它從誰或從哪裡而來。」Tor贏得了2012電子前哨基金會(EFF)的先鋒獎。</target>
       </trans-unit>
       <trans-unit id="intro2">
         <source>ACCEPT NO SUBSTITUTES: Orbot is the safest way to use the Internet on Android. Period. Orbot bounces your encrypted traffic several times through computers around the world, instead of connecting you directly like VPNs and proxies. This process takes a little longer, but the strongest privacy and identity protection available is worth the wait.</source>
@@ -41,48 +42,63 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="expertrootmode">
         <source>***Expert Root Mode***</source>
+        <target>***專家Root模式***</target>
       </trans-unit>
       <trans-unit id="universalmode">
         <source>UNIVERSAL MODE: Orbot can be configured to transparently proxy all of your Internet traffic through Tor. You can also choose which specific apps you want to use through Tor.</source>
+        <target>廣用模式: 設置過的Orbot可以透過Tor將所有網路流量透明代理。您也可以選擇特定的應用程式來使用Tor。</target>
       </trans-unit>
       <trans-unit id="wespeakyourlanguage">
         <source>★ WE SPEAK YOUR LANGUAGE: Orbot is available for friends who speak:</source>
+        <target>★我們使用你的語言: Orbot 適用於朋友們使用的語言:</target>
       </trans-unit>
       <trans-unit id="languagelist" translate="no">
         <source>العربية, azərbaycanca, български, català, Čeština, dansk, Deutsch, Ελληνικά, English, español, eesti, euskara, فارسی, suomi, français, galego, hrvatski, magyar, עברית, íslenska, italiano, 日本語, 한국어, lietuvių, latviešu, Македонци, Bahasa Melayu, Nederlands, norsk, polski, português, Русский, slovenčina, slovenščina, српски, svenska, Türkçe, українська, Tagalog, Tiếng Việt, 中文(简体), 中文(台灣)</source>
+        <target>中文(台灣), العربية, azərbaycanca, български, català, Čeština, dansk, Deutsch, Ελληνικά, English, español, eesti, euskara, فارسی, suomi, français, galego, hrvatski, magyar, עברית, íslenska, italiano, 日本語, 한국어, lietuvių, latviešu, Македонци, Bahasa Melayu, Nederlands, norsk, polski, português, Русский, slovenčina, slovenščina, српски, svenska, Türkçe, українська, Tagalog, Tiếng Việt, 中文(简体)</target>
         <note from="developer">Do not translate the names of the languages, leave them just like this.</note>
       </trans-unit>
       <trans-unit id="helptranslate">
         <source>Don’t see your language? Join us and help translate the app:</source>
+        <target>還沒看見您的語言嗎? 請加入我們，並幫助我們翻譯這個應用程式:</target>
       </trans-unit>
       <trans-unit id="helptranslateurl" translate="no">
         <source>https://www.transifex.com/projects/p/orbot</source>
+        <target>https://www.transifex.com/projects/p/orbot</target>
         <note from="developer">Do not translate this.</note>
       </trans-unit>
       <trans-unit id="learnmore">
         <source>***Learn More***</source>
+        <target>***了解更多***</target>
       </trans-unit>
       <trans-unit id="aboutus">
         <source>★ ABOUT US: Guardian Project is a group of developers that make secure mobile apps and open-source code for a better tomorrow</source>
+        <target>★關於我們: 保護者計畫是一個開發者組成的團體，製作安全的手機應用程式和開源碼，都是為了更美好的未來</target>
       </trans-unit>
       <trans-unit id="ourwebsite">
         <source>★ OUR WEBSITE: https://GuardianProject.info</source>
+        <target>★我們的網站: https://GuardianProject.info</target>
       </trans-unit>
       <trans-unit id="abouttor">
         <source>★ ABOUT TOR: https://TorProject.org</source>
+        <target>★ 關於 Tor: https://TorProject.org</target>
       </trans-unit>
       <trans-unit id="ontwitter">
         <source>★ ON TWITTER: https://twitter.com/guardianproject</source>
+        <target>★ Twitter: https://twitter.com/guardianproject</target>
       </trans-unit>
       <trans-unit id="freesoftware">
         <source>★ FREE SOFTWARE: Orbot is free software. Take a look at our source code, or join the community to make it better:</source>
+        <target>★自由軟體: Orbot是自由軟體。請看看我們的開源碼，或是加入討論社區以把它改善:</target>
       </trans-unit>
       <trans-unit id="gitrepo" translate="no">
         <source>https://gitweb.torproject.org/orbot.git</source>
+        <target>https://gitweb.torproject.org/orbot.git</target>
         <note from="developer">Do not translate this.</note>
       </trans-unit>
       <trans-unit id="messageus">
         <source>★ MESSAGE US: Are we missing your favorite feature? Found an annoying bug? Please tell us! We’d love to hear from you. Send us an email: support@guardianproject.info or find us in our chat room https://guardianproject.info/contact</source>
+        <target>★通知我們: 我們是否漏掉了您喜愛的特點呢? 發現了煩人的小錯誤嗎? 請和我們說! 
+我們很想聽您說。請寄信給我們:  support@guardianproject.info或在我們的聊天室找我們https://guardianproject.info/contact</target>
       </trans-unit>
     </body>
   </file>

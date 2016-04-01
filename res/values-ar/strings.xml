@@ -99,15 +99,21 @@ HTTP: / /tinyurl.com/proxyandroid\n</string>
   <string name="pref_start_boot_summary">فعل اوربوت و اتصل بتور تلقائياً عندما يبدء جهاز الأندرويد الخاص بك بالعمل</string>
   <!--New Wizard Strings-->
   <!--Title Screen-->
+  <string name="wizard_title_msg">اوربت يجعل تور ممكناً على نظام الأندرويد. يساعدك تور في الدفاع ضد عملية ترشيح المحتويات, تحليل مسارات المرور, ومراقبة الشبكة والتي تهدد خصوصيتك, المعلومات السرية والعلاقات الشخصية. هذه الأداة ستساعدك من تهيئة اوربت مع تور على جهازك</string>
   <!--Warning screen-->
   <string name="wizard_warning_title">تحذير</string>
+  <string name="wizard_warning_msg">لن يقوم اوربت بأخفاء هوية مسارك بشكل اوتوماتيكي او آلي بمجرد تنصيبه. بل يجب عليك ان تقوم بتهيئته مع جهازك بالأضافة الى تهيئة تطبيقات اخرى لتستطيع استخدام تور بنجاح.</string>
   <!--Permissions screen-->
   <string name="wizard_permissions_title">الصلاحيات</string>
   <string name="wizard_permissions_root_msg1">يمكنك اعطاء اوربوت صلاحيات حساب رووت لتشغيل المميزات المتقدمة مثل البروكسي الضمني.</string>
   <string name="wizard_permissions_root_msg2">إذا كنت لا تريد أن تفعل هذا, الرجاء إستخدام برامج معدة للعمل مع اوربوت</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title"> برامج معدة للعمل مع اوربوت</string>
+  <string name="wizard_tips_gibberbot">جات سكيور: هو تطبيق للدردشة بشكل آمن مع تشفير عالي جداً</string>
+  <string name="wizard_tips_orweb">اورفوكس: متصفح ذو خصوصية متقدمة يعمل ظمن او من خلال تور</string>
   <string name="wizard_tips_play">يمكنك الحصول علي جميع تطبيقات مشروع الجاردين على جوجل بلاي</string>
+  <string name="wizard_tips_fdroid">اكتشف كل تطبيقات مشروع الجارديان على اف-درويد</string>
+  <string name="wizard_tips_fdroid_org">اكتشف كل تطبيقات مشروع الجارديان على https://f-droid.org </string>
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">بروكسي ضمني</string>
   <string name="wizard_transproxy_msg">هذه ستسمح للبرامج بالاتصال بشبكة تور تلقائياً دون اعداد مسبق.</string>
@@ -123,6 +129,11 @@ HTTP: / /tinyurl.com/proxyandroid\n</string>
   <string name="pref_entrance_node">نقاط الدخول</string>
   <string name="pref_entrance_node_summary">بصمات، اسماء مستعارة، البلدان و العناوين لأول نقطة اتصال</string>
   <string name="pref_entrance_node_dialog">أدخل نقاط الدخول</string>
+  <string name="pref_allow_background_starts_title">إسمح للخلفية بألبدأ</string>
+  <string name="pref_allow_background_starts_summary">إسمح لأي تطبيق بأن يُخبِر اوربت بأن يفعل تور مع الخدمات المرتبطة به</string>
+  <string name="button_proxy_all">اُخوِّل الكل</string>
+  <string name="button_proxy_none">بدون تخويل</string>
+  <string name="button_invert_selection">اعكس المُحدد</string>
   <string name="pref_proxy_title">بروكسي الشبكة الصادرة (اختياري)</string>
   <string name="pref_proxy_type_title">نوع البروكسي الصادر</string>
   <string name="pref_proxy_type_summary">البروتوكول المستخدم لخادم البروكسي: HTTP, HTTPS, Socks4, Socks5</string>
@@ -147,6 +158,7 @@ HTTP: / /tinyurl.com/proxyandroid\n</string>
   <string name="warning_error_starting_transparent_proxying_">تحذير: حصل خطأ بتشغيل البروكسي الضمني!</string>
   <string name="transproxy_rules_cleared">تم مسح قواعد البروكسي الضمني</string>
   <string name="couldn_t_start_tor_process_">لقد تعذر بدء تشغيل تور:</string>
+  <string name="privoxy_is_running_on_port_">بوليبو يعمل على  المحمول </string>
   <string name="setting_up_port_based_transparent_proxying_">يتم إعداد البروكسي الضمني حسب المنفذ...</string>
   <string name="bridge_error">خطأ بالجسر</string>
   <string name="bridge_requires_ip">حتي تستطيع إستخدم ميزة الجسور، يجب عليك ادخال عنوان انترنت لجسر واحد علي الأقل.</string>
@@ -190,25 +202,61 @@ HTTP: / /tinyurl.com/proxyandroid\n</string>
   <string name="the_addressable_name_for_your_hidden_service_generated_automatically_">اسم العنوان لخدمتك المخفية (يتم انشائه تلقائياً)</string>
   <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">شغل سجل الـdebug ( للمراجعة يجب استخدام adb أو LogCat)</string>
   <string name="project_home">الموقع الرسمي للمشروع (المشاريع):</string>
+  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
   <string name="the_tor_license">رخصة استخدام تور</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">برامج من الطرف الثالث:</string>
+  <string name="tor_version">تور: https://www.torproject.org</string>
+  <string name="libevent_version">لب إيفينت النسخة http://www.monkey.org/~provos/libevent/ :v2.0.21</string>
+  <string name="polipo_version">بوليبو النسخة 1.1.9 : https://github.com/jech/polipo</string>
+  <string name="iptables_version">آي بي تايبلز النسخة 1.4.21: http://www.netfilter.org</string>
+  <string name="openssl_version">اوبن اس اس ال النسخة: http://www.openssl.org 1.0.1q</string>
   <string name="hidden_service_request">هناك برنامج يحاول فتح منفذ لخادم مخفي %S إلي شبكة تور. هذا السلوك آمن إذا كنت تثق بهذا البرنامج.</string>
   <string name="found_existing_tor_process">عُثر علي عملية تور سابقة تعمل...</string>
   <string name="something_bad_happened">حصل خطأ ما. افحص السجل</string>
   <string name="hidden_service_on">الخدمات المخفية التي تعمل حالياً:</string>
   <string name="unable_to_read_hidden_service_name">غير قادر على قراءة اسم الخدمة المخفية</string>
   <string name="unable_to_start_tor">غير قادر على بدء تور:</string>
+  <string name="unable_to_reset_tor">أعِد تشغيل جهازك, غير قادر على اعادة تشغيل تور</string>
   <string name="pref_use_sys_iptables_title">استخدم الـiptables التلقائية</string>
   <string name="pref_use_sys_iptables_summary">استخدم مكونات الـiptables الموجودة ضمناً بالجهاز بدل النسخة المرفقة مع اوربوت</string>
   <string name="error_installing_binares">غير قادرة على تثبيت أو تحديث تور</string>
   <string name="pref_use_persistent_notifications">دائما ضع الأيقونة في شريط الأدوات عندما يكون اوربوت متصلاً</string>
   <string name="pref_use_persistent_notifications_title">تنبيهات دائمة</string>
+  <string name="pref_use_expanded_notifications">قم بأظهار التنبيه بشكل موسع بأستخدام تور. أخرج من البلد ورقم الآي بي رقم العنوان على الشبكة</string>
+  <string name="pref_use_expanded_notifications_title">تنبيه موسّع</string>
   <string name="notification_using_bridges">تم تفعيل الجسور!</string>
   <string name="default_bridges"></string>
+  <string name="set_locale_title">اللغة</string>
   <string name="set_locale_summary">اختار  الإعدادات المحلية و اللغة لاوربوت</string>
   <string name="wizard_locale_title">اختار اللغة</string>
   <string name="wizard_locale_msg">إما ان تترك اللغة الافتراضية او إما ان تغير اللغة</string>
+  <string name="powered_by">مدعومة من قبل تور</string>
   <string name="btn_save_settings">حفظ الإعدادات</string>
+  <string name="no_internet_connection_tor">لا يوجد ارتباط بألانترنيت: تور في وضع الوقف المؤقت</string>
+  <string name="bandwidth_">عرض النطاق</string>
+  <string name="down">اسفل</string>
+  <string name="up">أعلى</string>
+  <string name="pref_disable_network_title">لاتوجد شبكة نوم-آلي</string>
+  <string name="pref_disable_network_summary">ضع تور في وضع النوم عند عدم وجود الأنترنيت</string>
+  <string name="newnym">لقد تحولت الى هوية تور جديدة</string>
+  <string name="menu_verify_browser">متصفح</string>
+  <string name="menu_use_chatsecure">استخدم جات سكيور </string>
+  <string name="permission_manage_tor_label">أدارة تور</string>
+  <string name="permission_manage_tor_description">قم بتمكين هذا التطبيق من التحكم بخدمات تور</string>
+  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">لا يبدو بأن لديك اورفوكس منصباً. هل تريد مساعدتاً في ذلك او لنقم فقط بتشغيل المتصفح؟</string>
+  <string name="install_apps_">هل ترغب بتنصيب التطبيقات؟</string>
+  <string name="no_network_connectivity_putting_tor_to_sleep_">لا يوجد اتصال بألشبكة. سيدخل تور الى وضع النوم</string>
+  <string name="network_connectivity_is_good_waking_tor_up_">الاتصال بألشبكة جيد. تنبيه تور من النوم</string>
+  <string name="updating_settings_in_tor_service">تحديث الاعدادات في خدمات تور</string>
+  <string name="pref_socks_title">تور  سوكس</string>
+  <string name="pref_socks_summary">منفذ الشبكات الحاسوبية او بورت الذي يقدمه تور الى وحدة الخدمة النائبة البروكسي في سوكس. (التقصير 9050 او 0 عدم القدرة)</string>
+  <string name="pref_socks_dialog">تهيئة منفذ الشبكات الحاسوبية  بورت في سوكس</string>
+  <string name="pref_transport_title">منفذ الشبكات الحاسوبية في وحدة الخدمة النائبة البروكسي في تور</string>
+  <string name="pref_transport_summary">منفذ الشبكات الحاسوبية او بورت الذي يقدمه تور الى البروكسي الشفاف (التقصير 9040 او 0 عدم القدرة)</string>
+  <string name="pref_transport_dialog">تهيئة بورت البروكسي الشفاف</string>
+  <string name="pref_dnsport_title">تور, نظام اسماء النطاقات, بورت</string>
+  <string name="pref_dnsport_summary">منفذ الشبكات الحاسوبية او بورت الذي يقدمه تور الى خدمة اسماء النطاق دي ان اس. (التقصير 5400 او 0 لعدم القدرة)</string>
+  <string name="pref_dnsport_dialog">إعدادات بورت خادم اسماء النطاق</string>
   <string name="menu_vpn">في بي ان شبكة وهمية خاصة</string>
 </resources>

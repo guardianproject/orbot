@@ -6,7 +6,6 @@
   <string name="status_starting_up">অরবট চালু হচ্ছে . . . </string>
   <string name="status_activated">টর নেটওয়ার্কের সাথে সংযুক্ত হয়েছে</string>
   <string name="status_disabled">অরবট নিষ্ক্রিয় করা হয়েছে</string>
-  <string name="status_shutting_down">অরবট বন্ধ হয়ে যাচ্ছে</string>
   <string name="tor_process_starting">টর ক্লায়েন্ট চালু করা হচ্ছে</string>
   <string name="tor_process_complete">সম্পূর্ণ</string>
   <string name="tor_process_waiting">অপেক্ষা করা হচ্ছে</string>

@@ -10,7 +10,6 @@
   <string name="menu_home">Uy</string>
   <string name="menu_settings">Moslamalar</string>
   <string name="menu_info">Yordam</string>
-  <string name="menu_apps">Dasturlar</string>
   <string name="menu_about">Dastur haqida</string>
   <string name="main_layout_download">Yuklab olish</string>
   <string name="main_layout_upload">Yuklash</string>
@@ -40,7 +39,7 @@
   <string name="error">Xato</string>
   <string name="the_tor_license">Tor litsenziyasi</string>
   <string name="https_torproject_org">https://torproject.org</string>
-  <string name="found_existing_tor_process">Mavjud bo\'lgan Tor jarayoni topildi…</string>
+  <string name="found_existing_tor_process">Mavjud bo\'lgan Tor jarayoni topildi...</string>
   <string name="default_bridges"></string>
   <string name="set_locale_summary">Orbot uchun lokal va tilni tanlash</string>
   <string name="wizard_locale_title">Tilni tanlansh</string>

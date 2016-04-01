@@ -277,6 +277,7 @@
   <string name="bridges_updated">ブリッジを更新しました</string>
   <string name="restart_orbot_to_use_this_bridge_">変更を有効にするにはOrbotを再起動してください</string>
   <string name="menu_qr">QRコード</string>
+  <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">モバイルネットワークが積極的にTorをブロックする場合、ブリッジを使用してネットワークにアクセスすることができます。\n\nブリッジを有効にするため、上のいずれかのブリッジタイプを選択してください。</string>
   <string name="bridge_mode">ブリッジ モード</string>
   <string name="get_bridges_email">メール</string>
   <string name="get_bridges_web">Web</string>

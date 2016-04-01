@@ -1,12 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Орбот</string>
+  <string name="app_description">Орбот је бесплатна прокси апликација која даје моћ другим апликацијама да безбедније користе интернет. Орбот користи Тор за шифровање вашег интернет саобраћаја и онда га скрива слањем кроз низ рачунара широм света. Тор је слободан софтвер и отворена мрежа која помаже да се одбраните од разних облика надзора мрежа који угрожавају личну слободу и приватност, поверљиве пословне активности и личне односе и државне безбедности познате као анализа саобраћаја.</string>
   <string name="internal_web_url">http://orbot/</string>
   <string name="default_web_url">http://check.torproject.org</string>
   <string name="secure_default_web_url">https://check.torproject.org</string>
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">покрени и заустави Tor</string>
-  <string name="tor_proxy_service_process">Тор прокси сервис</string>
+  <string name="tor_proxy_service_process">Тор прокси услуга</string>
   <string name="status_starting_up">Орбот се покреће...</string>
   <string name="status_activated">Повезан са Тор мрежом</string>
   <string name="status_disabled">Орбот је деактивиран</string>
@@ -19,6 +20,7 @@
   <string name="menu_settings">Подешавања</string>
   <string name="menu_log">Логови</string>
   <string name="menu_info">Помоћ</string>
+  <string name="menu_apps">ВПН</string>
   <string name="menu_start">Крени</string>
   <string name="menu_stop">Заустави</string>
   <string name="menu_about">О нама</string>
@@ -194,4 +196,5 @@
   <string name="wizard_locale_title">Изаберите језик</string>
   <string name="wizard_locale_msg">Користи подразумевајући или пребаци на тренутни језик</string>
   <string name="btn_save_settings">Сачувај подешавања</string>
+  <string name="menu_vpn">ВПН</string>
 </resources>

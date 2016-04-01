@@ -7,9 +7,8 @@
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">cychwyn a stopio Tor</string>
   <string name="tor_proxy_service_process">gwasanaethdirpwrytor</string>
-  <string name="status_starting_up">Mae Orbot yn cychwyn…</string>
+  <string name="status_starting_up">Mae Orbot yn cychwyn...</string>
   <string name="status_activated">Wedi cysylltu â rhwydwaith Tor</string>
-  <string name="status_shutting_down">Mae Orbot yn cau</string>
   <string name="tor_process_starting">Yn cychwyn cleient Tor</string>
   <string name="tor_process_complete">Wedi ei gwblhau.</string>
   <string name="tor_process_waiting">yn aros.</string>
@@ -19,11 +18,9 @@
   <string name="menu_settings">Gosodiadau</string>
   <string name="menu_log">Log</string>
   <string name="menu_info">Help</string>
-  <string name="menu_apps">Apps</string>
   <string name="menu_start">Cychwyn</string>
   <string name="menu_stop">Stop</string>
   <string name="menu_about">Amdanom ni</string>
-  <string name="menu_wizard">Dewin</string>
   <string name="main_layout_download">Llwytho i lawr</string>
   <string name="main_layout_upload">Llwytho i fyny</string>
   <string name="button_help">Help</string>

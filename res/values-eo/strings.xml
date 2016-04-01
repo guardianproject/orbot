@@ -10,7 +10,6 @@
   <string name="status_starting_up">Orbot ŝaltiĝas...</string>
   <string name="status_activated">Konektita al Tor-reto</string>
   <string name="status_disabled">Orbot estas malaktivigita</string>
-  <string name="status_shutting_down">Orbot malŝaltiĝas</string>
   <string name="tor_process_starting">Ŝaltiĝas Tor-kliento...</string>
   <string name="tor_process_complete">kompleta.</string>
   <string name="tor_process_waiting">atendas.</string>
@@ -20,11 +19,9 @@
   <string name="menu_settings">Agordoj</string>
   <string name="menu_log">Protokolo</string>
   <string name="menu_info">Helpo</string>
-  <string name="menu_apps">Aplikaĵoj</string>
   <string name="menu_start">Starti</string>
   <string name="menu_stop">Halti</string>
   <string name="menu_about">Pri</string>
-  <string name="menu_wizard">Asistanto</string>
   <string name="main_layout_download">Elŝutado</string>
   <string name="main_layout_upload">Alŝutado</string>
   <string name="button_help">Helpo</string>
@@ -144,8 +141,6 @@
   <string name="bandwidth_">Kapacito:</string>
   <string name="down">el</string>
   <string name="up">al</string>
-  <string name="menu_verify_browser">Kontroli Retumilon</string>
   <string name="menu_use_chatsecure">Uzi ChatSecure</string>
   <string name="install_apps_">Instali aplikaĵojn?</string>
-  <string name="install_orweb">Instali Orweb</string>
 </resources>
