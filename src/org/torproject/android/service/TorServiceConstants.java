@@ -117,9 +117,11 @@ public interface TorServiceConstants {
     public final static String STATUS_ON = "ON";
     public final static String STATUS_STARTING = "STARTING";
     public final static String STATUS_STOPPING = "STOPPING";
+
     /**
      * The user has disabled the ability for background starts triggered by
-     * apps. Fallback to the old Intent that brings up Orbot.
+     * apps. Fallback to the old {@link Intent} action that brings up Orbot:
+     * {@link org.torproject.android.OrbotMainActivity#INTENT_ACTION_REQUEST_START_TOR}
      */
     public final static String STATUS_STARTS_DISABLED = "STARTS_DISABLED";
 
