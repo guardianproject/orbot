@@ -207,7 +207,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
      {        
          
          //Reusable code.
-         Intent intent = new Intent();
+         PackageManager pm = getPackageManager();
+         Intent intent = pm.getLaunchIntentForPackage(getPackageName());
          PendingIntent pendIntent = PendingIntent.getActivity(TorService.this, 0, intent, 0);
  
         if (mNotifyBuilder == null)
