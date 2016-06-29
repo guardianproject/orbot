@@ -226,8 +226,8 @@ tor/configure:
 
 tor/Makefile: tor/configure
 	cp fix_android_0.2.6.4rc_build.patch tor
-	cd tor && \
-		git apply fix_android_0.2.6.4rc_build.patch
+#	cd tor && \
+#		git apply fix_android_0.2.6.4rc_build.patch
 	cp config.sub tor
 	cp config.guess tor
 	cd tor && \

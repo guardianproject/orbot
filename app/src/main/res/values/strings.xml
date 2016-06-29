@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Orbot</string>
+  <string name="app_description">Orbot is a free proxy app that empowers other apps to use the internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.</string>
+  <string name="internal_web_url">http://orbot/</string>
+  <string name="default_web_url">http://check.torproject.org</string>
+  <string name="secure_default_web_url">https://check.torproject.org</string>
+  <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
+  <string name="control_permission_label">start and stop Tor</string>
+  <string name="tor_proxy_service_process">torproxyservice</string>
+  <string name="status_starting_up">Orbot is starting&#8230;</string>
+  <string name="status_activated">Connected to the Tor network</string>
+  <string name="status_disabled">Orbot is deactivated</string>
+  <string name="status_shutting_down">TorService is shutting down</string>
+  <string name="tor_process_starting">Starting Tor client&#8230;</string>
+  <string name="tor_process_complete">complete.</string>
+  <string name="tor_process_waiting">waiting.</string>
+  <string name="not_anonymous_yet">WARNING: Your traffic is not anonymous yet! Please configure your applications to use HTTP proxy 127.0.0.1:8118 or SOCKS4A or SOCKS5 proxy 127.0.0.1:9050</string>
+  <string name="menu_home">Home</string>
+  <string name="menu_browse">Browse</string>
+  <string name="menu_settings">Settings</string>
+  <string name="menu_log">Log</string>
+  <string name="menu_info">Help</string>
+  <string name="menu_apps">VPN</string>
+  <string name="menu_start">Start</string>
+  <string name="menu_stop">Stop</string>
+  <string name="menu_about">About</string>
+  <string name="menu_promo_apps">Get apps…</string>
+  <string name="main_layout_download">Download</string>
+  <string name="main_layout_upload">Upload</string>
+  <string name="button_help">Help</string>
+  <string name="button_close">Close</string>
+  <string name="button_about">About</string>
+  <string name="button_clear_log">Clear Log</string>
+  <string name="menu_verify">Check</string>
+  <string name="menu_exit">Exit</string>
+  <string name="menu_scan">Scan BridgeQR</string>
+  <string name="menu_share_bridge">Share BridgeQR</string>
+  <string name="press_to_start">- long press to start -</string>
+  <string name="pref_trans_proxy_group">Transparent Proxying (Requires Root)</string>
+  <string name="pref_trans_proxy_title">Transparent Proxying</string>
+  <string name="pref_trans_proxy_summary">Automatic Torifying of Apps</string>
+  <string name="pref_transparent_all_title">Tor Everything</string>
+  <string name="pref_transparent_all_summary">Proxy traffic for all apps through Tor</string>
+  <string name="pref_transparent_port_fallback_title">Port Proxy Fallback</string>
+  <string name="pref_transparent_port_fallback_summary">WARNING: Circumvents common ports (80, 443, etc). *USE ONLY* if \'All\' or \'App\' mode doesn\'t work.</string>
+  <string name="pref_transparent_port_title">Port List</string>
+  <string name="pref_transparent_port_summary">List of ports to proxy. *USE ONLY* if \'All\' or \'App\' mode doesn\'t work</string>
+  <string name="pref_transparent_port_dialog">Enter ports to proxy</string>
+  <string name="pref_has_root">Request Root Access</string>
+  <string name="pref_has_root_summary">Request root access for transparent proxying</string>
+  <string name="status_install_success">Tor binaries successfully installed!</string>
+  <string name="status_install_fail">The Tor binary files were unable to be installed. Please check the log and notify tor-assistants@torproject.org</string>
+  <string name="title_error">Application Error</string>
+  <string name="wizard_title">Orbot</string>
+  <string name="wizard_btn_tell_me_more">About Orbot</string>
+  <string name="btn_next">Next</string>
+  <string name="btn_back">Back</string>
+  <string name="btn_finish">Finish</string>
+  <string name="btn_okay">Okay</string>
+  <string name="btn_cancel">Cancel</string>
+  <!--Welcome Wizard strings (DJH)-->
+  <string name="wizard_details">Some Orbot Details</string>
+  <string name="wizard_details_msg">Orbot is an open-source application that contains Tor, LibEvent and Polipo. It provides a local HTTP proxy (8118) and a SOCKS proxy (9050) into the Tor network. Orbot also has the ability, on rooted device, to send all internet traffic through Tor.</string>
+  <string name="wizard_permissions_root">Permission Granted</string>
+  <string name="wizard_permissions_stock">Orbot Permissions</string>
+  <string name="wizard_premissions_msg_root">Excellent! We\'ve detected that you have root permissions enabled for Orbot. We will use this power wisely.</string>
+  <string name="wizard_permissions_msg_stock"> While it is not required, Orbot can become a more powerful tool if your device has root access. Use the button below to grant Orbot superpowers! </string>
+  <string name="wizard_permissions_no_root">If you don\'t have root access or have no idea what we\'re talking about, just be sure to use apps made to work with Orbot.</string>
+  <string name="wizard_permissions_consent">I understand and would like to continue without Superuser</string>
+  <string name="wizard_permission_enable_root">Grant Root for Orbot</string>
+  <string name="wizard_configure">Configure Torification</string>
+  <string name="wizard_configure_msg">Orbot gives you the option to route all application traffic through Tor OR to choose your applications individually.</string>
+  <string name="wizard_configure_all">Proxy All Apps Through Tor</string>
+  <string name="wizard_configure_select_apps">Select Individual Apps for Tor</string>
+  <string name="wizard_tips_tricks">Orbot-enabled Apps</string>
+  <string name="wizard_tips_msg">The apps below were developed to work with Orbot. Click each button to install now, or you can find them later on Google Play, at GuardianProject.info website or via F-Droid.org.</string>
+  <string name="wizard_tips_otrchat">ChatSecure - Secure instant messaging client for Android</string>
+  <string name="wizard_tips_proxy">Proxy Settings - Learn how to configure apps to work with Orbot</string>
+  <string name="wizard_tips_duckgo">DuckDuckGo Search Engine app</string>
+  <string name="wizard_tips_twitter">Set Twitter proxy to host \"localhost\" and port 8118</string>
+  <string name="wizard_tips_story_maker">StoryMaker - Make a story and leave it to tor for security!</string>
+  <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
+  <string name="wizard_proxy_help_info">Proxy Settings</string>
+  <string name="wizard_proxy_help_msg">If the Android app you are using can support the use of an HTTP or SOCKS proxy, then you can configure it to connect to Orbot and use Tor.\n\n\n    The host settings is 127.0.0.1 or \"localhost\". For HTTP, the port setting is 8118. For SOCKS, the proxy is 9050. You should use SOCKS4A or SOCKS5 if possible.\n    \n\n\n    You can learn more about proxying on Android via the FAQ at: http://tinyurl.com/proxyandroid\n    </string>
+  <string name="wizard_final">Orbot is ready!</string>
+  <string name="wizard_final_msg">Millions of people around the world use Tor for a wide variety of reasons.\n\nJournalists and bloggers, human rights defenders, law enforcement officers, soldiers, corporations, citizens of repressive regimes, and just ordinary citizens&#8230; and now you are ready to, as well!</string>
+  <string name="wizard_exit_at_first_screen_toast">Please configure Orbot before you can start using it!</string>
+  <!--END Welcome Wizard strings (DJH)-->
+  <string name="connect_first_time">You\'ve successfully connected to the Tor network - but this does NOT mean your device is secure. You can use the \'Browser\' button to test your connection. \n\nVisit us at https://guardianproject.info/apps/orbot or send an email to help@guardianproject.info to learn more.</string>
+  <string name="tor_check">This will open your web browser to https://check.torproject.org in order to see if Orbot is probably configured and you are connected to Tor.</string>
+  <string name="pref_hs_group">Hidden Service Hosting</string>
+  <string name="pref_general_group">General</string>
+  <string name="pref_start_boot_title">Start Orbot on Boot</string>
+  <string name="pref_start_boot_summary">Automatically start Orbot and connect Tor when your Android device boots</string>
+  <!--New Wizard Strings-->
+  <!--Title Screen-->
+  <string name="wizard_title_msg">Orbot brings Tor to Android!\n\nTor helps you defend against content filtering, traffic analysis and network surveillance that threatens privacy, confidential information and personal relationships.\n\nThis wizard will help you configure Orbot and Tor on your device.</string>
+  <!--Warning screen-->
+  <string name="wizard_warning_title">Warning</string>
+  <string name="wizard_warning_msg">Simply installing Orbot will not automatically anonymize your mobile traffic.\n\nYou must properly configure Orbot, your device and other apps to successfully use Tor.</string>
+  <!--Permissions screen-->
+  <string name="wizard_permissions_title">Permissions</string>
+  <string name="wizard_permissions_root_msg1">You can optionally grant Orbot \'Superuser\' access to enable advanced features, such as Transparent Proxying.</string>
+  <string name="wizard_permissions_root_msg2">If you do not want to do this, please make sure to use apps made to work with Orbot</string>
+  <string name="wizard_permissions_no_root_msg">Your device does not appear to be rooted or provide root or \'Superuser\' access.\n\nPlease try the \'Apps\' mode on the main screen instead.</string>
+  <!--TipsAndTricks screen-->
+  <string name="wizard_tips_title">Orbot-Enabled Apps</string>
+  <string name="wizard_tips_gibberbot">ChatSecure: Secure chat app with Off-the-Record Encryption</string>
+  <string name="wizard_tips_orweb">Orfox: Privacy-enhanced browser that works through Tor</string>
+  <string name="wizard_tips_play">Find all Guardian Project apps on Google Play</string>
+  <string name="wizard_tips_fdroid">Find all Guardian Project apps on F-Droid</string>
+  <string name="wizard_tips_fdroid_org">Find all Guardian Project apps on https://f-droid.org</string>
+  <!--Transparent Proxy screen-->
+  <string name="wizard_transproxy_title">Transparent Proxying</string>
+  <string name="wizard_transproxy_msg">This allows your apps to automatically run through the Tor network without any configuration.</string>
+  <string name="wizard_transproxy_hint">(Check this box if you have no idea what we are talking about)</string>
+  <string name="wizard_transproxy_none">None</string>
+  <string name="pref_transparent_tethering_title">Tor Tethering</string>
+  <string name="pref_transparent_tethering_summary">Enable Tor Transparent Proxying for Wifi and USB Tethered Devices (requires restart)</string>
+  <string name="button_grant_superuser">Request Superuser Access</string>
+  <string name="pref_select_apps">Select Apps</string>
+  <string name="pref_select_apps_summary">Choose Apps to Route Through Tor</string>
+  <string name="pref_node_configuration">Node Configuration</string>
+  <string name="pref_node_configuration_summary">These are advanced settings that can reduce your anonymity</string>
+  <string name="pref_entrance_node">Entrance Nodes</string>
+  <string name="pref_entrance_node_summary">Fingerprints, nicks, countries and addresses for the first hop</string>
+  <string name="pref_entrance_node_dialog">Enter Entrance Nodes</string>
+  <string name="pref_allow_background_starts_title">Allow Background Starts</string>
+  <string name="pref_allow_background_starts_summary">Let any app tell Orbot to start Tor and related services</string>
+  
+  <string name="button_proxy_all">Proxy All</string>
+  <string name="button_proxy_none">Proxy None</string>
+  <string name="button_invert_selection">Invert Selection</string>
+
+  <string name="pref_proxy_title">Outbound Network Proxy (Optional)</string>
+  
+  <string name="pref_proxy_type_title">Outbound Proxy Type</string>
+  <string name="pref_proxy_type_summary">Protocol to use for proxy server: HTTP, HTTPS, Socks4, Socks5</string>
+  <string name="pref_proxy_type_dialog">Enter Proxy Type</string>
+  
+  <string name="pref_proxy_host_title">Outbound Proxy Host</string>
+  <string name="pref_proxy_host_summary">Proxy Server hostname</string>
+  <string name="pref_proxy_host_dialog">Enter Proxy Host</string>
+  
+  <string name="pref_proxy_port_title">Outbound Proxy Port</string>
+  <string name="pref_proxy_port_summary">Proxy Server port</string>
+  <string name="pref_proxy_port_dialog">Enter Proxy port</string>
+
+  <string name="pref_proxy_username_title">Outbound Proxy Username</string>
+  <string name="pref_proxy_username_summary">Proxy Username (Optional)</string>
+  <string name="pref_proxy_username_dialog">Enter Proxy Username</string>
+  
+  <string name="pref_proxy_password_title">Outbound Proxy Password</string>
+  <string name="pref_proxy_password_summary">Proxy Password (Optional)</string>
+  <string name="pref_proxy_password_dialog">Enter Proxy Password</string>
+  
+  
+  
+  <string name="status">Status</string>
+  <string name="setting_up_full_transparent_proxying_">Setting up full transparent proxying&#8230;</string>
+  <string name="setting_up_app_based_transparent_proxying_">Setting up app-based transparent proxying&#8230;</string>
+  <string name="transparent_proxying_enabled">Transparent proxying ENABLED</string>
+  <string name="transproxy_enabled_for_tethering_">TransProxy enabled for Tethering!</string>
+  <string name="warning_error_starting_transparent_proxying_">WARNING: error starting transparent proxying!</string>
+  <string name="transproxy_rules_cleared">TransProxy rules cleared</string>
+  <string name="couldn_t_start_tor_process_">Couldn\'t start Tor process: </string>
+  <string name="privoxy_is_running_on_port_">Polipo is running on port: </string>
+  <string name="setting_up_port_based_transparent_proxying_">Setting up port-based transparent proxying&#8230;</string>
+  <string name="bridge_error">Bridge Error</string>
+  <string name="bridge_requires_ip">In order to use the bridge feature, you must enter at least one bridge IP address.</string>
+  <string name="send_email_for_bridges">Send an email to bridges@torproject.org with the line \"get bridges\" by itself in the body of the mail from a gmail account.</string>
+  <string name="error">Error</string>
+  <string name="your_reachableaddresses_settings_caused_an_exception_">Your ReachableAddresses settings caused an exception!</string>
+  <string name="your_relay_settings_caused_an_exception_">Your relay settings caused an exception!</string>
+  <string name="exit_nodes">Exit Nodes</string>
+  <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Fingerprints, nicks, countries and addresses for the last hop</string>
+  <string name="enter_exit_nodes">Enter Exit Nodes</string>
+  <string name="exclude_nodes">Exclude Nodes</string>
+  <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Fingerprints, nicks, countries and addresses to exclude</string>
+  <string name="enter_exclude_nodes">Enter Exclude Nodes</string>
+  <string name="strict_nodes">Strict Nodes</string>
+  <string name="use_only_these_specified_nodes">Use *only* these specified nodes</string>
+  <string name="bridges">Bridges</string>
+  <string name="use_bridges">Use Bridges</string>
+  <string name="bridges_obfuscated">Obfuscated Bridges</string>
+  <string name="enable_alternate_entrance_nodes_into_the_tor_network">Enable alternate entrance nodes into the Tor Network</string>
+  <string name="enable_if_configured_bridges_are_obfuscated_bridges">Enable if configured bridges are obfuscated bridges</string>
+  <string name="ip_address_and_port_of_bridges">IP address and port of bridges</string>
+  <string name="enter_bridge_addresses">Enter Bridge Addresses</string>
+  <string name="relays">Relays</string>
+  <string name="relaying">Relaying</string>
+  <string name="enable_your_device_to_be_a_non_exit_relay">Enable your device to be a non-exit relay</string>
+  <string name="relay_port">Relay Port</string>
+  <string name="listening_port_for_your_tor_relay">Listening port for your Tor relay</string>
+  <string name="enter_or_port">Enter OR port</string>
+  <string name="relay_nickname">Relay nickname</string>
+  <string name="the_nickname_for_your_tor_relay">The nickname for your Tor relay</string>
+  <string name="enter_a_custom_relay_nickname">Enter a custom relay nickname</string>
+  <string name="reachable_addresses">Reachable Addresses</string>
+  <string name="run_as_a_client_behind_a_firewall_with_restrictive_policies">Run as a client behind a firewall with restrictive policies</string>
+  <string name="reachable_ports">Reachable ports</string>
+  <string name="ports_reachable_behind_a_restrictive_firewall">Ports reachable behind a restrictive firewall</string>
+  <string name="enter_ports">Enter ports</string>
+  <string name="enable_hidden_services">Hidden Service Hosting</string>
+  <string name="run_servers_accessible_via_the_tor_network">allow on-device server to be accessible via the Tor network</string>
+  <string name="enter_localhost_ports_for_hidden_services">enter localhost ports for hidden services</string>
+  <string name="hidden_service_ports">Hidden Service Ports</string>
+  <string name="the_addressable_name_for_your_hidden_service_generated_automatically_">the addressable name for your hidden service (generated automatically)</string>
+  <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">enable debug log to output (must use adb or aLogCat to view)</string>
+  <string name="project_home">Project Home(s): </string>
+  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
+  <string name="the_tor_license">The Tor License</string>
+  <string name="https_torproject_org">https://torproject.org</string>
+  <string name="third_party_software">3rd-Party-Software: </string>
+  <string name="tor_version">Tor: https://www.torproject.org</string>
+  <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
+  <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
+  <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
+  <string name="openssl_version">OpenSSL v1.0.1q: http://www.openssl.org</string>
+  <string name="hidden_service_request">An app wants to open hidden server port %S to the Tor network. This is safe if you trust the app.</string>
+  <string name="found_existing_tor_process">found existing Tor process&#8230;</string>
+  <string name="something_bad_happened">Something bad happened. Check the log</string>
+  <string name="hidden_service_on">hidden service on:</string>
+  <string name="unable_to_read_hidden_service_name">unable to read hidden service name</string>
+  <string name="unable_to_start_tor">Unable to start Tor:</string>
+  <string name="unable_to_reset_tor">Reboot your device, unable to reset Tor!</string>
+  <string name="pref_use_sys_iptables_title">Use Default Iptables</string>
+  <string name="pref_use_sys_iptables_summary">use the built-in iptables binary instead of the one bundled with Orbot</string>
+  
+  <string name="error_installing_binares">The Tor binaries were not able to be installed or upgraded.</string>
+  
+  <string name="pref_use_persistent_notifications">Always keep the icon in toolbar when Orbot is connected</string>
+  <string name="pref_use_persistent_notifications_title">Always-On Notifications</string>
+  
+  <string name="pref_use_expanded_notifications">Show expanded notification with Tor exit country and IP</string>
+  <string name="pref_use_expanded_notifications_title">Expanded Notifications</string>
+  
+  <string name="notification_using_bridges">Bridges enabled!</string>
+  <string name="default_bridges"/>
+  <string name="set_locale_title">Language</string>
+  <string name="set_locale_summary">Choose the locale and language for Orbot</string>
+  <string name="wizard_locale_title">Choose Language</string>
+  <string name="wizard_locale_msg">Leave default or switch the current language</string>
+  <string name="powered_by">powered by Tor</string>
+  <string name="btn_save_settings">Save Settings</string>
+  <string name="no_internet_connection_tor">No internet connection; Tor is on standby…</string>
+  <string name="bandwidth_">Bandwidth:</string>
+  <string name="down">down</string>
+  <string name="up">up</string>
+  <string name="pref_disable_network_title">No Network Auto-Sleep</string>
+  <string name="pref_disable_network_summary">Put Tor to sleep when there is no internet available</string>
+  <string name="newnym">You\'ve switched to a new Tor identity!</string>
+  
+    <string name="menu_verify_browser">Browser</string>
+    <string name="menu_use_chatsecure">Use ChatSecure</string>
+
+    <string name="permission_manage_tor_label">Manage Tor</string>
+    <string name="permission_manage_tor_description">Enable this app to control the Tor service</string>
+    <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">It doesn\'t seem like you have Orfox installed. Want help with that, or should we just open the browser?</string>
+    <string name="install_apps_">Install apps?</string>
+    <string name="no_network_connectivity_putting_tor_to_sleep_">No network connectivity. Putting Tor to sleep…</string>
+    <string name="network_connectivity_is_good_waking_tor_up_">Network connectivity is good. Waking Tor up…</string>
+    <string name="updating_settings_in_tor_service">updating settings in Tor service</string>
+  
+    <string name="pref_socks_title">Tor SOCKS</string>
+    <string name="pref_socks_summary">Port that Tor offers its SOCKS proxy on (default: 9050 or 0 to disable)</string>
+    <string name="pref_socks_dialog">SOCKS Port Config</string>
+    
+    <string name="pref_transport_title">Tor TransProxy Port</string>
+    <string name="pref_transport_summary">Port that Tor offers its Transparent Proxy on (default: 9040 or 0 to disable)</string>
+    <string name="pref_transport_dialog">TransProxy Port Config</string>
+    
+    
+    <string name="pref_dnsport_title">Tor DNS Port</string>
+    <string name="pref_dnsport_summary">Port that Tor offers its DNS on (default: 5400 or 0 to disable)</string>
+    <string name="pref_dnsport_dialog">DNS Port Config</string>
+    
+    
+    <string name="pref_torrc_title">Torrc Custom Config</string>
+    <string name="pref_torrc_summary">EXPERTS ONLY: enter direct torrc config lines</string>
+    <string name="pref_torrc_dialog">Custom Torrc</string>
+    
+    <string name="wizard_tips_martus">Mobile Martus - Benetech Human Rights Documentation App</string>
+  <string name="your_tor_public_ips_">Your Tor Public IPs:</string>
+  <string name="please_disable_this_app_in_android_settings_apps_if_you_are_having_problems_with_orbot_">"Please disable this app in Android->Settings->Apps if you are having problems with Orbot: "</string>
+  <string name="app_conflict">App Conflict</string>
+  
+
+  <string name="pref_transproxy_refresh_title">Transproxy Auto-Refresh</string>
+  <string name="pref_transproxy_refresh_summary">Re-apply Transproxy rules when the network state changes</string>
+  
+  <string name="pref_transproxy_flush_title">Transproxy FORCE REMOVE</string>
+  <string name="pref_transproxy_flush_summary">Tap here to flush all transproxy network rules NOW</string>
+  <string name="transparent_proxy_rules_flushed_">Transparent proxy rules flushed!</string>
+  <string name="you_do_not_have_root_access_enabled">You do not have ROOT access enabled</string>
+  <string name="you_may_need_to_stop_and_start_orbot_for_settings_change_to_be_enabled_">You may need to stop and start Orbot for settings change to be enabled.</string>
+  
+  <string name="menu_vpn">VPN</string>
+  
+  <string name="kbps">kbps</string>
+  
+  <string name="mbps">mbps</string>
+  
+  <string name="kb">KB</string>
+  
+  <string name="mb">MB</string>
+  
+  <string name="bridges_updated">Bridges Updated</string>
+  
+  <string name="restart_orbot_to_use_this_bridge_">Please restart Orbot to enable the changes</string>
+  
+  <string name="menu_qr">QR Codes</string>
+  
+  <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">If your mobile network actively blocks Tor, you can use a Bridge to access the network. SELECT one of the bridge types above to enable bridges.</string>
+  
+  <string name="bridge_mode">Bridge Mode</string>
+  
+  <string name="get_bridges_email">Email</string>
+  <string name="get_bridges_web">Web</string>
+  
+  <string name="activate">Activate</string>
+  
+  <string name="apps_mode">Apps VPN Mode</string>
+  
+  <string name="you_can_enable_all_apps_on_your_device_to_run_through_the_tor_network_using_the_vpn_feature_of_android_">You can enable all apps on your device to run through the Tor network using the VPN feature of Android.\n\n*WARNING* This is a new, experimental feature and in some cases may not start automatically, or may stop. It should NOT be used for anonymity, and ONLY used for getting through firewalls and filters.</string>
+  
+  <string name="send_email">Send Email</string>
+  
+  <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">You can get a bridge address through email, the web or by scanning a bridge QR code. Select \'Email\' or \'Web\' below to request a bridge address.\n\nOnce you have an address, copy &amp; paste it into the \"Bridges\" preference in Orbot\'s setting and restart.</string>
+  
+  <string name="install_orweb">Install Orfox</string>
+  
+  <string name="standard_browser">Standard Browser</string>
+  
+  <string name="note_only_standard_tor_bridges_work_on_intel_x86_atom_devices">NOTE: Only standard Tor bridges work on Intel X86/ATOM devices</string>
+
+	<string name="vpn_default_world">World</string>
+</resources>

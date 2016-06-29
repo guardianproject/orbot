@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:duplicateParentState="true">
+
+    <!-- 
+      <TextView android:text="Select apps to use with Tor:"
+              android:layout_width="fill_parent" 
+              android:layout_height="wrap_content"
+              android:textSize="16sp"		
+              android:padding="3px" 
+              android:layout_above="@+id/applistview"
+          />
+  -->
+
+    <ListView
+        android:id="@+id/applistview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/layout_button_filters"
+        android:layout_alignParentTop="true" >
+
+    </ListView>
+
+    <Button
+        android:id="@+id/btnsave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:text="@string/button_close" />
+
+    <RelativeLayout
+        android:id="@+id/layout_button_filters"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnsave"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/button_proxy_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_toLeftOf="@+id/button_proxy_none"
+            android:layout_toStartOf="@+id/button_proxy_none"
+            android:text="@string/button_proxy_all" />
+
+        <Button
+            android:id="@+id/button_invert_selection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:text="@string/button_invert_selection" />
+
+        <Button
+            android:id="@+id/button_proxy_none"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/button_invert_selection"
+            android:layout_toStartOf="@+id/button_invert_selection"
+            android:text="@string/button_proxy_none" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

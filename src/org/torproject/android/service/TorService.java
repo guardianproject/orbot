@@ -32,9 +32,9 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.RemoteViews;
 
-import net.freehaven.tor.control.ConfigEntry;
-import net.freehaven.tor.control.EventHandler;
-import net.freehaven.tor.control.TorControlConnection;
+import org.torproject.android.control.ConfigEntry;
+import org.torproject.android.control.EventHandler;
+import org.torproject.android.control.TorControlConnection;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
