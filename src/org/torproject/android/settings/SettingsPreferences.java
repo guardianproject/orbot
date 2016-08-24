@@ -148,8 +148,6 @@ public class SettingsPreferences
 						shell.close();
 						
 						prefRequestRoot.setChecked(true);
-						prefCBTransProxy.setEnabled(true);
-						
 					}
 					catch (Exception e)
 					{
@@ -157,6 +155,8 @@ public class SettingsPreferences
 					}
 				}
 			}
+
+			prefCBTransProxy.setEnabled(prefRequestRoot.isChecked());
 		}
 		else if (preference == prefTransProxyApps)
 		{
