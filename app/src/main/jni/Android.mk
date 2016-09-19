@@ -15,7 +15,7 @@
 #
 LOCAL_PATH := $(call my-dir)
 ROOT_PATH := $(LOCAL_PATH)
-EXTERN_PATH := $(LOCAL_PATH)/../external
+EXTERN_PATH := $(LOCAL_PATH)/../../../../external
 
 ########################################################
 ## pdnsd library
@@ -136,7 +136,7 @@ LOCAL_MODULE := tun2socks
 
 LOCAL_LDLIBS := -ldl -llog
 
-LOCAL_SRC_FILES := $(addprefix ../external/badvpn/, $(TUN2SOCKS_SOURCES))
+LOCAL_SRC_FILES := $(addprefix ../../../../external/badvpn/, $(TUN2SOCKS_SOURCES))
 
 ##include $(BUILD_EXECUTABLE)
 include $(BUILD_SHARED_LIBRARY)
