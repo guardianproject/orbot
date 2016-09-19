@@ -61,3 +61,5 @@ builds
 external/patches/*
 obj
 
+
+app/src/main/jniLibs/
