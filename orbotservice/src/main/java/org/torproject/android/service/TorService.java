@@ -27,7 +27,6 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.VpnService;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.RemoteException;
