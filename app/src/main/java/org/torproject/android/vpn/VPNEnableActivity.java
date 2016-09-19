@@ -25,6 +25,8 @@ import android.widget.TextView;
 /*
  * To combat background service being stopped/swiped
  */
+
+@TargetApi(14)
 public class VPNEnableActivity extends Activity {
 	
 	private final static int REQUEST_VPN = 7777;
