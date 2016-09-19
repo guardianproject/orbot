@@ -27,6 +27,7 @@ NDK_PLATFORM_LEVEL ?= 16
 NDK_TOOLCHAIN_VERSION=4.8
 APP_ABI ?= armeabi
 NDK_ABI ?= $(APP_ABI)
+PIE_MODE ?= pie
 ifneq ($(filter arm%, $(APP_ABI)),)
   NDK_ABI := arm
 endif
@@ -72,6 +73,10 @@ STRIP := $(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-strip \
 
 # PIEFLAGS for SDK 16/Android L must be set to -fPIE -pie, but can override for earlier targets 
 PIEFLAGS ?= -fPIE -pie
+ifeq ($(PIEMODE),nopie)
+	PIEFLAGS = 
+endif
+
 CFLAGS = -DANDROID $(TARGET_CFLAGS) $(PIEFLAGS)
 LDFLAGS = -llog $(TARGET_LDFLAGS) $(PIEFLAGS)
 
@@ -225,7 +230,10 @@ tor/configure:
 	 ./autogen.sh
 
 tor/Makefile: tor/configure
-	cp fix_android_0.2.6.4rc_build.patch tor
+	cp 0001-add-limits.h-to-support-MAX_SIZE-on-Android.patch
+	cd tor && \
+		git apply 0001-add-limits.h-to-support-MAX_SIZE-on-Android.patch
+#	cp fix_android_0.2.6.4rc_build.patch tor
 #	cd tor && \
 #		git apply fix_android_0.2.6.4rc_build.patch
 	cp config.sub tor
@@ -297,26 +305,26 @@ pluto-clean:
 #this is related to a bug in compression of assets and resources > 1MB
 
 assets: tor polipo iptables pluto
-	install -d ../libs
-	install -d ../assets/$(APP_ABI)
+	install -d ../orbotservice/src/main/assets/$(APP_ABI)
 	-$(STRIP) bin/polipo
-	-zip ../assets/$(APP_ABI)/polipo.mp3 bin/polipo
+	-zip ../orbotservice/src/main/assets/$(APP_ABI)/polipo.mp3 bin/polipo
 	-$(STRIP) bin/tor
-	-zip ../assets/$(APP_ABI)/tor.mp3 bin/tor
+	-zip ../orbotservice/src/main/assets/$(APP_ABI)/tor.mp3 bin/tor
 	-$(STRIP) bin/xtables
-	-zip ../assets/$(APP_ABI)/xtables.mp3 bin/xtables
+	-zip ../orbotservice/src/main/assets/$(APP_ABI)/xtables.mp3 bin/xtables
 	-$(STRIP) bin/obfs4proxy
-	-zip ../assets/$(APP_ABI)/obfs4proxy.mp3 bin/obfs4proxy
-	-$(STRIP) ../libs/$(APP_ABI)/pdnsd
-	-zip ../assets/$(APP_ABI)/pdnsd.mp3 ../libs/$(APP_ABI)/pdnsd
-	-rm ../libs/$(APP_ABI)/pdnsd
+	-zip ../orbotservice/src/main/assets/$(APP_ABI)/obfs4proxy.mp3 bin/obfs4proxy
+	-$(STRIP) ../app/src/main/libs/$(APP_ABI)/pdnsd
+	-zip ../orbotservice/src/main/assets/$(APP_ABI)/pdnsd.mp3 ../app/src/main/libs/$(APP_ABI)/pdnsd
+	-rm ../app/src/main/libs/$(APP_ABI)/pdnsd
 
 assets-clean:
-	-rm ../assets/$(APP_ABI)/polipo.mp3
-	-rm ../assets/$(APP_ABI)/tor.mp3
-	-rm ../assets/$(APP_ABI)/xtables.mp3
-	-rm ../assets/$(APP_ABI)/obfs4proxy.mp3
-	-rm ../assets/$(APP_ABI)/pdnsd.mp3
+	-rm ../orbotservice/src/main/assets/$(APP_ABI)/polipo.mp3
+	-rm ../orbotservice/src/main/assets/$(APP_ABI)/tor.mp3
+	-rm ../orbotservice/src/main/assets/$(APP_ABI)/xtables.mp3
+	-rm ../orbotservice/src/main/assets/$(APP_ABI)/obfs4proxy.mp3
+	-rm ../orbotservice/src/main/assets/$(APP_ABI)/pdnsd.mp3
+
 
 #------------------------------------------------------------------------------#
 # cleanup, cleanup, put the toys away
