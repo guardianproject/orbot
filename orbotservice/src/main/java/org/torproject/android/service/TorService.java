@@ -54,6 +54,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.io.PrintWriter;
+import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.net.Socket;
@@ -69,11 +70,14 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
+import java.util.Queue;
 import java.util.Set;
 import java.util.StringTokenizer;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeoutException;
+
+import javax.net.ssl.SSLEngine;
 
 public class TorService extends Service implements TorServiceConstants, OrbotConstants, EventHandler
 {
@@ -85,7 +89,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     private TorControlConnection conn = null;
     private Socket torConnSocket = null;
     private int mLastProcessId = -1;
-    
+
+
     private int mPortHTTP = HTTP_PROXY_PORT_DEFAULT;
     private int mPortSOCKS = SOCKS_PROXY_PORT_DEFAULT;
     
@@ -504,13 +509,14 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             Log.w(OrbotConstants.TAG,"could not kill obfsclient",e);
             cannotKillFile = fileObfsclient;
         }
-        
+
         try {
         	TorServiceUtils.killProcess(filePolipo);
         } catch (IOException e) {
             Log.w(OrbotConstants.TAG,"could not kill polipo",e);
             cannotKillFile = filePolipo;
         }
+
         try {
             TorServiceUtils.killProcess(fileTor);
         } catch (IOException e) {
@@ -782,7 +788,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 	        if (success)
 	        {
 	            if (mPortHTTP != -1)
-	                runPolipoShellCmd();
+                    runPolipoShellCmd();
 	            
 	            if (Prefs.useRoot() && Prefs.useTransparentProxying())
 	            {
