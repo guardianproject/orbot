@@ -20,7 +20,6 @@ android {
 
 dependencies {
     compile 'com.android.support:appcompat-v7:23.+'
- //   compile group: 'org.littleshoot', name: 'littleproxy', version: '1.1.0-beta1'
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
 }
