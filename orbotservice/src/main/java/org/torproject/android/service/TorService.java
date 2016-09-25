@@ -77,8 +77,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeoutException;
 
-import javax.net.ssl.SSLEngine;
-
 public class TorService extends Service implements TorServiceConstants, OrbotConstants, EventHandler
 {
     
@@ -89,7 +87,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     private TorControlConnection conn = null;
     private Socket torConnSocket = null;
     private int mLastProcessId = -1;
-
+    private Process mProcPolipo;
 
     private int mPortHTTP = HTTP_PROXY_PORT_DEFAULT;
     private int mPortSOCKS = SOCKS_PROXY_PORT_DEFAULT;
@@ -98,8 +96,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     private static final int TRANSPROXY_NOTIFY_ID = 2;
     private static final int ERROR_NOTIFY_ID = 3;
     private static final int HS_NOTIFY_ID = 4;
-    
-    private static final int MAX_START_TRIES = 3;
 
     private ArrayList<String> configBuffer = null;
     private ArrayList<String> resetBuffer = null;
@@ -389,7 +385,18 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
     }**/
 
-    private void stopTor() {
+    private void stopTor ()
+    {
+        mExecutor.execute(new Runnable ()
+        {
+            public void run ()
+            {
+                stopTorAsync();
+            }
+        });
+    }
+
+    private void stopTorAsync () {
         Log.i("TorService", "stopTor");
         try {
             sendCallbackStatus(STATUS_STOPPING);
@@ -500,7 +507,16 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             conn = null;
         }
 
+        if (mProcPolipo != null)
+        {
+            mProcPolipo.destroy();
+            int exitValue = mProcPolipo.waitFor();
+            logNotice("Polipo exited with value: " + exitValue);
+
+        }
+
         // try these separately in case one fails, then it can try the next
+        /**
         File cannotKillFile = null;
         try {
         	TorServiceUtils.killProcess(fileObfsclient);
@@ -523,6 +539,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             Log.w(OrbotConstants.TAG,"could not kill tor",e);
             cannotKillFile = fileTor;
         }
+         */
     }
 
     private void requestTorRereadConfig() {
@@ -1127,40 +1144,17 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     {
         
         logNotice( "Starting polipo process");
-        
-            int polipoProcId = TorServiceUtils.findProcessId(filePolipo.getCanonicalPath());
 
-            StringBuilder log = null;
-            
-            int attempts = 0;
-            
-            if (polipoProcId == -1)
-            {
-                log = new StringBuilder();
-                
-                updatePolipoConfig();
-                
-                String polipoConfigPath = new File(appBinHome, POLIPOCONFIG_ASSET_KEY).getCanonicalPath();
-                String cmd = (filePolipo.getCanonicalPath() + " -c " + polipoConfigPath + " &");
+        updatePolipoConfig();
 
-                Process proc = exec(cmd,false);
+        String polipoConfigPath = new File(appBinHome, POLIPOCONFIG_ASSET_KEY).getCanonicalPath();
+        String cmd = (filePolipo.getCanonicalPath() + " -c " + polipoConfigPath);
 
-                //wait one second to make sure it has started up
-                Thread.sleep(1000);
-                
-                while ((polipoProcId = TorServiceUtils.findProcessId(filePolipo.getCanonicalPath())) == -1  && attempts < MAX_START_TRIES)
-                {
-                    logNotice("Couldn't find Polipo process... retrying...\n" + log);
-                    Thread.sleep(3000);
-                    attempts++;
-                }
-                
-                logNotice(log.toString());
-            }
+        mProcPolipo = exec(cmd,false);
+
+        sendCallbackLogMessage(getString(R.string.privoxy_is_running_on_port_) + mPortHTTP);
             
-            sendCallbackLogMessage(getString(R.string.privoxy_is_running_on_port_) + mPortHTTP);
-            
-            logNotice("Polipo process id=" + polipoProcId);
+        logNotice("Polipo is running");
             
     }
     

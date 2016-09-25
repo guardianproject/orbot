@@ -156,16 +156,20 @@ public class OrbotMainActivity extends AppCompatActivity
                 new IntentFilter(TorServiceConstants.LOCAL_ACTION_LOG));
 	}
 
-	private void sendIntentToService(String action) {
-		Intent torService = new Intent(this, TorService.class);    
-		torService.setAction(action);
-		startService(torService);
+	private void sendIntentToService(final String action) {
+
+		Intent torService = new Intent(OrbotMainActivity.this, TorService.class);
+        torService.setAction(action);
+        startService(torService);
+
 	}
 
     private void stopTor() {
-        imgStatus.setImageResource(R.drawable.torstarting);
-        Intent torService = new Intent(this, TorService.class);
+
+		imgStatus.setImageResource(R.drawable.torstarting);
+        Intent torService = new Intent(OrbotMainActivity.this, TorService.class);
         stopService(torService);
+
     }
 
     /**
@@ -1197,6 +1201,7 @@ public class OrbotMainActivity extends AppCompatActivity
      */
     private void startTor() {
         sendIntentToService(TorServiceConstants.ACTION_START);
+        mTxtOrbotLog.setText("");
     }
     
     /**
