@@ -47,45 +47,15 @@ that will handle basic Tor controlling features.
 
 	android update project --name Orbot --target android-15 --path .
 
-Now you need to split and copy the tor binary into external/bin. We split it
-into < 1M chunks because some Android devices don't like resources larger than
-1M.
-    split --bytes=1m ./external/tor/src/or/tor ./external/bin/tor
-
 Now build the Android app
 
-    ./setup-ant
-	ant release
+(gradle / android studio instructions here)
 
-This will produce an unsigned Tor package in ./bin/Orbot-unsigned.apk!
+This will produce an unsigned Tor package APK.
 
 To produce a usable package, you'll need to sign the .apk. The basics on
 signing can be found on the Android developer site:
 
 	http://developer.android.com/guide/publishing/app-signing.html
 
-The three steps are quite simple. First, you'll generate a key. Secondly,
-you'll sign the application. Thirdly, you'll verify the the apk.
-
-Generating a signing key:
-
-	keytool -genkey -v -keystore my-release-key.keystore \
-		-alias orbots_key -keyalg RSA -validity 10000
-
-Sign the apk:
-
-	jarsigner -verbose -keystore my-release-key.keystore \
-		bin/Orbot-unsigned.apk orbots_key
-
-Verify the signature for the apk:
-
-	jarsigner -verify bin/Orbot-unsigned.apk
-	mv bin/Orbot-unsigned.apk bin/Orbot-signed-alpha.apk
-
-You can also GPG sign the apk and generate an .asc:
-
-	gpg -ab Orbot-signed-alpha.apk
-
-Now you should have a fully signed and production ready alpha release of Orbot!
-Give bin/Orbot-signed-alpha.apk an install and send us bug reports!
 
