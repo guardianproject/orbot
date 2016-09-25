@@ -11,18 +11,21 @@ import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.vpn.VPNEnableActivity;
 
 public class OnBootReceiver extends BroadcastReceiver {
-	
+
+	private static boolean sReceivedBoot = false;
+
 	@Override
 	public void onReceive(Context context, Intent intent) {
 	    Prefs.setContext(context);
-		if (Prefs.startOnBoot())
+		if (Prefs.startOnBoot() && (!sReceivedBoot))
 		{			
 
 			if (Prefs.useVpn())
 				startVpnService(context); //VPN will start Tor once it is done
 			else
 				startService(TorServiceConstants.ACTION_START, context);
-				
+
+			sReceivedBoot = true;
 		}
 	}
 	
