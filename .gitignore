@@ -64,4 +64,5 @@ obj
 
 app/src/main/jniLibs/
 app/src/main/libs/
+orbotservice/src/main/libs/
 orbotservice/src/main/assets/armeabi/
