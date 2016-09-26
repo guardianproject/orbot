@@ -77,7 +77,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeoutException;
 
-public class TorService extends Service implements TorServiceConstants, OrbotConstants, EventHandler
+public class TorService extends Service implements TorServiceConstants, OrbotConstants
 {
     
     private String mCurrentStatus = STATUS_OFF;
@@ -106,14 +106,9 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     
     private TorTransProxy mTransProxy;
 
-    private long mTotalTrafficWritten = 0;
-    private long mTotalTrafficRead = 0;
-    private boolean mConnectivity = true; 
+    private boolean mConnectivity = true;
     private int mNetworkType = -1;
 
-    private long lastRead = -1;
-    private long lastWritten = -1;
-    
     private NotificationManager mNotificationManager = null;
     private Notification.Builder mNotifyBuilder;
     private Notification mNotification;
@@ -123,8 +118,9 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
     private ExecutorService mExecutor = Executors.newFixedThreadPool(1);
 
-    private NumberFormat mNumberFormat = null;
-    
+
+    TorEventHandler mEventHandler;
+
   //  private OrbotVpnManager mVpnManager;
     
     public static File appBinHome;
@@ -133,7 +129,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     public static File fileTor;
     public static File filePolipo;
     public static File fileObfsclient;
-    // public static File fileMeekclient;
     public static File fileXtables;
     public static File fileTorRc;
     public static File filePdnsd;
@@ -198,12 +193,12 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             mNotificationManager.cancelAll();
         
 
-        hmBuiltNodes.clear();
+        mEventHandler.getNodes().clear();
         mNotificationShowing = false;
     }
 	        
     @SuppressLint("NewApi")
-    private void showToolbarNotification (String notifyMsg, int notifyType, int icon)
+    protected void showToolbarNotification (String notifyMsg, int notifyType, int icon)
      {        
          
          //Reusable code.
@@ -258,12 +253,12 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                  expandedView.setTextViewText(R.id.info, notifyMsg);
              }
 
-             if (hmBuiltNodes.size() > 0)
+             if (mEventHandler.getNodes().size() > 0)
              {
-                 Set<String> itBuiltNodes = hmBuiltNodes.keySet();
+                 Set<String> itBuiltNodes = mEventHandler.getNodes().keySet();
                  for (String key : itBuiltNodes)
                  {
-                     Node node = hmBuiltNodes.get(key);
+                     TorEventHandler.Node node = mEventHandler.getNodes().get(key);
                      
                      if (node.ipAddress != null)
                      {
@@ -373,17 +368,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         unregisterReceiver(mNetworkStateReceiver);
         super.onDestroy();
     }
-
-    /**
-    @Override
-    public void onRevoke ()
-    {
-    	//if (mVpnManager != null)
-    	//	mVpnManager.onRevoke();
-    	
-    	super.onRevoke();
-
-    }**/
 
     private void stopTor ()
     {
@@ -515,31 +499,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
         }
 
-        // try these separately in case one fails, then it can try the next
-        /**
-        File cannotKillFile = null;
-        try {
-        	TorServiceUtils.killProcess(fileObfsclient);
-        } catch (IOException e) {
-           // e.printStackTrace();
-            Log.w(OrbotConstants.TAG,"could not kill obfsclient",e);
-            cannotKillFile = fileObfsclient;
-        }
-
-        try {
-        	TorServiceUtils.killProcess(filePolipo);
-        } catch (IOException e) {
-            Log.w(OrbotConstants.TAG,"could not kill polipo",e);
-            cannotKillFile = filePolipo;
-        }
-
-        try {
-            TorServiceUtils.killProcess(fileTor);
-        } catch (IOException e) {
-            Log.w(OrbotConstants.TAG,"could not kill tor",e);
-            cannotKillFile = fileTor;
-        }
-         */
     }
 
     private void requestTorRereadConfig() {
@@ -557,7 +516,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         } 
     }
 
-        private void logNotice (String msg)
+    protected void logNotice (String msg)
     {
         if (msg != null && msg.trim().length() > 0)
         {
@@ -584,7 +543,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             fileTorRc = new File(appBinHome, TorServiceConstants.TORRC_ASSET_KEY);
             filePdnsd = new File(appBinHome, TorServiceConstants.PDNSD_ASSET_KEY);
 
-            mNumberFormat = NumberFormat.getInstance(Locale.getDefault()); //localized numbers!
 
             if (mNotificationManager == null)
             {
@@ -625,6 +583,11 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         }
         
         Log.i("TorService", "onCreate end");
+    }
+
+    protected String getCurrentStatus ()
+    {
+        return mCurrentStatus;
     }
 
     private void torUpgradeAndConfig() throws IOException, TimeoutException {
@@ -890,7 +853,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         }
         else
         {
-            ArrayList<TorifiedApp> apps = getApps(this, TorServiceUtils.getSharedPrefs(getApplicationContext()));
+            ArrayList<TorifiedApp> apps = TorTransProxy.getApps(this, TorServiceUtils.getSharedPrefs(getApplicationContext()));
 
             code = mTransProxy.setTransparentProxyingByApp(this,apps, true);
         }
@@ -923,114 +886,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         return true;
      }
 
-    public static ArrayList<TorifiedApp> getApps (Context context, SharedPreferences prefs)
-    {
-
-        String tordAppString = prefs.getString(PREFS_KEY_TORIFIED, "");
-        String[] tordApps;
-
-        StringTokenizer st = new StringTokenizer(tordAppString,"|");
-        tordApps = new String[st.countTokens()];
-        int tordIdx = 0;
-        while (st.hasMoreTokens())
-        {
-            tordApps[tordIdx++] = st.nextToken();
-        }
-
-        Arrays.sort(tordApps);
-
-        //else load the apps up
-        PackageManager pMgr = context.getPackageManager();
-
-        List<ApplicationInfo> lAppInfo = pMgr.getInstalledApplications(0);
-
-        Iterator<ApplicationInfo> itAppInfo = lAppInfo.iterator();
-
-        ArrayList<TorifiedApp> apps = new ArrayList<TorifiedApp>();
-
-        ApplicationInfo aInfo = null;
-
-        int appIdx = 0;
-        TorifiedApp app = null;
-
-        while (itAppInfo.hasNext())
-        {
-            aInfo = itAppInfo.next();
-
-            app = new TorifiedApp();
-
-            try {
-                PackageInfo pInfo = pMgr.getPackageInfo(aInfo.packageName, PackageManager.GET_PERMISSIONS);
-
-                if (pInfo != null && pInfo.requestedPermissions != null)
-                {
-                    for (String permInfo:pInfo.requestedPermissions)
-                    {
-                        if (permInfo.equals("android.permission.INTERNET"))
-                        {
-                            app.setUsesInternet(true);
-
-                        }
-                    }
-
-                }
-
-
-            } catch (Exception e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-
-            if ((aInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 1)
-            {
-                //System app
-                app.setUsesInternet(true);
-            }
-
-
-            if (!app.usesInternet())
-                continue;
-            else
-            {
-                apps.add(app);
-            }
-
-
-            app.setEnabled(aInfo.enabled);
-            app.setUid(aInfo.uid);
-            app.setUsername(pMgr.getNameForUid(app.getUid()));
-            app.setProcname(aInfo.processName);
-            app.setPackageName(aInfo.packageName);
-
-            try
-            {
-                app.setName(pMgr.getApplicationLabel(aInfo).toString());
-            }
-            catch (Exception e)
-            {
-                app.setName(aInfo.packageName);
-            }
-
-
-            //app.setIcon(pMgr.getApplicationIcon(aInfo));
-
-            // check if this application is allowed
-            if (Arrays.binarySearch(tordApps, app.getUsername()) >= 0) {
-                app.setTorified(true);
-            }
-            else
-            {
-                app.setTorified(false);
-            }
-
-            appIdx++;
-        }
-
-        Collections.sort(apps);
-
-        return apps;
-    }
-    
     /*
      * activate means whether to apply the users preferences
      * or clear them out
@@ -1046,7 +901,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
              mTransProxy = new TorTransProxy(this, fileXtables);
  
          mTransProxy.setTransparentProxyingAll(this, false);
-        ArrayList<TorifiedApp> apps = getApps(this, TorServiceUtils.getSharedPrefs(getApplicationContext()));
+        ArrayList<TorifiedApp> apps = TorTransProxy.getApps(this, TorServiceUtils.getSharedPrefs(getApplicationContext()));
         mTransProxy.setTransparentProxyingByApp(this, apps, false);
     
          return true;
@@ -1112,6 +967,12 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         return true;
     }
 
+
+    protected void exec (Runnable runn)
+    {
+        mExecutor.execute(runn);
+    }
+
     private Process exec (String cmd, boolean wait) throws Exception
     {
         Process proc = Runtime.getRuntime().exec(cmd);
@@ -1156,6 +1017,11 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             
         logNotice("Polipo is running");
             
+    }
+
+    protected TorControlConnection getControlConnection ()
+    {
+        return conn;
     }
     
     private int initControlConnection (int maxTries, boolean isReconnect) throws Exception, RuntimeException
@@ -1298,7 +1164,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
            // ...
         logNotice( "adding control port event handler");
 
-        conn.setEventHandler(this);
+        mEventHandler = new TorEventHandler(this);
+        conn.setEventHandler(mEventHandler);
         
         conn.setEvents(Arrays.asList(new String[]{
               "ORCONN", "CIRC", "NOTICE", "WARN", "ERR","BW"}));
@@ -1361,278 +1228,9 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                              
         }
 
-    @Override
-    public void message(String severity, String msg) {
-        logNotice(severity + ": " + msg);
-    }
 
-    @Override
-    public void newDescriptors(List<String> orList) {
-    }
+    
 
-    @Override
-    public void orConnStatus(String status, String orName) {
-        
-            StringBuilder sb = new StringBuilder();
-            sb.append("orConnStatus (");
-            sb.append(parseNodeName(orName) );
-            sb.append("): ");
-            sb.append(status);
-            
-            debug(sb.toString());
-    }
-
-    @Override
-    public void streamStatus(String status, String streamID, String target) {
-        
-            StringBuilder sb = new StringBuilder();
-            sb.append("StreamStatus (");
-            sb.append((streamID));
-            sb.append("): ");
-            sb.append(status);
-            
-            logNotice(sb.toString());
-    }
-
-    @Override
-    public void unrecognized(String type, String msg) {
-        
-            StringBuilder sb = new StringBuilder();
-            sb.append("Message (");
-            sb.append(type);
-            sb.append("): ");
-            sb.append(msg);
-            
-            logNotice(sb.toString());
-    }
-
-    @Override
-    public void bandwidthUsed(long read, long written) {
-    
-        if (read != lastRead || written != lastWritten)
-        {
-            StringBuilder sb = new StringBuilder();                
-            sb.append(formatCount(read));
-            sb.append(" \u2193");            
-            sb.append(" / ");
-            sb.append(formatCount(written));
-            sb.append(" \u2191");            
-               
-            int iconId = R.drawable.ic_stat_tor;
-            
-            if (read > 0 || written > 0)
-                iconId = R.drawable.ic_stat_tor_xfer;
-            
-            if (mConnectivity && Prefs.persistNotifications())
-                  showToolbarNotification(sb.toString(), NOTIFY_ID, iconId);
-
-            mTotalTrafficWritten += written;
-            mTotalTrafficRead += read;
-        }
-        
-        lastWritten = written;
-        lastRead = read;
-        
-        sendCallbackBandwidth(lastWritten, lastRead, mTotalTrafficWritten, mTotalTrafficRead);
-    }
-    
-    private String formatCount(long count) {
-        // Converts the supplied argument into a string.
-
-        // Under 2Mb, returns "xxx.xKb"
-        // Over 2Mb, returns "xxx.xxMb"
- 	if (mNumberFormat != null)
-        	if (count < 1e6)
-            		return mNumberFormat.format(Math.round((float)((int)(count*10/1024))/10)) + "kbps";
-        	else
-            		return mNumberFormat.format(Math.round((float)((int)(count*100/1024/1024))/100)) + "mbps";
-	else
-		return "";
-        
-           //return count+" kB";
-    }
-    
-    public void circuitStatus(String status, String circID, String path) {
-        
-        /* once the first circuit is complete, then announce that Orbot is on*/
-        if (mCurrentStatus == STATUS_STARTING && TextUtils.equals(status, "BUILT"))
-            sendCallbackStatus(STATUS_ON);
-
-        StringBuilder sb = new StringBuilder();
-        sb.append("Circuit (");
-        sb.append((circID));
-        sb.append(") ");
-        sb.append(status);
-        sb.append(": ");
-        
-        StringTokenizer st = new StringTokenizer(path,",");
-        Node node = null;
-        
-        while (st.hasMoreTokens())
-        {
-            String nodePath = st.nextToken();
-            node = new Node();
-            
-            String[] nodeParts;
-            
-            if (nodePath.contains("="))
-                nodeParts = nodePath.split("=");
-            else
-                nodeParts = nodePath.split("~");
-            
-            if (nodeParts.length == 1)
-            {
-                node.id = nodeParts[0].substring(1);
-                node.name = node.id;
-            }
-            else if (nodeParts.length == 2)
-            {
-                node.id = nodeParts[0].substring(1);
-                node.name = nodeParts[1];
-            }
-            
-            node.status = status;
-            
-            sb.append(node.name);
-            
-            if (st.hasMoreTokens())
-                sb.append (" > ");
-        }
-        
-        if (Prefs.useDebugLogging())
-            debug(sb.toString());
-        else if(status.equals("BUILT"))
-            logNotice(sb.toString());
-        else if (status.equals("CLOSED"))
-            logNotice(sb.toString());
-
-        if (Prefs.expandedNotifications())
-        {
-            //get IP from last nodename
-            if(status.equals("BUILT")){
-                
-                if (node.ipAddress == null)
-                    mExecutor.execute(new ExternalIPFetcher(node));
-                
-                hmBuiltNodes.put(node.id, node);
-            }
-            
-            if (status.equals("CLOSED"))
-            {
-                hmBuiltNodes.remove(node.id);
-                
-            }
-        }
-    
-    }
-    
-    private HashMap<String,Node> hmBuiltNodes = new HashMap<String,Node>();
-    
-    class Node
-    {
-        String status;
-        String id;
-        String name;
-        String ipAddress;
-        String country;
-        String organization;
-    }
-    
-    private class ExternalIPFetcher implements Runnable {
-
-        private Node mNode;
-        private int MAX_ATTEMPTS = 3;
-        private final static String ONIONOO_BASE_URL = "https://onionoo.torproject.org/details?fields=country_name,as_name,or_addresses&lookup=";
-        
-        public ExternalIPFetcher (Node node)
-        {
-            mNode = node;
-        }
-        
-        public void run ()
-        {
-            
-            for (int i = 0; i < MAX_ATTEMPTS; i++)
-            {
-                if (conn != null)
-                {
-                    try {
-
-                    	URLConnection conn = null;
-                    	
-                        Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("127.0.0.1", 8118));
-                        conn = new URL(ONIONOO_BASE_URL + mNode.id).openConnection(proxy);
-    
-                        conn.setRequestProperty("Connection","Close");
-                        conn.setConnectTimeout(60000);
-                        conn.setReadTimeout(60000);
-                        
-                        InputStream is = conn.getInputStream();
-                        
-                        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-    
-                        // getting JSON string from URL
-                        
-                        StringBuffer json = new StringBuffer();
-                        String line = null;
-    
-                        while ((line = reader.readLine())!=null)
-                            json.append(line);
-                        
-                        JSONObject jsonNodeInfo = new org.json.JSONObject(json.toString());
-                            
-                        JSONArray jsonRelays = jsonNodeInfo.getJSONArray("relays");
-                        
-                        if (jsonRelays.length() > 0)
-                        {
-                            mNode.ipAddress = jsonRelays.getJSONObject(0).getJSONArray("or_addresses").getString(0).split(":")[0];
-                            mNode.country = jsonRelays.getJSONObject(0).getString("country_name");
-                            mNode.organization = jsonRelays.getJSONObject(0).getString("as_name");
-                            
-                            StringBuffer sbInfo = new StringBuffer();
-                            sbInfo.append(mNode.ipAddress);
-                             
-                             if (mNode.country != null)
-                                 sbInfo.append(' ').append(mNode.country);
-                         
-                             if (mNode.organization != null)
-                                 sbInfo.append(" (").append(mNode.organization).append(')');
-                         
-                             logNotice(sbInfo.toString());
-                            
-                        }
-                        
-                        reader.close();
-                        is.close();
-                        
-                        break;
-                        
-                    } catch (Exception e) {
-                        
-                        debug ("Error getting node details from onionoo: " + e.getMessage());
-                        
-                        
-                    }
-                }
-            }
-        }
-        
-        
-    }
-    
-    private String parseNodeName(String node)
-    {
-        if (node.indexOf('=')!=-1)
-        {
-            return (node.substring(node.indexOf("=")+1));
-        }
-        else if (node.indexOf('~')!=-1)
-        {
-            return (node.substring(node.indexOf("~")+1));
-        }
-        else
-            return node;
-    }
 
         public void processTransparentProxying() {
             try{
@@ -1835,14 +1433,14 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             return false;
         }
 
-    private void sendCallbackBandwidth(long upload, long download, long written, long read)    {
+    protected void sendCallbackBandwidth(long upload, long download, long written, long read)    {
         Intent intent = new Intent(LOCAL_ACTION_BANDWIDTH);
 
         intent.putExtra("up",upload);
-	      intent.putExtra("down",download);
-	      intent.putExtra("written",written);
-	      intent.putExtra("read",read);
-	      intent.putExtra(EXTRA_STATUS, mCurrentStatus);
+          intent.putExtra("down",download);
+          intent.putExtra("written",written);
+          intent.putExtra("read",read);
+          intent.putExtra(EXTRA_STATUS, mCurrentStatus);
 
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
     }
@@ -1859,7 +1457,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
     }
     
-    private void sendCallbackStatus(String currentStatus) {
+    protected void sendCallbackStatus(String currentStatus) {
         mCurrentStatus = currentStatus;
         Intent intent = getActionStatusIntent(currentStatus);
         // send for Orbot internals, using secure local broadcast
@@ -2399,6 +1997,16 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         	}
     	}
 
+    }
+
+    public boolean hasConnectivity ()
+    {
+        return mConnectivity;
+    }
+
+    public int getNotifyId ()
+    {
+        return NOTIFY_ID;
     }
 
 }

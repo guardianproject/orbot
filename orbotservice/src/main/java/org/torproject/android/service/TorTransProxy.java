@@ -2,8 +2,17 @@ package org.torproject.android.service;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+import java.util.StringTokenizer;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 
 public class TorTransProxy implements TorServiceConstants {
 	
@@ -169,6 +178,114 @@ public class TorTransProxy implements TorServiceConstants {
 			script.append(" -t nat -m owner --uid-owner ");
 			script.append(tApp.getUid());
 			script.append(" -F || exit\n");
+    public static ArrayList<TorifiedApp> getApps (Context context, SharedPreferences prefs)
+    {
+
+        String tordAppString = prefs.getString(PREFS_KEY_TORIFIED, "");
+        String[] tordApps;
+
+        StringTokenizer st = new StringTokenizer(tordAppString,"|");
+        tordApps = new String[st.countTokens()];
+        int tordIdx = 0;
+        while (st.hasMoreTokens())
+        {
+            tordApps[tordIdx++] = st.nextToken();
+        }
+
+        Arrays.sort(tordApps);
+
+        //else load the apps up
+        PackageManager pMgr = context.getPackageManager();
+
+        List<ApplicationInfo> lAppInfo = pMgr.getInstalledApplications(0);
+
+        Iterator<ApplicationInfo> itAppInfo = lAppInfo.iterator();
+
+        ArrayList<TorifiedApp> apps = new ArrayList<TorifiedApp>();
+
+        ApplicationInfo aInfo = null;
+
+        int appIdx = 0;
+        TorifiedApp app = null;
+
+        while (itAppInfo.hasNext())
+        {
+            aInfo = itAppInfo.next();
+
+            app = new TorifiedApp();
+
+            try {
+                PackageInfo pInfo = pMgr.getPackageInfo(aInfo.packageName, PackageManager.GET_PERMISSIONS);
+
+                if (pInfo != null && pInfo.requestedPermissions != null)
+                {
+                    for (String permInfo:pInfo.requestedPermissions)
+                    {
+                        if (permInfo.equals("android.permission.INTERNET"))
+                        {
+                            app.setUsesInternet(true);
+
+                        }
+                    }
+
+                }
+
+
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+            if ((aInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 1)
+            {
+                //System app
+                app.setUsesInternet(true);
+            }
+
+
+            if (!app.usesInternet())
+                continue;
+            else
+            {
+                apps.add(app);
+            }
+
+
+            app.setEnabled(aInfo.enabled);
+            app.setUid(aInfo.uid);
+            app.setUsername(pMgr.getNameForUid(app.getUid()));
+            app.setProcname(aInfo.processName);
+            app.setPackageName(aInfo.packageName);
+
+            try
+            {
+                app.setName(pMgr.getApplicationLabel(aInfo).toString());
+            }
+            catch (Exception e)
+            {
+                app.setName(aInfo.packageName);
+            }
+
+
+            //app.setIcon(pMgr.getApplicationIcon(aInfo));
+
+            // check if this application is allowed
+            if (Arrays.binarySearch(tordApps, app.getUsername()) >= 0) {
+                app.setTorified(true);
+            }
+            else
+            {
+                app.setTorified(false);
+            }
+
+            appIdx++;
+        }
+
+        Collections.sort(apps);
+
+        return apps;
+    }
+
 		
 			script.append(ipTablesPath);
 			script.append(" -t filter -m owner --uid-owner ");
@@ -747,7 +864,115 @@ public class TorTransProxy implements TorServiceConstants {
 	//	fixTransproxyLeak (context);
 		
     	return lastExit;
-	}	
-	
+	}
+
+
+	public static ArrayList<TorifiedApp> getApps (Context context, SharedPreferences prefs)
+	{
+
+		String tordAppString = prefs.getString(OrbotConstants.PREFS_KEY_TORIFIED, "");
+		String[] tordApps;
+
+		StringTokenizer st = new StringTokenizer(tordAppString,"|");
+		tordApps = new String[st.countTokens()];
+		int tordIdx = 0;
+		while (st.hasMoreTokens())
+		{
+			tordApps[tordIdx++] = st.nextToken();
+		}
+
+		Arrays.sort(tordApps);
+
+		//else load the apps up
+		PackageManager pMgr = context.getPackageManager();
+
+		List<ApplicationInfo> lAppInfo = pMgr.getInstalledApplications(0);
+
+		Iterator<ApplicationInfo> itAppInfo = lAppInfo.iterator();
+
+		ArrayList<TorifiedApp> apps = new ArrayList<TorifiedApp>();
+
+		ApplicationInfo aInfo = null;
+
+		int appIdx = 0;
+		TorifiedApp app = null;
+
+		while (itAppInfo.hasNext())
+		{
+			aInfo = itAppInfo.next();
+
+			app = new TorifiedApp();
+
+			try {
+				PackageInfo pInfo = pMgr.getPackageInfo(aInfo.packageName, PackageManager.GET_PERMISSIONS);
+
+				if (pInfo != null && pInfo.requestedPermissions != null)
+				{
+					for (String permInfo:pInfo.requestedPermissions)
+					{
+						if (permInfo.equals("android.permission.INTERNET"))
+						{
+							app.setUsesInternet(true);
+
+						}
+					}
+
+				}
+
+
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			if ((aInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 1)
+			{
+				//System app
+				app.setUsesInternet(true);
+			}
+
+
+			if (!app.usesInternet())
+				continue;
+			else
+			{
+				apps.add(app);
+			}
+
+
+			app.setEnabled(aInfo.enabled);
+			app.setUid(aInfo.uid);
+			app.setUsername(pMgr.getNameForUid(app.getUid()));
+			app.setProcname(aInfo.processName);
+			app.setPackageName(aInfo.packageName);
+
+			try
+			{
+				app.setName(pMgr.getApplicationLabel(aInfo).toString());
+			}
+			catch (Exception e)
+			{
+				app.setName(aInfo.packageName);
+			}
+
+
+			//app.setIcon(pMgr.getApplicationIcon(aInfo));
+
+			// check if this application is allowed
+			if (Arrays.binarySearch(tordApps, app.getUsername()) >= 0) {
+				app.setTorified(true);
+			}
+			else
+			{
+				app.setTorified(false);
+			}
+
+			appIdx++;
+		}
+
+		Collections.sort(apps);
+
+		return apps;
+	}
 
 }
