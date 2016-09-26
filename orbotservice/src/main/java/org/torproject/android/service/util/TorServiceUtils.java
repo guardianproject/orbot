@@ -1,23 +1,21 @@
 /* Copyright (c) 2009, Nathan Freitas, Orbot / The Guardian Project - http://openideals.com/guardian */
 /* See LICENSE for licensing information */
-package org.torproject.android.service;
+package org.torproject.android.service.util;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.net.ConnectException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.util.StringTokenizer;
 
-import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
-import android.util.Log;
+
+import org.torproject.android.service.OrbotConstants;
+import org.torproject.android.service.TorServiceConstants;
 
 public class TorServiceUtils implements TorServiceConstants {
 

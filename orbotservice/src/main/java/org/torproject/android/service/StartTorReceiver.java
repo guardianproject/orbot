@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
 
+import org.torproject.android.service.util.Prefs;
+
 
 public class StartTorReceiver extends BroadcastReceiver implements TorServiceConstants {
 

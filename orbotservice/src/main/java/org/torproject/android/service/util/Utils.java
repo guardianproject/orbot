@@ -2,7 +2,7 @@
 /* See LICENSE for licensing information */
 
 
-package org.torproject.android.service;
+package org.torproject.android.service.util;
 
 import java.io.BufferedReader;
 import java.io.File;

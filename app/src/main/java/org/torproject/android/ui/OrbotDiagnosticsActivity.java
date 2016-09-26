@@ -5,10 +5,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 
 import org.torproject.android.R;
-import org.torproject.android.service.TorResourceInstaller;
+import org.torproject.android.service.util.TorResourceInstaller;
 import org.torproject.android.service.TorServiceConstants;
 
 import android.app.Activity;

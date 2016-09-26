@@ -1,11 +1,8 @@
 
-package org.torproject.android.service;
+package org.torproject.android.service.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.text.TextUtils;
-
-import org.torproject.android.service.TorServiceUtils;
 
 import java.util.Locale;
 

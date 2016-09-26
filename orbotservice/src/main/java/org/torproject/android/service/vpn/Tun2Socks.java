@@ -1,4 +1,4 @@
-package org.torproject.android.vpn;
+package org.torproject.android.service.vpn;
 
 /*
  * Copyright (c) 2013, Psiphon Inc.
@@ -19,13 +19,13 @@ package org.torproject.android.vpn;
  *
  */
 
-import java.net.DatagramSocket;
-import java.net.Socket;
-
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.ParcelFileDescriptor;
 import android.util.Log;
+
+import java.net.DatagramSocket;
+import java.net.Socket;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR1)
 public class Tun2Socks

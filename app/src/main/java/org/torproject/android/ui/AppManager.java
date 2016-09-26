@@ -12,8 +12,8 @@ import java.util.StringTokenizer;
 
 import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.R;
-import org.torproject.android.service.TorServiceUtils;
-import org.torproject.android.service.TorifiedApp;
+import org.torproject.android.service.util.TorServiceUtils;
+import org.torproject.android.service.transproxy.TorifiedApp;
 
 import android.app.Activity;
 import android.content.Context;

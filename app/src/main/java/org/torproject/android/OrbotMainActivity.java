@@ -17,10 +17,10 @@ import java.util.StringTokenizer;
 
 import org.json.JSONArray;
 import org.torproject.android.service.OrbotConstants;
-import org.torproject.android.service.Prefs;
+import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.TorService;
 import org.torproject.android.service.TorServiceConstants;
-import org.torproject.android.service.TorServiceUtils;
+import org.torproject.android.service.util.TorServiceUtils;
 import org.torproject.android.settings.SettingsPreferences;
 import org.torproject.android.ui.ImageProgressView;
 import org.torproject.android.ui.PromoAppsActivity;

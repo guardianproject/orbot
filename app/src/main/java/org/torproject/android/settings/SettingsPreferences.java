@@ -19,7 +19,7 @@ import android.preference.PreferenceActivity;
 import org.torproject.android.OrbotApp;
 import org.torproject.android.R;
 import org.torproject.android.ui.AppManager;
-import org.torproject.android.service.TorServiceUtils;
+import org.torproject.android.service.util.TorServiceUtils;
 
 import java.util.Locale;
 

@@ -1,7 +1,7 @@
 /* Copyright (c) 2009, Nathan Freitas, Orbot / The Guardian Project - http://openideals.com/guardian */
 /* See LICENSE for licensing information */
 
-package org.torproject.android.service;
+package org.torproject.android.service.util;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -21,6 +21,10 @@ import java.util.zip.ZipInputStream;
 import android.content.Context;
 import android.os.Build;
 import android.util.Log;
+
+import org.torproject.android.service.OrbotConstants;
+import org.torproject.android.service.R;
+import org.torproject.android.service.TorServiceConstants;
 
 public class TorResourceInstaller implements TorServiceConstants {
 

@@ -1,4 +1,4 @@
-package org.torproject.android.service;
+package org.torproject.android.service.transproxy;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -13,6 +13,11 @@ import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+
+import org.torproject.android.service.OrbotConstants;
+import org.torproject.android.service.util.Prefs;
+import org.torproject.android.service.TorService;
+import org.torproject.android.service.TorServiceConstants;
 
 public class TorTransProxy implements TorServiceConstants {
 	

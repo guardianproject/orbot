@@ -19,11 +19,8 @@ import java.util.Locale;
 import java.util.StringTokenizer;
 
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-import org.torproject.android.control.ConfigEntry;
 import org.torproject.android.control.EventHandler;
-import org.torproject.android.control.TorControlConnection;
+import org.torproject.android.service.util.Prefs;
 
 /**
  * Created by n8fr8 on 9/25/16.

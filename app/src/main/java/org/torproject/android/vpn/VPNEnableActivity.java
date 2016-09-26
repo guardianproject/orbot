@@ -1,7 +1,7 @@
 package org.torproject.android.vpn;
 
 import org.torproject.android.R;
-import org.torproject.android.service.Prefs;
+import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.TorService;
 import org.torproject.android.service.TorServiceConstants;
 
@@ -12,15 +12,10 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.VpnService;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
-import android.widget.TextView;
 
 /*
  * To combat background service being stopped/swiped
@@ -161,6 +156,8 @@ public class VPNEnableActivity extends Activity {
 			Intent torService = new Intent(this, TorService.class);    
 			torService.setAction(action);
 			startService(torService);
+
+
 		}
     
 }

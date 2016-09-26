@@ -1,4 +1,4 @@
-package org.torproject.android.service;
+package org.torproject.android.service.transproxy;
 
 import android.graphics.drawable.Drawable;
 

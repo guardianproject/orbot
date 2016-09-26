@@ -1,19 +1,20 @@
 
 package org.torproject.android;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.net.VpnService;
+import android.os.Build;
 import android.util.Log;
 
 import org.torproject.android.service.OrbotConstants;
-import org.torproject.android.service.Prefs;
-import org.torproject.android.service.TorServiceConstants;
+import org.torproject.android.service.util.Prefs;
 
 import org.torproject.android.settings.Languages;
 
-import java.io.File;
 import java.util.Locale;
 
 public class OrbotApp extends Application implements OrbotConstants
@@ -21,6 +22,7 @@ public class OrbotApp extends Application implements OrbotConstants
 
     private Locale locale;
 
+    private OrbotVpnManager mVpnManager = null;
 
     @Override
     public void onCreate() {
@@ -31,6 +33,21 @@ public class OrbotApp extends Application implements OrbotConstants
         Languages.setLanguage(this, Prefs.getDefaultLocale(), true);
 
 
+    }
+
+    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+    public boolean startVPN (VpnService service, int port)
+    {
+
+        mVpnManager = new OrbotVpnManager(service);
+
+        Intent intent = new Intent();
+        intent.setAction("start");
+        intent.putExtra("torSocks", port);
+
+       //  mVpnManager.handleIntent(new VpnService.Builder(),intent);
+
+        return true;
     }
 
     @Override

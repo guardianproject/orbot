@@ -22,8 +22,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -35,11 +33,15 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.RemoteViews;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.torproject.android.control.ConfigEntry;
-import org.torproject.android.control.EventHandler;
 import org.torproject.android.control.TorControlConnection;
+import org.torproject.android.service.transproxy.TorTransProxy;
+import org.torproject.android.service.transproxy.TorifiedApp;
+import org.torproject.android.service.util.DummyActivity;
+import org.torproject.android.service.util.Prefs;
+import org.torproject.android.service.util.TorResourceInstaller;
+import org.torproject.android.service.util.TorServiceUtils;
+import org.torproject.android.service.util.Utils;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -50,27 +52,15 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.io.PrintWriter;
-import java.net.InetAddress;
-import java.net.InetSocketAddress;
-import java.net.Proxy;
 import java.net.Socket;
-import java.net.URL;
-import java.net.URLConnection;
 import java.text.Normalizer;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Locale;
 import java.util.Properties;
-import java.util.Queue;
 import java.util.Set;
 import java.util.StringTokenizer;
 import java.util.concurrent.ExecutorService;
@@ -121,8 +111,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
     TorEventHandler mEventHandler;
 
-  //  private OrbotVpnManager mVpnManager;
-    
     public static File appBinHome;
     public static File appCacheHome;
 
@@ -1190,25 +1178,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             return mPortSOCKS;
         }
 
-         @TargetApi(14)
-        public void enableVpnProxy () {
-        	debug ("enabling VPN Proxy");
-            
-            Prefs.putUseVpn(true);
-            processTransparentProxying();
-            
-            updateConfiguration("DNSPort",TOR_VPN_DNS_LISTEN_ADDRESS + ":" + TorServiceConstants.TOR_DNS_PORT_DEFAULT,false);
-            
-          //  if (mVpnManager == null)
-         //   	mVpnManager = new OrbotVpnManager (this);
-            
-            Intent intent = new Intent();
-            intent.setAction("start");            
-            intent.putExtra("torSocks", mPortSOCKS);
-            
-           // mVpnManager.handleIntent(new Builder(),intent);
-           
-        }
 
     @TargetApi(14)
         public void clearVpnProxy ()

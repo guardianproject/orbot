@@ -63,7 +63,7 @@
         This is for ensuring the background service still runs when/if the app is swiped away
          -->
       	<activity
-			android:name=".service.DummyActivity"
+			android:name=".service.util.DummyActivity"
 			android:theme="@android:style/Theme.Translucent"
 			android:enabled="true"
 			android:allowTaskReparenting="true"
@@ -94,6 +94,16 @@
             android:permission="android.permission.BIND_VPN_SERVICE"
             android:stopWithTask="false" >
         </service>
+
+
+		<service
+			android:name=".service.vpn.TorVpnService"
+			android:enabled="true"
+			android:permission="android.permission.BIND_VPN_SERVICE" >
+			<intent-filter>
+				<action android:name="android.net.VpnService"/>
+			</intent-filter>
+		</service>
 
         <receiver
             android:name=".service.StartTorReceiver"

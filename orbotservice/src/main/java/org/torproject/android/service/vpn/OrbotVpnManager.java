@@ -14,27 +14,9 @@
  * limitations under the License.
  */
 
-package org.torproject.android.vpn;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.PrintStream;
-import java.net.InetAddress;
-import java.util.ArrayList;
-import java.util.concurrent.TimeoutException;
-
-import org.torproject.android.OrbotApp;
-import org.torproject.android.R;
-import org.torproject.android.service.TorService;
-import org.torproject.android.service.TorServiceConstants;
-import org.torproject.android.service.TorServiceUtils;
-import org.torproject.android.service.TorifiedApp;
-import org.torproject.android.ui.AppManager;
+package org.torproject.android.service.vpn;
 
 import android.annotation.TargetApi;
-import android.app.Application;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
@@ -52,6 +34,21 @@ import android.widget.Toast;
 
 import com.runjva.sourceforge.jsocks.protocol.ProxyServer;
 import com.runjva.sourceforge.jsocks.server.ServerAuthenticatorNone;
+
+import org.torproject.android.R;
+import org.torproject.android.service.TorServiceConstants;
+import org.torproject.android.service.transproxy.TorifiedApp;
+import org.torproject.android.service.util.TorServiceUtils;
+import org.torproject.android.ui.AppManager;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.net.InetAddress;
+import java.util.ArrayList;
+import java.util.concurrent.TimeoutException;
 
 @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 public class OrbotVpnManager implements Handler.Callback {
