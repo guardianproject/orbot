@@ -35,11 +35,10 @@ import android.widget.Toast;
 import com.runjva.sourceforge.jsocks.protocol.ProxyServer;
 import com.runjva.sourceforge.jsocks.server.ServerAuthenticatorNone;
 
-import org.torproject.android.R;
+import org.torproject.android.service.R;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.transproxy.TorifiedApp;
 import org.torproject.android.service.util.TorServiceUtils;
-import org.torproject.android.ui.AppManager;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -66,8 +65,7 @@ public class OrbotVpnManager implements Handler.Callback {
     public static int sSocksProxyServerPort = -1;
     public static String sSocksProxyLocalhost = null;
     private ProxyServer mSocksProxyServer;
-   
-    
+
     private final static int VPN_MTU = 1500;
     
     private final static boolean mIsLollipop = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
@@ -359,7 +357,7 @@ public class OrbotVpnManager implements Handler.Callback {
 	private void doLollipopAppRouting (Builder builder) throws NameNotFoundException
     {    
     	   
-        ArrayList<TorifiedApp> apps = AppManager.getApps(mService, TorServiceUtils.getSharedPrefs(mService.getApplicationContext()));
+        ArrayList<TorifiedApp> apps = TorifiedApp.getApps(mService, TorServiceUtils.getSharedPrefs(mService.getApplicationContext()));
     
         boolean perAppEnabled = false;
         

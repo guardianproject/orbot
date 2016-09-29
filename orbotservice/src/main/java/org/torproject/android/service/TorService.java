@@ -42,6 +42,8 @@ import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.util.TorResourceInstaller;
 import org.torproject.android.service.util.TorServiceUtils;
 import org.torproject.android.service.util.Utils;
+import org.torproject.android.service.vpn.OrbotVpnManager;
+import org.torproject.android.service.vpn.TorVpnService;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -314,7 +316,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 if (action.equals(ACTION_START)) {
                     replyWithStatus(mIntent);
                     startTor();
-                    // stopTor() is called when the Service is destroyed
                 }
                 else if (action.equals(ACTION_STATUS)) {
                     replyWithStatus(mIntent);                    
@@ -328,7 +329,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 } else if (action.equals(CMD_UPDATE_TRANS_PROXY)) {
                     processTransparentProxying();
                 } else if (action.equals(CMD_VPN)) {
-                    enableVpnProxy();
+                    startVPNService();
                 } else if (action.equals(CMD_VPN_CLEAR)) {
                     clearVpnProxy();
                 } else if (action.equals(CMD_SET_EXIT)) {
@@ -745,7 +746,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 	        if (Prefs.bridgesEnabled())
 	        	if (Prefs.useVpn() && !mIsLollipop)
 	        	{
-	        		//TODO customEnv.add("TOR_PT_PROXY=socks5://" + OrbotVpnManager.sSocksProxyLocalhost + ":" + OrbotVpnManager.sSocksProxyServerPort);
+	        		customEnv.add("TOR_PT_PROXY=socks5://" + OrbotVpnManager.sSocksProxyLocalhost + ":" + OrbotVpnManager.sSocksProxyServerPort);
 	        	}
 	        
 	      //  String baseDirectory = fileTor.getParent();
@@ -1179,23 +1180,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         }
 
 
-    @TargetApi(14)
-        public void clearVpnProxy ()
-        {   
-        	debug ("clearing VPN Proxy");
-            Prefs.putUseVpn(false);
-            processTransparentProxying();
-
-            /**
-            if (mVpnManager != null)
-            {
-            	Intent intent = new Intent();
-                intent.setAction("stop");
-            	mVpnManager.handleIntent(new Builder(), intent);
-            	mVpnManager = null;
-            }  **/
-                             
-        }
 
 
     
@@ -1565,7 +1549,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 	        	if (!mIsLollipop)
 	        	{
 		        	String proxyType = "socks5";
-		        	//TODO VPN extraLines.append(proxyType + "Proxy" + ' ' + OrbotVpnManager.sSocksProxyLocalhost + ':' + OrbotVpnManager.sSocksProxyServerPort).append('\n');
+		        	extraLines.append(proxyType + "Proxy" + ' ' + OrbotVpnManager.sSocksProxyLocalhost + ':' + OrbotVpnManager.sSocksProxyServerPort).append('\n');
 	        	};
 			
 	        }
@@ -1976,6 +1960,28 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     public int getNotifyId ()
     {
         return NOTIFY_ID;
+    }
+
+    private void startVPNService ()
+    {
+        Intent intentVpn = new Intent(this,TorVpnService.class);
+        intentVpn.setAction("start");
+        intentVpn.putExtra("torSocks",mPortSOCKS);
+        startService(intentVpn);
+    }
+
+
+    @TargetApi(14)
+    public void clearVpnProxy ()
+    {
+        debug ("clearing VPN Proxy");
+        Prefs.putUseVpn(false);
+        processTransparentProxying();
+
+        Intent intentVpn = new Intent(this,TorVpnService.class);
+        intentVpn.setAction("stop");
+        startService(intentVpn);
+
     }
 
 }

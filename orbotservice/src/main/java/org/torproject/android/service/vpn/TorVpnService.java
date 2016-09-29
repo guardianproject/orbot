@@ -19,44 +19,24 @@ import org.torproject.android.service.util.Prefs;
 public class TorVpnService extends VpnService {
 
 
+    OrbotVpnManager mVpnManager;
+
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+        mVpnManager = new OrbotVpnManager(this);
+    }
 
     /* (non-Javadoc)
-    * @see android.app.Service#onStart(android.content.Intent, int)
-    */
+        * @see android.app.Service#onStart(android.content.Intent, int)
+        */
     public int onStartCommand(Intent intent, int flags, int startId) {
 
-
-
-        if (!TextUtils.isEmpty(intent.getAction()))
-        {
-            if (intent.getAction().equals("start"))
-                enableVpnProxy();;
-        }
+        mVpnManager.handleIntent(new Builder(),intent);
 
         return Service.START_STICKY;
     }
 
-
-    public void enableVpnProxy () {
-       // debug ("enabling VPN Proxy");
-
-        OrbotVpnManager vpnManager = new OrbotVpnManager(this);
-
-        int portSocks = 9050;
-
-        Prefs.putUseVpn(true);
-       // processTransparentProxying();
-
-        //updateConfiguration("DNSPort",TOR_VPN_DNS_LISTEN_ADDRESS + ":" + TorServiceConstants.TOR_DNS_PORT_DEFAULT,false);
-
-        //  if (mVpnManager == null)
-        //   	mVpnManager = new OrbotVpnManager (this);
-
-        Intent intent = new Intent();
-        intent.setAction("start");
-        intent.putExtra("torSocks", portSocks);
-
-        vpnManager.handleIntent(new Builder(),intent);
-
-    }
 }
