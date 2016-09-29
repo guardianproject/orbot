@@ -22,8 +22,6 @@ public class OrbotApp extends Application implements OrbotConstants
 
     private Locale locale;
 
-    private OrbotVpnManager mVpnManager = null;
-
     @Override
     public void onCreate() {
         super.onCreate();
@@ -33,21 +31,6 @@ public class OrbotApp extends Application implements OrbotConstants
         Languages.setLanguage(this, Prefs.getDefaultLocale(), true);
 
 
-    }
-
-    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-    public boolean startVPN (VpnService service, int port)
-    {
-
-        mVpnManager = new OrbotVpnManager(service);
-
-        Intent intent = new Intent();
-        intent.setAction("start");
-        intent.putExtra("torSocks", port);
-
-       //  mVpnManager.handleIntent(new VpnService.Builder(),intent);
-
-        return true;
     }
 
     @Override
