@@ -230,7 +230,7 @@ tor/configure:
 	 ./autogen.sh
 
 tor/Makefile: tor/configure
-	cp 0001-add-limits.h-to-support-MAX_SIZE-on-Android.patch
+	cp 0001-add-limits.h-to-support-MAX_SIZE-on-Android.patch tor
 	cd tor && \
 		git apply 0001-add-limits.h-to-support-MAX_SIZE-on-Android.patch
 #	cp fix_android_0.2.6.4rc_build.patch tor
@@ -315,8 +315,7 @@ assets: tor polipo iptables pluto
 	-$(STRIP) bin/obfs4proxy
 	-zip ../orbotservice/src/main/assets/$(APP_ABI)/obfs4proxy.mp3 bin/obfs4proxy
 	-$(STRIP) ../app/src/main/libs/$(APP_ABI)/pdnsd
-	-zip ../orbotservice/src/main/assets/$(APP_ABI)/pdnsd.mp3 ../app/src/main/libs/$(APP_ABI)/pdnsd
-	-rm ../app/src/main/libs/$(APP_ABI)/pdnsd
+	-zip ../orbotservice/src/main/assets/$(APP_ABI)/pdnsd.mp3 ../orbotservice/src/main/libs/$(APP_ABI)/pdnsd
 
 assets-clean:
 	-rm ../orbotservice/src/main/assets/$(APP_ABI)/polipo.mp3
