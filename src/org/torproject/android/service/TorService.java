@@ -27,6 +27,7 @@ import android.net.VpnService;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -214,7 +215,8 @@ public class TorService extends VpnService implements TorServiceConstants, Orbot
             {
                 mNotifyBuilder = new Notification.Builder(this)
                     .setContentTitle(getString(R.string.app_name))
-                    .setSmallIcon(R.drawable.ic_stat_tor);
+                    .setSmallIcon(R.drawable.ic_stat_tor)
+		     .setPriority(NotificationCompat.PRIORITY_MIN);
 
                 mNotifyBuilder.setContentIntent(pendIntent);
             }        
