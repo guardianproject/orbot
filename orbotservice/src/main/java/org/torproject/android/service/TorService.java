@@ -182,8 +182,9 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         if (mNotificationManager != null)
             mNotificationManager.cancelAll();
         
+        if (mEventHandler != null)
+            mEventHandler.getNodes().clear();
 
-        mEventHandler.getNodes().clear();
         mNotificationShowing = false;
     }
 	        
@@ -243,7 +244,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                  expandedView.setTextViewText(R.id.info, notifyMsg);
              }
 
-             if (mEventHandler.getNodes().size() > 0)
+             if (mEventHandler != null && mEventHandler.getNodes().size() > 0)
              {
                  Set<String> itBuiltNodes = mEventHandler.getNodes().keySet();
                  for (String key : itBuiltNodes)
@@ -532,6 +533,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             fileTorRc = new File(appBinHome, TorServiceConstants.TORRC_ASSET_KEY);
             filePdnsd = new File(appBinHome, TorServiceConstants.PDNSD_ASSET_KEY);
 
+            mEventHandler = new TorEventHandler(this);
 
             if (mNotificationManager == null)
             {
@@ -735,7 +737,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         try {
         	
 	        // make sure there are no stray daemons running
-	        killAllDaemons();
+//	        killAllDaemons();
 	
 	        sendCallbackStatus(STATUS_STARTING);
 	        sendCallbackLogMessage(getString(R.string.status_starting_up));
@@ -1146,15 +1148,15 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         return result;
     }
 
-    public void addEventHandler () throws Exception
+    public synchronized void addEventHandler () throws Exception
     {
            // We extend NullEventHandler so that we don't need to provide empty
            // implementations for all the events we don't care about.
            // ...
         logNotice( "adding control port event handler");
 
-        mEventHandler = new TorEventHandler(this);
         conn.setEventHandler(mEventHandler);
+
         
         conn.setEvents(Arrays.asList(new String[]{
               "ORCONN", "CIRC", "NOTICE", "WARN", "ERR","BW"}));

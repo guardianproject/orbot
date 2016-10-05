@@ -30,6 +30,11 @@ import java.net.Socket;
 @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR1)
 public class Tun2Socks
 {
+
+    static{
+        System.loadLibrary("tun2socks");
+    }
+
     public static interface IProtectSocket
     {
         boolean doVpnProtect(Socket socket);
@@ -51,9 +56,7 @@ public class Tun2Socks
     // Note: this class isn't a singleton, but you can't run more
     // than one instance due to the use of global state (the lwip
     // module, etc.) in the native code.
-    
-    private static boolean mLibLoaded = false;
-    
+
     public static void Start(
             ParcelFileDescriptor vpnInterfaceFileDescriptor,
             int vpnInterfaceMTU,
@@ -63,12 +66,6 @@ public class Tun2Socks
             String udpgwServerAddress,
             boolean udpgwTransparentDNS)
     {
-        
-        if (!mLibLoaded)
-        {
-            System.loadLibrary("tun2socks");
-            mLibLoaded = true;
-        }
 
         mVpnInterfaceFileDescriptor = vpnInterfaceFileDescriptor;
         mVpnInterfaceMTU = vpnInterfaceMTU;

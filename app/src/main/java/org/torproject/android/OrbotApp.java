@@ -30,7 +30,6 @@ public class OrbotApp extends Application implements OrbotConstants
         Languages.setup(OrbotMainActivity.class, R.string.menu_settings);
         Languages.setLanguage(this, Prefs.getDefaultLocale(), true);
 
-
     }
 
     @Override

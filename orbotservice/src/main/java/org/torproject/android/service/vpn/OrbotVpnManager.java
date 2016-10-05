@@ -17,6 +17,7 @@
 package org.torproject.android.service.vpn;
 
 import android.annotation.TargetApi;
+import android.app.Application;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
@@ -73,20 +74,21 @@ public class OrbotVpnManager implements Handler.Callback {
     //this is the actual DNS server we talk to over UDP or TCP (now using Tor's DNS port)
     private final static String DEFAULT_ACTUAL_DNS_HOST = "127.0.0.1";
     private final static int DEFAULT_ACTUAL_DNS_PORT = TorServiceConstants.TOR_DNS_PORT_DEFAULT;
-    
-    private boolean isRestart = false;
+
+
+	File filePdnsd = null;
+
+	private boolean isRestart = false;
     
     private VpnService mService;
     
 
-    static{
-    	  System.loadLibrary("tun2socks");
-    	}
-    
     public OrbotVpnManager (VpnService service)
     {
     	mService = service;
-    }
+		filePdnsd = mService.getDir(TorServiceConstants.DIRECTORY_TOR_BINARY, Application.MODE_PRIVATE);
+
+	}
    
     //public int onStartCommand(Intent intent, int flags, int startId) {
     public int handleIntent(Builder builder, Intent intent) {
@@ -394,12 +396,8 @@ public class OrbotVpnManager implements Handler.Callback {
     
     }
 
-    File filePdnsd = null;
-
     private void startDNS (String dns, int port) throws IOException, TimeoutException
     {
-		File filePdnsd = null;//getDir(TorServiceConstants.DIRECTORY_TOR_BINARY, Application.MODE_PRIVATE);
-
     	makePdnsdConf(mService, dns, port,filePdnsd.getParentFile() );
     	
         ArrayList<String> customEnv = new ArrayList<String>();
