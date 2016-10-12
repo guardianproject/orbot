@@ -86,7 +86,9 @@ public class OrbotVpnManager implements Handler.Callback {
     public OrbotVpnManager (VpnService service)
     {
     	mService = service;
-		filePdnsd = mService.getDir(TorServiceConstants.DIRECTORY_TOR_BINARY, Application.MODE_PRIVATE);
+
+		File fileBinHome = mService.getDir(TorServiceConstants.DIRECTORY_TOR_BINARY, Application.MODE_PRIVATE);
+		filePdnsd = new File(fileBinHome,TorServiceConstants.PDNSD_ASSET_KEY);
 
 	}
    
@@ -428,8 +430,19 @@ public class OrbotVpnManager implements Handler.Callback {
     	ps.close();
     	
         //f.withWriter { out -> out.print conf };
-        
-        
+
+        /**
+		 *
+
+		 server {
+		 label= "upstream";
+		 ip = %s;
+		 port = %d;
+		 uptest = none;
+		 }
+		 */
+
+
         File cache = new File(fileDir,"pdnsd.cache");
 
         if (!cache.exists()) {

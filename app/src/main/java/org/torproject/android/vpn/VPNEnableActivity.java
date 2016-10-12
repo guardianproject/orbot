@@ -71,7 +71,6 @@ public class VPNEnableActivity extends Activity {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 		        Prefs.putUseVpn(true);
-		        
 				startVpnService();
 				
 			}

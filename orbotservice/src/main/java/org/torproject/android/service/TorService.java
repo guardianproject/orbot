@@ -121,7 +121,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     public static File fileObfsclient;
     public static File fileXtables;
     public static File fileTorRc;
-    public static File filePdnsd;
 
 
     public void debug(String msg)
@@ -227,8 +226,11 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         }
         
         mNotifyBuilder.setOngoing(Prefs.persistNotifications());
-        
-        mNotification = mNotifyBuilder.build();
+        mNotifyBuilder.setPriority(Notification.PRIORITY_LOW);
+         mNotifyBuilder.setCategory(Notification.CATEGORY_SERVICE);
+
+
+         mNotification = mNotifyBuilder.build();
         
         if (Build.VERSION.SDK_INT >= 16 && Prefs.expandedNotifications()) {
             // Create remote view that needs to be set as bigContentView for the notification.
@@ -531,7 +533,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             fileObfsclient = new File(appBinHome, TorServiceConstants.OBFSCLIENT_ASSET_KEY);
             fileXtables = new File(appBinHome, TorServiceConstants.IPTABLES_ASSET_KEY);
             fileTorRc = new File(appBinHome, TorServiceConstants.TORRC_ASSET_KEY);
-            filePdnsd = new File(appBinHome, TorServiceConstants.PDNSD_ASSET_KEY);
 
             mEventHandler = new TorEventHandler(this);
 
@@ -726,7 +727,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             // these states should probably be handled better
             sendCallbackLogMessage("Ignoring start request, currently " + mCurrentStatus);
             return;
-        } else if (mCurrentStatus == STATUS_ON && findExistingTorDaemon()) {
+        } else if (mCurrentStatus == STATUS_ON) {
         
             sendCallbackLogMessage("Ignoring start request, already started.");
             
@@ -1444,7 +1445,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         @Override
         public void onReceive(Context context, Intent intent) {
 
-        	if (mCurrentStatus != STATUS_ON)
+        	if (mCurrentStatus == STATUS_OFF)
         		return;
         	
             SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
@@ -1484,39 +1485,36 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 {
                     logNotice(context.getString(R.string.no_network_connectivity_putting_tor_to_sleep_));
                     showToolbarNotification(getString(R.string.no_internet_connection_tor),NOTIFY_ID,R.drawable.ic_stat_tor_off);
-                    
+
                 }
                 else
                 {
                     logNotice(context.getString(R.string.network_connectivity_is_good_waking_tor_up_));
                     showToolbarNotification(getString(R.string.status_activated),NOTIFY_ID,R.drawable.ic_stat_tor);
                 }
-	            
-	            //is this a change in state?
-	            if (isChanged)
-	            {
-	                try {
-	                    
-	                    if (mCurrentStatus != STATUS_OFF)
-	                    {
-	                        if (mConnectivity)
-	                        {
-	                            if (Prefs.useRoot() && Prefs.useTransparentProxying() && Prefs.transProxyNetworkRefresh())
-	                            {
-	                                
 
-	                                disableTransparentProxy();
-	                                enableTransparentProxy();
+                try {
 
-	                            }
-	                        }
-	                    }
-	                    
-	                } catch (Exception e) {
-	                    logException ("error updating state after network restart",e);
-	                }
+                    if (mCurrentStatus != STATUS_OFF)
+                    {
+                        if (mConnectivity)
+                        {
+                            if (Prefs.useRoot() && Prefs.useTransparentProxying() && Prefs.transProxyNetworkRefresh())
+                            {
+
+
+                                disableTransparentProxy();
+                                enableTransparentProxy();
+
+                            }
+                        }
+                    }
+
+                } catch (Exception e) {
+                    logException ("error updating state after network restart",e);
+                }
 		            
-	            }
+
             }
 
             

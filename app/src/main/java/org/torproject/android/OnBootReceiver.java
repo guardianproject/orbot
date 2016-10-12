@@ -16,10 +16,9 @@ public class OnBootReceiver extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
-	    Prefs.setContext(context);
-		if (Prefs.startOnBoot() && (!sReceivedBoot))
-		{			
 
+		if (Prefs.startOnBoot() && (!sReceivedBoot))
+		{
 			if (Prefs.useVpn())
 				startVpnService(context); //VPN will start Tor once it is done
 			else

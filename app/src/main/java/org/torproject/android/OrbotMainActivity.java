@@ -52,6 +52,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -70,10 +71,10 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -89,9 +90,9 @@ public class OrbotMainActivity extends AppCompatActivity
     private TextView uploadText = null;
     private TextView mTxtOrbotLog = null;
     
-    private Button mBtnBrowser = null;
-    private ToggleButton mBtnVPN = null;
-    private ToggleButton mBtnBridges = null;
+   // private Button mBtnBrowser = null;
+    private SwitchCompat mBtnVPN = null;
+    private SwitchCompat mBtnBridges = null;
     
     private Spinner spnCountries = null;
 
@@ -257,7 +258,7 @@ public class OrbotMainActivity extends AppCompatActivity
     
         // Gesture detection
 		mGestureDetector = new GestureDetector(this, new MyGestureDetector());
-		
+		/**
 		mBtnBrowser = (Button)findViewById(R.id.btnBrowser);
 		mBtnBrowser.setOnClickListener(new View.OnClickListener ()
 		{
@@ -271,8 +272,9 @@ public class OrbotMainActivity extends AppCompatActivity
 		});
 		
 		mBtnBrowser.setEnabled(false);
-		
-		mBtnVPN = (ToggleButton)findViewById(R.id.btnVPN);
+		 */
+
+		mBtnVPN = (SwitchCompat)findViewById(R.id.btnVPN);
 		
 		boolean canDoVPN = Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH;
 
@@ -292,24 +294,23 @@ public class OrbotMainActivity extends AppCompatActivity
 				startActivity(new Intent(OrbotMainActivity.this,VPNEnableActivity.class));
 			}
 			
-			mBtnVPN.setOnClickListener(new View.OnClickListener ()
-			{
-	
-				@Override
-				public void onClick(View v) {
-	
-					if (mBtnVPN.isChecked())
-						startActivity(new Intent(OrbotMainActivity.this,VPNEnableActivity.class));
-					else
-						stopVpnService();
-					
-				}
-	
-			});
+			mBtnVPN.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+            {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
+                {
+                    if (isChecked)
+                        startActivity(new Intent(OrbotMainActivity.this,VPNEnableActivity.class));
+                    else
+                        stopVpnService();
+                }
+            });
+
+
 		}
 		
 		
-		mBtnBridges = (ToggleButton)findViewById(R.id.btnBridges);
+		mBtnBridges = (SwitchCompat)findViewById(R.id.btnBridges);
 		mBtnBridges.setChecked(Prefs.bridgesEnabled());
 		mBtnBridges.setOnClickListener(new View.OnClickListener ()
 		{
@@ -323,7 +324,6 @@ public class OrbotMainActivity extends AppCompatActivity
 				}
 				else
 				{
-					Toast.makeText(OrbotMainActivity.this, R.string.note_only_standard_tor_bridges_work_on_intel_x86_atom_devices, Toast.LENGTH_LONG).show();
 					showGetBridgePrompt(""); //if other chip ar, only stock bridges are supported
 				}
 			}
@@ -1063,11 +1063,7 @@ public class OrbotMainActivity extends AppCompatActivity
     protected void onResume() {
         super.onResume();
 
-        if (mPrefs != null)
-        {
-			mBtnVPN.setChecked(Prefs.useVpn());			
-			mBtnBridges.setChecked(Prefs.bridgesEnabled());
-        }
+        mBtnBridges.setChecked(Prefs.bridgesEnabled());
 
 		requestTorStatus();
 
@@ -1124,7 +1120,7 @@ public class OrbotMainActivity extends AppCompatActivity
         	
             imgStatus.setImageResource(R.drawable.toron);
 
-            mBtnBrowser.setEnabled(true);
+          //mBtnBrowser.setEnabled(true);
 
             if (torServiceMsg != null)
             {
@@ -1170,7 +1166,7 @@ public class OrbotMainActivity extends AppCompatActivity
             else
             	lblStatus.setText(getString(R.string.status_starting_up));
             
-            mBtnBrowser.setEnabled(false);
+       //     mBtnBrowser.setEnabled(false);
 
         } else if (torStatus == TorServiceConstants.STATUS_STOPPING) {
 
@@ -1179,13 +1175,13 @@ public class OrbotMainActivity extends AppCompatActivity
         	  
             imgStatus.setImageResource(R.drawable.torstarting);
             lblStatus.setText(torServiceMsg);
-            mBtnBrowser.setEnabled(false);
+          //  mBtnBrowser.setEnabled(false);
 
         } else if (torStatus == TorServiceConstants.STATUS_OFF) {
 
             imgStatus.setImageResource(R.drawable.toroff);
             lblStatus.setText(getString(R.string.press_to_start));
-            mBtnBrowser.setEnabled(false);
+//            mBtnBrowser.setEnabled(false);
         }
 
         if (torServiceMsg != null && torServiceMsg.length() > 0)
