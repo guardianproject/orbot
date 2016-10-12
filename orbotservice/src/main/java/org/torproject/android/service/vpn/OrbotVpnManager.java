@@ -41,10 +41,13 @@ import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.transproxy.TorifiedApp;
 import org.torproject.android.service.util.TorServiceUtils;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.InetAddress;
 import java.util.ArrayList;
@@ -405,13 +408,25 @@ public class OrbotVpnManager implements Handler.Callback {
         ArrayList<String> customEnv = new ArrayList<String>();
     	String baseDirectory = filePdnsd.getParent();
 
-        String cmdString = "sh " + filePdnsd.getCanonicalPath() +
-        		" -c " + baseDirectory + "/pdnsd.conf";
-
-		Process proc = Runtime.getRuntime().exec(cmdString);
+        String[] cmdString = {filePdnsd.getCanonicalPath(),"-c",baseDirectory + "/pdnsd.conf"};
+        ProcessBuilder pb = new ProcessBuilder(cmdString);
+        pb.redirectErrorStream(true);
+		Process proc = pb.start();
 		try { proc.waitFor();} catch (Exception e){}
 
         Log.i(TAG,"PDNSD: " + proc.exitValue());
+
+        if (proc.exitValue() != 0)
+        {
+            BufferedReader br = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+
+            String line = null;
+            while ((line = br.readLine ()) != null) {
+                Log.d(TAG,"pdnsd: " + line);
+            }
+
+        }
+
         
     }
     
@@ -428,20 +443,6 @@ public class OrbotVpnManager implements Handler.Callback {
     	PrintStream ps = new PrintStream(fos);
     	ps.print(conf);
     	ps.close();
-    	
-        //f.withWriter { out -> out.print conf };
-
-        /**
-		 *
-
-		 server {
-		 label= "upstream";
-		 ip = %s;
-		 port = %d;
-		 uptest = none;
-		 }
-		 */
-
 
         File cache = new File(fileDir,"pdnsd.cache");
 
