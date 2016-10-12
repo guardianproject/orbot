@@ -28,6 +28,7 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -102,7 +103,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     private int mNetworkType = -1;
 
     private NotificationManager mNotificationManager = null;
-    private Notification.Builder mNotifyBuilder;
+    private NotificationCompat.Builder mNotifyBuilder;
     private Notification mNotification;
     private boolean mNotificationShowing = false;
 
@@ -203,7 +204,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 
             if (mNotifyBuilder == null)
             {
-                mNotifyBuilder = new Notification.Builder(this)
+                mNotifyBuilder = new NotificationCompat.Builder(this)
                     .setContentTitle(getString(R.string.app_name))
                     .setSmallIcon(R.drawable.ic_stat_tor);
 
