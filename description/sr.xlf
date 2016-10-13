@@ -6,18 +6,21 @@
     <body>
       <trans-unit id="title" maxwidth="30" size-unit="char">
         <source>Orbot</source>
+        <target>Орбот</target>
         <note from="developer">This is limited by Google to 30 characters</note>
       </trans-unit>
       <trans-unit id="shortdescription" maxwidth="80" size-unit="char">
         <source>Protect your privacy with this proxy with Tor</source>
-        <target>Zaštitite svoju privatnost ovim proksijem sa Tor-om</target>
+        <target>Заштитите вашу приватност овим проксијем помоћу Тора</target>
         <note from="developer">This is limited by Google to 80 characters</note>
       </trans-unit>
       <trans-unit id="intro">
         <source>Orbot is a free proxy app that empowers other apps to use the internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.</source>
+        <target>Орбот је бесплатна прокси апликација која даје моћ другим апликацијама да безбедније користе интернет. Орбот користи Тор за шифровање вашег интернет саобраћаја и онда га скрива слањем кроз низ рачунара широм света. Тор је слободан софтвер и отворена мрежа која помаже да се одбраните од разних облика надзора мрежа који угрожавају личну слободу и приватност, поверљиве пословне активности и личне односе и државне безбедности познате као анализа саобраћаја.</target>
       </trans-unit>
       <trans-unit id="intro2">
         <source>Orbot is the only app that creates a truly private internet connection. As the New York Times writes, “when a communication arrives from Tor, you can never know where or whom it’s from.” Tor won the 2012 Electronic Frontier Foundation (EFF) Pioneer Award.</source>
+        <target>Орбот је једина апликација која прави истински приватну везу са интернетом. Како Нјујорк Тајмс магазин пише: „када комуникација дође са Тор мреже, никада не можете да будете сигурни одакле или од кога је.“ Тор је добио пионир награду Електронске граничне фондације (ЕFF) 2012. године.</target>
       </trans-unit>
       <trans-unit id="intro2">
         <source>ACCEPT NO SUBSTITUTES: Orbot is the safest way to use the Internet on Android. Period. Orbot bounces your encrypted traffic several times through computers around the world, instead of connecting you directly like VPNs and proxies. This process takes a little longer, but the strongest privacy and identity protection available is worth the wait.</source>
@@ -38,55 +41,62 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="expertrootmode">
         <source>***Expert Root Mode***</source>
+        <target>***Корени режим за стручњаке***</target>
       </trans-unit>
       <trans-unit id="universalmode">
         <source>UNIVERSAL MODE: Orbot can be configured to transparently proxy all of your Internet traffic through Tor. You can also choose which specific apps you want to use through Tor.</source>
+        <target>УНИВЕРЗАЛНИ РЕЖИМ: Орбот може да се подеси да транспарентно шаље кроз прокси сав ваш интернет саобраћај. Можете и да изаберете одређене апликације које желите да користите кроз Тор мрежу.</target>
       </trans-unit>
       <trans-unit id="wespeakyourlanguage">
         <source>★ WE SPEAK YOUR LANGUAGE: Orbot is available for friends who speak:</source>
-        <target>MI GOVORIMO TVOJIM JEZIKOM: Orbot je dostupan prijateljima koji govore:</target>
+        <target>★ МИ ГОВОРИМО ВАШИМ ЈЕЗИКОМ: Орбот је доступан за пријатеље који говоре:</target>
       </trans-unit>
       <trans-unit id="languagelist" translate="no">
         <source>العربية, azərbaycanca, български, català, Čeština, dansk, Deutsch, Ελληνικά, English, español, eesti, euskara, فارسی, suomi, français, galego, hrvatski, magyar, עברית, íslenska, italiano, 日本語, 한국어, lietuvių, latviešu, Македонци, Bahasa Melayu, Nederlands, norsk, polski, português, Русский, slovenčina, slovenščina, српски, svenska, Türkçe, українська, Tagalog, Tiếng Việt, 中文(简体), 中文(台灣)</source>
+        <target>العربية, azərbaycanca, български, català, Čeština, dansk, Deutsch, Ελληνικά, English, español, eesti, euskara, فارسی, suomi, français, galego, hrvatski, magyar, עברית, íslenska, italiano, 日本語, 한국어, lietuvių, latviešu, Македонци, Bahasa Melayu, Nederlands, norsk, polski, português, Русский, slovenčina, slovenščina, српски, svenska, Türkçe, українська, Tagalog, Tiếng Việt, 中文(简体), 中文(台灣)</target>
         <note from="developer">Do not translate the names of the languages, leave them just like this.</note>
       </trans-unit>
       <trans-unit id="helptranslate">
         <source>Don’t see your language? Join us and help translate the app:</source>
-        <target>Ne vidiš svoj jezik na listi? Pridruzi nam se i pomozi da prevedemo aplikaciju:</target>
+        <target>Не видите ваш језик на списку? Придружите нам се помозите да преведемо апликацију:</target>
       </trans-unit>
       <trans-unit id="helptranslateurl" translate="no">
         <source>https://www.transifex.com/projects/p/orbot</source>
+        <target>https://www.transifex.com/projects/p/orbot</target>
         <note from="developer">Do not translate this.</note>
       </trans-unit>
       <trans-unit id="learnmore">
         <source>***Learn More***</source>
-        <target>*** Nauči više ***</target>
+        <target>*** Сазнајте више ***</target>
       </trans-unit>
       <trans-unit id="aboutus">
         <source>★ ABOUT US: Guardian Project is a group of developers that make secure mobile apps and open-source code for a better tomorrow</source>
+        <target>★ О НАМА: Гардијан пројекат (Guardian Project) је група програмера који праве безбедне мобилне апликације отвореног кôда за боље сутра</target>
       </trans-unit>
       <trans-unit id="ourwebsite">
         <source>★ OUR WEBSITE: https://GuardianProject.info</source>
-        <target>NAŠ VEB SAJT: https://GuardianProject.info</target>
+        <target>★ НАШ ВЕБСАЈТ: https://GuardianProject.info</target>
       </trans-unit>
       <trans-unit id="abouttor">
         <source>★ ABOUT TOR: https://TorProject.org</source>
-        <target>INFORMACIJE O TORU: https://TorProject.org</target>
+        <target>★ О ТОРУ: https://TorProject.org</target>
       </trans-unit>
       <trans-unit id="ontwitter">
         <source>★ ON TWITTER: https://twitter.com/guardianproject</source>
-        <target>NAŠ TWITTER: https://twitter.com/guardianproject</target>
+        <target>★ НА ТВИТЕРУ: https://twitter.com/guardianproject</target>
       </trans-unit>
       <trans-unit id="freesoftware">
         <source>★ FREE SOFTWARE: Orbot is free software. Take a look at our source code, or join the community to make it better:</source>
+        <target>★ СЛОБОДАН СОФТВЕР: Орбот је слободан софтвер. Погледајте изворни кôд, или се придружите заједници да је учините још бољом:</target>
       </trans-unit>
       <trans-unit id="gitrepo" translate="no">
         <source>https://gitweb.torproject.org/orbot.git</source>
+        <target>https://gitweb.torproject.org/orbot.git</target>
         <note from="developer">Do not translate this.</note>
       </trans-unit>
       <trans-unit id="messageus">
         <source>★ MESSAGE US: Are we missing your favorite feature? Found an annoying bug? Please tell us! We’d love to hear from you. Send us an email: support@guardianproject.info or find us in our chat room https://guardianproject.info/contact</source>
-        <target>KONTAKTIRAJTE NAS: Da li smo propustili vaš omiljeni sadržaj? Naišli ste smetnje? Molim vas recite nam! Voleli bismo da čujemo vaše mišljenje. Pošaljite nam e-mail: support@guardianproject.info ili nas pronađite u čet sobi https://guardianproject.info/contact</target>
+        <target>★ ПОШАЉИТЕ НАМ ПОРУКУ: Фали нам ваша омиљена функционалност? Пронашли сте иритирајућу грешку? Волели бисмо да чујемо ваше мишљење! Пошаљите нам е-пошту на support@guardianproject.info или нас пронађите у нашој соби за ћаскање https://guardianproject.info/contact</target>
       </trans-unit>
     </body>
   </file>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Orbot</string>
+  <string name="internal_web_url">http://orbot/</string>
+  <string name="default_web_url">http://check.torproject.org</string>
+  <string name="secure_default_web_url">https://check.torproject.org</string>
+  <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
+  <string name="control_permission_label">mulai dan akhiri Tor</string>
+  <string name="tor_proxy_service_process">torproxyservice</string>
+  <string name="status_starting_up">Orbot sedang dimulai…</string>
+  <string name="status_activated">Tersambung ke Jaringan Tor</string>
+  <string name="status_disabled">Orbot telah dibatalkan</string>
+  <string name="status_shutting_down">Orbot sedang dimatikan</string>
+  <string name="not_anonymous_yet">PERINGATAN: </string>
+  <string name="menu_home">Home</string>
+  <string name="menu_browse">Jelajahi</string>
+  <string name="menu_settings">Pengaturan</string>
+  <string name="menu_log">Log</string>
+  <string name="menu_info">Bantuan</string>
+  <string name="menu_about">Mengenai</string>
+  <string name="button_help">Bantuan</string>
+  <string name="button_close">Dekat</string>
+  <string name="button_about">Mengenai</string>
+  <string name="button_clear_log">Hapus Log</string>
+  <string name="menu_verify">Periksa</string>
+  <string name="menu_exit">Keluar</string>
+  <string name="pref_transparent_all_title">Tor Semuanya</string>
+  <string name="pref_transparent_port_title">Daftar Port</string>
+  <string name="pref_has_root">Minta Akses Dasar</string>
+  <string name="btn_back">Kembali</string>
+  <string name="btn_cancel">Batal</string>
+  <!--Welcome Wizard strings (DJH)-->
+  <string name="wizard_proxy_help_info">Pengaturan Proxy</string>
+  <!--END Welcome Wizard strings (DJH)-->
+  <string name="pref_general_group">Umum</string>
+  <!--New Wizard Strings-->
+  <!--Title Screen-->
+  <!--Warning screen-->
+  <string name="wizard_warning_title">Peringatan</string>
+  <!--Permissions screen-->
+  <!--TipsAndTricks screen-->
+  <!--Transparent Proxy screen-->
+  <string name="wizard_transproxy_none">Tidak ada</string>
+  <string name="status">Status</string>
+  <string name="error">Kesalahan</string>
+  <string name="default_bridges"></string>
+  <string name="btn_save_settings">Simpan Pengaturan</string>
+</resources>

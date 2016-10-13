@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="org.torproject.android" 
-      android:versionName="15.1.3-beta" 
-      android:versionCode="15130000"
+      android:versionName="15.2.0-alpha-1" 
+      android:versionCode="15200001"
         android:installLocation="auto"      
       >
-    <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="23"/>
+    <uses-sdk android:minSdkVersion="9" android:targetSdkVersion="23"/>
     <!-- 
  <permission android:name="org.torproject.android.MANAGE_TOR" 
      android:label="@string/permission_manage_tor_label" 
@@ -103,7 +103,7 @@
              </intent-filter>
         </receiver>
 
-   	<receiver android:name="org.torproject.android.service.OnBootReceiver"
+   	<receiver android:name="org.torproject.android.OnBootReceiver"
    	    android:enabled="true" android:exported="true"
    	    
    	    >

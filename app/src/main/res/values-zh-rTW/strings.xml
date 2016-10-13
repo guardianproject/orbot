@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Orbot</string>
+  <string name="app_description">Orbot是一款免費的網絡代理應用程式，用來保護其他應用程式的上網安全。
+Orbot使用Tor在全球一系列的電腦間跳躍，以便隱藏網路流量並加密。Tor是個免費軟體也是個開放網路，能幫您抵禦流量分析。它是某一種網路監控，牽涉到個人的自由與隱私、商業部分的機密關係和活動、甚至國家安全。</string>
+  <string name="internal_web_url">http://orbot/</string>
+  <string name="default_web_url">http://check.torproject.org</string>
+  <string name="secure_default_web_url">https://check.torproject.org</string>
+  <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
+  <string name="control_permission_label">開始和停止 Tor</string>
+  <string name="tor_proxy_service_process">tor 代理服務</string>
+  <string name="status_starting_up">Orbot 正在啟動中...</string>
+  <string name="status_activated">已連線至 Tor 網路</string>
+  <string name="status_disabled">Orbot 已停用</string>
+  <string name="status_shutting_down">Tor服務 正在關閉</string>
+  <string name="tor_process_starting">啟動Tor 用戶端...</string>
+  <string name="tor_process_complete">完成。</string>
+  <string name="tor_process_waiting">等待。</string>
+  <string name="not_anonymous_yet">警告：您的網路尚未匿名！請設定您的應用程式使用HTTP 代理伺服器 127.0.0.1:8118 或 SOCKS4A 或 SOCKS5 代理伺服器 127.0.0.1:9050</string>
+  <string name="menu_home">首頁</string>
+  <string name="menu_browse">瀏覽</string>
+  <string name="menu_settings">設定</string>
+  <string name="menu_log">記錄檔</string>
+  <string name="menu_info">說明</string>
+  <string name="menu_apps">VPN</string>
+  <string name="menu_start">開始</string>
+  <string name="menu_stop">停止</string>
+  <string name="menu_about">關於</string>
+  <string name="menu_promo_apps">取得應用程式…</string>
+  <string name="main_layout_download">下載</string>
+  <string name="main_layout_upload">上傳</string>
+  <string name="button_help">說明</string>
+  <string name="button_close">關閉</string>
+  <string name="button_about">關於</string>
+  <string name="button_clear_log">清除記錄檔</string>
+  <string name="menu_verify">檢查</string>
+  <string name="menu_exit">離開</string>
+  <string name="menu_scan">掃描連接橋QR</string>
+  <string name="menu_share_bridge">分享連接橋QR</string>
+  <string name="press_to_start">- 請長按以開始 - </string>
+  <string name="pref_trans_proxy_group">通透式代理伺服器(需要 Root)</string>
+  <string name="pref_trans_proxy_title">通透式代理伺服器</string>
+  <string name="pref_trans_proxy_summary">自動啟動 Tor於應用程式</string>
+  <string name="pref_transparent_all_title">Tor Everything</string>
+  <string name="pref_transparent_all_summary">所有應用程式皆透過Tor 代理伺服器</string>
+  <string name="pref_transparent_port_fallback_title">備用連接埠代理</string>
+  <string name="pref_transparent_port_fallback_summary">警告: 避免常用的埠口(80、443等等)。在「所有」或是「App」模式都失效的時候*才使用*。</string>
+  <string name="pref_transparent_port_title">埠清單</string>
+  <string name="pref_transparent_port_dialog">輸入代理埠</string>
+  <string name="pref_has_root">請求 Root 存取權</string>
+  <string name="pref_has_root_summary">爲通透式代理請求 Root 存取權</string>
+  <string name="status_install_success">Tor 二進制檔案安裝成功！</string>
+  <string name="title_error">應用程式錯誤</string>
+  <string name="wizard_title">Orbot</string>
+  <string name="wizard_btn_tell_me_more">關於 Orbot</string>
+  <string name="btn_next">前進</string>
+  <string name="btn_back">返回</string>
+  <string name="btn_finish">結束</string>
+  <string name="btn_okay">確定</string>
+  <string name="btn_cancel">取消</string>
+  <!--Welcome Wizard strings (DJH)-->
+  <string name="wizard_details">Orbot 的一些詳細資料</string>
+  <string name="wizard_details_msg">Orbot是個開源的應用程式，包含了Tor，LibEvent和Polipo。它提供了本地HTTP代理 (8118)和SOCKS代理 (9050)以進入Tor網路。Orbot也能夠在已Root的裝置上，以Tor傳送所有的網路流量。</string>
+  <string name="wizard_permissions_root">已取得權限</string>
+  <string name="wizard_permissions_stock">Orbot 權限</string>
+  <string name="wizard_configure">組態 Tor 網路</string>
+  <string name="wizard_configure_all">所有應用程式都透過 Tor 代理</string>
+  <string name="wizard_tips_duckgo">DuckDuckGo 搜尋引擎應用程式</string>
+  <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
+  <string name="wizard_proxy_help_info">代理伺服器設定</string>
+  <!--END Welcome Wizard strings (DJH)-->
+  <string name="pref_general_group">一般</string>
+  <string name="pref_start_boot_summary">當你的 Android  裝置啟動時自動開啟 Orbot 並連接 Tor 網路</string>
+  <!--New Wizard Strings-->
+  <!--Title Screen-->
+  <!--Warning screen-->
+  <string name="wizard_warning_title">警告</string>
+  <!--Permissions screen-->
+  <string name="wizard_permissions_title">權限</string>
+  <!--TipsAndTricks screen-->
+  <string name="wizard_tips_play">在 Google Play 尋找所有的 Guardian Project 應用程式</string>
+  <!--Transparent Proxy screen-->
+  <string name="wizard_transproxy_title">通透式代理</string>
+  <string name="wizard_transproxy_none">無</string>
+  <string name="pref_select_apps">選擇應用程式</string>
+  <string name="button_invert_selection">反向選擇</string>
+  <string name="status">狀態</string>
+  <string name="error">錯誤</string>
+  <string name="enter_ports">輸入埠</string>
+  <string name="project_home">專案首頁：</string>
+  <string name="https_torproject_org">https://torproject.org</string>
+  <string name="third_party_software">第三方軟體：</string>
+  <string name="tor_version">Tor: https://www.torproject.org</string>
+  <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
+  <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
+  <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
+  <string name="openssl_version">OpenSSL v1.0.1q: http://www.openssl.org</string>
+  <string name="default_bridges"></string>
+  <string name="set_locale_title">語言</string>
+  <string name="wizard_locale_title">選擇語言</string>
+  <string name="btn_save_settings">儲存設定</string>
+  <string name="menu_verify_browser">瀏覽器</string>
+  <string name="permission_manage_tor_label">管理 Tor</string>
+  <string name="install_apps_">安裝應用程式？</string>
+  <string name="pref_socks_title">Tor SOCKS</string>
+  <string name="pref_dnsport_title">Tor DNS 埠</string>
+  <string name="menu_vpn">VPN</string>
+  <string name="kbps">kbps</string>
+  <string name="mbps">mbps</string>
+  <string name="kb">KB</string>
+  <string name="mb">MB</string>
+  <string name="menu_qr">QR 碼</string>
+  <string name="send_email">寄送電子信件</string>
+  <string name="standard_browser">標準版瀏覽器</string>
+  <string name="vpn_default_world">世界</string>
+</resources>

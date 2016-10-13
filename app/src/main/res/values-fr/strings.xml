@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Orbot</string>
+  <string name="app_description">Orbot est une application proxy gratuite qui améliore l\'utilisation plus sécurisée des applications. Orbot utilise Tor pour crypter votre trafic internet et le cacher en passant par une série d\'ordinateur partout dans le monde. Tor est un logiciel gratuit et un réseau ouvert qui vous aide à vous défendre contre les surveillances de réseau qui font peur à la liberté personnelle et la vie privée, les activités confidentielles des entreprises et des relations, et l\'état de la sécurité connu sous le nom d\'analyse de trafic.</string>
+  <string name="internal_web_url">http://orbot/</string>
+  <string name="default_web_url">http://check.torproject.org</string>
+  <string name="secure_default_web_url">https://check.torproject.org</string>
+  <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
+  <string name="control_permission_label">Démarrer et arrêter Tor</string>
+  <string name="tor_proxy_service_process">torproxyservice</string>
+  <string name="status_starting_up">Démarrage de Orbot...</string>
+  <string name="status_activated">Connecté au réseau Tor</string>
+  <string name="status_disabled">Orbot est désactivé</string>
+  <string name="status_shutting_down">Le service Tor est en cours de fermeture</string>
+  <string name="tor_process_starting">Démarrage du client Tor...</string>
+  <string name="tor_process_complete">terminé.</string>
+  <string name="tor_process_waiting">en attente.</string>
+  <string name="not_anonymous_yet">ATTENTION : Votre trafic n\'est pas encore anonyme ! Veuillez configurer votre application pour utiliser le proxy HTTP 127.0.0.1:8118 ou le proxy SOCKS4A ou SOCKS5A 172.0.0.1:9050</string>
+  <string name="menu_home">Accueil</string>
+  <string name="menu_browse">Naviguer</string>
+  <string name="menu_settings">Paramètres</string>
+  <string name="menu_log">Log</string>
+  <string name="menu_info">Aide</string>
+  <string name="menu_apps">VPN</string>
+  <string name="menu_start">Démarrer</string>
+  <string name="menu_stop">Arrêter</string>
+  <string name="menu_about">A propos</string>
+  <string name="menu_promo_apps">Obtenir des applications</string>
+  <string name="main_layout_download">Télécharger</string>
+  <string name="main_layout_upload">Envoyer</string>
+  <string name="button_help">Aide</string>
+  <string name="button_close">Fermer</string>
+  <string name="button_about">A propos</string>
+  <string name="button_clear_log">Effacer la log</string>
+  <string name="menu_verify">Vérifier</string>
+  <string name="menu_exit">Quitter</string>
+  <string name="menu_scan">Analyser BridgeQR</string>
+  <string name="menu_share_bridge">Partager BridgeQR</string>
+  <string name="press_to_start">- appui long pour commencer -</string>
+  <string name="pref_trans_proxy_group">Passage du trafic Internet de manière transparente (Requiert le Root)</string>
+  <string name="pref_trans_proxy_title">Passage du trafic Internet de manière transparente</string>
+  <string name="wizard_title">Orbot</string>
+  <!--Welcome Wizard strings (DJH)-->
+  <!--END Welcome Wizard strings (DJH)-->
+  <!--New Wizard Strings-->
+  <!--Title Screen-->
+  <!--Warning screen-->
+  <!--Permissions screen-->
+  <!--TipsAndTricks screen-->
+  <!--Transparent Proxy screen-->
+  <string name="wizard_transproxy_title">Passage du trafic Internet de manière transparente</string>
+  <string name="default_bridges"></string>
+  <string name="menu_vpn">VPN</string>
+</resources>
