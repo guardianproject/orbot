@@ -1,5 +1,53 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+/** 15.2.0 BETA 1 / 13 October 2016 **/
+
+cd8b549 add the compiled tun2socks lib for devs who just want to work on UI
+3c181bc add the proguard rules
+9948975 we aren't going to show a notification light
+50f33c9 make sure we set VPN mode properly before we launch the service
+9de4f54 using compat builder for notifications
+3308602 improve the code for launching the pdnsd daemon
+da0fb10 multiple fixes to re-enable VPN mode and pdnsd daemon
+ca238c6 continued re-integration of VPN feature
+1614921 clean pdnsd binaries from libs in Makefile
+1db5676 continue to migrate service and VPN code
+d5f2c06 remove vpn code that is now in the service module
+34c7cfd modify jni build inclusion
+268002b fix build scripts for new paths
+6333a45 update gitignore to handle orbotservice binary libs
+d2cf545 move jni code and VPN logic from app module to service
+9f61afc improve tor service event handling and display
+ebc046e remove littleproxy reference (for now!)
+7c3a16f we don't need a separate service for the VPN
+7950cac remove dated information in the BUILD file
+9afbb00 update gradle props and ignore files we don't want in repo
+7284a5e make sure Tor start/stop work - use Process instance instead of processID lookup - reply on Tor's HALT command
+55e08b9 tweak homescreen layout and strings
+d56fdb2 renable polipo
+90d77ce modify imports
+1ffea58 udpate resource paths
+bab7904 target API 14
+aba7f8e update gitignores for gradle
+912cb74 update tor to 0.2.8.7
+5a4e00a fix paths for new module layout
+ecf9023 remove old binaries
+10f1ade update makefile and add new patch
+b52023a move assets to service project
+549399b launch default activity from notification
+6d0fdbb update gitignore for gradle project
+56683a3 add pdnsd library in for vpn service DNS!
+29fd07a remove patches from here, moved to external
+0f00e12 move patches to external since that is what it is applied to (external code)
+54b3349 remove redundant code from old ant build format (not in gradle modules)
+18682e4 big check-in of major gradle refactor; now building and running! VPN features are disabled for now
+bdb5893 update translations
+4023354 Merge branch 'master' of github.com:n8fr8/orbot
+6e45c07 Merge pull request #32 from ghost/patch-1
+21c5bcc Remove typo
+5adcbec Start the meek transport for custom meek bridges
+
+
 /** 15.1.3 BETA 1 / 9-March-2016 / 6452075d46d7a6dd65d026dfeffcb190ff993198 **/
 
 Important fixes for VPN mode
