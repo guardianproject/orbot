@@ -219,7 +219,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         if (notifyType != NOTIFY_ID)
         {
             mNotifyBuilder.setTicker(notifyMsg);
-        //    mNotifyBuilder.setLights(Color.GREEN, 1000, 1000);
         }
         else
         {
