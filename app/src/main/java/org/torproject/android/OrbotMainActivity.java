@@ -299,6 +299,9 @@ public class OrbotMainActivity extends AppCompatActivity
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
                 {
+
+					Prefs.putUseVpn(isChecked);
+
                     if (isChecked)
                         startActivity(new Intent(OrbotMainActivity.this,VPNEnableActivity.class));
                     else
@@ -828,9 +831,15 @@ public class OrbotMainActivity extends AppCompatActivity
 
             }
         }
-        else if (request == REQUEST_VPN && response == RESULT_OK)
+        else if (request == REQUEST_VPN)
         {
-            sendIntentToService(TorServiceConstants.CMD_VPN);
+			if (response == RESULT_OK)
+            	sendIntentToService(TorServiceConstants.CMD_VPN);
+			else
+			{
+				Prefs.putUseVpn(false);
+
+			}
         }
         
         IntentResult scanResult = IntentIntegrator.parseActivityResult(request, response, data);

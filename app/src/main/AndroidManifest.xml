@@ -5,7 +5,7 @@
       android:versionCode="15200001"
         android:installLocation="auto"      
       >
-    <uses-sdk android:minSdkVersion="9" android:targetSdkVersion="23"/>
+    <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="23"/>
     <!-- 
  <permission android:name="org.torproject.android.MANAGE_TOR" 
      android:label="@string/permission_manage_tor_label" 
