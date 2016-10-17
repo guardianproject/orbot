@@ -1,6 +1,6 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
-/** 15.2.0 BETA 1 / 13 October 2016 **/
+/** 15.2.0 BETA 1 / 13 October 2016/ abaa3f83fc64b9b567a5d437d26db0f660655f35 **/
 
 cd8b549 add the compiled tun2socks lib for devs who just want to work on UI
 3c181bc add the proguard rules
