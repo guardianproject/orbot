@@ -109,8 +109,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
 	boolean mIsLollipop = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
 
-    private ExecutorService mExecutor = Executors.newFixedThreadPool(1);
-
+    private ExecutorService mExecutor = Executors.newFixedThreadPool(3);
 
     TorEventHandler mEventHandler;
 
@@ -296,7 +295,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
      */
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (intent != null)
-            new Thread (new IncomingIntentRouter(intent)).start();
+            exec (new IncomingIntentRouter(intent));
         else
             Log.d(OrbotConstants.TAG, "Got null onStartCommand() intent");
 
@@ -363,13 +362,14 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
     private void stopTor ()
     {
-        mExecutor.execute(new Runnable ()
+        exec(new Runnable ()
         {
             public void run ()
             {
                 stopTorAsync();
             }
         });
+
     }
 
     private void stopTorAsync () {

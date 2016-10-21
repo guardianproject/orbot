@@ -41,8 +41,7 @@ public class OnBootReceiver extends BroadcastReceiver {
 		Intent torService = new Intent(context, TorService.class);
 		torService.setAction(action);
 		context.startService(torService);
-		
-        
+
 	}
 	
 	
