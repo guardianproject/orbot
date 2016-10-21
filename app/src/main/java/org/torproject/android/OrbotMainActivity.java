@@ -934,11 +934,7 @@ public class OrbotMainActivity extends AppCompatActivity
             		   enableBridges(true);
             		   
             		   break;
-            	   case 5: //google
-                       Prefs.setBridgesList("0");
-            		   enableBridges(true);
-            		   break;	   
-            	   case 6:
+            	   case 5:
             		   showGetBridgePrompt("obfs4");
             		   
             		   break;
