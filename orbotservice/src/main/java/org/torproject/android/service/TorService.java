@@ -26,6 +26,7 @@ import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.support.v4.app.NotificationCompat;
@@ -208,6 +209,22 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                     .setSmallIcon(R.drawable.ic_stat_tor);
 
                 mNotifyBuilder.setContentIntent(pendIntent);
+
+                /**
+                //Restart intent
+                Intent yesReceive = new Intent();
+                yesReceive.setAction("Restart");
+                PendingIntent pendingIntentYes = PendingIntent.getBroadcast(this, 12345, yesReceive, PendingIntent.FLAG_UPDATE_CURRENT);
+                mNotifyBuilder.addAction(R.drawable.ic_stat_tor_off, "Restart", pendingIntentYes);
+
+
+                //Maybe intent
+                Intent maybeReceive = new Intent();
+                maybeReceive.setAction("Identity");
+                PendingIntent pendingIntentMaybe = PendingIntent.getBroadcast(this, 12345, maybeReceive, PendingIntent.FLAG_UPDATE_CURRENT);
+                mNotifyBuilder.addAction(R.drawable.ic_stat_tor_xfer, "New Identity", pendingIntentMaybe);
+                **/
+
             }        
                                 
         }
