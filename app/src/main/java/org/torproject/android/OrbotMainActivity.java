@@ -322,17 +322,9 @@ public class OrbotMainActivity extends AppCompatActivity
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
                 {
+                    enableVPN(isChecked);
 
-					Prefs.putUseVpn(isChecked);
 
-                    if (isChecked) {
-                        if (mIsLollipop) //let the user choose the apps
-                            startActivityForResult(new Intent(OrbotMainActivity.this, AppManager.class),REQUEST_VPN_APPS_SELECT);
-                        else
-                            startActivity(new Intent(OrbotMainActivity.this, VPNEnableActivity.class));
-                    }
-                    else
-                        stopVpnService();
                 }
             });
 
@@ -550,6 +542,19 @@ public class OrbotMainActivity extends AppCompatActivity
 		
 
 	}
+
+    private void enableVPN (boolean enable)
+    {
+        Prefs.putUseVpn(enable);
+
+        if (enable) {
+            if (mIsLollipop) //let the user choose the apps
+                startActivityForResult(new Intent(OrbotMainActivity.this, AppManager.class), REQUEST_VPN_APPS_SELECT);
+            else
+                startActivity(new Intent(OrbotMainActivity.this, VPNEnableActivity.class));
+        } else
+            stopVpnService();
+    }
 	
 	private void enableHiddenServicePort (int hsPort) throws RemoteException, InterruptedException
 	{
@@ -758,7 +763,6 @@ public class OrbotMainActivity extends AppCompatActivity
 		else
 		{
 			AlertDialog aDialog = new AlertDialog.Builder(OrbotMainActivity.this)
-              .setIcon(R.drawable.onion32)
 		      .setTitle(R.string.install_apps_)
 		      .setMessage(R.string.it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_)
 		      .setPositiveButton(R.string.install_orweb, new Dialog.OnClickListener ()
@@ -777,6 +781,13 @@ public class OrbotMainActivity extends AppCompatActivity
                 }
 		    	  
 		      })
+                    .setNeutralButton(R.string.apps_mode, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                         //   enableVPN(true);
+                            mBtnVPN.setChecked(true);
+                        }
+                    })
 		      .setNegativeButton(R.string.standard_browser, new Dialog.OnClickListener ()
 		      {
 
@@ -864,8 +875,9 @@ public class OrbotMainActivity extends AppCompatActivity
         }
         else if (request == REQUEST_VPN)
         {
-			if (response == RESULT_OK)
-            	sendIntentToService(TorServiceConstants.CMD_VPN);
+			if (response == RESULT_OK) {
+                sendIntentToService(TorServiceConstants.CMD_VPN);
+            }
 			else
 			{
 				Prefs.putUseVpn(false);
@@ -949,27 +961,17 @@ public class OrbotMainActivity extends AppCompatActivity
             		   enableBridges(true);
 
             		   break;
-            	   case 1: //obfs3
-            		   setupBridgeType("obfs3");
-            		   enableBridges(true);
-
-            		   break;
-            	   case 2: //scramblesuit
-            		   setupBridgeType("scramblesuit");
-            		   enableBridges(true);
-
-            		   break;
-            	   case 3: //azure
+            	   case 1: //azure
             		   Prefs.setBridgesList("2");
             		   enableBridges(true);
             		   
             		   break;
-            	   case 4: //amazon
+            	   case 2: //amazon
                        Prefs.setBridgesList("1");
             		   enableBridges(true);
             		   
             		   break;
-            	   case 5:
+            	   case 3:
             		   showGetBridgePrompt("obfs4");
             		   
             		   break;
@@ -1224,7 +1226,7 @@ public class OrbotMainActivity extends AppCompatActivity
         } else if (torStatus == TorServiceConstants.STATUS_OFF) {
 
             imgStatus.setImageResource(R.drawable.toroff);
-            lblStatus.setText(getString(R.string.press_to_start));
+          //  lblStatus.setText(getString(R.string.press_to_start));
             mBtnBrowser.setEnabled(false);
 
 			mBtnStart.setText(R.string.menu_start);

@@ -9,6 +9,6 @@
 		android:layout_width="fill_parent" 
 		android:layout_height="wrap_content"
 		android:textAppearance="?android:attr/textAppearanceMedium"
-		android:layout_margin="3dp"
+		android:layout_margin="6dp"
 		/>
 </ScrollView>

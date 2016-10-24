@@ -27,6 +27,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -127,7 +128,21 @@ public class AppManager extends AppCompatActivity implements OnCheckedChangeList
             loadApps(prefs);
         }
     }
-    
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                setResult(RESULT_OK);
+                finish();
+                return true;
+
+
+        }
+
+        return false;
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
