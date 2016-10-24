@@ -22,6 +22,7 @@ import org.torproject.android.service.TorService;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.TorServiceUtils;
 import org.torproject.android.settings.SettingsPreferences;
+import org.torproject.android.ui.AppManager;
 import org.torproject.android.ui.ImageProgressView;
 import org.torproject.android.ui.PromoAppsActivity;
 import org.torproject.android.ui.Rotate3dAnimation;
@@ -111,6 +112,9 @@ public class OrbotMainActivity extends AppCompatActivity
     
     private final static int REQUEST_VPN = 8888;
     private final static int REQUEST_SETTINGS = 0x9874;
+    private final static int REQUEST_VPN_APPS_SELECT = 8889;
+
+    private final static boolean mIsLollipop = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
 
     // message types for mStatusUpdateHandler
     private final static int STATUS_UPDATE = 1;
@@ -169,7 +173,8 @@ public class OrbotMainActivity extends AppCompatActivity
 
     private void stopTor() {
 
-		imgStatus.setImageResource(R.drawable.torstarting);
+        requestTorStatus();
+
         Intent torService = new Intent(OrbotMainActivity.this, TorService.class);
         stopService(torService);
 
@@ -320,8 +325,12 @@ public class OrbotMainActivity extends AppCompatActivity
 
 					Prefs.putUseVpn(isChecked);
 
-                    if (isChecked)
-                        startActivity(new Intent(OrbotMainActivity.this,VPNEnableActivity.class));
+                    if (isChecked) {
+                        if (mIsLollipop) //let the user choose the apps
+                            startActivityForResult(new Intent(OrbotMainActivity.this, AppManager.class),REQUEST_VPN_APPS_SELECT);
+                        else
+                            startActivity(new Intent(OrbotMainActivity.this, VPNEnableActivity.class));
+                    }
                     else
                         stopVpnService();
                 }
@@ -434,11 +443,12 @@ public class OrbotMainActivity extends AppCompatActivity
              Intent intent = new Intent(OrbotMainActivity.this, SettingsPreferences.class);
              startActivityForResult(intent, REQUEST_SETTINGS);
          }
+         /**
          else if (item.getItemId() == R.id.menu_promo_apps)
          {
              startActivity(new Intent(OrbotMainActivity.this, PromoAppsActivity.class));
 
-         }
+         }*/
          else if (item.getItemId() == R.id.menu_exit)
          {
                  //exit app
@@ -859,6 +869,10 @@ public class OrbotMainActivity extends AppCompatActivity
 
 			}
         }
+        else if (request == REQUEST_VPN_APPS_SELECT)
+        {
+                startActivity(new Intent(OrbotMainActivity.this, VPNEnableActivity.class));
+        }
         
         IntentResult scanResult = IntentIntegrator.parseActivityResult(request, response, data);
         if (scanResult != null) {
@@ -1190,8 +1204,10 @@ public class OrbotMainActivity extends AppCompatActivity
             }
             else
             	lblStatus.setText(getString(R.string.status_starting_up));
-            
-            mBtnBrowser.setEnabled(false);
+
+			mBtnStart.setText("...");
+
+			mBtnBrowser.setEnabled(false);
 
         } else if (torStatus == TorServiceConstants.STATUS_STOPPING) {
 

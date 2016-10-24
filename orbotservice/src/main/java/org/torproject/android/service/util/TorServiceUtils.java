@@ -146,11 +146,12 @@ public class TorServiceUtils implements TorServiceConstants {
                 shell = Shell.startShell();
             }*/
 
-            Runtime.getRuntime().exec("busybox killall " + signal + " " + fileProcBin.getName());
-			Runtime.getRuntime().exec("toolbox kill " + signal + " " + pidString);
-			Runtime.getRuntime().exec("busybox kill " + signal + " " + pidString);
-			Runtime.getRuntime().exec("kill " + signal + " " + pidString);
-            try {
+            try { Runtime.getRuntime().exec("busybox killall " + signal + " " + fileProcBin.getName());}catch(IOException ioe){}
+			try { Runtime.getRuntime().exec("toolbox kill " + signal + " " + pidString);}catch(IOException ioe){}
+			try { Runtime.getRuntime().exec("busybox kill " + signal + " " + pidString);}catch(IOException ioe){}
+			try { Runtime.getRuntime().exec("kill " + signal + " " + pidString);}catch(IOException ioe){}
+
+			try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 // ignored

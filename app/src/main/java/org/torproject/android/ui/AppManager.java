@@ -23,6 +23,8 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,7 +40,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class AppManager extends Activity implements OnCheckedChangeListener, OnClickListener, OrbotConstants {
+public class AppManager extends AppCompatActivity implements OnCheckedChangeListener, OnClickListener, OrbotConstants {
 
     private ListView listApps;
     private final static String TAG = "Orbot";
@@ -47,6 +49,8 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
         super.onCreate(savedInstanceState);
     
         this.setContentView(R.layout.layout_apps);
+        setTitle(R.string.apps_mode);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         
         Button buttonSelectAll, buttonSelectNone, buttonInvert;
 
@@ -108,15 +112,16 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
                 app = (TorifiedApp) adapter.getItem(i);
                 currentView = adapter.getView(i, parentView, viewGroup);
                 box = (CheckBox) currentView.findViewById(R.id.itemcheck);
+
                 if (this.status == 0){
-                    if (!box.isChecked())
-                        box.performClick();
+                    app.setTorified(true);
                 }else if (this.status == 1){
-                    if (box.isChecked())
-                        box.performClick();
+                    app.setTorified(false);
                 }else {
-                    box.performClick();
+                    app.setTorified(!app.isTorified());
                 }
+
+                box.setChecked(app.isTorified());
             }
             saveAppSettings(context);
             loadApps(prefs);
@@ -128,15 +133,6 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
         super.onResume();
         listApps = (ListView)findViewById(R.id.applistview);
 
-        Button btnSave = (Button)findViewById(R.id.btnsave);
-        btnSave.setOnClickListener(new OnClickListener()
-        {
-
-            public void onClick(View v) {
-                finish();
-            }
-        });
-        
         mPrefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
         loadApps(mPrefs);
     }
@@ -161,11 +157,18 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
         final LayoutInflater inflater = getLayoutInflater();
         
         ListAdapter adapter = new ArrayAdapter<TorifiedApp>(this, R.layout.layout_apps_item, R.id.itemtext,mApps) {
+
             public View getView(int position, View convertView, ViewGroup parent) {
-                ListEntry entry;
-                if (convertView == null) {
-                    // Inflate a new view
+
+                ListEntry entry = null;
+
+                if (convertView == null)
                     convertView = inflater.inflate(R.layout.layout_apps_item, parent, false);
+                else
+                    entry = (ListEntry) convertView.getTag();;
+
+                if (entry == null) {
+                    // Inflate a new view
                     entry = new ListEntry();
                     entry.icon = (ImageView) convertView.findViewById(R.id.itemicon);
                     entry.box = (CheckBox) convertView.findViewById(R.id.itemcheck);
@@ -177,19 +180,15 @@ public class AppManager extends Activity implements OnCheckedChangeListener, OnC
                     convertView.setTag(entry);
                 
                     entry.box.setOnCheckedChangeListener(AppManager.this);
-                } else {
-                    // Convert an existing view
-                    entry = (ListEntry) convertView.getTag();
                 }
-                
-                
+
                 final TorifiedApp app = mApps.get(position);
-                
-                if (app.getIcon() != null)
+
+                if (app.getIcon() != null && entry.icon != null)
                     entry.icon.setImageDrawable(app.getIcon());
                 else
                     entry.icon.setVisibility(View.GONE);
-                
+
                 entry.text.setText(app.getName());
                 
                 final CheckBox box = entry.box;

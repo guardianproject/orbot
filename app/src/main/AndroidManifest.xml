@@ -86,7 +86,9 @@
       	
       	
       	<activity android:name=".settings.SettingsPreferences"  android:label="@string/app_name"/>
-        <activity android:name=".ui.AppManager"  android:label="@string/app_name"/>
+        <activity android:name=".ui.AppManager"  android:label="@string/app_name"
+			android:theme="@style/Theme.AppCompat"
+			/>
       
         <service
             android:name=".service.TorService"

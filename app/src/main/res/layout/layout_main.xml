@@ -4,7 +4,8 @@
      xmlns:android="http://schemas.android.com/apk/res/android"
      android:orientation="vertical" android:layout_width="match_parent"
       android:layout_height="match_parent"
-      
+
+	android:background="@color/dark_purple"
       >
     
      <android.support.v7.widget.Toolbar
@@ -67,9 +68,10 @@ android:layout_gravity="center_horizontal|center_vertical"/>
 			>
 			<Button
 				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
+				android:layout_height="40dp"
 				android:text="@string/menu_start"
                 android:id="@+id/btnStart"
+				android:background="@drawable/rounded_button"
 
                 />
 
@@ -77,11 +79,13 @@ android:layout_gravity="center_horizontal|center_vertical"/>
 			<Button
 			    android:id="@+id/btnBrowser"
 			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
+				android:layout_height="40dp"
 			    android:text="@string/menu_browse"
           		 android:ellipsize="end"
           android:singleLine="true"
-			     />
+				android:background="@drawable/rounded_button"
+				android:layout_marginLeft="10dp"
+				/>
 			</LinearLayout>
 
 		     </LinearLayout>
