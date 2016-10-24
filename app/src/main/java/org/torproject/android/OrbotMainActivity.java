@@ -90,8 +90,10 @@ public class OrbotMainActivity extends AppCompatActivity
     private TextView uploadText = null;
     private TextView mTxtOrbotLog = null;
     
-   // private Button mBtnBrowser = null;
-    private SwitchCompat mBtnVPN = null;
+    private Button mBtnBrowser = null;
+	private Button mBtnStart = null;
+
+	private SwitchCompat mBtnVPN = null;
     private SwitchCompat mBtnBridges = null;
     
     private Spinner spnCountries = null;
@@ -258,7 +260,24 @@ public class OrbotMainActivity extends AppCompatActivity
     
         // Gesture detection
 		mGestureDetector = new GestureDetector(this, new MyGestureDetector());
-		/**
+
+		mBtnStart =(Button)findViewById(R.id.btnStart);
+		mBtnStart.setOnClickListener(new View.OnClickListener()
+		{
+			@Override
+			public void onClick(View v) {
+
+				if (torStatus == TorServiceConstants.STATUS_OFF) {
+					lblStatus.setText(getString(R.string.status_starting_up));
+					startTor();
+				} else {
+					lblStatus.setText(getString(R.string.status_shutting_down));
+					stopTor();
+				}
+
+			}
+		});
+
 		mBtnBrowser = (Button)findViewById(R.id.btnBrowser);
 		mBtnBrowser.setOnClickListener(new View.OnClickListener ()
 		{
@@ -272,7 +291,6 @@ public class OrbotMainActivity extends AppCompatActivity
 		});
 		
 		mBtnBrowser.setEnabled(false);
-		 */
 
 		mBtnVPN = (SwitchCompat)findViewById(R.id.btnVPN);
 		
@@ -1125,12 +1143,14 @@ public class OrbotMainActivity extends AppCompatActivity
         	
             imgStatus.setImageResource(R.drawable.toron);
 
-          //mBtnBrowser.setEnabled(true);
+            mBtnBrowser.setEnabled(true);
+			mBtnStart.setText(R.string.menu_stop);
 
             if (torServiceMsg != null)
             {
-            	if (torServiceMsg.contains(TorServiceConstants.LOG_NOTICE_HEADER))
-            		lblStatus.setText(torServiceMsg);
+            	if (torServiceMsg.contains(TorServiceConstants.LOG_NOTICE_HEADER)) {
+                    lblStatus.setText(torServiceMsg);
+                }
             }
         	else
         		lblStatus.setText(getString(R.string.status_activated));
@@ -1171,7 +1191,7 @@ public class OrbotMainActivity extends AppCompatActivity
             else
             	lblStatus.setText(getString(R.string.status_starting_up));
             
-       //     mBtnBrowser.setEnabled(false);
+            mBtnBrowser.setEnabled(false);
 
         } else if (torStatus == TorServiceConstants.STATUS_STOPPING) {
 
@@ -1180,13 +1200,16 @@ public class OrbotMainActivity extends AppCompatActivity
         	  
             imgStatus.setImageResource(R.drawable.torstarting);
             lblStatus.setText(torServiceMsg);
-          //  mBtnBrowser.setEnabled(false);
+            mBtnBrowser.setEnabled(false);
 
         } else if (torStatus == TorServiceConstants.STATUS_OFF) {
 
             imgStatus.setImageResource(R.drawable.toroff);
             lblStatus.setText(getString(R.string.press_to_start));
-//            mBtnBrowser.setEnabled(false);
+            mBtnBrowser.setEnabled(false);
+
+			mBtnStart.setText(R.string.menu_start);
+
         }
 
         if (torServiceMsg != null && torServiceMsg.length() > 0)

@@ -18,10 +18,9 @@
     android:layout_height="match_parent"
     >
     
-<LinearLayout
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:id="@+id/content_frame"
      >
         
@@ -59,84 +58,107 @@ android:layout_gravity="center_horizontal|center_vertical"/>
 				android:layout_margin="0dp"
 				android:src="@drawable/toroff" />
 		       
-		       	<TextView
-					android:id="@+id/lblStatus"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:textSize="14sp"
-					android:gravity="center_horizontal"
-					android:fontFamily="sans-serif-light"
-					android:text=""
-					android:lines="2"
-					android:maxLines="2"
-					android:layout_gravity="center_horizontal"
-					android:layout_margin="0dp"
-					android:layout_marginLeft="5dp"
-					android:layout_marginRight="5dp"
-					 />
-		
+
+
 		<LinearLayout android:gravity="center_horizontal"
-	     android:orientation="horizontal" android:layout_width="match_parent"
-	      android:layout_height="wrap_content"
+			android:orientation="horizontal" android:layout_width="match_parent"
+			android:layout_height="wrap_content"
 
-	      >
+			>
+			<Button
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/menu_start"
+                android:id="@+id/btnStart"
 
-			<!--
+                />
+
+
 			<Button
 			    android:id="@+id/btnBrowser"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
-			    android:text="@string/menu_verify_browser"			    
-          		android:layout_marginTop="3dp"
-          		android:layout_marginBottom="3dp"
+			    android:text="@string/menu_browse"
           		 android:ellipsize="end"
           android:singleLine="true"
-			     />-->
-	
-			
-			<android.support.v7.widget.SwitchCompat
-			    android:id="@+id/btnVPN"
-			    android:layout_width="100dp"
-			    android:layout_height="wrap_content"
-			    android:text="@string/menu_vpn"
-          android:layout_margin="3dp"
-          android:ellipsize="end"
-          android:singleLine="true"
-			    />
-			
-			
-			<android.support.v7.widget.SwitchCompat
-			    android:id="@+id/btnBridges"
-			    android:layout_width="100dp"
-			    android:layout_height="wrap_content"
-			    android:text="@string/bridges"
-          		    android:layout_marginTop="3dp"
-                android:layout_marginLeft="25dp"
-          		android:layout_marginBottom="3dp"
-          		     android:ellipsize="end"
-          android:singleLine="true"
-			    />
+			     />
+			</LinearLayout>
 
-
-		    </LinearLayout>
 		     </LinearLayout>
-        <Spinner
-            android:id="@+id/spinnerCountry"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            />
+
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="bottom"
-        android:padding="6dp"
-        >
+        android:layout_gravity="bottom"
+        android:padding="3dp"
+        android:background="#454545"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
+		<LinearLayout android:gravity="center_horizontal"
+			android:orientation="horizontal" android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+
+			>
+
+
+
+
+			<android.support.v7.widget.SwitchCompat
+				android:id="@+id/btnVPN"
+				android:layout_width="80dp"
+				android:layout_height="wrap_content"
+				android:text="@string/menu_vpn"
+				android:layout_margin="3dp"
+				android:ellipsize="end"
+				android:singleLine="true"
+				/>
+
+
+			<android.support.v7.widget.SwitchCompat
+				android:id="@+id/btnBridges"
+				android:layout_width="100dp"
+				android:layout_height="wrap_content"
+				android:text="@string/bridges"
+				android:layout_marginTop="3dp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginBottom="3dp"
+				android:ellipsize="end"
+				android:singleLine="true"
+				/>
+			<Spinner
+				android:id="@+id/spinnerCountry"
+				android:layout_width="140dp"
+				android:layout_height="wrap_content"
+                android:layout_weight="1"
+				/>
+
+		</LinearLayout>
+
+
+
+        <TextView
+			android:id="@+id/lblStatus"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:textSize="14sp"
+			android:gravity="center_horizontal"
+			android:fontFamily="sans-serif-light"
+			android:text=""
+			android:lines="2"
+			android:maxLines="2"
+			android:layout_gravity="center_horizontal"
+			android:layout_margin="0dp"
+			android:layout_marginLeft="5dp"
+			android:layout_marginRight="5dp"
+			android:visibility="gone"
+			/>
 
         <!--
         <TextView android:id="@+id/lblStatus"
@@ -151,6 +173,7 @@ android:layout_gravity="center_horizontal|center_vertical"/>
             android:layout_marginRight="40dp"
             android:textColor="#ffffff"
             android:maxLines="1"
+    android:orientation="vertical"
             android:fontFamily="sans-serif-light"
              />
                  -->
@@ -214,20 +237,34 @@ android:layout_gravity="center_horizontal|center_vertical"/>
                 />
         </RelativeLayout>
     </LinearLayout>
-	    </LinearLayout>
+
+
+	    </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="320dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/left_drawer"
+            android:layout_gravity="start"
+            android:background="#333333"
+            >
+
+        </LinearLayout>
 	    
 	 <LinearLayout
     android:layout_width="320dp"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:id="@+id/left_drawer"
-    android:layout_gravity="start"            
+    android:id="@+id/right_drawer"
+    android:layout_gravity="end"
     android:background="#333333"
      >
     	<TextView
 			android:id="@+id/orbotLog"
 			android:textSize="12sp"
-			android:gravity="left"
+			android:gravity="start"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
 			android:layout_alignParentLeft="true"
@@ -238,7 +275,7 @@ android:layout_gravity="center_horizontal|center_vertical"/>
     </LinearLayout>
 	
 	</android.support.v4.widget.DrawerLayout>
-	
+
 </LinearLayout>
 
 
