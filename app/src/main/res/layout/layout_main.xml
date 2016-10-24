@@ -2,7 +2,9 @@
 
 <LinearLayout android:gravity="center_vertical|center_horizontal"
      xmlns:android="http://schemas.android.com/apk/res/android"
-     android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:orientation="vertical" android:layout_width="match_parent"
       android:layout_height="match_parent"
 
 	android:background="@color/dark_purple"
@@ -23,32 +25,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/content_frame"
-     >
-        
-    <LinearLayout android:gravity="center_vertical|center_horizontal"
-     android:orientation="vertical" android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      
-      >
 
-        
-       <ProgressBar
-   android:id="@+id/pbConnecting"
-   style="?android:attr/progressBarStyleLarge"
-   android:layout_width="wrap_content"
-   android:layout_height="wrap_content"
-   		android:layout_marginTop="60dp"
-   			android:visibility="gone"	  
-   		
-android:layout_gravity="center_horizontal|center_vertical"/>
-       
+    >
+
 	<LinearLayout
 	    	android:layout_width="match_parent"
-		android:layout_height="wrap_content"
+		android:layout_height="400dp"
 		android:id="@+id/frameMain"
 		android:visibility="visible"	
 		 android:orientation="vertical"   
-		android:layout_gravity="center_horizontal|center_vertical"
+		android:gravity="center_horizontal|center_vertical"
 		 >
 		       <org.torproject.android.ui.ImageProgressView
 				android:id="@+id/imgStatus"
@@ -58,7 +44,7 @@ android:layout_gravity="center_horizontal|center_vertical"/>
 				   android:padding="0dp"
 				android:layout_margin="0dp"
 				android:src="@drawable/toroff" />
-		       
+
 
 
 		<LinearLayout android:gravity="center_horizontal"
@@ -88,9 +74,6 @@ android:layout_gravity="center_horizontal|center_vertical"/>
 				/>
 			</LinearLayout>
 
-		     </LinearLayout>
-
-
     </LinearLayout>
 
     <LinearLayout
@@ -116,31 +99,36 @@ android:layout_gravity="center_horizontal|center_vertical"/>
 
 			<android.support.v7.widget.SwitchCompat
 				android:id="@+id/btnVPN"
-				android:layout_width="80dp"
+				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="@string/menu_vpn"
 				android:layout_margin="3dp"
-				android:ellipsize="end"
 				android:singleLine="true"
-				/>
+                app:switchPadding="9dp"
+
+                />
 
 
 			<android.support.v7.widget.SwitchCompat
 				android:id="@+id/btnBridges"
-				android:layout_width="100dp"
+				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="@string/bridges"
 				android:layout_marginTop="3dp"
 				android:layout_marginLeft="5dp"
 				android:layout_marginBottom="3dp"
-				android:ellipsize="end"
 				android:singleLine="true"
+                app:switchPadding="9dp"
 				/>
 			<Spinner
 				android:id="@+id/spinnerCountry"
 				android:layout_width="140dp"
 				android:layout_height="wrap_content"
                 android:layout_weight="1"
+
+				android:layout_marginTop="3dp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginBottom="3dp"
 				/>
 
 		</LinearLayout>

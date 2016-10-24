@@ -737,8 +737,12 @@ public class OrbotMainActivity extends AppCompatActivity
 	private void openBrowser(final String browserLaunchUrl,boolean forceExternal)
 	{
 		boolean isBrowserInstalled = appInstalledOrNot(TorServiceConstants.BROWSER_APP_USERNAME);
-		
-		if (mBtnVPN.isChecked()||forceExternal)
+
+        if (isBrowserInstalled)
+        {
+            startIntent(TorServiceConstants.BROWSER_APP_USERNAME,Intent.ACTION_VIEW,Uri.parse(browserLaunchUrl));
+        }
+		else if (mBtnVPN.isChecked()||forceExternal)
 		{
 			//use the system browser since VPN is on
 			Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(browserLaunchUrl));
@@ -750,10 +754,6 @@ public class OrbotMainActivity extends AppCompatActivity
 			Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(browserLaunchUrl));
 			intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
 			startActivity(intent);
-		}
-		else if (isBrowserInstalled)
-		{
-			startIntent(TorServiceConstants.BROWSER_APP_USERNAME,Intent.ACTION_VIEW,Uri.parse(browserLaunchUrl));						
 		}
 		else
 		{
@@ -768,10 +768,13 @@ public class OrbotMainActivity extends AppCompatActivity
 				public void onClick(DialogInterface dialog, int which) {
 
 					//prompt to install Orweb
-					Intent intent = new Intent(OrbotMainActivity.this,PromoAppsActivity.class);
-					startActivity(intent);
-					
-				}
+					//Intent intent = new Intent(OrbotMainActivity.this,PromoAppsActivity.class);
+					//startActivity(intent);
+
+                    startActivity(PromoAppsActivity.getInstallIntent(TorServiceConstants.BROWSER_APP_USERNAME,OrbotMainActivity.this));
+
+
+                }
 		    	  
 		      })
 		      .setNegativeButton(R.string.standard_browser, new Dialog.OnClickListener ()
@@ -1291,7 +1294,6 @@ public class OrbotMainActivity extends AppCompatActivity
         	if (torStatus == null && newTorStatus != null) //first time status
         	{
         		torStatus = newTorStatus;
-        		findViewById(R.id.pbConnecting).setVisibility(View.GONE);
         		findViewById(R.id.frameMain).setVisibility(View.VISIBLE);
         		updateStatus(log);
         		

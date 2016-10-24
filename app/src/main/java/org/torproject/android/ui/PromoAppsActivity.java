@@ -1,6 +1,7 @@
 package org.torproject.android.ui;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -69,7 +70,7 @@ public class PromoAppsActivity extends Activity implements OrbotConstants {
             @Override
             public void onClick(View view) {
                 finish();
-                startActivity(getInstallIntent("info.guardianproject.otr.app.im"));
+                startActivity(getInstallIntent("info.guardianproject.otr.app.im",PromoAppsActivity.this));
 
             }
         });
@@ -81,7 +82,7 @@ public class PromoAppsActivity extends Activity implements OrbotConstants {
             @Override
             public void onClick(View view) {
                 finish();
-                startActivity(getInstallIntent(TorServiceConstants.BROWSER_APP_USERNAME));
+                startActivity(getInstallIntent(TorServiceConstants.BROWSER_APP_USERNAME,PromoAppsActivity.this));
 
             }
         });
@@ -94,7 +95,7 @@ public class PromoAppsActivity extends Activity implements OrbotConstants {
             public void onClick(View view) {
 
                 finish();
-                startActivity(getInstallIntent("com.duckduckgo.mobile.android"));
+                startActivity(getInstallIntent("com.duckduckgo.mobile.android",PromoAppsActivity.this));
 
             }
         });
@@ -120,7 +121,7 @@ public class PromoAppsActivity extends Activity implements OrbotConstants {
             @Override
             public void onClick(View view) {
                 finish();
-                startActivity(getInstallIntent("info.guardianproject.mrapp"));
+                startActivity(getInstallIntent("info.guardianproject.mrapp",PromoAppsActivity.this));
 
             }
         });
@@ -132,7 +133,7 @@ public class PromoAppsActivity extends Activity implements OrbotConstants {
             @Override
             public void onClick(View view) {
                 finish();
-                startActivity(getInstallIntent("org.martus.android"));
+                startActivity(getInstallIntent("org.martus.android",PromoAppsActivity.this));
 
             }
         });
@@ -179,7 +180,7 @@ public class PromoAppsActivity extends Activity implements OrbotConstants {
 
 	}
 
-    boolean isAppInstalled(PackageManager pm, String packageName) {
+    public static boolean isAppInstalled(PackageManager pm, String packageName) {
         try {
             pm.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES);
             return true;
@@ -188,11 +189,11 @@ public class PromoAppsActivity extends Activity implements OrbotConstants {
         }
     }
 
-    Intent getInstallIntent(String packageName) {
+    public static Intent getInstallIntent(String packageName, Context context) {
         final Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(MARKET_URI + packageName));
 
-        PackageManager pm = getPackageManager();
+        PackageManager pm = context.getPackageManager();
         List<ResolveInfo> resInfos = pm.queryIntentActivities(intent, 0);
 
         String foundPackageName = null;
