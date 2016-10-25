@@ -72,14 +72,15 @@ faketime "$TIMESTAMP" $ANDROID_NDK_HOME/ndk-build
 #clean, build, clean and build!
 make -C external clean
 APP_ABI=armeabi faketime "$TIMESTAMP" make -C external
-make -C external clean
-APP_ABI=x86 faketime "$TIMESTAMP" make -C external
+#make -C external clean
+#APP_ABI=x86 faketime "$TIMESTAMP" make -C external
 
-./setup-ant
+assembleRelease
+#./setup-ant
+#ant release
 
-ant release
-
-apk=$projectroot/bin/$projectname-v$describe.apk
+#apk=$projectroot/bin/$projectname-v$describe.apk
+apk=$projectroot/app/build/outputs/apk/app-release-unsigned.apk
 
 # standardize timestamps in ZIP headers, requires strip-nondeterminism 0.014
 if which strip-nondeterminism > /dev/null; then
