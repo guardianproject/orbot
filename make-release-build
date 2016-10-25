@@ -45,7 +45,7 @@ if [ -z $ANDROID_NDK_HOME ]; then
 fi
 
 projectroot=`pwd`
-projectname=`sed -n 's,.*name="app_name">\(.*\)<.*,\1,p' res/values/strings.xml`
+projectname=`sed -n 's,.*name="app_name">\(.*\)<.*,\1,p' app/src/main/res/values/strings.xml`
 
 # standardize timezone to reduce build differences
 export TZ=UTC
@@ -75,7 +75,7 @@ APP_ABI=armeabi faketime "$TIMESTAMP" make -C external
 #make -C external clean
 #APP_ABI=x86 faketime "$TIMESTAMP" make -C external
 
-assembleRelease
+./gradlew assembleRelease
 #./setup-ant
 #ant release
 
