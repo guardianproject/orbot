@@ -1,5 +1,13 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+/** 15.2.0 RC 1 / 28 October 2016/  9077bd236df388cd14727252d0be676d39b841e5 **/
+
+9077bd2 update to 15.2.0-RC-1 and SDK min of 16
+085ddb3 make ndk-build work again
+290059d fix string path in build script
+dec3d95 add proguard rules to optimize orbot binary
+160383b update for gradle
+
 /** 15.2.0 BETA 2 / 24 October 2016/ 12b1198b4b5a4420b16b9ab166828bba787c17aa **/
 
 345aea9 move the controls to the left sidebar; improve VPN mode more
