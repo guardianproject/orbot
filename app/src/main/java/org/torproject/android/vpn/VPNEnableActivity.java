@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.net.VpnService;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Window;
 
@@ -22,7 +23,7 @@ import android.view.Window;
  */
 
 @TargetApi(14)
-public class VPNEnableActivity extends Activity {
+public class VPNEnableActivity extends AppCompatActivity {
 	
 	private final static int REQUEST_VPN = 7777;
 	private	Intent intent = null;

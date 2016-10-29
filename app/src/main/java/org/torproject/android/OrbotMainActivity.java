@@ -239,7 +239,7 @@ public class OrbotMainActivity extends AppCompatActivity
           mDrawerToggle = new ActionBarDrawerToggle(
               this,  mDrawer,        
               toolbar,
-              android.R.string.ok, android.R.string.cancel
+              R.string.btn_okay, R.string.btn_cancel
           );
 
       getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -979,7 +979,7 @@ public class OrbotMainActivity extends AppCompatActivity
             	   }
             	   
                }
-           }).setNegativeButton(android.R.string.cancel, new Dialog.OnClickListener()
+           }).setNegativeButton(R.string.btn_cancel, new Dialog.OnClickListener()
 	        {
 	        	@Override
 				public void onClick(DialogInterface dialog, int which) {
@@ -1010,7 +1010,7 @@ public class OrbotMainActivity extends AppCompatActivity
         new AlertDialog.Builder(this)
         .setTitle(R.string.bridge_mode)
         .setView(view)
-        .setNegativeButton(android.R.string.cancel, new Dialog.OnClickListener()
+        .setNegativeButton(R.string.btn_cancel, new Dialog.OnClickListener()
         {
         	@Override
 			public void onClick(DialogInterface dialog, int which) {
@@ -1134,7 +1134,7 @@ public class OrbotMainActivity extends AppCompatActivity
                      .setIcon(R.drawable.onion32)
              .setTitle(title)
              .setMessage(msg)
-             .setPositiveButton(android.R.string.ok, null)
+             .setPositiveButton(R.string.btn_okay, null)
              .show();
              }
              else
