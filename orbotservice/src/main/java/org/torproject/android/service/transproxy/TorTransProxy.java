@@ -1,6 +1,8 @@
 package org.torproject.android.service.transproxy;
 
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -29,12 +31,27 @@ public class TorTransProxy implements TorServiceConstants {
 
 	private int mTransProxyPort = TOR_TRANSPROXY_PORT_DEFAULT;
 	private int mDNSPort = TOR_DNS_PORT_DEFAULT;
-	
-	public TorTransProxy (TorService torService, File fileXTables)
+
+	private Process mProcess = null;
+
+    private DataOutputStream mProcessOutput = null;
+
+
+    public TorTransProxy (TorService torService, File fileXTables) throws IOException
 	{
 		mTorService = torService;
-		mFileXtables = fileXTables;	
+		mFileXtables = fileXTables;
+
+		mProcess = Runtime.getRuntime().exec("su");
+        mProcessOutput = new DataOutputStream(mProcess.getOutputStream());
+
 	}
+
+    public static boolean testRoot () throws IOException
+    {
+        Runtime.getRuntime().exec("su");
+        return true;
+    }
 	
 	public void setTransProxyPort (int transProxyPort)
 	{
@@ -545,16 +562,22 @@ public class TorTransProxy implements TorServiceConstants {
 	
 	private int executeCommand (String cmdString) throws Exception {
 
-		Process proc = Runtime.getRuntime().exec(cmdString);
-		proc.waitFor();
-		int exitCode = proc.exitValue();
-		//String output = cmd.getOutput();
+        mProcessOutput.writeBytes(cmdString + "\n");
+        mProcessOutput.flush();
 
+		logMessage(cmdString);
 		
-		logMessage(cmdString + "; exit=" + exitCode);
-		
-		return exitCode;
+		return 0;
 	}
+
+    public int doExit () throws Exception
+    {
+        mProcessOutput.writeBytes("exit\n");
+        mProcessOutput.flush();
+
+        return mProcess.waitFor();
+
+    }
 	
 	
 	public int enableTetheringRules (Context context) throws Exception

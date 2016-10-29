@@ -805,21 +805,25 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     }
 
     private boolean flushTransparentProxyRules () {
-        if (Prefs.useRoot())
-        {
-             if (mTransProxy == null)
-                 mTransProxy = new TorTransProxy(this, fileXtables);
 
-             try {
-                 mTransProxy.flushTransproxyRules(this);
-             } catch (Exception e) {
-                 e.printStackTrace();
-                 return false;
-             }
-         
-             return true;
+        try {
+            if (Prefs.useRoot()) {
+                if (mTransProxy == null)
+                    mTransProxy = new TorTransProxy(this, fileXtables);
+
+                try {
+                    mTransProxy.flushTransproxyRules(this);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    return false;
+                }
+
+                return true;
+            } else {
+                return false;
+            }
         }
-        else
+        catch (IOException ioe)
         {
             return false;
         }
