@@ -15,9 +15,11 @@ import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
+import android.util.Log;
 
 import org.torproject.android.OrbotApp;
 import org.torproject.android.R;
+import org.torproject.android.service.transproxy.TorTransProxy;
 import org.torproject.android.ui.AppManager;
 import org.torproject.android.service.util.TorServiceUtils;
 
@@ -30,6 +32,8 @@ public class SettingsPreferences
 
 	private CheckBoxPreference prefCBTransProxy = null;
 	private CheckBoxPreference prefcBTransProxyAll = null;
+    private CheckBoxPreference prefcbTransTethering = null;
+
 	private Preference prefTransProxyFlush = null;
 	
 	private Preference prefTransProxyApps = null;
@@ -77,6 +81,7 @@ public class SettingsPreferences
 
         prefCBTransProxy = (CheckBoxPreference) findPreference("pref_transparent");
         prefcBTransProxyAll = (CheckBoxPreference) findPreference("pref_transparent_all");
+        prefcbTransTethering = (CheckBoxPreference) findPreference("pref_transparent_tethering");
 
         prefTransProxyFlush = (Preference) findPreference("pref_transproxy_flush");
         prefTransProxyFlush.setOnPreferenceClickListener(new OnPreferenceClickListener() {
@@ -105,9 +110,9 @@ public class SettingsPreferences
         
         
         prefCBTransProxy.setEnabled(prefRequestRoot.isChecked());
-        
         prefcBTransProxyAll.setEnabled(prefCBTransProxy.isChecked());
-        
+        prefcbTransTethering.setEnabled(prefCBTransProxy.isChecked());
+
         if (prefCBTransProxy.isChecked())
         	prefTransProxyApps.setEnabled((!prefcBTransProxyAll.isChecked()));
         
@@ -132,7 +137,15 @@ public class SettingsPreferences
 			if (prefRequestRoot.isChecked())
 			{
 
+                try {
+                    TorTransProxy.testRoot();
                     prefCBTransProxy.setEnabled(true);
+
+                }
+                catch (Exception e)
+                {
+                    Log.d(OrbotApp.TAG,"root not yet enabled");
+                }
 
 			}
 		}

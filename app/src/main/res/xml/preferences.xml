@@ -70,8 +70,7 @@ android:enabled="true"/>
 android:defaultValue="false" 
 android:key="pref_transparent_tethering"
 android:summary="@string/pref_transparent_tethering_summary"
-android:enabled="true" 
-android:dependency="has_root"
+android:enabled="true"
 android:title="@string/pref_transparent_tethering_title"/>
 
 
