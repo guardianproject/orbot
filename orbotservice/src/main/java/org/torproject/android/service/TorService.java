@@ -35,6 +35,8 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.RemoteViews;
 
+import org.sufficientlysecure.rootcommands.Shell;
+import org.sufficientlysecure.rootcommands.command.SimpleCommand;
 import org.torproject.android.control.ConfigEntry;
 import org.torproject.android.control.TorControlConnection;
 import org.torproject.android.service.transproxy.TorTransProxy;
@@ -60,6 +62,7 @@ import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.text.Normalizer;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -81,7 +84,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     private TorControlConnection conn = null;
     private Socket torConnSocket = null;
     private int mLastProcessId = -1;
-    private Process mProcPolipo;
 
     private int mPortHTTP = HTTP_PROXY_PORT_DEFAULT;
     private int mPortSOCKS = SOCKS_PROXY_PORT_DEFAULT;
@@ -123,6 +125,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     public static File fileXtables;
     public static File fileTorRc;
 
+    private Shell mShell;
+    private Shell mShellPolipo;
 
     public void debug(String msg)
     {
@@ -374,6 +378,16 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     public void onDestroy() {
         stopTor();
         unregisterReceiver(mNetworkStateReceiver);
+
+        try
+        {
+            mShell.close();
+        }
+        catch (IOException ioe)
+        {
+            Log.d(TAG, "Error closing shell",ioe);
+        }
+
         super.onDestroy();
     }
 
@@ -500,11 +514,10 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             conn = null;
         }
 
-        if (mProcPolipo != null)
+        if (mShellPolipo != null)
         {
-            mProcPolipo.destroy();
-            int exitValue = mProcPolipo.waitFor();
-            logNotice("Polipo exited with value: " + exitValue);
+            mShellPolipo.close();
+            //logNotice("Polipo exited with value: " + exitValue);
 
         }
 
@@ -544,6 +557,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         {
             appBinHome = getDir(TorServiceConstants.DIRECTORY_TOR_BINARY, Application.MODE_PRIVATE);
             appCacheHome = getDir(TorServiceConstants.DIRECTORY_TOR_DATA,Application.MODE_PRIVATE);
+
+            mShell = Shell.startShell();
 
             fileTor= new File(appBinHome, TorServiceConstants.TOR_ASSET_KEY);
             filePolipo = new File(appBinHome, TorServiceConstants.POLIPO_ASSET_KEY);
@@ -768,32 +783,19 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 	        	{
 	        		customEnv.add("TOR_PT_PROXY=socks5://" + OrbotVpnManager.sSocksProxyLocalhost + ":" + OrbotVpnManager.sSocksProxyServerPort);
 	        	}
-	        
-	      //  String baseDirectory = fileTor.getParent();
-	       // Shell shellUser = Shell.startShell(customEnv, baseDirectory);
-	        
+
 	        boolean success = runTorShellCmd();
-	        
-	        if (success)
-	        {
-	            if (mPortHTTP != -1)
-                    runPolipoShellCmd();
-	            
-	            if (Prefs.useRoot() && Prefs.useTransparentProxying())
-	            {
 
-	                disableTransparentProxy();
-	                enableTransparentProxy();
-	                
+            if (mPortHTTP != -1)
+                runPolipoShellCmd();
 
-	            }
-	            
-	            getHiddenServiceHostname ();
-	        }
-	        else
-	        {
-	                 showToolbarNotification(getString(R.string.unable_to_start_tor), ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
-	        }
+            if (Prefs.useRoot() && Prefs.useTransparentProxying())
+            {
+                disableTransparentProxy();
+                enableTransparentProxy();
+            }
+
+            getHiddenServiceHostname ();
 
         } catch (Exception e) {
             logException("Unable to start Tor: " + e.toString(), e);
@@ -914,14 +916,19 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
              mTransProxy = new TorTransProxy(this, fileXtables);
  
          mTransProxy.setTransparentProxyingAll(this, false);
+
         ArrayList<TorifiedApp> apps = TorTransProxy.getApps(this, TorServiceUtils.getSharedPrefs(getApplicationContext()));
         mTransProxy.setTransparentProxyingByApp(this, apps, false);
-    
+
+         mTransProxy.closeShell();
+         mTransProxy = null;
+
          return true;
      }
     
     private boolean runTorShellCmd() throws Exception
     {
+        boolean result = true;
 
         String torrcPath = new File(appBinHome, TORRC_ASSET_KEY).getCanonicalPath();
 
@@ -936,9 +943,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     
         debug(torCmdString);
         
-        Process proc = exec(torCmdString + " --verify-config", true);
+        int exitCode = exec(torCmdString + " --verify-config", true);
 
-        int exitCode = proc.exitValue();
         String output = "";
        // String output = shellTorCommand.getOutput();
         
@@ -949,8 +955,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             
         }
 
-        proc = exec(torCmdString, true);
-        exitCode = proc.exitValue();
+        exitCode = exec(torCmdString, true);
         output = "";// shellTorCommand.getOutput();
         
         if (exitCode != 0)
@@ -977,7 +982,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
            
         }
         
-        return true;
+        return result;
     }
 
 
@@ -986,14 +991,15 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         mExecutor.execute(runn);
     }
 
-    private Process exec (String cmd, boolean wait) throws Exception
+    private int exec (String cmd, boolean wait) throws Exception
     {
-        Process proc = Runtime.getRuntime().exec(cmd);
+        SimpleCommand command = new SimpleCommand(cmd);
+        mShell.add(command);
 
         if (wait)
-            proc.waitFor();
+            command.waitForFinish();
 
-        return proc;
+        return command.getExitCode();
     }
     
     private void updatePolipoConfig () throws FileNotFoundException, IOException
@@ -1024,7 +1030,12 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         String polipoConfigPath = new File(appBinHome, POLIPOCONFIG_ASSET_KEY).getCanonicalPath();
         String cmd = (filePolipo.getCanonicalPath() + " -c " + polipoConfigPath);
 
-        mProcPolipo = exec(cmd,false);
+        if (mShellPolipo != null)
+            mShellPolipo.close();
+
+        mShellPolipo = Shell.startShell();
+        SimpleCommand cmdPolipo = new SimpleCommand(cmd);
+        mShellPolipo.add(cmdPolipo);
 
         sendCallbackLogMessage(getString(R.string.privoxy_is_running_on_port_) + mPortHTTP);
             

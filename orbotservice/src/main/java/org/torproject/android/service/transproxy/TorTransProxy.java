@@ -16,6 +16,8 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 
+import org.sufficientlysecure.rootcommands.Shell;
+import org.sufficientlysecure.rootcommands.command.SimpleCommand;
 import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.TorService;
@@ -32,18 +34,15 @@ public class TorTransProxy implements TorServiceConstants {
 	private int mTransProxyPort = TOR_TRANSPROXY_PORT_DEFAULT;
 	private int mDNSPort = TOR_DNS_PORT_DEFAULT;
 
-	private Process mProcess = null;
-
-    private DataOutputStream mProcessOutput = null;
-
+	private Shell mShell;
 
     public TorTransProxy (TorService torService, File fileXTables) throws IOException
 	{
 		mTorService = torService;
 		mFileXtables = fileXTables;
 
-		mProcess = Runtime.getRuntime().exec("su");
-        mProcessOutput = new DataOutputStream(mProcess.getOutputStream());
+		// start root shell
+		mShell = Shell.startRootShell();
 
 	}
 
@@ -562,24 +561,22 @@ public class TorTransProxy implements TorServiceConstants {
 	
 	private int executeCommand (String cmdString) throws Exception {
 
-        mProcessOutput.writeBytes(cmdString + "\n");
-        mProcessOutput.flush();
+		SimpleCommand command = new SimpleCommand(cmdString);
 
-		logMessage(cmdString);
+		mShell.add(command).waitForFinish();
+
+		logMessage("Command Exec: " + cmdString);
+		logMessage("Output: " + command.getOutput());
+		logMessage("Exit code: " + command.getExitCode());
 		
 		return 0;
 	}
 
-    public int doExit () throws Exception
+    public void closeShell () throws IOException
     {
-        mProcessOutput.writeBytes("exit\n");
-        mProcessOutput.flush();
-
-        return mProcess.waitFor();
-
+        mShell.close();
     }
-	
-	
+
 	public int enableTetheringRules (Context context) throws Exception
 	{
 		
@@ -800,7 +797,8 @@ public class TorTransProxy implements TorServiceConstants {
 		executeCommand (script.toString());
 		script = new StringBuilder();
 		
-		
+
+        /**
 		if (Prefs.useDebugLogging())
 		{
 			//XXX: Comment the following rules for non-debug builds
@@ -827,8 +825,8 @@ public class TorTransProxy implements TorServiceConstants {
 
 			executeCommand (script.toString());
 			script = new StringBuilder();
-			
-		}
+
+		}**/
 
 		//allow access to transproxy port
 		script.append(ipTablesPath);
