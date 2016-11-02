@@ -1,5 +1,17 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+/** 15.2.0 RC 3 / 2 November 2016 / 354ce24283790ef72601d3a512e2d16f34aeba91  **/
+
+41c9d2c lock in app item list row height
+52e7ad3 add RootCommands library back in for shell and root shell exec
+af69041 remove old superuser-commands
+5d52f04 update to 15.2.0-RC-2
+dacf2ef cleanup resources and unused drawables
+d25b3d5 tweak root preferences
+4d66133 remove unused files
+ef57341 re-enabled root permission request and shell
+f463887 quick fixes for app UI and VPN dialog
+
 /** 15.2.0 RC 1 / 28 October 2016/  9077bd236df388cd14727252d0be676d39b841e5 **/
 
 9077bd2 update to 15.2.0-RC-1 and SDK min of 16
