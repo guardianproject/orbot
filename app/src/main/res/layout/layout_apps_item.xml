@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
     android:stretchColumns="1">
     <TableRow>
 
-    <ImageView android:id="@+id/itemicon" android:layout_width="50dip" android:layout_height="50dip"  android:padding="3dip"></ImageView>
+    <ImageView android:id="@+id/itemicon" android:layout_width="50dip" android:layout_height="50dip"  android:padding="3dip" android:visibility="gone"></ImageView>
 
 <TextView android:layout_height="wrap_content" android:id="@+id/itemtext" android:text="uid:packages"  android:textSize="18sp"  android:padding="3dip"></TextView>
 
