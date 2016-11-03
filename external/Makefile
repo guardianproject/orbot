@@ -23,11 +23,14 @@ endif
 
 # Android NDK setup
 ANDROID_NDK_HOME ?= /opt/android-ndk
-NDK_PLATFORM_LEVEL ?= 16
-NDK_TOOLCHAIN_VERSION=4.8
+NDK_PLATFORM_LEVEL ?= 21
+NDK_TOOLCHAIN_VERSION=4.9
 APP_ABI ?= armeabi
 NDK_ABI ?= $(APP_ABI)
-PIE_MODE ?= pie
+
+# PIEFLAGS for SDK 16/Android L must be set to -fPIE -pie, but can override for earlier targets 
+PIEFLAGS ?= -fPIE -pie
+
 ifneq ($(filter arm%, $(APP_ABI)),)
   NDK_ABI := arm
 endif
@@ -71,11 +74,6 @@ RANLIB := $(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-ranlib
 STRIP := $(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-strip \
 	--strip-unneeded -R .note -R .comment --strip-debug
 
-# PIEFLAGS for SDK 16/Android L must be set to -fPIE -pie, but can override for earlier targets 
-PIEFLAGS ?= -fPIE -pie
-ifeq ($(PIEMODE),nopie)
-	PIEFLAGS = 
-endif
 
 CFLAGS = -DANDROID $(TARGET_CFLAGS) $(PIEFLAGS)
 LDFLAGS = -llog $(TARGET_LDFLAGS) $(PIEFLAGS)
