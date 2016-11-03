@@ -163,6 +163,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             if (mLastProcessId != -1 && conn != null) {
                 sendCallbackLogMessage(getString(R.string.found_existing_tor_process));
                 sendCallbackStatus(STATUS_ON);
+                showToolbarNotification(getString(R.string.status_activated),NOTIFY_ID,R.drawable.ic_stat_tor);
+
                 return true;
             }
         } catch (Exception e) {
@@ -335,6 +337,13 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         }
         
         public void run() {
+
+            while (!isTorUpgradeAndConfigComplete)
+            {
+                try { Thread.sleep (500);}
+                catch (Exception e){}
+            }
+
             String action = mIntent.getAction();
 
             if (action != null) {
@@ -775,6 +784,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 //	        killAllDaemons();
 	
 	        sendCallbackStatus(STATUS_STARTING);
+            showToolbarNotification(getString(R.string.status_starting_up),NOTIFY_ID,R.drawable.ic_stat_tor);
 	        sendCallbackLogMessage(getString(R.string.status_starting_up));
 	        logNotice(getString(R.string.status_starting_up));
 	        
