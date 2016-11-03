@@ -246,9 +246,11 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         }
         
         mNotifyBuilder.setOngoing(Prefs.persistNotifications());
-        mNotifyBuilder.setPriority(Notification.PRIORITY_LOW);
-         mNotifyBuilder.setCategory(Notification.CATEGORY_SERVICE);
 
+         if (!Prefs.persistNotifications())
+            mNotifyBuilder.setPriority(Notification.PRIORITY_LOW);
+
+         mNotifyBuilder.setCategory(Notification.CATEGORY_SERVICE);
 
          mNotification = mNotifyBuilder.build();
         
