@@ -89,7 +89,7 @@ public class Prefs {
     }
 
     public static boolean expandedNotifications() {
-        return prefs.getBoolean(PREF_EXPANDED_NOTIFICATIONS, false);
+        return prefs.getBoolean(PREF_EXPANDED_NOTIFICATIONS, true);
     }
 
     public static boolean useDebugLogging() {
