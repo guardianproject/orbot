@@ -122,7 +122,9 @@ public class AppManager extends AppCompatActivity implements OnCheckedChangeList
                     app.setTorified(!app.isTorified());
                 }
 
-                box.setChecked(app.isTorified());
+                if (box != null)
+                    box.setChecked(app.isTorified());
+
             }
             saveAppSettings(context);
             loadApps(prefs);
