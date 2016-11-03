@@ -93,6 +93,8 @@ public class OrbotVpnManager implements Handler.Callback {
 		File fileBinHome = mService.getDir(TorServiceConstants.DIRECTORY_TOR_BINARY, Application.MODE_PRIVATE);
 		filePdnsd = new File(fileBinHome,TorServiceConstants.PDNSD_ASSET_KEY);
 
+		Tun2Socks.init();
+
 	}
    
     //public int onStartCommand(Intent intent, int flags, int startId) {

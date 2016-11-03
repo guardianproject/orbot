@@ -57,6 +57,8 @@ public class Tun2Socks
     // than one instance due to the use of global state (the lwip
     // module, etc.) in the native code.
 
+    public static void init () {}
+
     public static void Start(
             ParcelFileDescriptor vpnInterfaceFileDescriptor,
             int vpnInterfaceMTU,
