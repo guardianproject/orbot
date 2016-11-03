@@ -1,5 +1,11 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+/** 15.2.0 RC 5 / 3 November 2016/ 24dee21b96f67cbb5cf84482808fe432ebcff814 **/
+
+ba212a4 make sure notification is shown immediately while starting up
+45f7ae2 expanded notifications should be on by default for SDK 16+
+
+
 /** 15.2.0 RC 4 / 3 November 2016 / 6b2679cac16782a7a36a79f90f2dd0d8e330742f **/
 
 89f3fca make sure the binaries are cleanly installed (bump version number)
