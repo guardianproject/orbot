@@ -1,5 +1,18 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+/** 15.2.0 RC 4 / 3 November 2016 / 6b2679cac16782a7a36a79f90f2dd0d8e330742f **/
+
+89f3fca make sure the binaries are cleanly installed (bump version number)
+f5f544c update to latest badvpn for new torservice package
+f21f14b make sure tun2socks is loaded properly
+460f365 make sure Tun2Socks native library gets loaded
+5927fb0 update the build to target all arm types
+5ac21be use PIEFLAGS
+0050bfe update JNI targets
+1ae0c71 fixes github #59 for crash on app list UI
+e9ece47 update gitignore to ignore binaries
+37cd024 don't need to store this binary in the repo
+
 /** 15.2.0 RC 3 / 2 November 2016 / 354ce24283790ef72601d3a512e2d16f34aeba91  **/
 
 41c9d2c lock in app item list row height
