@@ -1,5 +1,14 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+/** 15.2.0 RC 7 / 4 November 2016 / eb45d61dc90a31d41d33ad6be7cfed3e022284b7 **/
+
+b147d5d update tor binary flag for new SSL
+eb45d61 update to 15.2.0-RC-7-multi for new OpenSSL 1.0.2j
+7dd82ae updated OpenSSL string in about UI to 1.0.2j
+693bc9e update openssl to OpenSSL_1_0_2j
+523b7b0 update for arm-x86 joint build 15.2.0-RC-6-multi
+0efbb17 update for new joint arm+x86 build release
+
 /** 15.2.0 RC 5 / 3 November 2016/ 24dee21b96f67cbb5cf84482808fe432ebcff814 **/
 
 ba212a4 make sure notification is shown immediately while starting up
