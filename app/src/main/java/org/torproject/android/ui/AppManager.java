@@ -190,31 +190,40 @@ public class AppManager extends AppCompatActivity implements OnCheckedChangeList
                     entry.icon = (ImageView) convertView.findViewById(R.id.itemicon);
                     entry.box = (CheckBox) convertView.findViewById(R.id.itemcheck);
                     entry.text = (TextView) convertView.findViewById(R.id.itemtext);
-                    
-                    entry.text.setOnClickListener(AppManager.this);
-                    entry.text.setOnClickListener(AppManager.this);
-                    
+
+
                     convertView.setTag(entry);
-                
-                    entry.box.setOnCheckedChangeListener(AppManager.this);
+
+
                 }
 
                 final TorifiedApp app = mApps.get(position);
 
-                if (app.getIcon() != null && entry.icon != null)
-                    entry.icon.setImageDrawable(app.getIcon());
-                else
-                    entry.icon.setVisibility(View.GONE);
+                if (entry.icon != null) {
+                    if (app.getIcon() != null)
+                        entry.icon.setImageDrawable(app.getIcon());
+                    else
+                        entry.icon.setVisibility(View.GONE);
+                }
 
-                entry.text.setText(app.getName());
-                
-                final CheckBox box = entry.box;
-                box.setTag(app);
-                box.setChecked(app.isTorified());
-                
-                entry.text.setTag(box);
-                entry.icon.setTag(box);
-                
+                if (entry.text != null) {
+                    entry.text.setText(app.getName());
+                    entry.text.setOnClickListener(AppManager.this);
+                    entry.text.setOnClickListener(AppManager.this);
+
+                    if (entry.box != null)
+                        entry.text.setTag(entry.box);
+                }
+
+
+                if (entry.box != null) {
+                    entry.box.setOnCheckedChangeListener(AppManager.this);
+                    entry.box.setTag(app);
+                    entry.box.setChecked(app.isTorified());
+
+
+                }
+
                 return convertView;
             }
         };
