@@ -3,7 +3,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
         android:duplicateParentState="true">
 
     <!-- 
@@ -25,14 +24,14 @@
 
     </ListView>
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/layout_button_filters"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal" >
 
-        <Button
+        <android.support.v7.widget.AppCompatImageButton
             android:id="@+id/button_proxy_all"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -40,26 +39,31 @@
             android:layout_alignParentStart="true"
             android:layout_toLeftOf="@+id/button_proxy_none"
             android:layout_toStartOf="@+id/button_proxy_none"
-            android:text="@string/button_proxy_all" />
 
-        <Button
+            android:layout_weight="1"
+            android:src="@drawable/ic_playlist_add_check_black_36dp"/>
+
+        <android.support.v7.widget.AppCompatImageButton
             android:id="@+id/button_invert_selection"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
-            android:text="@string/button_invert_selection" />
 
-        <Button
+            android:layout_weight="1"
+            android:src="@drawable/ic_autorenew_black_36dp"/>
+
+        <android.support.v7.widget.AppCompatImageButton
             android:id="@+id/button_proxy_none"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
+            android:layout_weight="1"
             android:layout_toLeftOf="@+id/button_invert_selection"
             android:layout_toStartOf="@+id/button_invert_selection"
-            android:text="@string/button_proxy_none" />
+            android:src='@drawable/ic_filter_none_black_36dp' />
 
-    </RelativeLayout>
+    </LinearLayout>
 
 </RelativeLayout>

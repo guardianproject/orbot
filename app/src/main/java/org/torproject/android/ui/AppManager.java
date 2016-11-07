@@ -53,11 +53,11 @@ public class AppManager extends AppCompatActivity implements OnCheckedChangeList
         setTitle(R.string.apps_mode);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         
-        Button buttonSelectAll, buttonSelectNone, buttonInvert;
+        View buttonSelectAll, buttonSelectNone, buttonInvert;
 
-        buttonSelectAll =   (Button) findViewById(R.id.button_proxy_all);
-        buttonSelectNone =  (Button) findViewById(R.id.button_proxy_none);
-        buttonInvert =      (Button) findViewById(R.id.button_invert_selection);
+        buttonSelectAll =   findViewById(R.id.button_proxy_all);
+        buttonSelectNone =  findViewById(R.id.button_proxy_none);
+        buttonInvert =      findViewById(R.id.button_invert_selection);
 
         buttonSelectAll.setOnClickListener(new OnAutoClickListener(0));
         buttonSelectNone.setOnClickListener(new OnAutoClickListener(1));
