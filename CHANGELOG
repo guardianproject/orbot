@@ -1,5 +1,14 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+/** 15.2.0 RC 8 / 7 November 2016 / 34079c7a159a94eb738c0410b4642394d712c44e **/
+
+540db0f revert back to NDK toolchain 4.8 since it is more stable
+73e9ac8 just go back to basic arm and x86 builds other builds and new ndk toolchain is causing crashes
+fd92359 improvements to app selection UI for better layout and error handling
+7bbfd4e tune line length here for other locales
+e744389 improve UI setup here for list to reduce NPE crashes
+dedf213 make sure browser intent exists before you open it for some reason, we see a lot of random crashes here do people really run d
+
 /** 15.2.0 RC 7 / 4 November 2016 / eb45d61dc90a31d41d33ad6be7cfed3e022284b7 **/
 
 b147d5d update tor binary flag for new SSL
