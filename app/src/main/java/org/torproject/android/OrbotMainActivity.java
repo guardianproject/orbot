@@ -665,7 +665,6 @@ public class OrbotMainActivity extends AppCompatActivity
 			    }
 			};
 
-
 			String requestMsg = getString(R.string.hidden_service_request, hiddenServicePortRequest);
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setMessage(requestMsg).setPositiveButton("Allow", dialogClickListener)
@@ -750,15 +749,11 @@ public class OrbotMainActivity extends AppCompatActivity
 		else if (mBtnVPN.isChecked()||forceExternal)
 		{
 			//use the system browser since VPN is on
-			Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(browserLaunchUrl));
-			intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
-			startActivity(intent);
+			startIntent(null,Intent.ACTION_VIEW, Uri.parse(browserLaunchUrl));
 		}
 		else if (Prefs.useTransparentProxying())
 		{
-			Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(browserLaunchUrl));
-			intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
-			startActivity(intent);
+			startIntent(null,Intent.ACTION_VIEW, Uri.parse(browserLaunchUrl));
 		}
 		else
 		{
@@ -793,9 +788,7 @@ public class OrbotMainActivity extends AppCompatActivity
 
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
-					Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(browserLaunchUrl));
-					intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
-					startActivity(intent);
+					startIntent(null,Intent.ACTION_VIEW, Uri.parse(browserLaunchUrl));
 					
 				}
 		    	  
@@ -813,14 +806,25 @@ public class OrbotMainActivity extends AppCompatActivity
     private void startIntent (String pkg, String action, Uri data)
     {
         Intent i;
-        PackageManager manager = getPackageManager();
+		PackageManager pm = getPackageManager();
+
         try {
-            i = manager.getLaunchIntentForPackage(pkg);
-            if (i == null)
-                throw new PackageManager.NameNotFoundException();            
+			if (pkg != null) {
+				i = pm.getLaunchIntentForPackage(pkg);
+				if (i == null)
+					throw new PackageManager.NameNotFoundException();
+			}
+			else
+			{
+				i = new Intent();
+			}
+
             i.setAction(action);
             i.setData(data);
-            startActivity(i);
+
+			if (i.resolveActivity(pm)!=null)
+				startActivity(i);
+
         } catch (PackageManager.NameNotFoundException e) {
 
         }
