@@ -24,7 +24,7 @@ endif
 # Android NDK setup
 ANDROID_NDK_HOME ?= /opt/android-ndk
 NDK_PLATFORM_LEVEL ?= 16
-NDK_TOOLCHAIN_VERSION=4.9
+NDK_TOOLCHAIN_VERSION=4.8
 APP_ABI ?= armeabi
 NDK_ABI ?= $(APP_ABI)
 
