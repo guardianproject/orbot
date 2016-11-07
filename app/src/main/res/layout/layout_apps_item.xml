@@ -6,9 +6,9 @@
     android:stretchColumns="1">
     <TableRow>
 
-    <ImageView android:id="@+id/itemicon" android:layout_width="50dip" android:layout_height="50dip"  android:padding="3dip" android:visibility="gone"></ImageView>
+    <ImageView android:id="@+id/itemicon" android:layout_width="50dp" android:layout_height="50dp"  android:padding="3dp" android:visibility="gone"></ImageView>
 
-<TextView android:layout_height="wrap_content" android:id="@+id/itemtext" android:text="uid:packages"  android:textSize="18sp"  android:padding="3dip"></TextView>
+<TextView android:layout_height="wrap_content" android:layout_width="150dp" android:id="@+id/itemtext" android:text="uid:packages"  android:textSize="18sp"  android:padding="3dip"></TextView>
 
 <CheckBox  android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/itemcheck" ></CheckBox>
        
