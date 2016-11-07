@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="org.torproject.android" 
-      android:versionName="15.2.0-RC-7-multi"
-      android:versionCode="15207000"
+      android:versionName="15.2.0-RC-8-multi"
+      android:versionCode="15208000"
         android:installLocation="auto"      
       >
     <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="23"/>
