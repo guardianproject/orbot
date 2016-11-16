@@ -107,17 +107,7 @@
                 />
         </RelativeLayout>
 
-        <TextView
-            android:id="@+id/lblStatus"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:fontFamily="sans-serif-light"
-            android:text=""
-            android:lines="2"
-            android:maxLines="2"
-            android:layout_margin="12dp"
-            />
+
 
     </LinearLayout>
 
