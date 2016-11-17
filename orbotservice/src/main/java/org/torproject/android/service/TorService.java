@@ -465,75 +465,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         sendCallbackStatus(STATUS_OFF);
     }
 
-
-    private String getHiddenServiceHostname ()
-    {
-
-        SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
-
-        boolean enableHiddenServices = prefs.getBoolean("pref_hs_enable", false);
-
-        StringBuffer result = new StringBuffer();
-
-        if (enableHiddenServices)
-        {
-            String hsPorts = prefs.getString("pref_hs_ports","");
-
-            StringTokenizer st = new StringTokenizer (hsPorts,",");
-            String hsPortConfig = null;
-
-            while (st.hasMoreTokens())
-            {
-
-                int hsPort = Integer.parseInt(st.nextToken().split(" ")[0]);;
-
-                File fileDir = new File(appCacheHome, "hs" + hsPort);
-                File file = new File(fileDir, "hostname");
-
-
-                if (file.exists())
-                {
-                    try {
-                        String onionHostname = Utils.readString(new FileInputStream(file)).trim();
-
-                        if (result.length() > 0)
-                            result.append(",");
-
-                        result.append(onionHostname);
-
-
-                    } catch (FileNotFoundException e) {
-                        logException("unable to read onion hostname file",e);
-                        showToolbarNotification(getString(R.string.unable_to_read_hidden_service_name), HS_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
-                        return null;
-                    }
-                }
-                else
-                {
-                    showToolbarNotification(getString(R.string.unable_to_read_hidden_service_name), HS_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
-                    return null;
-
-                }
-            }
-
-            if (result.length() > 0)
-            {
-                String onionHostname = result.toString();
-
-                showToolbarNotification(getString(R.string.hidden_service_on) + ' ' + onionHostname, HS_NOTIFY_ID, R.drawable.ic_stat_tor);
-                Editor pEdit = prefs.edit();
-                pEdit.putString("pref_hs_hostname",onionHostname);
-                pEdit.commit();
-
-                return onionHostname;
-            }
-
-        }
-
-        return null;
-    }
-
-
     private void killAllDaemons() throws Exception {
         if (conn != null) {
             logNotice("Using control port to shutdown Tor");
@@ -830,8 +761,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 disableTransparentProxy();
                 enableTransparentProxy();
             }
-
-            getHiddenServiceHostname ();
 
         } catch (Exception e) {
             logException("Unable to start Tor: " + e.toString(), e);
