@@ -27,6 +27,7 @@ import org.torproject.android.ui.hs.HiddenServicesActivity;
 import org.torproject.android.ui.ImageProgressView;
 import org.torproject.android.ui.PromoAppsActivity;
 import org.torproject.android.ui.Rotate3dAnimation;
+import org.torproject.android.ui.hs.providers.HSContentProvider;
 import org.torproject.android.vpn.VPNEnableActivity;
 
 import android.annotation.SuppressLint;
@@ -35,6 +36,8 @@ import android.app.ActivityManager.RunningServiceInfo;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -44,6 +47,7 @@ import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -561,65 +565,40 @@ public class OrbotMainActivity extends AppCompatActivity
             stopVpnService();
     }
 	
-	private void enableHiddenServicePort (int hsPort) throws RemoteException, InterruptedException
+	private void enableHiddenServicePort (String hsName, int hsPort) throws RemoteException, InterruptedException
 	{
-		
-		Editor pEdit = mPrefs.edit();
-		
-		String hsPortString = mPrefs.getString("pref_hs_ports", "");
-		String onionHostname = mPrefs.getString("pref_hs_hostname","");
-		
-		if (hsPortString.indexOf(hsPort+"")==-1)
-		{
-			if (hsPortString.length() > 0 && hsPortString.indexOf(hsPort+"")==-1)
-				hsPortString += ',' + hsPort;
-			else
-				hsPortString = hsPort + "";
-			
-			pEdit.putString("pref_hs_ports", hsPortString);
-			pEdit.putBoolean("pref_hs_enable", true);
-			
-			pEdit.commit();
+		String onionHostname="";
+		String[] mProjection = new String[]{
+            HSContentProvider.HiddenService._ID,
+            HSContentProvider.HiddenService.NAME,
+            HSContentProvider.HiddenService.DOMAIN,
+            HSContentProvider.HiddenService.PORT};
+
+		if(hsName == null)
+			hsName = "hs"+hsPort;
+
+		ContentValues fields = new ContentValues();
+		fields.put("name", hsName);
+		fields.put("port", hsPort);
+		ContentResolver cr = getContentResolver();
+		Cursor row = cr.query(HSContentProvider.CONTENT_URI, mProjection, "port="+hsPort, null, null);
+
+		if(row == null) {
+			cr.insert(HSContentProvider.CONTENT_URI, fields);
+		} else {
+			onionHostname = row.getString(row.getColumnIndex(HSContentProvider.HiddenService.NAME));
+			cr.update(HSContentProvider.CONTENT_URI, fields, "port=" + hsPort, null);
+			row.close();
 		}
 
-		if (onionHostname == null || onionHostname.length() == 0)
-		{
-			requestTorRereadConfig();
+		requestTorRereadConfig();
 
-			new Thread () {
+		// TODO: Wait for hostname
 
-			    public void run ()
-				{
-					String onionHostname = mPrefs.getString("pref_hs_hostname","");
-
-					while (onionHostname.length() == 0)				
-					{
-						//we need to stop and start Tor
-						try {					
-							Thread.sleep(3000); //wait three seconds					
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						 
-						onionHostname = mPrefs.getString("pref_hs_hostname","");						
-					}
-					
-					Intent nResult = new Intent();
-					nResult.putExtra("hs_host", onionHostname);
-					setResult(RESULT_OK, nResult);
-					finish();
-				}
-			}.start();
-		
-		}
-		else
-		{
-			Intent nResult = new Intent();
-			nResult.putExtra("hs_host", onionHostname);
-			setResult(RESULT_OK, nResult);
-			finish();
-		}
+		Intent nResult = new Intent();
+		nResult.putExtra("hs_host", onionHostname);
+		setResult(RESULT_OK, nResult);
+		finish();
 	
 	}
 	
@@ -640,7 +619,8 @@ public class OrbotMainActivity extends AppCompatActivity
 		
 		if (action.equals(INTENT_ACTION_REQUEST_HIDDEN_SERVICE))
 		{
-        	final int hiddenServicePortRequest = getIntent().getIntExtra("hs_port", -1);
+        	final int hiddenServicePort = getIntent().getIntExtra("hs_port", -1);
+        	final String  hiddenServiceName = getIntent().getStringExtra("hs_name");
 
 			DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
 			    
@@ -649,7 +629,7 @@ public class OrbotMainActivity extends AppCompatActivity
 			        case DialogInterface.BUTTON_POSITIVE:
 			            
 						try {
-							enableHiddenServicePort (hiddenServicePortRequest);
+							enableHiddenServicePort (hiddenServiceName, hiddenServicePort);
 							
 						} catch (RemoteException e) {
 							// TODO Auto-generated catch block
