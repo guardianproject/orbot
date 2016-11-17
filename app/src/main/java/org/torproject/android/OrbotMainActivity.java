@@ -152,12 +152,36 @@ public class OrbotMainActivity extends AppCompatActivity
           return super.onCreateView(parent, name, context, attrs);
         return null;
     }
+
+	private void migratePreferences(){
+		String hsPortString = mPrefs.getString("pref_hs_ports", "");
+		if(hsPortString.length() > 0)
+		{
+			StringTokenizer st = new StringTokenizer (hsPortString,",");
+			ContentResolver cr = getContentResolver();
+			while (st.hasMoreTokens())
+			{
+				int hsPort = Integer.parseInt(st.nextToken().split(" ")[0]);
+				ContentValues fields = new ContentValues();
+				fields.put("name", hsPort);
+				fields.put("port", hsPort);
+				fields.put("onion_port", hsPort);
+				cr.insert(HSContentProvider.CONTENT_URI, fields);
+			}
+
+			Editor pEdit = mPrefs.edit();
+			pEdit.remove("pref_hs_ports");
+			pEdit.commit();
+		}
+	}
     
     /** Called when the activity is first created. */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         mPrefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
+
+		migratePreferences(); // Migrate old preferences
 
         /* Create the widgets before registering for broadcasts to guarantee
          * that the widgets exist when the status updates try to update them */
