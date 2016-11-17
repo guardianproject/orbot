@@ -16,6 +16,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
@@ -23,12 +24,15 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.provider.BaseColumns;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
@@ -127,6 +131,26 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
     private Shell mShell;
     private Shell mShellPolipo;
+
+    private static final Uri CONTENT_URI = Uri.parse("content://org.torproject.android.ui.hs.providers/hs");
+
+    public static final class HiddenService implements BaseColumns {
+        //Nombres de columnas
+        public static final String NAME = "name";
+        public static final String PORT = "port";
+        public static final String ONION_PORT = "onion_port";
+        public static final String DOMAIN = "domain";
+
+        private HiddenService() {
+        }
+    }
+
+    private String[] mProjection = new String[]{
+			HiddenService._ID,
+			HiddenService.NAME,
+			HiddenService.DOMAIN,
+			HiddenService.PORT,
+			HiddenService.ONION_PORT};
 
     public void debug(String msg)
     {
@@ -1778,49 +1802,30 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             return false;
         }
 
-        if (enableHiddenServices)
-        {
-            logNotice("hidden services are enabled");
-            
-            //updateConfiguration("RendPostPeriod", "600 seconds", false); //possible feature to investigate
-            
-            String hsPorts = prefs.getString("pref_hs_ports","");
-            
-            StringTokenizer st = new StringTokenizer (hsPorts,",");
-            String hsPortConfig = null;
-            int hsPort = -1;
-            
-            while (st.hasMoreTokens())
-            {
-                try
-                {
-                    hsPortConfig = st.nextToken().trim();
-                    
-                    if (hsPortConfig.indexOf(":")==-1) //setup the port to localhost if not specifed
-                    {
-                        hsPortConfig = hsPortConfig + " 127.0.0.1:" + hsPortConfig;
-                    }
-                    
-                    hsPort = Integer.parseInt(hsPortConfig.split(" ")[0]);
+        /* ---- Hidden Services ---- */
+        ContentResolver mCR = getApplicationContext().getContentResolver();
+        Cursor hidden_services = mCR.query(CONTENT_URI, mProjection, null, null, null);
+        if(hidden_services != null) {
+            try {
+                while (hidden_services.moveToNext()) {
+                    Integer HSLocalPort = hidden_services.getInt(hidden_services.getColumnIndex(HiddenService.PORT));
+                    Integer HSOnionPort = hidden_services.getInt(hidden_services.getColumnIndex(HiddenService.ONION_PORT));
+                    String hsDirPath = new File(appCacheHome,"hs" + HSLocalPort).getCanonicalPath();
 
-                    String hsDirPath = new File(appCacheHome,"hs" + hsPort).getCanonicalPath();
-                    
-                    debug("Adding hidden service on port: " + hsPortConfig);
-                    
+                    debug("Adding hidden service on port: " + HSLocalPort);
+
                     extraLines.append("HiddenServiceDir" + ' ' + hsDirPath).append('\n');
-                    extraLines.append("HiddenServicePort" + ' ' + hsPortConfig).append('\n');
-                    
-
-                } catch (NumberFormatException e) {
-                    Log.e(OrbotConstants.TAG,"error parsing hsport",e);
-                } catch (Exception e) {
-                    Log.e(OrbotConstants.TAG,"error starting share server",e);
+                    extraLines.append("HiddenServicePort" + ' ' + HSOnionPort + " 127.0.0.1:" + HSLocalPort).append('\n');
                 }
+            } catch (NumberFormatException e) {
+                    Log.e(OrbotConstants.TAG,"error parsing hsport",e);
+            } catch (Exception e) {
+                    Log.e(OrbotConstants.TAG,"error starting share server",e);
             }
-            
-            
-        }
-        
+
+            hidden_services.close();
+		}
+
         return true;
     }
     

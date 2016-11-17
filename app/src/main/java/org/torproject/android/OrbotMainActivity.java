@@ -595,12 +595,12 @@ public class OrbotMainActivity extends AppCompatActivity
 		if(row == null) {
 			cr.insert(HSContentProvider.CONTENT_URI, fields);
 		} else {
-			onionHostname = row.getString(row.getColumnIndex(HSContentProvider.HiddenService.NAME));
+			onionHostname = row.getString(row.getColumnIndex(HSContentProvider.HiddenService.DOMAIN));
 			cr.update(HSContentProvider.CONTENT_URI, fields, "port=" + mHsPort, null);
 			row.close();
 		}
 
-		if(onionHostname == null) {
+		if(onionHostname == null || onionHostname.length() < 1) {
 
 			requestTorRereadConfig();
 
