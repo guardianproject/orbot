@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.provider.BaseColumns;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import org.torproject.android.ui.hs.database.HSDatabase;
@@ -43,7 +44,7 @@ public class HSContentProvider extends ContentProvider {
 
     @Nullable
     @Override
-    public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
+    public Cursor query(@NonNull Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
         //Si es una consulta a un ID concreto construimos el WHERE
         String where = selection;
         if (uriMatcher.match(uri) == ONION_ID) {
@@ -58,7 +59,7 @@ public class HSContentProvider extends ContentProvider {
 
     @Nullable
     @Override
-    public String getType(Uri uri) {
+    public String getType(@NonNull Uri uri) {
         int match = uriMatcher.match(uri);
 
         switch (match) {
@@ -73,7 +74,7 @@ public class HSContentProvider extends ContentProvider {
 
     @Nullable
     @Override
-    public Uri insert(Uri uri, ContentValues values) {
+    public Uri insert(@NonNull Uri uri, ContentValues values) {
         long regId;
 
         SQLiteDatabase db = mServerDB.getWritableDatabase();
@@ -86,7 +87,7 @@ public class HSContentProvider extends ContentProvider {
     }
 
     @Override
-    public int delete(Uri uri, String selection, String[] selectionArgs) {
+    public int delete(@NonNull Uri uri, String selection, String[] selectionArgs) {
 
         //Si es una consulta a un ID concreto construimos el WHERE
         String where = selection;
@@ -105,7 +106,7 @@ public class HSContentProvider extends ContentProvider {
     }
 
     @Override
-    public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
+    public int update(@NonNull Uri uri, ContentValues values, String selection, String[] selectionArgs) {
         SQLiteDatabase db = mServerDB.getWritableDatabase();
 
         String where = selection;
