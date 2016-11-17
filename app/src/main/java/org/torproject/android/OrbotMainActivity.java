@@ -29,6 +29,7 @@ import org.torproject.android.ui.PromoAppsActivity;
 import org.torproject.android.ui.Rotate3dAnimation;
 import org.torproject.android.ui.hs.providers.HSContentProvider;
 import org.torproject.android.vpn.VPNEnableActivity;
+import org.torproject.android.hsutils.HiddenServiceUtils;
 
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
@@ -596,25 +597,23 @@ public class OrbotMainActivity extends AppCompatActivity
             stopVpnService();
     }
 	
-	private void enableHiddenServicePort (String hsName, int hsPort, int hsRemotePort) throws RemoteException, InterruptedException
+	private void enableHiddenServicePort (String hsName, final int hsPort, int hsRemotePort, final boolean doBackup) throws RemoteException, InterruptedException
 	{
 		String onionHostname = null;
 
-		final int mHsPort = hsPort;
-
 		if(hsName == null)
-			hsName = "hs" + mHsPort;
+			hsName = "hs" + hsPort;
 
 		if(hsRemotePort == -1)
-			hsRemotePort = mHsPort;
+			hsRemotePort = hsPort;
 
 		ContentValues fields = new ContentValues();
 		fields.put("name", hsName);
-		fields.put("port", mHsPort);
+		fields.put("port", hsPort);
 		fields.put("onion_port", hsRemotePort);
 
 		ContentResolver cr = getContentResolver();
-		Cursor row = cr.query(HSContentProvider.CONTENT_URI, mProjection, "port=" + mHsPort, null, null);
+		Cursor row = cr.query(HSContentProvider.CONTENT_URI, mProjection, "port=" + hsPort, null, null);
 
 		if(row == null) {
 			cr.insert(HSContentProvider.CONTENT_URI, fields);
@@ -632,6 +631,7 @@ public class OrbotMainActivity extends AppCompatActivity
 			    public void run ()
 				{
 					String hostname = null;
+					String backupPath = null;
 
 					while (hostname == null)
 					{
@@ -643,16 +643,22 @@ public class OrbotMainActivity extends AppCompatActivity
 							e.printStackTrace();
 						}
 
-						Cursor onion = getContentResolver().query(HSContentProvider.CONTENT_URI, mProjection, "port=" + mHsPort, null, null);
+						Cursor onion = getContentResolver().query(HSContentProvider.CONTENT_URI, mProjection, "port=" + hsPort, null, null);
 						if(onion != null) {
 							hostname = onion.getString(onion.getColumnIndex(HSContentProvider.HiddenService.NAME));
+							if(doBackup) {
+								HiddenServiceUtils hsutils = new HiddenServiceUtils(getApplicationContext());
+								backupPath = hsutils.createOnionBackup(hsPort);
+							}
 							onion.close();
 						}
 					}
 
 					Intent nResult = new Intent();
 					nResult.putExtra("hs_host", hostname);
-					// TODO: Add key
+					if(doBackup && backupPath != null) {
+						nResult.putExtra("hs_backup_path", backupPath);
+					}
 					setResult(RESULT_OK, nResult);
 					finish();
 				}
@@ -685,9 +691,10 @@ public class OrbotMainActivity extends AppCompatActivity
 		
 		if (action.equals(INTENT_ACTION_REQUEST_HIDDEN_SERVICE))
 		{
-        	final int hiddenServicePort = getIntent().getIntExtra("hs_port", -1);
-        	final int hiddenServiceRemotePort = getIntent().getIntExtra("hs_onion_port", -1);
-        	final String  hiddenServiceName = getIntent().getStringExtra("hs_name");
+        	final int hiddenServicePort = intent.getIntExtra("hs_port", -1);
+        	final int hiddenServiceRemotePort = intent.getIntExtra("hs_onion_port", -1);
+        	final String hiddenServiceName = intent.getStringExtra("hs_name");
+        	final Boolean createBackup = intent.getBooleanExtra("hs_backup",false);
 
 			DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
 			    
@@ -697,7 +704,8 @@ public class OrbotMainActivity extends AppCompatActivity
 			            
 						try {
 							enableHiddenServicePort (
-									hiddenServiceName, hiddenServicePort, hiddenServiceRemotePort
+									hiddenServiceName, hiddenServicePort,
+									hiddenServiceRemotePort, createBackup
 							);
 						} catch (RemoteException e) {
 							// TODO Auto-generated catch block
