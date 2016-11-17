@@ -106,7 +106,17 @@ public class HSContentProvider extends ContentProvider {
 
     @Override
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
-        return 0;
+        SQLiteDatabase db = mServerDB.getWritableDatabase();
+
+        String where = selection;
+        if (uriMatcher.match(uri) == ONION_ID) {
+            where = "_id=" + uri.getLastPathSegment();
+        }
+
+        Integer rows = db.update(HSDatabase.HS_DATA_TABLE_NAME, values, where, null);
+        mContext.getContentResolver().notifyChange(CONTENT_URI, null);
+
+        return rows;
     }
 
     public static final class HiddenService implements BaseColumns {

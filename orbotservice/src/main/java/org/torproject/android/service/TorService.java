@@ -773,29 +773,28 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                         Integer HSLocalPort = hidden_services.getInt(hidden_services.getColumnIndex(HiddenService.PORT));
 
                         // Update only new domains
-                        if(!"".equals(HSDomain))
-                            continue;
+                        if(HSDomain == null || HSDomain.length() < 1) {
+                            String hsDirPath = new File(appCacheHome,"hs" + HSLocalPort).getCanonicalPath();
+                            File file = new File(hsDirPath, "hostname");
 
-                        String hsDirPath = new File(appCacheHome,"hs" + HSLocalPort).getCanonicalPath();
-                        File file = new File(hsDirPath, "hostname");
+                            if (file.exists())
+                            {
+                                ContentValues fields = new ContentValues();
 
-                        if (file.exists())
-                        {
-                            ContentValues fields = new ContentValues();
-
-                            try {
-                                String onionHostname = Utils.readString(new FileInputStream(file)).trim();
-                                fields.put("domain", onionHostname);
-                                mCR.update(CONTENT_URI, fields, "port=" + HSLocalPort , null);
-                            } catch (FileNotFoundException e) {
-                                logException("unable to read onion hostname file",e);
-                                showToolbarNotification(getString(R.string.unable_to_read_hidden_service_name), HS_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
+                                try {
+                                    String onionHostname = Utils.readString(new FileInputStream(file)).trim();
+                                    fields.put("domain", onionHostname);
+                                    mCR.update(CONTENT_URI, fields, "port=" + HSLocalPort , null);
+                                } catch (FileNotFoundException e) {
+                                    logException("unable to read onion hostname file",e);
+                                    showToolbarNotification(getString(R.string.unable_to_read_hidden_service_name), HS_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
+                                }
                             }
-                        }
-                        else
-                        {
-                            showToolbarNotification(getString(R.string.unable_to_read_hidden_service_name), HS_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
+                            else
+                            {
+                                showToolbarNotification(getString(R.string.unable_to_read_hidden_service_name), HS_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
 
+                            }
                         }
                     }
 
