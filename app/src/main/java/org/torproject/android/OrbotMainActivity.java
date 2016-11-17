@@ -625,7 +625,7 @@ public class OrbotMainActivity extends AppCompatActivity
         	final int hiddenServicePort = getIntent().getIntExtra("hs_port", -1);
         	final int hiddenServiceRemotePort = getIntent().getIntExtra("hs_remote_port", -1);
         	final String  hiddenServiceName = getIntent().getStringExtra("hs_name");
-        	final boolean getHiddenServiceKey = getIntent().getBooleanExtra("hs_key",false);
+        	final boolean getHiddenServiceKey = getIntent().getBooleanExtra("hs_get_key",false);
 
 			DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
 			    
