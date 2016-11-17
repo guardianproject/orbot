@@ -15,6 +15,7 @@ public class HSDatabase extends SQLiteOpenHelper {
                     "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     "name TEXT, " +
                     "domain TEXT, " +
+                    "remote_port INTEGER, " +
                     "port INTEGER);";
 
     public HSDatabase(Context context) {

@@ -565,14 +565,15 @@ public class OrbotMainActivity extends AppCompatActivity
             stopVpnService();
     }
 	
-	private void enableHiddenServicePort (String hsName, int hsPort, boolean getGey) throws RemoteException, InterruptedException
+	private void enableHiddenServicePort (String hsName, int hsPort, int hsRemotePort, boolean getGey) throws RemoteException, InterruptedException
 	{
 		String onionHostname="";
 		String[] mProjection = new String[]{
             HSContentProvider.HiddenService._ID,
             HSContentProvider.HiddenService.NAME,
             HSContentProvider.HiddenService.DOMAIN,
-            HSContentProvider.HiddenService.PORT};
+            HSContentProvider.HiddenService.PORT,
+            HSContentProvider.HiddenService.REMOTE_PORT};
 
 		if(hsName == null)
 			hsName = "hs"+hsPort;
@@ -580,6 +581,7 @@ public class OrbotMainActivity extends AppCompatActivity
 		ContentValues fields = new ContentValues();
 		fields.put("name", hsName);
 		fields.put("port", hsPort);
+		fields.put("remote_port", hsRemotePort);
 
 		ContentResolver cr = getContentResolver();
 		Cursor row = cr.query(HSContentProvider.CONTENT_URI, mProjection, "port="+hsPort, null, null);
@@ -621,6 +623,7 @@ public class OrbotMainActivity extends AppCompatActivity
 		if (action.equals(INTENT_ACTION_REQUEST_HIDDEN_SERVICE))
 		{
         	final int hiddenServicePort = getIntent().getIntExtra("hs_port", -1);
+        	final int hiddenServiceRemotePort = getIntent().getIntExtra("hs_remote_port", -1);
         	final String  hiddenServiceName = getIntent().getStringExtra("hs_name");
         	final boolean getHiddenServiceKey = getIntent().getBooleanExtra("hs_key",false);
 
@@ -632,7 +635,8 @@ public class OrbotMainActivity extends AppCompatActivity
 			            
 						try {
 							enableHiddenServicePort (
-									hiddenServiceName, hiddenServicePort, getHiddenServiceKey
+									hiddenServiceName, hiddenServicePort,
+									hiddenServiceRemotePort, getHiddenServiceKey
 							);
 						} catch (RemoteException e) {
 							// TODO Auto-generated catch block
