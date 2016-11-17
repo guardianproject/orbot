@@ -762,6 +762,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 enableTransparentProxy();
             }
 
+            // TODO: Tor is running, update new .onion names at db
+
         } catch (Exception e) {
             logException("Unable to start Tor: " + e.toString(), e);
             showToolbarNotification(
