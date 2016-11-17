@@ -657,7 +657,7 @@ public class OrbotMainActivity extends AppCompatActivity
 			    }
 			};
 
-			String requestMsg = getString(R.string.hidden_service_request, hiddenServicePortRequest);
+			String requestMsg = getString(R.string.hidden_service_request, hiddenServicePort);
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setMessage(requestMsg).setPositiveButton("Allow", dialogClickListener)
 			    .setNegativeButton("Deny", dialogClickListener).show();
