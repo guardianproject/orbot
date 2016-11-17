@@ -45,10 +45,8 @@ public class HSDataDialog extends DialogFragment {
                         ((EditText) dialog_view.findViewById(R.id.hsOnionPort)).getText().toString()
                 );
 
-                Boolean allowBackups = ((CheckBox) dialog_view.findViewById(R.id.allow_managed_backup)).isEnabled();
-
                 if (checkInput(localPort,onionPort)) {
-                    saveData(serverName, localPort,onionPort,allowBackups);
+                    saveData(serverName, localPort,onionPort);
                     serverDataDialog.dismiss();
                 }
             }
@@ -80,12 +78,11 @@ public class HSDataDialog extends DialogFragment {
         return is_ok;
     }
 
-    private void saveData(String name, Integer local, Integer remote, Boolean allowBackups) {
+    private void saveData(String name, Integer local, Integer remote) {
         ContentValues fields = new ContentValues();
         fields.put("name", name);
         fields.put("port", local);
         fields.put("onion_port", remote);
-        fields.put("allow_managed_backups", allowBackups);
 
         ContentResolver cr = getContext().getContentResolver();
 

@@ -16,7 +16,6 @@ public class HSDatabase extends SQLiteOpenHelper {
                     "name TEXT, " +
                     "domain TEXT, " +
                     "onion_port INTEGER, " +
-                    "allow_managed_backups INTEGER DEFAULT 0, " +
                     "port INTEGER);";
 
     public HSDatabase(Context context) {

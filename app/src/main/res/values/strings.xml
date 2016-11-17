@@ -339,5 +339,4 @@
     <string name="onion_port">Onion Port</string>
     <string name="name">Name</string>
     <string name="invalid_port">Invalid Port</string>
-    <string name="allow_managed_backup">Allow managed backups</string>
 </resources>
