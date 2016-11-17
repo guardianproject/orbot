@@ -5,12 +5,14 @@ import android.app.Dialog;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.os.Bundle;
+import android.support.annotation.BoolRes;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.ShareCompat;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -43,8 +45,10 @@ public class HSDataDialog extends DialogFragment {
                         ((EditText) dialog_view.findViewById(R.id.hsOnionPort)).getText().toString()
                 );
 
+                Boolean allowBackups = ((CheckBox) dialog_view.findViewById(R.id.allow_managed_backup)).isEnabled();
+
                 if (checkInput(localPort,onionPort)) {
-                    saveData(serverName, localPort,onionPort);
+                    saveData(serverName, localPort,onionPort,allowBackups);
                     serverDataDialog.dismiss();
                 }
             }
@@ -64,7 +68,7 @@ public class HSDataDialog extends DialogFragment {
         boolean is_ok = true;
         Integer error_msg = 0;
 
-        if ((local <= 1 || local > 65535) || (remote <= 1 || remote > 65535)) {
+        if ((local < 1 || local > 65535) || (remote < 1 || remote > 65535)) {
             error_msg = R.string.invalid_port;
             is_ok = false;
         }
@@ -76,11 +80,12 @@ public class HSDataDialog extends DialogFragment {
         return is_ok;
     }
 
-    private void saveData(String name, Integer local, Integer remote) {
+    private void saveData(String name, Integer local, Integer remote, Boolean allowBackups) {
         ContentValues fields = new ContentValues();
         fields.put("name", name);
         fields.put("port", local);
         fields.put("onion_port", remote);
+        fields.put("allow_managed_backups", allowBackups);
 
         ContentResolver cr = getContext().getContentResolver();
 
