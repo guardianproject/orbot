@@ -17,6 +17,7 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
@@ -762,7 +763,50 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 enableTransparentProxy();
             }
 
-            // TODO: Tor is running, update new .onion names at db
+            // Tor is running, update new .onion names at db
+            ContentResolver mCR = getApplicationContext().getContentResolver();
+            Cursor hidden_services = mCR.query(CONTENT_URI, mProjection, null, null, null);
+            if(hidden_services != null) {
+                try {
+                    while (hidden_services.moveToNext()) {
+                        String HSDomain = hidden_services.getString(hidden_services.getColumnIndex(HiddenService.DOMAIN));
+                        Integer HSLocalPort = hidden_services.getInt(hidden_services.getColumnIndex(HiddenService.PORT));
+
+                        // Update only new domains
+                        if(!"".equals(HSDomain))
+                            continue;
+
+                        String hsDirPath = new File(appCacheHome,"hs" + HSLocalPort).getCanonicalPath();
+                        File file = new File(hsDirPath, "hostname");
+
+                        if (file.exists())
+                        {
+                            ContentValues fields = new ContentValues();
+
+                            try {
+                                String onionHostname = Utils.readString(new FileInputStream(file)).trim();
+                                fields.put("domain", onionHostname);
+                                mCR.update(CONTENT_URI, fields, "port=" + HSLocalPort , null);
+                            } catch (FileNotFoundException e) {
+                                logException("unable to read onion hostname file",e);
+                                showToolbarNotification(getString(R.string.unable_to_read_hidden_service_name), HS_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
+                            }
+                        }
+                        else
+                        {
+                            showToolbarNotification(getString(R.string.unable_to_read_hidden_service_name), HS_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
+
+                        }
+                    }
+
+                } catch (NumberFormatException e) {
+                    Log.e(OrbotConstants.TAG,"error parsing hsport",e);
+                } catch (Exception e) {
+                    Log.e(OrbotConstants.TAG,"error starting share server",e);
+                }
+
+                hidden_services.close();
+            }
 
         } catch (Exception e) {
             logException("Unable to start Tor: " + e.toString(), e);
