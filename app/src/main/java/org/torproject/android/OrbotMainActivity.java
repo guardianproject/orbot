@@ -565,7 +565,7 @@ public class OrbotMainActivity extends AppCompatActivity
             stopVpnService();
     }
 	
-	private void enableHiddenServicePort (String hsName, int hsPort) throws RemoteException, InterruptedException
+	private void enableHiddenServicePort (String hsName, int hsPort, boolean getGey) throws RemoteException, InterruptedException
 	{
 		String onionHostname="";
 		String[] mProjection = new String[]{
@@ -580,6 +580,7 @@ public class OrbotMainActivity extends AppCompatActivity
 		ContentValues fields = new ContentValues();
 		fields.put("name", hsName);
 		fields.put("port", hsPort);
+
 		ContentResolver cr = getContentResolver();
 		Cursor row = cr.query(HSContentProvider.CONTENT_URI, mProjection, "port="+hsPort, null, null);
 
@@ -594,9 +595,9 @@ public class OrbotMainActivity extends AppCompatActivity
 		requestTorRereadConfig();
 
 		// TODO: Wait for hostname
-
 		Intent nResult = new Intent();
 		nResult.putExtra("hs_host", onionHostname);
+		// TODO: Add key
 		setResult(RESULT_OK, nResult);
 		finish();
 	
@@ -621,6 +622,7 @@ public class OrbotMainActivity extends AppCompatActivity
 		{
         	final int hiddenServicePort = getIntent().getIntExtra("hs_port", -1);
         	final String  hiddenServiceName = getIntent().getStringExtra("hs_name");
+        	final boolean getHiddenServiceKey = getIntent().getBooleanExtra("hs_key",false);
 
 			DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
 			    
@@ -629,8 +631,9 @@ public class OrbotMainActivity extends AppCompatActivity
 			        case DialogInterface.BUTTON_POSITIVE:
 			            
 						try {
-							enableHiddenServicePort (hiddenServiceName, hiddenServicePort);
-							
+							enableHiddenServicePort (
+									hiddenServiceName, hiddenServicePort, getHiddenServiceKey
+							);
 						} catch (RemoteException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
