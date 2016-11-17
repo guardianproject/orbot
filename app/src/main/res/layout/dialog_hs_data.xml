@@ -53,6 +53,13 @@
         android:id="@+id/hsOnionPort"
         android:inputType="number" />
 
+    <CheckBox
+        android:text="@string/allow_managed_backup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/allow_managed_backup"
+        android:layout_weight="1" />
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -73,6 +80,7 @@
             android:id="@+id/HSDialogSave"
             android:layout_weight="1"
             style="@style/Widget.AppCompat.Button.Borderless.Colored" />
+
     </LinearLayout>
 
 </LinearLayout>

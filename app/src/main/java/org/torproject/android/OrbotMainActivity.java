@@ -572,7 +572,7 @@ public class OrbotMainActivity extends AppCompatActivity
             stopVpnService();
     }
 	
-	private void enableHiddenServicePort (String hsName, int hsPort, int hsRemotePort, boolean getGey) throws RemoteException, InterruptedException
+	private void enableHiddenServicePort (String hsName, int hsPort, int hsRemotePort, boolean allowBackups) throws RemoteException, InterruptedException
 	{
 		String onionHostname = null;
 
@@ -593,6 +593,15 @@ public class OrbotMainActivity extends AppCompatActivity
 		Cursor row = cr.query(HSContentProvider.CONTENT_URI, mProjection, "port=" + mHsPort, null, null);
 
 		if(row == null) {
+			/*
+			 * For security reasons:
+			 *
+			 * Allow managed backups option can only be set to a arbitrary true or false value when a service is created
+			 * Subsequently an application can only change this value to false via Intent service
+			 * Modifying this value to true again can only be performed by the user through the Orbot interface
+			 *
+			 */
+			fields.put("allow_managed_backups", allowBackups);
 			cr.insert(HSContentProvider.CONTENT_URI, fields);
 		} else {
 			onionHostname = row.getString(row.getColumnIndex(HSContentProvider.HiddenService.DOMAIN));
@@ -665,7 +674,7 @@ public class OrbotMainActivity extends AppCompatActivity
         	final int hiddenServicePort = getIntent().getIntExtra("hs_port", -1);
         	final int hiddenServiceRemotePort = getIntent().getIntExtra("hs_onion_port", -1);
         	final String  hiddenServiceName = getIntent().getStringExtra("hs_name");
-        	final boolean getHiddenServiceKey = getIntent().getBooleanExtra("hs_get_key",false);
+        	final boolean hiddenServiceAllowBackups = getIntent().getBooleanExtra("hs_allow_namaged_backup",false);
 
 			DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
 			    
@@ -676,7 +685,7 @@ public class OrbotMainActivity extends AppCompatActivity
 						try {
 							enableHiddenServicePort (
 									hiddenServiceName, hiddenServicePort,
-									hiddenServiceRemotePort, getHiddenServiceKey
+									hiddenServiceRemotePort, hiddenServiceAllowBackups
 							);
 						} catch (RemoteException e) {
 							// TODO Auto-generated catch block
