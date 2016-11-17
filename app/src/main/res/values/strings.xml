@@ -331,4 +331,10 @@
 
     <string name="vpn_default_world">World (Location)</string>
     <string name="title_activity_hidden_services">Hidden Services</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="hs_dialog_title">Hidden Service</string>
+    <string name="port">Port</string>
+    <string name="name">Name</string>
+    <string name="invalid_port">Invalid Port</string>
 </resources>

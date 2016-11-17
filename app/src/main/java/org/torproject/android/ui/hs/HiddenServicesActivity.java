@@ -5,7 +5,6 @@ import android.database.ContentObserver;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +13,7 @@ import android.view.View;
 
 import org.torproject.android.R;
 import org.torproject.android.ui.hs.adapters.HSAdapter;
+import org.torproject.android.ui.hs.dialogs.HSDataDialog;
 import org.torproject.android.ui.hs.providers.HSContentProvider;
 
 public class HiddenServicesActivity extends AppCompatActivity {
@@ -37,8 +37,8 @@ public class HiddenServicesActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                HSDataDialog dialog = new HSDataDialog();
+                dialog.show(getSupportFragmentManager(), "HSDataDialog");
             }
         });
 
