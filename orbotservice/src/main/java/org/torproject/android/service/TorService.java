@@ -1528,7 +1528,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
         boolean becomeRelay = prefs.getBoolean(OrbotConstants.PREF_OR, false);
         boolean ReachableAddresses = prefs.getBoolean(OrbotConstants.PREF_REACHABLE_ADDRESSES,false);
-        boolean enableHiddenServices = prefs.getBoolean("pref_hs_enable", false);
 
         boolean enableStrictNodes = prefs.getBoolean("pref_strict_nodes", false);
         String entranceNodes = prefs.getString("pref_entrance_nodes", "");
