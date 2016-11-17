@@ -620,7 +620,6 @@ public class OrbotMainActivity extends AppCompatActivity
 			cr.insert(HSContentProvider.CONTENT_URI, fields);
 		} else {
 			onionHostname = row.getString(row.getColumnIndex(HSContentProvider.HiddenService.DOMAIN));
-			cr.update(HSContentProvider.CONTENT_URI, fields, "port=" + mHsPort, null);
 			row.close();
 		}
 
