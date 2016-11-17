@@ -23,6 +23,7 @@ import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.TorServiceUtils;
 import org.torproject.android.settings.SettingsPreferences;
 import org.torproject.android.ui.AppManager;
+import org.torproject.android.ui.hs.HiddenServicesActivity;
 import org.torproject.android.ui.ImageProgressView;
 import org.torproject.android.ui.PromoAppsActivity;
 import org.torproject.android.ui.Rotate3dAnimation;
@@ -478,6 +479,10 @@ public class OrbotMainActivity extends AppCompatActivity
 					}
      		}
 
+         }
+         else if (item.getItemId() == R.id.menu_hidden_services)
+         {
+             startActivity(new Intent(this, HiddenServicesActivity.class));
          }
      
 		return super.onOptionsItemSelected(item);
