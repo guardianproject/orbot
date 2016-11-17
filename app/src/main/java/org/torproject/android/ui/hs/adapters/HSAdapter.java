@@ -32,8 +32,9 @@ public class HSAdapter extends CursorRecyclerViewAdapter<HSAdapter.ViewHolder> {
 
         String name_string = cursor.getString(cursor.getColumnIndex(HSContentProvider.HiddenService.NAME));
         Integer port = cursor.getInt(cursor.getColumnIndex(HSContentProvider.HiddenService.PORT));
+        Integer onion_port = cursor.getInt(cursor.getColumnIndex(HSContentProvider.HiddenService.ONION_PORT));
 
-        viewHolder.name.setText(name_string + ": " + port.toString());
+        viewHolder.name.setText(name_string + ": " + port.toString()+ " -> " +onion_port.toString());
 
         viewHolder.domain.setText(
                 cursor.getString(cursor.getColumnIndex(HSContentProvider.HiddenService.DOMAIN))

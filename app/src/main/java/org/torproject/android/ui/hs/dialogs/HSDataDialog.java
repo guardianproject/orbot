@@ -7,6 +7,7 @@ import android.content.ContentValues;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.ShareCompat;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.Button;
@@ -35,12 +36,15 @@ public class HSDataDialog extends DialogFragment {
         save.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 String serverName = ((EditText) dialog_view.findViewById(R.id.hsName)).getText().toString();
-                Integer serverPort = Integer.parseInt(
-                        ((EditText) dialog_view.findViewById(R.id.serverPort)).getText().toString()
+                Integer localPort = Integer.parseInt(
+                        ((EditText) dialog_view.findViewById(R.id.hsLocalPort)).getText().toString()
+                );
+                Integer onionPort = Integer.parseInt(
+                        ((EditText) dialog_view.findViewById(R.id.hsOnionPort)).getText().toString()
                 );
 
-                if (checkInput(serverPort)) {
-                    saveData(serverName, serverPort);
+                if (checkInput(localPort,onionPort)) {
+                    saveData(serverName, localPort,onionPort);
                     serverDataDialog.dismiss();
                 }
             }
@@ -56,11 +60,11 @@ public class HSDataDialog extends DialogFragment {
         return serverDataDialog;
     }
 
-    private boolean checkInput(Integer port) {
+    private boolean checkInput(Integer local, Integer remote){
         boolean is_ok = true;
         Integer error_msg = 0;
 
-        if (port <= 1 || port > 65535) {
+        if ((local <= 1 || local > 65535) || (remote <= 1 || remote > 65535)) {
             error_msg = R.string.invalid_port;
             is_ok = false;
         }
@@ -72,10 +76,11 @@ public class HSDataDialog extends DialogFragment {
         return is_ok;
     }
 
-    private void saveData(String name, Integer port) {
+    private void saveData(String name, Integer local, Integer remote) {
         ContentValues fields = new ContentValues();
         fields.put("name", name);
-        fields.put("port", port);
+        fields.put("port", local);
+        fields.put("onion_port", remote);
 
         ContentResolver cr = getContext().getContentResolver();
 

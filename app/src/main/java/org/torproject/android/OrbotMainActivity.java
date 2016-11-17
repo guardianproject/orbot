@@ -573,15 +573,18 @@ public class OrbotMainActivity extends AppCompatActivity
             HSContentProvider.HiddenService.NAME,
             HSContentProvider.HiddenService.DOMAIN,
             HSContentProvider.HiddenService.PORT,
-            HSContentProvider.HiddenService.REMOTE_PORT};
+            HSContentProvider.HiddenService.ONION_PORT};
 
 		if(hsName == null)
 			hsName = "hs"+hsPort;
 
+		if(hsRemotePort == -1)
+			hsRemotePort = hsPort;
+
 		ContentValues fields = new ContentValues();
 		fields.put("name", hsName);
 		fields.put("port", hsPort);
-		fields.put("remote_port", hsRemotePort);
+		fields.put("onion_port", hsRemotePort);
 
 		ContentResolver cr = getContentResolver();
 		Cursor row = cr.query(HSContentProvider.CONTENT_URI, mProjection, "port="+hsPort, null, null);
@@ -623,7 +626,7 @@ public class OrbotMainActivity extends AppCompatActivity
 		if (action.equals(INTENT_ACTION_REQUEST_HIDDEN_SERVICE))
 		{
         	final int hiddenServicePort = getIntent().getIntExtra("hs_port", -1);
-        	final int hiddenServiceRemotePort = getIntent().getIntExtra("hs_remote_port", -1);
+        	final int hiddenServiceRemotePort = getIntent().getIntExtra("hs_onion_port", -1);
         	final String  hiddenServiceName = getIntent().getStringExtra("hs_name");
         	final boolean getHiddenServiceKey = getIntent().getBooleanExtra("hs_get_key",false);
 

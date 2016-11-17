@@ -113,7 +113,7 @@ public class HSContentProvider extends ContentProvider {
         //Nombres de columnas
         public static final String NAME = "name";
         public static final String PORT = "port";
-        public static final String REMOTE_PORT = "remote_port";
+        public static final String ONION_PORT = "onion_port";
         public static final String DOMAIN = "domain";
 
         private HiddenService() {

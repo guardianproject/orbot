@@ -24,6 +24,7 @@ public class HiddenServicesActivity extends AppCompatActivity {
             HSContentProvider.HiddenService._ID,
             HSContentProvider.HiddenService.NAME,
             HSContentProvider.HiddenService.DOMAIN,
+            HSContentProvider.HiddenService.ONION_PORT,
             HSContentProvider.HiddenService.PORT};
 
     @Override
