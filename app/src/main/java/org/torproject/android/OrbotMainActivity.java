@@ -136,6 +136,13 @@ public class OrbotMainActivity extends AppCompatActivity
     }
     
     private ArrayList<Bridge> alBridges = null;
+
+	private String[] mProjection = new String[]{
+			HSContentProvider.HiddenService._ID,
+			HSContentProvider.HiddenService.NAME,
+			HSContentProvider.HiddenService.DOMAIN,
+			HSContentProvider.HiddenService.PORT,
+			HSContentProvider.HiddenService.ONION_PORT};
     
     //this is needed for backwards compat back to Android 2.3.*
     @SuppressLint("NewApi")
@@ -567,39 +574,69 @@ public class OrbotMainActivity extends AppCompatActivity
 	
 	private void enableHiddenServicePort (String hsName, int hsPort, int hsRemotePort, boolean getGey) throws RemoteException, InterruptedException
 	{
-		String onionHostname="";
-		String[] mProjection = new String[]{
-            HSContentProvider.HiddenService._ID,
-            HSContentProvider.HiddenService.NAME,
-            HSContentProvider.HiddenService.DOMAIN,
-            HSContentProvider.HiddenService.PORT,
-            HSContentProvider.HiddenService.ONION_PORT};
+		String onionHostname = null;
+
+		final int mHsPort = hsPort;
 
 		if(hsName == null)
-			hsName = "hs"+hsPort;
+			hsName = "hs" + mHsPort;
 
 		if(hsRemotePort == -1)
-			hsRemotePort = hsPort;
+			hsRemotePort = mHsPort;
 
 		ContentValues fields = new ContentValues();
 		fields.put("name", hsName);
-		fields.put("port", hsPort);
+		fields.put("port", mHsPort);
 		fields.put("onion_port", hsRemotePort);
 
 		ContentResolver cr = getContentResolver();
-		Cursor row = cr.query(HSContentProvider.CONTENT_URI, mProjection, "port="+hsPort, null, null);
+		Cursor row = cr.query(HSContentProvider.CONTENT_URI, mProjection, "port=" + mHsPort, null, null);
 
 		if(row == null) {
 			cr.insert(HSContentProvider.CONTENT_URI, fields);
 		} else {
 			onionHostname = row.getString(row.getColumnIndex(HSContentProvider.HiddenService.NAME));
-			cr.update(HSContentProvider.CONTENT_URI, fields, "port=" + hsPort, null);
+			cr.update(HSContentProvider.CONTENT_URI, fields, "port=" + mHsPort, null);
 			row.close();
 		}
 
-		requestTorRereadConfig();
+		if(onionHostname == null) {
 
-		// TODO: Wait for hostname
+			requestTorRereadConfig();
+
+			new Thread () {
+
+			    public void run ()
+				{
+					String hostname = null;
+
+					while (hostname == null)
+					{
+						//we need to stop and start Tor
+						try {
+							Thread.sleep(3000); //wait three seconds
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+
+						Cursor onion = getContentResolver().query(HSContentProvider.CONTENT_URI, mProjection, "port=" + mHsPort, null, null);
+						if(onion != null) {
+							hostname = onion.getString(onion.getColumnIndex(HSContentProvider.HiddenService.NAME));
+							onion.close();
+						}
+					}
+
+					Intent nResult = new Intent();
+					nResult.putExtra("hs_host", hostname);
+					// TODO: Add key
+					setResult(RESULT_OK, nResult);
+					finish();
+				}
+			}.start();
+
+		}
+
 		Intent nResult = new Intent();
 		nResult.putExtra("hs_host", onionHostname);
 		// TODO: Add key
