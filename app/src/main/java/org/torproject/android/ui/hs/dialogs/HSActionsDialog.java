@@ -32,10 +32,16 @@ public class HSActionsDialog extends DialogFragment {
                 .setTitle(R.string.hidden_services)
                 .create();
 
-        Button save = (Button) dialog_view.findViewById(R.id.btn_hs_backup);
-        save.setOnClickListener(new View.OnClickListener() {
+        Button backup = (Button) dialog_view.findViewById(R.id.btn_hs_backup);
+        backup.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Context mContext = v.getContext();
+
+                if (!arguments.getBoolean("has_write_permissions")) {
+                    Toast.makeText(mContext, R.string.please_grant_permissions_for_external_storage, Toast.LENGTH_LONG).show();
+                    return;
+                }
+
                 HiddenServiceUtils hsutils = new HiddenServiceUtils(mContext);
                 String backupPath = hsutils.createOnionBackup(Integer.parseInt(arguments.getString("port")));
 
