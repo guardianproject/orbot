@@ -1,4 +1,4 @@
-package org.torproject.android.hsutils;
+package org.torproject.android.zip;
 
 
 import java.io.BufferedInputStream;

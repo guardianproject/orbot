@@ -1,4 +1,4 @@
-package org.torproject.android.hsutils;
+package org.torproject.android.storage;
 
 import android.os.Environment;
 

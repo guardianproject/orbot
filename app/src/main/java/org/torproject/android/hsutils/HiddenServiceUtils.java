@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 
 import org.torproject.android.service.TorServiceConstants;
+import org.torproject.android.storage.ExternalStorage;
+import org.torproject.android.zip.ZipIt;
 
 import java.io.File;
 
