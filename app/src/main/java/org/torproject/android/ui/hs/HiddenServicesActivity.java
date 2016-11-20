@@ -1,38 +1,49 @@
 package org.torproject.android.ui.hs;
 
+
 import android.content.ContentResolver;
 import android.database.ContentObserver;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 import org.torproject.android.R;
-import org.torproject.android.ui.hs.adapters.HSAdapter;
+import org.torproject.android.ui.hs.adapters.OnionListAdapter;
 import org.torproject.android.ui.hs.dialogs.HSDataDialog;
 import org.torproject.android.ui.hs.providers.HSContentProvider;
 
 public class HiddenServicesActivity extends AppCompatActivity {
-    private HSAdapter mHiddenServices;
     private ContentResolver mCR;
-    private HSObserver mHSObserver;
+    private OnionListAdapter mAdapter;
+
     private String[] mProjection = new String[]{
             HSContentProvider.HiddenService._ID,
             HSContentProvider.HiddenService.NAME,
-            HSContentProvider.HiddenService.DOMAIN,
-            HSContentProvider.HiddenService.ONION_PORT,
-            HSContentProvider.HiddenService.PORT};
+            HSContentProvider.HiddenService.DOMAIN};
+
+    class HSObserver extends ContentObserver {
+        HSObserver(Handler handler) {
+            super(handler);
+        }
+
+        @Override
+        public void onChange(boolean selfChange) {
+            mAdapter.changeCursor(mCR.query(
+                    HSContentProvider.CONTENT_URI, mProjection, null, null, null
+            ));
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hidden_services);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setContentView(R.layout.layout_hs_list_view);
+
+        mCR = getContentResolver();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -43,35 +54,35 @@ public class HiddenServicesActivity extends AppCompatActivity {
             }
         });
 
-        mCR = getContentResolver();
-        // View adapter
-        mHiddenServices = new HSAdapter(
-                mCR.query(
+        mAdapter = new OnionListAdapter(
+                this,
+                getContentResolver().query(
                         HSContentProvider.CONTENT_URI, mProjection, null, null, null
-                ));
+                ),
+                0
+        );
 
-        mHSObserver = new HSObserver(new Handler());
-        mCR.registerContentObserver(HSContentProvider.CONTENT_URI, true, mHSObserver);
+        mCR.registerContentObserver(
+                HSContentProvider.CONTENT_URI, true, new HSObserver(new Handler())
+        );
 
-        // Fill view
-        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.onion_list);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.setAdapter(mHiddenServices);
+        ListView onion_list = (ListView) findViewById(R.id.onion_list);
+        onion_list.setAdapter(mAdapter);
+
+        onion_list.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
+
+        onion_list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
+
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                return false;
+            }
+        });
     }
-
-    class HSObserver extends ContentObserver {
-        public HSObserver(Handler handler) {
-            super(handler);
-        }
-
-        @Override
-        public void onChange(boolean selfChange) {
-            // New data
-            mHiddenServices.changeCursor(mCR.query(
-                    HSContentProvider.CONTENT_URI, mProjection, null, null, null
-            ));
-        }
-
-    }
-
 }

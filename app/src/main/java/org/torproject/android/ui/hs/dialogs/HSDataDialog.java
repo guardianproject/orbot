@@ -5,14 +5,11 @@ import android.app.Dialog;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.os.Bundle;
-import android.support.annotation.BoolRes;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.ShareCompat;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -25,7 +22,7 @@ public class HSDataDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Get the layout
-        final View dialog_view = getActivity().getLayoutInflater().inflate(R.layout.dialog_hs_data, null);
+        final View dialog_view = getActivity().getLayoutInflater().inflate(R.layout.layout_hs_data_dialog, null);
 
         // Use the Builder class for convenient dialog construction
         final AlertDialog serverDataDialog = new AlertDialog.Builder(getActivity())
