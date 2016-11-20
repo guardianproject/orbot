@@ -341,4 +341,6 @@
     <string name="copy_address_to_clipboard">Copy address to clipboard</string>
     <string name="backup_service">Backup Service</string>
     <string name="delete_service">Delete Service</string>
+    <string name="done">Done!</string>
+    <string name="filemanager_not_available">Filemanager not available</string>
 </resources>

@@ -23,6 +23,8 @@ public class OnionListAdapter extends CursorAdapter {
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
+        TextView port = (TextView) view.findViewById(R.id.hs_port);
+        port.setText(cursor.getString(cursor.getColumnIndex(HSContentProvider.HiddenService.PORT)));
         TextView name = (TextView) view.findViewById(R.id.hs_name);
         name.setText(cursor.getString(cursor.getColumnIndex(HSContentProvider.HiddenService.NAME)));
         TextView domain = (TextView) view.findViewById(R.id.hs_onion);

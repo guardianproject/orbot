@@ -5,16 +5,42 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/hs_name"
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="24sp" />
+        android:paddingLeft="15dp"
+        tools:paddingLeft="15dp">
 
-    <TextView
-        android:id="@+id/hs_onion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="18sp" />
+        <TextView
+            android:layout_height="match_parent"
+            android:id="@+id/hs_port"
+            android:layout_width="wrap_content"
+            android:textSize="35sp" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/hs_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:paddingLeft="10dp"
+                android:paddingBottom="10dp" />
+
+            <TextView
+                android:id="@+id/hs_onion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:paddingLeft="10dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </LinearLayout>

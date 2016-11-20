@@ -2,12 +2,10 @@ package org.torproject.android.ui.hs;
 
 
 import android.content.ContentResolver;
-import android.content.DialogInterface;
 import android.database.ContentObserver;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -27,6 +25,7 @@ public class HiddenServicesActivity extends AppCompatActivity {
     private String[] mProjection = new String[]{
             HSContentProvider.HiddenService._ID,
             HSContentProvider.HiddenService.NAME,
+            HSContentProvider.HiddenService.PORT,
             HSContentProvider.HiddenService.DOMAIN};
 
     class HSObserver extends ContentObserver {
@@ -60,7 +59,7 @@ public class HiddenServicesActivity extends AppCompatActivity {
 
         mAdapter = new OnionListAdapter(
                 this,
-                getContentResolver().query(
+                mCR.query(
                         HSContentProvider.CONTENT_URI, mProjection, null, null, null
                 ),
                 0
@@ -77,7 +76,15 @@ public class HiddenServicesActivity extends AppCompatActivity {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                TextView port = (TextView) view.findViewById(R.id.hs_port);
+                TextView onion = (TextView) view.findViewById(R.id.hs_onion);
+
+                Bundle arguments = new Bundle();
+                arguments.putString("port", port.getText().toString());
+                arguments.putString("onion", onion.getText().toString());
+
                 HSActionsDialog dialog = new HSActionsDialog();
+                dialog.setArguments(arguments);
                 dialog.show(getSupportFragmentManager(), "HSActionsDialog");
             }
         });
