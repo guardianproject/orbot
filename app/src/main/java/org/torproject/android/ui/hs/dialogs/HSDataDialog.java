@@ -25,9 +25,9 @@ public class HSDataDialog extends DialogFragment {
         final View dialog_view = getActivity().getLayoutInflater().inflate(R.layout.layout_hs_data_dialog, null);
 
         // Use the Builder class for convenient dialog construction
-        final AlertDialog serverDataDialog = new AlertDialog.Builder(getActivity())
+        final AlertDialog serviceDataDialog = new AlertDialog.Builder(getActivity())
                 .setView(dialog_view)
-                .setTitle(R.string.hs_dialog_title)
+                .setTitle(R.string.hidden_services)
                 .create();
 
         // Buttons action
@@ -44,7 +44,7 @@ public class HSDataDialog extends DialogFragment {
 
                 if (checkInput(localPort,onionPort)) {
                     saveData(serverName, localPort,onionPort);
-                    serverDataDialog.dismiss();
+                    serviceDataDialog.dismiss();
                 }
             }
         });
@@ -52,11 +52,11 @@ public class HSDataDialog extends DialogFragment {
         Button cancel = (Button) dialog_view.findViewById(R.id.HSDialogCancel);
         cancel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                serverDataDialog.cancel();
+                serviceDataDialog.cancel();
             }
         });
 
-        return serverDataDialog;
+        return serviceDataDialog;
     }
 
     private boolean checkInput(Integer local, Integer remote){

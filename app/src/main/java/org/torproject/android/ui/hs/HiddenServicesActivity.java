@@ -2,17 +2,21 @@ package org.torproject.android.ui.hs;
 
 
 import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.database.ContentObserver;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import org.torproject.android.R;
 import org.torproject.android.ui.hs.adapters.OnionListAdapter;
+import org.torproject.android.ui.hs.dialogs.HSActionsDialog;
 import org.torproject.android.ui.hs.dialogs.HSDataDialog;
 import org.torproject.android.ui.hs.providers.HSContentProvider;
 
@@ -69,19 +73,12 @@ public class HiddenServicesActivity extends AppCompatActivity {
         ListView onion_list = (ListView) findViewById(R.id.onion_list);
         onion_list.setAdapter(mAdapter);
 
-        onion_list.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        onion_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-            }
-        });
-
-        onion_list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
-
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                return false;
+                HSActionsDialog dialog = new HSActionsDialog();
+                dialog.show(getSupportFragmentManager(), "HSActionsDialog");
             }
         });
     }

@@ -330,13 +330,15 @@
     <string name="note_only_standard_tor_bridges_work_on_intel_x86_atom_devices">NOTE: Only standard Tor bridges work on Intel X86/ATOM devices</string>
 
     <string name="vpn_default_world">World (Location)</string>
+    <string name="hidden_services">Hidden Services</string>
     <string name="title_activity_hidden_services">Hidden Services</string>
     <string name="save">Save</string>
-    <string name="cancel">Cancel</string>
-    <string name="hs_dialog_title">Hidden Service</string>
     <string name="ports">Ports</string>
     <string name="local_port">Local Port</string>
     <string name="onion_port">Onion Port</string>
     <string name="name">Name</string>
     <string name="invalid_port">Invalid Port</string>
+    <string name="copy_address_to_clipboard">Copy address to clipboard</string>
+    <string name="backup_service">Backup Service</string>
+    <string name="delete_service">Delete Service</string>
 </resources>
