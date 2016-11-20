@@ -37,7 +37,8 @@ public class HiddenServiceUtils {
         return zip_path;
     }
 
-    public void restoreOnionBackup(String path) {
-
+    public void restoreOnionBackup(Integer port, String path) {
+        ZipIt zip = new ZipIt(null, path);
+        zip.unzip(appCacheHome + "/hs" + port);
     }
 }

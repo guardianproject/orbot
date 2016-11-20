@@ -525,15 +525,15 @@ public class OrbotMainActivity extends AppCompatActivity
          }
          else if (item.getItemId() == R.id.menu_hidden_services)
          {
-			 if(usesRuntimePermissions()){
-				 postPermissionsAction = new GrantedPermissionsAction() {
-					 @Override
-					 public void run(Context context, boolean granted) {
-						 startActivity(new Intent(context, HiddenServicesActivity.class));
-					 }
-				 };
+			 if(usesRuntimePermissions() && !hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)){
+					 postPermissionsAction = new GrantedPermissionsAction() {
+						 @Override
+						 public void run(Context context, boolean granted) {
+							 startActivity(new Intent(context, HiddenServicesActivity.class));
+						 }
+					 };
 
-				 checkPermissions();
+					 checkPermissions();
 			 } else {
 				 startActivity(new Intent(this, HiddenServicesActivity.class));
 			 }
@@ -615,7 +615,7 @@ public class OrbotMainActivity extends AppCompatActivity
             stopVpnService();
     }
 	
-	private void enableHiddenServicePort (String hsName, final int hsPort, int hsRemotePort, final boolean doBackup) throws RemoteException, InterruptedException
+	private void enableHiddenServicePort (String hsName, final int hsPort, int hsRemotePort, final boolean doBackup, final String keyZipPath) throws RemoteException, InterruptedException
 	{
 		String onionHostname = null;
 
@@ -664,8 +664,15 @@ public class OrbotMainActivity extends AppCompatActivity
 						Cursor onion = getContentResolver().query(HSContentProvider.CONTENT_URI, mProjection, "port=" + hsPort, null, null);
 						if(onion != null) {
 							hostname = onion.getString(onion.getColumnIndex(HSContentProvider.HiddenService.NAME));
-							if(doBackup) {
-								HiddenServiceUtils hsutils = new HiddenServiceUtils(getApplicationContext());
+							HiddenServiceUtils hsutils = new HiddenServiceUtils(getApplicationContext());
+							if(keyZipPath != null && keyZipPath.length() > 0)
+							{
+								hsutils.restoreOnionBackup(hsPort, keyZipPath);
+								requestTorRereadConfig();
+							}
+
+							if(doBackup)
+							{
 								backupPath = hsutils.createOnionBackup(hsPort);
 							}
 							onion.close();
@@ -686,7 +693,6 @@ public class OrbotMainActivity extends AppCompatActivity
 
 		Intent nResult = new Intent();
 		nResult.putExtra("hs_host", onionHostname);
-		// TODO: Add key
 		setResult(RESULT_OK, nResult);
 		finish();
 	
@@ -713,23 +719,22 @@ public class OrbotMainActivity extends AppCompatActivity
         	final int hiddenServiceRemotePort = intent.getIntExtra("hs_onion_port", -1);
         	final String hiddenServiceName = intent.getStringExtra("hs_name");
         	final Boolean createBackup = intent.getBooleanExtra("hs_backup",false);
-
-			if(createBackup && usesRuntimePermissions())
-				checkPermissions();
+        	final String keyZipPath = intent.getStringExtra("hs_key_zip_path");
 
 			DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
 			    
 			    public void onClick(DialogInterface dialog, int which) {
 			        switch (which){
 			        case DialogInterface.BUTTON_POSITIVE:
-						if(createBackup && usesRuntimePermissions()){
+						if(createBackup && usesRuntimePermissions()
+								&& !hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)){
 							postPermissionsAction = new GrantedPermissionsAction() {
 								@Override
 								public void run(Context context, boolean granted) {
 									try {
 										enableHiddenServicePort (
 												hiddenServiceName, hiddenServicePort,
-												hiddenServiceRemotePort, createBackup
+												hiddenServiceRemotePort, createBackup, keyZipPath
 										);
 									} catch (RemoteException e) {
 										// TODO Auto-generated catch block
@@ -745,7 +750,7 @@ public class OrbotMainActivity extends AppCompatActivity
 							try {
 								enableHiddenServicePort (
 										hiddenServiceName, hiddenServicePort,
-										hiddenServiceRemotePort, createBackup
+										hiddenServiceRemotePort, createBackup, keyZipPath
 								);
 							} catch (RemoteException e) {
 								// TODO Auto-generated catch block
@@ -1605,25 +1610,23 @@ public class OrbotMainActivity extends AppCompatActivity
 	}
 
 	private void checkPermissions() {
-		if (!hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-			if (ActivityCompat.shouldShowRequestPermissionRationale
-					(OrbotMainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-				Snackbar.make(findViewById(android.R.id.content),
-						R.string.please_grant_permissions_for_external_storage,
-						Snackbar.LENGTH_INDEFINITE).setAction("ENABLE",
-						new View.OnClickListener() {
-							@Override
-							public void onClick(View v) {
-								ActivityCompat.requestPermissions(OrbotMainActivity.this,
-										new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-										PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
-							}
-						}).show();
-			} else {
-				ActivityCompat.requestPermissions(OrbotMainActivity.this,
-						new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-						PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
-			}
+		if (ActivityCompat.shouldShowRequestPermissionRationale
+				(OrbotMainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+			Snackbar.make(findViewById(android.R.id.content),
+					R.string.please_grant_permissions_for_external_storage,
+					Snackbar.LENGTH_INDEFINITE).setAction("ENABLE",
+					new View.OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							ActivityCompat.requestPermissions(OrbotMainActivity.this,
+									new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+									PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
+						}
+					}).show();
+		} else {
+			ActivityCompat.requestPermissions(OrbotMainActivity.this,
+					new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+					PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
 		}
 	}
 

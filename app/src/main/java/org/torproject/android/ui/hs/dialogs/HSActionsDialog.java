@@ -53,10 +53,9 @@ public class HSActionsDialog extends DialogFragment {
 
                 Toast.makeText(mContext, R.string.done, Toast.LENGTH_LONG).show();
 
-                Uri selectedUri = Uri.parse(backupPath);
+                Uri selectedUri = Uri.parse(backupPath.substring(0, backupPath.lastIndexOf("/")));
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setDataAndType(selectedUri, "resource/folder");
-
 
                 if (intent.resolveActivityInfo(mContext.getPackageManager(), 0) != null) {
                     startActivity(intent);
