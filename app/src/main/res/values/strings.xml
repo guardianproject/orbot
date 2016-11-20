@@ -343,4 +343,7 @@
     <string name="delete_service">Delete Service</string>
     <string name="done">Done!</string>
     <string name="filemanager_not_available">Filemanager not available</string>
+    <string name="please_grant_permissions_for_external_storage">Please grant permissions for external storage</string>
+    <string name="permission_granted">Permission granted</string>
+    <string name="permission_denied">Permission denied</string>
 </resources>
