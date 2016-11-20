@@ -54,9 +54,6 @@ public class HiddenServicesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_hs_list_view);
 
-        if (usesRuntimePermissions())
-            checkPermissions();
-
         mCR = getContentResolver();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -87,6 +84,9 @@ public class HiddenServicesActivity extends AppCompatActivity {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (usesRuntimePermissions())
+                    checkPermissions();
+
                 TextView port = (TextView) view.findViewById(R.id.hs_port);
                 TextView onion = (TextView) view.findViewById(R.id.hs_onion);
 
