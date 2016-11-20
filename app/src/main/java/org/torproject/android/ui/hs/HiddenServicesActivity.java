@@ -1,17 +1,11 @@
 package org.torproject.android.ui.hs;
 
 
-import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.ContentResolver;
-import android.content.pm.PackageManager;
 import android.database.ContentObserver;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -27,8 +21,6 @@ import org.torproject.android.ui.hs.providers.HSContentProvider;
 public class HiddenServicesActivity extends AppCompatActivity {
     private ContentResolver mCR;
     private OnionListAdapter mAdapter;
-
-    public final int PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
 
     private String[] mProjection = new String[]{
             HSContentProvider.HiddenService._ID,
@@ -84,9 +76,6 @@ public class HiddenServicesActivity extends AppCompatActivity {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (usesRuntimePermissions())
-                    checkPermissions();
-
                 TextView port = (TextView) view.findViewById(R.id.hs_port);
                 TextView onion = (TextView) view.findViewById(R.id.hs_onion);
 
@@ -99,59 +88,5 @@ public class HiddenServicesActivity extends AppCompatActivity {
                 dialog.show(getSupportFragmentManager(), "HSActionsDialog");
             }
         });
-    }
-
-    private boolean usesRuntimePermissions() {
-        return (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1);
-    }
-
-    @SuppressLint("NewApi")
-    private boolean hasPermission(String permission) {
-        return !usesRuntimePermissions() || (checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED);
-    }
-
-    private void checkPermissions() {
-        if (!hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale
-                    (HiddenServicesActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                Snackbar.make(findViewById(android.R.id.content),
-                        R.string.please_grant_permissions_for_external_storage,
-                        Snackbar.LENGTH_INDEFINITE).setAction("ENABLE",
-                        new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                ActivityCompat.requestPermissions(HiddenServicesActivity.this,
-                                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                                        PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
-                            }
-                        }).show();
-            } else {
-                ActivityCompat.requestPermissions(HiddenServicesActivity.this,
-                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                        PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
-            }
-        }
-    }
-
-    @SuppressLint("NewApi")
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Snackbar.make(findViewById(android.R.id.content),
-                            R.string.permission_granted,
-                            Snackbar.LENGTH_LONG).show();
-                } else {
-                    Snackbar.make(findViewById(android.R.id.content),
-                            R.string.permission_denied,
-                            Snackbar.LENGTH_LONG).show();
-                }
-                break;
-            }
-        }
     }
 }

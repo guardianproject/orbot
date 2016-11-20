@@ -16,6 +16,7 @@ import java.util.Random;
 import java.util.StringTokenizer;
 
 import org.json.JSONArray;
+import org.torproject.android.hsutils.GrantedPermissionsAction;
 import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.TorService;
@@ -31,6 +32,7 @@ import org.torproject.android.ui.hs.providers.HSContentProvider;
 import org.torproject.android.vpn.VPNEnableActivity;
 import org.torproject.android.hsutils.HiddenServiceUtils;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningServiceInfo;
@@ -55,6 +57,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.RemoteException;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -88,6 +92,7 @@ import com.google.zxing.integration.android.IntentResult;
 
 public class OrbotMainActivity extends AppCompatActivity
         implements OrbotConstants, OnLongClickListener, OnTouchListener {
+	private GrantedPermissionsAction postPermissionsAction = null;
 
     /* Useful UI bits */
     private TextView lblStatus = null; //the main text display widget
@@ -127,7 +132,9 @@ public class OrbotMainActivity extends AppCompatActivity
     private static final int MESSAGE_TRAFFIC_COUNT = 2;
 
 	public final static String INTENT_ACTION_REQUEST_HIDDEN_SERVICE = "org.torproject.android.REQUEST_HS_PORT";
-	public final static String INTENT_ACTION_REQUEST_START_TOR = "org.torproject.android.START_TOR";	
+	public final static String INTENT_ACTION_REQUEST_START_TOR = "org.torproject.android.START_TOR";
+
+	public final int PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
 
 	// for bridge loading from the assets default bridges.txt file
     class Bridge
@@ -518,9 +525,20 @@ public class OrbotMainActivity extends AppCompatActivity
          }
          else if (item.getItemId() == R.id.menu_hidden_services)
          {
-             startActivity(new Intent(this, HiddenServicesActivity.class));
+			 if(usesRuntimePermissions()){
+				 postPermissionsAction = new GrantedPermissionsAction() {
+					 @Override
+					 public void run(Context context, boolean granted) {
+						 startActivity(new Intent(context, HiddenServicesActivity.class));
+					 }
+				 };
+
+				 checkPermissions();
+			 } else {
+				 startActivity(new Intent(this, HiddenServicesActivity.class));
+			 }
          }
-     
+
 		return super.onOptionsItemSelected(item);
 	}
 
@@ -696,25 +714,47 @@ public class OrbotMainActivity extends AppCompatActivity
         	final String hiddenServiceName = intent.getStringExtra("hs_name");
         	final Boolean createBackup = intent.getBooleanExtra("hs_backup",false);
 
+			if(createBackup && usesRuntimePermissions())
+				checkPermissions();
+
 			DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
 			    
 			    public void onClick(DialogInterface dialog, int which) {
 			        switch (which){
 			        case DialogInterface.BUTTON_POSITIVE:
-			            
-						try {
-							enableHiddenServicePort (
-									hiddenServiceName, hiddenServicePort,
-									hiddenServiceRemotePort, createBackup
-							);
-						} catch (RemoteException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
+						if(createBackup && usesRuntimePermissions()){
+							postPermissionsAction = new GrantedPermissionsAction() {
+								@Override
+								public void run(Context context, boolean granted) {
+									try {
+										enableHiddenServicePort (
+												hiddenServiceName, hiddenServicePort,
+												hiddenServiceRemotePort, createBackup
+										);
+									} catch (RemoteException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									} catch (InterruptedException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+								}
+							};
+							checkPermissions();
+						} else {
+							try {
+								enableHiddenServicePort (
+										hiddenServiceName, hiddenServicePort,
+										hiddenServiceRemotePort, createBackup
+								);
+							} catch (RemoteException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (InterruptedException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 						}
-
 						
 			            break;
 
@@ -1553,4 +1593,54 @@ public class OrbotMainActivity extends AppCompatActivity
     	
     	setNewBridges(sbConfig.toString());
     }
+
+
+	private boolean usesRuntimePermissions() {
+		return (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1);
+	}
+
+	@SuppressLint("NewApi")
+	private boolean hasPermission(String permission) {
+		return (checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED);
+	}
+
+	private void checkPermissions() {
+		if (!hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+			if (ActivityCompat.shouldShowRequestPermissionRationale
+					(OrbotMainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+				Snackbar.make(findViewById(android.R.id.content),
+						R.string.please_grant_permissions_for_external_storage,
+						Snackbar.LENGTH_INDEFINITE).setAction("ENABLE",
+						new View.OnClickListener() {
+							@Override
+							public void onClick(View v) {
+								ActivityCompat.requestPermissions(OrbotMainActivity.this,
+										new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+										PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
+							}
+						}).show();
+			} else {
+				ActivityCompat.requestPermissions(OrbotMainActivity.this,
+						new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+						PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
+			}
+		}
+	}
+
+	@SuppressLint("NewApi")
+	@Override
+	public void onRequestPermissionsResult(int requestCode,
+										   String permissions[], int[] grantResults) {
+		switch (requestCode) {
+			case PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE: {
+				// If request is cancelled, the result arrays are empty.
+				boolean granted = (grantResults.length > 0
+						&& grantResults[0] == PackageManager.PERMISSION_GRANTED);
+
+				postPermissionsAction.run(this, granted);
+
+				break;
+			}
+		}
+	}
 }
