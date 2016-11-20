@@ -42,8 +42,8 @@ public class HSDataDialog extends DialogFragment {
                         ((EditText) dialog_view.findViewById(R.id.hsOnionPort)).getText().toString()
                 );
 
-                if (checkInput(localPort,onionPort)) {
-                    saveData(serverName, localPort,onionPort);
+                if (checkInput(localPort, onionPort)) {
+                    saveData(serverName, localPort, onionPort);
                     serviceDataDialog.dismiss();
                 }
             }
@@ -59,7 +59,7 @@ public class HSDataDialog extends DialogFragment {
         return serviceDataDialog;
     }
 
-    private boolean checkInput(Integer local, Integer remote){
+    private boolean checkInput(Integer local, Integer remote) {
         boolean is_ok = true;
         Integer error_msg = 0;
 

@@ -32,19 +32,6 @@ public class HiddenServicesActivity extends AppCompatActivity {
             HSContentProvider.HiddenService.PORT,
             HSContentProvider.HiddenService.DOMAIN};
 
-    class HSObserver extends ContentObserver {
-        HSObserver(Handler handler) {
-            super(handler);
-        }
-
-        @Override
-        public void onChange(boolean selfChange) {
-            mAdapter.changeCursor(mCR.query(
-                    HSContentProvider.CONTENT_URI, mProjection, null, null, null
-            ));
-        }
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,5 +92,18 @@ public class HiddenServicesActivity extends AppCompatActivity {
     @SuppressLint("NewApi")
     private boolean hasPermission() {
         return (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
+    }
+
+    class HSObserver extends ContentObserver {
+        HSObserver(Handler handler) {
+            super(handler);
+        }
+
+        @Override
+        public void onChange(boolean selfChange) {
+            mAdapter.changeCursor(mCR.query(
+                    HSContentProvider.CONTENT_URI, mProjection, null, null, null
+            ));
+        }
     }
 }
