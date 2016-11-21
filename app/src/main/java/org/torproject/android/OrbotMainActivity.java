@@ -16,7 +16,6 @@ import java.util.Random;
 import java.util.StringTokenizer;
 
 import org.json.JSONArray;
-import org.torproject.android.storage.GrantedPermissionsAction;
 import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.TorService;
@@ -32,7 +31,6 @@ import org.torproject.android.ui.hs.providers.HSContentProvider;
 import org.torproject.android.vpn.VPNEnableActivity;
 import org.torproject.android.hsutils.HiddenServiceUtils;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningServiceInfo;
