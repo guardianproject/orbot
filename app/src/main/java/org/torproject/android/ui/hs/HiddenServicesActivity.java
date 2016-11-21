@@ -28,7 +28,9 @@ public class HiddenServicesActivity extends AppCompatActivity {
             HSContentProvider.HiddenService._ID,
             HSContentProvider.HiddenService.NAME,
             HSContentProvider.HiddenService.PORT,
-            HSContentProvider.HiddenService.DOMAIN};
+            HSContentProvider.HiddenService.DOMAIN,
+            HSContentProvider.HiddenService.CREATED_BY_USER
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +55,7 @@ public class HiddenServicesActivity extends AppCompatActivity {
         mAdapter = new OnionListAdapter(
                 this,
                 mCR.query(
-                        HSContentProvider.CONTENT_URI, mProjection, null, null, null
+                        HSContentProvider.CONTENT_URI, mProjection, "created_by_user=1", null, null
                 ),
                 0
         );

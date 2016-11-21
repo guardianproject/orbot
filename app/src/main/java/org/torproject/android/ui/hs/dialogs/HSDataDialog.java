@@ -80,6 +80,7 @@ public class HSDataDialog extends DialogFragment {
         fields.put("name", name);
         fields.put("port", local);
         fields.put("onion_port", remote);
+        fields.put("created_by_user", 1);
 
         ContentResolver cr = getContext().getContentResolver();
 

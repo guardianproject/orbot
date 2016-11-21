@@ -126,6 +126,7 @@ public class HSContentProvider extends ContentProvider {
         public static final String PORT = "port";
         public static final String ONION_PORT = "onion_port";
         public static final String DOMAIN = "domain";
+        public static final String CREATED_BY_USER = "created_by_user";
 
         private HiddenService() {
         }
