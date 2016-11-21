@@ -57,8 +57,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.RemoteException;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -92,7 +90,6 @@ import com.google.zxing.integration.android.IntentResult;
 
 public class OrbotMainActivity extends AppCompatActivity
         implements OrbotConstants, OnLongClickListener, OnTouchListener {
-	private GrantedPermissionsAction postPermissionsAction = null;
 
     /* Useful UI bits */
     private TextView lblStatus = null; //the main text display widget
@@ -133,8 +130,6 @@ public class OrbotMainActivity extends AppCompatActivity
 
 	public final static String INTENT_ACTION_REQUEST_HIDDEN_SERVICE = "org.torproject.android.REQUEST_HS_PORT";
 	public final static String INTENT_ACTION_REQUEST_START_TOR = "org.torproject.android.START_TOR";
-
-	public final int PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
 
 	// for bridge loading from the assets default bridges.txt file
     class Bridge
@@ -525,18 +520,7 @@ public class OrbotMainActivity extends AppCompatActivity
          }
          else if (item.getItemId() == R.id.menu_hidden_services)
          {
-			 if(usesRuntimePermissions() && !hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)){
-					 postPermissionsAction = new GrantedPermissionsAction() {
-						 @Override
-						 public void run(Context context, boolean granted) {
-							 startActivity(new Intent(context, HiddenServicesActivity.class));
-						 }
-					 };
-
-					 checkPermissions();
-			 } else {
-				 startActivity(new Intent(this, HiddenServicesActivity.class));
-			 }
+			 startActivity(new Intent(this, HiddenServicesActivity.class));
          }
 
 		return super.onOptionsItemSelected(item);
@@ -671,19 +655,23 @@ public class OrbotMainActivity extends AppCompatActivity
 								requestTorRereadConfig();
 							}
 
+                            /* TODO
 							if(doBackup)
 							{
 								backupPath = hsutils.createOnionBackup(hsPort);
 							}
+							*/
 							onion.close();
 						}
 					}
 
 					Intent nResult = new Intent();
 					nResult.putExtra("hs_host", hostname);
+					/* TODO
 					if(doBackup && backupPath != null) {
 						nResult.putExtra("hs_backup_path", backupPath);
 					}
+					*/
 					setResult(RESULT_OK, nResult);
 					finish();
 				}
@@ -712,120 +700,90 @@ public class OrbotMainActivity extends AppCompatActivity
 		
 		if (action == null)
 			return;
-		
-		if (action.equals(INTENT_ACTION_REQUEST_HIDDEN_SERVICE))
-		{
-        	final int hiddenServicePort = intent.getIntExtra("hs_port", -1);
-        	final int hiddenServiceRemotePort = intent.getIntExtra("hs_onion_port", -1);
-        	final String hiddenServiceName = intent.getStringExtra("hs_name");
-        	final Boolean createBackup = intent.getBooleanExtra("hs_backup",false);
-        	final String keyZipPath = intent.getStringExtra("hs_key_zip_path");
 
-			DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-			    
-			    public void onClick(DialogInterface dialog, int which) {
-			        switch (which){
-			        case DialogInterface.BUTTON_POSITIVE:
-						if(createBackup && usesRuntimePermissions()
-								&& !hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)){
-							postPermissionsAction = new GrantedPermissionsAction() {
-								@Override
-								public void run(Context context, boolean granted) {
-									try {
-										enableHiddenServicePort (
-												hiddenServiceName, hiddenServicePort,
-												hiddenServiceRemotePort, createBackup, keyZipPath
-										);
-									} catch (RemoteException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
-									} catch (InterruptedException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
-									}
+		switch (action) {
+			case INTENT_ACTION_REQUEST_HIDDEN_SERVICE:
+				final int hiddenServicePort = intent.getIntExtra("hs_port", -1);
+				final int hiddenServiceRemotePort = intent.getIntExtra("hs_onion_port", -1);
+				final String hiddenServiceName = intent.getStringExtra("hs_name");
+				final Boolean createBackup = intent.getBooleanExtra("hs_backup", false);
+				final String keyZipPath = intent.getStringExtra("hs_key_zip_path");
+
+				DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+
+					public void onClick(DialogInterface dialog, int which) {
+						switch (which) {
+							case DialogInterface.BUTTON_POSITIVE:
+								try {
+									enableHiddenServicePort(
+											hiddenServiceName, hiddenServicePort,
+											hiddenServiceRemotePort, createBackup, keyZipPath
+									);
+								} catch (RemoteException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								} catch (InterruptedException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
 								}
-							};
-							checkPermissions();
-						} else {
-							try {
-								enableHiddenServicePort (
-										hiddenServiceName, hiddenServicePort,
-										hiddenServiceRemotePort, createBackup, keyZipPath
-								);
-							} catch (RemoteException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							} catch (InterruptedException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
+
+								break;
 						}
-						
-			            break;
+					}
+				};
 
-			        case DialogInterface.BUTTON_NEGATIVE:
-			            //No button clicked
-			        	finish();
-			            break;
-			        }
-			    }
-			};
+				String requestMsg = getString(R.string.hidden_service_request, hiddenServicePort);
+				AlertDialog.Builder builder = new AlertDialog.Builder(this);
+				builder.setMessage(requestMsg).setPositiveButton("Allow", dialogClickListener)
+						.setNegativeButton("Deny", dialogClickListener).show();
 
-			String requestMsg = getString(R.string.hidden_service_request, hiddenServicePort);
-			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			builder.setMessage(requestMsg).setPositiveButton("Allow", dialogClickListener)
-			    .setNegativeButton("Deny", dialogClickListener).show();
-			
-			return; //don't null the setIntent() as we need it later
-		}
-		else if (action.equals(INTENT_ACTION_REQUEST_START_TOR))
-		{
-			autoStartFromIntent = true;
-          
-            startTor();
+				return; //don't null the setIntent() as we need it later
 
-            //never allow backgrounds start from this type of intent start
-            //app devs who want background starts, can use the service intents
-            /**
-            if (Prefs.allowBackgroundStarts())
-            {            
-	            Intent resultIntent;
-	            if (lastStatusIntent == null) {
-	                resultIntent = new Intent(intent);
-	            } else {
-	                resultIntent = lastStatusIntent;
-	            }
-	            resultIntent.putExtra(TorServiceConstants.EXTRA_STATUS, torStatus);
-	            setResult(RESULT_OK, resultIntent);
-	            finish();
-            }*/
-          
-		}
-		else if (action.equals(Intent.ACTION_VIEW))
-		{
-			String urlString = intent.getDataString();
-			
-			if (urlString != null)
-			{
-				
-				if (urlString.toLowerCase().startsWith("bridge://"))
+			case INTENT_ACTION_REQUEST_START_TOR:
+				autoStartFromIntent = true;
 
-				{
-					String newBridgeValue = urlString.substring(9); //remove the bridge protocol piece
-					newBridgeValue = URLDecoder.decode(newBridgeValue); //decode the value here
+				startTor();
 
-					showAlert(getString(R.string.bridges_updated),getString(R.string.restart_orbot_to_use_this_bridge_) + newBridgeValue,false);	
-					
-					setNewBridges(newBridgeValue);
+				//never allow backgrounds start from this type of intent start
+				//app devs who want background starts, can use the service intents
+				/**
+				 if (Prefs.allowBackgroundStarts())
+				 {
+				 Intent resultIntent;
+				 if (lastStatusIntent == null) {
+				 resultIntent = new Intent(intent);
+				 } else {
+				 resultIntent = lastStatusIntent;
+				 }
+				 resultIntent.putExtra(TorServiceConstants.EXTRA_STATUS, torStatus);
+				 setResult(RESULT_OK, resultIntent);
+				 finish();
+				 }*/
+
+				break;
+			case Intent.ACTION_VIEW:
+				String urlString = intent.getDataString();
+
+				if (urlString != null) {
+
+					if (urlString.toLowerCase().startsWith("bridge://"))
+
+					{
+						String newBridgeValue = urlString.substring(9); //remove the bridge protocol piece
+						newBridgeValue = URLDecoder.decode(newBridgeValue); //decode the value here
+
+						showAlert(getString(R.string.bridges_updated), getString(R.string.restart_orbot_to_use_this_bridge_) + newBridgeValue, false);
+
+						setNewBridges(newBridgeValue);
+					}
 				}
-			}
+				break;
 		}
 		
 		updateStatus(null);
 		
 		setIntent(null);
-		
-		
+
 	}
 		
 	private void setNewBridges (String newBridgeValue)
@@ -904,10 +862,6 @@ public class OrbotMainActivity extends AppCompatActivity
 		}
 		
 	}
-	
-	
-	
-    
 
     private void startIntent (String pkg, String action, Uri data)
     {
@@ -1598,52 +1552,4 @@ public class OrbotMainActivity extends AppCompatActivity
     	
     	setNewBridges(sbConfig.toString());
     }
-
-
-	private boolean usesRuntimePermissions() {
-		return (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1);
-	}
-
-	@SuppressLint("NewApi")
-	private boolean hasPermission(String permission) {
-		return (checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED);
-	}
-
-	private void checkPermissions() {
-		if (ActivityCompat.shouldShowRequestPermissionRationale
-				(OrbotMainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-			Snackbar.make(findViewById(android.R.id.content),
-					R.string.please_grant_permissions_for_external_storage,
-					Snackbar.LENGTH_INDEFINITE).setAction("ENABLE",
-					new View.OnClickListener() {
-						@Override
-						public void onClick(View v) {
-							ActivityCompat.requestPermissions(OrbotMainActivity.this,
-									new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-									PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
-						}
-					}).show();
-		} else {
-			ActivityCompat.requestPermissions(OrbotMainActivity.this,
-					new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-					PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
-		}
-	}
-
-	@SuppressLint("NewApi")
-	@Override
-	public void onRequestPermissionsResult(int requestCode,
-										   String permissions[], int[] grantResults) {
-		switch (requestCode) {
-			case PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE: {
-				// If request is cancelled, the result arrays are empty.
-				boolean granted = (grantResults.length > 0
-						&& grantResults[0] == PackageManager.PERMISSION_GRANTED);
-
-				postPermissionsAction.run(this, granted);
-
-				break;
-			}
-		}
-	}
 }

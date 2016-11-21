@@ -1,12 +1,8 @@
 package org.torproject.android.ui.hs;
 
 
-import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.ContentResolver;
-import android.content.pm.PackageManager;
 import android.database.ContentObserver;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
@@ -79,25 +75,12 @@ public class HiddenServicesActivity extends AppCompatActivity {
                 Bundle arguments = new Bundle();
                 arguments.putString("port", port.getText().toString());
                 arguments.putString("onion", onion.getText().toString());
-                boolean has_write_permission = true;
-                if (usesRuntimePermissions())
-                    has_write_permission = hasPermission();
-                arguments.putBoolean("has_write_permissions", has_write_permission);
 
                 HSActionsDialog dialog = new HSActionsDialog();
                 dialog.setArguments(arguments);
                 dialog.show(getSupportFragmentManager(), "HSActionsDialog");
             }
         });
-    }
-
-    private boolean usesRuntimePermissions() {
-        return (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1);
-    }
-
-    @SuppressLint("NewApi")
-    private boolean hasPermission() {
-        return (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
     }
 
     class HSObserver extends ContentObserver {
