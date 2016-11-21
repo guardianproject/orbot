@@ -139,7 +139,11 @@
         <activity
             android:name=".ui.hs.HiddenServicesActivity"
             android:label="@string/title_activity_hidden_services"
-            android:theme="@style/DefaultTheme" />
+            android:theme="@style/DefaultTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.torproject.android.OrbotMainActivity" />
+        </activity>
 
         <provider
             android:name=".ui.hs.providers.HSContentProvider"

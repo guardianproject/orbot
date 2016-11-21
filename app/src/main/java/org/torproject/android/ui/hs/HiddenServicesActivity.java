@@ -32,6 +32,8 @@ public class HiddenServicesActivity extends AppCompatActivity {
             HSContentProvider.HiddenService.CREATED_BY_USER
     };
 
+    private String mWhere = HSContentProvider.HiddenService.CREATED_BY_USER + "=1";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +57,7 @@ public class HiddenServicesActivity extends AppCompatActivity {
         mAdapter = new OnionListAdapter(
                 this,
                 mCR.query(
-                        HSContentProvider.CONTENT_URI, mProjection, "created_by_user=1", null, null
+                        HSContentProvider.CONTENT_URI, mProjection, mWhere, null, null
                 ),
                 0
         );
@@ -93,7 +95,7 @@ public class HiddenServicesActivity extends AppCompatActivity {
         @Override
         public void onChange(boolean selfChange) {
             mAdapter.changeCursor(mCR.query(
-                    HSContentProvider.CONTENT_URI, mProjection, null, null, null
+                    HSContentProvider.CONTENT_URI, mProjection, mWhere, null, null
             ));
         }
     }
