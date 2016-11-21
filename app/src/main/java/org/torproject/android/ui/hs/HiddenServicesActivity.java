@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -25,6 +26,7 @@ import org.torproject.android.ui.hs.providers.HSContentProvider;
 public class HiddenServicesActivity extends AppCompatActivity {
     private ContentResolver mCR;
     private OnionListAdapter mAdapter;
+    private Toolbar toolbar;
 
     private String[] mProjection = new String[]{
             HSContentProvider.HiddenService._ID,
@@ -36,6 +38,10 @@ public class HiddenServicesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_hs_list_view);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mCR = getContentResolver();
 
