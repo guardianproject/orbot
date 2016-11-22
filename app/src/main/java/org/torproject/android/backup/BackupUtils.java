@@ -1,18 +1,17 @@
-package org.torproject.android.hsutils;
+package org.torproject.android.backup;
 
 import android.app.Application;
 import android.content.Context;
 
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.storage.ExternalStorage;
-import org.torproject.android.zip.ZipIt;
 
 import java.io.File;
 
-public class HiddenServiceUtils {
+public class BackupUtils {
     private static File appCacheHome;
 
-    public HiddenServiceUtils(Context context) {
+    public BackupUtils(Context context) {
         appCacheHome = context.getDir(TorServiceConstants.DIRECTORY_TOR_DATA, Application.MODE_PRIVATE);
     }
 

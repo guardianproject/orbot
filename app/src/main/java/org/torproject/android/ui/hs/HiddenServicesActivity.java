@@ -58,9 +58,7 @@ public class HiddenServicesActivity extends AppCompatActivity {
 
         mAdapter = new OnionListAdapter(
                 this,
-                mCR.query(
-                        HSContentProvider.CONTENT_URI, mProjection, mWhere, null, null
-                ),
+                mCR.query(HSContentProvider.CONTENT_URI, mProjection, mWhere, null, null),
                 0
         );
 

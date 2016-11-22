@@ -22,7 +22,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import org.torproject.android.R;
-import org.torproject.android.hsutils.HiddenServiceUtils;
+import org.torproject.android.backup.BackupUtils;
 import org.torproject.android.ui.hs.providers.HSContentProvider;
 
 public class HSActionsDialog extends DialogFragment {
@@ -49,7 +49,7 @@ public class HSActionsDialog extends DialogFragment {
                     return;
                 }
 
-                HiddenServiceUtils hsutils = new HiddenServiceUtils(mContext);
+                BackupUtils hsutils = new BackupUtils(mContext);
                 String backupPath = hsutils.createOnionBackup(Integer.parseInt(arguments.getString("port")));
 
                 if (backupPath == null || backupPath.length() < 1) {

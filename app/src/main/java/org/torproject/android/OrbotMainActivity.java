@@ -29,7 +29,7 @@ import org.torproject.android.ui.PromoAppsActivity;
 import org.torproject.android.ui.Rotate3dAnimation;
 import org.torproject.android.ui.hs.providers.HSContentProvider;
 import org.torproject.android.vpn.VPNEnableActivity;
-import org.torproject.android.hsutils.HiddenServiceUtils;
+import org.torproject.android.backup.BackupUtils;
 
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
@@ -646,7 +646,7 @@ public class OrbotMainActivity extends AppCompatActivity
 						Cursor onion = getContentResolver().query(HSContentProvider.CONTENT_URI, mProjection, "port=" + hsPort, null, null);
 						if(onion != null) {
 							hostname = onion.getString(onion.getColumnIndex(HSContentProvider.HiddenService.NAME));
-							HiddenServiceUtils hsutils = new HiddenServiceUtils(getApplicationContext());
+							BackupUtils hsutils = new BackupUtils(getApplicationContext());
 							if(keyZipPath != null && keyZipPath.length() > 0)
 							{
 								hsutils.restoreOnionBackup(hsPort, keyZipPath);
