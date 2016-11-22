@@ -121,7 +121,6 @@ public class HSContentProvider extends ContentProvider {
     }
 
     public static final class HiddenService implements BaseColumns {
-        //Nombres de columnas
         public static final String NAME = "name";
         public static final String PORT = "port";
         public static final String ONION_PORT = "onion_port";

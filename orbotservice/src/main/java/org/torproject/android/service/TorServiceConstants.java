@@ -159,4 +159,6 @@ public interface TorServiceConstants {
 			"meek_lite 0.0.2.0:3 url=https://az668014.vo.msecnd.net/ front=ajax.aspnetcdn.com"
 		};
 
+	public static final String HIDDEN_SERVICES_DIR = "hidden_services";
+
 }

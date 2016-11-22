@@ -23,14 +23,12 @@ import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.provider.BaseColumns;
@@ -128,18 +126,20 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     public static File fileObfsclient;
     public static File fileXtables;
     public static File fileTorRc;
+    private File mHSBasePath;
 
     private Shell mShell;
     private Shell mShellPolipo;
 
+
     private static final Uri CONTENT_URI = Uri.parse("content://org.torproject.android.ui.hs.providers/hs");
 
     public static final class HiddenService implements BaseColumns {
-        //Nombres de columnas
         public static final String NAME = "name";
         public static final String PORT = "port";
         public static final String ONION_PORT = "onion_port";
         public static final String DOMAIN = "domain";
+        public static final String CREATED_BY_USER = "created_by_user";
 
         private HiddenService() {
         }
@@ -147,7 +147,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
     private String[] mProjection = new String[]{
 			HiddenService._ID,
-			HiddenService.NAME,
 			HiddenService.DOMAIN,
 			HiddenService.PORT,
 			HiddenService.ONION_PORT};
@@ -532,6 +531,12 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             fileXtables = new File(appBinHome, TorServiceConstants.IPTABLES_ASSET_KEY);
             fileTorRc = new File(appBinHome, TorServiceConstants.TORRC_ASSET_KEY);
 
+            mHSBasePath = new File(appCacheHome , TorServiceConstants.HIDDEN_SERVICES_DIR);
+
+            if (!mHSBasePath.isDirectory()) {
+                mHSBasePath.mkdirs();
+            }
+
             mEventHandler = new TorEventHandler(this);
 
             if (mNotificationManager == null)
@@ -773,7 +778,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
                         // Update only new domains
                         if(HSDomain == null || HSDomain.length() < 1) {
-                            String hsDirPath = new File(appCacheHome,"hs" + HSLocalPort).getCanonicalPath();
+                            String hsDirPath = new File(mHSBasePath.getAbsolutePath(),"hs" + HSLocalPort).getCanonicalPath();
                             File file = new File(hsDirPath, "hostname");
 
                             if (file.exists())
@@ -1782,7 +1787,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 while (hidden_services.moveToNext()) {
                     Integer HSLocalPort = hidden_services.getInt(hidden_services.getColumnIndex(HiddenService.PORT));
                     Integer HSOnionPort = hidden_services.getInt(hidden_services.getColumnIndex(HiddenService.ONION_PORT));
-                    String hsDirPath = new File(appCacheHome,"hs" + HSLocalPort).getCanonicalPath();
+                    String hsDirPath = new File(mHSBasePath.getAbsolutePath(),"hs" + HSLocalPort).getCanonicalPath();
 
                     debug("Adding hidden service on port: " + HSLocalPort);
 

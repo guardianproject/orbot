@@ -9,10 +9,13 @@ import org.torproject.android.storage.ExternalStorage;
 import java.io.File;
 
 public class BackupUtils {
-    private static File appCacheHome;
+    private static File mHSBasePath;
 
     public BackupUtils(Context context) {
-        appCacheHome = context.getDir(TorServiceConstants.DIRECTORY_TOR_DATA, Application.MODE_PRIVATE);
+        mHSBasePath = context.getDir(
+                TorServiceConstants.DIRECTORY_TOR_DATA + "/" + TorServiceConstants.HIDDEN_SERVICES_DIR,
+                Application.MODE_PRIVATE
+        );
     }
 
     public String createOnionBackup(Integer port) {
@@ -25,8 +28,8 @@ public class BackupUtils {
 
         String zip_path = storage_path + "/hs" + port + ".zip";
         String files[] = {
-                appCacheHome + "/hs" + port + "/hostname",
-                appCacheHome + "/hs" + port + "/private_key"
+                mHSBasePath + "/hs" + port + "/hostname",
+                mHSBasePath + "/hs" + port + "/private_key"
         };
 
         ZipIt zip = new ZipIt(files, zip_path);
@@ -40,6 +43,6 @@ public class BackupUtils {
 
     public void restoreOnionBackup(Integer port, String path) {
         ZipIt zip = new ZipIt(null, path);
-        zip.unzip(appCacheHome + "/hs" + port);
+        zip.unzip(mHSBasePath + "/hs" + port);
     }
 }
