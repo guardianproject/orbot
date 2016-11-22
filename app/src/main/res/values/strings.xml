@@ -346,4 +346,5 @@
     <string name="please_grant_permissions_for_external_storage">Please grant permissions for external storage</string>
     <string name="permission_granted">Permission granted</string>
     <string name="permission_denied">Permission denied</string>
+    <string name="restore_backup">Restore Backup</string>
 </resources>
