@@ -151,8 +151,8 @@
             android:authorities="org.torproject.android.ui.hs.providers" />
 
         <provider
-            android:name="com.commonsware.cwac.provider.StreamProvider"
-            android:authorities="org.torproject.android.backup"
+            android:name="org.torproject.android.storage.AppDataProvider"
+            android:authorities="org.torproject.android.storage"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
