@@ -149,6 +149,16 @@
             android:name=".ui.hs.providers.HSContentProvider"
             android:exported="false"
             android:authorities="org.torproject.android.ui.hs.providers" />
+
+        <provider
+            android:name="com.commonsware.cwac.provider.StreamProvider"
+            android:authorities="org.torproject.android.backup"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="com.commonsware.cwac.provider.STREAM_PROVIDER_PATHS"
+                android:resource="@xml/hidden_services_paths"/>
+        </provider>
     </application>
 
 </manifest>
