@@ -649,14 +649,14 @@ public class OrbotMainActivity extends AppCompatActivity
 							BackupUtils hsutils = new BackupUtils(getApplicationContext());
 							if(keyZipPath != null && keyZipPath.length() > 0)
 							{
-								hsutils.restoreOnionBackup(hsPort, keyZipPath);
+								hsutils.restoreZipBackup(hsPort, keyZipPath);
 								requestTorRereadConfig();
 							}
 
                             /* TODO
 							if(doBackup)
 							{
-								backupPath = hsutils.createOnionBackup(hsPort);
+								backupPath = hsutils.createZipBackup(hsPort);
 							}
 							*/
 							onion.close();

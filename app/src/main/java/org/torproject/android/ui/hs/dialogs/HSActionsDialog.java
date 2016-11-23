@@ -50,7 +50,7 @@ public class HSActionsDialog extends DialogFragment {
                 }
 
                 BackupUtils hsutils = new BackupUtils(mContext);
-                String backupPath = hsutils.createOnionBackup(Integer.parseInt(arguments.getString("port")));
+                String backupPath = hsutils.createZipBackup(Integer.parseInt(arguments.getString("port")));
 
                 if (backupPath == null || backupPath.length() < 1) {
                     Toast.makeText(mContext, R.string.error, Toast.LENGTH_LONG).show();
