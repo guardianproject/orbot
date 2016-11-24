@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import org.torproject.android.R;
 import org.torproject.android.backup.BackupUtils;
+import org.torproject.android.storage.PermissionManager;
 import org.torproject.android.ui.hs.providers.HSContentProvider;
 
 public class HSActionsDialog extends DialogFragment {
@@ -44,8 +45,9 @@ public class HSActionsDialog extends DialogFragment {
             public void onClick(View v) {
                 Context mContext = v.getContext();
 
-                if (usesRuntimePermissions() && !hasExternalWritePermission(mContext)) {
-                    requestPermissions();
+                if (PermissionManager.usesRuntimePermissions()
+                        && !PermissionManager.hasExternalWritePermission(mContext)) {
+                    PermissionManager.requestPermissions(getActivity());
                     return;
                 }
 
@@ -58,7 +60,7 @@ public class HSActionsDialog extends DialogFragment {
                     return;
                 }
 
-                Toast.makeText(mContext, R.string.done, Toast.LENGTH_LONG).show();
+                Toast.makeText(mContext, R.string.backup_saved_at_external_storage, Toast.LENGTH_LONG).show();
 
                 Uri selectedUri = Uri.parse(backupPath.substring(0, backupPath.lastIndexOf("/")));
                 Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -103,35 +105,5 @@ public class HSActionsDialog extends DialogFragment {
         });
 
         return actionDialog;
-    }
-
-    private boolean usesRuntimePermissions() {
-        return (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1);
-    }
-
-    @SuppressLint("NewApi")
-    private boolean hasExternalWritePermission(Context context) {
-        return (context.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
-    }
-
-    private void requestPermissions() {
-        if (ActivityCompat.shouldShowRequestPermissionRationale
-                (getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            Snackbar.make(getActivity().findViewById(android.R.id.content),
-                    R.string.please_grant_permissions_for_external_storage,
-                    Snackbar.LENGTH_INDEFINITE).setAction("ENABLE",
-                    new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            ActivityCompat.requestPermissions(getActivity(),
-                                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                                    PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
-                        }
-                    }).show();
-        } else {
-            ActivityCompat.requestPermissions(getActivity(),
-                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                    PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
-        }
     }
 }

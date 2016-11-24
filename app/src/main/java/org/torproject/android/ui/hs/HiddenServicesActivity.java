@@ -16,9 +16,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import org.torproject.android.R;
+import org.torproject.android.storage.PermissionManager;
 import org.torproject.android.ui.hs.adapters.OnionListAdapter;
 import org.torproject.android.ui.hs.dialogs.HSActionsDialog;
 import org.torproject.android.ui.hs.dialogs.HSDataDialog;
+import org.torproject.android.ui.hs.dialogs.SelectBackupDialog;
 import org.torproject.android.ui.hs.providers.HSContentProvider;
 
 public class HiddenServicesActivity extends AppCompatActivity {
@@ -98,7 +100,14 @@ public class HiddenServicesActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.menu_restore_backup) {
-            // TODO: Restore backup
+            if (PermissionManager.usesRuntimePermissions()
+                    && !PermissionManager.hasExternalWritePermission(this)) {
+                PermissionManager.requestPermissions(this);
+                return true;
+            }
+
+            SelectBackupDialog dialog = new SelectBackupDialog();
+            dialog.show(getSupportFragmentManager(), "SelectBackupDialog");
             return true;
         }
 

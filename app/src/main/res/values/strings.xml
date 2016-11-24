@@ -337,14 +337,16 @@
     <string name="local_port">Local Port</string>
     <string name="onion_port">Onion Port</string>
     <string name="name">Name</string>
+    <string name="done">Done!</string>
     <string name="invalid_port">Invalid Port</string>
     <string name="copy_address_to_clipboard">Copy address to clipboard</string>
     <string name="backup_service">Backup Service</string>
     <string name="delete_service">Delete Service</string>
-    <string name="done">Done!</string>
+    <string name="backup_saved_at_external_storage">Backup saved at external storage</string>
     <string name="filemanager_not_available">Filemanager not available</string>
     <string name="please_grant_permissions_for_external_storage">Please grant permissions for external storage</string>
     <string name="permission_granted">Permission granted</string>
     <string name="permission_denied">Permission denied</string>
     <string name="restore_backup">Restore Backup</string>
+    <string name="create_a_backup_first">Create a backup first</string>
 </resources>

@@ -5,38 +5,30 @@ import android.os.Environment;
 import java.io.File;
 
 public class ExternalStorage {
-    private final String BACKUPS_DIR = "Orbot-HiddenServices";
+    private static final String BACKUPS_DIR = "Orbot-HiddenServices";
 
-    public String createBackupDir() {
-        if (!isExternalStorageWritable()) {
+    public static File getOrCreateBackupDir() {
+        if (!isExternalStorageWritable())
             return null;
-        }
 
-        File path = Environment.getExternalStoragePublicDirectory(BACKUPS_DIR);
+        File dir = new File(Environment.getExternalStorageDirectory(), BACKUPS_DIR);
 
-        if (!path.mkdirs()) {
+        if (!dir.isDirectory() && !dir.mkdirs())
             return null;
-        }
 
-        return path.getAbsolutePath();
+        return dir;
     }
 
     /* Checks if external storage is available for read and write */
-    public boolean isExternalStorageWritable() {
+    public static boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();
-        if (Environment.MEDIA_MOUNTED.equals(state)) {
-            return true;
-        }
-        return false;
+        return Environment.MEDIA_MOUNTED.equals(state);
     }
 
     /* Checks if external storage is available to at least read */
-    public boolean isExternalStorageReadable() {
+    public static boolean isExternalStorageReadable() {
         String state = Environment.getExternalStorageState();
-        if (Environment.MEDIA_MOUNTED.equals(state) ||
-                Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
-            return true;
-        }
-        return false;
+        return Environment.MEDIA_MOUNTED.equals(state) ||
+                Environment.MEDIA_MOUNTED_READ_ONLY.equals(state);
     }
 }
