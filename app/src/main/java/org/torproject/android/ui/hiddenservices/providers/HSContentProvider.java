@@ -1,4 +1,4 @@
-package org.torproject.android.ui.hs.providers;
+package org.torproject.android.ui.hiddenservices.providers;
 
 import android.content.ContentProvider;
 import android.content.ContentUris;
@@ -12,11 +12,11 @@ import android.provider.BaseColumns;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import org.torproject.android.ui.hs.database.HSDatabase;
+import org.torproject.android.ui.hiddenservices.database.HSDatabase;
 
 
 public class HSContentProvider extends ContentProvider {
-    private static final String AUTH = "org.torproject.android.ui.hs.providers";
+    private static final String AUTH = "org.torproject.android.ui.hiddenservices.providers";
     public static final Uri CONTENT_URI =
             Uri.parse("content://" + AUTH + "/hs");
     //UriMatcher

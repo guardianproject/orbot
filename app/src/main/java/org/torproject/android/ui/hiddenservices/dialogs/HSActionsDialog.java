@@ -1,20 +1,14 @@
-package org.torproject.android.ui.hs.dialogs;
+package org.torproject.android.ui.hiddenservices.dialogs;
 
 
-import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
@@ -22,9 +16,9 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import org.torproject.android.R;
-import org.torproject.android.backup.BackupUtils;
-import org.torproject.android.storage.PermissionManager;
-import org.torproject.android.ui.hs.providers.HSContentProvider;
+import org.torproject.android.ui.hiddenservices.backup.BackupUtils;
+import org.torproject.android.ui.hiddenservices.storage.PermissionManager;
+import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
 
 public class HSActionsDialog extends DialogFragment {
     public final int PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;

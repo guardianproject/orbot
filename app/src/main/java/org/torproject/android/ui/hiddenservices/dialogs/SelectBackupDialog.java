@@ -1,4 +1,4 @@
-package org.torproject.android.ui.hs.dialogs;
+package org.torproject.android.ui.hiddenservices.dialogs;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -11,8 +11,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import org.torproject.android.R;
-import org.torproject.android.storage.ExternalStorage;
-import org.torproject.android.ui.hs.adapters.BackupAdapter;
+import org.torproject.android.ui.hiddenservices.storage.ExternalStorage;
+import org.torproject.android.ui.hiddenservices.adapters.BackupAdapter;
 
 import java.io.File;
 import java.io.FilenameFilter;

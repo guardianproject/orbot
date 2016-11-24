@@ -1,4 +1,4 @@
-package org.torproject.android.backup;
+package org.torproject.android.ui.hiddenservices.backup;
 
 import android.app.Application;
 import android.content.Context;
@@ -6,7 +6,7 @@ import android.widget.Toast;
 
 import org.torproject.android.service.R;
 import org.torproject.android.service.TorServiceConstants;
-import org.torproject.android.storage.ExternalStorage;
+import org.torproject.android.ui.hiddenservices.storage.ExternalStorage;
 
 import java.io.File;
 import java.io.IOException;

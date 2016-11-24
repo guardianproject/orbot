@@ -132,7 +132,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     private Shell mShellPolipo;
 
 
-    private static final Uri CONTENT_URI = Uri.parse("content://org.torproject.android.ui.hs.providers/hs");
+    private static final Uri CONTENT_URI = Uri.parse("content://org.torproject.android.ui.hiddenservices.providers/hs");
 
     public static final class HiddenService implements BaseColumns {
         public static final String NAME = "name";

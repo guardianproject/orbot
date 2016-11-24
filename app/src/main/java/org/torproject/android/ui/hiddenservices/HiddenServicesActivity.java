@@ -1,4 +1,4 @@
-package org.torproject.android.ui.hs;
+package org.torproject.android.ui.hiddenservices;
 
 
 import android.content.ContentResolver;
@@ -16,12 +16,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import org.torproject.android.R;
-import org.torproject.android.storage.PermissionManager;
-import org.torproject.android.ui.hs.adapters.OnionListAdapter;
-import org.torproject.android.ui.hs.dialogs.HSActionsDialog;
-import org.torproject.android.ui.hs.dialogs.HSDataDialog;
-import org.torproject.android.ui.hs.dialogs.SelectBackupDialog;
-import org.torproject.android.ui.hs.providers.HSContentProvider;
+import org.torproject.android.ui.hiddenservices.storage.PermissionManager;
+import org.torproject.android.ui.hiddenservices.adapters.OnionListAdapter;
+import org.torproject.android.ui.hiddenservices.dialogs.HSActionsDialog;
+import org.torproject.android.ui.hiddenservices.dialogs.HSDataDialog;
+import org.torproject.android.ui.hiddenservices.dialogs.SelectBackupDialog;
+import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
 
 public class HiddenServicesActivity extends AppCompatActivity {
     private ContentResolver mCR;

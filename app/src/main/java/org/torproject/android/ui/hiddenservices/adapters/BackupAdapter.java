@@ -1,4 +1,4 @@
-package org.torproject.android.ui.hs.adapters;
+package org.torproject.android.ui.hiddenservices.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;

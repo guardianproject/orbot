@@ -1,4 +1,4 @@
-package org.torproject.android.ui.hs.database;
+package org.torproject.android.ui.hiddenservices.database;
 
 
 import android.content.Context;

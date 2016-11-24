@@ -1,4 +1,4 @@
-package org.torproject.android.ui.hs.adapters;
+package org.torproject.android.ui.hiddenservices.adapters;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.torproject.android.R;
-import org.torproject.android.ui.hs.providers.HSContentProvider;
+import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
 
 public class OnionListAdapter extends CursorAdapter {
     private LayoutInflater cursorInflater;

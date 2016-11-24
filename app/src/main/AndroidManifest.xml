@@ -137,7 +137,7 @@
         </receiver>
 
         <activity
-            android:name=".ui.hs.HiddenServicesActivity"
+            android:name=".ui.hiddenservices.HiddenServicesActivity"
             android:label="@string/title_activity_hidden_services"
             android:theme="@style/DefaultTheme" >
             <meta-data
@@ -146,13 +146,13 @@
         </activity>
 
         <provider
-            android:name=".ui.hs.providers.HSContentProvider"
+            android:name=".ui.hiddenservices.providers.HSContentProvider"
             android:exported="false"
-            android:authorities="org.torproject.android.ui.hs.providers" />
+            android:authorities="org.torproject.android.ui.hiddenservices.providers" />
 
         <provider
-            android:name="org.torproject.android.storage.AppDataProvider"
-            android:authorities="org.torproject.android.storage"
+            android:name=".ui.hiddenservices.storage.AppDataProvider"
+            android:authorities="org.torproject.android.ui.hiddenservices.storage"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

@@ -1,4 +1,4 @@
-package org.torproject.android.backup;
+package org.torproject.android.ui.hiddenservices.backup;
 
 
 import java.io.BufferedInputStream;

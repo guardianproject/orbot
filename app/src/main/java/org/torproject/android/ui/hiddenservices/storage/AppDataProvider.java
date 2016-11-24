@@ -1,4 +1,4 @@
-package org.torproject.android.storage;
+package org.torproject.android.ui.hiddenservices.storage;
 
 
 import android.app.Application;

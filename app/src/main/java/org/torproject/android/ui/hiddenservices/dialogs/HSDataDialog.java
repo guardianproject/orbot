@@ -1,4 +1,4 @@
-package org.torproject.android.ui.hs.dialogs;
+package org.torproject.android.ui.hiddenservices.dialogs;
 
 
 import android.app.Dialog;
@@ -14,7 +14,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import org.torproject.android.R;
-import org.torproject.android.ui.hs.providers.HSContentProvider;
+import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
 
 public class HSDataDialog extends DialogFragment {
 
