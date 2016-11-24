@@ -42,7 +42,7 @@ public class HSDataDialog extends DialogFragment {
                         ((EditText) dialog_view.findViewById(R.id.hsOnionPort)).getText().toString()
                 );
 
-                if (checkInput(localPort, onionPort)) {
+                if (checkInput(serverName, localPort, onionPort)) {
                     saveData(serverName, localPort, onionPort);
                     serviceDataDialog.dismiss();
                 }
@@ -59,12 +59,17 @@ public class HSDataDialog extends DialogFragment {
         return serviceDataDialog;
     }
 
-    private boolean checkInput(Integer local, Integer remote) {
+    private boolean checkInput(String serverName, Integer local, Integer remote) {
         boolean is_ok = true;
         Integer error_msg = 0;
 
         if ((local < 1 || local > 65535) || (remote < 1 || remote > 65535)) {
             error_msg = R.string.invalid_port;
+            is_ok = false;
+        }
+
+        if (serverName == null || serverName.length() < 1) {
+            error_msg = R.string.name_can_t_be_empty;
             is_ok = false;
         }
 
