@@ -19,6 +19,6 @@
             android:id="@+id/backup_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="35sp" />
+            android:textSize="30sp" />
     </LinearLayout>
 </LinearLayout>
