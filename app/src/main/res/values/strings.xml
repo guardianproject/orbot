@@ -349,5 +349,5 @@
     <string name="permission_denied">Permission denied</string>
     <string name="restore_backup">Restore Backup</string>
     <string name="create_a_backup_first">Create a backup first</string>
-    <string name="name_can_t_be_empty">Name can't be empty</string>
+    <string name="name_can_t_be_empty">Name can\'t be empty</string>
 </resources>

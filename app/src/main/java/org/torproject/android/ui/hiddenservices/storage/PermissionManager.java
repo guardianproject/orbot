@@ -14,7 +14,6 @@ import android.view.View;
 import org.torproject.android.R;
 
 public class PermissionManager {
-    private static final int PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
 
     public static boolean usesRuntimePermissions() {
         return (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1);
@@ -25,7 +24,8 @@ public class PermissionManager {
         return (context.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
     }
 
-    public static void requestPermissions(FragmentActivity activity) {
+    public static void requestPermissions(FragmentActivity activity, int action) {
+        final int mAction = action;
         final FragmentActivity mActivity = activity;
 
         if (ActivityCompat.shouldShowRequestPermissionRationale
@@ -38,13 +38,13 @@ public class PermissionManager {
                         public void onClick(View v) {
                             ActivityCompat.requestPermissions(mActivity,
                                     new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                                    PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
+                                    mAction);
                         }
                     }).show();
         } else {
             ActivityCompat.requestPermissions(mActivity,
                     new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                    PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
+                    mAction);
         }
     }
 }

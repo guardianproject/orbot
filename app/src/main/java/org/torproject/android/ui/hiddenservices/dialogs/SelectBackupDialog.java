@@ -11,8 +11,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import org.torproject.android.R;
-import org.torproject.android.ui.hiddenservices.storage.ExternalStorage;
 import org.torproject.android.ui.hiddenservices.adapters.BackupAdapter;
+import org.torproject.android.ui.hiddenservices.storage.ExternalStorage;
 
 import java.io.File;
 import java.io.FilenameFilter;

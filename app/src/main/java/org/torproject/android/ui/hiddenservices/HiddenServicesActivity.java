@@ -2,6 +2,7 @@ package org.torproject.android.ui.hiddenservices;
 
 
 import android.content.ContentResolver;
+import android.content.pm.PackageManager;
 import android.database.ContentObserver;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,18 +17,18 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import org.torproject.android.R;
-import org.torproject.android.ui.hiddenservices.storage.PermissionManager;
 import org.torproject.android.ui.hiddenservices.adapters.OnionListAdapter;
 import org.torproject.android.ui.hiddenservices.dialogs.HSActionsDialog;
 import org.torproject.android.ui.hiddenservices.dialogs.HSDataDialog;
 import org.torproject.android.ui.hiddenservices.dialogs.SelectBackupDialog;
 import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
+import org.torproject.android.ui.hiddenservices.storage.PermissionManager;
 
 public class HiddenServicesActivity extends AppCompatActivity {
+    public final int WRITE_EXTERNAL_STORAGE_FROM_ACTIONBAR = 1;
     private ContentResolver mCR;
     private OnionListAdapter mAdapter;
     private Toolbar toolbar;
-
     private String[] mProjection = new String[]{
             HSContentProvider.HiddenService._ID,
             HSContentProvider.HiddenService.NAME,
@@ -102,7 +103,7 @@ public class HiddenServicesActivity extends AppCompatActivity {
         if (id == R.id.menu_restore_backup) {
             if (PermissionManager.usesRuntimePermissions()
                     && !PermissionManager.hasExternalWritePermission(this)) {
-                PermissionManager.requestPermissions(this);
+                PermissionManager.requestPermissions(this, WRITE_EXTERNAL_STORAGE_FROM_ACTIONBAR);
                 return true;
             }
 
@@ -112,6 +113,27 @@ public class HiddenServicesActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        if (grantResults.length < 1
+                || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+
+        switch (requestCode) {
+            case WRITE_EXTERNAL_STORAGE_FROM_ACTIONBAR: {
+                SelectBackupDialog dialog = new SelectBackupDialog();
+                dialog.show(getSupportFragmentManager(), "SelectBackupDialog");
+                break;
+            }
+            case HSActionsDialog.WRITE_EXTERNAL_STORAGE_FROM_ACTION_DIALOG: {
+                // TODO
+                break;
+            }
+        }
     }
 
     class HSObserver extends ContentObserver {
