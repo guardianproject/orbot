@@ -58,7 +58,7 @@ public class BackupUtils {
 
         JSONObject config = new JSONObject();
         try {
-            if (portData.getCount() != 1)
+            if (portData == null || portData.getCount() != 1)
                 return null;
 
             portData.moveToNext();
@@ -184,7 +184,7 @@ public class BackupUtils {
                     null
             );
 
-            if (service.getCount() == 0) {
+            if (service == null || service.getCount() == 0) {
                 mResolver.insert(HSContentProvider.CONTENT_URI, fields);
             } else {
                 mResolver.update(
@@ -193,9 +193,9 @@ public class BackupUtils {
                         HSContentProvider.HiddenService.PORT + "=" + port,
                         null
                 );
-            }
 
-            service.close();
+                service.close();
+            }
 
         } catch (JSONException e) {
             e.printStackTrace();
