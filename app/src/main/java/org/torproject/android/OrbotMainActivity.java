@@ -624,7 +624,7 @@ public class OrbotMainActivity extends AppCompatActivity
 
                         if (onion != null && onion.getCount() > 0) {
                             onion.moveToNext();
-                            hostname = onion.getString(onion.getColumnIndex(HSContentProvider.HiddenService.NAME));
+                            hostname = onion.getString(onion.getColumnIndex(HSContentProvider.HiddenService.DOMAIN));
 
                             if(hostname == null || hostname.length() < 1)
                                 continue;
