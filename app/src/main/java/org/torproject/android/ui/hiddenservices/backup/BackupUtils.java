@@ -149,16 +149,14 @@ public class BackupUtils {
         try {
             JSONObject savedValues = new JSONObject(jString);
             ContentValues fields = new ContentValues();
+            int port = savedValues.getInt(HSContentProvider.HiddenService.PORT);
 
             fields.put(
                     HSContentProvider.HiddenService.NAME,
                     savedValues.getString(HSContentProvider.HiddenService.NAME)
             );
 
-            fields.put(
-                    HSContentProvider.HiddenService.PORT,
-                    savedValues.getInt(HSContentProvider.HiddenService.PORT)
-            );
+            fields.put(HSContentProvider.HiddenService.PORT, port);
 
             fields.put(
                     HSContentProvider.HiddenService.ONION_PORT,
@@ -175,7 +173,27 @@ public class BackupUtils {
                     savedValues.getInt(HSContentProvider.HiddenService.CREATED_BY_USER)
             );
 
-            mResolver.insert(HSContentProvider.CONTENT_URI, fields);
+            Cursor service = mResolver.query(
+                    HSContentProvider.CONTENT_URI,
+                    HSContentProvider.PROJECTION,
+                    HSContentProvider.HiddenService.PORT + "=" + port,
+                    null,
+                    null
+            );
+
+            if (service.getCount() == 0) {
+                mResolver.insert(HSContentProvider.CONTENT_URI, fields);
+            } else {
+                mResolver.update(
+                        HSContentProvider.CONTENT_URI,
+                        fields,
+                        HSContentProvider.HiddenService.PORT + "=" + port,
+                        null
+                );
+            }
+
+            service.close();
+
         } catch (JSONException e) {
             e.printStackTrace();
             Toast.makeText(mContext, R.string.error, Toast.LENGTH_LONG).show();
