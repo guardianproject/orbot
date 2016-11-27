@@ -4,6 +4,8 @@ import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.net.Uri;
+import android.os.ParcelFileDescriptor;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -15,8 +17,11 @@ import org.torproject.android.ui.hiddenservices.storage.ExternalStorage;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
@@ -203,5 +208,25 @@ public class BackupUtils {
         }
 
         Toast.makeText(mContext, R.string.backup_restored, Toast.LENGTH_LONG).show();
+    }
+
+    public void restoreKeyBackup(int hsPort, Uri hsKeyPath) {
+        String keyFilePath = mHSBasePath + "/hs" + hsPort + "/private_key";
+
+        try {
+            ParcelFileDescriptor mInputPFD = mContext.getContentResolver().openFileDescriptor(hsKeyPath, "r");
+            InputStream fileStream = new FileInputStream(mInputPFD.getFileDescriptor());
+            OutputStream file = new FileOutputStream(keyFilePath);
+
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = fileStream.read(buffer)) > 0) {
+                file.write(buffer, 0, length);
+            }
+            file.close();
+
+        } catch (IOException | NullPointerException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -70,6 +70,7 @@ import org.torproject.android.ui.ImageProgressView;
 import org.torproject.android.ui.PromoAppsActivity;
 import org.torproject.android.ui.Rotate3dAnimation;
 import org.torproject.android.ui.hiddenservices.HiddenServicesActivity;
+import org.torproject.android.ui.hiddenservices.backup.BackupUtils;
 import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
 import org.torproject.android.vpn.VPNEnableActivity;
 
@@ -559,7 +560,11 @@ public class OrbotMainActivity extends AppCompatActivity
             stopVpnService();
     }
 
-    private void enableHiddenServicePort(String hsName, final int hsPort, int hsRemotePort, final String backupToPackage, final String keyZipPath) throws RemoteException, InterruptedException {
+    private void enableHiddenServicePort(
+            String hsName, final int hsPort, int hsRemotePort,
+            final String backupToPackage, final Uri hsKeyPath
+    ) throws RemoteException, InterruptedException {
+
         String onionHostname = null;
 
         if (hsName == null)
@@ -620,13 +625,12 @@ public class OrbotMainActivity extends AppCompatActivity
                         if (onion != null && onion.getCount() > 0) {
                             hostname = onion.getString(onion.getColumnIndex(HSContentProvider.HiddenService.NAME));
                             nResult.putExtra("hs_host", hostname);
-                            /* TODO
-                            BackupUtils hsutils = new BackupUtils(getApplicationContext());
-                            if (keyZipPath != null && keyZipPath.length() > 0) {
-                                // hsutils.restoreZipBackup(hsPort, keyZipPath);
+
+                            if (hsKeyPath != null) {
+                                BackupUtils hsutils = new BackupUtils(getApplicationContext());
+                                hsutils.restoreKeyBackup(hsPort, hsKeyPath);
                                 requestTorRereadConfig();
                             }
-                            */
 
                             if (backupToPackage != null && backupToPackage.length() > 0) {
                                 String servicePath = getFilesDir() + "/" + TorServiceConstants.HIDDEN_SERVICES_DIR + "/hs" + hsPort;
@@ -682,7 +686,7 @@ public class OrbotMainActivity extends AppCompatActivity
                 final int hiddenServiceRemotePort = intent.getIntExtra("hs_onion_port", -1);
                 final String hiddenServiceName = intent.getStringExtra("hs_name");
                 final String backupToPackage = intent.getStringExtra("hs_backup_to_package");
-                final String keyZipPath = intent.getStringExtra("hs_key_path");
+                final Uri mKeyUri = intent.getData();
 
                 DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
 
@@ -692,7 +696,7 @@ public class OrbotMainActivity extends AppCompatActivity
                                 try {
                                     enableHiddenServicePort(
                                             hiddenServiceName, hiddenServicePort,
-                                            hiddenServiceRemotePort, backupToPackage, keyZipPath
+                                            hiddenServiceRemotePort, backupToPackage, mKeyUri
                                     );
                                 } catch (RemoteException e) {
                                     // TODO Auto-generated catch block
