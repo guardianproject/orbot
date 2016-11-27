@@ -623,7 +623,12 @@ public class OrbotMainActivity extends AppCompatActivity
                         );
 
                         if (onion != null && onion.getCount() > 0) {
+                            onion.moveToNext();
                             hostname = onion.getString(onion.getColumnIndex(HSContentProvider.HiddenService.NAME));
+
+                            if(hostname == null || hostname.length() < 1)
+                                continue;
+
                             nResult.putExtra("hs_host", hostname);
 
                             if (hsKeyPath != null) {
@@ -649,11 +654,10 @@ public class OrbotMainActivity extends AppCompatActivity
                             }
 
                             onion.close();
+                            setResult(RESULT_OK, nResult);
+                            finish();
                         }
                     }
-
-                    setResult(RESULT_OK, nResult);
-                    finish();
                 }
             }.start();
 
