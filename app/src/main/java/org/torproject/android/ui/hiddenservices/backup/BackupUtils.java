@@ -1,6 +1,5 @@
 package org.torproject.android.ui.hiddenservices.backup;
 
-import android.app.Application;
 import android.content.Context;
 import android.widget.Toast;
 
@@ -17,9 +16,9 @@ public class BackupUtils {
 
     public BackupUtils(Context context) {
         mContext = context;
-        mHSBasePath = mContext.getDir(
-                TorServiceConstants.DIRECTORY_TOR_DATA,
-                Application.MODE_PRIVATE
+        mHSBasePath = new File(
+                mContext.getFilesDir().getAbsolutePath(),
+                TorServiceConstants.HIDDEN_SERVICES_DIR
         );
     }
 
@@ -32,8 +31,8 @@ public class BackupUtils {
 
         String zip_path = storage_path.getAbsolutePath() + "/hs" + port + ".zip";
         String files[] = {
-                mHSBasePath + "/" + TorServiceConstants.HIDDEN_SERVICES_DIR + "/hs" + port + "/hostname",
-                mHSBasePath + "/" + TorServiceConstants.HIDDEN_SERVICES_DIR + "/hs" + port + "/private_key"
+                mHSBasePath + "/hs" + port + "/hostname",
+                mHSBasePath + "/hs" + port + "/private_key"
         };
 
         ZipIt zip = new ZipIt(files, zip_path);
@@ -46,11 +45,8 @@ public class BackupUtils {
     }
 
     public void restoreZipBackup(Integer port, String path) {
-        String hsBasePath;
-
         try {
-            hsBasePath = mHSBasePath.getCanonicalPath() + "/" + TorServiceConstants.HIDDEN_SERVICES_DIR;
-            File hsPath = new File(hsBasePath, "/hs" + port);
+            File hsPath = new File(mHSBasePath.getCanonicalPath(), "/hs" + port);
             if (hsPath.mkdirs()) {
                 ZipIt zip = new ZipIt(null, path);
                 zip.unzip(hsPath.getCanonicalPath());

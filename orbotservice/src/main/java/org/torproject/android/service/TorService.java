@@ -531,11 +531,13 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             fileXtables = new File(appBinHome, TorServiceConstants.IPTABLES_ASSET_KEY);
             fileTorRc = new File(appBinHome, TorServiceConstants.TORRC_ASSET_KEY);
 
-            mHSBasePath = new File(appCacheHome , TorServiceConstants.HIDDEN_SERVICES_DIR);
+            mHSBasePath = new File(
+                    getFilesDir().getAbsolutePath(),
+                    TorServiceConstants.HIDDEN_SERVICES_DIR
+            );
 
-            if (!mHSBasePath.isDirectory()) {
+            if (!mHSBasePath.isDirectory())
                 mHSBasePath.mkdirs();
-            }
 
             mEventHandler = new TorEventHandler(this);
 

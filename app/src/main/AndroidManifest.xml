@@ -151,12 +151,12 @@
             android:authorities="org.torproject.android.ui.hiddenservices.providers" />
 
         <provider
-            android:name=".ui.hiddenservices.storage.AppDataProvider"
+            android:name="android.support.v4.content.FileProvider"
             android:authorities="org.torproject.android.ui.hiddenservices.storage"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
-                android:name="com.commonsware.cwac.provider.STREAM_PROVIDER_PATHS"
+                android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/hidden_services_paths"/>
         </provider>
     </application>
