@@ -657,13 +657,12 @@ public class OrbotMainActivity extends AppCompatActivity
                 }
             }.start();
 
+        } else {
+            Intent nResult = new Intent();
+            nResult.putExtra("hs_host", onionHostname);
+            setResult(RESULT_OK, nResult);
+            finish();
         }
-
-        Intent nResult = new Intent();
-        nResult.putExtra("hs_host", onionHostname);
-        setResult(RESULT_OK, nResult);
-        finish();
-
     }
 
     private synchronized void handleIntents() {
