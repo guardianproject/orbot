@@ -118,6 +118,9 @@ public class BackupUtils {
     }
 
     public void restoreZipBackup(File backup) {
+
+        int port;
+        Cursor service;
         String backupName = backup.getName();
         String hsDir = backupName.substring(0, backupName.lastIndexOf('.'));
         String configFilePath = mHSBasePath + "/" + hsDir + "/" + configFileName;
@@ -149,14 +152,11 @@ public class BackupUtils {
         try {
             JSONObject savedValues = new JSONObject(jString);
             ContentValues fields = new ContentValues();
-            int port = savedValues.getInt(HSContentProvider.HiddenService.PORT);
 
             fields.put(
                     HSContentProvider.HiddenService.NAME,
                     savedValues.getString(HSContentProvider.HiddenService.NAME)
             );
-
-            fields.put(HSContentProvider.HiddenService.PORT, port);
 
             fields.put(
                     HSContentProvider.HiddenService.ONION_PORT,
@@ -173,7 +173,10 @@ public class BackupUtils {
                     savedValues.getInt(HSContentProvider.HiddenService.CREATED_BY_USER)
             );
 
-            Cursor service = mResolver.query(
+            port = savedValues.getInt(HSContentProvider.HiddenService.PORT);
+            fields.put(HSContentProvider.HiddenService.PORT, port);
+
+            service = mResolver.query(
                     HSContentProvider.CONTENT_URI,
                     HSContentProvider.PROJECTION,
                     HSContentProvider.HiddenService.PORT + "=" + port,
