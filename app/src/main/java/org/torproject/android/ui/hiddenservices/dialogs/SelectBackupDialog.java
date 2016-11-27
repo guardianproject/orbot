@@ -12,6 +12,7 @@ import android.widget.ListView;
 
 import org.torproject.android.R;
 import org.torproject.android.ui.hiddenservices.adapters.BackupAdapter;
+import org.torproject.android.ui.hiddenservices.backup.BackupUtils;
 import org.torproject.android.ui.hiddenservices.storage.ExternalStorage;
 
 import java.io.File;
@@ -72,7 +73,9 @@ public class SelectBackupDialog extends DialogFragment {
         backups.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // TODO
+                BackupUtils backupUtils = new BackupUtils(view.getContext().getApplicationContext());
+                File p = (File) parent.getItemAtPosition(position);
+                backupUtils.restoreZipBackup(p);
             }
         });
 

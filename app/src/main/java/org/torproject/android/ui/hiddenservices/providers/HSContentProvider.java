@@ -16,10 +16,6 @@ import org.torproject.android.ui.hiddenservices.database.HSDatabase;
 
 
 public class HSContentProvider extends ContentProvider {
-    private static final String AUTH = "org.torproject.android.ui.hiddenservices.providers";
-    public static final Uri CONTENT_URI =
-            Uri.parse("content://" + AUTH + "/hs");
-
     public static final String[] PROJECTION = new String[]{
             HiddenService._ID,
             HiddenService.NAME,
@@ -28,7 +24,9 @@ public class HSContentProvider extends ContentProvider {
             HiddenService.ONION_PORT,
             HiddenService.CREATED_BY_USER
     };
-
+    private static final String AUTH = "org.torproject.android.ui.hiddenservices.providers";
+    public static final Uri CONTENT_URI =
+            Uri.parse("content://" + AUTH + "/hs");
     //UriMatcher
     private static final int ONIONS = 1;
     private static final int ONION_ID = 2;

@@ -82,10 +82,10 @@ public class HSDataDialog extends DialogFragment {
 
     private void saveData(String name, Integer local, Integer remote) {
         ContentValues fields = new ContentValues();
-        fields.put("name", name);
-        fields.put("port", local);
-        fields.put("onion_port", remote);
-        fields.put("created_by_user", 1);
+        fields.put(HSContentProvider.HiddenService.NAME, name);
+        fields.put(HSContentProvider.HiddenService.PORT, local);
+        fields.put(HSContentProvider.HiddenService.ONION_PORT, remote);
+        fields.put(HSContentProvider.HiddenService.CREATED_BY_USER, 1);
 
         ContentResolver cr = getContext().getContentResolver();
 

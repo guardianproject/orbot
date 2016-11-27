@@ -649,7 +649,8 @@ public class OrbotMainActivity extends AppCompatActivity
 							BackupUtils hsutils = new BackupUtils(getApplicationContext());
 							if(keyZipPath != null && keyZipPath.length() > 0)
 							{
-								hsutils.restoreZipBackup(hsPort, keyZipPath);
+								// TODO
+								// hsutils.restoreZipBackup(hsPort, keyZipPath);
 								requestTorRereadConfig();
 							}
 

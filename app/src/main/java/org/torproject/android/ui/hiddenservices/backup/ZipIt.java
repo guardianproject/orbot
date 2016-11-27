@@ -1,6 +1,9 @@
 package org.torproject.android.ui.hiddenservices.backup;
 
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -18,14 +21,14 @@ public class ZipIt {
     private String[] _files;
     private String _zipFile;
 
-    public ZipIt(String[] files, String zipFile) {
+    public ZipIt(@Nullable String[] files, @NonNull String zipFile) {
         _files = files;
         _zipFile = zipFile;
     }
 
     public boolean zip() {
         try {
-            BufferedInputStream origin = null;
+            BufferedInputStream origin;
             FileOutputStream dest = new FileOutputStream(_zipFile);
 
             ZipOutputStream out = new ZipOutputStream(new BufferedOutputStream(dest));
@@ -71,12 +74,12 @@ public class ZipIt {
                 // Need to create directories if not exists, or
                 // it will generate an Exception...
                 if (ze.isDirectory()) {
-                    File fmd = new File(output_path + filename);
+                    File fmd = new File(output_path + "/" + filename);
                     fmd.mkdirs();
                     continue;
                 }
 
-                FileOutputStream fout = new FileOutputStream(output_path + filename);
+                FileOutputStream fout = new FileOutputStream(output_path + "/" + filename);
 
                 // cteni zipu a zapis
                 while ((count = zis.read(buffer)) != -1) {

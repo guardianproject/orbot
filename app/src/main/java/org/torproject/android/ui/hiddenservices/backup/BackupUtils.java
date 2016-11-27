@@ -1,26 +1,31 @@
 package org.torproject.android.ui.hiddenservices.backup;
 
 import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.torproject.android.service.R;
+import org.torproject.android.R;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
 import org.torproject.android.ui.hiddenservices.storage.ExternalStorage;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.MappedByteBuffer;
+import java.nio.channels.FileChannel;
+import java.nio.charset.Charset;
 
 public class BackupUtils {
+    private final String configFileName = "config.json";
     private File mHSBasePath;
     private Context mContext;
     private ContentResolver mResolver;
-    private final String configFileName = "config.json";
 
     public BackupUtils(Context context) {
         mContext = context;
@@ -112,18 +117,70 @@ public class BackupUtils {
         return zip_path;
     }
 
-    public void restoreZipBackup(Integer port, String path) {
+    public void restoreZipBackup(File backup) {
+        String backupName = backup.getName();
+        String hsDir = backupName.substring(0, backupName.lastIndexOf('.'));
+        String configFilePath = mHSBasePath + "/" + hsDir + "/" + configFileName;
+        String jString = null;
+
+        File hsPath = new File(mHSBasePath.getAbsolutePath(), hsDir);
+        if (!hsPath.isDirectory())
+            hsPath.mkdirs();
+
+        ZipIt zip = new ZipIt(null, backup.getAbsolutePath());
+        zip.unzip(hsPath.getAbsolutePath());
+
+        File config = new File(configFilePath);
+        FileInputStream stream = null;
+
         try {
-            File hsPath = new File(mHSBasePath.getCanonicalPath(), "/hs" + port);
-            if (hsPath.mkdirs()) {
-                ZipIt zip = new ZipIt(null, path);
-                zip.unzip(hsPath.getCanonicalPath());
-                return;
-            }
+            stream = new FileInputStream(config);
+            FileChannel fc = stream.getChannel();
+            MappedByteBuffer bb = fc.map(FileChannel.MapMode.READ_ONLY, 0, fc.size());
+            jString = Charset.defaultCharset().decode(bb).toString();
+            stream.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        Toast.makeText(mContext, R.string.error, Toast.LENGTH_LONG).show();
+        if (jString == null)
+            Toast.makeText(mContext, R.string.error, Toast.LENGTH_LONG).show();
+
+        try {
+            JSONObject savedValues = new JSONObject(jString);
+            ContentValues fields = new ContentValues();
+
+            fields.put(
+                    HSContentProvider.HiddenService.NAME,
+                    savedValues.getString(HSContentProvider.HiddenService.NAME)
+            );
+
+            fields.put(
+                    HSContentProvider.HiddenService.PORT,
+                    savedValues.getInt(HSContentProvider.HiddenService.PORT)
+            );
+
+            fields.put(
+                    HSContentProvider.HiddenService.ONION_PORT,
+                    savedValues.getInt(HSContentProvider.HiddenService.ONION_PORT)
+            );
+
+            fields.put(
+                    HSContentProvider.HiddenService.DOMAIN,
+                    savedValues.getString(HSContentProvider.HiddenService.DOMAIN)
+            );
+
+            fields.put(
+                    HSContentProvider.HiddenService.CREATED_BY_USER,
+                    savedValues.getInt(HSContentProvider.HiddenService.CREATED_BY_USER)
+            );
+
+            mResolver.insert(HSContentProvider.CONTENT_URI, fields);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Toast.makeText(mContext, R.string.error, Toast.LENGTH_LONG).show();
+        }
+
+        Toast.makeText(mContext, R.string.backup_restored, Toast.LENGTH_LONG).show();
     }
 }
