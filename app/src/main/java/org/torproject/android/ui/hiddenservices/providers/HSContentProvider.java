@@ -19,39 +19,47 @@ public class HSContentProvider extends ContentProvider {
     private static final String AUTH = "org.torproject.android.ui.hiddenservices.providers";
     public static final Uri CONTENT_URI =
             Uri.parse("content://" + AUTH + "/hs");
+
+    public static final String[] PROJECTION = new String[]{
+            HiddenService._ID,
+            HiddenService.NAME,
+            HiddenService.PORT,
+            HiddenService.DOMAIN,
+            HiddenService.ONION_PORT,
+            HiddenService.CREATED_BY_USER
+    };
+
     //UriMatcher
     private static final int ONIONS = 1;
     private static final int ONION_ID = 2;
 
     private static final UriMatcher uriMatcher;
 
-    //Inicializamos el UriMatcher
     static {
         uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
         uriMatcher.addURI(AUTH, "hs", ONIONS);
         uriMatcher.addURI(AUTH, "hs/#", ONION_ID);
     }
 
-    private HSDatabase mServerDB;
+    private HSDatabase mServervices;
     private Context mContext;
 
     @Override
     public boolean onCreate() {
         mContext = getContext();
-        mServerDB = new HSDatabase(mContext);
+        mServervices = new HSDatabase(mContext);
         return true;
     }
 
     @Nullable
     @Override
     public Cursor query(@NonNull Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
-        //Si es una consulta a un ID concreto construimos el WHERE
         String where = selection;
         if (uriMatcher.match(uri) == ONION_ID) {
             where = "_id=" + uri.getLastPathSegment();
         }
 
-        SQLiteDatabase db = mServerDB.getReadableDatabase();
+        SQLiteDatabase db = mServervices.getReadableDatabase();
 
         return db.query(HSDatabase.HS_DATA_TABLE_NAME, projection, where,
                 selectionArgs, null, null, sortOrder);
@@ -77,7 +85,7 @@ public class HSContentProvider extends ContentProvider {
     public Uri insert(@NonNull Uri uri, ContentValues values) {
         long regId;
 
-        SQLiteDatabase db = mServerDB.getWritableDatabase();
+        SQLiteDatabase db = mServervices.getWritableDatabase();
 
         regId = db.insert(HSDatabase.HS_DATA_TABLE_NAME, null, values);
 
@@ -89,13 +97,12 @@ public class HSContentProvider extends ContentProvider {
     @Override
     public int delete(@NonNull Uri uri, String selection, String[] selectionArgs) {
 
-        //Si es una consulta a un ID concreto construimos el WHERE
         String where = selection;
         if (uriMatcher.match(uri) == ONION_ID) {
             where = "_id=" + uri.getLastPathSegment();
         }
 
-        SQLiteDatabase db = mServerDB.getWritableDatabase();
+        SQLiteDatabase db = mServervices.getWritableDatabase();
 
         Integer rows = db.delete(HSDatabase.HS_DATA_TABLE_NAME, where, selectionArgs);
 
@@ -107,7 +114,7 @@ public class HSContentProvider extends ContentProvider {
 
     @Override
     public int update(@NonNull Uri uri, ContentValues values, String selection, String[] selectionArgs) {
-        SQLiteDatabase db = mServerDB.getWritableDatabase();
+        SQLiteDatabase db = mServervices.getWritableDatabase();
 
         String where = selection;
         if (uriMatcher.match(uri) == ONION_ID) {

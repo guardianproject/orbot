@@ -26,16 +26,8 @@ import org.torproject.android.ui.hiddenservices.storage.PermissionManager;
 
 public class HiddenServicesActivity extends AppCompatActivity {
     public final int WRITE_EXTERNAL_STORAGE_FROM_ACTIONBAR = 1;
-    private ContentResolver mCR;
+    private ContentResolver mResolver;
     private OnionListAdapter mAdapter;
-    private Toolbar toolbar;
-    private String[] mProjection = new String[]{
-            HSContentProvider.HiddenService._ID,
-            HSContentProvider.HiddenService.NAME,
-            HSContentProvider.HiddenService.PORT,
-            HSContentProvider.HiddenService.DOMAIN,
-            HSContentProvider.HiddenService.CREATED_BY_USER
-    };
 
     private String mWhere = HSContentProvider.HiddenService.CREATED_BY_USER + "=1";
 
@@ -44,11 +36,11 @@ public class HiddenServicesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_hs_list_view);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mCR = getContentResolver();
+        mResolver = getContentResolver();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -61,11 +53,13 @@ public class HiddenServicesActivity extends AppCompatActivity {
 
         mAdapter = new OnionListAdapter(
                 this,
-                mCR.query(HSContentProvider.CONTENT_URI, mProjection, mWhere, null, null),
+                mResolver.query(
+                        HSContentProvider.CONTENT_URI, HSContentProvider.PROJECTION, mWhere, null, null
+                ),
                 0
         );
 
-        mCR.registerContentObserver(
+        mResolver.registerContentObserver(
                 HSContentProvider.CONTENT_URI, true, new HSObserver(new Handler())
         );
 
@@ -143,8 +137,8 @@ public class HiddenServicesActivity extends AppCompatActivity {
 
         @Override
         public void onChange(boolean selfChange) {
-            mAdapter.changeCursor(mCR.query(
-                    HSContentProvider.CONTENT_URI, mProjection, mWhere, null, null
+            mAdapter.changeCursor(mResolver.query(
+                    HSContentProvider.CONTENT_URI, HSContentProvider.PROJECTION, mWhere, null, null
             ));
         }
     }
