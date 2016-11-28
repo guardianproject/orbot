@@ -2,6 +2,7 @@ package org.torproject.android.ui.hiddenservices.dialogs;
 
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,14 +18,17 @@ public class HSDeleteDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         final Bundle arguments = getArguments();
+        final Context context = getContext();
 
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 switch (which) {
                     case DialogInterface.BUTTON_POSITIVE:
-                        getActivity().getContentResolver().delete(
-                                HSContentProvider.CONTENT_URI, "port=" + arguments.getString("port"), null
+                        context.getContentResolver().delete(
+                                HSContentProvider.CONTENT_URI,
+                                HSContentProvider.HiddenService._ID + "=" + arguments.getInt("_id"),
+                                null
                         );
                         break;
 
@@ -35,7 +39,7 @@ public class HSDeleteDialog extends DialogFragment {
             }
         };
 
-        return new AlertDialog.Builder(getActivity())
+        return new AlertDialog.Builder(context)
                 .setMessage(R.string.confirm_service_deletion)
                 .setPositiveButton(R.string.btn_okay, dialogClickListener)
                 .setNegativeButton(R.string.btn_cancel, dialogClickListener)

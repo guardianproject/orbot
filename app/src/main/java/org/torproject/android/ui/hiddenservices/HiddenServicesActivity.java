@@ -73,6 +73,10 @@ public class HiddenServicesActivity extends AppCompatActivity {
                 Cursor item = (Cursor) parent.getItemAtPosition(position);
 
                 Bundle arguments = new Bundle();
+                arguments.putInt(
+                        "_id", item.getInt(item.getColumnIndex(HSContentProvider.HiddenService._ID))
+                );
+
                 arguments.putString(
                         "port", item.getString(item.getColumnIndex(HSContentProvider.HiddenService.PORT))
                 );
