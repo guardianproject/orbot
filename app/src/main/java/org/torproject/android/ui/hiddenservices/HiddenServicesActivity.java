@@ -15,7 +15,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import org.torproject.android.R;
 import org.torproject.android.ui.hiddenservices.adapters.OnionListAdapter;
@@ -79,7 +78,7 @@ public class HiddenServicesActivity extends AppCompatActivity {
                 );
 
                 arguments.putString(
-                        "onion",item.getString(item.getColumnIndex(HSContentProvider.HiddenService.DOMAIN))
+                        "onion", item.getString(item.getColumnIndex(HSContentProvider.HiddenService.DOMAIN))
                 );
 
                 HSActionsDialog dialog = new HSActionsDialog();

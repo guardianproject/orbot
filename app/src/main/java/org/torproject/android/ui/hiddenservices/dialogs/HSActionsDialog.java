@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 import org.torproject.android.R;
 import org.torproject.android.ui.hiddenservices.backup.BackupUtils;
-import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
 import org.torproject.android.ui.hiddenservices.storage.PermissionManager;
 
 public class HSActionsDialog extends DialogFragment {
@@ -87,9 +86,9 @@ public class HSActionsDialog extends DialogFragment {
         Button delete = (Button) dialog_view.findViewById(R.id.btn_hs_delete);
         delete.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                v.getContext().getContentResolver().delete(
-                        HSContentProvider.CONTENT_URI, "port=" + arguments.getString("port"), null
-                );
+                HSDeleteDialog dialog = new HSDeleteDialog();
+                dialog.setArguments(arguments);
+                dialog.show(getFragmentManager(), "HSDeleteDialog");
                 actionDialog.dismiss();
             }
         });
