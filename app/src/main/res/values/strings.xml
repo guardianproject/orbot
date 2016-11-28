@@ -353,4 +353,5 @@
     <string name="name_can_t_be_empty">Name can\'t be empty</string>
     <string name="start_tor_again_for_finish_the_process">Start Tor again for finish the process</string>
     <string name="confirm_service_deletion">Confirm service deletion</string>
+    <string name="click_again_for_backup">Click again for backup</string>
 </resources>

@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.torproject.android.R;
 import org.torproject.android.ui.hiddenservices.adapters.OnionListAdapter;
@@ -132,7 +133,7 @@ public class HiddenServicesActivity extends AppCompatActivity {
                 break;
             }
             case HSActionsDialog.WRITE_EXTERNAL_STORAGE_FROM_ACTION_DIALOG: {
-                // TODO
+                Toast.makeText(this, R.string.click_again_for_backup, Toast.LENGTH_LONG).show();
                 break;
             }
         }
