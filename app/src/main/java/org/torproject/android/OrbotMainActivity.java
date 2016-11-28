@@ -597,7 +597,12 @@ public class OrbotMainActivity extends AppCompatActivity
 
         if (onionHostname == null || onionHostname.length() < 1) {
 
-            requestTorRereadConfig();
+            if (hsKeyPath != null) {
+                BackupUtils hsutils = new BackupUtils(getApplicationContext());
+                hsutils.restoreKeyBackup(hsPort, hsKeyPath);
+            }
+
+            startTor();
 
             new Thread() {
 
@@ -630,12 +635,6 @@ public class OrbotMainActivity extends AppCompatActivity
                                 continue;
 
                             nResult.putExtra("hs_host", hostname);
-
-                            if (hsKeyPath != null) {
-                                BackupUtils hsutils = new BackupUtils(getApplicationContext());
-                                hsutils.restoreKeyBackup(hsPort, hsKeyPath);
-                                requestTorRereadConfig();
-                            }
 
                             if (backupToPackage != null && backupToPackage.length() > 0) {
                                 String servicePath = getFilesDir() + "/" + TorServiceConstants.HIDDEN_SERVICES_DIR + "/hs" + hsPort;

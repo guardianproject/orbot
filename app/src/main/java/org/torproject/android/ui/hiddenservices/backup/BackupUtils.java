@@ -211,12 +211,16 @@ public class BackupUtils {
     }
 
     public void restoreKeyBackup(int hsPort, Uri hsKeyPath) {
-        String keyFilePath = mHSBasePath + "/hs" + hsPort + "/private_key";
+
+        File serviceDir = new File(mHSBasePath, "hs" + hsPort);
+
+        if (!serviceDir.isDirectory())
+            serviceDir.mkdirs();
 
         try {
             ParcelFileDescriptor mInputPFD = mContext.getContentResolver().openFileDescriptor(hsKeyPath, "r");
             InputStream fileStream = new FileInputStream(mInputPFD.getFileDescriptor());
-            OutputStream file = new FileOutputStream(keyFilePath);
+            OutputStream file = new FileOutputStream(serviceDir.getAbsolutePath() + "/private_key");
 
             byte[] buffer = new byte[1024];
             int length;
