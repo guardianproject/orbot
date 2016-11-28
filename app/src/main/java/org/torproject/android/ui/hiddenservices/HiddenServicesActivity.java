@@ -4,6 +4,7 @@ package org.torproject.android.ui.hiddenservices;
 import android.content.ContentResolver;
 import android.content.pm.PackageManager;
 import android.database.ContentObserver;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
@@ -70,12 +71,16 @@ public class HiddenServicesActivity extends AppCompatActivity {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                TextView port = (TextView) view.findViewById(R.id.hs_port);
-                TextView onion = (TextView) view.findViewById(R.id.hs_onion);
+                Cursor item = (Cursor) parent.getItemAtPosition(position);
 
                 Bundle arguments = new Bundle();
-                arguments.putString("port", port.getText().toString());
-                arguments.putString("onion", onion.getText().toString());
+                arguments.putString(
+                        "port", item.getString(item.getColumnIndex(HSContentProvider.HiddenService.PORT))
+                );
+
+                arguments.putString(
+                        "onion",item.getString(item.getColumnIndex(HSContentProvider.HiddenService.DOMAIN))
+                );
 
                 HSActionsDialog dialog = new HSActionsDialog();
                 dialog.setArguments(arguments);

@@ -618,7 +618,6 @@ public class OrbotMainActivity extends AppCompatActivity
                     Intent nResult = new Intent();
 
                     while (hostname == null) {
-                        //we need to stop and start Tor
                         try {
                             Thread.sleep(3000); //wait three seconds
                         } catch (Exception e) {
