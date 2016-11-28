@@ -351,4 +351,5 @@
     <string name="restore_backup">Restore Backup</string>
     <string name="create_a_backup_first">Create a backup first</string>
     <string name="name_can_t_be_empty">Name can\'t be empty</string>
+    <string name="start_tor_again_for_finish_the_process">Start Tor again for finish the process</string>
 </resources>

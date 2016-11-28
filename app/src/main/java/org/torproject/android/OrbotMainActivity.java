@@ -602,7 +602,14 @@ public class OrbotMainActivity extends AppCompatActivity
                 hsutils.restoreKeyBackup(hsPort, hsKeyPath);
             }
 
-            startTor();
+            if (torStatus.equals(TorServiceConstants.STATUS_OFF)) {
+                startTor();
+            } else {
+                stopTor();
+                Toast.makeText(
+                        this, R.string.start_tor_again_for_finish_the_process, Toast.LENGTH_LONG
+                ).show();
+            }
 
             new Thread() {
 
