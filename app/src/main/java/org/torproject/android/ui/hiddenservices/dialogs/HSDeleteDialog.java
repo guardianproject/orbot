@@ -10,7 +10,10 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 
 import org.torproject.android.R;
+import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
+
+import java.io.File;
 
 public class HSDeleteDialog extends DialogFragment {
 
@@ -25,11 +28,25 @@ public class HSDeleteDialog extends DialogFragment {
             public void onClick(DialogInterface dialog, int which) {
                 switch (which) {
                     case DialogInterface.BUTTON_POSITIVE:
+                        // Delete from db
                         context.getContentResolver().delete(
                                 HSContentProvider.CONTENT_URI,
                                 HSContentProvider.HiddenService._ID + "=" + arguments.getInt("_id"),
                                 null
                         );
+
+                        // Delete from interal storage
+                        String base = context.getFilesDir().getAbsolutePath() + "/" + TorServiceConstants.HIDDEN_SERVICES_DIR;
+                        File dir = new File(base, "hs" + arguments.getString("port"));
+
+                        if (dir.isDirectory()) {
+                            String[] children = dir.list();
+                            for (String aChildren : children) {
+                                new File(dir, aChildren).delete();
+                            }
+                            dir.delete();
+                        }
+
                         break;
 
                     case DialogInterface.BUTTON_NEGATIVE:
