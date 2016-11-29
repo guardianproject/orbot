@@ -111,7 +111,7 @@ public class OrbotMainActivity extends AppCompatActivity
 	private ActionBarDrawerToggle mDrawerToggle;
 	
     /* Some tracking bits */
-    private String torStatus = null; //latest status reported from the tor service
+    private String torStatus = TorServiceConstants.STATUS_OFF; //latest status reported from the tor service
     private Intent lastStatusIntent;  // the last ACTION_STATUS Intent received
 
     private SharedPreferences mPrefs = null;
