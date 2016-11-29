@@ -543,14 +543,13 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
             if (mNotificationManager == null)
             {
-               
-               IntentFilter mNetworkStateFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);               
-                registerReceiver(mNetworkStateReceiver , mNetworkStateFilter);
-         
                 mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-             
             }
-        
+
+            IntentFilter mNetworkStateFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+            registerReceiver(mNetworkStateReceiver , mNetworkStateFilter);
+
+
             new Thread(new Runnable ()
             {
                 public void run ()
@@ -735,7 +734,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         } else if (mCurrentStatus == STATUS_ON) {
         
             sendCallbackLogMessage("Ignoring start request, already started.");
-            
+            setTorNetworkEnabled (true);
+
             return;
         }        
         
@@ -1525,7 +1525,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             mNetworkType = newNetType;
         	mConnectivity = newConnectivityState;
         	
-            if (doNetworKSleep)
+            if (doNetworKSleep && mCurrentStatus != STATUS_OFF)
             {
 	            setTorNetworkEnabled (mConnectivity);
 	            
@@ -1543,18 +1543,15 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
                 try {
 
-                    if (mCurrentStatus != STATUS_OFF)
+                    if (mConnectivity)
                     {
-                        if (mConnectivity)
+                        if (Prefs.useRoot() && Prefs.useTransparentProxying() && Prefs.transProxyNetworkRefresh())
                         {
-                            if (Prefs.useRoot() && Prefs.useTransparentProxying() && Prefs.transProxyNetworkRefresh())
-                            {
 
 
-                                disableTransparentProxy();
-                                enableTransparentProxy();
+                            disableTransparentProxy();
+                            enableTransparentProxy();
 
-                            }
                         }
                     }
 
