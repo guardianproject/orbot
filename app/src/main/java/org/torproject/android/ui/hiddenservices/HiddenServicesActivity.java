@@ -8,13 +8,16 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import org.torproject.android.R;
@@ -29,6 +32,7 @@ public class HiddenServicesActivity extends AppCompatActivity {
     public final int WRITE_EXTERNAL_STORAGE_FROM_ACTIONBAR = 1;
     private ContentResolver mResolver;
     private OnionListAdapter mAdapter;
+    private FloatingActionButton fab;
 
     private String mWhere = HSContentProvider.HiddenService.CREATED_BY_USER + "=1";
 
@@ -43,7 +47,7 @@ public class HiddenServicesActivity extends AppCompatActivity {
 
         mResolver = getContentResolver();
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -96,6 +100,40 @@ public class HiddenServicesActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.hs_menu, menu);
+
+        MenuItem item = menu.findItem(R.id.hs_type);
+        Spinner spinner = (Spinner) MenuItemCompat.getActionView(item);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                this, R.array.array_hs_types, android.R.layout.simple_spinner_item);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinner.setAdapter(adapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View v, int pos, long id) {
+                if (pos == 0) {
+                    mWhere = HSContentProvider.HiddenService.CREATED_BY_USER + "=1";
+                    fab.show();
+                } else {
+                    mWhere = HSContentProvider.HiddenService.CREATED_BY_USER + "=0";
+                    fab.hide();
+                }
+
+                mAdapter.changeCursor(mResolver.query(
+                        HSContentProvider.CONTENT_URI, HSContentProvider.PROJECTION, mWhere, null, null
+                ));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // Do nothing
+            }
+        });
+
         return true;
     }
 
