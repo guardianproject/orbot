@@ -105,6 +105,7 @@ public class OrbotMainActivity extends AppCompatActivity
     /* Some tracking bits */
     private String torStatus = TorServiceConstants.STATUS_OFF; //latest status reported from the tor service
     private Intent lastStatusIntent;  // the last ACTION_STATUS Intent received
+	private Boolean isFirstRun = true;
 
     private SharedPreferences mPrefs = null;
 
@@ -1301,8 +1302,9 @@ public class OrbotMainActivity extends AppCompatActivity
         	String newTorStatus = msg.getData().getString("status");
         	String log = (String)msg.obj;
         	
-        	if (torStatus == null && newTorStatus != null) //first time status
+        	if (isFirstRun && newTorStatus != null) //first time status
         	{
+				isFirstRun = false;
         		torStatus = newTorStatus;
         		findViewById(R.id.frameMain).setVisibility(View.VISIBLE);
         		updateStatus(log);
