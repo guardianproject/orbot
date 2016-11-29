@@ -27,6 +27,7 @@ import org.torproject.android.ui.AppManager;
 import org.torproject.android.ui.ImageProgressView;
 import org.torproject.android.ui.PromoAppsActivity;
 import org.torproject.android.ui.Rotate3dAnimation;
+import org.torproject.android.ui.hiddenservices.HiddenServicesActivity;
 import org.torproject.android.ui.hiddenservices.backup.BackupUtils;
 import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
 import org.torproject.android.vpn.VPNEnableActivity;
@@ -510,6 +511,8 @@ public class OrbotMainActivity extends AppCompatActivity
 					}
      		}
 
+         } else if (item.getItemId() == R.id.menu_hidden_services) {
+             startActivity(new Intent(this, HiddenServicesActivity.class));
          }
      
 		return super.onOptionsItemSelected(item);
