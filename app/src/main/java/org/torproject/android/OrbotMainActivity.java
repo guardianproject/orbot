@@ -675,6 +675,13 @@ public class OrbotMainActivity extends AppCompatActivity
 
                             nResult.putExtra("hs_host", hostname);
 
+                            if (authCookie) {
+                                nResult.putExtra(
+                                        "hs_auth_cookie",
+                                        onion.getString(onion.getColumnIndex(HSContentProvider.HiddenService.AUTH_COOKIE_VALUE))
+                                );
+                            }
+
                             if (backupToPackage != null && backupToPackage.length() > 0) {
                                 String servicePath = getFilesDir() + "/" + TorServiceConstants.HIDDEN_SERVICES_DIR + "/hs" + hsPort;
                                 File hidden_service_key = new File(servicePath, "private_key");
