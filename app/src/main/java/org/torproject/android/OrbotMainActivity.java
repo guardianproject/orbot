@@ -593,7 +593,8 @@ public class OrbotMainActivity extends AppCompatActivity
 
     private void enableHiddenServicePort(
             String hsName, final int hsPort, int hsRemotePort,
-            final String backupToPackage, final Uri hsKeyPath
+            final String backupToPackage, final Uri hsKeyPath,
+            final Boolean authCookie
     ) throws RemoteException, InterruptedException {
 
         String onionHostname = null;
@@ -608,6 +609,7 @@ public class OrbotMainActivity extends AppCompatActivity
         fields.put(HSContentProvider.HiddenService.NAME, hsName);
         fields.put(HSContentProvider.HiddenService.PORT, hsPort);
         fields.put(HSContentProvider.HiddenService.ONION_PORT, hsRemotePort);
+        fields.put(HSContentProvider.HiddenService.AUTH_COOKIE, authCookie);
 
         ContentResolver cr = getContentResolver();
 
@@ -725,6 +727,7 @@ public class OrbotMainActivity extends AppCompatActivity
                 final int hiddenServiceRemotePort = intent.getIntExtra("hs_onion_port", -1);
                 final String hiddenServiceName = intent.getStringExtra("hs_name");
                 final String backupToPackage = intent.getStringExtra("hs_backup_to_package");
+                final Boolean authCookie = intent.getBooleanExtra("hs_auth_cookie", false);
                 final Uri mKeyUri = intent.getData();
 
                 DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
@@ -735,7 +738,8 @@ public class OrbotMainActivity extends AppCompatActivity
                                 try {
                                     enableHiddenServicePort(
                                             hiddenServiceName, hiddenServicePort,
-                                            hiddenServiceRemotePort, backupToPackage, mKeyUri
+                                            hiddenServiceRemotePort, backupToPackage,
+                                            mKeyUri, authCookie
                                     );
                                 } catch (RemoteException e) {
                                     // TODO Auto-generated catch block

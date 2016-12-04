@@ -89,6 +89,16 @@ public class BackupUtils {
             );
 
             config.put(
+                    HSContentProvider.HiddenService.AUTH_COOKIE,
+                    portData.getInt(portData.getColumnIndex(HSContentProvider.HiddenService.AUTH_COOKIE))
+            );
+
+            config.put(
+                    HSContentProvider.HiddenService.AUTH_COOKIE_VALUE,
+                    portData.getString(portData.getColumnIndex(HSContentProvider.HiddenService.AUTH_COOKIE_VALUE))
+            );
+
+            config.put(
                     HSContentProvider.HiddenService.CREATED_BY_USER,
                     portData.getInt(portData.getColumnIndex(HSContentProvider.HiddenService.CREATED_BY_USER))
             );
@@ -171,6 +181,11 @@ public class BackupUtils {
             fields.put(
                     HSContentProvider.HiddenService.DOMAIN,
                     savedValues.getString(HSContentProvider.HiddenService.DOMAIN)
+            );
+
+            fields.put(
+                    HSContentProvider.HiddenService.AUTH_COOKIE,
+                    savedValues.getInt(HSContentProvider.HiddenService.AUTH_COOKIE)
             );
 
             fields.put(

@@ -90,6 +90,14 @@ public class HiddenServicesActivity extends AppCompatActivity {
                         "onion", item.getString(item.getColumnIndex(HSContentProvider.HiddenService.DOMAIN))
                 );
 
+                arguments.putInt(
+                        "auth_cookie", item.getInt(item.getColumnIndex(HSContentProvider.HiddenService.AUTH_COOKIE))
+                );
+
+                arguments.putString(
+                        "auth_cookie_value", item.getString(item.getColumnIndex(HSContentProvider.HiddenService.AUTH_COOKIE_VALUE))
+                );
+
                 HSActionsDialog dialog = new HSActionsDialog();
                 dialog.setArguments(arguments);
                 dialog.show(getSupportFragmentManager(), "HSActionsDialog");

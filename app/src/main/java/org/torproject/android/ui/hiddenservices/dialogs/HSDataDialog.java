@@ -10,6 +10,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -42,8 +43,10 @@ public class HSDataDialog extends DialogFragment {
                         ((EditText) dialog_view.findViewById(R.id.hsOnionPort)).getText().toString()
                 );
 
+                Boolean authCookie = ((CheckBox) dialog_view.findViewById(R.id.hsAuth)).isChecked();
+
                 if (checkInput(serverName, localPort, onionPort)) {
-                    saveData(serverName, localPort, onionPort);
+                    saveData(serverName, localPort, onionPort, authCookie);
                     serviceDataDialog.dismiss();
                 }
             }
@@ -80,11 +83,13 @@ public class HSDataDialog extends DialogFragment {
         return is_ok;
     }
 
-    private void saveData(String name, Integer local, Integer remote) {
+    private void saveData(String name, Integer local, Integer remote, Boolean authCookie) {
+
         ContentValues fields = new ContentValues();
         fields.put(HSContentProvider.HiddenService.NAME, name);
         fields.put(HSContentProvider.HiddenService.PORT, local);
         fields.put(HSContentProvider.HiddenService.ONION_PORT, remote);
+        fields.put(HSContentProvider.HiddenService.AUTH_COOKIE, authCookie);
         fields.put(HSContentProvider.HiddenService.CREATED_BY_USER, 1);
 
         ContentResolver cr = getContext().getContentResolver();

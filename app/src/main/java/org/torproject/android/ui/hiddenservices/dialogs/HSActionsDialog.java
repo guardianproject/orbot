@@ -83,6 +83,30 @@ public class HSActionsDialog extends DialogFragment {
             }
         });
 
+        Button showAuth = (Button) dialog_view.findViewById(R.id.bt_hs_show_auth);
+        showAuth.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                String auth_cookie_value = arguments.getString("auth_cookie_value");
+                if (arguments.getInt("auth_cookie") == 1) {
+                    if (auth_cookie_value == null || auth_cookie_value.length() < 1) {
+                        Toast.makeText(
+                                v.getContext(), R.string.please_restart_Orbot_to_enable_the_changes, Toast.LENGTH_LONG
+                        ).show();
+                    } else {
+                        new AlertDialog.Builder(getActivity())
+                                .setMessage(auth_cookie_value)
+                                .show();
+                    }
+                } else {
+                    Toast.makeText(
+                            v.getContext(), R.string.auth_cookie_was_not_configured, Toast.LENGTH_LONG
+                    ).show();
+                }
+
+                actionDialog.dismiss();
+            }
+        });
+
         Button delete = (Button) dialog_view.findViewById(R.id.btn_hs_delete);
         delete.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

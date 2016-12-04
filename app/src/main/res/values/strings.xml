@@ -347,6 +347,7 @@
     <string name="done">Done!</string>
     <string name="invalid_port">Invalid Port</string>
     <string name="copy_address_to_clipboard">Copy address to clipboard</string>
+    <string name="show_auth_cookie">Show auth cookie</string>
     <string name="backup_service">Backup Service</string>
     <string name="delete_service">Delete Service</string>
     <string name="backup_saved_at_external_storage">Backup saved at external storage</string>
@@ -362,4 +363,7 @@
     <string name="confirm_service_deletion">Confirm service deletion</string>
     <string name="click_again_for_backup">Click again for backup</string>
     <string name="service_type">Service type</string>
+    <string name="auth_cookie">Auth cookie</string>
+    <string name="auth_cookie_was_not_configured">Auth cookie was not configured</string>
+    <string name="please_restart_Orbot_to_enable_the_changes">Please restart Orbot to enable the changes</string>
 </resources>

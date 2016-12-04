@@ -53,6 +53,14 @@
         android:id="@+id/hsOnionPort"
         android:inputType="number" />
 
+    <CheckBox
+        android:text="@string/auth_cookie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/hsAuth"
+        android:paddingTop="5dp"
+        android:paddingBottom="10dp"/>
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"

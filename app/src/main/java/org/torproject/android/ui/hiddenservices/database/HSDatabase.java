@@ -16,6 +16,8 @@ public class HSDatabase extends SQLiteOpenHelper {
                     "name TEXT, " +
                     "domain TEXT, " +
                     "onion_port INTEGER, " +
+                    "auth_cookie INTEGER DEFAULT 0, " +
+                    "auth_cookie_value TEXT, " +
                     "created_by_user INTEGER DEFAULT 0, " +
                     "port INTEGER);";
 

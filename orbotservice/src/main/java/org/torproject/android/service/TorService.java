@@ -139,6 +139,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         public static final String PORT = "port";
         public static final String ONION_PORT = "onion_port";
         public static final String DOMAIN = "domain";
+        public static final String AUTH_COOKIE = "auth_cookie";
+        public static final String AUTH_COOKIE_VALUE = "auth_cookie_value";
         public static final String CREATED_BY_USER = "created_by_user";
 
         private HiddenService() {
@@ -147,8 +149,11 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
     private String[] mProjection = new String[]{
 			HiddenService._ID,
+			HiddenService.NAME,
 			HiddenService.DOMAIN,
 			HiddenService.PORT,
+			HiddenService.AUTH_COOKIE,
+			HiddenService.AUTH_COOKIE_VALUE,
 			HiddenService.ONION_PORT};
 
     public void debug(String msg)
@@ -777,9 +782,11 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                     while (hidden_services.moveToNext()) {
                         String HSDomain = hidden_services.getString(hidden_services.getColumnIndex(HiddenService.DOMAIN));
                         Integer HSLocalPort = hidden_services.getInt(hidden_services.getColumnIndex(HiddenService.PORT));
+                        Integer HSAuthCookie = hidden_services.getInt(hidden_services.getColumnIndex(HiddenService.AUTH_COOKIE));
+                        String HSAuthCookieValue = hidden_services.getString(hidden_services.getColumnIndex(HiddenService.AUTH_COOKIE_VALUE));
 
-                        // Update only new domains
-                        if(HSDomain == null || HSDomain.length() < 1) {
+                        // Update only new domains or restored from backup with auth cookie
+                        if((HSDomain == null || HSDomain.length() < 1) || (HSAuthCookie == 1 && (HSAuthCookieValue == null || HSAuthCookieValue.length() < 1))) {
                             String hsDirPath = new File(mHSBasePath.getAbsolutePath(),"hs" + HSLocalPort).getCanonicalPath();
                             File file = new File(hsDirPath, "hostname");
 
@@ -789,7 +796,12 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
                                 try {
                                     String onionHostname = Utils.readString(new FileInputStream(file)).trim();
-                                    fields.put("domain", onionHostname);
+                                    if(HSAuthCookie == 1) {
+                                        String[] aux = onionHostname.split(" ");
+                                        onionHostname = aux[0];
+                                        fields.put(HiddenService.AUTH_COOKIE_VALUE, aux[1]);
+                                    }
+                                    fields.put(HiddenService.DOMAIN, onionHostname);
                                     mCR.update(CONTENT_URI, fields, "port=" + HSLocalPort , null);
                                 } catch (FileNotFoundException e) {
                                     logException("unable to read onion hostname file",e);
@@ -1784,14 +1796,19 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         if(hidden_services != null) {
             try {
                 while (hidden_services.moveToNext()) {
+                    String HSname = hidden_services.getString(hidden_services.getColumnIndex(HiddenService.NAME));
                     Integer HSLocalPort = hidden_services.getInt(hidden_services.getColumnIndex(HiddenService.PORT));
                     Integer HSOnionPort = hidden_services.getInt(hidden_services.getColumnIndex(HiddenService.ONION_PORT));
+                    Integer HSAuthCookie = hidden_services.getInt(hidden_services.getColumnIndex(HiddenService.AUTH_COOKIE));
                     String hsDirPath = new File(mHSBasePath.getAbsolutePath(),"hs" + HSLocalPort).getCanonicalPath();
 
                     debug("Adding hidden service on port: " + HSLocalPort);
 
                     extraLines.append("HiddenServiceDir" + ' ' + hsDirPath).append('\n');
                     extraLines.append("HiddenServicePort" + ' ' + HSOnionPort + " 127.0.0.1:" + HSLocalPort).append('\n');
+
+                    if(HSAuthCookie == 1)
+                        extraLines.append("HiddenServiceAuthorizeClient stealth " + HSname).append('\n');
                 }
             } catch (NumberFormatException e) {
                     Log.e(OrbotConstants.TAG,"error parsing hsport",e);

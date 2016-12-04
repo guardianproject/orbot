@@ -10,6 +10,12 @@
         android:id="@+id/btn_hs_clipboard" />
 
     <Button
+        android:text="@string/show_auth_cookie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bt_hs_show_auth" />
+
+    <Button
         android:text="@string/backup_service"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
