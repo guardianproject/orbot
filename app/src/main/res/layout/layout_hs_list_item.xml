@@ -16,6 +16,8 @@
             android:layout_height="match_parent"
             android:id="@+id/hs_port"
             android:layout_width="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
             android:textSize="35sp" />
 
         <LinearLayout
