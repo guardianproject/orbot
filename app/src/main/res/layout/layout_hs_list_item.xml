@@ -6,43 +6,50 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:paddingLeft="15dp"
-        tools:paddingLeft="15dp">
+        android:paddingRight="15dp"
+        tools:paddingLeft="15dp"
+        tools:paddingRight="15dp">
 
         <TextView
-            android:layout_height="match_parent"
             android:id="@+id/hs_port"
             android:layout_width="wrap_content"
-            android:paddingTop="10dp"
+            android:layout_height="match_parent"
             android:paddingRight="10dp"
+            android:paddingTop="10dp"
             android:textSize="35sp" />
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/hs_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="24sp"
+                android:paddingBottom="10dp"
                 android:paddingLeft="10dp"
-                android:paddingBottom="10dp" />
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/hs_onion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
+                android:paddingBottom="10dp"
                 android:paddingLeft="10dp"
-                android:paddingBottom="10dp" />
+                android:textSize="18sp" />
 
         </LinearLayout>
+
+        <Switch
+            android:id="@+id/hs_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 

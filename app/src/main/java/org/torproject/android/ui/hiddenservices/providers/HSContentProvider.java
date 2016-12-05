@@ -24,7 +24,8 @@ public class HSContentProvider extends ContentProvider {
             HiddenService.ONION_PORT,
             HiddenService.AUTH_COOKIE,
             HiddenService.AUTH_COOKIE_VALUE,
-            HiddenService.CREATED_BY_USER
+            HiddenService.CREATED_BY_USER,
+            HiddenService.ENABLED
     };
     private static final String AUTH = "org.torproject.android.ui.hiddenservices.providers";
     public static final Uri CONTENT_URI =
@@ -135,6 +136,7 @@ public class HSContentProvider extends ContentProvider {
         public static final String AUTH_COOKIE = "auth_cookie";
         public static final String AUTH_COOKIE_VALUE = "auth_cookie_value";
         public static final String CREATED_BY_USER = "created_by_user";
+        public static final String ENABLED = "enabled";
 
         private HiddenService() {
         }

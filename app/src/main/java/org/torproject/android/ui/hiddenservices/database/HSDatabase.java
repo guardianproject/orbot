@@ -19,6 +19,7 @@ public class HSDatabase extends SQLiteOpenHelper {
                     "auth_cookie INTEGER DEFAULT 0, " +
                     "auth_cookie_value TEXT, " +
                     "created_by_user INTEGER DEFAULT 0, " +
+                    "enabled INTEGER DEFAULT 1, " +
                     "port INTEGER);";
 
     public HSDatabase(Context context) {

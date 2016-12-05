@@ -142,6 +142,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         public static final String AUTH_COOKIE = "auth_cookie";
         public static final String AUTH_COOKIE_VALUE = "auth_cookie_value";
         public static final String CREATED_BY_USER = "created_by_user";
+        public static final String ENABLED = "enabled";
 
         private HiddenService() {
         }
@@ -154,7 +155,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 			HiddenService.PORT,
 			HiddenService.AUTH_COOKIE,
 			HiddenService.AUTH_COOKIE_VALUE,
-			HiddenService.ONION_PORT};
+			HiddenService.ONION_PORT,
+            HiddenService.ENABLED};
 
     public void debug(String msg)
     {
@@ -1792,7 +1794,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
         /* ---- Hidden Services ---- */
         ContentResolver mCR = getApplicationContext().getContentResolver();
-        Cursor hidden_services = mCR.query(CONTENT_URI, mProjection, null, null, null);
+        Cursor hidden_services = mCR.query(CONTENT_URI, mProjection, HiddenService.ENABLED + "=1", null, null);
         if(hidden_services != null) {
             try {
                 while (hidden_services.moveToNext()) {

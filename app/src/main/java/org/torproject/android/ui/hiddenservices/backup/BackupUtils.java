@@ -102,6 +102,11 @@ public class BackupUtils {
                     HSContentProvider.HiddenService.CREATED_BY_USER,
                     portData.getInt(portData.getColumnIndex(HSContentProvider.HiddenService.CREATED_BY_USER))
             );
+
+            config.put(
+                    HSContentProvider.HiddenService.ENABLED,
+                    portData.getInt(portData.getColumnIndex(HSContentProvider.HiddenService.ENABLED))
+            );
         } catch (JSONException e) {
             e.printStackTrace();
             return null;
@@ -191,6 +196,11 @@ public class BackupUtils {
             fields.put(
                     HSContentProvider.HiddenService.CREATED_BY_USER,
                     savedValues.getInt(HSContentProvider.HiddenService.CREATED_BY_USER)
+            );
+
+            fields.put(
+                    HSContentProvider.HiddenService.ENABLED,
+                    savedValues.getInt(HSContentProvider.HiddenService.ENABLED)
             );
 
             port = savedValues.getInt(HSContentProvider.HiddenService.PORT);
