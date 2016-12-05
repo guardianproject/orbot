@@ -38,6 +38,7 @@ public class OnionListAdapter extends CursorAdapter {
         name.setText(cursor.getString(cursor.getColumnIndex(HSContentProvider.HiddenService.NAME)));
         TextView domain = (TextView) view.findViewById(R.id.hs_onion);
         domain.setText(cursor.getString(cursor.getColumnIndex(HSContentProvider.HiddenService.DOMAIN)));
+
         Switch enabled = (Switch) view.findViewById(R.id.hs_switch);
         enabled.setChecked(
                 cursor.getInt(cursor.getColumnIndex(HSContentProvider.HiddenService.ENABLED)) == 1
