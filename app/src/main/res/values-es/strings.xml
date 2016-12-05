@@ -291,4 +291,36 @@ direcciones (o rangos). No prevalecen sobre las configuraciones de exclusión de
   <string name="standard_browser">Navegador estándar</string>
   <string name="note_only_standard_tor_bridges_work_on_intel_x86_atom_devices">NOTA: Sólo los repetidores puente (bridges) estándar de Tor funcionan en dispositivos Intel X86/ATOM</string>
   <string name="vpn_default_world">Mundo</string>
+
+  <string name="hidden_services">Servicios Ocultos</string>
+  <string name="title_activity_hidden_services">Servicios Ocultos</string>
+  <string name="menu_hidden_services">Servicios Ocultos</string>
+  <string name="save">Guardar</string>
+  <string name="ports">Puertos</string>
+  <string name="local_port">Puerto Local</string>
+  <string name="onion_port">Puerto Onion</string>
+  <string name="name">Nombre</string>
+  <string name="done">Hecho!</string>
+  <string name="invalid_port">Puerto no vàlido</string>
+  <string name="copy_address_to_clipboard">Copiar dirección a portapapeles</string>
+  <string name="show_auth_cookie">Mostra cookie de autenticación</string>
+  <string name="backup_service">Crear backup</string>
+  <string name="delete_service">Borrar servicio</string>
+  <string name="backup_saved_at_external_storage">Backup guardado en almacenamiento externo</string>
+  <string name="backup_restored">Backup restaurado</string>
+  <string name="filemanager_not_available">Gestor de archivos no disponible</string>
+  <string name="please_grant_permissions_for_external_storage">Permitir permisos para almacenamiento externo</string>
+  <string name="permission_granted">Permisos concedidos</string>
+  <string name="permission_denied">Permisos denegados</string>
+  <string name="restore_backup">Restaurar Backup</string>
+  <string name="create_a_backup_first">Crear primero una copia de seguridad</string>
+  <string name="name_can_t_be_empty">Nombre no puede estar vacio</string>
+  <string name="start_tor_again_for_finish_the_process">Inicie Tor de nuevo para finalizar el proceso</string>
+  <string name="confirm_service_deletion">Confirmar eliminación de servicio</string>
+  <string name="click_again_for_backup">Haga clic de nuevo para realizar copias de seguridad</string>
+  <string name="service_type">Tipo de servicio</string>
+  <string name="auth_cookie">Cookie de autenticación</string>
+  <string name="copy_cookie_to_clipboard">Copiar cookie al portapapeles</string>
+  <string name="auth_cookie_was_not_configured">La cookie de autenticación no estaba configurada</string>
+  <string name="please_restart_Orbot_to_enable_the_changes">Reinicie Orbot para habilitar los cambios</string>
 </resources>
