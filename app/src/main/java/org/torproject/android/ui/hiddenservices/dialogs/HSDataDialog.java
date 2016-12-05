@@ -47,6 +47,9 @@ public class HSDataDialog extends DialogFragment {
 
                 if (checkInput(serverName, localPort, onionPort)) {
                     saveData(serverName, localPort, onionPort, authCookie);
+                    Toast.makeText(
+                            v.getContext(), R.string.please_restart_Orbot_to_enable_the_changes, Toast.LENGTH_LONG
+                    ).show();
                     serviceDataDialog.dismiss();
                 }
             }

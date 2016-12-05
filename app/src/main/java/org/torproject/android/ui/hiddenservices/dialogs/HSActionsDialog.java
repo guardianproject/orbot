@@ -87,15 +87,16 @@ public class HSActionsDialog extends DialogFragment {
         showAuth.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 String auth_cookie_value = arguments.getString("auth_cookie_value");
+
                 if (arguments.getInt("auth_cookie") == 1) {
                     if (auth_cookie_value == null || auth_cookie_value.length() < 1) {
                         Toast.makeText(
                                 v.getContext(), R.string.please_restart_Orbot_to_enable_the_changes, Toast.LENGTH_LONG
                         ).show();
                     } else {
-                        new AlertDialog.Builder(getActivity())
-                                .setMessage(auth_cookie_value)
-                                .show();
+                        HSCookieDialog dialog = new HSCookieDialog();
+                        dialog.setArguments(arguments);
+                        dialog.show(getFragmentManager(), "HSCookieDialog");
                     }
                 } else {
                     Toast.makeText(

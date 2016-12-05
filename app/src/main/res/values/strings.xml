@@ -364,6 +364,7 @@
     <string name="click_again_for_backup">Click again for backup</string>
     <string name="service_type">Service type</string>
     <string name="auth_cookie">Auth cookie</string>
+    <string name="copy_cookie_to_clipboard">Copy cookie to clipboard</string>
     <string name="auth_cookie_was_not_configured">Auth cookie was not configured</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Please restart Orbot to enable the changes</string>
 </resources>
