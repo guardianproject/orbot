@@ -5,13 +5,13 @@ import android.os.Environment;
 import java.io.File;
 
 public class ExternalStorage {
-    private static final String BACKUPS_DIR = "Orbot-HiddenServices";
+    private static final String ORBOT_BACKUPS_DIR = "Orbot";
 
     public static File getOrCreateBackupDir() {
         if (!isExternalStorageWritable())
             return null;
 
-        File dir = new File(Environment.getExternalStorageDirectory(), BACKUPS_DIR);
+        File dir = new File(Environment.getExternalStorageDirectory(), ORBOT_BACKUPS_DIR);
 
         if (!dir.isDirectory() && !dir.mkdirs())
             return null;

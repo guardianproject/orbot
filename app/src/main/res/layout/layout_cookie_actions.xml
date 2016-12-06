@@ -3,29 +3,22 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <Button
+        android:text="@string/backup_cookie"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/hs_cookie"
-        android:paddingBottom="5dp"
-        android:paddingLeft="5dp"
-        android:paddingTop="5dp" />
+        android:id="@+id/btn_cookie_backup" />
 
     <Button
-        android:text="@string/copy_cookie_to_clipboard"
+        android:text="@string/delete_cookie"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/hs_cookie_to_clipboard" />
-
-    <Button
-        android:text="@string/share_as_qr"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/hs_cookie_to_qr" />
+        android:id="@+id/btn_cookie_delete" />
 
     <Button
         android:text="@string/btn_cancel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/hs_cookie_cancel" />
+        android:id="@+id/btn_cookie_cancel" />
+
 </LinearLayout>

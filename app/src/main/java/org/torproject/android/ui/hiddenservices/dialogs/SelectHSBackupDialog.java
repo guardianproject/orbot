@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class SelectBackupDialog extends DialogFragment {
+public class SelectHSBackupDialog extends DialogFragment {
 
     @NonNull
     @Override

@@ -24,7 +24,7 @@ import org.torproject.android.R;
 import org.torproject.android.ui.hiddenservices.adapters.OnionListAdapter;
 import org.torproject.android.ui.hiddenservices.dialogs.HSActionsDialog;
 import org.torproject.android.ui.hiddenservices.dialogs.HSDataDialog;
-import org.torproject.android.ui.hiddenservices.dialogs.SelectBackupDialog;
+import org.torproject.android.ui.hiddenservices.dialogs.SelectHSBackupDialog;
 import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
 import org.torproject.android.ui.hiddenservices.storage.PermissionManager;
 
@@ -156,9 +156,8 @@ public class HiddenServicesActivity extends AppCompatActivity {
                 return true;
             }
 
-            SelectBackupDialog dialog = new SelectBackupDialog();
-            dialog.show(getSupportFragmentManager(), "SelectBackupDialog");
-            return true;
+            SelectHSBackupDialog dialog = new SelectHSBackupDialog();
+            dialog.show(getSupportFragmentManager(), "SelectHSBackupDialog");
         }
 
         return super.onOptionsItemSelected(item);
@@ -174,8 +173,8 @@ public class HiddenServicesActivity extends AppCompatActivity {
 
         switch (requestCode) {
             case WRITE_EXTERNAL_STORAGE_FROM_ACTIONBAR: {
-                SelectBackupDialog dialog = new SelectBackupDialog();
-                dialog.show(getSupportFragmentManager(), "SelectBackupDialog");
+                SelectHSBackupDialog dialog = new SelectHSBackupDialog();
+                dialog.show(getSupportFragmentManager(), "SelectHSBackupDialog");
                 break;
             }
             case HSActionsDialog.WRITE_EXTERNAL_STORAGE_FROM_ACTION_DIALOG: {

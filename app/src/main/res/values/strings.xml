@@ -128,21 +128,21 @@
   <string name="pref_entrance_node_dialog">Enter Entrance Nodes</string>
   <string name="pref_allow_background_starts_title">Allow Background Starts</string>
   <string name="pref_allow_background_starts_summary">Let any app tell Orbot to start Tor and related services</string>
-  
+
   <string name="button_proxy_all">Proxy All</string>
   <string name="button_proxy_none">Proxy None</string>
   <string name="button_invert_selection">Invert Selection</string>
 
   <string name="pref_proxy_title">Outbound Network Proxy (Optional)</string>
-  
+
   <string name="pref_proxy_type_title">Outbound Proxy Type</string>
   <string name="pref_proxy_type_summary">Protocol to use for proxy server: HTTP, HTTPS, Socks4, Socks5</string>
   <string name="pref_proxy_type_dialog">Enter Proxy Type</string>
-  
+
   <string name="pref_proxy_host_title">Outbound Proxy Host</string>
   <string name="pref_proxy_host_summary">Proxy Server hostname</string>
   <string name="pref_proxy_host_dialog">Enter Proxy Host</string>
-  
+
   <string name="pref_proxy_port_title">Outbound Proxy Port</string>
   <string name="pref_proxy_port_summary">Proxy Server port</string>
   <string name="pref_proxy_port_dialog">Enter Proxy port</string>
@@ -150,13 +150,12 @@
   <string name="pref_proxy_username_title">Outbound Proxy Username</string>
   <string name="pref_proxy_username_summary">Proxy Username (Optional)</string>
   <string name="pref_proxy_username_dialog">Enter Proxy Username</string>
-  
+
   <string name="pref_proxy_password_title">Outbound Proxy Password</string>
   <string name="pref_proxy_password_summary">Proxy Password (Optional)</string>
   <string name="pref_proxy_password_dialog">Enter Proxy Password</string>
-  
-  
-  
+
+
   <string name="status">Status</string>
   <string name="setting_up_full_transparent_proxying_">Setting up full transparent proxying&#8230;</string>
   <string name="setting_up_app_based_transparent_proxying_">Setting up app-based transparent proxying&#8230;</string>
@@ -227,17 +226,17 @@
   <string name="unable_to_reset_tor">Reboot your device, unable to reset Tor!</string>
   <string name="pref_use_sys_iptables_title">Use Default Iptables</string>
   <string name="pref_use_sys_iptables_summary">use the built-in iptables binary instead of the one bundled with Orbot</string>
-  
+
   <string name="error_installing_binares">The Tor binaries were not able to be installed or upgraded.</string>
-  
+
   <string name="pref_use_persistent_notifications">Always keep the icon in toolbar when Orbot is connected</string>
   <string name="pref_use_persistent_notifications_title">Always-On Notifications</string>
-  
+
   <string name="pref_use_expanded_notifications">Show expanded notification with Tor exit country and IP</string>
   <string name="pref_use_expanded_notifications_title">Expanded Notifications</string>
-  
+
   <string name="notification_using_bridges">Bridges enabled!</string>
-  <string name="default_bridges"/>
+  <string name="default_bridges" />
   <string name="set_locale_title">Language</string>
   <string name="set_locale_summary">Choose the locale and language for Orbot</string>
   <string name="wizard_locale_title">Choose Language</string>
@@ -251,8 +250,8 @@
   <string name="pref_disable_network_title">No Network Auto-Sleep</string>
   <string name="pref_disable_network_summary">Put Tor to sleep when there is no internet available</string>
   <string name="newnym">You\'ve switched to a new Tor identity!</string>
-  
-    <string name="menu_verify_browser">Browser</string>
+
+  <string name="menu_verify_browser">Browser</string>
     <string name="menu_use_chatsecure">Use ChatSecure</string>
 
     <string name="permission_manage_tor_label">Manage Tor</string>
@@ -262,77 +261,77 @@
     <string name="no_network_connectivity_putting_tor_to_sleep_">No network connectivity. Putting Tor to sleep…</string>
     <string name="network_connectivity_is_good_waking_tor_up_">Network connectivity is good. Waking Tor up…</string>
     <string name="updating_settings_in_tor_service">updating settings in Tor service</string>
-  
-    <string name="pref_socks_title">Tor SOCKS</string>
+
+  <string name="pref_socks_title">Tor SOCKS</string>
     <string name="pref_socks_summary">Port that Tor offers its SOCKS proxy on (default: 9050 or 0 to disable)</string>
     <string name="pref_socks_dialog">SOCKS Port Config</string>
-    
-    <string name="pref_transport_title">Tor TransProxy Port</string>
+
+  <string name="pref_transport_title">Tor TransProxy Port</string>
     <string name="pref_transport_summary">Port that Tor offers its Transparent Proxy on (default: 9040 or 0 to disable)</string>
     <string name="pref_transport_dialog">TransProxy Port Config</string>
-    
-    
-    <string name="pref_dnsport_title">Tor DNS Port</string>
+
+
+  <string name="pref_dnsport_title">Tor DNS Port</string>
     <string name="pref_dnsport_summary">Port that Tor offers its DNS on (default: 5400 or 0 to disable)</string>
     <string name="pref_dnsport_dialog">DNS Port Config</string>
-    
-    
-    <string name="pref_torrc_title">Torrc Custom Config</string>
+
+
+  <string name="pref_torrc_title">Torrc Custom Config</string>
     <string name="pref_torrc_summary">EXPERTS ONLY: enter direct torrc config lines</string>
     <string name="pref_torrc_dialog">Custom Torrc</string>
-    
-    <string name="wizard_tips_martus">Mobile Martus - Benetech Human Rights Documentation App</string>
+
+  <string name="wizard_tips_martus">Mobile Martus - Benetech Human Rights Documentation App</string>
   <string name="your_tor_public_ips_">Your Tor Public IPs:</string>
   <string name="please_disable_this_app_in_android_settings_apps_if_you_are_having_problems_with_orbot_">"Please disable this app in Android->Settings->Apps if you are having problems with Orbot: "</string>
   <string name="app_conflict">App Conflict</string>
-  
+
 
   <string name="pref_transproxy_refresh_title">Transproxy Auto-Refresh</string>
   <string name="pref_transproxy_refresh_summary">Re-apply Transproxy rules when the network state changes</string>
-  
+
   <string name="pref_transproxy_flush_title">Transproxy FORCE REMOVE</string>
   <string name="pref_transproxy_flush_summary">Tap here to flush all transproxy network rules NOW</string>
   <string name="transparent_proxy_rules_flushed_">Transparent proxy rules flushed!</string>
   <string name="you_do_not_have_root_access_enabled">You do not have ROOT access enabled</string>
   <string name="you_may_need_to_stop_and_start_orbot_for_settings_change_to_be_enabled_">You may need to stop and start Orbot for settings change to be enabled.</string>
-  
+
   <string name="menu_vpn">Apps</string>
-  
+
   <string name="kbps">kbps</string>
-  
+
   <string name="mbps">mbps</string>
-  
+
   <string name="kb">KB</string>
-  
+
   <string name="mb">MB</string>
-  
+
   <string name="bridges_updated">Bridges Updated</string>
-  
+
   <string name="restart_orbot_to_use_this_bridge_">Please restart Orbot to enable the changes</string>
-  
+
   <string name="menu_qr">QR Codes</string>
-  
+
   <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">If your mobile network actively blocks Tor, you can use a Bridge to access the network. SELECT one of the bridge types above to enable bridges.</string>
-  
+
   <string name="bridge_mode">Bridge Mode</string>
-  
+
   <string name="get_bridges_email">Email</string>
   <string name="get_bridges_web">Web</string>
-  
+
   <string name="activate">Activate</string>
-  
+
   <string name="apps_mode">Apps VPN Mode</string>
-  
+
   <string name="you_can_enable_all_apps_on_your_device_to_run_through_the_tor_network_using_the_vpn_feature_of_android_">You can enable all apps on your device to run through the Tor network using the VPN feature of Android.\n\n*WARNING* This is a new, experimental feature and in some cases may not start automatically, or may stop. It should NOT be used for anonymity, and ONLY used for getting through firewalls and filters.</string>
-  
+
   <string name="send_email">Send Email</string>
-  
+
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">You can get a bridge address through email, the web or by scanning a bridge QR code. Select \'Email\' or \'Web\' below to request a bridge address.\n\nOnce you have an address, copy &amp; paste it into the \"Bridges\" preference in Orbot\'s setting and restart.</string>
-  
+
   <string name="install_orweb">Install Orfox</string>
-  
+
   <string name="standard_browser">Standard Browser</string>
-  
+
   <string name="note_only_standard_tor_bridges_work_on_intel_x86_atom_devices">NOTE: Only standard Tor bridges work on Intel X86/ATOM devices</string>
 
     <string name="vpn_default_world">World (Location)</string>
@@ -359,6 +358,7 @@
     <string name="restore_backup">Restore Backup</string>
     <string name="create_a_backup_first">Create a backup first</string>
     <string name="name_can_t_be_empty">Name can\'t be empty</string>
+    <string name="fields_can_t_be_empty">Fields can\'t be empty</string>
     <string name="start_tor_again_for_finish_the_process">Start Tor again for finish the process</string>
     <string name="confirm_service_deletion">Confirm service deletion</string>
     <string name="click_again_for_backup">Click again for backup</string>
@@ -367,4 +367,13 @@
     <string name="copy_cookie_to_clipboard">Copy cookie to clipboard</string>
     <string name="auth_cookie_was_not_configured">Auth cookie was not configured</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Please restart Orbot to enable the changes</string>
+    <string name="client_cookies">Client cookies</string>
+    <string name="onion">.onion</string>
+    <string name="invalid_onion_address">Invalid .onion address</string>
+    <string name="cookie_from_QR">Read from QR</string>
+    <string name="backup_cookie">Backup cookie</string>
+    <string name="delete_cookie">Delete cookie</string>
+    <string name="confirm_cookie_deletion">Confirm cookie deletion</string>
+    <string name="hosted_services">Hosted Services</string>
+    <string name="share_as_qr">Share as QR</string>
 </resources>

@@ -44,10 +44,22 @@
   </menu>
  </item>
 
-    <item android:id="@+id/menu_hidden_services"
+    <item
         android:title="@string/menu_hidden_services"
         yourapp:showAsAction="never"
-        />
+        >
+      <menu>
+        <item android:id="@+id/menu_hidden_services"
+              android:title="@string/hosted_services"
+            yourapp:showAsAction="never"
+               />
+
+        <item android:id="@+id/menu_client_cookies"
+              android:title="@string/client_cookies"
+            yourapp:showAsAction="never"
+               />
+      </menu>
+    </item>
         
  <!--
   <item android:id="@+id/menu_promo_apps"

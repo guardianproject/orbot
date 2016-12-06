@@ -132,7 +132,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     private Shell mShellPolipo;
 
 
-    private static final Uri CONTENT_URI = Uri.parse("content://org.torproject.android.ui.hiddenservices.providers/hs");
+    private static final Uri HS_CONTENT_URI = Uri.parse("content://org.torproject.android.ui.hiddenservices.providers/hs");
+    private static final Uri COOKIE_CONTENT_URI = Uri.parse("content://org.torproject.android.ui.hiddenservices.providers.cookie/cookie");
 
     public static final class HiddenService implements BaseColumns {
         public static final String NAME = "name";
@@ -148,7 +149,16 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         }
     }
 
-    private String[] mProjection = new String[]{
+    public static final class ClientCookie implements BaseColumns {
+        public static final String DOMAIN = "domain";
+        public static final String AUTH_COOKIE_VALUE = "auth_cookie_value";
+        public static final String ENABLED = "enabled";
+
+        private ClientCookie() {
+        }
+    }
+
+    private String[] hsProjection = new String[]{
 			HiddenService._ID,
 			HiddenService.NAME,
 			HiddenService.DOMAIN,
@@ -157,6 +167,12 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 			HiddenService.AUTH_COOKIE_VALUE,
 			HiddenService.ONION_PORT,
             HiddenService.ENABLED};
+
+    private String[] cookieProjection = new String[]{
+            ClientCookie._ID,
+            ClientCookie.DOMAIN,
+            ClientCookie.AUTH_COOKIE_VALUE,
+            ClientCookie.ENABLED};
 
     public void debug(String msg)
     {
@@ -778,7 +794,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
             // Tor is running, update new .onion names at db
             ContentResolver mCR = getApplicationContext().getContentResolver();
-            Cursor hidden_services = mCR.query(CONTENT_URI, mProjection, null, null, null);
+            Cursor hidden_services = mCR.query(HS_CONTENT_URI, hsProjection, null, null, null);
             if(hidden_services != null) {
                 try {
                     while (hidden_services.moveToNext()) {
@@ -804,7 +820,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                                         fields.put(HiddenService.AUTH_COOKIE_VALUE, aux[1]);
                                     }
                                     fields.put(HiddenService.DOMAIN, onionHostname);
-                                    mCR.update(CONTENT_URI, fields, "port=" + HSLocalPort , null);
+                                    mCR.update(HS_CONTENT_URI, fields, "port=" + HSLocalPort , null);
                                 } catch (FileNotFoundException e) {
                                     logException("unable to read onion hostname file",e);
                                     showToolbarNotification(getString(R.string.unable_to_read_hidden_service_name), HS_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
@@ -1792,9 +1808,10 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             return false;
         }
 
-        /* ---- Hidden Services ---- */
         ContentResolver mCR = getApplicationContext().getContentResolver();
-        Cursor hidden_services = mCR.query(CONTENT_URI, mProjection, HiddenService.ENABLED + "=1", null, null);
+
+        /* ---- Hidden Services ---- */
+        Cursor hidden_services = mCR.query(HS_CONTENT_URI, hsProjection, HiddenService.ENABLED + "=1", null, null);
         if(hidden_services != null) {
             try {
                 while (hidden_services.moveToNext()) {
@@ -1819,6 +1836,22 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             }
 
             hidden_services.close();
+		}
+
+        /* ---- Client Cookies ---- */
+        Cursor client_cookies = mCR.query(COOKIE_CONTENT_URI, cookieProjection, ClientCookie.ENABLED + "=1", null, null);
+        if(client_cookies != null) {
+            try {
+                while (client_cookies.moveToNext()) {
+                    String domain = client_cookies.getString(client_cookies.getColumnIndex(ClientCookie.DOMAIN));
+                    String cookie = client_cookies.getString(client_cookies.getColumnIndex(ClientCookie.AUTH_COOKIE_VALUE));
+                    extraLines.append("HidServAuth" + ' ' + domain + ' ' + cookie).append('\n');
+                }
+            } catch (Exception e) {
+                    Log.e(OrbotConstants.TAG,"error starting share server",e);
+            }
+
+            client_cookies.close();
 		}
 
         return true;

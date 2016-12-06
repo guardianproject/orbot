@@ -13,7 +13,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.zxing.integration.android.IntentIntegrator;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.torproject.android.R;
+import org.torproject.android.ui.hiddenservices.providers.CookieContentProvider;
 
 public class HSCookieDialog extends DialogFragment {
 
@@ -40,6 +45,26 @@ public class HSCookieDialog extends DialogFragment {
                 ClipData clip = ClipData.newPlainText("cookie", auth_cookie_value);
                 clipboard.setPrimaryClip(clip);
                 Toast.makeText(mContext, R.string.done, Toast.LENGTH_LONG).show();
+                cookieDialog.dismiss();
+            }
+        });
+
+        Button shareQR = (Button) dialog_view.findViewById(R.id.hs_cookie_to_qr);
+        shareQR.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                try {
+                    JSONObject backup = new JSONObject();
+                    backup.put(CookieContentProvider.ClientCookie.DOMAIN, arguments.getString("onion"));
+                    backup.put(CookieContentProvider.ClientCookie.AUTH_COOKIE_VALUE, arguments.getString("auth_cookie_value"));
+
+                    IntentIntegrator integrator = new IntentIntegrator(getActivity());
+                    integrator.shareText(backup.toString());
+
+                } catch (JSONException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+
                 cookieDialog.dismiss();
             }
         });
