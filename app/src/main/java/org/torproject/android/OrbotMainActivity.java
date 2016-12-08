@@ -103,9 +103,8 @@ public class OrbotMainActivity extends AppCompatActivity
 	private ActionBarDrawerToggle mDrawerToggle;
 	
     /* Some tracking bits */
-    private String torStatus = TorServiceConstants.STATUS_OFF; //latest status reported from the tor service
+    private String torStatus = null; //latest status reported from the tor service
     private Intent lastStatusIntent;  // the last ACTION_STATUS Intent received
-	private Boolean isFirstRun = true;
 
     private SharedPreferences mPrefs = null;
 
@@ -1199,8 +1198,12 @@ public class OrbotMainActivity extends AppCompatActivity
 				if (resultIntent == null)
 					resultIntent = new Intent(TorServiceConstants.ACTION_START);
 
-	            resultIntent.putExtra(TorServiceConstants.EXTRA_STATUS, torStatus);
-	            setResult(RESULT_OK, resultIntent);
+				resultIntent.putExtra(
+						TorServiceConstants.EXTRA_STATUS,
+						torStatus == null?TorServiceConstants.STATUS_OFF:torStatus
+				);
+
+				setResult(RESULT_OK, resultIntent);
                 finish();
                 Log.d(TAG, "autoStartFromIntent finish");
             }
@@ -1301,10 +1304,9 @@ public class OrbotMainActivity extends AppCompatActivity
         	
         	String newTorStatus = msg.getData().getString("status");
         	String log = (String)msg.obj;
-        	
-        	if (isFirstRun && newTorStatus != null) //first time status
+
+			if (torStatus == null && newTorStatus != null) //first time status
         	{
-				isFirstRun = false;
         		torStatus = newTorStatus;
         		findViewById(R.id.frameMain).setVisibility(View.VISIBLE);
         		updateStatus(log);
