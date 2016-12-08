@@ -24,7 +24,7 @@ import com.google.zxing.integration.android.IntentResult;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.torproject.android.R;
-import org.torproject.android.ui.hiddenservices.adapters.ClienCookiesAdapter;
+import org.torproject.android.ui.hiddenservices.adapters.ClientCookiesAdapter;
 import org.torproject.android.ui.hiddenservices.dialogs.AddCookieDialog;
 import org.torproject.android.ui.hiddenservices.dialogs.CookieActionsDialog;
 import org.torproject.android.ui.hiddenservices.dialogs.SelectCookieBackupDialog;
@@ -35,7 +35,7 @@ public class ClientCookiesActivity extends AppCompatActivity {
     public final int WRITE_EXTERNAL_STORAGE_FROM_COOKIE_ACTIONBAR = 3;
 
     private ContentResolver mResolver;
-    private ClienCookiesAdapter mAdapter;
+    private ClientCookiesAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +57,7 @@ public class ClientCookiesActivity extends AppCompatActivity {
             }
         });
 
-        mAdapter = new ClienCookiesAdapter(
+        mAdapter = new ClientCookiesAdapter(
                 this,
                 mResolver.query(CookieContentProvider.CONTENT_URI, CookieContentProvider.PROJECTION, null, null, null)
                 , 0);

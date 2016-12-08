@@ -16,10 +16,10 @@ import android.widget.Toast;
 import org.torproject.android.R;
 import org.torproject.android.ui.hiddenservices.providers.CookieContentProvider;
 
-public class ClienCookiesAdapter extends CursorAdapter {
+public class ClientCookiesAdapter extends CursorAdapter {
     private LayoutInflater cursorInflater;
 
-    public ClienCookiesAdapter(Context context, Cursor c, int flags) {
+    public ClientCookiesAdapter(Context context, Cursor c, int flags) {
         super(context, c, flags);
 
         cursorInflater = (LayoutInflater) context.getSystemService(
