@@ -30,6 +30,7 @@ import org.torproject.android.ui.Rotate3dAnimation;
 import org.torproject.android.ui.hiddenservices.ClientCookiesActivity;
 import org.torproject.android.ui.hiddenservices.HiddenServicesActivity;
 import org.torproject.android.ui.hiddenservices.backup.BackupUtils;
+import org.torproject.android.ui.hiddenservices.permissions.PermissionManager;
 import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
 import org.torproject.android.vpn.VPNEnableActivity;
 
@@ -123,8 +124,6 @@ public class OrbotMainActivity extends AppCompatActivity
     private final static int REQUEST_VPN = 8888;
     private final static int REQUEST_SETTINGS = 0x9874;
     private final static int REQUEST_VPN_APPS_SELECT = 8889;
-
-    private final static boolean mIsLollipop = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
 
     // message types for mStatusUpdateHandler
     private final static int STATUS_UPDATE = 1;
@@ -586,7 +585,7 @@ public class OrbotMainActivity extends AppCompatActivity
         Prefs.putUseVpn(enable);
 
         if (enable) {
-            if (mIsLollipop) //let the user choose the apps
+            if (PermissionManager.isLollipopOrHigher()) //let the user choose the apps
                 startActivityForResult(new Intent(OrbotMainActivity.this, AppManager.class), REQUEST_VPN_APPS_SELECT);
             else
                 startActivity(new Intent(OrbotMainActivity.this, VPNEnableActivity.class));

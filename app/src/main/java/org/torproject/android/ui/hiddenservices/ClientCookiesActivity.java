@@ -28,8 +28,8 @@ import org.torproject.android.ui.hiddenservices.adapters.ClienCookiesAdapter;
 import org.torproject.android.ui.hiddenservices.dialogs.AddCookieDialog;
 import org.torproject.android.ui.hiddenservices.dialogs.CookieActionsDialog;
 import org.torproject.android.ui.hiddenservices.dialogs.SelectCookieBackupDialog;
+import org.torproject.android.ui.hiddenservices.permissions.PermissionManager;
 import org.torproject.android.ui.hiddenservices.providers.CookieContentProvider;
-import org.torproject.android.ui.hiddenservices.storage.PermissionManager;
 
 public class ClientCookiesActivity extends AppCompatActivity {
     public final int WRITE_EXTERNAL_STORAGE_FROM_COOKIE_ACTIONBAR = 3;
@@ -111,9 +111,9 @@ public class ClientCookiesActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.cookie_restore_backup) {
-            if (PermissionManager.usesRuntimePermissions()
+            if (PermissionManager.isLollipopOrHigher()
                     && !PermissionManager.hasExternalWritePermission(this)) {
-                PermissionManager.requestPermissions(this, WRITE_EXTERNAL_STORAGE_FROM_COOKIE_ACTIONBAR);
+                PermissionManager.requestExternalWritePermissions(this, WRITE_EXTERNAL_STORAGE_FROM_COOKIE_ACTIONBAR);
                 return true;
             }
 

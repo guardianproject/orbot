@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 import org.torproject.android.R;
 import org.torproject.android.ui.hiddenservices.backup.BackupUtils;
-import org.torproject.android.ui.hiddenservices.storage.PermissionManager;
+import org.torproject.android.ui.hiddenservices.permissions.PermissionManager;
 
 public class HSActionsDialog extends DialogFragment {
     public static final int WRITE_EXTERNAL_STORAGE_FROM_ACTION_DIALOG = 2;
@@ -38,10 +38,10 @@ public class HSActionsDialog extends DialogFragment {
             public void onClick(View v) {
                 Context mContext = v.getContext();
 
-                if (PermissionManager.usesRuntimePermissions()
+                if (PermissionManager.isLollipopOrHigher()
                         && !PermissionManager.hasExternalWritePermission(mContext)) {
 
-                    PermissionManager.requestPermissions(
+                    PermissionManager.requestExternalWritePermissions(
                             getActivity(), WRITE_EXTERNAL_STORAGE_FROM_ACTION_DIALOG);
 
                     return;

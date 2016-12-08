@@ -25,8 +25,8 @@ import org.torproject.android.ui.hiddenservices.adapters.OnionListAdapter;
 import org.torproject.android.ui.hiddenservices.dialogs.HSActionsDialog;
 import org.torproject.android.ui.hiddenservices.dialogs.HSDataDialog;
 import org.torproject.android.ui.hiddenservices.dialogs.SelectHSBackupDialog;
+import org.torproject.android.ui.hiddenservices.permissions.PermissionManager;
 import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
-import org.torproject.android.ui.hiddenservices.storage.PermissionManager;
 
 public class HiddenServicesActivity extends AppCompatActivity {
     public final int WRITE_EXTERNAL_STORAGE_FROM_ACTIONBAR = 1;
@@ -150,9 +150,9 @@ public class HiddenServicesActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.menu_restore_backup) {
-            if (PermissionManager.usesRuntimePermissions()
+            if (PermissionManager.isLollipopOrHigher()
                     && !PermissionManager.hasExternalWritePermission(this)) {
-                PermissionManager.requestPermissions(this, WRITE_EXTERNAL_STORAGE_FROM_ACTIONBAR);
+                PermissionManager.requestExternalWritePermissions(this, WRITE_EXTERNAL_STORAGE_FROM_ACTIONBAR);
                 return true;
             }
 
@@ -194,6 +194,21 @@ public class HiddenServicesActivity extends AppCompatActivity {
             mAdapter.changeCursor(mResolver.query(
                     HSContentProvider.CONTENT_URI, HSContentProvider.PROJECTION, mWhere, null, null
             ));
+
+            if (PermissionManager.isLollipopOrHigher()) {
+                Cursor active = mResolver.query(
+                        HSContentProvider.CONTENT_URI, HSContentProvider.PROJECTION, HSContentProvider.HiddenService.ENABLED + "=1", null, null
+                );
+
+                if (active == null) return;
+
+                if (active.getCount() > 0) // Call only if there running services
+                    PermissionManager.requestBatteryPermmssions(HiddenServicesActivity.this, getApplicationContext());
+                else // Drop whe not needed
+                    PermissionManager.requestDropBatteryPermmssions(HiddenServicesActivity.this, getApplicationContext());
+
+                active.close();
+            }
         }
     }
 }
