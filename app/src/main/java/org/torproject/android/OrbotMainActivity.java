@@ -1305,7 +1305,7 @@ public class OrbotMainActivity extends AppCompatActivity
         	String newTorStatus = msg.getData().getString("status");
         	String log = (String)msg.obj;
 
-			if (torStatus == null && newTorStatus != null) //first time status
+        	if (torStatus == null && newTorStatus != null) //first time status
         	{
         		torStatus = newTorStatus;
         		findViewById(R.id.frameMain).setVisibility(View.VISIBLE);
