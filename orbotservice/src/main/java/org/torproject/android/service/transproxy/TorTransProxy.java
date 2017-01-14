@@ -103,20 +103,21 @@ public class TorTransProxy implements TorServiceConstants {
 	
 	private String findSystemIPTables ()
 	{
-
-		//if the user wants us to use the built-in iptables, then we have to find it
-		File fileIpt = new File("/system/xbin/iptables");
-
-		if (fileIpt.exists())
-			mSysIptables = fileIpt.getAbsolutePath();
-		else
+		if (mSysIptables == null)
 		{
-
-			fileIpt = new File("/system/bin/iptables");
+			//if the user wants us to use the built-in iptables, then we have to find it
+			File fileIpt = new File("/system/xbin/iptables");
 
 			if (fileIpt.exists())
 				mSysIptables = fileIpt.getAbsolutePath();
-		}
+			else
+			{
+
+				fileIpt = new File("/system/bin/iptables");
+
+				if (fileIpt.exists())
+					mSysIptables = fileIpt.getAbsolutePath();
+			}
 
 		return mSysIptables;
 	}
