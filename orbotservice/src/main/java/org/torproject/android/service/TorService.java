@@ -733,7 +733,9 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     /**
      * Send Orbot's status in reply to an
      * {@link TorServiceConstants#ACTION_START} {@link Intent}, targeted only to
-     * the app that sent the initial request.
+     * the app that sent the initial request. If the user has disabled auto-
+     * starts, the reply {@code ACTION_START Intent} will include the extra
+     * {@link TorServiceConstants#STATUS_STARTS_DISABLED}
      */
     private void replyWithStatus(Intent startRequest) {
         String packageName = startRequest.getStringExtra(EXTRA_PACKAGE_NAME);

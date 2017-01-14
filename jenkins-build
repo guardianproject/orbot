@@ -1,11 +1,13 @@
 #!/bin/bash
+# bash is required because we need bash's printf to guarantee a cross-platform
+# timestamp format.
 
 set -e
 set -x
 
 if [ -z $ANDROID_HOME ]; then
-    if [ -e ~/.android/bashrc ]; then
-        . ~/.android/bashrc
+    if [ -e ~/.android/bashrc-ant-build ]; then
+        . ~/.android/bashrc-ant-build
     else
         echo "ANDROID_HOME must be set!"
         exit
