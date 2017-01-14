@@ -157,17 +157,6 @@ android:dialogTitle="@string/enter_ports"
 />
 </PreferenceCategory>
 
-<PreferenceCategory android:title="@string/pref_hs_group">
-<CheckBoxPreference android:title="@string/enable_hidden_services" 
-android:summary="@string/run_servers_accessible_via_the_tor_network" android:key="pref_hs_enable"></CheckBoxPreference>
-<EditTextPreference android:summary="@string/enter_localhost_ports_for_hidden_services" 
-android:title="@string/hidden_service_ports" android:enabled="false" android:key="pref_hs_ports"></EditTextPreference>
-
-<EditTextPreference android:key="pref_hs_hostname" 
-android:summary="@string/the_addressable_name_for_your_hidden_service_generated_automatically_" 
-android:title=".Onion Hostname"></EditTextPreference>
-</PreferenceCategory>
-
 <PreferenceCategory android:title="@string/pref_proxy_title">
 <EditTextPreference android:key="pref_proxy_type"
 android:title="@string/pref_proxy_type_title"

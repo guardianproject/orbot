@@ -16,19 +16,22 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Build;
-import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.provider.BaseColumns;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
@@ -62,7 +65,6 @@ import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.text.Normalizer;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -124,9 +126,53 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     public static File fileObfsclient;
     public static File fileXtables;
     public static File fileTorRc;
+    private File mHSBasePath;
 
     private Shell mShell;
     private Shell mShellPolipo;
+
+
+    private static final Uri HS_CONTENT_URI = Uri.parse("content://org.torproject.android.ui.hiddenservices.providers/hs");
+    private static final Uri COOKIE_CONTENT_URI = Uri.parse("content://org.torproject.android.ui.hiddenservices.providers.cookie/cookie");
+
+    public static final class HiddenService implements BaseColumns {
+        public static final String NAME = "name";
+        public static final String PORT = "port";
+        public static final String ONION_PORT = "onion_port";
+        public static final String DOMAIN = "domain";
+        public static final String AUTH_COOKIE = "auth_cookie";
+        public static final String AUTH_COOKIE_VALUE = "auth_cookie_value";
+        public static final String CREATED_BY_USER = "created_by_user";
+        public static final String ENABLED = "enabled";
+
+        private HiddenService() {
+        }
+    }
+
+    public static final class ClientCookie implements BaseColumns {
+        public static final String DOMAIN = "domain";
+        public static final String AUTH_COOKIE_VALUE = "auth_cookie_value";
+        public static final String ENABLED = "enabled";
+
+        private ClientCookie() {
+        }
+    }
+
+    private String[] hsProjection = new String[]{
+			HiddenService._ID,
+			HiddenService.NAME,
+			HiddenService.DOMAIN,
+			HiddenService.PORT,
+			HiddenService.AUTH_COOKIE,
+			HiddenService.AUTH_COOKIE_VALUE,
+			HiddenService.ONION_PORT,
+            HiddenService.ENABLED};
+
+    private String[] cookieProjection = new String[]{
+            ClientCookie._ID,
+            ClientCookie.DOMAIN,
+            ClientCookie.AUTH_COOKIE_VALUE,
+            ClientCookie.ENABLED};
 
     public void debug(String msg)
     {
@@ -441,75 +487,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         sendCallbackStatus(STATUS_OFF);
     }
 
-
-    private String getHiddenServiceHostname ()
-    {
-
-        SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
-
-        boolean enableHiddenServices = prefs.getBoolean("pref_hs_enable", false);
-
-        StringBuffer result = new StringBuffer();
-
-        if (enableHiddenServices)
-        {
-            String hsPorts = prefs.getString("pref_hs_ports","");
-
-            StringTokenizer st = new StringTokenizer (hsPorts,",");
-            String hsPortConfig = null;
-
-            while (st.hasMoreTokens())
-            {
-
-                int hsPort = Integer.parseInt(st.nextToken().split(" ")[0]);;
-
-                File fileDir = new File(appCacheHome, "hs" + hsPort);
-                File file = new File(fileDir, "hostname");
-
-
-                if (file.exists())
-                {
-                    try {
-                        String onionHostname = Utils.readString(new FileInputStream(file)).trim();
-
-                        if (result.length() > 0)
-                            result.append(",");
-
-                        result.append(onionHostname);
-
-
-                    } catch (FileNotFoundException e) {
-                        logException("unable to read onion hostname file",e);
-                        showToolbarNotification(getString(R.string.unable_to_read_hidden_service_name), HS_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
-                        return null;
-                    }
-                }
-                else
-                {
-                    showToolbarNotification(getString(R.string.unable_to_read_hidden_service_name), HS_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
-                    return null;
-
-                }
-            }
-
-            if (result.length() > 0)
-            {
-                String onionHostname = result.toString();
-
-                showToolbarNotification(getString(R.string.hidden_service_on) + ' ' + onionHostname, HS_NOTIFY_ID, R.drawable.ic_stat_tor);
-                Editor pEdit = prefs.edit();
-                pEdit.putString("pref_hs_hostname",onionHostname);
-                pEdit.commit();
-
-                return onionHostname;
-            }
-
-        }
-
-        return null;
-    }
-
-
     private void killAllDaemons() throws Exception {
         if (conn != null) {
             logNotice("Using control port to shutdown Tor");
@@ -576,6 +553,14 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             fileObfsclient = new File(appBinHome, TorServiceConstants.OBFSCLIENT_ASSET_KEY);
             fileXtables = new File(appBinHome, TorServiceConstants.IPTABLES_ASSET_KEY);
             fileTorRc = new File(appBinHome, TorServiceConstants.TORRC_ASSET_KEY);
+
+            mHSBasePath = new File(
+                    getFilesDir().getAbsolutePath(),
+                    TorServiceConstants.HIDDEN_SERVICES_DIR
+            );
+
+            if (!mHSBasePath.isDirectory())
+                mHSBasePath.mkdirs();
 
             mEventHandler = new TorEventHandler(this);
 
@@ -809,7 +794,56 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 enableTransparentProxy();
             }
 
-            getHiddenServiceHostname ();
+            // Tor is running, update new .onion names at db
+            ContentResolver mCR = getApplicationContext().getContentResolver();
+            Cursor hidden_services = mCR.query(HS_CONTENT_URI, hsProjection, null, null, null);
+            if(hidden_services != null) {
+                try {
+                    while (hidden_services.moveToNext()) {
+                        String HSDomain = hidden_services.getString(hidden_services.getColumnIndex(HiddenService.DOMAIN));
+                        Integer HSLocalPort = hidden_services.getInt(hidden_services.getColumnIndex(HiddenService.PORT));
+                        Integer HSAuthCookie = hidden_services.getInt(hidden_services.getColumnIndex(HiddenService.AUTH_COOKIE));
+                        String HSAuthCookieValue = hidden_services.getString(hidden_services.getColumnIndex(HiddenService.AUTH_COOKIE_VALUE));
+
+                        // Update only new domains or restored from backup with auth cookie
+                        if((HSDomain == null || HSDomain.length() < 1) || (HSAuthCookie == 1 && (HSAuthCookieValue == null || HSAuthCookieValue.length() < 1))) {
+                            String hsDirPath = new File(mHSBasePath.getAbsolutePath(),"hs" + HSLocalPort).getCanonicalPath();
+                            File file = new File(hsDirPath, "hostname");
+
+                            if (file.exists())
+                            {
+                                ContentValues fields = new ContentValues();
+
+                                try {
+                                    String onionHostname = Utils.readString(new FileInputStream(file)).trim();
+                                    if(HSAuthCookie == 1) {
+                                        String[] aux = onionHostname.split(" ");
+                                        onionHostname = aux[0];
+                                        fields.put(HiddenService.AUTH_COOKIE_VALUE, aux[1]);
+                                    }
+                                    fields.put(HiddenService.DOMAIN, onionHostname);
+                                    mCR.update(HS_CONTENT_URI, fields, "port=" + HSLocalPort , null);
+                                } catch (FileNotFoundException e) {
+                                    logException("unable to read onion hostname file",e);
+                                    showToolbarNotification(getString(R.string.unable_to_read_hidden_service_name), HS_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
+                                }
+                            }
+                            else
+                            {
+                                showToolbarNotification(getString(R.string.unable_to_read_hidden_service_name), HS_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
+
+                            }
+                        }
+                    }
+
+                } catch (NumberFormatException e) {
+                    Log.e(OrbotConstants.TAG,"error parsing hsport",e);
+                } catch (Exception e) {
+                    Log.e(OrbotConstants.TAG,"error starting share server",e);
+                }
+
+                hidden_services.close();
+            }
 
         } catch (Exception e) {
             logException("Unable to start Tor: " + e.toString(), e);
@@ -1574,7 +1608,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
         boolean becomeRelay = prefs.getBoolean(OrbotConstants.PREF_OR, false);
         boolean ReachableAddresses = prefs.getBoolean(OrbotConstants.PREF_REACHABLE_ADDRESSES,false);
-        boolean enableHiddenServices = prefs.getBoolean("pref_hs_enable", false);
 
         boolean enableStrictNodes = prefs.getBoolean("pref_strict_nodes", false);
         String entranceNodes = prefs.getString("pref_entrance_nodes", "");
@@ -1777,49 +1810,52 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             return false;
         }
 
-        if (enableHiddenServices)
-        {
-            logNotice("hidden services are enabled");
-            
-            //updateConfiguration("RendPostPeriod", "600 seconds", false); //possible feature to investigate
-            
-            String hsPorts = prefs.getString("pref_hs_ports","");
-            
-            StringTokenizer st = new StringTokenizer (hsPorts,",");
-            String hsPortConfig = null;
-            int hsPort = -1;
-            
-            while (st.hasMoreTokens())
-            {
-                try
-                {
-                    hsPortConfig = st.nextToken().trim();
-                    
-                    if (hsPortConfig.indexOf(":")==-1) //setup the port to localhost if not specifed
-                    {
-                        hsPortConfig = hsPortConfig + " 127.0.0.1:" + hsPortConfig;
-                    }
-                    
-                    hsPort = Integer.parseInt(hsPortConfig.split(" ")[0]);
+        ContentResolver mCR = getApplicationContext().getContentResolver();
 
-                    String hsDirPath = new File(appCacheHome,"hs" + hsPort).getCanonicalPath();
-                    
-                    debug("Adding hidden service on port: " + hsPortConfig);
-                    
+        /* ---- Hidden Services ---- */
+        Cursor hidden_services = mCR.query(HS_CONTENT_URI, hsProjection, HiddenService.ENABLED + "=1", null, null);
+        if(hidden_services != null) {
+            try {
+                while (hidden_services.moveToNext()) {
+                    String HSname = hidden_services.getString(hidden_services.getColumnIndex(HiddenService.NAME));
+                    Integer HSLocalPort = hidden_services.getInt(hidden_services.getColumnIndex(HiddenService.PORT));
+                    Integer HSOnionPort = hidden_services.getInt(hidden_services.getColumnIndex(HiddenService.ONION_PORT));
+                    Integer HSAuthCookie = hidden_services.getInt(hidden_services.getColumnIndex(HiddenService.AUTH_COOKIE));
+                    String hsDirPath = new File(mHSBasePath.getAbsolutePath(),"hs" + HSLocalPort).getCanonicalPath();
+
+                    debug("Adding hidden service on port: " + HSLocalPort);
+
                     extraLines.append("HiddenServiceDir" + ' ' + hsDirPath).append('\n');
-                    extraLines.append("HiddenServicePort" + ' ' + hsPortConfig).append('\n');
-                    
+                    extraLines.append("HiddenServicePort" + ' ' + HSOnionPort + " 127.0.0.1:" + HSLocalPort).append('\n');
 
-                } catch (NumberFormatException e) {
-                    Log.e(OrbotConstants.TAG,"error parsing hsport",e);
-                } catch (Exception e) {
-                    Log.e(OrbotConstants.TAG,"error starting share server",e);
+                    if(HSAuthCookie == 1)
+                        extraLines.append("HiddenServiceAuthorizeClient stealth " + HSname).append('\n');
                 }
+            } catch (NumberFormatException e) {
+                    Log.e(OrbotConstants.TAG,"error parsing hsport",e);
+            } catch (Exception e) {
+                    Log.e(OrbotConstants.TAG,"error starting share server",e);
             }
-            
-            
-        }
-        
+
+            hidden_services.close();
+		}
+
+        /* ---- Client Cookies ---- */
+        Cursor client_cookies = mCR.query(COOKIE_CONTENT_URI, cookieProjection, ClientCookie.ENABLED + "=1", null, null);
+        if(client_cookies != null) {
+            try {
+                while (client_cookies.moveToNext()) {
+                    String domain = client_cookies.getString(client_cookies.getColumnIndex(ClientCookie.DOMAIN));
+                    String cookie = client_cookies.getString(client_cookies.getColumnIndex(ClientCookie.AUTH_COOKIE_VALUE));
+                    extraLines.append("HidServAuth" + ' ' + domain + ' ' + cookie).append('\n');
+                }
+            } catch (Exception e) {
+                    Log.e(OrbotConstants.TAG,"error starting share server",e);
+            }
+
+            client_cookies.close();
+		}
+
         return true;
     }
     
