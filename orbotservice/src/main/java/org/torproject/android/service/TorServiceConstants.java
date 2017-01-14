@@ -117,9 +117,11 @@ public interface TorServiceConstants {
     public final static String STATUS_ON = "ON";
     public final static String STATUS_STARTING = "STARTING";
     public final static String STATUS_STOPPING = "STOPPING";
+
     /**
      * The user has disabled the ability for background starts triggered by
-     * apps. Fallback to the old Intent that brings up Orbot.
+     * apps. Fallback to the old {@link Intent} action that brings up Orbot:
+     * {@link org.torproject.android.OrbotMainActivity#INTENT_ACTION_REQUEST_START_TOR}
      */
     public final static String STATUS_STARTS_DISABLED = "STARTS_DISABLED";
 
@@ -158,5 +160,7 @@ public interface TorServiceConstants {
 			"meek_lite 0.0.2.0:2 url=https://d2zfqthxsdq309.cloudfront.net/ front=a0.awsstatic.com",
 			"meek_lite 0.0.2.0:3 url=https://az668014.vo.msecnd.net/ front=ajax.aspnetcdn.com"
 		};
+
+	public static final String HIDDEN_SERVICES_DIR = "hidden_services";
 
 }

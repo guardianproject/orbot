@@ -37,9 +37,6 @@ public class SettingsPreferences
 	private Preference prefTransProxyFlush = null;
 	
 	private Preference prefTransProxyApps = null;
-    private CheckBoxPreference prefHiddenServices = null;
-    private EditTextPreference prefHiddenServicesPorts;
-    private EditTextPreference prefHiddenServicesHostname;
 	private CheckBoxPreference prefRequestRoot = null;
 	private ListPreference prefLocale = null;
 	
@@ -104,22 +101,14 @@ public class SettingsPreferences
         prefTransProxyApps.setOnPreferenceClickListener(this);
         prefCBTransProxy.setOnPreferenceClickListener(this);
         prefcBTransProxyAll.setOnPreferenceClickListener(this);
-        prefHiddenServices = (CheckBoxPreference) findPreference("pref_hs_enable");
-        prefHiddenServices.setOnPreferenceClickListener(this);
-        prefHiddenServicesHostname = (EditTextPreference) findPreference("pref_hs_hostname");
-        
-        
+
         prefCBTransProxy.setEnabled(prefRequestRoot.isChecked());
         prefcBTransProxyAll.setEnabled(prefCBTransProxy.isChecked());
         prefcbTransTethering.setEnabled(prefCBTransProxy.isChecked());
 
         if (prefCBTransProxy.isChecked())
         	prefTransProxyApps.setEnabled((!prefcBTransProxyAll.isChecked()));
-        
-        prefHiddenServicesPorts = (EditTextPreference) findPreference("pref_hs_ports");
-        prefHiddenServicesHostname.setEnabled(prefHiddenServices.isChecked());
-        prefHiddenServicesPorts.setEnabled(prefHiddenServices.isChecked());
-        
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
         {
        	 	prefTransProxyApps.setEnabled(true);
@@ -153,11 +142,6 @@ public class SettingsPreferences
 		{
 			startActivity(new Intent(this, AppManager.class));
 			
-		}
-		else if (preference == prefHiddenServices)
-		{
-	        prefHiddenServicesPorts.setEnabled(prefHiddenServices.isChecked());
-	        prefHiddenServicesHostname.setEnabled(prefHiddenServices.isChecked());
 		}
 		else
 		{

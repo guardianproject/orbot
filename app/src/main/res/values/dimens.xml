@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
 /* //device/apps/common/assets/res/any/dimens.xml
 **
 ** Copyright 2006, The Android Open Source Project
@@ -118,26 +117,27 @@
     <!-- The platform's desired minimum size for a dialog's width when it
          is along the major axis (that is the screen is landscape).  This may
          be either a fraction or a dimension. -->
-    <item type="dimen" name="dialog_min_width_major">65%</item>
+    <item name="dialog_min_width_major" type="dimen">65%</item>
 
     <!-- The platform's desired fixed width for a dialog along the major axis
          (the screen is in landscape). This may be either a fraction or a dimension.-->
-    <item type="dimen" name="dialog_fixed_width_major">320dp</item>
+    <item name="dialog_fixed_width_major" type="dimen">320dp</item>
     <!-- The platform's desired fixed width for a dialog along the minor axis
          (the screen is in portrait). This may be either a fraction or a dimension.-->
-    <item type="dimen" name="dialog_fixed_width_minor">320dp</item>
+    <item name="dialog_fixed_width_minor" type="dimen">320dp</item>
     <!-- The platform's desired fixed height for a dialog along the major axis
          (the screen is in portrait). This may be either a fraction or a dimension.-->
-    <item type="dimen" name="dialog_fixed_height_major">80%</item>
+    <item name="dialog_fixed_height_major" type="dimen">80%</item>
     <!-- The platform's desired fixed height for a dialog along the minor axis
          (the screen is in landscape). This may be either a fraction or a dimension.-->
-    <item type="dimen" name="dialog_fixed_height_minor">100%</item>
+    <item name="dialog_fixed_height_minor" type="dimen">100%</item>
 
     <!-- Preference activity, vertical padding for the header list -->
     <dimen name="preference_screen_header_vertical_padding">0dp</dimen>
 
     <dimen name="preference_screen_header_padding_side">16dip</dimen>
-    <integer name="preference_screen_header_scrollbarStyle">0x02000000</integer> <!-- outsideOverlay -->
+    <integer name="preference_screen_header_scrollbarStyle">0x02000000
+    </integer> <!-- outsideOverlay -->
 
     <integer name="preference_fragment_scrollbarStyle">0x02000000</integer> <!-- outsideOverlay -->
 
@@ -148,7 +148,7 @@
     <!-- The platform's desired minimum size for a dialog's width when it
          is along the minor axis (that is the screen is portrait).  This may
          be either a fraction or a dimension. -->
-    <item type="dimen" name="dialog_min_width_minor">95%</item>
+    <item name="dialog_min_width_minor" type="dimen">95%</item>
 
     <!-- The width of the big icons in notifications. -->
     <dimen name="notification_large_icon_width">64dp</dimen>
@@ -358,4 +358,8 @@
 
     <!-- width of ImmersiveModeConfirmation (-1 for match_parent) -->
     <dimen name="immersive_mode_cling_width">-1px</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

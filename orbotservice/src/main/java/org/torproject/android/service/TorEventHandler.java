@@ -190,7 +190,7 @@ public class TorEventHandler implements EventHandler, TorServiceConstants {
             {
                 node.id = nodeParts[0].substring(1);
                 node.name = nodeParts[1];
-            }
+             }
 
             node.status = status;
 
@@ -215,12 +215,12 @@ public class TorEventHandler implements EventHandler, TorServiceConstants {
                 if (node.ipAddress == null)
                     mService.exec(new ExternalIPFetcher(node));
 
-                hmBuiltNodes.put(node.id, node);
+                hmBuiltNodes.put(circID, node);
             }
 
             if (status.equals("CLOSED"))
             {
-                hmBuiltNodes.remove(node.id);
+                hmBuiltNodes.remove(circID);
 
             }
         }

@@ -4,6 +4,7 @@
 package org.torproject.android;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -26,6 +27,11 @@ import org.torproject.android.ui.AppManager;
 import org.torproject.android.ui.ImageProgressView;
 import org.torproject.android.ui.PromoAppsActivity;
 import org.torproject.android.ui.Rotate3dAnimation;
+import org.torproject.android.ui.hiddenservices.ClientCookiesActivity;
+import org.torproject.android.ui.hiddenservices.HiddenServicesActivity;
+import org.torproject.android.ui.hiddenservices.backup.BackupUtils;
+import org.torproject.android.ui.hiddenservices.permissions.PermissionManager;
+import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
 import org.torproject.android.vpn.VPNEnableActivity;
 
 import android.annotation.SuppressLint;
@@ -34,6 +40,8 @@ import android.app.ActivityManager.RunningServiceInfo;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -43,6 +51,7 @@ import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -80,6 +89,8 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import static android.support.v4.content.FileProvider.getUriForFile;
+
 public class OrbotMainActivity extends AppCompatActivity
         implements OrbotConstants, OnLongClickListener, OnTouchListener {
 
@@ -103,7 +114,7 @@ public class OrbotMainActivity extends AppCompatActivity
 	private ActionBarDrawerToggle mDrawerToggle;
 	
     /* Some tracking bits */
-    private String torStatus = null; //latest status reported from the tor service
+    private String torStatus = TorServiceConstants.STATUS_OFF; //latest status reported from the tor service
     private Intent lastStatusIntent;  // the last ACTION_STATUS Intent received
 
     private SharedPreferences mPrefs = null;
@@ -113,8 +124,6 @@ public class OrbotMainActivity extends AppCompatActivity
     private final static int REQUEST_VPN = 8888;
     private final static int REQUEST_SETTINGS = 0x9874;
     private final static int REQUEST_VPN_APPS_SELECT = 8889;
-
-    private final static boolean mIsLollipop = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
 
     // message types for mStatusUpdateHandler
     private final static int STATUS_UPDATE = 1;
@@ -140,12 +149,36 @@ public class OrbotMainActivity extends AppCompatActivity
           return super.onCreateView(parent, name, context, attrs);
         return null;
     }
-    
-    /** Called when the activity is first created. */
+
+    private void migratePreferences() {
+        String hsPortString = mPrefs.getString("pref_hs_ports", "");
+        if (hsPortString.length() > 0) {
+            StringTokenizer st = new StringTokenizer(hsPortString, ",");
+            ContentResolver cr = getContentResolver();
+            while (st.hasMoreTokens()) {
+                int hsPort = Integer.parseInt(st.nextToken().split(" ")[0]);
+                ContentValues fields = new ContentValues();
+                fields.put("name", hsPort);
+                fields.put("port", hsPort);
+                fields.put("onion_port", hsPort);
+                cr.insert(HSContentProvider.CONTENT_URI, fields);
+            }
+
+            Editor pEdit = mPrefs.edit();
+            pEdit.remove("pref_hs_ports");
+            pEdit.commit();
+        }
+    }
+
+    /**
+     * Called when the activity is first created.
+     */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         mPrefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
+
+        migratePreferences(); // Migrate old preferences
 
         /* Create the widgets before registering for broadcasts to guarantee
          * that the widgets exist when the status updates try to update them */
@@ -478,6 +511,10 @@ public class OrbotMainActivity extends AppCompatActivity
 					}
      		}
 
+         } else if (item.getItemId() == R.id.menu_hidden_services) {
+             startActivity(new Intent(this, HiddenServicesActivity.class));
+         } else if (item.getItemId() == R.id.menu_client_cookies) {
+             startActivity(new Intent(this, ClientCookiesActivity.class));
          }
      
 		return super.onOptionsItemSelected(item);
@@ -548,192 +585,249 @@ public class OrbotMainActivity extends AppCompatActivity
         Prefs.putUseVpn(enable);
 
         if (enable) {
-            if (mIsLollipop) //let the user choose the apps
+            if (PermissionManager.isLollipopOrHigher()) //let the user choose the apps
                 startActivityForResult(new Intent(OrbotMainActivity.this, AppManager.class), REQUEST_VPN_APPS_SELECT);
             else
                 startActivity(new Intent(OrbotMainActivity.this, VPNEnableActivity.class));
         } else
             stopVpnService();
     }
-	
-	private void enableHiddenServicePort (int hsPort) throws RemoteException, InterruptedException
-	{
-		
-		Editor pEdit = mPrefs.edit();
-		
-		String hsPortString = mPrefs.getString("pref_hs_ports", "");
-		String onionHostname = mPrefs.getString("pref_hs_hostname","");
-		
-		if (hsPortString.indexOf(hsPort+"")==-1)
-		{
-			if (hsPortString.length() > 0 && hsPortString.indexOf(hsPort+"")==-1)
-				hsPortString += ',' + hsPort;
-			else
-				hsPortString = hsPort + "";
-			
-			pEdit.putString("pref_hs_ports", hsPortString);
-			pEdit.putBoolean("pref_hs_enable", true);
-			
-			pEdit.commit();
-		}
 
-		if (onionHostname == null || onionHostname.length() == 0)
-		{
-			requestTorRereadConfig();
+    private void enableHiddenServicePort(
+            String hsName, final int hsPort, int hsRemotePort,
+            final String backupToPackage, final Uri hsKeyPath,
+            final Boolean authCookie
+    ) throws RemoteException, InterruptedException {
 
-			new Thread () {
+        String onionHostname = null;
 
-			    public void run ()
-				{
-					String onionHostname = mPrefs.getString("pref_hs_hostname","");
+        if (hsName == null)
+            hsName = "hs" + hsPort;
 
-					while (onionHostname.length() == 0)				
-					{
-						//we need to stop and start Tor
-						try {					
-							Thread.sleep(3000); //wait three seconds					
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						 
-						onionHostname = mPrefs.getString("pref_hs_hostname","");						
-					}
-					
-					Intent nResult = new Intent();
-					nResult.putExtra("hs_host", onionHostname);
-					setResult(RESULT_OK, nResult);
-					finish();
-				}
-			}.start();
-		
-		}
-		else
-		{
-			Intent nResult = new Intent();
-			nResult.putExtra("hs_host", onionHostname);
-			setResult(RESULT_OK, nResult);
-			finish();
-		}
-	
-	}
-	
-	private synchronized void handleIntents ()
-	{
-		if (getIntent() == null)
-			return;
-		
-	    // Get intent, action and MIME type
-	    Intent intent = getIntent();
-	    String action = intent.getAction();
-	    Log.d(TAG, "handleIntents " + action);
+        if (hsRemotePort == -1)
+            hsRemotePort = hsPort;
 
-	    //String type = intent.getType();
-		
-		if (action == null)
-			return;
-		
-		if (action.equals(INTENT_ACTION_REQUEST_HIDDEN_SERVICE))
-		{
-        	final int hiddenServicePortRequest = getIntent().getIntExtra("hs_port", -1);
+        ContentValues fields = new ContentValues();
+        fields.put(HSContentProvider.HiddenService.NAME, hsName);
+        fields.put(HSContentProvider.HiddenService.PORT, hsPort);
+        fields.put(HSContentProvider.HiddenService.ONION_PORT, hsRemotePort);
+        fields.put(HSContentProvider.HiddenService.AUTH_COOKIE, authCookie);
 
-			DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-			    
-			    public void onClick(DialogInterface dialog, int which) {
-			        switch (which){
-			        case DialogInterface.BUTTON_POSITIVE:
-			            
-						try {
-							enableHiddenServicePort (hiddenServicePortRequest);
-							
-						} catch (RemoteException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
+        ContentResolver cr = getContentResolver();
 
-						
-			            break;
+        Cursor row = cr.query(
+                HSContentProvider.CONTENT_URI,
+                HSContentProvider.PROJECTION,
+                HSContentProvider.HiddenService.ONION_PORT + "=" + hsPort,
+                null,
+                null
+        );
 
-			        case DialogInterface.BUTTON_NEGATIVE:
-			            //No button clicked
-			        	finish();
-			            break;
-			        }
-			    }
-			};
+        if (row == null || row.getCount() < 1) {
+            cr.insert(HSContentProvider.CONTENT_URI, fields);
+        } else {
+            onionHostname = row.getString(row.getColumnIndex(HSContentProvider.HiddenService.DOMAIN));
+            row.close();
+        }
 
-			String requestMsg = getString(R.string.hidden_service_request, hiddenServicePortRequest);
-			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			builder.setMessage(requestMsg).setPositiveButton("Allow", dialogClickListener)
-			    .setNegativeButton("Deny", dialogClickListener).show();
-			
-			return; //don't null the setIntent() as we need it later
-		}
-		else if (action.equals(INTENT_ACTION_REQUEST_START_TOR))
-		{
-			autoStartFromIntent = true;
-          
-            startTor();
+        if (onionHostname == null || onionHostname.length() < 1) {
 
-            //never allow backgrounds start from this type of intent start
-            //app devs who want background starts, can use the service intents
-            /**
-            if (Prefs.allowBackgroundStarts())
-            {            
-	            Intent resultIntent;
-	            if (lastStatusIntent == null) {
-	                resultIntent = new Intent(intent);
-	            } else {
-	                resultIntent = lastStatusIntent;
-	            }
-	            resultIntent.putExtra(TorServiceConstants.EXTRA_STATUS, torStatus);
-	            setResult(RESULT_OK, resultIntent);
-	            finish();
-            }*/
-          
-		}
-		else if (action.equals(Intent.ACTION_VIEW))
-		{
-			String urlString = intent.getDataString();
-			
-			if (urlString != null)
-			{
-				
-				if (urlString.toLowerCase().startsWith("bridge://"))
+            if (hsKeyPath != null) {
+                BackupUtils hsutils = new BackupUtils(getApplicationContext());
+                hsutils.restoreKeyBackup(hsPort, hsKeyPath);
+            }
 
-				{
-					String newBridgeValue = urlString.substring(9); //remove the bridge protocol piece
-					newBridgeValue = URLDecoder.decode(newBridgeValue); //decode the value here
+            if (torStatus.equals(TorServiceConstants.STATUS_OFF)) {
+                startTor();
+            } else {
+                stopTor();
+                Toast.makeText(
+                        this, R.string.start_tor_again_for_finish_the_process, Toast.LENGTH_LONG
+                ).show();
+            }
 
-					showAlert(getString(R.string.bridges_updated),getString(R.string.restart_orbot_to_use_this_bridge_) + newBridgeValue,false);	
-					
-					setNewBridges(newBridgeValue);
-				}
-			}
-		}
-		
-		updateStatus(null);
-		
-		setIntent(null);
-		
-		
-	}
-		
-	private void setNewBridges (String newBridgeValue)
-	{
+            new Thread() {
 
-		Prefs.setBridgesList(newBridgeValue); //set the string to a preference
-		Prefs.putBridgesEnabled(true);
-		
-		setResult(RESULT_OK);
-		
-		mBtnBridges.setChecked(true);
-		
-		enableBridges(true);
-	}	
+                public void run() {
+                    String hostname = null;
+                    Intent nResult = new Intent();
+
+                    while (hostname == null) {
+                        try {
+                            Thread.sleep(3000); //wait three seconds
+                        } catch (Exception e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+
+                        Cursor onion = getContentResolver().query(
+                                HSContentProvider.CONTENT_URI,
+                                HSContentProvider.PROJECTION,
+                                HSContentProvider.HiddenService.ONION_PORT + "=" + hsPort,
+                                null,
+                                null
+                        );
+
+                        if (onion != null && onion.getCount() > 0) {
+                            onion.moveToNext();
+                            hostname = onion.getString(onion.getColumnIndex(HSContentProvider.HiddenService.DOMAIN));
+
+                            if(hostname == null || hostname.length() < 1)
+                                continue;
+
+                            nResult.putExtra("hs_host", hostname);
+
+                            if (authCookie) {
+                                nResult.putExtra(
+                                        "hs_auth_cookie",
+                                        onion.getString(onion.getColumnIndex(HSContentProvider.HiddenService.AUTH_COOKIE_VALUE))
+                                );
+                            }
+
+                            if (backupToPackage != null && backupToPackage.length() > 0) {
+                                String servicePath = getFilesDir() + "/" + TorServiceConstants.HIDDEN_SERVICES_DIR + "/hs" + hsPort;
+                                File hidden_service_key = new File(servicePath, "private_key");
+                                Context context = getApplicationContext();
+
+                                Uri contentUri = getUriForFile(
+                                        context,
+                                        "org.torproject.android.ui.hiddenservices.storage",
+                                        hidden_service_key
+                                );
+
+                                context.grantUriPermission(backupToPackage, contentUri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                                nResult.setData(contentUri);
+                                nResult.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                            }
+
+                            onion.close();
+                            setResult(RESULT_OK, nResult);
+                            finish();
+                        }
+                    }
+                }
+            }.start();
+
+        } else {
+            Intent nResult = new Intent();
+            nResult.putExtra("hs_host", onionHostname);
+            setResult(RESULT_OK, nResult);
+            finish();
+        }
+    }
+
+    private synchronized void handleIntents() {
+        if (getIntent() == null)
+            return;
+
+        // Get intent, action and MIME type
+        Intent intent = getIntent();
+        String action = intent.getAction();
+        Log.d(TAG, "handleIntents " + action);
+
+        //String type = intent.getType();
+
+        if (action == null)
+            return;
+
+        switch (action) {
+            case INTENT_ACTION_REQUEST_HIDDEN_SERVICE:
+                final int hiddenServicePort = intent.getIntExtra("hs_port", -1);
+                final int hiddenServiceRemotePort = intent.getIntExtra("hs_onion_port", -1);
+                final String hiddenServiceName = intent.getStringExtra("hs_name");
+                final String backupToPackage = intent.getStringExtra("hs_backup_to_package");
+                final Boolean authCookie = intent.getBooleanExtra("hs_auth_cookie", false);
+                final Uri mKeyUri = intent.getData();
+
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case DialogInterface.BUTTON_POSITIVE:
+                                try {
+                                    enableHiddenServicePort(
+                                            hiddenServiceName, hiddenServicePort,
+                                            hiddenServiceRemotePort, backupToPackage,
+                                            mKeyUri, authCookie
+                                    );
+                                } catch (RemoteException e) {
+                                    // TODO Auto-generated catch block
+                                    e.printStackTrace();
+                                } catch (InterruptedException e) {
+                                    // TODO Auto-generated catch block
+                                    e.printStackTrace();
+                                }
+
+                                break;
+                        }
+                    }
+                };
+
+                String requestMsg = getString(R.string.hidden_service_request, hiddenServicePort);
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage(requestMsg).setPositiveButton("Allow", dialogClickListener)
+                        .setNegativeButton("Deny", dialogClickListener).show();
+
+                return; //don't null the setIntent() as we need it later
+
+            case INTENT_ACTION_REQUEST_START_TOR:
+                autoStartFromIntent = true;
+
+                startTor();
+
+                //never allow backgrounds start from this type of intent start
+                //app devs who want background starts, can use the service intents
+                /**
+                 if (Prefs.allowBackgroundStarts())
+                 {
+                 Intent resultIntent;
+                 if (lastStatusIntent == null) {
+                 resultIntent = new Intent(intent);
+                 } else {
+                 resultIntent = lastStatusIntent;
+                 }
+                 resultIntent.putExtra(TorServiceConstants.EXTRA_STATUS, torStatus);
+                 setResult(RESULT_OK, resultIntent);
+                 finish();
+                 }*/
+
+                break;
+            case Intent.ACTION_VIEW:
+                String urlString = intent.getDataString();
+
+                if (urlString != null) {
+
+                    if (urlString.toLowerCase().startsWith("bridge://"))
+
+                    {
+                        String newBridgeValue = urlString.substring(9); //remove the bridge protocol piece
+                        newBridgeValue = URLDecoder.decode(newBridgeValue); //decode the value here
+
+                        showAlert(getString(R.string.bridges_updated), getString(R.string.restart_orbot_to_use_this_bridge_) + newBridgeValue, false);
+
+                        setNewBridges(newBridgeValue);
+                    }
+                }
+                break;
+        }
+
+        updateStatus(null);
+
+        setIntent(null);
+
+    }
+
+    private void setNewBridges(String newBridgeValue) {
+
+        Prefs.setBridgesList(newBridgeValue); //set the string to a preference
+        Prefs.putBridgesEnabled(true);
+
+        setResult(RESULT_OK);
+
+        mBtnBridges.setChecked(true);
+
+        enableBridges(true);
+    }
 
 	/*
 	 * Launch the system activity for Uri viewing with the provided url
@@ -1193,17 +1287,9 @@ public class OrbotMainActivity extends AppCompatActivity
             if (autoStartFromIntent)
             {
                 autoStartFromIntent = false;
-                Intent resultIntent = lastStatusIntent;
-
-				if (resultIntent == null)
-					resultIntent = new Intent(TorServiceConstants.ACTION_START);
-
-				resultIntent.putExtra(
-						TorServiceConstants.EXTRA_STATUS,
-						torStatus == null?TorServiceConstants.STATUS_OFF:torStatus
-				);
-
-				setResult(RESULT_OK, resultIntent);
+                Intent resultIntent = lastStatusIntent;	            
+	            resultIntent.putExtra(TorServiceConstants.EXTRA_STATUS, torStatus);
+	            setResult(RESULT_OK, resultIntent);
                 finish();
                 Log.d(TAG, "autoStartFromIntent finish");
             }
@@ -1304,7 +1390,7 @@ public class OrbotMainActivity extends AppCompatActivity
         	
         	String newTorStatus = msg.getData().getString("status");
         	String log = (String)msg.obj;
-
+        	
         	if (torStatus == null && newTorStatus != null) //first time status
         	{
         		torStatus = newTorStatus;
