@@ -228,9 +228,9 @@ tor/configure:
 	 ./autogen.sh
 
 tor/Makefile: tor/configure
-	cp 0001-add-limits.h-to-support-MAX_SIZE-on-Android.patch tor
-	cd tor && \
-		git apply 0001-add-limits.h-to-support-MAX_SIZE-on-Android.patch
+#	cp 0001-add-limits.h-to-support-MAX_SIZE-on-Android.patch tor
+#	cd tor && \
+#		git apply 0001-add-limits.h-to-support-MAX_SIZE-on-Android.patch
 #	cp fix_android_0.2.6.4rc_build.patch tor
 #	cd tor && \
 #		git apply fix_android_0.2.6.4rc_build.patch
@@ -244,7 +244,7 @@ tor/Makefile: tor/configure
 				--disable-asciidoc \
 				--enable-static-libevent --with-libevent-dir=$(EXTERNAL_ROOT) \
 				--enable-static-openssl --with-openssl-dir=$(EXTERNAL_ROOT) \
-				--disable-linker-hardening --disable-gcc-hardening 
+				--disable-linker-hardening --disable-gcc-hardening --disable-tool-name-check
 
 tor-build-stamp: tor/Makefile
 	$(MAKE) -C tor all-am
