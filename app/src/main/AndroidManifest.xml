@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.torproject.android"
     android:installLocation="auto"
-    android:versionCode="15208000"
-    android:versionName="15.3.0-beta-1-multi">
+    android:versionCode="15401000"
+    android:versionName="15.4.0-beta-1-multi">
 
     <uses-sdk
         android:minSdkVersion="16"
@@ -38,7 +38,6 @@
         android:theme="@style/DefaultTheme">
         <activity
             android:name=".OrbotMainActivity"
-            android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true"
             android:launchMode="singleTop">
             <intent-filter>
