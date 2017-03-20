@@ -135,7 +135,7 @@ public interface TorServiceConstants {
     public static final String CMD_UPDATE_TRANS_PROXY = "update";
     public static final String CMD_SET_EXIT = "setexit";
 
-    public static final String BINARY_TOR_VERSION = "0.2.9.9-openssl1.0.2k";
+    public static final String BINARY_TOR_VERSION = "0.3.0-openssl1.0.2k-1";
     public static final String PREF_BINARY_TOR_VERSION_INSTALLED = "BINARY_TOR_VERSION_INSTALLED";
     
     //obfsproxy 
@@ -151,14 +151,7 @@ public interface TorServiceConstants {
 
 	//EXIT COUNTRY CODES
 	public final static String[] COUNTRY_CODES = {"DE","AT","SE","CH","IS","CA","US","ES","FR","BG","PL","AU","BR","CZ","DK","FI","GB","HU","NL","JP","RO","RU","SG","SK"};
-	
-	//MEEK BRIDGEs	
-	public final static String[] BRIDGES_MEEK = 
-		{
-			"meek_lite 0.0.2.0:1 url=https://meek-reflect.appspot.com/ front=www.google.com",
-			"meek_lite 0.0.2.0:2 url=https://d2zfqthxsdq309.cloudfront.net/ front=a0.awsstatic.com",
-			"meek_lite 0.0.2.0:3 url=https://az668014.vo.msecnd.net/ front=ajax.aspnetcdn.com"
-		};
+
 
 	public static final String HIDDEN_SERVICES_DIR = "hidden_services";
 
