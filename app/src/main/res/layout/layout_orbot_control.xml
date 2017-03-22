@@ -107,7 +107,24 @@
                 />
         </RelativeLayout>
 
-
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="3sp"
+            android:paddingRight="3sp"
+            android:paddingBottom="3sp"
+            android:layout_margin="12dp"
+            >
+        <TextView
+            android:id="@+id/torInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text=""
+            android:textSize="15sp"
+            android:gravity="center_vertical"
+            android:fontFamily="sans-serif-light" />
+            </RelativeLayout>
 
     </LinearLayout>
 
