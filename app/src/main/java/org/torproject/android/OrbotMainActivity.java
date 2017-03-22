@@ -132,15 +132,6 @@ public class OrbotMainActivity extends AppCompatActivity
 	public final static String INTENT_ACTION_REQUEST_HIDDEN_SERVICE = "org.torproject.android.REQUEST_HS_PORT";
 	public final static String INTENT_ACTION_REQUEST_START_TOR = "org.torproject.android.START_TOR";	
 
-	// for bridge loading from the assets default bridges.txt file
-    class Bridge
-    {
-    	String type;
-    	String config;
-    }
-    
-    private ArrayList<Bridge> alBridges = null;
-    
     //this is needed for backwards compat back to Android 2.3.*
     @SuppressLint("NewApi")
     public View onCreateView(View parent, String name, Context context, AttributeSet attrs)
@@ -434,6 +425,9 @@ public class OrbotMainActivity extends AppCompatActivity
 		    }
 
 		});
+
+        ((TextView)findViewById(R.id.torInfo)).setText("Tor v" + TorServiceConstants.BINARY_TOR_VERSION);
+
     }
     
     GestureDetector mGestureDetector;
@@ -1034,8 +1028,6 @@ public class OrbotMainActivity extends AppCompatActivity
     
     public void promptSetupBridges ()
     {
-    	loadBridgeDefaults();
-    	
     	LayoutInflater li = LayoutInflater.from(this);
         View view = li.inflate(R.layout.layout_diag, null); 
         
@@ -1055,17 +1047,17 @@ public class OrbotMainActivity extends AppCompatActivity
             	   switch (which)
             	   {
             	   case 0: //obfs 4;
-            		   setupBridgeType("obfs4");
+                       Prefs.setBridgesList("obfs4");
             		   enableBridges(true);
 
             		   break;
             	   case 1: //azure
-            		   Prefs.setBridgesList("2");
+            		   Prefs.setBridgesList("meek");
             		   enableBridges(true);
             		   
             		   break;
             	   case 2: //amazon
-                       Prefs.setBridgesList("1");
+                       Prefs.setBridgesList("meek");
             		   enableBridges(true);
             		   
             		   break;
@@ -1523,76 +1515,5 @@ public class OrbotMainActivity extends AppCompatActivity
             }
     }
     
-    private void loadBridgeDefaults ()
-    {
-    	if (alBridges == null)
-    	{
-	    	alBridges = new ArrayList<Bridge>();
-	    	
-	    	try
-	    	{
-	    	 	BufferedReader in=
-	    	        new BufferedReader(new InputStreamReader(getAssets().open("bridges.txt"), "UTF-8"));
-	    	    String str;
-	
-	    	    while ((str=in.readLine()) != null) {
-	    	    
-	    	    	StringTokenizer st = new StringTokenizer (str," ");
-	    	    	Bridge b = new Bridge();
-	    	    	b.type = st.nextToken();
-	    	    	
-	    	    	StringBuffer sbConfig = new StringBuffer();
-	    	    	
-	    	    	while(st.hasMoreTokens())
-	    	    		sbConfig.append(st.nextToken()).append(' ');
-	    	    	
-	    	    	b.config = sbConfig.toString().trim();
-	    	    	
-	    	    	alBridges.add(b);
-	    	    	
-	    	    }
-	
-	    	    in.close();
-	    	}
-	    	catch (Exception e)
-	    	{
-	    		e.printStackTrace();
-	    	}
-    	}    	
-    	
-    }
-    
-    private void setupBridgeType (String type)
-    {
-    	StringBuffer sbConfig = new StringBuffer ();
-    	
-    	//we should randomly sort alBridges so we don't have the same bridge order each time
-    	long seed = System.nanoTime();
-    	Collections.shuffle(alBridges, new Random(seed));
-    	
-    	//let's just pull up to 2 bridges from the defaults at time
-    	int maxBridges = 2;
-    	int bridgeCount = 0;
-    	
-    	//now go through the list to find the bridges we want
-    	for (Bridge b : alBridges)
-    	{
-    		if (b.type.equals(type))
-    		{
-    			
-    			sbConfig.append(b.type);
-    			sbConfig.append(' ');
-    			sbConfig.append(b.config);      			
-    			
-    			bridgeCount++;
-    			
-    			if (bridgeCount == maxBridges)
-    				break;
-    			else
-    				sbConfig.append("\n");
-    		}
-    	}
-    	
-    	setNewBridges(sbConfig.toString());
-    }
+
 }
