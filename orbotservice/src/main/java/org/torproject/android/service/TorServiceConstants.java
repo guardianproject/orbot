@@ -135,7 +135,7 @@ public interface TorServiceConstants {
     public static final String CMD_UPDATE_TRANS_PROXY = "update";
     public static final String CMD_SET_EXIT = "setexit";
 
-    public static final String BINARY_TOR_VERSION = "0.3.0-openssl1.0.2k-1";
+    public static final String BINARY_TOR_VERSION = "0.2.9.9-openssl1.0.2k-1";
     public static final String PREF_BINARY_TOR_VERSION_INSTALLED = "BINARY_TOR_VERSION_INSTALLED";
     
     //obfsproxy 
