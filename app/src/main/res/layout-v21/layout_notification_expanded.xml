@@ -18,8 +18,8 @@
     xmlns:internal="http://schemas.android.com/apk/prv/res/android"
     android:id="@+id/status_bar_latest_event_content"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"    
-    android:background="#333333"
+    android:layout_height="wrap_content"
+    android:background="#545454"
     >
     <ImageView android:id="@+id/icon"
         android:layout_width="@dimen/notification_large_icon_width"
@@ -117,7 +117,8 @@
             android:layout_marginTop="-2dp"
             android:layout_marginBottom="-2dp"
             android:layout_marginStart="8dp"            
-            android:fadingEdge="horizontal"        
+            android:fadingEdge="horizontal"
+            android:textColor="#cdcdcd"
             />
     </LinearLayout>
 </FrameLayout>
