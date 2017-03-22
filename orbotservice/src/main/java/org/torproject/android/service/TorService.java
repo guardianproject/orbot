@@ -61,15 +61,18 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
+import java.util.Random;
 import java.util.Set;
 import java.util.StringTokenizer;
 import java.util.concurrent.ExecutorService;
@@ -130,6 +133,9 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
     private Shell mShell;
     private Shell mShellPolipo;
+
+
+    private ArrayList<Bridge> alBridges = null;
 
 
     private static final Uri HS_CONTENT_URI = Uri.parse("content://org.torproject.android.ui.hiddenservices.providers/hs");
@@ -1665,31 +1671,29 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         }
         else
         {
-        
+
+            loadBridgeDefaults ();
 
             extraLines.append("UseBridges 1").append('\n');
             
             String bridgeList = new String(Prefs.getBridgesList().getBytes("ISO-8859-1"));
-            
-            if (bridgeList != null && bridgeList.length() > 1) //longer then 1 = some real values here
+            boolean obfsBridges = bridgeList.contains("obfs3")||bridgeList.contains("obfs4");
+            boolean meekBridges = bridgeList.contains("meek");
+
+            //check if any PT bridges are needed
+            if (obfsBridges)
             {
-	            
-	            //check if any PT bridges are needed
-	            boolean obfsBridges = bridgeList.contains("obfs3")||bridgeList.contains("obfs4")||bridgeList.contains("scramblesuit");
-            
-	            if (obfsBridges)
-	            {
-	                extraLines.append("ClientTransportPlugin obfs3 exec " + fileObfsclient.getCanonicalPath()).append('\n');
-	                extraLines.append("ClientTransportPlugin obfs4 exec " + fileObfsclient.getCanonicalPath()).append('\n');
-	                extraLines.append("ClientTransportPlugin scramblesuit exec " + fileObfsclient.getCanonicalPath()).append('\n');
-	            }
-	            
-	            boolean meekBridges = bridgeList.contains("meek");
-	            if (meekBridges)
-	            {
-	            	extraLines.append("ClientTransportPlugin meek_lite exec " + fileObfsclient.getCanonicalPath()).append('\n');
-	            }
-	            
+                extraLines.append("ClientTransportPlugin obfs3 exec " + fileObfsclient.getCanonicalPath()).append('\n');
+                extraLines.append("ClientTransportPlugin obfs4 exec " + fileObfsclient.getCanonicalPath()).append('\n');
+            }
+
+            if (meekBridges)
+            {
+                extraLines.append("ClientTransportPlugin meek_lite exec " + fileObfsclient.getCanonicalPath()).append('\n');
+            }
+
+            if (bridgeList != null && bridgeList.length() > 5) //longer then 1 = some real values here
+            {
 	            String[] bridgeListLines = bridgeList.split("\\r?\\n");
 
 	            for (String bridgeConfigLine : bridgeListLines)
@@ -1697,9 +1701,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 	                if (!TextUtils.isEmpty(bridgeConfigLine))
 	                {
 	                	extraLines.append("Bridge ");
-	                	
-	                	//bridgeConfigLine = bridgeConfigLine.replace('�', ' ');
-	                	
+
 	                	StringTokenizer st = new StringTokenizer (bridgeConfigLine," ");
 	                	while (st.hasMoreTokens())
 	                		extraLines.append(st.nextToken()).append(' ');
@@ -1713,34 +1715,14 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             }
             else
             {
-            	//time to do autobridges, aka meek
 
-            	debug ("Using meek bridges");
-                
-            //	String bridgeConfig = "meek exec " + fileMeekclient.getCanonicalPath();
-            	String bridgeConfig = "meek_lite exec " + fileObfsclient.getCanonicalPath();
-            	
-            	extraLines.append("ClientTransportPlugin" + ' ' + bridgeConfig).append('\n');
-            
-            	int meekIdx = 2; //let's use Azure by default
-            	
-            	if (bridgeList != null && bridgeList.length() == 1)
-            	{
-            	  try 
-            	  {
-            		  meekIdx = Integer.parseInt(bridgeList);
-            		  
-            		  if (meekIdx+1 > BRIDGES_MEEK.length)
-            			  throw new Exception("not valid meek idx");
-            	  }
-            	  catch (Exception e)
-            	  {
-            		  debug("invalid meek type; please enter 0=Google, 1=AWS, 2=Azure");
-            	  }
-            	}
-            	
-            	extraLines.append("Bridge " + BRIDGES_MEEK[meekIdx]).append('\n');            	
-            	
+                String type = "obfs4";
+
+                if (meekBridges)
+                    type = "meek_lite";
+
+                getBridges(type,extraLines);
+
             }
  
         }
@@ -2060,6 +2042,86 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         Intent intentVpn = new Intent(this,TorVpnService.class);
         intentVpn.setAction("stop");
         startService(intentVpn);
+
+    }
+
+
+    // for bridge loading from the assets default bridges.txt file
+    class Bridge
+    {
+        String type;
+        String config;
+    }
+
+
+    private void loadBridgeDefaults ()
+    {
+        if (alBridges == null)
+        {
+            alBridges = new ArrayList<Bridge>();
+
+            try
+            {
+                BufferedReader in=
+                        new BufferedReader(new InputStreamReader(getAssets().open("bridges.txt"), "UTF-8"));
+                String str;
+
+                while ((str=in.readLine()) != null) {
+
+                    StringTokenizer st = new StringTokenizer (str," ");
+                    Bridge b = new Bridge();
+                    b.type = st.nextToken();
+
+                    StringBuffer sbConfig = new StringBuffer();
+
+                    while(st.hasMoreTokens())
+                        sbConfig.append(st.nextToken()).append(' ');
+
+                    b.config = sbConfig.toString().trim();
+
+                    alBridges.add(b);
+
+                }
+
+                in.close();
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+    //we should randomly sort alBridges so we don't have the same bridge order each time
+    Random bridgeSelectRandom = new Random(System.nanoTime());
+
+    private void getBridges (String type, StringBuffer extraLines)
+    {
+
+        Collections.shuffle(alBridges, bridgeSelectRandom);
+
+        //let's just pull up to 2 bridges from the defaults at time
+        int maxBridges = 2;
+        int bridgeCount = 0;
+
+        //now go through the list to find the bridges we want
+        for (Bridge b : alBridges)
+        {
+            if (b.type.equals(type))
+            {
+                extraLines.append("Bridge ");
+                extraLines.append(b.type);
+                extraLines.append(' ');
+                extraLines.append(b.config);
+                extraLines.append('\n');
+
+                bridgeCount++;
+
+                if (bridgeCount > maxBridges)
+                    break;
+            }
+        }
 
     }
 
