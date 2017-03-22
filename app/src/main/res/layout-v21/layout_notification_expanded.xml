@@ -73,7 +73,7 @@
                 android:singleLine="true"
                 android:ellipsize="marquee"
                 android:fadingEdge="horizontal"
-				android:textAppearance="@style/NotificationText"                
+				android:textAppearance="@style/NotificationTitle"
                 />
             <TextView android:id="@+id/info"
                 android:layout_width="wrap_content"
@@ -83,7 +83,7 @@
                 android:singleLine="true"
                 android:gravity="center"
                 android:paddingStart="8dp"
-				android:textAppearance="@style/NotificationText"
+				android:textAppearance="@style/NotificationTitle"
                 />
             <ImageView android:id="@+id/right_icon"
                 android:layout_width="16dp"
