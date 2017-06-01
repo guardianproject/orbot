@@ -197,7 +197,7 @@ public class OrbotMainActivity extends AppCompatActivity
 
     private void stopTor() {
 
-        requestTorStatus();
+//        requestTorStatus();
 
         Intent torService = new Intent(OrbotMainActivity.this, TorService.class);
         stopService(torService);

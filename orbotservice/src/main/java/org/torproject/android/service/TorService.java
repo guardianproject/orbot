@@ -439,8 +439,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
     @Override
     public void onDestroy() {
+
         stopTor();
-        unregisterReceiver(mNetworkStateReceiver);
 
         try
         {
@@ -456,13 +456,13 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
     private void stopTor ()
     {
-        exec(new Runnable ()
+        new Thread(new Runnable ()
         {
             public void run ()
             {
                 stopTorAsync();
             }
-        });
+        }).start();
 
     }
 
@@ -491,6 +491,14 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         }
         clearNotifications();
         sendCallbackStatus(STATUS_OFF);
+
+        try {
+            unregisterReceiver(mNetworkStateReceiver);
+        }
+        catch (IllegalArgumentException iae)
+        {
+            //not registered yet
+        }
     }
 
     private void killAllDaemons() throws Exception {
@@ -856,7 +864,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             showToolbarNotification(
                     getString(R.string.unable_to_start_tor) + ": " + e.getMessage(),
                     ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
-            stopTor();
+            //stopTor();
         }
     }
 
