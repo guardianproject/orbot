@@ -3,9 +3,6 @@
     package="org.torproject.android"
     android:installLocation="auto">
 
-    <uses-sdk
-        android:minSdkVersion="16"
-        android:targetSdkVersion="25" />
     <!--
  <permission android:name="org.torproject.android.MANAGE_TOR" 
      android:label="@string/permission_manage_tor_label" 
@@ -18,10 +15,6 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.ACCESS_SUPERUSER" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:name=".OrbotApp"
