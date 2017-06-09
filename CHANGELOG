@@ -1,5 +1,61 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+
+/** v15.4.2 / 9 June 2017 / e18a7937d271d7482d5eaac9900e1c06b4b48b89 **/
+
+* Update Tor
+e18a793 update tor version string to 0.3.0.8-openssl1.0.2k-1
+ad1bcb8 update tor repo to 0.3.0.8
+c0d082e remove bridge logic from activity (now in service)
+4af61b6 update logic for bridge selection
+301ef39 add version display to sidebar
+11c6abf update default built in bridges
+ea40bb4 update gradle build settings
+b8aaa2c update obfs4 bridges to match latest from tor browser
+6496cb1 Update to briges thanks to David Fifield https://lists.mayfirst.org/pipermail/guardian-dev/2017-March/005209.html https
+7eb7a76 update pluto library
+44ab128 update to OpenSSL_1_0_2k
+1953962 cache circuits by circId
+c9fc49a we want to only look up iptables once per run
+
+* Only enable new HS features on SDK 23+
+78984bd don't show new features that require new perms on < SDK 23
+028f76e add "minimal permission" build for SDK 16 to 22 devices - these platforms don't allow for runtime permissions requests 
+
+* Builds, Flavors and Manifests
+c874e70 don't build jni/ndk inside of this project
+b1ff4d5 use this as the base manifest
+fe491b0 don't need specialized menu for this flavor
+34043f9 remove version from manifests
+674f8ff add min and full perm build flavors
+67cb36e new release for minimal perms SDK up to 23
+2403e8c improve reliability of starting and stopping
+
+* Hidden Service Improvements
+a5744d7 small chnage to only check for sys iptables once
+970710d Merge branch 'fixiptables' of https://github.com/Unpublished/orbot into Unpublished-fixiptables
+41ebcc5 Deal with Doze in the less painful way
+2aa2b4c New feature added: HidServAuth manager and QR share
+4f7271b feature added: temporarily disable a hidden service
+8d5df9c better cookie dialog
+2d0437a return auth cookie at intent service
+4d0fe27 adds optional HiddenServiceAuthorizeClient option for each hidden service
+1060c69 intent api: restore key
+0818b0c isolate hidden services configuration dirs
+7600b4c menu entry for restore backup
+8c7b897 isolated permission request
+d048cd6 request permissions
+5edfc34 create zip backup from itent
+4fea84c allow managed backups field
+e152dd3 update new onions
+3f384c0 wait for hostname
+e776e12 Update UI for onion port
+ebc736b option for map a local port to different onion port number
+3f7435c Hidden Service dialog
+26d9381 New hidden services management screen and database
+ff61d66 make sure tor network is re-enabled when user tries to restart
+
+
 /** 15.2.0 RC 8 / 7 November 2016 / 34079c7a159a94eb738c0410b4642394d712c44e **/
 
 540db0f revert back to NDK toolchain 4.8 since it is more stable
