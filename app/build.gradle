@@ -5,7 +5,7 @@ android {
     buildToolsVersion "25"
     defaultConfig {
         applicationId "org.torproject.android"
-        minSdkVersion 23
+        minSdkVersion 16
         targetSdkVersion 25
     }
     lintOptions {
@@ -26,6 +26,15 @@ android {
             applicationId 'org.torproject.android'
             targetSdkVersion 22
             maxSdkVersion 22
+            versionCode 15420000
+            versionName '15.4.2-RC-1-multi-SDK16'
+        }
+        fullperm {
+            minSdkVersion 23
+            applicationId 'org.torproject.android'
+            targetSdkVersion 25
+            versionCode 15420001
+            versionName '15.4.2-RC-1-multi-SDK23'
         }
     }
 }
