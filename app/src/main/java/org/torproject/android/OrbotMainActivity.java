@@ -624,7 +624,7 @@ public class OrbotMainActivity extends AppCompatActivity
 
         if (row == null || row.getCount() < 1) {
             cr.insert(HSContentProvider.CONTENT_URI, fields);
-        } else {
+        } else if (row.moveToFirst()) {
             onionHostname = row.getString(row.getColumnIndex(HSContentProvider.HiddenService.DOMAIN));
             row.close();
         }
