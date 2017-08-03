@@ -33,5 +33,7 @@ public interface OrbotConstants {
 	public final static int MAX_LOG_LENGTH = 10000;
 	
 	public final static String PREF_SOCKS = "pref_socks";
-	
+
+	public final static String PREF_ISOLATE_DEST = "pref_isolate_dest";
+
 }

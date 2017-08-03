@@ -675,8 +675,14 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 	        if (isPortUsed) //the specified port is not available, so let Tor find one instead
 	        	socksPortPref = "auto";
         }
+
+        String isolate = " ";
+        if(prefs.getBoolean(OrbotConstants.PREF_ISOLATE_DEST, false))
+        {
+            isolate += "IsolateDestAddr";
+        }
         
-        extraLines.append("SOCKSPort ").append(socksPortPref).append('\n');
+        extraLines.append("SOCKSPort ").append(socksPortPref).append(isolate).append('\n');
         extraLines.append("SafeSocks 0").append('\n');
         extraLines.append("TestSocks 0").append('\n');
         extraLines.append("WarnUnsafeSocks 1").append('\n');
