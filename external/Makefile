@@ -234,6 +234,12 @@ tor/Makefile: tor/configure
 #	cp fix_android_0.2.6.4rc_build.patch tor
 #	cd tor && \
 #		git apply fix_android_0.2.6.4rc_build.patch
+	cp tor-patch-wakelock tor
+	cp tor-patch-increase-clock-jump tor
+	-cd tor && \
+	 	patch -N -p1 --reject-file=- < tor-patch-wakelock
+	-cd tor && \
+	 	patch -N -p1 --reject-file=- < tor-patch-increase-clock-jump
 	cp config.sub tor
 	cp config.guess tor
 	cd tor && \

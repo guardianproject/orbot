@@ -33,6 +33,8 @@ public class TorControlConnection implements TorControlCommands {
 
     private ControlParseThread thread; // Locking: this
 
+    private boolean hasMarkedWakeLock = false;
+
     private volatile EventHandler handler;
     private volatile PrintWriter debugOutput;
     private volatile IOException parseThreadException;
@@ -237,6 +239,18 @@ public class TorControlConnection implements TorControlCommands {
                        tp.equals("WARN") ||
                        tp.equals("ERR")) {
                 handler.message(tp, rest);
+            } else if (tp.equals("WAKELOCK")) {
+                List<String> lst = Bytes.splitStr(null, rest);
+                if (lst.get(0).equalsIgnoreCase("ACQUIRE")) {
+                    handler.acquireWakeLock();
+                } else if (lst.get(0).equalsIgnoreCase("RELEASE")) {
+                    handler.releaseWakeLock();
+                }
+                try {
+                    sendWakeLockResponse();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             } else {
                 handler.unrecognized(tp, rest);
             }
@@ -728,5 +742,19 @@ public class TorControlConnection implements TorControlCommands {
         sendAndWaitForResponse("CLOSECIRCUIT "+circID+
                                (ifUnused?" IFUNUSED":"")+"\r\n", null);
     }
+
+     /** Tells Tor to mark this connection as solely for wake lock messages. This connection will
+      * no long respond to commands and will start sending WAKELOCK events.
+     */
+     public synchronized void markConnForWakeLock() throws IOException {
+         if (hasMarkedWakeLock)
+             return;
+         hasMarkedWakeLock = true;
+         sendAndWaitForResponse("MARKCONNFORWAKELOCK\r\n", null);
+     }
+
+     public void sendWakeLockResponse() throws IOException {
+         output.write("\n");
+     }
 }
 

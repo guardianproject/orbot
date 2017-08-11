@@ -66,6 +66,14 @@ public interface EventHandler {
      */
     public void message(String severity, String msg);
     /**
+     * Invoked when Tor wants a wake lock acquired.
+     */
+    public void acquireWakeLock();
+    /**
+     * Invoked when Tor wants a wake lock released.
+     */
+    public void releaseWakeLock();
+    /**
      * Invoked when an unspecified message is received.
      * <type> is the message type, and <msg> is the message string.
      */

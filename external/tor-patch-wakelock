@@ -1,0 +1,271 @@
+diff --git a/changes/android-wake-lock b/changes/android-wake-lock
+new file mode 100644
+index 0000000..03731f8
+--- /dev/null
++++ b/changes/android-wake-lock
+@@ -0,0 +1,7 @@
++  o Minor features (control):
++    - Add MARKCONNFORWAKELOCK command and WAKELOCK event on Android to
++      allow Tor to synchronously request the controller to acquire or
++      release a wake lock whilst in the middle of an event loop. Allows
++      Tor to  ensure all active events are completed before allowing the
++      mobile device to go back to sleep. 
++
+diff --git a/src/or/control.c b/src/or/control.c
+index 724d4b3..8be4e6b 100644
+--- a/src/or/control.c
++++ b/src/or/control.c
+@@ -204,6 +204,9 @@ static int handle_control_add_onion(control_connection_t *conn, uint32_t len,
+                                     const char *body);
+ static int handle_control_del_onion(control_connection_t *conn, uint32_t len,
+                                     const char *body);
++#ifdef __ANDROID__
++static int handle_control_markconnforwakelock(control_connection_t *conn);
++#endif
+ static int write_stream_target_to_buf(entry_connection_t *conn, char *buf,
+                                       size_t len);
+ static void orconn_target_get_name(char *buf, size_t len,
+@@ -810,6 +813,9 @@ flush_queued_events_cb(evutil_socket_t fd, short what, void *arg)
+   (void) fd;
+   (void) what;
+   (void) arg;
++#ifdef __ANDROID__
++  control_wakelock_acquire();
++#endif
+   queued_events_flush_all(0);
+ }
+ 
+@@ -4826,6 +4832,30 @@ handle_control_del_onion(control_connection_t *conn,
+   return 0;
+ }
+ 
++#ifdef __ANDROID__
++
++static control_connection_t *wakelock_conn = NULL;
++
++/** Called when we get a MARKCONNFORWAKELOCK command; assign conn to
++ * wakelock_conn and disable events related to wakelock_conn */
++static int
++handle_control_markconnforwakelock(control_connection_t *conn)
++{
++  if (wakelock_conn == NULL) {
++    log_debug(LD_CONTROL, "Control connection is now marked for wakelocks.");
++    wakelock_conn = conn;
++    /* Disable the read/write events from firing since we are directly
++     * using the socket and not connection_t */
++    connection_stop_reading(TO_CONN(conn));
++    connection_stop_writing(TO_CONN(conn));
++  }
++  send_control_done(conn);
++  connection_flush(TO_CONN(conn));
++  return 0;
++}
++
++#endif
++
+ /** Called when <b>conn</b> has no more bytes left on its outbuf. */
+ int
+ connection_control_finished_flushing(control_connection_t *conn)
+@@ -5177,6 +5207,10 @@ connection_control_process_inbuf(control_connection_t *conn)
+     memwipe(args, 0, cmd_data_len); /* Scrub the service id/pk. */
+     if (ret)
+       return -1;
++#ifdef __ANDROID__
++  } else if (!strcasecmp(conn->incoming_cmd, "MARKCONNFORWAKELOCK")) {
++    handle_control_markconnforwakelock(conn);
++#endif
+   } else {
+     connection_printf_to_buf(conn, "510 Unrecognized command \"%s\"\r\n",
+                              conn->incoming_cmd);
+@@ -7261,6 +7295,54 @@ control_event_hs_descriptor_upload_failed(const char *id_digest,
+                                          id_digest, reason);
+ }
+ 
++#ifdef __ANDROID__
++/** True if there is important work (such as building circuits) that we don't
++ * want to be interrupted by a (mobile) CPU sleeping and we want a controller
++ * to acquire the wakelock for us. */
++static int should_acquire_wakelock = 0;
++
++/** Called when entering events */
++void
++control_wakelock_acquire(void)
++{
++  /* Transitioning from false to true, send signal */
++  if (!should_acquire_wakelock)
++    control_event_wakelock(1);
++  should_acquire_wakelock++;
++}
++
++/** Called when leaving event loop */
++void
++control_wakelock_release(void)
++{
++  /* Transitioning from true to false, send signal */
++  if (should_acquire_wakelock)
++    control_event_wakelock(0);
++  should_acquire_wakelock = 0;
++}
++
++/** send WAKELOCK event based on acquire. Will block until recv returns
++ * from reading a response from the controller. */
++void
++control_event_wakelock(int acquire)
++{
++  char* buf = NULL;
++  char outbuf[128];
++  if (!wakelock_conn)
++    return;
++  if (TO_CONN(wakelock_conn)->marked_for_close
++      || !SOCKET_OK(TO_CONN(wakelock_conn)->s))
++    return;
++
++  tor_asprintf(&buf, "650 WAKELOCK %s\r\n", acquire ? "ACQUIRE":"RELEASE");
++
++  connection_write_str_to_buf(buf, wakelock_conn);
++  connection_flush(TO_CONN(wakelock_conn));
++  /* Wait for any response from controller */
++  tor_socket_recv(TO_CONN(wakelock_conn)->s, outbuf, 128, 0);
++}
++#endif
++
+ /** Free any leftover allocated memory of the control.c subsystem. */
+ void
+ control_free_all(void)
+diff --git a/src/or/control.h b/src/or/control.h
+index 41a194b..b431829 100644
+--- a/src/or/control.h
++++ b/src/or/control.h
+@@ -147,6 +147,11 @@ void control_event_hs_descriptor_content(const char *onion_address,
+                                          const char *desc_id,
+                                          const char *hsdir_fp,
+                                          const char *content);
++#ifdef __ANDROID__
++void control_wakelock_acquire(void);
++void control_wakelock_release(void);
++void control_event_wakelock(int acquire);
++#endif
+ 
+ void control_free_all(void);
+ 
+diff --git a/src/or/main.c b/src/or/main.c
+index dc23184..7711ed7 100644
+--- a/src/or/main.c
++++ b/src/or/main.c
+@@ -729,6 +729,11 @@ conn_read_callback(evutil_socket_t fd, short event, void *_conn)
+   (void)fd;
+   (void)event;
+ 
++#ifdef __ANDROID__
++  if (conn->type != CONN_TYPE_CONTROL)
++    control_wakelock_acquire();
++#endif
++
+   log_debug(LD_NET,"socket %d wants to read.",(int)conn->s);
+ 
+   /* assert_connection_ok(conn, time(NULL)); */
+@@ -761,6 +766,11 @@ conn_write_callback(evutil_socket_t fd, short events, void *_conn)
+   (void)fd;
+   (void)events;
+ 
++#ifdef __ANDROID__
++  if (conn->type != CONN_TYPE_CONTROL)
++    control_wakelock_acquire();
++#endif
++
+   LOG_FN_CONN(conn, (LOG_DEBUG, LD_NET, "socket %d wants to write.",
+                      (int)conn->s));
+ 
+@@ -922,6 +932,10 @@ directory_all_unreachable_cb(evutil_socket_t fd, short event, void *arg)
+ 
+   connection_t *conn;
+ 
++#ifdef __ANDROID__
++    control_wakelock_acquire();
++#endif
++
+   while ((conn = connection_get_by_type_state(CONN_TYPE_AP,
+                                               AP_CONN_STATE_CIRCUIT_WAIT))) {
+     entry_connection_t *entry_conn = TO_ENTRY_CONN(conn);
+@@ -2122,6 +2136,10 @@ second_elapsed_callback(periodic_timer_t *timer, void *arg)
+   (void)timer;
+   (void)arg;
+ 
++#ifdef __ANDROID__
++    control_wakelock_acquire();
++#endif
++
+   n_libevent_errors = 0;
+ 
+   /* log_notice(LD_GENERAL, "Tick."); */
+@@ -2605,7 +2623,14 @@ run_main_loop_once(void)
+    * connections to trigger events for.  Libevent will wait till one
+    * of these happens, then run all the appropriate callbacks. */
+   loop_result = event_base_loop(tor_libevent_get_base(),
++#ifndef __ANDROID__
+                                 called_loop_once ? EVLOOP_ONCE : 0);
++#else
++  /* Loop is run only once to release any wake locks acquire during loop */
++                                EVLOOP_ONCE);
++  /** Release any wake locks we might have acquired during the event loop. */
++  control_wakelock_release();
++#endif
+ 
+   /* Oh, the loop failed.  That might be an error that we need to
+    * catch, but more likely, it's just an interrupted poll() call or something,
+@@ -2673,6 +2698,10 @@ signal_callback(evutil_socket_t fd, short events, void *arg)
+   (void)fd;
+   (void)events;
+ 
++#ifdef __ANDROID__
++  control_wakelock_acquire();
++#endif
++
+   process_signal(sig);
+ }
+ 
+diff --git a/src/or/periodic.c b/src/or/periodic.c
+index 6896b41..4215a87 100644
+--- a/src/or/periodic.c
++++ b/src/or/periodic.c
+@@ -15,6 +15,7 @@
+ #include "compat_libevent.h"
+ #include "config.h"
+ #include "periodic.h"
++#include "control.h"
+ 
+ #include <event2/event.h>
+ 
+@@ -46,6 +47,9 @@ periodic_event_dispatch(evutil_socket_t fd, short what, void *data)
+   (void)what;
+   periodic_event_item_t *event = data;
+ 
++#ifdef __ANDROID__
++  control_wakelock_acquire();
++#endif
+   time_t now = time(NULL);
+   const or_options_t *options = get_options();
+ //  log_debug(LD_GENERAL, "Dispatching %s", event->name);
+diff --git a/src/or/scheduler.c b/src/or/scheduler.c
+index fac545f..34b57e0 100644
+--- a/src/or/scheduler.c
++++ b/src/or/scheduler.c
+@@ -10,6 +10,8 @@
+ #define SCHEDULER_PRIVATE_
+ #include "scheduler.h"
+ 
++#include "control.h"
++
+ #include <event2/event.h>
+ 
+ /*
+@@ -254,6 +256,9 @@ scheduler_evt_callback(evutil_socket_t fd, short events, void *arg)
+   (void)events;
+   (void)arg;
+   log_debug(LD_SCHED, "Scheduler event callback called");
++#ifdef __ANDROID__
++  control_wakelock_acquire();
++#endif
+ 
+   tor_assert(run_sched_ev);
+ 

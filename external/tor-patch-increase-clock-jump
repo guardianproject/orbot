@@ -1,0 +1,34 @@
+diff --git a/changes/android-clock-jump-increase b/changes/android-clock-jump-increase
+new file mode 100644
+index 0000000..a729014
+--- /dev/null
++++ b/changes/android-clock-jump-increase
+@@ -0,0 +1,5 @@
++  o Minor feature:
++    - Increase NUM_JUMPED_SECONDS_BEFORE_WARN from 100s to 600s on
++      Android to improve reachability of hidden services hosted on
++      Android devices.
++
+diff --git a/src/or/main.c b/src/or/main.c
+index dc23184..26aba6b 100644
+--- a/src/or/main.c
++++ b/src/or/main.c
+@@ -2178,9 +2178,18 @@ second_elapsed_callback(periodic_timer_t *timer, void *arg)
+     }
+   }
+ 
++#ifndef __ANDROID__
+ /** If more than this many seconds have elapsed, probably the clock
+  * jumped: doesn't count. */
+ #define NUM_JUMPED_SECONDS_BEFORE_WARN 100
++#else
++/** On Android, the CPU sleeps very often and Tor gets suspended, and
++ * only wakes on network interrupts. This means clock jumps are common
++ * and marking circuits unusable every time Tor wakes up breaks hidden
++ * services as intro circs are cleaned the moment Tor wakes up.*/
++#define NUM_JUMPED_SECONDS_BEFORE_WARN 600
++#endif
++
+   if (seconds_elapsed < -NUM_JUMPED_SECONDS_BEFORE_WARN ||
+       seconds_elapsed >= NUM_JUMPED_SECONDS_BEFORE_WARN) {
+     circuit_note_clock_jumped(seconds_elapsed);

@@ -26,10 +26,13 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
+import android.net.LocalSocket;
+import android.net.LocalSocketAddress;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.IBinder;
+import android.os.PowerManager;
 import android.os.RemoteException;
 import android.provider.BaseColumns;
 import android.support.v4.app.NotificationCompat;
@@ -90,6 +93,12 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     private Socket torConnSocket = null;
     private int mLastProcessId = -1;
 
+    private TorControlConnection connWakeLock = null;
+    private PowerManager.WakeLock wakeLock;
+    private String controlSocketPath;
+    private LocalSocket torWakeLockConnSocket = null;
+    private boolean hasHiddenServices;
+
     private int mPortHTTP = HTTP_PROXY_PORT_DEFAULT;
     private int mPortSOCKS = SOCKS_PROXY_PORT_DEFAULT;
     
@@ -120,6 +129,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     private ExecutorService mExecutor = Executors.newFixedThreadPool(3);
 
     TorEventHandler mEventHandler;
+    TorEventHandler mWakeLockEventHandler;
 
     public static File appBinHome;
     public static File appCacheHome;
@@ -491,6 +501,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         }
         clearNotifications();
         sendCallbackStatus(STATUS_OFF);
+        releaseWakeLock();
 
         try {
             unregisterReceiver(mNetworkStateReceiver);
@@ -515,6 +526,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
             conn = null;
         }
+        connWakeLock = null;
 
         if (mShellPolipo != null)
         {
@@ -557,6 +569,10 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
         try
         {
+            wakeLock = ((PowerManager) getSystemService(POWER_SERVICE))
+                    .newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "TorHiddenServiceWakelock");
+            wakeLock.setReferenceCounted(false);
+
             appBinHome = getDir(TorServiceConstants.DIRECTORY_TOR_BINARY, Application.MODE_PRIVATE);
             appCacheHome = getDir(TorServiceConstants.DIRECTORY_TOR_DATA,Application.MODE_PRIVATE);
 
@@ -577,6 +593,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 mHSBasePath.mkdirs();
 
             mEventHandler = new TorEventHandler(this);
+            mWakeLockEventHandler = new TorEventHandler(this);
 
             if (mNotificationManager == null)
             {
@@ -708,7 +725,10 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         	extraLines.append("SafeLogging 0").append('\n');   
 
         }
-        
+
+        controlSocketPath = new File(appBinHome, "control_socket").getCanonicalPath();
+        extraLines.append("ControlSocket ").append(controlSocketPath).append("\n");
+
         processSettingsImpl(extraLines);
         
         String torrcCustom = new String(prefs.getString("pref_custom_torrc", "").getBytes("US-ASCII"));
@@ -1109,9 +1129,17 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     {
         return conn;
     }
+
+    protected TorControlConnection getWakeLockControlConnection ()
+    {
+        return connWakeLock;
+    }
     
     private int initControlConnection (int maxTries, boolean isReconnect) throws Exception, RuntimeException
     {
+            if (hasHiddenServices) {
+                initWakeLockControlPort(maxTries);
+            }
             int controlPort = -1;
             int attempt = 0;
 
@@ -1196,6 +1224,54 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             return -1;
 
     }
+
+    private void initWakeLockControlPort(int maxTries) throws Exception, RuntimeException {
+        int attempt = 0;
+        logNotice("Waiting for wake lock control port...");
+
+        while (connWakeLock == null && attempt++ < maxTries) {
+            try {
+                logNotice("Connecting to wake lock control port: " + controlSocketPath);
+
+                torWakeLockConnSocket = new LocalSocket();
+                torWakeLockConnSocket.connect(new LocalSocketAddress(controlSocketPath, LocalSocketAddress.Namespace.FILESYSTEM));
+
+                connWakeLock = new TorControlConnection(torWakeLockConnSocket.getInputStream(), torWakeLockConnSocket.getOutputStream());
+                connWakeLock.launchThread(true);//is daemon
+
+                break;
+
+            } catch (Exception ce) {
+                connWakeLock = null;
+                ce.printStackTrace();
+            }
+            try {
+                Thread.sleep(1000);
+            } catch (Exception e) {
+            }
+        }
+
+        if (connWakeLock != null) {
+            logNotice("SUCCESS connected to Tor wake lock control port.");
+
+            File fileCookie = new File(appCacheHome, TOR_CONTROL_COOKIE);
+
+            if (fileCookie.exists()) {
+                byte[] cookie = new byte[(int) fileCookie.length()];
+                DataInputStream fis = new DataInputStream(new FileInputStream(fileCookie));
+                fis.read(cookie);
+                fis.close();
+                connWakeLock.authenticate(cookie);
+
+                logNotice("SUCCESS - authenticated to wake lock control port.");
+
+                addWakeLockEventHandler();
+            } else {
+                logNotice("Tor authentication cookie does not exist yet");
+                connWakeLock = null;
+            }
+        }
+    }
     
     private int getControlPort ()
     {
@@ -1259,6 +1335,15 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             //  "DEBUG", "INFO", "NOTICE", "WARN", "ERR"}));
 
         logNotice( "SUCCESS added control port event handler");
+    }
+
+    public synchronized void addWakeLockEventHandler() throws Exception {
+        logNotice("adding wake lock control port event handler");
+
+        connWakeLock.setEventHandler(mWakeLockEventHandler);
+        connWakeLock.markConnForWakeLock();
+
+        logNotice("SUCCESS added wake lock control port event handler");
     }
     
         /**
@@ -1529,6 +1614,30 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         Intent intent = new Intent(ACTION_STATUS);
         intent.putExtra(EXTRA_STATUS, currentStatus);
         return intent;
+    }
+
+    /**
+     * Have the service hold a wakelock.
+     */
+    public void holdWakeLock() {
+        if (mCurrentStatus.equals(STATUS_OFF)) {
+            Log.d(TAG, "Wake lock requested when Tor is off.");
+            releaseWakeLock();
+            return;
+        }
+        Log.d(TAG, "Holding wakelock.");
+        wakeLock.acquire();
+    }
+
+    /**
+     * Have the service release a previously acquired wakelock.
+     */
+    public void releaseWakeLock() {
+        if (!wakeLock.isHeld()) {
+            return;
+        }
+        Log.d(TAG, "Releasing wakelock.");
+        wakeLock.release();
     }
 
     /*
@@ -1806,6 +1915,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         Cursor hidden_services = mCR.query(HS_CONTENT_URI, hsProjection, HiddenService.ENABLED + "=1", null, null);
         if(hidden_services != null) {
             try {
+                hasHiddenServices = hidden_services.getCount() > 0;
                 while (hidden_services.moveToNext()) {
                     String HSname = hidden_services.getString(hidden_services.getColumnIndex(HiddenService.NAME));
                     Integer HSLocalPort = hidden_services.getInt(hidden_services.getColumnIndex(HiddenService.PORT));
@@ -1828,7 +1938,9 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             }
 
             hidden_services.close();
-		}
+		} else {
+            hasHiddenServices = false;
+        }
 
         /* ---- Client Cookies ---- */
         Cursor client_cookies = mCR.query(COOKIE_CONTENT_URI, cookieProjection, ClientCookie.ENABLED + "=1", null, null);
