@@ -1,2 +1,2 @@
-include ':jsocksAndroid', ':orbotservice', ':RootCommands'
+include ':jsocksAndroid', ':orbotservice'
 include ':app'

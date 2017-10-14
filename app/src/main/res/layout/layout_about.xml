@@ -54,25 +54,6 @@
 				android:textColorLink="#ffffff"
 				android:paddingLeft="15px"		
 				android:textColor="#ffffff" />
-			<TextView android:text="License: "
-				android:layout_width="fill_parent" 
-				android:layout_height="wrap_content"
-				android:paddingTop="15px"
-				android:paddingLeft="15px"
-				android:textStyle="bold"
-				android:textColor="#00ff00" />	
-			<TextView android:text="@string/the_tor_license"
-				android:layout_width="fill_parent" 
-				android:layout_height="wrap_content"
-				android:paddingLeft="15px"								
-				android:textColor="#ffffff" />	
-			<TextView android:text="@string/https_torproject_org"
-				android:layout_width="fill_parent" 
-				android:layout_height="wrap_content"
-				android:autoLink="web"
-				android:textColorLink="#ffffff"
-				android:paddingLeft="15px"		
-				android:textColor="#ffffff" />				
 			<TextView android:text="@string/third_party_software"
 				android:layout_width="fill_parent" 
 				android:layout_height="wrap_content"		
@@ -114,7 +95,23 @@
 				android:autoLink="web"
 				android:textColorLink="#ffffff"
 				android:paddingLeft="15px"	
-				android:textColor="#ffffff" />						
-			</LinearLayout>
+				android:textColor="#ffffff" />
+
+			<TextView android:text="License: "
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:paddingTop="15px"
+				android:paddingLeft="15px"
+				android:textStyle="bold"
+				android:textColor="#00ff00" />
+			<TextView
+				android:id="@+id/aboutother"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:autoLink="web"
+				android:textColorLink="#ffffff"
+				android:paddingLeft="15px"
+				android:textColor="#ffffff" />
+		</LinearLayout>
 		</ScrollView>			
 </LinearLayout>

@@ -38,7 +38,6 @@ import com.runjva.sourceforge.jsocks.server.ServerAuthenticatorNone;
 
 import org.torproject.android.service.R;
 import org.torproject.android.service.TorServiceConstants;
-import org.torproject.android.service.transproxy.TorifiedApp;
 import org.torproject.android.service.util.TorServiceUtils;
 
 import java.io.BufferedReader;
@@ -46,7 +45,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.InetAddress;

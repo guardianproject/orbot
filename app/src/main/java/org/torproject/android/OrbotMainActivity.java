@@ -5,6 +5,7 @@ package org.torproject.android;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -64,6 +65,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -534,13 +536,36 @@ public class OrbotMainActivity extends AppCompatActivity
             }
             
             TextView versionName = (TextView)view.findViewById(R.id.versionName);
-            versionName.setText(version);    
+            versionName.setText(version);
+
+            TextView aboutOther = (TextView)view.findViewById(R.id.aboutother);
+
+            try
+            {
+                String aboutText = readFromAssets(this,"LICENSE");
+                aboutOther.setText(Html.fromHtml(aboutText));
+            }
+            catch (Exception e){}
             
                     new AlertDialog.Builder(this)
             .setTitle(getString(R.string.button_about))
             .setView(view)
             .show();
         }
+
+    public static String readFromAssets(Context context, String filename) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(context.getAssets().open(filename)));
+
+        // do reading, usually loop until end of file reading
+        StringBuilder sb = new StringBuilder();
+        String mLine = reader.readLine();
+        while (mLine != null) {
+            sb.append(mLine); // process line
+            mLine = reader.readLine();
+        }
+        reader.close();
+        return sb.toString();
+    }
 
 
     /**
@@ -723,8 +748,6 @@ public class OrbotMainActivity extends AppCompatActivity
         Intent intent = getIntent();
         String action = intent.getAction();
         Log.d(TAG, "handleIntents " + action);
-
-        //String type = intent.getType();
 
         if (action == null)
             return;
@@ -944,31 +967,7 @@ public class OrbotMainActivity extends AppCompatActivity
         if (request == REQUEST_SETTINGS && response == RESULT_OK)
         {
             OrbotApp.forceChangeLanguage(this);
-            if (data != null && data.getBooleanExtra("transproxywipe", false))
-            {
-                    
-                    boolean result = flushTransProxy();
-                    
-                    if (result)
-                    {
 
-                        Toast.makeText(this, R.string.transparent_proxy_rules_flushed_, Toast.LENGTH_SHORT).show();
-                         
-                    }
-                    else
-                    {
-
-                        Toast.makeText(this, R.string.you_do_not_have_root_access_enabled, Toast.LENGTH_SHORT).show();
-                         
-                    }
-                
-            }
-            else if (torStatus == TorServiceConstants.STATUS_ON)
-            {
-                updateTransProxy();
-               // Toast.makeText(this, R.string.you_may_need_to_stop_and_start_orbot_for_settings_change_to_be_enabled_, Toast.LENGTH_SHORT).show();
-
-            }
         }
         else if (request == REQUEST_VPN)
         {
@@ -1184,19 +1183,7 @@ public class OrbotMainActivity extends AppCompatActivity
         sendIntentToService(TorServiceConstants.CMD_VPN_CLEAR);
     }
 
-    private boolean flushTransProxy ()
-    {
-        sendIntentToService(TorServiceConstants.CMD_FLUSH);
-        return true;
-    }
-    
-    private boolean updateTransProxy ()
-    {
-        sendIntentToService(TorServiceConstants.CMD_UPDATE_TRANS_PROXY);
-        return true;
-    }
-
-    @Override
+       @Override
     protected void onResume() {
         super.onResume();
 

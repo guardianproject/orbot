@@ -112,7 +112,7 @@
   <string name="wizard_tips_fdroid">Find all Guardian Project apps on F-Droid</string>
   <string name="wizard_tips_fdroid_org">Find all Guardian Project apps on https://f-droid.org</string>
   <!--Transparent Proxy screen-->
-  <string name="wizard_transproxy_title">Transparent Proxying</string>
+  <string name="wizard_transproxy_title">Tunneled Apps</string>
   <string name="wizard_transproxy_msg">This allows your apps to automatically run through the Tor network without any configuration.</string>
   <string name="wizard_transproxy_hint">(Check this box if you have no idea what we are talking about)</string>
   <string name="wizard_transproxy_none">None</string>
@@ -286,14 +286,6 @@
   <string name="please_disable_this_app_in_android_settings_apps_if_you_are_having_problems_with_orbot_">"Please disable this app in Android->Settings->Apps if you are having problems with Orbot: "</string>
   <string name="app_conflict">App Conflict</string>
   
-
-  <string name="pref_transproxy_refresh_title">Transproxy Auto-Refresh</string>
-  <string name="pref_transproxy_refresh_summary">Re-apply Transproxy rules when the network state changes</string>
-  
-  <string name="pref_transproxy_flush_title">Transproxy FORCE REMOVE</string>
-  <string name="pref_transproxy_flush_summary">Tap here to flush all transproxy network rules NOW</string>
-  <string name="transparent_proxy_rules_flushed_">Transparent proxy rules flushed!</string>
-  <string name="you_do_not_have_root_access_enabled">You do not have ROOT access enabled</string>
   <string name="you_may_need_to_stop_and_start_orbot_for_settings_change_to_be_enabled_">You may need to stop and start Orbot for settings change to be enabled.</string>
   
   <string name="menu_vpn">VPN</string>

@@ -1,4 +1,4 @@
-package org.torproject.android.service.transproxy;
+package org.torproject.android.service.vpn;
 
 import android.content.Context;
 import android.content.SharedPreferences;

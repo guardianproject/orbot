@@ -13,9 +13,8 @@ import java.util.StringTokenizer;
 import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.R;
 import org.torproject.android.service.util.TorServiceUtils;
-import org.torproject.android.service.transproxy.TorifiedApp;
+import org.torproject.android.service.vpn.TorifiedApp;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -23,7 +22,6 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;

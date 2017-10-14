@@ -28,8 +28,8 @@ android {
 
 dependencies {
     compile project(':jsocksAndroid')
-    compile project(':RootCommands')
     compile 'com.android.support:appcompat-v7:25.0.0'
+    compile 'com.jrummyapps:android-shell:1.0.1'
     compile fileTree(dir: 'libs', include: ['*.jar','*.so'])
     testCompile 'junit:junit:4.12'
 }

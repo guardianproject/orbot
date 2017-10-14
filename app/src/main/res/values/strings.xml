@@ -61,7 +61,7 @@
   <string name="btn_cancel">Cancel</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Some Orbot Details</string>
-  <string name="wizard_details_msg">Orbot is an open-source application that contains Tor, LibEvent and Polipo. It provides a local HTTP proxy (8118) and a SOCKS proxy (9050) into the Tor network. Orbot also has the ability, on rooted device, to send all internet traffic through Tor.</string>
+  <string name="wizard_details_msg">Orbot is an open-source application that contains Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent and Polipo. It provides a local HTTP proxy (8118) and a SOCKS proxy (9050) into the Tor network. Orbot also has the ability, on rooted device, to send all internet traffic through Tor.</string>
   <string name="wizard_permissions_root">Permission Granted</string>
   <string name="wizard_permissions_stock">Orbot Permissions</string>
   <string name="wizard_premissions_msg_root">Excellent! We\'ve detected that you have root permissions enabled for Orbot. We will use this power wisely.</string>

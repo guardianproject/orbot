@@ -9,7 +9,6 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
-import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
@@ -19,7 +18,6 @@ import android.util.Log;
 
 import org.torproject.android.OrbotApp;
 import org.torproject.android.R;
-import org.torproject.android.service.transproxy.TorTransProxy;
 import org.torproject.android.ui.AppManager;
 import org.torproject.android.service.util.TorServiceUtils;
 
@@ -30,14 +28,7 @@ public class SettingsPreferences
 		extends PreferenceActivity implements OnPreferenceClickListener {
     private static final String TAG = "SettingsPreferences";
 
-	private CheckBoxPreference prefCBTransProxy = null;
-	private CheckBoxPreference prefcBTransProxyAll = null;
-    private CheckBoxPreference prefcbTransTethering = null;
-
-	private Preference prefTransProxyFlush = null;
-	
 	private Preference prefTransProxyApps = null;
-	private CheckBoxPreference prefRequestRoot = null;
 	private ListPreference prefLocale = null;
 	
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +37,6 @@ public class SettingsPreferences
         addPreferencesFromResource(R.xml.preferences);
         getPreferenceManager().setSharedPreferencesMode(Context.MODE_MULTI_PROCESS);
         SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
-
-        prefRequestRoot = (CheckBoxPreference) findPreference("has_root");
-        prefRequestRoot.setOnPreferenceClickListener(this);
 
         prefLocale = (ListPreference) findPreference("pref_default_locale");
         prefLocale.setOnPreferenceClickListener(this);
@@ -76,38 +64,9 @@ public class SettingsPreferences
             }
         });
 
-        prefCBTransProxy = (CheckBoxPreference) findPreference("pref_transparent");
-        prefcBTransProxyAll = (CheckBoxPreference) findPreference("pref_transparent_all");
-        prefcbTransTethering = (CheckBoxPreference) findPreference("pref_transparent_tethering");
 
-        prefTransProxyFlush = (Preference) findPreference("pref_transproxy_flush");
-        prefTransProxyFlush.setOnPreferenceClickListener(new OnPreferenceClickListener() {
-
-            @Override
-            public boolean onPreferenceClick(Preference arg0) {
-
-                Intent data = new Intent();
-                data.putExtra("transproxywipe", true);
-                setResult(RESULT_OK, data);
-
-                finish();
-                return false;
-            }
-
-        });
-
-        
         prefTransProxyApps = findPreference("pref_transparent_app_list");
         prefTransProxyApps.setOnPreferenceClickListener(this);
-        prefCBTransProxy.setOnPreferenceClickListener(this);
-        prefcBTransProxyAll.setOnPreferenceClickListener(this);
-
-        prefCBTransProxy.setEnabled(prefRequestRoot.isChecked());
-        prefcBTransProxyAll.setEnabled(prefCBTransProxy.isChecked());
-        prefcbTransTethering.setEnabled(prefCBTransProxy.isChecked());
-
-        if (prefCBTransProxy.isChecked())
-        	prefTransProxyApps.setEnabled((!prefcBTransProxyAll.isChecked()));
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
         {
@@ -120,37 +79,8 @@ public class SettingsPreferences
 	public boolean onPreferenceClick(Preference preference) {
 		
 		setResult(RESULT_OK);
-		
-		if (preference == prefRequestRoot)
-		{
-			if (prefRequestRoot.isChecked())
-			{
 
-                try {
-                    TorTransProxy.testRoot();
-                    prefCBTransProxy.setEnabled(true);
 
-                }
-                catch (Exception e)
-                {
-                    Log.d(OrbotApp.TAG,"root not yet enabled");
-                }
-
-			}
-		}
-		else if (preference == prefTransProxyApps)
-		{
-			startActivity(new Intent(this, AppManager.class));
-			
-		}
-		else
-		{
-			prefcBTransProxyAll.setEnabled(prefCBTransProxy.isChecked());
-			prefTransProxyApps.setEnabled(prefCBTransProxy.isChecked() && (!prefcBTransProxyAll.isChecked()));
-			
-			
-		}
-		
 		return true;
 	}
 
