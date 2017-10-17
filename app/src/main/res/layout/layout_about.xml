@@ -82,7 +82,7 @@
 				android:textColorLink="#ffffff"
 				android:paddingLeft="15px"	
 				android:textColor="#ffffff" />	
-			<TextView android:text="@string/iptables_version"
+			<TextView android:text="@string/obfsproxy_version"
 				android:layout_width="fill_parent" 
 				android:layout_height="wrap_content"
 				android:autoLink="web"
