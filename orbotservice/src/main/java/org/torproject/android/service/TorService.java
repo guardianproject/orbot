@@ -428,6 +428,14 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     @Override
     public void onDestroy() {
 
+        try {
+            unregisterReceiver(mNetworkStateReceiver);
+        }
+        catch (IllegalArgumentException iae)
+        {
+            //not registered yet
+        }
+
         stopTor();
 
         /**
@@ -476,13 +484,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         clearNotifications();
         sendCallbackStatus(STATUS_OFF);
 
-        try {
-            unregisterReceiver(mNetworkStateReceiver);
-        }
-        catch (IllegalArgumentException iae)
-        {
-            //not registered yet
-        }
+
     }
 
     private void killAllDaemons() throws Exception {
