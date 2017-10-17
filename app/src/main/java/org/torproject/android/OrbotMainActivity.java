@@ -543,6 +543,7 @@ public class OrbotMainActivity extends AppCompatActivity
             try
             {
                 String aboutText = readFromAssets(this,"LICENSE");
+                aboutText = aboutText.replace("\n","<br/>");
                 aboutOther.setText(Html.fromHtml(aboutText));
             }
             catch (Exception e){}
@@ -747,7 +748,6 @@ public class OrbotMainActivity extends AppCompatActivity
         // Get intent, action and MIME type
         Intent intent = getIntent();
         String action = intent.getAction();
-        Log.d(TAG, "handleIntents " + action);
 
         if (action == null)
             return;
@@ -797,21 +797,6 @@ public class OrbotMainActivity extends AppCompatActivity
 
                 startTor();
 
-                //never allow backgrounds start from this type of intent start
-                //app devs who want background starts, can use the service intents
-                /**
-                 if (Prefs.allowBackgroundStarts())
-                 {
-                 Intent resultIntent;
-                 if (lastStatusIntent == null) {
-                 resultIntent = new Intent(intent);
-                 } else {
-                 resultIntent = lastStatusIntent;
-                 }
-                 resultIntent.putExtra(TorServiceConstants.EXTRA_STATUS, torStatus);
-                 setResult(RESULT_OK, resultIntent);
-                 finish();
-                 }*/
 
                 break;
             case Intent.ACTION_VIEW:
