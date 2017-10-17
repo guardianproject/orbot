@@ -92,7 +92,6 @@ endif
 	assets assets-clean \
 	openssl-static openssl-static-clean \
 	libevent libevent-clean \
-	iptables iptables-clean \
 	tor tor-clean \
 	polipo polipo-clean
 
@@ -185,42 +184,6 @@ libevent-clean:
 		git clean -fdx
 
 #------------------------------------------------------------------------------#
-# iptables
-
-iptables/Makefile:
-	cp iptables-patch-1 iptables
-	cp iptables-patch-2 iptables
-	cp iptables-patch-3 iptables
-	cp iptables-patch-4 iptables
-	-cd iptables && \
-	 	patch -N -p1 --reject-file=- < iptables-patch-1
-	-cd iptables && \
-	 	patch -N -p1 --reject-file=- < iptables-patch-2
-	-cd iptables && \
-	 	patch -N -p1 --reject-file=- < iptables-patch-3
-	-cd iptables && \
-	 	patch -N -p0 --reject-file=- < iptables-patch-4
-	cd iptables && ./autogen.sh
-	cp config.sub iptables
-	cp config.guess iptables
-	cd iptables && \
-		CC="$(CC)" AR="$(AR)" RANLIB=$(RANLIB) CFLAGS="$(CFLAGS) -I$(EXTERNAL_ROOT)/include" LDFLAGS="$(LDFLAGS)" \
-			./configure --host=$(HOST) --disable-shared --enable-static 
-
-iptables-build-stamp: iptables/Makefile
-	$(MAKE) -C iptables 
-	touch iptables-build-stamp
-	cp iptables/iptables/xtables-multi bin/xtables
-
-iptables: iptables-build-stamp
-
-iptables-clean:
-	-rm -f iptables-build-stamp
-	-rm bin/xtables
-	-cd iptables && \
-		git clean -fdx
-
-#------------------------------------------------------------------------------#
 # tor
 
 tor/configure: 
@@ -302,14 +265,12 @@ pluto-clean:
 #in order to stop Android OS (older devices) from trying to compress/decompress it
 #this is related to a bug in compression of assets and resources > 1MB
 
-assets: tor polipo iptables pluto
+assets: tor polipo pluto
 	install -d ../orbotservice/src/main/assets/$(APP_ABI)
 	-$(STRIP) bin/polipo
 	-zip ../orbotservice/src/main/assets/$(APP_ABI)/polipo.mp3 bin/polipo
 	-$(STRIP) bin/tor
 	-zip ../orbotservice/src/main/assets/$(APP_ABI)/tor.mp3 bin/tor
-	-$(STRIP) bin/xtables
-	-zip ../orbotservice/src/main/assets/$(APP_ABI)/xtables.mp3 bin/xtables
 	-$(STRIP) bin/obfs4proxy
 	-zip ../orbotservice/src/main/assets/$(APP_ABI)/obfs4proxy.mp3 bin/obfs4proxy
 	-$(STRIP) ../orbotservice/src/main/libs/$(APP_ABI)/pdnsd
@@ -319,7 +280,6 @@ assets: tor polipo iptables pluto
 assets-clean:
 	-rm ../orbotservice/src/main/assets/$(APP_ABI)/polipo.mp3
 	-rm ../orbotservice/src/main/assets/$(APP_ABI)/tor.mp3
-	-rm ../orbotservice/src/main/assets/$(APP_ABI)/xtables.mp3
 	-rm ../orbotservice/src/main/assets/$(APP_ABI)/obfs4proxy.mp3
 	-rm ../orbotservice/src/main/assets/$(APP_ABI)/pdnsd.mp3
 
@@ -328,7 +288,7 @@ assets-clean:
 # cleanup, cleanup, put the toys away
 
 ##clean: openssl-clean libevent-clean tor-clean polipo-clean assets-clean
-clean: openssl-clean libevent-clean tor-clean polipo-clean iptables-clean pluto-clean
+clean: openssl-clean libevent-clean tor-clean polipo-clean pluto-clean
 
 #------------------------------------------------------------------------------#
 # debugging stuff
