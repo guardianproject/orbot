@@ -26,20 +26,15 @@ android {
             applicationId 'org.torproject.android'
             targetSdkVersion 23
             maxSdkVersion 23
-            versionCode 15420000
-            versionName '15.4.2-RC-1-multi-SDK16'
+            versionCode 15430000
+            versionName '15.4.3-RC-1-multi-SDK16'
         }
         fullperm {
             minSdkVersion 23
             applicationId 'org.torproject.android'
             targetSdkVersion 25
-            versionCode 15420001
-            versionName '15.4.2-RC-1-multi-SDK23'
-        }
-        orbotgo {
-            minSdkVersion 16
-            applicationId 'org.torproject.android.go'
-            targetSdkVersion 25
+            versionCode 15430001
+            versionName '15.4.3-RC-1-multi-SDK23'
         }
     }
 }
