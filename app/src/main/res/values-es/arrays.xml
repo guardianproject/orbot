@@ -4,8 +4,7 @@
 
 	<string-array name="bridge_options">
 	    <item>Obfs4 (Preferido)</item>
-	    <item>Túnel a través de Azure</item>
-	    <item>Túnel a través de Amazon</item>
+	    <item>Túnel a través de Azure y Amazon</item>
 	    <item>Obtener nuevos puentes</item>
 	    <item></item>
 	</string-array>

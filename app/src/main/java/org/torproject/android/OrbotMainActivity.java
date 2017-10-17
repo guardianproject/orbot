@@ -1040,12 +1040,7 @@ public class OrbotMainActivity extends AppCompatActivity
             		   enableBridges(true);
 
             		   break;
-            	   case 1: //azure
-            		   Prefs.setBridgesList("meek");
-            		   enableBridges(true);
-            		   
-            		   break;
-            	   case 2: //amazon
+            	   case 2: //amazon & azure
                        Prefs.setBridgesList("meek");
             		   enableBridges(true);
             		   
