@@ -26,22 +26,22 @@ android {
             applicationId 'org.torproject.android'
             targetSdkVersion 23
             maxSdkVersion 23
-            versionCode 15430000
-            versionName '15.4.3-RC-1-multi-SDK16'
+            versionCode 15440000
+            versionName '15.4.4-BETA-1-multi-SDK16'
         }
         fullperm {
             minSdkVersion 23
             applicationId 'org.torproject.android'
             targetSdkVersion 25
-            versionCode 15430001
-            versionName '15.4.3-RC-1-multi-SDK23'
+            versionCode 15440001
+            versionName '15.4.3-BETA-1-multi-SDK23'
         }
     }
 }
 
 dependencies {
     compile project(':orbotservice')
-    compile 'com.android.support:support-v4:25.0.0'
-    compile 'com.android.support:appcompat-v7:25.0.0'
-    compile 'com.android.support:design:25.0.0'
+    compile 'com.android.support:support-v4:25.3.1'
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:design:25.3.1'
 }
