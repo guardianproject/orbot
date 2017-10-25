@@ -36,7 +36,8 @@
 		 android:orientation="vertical"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+		android:weightSum="1">
 		       <org.torproject.android.ui.ImageProgressView
 				android:id="@+id/imgStatus"
 				android:layout_width="match_parent"
@@ -48,33 +49,6 @@
 
 
 
-		<LinearLayout android:gravity="center_horizontal"
-			android:orientation="horizontal" android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-
-			>
-			<Button
-				android:layout_width="wrap_content"
-				android:layout_height="40dp"
-				android:text="@string/menu_start"
-                android:id="@+id/btnStart"
-				android:background="@drawable/rounded_button"
-
-                />
-
-
-			<Button
-			    android:id="@+id/btnBrowser"
-			    android:layout_width="wrap_content"
-				android:layout_height="40dp"
-			    android:text="@string/menu_browse"
-          		 android:ellipsize="end"
-          android:singleLine="true"
-				android:background="@drawable/rounded_button"
-				android:layout_marginLeft="10dp"
-				/>
-			</LinearLayout>
-
     </LinearLayout>
 
 
@@ -84,16 +58,61 @@
 		android:layout_height="wrap_content"
 		android:textSize="14sp"
 		android:fontFamily="sans-serif-light"
-		android:text=""
+		android:text="asdasd"
 		android:lines="1"
 		android:maxLines="1"
 		android:layout_margin="12dp"
-		android:layout_alignParentBottom="true"
+		android:layout_above="@+id/button_row"
 		android:gravity="center"
 		android:ellipsize="end"
 		/>
 
-	    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/button_row"
+        android:gravity="center_horizontal|bottom"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="6dp"
+        android:layout_height="wrap_content"
+
+        >
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="@string/menu_start"
+            android:id="@+id/btnStart"
+            android:background="@drawable/rounded_button"
+
+            />
+
+
+        <Button
+            android:id="@+id/btnBrowser"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="@string/menu_browse"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:background="@drawable/rounded_button"
+            android:layout_marginLeft="10dp"
+            />
+        <Button
+            android:id="@+id/btnApps"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="@string/menu_apps"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:background="@drawable/rounded_button"
+            android:layout_marginLeft="10dp"
+            />
+    </LinearLayout>
+
+
+</RelativeLayout>
 
 
         <LinearLayout

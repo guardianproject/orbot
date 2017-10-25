@@ -355,6 +355,12 @@ public class OrbotMainActivity extends AppCompatActivity
             });
 
 
+            findViewById(R.id.btnApps).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    enableVPN(true);
+                }
+            });
 		}
 		
 		

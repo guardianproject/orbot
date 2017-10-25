@@ -21,7 +21,7 @@
   <string name="menu_settings">Settings</string>
   <string name="menu_log">Log</string>
   <string name="menu_info">Help</string>
-  <string name="menu_apps">VPN</string>
+  <string name="menu_apps">Apps...</string>
   <string name="menu_start">Start</string>
   <string name="menu_stop">Stop</string>
   <string name="menu_about">About</string>
