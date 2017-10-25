@@ -3,14 +3,6 @@
     package="org.torproject.android"
     android:installLocation="auto">
 
-    <!--
- <permission android:name="org.torproject.android.MANAGE_TOR" 
-     android:label="@string/permission_manage_tor_label" 
-     android:description="@string/permission_manage_tor_description" 
-     android:protectionLevel="signature"/>
- 
-	<uses-permission android:name="org.torproject.android.MANAGE_TOR"/>
-    -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
