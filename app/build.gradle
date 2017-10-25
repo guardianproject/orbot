@@ -26,15 +26,15 @@ android {
             applicationId 'org.torproject.android'
             targetSdkVersion 23
             maxSdkVersion 23
-            versionCode 15440000
-            versionName '15.4.4-BETA-1-multi-SDK16'
+            versionCode 15440002
+            versionName '15.4.4-BETA-2-multi-SDK16'
         }
         fullperm {
             minSdkVersion 23
             applicationId 'org.torproject.android'
             targetSdkVersion 25
-            versionCode 15440001
-            versionName '15.4.3-BETA-1-multi-SDK23'
+            versionCode 15440003
+            versionName '15.4.3-BETA-2-multi-SDK23'
         }
     }
 }
