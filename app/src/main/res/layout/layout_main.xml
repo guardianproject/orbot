@@ -58,7 +58,7 @@
 		android:layout_height="wrap_content"
 		android:textSize="14sp"
 		android:fontFamily="sans-serif-light"
-		android:text="asdasd"
+		android:text=""
 		android:lines="1"
 		android:maxLines="1"
 		android:layout_margin="12dp"
