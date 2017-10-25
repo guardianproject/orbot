@@ -675,13 +675,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     	
     	if (Prefs.useVpn())
     		extraLines.append("DNSListenAddress 0.0.0.0").append('\n');
-    	
-        if (Prefs.transparentTethering())
-        {
-            extraLines.append("TransListenAddress 0.0.0.0").append('\n');
-            extraLines.append("DNSListenAddress 0.0.0.0").append('\n');            
-        }
-       
+
         extraLines.append("VirtualAddrNetwork 10.192.0.0/10").append('\n');
         extraLines.append("AutomapHostsOnResolve 1").append('\n');
 
@@ -866,26 +860,32 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 + " -f " + torrcPath + ".custom";
     
         debug(torCmdString);
-        
-        int exitCode = exec(torCmdString + " --verify-config", true);
 
-        String output = "";
-       // String output = shellTorCommand.getOutput();
-        
-        if (exitCode != 0)
+
+        int exitCode = -1;
+
+        try {
+            exitCode = exec(torCmdString + " --verify-config", true);
+        }
+        catch (Exception e)
         {
-            logNotice("Tor (" + exitCode + "): " + output);
-            throw new Exception ("Torrc config did not verify");
-            
+            logNotice("Tor configuration did not verify: " + e.getMessage());
+            return false;
         }
 
-        exitCode = exec(torCmdString, true);
-        output = "";// shellTorCommand.getOutput();
-        
+
+        try {
+            exitCode = exec(torCmdString, true);
+        }
+        catch (Exception e)
+        {
+            logNotice("Tor was unable to start: " + e.getMessage());
+            return false;
+        }
+
         if (exitCode != 0)
         {
-            logNotice("Tor (" + exitCode + "): " + output);
-            //throw new Exception ("unable to start");
+            logNotice("Tor did not start. Exit:" + exitCode);
             return false;
         }
         
@@ -918,8 +918,11 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     private int exec (String cmd, boolean wait) throws Exception
     {
         CommandResult shellResult = Shell.run(cmd);
-        shellResult.isSuccessful();
         debug("CMD: " + cmd + "; SUCCESS=" + shellResult.isSuccessful());
+
+        if (!shellResult.isSuccessful()) {
+            throw new Exception("Error: " + shellResult.exitCode + " ERR=" + shellResult.getStderr() + " OUT=" + shellResult.getStdout());
+        }
 
         /**
         SimpleCommand command = new SimpleCommand(cmd);
