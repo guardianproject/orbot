@@ -28,7 +28,6 @@ public class SettingsPreferences
 		extends PreferenceActivity implements OnPreferenceClickListener {
     private static final String TAG = "SettingsPreferences";
 
-	private Preference prefTransProxyApps = null;
 	private ListPreference prefLocale = null;
 	
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,14 +64,6 @@ public class SettingsPreferences
         });
 
 
-        prefTransProxyApps = findPreference("pref_transparent_app_list");
-        prefTransProxyApps.setOnPreferenceClickListener(this);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-        {
-       	 	prefTransProxyApps.setEnabled(true);
-        }
-        
         
     }
 
