@@ -1,5 +1,37 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+/** v15.4.4 / 28 Oct 2017 / 032321656999543ab160f9739ca175d790bbd974 **/
+
+0323216 update to 15.4.4-BETA-2-multi-SDK16
+e1ba02a improve the layout!
+a685bf1 remove unsupported preferences
+0910374 clean up variables and improve how tor process is launched
+d24aab8 update to Tor 0.3.1.8-openssl1.0.2k
+165e95a update layout to present "Apps..." option on the main screen
+dc7aee1 update tor to 0.3.1.8
+440290e show warning about removal of transproxy support - also make app selection more streamlining
+9140ba6 we no longer ship xtables, so don't try to install it
+f09508d remove unused permission
+e6003f6 update tor constants to 0.3.1.7-openssl1.0.2k
+d86ace6 update version to 15.4.4-BETA-1 update gradle depends
+90975fb update Makefile for tor compression options
+25425a6 remove xtables and iptables (no more root support)
+b0b6b68 tor-0.3.1.7 update
+dceea11 update version 15430000 aka 15.4.3-RC-1-multi-SDK16
+b98a0ff simplify bridge selection screen
+1e2074c update main activity to clean up intents
+a5015dc update about layout to show obfs4proxy
+b322e53 make sure receiver unregisters when destroyed
+2bd5614 update to latest meek amazon bridge: https://trac.torproject.org/projects/tor/ticket/21918
+01176b1 big refactor for multiple reasons - implement LICENSE display in About dialog - remove root transproxy features - general crufty stuff cleanup
+70693bf update to 4.9 NDK biuld
+c4867ba update Makefile to target NDK 4.9
+6ca89b3 remove old manifest
+cc3c451 update license for better Obfs4proxy display
+632824b remove RootCommands library as we don't need it now
+d190f3a add license asset for display in the app
+ebc362c add copyright notice from Obfs4 in the LICENSE file
+5b255df update target SDK to 23 so we don't have perm downgrade issues
 
 /** v15.4.2 / 9 June 2017 / e18a7937d271d7482d5eaac9900e1c06b4b48b89 **/
 
