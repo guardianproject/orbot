@@ -852,10 +852,6 @@ public class OrbotMainActivity extends AppCompatActivity
 			//use the system browser since VPN is on
 			startIntent(null,Intent.ACTION_VIEW, Uri.parse(browserLaunchUrl));
 		}
-		else if (Prefs.useTransparentProxying())
-		{
-			startIntent(null,Intent.ACTION_VIEW, Uri.parse(browserLaunchUrl));
-		}
 		else
 		{
 			AlertDialog aDialog = new AlertDialog.Builder(OrbotMainActivity.this)
@@ -1172,6 +1168,13 @@ public class OrbotMainActivity extends AppCompatActivity
 		requestTorStatus();
 
 		updateStatus(null);
+
+       if (Prefs.useTransparentProxying())
+       {
+           showAlert(getString(R.string.no_transproxy_warning_short),getString(R.string.no_transproxy_warning),true);
+           Prefs.disableTransparentProxying();
+       }
+
 		
     }
 

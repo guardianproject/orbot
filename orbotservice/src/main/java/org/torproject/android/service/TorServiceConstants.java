@@ -142,9 +142,6 @@ public interface TorServiceConstants {
     public static final String OBFSCLIENT_ASSET_KEY = "obfs4proxy";
     
    // public static final String MEEK_ASSET_KEY = "meek-client";
-    
-	//name of the iptables binary
-	public final static String IPTABLES_ASSET_KEY = "xtables";	
 
 	//DNS daemon for TCP DNS over TOr
 	public final static String PDNSD_ASSET_KEY = "pdnsd";

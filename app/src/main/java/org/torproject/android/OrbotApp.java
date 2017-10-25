@@ -1,21 +1,32 @@
 
 package org.torproject.android;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Application;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.net.VpnService;
 import android.os.Build;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+import android.widget.RemoteViews;
 
 import org.torproject.android.service.OrbotConstants;
+import org.torproject.android.service.TorEventHandler;
+import org.torproject.android.service.TorService;
 import org.torproject.android.service.util.Prefs;
 
 import org.torproject.android.settings.Languages;
 
 import java.util.Locale;
+import java.util.Set;
 
 public class OrbotApp extends Application implements OrbotConstants
 {
@@ -30,6 +41,7 @@ public class OrbotApp extends Application implements OrbotConstants
         Languages.setup(OrbotMainActivity.class, R.string.menu_settings);
         Languages.setLanguage(this, Prefs.getDefaultLocale(), true);
 
+        checkTransparentProxyingLegacy();
     }
 
     @Override
@@ -53,4 +65,47 @@ public class OrbotApp extends Application implements OrbotConstants
     public static Languages getLanguages(Activity activity) {
         return Languages.get(activity);
     }
+
+    private void checkTransparentProxyingLegacy ()
+    {
+        if (Prefs.useTransparentProxying())
+        {
+            showToolbarNotification(getString(R.string.no_transproxy_warning_short),getString(R.string.no_transproxy_warning), 9999, org.torproject.android.service.R.drawable.ic_stat_notifyerr);
+
+        }
+    }
+
+    @SuppressLint("NewApi")
+    protected void showToolbarNotification (String shortMsg, String notifyMsg, int notifyId, int icon)
+    {
+
+        NotificationCompat.Builder notifyBuilder;
+
+        //Reusable code.
+        PackageManager pm = getPackageManager();
+        Intent intent = pm.getLaunchIntentForPackage(getPackageName());
+        PendingIntent pendIntent = PendingIntent.getActivity(this, 0, intent, 0);
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        notifyBuilder = new NotificationCompat.Builder(this)
+                .setContentTitle(getString(org.torproject.android.service.R.string.app_name));
+
+
+        notifyBuilder.setContentIntent(pendIntent);
+
+        notifyBuilder.setContentText(shortMsg);
+        notifyBuilder.setSmallIcon(icon);
+        notifyBuilder.setTicker(notifyMsg);
+
+        notifyBuilder.setOngoing(false);
+
+        notifyBuilder.setStyle(new NotificationCompat.BigTextStyle()
+                .bigText(notifyMsg).setBigContentTitle(getString(org.torproject.android.service.R.string.app_name)));
+
+        Notification notification = notifyBuilder.build();
+
+        notificationManager.notify(notifyId, notification);
+            }
+
 }
