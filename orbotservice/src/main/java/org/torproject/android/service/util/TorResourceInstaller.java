@@ -101,11 +101,6 @@ public class TorResourceInstaller implements TorServiceConstants {
         streamToFile(is,outFile, false, true);
         setExecutable(outFile);
     
-        is = context.getAssets().open(cpuPath + '/' + IPTABLES_ASSET_KEY + MP3_EXT);
-        outFile = new File(installFolder, IPTABLES_ASSET_KEY);
-        streamToFile(is,outFile, false, true);
-        setExecutable(outFile);
-        
         is = context.getAssets().open(cpuPath + '/' + PDNSD_ASSET_KEY + MP3_EXT);
         outFile = new File(installFolder, PDNSD_ASSET_KEY);
         streamToFile(is,outFile, false, true);
