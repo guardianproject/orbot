@@ -4,21 +4,16 @@
 package org.torproject.android.settings;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
-import android.util.Log;
 
 import org.torproject.android.OrbotApp;
 import org.torproject.android.R;
-import org.torproject.android.ui.AppManager;
 import org.torproject.android.service.util.TorServiceUtils;
 
 import java.util.Locale;

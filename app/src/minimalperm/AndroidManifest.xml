@@ -76,7 +76,7 @@
             android:name=".settings.SettingsPreferences"
             android:label="@string/app_name" />
         <activity
-            android:name=".ui.AppManager"
+            android:name=".ui.AppManagerActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.AppCompat" />
 

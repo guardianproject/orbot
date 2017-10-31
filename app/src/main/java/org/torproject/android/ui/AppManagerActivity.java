@@ -6,6 +6,7 @@ package org.torproject.android.ui;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -15,38 +16,35 @@ import org.torproject.android.R;
 import org.torproject.android.service.util.TorServiceUtils;
 import org.torproject.android.service.vpn.TorifiedApp;
 
-import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
-public class AppManager extends AppCompatActivity implements OnCheckedChangeListener, OnClickListener, OrbotConstants {
+public class AppManagerActivity extends AppCompatActivity implements OnCheckedChangeListener, OnClickListener, OrbotConstants {
 
     private GridView listApps;
+    private ListAdapter adapterApps;
     private final static String TAG = "Orbot";
     PackageManager pMgr = null;
 
@@ -61,83 +59,43 @@ public class AppManager extends AppCompatActivity implements OnCheckedChangeList
 
     }
 
-    /**
-     class OnAutoClickListener implements Button.OnClickListener {
-     private int status;
-     public OnAutoClickListener(int status){
-     this.status = status;
-     }
-     @SuppressWarnings("unchecked")
-     public void onClick(View button){
-     GridView listView;
-     ViewGroup viewGroup;
-     View parentView, currentView;
-     ArrayAdapter<TorifiedApp> adapter;
-     TorifiedApp app;
-     CheckBox box;
-     float buttonId;
-     boolean[] isSelected;
-     int posI, selectedI, lvSz;
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home)
+        {
+            finish();
+            return true;
+        }
 
-     buttonId = button.getId();
-     listView = (GridView) findViewById(R.id.applistview);
-     lvSz = listView.getCount();
-     isSelected = new boolean[lvSz];
-
-     selectedI = -1;
-
-     if (this.status == 0){
-     Log.d(TAG, "Proxifying ALL");
-     }else if (this.status == 1){
-     Log.d(TAG, "Proxifying NONE");
-     }else {
-     Log.d(TAG, "Proxifying invert");
-     }
-
-     Context context = getApplicationContext();
-     SharedPreferences prefs = TorServiceUtils.getSharedPrefs(context);
-     ArrayList<TorifiedApp> apps = getApps(context, prefs);
-     parentView = (View) findViewById(R.id.applistview);
-     viewGroup = (ViewGroup) listView;
-
-     adapter = (ArrayAdapter<TorifiedApp>) listApps.getAdapter();
-     if (adapter == null){
-     Log.w(TAG, "List adapter is null. Getting apps.");
-     loadApps(prefs);
-     adapter = (ArrayAdapter<TorifiedApp>) listApps.getAdapter();
-     }
-
-     for (int i = 0 ; i < adapter.getCount(); ++i){
-     app = (TorifiedApp) adapter.getItem(i);
-     currentView = adapter.getView(i, parentView, viewGroup);
-     box = (CheckBox) currentView.findViewById(R.id.itemcheck);
-
-     if (this.status == 0){
-     app.setTorified(true);
-     }else if (this.status == 1){
-     app.setTorified(false);
-     }else {
-     app.setTorified(!app.isTorified());
-     }
-
-     if (box != null)
-     box.setChecked(app.isTorified());
-
-     }
-     saveAppSettings(context);
-     loadApps(prefs);
-     }
-     }**/
-
-
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     protected void onResume() {
         super.onResume();
-        listApps = (GridView)findViewById(R.id.applistview);
-
+        listApps = (GridView) findViewById(R.id.applistview);
         mPrefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
-        loadApps(mPrefs);
+
+
+        new AsyncTask<Void, Void, Void>() {
+            private ProgressDialog dialog;
+
+            protected void onPreExecute() {
+                // Pre Code
+                dialog = new ProgressDialog(AppManagerActivity.this);
+                dialog.show();
+            }
+            protected Void doInBackground(Void... unused) {
+                loadApps(mPrefs);
+                return null;
+            }
+            protected void onPostExecute(Void unused) {
+                listApps.setAdapter(adapterApps);
+                dialog.cancel();
+            }
+        }.execute();
+
+
     }
 
     SharedPreferences mPrefs = null;
@@ -147,19 +105,17 @@ public class AppManager extends AppCompatActivity implements OnCheckedChangeList
     {
 
         mApps = getApps(getApplicationContext(), prefs);
-
-        /*
-        Arrays.sort(apps, new Comparator<TorifiedApp>() {
+        Collections.sort(mApps,new Comparator<TorifiedApp>() {
             public int compare(TorifiedApp o1, TorifiedApp o2) {
                 if (o1.isTorified() == o2.isTorified()) return o1.getName().compareTo(o2.getName());
                 if (o1.isTorified()) return -1;
                 return 1;
             }
-        });*/
+        });
 
         final LayoutInflater inflater = getLayoutInflater();
 
-        ListAdapter adapter = new ArrayAdapter<TorifiedApp>(this, R.layout.layout_apps_item, R.id.itemtext,mApps) {
+        adapterApps = new ArrayAdapter<TorifiedApp>(this, R.layout.layout_apps_item, R.id.itemtext,mApps) {
 
             public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -189,7 +145,7 @@ public class AppManager extends AppCompatActivity implements OnCheckedChangeList
 
                     try {
                         entry.icon.setImageDrawable(pMgr.getApplicationIcon(app.getPackageName()));
-                        entry.icon.setOnClickListener(AppManager.this);
+                        entry.icon.setOnClickListener(AppManagerActivity.this);
 
                         if (entry.box != null)
                             entry.icon.setTag(entry.box);
@@ -202,7 +158,7 @@ public class AppManager extends AppCompatActivity implements OnCheckedChangeList
 
                 if (entry.text != null) {
                     entry.text.setText(app.getName());
-                    entry.text.setOnClickListener(AppManager.this);
+                    entry.text.setOnClickListener(AppManagerActivity.this);
 
                     if (entry.box != null)
                         entry.text.setTag(entry.box);
@@ -210,7 +166,7 @@ public class AppManager extends AppCompatActivity implements OnCheckedChangeList
 
 
                 if (entry.box != null) {
-                    entry.box.setOnCheckedChangeListener(AppManager.this);
+                    entry.box.setOnCheckedChangeListener(AppManagerActivity.this);
                     entry.box.setTag(app);
                     entry.box.setChecked(app.isTorified());
 
@@ -220,7 +176,6 @@ public class AppManager extends AppCompatActivity implements OnCheckedChangeList
             }
         };
 
-        listApps.setAdapter(adapter);
 
     }
 

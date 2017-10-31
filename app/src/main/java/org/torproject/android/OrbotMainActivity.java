@@ -12,9 +12,7 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Locale;
-import java.util.Random;
 import java.util.StringTokenizer;
 
 import org.json.JSONArray;
@@ -24,7 +22,7 @@ import org.torproject.android.service.TorService;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.TorServiceUtils;
 import org.torproject.android.settings.SettingsPreferences;
-import org.torproject.android.ui.AppManager;
+import org.torproject.android.ui.AppManagerActivity;
 import org.torproject.android.ui.ImageProgressView;
 import org.torproject.android.ui.PromoAppsActivity;
 import org.torproject.android.ui.Rotate3dAnimation;
@@ -617,7 +615,7 @@ public class OrbotMainActivity extends AppCompatActivity
 
         if (enable) {
             if (PermissionManager.isLollipopOrHigher()) //let the user choose the apps
-                startActivityForResult(new Intent(OrbotMainActivity.this, AppManager.class), REQUEST_VPN_APPS_SELECT);
+                startActivityForResult(new Intent(OrbotMainActivity.this, AppManagerActivity.class), REQUEST_VPN_APPS_SELECT);
             else
                 startActivity(new Intent(OrbotMainActivity.this, VPNEnableActivity.class));
         } else
