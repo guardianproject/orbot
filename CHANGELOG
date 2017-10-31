@@ -1,5 +1,19 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+/** v15.5.1 / 31 Oct 2017 / 2c99e9efa4aa253e4d63ee786759efdbeaf9b78f **/
+
+2c99e9e update version to 15.5.1-RC-1 (1551000*)
+c53204f only refresh VPN settings if app selection changes
+5b9eedb update VPN app manager to load async, and sort selected to top
+1c7eedd add "no transproxy" warning strings bac kin
+19e927e Merge pull request #91 from ahf/simpleperf-work
+54688e2 Merge pull request #87 from Akku05/patch-1
+14367e0 Merge pull request #76 from dixidroid/master
+8bbf0ba Merge branch 'isolateDest' of https://github.com/SpotComms/orbot into SpotComms-isolateDest
+750a282 update to latest build tools and gradle - add new flavordimension tag
+d591cdb Don't strip binaries when doing a debug build.
+87edea9 Disable Zstandard for now.
+
 /** v15.4.4 / 28 Oct 2017 / 032321656999543ab160f9739ca175d790bbd974 **/
 
 0323216 update to 15.4.4-BETA-2-multi-SDK16
