@@ -11,6 +11,11 @@ export ac_cv_func_setpgrp_void=yes
 
 EXTERNAL_ROOT := $(shell pwd)
 
+DEBUG ?= 0
+
+# No-op command.
+NOOP = true
+
 # Android now has 64-bit and 32-bit versions of the NDK for GNU/Linux.  We
 # assume that the build platform uses the appropriate version, otherwise the
 # user building this will have to manually set NDK_PROCESSOR or NDK_TOOLCHAIN.
@@ -71,8 +76,12 @@ CPP := $(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-cpp --sysroot=$(NDK_SYSROOT)
 LD := $(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-ld
 AR := $(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-ar
 RANLIB := $(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-ranlib
-STRIP := $(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-strip \
-	--strip-unneeded -R .note -R .comment --strip-debug
+
+ifeq ($(DEBUG), 1)
+	STRIP := $(NOOP)
+else
+	STRIP := $(NDK_TOOLCHAIN_BASE)/bin/$(HOST)-strip --strip-unneeded -R .note -R .comment --strip-debug
+endif
 
 
 CFLAGS = -DANDROID $(TARGET_CFLAGS) $(PIEFLAGS)
@@ -208,7 +217,7 @@ tor/Makefile: tor/configure
 				--enable-static-libevent --with-libevent-dir=$(EXTERNAL_ROOT) \
 				--enable-static-openssl --with-openssl-dir=$(EXTERNAL_ROOT) \
 				--disable-linker-hardening --disable-gcc-hardening --disable-tool-name-check \
-				--disable-lzma --enable-zstd
+				--disable-lzma --disable-zstd
 
 tor-build-stamp: tor/Makefile
 	$(MAKE) -C tor all-am
