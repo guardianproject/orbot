@@ -609,6 +609,12 @@ public class OrbotMainActivity extends AppCompatActivity
 
 	}
 
+	private void refreshVPNApps ()
+    {
+        stopVpnService();
+        startActivity(new Intent(OrbotMainActivity.this, VPNEnableActivity.class));
+    }
+
     private void enableVPN (boolean enable)
     {
         Prefs.putUseVpn(enable);
@@ -798,9 +804,7 @@ public class OrbotMainActivity extends AppCompatActivity
 
             case INTENT_ACTION_REQUEST_START_TOR:
                 autoStartFromIntent = true;
-
                 startTor();
-
 
                 break;
             case Intent.ACTION_VIEW:
@@ -967,7 +971,9 @@ public class OrbotMainActivity extends AppCompatActivity
         }
         else if (request == REQUEST_VPN_APPS_SELECT)
         {
-                startActivity(new Intent(OrbotMainActivity.this, VPNEnableActivity.class));
+            if (response == RESULT_OK)
+                refreshVPNApps();
+
         }
         
         IntentResult scanResult = IntentIntegrator.parseActivityResult(request, response, data);

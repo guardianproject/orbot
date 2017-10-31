@@ -114,7 +114,6 @@ public class OrbotVpnManager implements Handler.Callback {
 			    	
 		        	if (!mIsLollipop)
 		        	{
-	
 		        		startSocksBypass();
 		        	}
 		        	

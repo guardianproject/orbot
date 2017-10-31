@@ -5,12 +5,6 @@ import android.app.Service;
 import android.content.Intent;
 import android.net.VpnService;
 import android.os.Build;
-import android.text.TextUtils;
-import android.util.Log;
-
-import org.torproject.android.service.OrbotConstants;
-import org.torproject.android.service.TorServiceConstants;
-import org.torproject.android.service.util.Prefs;
 
 /**
  * Created by n8fr8 on 9/26/16.

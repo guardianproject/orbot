@@ -18,6 +18,7 @@ import org.torproject.android.service.vpn.TorifiedApp;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.ApplicationInfo;
@@ -41,7 +42,7 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
-public class AppManagerActivity extends AppCompatActivity implements OnCheckedChangeListener, OnClickListener, OrbotConstants {
+public class AppManagerActivity extends AppCompatActivity implements OnClickListener, OrbotConstants {
 
     private GridView listApps;
     private ListAdapter adapterApps;
@@ -132,8 +133,6 @@ public class AppManagerActivity extends AppCompatActivity implements OnCheckedCh
                     entry.icon = (ImageView) convertView.findViewById(R.id.itemicon);
                     entry.box = (CheckBox) convertView.findViewById(R.id.itemcheck);
                     entry.text = (TextView) convertView.findViewById(R.id.itemtext);
-
-
                     convertView.setTag(entry);
 
 
@@ -146,9 +145,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnCheckedCh
                     try {
                         entry.icon.setImageDrawable(pMgr.getApplicationIcon(app.getPackageName()));
                         entry.icon.setOnClickListener(AppManagerActivity.this);
-
-                        if (entry.box != null)
-                            entry.icon.setTag(entry.box);
+                        entry.icon.setTag(entry.box);
                     }
                     catch (Exception e)
                     {
@@ -159,17 +156,12 @@ public class AppManagerActivity extends AppCompatActivity implements OnCheckedCh
                 if (entry.text != null) {
                     entry.text.setText(app.getName());
                     entry.text.setOnClickListener(AppManagerActivity.this);
-
-                    if (entry.box != null)
-                        entry.text.setTag(entry.box);
+                    entry.text.setTag(entry.box);
                 }
 
-
                 if (entry.box != null) {
-                    entry.box.setOnCheckedChangeListener(AppManagerActivity.this);
-                    entry.box.setTag(app);
+                    entry.box.setOnClickListener(AppManagerActivity.this);
                     entry.box.setChecked(app.isTorified());
-
                 }
 
                 return convertView;
@@ -307,6 +299,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnCheckedCh
     {
 
         StringBuilder tordApps = new StringBuilder();
+        Intent response = new Intent();
 
         for (TorifiedApp tApp:mApps)
         {
@@ -314,6 +307,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnCheckedCh
             {
                 tordApps.append(tApp.getUsername());
                 tordApps.append("|");
+                response.putExtra(tApp.getUsername(),true);
             }
         }
 
@@ -321,12 +315,14 @@ public class AppManagerActivity extends AppCompatActivity implements OnCheckedCh
         edit.putString(PREFS_KEY_TORIFIED, tordApps.toString());
         edit.commit();
 
+        setResult(RESULT_OK,response);
     }
 
 
     /**
      * Called an application is check/unchecked
      */
+    /**
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         final TorifiedApp app = (TorifiedApp) buttonView.getTag();
         if (app != null) {
@@ -335,23 +331,29 @@ public class AppManagerActivity extends AppCompatActivity implements OnCheckedCh
 
         saveAppSettings(this);
 
-    }
+    }**/
 
 
 
 
     public void onClick(View v) {
 
-        CheckBox cbox = (CheckBox)v.getTag();
+        CheckBox cbox = null;
 
-        final TorifiedApp app = (TorifiedApp)cbox.getTag();
-        if (app != null) {
-            app.setTorified(!app.isTorified());
-            cbox.setChecked(app.isTorified());
+        if (v instanceof CheckBox)
+            cbox = (CheckBox)v;
+        else if (v.getTag() instanceof CheckBox)
+            cbox = (CheckBox)v.getTag();
+
+        if (cbox != null) {
+            final TorifiedApp app = (TorifiedApp) cbox.getTag();
+            if (app != null) {
+                app.setTorified(!app.isTorified());
+                cbox.setChecked(app.isTorified());
+            }
+
+            saveAppSettings(this);
         }
-
-        saveAppSettings(this);
-
     }
 
 
