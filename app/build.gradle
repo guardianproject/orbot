@@ -46,6 +46,7 @@ android {
 }
 
 dependencies {
+    compileOnly 'org.torproject:tor-android-binary:0.3.2.10'
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     compile project(':orbotservice')
     implementation 'com.android.support:design:27.1.1'
