@@ -77,7 +77,7 @@ public class Prefs {
     }
 
     public static void disableTransparentProxying() {
-        prefs.getBoolean(PREF_TRANSPARENT, false);
+        putBoolean(PREF_TRANSPARENT, false);
     }
 
     public static boolean transparentProxyAll() {

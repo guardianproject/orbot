@@ -94,7 +94,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     private int mPortSOCKS = SOCKS_PROXY_PORT_DEFAULT;
     
     private static final int NOTIFY_ID = 1;
-    private static final int TRANSPROXY_NOTIFY_ID = 2;
     private static final int ERROR_NOTIFY_ID = 3;
     private static final int HS_NOTIFY_ID = 4;
 
