@@ -380,7 +380,6 @@
     <string name="enable">Enable</string>
     <string name="consider_disable_battery_optimizations">Consider disable battery optimizations</string>
     <string name="consider_enable_battery_optimizations">Consider enable battery optimizations</string>
-
-  <string name="no_transproxy_warning_short">WARNING: Transproxying no longer supported</string>
-  <string name="no_transproxy_warning">WARNING: Transparent proxying not supported. Use Orbot Apps VPN instead.</string>
+  <string name="pref_isolate_dest">Isolate destination addresses</string>
+  <string name="pref_isolate_dest_summary">Use a different circuit for each destination address</string>
 </resources>

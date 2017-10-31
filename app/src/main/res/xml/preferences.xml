@@ -157,6 +157,15 @@ android:dialogTitle="@string/enter_ports"
 />
 </PreferenceCategory>
 
+<PreferenceCategory android:title="Isolation">
+<CheckBoxPreference
+android:key="pref_isolate_dest"
+android:defaultValue="false"
+android:title="@string/pref_isolate_dest"
+android:summary="@string/pref_isolate_dest_summary"
+android:enabled="true"></CheckBoxPreference>
+</PreferenceCategory>
+
 <PreferenceCategory android:title="@string/pref_proxy_title">
 <EditTextPreference android:key="pref_proxy_type"
 android:title="@string/pref_proxy_type_title"
