@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25"
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "org.torproject.android"
         minSdkVersion 16
@@ -20,8 +20,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
+
+    flavorDimensions "free"
+
     productFlavors {
         minimalperm {
+            dimension "free"
             minSdkVersion 16
             applicationId 'org.torproject.android'
             targetSdkVersion 23
@@ -30,6 +34,7 @@ android {
             versionName '15.5.0-RC-1-multi-SDK16'
         }
         fullperm {
+            dimension "free"
             minSdkVersion 23
             applicationId 'org.torproject.android'
             targetSdkVersion 25
