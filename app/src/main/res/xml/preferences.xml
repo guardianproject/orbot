@@ -224,14 +224,15 @@ android:summary="@string/pref_torrc_summary"
 android:dialogTitle="@string/pref_torrc_dialog"
 android:defaultValue=""
 />
-    
-  
+
+
 <CheckBoxPreference
 android:key="pref_enable_logging"
 android:defaultValue="false"
 android:title="Debug Log"
 android:summary="@string/enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_"
-android:enabled="true"></CheckBoxPreference>
+android:enabled="true"
+/>
 
 
 
@@ -241,13 +242,6 @@ android:key="pref_disable_network"
 android:summary="@string/pref_disable_network_summary"
 android:enabled="true" 
 android:title="@string/pref_disable_network_title"/>
-
-
-<Preference
-android:key="pref_transproxy_flush"
-android:summary="@string/pref_transproxy_flush_summary"
-android:enabled="true" 
-android:title="@string/pref_transproxy_flush_title"/>
 
 </PreferenceCategory>
 </PreferenceScreen>
