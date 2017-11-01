@@ -83,7 +83,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
 
             protected void onPreExecute() {
                 // Pre Code
-                dialog = new ProgressDialog(AppManagerActivity.this);
+                dialog = new ProgressDialog(AppManagerActivity.this, android.support.v4.app.DialogFragment.STYLE_NO_TITLE);
                 dialog.show();
             }
             protected Void doInBackground(Void... unused) {
@@ -125,7 +125,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
                 if (convertView == null)
                     convertView = inflater.inflate(R.layout.layout_apps_item, parent, false);
                 else
-                    entry = (ListEntry) convertView.getTag();;
+                    entry = (ListEntry) convertView.getTag();
 
                 if (entry == null) {
                     // Inflate a new view
@@ -134,8 +134,6 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
                     entry.box = (CheckBox) convertView.findViewById(R.id.itemcheck);
                     entry.text = (TextView) convertView.findViewById(R.id.itemtext);
                     convertView.setTag(entry);
-
-
                 }
 
                 final TorifiedApp app = mApps.get(position);
@@ -162,6 +160,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
                 if (entry.box != null) {
                     entry.box.setOnClickListener(AppManagerActivity.this);
                     entry.box.setChecked(app.isTorified());
+                    entry.box.setTag(app);
                 }
 
                 return convertView;
