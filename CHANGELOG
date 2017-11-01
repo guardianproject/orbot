@@ -1,5 +1,9 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+/** v15.5.1 RC 2 / 1 Nov 2017 **/
+
+b2de89b fix issue with select apps
+
 /** v15.5.1 / 31 Oct 2017 / 2c99e9efa4aa253e4d63ee786759efdbeaf9b78f **/
 
 2c99e9e update version to 15.5.1-RC-1 (1551000*)
