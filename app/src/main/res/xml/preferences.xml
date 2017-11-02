@@ -166,6 +166,22 @@ android:summary="@string/pref_isolate_dest_summary"
 android:enabled="true"></CheckBoxPreference>
 </PreferenceCategory>
 
+<PreferenceCategory android:title="ConnectionPadding">
+<CheckBoxPreference
+android:key="pref_connection_padding"
+android:defaultValue="false"
+android:title="@string/pref_connection_padding"
+android:summary="@string/pref_connection_padding_summary"
+android:enabled="true"></CheckBoxPreference>
+<CheckBoxPreference
+android:key="pref_reduced_connection_padding"
+android:defaultValue="true"
+android:title="@string/pref_reduced_connection_padding"
+android:summary="@string/pref_reduced_connection_padding_summary"
+android:enabled="true"></CheckBoxPreference>
+</PreferenceCategory>
+
+
 <PreferenceCategory android:title="@string/pref_proxy_title">
 <EditTextPreference android:key="pref_proxy_type"
 android:title="@string/pref_proxy_type_title"

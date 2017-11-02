@@ -36,4 +36,7 @@ public interface OrbotConstants {
 
 	public final static String PREF_ISOLATE_DEST = "pref_isolate_dest";
 
+	public final static String PREF_CONNECTION_PADDING = "pref_connection_padding";
+	public final static String PREF_REDUCED_CONNECTION_PADDING = "pref_reduced_connection_padding";
+
 }
