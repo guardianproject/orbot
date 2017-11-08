@@ -101,6 +101,8 @@ endif
 	assets assets-clean \
 	openssl-static openssl-static-clean \
 	libevent libevent-clean \
+	lzma lzma-clean \
+	zstd zstd-clean \
 	tor tor-clean \
 	polipo polipo-clean
 
@@ -191,7 +193,57 @@ libevent-clean:
 	-rm -f libevent-build-stamp
 	-cd libevent && \
 		git clean -fdx
+#------------------------------------------------------------------------------#
+# lzma
 
+xz/Makefile:
+	cd xz && ./autogen.sh
+	cp config.sub xz
+	cp config.guess xz
+	cd xz && \
+		 CC="$(CC)" CXX="$(CXX)" PKG_CONFIG_PATH="$(EXTERNAL_ROOT)/lib/pkgconfig" AR="$(AR)" RANLIB="$(RANLIB)" CFLAGS="$(CFLAGS) -std=c99" LDFLAGS="$(LDFLAGS)"  \
+		./configure  --host=$(HOST) --disable-shared --enable-static --disable-doc --disable-xz --disable-xzdec --disable-lzmadec --disable-lzmainfo --disable-lzma-links --disable-scripts --prefix=$(EXTERNAL_ROOT)
+
+lzma: lzma-build-stamp
+	$(MAKE) -C xz install
+
+lzma-build-stamp: xz/Makefile
+	touch lzma-build-stamp
+
+lzma-clean:
+	-rm -rf include/lzma
+	-rm -f include/lzma.h
+	-rm -f lib/liblzma.a
+	-rm -f lib/liblzma.la
+	-rm -f lzma-build-stamp
+	-cd xz && \
+		git clean -fdx
+#------------------------------------------------------------------------------#
+# zstd
+
+zstd: zstd-build-stamp
+	$(MAKE) -C zstd/lib CC="$(CC)" CXX="$(CXX)" AR="$(AR)" RANLIB="$(RANLIB)" CFLAGS="$(CFLAGS)"  LDFLAGS="$(LDFLAGS)" PREFIX="$(EXTERNAL_ROOT)" libzstd.a-mt 
+	$(MAKE) -C zstd/lib CC="$(CC)" CXX="$(CXX)" AR="$(AR)" RANLIB="$(RANLIB)" CFLAGS="$(CFLAGS)"  LDFLAGS="$(LDFLAGS)" PREFIX="$(EXTERNAL_ROOT)" libzstd.pc 
+	test -d lib || mkdir lib
+	test -d lib/pkgconfig || mkdir lib/pkgconfig
+	test -d include || mkdir include
+	cp zstd/lib/libzstd.a lib
+	cp zstd/lib/libzstd.pc lib/pkgconfig
+	cp zstd/lib/zstd.h include
+	cp zstd/lib/common/zstd_errors.h include
+	cp zstd/lib/deprecated/zbuff.h include
+	cp zstd/lib/dictBuilder/zdict.h include
+
+zstd-build-stamp:
+	touch zstd-build-stamp
+
+zstd-clean:
+	-rm -f include/zstd.h include/zstd_errors.h include/zbuff.h include/zdict.h
+	-rm -f lib/libzstd.a
+	-rm -f lib/pkgconfig/libzstd.pc
+	-rm -f zstd-build-stamp
+	-cd zstd && \
+		git clean -fdx
 #------------------------------------------------------------------------------#
 # tor
 
@@ -216,14 +268,13 @@ tor/Makefile: tor/configure
 				--disable-asciidoc \
 				--enable-static-libevent --with-libevent-dir=$(EXTERNAL_ROOT) \
 				--enable-static-openssl --with-openssl-dir=$(EXTERNAL_ROOT) \
-				--disable-linker-hardening --disable-gcc-hardening --disable-tool-name-check \
-				--disable-lzma --disable-zstd
+				--disable-linker-hardening --disable-gcc-hardening --disable-tool-name-check --disable-systemd
 
 tor-build-stamp: tor/Makefile
 	$(MAKE) -C tor all-am
 	touch tor-build-stamp
 
-tor: libevent openssl tor-build-stamp
+tor: lzma zstd libevent openssl tor-build-stamp
 	test -d bin || mkdir bin
 	cp tor/src/or/tor bin
 
@@ -298,7 +349,7 @@ assets-clean:
 # cleanup, cleanup, put the toys away
 
 ##clean: openssl-clean libevent-clean tor-clean polipo-clean assets-clean
-clean: openssl-clean libevent-clean tor-clean polipo-clean pluto-clean
+clean: openssl-clean libevent-clean lzma-clean zstd-clean tor-clean polipo-clean pluto-clean
 
 #------------------------------------------------------------------------------#
 # debugging stuff

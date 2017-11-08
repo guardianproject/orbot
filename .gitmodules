@@ -34,3 +34,11 @@
 	path = external/jsocks
 	url = https://github.com/guardianproject/jsocks.git
 	ignore = dirty
+[submodule "external/zstd"]
+	path = external/zstd
+	url = https://github.com/facebook/zstd.git
+	ignore = dirty
+[submodule "external/xz"]
+	path = external/xz
+	url = https://git.tukaani.org/xz.git
+	ignore = dirty
