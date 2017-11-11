@@ -384,4 +384,8 @@
   <string name="pref_isolate_dest_summary">Use a different circuit for each destination address</string>
   <string name="no_transproxy_warning_short">WARNING: Transproxying no longer supported</string>
   <string name="no_transproxy_warning">WARNING: Transparent proxying not supported. Use Orbot Apps VPN instead.</string>
+  <string name="pref_connection_padding">Connection padding</string>
+  <string name="pref_connection_padding_summary">Always enables connection padding to defend against some forms of traffic analysis. Default: auto</string>
+  <string name="pref_reduced_connection_padding">Reduced connection padding</string>
+  <string name="pref_reduced_connection_padding_summary">Closes relay connections sooner and sends less padding packets to reduce data and battery usage</string>
 </resources>
