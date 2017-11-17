@@ -19,7 +19,8 @@ Please install the following prerequisites (instructions for each follows):
 	AutoMake and AutoConf tool
 	sudo apt-get install autotools-dev
 	sudo apt-get install automake
-	sudo apt-get install autogen autoconf libtool gettext-base
+	sudo apt-get install autogen autoconf libtool
+	sudo apt-get install autopoint gettext-base pkg-config
 
 You will need to run the 'android' command in the SDK to install the necessary
 Android platform supports (ICS 4.x or android-15)
