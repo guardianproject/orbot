@@ -6,9 +6,9 @@ set -e
 set -x
 
 # make sure we're on a signed tag that matches the version name
-versionName=`sed -n 's,.*versionName="\([^"]*\)".*,\1,p' app/src/main/AndroidManifest.xml`
-describe=`git describe`
-if [ $versionName != $describe ]; then
+describe=`git describe --tags --always`
+versionName=`echo $describe | sed 's,-[0-9][0-9]*-g.*,,'`
+if [ "$versionName" != "$describe" ]; then
     echo "WARNING: building $describe, which is not the latest release ($versionName)"
 else
     # make a clearer warning above by putting this here
