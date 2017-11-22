@@ -1,0 +1,26 @@
+Orbot
+Proxy qua Tor
+Orbot là một ứng dụng proxy miễn phí nó trao quyền cho các ứng dụng khác để sử dụng Internet an toàn hơn. Orbot sử dụng Tor để mã hóa lưu lượng truy cập Internet của bạn và sau đó giấu nó bằng cách chuyển qua một loạt các máy tính trên toàn thế giới. Tor là phần mềm miễn phí và một mạng mở giúp bạn bảo vệ chống lại một hình thức giám sát mạng đe dọa tự do cá nhân và riêng tư, hoạt động bí mật kinh doanh và các mối quan hệ, và an ninh quốc gia được gọi là phân tích lưu lượng truy cập.
+
+Orbot là ứng dụng duy nhất tạo ra một kết nối internet thực sự. Như tờ New York Times viết, "khi một thông tin liên lạc đến từ Tor, bạn có thể không bao giờ biết ở đâu hoặc ai đó từ đâu." Tor giành Electronic Frontier 2012 Foundation (EFF) giải Tiên phong.
+
+CHẤP NHẬN KHÔNG THAY THẾ: Orbot là cách an toàn nhất để sử dụng Internet trên Android. Giai đoạn. Orbot bị trả lại mã hóa giao thông của bạn nhiều lần thông qua các máy tính trên toàn thế giới, thay vì kết nối bạn trực tiếp như VPN và proxy. Quá trình này mất lâu hơn một chút, nhưng sự riêng tư mạnh mẽ và bảo vệ danh tính có sẵn là đáng để chờ đợi.
+CÁ NHÂN LƯỚT WEB: Sử dụng với Orweb, cách vô danh nhất để truy cập bất kỳ trang web, ngay cả khi nó thường bị chặn, theo dõi, hoặc trên các trang web ẩn. Vào Orweb: https://goo.gl/s3mLa
+thông báo chat cá nhân: Sử dụng Gibberbot với Orbot để trò chuyện bí mật với bất cứ ai, bất cứ nơi nào miễn phí. vào Gibberbot: https://goo.gl/O3FfS
+BẢO MẬT cho các ứng dụng: Bất kỳ ứng dụng được cài đặt có thể sử dụng Tor nếu nó có một tính năng proxy, sử dụng các thiết lập tìm thấy ở đây: https://goo.gl/2OA1y Sử dụng Orbot với Twitter, hoặc cố gắng web tin tìm kiếm với DuckDuckGo:  https://goo.gl/lgh1p
+BẢO MẬT CHO MỌI NGƯỜI: Tor có thể giúp bạn bảo mật nghiên cứu đối thủ cạnh tranh, có được xung quanh khối Facebook tại trường học, hoặc phá vỡ một bức tường lửa để xem thể thao tại nơi làm việc.
+BẢO MẬT MADE EASY: Kiểm tra niềm vui của chúng tôi, thông qua: https://guardianproject.info/howto/browsefreely
+Đó là chính thức: Đây là phiên bản chính thức của dịch vụ định tuyến hành Tor cho Android.
+
+***Mode Root chuyên sâu***
+PHƯƠNG THỨC UNIVERSAL: Orbot có thể được cấu hình để minh bạch tất cả các proxy của lưu lượng truy cập Internet của bạn thông qua Tor. Bạn cũng có thể chọn các ứng dụng cụ thể mà bạn muốn sử dụng thông qua Tor.
+
+***Chúng tôi đón nhận các phản hồi***
+CHÚNG TÔI LÀ AI?: Guardian Project là một nhóm các nhà phát triển phần mềm, muốn tạo dựng nên các ứng dụng mã nguồn mở, miễn phí, không vụ lợi, nhằm đưa đến và cung cấp cho người dùng các ứng dụng di động với mục tiêu an toàn, chống lại sự kiểm duyệt gắt gao do bất kỳ tổ chức chính trị nào muốn nắm giữ việc độc quyền thông tin, hay thậm chí là muốn tước bỏ đi sự riêng tư vốn có mà người dùng mong đợi khi luôn luôn muốn ngăn chặn và đánh cắp đồng thời giám sát sự riêng tư từ phía người dùng. Chúng tôi, rất cần đến sự giúp đỡ chân thành từ phía các bạn. Hãy tham gia cộng đồng Orweb để cùng nhau phát triển hơn nữa sản phẩm này, và dĩ nhiên, cũng là tăng quyền lợi cho chính các bạn trong một thế giới tự do.
+WEBSITE: https://GuardianProject.info
+TWITTER: https://twitter.com/guardianproject
+Mở mã nguồn: Orbot là phần mềm miễn phí. Hãy xem mã nguồn của chúng tôi, hoặc tham gia vào cộng đồng để làm cho nó tốt hơn: https://gitweb.torproject.org/orbot.git
+VỀ DỰ ÁN TOR: https://TorProject.org
+THÔNG ĐIỆP : Có phải chúng ta thiếu tính năng yêu thích của bạn? Tìm thấy một lỗi gây phiền nhiễu? Chúng tôi muốn nghe từ bạn! Gửi email cho chúng tôi: root@guardianproject.info
+Trợ giúp của chúng tôi MANG ORBOT quốc gia của bạn: Chúng tôi đang cố gắng để có được Orbot thành nhiều ngôn ngữ càng tốt. Ngay bây giờ nó trong
+Nếu Orbot không có trong ngôn ngữ của bạn nhưng, chúng tôi rất muốn có bạn tham gia đội ngũ dịch thuật của chúng tôi: https://goo.gl/6hni4

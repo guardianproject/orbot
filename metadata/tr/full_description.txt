@@ -1,0 +1,26 @@
+Orbot
+Tor Proxy
+Orbot başka uygulamaların interneti daha güvenli olarak kullanmasını sağlayan ücretsiz bir proxy uygulamasıdır. Orbot Tor'u kullanarak internet trafiğinizi şifreler ve dünya üzerindeki pek çok farklı bilgisayardan geçirerek gizler. Tor sizin kişisel özgürlüğünüzü ve mahremiyetinizi, gizli ticari aktivitelerinizi ve bağlantılarınızı koruma altına alan bir yazılım ve açık ağdır.
+
+Orbot gerçekten gizli internet bağlantısı kuran tek uygulamadır. New York Times'ın yazdığı gibi “eğer bir mesaj Tor Ağı üzerinden ulaşıyorsa kimden veya nereden geldiğini bilmek mümkün değil”. Tor 2012'de Electronic Frontier Foundation (EFF) Pioneer Award ile ödüllendirilmiştir.
+
+ALTERNATİF KABUL ETMEYİN: Orbot Android sisteminde interneti kullanmanın en güvenli yoludur. Nokta. Orbot doğrudan VPN veya Proxy sunucularına bağlanmaktan farklı olarak şifrelenmiş internet trafiğinizi dünya üzerindeki pek çok başka bilgisayarlardan geçirerek izlenmenizi ve sansürü engeller. Bu yöntem biraz daha zaman alır, ancak en güçlü güvenlik ve gizliliğinizin korunması biraz beklemeye değer.
+İNTERNETTE GİZLİCE DOLAŞIN: Orweb ile birlikte kullanıldığında herhangi bir web sitesi sansürlenmiş, gözetim altında veya gizli internette olsa dahi ulaşmanızı sağlar. Orweb'i şuradan indirebilirsiniz: https://goo.gl/s3mLa
+GİZLİ MESAJLAŞIN: Gibberbot ile birlikte kullanıldığında istediğiniz kişiyle istediğiniz yerde ücretsiz mesajlaşın. Gibberbot'u şuradan indirebilirsiniz: https://goo.gl/O3FfS
+DİĞER UYGULAMAR İÇİN GİZLİLİK: Kullandığınız bütün uygulamalar proxy özellikleri varsa Tor ağını kullanabilir, şuradaki önerileri takip edin: https://goo.gl/2OA1y Orbot'u Twitter uygulaması ile kullanın, ya da gizli web araması yapmak için DuckDuckGo kullanın: https://goo.gl/lgh1p
+HERKES İÇİN GİZLİLİK: Tor rakip şirket hakkında fark edilmeden araştırma yapmanıza, okuldaki Facebook engellemesini aşmanıza, ya da iş yerinizde spor maçlarını izlemek istediğinizde güvenlik duvarını aşmanıza yardımcı olur.
+GİZLİLİK HİÇ BU KADAR KOLAY OLMAMIŞTI: Eğlenceli ve interaktif kullanım kılavuzumuza şu adresten ulaşabilirsiniz: https://guardianproject.info/howto/browsefreely
+RESMİ UYGULAMA: Orbot Tor onion routing service'in Android'deki resmi uygulamasıdır.
+
+***Uzman Root Modu***
+KAPSAMLI MOD: Orbot zahmetsizce tüm internet trafiğinizin Tor üzerinden yönlenmesini sağlayabilir. Dilerseniz sadece bazı uygulamaların Tor ağını kullanmasını da sağlayabilirsiniz.
+
+***Geri bildirimi seviyoruz***
+HAKKIMIZDA: Guardian Projesi daha iyi bir gelecek için güvenli mobil uygulamalar ve açık kaynak kodları yazan bir grup yazılımcıdan oluşur.
+WEB SİTEMİZ: http://GuardianProject.info
+TWITTER ADRESİMİZ: https://twitter.com/guardianproject
+AÇIK KAYNAK KODU: Orbot ücretsiz bir uygulamadır. Kaynak kodumuza bakabilir, ve geliştirmek için destek grubuna katılabilirsiniz:  https://gitweb.torproject.org/orbot.git
+TOR HAKKINDA: https://TorProject.org
+BİZE YAZIN: İstediğiniz bir özellik eksik mi? Uygulamada bir hata mı buldunuz? Lütfen bize bildirin! Sizden geri bildirim almak bizi çok mutlu eder. Bize e-posta gönderebilirsiniz: root@guardianproject.info 
+ORBOT'U SİZİN ÜLKENİZE ULAŞTIRMAMIZA YARDIM EDİN: Orbot uygulamasını mümkün olan tüm dillere çevirmeye çalışıyoruz. Şimdilik bu dillere çevrildi: Arabic (العربية), Basque (Euskara), Bulgarian (български език), Chinese (中文简体), Czech (Čeština), Danish (Dansk), Dutch (Nederlands), English, Farsi (فارسی), French (Français), French (Français), German (Deutsch), Greek (Ελληνικά), Hebrew (עברית), Hungarian (Magyar Nyelv), Italian (Italiano), Japanese (日本語) Korean (조선말), Latvian (Latviešu), Malaysian (بهاس ملايو ), Polish (Polski), Portuguese (Português), Turkish (Türkçe), Russian (Русский), Spanish (Español), Swedish (Svensk), and Vietnamese (Tiếng Việt).
+Eğer Orbot sizin dilinizde yoksa, çeviri ekibimize katılmanız bizi çok mutlu eder: https://goo.gl/6hni4
