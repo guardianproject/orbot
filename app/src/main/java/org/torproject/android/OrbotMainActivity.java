@@ -90,6 +90,7 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import static android.support.v4.content.FileProvider.getUriForFile;
+import static org.torproject.android.binary.TorServiceConstants.BINARY_TOR_VERSION;
 
 public class OrbotMainActivity extends AppCompatActivity
         implements OrbotConstants, OnLongClickListener, OnTouchListener {
@@ -432,7 +433,7 @@ public class OrbotMainActivity extends AppCompatActivity
 
 		});
 
-        ((TextView)findViewById(R.id.torInfo)).setText("Tor v" + TorServiceConstants.BINARY_TOR_VERSION);
+        ((TextView)findViewById(R.id.torInfo)).setText("Tor v" + BINARY_TOR_VERSION);
 
     }
     
@@ -534,7 +535,7 @@ public class OrbotMainActivity extends AppCompatActivity
             String version = "";
             
             try {
-                version = getPackageManager().getPackageInfo(getPackageName(), 0).versionName + " (Tor " + TorServiceConstants.BINARY_TOR_VERSION + ")";
+                version = getPackageManager().getPackageInfo(getPackageName(), 0).versionName + " (Tor " + BINARY_TOR_VERSION + ")";
             } catch (NameNotFoundException e) {
                 version = "Version Not Found";
             }

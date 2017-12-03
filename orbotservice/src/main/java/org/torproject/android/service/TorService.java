@@ -80,6 +80,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeoutException;
 
+import static org.torproject.android.binary.TorServiceConstants.BINARY_TOR_VERSION;
+
 public class TorService extends Service implements TorServiceConstants, OrbotConstants
 {
     

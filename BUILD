@@ -2,13 +2,11 @@
 This document explains how to properly build an Android package of Orbot from
 source.
 
-Orbot includes, in the external directory, git repo submodules of:
-	- Tor
-	- OpenSSL (statically built and patched for Android)
-	- LibEvent
-	- JTorControl: The Tor Control Library for Java
+DECEMBER 2017: We have removed the build process for tor and polipo from Orbot,
+and instead now use the new tor-android gradle dependency: https://github.com/n8fr8/tor-android
 
-The Orbot repo also includes the Polipo source code of a recent stable release.
+Orbot includes, in the external directory, git repo submodules of:
+	- JTorControl: The Tor Control Library for Java
 
 Please install the following prerequisites (instructions for each follows):
 	ant: http://ant.apache.org/
@@ -16,36 +14,15 @@ Please install the following prerequisites (instructions for each follows):
         http://developer.android.com/sdk/ndk/index.html
 	Android Software Dev Kit or SDK (for Java code):
         http://developer.android.com/sdk/index.html
-	AutoMake and AutoConf tool
-	sudo apt-get install autotools-dev
-	sudo apt-get install automake
-	sudo apt-get install autogen autoconf libtool
-	sudo apt-get install autopoint gettext-base pkg-config
-
-You will need to run the 'android' command in the SDK to install the necessary
-Android platform supports (ICS 4.x or android-15)
 
 Be sure that you have all of the git submodules up-to-date:
 
 	git submodule update --init --recursive
 
-To begin building, from the Orbot root directory, you first need to build all
-external C/native dependencies:
-
-	export ANDROID_NDK_HOME={PATH TO YOUR NDK INSTALL}
-	make -C external
-
-At this point, you'll have Tor and Polipo binaries that can be run on an
-Android handset.  You can verify the ARM binary was properly built using the
-following command:
-
-	file external/bin/tor external/bin/polipo
+You then need to run "ndk-build" from:
 	
-You should see something like:
-    external/bin/tor: ELF 32-bit LSB executable, ARM, version 1 (SYSV),
-        dynamically linked (uses shared libs), not stripped
-    external/bin/polipo: ELF 32-bit LSB executable, ARM, version 1 (SYSV),
-        dynamically linked (uses shared libs), not stripped
+	cd orbotservice/src/main
+	ndk-build
 
 This isn't enough though and we'll now sew up the binary into a small package
 that will handle basic Tor controlling features.
@@ -56,7 +33,7 @@ Now build the Android app
 
 (gradle / android studio instructions here)
 
-This will produce an unsigned Tor package APK.
+This will produce an unsigned Orbot package APK.
 
 To produce a usable package, you'll need to sign the .apk. The basics on
 signing can be found on the Android developer site:
