@@ -1,26 +1,6 @@
-[submodule "external/tor"]
-	path = external/tor
-	url = https://git.torproject.org/git/tor.git
-	ignore = dirty
-[submodule "external/libevent"]
-	path = external/libevent
-	url = https://github.com/libevent/libevent.git
-	ignore = dirty
 [submodule "external/jtorctl"]
 	path = external/jtorctl
 	url = https://github.com/guardianproject/jtorctl
-	ignore = dirty
-[submodule "external/openssl"]
-	path = external/openssl
-	url = https://github.com/openssl/openssl.git
-	ignore = dirty
-[submodule "external/iptables"]
-	path = external/iptables
-	url = git://git.netfilter.org/iptables
-	ignore = dirty
-[submodule "external/polipo"]
-	path = external/polipo
-	url = https://github.com/jech/polipo.git
 	ignore = dirty
 [submodule "external/badvpn"]
 	path = external/badvpn
@@ -33,12 +13,4 @@
 [submodule "external/jsocks"]
 	path = external/jsocks
 	url = https://github.com/guardianproject/jsocks.git
-	ignore = dirty
-[submodule "external/zstd"]
-	path = external/zstd
-	url = https://github.com/facebook/zstd.git
-	ignore = dirty
-[submodule "external/xz"]
-	path = external/xz
-	url = https://git.tukaani.org/xz.git
 	ignore = dirty
