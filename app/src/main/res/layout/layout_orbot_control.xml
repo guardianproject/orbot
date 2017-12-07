@@ -13,17 +13,6 @@
 
 
             <android.support.v7.widget.SwitchCompat
-                android:id="@+id/btnVPN"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:text="@string/apps_mode"
-                android:layout_margin="12dp"
-                android:singleLine="true"
-                app:switchPadding="9dp"
-                />
-
-
-            <android.support.v7.widget.SwitchCompat
                 android:id="@+id/btnBridges"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
