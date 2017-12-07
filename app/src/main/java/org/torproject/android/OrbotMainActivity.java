@@ -353,13 +353,21 @@ public class OrbotMainActivity extends AppCompatActivity
                 }
             });
 
+			if (PermissionManager.isLollipopOrHigher()) {
 
-            findViewById(R.id.btnApps).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    enableVPN(true);
-                }
-            });
+                findViewById(R.id.btnApps).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        startActivityForResult(new Intent(OrbotMainActivity.this, AppManagerActivity.class), REQUEST_VPN_APPS_SELECT);
+
+                    }
+                });
+            }
+            else
+            {
+                findViewById(R.id.btnApps).setVisibility(View.GONE);
+            }
 		}
 		
 		
@@ -621,10 +629,7 @@ public class OrbotMainActivity extends AppCompatActivity
         Prefs.putUseVpn(enable);
 
         if (enable) {
-            if (PermissionManager.isLollipopOrHigher()) //let the user choose the apps
-                startActivityForResult(new Intent(OrbotMainActivity.this, AppManagerActivity.class), REQUEST_VPN_APPS_SELECT);
-            else
-                startActivity(new Intent(OrbotMainActivity.this, VPNEnableActivity.class));
+            startActivity(new Intent(OrbotMainActivity.this, VPNEnableActivity.class));
         } else
             stopVpnService();
     }

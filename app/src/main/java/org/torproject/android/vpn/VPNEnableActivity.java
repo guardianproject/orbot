@@ -62,6 +62,9 @@ public class VPNEnableActivity extends AppCompatActivity {
 	
 	public void promptStartVpnService ()
     {
+		Prefs.putUseVpn(true);
+		startVpnService();
+		/**
     	 
          AlertDialog dialog = new AlertDialog.Builder(this)
          .setTitle(getString(R.string.app_name) + ' ' + getString(R.string.apps_mode))
@@ -71,8 +74,7 @@ public class VPNEnableActivity extends AppCompatActivity {
 
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-		        Prefs.putUseVpn(true);
-				startVpnService();
+
 				
 			}
 
@@ -97,7 +99,7 @@ public class VPNEnableActivity extends AppCompatActivity {
          }).create();
          
          dialog.show();
-         
+         **/
          
     }
 	 
