@@ -71,9 +71,8 @@ public class OtherResourceInstaller implements TorServiceConstants {
         if (Build.CPU_ABI.contains("x86"))
             cpuPath = "x86";
 
-        deleteDirectory(installFolder);
-
-        installFolder.mkdirs();
+        if (!installFolder.exists())
+            installFolder.mkdirs();
 
         is = context.getAssets().open(cpuPath + '/' + OBFSCLIENT_ASSET_KEY + MP3_EXT);
         outFile = new File(installFolder, OBFSCLIENT_ASSET_KEY);
@@ -220,22 +219,6 @@ public class OtherResourceInstaller implements TorServiceConstants {
         // Change the permissions
         Runtime.getRuntime().exec("chmod "+mode+" "+abspath).waitFor();
     }
-    /**
-     * Asserts that the binary files are installed in the bin directory.
-     * @param ctx context
-     * @param showErrors indicates if errors should be alerted
-     * @return false if the binary files could not be installed
-     */
-    /*
-    public static boolean assertIpTablesBinaries(Context ctx, boolean showErrors) throws Exception {
-        boolean changed = false;
-
-        // Check iptables_g1
-        File file = new File(ctx.getDir("bin",0), "iptables");
-        copyRawFile(ctx, R.raw.iptables, file, CHMOD_EXEC, false);
-
-        return true;
-    }*/
 
 
     private void setExecutable(File fileBin) {
