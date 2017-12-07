@@ -631,9 +631,11 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             if (success)
                 prefs.edit().putString(PREF_BINARY_TOR_VERSION_INSTALLED,BINARY_TOR_VERSION).commit();
 
+
             OtherResourceInstaller oInstaller = new OtherResourceInstaller(this, appBinHome);
             oInstaller.installResources();
         }
+        
 
         updateTorConfigFile ();
         isTorUpgradeAndConfigComplete = true;
