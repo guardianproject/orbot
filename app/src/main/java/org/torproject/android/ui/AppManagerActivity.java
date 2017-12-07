@@ -200,10 +200,6 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
             tordApps[tordIdx++] = st.nextToken();
         }
 
-        Arrays.sort(tordApps);
-
-        //else load the apps up
-
         List<ApplicationInfo> lAppInfo = pMgr.getInstalledApplications(0);
 
         Iterator<ApplicationInfo> itAppInfo = lAppInfo.iterator();
@@ -212,7 +208,6 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
 
         ApplicationInfo aInfo = null;
 
-        int appIdx = 0;
         TorifiedApp app = null;
 
         while (itAppInfo.hasNext())
@@ -285,10 +280,9 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
                 app.setTorified(false);
             }
 
-            appIdx++;
         }
 
-        Collections.sort(apps);
+    //    Collections.sort(apps);
 
         return apps;
     }
