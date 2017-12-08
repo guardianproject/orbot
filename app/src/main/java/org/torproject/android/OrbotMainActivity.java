@@ -70,6 +70,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -264,23 +265,30 @@ public class OrbotMainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        /**
           mDrawerToggle = new ActionBarDrawerToggle(
               this,  mDrawer,        
               toolbar,
               R.string.btn_okay, R.string.btn_cancel
-          );
+          );**/
 
 
-      getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-      getSupportActionBar().setHomeButtonEnabled(true);
+      //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+      //getSupportActionBar().setHomeButtonEnabled(true);
       
-      mDrawer.setDrawerListener(mDrawerToggle);
-      mDrawerToggle.syncState();
+      //mDrawer.setDrawerListener(mDrawerToggle);
+      //mDrawerToggle.syncState();
         
         mTxtOrbotLog = (TextView)findViewById(R.id.orbotLog);
         
         lblStatus = (TextView)findViewById(R.id.lblStatus);
-        lblStatus.setOnLongClickListener(this);
+        lblStatus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDrawer.openDrawer(Gravity.RIGHT);
+            }
+        });
+
         imgStatus = (ImageProgressView)findViewById(R.id.imgStatus);
         imgStatus.setOnLongClickListener(this);
         imgStatus.setOnTouchListener(this);
@@ -432,7 +440,6 @@ public class OrbotMainActivity extends AppCompatActivity
 
 		});
 
-        ((TextView)findViewById(R.id.torInfo)).setText("Tor v" + BINARY_TOR_VERSION);
 
         mPulsator = (PulsatorLayout) findViewById(R.id.pulsator);
 
@@ -1327,9 +1334,8 @@ public class OrbotMainActivity extends AppCompatActivity
         } else if (torStatus == TorServiceConstants.STATUS_OFF) {
 
             imgStatus.setImageResource(R.drawable.toroff);
-
+            lblStatus.setText("Tor v" + BINARY_TOR_VERSION);
 			mBtnStart.setText(R.string.menu_start);
-
             mPulsator.start();
 
         }
@@ -1388,20 +1394,7 @@ public class OrbotMainActivity extends AppCompatActivity
         @Override
         public void handleMessage(final Message msg) {
         	
-        	String newTorStatus = msg.getData().getString("status");
-        	String log = (String)msg.obj;
 
-        	if (torStatus == null && newTorStatus != null) //first time status
-        	{
-        		findViewById(R.id.frameMain).setVisibility(View.VISIBLE);
-        		updateStatus(log, newTorStatus);
-        		
-        		//now you can handle the intents properly
-        		handleIntents();
-        		
-        	}
-        	else
-        		updateStatus(log, newTorStatus);
 
             switch (msg.what) {
                 case MESSAGE_TRAFFIC_COUNT:
@@ -1417,7 +1410,22 @@ public class OrbotMainActivity extends AppCompatActivity
 
                     break;
                 default:
+                    String newTorStatus = msg.getData().getString("status");
+                    String log = (String)msg.obj;
+
+                    if (torStatus == null && newTorStatus != null) //first time status
+                    {
+                        findViewById(R.id.frameMain).setVisibility(View.VISIBLE);
+                        updateStatus(log, newTorStatus);
+
+                        //now you can handle the intents properly
+                        handleIntents();
+
+                    }
+                    else
+                        updateStatus(log, newTorStatus);
                     super.handleMessage(msg);
+                    break;
             }
         }
     };

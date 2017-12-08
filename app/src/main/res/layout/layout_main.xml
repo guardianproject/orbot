@@ -68,30 +68,54 @@
             />
     </FrameLayout>
 
+    <TextView
+        android:id="@+id/lblStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:fontFamily="sans-serif-light"
+        android:lines="1"
+        android:text="[             ]"
+        android:maxLines="1"
+        android:layout_margin="12dp"
+        android:ellipsize="end"
+        android:layout_gravity="top|center"
+        android:gravity="center"
+        android:layout_below="@+id/frameMain"
+        />
+
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:layout_below="@+id/frameMain"
+    android:layout_below="@+id/lblStatus"
     android:id="@+id/controls"
 
     >
 
     <LinearLayout
         android:id="@+id/spinnerBox"
-        android:layout_gravity="left"
+        android:layout_gravity="center"
         android:orientation="vertical"
-        android:layout_width="170sp"
+        android:layout_width="170dp"
         android:layout_height="100dp"
         android:background="#11CCCCCC"
         android:layout_margin="3dp"
         android:layout_weight="1"
         >
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Select Region"
+    android:layout_margin="12dp"
+
+    />
     <Spinner
         android:id="@+id/spinnerCountry"
-        android:layout_width="140dp"
+        android:layout_width="165dp"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
+
         />
 
     </LinearLayout>
@@ -99,9 +123,9 @@
 
     <LinearLayout
         android:id="@+id/row_vpn"
-        android:layout_gravity="right"
+        android:layout_gravity="center"
         android:orientation="vertical"
-        android:layout_width="170sp"
+        android:layout_width="170dp"
         android:layout_height="100dp"
         android:background="#11CCCCCC"
         android:layout_margin="3dp"
@@ -131,42 +155,126 @@
     </LinearLayout>
 
 </LinearLayout>
-    <TextView
-        android:id="@+id/lblStatus"
+
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:fontFamily="sans-serif-light"
-        android:lines="1"
-        android:text="[             ]"
-        android:maxLines="1"
-        android:layout_margin="12dp"
-        android:ellipsize="end"
-        android:layout_gravity="top|center"
-        android:gravity="center"
+        android:orientation="horizontal"
         android:layout_below="@+id/controls"
-        />
+        android:id="@+id/traffic"
+
+        >
+
+        <LinearLayout
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            >
+            <TextView
+                android:id="@+id/trafficLabelDown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/main_layout_download"
+                android:gravity="center"
+                android:fontFamily="sans-serif-light"
+                android:layout_margin="3dp"
+                android:lines="1"
+
+                />
 
 
+            <TextView
+                android:id="@+id/trafficDown"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:fontFamily="sans-serif-light"
+                android:text="0kbps"
+                android:layout_margin="3dp"
+                android:lines="1"
+
+                />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+
+            >
+            <TextView
+                android:id="@+id/trafficLabelUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/main_layout_upload"
+                android:gravity="center_vertical"
+                android:fontFamily="sans-serif-light"
+                android:layout_margin="3dp"
+                />
+
+            <TextView
+                android:id="@+id/trafficUp"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:fontFamily="sans-serif-light"
+                android:text="0kbps"
+                android:layout_margin="3dp"
+                android:lines="1"
+
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/row_bridges"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#11CCCCCC"
+        android:layout_margin="3dp"
+        android:layout_weight="1"
+        android:layout_below="@+id/traffic"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:fontFamily="sans-serif-light"
+            android:text="Having trouble connecting?"
+            android:layout_margin="3dp"
+            android:lines="1"
+
+            />
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/btnBridges"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bridges"
+            android:layout_margin="3dp"
+            android:singleLine="true"
+            app:switchPadding="9dp"
+            android:gravity="center_vertical"
+            />
+    </LinearLayout>
 
 
 
 </RelativeLayout>
 
 
-        <LinearLayout
-            android:layout_width="250dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:id="@+id/left_drawer"
-            android:layout_gravity="start"
-            android:background="#333333"
-            >
-
-            <include layout="@layout/layout_orbot_control"/>
-
-
-        </LinearLayout>
 	    
 	 <LinearLayout
     android:layout_width="320dp"
