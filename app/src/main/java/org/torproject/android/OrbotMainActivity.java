@@ -91,6 +91,8 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import pl.bclogic.pulsator4droid.library.PulsatorLayout;
+
 import static android.support.v4.content.FileProvider.getUriForFile;
 import static org.torproject.android.binary.TorServiceConstants.BINARY_TOR_VERSION;
 
@@ -268,6 +270,7 @@ public class OrbotMainActivity extends AppCompatActivity
               R.string.btn_okay, R.string.btn_cancel
           );
 
+
       getSupportActionBar().setDisplayHomeAsUpEnabled(true);
       getSupportActionBar().setHomeButtonEnabled(true);
       
@@ -431,8 +434,11 @@ public class OrbotMainActivity extends AppCompatActivity
 
         ((TextView)findViewById(R.id.torInfo)).setText("Tor v" + BINARY_TOR_VERSION);
 
+        mPulsator = (PulsatorLayout) findViewById(R.id.pulsator);
+
     }
-    
+
+    PulsatorLayout mPulsator;
     GestureDetector mGestureDetector;
     
 
@@ -1171,7 +1177,10 @@ public class OrbotMainActivity extends AppCompatActivity
 
 		requestTorStatus();
 
-		updateStatus(null, torStatus);
+		if (torStatus == null)
+		    updateStatus("", TorServiceConstants.STATUS_STOPPING);
+        else
+            updateStatus(null, torStatus);
 
        if (Prefs.useTransparentProxying())
        {
@@ -1246,6 +1255,7 @@ public class OrbotMainActivity extends AppCompatActivity
             imgStatus.setImageResource(R.drawable.toron);
 
             mBtnStart.setText(R.string.menu_stop);
+            mPulsator.stop();
 
             lblStatus.setText(getString(R.string.status_activated));
 
@@ -1319,6 +1329,8 @@ public class OrbotMainActivity extends AppCompatActivity
             imgStatus.setImageResource(R.drawable.toroff);
 
 			mBtnStart.setText(R.string.menu_start);
+
+            mPulsator.start();
 
         }
 

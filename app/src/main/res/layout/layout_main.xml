@@ -35,27 +35,102 @@
 		 android:orientation="vertical"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="20dp"
+        android:layout_margin="3dp"
+        android:background="#11CCCCCC"
 		android:weightSum="1">
+        <pl.bclogic.pulsator4droid.library.PulsatorLayout
+            android:id="@+id/pulsator"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:pulse_count="4"
+            app:pulse_duration="2000"
+            app:pulse_repeat="0"
+            app:pulse_color="@color/dark_green"
+            app:pulse_startFromScratch="false"
+            app:pulse_interpolator="Linear">
 		       <org.torproject.android.ui.ImageProgressView
 				android:id="@+id/imgStatus"
 				android:layout_width="match_parent"
 				android:layout_height="225dp"
 				   android:padding="0dp"
 				android:layout_margin="0dp"
+                   android:layout_marginTop="20dp"
 				android:src="@drawable/toroff" />
-<Button
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/btnStart"
-    android:text="@string/menu_start"
-    android:layout_gravity="center"
-    />
 
+        </pl.bclogic.pulsator4droid.library.PulsatorLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnStart"
+            android:text="@string/menu_start"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            />
     </FrameLayout>
 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_below="@+id/frameMain"
+    android:id="@+id/controls"
+
+    >
+
+    <LinearLayout
+        android:id="@+id/spinnerBox"
+        android:layout_gravity="left"
+        android:orientation="vertical"
+        android:layout_width="170sp"
+        android:layout_height="100dp"
+        android:background="#11CCCCCC"
+        android:layout_margin="3dp"
+        android:layout_weight="1"
+        >
+    <Spinner
+        android:id="@+id/spinnerCountry"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        />
+
+    </LinearLayout>
 
 
+    <LinearLayout
+        android:id="@+id/row_vpn"
+        android:layout_gravity="right"
+        android:orientation="vertical"
+        android:layout_width="170sp"
+        android:layout_height="100dp"
+        android:background="#11CCCCCC"
+        android:layout_margin="3dp"
+        android:layout_weight="1"
+
+        >
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/btnVPN"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:text="@string/apps_mode"
+            android:layout_margin="12dp"
+            android:layout_gravity="center"
+            app:switchPadding="9dp"
+
+            />
+        <Button
+            android:id="@+id/btnApps"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="@string/menu_apps"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:layout_gravity="center"
+
+            />
+    </LinearLayout>
+
+</LinearLayout>
     <TextView
         android:id="@+id/lblStatus"
         android:layout_width="match_parent"
@@ -63,47 +138,17 @@
         android:textSize="14sp"
         android:fontFamily="sans-serif-light"
         android:lines="1"
-        android:text="---"
+        android:text="[             ]"
         android:maxLines="1"
         android:layout_margin="12dp"
         android:ellipsize="end"
         android:layout_gravity="top|center"
         android:gravity="center"
-        android:layout_below="@+id/frameMain"
+        android:layout_below="@+id/controls"
         />
 
 
 
-    <LinearLayout
-        android:id="@+id/row_vpn"
-        android:gravity="center_horizontal|bottom"
-        android:layout_gravity="bottom"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        >
-	<android.support.v7.widget.SwitchCompat
-		android:id="@+id/btnVPN"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:text="@string/apps_mode"
-		android:layout_margin="12dp"
-		android:layout_gravity="center"
-		app:switchPadding="9dp"
-
-		/>
-    <Button
-        android:id="@+id/btnApps"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:text="@string/menu_apps"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:layout_gravity="center"
-
-        />
-    </LinearLayout>
 
 
 </RelativeLayout>

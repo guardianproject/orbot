@@ -23,17 +23,6 @@
                 />
 
 
-            <Spinner
-                android:id="@+id/spinnerCountry"
-                android:layout_width="220dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="12dp"
-                android:layout_marginLeft="9dp"
-                />
-
-
-
-
         <RelativeLayout
             android:id="@+id/rowTrafficDown"
             android:layout_width="match_parent"
