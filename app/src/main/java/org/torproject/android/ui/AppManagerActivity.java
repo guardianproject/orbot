@@ -309,7 +309,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
 
         }
 
-    //    Collections.sort(apps);
+        Collections.sort(apps);
 
         return apps;
     }

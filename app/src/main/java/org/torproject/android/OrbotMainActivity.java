@@ -97,7 +97,7 @@ import static android.support.v4.content.FileProvider.getUriForFile;
 import static org.torproject.android.binary.TorServiceConstants.BINARY_TOR_VERSION;
 
 public class OrbotMainActivity extends AppCompatActivity
-        implements OrbotConstants, OnLongClickListener, OnTouchListener {
+        implements OrbotConstants, OnLongClickListener {
 
     /* Useful UI bits */
     private TextView lblStatus = null; //the main text display widget
@@ -276,17 +276,12 @@ public class OrbotMainActivity extends AppCompatActivity
 
         imgStatus = (ImageView)findViewById(R.id.imgStatus);
         imgStatus.setOnLongClickListener(this);
-        imgStatus.setOnTouchListener(this);
-        
+
         downloadText = (TextView)findViewById(R.id.trafficDown);
         uploadText = (TextView)findViewById(R.id.trafficUp);
-        
-        
+
         downloadText.setText(formatCount(0) + " / " + formatTotal(0));
         uploadText.setText(formatCount(0) + " / " + formatTotal(0));
-    
-        // Gesture detection
-		mGestureDetector = new GestureDetector(this, new MyGestureDetector());
 
 		mBtnStart =(Button)findViewById(R.id.btnStart);
 		mBtnStart.setOnClickListener(new View.OnClickListener()
@@ -301,10 +296,8 @@ public class OrbotMainActivity extends AppCompatActivity
 					lblStatus.setText(getString(R.string.status_shutting_down));
 					stopTor();
 				}
-
 			}
 		});
-
 
 		mBtnVPN = (SwitchCompat)findViewById(R.id.btnVPN);
 		
@@ -332,15 +325,11 @@ public class OrbotMainActivity extends AppCompatActivity
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
                 {
                     enableVPN(isChecked);
-
-
                 }
             });
 
-
 		}
-		
-		
+
 		mBtnBridges = (SwitchCompat)findViewById(R.id.btnBridges);
 		mBtnBridges.setChecked(Prefs.bridgesEnabled());
 		mBtnBridges.setOnClickListener(new View.OnClickListener ()
@@ -361,8 +350,7 @@ public class OrbotMainActivity extends AppCompatActivity
 
 			
 		});
-		
-		
+
 		String currentExit = Prefs.getExitNodes();
 		int selIdx = -1;
 		
@@ -417,14 +405,7 @@ public class OrbotMainActivity extends AppCompatActivity
     }
 
     PulsatorLayout mPulsator;
-    GestureDetector mGestureDetector;
-    
 
-    @Override
-    public boolean onTouch(View v, MotionEvent event) {
-        return mGestureDetector.onTouchEvent(event);
-	}
-   	
     
    /*
     * Create the UI Options Menu (non-Javadoc)
@@ -823,7 +804,6 @@ public class OrbotMainActivity extends AppCompatActivity
                 if (!Prefs.useVpn())
                 {
                     Toast.makeText(this, R.string.please_enable_vpn, Toast.LENGTH_LONG).show();
-
                 }
                 else
                 {
@@ -1009,12 +989,12 @@ public class OrbotMainActivity extends AppCompatActivity
             		   enableBridges(true);
 
             		   break;
-            	   case 2: //amazon & azure
+            	   case 1: //amazon & azure
                        Prefs.setBridgesList("meek");
             		   enableBridges(true);
             		   
             		   break;
-            	   case 3:
+            	   case 2:
             		   showGetBridgePrompt("obfs4");
             		   
             		   break;
@@ -1443,24 +1423,6 @@ public class OrbotMainActivity extends AppCompatActivity
               imgStatus.startAnimation(rotation);
               
         
-    }
-    
-    class MyGestureDetector extends SimpleOnGestureListener {
-            @Override
-            public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-                try {                    
-                    if (torStatus == TorServiceConstants.STATUS_ON)
-                    {
-                        float direction = 1f;
-                        if (velocityX < 0)
-                            direction = -1f;
-                        spinOrbot (direction);
-                    }
-                } catch (Exception e) {
-                    // nothing
-                }
-                return false;
-            }
     }
 
     private void addAppShortcuts ()
