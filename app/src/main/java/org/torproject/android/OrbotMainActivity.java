@@ -23,8 +23,6 @@ import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.TorServiceUtils;
 import org.torproject.android.settings.SettingsPreferences;
 import org.torproject.android.ui.AppManagerActivity;
-import org.torproject.android.ui.ImageProgressView;
-import org.torproject.android.ui.PromoAppsActivity;
 import org.torproject.android.ui.Rotate3dAnimation;
 import org.torproject.android.ui.hiddenservices.ClientCookiesActivity;
 import org.torproject.android.ui.hiddenservices.HiddenServicesActivity;
@@ -34,6 +32,7 @@ import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
 import org.torproject.android.vpn.VPNEnableActivity;
 
 import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningServiceInfo;
 import android.app.AlertDialog;
@@ -57,10 +56,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.RemoteException;
-import android.support.design.widget.Snackbar;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
@@ -85,6 +82,8 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -102,7 +101,7 @@ public class OrbotMainActivity extends AppCompatActivity
 
     /* Useful UI bits */
     private TextView lblStatus = null; //the main text display widget
-    private ImageProgressView imgStatus = null; //the main touchable image for activating Orbot
+    private ImageView imgStatus = null; //the main touchable image for activating Orbot
 
     private TextView downloadText = null;
     private TextView uploadText = null;
@@ -116,8 +115,7 @@ public class OrbotMainActivity extends AppCompatActivity
     private Spinner spnCountries = null;
 
 	private DrawerLayout mDrawer;
-	private ActionBarDrawerToggle mDrawerToggle;
-	
+
     /* Some tracking bits */
     private String torStatus = null; //latest status reported from the tor service
     private Intent lastStatusIntent;  // the last ACTION_STATUS Intent received
@@ -265,20 +263,7 @@ public class OrbotMainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        /**
-          mDrawerToggle = new ActionBarDrawerToggle(
-              this,  mDrawer,        
-              toolbar,
-              R.string.btn_okay, R.string.btn_cancel
-          );**/
 
-
-      //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-      //getSupportActionBar().setHomeButtonEnabled(true);
-      
-      //mDrawer.setDrawerListener(mDrawerToggle);
-      //mDrawerToggle.syncState();
-        
         mTxtOrbotLog = (TextView)findViewById(R.id.orbotLog);
         
         lblStatus = (TextView)findViewById(R.id.lblStatus);
@@ -289,7 +274,7 @@ public class OrbotMainActivity extends AppCompatActivity
             }
         });
 
-        imgStatus = (ImageProgressView)findViewById(R.id.imgStatus);
+        imgStatus = (ImageView)findViewById(R.id.imgStatus);
         imgStatus.setOnLongClickListener(this);
         imgStatus.setOnTouchListener(this);
         
@@ -352,21 +337,7 @@ public class OrbotMainActivity extends AppCompatActivity
                 }
             });
 
-			if (PermissionManager.isLollipopOrHigher()) {
 
-                findViewById(R.id.btnApps).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        startActivityForResult(new Intent(OrbotMainActivity.this, AppManagerActivity.class), REQUEST_VPN_APPS_SELECT);
-
-                    }
-                });
-            }
-            else
-            {
-                findViewById(R.id.btnApps).setVisibility(View.GONE);
-            }
 		}
 		
 		
@@ -483,17 +454,10 @@ public class OrbotMainActivity extends AppCompatActivity
              Intent intent = new Intent(OrbotMainActivity.this, SettingsPreferences.class);
              startActivityForResult(intent, REQUEST_SETTINGS);
          }
-         /**
-         else if (item.getItemId() == R.id.menu_promo_apps)
-         {
-             startActivity(new Intent(OrbotMainActivity.this, PromoAppsActivity.class));
-
-         }*/
          else if (item.getItemId() == R.id.menu_exit)
          {
                  //exit app
                  doExit();
-                 
                  
          }
          else if (item.getItemId() == R.id.menu_about)
@@ -609,14 +573,6 @@ public class OrbotMainActivity extends AppCompatActivity
 		{
 			//can happen on exit/shutdown
 		}
-	}
-
-	private void doTorCheck ()
-	{
-		
-		openBrowser(URL_TOR_CHECK,false);
-		
-
 	}
 
 	private void refreshVPNApps ()
@@ -854,11 +810,28 @@ public class OrbotMainActivity extends AppCompatActivity
 	/*
 	 * Launch the system activity for Uri viewing with the provided url
 	 */
-	private void openBrowser(final String browserLaunchUrl,boolean forceExternal)
+	private void openBrowser(final String browserLaunchUrl,boolean forceExternal, String pkgId)
 	{
-		boolean isBrowserInstalled = appInstalledOrNot(TorServiceConstants.BROWSER_APP_USERNAME);
+        boolean isBrowserInstalled = appInstalledOrNot(TorServiceConstants.BROWSER_APP_USERNAME);
 
-        if (isBrowserInstalled)
+		if (pkgId != null)
+        {
+            if (pkgId.equals(TorServiceConstants.BROWSER_APP_USERNAME))
+                startIntent(pkgId,Intent.ACTION_VIEW,Uri.parse(browserLaunchUrl));
+            else
+            {
+                if (!Prefs.useVpn())
+                {
+                    Toast.makeText(this, R.string.please_enable_vpn, Toast.LENGTH_LONG).show();
+
+                }
+                else
+                {
+                    startIntent(pkgId,Intent.ACTION_VIEW,Uri.parse(browserLaunchUrl));
+                }
+            }
+        }
+        else if (isBrowserInstalled)
         {
             startIntent(TorServiceConstants.BROWSER_APP_USERNAME,Intent.ACTION_VIEW,Uri.parse(browserLaunchUrl));
         }
@@ -867,53 +840,37 @@ public class OrbotMainActivity extends AppCompatActivity
 			//use the system browser since VPN is on
 			startIntent(null,Intent.ACTION_VIEW, Uri.parse(browserLaunchUrl));
 		}
-		else
-		{
-			AlertDialog aDialog = new AlertDialog.Builder(OrbotMainActivity.this)
-		      .setTitle(R.string.install_apps_)
-		      .setMessage(R.string.it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_)
-		      .setPositiveButton(R.string.install_orweb, new Dialog.OnClickListener ()
-		      {
-
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-
-					//prompt to install Orweb
-					//Intent intent = new Intent(OrbotMainActivity.this,PromoAppsActivity.class);
-					//startActivity(intent);
-
-                    startActivity(PromoAppsActivity.getInstallIntent(TorServiceConstants.BROWSER_APP_USERNAME,OrbotMainActivity.this));
-
-
-                }
-		    	  
-		      })
-                    .setNeutralButton(R.string.apps_mode, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                         //   enableVPN(true);
-                            mBtnVPN.setChecked(true);
-                        }
-                    })
-		      .setNegativeButton(R.string.standard_browser, new Dialog.OnClickListener ()
-		      {
-
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					startIntent(null,Intent.ACTION_VIEW, Uri.parse(browserLaunchUrl));
-					
-				}
-		    	  
-		      })
-		      .show();
-			  
-		}
 		
 	}
-	
-	
-	
-    
+
+	private void promptInstallOrfox ()
+    {
+        AlertDialog aDialog = new AlertDialog.Builder(OrbotMainActivity.this)
+                .setTitle(R.string.install_apps_)
+                .setMessage(R.string.it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_)
+                .setPositiveButton(R.string.install_orweb, new Dialog.OnClickListener ()
+                {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                     //   startActivity(PromoAppsActivity.getInstallIntent(TorServiceConstants.BROWSER_APP_USERNAME,OrbotMainActivity.this));
+
+
+                    }
+
+                })
+                .setNegativeButton(R.string.btn_cancel, new Dialog.OnClickListener ()
+                {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                    }
+
+                })
+                .show();
+    }
 
     private void startIntent (String pkg, String action, Uri data)
     {
@@ -963,7 +920,6 @@ public class OrbotMainActivity extends AppCompatActivity
         if (request == REQUEST_SETTINGS && response == RESULT_OK)
         {
             OrbotApp.forceChangeLanguage(this);
-
         }
         else if (request == REQUEST_VPN)
         {
@@ -973,12 +929,12 @@ public class OrbotMainActivity extends AppCompatActivity
 			else
 			{
 				Prefs.putUseVpn(false);
-
 			}
         }
         else if (request == REQUEST_VPN_APPS_SELECT)
         {
-            if (response == RESULT_OK)
+            if (response == RESULT_OK &&
+                    torStatus == TorServiceConstants.STATUS_ON)
                 refreshVPNApps();
 
         }
@@ -1123,7 +1079,7 @@ public class OrbotMainActivity extends AppCompatActivity
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				
-				openBrowser(URL_TOR_BRIDGES + type,true);
+				openBrowser(URL_TOR_BRIDGES + type,true, null);
 
 			}
 
@@ -1195,8 +1151,9 @@ public class OrbotMainActivity extends AppCompatActivity
            Prefs.disableTransparentProxying();
        }
 
-		
-    }
+           addAppShortcuts();
+
+       }
 
     AlertDialog aDialog = null;
     
@@ -1276,17 +1233,7 @@ public class OrbotMainActivity extends AppCompatActivity
                 showAlert(getString(R.string.status_activated),
                         getString(R.string.connect_first_time), true);
             }
-            else
-            {
-                Snackbar sb = Snackbar.make(findViewById(R.id.frameMain),getString(R.string.status_activated),Snackbar.LENGTH_LONG);
-                sb.setAction(R.string.menu_browse, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        doTorCheck();
-                    }
-                });
-                sb.show();
-            }
+            
 
             if (autoStartFromIntent)
             {
@@ -1515,6 +1462,100 @@ public class OrbotMainActivity extends AppCompatActivity
                 return false;
             }
     }
-    
+
+    private void addAppShortcuts ()
+    {
+        LinearLayout llBoxShortcuts = (LinearLayout)findViewById(R.id.boxAppShortcuts);
+
+        findViewById(R.id.row_apps).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityForResult(new Intent(OrbotMainActivity.this, AppManagerActivity.class), REQUEST_VPN_APPS_SELECT);
+            }
+        });
+
+        if (!PermissionManager.isLollipopOrHigher()) {
+            llBoxShortcuts.setVisibility(View.GONE);
+        }
+        else
+        {
+            PackageManager pMgr = getPackageManager();
+
+            ArrayList<String> pkgIds = new ArrayList<>();
+
+            String tordAppString = mPrefs.getString(PREFS_KEY_TORIFIED, "");
+            StringTokenizer st = new StringTokenizer(tordAppString,"|");
+            while (st.hasMoreTokens())
+                pkgIds.add(st.nextToken());
+
+            llBoxShortcuts.removeAllViews();
+
+            //first add Orfox shortcut
+            try {
+                String pkgId = "info.guardianproject.orfox";
+
+                ImageView iv = new ImageView(this);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                params.setMargins(3, 3, 3, 3);
+                iv.setLayoutParams(params);
+                iv.setImageDrawable(pMgr.getApplicationIcon(pkgId));
+                llBoxShortcuts.addView(iv);
+                iv.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (!appInstalledOrNot(TorServiceConstants.BROWSER_APP_USERNAME))
+                            promptInstallOrfox();
+                        else
+                            openBrowser(URL_TOR_CHECK,false, TorServiceConstants.BROWSER_APP_USERNAME);
+
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                //package not installed?
+            }
+
+            for (final String pkgId : pkgIds)
+            {
+                try {
+                    ImageView iv = new ImageView(this);
+                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    params.setMargins(3, 3, 3, 3);
+                    iv.setLayoutParams(params);
+                    iv.setImageDrawable(pMgr.getApplicationIcon(pkgId));
+                    llBoxShortcuts.addView(iv);
+                    iv.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            openBrowser(URL_TOR_CHECK,false, pkgId);
+
+                        }
+                    });
+                }
+                catch (Exception e)
+                {
+                    //package not installed?
+                }
+            }
+
+            //now add app edit/add shortcut
+            ImageView iv = new ImageView(this);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            params.setMargins(3, 3, 3, 3);
+            iv.setLayoutParams(params);
+            iv.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_input_add));
+            llBoxShortcuts.addView(iv);
+            iv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivityForResult(new Intent(OrbotMainActivity.this, AppManagerActivity.class), REQUEST_VPN_APPS_SELECT);
+
+
+                }
+            });
+        }
+
+    }
 
 }

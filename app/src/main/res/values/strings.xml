@@ -256,8 +256,8 @@
 
     <string name="permission_manage_tor_label">Manage Tor</string>
     <string name="permission_manage_tor_description">Enable this app to control the Tor service</string>
-    <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">It doesn\'t seem like you have Orfox installed. Want help with that, or should we just open the browser?</string>
-    <string name="install_apps_">Install apps?</string>
+    <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Orbot works best with Orfox Browser. Install now?</string>
+    <string name="install_apps_">Install browser?</string>
     <string name="no_network_connectivity_putting_tor_to_sleep_">No network connectivity. Putting Tor to sleep…</string>
     <string name="network_connectivity_is_good_waking_tor_up_">Network connectivity is good. Waking Tor up…</string>
     <string name="updating_settings_in_tor_service">updating settings in Tor service</string>
@@ -388,4 +388,5 @@
   <string name="pref_connection_padding_summary">Always enables connection padding to defend against some forms of traffic analysis. Default: auto</string>
   <string name="pref_reduced_connection_padding">Reduced connection padding</string>
   <string name="pref_reduced_connection_padding_summary">Closes relay connections sooner and sends less padding packets to reduce data and battery usage</string>
+    <string name="please_enable_vpn">Please activate the VPN mode to enable apps to use Tor</string>
 </resources>

@@ -11,6 +11,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import org.torproject.android.BuildConfig;
 import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.R;
 import org.torproject.android.service.util.TorServiceUtils;
@@ -29,6 +30,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -60,11 +62,31 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
 
     }
 
+    /*
+   * Create the UI Options Menu (non-Javadoc)
+   * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
+   */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.orbot_apps, menu);
+
+        return true;
+    }
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home)
         {
             finish();
+            return true;
+        }
+        else if (item.getItemId() == R.id.menu_apps_refresh)
+        {
+            mApps = null;
+            reloadApps();
             return true;
         }
 
@@ -76,7 +98,10 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
         super.onResume();
         listApps = (GridView) findViewById(R.id.applistview);
         mPrefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
+        reloadApps();
+    }
 
+    private void reloadApps () {
 
         new AsyncTask<Void, Void, Void>() {
             private ProgressDialog dialog;
@@ -105,7 +130,9 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
     private void loadApps (SharedPreferences prefs)
     {
 
-        mApps = getApps(getApplicationContext(), prefs);
+        if (mApps == null)
+            mApps = getApps(getApplicationContext(), prefs);
+
         Collections.sort(mApps,new Comparator<TorifiedApp>() {
             public int compare(TorifiedApp o1, TorifiedApp o2) {
                 if (o1.isTorified() == o2.isTorified()) return o1.getName().compareTo(o2.getName());

@@ -268,15 +268,13 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 yesReceive.setAction("Restart");
                 PendingIntent pendingIntentYes = PendingIntent.getBroadcast(this, 12345, yesReceive, PendingIntent.FLAG_UPDATE_CURRENT);
                 mNotifyBuilder.addAction(R.drawable.ic_stat_tor_off, "Restart", pendingIntentYes);
-
-
                 //Maybe intent
+                **/
+
                 Intent maybeReceive = new Intent();
                 maybeReceive.setAction("Identity");
                 PendingIntent pendingIntentMaybe = PendingIntent.getBroadcast(this, 12345, maybeReceive, PendingIntent.FLAG_UPDATE_CURRENT);
                 mNotifyBuilder.addAction(R.drawable.ic_stat_tor_xfer, "New Identity", pendingIntentMaybe);
-                **/
-
             }        
                                 
         }
@@ -344,6 +342,12 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
              expandedView.setTextViewText(R.id.title, getString(R.string.app_name)); 
              
              expandedView.setImageViewResource(R.id.icon, icon);
+
+            Intent intentRefresh = new Intent();
+            intentRefresh.setAction("Identity");
+            PendingIntent pendingIntentMaybe = PendingIntent.getBroadcast(this, 12345, intentRefresh, PendingIntent.FLAG_UPDATE_CURRENT);
+            expandedView.setOnClickFillInIntent(R.id.action_refresh,intentRefresh);
+
             mNotification.bigContentView = expandedView;
         }
         
