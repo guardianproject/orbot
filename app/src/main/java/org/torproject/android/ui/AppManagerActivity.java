@@ -37,8 +37,6 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
@@ -226,6 +224,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
         {
             tordApps[tordIdx++] = st.nextToken();
         }
+        Arrays.sort(tordApps);
 
         List<ApplicationInfo> lAppInfo = pMgr.getInstalledApplications(0);
 
