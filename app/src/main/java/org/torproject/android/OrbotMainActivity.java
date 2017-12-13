@@ -570,6 +570,8 @@ public class OrbotMainActivity extends AppCompatActivity
             startActivity(new Intent(OrbotMainActivity.this, VPNEnableActivity.class));
         } else
             stopVpnService();
+
+        addAppShortcuts();
     }
 
     private void enableHiddenServicePort(
@@ -695,7 +697,7 @@ public class OrbotMainActivity extends AppCompatActivity
         }
     }
 
-    private void handleIntents() {
+    private synchronized void handleIntents() {
         if (getIntent() == null)
             return;
 
@@ -1125,13 +1127,17 @@ public class OrbotMainActivity extends AppCompatActivity
         else
             updateStatus(null, torStatus);
 
-       if (Prefs.useTransparentProxying())
-       {
-           showAlert(getString(R.string.no_transproxy_warning_short),getString(R.string.no_transproxy_warning),true);
-           Prefs.disableTransparentProxying();
-       }
+           if (Prefs.useTransparentProxying())
+           {
+               showAlert(getString(R.string.no_transproxy_warning_short),getString(R.string.no_transproxy_warning),true);
+               Prefs.disableTransparentProxying();
+           }
 
            addAppShortcuts();
+
+
+           //now you can handle the intents properly
+           handleIntents();
 
        }
 
@@ -1175,7 +1181,7 @@ public class OrbotMainActivity extends AppCompatActivity
      * Update the layout_main UI based on the status of {@link TorService}.
      * {@code torServiceMsg} must never be {@code null}
      */
-    private void updateStatus(String torServiceMsg, String newTorStatus) {
+    private synchronized void updateStatus(String torServiceMsg, String newTorStatus) {
 
         if (!TextUtils.isEmpty(torServiceMsg))
         {
@@ -1345,9 +1351,6 @@ public class OrbotMainActivity extends AppCompatActivity
                         findViewById(R.id.frameMain).setVisibility(View.VISIBLE);
                         updateStatus(log, newTorStatus);
 
-                        //now you can handle the intents properly
-                        handleIntents();
-
                     }
                     else
                         updateStatus(log, newTorStatus);
@@ -1443,13 +1446,6 @@ public class OrbotMainActivity extends AppCompatActivity
         {
             PackageManager pMgr = getPackageManager();
 
-            ArrayList<String> pkgIds = new ArrayList<>();
-
-            String tordAppString = mPrefs.getString(PREFS_KEY_TORIFIED, "");
-            StringTokenizer st = new StringTokenizer(tordAppString,"|");
-            while (st.hasMoreTokens())
-                pkgIds.add(st.nextToken());
-
             llBoxShortcuts.removeAllViews();
 
             //first add Orfox shortcut
@@ -1478,27 +1474,48 @@ public class OrbotMainActivity extends AppCompatActivity
                 //package not installed?
             }
 
-            for (final String pkgId : pkgIds)
-            {
-                try {
-                    ImageView iv = new ImageView(this);
-                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                    params.setMargins(3, 3, 3, 3);
-                    iv.setLayoutParams(params);
-                    iv.setImageDrawable(pMgr.getApplicationIcon(pkgId));
-                    llBoxShortcuts.addView(iv);
-                    iv.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            openBrowser(URL_TOR_CHECK,false, pkgId);
+            ArrayList<String> pkgIds = new ArrayList<>();
+            String tordAppString = mPrefs.getString(PREFS_KEY_TORIFIED, "");
 
-                        }
-                    });
+            if (TextUtils.isEmpty(tordAppString))
+            {
+                /**
+                TextView tv = new TextView(this);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                params.setMargins(3, 3, 3, 3);
+                tv.setLayoutParams(params);
+                tv.setText("Full Device Mode");
+                llBoxShortcuts.addView(tv);
+                 **/
+            }
+            else {
+                StringTokenizer st = new StringTokenizer(tordAppString, "|");
+                while (st.hasMoreTokens() && pkgIds.size() < 4)
+                    pkgIds.add(st.nextToken());
+
+                for (final String pkgId : pkgIds) {
+                    try {
+                        ImageView iv = new ImageView(this);
+                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                        params.setMargins(3, 3, 3, 3);
+                        iv.setLayoutParams(params);
+                        iv.setImageDrawable(pMgr.getApplicationIcon(pkgId));
+                        llBoxShortcuts.addView(iv);
+                        iv.setEnabled(Prefs.useVpn());
+
+                        iv.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                openBrowser(URL_TOR_CHECK, false, pkgId);
+
+                            }
+                        });
+                    } catch (Exception e) {
+                        //package not installed?
+                    }
                 }
-                catch (Exception e)
-                {
-                    //package not installed?
-                }
+
+
             }
 
             //now add app edit/add shortcut
