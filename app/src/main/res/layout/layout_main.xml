@@ -289,7 +289,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:fontFamily="sans-serif-light"
-            android:text="App Shortcuts"
+            android:text="@string/app_shortcuts"
             android:layout_margin="3dp"
             android:lines="1"
             />
