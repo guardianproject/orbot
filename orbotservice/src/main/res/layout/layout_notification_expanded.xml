@@ -18,26 +18,16 @@
     xmlns:internal="http://schemas.android.com/apk/prv/res/android"
     android:id="@+id/status_bar_latest_event_content"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"    
+    android:layout_height="wrap_content"
+    android:background="@android:color/holo_purple"
     >
-    <ImageView android:id="@+id/icon"
-        android:layout_width="@dimen/notification_large_icon_width"
-        android:layout_height="@dimen/notification_large_icon_height"
-        android:scaleType="center"
-        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="fill_vertical"
-        android:layout_marginStart="@dimen/notification_large_icon_width"
-        android:layout_marginLeft="@dimen/notification_large_icon_width"
-
         android:minHeight="@dimen/notification_large_icon_height"
         android:orientation="vertical"
-        android:paddingEnd="8dp"
-        android:paddingRight="8dp"
-        android:paddingTop="2dp"
-        android:paddingBottom="2dp"
+        android:padding="12dp"
         android:gravity="top"
         >
         <LinearLayout
@@ -49,15 +39,25 @@
             android:layout_marginLeft="8dp"
             android:orientation="horizontal"
             >
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_stat_tor"
+                />
             <TextView android:id="@+id/title"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
                 android:ellipsize="marquee"
                 android:fadingEdge="horizontal"
                 android:layout_weight="1"
                 android:textStyle="bold"
-                 />
+                android:textColor="@android:color/white"
+                android:layout_marginStart="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_gravity="center_vertical"
+                android:text="@string/app_name"
+                />
             
         </LinearLayout>
         <LinearLayout
@@ -76,6 +76,7 @@
                 android:singleLine="true"
                 android:ellipsize="marquee"
                 android:fadingEdge="horizontal"
+                android:textColor="@android:color/white"
                 />
             <TextView android:id="@+id/info"
                 android:layout_width="wrap_content"
@@ -87,11 +88,11 @@
                 android:paddingStart="8dp"
                 android:paddingLeft="8dp"
                 />
-            <ImageButton
+            <ImageView
                 android:id="@+id/action_refresh"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_autorenew_black_36dp" />
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_refresh_white_24dp" />
         </LinearLayout>
         <TextView android:id="@+id/text2"
             android:layout_width="match_parent"
@@ -100,7 +101,8 @@
             android:layout_marginBottom="-2dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:fadingEdge="horizontal"        
+            android:fadingEdge="horizontal"
+            android:textColor="@android:color/white"
             />
     </LinearLayout>
 </FrameLayout>

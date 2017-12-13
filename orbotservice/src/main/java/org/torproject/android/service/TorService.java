@@ -24,6 +24,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -37,6 +38,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.RemoteViews;
+import android.widget.Toast;
 
 import com.jrummyapps.android.shell.CommandResult;
 import com.jrummyapps.android.shell.Shell;
@@ -262,19 +264,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
                 mNotifyBuilder.setContentIntent(pendIntent);
 
-                /**
-                //Restart intent
-                Intent yesReceive = new Intent();
-                yesReceive.setAction("Restart");
-                PendingIntent pendingIntentYes = PendingIntent.getBroadcast(this, 12345, yesReceive, PendingIntent.FLAG_UPDATE_CURRENT);
-                mNotifyBuilder.addAction(R.drawable.ic_stat_tor_off, "Restart", pendingIntentYes);
-                //Maybe intent
-                **/
-
-                Intent maybeReceive = new Intent();
-                maybeReceive.setAction("Identity");
-                PendingIntent pendingIntentMaybe = PendingIntent.getBroadcast(this, 12345, maybeReceive, PendingIntent.FLAG_UPDATE_CURRENT);
-                mNotifyBuilder.addAction(R.drawable.ic_stat_tor_xfer, "New Identity", pendingIntentMaybe);
             }        
                                 
         }
@@ -344,10 +333,9 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
              expandedView.setImageViewResource(R.id.icon, icon);
 
             Intent intentRefresh = new Intent();
-            intentRefresh.setAction("Identity");
-            PendingIntent pendingIntentMaybe = PendingIntent.getBroadcast(this, 12345, intentRefresh, PendingIntent.FLAG_UPDATE_CURRENT);
-            expandedView.setOnClickFillInIntent(R.id.action_refresh,intentRefresh);
-
+            intentRefresh.setAction(CMD_NEWNYM);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intentRefresh, PendingIntent.FLAG_UPDATE_CURRENT);
+            expandedView.setOnClickPendingIntent(R.id.action_refresh,pendingIntent);
             mNotification.bigContentView = expandedView;
         }
         
@@ -436,6 +424,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
         try {
             unregisterReceiver(mNetworkStateReceiver);
+            unregisterReceiver(mActionBroadcastReceiver);
         }
         catch (IllegalArgumentException iae)
         {
@@ -443,16 +432,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         }
 
         stopTor();
-
-        /**
-        try
-        {
-            mShell.close();
-        }
-        catch (IOException ioe)
-        {
-            Log.d(TAG, "Error closing shell",ioe);
-        }**/
 
         super.onDestroy();
     }
@@ -493,6 +472,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
     }
 
+
     private void killAllDaemons() throws Exception {
         if (conn != null) {
             logNotice("Using control port to shutdown Tor");
@@ -507,14 +487,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
             conn = null;
         }
-
-        /**
-        if (mShellPolipo != null)
-        {
-            mShellPolipo.close();
-            //logNotice("Polipo exited with value: " + exitValue);
-
-        }**/
 
     }
 
@@ -578,6 +550,10 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             IntentFilter mNetworkStateFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
             registerReceiver(mNetworkStateReceiver , mNetworkStateFilter);
 
+            IntentFilter filter = new IntentFilter();
+            filter.addAction(CMD_NEWNYM);
+            mActionBroadcastReceiver = new ActionBroadcastReceiver();
+            registerReceiver(mActionBroadcastReceiver, filter);
 
             new Thread(new Runnable ()
             {
@@ -1285,9 +1261,15 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 {
                     public void run ()
                     {
-                        try { 
-                            
-                            conn.signal("NEWNYM"); 
+                        try {
+
+
+                            int iconId = R.drawable.ic_stat_tor;
+
+                            if (hasConnectivity() && Prefs.expandedNotifications())
+                                showToolbarNotification(getString(R.string.newnym), getNotifyId(), iconId);
+
+                            conn.signal("NEWNYM");
                         
                         }
                         catch (Exception ioe){
@@ -1810,10 +1792,18 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     }
 
     @Override
-    public IBinder onBind(Intent arg0) {
-        // TODO Auto-generated method stub
+    public IBinder onBind(Intent intent) {
+        Log.e( "CustomNotificationService", "onBind" );
+        handleIntent( intent );
         return null;
     }
+
+    private void handleIntent( Intent intent ) {
+        if( intent != null && intent.getAction() != null ) {
+            Log.e( "CustomNotificationService", intent.getAction().toString() );
+        }
+    }
+
     
     private void setExitNode (String newExits)
     {
@@ -1980,6 +1970,23 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             }
         }
 
+    }
+
+    ActionBroadcastReceiver mActionBroadcastReceiver;
+
+    private class ActionBroadcastReceiver extends BroadcastReceiver
+    {
+        public void onReceive(Context context, Intent intent)
+        {
+            switch (intent.getAction())
+            {
+                case CMD_NEWNYM:
+                {
+                    newIdentity();
+                    break;
+                }
+            }
+        }
     }
 
 }

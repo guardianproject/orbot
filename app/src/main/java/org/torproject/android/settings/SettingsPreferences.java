@@ -14,6 +14,7 @@ import android.preference.PreferenceActivity;
 
 import org.torproject.android.OrbotApp;
 import org.torproject.android.R;
+import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.util.TorServiceUtils;
 
 import java.util.Locale;
@@ -43,15 +44,9 @@ public class SettingsPreferences
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 String language = (String) newValue;
                 if (preference == prefLocale) {
-                    SharedPreferences settings = TorServiceUtils
-                            .getSharedPrefs(getApplicationContext());
-
-                    String lang = settings.getString("pref_default_locale",
-                            Locale.getDefault().getLanguage());
                     OrbotApp app = (OrbotApp) getApplication();
                     Languages.setLanguage(app, language, true);
-                    lang = settings.getString("pref_default_locale",
-                            Locale.getDefault().getLanguage());
+                    Prefs.setDefaultLocale(language);
                     OrbotApp.forceChangeLanguage(SettingsPreferences.this);
                 }
                 return false;
