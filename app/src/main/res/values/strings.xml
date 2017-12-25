@@ -128,6 +128,8 @@
   <string name="pref_entrance_node_dialog">Enter Entrance Nodes</string>
   <string name="pref_allow_background_starts_title">Allow Background Starts</string>
   <string name="pref_allow_background_starts_summary">Let any app tell Orbot to start Tor and related services</string>
+  <string name="pref_open_proxy_on_all_interfaces_title">Open Proxy on All Interfaces</string>
+  <string name="pref_open_proxy_on_all_interfaces_summary">Allow Wifi peers, tethered devices and anyone else who can connect to your IP, to access Tor</string>
 
   <string name="button_proxy_all">Proxy All</string>
   <string name="button_proxy_none">Proxy None</string>

@@ -659,6 +659,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         extraLines.append("SafeSocks 0").append('\n');
         extraLines.append("TestSocks 0").append('\n');
         extraLines.append("WarnUnsafeSocks 1").append('\n');
+    	if (Prefs.openProxyOnAllInterfaces())
+    		extraLines.append("SocksListenAddress 0.0.0.0").append('\n');
 
 	if(prefs.getBoolean(OrbotConstants.PREF_CONNECTION_PADDING, false))
 	{
