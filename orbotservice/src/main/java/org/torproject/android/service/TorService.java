@@ -1912,7 +1912,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             try
             {
                 BufferedReader in=
-                        new BufferedReader(new InputStreamReader(getAssets().open("bridges.txt"), "UTF-8"));
+                        new BufferedReader(new InputStreamReader(getResources().openRawResource(R.raw.bridges), "UTF-8"));
                 String str;
 
                 while ((str=in.readLine()) != null) {
