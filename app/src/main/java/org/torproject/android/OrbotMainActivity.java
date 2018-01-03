@@ -23,6 +23,7 @@ import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.TorServiceUtils;
 import org.torproject.android.settings.SettingsPreferences;
 import org.torproject.android.ui.AppManagerActivity;
+import org.torproject.android.ui.onboarding.BridgeWizardActivity;
 import org.torproject.android.ui.onboarding.OnboardingActivity;
 import org.torproject.android.ui.hiddenservices.ClientCookiesActivity;
 import org.torproject.android.ui.hiddenservices.HiddenServicesActivity;
@@ -969,56 +970,7 @@ public class OrbotMainActivity extends AppCompatActivity
 
         if (mBtnBridges.isChecked())
         {
-
-            startActivity(new Intent(this, OnboardingActivity.class));
-
-            /**
-            LayoutInflater li = LayoutInflater.from(this);
-            View view = li.inflate(R.layout.layout_diag, null);
-
-            TextView versionName = (TextView)view.findViewById(R.id.diaglog);
-            versionName.setText(R.string.if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_);
-
-            new AlertDialog.Builder(this)
-	        .setTitle(R.string.bridge_mode)
-	        .setView(view)
-	        .setItems(R.array.bridge_options, new DialogInterface.OnClickListener() {
-               public void onClick(DialogInterface dialog, int which) {
-               // The 'which' argument contains the index position
-               // of the selected item
-            	   
-            	   switch (which)
-            	   {
-            	   case 0: //obfs 4;
-                       Prefs.setBridgesList("obfs4");
-            		   enableBridges(true);
-
-            		   break;
-            	   case 1: //amazon & azure
-                       Prefs.setBridgesList("meek");
-            		   enableBridges(true);
-            		   
-            		   break;
-            	   case 2:
-            		   showGetBridgePrompt("obfs4");
-            		   
-            		   break;
-            		  
-            	   }
-            	   
-               }
-           }).setNegativeButton(R.string.btn_cancel, new Dialog.OnClickListener()
-	        {
-	        	@Override
-				public void onClick(DialogInterface dialog, int which) {
-					
-	            	//mBtnBridges.setChecked(false);
-					
-				}
-	              })
-	        .show();
-	        **/
-
+            startActivity(new Intent(this, BridgeWizardActivity.class));
         }
         else
         {

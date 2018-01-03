@@ -161,32 +161,7 @@ public class BridgeWizardActivity extends AppCompatActivity {
      */
     private void openBrowser(final String browserLaunchUrl,boolean forceExternal, String pkgId)
     {
-        boolean isBrowserInstalled = appInstalledOrNot(TorServiceConstants.BROWSER_APP_USERNAME);
-
-        if (pkgId != null)
-        {
-            if (pkgId.equals(TorServiceConstants.BROWSER_APP_USERNAME))
-                startIntent(pkgId,Intent.ACTION_VIEW, Uri.parse(browserLaunchUrl));
-            else
-            {
-                if (!Prefs.useVpn())
-                {
-                    Toast.makeText(this, R.string.please_enable_vpn, Toast.LENGTH_LONG).show();
-                }
-                else
-                {
-                    startIntent(pkgId,Intent.ACTION_VIEW,Uri.parse(browserLaunchUrl));
-                }
-            }
-        }
-        else if (isBrowserInstalled)
-        {
-            startIntent(TorServiceConstants.BROWSER_APP_USERNAME,Intent.ACTION_VIEW,Uri.parse(browserLaunchUrl));
-        }
-        else
-        {
-            startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse(browserLaunchUrl)));
-        }
+        startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse(browserLaunchUrl)));
     }
 
 
@@ -265,7 +240,7 @@ public class BridgeWizardActivity extends AppCompatActivity {
             String testHost = host[i];
             i++; //move to the port
             int testPort = Integer.parseInt(host[i]);
-            result = isHostReachable(testHost, testPort, 5000);
+            result = isHostReachable(testHost, testPort, 10000);
             if (result)
                 return result;
         }
