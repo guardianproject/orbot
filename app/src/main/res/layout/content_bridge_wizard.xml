@@ -26,37 +26,47 @@
 
     <RadioButton
         android:id="@+id/btnBridgesDirect"
-        android:layout_width="315dp"
-        android:layout_height="29dp"
-        android:text="Direct connection to Tor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Connect directly to Tor\n(Best, if you can!)"
         android:layout_margin="12dp"
         />
 
     <RadioButton
         android:id="@+id/btnBridgesObfs4"
-        android:layout_width="315dp"
-        android:layout_height="29dp"
-        android:text="Connect through community bridges (Obfs4)"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Connect through community bridges\n(Second best option, if it works)"
         android:layout_margin="12dp"
 
         />
 
     <RadioButton
         android:id="@+id/btnBridgesMeek"
-        android:layout_width="315dp"
-        android:layout_height="29dp"
-        android:text="Hide traffic through Cloud Services"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hide traffic through cloud services\n(Slower, but harder to block)"
         android:layout_margin="12dp"
 
         />
 
         <RadioButton
             android:id="@+id/btnBridgesNew"
-            android:layout_width="315dp"
-            android:layout_height="29dp"
-            android:text="Request New Bridges..."
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Request New Bridges...\n(If all the other options fail...)"
             android:layout_margin="12dp"
 
             />
     </RadioGroup>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="testing..."
+        android:gravity="center"
+        android:id="@+id/lbl_bridge_test_status"
+        android:layout_margin="12dp"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        />
 </LinearLayout>

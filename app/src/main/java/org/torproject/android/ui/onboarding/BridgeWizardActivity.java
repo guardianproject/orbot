@@ -7,11 +7,13 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -22,7 +24,14 @@ import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.Prefs;
 
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.SocketAddress;
+
 public class BridgeWizardActivity extends AppCompatActivity {
+
+    private TextView tvStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +41,9 @@ public class BridgeWizardActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        tvStatus = (TextView)findViewById(R.id.lbl_bridge_test_status);
+        tvStatus.setVisibility(View.GONE);
+
         setTitle(getString(R.string.bridges));
 
         findViewById(R.id.btnBridgesDirect).setOnClickListener(new View.OnClickListener() {
@@ -39,6 +51,8 @@ public class BridgeWizardActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Prefs.setBridgesList("");
                 Prefs.putBridgesEnabled(false);
+                testBridgeConnection();
+
             }
         });
 
@@ -47,6 +61,8 @@ public class BridgeWizardActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Prefs.setBridgesList("obfs4");
                 Prefs.putBridgesEnabled(true);
+                testBridgeConnection();
+
             }
         });
 
@@ -56,6 +72,8 @@ public class BridgeWizardActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Prefs.setBridgesList("meek");
                 Prefs.putBridgesEnabled(true);
+                testBridgeConnection();
+
             }
         });
 
@@ -213,4 +231,77 @@ public class BridgeWizardActivity extends AppCompatActivity {
         }
     }
 
+    private void testBridgeConnection ()
+    {
+        if (TextUtils.isEmpty(Prefs.getBridgesList()) || (!Prefs.bridgesEnabled()))
+        {
+            new HostTester().execute("check.torproject.org","443");
+        }
+        else if (Prefs.getBridgesList().equals("meek"))
+        {
+            new HostTester().execute("meek.azureedge.net","443","d2cly7j4zqgua7.cloudfront.net","443");
+        }
+        else if (Prefs.getBridgesList().equals("obfs4"))
+        {
+            new HostTester().execute("85.17.30.79","443","154.35.22.9","443","192.99.11.54","443");
+        }
+        else
+        {
+            tvStatus.setText("");
+        }
+    }
+
+    private class HostTester extends AsyncTask<String, Void, Boolean> {
+        protected void onPreExecute() {
+            // Pre Code
+            tvStatus.setVisibility(View.VISIBLE);
+            tvStatus.setText(R.string.testing_bridges);
+        }
+    protected Boolean doInBackground(String... host) {
+        // Background Code
+        boolean result = false;
+
+        for (int i = 0; i < host.length; i++) {
+            String testHost = host[i];
+            i++; //move to the port
+            int testPort = Integer.parseInt(host[i]);
+            result = isHostReachable(testHost, testPort, 5000);
+            if (result)
+                return result;
+        }
+
+        return result;
+    }
+    protected void onPostExecute(Boolean result) {
+        // Post Code
+        if (result)
+        {
+            tvStatus.setText(R.string.testing_bridges_success);
+
+        }
+        else
+        {
+            tvStatus.setText(R.string.testing_bridges_fail);
+
+        }
+    }};
+
+    private static boolean isHostReachable(String serverAddress, int serverTCPport, int timeoutMS){
+        boolean connected = false;
+        Socket socket;
+        try {
+            socket = new Socket();
+            SocketAddress socketAddress = new InetSocketAddress(serverAddress, serverTCPport);
+            socket.connect(socketAddress, timeoutMS);
+            if (socket.isConnected()) {
+                connected = true;
+                socket.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            socket = null;
+        }
+        return connected;
+    }
 }
