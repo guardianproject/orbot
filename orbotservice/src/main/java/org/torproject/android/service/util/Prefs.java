@@ -109,7 +109,7 @@ public class Prefs {
     }
 
     public static boolean useVpn() {
-        return prefs.getBoolean(PREF_USE_VPN, true);
+        return prefs.getBoolean(PREF_USE_VPN, false);
     }
 
     public static void putUseVpn(boolean value) {
