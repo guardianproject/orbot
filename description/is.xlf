@@ -11,16 +11,16 @@
       </trans-unit>
       <trans-unit id="shortdescription" maxwidth="80" size-unit="char">
         <source>Protect your privacy with this proxy with Tor</source>
-        <target>Verndaðu einkalífið með þessum proxy með Tor</target>
+        <target>Verndaðu einkalífið með þessum milliþjóni (proxy) á Tor</target>
         <note from="developer">This is limited by Google to 80 characters</note>
       </trans-unit>
       <trans-unit id="intro">
         <source>Orbot is a free proxy app that empowers other apps to use the internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.</source>
-        <target>Orbot er ókeypis proxy smáforrit sem gerir öðrum smáforritum kleift að nota veraldarvefinn á öruggari hátt. Orbot notar Tor til að dulkóða umferð þína á netinu og felur hana svo með að hoppa í gegnum fjölda tölva um allan heim. Tor er ókeypis hugbúnaður og opið net sem aðstoðar þig við að verjast gegn eftirliti á netinu sem vinnur gegn frelsi einkalífsins og friðhelgi, trúnaðar viðskiptamálum og samböndum, og ríkisöryggi þekkt sem umferðargreining.</target>
+        <target>Orbot er frjálst og ókeypis milliþjóns-smáforrit (proxy) sem gerir öðrum smáforritum kleift að nota veraldarvefinn á öruggari hátt. Orbot notar Tor til að dulkóða umferð þína á netinu og felur hana svo með að hoppa í gegnum fjölda tölva um allan heim. Tor er frjáls hugbúnaður og opið net sem aðstoðar þig við að verjast eftirliti á netinu sem vinnur gegn frelsi einkalífsins og friðhelgi; vinnur gegn viðkvæmum viðskiptamálum og samböndum og þeirri tegund ríkisöryggis sem þekkt er sem umferðargreining.</target>
       </trans-unit>
       <trans-unit id="intro2">
         <source>Orbot is the only app that creates a truly private internet connection. As the New York Times writes, “when a communication arrives from Tor, you can never know where or whom it’s from.” Tor won the 2012 Electronic Frontier Foundation (EFF) Pioneer Award.</source>
-        <target>Orbot er eina smáforritið sem býr til raunverulega prívat veraldarvefs tengingu. Eins og New York Times skrifar, &quot;þegar samskipti koma frá Tor, geturu aldrei vitað frá hverjum eða hvaðan það kemur.&quot; Tor vann 2012 Electronic Frontier Foundation (EFF) Frumkvöðlaverðlaunin.</target>
+        <target>Orbot er eina smáforritið sem býr til raunverulega einkatengingu við veraldarvefinn. Eins og New York Times skrifar, &quot;þegar samskipti koma frá Tor, geturðu aldrei vitað frá hverjum eða hvaðan það kemur.&quot; Tor vann frumkvöðlaverðlaun Electronic Frontier Foundation (EFF) árið 2012.</target>
       </trans-unit>
       <trans-unit id="intro2">
         <source>ACCEPT NO SUBSTITUTES: Orbot is the safest way to use the Internet on Android. Period. Orbot bounces your encrypted traffic several times through computers around the world, instead of connecting you directly like VPNs and proxies. This process takes a little longer, but the strongest privacy and identity protection available is worth the wait.</source>
@@ -41,11 +41,11 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="expertrootmode">
         <source>***Expert Root Mode***</source>
-        <target>***Sérfræðinga Rótar Viðmót***</target>
+        <target>***Rótarviðmót fyrir sérfræðinga***</target>
       </trans-unit>
       <trans-unit id="universalmode">
         <source>UNIVERSAL MODE: Orbot can be configured to transparently proxy all of your Internet traffic through Tor. You can also choose which specific apps you want to use through Tor.</source>
-        <target>ALHEIMS VIÐMÓT: Orbot getur verið stillt til að proxya alla veraldarvefs umferð í gegnum Tor á gegnsæjan hátt. Þú getur líka valið hvaða sértæku smáforritið þú vilt nota í gegnum Tor.</target>
+        <target>ALMENNT VIÐMÓT: Orbot getur verið stillt til að senda alla veraldarvefs-umferð í gegnum milliþjóna og Tor á gegnsæjan hátt. Þú getur líka valið hvaða sértæku smáforrit þú vilt nota í gegnum Tor.</target>
       </trans-unit>
       <trans-unit id="wespeakyourlanguage">
         <source>★ WE SPEAK YOUR LANGUAGE: Orbot is available for friends who speak:</source>
@@ -53,12 +53,12 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="languagelist" translate="no">
         <source>العربية, azərbaycanca, български, català, Čeština, dansk, Deutsch, Ελληνικά, English, español, eesti, euskara, فارسی, suomi, français, galego, hrvatski, magyar, עברית, íslenska, italiano, 日本語, 한국어, lietuvių, latviešu, Македонци, Bahasa Melayu, Nederlands, norsk, polski, português, Русский, slovenčina, slovenščina, српски, svenska, Türkçe, українська, Tagalog, Tiếng Việt, 中文(简体), 中文(台灣)</source>
-        <target>العربية, azərbaycanca, български, català, Čeština, dansk, Deutsch, Ελληνικά, English, español, eesti, euskara, فارسی, suomi, français, galego, hrvatski, magyar, עברית, íslenska, italiano, 日本語, 한국어, lietuvių, latviešu, Македонци, Bahasa Melayu, Nederlands, norsk, polski, português, Русский, slovenčina, slovenščina, српски, svenska, Türkçe, українська, Tagalog, Tiếng Việt, 中文(简体), 中文(台灣)</target>
+        <target>العربية, azərbaycanca, български, català, Čeština, dansk, Deutsch, Ελληνικά, English, español, eesti, euskara, فارسی, suomi, français, galego, hrvatski, magyar, עברית, íslensku, italiano, 日本語, 한국어, lietuvių, latviešu, Македонци, Bahasa Melayu, Nederlands, norsk, polski, português, Русский, slovenčina, slovenščina, српски, svenska, Türkçe, українська, Tagalog, Tiếng Việt, 中文(简体), 中文(台灣)</target>
         <note from="developer">Do not translate the names of the languages, leave them just like this.</note>
       </trans-unit>
       <trans-unit id="helptranslate">
         <source>Don’t see your language? Join us and help translate the app:</source>
-        <target>Sérðu ekki tungumálið þitt? Gakktu til liðs við okkur og aðstoðaðu við að þýða smáforritið:</target>
+        <target>Sérðu ekki tungumálið þitt? Gakktu til liðs við okkur og aðstoðaðu við að þýða forritið:</target>
       </trans-unit>
       <trans-unit id="helptranslateurl" translate="no">
         <source>https://www.transifex.com/projects/p/orbot</source>
@@ -67,11 +67,11 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="learnmore">
         <source>***Learn More***</source>
-        <target>***Lærðu Meira***</target>
+        <target>***Lærðu meira***</target>
       </trans-unit>
       <trans-unit id="aboutus">
         <source>★ ABOUT US: Guardian Project is a group of developers that make secure mobile apps and open-source code for a better tomorrow</source>
-        <target>★ UM OKKUR: Guardian Verkefnið er hópur þróara sem búa til örugg smáforrit fyrir snjalltæki og open-source kóða fyrir betri morgundag</target>
+        <target>★ UM OKKUR: Guardian-verkefnið er hópur hönnuða sem búa til örugg smáforrit fyrir snjalltæki og opinn húgbúnaðarkóða (open-source) með framtíðina í huga</target>
       </trans-unit>
       <trans-unit id="ourwebsite">
         <source>★ OUR WEBSITE: https://GuardianProject.info</source>
@@ -87,7 +87,7 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="freesoftware">
         <source>★ FREE SOFTWARE: Orbot is free software. Take a look at our source code, or join the community to make it better:</source>
-        <target>★ ÓKEYPIS HUGBÚNAÐUR: Orbot er ókeypis hugbúnaður. Kíktu á source kóðann okkar, eða gekktu til liðs við samfélagið til að bæta hann:</target>
+        <target>★ FRJÁLS HUGBÚNAÐUR: Orbot er frjáls og ókeypis hugbúnaður. Kíktu á grunnkóðann okkar, eða gakktu til liðs við samfélagið til að bæta hann:</target>
       </trans-unit>
       <trans-unit id="gitrepo" translate="no">
         <source>https://gitweb.torproject.org/orbot.git</source>
@@ -96,7 +96,7 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="messageus">
         <source>★ MESSAGE US: Are we missing your favorite feature? Found an annoying bug? Please tell us! We’d love to hear from you. Send us an email: support@guardianproject.info or find us in our chat room https://guardianproject.info/contact</source>
-        <target>★ SENDU SKILABOÐ: Vantar uppáhalds möguleikann þinn? Fannstu pirrandi bögg? Vinsamlegast segðu okkur! Við viljum endilega heyra frá þér. Sendu okkur tölvupóst: support@guardianproject.info eða finndu okkur á spjallrásinni https://guardianproject.info/contact</target>
+        <target>★ SENDU OKKUR SKILABOÐ: Vantar uppáhalds eiginleikann þinn? Fannstu pirrandi galla? Endilega segðu okkur frá! Við viljum gjarnan heyra frá þér. Sendu okkur tölvupóst: support@guardianproject.info eða finndu okkur á spjallrásinni https://guardianproject.info/contact</target>
       </trans-unit>
     </body>
   </file>

@@ -59,7 +59,7 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="helptranslate">
         <source>Don’t see your language? Join us and help translate the app:</source>
-        <target>الم ترى لغتك ؟ انظم لنا وساعدنا في ترجمة التطبيق :</target>
+        <target>الم تلق لغتك ؟ انظم إلينا وساعدنا في ترجمة التطبيق :</target>
       </trans-unit>
       <trans-unit id="helptranslateurl" translate="no">
         <source>https://www.transifex.com/projects/p/orbot</source>
@@ -88,7 +88,7 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="freesoftware">
         <source>★ FREE SOFTWARE: Orbot is free software. Take a look at our source code, or join the community to make it better:</source>
-        <target>★ البرمجيات الحرة : اوربوت هو برمجيات حرة . انظر إلى مصدر الكود أو انضم إلى مجتمعنا لجعله أفضل :</target>
+        <target>★ البرمجيات الحرة : اوربوت برنامج حر. إلقي نظرة على الشفرة المصدرية أو انضم إلى مجتمعنا لتحسينه :</target>
       </trans-unit>
       <trans-unit id="gitrepo" translate="no">
         <source>https://gitweb.torproject.org/orbot.git</source>

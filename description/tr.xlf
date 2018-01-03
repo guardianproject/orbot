@@ -11,16 +11,16 @@
       </trans-unit>
       <trans-unit id="shortdescription" maxwidth="80" size-unit="char">
         <source>Protect your privacy with this proxy with Tor</source>
-        <target>Tor kullanan bu vekil sunucu ile gizliliğinizi koruyun</target>
+        <target>Tor kullanan bu vekil sunucu ile kişisel gizliliğinizi koruyun</target>
         <note from="developer">This is limited by Google to 80 characters</note>
       </trans-unit>
       <trans-unit id="intro">
         <source>Orbot is a free proxy app that empowers other apps to use the internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.</source>
-        <target>Orbot başka uygulamaların interneti daha güvenli olarak kullanmasını sağlayan ücretsiz bir proxy uygulamasıdır. Orbot Tor'u kullanarak internet trafiğinizi şifreler ve dünya üzerindeki pek çok farklı bilgisayardan geçirerek gizler. Tor sizin kişisel özgürlüğünüzü ve mahremiyetinizi, gizli ticari aktivitelerinizi ve bağlantılarınızı koruma altına alan bir yazılım ve açık ağdır.</target>
+        <target>Orbot başka uygulamaların İnterneti daha güvenli olarak kullanmasını sağlayan ücretsiz bir vekil sunucu uygulamasıdır. Orbot Tor yazılımını kullanarak İnternet trafiğinizi şifreler ve dünya üzerindeki pek çok farklı bilgisayardan geçirerek gizler. Tor kişisel özgürlüğünüze, kişisel bilgilerinize, gizli ticari işlemlerinize ve ilişkilerinize karşı tehdit oluşturan ve devlet güvenliği olarak bilinen ağ izlemelerine karşı koruma sağlayan bir özgür yazılım ve açık ağ yazılımıdır.</target>
       </trans-unit>
       <trans-unit id="intro2">
         <source>Orbot is the only app that creates a truly private internet connection. As the New York Times writes, “when a communication arrives from Tor, you can never know where or whom it’s from.” Tor won the 2012 Electronic Frontier Foundation (EFF) Pioneer Award.</source>
-        <target>Orbot gerçekten gizli internet bağlantısı kuran tek uygulamadır. New York Times'ın yazdığı gibi “eğer bir mesaj Tor Ağı üzerinden ulaşıyorsa kimden veya nereden geldiğini bilmek mümkün değil”. Tor 2012'de Electronic Frontier Foundation (EFF) Pioneer Award ile ödüllendirilmiştir.</target>
+        <target>Orbot gerçekten gizli İnternet bağlantısı kuran tek uygulamadır. New York Times'ın yazdığı gibi “bir ileti Tor Ağı üzerinden ulaşıyorsa kimden ya da nereden geldiğini bilmek mümkün değil”. Tor 2012 yılında Electronic Frontier Foundation (EFF) Pioneer Award ile ödüllendirilmiştir.</target>
       </trans-unit>
       <trans-unit id="intro2">
         <source>ACCEPT NO SUBSTITUTES: Orbot is the safest way to use the Internet on Android. Period. Orbot bounces your encrypted traffic several times through computers around the world, instead of connecting you directly like VPNs and proxies. This process takes a little longer, but the strongest privacy and identity protection available is worth the wait.</source>
@@ -41,15 +41,15 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="expertrootmode">
         <source>***Expert Root Mode***</source>
-        <target>***Uzman Root Modu***</target>
+        <target>***Uzman Root Kipi***</target>
       </trans-unit>
       <trans-unit id="universalmode">
         <source>UNIVERSAL MODE: Orbot can be configured to transparently proxy all of your Internet traffic through Tor. You can also choose which specific apps you want to use through Tor.</source>
-        <target>KAPSAMLI MOD: Orbot zahmetsizce tüm internet trafiğinizin Tor üzerinden yönlenmesini sağlayabilir. Dilerseniz sadece bazı uygulamaların Tor ağını kullanmasını da sağlayabilirsiniz.</target>
+        <target>GENEL KİP: Orbot tüm İnternet veri akışınızın Tor üzerinden akmasını sağlayan bir saydam vekil sunucu olarak kullanılabilir. Dilerseniz yalnız belirli uygulamaların Tor ağını kullanmasını sağlayabilirsiniz.</target>
       </trans-unit>
       <trans-unit id="wespeakyourlanguage">
         <source>★ WE SPEAK YOUR LANGUAGE: Orbot is available for friends who speak:</source>
-        <target>★ SİZİN DİLİNİZDEN KONUŞUYORUZ: Orbot şu dilleri konuşan dostlarımız için kullanılabilir:</target>
+        <target>★ DİLİNİZİ KONUŞUYORUZ: Şu dilleri konuşan dostlarımız kendi dillerinde Orbot kullanabilir:</target>
       </trans-unit>
       <trans-unit id="languagelist" translate="no">
         <source>العربية, azərbaycanca, български, català, Čeština, dansk, Deutsch, Ελληνικά, English, español, eesti, euskara, فارسی, suomi, français, galego, hrvatski, magyar, עברית, íslenska, italiano, 日本語, 한국어, lietuvių, latviešu, Македонци, Bahasa Melayu, Nederlands, norsk, polski, português, Русский, slovenčina, slovenščina, српски, svenska, Türkçe, українська, Tagalog, Tiếng Việt, 中文(简体), 中文(台灣)</source>
@@ -58,7 +58,7 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="helptranslate">
         <source>Don’t see your language? Join us and help translate the app:</source>
-        <target>Dilinizi görmüyor musunuz? Bize katılın ve uygulamayı çevirmemize yardım edin:</target>
+        <target>Listede sizin diliniz yok mu? Bize katılarak uygulamanın dilinize çevrilmesine yardım edin:</target>
       </trans-unit>
       <trans-unit id="helptranslateurl" translate="no">
         <source>https://www.transifex.com/projects/p/orbot</source>
@@ -67,11 +67,11 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="learnmore">
         <source>***Learn More***</source>
-        <target>***Daha Fazlasını Öğrenin***</target>
+        <target>***Ayrıntılı Bilgi Alın***</target>
       </trans-unit>
       <trans-unit id="aboutus">
         <source>★ ABOUT US: Guardian Project is a group of developers that make secure mobile apps and open-source code for a better tomorrow</source>
-        <target>★ HAKKIMIZDA: Guardian Projesi daha iyi bir gelecek için güvenli mobil uygulamalar ve açık kaynak kodları yazan bir grup yazılımcıdan oluşur</target>
+        <target>★ HAKKIMIZDA: Guardian Projesi daha iyi bir gelecek için güvenli mobil uygulamalar ve açık kaynak kodları geliştiren bir grup yazılımcıdan oluşur</target>
       </trans-unit>
       <trans-unit id="ourwebsite">
         <source>★ OUR WEBSITE: https://GuardianProject.info</source>
@@ -87,7 +87,7 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="freesoftware">
         <source>★ FREE SOFTWARE: Orbot is free software. Take a look at our source code, or join the community to make it better:</source>
-        <target>★ ÖZGÜR YAZILIM: Orbot ücretsiz bir uygulamadır. Kaynak kodumuza bakabilir, ve geliştirmek için destek grubuna katılabilirsiniz:</target>
+        <target>★ ÖZGÜR YAZILIM: Orbot özgür bir uygulamadır. Kaynak kodumuza bakabilir ve geliştirmek için destek grubuna katılabilirsiniz:</target>
       </trans-unit>
       <trans-unit id="gitrepo" translate="no">
         <source>https://gitweb.torproject.org/orbot.git</source>
@@ -96,7 +96,7 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="messageus">
         <source>★ MESSAGE US: Are we missing your favorite feature? Found an annoying bug? Please tell us! We’d love to hear from you. Send us an email: support@guardianproject.info or find us in our chat room https://guardianproject.info/contact</source>
-        <target>★ BİZE YAZIN: İstediğiniz bir özellik eksik mi? Uygulamada bir hata mı buldunuz? Lütfen bize bildirin! Sizden geri bildirim almak bizi çok mutlu eder. Bize support@guardianproject.info adresinden e-posta gönderebilir veya sohbet odamızdan yazabilirsiniz: https://guardianproject.info/contact</target>
+        <target>★ BİZE YAZIN: İstediğiniz bir özellik mi var? Uygulamada bir hata mı buldunuz? Lütfen bize bildirin! Düşüncelerinizi öğrenmek bizi çok mutlu eder. Bize ulaşmak için support@guardianproject.info adresine e-posta gönderin ya da sohbet odamızda yazın: https://guardianproject.info/contact</target>
       </trans-unit>
     </body>
   </file>

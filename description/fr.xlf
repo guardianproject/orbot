@@ -11,16 +11,16 @@
       </trans-unit>
       <trans-unit id="shortdescription" maxwidth="80" size-unit="char">
         <source>Protect your privacy with this proxy with Tor</source>
-        <target>Protégez votre vie privée avec ce proxy avec Tor</target>
+        <target>Naviguez en toute confidentialité grâce à ce mandataire et Tor</target>
         <note from="developer">This is limited by Google to 80 characters</note>
       </trans-unit>
       <trans-unit id="intro">
         <source>Orbot is a free proxy app that empowers other apps to use the internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.</source>
-        <target>Orbot est une application proxy gratuite qui améliore l'utilisation plus sécurisée des applications. Orbot utilise Tor pour crypter votre trafic internet et le cacher en passant par une série d'ordinateur partout dans le monde. Tor est un logiciel gratuit et un réseau ouvert qui vous aide à vous défendre contre les surveillances de réseau qui font peur à la liberté personnelle et la vie privée, les activités confidentielles des entreprises et des relations, et l'état de la sécurité connu sous le nom d'analyse de trafic.</target>
+        <target>Orbot est une appli mandataire libre qui donne le pouvoir à d’autres applis d’utiliser Internet de manière plus sûre. Orbot utilise Tor pour chiffrer votre trafic Internet et le cache ensuite en le faisant rebondir au travers d’une série d’ordinateurs de par le monde. Tor est un logiciel libre et un réseau ouvert qui vous aide à vous défendre contre une forme de surveillance du réseau, connue sous le nom d’analyse du trafic, qui menace la liberté individuelle, la confidentialité, les activités commerciales et les relations, ainsi que la sécurité des états.</target>
       </trans-unit>
       <trans-unit id="intro2">
         <source>Orbot is the only app that creates a truly private internet connection. As the New York Times writes, “when a communication arrives from Tor, you can never know where or whom it’s from.” Tor won the 2012 Electronic Frontier Foundation (EFF) Pioneer Award.</source>
-        <target>Orbot est la seule application qui crée une connexion à Internet réellement privée. Pour citer le New York Times : &quot;Quand une communication arrive par Tor, on ne peut jamais savoir d'où, ou de qui elle vient.&quot; Tor a gagné le Pioneer Award 2012 de l'Electronic Frontier Foundation (EFF).</target>
+        <target>Orbot est la seule appli à créer une connexion Internet vraiment confidentielle. Comme l’écrit le New York Times : « quand une communication arrive par Tor, vous ne pouvez jamais savoir d’où, ni de qui elle provient ». Tor a gagné le « Pioneer Award 2012 » de la fondation Frontière électronique (EFF).</target>
       </trans-unit>
       <trans-unit id="intro2">
         <source>ACCEPT NO SUBSTITUTES: Orbot is the safest way to use the Internet on Android. Period. Orbot bounces your encrypted traffic several times through computers around the world, instead of connecting you directly like VPNs and proxies. This process takes a little longer, but the strongest privacy and identity protection available is worth the wait.</source>
@@ -41,15 +41,15 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="expertrootmode">
         <source>***Expert Root Mode***</source>
-        <target>***Mode Root Expert***</target>
+        <target>***Mode root expert***</target>
       </trans-unit>
       <trans-unit id="universalmode">
         <source>UNIVERSAL MODE: Orbot can be configured to transparently proxy all of your Internet traffic through Tor. You can also choose which specific apps you want to use through Tor.</source>
-        <target>MODE UNIVERSEL : Orbot peut être configuré pour faire passer tout votre trafic Internet de manière transparente par Tor. Vous pouvez également choisir quelles applications en particulier vous voulez faire transiter par Tor.</target>
+        <target>MODE UNIVERSEL : Orbot peut être configuré pour relayer de manière transparente tout votre trafic Internet par Tor. Vous pouvez également choisir quelles applis particulières vous voulez faire transiter par Tor.</target>
       </trans-unit>
       <trans-unit id="wespeakyourlanguage">
         <source>★ WE SPEAK YOUR LANGUAGE: Orbot is available for friends who speak:</source>
-        <target>★ NOUS PARLONS VOTRE LANGUE : Orbot est disponible pour les amis qui parlent :</target>
+        <target>★ NOUS PARLONS VOTRE LANGUE : Orbot est proposé à nos amis parlant :</target>
       </trans-unit>
       <trans-unit id="languagelist" translate="no">
         <source>العربية, azərbaycanca, български, català, Čeština, dansk, Deutsch, Ελληνικά, English, español, eesti, euskara, فارسی, suomi, français, galego, hrvatski, magyar, עברית, íslenska, italiano, 日本語, 한국어, lietuvių, latviešu, Македонци, Bahasa Melayu, Nederlands, norsk, polski, português, Русский, slovenčina, slovenščina, српски, svenska, Türkçe, українська, Tagalog, Tiếng Việt, 中文(简体), 中文(台灣)</source>
@@ -58,7 +58,7 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="helptranslate">
         <source>Don’t see your language? Join us and help translate the app:</source>
-        <target>Vous ne voyez pas votre langue ? Rejoignez nous et aidez nous à traduire cette application :</target>
+        <target>Votre langue est-elle absente ? Joignez-vous à nous et aidez-nous à traduire l’appli :</target>
       </trans-unit>
       <trans-unit id="helptranslateurl" translate="no">
         <source>https://www.transifex.com/projects/p/orbot</source>
@@ -67,11 +67,11 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="learnmore">
         <source>***Learn More***</source>
-        <target>***En savoir plus***</target>
+        <target>***En apprendre davantage***</target>
       </trans-unit>
       <trans-unit id="aboutus">
         <source>★ ABOUT US: Guardian Project is a group of developers that make secure mobile apps and open-source code for a better tomorrow</source>
-        <target>★ A PROPOS DE NOUS : Guardian Project est un groupe de développeurs qui créé des applications mobile sécursées et des codes open-source pour un futur meilleur</target>
+        <target>★ À PROPOS DE NOUS : le Projet Guardian est un groupe de développeurs concevant des applis mobiles sécurisées et du code ouvert pour des lendemains meilleurs.</target>
       </trans-unit>
       <trans-unit id="ourwebsite">
         <source>★ OUR WEBSITE: https://GuardianProject.info</source>
@@ -79,7 +79,7 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="abouttor">
         <source>★ ABOUT TOR: https://TorProject.org</source>
-        <target>★ A PROPOS DE TOR : https://TorProject.org</target>
+        <target>★ À PROPOS DE TOR : https://TorProject.org</target>
       </trans-unit>
       <trans-unit id="ontwitter">
         <source>★ ON TWITTER: https://twitter.com/guardianproject</source>
@@ -87,7 +87,7 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="freesoftware">
         <source>★ FREE SOFTWARE: Orbot is free software. Take a look at our source code, or join the community to make it better:</source>
-        <target>★ LOGICIEL GRATUIT : Orbot est un logiciel gratuit. Regardez le our code source, ou rejoignez la communauté pour le rendre meilleur :</target>
+        <target>★ LOGICIEL LIBRE : Orbot est un logiciel libre. Jetez un œil à notre code source ou rejoignez la communauté pour l’améliorer :</target>
       </trans-unit>
       <trans-unit id="gitrepo" translate="no">
         <source>https://gitweb.torproject.org/orbot.git</source>
@@ -96,7 +96,7 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="messageus">
         <source>★ MESSAGE US: Are we missing your favorite feature? Found an annoying bug? Please tell us! We’d love to hear from you. Send us an email: support@guardianproject.info or find us in our chat room https://guardianproject.info/contact</source>
-        <target>★ CONTACTEZ NOUS : Est-ce que votre fonctionnalité favorite manque ? Vous avez trouvé un bug ennuyant ? Veuillez nous le dire ! Nous adorerions vous entendre. Envoyez nous un email : support@guardianproject.info ou trouvez nous dans notre salle de discussion : https://guardianproject.info/contact</target>
+        <target>★ CONTACTEZ-NOUS : votre fonction favorite est-elle absente ? Avez-vous avez trouvé un bogue gênant ? Nous aimerions que vous nous en fassiez part ! Envoyez-nous un courriel : support@guardianproject.info ou trouvez-nous dans notre salon de discussion https://guardianproject.info/contact</target>
       </trans-unit>
     </body>
   </file>

@@ -16,7 +16,7 @@
       </trans-unit>
       <trans-unit id="intro">
         <source>Orbot is a free proxy app that empowers other apps to use the internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.</source>
-        <target>Orbot on ilmainen proxy-sovellus, joka tarjoaa muille sovelluksille mahdollisuuden käyttää internetiä turvallisemmin. Orbot käyttää Toria kryptaamaan verkkoliikenteesi ja sitten piilottaa sen kierrättämällä sitä usean tietokoneen kautta ympäri maailman. Tor on vapaa ohjelmisto ja avoin verkosto, jotka auttavat puolustautumaan vapautta ja yksityisyyttä uhkaavalta verkkovalvonnalta ja valtioiden verkonseurannalta sekä suojaamaan salaisia liiketoimintoja ja -yhteyksiä.</target>
+        <target>Orbot on ilmainen välityspalvelinsovellus, joka tarjoaa muille sovelluksille mahdollisuuden käyttää internetiä turvallisemmin. Orbot käyttää Toria salaamaan verkkoliikenteesi ja sitten piilottaa sen kierrättämällä sitä usean tietokoneen kautta ympäri maailman. Tor on vapaa ohjelmisto ja avoin verkosto, jotka auttavat puolustautumaan vapautta ja yksityisyyttä uhkaavalta verkkovalvonnalta ja valtioiden verkonseurannalta sekä suojaamaan salaisia liiketoimintoja ja -yhteyksiä.</target>
       </trans-unit>
       <trans-unit id="intro2">
         <source>Orbot is the only app that creates a truly private internet connection. As the New York Times writes, “when a communication arrives from Tor, you can never know where or whom it’s from.” Tor won the 2012 Electronic Frontier Foundation (EFF) Pioneer Award.</source>
@@ -45,7 +45,7 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="universalmode">
         <source>UNIVERSAL MODE: Orbot can be configured to transparently proxy all of your Internet traffic through Tor. You can also choose which specific apps you want to use through Tor.</source>
-        <target>YLEISTILA: Orbot voidaan määrittää välittämään kaikki verkkoliikenteesi Torin kuatta. Voit myös valita, minkä sovellusten haluat käyttävän Toria.</target>
+        <target>YLEISTILA: Orbot voidaan määrittää välittämään kaikki verkkoliikenteesi Torin kautta. Voit myös valita, minkä sovellusten haluat käyttävän Toria.</target>
       </trans-unit>
       <trans-unit id="wespeakyourlanguage">
         <source>★ WE SPEAK YOUR LANGUAGE: Orbot is available for friends who speak:</source>

@@ -11,7 +11,7 @@
       </trans-unit>
       <trans-unit id="shortdescription" maxwidth="80" size-unit="char">
         <source>Protect your privacy with this proxy with Tor</source>
-        <target>Заштитите вашу приватност овим проксијем помоћу Тора</target>
+        <target>Заштитите вашу приватност помоћу Тора</target>
         <note from="developer">This is limited by Google to 80 characters</note>
       </trans-unit>
       <trans-unit id="intro">
@@ -20,7 +20,7 @@
       </trans-unit>
       <trans-unit id="intro2">
         <source>Orbot is the only app that creates a truly private internet connection. As the New York Times writes, “when a communication arrives from Tor, you can never know where or whom it’s from.” Tor won the 2012 Electronic Frontier Foundation (EFF) Pioneer Award.</source>
-        <target>Орбот је једина апликација која прави истински приватну везу са интернетом. Како Нјујорк Тајмс магазин пише: „када комуникација дође са Тор мреже, никада не можете да будете сигурни одакле или од кога је.“ Тор је добио пионир награду Електронске граничне фондације (ЕFF) 2012. године.</target>
+        <target>Орбот је једина апликација која прави истински приватну везу са интернетом. Како New York Times магазин пише: „када комуникација дође са Тор мреже, никада не можете да будете сигурни одакле или од кога је.“ Тор је добио Пионир Награду Електронске Граничне Фондације (ЕFF) 2012. године.</target>
       </trans-unit>
       <trans-unit id="intro2">
         <source>ACCEPT NO SUBSTITUTES: Orbot is the safest way to use the Internet on Android. Period. Orbot bounces your encrypted traffic several times through computers around the world, instead of connecting you directly like VPNs and proxies. This process takes a little longer, but the strongest privacy and identity protection available is worth the wait.</source>
@@ -41,11 +41,11 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="expertrootmode">
         <source>***Expert Root Mode***</source>
-        <target>***Корени режим за стручњаке***</target>
+        <target>***Root Режим за Експерте***</target>
       </trans-unit>
       <trans-unit id="universalmode">
         <source>UNIVERSAL MODE: Orbot can be configured to transparently proxy all of your Internet traffic through Tor. You can also choose which specific apps you want to use through Tor.</source>
-        <target>УНИВЕРЗАЛНИ РЕЖИМ: Орбот може да се подеси да транспарентно шаље кроз прокси сав ваш интернет саобраћај. Можете и да изаберете одређене апликације које желите да користите кроз Тор мрежу.</target>
+        <target>УНИВЕРЗАЛНИ РЕЖИМ: Орбот може да се подеси да транспарентно шаље, кроз прокси, сав ваш интернет саобраћај. Можете и да изаберете одређене апликације које желите да користите кроз Тор мрежу.</target>
       </trans-unit>
       <trans-unit id="wespeakyourlanguage">
         <source>★ WE SPEAK YOUR LANGUAGE: Orbot is available for friends who speak:</source>
@@ -58,7 +58,7 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="helptranslate">
         <source>Don’t see your language? Join us and help translate the app:</source>
-        <target>Не видите ваш језик на списку? Придружите нам се помозите да преведемо апликацију:</target>
+        <target>Ваш језик није на списку? Придружите нам се помозите да преведемо апликацију:</target>
       </trans-unit>
       <trans-unit id="helptranslateurl" translate="no">
         <source>https://www.transifex.com/projects/p/orbot</source>
@@ -71,7 +71,7 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="aboutus">
         <source>★ ABOUT US: Guardian Project is a group of developers that make secure mobile apps and open-source code for a better tomorrow</source>
-        <target>★ О НАМА: Гардијан пројекат (Guardian Project) је група програмера који праве безбедне мобилне апликације отвореног кôда за боље сутра</target>
+        <target>★ О НАМА: Guardian Project или Заштитнички Пројекат је група програмера који праве безбедне мобилне апликације отвореног кôда за боље сутра</target>
       </trans-unit>
       <trans-unit id="ourwebsite">
         <source>★ OUR WEBSITE: https://GuardianProject.info</source>
@@ -87,7 +87,7 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="freesoftware">
         <source>★ FREE SOFTWARE: Orbot is free software. Take a look at our source code, or join the community to make it better:</source>
-        <target>★ СЛОБОДАН СОФТВЕР: Орбот је слободан софтвер. Погледајте изворни кôд, или се придружите заједници да је учините још бољом:</target>
+        <target>★ СЛОБОДАН СОФТВЕР: Орбот је бесплатан софтвер. Погледајте изворни кôд или се придружите заједници да је учините још бољом:</target>
       </trans-unit>
       <trans-unit id="gitrepo" translate="no">
         <source>https://gitweb.torproject.org/orbot.git</source>

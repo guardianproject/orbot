@@ -11,14 +11,16 @@
       </trans-unit>
       <trans-unit id="shortdescription" maxwidth="80" size-unit="char">
         <source>Protect your privacy with this proxy with Tor</source>
-        <target>Tor의 이 프록시로 여러분의 개인 정보를 지키세요</target>
+        <target>여러분의 개인정보를 이 Tor 프록시로 지키세요.</target>
         <note from="developer">This is limited by Google to 80 characters</note>
       </trans-unit>
       <trans-unit id="intro">
         <source>Orbot is a free proxy app that empowers other apps to use the internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.</source>
+        <target>Orbot은 다른 앱이 인터넷을 더 안전하게 이용할 수 있도록 도와주는 무료 프록시 앱입니다. Orbot은 Tor를 이용하여 여러분의 인터넷 트래픽을 암호화하고 전 세계에 연결된 컴퓨터를 거쳐서 숨깁니다. Tor는 무료 소프트웨어이면서 개방 네트워크로서 여러분을 개인의 자유, 사생활, 은밀한 사업 활동, 관계, 국가 안보를 위협하는 네트워크 감시인 트래픽 분석으로부터 보호합니다.</target>
       </trans-unit>
       <trans-unit id="intro2">
         <source>Orbot is the only app that creates a truly private internet connection. As the New York Times writes, “when a communication arrives from Tor, you can never know where or whom it’s from.” Tor won the 2012 Electronic Frontier Foundation (EFF) Pioneer Award.</source>
+        <target>Orbot은 진정한 익명 인터넷 연결을 만들어나가는 유일한 어플리케이션 입니다. 뉴욕 타임즈에서 &quot;토르를 이용해 발언한다면 누가 그 말을 했는지 누구도 알 수 없다&quot;고 말한 것 처럼 말입니다. 토르는 2012년 Electronic Frontier Foundation (EEF) 에서 Pioneer Award를 수상하기도 했습니다. </target>
       </trans-unit>
       <trans-unit id="intro2">
         <source>ACCEPT NO SUBSTITUTES: Orbot is the safest way to use the Internet on Android. Period. Orbot bounces your encrypted traffic several times through computers around the world, instead of connecting you directly like VPNs and proxies. This process takes a little longer, but the strongest privacy and identity protection available is worth the wait.</source>
@@ -43,6 +45,7 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="universalmode">
         <source>UNIVERSAL MODE: Orbot can be configured to transparently proxy all of your Internet traffic through Tor. You can also choose which specific apps you want to use through Tor.</source>
+        <target>전역 모드: Orbot는 Tor를 통해 여러분의 인터넷 트래픽을 투명 프록시로 설정할 수 있습니다. 또한 Tor를 통해 어떤 앱을 이용할 것인지 정할 수 있습니다. </target>
       </trans-unit>
       <trans-unit id="wespeakyourlanguage">
         <source>★ WE SPEAK YOUR LANGUAGE: Orbot is available for friends who speak:</source>
@@ -50,6 +53,7 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="languagelist" translate="no">
         <source>العربية, azərbaycanca, български, català, Čeština, dansk, Deutsch, Ελληνικά, English, español, eesti, euskara, فارسی, suomi, français, galego, hrvatski, magyar, עברית, íslenska, italiano, 日本語, 한국어, lietuvių, latviešu, Македонци, Bahasa Melayu, Nederlands, norsk, polski, português, Русский, slovenčina, slovenščina, српски, svenska, Türkçe, українська, Tagalog, Tiếng Việt, 中文(简体), 中文(台灣)</source>
+        <target>العربية, azərbaycanca, български, català, Čeština, dansk, Deutsch, Ελληνικά, English, español, eesti, euskara, فارسی, suomi, français, galego, hrvatski, magyar, עברית, íslenska, italiano, 日本語, 한국어, lietuvių, latviešu, Македонци, Bahasa Melayu, Nederlands, norsk, polski, português, Русский, slovenčina, slovenščina, српски, svenska, Türkçe, українська, Tagalog, Tiếng Việt, 中文(简体), 中文(台灣)</target>
         <note from="developer">Do not translate the names of the languages, leave them just like this.</note>
       </trans-unit>
       <trans-unit id="helptranslate">
@@ -58,6 +62,7 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="helptranslateurl" translate="no">
         <source>https://www.transifex.com/projects/p/orbot</source>
+        <target>https://www.transifex.com/projects/p/orbot</target>
         <note from="developer">Do not translate this.</note>
       </trans-unit>
       <trans-unit id="learnmore">
@@ -82,14 +87,16 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="freesoftware">
         <source>★ FREE SOFTWARE: Orbot is free software. Take a look at our source code, or join the community to make it better:</source>
-        <target>★ 자유 소프트웨어: Orbot은 자유 소프트웨어입니다. 그것을 더 좋게 만드려면 우리의 소스 코드를 찾아보거나, 공동체에 들어오세요:</target>
+        <target>★ 무료 소프트웨어: Orbot은 무료 소프트웨어입니다. 우리의 소스 코드를 둘러보거나 커뮤니티에 가입하여 더 좋게 만들어봐요.</target>
       </trans-unit>
       <trans-unit id="gitrepo" translate="no">
         <source>https://gitweb.torproject.org/orbot.git</source>
+        <target>https://gitweb.torproject.org/orbot.git</target>
         <note from="developer">Do not translate this.</note>
       </trans-unit>
       <trans-unit id="messageus">
         <source>★ MESSAGE US: Are we missing your favorite feature? Found an annoying bug? Please tell us! We’d love to hear from you. Send us an email: support@guardianproject.info or find us in our chat room https://guardianproject.info/contact</source>
+        <target>★ 알려주세요: 원하는 기능이 있나요? 짜증나는 버그를 발견했나요? 저희에게 알려주세요! 단 영어로만 가능합니다. support@guardianproject.info로 이메일 해주시거나 https://guardianproject.info/contact 이곳에서 저희를 만나시면 됩니다.</target>
       </trans-unit>
     </body>
   </file>

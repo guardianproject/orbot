@@ -16,9 +16,12 @@
       </trans-unit>
       <trans-unit id="intro">
         <source>Orbot is a free proxy app that empowers other apps to use the internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.</source>
+        <target>
+Orbot este o aplicaţie gratuită de proxy care permite altor aplicaţii să folosească internetul în siguranţă. Orbot foloseţte Tor pentru a cripta traficul de internet după care îl ascunde printr-o serie de calculatoare din întreaga lume. Tor este un program gratuit si o reţea deschisă care te ajută să te aperi de monitorizarea reţelelor, lucru care ameninţă libertatea personală şi intimitatea, activităţi confidenţiale legate de afaceri si relaţii personale şi de analiza traficului.</target>
       </trans-unit>
       <trans-unit id="intro2">
         <source>Orbot is the only app that creates a truly private internet connection. As the New York Times writes, “when a communication arrives from Tor, you can never know where or whom it’s from.” Tor won the 2012 Electronic Frontier Foundation (EFF) Pioneer Award.</source>
+        <target>Orbot este singura aplicaţie care creează o conexiune de internet cu adevărat privată. Cum scria New York Times, &quot;cand vine o conexiune din Tor, nu ai de unde să ştii de unde şi de la cine este&quot;. Tor a câştigat premiul Pioneer la Electronic Frontier Foundation (EFF) în 2012.</target>
       </trans-unit>
       <trans-unit id="intro2">
         <source>ACCEPT NO SUBSTITUTES: Orbot is the safest way to use the Internet on Android. Period. Orbot bounces your encrypted traffic several times through computers around the world, instead of connecting you directly like VPNs and proxies. This process takes a little longer, but the strongest privacy and identity protection available is worth the wait.</source>
@@ -43,6 +46,7 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="universalmode">
         <source>UNIVERSAL MODE: Orbot can be configured to transparently proxy all of your Internet traffic through Tor. You can also choose which specific apps you want to use through Tor.</source>
+        <target>MOD UNIVERSAL: Orbot poate fi configurat să trimită tot traficul tău printr-un proxy transparent în Tor. De asemenea, poţi alege ce aplicaţii vrei să folosească Tor.</target>
       </trans-unit>
       <trans-unit id="wespeakyourlanguage">
         <source>★ WE SPEAK YOUR LANGUAGE: Orbot is available for friends who speak:</source>
@@ -68,6 +72,7 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="aboutus">
         <source>★ ABOUT US: Guardian Project is a group of developers that make secure mobile apps and open-source code for a better tomorrow</source>
+        <target>DESPRE NOI: Guardian Project este un grup de dezvoltatori care crează aplicaţii sigure pentru telefoanele mobile şi cod open-source pentru o zi de mâine mai bună.</target>
       </trans-unit>
       <trans-unit id="ourwebsite">
         <source>★ OUR WEBSITE: https://GuardianProject.info</source>
@@ -92,6 +97,7 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="messageus">
         <source>★ MESSAGE US: Are we missing your favorite feature? Found an annoying bug? Please tell us! We’d love to hear from you. Send us an email: support@guardianproject.info or find us in our chat room https://guardianproject.info/contact</source>
+        <target>SCRIE-NE: Lipseşte opţiunea ta preferată? Ai găsit o eroare? Am vrea să auzim de la tine! Scrie-ne un e-mail la: support@guardianproject.info sau găseşte-ne în chat-room https://guardianproject.info/contact</target>
       </trans-unit>
     </body>
   </file>
