@@ -492,7 +492,9 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
     private void requestTorRereadConfig() {
         try {
-            conn.signal("HUP");
+            if (conn != null)
+                conn.signal("HUP");
+
             return;
         } catch (IOException e) {
             e.printStackTrace();
