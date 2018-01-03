@@ -1135,7 +1135,6 @@ public class OrbotMainActivity extends AppCompatActivity
 
            addAppShortcuts();
 
-
            //now you can handle the intents properly
            handleIntents();
 
@@ -1407,6 +1406,7 @@ public class OrbotMainActivity extends AppCompatActivity
                     + getString(R.string.mb);
     }
 
+    /**
       private static final float ROTATE_FROM = 0.0f;
         private static final float ROTATE_TO = 360.0f*4f;// 3.141592654f * 32.0f;
 
@@ -1426,96 +1426,92 @@ public class OrbotMainActivity extends AppCompatActivity
               imgStatus.startAnimation(rotation);
               
         
-    }
+    }**/
 
     private void addAppShortcuts ()
     {
         LinearLayout llBoxShortcuts = (LinearLayout)findViewById(R.id.boxAppShortcuts);
 
-        findViewById(R.id.row_apps).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivityForResult(new Intent(OrbotMainActivity.this, AppManagerActivity.class), REQUEST_VPN_APPS_SELECT);
-            }
-        });
+        PackageManager pMgr = getPackageManager();
 
-        if (!PermissionManager.isLollipopOrHigher()) {
-            llBoxShortcuts.setVisibility(View.GONE);
+        llBoxShortcuts.removeAllViews();
+
+        //first add Orfox shortcut
+        try {
+
+            ImageView iv = new ImageView(this);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            params.setMargins(3, 3, 3, 3);
+            iv.setLayoutParams(params);
+            iv.setImageResource(R.drawable.orfox64);
+            llBoxShortcuts.addView(iv);
+            iv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (!appInstalledOrNot(TorServiceConstants.BROWSER_APP_USERNAME))
+                        promptInstallOrfox();
+                    else
+                        openBrowser(URL_TOR_CHECK,false, TorServiceConstants.BROWSER_APP_USERNAME);
+
+                }
+            });
         }
-        else
+        catch (Exception e)
         {
-            PackageManager pMgr = getPackageManager();
+            //package not installed?
+        }
 
-            llBoxShortcuts.removeAllViews();
+        if (PermissionManager.isLollipopOrHigher()) {
 
-            //first add Orfox shortcut
-            try {
-                String pkgId = "info.guardianproject.orfox";
+            if (Prefs.useVpn()) {
+                ArrayList<String> pkgIds = new ArrayList<>();
+                String tordAppString = mPrefs.getString(PREFS_KEY_TORIFIED, "");
 
-                ImageView iv = new ImageView(this);
-                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                params.setMargins(3, 3, 3, 3);
-                iv.setLayoutParams(params);
-                iv.setImageDrawable(pMgr.getApplicationIcon(pkgId));
-                llBoxShortcuts.addView(iv);
-                iv.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (!appInstalledOrNot(TorServiceConstants.BROWSER_APP_USERNAME))
-                            promptInstallOrfox();
-                        else
-                            openBrowser(URL_TOR_CHECK,false, TorServiceConstants.BROWSER_APP_USERNAME);
+                if (TextUtils.isEmpty(tordAppString)) {
+                    TextView tv = new TextView(this);
+                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    params.setMargins(12, 3, 3, 3);
+                    tv.setLayoutParams(params);
+                    tv.setText("Full Device Mode");
+                    llBoxShortcuts.addView(tv);
+                } else {
+                    StringTokenizer st = new StringTokenizer(tordAppString, "|");
+                    while (st.hasMoreTokens() && pkgIds.size() < 4)
+                        pkgIds.add(st.nextToken());
 
+                    for (final String pkgId : pkgIds) {
+                        try {
+                            ImageView iv = new ImageView(this);
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                            params.setMargins(3, 3, 3, 3);
+                            iv.setLayoutParams(params);
+                            iv.setImageDrawable(pMgr.getApplicationIcon(pkgId));
+
+                            iv.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    openBrowser(URL_TOR_CHECK, false, pkgId);
+                                }
+                            });
+
+                            llBoxShortcuts.addView(iv);
+
+                        } catch (Exception e) {
+                            //package not installed?
+                        }
                     }
-                });
-            }
-            catch (Exception e)
-            {
-                //package not installed?
-            }
 
-            ArrayList<String> pkgIds = new ArrayList<>();
-            String tordAppString = mPrefs.getString(PREFS_KEY_TORIFIED, "");
 
-            if (TextUtils.isEmpty(tordAppString))
+                }
+            }
+            else
             {
-                /**
                 TextView tv = new TextView(this);
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                params.setMargins(3, 3, 3, 3);
+                params.setMargins(12, 3, 3, 3);
                 tv.setLayoutParams(params);
-                tv.setText("Full Device Mode");
+                tv.setText("VPN Disabled");
                 llBoxShortcuts.addView(tv);
-                 **/
-            }
-            else {
-                StringTokenizer st = new StringTokenizer(tordAppString, "|");
-                while (st.hasMoreTokens() && pkgIds.size() < 4)
-                    pkgIds.add(st.nextToken());
-
-                for (final String pkgId : pkgIds) {
-                    try {
-                        ImageView iv = new ImageView(this);
-                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                        params.setMargins(3, 3, 3, 3);
-                        iv.setLayoutParams(params);
-                        iv.setImageDrawable(pMgr.getApplicationIcon(pkgId));
-                        llBoxShortcuts.addView(iv);
-                        iv.setEnabled(Prefs.useVpn());
-
-                        iv.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                openBrowser(URL_TOR_CHECK, false, pkgId);
-
-                            }
-                        });
-                    } catch (Exception e) {
-                        //package not installed?
-                    }
-                }
-
-
             }
 
             //now add app edit/add shortcut
@@ -1523,7 +1519,7 @@ public class OrbotMainActivity extends AppCompatActivity
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             params.setMargins(3, 3, 3, 3);
             iv.setLayoutParams(params);
-            iv.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_input_add));
+            iv.setImageDrawable(getResources().getDrawable(R.drawable.ic_settings_white_24dp));
             llBoxShortcuts.addView(iv);
             iv.setOnClickListener(new View.OnClickListener() {
                 @Override
