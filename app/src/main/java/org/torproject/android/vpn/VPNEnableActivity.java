@@ -62,44 +62,7 @@ public class VPNEnableActivity extends AppCompatActivity {
 	
 	public void promptStartVpnService ()
     {
-		Prefs.putUseVpn(true);
 		startVpnService();
-		/**
-    	 
-         AlertDialog dialog = new AlertDialog.Builder(this)
-         .setTitle(getString(R.string.app_name) + ' ' + getString(R.string.apps_mode))
-         .setMessage(getString(R.string.you_can_enable_all_apps_on_your_device_to_run_through_the_tor_network_using_the_vpn_feature_of_android_))
-         .setPositiveButton(R.string.activate, new Dialog.OnClickListener ()
-         {
-
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-
-				
-			}
-
-        	 
-         })
-         .setNegativeButton(R.string.btn_cancel, new Dialog.OnClickListener ()
-         {
-
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				
-				 h.postDelayed(new Runnable () {
-		            	
-		            	public void run ()
-		            	{
-		            		VPNEnableActivity.this.finish();	
-		            		
-		            	}
-		            }, 100);
-			}
-        	 
-         }).create();
-         
-         dialog.show();
-         **/
          
     }
 	 
@@ -107,7 +70,9 @@ public class VPNEnableActivity extends AppCompatActivity {
 	{
    		if (intent == null)
    		{
-   			Log.d("VPNEnableActivity","VPN enabled, starting Tor...");
+			Prefs.putUseVpn(true);
+
+			Log.d("VPNEnableActivity","VPN enabled, starting Tor...");
             sendIntentToService(TorServiceConstants.CMD_VPN);
             
             Handler h = new Handler();
@@ -119,8 +84,8 @@ public class VPNEnableActivity extends AppCompatActivity {
             		finish();
             	}
             }, 100);
-           
-   			
+
+
    		}
    		else
    		{

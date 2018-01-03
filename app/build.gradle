@@ -30,24 +30,25 @@ android {
             applicationId 'org.torproject.android'
             targetSdkVersion 23
             maxSdkVersion 23
-            versionCode 16000001
-            versionName '16.0.0-ALPHA-1-multi-SDK16'
+            versionCode 16000003
+            versionName '16.0.0-BETA-1-multi-SDK16'
         }
         fullperm {
             dimension "free"
             minSdkVersion 23
             applicationId 'org.torproject.android'
             targetSdkVersion 25
-            versionCode 16000002
-            versionName '16.0.0-ALPHA-1-multi-SDK23'
+            versionCode 16000004
+            versionName '16.0.0-BETA-1-multi-SDK23'
         }
     }
 }
 
 dependencies {
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     compile project(':orbotservice')
-    compile 'com.android.support:support-v4:25.4.0'
-    compile 'com.android.support:appcompat-v7:25.4.0'
     compile 'com.android.support:design:25.4.0'
     compile 'pl.bclogic:pulsator4droid:1.0.3'
+    compile 'com.github.apl-devs:appintro:v4.2.2'
+
 }

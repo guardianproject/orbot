@@ -23,7 +23,7 @@ import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.TorServiceUtils;
 import org.torproject.android.settings.SettingsPreferences;
 import org.torproject.android.ui.AppManagerActivity;
-import org.torproject.android.ui.Rotate3dAnimation;
+import org.torproject.android.ui.onboarding.OnboardingActivity;
 import org.torproject.android.ui.hiddenservices.ClientCookiesActivity;
 import org.torproject.android.ui.hiddenservices.HiddenServicesActivity;
 import org.torproject.android.ui.hiddenservices.backup.BackupUtils;
@@ -32,7 +32,6 @@ import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
 import org.torproject.android.vpn.VPNEnableActivity;
 
 import android.annotation.SuppressLint;
-import android.app.ActionBar;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningServiceInfo;
 import android.app.AlertDialog;
@@ -65,18 +64,13 @@ import android.text.Html;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.GestureDetector;
-import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnLongClickListener;
-import android.view.View.OnTouchListener;
-import android.view.animation.AccelerateInterpolator;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -188,7 +182,19 @@ public class OrbotMainActivity extends AppCompatActivity
                 new IntentFilter(TorServiceConstants.LOCAL_ACTION_BANDWIDTH));
         lbm.registerReceiver(mLocalBroadcastReceiver,
                 new IntentFilter(TorServiceConstants.LOCAL_ACTION_LOG));
-	}
+
+        boolean showFirstTime = mPrefs.getBoolean("connect_first_time", true);
+
+        if (showFirstTime)
+        {
+            Editor pEdit = mPrefs.edit();
+            pEdit.putBoolean("connect_first_time", false);
+            pEdit.commit();
+            startActivity(new Intent(this,OnboardingActivity.class));
+        }
+
+
+    }
 
 	private void sendIntentToService(final String action) {
 
@@ -337,15 +343,7 @@ public class OrbotMainActivity extends AppCompatActivity
 
 			@Override
 			public void onClick(View v) {
-				if (Build.CPU_ABI.contains("arm"))
-				{       
-					promptSetupBridges (); //if ARM processor, show all bridge options
-				
-				}
-				else
-				{
-					showGetBridgePrompt(""); //if other chip ar, only stock bridges are supported
-				}
+				promptSetupBridges (); //if ARM processor, show all bridge options
 			}
 
 			
@@ -968,15 +966,20 @@ public class OrbotMainActivity extends AppCompatActivity
     
     public void promptSetupBridges ()
     {
-    	LayoutInflater li = LayoutInflater.from(this);
-        View view = li.inflate(R.layout.layout_diag, null); 
-        
-        TextView versionName = (TextView)view.findViewById(R.id.diaglog);
-        versionName.setText(R.string.if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_);    
-        
+
         if (mBtnBridges.isChecked())
         {
-	        new AlertDialog.Builder(this)
+
+            startActivity(new Intent(this, OnboardingActivity.class));
+
+            /**
+            LayoutInflater li = LayoutInflater.from(this);
+            View view = li.inflate(R.layout.layout_diag, null);
+
+            TextView versionName = (TextView)view.findViewById(R.id.diaglog);
+            versionName.setText(R.string.if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_);
+
+            new AlertDialog.Builder(this)
 	        .setTitle(R.string.bridge_mode)
 	        .setView(view)
 	        .setItems(R.array.bridge_options, new DialogInterface.OnClickListener() {
@@ -1012,10 +1015,10 @@ public class OrbotMainActivity extends AppCompatActivity
 	            	//mBtnBridges.setChecked(false);
 					
 				}
-	        })
+	              })
 	        .show();
-	        
-	       
+	        **/
+
         }
         else
         {
@@ -1024,73 +1027,7 @@ public class OrbotMainActivity extends AppCompatActivity
         
     }
     
-    private void showGetBridgePrompt (final String type)
-    {
-    	LayoutInflater li = LayoutInflater.from(this);
-        View view = li.inflate(R.layout.layout_diag, null); 
-        
-        TextView versionName = (TextView)view.findViewById(R.id.diaglog);
-        versionName.setText(R.string.you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_);    
-        
-        new AlertDialog.Builder(this)
-        .setTitle(R.string.bridge_mode)
-        .setView(view)
-        .setNegativeButton(R.string.btn_cancel, new Dialog.OnClickListener()
-        {
-        	@Override
-			public void onClick(DialogInterface dialog, int which) {
-				//do nothing
-			}
-        })
-        .setNeutralButton(R.string.get_bridges_email, new Dialog.OnClickListener ()
-        {
 
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				
-
-				sendGetBridgeEmail(type);
-
-			}
-
-       	 
-        })
-        .setPositiveButton(R.string.get_bridges_web, new Dialog.OnClickListener ()
-        {
-
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				
-				openBrowser(URL_TOR_BRIDGES + type,true, null);
-
-			}
-
-       	 
-        }).show();
-    }
-    
-    private void sendGetBridgeEmail (String type)
-    {
-    	Intent intent = new Intent(Intent.ACTION_SEND);
-    	intent.setType("message/rfc822");
-		intent.putExtra(Intent.EXTRA_EMAIL  , new String[]{"bridges@torproject.org"});
-		
-		if (type != null)
-		{
-	    	intent.putExtra(Intent.EXTRA_SUBJECT, "get transport " + type);
-	    	intent.putExtra(Intent.EXTRA_TEXT, "get transport " + type);
-	    	
-		}
-		else
-		{
-			intent.putExtra(Intent.EXTRA_SUBJECT, "get bridges");
-			intent.putExtra(Intent.EXTRA_TEXT, "get bridges");
-			
-		}
-		
-    	startActivity(Intent.createChooser(intent, getString(R.string.send_email)));
-    }
-    
     private void enableBridges (boolean enable)
     {
 		Prefs.putBridgesEnabled(enable);
@@ -1119,6 +1056,7 @@ public class OrbotMainActivity extends AppCompatActivity
         super.onResume();
 
         mBtnBridges.setChecked(Prefs.bridgesEnabled());
+        mBtnVPN.setChecked(Prefs.useVpn());
 
 		requestTorStatus();
 
@@ -1207,18 +1145,6 @@ public class OrbotMainActivity extends AppCompatActivity
             mPulsator.stop();
 
             lblStatus.setText(getString(R.string.status_activated));
-
-            boolean showFirstTime = mPrefs.getBoolean("connect_first_time", true);
-
-            if (showFirstTime)
-            {
-                Editor pEdit = mPrefs.edit();
-                pEdit.putBoolean("connect_first_time", false);
-                pEdit.commit();
-                showAlert(getString(R.string.status_activated),
-                        getString(R.string.connect_first_time), true);
-            }
-            
 
             if (autoStartFromIntent)
             {
@@ -1525,7 +1451,6 @@ public class OrbotMainActivity extends AppCompatActivity
                 @Override
                 public void onClick(View v) {
                     startActivityForResult(new Intent(OrbotMainActivity.this, AppManagerActivity.class), REQUEST_VPN_APPS_SELECT);
-
 
                 }
             });
