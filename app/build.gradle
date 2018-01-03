@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion 26
     buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "org.torproject.android"
         minSdkVersion 16
-        targetSdkVersion 25
+        targetSdkVersion 26
     }
     lintOptions {
         checkReleaseBuilds false
@@ -37,7 +37,7 @@ android {
             dimension "free"
             minSdkVersion 23
             applicationId 'org.torproject.android'
-            targetSdkVersion 25
+            targetSdkVersion 26
             versionCode 16000004
             versionName '16.0.0-BETA-1-multi-SDK23'
         }
@@ -47,7 +47,7 @@ android {
 dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     compile project(':orbotservice')
-    compile 'com.android.support:design:25.4.0'
+    compile 'com.android.support:design:26.1.0'
     compile 'pl.bclogic:pulsator4droid:1.0.3'
     compile 'com.github.apl-devs:appintro:v4.2.2'
 
