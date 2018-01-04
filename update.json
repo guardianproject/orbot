@@ -1,0 +1,10 @@
+{
+  "latestVersion": "16.0.0 BETA 1",
+  "latestVersionCode": 16000003,
+  "url": "https://github.com/n8fr8/orbot/releases",
+  "releaseNotes": [
+    "- New look and feel",
+    "- Easier setup and onboarding",
+    "- Bridge wizard and network testing"
+  ]
+}

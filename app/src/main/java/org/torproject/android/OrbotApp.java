@@ -18,6 +18,10 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.RemoteViews;
 
+import com.github.javiersantos.appupdater.AppUpdater;
+import com.github.javiersantos.appupdater.enums.Display;
+import com.github.javiersantos.appupdater.enums.UpdateFrom;
+
 import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.TorEventHandler;
 import org.torproject.android.service.TorService;
@@ -41,7 +45,10 @@ public class OrbotApp extends Application implements OrbotConstants
         Languages.setup(OrbotMainActivity.class, R.string.menu_settings);
         Languages.setLanguage(this, Prefs.getDefaultLocale(), true);
 
-        checkTransparentProxyingLegacy();
+        new AppUpdater(this)
+                .setUpdateFrom(UpdateFrom.JSON)
+                .setUpdateJSON("https://raw.githubusercontent.com/n8fr8/orbot/master/update.json")
+                .setDisplay(Display.NOTIFICATION);
     }
 
     @Override
@@ -66,14 +73,6 @@ public class OrbotApp extends Application implements OrbotConstants
         return Languages.get(activity);
     }
 
-    private void checkTransparentProxyingLegacy ()
-    {
-        if (Prefs.useTransparentProxying())
-        {
-            showToolbarNotification(getString(R.string.no_transproxy_warning_short),getString(R.string.no_transproxy_warning), 9999, org.torproject.android.service.R.drawable.ic_stat_notifyerr);
-
-        }
-    }
 
     @SuppressLint("NewApi")
     protected void showToolbarNotification (String shortMsg, String notifyMsg, int notifyId, int icon)

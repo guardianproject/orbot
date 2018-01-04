@@ -50,5 +50,6 @@ dependencies {
     compile 'com.android.support:design:26.1.0'
     compile 'pl.bclogic:pulsator4droid:1.0.3'
     compile 'com.github.apl-devs:appintro:v4.2.2'
+    compile 'com.github.javiersantos:AppUpdater:2.6.4'
 
 }
