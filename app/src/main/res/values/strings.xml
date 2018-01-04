@@ -213,10 +213,10 @@
     <string name="https_torproject_org">https://torproject.org</string>
     <string name="third_party_software">3rd-Party-Software: </string>
     <string name="tor_version">Tor: https://www.torproject.org</string>
-    <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
-    <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
-    <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
+    <string name="libevent_version">LibEvent: http://www.monkey.org/~provos/libevent/</string>
+    <string name="polipo_version">Polipo: https://github.com/jech/polipo</string>
+    <string name="obfsproxy_version">Obfs4proxy: https://github.com/Yawning/obfs4</string>
+    <string name="openssl_version">OpenSSL: http://www.openssl.org</string>
     <string name="hidden_service_request">An app wants to open hidden server port %1$s to the Tor network. This is safe if you trust the app.</string>
     <string name="found_existing_tor_process">found existing Tor process&#8230;</string>
     <string name="something_bad_happened">Something bad happened. Check the log</string>
