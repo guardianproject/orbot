@@ -394,4 +394,9 @@
     <string name="testing_bridges">Testing bridge connection to Tor....</string>
     <string name="testing_bridges_success">Success. Bridge configuration is good!</string>
     <string name="testing_bridges_fail">FAILED. Try another option</string>
+    <string name="bridge_direct_connect">Connect directly to Tor (Best)</string>
+    <string name="bridge_community">Connect through community servers</string>
+    <string name="bridge_cloud">Connect through cloud servers</string>
+    <string name="bridges_get_new">Request New Bridges... (If all else fails)</string>
+    <string name="trouble_connecting">Trouble connecting?</string>
 </resources>

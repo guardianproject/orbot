@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/dark_purple"
+
     tools:context="org.torproject.android.ui.onboarding.BridgeWizardActivity">
 
     <android.support.design.widget.AppBarLayout

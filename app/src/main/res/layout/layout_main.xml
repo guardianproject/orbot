@@ -145,17 +145,6 @@
             app:switchPadding="9dp"
 
             />
-        <!--
-        <Button
-            android:id="@+id/btnApps"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:text="@string/menu_apps"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:layout_gravity="center"
-
-            />-->
     </LinearLayout>
 
 </LinearLayout>
@@ -257,7 +246,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:fontFamily="sans-serif-light"
-            android:text="Having trouble connecting?"
+            android:text="@string/trouble_connecting"
             android:layout_margin="3dp"
             android:lines="1"
 
@@ -266,7 +255,7 @@
             android:id="@+id/btnBridges"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/bridges"
+            android:text="@string/use_bridges"
             android:layout_margin="3dp"
             android:singleLine="true"
             app:switchPadding="9dp"

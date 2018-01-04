@@ -18,9 +18,10 @@
         android:layout_margin="12dp"
         android:textStyle="bold"
         android:textSize="16sp"
+        android:textColor="@color/panel_background_main"
         />
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
@@ -28,7 +29,7 @@
         android:id="@+id/btnBridgesDirect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Connect directly to Tor\n(Best, if you can!)"
+        android:text="@string/bridge_direct_connect"
         android:layout_margin="12dp"
         />
 
@@ -36,7 +37,7 @@
         android:id="@+id/btnBridgesObfs4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Connect through community bridges\n(Second best option, if it works)"
+        android:text="@string/bridge_community"
         android:layout_margin="12dp"
 
         />
@@ -45,7 +46,7 @@
         android:id="@+id/btnBridgesMeek"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hide traffic through cloud services\n(Slower, but harder to block)"
+        android:text="@string/bridge_cloud"
         android:layout_margin="12dp"
 
         />
@@ -54,7 +55,7 @@
             android:id="@+id/btnBridgesNew"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Request New Bridges...\n(If all the other options fail...)"
+            android:text="@string/bridges_get_new"
             android:layout_margin="12dp"
 
             />
@@ -62,11 +63,12 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="testing..."
+        android:text="..."
         android:gravity="center"
         android:id="@+id/lbl_bridge_test_status"
         android:layout_margin="12dp"
         android:textStyle="bold"
         android:textSize="16sp"
+        android:textColor="@color/bright_green"
         />
 </LinearLayout>
