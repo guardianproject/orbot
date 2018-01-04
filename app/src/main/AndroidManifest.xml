@@ -161,7 +161,7 @@
         <activity
             android:name=".ui.onboarding.BridgeWizardActivity"
             android:label="@string/title_activity_bridge_wizard"
-            android:theme="@style/DefaultTheme"></activity>
+            android:theme="@style/DefaultTheme"/>
     </application>
 
 </manifest>
