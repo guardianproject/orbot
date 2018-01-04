@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Orbot</string>
   <string name="app_description">Orbot es una aplicación libre de proxy (interpuesto) que faculta a otras aplicaciones para usar Internet de forma más segura. Orbot utiliza Tor para cifrar su tráfico de Internet, y luego lo oculta rebotándolo a través de una serie de computadoras por todo el mundo. Tor es software libre y una red abierta que le ayuda a defenderse contra una forma de vigilancia de red conocida como análisis de tráfico que amenaza la libertad y la privacidad personales, las actividades y relaciones comerciales confidenciales, y la seguridad de estado.</string>
@@ -21,7 +21,6 @@
   <string name="menu_settings">Configuración</string>
   <string name="menu_log">Registro (log)</string>
   <string name="menu_info">Ayuda</string>
-  <string name="menu_apps">VPN</string>
   <string name="menu_start">Iniciar</string>
   <string name="menu_stop">Detener</string>
   <string name="menu_about">Acerca de</string>
@@ -61,7 +60,6 @@
   <string name="btn_cancel">Cancelar</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Algunos detalles de Orbot</string>
-  <string name="wizard_details_msg">Orbot es una aplicación de código-abierto que contiene Tor, LibEvent y Polipo. Proporciona un proxy HTTP (8118) y un proxy SOCKS (9050) locales hacia la red Tor. Orbot también tiene la capacidad, en un dispositivo rooteado, de enviar todo el tráfico de Internet a través de Tor.</string>
   <string name="wizard_permissions_root">Permiso concedido</string>
   <string name="wizard_permissions_stock">Permisos de Orbot</string>
   <string name="wizard_premissions_msg_root">¡Excelente! Hemos detectado que ha concedido a Orbot permisos de root. Utilizaremos estos poderes sabiamente.</string>
@@ -175,7 +173,6 @@ direcciones (o rangos). No prevalecen sobre las configuraciones de exclusión de
   <string name="bridges">Bridges (repetidores puente) </string>
   <string name="use_bridges">Usar bridges</string>
   <string name="bridges_obfuscated">Bridges ofuscados (contra análisis DPI del tráfico) </string>
-  <string name="enable_alternate_entrance_nodes_into_the_tor_network">Habilita nodos alternativos de entrada a la red Tor, de publicitación restringida. Prevalece sobre \'Nodos de entrada\'</string>
   <string name="enable_if_configured_bridges_are_obfuscated_bridges">Habilítelo si los bridges (repetidores puente) de su lista de configuración están ofuscados (encapsulando el tráfico SSL para evitar ser detectados) </string>
   <string name="ip_address_and_port_of_bridges">Direcciones IP y puertos de los bridges</string>
   <string name="enter_bridge_addresses">Introduzca direcciones de bridge</string>
@@ -207,9 +204,6 @@ direcciones (o rangos). No prevalecen sobre las configuraciones de exclusión de
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
-  <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v1.0.1q: http://www.openssl.org</string>
-  <string name="hidden_service_request">Una aplicación está intentando abrir el puerto %S de servicio oculto hacia la red Tor. Esto es seguro si su aplicación es de su confianza.</string>
   <string name="found_existing_tor_process">Se encontró un proceso de Tor ya existente...</string>
   <string name="something_bad_happened">Hubo algún tipo de problema. Compruebe el registro (log)</string>
   <string name="hidden_service_on">Servicio oculto en:</string>
@@ -242,8 +236,6 @@ direcciones (o rangos). No prevalecen sobre las configuraciones de exclusión de
   <string name="menu_use_chatsecure">Usar ChatSecure</string>
   <string name="permission_manage_tor_label">Administrar Tor</string>
   <string name="permission_manage_tor_description">Habilita esta aplicación para controlar el servicio Tor</string>
-  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">No parece que tenga Orfox instalado. ¿Quiere ayuda con eso, o simplemente debemos abrir el navegador?</string>
-  <string name="install_apps_">¿Instalar aplicaciones?</string>
   <string name="no_network_connectivity_putting_tor_to_sleep_">No hay conectividad de red. Poniendo a Tor a dormir...</string>
   <string name="network_connectivity_is_good_waking_tor_up_">La conectividad de red es buena. Despertando a Tor...</string>
   <string name="updating_settings_in_tor_service">actualizando la configuración en el servicio Tor</string>
@@ -270,7 +262,7 @@ direcciones (o rangos). No prevalecen sobre las configuraciones de exclusión de
   <string name="transparent_proxy_rules_flushed_">¡Reglas de proxy transparente desechadas!</string>
   <string name="you_do_not_have_root_access_enabled">No tiene habilitado el acceso como ROOT</string>
   <string name="you_may_need_to_stop_and_start_orbot_for_settings_change_to_be_enabled_">Puede que tenga que detener e iniciar Orbot para que el cambio de configuración se habilite.</string>
-  <string name="menu_vpn">VPN</string>
+  <string name="menu_vpn">Aplicaciones</string>
   <string name="kbps">kbps</string>
   <string name="mbps">mbps</string>
   <string name="kb">KB</string>
@@ -278,49 +270,23 @@ direcciones (o rangos). No prevalecen sobre las configuraciones de exclusión de
   <string name="bridges_updated">Bridges actualizados</string>
   <string name="restart_orbot_to_use_this_bridge_">Por favor, reinicie Orbot para habilitar los cambios</string>
   <string name="menu_qr">Códigos QR</string>
-  <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Si su red móvil/celular bloquea activamente Tor, puede usar un Puente (bridge) para acceder a la red. SELECCIONE uno de los tipos de repetidor puente arriba para hablitar los puentes.</string>
   <string name="bridge_mode">Modo bridge</string>
   <string name="get_bridges_email">Correo electrónico</string>
   <string name="get_bridges_web">Página web</string>
   <string name="activate">Activar</string>
-  <string name="apps_mode">Aplicaciones en modo VPN</string>
-  <string name="you_can_enable_all_apps_on_your_device_to_run_through_the_tor_network_using_the_vpn_feature_of_android_">Puede habilitar que todas las aplicaciones de su dispositivo transiten a través de la red Tor usando la función VPN de Android.\n\n*ADVERTENCIA* Esta es una característica experimental nueva, y en algunos casos puede que no se inicie automáticamente, o puede que se detenga. NO debe usarse para anonimato, SÓLO para atravesar cortafuegos (firewalls) y filtros.</string>
+  <string name="apps_mode">Modo VPN</string>
   <string name="send_email">Enviar correo</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Puede obtener una dirección de bridge (repetidor puente) a través de correo electrónico, la web, o escaneando un código QR de bridge. Seleccione \'Correo\' o \'Web\' debajo para solicitar una dirección de bridge.\n\nUna vez tenga una dirección, copie y péguela en la opción \"Bridges\" de la configuración de Orbot, y reinicie.</string>
   <string name="install_orweb">Instalar Orfox</string>
   <string name="standard_browser">Navegador estándar</string>
   <string name="note_only_standard_tor_bridges_work_on_intel_x86_atom_devices">NOTA: Sólo los repetidores puente (bridges) estándar de Tor funcionan en dispositivos Intel X86/ATOM</string>
-  <string name="vpn_default_world">Mundo</string>
-
-  <string name="hidden_services">Servicios Ocultos</string>
-  <string name="title_activity_hidden_services">Servicios Ocultos</string>
-  <string name="menu_hidden_services">Servicios Ocultos</string>
+  <string name="hidden_services">Servicios ocultos</string>
+  <string name="title_activity_hidden_services">Servicios ocultos</string>
+  <string name="menu_hidden_services">Servicios ocultos</string>
   <string name="save">Guardar</string>
-  <string name="ports">Puertos</string>
-  <string name="local_port">Puerto Local</string>
-  <string name="onion_port">Puerto Onion</string>
   <string name="name">Nombre</string>
-  <string name="done">Hecho!</string>
-  <string name="invalid_port">Puerto no vàlido</string>
-  <string name="copy_address_to_clipboard">Copiar dirección a portapapeles</string>
-  <string name="show_auth_cookie">Mostra cookie de autenticación</string>
-  <string name="backup_service">Crear backup</string>
-  <string name="delete_service">Borrar servicio</string>
-  <string name="backup_saved_at_external_storage">Backup guardado en almacenamiento externo</string>
-  <string name="backup_restored">Backup restaurado</string>
-  <string name="filemanager_not_available">Gestor de archivos no disponible</string>
-  <string name="please_grant_permissions_for_external_storage">Permitir permisos para almacenamiento externo</string>
-  <string name="permission_granted">Permisos concedidos</string>
-  <string name="permission_denied">Permisos denegados</string>
-  <string name="restore_backup">Restaurar Backup</string>
-  <string name="create_a_backup_first">Crear primero una copia de seguridad</string>
-  <string name="name_can_t_be_empty">Nombre no puede estar vacio</string>
-  <string name="start_tor_again_for_finish_the_process">Inicie Tor de nuevo para finalizar el proceso</string>
-  <string name="confirm_service_deletion">Confirmar eliminación de servicio</string>
-  <string name="click_again_for_backup">Haga clic de nuevo para realizar copias de seguridad</string>
-  <string name="service_type">Tipo de servicio</string>
-  <string name="auth_cookie">Cookie de autenticación</string>
-  <string name="copy_cookie_to_clipboard">Copiar cookie al portapapeles</string>
-  <string name="auth_cookie_was_not_configured">La cookie de autenticación no estaba configurada</string>
-  <string name="please_restart_Orbot_to_enable_the_changes">Reinicie Orbot para habilitar los cambios</string>
+  <string name="done">¡Hecho!</string>
+  <string name="please_restart_Orbot_to_enable_the_changes">Por favor, reinicie Orbot para habilitar los cambios</string>
+  <string name="disable">Deshabilitar</string>
+  <string name="enable">Habilitar</string>
 </resources>

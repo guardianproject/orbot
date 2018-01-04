@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Orbot</string>
   <string name="app_description">Orbot on ilmainen välityspalvelinsovellus, joka tarjoaa muille sovelluksille mahdollisuuden käyttää internetiä turvallisemmin. Orbot käyttää Toria kryptaamaan verkkoliikenteesi ja sitten piilottaa sen kierrättämällä sitä usean tietokoneen kautta ympäri maailman. Tor on vapaa ohjelmisto ja avoin verkosto, jotka auttavat puolustautumaan vapautta ja yksityisyyttä uhkaavalta verkkovalvonnalta ja valtioiden verkonseurannalta sekä suojaamaan salaisia liiketoimintoja ja -yhteyksiä.</string>
@@ -11,6 +11,7 @@
   <string name="status_starting_up">Orbot käynnistyy...</string>
   <string name="status_activated">Yhdistetty Tor-verkkoon</string>
   <string name="status_disabled">Orbot on poistettu käytöstä</string>
+  <string name="status_shutting_down">Tor-palvelua sammutetaan</string>
   <string name="tor_process_starting">Käynnistetään Tor-ohjelmaa...</string>
   <string name="tor_process_complete">valmis.</string>
   <string name="tor_process_waiting">odottaa.</string>
@@ -23,6 +24,7 @@
   <string name="menu_start">Aloita</string>
   <string name="menu_stop">Lopeta</string>
   <string name="menu_about">Tietoa</string>
+  <string name="menu_promo_apps">Hae sovelluksia...</string>
   <string name="main_layout_download">Lataa</string>
   <string name="main_layout_upload">Lähetä</string>
   <string name="button_help">Apua</string>
@@ -34,15 +36,15 @@
   <string name="menu_scan">Skannaa sillan QR-koodi</string>
   <string name="menu_share_bridge">Jaa sillan QR-koodi</string>
   <string name="press_to_start">- paina pitkään käynnistääksesi -</string>
-  <string name="pref_trans_proxy_group">Läpinäkyvä välityspalvelimen käyttö (vaatii roottauksen)</string>
+  <string name="pref_trans_proxy_group">Läpinäkyvä välityspalvelimen käyttö (vaatii laitteen root-oikeudet)</string>
   <string name="pref_trans_proxy_title">Läpinäkyvä välityspalvelimen käyttö</string>
   <string name="pref_trans_proxy_summary">Ohjelmien automaattinen Torimointi</string>
-  <string name="pref_transparent_all_title">Torraa kaikki</string>
+  <string name="pref_transparent_all_title">Kaikki Tor-verkon kautta</string>
   <string name="pref_transparent_all_summary">Välitä kaikki ohjelmien liikenne Torin läpi</string>
   <string name="pref_transparent_port_fallback_title">Välityspalvelinportin varoasetus</string>
   <string name="pref_transparent_port_fallback_summary">VAROITUS: Kiertää yleisiä portteja (80, 443, jne). *KÄYTÄ VAIN* jos \"Kaikki\" tai \"Sovellus\" -tila ei toimi.</string>
-  <string name="pref_transparent_port_title">Porttilista</string>
-  <string name="pref_transparent_port_summary">Välityspalvelimen kautta vietävien porttien lista. *KÄYTÄ VAIN* jos \"Kaikki\" tai \"Sovellus\" -tila ei toimi.</string>
+  <string name="pref_transparent_port_title">Porttiluettelo</string>
+  <string name="pref_transparent_port_summary">Välityspalvelimen kautta vietävien porttien luettelo. *KÄYTÄ VAIN* jos \"Kaikki\" tai \"Sovellus\" -tila ei toimi.</string>
   <string name="pref_transparent_port_dialog">Kirjoita portit, jotka viedään välityspalvelimen kautta</string>
   <string name="pref_has_root">Pyydä root-tason oikeuksia</string>
   <string name="pref_has_root_summary">Pyydä root-tason oikeuksia läpinäkyvään tiedonvälitykseen</string>
@@ -55,10 +57,9 @@
   <string name="btn_back">Takaisin</string>
   <string name="btn_finish">Lopeta</string>
   <string name="btn_okay">Selvä</string>
-  <string name="btn_cancel">Peruuta</string>
+  <string name="btn_cancel">Peru</string>
   <!--Welcome Wizard strings (DJH)-->
-  <string name="wizard_details">Joitakin Orbotin yksityiskohtia</string>
-  <string name="wizard_details_msg">Orbot on avoimen lähdekoodin sovellus, joka sisältää Torin, LibEventin ja Polipon. Se tarjoaa paikallisen HTTP-välityspalvelimen (8118) ja SOCKS-välityspalvelimen (9050) Tor-verkkoon. Rootatulla laitteella Orbot kykenee myös reitittämään kaiken verkkoliikenteen Torin läpi.</string>
+  <string name="wizard_details">Joitakin Orbotin lisätietoja</string>
   <string name="wizard_permissions_root">Lupa myönnetty</string>
   <string name="wizard_permissions_stock">Orbot-oikeudet</string>
   <string name="wizard_premissions_msg_root">Loistavaa! Olemme havainneet että olet antanut root-tason oikeudet Orbotille. Käytämme näiden oikeuksien suomia mahdollisuuksia harkiten.</string>
@@ -71,7 +72,7 @@
   <string name="wizard_configure_all">Välitä kaikkien sovellusten tiedonsiirto Tor-verkon kautta</string>
   <string name="wizard_configure_select_apps">Valitse Tor-verkkoa käyttävät sovellukset</string>
   <string name="wizard_tips_tricks">Orbotia käyttävät sovellukset</string>
-  <string name="wizard_tips_msg">Alempana näkyvät sovellukset on suunniteltu toimimaan Orbotin kanssa. Paina jokaista nappia, jos haluat asentaa ne nyt. Voit myös löytää ne myöhemmin Googlen Play-kaupasta, GuardianProject.info:n nettisivulta tai F-Droid.org:in kautta.</string>
+  <string name="wizard_tips_msg">Alempana näkyvät sovellukset on suunniteltu toimimaan Orbotin kanssa. Paina jokaista painiketta, jos haluat asentaa ne nyt. Voit myös löytää ne myöhemmin Googlen Play-kaupasta, GuardianProject.info:n nettisivulta tai F-Droid.org:in kautta.</string>
   <string name="wizard_tips_otrchat">ChatSecure - Turvallinen pikaviestisovellus Androidille</string>
   <string name="wizard_tips_proxy">Välityspalvelinasetukset - Opi konfiguroimaan sovellukset toimimaan Orbotin kanssa</string>
   <string name="wizard_tips_duckgo">DuckDuckGo-hakukonesovellus</string>
@@ -79,11 +80,12 @@
   <string name="wizard_tips_story_maker">StoryMaker - Tee tarina ja jätä se torin turvallisuuteen!</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Välityspalvelinasetukset</string>
-  <string name="wizard_proxy_help_msg">Jos käyttämäsi Android-sovellus tukee HTTP- tai SOCKS-välityspalvelimen käyttöä, voit määrittää sen yhdistämään Orbotiin ja käyttämään Toria.\n\n\n Isäntänimi on 127.0.0.1 tai \"localhost\". HTTP-portti on 8118. SOCKS-portti on 9050. SOCKS4A- tai SOCKS5-protokollia tulisi käyttää, mikäli mahdollista.\n \n\n\n Voit lukea lisää välityspalvelinten käytöstä Androidilla usein kysytyistä kysymyksistä osoitteessa: http://tinyurl.com/proxyandroid\n</string>
+  <string name="wizard_proxy_help_msg">Jos käyttämäsi Android-sovellus tukee HTTP- tai SOCKS-välityspalvelimen käyttöä, voit määrittää sen yhdistämään Orbotiin ja käyttämään Toria.\n\n\n Isäntänimi on 127.0.0.1 tai \"localhost\". HTTP-portti on 8118. SOCKS-portti on 9050. SOCKS4A- tai SOCKS5-yhteyskäytäntöä tulisi käyttää, mikäli mahdollista.\n \n\n\n Voit lukea lisää välityspalvelinten käytöstä Androidilla usein kysytyistä kysymyksistä osoitteessa: http://tinyurl.com/proxyandroid\n</string>
   <string name="wizard_final">Orbot on valmis!</string>
   <string name="wizard_final_msg">Miljoonat ihmiset ympäri maailman käyttävät Toria eri syistä.\n\nJornalistit ja bloggaajat, ihmisoikeuksien puolustajat, poliisit, sotilaat, yritykset, sorrettujen valtioiden kansalaiset, ja tavalliset kansalaiset... ja nyt sinäkin olet valmis siihen!</string>
   <string name="wizard_exit_at_first_screen_toast">Määritä Orbot ennen kuin alat käyttää sitä!</string>
   <!--END Welcome Wizard strings (DJH)-->
+  <string name="connect_first_time">Olet onnistuneesti yhdistänyt Tor-verkkoon - mutta tämä EI tarkoita, että laitteesi on turvallinen. Voit käyttää valikon \'Selain\'-valintaa testataksesi yhteyksesi. \n\nVieraile osoitteessa https://guardianproject.info/apps/orbot tai lähetä sähköpostia osoitteeseen help@guardianproject.info kuullaksesi lisää.</string>
   <string name="tor_check">Tämä avaa selaimesi osoitteeseen https://check.torproject.org nähdäkseen, onko Orbot varmaan konfiguroitu ja onko sinut yhdistetty Tor-sovellukseen.</string>
   <string name="pref_hs_group">Piilopalvelun isännöinti</string>
   <string name="pref_general_group">Yleiset</string>
@@ -91,7 +93,7 @@
   <string name="pref_start_boot_summary">Käynnistä Orbot ja yhdistä Toriin automaattisesti, kun Anroid-laitteesi käynnistyy</string>
   <!--New Wizard Strings-->
   <!--Title Screen-->
-  <string name="wizard_title_msg">Orbot tuo Torin Androidille!\n\nTor auttaa sinua suojautumaan sisältösuodattimilta sekä verkkoliikenteen seurannalta ja valvonnalta, jotka uhkaavat yksityisyyttä, salaista tietoa ja henkilökohtaisia suhteita.\n\nTämä velho auttaa sinua määrittämään Orbotin ja Torin laitteellasi.</string>
+  <string name="wizard_title_msg">Orbot tuo Torin Androidille!\n\nTor auttaa sinua suojautumaan sisältösuodattimilta sekä verkkoliikenteen seurannalta ja valvonnalta, jotka uhkaavat yksityisyyttä, salaista tietoa ja henkilökohtaisia suhteita.\n\nTämä ohjattu luomisohjelma auttaa sinua määrittämään Orbotin ja Torin laitteellasi.</string>
   <!--Warning screen-->
   <string name="wizard_warning_title">Varoitus</string>
   <string name="wizard_warning_msg">Pelkkä Orbotin asentaminen ei automaattisesti tee verkkoliikenteestäsi anonyymiä. Sinun täytyy määrittää Orbot kunnolla, jotta laitteesi ja muut sovellukset käyttävät Toria onnistuneesti.</string>
@@ -99,10 +101,11 @@
   <string name="wizard_permissions_title">Käyttöoikeudet</string>
   <string name="wizard_permissions_root_msg1">Voit antaa Orbotille Superuser-oikeudet mahdollistaaksesi joitakin lisäominaisuuksia, kuten läpinäkyvän tiedonvälityksen.</string>
   <string name="wizard_permissions_root_msg2">Jos et halua tehdä tätä, varmista, että käytät Orbotin kanssa toimivaksi suunniteltuja sovelluksia.</string>
-  <string name="wizard_permissions_no_root_msg">Laitteesi ei vaikuta olevan rootattu tai tarjoavan root- tai \'Superuser\'-oikeuksia.\n\nKokeile \'Sovellukset\'-tilaa päänäytöltä.</string>
+  <string name="wizard_permissions_no_root_msg">Laitteessasi ei ole käytössä root-käyttäjäoikeuksia tai se ei tarjoa root- tai \'Superuser\'-oikeuksia.\n\nKokeile \'Sovellukset\'-tilaa päänäytöltä.</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbotia käyttävät sovellukset</string>
-  <string name="wizard_tips_gibberbot">ChatSecure: Turvallinen chattailusovellus Off-the-Record -salauksella</string>
+  <string name="wizard_tips_gibberbot">ChatSecure: Turvallinen pikaviestisovellus Off-the-Record - yhteyskäytäntösalauksella</string>
+  <string name="wizard_tips_orweb">Orfox: Tietosuojaa parantava selain, joka toimii Torin läpi</string>
   <string name="wizard_tips_play">Löydä kaikki Guardian-projektin sovellukset Googlen Play-kaupasta</string>
   <string name="wizard_tips_fdroid">Löydä kaikki Guardian Projectin sovellukset F-Droidista</string>
   <string name="wizard_tips_fdroid_org">Löydä kaikki Guardian Projectin sovellukset osoitteesta https://f-droid.org</string>
@@ -119,31 +122,33 @@
   <string name="pref_node_configuration">Tor-solmukohdan konfigurointi</string>
   <string name="pref_node_configuration_summary">Nämä ovat lisäasetuksia, jotka voivat vähentää anonyymiyttäsi</string>
   <string name="pref_entrance_node">Tor-sisääntulosolmu</string>
-  <string name="pref_entrance_node_summary">Sormenjäljet, lovet, maat ja osoitteet ensimmäiseen hyppyyn</string>
+  <string name="pref_entrance_node_summary">Sormenjäljet, nimimerkit, maat ja osoitteet ensimmäiseen hyppyyn</string>
   <string name="pref_entrance_node_dialog">Kirjoita sisääntulosolmujen nimet</string>
+  <string name="pref_allow_background_starts_title">Salli taustalla käynnistys</string>
+  <string name="pref_allow_background_starts_summary">Salli sovellusten pyytää Orbottia käynnistämään Tor ja siihen liittyvät palvelut</string>
   <string name="button_proxy_all">Välitä kaikki</string>
   <string name="button_proxy_none">Älä välitä mitään</string>
   <string name="button_invert_selection">Käännä valinta</string>
   <string name="pref_proxy_title">Lähtevän liikenteen välityspalvelin (valinnainen)</string>
   <string name="pref_proxy_type_title">Lähtevän liikenteen välityspalvelimen tyyppi</string>
-  <string name="pref_proxy_type_summary">Välityspalvelimen protokolla: HTTP, HTTPS, Socks4, Socks5</string>
+  <string name="pref_proxy_type_summary">Välityspalvelimen yhteyskäytäntö: HTTP, HTTPS, Socks4, Socks5</string>
   <string name="pref_proxy_type_dialog">Kirjoita välityspalvelintyyppi</string>
-  <string name="pref_proxy_host_title">Ulosmenovälityspalvelimen isäntä</string>
-  <string name="pref_proxy_host_summary">Välityspalvelimen verkko-osoite</string>
-  <string name="pref_proxy_host_dialog">Kirjoita välityspalvelimen isäntä</string>
-  <string name="pref_proxy_port_title">Ulosmenovälityspalvelimen portti</string>
+  <string name="pref_proxy_host_title">Lähtevän välityspalvelimen tietokone</string>
+  <string name="pref_proxy_host_summary">Välityspalvelimen tietokoneen nimi</string>
+  <string name="pref_proxy_host_dialog">Kirjoita välityspalvelimen tietokone</string>
+  <string name="pref_proxy_port_title">Lähtevän välityspalvelimen portti</string>
   <string name="pref_proxy_port_summary">Välityspalvelimen portti</string>
   <string name="pref_proxy_port_dialog">Kirjoita välityspalvelimen portti</string>
-  <string name="pref_proxy_username_title">Ulosmenovälityspalvelimen käyttäjänimi</string>
+  <string name="pref_proxy_username_title">Lähtevän välityspalvelimen käyttäjätunnus</string>
   <string name="pref_proxy_username_summary">Välityspalvelimen käyttäjätunnus (valinnainen)</string>
   <string name="pref_proxy_username_dialog">Kirjoita välityspalvelimen käyttäjätunnus</string>
-  <string name="pref_proxy_password_title">Ulosmenovälityspalvelimen salasana</string>
+  <string name="pref_proxy_password_title">Lähtevän välityspalvelimen salasana</string>
   <string name="pref_proxy_password_summary">Välityspalvelimen salasana (valinnainen)</string>
   <string name="pref_proxy_password_dialog">Kirjoita välityspalvelimen salasana</string>
   <string name="status">Tila</string>
   <string name="setting_up_full_transparent_proxying_">Täyttä läpinäkyvää tiedonvälitystä otetaan käyttöön...</string>
   <string name="setting_up_app_based_transparent_proxying_">Sovelluspohjaista läpinäkyvää tiedonvälitystä otetaan käyttöön...</string>
-  <string name="transparent_proxying_enabled">Läpinäkyvä tiedonvälitys SALLITTU</string>
+  <string name="transparent_proxying_enabled">Läpinäkyvä tiedonvälitys KÄYTÖSSÄ</string>
   <string name="transproxy_enabled_for_tethering_">TransProxy on otettu käyttöön Tor-välityspalvelimimena olemista varten!</string>
   <string name="warning_error_starting_transparent_proxying_">VAROITUS: virhe aloittaessa läpinäkyvää tiedonvälitystä!</string>
   <string name="transproxy_rules_cleared">TransProxyn säännöt tyhjennetty</string>
@@ -157,29 +162,28 @@
   <string name="your_reachableaddresses_settings_caused_an_exception_">ReachableAccess-asetuksesi aiheuttivat virheen!</string>
   <string name="your_relay_settings_caused_an_exception_">Releasetuksesi aiheuttivat virheen!</string>
   <string name="exit_nodes">Päätesolmut</string>
-  <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Sormenjäljet, lovet, maat ja osoitteet viimeiselle hypylle</string>
+  <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Sormenjäljet, nimimerkit, maat ja osoitteet viimeiselle hypylle</string>
   <string name="enter_exit_nodes">Kirjoita päätesolmut</string>
   <string name="exclude_nodes">Vältä solmuja</string>
-  <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Vältettävät sormenjäljet, lovet, maat ja osoitteet</string>
+  <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Vältettävät sormenjäljet, nimimerkit, maat ja osoitteet</string>
   <string name="enter_exclude_nodes">Kirjoita vältettävät solmut</string>
   <string name="strict_nodes">Tarkat solmukohdat</string>
   <string name="use_only_these_specified_nodes">Käytä *vain* näitä solmuja</string>
   <string name="bridges">Sillat</string>
   <string name="use_bridges">Käytä siltoja</string>
   <string name="bridges_obfuscated">Hämärät sillat</string>
-  <string name="enable_alternate_entrance_nodes_into_the_tor_network">Salli vaihtoehtoiset sisääntulosolmut Tor-verkkoon</string>
-  <string name="enable_if_configured_bridges_are_obfuscated_bridges">Salli hämärien siltojen konfigurointi</string>
+  <string name="enable_if_configured_bridges_are_obfuscated_bridges">Ota käyttöön hämärien siltojen konfigurointi</string>
   <string name="ip_address_and_port_of_bridges">Siltojen IP-osoitteet ja portit</string>
   <string name="enter_bridge_addresses">Kirjoita siltaosoitteet</string>
   <string name="relays">Releet</string>
   <string name="relaying">Releytys</string>
-  <string name="enable_your_device_to_be_a_non_exit_relay">Salli laitteen käyttö välireleenä</string>
+  <string name="enable_your_device_to_be_a_non_exit_relay">Ota laitteesi käyttöön välireleenä</string>
   <string name="relay_port">Releportti</string>
   <string name="listening_port_for_your_tor_relay">Tor-releesi kuunteluportti</string>
   <string name="enter_or_port">Kirjoita OR-portti</string>
   <string name="relay_nickname">Releen kutsumanimi</string>
   <string name="the_nickname_for_your_tor_relay">Kutsumanimi Tor-releellesi</string>
-  <string name="enter_a_custom_relay_nickname">Kirjoita mukautettu relenimi</string>
+  <string name="enter_a_custom_relay_nickname">Kirjoita oma relenimi</string>
   <string name="reachable_addresses">Saavutettavissa olevat osoitteet</string>
   <string name="run_as_a_client_behind_a_firewall_with_restrictive_policies">Aja asiakkaana rajoitetun palomuurin takaa</string>
   <string name="reachable_ports">Saavutettavissa olevat portit</string>
@@ -189,8 +193,8 @@
   <string name="run_servers_accessible_via_the_tor_network">salli laitteensisäisen palvelimen käyttö osana Tor-verkkoa</string>
   <string name="enter_localhost_ports_for_hidden_services">kirjoita sisäiset portit piilopalveluille</string>
   <string name="hidden_service_ports">Piilopalveluiden portit</string>
-  <string name="the_addressable_name_for_your_hidden_service_generated_automatically_">piilopalvelusi nimiosoite (luodaan automaattisesti)</string>
-  <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">salli virheenjäljityslokin tulo tulostevirtaan (käytä adb:tä tai aLogCat:ia tarkastellaksesi)</string>
+  <string name="the_addressable_name_for_your_hidden_service_generated_automatically_">piilopalvelusi nimiosoite (tuotetaan automaattisesti)</string>
+  <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">ota käyttöön virheenjäljitysloki tulostevirtaan (käytä adb:tä tai aLogCat:ia tarkastellaksesi)</string>
   <string name="project_home">Projektin kotisivu(t):</string>
   <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
   <string name="the_tor_license">Tor-lisenssi</string>
@@ -199,8 +203,6 @@
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
-  <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
-  <string name="hidden_service_request">Sovellus haluaa avata piilopalveluportin %S Tor-verkkoon. Tämä on turvallista, jos luotat sovellukseen.</string>
   <string name="found_existing_tor_process">löytyi olemassaoleva Tor-prosessi...</string>
   <string name="something_bad_happened">Jotain pahaa tapahtui. Tarkista loki</string>
   <string name="hidden_service_on">piilopalvelun sijainti:</string>
@@ -208,7 +210,7 @@
   <string name="unable_to_start_tor">Torin käynnistys epäonnistui:</string>
   <string name="unable_to_reset_tor">Toria ei voitu nollata, käynnistä laitteesi uudelleen!</string>
   <string name="pref_use_sys_iptables_title">Käytä Ip-oletustauluja</string>
-  <string name="pref_use_sys_iptables_summary">käytä sisäänrakennettua Ip-taulubinääriä Orbotin mukana tulleen sijasta</string>
+  <string name="pref_use_sys_iptables_summary">käytä sisäänrakennettua ip-taulubinääriä Orbotin mukana tulleen sijasta</string>
   <string name="error_installing_binares">Tor-binääritiedostojen asentaminen tai päivitys epäonnistui.</string>
   <string name="pref_use_persistent_notifications">Pidä kuvake aina työkalupalkissa, kun Orbot on yhdistetty</string>
   <string name="pref_use_persistent_notifications_title">Ilmoitukset aina käytössä</string>
@@ -229,15 +231,15 @@
   <string name="pref_disable_network_title">Ei verkon automaattilepotilaa</string>
   <string name="pref_disable_network_summary">Laita Tor nukkumaan, kun internet-yhteyttä ei ole saatavilla</string>
   <string name="newnym">Vaihdoit Tor-identiteettisi uuteen!</string>
+  <string name="menu_verify_browser">Selain</string>
   <string name="menu_use_chatsecure">Käytä ChatSecurea</string>
   <string name="permission_manage_tor_label">Hallinnoi Toria</string>
   <string name="permission_manage_tor_description">Anna tämän sovelluksen ohjata Tor-palvelua</string>
-  <string name="install_apps_">Asennetaanko sovelluksia?</string>
   <string name="no_network_connectivity_putting_tor_to_sleep_">Ei verkkoyhteyttä. Tor siirtyy valmiustilaan...</string>
   <string name="network_connectivity_is_good_waking_tor_up_">Verkkoyhteys toimii. Herätetään Tor...</string>
   <string name="updating_settings_in_tor_service">päivitetään Tor-palvelun asetuksia</string>
   <string name="pref_socks_title">Tor SOCKS</string>
-  <string name="pref_socks_summary">Portti, jossa Torin SOCKS-proxy on (oletus: 9050, 0 = poista käytöstä)</string>
+  <string name="pref_socks_summary">Portti, jossa Torin SOCKS-välityspalvelin on (oletus: 9050, 0 = poista käytöstä)</string>
   <string name="pref_socks_dialog">SOCKS-portin valinta</string>
   <string name="pref_transport_title">Tor TransProxyn portti</string>
   <string name="pref_transport_summary">Portti, jossa Torin läpinäkyvä välityspalvelin on (oletus: 9040, 0 = poista käytöstä)</string>
@@ -258,9 +260,10 @@
   <string name="pref_transproxy_flush_summary">Kosketa tätä tyhjentääksesi transproxyn verkkosäännöt VÄLITTÖMÄSTI</string>
   <string name="transparent_proxy_rules_flushed_">Läpinäkyvän välityspalvelimen säännöt tyhjennetty!</string>
   <string name="you_do_not_have_root_access_enabled">Sinulla ei ole ROOT-oikeuksia käytössä</string>
-  <string name="you_may_need_to_stop_and_start_orbot_for_settings_change_to_be_enabled_">Saatat joutua pysäyttämään ja käynnistämään Orbotin, jotta asetusten muutos tulee käyttöön</string>
-  <string name="kbps">kbps</string>
-  <string name="mbps">Mbps</string>
+  <string name="you_may_need_to_stop_and_start_orbot_for_settings_change_to_be_enabled_">Saatat joutua pysäyttämään ja käynnistämään Orbotin, jotta asetusten muutos tulee käyttöön.</string>
+  <string name="menu_vpn">Sovellukset</string>
+  <string name="kbps">kilobittiä per sekunti</string>
+  <string name="mbps">megabittiä per sekunti</string>
   <string name="kb">kt</string>
   <string name="mb">Mt</string>
   <string name="bridges_updated">Sillat päivitetty</string>
@@ -270,9 +273,18 @@
   <string name="get_bridges_email">Sähköposti</string>
   <string name="get_bridges_web">Verkkosivu</string>
   <string name="activate">Ota käyttöön</string>
-  <string name="you_can_enable_all_apps_on_your_device_to_run_through_the_tor_network_using_the_vpn_feature_of_android_">Voit siirtää kaikki sovellukset laitteellasi kulkemaan Tor-verkon kautta Androidin VPN-toiminnolla.\n\n*VAROITUS* Tämä on uusi, kokeellinen ominaisuus, joka ei välttämättä käynnisty automaattisesti tai voi pysähtyä. Sitä EI pitäisi käyttää anonymiyteen, AINOASTAAN palomuurien ja suodatinten ohittamiseen.</string>
   <string name="send_email">Lähetä sähköpostia</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Voit saada sillan osoitteen sähköpostin kautta, verkkosivulta tai skannaamalla sillan QR-koodin. Valitse \'Sähköposti\' tai \'Verkkosivu\' alta pyytääksesi sillan osoitetta.\n\nKun sinulla on osoite, kopioi &amp; liitä se \"Sillat\" -kohtaan Orbotin asetuksissa ja käynnistä uudelleen.</string>
+  <string name="install_orweb">Asenna Orfox</string>
   <string name="standard_browser">Normaali selain</string>
   <string name="note_only_standard_tor_bridges_work_on_intel_x86_atom_devices">HUOMAA: Vain standardit Tor-sillat toimivat Intel X86/ATOM -laitteilla.</string>
+  <string name="hidden_services">Piilopalvelut</string>
+  <string name="title_activity_hidden_services">Piilopalvelut</string>
+  <string name="menu_hidden_services">Piilopalvelut</string>
+  <string name="save">Tallenna</string>
+  <string name="name">Nimi</string>
+  <string name="done">Valmis!</string>
+  <string name="please_restart_Orbot_to_enable_the_changes">Käynnistä Orbot uudelleen ottaaksesi muutokset käyttöön</string>
+  <string name="disable">Poista käytöstä</string>
+  <string name="enable">Ota käyttöön</string>
 </resources>

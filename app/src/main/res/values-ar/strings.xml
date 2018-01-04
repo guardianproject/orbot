@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">اوربوت</string>
   <string name="app_description">اوربوت هو تطبيق الوكيل-البروكسي الحر الذي يمكّن تطبيقات أخرى لاستخدام الإنترنت بأمان أكثر . يُستخدم اوربوت تور لتشفير تحركات مرورك على الإنترنت ، ثم يخفيك ويجعلك وهمي من خلال سلسلة من أجهزة الكمبيوتر في جميع أنحاء العالم . تور هو تطبيق حر وشبكة مفتوحة والتي تساعدك على حماية نفسك من مراقبة الشبكات التي تهدد الحرية الشخصية والخصوصية ، والأنشطة التجارية السرية والعلاقات ، وأمن الدولة والحكومات القمعيّة والتي تستخدم مايعرف باسم تحليل حركة مرور البيانات .</string>
@@ -15,13 +15,13 @@
   <string name="tor_process_starting">جاري تشغيل تور...</string>
   <string name="tor_process_complete">كامل.</string>
   <string name="tor_process_waiting">انتظار.</string>
-  <string name="not_anonymous_yet">تحذير: حركة مرورك ليست خفية حتي الآن! من فضلك قم بتكوين التطبيقات الخاصة بك لإستخدام بروكسي HTTP 127.0.0.1:8118 أو SOCK4A أو SOKS5 127.0.0.1:9050</string>
+  <string name="not_anonymous_yet">تحذير: حركة مرورك ليست خفية حتي الآن! من فضلك قم بإعداد التطبيقات الخاصة بك لإستخدام بروكسي HTTP 127.0.0.1:8118 أو SOCK4A أو SOKS5 127.0.0.1:9050</string>
   <string name="menu_home">القائمة الرئيسية</string>
   <string name="menu_browse">تصفّح</string>
   <string name="menu_settings">إعدادات</string>
   <string name="menu_log">السجل</string>
   <string name="menu_info">مساعدة</string>
-  <string name="menu_apps">في بي ان شبكة وهمية خاصة</string>
+  <string name="menu_apps">التطبيقات ...</string>
   <string name="menu_start">بدء</string>
   <string name="menu_stop">توقف</string>
   <string name="menu_about">حول</string>
@@ -61,9 +61,6 @@
   <string name="btn_cancel">إلغاء</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">بعض التفاصيل عن اوربوت</string>
-  <string name="wizard_details_msg">اوربوت تطبيق مفتوح المصدر يحتويه تور، \"ليب افنت\" و \"بوليبو\". 
-وهو يوفر الوكيل-البروكسي المحلي HTTP (8118) ووكيل SOCKS (9050) في شبكة تور. 
- اوربوت أيضا قادر على الوصول لجذور الجهاز ، لإرسال كل تحركات الإنترنت من خلاله.</string>
   <string name="wizard_permissions_root">تم منح الإذن</string>
   <string name="wizard_permissions_stock">أذونات اوربوت</string>
   <string name="wizard_premissions_msg_root">ممتاز! لقد وجدنا بأنه لديك صلاحية حساب رووت لتمكين اوربوت. سوف نستخدم هذه السلطة بحكمة.</string>
@@ -107,6 +104,9 @@ HTTP: / /tinyurl.com/proxyandroid\n</string>
   <string name="wizard_permissions_title">الصلاحيات</string>
   <string name="wizard_permissions_root_msg1">يمكنك اعطاء اوربوت صلاحيات حساب رووت لتشغيل المميزات المتقدمة مثل البروكسي الضمني.</string>
   <string name="wizard_permissions_root_msg2">إذا كنت لا تريد أن تفعل هذا, الرجاء إستخدام برامج معدة للعمل مع اوربوت</string>
+  <string name="wizard_permissions_no_root_msg">يبدو أنّ جهازك لا غير مروّت أو لا يعطي صلاحيّات الروت، أو لا يعطي خاصيّة \"سوبريوزر\".
+
+فضلا جرّب نظام \"تطبيقات\" في الشاشة الرئيسيّة.</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title"> برامج معدة للعمل مع اوربوت</string>
   <string name="wizard_tips_gibberbot">جات سكيور: هو تطبيق للدردشة بشكل آمن مع تشفير عالي جداً</string>
@@ -177,7 +177,6 @@ HTTP: / /tinyurl.com/proxyandroid\n</string>
   <string name="bridges">الجسور</string>
   <string name="use_bridges">استخدم الجسور</string>
   <string name="bridges_obfuscated">الجسور الغامضة</string>
-  <string name="enable_alternate_entrance_nodes_into_the_tor_network">اسمح باستخدام نقاط دخول بديلة إلي شبكة تور</string>
   <string name="enable_if_configured_bridges_are_obfuscated_bridges">فعل هذا الخيار إذا كانت الجسور المحددة جسور غامضة</string>
   <string name="ip_address_and_port_of_bridges">عنوان الانترنت و المنفذ للجسور</string>
   <string name="enter_bridge_addresses">أدخل عناوين الجسور</string>
@@ -209,9 +208,6 @@ HTTP: / /tinyurl.com/proxyandroid\n</string>
   <string name="tor_version">تور: https://www.torproject.org</string>
   <string name="libevent_version">لب إيفينت النسخة http://www.monkey.org/~provos/libevent/ :v2.0.21</string>
   <string name="polipo_version">بوليبو النسخة 1.1.9 : https://github.com/jech/polipo</string>
-  <string name="iptables_version">آي بي تايبلز النسخة 1.4.21: http://www.netfilter.org</string>
-  <string name="openssl_version">اوبن اس اس ال النسخة: http://www.openssl.org 1.0.1q</string>
-  <string name="hidden_service_request">هناك برنامج يحاول فتح منفذ لخادم مخفي %S إلي شبكة تور. هذا السلوك آمن إذا كنت تثق بهذا البرنامج.</string>
   <string name="found_existing_tor_process">عُثر علي عملية تور سابقة تعمل...</string>
   <string name="something_bad_happened">حصل خطأ ما. افحص السجل</string>
   <string name="hidden_service_on">الخدمات المخفية التي تعمل حالياً:</string>
@@ -235,28 +231,93 @@ HTTP: / /tinyurl.com/proxyandroid\n</string>
   <string name="btn_save_settings">حفظ الإعدادات</string>
   <string name="no_internet_connection_tor">لا يوجد ارتباط بألانترنيت: تور في وضع الوقف المؤقت</string>
   <string name="bandwidth_">عرض النطاق</string>
-  <string name="down">اسفل</string>
+  <string name="down">أسفل</string>
   <string name="up">أعلى</string>
   <string name="pref_disable_network_title">لاتوجد شبكة نوم-آلي</string>
-  <string name="pref_disable_network_summary">ضع تور في وضع النوم عند عدم وجود الأنترنيت</string>
+  <string name="pref_disable_network_summary">ضع تور في وضعية النوم عند عدم وجود الأنترنت</string>
   <string name="newnym">لقد تحولت الى هوية تور جديدة</string>
   <string name="menu_verify_browser">متصفح</string>
-  <string name="menu_use_chatsecure">استخدم جات سكيور </string>
-  <string name="permission_manage_tor_label">أدارة تور</string>
+  <string name="menu_use_chatsecure">استخدم شات سكيور </string>
+  <string name="permission_manage_tor_label">إدارة تور</string>
   <string name="permission_manage_tor_description">قم بتمكين هذا التطبيق من التحكم بخدمات تور</string>
-  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">لا يبدو بأن لديك اورفوكس منصباً. هل تريد مساعدتاً في ذلك او لنقم فقط بتشغيل المتصفح؟</string>
-  <string name="install_apps_">هل ترغب بتنصيب التطبيقات؟</string>
-  <string name="no_network_connectivity_putting_tor_to_sleep_">لا يوجد اتصال بألشبكة. سيدخل تور الى وضع النوم</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">الاتصال بألشبكة جيد. تنبيه تور من النوم</string>
+  <string name="install_apps_">هل تود تنصيب متصفح ؟</string>
+  <string name="no_network_connectivity_putting_tor_to_sleep_">لا يوجد اتصال بألشبكة. سينتقل تور الى وضعية النوم</string>
+  <string name="network_connectivity_is_good_waking_tor_up_">حال الإتصال بالشبكة جيد. يتم إيقاذ تور...</string>
   <string name="updating_settings_in_tor_service">تحديث الاعدادات في خدمات تور</string>
   <string name="pref_socks_title">تور  سوكس</string>
-  <string name="pref_socks_summary">منفذ الشبكات الحاسوبية او بورت الذي يقدمه تور الى وحدة الخدمة النائبة البروكسي في سوكس. (التقصير 9050 او 0 عدم القدرة)</string>
-  <string name="pref_socks_dialog">تهيئة منفذ الشبكات الحاسوبية  بورت في سوكس</string>
+  <string name="pref_socks_summary">منفذ الشبكات الحاسوبية او بورت الذي يقدمه تور الى وحدة الخدمة النائبة البروكسي في سوكس. (الوضعية الأصلية: 9050 او 0 للتعطيل)</string>
+  <string name="pref_socks_dialog">ترتيبات منفذ الشبكات الحاسوبية بورت الخاص ب سوكس</string>
   <string name="pref_transport_title">منفذ الشبكات الحاسوبية في وحدة الخدمة النائبة البروكسي في تور</string>
-  <string name="pref_transport_summary">منفذ الشبكات الحاسوبية او بورت الذي يقدمه تور الى البروكسي الشفاف (التقصير 9040 او 0 عدم القدرة)</string>
-  <string name="pref_transport_dialog">تهيئة بورت البروكسي الشفاف</string>
-  <string name="pref_dnsport_title">تور, نظام اسماء النطاقات, بورت</string>
+  <string name="pref_transport_summary">منفذ الشبكات الحاسوبية الذي يقدمه تور إلى البروكسي الشفاف (المنفذ 9040 او 0 عدم القدرة)</string>
+  <string name="pref_transport_dialog">تهيئة منفذ البروكسي الشفاف</string>
+  <string name="pref_dnsport_title">منفذ الشبكات الحاسوبية لنظام أسماء النطاقات الخاص ب تور</string>
   <string name="pref_dnsport_summary">منفذ الشبكات الحاسوبية او بورت الذي يقدمه تور الى خدمة اسماء النطاق دي ان اس. (التقصير 5400 او 0 لعدم القدرة)</string>
   <string name="pref_dnsport_dialog">إعدادات بورت خادم اسماء النطاق</string>
-  <string name="menu_vpn">في بي ان شبكة وهمية خاصة</string>
+  <string name="pref_torrc_title">ترتيبات خاصة ب تور آر سي.</string>
+  <string name="pref_torrc_summary">للخبراء فقط : أدخل أسطر ملف torrc مباشرةً</string>
+  <string name="pref_torrc_dialog">torrc خاص</string>
+  <string name="wizard_tips_martus">جوّال مارتوس - مابعد حقوق الإنسان توثيق التطبيقات</string>
+  <string name="your_tor_public_ips_">أرقام إبي العمومية ليتور الخاصة بك :</string>
+  <string name="please_disable_this_app_in_android_settings_apps_if_you_are_having_problems_with_orbot_">فضلا أوقف هذا التطبيق في إعدادات تطبيقات الأندرويد إذا كنت تواجه مشاكلا مع أوربت:</string>
+  <string name="app_conflict">تعارض في التطبيق</string>
+  <string name="pref_transproxy_refresh_title">تحيين أوتوماتيكي للبروكسي الشفّاف</string>
+  <string name="pref_transproxy_refresh_summary">أعد تطبيق قوانين البروكسي الشفّاف إذا ما تغيّرت حالة الشبكة</string>
+  <string name="pref_transproxy_flush_title">الحذف الإجباري للبروكسي الشفّاف</string>
+  <string name="pref_transproxy_flush_summary">إضغط هنا لتغيّر كل قوانين إتصال البروكسي الشفّاف الآن</string>
+  <string name="transparent_proxy_rules_flushed_">إتصال البروكسي الشفّاف تغيّر!</string>
+  <string name="you_do_not_have_root_access_enabled">ليست لديك صلاحيات الروت</string>
+  <string name="you_may_need_to_stop_and_start_orbot_for_settings_change_to_be_enabled_">قد تحتاج لغلق وإعادة تشغيل أوربوت حتى تفعّل التغييرات التي قمت بها في الإعدادات.</string>
+  <string name="menu_vpn">تطبيقات</string>
+  <string name="kbps">كيلوبيت في الثانية</string>
+  <string name="mbps">ميغابيت في الثانية</string>
+  <string name="kb">كيلوبايت</string>
+  <string name="mb">ميغابايت</string>
+  <string name="bridges_updated">تم تحديث الجسور</string>
+  <string name="restart_orbot_to_use_this_bridge_">الرجاء إعادة تشغيل أوربوت لتفعيل التعديلات</string>
+  <string name="menu_qr">رمز كيو آر</string>
+  <string name="bridge_mode">نمط الجسر</string>
+  <string name="get_bridges_email">البريد الإلكتروني</string>
+  <string name="get_bridges_web">الويب</string>
+  <string name="activate">تفعيل</string>
+  <string name="apps_mode">وضع الـ VPN</string>
+  <string name="send_email">أرسل بريد الكتروني</string>
+  <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">تستطيع الحصول على عنوان جسر عبر البريد الإلكتروني، عبر الويب، أو بعمل مسح لكيوآر كود خاص بجسر.
+إختر \"بريد إلكتروني\" أو \"ويب\" بالأسفل لطلب عنوان جسر.
+
+ما أن تحصل على جسر، أنسخه وألصقه في خانة \"الجسور\" في إعدادات أوربوت وأعد التشغيل.</string>
+  <string name="install_orweb">تثبيت أورفوكس</string>
+  <string name="standard_browser">متصفح عادي</string>
+  <string name="note_only_standard_tor_bridges_work_on_intel_x86_atom_devices">ملاحظة: فقط جسور التور العاديّة تعمل على الأجهزة بنواة إنتل إكس86/أتوم.</string>
+  <string name="vpn_default_world">شامل (تلقائي)</string>
+  <string name="hidden_services">خدمات خفية</string>
+  <string name="title_activity_hidden_services">خدمات خفية</string>
+  <string name="menu_hidden_services">خدمات خفية</string>
+  <string name="save">حفظ</string>
+  <string name="ports">المنافذ</string>
+  <string name="local_port">المنفذ المحلي</string>
+  <string name="name">الاسم</string>
+  <string name="done">تم !</string>
+  <string name="invalid_port">المنفذ غير صالح</string>
+  <string name="copy_address_to_clipboard">نسخ العنوان إلى الحافظة</string>
+  <string name="show_auth_cookie">عرض كعكة المصادقة</string>
+  <string name="backup_service">النسخ الإحتياطي للخدمة</string>
+  <string name="delete_service">حذف الخدمة</string>
+  <string name="backup_saved_at_external_storage">تمت عملية حفظ النسخة الإحتياطية في ذاكرة التخزين الخارجية</string>
+  <string name="backup_restored">تمت استعادة النسخة الإحتياطية</string>
+  <string name="restore_backup">إسترجاع نسخة احتياطية</string>
+  <string name="name_can_t_be_empty">لا يمكن ترك الإسم فارغا</string>
+  <string name="fields_can_t_be_empty">لا يمكن ترك الحقول فارغة</string>
+  <string name="click_again_for_backup">قم بالنقر ثانية للقيام بالنسخ الإحتياطي</string>
+  <string name="service_type">نوع الخدمة</string>
+  <string name="please_restart_Orbot_to_enable_the_changes">الرجاء إعادة تشغيل أوربوت لتفعيل التعديلات</string>
+  <string name="onion">.onion</string>
+  <string name="delete_cookie">حذف الكعكة</string>
+  <string name="hosted_services">الخدمات المستضافة</string>
+  <string name="share_as_qr">شارك كرمز كيو آر</string>
+  <string name="disable">إلغاء</string>
+  <string name="enable">تمكين</string>
+  <string name="please_enable_vpn">يرجى تفعيل وضع الشبكة الإفتراضية الخاصة في بي آن للسماح للتطبيقات استخدام تور</string>
+  <string name="app_shortcuts">التطبيقات المهيئة للعبور عبر تور</string>
+  <string name="testing_bridges">جارٍ فحص اتصال الجسر بشبكة تور ...</string>
+  <string name="testing_bridges_success">نجحت العملية. إنّ إعدادات الجسر جيدة !</string>
 </resources>

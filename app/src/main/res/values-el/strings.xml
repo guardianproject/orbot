@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Orbot</string>
+  <string name="app_description">Το Orbot είναι μια δωρεάν εφαρμογή μεσολάβησης που επιτρέπει σε άλλες εφαρμογές να χρησιμοποιούν το Διαδίκτυο με περισσότερη ασφάλεια. Το Orbot χρησιμοποιεί τον Tor για την κρυπτογράφηση της διαδικτυακής σας κίνησης και στη συνέχεια την κρύβει αναπηδώντας μέσω μιας σειράς υπολογιστών σε όλο τον κόσμο. Το Tor είναι ελεύθερο λογισμικό και ένα ανοιχτό δίκτυο που σας βοηθά να σταθείτε ενάντια σε μια μορφή επιτήρησης δικτύου που απειλεί την προσωπική ελευθερία και ιδιωτικότητα, εμπιστευτικές επιχειρηματικές δραστηριότητες και σχέσεις, και την κρατική ασφάλεια γνωστή ως traffic analysis.</string>
   <string name="internal_web_url">http://orbot/</string>
   <string name="default_web_url">http://check.torproject.org</string>
   <string name="secure_default_web_url">https://check.torproject.org</string>
@@ -10,6 +11,7 @@
   <string name="status_starting_up">Το Orbot ξεκινά</string>
   <string name="status_activated">Συνδέθηκε στο δίκτυο Tor</string>
   <string name="status_disabled">\"Το Orbot είναι Απενεργοποιημένο</string>
+  <string name="status_shutting_down">Η υπηρεσία Tor τερματίζεται</string>
   <string name="tor_process_starting">Εκκίνηση του πελάτη Tor...</string>
   <string name="tor_process_complete">ολοκληρώθηκε...</string>
   <string name="tor_process_waiting">αναμονή</string>
@@ -22,6 +24,7 @@
   <string name="menu_start">Εκκίνηση</string>
   <string name="menu_stop">Διακοπή</string>
   <string name="menu_about">Σχετικά</string>
+  <string name="menu_promo_apps">Αποκτήστε εφαρμογές...</string>
   <string name="main_layout_download">Λήψη (ταχύτητα/σύνολο)</string>
   <string name="main_layout_upload">Αποστολή (ταχύτητα/σύνολο)</string>
   <string name="button_help">Βοήθεια</string>
@@ -30,6 +33,8 @@
   <string name="button_clear_log">Διαγραφή Καταγραφής</string>
   <string name="menu_verify">Έλεγχος</string>
   <string name="menu_exit">Έξοδος</string>
+  <string name="menu_scan">Σάρωση BridgeQR</string>
+  <string name="menu_share_bridge">Κοινή χρήση BridgeQR</string>
   <string name="press_to_start">-για να εκκινήσει κρατήστε το πατημένο-</string>
   <string name="pref_trans_proxy_group">Διαφανής Πληρεξούσιος Διακομηστής (Απαιτεί διαχείριση root)</string>
   <string name="pref_trans_proxy_title">Διαφανής Πληρεξούσιος Διακομηστής</string>
@@ -72,10 +77,15 @@
   <string name="wizard_tips_proxy">Ρυθμίσεις proxy: Μάθετε πώς θα ρυθμίσετε τις εφαρμογές ώστε να λειτουργούν με το Orbot</string>
   <string name="wizard_tips_duckgo">Εφαρμογή Μηχανής Αναζήτησης Duckduckgo</string>
   <string name="wizard_tips_twitter">Το Twitter υποστηρίζει http proxy localhost:8118</string>
+  <string name="wizard_tips_story_maker">StoryMaker - Φτιάξτε μια ιστορία και αφήστε την στο tor για ασφάλεια!</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Ρυθμίσεις proxy</string>
+  <string name="wizard_proxy_help_msg">Εάν η εφαρμογή Android που χρησιμοποιείτε μπορεί να υποστηρίξει τη χρήση ενός διακομιστή μεσολάβησης HTTP ή SOCKS, τότε μπορείτε να την ρυθμίσετε ώστε να συνδέεται στο Orbot και να χρησιμοποιεί τον Tor.\n\n\n Οι ρυθμίσεις κεντρικού υπολογιστή είναι 127.0.0.1 ή \"localhost\". Για το HTTP, η ρύθμιση θύρας είναι 8118. Για το SOCKS, ο proxy είναι 9050. Θα πρέπει να χρησιμοποιήσετε SOCKS4A ή SOCKS5, αν είναι δυνατόν.\n \n\n\n Μπορείτε να μάθετε περισσότερα σχετικά με το proxying σε Android μέσω του FAQ στο: http://tinyurl.com/proxyandroid\n</string>
   <string name="wizard_final">Το Orbot είναι έτοιμο!</string>
+  <string name="wizard_final_msg">Εκατομμύρια άνθρωποι σε όλο τον κόσμο χρησιμοποιούν τον Tor για διάφορους λόγους.\n\nΔημοσιογράφοι και bloggers, υπερασπιστές των ανθρωπίνων δικαιωμάτων, αρμόδιοι επιβολής του νόμου, στρατιωτικοί, εταιρίες, πολίτες καταπιεστικών καθεστώτων και απλοί πολίτες ... και τώρα ετοιμάζεστε και εσείς!</string>
+  <string name="wizard_exit_at_first_screen_toast">Παρακαλούμε ρυθμίστε το Orbot για να μπορέσετε να το χρησιμοποιήσετε!</string>
   <!--END Welcome Wizard strings (DJH)-->
+  <string name="connect_first_time">Έχετε συνδέσει με επιτυχία το δίκτυο Tor - αλλά αυτό ΔΕΝ σημαίνει ότι η συσκευή σας είναι ασφαλής. Μπορείτε να χρησιμοποιήσετε το κουμπί \'Browser\' για να ελέγξετε τη σύνδεσή σας. \n\nΕπισκευθείτε μας στη διεύθυνση https://guardianproject.info/apps/orbot ή στείλτε ένα μήνυμα στη διεύθυνση help@guardianproject.info για να μάθετε περισσότερα.</string>
   <string name="tor_check">Θα ανοίξει ο περιηγητής δικτύου στην σελίδα https://check.torproject.org για να διαπιστώσετε αν το Orbot είναι σωστά ρυθμισμένο και ότι είστε συνδεδεμένος/η στο Tor.</string>
   <string name="pref_hs_group">Φιλοξενία κρυφών υπηρεσιών</string>
   <string name="pref_general_group">Γενικά</string>
@@ -83,16 +93,22 @@
   <string name="pref_start_boot_summary">Αυτόματη έναρξη του Orbot και σύνδεση στο Tor όταν ξεκινά η Android συσκευή σας</string>
   <!--New Wizard Strings-->
   <!--Title Screen-->
+  <string name="wizard_title_msg">Το Orbot φέρνει το Tor σε Android!\n\nΤο Tor σας βοηθά να σταθείτε ενάντια στο φιλτράρισμα περιεχομένου, την ανάλυση κυκλοφορίας και την επιτήρηση δικτύου που απειλεί την ιδιωτικότητα, τις εμπιστευτικές πληροφορίες και τις προσωπικές σχέσεις.\n\nΑυτός ο οδηγός θα σας βοηθήσει να ρυθμίσετε το Orbot και το Tor στη συσκευή σας.</string>
   <!--Warning screen-->
   <string name="wizard_warning_title">Προειδοποίηση</string>
+  <string name="wizard_warning_msg">Εγκαθιστώντας απλά το Orbot δεν θα καταστήσει ανώνυμη την κινητή σας σύνδεση αυτόματα.\n\nΠρέπει να ρυθμίσετε σωστά το Orbot, τη συσκευή σας και άλλες εφαρμογές για να χρησιμοποιήσετε με επιτυχία το Tor.</string>
   <!--Permissions screen-->
   <string name="wizard_permissions_title">Άδειες</string>
   <string name="wizard_permissions_root_msg1">Αν θέλετε, μπορεί να δώσετε στο Orbot πρόσβαση \'Υπερχρήστη\' ώστε να ενεργοποιήσετε τα προχωρημένα χαρακτηριστικά, όπως το Transparent Proxying.</string>
   <string name="wizard_permissions_root_msg2">Αν δεν θέλετε κάτι τέτοιο, βεβαιωθείτε ότι χρησιμοποιείτε εφαρμογές που συνεργάζονται με το Orbot</string>
+  <string name="wizard_permissions_no_root_msg">Η συσκευή σας δεν φαίνεται να έχει ξεκλείδωτο λειτουργικό σύστημα ή να παρέχει πρόσβαση root ή \"Superuser\".\n\nΠαρακαλούμε καλύτερα δοκιμάστε τη λειτουργία \'Apps\' στην κύρια οθόνη.</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Εφαρμογές συμβατές με Orbot</string>
   <string name="wizard_tips_gibberbot">ChatSecure: Ασφαλές chat app με Off-the-Record κρυπτογράφηση</string>
+  <string name="wizard_tips_orweb">Orfox: Περιηγητής επαυξημένου απορρήτου που λειτουργεί μέσω του Tor</string>
   <string name="wizard_tips_play">Βρες όλες τις εφαρμογές Guardian Project στο Google Play</string>
+  <string name="wizard_tips_fdroid">Βρείτε όλες τις εφαρμογές του Guardian Project στο F-Droid</string>
+  <string name="wizard_tips_fdroid_org">Βρείτε όλες τις εφαρμογές του Guardian Project στο https://f-droid.org</string>
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Διαφανής μεσολάβηση διακομιστή</string>
   <string name="wizard_transproxy_msg">Το στοιχείο αυτό επιτρέπει στις εφαρμογές σας να λειτουργούν μέσω του δικτύου Tor χωρίς κάποια ρύθμιση.</string>
@@ -108,6 +124,9 @@
   <string name="pref_entrance_node">Κόμβοι εισόδου</string>
   <string name="pref_entrance_node_summary">Αποτυπώματα, ψευδώνυμα, χώρες και διευθύνσεις για την πρώτη σύνδεση</string>
   <string name="pref_entrance_node_dialog">Εισάγετε κόμβους εισαγωγής</string>
+  <string name="pref_allow_background_starts_title">Να επιτρέπονται εκκινήσεις στο παρασκήνιο</string>
+  <string name="pref_allow_background_starts_summary">Να επιτρέπεται σε οποιαδήποτε εφαρμογή να πει στο Orbot να ξεκινήσει τον Tor και σχετικές υπηρεσίες</string>
+  <string name="button_invert_selection">Αντιστροφή Επιλογής</string>
   <string name="pref_proxy_title">Διακομιστής μεσολάβησης εξερχομένων δεδομένων</string>
   <string name="pref_proxy_type_title">Τύπος του διακομιστή μεσολάβησης εξερχομένων δεδομένων</string>
   <string name="pref_proxy_type_summary">Πρωτόκολλο του διακομιστή μεσολάβησης: HTTP, HTTPS, Socks4, Socks5</string>
@@ -132,6 +151,7 @@
   <string name="warning_error_starting_transparent_proxying_">ΠΡΟΕΙΔΟΠΟΙΗΣΗ: σφάλμα κατά την εκκίνηση της διαφανούς μεσολάβησης διακομιστή!</string>
   <string name="transproxy_rules_cleared">Οι ρυθμίσεις του TransProxy απομακρύνθηκαν</string>
   <string name="couldn_t_start_tor_process_">Αδυναμία εκκίνησης της διεργασίας Tor:</string>
+  <string name="privoxy_is_running_on_port_">Το Polipo εκτελείται στη θύρα:</string>
   <string name="setting_up_port_based_transparent_proxying_">Ρύθμιση της διαφανούς μεσολάβησης διακομιστή κατά θύρα...</string>
   <string name="bridge_error">Σφάλμα γέφυρας</string>
   <string name="bridge_requires_ip">Για να χρησιμοποιήσετε το στοιχείο γέφυρας, πρέπει να εισάγετε την διεύθυνση ΙΡ τουλάχιστον μιας γέφυρας.</string>
@@ -150,7 +170,6 @@
   <string name="bridges">Γέφυρες</string>
   <string name="use_bridges">Χρήση γεφυρών</string>
   <string name="bridges_obfuscated">Κρυφές γέφυρες</string>
-  <string name="enable_alternate_entrance_nodes_into_the_tor_network">Ενεργοποίηση εναλλακτικών κόμβων εισόδου στο δίκτυο Tor</string>
   <string name="enable_if_configured_bridges_are_obfuscated_bridges">Ενεργοποιήστε το αν οι ρυθμισμένες γέφυρες είναι κρυφές</string>
   <string name="ip_address_and_port_of_bridges">Διεύθυνση ΙΡ και θύρα των γεφυρών</string>
   <string name="enter_bridge_addresses">Εισάγετε την διεύθυνση της γέφυρας</string>
@@ -175,34 +194,93 @@
   <string name="the_addressable_name_for_your_hidden_service_generated_automatically_">το όνομα προσπέλασης για τις κρυφές υπηρεσίες σας (παράγεται αυτόματα)</string>
   <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">ενεργοποίηση καταγραφών αποσφαλμάτωσης (για την προβολή τους απαιτείται χρήση adb ή aLogCat)</string>
   <string name="project_home">Ιστοσελίδες του έργου:</string>
+  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
   <string name="the_tor_license">Η Άδεια Tor</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Λογισμικό τρίτων:</string>
-  <string name="hidden_service_request">Κάποια εφαρμογή προσπαθεί να ανοίξει την κρυφή θύρα διακομιστή %S στο δίκτυο Tor. Πρόκειται για ασφαλή ενέργεια, εφόσον γνωρίζετε την εφαρμογή.</string>
+  <string name="tor_version">Tor: https://www.torproject.org</string>
+  <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
+  <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
   <string name="found_existing_tor_process">αναζήτηση διεργασιών Tor...</string>
   <string name="something_bad_happened">Κάτι κακό συνέβη. Ελέγξτε τις καταγραφές</string>
   <string name="hidden_service_on">ενεργοποιημένη κρυφή υπηρεσία:</string>
   <string name="unable_to_read_hidden_service_name">αδυναμία ανάγνωσης του ονόματος της κρυφής υπηρεσίας</string>
   <string name="unable_to_start_tor">Αδυναμία εκκίνησης του Tor:</string>
+  <string name="unable_to_reset_tor">Επανεκκινήστε τη συσκευή σας, αδυναμία επαναφοράς του Tor!</string>
   <string name="pref_use_sys_iptables_title">Χρήση αρχικού iptables</string>
   <string name="pref_use_sys_iptables_summary">χρήση του ενσωματωμένου iptables αντί για εκείνων του πακέτου Orbot</string>
   <string name="error_installing_binares">Τα αρχεία Tor δεν μπόρεσαν να εγκατασταθούν ή να αναβαθμιστούν.</string>
   <string name="pref_use_persistent_notifications">Να διατηρείται πάντοτε το εικονίδιο στην γραμμή εργαλείων όταν το Orbot συνδέεται</string>
   <string name="pref_use_persistent_notifications_title">Ειδοποιήσεις διαρκούς σύνδεσης</string>
+  <string name="pref_use_expanded_notifications">Εμφάνιση εκτεταμένης ειδοποίησης με τη χώρα εξόδου του Tor και τη διεύθυνση IP</string>
+  <string name="pref_use_expanded_notifications_title">Επεκταμένες Ειδοποιήσεις</string>
   <string name="notification_using_bridges">Οι γέφυρες ενεργοποιήθηκαν!</string>
   <string name="default_bridges"></string>
+  <string name="set_locale_title">Γλώσσα </string>
   <string name="set_locale_summary">Επιλέξτε ρυθμίσεις τοπικότητας και γλώσσας για το Orbot</string>
   <string name="wizard_locale_title">Επιλέξτε γλώσσα</string>
   <string name="wizard_locale_msg">Παραμείνετε στην αρχική ή αλλάξτε την τρέχουσα γλώσσα</string>
+  <string name="powered_by">powered by Tor</string>
   <string name="btn_save_settings">Αποθήκευση ρυθμίσεων</string>
+  <string name="no_internet_connection_tor">Δεν υπάρχει σύνδεση στο διαδίκτυο. Ο Tor είναι σε αναμονή...</string>
   <string name="bandwidth_">Εύρος ζώνης:</string>
   <string name="down">κατέβασμα</string>
   <string name="up">ανέβασμα</string>
   <string name="pref_disable_network_title">Χωρίς Αυτόματη Αναστολή Δικτύου</string>
   <string name="pref_disable_network_summary">Θέσε το Tor σε λειτουργία sleep όταν δεν υπάρχει διαθέσιμη σύνδεση Ιnternet</string>
   <string name="newnym">Έχετε αλλάξει επιτυχώς την ταυτότητα σας στο Tor! </string>
+  <string name="menu_verify_browser">Browser</string>
   <string name="menu_use_chatsecure">Χρήση του ChatSecure</string>
   <string name="permission_manage_tor_label">Διαχείριση Tor</string>
   <string name="permission_manage_tor_description">Εξουσιοδοτήστε την εφαρμογή να ελέγχει την υπηρεσία του Tor</string>
-  <string name="install_apps_">Εγκατάσταση εφαρμογών?</string>
+  <string name="no_network_connectivity_putting_tor_to_sleep_">Δεν υπάρχει σύνδεση με δίκτυο. Ο Tor μπαίνει σε κατάσταση αναμονής...</string>
+  <string name="network_connectivity_is_good_waking_tor_up_">Η σύνδεση δικτύου είναι καλή. Γίνεται αφύπνιση του Tor...</string>
+  <string name="updating_settings_in_tor_service">ενημέρωση ρυθμίσεων στην υπηρεσία Tor</string>
+  <string name="pref_socks_title">Tor SOCKS</string>
+  <string name="pref_socks_summary">Θύρα που προσφέρει ο Tor στο SOCKS proxy του (προεπιλογή: 9050 ή 0 για απενεργοποίηση)</string>
+  <string name="pref_socks_dialog">Διάρθρωση Θύρας SOCKS</string>
+  <string name="pref_transport_title">Θύρα Tor TransProxy </string>
+  <string name="pref_transport_summary">Θύρα που προσφέρει ο Tor στον Transparent Proxy του (προεπιλογή: 9040 ή 0 για απενεργοποίηση)</string>
+  <string name="pref_transport_dialog">Διάρθρωση Θύρας TransProxy</string>
+  <string name="pref_dnsport_title">Tor Θύρα DNS </string>
+  <string name="pref_dnsport_summary">Θύρα που προσφέρει ο Tor στο DNS του (προεπιλογή: 5400 ή 0 για απενεργοποίηση)</string>
+  <string name="pref_dnsport_dialog">Διάρθρωση Θύρας DNS</string>
+  <string name="pref_torrc_dialog">Προσαρμογή Torrc</string>
+  <string name="wizard_tips_martus">Mobile Martus - Benetech Human Rights Documentation App</string>
+  <string name="your_tor_public_ips_">Τα δημόσια Tor ΙΡ σας:</string>
+  <string name="please_disable_this_app_in_android_settings_apps_if_you_are_having_problems_with_orbot_">Παρακαλούμε απενεργοποιήστε αυτήν την εφαρμογή στο Android-&gt;Settings-&gt;Apps αν αντιμετωπίζετε προβλήματα με το Orbot:</string>
+  <string name="app_conflict">Σύγκρουση εφαρμογών</string>
+  <string name="pref_transproxy_refresh_title">Αυτόματη ανανέωση Transproxy</string>
+  <string name="pref_transproxy_refresh_summary">Επανεφαρμογή των κανόνων Transproxy όταν αλλάζει η κατάσταση δικτύου</string>
+  <string name="pref_transproxy_flush_title">ΑΝΑΓΚΑΣΤΙΚΗ ΑΦΑΙΡΕΣΗ Transproxy</string>
+  <string name="pref_transproxy_flush_summary">Αγγίξτε εδώ για να εκκαθαρίσετε όλους τους κανόνες δικτύου διαφανούς διακομιστή μεσολάβησης ΤΩΡΑ</string>
+  <string name="transparent_proxy_rules_flushed_">Οι κανόνες του διαφανούς διακομιστή μεσολάβησης εκκαθαρίστηκαν!</string>
+  <string name="you_do_not_have_root_access_enabled">Δεν έχετε ενεργοποιημένη την πρόσβαση ROOT</string>
+  <string name="you_may_need_to_stop_and_start_orbot_for_settings_change_to_be_enabled_">Ίσως χρειαστεί να σταματήσετε και να ξεκινήσετε το Orbot για να ενεργοποιηθούν οι αλλαγές στις ρυθμίσεις.</string>
+  <string name="menu_vpn">Εφαρμογές</string>
+  <string name="kbps">kbps</string>
+  <string name="mbps">mbps</string>
+  <string name="kb">KB</string>
+  <string name="mb">MB</string>
+  <string name="bridges_updated">Οι γέφυρες ενημερώθηκαν</string>
+  <string name="restart_orbot_to_use_this_bridge_">Παρακαλούμε επανεκκινήστε το Orbot για να ενεργοποιήσετε τις αλλαγές</string>
+  <string name="menu_qr">Κώδικες QR</string>
+  <string name="bridge_mode">Λειτουργία Γέφυρας</string>
+  <string name="get_bridges_email">Email</string>
+  <string name="get_bridges_web">Web</string>
+  <string name="activate">Ενεργοποίηση</string>
+  <string name="send_email">Στείλτε Email</string>
+  <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Μπορείτε να πάρετε μια διεύθυνση γέφυρας μέσω ηλεκτρονικού ταχυδρομείου, στον ιστό ή με τη σάρωση κώδικα QR γέφυρας. Επιλέξτε \'Email\' ή \'Web\' παρακάτω για να ζητήσετε μια διεύθυνση γέφυρας.\n\nΌταν έχετε μια διεύθυνση, αντιγράψτε το &amp; επικολλήστε το στην προτίμηση \"Bridges\" στη ρύθμιση του Orbot και επανεκκινήστε.</string>
+  <string name="install_orweb">Εγκατάσταση Orfox</string>
+  <string name="standard_browser">Τυπικός Browser</string>
+  <string name="note_only_standard_tor_bridges_work_on_intel_x86_atom_devices">ΣΗΜΕΙΩΣΗ: Μόνο τυποποιημένες γέφυρες Tor λειτουργούν σε συσκευές Intel X86 / ATOM</string>
+  <string name="hidden_services">Αποκρυφες υπηρεσιες</string>
+  <string name="title_activity_hidden_services">Αποκρυφες υπηρεσιες</string>
+  <string name="menu_hidden_services">Αποκρυφες υπηρεσιες</string>
+  <string name="save">Αποθήκευση</string>
+  <string name="name">Όνομα</string>
+  <string name="done">Έγινε!</string>
+  <string name="please_restart_Orbot_to_enable_the_changes">Παρακαλούμε επανεκκινήστε το Orbot για να ενεργοποιήσετε τις αλλαγές</string>
+  <string name="disable">Απενεργοποίηση</string>
+  <string name="enable">Ενεργοποίηση</string>
 </resources>

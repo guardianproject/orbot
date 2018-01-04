@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Orbot</string>
   <string name="app_description">Orbot je besplatna proxy aplikacija koja omogućuje ostalim aplikacijama da koriste internet sigurnije. Orbot koristi Tor za enkripciju Vašeg Internet prometa, a zatim ga skriva šaljući ga kroz seriju računala diljem svijeta. Tor je besplatan software i otvorena mreža koja pomaže u borbi protiv nadzora mreže koji ugrožava osobne slobode i privatnost, povjerljive poslovne aktivnosti i odnose, te pomaže u borbi protiv analize prometa.</string>
@@ -21,7 +21,6 @@
   <string name="menu_settings">Postavke</string>
   <string name="menu_log">Dnevnik</string>
   <string name="menu_info">Pomoć</string>
-  <string name="menu_apps">VPN</string>
   <string name="menu_start">Početak</string>
   <string name="menu_stop">Zaustavi</string>
   <string name="menu_about">O</string>
@@ -61,7 +60,6 @@
   <string name="btn_cancel">Odustani</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Detalji o Orbot-u</string>
-  <string name="wizard_details_msg">Orbot je otvorena aplikacija koja sadrži Tor, LibEvent i Polipo. Pruža lokalni HTTP proxy (8118) i SOCKS proxy (9050) u Tor mrežu. Orbot ima mogućnost, na root-anom uređaju, slati sav promet kroz Tor.</string>
   <string name="wizard_permissions_root">Dopuštenje Odobreno</string>
   <string name="wizard_permissions_stock">Orbot Dopuštenja</string>
   <string name="wizard_premissions_msg_root">Odlično! Uočili smo da imate root dopuštenja omogućena za Orbot. Koristit ćemo ovu moć mudro.</string>
@@ -174,7 +172,6 @@
   <string name="bridges">Mostovi</string>
   <string name="use_bridges">Koristi Mostove</string>
   <string name="bridges_obfuscated">Skriveni Mostovi</string>
-  <string name="enable_alternate_entrance_nodes_into_the_tor_network">Omogući naizmjenične ulazne čvorove u Tor Mrežu</string>
   <string name="enable_if_configured_bridges_are_obfuscated_bridges">Omogućite ako su postavljeni mostovi skriveni mostovi</string>
   <string name="ip_address_and_port_of_bridges">IP adresa i port mostova</string>
   <string name="enter_bridge_addresses">Unesi Adrese Mostova</string>
@@ -206,9 +203,6 @@
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
-  <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v1.0.1q: http://www.openssl.org</string>
-  <string name="hidden_service_request">Aplikacija želi otvoriti port %S skrivenog poslužitelja Tor mreži. Ovo je sigurno ako vjerujete aplikaciji.</string>
   <string name="found_existing_tor_process">pronađeni postojeći Tor procesi...</string>
   <string name="something_bad_happened">Nešto loše se dogodilo. Provjerite dnevnik</string>
   <string name="hidden_service_on">skrivena usluga na:</string>
@@ -241,8 +235,6 @@
   <string name="menu_use_chatsecure">Koristi ChatSecure</string>
   <string name="permission_manage_tor_label">Upravljaj Tor-om</string>
   <string name="permission_manage_tor_description">Omogući ovoj palikaciji da upravlja Tor-om</string>
-  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Čini se da nemate Orfox instaliran. Želite li pomoć s tim ili da samo otvorimo preglednik?</string>
-  <string name="install_apps_">Instaliraj aplikacije?</string>
   <string name="no_network_connectivity_putting_tor_to_sleep_">Nema mrežne povezivosti. Stavljam Tor na spavanje...</string>
   <string name="network_connectivity_is_good_waking_tor_up_">Mrežan povezanost je dobra. Budim Tor...</string>
   <string name="updating_settings_in_tor_service">ažuriram postavke u Tor usluzi</string>
@@ -269,7 +261,7 @@
   <string name="transparent_proxy_rules_flushed_">Pravila transparentnog proxy-a očišćena!</string>
   <string name="you_do_not_have_root_access_enabled">Nema omogućen root pristup</string>
   <string name="you_may_need_to_stop_and_start_orbot_for_settings_change_to_be_enabled_">Možda će te morati zaustaviti i pokrenuti Orbot da bi se omogućile promjenjene postavke.</string>
-  <string name="menu_vpn">VPN</string>
+  <string name="menu_vpn">Aplikacije</string>
   <string name="kbps">kbps</string>
   <string name="mbps">mbps</string>
   <string name="kb">KB</string>
@@ -277,17 +269,16 @@
   <string name="bridges_updated">Mostova ažurirano</string>
   <string name="restart_orbot_to_use_this_bridge_">Ponovno pokrenite Orbot da bi omogućili promjene</string>
   <string name="menu_qr">QR kodovi</string>
-  <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Ako Vaš mreža aktivno blokira Tor, možete koristiti Most kako bi pristupili mreži. ODABERITE jedan od gorenavedenih tipova mosta kako bi ih omogućili.</string>
   <string name="bridge_mode">Način rada Most</string>
   <string name="get_bridges_email">Email</string>
   <string name="get_bridges_web">Web</string>
   <string name="activate">Aktiviraj</string>
-  <string name="apps_mode">VPN način rada aplikacija</string>
-  <string name="you_can_enable_all_apps_on_your_device_to_run_through_the_tor_network_using_the_vpn_feature_of_android_">Možete omogućiti svim aplikacijama na svom uređaju da se pokreću kroz Tor koristeći VPN značajku Android-a.\n\n*UPOZORENJE* Ovo je nova, eksperimentalna značajka i u nekim slučajevima se možda neće automatski pokrenuti, ili će se zaustaviti. NE bi ju trebalo koristiti za anonimnost, nego SAMO za prolaženje kroz vatrozide i filtere.</string>
   <string name="send_email">Pošalji email</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Možete dobiti adrese mostova kroz email, web ili skeniranjem QR koda. Odaberite \'Email\' ili \'Web\' niže da zatražite adresu mosta.\n\nJednom kad imate adresu, kopirajte i zalijepite ju u \"Mostovi\" postavku Orbot-a i ponovno ga pokrenite.</string>
   <string name="install_orweb">Instaliraj Orfox</string>
   <string name="standard_browser">Standardni preglendik</string>
   <string name="note_only_standard_tor_bridges_work_on_intel_x86_atom_devices">NAPOMENA: samo standardni Tor mostovi rade na Intel X86/ATOM uređajima</string>
-  <string name="vpn_default_world">Svijet</string>
+  <string name="save">Spremi</string>
+  <string name="name">Ime</string>
+  <string name="please_restart_Orbot_to_enable_the_changes">Ponovno pokrenite Orbot da bi omogućili promjene</string>
 </resources>

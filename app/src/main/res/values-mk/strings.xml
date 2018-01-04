@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Orbot</string>
   <string name="app_description">Orbot е слободна прокси апликација која им овозможува на другите апликации да го користат интернетот побезбедно. Orbot користи Tor за шифрирање на интернет-сообраќајот, а потоа го сокрива и го доставува преку неколку компјутери во целиот свет. Tor е слободен софтвер и отворена мрежа која се справува со вид надзор на мрежата која штети на личната слобода и приватноста, доверливи деловни активности и односи, и државната безбедност позната како анализа на сообраќајот.</string>
@@ -11,6 +11,7 @@
   <string name="status_starting_up">Орбот се стартува...</string>
   <string name="status_activated">Поврзан на мрежата на Tor</string>
   <string name="status_disabled">Орбот е деактивиран</string>
+  <string name="status_shutting_down">ТорСервисот се исклучува</string>
   <string name="tor_process_starting">Стартување на клиентот на Tor...</string>
   <string name="tor_process_complete">завршено.</string>
   <string name="tor_process_waiting">чекање.</string>
@@ -23,6 +24,7 @@
   <string name="menu_start">Стартувај</string>
   <string name="menu_stop">Стопирај</string>
   <string name="menu_about">За</string>
+  <string name="menu_promo_apps">Преземи аппликации...</string>
   <string name="main_layout_download">Преземи</string>
   <string name="main_layout_upload">Прикачи</string>
   <string name="button_help">Помош</string>
@@ -58,7 +60,6 @@
   <string name="btn_cancel">Откажи</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Неколку детали за Орбот</string>
-  <string name="wizard_details_msg">Orbot е апликација со отворен код која ги содржи Tor, LibEvent и Polipo. Обезбедува локален HTTP прокси (8118) и SOCKS прокси (9050) во мрежата на Tor. Orbot, исто така, има опција кај основниот уред да го испраќа целиот интернет-сообраќај преку Tor.</string>
   <string name="wizard_permissions_root">Дозволата е издадена</string>
   <string name="wizard_permissions_stock">Дозволи на Orbot</string>
   <string name="wizard_premissions_msg_root">Одлично! Откривме дека овозможивте root пристап за Orbot. Внимателно ќе ја користиме оваа опција.</string>
@@ -84,6 +85,7 @@
   <string name="wizard_final_msg">Милиони луѓе низ целиот свет го користат Tor за различни причини.\n\nНовинари и блогери, борци за човекови права, адвокати, војници, корпорации, граѓаните на репресивните режими и обичните граѓани ... а од сега и вие!</string>
   <string name="wizard_exit_at_first_screen_toast">Ве молиме конфигурирајте го Орбот пред да започнете да го користите!</string>
   <!--END Welcome Wizard strings (DJH)-->
+  <string name="connect_first_time">Успешно се поврзавте на Тор мрежата - но тоа НЕ значи дека вашиот уред е безбеден. Можете да го користите \'Прелистувач\' копчето за да ја тестирате вашата конекција. \n\nПосетете не на: https://guardianproject.info/apps/orbot или пратете е-пошта на help@guardianproject.info да дознаете повеќе.</string>
   <string name="tor_check">Ова ќе ја отвори страницата https://check.torproject.org во Вашиот веб-прелистувач за да видете дали Orbot е правилно конфигуриран и дали сте поврзани на Тор.</string>
   <string name="pref_hs_group">Скриени сервиси за хостирање</string>
   <string name="pref_general_group">Општо</string>
@@ -103,6 +105,7 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Апликации кои го поддржуваат Orbot</string>
   <string name="wizard_tips_gibberbot">ChatSecure: Безбедносна апликација за разговор со енкрипција \'Off-the-Record\' </string>
+  <string name="wizard_tips_orweb">Орфокс: Прелистувач со унапредена-приватност кој работи преку Тор</string>
   <string name="wizard_tips_play">Најди ги сите Guardian Project апликации на Google Play</string>
   <string name="wizard_tips_fdroid">Најди ги сите Guardian Project апликации на F-Droid</string>
   <string name="wizard_tips_fdroid_org">Најди ги сите Guardian Project апликации на https://f-droid.org</string>
@@ -121,6 +124,8 @@
   <string name="pref_entrance_node">Влезни јазли</string>
   <string name="pref_entrance_node_summary">Отпечатоци од прсти, прекари, земји и адреси за првиот скок.</string>
   <string name="pref_entrance_node_dialog">Внесете влезни јазли</string>
+  <string name="pref_allow_background_starts_title">Дозволи позадинско стартување</string>
+  <string name="pref_allow_background_starts_summary">Дозволи било која апликација да му каже на Орбот да го стартува Тор и поврзаните сервиси</string>
   <string name="button_proxy_all">Се за проксирање</string>
   <string name="button_proxy_none">Ништо за проксирање</string>
   <string name="button_invert_selection">Преврти го изборот</string>
@@ -167,7 +172,6 @@
   <string name="bridges">Мостови</string>
   <string name="use_bridges">Користи мостови</string>
   <string name="bridges_obfuscated">Скриени мостови</string>
-  <string name="enable_alternate_entrance_nodes_into_the_tor_network">Овозможи алтернативни влезни јазли во мрежата Tor</string>
   <string name="enable_if_configured_bridges_are_obfuscated_bridges">Овозможи, ако мостовите се скриени мостови</string>
   <string name="ip_address_and_port_of_bridges">ИП-адреса и порта на мостовите</string>
   <string name="enter_bridge_addresses">Внесете адреси на мостовите</string>
@@ -199,8 +203,6 @@
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
-  <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
-  <string name="hidden_service_request">Апликација сака да отвори скриена порта на серверот %S на мрежата на Tor. Ова е безбедно, ако и\' веруваш на апликацијата.</string>
   <string name="found_existing_tor_process">Пронајден постоечки Tor-процес ...</string>
   <string name="something_bad_happened">Настана грешка. Проверете во дневникот</string>
   <string name="hidden_service_on">Вклучен е скриениот сервис:</string>
@@ -229,10 +231,10 @@
   <string name="pref_disable_network_title">Нема Auto-Sleep на мрежата</string>
   <string name="pref_disable_network_summary">Стави го Тор на sleep кога интернетот не е достапен</string>
   <string name="newnym">Се префрливте на нов идентитет на Tor!</string>
+  <string name="menu_verify_browser">Прелистувач</string>
   <string name="menu_use_chatsecure">Користи ChatSecure</string>
   <string name="permission_manage_tor_label">Управувај со Tor</string>
   <string name="permission_manage_tor_description">Дозволи оваа апликација да го управува со сервисот на Tor</string>
-  <string name="install_apps_">Инсталирај апликации?</string>
   <string name="no_network_connectivity_putting_tor_to_sleep_">Нема мрежно поврзување. Ставете го Тор на режимот на спиење...</string>
   <string name="network_connectivity_is_good_waking_tor_up_">Мрежното поврзување е добро. Го буди Tor...</string>
   <string name="updating_settings_in_tor_service">ажурирање на поставките во сервисот Tor </string>
@@ -259,6 +261,7 @@
   <string name="transparent_proxy_rules_flushed_">Избришани транспарентни прокси правила</string>
   <string name="you_do_not_have_root_access_enabled">Немате вклучено пристап до корен</string>
   <string name="you_may_need_to_stop_and_start_orbot_for_settings_change_to_be_enabled_">Може би ќе треба да се стопира и стартува Orbot за да бидат овозможени промените во поставките.</string>
+  <string name="menu_vpn">Апликации</string>
   <string name="kbps">kbps</string>
   <string name="mbps">mbps</string>
   <string name="kb">KB</string>
@@ -270,9 +273,15 @@
   <string name="get_bridges_email">Е-пошта</string>
   <string name="get_bridges_web">Веб</string>
   <string name="activate">Активирај</string>
-  <string name="you_can_enable_all_apps_on_your_device_to_run_through_the_tor_network_using_the_vpn_feature_of_android_">Можете да ги овозможите сите апликации на вашиот уред да работат низ мрежата Tor користејќи VPN-функција на Андроид.\n\n*ВНИМАНИЕ* нова, експериментална функција и во некои случаи нема да стартува автоматски, или може да се стопира. Не треба да се користи за анонимност, и САМО да се користи за минување низ заштитни ѕидови и филтри.</string>
   <string name="send_email">Испрати е-пошта</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Aдреса на мостови можете да добивате преку е-пошта, веб или со скенирање на QR код. Изберете подолу \'Е-пошта\' или \'Web\', за да побарате адреса за мостот. \n\nОткако ќе ја добиете адресата, копирајте го &amp; и залепете го во делот \"Мостови\" во подесувањето на Orbot и рестартирајте.</string>
+  <string name="install_orweb">Инсталирај Орфокс</string>
   <string name="standard_browser">Стандарден прелистувач</string>
   <string name="note_only_standard_tor_bridges_work_on_intel_x86_atom_devices">ЗАБЕЛЕШКА: Само стандардните мостови на Tor функционираат на уредите Intel X86/ATOM</string>
+  <string name="hidden_services">Скриени сервиси </string>
+  <string name="title_activity_hidden_services">Скриени сервиси </string>
+  <string name="menu_hidden_services">Скриени сервиси </string>
+  <string name="save">Зачувај</string>
+  <string name="name">Име</string>
+  <string name="please_restart_Orbot_to_enable_the_changes">Ве молиме рестартирајте го Orbot за да се овозможат промените</string>
 </resources>

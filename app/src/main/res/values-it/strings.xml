@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Orbot</string>
   <string name="app_description">Orbot è un\'applicazione proxy che permette alle altre applicazioni di accedere a internet in maniera più sicura. Orbot usa Tor per cifrare il  traffico internet e lo nasconde poi facendolo rimbalzare attraverso una serie di computer attorno al mondo. Tor è un software libero e una rete aperta che aiuta a difendersi da una forma di sorveglianza della rete conosciuta come analisi del traffico. Quest\'ultima minaccia libertà e privacy personale, attività commerciali riservate, rapporti interpersonali, e persino la sicurezza di stato.</string>
@@ -10,34 +10,33 @@
   <string name="tor_proxy_service_process">torproxyservice</string>
   <string name="status_starting_up">Orbot è in esecuzione...</string>
   <string name="status_activated">Connesso alla rete Tor</string>
-  <string name="status_disabled">\"Orbot è disattivato</string>
+  <string name="status_disabled">Orbot è disattivato</string>
   <string name="status_shutting_down">TorService si sta spegnendo</string>
   <string name="tor_process_starting">Avvio client Tor...</string>
   <string name="tor_process_complete">completa.</string>
-  <string name="tor_process_waiting">attesa.</string>
+  <string name="tor_process_waiting">in attesa.</string>
   <string name="not_anonymous_yet">ATTENZIONE: Il traffico non è ancora anonimo! Configura le applicazioni per utilizzare il proxy HTTP 127.0.0.1:8118,  SOCKS4A o proxy SOCKS5 127.0.0.1:9050</string>
   <string name="menu_home">Home</string>
-  <string name="menu_browse">Sfoglia</string>
+  <string name="menu_browse">Naviga</string>
   <string name="menu_settings">Impostazioni</string>
   <string name="menu_log">Log</string>
   <string name="menu_info">Aiuto</string>
-  <string name="menu_apps">VPN</string>
-  <string name="menu_start">Avvio</string>
+  <string name="menu_start">Avvia</string>
   <string name="menu_stop">Ferma</string>
-  <string name="menu_about">About</string>
+  <string name="menu_about">Info</string>
   <string name="menu_promo_apps">Installa apps...</string>
-  <string name="main_layout_download">Download (velocità/totale)</string>
-  <string name="main_layout_upload">Upload (velocità/totale)</string>
+  <string name="main_layout_download">Download</string>
+  <string name="main_layout_upload">Upload</string>
   <string name="button_help">Aiuto</string>
   <string name="button_close">Chiudi</string>
-  <string name="button_about">About</string>
+  <string name="button_about">Info</string>
   <string name="button_clear_log">Cancella log</string>
   <string name="menu_verify">Controlla</string>
   <string name="menu_exit">Esci</string>
   <string name="menu_scan">Scansiona BridgeQR</string>
   <string name="menu_share_bridge">Condividi BridgeQR</string>
   <string name="press_to_start">- tieni premuto per avviare -</string>
-  <string name="pref_trans_proxy_group">Proxying trasparente (Richiede root)</string>
+  <string name="pref_trans_proxy_group">Proxying trasparente (richiede root)</string>
   <string name="pref_trans_proxy_title">Proxying trasparente</string>
   <string name="pref_trans_proxy_summary">Torifying automatico delle app</string>
   <string name="pref_transparent_all_title">Tor ovunque</string>
@@ -61,7 +60,6 @@
   <string name="btn_cancel">Annulla</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Alcuni dettagli su Orbot</string>
-  <string name="wizard_details_msg">Orbot è un\'app open-source contenente Tor, LibEvent e Polipo. Fornisce un proxy HTTP locale (8118) e un proxy SOCKS (9050) nella rete Tor. Orbot, solo sui dispositivi con permessi di ROOT, offre anche la possibilità di veicolare tutto il traffico attraverso Tor.</string>
   <string name="wizard_permissions_root">Permesso concesso</string>
   <string name="wizard_permissions_stock">Permessi Orbot</string>
   <string name="wizard_premissions_msg_root">Eccellente! Abbiamo rilevato la presenza dei permessi di root attivati per Orbot. Useremo questi poteri con saggezza.</string>
@@ -171,10 +169,9 @@
   <string name="enter_exclude_nodes">Inserire i nodi da escludere</string>
   <string name="strict_nodes">Nodi specifici</string>
   <string name="use_only_these_specified_nodes">Utilizza *solo* i nodi specificati</string>
-  <string name="bridges">Ponti</string>
+  <string name="bridges">Bridge</string>
   <string name="use_bridges">Utilizza i bridge</string>
   <string name="bridges_obfuscated">Bridge mascherati</string>
-  <string name="enable_alternate_entrance_nodes_into_the_tor_network">Abilita nodi alternati in entrata nella rete Tor</string>
   <string name="enable_if_configured_bridges_are_obfuscated_bridges">Attiva se i Bridge configurati sono mascherati</string>
   <string name="ip_address_and_port_of_bridges">Indirizzo IP e porta dei bridge</string>
   <string name="enter_bridge_addresses">Inserire gli indirizzi dei bridge</string>
@@ -206,9 +203,6 @@
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
-  <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v1.0.1q: http://www.openssl.org</string>
-  <string name="hidden_service_request">Un applicazione ha richiesto di aprire la porta per servizi nascosti %S alla rete Tor. Questo è sicuro se ci si fida dell\'applicazione.</string>
   <string name="found_existing_tor_process">trovato un processo Tor esistente...</string>
   <string name="something_bad_happened">E\' accaduto un evento indesiderato. Controllare i log.</string>
   <string name="hidden_service_on">servizio nascosto attivo:</string>
@@ -241,8 +235,6 @@
   <string name="menu_use_chatsecure">Usa ChatSecure</string>
   <string name="permission_manage_tor_label">Gestisci Tor</string>
   <string name="permission_manage_tor_description">Abilita questa app per controllare il servizio Tor</string>
-  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Non sembra che tu abbia Orfox installato. Necessiti di aiuto, o apro semplicemente il browser?</string>
-  <string name="install_apps_">Installare applicazioni?</string>
   <string name="no_network_connectivity_putting_tor_to_sleep_">Nessuna connettività di rete. Mettendo Tor a riposo...</string>
   <string name="network_connectivity_is_good_waking_tor_up_">Connettività di rete buona. Svegliando Tor...</string>
   <string name="updating_settings_in_tor_service">aggiornamento impostazioni nel servizio Tor</string>
@@ -269,7 +261,7 @@
   <string name="transparent_proxy_rules_flushed_">Regole Proxy Trasparente eliminate!</string>
   <string name="you_do_not_have_root_access_enabled">Non ci sono i permessi di ROOT abilitati</string>
   <string name="you_may_need_to_stop_and_start_orbot_for_settings_change_to_be_enabled_">Potrebbe essere necessario riavviare Orbot per applicare i cambiamenti delle impostazioni.</string>
-  <string name="menu_vpn">VPN</string>
+  <string name="menu_vpn">App</string>
   <string name="kbps">kbps</string>
   <string name="mbps">mbps</string>
   <string name="kb">KB</string>
@@ -277,17 +269,22 @@
   <string name="bridges_updated">Bridge attivati</string>
   <string name="restart_orbot_to_use_this_bridge_">Per favore riavvia Orbot per rendere effettive le modifiche</string>
   <string name="menu_qr">Codici QR</string>
-  <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Se la tua rete cellulare blocca attivamente Tor puoi utilizzare un Bridge per accedere alla rete. Seleziona uno dei tipi di bridge da sopra per attivare i bridge</string>
   <string name="bridge_mode">Modalità Bridge</string>
   <string name="get_bridges_email">Email</string>
   <string name="get_bridges_web">Web</string>
   <string name="activate">Attiva</string>
-  <string name="apps_mode">Modalità VPN per le applicazioni</string>
-  <string name="you_can_enable_all_apps_on_your_device_to_run_through_the_tor_network_using_the_vpn_feature_of_android_">Puoi configurare tutte le app del tuo dispositivo per connettersi attraverso la rete Tor usando la modalità VPN di Android.\n\n*ATTENZIONE* Questa è una funzione nuova e sperimentale, in alcuni potrebbe non avviarsi in automatico o fermarsi. NON dovrebbe essere usata per l\'anonimato ma solo per bypassare filtri e firewall.</string>
   <string name="send_email">Invia email</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Tu poi ricevere un indirizzo bridge via email, web o scansionando un codice QR. Seleziona \'Email\' o \'Web\' per richiedere un indirizzo bridge.\n\nUna volta che hai un indirizzo, copialo &amp; incollalo nell\'opzione \"Bridges\" delle impostazioni di Orbot e riavvialo.</string>
   <string name="install_orweb">Installa Orfox</string>
   <string name="standard_browser">Browser standard</string>
   <string name="note_only_standard_tor_bridges_work_on_intel_x86_atom_devices">NOTA: Solo i Tor Bridges standard funzionano sui dispositivi Intel x86/Atom</string>
-  <string name="vpn_default_world">Mondo</string>
+  <string name="hidden_services">Servizi nascosti</string>
+  <string name="title_activity_hidden_services">Servizi nascosti</string>
+  <string name="menu_hidden_services">Servizi nascosti</string>
+  <string name="save">Salva</string>
+  <string name="name">Nome</string>
+  <string name="done">Fatto!</string>
+  <string name="please_restart_Orbot_to_enable_the_changes">Per favore riavvia Orbot per rendere effettive le modifiche</string>
+  <string name="disable">Disabilita</string>
+  <string name="enable">Abilità</string>
 </resources>

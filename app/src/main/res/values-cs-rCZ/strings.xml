@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Orbot</string>
+  <string name="app_description">Orbot je bezplatný proxy server, který umožňuje bezpečnější použití internetu v ostatních apklikacích. Orbot používá Tor pro šifrování internetového provozu a skrývá se díky předávání provozu přes více počítačů po celém světě. Tor je bezplatný software a otevřená síť, která vám pomáhá chránit se před sledováním sítě, které ohrožuje osobní svobodu, bezpečnost, důvěrné obchodní aktivity a vztahy a před státním sledováním, označovaným jako anylýza provozu.</string>
   <string name="internal_web_url">http://orbot/</string>
   <string name="default_web_url">http://check.torproject.org</string>
   <string name="secure_default_web_url">https://check.torproject.org</string>
@@ -10,6 +11,7 @@
   <string name="status_starting_up">Orbot se spouští...</string>
   <string name="status_activated">Připojen k síti Tor</string>
   <string name="status_disabled">Orbot je deaktivován</string>
+  <string name="status_shutting_down">TorService se vypíná...</string>
   <string name="tor_process_starting">Startuji Tor klienta...</string>
   <string name="tor_process_complete">hotovo.</string>
   <string name="tor_process_waiting">čekám.</string>
@@ -22,6 +24,7 @@
   <string name="menu_start">Zapnout</string>
   <string name="menu_stop">Vypnout</string>
   <string name="menu_about">O aplikaci</string>
+  <string name="menu_promo_apps">Získat aplikace...</string>
   <string name="main_layout_download">Stáhnout</string>
   <string name="main_layout_upload">Nahrát</string>
   <string name="button_help">Nápověda</string>
@@ -30,6 +33,8 @@
   <string name="button_clear_log">Vyčistit log</string>
   <string name="menu_verify">Ověřit</string>
   <string name="menu_exit">Konec</string>
+  <string name="menu_scan">Skenovat BridgeQR</string>
+  <string name="menu_share_bridge">Sdílet BridgeQR</string>
   <string name="press_to_start">- podržte pro spuštění -</string>
   <string name="pref_trans_proxy_group">Transparentní proxy (vyžaduje roota)</string>
   <string name="pref_trans_proxy_title">Transparentní proxy</string>
@@ -74,9 +79,12 @@
   <string name="wizard_tips_twitter">Nastavit Twitter proxy na host \"localhost\" a port 8118</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Nastavení Proxy</string>
+  <string name="wizard_proxy_help_msg">Pokud používaná aplikace podporuje HTTP, nebo SOCKS proxy, můžete ji nastavit pro připojení přes Orbot a používání Tor.\n\n\n Nastavení hostitele je 127.0.0.1, nebo \"localhost\". Pro HTTP je port 8118. Pro SOCKS je port proxy 9050. Pokud je to možné, měli byste použít SOCKS4A, nebo SOCKS5.\n \n\n\n Více o používání proxy na Androidu je možné zjistit v FAQ na: http://tinyurl.com/proxyandroid\n </string>
   <string name="wizard_final">Orbot je připraven!</string>
+  <string name="wizard_final_msg">Milliony lidí po celém světě používají Tor z celé řady důvodů.\n\nNovináři a blogeři, ochránci lidských práv, policejní detektivové, vojáci, firmy, obyvatelé států s nesvobodným režimem a naprosto obyčejní občané… a nyní se můžete připojit i vy</string>
   <string name="wizard_exit_at_first_screen_toast">Orbot musíte nejdříve nastavit, než ho začnete používat!</string>
   <!--END Welcome Wizard strings (DJH)-->
+  <string name="connect_first_time">Úspěšně jste se připojili k síti Tor - toto ale NEZNAMENÁ, že vaše zaříení je bezpečné. Můžete použít tlačítko \'Prohlížeč\' pro zkoušku spojení. \n\nNavštivte nás na https://guardianproject.info/apps/orbot , nebo nám napište na email help@guardianproject.info pro více informací.</string>
   <string name="tor_check">Tato volba otevře ve webovém prohlížeči stránku https://check.torproject.org pro kontrolu, jestli je Orbot správně nastaven a jste připojen k Tor.</string>
   <string name="pref_hs_group">Skrytý hosting služby</string>
   <string name="pref_general_group">Obecné</string>
@@ -84,16 +92,22 @@
   <string name="pref_start_boot_summary">Automaticky spustit Orbot a připojit se k Tor po startu zařízení</string>
   <!--New Wizard Strings-->
   <!--Title Screen-->
+  <string name="wizard_title_msg">Orbot přináší Tor na Android!\n\nTor pomáhá chránit se proti filtrování obsahu, anylýze obsahu a sledování síťového provozu, které ohrožují bezpečnost, důvěrnost informací a osbní vztahy.\n\nTento průvodce vám pomůže nastavit Orbot a Tor na vašem zařízení.</string>
   <!--Warning screen-->
   <string name="wizard_warning_title">Varování</string>
+  <string name="wizard_warning_msg">Samotná instalace Orbot neudělá vaše mobilní přenosy anonymními.\n\nMusíte správně nastavit Orbot, vaše zařízení a aplikace pro úspěšné používání Tor.</string>
   <!--Permissions screen-->
   <string name="wizard_permissions_title">Oprávnění</string>
   <string name="wizard_permissions_root_msg1">Volitelně můžete Orbotu udělit \'siperuýivatelský\' (root) přístup pto povolení rozšířených funkcí, například transparentní proxy.</string>
   <string name="wizard_permissions_root_msg2">Pokud si to nepřejete, používejte prosím aplikace napsané tak, aby spolupracovaly s Orbotem</string>
+  <string name="wizard_permissions_no_root_msg">Vaše zařízení nejspíš nemá oprávnění root, nebo nepovoluje \'Superuser\' přístup.\n\nProsím zkuste místo toho mód \'Aplikace\' na hlavní stránce.</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot-povolené aplikace</string>
   <string name="wizard_tips_gibberbot">ChatSecure: Bezpečná chatovací aplikace s technologií Off-the-Record Encryption</string>
+  <string name="wizard_tips_orweb">Orfox: Prohlížeč s rozšířeným soukroním, který funguje přes Tor</string>
   <string name="wizard_tips_play">Najděte všechny aplikace Guardian Projektu na Obchodu Play</string>
+  <string name="wizard_tips_fdroid">Najděte všechny Gurdian Project aplikace na F-Droid</string>
+  <string name="wizard_tips_fdroid_org">Najděte všechny Guardian Project aplikace na https://f-droid.org</string>
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Transparentní proxy</string>
   <string name="wizard_transproxy_msg">Toto povolí aplikacím automaticky běžet přes Tor síť bez jakéhokoliv nastavování.</string>
@@ -109,6 +123,10 @@
   <string name="pref_entrance_node">Vstupní nody</string>
   <string name="pref_entrance_node_summary">Otisky (fingerprints), přezdívky serveru (nicks), státy a adresy pro první skok (hop)</string>
   <string name="pref_entrance_node_dialog">Zadejte vstupní nody</string>
+  <string name="pref_allow_background_starts_title">Povolit spuštění na pozadí</string>
+  <string name="pref_allow_background_starts_summary">Povolit všem aplikacím spustit Orbot, Tor a přslušně služby</string>
+  <string name="button_proxy_all">Proxy vše</string>
+  <string name="button_proxy_none">Proxy nic</string>
   <string name="button_invert_selection">Převrátit výběr</string>
   <string name="pref_proxy_title">Odchozí síťová proxy (volitelné)</string>
   <string name="pref_proxy_type_title">Typ odchozí proxy</string>
@@ -134,6 +152,7 @@
   <string name="warning_error_starting_transparent_proxying_">VAROVÁNÍ: chyba při startu transparentní proxy!</string>
   <string name="transproxy_rules_cleared">Pravidla TransProxy vymazána</string>
   <string name="couldn_t_start_tor_process_">Nelze spustit Tor proces:</string>
+  <string name="privoxy_is_running_on_port_">Polipo běží na portu:</string>
   <string name="setting_up_port_based_transparent_proxying_">Nastavení na portu založené transparentní proxy...</string>
   <string name="bridge_error">Chyba bridge</string>
   <string name="bridge_requires_ip">Pro použití bridge musíte zadat minimálné jednu IP adresu bridge.</string>
@@ -152,7 +171,6 @@
   <string name="bridges">Bridge</string>
   <string name="use_bridges">Použít bridge</string>
   <string name="bridges_obfuscated">Matoucí bridge (Obfuscated Bridges)</string>
-  <string name="enable_alternate_entrance_nodes_into_the_tor_network">Povolit alternativní vstupní nody do sítě Tor</string>
   <string name="enable_if_configured_bridges_are_obfuscated_bridges">Povolte, pokud jsou nastavené bridge matoucí bridge</string>
   <string name="ip_address_and_port_of_bridges">IP adresy a porty bridgů</string>
   <string name="enter_bridge_addresses">Zadejte adresy bridgů</string>
@@ -183,8 +201,6 @@
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
-  <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
-  <string name="hidden_service_request">Aplikace požaduje otevření skrytého portu serveru %S k síti Tor. Toto je bezpečně, pokud aplikaci důvěřujete.</string>
   <string name="found_existing_tor_process">nalezev existující Tor proces…</string>
   <string name="something_bad_happened">Stalo se něco špatného. Zkontrolujte log</string>
   <string name="hidden_service_on">skrytá služba na:</string>
@@ -196,28 +212,70 @@
   <string name="error_installing_binares">Nelze nainstalovat nebo aktualizovat Tor binárky.</string>
   <string name="pref_use_persistent_notifications">Vždy zobrazit ikonu ve stavovém řádku, pokud je Orbot připojen.</string>
   <string name="pref_use_persistent_notifications_title">Notifikace vždy zapnuté</string>
+  <string name="pref_use_expanded_notifications">Zobrazit rozšířené oznánemí s Tor výstupní zemí a IP</string>
+  <string name="pref_use_expanded_notifications_title">Rozšířené oznámení</string>
   <string name="notification_using_bridges">Bridge povoleny!</string>
   <string name="default_bridges"></string>
   <string name="set_locale_title">Jazyk</string>
   <string name="set_locale_summary">Zvolte jazyk pro Orbot</string>
   <string name="wizard_locale_title">Zvolte jazyk</string>
   <string name="wizard_locale_msg">Ponechat standartní, nebo přepnout stávající jazyk</string>
+  <string name="powered_by">poháněno Tor projektem</string>
   <string name="btn_save_settings">Uložit nastavení</string>
+  <string name="no_internet_connection_tor">Žádné připojení k internetu; Tor je standby...</string>
   <string name="bandwidth_">Šířka pásma:</string>
   <string name="down">stahování</string>
   <string name="up">nahrávání</string>
   <string name="pref_disable_network_title">Vypnout uspávání sítě</string>
   <string name="pref_disable_network_summary">Uspat Tor když není k dispozici přístup k Internetu</string>
   <string name="newnym">Vaše identita na Toru byla změněna!</string>
+  <string name="menu_verify_browser">Prohlížeč</string>
   <string name="menu_use_chatsecure">Použít ChatSecure</string>
   <string name="permission_manage_tor_label">Spravovat Tor</string>
   <string name="permission_manage_tor_description">Umožnit této aplikaci ovládat službu Tor</string>
-  <string name="install_apps_">Nainstalovat aplikace?</string>
+  <string name="no_network_connectivity_putting_tor_to_sleep_">Žádný síťový provoz. Ukládám Tor k spánku…</string>
+  <string name="network_connectivity_is_good_waking_tor_up_">Síťový provoz v pořádku. Probouzím Tor…</string>
+  <string name="updating_settings_in_tor_service">aktualizuji nastavení služby Tor</string>
+  <string name="pref_socks_title">Tor SOCKS</string>
+  <string name="pref_socks_summary">Port, na kterém Tor nabízí SOCKS proxy (default: 9050, 0 pro zakázání)</string>
+  <string name="pref_socks_dialog">SOCKS nastavení portu</string>
+  <string name="pref_transport_title">Tor TransProxy port</string>
+  <string name="pref_transport_summary">Port, na kterém Tor nabízí transparentní proxy (default: 9040, 0 pro zakázání)</string>
+  <string name="pref_transport_dialog">TransProxy nastavení portu</string>
+  <string name="pref_dnsport_title">Tor DNS port</string>
+  <string name="pref_dnsport_summary">Port, na kterém Tor nabízí DNS (default: 5400, 0 pro zakázání)</string>
+  <string name="pref_dnsport_dialog">DNS nastavení portu</string>
+  <string name="pref_torrc_title">Torrc vstastní konfigurace</string>
+  <string name="pref_torrc_summary">POUZE PRO EXPERTY: zadejte přímo řádky nastavení torrc</string>
+  <string name="pref_torrc_dialog">Vlastní Torrs</string>
+  <string name="your_tor_public_ips_">Vaše veřejná Tor IP:</string>
+  <string name="please_disable_this_app_in_android_settings_apps_if_you_are_having_problems_with_orbot_">Prosím zakažte tuto aplikaci v  Android-&gt;Nastavení-&gt;Aplikace pokud máte problémy s Orbot: </string>
+  <string name="app_conflict">Konfliktní aplikace</string>
+  <string name="pref_transproxy_refresh_title">Transproxy auto-obnovení</string>
+  <string name="pref_transproxy_refresh_summary">Znovuaplikovat pravidla Transproxy, pokud se změní stav sítě</string>
+  <string name="pref_transproxy_flush_title">VYNUTIT ODEBRÁNÍ Transproxy</string>
+  <string name="pref_transproxy_flush_summary">Klepněte zde pro smazání všch pravidel transproxy NYNÍ</string>
+  <string name="transparent_proxy_rules_flushed_">Pravidla transparentní proxy smazána!</string>
+  <string name="you_do_not_have_root_access_enabled">Nemáte povolen ROOT přístup</string>
+  <string name="you_may_need_to_stop_and_start_orbot_for_settings_change_to_be_enabled_">Možná bude potřeba zastavit a spustit Orbot pro aplikaci změn.</string>
+  <string name="menu_vpn">Aplikace</string>
+  <string name="kbps">kbps</string>
+  <string name="mbps">mbps</string>
+  <string name="kb">kB</string>
+  <string name="mb">MB</string>
+  <string name="bridges_updated">Bridge aktualizovány</string>
   <string name="restart_orbot_to_use_this_bridge_">Pro projevení změn restartujte Orbot</string>
   <string name="menu_qr">QR kódy</string>
+  <string name="bridge_mode">Bridge mód</string>
   <string name="get_bridges_email">Email</string>
   <string name="get_bridges_web">Web</string>
   <string name="activate">Aktivovat</string>
   <string name="send_email">Pošli email</string>
+  <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Abresu bridge můžete získat emailem, na webu, nebo naskenováním bridge QR kódu. Zvolte níže \'Email\', nebo \'Web\' pro vyžádání adresy bridge.\n\nJakmile máte adresu, zkopírujte &amp; vložte ji do položky \"Bridge\" v nastavení Orbot a restartujte aplikaci.</string>
+  <string name="install_orweb">Instalovat Orfox</string>
   <string name="standard_browser">Standartní prohlížeč</string>
+  <string name="note_only_standard_tor_bridges_work_on_intel_x86_atom_devices">POZNÁMKA: Na Intel X86/ATOM funguje pouze standartní Tor bridge</string>
+  <string name="save">Uložit</string>
+  <string name="name">Jméno</string>
+  <string name="please_restart_Orbot_to_enable_the_changes">Pro projevení změn restartujte Orbot</string>
 </resources>

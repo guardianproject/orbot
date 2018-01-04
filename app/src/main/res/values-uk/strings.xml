@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Orbot</string>
   <string name="app_description">Orbot — це вільна програма для проксі-з\'єднань, яка дозволяє іншим додаткам безпечніше використовувати інтернет-з\'єднання. Orbot використовує Tor для шифрування інтернет-трафіку, який далі приховується під час пересилання через кілька комп\'ютерів у різних частинах планети. Tor є вільним програмним забезпеченням, а також відкритою мережею, що допомагає захиститися від мережевого стеження, яке загрожує особистій свободі та приватному життю, конфіденційній бізнес-діяльності і контактам, а також державної програми безпеки, що відома як аналіз трафіку.</string>
@@ -11,6 +11,7 @@
   <string name="status_starting_up">Запуск Orbot...</string>
   <string name="status_activated">Під\'єднаний до мережі Tor</string>
   <string name="status_disabled">«Orbot» від\'єднаний</string>
+  <string name="status_shutting_down">Сервіси Тор деактивовані</string>
   <string name="tor_process_starting">Запускається клієнт Tor...</string>
   <string name="tor_process_complete">завершено.</string>
   <string name="tor_process_waiting">очікування...</string>
@@ -23,6 +24,7 @@
   <string name="menu_start">Запустити</string>
   <string name="menu_stop">Зупинити</string>
   <string name="menu_about">Про програму</string>
+  <string name="menu_promo_apps">Отримання додатків...</string>
   <string name="main_layout_download">Завантажити</string>
   <string name="main_layout_upload">Завантажити</string>
   <string name="button_help">Довідка</string>
@@ -58,7 +60,6 @@
   <string name="btn_cancel">Відміна</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Деякі відомості про програму Orbot</string>
-  <string name="wizard_details_msg">Orbot — це програма з відкритим кодом, яка містить Tor, LibEvent та Polipo. Він надає локальний HTTP-проксі (8118) і SOCKS-проксі (9050) у мережу Tor. Orbot також дозволяє на пристроях з правами root пересилати весь інтернет-трафік через Tor.</string>
   <string name="wizard_permissions_root">Дозвіл отримано</string>
   <string name="wizard_permissions_stock">Дозволи Orbot</string>
   <string name="wizard_premissions_msg_root">Чудово! Ми визначили, що ви надалили root права для Orbot. Ми будемо використовувати цю можливість з розумом.</string>
@@ -84,6 +85,7 @@
   <string name="wizard_final_msg">Мільйони людей у всьому світі використовують Tor з різних причин.\n\nЖурналісти і блогери, активісти захисту прав людини, судові виконавці, солдати, корпорації, громадяни країн з репресивним режимом, і прості люди… а тепер готові і Ви!</string>
   <string name="wizard_exit_at_first_screen_toast">Будь ласка, налаштуйте Orbot, перш ніж почнете ним користуватись!</string>
   <!--END Welcome Wizard strings (DJH)-->
+  <string name="connect_first_time">Ви успішно під\'єднались до мережі Tor - але це не означає, що ваш пристрій захищено. Ви можете натиснути кнопку \"Браузер\" для перевірки свого з\'єднання. Для того, щоб дізнатись більше інформації, відвідайте наш сайт https://guardianproject.info/apps/orbot або надішліть електронне повідомлення на help@guardianproject.info</string>
   <string name="tor_check">Це призведе до запуску веб-браузера, вибраного на вашому пристрої за замовчуванням, і підключення до сайту https://check.torproject.org, з метою перевірки правильності роботи Orbot і визначення, чи під\'єднані ви до мережі Tor.</string>
   <string name="pref_hs_group">Приховані сервіси</string>
   <string name="pref_general_group">Основні</string>
@@ -103,6 +105,7 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Додатки, що працюють з Orbot:</string>
   <string name="wizard_tips_gibberbot">ChatSecure: додаток для спілкування з підтримкою Off-the-Record шифрування</string>
+  <string name="wizard_tips_orweb">Orfox: браузер з підвищеною конфіденційністю, який працює в мережі Tor</string>
   <string name="wizard_tips_play">Знайти всі додатки Guardian Project на Google Play</string>
   <string name="wizard_tips_fdroid">Знайти всі додатки Guardian Project на F-Droid</string>
   <string name="wizard_tips_fdroid_org">Знайти всі додатки Guardian Project на https://f-droid.org</string>
@@ -121,6 +124,8 @@
   <string name="pref_entrance_node">Вхідні вузли</string>
   <string name="pref_entrance_node_summary">Відбитки, ніки, країни та адреси для першого стрибка</string>
   <string name="pref_entrance_node_dialog">Введіть вхідні вузли</string>
+  <string name="pref_allow_background_starts_title">Дозволити фоновий запуск</string>
+  <string name="pref_allow_background_starts_summary">Дозволити будь-якому додатку звертатись до Orbot для запуску Tor та зв\'язаних з ним сервісів</string>
   <string name="button_proxy_all">Усі через проксі</string>
   <string name="button_proxy_none">Жоден через проксі</string>
   <string name="button_invert_selection">Інвертувати виділення</string>
@@ -167,7 +172,6 @@
   <string name="bridges">Мости</string>
   <string name="use_bridges">Використрвувати Мости</string>
   <string name="bridges_obfuscated">Обфусковані Мости</string>
-  <string name="enable_alternate_entrance_nodes_into_the_tor_network">Включити альтернативні вхідні вузли в мережу Tor</string>
   <string name="enable_if_configured_bridges_are_obfuscated_bridges">Задані мости обфусковані</string>
   <string name="ip_address_and_port_of_bridges">IP адреси і порти мостів</string>
   <string name="enter_bridge_addresses">Введіть Адреси Мостів</string>
@@ -199,8 +203,6 @@
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
-  <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
-  <string name="hidden_service_request">Додаток хоче відкрити прихований порт сервера %S мережі Tor. Це безпечно, якщо ви довіряєте цьому додатку.</string>
   <string name="found_existing_tor_process">знайдено існуючий процес Tor...</string>
   <string name="something_bad_happened">Виникла якась помилка. Перевірте лог</string>
   <string name="hidden_service_on">прихована служба на:</string>
@@ -229,10 +231,10 @@
   <string name="pref_disable_network_title">Не використовувати режим сну</string>
   <string name="pref_disable_network_summary">Переводити в режим сну при відсутності інтернет-з\'єднання</string>
   <string name="newnym">Ви перемкнулись на новий ідентифікатор Tor!</string>
+  <string name="menu_verify_browser">Браузер</string>
   <string name="menu_use_chatsecure">Використовувати ChatSecure</string>
   <string name="permission_manage_tor_label">Керування Tor</string>
   <string name="permission_manage_tor_description">Дозволити додатку керувати сервісом Tor</string>
-  <string name="install_apps_">Встановити додатки?</string>
   <string name="no_network_connectivity_putting_tor_to_sleep_">Немає доступу до мережі інтернет. Tor переходить в режим сну…</string>
   <string name="network_connectivity_is_good_waking_tor_up_">Доступ до мережі хороший. Tor виходить з режиму сну…</string>
   <string name="updating_settings_in_tor_service">оновлення налаштувань у сервісі Tor</string>
@@ -259,6 +261,7 @@
   <string name="transparent_proxy_rules_flushed_">Правила прозорого проксі зрівняно!</string>
   <string name="you_do_not_have_root_access_enabled">У Вас не ввімкнено ROOT-доступ</string>
   <string name="you_may_need_to_stop_and_start_orbot_for_settings_change_to_be_enabled_">Вам може бути потрібно зупинити і запустити Orbot, щоб зміни налаштувань вступили в дію.</string>
+  <string name="menu_vpn">Додатки</string>
   <string name="kbps">kbps</string>
   <string name="mbps">mbps</string>
   <string name="kb">KB</string>
@@ -270,9 +273,16 @@
   <string name="get_bridges_email">Email</string>
   <string name="get_bridges_web">Веб</string>
   <string name="activate">Активувати</string>
-  <string name="you_can_enable_all_apps_on_your_device_to_run_through_the_tor_network_using_the_vpn_feature_of_android_">Ви можете увімкнути пропускання трафіку усіх програм на Вашому прострої через мережу Tor, скориставшись функцією VPN в Android.\n\n*УВАГА* Це нова, експериментальна функція і в деяких випадках може не запуститися автоматично або зупинитись. Її НЕ варто використовувати для анонімності і ЛИШЕ для обходу фаєрволів та фільтрів.</string>
   <string name="send_email">Надіслати листа</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Ви можете отримати адресу мосту через електронну пошту, веб або відсканувавши QR-код мосту. Оберіть «Email» чи «Веб» унизу, щоб подати запит на адресу мосту.\n\nКоли у Вас буде адреса, скопіюйте і вставте її у розділі «Мости» налаштувань Orbot і перезапустіть його.</string>
+  <string name="install_orweb">Встановити Orfox</string>
   <string name="standard_browser">Стандартний браузер</string>
   <string name="note_only_standard_tor_bridges_work_on_intel_x86_atom_devices">ПРИМІТКА: Лише стандартні мости Tor працюють на пристроях з Intel X86/Atom</string>
+  <string name="hidden_services">Приховані Послуги</string>
+  <string name="title_activity_hidden_services">Приховані Послуги</string>
+  <string name="menu_hidden_services">Приховані Послуги</string>
+  <string name="save">Зберегти</string>
+  <string name="name">Ім\'я</string>
+  <string name="please_restart_Orbot_to_enable_the_changes">Будь ласка, перезапустіть Orbot, щоб зміни ввійшли в силу</string>
+  <string name="disable">Вимкнути</string>
 </resources>

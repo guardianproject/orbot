@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Орбот</string>
   <string name="app_description">Orbot е безплатна прокси програма, която дава възможноста на други програми да използват интерент по-сигурно. Orbot използва Tor, за да криптира Интернет трафика и след това го скрива като препраща през няколко компютъра по целия свят. Tor е безплатен софтуер и отворена мрежа, която ти помага да се предпазиш от шпиониране по мрежата, което заплашва твоята свобода и лично пространство, конфиденциални бизнес отношение и връзки, и от вид правителствено следене наречено трафик анализ.</string>
@@ -21,7 +21,6 @@
   <string name="menu_settings">Настройки</string>
   <string name="menu_log">Лог</string>
   <string name="menu_info">Помощ</string>
-  <string name="menu_apps">VPN</string>
   <string name="menu_start">Старт</string>
   <string name="menu_stop">Стоп</string>
   <string name="menu_about">Относно</string>
@@ -61,7 +60,6 @@
   <string name="btn_cancel">Откажи</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Някои Орбот детайли</string>
-  <string name="wizard_details_msg">Orbot е приложение с отворен код, което съдържа Tor, LibEvent и Polipo. То предлага локално HTTP прокси (8118) и SOCKS прокси (9050) към Tor мрежата. Orbot също така има възможноста, на усройства с root достъп, да препраща целият интернет трафик през Tor.</string>
   <string name="wizard_permissions_root">Правата дадени</string>
   <string name="wizard_permissions_stock">Orbot Permissions</string>
   <string name="wizard_premissions_msg_root">Отлично! Засякохме, че имате root права достъпни за Орбот. Ще използваме тази сила разумно.</string>
@@ -174,7 +172,6 @@
   <string name="bridges">Бриджове</string>
   <string name="use_bridges">Използвай Бриджове</string>
   <string name="bridges_obfuscated">Скрити Мостове</string>
-  <string name="enable_alternate_entrance_nodes_into_the_tor_network">Включи алтернативени входящи node-ве в Tor Мрежата</string>
   <string name="enable_if_configured_bridges_are_obfuscated_bridges">Включи ако настроените мостове са скрити мостове</string>
   <string name="ip_address_and_port_of_bridges">IP адрес и порт на бриджове</string>
   <string name="enter_bridge_addresses">Въведи адреси на бриджове</string>
@@ -206,9 +203,6 @@
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
-  <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v1.0.1q: http://www.openssl.org</string>
-  <string name="hidden_service_request">Приложение иска да отвори порт на скрит сървър %S към Тор мрежата. Безопасно е да се доверите на приложението.</string>
   <string name="found_existing_tor_process">намерил си съвместим Tor проект...</string>
   <string name="something_bad_happened">Нещо лошо се случи. Проверете лога</string>
   <string name="hidden_service_on">Скрита услуга включена:</string>
@@ -241,8 +235,6 @@
   <string name="menu_use_chatsecure">Използвай ChatSecure</string>
   <string name="permission_manage_tor_label">Настрой Tor</string>
   <string name="permission_manage_tor_description">Разреши тази програма да контролира Tor</string>
-  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Не изглежда да имате Orfox инсталиран. Желаете ли помощ с това, или просто да отворим браузъра?</string>
-  <string name="install_apps_">Инсталирай програми?</string>
   <string name="no_network_connectivity_putting_tor_to_sleep_">Няма интернет връзка. Преминаване в режим на изчкаване...</string>
   <string name="network_connectivity_is_good_waking_tor_up_">Добра интернет връзка. Събуждане на Tor...</string>
   <string name="updating_settings_in_tor_service">обновяване на настройките в Tor услугата</string>
@@ -269,7 +261,7 @@
   <string name="transparent_proxy_rules_flushed_">Транспрокси правилата изтрити!</string>
   <string name="you_do_not_have_root_access_enabled">Нямаш ROOT достъп до устройството</string>
   <string name="you_may_need_to_stop_and_start_orbot_for_settings_change_to_be_enabled_">Може да се наложи да спреш и стартираш Orbot, за да могат някои настройки да влязат в действие.</string>
-  <string name="menu_vpn">VPN</string>
+  <string name="menu_vpn">Приложения</string>
   <string name="kbps">kbps</string>
   <string name="mbps">mbps</string>
   <string name="kb">KB</string>
@@ -277,17 +269,21 @@
   <string name="bridges_updated">Мостове включени!</string>
   <string name="restart_orbot_to_use_this_bridge_">Моля, рестартирай Orbot, за да влязат в действие промените</string>
   <string name="menu_qr">QR Кодове</string>
-  <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Ако вашата мрежа целенасочено блирва Tor, може да използвате Мост, за да се свържете. ИЗБЕРЕТЕ един от видовете мостове изброени по-горе, за да включите тази функционалност.</string>
   <string name="bridge_mode">Режим мост</string>
   <string name="get_bridges_email">Имейл</string>
   <string name="get_bridges_web">Уеб</string>
   <string name="activate">Активирай</string>
-  <string name="apps_mode">Приложения във VPN режим</string>
-  <string name="you_can_enable_all_apps_on_your_device_to_run_through_the_tor_network_using_the_vpn_feature_of_android_">Можеш да настроиш всички приложения да минават през Tor мрежата използвайки VPN функцията на Андроид.\n\n*ПРЕДУПРЕЖДЕНИЕ* Това е нова, експериментална функция и в някои случаи може да не стартира автоматично, или да спре. НЕ бива да се използва за анонимност, а САМО за преминаване през файъруоли и филтри.</string>
   <string name="send_email">Изпрати имейл</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Можеш да получиш адреса на мост по имейл, интернет или като сканираш QR kod. Избери \'Имейл\' или \'Интернет\' по-долу, за да поискаш адрес на мост.\n\nВеднъж щом получиш адреса го копирай в \"Мостове\", в настройките на Orbot и рестартирай приложението.</string>
   <string name="install_orweb">Инсталирай Orfox</string>
   <string name="standard_browser">Нормален Браузър</string>
   <string name="note_only_standard_tor_bridges_work_on_intel_x86_atom_devices">БЕЛЕЖКА: Само стандартни Tor мостове работя на Intel X86/ATOM устройства</string>
-  <string name="vpn_default_world">Свят</string>
+  <string name="hidden_services">Скрити услуги</string>
+  <string name="title_activity_hidden_services">Скрити услуги</string>
+  <string name="menu_hidden_services">Скрити услуги</string>
+  <string name="save">Запази</string>
+  <string name="name">Име</string>
+  <string name="please_restart_Orbot_to_enable_the_changes">Моля, рестартирай Orbot, за да влязат в действие промените</string>
+  <string name="disable">Деактивиране</string>
+  <string name="enable">Активиране</string>
 </resources>

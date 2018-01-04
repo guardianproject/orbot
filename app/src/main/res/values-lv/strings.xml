@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Orbot</string>
   <string name="app_description">Orbot ir starpniekserveru bezmaksas lietotne, kas sniedz iespēju citām lietotnēm drošāk lietot internetu. Orbot izmanto Tor, lai šifrētu Jūsu interneta datplūsmu, tad to paslēpj, pārsūtot to caur daudziem datoriem visā pasaulē. Tor ir bezmaksas programmatūra un atvērts tīkls, kas palīdz Jums aizsargāties pret tīkla uzraudzības veidu - datplūsmas analīzi -, ar kuras palīdzību tiek apdraudēta personiskā brīvība un privātums, konfidenciālas lietišķas darbības un attiecības, kā arī valsts drošība.  </string>
@@ -11,6 +11,7 @@
   <string name="status_starting_up">Orbot startē...</string>
   <string name="status_activated">Izveidots savienojums ar tīklu Tor</string>
   <string name="status_disabled">Orbot ir deaktivēts</string>
+  <string name="status_shutting_down">TorService izslēdzas</string>
   <string name="tor_process_starting">Startē Tor klientu...</string>
   <string name="tor_process_complete">pabeidz.</string>
   <string name="tor_process_waiting">gaida.</string>
@@ -23,6 +24,7 @@
   <string name="menu_start">Startēt</string>
   <string name="menu_stop">Apturēt</string>
   <string name="menu_about">Par</string>
+  <string name="menu_promo_apps">Saņemt lietotnes...</string>
   <string name="main_layout_download">Lejupielāde</string>
   <string name="main_layout_upload">Augšupielāde</string>
   <string name="button_help">Palīdzība</string>
@@ -58,7 +60,6 @@
   <string name="btn_cancel">Atcelt</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Vairāk informācijas par Orbot</string>
-  <string name="wizard_details_msg">Orbot ir atvērta koda lietojumprogramma, kura ietver Tor, LibEvent un Polipo. Programma nodrošina vietēju HTTP starpniekseveri (8118) un SOCKS starpniekserveri (9050) uz Tor tīklu. Turklāt saknes tiesību līmenī strādājošā ierīcē, Orbot spēj pārsūtīt visu interneta datplūsmu caur Tor.</string>
   <string name="wizard_permissions_root">Tiesības piešķirtas</string>
   <string name="wizard_permissions_stock">Orbot tiesības</string>
   <string name="wizard_premissions_msg_root">Ļoti labi! Mēs konstatējām, ka Orbot\'am ir iespējotas saknes tiesības. Mēs apdomīgi izmantosim šīs tiesības.</string>
@@ -84,6 +85,7 @@
   <string name="wizard_final_msg">Miljoniem ļaužu visā pasaulē lieto Tor dažādiem mērķiem. Žurnālisti un emuāru autori, cilvēktiesību aizstāvji, likumsargi, karavīri, korporācijas, apspiestībā dzīvojuši iedzīvotāji, un vienkārši parasti cilvēki ... un tagad arī Jūs esat tam gatavs!</string>
   <string name="wizard_exit_at_first_screen_toast">Lūdzu nokonfigurējiet Orbot pirms sākat to lietot!</string>
   <!--END Welcome Wizard strings (DJH)-->
+  <string name="connect_first_time">Jūs esat sekmīgi pievienojies tīklam Tor - taču tas NEnozīmē, ka Jūsu ierīce ir droša. Jūs varat izmantot pogu „Pārlūks”, lai pārbaudītu savu savienojumu. \n\nApmeklējiet mūs https://guardianproject.info/apps/orbot vai sūtiet e-pastu uz help@guardianproject.info , lai uzzinātu vairāk.</string>
   <string name="tor_check">Šī darbība tīmekļa pārlūkā atvērs https://check.torproject.org , lai redzētu vai Orbot ir konfigurēts un esat izveidojies savienojumu ar Tor.</string>
   <string name="pref_hs_group">Slēptu pakalpojumu viesošana</string>
   <string name="pref_general_group">Vispārīgi</string>
@@ -103,6 +105,7 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot\'a iespējotas lietotnes</string>
   <string name="wizard_tips_gibberbot">ChatSecure: Padarīt tērzēšanas lietotni drošāku ar Off-the-Record šifrēšanu</string>
+  <string name="wizard_tips_orweb">Orfox: Tor izmantojošs pārlūks ar uzlabotu privātumu</string>
   <string name="wizard_tips_play">Visas Guardian Project\'a lietotnes atrodamas Google Play\'ā</string>
   <string name="wizard_tips_fdroid">Atrodiet visas Guardian Project lietotnes F-Droid\'ā</string>
   <string name="wizard_tips_fdroid_org">Atrodiet visas Guardian Project lietotnes https://f-droid.org</string>
@@ -121,6 +124,8 @@
   <string name="pref_entrance_node">Ieejas mezgli</string>
   <string name="pref_entrance_node_summary">Ciparvirknes, segvārdi, valstis un adreses pirmajam lēkumam</string>
   <string name="pref_entrance_node_dialog">Ievadiet ieejas mezglus</string>
+  <string name="pref_allow_background_starts_title">Ļaut sākšanos fonā</string>
+  <string name="pref_allow_background_starts_summary">Norādīt visām lietotnēm uzdot Orbot palaist Tor un saistītos pakalpojumus.</string>
   <string name="button_proxy_all">Lietot starpniekserveri visam</string>
   <string name="button_proxy_none">Nekam nelietot starpniekserveri</string>
   <string name="button_invert_selection">Mainīt atlasi uz pretējo</string>
@@ -167,7 +172,6 @@
   <string name="bridges">Tilti</string>
   <string name="use_bridges">Lietot tiltus</string>
   <string name="bridges_obfuscated">Nomaskētie tilti</string>
-  <string name="enable_alternate_entrance_nodes_into_the_tor_network">Iespējot alternatīvus tīkla Tor ieejas mezglus </string>
   <string name="enable_if_configured_bridges_are_obfuscated_bridges">Iespējot, ja konfigurētie tilti ir nomaskētie tilti</string>
   <string name="ip_address_and_port_of_bridges">Tiltu ports un IP addrese</string>
   <string name="enter_bridge_addresses">Ievadiet tiltu adreses</string>
@@ -199,8 +203,6 @@
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
-  <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
-  <string name="hidden_service_request">Lietotne vēlas atvērt slēptu servera portu %S uz tīklu Tor. Tas ir droši, ja uzticaties lietotnei.</string>
   <string name="found_existing_tor_process">Atrada esošu Tor procesu...</string>
   <string name="something_bad_happened">Nav labi. Pārbaudiet žurnālu</string>
   <string name="hidden_service_on">Slēpts pakalpojums uz:</string>
@@ -229,10 +231,10 @@
   <string name="pref_disable_network_title">Neizmantot tīkla automātiskā miega režīmu</string>
   <string name="pref_disable_network_summary">Kad nav interneta, pārslēgt Tor\'u uz miega režīmu</string>
   <string name="newnym">Jūs pārslēdzāties uz jaunu Tor\'a identitāti!</string>
+  <string name="menu_verify_browser">Pārlūks</string>
   <string name="menu_use_chatsecure">Lietot ChatSecure</string>
   <string name="permission_manage_tor_label">Pārvaldīt Tor\'u</string>
   <string name="permission_manage_tor_description">Iespējot šo lietotni kontrolēt pakalpojumu Tor</string>
-  <string name="install_apps_">Vai instalēt lietotnes?</string>
   <string name="no_network_connectivity_putting_tor_to_sleep_">Nav tīkla savienojuma. Tor\'am iestata miega režīmu...</string>
   <string name="network_connectivity_is_good_waking_tor_up_">Labs tīkla savienojums. Aktivizē Tor\'u...</string>
   <string name="updating_settings_in_tor_service">atjaunina Tor pakalpojuma iestatījumus </string>
@@ -259,6 +261,7 @@
   <string name="transparent_proxy_rules_flushed_">Pārredzamā starpniekservera kārtulas ir iztīrītas!</string>
   <string name="you_do_not_have_root_access_enabled">SAKNES piekļuve nav iespējota</string>
   <string name="you_may_need_to_stop_and_start_orbot_for_settings_change_to_be_enabled_">Lai iestatījumu maiņa tiktu iespējota, Jums var nākties apturēt un startēt Orbot.</string>
+  <string name="menu_vpn">Lietotnes</string>
   <string name="kbps">kbps</string>
   <string name="mbps">mbps</string>
   <string name="kb">KB</string>
@@ -270,9 +273,16 @@
   <string name="get_bridges_email">E-pasts</string>
   <string name="get_bridges_web">Tīmeklis</string>
   <string name="activate">Aktivizēt</string>
-  <string name="you_can_enable_all_apps_on_your_device_to_run_through_the_tor_network_using_the_vpn_feature_of_android_">Jūs varat iespējot visas savas ierīces lietotnes strādāt Tor tīklā, izmantojot Android VPN raksturiezīmi.\n\n*BRĪDINĀJUMS* Šī ir jauna, eksperimentāla raksturiezīme un dažos gadījumos tā var nesākt darbu automātiski, bet citos tā var pati pārtraukt darboties. To NEVAJAG izmantot anonimitātes nodrošināšanai, bet to var izmantot VIENĪGI lai strādātu caur ugunsmūriem un filtriem.</string>
   <string name="send_email">Nosūtīt e-pastu</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Jūs varat saņemt tiltu adreses e-pastā, tīmeklī vai skenējot tiltu QR kodu. Zemāk atlasiet „E-pasts” vai „Tīmeklis”, lai pieprasītu tiltu adreses. Kad esat saņēmis adreses, tad tās iekopējiet un ielīmējiet Orbot iestatījumu preferencēs „Tilti” un pārstartējiet.</string>
+  <string name="install_orweb">Instalēt Orfox</string>
   <string name="standard_browser">Standarta pārlūks</string>
   <string name="note_only_standard_tor_bridges_work_on_intel_x86_atom_devices">PIEZĪME: Uz Intel X86/ATOM ierīcēm darbosies tikai standarta Tor tilti</string>
+  <string name="hidden_services">Slēptie pakalpojumi</string>
+  <string name="title_activity_hidden_services">Slēptie pakalpojumi</string>
+  <string name="menu_hidden_services">Slēptie pakalpojumi</string>
+  <string name="save">Saglabāt</string>
+  <string name="name">Vārds</string>
+  <string name="please_restart_Orbot_to_enable_the_changes">Lūdzu pārstartējiet Orbot, lai iespējotu izmaiņas</string>
+  <string name="disable">Atspējot</string>
 </resources>

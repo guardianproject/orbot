@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Orbot</string>
   <string name="app_description">Orbot adalah aplikasi proxy gratis yang membuat aplikasi-aplikasi lainnya dapat terkoneksi dengan internet secara aman. Orbot menggunakan Tor untuk mengenkripsi hubungan internet anda dan menyalurkannya melewati berbagai komputer di seluruh dunia. Tor adalah software gratis dan suatu network terbuka, yang membantu anda menghindari pengawasan network yang mengancam kebebasan pribadi dan privasi, aktivitas bisnis rahasia dan relasi, serta keamanan negara yang dikenal dengan analisa traffic.</string>
@@ -21,7 +21,6 @@
   <string name="menu_settings">Pengaturan</string>
   <string name="menu_log">Log</string>
   <string name="menu_info">Bantuan</string>
-  <string name="menu_apps">VPN</string>
   <string name="menu_start">Mulai</string>
   <string name="menu_stop">Berhenti</string>
   <string name="menu_about">Tentang</string>
@@ -61,7 +60,6 @@
   <string name="btn_cancel">Batal</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Beberapa Rincian Orbot</string>
-  <string name="wizard_details_msg">Orbot adalah aplikasi open-source yang mengandung Tor, LibEvent dan Polipo. Tor menyediakan HTTP proxy (8118) dan SOCKS proxy (9050) lokal menuju jaringan Tor. Orbot juga dapat, pada perangkat yang di-root, untuk mengirimkan semua lalu-lintas data internet melalui Tor.</string>
   <string name="wizard_permissions_root">Izin Diberikan</string>
   <string name="wizard_permissions_stock">Perizinan Orbot</string>
   <string name="wizard_premissions_msg_root">Baik sekali! Kami telah mendeteksi bahwa anda telah mengaktifkan perizinan root untuk Orbot. Kami akan menggunakan kekuatan ini secara bijak.</string>
@@ -87,6 +85,7 @@
   <string name="wizard_final_msg">Jutaan orang di seluruh dunia menggunakan Tor untuk berbagai tujuan. Jurnalis dan blogger, pembela hak asasi manusia, penegak hukum, prajurit, perusahaan, warga negara di rezim yang represif, dan warga biasa... dan kini anda sudah siap juga!</string>
   <string name="wizard_exit_at_first_screen_toast">Konfigurasi Orbot terlebih dahulu sebelum anda menggunakannya!</string>
   <!--END Welcome Wizard strings (DJH)-->
+  <string name="connect_first_time">Anda telah berhasil terhubung ke jaringan Tor - tetapi ini tidak berarti perangkat Anda sudah aman. Anda dapat menggunakan tombol \'Browser\' untuk menguji koneksi Anda. \n\nKunjungi kami di https://guardianproject.info/apps/orbot atau mengirim email ke help@guardianproject.info untuk mempelajari lebih lanjut.</string>
   <string name="tor_check">Hal ini akan membuka peramban web anda ke https://check.torproject.org agar dapat melihat jika Orbot kemungkinan sudah dikonfigurasikan dan anda telah terhubung dengan Tor.</string>
   <string name="pref_hs_group">Jasa Penyimpanan Rahasia</string>
   <string name="pref_general_group">Umum</string>
@@ -106,6 +105,7 @@
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Orbot-Aplikasi Teraktifkan</string>
   <string name="wizard_tips_gibberbot">ChatSecure: Aplikasi obrolan aman dengan Enkripsi Off-the-Record</string>
+  <string name="wizard_tips_orweb">Orfox: Browser Privasi yang ditingkatkan, yang bekerja melalui Tor</string>
   <string name="wizard_tips_play">Temukan semua aplikasi Guardian Project di Google Play</string>
   <string name="wizard_tips_fdroid">Temukan semua aplikasi Guardian Project di F-Droid</string>
   <string name="wizard_tips_fdroid_org">Temukan semua aplikasi Guardian Project di https://f-droid.org</string>
@@ -125,6 +125,7 @@
   <string name="pref_entrance_node_summary">Sidik jari, alias, negara dan alamat untuk loncatan pertama</string>
   <string name="pref_entrance_node_dialog">Masukkan Simpul Masuk</string>
   <string name="pref_allow_background_starts_title">Ijinkan Latar Belakang Berjalan</string>
+  <string name="pref_allow_background_starts_summary">Biarkan aplikasi apapun memberitahu Orbot untuk memulai Tor dan layanan yang terkait</string>
   <string name="button_proxy_all">Proxy Semuanya</string>
   <string name="button_proxy_none">Tanpa Proxy</string>
   <string name="button_invert_selection">Balik Pilihan</string>
@@ -171,7 +172,6 @@
   <string name="bridges">Bridges</string>
   <string name="use_bridges">Pakai Bridges</string>
   <string name="bridges_obfuscated">Bridges Terobfuskasi</string>
-  <string name="enable_alternate_entrance_nodes_into_the_tor_network">Nyalakan alternatif node masuk ke dalam Tor Network</string>
   <string name="enable_if_configured_bridges_are_obfuscated_bridges">Nyalakan jika pengaturan bridges adalah bridges terobfuskasi</string>
   <string name="ip_address_and_port_of_bridges">Alamat IP dan port bridges</string>
   <string name="enter_bridge_addresses">Memasuki Alamat Bridge</string>
@@ -203,8 +203,6 @@
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
-  <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
-  <string name="hidden_service_request">Sebuah aplikasi ingin membuka port %S server tersembunyi ke jaringan Tor. Hal ini aman jika anda mempercayai aplikasi tersebut.</string>
   <string name="found_existing_tor_process">menemukan proses Tor yang ada...</string>
   <string name="something_bad_happened">Sesuatu yang buruk terjadi. Periksa log</string>
   <string name="hidden_service_on">layanan tersembunyi pada:</string>
@@ -237,7 +235,6 @@
   <string name="menu_use_chatsecure">Gunakan ChatSecure</string>
   <string name="permission_manage_tor_label">Kelola Tor</string>
   <string name="permission_manage_tor_description">Aktifkan aplikasi ini untuk mengontrol layanan Tor</string>
-  <string name="install_apps_">Pasang aplikasi?</string>
   <string name="no_network_connectivity_putting_tor_to_sleep_">Tidak ada jaringan terhubung. Menidurkan Tor...</string>
   <string name="network_connectivity_is_good_waking_tor_up_">Jaringan terhubung baik. Memanggil Tor...</string>
   <string name="updating_settings_in_tor_service">memperbarui setting pada layanan Tor</string>
@@ -264,7 +261,7 @@
   <string name="transparent_proxy_rules_flushed_">Rule proxy transparan telah kosong!</string>
   <string name="you_do_not_have_root_access_enabled">Anda tidak punya akses ROOT</string>
   <string name="you_may_need_to_stop_and_start_orbot_for_settings_change_to_be_enabled_">Anda mungkin harus stop lalu start kembali Orbot agar perubahan setting menjadi aktif.</string>
-  <string name="menu_vpn">VPN</string>
+  <string name="menu_vpn">Aplikasi</string>
   <string name="kbps">kbps</string>
   <string name="mbps">mbps</string>
   <string name="kb">KB</string>
@@ -276,9 +273,15 @@
   <string name="get_bridges_email">Email</string>
   <string name="get_bridges_web">Laman</string>
   <string name="activate">Aktivasi</string>
-  <string name="you_can_enable_all_apps_on_your_device_to_run_through_the_tor_network_using_the_vpn_feature_of_android_">Anda dapat membuat semua aplikasi di perangkat anda bekerja melalui jaringan Tor menggunakan fitur VPN dari Android. *AWAS* Fitur ini masih baru, percobaan dan pada beberapa kasus tidak start otomatis, atau bahkan berhenti. Tidak untuk anonimitas, dan HANYA untuk melewati firewall dan penyaringan.</string>
   <string name="send_email">Kirim Email</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Anda bisa mendapatkan alamat bridge melalui email, halaman web atau dengan memindai kode QR bridge tersebut. Pilih \'Email\' atau \'Laman\' di bawah untuk meminta alamat bridge. Setelah anda mendapatkannya, salin lalu tempel di pilihan \"Bridges\" pada setting Orbot lalu start ulang.</string>
+  <string name="install_orweb">Pasang Orfox</string>
   <string name="standard_browser">Peramban Standar</string>
   <string name="note_only_standard_tor_bridges_work_on_intel_x86_atom_devices">CATATAN: Hanya bridge Tor yang standar yang bekerja di perangkat Intel X86/ATOM</string>
+  <string name="save">Simpan</string>
+  <string name="name">Nama</string>
+  <string name="done">Selesai!</string>
+  <string name="please_restart_Orbot_to_enable_the_changes">Silakan start ulang Orbot untuk mengaktifkan perubahan</string>
+  <string name="disable">Non Aktifkan</string>
+  <string name="enable">Aktifkan</string>
 </resources>

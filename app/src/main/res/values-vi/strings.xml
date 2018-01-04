@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Orbot</string>
   <string name="app_description">Orbot là một ứng dụng proxy miễn phí, được thiết kế để làm cho các ứng dụng khác kết nối với Internet một cách an toàn. Orbot sử dụng Tor để mã hóa các kết nối Internet rồi ẩn danh nó thông qua một loạt các nút trong mạng Tor. Tor là phần mềm miễn phí và là một mạng lưới mở giúp bạn chống lại sự giám sát mạng, vốn đe dọa riêng tư trực tuyến, hay các hoạt động bí mật...</string>
@@ -21,7 +21,6 @@
   <string name="menu_settings">Thiết lập</string>
   <string name="menu_log">Nhật ký</string>
   <string name="menu_info">Giúp đỡ</string>
-  <string name="menu_apps">Mạng riêng ảo</string>
   <string name="menu_start">Bắt đầu</string>
   <string name="menu_stop">Ngừng</string>
   <string name="menu_about">Về</string>
@@ -61,7 +60,6 @@
   <string name="btn_cancel">Hủy</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Vài chi tiết về Orbot</string>
-  <string name="wizard_details_msg">Orbot là một ứng dụng mã nguồn mở có chứa Tor, LibEvent và Polipo. Nó cung cấp một proxy HTTP nội bộ (8118) và một proxy SOCKS (9050) tới mạng Tor. Orbot cũng có khả năng chuyển tất cả các kết nối Internet thông qua Tor trên các thiết bị đã root.</string>
   <string name="wizard_permissions_root">Đã cho phép quyền</string>
   <string name="wizard_permissions_stock">Quyền truy cập của Orbot</string>
   <string name="wizard_premissions_msg_root">Tuyệt! Chúng tôi đã nhận ra máy bạn có root được kích hoạt cho Orbot. Chúng tôi sẽ tận dụng điều này.</string>
@@ -174,7 +172,6 @@
   <string name="bridges">Bridge</string>
   <string name="use_bridges">Dùng bridge</string>
   <string name="bridges_obfuscated">Các bridge được che giấu</string>
-  <string name="enable_alternate_entrance_nodes_into_the_tor_network">Kích hoạt các nút vào khác để vào mạng Tor</string>
   <string name="enable_if_configured_bridges_are_obfuscated_bridges">Kích hoạt nếu như các bridge đã được cấu hình là bridge đã được che giấu</string>
   <string name="ip_address_and_port_of_bridges">Địa chỉ IP và cổng của bridge</string>
   <string name="enter_bridge_addresses">Nhập địa chỉ bridge</string>
@@ -206,9 +203,6 @@
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
-  <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
-  <string name="openssl_version">OpenSSL v1.0.1q: http://www.openssl.org</string>
-  <string name="hidden_service_request">Một ứng dụng muốn mở cổng ẩn %S đến mạng Tor. Đây là điều an toàn nếu như bạn tin tưởng vào ứng dụng này.</string>
   <string name="found_existing_tor_process">tìm ra tiến trình hiện hành của Tor...</string>
   <string name="something_bad_happened">Có gì đó không ổn. Xin xem lại nhật ký</string>
   <string name="hidden_service_on">web ẩn trong:</string>
@@ -241,8 +235,6 @@
   <string name="menu_use_chatsecure">Dùng ChatSecure</string>
   <string name="permission_manage_tor_label">Quản lý Tor</string>
   <string name="permission_manage_tor_description">Cho phép ứng dụng này điều khiển dịch vụ Tor</string>
-  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Có vẻ như bạn chưa cài Orfox. Bạn có cần giúp không, hay chỉ cần mở trình duyệt thường thôi?</string>
-  <string name="install_apps_">Cài đặt ứng dụng?</string>
   <string name="no_network_connectivity_putting_tor_to_sleep_">Không có mạng. Đang chuyển Tor sang chế độ ngủ...</string>
   <string name="network_connectivity_is_good_waking_tor_up_">Kết nối mạng tốt. Đang \"đánh thức\" Tor...</string>
   <string name="updating_settings_in_tor_service">đang cập nhật cài đặt dịch vụ Tor</string>
@@ -269,7 +261,7 @@
   <string name="transparent_proxy_rules_flushed_">Quy tắc proxy trong suốt đã được xóa!</string>
   <string name="you_do_not_have_root_access_enabled">Bạn không có quyền truy cập ROOT</string>
   <string name="you_may_need_to_stop_and_start_orbot_for_settings_change_to_be_enabled_">Bạn có thể cần kết nối lại Orbot để các thay đổi được áp dụng</string>
-  <string name="menu_vpn">VPN</string>
+  <string name="menu_vpn">Ứng dụng đã cấp quyền</string>
   <string name="kbps">kbps</string>
   <string name="mbps">mbps</string>
   <string name="kb">KB</string>
@@ -277,17 +269,18 @@
   <string name="bridges_updated">Bridge được cập nhật</string>
   <string name="restart_orbot_to_use_this_bridge_">Vui lòng khởi động lại Orbot để áp dụng thay đổi</string>
   <string name="menu_qr">Mã QR</string>
-  <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Nếu như mạng di động của bạn chặn Tor, bạn có thể dùng bridge (cầu nối) để truy cập mạng Tor. CHỌN một trong những bridge ở trên để kích hoạt bridge.</string>
   <string name="bridge_mode">Chế độ bridge</string>
   <string name="get_bridges_email">Email</string>
   <string name="get_bridges_web">Web</string>
   <string name="activate">Kích hoạt</string>
-  <string name="apps_mode">Chế độ ứng dụng VPN</string>
-  <string name="you_can_enable_all_apps_on_your_device_to_run_through_the_tor_network_using_the_vpn_feature_of_android_">Bạn có thể làm cho tất cả ứng dụng của bạn kết nối qua mạng Tor bằng cách sử dụng tính năng VPN (Mạng riêng ảo) của Android.\n\n*CHÚ Ý* Đây là một tính năng mới, đang thử nghiệm và nó có thể không tự động chạy, hoặc có thể dừng lại đột ngột. Nó KHÔNG nên được dùng cho ẩn danh, và chỉ nên dùng để vượt qua các tường lửa và bộ lọc.</string>
   <string name="send_email">Gửi email</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Bạn có thể lấy một địa chỉ bridge qua email, web hoặc quét mã QR. Chọn \"Email\" hoặc \"Web\" bên dưới để yêu cầu một địa chỉ bridge.\n\nMột khi đã có địa chỉ, hãy sao chép nó vào thiết đặt \"Bridge\" trong cài đặt Orbot rồi khởi động lại phần mềm.</string>
   <string name="install_orweb">Cài đặt Orfox</string>
   <string name="standard_browser">Trình duyệt thường</string>
   <string name="note_only_standard_tor_bridges_work_on_intel_x86_atom_devices">LƯU Ý: Chỉ có bridge Tor chuẩn mới hoạt động trên các thiết bị Intel x86/Atom</string>
-  <string name="vpn_default_world">Toàn cầu</string>
+  <string name="save">Lưu</string>
+  <string name="name">Tên</string>
+  <string name="please_restart_Orbot_to_enable_the_changes">Vui lòng khởi động lại Orbot để áp dụng thay đổi</string>
+  <string name="disable">Tắt</string>
+  <string name="enable">Cho phép</string>
 </resources>

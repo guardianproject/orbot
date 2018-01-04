@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Orbot</string>
   <string name="app_description">Pulsuz proksi tətbiqetməsi olan Orbot başqa tətbiqetmələrə internetdən daha təhlükəsiz istifadə etmək imkanı verir. Orbot sizin internet trafikinizi şifrələmək üçün Tordan istifadə edir və dünyanın hər yerində kompüterlərin birindən o birinə sıçramaqla bunu gizlədir. Tor pulsuz proqram təminatıdır, eyni zamanda sizin şəxsi azadlığınız və təhlükəsizliyinizə, gizli biznes fəaliyyəti və əlaqələrə, o cümlədən trafik analiz adlanan dövlət təhlükəsizliyinə xələl gətirə biləcək şəbəkə nəzarəti formalarından müdafiə olunmağa yardım edən açıq şəbəkədir.</string>
@@ -22,7 +22,6 @@
   <string name="menu_settings">Quraşdırmalar</string>
   <string name="menu_log">Jurnal</string>
   <string name="menu_info">Kömək</string>
-  <string name="menu_apps">VPN</string>
   <string name="menu_start">Başla</string>
   <string name="menu_stop">Dur</string>
   <string name="menu_about">Haqqında</string>
@@ -62,7 +61,6 @@
   <string name="btn_cancel">Ləğv et</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Bəzi Orbot Detalları</string>
-  <string name="wizard_details_msg">Orbot Tor, LibEvent və Polipodan ibarət olan açıq mənbəli tətbiqetmədir. O, Tor şəbəkəsini yerli HTTP proksi (8118) və SOCKS proksi (9050) ilə təmin edir. Orbot həm də bütün internet trafikləri köklü mexanizm əsasında Tor vasitəsiylə göndərmək qabiliyyətinə malikdir. </string>
   <string name="wizard_permissions_root">İcazə Verilir</string>
   <string name="wizard_permissions_stock">Orbot İcazələri</string>
   <string name="wizard_premissions_msg_root">Əla! Sənin Orbot üçün mənbə icazələrinə malik olmanı müəyyən etmişik. Biz bu gücü ağılla istifadə edəcəyik.</string>
@@ -176,7 +174,6 @@
   <string name="bridges">Körpülər</string>
   <string name="use_bridges">Körpü İstifadə Et</string>
   <string name="bridges_obfuscated">Çaşdırıcı Körpülər</string>
-  <string name="enable_alternate_entrance_nodes_into_the_tor_network">Tor Şəbəkəsinə alternativ giriş kəsişmələrini aktivləşdir</string>
   <string name="enable_if_configured_bridges_are_obfuscated_bridges">Quraşdırılmış körpülər çaşdırıcı körpülər olsa, aktivləşdir</string>
   <string name="ip_address_and_port_of_bridges">Körpülərin IP ünvanı və portu</string>
   <string name="enter_bridge_addresses">Körpü Ünvanlarını Daxil et</string>
@@ -210,9 +207,6 @@ Tor: https://www.torproject.org</string>
   <string name="libevent_version">
 LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
-  <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
-  <string name="openssl_version">SSL-i aç v1.0.1q: http://www.openssl.org</string>
-  <string name="hidden_service_request">Aplikasiya Tor şəbəkəsinə %S gizli server portu açmaq istəyir. Aplikasiyaya inandığın halda bu təhlükəsizdir.</string>
   <string name="found_existing_tor_process">mövcud Tor prosesi tapıldı...</string>
   <string name="something_bad_happened">Nə isə pis bir şey oldu. Girişi yoxla</string>
   <string name="hidden_service_on">burada gizli xidməti:</string>
@@ -245,8 +239,6 @@ LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="menu_use_chatsecure">ChatSecure istifadə et</string>
   <string name="permission_manage_tor_label">Toru İdarə Et</string>
   <string name="permission_manage_tor_description">Tor xidmətini idarə etməsi üçün aplikasiyanı aktivləşdir</string>
-  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Deyəsən Orfoxu quraşdırmamısınız. Yardıma ehtiyacınız var, yoxsa yalnız brauzeri açmalıyıq?</string>
-  <string name="install_apps_">Aplikasiya quraşdırılsın?</string>
   <string name="no_network_connectivity_putting_tor_to_sleep_">İnternetlə əlaqə yoxdur. Tor gözləmə rejiminə keçir...</string>
   <string name="network_connectivity_is_good_waking_tor_up_">İnternetlə əlaqə yaxşıdır. Tor iş rejiminə keçir...</string>
   <string name="updating_settings_in_tor_service">Tor xidmətində quraşdırmalar yüklənir</string>
@@ -273,7 +265,7 @@ LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="transparent_proxy_rules_flushed_">Transparent proksi qaydaları ləğv edildi</string>
   <string name="you_do_not_have_root_access_enabled">Root girişiniz yoxdur</string>
   <string name="you_may_need_to_stop_and_start_orbot_for_settings_change_to_be_enabled_">Quraşdırma dəyişikliklərinin tətbiq edilməsi üçün Orbota başlamağa və ya onu dayandırmağa ehtiyacınız ola bilər. </string>
-  <string name="menu_vpn">VPN</string>
+  <string name="menu_vpn">Tətbiqetmələr</string>
   <string name="kbps">kbps</string>
   <string name="mbps">mbps</string>
   <string name="kb">KB</string>
@@ -281,17 +273,18 @@ LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="bridges_updated">Körpülər yeniləndi</string>
   <string name="restart_orbot_to_use_this_bridge_">Lütfən, Orbotu söndürün və yenidən yandırın ki, dəyişikliklər tətbiq edilsin.</string>
   <string name="menu_qr">QR kodlar</string>
-  <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Sənin mobil şəbəkən Toru aktiv şəkildə əngəlləyirsə,  şəbəkəyə daxil olmaq üçün Körpüdən istifadə edə bilərsən. Körpüləri aktivləşdirmək üçün yuxarıdakı körpü növlərindən birini SEÇ.</string>
   <string name="bridge_mode">Körpü rejimi</string>
   <string name="get_bridges_email">Emeyl</string>
   <string name="get_bridges_web">Veb</string>
   <string name="activate">Aktivləşdir</string>
-  <string name="apps_mode">Tətbiqetmələr VPN Rejimi</string>
-  <string name="you_can_enable_all_apps_on_your_device_to_run_through_the_tor_network_using_the_vpn_feature_of_android_">Tor şəbəkəsi vasitəsiylə qoşulmaq üçün Android.\n\n*WARNING*-in VPN funksiyasından istifadə edərək öz qurğunda bütün tətbiqetmələri aktivləşdirə bilərsən. Bu, yeni, eksperimental funksiyadır və bəzən avtomatik olaraq başlamaya, yaxud dayana bilər. Bundan anonimlik məqsədiylə istifadə etmək OLMAZ, bundan YALNIZ  süzgəc və qoruma divarlarından keçmək üçün istifadə etmək lazımdır. </string>
   <string name="send_email">Emeyl göndərin</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Körpü ünvanını siz emeyl və veb vasitəsiylə, ya da körpünün QR kodunu skan etməklə əldə edə bilərsiniz. Körpü ünvanı haqda sorğunun altında  \'Email\'i, yaxud \'Web\'i seçin.\n\nÜnvanı əldə edəndən sonra  &amp;amp-i nüsxələyin və onu Orbot quraşdırmasındakı \"Bridges\" parametrinə qoyun və cihazı yenidən yükləyin.</string>
   <string name="install_orweb">Orfoxu quraşdırın</string>
   <string name="standard_browser">Standart Brauzer</string>
   <string name="note_only_standard_tor_bridges_work_on_intel_x86_atom_devices">QEYD: Intel X86/ATOM cihazlarında yalnız standart Tor körpülər işləyir.</string>
-  <string name="vpn_default_world">Dünya</string>
+  <string name="save">Saxla</string>
+  <string name="name">Ad</string>
+  <string name="please_restart_Orbot_to_enable_the_changes">Lütfən, Orbotu söndürün və yenidən yandırın ki, dəyişikliklər tətbiq edilsin.</string>
+  <string name="disable">Söndür</string>
+  <string name="enable">İşə sal</string>
 </resources>
