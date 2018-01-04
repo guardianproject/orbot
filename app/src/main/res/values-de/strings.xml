@@ -21,6 +21,7 @@
   <string name="menu_settings">Einstellungen</string>
   <string name="menu_log">Protokoll</string>
   <string name="menu_info">Hilfe</string>
+  <string name="menu_apps">Apps...</string>
   <string name="menu_start">Start</string>
   <string name="menu_stop">Stopp</string>
   <string name="menu_about">Über</string>
@@ -203,6 +204,8 @@
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
+  <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
+  <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="found_existing_tor_process">bestehender Tor-Prozess gefunden …</string>
   <string name="something_bad_happened">Etwas ist schief gelaufen. Bitte Protokoll prüfen</string>
   <string name="hidden_service_on">Versteckte Dienste auf:</string>
@@ -235,6 +238,7 @@
   <string name="menu_use_chatsecure">ChatSecure benutzen</string>
   <string name="permission_manage_tor_label">Tor verwalten</string>
   <string name="permission_manage_tor_description">Diese Anwendung aktivieren, um den Tor-Dienst zu kontrollieren</string>
+  <string name="install_apps_">Browser installieren?</string>
   <string name="no_network_connectivity_putting_tor_to_sleep_">Keine Netzwerkverbindung. Tor wird in Bereitschaft versetzt …</string>
   <string name="network_connectivity_is_good_waking_tor_up_">Netzwerkverbindung ist vorhanden. Tor wird aktiviert …</string>
   <string name="updating_settings_in_tor_service">Einstellungen im Tor-Dienst werden aktualisiert</string>
@@ -279,13 +283,27 @@
   <string name="install_orweb">Orfox installieren</string>
   <string name="standard_browser">Standard-Browser</string>
   <string name="note_only_standard_tor_bridges_work_on_intel_x86_atom_devices">HINWEIS: Nur die Standard Tor-Brücken funktionieren mit Intel X86/Atom Geräten</string>
+  <string name="vpn_default_world">Global (Automatisch)</string>
   <string name="hidden_services">Versteckte Dienste</string>
   <string name="title_activity_hidden_services">Versteckte Dienste</string>
   <string name="menu_hidden_services">Versteckte Dienste</string>
   <string name="save">Speichern</string>
+  <string name="ports">Ports</string>
+  <string name="local_port">Lokaler Port</string>
   <string name="name">Name</string>
   <string name="done">Fertig!</string>
+  <string name="invalid_port">Ungültiger Port</string>
+  <string name="copy_address_to_clipboard">Adresse in die Zwischenablage kopieren</string>
+  <string name="backup_service">Sicherungsdienst</string>
+  <string name="delete_service">Dienst löschen</string>
+  <string name="filemanager_not_available">Dateimanager nicht verfügbar</string>
+  <string name="permission_granted">Berechtigung erteilt</string>
+  <string name="name_can_t_be_empty">Name darf nicht leer sein</string>
+  <string name="fields_can_t_be_empty">Felder dürfen nicht leer sein</string>
   <string name="please_restart_Orbot_to_enable_the_changes">Bitte Orbot zum Aktivieren der Änderungen neustarten</string>
+  <string name="invalid_onion_address">Ungültige .onion-Adresse</string>
+  <string name="delete_cookie">Cookie löschen</string>
   <string name="disable">Deaktivieren</string>
   <string name="enable">Aktivieren</string>
+  <string name="vpn_disabled">VPN deaktiviert</string>
 </resources>

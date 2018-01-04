@@ -21,11 +21,11 @@
   <string name="menu_settings">تنظیمات</string>
   <string name="menu_log">ورود</string>
   <string name="menu_info">کمک</string>
-  <string name="menu_apps">اپلیکیشن ها...</string>
+  <string name="menu_apps">اپلیکیشن‌ها...</string>
   <string name="menu_start">آغاز</string>
   <string name="menu_stop">ایست</string>
   <string name="menu_about">درباره</string>
-  <string name="menu_promo_apps">دریافت برنامه ها ...</string>
+  <string name="menu_promo_apps">دریافت برنامه‌ها...</string>
   <string name="main_layout_download">دانلود</string>
   <string name="main_layout_upload">آپلود</string>
   <string name="button_help">کمک</string>
@@ -290,10 +290,10 @@
   <string name="install_orweb">نصب Orfox</string>
   <string name="standard_browser">مرورگر استاندارد</string>
   <string name="note_only_standard_tor_bridges_work_on_intel_x86_atom_devices">نکته:  Tor bridges استاندارد فقط بر روی دستگاه های Intel X86/ATOM  کار می کند</string>
-  <string name="vpn_default_world">عمومی(خودکار)</string>
-  <string name="hidden_services">سرويس هاي مخفي</string>
-  <string name="title_activity_hidden_services">سرويس هاي مخفي</string>
-  <string name="menu_hidden_services">سرويس هاي مخفي</string>
+  <string name="vpn_default_world">عمومی (خودکار)</string>
+  <string name="hidden_services">سرویس‌های مخفی</string>
+  <string name="title_activity_hidden_services">سرویس‌های مخفی</string>
+  <string name="menu_hidden_services">سرویس‌های مخفی</string>
   <string name="save">ذخيره</string>
   <string name="ports">درگاه‌ها</string>
   <string name="local_port">درگاه محلّی</string>
@@ -301,9 +301,9 @@
   <string name="name">نام</string>
   <string name="done">انجام شد!</string>
   <string name="invalid_port">درگاه نامعتبر</string>
-  <string name="copy_address_to_clipboard">رونوشت نشانی‌ها در حافظه</string>
+  <string name="copy_address_to_clipboard">رونوشت نشانی‌ها در حافظه موقت</string>
   <string name="show_auth_cookie">نمایش کوکی احراز هویت</string>
-  <string name="backup_service">پشتیبان گیری از خدمت</string>
+  <string name="backup_service">پشتیبان‌گیری از خدمت</string>
   <string name="delete_service">حذف خدمت</string>
   <string name="backup_saved_at_external_storage">پشتیبان در فضای خارجی ذخیره شد</string>
   <string name="backup_restored">پشتیبان بازگردانده شد</string>
@@ -350,4 +350,11 @@
   <string name="testing_bridges">آزمون اتّصال پل به تور…</string>
   <string name="testing_bridges_success">موفّق. پیکربندی پل خوب است!</string>
   <string name="testing_bridges_fail">شکست. گزینه‌ای دیگر را برگزینید</string>
+  <string name="bridge_direct_connect">اتصال مستقیم به Tor (بهترین)</string>
+  <string name="bridge_community">اتصال از طریق سرورهای اجتماع</string>
+  <string name="bridge_cloud">اتصال از طریق سرورهای ابری</string>
+  <string name="bridges_get_new">درخواست پل‌های ارتباطی جدید... (اگر تمام روش‌های دیگر ناکام می‌ماند)</string>
+  <string name="trouble_connecting">برای برقراری ارتباط مشکل دارید؟</string>
+  <string name="full_device_vpn">VPN تمام دستگاه</string>
+  <string name="vpn_disabled">VPN غیر فعال شد</string>
 </resources>
