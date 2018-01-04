@@ -1338,7 +1338,7 @@ public class OrbotMainActivity extends AppCompatActivity
                     LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                     params.setMargins(12, 3, 3, 3);
                     tv.setLayoutParams(params);
-                    tv.setText("Full Device Mode");
+                    tv.setText(R.string.full_device_vpn);
                     llBoxShortcuts.addView(tv);
                 } else {
                     StringTokenizer st = new StringTokenizer(tordAppString, "|");
@@ -1376,7 +1376,7 @@ public class OrbotMainActivity extends AppCompatActivity
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 params.setMargins(12, 3, 3, 3);
                 tv.setLayoutParams(params);
-                tv.setText("VPN Disabled");
+                tv.setText(R.string.vpn_disabled);
                 llBoxShortcuts.addView(tv);
             }
 

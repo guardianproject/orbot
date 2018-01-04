@@ -399,4 +399,6 @@
     <string name="bridge_cloud">Connect through cloud servers</string>
     <string name="bridges_get_new">Request New Bridges... (If all else fails)</string>
     <string name="trouble_connecting">Trouble connecting?</string>
+    <string name="full_device_vpn">Full Device VPN</string>
+    <string name="vpn_disabled">VPN Disabled</string>
 </resources>
