@@ -1,6 +1,6 @@
 {
-  "latestVersion": "16.0.0 BETA 1",
-  "latestVersionCode": 16000003,
+  "latestVersion": "16.0.0.1",
+  "latestVersionCode": 16001003,
   "url": "https://github.com/n8fr8/orbot/releases",
   "releaseNotes": [
     "- New look and feel",
