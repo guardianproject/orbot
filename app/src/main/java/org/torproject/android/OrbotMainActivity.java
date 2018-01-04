@@ -277,7 +277,7 @@ public class OrbotMainActivity extends AppCompatActivity
         lblStatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mDrawer.openDrawer(Gravity.RIGHT);
+                mDrawer.openDrawer(Gravity.END);
             }
         });
 
