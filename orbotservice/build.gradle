@@ -28,7 +28,7 @@ android {
 
 dependencies {
     compile project(':jsocksAndroid')
-    compile 'org.torproject:tor-android-binary:0.3.1.9a'
+    compile 'org.torproject:tor-android-binary:0.3.1.9b'
     compile 'com.android.support:appcompat-v7:26.1.0'
     compile 'com.jrummyapps:android-shell:1.0.1'
     compile fileTree(dir: 'libs', include: ['*.jar','*.so'])
