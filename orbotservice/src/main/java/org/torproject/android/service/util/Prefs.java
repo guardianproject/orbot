@@ -17,6 +17,7 @@ public class Prefs {
     private final static String PREF_PERSIST_NOTIFICATIONS = "pref_persistent_notifications";
     private final static String PREF_START_ON_BOOT = "pref_start_boot";
     private final static String PREF_ALLOW_BACKGROUND_STARTS = "pref_allow_background_starts";
+    private final static String PREF_OPEN_PROXY_ON_ALL_INTERFACES = "pref_open_proxy_on_all_interfaces";
     private final static String PREF_TRANSPARENT = "pref_transparent";
     private final static String PREF_TRANSPARENT_ALL = "pref_transparent_all";
     private final static String PREF_TRANSPARENT_TETHERING = "pref_transparent_tethering";
@@ -106,6 +107,10 @@ public class Prefs {
 
     public static boolean allowBackgroundStarts() {
         return prefs.getBoolean(PREF_ALLOW_BACKGROUND_STARTS, true);
+    }
+
+    public static boolean openProxyOnAllInterfaces() {
+        return prefs.getBoolean(PREF_OPEN_PROXY_ON_ALL_INTERFACES, false);
     }
 
     public static boolean useVpn() {

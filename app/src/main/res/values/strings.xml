@@ -252,7 +252,8 @@
     <string name="newnym">You\'ve switched to a new Tor identity!</string>
 
     <string name="menu_verify_browser">Browser</string>
-    <string name="menu_use_chatsecure">Use ChatSecure</string>
+  <string name="pref_open_proxy_on_all_interfaces_title">Open Proxy on All Interfaces</string>
+  <string name="pref_open_proxy_on_all_interfaces_summary">Allow Wifi peers, tethered devices and anyone else who can connect to your IP, to access Tor</string>
 
     <string name="permission_manage_tor_label">Manage Tor</string>
     <string name="permission_manage_tor_description">Enable this app to control the Tor service</string>
