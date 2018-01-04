@@ -48,7 +48,7 @@ public class OrbotApp extends Application implements OrbotConstants
         new AppUpdater(this)
                 .setUpdateFrom(UpdateFrom.JSON)
                 .setUpdateJSON("https://raw.githubusercontent.com/n8fr8/orbot/master/update.json")
-                .setDisplay(Display.NOTIFICATION);
+                .setDisplay(Display.NOTIFICATION).start();
     }
 
     @Override
