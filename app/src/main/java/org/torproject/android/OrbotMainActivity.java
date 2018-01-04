@@ -798,19 +798,7 @@ public class OrbotMainActivity extends AppCompatActivity
 
 		if (pkgId != null)
         {
-            if (pkgId.equals(TorServiceConstants.BROWSER_APP_USERNAME))
-                startIntent(pkgId,Intent.ACTION_VIEW,Uri.parse(browserLaunchUrl));
-            else
-            {
-                if (!Prefs.useVpn())
-                {
-                    Toast.makeText(this, R.string.please_enable_vpn, Toast.LENGTH_LONG).show();
-                }
-                else
-                {
-                    startIntent(pkgId,Intent.ACTION_VIEW,Uri.parse(browserLaunchUrl));
-                }
-            }
+            startIntent(pkgId,Intent.ACTION_VIEW,Uri.parse(browserLaunchUrl));
         }
         else if (isBrowserInstalled)
         {
