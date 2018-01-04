@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Orbot</string>
   <string name="internal_web_url">http://orbot/</string>
@@ -148,7 +148,6 @@
   <string name="bridges">Jambatan</string>
   <string name="use_bridges">Guna Jambatan</string>
   <string name="bridges_obfuscated">Jambatan Keliru</string>
-  <string name="enable_alternate_entrance_nodes_into_the_tor_network">Membolehkan nod pintu masuk ganti ke Rangkaian Tor</string>
   <string name="enable_if_configured_bridges_are_obfuscated_bridges">Benarkan jika konfigurasi jambatan adalah jambatan keliru</string>
   <string name="ip_address_and_port_of_bridges">Alamat IP dan pelabuhan jambatan</string>
   <string name="enter_bridge_addresses">Masukkan Alamat Jambatan</string>
@@ -176,7 +175,6 @@
   <string name="the_tor_license">Lesen Tor</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">3rd-Party-Software: </string>
-  <string name="hidden_service_request">Satu aplikasi mahu membuka port tersembunyi %S pada rangkaian Tor. Ia selamat jika anda percaya pada aplikasi itu.</string>
   <string name="found_existing_tor_process">Proses Tor sedia ada ditemui..</string>
   <string name="something_bad_happened">Sesuatu yang buruk berlaku. Semak log.</string>
   <string name="hidden_service_on">port tersembunyi pada:</string>
@@ -193,4 +191,11 @@
   <string name="wizard_locale_title">Pilih Bahasa</string>
   <string name="wizard_locale_msg">Biar default atau ubah ke bahasa sekarang</string>
   <string name="btn_save_settings">Simpan Tetapan</string>
+  <string name="bandwidth_">Jalur Lebar:</string>
+  <string name="menu_vpn">Apps</string>
+  <string name="hidden_services">Perkhidmatan tersembunyi</string>
+  <string name="title_activity_hidden_services">Perkhidmatan tersembunyi</string>
+  <string name="menu_hidden_services">Perkhidmatan tersembunyi</string>
+  <string name="save">Simpan</string>
+  <string name="name">Nama</string>
 </resources>

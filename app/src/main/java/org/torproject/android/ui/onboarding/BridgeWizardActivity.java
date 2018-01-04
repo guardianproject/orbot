@@ -2,6 +2,7 @@ package org.torproject.android.ui.onboarding;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -24,6 +25,7 @@ import org.torproject.android.R;
 import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.Prefs;
+import org.torproject.android.settings.LocaleHelper;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -85,6 +87,11 @@ public class BridgeWizardActivity extends AppCompatActivity {
                 showGetBridgePrompt("");
             }
         });
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LocaleHelper.onAttach(base));
     }
 
     @Override

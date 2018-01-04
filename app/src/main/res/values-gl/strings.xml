@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Orbot</string>
   <string name="app_description">Orbot é unha aplicación de proxy libre que permite a outras aplicacións usar a internet dun xeito máis seguro. Orbot usa Tor para encriptar o teu tráfico de internet ocultando e rebotándoo a través dunha serie de ordenadores ao redor do mundo. Tor é software libre e unha rede aberta que axuda a defenderte contra unha forma de vixiancia na rede que ameaza a liberdade e privacidade persoal, actividades confidenciáis de negocios e relacións, e estado de seguridade coñecido como análise de tráfico.</string>
@@ -11,6 +11,7 @@
   <string name="status_starting_up">Orbot está a se iniciar...</string>
   <string name="status_activated">Conectado á rede Tor</string>
   <string name="status_disabled">Orbot está desactivado</string>
+  <string name="status_shutting_down">O ServizoTor estase pechando</string>
   <string name="tor_process_starting">Iniciando cliente Tor...</string>
   <string name="tor_process_complete">completado.</string>
   <string name="tor_process_waiting">á espera.</string>
@@ -23,6 +24,7 @@
   <string name="menu_start">Iniciar</string>
   <string name="menu_stop">Deter</string>
   <string name="menu_about">Sobre</string>
+  <string name="menu_promo_apps">Obter apps...</string>
   <string name="main_layout_download">Descargar</string>
   <string name="main_layout_upload">Cargar</string>
   <string name="button_help">Axuda</string>
@@ -31,6 +33,8 @@
   <string name="button_clear_log">Limpar rexistro</string>
   <string name="menu_verify">Comprobar</string>
   <string name="menu_exit">Saír </string>
+  <string name="menu_scan">Escanear BridgeQR</string>
+  <string name="menu_share_bridge">Compartir BridgeQR</string>
   <string name="press_to_start">- toque longo para comezar-</string>
   <string name="pref_trans_proxy_group">Proxyficación transparente (cómpre ser root)</string>
   <string name="pref_trans_proxy_title">Proxyficación transparente</string>
@@ -75,8 +79,13 @@
   <string name="wizard_tips_twitter">Axustar o host para proxy de Twitter a \"localhost\" e porto 8118</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Axustes do proxy</string>
+  <string name="wizard_proxy_help_msg">Se o aplicativo de Android que está a utilizar admite o uso de un proxy HTTP ou SOCKS, entón pode configuralo para que se conecte a Orbot e utilizar Tor.\n\n\n Os axustes do proxy son 127.0.0.1 ou \"localhost\" como servidor. No proxy HTTP o porto é o 8118. Para SOCKS en 9050. Debería utilizar SOCKS4A OU SOCKS5 se fose posible.\n \n\n\n Vostede pode aprender máis sobre cómo utilizar un proxy en Android nas nosas PMF en:
+http://tinyurl.com/proxyandroid\n </string>
   <string name="wizard_final">Orbot está listo!</string>
+  <string name="wizard_final_msg">Millóns de personas utilizan Tor en todo o mundo por múltiples razóns.\n\nXornalistas e blogueiras, defensoras dos dereitos humanos, fiscáis, soldados, empresas, cidadáns baixo reximes opresivos, e cidadáns normais... e agora vostede tamén pode!</string>
+  <string name="wizard_exit_at_first_screen_toast">Por favor, configure Orbot antes de comezar a utilizalo!</string>
   <!--END Welcome Wizard strings (DJH)-->
+  <string name="connect_first_time">Vostede conectouse correctamente a rede Tor - mais esto NON significa que o seu dispositivo é seguro. Pode utilizar o bótón \'Navegador\' para comprobar a súa conexión. \n\nVisítenos en https://guardianproject.info/apps/orbot ou envíenos un correo electrónico a help@guardianproject.info para saber máis.</string>
   <string name="tor_check">Isto abrirá no seu navegador https://check.torproject.org para ver se Obrbot está configurado probablemente e se está conectado a Tor.</string>
   <string name="pref_hs_group">Aloxamento Oculto de Servizo</string>
   <string name="pref_general_group">Xeral</string>
@@ -151,7 +160,6 @@
   <string name="bridges">Pontes</string>
   <string name="use_bridges">Usar Pontes</string>
   <string name="bridges_obfuscated">Pontes Ofuscadas</string>
-  <string name="enable_alternate_entrance_nodes_into_the_tor_network">Habilitar nodos alternativos de entrada á rede Tor</string>
   <string name="enable_if_configured_bridges_are_obfuscated_bridges">Habilitar se oas pontes configuradas son pontes ofuscadas</string>
   <string name="ip_address_and_port_of_bridges">Dirección IP e porto das pontes</string>
   <string name="enter_bridge_addresses">Introduza Direccións das Pontes</string>
@@ -179,7 +187,6 @@
   <string name="the_tor_license">A Licencia de Tor</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Software de Terceiros:</string>
-  <string name="hidden_service_request">Un aplicativo quere abrir o porto do servidor oculto %S na rede Tor. Isto é seguro se confía no aplicativo.</string>
   <string name="found_existing_tor_process">atopado proceso Tor existente...</string>
   <string name="something_bad_happened">Algo malo pasou. Comprobe o rexistro</string>
   <string name="hidden_service_on">servizo oculto en:</string>
@@ -205,5 +212,13 @@
   <string name="menu_use_chatsecure">Usar ChatSecure</string>
   <string name="permission_manage_tor_label">Xestionar Tor</string>
   <string name="permission_manage_tor_description">Hablitar este aplicativo para controlar o servicio Tor</string>
-  <string name="install_apps_">Instalar aplicativos?</string>
+  <string name="menu_vpn">Apps</string>
+  <string name="get_bridges_email">Email</string>
+  <string name="hidden_services">Servizos agochados</string>
+  <string name="title_activity_hidden_services">Servizos agochados</string>
+  <string name="menu_hidden_services">Servizos agochados</string>
+  <string name="save">Gardar</string>
+  <string name="name">Nome</string>
+  <string name="done">Feito!</string>
+  <string name="disable">Inhabilitar</string>
 </resources>

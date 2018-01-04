@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Orbot</string>
+  <string name="app_description">Orbot යනු අනෙකුත් අැප්ස් හට වඩා අාරක්ෂාකාරීව අන්තර්ජාලෙය් සැරිසැරීමට ඉඩ සලසාදෙන  නොමිලේ ලබාදෙන්නාවූ ප්රොක්සි සේවාවකි. එය Tor යොදාගනිමින් ඔබගේ අන්තර්ජාල ගනුදෙනු ඛේතනය කරයි එමෙන්ම එය ලොව වටා වූ අනෙකුත් සමාන්තර පරිගනක හරහා ගෙනයමින්  ඔබගේ අන්තර්ජාල ගනුදෙනු සඟවා තබාගනී. Tor යනු </string>
   <string name="internal_web_url">http://orbot/</string>
   <string name="default_web_url">http://check.torproject.org</string>
   <string name="secure_default_web_url">https://check.torproject.org</string>
@@ -142,7 +143,6 @@
   <string name="bridges">සේතු</string>
   <string name="use_bridges">සේතු භාවිතා කරන්න </string>
   <string name="bridges_obfuscated">සේතු අදුරු කරන්න </string>
-  <string name="enable_alternate_entrance_nodes_into_the_tor_network">Tor ජාලයට විකල්ප ඇතුළු විමේ නොඩු සබල කරන්න </string>
   <string name="enable_if_configured_bridges_are_obfuscated_bridges">වින්‍යාස කර ඇති සේතු අදුරු කල සේතු නම් ඒවා සබල කරන්න </string>
   <string name="ip_address_and_port_of_bridges">IP ලිපිනය හා සේතුවල පෝට</string>
   <string name="enter_bridge_addresses">සේතු ලිපිනයන් ඇතුළු කරන්න </string>
@@ -170,7 +170,6 @@
   <string name="the_tor_license">Tor බලපත්‍රය</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">3 වන පාර්ශව මෘදුකාංග</string>
-  <string name="hidden_service_request">යොමුවකට සැගවුණු සේවාදායක %S පෝටය Tor ජාලයට විවෘත කිරීමට උවමනාය. මෙය සුරක්ෂිතවන්නේ ඔබ මෙම යොමුව විශ්වාස කරනවා නම්  පමණි.</string>
   <string name="found_existing_tor_process">පවතින Tor ක්‍රියාවලි හමුවිය...</string>
   <string name="something_bad_happened">යම් නොමනා දෙයක් සිදුවිය. ලොගය පරික්ෂා කර බලන්න </string>
   <string name="hidden_service_on">සැගවුණු සේවා පිහිටන්නේ:</string>
@@ -187,4 +186,10 @@
   <string name="wizard_locale_title">භාෂාව තෝරන්න </string>
   <string name="wizard_locale_msg">සම්මතය අතහැර වර්තමාන භාෂාවට මාරුවෙන්න </string>
   <string name="btn_save_settings">සිටුවම් සුරැකින්න</string>
+  <string name="menu_vpn">යෙදුම් </string>
+  <string name="hidden_services">සැගවුණු සේවා </string>
+  <string name="title_activity_hidden_services">සැගවුණු සේවා </string>
+  <string name="menu_hidden_services">සැගවුණු සේවා </string>
+  <string name="save">සුරකින්න</string>
+  <string name="name">නම</string>
 </resources>

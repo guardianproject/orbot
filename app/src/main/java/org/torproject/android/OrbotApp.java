@@ -28,6 +28,7 @@ import org.torproject.android.service.TorService;
 import org.torproject.android.service.util.Prefs;
 
 import org.torproject.android.settings.Languages;
+import org.torproject.android.settings.LocaleHelper;
 
 import java.util.Locale;
 import java.util.Set;
@@ -40,7 +41,6 @@ public class OrbotApp extends Application implements OrbotConstants
     @Override
     public void onCreate() {
         super.onCreate();
-        Prefs.setContext(this);
 
         Languages.setup(OrbotMainActivity.class, R.string.menu_settings);
         Languages.setLanguage(this, Prefs.getDefaultLocale(), true);
@@ -52,12 +52,18 @@ public class OrbotApp extends Application implements OrbotConstants
     }
 
     @Override
+    protected void attachBaseContext(Context base) {
+        Prefs.setContext(base);
+        super.attachBaseContext(LocaleHelper.onAttach(base, "en"));
+    }
+
+    @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        Log.i(TAG, "onConfigurationChanged " + newConfig.locale.getLanguage());
-        Languages.setLanguage(this, Prefs.getDefaultLocale(), true);
+       //Log.i(TAG, "onConfigurationChanged " + newConfig.locale.getLanguage());
+    //    Languages.setLanguage(this, Prefs.getDefaultLocale(), true);
     }
-	
+	/**
     public static void forceChangeLanguage(Activity activity) {
         Intent intent = activity.getIntent();
         if (intent == null) // when launched as LAUNCHER
@@ -67,7 +73,7 @@ public class OrbotApp extends Application implements OrbotConstants
         activity.overridePendingTransition(0, 0);
         activity.startActivity(intent);
         activity.overridePendingTransition(0, 0);
-    }
+    }**/
 
     public static Languages getLanguages(Activity activity) {
         return Languages.get(activity);

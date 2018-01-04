@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Orbot</string>
   <string name="app_description">Orbot er en gratis og åben proxy-applikation, der gør det muligt at anvende internettet mere sikkert fra andre programmer. Orbot bruger Tor til at kryptere internettrafikken, og skjuler den ved at sende den gennem serverere, lokaliseret i hele verden. Tor er gratis og åben software, der kan hjælpe dig mod netværksovervågning kaldet trafikanalyse, der kan true din personlige frihed, dit privatliv, handelsaktivitet og forhold.</string>
@@ -11,6 +11,7 @@
   <string name="status_starting_up">Orbot starter op ...</string>
   <string name="status_activated">Der er forbindelse til Tor-netværket</string>
   <string name="status_disabled">Orbot er slået fra</string>
+  <string name="status_shutting_down">TorServe lukker ned</string>
   <string name="tor_process_starting">Starter Tor klienten...</string>
   <string name="tor_process_complete">udført.</string>
   <string name="tor_process_waiting">afventer.</string>
@@ -23,6 +24,7 @@
   <string name="menu_start">Start</string>
   <string name="menu_stop">Stop</string>
   <string name="menu_about">Om</string>
+  <string name="menu_promo_apps">Få apps...</string>
   <string name="main_layout_download">Henter</string>
   <string name="main_layout_upload">Sender</string>
   <string name="button_help">Hjælp</string>
@@ -31,6 +33,8 @@
   <string name="button_clear_log">Ryd log</string>
   <string name="menu_verify">Tjek</string>
   <string name="menu_exit">Afslut</string>
+  <string name="menu_scan">Skan BridgeQR</string>
+  <string name="menu_share_bridge">Del BridgeQR</string>
   <string name="press_to_start">- hold nede for start -</string>
   <string name="pref_trans_proxy_group">Transparent proxy (kræver Root)</string>
   <string name="pref_trans_proxy_title">Transparent proxy</string>
@@ -107,6 +111,7 @@
   <string name="pref_entrance_node">Indgangspunkter til Tor netværket</string>
   <string name="pref_entrance_node_summary">Fingeraftryk, servernavne, lande og adresser for første hop</string>
   <string name="pref_entrance_node_dialog">Indtast indgangspunkter</string>
+  <string name="pref_allow_background_starts_title">Tillad baggrunds starts</string>
   <string name="pref_proxy_title">Udgående netværksproxy (Valgfri)</string>
   <string name="pref_proxy_type_title">Udgående proxy-type</string>
   <string name="pref_proxy_type_summary">Protokol til proxy serveren: HTTP, HTTPS, Socks4, Socks5</string>
@@ -149,7 +154,6 @@
   <string name="bridges">Broer</string>
   <string name="use_bridges">Brug broer</string>
   <string name="bridges_obfuscated">Skjulte broer</string>
-  <string name="enable_alternate_entrance_nodes_into_the_tor_network">Slå alternative indgangspunkter til Tor netværket til</string>
   <string name="enable_if_configured_bridges_are_obfuscated_bridges">Aktiver hvis de indstillede broer er skjulte broer</string>
   <string name="ip_address_and_port_of_bridges">IP adresser og porte på broer</string>
   <string name="enter_bridge_addresses">Indtast bro-adresser</string>
@@ -178,7 +182,6 @@
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Tredjeparts-software:</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
-  <string name="hidden_service_request">Et program vil åbne den skjulte server-port %S til Tor netværket. Dette er sikkert hvis du stoler på programmet.</string>
   <string name="found_existing_tor_process">fandt eksisterende Tor process...</string>
   <string name="something_bad_happened">Noget slemt er sket. Check loggen</string>
   <string name="hidden_service_on">skjult service på:</string>
@@ -200,4 +203,15 @@
   <string name="btn_save_settings">Gem Indstillinger</string>
   <string name="no_internet_connection_tor">Ingen internetforbindelse; Tor er på standby...</string>
   <string name="bandwidth_">Båndbredde:</string>
+  <string name="down">Ned</string>
+  <string name="up">Op</string>
+  <string name="menu_verify_browser">Browser</string>
+  <string name="menu_vpn">Apps</string>
+  <string name="hidden_services">Skjulte tjenester</string>
+  <string name="title_activity_hidden_services">Skjulte tjenester</string>
+  <string name="menu_hidden_services">Skjulte tjenester</string>
+  <string name="save">Gem</string>
+  <string name="name">Navn</string>
+  <string name="disable">Deaktivere</string>
+  <string name="enable">Aktiver</string>
 </resources>

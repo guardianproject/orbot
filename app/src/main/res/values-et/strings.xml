@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Orbot</string>
+  <string name="app_description">Orbot on vabalt kasutatav proxy rakendus, mis võimaldab teistel rakendustel Interneti turvalisemat kasutust. Orbot krüpteerib ja peidab teie Internetiliikluse Tor abil paljude maailma arvutite vahel põrgatades. Tor on vaba tarkvara ja vaba võrgustik mis aitab teil kaitsta oma privaatsust, vabadust, konfidentsiaalset äritegevust, suhteid ja riiklikku julgeolekut arvutivõrgus toimuva liikluse analüüsi eest.</string>
   <string name="internal_web_url">http://orbot/</string>
   <string name="default_web_url">http://check.torproject.orghttp://check.torproject.org</string>
   <string name="secure_default_web_url">https://check.torproject.org</string>
@@ -10,6 +11,7 @@
   <string name="status_starting_up">Orbot käivitub...</string>
   <string name="status_activated">Ühendatud Tor võrgustikku</string>
   <string name="status_disabled">Orbot deaktiveeritud</string>
+  <string name="status_shutting_down">Orbot lülitub välja</string>
   <string name="tor_process_starting">Tor kliendi käivitamine...</string>
   <string name="tor_process_complete">valmis.</string>
   <string name="tor_process_waiting">ootel.</string>
@@ -150,7 +152,6 @@
   <string name="bridges">Sillad</string>
   <string name="use_bridges">Kasuta sildu</string>
   <string name="bridges_obfuscated">Varjatud sillad</string>
-  <string name="enable_alternate_entrance_nodes_into_the_tor_network">Luba Tor võrgustiku alternatiivseid sisendsõlmi</string>
   <string name="enable_if_configured_bridges_are_obfuscated_bridges">Luba siis kui seadistatud sillad on varjatud sillad</string>
   <string name="ip_address_and_port_of_bridges">Sildade IP aadressid ja pordinumbrid</string>
   <string name="enter_bridge_addresses">Sisestage silla aadressid</string>
@@ -178,7 +179,6 @@
   <string name="the_tor_license">Tor litsents</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">Kolmanda osapoole tarkvara:</string>
-  <string name="hidden_service_request">Üks rakendus soovib avada varjatud teenuse porti %S Tor võrgustikule. See on turvaline kui te usaldate seda rakendust.</string>
   <string name="found_existing_tor_process">leidus töötav Tor protsess...</string>
   <string name="something_bad_happened">Juhtus midagi halba. Kontrollige logi</string>
   <string name="hidden_service_on">varjatud teenused:</string>
@@ -204,7 +204,10 @@
   <string name="menu_use_chatsecure">Kasutage ChatSecure\'t</string>
   <string name="permission_manage_tor_label">Hallake Tor\'i</string>
   <string name="permission_manage_tor_description">Lubage sellel rakendusel hallata Tor teenust</string>
-  <string name="install_apps_">Paigaldada rakendusi?</string>
   <string name="no_network_connectivity_putting_tor_to_sleep_">Interneti ühendus puudub. Panen Tori magama...</string>
   <string name="network_connectivity_is_good_waking_tor_up_">Interneti ühendus hea. Äratan Tori üles...</string>
+  <string name="menu_vpn">Rakendused</string>
+  <string name="save">Salvesta</string>
+  <string name="name">Name</string>
+  <string name="enable">Luba</string>
 </resources>

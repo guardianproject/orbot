@@ -31,51 +31,10 @@ android:title="@string/pref_allow_background_starts_title"/>
  <ListPreference android:title="@string/set_locale_title"
    android:key="pref_default_locale"
    android:summary="@string/set_locale_summary"
-   android:defaultValue="en">
+   android:defaultValue="fa">
  </ListPreference>
 
 </PreferenceCategory>
-<!--
-<PreferenceCategory android:title="@string/pref_trans_proxy_group">
-
-<CheckBoxPreference 
-android:defaultValue="false" 
-android:key="has_root"
-android:title="@string/pref_has_root"
-android:summary="@string/pref_has_root_summary"
-android:enabled="true"/>
-    
-<CheckBoxPreference 
-android:defaultValue="false" 
-android:key="pref_transparent"
-android:title="@string/pref_trans_proxy_title"
-android:summary="@string/pref_trans_proxy_summary"
-android:enabled="true"/>
-
-<CheckBoxPreference
-android:defaultValue="false" 
-android:key="pref_transparent_all"
-android:summary="@string/pref_transparent_all_summary"
-android:enabled="true" 
-android:title="@string/pref_transparent_all_title"/>
-
-<Preference
-android:defaultValue="" 
-android:key="pref_transparent_app_list"
-android:title="@string/pref_select_apps"
-android:summary="@string/pref_select_apps_summary"
-android:enabled="true"/>
-
-<CheckBoxPreference
-android:defaultValue="false" 
-android:key="pref_transparent_tethering"
-android:summary="@string/pref_transparent_tethering_summary"
-android:enabled="true"
-android:title="@string/pref_transparent_tethering_title"/>
-
-
-</PreferenceCategory>
--->
 <PreferenceCategory android:title="@string/pref_node_configuration"
  android:summary="@string/pref_node_configuration_summary">
  
@@ -102,7 +61,7 @@ android:summary="@string/use_only_these_specified_nodes"/>
 </PreferenceCategory> 
 <PreferenceCategory android:title="@string/bridges">
 
-<CheckBoxPreference android:defaultValue="false" 
+<CheckBoxPreference android:defaultValue="true"
 android:title="@string/use_bridges" android:key="pref_bridges_enabled" 
 android:summary="@string/enable_alternate_entrance_nodes_into_the_tor_network"/>
 
@@ -110,7 +69,7 @@ android:summary="@string/enable_alternate_entrance_nodes_into_the_tor_network"/>
 android:title="@string/bridges"
 android:summary="@string/ip_address_and_port_of_bridges"
 android:dialogTitle="@string/enter_bridge_addresses"
-android:defaultValue=""
+android:defaultValue="meek"
 android:inputType="textMultiLine|textNoSuggestions"
 />
 

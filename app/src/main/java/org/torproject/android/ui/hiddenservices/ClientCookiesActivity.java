@@ -2,6 +2,7 @@ package org.torproject.android.ui.hiddenservices;
 
 import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.ContentObserver;
@@ -24,6 +25,7 @@ import com.google.zxing.integration.android.IntentResult;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.torproject.android.R;
+import org.torproject.android.settings.LocaleHelper;
 import org.torproject.android.ui.hiddenservices.adapters.ClientCookiesAdapter;
 import org.torproject.android.ui.hiddenservices.dialogs.AddCookieDialog;
 import org.torproject.android.ui.hiddenservices.dialogs.CookieActionsDialog;
@@ -98,6 +100,12 @@ public class ClientCookiesActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LocaleHelper.onAttach(base));
     }
 
     @Override

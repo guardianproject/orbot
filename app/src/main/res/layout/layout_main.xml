@@ -117,7 +117,7 @@
         android:id="@+id/spinnerCountry"
         android:layout_width="165dp"
         android:layout_height="wrap_content"
-        android:layout_margin="12dp"
+        android:layout_margin="9dp"
 
         />
 
@@ -140,9 +140,9 @@
             android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:text="@string/apps_mode"
-            android:layout_margin="12dp"
+            android:layout_margin="9dp"
             android:layout_gravity="center"
-            app:switchPadding="9dp"
+            app:switchPadding="3dp"
 
             />
     </LinearLayout>
@@ -258,7 +258,7 @@
             android:text="@string/use_bridges"
             android:layout_margin="3dp"
             android:singleLine="true"
-            app:switchPadding="9dp"
+            app:switchPadding="3dp"
             android:gravity="center_vertical"
             />
     </LinearLayout>

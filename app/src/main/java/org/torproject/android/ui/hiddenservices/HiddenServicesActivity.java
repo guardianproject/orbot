@@ -2,6 +2,7 @@ package org.torproject.android.ui.hiddenservices;
 
 
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.database.ContentObserver;
 import android.database.Cursor;
@@ -21,6 +22,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import org.torproject.android.R;
+import org.torproject.android.settings.LocaleHelper;
 import org.torproject.android.ui.hiddenservices.adapters.OnionListAdapter;
 import org.torproject.android.ui.hiddenservices.dialogs.HSActionsDialog;
 import org.torproject.android.ui.hiddenservices.dialogs.HSDataDialog;
@@ -103,6 +105,12 @@ public class HiddenServicesActivity extends AppCompatActivity {
                 dialog.show(getSupportFragmentManager(), "HSActionsDialog");
             }
         });
+    }
+
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LocaleHelper.onAttach(base));
     }
 
     @Override

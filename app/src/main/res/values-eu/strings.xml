@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Orbot</string>
   <string name="internal_web_url">http://orbot/</string>
@@ -10,6 +10,7 @@
   <string name="status_starting_up">Orbot abiarazten ari da...</string>
   <string name="status_activated">Tor sarera konektatuta</string>
   <string name="status_disabled">\"Orbot desaktibatuta dago</string>
+  <string name="status_shutting_down">TorService itzaltzen ari da</string>
   <string name="tor_process_starting">Tor bezeroa hasten...</string>
   <string name="tor_process_complete">eginda.</string>
   <string name="tor_process_waiting">itxaroten.</string>
@@ -22,6 +23,7 @@
   <string name="menu_start">Abiarazi</string>
   <string name="menu_stop">Gelditu</string>
   <string name="menu_about">Honi buruz</string>
+  <string name="menu_promo_apps">Eskuratu aplikazioak...</string>
   <string name="main_layout_download">Deskargatu</string>
   <string name="main_layout_upload">Igo</string>
   <string name="button_help">Laguntza</string>
@@ -30,6 +32,8 @@
   <string name="button_clear_log">Zerrenda Garbitu</string>
   <string name="menu_verify">Egiaztatu</string>
   <string name="menu_exit">Irten</string>
+  <string name="menu_scan">Eskaneatu BridgeQR</string>
+  <string name="menu_share_bridge">Partekatu BridgeQR</string>
   <string name="press_to_start">- sakatu luze hasteko -</string>
   <string name="pref_trans_proxy_group">Proxyatze Gardena (Root behar du)</string>
   <string name="pref_trans_proxy_title">Proxyatze Gardena</string>
@@ -75,6 +79,7 @@
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Proxy Ezarpenak</string>
   <string name="wizard_final">Orbot prest dago!</string>
+  <string name="wizard_exit_at_first_screen_toast">Mesedez konfiguratu Orbot erabiltzen hasi baino lehen!</string>
   <!--END Welcome Wizard strings (DJH)-->
   <string name="tor_check">Honek https://check.torproject.org web nabigatzailean irekiko du Orbot konfiguratuta eta Tor-era konektatuta zauden antzemateko.</string>
   <string name="pref_hs_group">Ezkutuko Zerbitzuak</string>
@@ -93,6 +98,8 @@
   <string name="wizard_tips_title">Orbot-Gaitutako Aplikazioak</string>
   <string name="wizard_tips_gibberbot">ChatSecure: Txat aplikazio segurua Off-the-Record enkriptazioarekin.</string>
   <string name="wizard_tips_play">Google Play-n Guardiak Proiektuko aplikazio guztiak bilatu</string>
+  <string name="wizard_tips_fdroid">Bilatu Guardian Project aplikazio guztiak F-Droid-en</string>
+  <string name="wizard_tips_fdroid_org">Bilatu Guardian Project aplikazio guztiak https://f-droid.org</string>
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Proxyatze Gardena</string>
   <string name="wizard_transproxy_msg">Honek zure aplikazioak konfiguratu beharrik Tor saretik joatea ahalbidetzen du.</string>
@@ -150,7 +157,6 @@
   <string name="bridges">Zubiak</string>
   <string name="use_bridges">Zubiak erabili</string>
   <string name="bridges_obfuscated">Nahasitako Zubiak</string>
-  <string name="enable_alternate_entrance_nodes_into_the_tor_network">Tor sarera sartzeko nodo alternatiboak gaitu</string>
   <string name="enable_if_configured_bridges_are_obfuscated_bridges">Gaitu konfiguratutako zubiak nahasitako zubiak badira</string>
   <string name="ip_address_and_port_of_bridges">IP helbidea eta zubien portua</string>
   <string name="enter_bridge_addresses">Sartu Zubi Helbideak</string>
@@ -175,14 +181,13 @@
   <string name="the_addressable_name_for_your_hidden_service_generated_automatically_">zure eskutuko zerbitzuaren izen atzigarria (automatikoki sortuta)</string>
   <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">arazketarako logak gaitu (adb edo aLogCat erabili ikusteko)</string>
   <string name="project_home">Proiektuaren etxea(k):</string>
+  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
   <string name="the_tor_license">Tor Lizentzia</string>
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="third_party_software">3.-Ataleko-Softwarea:</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
-  <string name="iptables_version">IPtables v1.4.21: http://www.netfilter.org</string>
-  <string name="hidden_service_request">Aplikazio batek ezkutuko zerbitzariko %S portua ireki nau du Tor sarera. Segurua da aplikazioaz fidatzen bazara.</string>
   <string name="found_existing_tor_process">Aurreko Tor prozesua topatuta...</string>
   <string name="something_bad_happened">Zerbait txarra gertatu da. Begiratu logetan</string>
   <string name="hidden_service_on">ezkutuko zerbitzua hemen:</string>
@@ -195,6 +200,7 @@
   <string name="pref_use_persistent_notifications_title">Jakinarazpenetan beti</string>
   <string name="notification_using_bridges">Zubiak gaituta!</string>
   <string name="default_bridges"></string>
+  <string name="set_locale_title">Hizkuntza</string>
   <string name="set_locale_summary">Aukeratu Orbotentzako lokala eta hizkuntza</string>
   <string name="wizard_locale_title">Hizkuntza aukeratu</string>
   <string name="wizard_locale_msg">Lehenetsia utzi edo uneko hizkuntzara aldatu</string>
@@ -207,12 +213,25 @@
   <string name="pref_disable_network_title">Sareko lokartze automatikorik ez</string>
   <string name="pref_disable_network_summary">Jarri Tor lotan internet atzigarri ez dagoenean</string>
   <string name="newnym">ChatSecure - Andriodentzako berehalako mezulari bezero ziurra</string>
+  <string name="menu_verify_browser">Nabigatzailea</string>
   <string name="menu_use_chatsecure">ChatSecure erabili</string>
   <string name="permission_manage_tor_label">Tor kudeatu</string>
   <string name="permission_manage_tor_description">Gaitu app hau Tor zerbitzua kontrolatzeko</string>
-  <string name="install_apps_">App-ak instalatu?</string>
+  <string name="pref_dnsport_title">Tor DNS Portua</string>
+  <string name="your_tor_public_ips_">Zure Tor Public IPak:</string>
+  <string name="menu_vpn">Aplikazioak</string>
+  <string name="kbps">kbps</string>
+  <string name="mbps">mbps</string>
   <string name="kb">KB</string>
   <string name="mb">MB</string>
+  <string name="restart_orbot_to_use_this_bridge_">Mesedez berrabiarazi Orbot aldaketak aktibatzeko</string>
   <string name="menu_qr">QR Kodeak</string>
+  <string name="install_orweb">Instalatu Orfox</string>
   <string name="standard_browser">Nabigatzaile Estandarra</string>
+  <string name="hidden_services">Ezkutuko Zerbitzuak</string>
+  <string name="title_activity_hidden_services">Ezkutuko Zerbitzuak</string>
+  <string name="menu_hidden_services">Ezkutuko Zerbitzuak</string>
+  <string name="save">Gorde</string>
+  <string name="name">Izena</string>
+  <string name="please_restart_Orbot_to_enable_the_changes">Mesedez berrabiarazi Orbot aldaketak aktibatzeko</string>
 </resources>

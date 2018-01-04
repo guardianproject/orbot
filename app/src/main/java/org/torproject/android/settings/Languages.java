@@ -156,16 +156,23 @@ public class Languages {
             }
         }
 
-        final Resources resources = contextWrapper.getBaseContext().getResources();
-        Configuration config = resources.getConfiguration();
-        if (Build.VERSION.SDK_INT >= 17) {
-            config.setLocale(locale);
-        } else {
-            config.locale = locale;
-        }
-        resources.updateConfiguration(config, resources.getDisplayMetrics());
-        Locale.setDefault(locale);
+        setLocale(contextWrapper, locale);
 
+    }
+
+    @SuppressWarnings("deprecation")
+    private static void setLocale(final ContextWrapper contextWrapper, Locale locale){
+        Resources resources = contextWrapper.getResources();
+        Configuration configuration = resources.getConfiguration();
+        DisplayMetrics displayMetrics = resources.getDisplayMetrics();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1){
+            configuration.setLocale(locale);
+            contextWrapper.getApplicationContext().createConfigurationContext(configuration);
+        }
+        else{
+            configuration.locale=locale;
+            resources.updateConfiguration(configuration,displayMetrics);
+        }
     }
 
     /**

@@ -1,5 +1,6 @@
 package org.torproject.android.ui.onboarding;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,6 +10,7 @@ import android.view.View;
 import com.github.paolorotolo.appintro.AppIntro;
 
 import org.torproject.android.R;
+import org.torproject.android.settings.LocaleHelper;
 import org.torproject.android.ui.AppManagerActivity;
 import org.torproject.android.vpn.VPNEnableActivity;
 
@@ -83,5 +85,11 @@ public class OnboardingActivity extends AppIntro {
     public void onSlideChanged(@Nullable Fragment oldFragment, @Nullable Fragment newFragment) {
         super.onSlideChanged(oldFragment, newFragment);
         // Do something when the slide changes.
+    }
+
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LocaleHelper.onAttach(base));
     }
 }

@@ -21,6 +21,7 @@ import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.TorService;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.TorServiceUtils;
+import org.torproject.android.settings.LocaleHelper;
 import org.torproject.android.settings.SettingsPreferences;
 import org.torproject.android.ui.AppManagerActivity;
 import org.torproject.android.ui.onboarding.BridgeWizardActivity;
@@ -128,7 +129,11 @@ public class OrbotMainActivity extends AppCompatActivity
     private static final int MESSAGE_TRAFFIC_COUNT = 2;
 
 	public final static String INTENT_ACTION_REQUEST_HIDDEN_SERVICE = "org.torproject.android.REQUEST_HS_PORT";
-	public final static String INTENT_ACTION_REQUEST_START_TOR = "org.torproject.android.START_TOR";	
+	public final static String INTENT_ACTION_REQUEST_START_TOR = "org.torproject.android.START_TOR";
+
+
+    PulsatorLayout mPulsator;
+
 
     //this is needed for backwards compat back to Android 2.3.*
     @SuppressLint("NewApi")
@@ -403,9 +408,11 @@ public class OrbotMainActivity extends AppCompatActivity
 
     }
 
-    PulsatorLayout mPulsator;
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LocaleHelper.onAttach(base));
+    }
 
-    
    /*
     * Create the UI Options Menu (non-Javadoc)
     * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
@@ -888,7 +895,11 @@ public class OrbotMainActivity extends AppCompatActivity
 
         if (request == REQUEST_SETTINGS && response == RESULT_OK)
         {
-            OrbotApp.forceChangeLanguage(this);
+            if (data != null && (!TextUtils.isEmpty(data.getStringExtra("locale")))) {
+                LocaleHelper.setLocale(getApplicationContext(), Prefs.getDefaultLocale());
+                finish();
+                startActivity(new Intent(this,OrbotMainActivity.class));
+            }
         }
         else if (request == REQUEST_VPN)
         {

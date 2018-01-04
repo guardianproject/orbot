@@ -4,6 +4,7 @@
 package org.torproject.android.settings;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.ListPreference;
@@ -21,7 +22,7 @@ import java.util.Locale;
 
 
 public class SettingsPreferences 
-		extends PreferenceActivity implements OnPreferenceClickListener {
+		extends PreferenceActivity  {
     private static final String TAG = "SettingsPreferences";
 
 	private ListPreference prefLocale = null;
@@ -34,7 +35,6 @@ public class SettingsPreferences
         SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
 
         prefLocale = (ListPreference) findPreference("pref_default_locale");
-        prefLocale.setOnPreferenceClickListener(this);
         Languages languages = Languages.get(this);
         prefLocale.setEntries(languages.getAllNames());
         prefLocale.setEntryValues(languages.getSupportedLocales());
@@ -43,27 +43,24 @@ public class SettingsPreferences
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 String language = (String) newValue;
-                if (preference == prefLocale) {
-                    OrbotApp app = (OrbotApp) getApplication();
-                    Languages.setLanguage(app, language, true);
-                    Prefs.setDefaultLocale(language);
-                    OrbotApp.forceChangeLanguage(SettingsPreferences.this);
-                }
+                Prefs.setDefaultLocale(language);
+                LocaleHelper.setLocale(getApplicationContext(), language);
+                Intent intentResult = new Intent();
+                intentResult.putExtra("locale",language);
+                setResult(RESULT_OK,intentResult);
+                finish();
                 return false;
             }
         });
 
-
-        
     }
 
-	public boolean onPreferenceClick(Preference preference) {
-		
-		setResult(RESULT_OK);
 
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LocaleHelper.onAttach(base));
+    }
 
-		return true;
-	}
 
 
 }
