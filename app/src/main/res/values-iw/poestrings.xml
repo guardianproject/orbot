@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="bridges_desc">\"גשרים הם ממסרי Tor שעוזרים לעקיפת צנזורה. אתה יכול לנסות גשרים אם Tor חסום ע\"י ספק האינטרנט שלך; כל סוג של גשר משתמש בשיטה שונה 
+כדי למנוע צנזורה: אם סוג אחד אינו עובד, נסה להשתמש באחד אחר.</string>
+
+    <string name="bridges_no">אין גשרים: התחבר ישירות אל Tor</string>
+    <string name="bridges_provided">גשרים מסופקים:</string>
+    <string name="bridges_custom">גשר מותאם אישית</string>
+
+    <string name="bridges_config">תצורת גשר</string>
+    <string name="action_done">סיים</string>
+
+    <string name="bridges_sometimes">לפעמים אתה צריך גשר כדי להתחבר אל Tor.</string>
+    <string name="action_more">ספר לי עוד</string>
+
+    <string name="vpn_setup">אתה יכול לאפשר כל יישום שהוא לעבור דרך Tor ע\"י שימוש ב-VPN המובנה שלנו.</string>
+    <string name="vpn_setup_sub">זה לא יהפוך אותך לאלמוני, אבל זה יעזור לך לעבור דרך חומות אש.</string>
+    <string name="action_vpn_choose">בחר יישומים</string>
+
+    <string name="status_connected">מחובר!</string>
+
+    <string name="loading_claim_1">הקהילה המגוונת שלנו היא מה שעושה את Tor מדהים!</string>
+    <string name="loading_claim_2">כל יום אנשים משתמשים ב-Tor כדי להימנע ממעקב ע\"י מודעות שיווקיות.</string>
+    <string name="loading_claim_3">כאשר Facebook חסום, אנשים משתמשים ב-Tor כדי לחבור אל חבריהם ואל משפחותיהם.</string>
+    <string name="loading_claim_4">פעילנים משתמשים ב-Tor כדי לצייץ בחופשיות את דעותיהם ואמונותיהם.</string>
+    <string name="loading_claim_5">בלוגרים משתמשים ב-Tor כדי ללכד אנשים כלפי רפורמה חברתית.</string>
+    <string name="loading_claim_6">עיתונאים משתמשים ב-Tor כדי לחקור בבטחה סיפורים שהם מדווחים עליהם.</string>
+    <string name="loading_claim_7">אנשי עסקים משתמשים ב-Tor כדי לשמור על אסטרטגיות החברה שלהם פרטיות.</string>
+    <string name="loading_claim_8">עובדים משתמשים ב-Tor כדי להילחם למען צדק ללא פחד לאבד את עבודתם.</string>
+
+    <string name="status_connecting">אנחנו מחוברים אליך.\" = \"אנחנו מחוברים אליך.</string>
+
+    <string name="hello">שלום</string>
+    <string name="welcome">ברוך הבא אל Tor בנייד.</string>
+
+    <string name="browser_the_internet">דפדף באינטרנט כפי שאתה מצפה שאתה צריך.</string>
+    <string name="no_tracking">ללא מעקב. ללא צנזורה.</string>
+
+</resources>

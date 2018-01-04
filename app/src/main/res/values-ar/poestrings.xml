@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="bridges_no">بدون جسور : إتصل مباشرة بتور</string>
+    <string name="bridges_provided">الجسور المتوفرة :</string>
+    <string name="bridges_custom">الجسور الخاصة</string>
+
+    <string name="bridges_config">إعدادات الجسر</string>
+    <string name="action_done">تم</string>
+
+    <string name="bridges_sometimes">أحيانا تحتاج إلى جسر للعبور عبر تور.</string>
+    <string name="action_more">إكتشف المزيد</string>
+
+    <string name="vpn_setup">ُيمْكنُك اختيار أي من التطبيقات ستستعمل شبكتنا الإفتراضية المدمجة للعبور عبر تور.</string>
+    <string name="vpn_setup_sub">هذا لن يجعلك مجهول الهوية ولكن سيساعدك في تخطي جدران الحماية.</string>
+    <string name="action_vpn_choose">إختيار التطبيقات</string>
+
+    <string name="status_connected">متصل !</string>
+
+    <string name="loading_claim_1">تنوع مجتمعنا هو ما يجعل تور رائعا !</string>
+    <string name="loading_claim_2">يستخدِم الناس تور كل يوم تفاديا للتعقّب الذي يتعرضون إليه عن طريق الإعلانات التجارية.</string>
+    <string name="loading_claim_3">للبقاء على اتصال بعائلاتهم و أصدقائهم يستخدم الناس تور في حالة حجب الفايسبوك.</string>
+    <string name="loading_claim_4">يستخدم النشطاء تور لتغريد آرائهم و معتقداتهم بكل حرية.</string>
+    <string name="loading_claim_5">يستخدِم المُدَوِّنون تور لتحسيس الناس حول قضايا إصلاح المجتمع.</string>
+    <string name="loading_claim_6">يقوم الصحافيون باستخدام تور للتحري الآمن في القضايا التي يراسلون عن شأنها.</string>
+    <string name="loading_claim_8">يقوم العمال باستخدام تور دفاعا عن حقوقهم و بدون خوف من أن يفقدوا مناصب عملهم.</string>
+
+    <string name="hello">مرحبا</string>
+    <string name="welcome">أهلا بك إلى تور على جهازك المحمول.</string>
+
+    <string name="browser_the_internet">أبحِر على الإنترنت كما يحلو لك.</string>
+    <string name="no_tracking">دون رقابة أو تَعقّب أو حجب.</string>
+
+</resources>

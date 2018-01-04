@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="bridges_desc">\"پل‌های ارتباطی، بازپخش‌کننده Tor هستند و برای عبور از سانسور کمک می‌کنند. اگر Tor توسط سرویس‌دهنده‌ی اینترنت شما مسدود شده است، می‌توانید پل‌های ارتباطی را امتحان کنید؛ هر نوع پل ارتباطی از یک روش متفاوت
+برای جلوگیری از سانسور استفاده می‌کند: اگر یکی از روش‌ها کار نکرد، دیگری را امتحان کنید.</string>
+
+    <string name="bridges_no">بدون پل ارتباطی: مستقیما به شبکه Tor متصل شوید</string>
+    <string name="bridges_provided">پل‌های ارتباطی ارائه شده:</string>
+    <string name="bridges_custom">پل‌های ارتباطی سفارشی</string>
+
+    <string name="bridges_config">پیکربندی پل ارتباطی</string>
+    <string name="action_done">انجام شد</string>
+
+    <string name="bridges_sometimes">گاهی اوقات برای دسترسی به Tor نیاز به یک پل ارتباطی دارید.</string>
+    <string name="action_more">بیشتر بگو</string>
+
+    <string name="vpn_setup">شما می‌توانید به کمک VPN توکار ما عبور از طریق Tor را برای هر برنامه‌ای فعال کنید.</string>
+    <string name="vpn_setup_sub">این شما را بی نام و نشان نمی‌کند اما کمک می‌کند که از فایروال‌ها عبور کنید.</string>
+    <string name="action_vpn_choose">برنامه‌ها را انتخاب کن</string>
+
+    <string name="status_connected">متصل شد</string>
+
+    <string name="loading_claim_1">اجتماع گوناگون ما چیزی هست که Tor را بزرگ ساخته است!</string>
+    <string name="loading_claim_2">مردم هر روز از Tor استفاده می‌کنند تا از اینکه تبلیغات بازاریابی تعقیبشان کند جلوگیری کنند.</string>
+    <string name="loading_claim_3">وقتی فیس‌بوک مسدود می‌شود، مردم از Tor استفاده می‌کنند تا به دوستان و خانواده‌هایشان متصل شوند.</string>
+    <string name="loading_claim_4">فعالان از Tor استفاده می‌کنند تا آزادانه عقاید و باورهای خود را توئیت کنند.</string>
+    <string name="loading_claim_5">وبلاگ‌نویسان از Tor برای سوق دادن مردم به سوی اصلاحات اجتماعی استفاده می‌کنند.</string>
+    <string name="loading_claim_6">روزنامه‌نگاران از Tor برای امن تحقیق کردن درباره‌ی داستان‌هایی که گزارش می‌دهند استفاده می‌کنند.</string>
+    <string name="loading_claim_7">افراد اهل کسب و کار از Tor برای خصوصی نگه داشتن استراتژی‌های شرکت خود استفاده می‌کنند.</string>
+    <string name="loading_claim_8">کارگران از Tor به خاطر مبارزه برای عدالت استفاده می‌کنند بدون اینکه نگران از دست دادن کارشان باشند.</string>
+
+    <string name="status_connecting">ما در حال متصل کردن شما هستیم.\" = \"ما در حال متصل کردن شما هستیم.</string>
+
+    <string name="hello">سلام</string>
+    <string name="welcome">به مرورگر Tor خوش آمدید.</string>
+
+    <string name="browser_the_internet">همانطور که انتظارش را دارید در اینترنت گشت بزنید.</string>
+    <string name="no_tracking">بدون ردیابی. بدون سانسور.</string>
+
+</resources>
