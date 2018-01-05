@@ -969,6 +969,7 @@ public class OrbotMainActivity extends AppCompatActivity
 
         if (mBtnBridges.isChecked())
         {
+            Prefs.putBridgesEnabled(true);
             startActivity(new Intent(this, BridgeWizardActivity.class));
         }
         else

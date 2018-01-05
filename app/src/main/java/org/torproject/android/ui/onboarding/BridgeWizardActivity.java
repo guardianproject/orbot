@@ -18,6 +18,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,7 +50,9 @@ public class BridgeWizardActivity extends AppCompatActivity {
 
         setTitle(getString(R.string.bridges));
 
-        findViewById(R.id.btnBridgesDirect).setOnClickListener(new View.OnClickListener() {
+        RadioButton btnDirect = (RadioButton)
+                findViewById(R.id.btnBridgesDirect);
+        btnDirect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Prefs.setBridgesList("");
@@ -59,7 +62,8 @@ public class BridgeWizardActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.btnBridgesObfs4).setOnClickListener(new View.OnClickListener() {
+        RadioButton btnObfs4 = (RadioButton)findViewById(R.id.btnBridgesObfs4);
+        btnObfs4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Prefs.setBridgesList("obfs4");
@@ -70,7 +74,9 @@ public class BridgeWizardActivity extends AppCompatActivity {
         });
 
 
-        findViewById(R.id.btnBridgesMeek).setOnClickListener(new View.OnClickListener() {
+        RadioButton btnMeek = (RadioButton)findViewById(R.id.btnBridgesMeek);
+
+        btnMeek.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Prefs.setBridgesList("meek");
@@ -81,12 +87,22 @@ public class BridgeWizardActivity extends AppCompatActivity {
         });
 
 
-        findViewById(R.id.btnBridgesNew).setOnClickListener(new View.OnClickListener() {
+        RadioButton btnNew = (RadioButton)findViewById(R.id.btnBridgesNew);
+        btnNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showGetBridgePrompt("");
             }
         });
+
+        if (!Prefs.bridgesEnabled())
+            btnDirect.setChecked(true);
+        else if (Prefs.getBridgesList().equals("meek"))
+            btnMeek.setChecked(true);
+        else if (Prefs.getBridgesList().equals("obfs4"))
+            btnObfs4.setChecked(true);
+
+
     }
 
     @Override
