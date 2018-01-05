@@ -2,9 +2,14 @@ package org.torproject.android.ui.onboarding;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 
 import com.github.paolorotolo.appintro.AppIntro;
@@ -13,6 +18,8 @@ import org.torproject.android.R;
 import org.torproject.android.settings.LocaleHelper;
 import org.torproject.android.ui.AppManagerActivity;
 import org.torproject.android.vpn.VPNEnableActivity;
+
+import java.util.List;
 
 public class OnboardingActivity extends AppIntro {
 
@@ -92,4 +99,47 @@ public class OnboardingActivity extends AppIntro {
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(LocaleHelper.onAttach(base));
     }
+
+    public static boolean isAppInstalled(PackageManager pm, String packageName) {
+        try {
+            pm.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES);
+            return true;
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
+    }
+
+    public static Intent getInstallIntent(String packageName, Context context) {
+        final Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(MARKET_URI + packageName));
+
+        PackageManager pm = context.getPackageManager();
+        List<ResolveInfo> resInfos = pm.queryIntentActivities(intent, 0);
+
+        String foundPackageName = null;
+        for (ResolveInfo r : resInfos) {
+            Log.i("Install", "market: " + r.activityInfo.packageName);
+            if (TextUtils.equals(r.activityInfo.packageName, FDROID_PACKAGE_NAME)
+                    || TextUtils.equals(r.activityInfo.packageName, PLAY_PACKAGE_NAME)) {
+                foundPackageName = r.activityInfo.packageName;
+                break;
+            }
+        }
+
+        if (foundPackageName == null) {
+            intent.setData(Uri.parse(FDROID_APP_URI + packageName));
+        } else {
+            intent.setPackage(foundPackageName);
+        }
+        return intent;
+    }
+
+    final static String MARKET_URI = "market://details?id=";
+    final static String FDROID_APP_URI = "https://f-droid.org/repository/browse/?fdid=";
+    final static String PLAY_APP_URI = "https://play.google.com/store/apps/details?id=";
+    final static String FDROID_URI = "https://f-droid.org/repository/browse/?fdfilter=info.guardianproject";
+    final static String PLAY_URI = "https://play.google.com/store/apps/developer?id=The+Guardian+Project";
+
+    private final static String FDROID_PACKAGE_NAME = "org.fdroid.fdroid";
+    private final static String PLAY_PACKAGE_NAME = "com.android.vending";
 }
