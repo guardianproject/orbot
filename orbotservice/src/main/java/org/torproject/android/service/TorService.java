@@ -12,6 +12,7 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Application;
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -26,6 +27,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -33,6 +35,7 @@ import android.os.Build;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.provider.BaseColumns;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
@@ -241,7 +244,31 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
         mNotificationShowing = false;
     }
-	        
+
+    private final static String NOTIFICATION_CHANNEL_ID = "orbot_channel_1";
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void createNotificationChannel ()
+    {
+        NotificationManager mNotificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+// The id of the channel.
+
+// The user-visible name of the channel.
+        CharSequence name = getString(R.string.app_name);
+// The user-visible description of the channel.
+        String description = getString(R.string.app_description);
+        int importance = NotificationManager.IMPORTANCE_LOW;
+        NotificationChannel mChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, name, importance);
+// Configure the notification channel.
+        mChannel.setDescription(description);
+        mChannel.enableLights(false);
+        mChannel.enableVibration(false);
+        mChannel.setShowBadge(false);
+        mChannel.setLockscreenVisibility(Notification.VISIBILITY_SECRET);
+        mNotificationManager.createNotificationChannel(mChannel);
+    }
+
     @SuppressLint("NewApi")
     protected void showToolbarNotification (String notifyMsg, int notifyType, int icon)
      {        
@@ -286,6 +313,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             mNotifyBuilder.setPriority(Notification.PRIORITY_LOW);
 
          mNotifyBuilder.setCategory(Notification.CATEGORY_SERVICE);
+
+         mNotifyBuilder.setChannelId(NOTIFICATION_CHANNEL_ID);
 
          mNotification = mNotifyBuilder.build();
         
@@ -556,6 +585,9 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             filter.addAction(CMD_NEWNYM);
             mActionBroadcastReceiver = new ActionBroadcastReceiver();
             registerReceiver(mActionBroadcastReceiver, filter);
+
+            if (Build.VERSION.SDK_INT >= 26)
+                createNotificationChannel();
 
             new Thread(new Runnable ()
             {

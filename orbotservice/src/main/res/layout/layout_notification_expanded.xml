@@ -19,7 +19,7 @@
     android:id="@+id/status_bar_latest_event_content"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/holo_purple"
+    android:background="@color/dark_purple"
     >
     <LinearLayout
         android:layout_width="match_parent"
