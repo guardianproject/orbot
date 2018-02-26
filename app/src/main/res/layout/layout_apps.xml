@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:duplicateParentState="true">
 
-     <GridView
+    <GridView
         android:id="@+id/applistview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:numColumns="4"
-        android:layout_alignParentTop="true" >
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:numColumns="4">
 
     </GridView>
 
-</RelativeLayout>
+</FrameLayout>
