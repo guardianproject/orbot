@@ -19,7 +19,7 @@
         android:gravity="center"
         android:horizontalSpacing="5dp"
         android:numColumns="4"
-        android:verticalSpacing="5dp">
+        android:verticalSpacing="15dp">
 
     </GridView>
 
