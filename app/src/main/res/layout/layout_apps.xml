@@ -4,6 +4,13 @@
     android:layout_height="match_parent"
     android:duplicateParentState="true">
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
     <GridView
         android:id="@+id/applistview"
         android:layout_width="match_parent"
