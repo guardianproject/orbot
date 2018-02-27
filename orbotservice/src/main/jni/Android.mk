@@ -31,6 +31,13 @@ LOCAL_CFLAGS    := -Wall -O2 -I$(LOCAL_PATH)/pdnsd -DHAVE_STPCPY
 
 include $(BUILD_EXECUTABLE)
 
+.PHONY: $(CopyToAssets)
+
+CopyToAssets: libs/armeabi/pdnsd
+    $(shell mkdir -p assets/armeabi)
+    $(shell zip assets/armeabi/pdnsd.mp3 libs/armeabi/pdnsd)
+
+
 ########################################################
 ## libancillary
 ########################################################
