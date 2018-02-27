@@ -115,7 +115,7 @@
   <string name="wizard_transproxy_hint">(Hakaðu í þennan reit ef þú hefur enga hugmynd um hvað við erum að tala)</string>
   <string name="wizard_transproxy_none">Ekkert</string>
   <string name="pref_transparent_tethering_title">Tor-netaðgangspunktur</string>
-  <string name="pref_transparent_tethering_summary">Leyfa gegnsæja milliþjónabeiningu á Tor fyrir tæki sem geta gefið netaaðgang í gegnum WiFi og USB  (þarfnast endurræsingar)</string>
+  <string name="pref_transparent_tethering_summary">Leyfa gegnsæja milliþjónabeiningu á Tor fyrir tæki sem geta gefið netaaðgang í gegnum Wi-Fi og USB  (þarfnast endurræsingar)</string>
   <string name="button_grant_superuser">Biðja um ofurnotandaréttindi</string>
   <string name="pref_select_apps">Veldu smáforrit</string>
   <string name="pref_select_apps_summary">Veldu smáforrit til að beina í gegnum Tor</string>

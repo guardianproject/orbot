@@ -117,7 +117,7 @@
   <string name="wizard_transproxy_hint">(Hãy chọn ô này nếu bạn không hiểu những gì chúng tôi đang nói)</string>
   <string name="wizard_transproxy_none">Không có</string>
   <string name="pref_transparent_tethering_title">Tor Tethering</string>
-  <string name="pref_transparent_tethering_summary">Kích hoạt proxy Tor trong suốt để dùng cho WiFi/USB Tethering (cần khởi động lại)</string>
+  <string name="pref_transparent_tethering_summary">Kích hoạt proxy Tor trong suốt để dùng cho Wi-Fi/USB Tethering (cần khởi động lại)</string>
   <string name="button_grant_superuser">Yều cầu truy cập root</string>
   <string name="pref_select_apps">Chọn ứng dụng</string>
   <string name="pref_select_apps_summary">Chọn những ứng dụng mà bạn muốn kết nối qua Tor</string>

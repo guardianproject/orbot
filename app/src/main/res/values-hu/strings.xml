@@ -115,7 +115,7 @@
   <string name="wizard_transproxy_hint">(Jelöld be ezt négyzetet, ha fogalmad sincs arról, hogy miről beszélünk)</string>
   <string name="wizard_transproxy_none">Nincs</string>
   <string name="pref_transparent_tethering_title">Tor Tethering</string>
-  <string name="pref_transparent_tethering_summary">A Tor Transzparens Proxyzásának engedélyezése a Wifi és az USB Tetherelt eszközök felé (újraindítást igényel)</string>
+  <string name="pref_transparent_tethering_summary">A Tor Transzparens Proxyzásának engedélyezése a Wi-Fi és az USB Tetherelt eszközök felé (újraindítást igényel)</string>
   <string name="button_grant_superuser">Superuser hozzáférés kérése</string>
   <string name="pref_select_apps">Alkalmazások kiválasztása</string>
   <string name="pref_select_apps_summary">Válassz alkalmazásokat, amik keresztül haladjanak a Tor-on</string>

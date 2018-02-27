@@ -115,7 +115,7 @@
   <string name="wizard_transproxy_hint">(Marque esta casilla si no tiene idea de lo que estamos hablando)</string>
   <string name="wizard_transproxy_none">ninguno</string>
   <string name="pref_transparent_tethering_title">Anclaje a red Tor</string>
-  <string name="pref_transparent_tethering_summary">Activar Tor Proxy transparente para dispositivos Wifi y USB conectados (requiere reiniciar)</string>
+  <string name="pref_transparent_tethering_summary">Activar Tor Proxy transparente para dispositivos Wi-Fi y USB conectados (requiere reiniciar)</string>
   <string name="button_grant_superuser">Solicitar acceso Superusuario</string>
   <string name="pref_select_apps">seleccionar aplicaciones</string>
   <string name="pref_select_apps_summary">Elija aplicaciones para rutear a través de Tor</string>

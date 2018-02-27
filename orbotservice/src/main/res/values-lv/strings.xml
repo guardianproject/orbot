@@ -112,7 +112,7 @@
   <string name="wizard_transproxy_hint">(Atzīmējiet šo kastīti gadījumā ja Jums nav ne mazākās nojausmas par to, ko mēs te runājam)</string>
   <string name="wizard_transproxy_none">Neviens</string>
   <string name="pref_transparent_tethering_title">Tor valgošana</string>
-  <string name="pref_transparent_tethering_summary">Iespējot Tor Pārredzamo starpniekošanu Wifi\'m un USB valgošanas ierīcēm (nepieciešams pārstartēt)</string>
+  <string name="pref_transparent_tethering_summary">Iespējot Tor Pārredzamo starpniekošanu Wi-Fi\'m un USB valgošanas ierīcēm (nepieciešams pārstartēt)</string>
   <string name="button_grant_superuser">Pieprasīt superlietotāja piekļuvi</string>
   <string name="pref_select_apps">Izvēlēties lietotnes</string>
   <string name="pref_select_apps_summary">Izvēlēties lietotnes, lai maršrutētu caur Tor</string>

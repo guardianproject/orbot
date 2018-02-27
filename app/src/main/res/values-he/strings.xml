@@ -126,7 +126,7 @@ Tor עוזר בלהגן מ traffic analysis ,content filtering ו- network surve
   <string name="wizard_transproxy_hint">(סמן תיבה זו אם אין לך מושג על מה אנחנו מדברים)</string>
   <string name="wizard_transproxy_none">כלום</string>
   <string name="pref_transparent_tethering_title">Tor Tethering</string>
-  <string name="pref_transparent_tethering_summary">אפשר ייפוי כוח שקוף של Tor עבור WiFi ומכשירים מחוברי USB (דורש הפעלה מחדש)</string>
+  <string name="pref_transparent_tethering_summary">אפשר ייפוי כוח שקוף של Tor עבור Wi-Fi ומכשירים מחוברי USB (דורש הפעלה מחדש)</string>
   <string name="button_grant_superuser">דרוש אישור Superuser</string>
   <string name="pref_select_apps">בחר אפלקציות</string>
   <string name="pref_select_apps_summary">בחר אפלקציות</string>

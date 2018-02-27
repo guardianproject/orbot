@@ -97,7 +97,7 @@
   <string name="wizard_transproxy_hint">(Tanda kotak ini jika anda belen)</string>
   <string name="wizard_transproxy_none">Tiada</string>
   <string name="pref_transparent_tethering_title">Tor Tethering</string>
-  <string name="pref_transparent_tethering_summary">Membolehkan Proxying Telus Tor untuk Wifi dan USB Devices terikat (memerlukan restart)</string>
+  <string name="pref_transparent_tethering_summary">Membolehkan Proxying Telus Tor untuk Wi-Fi dan USB Devices terikat (memerlukan restart)</string>
   <string name="button_grant_superuser">Minta Akses Superuser</string>
   <string name="pref_select_apps">Pilih Aplikasi</string>
   <string name="pref_select_apps_summary">Pilih Aplikasi untuk dihalakan melalui Tor</string>

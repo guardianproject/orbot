@@ -115,7 +115,7 @@
   <string name="wizard_transproxy_hint">(Seleziona questa casella se non hai idea di quello di cui stiamo parlando)</string>
   <string name="wizard_transproxy_none">Nessuno</string>
   <string name="pref_transparent_tethering_title">Tethering Tor</string>
-  <string name="pref_transparent_tethering_summary">Abilita il proxying trasparente di Tor per i dispositivi connessi in tethering via WiFi e USB (necessita di riavvio)</string>
+  <string name="pref_transparent_tethering_summary">Abilita il proxying trasparente di Tor per i dispositivi connessi in tethering via Wi-Fi e USB (necessita di riavvio)</string>
   <string name="button_grant_superuser">Richiede accesso superuser</string>
   <string name="pref_select_apps">Seleziona app</string>
   <string name="pref_select_apps_summary">Scegli le applicazioni da utilizzare attraverso Tor</string>

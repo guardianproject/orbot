@@ -100,7 +100,7 @@
   <string name="wizard_transproxy_hint">(Marqueu aquesta casella si no teniu ni idea del que estem parlant)</string>
   <string name="wizard_transproxy_none">Cap</string>
   <string name="pref_transparent_tethering_title">Compartició de xarxa amb Tor</string>
-  <string name="pref_transparent_tethering_summary">Activa el servidor intermediari transparent de Tor pels dispositius connectats a través de la compartició de xarxa via Wifi o USB (cal reiniciar)</string>
+  <string name="pref_transparent_tethering_summary">Activa el servidor intermediari transparent de Tor pels dispositius connectats a través de la compartició de xarxa via Wi-Fi o USB (cal reiniciar)</string>
   <string name="button_grant_superuser">Petició d\'accés de superusuari</string>
   <string name="pref_select_apps">Selecciona les apps</string>
   <string name="pref_select_apps_summary">Trieu quines apps s\'han de canalitzar a través de Tor</string>

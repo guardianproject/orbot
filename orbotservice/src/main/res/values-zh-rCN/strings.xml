@@ -122,7 +122,7 @@ Tor帮助你避开那些威胁到你的隐私，重要信息和社交关系的�
   <string name="wizard_transproxy_hint">（如果不明白这里所说的问题，请选择该选项）</string>
   <string name="wizard_transproxy_none">无</string>
   <string name="pref_transparent_tethering_title">Tor 网络共享</string>
-  <string name="pref_transparent_tethering_summary">对 Wifi 和 USB 网络共享设备启用透明代理（需重新启动）</string>
+  <string name="pref_transparent_tethering_summary">对 Wi-Fi 和 USB 网络共享设备启用透明代理（需重新启动）</string>
   <string name="button_grant_superuser">请求 Superuser 访问权限</string>
   <string name="pref_select_apps">选择应用程序</string>
   <string name="pref_select_apps_summary">选择通过 Tor 连接网络的应用程序</string>

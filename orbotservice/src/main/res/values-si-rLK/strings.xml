@@ -97,7 +97,7 @@
   <string name="wizard_transproxy_hint">(ඔබට අප සදහන් කල කරුණු පිළිබද අවබෝධයක් නොමැති නම් මෙම කොටුව සලකුණු කරන්න)</string>
   <string name="wizard_transproxy_none">කිසිවක් නොමැත</string>
   <string name="pref_transparent_tethering_title">Tor Tethering</string>
-  <string name="pref_transparent_tethering_summary">Wifi හා USB Tethered උපාංග සදහා Tor පාරදෘශ්‍ය නියුතු සේවාව සබල කරන්න (නැවත ආරම්භ කිරීමක් අවශ්‍යවේ)</string>
+  <string name="pref_transparent_tethering_summary">Wi-Fi හා USB Tethered උපාංග සදහා Tor පාරදෘශ්‍ය නියුතු සේවාව සබල කරන්න (නැවත ආරම්භ කිරීමක් අවශ්‍යවේ)</string>
   <string name="button_grant_superuser">සුපිරි පරිශීලකයාගේ ප්‍රවේශය ඉල්ලන්න </string>
   <string name="pref_select_apps">යොමුන් තෝරාගන්න </string>
   <string name="pref_select_apps_summary">Tor හරහා යැවීමට යොමුන් තෝරාගන්න </string>

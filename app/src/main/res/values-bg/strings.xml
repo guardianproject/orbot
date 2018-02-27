@@ -115,7 +115,7 @@
   <string name="wizard_transproxy_hint">(Избери тази опция ако нямаш представа за какво става въпрос)</string>
   <string name="wizard_transproxy_none">Нищо</string>
   <string name="pref_transparent_tethering_title">Тетъринг през Тор</string>
-  <string name="pref_transparent_tethering_summary">Включи Прозрачно Тор Проксифициране през Wifi и USB (изисква рестартирване)</string>
+  <string name="pref_transparent_tethering_summary">Включи Прозрачно Тор Проксифициране през Wi-Fi и USB (изисква рестартирване)</string>
   <string name="button_grant_superuser">Изискай достъп на Суперпотребител</string>
   <string name="pref_select_apps">Избери приложения</string>
   <string name="pref_select_apps_summary">Избрери приложения за използване през Тор</string>

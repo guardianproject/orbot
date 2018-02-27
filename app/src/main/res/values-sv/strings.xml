@@ -115,7 +115,7 @@
   <string name="wizard_transproxy_hint">(Markera denna om du inte har någon aning om vad vi pratar om)</string>
   <string name="wizard_transproxy_none">Ingen</string>
   <string name="pref_transparent_tethering_title">Tor Tethering</string>
-  <string name="pref_transparent_tethering_summary">Aktivera Tor Transparent Proxy för Wifi och USB Thetered Enheter (omstart krävs)</string>
+  <string name="pref_transparent_tethering_summary">Aktivera Tor Transparent Proxy för Wi-Fi och USB Thetered Enheter (omstart krävs)</string>
   <string name="button_grant_superuser">Begär Superuser Tillgång</string>
   <string name="pref_select_apps">Välj Appar</string>
   <string name="pref_select_apps_summary">Välj Appar att Leda Genom Tor</string>
