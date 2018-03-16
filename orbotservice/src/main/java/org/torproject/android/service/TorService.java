@@ -25,9 +25,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -41,7 +39,6 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.RemoteViews;
-import android.widget.Toast;
 
 import com.jrummyapps.android.shell.CommandResult;
 import com.jrummyapps.android.shell.Shell;
@@ -50,7 +47,6 @@ import org.torproject.android.binary.TorResourceInstaller;
 import org.torproject.android.control.ConfigEntry;
 import org.torproject.android.control.TorControlConnection;
 import org.torproject.android.service.util.OtherResourceInstaller;
-import org.torproject.android.service.vpn.TorifiedApp;
 import org.torproject.android.service.util.DummyActivity;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.util.TorServiceUtils;
@@ -77,7 +73,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Properties;
 import java.util.Random;
 import java.util.Set;
 import java.util.StringTokenizer;
@@ -130,7 +125,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     public static File appCacheHome;
 
     public static File fileTor;
-    public static File filePolipo;
     public static File fileObfsclient;
     public static File fileTorRc;
     private File mHSBasePath;
@@ -419,7 +413,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                     startTor();
                 }
                 else if (action.equals(ACTION_STATUS)) {
-                    replyWithStatus(mIntent);                    
+                    replyWithStatus(mIntent);
                 }
                 else if (action.equals(CMD_SIGNAL_HUP)) {
                     requestTorRereadConfig();
@@ -430,9 +424,9 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 } else if (action.equals(CMD_VPN_CLEAR)) {
                     clearVpnProxy();
                 } else if (action.equals(CMD_SET_EXIT)) {
-                	
+
                 	setExitNode(mIntent.getStringExtra("exit"));
-                	
+
                 } else {
                     Log.w(OrbotConstants.TAG, "unhandled TorService Intent: " + action);
                 }
@@ -559,7 +553,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             //mShell = Shell.startShell();
 
             fileTor= new File(appBinHome, TorServiceConstants.TOR_ASSET_KEY);
-            filePolipo = new File(appBinHome, TorServiceConstants.POLIPO_ASSET_KEY);
             fileObfsclient = new File(appBinHome, TorServiceConstants.OBFSCLIENT_ASSET_KEY);
             fileTorRc = new File(appBinHome, TorServiceConstants.TORRC_ASSET_KEY);
 
@@ -597,7 +590,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                     {
                         
                         torUpgradeAndConfig();
-                    
+
                         findExistingTorDaemon();
                     }
                     catch (Exception e)
@@ -605,10 +598,10 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                         Log.e(OrbotConstants.TAG,"error onBind",e);
                         logNotice("error finding exiting process: " + e.toString());
                     }
-                    
+
                 }
             }).start();
-        	
+
         }
         catch (Exception e)
         {
@@ -688,7 +681,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         {
             isolate += "IsolateDestAddr";
         }
-        
+
+        extraLines.append("HTTPTunnelPort 8118").append('\n');
         extraLines.append("SOCKSPort ").append(socksPortPref).append(isolate).append('\n');
         extraLines.append("SafeSocks 0").append('\n');
         extraLines.append("TestSocks 0").append('\n');
@@ -816,9 +810,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 	        	}
 
 	        boolean success = runTorShellCmd();
-
-            if (mPortHTTP != -1)
-                runPolipoShellCmd();
 
             // Tor is running, update new .onion names at db
             ContentResolver mCR = getApplicationContext().getContentResolver();
@@ -971,42 +962,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
          **/
         return shellResult.exitCode;
     }
-    
-    private void updatePolipoConfig () throws FileNotFoundException, IOException
-    {
-        
 
-        File file = new File(appBinHome, POLIPOCONFIG_ASSET_KEY);
-        
-        Properties props = new Properties();
-        
-        props.load(new FileReader(file));
-        
-        props.put("socksParentProxy", "\"localhost:" + mPortSOCKS + "\"");
-        props.put("proxyPort",mPortHTTP+"");
-        
-        props.store(new FileWriter(file), "updated");
-        
-    }
-    
-    
-    private void runPolipoShellCmd () throws Exception
-    {
-        
-        logNotice( "Starting polipo process");
-
-        updatePolipoConfig();
-
-        String polipoConfigPath = new File(appBinHome, POLIPOCONFIG_ASSET_KEY).getCanonicalPath();
-        String cmd = (filePolipo.getCanonicalPath() + " -c " + polipoConfigPath);
-
-        CommandResult shellResult = Shell.run(cmd);
-
-        sendCallbackLogMessage(getString(R.string.privoxy_is_running_on_port_) + mPortHTTP);
-            
-        logNotice("Polipo is running");
-            
-    }
 
     protected TorControlConnection getControlConnection ()
     {
@@ -1030,7 +986,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                     if (controlPort != -1)
                     {
                         logNotice( "Connecting to control port: " + controlPort);
-                        
+
                         torConnSocket = new Socket(IP_LOCALHOST, controlPort);
                         torConnSocket.setSoTimeout(CONTROL_SOCKET_TIMEOUT);
                         
@@ -1099,11 +1055,11 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             return -1;
 
     }
-    
+
     private int getControlPort ()
     {
         int result = -1;
-        
+
         try
         {
             if (fileControlPort.exists())
@@ -1111,35 +1067,35 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 debug("Reading control port config file: " + fileControlPort.getCanonicalPath());
                 BufferedReader bufferedReader = new BufferedReader(new FileReader(fileControlPort));
                 String line = bufferedReader.readLine();
-                
+
                 if (line != null)
                 {
                     String[] lineParts = line.split(":");
                     result = Integer.parseInt(lineParts[1]);
                 }
-                
+
 
                 bufferedReader.close();
 
                 //store last valid control port
                 SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
                 prefs.edit().putInt("controlport", result).commit();
-                
+
             }
             else
             {
                 debug("Control Port config file does not yet exist (waiting for tor): " + fileControlPort.getCanonicalPath());
-                
+
             }
-            
-            
+
+
         }
         catch (FileNotFoundException e)
-        {    
+        {
             debug("unable to get control port; file not found");
         }
         catch (Exception e)
-        {    
+        {
             debug("unable to read control port config file");
         }
 
@@ -1256,7 +1212,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 sbConf.append(name);
                 sbConf.append(' ');
                 sbConf.append(value);
-                
+
                 configBuffer.add(sbConf.toString());
             }
             
@@ -1317,48 +1273,48 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 }.start();
             }
         }
-        
+
         public boolean saveConfiguration ()
         {
             try
             {
                 if (conn != null)
                 {
-                    
+
                      if (resetBuffer != null && resetBuffer.size() > 0)
-                        {    
+                        {
                          for (String value : configBuffer)
                              {
-                                 
+
                               //   debug("removing torrc conf: " + value);
-                                 
-                                 
+
+
                              }
-                         
+
                            // conn.resetConf(resetBuffer);
                             resetBuffer = null;
                         }
-                  
+
                      if (configBuffer != null && configBuffer.size() > 0)
                         {
-                             
+
                                  for (String value : configBuffer)
                                  {
-                                     
+
                                      debug("Setting torrc conf: " + value);
-                                     
-                                     
+
+
                                  }
-                                 
+
                              conn.setConf(configBuffer);
-                                 
+
                             configBuffer = null;
                         }
-                  
+
                           // Flush the configuration to disk.
                     //this is doing bad things right now NF 22/07/10
                           //conn.saveConf();
-    
+
                           return true;
                 }
             }
@@ -1366,7 +1322,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             {
                 logException("Unable to update Tor configuration: " + ioe.getMessage(),ioe);
             }
-            
+
             return false;
         }
 
@@ -1509,7 +1465,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 		        	String proxyType = "socks5";
 		        	extraLines.append(proxyType + "Proxy" + ' ' + OrbotVpnManager.sSocksProxyLocalhost + ':' + OrbotVpnManager.sSocksProxyServerPort).append('\n');
 	        	};
-			
+
 	        }
 	        else
 	        {
@@ -1840,7 +1796,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         }
     }
 
-    
+
     private void setExitNode (String newExits)
     {
     	SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());

@@ -48,7 +48,7 @@ android {
 dependencies {
     compileOnly 'org.torproject:tor-android-binary:0.3.2.10'
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
-    compile project(':orbotservice')
+    implementation project(':orbotservice')
     implementation 'com.android.support:design:27.1.1'
     implementation 'pl.bclogic:pulsator4droid:1.0.3'
     implementation 'com.github.apl-devs:appintro:v4.2.2'
