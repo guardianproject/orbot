@@ -118,7 +118,6 @@
             android:title="@string/use_bridges" />
 
         <EditTextPreference
-            android:defaultValue=""
             android:dialogTitle="@string/enter_bridge_addresses"
             android:inputType="textMultiLine|textNoSuggestions"
             android:key="pref_bridges_list"
