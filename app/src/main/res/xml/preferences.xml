@@ -218,6 +218,7 @@
             android:title="@string/pref_proxy_username_title" />
         <EditTextPreference
             android:dialogTitle="@string/pref_proxy_password_dialog"
+            android:inputType="textPassword"
             android:key="pref_proxy_password"
             android:summary="@string/pref_proxy_password_summary"
             android:title="@string/pref_proxy_password_title" />
@@ -251,6 +252,7 @@
 
         <EditTextPreference
             android:dialogTitle="@string/pref_torrc_dialog"
+            android:inputType="textMultiLine|textNoSuggestions"
             android:key="pref_custom_torrc"
             android:summary="@string/pref_torrc_summary"
             android:title="@string/pref_torrc_title" />
