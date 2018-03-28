@@ -136,7 +136,7 @@
     <string name="pref_proxy_title">Outbound Network Proxy (Optional)</string>
 
     <string name="pref_proxy_type_title">Outbound Proxy Type</string>
-    <string name="pref_proxy_type_summary">Protocol to use for proxy server: HTTP, HTTPS, Socks4, Socks5</string>
+    <string name="pref_proxy_type_summary">Protocol to use for proxy server: HTTP, HTTPS, SOCKS4, SOCKS5</string>
     <string name="pref_proxy_type_dialog">Enter Proxy Type</string>
 
     <string name="pref_proxy_host_title">Outbound Proxy Host</string>
@@ -206,7 +206,7 @@
     <string name="enter_localhost_ports_for_hidden_services">enter localhost ports for hidden services</string>
     <string name="hidden_service_ports">Hidden Service Ports</string>
     <string name="the_addressable_name_for_your_hidden_service_generated_automatically_">the addressable name for your hidden service (generated automatically)</string>
-    <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">enable debug log to output (must use adb or aLogCat to view)</string>
+    <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Enable debug log to output (must use adb or aLogcat to view)</string>
     <string name="project_home">Project Home(s): </string>
     <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
     <string name="the_tor_license">The Tor License</string>
