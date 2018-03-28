@@ -38,7 +38,7 @@
             android:defaultValue="en"
             android:key="pref_default_locale"
             android:summary="@string/set_locale_summary"
-            android:title="@string/set_locale_title"/>
+            android:title="@string/set_locale_title" />
 
     </PreferenceCategory>
     <!--
@@ -138,6 +138,7 @@
         <EditTextPreference
             android:defaultValue="9001"
             android:dialogTitle="@string/enter_or_port"
+            android:inputType="number"
             android:key="pref_or_port"
             android:summary="@string/listening_port_for_your_tor_relay"
             android:title="@string/relay_port" />
@@ -157,7 +158,7 @@
             android:enabled="true"
             android:key="pref_reachable_addresses"
             android:summary="@string/run_as_a_client_behind_a_firewall_with_restrictive_policies"
-            android:title="@string/reachable_addresses"/>
+            android:title="@string/reachable_addresses" />
 
         <EditTextPreference
             android:defaultValue="*:80,*:443"
@@ -173,7 +174,7 @@
             android:enabled="true"
             android:key="pref_isolate_dest"
             android:summary="@string/pref_isolate_dest_summary"
-            android:title="@string/pref_isolate_dest"/>
+            android:title="@string/pref_isolate_dest" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="ConnectionPadding">
@@ -182,13 +183,13 @@
             android:enabled="true"
             android:key="pref_connection_padding"
             android:summary="@string/pref_connection_padding_summary"
-            android:title="@string/pref_connection_padding"/>
+            android:title="@string/pref_connection_padding" />
         <CheckBoxPreference
             android:defaultValue="true"
             android:enabled="true"
             android:key="pref_reduced_connection_padding"
             android:summary="@string/pref_reduced_connection_padding_summary"
-            android:title="@string/pref_reduced_connection_padding"/>
+            android:title="@string/pref_reduced_connection_padding" />
     </PreferenceCategory>
 
 
@@ -205,6 +206,7 @@
             android:title="@string/pref_proxy_host_title" />
         <EditTextPreference
             android:dialogTitle="@string/pref_proxy_port_dialog"
+            android:inputType="number"
             android:key="pref_proxy_port"
             android:summary="@string/pref_proxy_port_summary"
             android:title="@string/pref_proxy_port_title" />
@@ -226,6 +228,7 @@
         <EditTextPreference
             android:defaultValue="9050"
             android:dialogTitle="@string/pref_socks_dialog"
+            android:inputType="number"
             android:key="pref_socks"
             android:summary="@string/pref_socks_summary"
             android:title="@string/pref_socks_title" />
@@ -233,6 +236,7 @@
         <EditTextPreference
             android:defaultValue="9040"
             android:dialogTitle="@string/pref_transport_dialog"
+            android:inputType="number"
             android:key="pref_transport"
             android:summary="@string/pref_transport_summary"
             android:title="@string/pref_transport_title" />
@@ -240,6 +244,7 @@
         <EditTextPreference
             android:defaultValue="5400"
             android:dialogTitle="@string/pref_dnsport_dialog"
+            android:inputType="number"
             android:key="pref_dnsport"
             android:summary="@string/pref_dnsport_summary"
             android:title="@string/pref_dnsport_title" />
