@@ -135,7 +135,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
                    would likely not expect to find them.
                  */
                 if (o1.isTorified() == o2.isTorified())
-                    return o1.getName().toUpperCase().compareTo(o2.getName().toUpperCase());
+                    return o1.getName().compareToIgnoreCase(o2.getName());
                 if (o1.isTorified()) return -1;
                 return 1;
             }
