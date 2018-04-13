@@ -133,8 +133,7 @@ public class TorifiedApp implements Comparable {
 	
 	@Override
 	public int compareTo(Object another) {
-		
-		return this.toString().compareTo(another.toString());
+		return this.toString().toUpperCase().compareTo(another.toString().toUpperCase());
 	}
 	
 	@Override
