@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="bridges_desc">\"Brýr eru Tor-endurvarpar sem hjálpa til við að komast framhjá ritskoðun. Þú getur reynt að nota brýr ef ISP-netþjónustan þín lokar á Tor; hver gerð brúa notar mismunandi aðferðir
+        til að komast framhjá ritskoðun: ef ein gerðin virkar ekki, prófarðu einhverja aðra.</string>
+
+    <string name="bridges_no">Engar brýr: Tengist beint við Tor</string>
+    <string name="bridges_provided">Brýr sem fylgja:</string>
+    <string name="bridges_custom">Sérsniðnar brýr</string>
+
+    <string name="bridges_config">Uppsetning brúar</string>
+    <string name="action_done">Lokið</string>
+
+    <string name="bridges_sometimes">Stundum eru brýr nauðsynlegar til að tengjast Tor.</string>
+    <string name="action_more">SEGIÐ MÉR MEIRA</string>
+
+    <string name="vpn_setup">Þú getur stillt hvaða forrit sem er á að fara í gegnum Tor með því að nota innbyggt VPN.</string>
+    <string name="vpn_setup_sub">Þetta mun ekki gera þig nafnlausan, en mun hjálpa til við að komast í gegnum eldveggi.</string>
+    <string name="action_vpn_choose">VELDU FORRIT</string>
+
+    <string name="status_connected">Tengt!</string>
+
+    <string name="loading_claim_1">Fjölbreytt samfélag notenda er það sem gerir Tor frábært!</string>
+    <string name="loading_claim_2">Venjulegt fólk notar Tor til að sleppa undan eftirliti markaðsdrónanna.</string>
+    <string name="loading_claim_3">Þegar lokað er á Facebook, getur fólk notað Tor til að tengjast vinum sínum og fjölskyldu.</string>
+    <string name="loading_claim_4">Aðgerðasinnar nota Tor til að hafa fullt frelsi til að viðra skoðanir sínar.</string>
+    <string name="loading_claim_5">Bloggarar nota Tor til að stefna fólki saman til að berjast fyrir félagslegum réttindum.</string>
+    <string name="loading_claim_6">Blaðamenn nota Tor sem örugga leið við rannsóknir á fréttum sem þeir eru að vinna.</string>
+    <string name="loading_claim_7">Fólk í viðskiptalífinu notar Tor til að halda viðskiptaáætlunum sínum frá snuðri utanaðkomandi aðila.</string>
+    <string name="loading_claim_8">Verkafólk notar Tor í réttindabaráttu sinni án þess að þurfa að hafa áhyggjur af því að missa vinnuna.</string>
+
+    <string name="status_connecting">Við tengjum þig.\" = \"Við tengjum þig.</string>
+
+    <string name="hello">Halló</string>
+    <string name="welcome">Velkomin í Tor-vafrann á snjalltæki.</string>
+
+    <string name="browser_the_internet">Flakkaðu um internetið eins og þér finnst á þú ættir að gera.</string>
+    <string name="no_tracking">Engar njósnir. Engin ritskoðun.</string>
+
+</resources>

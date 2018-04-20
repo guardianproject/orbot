@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="bridges_desc">\"Broar är Tor-reläer som hjälper till att kringgå censur. Du kan prova broar om Tor är blockerad av din ISP, varje bro-typ använder en annan metod
+        för att undvika censur: om en typ inte fungerar kan du försöka använda en annan.</string>
+
+    <string name="bridges_no">Inga broar: Anslut direkt till Tor</string>
+    <string name="bridges_provided">Tillhandahållna broar: </string>
+    <string name="bridges_custom">Anpassade broar</string>
+
+    <string name="bridges_config">Brokonfiguration</string>
+    <string name="action_done">Klart</string>
+
+    <string name="bridges_sometimes">Ibland behöver du en bro för att komma åt Tor.</string>
+    <string name="action_more">BERÄTTA MERA</string>
+
+    <string name="vpn_setup">Du kan aktivera vilken app som helst som ska gå genom Tor med hjälp av vår inbyggda VPN.</string>
+    <string name="vpn_setup_sub">Detta kommer inte att göra dig anonym, men det hjälper dig att komma igenom brandväggar.</string>
+    <string name="action_vpn_choose">VÄLJ APPAR</string>
+
+    <string name="status_connected">Ansluten!</string>
+
+    <string name="loading_claim_1">Vår blandade grupp är vad som gör Tor bra!</string>
+    <string name="loading_claim_2">Vardagliga människor använder Tor för att undvika att följa marknadsföringsannonser.</string>
+    <string name="loading_claim_3">När Facebook är blockerad använder folk Tor för att ansluta till sina vänner och familj.</string>
+    <string name="loading_claim_4">Aktivister använder Tor för att fritt tweeta sina åsikter och övertygelser.</string>
+    <string name="loading_claim_5">Bloggare använder Tor för att samla människor mot sociala reformer.</string>
+    <string name="loading_claim_6">Journalister använder Tor för att på ett säkert sätt undersöka historier som de rapporterar om.</string>
+    <string name="loading_claim_7">Företagare använder Tor för att hålla sina företagsstrategier privata.</string>
+    <string name="loading_claim_8">Arbetare använder Tor för att kämpa för rättvisa utan rädsla för att förlora sitt jobb.</string>
+
+    <string name="status_connecting">Vi ansluter dig.\" = \"Vi ansluter dig.</string>
+
+    <string name="hello">Hej</string>
+    <string name="welcome">Välkommen till Tor på mobilen.</string>
+
+    <string name="browser_the_internet">Bläddra på internet hur du förväntar dig att du ska.</string>
+    <string name="no_tracking">Ingen spårning. Ingen censur.</string>
+
+</resources>

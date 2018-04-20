@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="bridges_desc">\"Οι γέφυρες είναι κόμβοι Tor που βοηθούν στην καταστρατήγηση της λογοκρισίας. Μπορείτε να δοκιμάσετε τις γέφυρες εάν ο Tor είναι αποκλεισμένος από τον ISP σας· κάθε τύπος γέφυρας χρησιμοποιεί διαφορετική μέθοδο
+για να αποφύγετε τη λογοκρισία: εάν ένας τύπος δεν λειτουργεί, δοκιμάστε να χρησιμοποιήσετε έναν διαφορετικό τύπο.</string>
+
+    <string name="bridges_no">Χωρίς Γέφυρες: Άμεση σύνδεση με το Tor</string>
+    <string name="bridges_provided">Προσφερόμενες γέφυρες: </string>
+    <string name="bridges_custom">Προσαρμοσμένες Γέφυρες</string>
+
+    <string name="bridges_config">Διαμόρφωση Γεφυρών </string>
+    <string name="action_done">Τέλος</string>
+
+    <string name="bridges_sometimes">Μερικές φορές χρειάζεστε μια γέφυρα για να χρησιμοποίησετε το Tor.</string>
+    <string name="action_more">ΠΕΣ ΜΟΥ ΠΕΡΙΣΣΌΤΕΡΑ</string>
+
+    <string name="vpn_setup">Μπορείτε να ενεργοποιήσετε οποιαδήποτε εφαρμογή για να χρησιμοποίησετε το Tor μέσω ενός το ενσωματωμένου VPN.</string>
+    <string name="vpn_setup_sub">Αυτό θα γίνει ανώνυμα, αλλά θα σας βοηθήσει να περάσετε μέσα από τείχη προστασίας.</string>
+    <string name="action_vpn_choose">ΕΠΙΛΟΓΗ ΕΦΑΡΜΟΓΩΝ</string>
+
+    <string name="status_connected">Συνδέθηκε!</string>
+
+    <string name="loading_claim_1">Μία ποικιλόμορφη κοινότητα είναι αυτό που κάνει το Tor σπουδαίο!</string>
+    <string name="loading_claim_2">Καθημερινά άνθρωποι χρησιμοποιούν το Tor για να αποφύγουν να ακολουθούνται από διαφημίσεις.</string>
+    <string name="loading_claim_3">Όταν το Facebook είναι αποκλεισμένο, οι άνθρωποι χρησιμοποιούν το Tor για να συνδεθούν με φίλους και την οικογένεια τούς.</string>
+    <string name="loading_claim_4">Ακτιβιστές χρησιμοποιούν το Tor για δισδώσουν ελεύθερα τις απόψεις και τις πεποιθήσεις τούς.</string>
+    <string name="loading_claim_5">Οί μπλόγκερ χρησιμοποιούν το Tor για να συσπειρώσουν τον κόσμο προς την κοινωνική μεταρρύθμιση.</string>
+    <string name="loading_claim_6">Οι δημοσιογράφοι χρησιμοποιούν το Tor για ασφαλή διερεύνηση ιστοριών που αναφέρουν.</string>
+    <string name="loading_claim_7">Επιχειρηματίες χρησιμοποιούν το Tor για να κρατήσουν κρύφη την στρατηγική της εταιρίας τούς.</string>
+    <string name="loading_claim_8">Εργαζόμενοι χρησιμοποιούν το Tor για να πολεμήσουν για δικαιοσύνη, χωρίς τον φόβο να χάσουν την δουλειά τους.</string>
+
+    <string name="status_connecting">Σας συνδέουμε.\" = \"Σας συνδέουμε.</string>
+
+    <string name="hello">Γεια</string>
+    <string name="welcome">Καλώς ήρθατε στο Tor για κινητό.</string>
+
+    <string name="browser_the_internet">Περιηγηθείτε στο διαδίκτυο, όπως μπορείτε να περιμένετε ότι θα έπρεπε.</string>
+    <string name="no_tracking">Χωρίς εντοπισμό. Χωρίς λογοκρισία.</string>
+
+</resources>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="bridges_desc">Brücken, sind Tor-Relais die helfen sollen, die Zensur zu umgehen. Sie können Brücken nutzen, wenn Tor von Ihrem Internet-Anbieter blockiert wird; Jeder Brückentyp verwendet eine andere Methode, um Zensur zu vermeiden: Wenn ein Typ nicht funktioniert, versuchen Sie es mit einem anderen Typ.</string>
+
+    <string name="bridges_no">Keine Brücken: Verbinde Direkt mit Tor</string>
+    <string name="bridges_provided">Bereitgestellte Brücken:</string>
+    <string name="bridges_custom">Benutzerdefinierte Brücken</string>
+
+    <string name="bridges_config">Brücken-Konfiguration</string>
+    <string name="action_done">Fertig</string>
+
+    <string name="bridges_sometimes">Manchmal wird eine Brücke benötigt, um auf das Tor Netzwerk zugreifen zu können.</string>
+    <string name="action_more">ERZÄHL MIR MEHR</string>
+
+    <string name="vpn_setup">Sie können jede App aktivieren, um mit dem integrierten VPN-Tunnel, alles durch Tor zu leiten.</string>
+    <string name="vpn_setup_sub">Es macht dich nicht Anonym, aber es wird Dir helfen, durch Firewalls hindurch zu kommen.</string>
+    <string name="action_vpn_choose">WÄHLE APPS</string>
+
+    <string name="status_connected">Verbunden!</string>
+
+    <string name="loading_claim_1">Unsere vielfältige Community macht Tor großartig!</string>
+    <string name="loading_claim_2">Menschen verwenden täglich Tor, um zu vermeiden, dass sie aufgrund von Marketingzwecken verfolgt werden.</string>
+    <string name="loading_claim_3">Wenn Facebook blockiert ist, verwenden die Menschen Tor, um sich mit ihren Freunden und ihrer Familie zu verbinden.</string>
+    <string name="loading_claim_4">Aktivisten nutzen Tor, um ihre Meinungen und Überzeugungen frei zu Twittern.</string>
+    <string name="loading_claim_5">Blogger nutzen Tor, um Menschen für soziale Reformen zu gewinnen.</string>
+    <string name="loading_claim_6">Journalisten verwenden Tor, um Investigativ-Stories auf sichere Weise, zu veröffentlichen.</string>
+    <string name="loading_claim_7">Geschäftsleute nutzen Tor, um ihre Unternehmensstrategien Privat zu halten.</string>
+    <string name="loading_claim_8">Arbeitnehmer nutzen Tor, um für Gerechtigkeit zu kämpfen, ohne Angst davor zu haben, ihren Job zu verlieren.</string>
+
+    <string name="status_connecting">Wir verbinden Dich. "=" Wir verbinden Dich.</string>
+
+    <string name="hello">Hallo</string>
+    <string name="welcome">Willkommen auf der Mobilen Plattform von Tor.</string>
+
+    <string name="browser_the_internet">Surfen Sie im Internet, so wie Sie es auch erwarten sollten.</string>
+    <string name="no_tracking">Keine Verfolgung. Keine Zensur.</string>
+
+</resources>

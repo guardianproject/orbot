@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="bridges_desc">\"橋接是 Tor 中繼，用於協助對抗網路審查。如果你的 ISP 封鎖 Tor 不妨試試透過橋接連上 Tor ; 不同種類的橋接使用不同的方法
+        來躲避審查；如果某個方法行不通，可以試試另一個方法。</string>
+
+    <string name="bridges_no">無橋接: 直接連接 Tor 網路</string>
+    <string name="bridges_provided">已提供的橋接: </string>
+    <string name="bridges_custom">自定橋接</string>
+
+    <string name="bridges_config">橋接設定</string>
+    <string name="action_done">已完成</string>
+
+    <string name="bridges_sometimes">有時需要透過橋接器來取得 Tor</string>
+    <string name="action_more">進一步說明</string>
+
+    <string name="vpn_setup">可利用內建的 VPN 啟動應用程式走 Tor 網路</string>
+    <string name="vpn_setup_sub">它無法讓用戶匿名，但有助於通過防火牆</string>
+    <string name="action_vpn_choose">選擇應用</string>
+
+    <string name="status_connected">已連線!</string>
+
+    <string name="loading_claim_1">豐富多樣的社群讓 Tor 更棒更好</string>
+    <string name="loading_claim_2">人們每天利用 Tor 來避免行銷廣告的追蹤</string>
+    <string name="loading_claim_3">當 Facebook 被封鎖，使用者利用 Tor 來和家人朋友保持聯繫</string>
+    <string name="loading_claim_4">社運人士使用 Tor 自由地在網路上發表意見和理念</string>
+    <string name="loading_claim_5">部落客使用 Tor 號召民眾朝向社會改革</string>
+    <string name="loading_claim_6">新聞記者利用 Tor 安全地調查他們報導的故事</string>
+    <string name="loading_claim_7">商人利用 Tor 來保護公司策略的機密</string>
+    <string name="loading_claim_8">工人使用 Tor 來爭取正義而不必憺心失去飯碗</string>
+
+    <string name="status_connecting">We\'re connecting you.\" = \"We\'re connecting you.</string>
+
+    <string name="hello">哈囉</string>
+    <string name="welcome">歡迎使用手機上的 Tor</string>
+
+    <string name="browser_the_internet">如你所願地自由瀏覽網際網路</string>
+    <string name="no_tracking">無追踪，無審查</string>
+
+</resources>

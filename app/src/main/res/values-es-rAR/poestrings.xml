@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="bridges_desc">los puentes son los relevadores de tor que ayudan a eludir la censura. Puede probar los puentes si su ISP bloquea  tor, cada tipo de puente utiliza un método diferente para evitar la censura: si un tipo no funciona, intente utilizar otro distinto. </string>
+
+    <string name="bridges_no">sin puentes: conecte directamente a tor</string>
+    <string name="bridges_provided">puentes proporcionados</string>
+    <string name="bridges_custom">puentes personalizados</string>
+
+    <string name="bridges_config">configuración de puente</string>
+    <string name="action_done">hecho</string>
+
+    <string name="bridges_sometimes">aveces necesitas un puente para llegar a tor </string>
+    <string name="action_more">dime mas</string>
+
+    <string name="vpn_setup">puede habilitar cualquier aplicación para pasar por tor usando nuestra VPN incorporada</string>
+    <string name="vpn_setup_sub">esto no lo hará anónimo, pero le ayudara a atravesar los firewalls</string>
+    <string name="action_vpn_choose">elige aplicaciones</string>
+
+    <string name="status_connected">conectado!</string>
+
+    <string name="loading_claim_1">nuestra comunidad diversa es lo que hace que tor sea grandioso</string>
+    <string name="loading_claim_2">todos los días las personas usan tor para evitar ser seguidos por publicidades</string>
+    <string name="loading_claim_3">cuando facebook esta bloqueado, las personas utilizan tor para conectarse con sus amigos y familiares</string>
+    <string name="loading_claim_4">los activistas usan tor para twittear libremente sus opiniones y creencias. </string>
+    <string name="loading_claim_5">los blogger utilizan tor para reunir a las personas hacia la reforma social</string>
+    <string name="loading_claim_6">los periodistas usan tor para investigar de forma segura las historias sobre las que informan</string>
+    <string name="loading_claim_7">los empresarios usan tor para mantener privadas las estrategias de su compañia.</string>
+    <string name="loading_claim_8">los trabajadores usan tor para luchar por la justicia, sin temor a perder su trabajo</string>
+
+    <string name="status_connecting">te estamos conectando. =  te estamos conectando.</string>
+
+    <string name="hello">hola</string>
+    <string name="welcome">bienvenido a tor en el móvil</string>
+
+    <string name="browser_the_internet">navegue por Internet como espera que debería hacerlo</string>
+    <string name="no_tracking">sin seguimiento. sin censura</string>
+
+</resources>

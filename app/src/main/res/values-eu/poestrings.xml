@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="bridges_desc">\"Zubiak zentsura saihesten laguntzen duten Tor erreleak dira. Zubiak probatu ditzakezu zure internet hornitzaileak Tor blokeatzen badu; zubi mota bakoitzak metodo desberdin bat darabil zentsura ekiditeko: mota bat ez badabil, erabili mota desberdin bat.</string>
+
+    <string name="bridges_no">Zubiri ez: Konektatu zuzenean Tor sarera</string>
+    <string name="bridges_provided">Hornitutako zubiak:</string>
+    <string name="bridges_custom">Zubi pertsonalak</string>
+
+    <string name="bridges_config">Zubi-konfigurazioa</string>
+    <string name="action_done">Eginda</string>
+
+    <string name="bridges_sometimes">Batzuetan zubi bat behar duzu Tor sarera heltzeko</string>
+    <string name="action_more">KONTATU GEHIAGO</string>
+
+    <string name="vpn_setup">Edozein aplikazio Tor bidez pasatzea ahalbidetu dezakezu gure VPN-a erabiliz</string>
+    <string name="vpn_setup_sub">Honek ez zaitu anonimo bihurtuko, baina suebakietatik pasatzera lagunduko zaitu.</string>
+    <string name="action_vpn_choose">HAUTATU APLIKAZIOAK</string>
+
+    <string name="status_connected">Konektatuta!</string>
+
+    <string name="loading_claim_1">Gure komunitatea da Tor zoragarri bihurtzen duena!</string>
+    <string name="loading_claim_2">Egunero jendeak Tor erabiltzen du iragarkien jarraipena saihesteko.</string>
+    <string name="loading_claim_3">Facebook blokeatuta dagoenean, jendeak Tor erabiltzen du bere lagun eta familiarekin konektatzeko.</string>
+    <string name="loading_claim_4">Aktibistek Tor erabiltzen dute iritziak eta sinesmenak askatasunez txiokatzeko.</string>
+    <string name="loading_claim_5">Blogariek Tor erabiltzen dute jendea gizartearen aldaketara animatzeko.</string>
+    <string name="loading_claim_6">Kazetariek Tor erabiltzen dute azalarazten ari diren istorioak seguru ikertzeko.</string>
+    <string name="loading_claim_7">Negozioetako jendeak Tor darabil enpresaren estrategia pribatuan mantentzeko.</string>
+    <string name="loading_claim_8">Langileek Tor erabiltzen dute justiziaren alde borrokatzeko lana galtzeko beldurrik gabe.</string>
+
+    <string name="status_connecting">Konektatzen zaitugu.\" = \"Konektatzen zaitugu.</string>
+
+    <string name="hello">Kaixo</string>
+    <string name="welcome">Ongi etorri mugikorreko Tor-era.</string>
+
+    <string name="browser_the_internet">Arakatu Internet zure ustez egin behar zenukeen erara.</string>
+    <string name="no_tracking">Jarraipenik ez. Zentsurarik ez.</string>
+
+</resources>
