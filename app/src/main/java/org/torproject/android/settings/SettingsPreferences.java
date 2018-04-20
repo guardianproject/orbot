@@ -5,34 +5,26 @@ package org.torproject.android.settings;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
-import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 
-import org.torproject.android.OrbotApp;
 import org.torproject.android.R;
 import org.torproject.android.service.util.Prefs;
-import org.torproject.android.service.util.TorServiceUtils;
 
-import java.util.Locale;
-
-
-public class SettingsPreferences 
-		extends PreferenceActivity  {
+public class SettingsPreferences
+        extends PreferenceActivity {
     private static final String TAG = "SettingsPreferences";
 
-	private ListPreference prefLocale = null;
-	
+    private ListPreference prefLocale = null;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         addPreferencesFromResource(R.xml.preferences);
         getPreferenceManager().setSharedPreferencesMode(Context.MODE_MULTI_PROCESS);
-        SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
 
         prefLocale = (ListPreference) findPreference("pref_default_locale");
         Languages languages = Languages.get(this);
@@ -46,21 +38,17 @@ public class SettingsPreferences
                 Prefs.setDefaultLocale(language);
                 LocaleHelper.setLocale(getApplicationContext(), language);
                 Intent intentResult = new Intent();
-                intentResult.putExtra("locale",language);
-                setResult(RESULT_OK,intentResult);
+                intentResult.putExtra("locale", language);
+                setResult(RESULT_OK, intentResult);
                 finish();
                 return false;
             }
         });
-
     }
-
 
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(LocaleHelper.onAttach(base));
     }
-
-
 
 }
