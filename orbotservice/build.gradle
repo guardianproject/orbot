@@ -1,8 +1,8 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
 
     sourceSets {
         main {
@@ -13,7 +13,7 @@ android {
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
 
@@ -29,7 +29,7 @@ android {
 dependencies {
     compile project(':jsocksAndroid')
     compile 'org.torproject:tor-android-binary:0.3.1.9b'
-    compile 'com.android.support:appcompat-v7:26.1.0'
+    compile 'com.android.support:appcompat-v7:27.1.1'
     compile 'com.jrummyapps:android-shell:1.0.1'
     compile fileTree(dir: 'libs', include: ['*.jar','*.so'])
     testCompile 'junit:junit:4.12'
