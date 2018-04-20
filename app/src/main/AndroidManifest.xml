@@ -68,9 +68,6 @@
             android:exported="false"
             android:label="@string/app_name" />
         <activity
-            android:name=".ui.PromoAppsActivity"
-            android:exported="false" />
-        <activity
             android:name=".settings.SettingsPreferences"
             android:label="@string/app_name" />
         <activity

@@ -39,8 +39,8 @@ android {
             minSdkVersion 16
             applicationId 'org.torproject.android'
             targetSdkVersion 27
-            versionCode 16000011
-            versionName '16.0.0-RC-2-multi-SDK16'
+            versionCode 16010011
+            versionName '16.0.1-BETA-1'
         }
     }
 }
