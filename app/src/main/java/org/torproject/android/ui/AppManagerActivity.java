@@ -130,7 +130,12 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
 
         Collections.sort(mApps,new Comparator<TorifiedApp>() {
             public int compare(TorifiedApp o1, TorifiedApp o2) {
-                if (o1.isTorified() == o2.isTorified()) return o1.getName().compareTo(o2.getName());
+                /* Some apps start with lowercase letters and without the sorting being case
+                   insensitive they'd appear at the end of the grid of apps, a position where users
+                   would likely not expect to find them.
+                 */
+                if (o1.isTorified() == o2.isTorified())
+                    return o1.getName().compareToIgnoreCase(o2.getName());
                 if (o1.isTorified()) return -1;
                 return 1;
             }
