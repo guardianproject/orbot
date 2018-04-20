@@ -23,12 +23,6 @@ public interface TorServiceConstants {
 	
 	String TOR_CONTROL_COOKIE = "control_auth_cookie";
 	
-	//privoxy
-	String POLIPO_ASSET_KEY = "polipo";
-	
-	//privoxy.config
-	String POLIPOCONFIG_ASSET_KEY = "torpolipo.conf";
-	
 	//geoip data file asset key
 	String GEOIP_ASSET_KEY = "geoip";
 	String GEOIP6_ASSET_KEY = "geoip6";

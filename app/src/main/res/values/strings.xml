@@ -61,7 +61,7 @@
     <string name="btn_cancel">Cancel</string>
     <!--Welcome Wizard strings (DJH)-->
     <string name="wizard_details">Some Orbot Details</string>
-    <string name="wizard_details_msg">Orbot is an open-source application that contains Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent and Polipo. It provides a local HTTP proxy (8118) and a SOCKS proxy (9050) into the Tor network. Orbot also has the ability, on rooted device, to send all internet traffic through Tor.</string>
+    <string name="wizard_details_msg">Orbot is an open-source application that contains Tor, Obfs4Proxy, BadVPN Tun2Socks and LibEvent. It provides a local HTTP proxy (8118) and a SOCKS proxy (9050) into the Tor network. Orbot also has the ability, on rooted device, to send all internet traffic through Tor.</string>
     <string name="wizard_permissions_root">Permission Granted</string>
     <string name="wizard_permissions_stock">Orbot Permissions</string>
     <string name="wizard_premissions_msg_root">Excellent! We\'ve detected that you have root permissions enabled for Orbot. We will use this power wisely.</string>
@@ -164,7 +164,6 @@
     <string name="warning_error_starting_transparent_proxying_">WARNING: error starting transparent proxying!</string>
     <string name="transproxy_rules_cleared">TransProxy rules cleared</string>
     <string name="couldn_t_start_tor_process_">Couldn\'t start Tor process: </string>
-    <string name="privoxy_is_running_on_port_">Polipo is running on port: </string>
     <string name="setting_up_port_based_transparent_proxying_">Setting up port-based transparent proxying&#8230;</string>
     <string name="bridge_error">Bridge Error</string>
     <string name="bridge_requires_ip">In order to use the bridge feature, you must enter at least one bridge IP address.</string>
@@ -214,7 +213,6 @@
     <string name="third_party_software">3rd-Party-Software: </string>
     <string name="tor_version">Tor: https://www.torproject.org</string>
     <string name="libevent_version">LibEvent: http://www.monkey.org/~provos/libevent/</string>
-    <string name="polipo_version">Polipo: https://github.com/jech/polipo</string>
     <string name="obfsproxy_version">Obfs4proxy: https://github.com/Yawning/obfs4</string>
     <string name="openssl_version">OpenSSL: http://www.openssl.org</string>
     <string name="hidden_service_request">An app wants to open hidden server port %1$s to the Tor network. This is safe if you trust the app.</string>
