@@ -206,6 +206,8 @@
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
+  <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
+  <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">Приложение хочет открыть скрытый порт сервера %1$s сети Tor. Это безопасно, если вы доверяете данному приложению.</string>
   <string name="found_existing_tor_process">найден существующий процесс Tor...</string>
   <string name="something_bad_happened">Произошла какая-то ошибка. Проверьте журнал.</string>
@@ -265,7 +267,7 @@
   <string name="pref_transproxy_flush_title">ПРИНУДИТЕЛЬНОЕ УДАЛЕНИЕ прозрачного прокси</string>
   <string name="pref_transproxy_flush_summary">Нажмите здесь, чтобы НЕМЕДЛЕННО очистить все сетевые правила прозрачного прокси</string>
   <string name="transparent_proxy_rules_flushed_">Правила прозрачного прокси удалены!</string>
-  <string name="you_do_not_have_root_access_enabled">У вас не включён root-доступ</string>
+  <string name="you_do_not_have_root_access_enabled">У вас нет root-доступа</string>
   <string name="you_may_need_to_stop_and_start_orbot_for_settings_change_to_be_enabled_">Возможно, потребуется остановить и запустить Orbot заново для использования изменённых настроек.</string>
   <string name="menu_vpn">Приложения</string>
   <string name="kbps">кбит/с</string>
@@ -275,7 +277,7 @@
   <string name="bridges_updated">Мосты обновлены</string>
   <string name="restart_orbot_to_use_this_bridge_">Пожалуйста, перезапустите Orbot для вступления изменения в силу</string>
   <string name="menu_qr">QR-коды</string>
-  <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Если ваша сеть мобильной связи активно блокирует Tor, вы можете использовать мосты Tor для доступа к сети. Выберите один из вариантов выше для настройки и тестирования…</string>
+  <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Если ваша мобильная сеть активно блокирует Tor, вы можете использовать мосты Tor для доступа к сети. Выберите один из вариантов для настройки и тестирования:</string>
   <string name="bridge_mode">Режим моста</string>
   <string name="get_bridges_email">Эл. почта</string>
   <string name="get_bridges_web">Сайт</string>
@@ -287,7 +289,7 @@
   <string name="install_orweb">Установить Orfox</string>
   <string name="standard_browser">Стандартный браузер</string>
   <string name="note_only_standard_tor_bridges_work_on_intel_x86_atom_devices">ПРИМЕЧАНИЕ: на устройствах Intel X86/Atom работают только стандартные мосты Tor</string>
-  <string name="vpn_default_world">Весь мир (авто)</string>
+  <string name="vpn_default_world">Мир (авто)</string>
   <string name="hidden_services">Скрытые службы</string>
   <string name="title_activity_hidden_services">Скрытые службы</string>
   <string name="menu_hidden_services">Скрытые службы</string>
@@ -339,7 +341,7 @@
   <string name="no_transproxy_warning">ПРЕДУПРЕЖДЕНИЕ: прозрачный прокси больше не поддерживается. Вместо этого используйте VPN-режим Orbot.</string>
   <string name="pref_connection_padding">Прокладка соединения</string>
   <string name="pref_connection_padding_summary">Всегда включает прокладку соединения для защиты от некоторых форм анализа трафика. По умолчанию: авто</string>
-  <string name="pref_reduced_connection_padding">Уменьшенная прокладка соединения</string>
+  <string name="pref_reduced_connection_padding">Сокращённая прокладка соединения</string>
   <string name="pref_reduced_connection_padding_summary">Раньше закрывает ретранслированные соединения и отправляет меньше пакетов заполнения для уменьшения объёма передаваемых данных и использования батареи</string>
   <string name="please_enable_vpn">Включите режим VPN, чтобы приложения могли использовать Tor</string>
   <string name="app_shortcuts">Приложения с поддержкой Tor</string>
@@ -350,7 +352,7 @@
   <string name="bridge_direct_connect">Подключение непосредственно к Tor (лучше всего)</string>
   <string name="bridge_community">Подключение через серверы сообщества</string>
   <string name="bridge_cloud">Подключение через облачные серверы</string>
-  <string name="bridges_get_new">Запросить новые мосты… (если все остальное не удаётся)</string>
+  <string name="bridges_get_new">Запросить новые мосты… (если всё остальное не удалось)</string>
   <string name="trouble_connecting">Проблема с подключением?</string>
   <string name="full_device_vpn">VPN для всего устройства</string>
   <string name="vpn_disabled">VPN отключён</string>

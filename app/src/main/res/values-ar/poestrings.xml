@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="bridges_desc">الجسور هي مُرَحِّلات Tor تساعد على التحايل على الرقابة, يمكنك استعمال الجسور إذا كان Tor محجوب من قبل شركة توفير الانترنت: أنواع مختلفة من الجسور تستخدم اساليب مختلفة لتفادي الرقابة, في حالة عدم نجاح أحد الجسور, حاول استعمال نوع أخر. </string>
+
     <string name="bridges_no">بدون جسور : إتصل مباشرة بتور</string>
     <string name="bridges_provided">الجسور المتوفرة :</string>
     <string name="bridges_custom">الجسور الخاصة</string>
