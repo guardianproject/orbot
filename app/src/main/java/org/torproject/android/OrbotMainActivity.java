@@ -126,6 +126,8 @@ public class OrbotMainActivity extends AppCompatActivity
     private final static int REQUEST_SETTINGS = 0x9874;
     private final static int REQUEST_VPN_APPS_SELECT = 8889;
 
+    private final static int LOG_DRAWER_GRAVITY = Gravity.END;
+
     // message types for mStatusUpdateHandler
     private final static int STATUS_UPDATE = 1;
     private static final int MESSAGE_TRAFFIC_COUNT = 2;
@@ -284,7 +286,7 @@ public class OrbotMainActivity extends AppCompatActivity
         lblStatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mDrawer.openDrawer(Gravity.END);
+                mDrawer.openDrawer(LOG_DRAWER_GRAVITY);
             }
         });
 
@@ -563,6 +565,18 @@ public class OrbotMainActivity extends AppCompatActivity
 			//can happen on exit/shutdown
 		}
 	}
+
+
+    @Override
+    public void onBackPressed() {
+        // check to see if the log is open, if so close it
+        if (mDrawer.isDrawerOpen(LOG_DRAWER_GRAVITY)) {
+            mDrawer.closeDrawers();
+        }
+        else {
+            super.onBackPressed();
+        }
+    }
 
 	private void refreshVPNApps ()
     {
