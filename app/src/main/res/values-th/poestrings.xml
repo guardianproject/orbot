@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="bridges_desc">\"Bridges คือรีเลย์ของ Tor ที่ช่วยเหลือการหลบเลี่ยงการปิดกั้น คุณสามารถลองใช้ Bridges หาก Tor ถูกบล็อกโดย ISP ของคุณ; Bridges แต่ละชนิดใช้วิธีการที่แตกต่างกัน
+ เพื่อหลบเลี่ยงการปิดกั้น: หากวิธีการหนึ่งไม่ได้ผล ก็จะลองใช้วิธีการอื่น</string>
+
+    <string name="bridges_no">ไม่มี Bridges: เชื่อมต่อโดยตรงกับ Tor</string>
+    <string name="bridges_provided">Bridges ที่มีให้:</string>
+    <string name="bridges_custom">Bridges ที่ปรับแต่งเฉพาะ</string>
+
+    <string name="bridges_config">การกำหนดค่าของ Bridges</string>
+    <string name="action_done">เสร็จ</string>
+
+    <string name="bridges_sometimes">บางครั้งคุณอาจต้องการ Bridges เพื่อเชื่อมต่อกับ Tor</string>
+    <string name="action_more">บอกรายละเอียดเพิ่มเติมกับฉัน</string>
+
+    <string name="vpn_setup">คุณสามารถเปิดใช้งานแอปใดๆ ผ่าน Tor โดยใช้ VPN ในตัวของเรา</string>
+    <string name="vpn_setup_sub">การดำเนินการนี้จะไม่\ได้ทำให้ไม่มีการระบุตัวตนของคุณ แต่จะเป็นการทำให้ผ่านไฟร์วอลล์ได้</string>
+    <string name="action_vpn_choose">เลือกแอป</string>
+
+    <string name="status_connected">เชื่อมต่อแล้ว!</string>
+
+    <string name="loading_claim_1">ด้วยความหลากหลายของชุมชนของเราเป็นสิ่งที่ทำให้ Tor นั้นยอดเยี่ยม!</string>
+    <string name="loading_claim_2">ทุกวันนี้ผู้คนใช้ Tor เพื่อหลีกเลี่ยงการถูกติดตามจากโฆษณาทางการตลาด</string>
+    <string name="loading_claim_3">เมื่อ Facebook ถูกปิดกั้น ผู้คนจะใช้ Tor เพื่อเชื่อมต่อกับเพื่อนและครอบครัวของพวกเขา</string>
+    <string name="loading_claim_4">เหล่านักเคลื่อนไหวใช้ Tor เพื่อทวีตความคิดเห็นและความเชื่อของพวกเขาอย่างเสรี</string>
+    <string name="loading_claim_5">บล็อกเกอร์ใช้ Tor ในการระดมผู้คนเพื่อการปฏิรูปสังคม</string>
+    <string name="loading_claim_6"> นักสื่อมวลชนใช้ Tor เพื่อสืบสวนเรื่องราวที่พวกเขารายงานอยู่อย่างปลอดภัย</string>
+    <string name="loading_claim_7">นักธุรกิจใช้ Tor เพื่อรักษากลยุทธ์ของบริษัทให้เป็นความลับ</string>
+    <string name="loading_claim_8">ผู้ใช้แรงงานใช้ Tor ในการต่อสู้เพื่อความยุติธรรมโดยไม่เกรงกลัวว่าจะตกงาน</string>
+
+    <string name="status_connecting">เราเชื่อมต่อกับคุณ\" = \"เราเชื่อมต่อกับคุณ</string>
+
+    <string name="hello">สวัสดี</string>
+    <string name="welcome">ขอต้อนรับสู่ Tor บนมือถือ</string>
+
+    <string name="browser_the_internet">เข้าดูอินเทอร์เน็ตได้ในแบบที่คุณคาดหวัง</string>
+    <string name="no_tracking">ไม่มีการติดตาม ไม่มีการปิดกั้น</string>
+
+</resources>
