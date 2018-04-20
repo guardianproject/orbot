@@ -117,7 +117,7 @@
   <string name="wizard_transproxy_hint">(Stavite kvačicu ako nemate pojma o čemu pričamo)</string>
   <string name="wizard_transproxy_none">Ništa</string>
   <string name="pref_transparent_tethering_title">Tor Privezanje</string>
-  <string name="pref_transparent_tethering_summary">Omogući Tor Transparentni Proxy za Wifi i USB privezane uređaje (zahtijeva ponovno pokretanje)</string>
+  <string name="pref_transparent_tethering_summary">Omogući Tor Transparentni Proxy za Wi-Fi i USB privezane uređaje (zahtijeva ponovno pokretanje)</string>
   <string name="button_grant_superuser">Zatraži Pristup Superuser-u</string>
   <string name="pref_select_apps">Odaberi Aplikacije</string>
   <string name="pref_select_apps_summary">Odaberi Aplikacije koje će se usmjeriti kroz Tor</string>

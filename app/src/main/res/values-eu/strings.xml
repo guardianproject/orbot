@@ -106,7 +106,7 @@
   <string name="wizard_transproxy_hint">(Gaituta utzi zertaz ari garez ulertzen ez baduzu)</string>
   <string name="wizard_transproxy_none">Bat ere ez</string>
   <string name="pref_transparent_tethering_title">Tor Tethering</string>
-  <string name="pref_transparent_tethering_summary">Gaitu proxy gardena Wifi eta USB bidez Tethering-atutako gailuentzat (berrabiaraztea beharrezkoa)</string>
+  <string name="pref_transparent_tethering_summary">Gaitu proxy gardena Wi-Fi eta USB bidez Tethering-atutako gailuentzat (berrabiaraztea beharrezkoa)</string>
   <string name="button_grant_superuser">Supererabiltzaile sarrera eskatu</string>
   <string name="pref_select_apps">Aplikazioak hautatu</string>
   <string name="pref_select_apps_summary">Tor bidez bideratuko diren aplikazioak hautatu</string>

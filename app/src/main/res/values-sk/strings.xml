@@ -115,7 +115,7 @@
   <string name="wizard_transproxy_hint">(Zaškrtnite toto pole, pokiaľ netušíte o čom rozprávame)</string>
   <string name="wizard_transproxy_none">Žiadny</string>
   <string name="pref_transparent_tethering_title">Tor Tethering</string>
-  <string name="pref_transparent_tethering_summary">Povoliť Tor transparentné proxy pre zariadenia pripojené cez Wifi alebo USB (vyžaduje reštart)</string>
+  <string name="pref_transparent_tethering_summary">Povoliť Tor transparentné proxy pre zariadenia pripojené cez Wi-Fi alebo USB (vyžaduje reštart)</string>
   <string name="button_grant_superuser">Vyžiadať prístup Superpoužívateľa</string>
   <string name="pref_select_apps">Vybrať aplikácie</string>
   <string name="pref_select_apps_summary">Vybrať aplikácie, ktoré majú byť smerované cez Tor</string>

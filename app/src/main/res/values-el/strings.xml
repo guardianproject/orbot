@@ -115,7 +115,7 @@
   <string name="wizard_transproxy_hint">(Επιλέξτε αυτό το τετράγωνο αν δεν καταλαβαίνετε για τι πράγμα μιλάμε)</string>
   <string name="wizard_transproxy_none">Καμία</string>
   <string name="pref_transparent_tethering_title">Διασύνδεση Tor</string>
-  <string name="pref_transparent_tethering_summary">Ενεργοποίηση της Διαφανούς μεσολάβησης διακομιστή για συσκευές με WiFi και διασύνδεση USB (απαιτεί επανεκκίνηση)</string>
+  <string name="pref_transparent_tethering_summary">Ενεργοποίηση της Διαφανούς μεσολάβησης διακομιστή για συσκευές με Wi-Fi και διασύνδεση USB (απαιτεί επανεκκίνηση)</string>
   <string name="button_grant_superuser">Αίτημα Πρόσβασης Υπερχρήστη</string>
   <string name="pref_select_apps">Επιλογή εφαρμογών</string>
   <string name="pref_select_apps_summary">Επιλέξτε τις εφαρμογές που θα διέλθουν μέσω Tor</string>

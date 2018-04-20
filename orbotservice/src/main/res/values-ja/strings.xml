@@ -117,7 +117,7 @@
   <string name="wizard_transproxy_hint">(何を言っているのかわからないときはここをチェックしてください)</string>
   <string name="wizard_transproxy_none">無し</string>
   <string name="pref_transparent_tethering_title">Torテザリング</string>
-  <string name="pref_transparent_tethering_summary">Tor透過プロクシをWifiかUSBテザリングされたデバイスに対して有効化(再起動が必要)</string>
+  <string name="pref_transparent_tethering_summary">Tor透過プロクシをWi-FiかUSBテザリングされたデバイスに対して有効化(再起動が必要)</string>
   <string name="button_grant_superuser">管理許可アクセスを要求します</string>
   <string name="pref_select_apps">アプリケーションを選択します</string>
   <string name="pref_select_apps_summary">Torを経由させるアプリを選択</string>

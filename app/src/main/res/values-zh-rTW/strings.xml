@@ -117,7 +117,7 @@
   <string name="wizard_transproxy_hint">（假如你不知道我們在說什麽，請選中該選擇框）</string>
   <string name="wizard_transproxy_none">無</string>
   <string name="pref_transparent_tethering_title">Tor 網路分享</string>
-  <string name="pref_transparent_tethering_summary">讓 Tor 的透明代理也適用到從 Wifi 和 USB 分享本機網路的裝置(需要重新啟動)</string>
+  <string name="pref_transparent_tethering_summary">讓 Tor 的透明代理也適用到從 Wi-Fi 和 USB 分享本機網路的裝置(需要重新啟動)</string>
   <string name="button_grant_superuser">要求 Superuser 權限</string>
   <string name="pref_select_apps">選擇應用程式</string>
   <string name="pref_select_apps_summary">選擇要繞經 Tor 的應用程式</string>

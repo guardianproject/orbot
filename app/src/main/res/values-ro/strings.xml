@@ -115,7 +115,7 @@
   <string name="wizard_transproxy_hint">(Bifeaza asta daca nu ai idee despre ce vorbim)</string>
   <string name="wizard_transproxy_none">Nimic</string>
   <string name="pref_transparent_tethering_title">Partajarea conexiunii Tor</string>
-  <string name="pref_transparent_tethering_summary">Activeaza proxy transparent pentru conexiuni partajate prin WiFi si USB (necesita restart)</string>
+  <string name="pref_transparent_tethering_summary">Activeaza proxy transparent pentru conexiuni partajate prin Wi-Fi si USB (necesita restart)</string>
   <string name="button_grant_superuser">Cere acces Superuser</string>
   <string name="pref_select_apps">Selecteaza aplicatii</string>
   <string name="pref_select_apps_summary">Alege aplicatii care sa foloseasca Tor</string>

@@ -115,7 +115,7 @@
   <string name="wizard_transproxy_hint">(Sprawdź tutaj, jeśli nie masz pojęcia o czym mówimy)</string>
   <string name="wizard_transproxy_none">Brak</string>
   <string name="pref_transparent_tethering_title">Przywiązywanie Tora</string>
-  <string name="pref_transparent_tethering_summary">Włącz Transparentne Proxy Tora dla Wifi i USB (wymaga restartu)</string>
+  <string name="pref_transparent_tethering_summary">Włącz Transparentne Proxy Tora dla Wi-Fi i USB (wymaga restartu)</string>
   <string name="button_grant_superuser">Żądanie dostępu Superużytkownika</string>
   <string name="pref_select_apps">Wybierz aplikacje</string>
   <string name="pref_select_apps_summary">Wybierz aplikacje do przejścia przez Tor</string>

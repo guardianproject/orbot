@@ -100,7 +100,7 @@
   <string name="wizard_transproxy_hint">(Marque esta caixa se non ten nin idea do que lle estamos a falar)</string>
   <string name="wizard_transproxy_none">Ningunha</string>
   <string name="pref_transparent_tethering_title">Tor Tethering</string>
-  <string name="pref_transparent_tethering_summary">Habilitar Proxy Transparente Tor para dispositivos enlazados por Wifi ou USB (require reiniciar)</string>
+  <string name="pref_transparent_tethering_summary">Habilitar Proxy Transparente Tor para dispositivos enlazados por Wi-Fi ou USB (require reiniciar)</string>
   <string name="button_grant_superuser">Pedir Acceso de Superusuario</string>
   <string name="pref_select_apps">Seleccionar Aplicativos</string>
   <string name="pref_select_apps_summary">Elixir Aplicativos a Enrutar a Través de Tor</string>

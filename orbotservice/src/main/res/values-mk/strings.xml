@@ -112,7 +112,7 @@
   <string name="wizard_transproxy_hint">(Селектирајте го ова поле ако не разбирате за што зборуваме)</string>
   <string name="wizard_transproxy_none">Ништо</string>
   <string name="pref_transparent_tethering_title">Tor поврзување</string>
-  <string name="pref_transparent_tethering_summary">Овозможи транспарентно проксирање на Tor за уреди поврзани преку Wifi и USB  (бара рестартирање)</string>
+  <string name="pref_transparent_tethering_summary">Овозможи транспарентно проксирање на Tor за уреди поврзани преку Wi-Fi и USB  (бара рестартирање)</string>
   <string name="button_grant_superuser">Барање за пристап до администратор на системот</string>
   <string name="pref_select_apps">Изберете апликации</string>
   <string name="pref_select_apps_summary">Одбери апликации кои ќе се поврзуваат преку Тор</string>

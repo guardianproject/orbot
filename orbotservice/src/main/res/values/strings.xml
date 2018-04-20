@@ -117,7 +117,7 @@
   <string name="wizard_transproxy_hint">(Check this box if you have no idea what we are talking about)</string>
   <string name="wizard_transproxy_none">None</string>
   <string name="pref_transparent_tethering_title">Tor Tethering</string>
-  <string name="pref_transparent_tethering_summary">Enable Tor Transparent Proxying for Wifi and USB Tethered Devices (requires restart)</string>
+  <string name="pref_transparent_tethering_summary">Enable Tor Transparent Proxying for Wi-Fi and USB Tethered Devices (requires restart)</string>
   <string name="button_grant_superuser">Request Superuser Access</string>
   <string name="pref_select_apps">Select Apps</string>
   <string name="pref_select_apps_summary">Choose Apps to Route Through Tor</string>

@@ -117,7 +117,7 @@
   <string name="wizard_transproxy_hint">(Vink dit aan als je geen idee hebt waarover we het hebben)</string>
   <string name="wizard_transproxy_none">Geen</string>
   <string name="pref_transparent_tethering_title">Tor tetheren</string>
-  <string name="pref_transparent_tethering_summary">Schakel Tor transparante proxy voor WiFi en USB-getheterde toestellen in (vereist herstart)</string>
+  <string name="pref_transparent_tethering_summary">Schakel Tor transparante proxy voor Wi-Fi en USB-getheterde toestellen in (vereist herstart)</string>
   <string name="button_grant_superuser">Vraag Superuser-toegang aan</string>
   <string name="pref_select_apps">Kies applicaties</string>
   <string name="pref_select_apps_summary">Kies applicaties om via Tor te draaien</string>

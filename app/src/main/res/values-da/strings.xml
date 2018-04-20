@@ -102,7 +102,7 @@
   <string name="wizard_transproxy_hint">(Check denne boks hvis du ikke aner hvad vi snakker om)</string>
   <string name="wizard_transproxy_none">Ingen</string>
   <string name="pref_transparent_tethering_title">Tor internet-hotspot</string>
-  <string name="pref_transparent_tethering_summary">Start Tor gennemsigtig proxy for Wifi og internetdeling over USB (kræver genstart)</string>
+  <string name="pref_transparent_tethering_summary">Start Tor gennemsigtig proxy for Wi-Fi og internetdeling over USB (kræver genstart)</string>
   <string name="button_grant_superuser">Anmod om Superuser adgang</string>
   <string name="pref_select_apps">Vælg apps</string>
   <string name="pref_select_apps_summary">Vælg apps som føres gennem Tor</string>

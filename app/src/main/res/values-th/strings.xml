@@ -85,7 +85,7 @@
   <string name="wizard_transproxy_hint">(ติ๊กตัวเลือกนี้ถ้าคุณไม่เข้าใจเรื่องที่เรากำลังอธิบาย)</string>
   <string name="wizard_transproxy_none">ไม่มี</string>
   <string name="pref_transparent_tethering_title">การเชื่อมต่อพ่วงผ่าน Tor</string>
-  <string name="pref_transparent_tethering_summary">เปิดใช้งานพร็อกซีล่องหนของ Tor ให้อุปกรณ์อื่นที่เชื่อมผ่าน Wifi และ USB (ต้องเริ่มใหม่)</string>
+  <string name="pref_transparent_tethering_summary">เปิดใช้งานพร็อกซีล่องหนของ Tor ให้อุปกรณ์อื่นที่เชื่อมผ่าน Wi-Fi และ USB (ต้องเริ่มใหม่)</string>
   <string name="button_grant_superuser">ร้องขอการเข้าถึงสิทธิ์ Superuser</string>
   <string name="pref_select_apps">เลือกโปรแกรม</string>
   <string name="pref_select_apps_summary">เลือกโปรแกรมที่จะให้เชื่อมต่อผ่าน Tor</string>

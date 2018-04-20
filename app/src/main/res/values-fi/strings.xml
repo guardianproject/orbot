@@ -115,7 +115,7 @@
   <string name="wizard_transproxy_hint">(Rastita tämä ruutu, jos et tiedä, mitä tarkoitamme)</string>
   <string name="wizard_transproxy_none">Ei mikään</string>
   <string name="pref_transparent_tethering_title">Tor-välityspalvelimena oleminen</string>
-  <string name="pref_transparent_tethering_summary">Salli Torin läpinäkyvä tiedonvälitys Wifille ja USB-välityspalvelimena oleville laitteille (vaatii uudelleenkäynnistyksen)</string>
+  <string name="pref_transparent_tethering_summary">Salli Torin läpinäkyvä tiedonvälitys Wi-Fille ja USB-välityspalvelimena oleville laitteille (vaatii uudelleenkäynnistyksen)</string>
   <string name="button_grant_superuser">Pyydä Superuser-oikeuksia</string>
   <string name="pref_select_apps">Valitse sovellukset</string>
   <string name="pref_select_apps_summary">Valitse Torin läpi reititettävät sovellukset</string>

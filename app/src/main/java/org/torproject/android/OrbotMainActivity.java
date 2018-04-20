@@ -521,14 +521,14 @@ public class OrbotMainActivity extends AppCompatActivity
             .show();
         }
 
-    public static String readFromAssets(Context context, String filename) throws IOException {
+    private static String readFromAssets(Context context, String filename) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(context.getAssets().open(filename)));
 
         // do reading, usually loop until end of file reading
         StringBuilder sb = new StringBuilder();
         String mLine = reader.readLine();
         while (mLine != null) {
-            sb.append(mLine); // process line
+            sb.append(mLine + '\n'); // process line
             mLine = reader.readLine();
         }
         reader.close();

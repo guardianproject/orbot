@@ -112,7 +112,7 @@
   <string name="wizard_transproxy_hint">(Hakaðu í þenna reit ef þú hefur enga hugmynd um hvað við erum að tala)</string>
   <string name="wizard_transproxy_none">Engin</string>
   <string name="pref_transparent_tethering_title">Tor Netaðgangspunktur</string>
-  <string name="pref_transparent_tethering_summary">Leyfa Tor Gegnsæja Proxýun fyrir WiFi og USB Tæki með Netaðgengi (þarfnast endurræsingar)</string>
+  <string name="pref_transparent_tethering_summary">Leyfa Tor Gegnsæja Proxýun fyrir Wi-Fi og USB Tæki með Netaðgengi (þarfnast endurræsingar)</string>
   <string name="button_grant_superuser">Biðja um Ofurnotandaréttindi</string>
   <string name="pref_select_apps">Velja Smáforrit</string>
   <string name="pref_select_apps_summary">Velja Smáforrit til að Beina í gegnum Tor</string>
