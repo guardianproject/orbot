@@ -11,7 +11,7 @@
       </trans-unit>
       <trans-unit id="shortdescription" maxwidth="80" size-unit="char">
         <source>Protect your privacy with this proxy with Tor</source>
-        <target>Protegiu la vostra privadesa amb aquest servidor intermediari amb Tor</target>
+        <target>Protegiu la vostra privacitat amb aquest servidor intermediari amb Tor</target>
         <note from="developer">This is limited by Google to 80 characters</note>
       </trans-unit>
       <trans-unit id="intro">

@@ -11,6 +11,7 @@
       </trans-unit>
       <trans-unit id="shortdescription" maxwidth="80" size-unit="char">
         <source>Protect your privacy with this proxy with Tor</source>
+        <target>தோர் உடன் இந்த ப்ராக்ஸி மூலம் உங்கள் தனியுரிமையைப் பாதுகாக்கவும்</target>
         <note from="developer">This is limited by Google to 80 characters</note>
       </trans-unit>
       <trans-unit id="intro">
@@ -19,6 +20,7 @@
       </trans-unit>
       <trans-unit id="intro2">
         <source>Orbot is the only app that creates a truly private internet connection. As the New York Times writes, “when a communication arrives from Tor, you can never know where or whom it’s from.” Tor won the 2012 Electronic Frontier Foundation (EFF) Pioneer Award.</source>
+        <target>பயன்பாடுகளில் ஆர்பாட் மட்டுமே ஒரு உண்மையுள்ள இணைய சேவையை உருவாக்கும். நியூயோர்க் டைம்ஸ் எழுதியது போல், &quot;தோரில் இருந்து ஒரு தகவல் வந்தால், எங்கிருந்து அல்லது யாரிடம் இருந்து வந்தது என்பதை நீங்கள் ஒருபோதும் அறிய முடியாது.&quot; தோர் 2012 எலக்ட்ரானிக் ஃபிரண்டியர் பவுண்டேஷன் (EFF) முன்னோடிக்கான விருது பெற்றது.</target>
       </trans-unit>
       <trans-unit id="intro2">
         <source>ACCEPT NO SUBSTITUTES: Orbot is the safest way to use the Internet on Android. Period. Orbot bounces your encrypted traffic several times through computers around the world, instead of connecting you directly like VPNs and proxies. This process takes a little longer, but the strongest privacy and identity protection available is worth the wait.</source>
@@ -39,48 +41,65 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="expertrootmode">
         <source>***Expert Root Mode***</source>
+        <target>***நிபுண ரூட் முறை***</target>
       </trans-unit>
       <trans-unit id="universalmode">
         <source>UNIVERSAL MODE: Orbot can be configured to transparently proxy all of your Internet traffic through Tor. You can also choose which specific apps you want to use through Tor.</source>
+        <target>உலகளாவிய முறை: தோர் மூலம் உங்கள் இணையம் முழுவதையும் வெளிப்படையாக ப்ராக்ஸி செய்யும்படி ஆர்பாட் ஐ கட்டமைக்க முடியும். தோர் மூலம் நீங்கள் பயன்படுத்த விரும்பும் குறிப்பிட்ட பயன்பாடுகளையும் நீங்கள் தேர்வு செய்யலாம்.</target>
       </trans-unit>
       <trans-unit id="wespeakyourlanguage">
         <source>★ WE SPEAK YOUR LANGUAGE: Orbot is available for friends who speak:</source>
+        <target>நாங்கள் உங்கள் மொழியை பேசுகிறோம்: பேசும் நண்பர்களுக்காக ஆர்பாட் தயாராக உள்ளது:</target>
       </trans-unit>
       <trans-unit id="languagelist" translate="no">
         <source>العربية, azərbaycanca, български, català, Čeština, dansk, Deutsch, Ελληνικά, English, español, eesti, euskara, فارسی, suomi, français, galego, hrvatski, magyar, עברית, íslenska, italiano, 日本語, 한국어, lietuvių, latviešu, Македонци, Bahasa Melayu, Nederlands, norsk, polski, português, Русский, slovenčina, slovenščina, српски, svenska, Türkçe, українська, Tagalog, Tiếng Việt, 中文(简体), 中文(台灣)</source>
+        <target>العربية, azərbaycanca, български, català, Čeština, dansk, Deutsch, Ελληνικά, English, español, eesti, euskara, فارسی, suomi, français, galego, hrvatski, magyar, עברית, íslenska, italiano, 日本語, 한국어, lietuvių, latviešu, Македонци, Bahasa Melayu, Nederlands, norsk, polski, português, Русский, slovenčina, slovenščina, српски, svenska, Türkçe, українська, Tagalog, Tiếng Việt, 中文(简体), 中文(台灣)
+</target>
         <note from="developer">Do not translate the names of the languages, leave them just like this.</note>
       </trans-unit>
       <trans-unit id="helptranslate">
         <source>Don’t see your language? Join us and help translate the app:</source>
+        <target>உங்கள் மொழியைப் பார்க்கவில்லையா? எங்களுடன் இணையுங்கள் மேலும் பயன்பாட்டை மொழிபெயர்க்க உதவுங்கள்:</target>
       </trans-unit>
       <trans-unit id="helptranslateurl" translate="no">
         <source>https://www.transifex.com/projects/p/orbot</source>
+        <target>https://www.transifex.com/projects/p/orbot</target>
         <note from="developer">Do not translate this.</note>
       </trans-unit>
       <trans-unit id="learnmore">
         <source>***Learn More***</source>
+        <target>***மேலும் அறிய***</target>
       </trans-unit>
       <trans-unit id="aboutus">
         <source>★ ABOUT US: Guardian Project is a group of developers that make secure mobile apps and open-source code for a better tomorrow</source>
+        <target>எங்களை பற்றி: பாதுகாப்பான மொபைல் பயன்பாடுகள் மற்றும் ஒரு சிறந்த மூலக் குறியீட்டை உருவாக்கும் நாளைய திறந்த மேம்பாட்டாளர்களின் குழு ஆகும்</target>
       </trans-unit>
       <trans-unit id="ourwebsite">
         <source>★ OUR WEBSITE: https://GuardianProject.info</source>
+        <target>எங்கள் வலைத்தளம்: https://GuardianProject.info </target>
       </trans-unit>
       <trans-unit id="abouttor">
         <source>★ ABOUT TOR: https://TorProject.org</source>
+        <target>தோர் பற்றி: https://TorProject.org</target>
       </trans-unit>
       <trans-unit id="ontwitter">
         <source>★ ON TWITTER: https://twitter.com/guardianproject</source>
+        <target>டிவிட்டரில்: https://twitter.com/guardianproject
+</target>
       </trans-unit>
       <trans-unit id="freesoftware">
         <source>★ FREE SOFTWARE: Orbot is free software. Take a look at our source code, or join the community to make it better:</source>
+        <target>இலவச மென்பொருள்: ஆர்பாட் ஒரு இலவச மென்பொருளாகும். எங்கள் மூலக் குறியீட்டைப் பார்க்கவும் மேலும் அதைச் சிறந்ததாக்க சமூகத்துடன் இணையுங்கள்:</target>
       </trans-unit>
       <trans-unit id="gitrepo" translate="no">
         <source>https://gitweb.torproject.org/orbot.git</source>
+        <target>https://gitweb.torproject.org/orbot.git
+</target>
         <note from="developer">Do not translate this.</note>
       </trans-unit>
       <trans-unit id="messageus">
         <source>★ MESSAGE US: Are we missing your favorite feature? Found an annoying bug? Please tell us! We’d love to hear from you. Send us an email: support@guardianproject.info or find us in our chat room https://guardianproject.info/contact</source>
+        <target>எங்களுக்கு செய்தி அனுப்புங்கள்: உங்களுக்கு பிடித்த அம்சத்தை நாங்கள் காணவில்லையா? ஒரு எரிச்சலூட்டும் பிழை உள்ளதா? தயவு செய்து எங்களுக்கு தெரியப்படுத்துங்கள்! உங்களிடமிருந்து நாங்கள் கேட்க விரும்புகிறோம். எங்களுக்கு ஒரு மின்அஞ்சல் அனுப்பவும்:  support@guardianproject.info அல்லது எங்களது அரட்டை அறையில் எங்களை கண்டறியவும் https://guardianproject.info/contact</target>
       </trans-unit>
     </body>
   </file>

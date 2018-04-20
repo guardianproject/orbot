@@ -21,7 +21,7 @@ Orbot este o aplicaţie gratuită de proxy care permite altor aplicaţii să fol
       </trans-unit>
       <trans-unit id="intro2">
         <source>Orbot is the only app that creates a truly private internet connection. As the New York Times writes, “when a communication arrives from Tor, you can never know where or whom it’s from.” Tor won the 2012 Electronic Frontier Foundation (EFF) Pioneer Award.</source>
-        <target>Orbot este singura aplicaţie care creează o conexiune de internet cu adevărat privată. Cum scria New York Times, &quot;cand vine o conexiune din Tor, nu ai de unde să ştii de unde şi de la cine este&quot;. Tor a câştigat premiul Pioneer la Electronic Frontier Foundation (EFF) în 2012.</target>
+        <target>Orbot este singura aplicaţie care creează o conexiune de internet cu adevărat privată. Cum scria New York Times, &quot;când vine o conexiune din Tor, nu ai de unde să ştii de unde şi de la cine este&quot;. Tor a câştigat premiul Pioneer la Electronic Frontier Foundation (EFF) în 2012.</target>
       </trans-unit>
       <trans-unit id="intro2">
         <source>ACCEPT NO SUBSTITUTES: Orbot is the safest way to use the Internet on Android. Period. Orbot bounces your encrypted traffic several times through computers around the world, instead of connecting you directly like VPNs and proxies. This process takes a little longer, but the strongest privacy and identity protection available is worth the wait.</source>

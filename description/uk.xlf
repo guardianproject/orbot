@@ -16,11 +16,11 @@
       </trans-unit>
       <trans-unit id="intro">
         <source>Orbot is a free proxy app that empowers other apps to use the internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.</source>
-        <target>Orbot — це вільна програма для проксі-з'єднань, яка дозволяє іншим додаткам безпечніше використовувати інтернет-з'єднання. Orbot використовує Tor для шифрування інтернет-трафіку, який далі приховується під час пересилання через кілька комп'ютерів у різних частинах планети. Tor є вільним програмним забезпеченням, а також відкритою мережею, що допомагає захиститися від мережевого стеження, яке загрожує особистій свободі та приватному життю, конфіденційній бізнес-діяльності і контактам, а також державної програми безпеки, що відома як аналіз трафіку.</target>
+        <target>Orbot — це вільна програма для проксі-з'єднань, яка дозволяє іншим застосункам безпечніше використовувати інтернет-з'єднання. Orbot використовує Tor для шифрування інтернет-трафіку, який далі приховується під час пересилання через кілька комп'ютерів у різних частинах планети. Tor є вільним програмним забезпеченням, а також відкритою мережею, що допомагає захиститися від мережевого стеження, яке загрожує особистій свободі та приватному життю, конфіденційній бізнес-діяльності і контактам, а також державної програми безпеки, що відома як аналіз трафіку.</target>
       </trans-unit>
       <trans-unit id="intro2">
         <source>Orbot is the only app that creates a truly private internet connection. As the New York Times writes, “when a communication arrives from Tor, you can never know where or whom it’s from.” Tor won the 2012 Electronic Frontier Foundation (EFF) Pioneer Award.</source>
-        <target>Orbot — це єдиний додаток, який створює дійсно конфіденційне з'єднання. Як повідомляє видання New York Times, «коли з'єднання надходить з мережі Tor, неможливо дізнатись, від кого воно чи звідки». Tor отримав нагороду Pioneer Award від Фонду Електронних Рубежів (EFF, Electronic Frontier Foundation) 2012 року.</target>
+        <target>Orbot — це єдина програмка, що створює дійсно конфіденційне з'єднання. Як повідомляє видання New York Times, «коли з'єднання надходить з мережі Tor, неможливо дізнатись, від кого воно чи звідки». Tor отримав нагороду Pioneer Award від Фонду Електронних Рубежів (EFF, Electronic Frontier Foundation) 2012 року.</target>
       </trans-unit>
       <trans-unit id="intro2">
         <source>ACCEPT NO SUBSTITUTES: Orbot is the safest way to use the Internet on Android. Period. Orbot bounces your encrypted traffic several times through computers around the world, instead of connecting you directly like VPNs and proxies. This process takes a little longer, but the strongest privacy and identity protection available is worth the wait.</source>
@@ -45,7 +45,7 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="universalmode">
         <source>UNIVERSAL MODE: Orbot can be configured to transparently proxy all of your Internet traffic through Tor. You can also choose which specific apps you want to use through Tor.</source>
-        <target>УНІВЕРСАЛЬНИЙ РЕЖИМ: можна налаштувати Orbot для прозорого пропускання всього трафіку через Tor. Також Ви можете вибрати конкретні додатки, трафік яких потрібно пропускати через Tor.</target>
+        <target>УНІВЕРСАЛЬНИЙ РЕЖИМ: можна налаштувати Orbot для прозорого пропускання всього трафіку через Tor. Також Ви можете вибрати конкретні застосунки, трафік яких потрібно пропускати через Tor.</target>
       </trans-unit>
       <trans-unit id="wespeakyourlanguage">
         <source>★ WE SPEAK YOUR LANGUAGE: Orbot is available for friends who speak:</source>

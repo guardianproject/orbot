@@ -6,7 +6,7 @@
     <body>
       <trans-unit id="title" maxwidth="30" size-unit="char">
         <source>Orbot</source>
-        <target>ربات پیازی</target>
+        <target>اوربات</target>
         <note from="developer">This is limited by Google to 30 characters</note>
       </trans-unit>
       <trans-unit id="shortdescription" maxwidth="80" size-unit="char">
