@@ -20,11 +20,6 @@
                         //this is the class registered in AndroidManifest.xml to handle Onboot events
                         //to start Orbot/Tor when the device boots if the user has elected to do so - what kind of permissions does this require?
                         //                 <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-                        // BTW, this shows up as a fairly unintrusive type perm request now in Android / in older versions (1.6 and earlier)
-                        // it was reported "as read / monitor phone state" and paranoid Tor-types didn't like the idea of it
-                        // in 1.6+ it has a much better UX in terms of having a more granular permisions around boot since it is a very
-                        // common request - ah , that's awesome, i think i remember seeing sth of this sorts when i was going through the guardianproject mailing list. iirc this is something ioerror wanted
-                        
             
             ├── OrbotMainActivity.java
                     //our wonderful main activity!
