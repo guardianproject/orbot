@@ -11,13 +11,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
 
-import org.torproject.android.BuildConfig;
 import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.R;
 import org.torproject.android.service.util.TorServiceUtils;
 import org.torproject.android.service.vpn.TorifiedApp;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -25,6 +23,7 @@ import android.content.SharedPreferences.Editor;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -40,12 +39,14 @@ import android.widget.CheckBox;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class AppManagerActivity extends AppCompatActivity implements OnClickListener, OrbotConstants {
 
     private GridView listApps;
     private ListAdapter adapterApps;
+    private ProgressBar progressBar;
     private final static String TAG = "Orbot";
     PackageManager pMgr = null;
 
@@ -57,7 +58,8 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
         this.setContentView(R.layout.layout_apps);
         setTitle(R.string.apps_mode);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        listApps = findViewById(R.id.applistview);
+        progressBar = findViewById(R.id.progressBar);
     }
 
     /*
@@ -94,20 +96,15 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
     @Override
     protected void onResume() {
         super.onResume();
-        listApps = (GridView) findViewById(R.id.applistview);
         mPrefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
         reloadApps();
     }
 
     private void reloadApps () {
-
         new AsyncTask<Void, Void, Void>() {
-            private ProgressDialog dialog;
-
             protected void onPreExecute() {
                 // Pre Code
-                dialog = new ProgressDialog(AppManagerActivity.this, android.support.v4.app.DialogFragment.STYLE_NO_TITLE);
-                dialog.show();
+                progressBar.setVisibility(View.VISIBLE);
             }
             protected Void doInBackground(Void... unused) {
                 loadApps(mPrefs);
@@ -115,7 +112,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
             }
             protected void onPostExecute(Void unused) {
                 listApps.setAdapter(adapterApps);
-                dialog.cancel();
+                progressBar.setVisibility(View.GONE);
             }
         }.execute();
 
