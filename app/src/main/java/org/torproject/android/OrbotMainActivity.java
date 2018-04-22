@@ -92,7 +92,6 @@ import com.google.zxing.integration.android.IntentResult;
 import pl.bclogic.pulsator4droid.library.PulsatorLayout;
 
 import static android.support.v4.content.FileProvider.getUriForFile;
-import static org.torproject.android.binary.TorServiceConstants.BINARY_TOR_VERSION;
 
 public class OrbotMainActivity extends AppCompatActivity
         implements OrbotConstants, OnLongClickListener {
@@ -499,7 +498,7 @@ public class OrbotMainActivity extends AppCompatActivity
             String version = "";
             
             try {
-                version = getPackageManager().getPackageInfo(getPackageName(), 0).versionName + " (Tor " + BINARY_TOR_VERSION + ")";
+                version = getPackageManager().getPackageInfo(getPackageName(), 0).versionName + " (Tor " + TorService.TOR_VERSION + ")";
             } catch (NameNotFoundException e) {
                 version = "Version Not Found";
             }
@@ -1161,7 +1160,7 @@ public class OrbotMainActivity extends AppCompatActivity
         } else if (torStatus == TorServiceConstants.STATUS_OFF) {
 
             imgStatus.setImageResource(R.drawable.toroff);
-            lblStatus.setText("Tor v" + BINARY_TOR_VERSION);
+            lblStatus.setText("Tor v" + TorService.TOR_VERSION);
 			mBtnStart.setText(R.string.menu_start);
             mPulsator.start();
 
