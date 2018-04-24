@@ -307,6 +307,7 @@ public class OrbotVpnManager implements Handler.Callback {
 		    		        + String.valueOf(mTorSocks);
 		    		
 		    		final String localDNS = virtualGateway + ':' + "8091";//String.valueOf(TorServiceConstants.TOR_DNS_PORT_DEFAULT);
+					//final String localDNS = virtualGateway + ":" + DEFAULT_ACTUAL_DNS_PORT;
 		    		final boolean localDnsTransparentProxy = true;
 		        	
 			        builder.setMtu(VPN_MTU);
@@ -400,14 +401,15 @@ public class OrbotVpnManager implements Handler.Callback {
     
     }
 
+
     private void startDNS (String dns, int port) throws IOException, TimeoutException
     {
-    	makePdnsdConf(mService, dns, port,filePdnsd.getParentFile() );
+
+		makePdnsdConf(mService, dns, port,filePdnsd.getParentFile());
     	
         ArrayList<String> customEnv = new ArrayList<String>();
-    	String baseDirectory = filePdnsd.getParent();
 
-        String[] cmdString = {filePdnsd.getCanonicalPath(),"-c",baseDirectory + "/pdnsd.conf"};
+        String[] cmdString = {filePdnsd.getCanonicalPath(),"-c",filePdnsd.getParent() + "/pdnsd.conf"};
         ProcessBuilder pb = new ProcessBuilder(cmdString);
         pb.redirectErrorStream(true);
 		Process proc = pb.start();
@@ -429,8 +431,8 @@ public class OrbotVpnManager implements Handler.Callback {
         
     }
     
-    public static void makePdnsdConf(Context context, String dns, int port, File fileDir) throws FileNotFoundException {
-        String conf = String.format(context.getString(R.string.pdnsd_conf), dns, port);
+    public static void makePdnsdConf(Context context, String dns, int port, File fileDir) throws FileNotFoundException, IOException {
+        String conf = String.format(context.getString(R.string.pdnsd_conf), dns, port, fileDir.getCanonicalPath());
 
         File f = new File(fileDir,"pdnsd.conf");
 
@@ -452,7 +454,7 @@ public class OrbotVpnManager implements Handler.Callback {
 
                 }
         }
-}
+	}
 
     
 }
