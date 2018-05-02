@@ -4,6 +4,7 @@ package org.torproject.android.service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.text.TextUtils;
 
 import org.torproject.android.service.util.Prefs;
@@ -23,7 +24,13 @@ public class StartTorReceiver extends BroadcastReceiver implements TorServiceCon
                 startTorIntent.setAction(action);
                 if (packageName != null)
                     startTorIntent.putExtra(EXTRA_PACKAGE_NAME, packageName);
-                context.startService(startTorIntent);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    context.startForegroundService(startTorIntent);
+                }
+                else
+                {
+                    context.startService(startTorIntent);
+                }
             } else if (!TextUtils.isEmpty(packageName)) {
                 // let the requesting app know that the user has disabled
                 // starting via Intent

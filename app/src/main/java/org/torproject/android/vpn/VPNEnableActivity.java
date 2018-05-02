@@ -12,6 +12,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.VpnService;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -122,7 +123,13 @@ public class VPNEnableActivity extends AppCompatActivity {
 		private void sendIntentToService(String action) {
 			Intent torService = new Intent(this, TorService.class);    
 			torService.setAction(action);
-			startService(torService);
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+				startForegroundService(torService);
+			}
+			else
+			{
+				startService(torService);
+			}
 
 
 		}

@@ -4,6 +4,7 @@ package org.torproject.android;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.TorService;
@@ -33,6 +34,7 @@ public class OnBootReceiver extends BroadcastReceiver {
 		   Intent intent = new Intent(context,VPNEnableActivity.class);
            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
            context.startActivity(intent);
+
     	}
 
 	private void startService (String action, Context context)
@@ -40,7 +42,13 @@ public class OnBootReceiver extends BroadcastReceiver {
 		
 		Intent torService = new Intent(context, TorService.class);
 		torService.setAction(action);
-		context.startService(torService);
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+			context.startForegroundService(torService);
+		}
+		else
+		{
+			context.startService(torService);
+		}
 
 	}
 	
