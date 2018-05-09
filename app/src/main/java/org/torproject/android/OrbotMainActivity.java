@@ -425,12 +425,6 @@ public class OrbotMainActivity extends AppCompatActivity
         super.onCreateOptionsMenu(menu);
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.orbot_main, menu);
-
-        //We don't support these on per SDK 23
-        if (BuildConfig.FLAVOR.equals("minimalperm")) {
-            menu.findItem(R.id.menu_hidden_services_main).setVisible(false);
-        }
-
         return true;
     }
     
