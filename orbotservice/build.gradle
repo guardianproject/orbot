@@ -7,7 +7,6 @@ android {
     sourceSets {
         main {
             jni.srcDirs = []
-
         }
     }
 
@@ -28,9 +27,9 @@ android {
 
 dependencies {
     implementation project(':jsocksAndroid')
-    implementation 'org.torproject:tor-android-binary:0.3.2.10'
+    implementation 'org.torproject:tor-android-binary:0.3.2.10-dev'
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.jrummyapps:android-shell:1.0.1'
-    implementation fileTree(dir: 'libs', include: ['*.jar','*.so'])
+    implementation fileTree(dir: 'libs', include: ['.so'])
     testImplementation 'junit:junit:4.12'
 }
