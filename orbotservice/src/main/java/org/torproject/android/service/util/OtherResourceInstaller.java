@@ -3,6 +3,7 @@ package org.torproject.android.service.util;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -16,6 +17,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
 import android.os.Build;
 import android.util.Log;
 
@@ -74,18 +76,26 @@ public class OtherResourceInstaller implements TorServiceConstants {
         if (!installFolder.exists())
             installFolder.mkdirs();
 
-        is = context.getAssets().open(cpuPath + '/' + OBFSCLIENT_ASSET_KEY + MP3_EXT);
+     //   is = context.getAssets().open(cpuPath + '/' + OBFSCLIENT_ASSET_KEY + MP3_EXT);
+        is = new FileInputStream(new File(getNativeLibraryDir(context),OBFSCLIENT_ASSET_KEY + ".so"));
         outFile = new File(installFolder, OBFSCLIENT_ASSET_KEY);
         streamToFile(is,outFile, false, true);
         setExecutable(outFile);
 
-        is = context.getAssets().open(cpuPath + '/' + PDNSD_ASSET_KEY + MP3_EXT);
+//        is = context.getAssets().open(cpuPath + '/' + PDNSD_ASSET_KEY + MP3_EXT);
+        is = new FileInputStream(new File(getNativeLibraryDir(context),PDNSD_ASSET_KEY + ".so"));
         outFile = new File(installFolder, PDNSD_ASSET_KEY);
         streamToFile(is,outFile, false, true);
         setExecutable(outFile);
 
 
         return true;
+    }
+
+    // Return Full path to the directory where native JNI libraries are stored.
+    private static String getNativeLibraryDir(Context context) {
+        ApplicationInfo appInfo = context.getApplicationInfo();
+        return appInfo.nativeLibraryDir;
     }
 
     public boolean updateTorConfigCustom (File fileTorRcCustom, String extraLines) throws IOException, FileNotFoundException, TimeoutException
