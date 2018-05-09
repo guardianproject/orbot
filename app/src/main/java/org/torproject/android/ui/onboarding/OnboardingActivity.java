@@ -17,6 +17,7 @@ import com.github.paolorotolo.appintro.AppIntro;
 import org.torproject.android.R;
 import org.torproject.android.settings.LocaleHelper;
 import org.torproject.android.ui.AppManagerActivity;
+import org.torproject.android.ui.hiddenservices.permissions.PermissionManager;
 import org.torproject.android.vpn.VPNEnableActivity;
 
 import java.util.List;
@@ -49,21 +50,22 @@ public class OnboardingActivity extends AppIntro {
         });
         addSlide(cs2);
 
-        CustomSlideBigText cs3 = CustomSlideBigText.newInstance(R.layout.custom_slide_big_text);
-        cs3.setTitle(getString(R.string.vpn_setup));
-        cs3.setSubTitle(getString(R.string.vpn_setup_sub));
-        cs3.showButton(getString(R.string.action_vpn_choose), new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(OnboardingActivity.this, VPNEnableActivity.class));
-                startActivityForResult(new Intent(OnboardingActivity.this, AppManagerActivity.class), 9999);
+        if (PermissionManager.isLollipopOrHigher()) {
 
-            }
-        });
-        addSlide(cs3);
+            CustomSlideBigText cs3 = CustomSlideBigText.newInstance(R.layout.custom_slide_big_text);
+            cs3.setTitle(getString(R.string.vpn_setup));
+            cs3.setSubTitle(getString(R.string.vpn_setup_sub));
+            cs3.showButton(getString(R.string.action_vpn_choose), new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(OnboardingActivity.this, VPNEnableActivity.class));
+                    startActivityForResult(new Intent(OnboardingActivity.this, AppManagerActivity.class), 9999);
 
+                }
+            });
+            addSlide(cs3);
 
-
+        }
 
         // OPTIONAL METHODS
         // Override bar/separator color.
