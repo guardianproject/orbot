@@ -297,8 +297,8 @@ public class OrbotVpnManager implements Handler.Callback {
 		    		final String vpnName = "OrbotVPN";
 		    		final String localhost = "127.0.0.1";
 
-		    		final String virtualGateway = "10.10.10.1";
-		    		final String virtualIP = "10.10.10.2";
+		    		final String virtualGateway = "192.168.200.1";
+		    		final String virtualIP = "192.168.200.2";
 		    		final String virtualNetMask = "255.255.255.0";
 		    		final String dummyDNS = "1.1.1.1"; //this is intercepted by the tun2socks library, but we must put in a valid DNS to start
 		    		final String defaultRoute = "0.0.0.0";
