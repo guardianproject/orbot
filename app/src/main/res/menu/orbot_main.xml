@@ -21,7 +21,15 @@
     xmlns:yourapp="http://schemas.android.com/apk/res-auto"
     >
 
- <item android:id="@+id/menu_settings"
+
+    <item android:id="@+id/menu_newnym"
+        android:title="@string/newnym"
+        android:icon="@drawable/ic_refresh_white_24dp"
+        yourapp:showAsAction="always"
+        />
+
+
+    <item android:id="@+id/menu_settings"
         android:title="@string/menu_settings"
          android:icon="@drawable/ic_action_settings"
          yourapp:showAsAction="never"

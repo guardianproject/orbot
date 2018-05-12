@@ -25,6 +25,7 @@ import org.torproject.android.service.util.TorServiceUtils;
 import org.torproject.android.settings.LocaleHelper;
 import org.torproject.android.settings.SettingsPreferences;
 import org.torproject.android.ui.AppManagerActivity;
+import org.torproject.android.ui.Rotate3dAnimation;
 import org.torproject.android.ui.onboarding.BridgeWizardActivity;
 import org.torproject.android.ui.onboarding.OnboardingActivity;
 import org.torproject.android.ui.hiddenservices.ClientCookiesActivity;
@@ -75,6 +76,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnLongClickListener;
+import android.view.animation.AccelerateInterpolator;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -432,8 +434,12 @@ public class OrbotMainActivity extends AppCompatActivity
 
     @Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		
-    	 if (item.getItemId() == R.id.menu_settings)
+
+        if (item.getItemId() == R.id.menu_newnym)
+        {
+            requestNewTorIdentity();
+        }
+    	 else if (item.getItemId() == R.id.menu_settings)
          {
              Intent intent = new Intent(OrbotMainActivity.this, SettingsPreferences.class);
              startActivityForResult(intent, REQUEST_SETTINGS);
@@ -1315,6 +1321,22 @@ public class OrbotMainActivity extends AppCompatActivity
               
         
     }**/
+
+    private static final float ROTATE_FROM = 0.0f;
+    private static final float ROTATE_TO = 360.0f*4f;// 3.141592654f * 32.0f;
+
+    private void requestNewTorIdentity ()
+    {
+        sendIntentToService (TorServiceConstants.CMD_NEWNYM);
+
+        Rotate3dAnimation rotation = new Rotate3dAnimation(ROTATE_FROM, ROTATE_TO, imgStatus.getWidth()/2f,imgStatus.getWidth()/2f,20f,false);
+        rotation.setFillAfter(true);
+        rotation.setInterpolator(new AccelerateInterpolator());
+        rotation.setDuration((long) 2*1000);
+        rotation.setRepeatCount(0);
+        imgStatus.startAnimation(rotation);
+        lblStatus.setText(getString(R.string.newnym));
+    }
 
     private void addAppShortcuts ()
     {
