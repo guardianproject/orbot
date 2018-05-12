@@ -360,57 +360,79 @@ public class OrbotMainActivity extends AppCompatActivity
 			
 		});
 
-		String currentExit = Prefs.getExitNodes();
-		int selIdx = -1;
-		
-		ArrayList<String> cList = new ArrayList<String>();
-		cList.add(0, getString(R.string.vpn_default_world));
-	
-		for (int i = 0; i < TorServiceConstants.COUNTRY_CODES.length; i++)
-		{
-			Locale locale = new Locale("",TorServiceConstants.COUNTRY_CODES[i]);
-			cList.add(locale.getDisplayCountry());
-			
-			if (currentExit.contains(TorServiceConstants.COUNTRY_CODES[i]))
-				selIdx = i+1;
-		}
-		
-		spnCountries = (Spinner)findViewById(R.id.spinnerCountry);
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, cList);
-		spnCountries.setAdapter(adapter);
-		
-		if (selIdx != -1)
-			spnCountries.setSelection(selIdx);
-		
-		spnCountries.setOnItemSelectedListener(new OnItemSelectedListener() {
-		    @Override
-		    public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-		        // your code here
-		    	
-		    	String country = null;
-		    	
-		    	if (position == 0)
-		    		country = "";
-		    	else
-		    		country =  '{' + TorServiceConstants.COUNTRY_CODES[position-1] + '}';
-		    	
-		    	Intent torService = new Intent(OrbotMainActivity.this, TorService.class);    
-				torService.setAction(TorServiceConstants.CMD_SET_EXIT);
-				torService.putExtra("exit",country);
-				startService(torService);
-	    	
-		    }
-
-		    @Override
-		    public void onNothingSelected(AdapterView<?> parentView) {
-		        // your code here
-		    }
-
-		});
-
+        spnCountries = (Spinner)findViewById(R.id.spinnerCountry);
+        setCountrySpinner();
 
         mPulsator = (PulsatorLayout) findViewById(R.id.pulsator);
 
+    }
+
+    boolean firstTimeCountrySelect = true;
+
+    private void setCountrySpinner ()
+    {
+        String currentExit = Prefs.getExitNodes();
+        if (currentExit.length() > 4)
+        {
+            //someone put a complex value in, so let's disable
+            ArrayList<String> cList = new ArrayList<String>();
+            cList.add(0, currentExit);
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, cList);
+            spnCountries.setAdapter(adapter);
+
+            spnCountries.setEnabled(false);
+        }
+        else {
+            int selIdx = -1;
+
+            ArrayList<String> cList = new ArrayList<String>();
+            cList.add(0, getString(R.string.vpn_default_world));
+
+            for (int i = 0; i < TorServiceConstants.COUNTRY_CODES.length; i++) {
+                Locale locale = new Locale("", TorServiceConstants.COUNTRY_CODES[i]);
+                cList.add(locale.getDisplayCountry());
+
+                if (currentExit.contains(TorServiceConstants.COUNTRY_CODES[i]))
+                    selIdx = i + 1;
+            }
+
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, cList);
+            spnCountries.setAdapter(adapter);
+
+            if (selIdx > 0)
+                spnCountries.setSelection(selIdx,true);
+
+            spnCountries.setOnItemSelectedListener(new OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                    // your code here
+
+                    if (firstTimeCountrySelect) {
+                        firstTimeCountrySelect = false;
+                        return;
+                    }
+
+                    String country = null;
+
+                    if (position == 0)
+                        country = "";
+                    else
+                        country = '{' + TorServiceConstants.COUNTRY_CODES[position - 1] + '}';
+
+                    Intent torService = new Intent(OrbotMainActivity.this, TorService.class);
+                    torService.setAction(TorServiceConstants.CMD_SET_EXIT);
+                    torService.putExtra("exit", country);
+                    startService(torService);
+
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parentView) {
+                    // your code here
+                }
+
+            });
+        }
     }
 
     @Override
@@ -1025,6 +1047,8 @@ public class OrbotMainActivity extends AppCompatActivity
 
         mBtnBridges.setChecked(Prefs.bridgesEnabled());
         mBtnVPN.setChecked(Prefs.useVpn());
+
+        setCountrySpinner();
 
 		requestTorStatus();
 
