@@ -154,6 +154,9 @@
                 android:value=".OrbotMainActivity" />
         </activity>
 
+        <activity android:name=".ui.onboarding.OnboardingActivity"/>
+        <activity android:name=".ui.onboarding.BridgeWizardActivity"/>
+
         <provider
             android:name=".ui.hiddenservices.providers.CookieContentProvider"
             android:authorities="org.torproject.android.ui.hiddenservices.providers.cookie"
