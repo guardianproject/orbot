@@ -368,8 +368,12 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             expandedView.setOnClickPendingIntent(R.id.action_refresh,pendingIntent);
             mNotification.bigContentView = expandedView;
         }
-        
-        if (Prefs.persistNotifications() && (!mNotificationShowing))
+
+
+         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+             startForeground(NOTIFY_ID, mNotification);
+         }
+         else if (Prefs.persistNotifications() && (!mNotificationShowing))
         {
             startForeground(NOTIFY_ID, mNotification);
             logNotice("Set background service to FOREGROUND");
@@ -644,13 +648,12 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             boolean success = installer.installResources();
             
             if (success)
-                prefs.edit().putString(PREF_BINARY_TOR_VERSION_INSTALLED,BINARY_TOR_VERSION).commit();
+                prefs.edit().putString(PREF_BINARY_TOR_VERSION_INSTALLED,BINARY_TOR_VERSION).apply();
 
-
-            OtherResourceInstaller oInstaller = new OtherResourceInstaller(this, appBinHome);
-            oInstaller.installResources();
         }
 
+        OtherResourceInstaller oInstaller = new OtherResourceInstaller(this, appBinHome);
+        oInstaller.installResources();
 
         updateTorConfigFile ();
         isTorUpgradeAndConfigComplete = true;
