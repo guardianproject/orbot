@@ -1,6 +1,12 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory android:title="@string/pref_general_group">
+        <im.delight.android.languages.LanguagePreference
+            android:key="pref_default_locale"
+            android:title="@string/set_locale_title"
+            android:enabled="true"
+            android:selectable="true" />
+
         <CheckBoxPreference
             android:defaultValue="true"
             android:enabled="true"
@@ -34,11 +40,12 @@
             android:summary="@string/pref_open_proxy_on_all_interfaces_summary"
             android:title="@string/pref_open_proxy_on_all_interfaces_title" />
 
+        <!--
         <ListPreference
             android:defaultValue="en"
             android:key="pref_default_locale"
             android:summary="@string/set_locale_summary"
-            android:title="@string/set_locale_title" />
+            android:title="@string/set_locale_title" />-->
 
     </PreferenceCategory>
     <!--

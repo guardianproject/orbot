@@ -1,7 +1,16 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
 <PreferenceCategory android:title="@string/pref_general_group">
-<CheckBoxPreference 
+
+    <im.delight.android.languages.LanguagePreference
+        android:key="pref_default_locale"
+        android:title="@string/set_locale_title"
+        android:enabled="true"
+        android:selectable="true"
+        android:defaultValue="fa"
+        />
+
+    <CheckBoxPreference
 android:defaultValue="true" 
 android:key="pref_start_boot"
 android:title="@string/pref_start_boot_title"
@@ -27,12 +36,12 @@ android:defaultValue="true"
 android:key="pref_allow_background_starts"
 android:summary="@string/pref_allow_background_starts_summary"
 android:title="@string/pref_allow_background_starts_title"/>
-
+<!--
  <ListPreference android:title="@string/set_locale_title"
    android:key="pref_default_locale"
    android:summary="@string/set_locale_summary"
    android:defaultValue="fa">
- </ListPreference>
+ </ListPreference>-->
 
 </PreferenceCategory>
 <PreferenceCategory android:title="@string/pref_node_configuration"

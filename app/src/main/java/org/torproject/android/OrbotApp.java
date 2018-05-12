@@ -33,6 +33,8 @@ import org.torproject.android.settings.LocaleHelper;
 import java.util.Locale;
 import java.util.Set;
 
+import im.delight.android.languages.Language;
+
 public class OrbotApp extends Application implements OrbotConstants
 {
 
@@ -42,8 +44,11 @@ public class OrbotApp extends Application implements OrbotConstants
     public void onCreate() {
         super.onCreate();
 
+        /**
         Languages.setup(OrbotMainActivity.class, R.string.menu_settings);
         Languages.setLanguage(this, Prefs.getDefaultLocale(), true);
+         **/
+        Language.setFromPreference(this, "pref_default_locale");
 
         //check for updates via github, since it is unlikely to be blocked; notify the user of places where upgrades can be found
         new AppUpdater(this)
@@ -61,7 +66,9 @@ public class OrbotApp extends Application implements OrbotConstants
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-       //Log.i(TAG, "onConfigurationChanged " + newConfig.locale.getLanguage());
+        Language.setFromPreference(this, "pref_default_locale");
+
+        //Log.i(TAG, "onConfigurationChanged " + newConfig.locale.getLanguage());
     //    Languages.setLanguage(this, Prefs.getDefaultLocale(), true);
     }
 	/**

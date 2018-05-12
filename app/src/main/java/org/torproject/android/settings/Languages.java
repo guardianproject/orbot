@@ -216,17 +216,6 @@ public class Languages {
         return nameMap.values().toArray(new String[nameMap.size()]);
     }
 
-    public int getPosition(Locale locale) {
-        String localeName = locale.getLanguage();
-        int i = 0;
-        for (String key : nameMap.keySet())
-            if (TextUtils.equals(key, localeName))
-                return i;
-            else
-                i++;
-        return -1;
-    }
-
     /**
      * Get sorted list of supported locales.
      *

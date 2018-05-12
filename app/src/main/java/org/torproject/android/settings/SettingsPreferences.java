@@ -14,6 +14,8 @@ import android.preference.PreferenceActivity;
 import org.torproject.android.R;
 import org.torproject.android.service.util.Prefs;
 
+import im.delight.android.languages.Language;
+
 public class SettingsPreferences
         extends PreferenceActivity {
     private static final String TAG = "SettingsPreferences";
@@ -26,10 +28,12 @@ public class SettingsPreferences
         addPreferencesFromResource(R.xml.preferences);
         getPreferenceManager().setSharedPreferencesMode(Context.MODE_MULTI_PROCESS);
 
+
         prefLocale = (ListPreference) findPreference("pref_default_locale");
+        /**
         Languages languages = Languages.get(this);
         prefLocale.setEntries(languages.getAllNames());
-        prefLocale.setEntryValues(languages.getSupportedLocales());
+        prefLocale.setEntryValues(languages.getSupportedLocales());**/
         prefLocale.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
 
             @Override
@@ -49,6 +53,13 @@ public class SettingsPreferences
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(LocaleHelper.onAttach(base));
+    }
+
+    @Override
+    protected void onPause() {
+        Language.setFromPreference(this, "pref_default_locale", true);
+
+        super.onPause();
     }
 
 }
