@@ -367,8 +367,6 @@ public class OrbotMainActivity extends AppCompatActivity
 
     }
 
-    boolean firstTimeCountrySelect = true;
-
     private void setCountrySpinner ()
     {
         String currentExit = Prefs.getExitNodes();
@@ -403,14 +401,17 @@ public class OrbotMainActivity extends AppCompatActivity
                 spnCountries.setSelection(selIdx,true);
 
             spnCountries.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+                int mOldPosition = spnCountries.getSelectedItemPosition();
+
                 @Override
                 public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                     // your code here
 
-                    if (firstTimeCountrySelect) {
-                        firstTimeCountrySelect = false;
+                    if (mOldPosition == position)
                         return;
-                    }
+
+                    mOldPosition = position; //new position!
 
                     String country = null;
 
