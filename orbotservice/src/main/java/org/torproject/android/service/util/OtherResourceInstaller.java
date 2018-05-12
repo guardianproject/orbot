@@ -65,27 +65,27 @@ public class OtherResourceInstaller implements TorServiceConstants {
     public boolean installResources () throws IOException, FileNotFoundException, TimeoutException
     {
 
-        InputStream is;
         File outFile;
-
-        String cpuPath = "armeabi";
-
-        if (Build.CPU_ABI.contains("x86"))
-            cpuPath = "x86";
 
         if (!installFolder.exists())
             installFolder.mkdirs();
 
-     //   is = context.getAssets().open(cpuPath + '/' + OBFSCLIENT_ASSET_KEY + MP3_EXT);
-        is = new FileInputStream(new File(getNativeLibraryDir(context),OBFSCLIENT_ASSET_KEY + ".so"));
+        File libBinary = new File(getNativeLibraryDir(context),OBFSCLIENT_ASSET_KEY + ".so");
         outFile = new File(installFolder, OBFSCLIENT_ASSET_KEY);
-        streamToFile(is,outFile, false, true);
+
+        if ((!outFile.exists()) || (libBinary.lastModified() > outFile.lastModified())) {
+            streamToFile(new FileInputStream(libBinary), outFile, false, true);
+        }
+
         setExecutable(outFile);
 
-//        is = context.getAssets().open(cpuPath + '/' + PDNSD_ASSET_KEY + MP3_EXT);
-        is = new FileInputStream(new File(getNativeLibraryDir(context),PDNSD_ASSET_KEY + ".so"));
+        libBinary = new File(getNativeLibraryDir(context),PDNSD_ASSET_KEY + ".so");
         outFile = new File(installFolder, PDNSD_ASSET_KEY);
-        streamToFile(is,outFile, false, true);
+
+        if ((!outFile.exists()) || (libBinary.lastModified() > outFile.lastModified())) {
+            streamToFile(new FileInputStream(libBinary), outFile, false, true);
+        }
+
         setExecutable(outFile);
 
 
