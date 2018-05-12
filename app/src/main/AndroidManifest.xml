@@ -7,10 +7,14 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
     <!-- Some Chromebooks don't support touch. Although not essential,
-            it's a good idea to explicitly include this declaration. -->
+         it's a good idea to explicitly include this declaration. -->
     <uses-feature android:name="android.hardware.touchscreen"
         android:required="false" />
+
     <application
         android:name=".OrbotApp"
         android:allowBackup="false"
@@ -21,7 +25,8 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/DefaultTheme"
-        tools:replace="android:allowBackup">
+        tools:replace="android:allowBackup"
+        >
         <activity
             android:name=".OrbotMainActivity"
             android:excludeFromRecents="true"
@@ -51,7 +56,7 @@
             </intent-filter>
         </activity>
 
-        <!-- This is for ensuring the background service still runs when/if the app is swiped away -->
+        <!--         This is for ensuring the background service still runs when/if the app is swiped away -->
         <activity
             android:name=".service.util.DummyActivity"
             android:allowTaskReparenting="true"
@@ -79,7 +84,7 @@
             android:name=".service.TorService"
             android:enabled="true"
             android:permission="android.permission.BIND_VPN_SERVICE"
-            android:stopWithTask="false" />
+            android:stopWithTask="false"></service>
         <service
             android:name=".service.vpn.TorVpnService"
             android:enabled="true"
@@ -153,12 +158,6 @@
             android:name=".ui.hiddenservices.providers.CookieContentProvider"
             android:authorities="org.torproject.android.ui.hiddenservices.providers.cookie"
             android:exported="false" />
-
-        <activity android:name=".ui.onboarding.OnboardingActivity" />
-        <activity
-            android:name=".ui.onboarding.BridgeWizardActivity"
-            android:label="@string/title_activity_bridge_wizard"
-            android:theme="@style/DefaultTheme"/>
     </application>
 
 </manifest>
