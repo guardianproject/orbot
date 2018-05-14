@@ -72,22 +72,37 @@ public class OtherResourceInstaller implements TorServiceConstants {
 
         File libBinary = new File(getNativeLibraryDir(context),OBFSCLIENT_ASSET_KEY + ".so");
         outFile = new File(installFolder, OBFSCLIENT_ASSET_KEY);
+        if (libBinary.exists()) {
+            if ((!outFile.exists()) || (libBinary.lastModified() > outFile.lastModified())) {
+                streamToFile(new FileInputStream(libBinary), outFile, false, true);
+            }
 
-        if ((!outFile.exists()) || (libBinary.lastModified() > outFile.lastModified())) {
-            streamToFile(new FileInputStream(libBinary), outFile, false, true);
+            setExecutable(outFile);
+        }
+        else
+        {
+            NativeLoader.initNativeLibs(context,OBFSCLIENT_ASSET_KEY,outFile);
         }
 
-        setExecutable(outFile);
+        if (!outFile.exists())
+            return false;
 
         libBinary = new File(getNativeLibraryDir(context),PDNSD_ASSET_KEY + ".so");
         outFile = new File(installFolder, PDNSD_ASSET_KEY);
+        if (libBinary.exists()) {
+            if ((!outFile.exists()) || (libBinary.lastModified() > outFile.lastModified())) {
+                streamToFile(new FileInputStream(libBinary), outFile, false, true);
+            }
 
-        if ((!outFile.exists()) || (libBinary.lastModified() > outFile.lastModified())) {
-            streamToFile(new FileInputStream(libBinary), outFile, false, true);
+            setExecutable(outFile);
+        }
+        else
+        {
+            NativeLoader.initNativeLibs(context,PDNSD_ASSET_KEY,outFile);
         }
 
-        setExecutable(outFile);
-
+        if (!outFile.exists())
+            return false;
 
         return true;
     }
