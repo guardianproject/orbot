@@ -46,6 +46,7 @@ android {
             targetSdkVersion 27
             versionCode 16020012
             versionName '16.0.2-BETA-2'
+            archivesBaseName = "Orbot-$versionName"
         }
     }
 
