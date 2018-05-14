@@ -16,8 +16,8 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled true
-            shrinkResources true
+            minifyEnabled false
+            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
@@ -44,8 +44,8 @@ android {
             minSdkVersion 16
             applicationId 'org.torproject.android'
             targetSdkVersion 27
-            versionCode 16020012
-            versionName '16.0.2-BETA-2'
+            versionCode 16020013
+            versionName '16.0.2-BETA-3'
             archivesBaseName = "Orbot-$versionName"
         }
     }
