@@ -13,7 +13,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioButton;
@@ -104,7 +103,7 @@ public class BridgeWizardActivity extends AppCompatActivity {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(LocaleHelper.onAttach(base));
-    }g
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -119,34 +118,28 @@ public class BridgeWizardActivity extends AppCompatActivity {
 
 
     private void showGetBridgePrompt() {
-        LayoutInflater li = LayoutInflater.from(this);
-        View view = li.inflate(R.layout.layout_diag, null);
-
-        TextView versionName = view.findViewById(R.id.diaglog);
-        versionName.setText(R.string.you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_);
-
         new AlertDialog.Builder(this)
-                .setTitle(R.string.bridge_mode)
-                .setView(view)
-                .setNegativeButton(R.string.btn_cancel, new Dialog.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //do nothing
-                    }
-                })
-                .setNeutralButton(R.string.get_bridges_email, new Dialog.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        sendGetBridgeEmail();
-                    }
+            .setTitle(R.string.bridge_mode)
+            .setMessage(R.string.you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_)
+            .setNegativeButton(R.string.btn_cancel, new Dialog.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    //do nothing
+                }
+            })
+            .setNeutralButton(R.string.get_bridges_email, new Dialog.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    sendGetBridgeEmail();
+                }
 
-                })
-                .setPositiveButton(R.string.get_bridges_web, new Dialog.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        openBrowser(OrbotConstants.URL_TOR_BRIDGES, true, null);
-                    }
-                }).show();
+            })
+            .setPositiveButton(R.string.get_bridges_web, new Dialog.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    openBrowser(OrbotConstants.URL_TOR_BRIDGES, true);
+                }
+            }).show();
     }
 
     private void sendGetBridgeEmail()
@@ -163,7 +156,7 @@ public class BridgeWizardActivity extends AppCompatActivity {
     /*
      * Launch the system activity for Uri viewing with the provided url
      */
-    private void openBrowser(final String browserLaunchUrl,boolean forceExternal, String pkgId)
+    private void openBrowser(final String browserLaunchUrl, boolean forceExternal)
     {
         startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse(browserLaunchUrl)));
     }
