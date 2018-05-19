@@ -5,8 +5,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -36,53 +34,48 @@ public class BridgeWizardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bridge_wizard);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        tvStatus = (TextView)findViewById(R.id.lbl_bridge_test_status);
+        tvStatus = findViewById(R.id.lbl_bridge_test_status);
         tvStatus.setVisibility(View.GONE);
 
         setTitle(getString(R.string.bridges));
 
-        RadioButton btnDirect = (RadioButton)
-                findViewById(R.id.btnBridgesDirect);
+        RadioButton btnDirect = findViewById(R.id.btnBridgesDirect);
         btnDirect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Prefs.setBridgesList("");
                 Prefs.putBridgesEnabled(false);
                 testBridgeConnection();
-
             }
         });
 
-        RadioButton btnObfs4 = (RadioButton)findViewById(R.id.btnBridgesObfs4);
+        RadioButton btnObfs4 = findViewById(R.id.btnBridgesObfs4);
         btnObfs4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Prefs.setBridgesList("obfs4");
                 Prefs.putBridgesEnabled(true);
                 testBridgeConnection();
-
             }
         });
 
 
-        RadioButton btnMeek = (RadioButton)findViewById(R.id.btnBridgesMeek);
-
+        RadioButton btnMeek = findViewById(R.id.btnBridgesMeek);
         btnMeek.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Prefs.setBridgesList("meek");
                 Prefs.putBridgesEnabled(true);
                 testBridgeConnection();
-
             }
         });
 
 
-        RadioButton btnNew = (RadioButton)findViewById(R.id.btnBridgesNew);
+        RadioButton btnNew = findViewById(R.id.btnBridgesNew);
         btnNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,7 +90,6 @@ public class BridgeWizardActivity extends AppCompatActivity {
         else if (Prefs.getBridgesList().equals("obfs4"))
             btnObfs4.setChecked(true);
 
-
     }
 
     @Override
@@ -107,8 +99,7 @@ public class BridgeWizardActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home)
-        {
+        if (item.getItemId() == android.R.id.home) {
             finish();
             return true;
         }
@@ -119,31 +110,30 @@ public class BridgeWizardActivity extends AppCompatActivity {
 
     private void showGetBridgePrompt() {
         new AlertDialog.Builder(this)
-            .setTitle(R.string.bridge_mode)
-            .setMessage(R.string.you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_)
-            .setNegativeButton(R.string.btn_cancel, new Dialog.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    //do nothing
-                }
-            })
-            .setNeutralButton(R.string.get_bridges_email, new Dialog.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    sendGetBridgeEmail();
-                }
+                .setTitle(R.string.bridge_mode)
+                .setMessage(R.string.you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_)
+                .setNegativeButton(R.string.btn_cancel, new Dialog.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //do nothing
+                    }
+                })
+                .setNeutralButton(R.string.get_bridges_email, new Dialog.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        sendGetBridgeEmail();
+                    }
 
-            })
-            .setPositiveButton(R.string.get_bridges_web, new Dialog.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    openBrowser(OrbotConstants.URL_TOR_BRIDGES, true);
-                }
-            }).show();
+                })
+                .setPositiveButton(R.string.get_bridges_web, new Dialog.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        openBrowser(OrbotConstants.URL_TOR_BRIDGES, true);
+                    }
+                }).show();
     }
 
-    private void sendGetBridgeEmail()
-    {
+    private void sendGetBridgeEmail() {
         String email = "bridges@torproject.org";
         Uri emailUri = Uri.parse("mailto:" + email);
         Intent emailIntent = new Intent(Intent.ACTION_SENDTO, emailUri);
@@ -156,109 +146,62 @@ public class BridgeWizardActivity extends AppCompatActivity {
     /*
      * Launch the system activity for Uri viewing with the provided url
      */
-    private void openBrowser(final String browserLaunchUrl, boolean forceExternal)
-    {
-        startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse(browserLaunchUrl)));
+    private void openBrowser(final String browserLaunchUrl, boolean forceExternal) {
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(browserLaunchUrl)));
     }
 
 
-    private void startIntent (String pkg, String action, Uri data)
-    {
-        Intent i;
-        PackageManager pm = getPackageManager();
-
-        try {
-            if (pkg != null) {
-                i = pm.getLaunchIntentForPackage(pkg);
-                if (i == null)
-                    throw new PackageManager.NameNotFoundException();
-            }
-            else
-            {
-                i = new Intent();
-            }
-
-            i.setAction(action);
-            i.setData(data);
-
-            if (i.resolveActivity(pm)!=null)
-                startActivity(i);
-
-        } catch (PackageManager.NameNotFoundException e) {
-
-        }
-    }
-
-    private boolean appInstalledOrNot(String uri)
-    {
-        PackageManager pm = getPackageManager();
-        try
-        {
-            PackageInfo pi = pm.getPackageInfo(uri, PackageManager.GET_ACTIVITIES);
-            return pi.applicationInfo.enabled;
-        }
-        catch (PackageManager.NameNotFoundException e)
-        {
-            return false;
-        }
-    }
-
-    private void testBridgeConnection ()
-    {
-        if (TextUtils.isEmpty(Prefs.getBridgesList()) || (!Prefs.bridgesEnabled()))
-        {
-            new HostTester().execute("check.torproject.org","443");
-        }
-        else if (Prefs.getBridgesList().equals("meek"))
-        {
-            new HostTester().execute("meek.azureedge.net","443","d2cly7j4zqgua7.cloudfront.net","443");
-        }
-        else if (Prefs.getBridgesList().equals("obfs4"))
-        {
-            new HostTester().execute("85.17.30.79","443","154.35.22.9","443","192.99.11.54","443");
-        }
-        else
-        {
+    private void testBridgeConnection() {
+        if (TextUtils.isEmpty(Prefs.getBridgesList()) || (!Prefs.bridgesEnabled())) {
+            new HostTester().execute("check.torproject.org", "443");
+        } else if (Prefs.getBridgesList().equals("meek")) {
+            new HostTester().execute("meek.azureedge.net", "443", "d2cly7j4zqgua7.cloudfront.net", "443");
+        } else if (Prefs.getBridgesList().equals("obfs4")) {
+            new HostTester().execute("85.17.30.79", "443", "154.35.22.9", "443", "192.99.11.54", "443");
+        } else {
             tvStatus.setText("");
         }
     }
 
     private class HostTester extends AsyncTask<String, Void, Boolean> {
+        @Override
         protected void onPreExecute() {
             // Pre Code
             tvStatus.setVisibility(View.VISIBLE);
             tvStatus.setText(R.string.testing_bridges);
         }
-    protected Boolean doInBackground(String... host) {
-        // Background Code
-        boolean result = false;
 
-        for (int i = 0; i < host.length; i++) {
-            String testHost = host[i];
-            i++; //move to the port
-            int testPort = Integer.parseInt(host[i]);
-            result = isHostReachable(testHost, testPort, 10000);
-            if (result)
-                return result;
+        @Override
+        protected Boolean doInBackground(String... host) {
+            // Background Code
+            boolean result = false;
+
+            for (int i = 0; i < host.length; i++) {
+                String testHost = host[i];
+                i++; //move to the port
+                int testPort = Integer.parseInt(host[i]);
+                result = isHostReachable(testHost, testPort, 10000);
+                if (result)
+                    return result;
+            }
+
+            return result;
         }
 
-        return result;
+        @Override
+        protected void onPostExecute(Boolean result) {
+            // Post Code
+            if (result) {
+                tvStatus.setText(R.string.testing_bridges_success);
+
+            } else {
+                tvStatus.setText(R.string.testing_bridges_fail);
+
+            }
+        }
     }
-    protected void onPostExecute(Boolean result) {
-        // Post Code
-        if (result)
-        {
-            tvStatus.setText(R.string.testing_bridges_success);
 
-        }
-        else
-        {
-            tvStatus.setText(R.string.testing_bridges_fail);
-
-        }
-    }};
-
-    private static boolean isHostReachable(String serverAddress, int serverTCPport, int timeoutMS){
+    private static boolean isHostReachable(String serverAddress, int serverTCPport, int timeoutMS) {
         boolean connected = false;
         Socket socket;
         try {
