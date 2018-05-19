@@ -27,6 +27,8 @@ You then need to run "ndk-build" from:
 	zip assets/armeabi/pdnsd.mp3 libs/armeabi/pdnsd
 	mkdir -p assets/x86
 	zip assets/x86/pdnsd.mp3 libs/x86/pdnsd
+	mkdir -p assets/armeabi-v7a
+	zip assets/armeabi-v7a/pdnsd.mp3 libs/armeabi-v7a/pdnsd
 
 This isn't enough though and we'll now sew up the binary into a small package
 that will handle basic Tor controlling features.
