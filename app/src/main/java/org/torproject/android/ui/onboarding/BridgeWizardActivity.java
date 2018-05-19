@@ -10,8 +10,6 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -20,11 +18,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.torproject.android.R;
 import org.torproject.android.service.OrbotConstants;
-import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.settings.LocaleHelper;
 
@@ -91,7 +87,7 @@ public class BridgeWizardActivity extends AppCompatActivity {
         btnNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showGetBridgePrompt("");
+                showGetBridgePrompt();
             }
         });
 
@@ -108,7 +104,7 @@ public class BridgeWizardActivity extends AppCompatActivity {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(LocaleHelper.onAttach(base));
-    }
+    }g
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -122,71 +118,45 @@ public class BridgeWizardActivity extends AppCompatActivity {
     }
 
 
-    private void showGetBridgePrompt (final String type)
-    {
+    private void showGetBridgePrompt() {
         LayoutInflater li = LayoutInflater.from(this);
         View view = li.inflate(R.layout.layout_diag, null);
 
-        TextView versionName = (TextView)view.findViewById(R.id.diaglog);
+        TextView versionName = view.findViewById(R.id.diaglog);
         versionName.setText(R.string.you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_);
 
         new AlertDialog.Builder(this)
                 .setTitle(R.string.bridge_mode)
                 .setView(view)
-                .setNegativeButton(R.string.btn_cancel, new Dialog.OnClickListener()
-                {
+                .setNegativeButton(R.string.btn_cancel, new Dialog.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //do nothing
                     }
                 })
-                .setNeutralButton(R.string.get_bridges_email, new Dialog.OnClickListener ()
-                {
-
+                .setNeutralButton(R.string.get_bridges_email, new Dialog.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
-
-                        sendGetBridgeEmail(type);
-
+                        sendGetBridgeEmail();
                     }
-
 
                 })
-                .setPositiveButton(R.string.get_bridges_web, new Dialog.OnClickListener ()
-                {
-
+                .setPositiveButton(R.string.get_bridges_web, new Dialog.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
-                        openBrowser(OrbotConstants.URL_TOR_BRIDGES + type,true, null);
-
+                        openBrowser(OrbotConstants.URL_TOR_BRIDGES, true, null);
                     }
-
-
                 }).show();
     }
 
-    private void sendGetBridgeEmail (String type)
+    private void sendGetBridgeEmail()
     {
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setType("message/rfc822");
-        intent.putExtra(Intent.EXTRA_EMAIL  , new String[]{"bridges@torproject.org"});
-
-        if (type != null)
-        {
-            intent.putExtra(Intent.EXTRA_SUBJECT, "get transport " + type);
-            intent.putExtra(Intent.EXTRA_TEXT, "get transport " + type);
-
-        }
-        else
-        {
-            intent.putExtra(Intent.EXTRA_SUBJECT, "get bridges");
-            intent.putExtra(Intent.EXTRA_TEXT, "get bridges");
-
-        }
-
-        startActivity(Intent.createChooser(intent, getString(R.string.send_email)));
+        String email = "bridges@torproject.org";
+        Uri emailUri = Uri.parse("mailto:" + email);
+        Intent emailIntent = new Intent(Intent.ACTION_SENDTO, emailUri);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "get transport");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "get transport");
+        startActivity(Intent.createChooser(emailIntent, getString(R.string.send_email)));
     }
 
 
