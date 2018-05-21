@@ -21,16 +21,14 @@ public class NativeLoader {
 
 
         ZipFile zipFile = null;
-        ZipInputStream stream = null;
+        InputStream stream = null;
         try {
             zipFile = new ZipFile(context.getApplicationInfo().sourceDir);
             ZipEntry entry = zipFile.getEntry("lib/" + folder + "/" + libName + ".so");
             if (entry == null) {
                 throw new Exception("Unable to find file in apk:" + "lib/" + folder + "/" + libName);
             }
-            //the zip file entry is also zipped itself!
-            stream = new ZipInputStream(zipFile.getInputStream(entry));
-            stream.getNextEntry();
+            stream = zipFile.getInputStream(entry);
 
             OutputStream out = new FileOutputStream(destLocalFile);
             byte[] buf = new byte[4096];
