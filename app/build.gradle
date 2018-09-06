@@ -44,7 +44,7 @@ android {
             minSdkVersion 16
             applicationId 'org.torproject.android'
             targetSdkVersion 27
-            versionCode 16020041
+            versionCode 16020043
             versionName '16.0.2-RC-1'
             archivesBaseName = "Orbot-$versionName"
         }
@@ -78,7 +78,7 @@ android {
 
 dependencies {
     implementation 'com.github.delight-im:Android-Languages:v1.0.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     implementation project(':orbotservice')
     implementation 'com.android.support:design:27.1.1'
     implementation 'pl.bclogic:pulsator4droid:1.0.3'
