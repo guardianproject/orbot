@@ -23,10 +23,9 @@ You then need to run "ndk-build" from:
 	
 	cd orbotservice/src/main
 	ndk-build
-	mkdir -p assets/armeabi
-	zip assets/armeabi/pdnsd.mp3 libs/armeabi/pdnsd
-	mkdir -p assets/x86
-	zip assets/x86/pdnsd.mp3 libs/x86/pdnsd
+	mv libs/armeabi/pdnsd libs/armeabi/pdnsd.so
+	mv libs/armeabi-v7a/pdnsd libs/armeabi-v7a/pdnsd.so
+	mv libs/x86/pdnsd libs/x86/pdnsd.so
 
 This isn't enough though and we'll now sew up the binary into a small package
 that will handle basic Tor controlling features.
