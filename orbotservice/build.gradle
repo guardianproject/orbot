@@ -27,7 +27,7 @@ android {
 
 dependencies {
     implementation project(':jsocksAndroid')
-    implementation 'org.torproject:tor-android-binary:0.3.3.5-rc-3'
+    implementation 'org.torproject:tor-android-binary:0.3.4.7-rc'
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.jrummyapps:android-shell:1.0.1'
     implementation fileTree(dir: 'libs', include: ['.so'])
