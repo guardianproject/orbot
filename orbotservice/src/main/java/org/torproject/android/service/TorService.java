@@ -696,7 +696,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         extraLines.append("SOCKSPort ").append(socksPortPref).append(isolate).append('\n');
         extraLines.append("SafeSocks 0").append('\n');
         extraLines.append("TestSocks 0").append('\n');
-        extraLines.append("WarnUnsafeSocks 1").append('\n');
     	if (Prefs.openProxyOnAllInterfaces())
     		extraLines.append("SocksListenAddress 0.0.0.0").append('\n');
 
@@ -716,10 +715,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         String dnsPort = prefs.getString("pref_dnsport", TorServiceConstants.TOR_DNS_PORT_DEFAULT+"");
             
         extraLines.append("TransPort ").append(transPort).append('\n');
-    	extraLines.append("DNSPort ").append(dnsPort).append("\n");
+    	extraLines.append("DNSPort ").append(dnsPort).append('\n');
     	
-    	if (Prefs.useVpn())
-    		extraLines.append("DNSListenAddress 0.0.0.0").append('\n');
 
         extraLines.append("VirtualAddrNetwork 10.192.0.0/10").append('\n');
         extraLines.append("AutomapHostsOnResolve 1").append('\n');
