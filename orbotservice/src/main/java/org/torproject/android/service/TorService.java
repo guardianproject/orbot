@@ -787,26 +787,35 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
      * The entire process for starting tor and related services is run from this method.
      */
     private void startTor() {
+
+        String torProcId = null;
+
+        try { if (conn != null) torProcId = conn.getInfo("process/pid"); }
+        catch (Exception e){}
+
         // STATUS_STARTING is set in onCreate()
         if (mCurrentStatus == STATUS_STOPPING) {
             // these states should probably be handled better
             sendCallbackLogMessage("Ignoring start request, currently " + mCurrentStatus);
             return;
-        } else if (mCurrentStatus == STATUS_ON) {
+        } else if (mCurrentStatus == STATUS_ON && (torProcId != null)) {
         
             sendCallbackLogMessage("Ignoring start request, already started.");
             setTorNetworkEnabled (true);
 
             return;
         }        
-        
 
         try {
         	
 	        // make sure there are no stray daemons running
 //	        killAllDaemons();
-	
-	        sendCallbackStatus(STATUS_STARTING);
+
+            SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
+            String version = prefs.getString(PREF_BINARY_TOR_VERSION_INSTALLED,null);
+            logNotice("checking binary version: " + version);
+
+            sendCallbackStatus(STATUS_STARTING);
             showToolbarNotification(getString(R.string.status_starting_up),NOTIFY_ID,R.drawable.ic_stat_tor);
 	        sendCallbackLogMessage(getString(R.string.status_starting_up));
 	        logNotice(getString(R.string.status_starting_up));
