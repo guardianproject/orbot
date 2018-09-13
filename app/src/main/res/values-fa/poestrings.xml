@@ -31,9 +31,9 @@
     <string name="status_connecting">در حال اتصال.\" = \"در حال اتصال</string>
 
     <string name="hello">سلام</string>
-    <string name="welcome">به مرورگر تور خوش آمدید.</string>
+    <string name="welcome">به تور بر روی تلفن همراه خوش آمدید.</string>
 
-    <string name="browser_the_internet">همان‌طور که دوست دارید در اینترنت‌گردی کنید.</string>
+    <string name="browser_the_internet">همان‌طوری که دوست دارید اینترنت‌گردی کنید.</string>
     <string name="no_tracking">بدون ردیابی. بدون سانسور.</string>
 
 </resources>
