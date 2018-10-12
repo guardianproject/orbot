@@ -39,12 +39,9 @@ public class NativeLoader {
             }
             out.close();
 
-            if (Build.VERSION.SDK_INT >= 9) {
-                destLocalFile.setReadable(true, false);
-                destLocalFile.setExecutable(true, false);
-                destLocalFile.setWritable(true);
-            }
-
+            destLocalFile.setReadable(true, false);
+            destLocalFile.setExecutable(true, false);
+            destLocalFile.setWritable(true);
 
             return true;
         } catch (Exception e) {
@@ -85,7 +82,6 @@ public class NativeLoader {
                     folder = "mips";
                 } else {
                     folder = "armeabi";
-                    //FileLog.e("tmessages", "Unsupported arch: " + Build.CPU_ABI);
                 }
             } catch (Exception e) {
                 //  FileLog.e("tmessages", e);
@@ -99,9 +95,7 @@ public class NativeLoader {
                 folder = "x86";
             }
 
-            if (loadFromZip(context, binaryName, destLocalFile, folder)) {
-                return true;
-            }
+            return loadFromZip(context, binaryName, destLocalFile, folder);
 
         } catch (Throwable e) {
             e.printStackTrace();

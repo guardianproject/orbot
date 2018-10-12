@@ -561,10 +561,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             appBinHome = getDir(TorServiceConstants.DIRECTORY_TOR_BINARY, Application.MODE_PRIVATE);
             appCacheHome = getDir(TorServiceConstants.DIRECTORY_TOR_DATA,Application.MODE_PRIVATE);
 
-            //mShell = Shell.startShell();
-
             fileTor= new File(appBinHome, TorServiceConstants.TOR_ASSET_KEY);
- //           filePolipo = new File(appBinHome, TorServiceConstants.POLIPO_ASSET_KEY);
             fileObfsclient = new File(appBinHome, TorServiceConstants.OBFSCLIENT_ASSET_KEY);
             fileTorRc = new File(appBinHome, TorServiceConstants.TORRC_ASSET_KEY);
 
@@ -786,7 +783,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     /**
      * The entire process for starting tor and related services is run from this method.
      */
-    private void startTor() {
+    private synchronized void startTor() {
 
         String torProcId = null;
 
@@ -895,7 +892,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
 
 
-    private boolean runTorShellCmd() throws Exception
+    private synchronized boolean runTorShellCmd() throws Exception
     {
         boolean result = true;
 
@@ -1563,59 +1560,59 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         else
         {
 
-            loadBridgeDefaults ();
+            if (fileObfsclient.exists() && fileObfsclient.canExecute()) {
 
-            extraLines.append("UseBridges 1").append('\n');
-            
-            String bridgeList = new String(Prefs.getBridgesList().getBytes("ISO-8859-1"));
-            boolean obfsBridges = bridgeList.contains("obfs3")||bridgeList.contains("obfs4");
-            boolean meekBridges = bridgeList.contains("meek");
+                loadBridgeDefaults();
 
-            //check if any PT bridges are needed
-            if (obfsBridges)
-            {
-                extraLines.append("ClientTransportPlugin obfs3 exec " + fileObfsclient.getCanonicalPath()).append('\n');
-                extraLines.append("ClientTransportPlugin obfs4 exec " + fileObfsclient.getCanonicalPath()).append('\n');
-            }
+                extraLines.append("UseBridges 1").append('\n');
 
-            if (meekBridges)
-            {
-                extraLines.append("ClientTransportPlugin meek_lite exec " + fileObfsclient.getCanonicalPath()).append('\n');
-            }
+                String bridgeList = new String(Prefs.getBridgesList().getBytes("ISO-8859-1"));
+                boolean obfsBridges = bridgeList.contains("obfs3") || bridgeList.contains("obfs4");
+                boolean meekBridges = bridgeList.contains("meek");
 
-            if (bridgeList != null && bridgeList.length() > 5) //longer then 1 = some real values here
-            {
-	            String[] bridgeListLines = bridgeList.split("\\r?\\n");
+                //check if any PT bridges are needed
+                if (obfsBridges) {
+                    extraLines.append("ClientTransportPlugin obfs3 exec " + fileObfsclient.getCanonicalPath()).append('\n');
+                    extraLines.append("ClientTransportPlugin obfs4 exec " + fileObfsclient.getCanonicalPath()).append('\n');
+                }
 
-	            for (String bridgeConfigLine : bridgeListLines)
-	            {
-	                if (!TextUtils.isEmpty(bridgeConfigLine))
-	                {
-	                	extraLines.append("Bridge ");
+                if (meekBridges) {
+                    extraLines.append("ClientTransportPlugin meek_lite exec " + fileObfsclient.getCanonicalPath()).append('\n');
+                }
 
-	                	StringTokenizer st = new StringTokenizer (bridgeConfigLine," ");
-	                	while (st.hasMoreTokens())
-	                		extraLines.append(st.nextToken()).append(' ');
-	                	
-	                	extraLines.append("\n");
-	                	
-	                }
-	
-	            }
-	            
+                if (bridgeList != null && bridgeList.length() > 5) //longer then 1 = some real values here
+                {
+                    String[] bridgeListLines = bridgeList.split("\\r?\\n");
+
+                    for (String bridgeConfigLine : bridgeListLines) {
+                        if (!TextUtils.isEmpty(bridgeConfigLine)) {
+                            extraLines.append("Bridge ");
+
+                            StringTokenizer st = new StringTokenizer(bridgeConfigLine, " ");
+                            while (st.hasMoreTokens())
+                                extraLines.append(st.nextToken()).append(' ');
+
+                            extraLines.append("\n");
+
+                        }
+
+                    }
+
+                } else {
+
+                    String type = "obfs4";
+
+                    if (meekBridges)
+                        type = "meek_lite";
+
+                    getBridges(type, extraLines);
+
+                }
             }
             else
             {
-
-                String type = "obfs4";
-
-                if (meekBridges)
-                    type = "meek_lite";
-
-                getBridges(type,extraLines);
-
+                throw new IOException("Bridge binary does not exist: " + fileObfsclient.getCanonicalPath());
             }
- 
         }
         
                   
@@ -1844,14 +1841,14 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
     @Override
     public IBinder onBind(Intent intent) {
-        Log.e( "CustomNotificationService", "onBind" );
+        Log.e( TAG, "onBind" );
         handleIntent( intent );
         return null;
     }
 
     private void handleIntent( Intent intent ) {
         if( intent != null && intent.getAction() != null ) {
-            Log.e( "CustomNotificationService", intent.getAction().toString() );
+            Log.e( TAG, intent.getAction().toString() );
         }
     }
 

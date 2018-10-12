@@ -62,7 +62,7 @@ public class OtherResourceInstaller implements TorServiceConstants {
     /*
      * Extract the Tor resources from the APK file using ZIP
      */
-    public boolean installResources () throws IOException, FileNotFoundException, TimeoutException
+    public boolean installResources () throws IOException
     {
 
         File outFile;
@@ -70,45 +70,21 @@ public class OtherResourceInstaller implements TorServiceConstants {
         if (!installFolder.exists())
             installFolder.mkdirs();
 
-        File libBinary = new File(getNativeLibraryDir(context),OBFSCLIENT_ASSET_KEY + ".so");
+//        File libBinary = new File(getNativeLibraryDir(context),OBFSCLIENT_ASSET_KEY + ".so");
         outFile = new File(installFolder, OBFSCLIENT_ASSET_KEY);
-        if (libBinary.exists()) {
-            if ((!outFile.exists()) || (libBinary.lastModified() > outFile.lastModified())) {
-                streamToFile(new FileInputStream(libBinary), outFile, false, true);
-            }
+        NativeLoader.initNativeLibs(context,OBFSCLIENT_ASSET_KEY,outFile);
+ //       setExecutable(outFile);
 
-            setExecutable(outFile);
-        }
-        else
-        {
-            NativeLoader.initNativeLibs(context,OBFSCLIENT_ASSET_KEY,outFile);
-        }
-
-        if (!outFile.exists())
-            return false;
-
-        libBinary = new File(getNativeLibraryDir(context),PDNSD_ASSET_KEY + ".so");
+  //      libBinary = new File(getNativeLibraryDir(context),PDNSD_ASSET_KEY + ".so");
         outFile = new File(installFolder, PDNSD_ASSET_KEY);
-        if (libBinary.exists()) {
-            if ((!outFile.exists()) || (libBinary.lastModified() > outFile.lastModified())) {
-                streamToFile(new FileInputStream(libBinary), outFile, false, true);
-            }
-
-            setExecutable(outFile);
-        }
-        else
-        {
-            NativeLoader.initNativeLibs(context,PDNSD_ASSET_KEY,outFile);
-        }
-
-        if (!outFile.exists())
-            return false;
+        NativeLoader.initNativeLibs(context,PDNSD_ASSET_KEY,outFile);
+   //     setExecutable(outFile);
 
         return true;
     }
 
     // Return Full path to the directory where native JNI libraries are stored.
-    private static String getNativeLibraryDir(Context context) {
+    public static String getNativeLibraryDir(Context context) {
         ApplicationInfo appInfo = context.getApplicationInfo();
         return appInfo.nativeLibraryDir;
     }

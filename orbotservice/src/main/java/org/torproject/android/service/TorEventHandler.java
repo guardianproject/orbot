@@ -212,8 +212,8 @@ public class TorEventHandler implements EventHandler, TorServiceConstants {
             //get IP from last nodename
             if(status.equals("BUILT")){
 
-                if (node.ipAddress == null)
-                    mService.exec(new ExternalIPFetcher(node));
+               // if (node.ipAddress == null)
+                 //   mService.exec(new ExternalIPFetcher(node));
 
                 hmBuiltNodes.put(circID, node);
             }
@@ -227,6 +227,7 @@ public class TorEventHandler implements EventHandler, TorServiceConstants {
 
     }
 
+    /**
     private class ExternalIPFetcher implements Runnable {
 
         private Node mNode;
@@ -307,7 +308,7 @@ public class TorEventHandler implements EventHandler, TorServiceConstants {
         }
 
 
-    }
+    }**/
 
     private String parseNodeName(String node)
     {
