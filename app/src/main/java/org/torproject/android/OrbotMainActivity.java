@@ -107,6 +107,7 @@ public class OrbotMainActivity extends AppCompatActivity
     private TextView mTxtOrbotLog = null;
 
 	private Button mBtnStart = null;
+	private Button mLoginToRESTAPI = null;
 
 	private SwitchCompat mBtnVPN = null;
     private SwitchCompat mBtnBridges = null;
@@ -301,6 +302,8 @@ public class OrbotMainActivity extends AppCompatActivity
         uploadText.setText(formatCount(0) + " / " + formatTotal(0));
 
 		mBtnStart =(Button)findViewById(R.id.btnStart);
+		mLoginToRESTAPI = (Button) findViewById(R.id.login_to_REST_button);
+
 		mBtnStart.setOnClickListener(new View.OnClickListener()
 		{
 			@Override
