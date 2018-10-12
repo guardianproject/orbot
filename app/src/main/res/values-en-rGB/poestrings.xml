@@ -14,7 +14,7 @@
     <string name="action_more">TELL ME MORE</string>
 
     <string name="vpn_setup">You can enable any app to go through Tor using our built-in VPN.</string>
-    <string name="vpn_setup_sub">This won\\'t make you anonymous, but it will help get through firewalls.</string>
+    <string name="vpn_setup_sub">This won\'t make you anonymous, but it will help get through firewalls.</string>
     <string name="action_vpn_choose">CHOOSE APPS</string>
 
     <string name="status_connected">Connected!</string>
