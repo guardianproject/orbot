@@ -2,11 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 27
-<<<<<<< HEAD
-    buildToolsVersion '28.0.2'
-=======
     buildToolsVersion '28.0.3'
->>>>>>> master
     defaultConfig {
         applicationId "org.torproject.android"
         minSdkVersion 16
