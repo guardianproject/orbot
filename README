@@ -1,4 +1,9 @@
-
+This dev mirror of Orbot is being updated to provide
+the ability to login to a RESTful API published as a
+hidden service on the public TOR network to obtain a
+TOR client configuration to reconfigure the Orbot
+client to talk to a private TOR network.
+***********************************************
 Orbot: Android Onion Routing Robot
 ***********************************************
 Orbot is a freely licensed open-source application developed for the
