@@ -402,4 +402,7 @@
     <string name="trouble_connecting">Trouble connecting?</string>
     <string name="full_device_vpn">Full Device VPN</string>
     <string name="vpn_disabled">VPN Disabled</string>
+
+    <string name="menu_new_identity">New Identity</string>
+
 </resources>

@@ -328,4 +328,6 @@
   <string name="note_only_standard_tor_bridges_work_on_intel_x86_atom_devices">NOTE: Only standard Tor bridges work on Intel X86/ATOM devices</string>
 
 	<string name="vpn_default_world">World</string>
+
+  <string name="menu_new_identity">New Identity</string>
 </resources>

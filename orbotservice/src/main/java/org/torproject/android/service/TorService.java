@@ -292,8 +292,23 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
                 mNotifyBuilder.setContentIntent(pendIntent);
 
-            }        
-                                
+            }
+
+
+
+            mNotifyBuilder.setCategory(Notification.CATEGORY_SERVICE);
+
+            mNotifyBuilder.setChannelId(NOTIFICATION_CHANNEL_ID);
+
+
+            Intent intentRefresh = new Intent();
+            intentRefresh.setAction(CMD_NEWNYM);
+            PendingIntent pendingIntentNewNym = PendingIntent.getBroadcast(this, 0, intentRefresh, PendingIntent.FLAG_UPDATE_CURRENT);
+            mNotifyBuilder.addAction(R.drawable.ic_refresh_white_24dp, getString(R.string.menu_new_identity),
+                    pendingIntentNewNym);
+
+            mNotifyBuilder.setOngoing(Prefs.persistNotifications());
+
         }
 
         mNotifyBuilder.setContentText(notifyMsg);
@@ -307,68 +322,11 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         {
             mNotifyBuilder.setTicker(null);
         }
-        
-        mNotifyBuilder.setOngoing(Prefs.persistNotifications());
 
          if (!Prefs.persistNotifications())
-            mNotifyBuilder.setPriority(Notification.PRIORITY_LOW);
-
-         mNotifyBuilder.setCategory(Notification.CATEGORY_SERVICE);
-
-         mNotifyBuilder.setChannelId(NOTIFICATION_CHANNEL_ID);
+             mNotifyBuilder.setPriority(Notification.PRIORITY_LOW);
 
          mNotification = mNotifyBuilder.build();
-        
-        if (Build.VERSION.SDK_INT >= 16 && Prefs.expandedNotifications()) {
-            // Create remote view that needs to be set as bigContentView for the notification.
-             RemoteViews expandedView = new RemoteViews(this.getPackageName(), 
-                     R.layout.layout_notification_expanded);
-             
-             StringBuffer sbInfo = new StringBuffer();
-             
-             if (notifyType == NOTIFY_ID)
-                 expandedView.setTextViewText(R.id.text, notifyMsg);
-             else
-             {
-                 expandedView.setTextViewText(R.id.info, notifyMsg);
-             }
-
-             if (mEventHandler != null && mEventHandler.getNodes().size() > 0)
-             {
-                 Set<String> itBuiltNodes = mEventHandler.getNodes().keySet();
-                 for (String key : itBuiltNodes)
-                 {
-                     TorEventHandler.Node node = mEventHandler.getNodes().get(key);
-                     
-                     if (node.ipAddress != null)
-                     {
-                         sbInfo.append(node.ipAddress);
-                     
-                         if (node.country != null)
-                             sbInfo.append(' ').append(node.country);
-                     
-                         if (node.organization != null)
-                             sbInfo.append(" (").append(node.organization).append(')');
-                     
-                         sbInfo.append('\n');
-                     }
-                     
-                 }
-                 
-                 expandedView.setTextViewText(R.id.text2, sbInfo.toString());
-             }
-             
-             expandedView.setTextViewText(R.id.title, getString(R.string.app_name)); 
-             
-             expandedView.setImageViewResource(R.id.icon, icon);
-
-            Intent intentRefresh = new Intent();
-            intentRefresh.setAction(CMD_NEWNYM);
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intentRefresh, PendingIntent.FLAG_UPDATE_CURRENT);
-            expandedView.setOnClickPendingIntent(R.id.action_refresh,pendingIntent);
-            mNotification.bigContentView = expandedView;
-        }
-
 
          if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
              startForeground(NOTIFY_ID, mNotification);

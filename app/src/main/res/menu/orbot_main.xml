@@ -23,7 +23,7 @@
 
 
     <item android:id="@+id/menu_newnym"
-        android:title="@string/newnym"
+        android:title="@string/menu_new_identity"
         android:icon="@drawable/ic_refresh_white_24dp"
         yourapp:showAsAction="always"
         />

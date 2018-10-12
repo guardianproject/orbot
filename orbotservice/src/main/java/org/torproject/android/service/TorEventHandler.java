@@ -124,8 +124,7 @@ public class TorEventHandler implements EventHandler, TorServiceConstants {
             if (read > 0 || written > 0)
                 iconId = R.drawable.ic_stat_tor_xfer;
 
-            if (mService.hasConnectivity() && Prefs.expandedNotifications())
-                mService.showToolbarNotification(sb.toString(), mService.getNotifyId(), iconId);
+            mService.showToolbarNotification(sb.toString(), mService.getNotifyId(), iconId);
 
             mTotalTrafficWritten += written;
             mTotalTrafficRead += read;
