@@ -1,16 +1,17 @@
 package org.torproject.android;
 
-import com.loopj.android.http.*;
 import org.json.*;
 
-import java.io.InputStream;
-import java.net.URL;
+import java.nio.charset.Charset;
 
-
+import cz.msebera.android.httpclient.Header;
+import cz.msebera.android.httpclient.auth.AuthenticationException;
 import cz.msebera.android.httpclient.auth.UsernamePasswordCredentials;
 import cz.msebera.android.httpclient.client.HttpClient;
+import cz.msebera.android.httpclient.client.methods.HttpGet;
 import cz.msebera.android.httpclient.impl.auth.BasicScheme;
 import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
+
 
 public class ReadJSONData {
     public void writeJSONObject(){
@@ -25,17 +26,20 @@ public class ReadJSONData {
        }
    }
 
-   public void HTTPClient(){
-        HttpGet httpGet = new HttpGet("");
-        HttpClient  client = new DefaultHttpClient();
-        //auth header
-        httpGet.addHeader(BasicScheme.authenticate(new UsernamePasswordCredentials("userName", "password"), "UTF-8", false));
-
-        //header types to transfer JSON
-       httpGet.setHeader("Content-Type", "application/json");
-
-
-   }
+   public void basicAuth(){
+       StringBuilder builder = new StringBuilder();
+       HttpClient client = new DefaultHttpClient();
+       HttpGet httpGet = new HttpGet("YOUR WEBSITE HERE");
+        String userName = "";
+        String password = "";
+       UsernamePasswordCredentials credentials = new UsernamePasswordCredentials(userName, password);
+       Header basicAuthHeader = null;
+       try {
+           basicAuthHeader = new BasicScheme(Charset.forName("UTF-8")).authenticate(credentials, httpGet, null);
+       } catch (AuthenticationException e) {
+           e.printStackTrace();
+       }
+       httpGet.addHeader(basicAuthHeader);   }
 
 
 }
