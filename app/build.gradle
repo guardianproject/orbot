@@ -84,5 +84,6 @@ dependencies {
     implementation 'pl.bclogic:pulsator4droid:1.0.3'
     implementation 'com.github.apl-devs:appintro:v4.2.2'
     implementation 'com.github.javiersantos:AppUpdater:2.6.4'
+    implementation 'com.loopj.android:android-async-http:1.4.9'
 
 }

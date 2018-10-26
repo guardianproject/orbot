@@ -8,11 +8,12 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.net.Authenticator;
+import java.net.PasswordAuthentication;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 import java.util.StringTokenizer;
 
@@ -35,6 +36,7 @@ import org.torproject.android.ui.hiddenservices.permissions.PermissionManager;
 import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
 import org.torproject.android.vpn.VPNEnableActivity;
 
+
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningServiceInfo;
@@ -52,7 +54,6 @@ import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
@@ -149,6 +150,7 @@ public class OrbotMainActivity extends AppCompatActivity
           return super.onCreateView(parent, name, context, attrs);
         return null;
     }
+
 
     private void migratePreferences() {
         String hsPortString = mPrefs.getString("pref_hs_ports", "");

@@ -9,7 +9,7 @@ public class TorrcConfig {
  */
 /*
 HTTPProxy host[:port]
-Tor will make all its directory requests through this host:port (or host:80 if port is not specified), rather than connecting directly to any directory servers.
+Tor will make all its directpory requests through this host:port (or host:80 if port is not specified), rather than connecting directly to any directory servers.
 
 HTTPProxyAuthenticator username:password
 If defined, Tor will use this username:password for Basic HTTP proxy authentication, as in RFC 2617. This is currently the only form of HTTP proxy authentication that Tor supports; feel free to submit a patch if you want it to support others.
