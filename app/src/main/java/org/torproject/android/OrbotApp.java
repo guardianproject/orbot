@@ -44,10 +44,10 @@ public class OrbotApp extends Application implements OrbotConstants
     public void onCreate() {
         super.onCreate();
 
-        /**
+
         Languages.setup(OrbotMainActivity.class, R.string.menu_settings);
         Languages.setLanguage(this, Prefs.getDefaultLocale(), true);
-         **/
+
         Language.setFromPreference(this, "pref_default_locale");
 
         //check for updates via github, since it is unlikely to be blocked; notify the user of places where upgrades can be found

@@ -28,19 +28,22 @@ public class SettingsPreferences
         addPreferencesFromResource(R.xml.preferences);
         getPreferenceManager().setSharedPreferencesMode(Context.MODE_MULTI_PROCESS);
 
-
         prefLocale = (ListPreference) findPreference("pref_default_locale");
-        /**
+
         Languages languages = Languages.get(this);
         prefLocale.setEntries(languages.getAllNames());
-        prefLocale.setEntryValues(languages.getSupportedLocales());**/
+        prefLocale.setEntryValues(languages.getSupportedLocales());
         prefLocale.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
 
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 String language = (String) newValue;
+
+
                 Prefs.setDefaultLocale(language);
-                LocaleHelper.setLocale(getApplicationContext(), language);
+                Languages.setLanguage(SettingsPreferences.this, Prefs.getDefaultLocale(), true);
+                Language.setFromPreference(SettingsPreferences.this, "pref_default_locale");
+
                 Intent intentResult = new Intent();
                 intentResult.putExtra("locale", language);
                 setResult(RESULT_OK, intentResult);
@@ -57,7 +60,7 @@ public class SettingsPreferences
 
     @Override
     protected void onPause() {
-        Language.setFromPreference(this, "pref_default_locale", true);
+        //Language.setFromPreference(this, "pref_default_locale", true);
 
         super.onPause();
     }

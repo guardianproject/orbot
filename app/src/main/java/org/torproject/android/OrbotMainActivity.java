@@ -22,6 +22,7 @@ import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.TorService;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.TorServiceUtils;
+import org.torproject.android.settings.Languages;
 import org.torproject.android.settings.LocaleHelper;
 import org.torproject.android.settings.SettingsPreferences;
 import org.torproject.android.ui.AppManagerActivity;
@@ -91,6 +92,7 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import im.delight.android.languages.Language;
 import pl.bclogic.pulsator4droid.library.PulsatorLayout;
 
 import static android.support.v4.content.FileProvider.getUriForFile;
@@ -935,7 +937,11 @@ public class OrbotMainActivity extends AppCompatActivity
         if (request == REQUEST_SETTINGS && response == RESULT_OK)
         {
             if (data != null && (!TextUtils.isEmpty(data.getStringExtra("locale")))) {
-                LocaleHelper.setLocale(getApplicationContext(), Prefs.getDefaultLocale());
+
+                Prefs.setDefaultLocale(data.getStringExtra("locale"));
+                Languages.setLanguage(this, Prefs.getDefaultLocale(), true);
+                Language.setFromPreference(this, "pref_default_locale");
+
                 finish();
                 startActivity(new Intent(this,OrbotMainActivity.class));
             }

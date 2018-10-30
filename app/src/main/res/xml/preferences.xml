@@ -1,7 +1,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory android:title="@string/pref_general_group">
-        <im.delight.android.languages.LanguagePreference
+        <ListPreference
             android:key="pref_default_locale"
             android:title="@string/set_locale_title"
             android:enabled="true"

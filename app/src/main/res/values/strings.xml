@@ -405,4 +405,6 @@
 
     <string name="menu_new_identity">New Identity</string>
 
+    <string name="use_system_default">Use System Default</string>
+
 </resources>

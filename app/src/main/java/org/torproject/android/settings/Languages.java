@@ -28,7 +28,7 @@ public class Languages {
             Locale.ITALIAN, Locale.JAPANESE, Locale.KOREAN,
             Locale.TRADITIONAL_CHINESE, Locale.SIMPLIFIED_CHINESE,
             TIBETAN, new Locale("af"), new Locale("am"),
-            new Locale("ar"), new Locale("az"), new Locale("bg"),
+            new Locale("ar"), new Locale("ay"), new Locale("az"), new Locale("bg"),
             new Locale("bn"), new Locale("ca"), new Locale("cs"),
             new Locale("da"), new Locale("el"), new Locale("es"),
             new Locale("et"), new Locale("eu"), new Locale("fa"),
