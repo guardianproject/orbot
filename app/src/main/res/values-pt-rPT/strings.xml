@@ -1,14 +1,134 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Orbot</string>
+  <string name="app_description">Orbot é uma app proxy gratuita que fortifica outras apps para utilizar a internet mais seguramente. Orbot usa Tor para encriptar o seu tráfego de Internet e ocultá-lo saltando entre uma série de computadores no mundo todo. Tor é um software gratuito e uma rede aberta que ajuda-lhe a defender contra uma forma de rede de vigilância que ameaça a liberdade pessoal e privacidade, actividades de negócios confidenciais e parentesco, e segurança de estado conhecido como análise de tráfego.
+
+</string>
+  <string name="internal_web_url">http://orbot/</string>
+  <string name="default_web_url">http://check.torproject.org</string>
+  <string name="secure_default_web_url">https://check.torproject.org</string>
+  <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
+  <string name="control_permission_label">iniciar e parar Tor</string>
+  <string name="status_starting_up">Orbot está a iniciar…</string>
+  <string name="status_activated">Ligado à rede Tor</string>
+  <string name="status_disabled">Orbot está desativado</string>
+  <string name="status_shutting_down">TorService está a encerrar</string>
+  <string name="tor_process_starting">A iniciar o cliente Tor...</string>
+  <string name="tor_process_complete">completo.</string>
+  <string name="tor_process_waiting">em espera.</string>
+  <string name="not_anonymous_yet">ATENÇÃO: O seu tráfego ainda não está anónimo! Por favor, configure as suas aplicações para utilizar HTTP proxy 127.0.0.1:8118 ou SOCKS4A ou SOCKS5 proxy 127.0.0.1:9050 </string>
+  <string name="menu_home">Início</string>
+  <string name="menu_browse">Explorar</string>
+  <string name="menu_settings">Definições</string>
+  <string name="menu_log">Registo</string>
+  <string name="menu_info">Ajuda</string>
+  <string name="menu_start">Iniciar</string>
+  <string name="menu_stop">Parar</string>
+  <string name="menu_about">Sobre</string>
+  <string name="menu_promo_apps">Obter aplicações...</string>
+  <string name="main_layout_download">Transferir</string>
+  <string name="main_layout_upload">Enviar</string>
+  <string name="button_help">Ajuda</string>
+  <string name="button_close">Fechar</string>
+  <string name="button_about">Sobre</string>
+  <string name="button_clear_log">Limpar Registo</string>
+  <string name="menu_verify">Verificar</string>
+  <string name="menu_exit">Sair</string>
+  <string name="menu_scan">Digitalizar BridgeQR</string>
+  <string name="menu_share_bridge">Partilhar BridgeQR</string>
+  <string name="press_to_start">Pressione para começar </string>
+  <string name="pref_trans_proxy_summary">Tor automatico em Apps</string>
+  <string name="pref_transparent_all_title">Tor Tudo</string>
+  <string name="pref_transparent_port_title">Lista de Portas</string>
+  <string name="pref_transparent_port_summary">Lista de portas para proxy. *USE SOMENTE* se o modo \'\'Tudo\'\' ou \'\'App\'\' não funcionar</string>
+  <string name="pref_transparent_port_dialog">Insira portas</string>
+  <string name="pref_has_root">Solicite Acesso Root </string>
+  <string name="status_install_success">Tor binários instalados com sucesso!</string>
+  <string name="status_install_fail">Não foi possível instalar os ficheiros binários Tor. Por favor, verifique o registro e notifique tor-assistants@torproject.org </string>
+  <string name="title_error">Erro de Aplicação</string>
   <string name="wizard_title">Orbot</string>
+  <string name="wizard_btn_tell_me_more">Sobre Orbot</string>
+  <string name="btn_next">Seguinte</string>
+  <string name="btn_back">Anterior</string>
+  <string name="btn_finish">Terminar</string>
+  <string name="btn_okay">Ok</string>
+  <string name="btn_cancel">Cancelar</string>
   <!--Welcome Wizard strings (DJH)-->
+  <string name="wizard_details">Alguns Detalhes do Orbot</string>
+  <string name="wizard_permissions_root">Permissão Concedida</string>
+  <string name="wizard_permissions_stock">Permissões do Orbot</string>
+  <string name="wizard_premissions_msg_root">Excelente! Detectámos que as permissões de root estão autorizadas para o Orbot. Utilizaremos este privilégio com sensatez.</string>
+  <string name="wizard_permissions_consent">Eu compreendo e gostaria de continuar sem Superuser</string>
+  <string name="wizard_permission_enable_root">Conceder Root para Orbot</string>
+  <string name="wizard_configure">Configurar Torification</string>
+  <string name="wizard_configure_select_apps">Seleccione Apps Individuais para o Tor </string>
+  <string name="wizard_tips_duckgo">Motor de busca DuckDuckGo </string>
+  <string name="wizard_tips_story_maker">StoryMaker - Crie uma história e deixe a segurança à reflexão do TOR</string>
+  <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
+  <string name="wizard_proxy_help_info">Definições de Proxy</string>
+  <string name="wizard_final">Orbot está pronto!</string>
+  <string name="wizard_exit_at_first_screen_toast">Por favor, configure o Orbot antes que o possa começar a utilizar!</string>
   <!--END Welcome Wizard strings (DJH)-->
+  <string name="connect_first_time">Está conectado à rede Tor com sucesso - mas isto NÃO significa que o seu dispositivo está seguro. Pode utilizar o botão \'Navegador\' para testas a sua conexão. \n\nVisite-nos em https://guardianproject.info/apps/orbot ou envie email para help@guardianproject.info para saber mais. </string>
+  <string name="tor_check">Irá abrir o seu navegador web como https://check.torproject.org para verificar se o Orbot está configurado corretamente e está conectado ao Tor. </string>
+  <string name="pref_general_group">Geral</string>
+  <string name="pref_start_boot_title">Iniciar Orbot ao Arranque</string>
+  <string name="pref_start_boot_summary">Iniciar Orbot e conectar Tor automaticamente quando o dispositivo é iniciado.</string>
   <!--New Wizard Strings-->
   <!--Title Screen-->
   <!--Warning screen-->
+  <string name="wizard_warning_title">Aviso</string>
+  <string name="wizard_warning_msg">Instalar o Orbot por si só não irá anonimizar automaticamente o seu tráfego móvel.\n\nTerá de configurar correctamente o Orbot, o seu dispositivo e outras Apps para utilizar o Tor com sucesso. </string>
   <!--Permissions screen-->
+  <string name="wizard_permissions_title">Permissões</string>
   <!--TipsAndTricks screen-->
   <!--Transparent Proxy screen-->
+  <string name="pref_select_apps">Selecionar Aplicações</string>
+  <string name="pref_node_configuration">Configuração do Nodo</string>
+  <string name="button_proxy_all">Proxy Tudo</string>
+  <string name="button_proxy_none">Proxy Nenhum</string>
+  <string name="button_invert_selection">Inverter Seleção</string>
+  <string name="status">Estado</string>
+  <string name="error">Erro</string>
+  <string name="exit_nodes">Nodos de Saída</string>
+  <string name="enter_exit_nodes">Inserir Nodos de Saída</string>
+  <string name="exclude_nodes">Excluir Nodos</string>
+  <string name="enter_exclude_nodes">Inserir Nodos Excluídos</string>
+  <string name="enter_ports">Insira portas</string>
+  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
+  <string name="the_tor_license">A Licença Tor</string>
+  <string name="https_torproject_org">https://torproject.org</string>
+  <string name="third_party_software">Software de terceiros:  </string>
+  <string name="tor_version">Tor: https://www.torproject.org</string>
+  <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
+  <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
   <string name="default_bridges"></string>
+  <string name="set_locale_title">idioma</string>
+  <string name="wizard_locale_title">Escolher idioma</string>
+  <string name="wizard_locale_msg">Deixe o predefinido ou mude o idioma atual</string>
+  <string name="powered_by">desenvolvido por Tor</string>
+  <string name="btn_save_settings">Guardar Definições</string>
+  <string name="bandwidth_">Largura de banda:</string>
+  <string name="menu_verify_browser">Navegador</string>
+  <string name="permission_manage_tor_label">Gerir Tor</string>
+  <string name="permission_manage_tor_description">Ative esta aplicação para controlar o serviço Tor</string>
+  <string name="pref_socks_title">SOCKS do Tor</string>
+  <string name="pref_dnsport_title">Porta DNS do Tor</string>
+  <string name="app_conflict">Conflito de Aplicação</string>
+  <string name="kbps">kbps</string>
+  <string name="mbps">mbps</string>
+  <string name="kb">KB</string>
+  <string name="mb">MB</string>
+  <string name="menu_qr">Códigos QR</string>
+  <string name="get_bridges_email">E-mail</string>
+  <string name="get_bridges_web">Web</string>
+  <string name="activate">Ativar</string>
+  <string name="send_email">Enviar Mensagem</string>
+  <string name="install_orweb">Instalar Orfox</string>
+  <string name="standard_browser">Navegador Padrão</string>
+  <string name="save">Guardar</string>
+  <string name="name">Nome</string>
+  <string name="done">Concluído!</string>
+  <string name="disable">Desativar</string>
+  <string name="enable">Ativar</string>
 </resources>

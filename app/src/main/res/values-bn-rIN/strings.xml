@@ -1,6 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="menu_info">Help</string>
+  <string name="button_help">Help</string>
+  <string name="btn_cancel">Cancel</string>
   <!--Welcome Wizard strings (DJH)-->
+  <string name="wizard_proxy_help_info">Proxy Settings</string>
   <!--END Welcome Wizard strings (DJH)-->
   <!--New Wizard Strings-->
   <!--Title Screen-->
@@ -9,4 +13,5 @@
   <!--TipsAndTricks screen-->
   <!--Transparent Proxy screen-->
   <string name="default_bridges"></string>
+  <string name="name">Name</string>
 </resources>

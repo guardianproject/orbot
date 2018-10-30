@@ -116,7 +116,7 @@
   <string name="wizard_transproxy_hint">(Dediklərimizdən heç biri haqqında xəbərin yoxdursa, qutunu işarələ)</string>
   <string name="wizard_transproxy_none">Heç biri</string>
   <string name="pref_transparent_tethering_title">Tor-un Son Həddi</string>
-  <string name="pref_transparent_tethering_summary">Wi-Fi və USB ilə Bağlanan Cihazlar üçün Tor Şəffaf Proksiləməni Aktivləşdir (cihazın yenidən yüklənməsini tələb edir)</string>
+  <string name="pref_transparent_tethering_summary">Wifi və USB ilə Bağlanan Cihazlar üçün Tor Şəffaf Proksiləməni Aktivləşdir (cihazın yenidən yüklənməsini tələb edir)</string>
   <string name="button_grant_superuser">Superistifadəçi Giriş Tələbi</string>
   <string name="pref_select_apps">Aplikasiya Seç</string>
   <string name="pref_select_apps_summary">Tor vasitəsilə açılması üçün Aplikasiya seç</string>

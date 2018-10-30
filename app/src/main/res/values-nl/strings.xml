@@ -3,8 +3,8 @@
   <string name="app_name">Orbot</string>
   <string name="app_description">Orbot is een vrije proxy-app die het andere apps mogelijk maakt het internet veiliger te gebruiken. Orbot gebruikt Tor om je internetverkeer te versleutelen en het vervolgens te verhullen het door het door een serie computers over de hele wereld te routeren. Tor is vrije software en een open netwerk dat je helpt te verdedigen tegen een vorm van netwerktoezicht, genaamd \'verkeersanalyse\', die persoonlijke vrijheid en privacy, vertrouwelijke bedrijfsactiviteiten en relaties en staatsveiligheid bedreigt.</string>
   <string name="internal_web_url">http://orbot/</string>
-  <string name="default_web_url">http://check.torproject.org</string>
-  <string name="secure_default_web_url">https://check.torproject.org</string>
+  <string name="default_web_url">http://check.torproject.org/?lang=nl</string>
+  <string name="secure_default_web_url">https://check.torproject.org/?lang=nl</string>
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
   <string name="control_permission_label">start en stop Tor</string>
   <string name="tor_proxy_service_process">torproxyservice</string>
@@ -57,7 +57,7 @@
   <string name="btn_next">Volgende</string>
   <string name="btn_back">Vorige</string>
   <string name="btn_finish">Einde</string>
-  <string name="btn_okay">OK</string>
+  <string name="btn_okay">Oké</string>
   <string name="btn_cancel">Annuleren</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Enkele Orbot-gegevens</string>
@@ -66,7 +66,7 @@
   <string name="wizard_permissions_stock">Orbot-rechten</string>
   <string name="wizard_premissions_msg_root">Uitstekend! We hebben gedetecteerd dat je root-rechten hebt aangezet voor Orbot. We gebruiken deze kracht met verstand.</string>
   <string name="wizard_permissions_msg_stock">Hoewel het niet noodzakelijk is kan Orbot nog krachtiger worden als je toestel root-rechten heeft. Gebruik de knop onderaan om Orbot superkrachten te geven!</string>
-  <string name="wizard_permissions_no_root">Als je niet over root-toegang beschikt en geen idee hebt waarover we bezig zijn, let er dan op dat je applicaties gebruikt die geschikt zijn voor Orbot.</string>
+  <string name="wizard_permissions_no_root">Als je niet over root-toegang beschikt en geen idee hebt waarmee we bezig zijn, let er dan op dat je applicaties gebruikt die geschikt zijn voor Orbot.</string>
   <string name="wizard_permissions_consent">Ik begrijp dit en wil verdergaan zonder Superuser</string>
   <string name="wizard_permission_enable_root">Root toestaan voor Orbot</string>
   <string name="wizard_configure">Torificatie instellen</string>
@@ -117,7 +117,7 @@
   <string name="wizard_transproxy_hint">(Vink dit aan als je geen idee hebt waarover we het hebben)</string>
   <string name="wizard_transproxy_none">Geen</string>
   <string name="pref_transparent_tethering_title">Tor tetheren</string>
-  <string name="pref_transparent_tethering_summary">Schakel Tor transparante proxy voor Wi-Fi en USB-getheterde toestellen in (vereist herstart)</string>
+  <string name="pref_transparent_tethering_summary">Schakel Tor transparante proxy voor WiFi en USB-getheterde toestellen in (vereist herstart)</string>
   <string name="button_grant_superuser">Vraag Superuser-toegang aan</string>
   <string name="pref_select_apps">Kies applicaties</string>
   <string name="pref_select_apps_summary">Kies applicaties om via Tor te draaien</string>
@@ -159,7 +159,7 @@
   <string name="setting_up_port_based_transparent_proxying_">Bezig met opzetten van per-poort transparante proxy…</string>
   <string name="bridge_error">Bridge-fout</string>
   <string name="bridge_requires_ip">Om de bridge-functie te gebruiken moet je minstens één bridge IP-adres invoeren.</string>
-  <string name="send_email_for_bridges">Stuur een e-mail met een GMail-account naar bridges@torproject.org met enkel de regel \"get bridges\" in de body van de e-mail.</string>
+  <string name="send_email_for_bridges">Stuur een e-mail met een Gmail-account naar bridges@torproject.org met enkel de regel \"get bridges\" als de tekst van de e-mail.</string>
   <string name="error">Fout</string>
   <string name="your_reachableaddresses_settings_caused_an_exception_">Je ReachableAddresses-instellingen veroorzaakten een fout!</string>
   <string name="your_relay_settings_caused_an_exception_">Je relay-instellingen veroorzaakten een fout!</string>
@@ -230,7 +230,7 @@
   <string name="wizard_locale_msg">Laat standaard of schakel over naar huidige taal</string>
   <string name="powered_by">aangedreven door Tor</string>
   <string name="btn_save_settings">Sla instellingen op</string>
-  <string name="no_internet_connection_tor">Geen internetverbinding; Tor is op stand-by…</string>
+  <string name="no_internet_connection_tor">Geen internetverbinding; Tor is in de slaapstand...</string>
   <string name="bandwidth_">Bandbreedte:</string>
   <string name="down">omlaag</string>
   <string name="up">omhoog</string>
@@ -277,7 +277,7 @@
   <string name="bridges_updated">Bridges bijgewerkt</string>
   <string name="restart_orbot_to_use_this_bridge_">Herstart Orbot om de wijzigingen in te schakelen</string>
   <string name="menu_qr">QR-codes</string>
-  <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Als je mobiele netwerk Tor actief blokkeert, kan je een \'bridge-server\' gebruiken als alternatieve toegang. SELECTEER een van de opties om te configureren en te testen...</string>
+  <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Als je mobiele netwerk Tor actief blokkeert, kan je een \'bridge-server\' gebruiken als alternatieve toegang. SELECTEER een van de opties om te configureren en te testen..,.</string>
   <string name="bridge_mode">Bridge-modus</string>
   <string name="get_bridges_email">E-mail</string>
   <string name="get_bridges_web">Web</string>

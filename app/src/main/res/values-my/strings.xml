@@ -1,14 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="menu_home">ပင်မ စာမျက်နှာ</string>
   <string name="menu_browse">ဖွင့်ကြည့်ရန်</string>
   <string name="menu_settings">ချိန်ညှိချက်များ</string>
   <string name="menu_info">အကူအညီ</string>
+  <string name="menu_start">စတင်ရန်</string>
+  <string name="menu_stop">ရပ်ရန်</string>
   <string name="menu_about">အကြောင်း</string>
+  <string name="main_layout_download">ဒေါင်းလုဒ်</string>
   <string name="button_help">အကူအညီ</string>
   <string name="button_close">ပိတ်ရန်</string>
   <string name="button_about">အကြောင်း</string>
   <string name="menu_exit">ထွက်ရန်</string>
+  <string name="btn_next">ရှေ့ဆက်ရန်</string>
   <string name="btn_back">နောက်သို့</string>
   <string name="btn_cancel">ဖျက်သိမ်းရန်</string>
   <!--Welcome Wizard strings (DJH)-->
@@ -26,5 +30,16 @@
   <string name="status">အနေအထား</string>
   <string name="error">ချို့ယွင်းချက်</string>
   <string name="default_bridges"></string>
+  <string name="set_locale_title">ဘာသာစကား</string>
   <string name="btn_save_settings">ချိန်ညှိချက်များကို သိမ်းဆည်းရန်</string>
+  <string name="bandwidth_">Bandwidth:</string>
+  <string name="kb">ကီလိုဘိုက်</string>
+  <string name="mb">မဂ္ဂါဘိုက်</string>
+  <string name="get_bridges_email">အီးေမးလ္</string>
+  <string name="activate">Activate</string>
+  <string name="hidden_services">Hidden Services</string>
+  <string name="title_activity_hidden_services">Hidden Services</string>
+  <string name="menu_hidden_services">Hidden Services</string>
+  <string name="save">သိမ္းဆည္းပါ</string>
+  <string name="name">အမည်</string>
 </resources>

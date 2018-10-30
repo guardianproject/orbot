@@ -1,15 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Orbot</string>
   <string name="internal_web_url">http://orbot/</string>
   <string name="default_web_url">http://check.torproject.org</string>
   <string name="secure_default_web_url">https://check.torproject.org</string>
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
+  <string name="control_permission_label">Torni ishga tushirish va to\'htatish</string>
   <string name="status_starting_up">Orbot ishga tushirilmoqda…</string>
   <string name="status_activated">Tor tarmog\'iga ulangan</string>
   <string name="menu_home">Uy</string>
+  <string name="menu_browse">Tanlash</string>
   <string name="menu_settings">Moslamalar</string>
   <string name="menu_info">Yordam</string>
+  <string name="menu_stop">To‘xtatish</string>
   <string name="menu_about">Dastur haqida</string>
   <string name="main_layout_download">Yuklab olish</string>
   <string name="main_layout_upload">Yuklash</string>
@@ -20,6 +23,8 @@
   <string name="menu_exit">Chiqish</string>
   <string name="title_error">Dastur xatosi</string>
   <string name="wizard_title">Orbot</string>
+  <string name="btn_next">Keyingi</string>
+  <string name="btn_cancel">Bekor qilish</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Proksi moslamalari</string>
@@ -41,7 +46,14 @@
   <string name="https_torproject_org">https://torproject.org</string>
   <string name="found_existing_tor_process">Mavjud bo\'lgan Tor jarayoni topildi...</string>
   <string name="default_bridges"></string>
+  <string name="set_locale_title">Til</string>
   <string name="set_locale_summary">Orbot uchun lokal va tilni tanlash</string>
   <string name="wizard_locale_title">Tilni tanlansh</string>
   <string name="btn_save_settings">Moslamalarni saqlash</string>
+  <string name="menu_vpn">Dasturlar</string>
+  <string name="get_bridges_email">E-pochta manzili</string>
+  <string name="send_email">Email jo\'natish</string>
+  <string name="install_orweb">Orfoxni o\'rnatish</string>
+  <string name="save">Saqlash</string>
+  <string name="name">Ism</string>
 </resources>

@@ -1,17 +1,35 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="app_name">Orbot</string>
+  <string name="app_description">Orbot eshte nje perfaqesues falas per internetin i cili ndihmon programet e tjera te perdori internetin ne menyre me te sigurte. Orbot perdor Tor per te shifruar trafikun tuaj te internetit nepermjet nje serie me kompjutere perqark botes. Tor eshte nje softwere pa pagese dhe nje rrjet i hapur qe ju ndihmon juve te mbroheni nga cdo forme mbikqyrjeje ne rrjet qe cenon lirine dhe privatesine personale, aktivitetet konfidenciale te lidhjeve dhe bizneseve, dhe siqurine e gjendjes te njohur si analiza e trafikut.</string>
+  <string name="internal_web_url">http://orbot/</string>
+  <string name="default_web_url">http://check.torproject.org</string>
+  <string name="secure_default_web_url">https://check.torproject.org</string>
+  <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
+  <string name="control_permission_label">fillo dhe ndalo Orbot</string>
   <string name="menu_home">Shpi</string>
   <string name="menu_browse">Lundro</string>
   <string name="menu_settings">Zgjedhjet</string>
   <string name="menu_info">Ndihmë</string>
+  <string name="menu_start">Nisje</string>
+  <string name="menu_stop">Ndale</string>
   <string name="menu_about">Informacione</string>
+  <string name="main_layout_download">Shkarkim</string>
   <string name="button_help">Ndihmë</string>
   <string name="button_close">Mbylle</string>
   <string name="button_about">Informacione</string>
   <string name="menu_exit">Dil</string>
+  <string name="wizard_title">Orbot</string>
+  <string name="wizard_btn_tell_me_more">Rreth Orbot</string>
+  <string name="btn_next">Vazhdo</string>
   <string name="btn_back">Mbrapa</string>
+  <string name="btn_finish">Mbaroi</string>
+  <string name="btn_okay">Ne rregul</string>
   <string name="btn_cancel">Anullo</string>
   <!--Welcome Wizard strings (DJH)-->
+  <string name="wizard_details">Disa detaje te Orbot</string>
+  <string name="wizard_permissions_root">Leja Garantohet</string>
+  <string name="wizard_permissions_stock">Lejet e Orbot</string>
   <string name="wizard_proxy_help_info">Konfigurimi i Proxy</string>
   <!--END Welcome Wizard strings (DJH)-->
   <string name="pref_general_group">Të Përgjithshme</string>
@@ -25,6 +43,16 @@
   <string name="wizard_transproxy_none">Asnjë</string>
   <string name="status">Gjëndja</string>
   <string name="error">Gabim</string>
+  <string name="bridges">Urat</string>
   <string name="default_bridges"></string>
+  <string name="set_locale_title">Gjuhë</string>
   <string name="btn_save_settings">Shpëto Konfigurmin</string>
+  <string name="bandwidth_">Banda:</string>
+  <string name="get_bridges_email">Email</string>
+  <string name="activate">Aktivizo</string>
+  <string name="save">Ruaje</string>
+  <string name="name">Emër</string>
+  <string name="backup_restored">Kopjeruajtja u rikthye</string>
+  <string name="disable">Çaktivizoje</string>
+  <string name="enable">Mundëso</string>
 </resources>

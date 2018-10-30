@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Orbot</string>
-  <string name="app_description">Orbot je bezplatná proxy aplikácia, ktorá umožňuje ostatným aplikáciam používať internet bezpečnejšie. Orbot používa Tor pre šifrovanie vašej internetovej komunikácie, ktorú následne schová za sériu náhodných počítačov z celého sveta. Tor je bezplatný software a otvorená sieť, ktorá pomáha chrániť proti odpočúvaniu sietí, ktoré ohrozuje vašu osobnú slobodu a súkromie, dôverné pracovné aktivity, medzinárodne vzťahy a tiež bezpečnosť štátov známu ako analýza prevádzky.</string>
+  <string name="app_description">Orbot je bezplatná proxy aplikácia, ktorá umožňuje ostatným aplikáciam používať internet bezpečnejšie. Orbot používa Tor pre šifrovanie vašej internetovej komunikácie, ktorú následne schová za sériu náhodných počítačov z celého sveta. Tor je bezplatný software a otvorená sieť, ktorá pomáha chrániť proti sledovaniu sietí, ktoré ohrozuje osobnú slobodu a súkromie, dôverné pracovné aktivity a vzťahy a tiež bezpečnosť štátov známu ako analýza prevádzky.</string>
   <string name="internal_web_url">http://orbot/</string>
   <string name="default_web_url">http://check.torproject.org</string>
   <string name="secure_default_web_url">https://check.torproject.org</string>
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
-  <string name="control_permission_label">štart a stop Tor</string>
+  <string name="control_permission_label">zapnúť a vypnút Tor</string>
   <string name="tor_proxy_service_process">torproxyservice</string>
   <string name="status_starting_up">Orbot sa spúšťa…</string>
   <string name="status_activated">Pripojený do siete Tor</string>
@@ -115,7 +115,7 @@
   <string name="wizard_transproxy_hint">(Zaškrtnite toto pole, pokiaľ netušíte o čom rozprávame)</string>
   <string name="wizard_transproxy_none">Žiadny</string>
   <string name="pref_transparent_tethering_title">Tor Tethering</string>
-  <string name="pref_transparent_tethering_summary">Povoliť Tor transparentné proxy pre zariadenia pripojené cez Wi-Fi alebo USB (vyžaduje reštart)</string>
+  <string name="pref_transparent_tethering_summary">Povoliť Tor transparentné proxy pre zariadenia pripojené cez Wifi alebo USB (vyžaduje reštart)</string>
   <string name="button_grant_superuser">Vyžiadať prístup Superpoužívateľa</string>
   <string name="pref_select_apps">Vybrať aplikácie</string>
   <string name="pref_select_apps_summary">Vybrať aplikácie, ktoré majú byť smerované cez Tor</string>

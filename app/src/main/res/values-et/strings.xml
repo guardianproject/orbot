@@ -101,7 +101,7 @@
   <string name="wizard_transproxy_hint">(Klikkige sellele kastile kui teil pole õrna aimugi millest jutt käib)</string>
   <string name="wizard_transproxy_none">Puudub</string>
   <string name="pref_transparent_tethering_title">Tor lõastamine</string>
-  <string name="pref_transparent_tethering_summary">Luba Tor Läbipaistev Proxy Wi-Fi ja USB lõastatud seadmetele (vajab uuestilaadimist)</string>
+  <string name="pref_transparent_tethering_summary">Luba Tor Läbipaistev Proxy WiFi ja USB lõastatud seadmetele (vajab uuestilaadimist)</string>
   <string name="button_grant_superuser">Nõua Superkasutaja Juurdepääsu</string>
   <string name="pref_select_apps">Vali Rakendused</string>
   <string name="pref_select_apps_summary">Vali läbi Tor suunatavad rakendused</string>
@@ -209,5 +209,6 @@
   <string name="menu_vpn">Rakendused</string>
   <string name="save">Salvesta</string>
   <string name="name">Name</string>
+  <string name="disable">Keela</string>
   <string name="enable">Luba</string>
 </resources>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Orbot</string>
   <string name="internal_web_url">http://orbot/</string>
@@ -135,6 +135,7 @@
   <string name="unable_to_start_tor">Ne eblas startigi Tor:</string>
   <string name="pref_use_sys_iptables_title">Uzi defaŭltajn Iptables</string>
   <string name="default_bridges"></string>
+  <string name="set_locale_title">Lingvo</string>
   <string name="set_locale_summary">Elekti lokaĵaron kaj lingvon por Orbot</string>
   <string name="wizard_locale_title">Elekti lingvon</string>
   <string name="btn_save_settings">Konservi Agordojn</string>
@@ -142,5 +143,9 @@
   <string name="down">el</string>
   <string name="up">al</string>
   <string name="menu_use_chatsecure">Uzi ChatSecure</string>
-  <string name="install_apps_">Instali aplikaĵojn?</string>
+  <string name="menu_vpn">Aplikaĵoj</string>
+  <string name="activate">Aktivi</string>
+  <string name="save">Konservi</string>
+  <string name="name">Nomo</string>
+  <string name="done"> Farita! </string>
 </resources>

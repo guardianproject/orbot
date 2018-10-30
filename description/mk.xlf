@@ -11,16 +11,16 @@
       </trans-unit>
       <trans-unit id="shortdescription" maxwidth="80" size-unit="char">
         <source>Protect your privacy with this proxy with Tor</source>
-        <target>Заштитете ја вашата приватност со овој прокси на Tor</target>
+        <target>Заштитете ја вашата приватност со овој прокси преку Tor</target>
         <note from="developer">This is limited by Google to 80 characters</note>
       </trans-unit>
       <trans-unit id="intro">
         <source>Orbot is a free proxy app that empowers other apps to use the internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.</source>
-        <target>Orbot е слободна прокси апликација која им овозможува на другите апликации да го користат интернетот побезбедно. Orbot користи Tor за шифрирање на вашиот интернет-сообраќај, а потоа го сокрива и го доставува преку неколку компјутери во целиот свет. Tor е слободен софтвер и софтвер со отворна мрежа која помага во борбата против надзорот мрежа која се заканува на лична слобода и приватност, доверливи деловни активности и односи, и помага против државна безбедност позната како анализа на сообраќајот.</target>
+        <target>Orbot е слободна прокси апликација која им овозможува на другите апликации да го користат интернетот побезбедно. Orbot користи Tor за енкриптирање на вашиот интернет-сообраќај, а потоа го сокрива и го доставува преку серија компјутери низ целиот свет. Tor е слободен софтвер и отворна мрежа која ви помага да се одбраните од формите на надзор на мрежата кој претставува закана по личната слобода и приватност, доверливите деловни активности и односи, и против државната безбедност позната како анализа на сообраќајот.</target>
       </trans-unit>
       <trans-unit id="intro2">
         <source>Orbot is the only app that creates a truly private internet connection. As the New York Times writes, “when a communication arrives from Tor, you can never know where or whom it’s from.” Tor won the 2012 Electronic Frontier Foundation (EFF) Pioneer Award.</source>
-        <target>Orbot е единствената апликација која создава вистинско приватно поврзување на интернет. Како што пишува Њујорк Тајмс, „кога комуникацијата доаѓа од Tor, никогаш не знаеш од каде и од кого е.“ Tor ја освои наградата Electronic Frontier Foundation (EFF) Pioneer во 2012 година.</target>
+        <target>Orbot е единствената апликација која создава вистинска приватна интернет конекција. Како што пишува Њујорк Тајмс, „кога комуникацијата доаѓа од Tor, никогаш не знаеш од каде или од кого е.“ Tor ја освои наградата Electronic Frontier Foundation (EFF) Pioneer во 2012 година.</target>
       </trans-unit>
       <trans-unit id="intro2">
         <source>ACCEPT NO SUBSTITUTES: Orbot is the safest way to use the Internet on Android. Period. Orbot bounces your encrypted traffic several times through computers around the world, instead of connecting you directly like VPNs and proxies. This process takes a little longer, but the strongest privacy and identity protection available is worth the wait.</source>
@@ -41,24 +41,24 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="expertrootmode">
         <source>***Expert Root Mode***</source>
-        <target>***Стучен Root режим на работа***</target>
+        <target>***Експертски Root режим на работа***</target>
       </trans-unit>
       <trans-unit id="universalmode">
         <source>UNIVERSAL MODE: Orbot can be configured to transparently proxy all of your Internet traffic through Tor. You can also choose which specific apps you want to use through Tor.</source>
-        <target>УНИВЕРЗАЛЕН РЕЖИМ НА РАБОТА: Орбот може да биде конфигуриран транспарентно да го проксира целиот интернет сообраќај преку Tor. Исто така, можете да изберете кои апликации сакате да ги користите преку Tor.</target>
+        <target>УНИВЕРЗАЛЕН РЕЖИМ НА РАБОТА: Орбот може да биде конфигуриран транспарентно да го пренасочува целиот интернет сообраќај преку Tor. Исто така, можете да изберете кои поединечни апликации сакате да ги користите преку Tor.</target>
       </trans-unit>
       <trans-unit id="wespeakyourlanguage">
         <source>★ WE SPEAK YOUR LANGUAGE: Orbot is available for friends who speak:</source>
-        <target>★ ЗБОРУВАМЕ НА ВАШИОТ ЈАЗИК: Orbot е достапен за пријатели кои зборуваат:</target>
+        <target>★ НИЕ ГО ЗБОРУВАМЕ ВАШИОТ ЈАЗИК: Orbot е достапен за пријателите кои зборуваат:</target>
       </trans-unit>
       <trans-unit id="languagelist" translate="no">
         <source>العربية, azərbaycanca, български, català, Čeština, dansk, Deutsch, Ελληνικά, English, español, eesti, euskara, فارسی, suomi, français, galego, hrvatski, magyar, עברית, íslenska, italiano, 日本語, 한국어, lietuvių, latviešu, Македонци, Bahasa Melayu, Nederlands, norsk, polski, português, Русский, slovenčina, slovenščina, српски, svenska, Türkçe, українська, Tagalog, Tiếng Việt, 中文(简体), 中文(台灣)</source>
-        <target>العربية, azərbaycanca, български, català, Čeština, dansk, Deutsch, Ελληνικά, English, español, eesti, euskara, فارسی, suomi, français, galego, hrvatski, magyar, עברית, íslenska, italiano, 日本語, 한국어, lietuvių, latviešu, Македонски, Bahasa Melayu, Nederlands, norsk, polski, português, Русский, slovenčina, slovenščina, српски, svenska, Türkçe, українська, Tagalog, Tiếng Việt, 中文(简体), 中文(台灣)</target>
+        <target>العربية, azərbaycanca, български, català, Čeština, dansk, Deutsch, Ελληνικά, English, español, eesti, euskara, فارسی, suomi, français, galego, hrvatski, magyar, עברית, íslenska, italiano, 日本語, 한국어, lietuvių, latviešu, македонски, Bahasa Melayu, Nederlands, norsk, polski, português, Русский, slovenčina, slovenščina, српски, svenska, Türkçe, українська, Tagalog, Tiếng Việt, 中文(简体), 中文(台灣)</target>
         <note from="developer">Do not translate the names of the languages, leave them just like this.</note>
       </trans-unit>
       <trans-unit id="helptranslate">
         <source>Don’t see your language? Join us and help translate the app:</source>
-        <target>Го нема Вашиот јазик? Прижете ни се и помогнете ни да ја преведеме апликацијата: </target>
+        <target>Го нема Вашиот јазик? Приклучете ни се и помогнете ни да ја преведеме апликацијата: </target>
       </trans-unit>
       <trans-unit id="helptranslateurl" translate="no">
         <source>https://www.transifex.com/projects/p/orbot</source>
@@ -71,11 +71,11 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="aboutus">
         <source>★ ABOUT US: Guardian Project is a group of developers that make secure mobile apps and open-source code for a better tomorrow</source>
-        <target>★ ЗА НАС: Guardian Project е група програмери кои создаваат безбедни мобилни апликации и софтвер со отворен изворен код за подобро утре.</target>
+        <target>★ ЗА НАС: Guardian Project е група развивачи на софтвер кои создаваат безбедносни мобилни апликации и софтвер со отворен изворен код за подобро утре.</target>
       </trans-unit>
       <trans-unit id="ourwebsite">
         <source>★ OUR WEBSITE: https://GuardianProject.info</source>
-        <target>★ НАШАТА ВЕБ-ЛОКАЦИЈА: https://GuardianProject.info</target>
+        <target>★ НАШАТА ВЕБ СТРАНА: https://GuardianProject.info</target>
       </trans-unit>
       <trans-unit id="abouttor">
         <source>★ ABOUT TOR: https://TorProject.org</source>
@@ -87,7 +87,7 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="freesoftware">
         <source>★ FREE SOFTWARE: Orbot is free software. Take a look at our source code, or join the community to make it better:</source>
-        <target>★ БЕСПЛАТЕН СОФТВЕР: Orbot е бесплатен софтвер. Погледнете го нашиот изворен код или приклучете се на заедницата за да ја подобрите: </target>
+        <target>★ БЕСПЛАТЕН СОФТВЕР: Orbot е бесплатен софтвер. Погледнете го нашиот изворен код или приклучете се на заедницата за да го подобрите: </target>
       </trans-unit>
       <trans-unit id="gitrepo" translate="no">
         <source>https://gitweb.torproject.org/orbot.git</source>
@@ -96,7 +96,7 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="messageus">
         <source>★ MESSAGE US: Are we missing your favorite feature? Found an annoying bug? Please tell us! We’d love to hear from you. Send us an email: support@guardianproject.info or find us in our chat room https://guardianproject.info/contact</source>
-        <target>★ ПИШЕТЕ НИ: Не можете да ја најдете вашата омилена функција? Пронајдовте досадни грешки? Ве молиме кажете ни! Би сакале да слушнеме од вас. Испратете ни e-mail на: support@guardianproject.info или најдете не во нашата соба за разговор https://guardianproject.info/contact</target>
+        <target>★ ПИШЕТЕ НИ: Не можете да ја најдете вашата омилена функција? Пронајдовте досадни грешки? Ве молиме кажете ни! Би сакале да слушнеме од вас. Испратете ни е-пошта на: support@guardianproject.info или најдете не во нашата чат соба https://guardianproject.info/contact</target>
       </trans-unit>
     </body>
   </file>

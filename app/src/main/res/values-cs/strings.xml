@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Orbot</string>
+  <string name="app_description">Orbot je proxy aplikace zdarma, která umožňuje ostatním aplikacím používat internet bezpečněji. Používá Tor pro zašifrování přenášených dat a skrývá je pomocí skoků přes sérii počítačů po celém světě. Tor je software zdarma a jeho otevřená síť pomáhá v obraně proti sledování, které zasahuje do osobní svobody a soukromí, důvěrných obchodních komunikací a vztahů a proti státní bezpečnosti zvané analýza internetového provozu.</string>
   <string name="internal_web_url">http://orbot/</string>
   <string name="default_web_url">http://check.torproject.org</string>
   <string name="secure_default_web_url">https://check.torproject.org</string>
@@ -20,16 +21,20 @@
   <string name="menu_settings">Nastavení</string>
   <string name="menu_log">Log</string>
   <string name="menu_info">Pomoc</string>
-  <string name="menu_apps">Aplikace</string>
   <string name="menu_start">Zapnout</string>
   <string name="menu_stop">Vypnout</string>
   <string name="menu_about">O aplikaci</string>
+  <string name="menu_promo_apps">Získejte aplikace...</string>
+  <string name="main_layout_download">Stahování</string>
+  <string name="main_layout_upload">Nahrávání</string>
   <string name="button_help">Pomoc</string>
   <string name="button_close">Zavřít</string>
   <string name="button_about">O aplikaci</string>
   <string name="button_clear_log">Vyčistit log</string>
   <string name="menu_verify">Ověřit</string>
   <string name="menu_exit">Konec</string>
+  <string name="menu_scan">Skenovat QR kód bridge</string>
+  <string name="menu_share_bridge">Sdílet QR kód bridge</string>
   <string name="press_to_start">- podržte pro spuštění -</string>
   <string name="pref_trans_proxy_group">Transparentní proxy (vyžaduje roota)</string>
   <string name="pref_trans_proxy_title">Transparentní proxy</string>
@@ -52,11 +57,17 @@
   <string name="btn_finish">Dokončit</string>
   <string name="btn_cancel">Zrušit</string>
   <!--Welcome Wizard strings (DJH)-->
+  <string name="wizard_details">Detaily o Orbotu</string>
   <string name="wizard_permissions_root">Práva udělena</string>
-  <string name="wizard_proxy_help_info">Nastavení Proxy</string>
+  <string name="wizard_permissions_stock">Orbot práva</string>
+  <string name="wizard_premissions_msg_root">Výborně! Detekovali jsme, že Orbot má dostupná práva roota. Moudře je využijeme.</string>
+  <string name="wizard_proxy_help_info">Nastavení Proxy6</string>
   <string name="wizard_final">Orbot je připraven!</string>
+  <string name="wizard_exit_at_first_screen_toast">Prosím, nakonfigurujte Orbot dříve, než ho začnete pužívat!</string>
   <!--END Welcome Wizard strings (DJH)-->
   <string name="pref_general_group">Hlavní</string>
+  <string name="pref_start_boot_title">Spustit Orbot při zapnutí zařízení</string>
+  <string name="pref_start_boot_summary">Automaticky spustit Orbot a připojit k Toru po zapnutí</string>
   <!--New Wizard Strings-->
   <!--Title Screen-->
   <!--Warning screen-->
@@ -65,10 +76,24 @@
   <!--TipsAndTricks screen-->
   <!--Transparent Proxy screen-->
   <string name="wizard_transproxy_title">Transparentní proxy</string>
+  <string name="wizard_transproxy_hint">(Zaškrtněte, jestli netušíte, o čem je řeč)</string>
   <string name="wizard_transproxy_none">Není</string>
   <string name="status">Status</string>
   <string name="error">Chyba</string>
+  <string name="bridges">Přemostění</string>
   <string name="default_bridges"></string>
-  <string name="btn_save_settings">Uloz nastaveni</string>
+  <string name="set_locale_title">Jazyk</string>
+  <string name="btn_save_settings">Ulož nastavení</string>
+  <string name="bandwidth_">Sirka pasma:</string>
   <string name="menu_vpn">Aplikace</string>
+  <string name="get_bridges_email">Email</string>
+  <string name="activate">Aktivovat</string>
+  <string name="hidden_services">Skryté Služby</string>
+  <string name="title_activity_hidden_services">Skryté Služby</string>
+  <string name="menu_hidden_services">Skryté Služby</string>
+  <string name="save">Uložit</string>
+  <string name="name">Jméno</string>
+  <string name="done">Hotovo!</string>
+  <string name="disable">Zakázat</string>
+  <string name="enable">Zapnout</string>
 </resources>

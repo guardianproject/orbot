@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Orbot</string>
   <string name="internal_web_url">http://orbot/</string>
@@ -75,7 +75,15 @@
   <string name="the_tor_license">Trwydded Tor</string>
   <string name="third_party_software">Meddalwedd 3ydd-parti</string>
   <string name="default_bridges"></string>
+  <string name="set_locale_title">Iaith</string>
   <string name="set_locale_summary">Dewiswch locale ac iaith i Orbot</string>
   <string name="wizard_locale_title">Dewiswch iaith</string>
   <string name="btn_save_settings">Cadw\'r gosodiadau</string>
+  <string name="menu_vpn">Apps</string>
+  <string name="activate">Ysgogi</string>
+  <string name="hidden_services">Gwasanaethau Cudd</string>
+  <string name="title_activity_hidden_services">Gwasanaethau Cudd</string>
+  <string name="menu_hidden_services">Gwasanaethau Cudd</string>
+  <string name="save">Cadw</string>
+  <string name="name">Enw</string>
 </resources>

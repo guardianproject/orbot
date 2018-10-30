@@ -6,14 +6,17 @@
     <body>
       <trans-unit id="title" maxwidth="30" size-unit="char">
         <source>Orbot</source>
+        <target>ऑरबॉट</target>
         <note from="developer">This is limited by Google to 30 characters</note>
       </trans-unit>
       <trans-unit id="shortdescription" maxwidth="80" size-unit="char">
         <source>Protect your privacy with this proxy with Tor</source>
+        <target>टॉर सोबत हया प्रॉक्सीने आपली गोपनियता सांभाळा</target>
         <note from="developer">This is limited by Google to 80 characters</note>
       </trans-unit>
       <trans-unit id="intro">
         <source>Orbot is a free proxy app that empowers other apps to use the internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.</source>
+        <target>ऑर्बॉट एक विनामूल्य प्रॉक्सी अॅप आहे जो इतर अॅप्सना इंटरनेटचा अधिक सुरक्षितपणे वापर करण्यास सक्षम करते. ऑर्बॉट आपल्या इंटरनेट रहदारीची एन्क्रिप्ट करण्यासाठी टोरचा वापर करते आणि नंतर जगभरातील संगणकांच्या मालिकेद्वारे उडी मारून लपवते. टोर हा एक विनामूल्य सॉफ्टवेअर आणि एक खुला नेटवर्क आहे जो आपल्याला नेटवर्क स्वतंत्रता आणि गोपनीयता, गोपनीय व्यवसाय क्रियाकलाप आणि नातेसंबंध आणि रहदारी विश्लेषणास म्हणून ओळखल्या जाणार्या राज्य सुरक्षेस धमकी देणार्या नेटवर्क निरीक्षणाचे रक्षण करण्यास मदत करते.</target>
       </trans-unit>
       <trans-unit id="intro2">
         <source>Orbot is the only app that creates a truly private internet connection. As the New York Times writes, “when a communication arrives from Tor, you can never know where or whom it’s from.” Tor won the 2012 Electronic Frontier Foundation (EFF) Pioneer Award.</source>
@@ -37,12 +40,16 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="expertrootmode">
         <source>***Expert Root Mode***</source>
+        <target>*** तज्ज्ञ मुळ प्रमाण ***</target>
       </trans-unit>
       <trans-unit id="universalmode">
         <source>UNIVERSAL MODE: Orbot can be configured to transparently proxy all of your Internet traffic through Tor. You can also choose which specific apps you want to use through Tor.</source>
+        <target>युनिव्हर्सल मोड: टॉर द्वारे आपल्या सर्व इंटरनेट रहदारी पारदर्शीपणे प्रॉक्सी करण्यासाठी ऑर्बॉट कॉन्फिगर केले जाऊ शकते. आपण Tor द्वारे कोणत्या विशिष्ट अॅप्सचा वापर करू इच्छिता ते देखील निवडू शकता.</target>
       </trans-unit>
       <trans-unit id="wespeakyourlanguage">
         <source>★ WE SPEAK YOUR LANGUAGE: Orbot is available for friends who speak:</source>
+        <target>आम्ही तुमची भाषा बोलतो : 
+ऑरबॉट बोलक्या मित्रांसाठी उपलब्ध आहे :</target>
       </trans-unit>
       <trans-unit id="languagelist" translate="no">
         <source>العربية, azərbaycanca, български, català, Čeština, dansk, Deutsch, Ελληνικά, English, español, eesti, euskara, فارسی, suomi, français, galego, hrvatski, magyar, עברית, íslenska, italiano, 日本語, 한국어, lietuvių, latviešu, Македонци, Bahasa Melayu, Nederlands, norsk, polski, português, Русский, slovenčina, slovenščina, српски, svenska, Türkçe, українська, Tagalog, Tiếng Việt, 中文(简体), 中文(台灣)</source>
@@ -57,6 +64,7 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="learnmore">
         <source>***Learn More***</source>
+        <target>*** आणखी शीका ***</target>
       </trans-unit>
       <trans-unit id="aboutus">
         <source>★ ABOUT US: Guardian Project is a group of developers that make secure mobile apps and open-source code for a better tomorrow</source>

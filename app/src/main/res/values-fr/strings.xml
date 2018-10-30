@@ -333,8 +333,8 @@
   <string name="share_as_qr">Partager comme code QR</string>
   <string name="disable">Désactiver</string>
   <string name="enable">Activer</string>
-  <string name="consider_disable_battery_optimizations">Envisagez de désactiver les optimisations de la batterie</string>
-  <string name="consider_enable_battery_optimizations">Envisagez d’activer les optimisations de la batterie</string>
+  <string name="consider_disable_battery_optimizations">Envisagez de désactiver les optimisations de la pile</string>
+  <string name="consider_enable_battery_optimizations">Envisagez d’activer les optimisations de la pile</string>
   <string name="pref_isolate_dest">Isoler les adresses de destination</string>
   <string name="pref_isolate_dest_summary">Utiliser un circuit différent pour chaque adresse de destination</string>
   <string name="no_transproxy_warning_short">AVERTISSEMENT : le transrelais n’est plus pris en charge</string>
@@ -342,7 +342,7 @@
   <string name="pref_connection_padding">Bourrage de la connexion</string>
   <string name="pref_connection_padding_summary">Toujours activer le bourrage de la connexion pour se défendre contre certaines formes d’analyse du trafic. Par défaut de : auto</string>
   <string name="pref_reduced_connection_padding">Bourrage réduit de la connexion</string>
-  <string name="pref_reduced_connection_padding_summary">Ferme plus tôt les connexions de relais et envoie moins de paquets de bourrage pour réduire les données et l’utilisation de la batterie</string>
+  <string name="pref_reduced_connection_padding_summary">Ferme plus tôt les connexions de relais et envoie moins de paquets de bourrage pour réduire les données et l’utilisation de la pile</string>
   <string name="please_enable_vpn">Veuillez activer le mode RPV pour permettre aux applis d’utiliser Tor</string>
   <string name="app_shortcuts">Applis pouvant utiliser Tor</string>
   <string name="title_activity_bridge_wizard">Activité de l’assistant de pont</string>

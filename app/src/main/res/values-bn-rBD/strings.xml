@@ -1,22 +1,42 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">অরবট</string>
   <string name="app_description">Orbot একটি ফ্রি প্রক্সি অ্যাপ্লিকেশন যা অন্যান্য Apps কে আরও নিরাপদভাবে ইন্টারনেট ব্যবহার করার ক্ষমতাপ্রদান করে।  Orbot আপনার ইন্টারনেট ট্রাফিক এনক্রিপ্ট করতে টর ব্যবহার এবং তারপর সারা বিশ্বের কম্পিউটারের সিরিজের moddho diye porichalito kore gopon kore. টর ফ্রি সফটওয়্যার এবং আপনি ট্রাফিক বিশ্লেষণ হিসেবে পরিচিত ব্যক্তিগত স্বাধীনতা ও গোপনীয়তা, গোপনীয় বাণিজ্যিক কার্যক্রম এবং সম্পর্ক, এবং রাষ্ট্রীয় নিরাপত্তা হুমকির মুখে পড়ে নেটওয়ার্ক নজরদারি একটি ফর্ম বিরুদ্ধে রক্ষা করতে সাহায্য করে যে একটি খোলা নেটওয়ার্ক.</string>
+  <string name="internal_web_url">http://orbot/</string>
+  <string name="default_web_url">http://check.torproject.org</string>
+  <string name="secure_default_web_url">https://check.torproject.org</string>
+  <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
+  <string name="control_permission_label">Tor চালু বন্ধ করুন </string>
   <string name="tor_proxy_service_process">টর প্রক্সি সার্ভিস</string>
   <string name="status_starting_up">অরবট চালু হচ্ছে . . . </string>
   <string name="status_activated">টর নেটওয়ার্কের সাথে সংযুক্ত হয়েছে</string>
   <string name="status_disabled">অরবট নিষ্ক্রিয় করা হয়েছে</string>
+  <string name="status_shutting_down">টর সার্ভিস বন্ধ করা হচ্ছে</string>
   <string name="tor_process_starting">টর ক্লায়েন্ট চালু করা হচ্ছে</string>
   <string name="tor_process_complete">সম্পূর্ণ</string>
   <string name="tor_process_waiting">অপেক্ষা করা হচ্ছে</string>
   <string name="menu_home">হোম</string>
+  <string name="menu_browse">দেখুন</string>
   <string name="menu_settings">নিয়ম বিন্যাস</string>
+  <string name="menu_log">লগ</string>
   <string name="menu_info">সাহায্য</string>
   <string name="menu_start">শুরু</string>
   <string name="menu_stop">শেষ</string>
+  <string name="menu_about">বিস্তারিত</string>
+  <string name="menu_promo_apps">এপস দেখুন...</string>
+  <string name="main_layout_download">ডাওনলোড</string>
+  <string name="main_layout_upload">আপলোড</string>
   <string name="button_help">সাহায্য</string>
   <string name="button_close">বন্ধ</string>
+  <string name="button_about">বিস্তারিত</string>
+  <string name="button_clear_log">লগ ক্লিয়ার করুন</string>
+  <string name="menu_verify">চেক করুন</string>
+  <string name="menu_exit">প্রস্থান</string>
+  <string name="menu_scan">ব্রিজকিউআর চেক করুন</string>
+  <string name="menu_share_bridge">ব্রিজকিউআর শেয়ার করুন</string>
   <string name="press_to_start">চালু করার জন্য ধরে থাকুন</string>
+  <string name="pref_trans_proxy_group">Transparent Proxying (Requires Root)</string>
+  <string name="pref_trans_proxy_title">Transparent Proxying</string>
   <string name="pref_transparent_all_title">সব কিছু টরের মাধ্যমে করুন </string>
   <string name="wizard_title">অরবট</string>
   <string name="btn_next">পরবর্তী</string>
@@ -36,5 +56,14 @@
   <string name="wizard_permissions_title">অনুমতিসমূহ</string>
   <!--TipsAndTricks screen-->
   <!--Transparent Proxy screen-->
+  <string name="wizard_transproxy_title">Transparent Proxying</string>
+  <string name="status">অবস্থা</string>
+  <string name="error">ভুল</string>
+  <string name="bridges">ব্রিজ</string>
   <string name="default_bridges"></string>
+  <string name="set_locale_title">ভাষা</string>
+  <string name="bandwidth_">ব্যান্ডউইথ:</string>
+  <string name="save">সংরক্ষণ করুন</string>
+  <string name="name">Name</string>
+  <string name="disable">টর অক্ষম</string>
 </resources>

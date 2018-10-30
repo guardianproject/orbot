@@ -234,8 +234,8 @@
   <string name="bandwidth_">Bandbreite:</string>
   <string name="down">runter</string>
   <string name="up">hoch</string>
-  <string name="pref_disable_network_title">Automatischer Ruhezustand</string>
-  <string name="pref_disable_network_summary">Tor pausieren wenn keine Netzwerkverbindung möglich ist</string>
+  <string name="pref_disable_network_title">Kein Automatischer Netzwerk Ruhezustand</string>
+  <string name="pref_disable_network_summary">Versetze Tor in den Ruhezustand wenn kein Internet verfügbar ist</string>
   <string name="newnym">Sie haben zu einer Neuen Tor-Identität gewechselt!</string>
   <string name="menu_verify_browser">Browser</string>
   <string name="menu_use_chatsecure">Nutze ChatSecure</string>

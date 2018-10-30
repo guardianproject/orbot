@@ -21,6 +21,7 @@
   <string name="menu_settings">Innstillinger</string>
   <string name="menu_log">Logg</string>
   <string name="menu_info">Hjelp</string>
+  <string name="menu_apps">Apper...</string>
   <string name="menu_start">Start</string>
   <string name="menu_stop">Stopp</string>
   <string name="menu_about">Om</string>
@@ -237,6 +238,7 @@
   <string name="menu_use_chatsecure">Bruk ChatSecure</string>
   <string name="permission_manage_tor_label">Håndter Tor</string>
   <string name="permission_manage_tor_description">La dette programmet kontrollere Tor-tjenesten</string>
+  <string name="install_apps_">Installer nettleser?</string>
   <string name="no_network_connectivity_putting_tor_to_sleep_">Ingen nettverkstilkobling. Tor går i dvale…</string>
   <string name="network_connectivity_is_good_waking_tor_up_">Nettverkstilkoblingen er bra. Vekker opp Tor…</string>
   <string name="updating_settings_in_tor_service">Oppdaterer innstillinger i Tor service</string>
@@ -320,4 +322,6 @@
   <string name="enable">Slå på</string>
   <string name="bridge_direct_connect">Direkte tilkobling til Tor (best)</string>
   <string name="trouble_connecting">Tilkoblingsproblemer?</string>
+  <string name="full_device_vpn">VPN for hele enheten</string>
+  <string name="vpn_disabled">VPN Deaktivert</string>
 </resources>

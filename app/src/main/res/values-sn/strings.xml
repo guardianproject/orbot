@@ -1,14 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Orbot</string>
   <string name="default_web_url">http://check.torproject.org</string>
   <string name="secure_default_web_url">https://check.torproject.org</string>
   <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
+  <string name="menu_home">Pekutangira</string>
   <string name="menu_settings">Zvamada</string>
+  <string name="menu_stop">Mira</string>
   <string name="menu_about">Maererano</string>
+  <string name="button_close">Vhara</string>
   <string name="button_about">Maererano</string>
   <string name="menu_exit">Buda</string>
+  <string name="wizard_title">Orbot</string>
   <string name="wizard_btn_tell_me_more">Maererano Orbot</string>
+  <string name="btn_next">Tevedza</string>
+  <string name="btn_back">Dzokera shure</string>
+  <string name="btn_cancel">Kanzura</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_proxy_help_info">Proxy Zvamada</string>
   <!--END Welcome Wizard strings (DJH)-->
@@ -18,5 +25,10 @@
   <!--Permissions screen-->
   <!--TipsAndTricks screen-->
   <!--Transparent Proxy screen-->
+  <string name="error">Paita kanganiso</string>
   <string name="default_bridges"></string>
+  <string name="set_locale_title">Mutauro</string>
+  <string name="name">Zita</string>
+  <string name="disable">Rambidza</string>
+  <string name="enable">Bvumidza</string>
 </resources>

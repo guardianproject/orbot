@@ -1,12 +1,38 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="menu_home">মূল</string>
+  <string name="menu_settings">বিন্যাস</string>
+  <string name="menu_log">লগ</string>
+  <string name="menu_info">সাহায্য </string>
+  <string name="menu_start">শুরু</string>
+  <string name="menu_stop">থামুন</string>
+  <string name="menu_about">সম্বন্ধে</string>
+  <string name="main_layout_download">ডাউনলোড</string>
+  <string name="button_help">সাহায্য </string>
+  <string name="button_close">বন্ধ করা</string>
+  <string name="button_about">সম্বন্ধে</string>
+  <string name="menu_exit">বন্ধ</string>
+  <string name="btn_next">পরবর্তী</string>
+  <string name="btn_back">পিছনে</string>
+  <string name="btn_cancel">বাতিল</string>
   <!--Welcome Wizard strings (DJH)-->
+  <string name="wizard_proxy_help_info">প্রক্সি সেটিংস</string>
   <!--END Welcome Wizard strings (DJH)-->
+  <string name="pref_general_group">সাধারণ</string>
   <!--New Wizard Strings-->
   <!--Title Screen-->
   <!--Warning screen-->
   <!--Permissions screen-->
   <!--TipsAndTricks screen-->
   <!--Transparent Proxy screen-->
+  <string name="status">অবস্থা</string>
+  <string name="error">ভুল</string>
+  <string name="bridges">ব্রিজ</string>
   <string name="default_bridges"></string>
+  <string name="set_locale_title">ভাষা</string>
+  <string name="bandwidth_">ব্যান্ডউইথ:</string>
+  <string name="get_bridges_email">ইমেইল</string>
+  <string name="save">সংরক্ষণ করুন</string>
+  <string name="name">নাম</string>
+  <string name="disable">টর অক্ষম</string>
 </resources>

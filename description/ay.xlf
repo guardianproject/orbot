@@ -1,5 +1,5 @@
 <?xml version="1.0" ?><xliff version="1.2">
-  <file datatype="plaintext" original="source.xlf" source-language="en" target-language="fil">
+  <file datatype="plaintext" original="source.xlf" source-language="en" target-language="ay">
     <header>
       <note from="developer">Google places strick character limits on the various text fields in Google Play. The title is 30 characters, the short description is 80 characters, and the rest of the strings, which all go together in the description, are limited to 4000 characters.</note>
     </header>
@@ -80,6 +80,7 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="messageus">
         <source>★ MESSAGE US: Are we missing your favorite feature? Found an annoying bug? Please tell us! We’d love to hear from you. Send us an email: support@guardianproject.info or find us in our chat room https://guardianproject.info/contact</source>
+        <target>QILLQT'ANIPXITA: Kunas akawjan armasitäski? Jan walinakat jikxatatäski? Amp suma, qillqt'anipxita! Jumar ist'añ munapxsma. Aka imaylur qillqt'anipxita support@guardianproject.info jan ukasti aruskipañawjan https://guardianproject.info/contact jikxatapxita. </target>
       </trans-unit>
     </body>
   </file>

@@ -115,7 +115,7 @@
   <string name="wizard_transproxy_hint">(Tandai box ini jika anda tidak tahu apa yang kita bicarakan)</string>
   <string name="wizard_transproxy_none">Tidak ada</string>
   <string name="pref_transparent_tethering_title">Tor Tethering</string>
-  <string name="pref_transparent_tethering_summary">Mengaktifkan Transparan Proxying Tor untuk Wi-Fi dan Perangkat Tether USB (diperlukan restart)</string>
+  <string name="pref_transparent_tethering_summary">Mengaktifkan Transparan Proxying Tor untuk Wifi dan Perangkat Tether USB (diperlukan restart)</string>
   <string name="button_grant_superuser">Meminta Akses Superuser</string>
   <string name="pref_select_apps">Pilih Aplikasi</string>
   <string name="pref_select_apps_summary">Pilih Aplikasi untuk Mengerahkan Melalui Tor</string>

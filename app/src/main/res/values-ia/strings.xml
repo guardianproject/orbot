@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="menu_home">Initio</string>
   <string name="menu_browse">Navigar</string>
@@ -26,5 +26,8 @@
   <string name="status">Stato</string>
   <string name="error">Error</string>
   <string name="default_bridges"></string>
+  <string name="set_locale_title">Linguage</string>
   <string name="btn_save_settings">Salveguardar configurationes</string>
+  <string name="save">Salveguardar</string>
+  <string name="name">Nomine</string>
 </resources>

@@ -21,6 +21,7 @@
   <string name="menu_settings">Ustawienia</string>
   <string name="menu_log">Logi</string>
   <string name="menu_info">Pomoc</string>
+  <string name="menu_apps">Aplikacje...</string>
   <string name="menu_start">Start</string>
   <string name="menu_stop">Stop</string>
   <string name="menu_about">O programie</string>
@@ -115,7 +116,7 @@
   <string name="wizard_transproxy_hint">(Sprawdź tutaj, jeśli nie masz pojęcia o czym mówimy)</string>
   <string name="wizard_transproxy_none">Brak</string>
   <string name="pref_transparent_tethering_title">Przywiązywanie Tora</string>
-  <string name="pref_transparent_tethering_summary">Włącz Transparentne Proxy Tora dla Wi-Fi i USB (wymaga restartu)</string>
+  <string name="pref_transparent_tethering_summary">Włącz Transparentne Proxy Tora dla Wifi i USB (wymaga restartu)</string>
   <string name="button_grant_superuser">Żądanie dostępu Superużytkownika</string>
   <string name="pref_select_apps">Wybierz aplikacje</string>
   <string name="pref_select_apps_summary">Wybierz aplikacje do przejścia przez Tor</string>
@@ -235,6 +236,7 @@
   <string name="menu_use_chatsecure">Użyj ChatSecure</string>
   <string name="permission_manage_tor_label">Administruj Tor\'em</string>
   <string name="permission_manage_tor_description">Pozwól tej aplikacji kontrolować serwis Tor</string>
+  <string name="install_apps_">Zainstalować przeglądarkę?</string>
   <string name="no_network_connectivity_putting_tor_to_sleep_">Brak połączenia internetowego. Tor będzie w trybie snu...</string>
   <string name="network_connectivity_is_good_waking_tor_up_">Połączenie internetowe jest dobre. Trwa budzenie Tora...</string>
   <string name="updating_settings_in_tor_service">aktualizowanie ustawień w serwisie Tor</string>
@@ -273,6 +275,7 @@
   <string name="get_bridges_email">Email</string>
   <string name="get_bridges_web">Web</string>
   <string name="activate">Aktywuj</string>
+  <string name="apps_mode">Tryb VPN</string>
   <string name="send_email">Wyślij Email</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Możesz uzyskać adres Bridge poprzez email, internet, lub poprzez zeskanowanie kodu QR. Wybierz \'Email\' lub \'Internet\' poniżej, aby poprosić o adres bridge\'a.\n\nJak już będziesz mieć ten adres to skopiuj i wklej go do \"Bridges\" we właściwościach Orbota a następnie go zrestartuj.</string>
   <string name="install_orweb">Zainstaluj Orfox</string>
@@ -282,8 +285,12 @@
   <string name="title_activity_hidden_services">Ukryte Usługi</string>
   <string name="menu_hidden_services">Ukryte Usługi</string>
   <string name="save">Zapisz</string>
+  <string name="ports">Porty</string>
+  <string name="local_port">Lokalne Porty</string>
   <string name="name">Nazwa</string>
   <string name="done">Zrobiono!</string>
+  <string name="invalid_port">Nieprawidłowy Port</string>
+  <string name="copy_address_to_clipboard">Skopiuj adres do schowka</string>
   <string name="please_restart_Orbot_to_enable_the_changes">Proszę zrestartować Orbot, aby zmiany mogły wejść w życie</string>
   <string name="disable">Wyłącz</string>
   <string name="enable">Włącz</string>

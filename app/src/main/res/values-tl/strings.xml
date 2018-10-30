@@ -107,7 +107,7 @@
   <string name="wizard_transproxy_hint">(Lagyan ng check ang box na ito kung wala kang alam sa sinasabi namin)</string>
   <string name="wizard_transproxy_none">Wala</string>
   <string name="pref_transparent_tethering_title">Tor Tethering</string>
-  <string name="pref_transparent_tethering_summary">I-enable ang Tor Transparent Proxying para sa Wi-Fi at USB Tethered Devices (kailangan mag restart)</string>
+  <string name="pref_transparent_tethering_summary">I-enable ang Tor Transparent Proxying para sa Wifi at USB Tethered Devices (kailangan mag restart)</string>
   <string name="button_grant_superuser">Humiling ng Superuser Access</string>
   <string name="pref_select_apps">Pumili ng Apps</string>
   <string name="pref_select_apps_summary">Pumili ng Apps para i-route sa Tor</string>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Orbot</string>
   <string name="internal_web_url">http://orbot/</string>
@@ -74,6 +74,12 @@
   <!--TipsAndTricks screen-->
   <!--Transparent Proxy screen-->
   <string name="status">Stanje</string>
+  <string name="error">Napaka</string>
   <string name="default_bridges"></string>
+  <string name="set_locale_title">Jezik</string>
   <string name="btn_save_settings">Shrani nastavitve</string>
+  <string name="menu_vpn">Aplikacije</string>
+  <string name="activate">Aktiviraj</string>
+  <string name="save">Shrani</string>
+  <string name="name">ime</string>
 </resources>
