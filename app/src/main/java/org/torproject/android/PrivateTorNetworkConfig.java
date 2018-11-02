@@ -5,6 +5,9 @@ import org.json.*;
 import java.util.ArrayList;
 
 public class PrivateTorNetworkConfig {
+
+
+
     public ArrayList<DirAuthority> getDirAuthorities() {
         return dirAuthorities;
     }

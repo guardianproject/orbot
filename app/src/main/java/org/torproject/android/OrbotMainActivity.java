@@ -8,8 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.net.Authenticator;
-import java.net.PasswordAuthentication;
+
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.text.NumberFormat;
@@ -99,6 +98,11 @@ import static android.support.v4.content.FileProvider.getUriForFile;
 public class OrbotMainActivity extends AppCompatActivity
         implements OrbotConstants, OnLongClickListener {
 
+
+
+
+
+
     /* Useful UI bits */
     private TextView lblStatus = null; //the main text display widget
     private ImageView imgStatus = null; //the main touchable image for activating Orbot
@@ -138,9 +142,7 @@ public class OrbotMainActivity extends AppCompatActivity
 	public final static String INTENT_ACTION_REQUEST_HIDDEN_SERVICE = "org.torproject.android.REQUEST_HS_PORT";
 	public final static String INTENT_ACTION_REQUEST_START_TOR = "org.torproject.android.START_TOR";
 
-
     PulsatorLayout mPulsator;
-
 
     //this is needed for backwards compat back to Android 2.3.*
     @SuppressLint("NewApi")

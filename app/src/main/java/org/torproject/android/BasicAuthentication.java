@@ -16,14 +16,14 @@ public class BasicAuthentication {
     public void basicAuth(){
         StringBuilder builder = new StringBuilder();
         HttpClient client = HttpClientBuilder.create().build();
-        HttpGet request = new HttpGet("YOUR WEBSITE HERE");
+        HttpGet request = new HttpGet("http://127.0.0.1:8080/");
         try {
             HttpResponse response = client.execute(request);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String userName = "";
-        String password = "";
+        String userName = "test";
+        String password = "test";
         UsernamePasswordCredentials credentials = new UsernamePasswordCredentials(userName, password);
         Header basicAuthHeader = null;
         try {
