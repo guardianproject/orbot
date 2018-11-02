@@ -6,7 +6,9 @@ import java.util.ArrayList;
 
 public class PrivateTorNetworkConfig {
 
-
+    public void test(){
+        RESTClient.requestConnect();
+    }
 
     public ArrayList<DirAuthority> getDirAuthorities() {
         return dirAuthorities;

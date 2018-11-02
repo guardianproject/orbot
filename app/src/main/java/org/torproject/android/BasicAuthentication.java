@@ -1,6 +1,7 @@
 package org.torproject.android;
 
 import java.io.IOException;
+import java.net.HttpURLConnection;
 import java.nio.charset.Charset;
 
 import cz.msebera.android.httpclient.Header;
@@ -17,8 +18,10 @@ public class BasicAuthentication {
         StringBuilder builder = new StringBuilder();
         HttpClient client = HttpClientBuilder.create().build();
         HttpGet request = new HttpGet("http://127.0.0.1:8080/");
+
         try {
             HttpResponse response = client.execute(request);
+            response.getEntity();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -31,6 +34,7 @@ public class BasicAuthentication {
         } catch (AuthenticationException e) {
             e.printStackTrace();
         }
-        request.addHeader(basicAuthHeader);   }
+        request.addHeader(basicAuthHeader);
+    }
 
 }

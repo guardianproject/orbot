@@ -8,14 +8,12 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.StringTokenizer;
-
 import org.json.JSONArray;
 import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.util.Prefs;
@@ -34,8 +32,6 @@ import org.torproject.android.ui.hiddenservices.backup.BackupUtils;
 import org.torproject.android.ui.hiddenservices.permissions.PermissionManager;
 import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
 import org.torproject.android.vpn.VPNEnableActivity;
-
-
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningServiceInfo;
@@ -87,21 +83,14 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
-
 import pl.bclogic.pulsator4droid.library.PulsatorLayout;
 
 import static android.support.v4.content.FileProvider.getUriForFile;
 
 public class OrbotMainActivity extends AppCompatActivity
         implements OrbotConstants, OnLongClickListener {
-
-
-
-
-
 
     /* Useful UI bits */
     private TextView lblStatus = null; //the main text display widget
