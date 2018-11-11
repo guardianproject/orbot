@@ -697,8 +697,12 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         {
             isolate += "IsolateDestAddr";
         }
-        
-        extraLines.append("SOCKSPort ").append(socksPortPref).append(isolate).append('\n');
+
+        // If there is a private network config has it's own SOCKSPort which will be added later.
+        if (privateTorNetworkConfig == null) {
+            extraLines.append("SOCKSPort ").append(socksPortPref).append(isolate).append('\n');
+        }
+
         extraLines.append("SafeSocks 0").append('\n');
         extraLines.append("TestSocks 0").append('\n');
     	if (Prefs.openProxyOnAllInterfaces())
