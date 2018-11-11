@@ -14,6 +14,8 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.StringTokenizer;
+import java.util.concurrent.ExecutionException;
+
 import org.json.JSONArray;
 import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.util.Prefs;
@@ -37,6 +39,7 @@ import android.app.ActivityManager;
 import android.app.ActivityManager.RunningServiceInfo;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.DownloadManager;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.ContentValues;
@@ -90,7 +93,7 @@ import pl.bclogic.pulsator4droid.library.PulsatorLayout;
 import static android.support.v4.content.FileProvider.getUriForFile;
 
 public class OrbotMainActivity extends AppCompatActivity
-        implements OrbotConstants, OnLongClickListener {
+    implements OrbotConstants, OnLongClickListener, PrivateNetworkDialog.PrivateNetworkDialogListener {
 
     /* Useful UI bits */
     private TextView lblStatus = null; //the main text display widget
@@ -132,6 +135,8 @@ public class OrbotMainActivity extends AppCompatActivity
 	public final static String INTENT_ACTION_REQUEST_START_TOR = "org.torproject.android.START_TOR";
 
     PulsatorLayout mPulsator;
+
+    private PrivateTorNetworkConfig privateTorNetworkConfig = null;
 
     //this is needed for backwards compat back to Android 2.3.*
     @SuppressLint("NewApi")
@@ -295,7 +300,6 @@ public class OrbotMainActivity extends AppCompatActivity
         uploadText.setText(formatCount(0) + " / " + formatTotal(0));
 
 		mBtnStart =(Button)findViewById(R.id.btnStart);
-		mLoginToRESTAPI = (Button) findViewById(R.id.login_to_REST_button);
 
 		mBtnStart.setOnClickListener(new View.OnClickListener()
 		{
@@ -311,6 +315,16 @@ public class OrbotMainActivity extends AppCompatActivity
 				}
 			}
 		});
+
+        mLoginToRESTAPI = (Button) findViewById(R.id.login_to_REST_button);
+
+        mLoginToRESTAPI.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PrivateNetworkDialog dialog = new PrivateNetworkDialog();
+                dialog.show(getSupportFragmentManager(), "PrivateNetworkDialog");
+            }
+        });
 
 		mBtnVPN = (SwitchCompat)findViewById(R.id.btnVPN);
 		
@@ -1279,6 +1293,21 @@ public class OrbotMainActivity extends AppCompatActivity
         super.onDestroy();
           LocalBroadcastManager.getInstance(this).unregisterReceiver(mLocalBroadcastReceiver);
 
+    }
+
+    @Override
+    public void onPrivateNetworkConnect(RequestTorConfigTask.TorRESTRequestParams params) {
+        try {
+            privateTorNetworkConfig = new RequestTorConfigTask().execute(params).get();
+
+            Intent torService = new Intent(OrbotMainActivity.this, TorService.class);
+            torService.setAction(TorServiceConstants.CMD_SET_PRIVATE_NETWORK_CONFIG);
+            torService.putExtra("private_network_config", privateTorNetworkConfig);
+            startService(torService);
+        } catch (Exception e) {
+            e.printStackTrace();
+            privateTorNetworkConfig = null;
+        }
     }
 
     public class DataCount {

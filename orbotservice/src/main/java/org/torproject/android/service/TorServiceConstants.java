@@ -134,6 +134,7 @@ public interface TorServiceConstants {
      String CMD_VPN_CLEAR = "vpnclear";
      String CMD_UPDATE_TRANS_PROXY = "update";
      String CMD_SET_EXIT = "setexit";
+     String CMD_SET_PRIVATE_NETWORK_CONFIG = "private_network_config";
 
    //  String BINARY_TOR_VERSION = "0.3.1.8-openssl1.0.2k";
      String PREF_BINARY_TOR_VERSION_INSTALLED = "BINARY_TOR_VERSION_INSTALLED";

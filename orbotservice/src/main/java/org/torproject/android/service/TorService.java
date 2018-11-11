@@ -46,6 +46,7 @@ import android.widget.Toast;
 import com.jrummyapps.android.shell.CommandResult;
 import com.jrummyapps.android.shell.Shell;
 
+import org.torproject.android.PrivateTorNetworkConfig;
 import org.torproject.android.binary.TorResourceInstaller;
 import org.torproject.android.control.ConfigEntry;
 import org.torproject.android.control.TorControlConnection;
@@ -135,6 +136,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     public static File fileObfsclient;
     public static File fileTorRc;
     private File mHSBasePath;
+
+    private PrivateTorNetworkConfig privateTorNetworkConfig;
 
     private ArrayList<Bridge> alBridges = null;
 
@@ -358,8 +361,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                  expandedView.setTextViewText(R.id.text2, sbInfo.toString());
              }
              
-             expandedView.setTextViewText(R.id.title, getString(R.string.app_name)); 
-             
+
              expandedView.setImageViewResource(R.id.icon, icon);
 
             Intent intentRefresh = new Intent();
@@ -438,6 +440,9 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 	
                 	setExitNode(mIntent.getStringExtra("exit"));
                 	
+                } else if (action.equals(CMD_SET_PRIVATE_NETWORK_CONFIG)) {
+                    PrivateTorNetworkConfig config = (PrivateTorNetworkConfig)mIntent.getSerializableExtra("private_network_config");
+                    setPrivateNetworkConfig(config);
                 } else {
                     Log.w(OrbotConstants.TAG, "unhandled TorService Intent: " + action);
                 }
@@ -730,6 +735,10 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         	extraLines.append("SafeLogging 0").append('\n');   
 
         }
+
+        if (privateTorNetworkConfig != null) {
+            extraLines.append(privateTorNetworkConfig.toTorrcString());
+        }
         
         processSettingsImpl(extraLines);
         
@@ -909,7 +918,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 + " DataDirectory " + appCacheHome.getCanonicalPath()
                 + " --defaults-torrc " + torrcPath
                 + " -f " + torrcPath + ".custom";
-    
+
         debug(torCmdString);
 
 
@@ -1301,6 +1310,19 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 }.start();
             }
         	
+        }
+
+        public void setPrivateNetworkConfig (final PrivateTorNetworkConfig config) {
+            privateTorNetworkConfig = config;
+            try {
+                updateTorConfigFile();
+                requestTorRereadConfig();
+            } catch (Exception e) {
+                logException("Failed to set private config", e);
+                e.printStackTrace();
+            }
+
+            debug("Updated torrc with private network configuration.");
         }
         
         public void newIdentity () 

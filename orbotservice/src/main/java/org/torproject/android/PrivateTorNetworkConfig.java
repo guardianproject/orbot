@@ -2,14 +2,11 @@ package org.torproject.android;
 
 import org.json.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Locale;
 
-public class PrivateTorNetworkConfig {
-
-    public void test(){
-        RESTClient.requestConnect();
-    }
-
+public class PrivateTorNetworkConfig implements Serializable {
     public ArrayList<DirAuthority> getDirAuthorities() {
         return dirAuthorities;
     }
@@ -30,7 +27,31 @@ public class PrivateTorNetworkConfig {
         return clientTransportPlugin;
     }
 
-    public static class DirAuthority  {
+    // Returns a string representing the config in the same format as the torrc.
+    public String toTorrcString() {
+        StringBuilder builder = new StringBuilder();
+
+        for (DirAuthority authority : dirAuthorities) {
+            builder.append(authority.toTorrcString());
+            builder.append("\n");
+        }
+
+        builder.append(String.format(Locale.US, "SocksPort %s", socksPort));
+        builder.append("\n");
+
+        builder.append(String.format(Locale.US, "UseBridges %d", useBridges));
+        builder.append("\n");
+
+        builder.append(clientTransportPlugin.toTorrcString());
+        builder.append("\n");
+
+        builder.append(bridge.toTorrcString());
+        builder.append("\n");
+
+        return builder.toString();
+    }
+
+    public static class DirAuthority implements Serializable  {
         public String nickname;
         public int orport;
         public String v3ident;
@@ -38,18 +59,32 @@ public class PrivateTorNetworkConfig {
         public String ip;
         public int port;
         public String fingerprint;
+
+        public String toTorrcString() {
+            return String.format(Locale.US, "DirAuthority %s orport=%d v3ident=%s %s %s:%d %s",
+                    nickname, orport, v3ident, flags, ip, port, fingerprint);
+        }
     }
 
-    public static class ClientTransportPlugin {
+    public static class ClientTransportPlugin implements Serializable {
         public String transport;
         public String binary;
         public String options;
+
+        public String toTorrcString() {
+            return String.format(Locale.US, "ClientTransportPlugin %s exec %s %s",
+                    transport, binary, options);
+        }
     }
 
-    public static class Bridge {
+    public static class Bridge implements Serializable {
         public String transport;
         public String ip;
         public int orport;
+
+        public String toTorrcString() {
+            return String.format(Locale.US, "Bridge %s %s:%d", transport, ip, orport);
+        }
     }
 
     private ArrayList<DirAuthority> dirAuthorities;
