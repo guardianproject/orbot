@@ -138,6 +138,8 @@ public class OrbotMainActivity extends AppCompatActivity
     PulsatorLayout mPulsator;
 
     private PrivateTorNetworkConfig privateTorNetworkConfig = null;
+    // Waiting for tor to start up before sending a request to a DFPK auth server.
+    private RequestTorConfigTask.TorRESTRequestParams pendingPrivateNetworkRequest = null;
 
     //this is needed for backwards compat back to Android 2.3.*
     @SuppressLint("NewApi")
@@ -1163,6 +1165,11 @@ public class OrbotMainActivity extends AppCompatActivity
     	    torStatus = newTorStatus;
 
         if (torStatus == TorServiceConstants.STATUS_ON) {
+
+            if (pendingPrivateNetworkRequest != null) {
+                executePrivateNetworkRequest(pendingPrivateNetworkRequest);
+                pendingPrivateNetworkRequest = null;
+            }
         	
             imgStatus.setImageResource(R.drawable.toron);
 
@@ -1320,8 +1327,21 @@ public class OrbotMainActivity extends AppCompatActivity
     @Override
     public void onPrivateNetworkConnect(RequestTorConfigTask.TorRESTRequestParams params) {
         try {
-            privateTorNetworkConfig = new RequestTorConfigTask().execute(params).get();
+            if (torStatus == TorServiceConstants.STATUS_OFF) {
+                pendingPrivateNetworkRequest = params;
+                startTor();
+            } else {
+                executePrivateNetworkRequest(params);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            privateTorNetworkConfig = null;
+        }
+    }
 
+    public void executePrivateNetworkRequest(RequestTorConfigTask.TorRESTRequestParams params) {
+        try {
+            privateTorNetworkConfig = new RequestTorConfigTask().execute(params).get();
             Intent torService = new Intent(OrbotMainActivity.this, TorService.class);
             torService.setAction(TorServiceConstants.CMD_SET_PRIVATE_NETWORK_CONFIG);
             torService.putExtra("private_network_config", privateTorNetworkConfig);
@@ -1329,6 +1349,7 @@ public class OrbotMainActivity extends AppCompatActivity
         } catch (Exception e) {
             e.printStackTrace();
             privateTorNetworkConfig = null;
+            // TODO: Notify user the connection failed
         }
     }
 
