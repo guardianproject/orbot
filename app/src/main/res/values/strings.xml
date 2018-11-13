@@ -406,4 +406,13 @@
     <string name="null_text_connect_status">Connection Status: </string>
     <string name="connected_to_public">Connection Status: PUBLIC TOR</string>
     <string name="connected_to_private">Connection Status: PRIVATE TOR</string>
+    <string name="private_connection_fails">Connection Status: PRIVATE TOR CONNECTION FAILED</string>
+    <string name="public_connection_fails">Connection Status: PUBLIC TOR CONNECTION FAILED</string>
+    <string name="pnd_URL">URL</string>
+    <string name="pnd_username">Username</string>
+    <string name="pnd_password">Password</string>
+    <string name="pnd_cancel">Cancel</string>
+    <string name="pnd_connect">Connect</string>
+    <string name="pnd_title">Please Enter Login Credentials:</string>
+    <string name="blank"></string>
 </resources>

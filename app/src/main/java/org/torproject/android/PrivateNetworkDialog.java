@@ -33,7 +33,7 @@ public class PrivateNetworkDialog extends DialogFragment {
 
         final AlertDialog connectPrivateNetworkDialog = new AlertDialog.Builder(getActivity())
                 .setView(dialog_view)
-                .setTitle(R.string.client_cookies)
+                .setTitle(R.string.pnd_title)
                 .create();
 
         final EditText privateNetworkURLET = dialog_view.findViewById(R.id.private_network_url);

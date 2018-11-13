@@ -8,7 +8,7 @@
         android:id="@+id/label_private_network_url"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="URL" />
+        android:text="@string/pnd_URL" />
 
     <EditText
         android:id="@+id/private_network_url"
@@ -21,7 +21,7 @@
         android:id="@+id/label_private_network_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Username" />
+        android:text="@string/pnd_username" />
 
     <EditText
         android:id="@+id/private_network_username"
@@ -34,7 +34,7 @@
         android:id="@+id/label_private_network_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Password" />
+        android:text="@string/pnd_password" />
 
     <EditText
         android:id="@+id/private_network_password"
@@ -62,7 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Connect" />
+            android:text="@string/pnd_connect" />
 
     </LinearLayout>
 

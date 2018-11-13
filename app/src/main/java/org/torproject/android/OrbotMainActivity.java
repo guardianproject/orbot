@@ -14,8 +14,6 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.StringTokenizer;
-import java.util.concurrent.ExecutionException;
-
 import org.json.JSONArray;
 import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.util.Prefs;
@@ -39,7 +37,6 @@ import android.app.ActivityManager;
 import android.app.ActivityManager.RunningServiceInfo;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.DownloadManager;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.ContentValues;
@@ -89,8 +86,8 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import pl.bclogic.pulsator4droid.library.PulsatorLayout;
-
 import static android.support.v4.content.FileProvider.getUriForFile;
+
 
 public class OrbotMainActivity extends AppCompatActivity
     implements OrbotConstants, OnLongClickListener, PrivateNetworkDialog.PrivateNetworkDialogListener {
@@ -319,6 +316,12 @@ public class OrbotMainActivity extends AppCompatActivity
 		else if (privateTorNetworkConfig == null && torStatus == TorServiceConstants.STATUS_ON){
             mTorConnectStatus.setText(R.string.connected_to_public);
         }
+        /*else if (privateTorNetworkConfig == null && torStatus == TorService.STATUS_OFF ){
+		    mTorConnectStatus.setText(R.string.public_connection_fails);
+        }
+        else if (privateTorNetworkConfig != null && torStatus == TorService.STATUS_OFF){
+		    mTorConnectStatus.setText(R.string.private_connection_fails);
+        }*/
         else{
 		    mTorConnectStatus.setText(R.string.null_text_connect_status);
         }
@@ -1350,6 +1353,7 @@ public class OrbotMainActivity extends AppCompatActivity
             e.printStackTrace();
             privateTorNetworkConfig = null;
             // TODO: Notify user the connection failed
+            mTorConnectStatus.setText(R.string.private_connection_fails);
         }
     }
 

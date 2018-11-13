@@ -60,6 +60,7 @@ import org.torproject.android.service.vpn.OrbotVpnManager;
 import org.torproject.android.service.vpn.TorVpnService;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.File;
@@ -76,6 +77,7 @@ import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
@@ -663,7 +665,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         updateTorConfigFile ();
         isTorUpgradeAndConfigComplete = true;
     }
-
+    
     private boolean updateTorConfigFile () throws IOException, TimeoutException
     {
         SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
@@ -763,6 +765,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         
         return success;
     }
+
 
     /**
      * Send Orbot's status in reply to an
