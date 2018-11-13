@@ -94,8 +94,8 @@ public class Languages {
         }
 
         /* USE_SYSTEM_DEFAULT is a fake one for displaying in a chooser menu. */
-        localeSet.add(null);
-        tmpMap.put(USE_SYSTEM_DEFAULT, activity.getString(resId));
+       // localeSet.add(null);
+       // tmpMap.put(USE_SYSTEM_DEFAULT, activity.getString(resId));
         nameMap = Collections.unmodifiableMap(tmpMap);
     }
 

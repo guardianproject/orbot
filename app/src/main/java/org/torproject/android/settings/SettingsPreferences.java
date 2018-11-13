@@ -14,7 +14,6 @@ import android.preference.PreferenceActivity;
 import org.torproject.android.R;
 import org.torproject.android.service.util.Prefs;
 
-import im.delight.android.languages.Language;
 
 public class SettingsPreferences
         extends PreferenceActivity {
@@ -38,11 +37,6 @@ public class SettingsPreferences
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 String language = (String) newValue;
-
-
-                Prefs.setDefaultLocale(language);
-                Languages.setLanguage(SettingsPreferences.this, Prefs.getDefaultLocale(), true);
-                Language.setFromPreference(SettingsPreferences.this, "pref_default_locale");
 
                 Intent intentResult = new Intent();
                 intentResult.putExtra("locale", language);

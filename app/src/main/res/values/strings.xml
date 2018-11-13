@@ -236,7 +236,6 @@
     <string name="pref_use_expanded_notifications_title">Expanded Notifications</string>
 
     <string name="notification_using_bridges">Bridges enabled!</string>
-    <string name="default_bridges" />
     <string name="set_locale_title">Language</string>
     <string name="set_locale_summary">Choose the locale and language for Orbot</string>
     <string name="wizard_locale_title">Choose Language</string>
@@ -407,4 +406,10 @@
 
     <string name="use_system_default">Use System Default</string>
 
+    <string name="default_bridges">Default Bridges (Obfs4)</string>
+    <string name="cloud_tunnel">Cloud Tunneling</string>
+    <string name="get_new_bridges">Get New Bridges...</string>
+
+    <string name="user_services">User services</string>
+    <string name="app_services">App services</string>
 </resources>

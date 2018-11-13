@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.StringTokenizer;
+import java.util.TimerTask;
 
 import org.json.JSONArray;
 import org.torproject.android.service.OrbotConstants;
@@ -92,7 +93,6 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-import im.delight.android.languages.Language;
 import pl.bclogic.pulsator4droid.library.PulsatorLayout;
 
 import static android.support.v4.content.FileProvider.getUriForFile;
@@ -938,12 +938,24 @@ public class OrbotMainActivity extends AppCompatActivity
         {
             if (data != null && (!TextUtils.isEmpty(data.getStringExtra("locale")))) {
 
-                Prefs.setDefaultLocale(data.getStringExtra("locale"));
-                Languages.setLanguage(this, Prefs.getDefaultLocale(), true);
-                Language.setFromPreference(this, "pref_default_locale");
+                String newLocale = data.getStringExtra("locale");
+                Prefs.setDefaultLocale(newLocale);
+                Languages.setLanguage(this, newLocale, true);
+              //  Language.setFromPreference(this, "pref_default_locale");
 
                 finish();
-                startActivity(new Intent(this,OrbotMainActivity.class));
+
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //Do something after 100ms
+                        startActivity(new Intent(OrbotMainActivity.this,OrbotMainActivity.class));
+
+                    }
+                }, 1000);
+
+
             }
         }
         else if (request == REQUEST_VPN)
