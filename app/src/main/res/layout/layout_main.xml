@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
@@ -14,6 +15,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize" />
+
+    <TextView
+        android:id="@+id/torConnectStatusTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/null_text_connect_status"
+        android:textColor="@color/bright_green" />
 
     <Button
         android:id="@+id/login_to_REST_button"

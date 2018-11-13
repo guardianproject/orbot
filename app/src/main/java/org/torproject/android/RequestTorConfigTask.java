@@ -1,22 +1,11 @@
 package org.torproject.android;
 
-import android.app.Activity;
-import android.content.Intent;
+
 import android.os.AsyncTask;
-
 import org.json.JSONException;
-import org.json.JSONObject;
-import org.w3c.dom.Entity;
-
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
 import java.nio.charset.Charset;
-
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.HttpEntity;
 import cz.msebera.android.httpclient.HttpResponse;

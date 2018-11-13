@@ -102,6 +102,7 @@ public class OrbotMainActivity extends AppCompatActivity
     private TextView downloadText = null;
     private TextView uploadText = null;
     private TextView mTxtOrbotLog = null;
+    private TextView mTorConnectStatus = null;
 
 	private Button mBtnStart = null;
 	private Button mLoginToRESTAPI = null;
@@ -206,7 +207,9 @@ public class OrbotMainActivity extends AppCompatActivity
 
     }
 
-	private void sendIntentToService(final String action) {
+
+
+    private void sendIntentToService(final String action) {
 
 		Intent torService = new Intent(OrbotMainActivity.this, TorService.class);
         torService.setAction(action);
@@ -268,7 +271,13 @@ public class OrbotMainActivity extends AppCompatActivity
             }
         }
     };
- 
+
+    /*private void checkConnectStatus(){
+        AlertDialog alertDialog = new AlertDialog.Builder(OrbotMainActivity.this).create();
+        alertDialog.setTitle("Connected");
+        alertDialog.setMessage("");
+    }*/
+
     private void doLayout ()
     {
         setContentView(R.layout.layout_main);
@@ -281,7 +290,7 @@ public class OrbotMainActivity extends AppCompatActivity
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         mTxtOrbotLog = (TextView)findViewById(R.id.orbotLog);
-        
+
         lblStatus = (TextView)findViewById(R.id.lblStatus);
         lblStatus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -295,11 +304,24 @@ public class OrbotMainActivity extends AppCompatActivity
 
         downloadText = (TextView)findViewById(R.id.trafficDown);
         uploadText = (TextView)findViewById(R.id.trafficUp);
+        mTorConnectStatus = (TextView)findViewById(R.id.torConnectStatusTV);
 
         downloadText.setText(formatCount(0) + " / " + formatTotal(0));
         uploadText.setText(formatCount(0) + " / " + formatTotal(0));
+        mTorConnectStatus.setText(R.string.null_text_connect_status);
 
-		mBtnStart =(Button)findViewById(R.id.btnStart);
+
+		if (privateTorNetworkConfig != null && torStatus == TorServiceConstants.STATUS_ON){
+        mTorConnectStatus.setText(R.string.connected_to_private);
+		}
+		else if (privateTorNetworkConfig == null && torStatus == TorServiceConstants.STATUS_ON){
+            mTorConnectStatus.setText(R.string.connected_to_public);
+        }
+        else{
+		    mTorConnectStatus.setText(R.string.null_text_connect_status);
+        }
+
+        mBtnStart =(Button)findViewById(R.id.btnStart);
 
 		mBtnStart.setOnClickListener(new View.OnClickListener()
 		{
