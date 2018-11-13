@@ -11,13 +11,16 @@
       </trans-unit>
       <trans-unit id="shortdescription" maxwidth="80" size-unit="char">
         <source>Protect your privacy with this proxy with Tor</source>
+        <target>Proxymp Toramp jan khitimp uñjayasiñatak jark'aqasim.  </target>
         <note from="developer">This is limited by Google to 80 characters</note>
       </trans-unit>
       <trans-unit id="intro">
         <source>Orbot is a free proxy app that empowers other apps to use the internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.</source>
+        <target>Orbotax proxyn mä wakichäwipawa, llikan yaqha wakichatanakaruw jan khitin uñjayasiñatakiw yanapi.  Orbotax Tor ukx llika taypin luratanakaruw jark'i, ukhamipanx uraqpachan walja atamirinaktuqiw imanti. Torax Software Libre uka taypinkiriwa, jan maynipachpan luratanakap, aruskipatanakap ukhamarak arsutanakap jan uñjayasiñatakiw jark'aqi. </target>
       </trans-unit>
       <trans-unit id="intro2">
         <source>Orbot is the only app that creates a truly private internet connection. As the New York Times writes, “when a communication arrives from Tor, you can never know where or whom it’s from.” Tor won the 2012 Electronic Frontier Foundation (EFF) Pioneer Award.</source>
+        <target>Orbot wakichäw sapakiw llika taypinx jark'aqiristam tuwaqiristam.  New York Times yatiyäwix akahm siwa: &quot;kunawsatix yatiyäwix Tor tuq purinkix janiw kawkhat purinitapas khitin apayanitapas yatiskiti&quot; Tor ukax 2012 maranx Electronic Frontier Foundation (EFF, fundación para las fronteras electrónicas) ukanx Pioneer Award uka paylläw katuqi. </target>
       </trans-unit>
       <trans-unit id="intro2">
         <source>ACCEPT NO SUBSTITUTES: Orbot is the safest way to use the Internet on Android. Period. Orbot bounces your encrypted traffic several times through computers around the world, instead of connecting you directly like VPNs and proxies. This process takes a little longer, but the strongest privacy and identity protection available is worth the wait.</source>
@@ -38,44 +41,57 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="expertrootmode">
         <source>***Expert Root Mode***</source>
+        <target>***Expert Root Mode***</target>
       </trans-unit>
       <trans-unit id="universalmode">
         <source>UNIVERSAL MODE: Orbot can be configured to transparently proxy all of your Internet traffic through Tor. You can also choose which specific apps you want to use through Tor.</source>
+        <target>URAQPACHATAKI: Orbotax Tor tuqix taqpach llikan lurawinak proxyptayañatakix mayxt'ayarakismawa. Ukhamarak Tor tuqix uñt'at wakichäwinak ajllirakismawa.</target>
       </trans-unit>
       <trans-unit id="wespeakyourlanguage">
         <source>★ WE SPEAK YOUR LANGUAGE: Orbot is available for friends who speak:</source>
+        <target>★ARUMX YATIPXTWA: Orbotax arum arsurinakatakix utjiwa:</target>
       </trans-unit>
       <trans-unit id="languagelist" translate="no">
         <source>العربية, azərbaycanca, български, català, Čeština, dansk, Deutsch, Ελληνικά, English, español, eesti, euskara, فارسی, suomi, français, galego, hrvatski, magyar, עברית, íslenska, italiano, 日本語, 한국어, lietuvių, latviešu, Македонци, Bahasa Melayu, Nederlands, norsk, polski, português, Русский, slovenčina, slovenščina, српски, svenska, Türkçe, українська, Tagalog, Tiếng Việt, 中文(简体), 中文(台灣)</source>
+        <target>العربية, azərbaycanca aru, български, català aru, Čeština aru, dansk aru, Deutsch aru, Ελληνικά, English aru, español aru, eesti, euskara aru, فارسی, suomi aru, français aru, galego aru, hrvatski, magyar aru, עברית, íslenska aru, italiano aru, 日本語, 한국어, lietuvių aru, latviešu aru, Македонци, Bahasa Melayu aru, Nederlands aru, norsk aru, polski aru, português aru, Русский, slovenčina aru, slovenščina aru, српски, svenska aru, Türkçe aru, українська, Tagalog aru, Tiếng Việt, 中文(简体), 中文(台灣)</target>
         <note from="developer">Do not translate the names of the languages, leave them just like this.</note>
       </trans-unit>
       <trans-unit id="helptranslate">
         <source>Don’t see your language? Join us and help translate the app:</source>
+        <target>¿Arumat jan utjkï? Aka wakichäw arumar jaqukipañatakix chikañcht'asinismawa:</target>
       </trans-unit>
       <trans-unit id="helptranslateurl" translate="no">
         <source>https://www.transifex.com/projects/p/orbot</source>
+        <target>https://www.transifex.com/projects/p/orbot</target>
         <note from="developer">Do not translate this.</note>
       </trans-unit>
       <trans-unit id="learnmore">
         <source>***Learn More***</source>
+        <target>***Juk'ampi***</target>
       </trans-unit>
       <trans-unit id="aboutus">
         <source>★ ABOUT US: Guardian Project is a group of developers that make secure mobile apps and open-source code for a better tomorrow</source>
+        <target>JIWASXATA: Guardian Project tamachäwix jawsañanakan jark'aqasiñanak tuwaqasiñanak jist'arat wakichäwinak luriripxiwa.</target>
       </trans-unit>
       <trans-unit id="ourwebsite">
         <source>★ OUR WEBSITE: https://GuardianProject.info</source>
+        <target>LLIKASA: https://GuardianProject.info</target>
       </trans-unit>
       <trans-unit id="abouttor">
         <source>★ ABOUT TOR: https://TorProject.org</source>
+        <target>TORXATA: https://TorProject.org</target>
       </trans-unit>
       <trans-unit id="ontwitter">
         <source>★ ON TWITTER: https://twitter.com/guardianproject</source>
+        <target>TWITTERANA: https://twitter.com/guardianproject</target>
       </trans-unit>
       <trans-unit id="freesoftware">
         <source>★ FREE SOFTWARE: Orbot is free software. Take a look at our source code, or join the community to make it better:</source>
+        <target>INA SOFTWARE: Orbotatax ina Software ukawa. Lurat chipinak uñxatasmawa, ukhamarak tamachawins chikañchasirakismawa.</target>
       </trans-unit>
       <trans-unit id="gitrepo" translate="no">
         <source>https://gitweb.torproject.org/orbot.git</source>
+        <target>https://gitweb.torproject.org/orbot.git</target>
         <note from="developer">Do not translate this.</note>
       </trans-unit>
       <trans-unit id="messageus">
