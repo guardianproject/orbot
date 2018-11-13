@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="bridges_desc">\"Мостовете са Тор препращачи, които помагат за преодоляването на цензура. Може да пробвате \"Мостове\" ако Тор е блокиран от Вашия интернет доставчик; всеки вид мост използва различен метод
+за заобикаляне на цензурата: ако един тип не работи, опитайте друг.</string>
+
+    <string name="bridges_no">Няма Мостове: Директно свързване с Тор</string>
+    <string name="bridges_provided">Осигурени Мостове:</string>
+    <string name="bridges_custom">Персонализирани Мостове</string>
+
+    <string name="bridges_config">Конфигурация на Мостове</string>
+    <string name="action_done">Свършено</string>
+
+    <string name="bridges_sometimes">Понякога се нуждаете от мост, за да стигнете до Тор.</string>
+    <string name="action_more">Разкажете ми повече</string>
+
+    <string name="vpn_setup">Вие можете да позволите на всяка програма да мине през Тор, използвайки нашата вградена ВЧМ.</string>
+    <string name="vpn_setup_sub">Това няма да Ви направи анонимни, но ще помогне да минете през защитни стени.</string>
+    <string name="action_vpn_choose">Изберете програми</string>
+
+    <string name="status_connected">Свързан !</string>
+
+    <string name="loading_claim_1">Нашата разнообразна общност е това, което прави Тор страхотен!</string>
+    <string name="loading_claim_2">Всекидневните хора използват Тор, за да не бъдат последвани от маркетингови реклами.</string>
+    <string name="loading_claim_3">Когато Facebook е блокиран, хората използват Tor за да се свържат с приятелите и семейството си.</string>
+    <string name="loading_claim_4">Активистите използват Тор, за да разкажат свободно своите мнения и вярвания.</string>
+    <string name="loading_claim_5">Блогерите използват Тор, за да съберат хора към социални реформи.</string>
+    <string name="loading_claim_6">Журналистите използват Тор, за да разследват надеждно историите върху които работят.</string>
+    <string name="loading_claim_7">Бизнесмените използват Тор, за да запазят техните стратегии поверителни.</string>
+    <string name="loading_claim_8">Работници използват Тор, за борба за справедливост, без да се страхуват че ще загубят работата си.</string>
+
+    <string name="status_connecting">Ние Ви свързваме.\" = \"Ние Ви свързваме.</string>
+
+    <string name="hello">Здравейте</string>
+    <string name="welcome">Добре дошли в Тор за мобилни устройства.</string>
+
+    <string name="browser_the_internet">Четете безразборно интернет, както Вие очаквате че трябва.</string>
+    <string name="no_tracking">Без проследяване. Без цензора.</string>
+
+</resources>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="bridges_desc">\"A Hidak Tor csomópontok, amelyek lehetővé teszik a cenzúra megkerülését. Megpróbálhatja a hidakat, ha Tor blokkolt az internet szolgáltató által; minden hídtípus más megoldást használ
+a cenzúra elkerülésére: ha egyik típus nem működik, próbáljon egy másikat.</string>
+
+    <string name="bridges_no">Nincs híd: Direkt csatlakozás a Tor-hoz</string>
+    <string name="bridges_provided">Biztosított Hidak:</string>
+    <string name="bridges_custom">Egyéni Hidak</string>
+
+    <string name="bridges_config">Híd konfiguráció</string>
+    <string name="action_done">Kész</string>
+
+    <string name="bridges_sometimes">Néha szüksége lehet Hídra a Tor-hoz.</string>
+    <string name="action_more">SZERETNÉK TÖBBET TUDNI</string>
+
+    <string name="vpn_setup">Gyakorlatilag bármilyen alkalmazást keresztül vezethet a Tor-on a beépített VPN miatt.</string>
+    <string name="vpn_setup_sub">Ez nem teszi anonimmá, de segíthet átjutni a tűzfalakon.</string>
+    <string name="action_vpn_choose">ALKALMAZÁSOK VÁLASZTÁSA</string>
+
+    <string name="status_connected">Csatlakoztatva!</string>
+
+    <string name="loading_claim_1">A változatos közössége teszi a Tor-t naggyá!</string>
+    <string name="loading_claim_2">Hétköznapi emberek használják a Tor-t a reklámok követésének megakadályozására.</string>
+    <string name="loading_claim_3">Ha a Facebook blokkolt, akkor az emberek a Tort használják családjuk barátaik elérésére.</string>
+    <string name="loading_claim_4">Aktivisták használják a Tort véleményük, hitük megosztására.</string>
+    <string name="loading_claim_5">Bloggerek használják a Tor-t emberek mozgósítására a szociális reformokért.</string>
+    <string name="loading_claim_6">Újságírók használják a Tor-t a sztorik utáni nyomozás biztonságossá tételére.</string>
+    <string name="loading_claim_7">Üzleti felhasználók használják a Tort arra, hogy biztonságtan tartsák a vállalati stratégiát.</string>
+    <string name="loading_claim_8">Munkások harcolnak a Tor-ral az igazságért, a félelem nélkül, hogy elveszthetik munkájukat.</string>
+
+    <string name="status_connecting">Csatlkoztatjuk\" = \"Csatlakoztatjuk.</string>
+
+    <string name="hello">Helló</string>
+    <string name="welcome">Üdvözli a Tor a mobilon.</string>
+
+    <string name="browser_the_internet">Böngésszen az interneten, ahogy szeretne.</string>
+    <string name="no_tracking">Nincs követés. Nincs cenzorálás.</string>
+
+</resources>

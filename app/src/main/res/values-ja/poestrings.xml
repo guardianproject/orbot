@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="bridges_desc">ブリッジは検閲を回避するためのTorリレーです。Torがインターネットプロバイダーにブロックされたら、ブリッジを使ってみて下さい。様々なタイプのブリッジがあり、そしてタイプ別の違う方法で検閲を回避します。
+あるブリッジがうまくいかない場合、ブリッジを切り替えてみて下さい。</string>
+
+    <string name="bridges_no">ブリッジを使用しない : Tor に直接接続</string>
+    <string name="bridges_provided">提供されるブリッジ:</string>
+    <string name="bridges_custom">カスタムブリッジ</string>
+
+    <string name="bridges_config">ブリッジ設定</string>
+    <string name="action_done">完了</string>
+
+    <string name="bridges_sometimes">Torと接続するには、ブリッジを使う必要があるかもしれない。</string>
+    <string name="action_more">もっと詳しく</string>
+
+    <string name="vpn_setup">内蔵VPNを利用して、全てのアプリはTorを介してネットにアクセスできます。</string>
+    <string name="vpn_setup_sub">完全な匿名性ではないが、ファイアウォールを擦り抜けるには役立ちます。</string>
+    <string name="action_vpn_choose">アプリを選択</string>
+
+    <string name="status_connected">接続完了!</string>
+
+    <string name="loading_claim_1">我々の多様なコミュニティーはTorを素晴らしくする！</string>
+    <string name="loading_claim_2">平凡な人々は、オンラインマーケティングを除けるためにTorを利用します。</string>
+    <string name="loading_claim_3">Facebookがブロックされる時に、人々はTorを利用して家族や友達と安全につながり続けます。</string>
+    <string name="loading_claim_4">活動家はTorを利用して、自由に意見を言うことができます。</string>
+    <string name="loading_claim_5">ブロガーはTorを利用して、社会改良への支持を呼び集めることができます。</string>
+    <string name="loading_claim_6">事件記者はTorを利用して、安全に記事のために情報を集めることができます。</string>
+    <string name="loading_claim_7">実業家はTorを利用して、会社の企業戦略を隠すことができます。</string>
+    <string name="loading_claim_8">労働者はTorを利用して、仕事を失うことを恐れずに正義のために戦えます。</string>
+
+    <string name="status_connecting">我々は、あなたをお互いに接続します。</string>
+
+    <string name="hello">こんにちは</string>
+    <string name="welcome">モバイル版 Tor へようこそ</string>
+
+    <string name="browser_the_internet">期待するとおりにインターネットをブラウズしましょう。</string>
+    <string name="no_tracking">追跡しません。検問しません。</string>
+
+</resources>

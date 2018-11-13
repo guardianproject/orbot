@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="bridges_desc">Tiltai yra Tor mazgai, kurie padeda apeiti cenzūrą. Galima pabandyti naudoti tiltus, jei Tor yra užblokuotas jūsų interneto tiekėjo. Kiekvienas tinklų tilto tipas, tam, kad išvengtų cenzūros, naudoja skirtingą metodą. Jeigu vienas tinklų tiltas neveikia, bandykite dar kartą, naudodami kitą tinklų tiltą.</string>
+
+    <string name="bridges_no">Jokių tiltų: Tiesiai jungtis prie Tor</string>
+    <string name="bridges_provided">Duoti tiltai:</string>
+    <string name="bridges_custom">Pritaikyti tiltai</string>
+
+    <string name="bridges_config">Tiltų konfigūracija</string>
+    <string name="action_done">Atlikta</string>
+
+    <string name="bridges_sometimes">Kartais reikia tilto, kad prieiti prie Tor.</string>
+    <string name="action_more">SUŽINOTI DAUGIAU</string>
+
+    <string name="vpn_setup">Galite leisti bet kokiai programėlei siųsti duomenis per Tor besinaudojant mūsų VPN.</string>
+    <string name="vpn_setup_sub">Tai nepadarys jūsų anonimu/-e, bet padės apeiti ugniasienes.</string>
+    <string name="action_vpn_choose">PASIRINKTI PROGRAMĖLES</string>
+
+    <string name="status_connected">Prisijungta!</string>
+
+    <string name="loading_claim_1">Mūsų įvairi bendruomenė yra tai, kas padaro Tor puikiu!</string>
+    <string name="loading_claim_2">Kasdieniniai žmonės naudoja Tor, kad išvengtų marketingo reklamų sekimo.</string>
+    <string name="loading_claim_3">Kai Facebook yra užblokuotas, žmonės naudoja Tor, kad susijungtų su savo draugais ir šeima.</string>
+    <string name="loading_claim_4">Aktyvistai naudoja Tor, kad laisvai paskelbtų savo nuomones ir įsitikinimus.</string>
+    <string name="loading_claim_5">Blogeriai naudoja Tor, kad sutelktų žmones dėl socialinių reformų.</string>
+    <string name="loading_claim_6">Žurnalistai naudoja Tor, kad saugiai tirtų savo straipsnių medžiagą.</string>
+    <string name="loading_claim_7">Verslininkai naudoja Tor, kad jų kompanijų planai išliktų privatūs.</string>
+    <string name="loading_claim_8">Darbuotojai naudoja Tor, kad kovotų už teisingumą be darbo praradimo baimės.</string>
+
+    <string name="status_connecting">Mes jus prijungiame.\" = \"Mes jus prijungiame.</string>
+
+    <string name="hello">Sveiki</string>
+    <string name="welcome">Sveiki atvykę į Tor ant mobiliųjų prietaisų.</string>
+
+    <string name="browser_the_internet">Naršykite internetą, kaip jūs tikitės, kad turėtumėte.</string>
+    <string name="no_tracking">Jokio sekimo. Jokios cenzūros.</string>
+
+</resources>

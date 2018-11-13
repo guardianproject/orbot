@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="bridges_no">Ingen broer: Koble direkte til Tor</string>
+    <string name="bridges_provided">Angitte broer:</string>
+    <string name="bridges_custom">Egendefinerte broer</string>
+
+    <string name="bridges_config">"Brooppsett"</string>
+    <string name="action_done">"Ferdig"</string>
+
+    <string name="bridges_sometimes">"Noen ganger trenger du en bro for å komme til Tor."</string>
+    <string name="action_more">"FORTELL MEG MER"</string>
+
+    <string name="vpn_setup">"Du kan sende ethvert program gjennom Tor ved bruk av vår innebygde VPN."</string>
+    <string name="vpn_setup_sub">"Dette vil ikke gjøre deg anonym, men det vil hjelpe deg gjennom brannmurer."</string>
+    <string name="action_vpn_choose">"VELG PROGRAMMER"</string>
+
+    <string name="status_connected">"Tilkoblet!"</string>
+
+    <string name="loading_claim_1">"Vår mangeslugne gemenskap er det som gjør Tor storslått!"</string>
+    <string name="loading_claim_2">"Hverdagsmennesker bruker Tor for å unngå å bli forfulgt av reklame."</string>
+    <string name="loading_claim_3">Når Facebook er blokkert, bruker folk Tor til å koble til venner og familie.</string>
+    <string name="loading_claim_4">Aktivister bruker Tor til å fritt tweet deres meninger og overbevisninger.</string>
+    <string name="loading_claim_5">Bloggere bruker Tor til å samle folk mot sosial reform.</string>
+    <string name="loading_claim_6">Journalister bruker Tor for å undersøke saker de rapporterer om på en trygg måte.</string>
+    <string name="loading_claim_7">Forretningsfolk bruker Tor for å holde strategiene sine hemmelige.</string>
+    <string name="loading_claim_8">Arbeidere bruker Tor til å kjempe for rettferdighet, uten frykt for å miste jobben sin.</string>
+
+    <string name="hello">"Hei"</string>
+    <string name="welcome">"Velkommen til Tor på Mobilen."</string>
+
+    <string name="browser_the_internet">Surf på Internett sånn som du forventer det.</string>
+    <string name="no_tracking">"Ingen sporing. Ingen sensur."</string>
+
+</resources>

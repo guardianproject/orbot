@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="bridges_desc">\"பாலங்கள் தணிக்கையை கடக்க உதவும் தோர் இடைமாற்றிகள்  ஆக்கும். தோர்  உங்கள் ISP ஆல் தடுக்கப்பட்டால் நீங்கள் பாலங்களை முயற்சிக்கலாம்; ஒவ்வொரு  பாலங்களும் வெவ்வேறு முறையைப் பயன்படுத்துகின்றன
+        தணிக்கையைத் தவிர்க்கக: ஒரு  வகை வேலை செய்யவில்லையெனில் மற்றொன்றை முயற்சியுங்கள்.</string>
+
+    <string name="bridges_no">பாலங்கள் இல்லை: தோர் உடன் நேரடியாக இணைக்கவும்</string>
+    <string name="bridges_provided">பாலங்கள் வழங்கும்:</string>
+    <string name="bridges_custom">தனிப்பயணாக்கப்பட்ட பாலங்கள்</string>
+
+    <string name="bridges_config">பாலங்களின் கட்டமைப்பு</string>
+    <string name="action_done">முடிந்தது</string>
+
+    <string name="bridges_sometimes">சில நேரங்களில் நீங்கள் Tor ஐ பெற ஒரு இணைப்பு தேவைப்படுகிறது.</string>
+    <string name="action_more">இன்னும் எனக்கு சொல்லுங்கள்</string>
+
+    <string name="vpn_setup">எங்களுடைய உள்ளமைக்கப்பட்ட VPN ஐ பயன்படுத்தி Tor மூலம் செல்ல எந்தப் பயன்பாட்டையும் இயக்கலாம்.</string>
+    <string name="vpn_setup_sub">இது உங்களை அநாமதேயமாக்குகிறது, ஆனால் அது ஃபயர்வால்கள் வழியாக உதவுகிறது.</string>
+    <string name="action_vpn_choose">பயன்பாடுகளைத் தேர்வுசெய்யவும்</string>
+
+    <string name="status_connected">இணைக்கப்பட்டது!</string>
+
+    <string name="loading_claim_1">எங்களது மாறுபட்ட சமூகமானது தோர் ஐ சிறந்து விளங்கச் செய்கிறது!</string>
+    <string name="loading_claim_2">தினசரி மக்கள் சந்தை விளம்பரங்களை தவிர்க்க தோர் ஐ பயன்படுத்துகிறார்கள்.</string>
+    <string name="loading_claim_3">முகநூல் முடக்கப்பட்டால், மக்கள் தங்கள் நண்பர்களுடனும் குடும்பத்துடனும் இணைவதற்கு தோர் ஐ பயன்படுத்துகின்றனர்.</string>
+    <string name="loading_claim_4">ஆர்வலர்கள் தங்கள் எண்ணங்களையும் நம்பிக்கையையும் இலவசமாக கீச்சிட செய்ய Tor பயன்படுத்துகிறார்கள்.</string>
+    <string name="loading_claim_5">சமூக சீர்திருத்தத்தை நோக்கி மக்களை அணிதிரட்டுவதற்கு Torg ஐ பயன்படுத்துகின்றனர்.</string>
+    <string name="loading_claim_6">பத்திரிகையாளர்கள் தாங்கள் புகாரளிக்கும் கதையை பாதுகாப்பாக ஆராய்வதற்கு Tor ஐ பயன்படுத்துகின்றனர்.</string>
+    <string name="loading_claim_7">வணிக நிறுவனங்கள் தங்களது நிறுவன உத்திகளை தனியார்மயமாக்குவதற்குப் பயன்படுத்துகின்றனர்.</string>
+    <string name="loading_claim_8">தொழிலாளர்கள் தங்கள் வேலை இழந்துவிடுமோ என்ற அச்சம் இன்றி நீதிக்காக போராடுவதற்கு Tor பயன்படுத்துகின்றனர்.</string>
+
+    <string name="status_connecting">நாங்கள் உங்களை இணைப்போம். \"=\" நாங்கள் உங்களை இணைப்போம்.</string>
+
+    <string name="hello">வணக்கம்</string>
+    <string name="welcome">மொபைலில் தோர் க்கு வரவேற்கிறோம்.</string>
+
+    <string name="browser_the_internet">நீங்கள் எதிர்பார்க்கும் இணையத்தை உலாவவும்.</string>
+    <string name="no_tracking">கண்காணிப்பு இல்லை. தணிக்கை இல்லை.</string>
+
+</resources>
