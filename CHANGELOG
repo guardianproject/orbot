@@ -1,5 +1,140 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+/** v16.0.5-RC-1-tor-0.3.4.9 / 15 Nov 2018 / 2e2f6e78ede1d0367aa8760d03d90aa2393d6d2a **/
+2e2f6e78 (HEAD -> master, origin/master, origin/HEAD) udpate custom language/locale handling
+c22bfeb3 adding support for multiple new languages
+a3dba713 update strings
+2702eaa9 (tag: 16.0.4-BETA-1-tor-0.3.4.8) update to 16.0.4-BETA-1-tor-0.3.4.8
+fcff7ead reimplement custom language support for Aymara
+21896f81 (tag: 16.0.3-RC-1-tor-0.3.4.8, public/master) update to 16.0.3-RC-1-tor-0.3.4.8
+03a9e241 update localization strings
+f68fdc1b update transifex config
+f06939b6 (tag: 16.0.3-BETA-2-tor-0.3.4.8, dev/master) update build 16030020
+9d3bd822 udpate default bridges
+c207a1ee update new simpler notification with "new identity" button
+bcae0035 add permission to service manifest
+a7130ab4 update to latest tor android 0.3.4.8
+a5d1978d update default bridges
+ffda7698 update NDK build script
+33494542 update to latest Pluto obfs4proxy builds
+048ed9f0 Merge branch 'master' of github.com:n8fr8/orbot
+84e04337 (tag: 16.0.3-BETA-1-tor-0.3.4.8) update version to 16.0.3-BETA-1-tor-0.3.4.8 and build to 16030010
+66cc8ad5 improve service checking for running Tor instance
+6bc161b6 update to Tor 0.3.4.8
+0ff8d7cc Merge pull request #173 from haghighi-ahmad/patch-1
+772e0db7 Improve Persian translation and fix grammar.
+129b55a4 Merge branch 'master' of github.com:n8fr8/orbot
+1bef9632 Merge branch 'Unpublished-deprecated_torrc'
+b2bf3d9a Merge branch 'deprecated_torrc' of https://github.com/Unpublished/orbot into Unpublished-deprecated_torrc
+06c343c8 update launcher web graphic
+34331120 update launcher graphics
+bd61739d update version and constrains library
+9a866aa0 update gradle tooling
+31238af3 update tor to 0.3.4.7 RC
+b0a49903 Merge pull request #168 from av2k/master
+f74dea24 torrc: remove deprecated DNSListenAddress and obsolete WarnUnsafeSocks
+5065a659 Merge pull request #1 from av2k/av2k-patch-better-german-settings-translation
+27ee9ed3 Clarify a German strings.xml translation
+a608a964 Merge pull request #161 from bitmold/get-bridge-dialog-improvement
+7340e214 Merge pull request #158 from Unpublished/patch
+08d242e6 unused attribute in layout
+3e03d226 update request new bridge dialog text
+be2d4117 Formatted BridgeWizardActivity and layout; removed unnecessary code
+0b15ae5c We get a better material design dialog by not using a custom layout
+44d088ba Only email clients are listed when you request a bridge over email
+edc07b09 no previous zipping further reduces apk size
+749ca3ec proguard: disable obfuscation
+65bf70f2 (tag: 16.0.2-RC-1) update to 16.0.2-RC-1 build 16020041
+18528bcf (tag: 16.0.2-BETA-3) update to 16.0.2-BETA-3 build 16020013
+ae282939 update gradle to produce APKs appropriately named
+41e223fd update native build to support armeabi-v7a
+f7f03f5a (tag: 16.0.2-BETA-2) update to 16.0.2-BETA-2 build 16020012
+1dc740a7 update to latest tor-android-binary library
+9a1e6fce add armeabi-v7a build to split APKs
+4bdfb79a update code to properly unzip entries from APK zip if needed
+0b74afbe (tag: 16.0.2-BETA-1) update to build 16020011 16.0.2-BETA-1 with tor 0.3.3.5-rc
+89906a28 update tor vpn values to 192.168.200 base some people might have conflicts with 10.10.10 base VPN
+f702a0e4 fix country selector spinner bug with phantom selections
+3bbf7a17 ensure pluggable transports are updated and set to executable
+fa017cf3 make sure we handle foreground notifications properly
+7dd09db7 update to tor 0.3.3.5-rc
+be614318 make sure all the activities we need are included
+af1d9337 handle phantom selection of country exit - also support custom exit override issue
+8ebd5383 add NEWNYM feature back into main app screen
+989cbb20 remove old fullperm manifest
+be1f73ee go back to one manifest will all perms
+93a0092c update implementation of language selector
+265caa8d add more releae build crunching compression
+074411a6 always show the hidden service menu
+93e6cf3e don't show app vpn selection for devices that don't support it
+ad18a409 load PT binaries fromthe native library path
+3dc40b8a update to use tor-0.3.2.10-dev build with new tor binary method
+0d3ef7c7 update gradle to 3.1.2
+49b72280 implement APK splits for architecture specific builds
+142d934d update proguard rules
+3e8a92ac improve how service starts happen on Android O+
+6a911d9f Merge branch 'master' of github.com:n8fr8/orbot
+a94d2c98 Merge pull request #146 from bitmold/package-refactor
+5f337887 control package name didnt match dir
+456f8962 set pdnsd path dynamically, in case it is installed elsewhere
+2b401050 use Tor's built-in HTTP server instead of Polipo
+e903ea9a change how we look up the version of tor being used
+66783998 update dependency command
+c6630b91 update dependency command
+bc863d4c (tag: 16.0.1-BETA-1) updating to build 16010011
+a9579867 updating store descriptions
+8867c339 adding new strings for onboarding
+dd0e2a02 updated strings for multiple locales
+a66ff471 update localized strings
+e0293ac9 Merge pull request #135 from bitmold/prefs-improvements
+fdd6b52f Merge pull request #139 from bitmold/back-closes-log-not-app
+f151b37c Merge pull request #127 from bitmold/string-fixes
+923be64f Merge pull request #129 from bitmold/patch-2
+d1daf86c Merge pull request #141 from bitmold/no-phone-state-perm
+d0cc453d Merge pull request #143 from bitmold/app-sorting-case-insensitive
+e244df96 Merge branch 'master' of github.com:n8fr8/orbot
+bae861e3 switch to 1.1.1.1 for default DNS
+5d9fc754 update gradle to 4.4
+f2c3753a update gradle, SDK, dependencies, etc
+1c9afcba toUpperCase -> compareToIgnoreCase
+06756005 App sorting for TorifiedApps is case insensitive
+505223b3 removed legacy READ_PHONE_STATE perm
+87401d04 When log is open, the back btn closes it
+a4ce29db Merge pull request #137 from bitmold/patch-3
+ca3856ce Update BUILD
+13ea11d7 update preference summaries
+f117dac3 cleanup
+49ee3aef textPassword inputType for proxypasswd dialog
+8a141368 port settings use inputType=number
+db74f05e formatted preferences.xml
+d681dced Merge pull request #126 from bitmold/vpn-app-selection-ui-improvements
+c425f5fb Merge pull request #131 from goapunk/master
+285373d2 Fix BUILD instructions
+40391ba7 Revert "Fix lost asset:"
+47e05343 Removed Outdated FAQ in README
+0eaa2786 ..,. -> ... in strings nl
+60307735 revert, pushed this to the wrong branch, sorry
+f49719f1 ..,. -> ... in string res
+e459ec09 Merge branch 'master' into vpn-app-selection-ui-improvements
+eddcba62 Merge pull request #125 from bitmold/patch-1
+64f90ed5 Merge pull request #124 from goapunk/fix_asset_pdnsd
+8a16b2be Wifi --> Wi-Fi
+cff61d1b Newlines were not being read from LICENSE in about dialog
+a3f16974 gave the GridView some room to breath
+ebc06ca3 Fix TextView overlap issues in app selection ui
+f930ced0 Use ProgressBar instead of off center ProgressDialog
+e3f9397a centered app selection GridView in VPN UI
+4b36bcef "Android" was used instead of "Orbot" in INSTALL
+3b7aafd8 Fix lost asset:
+fb912d79 Merge pull request #118 from mrphs/patch-1
+c1a3a7d6 fixed typo in bridge line
+7ab6f505 add localized resources to project
+7e0552bc update gitignore
+f553da19 (tag: 16.0.0-RC-2) 16.0.0-RC-2 small fixes (typo, orfox install)
+8113e126 re-enable Orfox install code
+6c84ae5b fix typo in bridge string
+28662afd adding icons and screens
+
 /** v16.0.0 RC 1 / 5 Jan 2018 / 309c42be916d866a28adacb0a4f92d692cbd6009 **/
 
 7e9890e tweak default bridge behavior based on locale
