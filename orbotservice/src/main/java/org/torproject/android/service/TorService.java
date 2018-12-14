@@ -349,6 +349,9 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
      * @see android.app.Service#onStart(android.content.Intent, int)
      */
     public int onStartCommand(Intent intent, int flags, int startId) {
+
+        showToolbarNotification(getString(R.string.status_starting_up),NOTIFY_ID,R.drawable.ic_stat_tor);
+
         if (intent != null)
             exec (new IncomingIntentRouter(intent));
         else
