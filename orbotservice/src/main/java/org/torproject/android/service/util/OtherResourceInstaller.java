@@ -70,15 +70,11 @@ public class OtherResourceInstaller implements TorServiceConstants {
         if (!installFolder.exists())
             installFolder.mkdirs();
 
-//        File libBinary = new File(getNativeLibraryDir(context),OBFSCLIENT_ASSET_KEY + ".so");
         outFile = new File(installFolder, OBFSCLIENT_ASSET_KEY);
         NativeLoader.initNativeLibs(context,OBFSCLIENT_ASSET_KEY,outFile);
- //       setExecutable(outFile);
 
-  //      libBinary = new File(getNativeLibraryDir(context),PDNSD_ASSET_KEY + ".so");
         outFile = new File(installFolder, PDNSD_ASSET_KEY);
         NativeLoader.initNativeLibs(context,PDNSD_ASSET_KEY,outFile);
-   //     setExecutable(outFile);
 
         return true;
     }
