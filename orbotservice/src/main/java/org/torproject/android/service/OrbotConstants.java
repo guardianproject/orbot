@@ -39,4 +39,7 @@ public interface OrbotConstants {
 	public final static String PREF_CONNECTION_PADDING = "pref_connection_padding";
 	public final static String PREF_REDUCED_CONNECTION_PADDING = "pref_reduced_connection_padding";
 
+	public final static String PREF_PREFER_IPV6 = "pref_prefer_ipv6";
+	public final static String PREF_DISABLE_IPV4 = "pref_disable_ipv4";
+
 }

@@ -641,16 +641,26 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         String isolate = " ";
         if(prefs.getBoolean(OrbotConstants.PREF_ISOLATE_DEST, false))
         {
-            isolate += "IsolateDestAddr";
+            isolate += "IsolateDestAddr ";
+        }
+
+        String ipv6Pref = " IPv6Traffic ";
+        if(prefs.getBoolean(OrbotConstants.PREF_PREFER_IPV6, true))
+        {
+            ipv6Pref += "PreferIPv6 ";
+        }
+        if(prefs.getBoolean(OrbotConstants.PREF_DISABLE_IPV4, false))
+        {
+            ipv6Pref += "NoIPv4Traffic ";
         }
         
-        extraLines.append("SOCKSPort ").append(socksPortPref).append(isolate).append('\n');
+        extraLines.append("SOCKSPort ").append(socksPortPref).append(isolate).append(ipv6Pref).append('\n');
         extraLines.append("SafeSocks 0").append('\n');
         extraLines.append("TestSocks 0").append('\n');
     	if (Prefs.openProxyOnAllInterfaces())
     		extraLines.append("SocksListenAddress 0.0.0.0").append('\n');
 
-        extraLines.append("HTTPTunnelPort ").append(mPortHTTP).append(isolate).append('\n');
+        extraLines.append("HTTPTunnelPort ").append(mPortHTTP).append(isolate).append(ipv6Pref).append('\n');
 
 
 	if(prefs.getBoolean(OrbotConstants.PREF_CONNECTION_PADDING, false))
