@@ -641,26 +641,36 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         String isolate = " ";
         if(prefs.getBoolean(OrbotConstants.PREF_ISOLATE_DEST, false))
         {
-            isolate += "IsolateDestAddr";
+            isolate += "IsolateDestAddr ";
+        }
+
+        String ipv6Pref = " IPv6Traffic ";
+        if(prefs.getBoolean(OrbotConstants.PREF_PREFER_IPV6, true))
+        {
+            ipv6Pref += "PreferIPv6 ";
+        }
+        if(prefs.getBoolean(OrbotConstants.PREF_DISABLE_IPV4, false))
+        {
+            ipv6Pref += "NoIPv4Traffic ";
         }
         
-        extraLines.append("SOCKSPort ").append(socksPortPref).append(isolate).append('\n');
+        extraLines.append("SOCKSPort ").append(socksPortPref).append(isolate).append(ipv6Pref).append('\n');
         extraLines.append("SafeSocks 0").append('\n');
         extraLines.append("TestSocks 0").append('\n');
     	if (Prefs.openProxyOnAllInterfaces())
     		extraLines.append("SocksListenAddress 0.0.0.0").append('\n');
 
-        extraLines.append("HTTPTunnelPort ").append(mPortHTTP).append(isolate).append('\n');
+        extraLines.append("HTTPTunnelPort ").append(mPortHTTP).append(isolate).append(ipv6Pref).append('\n');
 
 
-	if(prefs.getBoolean(OrbotConstants.PREF_CONNECTION_PADDING, false))
-	{
-		extraLines.append("ConnectionPadding 1").append('\n');
-	}
-	if(prefs.getBoolean(OrbotConstants.PREF_REDUCED_CONNECTION_PADDING, true))
-	{
-		extraLines.append("ReducedConnectionPadding 1").append('\n');
-	}
+        if(prefs.getBoolean(OrbotConstants.PREF_CONNECTION_PADDING, false))
+        {
+            extraLines.append("ConnectionPadding 1").append('\n');
+        }
+        if(prefs.getBoolean(OrbotConstants.PREF_REDUCED_CONNECTION_PADDING, true))
+        {
+            extraLines.append("ReducedConnectionPadding 1").append('\n');
+        }
 
         String transPort = prefs.getString("pref_transport", TorServiceConstants.TOR_TRANSPROXY_PORT_DEFAULT+"");
         String dnsPort = prefs.getString("pref_dnsport", TorServiceConstants.TOR_DNS_PORT_DEFAULT+"");

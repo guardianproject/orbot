@@ -174,13 +174,25 @@
             android:title="@string/reachable_ports" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="Isolation">
+    <PreferenceCategory android:title="Connectivity">
         <CheckBoxPreference
             android:defaultValue="false"
             android:enabled="true"
             android:key="pref_isolate_dest"
             android:summary="@string/pref_isolate_dest_summary"
             android:title="@string/pref_isolate_dest" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:enabled="true"
+            android:key="pref_prefer_ipv6"
+            android:summary="@string/pref_prefer_ipv6_summary"
+            android:title="@string/pref_prefer_ipv6" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:enabled="true"
+            android:key="pref_disable_ipv4"
+            android:summary="@string/pref_disable_ipv4_summary"
+            android:title="@string/pref_disable_ipv4" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="ConnectionPadding">
@@ -197,7 +209,6 @@
             android:summary="@string/pref_reduced_connection_padding_summary"
             android:title="@string/pref_reduced_connection_padding" />
     </PreferenceCategory>
-
 
     <PreferenceCategory android:title="@string/pref_proxy_title">
         <EditTextPreference
