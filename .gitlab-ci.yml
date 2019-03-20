@@ -1,0 +1,54 @@
+image: registry.gitlab.com/fdroid/ci-images-client:latest
+
+cache:
+  paths:
+    - .gradle/wrapper
+    - .gradle/caches
+
+stages:
+  - test
+  - deploy
+
+before_script:
+  - export GRADLE_USER_HOME=$PWD/.gradle
+  - export ANDROID_COMPILE_SDK=`sed -n 's,.*compileSdkVersion\s*\([0-9][0-9]*\).*,\1,p' app/build.gradle`
+  - alias sdkmanager="sdkmanager --no_https"
+  - echo y | sdkmanager
+      "platforms;android-${ANDROID_COMPILE_SDK}"
+      "$(sed -nE 's,.*buildToolsVersion *.([0-9.]+).*,build-tools;\1,p' app/build.gradle)"
+      "build-tools;23.0.3" > /dev/null
+
+.test-template: &test-template
+  artifacts:
+    name: "${CI_PROJECT_PATH}_${CI_JOB_STAGE}_${CI_COMMIT_REF_NAME}_${CI_COMMIT_SHA}"
+    paths:
+      - "logcat.txt"
+      - "*/build/reports"
+      - "*/build/outputs/*ml"
+      - "*/build/outputs/apk"
+    expire_in: 1 week
+    when: on_failure
+  after_script:
+    - echo "Download debug artifacts from https://gitlab.com/${CI_PROJECT_PATH}/-/jobs"
+
+# Run the most important first. Then we can decide whether to ignore
+# the style tests if the rest of the more meaningful tests pass.
+test:
+  stage: test
+  <<: *test-template
+  script:
+    # print lint errors/warnings to build log
+    - sed -i 's,\s*textReport .*,\ttextReport true,g' */build.gradle
+    # 'assemble' everything and run all checks that do not require a device/emulator
+    - ./gradlew build -PdisablePreDex
+
+errorprone:
+  stage: test
+  script:
+    - for f in */build.gradle; do cat tools/errorprone.gradle >> $f; done
+    - ./gradlew assembleDebug -PdisablePreDex
+
+after_script:
+    # this file changes every time but should not be cached
+    - rm -f $GRADLE_USER_HOME/caches/modules-2/modules-2.lock
+    - rm -fr $GRADLE_USER_HOME/caches/*/plugin-resolution/
