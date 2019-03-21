@@ -1,0 +1,26 @@
+Orbot
+Vermittlung mit Tor
+Orbot ist eine freie Vermittlungsanwendung, welche es anderen Programmen ermöglicht, das Internet sicherer zu nutzen. Orbot benutzt Tor um den Internetverkehr zu verschlüsseln und versteckt den Nutzer, indem die Verbindung durch andere Computer rund um die Welt umgeleitet wird. Tor ist ein freies Programm und ein offenes Netzwerk, das dabei hilft sich gegen Überwachung zu wehren, die die Persönliche Freiheit, die Privatsphäre, vertrauliche Geschäftsbeziehungen verletzt. Sowie gegen staatliche Datenverkehrsanalyse des Internetverkehrs.
+
+Orbot ist die einzige Anwendung, die eine wirklich vertrauliche Internetverbindung herstellt. Wie die New York Times schreibt, »wenn Verbindungen über Tor eintreffen, weiß man nie von wem oder woher sie kommt.« Tor bekam 2012 den Electronic Frontier Foundation (EFF) Pioneer Award.
+
+AKZEPTIEREN SIE KEINE SCHNÜFFLER: Orbot ist der sicherste Weg, um das Internet mit Android zu nutzen. Orbot leitet den verschlüsselten Verkehr mehrmals durch Rechner auf der ganzen Welt, anstatt Sie direkt zu verbinden wie z.B. VPNs und Proxys. Dieser Vorgang dauert ein wenig länger, aber der stärkste Privatsphären- und Identitätsschutz ist das Warten wert.
+PRIVATES INTERNETSURFEN: Nutzen Sie es mit Orweb, der anonymsten Art, eine Webseite zu besuchen, egal ob sie normalerweise geblockt, überwacht, oder versteckt ist. Hier bekommen Sie Orweb: https://goo.gl/s3mLa
+PRIVATE SOFORTNACHRICHTEN: Gibberbot mit Orbot nutzen, um sich vertraulich mit jedem, überall und kostenlos zu unterhalten. Hier bekommen Sie Gibberbot: https://goo.gl/O3FfS
+PRIVATSPHÄRE FÜR ANWENDUNGEN: Jede installierte Anwendung kann Tor benutzen, wenn es eine Vermittlungsfunktion hat und folgende Einstellungen nutzt: https://goo.gl/2OA1y Orbot mit Twitter benutzen, oder die anonyme Internetsuche mit DuckDuckGo: https://goo.gl/lgh1p
+PRIVATSPHÄRE FÜR JEDEN: Tor kann dabei helfen einen vertraulich über einen Wettbewerber zu recherchieren, die Facebook-Blockade an der Schule oder die Firewall am Arbeitsplatz zu umgehen, um Sport zu gucken.
+PRIVATSPHÄRE EINFACH GEMACHT: Unsere witzige und interaktive Führung ansehen: https://guardianproject.info/howto/browsefreely
+ES IST OFFIZIELL: Das ist die offizielle Version des Tor-Onion-Routing-Dienstes für Android
+
+***Experten-Root-Modus***
+UNIVERSAL MODUS: Orbot kann so eingestellt werden, dass der ganze Internetverkehr transparent vermittelt wird. Sie könne auch auswählen, welche Anwendungen speziell über Tor umgeleitet werden sollen.
+
+***Wir lieben Rückmeldungen***
+ÜBER UNS: Guardian Project ist eine Gruppe von Entwicklern, welche sichere mobile Apps und quelloffenen Code für eine bessere Zukunft erstellen.
+UNSERE WEBSEITE: https://GuardianProject.info
+AUF TWITTER: https://twitter.com/guardianproject
+QUELLOFFEN: Orbot ist freie Software. Werfen Sie einen blick auf den Quellcode, oder schließen Sie sich der Gemeinschaft an um es zu verbessern: https://gitweb.torproject.org/orbot.git
+ÜBER TOR: https://TorProject.org
+UNS SCHREIBEN: Haben wir eine Funktion vergessen? Haben Sie einen Fehler gefunden? Wir würden uns freuen, von Ihnen zu hören! Senden Sie uns eine E-Mail an: root@guardianproject.info
+HELFEN SIE UNS ORBOT IN IHR LAND ZU BRINGEN: Wir versuchen Orbot in so viele Sprachen wie möglich zu bringen. Derzeit gibt es folgende Sprachen: Arabic (العربية), Basque (Euskara), Bulgarian (български език), Chinese (中文简体), Czech (Čeština), Danish (Dansk), Dutch (Nederlands), English, Farsi (فارسی), French (Français), French (Français), German (Deutsch), Greek (Ελληνικά), Hebrew (עברית), Hungarian (Magyar Nyelv), Italian (Italiano), Japanese (日本語) Korean (조선말), Latvian (Latviešu), Malaysian (بهاس ملايو ), Polish (Polski), Portuguese (Português), Russian (Русский), Spanish (Español), Swedish (Svensk), and Vietnamese (Tiếng Việt).
+Falls Orbot derzeit nicht in ihrer Sprache verfügbar ist, freuen wir uns, wenn Sie sich unserer Übersetzergruppe anschließen: https://goo.gl/6hni4
