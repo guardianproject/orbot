@@ -43,9 +43,9 @@
   <string name="pref_transparent_all_title">Накіроўваць усё праз Tor</string>
   <string name="pref_transparent_all_summary">Накіроўваць трафік усіх дадаткаў праз Tor</string>
   <string name="pref_transparent_port_fallback_title">Рэзервовы порт проксі</string>
-  <string name="pref_transparent_port_fallback_summary">ПАПЯРЭДЖАННЕ: абыходзіць агульныя парты (80, 443 і г. д.). *ВЫКАРЫСТОЎВАЦЬ ТОЛЬКІ* калі рэжымы \\'Усё\\' ці \\'Дадатак\\' не працуюць.</string>
+  <string name="pref_transparent_port_fallback_summary">ПАПЯРЭДЖАННЕ: абыходзіць агульныя парты (80, 443 і г. д.). *ВЫКАРЫСТОЎВАЦЬ ТОЛЬКІ* калі рэжымы \'Усё\' ці \'Дадатак\' не працуюць.</string>
   <string name="pref_transparent_port_title">Спіс партоў</string>
-  <string name="pref_transparent_port_summary">Спіс партоў для проксікацыі. *ВЫКАРЫСТОЎВАЦЬ ТОЛЬКІ* калі рэжымы \\'Усё\\' ці \\'Дадатак\\' не працуюць.</string>
+  <string name="pref_transparent_port_summary">Спіс партоў для проксікацыі. *ВЫКАРЫСТОЎВАЦЬ ТОЛЬКІ* калі рэжымы \'Усё\' ці \'Дадатак\' не працуюць.</string>
   <string name="pref_transparent_port_dialog">Увядзіце парты для проксіфацыі</string>
   <string name="pref_has_root">Запытаць root-доступ</string>
   <string name="pref_has_root_summary">Запытаць root-доступ для празрыстай проксіфацыі</string>
@@ -78,16 +78,16 @@
   <string name="wizard_tips_otrchat">ChatSecure - абаронены памен паведамленнямі ў Android</string>
   <string name="wizard_tips_proxy">Налады проксі: даведайцеся, як наладзіць дадаткі для працы з Orbot</string>
   <string name="wizard_tips_duckgo">Дадатак пошукавай сістэмы DuckDuckGo</string>
-  <string name="wizard_tips_twitter">Twitter падтрымлівае http-проксі \\"localhost:8118\\"</string>
+  <string name="wizard_tips_twitter">Twitter падтрымлівае http-проксі \"localhost:8118\"</string>
   <string name="wizard_tips_story_maker">StoryMaker - напішыце апавяданне і пакіньце яго Tor для забеспячэння бяспекі!</string>
   <string name="twitter_setup_url">https://guardianproject.info/2012/05/02/orbot-your-twitter/</string>
   <string name="wizard_proxy_help_info">Налады проксі</string>
-  <string name="wizard_proxy_help_msg">Калі выкарыстоўваны вамі дадатак для Android падтрымлівае HTTP ці SOCKS-проксі, то вы можаце наладзіць яго на падключэнне да Orbot і выкарыстанне Tor.\n\n\nЗначэнне хаста - 127.0.0.1 ці \\"localhost\\". Для HTTP нумар порта - 8118. Для SOCKS-проксі - 9050. Па магчымасці выкарыстоўвайце SOCKS4A ці SOCKS5.\n \n\n\nВы можаце даведацца больш пра працу праз проксі на Android, прачытаўшы гэты FAQ: http://tinyurl.com/proxyandroid\n </string>
+  <string name="wizard_proxy_help_msg">Калі выкарыстоўваны вамі дадатак для Android падтрымлівае HTTP ці SOCKS-проксі, то вы можаце наладзіць яго на падключэнне да Orbot і выкарыстанне Tor.\n\n\nЗначэнне хаста - 127.0.0.1 ці \"localhost\". Для HTTP нумар порта - 8118. Для SOCKS-проксі - 9050. Па магчымасці выкарыстоўвайце SOCKS4A ці SOCKS5.\n \n\n\nВы можаце даведацца больш пра працу праз проксі на Android, прачытаўшы гэты FAQ: http://tinyurl.com/proxyandroid\n </string>
   <string name="wizard_final">Orbot гатоў да выкарыстання!</string>
   <string name="wizard_final_msg">Мільёны людзей ва ўсім свеце выкарыстоўваюць Tor па розных прычынах. Журналісты і блогеры, праваабаронцы, супрацоўнікі праваахоўных органаў, салдаты, карпарацыі, грамадзяне краін з рэпрэсіўным рэжымам і проста звычайныя грамадзяне..., а зараз гатовы і вы!</string>
   <string name="wizard_exit_at_first_screen_toast">Калі ласка, наладзьце Orbot перш чым прыступіць да выкарыстання!</string>
   <!--END Welcome Wizard strings (DJH)-->
-  <string name="connect_first_time">Вы паспяхова далучыліся да сеткі Tor, але гэта НЕ значыць, што ваша прылада бяспечная. Вы можаце скарыстацца функцыяй \\'Праверка\\' з меню, каб пратэставаць ваш браўзар.\n\nНаведаеце наш сайт https://guardianproject.info/apps/orbot ці адпраўце ліст на адрас help@guardianproject.info, каб даведацца больш.</string>
+  <string name="connect_first_time">Вы паспяхова далучыліся да сеткі Tor, але гэта НЕ значыць, што ваша прылада бяспечная. Вы можаце скарыстацца функцыяй \'Праверка\' з меню, каб пратэставаць ваш браўзар.\n\nНаведаеце наш сайт https://guardianproject.info/apps/orbot ці адпраўце ліст на адрас help@guardianproject.info, каб даведацца больш.</string>
   <string name="tor_check">Гэта прывядзе да запуску браўзара, абранага на вашай прыладзе па змаўчанні, і падключэнню да сайта https://check.torproject.org дзеля праверкі правільнасці працы Orbot і вызначэння, ці падключаны вы да сеткі Tor.</string>
   <string name="pref_hs_group">Схаваныя службы</string>
   <string name="pref_general_group">Агульныя</string>
@@ -101,9 +101,9 @@
   <string name="wizard_warning_msg">Сама па сабе ўсталёўка Orbot не зробіць аўтаматычна ваш мабільны трафік ананімным.\n\n Вы павінны правільна наладзіць Orbot, вашу прыладу і іншыя дадаткі, што б паспяхова выкарыстоўваць Tor.</string>
   <!--Permissions screen-->
   <string name="wizard_permissions_title">Дазволы</string>
-  <string name="wizard_permissions_root_msg1">Вы гэтак жа можаце па жаданні даць Orbot правы \\'Суперкарыстача\\' для доступу да дадатковых магчымасцяў тыпу празрыстай проксіфацыі.</string>
-  <string name="wizard_permissions_root_msg2">Здаецца, ваша прылада не мае root-правоў і не прапануе доступ \\'Суперкарыстача\\'.\n\nКалі ласка, паспрабуйце рэжым \\'Дадаткі\\' на галоўным экране.</string>
-  <string name="wizard_permissions_no_root_msg">Здаецца, ваша прылада не мае root-правоў і не прапануе доступ \\'Суперкарыстача\\'.\n\n Калі ласка, паспрабуйце рэжым \\'Дадаткі\\' на галоўным экране.</string>
+  <string name="wizard_permissions_root_msg1">Вы гэтак жа можаце па жаданні даць Orbot правы \'Суперкарыстача\' для доступу да дадатковых магчымасцяў тыпу празрыстай проксіфацыі.</string>
+  <string name="wizard_permissions_root_msg2">Здаецца, ваша прылада не мае root-правоў і не прапануе доступ \'Суперкарыстача\'.\n\nКалі ласка, паспрабуйце рэжым \'Дадаткі\' на галоўным экране.</string>
+  <string name="wizard_permissions_no_root_msg">Здаецца, ваша прылада не мае root-правоў і не прапануе доступ \'Суперкарыстача\'.\n\n Калі ласка, паспрабуйце рэжым \'Дадаткі\' на галоўным экране.</string>
   <!--TipsAndTricks screen-->
   <string name="wizard_tips_title">Дадаткі, што працуюць з Orbot</string>
   <string name="wizard_tips_gibberbot">ChatSecure: дадатак для бяспечнага ліставання з прыватным шыфраваннем</string>
@@ -159,7 +159,7 @@
   <string name="setting_up_port_based_transparent_proxying_">Усталёўка заснаванай на партах празрыстай проксіфацыі...</string>
   <string name="bridge_error">Памылка моста</string>
   <string name="bridge_requires_ip">Для выкарыстання трэба задаць IP-адрас прынамсі аднаго моста.</string>
-  <string name="send_email_for_bridges">Адпраўце ліст на адрас bridges@torproject.org з радком \\"get bridges\\" у целе паведамлення з уліковага запісу GMail.</string>
+  <string name="send_email_for_bridges">Адпраўце ліст на адрас bridges@torproject.org з радком \"get bridges\" у целе паведамлення з уліковага запісу GMail.</string>
   <string name="error">Памылка</string>
   <string name="your_reachableaddresses_settings_caused_an_exception_">Вашы налады даступных адрасоў выклікалі вынятак!</string>
   <string name="your_relay_settings_caused_an_exception_">Вашы налады рэтранслятара выклікалі вынятак!</string>
@@ -285,7 +285,7 @@
   <string name="apps_mode">VPN-рэжым</string>
   <string name="you_can_enable_all_apps_on_your_device_to_run_through_the_tor_network_using_the_vpn_feature_of_android_">Вы можаце дазволіць дадаткам праходзіць праз Tor з дапамогай убудаванай VPN-сеткі Orbot.\n\nГэта не зробіць вас ананімным, але гэта дапаможа прайсці праз брандмаўэры.</string>
   <string name="send_email">Адправіць ліст</string>
-  <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Вы можаце атрымаць адрас моста па электроннай пошце, з сайта ці шляхам сканавання QR-кода. Абярыце \\"Эл. пошта\\" ці \\"Сайт\\" ніжэй, каб запытаць адрас моста.\n\nАтрыманы адрас скапіюйце і ўстаўце яго ў падзеле налад Orbot \\"Масты\\", пасля чаго перазапусціце дадатак.</string>
+  <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Вы можаце атрымаць адрас моста па электроннай пошце, з сайта ці шляхам сканавання QR-кода. Абярыце \"Эл. пошта\" ці \"Сайт\" ніжэй, каб запытаць адрас моста.\n\nАтрыманы адрас скапіюйце і ўстаўце яго ў падзеле налад Orbot \"Масты\", пасля чаго перазапусціце дадатак.</string>
   <string name="install_orweb">Усталяваць Orfox</string>
   <string name="standard_browser">Стандартны браўзар</string>
   <string name="note_only_standard_tor_bridges_work_on_intel_x86_atom_devices">НАТАТКА: на прыладах Intel X86/Atom працуюць толькі стандартныя масты Tor</string>
