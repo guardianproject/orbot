@@ -523,7 +523,7 @@ public class OrbotMainActivity extends AppCompatActivity
             String version = "";
             
             try {
-                version = getPackageManager().getPackageInfo(getPackageName(), 0).versionName + " (Tor " + TorService.TOR_VERSION + ")";
+                version = getPackageManager().getPackageInfo(getPackageName(), 0).versionName + " (Tor " + TorService.BINARY_TOR_VERSION + ")";
             } catch (NameNotFoundException e) {
                 version = "Version Not Found";
             }
@@ -1203,7 +1203,7 @@ public class OrbotMainActivity extends AppCompatActivity
         } else if (torStatus == TorServiceConstants.STATUS_OFF) {
 
             imgStatus.setImageResource(R.drawable.toroff);
-            lblStatus.setText("Tor v" + TorService.TOR_VERSION);
+            lblStatus.setText("Tor v" + TorService.BINARY_TOR_VERSION);
 			mBtnStart.setText(R.string.menu_start);
             mPulsator.start();
 

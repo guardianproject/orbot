@@ -78,12 +78,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeoutException;
 
-import static org.torproject.android.binary.TorServiceConstants.BINARY_TOR_VERSION;
-
 public class TorService extends Service implements TorServiceConstants, OrbotConstants
 {
 
-    public final static String TOR_VERSION = org.torproject.android.binary.TorServiceConstants.BINARY_TOR_VERSION;
+    public final static String BINARY_TOR_VERSION = org.torproject.android.binary.TorServiceConstants.BINARY_TOR_VERSION;
     private String mCurrentStatus = STATUS_OFF;
     
     private final static int CONTROL_SOCKET_TIMEOUT = 0;
@@ -124,7 +122,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     public static File appCacheHome;
 
     public static File fileTor;
- //   public static File filePolipo;
     public static File fileObfsclient;
     public static File fileTorRc;
     private File mHSBasePath;
@@ -591,17 +588,15 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         logNotice("checking binary version: " + version);
         
         TorResourceInstaller installer = new TorResourceInstaller(this, appBinHome);
-        
-        if (version == null || (!version.equals(BINARY_TOR_VERSION)) || (!fileTor.exists()))
-        {
-            logNotice("upgrading binaries to latest version: " + BINARY_TOR_VERSION);
-            
-            boolean success = installer.installResources();
-            
-            if (success)
-                prefs.edit().putString(PREF_BINARY_TOR_VERSION_INSTALLED,BINARY_TOR_VERSION).apply();
 
-        }
+        logNotice("upgrading binaries to latest version: " + BINARY_TOR_VERSION);
+
+        fileTor = installer.installResources();
+
+        if (fileTor != null && fileTor.canExecute())
+            prefs.edit().putString(PREF_BINARY_TOR_VERSION_INSTALLED,BINARY_TOR_VERSION).apply();
+
+        fileTorRc = installer.getTorrcFile();
 
         OtherResourceInstaller oInstaller = new OtherResourceInstaller(this, appBinHome);
         oInstaller.installResources();
