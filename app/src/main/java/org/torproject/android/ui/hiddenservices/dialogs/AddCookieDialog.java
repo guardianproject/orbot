@@ -29,7 +29,7 @@ public class AddCookieDialog extends DialogFragment {
                 .setTitle(R.string.client_cookies)
                 .create();
 
-        Button save = (Button) dialog_view.findViewById(R.id.cookie_dialog_save);
+        Button save = dialog_view.findViewById(R.id.cookie_dialog_save);
         save.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 String onion = ((EditText) dialog_view.findViewById(R.id.cookie_onion)).getText().toString();
@@ -45,7 +45,7 @@ public class AddCookieDialog extends DialogFragment {
             }
         });
 
-        Button cancel = (Button) dialog_view.findViewById(R.id.cookie_dialog_cancel);
+        Button cancel = dialog_view.findViewById(R.id.cookie_dialog_cancel);
         cancel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 addCookieDialog.cancel();

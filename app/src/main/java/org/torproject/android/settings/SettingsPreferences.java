@@ -6,25 +6,26 @@ package org.torproject.android.settings;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceCategory;
+import android.preference.PreferenceScreen;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 
 import org.torproject.android.R;
-import org.torproject.android.service.util.Prefs;
 
-
-public class SettingsPreferences
-        extends PreferenceActivity {
-    private static final String TAG = "SettingsPreferences";
-
+public class SettingsPreferences extends PreferenceActivity {
     private ListPreference prefLocale = null;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         addPreferencesFromResource(R.xml.preferences);
+        setNoPersonalizedLearningOnEditTextPreferences();
         getPreferenceManager().setSharedPreferencesMode(Context.MODE_MULTI_PROCESS);
 
         prefLocale = (ListPreference) findPreference("pref_default_locale");
@@ -33,11 +34,9 @@ public class SettingsPreferences
         prefLocale.setEntries(languages.getAllNames());
         prefLocale.setEntryValues(languages.getSupportedLocales());
         prefLocale.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
-
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 String language = (String) newValue;
-
                 Intent intentResult = new Intent();
                 intentResult.putExtra("locale", language);
                 setResult(RESULT_OK, intentResult);
@@ -52,11 +51,23 @@ public class SettingsPreferences
         super.attachBaseContext(LocaleHelper.onAttach(base));
     }
 
-    @Override
-    protected void onPause() {
-        //Language.setFromPreference(this, "pref_default_locale", true);
-
-        super.onPause();
+    private void setNoPersonalizedLearningOnEditTextPreferences() {
+        PreferenceScreen preferenceScreen = getPreferenceScreen();
+        int categoryCount = preferenceScreen.getPreferenceCount();
+        for (int i = 0; i < categoryCount; i++) {
+            Preference p = preferenceScreen.getPreference(i);
+            if (p instanceof PreferenceCategory) {
+                PreferenceCategory pc = (PreferenceCategory) p;
+                int preferenceCount = pc.getPreferenceCount();
+                for (int j = 0; j < preferenceCount; j++) {
+                    p = pc.getPreference(j);
+                    if (p instanceof EditTextPreference) {
+                        EditText editText = ((EditTextPreference) p).getEditText();
+                        editText.setImeOptions(editText.getImeOptions() | EditorInfo.IME_FLAG_NO_PERSONALIZED_LEARNING);
+                    }
+                }
+            }
+        }
     }
 
 }

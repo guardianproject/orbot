@@ -16,7 +16,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Small"
         android:paddingLeft="5dp" />
 
-    <EditText
+    <org.android.ui.NoPersonalizedLearningEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
@@ -31,7 +31,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Small"
         android:paddingLeft="5dp" />
 
-    <EditText
+    <org.android.ui.NoPersonalizedLearningEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -46,7 +46,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Small"
         android:paddingLeft="5dp" />
 
-    <EditText
+    <org.android.ui.NoPersonalizedLearningEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
