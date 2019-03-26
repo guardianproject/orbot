@@ -70,11 +70,11 @@ public class OtherResourceInstaller implements TorServiceConstants {
         if (!installFolder.exists())
             installFolder.mkdirs();
 
-        outFile = new File(installFolder, OBFSCLIENT_ASSET_KEY);
-        NativeLoader.initNativeLibs(context,OBFSCLIENT_ASSET_KEY,outFile);
-
         outFile = new File(installFolder, PDNSD_ASSET_KEY);
         NativeLoader.initNativeLibs(context,PDNSD_ASSET_KEY,outFile);
+
+//        outFile = new File(installFolder, OBFSCLIENT_ASSET_KEY);
+ //       NativeLoader.initNativeLibs(context,OBFSCLIENT_ASSET_KEY,outFile);
 
         return true;
     }

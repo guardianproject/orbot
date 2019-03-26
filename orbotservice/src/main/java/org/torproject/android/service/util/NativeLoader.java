@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
@@ -24,8 +25,20 @@ public class NativeLoader {
         InputStream stream = null;
         try {
             zipFile = new ZipFile(context.getApplicationInfo().sourceDir);
+
+            /**
+            Enumeration<? extends ZipEntry> entries = zipFile.entries();
+            while (entries.hasMoreElements())
+            {
+                ZipEntry entry = entries.nextElement();
+                Log.d("Zip","entry: " + entry.getName());
+            }
+            **/
+
             ZipEntry entry = zipFile.getEntry("lib/" + folder + "/" + libName + ".so");
             if (entry == null) {
+                entry = zipFile.getEntry("lib/" + folder + "/" + libName);
+                if (entry == null)
                 throw new Exception("Unable to find file in apk:" + "lib/" + folder + "/" + libName);
             }
             stream = zipFile.getInputStream(entry);
@@ -68,27 +81,7 @@ public class NativeLoader {
     public static synchronized boolean initNativeLibs(Context context, String binaryName, File destLocalFile) {
 
         try {
-            String folder = null;
-
-            try {
-
-                if (Build.CPU_ABI.equalsIgnoreCase("armeabi-v7a")) {
-                    folder = "armeabi-v7a";
-                } else if (Build.CPU_ABI.startsWith("armeabi")) {
-                    folder = "armeabi";
-                } else if (Build.CPU_ABI.equalsIgnoreCase("x86")) {
-                    folder = "x86";
-                } else if (Build.CPU_ABI.equalsIgnoreCase("mips")) {
-                    folder = "mips";
-                } else {
-                    folder = "armeabi";
-                }
-            } catch (Exception e) {
-                //  FileLog.e("tmessages", e);
-                Log.e(TAG, e.getMessage());
-                folder = "armeabi";
-            }
-
+            String folder = Build.CPU_ABI;
 
             String javaArch = System.getProperty("os.arch");
             if (javaArch != null && javaArch.contains("686")) {

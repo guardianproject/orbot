@@ -37,6 +37,7 @@ import com.runjva.sourceforge.jsocks.protocol.ProxyServer;
 import com.runjva.sourceforge.jsocks.server.ServerAuthenticatorNone;
 
 import org.torproject.android.service.R;
+import org.torproject.android.service.TorService;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.TorServiceUtils;
 
@@ -73,11 +74,14 @@ public class OrbotVpnManager implements Handler.Callback {
     private final static boolean mIsLollipop = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
     
     //this is the actual DNS server we talk to over UDP or TCP (now using Tor's DNS port)
-    private final static String DEFAULT_ACTUAL_DNS_HOST = "127.0.0.1";
-    private final static int DEFAULT_ACTUAL_DNS_PORT = TorServiceConstants.TOR_DNS_PORT_DEFAULT;
+    //private final static String DEFAULT_ACTUAL_DNS_HOST = "127.0.0.1";
+    //private final static int DEFAULT_ACTUAL_DNS_PORT = TorServiceConstants.TOR_DNS_PORT_DEFAULT;
+
 
 
 	File filePdnsd = null;
+
+	private final static int PDNSD_PORT = 8091;
 
 	private boolean isRestart = false;
     
@@ -88,7 +92,7 @@ public class OrbotVpnManager implements Handler.Callback {
     {
     	mService = service;
 
-		File fileBinHome = mService.getDir(TorServiceConstants.DIRECTORY_TOR_BINARY, Application.MODE_PRIVATE);
+		File fileBinHome = service.getFilesDir();//mService.getDir(TorServiceConstants.DIRECTORY_TOR_BINARY, Application.MODE_PRIVATE);
 		filePdnsd = new File(fileBinHome,TorServiceConstants.PDNSD_ASSET_KEY);
 
 		Tun2Socks.init();
@@ -276,6 +280,8 @@ public class OrbotVpnManager implements Handler.Callback {
         	isRestart = true;
         	Tun2Socks.Stop();
         }
+
+        final int localDns = TorService.mPortDns;
         
     	mThreadVPN = new Thread ()
     	{
@@ -290,10 +296,7 @@ public class OrbotVpnManager implements Handler.Callback {
 	    				Log.d(TAG,"is a restart... let's wait for a few seconds");
 			        	Thread.sleep(3000);
 	    			}
-	    			
-	    			//start PDNSD daemon pointing to actual DNS
-	    			startDNS(DEFAULT_ACTUAL_DNS_HOST,DEFAULT_ACTUAL_DNS_PORT);
-	    			
+
 		    		final String vpnName = "OrbotVPN";
 		    		final String localhost = "127.0.0.1";
 
@@ -306,8 +309,8 @@ public class OrbotVpnManager implements Handler.Callback {
 		    		final String localSocks = localhost + ':'
 		    		        + String.valueOf(mTorSocks);
 		    		
-		    		final String localDNS = virtualGateway + ':' + "8091";//String.valueOf(TorServiceConstants.TOR_DNS_PORT_DEFAULT);
-					//final String localDNS = virtualGateway + ":" + DEFAULT_ACTUAL_DNS_PORT;
+		    		final String localDNS = virtualGateway + ':' + PDNSD_PORT;
+
 		    		final boolean localDnsTransparentProxy = true;
 		        	
 			        builder.setMtu(VPN_MTU);
@@ -345,8 +348,12 @@ public class OrbotVpnManager implements Handler.Callback {
 		        	Tun2Socks.Start(mInterface, VPN_MTU, virtualIP, virtualNetMask, localSocks , localDNS , localDnsTransparentProxy);
 		        	
 		        	isRestart = false;
-		        	
-		        }
+
+					//start PDNSD daemon pointing to actual DNS
+					startDNS("127.0.0.1",localDns);
+
+
+				}
 		        catch (Exception e)
 		        {
 		        	Log.d(TAG,"tun2Socks has stopped",e);
