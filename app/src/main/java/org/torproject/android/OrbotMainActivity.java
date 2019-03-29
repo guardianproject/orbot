@@ -12,10 +12,8 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 import java.util.StringTokenizer;
-import java.util.TimerTask;
 
 import org.json.JSONArray;
 import org.torproject.android.service.OrbotConstants;
@@ -37,7 +35,6 @@ import org.torproject.android.ui.hiddenservices.permissions.PermissionManager;
 import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
 import org.torproject.android.vpn.VPNEnableActivity;
 
-import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningServiceInfo;
 import android.app.AlertDialog;
@@ -54,10 +51,8 @@ import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -69,7 +64,6 @@ import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.TextUtils;
-import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -140,16 +134,6 @@ public class OrbotMainActivity extends AppCompatActivity
 
 
     PulsatorLayout mPulsator;
-
-
-    //this is needed for backwards compat back to Android 2.3.*
-    @SuppressLint("NewApi")
-    public View onCreateView(View parent, String name, Context context, AttributeSet attrs)
-    {
-        if(Build.VERSION.SDK_INT >= 11)
-          return super.onCreateView(parent, name, context, attrs);
-        return null;
-    }
 
     private void migratePreferences() {
         String hsPortString = mPrefs.getString("pref_hs_ports", "");
@@ -320,34 +304,21 @@ public class OrbotMainActivity extends AppCompatActivity
 
 		mBtnVPN = (SwitchCompat)findViewById(R.id.btnVPN);
 		
-		boolean canDoVPN = Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH;
+        boolean useVPN = Prefs.useVpn();
+        mBtnVPN.setChecked(useVPN);
 
-		if (!canDoVPN)
-		{
-			//if not SDK 14 or higher, we can't use the VPN feature
-			mBtnVPN.setVisibility(View.GONE);
-		}
-		else
-		{
-			boolean useVPN = Prefs.useVpn();
-			mBtnVPN.setChecked(useVPN);
-			
-			//auto start VPN if VPN is enabled
-			if (useVPN)
-			{
-				startActivity(new Intent(OrbotMainActivity.this,VPNEnableActivity.class));
-			}
-			
-			mBtnVPN.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
-            {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
-                {
-                    enableVPN(isChecked);
-                }
-            });
+        //auto start VPN if VPN is enabled
+        if (useVPN) {
+            startActivity(new Intent(OrbotMainActivity.this,VPNEnableActivity.class));
+        }
 
-		}
+        mBtnVPN.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                enableVPN(isChecked);
+            }
+        });
+
 
 		mBtnBridges = (SwitchCompat)findViewById(R.id.btnBridges);
 		mBtnBridges.setChecked(Prefs.bridgesEnabled());
