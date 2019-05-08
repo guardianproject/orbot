@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="bridges_desc">Les ponts sont des relais Tor qui aident à contourner la censure. Vous pouvez essayer des ponts si Tor est bloqué par votre FAI ; chaque type de pont utilise un moyen différent pour éviter la censure : si un type ne fonctionne pas, en essayer un autre.</string>
-
-    <string name="bridges_no">Aucun pont : se connecter directement à Tor</string>
-    <string name="bridges_provided">Ponts fournis :</string>
-    <string name="bridges_custom">Ponts personnalisés</string>
-
-    <string name="bridges_config">Configuration des ponts</string>
-    <string name="action_done">Terminé</string>
 
     <string name="bridges_sometimes">Il vous faut parfois utiliser un pont pour accéder à Tor.</string>
     <string name="action_more">M’EN DIRE DAVANTAGE</string>
@@ -15,19 +7,6 @@
     <string name="vpn_setup">Vous pouvez permettre à n’importe quelle appli de passer par Tor en utilisant notre RPV intégré.</string>
     <string name="vpn_setup_sub">Cette fonction ne vous rendra pas anonyme, mais elle vous aidera à traverser les pare-feu.</string>
     <string name="action_vpn_choose">CHOISIR LES APPLIS</string>
-
-    <string name="status_connected">Vous êtes connecté !</string>
-
-    <string name="loading_claim_1">Notre communauté riche de diversité est la force de Tor !</string>
-    <string name="loading_claim_2">Les internautes utilisent Tor tous les jours pour éviter d’être suivis à la trace par les publicités de commercialisation.</string>
-    <string name="loading_claim_3">Quand Facebook est bloqué, les internautes utilisent Tor pour se connecter à leurs amis et à leur famille.</string>
-    <string name="loading_claim_4">Les activistes utilisent Tor pour twitter leurs opinions et leurs croyances en toute liberté.</string>
-    <string name="loading_claim_5">Les blogueurs utilisent Tor pour rallier les gens vers une réforme sociale.</string>
-    <string name="loading_claim_6">Les journalistes utilisent Tor pour enquêter en toute sécurité sur les histoires qu’ils couvrent.</string>
-    <string name="loading_claim_7">Les gens d’affaires utilisent Tor pour assurer la confidentialité de leurs stratégies d’entreprise.</string>
-    <string name="loading_claim_8">Les travailleurs utilisent Tor pour lutter pour la justice sans craindre de perdre leur emploi.</string>
-
-    <string name="status_connecting">Nous vous connectons.</string>
 
     <string name="hello">Bonjour</string>
     <string name="welcome">Bienvenue sur Tor pour appareil mobile.</string>

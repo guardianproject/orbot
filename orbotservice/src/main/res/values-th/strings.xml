@@ -1,169 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="app_name">Orbot</string>
-  <string name="internal_web_url">http://orbot/</string>
-  <string name="default_web_url">http://check.torproject.org</string>
-  <string name="secure_default_web_url">https://check.torproject.org</string>
-  <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
-  <string name="control_permission_label">เริ่มและหยุด Tor</string>
-  <string name="tor_proxy_service_process">torproxyservice</string>
-  <string name="status_activated">เชื่อมต่อกับเครือข่าย Tor</string>
+    <string name="status_activated">เชื่อมต่อกับเครือข่าย Tor</string>
   <string name="tor_process_complete">เสร็จ</string>
-  <string name="tor_process_waiting">กำลังรอ</string>
-  <string name="not_anonymous_yet">คำเตือน: ข้อมูลจราจรของคุณยังไม่เป็นนิรนาม! กรุณาตั้งค่าโปรแกรมของคุณให้ใช้ HTTP พร็อกซีที่ 127.0.0.1:8118 หรือใช้ SOCKS4A หรือ SOCKS5 พร็อกซีที่ 127.0.0.1:9050</string>
-  <string name="menu_home">หน้าหลัก</string>
-  <string name="menu_browse">เลือก</string>
-  <string name="menu_settings">ตั้งค่า</string>
-  <string name="menu_log">ปูม</string>
-  <string name="menu_info">ช่วยเหลือ</string>
-  <string name="menu_start">เริ่ม</string>
-  <string name="menu_stop">หยุด</string>
-  <string name="menu_about">เกี่ยวกับ</string>
-  <string name="button_help">ช่วยเหลือ</string>
-  <string name="button_close">ปิด</string>
-  <string name="button_about">เกี่ยวกับ</string>
-  <string name="button_clear_log">ล้างปูม</string>
-  <string name="menu_verify">ตรวจสอบ</string>
-  <string name="menu_exit">ออก</string>
-  <string name="press_to_start">- แตะค้างเพื่อเริ่ม -</string>
-  <string name="pref_trans_proxy_group">พร็อกซีล่องหน (ต้องการสิทธิ์ Root)</string>
-  <string name="pref_trans_proxy_title">พร็อกซีล่องหน</string>
-  <string name="pref_trans_proxy_summary">ให้โปรแกรมใช้งาน Tor โดยอัตโนมัติ</string>
-  <string name="pref_transparent_all_title">ใช้ Tor กับทุกอย่าง</string>
-  <string name="pref_transparent_all_summary">ให้การจราจรของทุกโปรแกรมผ่านพร็อกซีของ Tor</string>
-  <string name="pref_transparent_port_fallback_summary">คำเตือน: หลีกเลี่ยงพอร์ตทั่วไป (เช่น 80, 443) *ใช้ก็ต่อเมื่อ* โหมด \'ทั้งหมด\' หรือ \'โปรแกรม\' ใช้งานไม่ได้</string>
-  <string name="pref_transparent_port_title">รายการพอร์ต</string>
-  <string name="pref_transparent_port_summary">รายการพอร์ตที่ผ่านพร็อกซี *ใช้ก็ต่อเมื่อ* โหลด \'ทั้งหมด\' หรือ \'โปรแกรม\' ใช้งานไม่ได้</string>
-  <string name="pref_transparent_port_dialog">ระบุพอร์ตที่จะให้ผ่านพร็อกซี</string>
-  <string name="pref_has_root">ต้องการสิทธิ์ root</string>
-  <string name="pref_has_root_summary">ต้องการสิทธิ์ root เพื่อใช้งานพร็อกซีล่องหน</string>
-  <string name="status_install_success">ติดตั้งไบนารีของ Tor สำเร็จแล้ว</string>
-  <string name="status_install_fail">ไม่สามารถติดตั้งไบนารีของ Tor ได้ โปรดตรวจสอบปูมและแจ้งปัญหาที่ tor-assistants@torproject.org</string>
-  <string name="title_error">โปรแกรมทำงานผิดพลาด</string>
-  <string name="wizard_title">Orbot</string>
-  <string name="wizard_btn_tell_me_more">เกี่ยวกับ Orbot</string>
-  <string name="btn_next">ต่อไป</string>
-  <string name="btn_back">ถอยหลัง</string>
-  <string name="btn_finish">เสร็จ</string>
-  <string name="btn_okay">ตกลง</string>
-  <string name="btn_cancel">ยกเลิก</string>
-  <!--Welcome Wizard strings (DJH)-->
-  <string name="wizard_details">รายละเอียดเกี่ยวกับ Orbot</string>
-  <string name="wizard_permissions_root">ให้สิทธิ์แล้ว</string>
-  <string name="wizard_permissions_stock">สิทธิ์ของ Orbot</string>
-  <string name="wizard_premissions_msg_root">ยอดเยี่ยม! เราพบว่าคุณให้สิทธิ์ root กับ Orbot เราจะใช้สิทธิ์นี้อย่างชาญฉลาด</string>
-  <string name="wizard_permissions_msg_stock">ถึงจะไม่ใช่เรื่องจำเป็น แต่ถ้าหาก Orbot จะทำงานได้อย่างมีประสิทธิภาพมากขึ้นถ้าได้รับสิทธิ์ root ใช้ปุ่มด้านล่างเพื่อมอบพลังนี้ให้ Orbot!</string>
-  <string name="wizard_permissions_no_root">ถ้าคุณไม่มีสิทธิ์ root หรือไม่เข้าใจว่าเรากำลังพูดถึงอะไรอยู่ ให้ใช้เฉพาะโปรแกรมที่สร้างมาเพื่อใช้กับ Orbot เท่านั้น</string>
-  <string name="wizard_permissions_consent">ฉันเข้าใจและต้องการทำต่อโดยไม่ใช้สิทธิ์ Superuser</string>
-  <string name="wizard_permission_enable_root">ให้สิทธิ์ root แก่ Orbot</string>
-  <string name="wizard_configure">ตั้งค่าการใช้งานผ่าน Tor</string>
-  <string name="wizard_configure_msg">Orbot มีตัวเลือกให้คุณส่งข้อมูลการจราจรของทุกโปรแกรมผ่าน Tor หรือเลือกใช้งานเฉพาะโปรแกรมก็ได้</string>
-  <string name="wizard_configure_all">ให้ทุกโปรแกรมผ่านพร็อกซีของ Tor</string>
-  <string name="wizard_configure_select_apps">เลือกโปรแกรมที่จะให้ใช้ Tor</string>
-  <string name="wizard_tips_tricks">โปรแกรมที่ใช้ได้กับ Orbot</string>
-  <string name="wizard_tips_proxy">การตั้งค่าพร็อกซี - เรียนรู้การตั้งค่าโปรแกรมให้ทำงานกับ Orbot ได้</string>
-  <string name="wizard_proxy_help_info">ตั้งค่าพร็อกซี</string>
-  <string name="wizard_final">Orbot พร้อมใช้งานแล้ว!</string>
-  <!--END Welcome Wizard strings (DJH)-->
-  <string name="tor_check">จะใช้เว็บเบราว์เซอร์ของคุณเปิดหน้า https://check.torproject.org เพื่อตรวจสอบว่าการตั้งค่าของ Orbot ถูกต้องหรือไม่ และคุณได้เชื่อมต่อกับ Tor หรือไม่</string>
-  <string name="pref_general_group">ทั่วไป</string>
-  <string name="pref_start_boot_title">เริ่ม Orbot เมื่อเปิดระบบ</string>
-  <string name="pref_start_boot_summary">เริ่ม Orbot โดยอัตโนมัติและให้เชื่อมต่อกับ Tor เมื่ออุปกรณ์แอนดรอยด์ของคุณเริ่มทำงาน</string>
-  <!--New Wizard Strings-->
+    <!--Welcome Wizard strings (DJH)-->
+    <!--END Welcome Wizard strings (DJH)-->
+    <!--New Wizard Strings-->
   <!--Title Screen-->
   <!--Warning screen-->
-  <string name="wizard_warning_title">คำเตือน</string>
-  <!--Permissions screen-->
-  <string name="wizard_permissions_title">สิทธิ์</string>
-  <string name="wizard_permissions_root_msg1">คุณสามารถเลือกให้สิทธิ์ Superuser แก่ Orbot เพื่อเปิดใช้งานคุณสมบัติขั้นสูง เช่น พร็อกซีล่องหนได้</string>
-  <string name="wizard_permissions_root_msg2">ถ้าคุณไม่ต้องการ โปรดแน่ใจว่าคุณใช้โปรแกรมที่สร้างมาเพื่อใช้กับ Orbot</string>
-  <!--TipsAndTricks screen-->
-  <string name="wizard_tips_title">โปรแกรมที่ใช้ได้กับ Orbot</string>
-  <!--Transparent Proxy screen-->
-  <string name="wizard_transproxy_title">พร็อกซีล่อง</string>
-  <string name="wizard_transproxy_msg">จะอนุญาตให้โปรแกรมของคุณทำงานผ่านเครือข่าย Tor อัตโนมัติโดยไม่ต้องตั้งค่าใดๆ</string>
-  <string name="wizard_transproxy_hint">(ติ๊กตัวเลือกนี้ถ้าคุณไม่เข้าใจเรื่องที่เรากำลังอธิบาย)</string>
-  <string name="wizard_transproxy_none">ไม่มี</string>
-  <string name="pref_transparent_tethering_title">การเชื่อมต่อพ่วงผ่าน Tor</string>
-  <string name="pref_transparent_tethering_summary">เปิดใช้งานพร็อกซีล่องหนของ Tor ให้อุปกรณ์อื่นที่เชื่อมผ่าน Wi-Fi และ USB (ต้องเริ่มใหม่)</string>
-  <string name="button_grant_superuser">ร้องขอการเข้าถึงสิทธิ์ Superuser</string>
-  <string name="pref_select_apps">เลือกโปรแกรม</string>
-  <string name="pref_select_apps_summary">เลือกโปรแกรมที่จะให้เชื่อมต่อผ่าน Tor</string>
-  <string name="pref_node_configuration">การตั้งค่าโหนด</string>
-  <string name="pref_node_configuration_summary">การตั้งค่าขั้นสูงเหล่านี้ทำให้ความเป็นนิรนามของคุณลดลงได้</string>
-  <string name="pref_entrance_node">โหนดทางเข้า</string>
-  <string name="pref_entrance_node_summary">ลายนิ้วมือ, ชื่อเล่น, ประเทศ และที่อยู่ของฮอพแรก</string>
-  <string name="pref_entrance_node_dialog">ระบุโหนดทางเข้า</string>
-  <string name="pref_proxy_type_summary">โพรโทคอลที่ใช้สำหรับเซิร์ฟเวอร์พร็อกซี: HTTP, HTTPS, Socks4, Socks5</string>
-  <string name="pref_proxy_type_dialog">ระบุชนิดของพร็อกซี</string>
-  <string name="pref_proxy_host_dialog">ระบุเครื่องพร็อกซี</string>
-  <string name="pref_proxy_port_dialog">ระบุพอร์ตของพร็อกซี</string>
-  <string name="status">สถานะ</string>
-  <string name="setting_up_full_transparent_proxying_">กำลังติดตั้งพร็อกซีล่องหนแบบเต็ม…</string>
-  <string name="setting_up_app_based_transparent_proxying_">กำลังติดตั้งพร็อกซีล่องหนแบบระบุโปรแกรม…</string>
-  <string name="transparent_proxying_enabled">พร็อกซีล่องหนถูกเปิดใช้งาน</string>
-  <string name="transproxy_enabled_for_tethering_">พร็อกซีล่องหนถูกเปิดใช้สำหรับการเชื่อมต่อพ่วง!</string>
-  <string name="warning_error_starting_transparent_proxying_">คำเตือน: เกิดข้อผิดพลาดขณะที่พร็อกซีล่องหนเริ่มทำงาน</string>
-  <string name="transproxy_rules_cleared">กฎของพร็อกซีล่องหนถูกล้าง</string>
-  <string name="couldn_t_start_tor_process_">ไม่สามารถเริ่มโพรเซสของ Tor</string>
-  <string name="setting_up_port_based_transparent_proxying_">กำลังติดตั้งพร็อกซีล่องหนแบบระบุพอร์ต…</string>
-  <string name="bridge_error">สะพานขัดข้อง</string>
-  <string name="bridge_requires_ip">ในการใช้งานคุณสมบัติสะพาน คุณต้องระบุที่อยู่ไอพีของสะพานอย่างน้อย 1 ไอพี </string>
-  <string name="send_email_for_bridges">ส่งอีเมลไปที่ bridges@torproject.org โดยระบุแค่ \"get bridges\" ในเนื้อความอีเมล แล้วส่งโดยใช้บัญชีผู้ใช้ gmail</string>
-  <string name="error">ผิดพลาด</string>
-  <string name="your_reachableaddresses_settings_caused_an_exception_">การตั้งค่า ReachableAddresses ของคุณทำให้เกิดข้อผิดพลาด</string>
+    <!--Permissions screen-->
+    <!--TipsAndTricks screen-->
+    <!--Transparent Proxy screen-->
+    <string name="couldn_t_start_tor_process_">ไม่สามารถเริ่มโพรเซสของ Tor</string>
+    <string name="your_reachableaddresses_settings_caused_an_exception_">การตั้งค่า ReachableAddresses ของคุณทำให้เกิดข้อผิดพลาด</string>
   <string name="your_relay_settings_caused_an_exception_">การตั้งค่ารีเลย์ของคุณทำให้เกิดข้อผิดพลาด</string>
-  <string name="exit_nodes">โหนดทางออก</string>
-  <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">ลายนิ้วมือ, ชื่อเล่น, ประเทศ และที่อยู่ของฮอพสุดท้าย</string>
-  <string name="enter_exit_nodes">ระบุโหนดทางออก</string>
-  <string name="exclude_nodes">โหนดยกเว้น</string>
-  <string name="fingerprints_nicks_countries_and_addresses_to_exclude">ลายนิ้วมือ, ชื่อเล่น, ประเทศ และที่อยู่ที่ละเว้น</string>
-  <string name="enter_exclude_nodes">ระบุโหนดยกเว้น</string>
-  <string name="strict_nodes">โหนดเข้มงวด</string>
-  <string name="use_only_these_specified_nodes">ใช้ *เฉพาะ* โหนดที่ระบุเหล่านี้เท่านั้น</string>
-  <string name="bridges">สะพาน</string>
-  <string name="use_bridges">ใช้งานสะพาน</string>
-  <string name="bridges_obfuscated">สะพานที่ถูกอำพราง</string>
-  <string name="enable_alternate_entrance_nodes_into_the_tor_network">เปิดใช้งานโหนดทางเข้าอื่นเข้าสู่เครือข่าย Tor</string>
-  <string name="enable_if_configured_bridges_are_obfuscated_bridges">เปิดใช้งานถ้าสะพานที่ถูกตั้งค่าเป็นสะพานอำพราง</string>
-  <string name="ip_address_and_port_of_bridges">ที่อยู่ไอพีและพอร์ตของสะพาน</string>
-  <string name="enter_bridge_addresses">ระบุที่อยู่ของสะพาน</string>
-  <string name="relays">รีเลย์</string>
-  <string name="relaying">การรีเลย์</string>
-  <string name="enable_your_device_to_be_a_non_exit_relay">ทำให้อุปกรณ์ของคุณทำงานเป็นรีเลย์แบบไม่ใช่ทางออก</string>
-  <string name="relay_port">พอร์ตรีเลย์</string>
-  <string name="listening_port_for_your_tor_relay">พอร์ตที่ให้รีเลย์ของ Tor ทำงาน</string>
-  <string name="enter_or_port">ระบุพอร์ตของ OR</string>
-  <string name="relay_nickname">ชื่อเล่นของรีเลย์</string>
-  <string name="the_nickname_for_your_tor_relay">ชื่อเล่นสำหรับรีเลย์ของ Tor ของคุณ</string>
-  <string name="enter_a_custom_relay_nickname">ระบุชื่อเล่นของรีเลย์โดยกำหนดเอง</string>
-  <string name="reachable_addresses">ที่อยู่ซึ่งเข้าถึงได้</string>
-  <string name="run_as_a_client_behind_a_firewall_with_restrictive_policies">ทำงานเป็นเครื่องลูกข่ายหลังไฟร์วอลล์ด้วยนโยบายแบบเข้มงวด</string>
-  <string name="reachable_ports">พอร์ตที่เข้าถึงได้</string>
-  <string name="ports_reachable_behind_a_restrictive_firewall">พอร์ตที่เข้าถึงได้หลังไฟร์วอลล์แบบเข้มงวด</string>
-  <string name="enter_ports">ระบุพอร์ต</string>
-  <string name="enter_localhost_ports_for_hidden_services">ระบุพอร์ตของ localhost สำหรับให้บริการไม่เปิดเผยทำงาน </string>
-  <string name="hidden_service_ports">พอร์ตของบริการไม่เปิดเผย</string>
-  <string name="the_addressable_name_for_your_hidden_service_generated_automatically_">ชื่อที่ใช้ระบุสำหรับบริการไม่เปิดเผยของคุณ (สร้างโดยอัตโนมัติ)</string>
-  <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">เปิดให้ปูมดีบั๊กแสดงผล (ต้องใช้ adb หรือ aLogCat เพื่อดู)</string>
-  <string name="project_home">ที่อยู่โครงการ:</string>
-  <string name="the_tor_license">สัญญาอนุญาตของ Tor</string>
-  <string name="https_torproject_org">https://torproject.org</string>
-  <string name="third_party_software">ซอฟต์แวร์โดยผู้ผลิตอื่น:</string>
-  <string name="hidden_service_request">โปรแกรมต้องการเปิดพอร์ต %S ที่ซ่อนอยู่ของเซิร์ฟเวอร์ให้เชื่อมกับเครือข่าย Tor การกระทำนี้ปลอดภัยถ้าคุณเชื่อถือโปรแกรมนั้น</string>
-  <string name="something_bad_happened">เกิดอะไรไม่ดีสักอย่าง ให้ตรวจดูจากปูม</string>
-  <string name="hidden_service_on">บริการไม่เปิดเผยอยู่บน:</string>
-  <string name="unable_to_read_hidden_service_name">ไม่สามารถอ่านชื่อของบริการไม่เปิดเผย</string>
+    <string name="something_bad_happened">เกิดอะไรไม่ดีสักอย่าง ให้ตรวจดูจากปูม</string>
+    <string name="unable_to_read_hidden_service_name">ไม่สามารถอ่านชื่อของบริการไม่เปิดเผย</string>
   <string name="unable_to_start_tor">ไม่สามารถเริ่ม Tor</string>
-  <string name="pref_use_sys_iptables_title">ใช้ Iptables ปริยาย</string>
-  <string name="pref_use_sys_iptables_summary">ใช้ไบนารีของ iptables ที่มีอยู่แล้วแทนตัวที่แถมมากับ Orbot</string>
-  <string name="error_installing_binares">ไม่สามารถติดตั้งหรือปรับรุ่นไบนารีของ Tor</string>
-  <string name="pref_use_persistent_notifications">แสดงไอคอนในทูลบาร์เสมอเมื่อ Orbot เชื่อมต่ออยู่</string>
-  <string name="pref_use_persistent_notifications_title">การแจ้งเตือนแบบตลอดเวลา</string>
-  <string name="notification_using_bridges">เปิดใช้งานสะพานแล้ว!</string>
-  <string name="default_bridges"></string>
-  <string name="set_locale_summary">เลือกโลแคลและภาษาสำหรับ Orbot</string>
-  <string name="wizard_locale_title">เลือกภาษา</string>
-  <string name="wizard_locale_msg">ใช้ค่าปริยายหรือเลือกภาษาปัจจุบัน</string>
-  <string name="btn_save_settings">บันทึกการตั้งค่า</string>
 </resources>

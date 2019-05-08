@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="bridges_desc">"Bridges are Tor relays that help circumvent censorship. You can try bridges if Tor is blocked by your ISP; each type of bridge uses a different method
-        to avoid censorship: if one type does not work, try using a different one.</string>
-
-    <string name="bridges_no">"No Bridges: Directly Connect to Tor"</string>
-    <string name="bridges_provided">"Provided Bridges: "</string>
-    <string name="bridges_custom">"Custom Bridges"</string>
-
-    <string name="bridges_config">"Bridge Configuration"</string>
-    <string name="action_done">"Done"</string>
 
     <string name="bridges_sometimes">"Sometimes you need a bridge to get to Tor."</string>
     <string name="action_more">"TELL ME MORE"</string>
@@ -16,19 +7,6 @@
     <string name="vpn_setup">"You can enable any app to go through Tor using our built-in VPN."</string>
     <string name="vpn_setup_sub">"This won\'t make you anonymous, but it will help get through firewalls."</string>
     <string name="action_vpn_choose">"CHOOSE APPS"</string>
-
-    <string name="status_connected">"Connected!"</string>
-
-    <string name="loading_claim_1">"Our diverse community is what makes Tor great!"</string>
-    <string name="loading_claim_2">"Everyday people use Tor to avoid being followed by marketing ads."</string>
-    <string name="loading_claim_3">"When Facebook is blocked, people use Tor to connect to their friends and family."</string>
-    <string name="loading_claim_4">"Activists use Tor to freely tweet their opinions and beliefs."</string>
-    <string name="loading_claim_5">"Bloggers use Tor to rally people toward social reform."</string>
-    <string name="loading_claim_6">"Journalists use Tor to securely investigate stories they are reporting on."</string>
-    <string name="loading_claim_7">"Business people use Tor to keep their company strategies private."</string>
-    <string name="loading_claim_8">"Workers use Tor to fight for justice without fear of losing their job."</string>
-
-    <string name="status_connecting">"We're connecting you." = "We're connecting you."</string>
 
     <string name="hello">"Hello"</string>
     <string name="welcome">"Welcome to Tor on mobile."</string>

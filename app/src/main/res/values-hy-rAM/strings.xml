@@ -3,22 +3,17 @@
   <string name="app_name">Orbot</string>
   <string name="menu_about">Մասին</string>
   <string name="button_about">Մասին</string>
-  <string name="menu_verify">Ստուգել</string>
-  <string name="menu_exit">Ելք</string>
-  <string name="wizard_title">Orbot</string>
-  <string name="btn_cancel">եղարկել</string>
+    <string name="menu_exit">Ելք</string>
+    <string name="btn_cancel">եղարկել</string>
   <!--Welcome Wizard strings (DJH)-->
   <!--END Welcome Wizard strings (DJH)-->
   <!--New Wizard Strings-->
   <!--Title Screen-->
   <!--Warning screen-->
-  <string name="wizard_warning_title">Ուշադրություն</string>
-  <!--Permissions screen-->
+    <!--Permissions screen-->
   <!--TipsAndTricks screen-->
   <!--Transparent Proxy screen-->
-  <string name="status">Կարգավիճակ</string>
-  <string name="error">Սխալ</string>
-  <string name="default_bridges"></string>
-  <string name="save">Պահել</string>
+    <string name="error">Սխալ</string>
+    <string name="save">Պահել</string>
   <string name="name">Անուն</string>
 </resources>

@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="bridges_desc">Els ponts són connexions de Tor que ajuden a evitar la censura. Pots provar els ponts si Tor està bloquejat pel teu proveïdor d\'internet, cada tipus de pont utilitza un mètode diferent.
-per evitar la censura: Si un tipus no funciona, prova un altre.</string>
-
-    <string name="bridges_no">Sense ponts: Connecta directament amb Tor</string>
-    <string name="bridges_provided">Ponts proveïts:</string>
-    <string name="bridges_custom">Ponts personalitzats</string>
-
-    <string name="bridges_config">Configuració dels ponts Tor</string>
-    <string name="action_done">Fet</string>
 
     <string name="bridges_sometimes">A vegades necessites un pont per accedir a Tor.</string>
     <string name="action_more">Més informació</string>
@@ -16,19 +7,6 @@ per evitar la censura: Si un tipus no funciona, prova un altre.</string>
     <string name="vpn_setup">Podeu habilitar qualsevol aplicació perquè usi el Tor mitjançant la nostra VPN incorporada.</string>
     <string name="vpn_setup_sub">No us anonimitzarà, però us ajudarà a aconseguir-ho mitjançant els tallafocs.</string>
     <string name="action_vpn_choose">Escull aplicacions</string>
-
-    <string name="status_connected">Connectat!</string>
-
-    <string name="loading_claim_1">La nostra diversa comunitat és el que fa Tor genial!</string>
-    <string name="loading_claim_2">Cada dia la gent utilitza Tor per evitar ser perseguit per anuncis.</string>
-    <string name="loading_claim_3">Si bloquegen Facebook, la gent utilitza Tor per connectar amb els seus amics i família.</string>
-    <string name="loading_claim_4">Activistes utilitzen Tor per piular lliurement les seves opinions i creences.</string>
-    <string name="loading_claim_5">Bloguers utilitzen Tor congregar gent per a reformes socials.</string>
-    <string name="loading_claim_6">Periodistes utilitzen Tor per investigar segurs els seus reportatges.</string>
-    <string name="loading_claim_7">Gent de negocis utilitza Tor per mantenir les estratègies de l\'empresa privades</string>
-    <string name="loading_claim_8">Treballadors utilitzen Tor per lluitar per la justícia sense por de perdre el seu treball</string>
-
-    <string name="status_connecting">Et connectem.\" = \"Et connectem.</string>
 
     <string name="hello">Hola</string>
     <string name="welcome">Us donem la benvinguda al Tor.</string>

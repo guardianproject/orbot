@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="bridges_desc">Мостовите за Tor релеата помагаат за заобиколување на цензурата. Можете да ги пробате мостовите ако Tor е блокиран од вашиот интернет сервис провајдер; секој тип на мост користи различен метод
-за избегнување на цензурата: ако еден тип не работи пробајте да користите друг.</string>
-
-    <string name="bridges_no">Нема мостови: Директно поврзи се на Tor</string>
-    <string name="bridges_provided">Овозможени мостови:</string>
-    <string name="bridges_custom">Прилагодени мостови</string>
-
-    <string name="bridges_config">Поставки за мост</string>
-    <string name="action_done">Завршено</string>
 
     <string name="bridges_sometimes">Понекогаш е потребен мост да дојдете до Tor.</string>
     <string name="action_more">КАЖИ МИ ПОВЕЌЕ</string>
@@ -16,19 +7,6 @@
     <string name="vpn_setup">Можете да овозможите секоја апликација да комуницира преку Tor користејќи го вградениот VPN.</string>
     <string name="vpn_setup_sub">Ова нема да ве направи анонимни, но ќе ви помогне да поминете низ заштитните ѕидови.</string>
     <string name="action_vpn_choose">ОДБЕРИ АПЛИКАЦИИ</string>
-
-    <string name="status_connected">Поврзано!</string>
-
-    <string name="loading_claim_1">Нашата разновидна заедница е тоа што го прави Tor одличен!</string>
-    <string name="loading_claim_2">Секојдневно луѓето го користат Tor за да избегнат да бидат следени од реклами.</string>
-    <string name="loading_claim_3">Кога Фејсбук е блокиран, луѓето користат Tor за да се поврзат со нивното семејство и нивните пријатели.</string>
-    <string name="loading_claim_4">Активистите го користат Tor за слободно да твитаат нивни мислења и верувања.</string>
-    <string name="loading_claim_5">Блогерите го користат Tor за да формираат интернет митинзи за реформи.</string>
-    <string name="loading_claim_6">Новинарите го користат Tor за безбедно истражување на стории за кои пишуваат.</string>
-    <string name="loading_claim_7">Бизнисмени го користат Tor за да ја зачуваат приватноста на своите деловни тајни.</string>
-    <string name="loading_claim_8">Работниците го користат Tor за да се борат за правдата без страв од губење на својата работа.</string>
-
-    <string name="status_connecting">Ние се поврзуваме со тебе.\"=\"Ние се поврзуваме со тебе.</string>
 
     <string name="hello">Здраво</string>
     <string name="welcome">Добредојдовте на Tor на мобилен.</string>

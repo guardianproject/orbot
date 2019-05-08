@@ -1,20 +1,15 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="menu_info">Тусламж</string>
-  <string name="menu_about">Тухай</string>
-  <string name="button_help">Тусламж</string>
-  <string name="button_about">Тухай</string>
+    <string name="menu_about">Тухай</string>
+    <string name="button_about">Тухай</string>
   <string name="btn_cancel">Cancel</string>
   <!--Welcome Wizard strings (DJH)-->
-  <string name="wizard_proxy_help_info">Proxy Settings</string>
-  <!--END Welcome Wizard strings (DJH)-->
+    <!--END Welcome Wizard strings (DJH)-->
   <!--New Wizard Strings-->
   <!--Title Screen-->
   <!--Warning screen-->
   <!--Permissions screen-->
   <!--TipsAndTricks screen-->
   <!--Transparent Proxy screen-->
-  <string name="status">Төлөв</string>
-  <string name="default_bridges"></string>
-  <string name="name">Нэр</string>
+    <string name="name">Нэр</string>
 </resources>

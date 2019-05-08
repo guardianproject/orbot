@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="menu_browse">ਚਰਨਾ</string>
-  <string name="menu_settings">ਪਰਿਸਥਿਤੀ</string>
-  <string name="menu_info">ਸਹਾਇਤਾ</string>
-  <string name="button_help">ਸਹਾਇਤਾ</string>
-  <string name="btn_cancel">ਰੱਦ ਕਰੋ</string>
-  <!--Welcome Wizard strings (DJH)-->
-  <string name="wizard_proxy_help_info">ਪਰਾਕਸੀ ਸੈਟਿੰਗ</string>
-  <!--END Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
+    <!--END Welcome Wizard strings (DJH)-->
   <!--New Wizard Strings-->
   <!--Title Screen-->
   <!--Warning screen-->
   <!--Permissions screen-->
   <!--TipsAndTricks screen-->
   <!--Transparent Proxy screen-->
-  <string name="wizard_transproxy_none">ਖਾਲੀ</string>
-  <string name="default_bridges"></string>
 </resources>

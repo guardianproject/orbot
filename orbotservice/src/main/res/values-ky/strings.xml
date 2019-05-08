@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="menu_settings">Ырастоолор</string>
-  <string name="menu_info">Жардам</string>
-  <string name="menu_about">Программа жөнүндө</string>
-  <string name="button_help">Жардам</string>
-  <string name="button_about">Программа жөнүндө</string>
-  <string name="menu_exit">Чыгуу</string>
-  <string name="btn_cancel">Айнуу</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
   <!--END Welcome Wizard strings (DJH)-->
   <!--New Wizard Strings-->
   <!--Title Screen-->
@@ -15,7 +8,4 @@
   <!--Permissions screen-->
   <!--TipsAndTricks screen-->
   <!--Transparent Proxy screen-->
-  <string name="status">Абал</string>
-  <string name="error">Ката</string>
-  <string name="default_bridges"></string>
 </resources>

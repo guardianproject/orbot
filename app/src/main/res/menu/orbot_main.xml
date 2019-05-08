@@ -54,9 +54,7 @@
 
     <item
         android:title="@string/menu_hidden_services"
-        yourapp:showAsAction="never"
-        android:id="@+id/menu_hidden_services_main"
-        >
+        yourapp:showAsAction="never">
       <menu>
         <item android:id="@+id/menu_hidden_services"
               android:title="@string/hosted_services"

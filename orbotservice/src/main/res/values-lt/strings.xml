@@ -1,28 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="menu_browse">Naršyti</string>
-  <string name="menu_settings">Nustatymai</string>
-  <string name="menu_info">Pagalba</string>
-  <string name="menu_about">Apie</string>
-  <string name="button_help">Pagalba</string>
-  <string name="button_close">Uždaryti</string>
-  <string name="button_about">Apie</string>
-  <string name="menu_exit">Išeiti</string>
-  <string name="btn_back">Atgal</string>
-  <string name="btn_cancel">Atsisakyti</string>
-  <!--Welcome Wizard strings (DJH)-->
-  <string name="wizard_proxy_help_info">Proxy nustatymai</string>
-  <!--END Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
+    <!--END Welcome Wizard strings (DJH)-->
   <!--New Wizard Strings-->
   <!--Title Screen-->
   <!--Warning screen-->
-  <string name="wizard_warning_title">Įspėjimas</string>
-  <!--Permissions screen-->
+    <!--Permissions screen-->
   <!--TipsAndTricks screen-->
   <!--Transparent Proxy screen-->
-  <string name="wizard_transproxy_none">Joks</string>
-  <string name="status">Statusas</string>
-  <string name="error">Klaida</string>
-  <string name="default_bridges"></string>
-  <string name="btn_save_settings">Išsaugoti nustatymus</string>
 </resources>

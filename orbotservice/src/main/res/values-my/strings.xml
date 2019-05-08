@@ -1,30 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="menu_home">ပင်မ စာမျက်နှာ</string>
-  <string name="menu_browse">ဖွင့်ကြည့်ရန်</string>
-  <string name="menu_settings">ချိန်ညှိချက်များ</string>
-  <string name="menu_info">အကူအညီ</string>
-  <string name="menu_about">အကြောင်း</string>
-  <string name="button_help">အကူအညီ</string>
-  <string name="button_close">ပိတ်ရန်</string>
-  <string name="button_about">အကြောင်း</string>
-  <string name="menu_exit">ထွက်ရန်</string>
-  <string name="btn_back">နောက်သို့</string>
-  <string name="btn_cancel">ဖျက်သိမ်းရန်</string>
-  <!--Welcome Wizard strings (DJH)-->
-  <string name="wizard_proxy_help_info">ပရောက်ဇီ ချိန်ညှိချက်များ</string>
-  <!--END Welcome Wizard strings (DJH)-->
-  <string name="pref_general_group">ယေဘုယျ</string>
-  <!--New Wizard Strings-->
+    <!--Welcome Wizard strings (DJH)-->
+    <!--END Welcome Wizard strings (DJH)-->
+    <!--New Wizard Strings-->
   <!--Title Screen-->
   <!--Warning screen-->
-  <string name="wizard_warning_title">သတိပေးချက်</string>
-  <!--Permissions screen-->
+    <!--Permissions screen-->
   <!--TipsAndTricks screen-->
   <!--Transparent Proxy screen-->
-  <string name="wizard_transproxy_none">ဘာမှမရှိ</string>
-  <string name="status">အနေအထား</string>
-  <string name="error">ချို့ယွင်းချက်</string>
-  <string name="default_bridges"></string>
-  <string name="btn_save_settings">ချိန်ညှိချက်များကို သိမ်းဆည်းရန်</string>
 </resources>
