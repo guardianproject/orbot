@@ -9,8 +9,6 @@ package org.torproject.android.service;
 
 
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
-import android.app.Application;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -40,9 +38,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.jaredrummler.android.shell.CommandResult;
-import com.jaredrummler.android.shell.Shell;
 
-import org.torproject.android.binary.TorResourceInstaller;
 import org.torproject.android.control.ConfigEntry;
 import org.torproject.android.control.TorControlConnection;
 import org.torproject.android.service.util.CustomShell;
@@ -61,7 +57,6 @@ import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -1911,7 +1906,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     }
 
 
-    @TargetApi(14)
     public void clearVpnProxy ()
     {
         debug ("clearing VPN Proxy");

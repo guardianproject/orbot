@@ -2,7 +2,6 @@
 package org.torproject.android;
 
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Application;
 import android.app.Notification;
@@ -12,30 +11,22 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
-import android.net.VpnService;
-import android.os.Build;
 import android.support.v4.app.NotificationCompat;
-import android.util.Log;
-import android.widget.RemoteViews;
 
 import com.github.javiersantos.appupdater.AppUpdater;
 import com.github.javiersantos.appupdater.enums.Display;
 import com.github.javiersantos.appupdater.enums.UpdateFrom;
 
 import org.torproject.android.service.OrbotConstants;
-import org.torproject.android.service.TorEventHandler;
-import org.torproject.android.service.TorService;
 import org.torproject.android.service.util.Prefs;
 
 import org.torproject.android.settings.Languages;
 import org.torproject.android.settings.LocaleHelper;
 
 import java.util.Locale;
-import java.util.Set;
 
 
-public class OrbotApp extends Application implements OrbotConstants
-{
+public class OrbotApp extends Application implements OrbotConstants {
 
     private Locale locale;
 
@@ -118,6 +109,5 @@ public class OrbotApp extends Application implements OrbotConstants
         Notification notification = notifyBuilder.build();
 
         notificationManager.notify(notifyId, notification);
-            }
-
+    }
 }
