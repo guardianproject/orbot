@@ -1,0 +1,27 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+# set SUPPLY_JSON_KEY_DATA before running, or do `. ~/.fastlane/bashrc`
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:android)
+
+platform :android do
+  desc "Upload the app store metadata"
+  lane :metadata do
+    supply(
+      skip_upload_apk: true,
+      skip_upload_aab: true,
+    )
+  end
+end
