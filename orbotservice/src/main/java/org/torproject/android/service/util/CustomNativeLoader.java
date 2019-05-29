@@ -1,7 +1,6 @@
 package org.torproject.android.service.util;
 
 import android.content.Context;
-import android.content.pm.ApplicationInfo;
 import android.os.Build;
 import android.util.Log;
 
@@ -11,7 +10,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
-import java.util.zip.ZipInputStream;
 
 public class CustomNativeLoader {
 
@@ -45,11 +43,9 @@ public class CustomNativeLoader {
             }
             out.close();
 
-            if (Build.VERSION.SDK_INT >= 9) {
-                destLocalFile.setReadable(true, false);
-                destLocalFile.setExecutable(true, false);
-                destLocalFile.setWritable(true);
-            }
+            destLocalFile.setReadable(true, false);
+            destLocalFile.setExecutable(true, false);
+            destLocalFile.setWritable(true);
 
             return true;
         } catch (Exception e) {
@@ -122,7 +118,7 @@ public class CustomNativeLoader {
             }
 
         } catch (Throwable e) {
-            Log.e(TAG, e.getMessage(),e);
+            Log.e(TAG, e.getMessage(), e);
         }
 
 

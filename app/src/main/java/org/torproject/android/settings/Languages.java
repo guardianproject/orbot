@@ -139,7 +139,6 @@ public class Languages {
         return singleton;
     }
 
-    //@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     @SuppressLint("NewApi")
 	public static void setLanguage(final ContextWrapper contextWrapper, String language, boolean refresh) {
         if (locale != null && TextUtils.equals(locale.getLanguage(), language) && (!refresh)) {
