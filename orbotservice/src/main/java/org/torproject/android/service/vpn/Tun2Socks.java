@@ -19,15 +19,12 @@ package org.torproject.android.service.vpn;
  *
  */
 
-import android.annotation.TargetApi;
-import android.os.Build;
 import android.os.ParcelFileDescriptor;
 import android.util.Log;
 
 import java.net.DatagramSocket;
 import java.net.Socket;
 
-@TargetApi(Build.VERSION_CODES.HONEYCOMB_MR1)
 public class Tun2Socks
 {
 

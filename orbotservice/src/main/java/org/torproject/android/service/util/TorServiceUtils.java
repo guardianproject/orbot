@@ -12,7 +12,6 @@ import java.net.Socket;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Build;
 
 import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.TorServiceConstants;
@@ -111,13 +110,8 @@ public class TorServiceUtils implements TorServiceConstants {
 
 	}
 	
-	public static SharedPreferences getSharedPrefs (Context context)
-	{
-		if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.HONEYCOMB)
-			return context.getSharedPreferences(OrbotConstants.PREF_TOR_SHARED_PREFS,0 | Context.MODE_MULTI_PROCESS);
-		else
-			return context.getSharedPreferences(OrbotConstants.PREF_TOR_SHARED_PREFS,Context.MODE_PRIVATE);
-		
+	public static SharedPreferences getSharedPrefs (Context context) {
+		return context.getSharedPreferences(OrbotConstants.PREF_TOR_SHARED_PREFS,0 | Context.MODE_MULTI_PROCESS);
 	}
 	
 	public static void killProcess(File fileProcBin) throws Exception {
