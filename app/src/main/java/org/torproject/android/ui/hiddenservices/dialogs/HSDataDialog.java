@@ -32,7 +32,7 @@ public class HSDataDialog extends DialogFragment {
                 .create();
 
         // Buttons action
-        Button save = (Button) dialog_view.findViewById(R.id.HSDialogSave);
+        Button save = dialog_view.findViewById(R.id.HSDialogSave);
         save.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 String serverName = ((EditText) dialog_view.findViewById(R.id.hsName)).getText().toString();
@@ -55,7 +55,7 @@ public class HSDataDialog extends DialogFragment {
             }
         });
 
-        Button cancel = (Button) dialog_view.findViewById(R.id.HSDialogCancel);
+        Button cancel = dialog_view.findViewById(R.id.HSDialogCancel);
         cancel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 serviceDataDialog.cancel();
