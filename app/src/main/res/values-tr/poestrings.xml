@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="bridges_desc">\"Köprüler engellemeyi almak için kullanılan Tor aktarıcılarıdır. İnternet hizmeti sağlayıcınız Tor kullanımını engelliyorsa köprüleri kullanmayı deneyebilirsiniz. Her bir köprü türü engellemeyi aşmak için farklı bir yöntem kullanılır.
-Bir köprü türü çalışmazsa başka birini deneyin.</string>
-
-    <string name="bridges_no">Köprü Kullanılmasın: Tor Ağına Doğrudan Bağlan</string>
-    <string name="bridges_provided">Hazır Köprüler:</string>
-    <string name="bridges_custom">Özel Köprüler</string>
-
-    <string name="bridges_config">Köprü Yapılandırması</string>
-    <string name="action_done">Tamam</string>
 
     <string name="bridges_sometimes">Bazen Tor ağına bağlanmak için bir köprü kullanmanız gerekir.</string>
     <string name="action_more">AYRINTILI BİLGİ ALIN</string>
@@ -16,19 +7,6 @@ Bir köprü türü çalışmazsa başka birini deneyin.</string>
     <string name="vpn_setup">İç VPN desteği ile istediğiniz her uygulamanın Tor kullanmasını sağlayabilirsiniz.</string>
     <string name="vpn_setup_sub">Bu özellik isimsiz gizlilik sağlamaz ancak güvenlik duvarlarının aşılmasını sağlar.</string>
     <string name="action_vpn_choose">UYGULAMALARI SEÇİN</string>
-
-    <string name="status_connected">Bağlandı!</string>
-
-    <string name="loading_claim_1">Tor uygulamasını harika yapan adanmış topluluğumuz!</string>
-    <string name="loading_claim_2">Günlük kullanıcılar pazarlama reklamlarını engellemek için kullanır.</string>
-    <string name="loading_claim_3">Facebook engellendiğinde insanlar arkadaş ve aileleri ile iletişim kullanmak için Tor kullanır.</string>
-    <string name="loading_claim_4">Aktivistler görüş ve inançlarını Tweeter üzerine özgürce göndermek için kullanır.</string>
-    <string name="loading_claim_5">Blog yazarları insanlara sosyal reformlara çağırmak için kullanır.</string>
-    <string name="loading_claim_6">Gazeteciler inceledikleri konuları güvenli bir şekilde soruşturmak için Tor kullanır.</string>
-    <string name="loading_claim_7">İş insanları kurumsal bilgilerini gizli tutmak için Tor kullanır.</string>
-    <string name="loading_claim_8">Çalışanlar işlerini kaybetme korkusu olmadan adalet mücadelesi vermekte kullanır.</string>
-
-    <string name="status_connecting">Sizi bağlıyoruz.\" =\"Sizi bağlıyoruz.</string>
 
     <string name="hello">Merhaba</string>
     <string name="welcome">Mobil Tor uygulamasına hoş geldiniz</string>

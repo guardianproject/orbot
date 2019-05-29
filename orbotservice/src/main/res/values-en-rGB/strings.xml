@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="btn_next">Next</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
   <!--END Welcome Wizard strings (DJH)-->
   <!--New Wizard Strings-->
   <!--Title Screen-->
@@ -9,5 +8,4 @@
   <!--Permissions screen-->
   <!--TipsAndTricks screen-->
   <!--Transparent Proxy screen-->
-  <string name="default_bridges"></string>
 </resources>

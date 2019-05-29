@@ -24,9 +24,7 @@
             android:layout_height="wrap_content">
 <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/content_frame"
-    >
+    android:layout_height="match_parent">
 
 	<FrameLayout
 	    	android:layout_width="match_parent"
@@ -96,7 +94,6 @@
     >
 
     <LinearLayout
-        android:id="@+id/spinnerBox"
         android:layout_gravity="center"
         android:orientation="vertical"
         android:layout_width="170dp"
@@ -125,7 +122,6 @@
 
 
     <LinearLayout
-        android:id="@+id/row_vpn"
         android:layout_gravity="center"
         android:orientation="vertical"
         android:layout_width="170dp"
@@ -169,7 +165,6 @@
             android:layout_weight="1"
             >
             <TextView
-                android:id="@+id/trafficLabelDown"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/main_layout_download"
@@ -205,7 +200,6 @@
 
             >
             <TextView
-                android:id="@+id/trafficLabelUp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/main_layout_upload"
@@ -264,7 +258,6 @@
             />
     </LinearLayout>
     <LinearLayout
-        android:id="@+id/row_apps"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -304,8 +297,7 @@
     android:layout_width="320dp"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:id="@+id/right_drawer"
-    android:layout_gravity="end"
+         android:layout_gravity="end"
     android:background="#333333"
          android:padding="6dp"
      >

@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="menu_info">Pomocník</string>
-  <string name="button_help">Pomocník</string>
-  <!--Welcome Wizard strings (DJH)-->
-  <string name="wizard_proxy_help_info">Nastavenia proxy</string>
-  <!--END Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
+    <!--END Welcome Wizard strings (DJH)-->
   <!--New Wizard Strings-->
   <!--Title Screen-->
   <!--Warning screen-->
   <!--Permissions screen-->
   <!--TipsAndTricks screen-->
   <!--Transparent Proxy screen-->
-  <string name="default_bridges"></string>
 </resources>

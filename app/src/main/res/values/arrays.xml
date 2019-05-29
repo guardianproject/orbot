@@ -2,13 +2,7 @@
 
 <resources>
 
-	<string-array name="bridge_options">
-	    <item>@string/default_bridges</item>
-	    <item>@string/cloud_tunnel</item>
-	    <item>@string/get_new_bridges</item>
-	    <item></item>
-	</string-array>
-	<string-array name="array_hs_types">
+    <string-array name="array_hs_types">
 		<item>@string/user_services</item>
 		<item>@string/app_services</item>
 	</string-array>

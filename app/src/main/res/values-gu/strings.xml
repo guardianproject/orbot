@@ -2,26 +2,17 @@
 <resources>
   <string name="menu_settings">સેટિંગ્સ</string>
   <string name="menu_log">નોંધણી</string>
-  <string name="menu_info">મદદ</string>
-  <string name="button_help">મદદ</string>
-  <string name="button_close">બંધ કરો</string>
-  <string name="btn_next">પછી</string>
-  <string name="btn_back">પહેલાનું</string>
-  <string name="btn_okay">બરાબર</string>
+    <string name="btn_okay">બરાબર</string>
   <string name="btn_cancel">રદ્ કરો</string>
   <!--Welcome Wizard strings (DJH)-->
-  <string name="wizard_proxy_help_info">પ્રોક્સી ગોઠવણીઓ</string>
-  <!--END Welcome Wizard strings (DJH)-->
+    <!--END Welcome Wizard strings (DJH)-->
   <!--New Wizard Strings-->
   <!--Title Screen-->
   <!--Warning screen-->
   <!--Permissions screen-->
   <!--TipsAndTricks screen-->
   <!--Transparent Proxy screen-->
-  <string name="wizard_transproxy_none">એકે નહિ</string>
-  <string name="default_bridges"></string>
-  <string name="menu_vpn">એપ્સ</string>
-  <string name="activate">સક્રિય</string>
+    <string name="activate">સક્રિય</string>
   <string name="save">સંગ્રહો</string>
   <string name="name">નામ</string>
   <string name="disable">નિષ્ક્રિય કરો</string>

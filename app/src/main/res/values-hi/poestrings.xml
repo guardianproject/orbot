@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="bridges_desc">ब्रिड्जस वह टोर रेलेस है जो सेंसरशिप को दरकिनार करने में सहायता करते हैं। अगर टोर का प्रयोग आपके इंटरनेट सेवा प्रदाता द्वारा अवरोधित है तो ब्रिड्जस के ज़रिए आप टोर का इस्तेमाल कर सकते है। हर ब्रिज एक अलग प्रक्रिया का इस्तेमाल कर सेंसरशिप से बचाता है, अगर एक ब्रिज काम ना करे तो दुसरे ब्रिज का प्रयोग करें। </string>
-
-    <string name="bridges_no">ब्रिड्जस नहीं: टोर से सीधा जुड़ा हुआ। </string>
-    <string name="bridges_provided">प्रदान की गई ब्रिड्जस: </string>
-    <string name="bridges_custom">कस्टम ब्रिज</string>
-
-    <string name="bridges_config">ब्रिज कॉन्फ़िगरेशन</string>
-    <string name="action_done">सम्पन्न</string>
 
     <string name="bridges_sometimes">कभी-कभी आपको Tor के लिए ब्रिज की जरूरत है</string>
     <string name="action_more">मुझे और बताइए </string>
@@ -15,19 +7,6 @@
     <string name="vpn_setup">आप किसी भी अप्प को टोर के ज़रिय सक्षम क्र सकतें हैं हमारे बिल्ट-इन वी.पी.ऐन द्वारा। </string>
     <string name="vpn_setup_sub">यह आपको गुमनाम नहीं बना पाएगा, लेकिन इसे फायरवॉल के माध्यम से प्राप्त करने में मदद मिलेगी।</string>
     <string name="action_vpn_choose">एप्लिकेशन चुनने</string>
-
-    <string name="status_connected">कनेक्टेड </string>
-
-    <string name="loading_claim_1">हमारा विविध समुदाय यही है जो महान बनाता है!</string>
-    <string name="loading_claim_2">हर रोज लोग Tor का उपयोग करते हैं ताकि वे मार्केटिंग विज्ञापनों के बाद से बचें।</string>
-    <string name="loading_claim_3">जब फेसबुक अवरुद्ध हो जाता है, तो लोग अपने मित्रों और परिवार से जुड़ने के लिए Tor का उपयोग करते हैं।</string>
-    <string name="loading_claim_4">कार्यकर्ता अपनी राय और आस्थाओं को मुफ्त में ट्विट करने के लिए Tor का उपयोग करते हैं।</string>
-    <string name="loading_claim_5">ब्लॉगर्स सामाजिक सुधार की ओर लोगों को रैली करने के लिए Tor का उपयोग करते हैं।</string>
-    <string name="loading_claim_6">पत्रकारों को वे कहानियों की रिपोर्ट करने के लिए सुरक्षित रूप से जांच करने के लिए Tor का उपयोग करते हैं।</string>
-    <string name="loading_claim_7">व्यावसायिक लोग अपनी कंपनी की रणनीतियों को निजी रखने के लिए Tor का उपयोग करते हैं</string>
-    <string name="loading_claim_8">कार्यकर्ता अपनी नौकरी खोने के डर के बिना न्याय के लिए लड़ने के लिए Tor का उपयोग करते हैं।</string>
-
-    <string name="status_connecting">हम आपको कनेक्ट कर रहे हैं। \"=\" हम आपको कनेक्ट कर रहे हैं।</string>
 
     <string name="hello">नमस्ते</string>
     <string name="welcome">मोबाइल पर टोर में आपका स्वागत है। </string>

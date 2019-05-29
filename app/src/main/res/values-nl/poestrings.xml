@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="bridges_desc">Bridges zijn Tor-relays die censuur omzeilen. Je kan bridges uitproberen als je internetprovider Tor blokkeert; elk type bridge gebruikt een verschillende methode
-om censuur te vermijden. Als een type niet werkt, probeer dan een ander.</string>
-
-    <string name="bridges_no">Geen bridges: rechtstreeks verbinden met Tor</string>
-    <string name="bridges_provided">Aangeboden bridges:</string>
-    <string name="bridges_custom">Aangepaste bridges</string>
-
-    <string name="bridges_config">Bridgeconfiguratie</string>
-    <string name="action_done">Klaar</string>
 
     <string name="bridges_sometimes">Soms heb je een bridge nodig om Tor te gebruiken.</string>
     <string name="action_more">VERTEL ME MEER</string>
@@ -16,19 +7,6 @@ om censuur te vermijden. Als een type niet werkt, probeer dan een ander.</string
     <string name="vpn_setup">Je kan gelijk welke app door Tor laten gaan met onze ingebouwde VPN.</string>
     <string name="vpn_setup_sub">Dit zal je niet anoniem maken, maar het zal je wel helpen firewalls te omzeilen.</string>
     <string name="action_vpn_choose">APPS KIEZEN</string>
-
-    <string name="status_connected">Verbonden!</string>
-
-    <string name="loading_claim_1">Tor is zo goed dankzij onze diverse gemeenschap!</string>
-    <string name="loading_claim_2">Elke dag gebruiken mensen Tor om niet gevolgd te worden door advertenties.</string>
-    <string name="loading_claim_3">Wanneer Facebook geblokkeerd is, gebruiken mensen Tor om met vrienden en familie in contact te blijven.</string>
-    <string name="loading_claim_4">Activisten gebruiken Tor om vrij te tweeten over hun opvattingen en opinies.</string>
-    <string name="loading_claim_5">Bloggers gebruiken Tor om mensen te scharen achter sociale hervormingen.</string>
-    <string name="loading_claim_6">Journalisten gebruiken Tor om veilig de verhalen waarover ze nieuws uitbrengen te onderzoeken.</string>
-    <string name="loading_claim_7">Businessmensen gebruiken Tor om de strategieën van hun bedrijf privé te houden.</string>
-    <string name="loading_claim_8">Werknemers gebruiken Tor om te strijden voor gerechtigheid zonder vrees voor hun job.</string>
-
-    <string name="status_connecting">We maken verbinding.\" = \"We maken verbinding.</string>
 
     <string name="hello">Hallo</string>
     <string name="welcome">Welkom bij de mobiele versie van Tor.</string>
