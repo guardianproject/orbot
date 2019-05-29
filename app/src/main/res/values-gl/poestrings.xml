@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="bridges_desc">\"Pontes son repetidores de Tor que axudan a esquivar a censura. Pode probar pontes si Tor é bloqueada polo seu ISP; cada tipo de ponte utiliza un método diferente
-   para evitar a censura: si un non funciona, probe a utilizar un diferente.</string>
-
-    <string name="bridges_no">Sen pontes: Conexión directa a Tor</string>
-    <string name="bridges_provided">Pontes proporcionadas:</string>
-    <string name="bridges_custom">Pontes personalizadas</string>
-
-    <string name="bridges_config">Axustes da ponte</string>
-    <string name="action_done">Feito</string>
 
     <string name="bridges_sometimes">A veces precisa unha ponte para chegar a Tor.</string>
     <string name="action_more">CÓNTAME MÁIS</string>
@@ -16,19 +7,6 @@
     <string name="vpn_setup">Pode activar que calquer app pase a través de Tor utilizando a nosa VPN incluída.</string>
     <string name="vpn_setup_sub">Esto non a fará anónima, pero axudaralle a pasar a través dos cortalumes.</string>
     <string name="action_vpn_choose">ESCOLLA APPS</string>
-
-    <string name="status_connected">Conectada!</string>
-
-    <string name="loading_claim_1">A nosa comunidade tan diversa é o que fai Tor grande!</string>
-    <string name="loading_claim_2">A xente común utiliza Tor para evitar o seguimento por parte dos anunciantes.</string>
-    <string name="loading_claim_3">Cando Facebook está bloqueada, a xente utiliza Tor para conectar con amigas e familia.</string>
-    <string name="loading_claim_4">As activistas utilizan Tor para chiar con libertade as súas opinións e crenzas.</string>
-    <string name="loading_claim_5">As blogueiras utilizan Tor para concienciar a xente a prol das reformas sociais.</string>
-    <string name="loading_claim_6">As xornalistas utilizan Tor para investigar historias de xeito seguro e informar.</string>
-    <string name="loading_claim_7">A xente dos negocios utiliza Tor para manter a intimidade das estratexias da empresa.</string>
-    <string name="loading_claim_8">As traballadoras utilizan Tor para loitar pola xustiza sen temor a perder o traballo.</string>
-
-    <string name="status_connecting">Estamos a conectala.\" = \"Estamos a conectala.</string>
 
     <string name="hello">Ola</string>
     <string name="welcome">Ben vida a Tor no móbil.</string>

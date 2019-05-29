@@ -1,9 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="menu_settings">सेटिंग्स</string>
-  <string name="menu_info">हेफाजाब</string>
-  <string name="button_help">हेफाजाब</string>
-  <string name="menu_exit">अोंखारलां</string>
+    <string name="menu_exit">अोंखारलां</string>
   <string name="btn_cancel">नेवसि</string>
   <!--Welcome Wizard strings (DJH)-->
   <!--END Welcome Wizard strings (DJH)-->
@@ -13,6 +11,5 @@
   <!--Permissions screen-->
   <!--TipsAndTricks screen-->
   <!--Transparent Proxy screen-->
-  <string name="default_bridges"></string>
-  <string name="save">थिना दोन</string>
+    <string name="save">थिना दोन</string>
 </resources>

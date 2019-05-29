@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="bridges_desc">\"Мости — це передавачі Tor, які допомагають обійти цензуру. Ви можете спробувати мости, якщо Tor заблоковано вашим провайдером; кожен тип мосту використовує інакший метод
-щоб уникнути цензури: якщо один тип не працює, спробуйте використати інший.</string>
-
-    <string name="bridges_no">Немає Мостів: Безпосередньо підключитися до Tor</string>
-    <string name="bridges_provided">Надані Мости:</string>
-    <string name="bridges_custom">Користувацькі Мости</string>
-
-    <string name="bridges_config">Конфігурація Мосту</string>
-    <string name="action_done">Зроблено</string>
 
     <string name="bridges_sometimes">Іноді вам потрібен міст, щоб під\'єднатися до Tor.</string>
     <string name="action_more">РОЗКАЖИ МЕНІ БІЛЬШЕ</string>
@@ -16,19 +7,6 @@
     <string name="vpn_setup">Ви можете дозволити будь-якій програмці працювати через Tor за допомогою нашої вбудованої VPN.</string>
     <string name="vpn_setup_sub">Це не зробить вас анонімним, але допоможе пройти через фаєрволи.</string>
     <string name="action_vpn_choose">ОБЕРІТЬ ПРОГРАМИ</string>
-
-    <string name="status_connected">Під\'єднаний!</string>
-
-    <string name="loading_claim_1">Наша строката спільнота — те, що робить Tor чудовим!</string>
-    <string name="loading_claim_2">Щоденно люди використовують Tor, щоб уникнути стеження рекламними оголошеннями.</string>
-    <string name="loading_claim_3">Коли Facebook заблокований, люди використовують Tor для зв\'язку з їхніми друзями та родиною.</string>
-    <string name="loading_claim_4">Активісти використовують Tor щоб вільно твітити свої думки та переконання.</string>
-    <string name="loading_claim_5">Блогери використовують Tor для згуртування людей до соціальної реформи.</string>
-    <string name="loading_claim_6">Журналісти використовують Tor щоб захищено розслідувати історії, про які вони репортують.</string>
-    <string name="loading_claim_7">Підприємці використовують Tor, щоб зберегти стратегії своєї компанії у секреті.</string>
-    <string name="loading_claim_8">Працівники використовують Тор для боротьби за справедливість, не боячись втратити свою роботу.</string>
-
-    <string name="status_connecting">Ми з\'єднуємо вас.\"=\"Ми з\'єднуємо вас.</string>
 
     <string name="hello">Привіт!</string>
     <string name="welcome">Ласкаво просимо до Tor на мобільних пристроях.</string>

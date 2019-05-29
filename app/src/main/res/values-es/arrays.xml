@@ -2,13 +2,7 @@
 
 <resources>
 
-	<string-array name="bridge_options">
-	    <item>Obfs4 (Preferido)</item>
-	    <item>Túnel a través de Azure y Amazon</item>
-	    <item>Obtener nuevos puentes</item>
-	    <item></item>
-	</string-array>
-	<string-array name="array_hs_types">
+    <string-array name="array_hs_types">
 		<item>Usuarios</item>
 		<item>Aplicaciones</item>
 	</string-array>

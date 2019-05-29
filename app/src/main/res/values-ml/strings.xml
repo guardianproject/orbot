@@ -1,18 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="menu_info">സഹായം</string>
-  <string name="menu_start">ആരംഭിക്കുക</string>
+    <string name="menu_start">ആരംഭിക്കുക</string>
   <string name="menu_stop">നിര്‍ത്തുക</string>
   <string name="menu_about">വിവരം</string>
-  <string name="button_help">സഹായം</string>
-  <string name="button_close">അടക്കുക</string>
-  <string name="button_about">വിവരം</string>
-  <string name="btn_next">അടുത്തത്</string>
-  <string name="btn_back">പിന്നോട്ട്</string>
-  <string name="btn_cancel">റദ്ദാക്കുക </string>
+    <string name="button_about">വിവരം</string>
+    <string name="btn_cancel">റദ്ദാക്കുക </string>
   <!--Welcome Wizard strings (DJH)-->
-  <string name="wizard_proxy_help_info">പ്രോക്സി ക്രമീകരണങ്ങൾ</string>
-  <!--END Welcome Wizard strings (DJH)-->
+    <!--END Welcome Wizard strings (DJH)-->
   <string name="pref_general_group">പൊതുവായത്</string>
   <!--New Wizard Strings-->
   <!--Title Screen-->
@@ -20,10 +14,8 @@
   <!--Permissions screen-->
   <!--TipsAndTricks screen-->
   <!--Transparent Proxy screen-->
-  <string name="status">സ്ഥിതിവിവരം</string>
-  <string name="error">പിശക്</string>
-  <string name="default_bridges"></string>
-  <string name="save">സംരക്ഷിക്കുക</string>
+    <string name="error">പിശക്</string>
+    <string name="save">സംരക്ഷിക്കുക</string>
   <string name="name">Name</string>
   <string name="disable">പ്രവർത്തനരഹിതമാക്കു </string>
 </resources>

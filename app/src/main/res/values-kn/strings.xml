@@ -1,22 +1,17 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">ಆರ್ಬೋಟ್</string>
-  <string name="menu_info">Help</string>
-  <string name="menu_about">ಬಗ್ಗೆ</string>
-  <string name="button_help">Help</string>
-  <string name="button_about">ಬಗ್ಗೆ</string>
-  <string name="wizard_title">ಆರ್ಬೋಟ್</string>
-  <string name="btn_cancel">Cancel</string>
+    <string name="menu_about">ಬಗ್ಗೆ</string>
+    <string name="button_about">ಬಗ್ಗೆ</string>
+    <string name="btn_cancel">Cancel</string>
   <!--Welcome Wizard strings (DJH)-->
-  <string name="wizard_proxy_help_info">Proxy Settings</string>
-  <!--END Welcome Wizard strings (DJH)-->
+    <!--END Welcome Wizard strings (DJH)-->
   <!--New Wizard Strings-->
   <!--Title Screen-->
   <!--Warning screen-->
   <!--Permissions screen-->
   <!--TipsAndTricks screen-->
   <!--Transparent Proxy screen-->
-  <string name="default_bridges"></string>
-  <string name="set_locale_title">ಭಾಷೆ</string>
+    <string name="set_locale_title">ಭಾಷೆ</string>
   <string name="name">Name</string>
 </resources>

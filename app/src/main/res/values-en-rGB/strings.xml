@@ -2,84 +2,39 @@
 <resources>
   <string name="app_name">Orbot</string>
   <string name="app_description">Orbot is a free proxy app that empowers other apps to use the Internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.</string>
-  <string name="internal_web_url">http://orbot/</string>
-  <string name="default_web_url">http://check.torproject.org</string>
-  <string name="secure_default_web_url">https://check.torproject.org</string>
-  <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
-  <string name="control_permission_label">start and stop Tor</string>
-  <string name="tor_proxy_service_process">torproxyservice</string>
-  <string name="status_starting_up">Orbot is starting…</string>
+    <string name="status_starting_up">Orbot is starting…</string>
   <string name="status_activated">Connected to the Tor network</string>
   <string name="status_disabled">Orbot is deactivated</string>
   <string name="status_shutting_down">TorService is shutting down</string>
   <string name="tor_process_starting">Starting Tor client…</string>
   <string name="tor_process_complete">complete.</string>
-  <string name="tor_process_waiting">waiting.</string>
-  <string name="not_anonymous_yet">WARNING: Your traffic is not anonymous yet! Please configure your applications to use HTTP proxy 127.0.0.1:8118 or SOCKS4A or SOCKS5 proxy 127.0.0.1:9050</string>
-  <string name="menu_home">Home</string>
-  <string name="menu_browse">Browse</string>
-  <string name="menu_settings">Settings</string>
+    <string name="menu_settings">Settings</string>
   <string name="menu_log">Log</string>
-  <string name="menu_info">Help</string>
-  <string name="menu_apps">Apps...</string>
-  <string name="menu_start">Start</string>
+    <string name="menu_start">Start</string>
   <string name="menu_stop">Stop</string>
   <string name="menu_about">About</string>
-  <string name="menu_promo_apps">Get apps…</string>
-  <string name="main_layout_download">Download</string>
+    <string name="main_layout_download">Download</string>
   <string name="main_layout_upload">Upload</string>
-  <string name="button_help">Help</string>
-  <string name="button_close">Close</string>
-  <string name="button_about">About</string>
-  <string name="button_clear_log">Clear Log</string>
-  <string name="menu_verify">Check</string>
-  <string name="menu_exit">Exit</string>
+    <string name="button_about">About</string>
+    <string name="menu_exit">Exit</string>
   <string name="menu_scan">Scan BridgeQR</string>
   <string name="menu_share_bridge">Share BridgeQR</string>
-  <string name="press_to_start">- long press to start -</string>
-  <string name="pref_trans_proxy_group">Transparent Proxying (Requires Root)</string>
-  <string name="pref_trans_proxy_title">Transparent Proxying</string>
-  <string name="pref_trans_proxy_summary">Automatic Torifying of Apps</string>
-  <string name="pref_transparent_all_title">Tor Everything</string>
-  <string name="pref_transparent_all_summary">Proxy traffic for all apps through Tor</string>
-  <string name="pref_transparent_port_fallback_title">Port Proxy Fallback</string>
-  <string name="pref_transparent_port_fallback_summary">WARNING: Circumvents common ports (80, 443, etc). *USE ONLY* if \'All\' or \'App\' mode doesn\'t work.</string>
-  <string name="pref_transparent_port_title">Port List</string>
-  <string name="pref_transparent_port_summary">List of ports to proxy. *USE ONLY* if \'All\' or \'App\' mode doesn\'t work</string>
-  <string name="pref_transparent_port_dialog">Enter ports to proxy</string>
-  <string name="pref_has_root">Request Root Access</string>
-  <string name="pref_has_root_summary">Request root access for transparent proxying</string>
-  <string name="status_install_success">Tor binaries successfully installed!</string>
-  <string name="status_install_fail">The Tor binary files were unable to be installed. Please check the log and notify tor-assistants@torproject.org</string>
-  <string name="title_error">Application Error</string>
-  <string name="wizard_title">Orbot</string>
-  <string name="wizard_btn_tell_me_more">About Orbot</string>
-  <string name="btn_next">Next</string>
-  <string name="btn_back">Back</string>
-  <string name="btn_finish">Finish</string>
-  <string name="btn_okay">Okay</string>
+    <string name="btn_okay">Okay</string>
   <string name="btn_cancel">Cancel</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Some Orbot Details</string>
   <string name="wizard_details_msg">Orbot is an open-source application that contains Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent and Polipo. It provides a local HTTP proxy (8118) and a SOCKS proxy (9050) into the Tor network. Orbot also has the ability, on rooted device, to send all internet traffic through Tor.</string>
-  <string name="wizard_permissions_root">Permission Granted</string>
-  <string name="wizard_permissions_stock">Orbot Permissions</string>
-  <string name="wizard_proxy_help_info">Proxy Settings</string>
-  <!--END Welcome Wizard strings (DJH)-->
+    <!--END Welcome Wizard strings (DJH)-->
   <!--New Wizard Strings-->
   <!--Title Screen-->
   <!--Warning screen-->
   <!--Permissions screen-->
   <!--TipsAndTricks screen-->
   <!--Transparent Proxy screen-->
-  <string name="wizard_transproxy_title">Transparent Proxying</string>
-  <string name="status">Status</string>
-  <string name="error">Error</string>
+    <string name="error">Error</string>
   <string name="bridges">Bridges</string>
-  <string name="default_bridges"></string>
-  <string name="set_locale_title">Language</string>
-  <string name="bandwidth_">Bandwidth:</string>
-  <string name="get_bridges_email">Email</string>
+    <string name="set_locale_title">Language</string>
+    <string name="get_bridges_email">Email</string>
   <string name="save">Save</string>
   <string name="name">Name</string>
   <string name="disable">Disable</string>

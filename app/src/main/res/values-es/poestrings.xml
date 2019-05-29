@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="bridges_desc">\"Los puentes son repetidores Tor que ayudan a evitar la censura. Puede probar los puentes si Tor está bloqueado por su ISP, cada tipo de puente
-        usa un método diferente para evitar la censura, si un tipo no funciona, pruebe a usar uno distinto.</string>
-
-    <string name="bridges_no">No hay puentes: Conecte directamente a Tor</string>
-    <string name="bridges_provided">Puentes proporcionados:</string>
-    <string name="bridges_custom">Puentes personalizados</string>
-
-    <string name="bridges_config">Configuración de puente</string>
-    <string name="action_done">Hecho</string>
 
     <string name="bridges_sometimes">A veces necesita un puente para llegar a Tor</string>
     <string name="action_more">CUÉNTAME MÁS</string>
@@ -16,19 +7,6 @@
     <string name="vpn_setup">Puede habilitar que cualquier aplicación vaya a través de Tor usando nuestra VPN integrada.</string>
     <string name="vpn_setup_sub">Esto no le hará anónimo, pero le ayudará a atravesar cortafuegos/firewalls.</string>
     <string name="action_vpn_choose">ESCOGER APLICACIONES</string>
-
-    <string name="status_connected">¡Conectado!</string>
-
-    <string name="loading_claim_1">¡Nuestra comunidad diversa es lo que hace grande a Tor!</string>
-    <string name="loading_claim_2">Cada día la gente usa Tor para evitar ser seguido por la publicidad dirigida.</string>
-    <string name="loading_claim_3">Cuando Facebook está bloqueado, la gente usa Tor para conectar con sus amigos y familia.</string>
-    <string name="loading_claim_4">Los activistas usan Tor para twitear libremente sus opiniones y creencias.</string>
-    <string name="loading_claim_5">Los blogueros usan Tor para congregar a la gente hacia la reforma social.</string>
-    <string name="loading_claim_6">Los periodistas usan Tor para investigar de forma segura las historias sobre las que están informando.</string>
-    <string name="loading_claim_7">La gente de negocios usa Tor para mantener las estrategias de sus compañías en privado.</string>
-    <string name="loading_claim_8">Los trabajadores usan Tor para luchar por justicia sin miedo a perder su trabajo.</string>
-
-    <string name="status_connecting">Estamos conectándole.\" = \"Estamos conectándole.</string>
 
     <string name="hello">Hola</string>
     <string name="welcome">Bienvenido a Tor para móvil.</string>

@@ -11,7 +11,6 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/label_onion_name"
         android:text="@string/onion"
         android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Small"
         android:paddingLeft="5dp" />
@@ -27,7 +26,6 @@
         android:text="@string/auth_cookie"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/label_cookie_value"
         android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Small"
         android:paddingLeft="5dp" />
 

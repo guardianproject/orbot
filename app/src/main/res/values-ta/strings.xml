@@ -2,84 +2,41 @@
 <resources>
   <string name="app_name">ஆர்பாட் </string>
   <string name="app_description">ஆர்பாட், இன்னும பாதுகாப்பான முறையில் இணைய பயன்படுத்த மற்ற பயன்பாடுகள் பலப்படுத்துகிறார் என்று ஒரு இலவச ப்ராக்ஸி பயன்பாடு ஆகும். ஆர்பாட் உங்கள் இணைய போக்குவரத்து குறியாக்க தோர் பயன்படுத்துகிறது மற்றும் அதன் பின்னர் உலகம் முழுவதும் கணினிகள் ஒரு தொடர் மூலம் எதிர்க்கிறது அதை மறுத்தவர். தோர் இலவச மென்பொருள் மற்றும் நீங்கள் போக்குவரத்து பகுப்பாய்வு என்ற தனிப்பட்ட சுதந்திரம் மற்றும் தனியுரிமை, ரகசிய வணிக நடவடிக்கைகள் மற்றும் உறவுகள், மற்றும் மாநில பாதுகாப்பை அச்சுறுத்தும் நெட்வொர்க் கண்காணிப்பு வடிவ எதிராக பாதுகாக்க உதவுகிறது என்று ஒரு திறந்த நெட்வொர்க் ஆகும்.</string>
-  <string name="internal_web_url">http://orbot/</string>
-  <string name="default_web_url">http://check.torproject.org</string>
-  <string name="secure_default_web_url">https://check.torproject.org</string>
-  <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
-  <string name="control_permission_label">தோர் துவக்க மற்றும் நிறுத்த</string>
-  <string name="tor_proxy_service_process">torproxyservice</string>
-  <string name="status_starting_up">ஆர்பாட் துவங்குகிறது...</string>
+    <string name="status_starting_up">ஆர்பாட் துவங்குகிறது...</string>
   <string name="status_activated">தோர் நெட்வொர்க் இணைக்கப்பட்ட</string>
   <string name="status_disabled">ஆர்பாட் நிறுத்தப்பட்டது</string>
   <string name="tor_process_starting">தோர் துவங்கப்படுகிறது...</string>
   <string name="tor_process_complete">முடிந்தது.</string>
-  <string name="tor_process_waiting">காத்திருக்கிறது</string>
-  <string name="not_anonymous_yet">எச்சரிக்கை: உங்கள் போக்குவரத்து இன்னும் அநாமதேய அல்ல! HTTP பதிலாள் 127.0.0.1:8118 அல்லது SOCKS4A அல்லது SOCKS5 ப்ராக்ஸி 127.0.0.1:9050 பயன்படுத்த உங்கள் பயன்பாடுகள் கட்டமைக்க கொள்ளவும்</string>
-  <string name="menu_home">முகப்பு</string>
-  <string name="menu_browse">உலவிடு</string>
-  <string name="menu_settings">அமைப்புகள்</string>
+    <string name="menu_settings">அமைப்புகள்</string>
   <string name="menu_log">பதிவுகள்</string>
-  <string name="menu_info">உதவி</string>
-  <string name="menu_apps">செயலிகள்...</string>
-  <string name="menu_start">துவங்கு</string>
+    <string name="menu_start">துவங்கு</string>
   <string name="menu_stop">நிறுத்து</string>
   <string name="menu_about">ஆர்பாட் பற்றி</string>
-  <string name="menu_promo_apps">செயலிகளை பெரு...</string>
-  <string name="main_layout_download">பதிவிறக்கு</string>
+    <string name="main_layout_download">பதிவிறக்கு</string>
   <string name="main_layout_upload">பதிவேற்று</string>
-  <string name="button_help">உதவி</string>
-  <string name="button_close">மூடு</string>
-  <string name="button_about">பற்றி </string>
-  <string name="button_clear_log">பதிவுகளை நீக்கு</string>
-  <string name="menu_verify">சரி பார்த்தல்</string>
-  <string name="menu_exit">வெளியேறு</string>
+    <string name="button_about">பற்றி </string>
+    <string name="menu_exit">வெளியேறு</string>
   <string name="menu_scan">ஸ்கேன் BridgeQR</string>
   <string name="menu_share_bridge">BridgeQR பகிர்ந்திடு</string>
-  <string name="press_to_start">- தொடங்க தொடர்ந்து அழுத்துக -</string>
-  <string name="pref_transparent_port_fallback_summary">எச்சரிக்கை: பொதுவான துறைகளை (80, 443, போன்றவை) circumvents. * பயன்படுத்த மட்டுமே * \'அனைத்து\' அல்லது \'ஆப்\' முறையில் வேலை இல்லை என்றால்.</string>
-  <string name="wizard_title">ஆர்பாட் </string>
-  <string name="wizard_btn_tell_me_more">ஆர்பாட் பற்றி</string>
-  <string name="btn_next">அடுத்து</string>
-  <string name="btn_back">பின் செல்</string>
-  <string name="btn_finish">முடித்திடு</string>
-  <string name="btn_okay">சரி</string>
+    <string name="btn_okay">சரி</string>
   <string name="btn_cancel">ரத்து செய்</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">ஆர்பாட் பற்றிய தகவல்</string>
-  <string name="wizard_permissions_root">அனுமதி வழங்கப்பட்டது</string>
-  <string name="wizard_permissions_stock">ஆர்பாட் அனுமதிகள்</string>
-  <string name="wizard_tips_duckgo">டக் டக் கோ தேடுபொறி செயலி</string>
-  <string name="wizard_proxy_help_info">பதிலாள் அமைப்புகள்</string>
-  <string name="wizard_final">ஆர்பாட் தயாராக உள்ளது!</string>
-  <string name="wizard_exit_at_first_screen_toast">தயவு செய்து, ஆர்பாடை கட்மைத்த பின் பயன்படுத்தவும்</string>
-  <!--END Welcome Wizard strings (DJH)-->
+    <!--END Welcome Wizard strings (DJH)-->
   <string name="pref_general_group">பொது</string>
   <!--New Wizard Strings-->
   <!--Title Screen-->
   <!--Warning screen-->
-  <string name="wizard_warning_title">எச்சரிக்கை</string>
-  <!--Permissions screen-->
-  <string name="wizard_permissions_title">அனுமதிகள்</string>
-  <!--TipsAndTricks screen-->
-  <string name="wizard_tips_title">ஆர்பாடுடன் செயல்படும் செயலிகள்</string>
-  <!--Transparent Proxy screen-->
-  <string name="wizard_transproxy_none">எதுவுமில்லை</string>
-  <string name="pref_select_apps">செயலிகளை தேர்ந்தெடு</string>
-  <string name="pref_proxy_password_summary">பதிலாள் கடவுச்சொல் (கட்டாயமற்ற)</string>
+    <!--Permissions screen-->
+    <!--TipsAndTricks screen-->
+    <!--Transparent Proxy screen-->
+    <string name="pref_proxy_password_summary">பதிலாள் கடவுச்சொல் (கட்டாயமற்ற)</string>
   <string name="pref_proxy_password_dialog">பதிலாள் கடவுச்சொல்லை உள்ளிடவும்</string>
-  <string name="status">நிலை</string>
-  <string name="error">பிழை</string>
+    <string name="error">பிழை</string>
   <string name="bridges">Bridgeகள்</string>
-  <string name="default_bridges"></string>
-  <string name="set_locale_title">மொழி</string>
-  <string name="wizard_locale_title">மொழியை தேர்ந்தேடு</string>
-  <string name="btn_save_settings">அமைப்புகளை சேமிக்கவும்</string>
-  <string name="bandwidth_">அலைவரிசை</string>
-  <string name="down">கீழ்</string>
-  <string name="up">மேல்</string>
-  <string name="install_apps_">உலாவியை நிறுவ வேண்டுமா?</string>
-  <string name="menu_vpn">ஆப்ஸ்</string>
-  <string name="get_bridges_email">மின்னஞ்சல்</string>
+    <string name="set_locale_title">மொழி</string>
+    <string name="install_apps_">உலாவியை நிறுவ வேண்டுமா?</string>
+    <string name="get_bridges_email">மின்னஞ்சல்</string>
   <string name="activate">செயல்படுத்தவும்</string>
   <string name="save">சேமி</string>
   <string name="name">பெயர்</string>

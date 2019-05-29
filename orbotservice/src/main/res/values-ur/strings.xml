@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="menu_browse">براؤز کیجیے</string>
-  <string name="menu_info">مدد</string>
-  <string name="button_help">مدد</string>
-  <string name="button_close">بند کیجیے</string>
-  <string name="btn_back">پیچھے</string>
-  <string name="btn_cancel">تنسیخ کیجیے</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
   <!--END Welcome Wizard strings (DJH)-->
   <!--New Wizard Strings-->
   <!--Title Screen-->
@@ -14,5 +8,4 @@
   <!--Permissions screen-->
   <!--TipsAndTricks screen-->
   <!--Transparent Proxy screen-->
-  <string name="default_bridges"></string>
 </resources>

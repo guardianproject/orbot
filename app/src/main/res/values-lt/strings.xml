@@ -2,97 +2,40 @@
 <resources>
   <string name="app_name">Orbot</string>
   <string name="app_description">Orbot yra tarpinė (proxy) programėlė, kuri leidžia kitoms programėlėms naudotis internetu žymiai saugiau. Orbot naudoja Tor, taip užšifruodama interneto srautą ir jį paslepia šokinėdama tarp daugybės kompiuterių adresų iš viso pasaulio. Tor yra nemokama programa bei atviras tinklas, kuris leidžia apsisaugoti nuo tinklo stebėjimų, kurie kelia grėsmę asmeninei laisvei ir privatumui, konfidencialumui, taip leidžianti išvengti tinklo srauto analizavimo.</string>
-  <string name="internal_web_url">http://orbot/</string>
-  <string name="default_web_url">http://check.torproject.org</string>
-  <string name="secure_default_web_url">https://check.torproject.org</string>
-  <string name="tor_check_api_url">https://check.torproject.org/?TorButton=true</string>
-  <string name="control_permission_label">paleisti ir stabdyti Tor</string>
-  <string name="tor_proxy_service_process">torproxyservice</string>
-  <string name="status_starting_up">Paleidžiama Orbot…</string>
+    <string name="status_starting_up">Paleidžiama Orbot…</string>
   <string name="status_activated">Prisijungta prie Tor tinklo</string>
   <string name="status_disabled">Orbot išjungtas</string>
   <string name="status_shutting_down">TorService išjungiamas</string>
   <string name="tor_process_starting">Paleidžiamas Tor klientas...</string>
   <string name="tor_process_complete">baigta.</string>
-  <string name="tor_process_waiting">laukiama.</string>
-  <string name="not_anonymous_yet">DĖMESIO: jūsų tinklo srautas dar neapsaugotas! Nustatykite programėles naudoti HTTP tarpinį serverį į 127.0.0.1:8118 arba SOCKS4A ar SOCKS5 tarpinį serverį į 127.0.0.1:9050</string>
-  <string name="menu_home">Pradžia</string>
-  <string name="menu_browse">Naršyti</string>
-  <string name="menu_settings">Nustatymai</string>
+    <string name="menu_settings">Nustatymai</string>
   <string name="menu_log">Žurnalas</string>
-  <string name="menu_info">Pagalba</string>
-  <string name="menu_apps">Programėlės...</string>
-  <string name="menu_start">Pradėti</string>
+    <string name="menu_start">Pradėti</string>
   <string name="menu_stop">Baigti</string>
   <string name="menu_about">Apie</string>
-  <string name="menu_promo_apps">Daugiau programėlių...</string>
-  <string name="main_layout_download">Parsiuntimas</string>
+    <string name="main_layout_download">Parsiuntimas</string>
   <string name="main_layout_upload">Išsiuntimas</string>
-  <string name="button_help">Pagalba</string>
-  <string name="button_close">Uždaryti</string>
-  <string name="button_about">Apie</string>
-  <string name="button_clear_log">Valyti žurnalą</string>
-  <string name="menu_verify">Tikrinti</string>
-  <string name="menu_exit">Išeiti</string>
+    <string name="button_about">Apie</string>
+    <string name="menu_exit">Išeiti</string>
   <string name="menu_scan">Nuskaityti tilto QR kodą</string>
   <string name="menu_share_bridge">Dalintis tilto QR kodu</string>
-  <string name="press_to_start">-ilgai palaikyti, kad paleisti-</string>
-  <string name="pref_trans_proxy_group">Permatomas tarpininkavimas (reikalinga Root prieiga)</string>
-  <string name="pref_trans_proxy_title">Permatomas tarpininkavimas</string>
-  <string name="pref_trans_proxy_summary">Priverstinai naudoti Tor programėlėms </string>
-  <string name="pref_transparent_all_title">Tor viskam</string>
-  <string name="pref_transparent_all_summary">Tarpininkauti duomenų srautą visoms programėlėms per Tor</string>
-  <string name="pref_transparent_port_fallback_summary">DĖMESIO: sujungimui naudoti įprastus (80, 443, ar kt.) portus. *JEIGU* \'Visos\' ar \'Programėlėms\' režimas neveikia.</string>
-  <string name="pref_transparent_port_title">Portų sąrašas</string>
-  <string name="pref_transparent_port_summary">Portų sąrašas tinklo užkardai. *JEIGU* </string>
-  <string name="pref_transparent_port_dialog">Įveskite portus tinklo užkardai</string>
-  <string name="pref_has_root">Reikalauti Root prieigos</string>
-  <string name="pref_has_root_summary">Reikalauti Root prieigos permatomai tinklo užkardai</string>
-  <string name="status_install_success">Tor failai įrašyti!</string>
-  <string name="status_install_fail">Tor failų nepavyko įrašyti, patikrinkite žurnalą ir praneškite tor-assistants@torproject.org</string>
-  <string name="title_error">Programėlės klaida</string>
-  <string name="wizard_title">Orbot</string>
-  <string name="wizard_btn_tell_me_more">Apie Orbot</string>
-  <string name="btn_next">Kitas</string>
-  <string name="btn_back">Atgal</string>
-  <string name="btn_finish">Baigti</string>
-  <string name="btn_okay">Gerai</string>
+    <string name="btn_okay">Gerai</string>
   <string name="btn_cancel">Atsisakyti</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Orbot detalės</string>
   <string name="wizard_details_msg">Orbot yra atviro kodo programėlė, kuri susideda iš Tor, Obfs4Proxy, BadVPN, Tun2Socks, LibEvent ir Polipo. Ji leidžia jungtis prie Tor tinklo per HTTP (8118) ir SOCKS (9050) tarpinius serverius. Orbot taip pat leidžia perkelti visą tinklo srautą per Tor tinklą, jeigu turite root/supernaudotojo privilegijas.</string>
-  <string name="wizard_permissions_root">Leidimas suteiktas</string>
-  <string name="wizard_permissions_stock">Orbot leidimai</string>
-  <string name="wizard_premissions_msg_root">Puiku! Jūs suteikėte Root teises Orbot programėlei, mes panaudosime šią galią išmintingai.</string>
-  <string name="wizard_permissions_msg_stock">Kas neprivaloma, bet Orbot taptų galingesniu įrankiu, jei programėlė turėtų Root priegą. Mygtuku apačioje galite suteikti Orbot super-galių!</string>
-  <string name="wizard_permissions_no_root">Jei neturite root prieigos arba nesuprantate, apie ką mes kalbame, tiesiog įsitikinkite kad naudosite programėles, sukurtas veikti su Orbot.</string>
-  <string name="wizard_permissions_consent">Aš suprantu ir norėčiau tęsti be Supernaudotojo</string>
-  <string name="wizard_permission_enable_root">Suteikti Orbot root privilegijas</string>
-  <string name="wizard_configure">Konfiguruoti Torifikaciją</string>
-  <string name="wizard_configure_msg">Orbot duoda jums parinktis siųsti visą programėlių duomenų srautą per Tor ARBA pasirinkti savo programėles indvidualiai. </string>
-  <string name="wizard_configure_all">Tarpininkauti duomenų srautą visoms programėlėms per Tor</string>
-  <string name="wizard_configure_select_apps">Pasirinkti savas programėles Tor</string>
-  <string name="wizard_tips_tricks">Orbot-įjungtos programėlės</string>
-  <string name="wizard_proxy_help_info">Proxy nustatymai</string>
-  <!--END Welcome Wizard strings (DJH)-->
+    <!--END Welcome Wizard strings (DJH)-->
   <string name="pref_general_group">Bendra</string>
   <!--New Wizard Strings-->
   <!--Title Screen-->
   <!--Warning screen-->
-  <string name="wizard_warning_title">Įspėjimas</string>
-  <!--Permissions screen-->
+    <!--Permissions screen-->
   <!--TipsAndTricks screen-->
   <!--Transparent Proxy screen-->
-  <string name="wizard_transproxy_title">Permatoma tinklo užkarda</string>
-  <string name="wizard_transproxy_none">Joks</string>
-  <string name="status">Statusas</string>
-  <string name="error">Klaida</string>
+    <string name="error">Klaida</string>
   <string name="bridges">Tinklų tiltai</string>
-  <string name="default_bridges"></string>
-  <string name="set_locale_title">Kalba</string>
-  <string name="btn_save_settings">Išsaugoti nustatymus</string>
-  <string name="bandwidth_">Siuntimo sparta:</string>
-  <string name="get_bridges_email">El. paštas</string>
+    <string name="set_locale_title">Kalba</string>
+    <string name="get_bridges_email">El. paštas</string>
   <string name="activate">Aktyvuoti</string>
   <string name="save">Įrašyti</string>
   <string name="name">Vardas</string>
