@@ -44,7 +44,6 @@ import org.torproject.android.control.TorControlConnection;
 import org.torproject.android.service.util.CustomShell;
 import org.torproject.android.service.util.CustomTorResourceInstaller;
 import org.torproject.android.service.util.DummyActivity;
-import org.torproject.android.service.vpn.PDNSDInstaller;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.util.TorServiceUtils;
 import org.torproject.android.service.util.Utils;
@@ -75,6 +74,9 @@ import java.util.StringTokenizer;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeoutException;
+
+import info.pluggabletransports.dispatch.util.TransportListener;
+import info.pluggabletransports.dispatch.util.TransportManager;
 
 public class TorService extends Service implements TorServiceConstants, OrbotConstants
 {
@@ -516,8 +518,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             if (!appCacheHome.exists())
                 appCacheHome.mkdirs();
 
-            fileTor= new File(appBinHome, TorServiceConstants.TOR_ASSET_KEY);
-            fileObfsclient = new File(appBinHome, TorServiceConstants.OBFSCLIENT_ASSET_KEY);
             fileTorRc = new File(appBinHome, TorServiceConstants.TORRC_ASSET_KEY);
             fileControlPort = new File(getFilesDir(), "control.txt");
 
@@ -548,6 +548,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 createNotificationChannel();
 
             torUpgradeAndConfig();
+
+            pluggableTransportInstall();
 
             new Thread(new Runnable ()
             {
@@ -582,6 +584,27 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         return mCurrentStatus;
     }
 
+    private boolean pluggableTransportInstall () {
+
+        fileObfsclient = new TransportManager() {
+            @Override
+            public void startTransportSync(TransportListener transportListener) {
+            }
+        }.installTransport(this, OBFSCLIENT_ASSET_KEY);
+
+        if (fileObfsclient != null && fileObfsclient.exists()) {
+
+            fileObfsclient.setReadable(true);
+            fileObfsclient.setExecutable(true);
+            fileObfsclient.setWritable(false);
+            fileObfsclient.setWritable(true, true);
+
+            return fileObfsclient.canExecute();
+        }
+
+        return false;
+    }
+
     private boolean torUpgradeAndConfig() throws IOException, TimeoutException {
         if (isTorUpgradeAndConfigComplete)
             return true;
@@ -607,6 +630,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
             return true;
         }
+
+
 
 
         return false;
@@ -1534,8 +1559,9 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         }
         else
         {
-
-            if (fileObfsclient.exists() && fileObfsclient.canExecute()) {
+            if (fileObfsclient != null
+                    && fileObfsclient.exists()
+                    && fileObfsclient.canExecute()) {
 
                 loadBridgeDefaults();
 

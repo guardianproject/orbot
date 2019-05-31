@@ -341,7 +341,7 @@ public class OrbotVpnManager implements Handler.Callback {
 			        }
 
 		        	mInterface = newInterface;
-			        
+
 		        	isRestart = false;
 
 					//start PDNSD daemon pointing to actual DNS
