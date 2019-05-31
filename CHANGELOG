@@ -1,5 +1,60 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+/** 16.1.0-BETA-1-tor-0.4.0.4-rc / 31 May 2019 / 417e4fcd0720be57328d63a96d2c9fc0e119330f **/
+
+Thanks to @bitmold @sisbell and @eighthave for all the great work, not to mention the core Tor dev team making all things mobile better every day!
+
+417e4fcd update version to 16100003 aka 16.1.0-BETA-1-tor-0.4.0.4-rc
+7ae000d0 fix pdnsd/VPN support
+dde1957d Merge pull request #219 from bitmold/delete_minimalperm_manifest
+a251d52f Merge pull request #218 from bitmold/ndk_app_platform_warning
+eda464bb remove incorrect torFile assignment
+a1c5806a update tor-android to 0.4.0.4-rc
+ad2e875b We no longer use the minimalperm product flavor so there's no need to keep this manifest file in app/src
+917e49f5 Removes warning on ndk-build where the target API for NDK (16) is greater than the sdk version defined for the project. Since nothing was specified in the manifest it defaulted to 1 but we can set this to Orbot's minSdkVersion of 16 to get rid of this warning
+f83a98f4 Merge branch 'sisbell-issue_199'
+ff7d3dd5 (sisbell-issue_199) Merge branch 'issue_199' of https://github.com/sisbell/orbot into sisbell-issue_199
+7c2cfc3e Merge pull request #212 from sisbell/issue_211
+1316fd65 Merge branch 'bitmold-no_personalized_learning_kb'
+e3fd4afa (bitmold-no_personalized_learning_kb) Merge branch 'no_personalized_learning_kb' of https://github.com/bitmold/orbot into bitmold-no_personalized_learning_kb
+aa8ad867 Merge pull request #204 from bitmold/unreferenced_classes
+16826a49 Merge branch 'bitmold-removed_obsolete_version_checks'
+17154609 (bitmold-removed_obsolete_version_checks) Merge branch 'removed_obsolete_version_checks' of https://github.com/bitmold/orbot into bitmold-removed_obsolete_version_checks
+0e4b42a7 add close bracket
+4cee987c Merge branch 'master' into removed_obsolete_version_checks
+08c35bd3 Remove unused resources.
+ae4ce1c9 Fixes #211: Resource Not Found on Command Line Build
+2fb7e05a Merge pull request #210 from eighthave/fastlane
+57120100 rename all metadata locale dirs after the Fastlane/Play names
+baced180 setup Fastlane to upload to Google Play
+d2feefdd Removed Obsolete @TaretApi Annotations for API Levels that are lower than Orbot's minimum, API Level 16
+a32452e7 Make text inputs in Orbot declare that they do want to opt out of IME personalized learning. Of course, IMEs may ignore this request, but it's a nudge in the direction of Tor's general philosophy on user privacy, particularly with regards to minimizing the footprint that a Tor app leaves on the user's device.
+7d8e41a6 Removed Constraint Layout Dependency
+5d04d418 Removed Unused Classes
+2b6abd7e Removed Obsolete Version Checks
+cd6560fa Merge pull request #202 from bitmold/no_constraint_layout
+a5d5c99f (public/master, gl/master) remove unused launcher art
+9257b66f don't shrink or minify for now
+56917567 (tag: 16.0.6-BETA-2-tor-0.3.5.8) many small changes to support new binary loading, startup and more - improved handling of port conflicts - fixed loading of tor binary on arm64-v8a - changed how we execute shell commands
+8ed080f9 Removed Constraint Layout Dependency
+2a76b7af (tag: 16.0.6-BETA-1-tor-0.3.5.8) updated to SDK 28, added android.permission.FOREGROUND_SERVICE permission
+fb14c76c fixed strings with two many \\ escapes
+45575772 updating to tor-0.3.5.8-rc to add support for Android Q
+22d5ffdf update gradle tools
+76796fea Merge pull request #200 from eighthave/fastlane-supply
+6ba0cecc add .gitlab-ci.yml setup with errorprone
+3face00a build gradle to 4.4.1, and make gradlew verify the download
+69bd7fe9 move app store graphics into fdroid/fastlane file layout
+f93c11e7 Merge pull request #190 from SkewedZeppelin/master
+8ab13f63 Fixup bad indentation from 6e4b7008
+12b91c44 Expose PreferIPv6 and NoIPv4Traffic options
+8ad76680 Move Google repo above jcenter
+d4befad1 cleanup and binary loading fixes
+2d4e2a5f update tor to 0.3.5.6-RC
+0f314214 (tag: 16.0.5-RC-2-tor-0.3.4.9) update to 16.0.5-RC-2-tor-0.3.4.9
+2c59c848 ensure startForeground() is always immediately called - since we use startForegroundServce() we must ensure the receiving service complies!
+
+
 /** v16.0.5-RC-1-tor-0.3.4.9 / 15 Nov 2018 / 2e2f6e78ede1d0367aa8760d03d90aa2393d6d2a **/
 2e2f6e78 (HEAD -> master, origin/master, origin/HEAD) udpate custom language/locale handling
 c22bfeb3 adding support for multiple new languages
