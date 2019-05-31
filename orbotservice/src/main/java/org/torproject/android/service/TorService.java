@@ -595,7 +595,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         logNotice("upgrading binaries to latest version: " + BINARY_TOR_VERSION);
 
         fileTor = installer.installResources();
-        fileTor = new File(appBinHome,"tor");
+
         if (fileTor != null && fileTor.canExecute()) {
             prefs.edit().putString(PREF_BINARY_TOR_VERSION_INSTALLED, BINARY_TOR_VERSION).apply();
 
