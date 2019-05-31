@@ -4,6 +4,9 @@ import android.app.Service;
 import android.content.Intent;
 import android.net.VpnService;
 
+import java.io.IOException;
+import java.util.concurrent.TimeoutException;
+
 /**
  * Created by n8fr8 on 9/26/16.
  */
@@ -13,7 +16,13 @@ public class TorVpnService extends VpnService {
     @Override
     public void onCreate() {
         super.onCreate();
-        mVpnManager = new OrbotVpnManager(this);
+        try {
+            mVpnManager = new OrbotVpnManager(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (TimeoutException e) {
+            e.printStackTrace();
+        }
     }
 
     /* (non-Javadoc)

@@ -44,7 +44,7 @@ import org.torproject.android.control.TorControlConnection;
 import org.torproject.android.service.util.CustomShell;
 import org.torproject.android.service.util.CustomTorResourceInstaller;
 import org.torproject.android.service.util.DummyActivity;
-import org.torproject.android.service.util.OtherResourceInstaller;
+import org.torproject.android.service.vpn.PDNSDInstaller;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.util.TorServiceUtils;
 import org.torproject.android.service.util.Utils;
@@ -602,9 +602,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             fileTorRc = new File(appBinHome,"torrc");//installer.getTorrcFile();
             if (!fileTorRc.exists())
                 return false;
-
-            OtherResourceInstaller oInstaller = new OtherResourceInstaller(this, appBinHome);
-            oInstaller.installResources();
 
             isTorUpgradeAndConfigComplete = true;
 

@@ -87,12 +87,10 @@ public class OrbotVpnManager implements Handler.Callback {
     private VpnService mService;
     
 
-    public OrbotVpnManager (VpnService service)
-    {
+    public OrbotVpnManager (VpnService service) throws IOException, TimeoutException {
     	mService = service;
 
-		File fileBinHome = service.getFilesDir();//mService.getDir(TorServiceConstants.DIRECTORY_TOR_BINARY, Application.MODE_PRIVATE);
-		filePdnsd = new File(fileBinHome,TorServiceConstants.PDNSD_ASSET_KEY);
+		filePdnsd = new PDNSDInstaller(service.getApplicationContext(),service.getFilesDir()).installResources();
 
 		Tun2Socks.init();
 
@@ -344,12 +342,12 @@ public class OrbotVpnManager implements Handler.Callback {
 
 		        	mInterface = newInterface;
 			        
-		        	Tun2Socks.Start(mInterface, VPN_MTU, virtualIP, virtualNetMask, localSocks , localDNS , localDnsTransparentProxy);
-		        	
 		        	isRestart = false;
 
 					//start PDNSD daemon pointing to actual DNS
 					startDNS("127.0.0.1",localDns);
+
+					Tun2Socks.Start(mInterface, VPN_MTU, virtualIP, virtualNetMask, localSocks , localDNS , localDnsTransparentProxy);
 
 
 				}
@@ -411,11 +409,11 @@ public class OrbotVpnManager implements Handler.Callback {
     private void startDNS (String dns, int port) throws IOException, TimeoutException
     {
 
-		makePdnsdConf(mService, dns, port,filePdnsd.getParentFile());
+		File fileConf = makePdnsdConf(mService, dns, port,mService.getFilesDir());
     	
-        ArrayList<String> customEnv = new ArrayList<String>();
+      //  ArrayList<String> customEnv = new ArrayList<String>();
 
-        String[] cmdString = {filePdnsd.getCanonicalPath(),"-c",filePdnsd.getParent() + "/pdnsd.conf"};
+        String[] cmdString = {filePdnsd.getCanonicalPath(),"-c",fileConf.toString()};
         ProcessBuilder pb = new ProcessBuilder(cmdString);
         pb.redirectErrorStream(true);
 		Process proc = pb.start();
@@ -425,6 +423,7 @@ public class OrbotVpnManager implements Handler.Callback {
 
         if (proc.exitValue() != 0)
         {
+
             BufferedReader br = new BufferedReader(new InputStreamReader(proc.getInputStream()));
 
             String line = null;
@@ -437,7 +436,7 @@ public class OrbotVpnManager implements Handler.Callback {
         
     }
     
-    public static void makePdnsdConf(Context context, String dns, int port, File fileDir) throws FileNotFoundException, IOException {
+    public static File makePdnsdConf(Context context, String dns, int port, File fileDir) throws FileNotFoundException, IOException {
         String conf = String.format(context.getString(R.string.pdnsd_conf), dns, port, fileDir.getCanonicalPath());
 
         File f = new File(fileDir,"pdnsd.conf");
@@ -460,6 +459,8 @@ public class OrbotVpnManager implements Handler.Callback {
 
                 }
         }
+
+        return f;
 	}
 
     

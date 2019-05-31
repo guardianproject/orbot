@@ -1,31 +1,45 @@
-package org.torproject.android.service.util;
+package org.torproject.android.service.vpn;
 
-import android.content.Context;
-import android.content.pm.ApplicationInfo;
-import android.util.Log;
-
-import org.torproject.android.binary.TorServiceConstants;
-
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.PrintStream;
+import java.io.StringBufferInputStream;
+import java.util.ArrayList;
 import java.util.concurrent.TimeoutException;
 import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
 
-public class CustomTorResourceInstaller implements TorServiceConstants {
+import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.os.Build;
+import android.util.Log;
 
+import org.torproject.android.service.OrbotConstants;
+import org.torproject.android.service.R;
+import org.torproject.android.service.TorServiceConstants;
+import org.torproject.android.service.util.CustomNativeLoader;
+import org.torproject.android.service.util.NativeLoader;
+
+public class PDNSDInstaller implements TorServiceConstants {
+
+    private final static String LIB_NAME = "pdnsd";
+    private final static String LIB_SO_NAME = "pdnsd.so";
+
+    private final static String TAG = "TorNativeLoader";
 
     private File installFolder;
     private Context context;
+    private File filePdnsd;
 
-    private File fileTorrc;
-    private File fileTor;
-
-    public CustomTorResourceInstaller (Context context, File installFolder)
+     public PDNSDInstaller (Context context, File installFolder)
     {
         this.installFolder = installFolder;
         this.context = context;
@@ -40,48 +54,45 @@ public class CustomTorResourceInstaller implements TorServiceConstants {
     public File installResources () throws IOException, TimeoutException
     {
 
-        fileTor = new File(installFolder, TOR_ASSET_KEY);
+        filePdnsd = new File(installFolder, LIB_NAME);
 
         if (!installFolder.exists())
             installFolder.mkdirs();
 
-        installGeoIP();
-        fileTorrc = assetToFile(COMMON_ASSET_KEY + TORRC_ASSET_KEY, TORRC_ASSET_KEY, false, false);
-
         File fileNativeDir = new File(getNativeLibraryDir(context));
-        fileTor = new File(fileNativeDir,TOR_ASSET_KEY + ".so");
+        filePdnsd = new File(fileNativeDir,LIB_NAME + ".so");
 
-        if (fileTor.exists())
+        if (filePdnsd.exists())
         {
-            if (fileTor.canExecute())
-                return fileTor;
+            if (filePdnsd.canExecute())
+                return filePdnsd;
             else
             {
-                setExecutable(fileTor);
+                setExecutable(filePdnsd);
 
-                if (fileTor.canExecute())
-                    return fileTor;
+                if (filePdnsd.canExecute())
+                    return filePdnsd;
             }
         }
 
-        if (fileTor.exists()) {
-            InputStream is = new FileInputStream(fileTor);
-            streamToFile(is, fileTor, false, true);
-            setExecutable(fileTor);
+        if (filePdnsd.exists()) {
+            InputStream is = new FileInputStream(filePdnsd);
+            streamToFile(is, filePdnsd, false, true);
+            setExecutable(filePdnsd);
 
-            if (fileTor.exists() && fileTor.canExecute())
-                return fileTor;
+            if (filePdnsd.exists() && filePdnsd.canExecute())
+                return filePdnsd;
         }
 
         //let's try another approach
-        fileTor = new File(installFolder, TOR_ASSET_KEY);
+        filePdnsd = new File(installFolder, LIB_NAME);
         //fileTor = NativeLoader.initNativeLibs(context,fileTor);
-        CustomNativeLoader.initNativeLibs(context,fileTor);
+        CustomNativeLoader.initNativeLibs(context,filePdnsd);
 
-        setExecutable(fileTor);
+        setExecutable(filePdnsd);
 
-        if (fileTor != null && fileTor.exists() && fileTor.canExecute())
-            return fileTor;
+        if (filePdnsd != null && filePdnsd.exists() && filePdnsd.canExecute())
+            return filePdnsd;
 
         return null;
     }
@@ -96,19 +107,7 @@ public class CustomTorResourceInstaller implements TorServiceConstants {
 
 
 
-    /*
-     * Extract the Tor binary from the APK file using ZIP
-     */
 
-    private boolean installGeoIP () throws IOException
-    {
-
-        assetToFile(COMMON_ASSET_KEY + GEOIP_ASSET_KEY, GEOIP_ASSET_KEY, false, false);
-
-        assetToFile(COMMON_ASSET_KEY + GEOIP6_ASSET_KEY, GEOIP6_ASSET_KEY, false, false);
-
-        return true;
-    }
 
     /*
      * Reads file from assetPath/assetKey writes it to the install folder
@@ -191,5 +190,6 @@ public class CustomTorResourceInstaller implements TorServiceConstants {
 
         return fList;
     }
-}
 
+
+}

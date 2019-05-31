@@ -74,38 +74,6 @@ public class CustomNativeLoader {
         try {
             String folder = Build.CPU_ABI;
 
-            /**
-             try {
-
-             if (Build.CPU_ABI.equalsIgnoreCase("arm64-v8a")) {
-             folder = "arm64-v8a";
-             }
-             else if (Build.CPU_ABI.equalsIgnoreCase("arm64")) {
-             folder = "arm64";
-             }
-             else if (Build.CPU_ABI.equalsIgnoreCase("x86_64")) {
-             folder = "x86_64";
-             }
-             else if (Build.CPU_ABI.equalsIgnoreCase("armeabi-v7a")) {
-             folder = "armeabi-v7a";
-             }
-             else if (Build.CPU_ABI.equalsIgnoreCase("armeabi")) {
-             folder = "armeabi";
-             } else if (Build.CPU_ABI.equalsIgnoreCase("x86")) {
-             folder = "x86";
-             } else if (Build.CPU_ABI.equalsIgnoreCase("mips")) {
-             folder = "mips";
-             } else {
-             folder = "armeabi";
-             //FileLog.e("tmessages", "Unsupported arch: " + Build.CPU_ABI);
-             }
-
-             } catch (Exception e) {
-             //  FileLog.e("tmessages", e);
-             Log.e(TAG, e.getMessage(),e);
-             folder = "armeabi";
-             }**/
-
 
             String javaArch = System.getProperty("os.arch");
             if (javaArch != null && javaArch.contains("686")) {
