@@ -62,8 +62,8 @@ public class OrbotVpnManager implements Handler.Callback {
     private String mSessionName = "OrbotVPN";
     private ParcelFileDescriptor mInterface;
 
-    private int mTorSocks = TorServiceConstants.SOCKS_PROXY_PORT_DEFAULT;
-    
+    private int mTorSocks = -1;
+
     public static int sSocksProxyServerPort = -1;
     public static String sSocksProxyLocalhost = null;
     private ProxyServer mSocksProxyServer;
@@ -110,8 +110,8 @@ public class OrbotVpnManager implements Handler.Callback {
 		        if (mThreadVPN == null || (!mThreadVPN.isAlive()))
 		        {
 		        	Log.d(TAG,"starting OrbotVPNService service!");
-		        	
-		        	mTorSocks = intent.getIntExtra("torSocks", TorServiceConstants.SOCKS_PROXY_PORT_DEFAULT);
+
+		        	mTorSocks = intent.getIntExtra("torSocks", -1);
 			    	
 		        	if (!mIsLollipop)
 		        	{
@@ -303,8 +303,7 @@ public class OrbotVpnManager implements Handler.Callback {
 		    		final String dummyDNS = "1.1.1.1"; //this is intercepted by the tun2socks library, but we must put in a valid DNS to start
 		    		final String defaultRoute = "0.0.0.0";
 		    		
-		    		final String localSocks = localhost + ':'
-		    		        + String.valueOf(mTorSocks);
+		    		final String localSocks = localhost + ':' + mTorSocks;
 		    		
 		    		final String localDNS = virtualGateway + ':' + PDNSD_PORT;
 

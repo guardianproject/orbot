@@ -11,8 +11,10 @@ public interface TorServiceConstants {
 	String BROWSER_APP_USERNAME = "info.guardianproject.orfox";
 	
 	//String DIRECTORY_TOR_BINARY = "bin";
-	//String DIRECTORY_TOR_DATA = "data";
-	
+	String DIRECTORY_TOR_DATA = "data";
+
+	String TOR_CONTROL_PORT_FILE = "control.txt";
+
 	//name of the tor C binary
 	String TOR_ASSET_KEY = "tor";	
 	
@@ -51,18 +53,17 @@ public interface TorServiceConstants {
 	int FILE_WRITE_BUFFER_SIZE = 1024;
 
 	String IP_LOCALHOST = "127.0.0.1";
-	int UPDATE_TIMEOUT = 1000;
+//	int UPDATE_TIMEOUT = 1000;
 	int TOR_TRANSPROXY_PORT_DEFAULT = 9040;
 	
-	int STANDARD_DNS_PORT = 53;
+//	int STANDARD_DNS_PORT = 53;
 	int TOR_DNS_PORT_DEFAULT = 5400;
-	String TOR_VPN_DNS_LISTEN_ADDRESS = "127.0.0.1";
+//	String TOR_VPN_DNS_LISTEN_ADDRESS = "127.0.0.1";
 	
-	int CONTROL_PORT_DEFAULT = 9051;
-    int HTTP_PROXY_PORT_DEFAULT = 8118; // like Privoxy!
-    int SOCKS_PROXY_PORT_DEFAULT = 9050;
+//	int CONTROL_PORT_DEFAULT = 9051;
+    String HTTP_PROXY_PORT_DEFAULT = "auto"; // like Privoxy!
+    String SOCKS_PROXY_PORT_DEFAULT = "auto";
 
-    
 	//path to check Tor against
 	String URL_TOR_CHECK = "https://check.torproject.org";
 

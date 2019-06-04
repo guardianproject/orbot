@@ -244,7 +244,7 @@
     <PreferenceCategory android:title="Debug">
 
         <EditTextPreference
-            android:defaultValue="9050"
+            android:defaultValue="auto"
             android:dialogTitle="@string/pref_socks_dialog"
             android:inputType="number"
             android:key="pref_socks"
@@ -252,7 +252,7 @@
             android:title="@string/pref_socks_title" />
 
         <EditTextPreference
-            android:defaultValue="9040"
+            android:defaultValue="auto"
             android:dialogTitle="@string/pref_transport_dialog"
             android:inputType="number"
             android:key="pref_transport"
@@ -260,7 +260,7 @@
             android:title="@string/pref_transport_title" />
 
         <EditTextPreference
-            android:defaultValue="5400"
+            android:defaultValue="auto"
             android:dialogTitle="@string/pref_dnsport_dialog"
             android:inputType="number"
             android:key="pref_dnsport"

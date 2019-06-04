@@ -9,6 +9,7 @@ package org.torproject.android.service;
 
 
 import android.annotation.SuppressLint;
+import android.app.Application;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -28,6 +29,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Handler;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.provider.BaseColumns;
@@ -89,8 +91,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     private TorControlConnection conn = null;
     private int mLastProcessId = -1;
 
-    public static int mPortSOCKS = SOCKS_PROXY_PORT_DEFAULT;
-    public static int mPortHTTP = HTTP_PROXY_PORT_DEFAULT;
+    public static int mPortSOCKS = -1;
+    public static int mPortHTTP = -1;
     public static int mPortDns = TOR_DNS_PORT_DEFAULT;
     public static int mPortTrans = TOR_TRANSPROXY_PORT_DEFAULT;
 
@@ -131,6 +133,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
     private static final Uri HS_CONTENT_URI = Uri.parse("content://org.torproject.android.ui.hiddenservices.providers/hs");
     private static final Uri COOKIE_CONTENT_URI = Uri.parse("content://org.torproject.android.ui.hiddenservices.providers.cookie/cookie");
+
+    private Handler mHandler;
 
     public static final class HiddenService implements BaseColumns {
         public static final String NAME = "name";
@@ -510,16 +514,18 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
         try
         {
+            mHandler = new Handler ();
+
             appBinHome = getFilesDir();//getDir(TorServiceConstants.DIRECTORY_TOR_BINARY, Application.MODE_PRIVATE);
             if (!appBinHome.exists())
                 appBinHome.mkdirs();
 
-            appCacheHome = getCacheDir();// getDir(TorServiceConstants.DIRECTORY_TOR_DATA,Application.MODE_PRIVATE);
+            appCacheHome = getDir(DIRECTORY_TOR_DATA, Application.MODE_PRIVATE);
             if (!appCacheHome.exists())
                 appCacheHome.mkdirs();
 
-            fileTorRc = new File(appBinHome, TorServiceConstants.TORRC_ASSET_KEY);
-            fileControlPort = new File(getFilesDir(), "control.txt");
+            fileTorRc = new File(appBinHome, TORRC_ASSET_KEY);
+            fileControlPort = new File(getFilesDir(), TOR_CONTROL_PORT_FILE);
 
             mHSBasePath = new File(
                     getFilesDir().getAbsolutePath(),
@@ -682,9 +688,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     		extraLines.append("SocksListenAddress 0.0.0.0").append('\n');
 
 
-
-        String httpPortPref = HTTP_PROXY_PORT_DEFAULT + "";
-        extraLines.append("HTTPTunnelPort ").append(checkPortOrAuto(httpPortPref)).append('\n');
+        extraLines.append("HTTPTunnelPort ").append(checkPortOrAuto(HTTP_PROXY_PORT_DEFAULT)).append('\n');
 
         if(prefs.getBoolean(OrbotConstants.PREF_CONNECTION_PADDING, false))
         {
@@ -1922,10 +1926,21 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
     private void startVPNService ()
     {
-        Intent intentVpn = new Intent(this,TorVpnService.class);
-        intentVpn.setAction("start");
-        intentVpn.putExtra("torSocks",mPortSOCKS);
-        startService(intentVpn);
+        if (mPortSOCKS != -1) {
+            Intent intentVpn = new Intent(this, TorVpnService.class);
+            intentVpn.setAction("start");
+            intentVpn.putExtra("torSocks", mPortSOCKS);
+            startService(intentVpn);
+        }
+        else
+        {
+            mHandler.postDelayed(new Runnable() {
+                public void run ()
+                {
+                    startVPNService();
+                }
+            },5000);
+        }
     }
 
 
