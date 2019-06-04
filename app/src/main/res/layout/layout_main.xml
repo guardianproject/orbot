@@ -84,11 +84,27 @@
         android:layout_below="@+id/frameMain"
         />
 
+    <TextView
+        android:id="@+id/lblPorts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:fontFamily="sans-serif-light"
+        android:lines="1"
+        android:text="@string/default_socks_http"
+        android:maxLines="1"
+        android:layout_margin="12dp"
+        android:ellipsize="end"
+        android:layout_gravity="top|center"
+        android:gravity="center"
+        android:layout_below="@+id/lblStatus"
+        />
+
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:layout_below="@+id/lblStatus"
+    android:layout_below="@+id/lblPorts"
     android:id="@+id/controls"
 
     >

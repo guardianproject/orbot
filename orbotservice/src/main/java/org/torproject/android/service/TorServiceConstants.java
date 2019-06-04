@@ -107,6 +107,7 @@ public interface TorServiceConstants {
     String LOCAL_ACTION_LOG = "log";
     String LOCAL_ACTION_BANDWIDTH = "bandwidth";
     String LOCAL_EXTRA_LOG = "log";
+    String LOCAL_ACTION_PORTS = "ports";
 
     /**
      * All tor-related services and daemons are stopped

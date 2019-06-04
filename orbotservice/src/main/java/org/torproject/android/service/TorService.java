@@ -1092,7 +1092,9 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                         confTrans = st.nextToken().split(":")[1];
                         confTrans = confDns.substring(0,confTrans.length()-1);
                         mPortTrans = Integer.parseInt(confTrans);
-                                                  
+
+                        sendCallbackPorts(mPortSOCKS, mPortHTTP);
+
                         return Integer.parseInt(torProcId);
                         
                     }
@@ -1403,6 +1405,18 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 	      intent.putExtra(EXTRA_STATUS, mCurrentStatus);
 
           LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+
+    }
+
+    private void sendCallbackPorts (int socksPort, int httpPort)
+    {
+
+        Intent intent = new Intent(LOCAL_ACTION_PORTS);
+        // You can also include some extra data.
+        intent.putExtra("socks",socksPort);
+        intent.putExtra("http",httpPort);
+
+        LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
 
     }
     

@@ -96,6 +96,7 @@ public class OrbotMainActivity extends AppCompatActivity
 
     /* Useful UI bits */
     private TextView lblStatus = null; //the main text display widget
+    private TextView lblPorts = null;
     private ImageView imgStatus = null; //the main touchable image for activating Orbot
 
     private TextView downloadText = null;
@@ -128,8 +129,10 @@ public class OrbotMainActivity extends AppCompatActivity
     // message types for mStatusUpdateHandler
     private final static int STATUS_UPDATE = 1;
     private static final int MESSAGE_TRAFFIC_COUNT = 2;
+    private static final int MESSAGE_PORTS = 3;
 
-	public final static String INTENT_ACTION_REQUEST_HIDDEN_SERVICE = "org.torproject.android.REQUEST_HS_PORT";
+
+    public final static String INTENT_ACTION_REQUEST_HIDDEN_SERVICE = "org.torproject.android.REQUEST_HS_PORT";
 	public final static String INTENT_ACTION_REQUEST_START_TOR = "org.torproject.android.START_TOR";
 
 
@@ -179,6 +182,10 @@ public class OrbotMainActivity extends AppCompatActivity
                 new IntentFilter(TorServiceConstants.LOCAL_ACTION_BANDWIDTH));
         lbm.registerReceiver(mLocalBroadcastReceiver,
                 new IntentFilter(TorServiceConstants.LOCAL_ACTION_LOG));
+        lbm.registerReceiver(mLocalBroadcastReceiver,
+                new IntentFilter(TorServiceConstants.LOCAL_ACTION_PORTS));
+
+
 
         boolean showFirstTime = mPrefs.getBoolean("connect_first_time", true);
 
@@ -253,6 +260,15 @@ public class OrbotMainActivity extends AppCompatActivity
 
                 mStatusUpdateHandler.sendMessage(msg);
             }
+            else if (action.equals(TorServiceConstants.LOCAL_ACTION_PORTS)) {
+
+                Message msg = mStatusUpdateHandler.obtainMessage(MESSAGE_PORTS);
+                msg.getData().putInt("socks",intent.getIntExtra("socks",-1));
+                msg.getData().putInt("http",intent.getIntExtra("http",-1));
+
+                mStatusUpdateHandler.sendMessage(msg);
+
+            }
         }
     };
  
@@ -276,6 +292,8 @@ public class OrbotMainActivity extends AppCompatActivity
                 mDrawer.openDrawer(LOG_DRAWER_GRAVITY);
             }
         });
+
+        lblPorts = findViewById(R.id.lblPorts);
 
         imgStatus = (ImageView)findViewById(R.id.imgStatus);
         imgStatus.setOnLongClickListener(this);
@@ -1112,7 +1130,7 @@ public class OrbotMainActivity extends AppCompatActivity
 
         }
 
-        if (torStatus == null || newTorStatus.equals(torStatus)) {
+        if (torStatus == null || (newTorStatus != null && newTorStatus.equals(torStatus))) {
             torStatus = newTorStatus;
             return;
         }
@@ -1233,20 +1251,28 @@ public class OrbotMainActivity extends AppCompatActivity
 
         @Override
         public void handleMessage(final Message msg) {
-        	
 
+
+            Bundle data = msg.getData();
 
             switch (msg.what) {
                 case MESSAGE_TRAFFIC_COUNT:
 
-                    Bundle data = msg.getData();
-                    DataCount datacount =  new DataCount(data.getLong("upload"),data.getLong("download"));     
+                    DataCount datacount =  new DataCount(data.getLong("upload"),data.getLong("download"));
                     
                     long totalRead = data.getLong("readTotal");
                     long totalWrite = data.getLong("writeTotal");
                 
                     downloadText.setText(formatCount(datacount.Download) + " / " + formatTotal(totalRead));
                     uploadText.setText(formatCount(datacount.Upload) + " / " + formatTotal(totalWrite));
+
+                    break;
+                case MESSAGE_PORTS:
+
+                    int socksPort = data.getInt("socks");
+                    int httpPort = data.getInt("http");
+
+                    lblPorts.setText("SOCKS: " + socksPort + " | HTTP: " + httpPort);
 
                     break;
                 default:
