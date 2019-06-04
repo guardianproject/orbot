@@ -1584,6 +1584,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 loadBridgeDefaults();
 
                 extraLines.append("UseBridges 1").append('\n');
+                extraLines.append("UpdateBridgesFromAuthority 1").append('\n');
+
 
                 String bridgeList = new String(Prefs.getBridgesList().getBytes("ISO-8859-1"));
                 boolean obfsBridges = bridgeList.contains("obfs3") || bridgeList.contains("obfs4");
