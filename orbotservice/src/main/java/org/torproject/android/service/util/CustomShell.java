@@ -13,13 +13,15 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 public class CustomShell extends Shell {
 
 
     @WorkerThread
-    public static CommandResult run(@NonNull String shell, boolean waitFor, @Nullable String[] env, @NonNull String command) {
+    public static CommandResult run(@NonNull String shell, boolean waitFor, @Nullable Map<String,String> env, @NonNull String command) {
         List<String> stdout = Collections.synchronizedList(new ArrayList<String>());
         List<String> stderr = Collections.synchronizedList(new ArrayList<String>());
         int exitCode = -1;
@@ -29,6 +31,11 @@ public class CustomShell extends Shell {
             // setup our process, retrieve stdin stream, and stdout/stderr gobblers
             //Process process = runWithEnv(command, env);
             ProcessBuilder builder = new ProcessBuilder();
+
+
+            if (env != null && (!env.isEmpty()))
+                builder.environment().putAll(env);
+
             builder.command("/system/bin/sh", "-c", command);
             Process process = builder.start();
 

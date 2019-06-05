@@ -69,6 +69,7 @@ import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
@@ -986,7 +987,10 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
     private int exec (String cmd, boolean wait) throws Exception
     {
-         CommandResult result = CustomShell.run("sh",wait, null, cmd);
+        HashMap<String,String> mapEnv = new HashMap();
+        mapEnv.put("HOME",appBinHome.getAbsolutePath());
+
+         CommandResult result = CustomShell.run("sh",wait, mapEnv, cmd);
          debug("executing: " + cmd);
          debug("stdout: " + result.getStdout());
          debug("stderr: " + result.getStderr());
