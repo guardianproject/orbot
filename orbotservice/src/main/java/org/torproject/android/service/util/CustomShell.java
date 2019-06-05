@@ -36,10 +36,9 @@ public class CustomShell extends Shell {
             if (env != null && (!env.isEmpty()))
                 builder.environment().putAll(env);
 
-            builder.command("/system/bin/sh", "-c", command);
+            builder.command("/system/bin/" + shell, "-c", command);
             Process process = builder.start();
 
-         //   DataOutputStream stdin = new DataOutputStream(process.getOutputStream());
             StreamGobbler stdoutGobbler = null;
             StreamGobbler stderrGobbler = null;
 
@@ -51,30 +50,6 @@ public class CustomShell extends Shell {
                 stdoutGobbler.start();
                 stderrGobbler.start();
             }
-
-            /**
-
-            try {
-                for (String write : commands) {
-                    stdin.write((write + " &\n").getBytes("UTF-8"));
-                    stdin.flush();
-                }
-
-                if (waitFor)
-                    stdin.write("exit\n".getBytes("UTF-8"));
-
-                stdin.flush();
-            } catch (IOException e) {
-                //noinspection StatementWithEmptyBody
-                if (e.getMessage().contains("EPIPE")) {
-                    // method most horrid to catch broken pipe, in which case we do nothing. the command is not a shell, the
-                    // shell closed stdin, the script already contained the exit command, etc. these cases we want the output
-                    // instead of returning null
-                } else {
-                    // other issues we don't know how to handle, leads to returning null
-                    throw e;
-                }
-            }**/
 
             // wait for our process to finish, while we gobble away in the background
             if (waitFor)
