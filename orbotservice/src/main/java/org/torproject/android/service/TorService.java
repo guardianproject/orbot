@@ -1597,8 +1597,10 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
                 //check if any PT bridges are needed
                 if (obfsBridges) {
-                    extraLines.append("ClientTransportPlugin obfs3 exec " + fileObfsclient.getCanonicalPath()).append('\n');
-                    extraLines.append("ClientTransportPlugin obfs4 exec " + fileObfsclient.getCanonicalPath()).append('\n');
+                    extraLines.append("ClientTransportPlugin obfs3 exec ")
+                            .append(fileObfsclient.getCanonicalPath()).append('\n');
+                    extraLines.append("ClientTransportPlugin obfs4 exec ")
+                            .append(fileObfsclient.getCanonicalPath()).append('\n');
                 }
 
                 if (meekBridges) {

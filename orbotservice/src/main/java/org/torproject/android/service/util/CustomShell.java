@@ -32,7 +32,6 @@ public class CustomShell extends Shell {
             //Process process = runWithEnv(command, env);
             ProcessBuilder builder = new ProcessBuilder();
 
-
             if (env != null && (!env.isEmpty()))
                 builder.environment().putAll(env);
 
