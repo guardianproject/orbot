@@ -7,7 +7,7 @@ global {
 	server_port = 8091;
 	server_ip = 0.0.0.0;
 	query_method=udp_only;
-	min_ttl=15m;
+	min_ttl=1m;
 	max_ttl=1w;
 	timeout=10;
 	daemon=on;
