@@ -1065,12 +1065,6 @@ public class OrbotMainActivity extends AppCompatActivity
         else
             updateStatus(null, torStatus);
 
-           if (Prefs.useTransparentProxying())
-           {
-               showAlert(getString(R.string.no_transproxy_warning_short),getString(R.string.no_transproxy_warning),true);
-               Prefs.disableTransparentProxying();
-           }
-
            addAppShortcuts();
 
            //now you can handle the intents properly
