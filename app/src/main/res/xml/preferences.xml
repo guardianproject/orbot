@@ -244,12 +244,20 @@
     <PreferenceCategory android:title="Debug">
 
         <EditTextPreference
-            android:defaultValue="auto"
+            android:defaultValue="9050"
             android:dialogTitle="@string/pref_socks_dialog"
             android:inputType="number"
             android:key="pref_socks"
             android:summary="@string/pref_socks_summary"
             android:title="@string/pref_socks_title" />
+
+        <EditTextPreference
+            android:defaultValue="8118"
+            android:dialogTitle="@string/pref_http_dialog"
+            android:inputType="number"
+            android:key="pref_http"
+            android:summary="@string/pref_http_summary"
+            android:title="@string/pref_http_title" />
 
         <EditTextPreference
             android:defaultValue="auto"

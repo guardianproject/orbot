@@ -656,12 +656,19 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
  //       extraLines.append("RunAsDaemon 1").append('\n');
  //       extraLines.append("AvoidDiskWrites 1").append('\n');
         
-         String socksPortPref = prefs.getString(OrbotConstants.PREF_SOCKS,    String.valueOf(TorServiceConstants.SOCKS_PROXY_PORT_DEFAULT));
+         String socksPortPref = prefs.getString(OrbotConstants.PREF_SOCKS, (TorServiceConstants.SOCKS_PROXY_PORT_DEFAULT));
 
          if (socksPortPref.indexOf(':')!=-1)
              socksPortPref = socksPortPref.split(":")[1];
          
         socksPortPref = checkPortOrAuto(socksPortPref);
+
+        String httpPortPref = prefs.getString(OrbotConstants.PREF_HTTP, (TorServiceConstants.HTTP_PROXY_PORT_DEFAULT));
+
+        if (httpPortPref.indexOf(':')!=-1)
+            httpPortPref = httpPortPref.split(":")[1];
+
+        httpPortPref = checkPortOrAuto(httpPortPref);
 
         String isolate = "";
         if(prefs.getBoolean(OrbotConstants.PREF_ISOLATE_DEST, false))
@@ -745,17 +752,26 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
     }
 
-    private String checkPortOrAuto (String port)
+    private String checkPortOrAuto (String portString)
     {
-        if (!port.equalsIgnoreCase("auto"))
+        if (!portString.equalsIgnoreCase("auto"))
         {
-            boolean isPortUsed = TorServiceUtils.isPortOpen("127.0.0.1",Integer.parseInt(port),500);
+            boolean isPortUsed = true;
+            int port = Integer.parseInt(portString);
 
-            if (isPortUsed) //the specified port is not available, so let Tor find one instead
-                port = "auto";
+            while (isPortUsed) {
+                isPortUsed = TorServiceUtils.isPortOpen("127.0.0.1", port, 500);
+
+                if (isPortUsed) //the specified port is not available, so let Tor find one instead
+                    port++;
+            }
+
+
+            return port + "";
         }
 
-        return port;
+        return portString;
+
     }
 
     public boolean updateTorConfigCustom(File fileTorRcCustom, String extraLines) throws IOException, FileNotFoundException, TimeoutException {

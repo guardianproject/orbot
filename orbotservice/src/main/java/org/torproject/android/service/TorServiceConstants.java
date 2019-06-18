@@ -61,8 +61,8 @@ public interface TorServiceConstants {
 //	String TOR_VPN_DNS_LISTEN_ADDRESS = "127.0.0.1";
 	
 //	int CONTROL_PORT_DEFAULT = 9051;
-    String HTTP_PROXY_PORT_DEFAULT = "auto"; // like Privoxy!
-    String SOCKS_PROXY_PORT_DEFAULT = "auto";
+    String HTTP_PROXY_PORT_DEFAULT = "8118"; // like Privoxy!
+    String SOCKS_PROXY_PORT_DEFAULT = "9050";
 
 	//path to check Tor against
 	String URL_TOR_CHECK = "https://check.torproject.org";

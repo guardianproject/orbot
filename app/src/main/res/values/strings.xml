@@ -136,6 +136,10 @@
     <string name="pref_socks_summary">Port that Tor offers its SOCKS proxy on (default: 9050 or 0 to disable)</string>
     <string name="pref_socks_dialog">SOCKS Port Config</string>
 
+    <string name="pref_http_title">Tor HTTP</string>
+    <string name="pref_http_summary">Port that Tor offers its HTTP proxy on (default: 8118 or 0 to disable)</string>
+    <string name="pref_http_dialog">HTTP Port Config</string>
+
     <string name="pref_transport_title">Tor TransProxy Port</string>
     <string name="pref_transport_summary">Port that Tor offers its Transparent Proxy on (default: 9040 or 0 to disable)</string>
     <string name="pref_transport_dialog">TransProxy Port Config</string>
