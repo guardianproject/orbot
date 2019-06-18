@@ -80,16 +80,17 @@ public class Languages {
                     || locale.equals(Locale.ENGLISH))
                 localeSet.add(locale);
         }
+
         for (Locale locale : localeSet) {
             if (locale.equals(TIBETAN)) {
                 // include English name for devices without Tibetan font support
-                tmpMap.put(TIBETAN.getLanguage(), "Tibetan བོད་སྐད།"); // Tibetan
+                tmpMap.put(TIBETAN.toString(), "Tibetan བོད་སྐད།"); // Tibetan
             } else if (locale.equals(Locale.SIMPLIFIED_CHINESE)) {
                 tmpMap.put(Locale.SIMPLIFIED_CHINESE.toString(), "中文 (中国)"); // Chinese (China)
             } else if (locale.equals(Locale.TRADITIONAL_CHINESE)) {
                 tmpMap.put(Locale.TRADITIONAL_CHINESE.toString(), "中文 (台灣)"); // Chinese (Taiwan)
             } else {
-                tmpMap.put(locale.getLanguage(), locale.getDisplayLanguage(locale));
+                tmpMap.put(locale.toString(), locale.getDisplayLanguage(locale));
             }
         }
 
