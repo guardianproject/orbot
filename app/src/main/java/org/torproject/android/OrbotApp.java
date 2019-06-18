@@ -33,12 +33,11 @@ public class OrbotApp extends Application implements OrbotConstants {
     @Override
     public void onCreate() {
         super.onCreate();
-
-
         Languages.setup(OrbotMainActivity.class, R.string.menu_settings);
-        Languages.setLanguage(this, Prefs.getDefaultLocale(), true);
 
-        //Language.setFromPreference(this, "pref_default_locale");
+        if (!Prefs.getDefaultLocale().equals(Locale.getDefault().getLanguage())) {
+            Languages.setLanguage(this, Prefs.getDefaultLocale(), true);
+        }
 
         //check for updates via github, since it is unlikely to be blocked; notify the user of places where upgrades can be found
         new AppUpdater(this)
@@ -50,16 +49,15 @@ public class OrbotApp extends Application implements OrbotConstants {
     @Override
     protected void attachBaseContext(Context base) {
         Prefs.setContext(base);
-        super.attachBaseContext(LocaleHelper.onAttach(base, "en"));
+        super.attachBaseContext(LocaleHelper.onAttach(base, Prefs.getDefaultLocale()));
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-       // Language.setFromPreference(this, "pref_default_locale");
 
-        //Log.i(TAG, "onConfigurationChanged " + newConfig.locale.getLanguage());
-        Languages.setLanguage(this, Prefs.getDefaultLocale(), true);
+        if (!Prefs.getDefaultLocale().equals(Locale.getDefault().getLanguage()))
+            Languages.setLanguage(this, Prefs.getDefaultLocale(), true);
     }
 	/**
     public static void forceChangeLanguage(Activity activity) {
