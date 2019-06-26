@@ -134,7 +134,6 @@
   <string name="activate">Activer</string>
   <string name="send_email">Envoyer un courriel</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Vous pouvez obtenir une adresse de pont par courriel, par le Web ou en balayant le code QR d’un pont. Choisissez *Courriel* ou *Web* ci-dessous pour demander une adresse de pont.\n\nUne fois que vous avez une adresse, copiez &amp; collez-la dans le champ « Ponts » des paramètres d’Orbot et redémarrez.</string>
-  <string name="install_orweb">Installer Orfox</string>
     <string name="save">Enregistrer</string>
   <string name="name">Name</string>
   <string name="please_restart_Orbot_to_enable_the_changes">Veuillez redémarrer Orbot pour activer les changements</string>

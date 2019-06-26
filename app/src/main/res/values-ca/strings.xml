@@ -111,8 +111,6 @@
     <string name="pref_disable_network_title">No hi ha autodesconnexió de xarxa</string>
   <string name="pref_disable_network_summary">Posa el Tor en pausa mentre no hi ha connexió a internet</string>
   <string name="newnym">Heu canviat a una nova identitat Tor.</string>
-    <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Orbot funciona millor amb el navegador Orfox. Instal·lar ara?</string>
-  <string name="install_apps_">Instal·lar navegador?</string>
   <string name="no_network_connectivity_putting_tor_to_sleep_">No s\'ha trobat connectivitat a la xarxa. El Tor entra en suspensió...</string>
   <string name="network_connectivity_is_good_waking_tor_up_">La connectivitat de la xarxa és bona. S\'està despertant el Tor...</string>
   <string name="updating_settings_in_tor_service">S\'està actualitzant la configuració als serveis del Tor</string>
@@ -143,7 +141,6 @@
   <string name="apps_mode">Mode VPN</string>
     <string name="send_email">Envia correu-e</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Podeu obtenir un enllaç pont mitjançant el correu electrònic, el web o escanejant un codi QR. Trieu Correu-e o Web a sota per demanar una adreça.\n\nQuan tingueu un enllaç d\'aquest tipus, copieu-ho i enganxeu-ho a l\'apartat «Ponts» de la configuració de l\'Orbot i reinicieu.</string>
-  <string name="install_orweb">Instal·la l\'Orfox</string>
     <string name="vpn_default_world">Global (auto)</string>
   <string name="hidden_services">Serveis ocults</string>
   <string name="title_activity_hidden_services">Serveis ocults</string>

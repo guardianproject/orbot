@@ -112,9 +112,7 @@ direcciones (o rangos). No prevalecen sobre las configuraciones de exclusión de
     <string name="pref_disable_network_title">Sin suspensión-automática de la red</string>
   <string name="pref_disable_network_summary">Ponga Tor en suspensión cuando no haya Internet disponible</string>
   <string name="newnym">¡Ha cambiado a una nueva identidad de Tor!</string>
-    <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Orbot funciona mejor con el Navegador Orfox. ¿Instalarlo ahora?</string>
-  <string name="install_apps_">¿Instalar navegador?</string>
-  <string name="no_network_connectivity_putting_tor_to_sleep_">No hay conectividad de red. Poniendo a Tor a dormir...</string>
+    <string name="no_network_connectivity_putting_tor_to_sleep_">No hay conectividad de red. Poniendo a Tor a dormir...</string>
   <string name="network_connectivity_is_good_waking_tor_up_">La conectividad de red es buena. Despertando a Tor...</string>
   <string name="updating_settings_in_tor_service">actualizando la configuración en el servicio Tor</string>
   <string name="pref_socks_title">SOCKS de Tor</string>
@@ -144,7 +142,6 @@ direcciones (o rangos). No prevalecen sobre las configuraciones de exclusión de
   <string name="apps_mode">Modo VPN</string>
     <string name="send_email">Enviar correo</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Puede obtener una dirección de bridge (repetidor puente) a través de correo electrónico, la web, o escaneando un código QR de bridge. Seleccione \'Correo\' o \'Web\' debajo para solicitar una dirección de bridge.\n\nUna vez tenga una dirección, copie y péguela en la opción \"Bridges\" de la configuración de Orbot, y reinicie.</string>
-  <string name="install_orweb">Instalar Orfox</string>
     <string name="vpn_default_world">Global (Automático)</string>
   <string name="hidden_services">Servicios ocultos</string>
   <string name="title_activity_hidden_services">Servicios ocultos</string>

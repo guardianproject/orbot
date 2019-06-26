@@ -111,8 +111,6 @@
     <string name="pref_disable_network_title">خاموش کردن در صورت عدم وجود شبکه</string>
   <string name="pref_disable_network_summary">در صورتی که شبکه وجود نداشته باشد خاموش شود</string>
   <string name="newnym">شما به شناسه جدید تور منتقل شدید</string>
-    <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">اوربات بهترین کارایی را با مرورگر اورفاکس دارد. اورفاکس نصب شود؟</string>
-  <string name="install_apps_">نصب مرورگر؟</string>
   <string name="no_network_connectivity_putting_tor_to_sleep_">ارتباط شبکه ای وجود ندارد. تور به حالت خواب می رود</string>
   <string name="network_connectivity_is_good_waking_tor_up_">ارتباط شبکه ای خوب است. تور را بیدار نمایید...</string>
   <string name="updating_settings_in_tor_service">به روز رسانی تنظیمات در سرویس Tor</string>
@@ -143,7 +141,6 @@
   <string name="apps_mode">حالت VPN</string>
     <string name="send_email">ایمیل بفرست</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">می توانید آدرس  bridge  را از طریق ایمیل٬ وب یا با اسکن کردن  bridge QR code بدست آورید. ایمیل یا وب پایین را برای درخواست آدرس bridge انتخاب کنید.\n\n وقتی آدرس را دارید آن را کپی کنید و برگردانید در  اولویت های  Bridges در تنظیمات اربت و آن را دوباره راه اندازی کنید.</string>
-  <string name="install_orweb">نصب Orfox</string>
     <string name="vpn_default_world">جهانی (خودکار)</string>
   <string name="hidden_services">سرویس‌های مخفی</string>
   <string name="title_activity_hidden_services">سرویس‌های مخفی</string>

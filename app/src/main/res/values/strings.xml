@@ -126,8 +126,6 @@
     <string name="pref_open_proxy_on_all_interfaces_title">Open Proxy on All Interfaces</string>
   <string name="pref_open_proxy_on_all_interfaces_summary">Allow Wi-Fi peers, tethered devices and anyone else who can connect to your IP, to access Tor</string>
 
-    <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Orbot works best with Orfox Browser. Install now?</string>
-    <string name="install_apps_">Install browser?</string>
     <string name="no_network_connectivity_putting_tor_to_sleep_">No network connectivity. Putting Tor to sleep…</string>
     <string name="network_connectivity_is_good_waking_tor_up_">Network connectivity is good. Waking Tor up…</string>
     <string name="updating_settings_in_tor_service">updating settings in Tor service</string>
@@ -183,8 +181,6 @@
     <string name="send_email">Send Email</string>
 
     <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">You can get a bridge address through email, the web or by scanning a bridge QR code. Select \'Email\' or \'Web\' below to request a bridge address.\n\nOnce you have an address, copy &amp; paste it into the \"Bridges\" preference in Orbot\'s settings and restart.</string>
-
-    <string name="install_orweb">Install Orfox</string>
 
     <string name="vpn_default_world">Global (Auto)</string>
     <string name="hidden_services">Onion Services</string>

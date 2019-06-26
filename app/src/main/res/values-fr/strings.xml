@@ -111,9 +111,7 @@
     <string name="pref_disable_network_title">Pas de mise en veille automatique du réseau</string>
   <string name="pref_disable_network_summary">Mettre Tor en veille quand aucune connexion Internet n’est disponible</string>
   <string name="newnym">Vous avez basculé vers une nouvelle identité Tor !</string>
-    <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Orbot fonctionne de manière optimale avec le navigateur Orfox. Souhaitez-vous l’installer maintenant ?</string>
-  <string name="install_apps_">Installer le navigateur ?</string>
-  <string name="no_network_connectivity_putting_tor_to_sleep_">Pas de connectivité réseau. Mise au repos de Tor...</string>
+    <string name="no_network_connectivity_putting_tor_to_sleep_">Pas de connectivité réseau. Mise au repos de Tor...</string>
   <string name="network_connectivity_is_good_waking_tor_up_">La connectivité réseau est bonne. Réveil de Tor...</string>
   <string name="updating_settings_in_tor_service">mise à jour des paramètres dans le service Tor</string>
   <string name="pref_socks_title">SOCKS Tor</string>
@@ -143,7 +141,6 @@
   <string name="apps_mode">Mode RPV</string>
     <string name="send_email">Envoyer un courriel</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Vous pouvez obtenir une adresse de pont par courriel, par le Web ou en balayant le code QR d’un pont. Choisissez *Courriel* ou *Web* ci-dessous pour demander une adresse de pont.\n\nUne fois que vous avez une adresse, copiez &amp; collez-la dans le champ « Ponts » des paramètres d’Orbot et redémarrez.</string>
-  <string name="install_orweb">Installer Orfox</string>
     <string name="vpn_default_world">Mondial (Auto)</string>
   <string name="hidden_services">Services cachés</string>
   <string name="title_activity_hidden_services">Services cachés</string>

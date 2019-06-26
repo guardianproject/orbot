@@ -134,6 +134,5 @@
   <string name="activate">Aktivasi</string>
   <string name="send_email">Kirim Email</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Anda bisa mendapatkan alamat bridge melalui email, halaman web atau dengan memindai kode QR bridge tersebut. Pilih \'Email\' atau \'Laman\' di bawah untuk meminta alamat bridge. Setelah anda mendapatkannya, salin lalu tempel di pilihan \"Bridges\" pada setting Orbot lalu start ulang.</string>
-  <string name="install_orweb">pasang Orfox</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Silakan start ulang Orbot untuk mengaktifkan perubahan</string>
 </resources>

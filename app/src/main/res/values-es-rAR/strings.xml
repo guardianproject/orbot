@@ -112,8 +112,7 @@
   <string name="get_bridges_email">Email</string>
   <string name="get_bridges_web">Web</string>
   <string name="activate">Activar</string>
-  <string name="install_orweb">Instalar Orfox</string>
-  <string name="save">Guardar</string>
+    <string name="save">Guardar</string>
   <string name="name">Nombre</string>
   <string name="disable">Deshabilitar</string>
 </resources>

@@ -111,9 +111,7 @@
     <string name="pref_disable_network_title">Auto-Parado Sen Rede</string>
   <string name="pref_disable_network_summary">Parar Tor cando non hai conexión a internet</string>
   <string name="newnym">Cambiou a unha nova identidade Tor!</string>
-    <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Orbot funciona mellor co navegador Orfox. Instalar agora?</string>
-  <string name="install_apps_">Instalar navegador?</string>
-  <string name="no_network_connectivity_putting_tor_to_sleep_">Sen conexión a rede. Tor agardando...</string>
+    <string name="no_network_connectivity_putting_tor_to_sleep_">Sen conexión a rede. Tor agardando...</string>
   <string name="network_connectivity_is_good_waking_tor_up_">A conexión a rede é boa. Espertando a Tor...</string>
   <string name="updating_settings_in_tor_service">actualizando axustes no servizo Tor</string>
   <string name="pref_socks_title">SOCKS de Tor</string>
@@ -143,7 +141,6 @@
   <string name="apps_mode">Modo VPN</string>
     <string name="send_email">Enviar correo</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Pode obter un enderezo de ponte a través de correo electrónico, na web ou escaneando o código QR de unha ponte. Escolla abaixo \'Correo-e\' ou \'Web\' para solicitar un enderezo de ponte.\n\nUnha vez teña un enderezo, cópieo e pégueo no axuste \"Pontes\" na configuración de Orbot e reinicie.</string>
-  <string name="install_orweb">Instalar Orfox</string>
     <string name="vpn_default_world">Global (Auto)</string>
   <string name="hidden_services">Servizos agochados</string>
   <string name="title_activity_hidden_services">Servizos agochados</string>

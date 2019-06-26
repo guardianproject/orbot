@@ -134,8 +134,7 @@
   <string name="activate">Ota käyttöön</string>
   <string name="send_email">Lähetä sähköpostia</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Voit saada sillan osoitteen sähköpostin kautta, verkkosivulta tai skannaamalla sillan QR-koodin. Valitse \'Sähköposti\' tai \'Verkkosivu\' alta pyytääksesi sillan osoitetta.\n\nKun sinulla on osoite, kopioi &amp; liitä se \"Sillat\" -kohtaan Orbotin asetuksissa ja käynnistä uudelleen.</string>
-  <string name="install_orweb">Asenna Orfox</string>
-  <string name="hidden_services">Piilopalvelut</string>
+    <string name="hidden_services">Piilopalvelut</string>
   <string name="title_activity_hidden_services">Piilopalvelut</string>
   <string name="menu_hidden_services">Piilopalvelut</string>
   <string name="save">Tallenna</string>

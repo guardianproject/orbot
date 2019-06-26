@@ -111,8 +111,6 @@
     <string name="pref_disable_network_title">Engin sjálfvirk svæfing netkerfis</string>
   <string name="pref_disable_network_summary">Svæfa Tor þegar engin internettenging er til staðar</string>
   <string name="newnym">Þú ert komin með nýtt Tor-auðkenni!</string>
-    <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Orbot virkar best með Orfox-vafranum. Setja upp núna?</string>
-  <string name="install_apps_">Setja upp vafra?</string>
   <string name="no_network_connectivity_putting_tor_to_sleep_">Engin tenging við netið. Tor verður svæft...</string>
   <string name="network_connectivity_is_good_waking_tor_up_">Tenging við netið er góð. Tor verður vakið upp...</string>
   <string name="updating_settings_in_tor_service">uppfæri stillingar í Tor þjónustu</string>
@@ -143,7 +141,6 @@
   <string name="apps_mode">VPN-hamur</string>
     <string name="send_email">Senda tölvupóst</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Þú getur fengið vistfang brúar sent í gegnum tölvupóst, vefinn eða með að skanna QR-kóða fyrir brú. Veldu \'Tölvupóstur\' eða \'Vefur\' fyrir neðan til að óska eftir vistfangi brúar.\n\nÞegar þú kominn með vistfang, afritaðu &amp; límdu það inn í stillingar fyrir \'Brýr\' í kjörstillingum Orbot og endurræstu síðan.</string>
-  <string name="install_orweb">Uppsetning Orfox</string>
     <string name="vpn_default_world">Víðvært (sjálfvirkt)</string>
   <string name="hidden_services">Faldar þjónustur</string>
   <string name="title_activity_hidden_services">Faldar þjónustur</string>

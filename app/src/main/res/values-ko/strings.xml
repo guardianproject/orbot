@@ -134,7 +134,6 @@
   <string name="activate">활성화</string>
   <string name="send_email">이메일 보내기</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">브릿지 주소를 이메일이나 QR코드를 통해 얻을 수 있습니다. 아래의 \"이메일\"이나 \"웹\"을 터치해 브릿지 주소를 요청하세요.\n\n주소를 얻었다면, 설정의 \"브릿지\" 항목에 복사 &amp; 붙여넣기한 뒤 Orbot을 재시작하세요.</string>
-  <string name="install_orweb">Orfox 설치</string>
     <string name="save">저장</string>
   <string name="name">Name</string>
   <string name="please_restart_Orbot_to_enable_the_changes">변경을 완료하려면 Orbot을 재시작하세요</string>

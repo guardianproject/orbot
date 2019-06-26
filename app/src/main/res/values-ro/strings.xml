@@ -134,7 +134,6 @@
   <string name="activate">Activează</string>
   <string name="send_email">Trimite email</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Poţi primi o adresă de punte prin email,web sau prin scanarea codului de punte QR.Selectează  ”Email” sau ”Web” de mai jos pentru a primi adresa de punte.\n\nCând ai primit adresa,copiaz-o şi introdu-o în preferinţele de PUNŢI din setările Orbot şi mai apoi reporniţi. </string>
-  <string name="install_orweb">Instalează Orfox</string>
     <string name="hidden_services">Servicii ascunse</string>
   <string name="title_activity_hidden_services">Servicii ascunse</string>
   <string name="menu_hidden_services">Servicii ascunse</string>

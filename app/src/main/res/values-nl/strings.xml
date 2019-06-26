@@ -111,8 +111,6 @@
     <string name="pref_disable_network_title">Geen netwerk automatisch slapen</string>
   <string name="pref_disable_network_summary">Laat Tor slapen als er geen internetverbinding beschikbaar is</string>
   <string name="newnym">Je bent naar een nieuwe Tor identiteit gewisseld!</string>
-    <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Orbot werkt best met de Orfox-browser. Nu installeren?</string>
-  <string name="install_apps_">Browser installeren?</string>
   <string name="no_network_connectivity_putting_tor_to_sleep_">Geen internetverbinding. Tor wordt te slapen gelegd…</string>
   <string name="network_connectivity_is_good_waking_tor_up_">Netwerkverbinding is in orde. Tor wordt wakker gemaakt…</string>
   <string name="updating_settings_in_tor_service">instellingen in Tor-dienst worden bijgewerkt</string>
@@ -143,7 +141,6 @@
   <string name="apps_mode">VPN-modus</string>
     <string name="send_email">E-mail versturen</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Je kan een bridge-adres verkrijgen door e-mail, het web of door een bridge-QR-code te scannen. Kies \'E-mail\' of \'Web\' hieronder om een bridge-adres aan te vragen.\n\nEenmaal je een adres hebt kopieer en plak je het in de \"Bridges\"-optie in de Orbot-instellingen, waarna je Orbot herstart.</string>
-  <string name="install_orweb">Orfox installeren</string>
     <string name="vpn_default_world">Algemeen (automatisch)</string>
   <string name="hidden_services">Verborgen diensten</string>
   <string name="title_activity_hidden_services">Verborgen diensten</string>

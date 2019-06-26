@@ -133,7 +133,6 @@
   <string name="activate">Aktivovat</string>
   <string name="send_email">Pošli email</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Abresu bridge můžete získat emailem, na webu, nebo naskenováním bridge QR kódu. Zvolte níže \'Email\', nebo \'Web\' pro vyžádání adresy bridge.\n\nJakmile máte adresu, zkopírujte &amp; vložte ji do položky \"Bridge\" v nastavení Orbot a restartujte aplikaci.</string>
-  <string name="install_orweb">Instalovat Orfox</string>
     <string name="save">Uložit</string>
   <string name="name">Jméno</string>
   <string name="please_restart_Orbot_to_enable_the_changes">Pro projevení změn restartujte Orbot</string>

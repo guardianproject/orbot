@@ -136,7 +136,6 @@
   <string name="send_email">发送电子邮件</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">您可以通过电子邮件、网页或扫描网桥QR码来获取网桥地址。点击下方的“电子邮件”或“网页”按钮来获取网桥地址。
 当您获取到网桥地址后，请将其复制并粘贴到Orbot设置中的“网桥”一项并重新启动</string>
-  <string name="install_orweb">安装 Orfox</string>
     <string name="save">保存</string>
   <string name="name">名称</string>
   <string name="please_restart_Orbot_to_enable_the_changes">请重启 Orbot 以使变更生效</string>

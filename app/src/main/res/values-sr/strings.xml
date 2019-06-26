@@ -109,8 +109,6 @@
     <string name="pref_disable_network_title">Без Мреже Auto-Sleep</string>
   <string name="pref_disable_network_summary">Умири Тор када је недоступан интернет</string>
   <string name="newnym">Прешли сте на нови Тор идентитет!</string>
-    <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Орбот ради најбоље са Orfox претраживач Инсталирајте сада?</string>
-  <string name="install_apps_">Инсталирај претраживач?</string>
   <string name="no_network_connectivity_putting_tor_to_sleep_">Нема интернет конекције. Умиривање Тор-а...</string>
   <string name="network_connectivity_is_good_waking_tor_up_">Конекција је добра. Оживљавање Тор-а...</string>
   <string name="updating_settings_in_tor_service">ажурирање подешавања Тор мреже</string>
@@ -141,7 +139,6 @@
   <string name="apps_mode">VPN Мод</string>
     <string name="send_email">Пошаљи Е-пошту</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Можете добити  bridge адресу преко е-поште. на web-у или скенирањем bridge QR кода. Одабери \'E-пошта\' или \'Web\' испод да би сте затражили bridge адресу.\n\nЈедном када добијете адресу. копирај&amp; налепи је у \"Bridges\" преференцији у Орбот подешавањима и поново покрените.</string>
-  <string name="install_orweb">Инсталирати Орфокс</string>
     <string name="vpn_default_world">Глобално (Аутоматски)</string>
   <string name="hidden_services">Скривени Сервиси</string>
   <string name="title_activity_hidden_services">Скривени Сервиси</string>

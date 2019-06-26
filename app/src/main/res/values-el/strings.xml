@@ -111,9 +111,7 @@
     <string name="pref_disable_network_title">Χωρίς Αυτόματη Αναστολή Δικτύου</string>
   <string name="pref_disable_network_summary">Θέσε το Tor σε λειτουργία sleep όταν δεν υπάρχει διαθέσιμη σύνδεση Ιnternet</string>
   <string name="newnym">Έχετε αλλάξει επιτυχώς την ταυτότητα σας στο Tor! </string>
-    <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Το Orbot λειτουργεί καλύτερα με το πρόγραμμα περιήγησης Orfox. Να εγκατασταθεί τώρα;</string>
-  <string name="install_apps_">Εγκατάσταση τού προγράμματος περιήγησης;</string>
-  <string name="no_network_connectivity_putting_tor_to_sleep_">Δεν υπάρχει σύνδεση με δίκτυο. Ο Tor μπαίνει σε κατάσταση αναμονής...</string>
+    <string name="no_network_connectivity_putting_tor_to_sleep_">Δεν υπάρχει σύνδεση με δίκτυο. Ο Tor μπαίνει σε κατάσταση αναμονής...</string>
   <string name="network_connectivity_is_good_waking_tor_up_">Η σύνδεση δικτύου είναι καλή. Γίνεται αφύπνιση του Tor...</string>
   <string name="updating_settings_in_tor_service">ενημέρωση ρυθμίσεων στην υπηρεσία Tor</string>
   <string name="pref_socks_title">Tor SOCKS</string>
@@ -143,7 +141,6 @@
   <string name="apps_mode">Λειτουργία VPN</string>
     <string name="send_email">Στείλτε Email</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Μπορείτε να πάρετε μια διεύθυνση γέφυρας μέσω ηλεκτρονικού ταχυδρομείου, στον ιστό ή με τη σάρωση κώδικα QR γέφυρας. Επιλέξτε \'Email\' ή \'Web\' παρακάτω για να ζητήσετε μια διεύθυνση γέφυρας.\n\nΌταν έχετε μια διεύθυνση, αντιγράψτε το &amp; επικολλήστε το στην προτίμηση \"Bridges\" στη ρύθμιση του Orbot και επανεκκινήστε.</string>
-  <string name="install_orweb">Εγκατάσταση Orfox</string>
     <string name="vpn_default_world">Παγκόσμια (Auto)</string>
   <string name="hidden_services">Αποκρυφες υπηρεσιες</string>
   <string name="title_activity_hidden_services">Αποκρυφες υπηρεσιες</string>

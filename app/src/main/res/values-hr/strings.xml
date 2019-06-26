@@ -134,8 +134,7 @@
   <string name="activate">Aktiviraj</string>
   <string name="send_email">Pošalji email</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Možete dobiti adrese mostova kroz email, web ili skeniranjem QR koda. Odaberite \'Email\' ili \'Web\' niže da zatražite adresu mosta.\n\nJednom kad imate adresu, kopirajte i zalijepite ju u \"Mostovi\" postavku Orbot-a i ponovno ga pokrenite.</string>
-  <string name="install_orweb">Instaliraj Orfox</string>
-  <string name="save">Spremi</string>
+    <string name="save">Spremi</string>
   <string name="name">Ime</string>
   <string name="please_restart_Orbot_to_enable_the_changes">Ponovno pokrenite Orbot da bi omogućili promjene</string>
 </resources>

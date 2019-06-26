@@ -92,8 +92,7 @@
     <string name="no_internet_connection_tor">אין חיבור לאינטרנט; תור ממתין...</string>
     <string name="pref_disable_network_summary">כבה את Tor כאשר אין חיבור לאינטרנט</string>
   <string name="newnym">החלפת אל זהות Tor חדשה!</string>
-    <string name="install_apps_">להתקין אפליקציה?</string>
-  <string name="no_network_connectivity_putting_tor_to_sleep_">אין חיבור לרשת. מכבה את Tor....</string>
+    <string name="no_network_connectivity_putting_tor_to_sleep_">אין חיבור לרשת. מכבה את Tor....</string>
   <string name="network_connectivity_is_good_waking_tor_up_">החיבור עובד טוב. מעיר את Tor...</string>
   <string name="updating_settings_in_tor_service">מעדכן הגדרות Tor במכשיר</string>
   <string name="pref_socks_title">Tor SOCKS</string>

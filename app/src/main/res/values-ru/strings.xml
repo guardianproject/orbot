@@ -111,9 +111,7 @@
     <string name="pref_disable_network_title">Автозасыпание без сети</string>
   <string name="pref_disable_network_summary">Переводить Tor в спящий режим при отсутствии интернета</string>
   <string name="newnym">Вы переключились на новый идентификатор Tor!</string>
-    <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Orbot лучше всего работает с браузером Orfox. Установить его?</string>
-  <string name="install_apps_">Установить браузер?</string>
-  <string name="no_network_connectivity_putting_tor_to_sleep_">Нет подключения к сети. Tor переходит в режим сна...</string>
+    <string name="no_network_connectivity_putting_tor_to_sleep_">Нет подключения к сети. Tor переходит в режим сна...</string>
   <string name="network_connectivity_is_good_waking_tor_up_">Подключение к сети установлено. Tor просыпается...</string>
   <string name="updating_settings_in_tor_service">обновление настроек в сервисе Tor</string>
   <string name="pref_socks_title">Tor SOCKS</string>
@@ -143,7 +141,6 @@
   <string name="apps_mode">VPN-режим</string>
     <string name="send_email">Отправить письмо</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Вы можете получить адрес моста по электронной почте, с сайта или путём сканирования QR-кода. Выберите \"Эл. почта\" или \"Сайт\" ниже, чтобы запросить адрес моста.\n\nПолученный адрес скопируйте и вставьте его в разделе настроек Orbot \"Мосты\", после чего перезапустите приложение.</string>
-  <string name="install_orweb">Установить Orfox</string>
     <string name="vpn_default_world">Мир (авто)</string>
   <string name="hidden_services">Скрытые службы</string>
   <string name="title_activity_hidden_services">Скрытые службы</string>
