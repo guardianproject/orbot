@@ -24,20 +24,15 @@ public class VPNEnableActivity extends AppCompatActivity {
 	private Handler h = new Handler();
 	
 	@Override
-	public void onCreate( Bundle icicle ) {
-		
+	public void onCreate(Bundle icicle ) {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-        //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 		super.onCreate( icicle );
 
 		Log.d("VPNEnableActivity","prompting user to start Orbot VPN");
-
-		
 	}
 	
-	public void onResume ()
-	{
+	public void onResume() {
 		super.onResume();
 		
 		if (checkVpn)
@@ -53,10 +48,9 @@ public class VPNEnableActivity extends AppCompatActivity {
 		}
 	}
 	
-	public void promptStartVpnService ()
-    {
+	public void promptStartVpnService () {
+		// todo no actual prompting happens here and this should be refactored
 		startVpnService();
-         
     }
 	 
 	private void startVpnService ()
@@ -88,27 +82,27 @@ public class VPNEnableActivity extends AppCompatActivity {
    		}
 
 	}
-	
-	  @Override
-	    protected void onActivityResult(int request, int response, Intent data) {
-	        super.onActivityResult(request, response, data);
+
+	public static final int ACTIVITY_RESULT_VPN_DENIED = 63;
+
+	@Override
+	protected void onActivityResult(int request, int response, Intent data) {
+		super.onActivityResult(request, response, data);
 	        
-	        if (request == REQUEST_VPN && response == RESULT_OK)
-	        {
-	            sendIntentToService(TorServiceConstants.CMD_VPN);	    
-	            
-	            h.postDelayed(new Runnable () {
-	            	
-	            	public void run ()
-	            	{
-	            		sendIntentToService(TorServiceConstants.ACTION_START);		
-	            		 finish();
+		if (request == REQUEST_VPN && response == RESULT_OK) {
+			sendIntentToService(TorServiceConstants.CMD_VPN);
+			h.postDelayed(new Runnable () {
+	            	@Override
+	            	public void run () {
+	            		sendIntentToService(TorServiceConstants.ACTION_START);
+	            		finish();
 	            	}
 	            }, 1000);
-	            
-	           
-	            
-	        }
+		}
+		else if (request == REQUEST_VPN && response == RESULT_CANCELED) {
+			setResult(ACTIVITY_RESULT_VPN_DENIED);
+			finish();
+		}
 	  }
 	  
 
@@ -122,8 +116,5 @@ public class VPNEnableActivity extends AppCompatActivity {
 			{
 				startService(torService);
 			}
-
-
 		}
-    
 }
