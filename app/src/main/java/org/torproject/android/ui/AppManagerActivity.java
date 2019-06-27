@@ -16,20 +16,16 @@ import org.torproject.android.R;
 import org.torproject.android.service.util.TorServiceUtils;
 import org.torproject.android.service.vpn.TorifiedApp;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -47,7 +43,6 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
     private GridView listApps;
     private ListAdapter adapterApps;
     private ProgressBar progressBar;
-    private final static String TAG = "Orbot";
     PackageManager pMgr = null;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,34 +57,12 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
         progressBar = findViewById(R.id.progressBar);
     }
 
-    /*
-   * Create the UI Options Menu (non-Javadoc)
-   * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
-   */
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.orbot_apps, menu);
-
-        return true;
-    }
-
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home)
-        {
+        if (item.getItemId() == android.R.id.home) {
             finish();
             return true;
         }
-        else if (item.getItemId() == R.id.menu_apps_refresh)
-        {
-            mApps = null;
-            reloadApps();
-            return true;
-        }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -122,11 +95,9 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
     SharedPreferences mPrefs = null;
     ArrayList<TorifiedApp> mApps = null;
 
-    private void loadApps (SharedPreferences prefs)
-    {
-
+    private void loadApps (SharedPreferences prefs) {
         if (mApps == null)
-            mApps = getApps(getApplicationContext(), prefs);
+            mApps = getApps(prefs);
 
         Collections.sort(mApps,new Comparator<TorifiedApp>() {
             public int compare(TorifiedApp o1, TorifiedApp o2) {
@@ -145,6 +116,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
 
         adapterApps = new ArrayAdapter<TorifiedApp>(this, R.layout.layout_apps_item, R.id.itemtext,mApps) {
 
+            @Override
             public View getView(int position, View convertView, ViewGroup parent) {
 
                 ListEntry entry = null;
@@ -157,9 +129,9 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
                 if (entry == null) {
                     // Inflate a new view
                     entry = new ListEntry();
-                    entry.icon = (ImageView) convertView.findViewById(R.id.itemicon);
-                    entry.box = (CheckBox) convertView.findViewById(R.id.itemcheck);
-                    entry.text = (TextView) convertView.findViewById(R.id.itemtext);
+                    entry.icon = convertView.findViewById(R.id.itemicon);
+                    entry.box = convertView.findViewById(R.id.itemcheck);
+                    entry.text = convertView.findViewById(R.id.itemtext);
                     convertView.setTag(entry);
                 }
 
@@ -203,18 +175,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
         private ImageView icon;
     }
 
-    /* (non-Javadoc)
-     * @see android.app.Activity#onStop()
-     */
-    @Override
-    protected void onStop() {
-        super.onStop();
-
-    }
-
-
-    public ArrayList<TorifiedApp> getApps (Context context, SharedPreferences prefs)
-    {
+    public ArrayList<TorifiedApp> getApps(SharedPreferences prefs) {
 
         String tordAppString = prefs.getString(PREFS_KEY_TORIFIED, "");
         String[] tordApps;
@@ -232,11 +193,11 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
 
         Iterator<ApplicationInfo> itAppInfo = lAppInfo.iterator();
 
-        ArrayList<TorifiedApp> apps = new ArrayList<TorifiedApp>();
+        ArrayList<TorifiedApp> apps = new ArrayList<>();
 
-        ApplicationInfo aInfo = null;
+        ApplicationInfo aInfo;
 
-        TorifiedApp app = null;
+        TorifiedApp app;
 
         while (itAppInfo.hasNext())
         {
@@ -316,8 +277,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
     }
 
 
-    public void saveAppSettings (Context context)
-    {
+    public void saveAppSettings() {
 
         StringBuilder tordApps = new StringBuilder();
         Intent response = new Intent();
@@ -340,23 +300,6 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
     }
 
 
-    /**
-     * Called an application is check/unchecked
-     */
-    /**
-    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        final TorifiedApp app = (TorifiedApp) buttonView.getTag();
-        if (app != null) {
-            app.setTorified(isChecked);
-        }
-
-        saveAppSettings(this);
-
-    }**/
-
-
-
-
     public void onClick(View v) {
 
         CheckBox cbox = null;
@@ -373,11 +316,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
                 cbox.setChecked(app.isTorified());
             }
 
-            saveAppSettings(this);
+            saveAppSettings();
         }
     }
-
-
-
-
 }
