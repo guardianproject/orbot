@@ -17,7 +17,6 @@
 package org.torproject.android.service.vpn;
 
 import android.annotation.TargetApi;
-import android.app.Application;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
@@ -37,9 +36,6 @@ import com.runjva.sourceforge.jsocks.protocol.ProxyServer;
 import com.runjva.sourceforge.jsocks.server.ServerAuthenticatorNone;
 
 import org.torproject.android.service.R;
-import org.torproject.android.service.TorService;
-import org.torproject.android.service.TorServiceConstants;
-import org.torproject.android.service.util.TorServiceUtils;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -51,6 +47,9 @@ import java.io.PrintStream;
 import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.concurrent.TimeoutException;
+
+import static org.torproject.android.service.vpn.VpnUtils.getSharedPrefs;
+import static org.torproject.android.service.vpn.VpnUtils.killProcess;
 
 public class OrbotVpnManager implements Handler.Callback {
     private static final String TAG = "OrbotVpnService";
@@ -250,7 +249,7 @@ public class OrbotVpnManager implements Handler.Callback {
         Tun2Socks.Stop();
         
         try {
-        	TorServiceUtils.killProcess(filePdnsd);
+        	killProcess(filePdnsd);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -278,7 +277,7 @@ public class OrbotVpnManager implements Handler.Callback {
         	Tun2Socks.Stop();
         }
 
-        final int localDns = TorService.mPortDns;
+		final int localDns = getSharedPrefs(this.mService.getApplicationContext()).getInt(VpnPrefs.PREFS_DNS_PORT, 0);
         
     	mThreadVPN = new Thread ()
     	{
@@ -367,7 +366,7 @@ public class OrbotVpnManager implements Handler.Callback {
 	private void doLollipopAppRouting (Builder builder) throws NameNotFoundException
     {    
     	   
-        ArrayList<TorifiedApp> apps = TorifiedApp.getApps(mService, TorServiceUtils.getSharedPrefs(mService.getApplicationContext()));
+        ArrayList<TorifiedApp> apps = TorifiedApp.getApps(mService, getSharedPrefs(mService.getApplicationContext()));
     
         boolean perAppEnabled = false;
         
@@ -393,7 +392,7 @@ public class OrbotVpnManager implements Handler.Callback {
     	
     	if (!isRestart)
     	{
-	    	SharedPreferences prefs = TorServiceUtils.getSharedPrefs(mService.getApplicationContext()); 
+	    	SharedPreferences prefs = getSharedPrefs(mService.getApplicationContext());
 	        prefs.edit().putBoolean("pref_vpn", false).commit();      
 	    	stopVPN();	
     	}
