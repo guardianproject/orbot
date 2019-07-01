@@ -7,14 +7,14 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 
-import org.torproject.android.service.OrbotConstants;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
+
+import static org.torproject.android.service.vpn.VpnPrefs.PREFS_KEY_TORIFIED;
 
 public class TorifiedApp implements Comparable {
 
@@ -153,7 +153,7 @@ public class TorifiedApp implements Comparable {
 	public static ArrayList<TorifiedApp> getApps (Context context, SharedPreferences prefs)
 	{
 
-		String tordAppString = prefs.getString(OrbotConstants.PREFS_KEY_TORIFIED, "");
+		String tordAppString = prefs.getString(PREFS_KEY_TORIFIED, "");
 		String[] tordApps;
 
 		StringTokenizer st = new StringTokenizer(tordAppString,"|");
