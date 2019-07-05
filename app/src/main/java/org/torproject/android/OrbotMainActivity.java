@@ -21,6 +21,8 @@ import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.TorService;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.TorServiceUtils;
+import org.torproject.android.service.vpn.VpnConstants;
+import org.torproject.android.service.vpn.VpnPrefs;
 import org.torproject.android.settings.Languages;
 import org.torproject.android.settings.LocaleHelper;
 import org.torproject.android.settings.SettingsPreferences;
@@ -88,6 +90,11 @@ import com.google.zxing.integration.android.IntentResult;
 import pl.bclogic.pulsator4droid.library.PulsatorLayout;
 
 import static android.support.v4.content.FileProvider.getUriForFile;
+import static org.torproject.android.MainConstants.COUNTRY_CODES;
+import static org.torproject.android.MainConstants.RESULT_CLOSE_ALL;
+import static org.torproject.android.MainConstants.URL_TOR_CHECK;
+import static org.torproject.android.service.vpn.VpnPrefs.PREFS_KEY_TORIFIED;
+import static org.torproject.android.service.vpn.VpnUtils.getSharedPrefs;
 
 public class OrbotMainActivity extends AppCompatActivity
         implements OrbotConstants, OnLongClickListener {
@@ -195,6 +202,11 @@ public class OrbotMainActivity extends AppCompatActivity
             startActivity(new Intent(this,OnboardingActivity.class));
         }
 
+        /**
+         * Resets previous DNS Port to the default
+         */
+        getSharedPrefs(getApplicationContext()).edit().putInt(VpnPrefs.PREFS_DNS_PORT,
+                VpnConstants.TOR_DNS_PORT_DEFAULT).apply();
 
     }
 
@@ -375,11 +387,11 @@ public class OrbotMainActivity extends AppCompatActivity
             ArrayList<String> cList = new ArrayList<String>();
             cList.add(0, getString(R.string.vpn_default_world));
 
-            for (int i = 0; i < TorServiceConstants.COUNTRY_CODES.length; i++) {
-                Locale locale = new Locale("", TorServiceConstants.COUNTRY_CODES[i]);
+            for (int i = 0; i < COUNTRY_CODES.length; i++) {
+                Locale locale = new Locale("", COUNTRY_CODES[i]);
                 cList.add(locale.getDisplayCountry());
 
-                if (currentExit.contains(TorServiceConstants.COUNTRY_CODES[i]))
+                if (currentExit.contains(COUNTRY_CODES[i]))
                     selIdx = i + 1;
             }
 
@@ -407,7 +419,7 @@ public class OrbotMainActivity extends AppCompatActivity
                     if (position == 0)
                         country = "";
                     else
-                        country = '{' + TorServiceConstants.COUNTRY_CODES[position - 1] + '}';
+                        country = '{' + COUNTRY_CODES[position - 1] + '}';
 
                     Intent torService = new Intent(OrbotMainActivity.this, TorService.class);
                     torService.setAction(TorServiceConstants.CMD_SET_EXIT);
