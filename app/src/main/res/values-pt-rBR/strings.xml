@@ -111,9 +111,7 @@
     <string name="pref_disable_network_title">Modo de espera automático</string>
   <string name="pref_disable_network_summary">Colocar o Tor em modo de espera quando não houver acesso Internet disponível</string>
   <string name="newnym">Você trocou para uma nova identidade Tor!</string>
-    <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Orbot funciona melhor com o navegador Orfox. Gostaria de instalar ? </string>
-  <string name="install_apps_">Instalar navegador ?</string>
-  <string name="no_network_connectivity_putting_tor_to_sleep_">Sem conectividade na rede. Colocando o Tor para dormir...</string>
+    <string name="no_network_connectivity_putting_tor_to_sleep_">Sem conectividade na rede. Colocando o Tor para dormir...</string>
   <string name="network_connectivity_is_good_waking_tor_up_">Conectividade da rede está boa. Acordando Tor</string>
   <string name="updating_settings_in_tor_service">atualizando configurações no serviço Tor</string>
   <string name="pref_socks_title">Tor SOCKS</string>
@@ -143,7 +141,6 @@
   <string name="apps_mode">Modo VPN</string>
   <string name="send_email">Enviar Email</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Você pode obter um endereço de ponte através de e-mail, web ou lendo um código QR ponte. Selecione \'E-mail\' ou \'Web\' abaixo para solicitar uma ponte endereço. \n\nUma vez que você tem um endereço, copie &amp; colá-lo na \"Bridges\" preferência na configuração e reiniciar do Orbot.</string>
-  <string name="install_orweb">Instalar Orfox</string>
     <string name="vpn_default_world">Global (Automático)</string>
   <string name="hidden_services">Serviços Ocultos</string>
   <string name="title_activity_hidden_services">Serviços Ocultos</string>

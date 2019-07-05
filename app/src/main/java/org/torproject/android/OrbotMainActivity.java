@@ -38,7 +38,6 @@ import org.torproject.android.vpn.VPNEnableActivity;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningServiceInfo;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.ContentValues;
@@ -48,7 +47,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.database.Cursor;
@@ -828,55 +826,15 @@ public class OrbotMainActivity extends AppCompatActivity
 	/*
 	 * Launch the system activity for Uri viewing with the provided url
 	 */
-	private void openBrowser(final String browserLaunchUrl,boolean forceExternal, String pkgId)
-	{
-        boolean isBrowserInstalled = appInstalledOrNot(TorServiceConstants.BROWSER_APP_USERNAME);
-
-		if (pkgId != null)
-        {
+	private void  openBrowser(final String browserLaunchUrl,boolean forceExternal, String pkgId) {
+		if (pkgId != null) {
             startIntent(pkgId,Intent.ACTION_VIEW,Uri.parse(browserLaunchUrl));
         }
-        else if (isBrowserInstalled)
-        {
-            startIntent(TorServiceConstants.BROWSER_APP_USERNAME,Intent.ACTION_VIEW,Uri.parse(browserLaunchUrl));
-        }
-		else if (mBtnVPN.isChecked()||forceExternal)
-		{
+		else if (mBtnVPN.isChecked()||forceExternal) {
 			//use the system browser since VPN is on
 			startIntent(null,Intent.ACTION_VIEW, Uri.parse(browserLaunchUrl));
 		}
-		
 	}
-
-	private void promptInstallOrfox ()
-    {
-        AlertDialog aDialog = new AlertDialog.Builder(OrbotMainActivity.this)
-                .setTitle(R.string.install_apps_)
-                .setMessage(R.string.it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_)
-                .setPositiveButton(R.string.install_orweb, new Dialog.OnClickListener ()
-                {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        startActivity(OnboardingActivity.getInstallIntent(TorServiceConstants.BROWSER_APP_USERNAME,OrbotMainActivity.this));
-
-
-                    }
-
-                })
-                .setNegativeButton(R.string.btn_cancel, new Dialog.OnClickListener ()
-                {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                    }
-
-                })
-                .show();
-    }
-
 
     private void startIntent (String pkg, String action, Uri data)
     {
@@ -904,20 +862,6 @@ public class OrbotMainActivity extends AppCompatActivity
 
         }
     }
-    
-    private boolean appInstalledOrNot(String uri)
-    {
-        PackageManager pm = getPackageManager();
-        try
-        {
-               PackageInfo pi = pm.getPackageInfo(uri, PackageManager.GET_ACTIVITIES);               
-               return pi.applicationInfo.enabled;
-        }
-        catch (PackageManager.NameNotFoundException e)
-        {
-              return false;
-        }
-   }    
     
     @Override
     protected void onActivityResult(int request, int response, Intent data) {
@@ -1049,7 +993,7 @@ public class OrbotMainActivity extends AppCompatActivity
         sendIntentToService(TorServiceConstants.CMD_VPN_CLEAR);
     }
 
-       @Override
+    @Override
     protected void onResume() {
         super.onResume();
 
@@ -1334,28 +1278,6 @@ public class OrbotMainActivity extends AppCompatActivity
                     + getString(R.string.mb);
     }
 
-    /**
-      private static final float ROTATE_FROM = 0.0f;
-        private static final float ROTATE_TO = 360.0f*4f;// 3.141592654f * 32.0f;
-
-    public void spinOrbot (float direction)
-    {
-            sendIntentToService (TorServiceConstants.CMD_NEWNYM);
-        
-        
-            Toast.makeText(this, R.string.newnym, Toast.LENGTH_SHORT).show();
-            
-        //    Rotate3dAnimation rotation = new Rotate3dAnimation(ROTATE_FROM, ROTATE_TO*direction, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-             Rotate3dAnimation rotation = new Rotate3dAnimation(ROTATE_FROM, ROTATE_TO*direction, imgStatus.getWidth()/2f,imgStatus.getWidth()/2f,20f,false);
-             rotation.setFillAfter(true);
-              rotation.setInterpolator(new AccelerateInterpolator());
-              rotation.setDuration((long) 2*1000);
-              rotation.setRepeatCount(0);
-              imgStatus.startAnimation(rotation);
-              
-        
-    }**/
-
     private static final float ROTATE_FROM = 0.0f;
     private static final float ROTATE_TO = 360.0f*4f;// 3.141592654f * 32.0f;
 
@@ -1372,38 +1294,12 @@ public class OrbotMainActivity extends AppCompatActivity
         lblStatus.setText(getString(R.string.newnym));
     }
 
-    private void addAppShortcuts ()
-    {
-        LinearLayout llBoxShortcuts = (LinearLayout)findViewById(R.id.boxAppShortcuts);
+    private void addAppShortcuts() {
+        LinearLayout llBoxShortcuts = findViewById(R.id.boxAppShortcuts);
 
         PackageManager pMgr = getPackageManager();
 
         llBoxShortcuts.removeAllViews();
-
-        //first add Orfox shortcut
-        try {
-
-            ImageView iv = new ImageView(this);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            params.setMargins(3, 3, 3, 3);
-            iv.setLayoutParams(params);
-            iv.setImageResource(R.drawable.orfox64);
-            llBoxShortcuts.addView(iv);
-            iv.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (!appInstalledOrNot(TorServiceConstants.BROWSER_APP_USERNAME))
-                        promptInstallOrfox();
-                    else
-                        openBrowser(URL_TOR_CHECK,false, TorServiceConstants.BROWSER_APP_USERNAME);
-
-                }
-            });
-        }
-        catch (Exception e)
-        {
-            //package not installed?
-        }
 
         if (PermissionManager.isLollipopOrHigher()) {
 
@@ -1444,8 +1340,6 @@ public class OrbotMainActivity extends AppCompatActivity
                             //package not installed?
                         }
                     }
-
-
                 }
             }
             else

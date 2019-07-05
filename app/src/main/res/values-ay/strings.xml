@@ -111,8 +111,6 @@
   <string name="pref_disable_network_title">Jan jiwt\'ayas suyt\'aña</string>
   <string name="pref_disable_network_summary">Llika jan uktjki ukjax Tor suyt\'ayam</string>
   <string name="newnym">¡Jichhax Tor sutimax yaqhäxiwa!</string>
-  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Orbotax Orfox thaqhirimpix jasak irnaqi. ¿Jichhpachat apaqäta?</string>
-  <string name="install_apps_">¿Thaqhirt apaqäta?</string>
   <string name="no_network_connectivity_putting_tor_to_sleep_">Janiw llikax utjkiti. Torax suyt\'ayatawa...</string>
   <string name="network_connectivity_is_good_waking_tor_up_">Llikax khus uñstaniski. Torax aqtaskiwa...</string>
   <string name="updating_settings_in_tor_service">Toran wakichäwinakax mayjt\'ayaskiwa</string>
@@ -143,8 +141,7 @@
   <string name="apps_mode">VPN</string>
   <string name="send_email">Qillqat apayaña</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Jalakipañan QR waruqasa, jan ukax llikatuqi, imailtuqis jalakipañ utjirinakx jikxatarakismawa. Jalakipañ thakh jikxatañatakix \'Imail\' jan ukax \'llika\' ajllt\'am.\n\n Orbotan majt\'ayañawjapan \"Jalakipañ Thakhi\" limt\'añar apkatam, ukat mayamp qalltam.</string>
-  <string name="install_orweb">Orfox apaqaña</string>
-  <string name="vpn_default_world">Uraqpacha (justupaki)</string>
+    <string name="vpn_default_world">Uraqpacha (justupaki)</string>
   <string name="hidden_services">Imantat lurañanaka</string>
   <string name="title_activity_hidden_services">Imantat lurañanaka</string>
   <string name="menu_hidden_services">Imantat lurañanaka</string>

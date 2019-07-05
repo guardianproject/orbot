@@ -111,8 +111,6 @@
     <string name="pref_disable_network_title">Kein Automatischer Netzwerk Ruhezustand</string>
   <string name="pref_disable_network_summary">Versetze Tor in den Ruhezustand wenn kein Internet verfügbar ist</string>
   <string name="newnym">Sie haben zu einer Neuen Tor-Identität gewechselt!</string>
-    <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Orbot funktioniert am Besten mit dem Orfox-Browser. Jetzt Installieren?</string>
-  <string name="install_apps_">Browser installieren?</string>
   <string name="no_network_connectivity_putting_tor_to_sleep_">Keine Netzwerk-Verbindung. Tor wird in den Ruhezustand versetzt…</string>
   <string name="network_connectivity_is_good_waking_tor_up_">Netzwerk-Verbindung ist Gut. Tor wird aktiviert …</string>
   <string name="updating_settings_in_tor_service">Aktualisiere Einstellungen für den Tor-Dienst</string>
@@ -143,7 +141,6 @@
   <string name="apps_mode">VPN Modus</string>
     <string name="send_email">E-Mail senden</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Sie können eine Brücken-Adresse per E-Mail, im Web oder per Scan eines BrückenQR-Codes erhalten. Wählen Sie unten \'E-Mail\' oder \'Web\', um eine Brückenadresse anzufordern.\n\nSobald Sie eine Adresse haben, fügen Sie diese bei den Einstellungen für Brücken ein und starten Sie Orbot neu.</string>
-  <string name="install_orweb">Installiere Orfox</string>
     <string name="vpn_default_world">Global (Automatisch)</string>
   <string name="hidden_services">Versteckte Dienste</string>
   <string name="title_activity_hidden_services">Versteckte Dienste</string>

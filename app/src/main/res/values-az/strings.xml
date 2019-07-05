@@ -136,7 +136,6 @@ LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="activate">Aktivləşdir</string>
   <string name="send_email">Emeyl göndərin</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Körpü ünvanını siz emeyl və veb vasitəsiylə, ya da körpünün QR kodunu skan etməklə əldə edə bilərsiniz. Körpü ünvanı haqda sorğunun altında  \'Email\'i, yaxud \'Web\'i seçin.\n\nÜnvanı əldə edəndən sonra  &amp;amp-i nüsxələyin və onu Orbot quraşdırmasındakı \"Bridges\" parametrinə qoyun və cihazı yenidən yükləyin.</string>
-  <string name="install_orweb">Orfoxu quraşdırın</string>
     <string name="save">Saxla</string>
   <string name="name">Ad</string>
   <string name="please_restart_Orbot_to_enable_the_changes">Lütfən, Orbotu söndürün və yenidən yandırın ki, dəyişikliklər tətbiq edilsin.</string>

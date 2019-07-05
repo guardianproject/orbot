@@ -134,7 +134,6 @@
   <string name="activate">Aktivovať</string>
   <string name="send_email">Poslať email</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Môžete získať adresu premostenia cez email, web, alebo naskenovaním QR kódu premostenia. Vyberte \'Email\' alebo \'Web\' nižšie pre vyžiadanie adresy premostenia.\n\nAkonáhle budete mať adresu, skopírujte a vložte ju do nastavení \"Premostenia\" v nastaveniach Orbot a reštartujte ho.</string>
-  <string name="install_orweb">Inštalovať Orfox</string>
     <string name="save">Uložiť</string>
   <string name="name">Meno</string>
   <string name="please_restart_Orbot_to_enable_the_changes">Prosím reštartujte Orbot, aby sa aktivovali zmeny</string>

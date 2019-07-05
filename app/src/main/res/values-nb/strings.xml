@@ -108,8 +108,7 @@
     <string name="pref_disable_network_title">Inget automatisk hvilemodus for nettverk</string>
   <string name="pref_disable_network_summary">Legg Tor i hvilemodus når nettilkobling til internett ikke er tilgjengelig</string>
   <string name="newnym">Du har byttet til en ny Tor-identitet!</string>
-    <string name="install_apps_">Installer nettleser?</string>
-  <string name="no_network_connectivity_putting_tor_to_sleep_">Ingen nettverkstilkobling. Tor går i dvale…</string>
+    <string name="no_network_connectivity_putting_tor_to_sleep_">Ingen nettverkstilkobling. Tor går i dvale…</string>
   <string name="network_connectivity_is_good_waking_tor_up_">Nettverkstilkoblingen er bra. Vekker opp Tor…</string>
   <string name="updating_settings_in_tor_service">Oppdaterer innstillinger i Tor service</string>
   <string name="pref_socks_title">Tor-SOCKS</string>
@@ -138,7 +137,6 @@
   <string name="apps_mode">VPN-modus</string>
   <string name="send_email">Send e-post</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Du kan få en bro-adresse på e-post, gjennom nettet eller ved å skanne en bro-QR-kode. Velg \'E-post\' eller \'Nett\' nedenfor for å forespørre en broadresse.\n\nNår du har en adresse, kopier og lim den inn i \"Broer\" i Orbots innstillinger og start på ny.</string>
-  <string name="install_orweb">Installer Orfox</string>
     <string name="hidden_services">Hidden Services</string>
   <string name="title_activity_hidden_services">Hidden Services</string>
   <string name="menu_hidden_services">Hidden Services</string>

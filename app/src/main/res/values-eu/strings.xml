@@ -111,8 +111,6 @@
     <string name="pref_disable_network_title">Sareko lokartze automatikorik ez</string>
   <string name="pref_disable_network_summary">Jarri Tor lotan internet atzigarri ez dagoenean</string>
   <string name="newnym">Tor identitate berri batera aldatu duzu!</string>
-    <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">Orbot hobeto dabil Orfox nabigatzailearekin. Instalatu orain?</string>
-  <string name="install_apps_">Instalatu nabigatzailea?</string>
   <string name="no_network_connectivity_putting_tor_to_sleep_">Sare konexiorik ez. Tor lotan jartzen...</string>
   <string name="network_connectivity_is_good_waking_tor_up_">Sare konexioa berreskuratu da. Tor esnatzen...</string>
   <string name="updating_settings_in_tor_service">Tor zerbitzuaren ezarpenak eguneratzen</string>
@@ -143,7 +141,6 @@
   <string name="apps_mode">VPN modua</string>
     <string name="send_email">Bidali E-maila</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Zubi helbide bat lortu dezakezu e-mail eta web bidez edo QR kode bat eskaneatuz. Hautatu \'E-mail\' edo \'Web\' behean zubi helbide bat eskatzeko.\n\nBehin helbide bat duzula, kopiatu eta itsatsi ezazu Orbot ezarpenetako \"Zubiak\" atalean eta berrabiarazi.</string>
-  <string name="install_orweb">Instalatu Orfox</string>
     <string name="vpn_default_world">Orokorra (Automatikoa)</string>
   <string name="hidden_services">Ezkutuko zerbitzuak</string>
   <string name="title_activity_hidden_services">Ezkutuko zerbitzuak</string>

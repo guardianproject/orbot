@@ -106,7 +106,6 @@
     <string name="pref_disable_network_title">Brak Auto-Uśpienia Sieci</string>
   <string name="pref_disable_network_summary">Ustaw Tor\'a w tryb uśpienia kiedy połączenie internetowe będzie niedostępne</string>
   <string name="newnym">Nowa tożsamość Tor\'a została zmieniona!</string>
-    <string name="install_apps_">Zainstalować przeglądarkę?</string>
   <string name="no_network_connectivity_putting_tor_to_sleep_">Brak połączenia internetowego. Tor będzie w trybie snu...</string>
   <string name="network_connectivity_is_good_waking_tor_up_">Połączenie internetowe jest dobre. Trwa budzenie Tora...</string>
   <string name="updating_settings_in_tor_service">aktualizowanie ustawień w serwisie Tor</string>
@@ -136,7 +135,6 @@
   <string name="apps_mode">Tryb VPN</string>
   <string name="send_email">Wyślij Email</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Możesz uzyskać adres Bridge poprzez email, internet, lub poprzez zeskanowanie kodu QR. Wybierz \'Email\' lub \'Internet\' poniżej, aby poprosić o adres bridge\'a.\n\nJak już będziesz mieć ten adres to skopiuj i wklej go do \"Bridges\" we właściwościach Orbota a następnie go zrestartuj.</string>
-  <string name="install_orweb">Zainstaluj Orfox</string>
     <string name="hidden_services">Ukryte Usługi</string>
   <string name="title_activity_hidden_services">Ukryte Usługi</string>
   <string name="menu_hidden_services">Ukryte Usługi</string>

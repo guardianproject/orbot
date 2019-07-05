@@ -28,7 +28,6 @@
     <string name="set_locale_title">Til</string>
     <string name="get_bridges_email">E-pochta manzili</string>
   <string name="send_email">Email jo\'natish</string>
-  <string name="install_orweb">Orfoxni o\'rnatish</string>
-  <string name="save">Saqlash</string>
+    <string name="save">Saqlash</string>
   <string name="name">Ism</string>
 </resources>

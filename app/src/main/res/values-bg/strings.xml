@@ -106,7 +106,6 @@
     <string name="pref_disable_network_title">Лиспва Автоматичен Режим на Изчакване</string>
   <string name="pref_disable_network_summary">Сложи Tor в режим на изчакване, когато няма интернет</string>
   <string name="newnym">Сменихте своята Тор идентичност!</string>
-    <string name="install_apps_">Инсталиране на браузър?</string>
   <string name="no_network_connectivity_putting_tor_to_sleep_">Няма интернет връзка. Преминаване в режим на изчкаване...</string>
   <string name="network_connectivity_is_good_waking_tor_up_">Добра интернет връзка. Събуждане на Tor...</string>
   <string name="updating_settings_in_tor_service">обновяване на настройките в Tor услугата</string>
@@ -135,7 +134,6 @@
   <string name="activate">Активирай</string>
   <string name="send_email">Изпрати имейл</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Можеш да получиш адреса на мост по имейл, интернет или като сканираш QR kod. Избери \'Имейл\' или \'Интернет\' по-долу, за да поискаш адрес на мост.\n\nВеднъж щом получиш адреса го копирай в \"Мостове\", в настройките на Orbot и рестартирай приложението.</string>
-  <string name="install_orweb">Инсталирай Orfox</string>
     <string name="hidden_services">Скрити услуги</string>
   <string name="title_activity_hidden_services">Скрити услуги</string>
   <string name="menu_hidden_services">Скрити услуги</string>

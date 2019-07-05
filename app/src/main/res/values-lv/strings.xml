@@ -134,7 +134,6 @@
   <string name="activate">Aktivizēt</string>
   <string name="send_email">Nosūtīt e-pastu</string>
   <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Jūs varat saņemt tiltu adreses e-pastā, tīmeklī vai skenējot tiltu QR kodu. Zemāk atlasiet „E-pasts” vai „Tīmeklis”, lai pieprasītu tiltu adreses. Kad esat saņēmis adreses, tad tās iekopējiet un ielīmējiet Orbot iestatījumu preferencēs „Tilti” un pārstartējiet.</string>
-  <string name="install_orweb">Instalēt Orfox</string>
     <string name="hidden_services">Slēptie pakalpojumi</string>
   <string name="title_activity_hidden_services">Slēptie pakalpojumi</string>
   <string name="menu_hidden_services">Slēptie pakalpojumi</string>

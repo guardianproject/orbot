@@ -108,8 +108,6 @@
   <string name="pref_disable_network_title">لاتوجد شبكة نوم-آلي</string>
   <string name="pref_disable_network_summary">ضع تور في وضعية النوم عند عدم وجود الأنترنت</string>
   <string name="newnym">لقد تحولت الى هوية تور جديدة</string>
-  <string name="it_doesn_t_seem_like_you_have_orweb_installed_want_help_with_that_or_should_we_just_open_the_browser_">يشتغل أوربوت أحسن مع متصفح أورفوكس. هل تود تثبيته الآن ؟</string>
-  <string name="install_apps_">هل تود تنصيب متصفح ؟</string>
   <string name="no_network_connectivity_putting_tor_to_sleep_">لا يوجد اتصال بألشبكة. سينتقل تور الى وضعية النوم</string>
   <string name="network_connectivity_is_good_waking_tor_up_">حال الإتصال بالشبكة جيد. يتم إيقاذ تور...</string>
   <string name="updating_settings_in_tor_service">تحديث الاعدادات في خدمات تور</string>
@@ -142,8 +140,7 @@
 إختر \"بريد إلكتروني\" أو \"ويب\" بالأسفل لطلب عنوان جسر.
 
 ما أن تحصل على جسر، أنسخه وألصقه في خانة \"الجسور\" في إعدادات أوربوت وأعد التشغيل.</string>
-  <string name="install_orweb">تثبيت أورفوكس</string>
-  <string name="vpn_default_world">شامل (تلقائي)</string>
+    <string name="vpn_default_world">شامل (تلقائي)</string>
   <string name="hidden_services">خدمات خفية</string>
   <string name="title_activity_hidden_services">خدمات خفية</string>
   <string name="menu_hidden_services">خدمات خفية</string>
