@@ -600,7 +600,7 @@ public class OrbotMainActivity extends AppCompatActivity
         Prefs.putUseVpn(enable);
 
         if (enable) {
-            startActivity(new Intent(OrbotMainActivity.this, VPNEnableActivity.class));
+            startActivityForResult(new Intent(OrbotMainActivity.this, VPNEnableActivity.class), REQUEST_VPN);
         } else
             stopVpnService();
 
@@ -896,8 +896,9 @@ public class OrbotMainActivity extends AppCompatActivity
 			if (response == RESULT_OK) {
                 sendIntentToService(TorServiceConstants.CMD_VPN);
             }
-			else
+			else if (response == VPNEnableActivity.ACTIVITY_RESULT_VPN_DENIED)
 			{
+			    mBtnVPN.setChecked(false);
 				Prefs.putUseVpn(false);
 			}
         }
