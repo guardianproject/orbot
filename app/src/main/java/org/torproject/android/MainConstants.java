@@ -2,8 +2,6 @@ package org.torproject.android;
 
 public interface MainConstants {
 
-    String BROWSER_APP_USERNAME = "info.guardianproject.orfox";
-
     //EXIT COUNTRY CODES
     String[] COUNTRY_CODES = {"DE","AT","SE","CH","IS","CA","US","ES","FR","BG","PL","AU","BR","CZ","DK","FI","GB","HU","NL","JP","RO","RU","SG","SK"};
 

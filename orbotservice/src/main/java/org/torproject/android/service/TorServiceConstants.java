@@ -7,9 +7,7 @@ import android.content.Intent;
 
 public interface TorServiceConstants {
 
-	String TOR_APP_USERNAME = "org.torproject.android";
 
-	//String DIRECTORY_TOR_BINARY = "bin";
 	String DIRECTORY_TOR_DATA = "data";
 
 	String TOR_CONTROL_PORT_FILE = "control.txt";
