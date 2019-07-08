@@ -1,5 +1,59 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+/** 16.1.0-RC-1-tor-0.4.0.4-rc / 8 July 2019 / e60c07ed0ffc8360db4dfcdeffd8578945b38d0b **/
+
+Thanks to @bitmold @sisbell @pgerber and @eighthave for all the great work, not to mention the core Tor dev team making all things mobile better every day!
+
+e60c07ed (HEAD -> master, tag: 16.1.0-RC-1-tor-0.4.0.4-rc, public/master, origin/master, origin/HEAD) update to 16.1.0-RC-1-tor-0.4.0.4-rc
+9e54cd6e set PDNSD server IP to 192.168.200.1 for local VPN network 0.0.0.0 allowed outside access to DNS port in some cases
+b7d100ca fixes #239 #229 #227 #205 and other VPN / DNS issues moved PDNSD daemon to load from the .so native path
+f9c1486c Merge pull request #241 from bitmold/fix_hs_dialog_crash
+f1b00157 Merge branch 'sisbell-sisbell_236a'
+65ee380d (sisbell-sisbell_236a) Merge branch 'sisbell_236a' of https://github.com/sisbell/orbot into sisbell-sisbell_236a
+1c386959 Fixes #236: Separate Constants For VPN, TOR and MAIN_APP
+ce85e951 Fixed crash I introduced with the NoPersonalizedLearningEditText
+324b35ea (tag: 16.1.0-BETA-6-tor-0.4.0.4-rc) update to 16.1.0-BETA-6-tor-0.4.0.4-rc
+b6135386 Merge branch 'sisbell_236a' of https://github.com/sisbell/orbot into sisbell-sisbell_236a
+124273fd (newport/master) Merge branch 'sisbell-sisbell_237'
+43d807fd (sisbell-sisbell_237) remove minSDK from OrbotService manifest
+45369a2a Merge branch 'sisbell_237' of https://github.com/sisbell/orbot into sisbell-sisbell_237
+4a79476e Merge pull request #234 from bitmold/vpn_request_cancel_bug_fixes
+b0cf7424 Merge pull request #233 from bitmold/no_vpn_refresh_btn
+e448c18b Merge branch 'bitmold-remove_orfox'
+f3211aca Fixes #236: Separate Constants For VPN, TOR and MAIN_APP
+8c232f73 Fixes #237: Upgrade to Gradle 5.x
+2ebd3384 Fixes VPN Request Cancel Bugs
+cde49d1a Removes the refresh button on the VPN Selection screen
+351ef96f (bitmold-remove_orfox) Removes references to Orfox since it is being completely replaced with the Tor Browser for Android. Conversations surrounding this can be found here https://blog.torproject.org/comment/281767#comment-281767 and here https://trac.torproject.org/projects/tor/ticket/29955
+656d39b7 (tag: 16.1.0-BETA-5-tor-0.4.0.4-rc) update to 16.1.0-BETA-5-tor-0.4.0.4-rc
+814fbb31 reset default ports to 9050, 8118 but make them dynamic if needed - ports will be checked and if not available, increment +1 - new setting add to allow static setting of http port value
+827b905e ensure we are putting the right value in
+144a4ed5 small change to attempt to address localization glitches
+c4062678 Merge branch 'master' of github.com:n8fr8/orbot
+ecdff5ce remove unused settings for root and transproxy
+811c09aa Merge pull request #226 from bitmold/removed_unused_eclipes_prefs_folder
+0361fb9a Merge pull request #225 from bitmold/missing_hidden_service_str
+510118eb Merge branch 'master' of github.com:n8fr8/orbot
+f0103bf4 Removed unused Eclipse IDE settings files. I think there are old Eclipse build files in the root of the repository that should also get deleted but I'm not 100% sure if some of them are still used or not
+768bbf94 The string resource "hidden_service_request" was missed in the "hidden service" to "onion service"rename in #222
+53940073 Merge pull request #223 from bitmold/farsi_settings_crash_no_custom_prefs
+f0eede1d Merge pull request #222 from pgerber/onion-service
+aea140cf Merge pull request #221 from pgerber/dns-ttl
+7887e119 fixes Farsi settings crash
+f58ef4c0 (tag: 16.1.0-BETA-4-tor-0.4.0.4-rc) update to 16.1.0-BETA-4-tor-0.4.0.4-rc
+dd3a8b0b improve how bridge lines are configured
+553528cb make sure to use the request shell for exec()
+1f36689b make sure we set HOME env variable some devices don't have it for their sh commands
+dc942cde Rename hidden services to onion services
+2a0a116c Fix onion service only working intermittently in VPN mode
+77d979cd (tag: 16.1.0-BETA-3-tor-0.4.0.4-rc) update to 16.1.0-BETA-3-tor-0.4.0.4-rc
+eb13e155 don't use 'UpdateBridgesFromAuthority' as it seems to cause a hang
+67b69164 update built-in bridges
+97a32ccf add ' UpdateBridgesFromAuthority' to help keep people connected to bridge
+aeb54c7e (tag: 16.1.0-BETA-2-tor-0.4.0.4-rc) update to 16.1.0-BETA-2-tor-0.4.0.4-rc
+6dffafcb add dynamic display of SOCKS and HTTP port proxy value
+397391f0 remove hardcoded port values, make it all dynamic
+
 /** 16.1.0-BETA-1-tor-0.4.0.4-rc / 31 May 2019 / 417e4fcd0720be57328d63a96d2c9fc0e119330f **/
 
 Thanks to @bitmold @sisbell and @eighthave for all the great work, not to mention the core Tor dev team making all things mobile better every day!
