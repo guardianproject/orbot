@@ -1,6 +1,7 @@
 package org.torproject.android.service.util;
 
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
 import android.os.Build;
 import android.util.Log;
 
@@ -13,12 +14,9 @@ import java.util.zip.ZipFile;
 
 public class CustomNativeLoader {
 
-    private final static String LIB_NAME = "tor";
-    private final static String LIB_SO_NAME = "tor.so";
+    private final static String TAG = "CNL";
 
-    private final static String TAG = "TorNativeLoader";
-
-    private static boolean loadFromZip(Context context, File destLocalFile, String arch) {
+    private static boolean loadFromZip(Context context, String libname, File destLocalFile, String arch) {
 
 
         ZipFile zipFile = null;
@@ -26,9 +24,9 @@ public class CustomNativeLoader {
 
         try {
             zipFile = new ZipFile(context.getApplicationInfo().sourceDir);
-            ZipEntry entry = zipFile.getEntry("lib/" + arch + "/" + LIB_SO_NAME);
+            ZipEntry entry = zipFile.getEntry("lib/" + arch + "/" + libname + ".so");
             if (entry == null) {
-                throw new Exception("Unable to find file in apk:" + "lib/" + arch + "/" + LIB_NAME);
+                throw new Exception("Unable to find file in apk:" + "lib/" + arch + "/" + libname);
             }
 
             //how we wrap this in another stream because the native .so is zipped itself
@@ -69,9 +67,26 @@ public class CustomNativeLoader {
         return false;
     }
 
-    public static synchronized File initNativeLibs(Context context, File destLocalFile) {
+    public static File loadNativeBinary(Context context, String libname, File destLocalFile) {
 
         try {
+
+
+            File fileNativeBin = new File(getNativeLibraryDir(context),libname + ".so");
+
+            if (fileNativeBin.exists())
+            {
+                if (fileNativeBin.canExecute())
+                    return fileNativeBin;
+                else
+                {
+                    setExecutable(fileNativeBin);
+
+                    if (fileNativeBin.canExecute())
+                        return fileNativeBin;
+                }
+            }
+
             String folder = Build.CPU_ABI;
 
 
@@ -80,8 +95,7 @@ public class CustomNativeLoader {
                 folder = "x86";
             }
 
-
-            if (loadFromZip(context, destLocalFile, folder)) {
+            if (loadFromZip(context, libname, destLocalFile, folder)) {
                 return destLocalFile;
             }
 
@@ -92,5 +106,19 @@ public class CustomNativeLoader {
 
         return null;
     }
+
+    private static void setExecutable(File fileBin) {
+        fileBin.setReadable(true);
+        fileBin.setExecutable(true);
+        fileBin.setWritable(false);
+        fileBin.setWritable(true, true);
+    }
+
+    // Return Full path to the directory where native JNI libraries are stored.
+    private static String getNativeLibraryDir(Context context) {
+        ApplicationInfo appInfo = context.getApplicationInfo();
+        return appInfo.nativeLibraryDir;
+    }
+
 }
 

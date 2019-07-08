@@ -36,6 +36,7 @@ import com.runjva.sourceforge.jsocks.protocol.ProxyServer;
 import com.runjva.sourceforge.jsocks.server.ServerAuthenticatorNone;
 
 import org.torproject.android.service.R;
+import org.torproject.android.service.util.CustomNativeLoader;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -79,6 +80,7 @@ public class OrbotVpnManager implements Handler.Callback {
 
 	File filePdnsd = null;
 
+	private final static String PDNSD_BIN = "pdnsd";
 	private final static int PDNSD_PORT = 8091;
 
 	private boolean isRestart = false;
@@ -89,7 +91,8 @@ public class OrbotVpnManager implements Handler.Callback {
     public OrbotVpnManager (VpnService service) throws IOException, TimeoutException {
     	mService = service;
 
-		filePdnsd = new PDNSDInstaller(service.getApplicationContext(),service.getFilesDir()).installResources();
+
+		filePdnsd = CustomNativeLoader.loadNativeBinary(service.getApplicationContext(),PDNSD_BIN,new File(service.getFilesDir(),PDNSD_BIN));
 
 		Tun2Socks.init();
 
@@ -343,7 +346,7 @@ public class OrbotVpnManager implements Handler.Callback {
 		        	isRestart = false;
 
 					//start PDNSD daemon pointing to actual DNS
-					startDNS("127.0.0.1",localDns);
+					startDNS(filePdnsd.getCanonicalPath(), "127.0.0.1",localDns);
 
 					Tun2Socks.Start(mInterface, VPN_MTU, virtualIP, virtualNetMask, localSocks , localDNS , localDnsTransparentProxy);
 
@@ -404,14 +407,14 @@ public class OrbotVpnManager implements Handler.Callback {
     }
 
 
-    private void startDNS (String dns, int port) throws IOException, TimeoutException
+    private void startDNS (String pdnsPath, String dns, int port) throws IOException, TimeoutException
     {
 
 		File fileConf = makePdnsdConf(mService, dns, port,mService.getFilesDir());
     	
       //  ArrayList<String> customEnv = new ArrayList<String>();
 
-        String[] cmdString = {filePdnsd.getCanonicalPath(),"-c",fileConf.toString()};
+        String[] cmdString = {pdnsPath,"-c",fileConf.toString()};
         ProcessBuilder pb = new ProcessBuilder(cmdString);
         pb.redirectErrorStream(true);
 		Process proc = pb.start();

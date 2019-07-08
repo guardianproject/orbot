@@ -74,9 +74,7 @@ public class CustomTorResourceInstaller implements TorServiceConstants {
         }
 
         //let's try another approach
-        fileTor = new File(installFolder, TOR_ASSET_KEY);
-        //fileTor = NativeLoader.initNativeLibs(context,fileTor);
-        CustomNativeLoader.initNativeLibs(context,fileTor);
+        fileTor = CustomNativeLoader.loadNativeBinary(context,TOR_ASSET_KEY,new File(installFolder, TOR_ASSET_KEY));
 
         setExecutable(fileTor);
 
