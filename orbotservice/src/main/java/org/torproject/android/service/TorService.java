@@ -51,6 +51,7 @@ import org.torproject.android.service.util.TorServiceUtils;
 import org.torproject.android.service.util.Utils;
 import org.torproject.android.service.vpn.OrbotVpnManager;
 import org.torproject.android.service.vpn.TorVpnService;
+import org.torproject.android.service.vpn.VpnPrefs;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -80,6 +81,9 @@ import java.util.concurrent.TimeoutException;
 
 import info.pluggabletransports.dispatch.util.TransportListener;
 import info.pluggabletransports.dispatch.util.TransportManager;
+
+import static org.torproject.android.service.vpn.VpnUtils.getSharedPrefs;
+import static org.torproject.android.service.vpn.VpnUtils.killProcess;
 
 public class TorService extends Service implements TorServiceConstants, OrbotConstants
 {
@@ -492,7 +496,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         }
         // if that fails, try again using native utils
         try {
-        	TorServiceUtils.killProcess(fileTor, "-1"); // this is -HUP
+            killProcess(fileTor, "-1"); // this is -HUP
         } catch (Exception e) {
             e.printStackTrace();
         } 
@@ -1105,6 +1109,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                         confDns = st.nextToken().split(":")[1];
                         confDns = confDns.substring(0,confDns.length()-1);
                         mPortDns = Integer.parseInt(confDns);
+                        getSharedPrefs(getApplicationContext()).edit().putInt(VpnPrefs.PREFS_DNS_PORT, mPortDns).apply();
+
 
                         String confTrans = conn.getInfo("net/listeners/trans");
                         st = new StringTokenizer(confTrans," ");

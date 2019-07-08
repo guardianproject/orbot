@@ -26,6 +26,8 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
 
+import static org.torproject.android.MainConstants.URL_TOR_BRIDGES;
+
 public class BridgeWizardActivity extends AppCompatActivity {
 
     private TextView tvStatus;
@@ -128,7 +130,7 @@ public class BridgeWizardActivity extends AppCompatActivity {
                 .setPositiveButton(R.string.get_bridges_web, new Dialog.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        openBrowser(OrbotConstants.URL_TOR_BRIDGES, true);
+                        openBrowser(URL_TOR_BRIDGES, true);
                     }
                 }).show();
     }

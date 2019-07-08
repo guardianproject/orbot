@@ -1,34 +1,24 @@
 package org.torproject.android.service.vpn;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
+import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.util.Log;
+
+import org.torproject.android.service.util.CustomNativeLoader;
+
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.PrintStream;
-import java.io.StringBufferInputStream;
-import java.util.ArrayList;
 import java.util.concurrent.TimeoutException;
 import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
 
-import android.content.Context;
-import android.content.pm.ApplicationInfo;
-import android.os.Build;
-import android.util.Log;
+import static org.torproject.android.service.vpn.VpnConstants.FILE_WRITE_BUFFER_SIZE;
 
-import org.torproject.android.service.OrbotConstants;
-import org.torproject.android.service.R;
-import org.torproject.android.service.TorServiceConstants;
-import org.torproject.android.service.util.CustomNativeLoader;
-import org.torproject.android.service.util.NativeLoader;
-
-public class PDNSDInstaller implements TorServiceConstants {
+public class PDNSDInstaller {
 
     private final static String LIB_NAME = "pdnsd";
     private final static String LIB_SO_NAME = "pdnsd.so";
