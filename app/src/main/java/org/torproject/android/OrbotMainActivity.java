@@ -273,8 +273,8 @@ public class OrbotMainActivity extends AppCompatActivity
             else if (action.equals(TorServiceConstants.LOCAL_ACTION_PORTS)) {
 
                 Message msg = mStatusUpdateHandler.obtainMessage(MESSAGE_PORTS);
-                msg.getData().putInt("socks",intent.getIntExtra("socks",-1));
-                msg.getData().putInt("http",intent.getIntExtra("http",-1));
+                msg.getData().putInt("socks",intent.getIntExtra(TorService.EXTRA_SOCKS_PROXY_PORT,-1));
+                msg.getData().putInt("http",intent.getIntExtra(TorService.EXTRA_HTTP_PROXY_PORT,-1));
 
                 mStatusUpdateHandler.sendMessage(msg);
 
