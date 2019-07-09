@@ -811,11 +811,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         	reply.setPackage(packageName);
         	sendBroadcast(reply);
         }
-        else
-        {
-            LocalBroadcastManager.getInstance(this).sendBroadcast(reply);
 
-        }
+        LocalBroadcastManager.getInstance(this).sendBroadcast(reply);
 
     }
 
@@ -1105,21 +1102,22 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
                         String confDns = conn.getInfo("net/listeners/dns");
                         st = new StringTokenizer(confDns," ");
-
-                        confDns = st.nextToken().split(":")[1];
-                        confDns = confDns.substring(0,confDns.length()-1);
-                        mPortDns = Integer.parseInt(confDns);
-                        getSharedPrefs(getApplicationContext()).edit().putInt(VpnPrefs.PREFS_DNS_PORT, mPortDns).apply();
-
+                        if (st.hasMoreTokens()) {
+                            confDns = st.nextToken().split(":")[1];
+                            confDns = confDns.substring(0, confDns.length() - 1);
+                            mPortDns = Integer.parseInt(confDns);
+                            getSharedPrefs(getApplicationContext()).edit().putInt(VpnPrefs.PREFS_DNS_PORT, mPortDns).apply();
+                        }
 
                         String confTrans = conn.getInfo("net/listeners/trans");
                         st = new StringTokenizer(confTrans," ");
+                        if (st.hasMoreTokens()) {
+                            confTrans = st.nextToken().split(":")[1];
+                            confTrans = confTrans.substring(0, confTrans.length() - 1);
+                            mPortTrans = Integer.parseInt(confTrans);
+                        }
 
-                        confTrans = st.nextToken().split(":")[1];
-                        confTrans = confDns.substring(0,confTrans.length()-1);
-                        mPortTrans = Integer.parseInt(confTrans);
-
-                        sendCallbackPorts(mPortSOCKS, mPortHTTP);
+                        sendCallbackPorts(mPortSOCKS, mPortHTTP, mPortDns, mPortTrans);
 
                         return Integer.parseInt(torProcId);
                         
@@ -1434,13 +1432,15 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
     }
 
-    private void sendCallbackPorts (int socksPort, int httpPort)
+    private void sendCallbackPorts (int socksPort, int httpPort, int dnsPort, int transPort)
     {
 
         Intent intent = new Intent(LOCAL_ACTION_PORTS);
         // You can also include some extra data.
-        intent.putExtra("socks",socksPort);
-        intent.putExtra("http",httpPort);
+        intent.putExtra(EXTRA_SOCKS_PROXY_PORT,socksPort);
+        intent.putExtra(EXTRA_HTTP_PROXY_PORT,httpPort);
+        intent.putExtra(EXTRA_DNS_PORT,dnsPort);
+        intent.putExtra(EXTRA_TRANS_PORT,transPort);
 
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
 
@@ -1970,21 +1970,10 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
     private void startVPNService ()
     {
-        if (mPortSOCKS != -1) {
-            Intent intentVpn = new Intent(this, TorVpnService.class);
-            intentVpn.setAction("start");
-            intentVpn.putExtra("torSocks", mPortSOCKS);
-            startService(intentVpn);
-        }
-        else
-        {
-            mHandler.postDelayed(new Runnable() {
-                public void run ()
-                {
-                    startVPNService();
-                }
-            },5000);
-        }
+        Intent intentVpn = new Intent(this, TorVpnService.class);
+        intentVpn.setAction("start");
+        startService(intentVpn);
+
     }
 
 

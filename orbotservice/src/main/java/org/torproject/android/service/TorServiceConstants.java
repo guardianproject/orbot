@@ -65,6 +65,9 @@ public interface TorServiceConstants {
     String EXTRA_HTTP_PROXY_HOST = "org.torproject.android.intent.extra.HTTP_PROXY_HOST";
     String EXTRA_HTTP_PROXY_PORT = "org.torproject.android.intent.extra.HTTP_PROXY_PORT";
 
+    String EXTRA_DNS_PORT = "org.torproject.android.intent.extra.DNS_PORT";
+    String EXTRA_TRANS_PORT = "org.torproject.android.intent.extra.TRANS_PORT";
+
     String LOCAL_ACTION_LOG = "log";
     String LOCAL_ACTION_BANDWIDTH = "bandwidth";
     String LOCAL_EXTRA_LOG = "log";

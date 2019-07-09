@@ -4,8 +4,8 @@
 global {
 	perm_cache=0;
 	cache_dir="%3$s";
-	server_port = 8091;
-	server_ip = 192.168.200.1;
+	server_port = %5$d;
+	server_ip = %4$s;
 	query_method=udp_only;
 	min_ttl=1m;
 	max_ttl=1w;

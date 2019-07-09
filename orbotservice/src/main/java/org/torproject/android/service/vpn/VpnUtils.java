@@ -58,6 +58,22 @@ public class VpnUtils {
                         ());
             } catch (IOException ioe) {
             }
+            killProcess(pidString, signal);
+
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                // ignored
+            }
+
+            if (killAttempts > 4)
+                throw new Exception("Cannot kill: " + fileProcBin.getAbsolutePath());
+        }
+    }
+
+    public static void killProcess(String pidString, String signal) throws Exception {
+
+
             try {
                 getRuntime().exec("toolbox kill " + signal + " " + pidString);
             } catch (IOException ioe) {
@@ -71,14 +87,8 @@ public class VpnUtils {
             } catch (IOException ioe) {
             }
 
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                // ignored
-            }
 
-            if (killAttempts > 4)
-                throw new Exception("Cannot kill: " + fileProcBin.getAbsolutePath());
-        }
+
+
     }
 }
