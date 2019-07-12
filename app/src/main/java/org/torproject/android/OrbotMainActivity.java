@@ -49,6 +49,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.database.Cursor;
@@ -1321,19 +1322,17 @@ public class OrbotMainActivity extends AppCompatActivity
                 String tordAppString = mPrefs.getString(PREFS_KEY_TORIFIED, "");
 
                 if (TextUtils.isEmpty(tordAppString)) {
-                    TextView tv = new TextView(this);
-                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                    params.setMargins(12, 3, 3, 3);
-                    tv.setLayoutParams(params);
-                    tv.setText(R.string.full_device_vpn);
-                    llBoxShortcuts.addView(tv);
+                    addFullDeviceVpnView(llBoxShortcuts);
                 } else {
                     StringTokenizer st = new StringTokenizer(tordAppString, "|");
                     while (st.hasMoreTokens() && pkgIds.size() < 4)
                         pkgIds.add(st.nextToken());
-
+                    int appsAdded = 0;
                     for (final String pkgId : pkgIds) {
                         try {
+                            ApplicationInfo aInfo = getPackageManager().getApplicationInfo(pkgId, 0);
+                            // skip disabled packages
+                            if (!aInfo.enabled) continue;
                             ImageView iv = new ImageView(this);
                             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                             params.setMargins(3, 3, 3, 3);
@@ -1348,10 +1347,16 @@ public class OrbotMainActivity extends AppCompatActivity
                             });
 
                             llBoxShortcuts.addView(iv);
-
+                            appsAdded++;
                         } catch (Exception e) {
                             //package not installed?
                         }
+                    }
+                    if (appsAdded == 0) {
+                        /* if a user uninstalled or disabled all apps that were set on the device
+                           then we want to have the no apps added view appear even though
+                           the tordAppString variable is not empty */
+                        addFullDeviceVpnView(llBoxShortcuts);
                     }
                 }
             }
@@ -1381,6 +1386,15 @@ public class OrbotMainActivity extends AppCompatActivity
             });
         }
 
+    }
+
+    private void addFullDeviceVpnView(LinearLayout llBoxShortcuts) {
+        TextView tv = new TextView(this);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        params.setMargins(12, 3, 3, 3);
+        tv.setLayoutParams(params);
+        tv.setText(R.string.full_device_vpn);
+        llBoxShortcuts.addView(tv);
     }
 
 }
