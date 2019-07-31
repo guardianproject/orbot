@@ -3,6 +3,8 @@
 
 package org.torproject.android.ui;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -11,10 +13,15 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import org.torproject.android.OrbotMainActivity;
 import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.R;
+import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.util.TorServiceUtils;
 import org.torproject.android.service.vpn.TorifiedApp;
+import org.torproject.android.settings.SettingsPreferences;
+import org.torproject.android.ui.hiddenservices.ClientCookiesActivity;
+import org.torproject.android.ui.hiddenservices.HiddenServicesActivity;
 
 import android.Manifest;
 import android.content.Intent;
@@ -27,6 +34,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -38,6 +47,8 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.google.zxing.integration.android.IntentIntegrator;
 
 import static org.torproject.android.service.vpn.VpnPrefs.PREFS_KEY_TORIFIED;
 
@@ -60,20 +71,42 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
         progressBar = findViewById(R.id.progressBar);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            finish();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     @Override
     protected void onResume() {
         super.onResume();
         mPrefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
         reloadApps();
+    }
+
+
+    /*
+     * Create the UI Options Menu (non-Javadoc)
+     * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.app_main, menu);
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == R.id.menu_refresh_apps)
+        {
+            mApps = null;
+            reloadApps();
+        }
+        else if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private void reloadApps () {
@@ -96,7 +129,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
     }
 
     SharedPreferences mPrefs = null;
-    ArrayList<TorifiedApp> mApps = null;
+    static ArrayList<TorifiedApp> mApps = null;
 
     private void loadApps (SharedPreferences prefs) {
         if (mApps == null)
@@ -181,6 +214,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
     public ArrayList<TorifiedApp> getApps(SharedPreferences prefs) {
 
         String tordAppString = prefs.getString(PREFS_KEY_TORIFIED, "");
+
         String[] tordApps;
 
         StringTokenizer st = new StringTokenizer(tordAppString,"|");
@@ -208,6 +242,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
             // don't include apps user has disabled, often these ship with the device
             if (!aInfo.enabled) continue;
             app = new TorifiedApp();
+
 
             try {
                 PackageInfo pInfo = pMgr.getPackageInfo(aInfo.packageName, PackageManager.GET_PERMISSIONS);

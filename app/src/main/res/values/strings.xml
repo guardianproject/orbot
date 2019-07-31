@@ -254,4 +254,5 @@
     <string name="user_services">User services</string>
     <string name="app_services">App services</string>
     <string name="default_socks_http">SOCKS: - HTTP: -</string>
+    <string name="refresh_apps">Refresh Apps</string>
 </resources>
