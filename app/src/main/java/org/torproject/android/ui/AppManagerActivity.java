@@ -16,6 +16,7 @@ import org.torproject.android.R;
 import org.torproject.android.service.util.TorServiceUtils;
 import org.torproject.android.service.vpn.TorifiedApp;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -204,7 +205,8 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
         while (itAppInfo.hasNext())
         {
             aInfo = itAppInfo.next();
-
+            // don't include apps user has disabled, often these ship with the device
+            if (!aInfo.enabled) continue;
             app = new TorifiedApp();
 
             try {
@@ -214,10 +216,9 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
                 {
                     for (String permInfo:pInfo.requestedPermissions)
                     {
-                        if (permInfo.equals("android.permission.INTERNET"))
+                        if (permInfo.equals(Manifest.permission.INTERNET))
                         {
                             app.setUsesInternet(true);
-
                         }
                     }
 
@@ -228,14 +229,6 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-
-            /**
-             if ((aInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 1)
-             {
-             //System app
-             app.setUsesInternet(true);
-             }**/
-
 
             try
             {
