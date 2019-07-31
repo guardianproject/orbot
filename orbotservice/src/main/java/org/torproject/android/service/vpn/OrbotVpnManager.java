@@ -95,6 +95,13 @@ public class OrbotVpnManager implements Handler.Callback {
 
 		filePdnsd = CustomNativeLoader.loadNativeBinary(service.getApplicationContext(),PDNSD_BIN,new File(service.getFilesDir(),PDNSD_BIN));
 
+		// if that fails, try again using native utils
+		try {
+			killProcess(filePdnsd, "-1"); // this is -HUP
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		Tun2Socks.init();
 
 
