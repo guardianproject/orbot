@@ -381,8 +381,9 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
             if (action != null) {
                 if (action.equals(ACTION_START)) {
-                    replyWithStatus(mIntent);
                     startTor();
+                    replyWithStatus(mIntent);
+
                 }
                 else if (action.equals(ACTION_STATUS)) {
                     replyWithStatus(mIntent);                    
@@ -813,6 +814,9 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         }
 
         LocalBroadcastManager.getInstance(this).sendBroadcast(reply);
+
+        if (mPortSOCKS != -1 && mPortHTTP != -1)
+            sendCallbackPorts(mPortSOCKS, mPortHTTP, mPortDns, mPortTrans);
 
     }
 
