@@ -144,15 +144,19 @@ public class OrbotVpnManager implements Handler.Callback {
 			{
 				Log.d(TAG,"starting OrbotVPNService service!");
 
-				mTorSocks = intent.getIntExtra(TorService.EXTRA_SOCKS_PROXY_PORT,-1);
-				mTorDns = intent.getIntExtra(TorService.EXTRA_DNS_PORT,-1);
+				int newTorSocks = intent.getIntExtra(TorService.EXTRA_SOCKS_PROXY_PORT,-1);
+				int newTorDns = intent.getIntExtra(TorService.EXTRA_DNS_PORT,-1);
 
-				if (!mIsLollipop)
-				{
-					startSocksBypass();
+				if ((mTorSocks != newTorSocks || mTorDns != newTorDns)) {
+					mTorSocks = newTorSocks;
+					mTorDns = newTorDns;
+
+					if (!mIsLollipop) {
+						startSocksBypass();
+					}
+
+					setupTun2Socks(builder);
 				}
-
-				setupTun2Socks(builder);
 			}
 
     	}
@@ -424,6 +428,14 @@ public class OrbotVpnManager implements Handler.Callback {
 
     private boolean stopDns ()
 	{
+
+		// if that fails, try again using native utils
+		try {
+			killProcess(filePdnsd, "-1"); // this is -HUP
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		File filePid = new File(mService.getFilesDir(),"pdnsd.pid");
 		String pid = null;
 
@@ -442,6 +454,7 @@ public class OrbotVpnManager implements Handler.Callback {
 				Log.e(TAG,"error killing DNS Process: " + pid,e);
 			}
 		}
+
 
 		return false;
 
