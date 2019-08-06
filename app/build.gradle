@@ -34,8 +34,8 @@ android {
             minSdkVersion 16
             applicationId 'org.torproject.android'
             targetSdkVersion 28
-            versionCode 16109000
-            versionName '16.1.0-RC-3-tor-0.4.0.4-rc'
+            versionCode 16110000
+            versionName '16.1.1-BETA-1-tor-0.4.0.4-rc'
             archivesBaseName = "Orbot-$versionName"
         }
     }
@@ -55,7 +55,7 @@ android {
             reset()
 
             // Specifies a list of ABIs that Gradle should create APKs for.
-            include "x86", "armeabi", "armeabi-v7a", "x86_64", "arm64-v8a"
+            include "x86", "armeabi-v7a", "x86_64", "arm64-v8a"
 
             // Specifies that we do not want to also generate a universal APK that includes all ABIs.
             universalApk true
