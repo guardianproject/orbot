@@ -418,6 +418,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     @Override
     public void onDestroy() {
 
+
         try {
             unregisterReceiver(mNetworkStateReceiver);
             unregisterReceiver(mActionBroadcastReceiver);
@@ -723,7 +724,9 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         extraLines.append("AutomapHostsOnResolve 1").append('\n');
 
         extraLines.append("DisableNetwork 0").append('\n');
-                
+        extraLines.append("DormantClientTimeout 10 minutes").append('\n');
+        extraLines.append("DormantOnFirstStartup 1").append('\n');
+
         if (Prefs.useDebugLogging())
         {
         	extraLines.append("Log debug syslog").append('\n');
@@ -840,7 +843,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             } else if (mCurrentStatus == STATUS_ON && (torProcId != null)) {
 
                 sendCallbackLogMessage("Ignoring start request, already started.");
-                setTorNetworkEnabled (true);
+               // setTorNetworkEnabled (true);
 
                 return;
             }
@@ -1302,24 +1305,21 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             return false;
         }
 
-        private String lastNetworkValue = "0";
 
         public void setTorNetworkEnabled (final boolean isEnabled) throws IOException
         {
 
-            final String newValue =isEnabled ? "0" : "1";
-        	
         	//it is possible to not have a connection yet, and someone might try to newnym
-            if (conn != null && (!lastNetworkValue.equals(newValue)))
+            if (conn != null)
             {
                 new Thread ()
                 {
                     public void run ()
                     {
-                        try { 
-                            
+                        try {
+
+                            final String newValue =isEnabled ? "0" : "1";
                             conn.setConf("DisableNetwork", newValue);
-                            lastNetworkValue = newValue;
                         }
                         catch (Exception ioe){
                             debug("error requesting newnym: " + ioe.getLocalizedMessage());
@@ -1478,6 +1478,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
      *  Another way to do this would be to use the Observer pattern by defining the 
      *  BroadcastReciever in the Android manifest.
      */
+
     private final BroadcastReceiver mNetworkStateReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -1494,14 +1495,10 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
             boolean newConnectivityState = false;
             int newNetType = -1;
-            
-            boolean isChanged = false;
-            
+
             if (netInfo!=null)
             	newNetType = netInfo.getType();
 
-            isChanged = ((mNetworkType != newNetType)&&(mConnectivity != newConnectivityState));
-            
             if(netInfo != null && netInfo.isConnected()) {
                 // WE ARE CONNECTED: DO SOMETHING
             	newConnectivityState = true;
@@ -1513,14 +1510,15 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             
             mNetworkType = newNetType;
         	mConnectivity = newConnectivityState;
-        	
+
+        	if (mConnectivity)
+                newIdentity();
+
+
+            /**
             if (doNetworKSleep && mCurrentStatus != STATUS_OFF)
             {
-                try {
                     setTorNetworkEnabled (mConnectivity);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
 
                 if (!mConnectivity)
                 {
@@ -1532,9 +1530,10 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 {
                     logNotice(context.getString(R.string.network_connectivity_is_good_waking_tor_up_));
                     showToolbarNotification(getString(R.string.status_activated),NOTIFY_ID,R.drawable.ic_stat_tor);
+
                 }
 
-            }
+            }**/
 
             
         }
