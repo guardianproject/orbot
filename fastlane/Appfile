@@ -1,1 +1,2 @@
 package_name("org.torproject.android")
+json_key_file "/home/n8fr8/dev/creds/fastlane/orbot/api-6147505171125588874-704593-afe920bbd5e9.json"

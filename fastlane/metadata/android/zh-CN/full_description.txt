@@ -1,0 +1,26 @@
+Orbot
+使用 Tor 的代理
+Orbot 是一款免费的代理应用，能够让其他应用更安全地使用互联网。通过在位于世界各地的一系列计算机之间进行跳转，Orbot 可利用 Tor 对网络通信进行加密并隐藏。Tor 是一款免费的软件，并且是一个开放的网络。它可以保护用户免受流量分析的危害，这种网络监控可对个人自由与隐私、商业机密活动和关系以及国家安全造成威胁。
+
+Orbot 能够建立真正的私有网络链接。《纽约时报》曾这样写到：“通过 Tor 进行通信时，你无法获悉信息来自何处以及何人。” Tor 获得了2012 年电子前沿基金会 (EFF) 先锋奖。
+
+无可替代：Orbot 是 Android 系统上最安全的互联网使用方式。这点毫无疑问。与 VPN 和代理之类的直接连接不同，Orbot 将加密通信在位于世界各地的计算机上进行多次跳转。
+私人网络浏览：使用最具匿名性的 Orweb 可访问任何网站，即使这个网站遭到封锁或监视，也可以访问隐匿网络。获取 Orweb：https://goo.gl/s3mLa
+私人即时通信：使用 Orbot 与 Gibberbot 可与任何地方的任何人进行隐秘性的聊天通信。获取 Gibberbot：https://goo.gl/O3FfS
+应用隐私：对于任何已安装应用，只要具有代理功能即可使用 Tor，设置参见：https://goo.gl/2OA1y 可通过 Orbot 使用 Twitter，或者使用 DuckDuckGo 进行私密网络搜索：https://goo.gl/lgh1p
+为每个人提供隐私：Tor 可帮助你对竞争对手进行私密的研究，跳过学校对 Facebook 的封锁，还可以绕过办公室里的防火墙查看体育新闻。
+保护隐私更加容易：请查看我们网站上提供的互动教程： https://guardianproject.info/howto/browsefreely
+官方版本：Android 设备上 Tor onion 路由服务所用的版本为官方正式版本。
+
+***专家 Root 模式***
+通用模式：通过配置，Orbot 可利用透明代理让你的所有网络通信通过 Tor 网络。另外，你还可以指定哪些应用使用 Tor 网络。
+
+***期待你的反馈***
+关于我们：Guardian Project 由一组开发者构成，通过创建安全的移动应用和开源的代码，让明天变得更美好。
+我们的网站：https://GuardianProject.info
+Twitter 帐号：https://twitter.com/guardianproject
+开源：Orbot 是一款自由软件。你可以查看 Orbot 的源代码，也可以加入这个小组让 Orbot 变得更完善：https://gitweb.torproject.org/orbot.git
+关于 Tor：https://TorProject.or
+联系我们：缺少你最需要的功能？找到一个烦人的 bug？请发电子邮件给我们，期待你的反馈：root@guardianproject.info
+请帮助我们将 Orbot 翻译为你的母语：我们希望 Orbot 能够支持尽可能多的语言。目前支持语言：Arabic (العربية), Basque (Euskara), Bulgarian (български език), Chinese (中文简体), Czech (Čeština), Danish (Dansk), Dutch (Nederlands), English, Farsi (فارسی), French (Français), French (Français), German (Deutsch), Greek (Ελληνικά), Hebrew (עברית), Hungarian (Magyar Nyelv), Italian (Italiano), Japanese (日本語) Korean (조선말), Latvian (Latviešu), Malaysian (بهاس ملايو ), Polish (Polski), Portuguese (Português), Russian (Русский), Spanish (Español), Swedish (Svensk), and Vietnamese (Tiếng Việt)。
+如果 Orbot 尚未支持你所用的语言，欢迎加入翻译小组：https://www.transifex.com/projects/p/orbot/

@@ -22,6 +22,32 @@ platform :android do
     supply(
       skip_upload_apk: true,
       skip_upload_aab: true,
+      skip_upload_images: true,
+      skip_upload_screenshots: true
     )
   end
+  lane :metadata_and_images do
+    supply(
+      skip_upload_apk: true,
+      skip_upload_aab: true,
+    )
+  end
+  desc "Build a debug APK"
+  lane :debug do
+     gradle(task: "clean assembleDebug")
+  end
+  desc "Build a release APK"
+  lane :release do
+     gradle(task: "clean assemble")
+  end
+lane :beta do
+  # Adjust the `build_type` and `flavor` params as needed to build the right APK for your setup
+  gradle(
+    task: 'clean assemble',
+    build_type: 'Release'
+  )
+    upload_to_play_store(track: 'beta')
+
+  # ...
+end
 end

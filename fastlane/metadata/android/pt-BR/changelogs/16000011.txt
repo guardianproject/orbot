@@ -1,0 +1,8 @@
+- Atualização importante para a interface do usuário!
+- Novos assistentes para configuração e configuração de ponte
+- Recursos VPN aprimorados
+- Correções para choques de configuração de serviço cebola / escondido
+
+e muito mais...
+
+OBRIGADO A: pgerber, syphyr, Khsed4, BjarniRunar, Unpublished, igortoliveira, goapunk, SpotComms, AkshatAgrawal05, dixidroid, arrase e outros para questões, compromissos e PRs

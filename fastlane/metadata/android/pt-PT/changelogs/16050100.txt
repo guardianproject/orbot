@@ -1,0 +1,4 @@
+- atualize o Tor para a versão mais recente v0.3.4.9
+- correções para estabilidade de VPN
+- testado no Android 8 e 9
+- traduções melhoradas e atualizadas para muitos idiomas

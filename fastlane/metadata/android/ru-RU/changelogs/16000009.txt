@@ -1,0 +1,8 @@
+- Основное обновление интерфейса пользователя!
+- Новые мастера настройки и конфигурации моста
+- Улучшенные функции VPN
+- Исправления для сбоев конфигурации Onion / Hidden
+
+и многое другое...
+
+СПАСИБО: pgerber, syphyr, Khsed4, BjarniRunar, Unpublished, igortoliveira, goapunk, SpotComms, AkshatAgrawal05, dixidroid, arrase и другие для проблем, коммитов и PR

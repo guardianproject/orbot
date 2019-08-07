@@ -1,0 +1,8 @@
+- ¡Importante actualización de la interfaz de usuario!
+- Nuevos asistentes para configuración y configuración de puente
+- Funciones mejoradas de VPN
+- Correcciones para bloqueos de configuración de servicio cebolla / oculto
+
+y mucho más...
+
+GRACIAS A: pgerber, syphyr, Khsed4, BjarniRunar, inédito, igortoliveira, goapunk, SpotComms, AkshatAgrawal05, dixidroid, arrase y otros para los problemas, confirmaciones y relaciones públicas

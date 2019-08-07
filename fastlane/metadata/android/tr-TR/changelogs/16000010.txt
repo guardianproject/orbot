@@ -1,0 +1,8 @@
+- Kullanıcı arayüzüne ilişkin önemli güncelleme!
+- Kurulum ve köprü yapılandırması için yeni sihirbazlar
+- Geliştirilmiş VPN özellikleri
+- Soğan için düzeltmeler / Gizli servis yapılandırması çöküyor
+
+ve daha fazlası...
+
+TEŞEKKÜR EDERİNİZ: pgerber, syphyr, Khsed4, BjarniRunar, Yayınlanmamış, igortoliveira, goapunk, SpotComms, AkshatAgrawal05, dixidroid, sorunlar, taahhütler ve PR'ler için diğerleri ve diğerleri.

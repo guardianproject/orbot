@@ -1,6 +1,25 @@
 apply plugin: 'com.android.application'
 
+// Create a variable called keystorePropertiesFile, and initialize it to your
+// keystore.properties file, in the rootProject folder.
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+
+// Initialize a new Properties() object called keystoreProperties.
+def keystoreProperties = new Properties()
+
+// Load your keystore.properties file into the keystoreProperties object.
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
 android {
+   signingConfigs {
+        release {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+        }
+    }
+
     compileSdkVersion 28
     buildToolsVersion '28.0.3'
     defaultConfig {
@@ -19,6 +38,7 @@ android {
             minifyEnabled false
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            signingConfig signingConfigs.release
         }
     }
 
@@ -34,8 +54,8 @@ android {
             minSdkVersion 16
             applicationId 'org.torproject.android'
             targetSdkVersion 28
-            versionCode 16110000
-            versionName '16.1.1-BETA-1-tor-0.4.0.4-rc'
+            versionCode 16111000
+            versionName '16.1.1-BETA-2-tor-0.4.0.4-rc'
             archivesBaseName = "Orbot-$versionName"
         }
     }
@@ -58,7 +78,7 @@ android {
             include "x86", "armeabi-v7a", "x86_64", "arm64-v8a"
 
             // Specifies that we do not want to also generate a universal APK that includes all ABIs.
-            universalApk true
+            universalApk false
         }
 
 
@@ -66,10 +86,30 @@ android {
 
 }
 
+
 dependencies {
     implementation project(':orbotservice')
     implementation 'com.android.support:design:28.0.0'
     implementation 'pl.bclogic:pulsator4droid:1.0.3'
     implementation 'com.github.apl-devs:appintro:v4.2.2'
     implementation 'com.github.javiersantos:AppUpdater:2.6.4'
+    androidTestImplementation "tools.fastlane:screengrab:1.2.0"
 }
+
+// Map for the version code that gives each ABI a value.
+ext.abiCodes = ['armeabi-v7a':'1', 'arm64-v8a':'2', 'mips':'3', 'x86':'4', 'x86_64':'5']
+
+import com.android.build.OutputFile
+
+// For each APK output variant, override version code of outputs based on ABI codes
+// ex) 'mips' -> 3xxx
+// ex) 'x86' -> 4xxx
+android.applicationVariants.all { variant ->
+    variant.outputs.each { output ->
+        def baseVersionCode = project.ext.abiCodes.get(output.getFilter(OutputFile.ABI))
+        if (baseVersionCode != null) {
+            output.versionCodeOverride = Integer.valueOf(baseVersionCode + variant.versionCode)
+        }
+    }
+}
+

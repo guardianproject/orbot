@@ -1,0 +1,8 @@
+ - 用户界面的重大更新！
+- 设置和桥接配置的新向导
+- 改进的VPN功能
+- 修复了洋葱/隐藏服务配置崩溃
+
+以及更多...
+
+感谢：pgerber，syphyr，Khsed4，BjarniRunar，Unpublished，igortoliveira，goapunk，SpotComms，AkshatAgrawal05，dixidroid，arrase和其他问题，提交和PRs

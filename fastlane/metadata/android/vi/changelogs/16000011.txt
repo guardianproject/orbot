@@ -1,0 +1,8 @@
+- Cập nhật chính cho giao diện người dùng!
+- Các trình thuật sĩ mới để thiết lập và cấu hình cầu
+- Các tính năng VPN được cải thiện
+- Khắc phục sự cố treo trên cấu hình Onion / Hidden
+
+và nhiều hơn nữa...
+
+THANKS TO: pgerber, syphyr, Khsed4, BjarniRunar, Không công bố, igortoliveira, goapunk, SpotComms, AkshatAgrawal05, dixidroid, arrase và những người khác cho các vấn đề, cam kết và PRs

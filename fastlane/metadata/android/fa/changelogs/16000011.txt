@@ -1,0 +1,8 @@
+- به روز رسانی عمده به رابط کاربری!
+- جادوگران جدید برای راه اندازی و پیکربندی پل
+- ویژگی های بهبود VPN
+- رفع خطاهای پیکربندی سرویس پنهان / پنهان
+
+و خیلی بیشتر...
+
+با تشکر از: pgerber، syphyr، Khsed4، BjarniRunar، Unpublished، igortoliveira، goapunk، SpotComms، AkshatAgrawal05، dixidroid، arras و دیگران برای مسائل، متعهد و PR

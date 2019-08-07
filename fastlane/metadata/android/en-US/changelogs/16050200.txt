@@ -1,0 +1,1 @@
+Fixes crash related to starting a background service
