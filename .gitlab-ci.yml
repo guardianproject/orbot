@@ -1,54 +1,45 @@
-image: registry.gitlab.com/fdroid/ci-images-client:latest
+image: openjdk:8-jdk
 
-cache:
-  paths:
-    - .gradle/wrapper
-    - .gradle/caches
-
-stages:
-  - test
-  - deploy
+variables:
+  ANDROID_COMPILE_SDK: "28"
+  ANDROID_BUILD_TOOLS: "28.0.2"
+  ANDROID_SDK_TOOLS:   "4333796"
 
 before_script:
-  - export GRADLE_USER_HOME=$PWD/.gradle
-  - export ANDROID_COMPILE_SDK=`sed -n 's,.*compileSdkVersion\s*\([0-9][0-9]*\).*,\1,p' app/build.gradle`
-  - alias sdkmanager="sdkmanager --no_https"
-  - echo y | sdkmanager
-      "platforms;android-${ANDROID_COMPILE_SDK}"
-      "$(sed -nE 's,.*buildToolsVersion *.([0-9.]+).*,build-tools;\1,p' app/build.gradle)"
-      "build-tools;23.0.3" > /dev/null
+  - apt-get --quiet update --yes
+  - apt-get --quiet install --yes wget tar unzip lib32stdc++6 lib32z1
+  - wget --quiet --output-document=android-sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-${ANDROID_SDK_TOOLS}.zip
+  - unzip -d android-sdk-linux android-sdk.zip
+  - echo y | android-sdk-linux/tools/bin/sdkmanager "platforms;android-${ANDROID_COMPILE_SDK}" >/dev/null
+  - echo y | android-sdk-linux/tools/bin/sdkmanager "platform-tools" >/dev/null
+  - echo y | android-sdk-linux/tools/bin/sdkmanager "build-tools;${ANDROID_BUILD_TOOLS}" >/dev/null
+  - export ANDROID_HOME=$PWD/android-sdk-linux
+  - export PATH=$PATH:$PWD/android-sdk-linux/platform-tools/
+  - chmod +x ./gradlew
+  # temporarily disable checking for EPIPE error and use yes to accept all licenses
+  - set +o pipefail
+  - yes | android-sdk-linux/tools/bin/sdkmanager --licenses
+  - set -o pipefail
 
-.test-template: &test-template
+stages:
+  - build
+  - test
+
+#lintDebug:
+#  stage: build
+#  script:
+#    - ./gradlew -Pci --console=plain :app:lintDebug -PbuildDir=lint
+
+assembleDebug:
+  stage: build
+  script:
+    - ./gradlew assembleDebug
   artifacts:
-    name: "${CI_PROJECT_PATH}_${CI_JOB_STAGE}_${CI_COMMIT_REF_NAME}_${CI_COMMIT_SHA}"
     paths:
-      - "logcat.txt"
-      - "*/build/reports"
-      - "*/build/outputs/*ml"
-      - "*/build/outputs/apk"
-    expire_in: 1 week
-    when: on_failure
-  after_script:
-    - echo "Download debug artifacts from https://gitlab.com/${CI_PROJECT_PATH}/-/jobs"
+    - app/build/outputs/
 
-# Run the most important first. Then we can decide whether to ignore
-# the style tests if the rest of the more meaningful tests pass.
-test:
-  stage: test
-  <<: *test-template
-  script:
-    # print lint errors/warnings to build log
-    - sed -i 's,\s*textReport .*,\ttextReport true,g' */build.gradle
-    # 'assemble' everything and run all checks that do not require a device/emulator
-    - ./gradlew build -PdisablePreDex
-
-errorprone:
+debugTests:
   stage: test
   script:
-    - for f in */build.gradle; do cat tools/errorprone.gradle >> $f; done
-    - ./gradlew assembleDebug -PdisablePreDex
+    - ./gradlew -Pci --console=plain :app:testReleaseflavorDebugUnitTest
 
-after_script:
-    # this file changes every time but should not be cached
-    - rm -f $GRADLE_USER_HOME/caches/modules-2/modules-2.lock
-    - rm -fr $GRADLE_USER_HOME/caches/*/plugin-resolution/
