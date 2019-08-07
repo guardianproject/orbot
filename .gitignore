@@ -9,6 +9,7 @@ releases
 docs
 doc
 .directory
+keystore.properties
 
 #built application files
 *.apk
