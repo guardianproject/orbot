@@ -95,9 +95,8 @@ public class OrbotVpnManager implements Handler.Callback {
 
 		filePdnsd = CustomNativeLoader.loadNativeBinary(service.getApplicationContext(),PDNSD_BIN,new File(service.getFilesDir(),PDNSD_BIN));
 
-		// if that fails, try again using native utils
 		try {
-			killProcess(filePdnsd, "-1"); // this is -HUP
+			killProcess(filePdnsd, "-1");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -144,14 +143,17 @@ public class OrbotVpnManager implements Handler.Callback {
 			{
 				Log.d(TAG,"starting OrbotVPNService service!");
 
-				int newTorSocks = intent.getIntExtra(TorService.EXTRA_SOCKS_PROXY_PORT,-1);
-				int newTorDns = intent.getIntExtra(TorService.EXTRA_DNS_PORT,-1);
+				int torSocks = intent.getIntExtra(TorService.EXTRA_SOCKS_PROXY_PORT,-1);
+				int torDns = intent.getIntExtra(TorService.EXTRA_DNS_PORT,-1);
 
-				if ((mTorSocks != newTorSocks || mTorDns != newTorDns)) {
-					mTorSocks = newTorSocks;
-					mTorDns = newTorDns;
+				//if running, we need to restart
+				if ((torSocks != mTorSocks || torDns != mTorDns)) {
+
+					mTorSocks = torSocks;
+					mTorDns = torDns;
 
 					if (!mIsLollipop) {
+						stopSocksBypass();
 						startSocksBypass();
 					}
 
@@ -444,12 +446,14 @@ public class OrbotVpnManager implements Handler.Callback {
 
 			try {
 				BufferedReader reader = new BufferedReader(new FileReader(filePid));
-				pid = reader.readLine().trim();
+				String line = reader.readLine();
+				if (line != null) {
+					pid = reader.readLine().trim();
 
-				VpnUtils.killProcess(pid,"-9");
-				filePid.delete();
-				return true;
-
+					VpnUtils.killProcess(pid, "-9");
+					filePid.delete();
+					return true;
+				}
 			} catch (Exception e) {
 				Log.e(TAG,"error killing DNS Process: " + pid,e);
 			}

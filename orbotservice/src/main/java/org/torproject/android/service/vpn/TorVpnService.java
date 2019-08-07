@@ -31,15 +31,25 @@ public class TorVpnService extends VpnService {
             e.printStackTrace();
         }
 
-        LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(this);
-        lbm.registerReceiver(mLocalBroadcastReceiver,
-                new IntentFilter(TorServiceConstants.LOCAL_ACTION_PORTS));
+
     }
 
     /* (non-Javadoc)
      * @see android.app.Service#onStart(android.content.Intent, int)
      */
     public int onStartCommand(Intent intent, int flags, int startId) {
+
+        if (intent.getAction().equals("start"))
+        {
+            LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(this);
+            lbm.registerReceiver(mLocalBroadcastReceiver,
+                    new IntentFilter(TorServiceConstants.LOCAL_ACTION_PORTS));
+        }
+        else if (intent.getAction().equals("stop"))
+        {
+            LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(this);
+            lbm.unregisterReceiver(mLocalBroadcastReceiver);
+        }
 
         mVpnManager.handleIntent(new Builder(), intent);
 
@@ -50,8 +60,7 @@ public class TorVpnService extends VpnService {
     public void onDestroy() {
         super.onDestroy();
 
-        LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(this);
-        lbm.unregisterReceiver(mLocalBroadcastReceiver);
+
     }
 
     /**

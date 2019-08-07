@@ -64,6 +64,7 @@ public class CustomTorResourceInstaller implements TorServiceConstants {
             }
         }
 
+        //it exists but we can't execute it, so copy it to a new path
         if (fileTor.exists()) {
             InputStream is = new FileInputStream(fileTor);
             streamToFile(is, fileTor, false, true);
@@ -76,7 +77,8 @@ public class CustomTorResourceInstaller implements TorServiceConstants {
         //let's try another approach
         fileTor = CustomNativeLoader.loadNativeBinary(context,TOR_ASSET_KEY,new File(installFolder, TOR_ASSET_KEY));
 
-        setExecutable(fileTor);
+        if (fileTor != null && fileTor.exists())
+            setExecutable(fileTor);
 
         if (fileTor != null && fileTor.exists() && fileTor.canExecute())
             return fileTor;

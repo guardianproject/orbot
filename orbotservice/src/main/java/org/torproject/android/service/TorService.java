@@ -723,9 +723,10 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         extraLines.append("VirtualAddrNetwork 10.192.0.0/10").append('\n');
         extraLines.append("AutomapHostsOnResolve 1").append('\n');
 
-        extraLines.append("DisableNetwork 0").append('\n');
         extraLines.append("DormantClientTimeout 10 minutes").append('\n');
-        extraLines.append("DormantOnFirstStartup 1").append('\n');
+        extraLines.append("DormantOnFirstStartup 0").append('\n');
+
+        extraLines.append("DisableNetwork 0").append('\n');
 
         if (Prefs.useDebugLogging())
         {
@@ -1051,7 +1052,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                         torConnSocket.setSoTimeout(CONTROL_SOCKET_TIMEOUT);
                         
                         conn = new TorControlConnection(torConnSocket);
-                        conn.launchThread(true);//is daemon
+                        conn.launchThread(false);//is daemon
                         
                         break;
                     }
@@ -1197,7 +1198,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
         conn.setEventHandler(mEventHandler);
 
-        
         conn.setEvents(Arrays.asList(new String[]{
               "ORCONN", "CIRC", "NOTICE", "WARN", "ERR","BW"}));
           // conn.setEvents(Arrays.asList(new String[]{
@@ -1509,11 +1509,13 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             }
             
             mNetworkType = newNetType;
-        	mConnectivity = newConnectivityState;
 
-        	if (mConnectivity)
-                newIdentity();
+            if (newConnectivityState != mConnectivity) {
+                mConnectivity = newConnectivityState;
 
+                if (mConnectivity)
+                    newIdentity();
+            }
 
             /**
             if (doNetworKSleep && mCurrentStatus != STATUS_OFF)

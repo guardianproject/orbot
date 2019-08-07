@@ -13,8 +13,8 @@ android {
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 28
-        versionCode 16060001
-        versionName '16.0.6-BETA-1-tor-0.3.5.8-orbotservice'
+        versionCode 16111000
+        versionName '16.1.1-BETA-2-tor-0.4.0.4-rc-orbotservice'
         archivesBaseName = "OrbotService-$versionName"
 
     }

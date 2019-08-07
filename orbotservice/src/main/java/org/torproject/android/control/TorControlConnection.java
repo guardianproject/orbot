@@ -312,12 +312,12 @@ public class TorControlConnection implements TorControlCommands {
                 handleEvent(lst);
             else {
                 synchronized (waiters) {
- 		if (!waiters.isEmpty())
-		{
-                    Waiter w;
-                    w = waiters.removeFirst();
-                    w.setResponse(lst);
-		}
+                    if (!waiters.isEmpty())
+                    {
+                                Waiter w;
+                                w = waiters.removeFirst();
+                                w.setResponse(lst);
+                    }
                 }		
 
             }
