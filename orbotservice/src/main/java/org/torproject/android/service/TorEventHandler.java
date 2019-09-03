@@ -112,6 +112,7 @@ public class TorEventHandler implements EventHandler, TorServiceConstants {
 
         if (read != lastRead || written != lastWritten)
         {
+            /**
             StringBuilder sb = new StringBuilder();
             sb.append(formatCount(read));
             sb.append(" \u2193");
@@ -125,6 +126,7 @@ public class TorEventHandler implements EventHandler, TorServiceConstants {
                 iconId = R.drawable.ic_stat_tor_xfer;
 
             mService.showToolbarNotification(sb.toString(), mService.getNotifyId(), iconId);
+             **/
 
             mTotalTrafficWritten += written;
             mTotalTrafficRead += read;

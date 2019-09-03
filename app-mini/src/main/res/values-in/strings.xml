@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Orbot</string>
+    <string name="status_starting_up">Orbot sedang dimulai…</string>
+  <string name="status_activated">Tersambung ke Jaringan Tor</string>
+  <string name="status_disabled">Orbot telah dibatalkan</string>
+  <string name="status_shutting_down">Orbot sedang dimatikan</string>
+    <string name="menu_settings">Pengaturan</string>
+  <string name="menu_log">Log</string>
+    <string name="menu_about">Mengenai</string>
+    <string name="button_about">Mengenai</string>
+    <string name="menu_exit">Keluar</string>
+    <string name="btn_cancel">Batal</string>
+  <!--Welcome Wizard strings (DJH)-->
+    <!--END Welcome Wizard strings (DJH)-->
+  <string name="pref_general_group">Umum</string>
+  <!--New Wizard Strings-->
+  <!--Title Screen-->
+  <!--Warning screen-->
+    <!--Permissions screen-->
+  <!--TipsAndTricks screen-->
+  <!--Transparent Proxy screen-->
+    <string name="error">Kesalahan</string>
+</resources>

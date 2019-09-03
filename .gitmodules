@@ -6,10 +6,6 @@
 	path = external/badvpn
 	url = https://github.com/guardianproject/badvpn.git
 	ignore = dirty
-[submodule "external/pluto"]
-	path = external/pluto
-	url = https://github.com/guardianproject/pluto.git
-	ignore = dirty
 [submodule "external/jsocks"]
 	path = external/jsocks
 	url = https://github.com/guardianproject/jsocks.git

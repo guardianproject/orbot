@@ -29,6 +29,10 @@ android {
         abortOnError false
     }
 
+    packagingOptions {
+        exclude 'assets/arm/obfs4proxy' //this is redundant
+    }
+
 }
 
 dependencies {

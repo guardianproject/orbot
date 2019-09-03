@@ -20,8 +20,8 @@ import com.github.javiersantos.appupdater.enums.UpdateFrom;
 import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.util.Prefs;
 
-import org.torproject.android.settings.Languages;
-import org.torproject.android.settings.LocaleHelper;
+import org.torproject.android.mini.settings.Languages;
+import org.torproject.android.mini.settings.LocaleHelper;
 
 import java.util.Locale;
 

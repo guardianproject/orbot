@@ -1,1 +1,1 @@
-include ':orbotservice',':app'
+include ':orbotservice',':app',':app-mini'
