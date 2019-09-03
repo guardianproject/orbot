@@ -5,9 +5,9 @@ Orbot es una aplicación de proxy libre que da la posibilidad a otras aplicacion
 Orbot es la única aplicación que crea una conexión verdaderamente privada a Internet. Como el New York Times escribe, "cuando una comunicación llega desde Tor, nunca puedes saber de dónde o de quién proviene". Tor ganó el Pioneer Award (Premio al Pionero) de 2012 de la Electronic Frontier Foundation (EEF, Fundación para las Fronteras Electrónicas).
 
 NO ACEPTE SUSTITUTOS: Orbot es la manera más segura de usar Internet sobre Android. Punto. Orbot rebota su tráfico cifrado varias veces a través de ordenadores alrededor del mundo, en lugar de conectarlo a usted directamente, como hacen VPNs y proxys. Este proceso es un poco más largo, pero vale la pena la espera para obtener la privacidad y protección de identidad más fuertes disponibles.
-NAVEGACIÓN WEB PRIVADA: Úselo con Orweb, la forma más anónima de acceder a cualquier sitio web, incluso si normalmente está bloqueado, monitorizado, o en la web oculta. Consiga Orweb: http://goo.gl/PH3T91
-MENSAJERIA DE CHAT PRIVADO: Use Gibberbot con Orbot para chatear confidencialmente con cualquiera y en cualquier lugar, gratis. Consiga Gibberbot: http://goo.gl/8U8BQG
-PRIVACIDAD PARA APLICACIONES: Cualquier aplicación instalada puede usar Tor si tiene funciones de proxy, usando las opciones encontradas aquí: https://goo.gl/2OA1y Use Orbot con Twitter, o pruebe la búsqueda web privada con DuckDuckGo: https://goo.gl/lgh1p
+NAVEGACIÓN WEB PRIVADA: Úselo con Orweb, la forma más anónima de acceder a cualquier sitio web, incluso si normalmente está bloqueado, monitorizado, o en la web oculta. Consiga Orweb: https://play.google.com/store/apps/details?id=info.guardianproject.browser
+MENSAJERIA DE CHAT PRIVADO: Use Gibberbot con Orbot para chatear confidencialmente con cualquiera y en cualquier lugar, gratis. Consiga Gibberbot: https://play.google.com/store/apps/details?id=info.guardianproject.otr.app.im
+PRIVACIDAD PARA APLICACIONES: Cualquier aplicación instalada puede usar Tor si tiene funciones de proxy, usando las opciones encontradas aquí: https://guardianproject.info/apps/orbot/ Use Orbot con Twitter, o pruebe la búsqueda web privada con DuckDuckGo: https://play.google.com/store/apps/details?id=com.duckduckgo.mobile.android
 PRIVACIDAD PARA TODOS: Tor puede ayudarle a investigar confidencialmente a un competidor, eludir el bloqueo de Facebook en la escuela, o evitar un cortafuegos (`firewall`) para ver deportes en el trabajo.
 PRIVACIDAD HECHA FÁCIL: Pruébelo por diversión, paseo interactivo: https://guardianproject.info/howto/browsefreely
 
@@ -24,4 +24,4 @@ CÓDIGO ABIERTO: Orweb es software libre. Puedes mirar el código fuente o ser p
 ACERCA DE TOR: https://TorProject.org
 CONTÁCTENOS: ¿Cree que deberíamos añadir una nueva función? ¿Encontró un error? ¡Por favor contáctenos! Envíenos un e-mail a support@guardianproject.info
 AYÚDENOS A LLEVAR ORBOT A SU PAÍS: Estamos tratando de conseguir Orbot en tantos idiomas como sea posible. En este momento está en: Árabe (العربية), Vasco (Euskara), Búlgaro (български език), Chino (中文简体), Checo (Čeština), Danés (Dansk), Holandés (Nederlands), Inglés (English), Persa (فارسی), Francés (Français), Alemán (Deutsch), Griego (Ελληνικά), Hebreo (עברית), Húngaro (Magyar Nyelv), Italiano, Japonés (日本語) Koreano (조선말), Letón (Latviešu), Malayo (بهاس ملايو ), Polaco (Polski), Portugués (Português), Ruso (Русский), Español, Sueco (Svensk), y Vietnamita (Tiếng Việt).
-Si Orbot no está aún en su idioma, nos encantaría que usted se uniera a nuestro equipo de traducción: https://goo.gl/6hni4
+Si Orbot no está aún en su idioma, nos encantaría que usted se uniera a nuestro equipo de traducción: https://www.transifex.com/otf/orbot/
