@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="90dp"
-    android:layout_height="90dp"
+    android:layout_width="80dp"
+    android:layout_height="70dp"
     android:gravity="center_horizontal"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_marginTop="10dp"
+    >
 
     <ImageView
         android:id="@+id/itemicon"
@@ -22,12 +24,8 @@
         android:scrollHorizontally="false"
         android:text="uid:packages"
         android:textAlignment="center"
-        android:textSize="12sp" />
+        android:textSize="10sp" />
 
-    <CheckBox
-        android:id="@+id/itemcheck"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
 </LinearLayout>
 

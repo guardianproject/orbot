@@ -56,7 +56,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
         pMgr = getPackageManager();
 
         this.setContentView(R.layout.layout_apps);
-        setTitle(R.string.apps_mode);
+        setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         listApps = findViewById(R.id.applistview);
         progressBar = findViewById(R.id.progressBar);
@@ -126,18 +126,15 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
         if (mApps == null)
             mApps = getApps(prefs);
 
+        /**
         Collections.sort(mApps,new Comparator<TorifiedApp>() {
             public int compare(TorifiedApp o1, TorifiedApp o2) {
-                /* Some apps start with lowercase letters and without the sorting being case
-                   insensitive they'd appear at the end of the grid of apps, a position where users
-                   would likely not expect to find them.
-                 */
                 if (o1.isTorified() == o2.isTorified())
                     return o1.getName().compareToIgnoreCase(o2.getName());
                 if (o1.isTorified()) return -1;
                 return 1;
             }
-        });
+        });**/
 
         final LayoutInflater inflater = getLayoutInflater();
 
@@ -157,7 +154,6 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
                     // Inflate a new view
                     entry = new ListEntry();
                     entry.icon = convertView.findViewById(R.id.itemicon);
-                    entry.box = convertView.findViewById(R.id.itemcheck);
                     entry.text = convertView.findViewById(R.id.itemtext);
                     convertView.setTag(entry);
                 }
@@ -169,7 +165,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
                     try {
                         entry.icon.setImageDrawable(pMgr.getApplicationIcon(app.getPackageName()));
                         entry.icon.setOnClickListener(AppManagerActivity.this);
-                        entry.icon.setTag(entry.box);
+                        entry.icon.setTag(app);
                     }
                     catch (Exception e)
                     {
@@ -179,14 +175,17 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
 
                 if (entry.text != null) {
                     entry.text.setText(app.getName());
-                    entry.text.setOnClickListener(AppManagerActivity.this);
-                    entry.text.setTag(entry.box);
                 }
 
-                if (entry.box != null) {
-                    entry.box.setOnClickListener(AppManagerActivity.this);
-                    entry.box.setChecked(app.isTorified());
-                    entry.box.setTag(app);
+                if (app.isTorified())
+                {
+                    convertView.setBackgroundColor(getResources().getColor(R.color.dark_purple));
+
+                }
+                else
+                {
+                    convertView.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+
                 }
 
                 return convertView;
@@ -197,7 +196,6 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
     }
 
     private static class ListEntry {
-        private CheckBox box;
         private TextView text;
         private ImageView icon;
     }
@@ -323,21 +321,19 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
 
     public void onClick(View v) {
 
-        CheckBox cbox = null;
+        final TorifiedApp app = (TorifiedApp) v.getTag();
+        if (app != null) {
+            app.setTorified(!app.isTorified());
 
-        if (v instanceof CheckBox)
-            cbox = (CheckBox)v;
-        else if (v.getTag() instanceof CheckBox)
-            cbox = (CheckBox)v.getTag();
 
-        if (cbox != null) {
-            final TorifiedApp app = (TorifiedApp) cbox.getTag();
-            if (app != null) {
-                app.setTorified(!app.isTorified());
-                cbox.setChecked(app.isTorified());
-            }
-
+            Intent data = new Intent();
+            data.putExtra("package",app.getPackageName());
+            setResult(RESULT_OK,data);
             saveAppSettings();
+
+            finish();
         }
+
+
     }
 }

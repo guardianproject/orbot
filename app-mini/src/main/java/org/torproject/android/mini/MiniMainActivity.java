@@ -3,6 +3,7 @@
 
 package org.torproject.android.mini;
 
+import android.Manifest;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningServiceInfo;
 import android.app.AlertDialog;
@@ -13,8 +14,15 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.drawable.AdaptiveIconDrawable;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -22,6 +30,9 @@ import android.os.Message;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.graphics.Palette;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
@@ -34,6 +45,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnLongClickListener;
+import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -57,6 +69,7 @@ import org.torproject.android.service.TorService;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.util.TorServiceUtils;
+import org.torproject.android.service.vpn.TorifiedApp;
 import org.torproject.android.service.vpn.VpnConstants;
 import org.torproject.android.service.vpn.VpnPrefs;
 
@@ -68,6 +81,9 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Locale;
 import java.util.StringTokenizer;
 
@@ -111,11 +127,9 @@ public class MiniMainActivity extends AppCompatActivity
     private static final int MESSAGE_PORTS = 3;
 
 
-    public final static String INTENT_ACTION_REQUEST_HIDDEN_SERVICE = "org.torproject.android.REQUEST_HS_PORT";
-	public final static String INTENT_ACTION_REQUEST_START_TOR = "org.torproject.android.START_TOR";
+    private RecyclerView rv;
 
-
-
+    ArrayList<String> pkgIds = new ArrayList<>();
 
     /**
      * Called when the activity is first created.
@@ -269,23 +283,6 @@ public class MiniMainActivity extends AppCompatActivity
         uploadText.setText(formatTotal(0) + " \u2191");
 
 
-        /**
-		mBtnStart =(Button)findViewById(R.id.btnStart);
-		mBtnStart.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(View v) {
-
-				if (torStatus == TorServiceConstants.STATUS_OFF) {
-//					lblStatus.setText(getString(R.string.status_starting_up));
-					startTor();
-				} else {
-//					lblStatus.setText(getString(R.string.status_shutting_down));
-					stopTor();
-				}
-			}
-		});**/
-
 		mBtnVPN = (SwitchCompat)findViewById(R.id.btnVPN);
 		
         boolean useVPN = Prefs.useVpn();
@@ -304,76 +301,20 @@ public class MiniMainActivity extends AppCompatActivity
         });
 
 
+        rv = findViewById(R.id.rv);
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        rv.setLayoutManager(llm);
+
+        /**
+        findViewById(R.id.btnAdd).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityForResult(new Intent(MiniMainActivity.this, AppManagerActivity.class), REQUEST_VPN_APPS_SELECT);
+            }
+        });**/
     }
 
-    /**
-    private void setCountrySpinner ()
-    {
-        String currentExit = Prefs.getExitNodes();
-        if (currentExit.length() > 4)
-        {
-            //someone put a complex value in, so let's disable
-            ArrayList<String> cList = new ArrayList<String>();
-            cList.add(0, currentExit);
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, cList);
-            spnCountries.setAdapter(adapter);
-            spnCountries.setEnabled(false);
-        }
-        else {
-            int selIdx = -1;
-
-            ArrayList<String> cList = new ArrayList<String>();
-            cList.add(0, getString(R.string.vpn_default_world));
-
-            for (int i = 0; i < COUNTRY_CODES.length; i++) {
-                Locale locale = new Locale("", COUNTRY_CODES[i]);
-                cList.add(locale.getDisplayCountry());
-
-                if (currentExit.contains(COUNTRY_CODES[i]))
-                    selIdx = i + 1;
-            }
-
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, cList);
-            spnCountries.setAdapter(adapter);
-
-            if (selIdx > 0)
-                spnCountries.setSelection(selIdx,true);
-
-            spnCountries.setOnItemSelectedListener(new OnItemSelectedListener() {
-
-                int mOldPosition = spnCountries.getSelectedItemPosition();
-
-                @Override
-                public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                    // your code here
-
-                    if (mOldPosition == position)
-                        return;
-
-                    mOldPosition = position; //new position!
-
-                    String country = null;
-
-                    if (position == 0)
-                        country = "";
-                    else
-                        country = '{' + COUNTRY_CODES[position - 1] + '}';
-
-                    Intent torService = new Intent(MiniMainActivity.this, TorService.class);
-                    torService.setAction(TorServiceConstants.CMD_SET_EXIT);
-                    torService.putExtra("exit", country);
-                    startService(torService);
-
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parentView) {
-                    // your code here
-                }
-
-            });
-        }
-    }**/
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -552,7 +493,6 @@ public class MiniMainActivity extends AppCompatActivity
         } else
             stopVpnService();
 
-        addAppShortcuts();
     }
 
 
@@ -688,8 +628,13 @@ public class MiniMainActivity extends AppCompatActivity
         else if (request == REQUEST_VPN_APPS_SELECT)
         {
             if (response == RESULT_OK &&
-                    torStatus == TorServiceConstants.STATUS_ON)
+                    torStatus == TorServiceConstants.STATUS_ON) {
                 refreshVPNApps();
+
+                String newPkgId = data.getStringExtra("package");
+                //add new entry
+
+            }
 
         }
         
@@ -794,12 +739,19 @@ public class MiniMainActivity extends AppCompatActivity
         else
             updateStatus(null, torStatus);
 
-           addAppShortcuts();
-
            //now you can handle the intents properly
            handleIntents();
 
-       }
+        pkgIds.clear();
+        String tordAppString = mPrefs.getString(PREFS_KEY_TORIFIED, "");
+        StringTokenizer st = new StringTokenizer(tordAppString, "|");
+        while (st.hasMoreTokens())
+            pkgIds.add(st.nextToken());
+
+        RVAdapter adapter = new RVAdapter();
+        rv.setAdapter(adapter);
+
+    }
 
     AlertDialog aDialog = null;
     
@@ -841,7 +793,7 @@ public class MiniMainActivity extends AppCompatActivity
      * Update the layout_main UI based on the status of {@link TorService}.
      * {@code torServiceMsg} must never be {@code null}
      */
-    private synchronized void updateStatus(String torServiceMsg, String newTorStatus) {
+    private void updateStatus(String torServiceMsg, String newTorStatus) {
 
         if (!TextUtils.isEmpty(torServiceMsg))
         {
@@ -998,7 +950,6 @@ public class MiniMainActivity extends AppCompatActivity
 
                     if (torStatus == null && newTorStatus != null) //first time status
                     {
-                        findViewById(R.id.frameMain).setVisibility(View.VISIBLE);
                         updateStatus(log, newTorStatus);
 
                     }
@@ -1077,91 +1028,162 @@ public class MiniMainActivity extends AppCompatActivity
 //        lblStatus.setText(getString(R.string.newnym));
     }
 
-    private void addAppShortcuts() {
 
-        LinearLayout llBoxShortcuts = findViewById(R.id.frameMain);
-
-        PackageManager pMgr = getPackageManager();
-
-        llBoxShortcuts.removeAllViews();
+    public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AppViewHolder>{
 
 
-            if (Prefs.useVpn()) {
-                ArrayList<String> pkgIds = new ArrayList<>();
-                String tordAppString = mPrefs.getString(PREFS_KEY_TORIFIED, "");
+        public class AppViewHolder extends RecyclerView.ViewHolder {
 
-                if (TextUtils.isEmpty(tordAppString)) {
-                    addFullDeviceVpnView(llBoxShortcuts);
-                } else {
-                    StringTokenizer st = new StringTokenizer(tordAppString, "|");
-                    while (st.hasMoreTokens() && pkgIds.size() < 4)
-                        pkgIds.add(st.nextToken());
-                    int appsAdded = 0;
-                    for (final String pkgId : pkgIds) {
-                        try {
-                            ApplicationInfo aInfo = getPackageManager().getApplicationInfo(pkgId, 0);
-                            // skip disabled packages
-                            if (!aInfo.enabled) continue;
-                            ImageView iv = new ImageView(this);
-                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                            params.setMargins(3, 3, 3, 3);
-                            iv.setLayoutParams(params);
-                            iv.setImageDrawable(pMgr.getApplicationIcon(pkgId));
+            ImageView iv;
+            TextView tv;
+            View parent;
 
-                            iv.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    openBrowser(URL_TOR_CHECK, false, pkgId);
-                                }
-                            });
+            AppViewHolder(View itemView) {
+                super(itemView);
+                parent = itemView;
+                iv = itemView.findViewById(R.id.itemicon);
+                tv = itemView.findViewById(R.id.itemtext);
 
-                            llBoxShortcuts.addView(iv);
-                            appsAdded++;
-                        } catch (Exception e) {
-                            //package not installed?
+            }
+
+        }
+
+        @Override
+        public int getItemCount() {
+
+            return pkgIds.size()+1;
+        }
+
+        @Override
+        public AppViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+
+            View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_apps_listing, viewGroup, false);
+            final AppViewHolder avh = new AppViewHolder(v);
+
+
+
+            return avh;
+        }
+
+        @Override
+        public void onBindViewHolder(final AppViewHolder avh, int i) {
+
+
+            if (i < getItemCount()-1) {
+                String pkgId = pkgIds.get(i);
+
+                ApplicationInfo aInfo = null;
+                try {
+                    aInfo = getPackageManager().getApplicationInfo(pkgId, 0);
+                    TorifiedApp app = getApp(aInfo);
+
+                    avh.tv.setText(app.getName());
+                    avh.iv.setImageDrawable(app.getIcon());
+
+                    Palette.generateAsync(drawableToBitmap(app.getIcon()), new Palette.PaletteAsyncListener() {
+                        public void onGenerated(Palette palette) {
+                            // Do something with colors...
+
+                            int color = palette.getVibrantColor(0x000000);
+                            avh.parent.setBackgroundColor(color);
+
                         }
-                    }
-                    if (appsAdded == 0) {
+                    });
 
-                        addFullDeviceVpnView(llBoxShortcuts);
-                    }
+                    avh.iv.setVisibility(View.VISIBLE);
+
+                    avh.parent.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+
+                        }
+                    });
+                } catch (NameNotFoundException e) {
+                    e.printStackTrace();
                 }
             }
             else
             {
-                TextView tv = new TextView(this);
-                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                params.setMargins(12, 3, 3, 3);
-                tv.setLayoutParams(params);
-                tv.setText(R.string.vpn_disabled);
-                llBoxShortcuts.addView(tv);
+                avh.iv.setVisibility(View.INVISIBLE);
+                avh.tv.setText("+ ADD APP");
+                avh.parent.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        showAppPicker();
+
+                    }
+                });
+            }
+        }
+
+        private TorifiedApp getApp (ApplicationInfo aInfo)
+        {
+            TorifiedApp app = new TorifiedApp();
+
+
+
+
+            try
+            {
+                app.setName(getPackageManager().getApplicationLabel(aInfo).toString());
+            }
+            catch (Exception e)
+            {
+               return null;
             }
 
-            //now add app edit/add shortcut
-            ImageView iv = new ImageView(this);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            params.setMargins(3, 3, 3, 3);
-            iv.setLayoutParams(params);
-            iv.setImageDrawable(getResources().getDrawable(R.drawable.ic_settings_white_24dp));
-            llBoxShortcuts.addView(iv);
-            iv.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivityForResult(new Intent(MiniMainActivity.this, AppManagerActivity.class), REQUEST_VPN_APPS_SELECT);
 
-                }
-            });
+            app.setEnabled(aInfo.enabled);
+            app.setUid(aInfo.uid);
+            app.setUsername(getPackageManager().getNameForUid(app.getUid()));
+            app.setProcname(aInfo.processName);
+            app.setPackageName(aInfo.packageName);
 
+            app.setTorified(true);
+
+            try {
+                app.setIcon(getPackageManager().getApplicationIcon(app.getPackageName()));
+
+
+            } catch (NameNotFoundException e) {
+                e.printStackTrace();
+            }
+            return app;
+        }
 
     }
 
-    private void addFullDeviceVpnView(LinearLayout llBoxShortcuts) {
-        TextView tv = new TextView(this);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        params.setMargins(12, 3, 3, 3);
-        tv.setLayoutParams(params);
-        tv.setText(R.string.full_device_vpn);
-        llBoxShortcuts.addView(tv);
+    public void showAppPicker ()
+    {
+        startActivityForResult(new Intent(MiniMainActivity.this, AppManagerActivity.class), REQUEST_VPN_APPS_SELECT);
+
     }
+
+
+
+    public static Bitmap drawableToBitmap (Drawable drawable) {
+        Bitmap bitmap = null;
+
+        if (drawable instanceof BitmapDrawable) {
+            BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
+            if(bitmapDrawable.getBitmap() != null) {
+                return bitmapDrawable.getBitmap();
+            }
+        }
+
+        if(drawable.getIntrinsicWidth() <= 0 || drawable.getIntrinsicHeight() <= 0) {
+            bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888); // Single color bitmap will be created of 1x1 pixel
+        } else {
+            bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        }
+
+        Canvas canvas = new Canvas(bitmap);
+        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        drawable.draw(canvas);
+        return bitmap;
+    }
+
 
 }

@@ -7,5 +7,6 @@
         <color name="light_purple">#E6CCFF</color>
         <color name="light_green">#E1FFC0</color>
         <color name="light_gray">#EFEFEF</color>
+        <color name="med_gray">#BCBCBC</color>
 
     </resources>
