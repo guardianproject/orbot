@@ -264,8 +264,8 @@
     <string name="title_boost_your_privacy">Boost Your Privacy</string>
     <string name="send_your_app_traffic_over_tor">Send app data over Tor</string>
     <string name="turn_off_apps">Turn off app data</string>
-    <string name="stop_apps_from_using_the_network">Stop app from using the network</string>
+    <string name="stop_apps_from_using_the_network">Stop app from using the network (coming soon!)</string>
     <string name="wifi_only">Wifi only</string>
-    <string name="keep_your_apps_from_using_mobile_data">Only allow connection over wifi</string>
+    <string name="keep_your_apps_from_using_mobile_data">Only allow connection over wifi (coming soon!)</string>
     <string name="remove">Remove</string>
 </resources>

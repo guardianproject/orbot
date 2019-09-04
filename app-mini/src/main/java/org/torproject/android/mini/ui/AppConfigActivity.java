@@ -12,9 +12,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 
+import org.torproject.android.mini.MainConstants;
 import org.torproject.android.mini.MiniMainActivity;
 import org.torproject.android.mini.R;
+import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.util.TorServiceUtils;
 import org.torproject.android.service.vpn.TorifiedApp;
 
@@ -25,6 +29,12 @@ public class AppConfigActivity extends AppCompatActivity {
 
     TorifiedApp mApp;
 
+    private boolean mAppTor = false;
+    private boolean mAppData = false;
+    private boolean mAppWifi = false;
+
+    private SharedPreferences mPrefs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +44,9 @@ public class AppConfigActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        String pkgId = getIntent().getStringExtra(Intent.EXTRA_PACKAGE_NAME);
+        final String pkgId = getIntent().getStringExtra(Intent.EXTRA_PACKAGE_NAME);
+
+        mPrefs =  TorServiceUtils.getSharedPrefs(getApplicationContext());
 
         ApplicationInfo aInfo = null;
         try {
@@ -47,27 +59,85 @@ public class AppConfigActivity extends AppCompatActivity {
         }
         catch (Exception e){}
 
+        mAppTor = mPrefs.getBoolean(pkgId + OrbotConstants.APP_TOR_KEY,true);
+        mAppData = mPrefs.getBoolean(pkgId + OrbotConstants.APP_DATA_KEY,false);
+        mAppWifi = mPrefs.getBoolean(pkgId + OrbotConstants.APP_WIFI_KEY,false);
+
+        Switch switchAppTor = findViewById(R.id.switch_app_tor);
+        switchAppTor.setChecked(mAppTor);
+        switchAppTor.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mPrefs.edit().putBoolean(pkgId + OrbotConstants.APP_TOR_KEY,isChecked).commit();
+
+                Intent response = new Intent();
+                setResult(RESULT_OK,response);
+            }
+        });
+
+        Switch switchAppData = findViewById(R.id.switch_app_data);
+        switchAppData.setChecked(mAppData);
+        switchAppData.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mPrefs.edit().putBoolean(pkgId + OrbotConstants.APP_DATA_KEY,isChecked).commit();
+
+                Intent response = new Intent();
+                setResult(RESULT_OK,response);
+            }
+        });
+        switchAppData.setEnabled(false);
+
+        Switch switchAppWifi = findViewById(R.id.switch_app_wifi);
+        switchAppWifi.setChecked(mAppWifi);
+        switchAppWifi.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mPrefs.edit().putBoolean(pkgId + OrbotConstants.APP_WIFI_KEY,isChecked).commit();
+
+                Intent response = new Intent();
+                setResult(RESULT_OK,response);
+            }
+        });
+        switchAppWifi.setEnabled(false);
+
+
+
     }
 
-
-    private void removeApp ()
+    private void addApp ()
     {
-        mApp.setTorified(false);
+        mApp.setTorified(true);
 
-        SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
+        String tordAppString = mPrefs.getString(PREFS_KEY_TORIFIED, "");
 
-        String tordAppString = prefs.getString(PREFS_KEY_TORIFIED, "");
+        tordAppString = tordAppString += mApp.getPackageName()+"|";
 
-        tordAppString = tordAppString.replace(mApp.getPackageName()+"|","");
-
-        SharedPreferences.Editor edit = prefs.edit();
+        SharedPreferences.Editor edit = mPrefs.edit();
         edit.putString(PREFS_KEY_TORIFIED, tordAppString);
         edit.commit();
 
         Intent response = new Intent();
         setResult(RESULT_OK,response);
 
-        finish();
+    }
+
+    private void removeApp ()
+    {
+        mApp.setTorified(false);
+
+
+        String tordAppString = mPrefs.getString(PREFS_KEY_TORIFIED, "");
+
+        tordAppString = tordAppString.replace(mApp.getPackageName()+"|","");
+
+        SharedPreferences.Editor edit = mPrefs.edit();
+        edit.putString(PREFS_KEY_TORIFIED, tordAppString);
+        edit.commit();
+
+        Intent response = new Intent();
+        setResult(RESULT_OK,response);
+
     }
 
     /*
@@ -91,6 +161,7 @@ public class AppConfigActivity extends AppCompatActivity {
         }
         else if (item.getItemId() == R.id.menu_remove_app) {
             removeApp();
+            finish();
         }
 
         return super.onOptionsItemSelected(item);

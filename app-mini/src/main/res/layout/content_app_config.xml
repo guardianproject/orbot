@@ -33,6 +33,7 @@
         />
 
         <Switch
+            android:id="@+id/switch_app_tor"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
 
@@ -64,6 +65,8 @@
             android:layout_below="@+id/off_apps_title"
             />
         <Switch
+            android:id="@+id/switch_app_data"
+
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
 
@@ -96,6 +99,9 @@
             />
 
         <Switch
+
+            android:id="@+id/switch_app_wifi"
+
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
 

@@ -487,13 +487,20 @@ public class MiniMainActivity extends AppCompatActivity
 
     private void enableVPN (boolean enable)
     {
-        Prefs.putUseVpn(enable);
+        if (enable && pkgIds.size() == 0)
+        {
+            showAppPicker();
+        }
+        else {
+            Prefs.putUseVpn(enable);
 
-        if (enable) {
-            startActivityForResult(new Intent(MiniMainActivity.this, VPNEnableActivity.class), REQUEST_VPN);
-        } else
-            stopVpnService();
-
+            if (enable) {
+                startActivityForResult(new Intent(MiniMainActivity.this, VPNEnableActivity.class), REQUEST_VPN);
+            } else {
+                stopVpnService();
+                stopTor();
+            }
+        }
     }
 
 
@@ -1169,7 +1176,7 @@ public class MiniMainActivity extends AppCompatActivity
     {
         Intent data = new Intent(this, AppConfigActivity.class);
         data.putExtra(Intent.EXTRA_PACKAGE_NAME,pkgId);
-        startActivity(data);
+        startActivityForResult(data,REQUEST_VPN_APPS_SELECT);
     }
 
 
