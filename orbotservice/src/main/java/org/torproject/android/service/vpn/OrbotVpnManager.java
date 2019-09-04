@@ -448,8 +448,7 @@ public class OrbotVpnManager implements Handler.Callback {
 				BufferedReader reader = new BufferedReader(new FileReader(filePid));
 				String line = reader.readLine();
 				if (line != null) {
-					pid = reader.readLine().trim();
-
+					pid = line.trim();
 					VpnUtils.killProcess(pid, "-9");
 					filePid.delete();
 					return true;
