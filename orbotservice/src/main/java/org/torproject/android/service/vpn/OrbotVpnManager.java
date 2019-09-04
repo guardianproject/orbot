@@ -38,6 +38,7 @@ import android.widget.Toast;
 import com.runjva.sourceforge.jsocks.protocol.ProxyServer;
 import com.runjva.sourceforge.jsocks.server.ServerAuthenticatorNone;
 
+import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.R;
 import org.torproject.android.service.TorService;
 import org.torproject.android.service.TorServiceConstants;
@@ -315,7 +316,6 @@ public class OrbotVpnManager implements Handler.Callback {
 			        builder.addDnsServer(dummyDNS);
 			        builder.addRoute(dummyDNS,32);
 
-
 					//handle ipv6
 			        //builder.addAddress("fdfe:dcba:9876::1", 126);
 					//builder.addRoute("::", 0);
@@ -344,7 +344,7 @@ public class OrbotVpnManager implements Handler.Callback {
 					startDNS(filePdnsd.getCanonicalPath(), localhost,mTorDns, virtualGateway, pdnsdPort);
 					final boolean localDnsTransparentProxy = true;
 
-					Tun2Socks.Start(mInterface, VPN_MTU, virtualIP, virtualNetMask, localSocks , virtualGateway + ":" + pdnsdPort , localDnsTransparentProxy);
+					Tun2Socks.Start(mService, mInterface, VPN_MTU, virtualIP, virtualNetMask, localSocks , virtualGateway + ":" + pdnsdPort , localDnsTransparentProxy);
 
 
 				}
@@ -366,17 +366,24 @@ public class OrbotVpnManager implements Handler.Callback {
     {    
     	   
         ArrayList<TorifiedApp> apps = TorifiedApp.getApps(mService, getSharedPrefs(mService.getApplicationContext()));
-    
-        boolean perAppEnabled = false;
+
+		SharedPreferences prefs = getSharedPrefs(mService.getApplicationContext());
+
+		boolean perAppEnabled = false;
         
         for (TorifiedApp app : apps)
         {
         	if (app.isTorified() && (!app.getPackageName().equals(mService.getPackageName())))
         	{
-        		builder.addAllowedApplication(app.getPackageName());
-        		perAppEnabled = true;
-        	}
-        	
+				if (prefs.getBoolean(app.getPackageName() + OrbotConstants.APP_TOR_KEY,true)) {
+
+					builder.addAllowedApplication(app.getPackageName());
+
+				}
+
+				perAppEnabled = true;
+
+			}
         }
     
         if (!perAppEnabled)

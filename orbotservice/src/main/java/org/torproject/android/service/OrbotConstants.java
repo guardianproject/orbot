@@ -29,4 +29,10 @@ public interface OrbotConstants {
 	String PREF_PREFER_IPV6 = "pref_prefer_ipv6";
 	String PREF_DISABLE_IPV4 = "pref_disable_ipv4";
 
+
+	String APP_TOR_KEY = "_app_tor";
+	String APP_DATA_KEY = "_app_data";
+	String APP_WIFI_KEY = "_app_wifi";
+
+
 }
