@@ -126,15 +126,6 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
         if (mApps == null)
             mApps = getApps(prefs);
 
-        /**
-        Collections.sort(mApps,new Comparator<TorifiedApp>() {
-            public int compare(TorifiedApp o1, TorifiedApp o2) {
-                if (o1.isTorified() == o2.isTorified())
-                    return o1.getName().compareToIgnoreCase(o2.getName());
-                if (o1.isTorified()) return -1;
-                return 1;
-            }
-        });**/
 
         final LayoutInflater inflater = getLayoutInflater();
 
@@ -177,16 +168,6 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
                     entry.text.setText(app.getName());
                 }
 
-                if (app.isTorified())
-                {
-                    convertView.setBackgroundColor(getResources().getColor(R.color.dark_purple));
-
-                }
-                else
-                {
-                    convertView.setBackgroundColor(getResources().getColor(android.R.color.transparent));
-
-                }
 
                 return convertView;
             }
@@ -327,7 +308,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
 
 
             Intent data = new Intent();
-            data.putExtra("package",app.getPackageName());
+            data.putExtra(Intent.EXTRA_PACKAGE_NAME,app.getPackageName());
             setResult(RESULT_OK,data);
             saveAppSettings();
 

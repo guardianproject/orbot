@@ -19,13 +19,13 @@ public class OnboardingActivity extends AppIntro {
         // Instead of fragments, you can also use our default slide
         // Just set a title, description, background and image. AppIntro will do the rest.
         CustomSlideBigText welcome = CustomSlideBigText.newInstance(R.layout.custom_slide_big_text);
-        welcome.setTitle("The power of tor made simple for your life");
-        welcome.setSubTitle("orbot mini");
+        welcome.setTitle(getString(R.string.mini_onboarding_1));
+        welcome.setSubTitle(getString(R.string.app_name));
         addSlide(welcome);
 
         CustomSlideBigText intro2 = CustomSlideBigText.newInstance(R.layout.custom_slide_big_text);
-        intro2.setTitle("unblock any app with a few taps");
-        intro2.setSubTitle("so easy");
+        intro2.setTitle(getString(R.string.mini_onboarding_2));
+        intro2.setSubTitle(getString(R.string.mini_onboarding_2_title));
         addSlide(intro2);
 
         // OPTIONAL METHODS

@@ -124,7 +124,7 @@
     <string name="newnym">You\'ve switched to a new Tor identity!</string>
 
     <string name="pref_open_proxy_on_all_interfaces_title">Open Proxy on All Interfaces</string>
-  <string name="pref_open_proxy_on_all_interfaces_summary">Allow Wi-Fi peers, tethered devices and anyone else who can connect to your IP, to access Tor</string>
+    <string name="pref_open_proxy_on_all_interfaces_summary">Allow Wi-Fi peers, tethered devices and anyone else who can connect to your IP, to access Tor</string>
 
     <string name="no_network_connectivity_putting_tor_to_sleep_">No network connectivity. Putting Tor to sleep…</string>
     <string name="network_connectivity_is_good_waking_tor_up_">Network connectivity is good. Waking Tor up…</string>
@@ -255,4 +255,17 @@
     <string name="app_services">App services</string>
     <string name="default_socks_http">SOCKS: - HTTP: -</string>
     <string name="refresh_apps">Refresh Apps</string>
+
+    <!-- Orbot Mini Strings -->
+    <string name="mini_onboarding_1">The power of tor made mini to fit your life</string>
+    <string name="mini_onboarding_2">unblock any app with a few taps</string>
+    <string name="mini_onboarding_2_title">so easy!</string>
+    <string name="title_activity_app_config">AppConfigActivity</string>
+    <string name="title_boost_your_privacy">Boost Your Privacy</string>
+    <string name="send_your_app_traffic_over_tor">Send app data over Tor</string>
+    <string name="turn_off_apps">Turn off app data</string>
+    <string name="stop_apps_from_using_the_network">Stop app from using the network</string>
+    <string name="wifi_only">Wifi only</string>
+    <string name="keep_your_apps_from_using_mobile_data">Only allow connection over wifi</string>
+    <string name="remove">Remove</string>
 </resources>

@@ -60,6 +60,7 @@ import org.json.JSONArray;
 import org.torproject.android.mini.settings.Languages;
 import org.torproject.android.mini.settings.LocaleHelper;
 import org.torproject.android.mini.settings.SettingsPreferences;
+import org.torproject.android.mini.ui.AppConfigActivity;
 import org.torproject.android.mini.ui.AppManagerActivity;
 import org.torproject.android.mini.ui.Rotate3dAnimation;
 import org.torproject.android.mini.ui.onboarding.OnboardingActivity;
@@ -631,7 +632,7 @@ public class MiniMainActivity extends AppCompatActivity
                     torStatus == TorServiceConstants.STATUS_ON) {
                 refreshVPNApps();
 
-                String newPkgId = data.getStringExtra("package");
+                String newPkgId = data.getStringExtra(Intent.EXTRA_PACKAGE_NAME);
                 //add new entry
 
             }
@@ -1070,12 +1071,12 @@ public class MiniMainActivity extends AppCompatActivity
 
 
             if (i < getItemCount()-1) {
-                String pkgId = pkgIds.get(i);
+                final String pkgId = pkgIds.get(i);
 
                 ApplicationInfo aInfo = null;
                 try {
                     aInfo = getPackageManager().getApplicationInfo(pkgId, 0);
-                    TorifiedApp app = getApp(aInfo);
+                    TorifiedApp app = getApp(MiniMainActivity.this, aInfo);
 
                     avh.tv.setText(app.getName());
                     avh.iv.setImageDrawable(app.getIcon());
@@ -1096,6 +1097,7 @@ public class MiniMainActivity extends AppCompatActivity
                         @Override
                         public void onClick(View v) {
 
+                            showAppConfig(pkgId);
 
                         }
                     });
@@ -1118,42 +1120,44 @@ public class MiniMainActivity extends AppCompatActivity
             }
         }
 
-        private TorifiedApp getApp (ApplicationInfo aInfo)
-        {
-            TorifiedApp app = new TorifiedApp();
-
-
-
-
-            try
-            {
-                app.setName(getPackageManager().getApplicationLabel(aInfo).toString());
-            }
-            catch (Exception e)
-            {
-               return null;
-            }
-
-
-            app.setEnabled(aInfo.enabled);
-            app.setUid(aInfo.uid);
-            app.setUsername(getPackageManager().getNameForUid(app.getUid()));
-            app.setProcname(aInfo.processName);
-            app.setPackageName(aInfo.packageName);
-
-            app.setTorified(true);
-
-            try {
-                app.setIcon(getPackageManager().getApplicationIcon(app.getPackageName()));
-
-
-            } catch (NameNotFoundException e) {
-                e.printStackTrace();
-            }
-            return app;
-        }
 
     }
+
+    public static TorifiedApp getApp (Context context, ApplicationInfo aInfo)
+    {
+        TorifiedApp app = new TorifiedApp();
+
+        PackageManager pMgr = context.getPackageManager();
+
+
+        try
+        {
+            app.setName(pMgr.getApplicationLabel(aInfo).toString());
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
+
+
+        app.setEnabled(aInfo.enabled);
+        app.setUid(aInfo.uid);
+        app.setUsername(pMgr.getNameForUid(app.getUid()));
+        app.setProcname(aInfo.processName);
+        app.setPackageName(aInfo.packageName);
+
+        app.setTorified(true);
+
+        try {
+            app.setIcon(pMgr.getApplicationIcon(app.getPackageName()));
+
+
+        } catch (NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return app;
+    }
+
 
     public void showAppPicker ()
     {
@@ -1161,6 +1165,12 @@ public class MiniMainActivity extends AppCompatActivity
 
     }
 
+    public void showAppConfig (String pkgId)
+    {
+        Intent data = new Intent(this, AppConfigActivity.class);
+        data.putExtra(Intent.EXTRA_PACKAGE_NAME,pkgId);
+        startActivity(data);
+    }
 
 
     public static Bitmap drawableToBitmap (Drawable drawable) {

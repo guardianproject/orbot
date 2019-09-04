@@ -4,16 +4,6 @@
     package="org.torproject.android.mini"
     android:installLocation="internalOnly">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
-    <!-- Some Chromebooks don't support touch. Although not essential,
-         it's a good idea to explicitly include this declaration. -->
-    <uses-feature android:name="android.hardware.touchscreen"
-        android:required="false" />
-
     <application
         android:name=".OrbotMiniApp"
         android:allowBackup="false"
@@ -24,8 +14,10 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/DefaultTheme"
-        tools:replace="android:allowBackup"
-        >
+        tools:replace="android:allowBackup">
+        <activity
+            android:name=".ui.AppConfigActivity"
+            android:label="@string/title_activity_app_config"></activity>
         <activity
             android:name=".MiniMainActivity"
             android:excludeFromRecents="false"
@@ -43,11 +35,10 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data android:scheme="bridge" />
-            </intent-filter>-->
+            </intent-filter>
+            -->
 
-        </activity>
-
-        <!--         This is for ensuring the background service still runs when/if the app is swiped away -->
+        </activity> <!-- This is for ensuring the background service still runs when/if the app is swiped away -->
         <activity
             android:name="org.torproject.android.service.util.DummyActivity"
             android:allowTaskReparenting="true"
@@ -71,20 +62,18 @@
             android:label="@string/app_name"
             android:theme="@style/Theme.AppCompat.Light" />
 
-        <service
-            android:name="org.torproject.android.service.TorService"
-            android:enabled="true"
-            android:permission="android.permission.BIND_VPN_SERVICE"
-            android:stopWithTask="false"></service>
-        <service
-            android:name="org.torproject.android.service.vpn.TorVpnService"
-            android:enabled="true"
-            android:permission="android.permission.BIND_VPN_SERVICE">
-            <intent-filter>
-                <action android:name="android.net.VpnService" />
-            </intent-filter>
-        </service>
+        <activity android:name=".ui.onboarding.OnboardingActivity" />
+        <activity android:name=".ui.onboarding.BridgeWizardActivity" />
 
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="org.torproject.android.mini.ui.hiddenservices.storage"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/hidden_services_paths" />
+        </provider>
         <receiver
             android:name="org.torproject.android.service.StartTorReceiver"
             android:exported="true">
@@ -92,6 +81,7 @@
                 <action android:name="org.torproject.android.intent.action.START" />
             </intent-filter>
         </receiver>
+
         <receiver
             android:name=".OnBootReceiver"
             android:enabled="true"
@@ -113,25 +103,33 @@
             </intent-filter>
         </receiver>
 
-
-
-
-        <provider
-            android:name="android.support.v4.content.FileProvider"
-            android:authorities="org.torproject.android.mini.ui.hiddenservices.storage"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/hidden_services_paths" />
-        </provider>
-
-
-
-        <activity android:name=".ui.onboarding.OnboardingActivity"/>
-        <activity android:name=".ui.onboarding.BridgeWizardActivity"/>
-
-
+        <service
+            android:name="org.torproject.android.service.TorService"
+            android:enabled="true"
+            android:permission="android.permission.BIND_VPN_SERVICE"
+            android:stopWithTask="false" />
+        <service
+            android:name="org.torproject.android.service.vpn.TorVpnService"
+            android:enabled="true"
+            android:permission="android.permission.BIND_VPN_SERVICE">
+            <intent-filter>
+                <action android:name="android.net.VpnService" />
+            </intent-filter>
+        </service>
     </application>
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
+    <!--
+ Some Chromebooks don't support touch. Although not essential,
+         it's a good idea to explicitly include this declaration.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
 </manifest>
