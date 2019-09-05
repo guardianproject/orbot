@@ -1,5 +1,36 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+/** 16.1.1-BETA-2-tor-0.4.0.4-rc / Wed Aug 7 13:33:30 2019 -0400 / bbf5fcb3fb346e9bba712d12bf4934cf925cb2bd **/
+
+bbf5fcb3 (tag: 16.1.1-BETA-2-tor-0.4.0.4-rc) update service for VPN mode and startup fixes
+ea7f3f10 update gitignore
+cf19750d update fastlane and gradle to support split apks builds, CI and more
+cd80e850 (tag: 16.1.1-BETA-1-tor-0.4.0.4-rc) update to 16.1.1-BETA-1-tor-0.4.0.4-rc
+bfb5eab1 Merge branch 'master' of github.com:n8fr8/orbot
+d02fb582 instead of DisableNetwork, let's try NEWNYM when the network returns - we've had issues of losing connectivity setting DisableNetwork, so we are trying a new approach - now using DormantClientTimeout settings, to have client go to sleep when it is not used - when we receive a network connectivity notification, we call NEWNYM to refresh circuits
+d5e570a5 Merge pull request #247 from bitmold/low_dpi_launcher_icon
+767a8596 Launcher icon was out of date on low resolution devices.
+7d11984b (tag: 16.1.0-RC-3-tor-0.4.0.4-rc) update to 16.1.0-RC-3-tor-0.4.0.4-rc
+e146f703 make sure to kill existing pdnsd, and set the new ports properly
+c6bfc491 send ports on start request, even if tor is already running
+d3963516 keep apps around as static variable, enable user to refresh
+be5b8d88 make sure we don't have any orphaned pdnsd processes
+72ff7dd2 Merge branch 'ejo4041-mergeDebugJniLibFolders_issue'
+07e34239 (ejo4041-mergeDebugJniLibFolders_issue) Merge branch 'mergeDebugJniLibFolders_issue' of https://github.com/ejo4041/orbot into ejo4041-mergeDebugJniLibFolders_issue
+be6feea8 Merge branch 'master' of github.com:n8fr8/orbot
+d2005234 update gradle
+929cb6b6 pdnsd must be named with a .so extension to be included
+c0afffeb don't build plain armeabi anymore
+4321ae49 update native libs
+c7e9b01f Merge pull request #244 from bitmold/vpn_app_ui_glitch
+fc0b035a After following the BUILD file, could not build the apk because of a issue mentioned in #217: Execution failed for task :orbotservice:mergeDebugJniLibFolders. This change fixes that.
+7b832f19 Fixed VPN App UI for apps that were disabled or uninstalled
+d084aa6c (tag: 16.1.0-RC-2-tor-0.4.0.4-rc) update to 16.1.0-RC-2-tor-0.4.0.4-rc
+79afbe05 bind pdnsd to virtual address within VPN
+9ff0b00c fix VPN code to support dynamic DNS port for Tor
+f1e572e8 use standard string keys for intent values
+361ea26d ports can be set to "auto" so allow letters as well
+
 /** 16.1.0-RC-1-tor-0.4.0.4-rc / 8 July 2019 / e60c07ed0ffc8360db4dfcdeffd8578945b38d0b **/
 
 Thanks to @bitmold @sisbell @pgerber and @eighthave for all the great work, not to mention the core Tor dev team making all things mobile better every day!
