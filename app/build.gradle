@@ -31,6 +31,9 @@ android {
         minSdkVersion 16
         targetSdkVersion 29
     }
+    aaptOptions {
+        cruncherEnabled = false
+    }
     lintOptions {
         checkReleaseBuilds false
         // Or, if you prefer, you can continue to check for errors in release builds,
