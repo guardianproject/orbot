@@ -134,6 +134,16 @@ public class Tun2Socks
 
     private native static void terminateTun2Socks();
 
+    public static boolean checkIsAllowed (int protocol, String sourceAddr, int sourcePort, String destAddr, int destPort) {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
+        {
+            return isAllowedQ(protocol, sourceAddr, sourcePort, destAddr, destPort);
+        }
+        else
+            return isAllowed(protocol, sourceAddr, sourcePort, destAddr, destPort);
+    }
+
     public static boolean isAllowed (int protocol, String sourceAddr, int sourcePort, String destAddr, int destPort) {
 
         TCPSourceApp.AppDescriptor aInfo = TCPSourceApp.getApplicationInfo(mContext, sourceAddr, sourcePort, destAddr, destPort);
