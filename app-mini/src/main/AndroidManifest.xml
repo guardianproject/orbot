@@ -65,22 +65,6 @@
         <activity android:name=".ui.onboarding.OnboardingActivity" />
         <activity android:name=".ui.onboarding.BridgeWizardActivity" />
 
-        <provider
-            android:name="android.support.v4.content.FileProvider"
-            android:authorities="org.torproject.android.mini.ui.hiddenservices.storage"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/hidden_services_paths" />
-        </provider>
-        <receiver
-            android:name="org.torproject.android.service.StartTorReceiver"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="org.torproject.android.intent.action.START" />
-            </intent-filter>
-        </receiver>
 
         <receiver
             android:name=".OnBootReceiver"
