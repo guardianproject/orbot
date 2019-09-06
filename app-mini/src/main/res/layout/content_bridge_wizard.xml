@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="org.torproject.android.mini.ui.onboarding.BridgeWizardActivity"
+    tools:context="org.torproject.android.ui.onboarding.BridgeWizardActivity"
     tools:showIn="@layout/activity_bridge_wizard">
 
     <TextView
