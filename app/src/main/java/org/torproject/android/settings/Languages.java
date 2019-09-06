@@ -21,7 +21,7 @@ import java.util.TreeMap;
 public class Languages {
     public static final String TAG = "Languages";
 
-    public static final Locale defaultLocale;
+    public static Locale defaultLocale;
     public static final Locale TIBETAN = new Locale("bo");
     static final Locale localesToTest[] = {
             Locale.ENGLISH, Locale.FRENCH, Locale.GERMAN,
@@ -61,11 +61,10 @@ public class Languages {
     private static Map<String, String> tmpMap = new TreeMap<String, String>();
     private static Map<String, String> nameMap;
 
-    static {
-        defaultLocale = Locale.getDefault();
-    }
 
     private Languages(Activity activity) {
+
+
         AssetManager assets = activity.getAssets();
         Configuration config = activity.getResources().getConfiguration();
         // Resources() requires DisplayMetrics, but they are only needed for drawables
@@ -119,6 +118,8 @@ public class Languages {
      * @return
      */
     public static void setup(Class<?> clazz, int resId) {
+        defaultLocale = Locale.getDefault();
+
         if (Languages.clazz == null) {
             Languages.clazz = clazz;
             Languages.resId = resId;

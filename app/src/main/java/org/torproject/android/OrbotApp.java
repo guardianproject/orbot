@@ -42,7 +42,7 @@ public class OrbotApp extends Application implements OrbotConstants {
         //check for updates via github, since it is unlikely to be blocked; notify the user of places where upgrades can be found
         new AppUpdater(this)
                 .setUpdateFrom(UpdateFrom.JSON)
-                .setUpdateJSON("https://raw.githubusercontent.com/n8fr8/orbot/master/update.json")
+                .setUpdateJSON("https://raw.githubusercontent.com/guardianproject/orbot/master/update.json")
                 .setDisplay(Display.NOTIFICATION).start();
     }
 
@@ -59,17 +59,7 @@ public class OrbotApp extends Application implements OrbotConstants {
         if (!Prefs.getDefaultLocale().equals(Locale.getDefault().getLanguage()))
             Languages.setLanguage(this, Prefs.getDefaultLocale(), true);
     }
-	/**
-    public static void forceChangeLanguage(Activity activity) {
-        Intent intent = activity.getIntent();
-        if (intent == null) // when launched as LAUNCHER
-            intent = new Intent(activity, OrbotMainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        activity.finish();
-        activity.overridePendingTransition(0, 0);
-        activity.startActivity(intent);
-        activity.overridePendingTransition(0, 0);
-    }**/
+
 
     public static Languages getLanguages(Activity activity) {
         return Languages.get(activity);
