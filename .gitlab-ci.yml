@@ -23,7 +23,7 @@ before_script:
 
 stages:
   - build
-  - test
+#  - test
 
 #lintDebug:
 #  stage: build
@@ -38,8 +38,8 @@ assembleDebug:
     paths:
     - app/build/outputs/
 
-debugTests:
-  stage: test
-  script:
-    - ./gradlew -Pci --console=plain :app:testReleaseflavorDebugUnitTest
+#debugTests:
+#  stage: test
+#  script:
+#    - ./gradlew -Pci --console=plain :app:testReleaseflavorDebugUnitTest
 
