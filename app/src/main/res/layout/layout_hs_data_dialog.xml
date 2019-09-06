@@ -15,7 +15,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Small"
         android:paddingLeft="5dp" />
 
-    <org.torproject.android.mini.ui.NoPersonalizedLearningEditText
+    <org.torproject.android.ui.NoPersonalizedLearningEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
@@ -29,7 +29,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Small"
         android:paddingLeft="5dp" />
 
-    <org.torproject.android.mini.ui.NoPersonalizedLearningEditText
+    <org.torproject.android.ui.NoPersonalizedLearningEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -43,7 +43,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Small"
         android:paddingLeft="5dp" />
 
-    <org.torproject.android.mini.ui.NoPersonalizedLearningEditText
+    <org.torproject.android.ui.NoPersonalizedLearningEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"

@@ -23,19 +23,19 @@ import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.TorServiceUtils;
 import org.torproject.android.service.vpn.VpnConstants;
 import org.torproject.android.service.vpn.VpnPrefs;
-import org.torproject.android.mini.settings.Languages;
-import org.torproject.android.mini.settings.LocaleHelper;
-import org.torproject.android.mini.settings.SettingsPreferences;
-import org.torproject.android.mini.ui.AppManagerActivity;
-import org.torproject.android.mini.ui.Rotate3dAnimation;
-import org.torproject.android.mini.ui.onboarding.BridgeWizardActivity;
-import org.torproject.android.mini.ui.onboarding.OnboardingActivity;
-import org.torproject.android.mini.ui.hiddenservices.ClientCookiesActivity;
-import org.torproject.android.mini.ui.hiddenservices.HiddenServicesActivity;
-import org.torproject.android.mini.ui.hiddenservices.backup.BackupUtils;
-import org.torproject.android.mini.ui.hiddenservices.permissions.PermissionManager;
-import org.torproject.android.mini.ui.hiddenservices.providers.HSContentProvider;
-import org.torproject.android.mini.vpn.VPNEnableActivity;
+import org.torproject.android.settings.Languages;
+import org.torproject.android.settings.LocaleHelper;
+import org.torproject.android.settings.SettingsPreferences;
+import org.torproject.android.ui.AppManagerActivity;
+import org.torproject.android.ui.Rotate3dAnimation;
+import org.torproject.android.ui.onboarding.BridgeWizardActivity;
+import org.torproject.android.ui.onboarding.OnboardingActivity;
+import org.torproject.android.ui.hiddenservices.ClientCookiesActivity;
+import org.torproject.android.ui.hiddenservices.HiddenServicesActivity;
+import org.torproject.android.ui.hiddenservices.backup.BackupUtils;
+import org.torproject.android.ui.hiddenservices.permissions.PermissionManager;
+import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
+import org.torproject.android.ui.VPNEnableActivity;
 
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningServiceInfo;
@@ -718,7 +718,7 @@ public class OrbotMainActivity extends AppCompatActivity
 
                                 Uri contentUri = getUriForFile(
                                         context,
-                                        "org.torproject.android.mini.ui.hiddenservices.storage",
+                                        "org.torproject.android.ui.hiddenservices.storage",
                                         hidden_service_key
                                 );
 

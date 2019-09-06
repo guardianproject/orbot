@@ -136,8 +136,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
     private ArrayList<Bridge> alBridges = null;
 
-    private static final Uri HS_CONTENT_URI = Uri.parse("content://org.torproject.android.mini.ui.hiddenservices.providers/hs");
-    private static final Uri COOKIE_CONTENT_URI = Uri.parse("content://org.torproject.android.mini.ui.hiddenservices.providers.cookie/cookie");
+    private static final Uri HS_CONTENT_URI = Uri.parse("content://org.torproject.android.ui.hiddenservices.providers/hs");
+    private static final Uri COOKIE_CONTENT_URI = Uri.parse("content://org.torproject.android.ui.hiddenservices.providers.cookie/cookie");
 
     private Handler mHandler;
 
