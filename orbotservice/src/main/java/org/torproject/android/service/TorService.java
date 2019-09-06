@@ -741,8 +741,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         if (extraLines == null)
             return null;
         
-        String torrcCustom = new String(prefs.getString("pref_custom_torrc", "").getBytes("US-ASCII"));
-        extraLines.append(torrcCustom).append('\n');
+        extraLines.append('\n');
+        extraLines.append(prefs.getString("pref_custom_torrc", "")).append('\n');
 
         logNotice("updating torrc custom configuration...");
 
@@ -1617,35 +1617,37 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 extraLines.append("UseBridges 1").append('\n');
             //    extraLines.append("UpdateBridgesFromAuthority 1").append('\n');
 
-
-                String bridgeList = new String(Prefs.getBridgesList().getBytes("ISO-8859-1"));
-                boolean obfsBridges = bridgeList.contains("obfs3") || bridgeList.contains("obfs4");
+                String bridgeList = Prefs.getBridgesList();
+                boolean obfs3Bridges = bridgeList.contains("obfs3");
+                boolean obfs4Bridges =  bridgeList.contains("obfs4");
                 boolean meekBridges = bridgeList.contains("meek");
 
                 //check if any PT bridges are needed
-                if (obfsBridges) {
+                if (obfs3Bridges)
                     extraLines.append("ClientTransportPlugin obfs3 exec ")
                             .append(fileObfsclient.getCanonicalPath()).append('\n');
+
+                if (obfs4Bridges)
                     extraLines.append("ClientTransportPlugin obfs4 exec ")
                             .append(fileObfsclient.getCanonicalPath()).append('\n');
-                }
 
-                if (meekBridges) {
+                if (meekBridges)
                     extraLines.append("ClientTransportPlugin meek_lite exec " + fileObfsclient.getCanonicalPath()).append('\n');
-                }
 
                 if (bridgeList != null && bridgeList.length() > 5) //longer then 1 = some real values here
                 {
-                    String[] bridgeListLines = bridgeList.split("\\r?\\n");
+                    String[] bridgeListLines = bridgeList.split("\\n");
 
                     for (String bridgeConfigLine : bridgeListLines) {
                         if (!TextUtils.isEmpty(bridgeConfigLine)) {
                             extraLines.append("Bridge ");
+                            extraLines.append(bridgeConfigLine);
 
+                            /**
                             StringTokenizer st = new StringTokenizer(bridgeConfigLine, " ");
                             while (st.hasMoreTokens())
                                 extraLines.append(st.nextToken()).append(' ');
-
+                            **/
                             extraLines.append("\n");
 
                         }
