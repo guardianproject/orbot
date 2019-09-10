@@ -50,11 +50,11 @@ android {
         cruncherEnabled = false
     }
 
-    flavorDimensions "free"
+    flavorDimensions "freemini"
 
     productFlavors {
         mini {
-            dimension "free"
+            dimension "freemini"
             minSdkVersion 16
             applicationId 'org.torproject.android.mini'
             targetSdkVersion 28
