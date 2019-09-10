@@ -38,12 +38,12 @@ platform :android do
   end
   desc "Build a release APK"
   lane :release do
-     gradle(task: "clean assemble")
+     gradle(task: "clean assembleFullperm")
   end
 lane :beta do
   # Adjust the `build_type` and `flavor` params as needed to build the right APK for your setup
   gradle(
-    task: 'clean assemble',
+    task: 'clean assembleFullperm',
     build_type: 'Release'
   )
     upload_to_play_store(track: 'beta')
