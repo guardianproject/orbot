@@ -26,7 +26,9 @@ public class CustomNativeLoader {
             zipFile = new ZipFile(context.getApplicationInfo().sourceDir);
             ZipEntry entry = zipFile.getEntry("lib/" + arch + "/" + libname + ".so");
             if (entry == null) {
-                throw new Exception("Unable to find file in apk:" + "lib/" + arch + "/" + libname);
+                entry = zipFile.getEntry("jni/" + arch + "/" + libname + ".so");
+                if (entry == null)
+                    throw new Exception("Unable to find file in apk:" + "lib/" + arch + "/" + libname);
             }
 
             //how we wrap this in another stream because the native .so is zipped itself

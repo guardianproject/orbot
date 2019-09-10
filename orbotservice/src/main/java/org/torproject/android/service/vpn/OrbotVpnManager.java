@@ -341,7 +341,7 @@ public class OrbotVpnManager implements Handler.Callback {
 
 					//start PDNSD daemon pointing to actual DNS
 					int pdnsdPort = 8091;
-					startDNS(filePdnsd.getCanonicalPath(), localhost,mTorDns, virtualGateway, pdnsdPort);
+						startDNS(filePdnsd.getCanonicalPath(), localhost,mTorDns, virtualGateway, pdnsdPort);
 					final boolean localDnsTransparentProxy = true;
 
 					Tun2Socks.Start(mService, mInterface, VPN_MTU, virtualIP, virtualNetMask, localSocks , virtualGateway + ":" + pdnsdPort , localDnsTransparentProxy);

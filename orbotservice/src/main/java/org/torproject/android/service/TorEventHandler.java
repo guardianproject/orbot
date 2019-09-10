@@ -160,69 +160,65 @@ public class TorEventHandler implements EventHandler, TorServiceConstants {
         if (mService.getCurrentStatus() == STATUS_STARTING && TextUtils.equals(status, "BUILT"))
             mService.sendCallbackStatus(STATUS_ON);
 
-        StringBuilder sb = new StringBuilder();
-        sb.append("Circuit (");
-        sb.append((circID));
-        sb.append(") ");
-        sb.append(status);
-        sb.append(": ");
+        if (Prefs.useDebugLogging()) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("Circuit (");
+            sb.append((circID));
+            sb.append(") ");
+            sb.append(status);
+            sb.append(": ");
 
-        StringTokenizer st = new StringTokenizer(path,",");
-        Node node = null;
+            StringTokenizer st = new StringTokenizer(path, ",");
+            Node node = null;
 
-        while (st.hasMoreTokens())
-        {
-            String nodePath = st.nextToken();
-            node = new Node();
+            while (st.hasMoreTokens()) {
+                String nodePath = st.nextToken();
+                node = new Node();
 
-            String[] nodeParts;
+                String[] nodeParts;
 
-            if (nodePath.contains("="))
-                nodeParts = nodePath.split("=");
-            else
-                nodeParts = nodePath.split("~");
+                if (nodePath.contains("="))
+                    nodeParts = nodePath.split("=");
+                else
+                    nodeParts = nodePath.split("~");
 
-            if (nodeParts.length == 1)
-            {
-                node.id = nodeParts[0].substring(1);
-                node.name = node.id;
-            }
-            else if (nodeParts.length == 2)
-            {
-                node.id = nodeParts[0].substring(1);
-                node.name = nodeParts[1];
-             }
+                if (nodeParts.length == 1) {
+                    node.id = nodeParts[0].substring(1);
+                    node.name = node.id;
+                } else if (nodeParts.length == 2) {
+                    node.id = nodeParts[0].substring(1);
+                    node.name = nodeParts[1];
+                }
 
-            node.status = status;
+                node.status = status;
 
-            sb.append(node.name);
+                sb.append(node.name);
 
-            if (st.hasMoreTokens())
-                sb.append (" > ");
-        }
-
-        if (Prefs.useDebugLogging())
-            mService.debug(sb.toString());
-        else if(status.equals("BUILT"))
-            mService.logNotice(sb.toString());
-        else if (status.equals("CLOSED"))
-            mService.logNotice(sb.toString());
-
-        if (Prefs.expandedNotifications())
-        {
-            //get IP from last nodename
-            if(status.equals("BUILT")){
-
-               // if (node.ipAddress == null)
-                 //   mService.exec(new ExternalIPFetcher(node));
-
-                hmBuiltNodes.put(circID, node);
+                if (st.hasMoreTokens())
+                    sb.append(" > ");
             }
 
-            if (status.equals("CLOSED"))
-            {
-                hmBuiltNodes.remove(circID);
+            if (Prefs.useDebugLogging())
+                mService.debug(sb.toString());
+            else if (status.equals("BUILT"))
+                mService.logNotice(sb.toString());
+            else if (status.equals("CLOSED"))
+                mService.logNotice(sb.toString());
 
+            if (Prefs.expandedNotifications()) {
+                //get IP from last nodename
+                if (status.equals("BUILT")) {
+
+                    // if (node.ipAddress == null)
+                    //   mService.exec(new ExternalIPFetcher(node));
+
+                    hmBuiltNodes.put(circID, node);
+                }
+
+                if (status.equals("CLOSED")) {
+                    hmBuiltNodes.remove(circID);
+
+                }
             }
         }
 
