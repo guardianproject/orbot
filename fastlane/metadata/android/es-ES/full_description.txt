@@ -23,5 +23,3 @@ EN TWITTER: https://twitter.com/guardianproject
 CÓDIGO ABIERTO: Orweb es software libre. Puedes mirar el código fuente o ser parte de la comunidad y ayudar a mejorarlo: https://gitweb.torproject.org/orbot.git
 ACERCA DE TOR: https://TorProject.org
 CONTÁCTENOS: ¿Cree que deberíamos añadir una nueva función? ¿Encontró un error? ¡Por favor contáctenos! Envíenos un e-mail a support@guardianproject.info
-AYÚDENOS A LLEVAR ORBOT A SU PAÍS: Estamos tratando de conseguir Orbot en tantos idiomas como sea posible. En este momento está en: Árabe (العربية), Vasco (Euskara), Búlgaro (български език), Chino (中文简体), Checo (Čeština), Danés (Dansk), Holandés (Nederlands), Inglés (English), Persa (فارسی), Francés (Français), Alemán (Deutsch), Griego (Ελληνικά), Hebreo (עברית), Húngaro (Magyar Nyelv), Italiano, Japonés (日本語) Koreano (조선말), Letón (Latviešu), Malayo (بهاس ملايو ), Polaco (Polski), Portugués (Português), Ruso (Русский), Español, Sueco (Svensk), y Vietnamita (Tiếng Việt).
-Si Orbot no está aún en su idioma, nos encantaría que usted se uniera a nuestro equipo de traducción: https://www.transifex.com/otf/orbot/
