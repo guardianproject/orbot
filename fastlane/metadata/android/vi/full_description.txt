@@ -21,6 +21,3 @@ WEBSITE: https://GuardianProject.info
 TWITTER: https://twitter.com/guardianproject
 Mở mã nguồn: Orbot là phần mềm miễn phí. Hãy xem mã nguồn của chúng tôi, hoặc tham gia vào cộng đồng để làm cho nó tốt hơn: https://gitweb.torproject.org/orbot.git
 VỀ DỰ ÁN TOR: https://TorProject.org
-THÔNG ĐIỆP : Có phải chúng ta thiếu tính năng yêu thích của bạn? Tìm thấy một lỗi gây phiền nhiễu? Chúng tôi muốn nghe từ bạn! Gửi email cho chúng tôi: root@guardianproject.info
-Trợ giúp của chúng tôi MANG ORBOT quốc gia của bạn: Chúng tôi đang cố gắng để có được Orbot thành nhiều ngôn ngữ càng tốt. Ngay bây giờ nó trong
-Nếu Orbot không có trong ngôn ngữ của bạn nhưng, chúng tôi rất muốn có bạn tham gia đội ngũ dịch thuật của chúng tôi: https://www.transifex.com/otf/orbot/
