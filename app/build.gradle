@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 
+
 // Create a variable called keystorePropertiesFile, and initialize it to your
 // keystore.properties file, in the rootProject folder.
 def keystorePropertiesFile = rootProject.file("keystore.properties")
@@ -10,6 +11,16 @@ def keystoreProperties = new Properties()
 // Load your keystore.properties file into the keystoreProperties object.
 if (keystorePropertiesFile.canRead()) {
     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
+/* gets the version name from the latest Git tag, stripping the leading v off */
+def getVersionName = { ->
+    def stdout = new ByteArrayOutputStream()
+    exec {
+        commandLine 'git', 'describe', '--tags', '--always'
+        standardOutput = stdout
+    }
+    return stdout.toString().trim()
 }
 
 android {
@@ -28,6 +39,7 @@ android {
     buildToolsVersion '29.0.0'
     defaultConfig {
         applicationId "org.torproject.android"
+        versionName getVersionName()
         minSdkVersion 16
         targetSdkVersion 29
     }
@@ -62,7 +74,7 @@ android {
             applicationId 'org.torproject.android'
             targetSdkVersion 28
             versionCode 16123000
-            versionName '16.1.2-RC-2-tor-0.4.1.5-rc'
+            versionName getVersionName()
             archivesBaseName = "Orbot-$versionName"
         }
     }
