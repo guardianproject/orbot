@@ -3,40 +3,6 @@
 
 package org.torproject.android;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
-import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.Locale;
-import java.util.StringTokenizer;
-
-import org.json.JSONArray;
-import org.torproject.android.service.OrbotConstants;
-import org.torproject.android.service.util.Prefs;
-import org.torproject.android.service.TorService;
-import org.torproject.android.service.TorServiceConstants;
-import org.torproject.android.service.util.TorServiceUtils;
-import org.torproject.android.service.vpn.VpnConstants;
-import org.torproject.android.service.vpn.VpnPrefs;
-import org.torproject.android.settings.Languages;
-import org.torproject.android.settings.LocaleHelper;
-import org.torproject.android.settings.SettingsPreferences;
-import org.torproject.android.ui.AppManagerActivity;
-import org.torproject.android.ui.Rotate3dAnimation;
-import org.torproject.android.ui.onboarding.BridgeWizardActivity;
-import org.torproject.android.ui.onboarding.OnboardingActivity;
-import org.torproject.android.ui.hiddenservices.ClientCookiesActivity;
-import org.torproject.android.ui.hiddenservices.HiddenServicesActivity;
-import org.torproject.android.ui.hiddenservices.backup.BackupUtils;
-import org.torproject.android.ui.hiddenservices.permissions.PermissionManager;
-import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
-import org.torproject.android.ui.VPNEnableActivity;
-
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningServiceInfo;
 import android.app.AlertDialog;
@@ -84,11 +50,42 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
-
+import org.json.JSONArray;
+import org.torproject.android.service.OrbotConstants;
+import org.torproject.android.service.TorService;
+import org.torproject.android.service.TorServiceConstants;
+import org.torproject.android.service.util.Prefs;
+import org.torproject.android.service.util.TorServiceUtils;
+import org.torproject.android.service.vpn.VpnConstants;
+import org.torproject.android.service.vpn.VpnPrefs;
+import org.torproject.android.settings.Languages;
+import org.torproject.android.settings.LocaleHelper;
+import org.torproject.android.settings.SettingsPreferences;
+import org.torproject.android.ui.AppManagerActivity;
+import org.torproject.android.ui.Rotate3dAnimation;
+import org.torproject.android.ui.VPNEnableActivity;
+import org.torproject.android.ui.hiddenservices.ClientCookiesActivity;
+import org.torproject.android.ui.hiddenservices.HiddenServicesActivity;
+import org.torproject.android.ui.hiddenservices.backup.BackupUtils;
+import org.torproject.android.ui.hiddenservices.permissions.PermissionManager;
+import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
+import org.torproject.android.ui.onboarding.BridgeWizardActivity;
+import org.torproject.android.ui.onboarding.OnboardingActivity;
 import pl.bclogic.pulsator4droid.library.PulsatorLayout;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.Locale;
+import java.util.StringTokenizer;
 
 import static android.support.v4.content.FileProvider.getUriForFile;
 import static org.torproject.android.MainConstants.COUNTRY_CODES;

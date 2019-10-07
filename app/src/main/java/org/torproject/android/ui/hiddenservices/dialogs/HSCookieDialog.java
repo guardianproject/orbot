@@ -12,9 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.zxing.integration.android.IntentIntegrator;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.torproject.android.R;

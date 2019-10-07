@@ -20,7 +20,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import org.torproject.android.R;
 import org.torproject.android.settings.LocaleHelper;
 import org.torproject.android.ui.hiddenservices.adapters.OnionListAdapter;

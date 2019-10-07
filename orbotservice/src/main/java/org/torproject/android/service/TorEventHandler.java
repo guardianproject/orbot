@@ -1,26 +1,14 @@
 package org.torproject.android.service;
 
 import android.text.TextUtils;
+import org.torproject.android.control.EventHandler;
+import org.torproject.android.service.util.Prefs;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.InetSocketAddress;
-import java.net.Proxy;
-import java.net.URL;
-import java.net.URLConnection;
 import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.StringTokenizer;
-
-
-import org.torproject.android.control.EventHandler;
-import org.torproject.android.service.util.Prefs;
 
 /**
  * Created by n8fr8 on 9/25/16.

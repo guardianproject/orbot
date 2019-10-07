@@ -15,7 +15,6 @@ import android.preference.PreferenceCategory;
 import android.preference.PreferenceScreen;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
-
 import org.torproject.android.mini.R;
 
 public class SettingsPreferences extends PreferenceActivity {

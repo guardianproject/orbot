@@ -25,7 +25,7 @@ android {
     }
 
     compileSdkVersion 29
-    buildToolsVersion '29.0.0 rc2'
+    buildToolsVersion '29.0.0'
     defaultConfig {
         applicationId "org.torproject.android"
         minSdkVersion 16

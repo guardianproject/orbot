@@ -3,7 +3,6 @@
 
 package org.torproject.android.mini;
 
-import android.Manifest;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningServiceInfo;
 import android.app.AlertDialog;
@@ -14,13 +13,10 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.drawable.AdaptiveIconDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -47,15 +43,11 @@ import android.view.View;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
-
 import org.json.JSONArray;
 import org.torproject.android.mini.settings.Languages;
 import org.torproject.android.mini.settings.LocaleHelper;
@@ -77,19 +69,13 @@ import org.torproject.android.service.vpn.VpnPrefs;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Locale;
 import java.util.StringTokenizer;
 
 import static org.torproject.android.mini.MainConstants.RESULT_CLOSE_ALL;
-import static org.torproject.android.mini.MainConstants.URL_TOR_CHECK;
 import static org.torproject.android.service.vpn.VpnPrefs.PREFS_KEY_TORIFIED;
 import static org.torproject.android.service.vpn.VpnUtils.getSharedPrefs;
 

@@ -12,7 +12,6 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import org.torproject.android.R;
 import org.torproject.android.ui.hiddenservices.providers.CookieContentProvider;
 

@@ -6,7 +6,7 @@ set -e
 set -x
 
 # make sure we're on a signed tag that matches the version name
-versionName=`sed -n 's,.*versionName="\([^"]*\)".*,\1,p' AndroidManifest.xml`
+versionName=`sed -n 's,.*versionName="\([^"]*\)".*,\1,p' app/src/main/AndroidManifest.xml`
 describe=`git describe`
 if [ $versionName != $describe ]; then
     echo "WARNING: building $describe, which is not the latest release ($versionName)"
@@ -31,7 +31,7 @@ if [ -z $ANDROID_HOME ]; then
         . ~/.android/bashrc-ant-build
     else
         echo "ANDROID_HOME must be set!"
-        exit
+        exit 1
     fi
 fi
 
@@ -40,7 +40,7 @@ if [ -z $ANDROID_NDK_HOME ]; then
         ANDROID_NDK_HOME=`which ndk-build |  sed 's,/ndk-build,,'`
     else
         echo "ANDROID_NDK_HOME not set and 'ndk-build' not in PATH"
-        exit
+        exit 1
     fi
 fi
 
@@ -49,8 +49,6 @@ projectname=`sed -n 's,.*name="app_name">\(.*\)<.*,\1,p' app/src/main/res/values
 
 # standardize timezone to reduce build differences
 export TZ=UTC
-TIMESTAMP=`printf '%(%Y-%m-%d %H:%M:%S)T' \
-    $(git log -n1 --format=format:%at)`
 
 git reset --hard
 git clean -fdx
@@ -68,26 +66,18 @@ else
 fi
 
 cd $projectroot/orbotservice/src/main
-faketime "$TIMESTAMP" $ANDROID_NDK_HOME/ndk-build
+$ANDROID_NDK_HOME/ndk-build
 cd $projectroot
 
 #clean, build, clean and build!
 make -C external clean
-APP_ABI=armeabi faketime "$TIMESTAMP" make -C external
+APP_ABI=armeabi make -C external
 #make -C external clean
-#APP_ABI=x86 faketime "$TIMESTAMP" make -C external
+#APP_ABI=x86 make -C external
 
 ./gradlew assembleRelease
-#./setup-ant
-#ant release
-
-#apk=$projectroot/bin/$projectname-v$describe.apk
-apk=$projectroot/app/build/outputs/apk/app-release-unsigned.apk
-
-# standardize timestamps in ZIP headers, requires strip-nondeterminism 0.014
-if which strip-nondeterminism > /dev/null; then
-    strip-nondeterminism -t zip -T $(git log -n1 --format=format:%at) $apk
-fi
+ls -l $projectroot/app/build/outputs/apk/
+apk=`ls -1 $projectroot/app/build/outputs/apk/*-release-unsigned.apk |head -1`
 
 # echo the checksum to build logs
 sha256sum $apk
