@@ -3,6 +3,7 @@ package org.torproject.android.service.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import org.torproject.android.service.OrbotConstants;
 
 import java.util.Locale;
 
@@ -24,7 +25,7 @@ public class Prefs {
 
     public static void setContext(Context context) {
         if (prefs == null)
-            prefs = TorServiceUtils.getSharedPrefs(context);
+            prefs = getSharedPrefs(context);
     }
 
     private static void putBoolean(String key, boolean value) {
@@ -108,5 +109,9 @@ public class Prefs {
     public static void setExitNodes (String exits)
     {
     	putString(PREF_EXIT_NODES,exits);
+    }
+
+    public static SharedPreferences getSharedPrefs (Context context) {
+        return context.getSharedPreferences(OrbotConstants.PREF_TOR_SHARED_PREFS,0 | Context.MODE_MULTI_PROCESS);
     }
 }

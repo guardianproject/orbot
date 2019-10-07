@@ -13,10 +13,6 @@ import java.net.Socket;
 
 public class TorServiceUtils implements TorServiceConstants {
 
-	public static SharedPreferences getSharedPrefs (Context context) {
-		return context.getSharedPreferences(OrbotConstants.PREF_TOR_SHARED_PREFS,0 | Context.MODE_MULTI_PROCESS);
-	}
-
     public static boolean isPortOpen(final String ip, final int port, final int timeout) {
         try {
             Socket socket = new Socket();

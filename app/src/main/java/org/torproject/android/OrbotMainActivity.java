@@ -57,7 +57,6 @@ import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.TorService;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.Prefs;
-import org.torproject.android.service.util.TorServiceUtils;
 import org.torproject.android.service.vpn.VpnConstants;
 import org.torproject.android.service.vpn.VpnPrefs;
 import org.torproject.android.settings.Languages;
@@ -167,7 +166,7 @@ public class OrbotMainActivity extends AppCompatActivity
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mPrefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
+        mPrefs = Prefs.getSharedPrefs(getApplicationContext());
 
         migratePreferences(); // Migrate old preferences
 
