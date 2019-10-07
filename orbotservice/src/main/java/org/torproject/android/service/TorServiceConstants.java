@@ -93,10 +93,7 @@ public interface TorServiceConstants {
 
     // actions for internal command Intents
      String CMD_SIGNAL_HUP = "signal_hup";
-     String CMD_STATUS = "status";
-     String CMD_FLUSH = "flush";
      String CMD_NEWNYM = "newnym";
-     String CMD_UPDATE_TRANS_PROXY = "update";
      String CMD_SET_EXIT = "setexit";
 
      String PREF_BINARY_TOR_VERSION_INSTALLED = "BINARY_TOR_VERSION_INSTALLED";
