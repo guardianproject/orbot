@@ -7,7 +7,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
 import android.widget.Toast;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.torproject.android.R;

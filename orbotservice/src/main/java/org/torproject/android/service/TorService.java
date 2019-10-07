@@ -38,9 +38,9 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.util.Log;
-
 import com.jaredrummler.android.shell.CommandResult;
-
+import info.pluggabletransports.dispatch.util.TransportListener;
+import info.pluggabletransports.dispatch.util.TransportManager;
 import org.torproject.android.control.ConfigEntry;
 import org.torproject.android.control.TorControlConnection;
 import org.torproject.android.service.util.CustomShell;
@@ -78,9 +78,6 @@ import java.util.StringTokenizer;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeoutException;
-
-import info.pluggabletransports.dispatch.util.TransportListener;
-import info.pluggabletransports.dispatch.util.TransportManager;
 
 import static org.torproject.android.service.vpn.VpnUtils.getSharedPrefs;
 import static org.torproject.android.service.vpn.VpnUtils.killProcess;

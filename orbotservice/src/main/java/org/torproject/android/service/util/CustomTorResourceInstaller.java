@@ -3,7 +3,6 @@ package org.torproject.android.service.util;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.util.Log;
-
 import org.torproject.android.binary.TorServiceConstants;
 
 import java.io.File;
