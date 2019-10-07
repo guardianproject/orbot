@@ -57,6 +57,7 @@ import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.TorService;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.Prefs;
+import org.torproject.android.service.vpn.TorVpnService;
 import org.torproject.android.service.vpn.VpnConstants;
 import org.torproject.android.service.vpn.VpnPrefs;
 import org.torproject.android.settings.Languages;
@@ -600,7 +601,7 @@ public class OrbotMainActivity extends AppCompatActivity
 
 	private void refreshVPNApps ()
     {
-        stopVpnService();
+        TorVpnService.stop(this);
         startActivity(new Intent(OrbotMainActivity.this, VPNEnableActivity.class));
     }
 
@@ -611,7 +612,7 @@ public class OrbotMainActivity extends AppCompatActivity
         if (enable) {
             startActivityForResult(new Intent(OrbotMainActivity.this, VPNEnableActivity.class), REQUEST_VPN);
         } else
-            stopVpnService();
+            TorVpnService.stop(this);
 
         addAppShortcuts();
     }
@@ -903,7 +904,7 @@ public class OrbotMainActivity extends AppCompatActivity
         else if (request == REQUEST_VPN)
         {
 			if (response == RESULT_OK) {
-                sendIntentToService(TorServiceConstants.CMD_VPN);
+                TorVpnService.start(this);
             }
 			else if (response == VPNEnableActivity.ACTIVITY_RESULT_VPN_DENIED)
 			{
@@ -996,11 +997,6 @@ public class OrbotMainActivity extends AppCompatActivity
 
     private void requestTorRereadConfig() {
         sendIntentToService(TorServiceConstants.CMD_SIGNAL_HUP);
-    }
-    
-    public void stopVpnService ()
-    {    	
-        sendIntentToService(TorServiceConstants.CMD_VPN_CLEAR);
     }
 
     @Override

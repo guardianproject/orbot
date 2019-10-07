@@ -96,8 +96,6 @@ public interface TorServiceConstants {
      String CMD_STATUS = "status";
      String CMD_FLUSH = "flush";
      String CMD_NEWNYM = "newnym";
-     String CMD_VPN = "vpn";
-     String CMD_VPN_CLEAR = "vpnclear";
      String CMD_UPDATE_TRANS_PROXY = "update";
      String CMD_SET_EXIT = "setexit";
 

@@ -50,7 +50,6 @@ import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.util.TorServiceUtils;
 import org.torproject.android.service.util.Utils;
 import org.torproject.android.service.vpn.OrbotVpnManager;
-import org.torproject.android.service.vpn.TorVpnService;
 import org.torproject.android.service.vpn.VpnPrefs;
 
 import java.io.BufferedReader;
@@ -381,10 +380,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                     requestTorRereadConfig();
                 } else if (action.equals(CMD_NEWNYM)) {
                     newIdentity();
-                } else if (action.equals(CMD_VPN)) {
-                    startVPNService();
-                } else if (action.equals(CMD_VPN_CLEAR)) {
-                    clearVpnProxy();
                 } else if (action.equals(CMD_SET_EXIT)) {
                 	
                 	setExitNode(mIntent.getStringExtra("exit"));
@@ -1960,27 +1955,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     {
         return NOTIFY_ID;
     }
-
-    private void startVPNService ()
-    {
-        Intent intentVpn = new Intent(this, TorVpnService.class);
-        intentVpn.setAction("start");
-        startService(intentVpn);
-
-    }
-
-
-    public void clearVpnProxy ()
-    {
-        debug ("clearing VPN Proxy");
-        Prefs.putUseVpn(false);
-
-        Intent intentVpn = new Intent(this,TorVpnService.class);
-        intentVpn.setAction("stop");
-        startService(intentVpn);
-
-    }
-
 
     // for bridge loading from the assets default bridges.txt file
     class Bridge
