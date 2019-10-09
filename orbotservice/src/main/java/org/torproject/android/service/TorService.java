@@ -700,6 +700,18 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             extraLines.append("ReducedConnectionPadding 1").append('\n');
         }
 
+        if(prefs.getBoolean(OrbotConstants.PREF_CIRCUIT_PADDING, true))
+        {
+            extraLines.append("CircuitPadding 1").append('\n');
+        } else {
+            extraLines.append("CircuitPadding 0").append('\n');
+        }
+
+        if(prefs.getBoolean(OrbotConstants.PREF_REDUCED_CIRCUIT_PADDING, true))
+        {
+            extraLines.append("ReducedCircuitPadding 1").append('\n');
+        }
+
         String transPort = prefs.getString("pref_transport", TorServiceConstants.TOR_TRANSPROXY_PORT_DEFAULT+"");
         String dnsPort = prefs.getString("pref_dnsport", TorServiceConstants.TOR_DNS_PORT_DEFAULT+"");
             
