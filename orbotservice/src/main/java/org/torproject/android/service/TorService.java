@@ -1738,6 +1738,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
                     extraLines.append("HiddenServiceDir" + ' ' + hsDirPath).append('\n');
                     extraLines.append("HiddenServicePort" + ' ' + HSOnionPort + " 127.0.0.1:" + HSLocalPort).append('\n');
+                    extraLines.append("HiddenServiceVersion 2").append('\n');
 
                     if(HSAuthCookie == 1)
                         extraLines.append("HiddenServiceAuthorizeClient stealth " + HSname).append('\n');
