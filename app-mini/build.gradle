@@ -28,7 +28,7 @@ android {
     buildToolsVersion '29.0.0'
     defaultConfig {
         applicationId "org.torproject.android.mini"
-        minSdkVersion 16
+        minSdkVersion 18
         targetSdkVersion 29
     }
     lintOptions {
@@ -55,7 +55,7 @@ android {
     productFlavors {
         mini {
             dimension "freemini"
-            minSdkVersion 16
+            minSdkVersion 18
             applicationId 'org.torproject.android.mini'
             targetSdkVersion 28
             versionCode 10010000

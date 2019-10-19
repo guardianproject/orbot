@@ -40,7 +40,7 @@ android {
     defaultConfig {
         applicationId "org.torproject.android"
         versionName getVersionName()
-        minSdkVersion 16
+        minSdkVersion 18
         targetSdkVersion 29
     }
     aaptOptions {
@@ -70,7 +70,7 @@ android {
     productFlavors {
         fullperm {
             dimension "free"
-            minSdkVersion 16
+            minSdkVersion 18
             applicationId 'org.torproject.android'
             targetSdkVersion 28
             versionCode 16123000

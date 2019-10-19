@@ -11,7 +11,7 @@ android {
     }
 
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 18
         targetSdkVersion 29
         versionCode 16111000
         versionName '16.1.1-BETA-2-tor-0.4.1-5-rc-orbotservice'
