@@ -107,7 +107,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     private File fileControlPort;
 
     private boolean mConnectivity = true;
-    private int mNetworkType = -1;
 
     private NotificationManager mNotificationManager = null;
     private NotificationCompat.Builder mNotifyBuilder;
@@ -132,8 +131,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
     private static final Uri HS_CONTENT_URI = Uri.parse("content://org.torproject.android.ui.hiddenservices.providers/hs");
     private static final Uri COOKIE_CONTENT_URI = Uri.parse("content://org.torproject.android.ui.hiddenservices.providers.cookie/cookie");
-
-    private Handler mHandler;
 
     public static final class HiddenService implements BaseColumns {
         public static final String NAME = "name";
@@ -505,8 +502,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
         try
         {
-            mHandler = new Handler ();
-
             appBinHome = getFilesDir();//getDir(TorServiceConstants.DIRECTORY_TOR_BINARY, Application.MODE_PRIVATE);
             if (!appBinHome.exists())
                 appBinHome.mkdirs();
@@ -1019,11 +1014,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
     }
 
-    protected TorControlConnection getControlConnection ()
-    {
-        return conn;
-    }
-    
     private int initControlConnection (int maxTries, boolean isReconnect) throws Exception
     {
             int controlPort = -1;
@@ -1499,8 +1489,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 // WE ARE NOT: DO SOMETHING ELSE
             	newConnectivityState = false;
             }
-            
-            mNetworkType = newNetType;
 
             if (newConnectivityState != mConnectivity) {
                 mConnectivity = newConnectivityState;
