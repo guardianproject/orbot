@@ -8,31 +8,31 @@ import android.content.Intent;
 public interface TorServiceConstants {
 
 
-	String DIRECTORY_TOR_DATA = "data";
+    String DIRECTORY_TOR_DATA = "data";
 
-	String TOR_CONTROL_PORT_FILE = "control.txt";
-	
-	//torrc (tor config file)
-	String TORRC_ASSET_KEY = "torrc";
-	
-	String TOR_CONTROL_COOKIE = "control_auth_cookie";
-	
-	//geoip data file asset key
-	String GEOIP_ASSET_KEY = "geoip";
-	String GEOIP6_ASSET_KEY = "geoip6";
+    String TOR_CONTROL_PORT_FILE = "control.txt";
 
-	String IP_LOCALHOST = "127.0.0.1";
-	int TOR_TRANSPROXY_PORT_DEFAULT = 9040;
-	
-	int TOR_DNS_PORT_DEFAULT = 5400;
+    //torrc (tor config file)
+    String TORRC_ASSET_KEY = "torrc";
+
+    String TOR_CONTROL_COOKIE = "control_auth_cookie";
+
+    //geoip data file asset key
+    String GEOIP_ASSET_KEY = "geoip";
+    String GEOIP6_ASSET_KEY = "geoip6";
+
+    String IP_LOCALHOST = "127.0.0.1";
+    int TOR_TRANSPROXY_PORT_DEFAULT = 9040;
+
+    int TOR_DNS_PORT_DEFAULT = 5400;
 
     String HTTP_PROXY_PORT_DEFAULT = "8118"; // like Privoxy!
     String SOCKS_PROXY_PORT_DEFAULT = "9050";
 
-    //control port 
+    //control port
     String LOG_NOTICE_HEADER = "NOTICE";
     String LOG_NOTICE_BOOTSTRAPPED = "Bootstrapped";
-    
+
     /**
      * A request to Orbot to transparently start Tor services
      */
@@ -92,17 +92,16 @@ public interface TorServiceConstants {
     String STATUS_STARTS_DISABLED = "STARTS_DISABLED";
 
     // actions for internal command Intents
-     String CMD_SIGNAL_HUP = "signal_hup";
-     String CMD_NEWNYM = "newnym";
-     String CMD_SET_EXIT = "setexit";
+    String CMD_SIGNAL_HUP = "signal_hup";
+    String CMD_NEWNYM = "newnym";
+    String CMD_SET_EXIT = "setexit";
 
-     String PREF_BINARY_TOR_VERSION_INSTALLED = "BINARY_TOR_VERSION_INSTALLED";
-    
-    //obfsproxy 
-     String OBFSCLIENT_ASSET_KEY = "obfs4proxy";
+    String PREF_BINARY_TOR_VERSION_INSTALLED = "BINARY_TOR_VERSION_INSTALLED";
 
-	 String HIDDEN_SERVICES_DIR = "hidden_services";
+    //obfsproxy
+    String OBFSCLIENT_ASSET_KEY = "obfs4proxy";
 
+    String HIDDEN_SERVICES_DIR = "hidden_services";
 
 
 }
