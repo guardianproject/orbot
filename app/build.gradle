@@ -110,8 +110,11 @@ android {
             universalApk true
         }
     }
-}
 
+    packagingOptions {
+        exclude 'META-INF/androidx.localbroadcastmanager_localbroadcastmanager.version'
+    }
+}
 
 dependencies {
     implementation project(':orbotservice')

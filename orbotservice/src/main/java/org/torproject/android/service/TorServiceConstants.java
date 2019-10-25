@@ -9,14 +9,6 @@ public interface TorServiceConstants {
 
     String DIRECTORY_TOR_DATA = "tordata";
 
-    String TOR_CONTROL_PORT_FILE = "control.txt";
-    String TOR_PID_FILE = "torpid";
-
-    //torrc (tor config file)
-    String TORRC_ASSET_KEY = "torrc";
-
-    String TOR_CONTROL_COOKIE = "control_auth_cookie";
-
     //geoip data file asset key
     String GEOIP_ASSET_KEY = "geoip";
     String GEOIP6_ASSET_KEY = "geoip6";
@@ -105,8 +97,6 @@ public interface TorServiceConstants {
     String CMD_NEWNYM = "newnym";
     String CMD_SET_EXIT = "setexit";
     String CMD_ACTIVE = "ACTIVE";
-
-    String PREF_BINARY_TOR_VERSION_INSTALLED = "BINARY_TOR_VERSION_INSTALLED";
 
     //obfsproxy
     String OBFSCLIENT_ASSET_KEY = "obfs4proxy";

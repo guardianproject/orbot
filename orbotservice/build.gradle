@@ -41,11 +41,13 @@ android {
         lintConfig file("../lint.xml")
     }
 
+    packagingOptions {
+        exclude 'META-INF/androidx.localbroadcastmanager_localbroadcastmanager.version'
+    }
 }
 
 dependencies {
-
-    implementation 'org.torproject:tor-android-binary:0.4.4.6'
+    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
 
     /**
     implementation 'info.pluggabletransports.aptds:apt-dispatch-library:1.0.9'
