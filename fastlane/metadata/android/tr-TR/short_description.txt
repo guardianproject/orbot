@@ -1,2 +1,1 @@
-Orbot
-Tor Proxy
+Gizliliğinizi geliştirin ve güvenlik duvarlarını kırın.
