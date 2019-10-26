@@ -1,0 +1,8 @@
+- Importante aggiornamento dell'interfaccia utente!
+- Nuove procedure guidate per l'installazione e la configurazione del bridge
+- Funzionalità VPN migliorate
+- Correzioni per arresti anomali della configurazione del servizio Onion / Hidden
+
+e altro ancora...
+
+GRAZIE A: pgerber, syphyr, Khsed4, BjarniRunar, Unpublished, igortoliveira, goapunk, SpotComms, AkshatAgrawal05, dixidroid, arrase e altri per i problemi, commit e PR
