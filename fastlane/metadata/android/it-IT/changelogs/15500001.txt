@@ -1,0 +1,9 @@
+*** ATTENZIONE: TUTTE LE CARATTERISTICHE DI ROOT SONO STATE RIMOSSE DA QUESTA NUOVA VERSIONE DI ORBOT. ***
+Utilizza la "Modalità VPN app" di Orbot o il browser Orfox invece del proxy trasparente con root.
+
+* Aggiornamento a Tor 0.3.1.8
+* Rimosso il supporto per le funzioni Root / Transproxy come erano diventate
+inaffidabile e non testato
+* Supporto MIGLIORATO per il proxy trasparente VPN e la nuova app "App"
+interfaccia utente di selezione
+* Risoluzione del problema di inclusione delle informazi
