@@ -6,14 +6,12 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.View;
-
 import com.github.paolorotolo.appintro.AppIntro;
-
 import org.torproject.android.R;
 import org.torproject.android.settings.LocaleHelper;
 import org.torproject.android.ui.AppManagerActivity;
-import org.torproject.android.ui.hiddenservices.permissions.PermissionManager;
 import org.torproject.android.ui.VPNEnableActivity;
+import org.torproject.android.ui.hiddenservices.permissions.PermissionManager;
 
 public class OnboardingActivity extends AppIntro {
 

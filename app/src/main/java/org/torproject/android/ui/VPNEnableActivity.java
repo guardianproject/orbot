@@ -1,9 +1,5 @@
 package org.torproject.android.ui;
 
-import org.torproject.android.service.util.Prefs;
-import org.torproject.android.service.TorService;
-import org.torproject.android.service.TorServiceConstants;
-
 import android.content.Intent;
 import android.net.VpnService;
 import android.os.Build;
@@ -12,6 +8,9 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Window;
+import org.torproject.android.service.TorService;
+import org.torproject.android.service.TorServiceConstants;
+import org.torproject.android.service.util.Prefs;
 
 /**
  * To combat background service being stopped/swiped

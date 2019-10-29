@@ -5,10 +5,9 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-
-import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.TorService;
 import org.torproject.android.service.TorServiceConstants;
+import org.torproject.android.service.util.Prefs;
 import org.torproject.android.ui.VPNEnableActivity;
 
 public class OnBootReceiver extends BroadcastReceiver {

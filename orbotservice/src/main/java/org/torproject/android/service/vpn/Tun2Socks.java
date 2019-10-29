@@ -21,12 +21,10 @@ package org.torproject.android.service.vpn;
 
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.content.pm.ApplicationInfo;
 import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.ParcelFileDescriptor;
 import android.util.Log;
-
 import org.torproject.android.service.util.TCPSourceApp;
 
 import java.net.DatagramSocket;

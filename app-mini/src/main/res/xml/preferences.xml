@@ -198,7 +198,7 @@
             android:title="@string/pref_disable_ipv4" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="ConnectionPadding">
+    <PreferenceCategory android:title="Padding">
         <CheckBoxPreference
             android:defaultValue="false"
             android:enabled="true"
@@ -211,6 +211,18 @@
             android:key="pref_reduced_connection_padding"
             android:summary="@string/pref_reduced_connection_padding_summary"
             android:title="@string/pref_reduced_connection_padding" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:enabled="true"
+            android:key="pref_circuit_padding"
+            android:summary="@string/pref_circuit_padding_summary"
+            android:title="@string/pref_circuit_padding" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:enabled="true"
+            android:key="pref_reduced_circuit_padding"
+            android:summary="@string/pref_reduced_circuit_padding_summary"
+            android:title="@string/pref_reduced_circuit_padding" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/pref_proxy_title">

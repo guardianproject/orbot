@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
-
 import org.torproject.android.service.util.Prefs;
 
 import java.util.Locale;

@@ -12,16 +12,13 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.support.v4.app.NotificationCompat;
-
 import com.github.javiersantos.appupdater.AppUpdater;
 import com.github.javiersantos.appupdater.enums.Display;
 import com.github.javiersantos.appupdater.enums.UpdateFrom;
-
-import org.torproject.android.service.OrbotConstants;
-import org.torproject.android.service.util.Prefs;
-
 import org.torproject.android.mini.settings.Languages;
 import org.torproject.android.mini.settings.LocaleHelper;
+import org.torproject.android.service.OrbotConstants;
+import org.torproject.android.service.util.Prefs;
 
 import java.util.Locale;
 

@@ -1,7 +1,6 @@
 package org.torproject.android.service.util;
 
 import android.util.Log;
-
 import com.offbynull.portmapper.PortMapperFactory;
 import com.offbynull.portmapper.gateway.Bus;
 import com.offbynull.portmapper.gateway.Gateway;

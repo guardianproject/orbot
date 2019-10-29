@@ -38,9 +38,9 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.util.Log;
-
 import com.jaredrummler.android.shell.CommandResult;
-
+import info.pluggabletransports.dispatch.util.TransportListener;
+import info.pluggabletransports.dispatch.util.TransportManager;
 import org.torproject.android.control.ConfigEntry;
 import org.torproject.android.control.TorControlConnection;
 import org.torproject.android.service.util.CustomShell;
@@ -78,9 +78,6 @@ import java.util.StringTokenizer;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeoutException;
-
-import info.pluggabletransports.dispatch.util.TransportListener;
-import info.pluggabletransports.dispatch.util.TransportManager;
 
 import static org.torproject.android.service.vpn.VpnUtils.getSharedPrefs;
 import static org.torproject.android.service.vpn.VpnUtils.killProcess;
@@ -701,6 +698,18 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         if(prefs.getBoolean(OrbotConstants.PREF_REDUCED_CONNECTION_PADDING, true))
         {
             extraLines.append("ReducedConnectionPadding 1").append('\n');
+        }
+
+        if(prefs.getBoolean(OrbotConstants.PREF_CIRCUIT_PADDING, true))
+        {
+            extraLines.append("CircuitPadding 1").append('\n');
+        } else {
+            extraLines.append("CircuitPadding 0").append('\n');
+        }
+
+        if(prefs.getBoolean(OrbotConstants.PREF_REDUCED_CIRCUIT_PADDING, true))
+        {
+            extraLines.append("ReducedCircuitPadding 1").append('\n');
         }
 
         String transPort = prefs.getString("pref_transport", TorServiceConstants.TOR_TRANSPROXY_PORT_DEFAULT+"");
@@ -1746,6 +1755,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
                         extraLines.append("HiddenServiceDir" + ' ' + hsDirPath).append('\n');
                         extraLines.append("HiddenServicePort" + ' ' + HSOnionPort + " 127.0.0.1:" + HSLocalPort).append('\n');
+                    extraLines.append("HiddenServiceVersion 2").append('\n');
 
                         if (HSAuthCookie == 1)
                             extraLines.append("HiddenServiceAuthorizeClient stealth " + HSname).append('\n');

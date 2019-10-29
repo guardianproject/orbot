@@ -9,7 +9,6 @@ import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-
 import org.torproject.android.R;
 import org.torproject.android.ui.hiddenservices.adapters.BackupAdapter;
 import org.torproject.android.ui.hiddenservices.backup.BackupUtils;

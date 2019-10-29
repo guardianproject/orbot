@@ -4,7 +4,6 @@ package org.torproject.android.service.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-
 import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.TorServiceConstants;
 

@@ -3,19 +3,6 @@
 
 package org.torproject.android.ui;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.List;
-import java.util.StringTokenizer;
-
-import org.torproject.android.service.OrbotConstants;
-import org.torproject.android.R;
-import org.torproject.android.service.util.TorServiceUtils;
-import org.torproject.android.service.vpn.TorifiedApp;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -40,6 +27,18 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import org.torproject.android.R;
+import org.torproject.android.service.OrbotConstants;
+import org.torproject.android.service.util.TorServiceUtils;
+import org.torproject.android.service.vpn.TorifiedApp;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
+import java.util.StringTokenizer;
 
 import static org.torproject.android.service.vpn.VpnPrefs.PREFS_KEY_TORIFIED;
 

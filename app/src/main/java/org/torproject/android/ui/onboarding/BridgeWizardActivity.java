@@ -15,7 +15,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.TextView;
-
 import org.torproject.android.R;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.settings.LocaleHelper;

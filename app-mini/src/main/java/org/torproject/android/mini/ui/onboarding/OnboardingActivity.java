@@ -4,9 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-
 import com.github.paolorotolo.appintro.AppIntro;
-
 import org.torproject.android.mini.R;
 import org.torproject.android.mini.settings.LocaleHelper;
 
