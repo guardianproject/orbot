@@ -124,22 +124,7 @@
         </receiver>
 
 
-
-
-        <provider
-            android:name="android.support.v4.content.FileProvider"
-            android:authorities="org.torproject.android.ui.hiddenservices.storage"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/hidden_services_paths" />
-        </provider>
-
-
-
         <activity android:name=".ui.onboarding.OnboardingActivity"/>
-        <activity android:name=".ui.onboarding.BridgeWizardActivity"/>
 
 
     </application>

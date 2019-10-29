@@ -493,6 +493,7 @@ public class MiniMainActivity extends AppCompatActivity
         }
         else {
             Prefs.putUseVpn(enable);
+            Prefs.putStartOnBoot(enable);
 
             if (enable) {
                 startActivityForResult(new Intent(MiniMainActivity.this, VPNEnableActivity.class), REQUEST_VPN);
