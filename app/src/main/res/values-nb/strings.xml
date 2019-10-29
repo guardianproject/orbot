@@ -175,10 +175,10 @@
     <string name="trouble_connecting">Tilkoblingsproblemer?</string>
     <string name="full_device_vpn">VPN for hele enheten</string>
     <string name="vpn_disabled">VPN Deaktivert</string>
-    <string name="wizard_details_msg">Orbot er et program med åpen kildekode som inneholder Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent og Polipo. Den gir en lokal HTTP-proxy (8118) og en SOCKS-proxy (9050) inn i Tor-nettverket. Orbot har også muligheten, på rootet enhet, til å sende all Internett-trafikk gjennom Tor.</string>
+    <string name="wizard_details_msg">Orbot er et fritt program som inneholder Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent og Polipo. Den gir en lokal HTTP-proxy (8118) og en SOCKS-mellomtjener (9050) inn i Tor-nettverket. Orbot har også muligheten til å sende all Internett-trafikk gjennom Tor på enheter med superbrukertilgang.</string>
     <string name="enable_alternate_entrance_nodes_into_the_tor_network">Aktiver alternative innganger til Tor-nettverket</string>
-    <string name="hidden_service_request">En app ønsker å åpne onion server port %1$s til Tor-nettverket. Dette er trygt hvis du stoler på appen.</string>
+    <string name="hidden_service_request">Et program ønsker å åpne løktjenerport %1$s til Tor-nettverket. Dette er trygt såfremt du stoler på programmet.</string>
     <string name="pref_open_proxy_on_all_interfaces_title">Åpne proxy på alle grensesnitt</string>
     <string name="pref_http_title">Tor HTTP</string>
-    <string name="please_grant_permissions_for_external_storage">Vennligst gi tillatelser for ekstern lagring</string>
+    <string name="please_grant_permissions_for_external_storage">Innvilg tillatelser til ekstern lagring</string>
 </resources>
