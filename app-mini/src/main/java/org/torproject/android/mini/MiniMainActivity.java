@@ -58,10 +58,10 @@ import org.torproject.android.mini.ui.Rotate3dAnimation;
 import org.torproject.android.mini.ui.onboarding.OnboardingActivity;
 import org.torproject.android.mini.vpn.VPNEnableActivity;
 import org.torproject.android.service.OrbotConstants;
+import org.torproject.android.service.vpn.TorVpnService;
 import org.torproject.android.service.TorService;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.Prefs;
-import org.torproject.android.service.util.TorServiceUtils;
 import org.torproject.android.service.vpn.TorifiedApp;
 import org.torproject.android.service.vpn.VpnConstants;
 import org.torproject.android.service.vpn.VpnPrefs;
@@ -124,7 +124,7 @@ public class MiniMainActivity extends AppCompatActivity
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mPrefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
+        mPrefs = Prefs.getSharedPrefs(getApplicationContext());
 
         /* Create the widgets before registering for broadcasts to guarantee
          * that the widgets exist when the status updates try to update them */
@@ -467,7 +467,7 @@ public class MiniMainActivity extends AppCompatActivity
 
 	private void refreshVPNApps ()
     {
-        stopVpnService();
+        TorVpnService.start(this);
         startActivity(new Intent(MiniMainActivity.this, VPNEnableActivity.class));
     }
 
@@ -483,7 +483,7 @@ public class MiniMainActivity extends AppCompatActivity
             if (enable) {
                 startActivityForResult(new Intent(MiniMainActivity.this, VPNEnableActivity.class), REQUEST_VPN);
             } else {
-                stopVpnService();
+                TorVpnService.start(this);
                 stopTor();
             }
         }
@@ -611,7 +611,8 @@ public class MiniMainActivity extends AppCompatActivity
         else if (request == REQUEST_VPN)
         {
 			if (response == RESULT_OK) {
-                sendIntentToService(TorServiceConstants.CMD_VPN);
+                TorVpnService.start(this);
+
             }
 			else if (response == VPNEnableActivity.ACTIVITY_RESULT_VPN_DENIED)
 			{
@@ -710,11 +711,6 @@ public class MiniMainActivity extends AppCompatActivity
 
     private void requestTorRereadConfig() {
         sendIntentToService(TorServiceConstants.CMD_SIGNAL_HUP);
-    }
-    
-    public void stopVpnService ()
-    {    	
-        sendIntentToService(TorServiceConstants.CMD_VPN_CLEAR);
     }
 
     @Override

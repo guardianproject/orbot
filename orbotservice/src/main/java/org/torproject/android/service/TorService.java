@@ -50,7 +50,6 @@ import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.util.TorServiceUtils;
 import org.torproject.android.service.util.Utils;
 import org.torproject.android.service.vpn.OrbotVpnManager;
-import org.torproject.android.service.vpn.TorVpnService;
 import org.torproject.android.service.vpn.VpnPrefs;
 
 import java.io.BufferedReader;
@@ -381,10 +380,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                     requestTorRereadConfig();
                 } else if (action.equals(CMD_NEWNYM)) {
                     newIdentity();
-                } else if (action.equals(CMD_VPN)) {
-                    startVPNService();
-                } else if (action.equals(CMD_VPN_CLEAR)) {
-                    clearVpnProxy();
                 } else if (action.equals(CMD_SET_EXIT)) {
                 	
                 	setExitNode(mIntent.getStringExtra("exit"));
@@ -610,7 +605,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
     private boolean torUpgradeAndConfig() throws IOException, TimeoutException {
 
-        SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
+        SharedPreferences prefs = Prefs.getSharedPrefs(getApplicationContext());
         String version = prefs.getString(PREF_BINARY_TOR_VERSION_INSTALLED,null);
 
         logNotice("checking binary version: " + version);
@@ -638,7 +633,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
     private File updateTorrcCustomFile () throws IOException, TimeoutException
     {
-        SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
+        SharedPreferences prefs = Prefs.getSharedPrefs(getApplicationContext());
 
         StringBuffer extraLines = new StringBuffer();
 
@@ -850,7 +845,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 	        // make sure there are no stray daemons running
 	        killAllDaemons();
 
-            SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
+            SharedPreferences prefs = Prefs.getSharedPrefs(getApplicationContext());
             String version = prefs.getString(PREF_BINARY_TOR_VERSION_INSTALLED,null);
             logNotice("checking binary version: " + version);
 
@@ -1164,7 +1159,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 bufferedReader.close();
 
                 //store last valid control port
-                SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
+                SharedPreferences prefs = Prefs.getSharedPrefs(getApplicationContext());
                 prefs.edit().putInt("controlport", result).commit();
                 
             }
@@ -1483,7 +1478,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         	if (mCurrentStatus == STATUS_OFF)
         		return;
         	
-            SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
+            SharedPreferences prefs = Prefs.getSharedPrefs(getApplicationContext());
 
             boolean doNetworKSleep = prefs.getBoolean(OrbotConstants.PREF_DISABLE_NETWORK, true);
             
@@ -1542,7 +1537,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     {
         logNotice(getString(R.string.updating_settings_in_tor_service));
         
-        SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
+        SharedPreferences prefs = Prefs.getSharedPrefs(getApplicationContext());
         
         boolean useBridges = Prefs.bridgesEnabled();
 
@@ -1909,7 +1904,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     
     private void setExitNode (String newExits)
     {
-    	SharedPreferences prefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
+    	SharedPreferences prefs = Prefs.getSharedPrefs(getApplicationContext());
         
     	if (TextUtils.isEmpty(newExits))
     	{
@@ -1972,27 +1967,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     {
         return NOTIFY_ID;
     }
-
-    private void startVPNService ()
-    {
-        Intent intentVpn = new Intent(this, TorVpnService.class);
-        intentVpn.setAction("start");
-        startService(intentVpn);
-
-    }
-
-
-    public void clearVpnProxy ()
-    {
-        debug ("clearing VPN Proxy");
-        Prefs.putUseVpn(false);
-
-        Intent intentVpn = new Intent(this,TorVpnService.class);
-        intentVpn.setAction("stop");
-        startService(intentVpn);
-
-    }
-
 
     // for bridge loading from the assets default bridges.txt file
     class Bridge

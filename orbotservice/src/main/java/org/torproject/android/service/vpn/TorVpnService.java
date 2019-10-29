@@ -7,8 +7,10 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.VpnService;
 import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 import org.torproject.android.service.TorService;
 import org.torproject.android.service.TorServiceConstants;
+import org.torproject.android.service.util.Prefs;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -17,6 +19,24 @@ import java.util.concurrent.TimeoutException;
  * Created by n8fr8 on 9/26/16.
  */
 public class TorVpnService extends VpnService {
+
+    public static final String TAG = "TorVpnService";
+
+    private static final String ACTION_START = "start";
+    private static final String ACTION_STOP = "stop";
+
+    public static void start(Context context) {
+        Intent intent = new Intent(context, TorVpnService.class);
+        intent.setAction(ACTION_START);
+        context.startService(intent);
+    }
+
+    public static void stop(Context context) {
+        Intent intent = new Intent(context, TorVpnService.class);
+        intent.setAction(ACTION_STOP);
+        context.startService(intent);
+    }
+
     OrbotVpnManager mVpnManager;
 
     @Override
@@ -38,14 +58,17 @@ public class TorVpnService extends VpnService {
      */
     public int onStartCommand(Intent intent, int flags, int startId) {
 
-        if (intent.getAction().equals("start"))
+        if (ACTION_START.equals(intent.getAction()))
         {
             LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(this);
             lbm.registerReceiver(mLocalBroadcastReceiver,
                     new IntentFilter(TorServiceConstants.LOCAL_ACTION_PORTS));
         }
-        else if (intent.getAction().equals("stop"))
+        else if (ACTION_STOP.equals(intent.getAction()))
         {
+            Log.d(TAG, "clearing VPN Proxy");
+            Prefs.putUseVpn(false);
+
             LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(this);
             lbm.unregisterReceiver(mLocalBroadcastReceiver);
         }
