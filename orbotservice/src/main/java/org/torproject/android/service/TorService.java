@@ -33,9 +33,9 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.provider.BaseColumns;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.content.LocalBroadcastManager;
+import androidx.annotation.RequiresApi;
+import androidx.core.app.NotificationCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.util.Log;
 import com.jaredrummler.android.shell.CommandResult;
@@ -53,7 +53,6 @@ import org.torproject.android.service.vpn.OrbotVpnManager;
 import org.torproject.android.service.vpn.VpnPrefs;
 
 import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -62,7 +61,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.text.Normalizer;
@@ -189,14 +187,9 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         if (Prefs.useDebugLogging())
         {
             Log.e(OrbotConstants.TAG,msg,e);
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            e.printStackTrace(new PrintStream(baos));
-            
-            sendCallbackLogMessage(msg + '\n'+ new String(baos.toByteArray()));
-            
-        }
-        else
             sendCallbackLogMessage(msg);
+        }
+
             
 
     }
@@ -492,10 +485,10 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     {
         if (msg != null && msg.trim().length() > 0)
         {
-            if (Prefs.useDebugLogging())
+            if (Prefs.useDebugLogging()) {
                 Log.d(OrbotConstants.TAG, msg);
-        
-            sendCallbackLogMessage(msg);
+                sendCallbackLogMessage(msg);
+            }
         }
     }
     

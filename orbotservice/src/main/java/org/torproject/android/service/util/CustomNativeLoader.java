@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
@@ -24,6 +25,15 @@ public class CustomNativeLoader {
 
         try {
             zipFile = new ZipFile(context.getApplicationInfo().sourceDir);
+
+            Enumeration enumEntries = zipFile.entries();
+            while (enumEntries.hasMoreElements())
+            {
+                ZipEntry ze = (ZipEntry)enumEntries.nextElement();
+                Log.d("CustomNativeLoader","zipentry: " + ze.getName());
+            }
+
+
             ZipEntry entry = zipFile.getEntry("lib/" + arch + "/" + libname + ".so");
             if (entry == null) {
                 entry = zipFile.getEntry("jni/" + arch + "/" + libname + ".so");
