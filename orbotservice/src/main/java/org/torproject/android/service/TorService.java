@@ -862,7 +862,11 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
             if (success)
             {
-                updateOnionNames ();
+                try { updateOnionNames (); }
+                catch (SecurityException se)
+                {
+                    logNotice("unable to upload onion names");
+                }
             }
 
         } catch (Exception e) {
@@ -875,7 +879,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
         }
     }
 
-    private void updateOnionNames ()
+    private void updateOnionNames () throws SecurityException
     {
         // Tor is running, update new .onion names at db
         ContentResolver mCR = getApplicationContext().getContentResolver();
@@ -1726,49 +1730,57 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
         ContentResolver mCR = getApplicationContext().getContentResolver();
 
-        /* ---- Hidden Services ---- */
-        Cursor hidden_services = mCR.query(HS_CONTENT_URI, hsProjection, HiddenService.ENABLED + "=1", null, null);
-        if(hidden_services != null) {
-            try {
-                while (hidden_services.moveToNext()) {
-                    String HSname = hidden_services.getString(hidden_services.getColumnIndex(HiddenService.NAME));
-                    Integer HSLocalPort = hidden_services.getInt(hidden_services.getColumnIndex(HiddenService.PORT));
-                    Integer HSOnionPort = hidden_services.getInt(hidden_services.getColumnIndex(HiddenService.ONION_PORT));
-                    Integer HSAuthCookie = hidden_services.getInt(hidden_services.getColumnIndex(HiddenService.AUTH_COOKIE));
-                    String hsDirPath = new File(mHSBasePath.getAbsolutePath(),"hs" + HSLocalPort).getCanonicalPath();
+        try {
+            /* ---- Hidden Services ---- */
+            Cursor hidden_services = mCR.query(HS_CONTENT_URI, hsProjection, HiddenService.ENABLED + "=1", null, null);
+            if (hidden_services != null) {
+                try {
+                    while (hidden_services.moveToNext()) {
+                        String HSname = hidden_services.getString(hidden_services.getColumnIndex(HiddenService.NAME));
+                        Integer HSLocalPort = hidden_services.getInt(hidden_services.getColumnIndex(HiddenService.PORT));
+                        Integer HSOnionPort = hidden_services.getInt(hidden_services.getColumnIndex(HiddenService.ONION_PORT));
+                        Integer HSAuthCookie = hidden_services.getInt(hidden_services.getColumnIndex(HiddenService.AUTH_COOKIE));
+                        String hsDirPath = new File(mHSBasePath.getAbsolutePath(), "hs" + HSLocalPort).getCanonicalPath();
 
-                    debug("Adding hidden service on port: " + HSLocalPort);
+                        debug("Adding hidden service on port: " + HSLocalPort);
 
-                    extraLines.append("HiddenServiceDir" + ' ' + hsDirPath).append('\n');
-                    extraLines.append("HiddenServicePort" + ' ' + HSOnionPort + " 127.0.0.1:" + HSLocalPort).append('\n');
+                        extraLines.append("HiddenServiceDir" + ' ' + hsDirPath).append('\n');
+                        extraLines.append("HiddenServicePort" + ' ' + HSOnionPort + " 127.0.0.1:" + HSLocalPort).append('\n');
 
-                    if(HSAuthCookie == 1)
-                        extraLines.append("HiddenServiceAuthorizeClient stealth " + HSname).append('\n');
+                        if (HSAuthCookie == 1)
+                            extraLines.append("HiddenServiceAuthorizeClient stealth " + HSname).append('\n');
+                    }
+                } catch (NumberFormatException e) {
+                    Log.e(OrbotConstants.TAG, "error parsing hsport", e);
+                } catch (Exception e) {
+                    Log.e(OrbotConstants.TAG, "error starting share server", e);
                 }
-            } catch (NumberFormatException e) {
-                    Log.e(OrbotConstants.TAG,"error parsing hsport",e);
-            } catch (Exception e) {
-                    Log.e(OrbotConstants.TAG,"error starting share server",e);
+
+                hidden_services.close();
             }
+        }
+        catch (SecurityException se) {}
 
-            hidden_services.close();
-		}
+        try
+        {
 
-        /* ---- Client Cookies ---- */
-        Cursor client_cookies = mCR.query(COOKIE_CONTENT_URI, cookieProjection, ClientCookie.ENABLED + "=1", null, null);
-        if(client_cookies != null) {
-            try {
-                while (client_cookies.moveToNext()) {
-                    String domain = client_cookies.getString(client_cookies.getColumnIndex(ClientCookie.DOMAIN));
-                    String cookie = client_cookies.getString(client_cookies.getColumnIndex(ClientCookie.AUTH_COOKIE_VALUE));
-                    extraLines.append("HidServAuth" + ' ' + domain + ' ' + cookie).append('\n');
+            /* ---- Client Cookies ---- */
+            Cursor client_cookies = mCR.query(COOKIE_CONTENT_URI, cookieProjection, ClientCookie.ENABLED + "=1", null, null);
+            if(client_cookies != null) {
+                try {
+                    while (client_cookies.moveToNext()) {
+                        String domain = client_cookies.getString(client_cookies.getColumnIndex(ClientCookie.DOMAIN));
+                        String cookie = client_cookies.getString(client_cookies.getColumnIndex(ClientCookie.AUTH_COOKIE_VALUE));
+                        extraLines.append("HidServAuth" + ' ' + domain + ' ' + cookie).append('\n');
+                    }
+                } catch (Exception e) {
+                        Log.e(OrbotConstants.TAG,"error starting share server",e);
                 }
-            } catch (Exception e) {
-                    Log.e(OrbotConstants.TAG,"error starting share server",e);
-            }
 
-            client_cookies.close();
-		}
+                client_cookies.close();
+            }
+        }
+        catch (SecurityException se) {}
 
         return extraLines;
     }
