@@ -28,7 +28,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import org.torproject.android.mini.R;
 import org.torproject.android.service.OrbotConstants;
-import org.torproject.android.service.util.TorServiceUtils;
+import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.vpn.TorifiedApp;
 
 import java.util.ArrayList;
@@ -63,7 +63,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
     @Override
     protected void onResume() {
         super.onResume();
-        mPrefs = TorServiceUtils.getSharedPrefs(getApplicationContext());
+        mPrefs = Prefs.getSharedPrefs(getApplicationContext());
         reloadApps();
     }
 

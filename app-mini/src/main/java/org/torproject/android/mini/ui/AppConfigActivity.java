@@ -13,7 +13,7 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import org.torproject.android.mini.R;
 import org.torproject.android.service.OrbotConstants;
-import org.torproject.android.service.util.TorServiceUtils;
+import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.vpn.TorifiedApp;
 
 import static org.torproject.android.mini.MiniMainActivity.getApp;
@@ -40,7 +40,7 @@ public class AppConfigActivity extends AppCompatActivity {
 
         final String pkgId = getIntent().getStringExtra(Intent.EXTRA_PACKAGE_NAME);
 
-        mPrefs =  TorServiceUtils.getSharedPrefs(getApplicationContext());
+        mPrefs =  Prefs.getSharedPrefs(getApplicationContext());
 
         ApplicationInfo aInfo = null;
         try {

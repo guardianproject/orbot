@@ -11,6 +11,7 @@ import android.view.Window;
 import org.torproject.android.service.TorService;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.Prefs;
+import org.torproject.android.service.vpn.TorVpnService;
 
 /**
  * To combat background service being stopped/swiped
@@ -59,7 +60,7 @@ public class VPNEnableActivity extends AppCompatActivity {
 			Prefs.putUseVpn(true);
 
 			Log.d("VPNEnableActivity","VPN enabled, starting Tor...");
-            sendIntentToService(TorServiceConstants.CMD_VPN);
+			TorVpnService.start(this);
             
             Handler h = new Handler();
             h.postDelayed(new Runnable () {
@@ -89,7 +90,8 @@ public class VPNEnableActivity extends AppCompatActivity {
 		super.onActivityResult(request, response, data);
 	        
 		if (request == REQUEST_VPN && response == RESULT_OK) {
-			sendIntentToService(TorServiceConstants.CMD_VPN);
+			TorVpnService.start(this);
+
 			h.postDelayed(new Runnable () {
 	            	@Override
 	            	public void run () {
