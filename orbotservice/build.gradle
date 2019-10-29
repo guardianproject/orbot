@@ -41,7 +41,9 @@ android {
 
 dependencies {
 
-    implementation 'org.torproject:tor-android-binary:0.4.0.4-rc'
+    implementation 'com.android.support:support-v4:28.0.0'
+
+    implementation 'org.torproject:tor-android-binary:0.4.1.5'
     implementation 'info.pluggabletransports.aptds:apt-dispatch-library:1.0.7'
     implementation 'info.pluggabletransports.aptds:apt-meek-obfs4-legacy:1.0.7'
     implementation 'info.pluggabletransports.aptds:jsocksAndroid:1.0.4'
