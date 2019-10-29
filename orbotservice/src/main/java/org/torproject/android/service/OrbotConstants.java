@@ -25,6 +25,8 @@ public interface OrbotConstants {
 
 	String PREF_CONNECTION_PADDING = "pref_connection_padding";
 	String PREF_REDUCED_CONNECTION_PADDING = "pref_reduced_connection_padding";
+	String PREF_CIRCUIT_PADDING = "pref_circuit_padding";
+	String PREF_REDUCED_CIRCUIT_PADDING = "pref_reduced_circuit_padding";
 
 	String PREF_PREFER_IPV6 = "pref_prefer_ipv6";
 	String PREF_DISABLE_IPV4 = "pref_disable_ipv4";
