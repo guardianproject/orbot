@@ -43,7 +43,7 @@ dependencies {
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
-    implementation 'org.torproject:tor-android-binary:0.4.1.5-rc'
+    implementation 'org.torproject:tor-android-binary:0.4.1.6-dev'
     implementation 'info.pluggabletransports.aptds:apt-dispatch-library:1.0.7'
     implementation 'info.pluggabletransports.aptds:apt-meek-obfs4-legacy:1.0.7'
     implementation 'info.pluggabletransports.aptds:jsocksAndroid:1.0.4'

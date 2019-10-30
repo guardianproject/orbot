@@ -49,12 +49,12 @@ public class CustomTorResourceInstaller implements TorServiceConstants {
 
         File fileNativeDir = new File(getNativeLibraryDir(context));
 
-        File[] filesNativeDir = fileNativeDir.listFiles();
-        for (File fileNative : filesNativeDir)
-        {
-            Log.d(TAG,"file native: " + fileNative.getAbsolutePath());
+        if (Prefs.useDebugLogging()) {
+            File[] filesNativeDir = fileNativeDir.listFiles();
+            for (File fileNative : filesNativeDir) {
+                Log.d(TAG, "file native: " + fileNative.getAbsolutePath());
+            }
         }
-
 
         fileTor = new File(fileNativeDir,TOR_ASSET_KEY + ".so");
 

@@ -26,11 +26,12 @@ public class CustomNativeLoader {
         try {
             zipFile = new ZipFile(context.getApplicationInfo().sourceDir);
 
-            Enumeration enumEntries = zipFile.entries();
-            while (enumEntries.hasMoreElements())
-            {
-                ZipEntry ze = (ZipEntry)enumEntries.nextElement();
-                Log.d("CustomNativeLoader","zipentry: " + ze.getName());
+            if (Prefs.useDebugLogging()) {
+                Enumeration enumEntries = zipFile.entries();
+                while (enumEntries.hasMoreElements()) {
+                    ZipEntry ze = (ZipEntry) enumEntries.nextElement();
+                    Log.d("CustomNativeLoader", "zipentry: " + ze.getName());
+                }
             }
 
 
