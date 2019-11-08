@@ -1,0 +1,4 @@
+* Große Reparaturen am VPN-Modus
+* Neue Standardbrücken
+* Aktualisiert auf Tor 0.4.0.4
+* Unterstützung des 64-Bit-Modus und von Android Q
