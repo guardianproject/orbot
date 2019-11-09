@@ -62,7 +62,7 @@
     <string name="your_reachableaddresses_settings_caused_an_exception_">Ihre eingestellten ErreichbarenAdressen haben einen Ausnahmefehler verursacht!</string>
     <string name="your_relay_settings_caused_an_exception_">Ihre Relais-Einstellungen haben einen Ausnahmefehler verursacht!</string>
     <string name="exit_nodes">Ausgangs-Netzknoten</string>
-    <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Fingerabdrücke, Spitznamen, Länder und Adressen für den letzten Knotenpunkt.</string>
+    <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Fingerabdrücke, Spitznamen, Länder und Adressen für den letzten Knotenpunkt</string>
     <string name="enter_exit_nodes">Ausgangs-Netzknoten eingeben</string>
     <string name="exclude_nodes">Netzknoten Ausschließen</string>
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Fingerabdrücke, Spitznamen, Länder und Adressen, die ausgeschlossen werden sollen</string>
@@ -107,9 +107,9 @@
     <string name="pref_use_expanded_notifications">Zeige erweiterte Benachrichtigung mit Tor-Ausgangsland und IP an</string>
     <string name="pref_use_expanded_notifications_title">Erweiterte Benachrichtigungen</string>
     <string name="set_locale_title">Sprache</string>
-    <string name="no_internet_connection_tor">Keine Internetverbindung; Tor ist in Bereitschaft...</string>
-    <string name="pref_disable_network_title">Kein Automatischer Netzwerk Ruhezustand</string>
-    <string name="pref_disable_network_summary">Versetze Tor in den Ruhezustand wenn kein Internet verfügbar ist</string>
+    <string name="no_internet_connection_tor">Keine Internetverbindung; Tor ist in Bereitschaft…</string>
+    <string name="pref_disable_network_title">Kein Automatischer Netzwerk-Ruhezustand</string>
+    <string name="pref_disable_network_summary">Tor in den Ruhezustand versetzen, wenn kein Internet verfügbar ist</string>
     <string name="newnym">Sie haben zu einer Neuen Tor-Identität gewechselt!</string>
     <string name="no_network_connectivity_putting_tor_to_sleep_">Keine Netzwerk-Verbindung. Tor wird in den Ruhezustand versetzt…</string>
     <string name="network_connectivity_is_good_waking_tor_up_">Netzwerk-Verbindung ist Gut. Tor wird aktiviert …</string>
