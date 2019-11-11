@@ -5,4 +5,4 @@
 
 und vieles mehr...
 
-DANK GILT: Pgerber, Syphyr, Khsed4, BjarniRunar, Unveröffentlicht, igortoliveira, Goapunk, SpotComms, AkshatAgrawal05, Dixidroid, Arras und andere für die Probleme, Commits und PRs
+DANK AN: Pgerber, Syphyr, Khsed4, BjarniRunar, Unveröffentlicht, igortoliveira, Goapunk, SpotComms, AkshatAgrawal05, Dixidroid, Arras und andere für die Probleme, Commits und PRs
