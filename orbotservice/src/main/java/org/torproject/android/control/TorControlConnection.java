@@ -34,11 +34,11 @@ public class TorControlConnection implements TorControlCommands {
     private volatile EventHandler handler;
     private volatile PrintWriter debugOutput;
     private volatile IOException parseThreadException;
-    
+
     static class Waiter {
-    
+
         List<ReplyLine> response; // Locking: this
-    
+
         synchronized List<ReplyLine> getResponse() throws InterruptedException {
                 while (response == null) {
                     wait();
@@ -62,7 +62,7 @@ public class TorControlConnection implements TorControlCommands {
             this.status = status; this.msg = msg; this.rest = rest;
         }
     }
-    
+
     /** Create a new TorControlConnection to communicate with Tor over
      * a given socket.  After calling this constructor, it is typical to
      * call launchThread and authenticate. */
@@ -134,7 +134,7 @@ public class TorControlConnection implements TorControlCommands {
                 if (reply.isEmpty()) {
                         // nothing received so far, can exit cleanly
                         return reply;
-                } 
+                }
                 // received half of a reply before the connection broke down
                 throw new TorControlSyntaxError("Connection to Tor " +
                      " broke down while receiving reply!");
@@ -242,17 +242,17 @@ public class TorControlConnection implements TorControlCommands {
     }
 
 
-    /** Sets <b>w</b> as the PrintWriter for debugging output, 
-    * which writes out all messages passed between Tor and the controller.  
+    /** Sets <b>w</b> as the PrintWriter for debugging output,
+    * which writes out all messages passed between Tor and the controller.
     * Outgoing messages are preceded by "\>\>" and incoming messages are preceded
     * by "\<\<"
     */
     public void setDebugging(PrintWriter w) {
         debugOutput = w;
     }
-    
-    /** Sets <b>s</b> as the PrintStream for debugging output, 
-    * which writes out all messages passed between Tor and the controller.  
+
+    /** Sets <b>s</b> as the PrintStream for debugging output,
+    * which writes out all messages passed between Tor and the controller.
     * Outgoing messages are preceded by "\>\>" and incoming messages are preceded
     * by "\<\<"
     */
@@ -316,7 +316,7 @@ public class TorControlConnection implements TorControlCommands {
                                 w = waiters.removeFirst();
                                 w.setResponse(lst);
                     }
-                }		
+                }
 
             }
         }
@@ -356,7 +356,7 @@ public class TorControlConnection implements TorControlCommands {
      * the others.  For example, if two ORBindAddress values are configured, and a
      * command arrives containing a single ORBindAddress value, the new
      * command's value replaces the two old values.
-     * 
+     *
      * To remove all settings for a given option entirely (and go back to its
      * default value), include a String in <b>kvList</b> containing the key and no value.
      */
@@ -375,7 +375,7 @@ public class TorControlConnection implements TorControlCommands {
         b.append("\r\n");
         sendAndWaitForResponse(b.toString(), null);
     }
-    
+
     /** Try to reset the values listed in the collection 'keys' to their
      * default values.
      **/
@@ -400,7 +400,7 @@ public class TorControlConnection implements TorControlCommands {
 
     /** Requests the values of the configuration variables listed in <b>keys</b>.
      * Results are returned as a list of ConfigEntry objects.
-     * 
+     *
      * If an option appears multiple times in the configuration, all of its
      * key-value pairs are returned in order.
      *
@@ -432,10 +432,10 @@ public class TorControlConnection implements TorControlCommands {
     }
 
     /** Request that the server inform the client about interesting events.
-     * Each element of <b>events</b> is one of the following Strings: 
+     * Each element of <b>events</b> is one of the following Strings:
      * ["CIRC" | "STREAM" | "ORCONN" | "BW" | "DEBUG" |
      *  "INFO" | "NOTICE" | "WARN" | "ERR" | "NEWDESC" | "ADDRMAP"] .
-     * 
+     *
      * Any events not listed in the <b>events</b> are turned off; thus, calling
      * setEvents with an empty <b>events</b> argument turns off all event reporting.
      */
@@ -450,13 +450,13 @@ public class TorControlConnection implements TorControlCommands {
 
     /** Authenticates the controller to the Tor server.
      *
-     * By default, the current Tor implementation trusts all local users, and 
+     * By default, the current Tor implementation trusts all local users, and
      * the controller can authenticate itself by calling authenticate(new byte[0]).
      *
      * If the 'CookieAuthentication' option is true, Tor writes a "magic cookie"
      * file named "control_auth_cookie" into its data directory.  To authenticate,
      * the controller must send the contents of this file in <b>auth</b>.
-     * 
+     *
      * If the 'HashedControlPassword' option is set, <b>auth</b> must contain the salted
      * hash of a secret password.  The salted hash is computed according to the
      * S2K algorithm in RFC 2440 (OpenPGP), and prefixed with the s2k specifier.
@@ -521,7 +521,7 @@ public class TorControlConnection implements TorControlCommands {
      * should ensure that it returns an element of address space that is unlikely
      * to be in actual use.  If there is already an address mapped to the
      * destination address, the server may reuse that mapping.
-     * 
+     *
      * If the original address is already mapped to a different address, the old
      * mapping is removed.  If the original address and the destination address
      * are the same, the server removes any mapping in place for the original
@@ -622,9 +622,9 @@ public class TorControlConnection implements TorControlCommands {
         }
         return m;
     }
-    
-    
-    
+
+
+
     /** Return the value of the information field 'key' */
     public String getInfo(String key) throws IOException {
         List<String> lst = new ArrayList<String>();
@@ -646,19 +646,19 @@ public class TorControlConnection implements TorControlCommands {
                           "EXTENDCIRCUIT "+circID+" "+path+"\r\n", null);
         return (lst.get(0)).msg;
     }
-    
+
     /** Informs the Tor server that the stream specified by <b>streamID</b> should be
-     * associated with the circuit specified by <b>circID</b>.  
-     * 
+     * associated with the circuit specified by <b>circID</b>.
+     *
      * Each stream may be associated with
      * at most one circuit, and multiple streams may share the same circuit.
      * Streams can only be attached to completed circuits (that is, circuits that
      * have sent a circuit status "BUILT" event or are listed as built in a
      * getInfo circuit-status request).
-     * 
+     *
      * If <b>circID</b> is 0, responsibility for attaching the given stream is
      * returned to Tor.
-     * 
+     *
      * By default, Tor automatically attaches streams to
      * circuits itself, unless the configuration variable
      * "__LeaveStreamsUnattached" is set to "1".  Attempting to attach streams
@@ -671,7 +671,7 @@ public class TorControlConnection implements TorControlCommands {
     }
 
     /** Tells Tor about the server descriptor in <b>desc</b>.
-     * 
+     *
      * The descriptor, when parsed, must contain a number of well-specified
      * fields, including fields for its nickname and identity.
      */
@@ -684,7 +684,7 @@ public class TorControlConnection implements TorControlCommands {
 
     /** Tells Tor to change the exit address of the stream identified by <b>streamID</b>
      * to <b>address</b>. No remapping is performed on the new provided address.
-     * 
+     *
      * To be sure that the modified address will be used, this event must be sent
      * after a new stream event is received, and before attaching this stream to
      * a circuit.

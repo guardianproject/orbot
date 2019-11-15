@@ -19,7 +19,7 @@ public interface EventHandler {
      *   <li>"FAILED"   :  circuit closed (was not built)</li>
      *   <li>"CLOSED"   :  circuit closed (was built)</li>
      *	</ul>
-     * 
+     *
      * <b>circID</b> is the alphanumeric identifier of the affected circuit,
      * and <b>path</b> is a comma-separated list of alphanumeric ServerIDs.
      */
