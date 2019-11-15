@@ -137,7 +137,7 @@
             android:authorities="org.torproject.android.ui.hiddenservices.providers"
             android:exported="false" />
         <provider
-            android:name="android.support.v4.content.FileProvider"
+            android:name="androidx.core.content.FileProvider"
             android:authorities="org.torproject.android.ui.hiddenservices.storage"
             android:exported="false"
             android:grantUriPermissions="true">

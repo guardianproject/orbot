@@ -29,20 +29,19 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Handler;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.provider.BaseColumns;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.content.LocalBroadcastManager;
+import androidx.annotation.RequiresApi;
+import androidx.core.app.NotificationCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.util.Log;
 import com.jaredrummler.android.shell.CommandResult;
-import info.pluggabletransports.dispatch.util.TransportListener;
-import info.pluggabletransports.dispatch.util.TransportManager;
-import org.torproject.android.control.ConfigEntry;
-import org.torproject.android.control.TorControlConnection;
+
+import net.freehaven.tor.control.ConfigEntry;
+import net.freehaven.tor.control.TorControlConnection;
+
 import org.torproject.android.service.util.CustomShell;
 import org.torproject.android.service.util.CustomTorResourceInstaller;
 import org.torproject.android.service.util.DummyActivity;
@@ -51,6 +50,9 @@ import org.torproject.android.service.util.TorServiceUtils;
 import org.torproject.android.service.util.Utils;
 import org.torproject.android.service.vpn.OrbotVpnManager;
 import org.torproject.android.service.vpn.VpnPrefs;
+
+import info.pluggabletransports.dispatch.util.TransportListener;
+import info.pluggabletransports.dispatch.util.TransportManager;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;

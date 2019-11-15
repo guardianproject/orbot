@@ -41,9 +41,9 @@ android {
 
 dependencies {
 
-    implementation 'com.android.support:support-v4:28.0.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
-    implementation 'org.torproject:tor-android-binary:0.4.1.5'
+    implementation 'org.torproject:tor-android-binary:0.4.1.6-dev'
     implementation 'info.pluggabletransports.aptds:apt-dispatch-library:1.0.7'
     implementation 'info.pluggabletransports.aptds:apt-meek-obfs4-legacy:1.0.7'
     implementation 'info.pluggabletransports.aptds:jsocksAndroid:1.0.4'
@@ -53,4 +53,6 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 
     implementation 'com.offbynull.portmapper:portmapper:2.0.5'
+
+    implementation 'org.briarproject:jtorctl:0.3'
 }

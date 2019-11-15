@@ -1,7 +1,9 @@
 package org.torproject.android.service;
 
 import android.text.TextUtils;
-import org.torproject.android.control.EventHandler;
+
+import net.freehaven.tor.control.EventHandler;
+
 import org.torproject.android.service.util.Prefs;
 
 import java.text.NumberFormat;

@@ -9,12 +9,12 @@
 	android:background="@color/dark_purple"
 	xmlns:app="http://schemas.android.com/apk/res-auto">
     
-     <android.support.v7.widget.Toolbar
+     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize" />
-    <android.support.v4.widget.DrawerLayout
+    <androidx.drawerlayout.widget.DrawerLayout
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -147,7 +147,7 @@
         android:layout_weight="1"
 
         >
-        <android.support.v7.widget.SwitchCompat
+        <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/btnVPN"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -261,7 +261,7 @@
             android:lines="1"
 
             />
-        <android.support.v7.widget.SwitchCompat
+        <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/btnBridges"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -336,7 +336,7 @@
 			 />
     </LinearLayout>
 	
-	</android.support.v4.widget.DrawerLayout>
+	</androidx.drawerlayout.widget.DrawerLayout>
 
 </LinearLayout>
 
