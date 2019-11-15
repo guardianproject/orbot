@@ -14,9 +14,9 @@ public interface OrbotConstants {
     String PREF_REACHABLE_ADDRESSES_PORTS = "pref_reachable_addresses_ports";
 
 	String PREF_DISABLE_NETWORK = "pref_disable_network";
-	
+
 	String PREF_TOR_SHARED_PREFS = "org.torproject.android_preferences";
-	
+
 	String PREF_SOCKS = "pref_socks";
 
 	String PREF_HTTP = "pref_http";
