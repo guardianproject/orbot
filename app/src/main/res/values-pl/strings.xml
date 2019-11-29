@@ -150,4 +150,9 @@
     <string name="enable_alternate_entrance_nodes_into_the_tor_network">Włącz alternatywne wejścia do sieci Tor</string>
     <string name="pref_open_proxy_on_all_interfaces_title">Otwórz serwer proxy na wszystkich interfejsach</string>
     <string name="pref_http_dialog">Konfiguracja portu HTTP</string>
+    <string name="pref_http_title">Tor HTTP</string>
+    <string name="pref_http_summary">Port, na którym Tor oferuje swój serwer proxy HTTP (domyślnie: 8118 lub 0, aby wyłączyć)</string>
+    <string name="vpn_default_world">Globalny (automatyczny)</string>
+    <string name="onion_port">Port Cebulowy</string>
+    <string name="delete_service">Usuń usługę</string>
 </resources>
