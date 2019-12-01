@@ -181,4 +181,7 @@
     <string name="pref_open_proxy_on_all_interfaces_title">Åpne proxy på alle grensesnitt</string>
     <string name="pref_http_title">Tor HTTP</string>
     <string name="please_grant_permissions_for_external_storage">Innvilg tillatelser til ekstern lagring</string>
+    <string name="menu_new_identity">Ny identitet</string>
+    <string name="user_services">Brukertjenestetilbud</string>
+    <string name="app_services">Programtjenestetilbud</string>
 </resources>
