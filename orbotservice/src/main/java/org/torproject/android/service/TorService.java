@@ -467,6 +467,13 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             conn = null;
         }
 
+        // if that fails, try again using native utils
+        try {
+            killProcess(fileTor, "-9"); // this is -HUP
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     private void requestTorRereadConfig() {
