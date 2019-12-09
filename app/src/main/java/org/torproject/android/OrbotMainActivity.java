@@ -568,6 +568,8 @@ public class OrbotMainActivity extends AppCompatActivity
     private void doExit() {
         stopTor();
 
+        TorVpnService.stop(this);
+
         // Kill all the wizard activities
         setResult(RESULT_CLOSE_ALL);
         finish();
