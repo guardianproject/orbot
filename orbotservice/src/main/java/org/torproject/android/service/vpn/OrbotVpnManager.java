@@ -51,6 +51,7 @@ import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.concurrent.TimeoutException;
 
+import static org.torproject.android.service.TorServiceConstants.ACTION_START;
 import static org.torproject.android.service.vpn.VpnUtils.getSharedPrefs;
 import static org.torproject.android.service.vpn.VpnUtils.killProcess;
 
@@ -101,6 +102,8 @@ public class OrbotVpnManager implements Handler.Callback {
 
 
 	}
+
+	boolean isStarted = false;
    
     //public int onStartCommand(Intent intent, int flags, int startId) {
     public int handleIntent(Builder builder, Intent intent) {
@@ -109,8 +112,10 @@ public class OrbotVpnManager implements Handler.Callback {
     	{
 	    	String action = intent.getAction();
 	    	
-	    	if (action.equals("start"))
+	    	if (action.equals(TorVpnService.ACTION_START))
 	    	{
+				isStarted = true;
+
 		        // Stop the previous session by interrupting the thread.
 		        if (mThreadVPN != null && mThreadVPN.isAlive())
 		        	stopVPN();
@@ -129,8 +134,10 @@ public class OrbotVpnManager implements Handler.Callback {
 
 
 	    	}
-	    	else if (action.equals("stop"))
+	    	else if (action.equals(TorVpnService.ACTION_STOP))
 	    	{
+				isStarted = false;
+
 	    		Log.d(TAG,"stop OrbotVPNService service!");
 	    		
 	    		stopVPN();
@@ -335,12 +342,13 @@ public class OrbotVpnManager implements Handler.Callback {
 		        	isRestart = false;
 
 					//start PDNSD daemon pointing to actual DNS
-					int pdnsdPort = 8091;
-						startDNS(filePdnsd.getCanonicalPath(), localhost,mTorDns, virtualGateway, pdnsdPort);
-					final boolean localDnsTransparentProxy = true;
+					if (filePdnsd != null) {
+						int pdnsdPort = 8091;
+						startDNS(filePdnsd.getCanonicalPath(), localhost, mTorDns, virtualGateway, pdnsdPort);
+						final boolean localDnsTransparentProxy = true;
 
-					Tun2Socks.Start(mService, mInterface, VPN_MTU, virtualIP, virtualNetMask, localSocks , virtualGateway + ":" + pdnsdPort , localDnsTransparentProxy);
-
+						Tun2Socks.Start(mService, mInterface, VPN_MTU, virtualIP, virtualNetMask, localSocks, virtualGateway + ":" + pdnsdPort, localDnsTransparentProxy);
+					}
 
 				}
 		        catch (Exception e)
@@ -409,7 +417,7 @@ public class OrbotVpnManager implements Handler.Callback {
 
 		File fileConf = makePdnsdConf(mService, mService.getFilesDir(), torDnsHost, torDnsPort, pdnsdHost, pdnsdPort);
 
-        String[] cmdString = {pdnsPath,"-c",fileConf.toString()};
+        String[] cmdString = {pdnsPath,"-c",fileConf.toString(),"-g","-v2"};
         ProcessBuilder pb = new ProcessBuilder(cmdString);
         pb.redirectErrorStream(true);
 		Process proc = pb.start();

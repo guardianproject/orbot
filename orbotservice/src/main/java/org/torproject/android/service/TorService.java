@@ -37,6 +37,8 @@ import androidx.core.app.NotificationCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.RemoteViews;
+
 import com.jaredrummler.android.shell.CommandResult;
 
 import net.freehaven.tor.control.ConfigEntry;
@@ -75,6 +77,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 import java.util.StringTokenizer;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -402,7 +405,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
 
 
         try {
-            unregisterReceiver(mNetworkStateReceiver);
+         //   unregisterReceiver(mNetworkStateReceiver);
             unregisterReceiver(mActionBroadcastReceiver);
         }
         catch (IllegalArgumentException iae)
@@ -536,8 +539,8 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             }
 
-            IntentFilter mNetworkStateFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-            registerReceiver(mNetworkStateReceiver , mNetworkStateFilter);
+        //    IntentFilter mNetworkStateFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+          //  registerReceiver(mNetworkStateReceiver , mNetworkStateFilter);
 
             IntentFilter filter = new IntentFilter();
             filter.addAction(CMD_NEWNYM);
@@ -1472,6 +1475,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
      *  BroadcastReciever in the Android manifest.
      */
 
+    /**
     private final BroadcastReceiver mNetworkStateReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -1504,33 +1508,12 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             if (newConnectivityState != mConnectivity) {
                 mConnectivity = newConnectivityState;
 
-                if (mConnectivity)
-                    newIdentity();
+                //if (mConnectivity)
+                  //  newIdentity();
             }
 
-            /**
-            if (doNetworKSleep && mCurrentStatus != STATUS_OFF)
-            {
-                    setTorNetworkEnabled (mConnectivity);
-
-                if (!mConnectivity)
-                {
-                    logNotice(context.getString(R.string.no_network_connectivity_putting_tor_to_sleep_));
-                    showToolbarNotification(getString(R.string.no_internet_connection_tor),NOTIFY_ID,R.drawable.ic_stat_tor_off);
-
-                }
-                else
-                {
-                    logNotice(context.getString(R.string.network_connectivity_is_good_waking_tor_up_));
-                    showToolbarNotification(getString(R.string.status_activated),NOTIFY_ID,R.drawable.ic_stat_tor);
-
-                }
-
-            }**/
-
-
         }
-    };
+    };**/
 
     private StringBuffer processSettingsImpl (StringBuffer extraLines) throws IOException
     {

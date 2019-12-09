@@ -22,8 +22,8 @@ public class TorVpnService extends VpnService {
 
     public static final String TAG = "TorVpnService";
 
-    private static final String ACTION_START = "start";
-    private static final String ACTION_STOP = "stop";
+    public static final String ACTION_START = "start";
+    public static final String ACTION_STOP = "stop";
 
     public static void start(Context context) {
         Intent intent = new Intent(context, TorVpnService.class);
