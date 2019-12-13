@@ -5,10 +5,10 @@ import android.net.VpnService;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Window;
-import org.torproject.android.service.TorService;
+import androidx.appcompat.app.AppCompatActivity;
+import org.torproject.android.service.OrbotService;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.vpn.TorVpnService;
@@ -107,14 +107,14 @@ public class VPNEnableActivity extends AppCompatActivity {
 	  
 
 		private void sendIntentToService(String action) {
-			Intent torService = new Intent(this, TorService.class);    
-			torService.setAction(action);
+			Intent intent = new Intent(this, OrbotService.class);
+			intent.setAction(action);
 			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-				startForegroundService(torService);
+				startForegroundService(intent);
 			}
 			else
 			{
-				startService(torService);
+				startService(intent);
 			}
 		}
 }

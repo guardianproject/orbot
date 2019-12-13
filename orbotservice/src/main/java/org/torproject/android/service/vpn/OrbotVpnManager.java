@@ -34,8 +34,8 @@ import android.widget.Toast;
 import com.runjva.sourceforge.jsocks.protocol.ProxyServer;
 import com.runjva.sourceforge.jsocks.server.ServerAuthenticatorNone;
 import org.torproject.android.service.OrbotConstants;
+import org.torproject.android.service.OrbotService;
 import org.torproject.android.service.R;
-import org.torproject.android.service.TorService;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.CustomNativeLoader;
 
@@ -139,8 +139,8 @@ public class OrbotVpnManager implements Handler.Callback {
 			{
 				Log.d(TAG,"starting OrbotVPNService service!");
 
-				int torSocks = intent.getIntExtra(TorService.EXTRA_SOCKS_PROXY_PORT,-1);
-				int torDns = intent.getIntExtra(TorService.EXTRA_DNS_PORT,-1);
+				int torSocks = intent.getIntExtra(OrbotService.EXTRA_SOCKS_PROXY_PORT,-1);
+				int torDns = intent.getIntExtra(OrbotService.EXTRA_DNS_PORT,-1);
 
 				//if running, we need to restart
 				if ((torSocks != mTorSocks || torDns != mTorDns)) {

@@ -8,7 +8,7 @@ import android.content.IntentFilter;
 import android.net.VpnService;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import android.util.Log;
-import org.torproject.android.service.TorService;
+import org.torproject.android.service.OrbotService;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.Prefs;
 
@@ -86,7 +86,7 @@ public class TorVpnService extends VpnService {
     }
 
     /**
-     * The state and log info from {@link TorService} are sent to the UI here in
+     * The state and log info from {@link OrbotService} are sent to the UI here in
      * the form of a local broadcast. Regular broadcasts can be sent by any app,
      * so local ones are used here so other apps cannot interfere with Orbot's
      * operation.

@@ -83,7 +83,7 @@ import java.util.concurrent.TimeoutException;
 import static org.torproject.android.service.vpn.VpnUtils.getSharedPrefs;
 import static org.torproject.android.service.vpn.VpnUtils.killProcess;
 
-public class TorService extends Service implements TorServiceConstants, OrbotConstants
+public class OrbotService extends Service implements TorServiceConstants, OrbotConstants
 {
 
     public final static String BINARY_TOR_VERSION = org.torproject.android.binary.TorServiceConstants.BINARY_TOR_VERSION;
@@ -269,7 +269,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
          //Reusable code.
          PackageManager pm = getPackageManager();
          Intent intent = pm.getLaunchIntentForPackage(getPackageName());
-         PendingIntent pendIntent = PendingIntent.getActivity(TorService.this, 0, intent, 0);
+         PendingIntent pendIntent = PendingIntent.getActivity(OrbotService.this, 0, intent, 0);
 
         if (mNotifyBuilder == null)
         {
@@ -383,7 +383,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
                 	setExitNode(mIntent.getStringExtra("exit"));
 
                 } else {
-                    Log.w(OrbotConstants.TAG, "unhandled TorService Intent: " + action);
+                    Log.w(OrbotConstants.TAG, "unhandled OrbotService Intent: " + action);
                 }
             }
         }
@@ -428,7 +428,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
     }
 
     private void stopTorAsync () {
-        Log.i("TorService", "stopTor");
+        Log.i("OrbotService", "stopTor");
         try {
             sendCallbackStatus(STATUS_STOPPING);
             sendCallbackLogMessage(getString(R.string.status_shutting_down));
@@ -569,7 +569,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
             logNotice("There was an error installing Orbot binaries");
         }
 
-        Log.i("TorService", "onCreate end");
+        Log.i("OrbotService", "onCreate end");
     }
 
     protected String getCurrentStatus ()

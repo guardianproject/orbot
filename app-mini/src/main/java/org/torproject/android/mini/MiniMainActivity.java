@@ -23,14 +23,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.palette.graphics.Palette;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.SwitchCompat;
-import androidx.appcompat.widget.Toolbar;
 import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
@@ -46,6 +38,14 @@ import android.view.animation.AccelerateInterpolator;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.palette.graphics.Palette;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import org.json.JSONArray;
@@ -58,10 +58,10 @@ import org.torproject.android.mini.ui.Rotate3dAnimation;
 import org.torproject.android.mini.ui.onboarding.OnboardingActivity;
 import org.torproject.android.mini.vpn.VPNEnableActivity;
 import org.torproject.android.service.OrbotConstants;
-import org.torproject.android.service.vpn.TorVpnService;
-import org.torproject.android.service.TorService;
+import org.torproject.android.service.OrbotService;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.Prefs;
+import org.torproject.android.service.vpn.TorVpnService;
 import org.torproject.android.service.vpn.TorifiedApp;
 import org.torproject.android.service.vpn.VpnConstants;
 import org.torproject.android.service.vpn.VpnPrefs;
@@ -163,25 +163,25 @@ public class MiniMainActivity extends AppCompatActivity
 
     }
 
-	private void sendIntentToService(final String action) {
+    private void sendIntentToService(final String action) {
 
-		Intent torService = new Intent(MiniMainActivity.this, TorService.class);
-        torService.setAction(action);
-        startService(torService);
+        Intent intent = new Intent(MiniMainActivity.this, OrbotService.class);
+        intent.setAction(action);
+        startService(intent);
 
-	}
+    }
 
     private void stopTor() {
 
 //        requestTorStatus();
 
-        Intent torService = new Intent(MiniMainActivity.this, TorService.class);
-        stopService(torService);
+        Intent intent = new Intent(MiniMainActivity.this, OrbotService.class);
+        stopService(intent);
 
     }
 
     /**
-     * The state and log info from {@link TorService} are sent to the UI here in
+     * The state and log info from {@link OrbotService} are sent to the UI here in
      * the form of a local broadcast. Regular broadcasts can be sent by any app,
      * so local ones are used here so other apps cannot interfere with Orbot's
      * operation.
@@ -226,8 +226,8 @@ public class MiniMainActivity extends AppCompatActivity
             else if (action.equals(TorServiceConstants.LOCAL_ACTION_PORTS)) {
 
                 Message msg = mStatusUpdateHandler.obtainMessage(MESSAGE_PORTS);
-                msg.getData().putInt("socks",intent.getIntExtra(TorService.EXTRA_SOCKS_PROXY_PORT,-1));
-                msg.getData().putInt("http",intent.getIntExtra(TorService.EXTRA_HTTP_PROXY_PORT,-1));
+                msg.getData().putInt("socks",intent.getIntExtra(OrbotService.EXTRA_SOCKS_PROXY_PORT,-1));
+                msg.getData().putInt("http",intent.getIntExtra(OrbotService.EXTRA_HTTP_PROXY_PORT,-1));
 
                 mStatusUpdateHandler.sendMessage(msg);
 
@@ -386,7 +386,7 @@ public class MiniMainActivity extends AppCompatActivity
             String version = "";
             
             try {
-                version = getPackageManager().getPackageInfo(getPackageName(), 0).versionName + " (Tor " + TorService.BINARY_TOR_VERSION + ")";
+                version = getPackageManager().getPackageInfo(getPackageName(), 0).versionName + " (Tor " + OrbotService.BINARY_TOR_VERSION + ")";
             } catch (NameNotFoundException e) {
                 version = "Version Not Found";
             }
@@ -428,7 +428,7 @@ public class MiniMainActivity extends AppCompatActivity
     /**
      * This is our attempt to REALLY exit Orbot, and stop the background service
      * However, Android doesn't like people "quitting" apps, and/or our code may
-     * not be quite right b/c no matter what we do, it seems like the TorService
+     * not be quite right b/c no matter what we do, it seems like the OrbotService
      * still exists
      **/
     private void doExit() {
@@ -781,7 +781,7 @@ public class MiniMainActivity extends AppCompatActivity
     }
 
     /**
-     * Update the layout_main UI based on the status of {@link TorService}.
+     * Update the layout_main UI based on the status of {@link OrbotService}.
      * {@code torServiceMsg} must never be {@code null}
      */
     private void updateStatus(String torServiceMsg, String newTorStatus) {
@@ -855,7 +855,7 @@ public class MiniMainActivity extends AppCompatActivity
         } else if (torStatus == TorServiceConstants.STATUS_OFF) {
 
             imgStatus.setImageResource(R.drawable.toroff);
-  //          lblStatus.setText("Tor v" + TorService.BINARY_TOR_VERSION);
+  //          lblStatus.setText("Tor v" + OrbotService.BINARY_TOR_VERSION);
 
 
         }
@@ -866,7 +866,7 @@ public class MiniMainActivity extends AppCompatActivity
     /**
      * Starts tor and related daemons by sending an
      * {@link TorServiceConstants#ACTION_START} {@link Intent} to
-     * {@link TorService}
+     * {@link OrbotService}
      */
     private void startTor() {
         sendIntentToService(TorServiceConstants.ACTION_START);
@@ -876,7 +876,7 @@ public class MiniMainActivity extends AppCompatActivity
     /**
      * Request tor status without starting it
      * {@link TorServiceConstants#ACTION_START} {@link Intent} to
-     * {@link TorService}
+     * {@link OrbotService}
      */
     private void requestTorStatus() {
         sendIntentToService(TorServiceConstants.ACTION_STATUS);
@@ -885,7 +885,7 @@ public class MiniMainActivity extends AppCompatActivity
     private boolean isTorServiceRunning() {
         ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
         for (RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
-            if (TorService.class.getName().equals(service.service.getClassName())) {
+            if (OrbotService.class.getName().equals(service.service.getClassName())) {
                 return true;
             }
         }
