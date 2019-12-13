@@ -93,8 +93,6 @@ public interface TorServiceConstants {
     String STATUS_STARTS_DISABLED = "STARTS_DISABLED";
 
     // actions for internal command Intents
-    String CMD_SIGNAL_HUP = "signal_hup";
-    String CMD_NEWNYM = "newnym";
     String CMD_SET_EXIT = "setexit";
     String CMD_ACTIVE = "ACTIVE";
 

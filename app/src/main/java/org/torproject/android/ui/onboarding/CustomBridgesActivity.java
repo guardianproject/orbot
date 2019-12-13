@@ -26,6 +26,8 @@ import androidx.appcompat.widget.Toolbar;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import net.freehaven.tor.control.TorControlCommands;
+
 import org.json.JSONArray;
 import org.torproject.android.R;
 import org.torproject.android.core.ClipboardUtils;
@@ -191,7 +193,7 @@ public class CustomBridgesActivity extends AppCompatActivity implements TextWatc
         Prefs.putBridgesEnabled(bridges != null);
 
         Intent intent = new Intent(this, OrbotService.class);
-        intent.setAction(TorServiceConstants.CMD_SIGNAL_HUP);
+        intent.setAction(TorControlCommands.SIGNAL_RELOAD);
         startService(intent);
     }
 

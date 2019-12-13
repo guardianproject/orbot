@@ -40,6 +40,8 @@ import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import net.freehaven.tor.control.TorControlCommands;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -328,7 +330,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
                         Prefs.setBridgesList(sb.toString());
                         Prefs.putBridgesEnabled(true);
 
-                        sendIntentToService(TorServiceConstants.CMD_SIGNAL_HUP);
+                        sendIntentToService(TorControlCommands.SIGNAL_RELOAD);
 
                         mSuccess = true;
                         setResult(RESULT_OK);
@@ -422,7 +424,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
 
              //   mQueue = Volley.newRequestQueue(this, new ProxiedHurlStack(host, port));
 
-                sendIntentToService(TorServiceConstants.CMD_SIGNAL_HUP);
+                sendIntentToService(TorControlCommands.SIGNAL_RELOAD);
 
                 if (mCaptcha == null) {
                     fetchCaptcha();

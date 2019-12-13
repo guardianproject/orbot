@@ -235,7 +235,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
         mNotifyBuilder.mActions.clear(); // clear out NEWNYM action
         if (conn != null) { // only add new identity action when there is a connection
-            Intent intentRefresh = new Intent(CMD_NEWNYM);
+            Intent intentRefresh = new Intent(TorControlCommands.SIGNAL_NEWNYM);
             PendingIntent pendingIntentNewNym = PendingIntent.getBroadcast(this, 0, intentRefresh, PendingIntent.FLAG_UPDATE_CURRENT);
             mNotifyBuilder.addAction(R.drawable.ic_refresh_white_24dp, getString(R.string.menu_new_identity), pendingIntentNewNym);
         }
@@ -421,7 +421,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
                 try {
                     logNotice("sending HALT signal to Tor process");
-                    conn.shutdownTor("SHUTDOWN");
+                    conn.shutdownTor(TorControlCommands.SIGNAL_SHUTDOWN);
 
                 } catch (IOException e) {
                     Log.d(OrbotConstants.TAG, "error shutting down Tor via connection", e);
@@ -448,9 +448,9 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
     private void requestTorRereadConfig() {
         try {
-            if (conn != null)
-                conn.signal("HUP");
-
+            if (conn != null) {
+                conn.signal(TorControlCommands.SIGNAL_RELOAD);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -507,7 +507,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             //  registerReceiver(mNetworkStateReceiver , mNetworkStateFilter);
 
             IntentFilter filter = new IntentFilter();
-            filter.addAction(CMD_NEWNYM);
+            filter.addAction(TorControlCommands.SIGNAL_NEWNYM);
             filter.addAction(CMD_ACTIVE);
             mActionBroadcastReceiver = new ActionBroadcastReceiver();
             registerReceiver(mActionBroadcastReceiver, filter);
@@ -1588,9 +1588,9 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                         mVpnManager.handleIntent(new Builder(), mIntent);
                 } else if (action.equals(ACTION_STATUS)) {
                     replyWithStatus(mIntent);
-                } else if (action.equals(CMD_SIGNAL_HUP)) {
+                } else if (action.equals(TorControlCommands.SIGNAL_RELOAD)) {
                     requestTorRereadConfig();
-                } else if (action.equals(CMD_NEWNYM)) {
+                } else if (action.equals(TorControlCommands.SIGNAL_NEWNYM)) {
                     newIdentity();
                 } else if (action.equals(CMD_ACTIVE)) {
                     sendSignalActive();
@@ -1606,7 +1606,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     private class ActionBroadcastReceiver extends BroadcastReceiver {
         public void onReceive(Context context, Intent intent) {
             switch (intent.getAction()) {
-                case CMD_NEWNYM: {
+                case TorControlCommands.SIGNAL_NEWNYM: {
                     newIdentity();
                     break;
                 }

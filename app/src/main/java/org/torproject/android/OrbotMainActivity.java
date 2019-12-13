@@ -41,6 +41,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import net.freehaven.tor.control.TorControlCommands;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
@@ -832,7 +833,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     }
 
     private void requestTorRereadConfig() {
-        sendIntentToService(TorServiceConstants.CMD_SIGNAL_HUP);
+        sendIntentToService(TorControlCommands.SIGNAL_RELOAD);
     }
 
     @Override
