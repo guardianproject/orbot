@@ -82,7 +82,7 @@
             android:theme="@style/Theme.AppCompat" />
 
         <service
-            android:name=".service.TorService"
+            android:name=".service.OrbotService"
             android:enabled="true"
             android:permission="android.permission.BIND_VPN_SERVICE"
             android:stopWithTask="false"></service>

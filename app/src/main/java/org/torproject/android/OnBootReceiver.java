@@ -5,7 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import org.torproject.android.service.TorService;
+import org.torproject.android.service.OrbotService;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.ui.VPNEnableActivity;
@@ -38,15 +38,15 @@ public class OnBootReceiver extends BroadcastReceiver {
 
 	private void startService (String action, Context context)
 	{
-		
-		Intent torService = new Intent(context, TorService.class);
-		torService.setAction(action);
+
+		Intent intent = new Intent(context, OrbotService.class);
+		intent.setAction(action);
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-			context.startForegroundService(torService);
+			context.startForegroundService(intent);
 		}
 		else
 		{
-			context.startService(torService);
+			context.startService(intent);
 		}
 
 	}
