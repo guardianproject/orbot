@@ -13,16 +13,16 @@ public class StartTorReceiver extends BroadcastReceiver implements TorServiceCon
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        /* sanitize the Intent before forwarding it to TorService */
+        /* sanitize the Intent before forwarding it to OrbotService */
         Prefs.setContext(context);
         String action = intent.getAction();
         if (TextUtils.equals(action, ACTION_START)) {
             String packageName = intent.getStringExtra(EXTRA_PACKAGE_NAME);
             if (Prefs.allowBackgroundStarts()) {
-                Intent startTorIntent = new Intent(context, TorService.class);
+                Intent startTorIntent = new Intent(context, OrbotService.class);
                 startTorIntent.setAction(action);
                 if (packageName != null) {
-                    startTorIntent.putExtra(TorService.EXTRA_PACKAGE_NAME, packageName);
+                    startTorIntent.putExtra(OrbotService.EXTRA_PACKAGE_NAME, packageName);
                 }
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && Prefs.persistNotifications()) {
                     context.startForegroundService(startTorIntent);

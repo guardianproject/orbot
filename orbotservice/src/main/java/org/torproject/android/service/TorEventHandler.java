@@ -18,7 +18,7 @@ import java.util.StringTokenizer;
  */
 public class TorEventHandler implements EventHandler, TorServiceConstants {
 
-    private TorService mService;
+    private OrbotService mService;
 
 
     private long lastRead = -1;
@@ -48,7 +48,7 @@ public class TorEventHandler implements EventHandler, TorServiceConstants {
         return hmBuiltNodes;
     }
 
-    public TorEventHandler (TorService service)
+    public TorEventHandler (OrbotService service)
     {
         mService = service;
         mNumberFormat = NumberFormat.getInstance(Locale.getDefault()); //localized numbers!
