@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <!-- Our translations are crowd-sourced -->
+    <issue id="MissingTranslation" severity="ignore"/>
+
+    <!-- These could be fixed, then warning can be error -->
+    <issue id="HardcodedText" severity="warning"/>
+    <issue id="InlinedApi" severity="warning"/>
+    <issue id="LongLogTag" severity="warning"/>
+    <issue id="RtlEnabled" severity="warning"/>
+    <issue id="UnusedResources" severity="warning"/>
+    <issue id="WrongConstant" severity="warning"/>
+
+    <!-- These are important to us, so promote from warning to error -->
+    <issue id="AppCompatMethod" severity="error"/>
+    <issue id="DefaultLocale" severity="error"/>
+    <issue id="GetInstance" severity="error"/>
+    <issue id="HardwareIds" severity="error"/>
+    <issue id="ImpliedQuantity" severity="error"/>
+    <issue id="InvalidPackage" severity="error"/>
+    <issue id="NestedScrolling" severity="error"/>
+    <issue id="NewApi" severity="error"/>
+    <issue id="PackageManagerGetSignatures" severity="error"/>
+    <issue id="PluralsCandidate" severity="error"/>
+    <issue id="ProtectedPermissions" severity="error"/>
+    <issue id="RtlCompat" severity="error"/>
+    <issue id="SetWorldReadable" severity="error"/>
+    <issue id="SimpleDateFormat" severity="error"/>
+    <issue id="StringFormatCount" severity="error"/>
+    <issue id="TrustAllX509TrustManager" severity="error"/>
+    <issue id="Typos" severity="error"/>
+    <issue id="UnsafeProtectedBroadcastReceiver" severity="error"/>
+
+    <!-- both the correct and deprecated locales need to be present for
+         them to be recognized on all devices -->
+    <issue id="LocaleFolder" severity="error">
+        <ignore path="src/main/res/values-he"/>
+        <ignore path="src/main/res/values-id"/>
+    </issue>
+</lint>

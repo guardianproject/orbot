@@ -33,7 +33,7 @@ stages:
 assembleDebug:
   stage: build
   script:
-    - ./gradlew assembleDebug
+    - ./gradlew assembleDebug lint
   artifacts:
     paths:
     - app/build/outputs/
