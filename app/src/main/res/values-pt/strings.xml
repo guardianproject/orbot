@@ -70,7 +70,7 @@
     <string name="pref_dnsport_title">Porta DNS Tor</string>
     <string name="bridges_updated">Pontes Atualizadas</string>
     <string name="menu_qr">Códigos QR</string>
-    <string name="get_bridges_email">Correio Eletrónico</string>
+    <string name="get_bridges_email">Correio Eletrônico</string>
     <string name="send_email">Enviar Mensagem</string>
     <string name="hidden_services">Serviços ocultos</string>
     <string name="title_activity_hidden_services">Serviços ocultos</string>
