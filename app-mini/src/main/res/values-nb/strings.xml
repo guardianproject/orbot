@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Orbot</string>
-  <string name="app_description">Orbot er et friprog-mellomtjeningsprogram som gjør det mulig for andre programmer å bruke Internett sikrere. Orbot bruker Tor for å kryptere din internettrafikk, og skjuler da din trafikk ved å sende trafikken gjennom en lang rekke datamaskiner over hele verden. Tor er fri programvare, og et åpent nettverk som hjelper deg å forsvare deg mot en form for nettverksovervåking som truer din personlige frihet og privatliv, konfidensiell bedriftsvirksomhet og relasjoner, og statlig snoking kjent som trafikkanalyse.</string>
+  <string name="app_description">Orbot er et friprog-mellomtjeningsprogram som gjør det mulig for andre programmer å bruke Internett sikrere. Orbot bruker Tor for å kryptere din Internettrafikk, og skjuler da din trafikk ved å sende trafikken gjennom en lang rekke datamaskiner over hele verden. Tor er fri programvare, og et åpent nettverk som hjelper deg å forsvare deg mot en form for nettverksovervåking som truer din personlige frihet og privatliv, konfidensiell bedriftsvirksomhet og relasjoner, og statlig snoking kjent som trafikkanalyse.</string>
     <string name="status_starting_up">Orbot starter…</string>
   <string name="status_activated">Koblet til Tor-nettverket</string>
   <string name="status_disabled">Orbot er deaktivert</string>
@@ -102,7 +102,7 @@
   <string name="pref_use_expanded_notifications_title">Utvidede varsler</string>
     <string name="set_locale_title">Språk</string>
   <string name="pref_disable_network_title">Inget automatisk hvilemodus for nettverk</string>
-  <string name="pref_disable_network_summary">Legg Tor i hvilemodus når nettilkobling til internett ikke er tilgjengelig</string>
+  <string name="pref_disable_network_summary">Legg Tor i hvilemodus når nettilkobling til Internett ikke er tilgjengelig</string>
   <string name="newnym">Du har byttet til en ny Tor-identitet!</string>
   <string name="updating_settings_in_tor_service">Oppdaterer innstillinger i Tor service</string>
   <string name="pref_socks_title">Tor-SOCKS</string>
