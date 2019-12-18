@@ -62,7 +62,7 @@ dependencies {
 
     implementation 'com.offbynull.portmapper:portmapper:2.0.5'
 
-    implementation 'info.guardianproject:jtorctl:0.4'
+    api 'info.guardianproject:jtorctl:0.4'
 
     implementation 'com.github.tladesignz:IPtProxy:0.5.2'
 }
