@@ -3,6 +3,7 @@
 
 package org.torproject.android;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Application;
 import android.content.BroadcastReceiver;
@@ -1186,6 +1187,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         llBoxShortcuts.addView(tv);
     }
 
+    @SuppressLint("SetWorldReadable")
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void exportTorData() {
         File fileTorData;

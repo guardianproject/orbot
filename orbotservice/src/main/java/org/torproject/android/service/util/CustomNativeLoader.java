@@ -1,5 +1,6 @@
 package org.torproject.android.service.util;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.os.Build;
@@ -16,6 +17,7 @@ public class CustomNativeLoader {
 
     private final static String TAG = "CNL";
 
+    @SuppressLint("SetWorldReadable")
     private static boolean loadFromZip(Context context, String libname, File destLocalFile, String arch) {
 
 
