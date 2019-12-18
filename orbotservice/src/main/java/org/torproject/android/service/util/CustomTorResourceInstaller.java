@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.util.Log;
 
+import org.torproject.android.service.TorServiceConstants;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -15,12 +17,6 @@ import java.util.zip.ZipInputStream;
 public class CustomTorResourceInstaller {
 
     private static final String TAG = "CustomTorResourceInstaller";
-
-    String COMMON_ASSET_KEY = "common/";
-
-    //geoip data file asset key
-    String GEOIP_ASSET_KEY = "geoip";
-    String GEOIP6_ASSET_KEY = "geoip6";
 
     private File installFolder;
     private Context context;
@@ -98,15 +94,14 @@ public class CustomTorResourceInstaller {
         return fList;
     }
 
-    //
     /*
      * Extract the Tor resources from the APK file using ZIP
      */
     public void installGeoIP() throws IOException {
         if (!installFolder.exists())
             installFolder.mkdirs();
-        assetToFile(COMMON_ASSET_KEY + GEOIP_ASSET_KEY, GEOIP_ASSET_KEY, false, false);
-        assetToFile(COMMON_ASSET_KEY + GEOIP6_ASSET_KEY, GEOIP6_ASSET_KEY, false, false);
+        assetToFile(TorServiceConstants.GEOIP_ASSET_KEY, TorServiceConstants.GEOIP_ASSET_KEY, false, false);
+        assetToFile(TorServiceConstants.GEOIP6_ASSET_KEY, TorServiceConstants.GEOIP6_ASSET_KEY, false, false);
     }
 
     /*
