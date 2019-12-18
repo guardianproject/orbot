@@ -32,6 +32,7 @@ import org.torproject.android.ui.hiddenservices.dialogs.CookieActionsDialog;
 import org.torproject.android.ui.hiddenservices.providers.CookieContentProvider;
 
 import java.io.File;
+import java.util.Locale;
 
 public class ClientCookiesActivity extends AppCompatActivity {
     public static final String BUNDLE_KEY_ID = "_id",
@@ -115,7 +116,7 @@ public class ClientCookiesActivity extends AppCompatActivity {
         File backupDir = DiskUtils.getOrCreateLegacyBackupDir();
 
         try {
-            File[] files = backupDir.listFiles((dir, name) -> name.toLowerCase().endsWith(".json"));
+            File[] files = backupDir.listFiles((dir, name) -> name.toLowerCase(Locale.ENGLISH).endsWith(".json"));
             if (files != null) {
                 if (files.length == 0) {
                     Toast.makeText(this, R.string.create_a_backup_first, Toast.LENGTH_LONG).show();

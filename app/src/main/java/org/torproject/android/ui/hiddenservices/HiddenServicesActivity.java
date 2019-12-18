@@ -31,6 +31,7 @@ import org.torproject.android.ui.hiddenservices.permissions.PermissionManager;
 import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
 
 import java.io.File;
+import java.util.Locale;
 
 public class HiddenServicesActivity extends AppCompatActivity {
     public static final String BUNDLE_KEY_ID = "_id",
@@ -111,7 +112,7 @@ public class HiddenServicesActivity extends AppCompatActivity {
 
     private void doRestoreLegacy() { // API 16, 17, 18
         File backupDir = DiskUtils.getOrCreateLegacyBackupDir();
-        File[] files = backupDir.listFiles((dir, name) -> name.toLowerCase().endsWith(".zip"));
+        File[] files = backupDir.listFiles((dir, name) -> name.toLowerCase(Locale.ENGLISH).endsWith(".zip"));
         if (files != null) {
             if (files.length == 0) {
                 Toast.makeText(this, R.string.create_a_backup_first, Toast.LENGTH_LONG).show();
