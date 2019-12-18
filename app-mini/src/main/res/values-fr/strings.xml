@@ -94,7 +94,7 @@
   <string name="polipo_version">Polipo v1.1.9 : https://github.com/jech/polipo</string>
   <string name="obfsproxy_version">Obfs4proxy v0.0.8 : https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j : http://www.openssl.org</string>
-  <string name="hidden_service_request">Une appli veut ouvrir le port %1$s du serveur caché au réseau Tor. Cela est sécuritaire si vous faites confiance à l’appli.</string>
+  <string name="hidden_service_request">Une appli veut ouvrir le port %1$d du serveur caché au réseau Tor. Cela est sécuritaire si vous faites confiance à l’appli.</string>
   <string name="found_existing_tor_process">un processus existant de Tor a été trouvé...</string>
   <string name="something_bad_happened">Quelque chose n’a pas été. Vérifiez le journal</string>
     <string name="unable_to_read_hidden_service_name">impossible de lire le nom du service caché</string>

@@ -181,7 +181,7 @@
     <string name="menu_hidden_services">洋葱服务</string>
     <string name="title_activity_hidden_services">洋葱服务</string>
     <string name="hidden_services">洋葱服务</string>
-    <string name="hidden_service_request">一个应用程序想要在端口%1$s上打开到 Tor 网络的洋葱服务器。如果你信任这个应用程序，这是安全的。</string>
+    <string name="hidden_service_request">一个应用程序想要在端口%1$d上打开到 Tor 网络的洋葱服务器。如果你信任这个应用程序，这是安全的。</string>
     <string name="pref_connection_padding">连接填充</string>
     <string name="hosted_services">托管的服务</string>
     <string name="onion">.onion 地址</string>

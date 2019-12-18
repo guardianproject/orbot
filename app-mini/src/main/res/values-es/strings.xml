@@ -95,7 +95,7 @@ direcciones (o rangos). No prevalecen sobre las configuraciones de exclusión de
   <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
   <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
-  <string name="hidden_service_request">Una aplicación quiere abrir el puerto %1$s de servidor oculto a la red Tor. Esto es seguro si confía en la aplicación.</string>
+  <string name="hidden_service_request">Una aplicación quiere abrir el puerto %1$d de servidor oculto a la red Tor. Esto es seguro si confía en la aplicación.</string>
   <string name="found_existing_tor_process">Se encontró un proceso de Tor ya existente...</string>
   <string name="something_bad_happened">Hubo algún tipo de problema. Compruebe el registro (log)</string>
     <string name="unable_to_read_hidden_service_name">No fue posible leer el nombre del servicio oculto</string>

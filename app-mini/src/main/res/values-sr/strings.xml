@@ -92,7 +92,7 @@
   <string name="tor_version">Toр: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
-  <string name="hidden_service_request">Апликација жели да отвори сакривен порт%1$s на серверу за Тор мрежу. Ово је сигуран потез уколико верујете апликацији.</string>
+  <string name="hidden_service_request">Апликација жели да отвори сакривен порт%1$d на серверу за Тор мрежу. Ово је сигуран потез уколико верујете апликацији.</string>
   <string name="found_existing_tor_process">нађен покренути Тор процес...</string>
   <string name="something_bad_happened">Нешто лоше се догодило. Прегледајте логове</string>
     <string name="unable_to_read_hidden_service_name">нисам у могућности да прочитам име сакривеног сервиса</string>

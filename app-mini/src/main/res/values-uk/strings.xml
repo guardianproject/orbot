@@ -94,7 +94,7 @@
   <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
   <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
-  <string name="hidden_service_request">Програма хоче відкрити прихований серверний порт %1$s у мережу Tor. Це безпечно, якщо ви довіряєте застосунку.</string>
+  <string name="hidden_service_request">Програма хоче відкрити прихований серверний порт %1$d у мережу Tor. Це безпечно, якщо ви довіряєте застосунку.</string>
   <string name="found_existing_tor_process">знайдено існуючий процес Tor...</string>
   <string name="something_bad_happened">Виникла якась помилка. Перевірте лог</string>
     <string name="unable_to_read_hidden_service_name">неможливо прочитати ім\'я прихованої служби</string>

@@ -89,7 +89,7 @@
     <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
     <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
     <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
-    <string name="hidden_service_request">Um aplicativo quer abrir uma porta no servidor onion %1$s para a rede Tor. É seguro caso você confie neste aplicativo.</string>
+    <string name="hidden_service_request">Um aplicativo quer abrir uma porta no servidor onion %1$d para a rede Tor. É seguro caso você confie neste aplicativo.</string>
     <string name="found_existing_tor_process">processos Tor existentes foram encontrados…</string>
     <string name="something_bad_happened">Algo ruim aconteceu. Verifique o registro de log</string>
     <string name="unable_to_read_hidden_service_name">incapaz de ler o nome do serviço onion</string>

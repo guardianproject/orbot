@@ -94,7 +94,7 @@
   <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
   <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
-  <string name="hidden_service_request">Egy app egy rejtett szerver portot %1$s nyitna a Tor hálózatra. Ez biztonságos, ha megbízik az appban.</string>
+  <string name="hidden_service_request">Egy app egy rejtett szerver portot %1$d nyitna a Tor hálózatra. Ez biztonságos, ha megbízik az appban.</string>
   <string name="found_existing_tor_process">létező Tor folyamat találva...</string>
   <string name="something_bad_happened">Valami rossz történt. Nézd meg a naplót.</string>
     <string name="unable_to_read_hidden_service_name">nem olvasható a rejtett szolgáltatás neve</string>
