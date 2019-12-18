@@ -215,7 +215,7 @@ public class TorEventHandler implements EventHandler, TorServiceConstants {
 
                         if (node.ipAddress == null && (!node.isFetchingInfo) && Prefs.useDebugLogging()) {
                             node.isFetchingInfo = true;
-                            mService.exec(new ExternalIPFetcher(mService, node, TorService.mPortHTTP));
+                            mService.exec(new ExternalIPFetcher(mService, node, OrbotService.mPortHTTP));
                         }
 
                         isFirstNode = false;
