@@ -199,7 +199,7 @@
     <string name="bridge_direct_connect">Doğrudan Tor ağına bağlanılsın (en iyisi)</string>
     <string name="bridge_community">Topluluk sunucuları üzerinden bağlanılsın</string>
     <string name="bridge_cloud">Bulut sunucular üzerinden bağlanılsın</string>
-    <string name="bridges_get_new">Yeni Köprüler İsteyin... (hiçbir seçenek bağlanamıyorsa)</string>
+    <string name="bridges_get_new">Yeni köprüler isteyin... (Diğer her şey başarısız olursa.)</string>
     <string name="trouble_connecting">Bağlanmakta sorun mu yaşıyorsunuz?</string>
     <string name="full_device_vpn">Aygıt Geneli VPN</string>
     <string name="vpn_disabled">VPN Devre Dışı</string>
