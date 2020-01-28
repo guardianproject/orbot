@@ -58,19 +58,38 @@ public class TorVpnService extends VpnService {
      */
     public int onStartCommand(Intent intent, int flags, int startId) {
 
-        if (ACTION_START.equals(intent.getAction()))
-        {
-            LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(this);
-            lbm.registerReceiver(mLocalBroadcastReceiver,
-                    new IntentFilter(TorServiceConstants.LOCAL_ACTION_PORTS));
-        }
-        else if (ACTION_STOP.equals(intent.getAction()))
-        {
+        String action = ACTION_START;
+        if (intent != null && intent.getAction() != null)
+            action = intent.getAction();
+
+        if (ACTION_START.equals(action)) {
+
+            if (mLocalBroadcastReceiver == null) {
+                mLocalBroadcastReceiver = new BroadcastReceiver() {
+
+                    @Override
+                    public void onReceive(Context context, Intent intent) {
+                        String action = intent.getAction();
+                        if (action == null)
+                            return;
+
+                        if (action.equals(TorServiceConstants.LOCAL_ACTION_PORTS)) {
+
+                            mVpnManager.handleIntent(new Builder(), intent);
+                        }
+                    }
+                };
+                LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(this);
+                lbm.registerReceiver(mLocalBroadcastReceiver,
+                        new IntentFilter(TorServiceConstants.LOCAL_ACTION_PORTS));
+            }
+
+        } else if (ACTION_STOP.equals(action)) {
             Log.d(TAG, "clearing VPN Proxy");
             Prefs.putUseVpn(false);
-
             LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(this);
             lbm.unregisterReceiver(mLocalBroadcastReceiver);
+            mLocalBroadcastReceiver = null;
         }
 
         mVpnManager.handleIntent(new Builder(), intent);
@@ -82,7 +101,6 @@ public class TorVpnService extends VpnService {
     public void onDestroy() {
         super.onDestroy();
 
-
     }
 
     /**
@@ -91,20 +109,7 @@ public class TorVpnService extends VpnService {
      * so local ones are used here so other apps cannot interfere with Orbot's
      * operation.
      */
-    private BroadcastReceiver mLocalBroadcastReceiver = new BroadcastReceiver() {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            if (action == null)
-                return;
-
-            if (action.equals(TorServiceConstants.LOCAL_ACTION_PORTS)) {
-
-                mVpnManager.handleIntent(new Builder(),intent);
-            }
-        }
-    };
+    private BroadcastReceiver mLocalBroadcastReceiver = null;
 
 
 }
