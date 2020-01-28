@@ -11,6 +11,7 @@ public interface TorServiceConstants {
     String DIRECTORY_TOR_DATA = "data";
 
     String TOR_CONTROL_PORT_FILE = "control.txt";
+    String TOR_PID_FILE = "torpid";
 
     //torrc (tor config file)
     String TORRC_ASSET_KEY = "torrc";

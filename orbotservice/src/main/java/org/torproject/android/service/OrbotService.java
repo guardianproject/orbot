@@ -44,6 +44,7 @@ import com.jaredrummler.android.shell.CommandResult;
 import net.freehaven.tor.control.ConfigEntry;
 import net.freehaven.tor.control.TorControlConnection;
 
+import org.apache.commons.io.IOUtils;
 import org.torproject.android.service.util.CustomShell;
 import org.torproject.android.service.util.CustomTorResourceInstaller;
 import org.torproject.android.service.util.DummyActivity;
@@ -109,7 +110,7 @@ public class OrbotService extends Service implements TorServiceConstants, OrbotC
     private ArrayList<String> configBuffer = null;
     private ArrayList<String> resetBuffer = null;
 
-    private File fileControlPort;
+    private File fileControlPort, filePid;
 
     private boolean mConnectivity = true;
 
@@ -456,6 +457,7 @@ public class OrbotService extends Service implements TorServiceConstants, OrbotC
 
 
     private void killAllDaemons() throws Exception {
+
         if (conn != null) {
             logNotice("Using control port to shutdown Tor");
 
@@ -469,6 +471,18 @@ public class OrbotService extends Service implements TorServiceConstants, OrbotC
 
             conn = null;
         }
+
+        if (mLastProcessId != -1)
+            killProcess(mLastProcessId + "", "-9");
+
+        if (filePid != null && filePid.exists())
+        {
+            List<String> lines = IOUtils.readLines(new FileReader(filePid));
+            String torPid = lines.get(0);
+            killProcess(torPid,"-9");
+
+        }
+
 
         // if that fails, try again using native utils
         try {
@@ -523,6 +537,7 @@ public class OrbotService extends Service implements TorServiceConstants, OrbotC
 
             fileTorRc = new File(appBinHome, TORRC_ASSET_KEY);
             fileControlPort = new File(getFilesDir(), TOR_CONTROL_PORT_FILE);
+            filePid = new File(getFilesDir(), TOR_PID_FILE);
 
             mHSBasePath = new File(
                     getFilesDir().getAbsolutePath(),
@@ -646,6 +661,8 @@ public class OrbotService extends Service implements TorServiceConstants, OrbotC
         extraLines.append("\n");
         extraLines.append("ControlPortWriteToFile").append(' ').append(fileControlPort.getCanonicalPath()).append('\n');
 
+        extraLines.append("PidFile").append(' ').append(filePid.getCanonicalPath()).append('\n');
+
  //       extraLines.append("RunAsDaemon 1").append('\n');
  //       extraLines.append("AvoidDiskWrites 1").append('\n');
         
@@ -689,7 +706,7 @@ public class OrbotService extends Service implements TorServiceConstants, OrbotC
     		extraLines.append("SocksListenAddress 0.0.0.0").append('\n');
 
 
-        extraLines.append("HTTPTunnelPort ").append(checkPortOrAuto(HTTP_PROXY_PORT_DEFAULT)).append('\n');
+        extraLines.append("HTTPTunnelPort ").append(httpPortPref).append('\n');
 
         if(prefs.getBoolean(OrbotConstants.PREF_CONNECTION_PADDING, false))
         {
