@@ -13,8 +13,8 @@ android {
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 29
-        versionCode 16111000
-        versionName '16.1.1-BETA-2-tor-0.4.1-5-rc-orbotservice'
+        versionCode 16121000
+        versionName '16.1.2-BETA-1-tor-0.4.2-5-rc-orbotservice'
         archivesBaseName = "OrbotService-$versionName"
 
     }
@@ -43,14 +43,14 @@ dependencies {
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
-    implementation 'org.torproject:tor-android-binary:0.4.1.6-dev'
+    implementation 'org.torproject:tor-android-binary:0.4.2.5'
     implementation 'info.pluggabletransports.aptds:apt-dispatch-library:1.0.7'
     implementation 'info.pluggabletransports.aptds:apt-meek-obfs4-legacy:1.0.7'
     implementation 'info.pluggabletransports.aptds:jsocksAndroid:1.0.4'
 
     implementation 'com.jaredrummler:android-shell:1.0.0'
     implementation fileTree(dir: 'libs', include: ['.so'])
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13'
 
     implementation 'com.offbynull.portmapper:portmapper:2.0.5'
 
