@@ -173,8 +173,6 @@ public class MiniMainActivity extends AppCompatActivity
 
     private void stopTor() {
 
-//        requestTorStatus();
-
         Intent intent = new Intent(MiniMainActivity.this, OrbotService.class);
         stopService(intent);
 
@@ -467,7 +465,7 @@ public class MiniMainActivity extends AppCompatActivity
 
 	private void refreshVPNApps ()
     {
-        TorVpnService.start(this);
+        TorVpnService.stop(this);
         startActivity(new Intent(MiniMainActivity.this, VPNEnableActivity.class));
     }
 
@@ -714,14 +712,13 @@ public class MiniMainActivity extends AppCompatActivity
         sendIntentToService(TorServiceConstants.CMD_SIGNAL_HUP);
     }
 
+
     @Override
     protected void onResume() {
         super.onResume();
 
-//        mBtnBridges.setChecked(Prefs.bridgesEnabled());
-        mBtnVPN.setChecked(Prefs.useVpn());
-
-//        setCountrySpinner();
+        if (mBtnVPN.isChecked()!=Prefs.useVpn())
+            mBtnVPN.setChecked(Prefs.useVpn());
 
 		requestTorStatus();
 
