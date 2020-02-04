@@ -85,7 +85,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeoutException;
 
 import static org.torproject.android.service.vpn.VpnUtils.getSharedPrefs;
-import static org.torproject.android.service.vpn.VpnUtils.killProcess;
 
 public class OrbotService extends Service implements TorServiceConstants, OrbotConstants
 {
@@ -472,6 +471,7 @@ public class OrbotService extends Service implements TorServiceConstants, OrbotC
             conn = null;
         }
 
+        /**
         if (mLastProcessId != -1)
             killProcess(mLastProcessId + "", "-9");
 
@@ -489,7 +489,7 @@ public class OrbotService extends Service implements TorServiceConstants, OrbotC
             killProcess(fileTor, "-9"); // this is -HUP
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }**/
 
     }
 
@@ -502,12 +502,13 @@ public class OrbotService extends Service implements TorServiceConstants, OrbotC
         } catch (IOException e) {
             e.printStackTrace();
         }
+        /**
         // if that fails, try again using native utils
         try {
             killProcess(fileTor, "-1"); // this is -HUP
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }**/
     }
 
     protected void logNotice (String msg)

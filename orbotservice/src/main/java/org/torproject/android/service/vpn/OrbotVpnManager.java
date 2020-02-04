@@ -33,6 +33,8 @@ import android.util.Log;
 import android.widget.Toast;
 import com.runjva.sourceforge.jsocks.protocol.ProxyServer;
 import com.runjva.sourceforge.jsocks.server.ServerAuthenticatorNone;
+
+import org.apache.commons.io.IOUtils;
 import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.OrbotService;
 import org.torproject.android.service.R;
@@ -49,6 +51,7 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.InetAddress;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeoutException;
 
 import static org.torproject.android.service.TorServiceConstants.ACTION_START;
@@ -92,11 +95,12 @@ public class OrbotVpnManager implements Handler.Callback {
 
 		filePdnsd = CustomNativeLoader.loadNativeBinary(service.getApplicationContext(),PDNSD_BIN,new File(service.getFilesDir(),PDNSD_BIN));
 
+		/**
 		try {
 			killProcess(filePdnsd, "-1");
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}**/
 
 		Tun2Socks.init();
 
@@ -417,6 +421,8 @@ public class OrbotVpnManager implements Handler.Callback {
 
 		File fileConf = makePdnsdConf(mService, mService.getFilesDir(), torDnsHost, torDnsPort, pdnsdHost, pdnsdPort);
 
+
+
         String[] cmdString = {pdnsPath,"-c",fileConf.toString(),"-g","-v2"};
         ProcessBuilder pb = new ProcessBuilder(cmdString);
         pb.redirectErrorStream(true);
@@ -441,6 +447,18 @@ public class OrbotVpnManager implements Handler.Callback {
     private boolean stopDns ()
 	{
 
+		File filePdnsPid = new File(mService.getFilesDir(),"pdnsd.pid");
+		List<String> lines = null;
+		try {
+			lines = IOUtils.readLines(new FileReader(filePdnsPid));
+			String dnsPid = lines.get(0);
+			killProcess(dnsPid,"");
+		} catch (Exception e) {
+			Log.e("OrbotVPN","error killing dns process",e);
+		}
+
+
+		/**
 		// if that fails, try again using native utils
 		try {
 			killProcess(filePdnsd, "-1"); // this is -HUP
@@ -466,7 +484,7 @@ public class OrbotVpnManager implements Handler.Callback {
 			} catch (Exception e) {
 				Log.e(TAG,"error killing DNS Process: " + pid,e);
 			}
-		}
+		}**/
 
 
 		return false;
