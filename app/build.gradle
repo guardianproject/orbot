@@ -73,19 +73,20 @@ android {
             minSdkVersion 16
             applicationId 'org.torproject.android'
             targetSdkVersion 28
-            versionCode 16132000
+            versionCode 16141000
             versionName getVersionName()
             archivesBaseName = "Orbot-$versionName"
         }
+        /**
         appmax {
             dimension "free"
             minSdkVersion 16
             applicationId 'org.torproject.android.max'
             targetSdkVersion 28
-            versionCode 16132000
+            versionCode 16141000
             versionName getVersionName()
             archivesBaseName = "orbotMAX-$versionName"
-        }
+        }**/
     }
 
     splits {
@@ -106,7 +107,7 @@ android {
             include "x86", "armeabi-v7a", "x86_64", "arm64-v8a"
 
             // Specifies that we do not want to also generate a universal APK that includes all ABIs.
-            universalApk false
+            universalApk true
         }
 
 
