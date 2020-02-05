@@ -1,5 +1,97 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
+/** 16.1.4-RC-1-tor-0.4.2.5-rc / 5 Feb 2020 / 35fbb5697c4d56f1ad97ae0fdace0a912fc5f2a5 **/
+
+35fbb569 (HEAD -> master) update version code to 16142100
+71e4badb clean-up how kill process works; only try additional attempts if needed
+c9550204 (tag: 16.1.4-BETA-2-tor-0.4.2.5-rc) update build tools and versionCode to 16141100
+815bb83d (origin/master, origin/HEAD, newport/master) set the VPN button properly for mini UI
+f23e9540 reduce use of "kill" process command for only PDSND and not tor - it is no longer needed for tor, and was causing the app to exit on some devices - also, now specifically kill pdnsd using the stored PID
+aaa8df42 also build universal APK to allow for users who don't know which to use
+1d2fa53f handle service restarts with null intents
+ea556bb9 Merge branch 'master' of gitlab.com:guardianproject/orbot
+d38e9e1a (tag: 16.1.4-BETA-1-tor-0.4.2.5-rc) improve killing of orphaned tor process
+61359395 update to tor 0.4.2.5
+57e3ee1b fix OrbotService rename
+ca7394f2 Merge branch 'eighthave-rename-to-OrbotService'
+b3d747e4 (eighthave-rename-to-OrbotService) Merge branch 'rename-to-OrbotService' of https://github.com/eighthave/orbot into eighthave-rename-to-OrbotService
+a655beed rename TorService to OrbotService to prep for standalone TorService
+200c4045 (tag: 16.1.3-BETA-2-tor-0.4.1.6-rc) update version code to 16132000
+7cd5a288 re-enable traffic notification info and improve debug output - tor entrance IP now displayed in logs if you enable debug option
+bb3640a5 when you exit, make sure you also stop the VPN
+2682b522 update gradle tools
+d18e1bb6 make sure all tor daemons are fully killed
+0c8e2e7d switch to Briar jtorctl, upgrade to AndroidX, and tor 0.4.1.6
+ca65d08a Merge branch 'master' of github.com:guardianproject/orbot
+b5b4c9bc Merge pull request #278 from eighthave/whitespace-and-unused
+1d084d78 strip trailing whitespace from TorService
+7b8f908a remove unused variables and methods from TorService
+d4125a2c run Ctrl-Alt-L code formatter on TorServiceConstants
+a479cc9a need the v4 support lib for LocalBroadcastManager
+e64d34a9 Merge branch 'master' of github.com:guardianproject/orbot
+135a94dc Merge pull request #277 from eighthave/bugfix-cleanup-and-funding
+888f836a Merge branch 'master' of github.com:guardianproject/orbot
+2b97df38 update gradle builds
+56e4726e update work on hidden service name setting
+84c3c3e5 update app mini main activity
+faef65ee add appmax flavor builds
+dbf13dcc Merge pull request #270 from SkewedZeppelin/master
+2a5eec5d do not startForegroundService() if persistNotifications is false
+4d0a8342 remove unused constants from TorServiceConstants
+6f5d48df send TorVpnService Intents directly, do not go through TorService
+22bf175c move getSharedPrefs() from TorServiceUtils to Prefs
+6bf442e3 add FUNDING.yml to display a sponsor button in GitHub
+2055823e Merge pull request #272 from 05nelsonm/bug-fix-#271
+3fbeeb20 bugfix issue #271 fixes HiddenService creation by adding correct version to the torrc.custom file
+e71c225e Expose *CircuitPadding
+bf720400 Merge pull request #267 from eighthave/set-versionName-from-git-tags
+4150ef67 Merge pull request #266 from eighthave/clean-up-imports
+04bdf167 set versionName from git release tags
+667f37e3 run Android Studio's Optimize Imports on whole project
+516eb8a7 buildToolsVersion '29.0.0'  has been released
+4bbe3e02 make-release-build: fix breakage, strip unworkable reprobuild stuff
+4d4020ac Merge pull request #252 from eighthave/png-repro-build
+564c17d9 more metadata edits
+9437d9dd add changelog for 16123000
+2c3cc014 shorten the vi full description
+10e6a421 only build Orbot/app not app-mini
+55e9eeb7 modify build metadata for mini
+eee8e743 shorten de-DE description as it is too long
+b4f66dc6 remove unused class for bridges in app-mini
+c2e679d3 (tag: 16.1.2-RC-2-tor-0.4.1.5-rc) update to 16.1.2-RC-2-tor-0.4.1.5-rc
+1d45a3d2 update APT Pluggable Transport library to 1.0.7 - this should fix one issue with installing the correct ofbs4proxy binary - also small changes to ensure no lock states and reduce log noise
+efec61d2 (tag: 16.1.2-RC-1-tor-0.4.0.4-rc) update to 16.1.2-RC-1-tor-0.4.0.4-rc
+237b388d yet another attempt at fixing the phantom zulu locale bug!
+a9efc3c3 disable tests for now in CI build
+918bcca9 remove unused layouts for app-mini
+08b670fa update paths for app-mini code
+cefac588 putting classes back into main app package, and not "mini"
+97d2aac5 improvements for bridge handling for #242
+0e40c074 update badvpn tun2socks library
+034844a4 remove fileprovider from app-mini since it is used just for HS
+d95f1973 make keystore props reading not fail if not present
+d0640c67 remove output from repo
+e8f31587 remove binaries from repo
+5845a4c7 update build tools to 29
+003d9ea1 update build tools to 29
+9c6de066 update build tools to 29
+a266c65d add new functionality to allow for checking connections against app blacklist
+d98e5fbf update changelog for 16.1.1-BETA-2-tor-0.4.0.4-rc-orbotservice
+30cdfa93 manually use `aapt singleCrunch` for reproducible builds
+711ab4fa (tag: mini-1.0.0-BETA-1-tor-0.4.0.4-rc) update SDK to 29
+e73d16c0 more work on app-mini user interface for configuration
+efb1c068 implement initial framework for blocking traffic per app - also add ability to disable tor routing as a per app preference
+673372c3 set base orbotservice notification icon
+285d77e9 implement app configuration screens
+6304ffc8 don't read the line twice and cause a NPE
+e6ff6698 improve app-mini onboarding
+749ad781 Merge branch 'master' of github.com:n8fr8/orbot
+6ae0ca1e adding in new app-mini module for "Orbot Mini" builds - we are developing a light version of Orbot with a new user interface, and we'll be doing it right here in the main Orbot project
+8c4de5e9 metadata: replace all goo.gl links with actual URLs
+0f5cf08c Merge pull request #249 from bitmold/gradle_keystore
+397838ce Let project still build without a keystore.properties file. People cloning the repo don't need this file if they want to build Orbot locally.
+1cdfb052 update gitlab ci
+
 /** 16.1.1-BETA-2-tor-0.4.0.4-rc / Wed Aug 7 13:33:30 2019 -0400 / bbf5fcb3fb346e9bba712d12bf4934cf925cb2bd **/
 
 bbf5fcb3 (tag: 16.1.1-BETA-2-tor-0.4.0.4-rc) update service for VPN mode and startup fixes
