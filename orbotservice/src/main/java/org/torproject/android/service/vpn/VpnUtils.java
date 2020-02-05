@@ -68,28 +68,43 @@ public class VpnUtils {
         while ((procId = findProcessId(fileProcBin.getName())) != -1) {
             killAttempts++;
             String pidString = String.valueOf(procId);
+            boolean itBeDead = killProcess(pidString, signal);
 
-            String[] cmds = {"","busybox ","toolbox "};
+            if (!itBeDead) {
 
-            for (int i = 0; i < cmds.length;i++) {
-                try {
-                    getRuntime().exec(cmds[i] + "killall " + signal + " " + fileProcBin.getName
-                            ());
-                } catch (IOException ioe) {
+                String[] cmds = {"", "busybox ", "toolbox "};
+
+                for (int i = 0; i < cmds.length; i++) {
+
+                    Process proc = null;
+
+                    try {
+                        proc = getRuntime().exec(cmds[i] + "killall " + signal + " " + fileProcBin.getName
+                                ());
+                        int exitValue = proc.waitFor();
+                        if (exitValue == 0)
+                            break;
+
+                    } catch (IOException ioe) {
+                    }
+                    try {
+                        proc = getRuntime().exec(cmds[i] + "killall " + signal + " " + fileProcBin.getCanonicalPath());
+                        int exitValue = proc.waitFor();
+                        if (exitValue == 0)
+                            break;
+
+                    } catch (IOException ioe) {
+                    }
                 }
+
+
                 try {
-                    getRuntime().exec(cmds[i] + "killall " + signal + " " + fileProcBin.getCanonicalPath());
-                } catch (IOException ioe) {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    // ignored
                 }
-            }
 
-            killProcess(pidString, signal);
-
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                // ignored
-            }
+                           }
 
             if (killAttempts > 4)
                 throw new Exception("Cannot kill: " + fileProcBin.getAbsolutePath());
@@ -98,14 +113,14 @@ public class VpnUtils {
         return procId;
     }
 
-    public static void killProcess(String pidString, String signal) throws Exception {
+    public static boolean killProcess(String pidString, String signal) throws Exception {
 
         String[] cmds = {"","toolbox ","busybox "};
 
         for (int i = 0; i < cmds.length;i++) {
             try {
                 Process proc = getRuntime().exec(cmds[i] + "kill " + signal + " " + pidString);
-                int exitVal = proc.exitValue();
+                int exitVal = proc.waitFor();
                 List<String> lineErrors = IOUtils.readLines(proc.getErrorStream());
                 List<String> lineInputs = IOUtils.readLines(proc.getInputStream());
 
@@ -119,6 +134,11 @@ public class VpnUtils {
                         Log.d("Orbot.killProcess",line);
 
                 }
+                else
+                {
+                    //it worked, let's exit
+                    return true;
+                }
 
 
             } catch (IOException ioe) {
@@ -126,6 +146,6 @@ public class VpnUtils {
             }
         }
 
-
+        return false;
     }
 }
