@@ -1,1 +1,1 @@
-Orbot Proxy par Tor
+Orbot : Tor pour Android
