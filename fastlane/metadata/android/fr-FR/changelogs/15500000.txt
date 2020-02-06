@@ -1,10 +1,8 @@
-***WARNING: ALL ROOT FEATURES HAVE BEEN REMOVED FROM THIS NEW VERSION OF ORBOT.***
-Please use Orbot's "Apps VPN Mode" or Orfox browser instead of transparent proxying with root.
+***ATTENTION : TOUTES LES FONCTIONNALITÉS ROOT ONT ÉTÉ ENLEVÉES D'ORBOT.***
+Veuillez utiliser le "Mode Apps VPN" d'Orbot ou le navigateur Orfox au lieu du proxy transparent avec root.
 
-* Update to Tor 0.3.1.8
-* Removed support for Root / Transproxy functions as they had become
-unreliable and untested
-* IMPROVED support for VPN transparent proxying and new "Apps" app
-selection user interface
-* Address Obfs4proxy license info inclusion issue
-* Update to latest Tor support Meek bridge locations
+* Mise à jour Tor 0.3.1.8
+* Fin des fonctions Root / Transproxy car devenues instables et non testées
+* MEILLEUR support du proxy transparent par VPN et nouvelle interface "Apps" de sélection des applis 
+* Résolution du souci d'inclusion de la license Obfs4proxy 
+* Support des nouveaux ponts Meek

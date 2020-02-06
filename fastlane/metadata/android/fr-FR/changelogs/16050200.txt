@@ -1,0 +1,1 @@
+Corrige le crash lié au démarrage d'un service de fond
