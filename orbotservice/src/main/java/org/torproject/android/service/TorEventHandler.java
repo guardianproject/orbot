@@ -6,6 +6,7 @@ import net.freehaven.tor.control.EventHandler;
 
 import org.torproject.android.service.util.ExternalIPFetcher;
 import org.torproject.android.service.util.Prefs;
+import org.w3c.dom.Text;
 
 import java.text.NumberFormat;
 import java.util.HashMap;
@@ -178,7 +179,7 @@ public class TorEventHandler implements EventHandler, TorServiceConstants {
 
                 if (nodeParts.length == 1) {
                     nodeId = nodeParts[0].substring(1);
-                    nodeName = node.id;
+                    nodeName = nodeId;
                 } else if (nodeParts.length == 2) {
                     nodeId = nodeParts[0].substring(1);
                     nodeName = nodeParts[1];
