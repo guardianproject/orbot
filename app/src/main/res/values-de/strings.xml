@@ -193,7 +193,7 @@
     <string name="pref_reduced_connection_padding">Reduzierte Verbindungsauffüllung</string>
     <string name="pref_reduced_connection_padding_summary">Schließt Relaisverbindungen früher und sendet weniger Füllpakete, um Datenmenge und Akkulast zu reduzieren</string>
     <string name="app_shortcuts">Tor-Aktivierte Apps</string>
-    <string name="testing_bridges">Brücken-Verbindung zu Tor wird getestet ....</string>
+    <string name="testing_bridges">Brücken-Verbindung zu Tor wird getestet …</string>
     <string name="testing_bridges_success">Erfolgreich. Brücken-Konfiguration ist gut!</string>
     <string name="testing_bridges_fail">GESCHEITERT. Versuchen Sie eine andere Option</string>
     <string name="bridge_direct_connect">Direkt mit Tor verbinden (am besten)</string>
