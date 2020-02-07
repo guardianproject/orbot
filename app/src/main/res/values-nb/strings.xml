@@ -199,4 +199,6 @@
     <string name="bridge_cloud">Koble til gjennom skytjenere</string>
     <string name="bridges_get_new">Forespør nye broer… (Hvis alt annet feiler.)</string>
     <string name="refresh_apps">Gjenoppfrisk programmer</string>
+    <string name="pref_prefer_ipv6">Foretrekk IPv6-tilknytninger</string>
+    <string name="testing_bridges">Tester bro-tilknytning til Tor…</string>
 </resources>
