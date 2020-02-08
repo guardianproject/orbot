@@ -2,11 +2,11 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Orbot 是一款免费的代理应用，能够让其他应用更安全地使用互联网。通过在位于世界各地的一系列计算机之间进行跳转，Orbot 可利用 Tor 对网络通信进行加密并隐藏。Tor 是一款免费的软件，并且是一个开放的网络。它可以保护用户免受流量分析的危害，这种网络监控可对个人自由与隐私、商业机密活动和关系以及国家安全造成威胁。</string>
-    <string name="status_starting_up">Orbot 正在启动...</string>
+    <string name="status_starting_up">Orbot 正在启动…</string>
     <string name="status_activated">已连接到 Tor 网络</string>
     <string name="status_disabled">Orbot 已停用</string>
     <string name="status_shutting_down">Tor服务 正在关闭</string>
-    <string name="tor_process_starting">正在启动 Tor 客户端...</string>
+    <string name="tor_process_starting">正在启动 Tor 客户端…</string>
     <string name="tor_process_complete">完成。</string>
     <string name="menu_settings">设置</string>
     <string name="menu_log">日志</string>
@@ -17,8 +17,8 @@
     <string name="main_layout_upload">上传</string>
     <string name="button_about">关于</string>
     <string name="menu_exit">退出</string>
-    <string name="menu_scan">扫描网桥QR码</string>
-    <string name="menu_share_bridge">分享网桥QR码</string>
+    <string name="menu_scan">扫描网桥 QR 码</string>
+    <string name="menu_share_bridge">分享网桥 QR 码</string>
     <string name="btn_okay">确定</string>
     <string name="btn_cancel">取消</string>
     <!--Welcome Wizard strings (DJH)-->
@@ -42,7 +42,7 @@
     <string name="pref_allow_background_starts_summary">允许任何应用告知 Orbot 启动 Tor 及相关服务</string>
     <string name="pref_proxy_title">出站网络代理（可选）</string>
     <string name="pref_proxy_type_title">出站代理类型</string>
-    <string name="pref_proxy_type_summary">代理服务器使用的协议：HTTP、HTTPS、Socks4、Socks5</string>
+    <string name="pref_proxy_type_summary">代理服务器使用的协议：HTTP、HTTPS、SOCKS4、SOCKS5</string>
     <string name="pref_proxy_type_dialog">输入代理类型</string>
     <string name="pref_proxy_host_title">出站代理主机</string>
     <string name="pref_proxy_host_summary">代理服务器主机名</string>
@@ -93,7 +93,7 @@
     <string name="tor_version">Tor: https://www.torproject.org</string>
     <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
     <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
-    <string name="found_existing_tor_process">发现当前已存在 Tor 进程...</string>
+    <string name="found_existing_tor_process">发现当前已存在 Tor 进程…</string>
     <string name="something_bad_happened">发生错误，请检查日志</string>
     <string name="unable_to_read_hidden_service_name">无法读取隐藏服务名称</string>
     <string name="unable_to_start_tor">无法启动 Tor：</string>
@@ -107,7 +107,7 @@
     <string name="pref_disable_network_summary">没有网络连接时，暂时停用 Tor</string>
     <string name="newnym">已切换为新的 Tor 标识！</string>
     <string name="no_network_connectivity_putting_tor_to_sleep_">没有网络连接；让 Tor 进入睡眠…</string>
-    <string name="network_connectivity_is_good_waking_tor_up_">网络连接良好。正在唤醒 Tor...</string>
+    <string name="network_connectivity_is_good_waking_tor_up_">网络连接良好。正在唤醒 Tor…</string>
     <string name="updating_settings_in_tor_service">正在更新 Tor 服务中的设置</string>
     <string name="pref_socks_title">Tor SOCKS</string>
     <string name="pref_socks_summary">Tor 提供其 SOCKS 代理的端口 (默认: 9050, 0 禁用)</string>
@@ -134,12 +134,13 @@
     <string name="activate">激活</string>
     <string name="apps_mode">VPN 模式</string>
     <string name="send_email">发送电子邮件</string>
-    <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">您可以通过电子邮件、网页或扫描网桥QR码来获取网桥地址。点击下方的“电子邮件”或“网页”按钮来获取网桥地址。
-当您获取到网桥地址后，请将其复制并粘贴到Orbot设置中的“网桥”一项并重新启动</string>
+    <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">您可以通过电子邮件、网页或扫描网桥 QR 码来获取网桥地址。点击下方的“电子邮件”或“网页”按钮来获取网桥地址。
+\n
+\n当您获取到网桥地址后，请将其复制并粘贴到 Orbot 设置中的“网桥”一项并重新启动。</string>
     <string name="save">保存</string>
     <string name="name">名称</string>
     <string name="please_restart_Orbot_to_enable_the_changes">请重启 Orbot 以使变更生效</string>
-    <string name="wizard_details_msg">Orbot 是一个包含 Tor，Obfs4Proxy，BadVPN Tun2Socks，LibEvent 和 Polipo 的开源应用程序。它提供了通向 Tor 网络的本地 HTTP 代理（8118）和 SOCKS 代理（9050）。 Orbot还能在已ROOT的设备上将所有的互联网流量通过 Tor 发送。</string>
+    <string name="wizard_details_msg">Orbot 是一个包含 Tor，Obfs4Proxy，BadVPN Tun2Socks，LibEvent 和 Polipo 的开源应用程序。它提供了通向 Tor 网络的本地 HTTP 代理（8118）和 SOCKS 代理（9050）。 Orbot 还能在已 ROOT 的设备上将所有的互联网流量通过 Tor 发送。</string>
     <string name="obfsproxy_version">Obfs4proxy: https://github.com/Yawning/obfs4</string>
     <string name="openssl_version">OpenSSL: http://www.openssl.org</string>
     <string name="pref_open_proxy_on_all_interfaces_title">在所有接口上开启代理</string>
@@ -185,4 +186,8 @@
     <string name="full_device_vpn">全设备 VPN</string>
     <string name="vpn_disabled">VPN 已禁用</string>
     <string name="default_socks_http">SOCKS: - HTTP: -</string>
+    <string name="copy_cookie_to_clipboard">复制 cookie 到剪贴板</string>
+    <string name="backup_cookie">备份 cookie</string>
+    <string name="delete_cookie">删除 cookie</string>
+    <string name="confirm_cookie_deletion">确认删除 cookie</string>
 </resources>
