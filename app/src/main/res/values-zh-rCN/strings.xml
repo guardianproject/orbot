@@ -74,7 +74,7 @@
     <string name="enter_bridge_addresses">输入网桥地址</string>
     <string name="relays">中继</string>
     <string name="relaying">中继转发</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">仅设置被设置为非出口中继</string>
+    <string name="enable_your_device_to_be_a_non_exit_relay">使您的设备成为非出口中继</string>
     <string name="relay_port">中继端口</string>
     <string name="listening_port_for_your_tor_relay">Tor 中继的侦听端口</string>
     <string name="enter_or_port">输入 OR 端口</string>
@@ -86,8 +86,8 @@
     <string name="reachable_ports">可访问端口</string>
     <string name="ports_reachable_behind_a_restrictive_firewall">防火墙限定的可访问端口</string>
     <string name="enter_ports">输入端口</string>
-    <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">启用调试日志输出（必须使用 adb 或 aLongCat 查看）</string>
-    <string name="project_home">项目主页(s)：</string>
+    <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">启用调试日志输出（必须使用 adb 或 aLogCat 查看）</string>
+    <string name="project_home">项目主页(们)：</string>
     <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
     <string name="third_party_software">第三方软件：</string>
     <string name="tor_version">Tor: https://www.torproject.org</string>
