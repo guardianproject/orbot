@@ -200,4 +200,21 @@
     <string name="trouble_connecting">Проблеми з під\'єднанням?</string>
     <string name="full_device_vpn">Цілком VPN-пристрій</string>
     <string name="vpn_disabled">VPN Вимкнена</string>
+    <string name="pref_open_proxy_on_all_interfaces_title">Відкрити проксі на всіх інтерфейсах</string>
+    <string name="pref_open_proxy_on_all_interfaces_summary">Дозвольте одноранговим користувачам Wi-Fi, прив’язаним пристроям та будь-яким іншим, хто може підключитися до вашого IP-адреси, отримати доступ до Tor</string>
+    <string name="pref_http_title">Tor HTTP</string>
+    <string name="pref_http_summary">Порт, який Tor пропонує увімкнутий HTTP-проксі (усталено: 8118 або 0 для відключення)</string>
+    <string name="pref_http_dialog">Налаштування порту HTTP</string>
+    <string name="pref_connection_padding">Підкладка для підключення</string>
+    <string name="pref_reduced_connection_padding">Зменшення прокладки підключення</string>
+    <string name="pref_reduced_connection_padding_summary">Швидше закриває релейні з\'єднання та надсилає менше пакетів, щоб зменшити витрату даних та використання акумулятора</string>
+    <string name="pref_prefer_ipv6">Надайте перевагу підключенням IPv6</string>
+    <string name="pref_prefer_ipv6_summary">Повідомляє коли IPv6 адреси є кращими</string>
+    <string name="pref_disable_ipv4">Вимкнути IPv4-з\'єднання</string>
+    <string name="pref_disable_ipv4_summary">Показує коли не варто підключатися до IPv4-адрес</string>
+    <string name="menu_new_identity">Нова особа</string>
+    <string name="user_services">Служби користувача</string>
+    <string name="app_services">Служби застосунків</string>
+    <string name="default_socks_http">SOCKS: - HTTP: -</string>
+    <string name="refresh_apps">Оновити застосунки</string>
 </resources>
