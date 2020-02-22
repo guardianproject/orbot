@@ -199,7 +199,7 @@
     <string name="bridge_direct_connect">Tengjast beint við Tor (best)</string>
     <string name="bridge_community">Tengjast í gegnum þjóna meðlima</string>
     <string name="bridge_cloud">Tengjast í gegnum þjóna í tölvuskýjum</string>
-    <string name="bridges_get_new">Biðja um nýjar brýr... (ef allt annað bregst)</string>
+    <string name="bridges_get_new">Biðja um nýjar brýr... (ef allt annað bregst.)</string>
     <string name="trouble_connecting">Vandamál við tengingu?</string>
     <string name="full_device_vpn">Fullt VPN á tækinu</string>
     <string name="vpn_disabled">VPN óvirkt</string>
