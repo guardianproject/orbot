@@ -4,12 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
 import android.view.View;
+
 import com.github.paolorotolo.appintro.AppIntro;
+
 import org.torproject.android.R;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.settings.LocaleHelper;
@@ -28,13 +31,13 @@ public class OnboardingActivity extends AppIntro {
         super.onCreate(savedInstanceState);
 
         if (savedInstanceState != null) {
-            welcome = (CustomSlideBigText) getSupportFragmentManager().getFragment(savedInstanceState, "welcome");
-            intro2 = (CustomSlideBigText) getSupportFragmentManager().getFragment(savedInstanceState, "intro2");
-            cs2 = (CustomSlideBigText) getSupportFragmentManager().getFragment(savedInstanceState, "cs2");
+            welcome = (CustomSlideBigText) getSupportFragmentManager().getFragment(savedInstanceState, getResources().getString(R.string.WelcomeFragment));
+            intro2 = (CustomSlideBigText) getSupportFragmentManager().getFragment(savedInstanceState, getResources().getString(R.string.Intro2Fragment));
+            cs2 = (CustomSlideBigText) getSupportFragmentManager().getFragment(savedInstanceState, getResources().getString(R.string.CS2Fragment));
             if (PermissionManager.isLollipopOrHigher())
-                cs3 = (CustomSlideBigText) getSupportFragmentManager().getFragment(savedInstanceState, "cs3");
+                cs3 = (CustomSlideBigText) getSupportFragmentManager().getFragment(savedInstanceState, getResources().getString(R.string.CS3Fragment));
 
-        }else{
+        } else {
             // Instead of fragments, you can also use our default slide
             // Just set a title, description, background and image. AppIntro will do the rest.
             welcome = CustomSlideBigText.newInstance(R.layout.custom_slide_big_text);
@@ -52,7 +55,7 @@ public class OnboardingActivity extends AppIntro {
             cs2.showButton(getString(R.string.action_more), new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(OnboardingActivity.this,BridgeWizardActivity.class));
+                    startActivity(new Intent(OnboardingActivity.this, BridgeWizardActivity.class));
                 }
             });
             addSlide(cs2);
@@ -113,13 +116,13 @@ public class OnboardingActivity extends AppIntro {
         }
 
         //Should check if the fragment exists in the fragment manager or else it'll flag error
-        if(count >= 1)
-            getSupportFragmentManager().putFragment(outState, "welcome", welcome);
-        if(count >= 2)
-            getSupportFragmentManager().putFragment(outState, "intro2", intro2);
-        if(count >=3)
-            getSupportFragmentManager().putFragment(outState, "cs2", cs2);
+        if (count >= 1)
+            getSupportFragmentManager().putFragment(outState, getResources().getString(R.string.WelcomeFragment), welcome);
+        if (count >= 2)
+            getSupportFragmentManager().putFragment(outState, getResources().getString(R.string.Intro2Fragment), intro2);
+        if (count >= 3)
+            getSupportFragmentManager().putFragment(outState, getResources().getString(R.string.CS2Fragment), cs2);
         if (count >= 4 && PermissionManager.isLollipopOrHigher())
-            getSupportFragmentManager().putFragment(outState, "cs3", cs3);
+            getSupportFragmentManager().putFragment(outState, getResources().getString(R.string.CS3Fragment), cs3);
     }
 }
