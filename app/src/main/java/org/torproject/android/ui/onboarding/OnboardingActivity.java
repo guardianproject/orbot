@@ -30,7 +30,7 @@ public class OnboardingActivity extends AppIntro {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (savedInstanceState != null) {
+        if (savedInstanceState != null) { //Restoring the fragments
             welcome = (CustomSlideBigText) getSupportFragmentManager().getFragment(savedInstanceState, getResources().getString(R.string.WelcomeFragment));
             intro2 = (CustomSlideBigText) getSupportFragmentManager().getFragment(savedInstanceState, getResources().getString(R.string.Intro2Fragment));
             cs2 = (CustomSlideBigText) getSupportFragmentManager().getFragment(savedInstanceState, getResources().getString(R.string.CS2Fragment));
@@ -106,7 +106,7 @@ public class OnboardingActivity extends AppIntro {
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    protected void onSaveInstanceState(Bundle outState) { //Saving the fragments
         super.onSaveInstanceState(outState);
 
         //Save the fragment's instance

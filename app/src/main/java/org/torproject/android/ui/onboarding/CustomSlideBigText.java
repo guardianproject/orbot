@@ -22,8 +22,8 @@ public class CustomSlideBigText extends Fragment {
     private String mButtonText;
     private String mSubTitle;
     private View.OnClickListener mButtonListener;
-    TextView tv, title;
-    Button button;
+    private TextView tv, title;
+    private Button button;
 
     public static CustomSlideBigText newInstance(int layoutResId) {
         CustomSlideBigText sampleSlide = new CustomSlideBigText();
@@ -81,11 +81,12 @@ public class CustomSlideBigText extends Fragment {
 
     }
 
+    //Restoring the data
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if (savedInstanceState != null) {
-            savedInstanceState.getString(getResources().getString(R.string.Title));
+            title.setText(savedInstanceState.getString(getResources().getString(R.string.Title)));
             tv.setText(savedInstanceState.getString(getResources().getString(R.string.SubTitle)));
             if (mButtonText != null) {
                 button.setText(savedInstanceState.getString(getResources().getString(R.string.ButtonText)));
@@ -94,6 +95,7 @@ public class CustomSlideBigText extends Fragment {
         }
     }
 
+    //Saving the data
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
