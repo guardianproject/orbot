@@ -181,7 +181,7 @@
     <string name="hosted_services">Servizi ospitati</string>
     <string name="share_as_qr">Condividi come QR</string>
     <string name="disable">Disabilita</string>
-    <string name="enable">Abilità</string>
+    <string name="enable">Abilita</string>
     <string name="consider_disable_battery_optimizations">Considera la disattivazione dell\'ottimizzazione della batteria</string>
     <string name="consider_enable_battery_optimizations">Considera l\'attivazione dell\'ottimizzazione della batteria</string>
     <string name="pref_isolate_dest">Isola gli indirizzi di destinazione</string>
