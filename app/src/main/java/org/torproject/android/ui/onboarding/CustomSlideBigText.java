@@ -21,7 +21,7 @@ public class CustomSlideBigText extends Fragment {
     private String mButtonText;
     private String mSubTitle;
     private View.OnClickListener mButtonListener;
-    private TextView tv, title;
+    private TextView bigTextSub, title;
     private Button button;
 
     public static CustomSlideBigText newInstance(int layoutResId) {
@@ -63,11 +63,11 @@ public class CustomSlideBigText extends Fragment {
         View view = inflater.inflate(layoutResId, container, false);
         title = ((TextView) view.findViewById(R.id.custom_slide_big_text));
         title.setText(mTitle);
-        tv = (TextView) view.findViewById(R.id.custom_slide_big_text_sub);
+        bigTextSub = (TextView) view.findViewById(R.id.custom_slide_big_text_sub);
         if (!TextUtils.isEmpty(mSubTitle)) {
 
-            tv.setText(mSubTitle);
-            tv.setVisibility(View.VISIBLE);
+            bigTextSub.setText(mSubTitle);
+            bigTextSub.setVisibility(View.VISIBLE);
         }
 
         if (mButtonText != null) {
@@ -85,8 +85,8 @@ public class CustomSlideBigText extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if (savedInstanceState != null) {
-            title.setText(savedInstanceState.getString(getResources().getString(R.string.Title)));
-            tv.setText(savedInstanceState.getString(getResources().getString(R.string.SubTitle)));
+            title.setText(savedInstanceState.getString(getResources().getString(R.string.Pref_title)));
+            bigTextSub.setText(savedInstanceState.getString(getResources().getString(R.string.SubTitle)));
             if (mButtonText != null) {
                 button.setText(savedInstanceState.getString(getResources().getString(R.string.ButtonText)));
             }
@@ -98,7 +98,7 @@ public class CustomSlideBigText extends Fragment {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString(getResources().getString(R.string.Title), mTitle);
+        outState.putString(getResources().getString(R.string.Pref_title), mTitle);
         outState.putString(getResources().getString(R.string.SubTitle), mSubTitle);
         if (mButtonText != null) {
             outState.putString(getResources().getString(R.string.ButtonText), mButtonText);
