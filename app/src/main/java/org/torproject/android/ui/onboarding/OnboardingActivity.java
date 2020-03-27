@@ -4,12 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
-import android.util.Log;
-import android.view.View;
 
 import com.github.paolorotolo.appintro.AppIntro;
 
@@ -19,9 +17,6 @@ import org.torproject.android.settings.LocaleHelper;
 import org.torproject.android.ui.AppManagerActivity;
 import org.torproject.android.ui.VPNEnableActivity;
 import org.torproject.android.ui.hiddenservices.permissions.PermissionManager;
-
-import java.util.HashMap;
-import java.util.LinkedList;
 
 public class OnboardingActivity extends AppIntro {
     CustomSlideBigText welcome, intro2, cs2, cs3;
