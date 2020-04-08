@@ -71,9 +71,8 @@ public class Languages {
         DisplayMetrics ignored = new DisplayMetrics();
         activity.getWindowManager().getDefaultDisplay().getMetrics(ignored);
         Resources resources;
-        Set<Locale> localeSet = new LinkedHashSet<Locale>();
+        Set<Locale> localeSet = new LinkedHashSet<>();
         for (Locale locale : localesToTest) {
-            config.locale = locale;
             resources = new Resources(assets, ignored, config);
             if (!TextUtils.equals(defaultString, resources.getString(resId))
                     || locale.equals(Locale.ENGLISH))
@@ -190,21 +189,6 @@ public class Languages {
         activity.overridePendingTransition(0, 0);
         activity.startActivity(intent);
         activity.overridePendingTransition(0, 0);
-    }
-
-    /**
-     * Return the name of the language based on the locale.
-     *
-     * @param locale
-     * @return
-     */
-    public String getName(String locale) {
-        String ret = nameMap.get(locale);
-        // if no match, try to return a more general name (i.e. English for
-        // en_IN)
-        if (ret == null && locale.contains("_"))
-            ret = nameMap.get(locale.split("_")[0]);
-        return ret;
     }
 
     /**
