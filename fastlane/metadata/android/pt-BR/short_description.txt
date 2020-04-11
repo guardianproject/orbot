@@ -1,2 +1,1 @@
-Orbot
-Proxy com Tor
+Melhore a sua privacidade e atravesse os firewalls.
