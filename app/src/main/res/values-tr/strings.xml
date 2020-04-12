@@ -115,13 +115,13 @@
     <string name="network_connectivity_is_good_waking_tor_up_">Ağ bağlantısı iyi. Tor uyandırılıyor…</string>
     <string name="updating_settings_in_tor_service">Tor hizmet ayarları güncelleniyor</string>
     <string name="pref_socks_title">Tor SOCKS</string>
-    <string name="pref_socks_summary">Tor SOCKS vekil sunucusu için kullanılacak kapı numarası (Varsayılan 9050, devre dışı bırakmak için 0)</string>
+    <string name="pref_socks_summary">Tor SOCKS vekil sunucusu için kullanılacak kapı numarası (öntanımlı değer: 9050, devre dışı bırakmak için 0)</string>
     <string name="pref_socks_dialog">SOCKS Kapı Numarası Ayarı</string>
     <string name="pref_transport_title">Tor Aktarım Vekil Sunucusu Kapı Numarası</string>
-    <string name="pref_transport_summary">Tor saydam vekil sunucusu için kullanılacak kapı numarası (Varsayılan 9040 ya da devre dışı bırakmak için 0)</string>
+    <string name="pref_transport_summary">Tor saydam vekil sunucusu için kullanılacak kapı numarası (öntanımlı değer: 9040 ya da devre dışı bırakmak için 0)</string>
     <string name="pref_transport_dialog">Aktarım Vekil Sunucusu Kapı Numarası Ayarı</string>
     <string name="pref_dnsport_title">Tor DNS Kapı Numarası</string>
-    <string name="pref_dnsport_summary">Tor DNS hizmeti için kullanılacak kapı numarası (Varsayılan 5400 ya da devre dışı bırakmak için 0)</string>
+    <string name="pref_dnsport_summary">Tor DNS hizmeti için kullanılacak kapı numarası (öntanımlı değer: 5400 ya da devre dışı bırakmak için 0)</string>
     <string name="pref_dnsport_dialog">DNS Kapı Numarası Ayarı</string>
     <string name="pref_torrc_title">Özel Torrc Ayarları</string>
     <string name="pref_torrc_summary">UZMANLAR İÇİN: torrc ayar satırlarını doğrudan yazın</string>
@@ -189,7 +189,7 @@
     <string name="no_transproxy_warning_short">Uyarı: Saydam vekil sunucu özelliği artık desteklenmiyor</string>
     <string name="no_transproxy_warning">Uyarı: Saydam vekil sunucu özelliği artık desteklenmiyor. Onun yerine Orbot uygulamasının VPN özelliğini kullanın.</string>
     <string name="pref_connection_padding">Bağlantı yastıklama</string>
-    <string name="pref_connection_padding_summary">Bazı trafik inceleme yöntemlerine karşı korunmayı sağlamak için her zaman bağlantı yastıklaması kullanılır. Varsayılan: otomatik</string>
+    <string name="pref_connection_padding_summary">Bazı trafik inceleme yöntemlerine karşı korunmayı sağlamak için her zaman bağlantı yastıklaması kullanılır. Öntanımlı olarak: otomatik</string>
     <string name="pref_reduced_connection_padding">Azaltılmış bağlantı yastıklaması</string>
     <string name="pref_reduced_connection_padding_summary">Aktarıcı bağlantılarını daha kısa sürede kapatır ve veri ve pil kullanımını azaltmak için daha az yastıklama paketi gönderir</string>
     <string name="app_shortcuts">Tor Kullanan Uygulamalar</string>
@@ -206,7 +206,7 @@
     <string name="pref_open_proxy_on_all_interfaces_title">Tüm Arayüzlerde Proxy\'yi Aç</string>
     <string name="pref_open_proxy_on_all_interfaces_summary">Wi-Fi eşlerine, bağlı aygıtlara ve IP\'nize bağlanabilen herkese Tor\'a erişme izni verin</string>
     <string name="pref_http_title">Tor HTTP</string>
-    <string name="pref_http_summary">Tor\'un kendi HTTP proxy\'sini sunduğu port numarası (varsayılan: 8118 veya devre dışı bırakmak için 0)</string>
+    <string name="pref_http_summary">Tor\'un kendi HTTP proxy\'sini sunduğu kapı numarası (öntanımlı değer: 8118 veya devre dışı bırakmak için 0)</string>
     <string name="pref_http_dialog">HTTP Port Yapılandırma</string>
     <string name="pref_prefer_ipv6">IPv6 bağlantılarını tercih et</string>
     <string name="pref_prefer_ipv6_summary">Çıkış noktalarına IPv6 adreslerinin tercih edildiğini söyler</string>
