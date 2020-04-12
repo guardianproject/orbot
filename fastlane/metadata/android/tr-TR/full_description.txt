@@ -17,9 +17,9 @@ Orbot gerçekten özel bir internet bağlantısı oluşturan tek uygulamadır. N
 ★ RESMİ: Android için Tor onion yönlendirme servisinin resmi sürümüdür.
 
 *** Geri Bildirimi Seviyoruz ***
-★ HAKKIMIZDA: Guardian Project, daha iyi bir yarın için güvenli mobil uygulamalar ve açık kaynaklı kod yapan bir grup geliştiricidir.
+★ HAKKIMIZDA: Guardian Project, daha iyi bir yarın için güvenli mobil uygulamalar ve açık kaynaklı kodlar yazan bir geliştirici grubudur.
 ★ AÇIK-KAYNAK: Orbot özgür bir yazılımdır. Kaynak kodumuza bir göz atın veya daha iyi hale getirmek için topluluğa katılın: https://gitweb.torproject.org/orbot.git
-★ MESAJ ATIN: En sevdiğiniz özellik eksik mi? Can sıkıcı bir hata mı buldunuz? Duymak isteriz! Bize bir e-posta gönderin: support@guardianproject.info
+★ BİZE MESAJ GÖNDE: En sevdiğiniz özellik eksik mi? Can sıkıcı bir hata mı buldunuz? Duymak isteriz! Bize bir e-posta gönderin: support@guardianproject.info
 
-*** Yasal Uyarı ***
-Guardian Projesi, güvenliğinizi ve anonimliğinizi korumak için tasarlanmış uygulamalar yapar. Kullandığımız protokoller, güvenlik teknolojisinde son teknoloji olarak kabul edilmektedir. En son tehditlerle mücadele etmek ve hataları ortadan kaldırmak için yazılımımızı sürekli olarak geliştirmemize rağmen, hiçbir teknoloji %100 kusursuz değildir. Maksimum güvenlik ve anonimlik için, kullanıcılar kendilerini güvende tutmak için en iyi uygulamaları kullanmalıdır.  Bu konulara ilişkin iyi bir tanıtım kılavuzunu https://securityinabox.org adresinde bulabilirsiniz.
+*** Sorumluluk reddi ***
+Guardian Project, güvenliğinizi ve anonimliğinizi korumak için tasarlanmış uygulamalar yapar. Kullandığımız protokoller, güvenlik teknolojisinde son teknoloji olarak kabul edilmektedir. En son tehditlerle mücadele etmek ve hataları ortadan kaldırmak için yazılımımızı sürekli olarak geliştirmemize rağmen, hiçbir teknoloji %100 kusursuz değildir. Maksimum güvenlik ve anonimlik için, kullanıcılar kendilerini güvende tutmak için en iyi pratikleri uygulamalıdır.  Bu konulara ilişkin iyi bir tanıtım kılavuzunu https://securityinabox.org adresinde bulabilirsiniz.
