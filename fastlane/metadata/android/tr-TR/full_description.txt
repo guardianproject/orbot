@@ -1,4 +1,4 @@
-Orbot, diğer uygulamaların interneti daha güvenli kullanmasını sağlayan ücretsiz bir proxy uygulamasıdır. Orbot, İnternet trafiğinizi şifrelemek için Tor'u kullanır ve daha sonra dünyadaki bir dizi bilgisayardan sekerek gizler. Tor, kişisel özgürlüğü ve gizliliği, gizli ticari faaliyetleri ve ilişkileri ve trafik analizi olarak bilinen devlet güvenliğini tehdit eden bir tür ağ gözetimine karşı savunmanıza yardımcı olan ücretsiz bir yazılım ve açık bir ağdır.
+Orbot, diğer uygulamaların interneti daha güvenli kullanmasını sağlayan ücretsiz bir proxy uygulamasıdır. Orbot, İnternet trafiğinizi şifrelemek için Tor'u kullanır ve dünyadaki bir dizi bilgisayardan sektirerek gizler. Tor, kişisel özgürlüğü ve gizliliği, gizli ticari faaliyetleri ve ilişkileri ve trafik analizi olarak bilinen devlet güvenliğini tehdit eden bir tür ağ gözetimine karşı savunmanıza yardımcı olan ücretsiz bir yazılım ve açık bir ağdır.
 
 *** Android 4.0 ve öncesi, daha eski sürümleri https://guardianproject.info/releases/ adresinden veya https://f-droid.org adresindeki FDroid.org açık uygulama mağazasından indirebilirsiniz. KitKat ve daha eski desteğe sahip son sürüm: https://guardianproject.info/releases/Orbot-v14.1.4-UpToKitKat-nonPIE.apk  ***
 
@@ -8,7 +8,7 @@ Bazı cihazlarda, Orbot'un ihtiyaç duyduğu ağ portunu bir Samsung uygulaması
 
 Orbot gerçekten özel bir internet bağlantısı oluşturan tek uygulamadır. New York Times'ın yazdığı gibi, “bir iletişim Tor'dan ulaştığında, nereden ve kimden geldiğini asla bilemezsiniz.” Tor, 2012 Electronic Frontier Foundation (EFF) Öncü Ödülü'nü kazandı.
 
-★ ALTERNATİF KABUL ETMEYİN: Orbot, Android'de interneti kullanmanın en güvenli yoludur. Bitti. Orbot, VPN'ler ve proxy'ler gibi sizi doğrudan bağlamak yerine, şifreli trafiğinizi dünyanın dört bir yanındaki bilgisayarlardan birkaç kez sektirir. Bu işlem biraz daha uzun sürer, ancak mevcut en güçlü gizlilik ve kimlik koruması beklemeye değer.
+★ ALTERNATİF KABUL ETMEYİN: Orbot, Android'de interneti kullanmanın en güvenli yoludur. Bitti. Orbot, VPN'ler ve proxy'ler gibi sizi doğrudan bağlamak yerine, şifreli trafiğinizi dünyanın dört bir yanındaki bilgisayarlardan birkaç kez sektirir. Bu işlem biraz daha uzun sürer, ancak kullanılabilir en güçlü gizlilik ve kimlik koruması beklemeye değer.
 ★ ÖZEL WEB SURFING: Normalde engellenmiş, izlenmiş veya gizli web'de olsa bile, herhangi bir web sitesine erişmenin en anonim yolu olan Orfox ile kullanın. Orfox'u edinin: https://play.google.com/store/apps/details?id=info.guardianproject.orfox
 ★ ÖZEL SOHBET MESAJLAŞMA: Orbot ile ChatSecure'u kullanarak, herkesle, her yerde ücretsiz olarak sohbet edebilirsiniz. ChatSecure'u edinin: https://goo.gl/O3FfS
 ★ UYGULAMALAR İÇİN GİZLİLİK: Yüklü herhangi bir uygulama, burada bulunan ayarları kullanarak bir proxy özelliği varsa Tor'u kullanabilir: https://goo.gl/2OA1y Twitter ile Orbot'u kullanın veya DuckDuckGo ile özel internet aramasını deneyin: https://goo.gl/lgh1p
