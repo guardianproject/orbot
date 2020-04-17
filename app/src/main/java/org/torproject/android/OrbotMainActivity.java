@@ -209,11 +209,9 @@ public class OrbotMainActivity extends AppCompatActivity
     }
 
     private void sendIntentToService(final String action) {
-
         Intent intent = new Intent(OrbotMainActivity.this, OrbotService.class);
         intent.setAction(action);
         startService(intent);
-
     }
 
     private void stopTor() {
@@ -930,6 +928,7 @@ public class OrbotMainActivity extends AppCompatActivity
 
         if (mBtnBridges.isChecked()) {
             Prefs.putBridgesEnabled(true);
+
             startActivity(new Intent(this, BridgeWizardActivity.class));
         } else {
             enableBridges(false);
@@ -1200,8 +1199,8 @@ public class OrbotMainActivity extends AppCompatActivity
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(mLocalBroadcastReceiver);
 
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mLocalBroadcastReceiver);
     }
 
     public static class DataCount {

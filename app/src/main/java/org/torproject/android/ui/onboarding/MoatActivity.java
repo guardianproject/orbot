@@ -1,9 +1,16 @@
+/* Copyright (c) 2020, Benjamin Erhart, Orbot / The Guardian Project - https://guardianproject.info */
+/* See LICENSE for licensing information */
 package org.torproject.android.ui.onboarding;
 
 import android.app.Dialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
@@ -16,6 +23,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -28,6 +36,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.torproject.android.R;
+import org.torproject.android.service.OrbotService;
+import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.Prefs;
 
 /**
@@ -51,6 +61,31 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
 
     private RequestQueue mQueue;
 
+    private String mTorStatus;
+
+    private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String host = intent.getStringExtra(OrbotService.EXTRA_SOCKS_PROXY_HOST);
+            int port = intent.getIntExtra(OrbotService.EXTRA_SOCKS_PROXY_PORT,-1);
+            String status = intent.getStringExtra(TorServiceConstants.EXTRA_STATUS);
+
+            if (TextUtils.isEmpty(host)) {
+                host = TorServiceConstants.IP_LOCALHOST;
+            }
+
+            if (port < 1) {
+                port = Integer.parseInt(TorServiceConstants.SOCKS_PROXY_PORT_DEFAULT);
+            }
+
+            if (TextUtils.isEmpty(status)) {
+                status = TorServiceConstants.STATUS_OFF;
+            }
+
+            setUp(host, port, status);
+        }
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +107,8 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
 
         findViewById(R.id.requestBt).setOnClickListener(this);
 
-        mQueue = Volley.newRequestQueue(this);
+        LocalBroadcastManager.getInstance(this).registerReceiver(mBroadcastReceiver,
+                new IntentFilter(TorServiceConstants.ACTION_STATUS));
     }
 
     @Override
@@ -85,30 +121,49 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        menu.findItem(R.id.menu_refresh)
+                .setEnabled(TorServiceConstants.STATUS_ON.equals(mTorStatus));
+
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
 
-        // Set to Meek bridge.
-        Prefs.setBridgesList("meek");
-        Prefs.putBridgesEnabled(true);
-
-        fetchCaptcha();
+        sendIntentToService(TorServiceConstants.ACTION_STATUS);
     }
 
     @Override
     public void onClick(View view) {
-        Log.d(MoatActivity.class.toString(), "Request Bridge!");
+        Log.d(MoatActivity.class.getSimpleName(), "Request Bridge!");
 
         requestBridges(mSolutionEt.getText().toString());
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.menu_refresh) {
-            fetchCaptcha();
+        switch (item.getItemId()) {
+            case R.id.menu_refresh:
+                fetchCaptcha();
+
+                return true;
+
+            case android.R.id.home:
+                finish();
+
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mBroadcastReceiver);
     }
 
     private void fetchCaptcha() {
@@ -125,7 +180,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
                             mCaptchaIv.setImageBitmap(BitmapFactory.decodeByteArray(image, 0, image.length));
 
                         } catch (JSONException e) {
-                            Log.d(MoatActivity.class.toString(), "Error decoding answer.");
+                            Log.d(MoatActivity.class.getSimpleName(), "Error decoding answer.");
 
                             new AlertDialog.Builder(MoatActivity.this)
                                     .setTitle(R.string.error)
@@ -156,7 +211,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
                         try {
                             JSONArray bridges = response.getJSONArray("data").getJSONObject(0).getJSONArray("bridges");
 
-                            Log.d(MoatActivity.class.toString(), "Bridges: " + bridges.toString());
+                            Log.d(MoatActivity.class.getSimpleName(), "Bridges: " + bridges.toString());
 
                             StringBuilder sb = new StringBuilder();
 
@@ -170,7 +225,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
                             MoatActivity.this.finish();
 
                         } catch (JSONException e) {
-                            Log.d(MoatActivity.class.toString(), "Error decoding answer: " + response.toString());
+                            Log.d(MoatActivity.class.getSimpleName(), "Error decoding answer: " + response.toString());
 
                             new AlertDialog.Builder(MoatActivity.this)
                                     .setTitle(R.string.error)
@@ -200,7 +255,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
             return null;
         }
 
-        Log.d(MoatActivity.class.toString(), "Request: " + requestBody.toString());
+        Log.d(MoatActivity.class.getSimpleName(), "Request: " + requestBody.toString());
 
         return new JsonObjectRequest(
                 Request.Method.POST,
@@ -210,7 +265,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.d(MoatActivity.class.toString(), "Error response.");
+                        Log.d(MoatActivity.class.getSimpleName(), "Error response.");
 
                         new AlertDialog.Builder(MoatActivity.this)
                                 .setTitle(R.string.error)
@@ -229,5 +284,42 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
                 return "application/vnd.api+json";
             }
         };
+    }
+
+    private void sendIntentToService(final String action) {
+        Intent intent = new Intent(this, OrbotService.class);
+        intent.setAction(action);
+        startService(intent);
+    }
+
+    private void setUp(String host, int port, String status) {
+        Log.d(MoatActivity.class.getSimpleName(), "Tor status=" + status);
+
+        mTorStatus = status;
+        invalidateOptionsMenu();
+
+        switch (status) {
+            case TorServiceConstants.STATUS_OFF:
+                sendIntentToService(TorServiceConstants.ACTION_START);
+
+                break;
+
+            case TorServiceConstants.STATUS_ON:
+                Prefs.setBridgesList("moat");
+                Prefs.putBridgesEnabled(true);
+
+                Log.d(MoatActivity.class.getSimpleName(), "Set up Volley queue. host=" + host + ", port=" + port);
+
+                mQueue = Volley.newRequestQueue(MoatActivity.this, new ProxiedHurlStack(host, port));
+
+                sendIntentToService(TorServiceConstants.CMD_SIGNAL_HUP);
+
+                fetchCaptcha();
+
+                break;
+
+            default:
+                sendIntentToService(TorServiceConstants.ACTION_STATUS);
+        }
     }
 }
