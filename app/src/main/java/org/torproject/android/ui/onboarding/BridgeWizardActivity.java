@@ -8,13 +8,16 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.TextView;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import org.torproject.android.R;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.settings.LocaleHelper;
@@ -36,7 +39,11 @@ public class BridgeWizardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_bridge_wizard);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         tvStatus = findViewById(R.id.lbl_bridge_test_status);
         tvStatus.setVisibility(View.GONE);
@@ -80,6 +87,14 @@ public class BridgeWizardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 showGetBridgePrompt();
+            }
+        });
+
+        RadioButton btnMoat = findViewById(R.id.btnMoat);
+        btnMoat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(BridgeWizardActivity.this, MoatActivity.class));
             }
         });
 
@@ -128,7 +143,7 @@ public class BridgeWizardActivity extends AppCompatActivity {
                 .setPositiveButton(R.string.get_bridges_web, new Dialog.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        openBrowser(URL_TOR_BRIDGES, true);
+                        openBrowser(URL_TOR_BRIDGES);
                     }
                 }).show();
     }
@@ -146,7 +161,8 @@ public class BridgeWizardActivity extends AppCompatActivity {
     /*
      * Launch the system activity for Uri viewing with the provided url
      */
-    private void openBrowser(final String browserLaunchUrl, boolean forceExternal) {
+    @SuppressWarnings("SameParameterValue")
+    private void openBrowser(final String browserLaunchUrl) {
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(browserLaunchUrl)));
     }
 
@@ -174,18 +190,17 @@ public class BridgeWizardActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(String... host) {
             // Background Code
-            boolean result = false;
-
             for (int i = 0; i < host.length; i++) {
                 String testHost = host[i];
                 i++; //move to the port
                 int testPort = Integer.parseInt(host[i]);
-                result = isHostReachable(testHost, testPort, 10000);
-                if (result)
-                    return result;
+
+                if (isHostReachable(testHost, testPort, 10000)) {
+                    return true;
+                }
             }
 
-            return result;
+            return false;
         }
 
         @Override
@@ -201,22 +216,23 @@ public class BridgeWizardActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressWarnings("SameParameterValue")
     private static boolean isHostReachable(String serverAddress, int serverTCPport, int timeoutMS) {
         boolean connected = false;
-        Socket socket;
+
         try {
-            socket = new Socket();
+            Socket socket = new Socket();
             SocketAddress socketAddress = new InetSocketAddress(serverAddress, serverTCPport);
             socket.connect(socketAddress, timeoutMS);
             if (socket.isConnected()) {
                 connected = true;
                 socket.close();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            socket = null;
         }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
         return connected;
     }
 }
