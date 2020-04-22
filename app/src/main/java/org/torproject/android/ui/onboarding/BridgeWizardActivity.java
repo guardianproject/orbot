@@ -34,7 +34,13 @@ public class BridgeWizardActivity extends AppCompatActivity {
 
     private static int MOAT_REQUEST_CODE = 666;
 
-    private TextView tvStatus;
+    private TextView mTvStatus;
+    private RadioButton mBtDirect;
+    private RadioButton mBtObfs4;
+    private RadioButton mBtMeek;
+    private RadioButton mBtNew;
+    private RadioButton mBtMoat;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,13 +54,13 @@ public class BridgeWizardActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        tvStatus = findViewById(R.id.lbl_bridge_test_status);
-        tvStatus.setVisibility(View.GONE);
+        mTvStatus = findViewById(R.id.lbl_bridge_test_status);
+        mTvStatus.setVisibility(View.GONE);
 
         setTitle(getString(R.string.bridges));
 
-        RadioButton btnDirect = findViewById(R.id.btnBridgesDirect);
-        btnDirect.setOnClickListener(new View.OnClickListener() {
+        mBtDirect = findViewById(R.id.btnBridgesDirect);
+        mBtDirect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Prefs.setBridgesList("");
@@ -63,8 +69,8 @@ public class BridgeWizardActivity extends AppCompatActivity {
             }
         });
 
-        RadioButton btnObfs4 = findViewById(R.id.btnBridgesObfs4);
-        btnObfs4.setOnClickListener(new View.OnClickListener() {
+        mBtObfs4 = findViewById(R.id.btnBridgesObfs4);
+        mBtObfs4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Prefs.setBridgesList("obfs4");
@@ -74,8 +80,8 @@ public class BridgeWizardActivity extends AppCompatActivity {
         });
 
 
-        RadioButton btnMeek = findViewById(R.id.btnBridgesMeek);
-        btnMeek.setOnClickListener(new View.OnClickListener() {
+        mBtMeek = findViewById(R.id.btnBridgesMeek);
+        mBtMeek.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Prefs.setBridgesList("meek");
@@ -85,16 +91,16 @@ public class BridgeWizardActivity extends AppCompatActivity {
         });
 
 
-        RadioButton btnNew = findViewById(R.id.btnBridgesNew);
-        btnNew.setOnClickListener(new View.OnClickListener() {
+        mBtNew = findViewById(R.id.btnBridgesNew);
+        mBtNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showGetBridgePrompt();
             }
         });
 
-        RadioButton btnMoat = findViewById(R.id.btnMoat);
-        btnMoat.setOnClickListener(new View.OnClickListener() {
+        mBtMoat = findViewById(R.id.btnMoat);
+        mBtMoat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivityForResult(new Intent(BridgeWizardActivity.this, MoatActivity.class),
@@ -102,12 +108,7 @@ public class BridgeWizardActivity extends AppCompatActivity {
             }
         });
 
-        if (!Prefs.bridgesEnabled())
-            btnDirect.setChecked(true);
-        else if (Prefs.getBridgesList().equals("meek"))
-            btnMeek.setChecked(true);
-        else if (Prefs.getBridgesList().equals("obfs4"))
-            btnObfs4.setChecked(true);
+        evaluateBridgeListState();
     }
 
     @Override
@@ -129,8 +130,14 @@ public class BridgeWizardActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         // If the MoatActivity could successfully gather OBFS4 bridges,
         // the job is done and we can return immediately.
-        if (requestCode == MOAT_REQUEST_CODE && resultCode == RESULT_OK) {
-            finish();
+        if (requestCode == MOAT_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                finish();
+            }
+            // Reset selection to actual value.
+            else {
+                evaluateBridgeListState();
+            }
         }
         else {
             super.onActivityResult(requestCode, resultCode, data);
@@ -189,7 +196,7 @@ public class BridgeWizardActivity extends AppCompatActivity {
         } else if (Prefs.getBridgesList().equals("obfs4")) {
             new HostTester().execute("85.17.30.79", "443", "154.35.22.9", "443", "192.99.11.54", "443");
         } else {
-            tvStatus.setText("");
+            mTvStatus.setText("");
         }
     }
 
@@ -197,8 +204,8 @@ public class BridgeWizardActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             // Pre Code
-            tvStatus.setVisibility(View.VISIBLE);
-            tvStatus.setText(R.string.testing_bridges);
+            mTvStatus.setVisibility(View.VISIBLE);
+            mTvStatus.setText(R.string.testing_bridges);
         }
 
         @Override
@@ -221,10 +228,10 @@ public class BridgeWizardActivity extends AppCompatActivity {
         protected void onPostExecute(Boolean result) {
             // Post Code
             if (result) {
-                tvStatus.setText(R.string.testing_bridges_success);
+                mTvStatus.setText(R.string.testing_bridges_success);
 
             } else {
-                tvStatus.setText(R.string.testing_bridges_fail);
+                mTvStatus.setText(R.string.testing_bridges_fail);
 
             }
         }
@@ -248,5 +255,25 @@ public class BridgeWizardActivity extends AppCompatActivity {
         }
 
         return connected;
+    }
+
+    private void evaluateBridgeListState() {
+        if (!Prefs.bridgesEnabled()) {
+            mBtDirect.setChecked(true);
+        }
+        else if (Prefs.getBridgesList().equals("meek")) {
+            mBtMeek.setChecked(true);
+        }
+        else if (Prefs.getBridgesList().equals("obfs4")) {
+            mBtObfs4.setChecked(true);
+        }
+        else {
+            mBtDirect.setChecked(false);
+            mBtMeek.setChecked(false);
+            mBtObfs4.setChecked(false);
+        }
+
+        mBtNew.setChecked(false);
+        mBtMoat.setChecked(false);
     }
 }

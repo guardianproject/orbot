@@ -30,6 +30,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -67,6 +68,11 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
     private String mChallenge;
 
     private RequestQueue mQueue;
+
+    private String mOriginalBridges;
+    private boolean mOriginalBridgeStatus;
+
+    private boolean mSuccess;
 
     private String mTorStatus;
 
@@ -144,6 +150,9 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
     protected void onResume() {
         super.onResume();
 
+        mOriginalBridges = Prefs.getBridgesList();
+        mOriginalBridgeStatus = Prefs.bridgesEnabled();
+
         sendIntentToService(TorServiceConstants.ACTION_STATUS);
     }
 
@@ -190,6 +199,19 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         return false;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        if (mSuccess) {
+            setResult(RESULT_OK);
+        }
+        else {
+            Prefs.setBridgesList(mOriginalBridges);
+            Prefs.putBridgesEnabled(mOriginalBridgeStatus);
+        }
     }
 
     @Override
@@ -259,7 +281,8 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
 
                             mProgressBar.setVisibility(View.GONE);
 
-                            MoatActivity.this.setResult(RESULT_OK);
+                            mSuccess = true;
+
                             MoatActivity.this.finish();
                         }
                         catch (JSONException e) {
@@ -286,7 +309,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
 
         Log.d(MoatActivity.class.getSimpleName(), "Request: " + requestBody.toString());
 
-        return new JsonObjectRequest(
+        JsonObjectRequest request = new JsonObjectRequest(
                 Request.Method.POST,
                 moatBaseUrl + "/" + endpoint,
                 requestBody,
@@ -304,6 +327,11 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
                 return "application/vnd.api+json";
             }
         };
+
+        request.setRetryPolicy(new DefaultRetryPolicy(30000,
+                3, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        return request;
     }
 
     private void sendIntentToService(final String action) {
@@ -320,12 +348,17 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
 
         switch (status) {
             case TorServiceConstants.STATUS_OFF:
+                // We need the Meek bridge.
+                Prefs.setBridgesList("meek");
+                Prefs.putBridgesEnabled(true);
+
                 sendIntentToService(TorServiceConstants.ACTION_START);
 
                 break;
 
             case TorServiceConstants.STATUS_ON:
-                Prefs.setBridgesList("moat");
+                // Switch to the Meek bridge, if not done, already.
+                Prefs.setBridgesList("meek");
                 Prefs.putBridgesEnabled(true);
 
                 Log.d(MoatActivity.class.getSimpleName(), "Set up Volley queue. host=" + host + ", port=" + port);
@@ -337,9 +370,6 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
                 fetchCaptcha();
 
                 break;
-
-            default:
-                sendIntentToService(TorServiceConstants.ACTION_STATUS);
         }
     }
 
