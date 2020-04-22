@@ -24,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -66,6 +67,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
     private Button mBtRequest;
 
     private String mChallenge;
+    private byte[] mCaptcha;
 
     private RequestQueue mQueue;
 
@@ -120,10 +122,28 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
         mEtSolution = findViewById(R.id.solutionEt);
         mBtRequest = findViewById(R.id.requestBt);
 
-        mIvCaptcha.setVisibility(View.GONE);
         mEtSolution.setOnEditorActionListener(this);
-        mBtRequest.setEnabled(false);
         mBtRequest.setOnClickListener(this);
+
+        if (savedInstanceState != null) {
+            mOriginalBridges = savedInstanceState.getString("originalBridges");
+            mOriginalBridgeStatus = savedInstanceState.getBoolean("originalBridgeStatus");
+            mChallenge = savedInstanceState.getString("challenge");
+            mCaptcha = savedInstanceState.getByteArray("captcha");
+
+            if (mCaptcha != null) {
+                mProgressBar.setVisibility(View.GONE);
+                mIvCaptcha.setImageBitmap(BitmapFactory.decodeByteArray(mCaptcha, 0, mCaptcha.length));
+                mRequestInProgress = false;
+            }
+        }
+        else {
+            mIvCaptcha.setVisibility(View.GONE);
+            mBtRequest.setEnabled(false);
+
+            mOriginalBridges = Prefs.getBridgesList();
+            mOriginalBridgeStatus = Prefs.bridgesEnabled();
+        }
 
         LocalBroadcastManager.getInstance(this).registerReceiver(mBroadcastReceiver,
                 new IntentFilter(TorServiceConstants.ACTION_STATUS));
@@ -148,9 +168,6 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
-
-        mOriginalBridges = Prefs.getBridgesList();
-        mOriginalBridgeStatus = Prefs.bridgesEnabled();
 
         sendIntentToService(TorServiceConstants.ACTION_STATUS);
     }
@@ -201,13 +218,13 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
 
-        if (!mSuccess) {
-            Prefs.setBridgesList(mOriginalBridges);
-            Prefs.putBridgesEnabled(mOriginalBridgeStatus);
-        }
+        outState.putString("originalBridges", mOriginalBridges);
+        outState.putBoolean("originalBridgeStatus", mOriginalBridgeStatus);
+        outState.putString("challenge", mChallenge);
+        outState.putByteArray("captcha", mCaptcha);
     }
 
     @Override
@@ -215,6 +232,11 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
         super.onDestroy();
 
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mBroadcastReceiver);
+
+        if (!mSuccess) {
+            Prefs.setBridgesList(mOriginalBridges);
+            Prefs.putBridgesEnabled(mOriginalBridgeStatus);
+        }
     }
 
     private void fetchCaptcha() {
@@ -231,8 +253,8 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
                             JSONObject data = response.getJSONArray("data").getJSONObject(0);
                             mChallenge = data.getString("challenge");
 
-                            byte[] image = Base64.decode(data.getString("image"), Base64.DEFAULT);
-                            mIvCaptcha.setImageBitmap(BitmapFactory.decodeByteArray(image, 0, image.length));
+                            mCaptcha = Base64.decode(data.getString("image"), Base64.DEFAULT);
+                            mIvCaptcha.setImageBitmap(BitmapFactory.decodeByteArray(mCaptcha, 0, mCaptcha.length));
                             mIvCaptcha.setVisibility(View.VISIBLE);
                             mEtSolution.setText(null);
                             mBtRequest.setEnabled(true);
@@ -252,6 +274,9 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
             mProgressBar.setVisibility(View.VISIBLE);
             mIvCaptcha.setVisibility(View.GONE);
             mBtRequest.setEnabled(false);
+
+            mChallenge = null;
+            mCaptcha = null;
 
             mQueue.add(request);
         }
@@ -370,7 +395,9 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
 
                 sendIntentToService(TorServiceConstants.CMD_SIGNAL_HUP);
 
-                fetchCaptcha();
+                if (mCaptcha == null) {
+                    fetchCaptcha();
+                }
 
                 break;
         }
