@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -30,6 +31,8 @@ import java.net.SocketAddress;
 import static org.torproject.android.MainConstants.URL_TOR_BRIDGES;
 
 public class BridgeWizardActivity extends AppCompatActivity {
+
+    private static int MOAT_REQUEST_CODE = 666;
 
     private TextView tvStatus;
 
@@ -94,7 +97,8 @@ public class BridgeWizardActivity extends AppCompatActivity {
         btnMoat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(BridgeWizardActivity.this, MoatActivity.class));
+                startActivityForResult(new Intent(BridgeWizardActivity.this, MoatActivity.class),
+                        MOAT_REQUEST_CODE);
             }
         });
 
@@ -104,7 +108,6 @@ public class BridgeWizardActivity extends AppCompatActivity {
             btnMeek.setChecked(true);
         else if (Prefs.getBridgesList().equals("obfs4"))
             btnObfs4.setChecked(true);
-
     }
 
     @Override
@@ -122,6 +125,17 @@ public class BridgeWizardActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        // If the MoatActivity could successfully gather OBFS4 bridges,
+        // the job is done and we can return immediately.
+        if (requestCode == MOAT_REQUEST_CODE && resultCode == RESULT_OK) {
+            finish();
+        }
+        else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
 
     private void showGetBridgePrompt() {
         new AlertDialog.Builder(this)

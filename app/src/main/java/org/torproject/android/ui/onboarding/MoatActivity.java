@@ -259,6 +259,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
 
                             mProgressBar.setVisibility(View.GONE);
 
+                            MoatActivity.this.setResult(RESULT_OK);
                             MoatActivity.this.finish();
                         }
                         catch (JSONException e) {
