@@ -28,20 +28,33 @@
         android:layout_margin="12dp"
         android:text="@string/solve_captcha_instruction" />
 
-    <ImageView
-        android:id="@+id/captchaIv"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="240dp"
-        android:contentDescription="@string/captcha"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+        android:layout_margin="12dp">
+
+        <ImageView
+            android:id="@+id/captchaIv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/captcha"
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </RelativeLayout>
 
     <EditText
         android:id="@+id/solutionEt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:autofillHints=""
-        android:hint="@string/enter_characters_from_image"
         android:ems="10"
+        android:hint="@string/enter_characters_from_image"
+        android:imeOptions="actionSend"
         android:inputType="textShortMessage|text" />
 
     <Button

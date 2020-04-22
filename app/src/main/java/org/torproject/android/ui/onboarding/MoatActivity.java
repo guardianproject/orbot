@@ -2,10 +2,9 @@
 /* See LICENSE for licensing information */
 package org.torproject.android.ui.onboarding;
 
-import android.app.Dialog;
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.BitmapFactory;
@@ -13,11 +12,17 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
@@ -50,12 +55,14 @@ import org.torproject.android.service.util.Prefs;
  API description:
  https://github.com/NullHypothesis/bridgedb#accessing-the-moat-interface
  */
-public class MoatActivity extends AppCompatActivity implements View.OnClickListener {
+public class MoatActivity extends AppCompatActivity implements View.OnClickListener, TextView.OnEditorActionListener {
 
     private static String moatBaseUrl = "https://bridges.torproject.org/moat";
 
     private ImageView mCaptchaIv;
+    private ProgressBar mProgressBar;
     private EditText mSolutionEt;
+    private Button mRequestBt;
 
     private String mChallenge;
 
@@ -103,9 +110,14 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
         setTitle(getString(R.string.request_bridges));
 
         mCaptchaIv = findViewById(R.id.captchaIv);
+        mProgressBar = findViewById(R.id.progressBar);
         mSolutionEt = findViewById(R.id.solutionEt);
+        mRequestBt = findViewById(R.id.requestBt);
 
-        findViewById(R.id.requestBt).setOnClickListener(this);
+        mCaptchaIv.setVisibility(View.GONE);
+        mSolutionEt.setOnEditorActionListener(this);
+        mRequestBt.setEnabled(false);
+        mRequestBt.setOnClickListener(this);
 
         LocalBroadcastManager.getInstance(this).registerReceiver(mBroadcastReceiver,
                 new IntentFilter(TorServiceConstants.ACTION_STATUS));
@@ -159,6 +171,27 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
         return super.onOptionsItemSelected(item);
     }
 
+
+    @Override
+    public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+        Log.d(MoatActivity.class.getSimpleName(), "Editor Action: actionId=" + actionId + ", IME_ACTION_GO=" + EditorInfo.IME_ACTION_GO);
+
+        if (keyEvent != null && keyEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+            if (keyEvent.getAction() == KeyEvent.ACTION_UP) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+                if (imm != null) {
+                    imm.hideSoftInputFromWindow(textView.getWindowToken(), 0);
+                }
+
+                onClick(mSolutionEt);
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -167,6 +200,10 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void fetchCaptcha() {
+        mProgressBar.setVisibility(View.VISIBLE);
+        mCaptchaIv.setVisibility(View.GONE);
+        mRequestBt.setEnabled(false);
+
         JsonObjectRequest request = buildRequest("fetch",
                 "\"type\": \"client-transports\", \"supported\": [\"obfs4\"]",
                 new Response.Listener<JSONObject>() {
@@ -179,19 +216,14 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
                             byte[] image = Base64.decode(data.getString("image"), Base64.DEFAULT);
                             mCaptchaIv.setImageBitmap(BitmapFactory.decodeByteArray(image, 0, image.length));
 
-                        } catch (JSONException e) {
-                            Log.d(MoatActivity.class.getSimpleName(), "Error decoding answer.");
+                            mProgressBar.setVisibility(View.GONE);
+                            mCaptchaIv.setVisibility(View.VISIBLE);
+                            mRequestBt.setEnabled(true);
 
-                            new AlertDialog.Builder(MoatActivity.this)
-                                    .setTitle(R.string.error)
-                                    .setMessage(e.getLocalizedMessage())
-                                    .setNegativeButton(R.string.btn_cancel, new Dialog.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            //Do nothing.
-                                        }
-                                    })
-                                    .show();
+                        } catch (JSONException e) {
+                            Log.d(MoatActivity.class.getSimpleName(), "Error decoding answer: " + response.toString());
+
+                            displayError(e, response);
                         }
                     }
                 });
@@ -202,6 +234,9 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void requestBridges(String solution) {
+        mProgressBar.setVisibility(View.VISIBLE);
+        mRequestBt.setEnabled(false);
+
         JsonObjectRequest request = buildRequest("check",
                 "\"id\": \"2\", \"type\": \"moat-solution\", \"transport\": \"obfs4\", \"challenge\": \""
                         + mChallenge + "\", \"solution\": \"" + solution + "\", \"qrcode\": \"false\"",
@@ -222,21 +257,14 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
                             Prefs.setBridgesList(sb.toString());
                             Prefs.putBridgesEnabled(true);
 
-                            MoatActivity.this.finish();
+                            mProgressBar.setVisibility(View.GONE);
 
-                        } catch (JSONException e) {
+                            MoatActivity.this.finish();
+                        }
+                        catch (JSONException e) {
                             Log.d(MoatActivity.class.getSimpleName(), "Error decoding answer: " + response.toString());
 
-                            new AlertDialog.Builder(MoatActivity.this)
-                                    .setTitle(R.string.error)
-                                    .setMessage(e.getLocalizedMessage())
-                                    .setNegativeButton(R.string.btn_cancel, new Dialog.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            //Do nothing.
-                                        }
-                                    })
-                                    .show();
+                            displayError(e, response);
                         }
                     }
                 });
@@ -267,16 +295,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
                     public void onErrorResponse(VolleyError error) {
                         Log.d(MoatActivity.class.getSimpleName(), "Error response.");
 
-                        new AlertDialog.Builder(MoatActivity.this)
-                                .setTitle(R.string.error)
-                                .setMessage(error.getLocalizedMessage())
-                                .setNegativeButton(R.string.btn_cancel, new Dialog.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        //Do nothing.
-                                    }
-                                })
-                                .show();
+                        displayError(error, null);
                     }
                 }
         ) {
@@ -321,5 +340,28 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
             default:
                 sendIntentToService(TorServiceConstants.ACTION_STATUS);
         }
+    }
+
+    private void displayError(Exception exception, JSONObject response) {
+
+        String detail = null;
+
+        // Try to decode potential error response.
+        if (response != null) {
+            try {
+                detail = response.getJSONArray("errors").getJSONObject(0).getString("detail");
+            } catch (JSONException e2) {
+                // Ignore. Show first exception instead.
+            }
+        }
+
+        mProgressBar.setVisibility(View.GONE);
+        mRequestBt.setEnabled(mCaptchaIv.getVisibility() == View.VISIBLE);
+
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.error)
+                .setMessage(TextUtils.isEmpty(detail) ? exception.getLocalizedMessage() : detail)
+                .setNegativeButton(R.string.btn_cancel, null)
+                .show();
     }
 }
