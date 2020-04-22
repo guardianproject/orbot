@@ -74,7 +74,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
 
     private boolean mSuccess;
 
-    private String mTorStatus;
+    private boolean mRequestInProgress = true;
 
     private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
         @Override
@@ -140,8 +140,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        menu.findItem(R.id.menu_refresh)
-                .setEnabled(TorServiceConstants.STATUS_ON.equals(mTorStatus));
+        menu.findItem(R.id.menu_refresh).setEnabled(!mRequestInProgress);
 
         return super.onPrepareOptionsMenu(menu);
     }
@@ -205,10 +204,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
     protected void onPause() {
         super.onPause();
 
-        if (mSuccess) {
-            setResult(RESULT_OK);
-        }
-        else {
+        if (!mSuccess) {
             Prefs.setBridgesList(mOriginalBridges);
             Prefs.putBridgesEnabled(mOriginalBridgeStatus);
         }
@@ -222,24 +218,23 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void fetchCaptcha() {
-        mProgressBar.setVisibility(View.VISIBLE);
-        mIvCaptcha.setVisibility(View.GONE);
-        mBtRequest.setEnabled(false);
-
         JsonObjectRequest request = buildRequest("fetch",
                 "\"type\": \"client-transports\", \"supported\": [\"obfs4\"]",
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        mRequestInProgress = false;
+                        invalidateOptionsMenu();
+                        mProgressBar.setVisibility(View.GONE);
+
                         try {
                             JSONObject data = response.getJSONArray("data").getJSONObject(0);
                             mChallenge = data.getString("challenge");
 
                             byte[] image = Base64.decode(data.getString("image"), Base64.DEFAULT);
                             mIvCaptcha.setImageBitmap(BitmapFactory.decodeByteArray(image, 0, image.length));
-
-                            mProgressBar.setVisibility(View.GONE);
                             mIvCaptcha.setVisibility(View.VISIBLE);
+                            mEtSolution.setText(null);
                             mBtRequest.setEnabled(true);
 
                         } catch (JSONException e) {
@@ -247,24 +242,32 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
 
                             displayError(e, response);
                         }
+
                     }
                 });
 
         if (request != null) {
+            mRequestInProgress = true;
+            invalidateOptionsMenu();
+            mProgressBar.setVisibility(View.VISIBLE);
+            mIvCaptcha.setVisibility(View.GONE);
+            mBtRequest.setEnabled(false);
+
             mQueue.add(request);
         }
     }
 
     private void requestBridges(String solution) {
-        mProgressBar.setVisibility(View.VISIBLE);
-        mBtRequest.setEnabled(false);
-
         JsonObjectRequest request = buildRequest("check",
                 "\"id\": \"2\", \"type\": \"moat-solution\", \"transport\": \"obfs4\", \"challenge\": \""
                         + mChallenge + "\", \"solution\": \"" + solution + "\", \"qrcode\": \"false\"",
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        mRequestInProgress = false;
+                        invalidateOptionsMenu();
+                        mProgressBar.setVisibility(View.GONE);
+
                         try {
                             JSONArray bridges = response.getJSONArray("data").getJSONObject(0).getJSONArray("bridges");
 
@@ -279,11 +282,9 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
                             Prefs.setBridgesList(sb.toString());
                             Prefs.putBridgesEnabled(true);
 
-                            mProgressBar.setVisibility(View.GONE);
-
                             mSuccess = true;
-
-                            MoatActivity.this.finish();
+                            setResult(RESULT_OK);
+                            finish();
                         }
                         catch (JSONException e) {
                             Log.d(MoatActivity.class.getSimpleName(), "Error decoding answer: " + response.toString());
@@ -294,6 +295,11 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
                 });
 
         if (request != null) {
+            mRequestInProgress = true;
+            invalidateOptionsMenu();
+            mProgressBar.setVisibility(View.VISIBLE);
+            mBtRequest.setEnabled(false);
+
             mQueue.add(request);
         }
     }
@@ -342,9 +348,6 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
 
     private void setUp(String host, int port, String status) {
         Log.d(MoatActivity.class.getSimpleName(), "Tor status=" + status);
-
-        mTorStatus = status;
-        invalidateOptionsMenu();
 
         switch (status) {
             case TorServiceConstants.STATUS_OFF:
