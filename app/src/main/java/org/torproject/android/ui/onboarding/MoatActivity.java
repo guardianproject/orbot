@@ -60,10 +60,10 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
 
     private static String moatBaseUrl = "https://bridges.torproject.org/moat";
 
-    private ImageView mCaptchaIv;
+    private ImageView mIvCaptcha;
     private ProgressBar mProgressBar;
-    private EditText mSolutionEt;
-    private Button mRequestBt;
+    private EditText mEtSolution;
+    private Button mBtRequest;
 
     private String mChallenge;
 
@@ -115,15 +115,15 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
 
         setTitle(getString(R.string.request_bridges));
 
-        mCaptchaIv = findViewById(R.id.captchaIv);
+        mIvCaptcha = findViewById(R.id.captchaIv);
         mProgressBar = findViewById(R.id.progressBar);
-        mSolutionEt = findViewById(R.id.solutionEt);
-        mRequestBt = findViewById(R.id.requestBt);
+        mEtSolution = findViewById(R.id.solutionEt);
+        mBtRequest = findViewById(R.id.requestBt);
 
-        mCaptchaIv.setVisibility(View.GONE);
-        mSolutionEt.setOnEditorActionListener(this);
-        mRequestBt.setEnabled(false);
-        mRequestBt.setOnClickListener(this);
+        mIvCaptcha.setVisibility(View.GONE);
+        mEtSolution.setOnEditorActionListener(this);
+        mBtRequest.setEnabled(false);
+        mBtRequest.setOnClickListener(this);
 
         LocalBroadcastManager.getInstance(this).registerReceiver(mBroadcastReceiver,
                 new IntentFilter(TorServiceConstants.ACTION_STATUS));
@@ -160,7 +160,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         Log.d(MoatActivity.class.getSimpleName(), "Request Bridge!");
 
-        requestBridges(mSolutionEt.getText().toString());
+        requestBridges(mEtSolution.getText().toString());
     }
 
     @Override
@@ -192,7 +192,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
                     imm.hideSoftInputFromWindow(textView.getWindowToken(), 0);
                 }
 
-                onClick(mSolutionEt);
+                onClick(mEtSolution);
             }
 
             return true;
@@ -223,8 +223,8 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
 
     private void fetchCaptcha() {
         mProgressBar.setVisibility(View.VISIBLE);
-        mCaptchaIv.setVisibility(View.GONE);
-        mRequestBt.setEnabled(false);
+        mIvCaptcha.setVisibility(View.GONE);
+        mBtRequest.setEnabled(false);
 
         JsonObjectRequest request = buildRequest("fetch",
                 "\"type\": \"client-transports\", \"supported\": [\"obfs4\"]",
@@ -236,11 +236,11 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
                             mChallenge = data.getString("challenge");
 
                             byte[] image = Base64.decode(data.getString("image"), Base64.DEFAULT);
-                            mCaptchaIv.setImageBitmap(BitmapFactory.decodeByteArray(image, 0, image.length));
+                            mIvCaptcha.setImageBitmap(BitmapFactory.decodeByteArray(image, 0, image.length));
 
                             mProgressBar.setVisibility(View.GONE);
-                            mCaptchaIv.setVisibility(View.VISIBLE);
-                            mRequestBt.setEnabled(true);
+                            mIvCaptcha.setVisibility(View.VISIBLE);
+                            mBtRequest.setEnabled(true);
 
                         } catch (JSONException e) {
                             Log.d(MoatActivity.class.getSimpleName(), "Error decoding answer: " + response.toString());
@@ -257,7 +257,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
 
     private void requestBridges(String solution) {
         mProgressBar.setVisibility(View.VISIBLE);
-        mRequestBt.setEnabled(false);
+        mBtRequest.setEnabled(false);
 
         JsonObjectRequest request = buildRequest("check",
                 "\"id\": \"2\", \"type\": \"moat-solution\", \"transport\": \"obfs4\", \"challenge\": \""
@@ -387,7 +387,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         mProgressBar.setVisibility(View.GONE);
-        mRequestBt.setEnabled(mCaptchaIv.getVisibility() == View.VISIBLE);
+        mBtRequest.setEnabled(mIvCaptcha.getVisibility() == View.VISIBLE);
 
         new AlertDialog.Builder(this)
                 .setTitle(R.string.error)
