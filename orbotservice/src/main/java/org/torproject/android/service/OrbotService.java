@@ -25,8 +25,6 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.IBinder;
@@ -37,14 +35,12 @@ import androidx.core.app.NotificationCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.util.Log;
-import android.widget.RemoteViews;
 
 import com.jaredrummler.android.shell.CommandResult;
 
 import net.freehaven.tor.control.ConfigEntry;
 import net.freehaven.tor.control.TorControlConnection;
 
-import org.apache.commons.io.IOUtils;
 import org.torproject.android.service.util.CustomShell;
 import org.torproject.android.service.util.CustomTorResourceInstaller;
 import org.torproject.android.service.util.DummyActivity;
@@ -70,7 +66,6 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -78,7 +73,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
 import java.util.StringTokenizer;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -1628,10 +1622,8 @@ public class OrbotService extends Service implements TorServiceConstants, OrbotC
 
                 if (bridgeList != null && bridgeList.length() > 5) //longer then 1 = some real values here
                 {
-                    String[] bridgeListLines = bridgeList.trim().split("\\n");
-
-
-                    int bridgeIdx = (int)Math.round(Math.random()*((double)bridgeListLines.length));
+                    String[] bridgeListLines = parseBridgesFromSettings(bridgeList);
+                    int bridgeIdx = (int)Math.floor(Math.random()*((double)bridgeListLines.length));
                     String bridgeLine = bridgeListLines[bridgeIdx];
                     extraLines.append("Bridge ");
                     extraLines.append(bridgeLine);
@@ -1645,7 +1637,6 @@ public class OrbotService extends Service implements TorServiceConstants, OrbotC
                         }
 
                     }**/
-
                 } else {
 
                     String type = "obfs4";
@@ -1786,15 +1777,14 @@ public class OrbotService extends Service implements TorServiceConstants, OrbotC
         return extraLines;
     }
 
-    public static String flattenToAscii(String string) {
-        char[] out = new char[string.length()];
-        string = Normalizer.normalize(string, Normalizer.Form.NFD);
-        int j = 0;
-        for (int i = 0, n = string.length(); i < n; ++i) {
-            char c = string.charAt(i);
-            if (c <= '\u007F') out[j++] = c;
-        }
-        return new String(out);
+    /**
+     * @param bridgeList bridges that were manually entered into Orbot settings
+     * @return Array with each bridge as an element, no whitespace entries see issue #289...
+     */
+    private static String[] parseBridgesFromSettings(String bridgeList) {
+        // this regex replaces lines that only contain whitespace with an empty String
+        bridgeList = bridgeList.trim().replaceAll("(?m)^[ \t]*\r?\n", "");
+        return bridgeList.split("\\n");
     }
 
     //using Google DNS for now as the public DNS server
