@@ -29,6 +29,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Debug;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.provider.BaseColumns;
@@ -462,7 +463,7 @@ public class OrbotService extends Service implements TorServiceConstants, OrbotC
 
             try {
                 logNotice("sending HALT signal to Tor process");
-                conn.shutdownTor("HALT");
+                conn.shutdownTor("SHUTDOWN");
 
             } catch (IOException e) {
                 Log.d(OrbotConstants.TAG, "error shutting down Tor via connection", e);
@@ -471,25 +472,6 @@ public class OrbotService extends Service implements TorServiceConstants, OrbotC
             conn = null;
         }
 
-        /**
-        if (mLastProcessId != -1)
-            killProcess(mLastProcessId + "", "-9");
-
-        if (filePid != null && filePid.exists())
-        {
-            List<String> lines = IOUtils.readLines(new FileReader(filePid));
-            String torPid = lines.get(0);
-            killProcess(torPid,"-9");
-
-        }
-
-
-        // if that fails, try again using native utils
-        try {
-            killProcess(fileTor, "-9"); // this is -HUP
-        } catch (Exception e) {
-            e.printStackTrace();
-        }**/
 
     }
 
@@ -532,7 +514,13 @@ public class OrbotService extends Service implements TorServiceConstants, OrbotC
             if (!appBinHome.exists())
                 appBinHome.mkdirs();
 
-            appCacheHome = getDir(DIRECTORY_TOR_DATA, Application.MODE_PRIVATE);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                appCacheHome = getDataDir();//getDir(DIRECTORY_TOR_DATA, Application.MODE_PRIVATE);
+            }
+            else {
+                appCacheHome = getDir(DIRECTORY_TOR_DATA, Application.MODE_PRIVATE);
+            }
+
             if (!appCacheHome.exists())
                 appCacheHome.mkdirs();
 
@@ -664,8 +652,8 @@ public class OrbotService extends Service implements TorServiceConstants, OrbotC
 
         extraLines.append("PidFile").append(' ').append(filePid.getCanonicalPath()).append('\n');
 
- //       extraLines.append("RunAsDaemon 1").append('\n');
- //       extraLines.append("AvoidDiskWrites 1").append('\n');
+       extraLines.append("RunAsDaemon 1").append('\n');
+       extraLines.append("AvoidDiskWrites 1").append('\n');
         
          String socksPortPref = prefs.getString(OrbotConstants.PREF_SOCKS, (TorServiceConstants.SOCKS_PROXY_PORT_DEFAULT));
 
@@ -1064,11 +1052,7 @@ public class OrbotService extends Service implements TorServiceConstants, OrbotC
                     {
                         logNotice( "Connecting to control port: " + controlPort);
 
-                        Socket torConnSocket = new Socket(IP_LOCALHOST, controlPort);
-                        torConnSocket.setSoTimeout(CONTROL_SOCKET_TIMEOUT);
 
-                        conn = new TorControlConnection(torConnSocket);
-                        conn.launchThread(true);//is daemon
 
                         break;
                     }
@@ -1088,19 +1072,35 @@ public class OrbotService extends Service implements TorServiceConstants, OrbotC
                 catch (Exception e){}
             }
 
+
+            if (controlPort != -1)
+            {
+                Socket torConnSocket = new Socket(IP_LOCALHOST, controlPort);
+                torConnSocket.setSoTimeout(CONTROL_SOCKET_TIMEOUT);
+
+                conn = new TorControlConnection(torConnSocket);
+
+                conn.launchThread(true);//is daemon
+
+            }
+
             if (conn != null)
             {
+
                     logNotice( "SUCCESS connected to Tor control port.");
 
                     File fileCookie = new File(appCacheHome, TOR_CONTROL_COOKIE);
 
                     if (fileCookie.exists())
                     {
+
                         byte[] cookie = new byte[(int)fileCookie.length()];
                         DataInputStream fis = new DataInputStream(new FileInputStream(fileCookie));
                         fis.read(cookie);
                         fis.close();
                         conn.authenticate(cookie);
+
+                        addEventHandler();
 
                         logNotice( "SUCCESS - authenticated to control port.");
 
@@ -1141,7 +1141,6 @@ public class OrbotService extends Service implements TorServiceConstants, OrbotC
 
                         sendCallbackPorts(mPortSOCKS, mPortHTTP, mPortDns, mPortTrans);
 
-                        addEventHandler();
 
                         return Integer.parseInt(torProcId);
 
@@ -1212,12 +1211,16 @@ public class OrbotService extends Service implements TorServiceConstants, OrbotC
            // ...
         logNotice( "adding control port event handler");
 
-        conn.setEventHandler(mEventHandler);
 
         conn.setEvents(Arrays.asList(new String[]{
-                "ORCONN", "CIRC", "NOTICE", "WARN", "ERR","BW"}));
+                "CIRC","STREAM", "ORCONN" , "BW" , "INFO" ,"NOTICE" , "WARN" , "ERR" , "NEWDESC" , "ADDRMAP"}));
+
+        conn.setEventHandler(mEventHandler);
 
         logNotice( "SUCCESS added control port event handler");
+
+        conn.setConf("DisableNetwork","0");
+
     }
 
         /**
