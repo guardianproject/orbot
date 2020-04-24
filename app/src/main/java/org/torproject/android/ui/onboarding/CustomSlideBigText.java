@@ -1,14 +1,16 @@
 package org.torproject.android.ui.onboarding;
 
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import org.torproject.android.R;
 
 public class CustomSlideBigText extends Fragment {
@@ -19,6 +21,8 @@ public class CustomSlideBigText extends Fragment {
     private String mButtonText;
     private String mSubTitle;
     private View.OnClickListener mButtonListener;
+    private TextView bigTextSub, title;
+    private Button button;
 
     public static CustomSlideBigText newInstance(int layoutResId) {
         CustomSlideBigText sampleSlide = new CustomSlideBigText();
@@ -30,15 +34,15 @@ public class CustomSlideBigText extends Fragment {
         return sampleSlide;
     }
 
-    public void setTitle (String title)
-    {
+    public void setTitle(String title) {
         mTitle = title;
     }
 
-    public void setSubTitle(String subTitle) { mSubTitle = subTitle; }
+    public void setSubTitle(String subTitle) {
+        mSubTitle = subTitle;
+    }
 
-    public void showButton (String buttonText, View.OnClickListener buttonListener)
-    {
+    public void showButton(String buttonText, View.OnClickListener buttonListener) {
         mButtonText = buttonText;
         mButtonListener = buttonListener;
     }
@@ -57,19 +61,17 @@ public class CustomSlideBigText extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(layoutResId, container, false);
-        ((TextView)view.findViewById(R.id.custom_slide_big_text)).setText(mTitle);
-
+        title = ((TextView) view.findViewById(R.id.custom_slide_big_text));
+        title.setText(mTitle);
+        bigTextSub = (TextView) view.findViewById(R.id.custom_slide_big_text_sub);
         if (!TextUtils.isEmpty(mSubTitle)) {
 
-            TextView tv =
-                    (TextView)view.findViewById(R.id.custom_slide_big_text_sub);
-            tv.setText(mSubTitle);
-            tv.setVisibility(View.VISIBLE);
+            bigTextSub.setText(mSubTitle);
+            bigTextSub.setVisibility(View.VISIBLE);
         }
 
-        if (mButtonText != null)
-        {
-            Button button = (Button)view.findViewById(R.id.custom_slide_button);
+        if (mButtonText != null) {
+            button = (Button) view.findViewById(R.id.custom_slide_button);
             button.setVisibility(View.VISIBLE);
             button.setText(mButtonText);
             button.setOnClickListener(mButtonListener);
@@ -77,4 +79,30 @@ public class CustomSlideBigText extends Fragment {
         return view;
 
     }
+
+    //Restoring the data
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if (savedInstanceState != null) {
+            title.setText(savedInstanceState.getString(getResources().getString(R.string.Pref_title)));
+            bigTextSub.setText(savedInstanceState.getString(getResources().getString(R.string.SubTitle)));
+            if (mButtonText != null) {
+                button.setText(savedInstanceState.getString(getResources().getString(R.string.ButtonText)));
+            }
+
+        }
+    }
+
+    //Saving the data
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(getResources().getString(R.string.Pref_title), mTitle);
+        outState.putString(getResources().getString(R.string.SubTitle), mSubTitle);
+        if (mButtonText != null) {
+            outState.putString(getResources().getString(R.string.ButtonText), mButtonText);
+        }
+    }
+
 }

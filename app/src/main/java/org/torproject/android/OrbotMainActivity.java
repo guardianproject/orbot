@@ -194,9 +194,6 @@ public class OrbotMainActivity extends AppCompatActivity
 
         if (showFirstTime)
         {
-            Editor pEdit = mPrefs.edit();
-            pEdit.putBoolean("connect_first_time", false);
-            pEdit.commit();
             startActivity(new Intent(this,OnboardingActivity.class));
         }
 
