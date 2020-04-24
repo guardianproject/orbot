@@ -8,13 +8,17 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import org.torproject.android.R;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.settings.LocaleHelper;
@@ -28,7 +32,15 @@ import static org.torproject.android.MainConstants.URL_TOR_BRIDGES;
 
 public class BridgeWizardActivity extends AppCompatActivity {
 
-    private TextView tvStatus;
+    private static int MOAT_REQUEST_CODE = 666;
+
+    private TextView mTvStatus;
+    private RadioButton mBtDirect;
+    private RadioButton mBtObfs4;
+    private RadioButton mBtMeek;
+    private RadioButton mBtNew;
+    private RadioButton mBtMoat;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,15 +48,19 @@ public class BridgeWizardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_bridge_wizard);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        tvStatus = findViewById(R.id.lbl_bridge_test_status);
-        tvStatus.setVisibility(View.GONE);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
+        mTvStatus = findViewById(R.id.lbl_bridge_test_status);
+        mTvStatus.setVisibility(View.GONE);
 
         setTitle(getString(R.string.bridges));
 
-        RadioButton btnDirect = findViewById(R.id.btnBridgesDirect);
-        btnDirect.setOnClickListener(new View.OnClickListener() {
+        mBtDirect = findViewById(R.id.btnBridgesDirect);
+        mBtDirect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Prefs.setBridgesList("");
@@ -53,8 +69,8 @@ public class BridgeWizardActivity extends AppCompatActivity {
             }
         });
 
-        RadioButton btnObfs4 = findViewById(R.id.btnBridgesObfs4);
-        btnObfs4.setOnClickListener(new View.OnClickListener() {
+        mBtObfs4 = findViewById(R.id.btnBridgesObfs4);
+        mBtObfs4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Prefs.setBridgesList("obfs4");
@@ -64,8 +80,8 @@ public class BridgeWizardActivity extends AppCompatActivity {
         });
 
 
-        RadioButton btnMeek = findViewById(R.id.btnBridgesMeek);
-        btnMeek.setOnClickListener(new View.OnClickListener() {
+        mBtMeek = findViewById(R.id.btnBridgesMeek);
+        mBtMeek.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Prefs.setBridgesList("meek");
@@ -75,21 +91,24 @@ public class BridgeWizardActivity extends AppCompatActivity {
         });
 
 
-        RadioButton btnNew = findViewById(R.id.btnBridgesNew);
-        btnNew.setOnClickListener(new View.OnClickListener() {
+        mBtNew = findViewById(R.id.btnBridgesNew);
+        mBtNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showGetBridgePrompt();
             }
         });
 
-        if (!Prefs.bridgesEnabled())
-            btnDirect.setChecked(true);
-        else if (Prefs.getBridgesList().equals("meek"))
-            btnMeek.setChecked(true);
-        else if (Prefs.getBridgesList().equals("obfs4"))
-            btnObfs4.setChecked(true);
+        mBtMoat = findViewById(R.id.btnMoat);
+        mBtMoat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityForResult(new Intent(BridgeWizardActivity.this, MoatActivity.class),
+                        MOAT_REQUEST_CODE);
+            }
+        });
 
+        evaluateBridgeListState();
     }
 
     @Override
@@ -107,6 +126,23 @@ public class BridgeWizardActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        // If the MoatActivity could successfully gather OBFS4 bridges,
+        // the job is done and we can return immediately.
+        if (requestCode == MOAT_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                finish();
+            }
+            // Reset selection to actual value.
+            else {
+                evaluateBridgeListState();
+            }
+        }
+        else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
 
     private void showGetBridgePrompt() {
         new AlertDialog.Builder(this)
@@ -128,7 +164,7 @@ public class BridgeWizardActivity extends AppCompatActivity {
                 .setPositiveButton(R.string.get_bridges_web, new Dialog.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        openBrowser(URL_TOR_BRIDGES, true);
+                        openBrowser(URL_TOR_BRIDGES);
                     }
                 }).show();
     }
@@ -146,7 +182,8 @@ public class BridgeWizardActivity extends AppCompatActivity {
     /*
      * Launch the system activity for Uri viewing with the provided url
      */
-    private void openBrowser(final String browserLaunchUrl, boolean forceExternal) {
+    @SuppressWarnings("SameParameterValue")
+    private void openBrowser(final String browserLaunchUrl) {
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(browserLaunchUrl)));
     }
 
@@ -159,7 +196,7 @@ public class BridgeWizardActivity extends AppCompatActivity {
         } else if (Prefs.getBridgesList().equals("obfs4")) {
             new HostTester().execute("85.17.30.79", "443", "154.35.22.9", "443", "192.99.11.54", "443");
         } else {
-            tvStatus.setText("");
+            mTvStatus.setText("");
         }
     }
 
@@ -167,56 +204,76 @@ public class BridgeWizardActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             // Pre Code
-            tvStatus.setVisibility(View.VISIBLE);
-            tvStatus.setText(R.string.testing_bridges);
+            mTvStatus.setVisibility(View.VISIBLE);
+            mTvStatus.setText(R.string.testing_bridges);
         }
 
         @Override
         protected Boolean doInBackground(String... host) {
             // Background Code
-            boolean result = false;
-
             for (int i = 0; i < host.length; i++) {
                 String testHost = host[i];
                 i++; //move to the port
                 int testPort = Integer.parseInt(host[i]);
-                result = isHostReachable(testHost, testPort, 10000);
-                if (result)
-                    return result;
+
+                if (isHostReachable(testHost, testPort, 10000)) {
+                    return true;
+                }
             }
 
-            return result;
+            return false;
         }
 
         @Override
         protected void onPostExecute(Boolean result) {
             // Post Code
             if (result) {
-                tvStatus.setText(R.string.testing_bridges_success);
+                mTvStatus.setText(R.string.testing_bridges_success);
 
             } else {
-                tvStatus.setText(R.string.testing_bridges_fail);
+                mTvStatus.setText(R.string.testing_bridges_fail);
 
             }
         }
     }
 
+    @SuppressWarnings("SameParameterValue")
     private static boolean isHostReachable(String serverAddress, int serverTCPport, int timeoutMS) {
         boolean connected = false;
-        Socket socket;
+
         try {
-            socket = new Socket();
+            Socket socket = new Socket();
             SocketAddress socketAddress = new InetSocketAddress(serverAddress, serverTCPport);
             socket.connect(socketAddress, timeoutMS);
             if (socket.isConnected()) {
                 connected = true;
                 socket.close();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            socket = null;
         }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
         return connected;
+    }
+
+    private void evaluateBridgeListState() {
+        if (!Prefs.bridgesEnabled()) {
+            mBtDirect.setChecked(true);
+        }
+        else if (Prefs.getBridgesList().equals("meek")) {
+            mBtMeek.setChecked(true);
+        }
+        else if (Prefs.getBridgesList().equals("obfs4")) {
+            mBtObfs4.setChecked(true);
+        }
+        else {
+            mBtDirect.setChecked(false);
+            mBtMeek.setChecked(false);
+            mBtObfs4.setChecked(false);
+        }
+
+        mBtNew.setChecked(false);
+        mBtMoat.setChecked(false);
     }
 }
