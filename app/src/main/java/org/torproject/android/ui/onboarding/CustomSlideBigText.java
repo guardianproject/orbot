@@ -24,6 +24,11 @@ public class CustomSlideBigText extends Fragment {
     private TextView bigTextSub, title;
     private Button button;
 
+    private static final String BUNDLE_KEY_TITLE = "Title";
+    private static final String BUNDLE_KEY_SUBTITLE = "Subtitle";
+    private static final String BUNDLE_KEY_BUTTON_TEXT = "ButtonText";
+
+
     public static CustomSlideBigText newInstance(int layoutResId) {
         CustomSlideBigText sampleSlide = new CustomSlideBigText();
 
@@ -61,23 +66,21 @@ public class CustomSlideBigText extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(layoutResId, container, false);
-        title = ((TextView) view.findViewById(R.id.custom_slide_big_text));
+        title = view.findViewById(R.id.custom_slide_big_text);
         title.setText(mTitle);
-        bigTextSub = (TextView) view.findViewById(R.id.custom_slide_big_text_sub);
+        bigTextSub = view.findViewById(R.id.custom_slide_big_text_sub);
         if (!TextUtils.isEmpty(mSubTitle)) {
-
             bigTextSub.setText(mSubTitle);
             bigTextSub.setVisibility(View.VISIBLE);
         }
 
         if (mButtonText != null) {
-            button = (Button) view.findViewById(R.id.custom_slide_button);
+            button = view.findViewById(R.id.custom_slide_button);
             button.setVisibility(View.VISIBLE);
             button.setText(mButtonText);
             button.setOnClickListener(mButtonListener);
         }
         return view;
-
     }
 
     //Restoring the data
@@ -85,10 +88,10 @@ public class CustomSlideBigText extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if (savedInstanceState != null) {
-            title.setText(savedInstanceState.getString(getResources().getString(R.string.Title)));
-            bigTextSub.setText(savedInstanceState.getString(getResources().getString(R.string.SubTitle)));
+            title.setText(savedInstanceState.getString(BUNDLE_KEY_TITLE));
+            bigTextSub.setText(BUNDLE_KEY_SUBTITLE);
             if (mButtonText != null) {
-                button.setText(savedInstanceState.getString(getResources().getString(R.string.ButtonText)));
+                button.setText(savedInstanceState.getString(BUNDLE_KEY_BUTTON_TEXT));
             }
 
         }
@@ -98,10 +101,10 @@ public class CustomSlideBigText extends Fragment {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString(getResources().getString(R.string.Title), mTitle);
-        outState.putString(getResources().getString(R.string.SubTitle), mSubTitle);
+        outState.putString(BUNDLE_KEY_TITLE, mTitle);
+        outState.putString(BUNDLE_KEY_SUBTITLE, mSubTitle);
         if (mButtonText != null) {
-            outState.putString(getResources().getString(R.string.ButtonText), mButtonText);
+            outState.putString(BUNDLE_KEY_BUTTON_TEXT, mButtonText);
         }
     }
 
