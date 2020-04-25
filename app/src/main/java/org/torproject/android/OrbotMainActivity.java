@@ -26,13 +26,11 @@ import android.os.Message;
 import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnLongClickListener;
-import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -456,7 +454,6 @@ public class OrbotMainActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         if (item.getItemId() == R.id.menu_newnym) {
             requestNewTorIdentity();
         } else if (item.getItemId() == R.id.menu_settings) {
@@ -468,7 +465,6 @@ public class OrbotMainActivity extends AppCompatActivity
 
         } else if (item.getItemId() == R.id.menu_about) {
             showAbout();
-
 
         } else if (item.getItemId() == R.id.menu_scan) {
             IntentIntegrator integrator = new IntentIntegrator(OrbotMainActivity.this);
@@ -499,10 +495,7 @@ public class OrbotMainActivity extends AppCompatActivity
     }
 
     private void showAbout() {
-
-        LayoutInflater li = LayoutInflater.from(this);
-        View view = li.inflate(R.layout.layout_about, (ViewGroup) lblStatus.getRootView());
-
+        View view = getLayoutInflater().inflate(R.layout.layout_about, null);
         String version;
 
         try {
@@ -520,9 +513,9 @@ public class OrbotMainActivity extends AppCompatActivity
             String aboutText = readFromAssets(this, "LICENSE");
             aboutText = aboutText.replace("\n", "<br/>");
             aboutOther.setText(Html.fromHtml(aboutText));
-        } catch (Exception e) {
-            // This should not happen. Ignore.
+        } catch (IOException e) {
         }
+
 
         new AlertDialog.Builder(this)
                 .setTitle(getString(R.string.button_about))
@@ -1025,8 +1018,7 @@ public class OrbotMainActivity extends AppCompatActivity
         if (torStatus == null || (newTorStatus != null && newTorStatus.equals(torStatus))) {
             torStatus = newTorStatus;
             return;
-        }
-        else {
+        } else {
             torStatus = newTorStatus;
         }
 
@@ -1071,8 +1063,7 @@ public class OrbotMainActivity extends AppCompatActivity
                 if (torServiceMsg != null) {
                     if (torServiceMsg.contains(TorServiceConstants.LOG_NOTICE_BOOTSTRAPPED))
                         lblStatus.setText(torServiceMsg);
-                }
-                else {
+                } else {
                     lblStatus.setText(getString(R.string.status_starting_up));
                 }
 
