@@ -45,7 +45,7 @@ dependencies {
 
     implementation 'org.torproject:tor-android-binary:0.4.2.5'
     implementation 'info.pluggabletransports.aptds:apt-dispatch-library:1.0.7'
-    implementation 'info.pluggabletransports.aptds:apt-meek-obfs4-legacy:1.0.7'
+    implementation 'info.pluggabletransports.aptds:apt-meek-obfs4-legacy:1.0.8'
     implementation 'info.pluggabletransports.aptds:jsocksAndroid:1.0.4'
 
     implementation 'com.jaredrummler:android-shell:1.0.0'

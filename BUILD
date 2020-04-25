@@ -25,10 +25,13 @@ You then need to run "ndk-build" from:
 	ndk-build
 	mv libs/armeabi/pdnsd libs/armeabi/pdnsd.so
 	mv libs/armeabi-v7a/pdnsd libs/armeabi-v7a/pdnsd.so
+	mv libs/arm64-v8a/pdnsd libs/arm64-v8a/pdnsd.so
 	mv libs/x86/pdnsd libs/x86/pdnsd.so
+	mv libs/x86_64/pdnsd libs/x86_64/pdnsd.so
 
 This isn't enough though and we'll now sew up the binary into a small package
 that will handle basic Tor controlling features.
+(Doesn't work and should be unnecessary on Android Studio/Android SDK as of 2020!)
 
 	android update project --name Orbot --target android-15 --path .
 

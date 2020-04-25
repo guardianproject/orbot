@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/dark_purple"
+    tools:context=".ui.onboarding.MoatActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/DefaultTheme.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/DefaultTheme.PopupOverlay" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:text="@string/solve_captcha_instruction" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_margin="12dp">
+
+                <ImageView
+                    android:id="@+id/captchaIv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/captcha"
+                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:indeterminateTint="@color/dark_green"
+                    android:indeterminateTintMode="src_in"
+                    tools:targetApi="lollipop" />
+
+            </RelativeLayout>
+
+            <EditText
+                android:id="@+id/solutionEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:ems="10"
+                android:hint="@string/enter_characters_from_image"
+                android:imeOptions="actionSend"
+                android:inputType="textShortMessage|text" />
+
+            <Button
+                android:id="@+id/requestBt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/request_bridges" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -4,6 +4,14 @@
     package="org.torproject.android"
     android:installLocation="internalOnly">
 
+    <!--
+        Some Chromebooks don't support touch. Although not essential,
+        it's a good idea to explicitly include this declaration.
+    -->
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -11,10 +19,6 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
-    <!-- Some Chromebooks don't support touch. Although not essential,
-         it's a good idea to explicitly include this declaration. -->
-    <uses-feature android:name="android.hardware.touchscreen"
-        android:required="false" />
 
     <application
         android:name=".OrbotApp"
@@ -26,8 +30,8 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/DefaultTheme"
-        tools:replace="android:allowBackup"
-        >
+        tools:replace="android:allowBackup">
+
         <activity
             android:name=".OrbotMainActivity"
             android:excludeFromRecents="false"
@@ -46,18 +50,17 @@
                 <data android:scheme="bridge" />
             </intent-filter>
             <intent-filter>
-                <category android:name="android.intent.category.DEFAULT" />
-
                 <action android:name="org.torproject.android.REQUEST_HS_PORT" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <intent-filter>
-                <category android:name="android.intent.category.DEFAULT" />
-
                 <action android:name="org.torproject.android.START_TOR" />
-            </intent-filter>
-        </activity>
 
-        <!--         This is for ensuring the background service still runs when/if the app is swiped away -->
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity> <!-- This is for ensuring the background service still runs when/if the app is swiped away -->
+
         <activity
             android:name=".service.util.DummyActivity"
             android:allowTaskReparenting="true"
@@ -69,39 +72,72 @@
             android:noHistory="true"
             android:stateNotNeeded="true"
             android:theme="@android:style/Theme.Translucent" />
+
         <activity
             android:name=".ui.VPNEnableActivity"
             android:exported="false"
             android:label="@string/app_name" />
+
         <activity
             android:name=".settings.SettingsPreferences"
             android:label="@string/app_name" />
+
         <activity
             android:name=".ui.AppManagerActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.AppCompat" />
 
-        <service
-            android:name=".service.OrbotService"
-            android:enabled="true"
-            android:permission="android.permission.BIND_VPN_SERVICE"
-            android:stopWithTask="false"></service>
-        <service
-            android:name=".service.vpn.TorVpnService"
-            android:enabled="true"
-            android:permission="android.permission.BIND_VPN_SERVICE">
-            <intent-filter>
-                <action android:name="android.net.VpnService" />
-            </intent-filter>
-        </service>
+        <activity
+            android:name=".ui.hiddenservices.HiddenServicesActivity"
+            android:label="@string/title_activity_hidden_services"
+            android:theme="@style/DefaultTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".OrbotMainActivity" />
+        </activity>
+
+        <activity
+            android:name=".ui.hiddenservices.ClientCookiesActivity"
+            android:label="@string/client_cookies"
+            android:theme="@style/DefaultTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".OrbotMainActivity" />
+        </activity>
+
+        <activity android:name=".ui.onboarding.OnboardingActivity" />
+        <activity android:name=".ui.onboarding.BridgeWizardActivity" />
+        <activity android:name=".ui.onboarding.MoatActivity" />
+
+        <provider
+            android:name=".ui.hiddenservices.providers.HSContentProvider"
+            android:authorities="org.torproject.android.ui.hiddenservices.providers"
+            android:exported="false" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="org.torproject.android.ui.hiddenservices.storage"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/hidden_services_paths" />
+        </provider>
+
+        <provider
+            android:name=".ui.hiddenservices.providers.CookieContentProvider"
+            android:authorities="org.torproject.android.ui.hiddenservices.providers.cookie"
+            android:exported="false" />
 
         <receiver
             android:name=".service.StartTorReceiver"
-            android:exported="true">
+            android:exported="true"
+            tools:ignore="ExportedReceiver">
             <intent-filter>
                 <action android:name="org.torproject.android.intent.action.START" />
             </intent-filter>
         </receiver>
+
         <receiver
             android:name=".OnBootReceiver"
             android:enabled="true"
@@ -123,45 +159,20 @@
             </intent-filter>
         </receiver>
 
-        <activity
-            android:name=".ui.hiddenservices.HiddenServicesActivity"
-            android:label="@string/title_activity_hidden_services"
-            android:theme="@style/DefaultTheme">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".OrbotMainActivity" />
-        </activity>
+        <service
+            android:name=".service.OrbotService"
+            android:enabled="true"
+            android:permission="android.permission.BIND_VPN_SERVICE"
+            android:stopWithTask="false" />
 
-        <provider
-            android:name=".ui.hiddenservices.providers.HSContentProvider"
-            android:authorities="org.torproject.android.ui.hiddenservices.providers"
-            android:exported="false" />
-        <provider
-            android:name="androidx.core.content.FileProvider"
-            android:authorities="org.torproject.android.ui.hiddenservices.storage"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/hidden_services_paths" />
-        </provider>
-
-        <activity
-            android:name=".ui.hiddenservices.ClientCookiesActivity"
-            android:label="@string/client_cookies"
-            android:theme="@style/DefaultTheme">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".OrbotMainActivity" />
-        </activity>
-
-        <activity android:name=".ui.onboarding.OnboardingActivity"/>
-        <activity android:name=".ui.onboarding.BridgeWizardActivity"/>
-
-        <provider
-            android:name=".ui.hiddenservices.providers.CookieContentProvider"
-            android:authorities="org.torproject.android.ui.hiddenservices.providers.cookie"
-            android:exported="false" />
+        <service
+            android:name=".service.vpn.TorVpnService"
+            android:enabled="true"
+            android:permission="android.permission.BIND_VPN_SERVICE">
+            <intent-filter>
+                <action android:name="android.net.VpnService" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
