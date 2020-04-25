@@ -35,4 +35,12 @@
 
 
     <string name="menu_new_identity">New Identity</string>
+
+  <string name="Title">Title</string>
+  <string name="SubTitle">SubTitle</string>
+  <string name="ButtonText">ButtonText</string>
+  <string name="WelcomeFragment">welcome</string>
+  <string name="Intro2Fragment">intro2</string>
+  <string name="CS2Fragment">cs2</string>
+  <string name="CS3Fragment">cs3</string>
 </resources>

@@ -85,11 +85,12 @@ public class CustomSlideBigText extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if (savedInstanceState != null) {
+            /**
             title.setText(savedInstanceState.getString(getResources().getString(R.string.Pref_title)));
             bigTextSub.setText(savedInstanceState.getString(getResources().getString(R.string.SubTitle)));
             if (mButtonText != null) {
                 button.setText(savedInstanceState.getString(getResources().getString(R.string.ButtonText)));
-            }
+            }**/
 
         }
     }
@@ -98,11 +99,12 @@ public class CustomSlideBigText extends Fragment {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        /**
         outState.putString(getResources().getString(R.string.Pref_title), mTitle);
         outState.putString(getResources().getString(R.string.SubTitle), mSubTitle);
         if (mButtonText != null) {
             outState.putString(getResources().getString(R.string.ButtonText), mButtonText);
-        }
+        }**/
     }
 
 }
