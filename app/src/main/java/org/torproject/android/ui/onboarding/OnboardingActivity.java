@@ -19,18 +19,24 @@ import org.torproject.android.ui.VPNEnableActivity;
 import org.torproject.android.ui.hiddenservices.permissions.PermissionManager;
 
 public class OnboardingActivity extends AppIntro {
-    CustomSlideBigText welcome, intro2, cs2, cs3;
+    private CustomSlideBigText welcome, intro2, cs2, cs3;
+
+    private static final String BUNDLE_KEY_WELCOME_FRAGMENT = "Welcome";
+    private static final String BUNDLE_KEY_INTRO_2_FRAGMENT = "Intro2";
+    private static final String BUNDLE_KEY_CS2_FRAGMENT = "CS2";
+    private static final String BUNDLE_KEY_CS3_FRAGMENT = "CS3";
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (savedInstanceState != null) { //Restoring the fragments
-            welcome = (CustomSlideBigText) getSupportFragmentManager().getFragment(savedInstanceState, getResources().getString(R.string.WelcomeFragment));
-            intro2 = (CustomSlideBigText) getSupportFragmentManager().getFragment(savedInstanceState, getResources().getString(R.string.Intro2Fragment));
-            cs2 = (CustomSlideBigText) getSupportFragmentManager().getFragment(savedInstanceState, getResources().getString(R.string.CS2Fragment));
+        if (savedInstanceState != null) { // Restoring the fragments
+            welcome = (CustomSlideBigText) getSupportFragmentManager().getFragment(savedInstanceState, BUNDLE_KEY_WELCOME_FRAGMENT);
+            intro2 = (CustomSlideBigText) getSupportFragmentManager().getFragment(savedInstanceState, BUNDLE_KEY_INTRO_2_FRAGMENT);
+            cs2 = (CustomSlideBigText) getSupportFragmentManager().getFragment(savedInstanceState, BUNDLE_KEY_CS2_FRAGMENT);
             if (PermissionManager.isLollipopOrHigher())
-                cs3 = (CustomSlideBigText) getSupportFragmentManager().getFragment(savedInstanceState, getResources().getString(R.string.CS3Fragment));
+                cs3 = (CustomSlideBigText) getSupportFragmentManager().getFragment(savedInstanceState, BUNDLE_KEY_CS3_FRAGMENT);
 
         } else {
             // Instead of fragments, you can also use our default slide
@@ -65,7 +71,6 @@ public class OnboardingActivity extends AppIntro {
                     public void onClick(View v) {
                         startActivity(new Intent(OnboardingActivity.this, VPNEnableActivity.class));
                         startActivityForResult(new Intent(OnboardingActivity.this, AppManagerActivity.class), 9999);
-
                     }
                 });
                 addSlide(cs3);
@@ -87,11 +92,10 @@ public class OnboardingActivity extends AppIntro {
     @Override
     public void onDonePressed(Fragment currentFragment) {
         super.onDonePressed(currentFragment);
-        // Setting first time app open flag "connect_firest_time" to false
+        // Setting first time app open flag "connect_first_time" to false
         SharedPreferences.Editor pEdit = Prefs.getSharedPrefs(getApplicationContext()).edit();
         pEdit.putBoolean("connect_first_time", false);
         pEdit.apply();
-
         finish();
     }
 
@@ -112,12 +116,12 @@ public class OnboardingActivity extends AppIntro {
 
         //Should check if the fragment exists in the fragment manager or else it'll flag error
         if (count >= 1)
-            getSupportFragmentManager().putFragment(outState, getResources().getString(R.string.WelcomeFragment), welcome);
+            getSupportFragmentManager().putFragment(outState, BUNDLE_KEY_WELCOME_FRAGMENT, welcome);
         if (count >= 2)
-            getSupportFragmentManager().putFragment(outState, getResources().getString(R.string.Intro2Fragment), intro2);
+            getSupportFragmentManager().putFragment(outState, BUNDLE_KEY_INTRO_2_FRAGMENT, intro2);
         if (count >= 3)
-            getSupportFragmentManager().putFragment(outState, getResources().getString(R.string.CS2Fragment), cs2);
+            getSupportFragmentManager().putFragment(outState, BUNDLE_KEY_CS2_FRAGMENT, cs2);
         if (count >= 4 && PermissionManager.isLollipopOrHigher())
-            getSupportFragmentManager().putFragment(outState, getResources().getString(R.string.CS3Fragment), cs3);
+            getSupportFragmentManager().putFragment(outState, BUNDLE_KEY_CS3_FRAGMENT, cs3);
     }
 }
