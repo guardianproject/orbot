@@ -248,7 +248,9 @@
     <string name="bridge_direct_connect">Connect directly to Tor (Best)</string>
     <string name="bridge_community">Connect through community servers</string>
     <string name="bridge_cloud">Connect through cloud servers</string>
-    <string name="bridges_get_new">Request New Bridges... (If all else fails)</string>
+    <string name="bridges_get_new">Request New Bridges via Email...</string>
+    <string name="bridges_get_new_moat">Request New Bridges Directly...</string>
+
     <string name="trouble_connecting">Trouble connecting?</string>
     <string name="full_device_vpn">Full Device VPN</string>
     <string name="vpn_disabled">VPN Disabled</string>
