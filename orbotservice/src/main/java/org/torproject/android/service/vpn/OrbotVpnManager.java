@@ -448,44 +448,16 @@ public class OrbotVpnManager implements Handler.Callback {
 	{
 
 		File filePdnsPid = new File(mService.getFilesDir(),"pdnsd.pid");
-		List<String> lines = null;
-		try {
-			lines = IOUtils.readLines(new FileReader(filePdnsPid));
-			String dnsPid = lines.get(0);
-			killProcess(dnsPid,"");
-		} catch (Exception e) {
-			Log.e("OrbotVPN","error killing dns process",e);
-		}
-
-
-		/**
-		// if that fails, try again using native utils
-		try {
-			killProcess(filePdnsd, "-1"); // this is -HUP
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		File filePid = new File(mService.getFilesDir(),"pdnsd.pid");
-		String pid = null;
-
-		if (filePid.exists())
-		{
-
+		if (filePdnsPid.exists()) {
+			List<String> lines = null;
 			try {
-				BufferedReader reader = new BufferedReader(new FileReader(filePid));
-				String line = reader.readLine();
-				if (line != null) {
-					pid = line.trim();
-					VpnUtils.killProcess(pid, "-9");
-					filePid.delete();
-					return true;
-				}
+				lines = IOUtils.readLines(new FileReader(filePdnsPid));
+				String dnsPid = lines.get(0);
+				killProcess(dnsPid, "");
 			} catch (Exception e) {
-				Log.e(TAG,"error killing DNS Process: " + pid,e);
+				Log.e("OrbotVPN", "error killing dns process", e);
 			}
-		}**/
-
+		}
 
 		return false;
 
