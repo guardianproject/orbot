@@ -646,8 +646,8 @@ public class OrbotService extends Service implements TorServiceConstants, OrbotC
 
         extraLines.append("PidFile").append(' ').append(filePid.getCanonicalPath()).append('\n');
 
-       extraLines.append("RunAsDaemon 1").append('\n');
-       extraLines.append("AvoidDiskWrites 1").append('\n');
+       //extraLines.append("RunAsDaemon 1").append('\n');
+       //extraLines.append("AvoidDiskWrites 1").append('\n');
         
          String socksPortPref = prefs.getString(OrbotConstants.PREF_SOCKS, (TorServiceConstants.SOCKS_PROXY_PORT_DEFAULT));
 
@@ -1098,7 +1098,7 @@ public class OrbotService extends Service implements TorServiceConstants, OrbotC
 
                         logNotice( "SUCCESS - authenticated to control port.");
 
-                        sendCallbackLogMessage(getString(R.string.tor_process_starting) + ' ' + getString(R.string.tor_process_complete));
+                      //  sendCallbackLogMessage(getString(R.string.tor_process_starting) + ' ' + getString(R.string.tor_process_complete));
 
                         String torProcId = conn.getInfo("process/pid");
 
@@ -1213,7 +1213,6 @@ public class OrbotService extends Service implements TorServiceConstants, OrbotC
 
         logNotice( "SUCCESS added control port event handler");
 
-        conn.setConf("DisableNetwork","0");
 
     }
 
