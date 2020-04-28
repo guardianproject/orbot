@@ -55,6 +55,9 @@ import java.util.List;
 import java.util.concurrent.TimeoutException;
 
 import static org.torproject.android.service.TorServiceConstants.ACTION_START;
+import static org.torproject.android.service.TorServiceConstants.ACTION_START_VPN;
+import static org.torproject.android.service.TorServiceConstants.ACTION_STOP;
+import static org.torproject.android.service.TorServiceConstants.ACTION_STOP_VPN;
 import static org.torproject.android.service.vpn.VpnUtils.getSharedPrefs;
 import static org.torproject.android.service.vpn.VpnUtils.killProcess;
 
@@ -70,6 +73,7 @@ public class OrbotVpnManager implements Handler.Callback {
 
     private int mTorSocks = -1;
 	private int mTorDns = -1;
+	private int pdnsdPort = 8091;
 
 	public static int sSocksProxyServerPort = -1;
     public static String sSocksProxyLocalhost = null;
@@ -95,12 +99,6 @@ public class OrbotVpnManager implements Handler.Callback {
 
 		filePdnsd = CustomNativeLoader.loadNativeBinary(service.getApplicationContext(),PDNSD_BIN,new File(service.getFilesDir(),PDNSD_BIN));
 
-		/**
-		try {
-			killProcess(filePdnsd, "-1");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}**/
 
 		Tun2Socks.init();
 
@@ -109,15 +107,16 @@ public class OrbotVpnManager implements Handler.Callback {
 
 	boolean isStarted = false;
    
-    //public int onStartCommand(Intent intent, int flags, int startId) {
     public int handleIntent(Builder builder, Intent intent) {
 
     	if (intent != null)
     	{
 	    	String action = intent.getAction();
 	    	
-	    	if (action.equals(TorVpnService.ACTION_START))
+	    	if (action.equals(ACTION_START_VPN)||action.equals(ACTION_START))
 	    	{
+				Log.d(TAG,"starting VPN");
+
 				isStarted = true;
 
 		        // Stop the previous session by interrupting the thread.
@@ -137,18 +136,19 @@ public class OrbotVpnManager implements Handler.Callback {
 				}
 
 
+
 	    	}
-	    	else if (action.equals(TorVpnService.ACTION_STOP))
+	    	else if (action.equals(ACTION_STOP_VPN))
 	    	{
 				isStarted = false;
 
-	    		Log.d(TAG,"stop OrbotVPNService service!");
+	    		Log.d(TAG,"stopping VPN");
 	    		
 	    		stopVPN();
 	    	}
 	    	else if (action.equals(TorServiceConstants.LOCAL_ACTION_PORTS))
 			{
-				Log.d(TAG,"starting OrbotVPNService service!");
+				Log.d(TAG,"setting VPN ports");
 
 				int torSocks = intent.getIntExtra(OrbotService.EXTRA_SOCKS_PROXY_PORT,-1);
 				int torDns = intent.getIntExtra(OrbotService.EXTRA_DNS_PORT,-1);
@@ -347,7 +347,8 @@ public class OrbotVpnManager implements Handler.Callback {
 
 					//start PDNSD daemon pointing to actual DNS
 					if (filePdnsd != null) {
-						int pdnsdPort = 8091;
+
+						pdnsdPort++;
 						startDNS(filePdnsd.getCanonicalPath(), localhost, mTorDns, virtualGateway, pdnsdPort);
 						final boolean localDnsTransparentProxy = true;
 
@@ -421,8 +422,6 @@ public class OrbotVpnManager implements Handler.Callback {
 
 		File fileConf = makePdnsdConf(mService, mService.getFilesDir(), torDnsHost, torDnsPort, pdnsdHost, pdnsdPort);
 
-
-
         String[] cmdString = {pdnsPath,"-c",fileConf.toString(),"-g","-v2"};
         ProcessBuilder pb = new ProcessBuilder(cmdString);
         pb.redirectErrorStream(true);
@@ -444,16 +443,18 @@ public class OrbotVpnManager implements Handler.Callback {
         
     }
 
+	File filePdnsPid;
+
     private boolean stopDns ()
 	{
-
-		File filePdnsPid = new File(mService.getFilesDir(),"pdnsd.pid");
-		if (filePdnsPid.exists()) {
+		if (filePdnsPid != null && filePdnsPid.exists()) {
 			List<String> lines = null;
 			try {
 				lines = IOUtils.readLines(new FileReader(filePdnsPid));
 				String dnsPid = lines.get(0);
 				killProcess(dnsPid, "");
+				filePdnsPid.delete();
+				filePdnsPid = null;
 			} catch (Exception e) {
 				Log.e("OrbotVPN", "error killing dns process", e);
 			}
@@ -468,13 +469,13 @@ public class OrbotVpnManager implements Handler.Callback {
 
         Log.d(TAG,"pdsnd conf:" + conf);
 
-        File f = new File(fileDir,"pdnsd.conf");
+        File fPid = new File(fileDir,pdnsdPort + "pdnsd.conf");
 
-        if (f.exists()) {
-                f.delete();
+        if (fPid.exists()) {
+			fPid.delete();
         }
 
-        FileOutputStream fos = new FileOutputStream(f, false);
+        FileOutputStream fos = new FileOutputStream(fPid, false);
     	PrintStream ps = new PrintStream(fos);
     	ps.print(conf);
     	ps.close();
@@ -489,7 +490,7 @@ public class OrbotVpnManager implements Handler.Callback {
                 }
         }
 
-        return f;
+        return fPid;
 	}
 
 

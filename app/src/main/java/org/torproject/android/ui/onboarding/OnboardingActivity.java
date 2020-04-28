@@ -15,7 +15,6 @@ import org.torproject.android.R;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.settings.LocaleHelper;
 import org.torproject.android.ui.AppManagerActivity;
-import org.torproject.android.ui.VPNEnableActivity;
 import org.torproject.android.ui.hiddenservices.permissions.PermissionManager;
 
 public class OnboardingActivity extends AppIntro {
@@ -69,7 +68,6 @@ public class OnboardingActivity extends AppIntro {
                 cs3.showButton(getString(R.string.action_vpn_choose), new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(OnboardingActivity.this, VPNEnableActivity.class));
                         startActivityForResult(new Intent(OnboardingActivity.this, AppManagerActivity.class), 9999);
                     }
                 });

@@ -20,6 +20,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.database.Cursor;
 import android.net.Uri;
+import android.net.VpnService;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -58,7 +59,6 @@ import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.OrbotService;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.Prefs;
-import org.torproject.android.service.vpn.TorVpnService;
 import org.torproject.android.service.vpn.VpnConstants;
 import org.torproject.android.service.vpn.VpnPrefs;
 import org.torproject.android.settings.Languages;
@@ -66,7 +66,6 @@ import org.torproject.android.settings.LocaleHelper;
 import org.torproject.android.settings.SettingsPreferences;
 import org.torproject.android.ui.AppManagerActivity;
 import org.torproject.android.ui.Rotate3dAnimation;
-import org.torproject.android.ui.VPNEnableActivity;
 import org.torproject.android.ui.hiddenservices.ClientCookiesActivity;
 import org.torproject.android.ui.hiddenservices.HiddenServicesActivity;
 import org.torproject.android.ui.hiddenservices.backup.BackupUtils;
@@ -93,6 +92,9 @@ import static androidx.core.content.FileProvider.getUriForFile;
 import static org.torproject.android.MainConstants.COUNTRY_CODES;
 import static org.torproject.android.MainConstants.RESULT_CLOSE_ALL;
 import static org.torproject.android.MainConstants.URL_TOR_CHECK;
+import static org.torproject.android.service.TorServiceConstants.ACTION_START;
+import static org.torproject.android.service.TorServiceConstants.ACTION_START_VPN;
+import static org.torproject.android.service.TorServiceConstants.ACTION_STOP_VPN;
 import static org.torproject.android.service.vpn.VpnPrefs.PREFS_KEY_TORIFIED;
 import static org.torproject.android.service.vpn.VpnUtils.getSharedPrefs;
 
@@ -338,7 +340,7 @@ public class OrbotMainActivity extends AppCompatActivity
 
         //auto start VPN if VPN is enabled
         if (useVPN) {
-            startActivity(new Intent(OrbotMainActivity.this, VPNEnableActivity.class));
+            sendIntentToService(ACTION_START_VPN);
         }
 
         mBtnVPN.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -548,8 +550,6 @@ public class OrbotMainActivity extends AppCompatActivity
     private void doExit() {
         stopTor();
 
-        TorVpnService.stop(this);
-
         // Kill all the wizard activities
         setResult(RESULT_CLOSE_ALL);
         finish();
@@ -578,17 +578,28 @@ public class OrbotMainActivity extends AppCompatActivity
     }
 
     private void refreshVPNApps() {
-        TorVpnService.stop(this);
-        startActivity(new Intent(OrbotMainActivity.this, VPNEnableActivity.class));
+        sendIntentToService(ACTION_STOP_VPN);
+        sendIntentToService(ACTION_START_VPN);
     }
 
     private void enableVPN(boolean enable) {
         Prefs.putUseVpn(enable);
 
         if (enable) {
-            startActivityForResult(new Intent(OrbotMainActivity.this, VPNEnableActivity.class), REQUEST_VPN);
+
+            Intent intentVPN = VpnService.prepare(this);
+            if (intentVPN != null)
+                startActivityForResult(intentVPN,REQUEST_VPN);
+            else {
+                sendIntentToService(ACTION_START);
+                sendIntentToService(ACTION_START_VPN);
+            }
+
         } else
-            TorVpnService.stop(this);
+        {
+            //stop the VPN here
+            sendIntentToService(ACTION_STOP_VPN);
+        }
 
         addAppShortcuts();
     }
@@ -863,18 +874,18 @@ public class OrbotMainActivity extends AppCompatActivity
 
 
             }
-        } else if (request == REQUEST_VPN) {
-            if (response == RESULT_OK) {
-                TorVpnService.start(this);
-            } else if (response == VPNEnableActivity.ACTIVITY_RESULT_VPN_DENIED) {
-                mBtnVPN.setChecked(false);
-                Prefs.putUseVpn(false);
-            }
         } else if (request == REQUEST_VPN_APPS_SELECT) {
             if (response == RESULT_OK &&
                     torStatus.equals(TorServiceConstants.STATUS_ON))
                 refreshVPNApps();
 
+        }
+        else if (request == REQUEST_VPN && response == RESULT_OK) {
+            sendIntentToService(ACTION_START_VPN);
+        }
+        else if (request == REQUEST_VPN && response == RESULT_CANCELED) {
+            mBtnVPN.setChecked(false);
+            Prefs.putUseVpn(false);
         }
 
         IntentResult scanResult = IntentIntegrator.parseActivityResult(request, response, data);
@@ -1041,7 +1052,7 @@ public class OrbotMainActivity extends AppCompatActivity
                     Intent resultIntent = lastStatusIntent;
 
                     if (resultIntent == null)
-                        resultIntent = new Intent(TorServiceConstants.ACTION_START);
+                        resultIntent = new Intent(ACTION_START);
 
                     resultIntent.putExtra(
                             TorServiceConstants.EXTRA_STATUS,
@@ -1098,7 +1109,7 @@ public class OrbotMainActivity extends AppCompatActivity
      * {@link OrbotService}
      */
     private void startTor() {
-        sendIntentToService(TorServiceConstants.ACTION_START);
+        sendIntentToService(ACTION_START);
         mTxtOrbotLog.setText("");
     }
 

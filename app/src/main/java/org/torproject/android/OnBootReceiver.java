@@ -8,7 +8,6 @@ import android.os.Build;
 import org.torproject.android.service.OrbotService;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.Prefs;
-import org.torproject.android.ui.VPNEnableActivity;
 
 public class OnBootReceiver extends BroadcastReceiver {
 
@@ -19,22 +18,11 @@ public class OnBootReceiver extends BroadcastReceiver {
 
 		if (Prefs.startOnBoot() && (!sReceivedBoot))
 		{
-			if (Prefs.useVpn())
-				startVpnService(context); //VPN will start Tor once it is done
-			else
-				startService(TorServiceConstants.ACTION_START, context);
-
+			startService(TorServiceConstants.ACTION_START_ON_BOOT, context);
 			sReceivedBoot = true;
 		}
 	}
-	
-	public void startVpnService (final Context context)
-    	{
-		   Intent intent = new Intent(context,VPNEnableActivity.class);
-           intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-           context.startActivity(intent);
 
-    	}
 
 	private void startService (String action, Context context)
 	{

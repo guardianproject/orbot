@@ -26,6 +26,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
+import android.net.VpnService;
 import android.os.Build;
 import android.os.Debug;
 import android.os.IBinder;
@@ -81,7 +82,7 @@ import java.util.concurrent.TimeoutException;
 
 import static org.torproject.android.service.vpn.VpnUtils.getSharedPrefs;
 
-public class OrbotService extends Service implements TorServiceConstants, OrbotConstants
+public class OrbotService extends VpnService implements TorServiceConstants, OrbotConstants
 {
 
     public final static String BINARY_TOR_VERSION = org.torproject.android.binary.TorServiceConstants.BINARY_TOR_VERSION;
@@ -131,6 +132,8 @@ public class OrbotService extends Service implements TorServiceConstants, OrbotC
 
     private static final Uri HS_CONTENT_URI = Uri.parse("content://org.torproject.android.ui.hiddenservices.providers/hs");
     private static final Uri COOKIE_CONTENT_URI = Uri.parse("content://org.torproject.android.ui.hiddenservices.providers.cookie/cookie");
+
+    OrbotVpnManager mVpnManager;
 
     public static final class HiddenService implements BaseColumns {
         public static final String NAME = "name";
@@ -364,10 +367,37 @@ public class OrbotService extends Service implements TorServiceConstants, OrbotC
             String action = mIntent.getAction();
 
             if (action != null) {
-                if (action.equals(ACTION_START)) {
+                if (action.equals(ACTION_START) || action.equals(ACTION_START_ON_BOOT)) {
                     startTor();
                     replyWithStatus(mIntent);
 
+                    if (Prefs.useVpn())
+                    {
+                        //start VPN here
+                        Intent vpnIntent = VpnService.prepare(OrbotService.this);
+                        if (vpnIntent == null) //then we can run the VPN
+                        {
+                            mVpnManager.handleIntent(new Builder(), mIntent);
+                            if (mPortSOCKS != -1 && mPortHTTP != -1)
+                                sendCallbackPorts(mPortSOCKS, mPortHTTP, mPortDns, mPortTrans);
+                        }
+                    }
+
+                }
+                else if (action.equals(ACTION_START_VPN)) {
+                    //start VPN here
+                    Intent vpnIntent = VpnService.prepare(OrbotService.this);
+                    if (vpnIntent == null) //then we can run the VPN
+                    {
+                        mVpnManager.handleIntent(new Builder(), mIntent);
+
+                        if (mPortSOCKS != -1 && mPortHTTP != -1)
+                            sendCallbackPorts(mPortSOCKS, mPortHTTP, mPortDns, mPortTrans);
+                    }
+
+                }
+                else if (action.equals(ACTION_STOP_VPN)) {
+                    mVpnManager.handleIntent(new Builder(),mIntent);
                 }
                 else if (action.equals(ACTION_STATUS)) {
                     replyWithStatus(mIntent);
@@ -509,7 +539,7 @@ public class OrbotService extends Service implements TorServiceConstants, OrbotC
                 appBinHome.mkdirs();
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                appCacheHome = getDataDir();//getDir(DIRECTORY_TOR_DATA, Application.MODE_PRIVATE);
+                appCacheHome = new File(getDataDir(),DIRECTORY_TOR_DATA);
             }
             else {
                 appCacheHome = getDir(DIRECTORY_TOR_DATA, Application.MODE_PRIVATE);
@@ -568,7 +598,14 @@ public class OrbotService extends Service implements TorServiceConstants, OrbotC
                     
                 }
             }).start();
-        	
+
+            try {
+                mVpnManager = new OrbotVpnManager(this);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (TimeoutException e) {
+                e.printStackTrace();
+            }
         }
         catch (Exception e)
         {
@@ -1457,6 +1494,9 @@ public class OrbotService extends Service implements TorServiceConstants, OrbotC
         intent.putExtra(EXTRA_TRANS_PORT,transPort);
 
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+
+        if (Prefs.useVpn())
+            mVpnManager.handleIntent(new Builder(),intent);
 
     }
 
