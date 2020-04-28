@@ -36,11 +36,6 @@ public class OrbotApp extends Application implements OrbotConstants {
             Languages.setLanguage(this, Prefs.getDefaultLocale(), true);
         }
 
-        //check for updates via github, since it is unlikely to be blocked; notify the user of places where upgrades can be found
-        new AppUpdater(this)
-                .setUpdateFrom(UpdateFrom.JSON)
-                .setUpdateJSON("https://raw.githubusercontent.com/guardianproject/orbot/master/update.json")
-                .setDisplay(Display.NOTIFICATION).start();
     }
 
     @Override
