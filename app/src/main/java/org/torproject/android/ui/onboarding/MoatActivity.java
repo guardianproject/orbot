@@ -139,6 +139,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
         }
         else {
             mIvCaptcha.setVisibility(View.GONE);
+            mEtSolution.setEnabled(false);
             mBtRequest.setEnabled(false);
 
             mOriginalBridges = Prefs.getBridgesList();
@@ -257,6 +258,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
                             mIvCaptcha.setImageBitmap(BitmapFactory.decodeByteArray(mCaptcha, 0, mCaptcha.length));
                             mIvCaptcha.setVisibility(View.VISIBLE);
                             mEtSolution.setText(null);
+                            mEtSolution.setEnabled(true);
                             mBtRequest.setEnabled(true);
 
                         } catch (JSONException e) {
@@ -323,6 +325,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
             mRequestInProgress = true;
             invalidateOptionsMenu();
             mProgressBar.setVisibility(View.VISIBLE);
+            mEtSolution.setEnabled(false);
             mBtRequest.setEnabled(false);
 
             mQueue.add(request);
@@ -421,6 +424,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         mProgressBar.setVisibility(View.GONE);
+        mEtSolution.setEnabled(mIvCaptcha.getVisibility() == View.VISIBLE);
         mBtRequest.setEnabled(mIvCaptcha.getVisibility() == View.VISIBLE);
 
         if (!isFinishing()) {
