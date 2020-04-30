@@ -160,7 +160,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        menu.findItem(R.id.menu_refresh).setEnabled(!mRequestInProgress);
+        menu.findItem(R.id.menu_refresh).setVisible(!mRequestInProgress);
 
         return super.onPrepareOptionsMenu(menu);
     }
@@ -348,6 +348,10 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        mRequestInProgress = false;
+                        invalidateOptionsMenu();
+                        mProgressBar.setVisibility(View.GONE);
+
                         Log.d(MoatActivity.class.getSimpleName(), "Error response.");
 
                         displayError(error, null);
