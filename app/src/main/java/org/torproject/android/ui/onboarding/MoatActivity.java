@@ -309,6 +309,8 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
                             Prefs.setBridgesList(sb.toString());
                             Prefs.putBridgesEnabled(true);
 
+                            sendIntentToService(TorServiceConstants.CMD_SIGNAL_HUP);
+
                             mSuccess = true;
                             setResult(RESULT_OK);
                             finish();
@@ -380,6 +382,11 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
 
     private void setUp(String host, int port, String status) {
         Log.d(MoatActivity.class.getSimpleName(), "Tor status=" + status);
+
+        // Ignore after successful bridge request.
+        if (mSuccess) {
+            return;
+        }
 
         switch (status) {
             case TorServiceConstants.STATUS_OFF:
