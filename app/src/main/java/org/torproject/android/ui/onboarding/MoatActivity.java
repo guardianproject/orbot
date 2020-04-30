@@ -427,7 +427,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
             new AlertDialog.Builder(this)
                     .setTitle(R.string.error)
                     .setMessage(TextUtils.isEmpty(detail) ? exception.getLocalizedMessage() : detail)
-                    .setNegativeButton(R.string.btn_cancel, null)
+                    .setNegativeButton(R.string.btn_okay, null)
                     .show();
         }
     }
