@@ -419,10 +419,12 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
         mProgressBar.setVisibility(View.GONE);
         mBtRequest.setEnabled(mIvCaptcha.getVisibility() == View.VISIBLE);
 
-        new AlertDialog.Builder(this)
-                .setTitle(R.string.error)
-                .setMessage(TextUtils.isEmpty(detail) ? exception.getLocalizedMessage() : detail)
-                .setNegativeButton(R.string.btn_cancel, null)
-                .show();
+        if (!isFinishing()) {
+            new AlertDialog.Builder(this)
+                    .setTitle(R.string.error)
+                    .setMessage(TextUtils.isEmpty(detail) ? exception.getLocalizedMessage() : detail)
+                    .setNegativeButton(R.string.btn_cancel, null)
+                    .show();
+        }
     }
 }
