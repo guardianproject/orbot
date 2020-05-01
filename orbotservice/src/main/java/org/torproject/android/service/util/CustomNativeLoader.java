@@ -75,6 +75,8 @@ public class CustomNativeLoader {
 
 
             File fileNativeBin = new File(getNativeLibraryDir(context),libname + ".so");
+            if (!fileNativeBin.exists())
+                fileNativeBin = new File(getNativeLibraryDir(context),"lib" + libname + ".so");
 
             if (fileNativeBin.exists())
             {
