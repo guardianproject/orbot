@@ -203,4 +203,11 @@
     <string name="trouble_connecting">Problemen met verbinden?</string>
     <string name="full_device_vpn">Volledigapparaats-VPN</string>
     <string name="vpn_disabled">VPN uitgeschakeld</string>
+    <string name="default_socks_http">SOCKS: - HTTP: -</string>
+    <string name="menu_new_identity">Nieuwe identiteit</string>
+    <string name="pref_disable_ipv4_summary">Zeg tegen exits om geen verbinding te maken met IPv4 adressen</string>
+    <string name="pref_disable_ipv4">Zet IPv4 verbindingen uit</string>
+    <string name="pref_prefer_ipv6">Voorkeur geven aan IPv6 verbindingen</string>
+    <string name="pref_http_summary">De port waarop Tor zijn HTTP proxy aanbiedt (standaard: 8118 of 0 om uit te zetten)</string>
+    <string name="pref_http_title">Tor HTTP</string>
 </resources>
