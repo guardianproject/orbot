@@ -405,7 +405,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
 
                 Log.d(MoatActivity.class.getSimpleName(), "Set up Volley queue. host=" + host + ", port=" + port);
 
-                mQueue = Volley.newRequestQueue(MoatActivity.this, new ProxiedHurlStack(host, port));
+                mQueue = Volley.newRequestQueue(this, new ProxiedHurlStack(host, port));
 
                 sendIntentToService(TorServiceConstants.CMD_SIGNAL_HUP);
 

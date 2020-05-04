@@ -1,14 +1,11 @@
 package org.torproject.android.ui.onboarding;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioButton;
@@ -28,8 +25,6 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
 
-import static org.torproject.android.MainConstants.URL_TOR_BRIDGES;
-
 public class BridgeWizardActivity extends AppCompatActivity {
 
     private static int MOAT_REQUEST_CODE = 666;
@@ -38,8 +33,7 @@ public class BridgeWizardActivity extends AppCompatActivity {
     private RadioButton mBtDirect;
     private RadioButton mBtObfs4;
     private RadioButton mBtMeek;
-    private RadioButton mBtNew;
-    private RadioButton mBtMoat;
+    private RadioButton mBtCustom;
 
 
     @Override
@@ -58,6 +52,14 @@ public class BridgeWizardActivity extends AppCompatActivity {
         mTvStatus.setVisibility(View.GONE);
 
         setTitle(getString(R.string.bridges));
+
+        findViewById(R.id.btnMoat).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityForResult(new Intent(BridgeWizardActivity.this, MoatActivity.class),
+                        MOAT_REQUEST_CODE);
+            }
+        });
 
         mBtDirect = findViewById(R.id.btnBridgesDirect);
         mBtDirect.setOnClickListener(new View.OnClickListener() {
@@ -91,22 +93,18 @@ public class BridgeWizardActivity extends AppCompatActivity {
         });
 
 
-        mBtNew = findViewById(R.id.btnBridgesNew);
-        mBtNew.setOnClickListener(new View.OnClickListener() {
+        mBtCustom = findViewById(R.id.btnCustomBridges);
+        mBtCustom.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                showGetBridgePrompt();
+            public void onClick(View view) {
+                startActivity(new Intent(BridgeWizardActivity.this, CustomBridgesActivity.class));
             }
         });
+    }
 
-        mBtMoat = findViewById(R.id.btnMoat);
-        mBtMoat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivityForResult(new Intent(BridgeWizardActivity.this, MoatActivity.class),
-                        MOAT_REQUEST_CODE);
-            }
-        });
+    @Override
+    protected void onResume() {
+        super.onResume();
 
         evaluateBridgeListState();
     }
@@ -142,49 +140,6 @@ public class BridgeWizardActivity extends AppCompatActivity {
         else {
             super.onActivityResult(requestCode, resultCode, data);
         }
-    }
-
-    private void showGetBridgePrompt() {
-        new AlertDialog.Builder(this)
-                .setTitle(R.string.bridge_mode)
-                .setMessage(R.string.you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_)
-                .setNegativeButton(R.string.btn_cancel, new Dialog.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //do nothing
-                    }
-                })
-                .setNeutralButton(R.string.get_bridges_email, new Dialog.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        sendGetBridgeEmail();
-                    }
-
-                })
-                .setPositiveButton(R.string.get_bridges_web, new Dialog.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        openBrowser(URL_TOR_BRIDGES);
-                    }
-                }).show();
-    }
-
-    private void sendGetBridgeEmail() {
-        String email = "bridges@torproject.org";
-        Uri emailUri = Uri.parse("mailto:" + email);
-        Intent emailIntent = new Intent(Intent.ACTION_SENDTO, emailUri);
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "get transport");
-        emailIntent.putExtra(Intent.EXTRA_TEXT, "get transport");
-        startActivity(Intent.createChooser(emailIntent, getString(R.string.send_email)));
-    }
-
-
-    /*
-     * Launch the system activity for Uri viewing with the provided url
-     */
-    @SuppressWarnings("SameParameterValue")
-    private void openBrowser(final String browserLaunchUrl) {
-        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(browserLaunchUrl)));
     }
 
 
@@ -258,6 +213,8 @@ public class BridgeWizardActivity extends AppCompatActivity {
     }
 
     private void evaluateBridgeListState() {
+        Log.d(getClass().getSimpleName(), String.format("bridgesEnabled=%b, bridgesList=%s", Prefs.bridgesEnabled(), Prefs.getBridgesList()));
+
         if (!Prefs.bridgesEnabled()) {
             mBtDirect.setChecked(true);
         }
@@ -268,12 +225,7 @@ public class BridgeWizardActivity extends AppCompatActivity {
             mBtObfs4.setChecked(true);
         }
         else {
-            mBtDirect.setChecked(false);
-            mBtMeek.setChecked(false);
-            mBtObfs4.setChecked(false);
+            mBtCustom.setChecked(true);
         }
-
-        mBtNew.setChecked(false);
-        mBtMoat.setChecked(false);
     }
 }

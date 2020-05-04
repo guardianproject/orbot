@@ -108,6 +108,7 @@
         <activity android:name=".ui.onboarding.OnboardingActivity" />
         <activity android:name=".ui.onboarding.BridgeWizardActivity" />
         <activity android:name=".ui.onboarding.MoatActivity" />
+        <activity android:name=".ui.onboarding.CustomBridgesActivity" />
 
         <provider
             android:name=".ui.hiddenservices.providers.HSContentProvider"
