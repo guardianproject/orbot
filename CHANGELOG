@@ -2,6 +2,74 @@ NOTE: Specific #s below correspond to Trac tickets logged and maintained at http
 
 /** 16.1.4-RC-1-tor-0.4.2.5-rc / 5 Feb 2020 / 35fbb5697c4d56f1ad97ae0fdace0a912fc5f2a5 **/
 
+a6310772 (HEAD -> master, origin/master, origin/HEAD) Merge branch 'tladesignz-master'
+875f18ad (tladesignz-master) Merge branch 'master' of https://github.com/tladesignz/orbot into tladesignz-master
+85e027c3 update version code
+cabf328b don't start tun2socks/VPN if it is already running
+718bb421 Issue #324: Implemented CustomBridgesActivity analogous to Onion Browser iOS.
+12a3f4a9 (tag: 16.2.0-BETA-4-tor-0.4.2.7) remove TorVpnService from manifest to address #327 crash
+22d7ef8d (tag: 16.2.0-BETA-3-tor-0.4.2.7) update to 16201003
+22bd248a update binary install scripts, to fix pdnsd install - now pdnsd is packaged as libpdsnd.so to work on newer platforms
+e93c8bcc (tag: 16.2.0-BETA-2-tor-0.4.2.7) update version code to 16201002
+d0fec8e3 update tor and obfs4proxy binary libs to address #326 hopefully
+3ac5a701 Issue #309: Activate newly required bridges, fixed accidental reset through Tor status notification.
+e1425d3a Issue #309: Also disable CAPTCHA solution EditText, as long as there's no CAPTCHA to solve and while letting it check.
+ff7cbcf2 Issue #309: Error alert button should say "OK" instead of "Cancel", since there's nothing to cancel, really, just to acknowledge the error.
+54f5f311 Issue #309: Hide refresh option menu item instead of disable, because Android doesn't visualize that adequately. Additionally: Fix issue where you couldn't refresh after a network error.
+3bfaa8ad Issue #309: Fixed potential crash, when activity went away.
+c41d453e (public/master) fix unneeded includes
+4f4300a4 (tag: 16.2.0-BETA-1A-tor-0.4.2.7, tag: 16.2.0-BETA-1-tor-0.4.2.7, ghdev/master) update version to 16201001
+7d7b2e98 remove app updater code to address concerns in #323
+ec47151a major VPN refactor with Android Q updates for #263 #261 #151 #316 and #303 - integrate TorVPNService directly into OrbotService, so just one service now - removed VPNEnableActivity, and just have VPN activated by service now - changes address start on boot with VPN enable - also improvements to managing PDNSD daemon
+d64b4d03 (tag: 16.1.5-BETA-2-tor-0.4.2.7) update version code to 16150001
+d5bc3740 update to SDK 29
+919c2111 improve pdnsd pid checking
+e78c27bf remove unneeded commands in tor config and startup
+5cd6cc88 update tor to 0.4.2.7
+785fa8ff Merge branch 'master' of github.com:guardianproject/orbot
+93a07860 Merge pull request #322 from bitmold/AboutDialogCrashFix
+b24750e7 Fixes #321 IlleglaStateException on about dialog
+2e6c9b1f (tag: 16.1.5-BETA-1-tor-0.4.2.5-rc) small tweaks to request bridge strings
+3c80df01 Merge branch 'bitmold-compile_erorr+refactor'
+08de553e (bitmold-compile_erorr+refactor) Merge branch 'compile_erorr+refactor' of https://github.com/bitmold/orbot into bitmold-compile_erorr+refactor
+df847ff1 Merge branch 'tladesignz-master'
+b2646a3c update AndroidPT to latest 1.0.8 with fixes for obfs4 and meek on Android 10
+feedb3b2 fix string variable values
+155980fc Change from using String resources for a bundle key in Onboarding
+ec0ad261 Fixes compile error on master branch right now
+f2c8473f Merge branch 'master' of https://github.com/tladesignz/orbot into tladesignz-master
+732c1538 Merge branch 'master' of https://github.com/guardianproject/orbot
+09ded59c (githubgp/master) Merge pull request #311 from bitmold/email_bridges_fix
+b1049ca6 Merge branch 'master' of https://github.com/guardianproject/orbot
+b9804c12 Merge pull request #305 from Hashik-Donthineni/AppIntroOrientationFix
+410ae032 tweaks to app data storage and control port interaction - in some cases, Orbot connection to local control port can hang. Make changes to address that.
+19d50544 Color indeterminate ProgressBar.
+1749167a Fixed behaviour on device turn.
+f94931ee Don't allow refresh button to trigger while request ongoing.
+7a9b9d1b Adapted to naming convention of project.
+964c3115 Fixed MoatActivity startup when Tor is not running. Reset old bridge configuration, when not completed.
+5c99859e Finish BridgeWizardActivity on successful MOAT.
+a34ee221 Improved UI: show progress spinner, start request on keyboard enter.
+a46e463b Updated Gradle to latest version.
+c026e206 Check OrbotService status, start Tor, if down, switch to Meek, when started, fetch CAPTCHA, as soon as done with that. Proxy Volley correctly. Improved option menu handling. Not working, yet: Tor doesn't come up. Why?
+e7cfe465 Added first stab at a MoatActivity. Doesn't change bridges automatically, yet. Also, Volley needs to be proxied.
+469d4cfa Fixed most warnings and errors in OrbotMainActivity.
+3eb76e6f Updated Gradle.
+42832216 Updated BUILD info.
+446dfa6e Fixes bugs in #289 pertaining to parsing bridges
+86279895 Merge pull request #310 from bitmold/zulu_context_menu
+29541f35 Fixes #300 Where Locale is set to Zulu when settings are opened
+bfbb85bc Changed variable names for better understanding
+a09b4ebe Fixed Unused Imports
+f4580cf3 Added comments for better understanding
+6c09f67e Extracted String Resources
+ee3e0542 Fixed blank screen when orintation changed in AppIntro
+8a3727ac Merge pull request #301 from PLNech/patch-1
+0dcba0d3 fix FAQ URL in README
+73b0b0d7 handle NPE since node is not yet set
+
+/** 16.1.4-RC-1-tor-0.4.2.5-rc / 5 Feb 2020 / 35fbb5697c4d56f1ad97ae0fdace0a912fc5f2a5 **/
+
 35fbb569 (HEAD -> master) update version code to 16142100
 71e4badb clean-up how kill process works; only try additional attempts if needed
 c9550204 (tag: 16.1.4-BETA-2-tor-0.4.2.5-rc) update build tools and versionCode to 16141100
