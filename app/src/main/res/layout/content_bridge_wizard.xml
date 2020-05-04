@@ -19,8 +19,15 @@
         android:textSize="16sp"
         android:textStyle="bold" />
 
+    <Button
+        android:id="@+id/btnMoat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:text="@string/request_bridges_from_torproject" />
+
     <RadioGroup
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
@@ -46,18 +53,11 @@
             android:text="@string/bridge_cloud" />
 
         <RadioButton
-            android:id="@+id/btnBridgesNew"
+            android:id="@+id/btnCustomBridges"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="12dp"
-            android:text="@string/bridges_get_new" />
-
-        <RadioButton
-            android:id="@+id/btnMoat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="12dp"
-            android:text="@string/bridges_get_new_moat"/>
+            android:text="@string/custom_bridges"/>
 
     </RadioGroup>
 

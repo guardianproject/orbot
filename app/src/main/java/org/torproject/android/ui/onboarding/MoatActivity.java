@@ -139,6 +139,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
         }
         else {
             mIvCaptcha.setVisibility(View.GONE);
+            mEtSolution.setEnabled(false);
             mBtRequest.setEnabled(false);
 
             mOriginalBridges = Prefs.getBridgesList();
@@ -160,7 +161,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        menu.findItem(R.id.menu_refresh).setEnabled(!mRequestInProgress);
+        menu.findItem(R.id.menu_refresh).setVisible(!mRequestInProgress);
 
         return super.onPrepareOptionsMenu(menu);
     }
@@ -257,6 +258,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
                             mIvCaptcha.setImageBitmap(BitmapFactory.decodeByteArray(mCaptcha, 0, mCaptcha.length));
                             mIvCaptcha.setVisibility(View.VISIBLE);
                             mEtSolution.setText(null);
+                            mEtSolution.setEnabled(true);
                             mBtRequest.setEnabled(true);
 
                         } catch (JSONException e) {
@@ -307,6 +309,8 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
                             Prefs.setBridgesList(sb.toString());
                             Prefs.putBridgesEnabled(true);
 
+                            sendIntentToService(TorServiceConstants.CMD_SIGNAL_HUP);
+
                             mSuccess = true;
                             setResult(RESULT_OK);
                             finish();
@@ -323,6 +327,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
             mRequestInProgress = true;
             invalidateOptionsMenu();
             mProgressBar.setVisibility(View.VISIBLE);
+            mEtSolution.setEnabled(false);
             mBtRequest.setEnabled(false);
 
             mQueue.add(request);
@@ -348,6 +353,10 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        mRequestInProgress = false;
+                        invalidateOptionsMenu();
+                        mProgressBar.setVisibility(View.GONE);
+
                         Log.d(MoatActivity.class.getSimpleName(), "Error response.");
 
                         displayError(error, null);
@@ -374,6 +383,11 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
     private void setUp(String host, int port, String status) {
         Log.d(MoatActivity.class.getSimpleName(), "Tor status=" + status);
 
+        // Ignore after successful bridge request.
+        if (mSuccess) {
+            return;
+        }
+
         switch (status) {
             case TorServiceConstants.STATUS_OFF:
                 // We need the Meek bridge.
@@ -391,7 +405,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
 
                 Log.d(MoatActivity.class.getSimpleName(), "Set up Volley queue. host=" + host + ", port=" + port);
 
-                mQueue = Volley.newRequestQueue(MoatActivity.this, new ProxiedHurlStack(host, port));
+                mQueue = Volley.newRequestQueue(this, new ProxiedHurlStack(host, port));
 
                 sendIntentToService(TorServiceConstants.CMD_SIGNAL_HUP);
 
@@ -417,12 +431,15 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         mProgressBar.setVisibility(View.GONE);
+        mEtSolution.setEnabled(mIvCaptcha.getVisibility() == View.VISIBLE);
         mBtRequest.setEnabled(mIvCaptcha.getVisibility() == View.VISIBLE);
 
-        new AlertDialog.Builder(this)
-                .setTitle(R.string.error)
-                .setMessage(TextUtils.isEmpty(detail) ? exception.getLocalizedMessage() : detail)
-                .setNegativeButton(R.string.btn_cancel, null)
-                .show();
+        if (!isFinishing()) {
+            new AlertDialog.Builder(this)
+                    .setTitle(R.string.error)
+                    .setMessage(TextUtils.isEmpty(detail) ? exception.getLocalizedMessage() : detail)
+                    .setNegativeButton(R.string.btn_okay, null)
+                    .show();
+        }
     }
 }
