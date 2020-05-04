@@ -1,7 +1,8 @@
 NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
 
-/** 16.1.4-RC-1-tor-0.4.2.5-rc / 5 Feb 2020 / 35fbb5697c4d56f1ad97ae0fdace0a912fc5f2a5 **/
+/** 16.2.0-RC-1-tor-0.4.2.7 / 4 May 2020 / 0a3a4f7ee943e05caa0d5417ed802d2a4e028af3 **/
 
+0a3a4f7e (HEAD -> master) update version code to 16202001
 a6310772 (HEAD -> master, origin/master, origin/HEAD) Merge branch 'tladesignz-master'
 875f18ad (tladesignz-master) Merge branch 'master' of https://github.com/tladesignz/orbot into tladesignz-master
 85e027c3 update version code
