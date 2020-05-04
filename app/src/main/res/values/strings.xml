@@ -249,7 +249,6 @@
     <string name="bridge_community">Connect through community servers</string>
     <string name="bridge_cloud">Connect through cloud servers</string>
     <string name="bridges_get_new">Request New Bridges via Email...</string>
-    <string name="bridges_get_new_moat">Request New Bridges Directly...</string>
 
     <string name="trouble_connecting">Trouble connecting?</string>
     <string name="full_device_vpn">Full Device VPN</string>
@@ -268,4 +267,14 @@
     <string name="solve_captcha_instruction">Solve the CAPTCHA to request bridges.</string>
     <string name="captcha">Captcha</string>
     <string name="enter_characters_from_image">Enter characters from image</string>
+
+    <!-- BridgeWizardActivity -->
+    <string name="request_bridges_from_torproject">Request Bridges from torproject.org</string>
+    <string name="custom_bridges">Custom Bridges</string>
+    
+    <!-- CustomBridgesActivity -->
+    <string name="use_custom_bridges">Use Custom Bridges</string>
+    <string name="in_a_browser">In a browser, visit %s and tap "Get Bridges" > "Just Give Me Bridges!"</string>
+    <string name="paste_bridges">Paste Bridges</string>
+    <string name="use_qr_code">Use QR Code</string>
 </resources>

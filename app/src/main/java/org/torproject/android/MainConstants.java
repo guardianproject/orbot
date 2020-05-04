@@ -8,7 +8,9 @@ public interface MainConstants {
     //path to check Tor against
     String URL_TOR_CHECK = "https://check.torproject.org";
 
-    String URL_TOR_BRIDGES = "https://bridges.torproject.org/bridges?transport=";
+    String URL_TOR_BRIDGES = "https://bridges.torproject.org/bridges";
+
+    String EMAIL_TOR_BRIDGES = "bridges@torproject.org";
 
     int RESULT_CLOSE_ALL = 0;
 
