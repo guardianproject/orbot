@@ -373,27 +373,36 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
                     if (Prefs.useVpn())
                     {
+                        if (!mVpnManager.isStarted()) {
+                            //start VPN here
+                            Intent vpnIntent = VpnService.prepare(OrbotService.this);
+                            if (vpnIntent == null) //then we can run the VPN
+                            {
+                                mVpnManager.handleIntent(new Builder(), mIntent);
+
+                            }
+                        }
+
+                        if (mPortSOCKS != -1 && mPortHTTP != -1)
+                            sendCallbackPorts(mPortSOCKS, mPortHTTP, mPortDns, mPortTrans);
+                    }
+
+                }
+                else if (action.equals(ACTION_START_VPN)) {
+                    if (!mVpnManager.isStarted()) {
                         //start VPN here
                         Intent vpnIntent = VpnService.prepare(OrbotService.this);
                         if (vpnIntent == null) //then we can run the VPN
                         {
                             mVpnManager.handleIntent(new Builder(), mIntent);
-                            if (mPortSOCKS != -1 && mPortHTTP != -1)
-                                sendCallbackPorts(mPortSOCKS, mPortHTTP, mPortDns, mPortTrans);
+
+
                         }
                     }
 
-                }
-                else if (action.equals(ACTION_START_VPN)) {
-                    //start VPN here
-                    Intent vpnIntent = VpnService.prepare(OrbotService.this);
-                    if (vpnIntent == null) //then we can run the VPN
-                    {
-                        mVpnManager.handleIntent(new Builder(), mIntent);
+                    if (mPortSOCKS != -1 && mPortHTTP != -1)
+                        sendCallbackPorts(mPortSOCKS, mPortHTTP, mPortDns, mPortTrans);
 
-                        if (mPortSOCKS != -1 && mPortHTTP != -1)
-                            sendCallbackPorts(mPortSOCKS, mPortHTTP, mPortDns, mPortTrans);
-                    }
 
                 }
                 else if (action.equals(ACTION_STOP_VPN)) {

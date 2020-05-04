@@ -236,8 +236,10 @@ public class OrbotVpnManager implements Handler.Callback {
     {
     	if (mIsLollipop)
     		stopSocksBypass ();
-        
-        if (mInterface != null){
+
+		Tun2Socks.Stop();
+
+		if (mInterface != null){
             try
             {
             	Log.d(TAG,"closing interface, destroying VPN interface");
@@ -256,9 +258,8 @@ public class OrbotVpnManager implements Handler.Callback {
             }   
         }
 
+
         stopDns();
-        
-        Tun2Socks.Stop();
 
         mThreadVPN = null;
         
@@ -493,6 +494,10 @@ public class OrbotVpnManager implements Handler.Callback {
         return fPid;
 	}
 
+	public boolean isStarted ()
+	{
+		return isStarted;
+	}
 
     
 }
