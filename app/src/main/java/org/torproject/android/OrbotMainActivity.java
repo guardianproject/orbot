@@ -459,9 +459,7 @@ public class OrbotMainActivity extends AppCompatActivity
             Intent intent = new Intent(OrbotMainActivity.this, SettingsPreferences.class);
             startActivityForResult(intent, REQUEST_SETTINGS);
         } else if (item.getItemId() == R.id.menu_exit) {
-            //exit app
-            doExit();
-
+            doExit(); // exit appp
         } else if (item.getItemId() == R.id.menu_about) {
             new AboutDialogFragment().show(getSupportFragmentManager(), AboutDialogFragment.TAG);
         } else if (item.getItemId() == R.id.menu_scan) {

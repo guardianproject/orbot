@@ -46,7 +46,7 @@ public class AboutDialogFragment extends DialogFragment {
         boolean buildAboutText = true;
 
         if (savedInstanceState != null) {
-            String tvAboutText = savedInstanceState.getParcelable(BUNDLE_KEY_TV_ABOUT_TEXT);
+            String tvAboutText = savedInstanceState.getString(BUNDLE_KEY_TV_ABOUT_TEXT);
             if (tvAboutText != null) {
                 buildAboutText = false;
                 tvAbout.setText(tvAboutText);
