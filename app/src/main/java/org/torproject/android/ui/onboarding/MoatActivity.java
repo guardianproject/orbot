@@ -184,13 +184,12 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_refresh:
+                mEtSolution.setText("");
                 fetchCaptcha();
-
                 return true;
 
             case android.R.id.home:
                 finish();
-
                 return true;
         }
 
