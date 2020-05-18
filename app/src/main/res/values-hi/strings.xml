@@ -204,4 +204,18 @@
     <string name="trouble_connecting">कनेक्ट करने में समस्या?</string>
     <string name="full_device_vpn">पूर्ण डिवाइस VPN</string>
     <string name="vpn_disabled">वीपीएन अक्षम किया गया</string>
+    <string name="refresh_apps">रीफ्रेश ऐप्स</string>
+    <string name="default_socks_http">SOCKS: - HTTP: -</string>
+    <string name="app_services">ऐप सेवाएं</string>
+    <string name="user_services">उपयोगकर्ता सेवाएँ</string>
+    <string name="menu_new_identity">नई पहचान</string>
+    <string name="pref_disable_ipv4_summary">बताता है कि IPv4 पतों से कनेक्ट नहीं है</string>
+    <string name="pref_disable_ipv4">IPv4 कनेक्शन अक्षम करें</string>
+    <string name="pref_prefer_ipv6_summary">बताता है कि IPv6 पतों को प्राथमिकता दी जाती है</string>
+    <string name="pref_prefer_ipv6">IPv6 कनेक्शन पसंद करें</string>
+    <string name="pref_http_dialog">HTTP पोर्ट कॉन्फ़िग</string>
+    <string name="pref_http_summary">पोर्ट जो टोर HTTP HTTP प्रॉक्सी (डिफ़ॉल्ट: 8118 या 0 को अक्षम करने के लिए) प्रदान करता है</string>
+    <string name="pref_http_title">Tor HTTP</string>
+    <string name="pref_open_proxy_on_all_interfaces_summary">Tor को एक्सेस करने के लिए वाई-फाई पीयर, टीथर्ड डिवाइस और अन्य जो आपके आईपी से कनेक्ट हो सकते हैं, की अनुमति दें</string>
+    <string name="pref_open_proxy_on_all_interfaces_title">सभी इंटरफेस पर प्रॉक्सी खोलें</string>
 </resources>
