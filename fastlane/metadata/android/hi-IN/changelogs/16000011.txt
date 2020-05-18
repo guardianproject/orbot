@@ -1,0 +1,8 @@
+- यूजर इंटरफेस के लिए प्रमुख अद्यतन!
+- सेटअप और ब्रिज कॉन्फ़िगरेशन के लिए नए विज़ार्ड
+- बेहतर वीपीएन फीचर्स
+- प्याज / छिपी सेवा विन्यास दुर्घटनाओं के लिए फिक्स
+
+और भी बहुत कुछ...
+
+THANKS TO: pgerber, syphyr, Khsed4, BjarniRunar, Unpublished, igortoliveira, goapunk, SpotComms, AkshatAgrawal05, dixxroid, arrase और अन्य मुद्दों के लिए, कमिट और PRs
