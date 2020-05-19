@@ -34,7 +34,7 @@ public class HSDeleteDialog extends DialogFragment {
                                 null
                         );
 
-                        // Delete from interal storage
+                        // Delete from internal storage
                         String base = context.getFilesDir().getAbsolutePath() + "/" + TorServiceConstants.HIDDEN_SERVICES_DIR;
                         File dir = new File(base, "hs" + arguments.getString("port"));
 
