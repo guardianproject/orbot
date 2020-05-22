@@ -17,14 +17,12 @@
 package org.torproject.android.service.vpn;
 
 import android.annotation.TargetApi;
-import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.VpnService;
-import android.net.VpnService.Builder;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
@@ -56,15 +54,10 @@ import java.util.concurrent.TimeoutException;
 
 import static org.torproject.android.service.TorServiceConstants.ACTION_START;
 import static org.torproject.android.service.TorServiceConstants.ACTION_START_VPN;
-import static org.torproject.android.service.TorServiceConstants.ACTION_STOP;
 import static org.torproject.android.service.TorServiceConstants.ACTION_STOP_VPN;
-import static org.torproject.android.service.vpn.VpnUtils.getSharedPrefs;
-import static org.torproject.android.service.vpn.VpnUtils.killProcess;
 
 public class OrbotVpnManager implements Handler.Callback {
     private static final String TAG = "OrbotVpnService";
-
-    private PendingIntent mConfigureIntent;
 
     private Thread mThreadVPN;
 
@@ -91,30 +84,19 @@ public class OrbotVpnManager implements Handler.Callback {
     
     private VpnService mService;
     
-	private Builder mLastBuilder;
-
     public OrbotVpnManager (VpnService service) throws IOException, TimeoutException {
     	mService = service;
-
-
 		filePdnsd = CustomNativeLoader.loadNativeBinary(service.getApplicationContext(),PDNSD_BIN,new File(service.getFilesDir(),PDNSD_BIN));
-
-
 		Tun2Socks.init();
-
-
 	}
 
 	boolean isStarted = false;
    
-    public int handleIntent(Builder builder, Intent intent) {
-
-    	if (intent != null)
-    	{
+    public int handleIntent(VpnService.Builder builder, Intent intent) {
+    	if (intent != null) {
 	    	String action = intent.getAction();
 	    	
-	    	if (action.equals(ACTION_START_VPN)||action.equals(ACTION_START))
-	    	{
+	    	if (action.equals(ACTION_START_VPN)||action.equals(ACTION_START)) {
 				Log.d(TAG,"starting VPN");
 
 				isStarted = true;
@@ -122,8 +104,6 @@ public class OrbotVpnManager implements Handler.Callback {
 		        // Stop the previous session by interrupting the thread.
 		        if (mThreadVPN != null && mThreadVPN.isAlive())
 		        	stopVPN();
-
-				mLastBuilder = builder;
 
 				if (mTorSocks != -1)
 				{
@@ -135,19 +115,15 @@ public class OrbotVpnManager implements Handler.Callback {
 					setupTun2Socks(builder);
 				}
 
-
-
 	    	}
-	    	else if (action.equals(ACTION_STOP_VPN))
-	    	{
+	    	else if (action.equals(ACTION_STOP_VPN)) {
 				isStarted = false;
 
 	    		Log.d(TAG,"stopping VPN");
 	    		
 	    		stopVPN();
 	    	}
-	    	else if (action.equals(TorServiceConstants.LOCAL_ACTION_PORTS))
-			{
+	    	else if (action.equals(TorServiceConstants.LOCAL_ACTION_PORTS)) {
 				Log.d(TAG,"setting VPN ports");
 
 				int torSocks = intent.getIntExtra(OrbotService.EXTRA_SOCKS_PROXY_PORT,-1);
@@ -174,14 +150,9 @@ public class OrbotVpnManager implements Handler.Callback {
         return Service.START_STICKY;
     }
   
-    private void startSocksBypass()
-    {
-       
-    	new Thread ()
-    	{
-    		
-    		public void run ()
-    		{
+    private void startSocksBypass() {
+    	new Thread () {
+    		public void run () {
 
                 //generate the proxy port that the 
                 if (sSocksProxyServerPort == -1)
@@ -218,22 +189,16 @@ public class OrbotVpnManager implements Handler.Callback {
 		    	}
     		}
     	}.start();
-       
     }
 
-    private synchronized void stopSocksBypass ()
-    {
-
-        if (mSocksProxyServer != null){
+    private synchronized void stopSocksBypass () {
+        if (mSocksProxyServer != null) {
             mSocksProxyServer.stop();
             mSocksProxyServer = null;
         }
-        
-        
     }
 
-    private void stopVPN ()
-    {
+    private void stopVPN () {
     	if (mIsLollipop)
     		stopSocksBypass ();
 
@@ -257,13 +222,8 @@ public class OrbotVpnManager implements Handler.Callback {
                 Log.d(TAG,"error stopping tun2socks",e);
             }   
         }
-
-
         stopDns();
-
         mThreadVPN = null;
-        
-
     }
 
     @Override
@@ -275,9 +235,7 @@ public class OrbotVpnManager implements Handler.Callback {
     }
 
   
-    private synchronized void setupTun2Socks(final Builder builder)  {
-
-    	
+    private synchronized void setupTun2Socks(final VpnService.Builder builder)  {
         if (mInterface != null) //stop tun2socks now to give it time to clean up
         {
         	isRestart = true;
@@ -290,13 +248,10 @@ public class OrbotVpnManager implements Handler.Callback {
     	mThreadVPN = new Thread ()
     	{
     		
-    		public void run ()
-    		{
-	    		try
-		        {
+    		public void run () {
+	    		try {
 	    			
-	    			if (isRestart)
-	    			{
+	    			if (isRestart) {
 	    				Log.d(TAG,"is a restart... let's wait for a few seconds");
 			        	Thread.sleep(3000);
 	    			}
@@ -332,7 +287,7 @@ public class OrbotVpnManager implements Handler.Callback {
 
 			         // Create a new interface using the builder and save the parameters.
 			        ParcelFileDescriptor newInterface = builder.setSession(mSessionName)
-			                .setConfigureIntent(mConfigureIntent)
+			                .setConfigureIntent(null) // previously this was set to a null member variable
 			                .establish();
 		
 			        if (mInterface != null)
@@ -371,12 +326,10 @@ public class OrbotVpnManager implements Handler.Callback {
     
     
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-	private void doLollipopAppRouting (Builder builder) throws NameNotFoundException
-    {    
-    	   
-        ArrayList<TorifiedApp> apps = TorifiedApp.getApps(mService, getSharedPrefs(mService.getApplicationContext()));
+	private void doLollipopAppRouting (VpnService.Builder builder) throws NameNotFoundException {
+		SharedPreferences prefs = VpnUtils.getSharedPrefs(mService.getApplicationContext());
+        ArrayList<TorifiedApp> apps = TorifiedApp.getApps(mService, prefs);
 
-		SharedPreferences prefs = getSharedPrefs(mService.getApplicationContext());
 
 		boolean perAppEnabled = false;
         
@@ -400,26 +353,7 @@ public class OrbotVpnManager implements Handler.Callback {
     
     }
     
-    
-    public void onRevoke() {
-    
-    	Log.w(TAG,"VPNService REVOKED!");
-    	
-    	if (!isRestart)
-    	{
-	    	SharedPreferences prefs = getSharedPrefs(mService.getApplicationContext());
-	        prefs.edit().putBoolean("pref_vpn", false).commit();      
-	    	stopVPN();	
-    	}
-    	
-    	isRestart = false;
-    	
-    	//super.onRevoke();
-    
-    }
-
-    private void startDNS (String pdnsPath, String torDnsHost, int torDnsPort, String pdnsdHost, int pdnsdPort) throws IOException, TimeoutException
-    {
+    private void startDNS (String pdnsPath, String torDnsHost, int torDnsPort, String pdnsdHost, int pdnsdPort) throws IOException, TimeoutException {
 
 		File fileConf = makePdnsdConf(mService, mService.getFilesDir(), torDnsHost, torDnsPort, pdnsdHost, pdnsdPort);
 
@@ -446,23 +380,20 @@ public class OrbotVpnManager implements Handler.Callback {
 
 	File filePdnsPid;
 
-    private boolean stopDns ()
-	{
+    private boolean stopDns () {
 		if (filePdnsPid != null && filePdnsPid.exists()) {
 			List<String> lines = null;
 			try {
 				lines = IOUtils.readLines(new FileReader(filePdnsPid));
 				String dnsPid = lines.get(0);
-				killProcess(dnsPid, "");
+				VpnUtils.killProcess(dnsPid, "");
 				filePdnsPid.delete();
 				filePdnsPid = null;
 			} catch (Exception e) {
 				Log.e("OrbotVPN", "error killing dns process", e);
 			}
 		}
-
 		return false;
-
 	}
     
     public static File makePdnsdConf(Context context,  File fileDir, String torDnsHost, int torDnsPort, String pdnsdHost, int pdnsdPort) throws FileNotFoundException, IOException {
@@ -486,18 +417,12 @@ public class OrbotVpnManager implements Handler.Callback {
         if (!cache.exists()) {
                 try {
                         cache.createNewFile();
-                } catch (Exception e) {
-
-                }
+                } catch (Exception e) { }
         }
-
         return fPid;
 	}
 
-	public boolean isStarted ()
-	{
+	public boolean isStarted () {
 		return isStarted;
 	}
-
-    
 }

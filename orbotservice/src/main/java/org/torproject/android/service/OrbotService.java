@@ -28,9 +28,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.net.VpnService;
 import android.os.Build;
-import android.os.Debug;
 import android.os.IBinder;
-import android.os.RemoteException;
 import android.provider.BaseColumns;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
@@ -1198,20 +1196,16 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
     }
 
-    private int getControlPort ()
-    {
+    private int getControlPort () {
         int result = -1;
 
-        try
-        {
-            if (fileControlPort.exists())
-            {
+        try {
+            if (fileControlPort.exists()) {
                 debug("Reading control port config file: " + fileControlPort.getCanonicalPath());
                 BufferedReader bufferedReader = new BufferedReader(new FileReader(fileControlPort));
                 String line = bufferedReader.readLine();
 
-                if (line != null)
-                {
+                if (line != null) {
                     String[] lineParts = line.split(":");
                     result = Integer.parseInt(lineParts[1]);
                 }
@@ -1222,30 +1216,22 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 //store last valid control port
                 SharedPreferences prefs = Prefs.getSharedPrefs(getApplicationContext());
                 prefs.edit().putInt("controlport", result).commit();
-
             }
-            else
-            {
+            else {
                 debug("Control Port config file does not yet exist (waiting for tor): " + fileControlPort.getCanonicalPath());
-
             }
-
-
         }
-        catch (FileNotFoundException e)
-        {
+        catch (FileNotFoundException e) {
             debug("unable to get control port; file not found");
         }
-        catch (Exception e)
-        {
+        catch (Exception e) {
             debug("unable to read control port config file");
         }
 
         return result;
     }
 
-    public void addEventHandler () throws Exception
-    {
+    public void addEventHandler () throws Exception {
            // We extend NullEventHandler so that we don't need to provide empty
            // implementations for all the events we don't care about.
            // ...
@@ -1258,14 +1244,12 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         conn.setEventHandler(mEventHandler);
 
         logNotice( "SUCCESS added control port event handler");
-
-
     }
 
         /**
          * Returns the port number that the HTTP proxy is running on
          */
-        public int getHTTPPort() throws RemoteException {
+        public int getHTTPPort() {
             return mPortHTTP;
         }
 
@@ -1273,10 +1257,9 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         /**
          * Returns the port number that the HTTP proxy is running on
          */
-        public int getSOCKSPort() throws RemoteException {
+        public int getSOCKSPort() {
             return mPortSOCKS;
         }
-
 
         public String getInfo (String key) {
             try {
