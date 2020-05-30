@@ -5,14 +5,17 @@ import android.app.Dialog;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import androidx.appcompat.app.AlertDialog;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import org.torproject.android.R;
 import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
 
@@ -35,14 +38,15 @@ public class HSDataDialog extends DialogFragment {
         save.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 String serverName = ((EditText) dialog_view.findViewById(R.id.hsName)).getText().toString();
-                Integer localPort = Integer.parseInt(
-                        ((EditText) dialog_view.findViewById(R.id.hsLocalPort)).getText().toString()
-                );
-                Integer onionPort = Integer.parseInt(
-                        ((EditText) dialog_view.findViewById(R.id.hsOnionPort)).getText().toString()
-                );
-
-                Boolean authCookie = ((CheckBox) dialog_view.findViewById(R.id.hsAuth)).isChecked();
+                int localPort, onionPort;
+                try {
+                    localPort = Integer.parseInt(((EditText) dialog_view.findViewById(R.id.hsLocalPort)).getText().toString());
+                    onionPort = Integer.parseInt(((EditText) dialog_view.findViewById(R.id.hsOnionPort)).getText().toString());
+                } catch (NumberFormatException nfe) {
+                    Toast.makeText(v.getContext(), R.string.fields_can_t_be_empty, Toast.LENGTH_LONG).show();
+                    return;
+                }
+                boolean authCookie = ((CheckBox) dialog_view.findViewById(R.id.hsAuth)).isChecked();
 
                 if (checkInput(serverName, localPort, onionPort)) {
                     saveData(serverName, localPort, onionPort, authCookie);
@@ -64,9 +68,9 @@ public class HSDataDialog extends DialogFragment {
         return serviceDataDialog;
     }
 
-    private boolean checkInput(String serverName, Integer local, Integer remote) {
+    private boolean checkInput(String serverName, int local, int remote) {
         boolean is_ok = true;
-        Integer error_msg = 0;
+        int error_msg = 0;
 
         if ((local < 1 || local > 65535) || (remote < 1 || remote > 65535)) {
             error_msg = R.string.invalid_port;
@@ -85,8 +89,7 @@ public class HSDataDialog extends DialogFragment {
         return is_ok;
     }
 
-    private void saveData(String name, Integer local, Integer remote, Boolean authCookie) {
-
+    private void saveData(String name, int local, int remote, boolean authCookie) {
         ContentValues fields = new ContentValues();
         fields.put(HSContentProvider.HiddenService.NAME, name);
         fields.put(HSContentProvider.HiddenService.PORT, local);
