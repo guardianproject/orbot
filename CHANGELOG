@@ -1,4 +1,27 @@
-NOTE: Specific #s below correspond to Trac tickets logged and maintained at https://trac.torproject.org/projects/tor/
+
+/** 16.3.0-RC-1-tor-0.4.2.7 / 30 May 2020 / 9b415d17a0d8086adc5525e395736e5438cf3276 **/
+
+9b415d17 (HEAD -> master) update version code to 1630200100
+1ecca6b8 (origin/master, origin/HEAD) Merge branch 'bitmold-bug_tor_wont_stop_with_activeVPN'
+b2b92d6b (bitmold-bug_tor_wont_stop_with_activeVPN) leave VPN toggle enabled, just stop the service
+80b532ea Merge branch 'bug_tor_wont_stop_with_activeVPN' of https://github.com/bitmold/orbot into bitmold-bug_tor_wont_stop_with_activeVPN
+da5f80d7 Merge pull request #344 from bitmold/hosted_services_dialog_crash
+44ece312 Merge pull request #341 from nijel/patch-1
+cd92f881 Merge pull request #339 from bitmold/moat_max_solution_len
+216ca72c Merge pull request #338 from bitmold/bridge_wized_landscape_fix
+952bee96 Merge pull request #337 from bitmold/moat_reset_ui_fix
+ad6ba4aa Merge branch 'bitmold-dialog_rotation_fixes'
+7beceb68 (bitmold-dialog_rotation_fixes) Merge branch 'dialog_rotation_fixes' of https://github.com/bitmold/orbot into bitmold-dialog_rotation_fixes
+b5e2c7b0 updating base versionCode to 1620200100 and changing how arch increments happen
+f8b1fceb Fixes #329 Tor Wont Fully Stop With VPN Enabled
+b18f9b8a Fixes #343 hosted services dialog crash
+1f54a962 Delete rs-rAR translation
+7a0db403 Delete rs-rAR translation
+33276a9f MOAT Errors won't disappear on device rotation
+9b3afa51 Limited MOAT Solution Length to spec's 20 byte limit
+315a1a88 Recent changes to the BridgeWizard would cause it not to display fully in landscape orientation. This was trivially fixed by adding a ScrollView
+85c83319 When a new CAPTCHA is requested, immediately clear the old solution EditText instead of waiting for the CAPTCHA to finish downloading.
+872b5248 About dialog remains open on rotation. Added an android:id to its ScrollView so its position is retained too.
 
 /** 16.2.0-RC-1-tor-0.4.2.7 / 4 May 2020 / 0a3a4f7ee943e05caa0d5417ed802d2a4e028af3 **/
 
