@@ -30,7 +30,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnLongClickListener;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -60,6 +59,7 @@ import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.vpn.VpnConstants;
 import org.torproject.android.service.vpn.VpnPrefs;
+import org.torproject.android.service.vpn.VpnUtils;
 import org.torproject.android.settings.Languages;
 import org.torproject.android.settings.LocaleHelper;
 import org.torproject.android.settings.SettingsPreferences;
@@ -93,10 +93,8 @@ import static org.torproject.android.service.TorServiceConstants.ACTION_START;
 import static org.torproject.android.service.TorServiceConstants.ACTION_START_VPN;
 import static org.torproject.android.service.TorServiceConstants.ACTION_STOP_VPN;
 import static org.torproject.android.service.vpn.VpnPrefs.PREFS_KEY_TORIFIED;
-import static org.torproject.android.service.vpn.VpnUtils.getSharedPrefs;
 
-public class OrbotMainActivity extends AppCompatActivity
-        implements OrbotConstants, OnLongClickListener {
+public class OrbotMainActivity extends AppCompatActivity implements OrbotConstants {
 
     /* Useful UI bits */
     private TextView lblStatus = null; //the main text display widget
@@ -200,7 +198,7 @@ public class OrbotMainActivity extends AppCompatActivity
         }
 
         // Resets previous DNS Port to the default.
-        getSharedPrefs(getApplicationContext()).edit().putInt(VpnPrefs.PREFS_DNS_PORT,
+        VpnUtils.getSharedPrefs(getApplicationContext()).edit().putInt(VpnPrefs.PREFS_DNS_PORT,
                 VpnConstants.TOR_DNS_PORT_DEFAULT).apply();
 
     }
@@ -212,9 +210,7 @@ public class OrbotMainActivity extends AppCompatActivity
     }
 
     private void stopTor() {
-
-//        requestTorStatus();
-
+        if (mBtnVPN.isChecked()) mBtnVPN.setChecked(false); // indirectly closes tun2socks interface
         Intent intent = new Intent(OrbotMainActivity.this, OrbotService.class);
         stopService(intent);
 
@@ -306,7 +302,13 @@ public class OrbotMainActivity extends AppCompatActivity
         lblPorts = findViewById(R.id.lblPorts);
 
         imgStatus = findViewById(R.id.imgStatus);
-        imgStatus.setOnLongClickListener(this);
+        imgStatus.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                toggleTor();
+                return true;
+            }
+        });
 
         downloadText = findViewById(R.id.trafficDown);
         uploadText = findViewById(R.id.trafficUp);
@@ -319,14 +321,7 @@ public class OrbotMainActivity extends AppCompatActivity
         mBtnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (torStatus.equals(TorServiceConstants.STATUS_OFF)) {
-                    lblStatus.setText(getString(R.string.status_starting_up));
-                    startTor();
-                } else {
-                    lblStatus.setText(getString(R.string.status_shutting_down));
-                    stopTor();
-                }
+                toggleTor();
             }
         });
 
@@ -364,7 +359,16 @@ public class OrbotMainActivity extends AppCompatActivity
         setCountrySpinner();
 
         mPulsator = findViewById(R.id.pulsator);
+    }
 
+    private void toggleTor() { // UI entry point for  (dis)connecting to Tor
+        if (torStatus.equals(TorServiceConstants.STATUS_OFF)) {
+            lblStatus.setText(getString(R.string.status_starting_up));
+            startTor();
+        } else {
+            lblStatus.setText(getString(R.string.status_shutting_down));
+            stopTor();
+        }
     }
 
     private void setCountrySpinner() {
@@ -831,7 +835,6 @@ public class OrbotMainActivity extends AppCompatActivity
             sendIntentToService(ACTION_START_VPN);
         } else if (request == REQUEST_VPN && response == RESULT_CANCELED) {
             mBtnVPN.setChecked(false);
-            Prefs.putUseVpn(false);
         }
 
         IntentResult scanResult = IntentIntegrator.parseActivityResult(request, response, data);
@@ -1082,20 +1085,6 @@ public class OrbotMainActivity extends AppCompatActivity
         return false;
     }
 
-    public boolean onLongClick(View view) {
-
-        if (torStatus.equals(TorServiceConstants.STATUS_OFF)) {
-            lblStatus.setText(getString(R.string.status_starting_up));
-            startTor();
-        } else {
-            lblStatus.setText(getString(R.string.status_shutting_down));
-
-            stopTor();
-        }
-
-        return true;
-
-    }
 
     // this is what takes messages or values from the callback threads or other non-mainUI threads
 //and passes them back into the main UI thread for display to the user
