@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/dark_purple"
+    android:orientation="vertical"
     tools:context=".ui.onboarding.MoatActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -29,7 +29,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
@@ -67,7 +67,8 @@
                 android:ems="10"
                 android:hint="@string/enter_characters_from_image"
                 android:imeOptions="actionSend"
-                android:inputType="textShortMessage|text" />
+                android:inputType="textShortMessage|text"
+                android:maxLength="20" />
 
             <Button
                 android:id="@+id/requestBt"
