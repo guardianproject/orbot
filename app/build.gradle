@@ -73,7 +73,7 @@ android {
             minSdkVersion 16
             applicationId 'org.torproject.android'
             targetSdkVersion 29
-            versionCode 16202001
+            versionCode 1620200100
             versionName getVersionName()
             archivesBaseName = "Orbot-$versionName"
         }
@@ -83,7 +83,7 @@ android {
             minSdkVersion 16
             applicationId 'org.torproject.android.max'
             targetSdkVersion 28
-            versionCode 16141000
+            versionCode 161410000
             versionName getVersionName()
             archivesBaseName = "orbotMAX-$versionName"
         }**/
@@ -138,7 +138,7 @@ android.applicationVariants.all { variant ->
     variant.outputs.each { output ->
         def baseVersionCode = project.ext.abiCodes.get(output.getFilter(OutputFile.ABI))
         if (baseVersionCode != null) {
-            output.versionCodeOverride = Integer.valueOf(baseVersionCode + variant.versionCode)
+            output.versionCodeOverride = Integer.valueOf(variant.versionCode) + Integer.valueOf(baseVersionCode)
         }
     }
 }
