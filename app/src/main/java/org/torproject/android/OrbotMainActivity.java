@@ -6,6 +6,7 @@ package org.torproject.android;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningServiceInfo;
 import android.app.AlertDialog;
+
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.ContentValues;
@@ -17,14 +18,12 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.database.Cursor;
 import android.net.Uri;
 import android.net.VpnService;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
@@ -66,6 +65,7 @@ import org.torproject.android.settings.LocaleHelper;
 import org.torproject.android.settings.SettingsPreferences;
 import org.torproject.android.ui.AppManagerActivity;
 import org.torproject.android.ui.Rotate3dAnimation;
+import org.torproject.android.ui.dialog.AboutDialogFragment;
 import org.torproject.android.ui.hiddenservices.ClientCookiesActivity;
 import org.torproject.android.ui.hiddenservices.HiddenServicesActivity;
 import org.torproject.android.ui.hiddenservices.backup.BackupUtils;
@@ -74,10 +74,7 @@ import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
 import org.torproject.android.ui.onboarding.BridgeWizardActivity;
 import org.torproject.android.ui.onboarding.OnboardingActivity;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
@@ -462,12 +459,9 @@ public class OrbotMainActivity extends AppCompatActivity
             Intent intent = new Intent(OrbotMainActivity.this, SettingsPreferences.class);
             startActivityForResult(intent, REQUEST_SETTINGS);
         } else if (item.getItemId() == R.id.menu_exit) {
-            //exit app
-            doExit();
-
+            doExit(); // exit appp
         } else if (item.getItemId() == R.id.menu_about) {
-            showAbout();
-
+            new AboutDialogFragment().show(getSupportFragmentManager(), AboutDialogFragment.TAG);
         } else if (item.getItemId() == R.id.menu_scan) {
             IntentIntegrator integrator = new IntentIntegrator(OrbotMainActivity.this);
             integrator.initiateScan();
@@ -495,51 +489,6 @@ public class OrbotMainActivity extends AppCompatActivity
 
         return super.onOptionsItemSelected(item);
     }
-
-    private void showAbout() {
-        View view = getLayoutInflater().inflate(R.layout.layout_about, null);
-        String version;
-
-        try {
-            version = getPackageManager().getPackageInfo(getPackageName(), 0).versionName + " (Tor " + OrbotService.BINARY_TOR_VERSION + ")";
-        } catch (NameNotFoundException e) {
-            version = "Version Not Found";
-        }
-
-        TextView versionName = view.findViewById(R.id.versionName);
-        versionName.setText(version);
-
-        TextView aboutOther = view.findViewById(R.id.aboutother);
-
-        try {
-            String aboutText = readFromAssets(this, "LICENSE");
-            aboutText = aboutText.replace("\n", "<br/>");
-            aboutOther.setText(Html.fromHtml(aboutText));
-        } catch (IOException e) {
-        }
-
-
-        new AlertDialog.Builder(this)
-                .setTitle(getString(R.string.button_about))
-                .setView(view)
-                .show();
-    }
-
-    @SuppressWarnings("SameParameterValue")
-    private static String readFromAssets(Context context, String filename) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(context.getAssets().open(filename)));
-
-        // do reading, usually loop until end of file reading
-        StringBuilder sb = new StringBuilder();
-        String mLine = reader.readLine();
-        while (mLine != null) {
-            sb.append(mLine).append('\n'); // process line
-            mLine = reader.readLine();
-        }
-        reader.close();
-        return sb.toString();
-    }
-
 
     /**
      * This is our attempt to REALLY exit Orbot, and stop the background service
@@ -589,14 +538,13 @@ public class OrbotMainActivity extends AppCompatActivity
 
             Intent intentVPN = VpnService.prepare(this);
             if (intentVPN != null)
-                startActivityForResult(intentVPN,REQUEST_VPN);
+                startActivityForResult(intentVPN, REQUEST_VPN);
             else {
                 sendIntentToService(ACTION_START);
                 sendIntentToService(ACTION_START_VPN);
             }
 
-        } else
-        {
+        } else {
             //stop the VPN here
             sendIntentToService(ACTION_STOP_VPN);
         }
@@ -879,11 +827,9 @@ public class OrbotMainActivity extends AppCompatActivity
                     torStatus.equals(TorServiceConstants.STATUS_ON))
                 refreshVPNApps();
 
-        }
-        else if (request == REQUEST_VPN && response == RESULT_OK) {
+        } else if (request == REQUEST_VPN && response == RESULT_OK) {
             sendIntentToService(ACTION_START_VPN);
-        }
-        else if (request == REQUEST_VPN && response == RESULT_CANCELED) {
+        } else if (request == REQUEST_VPN && response == RESULT_CANCELED) {
             mBtnVPN.setChecked(false);
             Prefs.putUseVpn(false);
         }
