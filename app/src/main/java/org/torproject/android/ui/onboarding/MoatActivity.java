@@ -26,7 +26,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -46,6 +45,7 @@ import org.torproject.android.R;
 import org.torproject.android.service.OrbotService;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.Prefs;
+import org.torproject.android.ui.dialog.MoatErrorDialogFragment;
 
 /**
  Implements the MOAT protocol: Fetches OBFS4 bridges via Meek Azure.
@@ -435,11 +435,8 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
         mBtRequest.setEnabled(mIvCaptcha.getVisibility() == View.VISIBLE);
 
         if (!isFinishing()) {
-            new AlertDialog.Builder(this)
-                    .setTitle(R.string.error)
-                    .setMessage(TextUtils.isEmpty(detail) ? exception.getLocalizedMessage() : detail)
-                    .setNegativeButton(R.string.btn_okay, null)
-                    .show();
+            String message = TextUtils.isEmpty(detail) ? exception.getLocalizedMessage() : detail;
+            MoatErrorDialogFragment.newInstance(message).show(getSupportFragmentManager(), MoatErrorDialogFragment.TAG);
         }
     }
 }
