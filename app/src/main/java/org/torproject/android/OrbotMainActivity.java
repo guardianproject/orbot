@@ -210,9 +210,11 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     }
 
     private void stopTor() {
-        if (mBtnVPN.isChecked()) mBtnVPN.setChecked(false); // indirectly closes tun2socks interface
+        if (mBtnVPN.isChecked()) sendIntentToService(ACTION_STOP_VPN);
+
         Intent intent = new Intent(OrbotMainActivity.this, OrbotService.class);
         stopService(intent);
+
 
     }
 
