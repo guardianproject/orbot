@@ -1,3 +1,6 @@
+# compiled NDK binary artifacts 
+orbotservice/src/main/libs/
+
 # auto-generated files from Android builds
 build.xml
 ant.properties
