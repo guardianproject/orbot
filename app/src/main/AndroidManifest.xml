@@ -74,11 +74,6 @@
             android:theme="@android:style/Theme.Translucent" />
 
         <activity
-            android:name=".ui.VPNEnableActivity"
-            android:exported="false"
-            android:label="@string/app_name" />
-
-        <activity
             android:name=".settings.SettingsPreferences"
             android:label="@string/app_name" />
 
@@ -107,7 +102,9 @@
 
         <activity android:name=".ui.onboarding.OnboardingActivity" />
         <activity android:name=".ui.onboarding.BridgeWizardActivity" />
-        <activity android:name=".ui.onboarding.MoatActivity" />
+        <activity
+            android:name=".ui.onboarding.MoatActivity"
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".ui.onboarding.CustomBridgesActivity" />
 
         <provider
@@ -164,12 +161,12 @@
             android:name=".service.OrbotService"
             android:enabled="true"
             android:permission="android.permission.BIND_VPN_SERVICE"
-            android:stopWithTask="false" >
+            android:stopWithTask="false">
             <intent-filter>
                 <action android:name="android.net.VpnService" />
             </intent-filter>
         </service>
-        
+
     </application>
 
 </manifest>
