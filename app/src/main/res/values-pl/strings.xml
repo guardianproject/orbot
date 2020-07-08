@@ -2,11 +2,11 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Orbot jest darmową aplikacją proxy która wspomaga inne aplikacje do używania internetu bezpiecznie. Orbot używa Tora do szyfrowania Twojego ruchu internetowego i następnie przepuszczania go przez wiele innych komputereów pororzucanych na całym świecie. Tor jest darmowym oprogramowaniem i otwartą siecią która pomaga Tobie w obronie przed monitoringiem sieci która zagrarza osobistej wolności i prywatności, poufnym biznesowym aktywnościom.</string>
-    <string name="status_starting_up">Orbot startuje...</string>
+    <string name="status_starting_up">Orbot uruchamia się…</string>
     <string name="status_activated">Podłączony do sieci Tor</string>
     <string name="status_disabled">Orbot wyłączony</string>
     <string name="status_shutting_down">TorService wyłącza się</string>
-    <string name="tor_process_starting">Uruchamianie klienta sieci Tor...</string>
+    <string name="tor_process_starting">Uruchamianie klienta sieci Tor…</string>
     <string name="tor_process_complete">gotowe.</string>
     <string name="menu_settings">Ustawienia</string>
     <string name="menu_log">Logi</string>
@@ -62,10 +62,10 @@
     <string name="your_relay_settings_caused_an_exception_">Ustawienia Twojego przekaźnika spowodowały wyjątek!</string>
     <string name="exit_nodes">Węzły Wyjściowe</string>
     <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Odciski palców, nicki, państwa i adresy na ostatni skok</string>
-    <string name="enter_exit_nodes">Wpisz węzły wyjściowe.</string>
+    <string name="enter_exit_nodes">Wprowadź Węzły Wyjścia</string>
     <string name="exclude_nodes">Wyklucz węzły</string>
-    <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Odciski palców, nicki, państwa i adresy do wykluczenia.</string>
-    <string name="enter_exclude_nodes">Wpisz wykluczone węzły.</string>
+    <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Odciski palców, nicki, państwa i adresy do wykluczenia</string>
+    <string name="enter_exclude_nodes">Wprowadź Wykluczone Węzły</string>
     <string name="strict_nodes">Ścisłe węzły</string>
     <string name="use_only_these_specified_nodes">Użyj *tylko* tych określonych węzłów</string>
     <string name="bridges">Mostki</string>
@@ -81,7 +81,7 @@
     <string name="relay_nickname">Nick przekaźnika</string>
     <string name="the_nickname_for_your_tor_relay">Nick Twojego przekaźnika Tora</string>
     <string name="enter_a_custom_relay_nickname">Wpisz standardową nazwę przekaźnika</string>
-    <string name="reachable_addresses">Osiągalne adresy:</string>
+    <string name="reachable_addresses">Dostępne adresy</string>
     <string name="run_as_a_client_behind_a_firewall_with_restrictive_policies">Włącz jako klienta za firewallem z restrykcyjną polityką</string>
     <string name="reachable_ports">Osiągalne porty</string>
     <string name="ports_reachable_behind_a_restrictive_firewall">Porty dostępne za ograniczającym firewallem</string>
@@ -89,11 +89,11 @@
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">włącz zdebugowany log do wydajności (musisz używać adb lub aLogCat, by go zobaczyć)</string>
     <string name="project_home">Strony domowe projektu:</string>
     <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
-    <string name="third_party_software">Oprogramowanie 3rd-Party</string>
+    <string name="third_party_software">Oprogramowanie innych firm:</string>
     <string name="tor_version">Tor: https://www.torproject.org</string>
     <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
     <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
-    <string name="found_existing_tor_process">znaleziono istniejący proces Tora...</string>
+    <string name="found_existing_tor_process">znaleziono istniejący proces Tora…</string>
     <string name="something_bad_happened">Coś nie poszło nie tak. Sprawdź logi</string>
     <string name="unable_to_read_hidden_service_name">uniemożliw czytanie nazw ukrytych serwisów</string>
     <string name="unable_to_start_tor">Nie można wystartować aplikacji Tor:</string>
@@ -102,17 +102,17 @@
     <string name="pref_use_expanded_notifications">Pokaż rozszerzone powiadomienie z krajem Tor exit node oraz jego IP</string>
     <string name="pref_use_expanded_notifications_title">Rozszerzone Powiadomienia</string>
     <string name="set_locale_title">Język</string>
-    <string name="no_internet_connection_tor">Brak połączenia internetowego; Tor jest w trybie oczekiwania...</string>
+    <string name="no_internet_connection_tor">Brak połączenia z internetem; Tor jest w trybie gotowości…</string>
     <string name="pref_disable_network_title">Brak Auto-Uśpienia Sieci</string>
     <string name="pref_disable_network_summary">Ustaw Tor\'a w tryb uśpienia kiedy połączenie internetowe będzie niedostępne</string>
     <string name="newnym">Nowa tożsamość Tor\'a została zmieniona!</string>
-    <string name="no_network_connectivity_putting_tor_to_sleep_">Brak połączenia internetowego. Tor będzie w trybie snu...</string>
-    <string name="network_connectivity_is_good_waking_tor_up_">Połączenie internetowe jest dobre. Trwa budzenie Tora...</string>
+    <string name="no_network_connectivity_putting_tor_to_sleep_">Brak połączenia internetowego. Tor będzie w trybie snu…</string>
+    <string name="network_connectivity_is_good_waking_tor_up_">Połączenie internetowe jest dobre. Trwa budzenie Tora…</string>
     <string name="updating_settings_in_tor_service">aktualizowanie ustawień w serwisie Tor</string>
     <string name="pref_socks_title">Tor SOCKS</string>
     <string name="pref_socks_summary">Port który oferuje SOCKS proxy (domyślnie: 9050 lub 0, aby wyłączyć)</string>
     <string name="pref_socks_dialog">Konfiguracja portu SOCKS</string>
-    <string name="pref_transport_title">Tor TransProxy Port</string>
+    <string name="pref_transport_title">Tor Port TransProxy</string>
     <string name="pref_transport_summary">Port który oferuje Transparent Proxy (domyślnie: 9040 lub 0, aby wyłączyć)</string>
     <string name="pref_transport_dialog">Konfiguracja portu TransProxy</string>
     <string name="pref_dnsport_title">Tor DNS Port</string>
@@ -155,4 +155,6 @@
     <string name="vpn_default_world">Globalny (automatyczny)</string>
     <string name="onion_port">Port Cebulowy</string>
     <string name="delete_service">Usuń usługę</string>
+    <string name="openssl_version">OpenSSL: http://www.openssl.org</string>
+    <string name="obfsproxy_version">Obfs4proxy: https://github.com/Yawning/obfs4</string>
 </resources>
