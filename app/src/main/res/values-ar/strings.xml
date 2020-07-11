@@ -163,8 +163,7 @@
   <string name="fields_can_t_be_empty">لا يمكن ترك الحقول فارغة</string>
   <string name="start_tor_again_for_finish_the_process">قم بتشغيل تور ثانيةً لإنهاء العملية</string>
   <string name="confirm_service_deletion">تأكيد حذف الخدمة</string>
-  <string name="click_again_for_backup">قم بالنقر ثانية للقيام بالنسخ الإحتياطي</string>
-  <string name="service_type">نوع الخدمة</string>
+    <string name="service_type">نوع الخدمة</string>
   <string name="auth_cookie">كعكة المصادقة</string>
   <string name="copy_cookie_to_clipboard">نسخ الكعكة إلى الحافظة</string>
   <string name="auth_cookie_was_not_configured">لم يتم إعداد كعكة المصادقة</string>

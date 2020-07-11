@@ -156,8 +156,7 @@
   <string name="fields_can_t_be_empty">Felter kan ikke stå tomme</string>
   <string name="start_tor_again_for_finish_the_process">Start Tor igjen for å fullføre prosessen</string>
   <string name="confirm_service_deletion">Bekreft sletting av tjeneste</string>
-  <string name="click_again_for_backup">Klikk igjen for å sikkerhetskopiere</string>
-  <string name="service_type">Tjenestetype</string>
+    <string name="service_type">Tjenestetype</string>
   <string name="copy_cookie_to_clipboard">Kopier kake til utklippstavle</string>
   <string name="please_restart_Orbot_to_enable_the_changes">Gjør omstart av Orbot før endringer trer i kraft</string>
   <string name="client_cookies">Klientinformasjonskapsler</string>

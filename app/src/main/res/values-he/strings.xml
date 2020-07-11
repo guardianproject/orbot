@@ -165,8 +165,7 @@
   <string name="fields_can_t_be_empty">שדות אינם יכולים להיות ריקים</string>
   <string name="start_tor_again_for_finish_the_process">הפעל את Tor שוב כדי לסיים את התהליך</string>
   <string name="confirm_service_deletion">אשר מחיקת שירות</string>
-  <string name="click_again_for_backup">לחץ שוב לגיבוי</string>
-  <string name="service_type">סוג שירות</string>
+    <string name="service_type">סוג שירות</string>
   <string name="auth_cookie">עוגיית אימות</string>
   <string name="copy_cookie_to_clipboard">העתק עוגייה ללוח עריכה</string>
   <string name="auth_cookie_was_not_configured">עוגיית אימות לא הוגדרה</string>

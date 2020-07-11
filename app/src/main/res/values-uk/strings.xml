@@ -165,8 +165,7 @@
   <string name="fields_can_t_be_empty">Поля не можуть бути порожніми</string>
   <string name="start_tor_again_for_finish_the_process">Запустіть Tor знову для завершення процесу</string>
   <string name="confirm_service_deletion">Підтвердьте видалення сервісу</string>
-  <string name="click_again_for_backup">Ще раз натисніть щоби копіювати в резерв</string>
-  <string name="service_type">Тип сервісу</string>
+    <string name="service_type">Тип сервісу</string>
   <string name="auth_cookie">Авторизація реп\'яшків </string>
   <string name="copy_cookie_to_clipboard">Копіювати реп\'яшки в буфер обміну</string>
   <string name="auth_cookie_was_not_configured">Авторизація реп\'яшків не налаштована</string>

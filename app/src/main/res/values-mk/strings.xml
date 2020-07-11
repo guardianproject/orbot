@@ -165,8 +165,7 @@
   <string name="fields_can_t_be_empty">Полињата не можат да бидат празни</string>
   <string name="start_tor_again_for_finish_the_process">Стартувај го Tor повторно да го заврши процесот</string>
   <string name="confirm_service_deletion">Потврди бришење на услугата</string>
-  <string name="click_again_for_backup">Кликни повторно за резервна копија</string>
-  <string name="service_type">Тип на услуга</string>
+    <string name="service_type">Тип на услуга</string>
   <string name="auth_cookie">Автентично колаче</string>
   <string name="copy_cookie_to_clipboard">Копирај колаче за залепување</string>
   <string name="auth_cookie_was_not_configured">Автентичното колаче не е прилагодено</string>

@@ -165,8 +165,7 @@
   <string name="fields_can_t_be_empty">Палі не могуць быць пустымі</string>
   <string name="start_tor_again_for_finish_the_process">Запусціце Tor ізноў для завяршэння працэсу</string>
   <string name="confirm_service_deletion">Пацверджанне выдалення службы</string>
-  <string name="click_again_for_backup">Націсніце яшчэ раз для рэзервавання</string>
-  <string name="service_type">Тып службы</string>
+    <string name="service_type">Тып службы</string>
   <string name="auth_cookie">Аўтарызучыя cookie</string>
   <string name="copy_cookie_to_clipboard">Капіяваць cookie у буфер памену</string>
   <string name="auth_cookie_was_not_configured">Аўтарызучыя cookie не наладжаны</string>

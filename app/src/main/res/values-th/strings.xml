@@ -165,8 +165,7 @@
   <string name="fields_can_t_be_empty">ปล่อยเขตข้อมูลให้ว่างไม่ได้</string>
   <string name="start_tor_again_for_finish_the_process">เริ่มทำงาน Tor อีกครั้งเพื่อจบกระบวนการ</string>
   <string name="confirm_service_deletion">ยืนยันการลบบริการ</string>
-  <string name="click_again_for_backup">กดอีกครั้งเพื่อเรียกข้อมูลสำรอง</string>
-  <string name="service_type">ประเภทของบริการ</string>
+    <string name="service_type">ประเภทของบริการ</string>
   <string name="auth_cookie">คุกกี้ที่ได้รับอนุญาต</string>
   <string name="copy_cookie_to_clipboard">คัดลอกคุกกี้ลงในคลิปบอร์ด</string>
   <string name="auth_cookie_was_not_configured">ยังไม่ได้กำหนดค่าคุกกี้ที่ได้รับอนุญาต</string>
