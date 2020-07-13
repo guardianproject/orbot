@@ -135,6 +135,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
                 mProgressBar.setVisibility(View.GONE);
                 mIvCaptcha.setImageBitmap(BitmapFactory.decodeByteArray(mCaptcha, 0, mCaptcha.length));
                 mRequestInProgress = false;
+                mEtSolution.setEnabled(true);
             }
         }
         else {

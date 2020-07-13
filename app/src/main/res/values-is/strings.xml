@@ -165,8 +165,7 @@
   <string name="fields_can_t_be_empty">Gagnasvið mega ekki vera auð</string>
   <string name="start_tor_again_for_finish_the_process">Ræstu Tor aftur til að ljúka ferlinu</string>
   <string name="confirm_service_deletion">Staðfestu eyðingu á þjónustu</string>
-  <string name="click_again_for_backup">Smelltu aftur fyrir öryggisafrit</string>
-  <string name="service_type">Tegund þjónustu</string>
+    <string name="service_type">Tegund þjónustu</string>
   <string name="auth_cookie">Auðkenningar-vefkaka</string>
   <string name="copy_cookie_to_clipboard">Afrita vefköku á klippispjald</string>
   <string name="auth_cookie_was_not_configured">Auðkenningar-vefkaka var ekki stillt</string>

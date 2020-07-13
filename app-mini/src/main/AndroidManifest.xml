@@ -51,10 +51,6 @@
             android:stateNotNeeded="true"
             android:theme="@android:style/Theme.Translucent" />
         <activity
-            android:name=".vpn.VPNEnableActivity"
-            android:exported="false"
-            android:label="@string/app_name" />
-        <activity
             android:name=".settings.SettingsPreferences"
             android:label="@string/app_name" />
         <activity

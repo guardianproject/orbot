@@ -2,6 +2,7 @@
 /* See LICENSE for licensing information */
 package org.torproject.android.ui.onboarding;
 
+import android.annotation.SuppressLint;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Intent;
@@ -10,8 +11,10 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -68,6 +71,7 @@ public class CustomBridgesActivity extends AppCompatActivity implements View.OnC
         }
 
         mEtPastedBridges = findViewById(R.id.etPastedBridges);
+        configureMultilineEditTextInScrollView(mEtPastedBridges);
         mEtPastedBridges.setText(bridges);
         mEtPastedBridges.addTextChangedListener(this);
 
@@ -81,9 +85,9 @@ public class CustomBridgesActivity extends AppCompatActivity implements View.OnC
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-                finish();
+            finish();
 
-                return true;
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -155,8 +159,7 @@ public class CustomBridgesActivity extends AppCompatActivity implements View.OnC
                         results = results.substring(urlIdx + 3);
 
                         setNewBridges(results);
-                    }
-                    else {
+                    } else {
                         JSONArray bridgeJson = new JSONArray(results);
                         StringBuilder bridgeLines = new StringBuilder();
 
@@ -167,8 +170,7 @@ public class CustomBridgesActivity extends AppCompatActivity implements View.OnC
 
                         setNewBridges(bridgeLines.toString());
                     }
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     Log.e(getClass().getSimpleName(), "unsupported", e);
                 }
             }
@@ -215,5 +217,24 @@ public class CustomBridgesActivity extends AppCompatActivity implements View.OnC
         Intent intent = new Intent(this, OrbotService.class);
         intent.setAction(TorServiceConstants.CMD_SIGNAL_HUP);
         startService(intent);
+    }
+
+    // configures an EditText we assume to be multiline and nested in a ScrollView to be independently scrollable
+    @SuppressLint("ClickableViewAccessibility")
+    private static void configureMultilineEditTextInScrollView(EditText et) {
+        et.setVerticalScrollBarEnabled(true);
+        et.setOverScrollMode(View.OVER_SCROLL_ALWAYS);
+        et.setScrollBarStyle(View.SCROLLBARS_INSIDE_INSET);
+        et.setMovementMethod(ScrollingMovementMethod.getInstance());
+        et.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+                if ((event.getAction() & MotionEvent.ACTION_UP) != 0 && (event.getActionMasked() & MotionEvent.ACTION_UP) != 0) {
+                    v.getParent().requestDisallowInterceptTouchEvent(false);
+                }
+                return false;
+            }
+        });
     }
 }

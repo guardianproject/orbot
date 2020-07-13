@@ -163,8 +163,7 @@
   <string name="fields_can_t_be_empty">Поља не могу бити празна</string>
   <string name="start_tor_again_for_finish_the_process">Поново покрените Тор да бисте довршили процес</string>
   <string name="confirm_service_deletion">Потрврди брисанје услуге</string>
-  <string name="click_again_for_backup">Кликните поново за резервну копију</string>
-  <string name="service_type">Тип Услуге</string>
+    <string name="service_type">Тип Услуге</string>
   <string name="please_restart_Orbot_to_enable_the_changes">Молимо покрените поново Орбот ради примењивања промена</string>
   <string name="client_cookies">Колачићи клијента</string>
   <string name="onion">.onion</string>

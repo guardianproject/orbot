@@ -165,8 +165,7 @@
   <string name="fields_can_t_be_empty">Les champs ne peuvent pas être vides</string>
   <string name="start_tor_again_for_finish_the_process">Redémarrer Tor pour terminer le processus</string>
   <string name="confirm_service_deletion">Confirmer la suppression du service</string>
-  <string name="click_again_for_backup">Recliquer pour sauvegarder</string>
-  <string name="service_type">Type de service</string>
+    <string name="service_type">Type de service</string>
   <string name="auth_cookie">Témoin auth</string>
   <string name="copy_cookie_to_clipboard">Copier le témoin vers le presse-papiers</string>
   <string name="auth_cookie_was_not_configured">Le témoin auth n’est pas configuré</string>

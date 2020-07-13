@@ -165,8 +165,7 @@
   <string name="fields_can_t_be_empty">Alanlar boş bırakılamaz</string>
   <string name="start_tor_again_for_finish_the_process">İşlemi tamamlamak için Tor uygulamasını yeniden başlatın</string>
   <string name="confirm_service_deletion">Hizmeti Silmeyi Onayla</string>
-  <string name="click_again_for_backup">Yedeklemek için yeniden tıklayın</string>
-  <string name="service_type">Hizmet Türü</string>
+    <string name="service_type">Hizmet Türü</string>
   <string name="auth_cookie">Kimlik Doğrulama Çerezi</string>
   <string name="copy_cookie_to_clipboard">Çerezi panoya kopyala</string>
   <string name="auth_cookie_was_not_configured">Kimlik doğrulama çerezi yapılandırılmamış</string>

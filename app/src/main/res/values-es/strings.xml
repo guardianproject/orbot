@@ -166,8 +166,7 @@ direcciones (o rangos). No prevalecen sobre las configuraciones de exclusión de
   <string name="fields_can_t_be_empty">Los campos no pueden estar vacíos</string>
   <string name="start_tor_again_for_finish_the_process">Inicie Tor de nuevo para finalizar el proceso</string>
   <string name="confirm_service_deletion">Confirme el borrado del servicio</string>
-  <string name="click_again_for_backup">Pulse de nuevo para realizar copia de seguridad</string>
-  <string name="service_type">Tipo de servicio</string>
+    <string name="service_type">Tipo de servicio</string>
   <string name="auth_cookie">Cookie de autentificación</string>
   <string name="copy_cookie_to_clipboard">Copiar cookie al portapapeles</string>
   <string name="auth_cookie_was_not_configured">La cookie de autentificación no fue configurada</string>

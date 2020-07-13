@@ -164,8 +164,7 @@
   <string name="name_can_t_be_empty">O campo Nome não pode ser vazio</string>
   <string name="fields_can_t_be_empty">Campos não podem ser vazios</string>
   <string name="confirm_service_deletion">Confirmar a remoção do serviço</string>
-  <string name="click_again_for_backup">Clique novamente para backup</string>
-  <string name="service_type">Tipo do Serviço</string>
+    <string name="service_type">Tipo do Serviço</string>
   <string name="auth_cookie">Cookie de autenticação</string>
   <string name="copy_cookie_to_clipboard">Copiar cookie para a area de transferência</string>
   <string name="please_restart_Orbot_to_enable_the_changes">Por favor reinicie Orbot para habilitar as mundanças</string>

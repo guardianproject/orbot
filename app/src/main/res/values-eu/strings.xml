@@ -165,8 +165,7 @@
   <string name="fields_can_t_be_empty">Eremuak ezin dira hutsik egon</string>
   <string name="start_tor_again_for_finish_the_process">Hasi Tor berriro prozesua amaitzeko</string>
   <string name="confirm_service_deletion">Berretsi zerbitzua ezabatzea</string>
-  <string name="click_again_for_backup">Egin klik berriro babeskopiarako</string>
-  <string name="service_type">Zerbitzu mota</string>
+    <string name="service_type">Zerbitzu mota</string>
   <string name="auth_cookie">Autentifikazio cookie-a</string>
   <string name="copy_cookie_to_clipboard">Kopiatu cookie-a arbelera</string>
   <string name="auth_cookie_was_not_configured">Ez da autentifikazio cookie-a konfiguratu</string>

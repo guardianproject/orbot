@@ -20,6 +20,7 @@ import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.net.VpnService;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -56,12 +57,10 @@ import org.torproject.android.mini.ui.AppConfigActivity;
 import org.torproject.android.mini.ui.AppManagerActivity;
 import org.torproject.android.mini.ui.Rotate3dAnimation;
 import org.torproject.android.mini.ui.onboarding.OnboardingActivity;
-import org.torproject.android.mini.vpn.VPNEnableActivity;
 import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.OrbotService;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.Prefs;
-import org.torproject.android.service.vpn.TorVpnService;
 import org.torproject.android.service.vpn.TorifiedApp;
 import org.torproject.android.service.vpn.VpnConstants;
 import org.torproject.android.service.vpn.VpnPrefs;
@@ -275,7 +274,7 @@ public class MiniMainActivity extends AppCompatActivity
 
         //auto start VPN if VPN is enabled
         if (useVPN) {
-            startActivity(new Intent(MiniMainActivity.this,VPNEnableActivity.class));
+            sendIntentToService(TorServiceConstants.ACTION_START_VPN);
         }
 
         mBtnVPN.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -463,16 +462,14 @@ public class MiniMainActivity extends AppCompatActivity
         }
     }
 
-	private void refreshVPNApps ()
-    {
-        TorVpnService.stop(this);
-        startActivity(new Intent(MiniMainActivity.this, VPNEnableActivity.class));
+	private void refreshVPNApps() {
+        sendIntentToService(TorServiceConstants.ACTION_STOP_VPN);
+        sendIntentToService(TorServiceConstants.ACTION_START_VPN);
     }
 
     private void enableVPN (boolean enable)
     {
-        if (enable && pkgIds.size() == 0)
-        {
+        if (enable && pkgIds.size() == 0) {
             showAppPicker();
         }
         else {
@@ -480,10 +477,18 @@ public class MiniMainActivity extends AppCompatActivity
             Prefs.putStartOnBoot(enable);
 
             if (enable) {
-                startActivityForResult(new Intent(MiniMainActivity.this, VPNEnableActivity.class), REQUEST_VPN);
+
+                Intent intentVPN = VpnService.prepare(this);
+
+                if (intentVPN != null) {
+                    startActivityForResult(intentVPN, REQUEST_VPN);
+                } else {
+                    sendIntentToService(TorServiceConstants.ACTION_START);
+                    sendIntentToService(TorServiceConstants.ACTION_START_VPN);
+                }
             } else {
-                TorVpnService.start(this);
-                stopTor();
+                sendIntentToService(TorServiceConstants.ACTION_STOP_VPN);
+                stopTor(); // todo this call isn't in the main Orbot app, is it needed?
             }
         }
     }
@@ -606,20 +611,7 @@ public class MiniMainActivity extends AppCompatActivity
 
 
             }
-        }
-        else if (request == REQUEST_VPN)
-        {
-			if (response == RESULT_OK) {
-                TorVpnService.start(this);
-
-            }
-			else if (response == VPNEnableActivity.ACTIVITY_RESULT_VPN_DENIED)
-			{
-			    mBtnVPN.setChecked(false);
-				Prefs.putUseVpn(false);
-			}
-        }
-        else if (request == REQUEST_VPN_APPS_SELECT)
+        } else if (request == REQUEST_VPN_APPS_SELECT)
         {
             if (response == RESULT_OK &&
                     torStatus == TorServiceConstants.STATUS_ON) {
@@ -627,10 +619,14 @@ public class MiniMainActivity extends AppCompatActivity
 
                 String newPkgId = data.getStringExtra(Intent.EXTRA_PACKAGE_NAME);
                 //add new entry
-
             }
-
+        } else if (request == REQUEST_VPN && response == RESULT_OK) {
+            sendIntentToService(TorServiceConstants.ACTION_START_VPN);
+        } else if (request == REQUEST_VPN && response == RESULT_CANCELED) {
+            mBtnVPN.setChecked(false);
+            Prefs.putUseVpn(false);
         }
+
         
         IntentResult scanResult = IntentIntegrator.parseActivityResult(request, response, data);
         if (scanResult != null) {

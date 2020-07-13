@@ -8,10 +8,13 @@ import android.database.ContentObserver;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import androidx.core.view.MenuItemCompat;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,7 +22,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.Toast;
+
 import org.torproject.android.R;
 import org.torproject.android.settings.LocaleHelper;
 import org.torproject.android.ui.hiddenservices.adapters.OnionListAdapter;
@@ -42,13 +45,13 @@ public class HiddenServicesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_hs_list_view);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mResolver = getContentResolver();
 
-        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,7 +72,7 @@ public class HiddenServicesActivity extends AppCompatActivity {
                 HSContentProvider.CONTENT_URI, true, new HSObserver(new Handler())
         );
 
-        ListView onion_list = (ListView) findViewById(R.id.onion_list);
+        ListView onion_list = findViewById(R.id.onion_list);
         onion_list.setAdapter(mAdapter);
 
         onion_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -101,12 +104,12 @@ public class HiddenServicesActivity extends AppCompatActivity {
 
                 HSActionsDialog dialog = new HSActionsDialog();
                 dialog.setArguments(arguments);
-                dialog.show(getSupportFragmentManager(), "HSActionsDialog");
+                dialog.show(getSupportFragmentManager(), HSActionsDialog.class.getSimpleName());
             }
         });
     }
 
-
+    
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(LocaleHelper.onAttach(base));
@@ -185,7 +188,11 @@ public class HiddenServicesActivity extends AppCompatActivity {
                 break;
             }
             case HSActionsDialog.WRITE_EXTERNAL_STORAGE_FROM_ACTION_DIALOG: {
-                Toast.makeText(this, R.string.click_again_for_backup, Toast.LENGTH_LONG).show();
+                try {
+                    HSActionsDialog activeDialog = (HSActionsDialog) getSupportFragmentManager().findFragmentByTag(HSActionsDialog.class.getSimpleName());
+                    activeDialog.doBackup();
+                } catch (ClassCastException e) {
+                }
                 break;
             }
         }
