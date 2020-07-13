@@ -65,6 +65,7 @@
                 android:layout_height="wrap_content"
                 android:autofillHints=""
                 android:ems="10"
+                android:enabled="false"
                 android:hint="@string/enter_characters_from_image"
                 android:imeOptions="actionSend"
                 android:inputType="textShortMessage|text"
