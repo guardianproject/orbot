@@ -165,8 +165,7 @@
   <string name="fields_can_t_be_empty">A mezők nem lehetnek üresek</string>
   <string name="start_tor_again_for_finish_the_process">Indítsa el a Tor-t még egyszer a befejezéshez</string>
   <string name="confirm_service_deletion">Szolgáltatás törlés jóváhagyása</string>
-  <string name="click_again_for_backup">Kattintson még egyszer a mentéshez</string>
-  <string name="service_type">Szolgáltatás típus</string>
+    <string name="service_type">Szolgáltatás típus</string>
   <string name="auth_cookie">Azonosító süti</string>
   <string name="copy_cookie_to_clipboard">Süti másolása vágólapra</string>
   <string name="auth_cookie_was_not_configured">Azonosító süti nem konfigurált</string>

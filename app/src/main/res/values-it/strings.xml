@@ -165,8 +165,7 @@
   <string name="fields_can_t_be_empty">I campi non possono essere vuoti</string>
   <string name="start_tor_again_for_finish_the_process">Riavvia Tor per finire il processo</string>
   <string name="confirm_service_deletion">Conferma l\'eliminazione del servizio</string>
-  <string name="click_again_for_backup">Clicca ancora per eseguire il backup</string>
-  <string name="service_type">Tipo di servizio</string>
+    <string name="service_type">Tipo di servizio</string>
   <string name="auth_cookie">Cookie autenticazione</string>
   <string name="copy_cookie_to_clipboard">Copia cookie negli appunti</string>
   <string name="auth_cookie_was_not_configured">Cookie di autenticazione non configurato</string>

@@ -165,8 +165,7 @@
   <string name="fields_can_t_be_empty">Janiw kunas ch\'usäñapakiti</string>
   <string name="start_tor_again_for_finish_the_process">Tukuyañatakix Tor mayamp naktayam</string>
   <string name="confirm_service_deletion">Lurañanakax pichsutäniwa</string>
-  <string name="click_again_for_backup">Imat luratanak utjañapatak mayamp limt\'am</string>
-  <string name="service_type">Kunayman lurañanaka</string>
+    <string name="service_type">Kunayman lurañanaka</string>
   <string name="auth_cookie">Chiqat k\'arich uk katjir cookie</string>
   <string name="copy_cookie_to_clipboard">Cookie waruqañawjar imam</string>
   <string name="auth_cookie_was_not_configured">Chiqat k\'arich uk katjir cookiex janiw mayjt\'ayatäkiti</string>

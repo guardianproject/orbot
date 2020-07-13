@@ -165,8 +165,7 @@
   <string name="fields_can_t_be_empty">Fält kan inte vara tomma</string>
   <string name="start_tor_again_for_finish_the_process">Starta Tor igen för att avsluta processen</string>
   <string name="confirm_service_deletion">Bekräfta tjänst borttagning</string>
-  <string name="click_again_for_backup">Klicka igen för säkerhetskopiering</string>
-  <string name="service_type">Typ av tjänst</string>
+    <string name="service_type">Typ av tjänst</string>
   <string name="auth_cookie">Auth kaka</string>
   <string name="copy_cookie_to_clipboard">Kopiera kaka till urklipp</string>
   <string name="auth_cookie_was_not_configured">Auth kaka var inte konfigurerad</string>

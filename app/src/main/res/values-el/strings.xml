@@ -165,8 +165,7 @@
   <string name="fields_can_t_be_empty">Τα πεδία δεν μπορεί να είναι κενά</string>
   <string name="start_tor_again_for_finish_the_process">Έναρξη ξανά τού Tor για τον τερματισμό της ενέργειας</string>
   <string name="confirm_service_deletion">Επιβεβαίωση διαγραφής υπηρεσίας</string>
-  <string name="click_again_for_backup">Πατήστε ξανά για το αντίγραφο ασφαλείας</string>
-  <string name="service_type">Τύπος υπηρεσίας</string>
+    <string name="service_type">Τύπος υπηρεσίας</string>
   <string name="auth_cookie">Αναγνωριστικό cookie</string>
   <string name="copy_cookie_to_clipboard">Αντιγραφή τού cookie στο πρόχειρο</string>
   <string name="auth_cookie_was_not_configured">Το αναγνωριστικό cookie δεν διαμορφώθηκε</string>

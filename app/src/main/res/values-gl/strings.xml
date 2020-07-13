@@ -165,8 +165,7 @@
   <string name="fields_can_t_be_empty">Os campos non poden estar baldeiros</string>
   <string name="start_tor_again_for_finish_the_process">Inicie Tor de novo para rematar o proceso</string>
   <string name="confirm_service_deletion">Confirme a eliminación do servizo</string>
-  <string name="click_again_for_backup">Pulse de novo para respaldar</string>
-  <string name="service_type">Tipo de servizo</string>
+    <string name="service_type">Tipo de servizo</string>
   <string name="auth_cookie">Testemuño de autorización</string>
   <string name="copy_cookie_to_clipboard">Copie o testemuño ao portapapeis</string>
   <string name="auth_cookie_was_not_configured">Non estableceu un testemuño de autorización</string>

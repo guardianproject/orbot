@@ -9,7 +9,6 @@ import android.database.ContentObserver;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
@@ -42,14 +41,13 @@ public class ClientCookiesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_activity_client_cookies);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mResolver = getContentResolver();
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.fab).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AddCookieDialog dialog = new AddCookieDialog();
@@ -66,7 +64,7 @@ public class ClientCookiesActivity extends AppCompatActivity {
                 CookieContentProvider.CONTENT_URI, true, new HSObserver(new Handler())
         );
 
-        ListView cookies = (ListView) findViewById(R.id.clien_cookies_list);
+        ListView cookies = findViewById(R.id.clien_cookies_list);
         cookies.setAdapter(mAdapter);
 
         cookies.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -94,7 +92,7 @@ public class ClientCookiesActivity extends AppCompatActivity {
 
                 CookieActionsDialog dialog = new CookieActionsDialog();
                 dialog.setArguments(arguments);
-                dialog.show(getSupportFragmentManager(), "CookieActionsDialog");
+                dialog.show(getSupportFragmentManager(), CookieActionsDialog.class.getSimpleName());
             }
         });
 
@@ -149,7 +147,10 @@ public class ClientCookiesActivity extends AppCompatActivity {
                 break;
             }
             case CookieActionsDialog.WRITE_EXTERNAL_STORAGE_FROM_COOKIE_ACTION_DIALOG: {
-                Toast.makeText(this, R.string.click_again_for_backup, Toast.LENGTH_LONG).show();
+                try {
+                    CookieActionsDialog activeDialog = (CookieActionsDialog) getSupportFragmentManager().findFragmentByTag(CookieActionsDialog.class.getSimpleName());
+                    activeDialog.doBackup();
+                } catch (ClassCastException e) {}
                 break;
             }
         }

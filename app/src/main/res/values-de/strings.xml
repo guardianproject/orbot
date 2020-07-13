@@ -165,8 +165,7 @@
   <string name="fields_can_t_be_empty">Felder dürfen nicht leer sein</string>
   <string name="start_tor_again_for_finish_the_process">Tor neu starten, um den Vorgang abzuschließen</string>
   <string name="confirm_service_deletion">Löschen des Dienst bestätigen</string>
-  <string name="click_again_for_backup">Zum Sichern noch einmal klicken</string>
-  <string name="service_type">Dienst-Typ</string>
+    <string name="service_type">Dienst-Typ</string>
   <string name="auth_cookie">Authentifikationscookie</string>
   <string name="copy_cookie_to_clipboard">Cookie in die Zwischenablage kopieren</string>
   <string name="auth_cookie_was_not_configured">Es wurde kein Authentifikationscookie festgelegt</string>

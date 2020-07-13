@@ -165,8 +165,7 @@
   <string name="fields_can_t_be_empty">Velden kunnen niet leeg zijn</string>
   <string name="start_tor_again_for_finish_the_process">Start Tor opnieuw om het proces te voltooien</string>
   <string name="confirm_service_deletion">Bevestig verwijderen van dienst</string>
-  <string name="click_again_for_backup">Klik opnieuw voor back-up</string>
-  <string name="service_type">Diensttype</string>
+    <string name="service_type">Diensttype</string>
   <string name="auth_cookie">Authenticatiecookie</string>
   <string name="copy_cookie_to_clipboard">Cookie kopiëren naar klembord</string>
   <string name="auth_cookie_was_not_configured">Authenticatiecookie is niet ingesteld</string>
