@@ -180,4 +180,10 @@
     <string name="backup_saved_at_external_storage">Kopia zapasowa zapisywana w pamięci zewnętrznej</string>
     <string name="backup_service">Usługa tworzenia kopii zapasowych</string>
     <string name="hidden_service_request">Aplikacja chce otworzyć port serwera cebulowego %1$s do sieci Tor. Jest to bezpieczne, jeśli zaufasz aplikacji.</string>
+    <string name="client_cookies">Klient cookies</string>
+    <string name="auth_cookie">Autoryzacja cookie</string>
+    <string name="show_auth_cookie">Pokaż autoryzację cookie</string>
+    <string name="auth_cookie_was_not_configured">Autoryzowany plik cookie nie został skonfigurowany</string>
+    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Jeśli twoja sieć komórkowa aktywnie blokuje Tor, możesz użyć „Serwer mostkowy” jako alternatywnego sposobu wejścia. Wybierz jedną z opcji, aby skonfigurować i przetestować ...</string>
+    <string name="wizard_details_msg">Orbot to aplikacja typu open source, która zawiera Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent i Polipo. Zapewnia lokalny serwer proxy HTTP (8118) i serwer proxy SOCKS (9050) do sieci Tor. Orbot ma również możliwość, na zrootowanym urządzeniu, wysyłania całego ruchu internetowego przez Tor.</string>
 </resources>
