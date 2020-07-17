@@ -539,13 +539,14 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
 
     private void enableVPN(boolean enable) {
         Prefs.putUseVpn(enable);
-
+        drawAppShortcuts(false);
         if (enable) {
 
             Intent intentVPN = VpnService.prepare(this);
             if (intentVPN != null)
                 startActivityForResult(intentVPN, REQUEST_VPN);
             else {
+                drawAppShortcuts(true);
                 sendIntentToService(ACTION_START);
                 sendIntentToService(ACTION_START_VPN);
             }
@@ -555,7 +556,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
             sendIntentToService(ACTION_STOP_VPN);
         }
 
-        addAppShortcuts();
     }
 
     private void enableHiddenServicePort(
@@ -834,6 +834,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                 refreshVPNApps();
 
         } else if (request == REQUEST_VPN && response == RESULT_OK) {
+            drawAppShortcuts(true);
             sendIntentToService(ACTION_START_VPN);
         } else if (request == REQUEST_VPN && response == RESULT_CANCELED) {
             mBtnVPN.setChecked(false);
@@ -923,7 +924,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         else
             updateStatus(null, torStatus);
 
-        addAppShortcuts();
+        drawAppShortcuts(Prefs.useVpn());
 
         //now you can handle the intents properly
         handleIntents();
@@ -1197,83 +1198,83 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         lblStatus.setText(getString(R.string.newnym));
     }
 
-    private void addAppShortcuts() {
+    private void drawAppShortcuts(boolean showSelectedApps) {
+
+        if (!PermissionManager.isLollipopOrHigher()) return;
+
         LinearLayout llBoxShortcuts = findViewById(R.id.boxAppShortcuts);
 
         PackageManager pMgr = getPackageManager();
 
         llBoxShortcuts.removeAllViews();
 
-        if (PermissionManager.isLollipopOrHigher()) {
+        if (showSelectedApps) {
+            ArrayList<String> pkgIds = new ArrayList<>();
+            String tordAppString = mPrefs.getString(PREFS_KEY_TORIFIED, "");
 
-            if (Prefs.useVpn()) {
-                ArrayList<String> pkgIds = new ArrayList<>();
-                String tordAppString = mPrefs.getString(PREFS_KEY_TORIFIED, "");
+            if (TextUtils.isEmpty(tordAppString)) {
+                addFullDeviceVpnView(llBoxShortcuts);
+            } else {
+                StringTokenizer st = new StringTokenizer(tordAppString, "|");
+                while (st.hasMoreTokens() && pkgIds.size() < 4)
+                    pkgIds.add(st.nextToken());
+                int appsAdded = 0;
+                for (final String pkgId : pkgIds) {
+                    try {
+                        ApplicationInfo aInfo = getPackageManager().getApplicationInfo(pkgId, 0);
+                        // skip disabled packages
+                        if (!aInfo.enabled) continue;
+                        ImageView iv = new ImageView(this);
+                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                        params.setMargins(3, 3, 3, 3);
+                        iv.setLayoutParams(params);
+                        iv.setImageDrawable(pMgr.getApplicationIcon(pkgId));
 
-                if (TextUtils.isEmpty(tordAppString)) {
-                    addFullDeviceVpnView(llBoxShortcuts);
-                } else {
-                    StringTokenizer st = new StringTokenizer(tordAppString, "|");
-                    while (st.hasMoreTokens() && pkgIds.size() < 4)
-                        pkgIds.add(st.nextToken());
-                    int appsAdded = 0;
-                    for (final String pkgId : pkgIds) {
-                        try {
-                            ApplicationInfo aInfo = getPackageManager().getApplicationInfo(pkgId, 0);
-                            // skip disabled packages
-                            if (!aInfo.enabled) continue;
-                            ImageView iv = new ImageView(this);
-                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                            params.setMargins(3, 3, 3, 3);
-                            iv.setLayoutParams(params);
-                            iv.setImageDrawable(pMgr.getApplicationIcon(pkgId));
+                        iv.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                openBrowser(URL_TOR_CHECK, false, pkgId);
+                            }
+                        });
 
-                            iv.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    openBrowser(URL_TOR_CHECK, false, pkgId);
-                                }
-                            });
-
-                            llBoxShortcuts.addView(iv);
-                            appsAdded++;
-                        } catch (Exception e) {
-                            //package not installed?
-                        }
+                        llBoxShortcuts.addView(iv);
+                        appsAdded++;
+                    } catch (Exception e) {
+                        //package not installed?
                     }
-                    if (appsAdded == 0) {
+                }
+                if (appsAdded == 0) {
                         /* if a user uninstalled or disabled all apps that were set on the device
                            then we want to have the no apps added view appear even though
                            the tordAppString variable is not empty */
-                        addFullDeviceVpnView(llBoxShortcuts);
-                    }
+                    addFullDeviceVpnView(llBoxShortcuts);
                 }
-            } else {
-                TextView tv = new TextView(this);
-                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                params.setMargins(12, 3, 3, 3);
-                tv.setLayoutParams(params);
-                tv.setText(R.string.vpn_disabled);
-                llBoxShortcuts.addView(tv);
             }
-
-            //now add app edit/add shortcut
-            ImageView iv = new ImageView(this);
+        } else {
+            TextView tv = new TextView(this);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            params.setMargins(3, 3, 3, 3);
-            iv.setLayoutParams(params);
-            iv.setImageDrawable(getResources().getDrawable(R.drawable.ic_settings_white_24dp));
-            llBoxShortcuts.addView(iv);
-            iv.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivityForResult(new Intent(OrbotMainActivity.this, AppManagerActivity.class), REQUEST_VPN_APPS_SELECT);
-
-                }
-            });
+            params.setMargins(12, 3, 3, 3);
+            tv.setLayoutParams(params);
+            tv.setText(R.string.vpn_disabled);
+            llBoxShortcuts.addView(tv);
         }
 
+        //now add app edit/add shortcut
+        ImageView iv = new ImageView(this);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        params.setMargins(3, 3, 3, 3);
+        iv.setLayoutParams(params);
+        iv.setImageDrawable(getResources().getDrawable(R.drawable.ic_settings_white_24dp));
+        llBoxShortcuts.addView(iv);
+        iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityForResult(new Intent(OrbotMainActivity.this, AppManagerActivity.class), REQUEST_VPN_APPS_SELECT);
+
+            }
+        });
     }
+
 
     private void addFullDeviceVpnView(LinearLayout llBoxShortcuts) {
         TextView tv = new TextView(this);
