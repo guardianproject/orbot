@@ -29,12 +29,14 @@ public class BridgeWizardActivity extends AppCompatActivity {
 
     private static int MOAT_REQUEST_CODE = 666;
 
-    private TextView mTvStatus;
+    private static TextView mTvStatus;
     private RadioButton mBtDirect;
     private RadioButton mBtObfs4;
     private RadioButton mBtMeek;
     private RadioButton mBtCustom;
 
+    private static final String BUNDLE_KEY_TV_STATUS_VISIBILITY = "visibility";
+    private static final String BUNDLE_KEY_TV_STATUS_TEXT = "text";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +51,12 @@ public class BridgeWizardActivity extends AppCompatActivity {
         }
 
         mTvStatus = findViewById(R.id.lbl_bridge_test_status);
-        mTvStatus.setVisibility(View.GONE);
+        if (savedInstanceState == null) {
+            mTvStatus.setVisibility(View.GONE);
+        } else {
+            mTvStatus.setVisibility(savedInstanceState.getInt(BUNDLE_KEY_TV_STATUS_VISIBILITY, View.GONE));
+            mTvStatus.setText(savedInstanceState.getString(BUNDLE_KEY_TV_STATUS_TEXT, ""));
+        }
 
         setTitle(getString(R.string.bridges));
 
@@ -86,7 +93,6 @@ public class BridgeWizardActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
         evaluateBridgeListState();
     }
 
@@ -117,8 +123,7 @@ public class BridgeWizardActivity extends AppCompatActivity {
             else {
                 evaluateBridgeListState();
             }
-        }
-        else {
+        } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
@@ -165,12 +170,18 @@ public class BridgeWizardActivity extends AppCompatActivity {
             // Post Code
             if (result) {
                 mTvStatus.setText(R.string.testing_bridges_success);
-
             } else {
                 mTvStatus.setText(R.string.testing_bridges_fail);
-
             }
         }
+    }
+
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putInt(BUNDLE_KEY_TV_STATUS_VISIBILITY, mTvStatus.getVisibility());
+        savedInstanceState.putString(BUNDLE_KEY_TV_STATUS_TEXT, mTvStatus.getText().toString());
+        super.onSaveInstanceState(savedInstanceState);
     }
 
     @SuppressWarnings("SameParameterValue")
@@ -185,8 +196,7 @@ public class BridgeWizardActivity extends AppCompatActivity {
                 connected = true;
                 socket.close();
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -198,14 +208,11 @@ public class BridgeWizardActivity extends AppCompatActivity {
 
         if (!Prefs.bridgesEnabled()) {
             mBtDirect.setChecked(true);
-        }
-        else if (Prefs.getBridgesList().equals("meek")) {
+        } else if (Prefs.getBridgesList().equals("meek")) {
             mBtMeek.setChecked(true);
-        }
-        else if (Prefs.getBridgesList().equals("obfs4")) {
+        } else if (Prefs.getBridgesList().equals("obfs4")) {
             mBtObfs4.setChecked(true);
-        }
-        else {
+        } else {
             mBtCustom.setChecked(true);
         }
     }
