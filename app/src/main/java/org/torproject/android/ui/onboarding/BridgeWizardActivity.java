@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -30,6 +31,8 @@ public class BridgeWizardActivity extends AppCompatActivity {
     private static int MOAT_REQUEST_CODE = 666;
 
     private static TextView mTvStatus;
+    private static HostTester runningHostTest;
+
     private RadioButton mBtDirect;
     private RadioButton mBtObfs4;
     private RadioButton mBtMeek;
@@ -71,23 +74,27 @@ public class BridgeWizardActivity extends AppCompatActivity {
         });
 
         mBtObfs4 = findViewById(R.id.btnBridgesObfs4);
-        mBtObfs4.setOnClickListener(v -> {
+        mBtObfs4.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (!isChecked) return;
             Prefs.setBridgesList("obfs4");
             Prefs.putBridgesEnabled(true);
             testBridgeConnection();
         });
 
-
         mBtMeek = findViewById(R.id.btnBridgesMeek);
-        mBtMeek.setOnClickListener(v -> {
+        mBtMeek.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (!isChecked) return;
             Prefs.setBridgesList("meek");
             Prefs.putBridgesEnabled(true);
             testBridgeConnection();
         });
 
-
         mBtCustom = findViewById(R.id.btnCustomBridges);
-        mBtCustom.setOnClickListener(view -> startActivity(new Intent(BridgeWizardActivity.this, CustomBridgesActivity.class)));
+        mBtCustom.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) return;
+            cancelHostTestIfRunning();
+            startActivity(new Intent(BridgeWizardActivity.this, CustomBridgesActivity.class));
+        });
     }
 
     @Override
@@ -130,15 +137,19 @@ public class BridgeWizardActivity extends AppCompatActivity {
 
 
     private void testBridgeConnection() {
+        cancelHostTestIfRunning();
+        HostTester hostTester = new HostTester();
         if (TextUtils.isEmpty(Prefs.getBridgesList()) || (!Prefs.bridgesEnabled())) {
-            new HostTester().execute("check.torproject.org", "443");
+            hostTester.execute("check.torproject.org", "443");
         } else if (Prefs.getBridgesList().equals("meek")) {
-            new HostTester().execute("meek.azureedge.net", "443", "d2cly7j4zqgua7.cloudfront.net", "443");
+            hostTester.execute("meek.azureedge.net", "443", "d2cly7j4zqgua7.cloudfront.net", "443");
         } else if (Prefs.getBridgesList().equals("obfs4")) {
-            new HostTester().execute("85.17.30.79", "443", "154.35.22.9", "443", "192.99.11.54", "443");
+            hostTester.execute("85.17.30.79", "443", "154.35.22.9", "443", "192.99.11.54", "443");
         } else {
+            hostTester = null;
             mTvStatus.setText("");
         }
+        if (hostTester != null) runningHostTest = hostTester;
     }
 
     private class HostTester extends AsyncTask<String, Void, Boolean> {
@@ -153,10 +164,10 @@ public class BridgeWizardActivity extends AppCompatActivity {
         protected Boolean doInBackground(String... host) {
             // Background Code
             for (int i = 0; i < host.length; i++) {
+                if (isCancelled()) return null;
                 String testHost = host[i];
                 i++; //move to the port
                 int testPort = Integer.parseInt(host[i]);
-
                 if (isHostReachable(testHost, testPort, 10000)) {
                     return true;
                 }
@@ -168,6 +179,7 @@ public class BridgeWizardActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean result) {
             // Post Code
+            runningHostTest = null;
             if (result) {
                 mTvStatus.setText(R.string.testing_bridges_success);
             } else {
@@ -182,6 +194,13 @@ public class BridgeWizardActivity extends AppCompatActivity {
         savedInstanceState.putInt(BUNDLE_KEY_TV_STATUS_VISIBILITY, mTvStatus.getVisibility());
         savedInstanceState.putString(BUNDLE_KEY_TV_STATUS_TEXT, mTvStatus.getText().toString());
         super.onSaveInstanceState(savedInstanceState);
+    }
+
+    @Override
+    public void onDestroy() {
+        cancelHostTestIfRunning();
+        mTvStatus = null;
+        super.onDestroy();
     }
 
     @SuppressWarnings("SameParameterValue")
@@ -216,4 +235,13 @@ public class BridgeWizardActivity extends AppCompatActivity {
             mBtCustom.setChecked(true);
         }
     }
+
+    private static void cancelHostTestIfRunning() {
+        if (runningHostTest != null) {
+            runningHostTest.cancel(true);
+            runningHostTest = null;
+        }
+    }
+
+
 }
