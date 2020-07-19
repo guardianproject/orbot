@@ -28,7 +28,8 @@ import java.net.SocketAddress;
 
 public class BridgeWizardActivity extends AppCompatActivity {
 
-    private static int MOAT_REQUEST_CODE = 666;
+    private static final int MOAT_REQUEST_CODE = 666;
+    private static final int CUSTOM_BRIDGES_REQUEST_CODE = 1312;
 
     private static TextView mTvStatus;
     private static HostTester runningHostTest;
@@ -37,6 +38,8 @@ public class BridgeWizardActivity extends AppCompatActivity {
     private RadioButton mBtObfs4;
     private RadioButton mBtMeek;
     private RadioButton mBtCustom;
+
+    private View mBtnConfgiureCustomBridges;
 
     private static final String BUNDLE_KEY_TV_STATUS_VISIBILITY = "visibility";
     private static final String BUNDLE_KEY_TV_STATUS_TEXT = "text";
@@ -63,14 +66,18 @@ public class BridgeWizardActivity extends AppCompatActivity {
 
         setTitle(getString(R.string.bridges));
 
-        findViewById(R.id.btnMoat).setOnClickListener(v -> startActivityForResult(new Intent(BridgeWizardActivity.this, MoatActivity.class),
-                MOAT_REQUEST_CODE));
+        findViewById(R.id.btnMoat).setOnClickListener(v -> {
+            cancelHostTestIfRunning();
+            startActivityForResult(new Intent(BridgeWizardActivity.this, MoatActivity.class), MOAT_REQUEST_CODE);
+        });
 
         mBtDirect = findViewById(R.id.btnBridgesDirect);
-        mBtDirect.setOnClickListener(v -> {
+        mBtDirect.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (!isChecked) return;
             Prefs.setBridgesList("");
             Prefs.putBridgesEnabled(false);
             testBridgeConnection();
+
         });
 
         mBtObfs4 = findViewById(R.id.btnBridgesObfs4);
@@ -91,10 +98,18 @@ public class BridgeWizardActivity extends AppCompatActivity {
 
         mBtCustom = findViewById(R.id.btnCustomBridges);
         mBtCustom.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (isChecked) return;
-            cancelHostTestIfRunning();
-            startActivity(new Intent(BridgeWizardActivity.this, CustomBridgesActivity.class));
+            if (isChecked) {
+                cancelHostTestIfRunning();
+                mTvStatus.setVisibility(View.GONE);
+                mBtnConfgiureCustomBridges.setVisibility(View.VISIBLE);
+            } else {
+                mBtnConfgiureCustomBridges.setVisibility(View.GONE);
+            }
         });
+
+        mBtnConfgiureCustomBridges = findViewById(R.id.btnConfigureCustomBridges);
+        mBtnConfgiureCustomBridges.setOnClickListener(v ->
+                startActivityForResult(new Intent(BridgeWizardActivity.this, CustomBridgesActivity.class), CUSTOM_BRIDGES_REQUEST_CODE));
     }
 
     @Override
@@ -130,11 +145,12 @@ public class BridgeWizardActivity extends AppCompatActivity {
             else {
                 evaluateBridgeListState();
             }
+        } else if (requestCode == CUSTOM_BRIDGES_REQUEST_CODE) {
+            if (noBridgesSet()) mBtDirect.setChecked(true);
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
-
 
     private void testBridgeConnection() {
         cancelHostTestIfRunning();
@@ -157,7 +173,7 @@ public class BridgeWizardActivity extends AppCompatActivity {
         protected void onPreExecute() {
             // Pre Code
             mTvStatus.setVisibility(View.VISIBLE);
-            mTvStatus.setText(R.string.testing_bridges);
+            mTvStatus.setText(mBtDirect.isChecked() ? R.string.testing_tor_direct : R.string.testing_bridges);
         }
 
         @Override
@@ -181,13 +197,13 @@ public class BridgeWizardActivity extends AppCompatActivity {
             // Post Code
             runningHostTest = null;
             if (result) {
-                mTvStatus.setText(R.string.testing_bridges_success);
+                int stringRes = mBtDirect.isChecked() ? R.string.testing_tor_direct_success : R.string.testing_bridges_success;
+                mTvStatus.setText(stringRes);
             } else {
                 mTvStatus.setText(R.string.testing_bridges_fail);
             }
         }
     }
-
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
@@ -224,8 +240,7 @@ public class BridgeWizardActivity extends AppCompatActivity {
 
     private void evaluateBridgeListState() {
         Log.d(getClass().getSimpleName(), String.format("bridgesEnabled=%b, bridgesList=%s", Prefs.bridgesEnabled(), Prefs.getBridgesList()));
-
-        if (!Prefs.bridgesEnabled()) {
+        if (noBridgesSet()) {
             mBtDirect.setChecked(true);
         } else if (Prefs.getBridgesList().equals("meek")) {
             mBtMeek.setChecked(true);
@@ -243,5 +258,7 @@ public class BridgeWizardActivity extends AppCompatActivity {
         }
     }
 
-
+    private static boolean noBridgesSet() {
+        return !Prefs.bridgesEnabled() || Prefs.getBridgesList().trim().equals("");
+    }
 }
