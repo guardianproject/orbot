@@ -203,4 +203,11 @@
     <string name="trouble_connecting">בעית התחברות?</string>
     <string name="full_device_vpn">VPN מכשיר מלא</string>
     <string name="vpn_disabled">VPN מושבת</string>
+    <string name="pref_disable_ipv4">השבתת חיבורי IPv4</string>
+    <string name="pref_prefer_ipv6">להעדיף חיבורי IPv6</string>
+    <string name="pref_http_dialog">הגדרת פתחות של תור</string>
+    <string name="pref_http_summary">פתחה שדרכה תור מגיש את מתווך ה־HTTP שלו (בררת מחדל: 8118 או 0 להשבתה)</string>
+    <string name="pref_http_title">תור עם HTTP</string>
+    <string name="pref_open_proxy_on_all_interfaces_summary">לאפשר עמיתי רשת אלחוטית, מכשירים קשורים ולכל מי שיכול להתחבר ל־IP שלך לגשת לתור</string>
+    <string name="pref_open_proxy_on_all_interfaces_title">פתיחת מתווך על כל המנשקים</string>
 </resources>
