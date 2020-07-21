@@ -274,6 +274,10 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
 
                     break;
                 }
+                case ACTION_STOP_VPN: {
+                    mBtnVPN.setChecked(false);
+                    break;
+                }
             }
         }
     };
