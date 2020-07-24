@@ -226,15 +226,12 @@ public class CustomBridgesActivity extends AppCompatActivity implements View.OnC
         et.setOverScrollMode(View.OVER_SCROLL_ALWAYS);
         et.setScrollBarStyle(View.SCROLLBARS_INSIDE_INSET);
         et.setMovementMethod(ScrollingMovementMethod.getInstance());
-        et.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                v.getParent().requestDisallowInterceptTouchEvent(true);
-                if ((event.getAction() & MotionEvent.ACTION_UP) != 0 && (event.getActionMasked() & MotionEvent.ACTION_UP) != 0) {
-                    v.getParent().requestDisallowInterceptTouchEvent(false);
-                }
-                return false;
+        et.setOnTouchListener((v, event) -> {
+            v.getParent().requestDisallowInterceptTouchEvent(true);
+            if ((event.getAction() & MotionEvent.ACTION_UP) != 0 && (event.getActionMasked() & MotionEvent.ACTION_UP) != 0) {
+                v.getParent().requestDisallowInterceptTouchEvent(false);
             }
+            return false;
         });
     }
 }

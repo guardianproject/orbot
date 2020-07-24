@@ -3,7 +3,6 @@ package org.torproject.android.settings;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ContextWrapper;
-import android.content.Intent;
 import android.content.res.AssetManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -19,7 +18,6 @@ import java.util.Set;
 import java.util.TreeMap;
 
 public class Languages {
-    public static final String TAG = "Languages";
 
     public static Locale defaultLocale;
     public static final Locale TIBETAN = new Locale("bo");
@@ -173,22 +171,6 @@ public class Languages {
             configuration.locale=locale;
             resources.updateConfiguration(configuration,displayMetrics);
         }
-    }
-
-    /**
-     * Force reload the {@link Activity to make language changes take effect.}
-     *
-     * @param activity the {@code Activity} to force reload
-     */
-    public static void forceChangeLanguage(Activity activity) {
-        Intent intent = activity.getIntent();
-        if (intent == null) // when launched as LAUNCHER
-            return;
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        activity.finish();
-        activity.overridePendingTransition(0, 0);
-        activity.startActivity(intent);
-        activity.overridePendingTransition(0, 0);
     }
 
     /**

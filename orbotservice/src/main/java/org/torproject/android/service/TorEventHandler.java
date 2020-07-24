@@ -6,7 +6,6 @@ import net.freehaven.tor.control.EventHandler;
 
 import org.torproject.android.service.util.ExternalIPFetcher;
 import org.torproject.android.service.util.Prefs;
-import org.w3c.dom.Text;
 
 import java.text.NumberFormat;
 import java.util.HashMap;

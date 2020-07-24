@@ -19,24 +19,21 @@ public class CookieDeleteDialog extends DialogFragment {
         final Bundle arguments = getArguments();
         final Context context = getContext();
 
-        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                switch (which) {
-                    case DialogInterface.BUTTON_POSITIVE:
-                        // Delete from db
-                        context.getContentResolver().delete(
-                                CookieContentProvider.CONTENT_URI,
-                                CookieContentProvider.ClientCookie._ID + "=" + arguments.getInt("_id"),
-                                null
-                        );
+        DialogInterface.OnClickListener dialogClickListener = (dialog, which) -> {
+            switch (which) {
+                case DialogInterface.BUTTON_POSITIVE:
+                    // Delete from db
+                    context.getContentResolver().delete(
+                            CookieContentProvider.CONTENT_URI,
+                            CookieContentProvider.ClientCookie._ID + "=" + arguments.getInt("_id"),
+                            null
+                    );
 
-                        break;
+                    break;
 
-                    case DialogInterface.BUTTON_NEGATIVE:
-                        // Do nothing
-                        break;
-                }
+                case DialogInterface.BUTTON_NEGATIVE:
+                    // Do nothing
+                    break;
             }
         };
 

@@ -14,11 +14,6 @@ import java.util.List;
 public class BackupAdapter extends ArrayAdapter<File> {
     private int mResource;
 
-    public BackupAdapter(Context context, int resource) {
-        super(context, resource);
-        mResource = resource;
-    }
-
     public BackupAdapter(Context context, int resource, List<File> zips) {
         super(context, resource, zips);
         mResource = resource;
@@ -38,7 +33,7 @@ public class BackupAdapter extends ArrayAdapter<File> {
         File p = getItem(position);
 
         if (p != null) {
-            TextView name = (TextView) v.findViewById(R.id.backup_name);
+            TextView name = v.findViewById(R.id.backup_name);
 
             if (name != null)
                 name.setText(p.getName());

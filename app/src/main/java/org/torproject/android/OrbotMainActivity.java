@@ -3,8 +3,6 @@
 
 package org.torproject.android;
 
-import android.app.ActivityManager;
-import android.app.ActivityManager.RunningServiceInfo;
 import android.app.AlertDialog;
 
 import android.content.BroadcastReceiver;
@@ -35,7 +33,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -294,22 +291,14 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         mTxtOrbotLog = findViewById(R.id.orbotLog);
 
         lblStatus = findViewById(R.id.lblStatus);
-        lblStatus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mDrawer.openDrawer(LOG_DRAWER_GRAVITY);
-            }
-        });
+        lblStatus.setOnClickListener(v -> mDrawer.openDrawer(LOG_DRAWER_GRAVITY));
 
         lblPorts = findViewById(R.id.lblPorts);
 
         imgStatus = findViewById(R.id.imgStatus);
-        imgStatus.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                toggleTor();
-                return true;
-            }
+        imgStatus.setOnLongClickListener(v -> {
+            toggleTor();
+            return true;
         });
 
         downloadText = findViewById(R.id.trafficDown);
@@ -320,12 +309,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         uploadText.setText(zero);
 
         mBtnStart = findViewById(R.id.btnStart);
-        mBtnStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toggleTor();
-            }
-        });
+        mBtnStart.setOnClickListener(v -> toggleTor());
 
         mBtnVPN = findViewById(R.id.btnVPN);
 
@@ -337,24 +321,13 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
             sendIntentToService(ACTION_START_VPN);
         }
 
-        mBtnVPN.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                enableVPN(isChecked);
-            }
-        });
+        mBtnVPN.setOnCheckedChangeListener((buttonView, isChecked) -> enableVPN(isChecked));
 
 
         mBtnBridges = findViewById(R.id.btnBridges);
         mBtnBridges.setChecked(Prefs.bridgesEnabled());
-        mBtnBridges.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                promptSetupBridges(); //if ARM processor, show all bridge options
-            }
-
-
+        mBtnBridges.setOnClickListener(v -> {
+            promptSetupBridges(); //if ARM processor, show all bridge options
         });
 
         spnCountries = findViewById(R.id.spinnerCountry);
@@ -700,16 +673,13 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                 final Boolean authCookie = intent.getBooleanExtra("hs_auth_cookie", false);
                 final Uri mKeyUri = intent.getData();
 
-                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (which == DialogInterface.BUTTON_POSITIVE) {
-                            enableHiddenServicePort(
-                                    hiddenServiceName, hiddenServicePort,
-                                    hiddenServiceRemotePort, backupToPackage,
-                                    mKeyUri, authCookie
-                            );
-                        }
+                DialogInterface.OnClickListener dialogClickListener = (dialog, which) -> {
+                    if (which == DialogInterface.BUTTON_POSITIVE) {
+                        enableHiddenServicePort(
+                                hiddenServiceName, hiddenServicePort,
+                                hiddenServiceRemotePort, backupToPackage,
+                                mKeyUri, authCookie
+                        );
                     }
                 };
 
@@ -817,13 +787,10 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                 finish();
 
                 final Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        //Do something after 100ms
-                        startActivity(new Intent(OrbotMainActivity.this, OrbotMainActivity.class));
+                handler.postDelayed(() -> {
+                    //Do something after 100ms
+                    startActivity(new Intent(OrbotMainActivity.this, OrbotMainActivity.class));
 
-                    }
                 }, 1000);
 
 
@@ -1073,20 +1040,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         sendIntentToService(TorServiceConstants.ACTION_STATUS);
     }
 
-    private boolean isTorServiceRunning() {
-        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-
-        if (manager != null) {
-            for (RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
-                if (OrbotService.class.getName().equals(service.service.getClassName())) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-
 
     // this is what takes messages or values from the callback threads or other non-mainUI threads
 //and passes them back into the main UI thread for display to the user
@@ -1228,12 +1181,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                             iv.setLayoutParams(params);
                             iv.setImageDrawable(pMgr.getApplicationIcon(pkgId));
 
-                            iv.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    openBrowser(URL_TOR_CHECK, false, pkgId);
-                                }
-                            });
+                            iv.setOnClickListener(v -> openBrowser(URL_TOR_CHECK, false, pkgId));
 
                             llBoxShortcuts.addView(iv);
                             appsAdded++;
@@ -1264,13 +1212,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
             iv.setLayoutParams(params);
             iv.setImageDrawable(getResources().getDrawable(R.drawable.ic_settings_white_24dp));
             llBoxShortcuts.addView(iv);
-            iv.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivityForResult(new Intent(OrbotMainActivity.this, AppManagerActivity.class), REQUEST_VPN_APPS_SELECT);
-
-                }
-            });
+            iv.setOnClickListener(v -> startActivityForResult(new Intent(OrbotMainActivity.this, AppManagerActivity.class), REQUEST_VPN_APPS_SELECT));
         }
 
     }

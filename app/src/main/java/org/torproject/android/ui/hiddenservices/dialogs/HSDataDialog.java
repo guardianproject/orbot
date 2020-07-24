@@ -35,35 +35,29 @@ public class HSDataDialog extends DialogFragment {
 
         // Buttons action
         Button save = dialog_view.findViewById(R.id.HSDialogSave);
-        save.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                String serverName = ((EditText) dialog_view.findViewById(R.id.hsName)).getText().toString();
-                int localPort, onionPort;
-                try {
-                    localPort = Integer.parseInt(((EditText) dialog_view.findViewById(R.id.hsLocalPort)).getText().toString());
-                    onionPort = Integer.parseInt(((EditText) dialog_view.findViewById(R.id.hsOnionPort)).getText().toString());
-                } catch (NumberFormatException nfe) {
-                    Toast.makeText(v.getContext(), R.string.fields_can_t_be_empty, Toast.LENGTH_LONG).show();
-                    return;
-                }
-                boolean authCookie = ((CheckBox) dialog_view.findViewById(R.id.hsAuth)).isChecked();
+        save.setOnClickListener(v -> {
+            String serverName = ((EditText) dialog_view.findViewById(R.id.hsName)).getText().toString();
+            int localPort, onionPort;
+            try {
+                localPort = Integer.parseInt(((EditText) dialog_view.findViewById(R.id.hsLocalPort)).getText().toString());
+                onionPort = Integer.parseInt(((EditText) dialog_view.findViewById(R.id.hsOnionPort)).getText().toString());
+            } catch (NumberFormatException nfe) {
+                Toast.makeText(v.getContext(), R.string.fields_can_t_be_empty, Toast.LENGTH_LONG).show();
+                return;
+            }
+            boolean authCookie = ((CheckBox) dialog_view.findViewById(R.id.hsAuth)).isChecked();
 
-                if (checkInput(serverName, localPort, onionPort)) {
-                    saveData(serverName, localPort, onionPort, authCookie);
-                    Toast.makeText(
-                            v.getContext(), R.string.please_restart_Orbot_to_enable_the_changes, Toast.LENGTH_LONG
-                    ).show();
-                    serviceDataDialog.dismiss();
-                }
+            if (checkInput(serverName, localPort, onionPort)) {
+                saveData(serverName, localPort, onionPort, authCookie);
+                Toast.makeText(
+                        v.getContext(), R.string.please_restart_Orbot_to_enable_the_changes, Toast.LENGTH_LONG
+                ).show();
+                serviceDataDialog.dismiss();
             }
         });
 
         Button cancel = dialog_view.findViewById(R.id.HSDialogCancel);
-        cancel.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                serviceDataDialog.cancel();
-            }
-        });
+        cancel.setOnClickListener(v -> serviceDataDialog.cancel());
 
         return serviceDataDialog;
     }

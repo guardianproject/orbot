@@ -8,7 +8,6 @@ import androidx.cursoradapter.widget.CursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,32 +30,29 @@ public class OnionListAdapter extends CursorAdapter {
         int id = cursor.getInt(cursor.getColumnIndex(HSContentProvider.HiddenService._ID));
         final String where = HSContentProvider.HiddenService._ID + "=" + id;
 
-        TextView port = (TextView) view.findViewById(R.id.hs_port);
+        TextView port = view.findViewById(R.id.hs_port);
         port.setText(cursor.getString(cursor.getColumnIndex(HSContentProvider.HiddenService.PORT)));
-        TextView name = (TextView) view.findViewById(R.id.hs_name);
+        TextView name = view.findViewById(R.id.hs_name);
         name.setText(cursor.getString(cursor.getColumnIndex(HSContentProvider.HiddenService.NAME)));
-        TextView domain = (TextView) view.findViewById(R.id.hs_onion);
+        TextView domain = view.findViewById(R.id.hs_onion);
         domain.setText(cursor.getString(cursor.getColumnIndex(HSContentProvider.HiddenService.DOMAIN)));
 
-        Switch enabled = (Switch) view.findViewById(R.id.hs_switch);
+        Switch enabled = view.findViewById(R.id.hs_switch);
         enabled.setChecked(
                 cursor.getInt(cursor.getColumnIndex(HSContentProvider.HiddenService.ENABLED)) == 1
         );
 
-        enabled.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                ContentResolver resolver = mContext.getContentResolver();
-                ContentValues fields = new ContentValues();
-                fields.put(HSContentProvider.HiddenService.ENABLED, isChecked);
-                resolver.update(
-                        HSContentProvider.CONTENT_URI, fields, where, null
-                );
+        enabled.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            ContentResolver resolver = mContext.getContentResolver();
+            ContentValues fields = new ContentValues();
+            fields.put(HSContentProvider.HiddenService.ENABLED, isChecked);
+            resolver.update(
+                    HSContentProvider.CONTENT_URI, fields, where, null
+            );
 
-                Toast.makeText(
-                        mContext, R.string.please_restart_Orbot_to_enable_the_changes, Toast.LENGTH_LONG
-                ).show();
-            }
+            Toast.makeText(
+                    mContext, R.string.please_restart_Orbot_to_enable_the_changes, Toast.LENGTH_LONG
+            ).show();
         });
     }
 

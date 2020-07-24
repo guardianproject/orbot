@@ -32,47 +32,39 @@ public class HSCookieDialog extends DialogFragment {
                 .setView(dialog_view)
                 .create();
 
-        TextView cookie = (TextView) dialog_view.findViewById(R.id.hs_cookie);
+        TextView cookie = dialog_view.findViewById(R.id.hs_cookie);
         cookie.setText(auth_cookie_value);
 
-        Button clipboard = (Button) dialog_view.findViewById(R.id.hs_cookie_to_clipboard);
-        clipboard.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Context mContext = v.getContext();
-                ClipboardManager clipboard = (ClipboardManager) mContext.getSystemService(Context.CLIPBOARD_SERVICE);
-                ClipData clip = ClipData.newPlainText("cookie", auth_cookie_value);
-                clipboard.setPrimaryClip(clip);
-                Toast.makeText(mContext, R.string.done, Toast.LENGTH_LONG).show();
-                cookieDialog.dismiss();
-            }
+        Button clipboard = dialog_view.findViewById(R.id.hs_cookie_to_clipboard);
+        clipboard.setOnClickListener(v -> {
+            Context mContext = v.getContext();
+            ClipboardManager clipboard1 = (ClipboardManager) mContext.getSystemService(Context.CLIPBOARD_SERVICE);
+            ClipData clip = ClipData.newPlainText("cookie", auth_cookie_value);
+            clipboard1.setPrimaryClip(clip);
+            Toast.makeText(mContext, R.string.done, Toast.LENGTH_LONG).show();
+            cookieDialog.dismiss();
         });
 
-        Button shareQR = (Button) dialog_view.findViewById(R.id.hs_cookie_to_qr);
-        shareQR.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                try {
-                    JSONObject backup = new JSONObject();
-                    backup.put(CookieContentProvider.ClientCookie.DOMAIN, arguments.getString("onion"));
-                    backup.put(CookieContentProvider.ClientCookie.AUTH_COOKIE_VALUE, arguments.getString("auth_cookie_value"));
+        Button shareQR = dialog_view.findViewById(R.id.hs_cookie_to_qr);
+        shareQR.setOnClickListener(v -> {
+            try {
+                JSONObject backup = new JSONObject();
+                backup.put(CookieContentProvider.ClientCookie.DOMAIN, arguments.getString("onion"));
+                backup.put(CookieContentProvider.ClientCookie.AUTH_COOKIE_VALUE, arguments.getString("auth_cookie_value"));
 
-                    IntentIntegrator integrator = new IntentIntegrator(getActivity());
-                    integrator.shareText(backup.toString());
+                IntentIntegrator integrator = new IntentIntegrator(getActivity());
+                integrator.shareText(backup.toString());
 
-                } catch (JSONException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-
-                cookieDialog.dismiss();
+            } catch (JSONException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
             }
+
+            cookieDialog.dismiss();
         });
 
-        Button cancel = (Button) dialog_view.findViewById(R.id.hs_cookie_cancel);
-        cancel.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                cookieDialog.dismiss();
-            }
-        });
+        Button cancel = dialog_view.findViewById(R.id.hs_cookie_cancel);
+        cancel.setOnClickListener(v -> cookieDialog.dismiss());
 
         return cookieDialog;
     }
