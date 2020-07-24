@@ -1220,8 +1220,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                     for (final String pkgId : pkgIds) {
                         try {
                             ApplicationInfo aInfo = getPackageManager().getApplicationInfo(pkgId, 0);
-                            // skip disabled packages
-                            if (!aInfo.enabled) continue;
+                            if (!AppManagerActivity.includeAppInUi(aInfo)) continue;
                             ImageView iv = new ImageView(this);
                             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                             params.setMargins(3, 3, 3, 3);
