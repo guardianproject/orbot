@@ -190,7 +190,7 @@
     <string name="backup_cookie">备份 cookie</string>
     <string name="delete_cookie">删除 cookie</string>
     <string name="confirm_cookie_deletion">确认删除 cookie</string>
-    <string name="pref_isolate_dest_summary">对每个目标地址使用不同的电路</string>
+    <string name="pref_isolate_dest_summary">对每个目标地址使用不同的回路</string>
     <string name="refresh_apps">刷新应用程序</string>
     <string name="app_services">应用服务</string>
     <string name="user_services">用户服务</string>
@@ -201,8 +201,8 @@
     <string name="pref_reduced_connection_padding_summary">更快关闭中继连接，并发送更少的填充数据包以减少数据和电池的使用量</string>
     <string name="pref_reduced_connection_padding">减少了连接填充量</string>
     <string name="pref_connection_padding_summary">始终启用连接填充来防御某些形式的流量分析。默认值：自动</string>
-    <string name="no_transproxy_warning">警告：不支持透明代理。请使用Orbot Apps VPN代替。</string>
-    <string name="no_transproxy_warning_short">警告：Transproxying不再支持</string>
+    <string name="no_transproxy_warning">警告：不支持透明代理。请使用Orbot 应用程序VPN。</string>
+    <string name="no_transproxy_warning_short">警告：透明代理已不受支持</string>
     <string name="pref_isolate_dest">隔离目标地址</string>
     <string name="invalid_onion_address">无效的.onion地址</string>
     <string name="auth_cookie">Auth cookie</string>
@@ -212,6 +212,11 @@
     <string name="menu_hidden_services">洋葱服务</string>
     <string name="title_activity_hidden_services">洋葱服务</string>
     <string name="hidden_services">洋葱服务</string>
-    <string name="hidden_service_request">一个应用程序想要打开洋葱服务器的%1$s端口到Tor网络。如果你信任这个应用，这是很安全的。</string>
+    <string name="hidden_service_request">一个应用程序想要打开洋葱服务器%1$s端口到Tor网络。如果你信任这个应用，这是安全的。</string>
     <string name="enable_alternate_entrance_nodes_into_the_tor_network">启用Tor网络的备用入口</string>
+    <string name="pref_connection_padding">连接填充</string>
+    <string name="hosted_services">托管的服务</string>
+    <string name="onion">.onion</string>
+    <string name="client_cookies">客户端cookies</string>
+    <string name="auth_cookie_was_not_configured">未配置Auth cookie</string>
 </resources>
