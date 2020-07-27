@@ -27,6 +27,8 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import org.torproject.android.BuildConfig;
 import org.torproject.android.R;
 import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.util.Prefs;
@@ -226,8 +228,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
         while (itAppInfo.hasNext())
         {
             aInfo = itAppInfo.next();
-            // don't include apps user has disabled, often these ship with the device
-            if (!aInfo.enabled) continue;
+            if (!includeAppInUi(aInfo)) continue;
             app = new TorifiedApp();
 
 
@@ -243,7 +244,6 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
                             app.setUsesInternet(true);
                         }
                     }
-
                 }
 
 
@@ -336,4 +336,12 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
             saveAppSettings();
         }
     }
+
+    // returns true if the given app is enabled and not orbot
+    public static boolean includeAppInUi(ApplicationInfo applicationInfo) {
+        if (!applicationInfo.enabled) return false;
+        if (BuildConfig.APPLICATION_ID.equals(applicationInfo.packageName)) return false;
+        return true;
+    }
+
 }
