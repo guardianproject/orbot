@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -52,12 +51,7 @@ public class OnboardingActivity extends AppIntro {
 
             cs2 = CustomSlideBigText.newInstance(R.layout.custom_slide_big_text);
             cs2.setTitle(getString(R.string.bridges_sometimes));
-            cs2.showButton(getString(R.string.action_more), new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivity(new Intent(OnboardingActivity.this, BridgeWizardActivity.class));
-                }
-            });
+            cs2.showButton(getString(R.string.action_more), v -> startActivity(new Intent(OnboardingActivity.this, BridgeWizardActivity.class)));
             addSlide(cs2);
 
             if (PermissionManager.isLollipopOrHigher()) {
@@ -65,12 +59,7 @@ public class OnboardingActivity extends AppIntro {
                 cs3 = CustomSlideBigText.newInstance(R.layout.custom_slide_big_text);
                 cs3.setTitle(getString(R.string.vpn_setup));
                 cs3.setSubTitle(getString(R.string.vpn_setup_sub));
-                cs3.showButton(getString(R.string.action_vpn_choose), new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        startActivityForResult(new Intent(OnboardingActivity.this, AppManagerActivity.class), 9999);
-                    }
-                });
+                cs3.showButton(getString(R.string.action_vpn_choose), v -> startActivityForResult(new Intent(OnboardingActivity.this, AppManagerActivity.class), 9999));
                 addSlide(cs3);
 
             }

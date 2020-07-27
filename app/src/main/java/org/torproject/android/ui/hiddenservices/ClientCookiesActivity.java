@@ -13,8 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -47,12 +45,9 @@ public class ClientCookiesActivity extends AppCompatActivity {
 
         mResolver = getContentResolver();
 
-        findViewById(R.id.fab).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AddCookieDialog dialog = new AddCookieDialog();
-                dialog.show(getSupportFragmentManager(), "AddCookieDialog");
-            }
+        findViewById(R.id.fab).setOnClickListener(view -> {
+            AddCookieDialog dialog = new AddCookieDialog();
+            dialog.show(getSupportFragmentManager(), "AddCookieDialog");
         });
 
         mAdapter = new ClientCookiesAdapter(
@@ -67,33 +62,29 @@ public class ClientCookiesActivity extends AppCompatActivity {
         ListView cookies = findViewById(R.id.clien_cookies_list);
         cookies.setAdapter(mAdapter);
 
-        cookies.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        cookies.setOnItemClickListener((parent, view, position, id) -> {
+            Cursor item = (Cursor) parent.getItemAtPosition(position);
 
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Cursor item = (Cursor) parent.getItemAtPosition(position);
+            Bundle arguments = new Bundle();
+            arguments.putInt(
+                    "_id", item.getInt(item.getColumnIndex(CookieContentProvider.ClientCookie._ID))
+            );
 
-                Bundle arguments = new Bundle();
-                arguments.putInt(
-                        "_id", item.getInt(item.getColumnIndex(CookieContentProvider.ClientCookie._ID))
-                );
+            arguments.putString(
+                    "domain", item.getString(item.getColumnIndex(CookieContentProvider.ClientCookie.DOMAIN))
+            );
 
-                arguments.putString(
-                        "domain", item.getString(item.getColumnIndex(CookieContentProvider.ClientCookie.DOMAIN))
-                );
+            arguments.putString(
+                    "auth_cookie_value", item.getString(item.getColumnIndex(CookieContentProvider.ClientCookie.AUTH_COOKIE_VALUE))
+            );
 
-                arguments.putString(
-                        "auth_cookie_value", item.getString(item.getColumnIndex(CookieContentProvider.ClientCookie.AUTH_COOKIE_VALUE))
-                );
+            arguments.putInt(
+                    "enabled", item.getInt(item.getColumnIndex(CookieContentProvider.ClientCookie.ENABLED))
+            );
 
-                arguments.putInt(
-                        "enabled", item.getInt(item.getColumnIndex(CookieContentProvider.ClientCookie.ENABLED))
-                );
-
-                CookieActionsDialog dialog = new CookieActionsDialog();
-                dialog.setArguments(arguments);
-                dialog.show(getSupportFragmentManager(), CookieActionsDialog.class.getSimpleName());
-            }
+            CookieActionsDialog dialog = new CookieActionsDialog();
+            dialog.setArguments(arguments);
+            dialog.show(getSupportFragmentManager(), CookieActionsDialog.class.getSimpleName());
         });
 
     }

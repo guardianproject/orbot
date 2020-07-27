@@ -27,7 +27,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.ActivityNotFoundException;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -370,29 +369,26 @@ public class IntentIntegrator {
     AlertDialog.Builder downloadDialog = new AlertDialog.Builder(activity);
     downloadDialog.setTitle(title);
     downloadDialog.setMessage(message);
-    downloadDialog.setPositiveButton(buttonYes, new DialogInterface.OnClickListener() {
-      @Override
-      public void onClick(DialogInterface dialogInterface, int i) {
-        String packageName;
-        if (targetApplications.contains(BS_PACKAGE)) {
-          // Prefer to suggest download of BS if it's anywhere in the list
-          packageName = BS_PACKAGE;
+    downloadDialog.setPositiveButton(buttonYes, (dialogInterface, i) -> {
+      String packageName;
+      if (targetApplications.contains(BS_PACKAGE)) {
+        // Prefer to suggest download of BS if it's anywhere in the list
+        packageName = BS_PACKAGE;
+      } else {
+        // Otherwise, first option:
+        packageName = targetApplications.get(0);
+      }
+      Uri uri = Uri.parse("market://details?id=" + packageName);
+      Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+      try {
+        if (fragment == null) {
+          activity.startActivity(intent);
         } else {
-          // Otherwise, first option:
-          packageName = targetApplications.get(0);
+          fragment.startActivity(intent);
         }
-        Uri uri = Uri.parse("market://details?id=" + packageName);
-        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-        try {
-          if (fragment == null) {
-            activity.startActivity(intent);
-          } else {
-            fragment.startActivity(intent);
-          }
-        } catch (ActivityNotFoundException anfe) {
-          // Hmm, market is not installed
-          Log.w(TAG, "Google Play is not installed; cannot install " + packageName);
-        }
+      } catch (ActivityNotFoundException anfe) {
+        // Hmm, market is not installed
+        Log.w(TAG, "Google Play is not installed; cannot install " + packageName);
       }
     });
     downloadDialog.setNegativeButton(buttonNo, null);

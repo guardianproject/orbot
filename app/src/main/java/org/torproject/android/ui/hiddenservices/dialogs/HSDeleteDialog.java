@@ -22,36 +22,33 @@ public class HSDeleteDialog extends DialogFragment {
         final Bundle arguments = getArguments();
         final Context context = getContext();
 
-        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                switch (which) {
-                    case DialogInterface.BUTTON_POSITIVE:
-                        // Delete from db
-                        context.getContentResolver().delete(
-                                HSContentProvider.CONTENT_URI,
-                                HSContentProvider.HiddenService._ID + "=" + arguments.getInt("_id"),
-                                null
-                        );
+        DialogInterface.OnClickListener dialogClickListener = (dialog, which) -> {
+            switch (which) {
+                case DialogInterface.BUTTON_POSITIVE:
+                    // Delete from db
+                    context.getContentResolver().delete(
+                            HSContentProvider.CONTENT_URI,
+                            HSContentProvider.HiddenService._ID + "=" + arguments.getInt("_id"),
+                            null
+                    );
 
-                        // Delete from internal storage
-                        String base = context.getFilesDir().getAbsolutePath() + "/" + TorServiceConstants.HIDDEN_SERVICES_DIR;
-                        File dir = new File(base, "hs" + arguments.getString("port"));
+                    // Delete from internal storage
+                    String base = context.getFilesDir().getAbsolutePath() + "/" + TorServiceConstants.HIDDEN_SERVICES_DIR;
+                    File dir = new File(base, "hs" + arguments.getString("port"));
 
-                        if (dir.isDirectory()) {
-                            String[] children = dir.list();
-                            for (String aChildren : children) {
-                                new File(dir, aChildren).delete();
-                            }
-                            dir.delete();
+                    if (dir.isDirectory()) {
+                        String[] children = dir.list();
+                        for (String aChildren : children) {
+                            new File(dir, aChildren).delete();
                         }
+                        dir.delete();
+                    }
 
-                        break;
+                    break;
 
-                    case DialogInterface.BUTTON_NEGATIVE:
-                        // Do nothing
-                        break;
-                }
+                case DialogInterface.BUTTON_NEGATIVE:
+                    // Do nothing
+                    break;
             }
         };
 

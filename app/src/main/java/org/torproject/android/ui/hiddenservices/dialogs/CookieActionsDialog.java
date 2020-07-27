@@ -29,26 +29,16 @@ public class CookieActionsDialog extends DialogFragment {
                 .setTitle(R.string.client_cookies)
                 .create();
 
-        dialog_view.findViewById(R.id.btn_cookie_backup).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                doBackup();
-            }
+        dialog_view.findViewById(R.id.btn_cookie_backup).setOnClickListener(v -> doBackup());
+
+        dialog_view.findViewById(R.id.btn_cookie_delete).setOnClickListener(v -> {
+            CookieDeleteDialog dialog = new CookieDeleteDialog();
+            dialog.setArguments(arguments);
+            dialog.show(getFragmentManager(), "CookieDeleteDialog");
+            actionDialog.dismiss();
         });
 
-        dialog_view.findViewById(R.id.btn_cookie_delete).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                CookieDeleteDialog dialog = new CookieDeleteDialog();
-                dialog.setArguments(arguments);
-                dialog.show(getFragmentManager(), "CookieDeleteDialog");
-                actionDialog.dismiss();
-            }
-        });
-
-        dialog_view.findViewById(R.id.btn_cookie_cancel).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                actionDialog.dismiss();
-            }
-        });
+        dialog_view.findViewById(R.id.btn_cookie_cancel).setOnClickListener(v -> actionDialog.dismiss());
 
         return actionDialog;
     }

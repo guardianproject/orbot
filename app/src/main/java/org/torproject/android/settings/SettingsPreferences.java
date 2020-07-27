@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
-import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceScreen;
@@ -32,16 +31,13 @@ public class SettingsPreferences extends PreferenceActivity {
         Languages languages = Languages.get(this);
         prefLocale.setEntries(languages.getAllNames());
         prefLocale.setEntryValues(languages.getSupportedLocales());
-        prefLocale.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
-            @Override
-            public boolean onPreferenceChange(Preference preference, Object newValue) {
-                String language = (String) newValue;
-                Intent intentResult = new Intent();
-                intentResult.putExtra("locale", language);
-                setResult(RESULT_OK, intentResult);
-                finish();
-                return false;
-            }
+        prefLocale.setOnPreferenceChangeListener((preference, newValue) -> {
+            String language = (String) newValue;
+            Intent intentResult = new Intent();
+            intentResult.putExtra("locale", language);
+            setResult(RESULT_OK, intentResult);
+            finish();
+            return false;
         });
     }
 

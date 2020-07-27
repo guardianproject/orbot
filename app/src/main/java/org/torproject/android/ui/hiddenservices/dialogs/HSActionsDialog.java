@@ -14,7 +14,6 @@ import androidx.fragment.app.DialogFragment;
 import androidx.appcompat.app.AlertDialog;
 
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import org.torproject.android.R;
@@ -36,61 +35,47 @@ public class HSActionsDialog extends DialogFragment {
                 .setTitle(R.string.hidden_services)
                 .create();
 
-        dialog_view.findViewById(R.id.btn_hs_backup).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                doBackup();
-            }
+        dialog_view.findViewById(R.id.btn_hs_backup).setOnClickListener(v -> doBackup());
+
+        dialog_view.findViewById(R.id.btn_hs_clipboard).setOnClickListener(v -> {
+            Context mContext = v.getContext();
+            ClipboardManager clipboard = (ClipboardManager) mContext.getSystemService(Context.CLIPBOARD_SERVICE);
+            ClipData clip = ClipData.newPlainText("onion", arguments.getString("onion"));
+            clipboard.setPrimaryClip(clip);
+            Toast.makeText(mContext, R.string.done, Toast.LENGTH_LONG).show();
+            actionDialog.dismiss();
         });
 
-        dialog_view.findViewById(R.id.btn_hs_clipboard).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Context mContext = v.getContext();
-                ClipboardManager clipboard = (ClipboardManager) mContext.getSystemService(Context.CLIPBOARD_SERVICE);
-                ClipData clip = ClipData.newPlainText("onion", arguments.getString("onion"));
-                clipboard.setPrimaryClip(clip);
-                Toast.makeText(mContext, R.string.done, Toast.LENGTH_LONG).show();
-                actionDialog.dismiss();
-            }
-        });
+        dialog_view.findViewById(R.id.bt_hs_show_auth).setOnClickListener(v -> {
+            String auth_cookie_value = arguments.getString("auth_cookie_value");
 
-        dialog_view.findViewById(R.id.bt_hs_show_auth).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                String auth_cookie_value = arguments.getString("auth_cookie_value");
-
-                if (arguments.getInt("auth_cookie") == 1) {
-                    if (auth_cookie_value == null || auth_cookie_value.length() < 1) {
-                        Toast.makeText(
-                                v.getContext(), R.string.please_restart_Orbot_to_enable_the_changes, Toast.LENGTH_LONG
-                        ).show();
-                    } else {
-                        HSCookieDialog dialog = new HSCookieDialog();
-                        dialog.setArguments(arguments);
-                        dialog.show(getFragmentManager(), "HSCookieDialog");
-                    }
-                } else {
+            if (arguments.getInt("auth_cookie") == 1) {
+                if (auth_cookie_value == null || auth_cookie_value.length() < 1) {
                     Toast.makeText(
-                            v.getContext(), R.string.auth_cookie_was_not_configured, Toast.LENGTH_LONG
+                            v.getContext(), R.string.please_restart_Orbot_to_enable_the_changes, Toast.LENGTH_LONG
                     ).show();
+                } else {
+                    HSCookieDialog dialog = new HSCookieDialog();
+                    dialog.setArguments(arguments);
+                    dialog.show(getFragmentManager(), "HSCookieDialog");
                 }
-
-                actionDialog.dismiss();
+            } else {
+                Toast.makeText(
+                        v.getContext(), R.string.auth_cookie_was_not_configured, Toast.LENGTH_LONG
+                ).show();
             }
+
+            actionDialog.dismiss();
         });
 
-        dialog_view.findViewById(R.id.btn_hs_delete).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                HSDeleteDialog dialog = new HSDeleteDialog();
-                dialog.setArguments(arguments);
-                dialog.show(getFragmentManager(), "HSDeleteDialog");
-                actionDialog.dismiss();
-            }
+        dialog_view.findViewById(R.id.btn_hs_delete).setOnClickListener(v -> {
+            HSDeleteDialog dialog = new HSDeleteDialog();
+            dialog.setArguments(arguments);
+            dialog.show(getFragmentManager(), "HSDeleteDialog");
+            actionDialog.dismiss();
         });
 
-        dialog_view.findViewById(R.id.btn_hs_cancel).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                actionDialog.dismiss();
-            }
-        });
+        dialog_view.findViewById(R.id.btn_hs_cancel).setOnClickListener(v -> actionDialog.dismiss());
 
         return actionDialog;
     }
