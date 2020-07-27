@@ -29,27 +29,21 @@ public class AddCookieDialog extends DialogFragment {
                 .create();
 
         Button save = dialog_view.findViewById(R.id.cookie_dialog_save);
-        save.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                String onion = ((EditText) dialog_view.findViewById(R.id.cookie_onion)).getText().toString();
-                String cookie = ((EditText) dialog_view.findViewById(R.id.cookie_value)).getText().toString();
+        save.setOnClickListener(v -> {
+            String onion = ((EditText) dialog_view.findViewById(R.id.cookie_onion)).getText().toString();
+            String cookie = ((EditText) dialog_view.findViewById(R.id.cookie_value)).getText().toString();
 
-                if (checkInput(onion, cookie)) {
-                    saveData(onion, cookie);
-                    Toast.makeText(
-                            v.getContext(), R.string.please_restart_Orbot_to_enable_the_changes, Toast.LENGTH_LONG
-                    ).show();
-                    addCookieDialog.dismiss();
-                }
+            if (checkInput(onion, cookie)) {
+                saveData(onion, cookie);
+                Toast.makeText(
+                        v.getContext(), R.string.please_restart_Orbot_to_enable_the_changes, Toast.LENGTH_LONG
+                ).show();
+                addCookieDialog.dismiss();
             }
         });
 
         Button cancel = dialog_view.findViewById(R.id.cookie_dialog_cancel);
-        cancel.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                addCookieDialog.cancel();
-            }
-        });
+        cancel.setOnClickListener(v -> addCookieDialog.cancel());
 
         return addCookieDialog;
     }

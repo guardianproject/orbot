@@ -452,13 +452,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
     private void stopTor ()
     {
-        new Thread(new Runnable ()
-        {
-            public void run ()
-            {
-                stopTorAsync();
-            }
-        }).start();
+        new Thread(() -> stopTorAsync()).start();
 
     }
 
@@ -589,21 +583,17 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
             pluggableTransportInstall();
 
-            new Thread(new Runnable ()
-            {
-                public void run ()
+            new Thread(() -> {
+                try
                 {
-                    try
-                    {
-                        findExistingTorDaemon();
-                    }
-                    catch (Exception e)
-                    {
-                        Log.e(OrbotConstants.TAG,"error onBind",e);
-                        logNotice("error finding exiting process: " + e.toString());
-                    }
-                    
+                    findExistingTorDaemon();
                 }
+                catch (Exception e)
+                {
+                    Log.e(OrbotConstants.TAG,"error onBind",e);
+                    logNotice("error finding exiting process: " + e.toString());
+                }
+
             }).start();
 
             try {

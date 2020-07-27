@@ -52,12 +52,9 @@ public class HiddenServicesActivity extends AppCompatActivity {
         mResolver = getContentResolver();
 
         fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                HSDataDialog dialog = new HSDataDialog();
-                dialog.show(getSupportFragmentManager(), "HSDataDialog");
-            }
+        fab.setOnClickListener(view -> {
+            HSDataDialog dialog = new HSDataDialog();
+            dialog.show(getSupportFragmentManager(), "HSDataDialog");
         });
 
         mAdapter = new OnionListAdapter(
@@ -75,37 +72,33 @@ public class HiddenServicesActivity extends AppCompatActivity {
         ListView onion_list = findViewById(R.id.onion_list);
         onion_list.setAdapter(mAdapter);
 
-        onion_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        onion_list.setOnItemClickListener((parent, view, position, id) -> {
+            Cursor item = (Cursor) parent.getItemAtPosition(position);
 
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Cursor item = (Cursor) parent.getItemAtPosition(position);
+            Bundle arguments = new Bundle();
+            arguments.putInt(
+                    "_id", item.getInt(item.getColumnIndex(HSContentProvider.HiddenService._ID))
+            );
 
-                Bundle arguments = new Bundle();
-                arguments.putInt(
-                        "_id", item.getInt(item.getColumnIndex(HSContentProvider.HiddenService._ID))
-                );
+            arguments.putString(
+                    "port", item.getString(item.getColumnIndex(HSContentProvider.HiddenService.PORT))
+            );
 
-                arguments.putString(
-                        "port", item.getString(item.getColumnIndex(HSContentProvider.HiddenService.PORT))
-                );
+            arguments.putString(
+                    "onion", item.getString(item.getColumnIndex(HSContentProvider.HiddenService.DOMAIN))
+            );
 
-                arguments.putString(
-                        "onion", item.getString(item.getColumnIndex(HSContentProvider.HiddenService.DOMAIN))
-                );
+            arguments.putInt(
+                    "auth_cookie", item.getInt(item.getColumnIndex(HSContentProvider.HiddenService.AUTH_COOKIE))
+            );
 
-                arguments.putInt(
-                        "auth_cookie", item.getInt(item.getColumnIndex(HSContentProvider.HiddenService.AUTH_COOKIE))
-                );
+            arguments.putString(
+                    "auth_cookie_value", item.getString(item.getColumnIndex(HSContentProvider.HiddenService.AUTH_COOKIE_VALUE))
+            );
 
-                arguments.putString(
-                        "auth_cookie_value", item.getString(item.getColumnIndex(HSContentProvider.HiddenService.AUTH_COOKIE_VALUE))
-                );
-
-                HSActionsDialog dialog = new HSActionsDialog();
-                dialog.setArguments(arguments);
-                dialog.show(getSupportFragmentManager(), HSActionsDialog.class.getSimpleName());
-            }
+            HSActionsDialog dialog = new HSActionsDialog();
+            dialog.setArguments(arguments);
+            dialog.show(getSupportFragmentManager(), HSActionsDialog.class.getSimpleName());
         });
     }
 

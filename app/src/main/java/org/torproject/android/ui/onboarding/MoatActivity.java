@@ -34,7 +34,6 @@ import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -243,31 +242,28 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
     private void fetchCaptcha() {
         JsonObjectRequest request = buildRequest("fetch",
                 "\"type\": \"client-transports\", \"supported\": [\"obfs4\"]",
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        mRequestInProgress = false;
-                        invalidateOptionsMenu();
-                        mProgressBar.setVisibility(View.GONE);
+                response -> {
+                    mRequestInProgress = false;
+                    invalidateOptionsMenu();
+                    mProgressBar.setVisibility(View.GONE);
 
-                        try {
-                            JSONObject data = response.getJSONArray("data").getJSONObject(0);
-                            mChallenge = data.getString("challenge");
+                    try {
+                        JSONObject data = response.getJSONArray("data").getJSONObject(0);
+                        mChallenge = data.getString("challenge");
 
-                            mCaptcha = Base64.decode(data.getString("image"), Base64.DEFAULT);
-                            mIvCaptcha.setImageBitmap(BitmapFactory.decodeByteArray(mCaptcha, 0, mCaptcha.length));
-                            mIvCaptcha.setVisibility(View.VISIBLE);
-                            mEtSolution.setText(null);
-                            mEtSolution.setEnabled(true);
-                            mBtRequest.setEnabled(true);
+                        mCaptcha = Base64.decode(data.getString("image"), Base64.DEFAULT);
+                        mIvCaptcha.setImageBitmap(BitmapFactory.decodeByteArray(mCaptcha, 0, mCaptcha.length));
+                        mIvCaptcha.setVisibility(View.VISIBLE);
+                        mEtSolution.setText(null);
+                        mEtSolution.setEnabled(true);
+                        mBtRequest.setEnabled(true);
 
-                        } catch (JSONException e) {
-                            Log.d(MoatActivity.class.getSimpleName(), "Error decoding answer: " + response.toString());
+                    } catch (JSONException e) {
+                        Log.d(MoatActivity.class.getSimpleName(), "Error decoding answer: " + response.toString());
 
-                            displayError(e, response);
-                        }
-
+                        displayError(e, response);
                     }
+
                 });
 
         if (request != null) {
@@ -288,38 +284,35 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
         JsonObjectRequest request = buildRequest("check",
                 "\"id\": \"2\", \"type\": \"moat-solution\", \"transport\": \"obfs4\", \"challenge\": \""
                         + mChallenge + "\", \"solution\": \"" + solution + "\", \"qrcode\": \"false\"",
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        mRequestInProgress = false;
-                        invalidateOptionsMenu();
-                        mProgressBar.setVisibility(View.GONE);
+                response -> {
+                    mRequestInProgress = false;
+                    invalidateOptionsMenu();
+                    mProgressBar.setVisibility(View.GONE);
 
-                        try {
-                            JSONArray bridges = response.getJSONArray("data").getJSONObject(0).getJSONArray("bridges");
+                    try {
+                        JSONArray bridges = response.getJSONArray("data").getJSONObject(0).getJSONArray("bridges");
 
-                            Log.d(MoatActivity.class.getSimpleName(), "Bridges: " + bridges.toString());
+                        Log.d(MoatActivity.class.getSimpleName(), "Bridges: " + bridges.toString());
 
-                            StringBuilder sb = new StringBuilder();
+                        StringBuilder sb = new StringBuilder();
 
-                            for (int i = 0; i < bridges.length(); i++) {
-                                sb.append(bridges.getString(i)).append("\n");
-                            }
-
-                            Prefs.setBridgesList(sb.toString());
-                            Prefs.putBridgesEnabled(true);
-
-                            sendIntentToService(TorServiceConstants.CMD_SIGNAL_HUP);
-
-                            mSuccess = true;
-                            setResult(RESULT_OK);
-                            finish();
+                        for (int i = 0; i < bridges.length(); i++) {
+                            sb.append(bridges.getString(i)).append("\n");
                         }
-                        catch (JSONException e) {
-                            Log.d(MoatActivity.class.getSimpleName(), "Error decoding answer: " + response.toString());
 
-                            displayError(e, response);
-                        }
+                        Prefs.setBridgesList(sb.toString());
+                        Prefs.putBridgesEnabled(true);
+
+                        sendIntentToService(TorServiceConstants.CMD_SIGNAL_HUP);
+
+                        mSuccess = true;
+                        setResult(RESULT_OK);
+                        finish();
+                    }
+                    catch (JSONException e) {
+                        Log.d(MoatActivity.class.getSimpleName(), "Error decoding answer: " + response.toString());
+
+                        displayError(e, response);
                     }
                 });
 
@@ -350,17 +343,14 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
                 moatBaseUrl + "/" + endpoint,
                 requestBody,
                 listener,
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        mRequestInProgress = false;
-                        invalidateOptionsMenu();
-                        mProgressBar.setVisibility(View.GONE);
+                error -> {
+                    mRequestInProgress = false;
+                    invalidateOptionsMenu();
+                    mProgressBar.setVisibility(View.GONE);
 
-                        Log.d(MoatActivity.class.getSimpleName(), "Error response.");
+                    Log.d(MoatActivity.class.getSimpleName(), "Error response.");
 
-                        displayError(error, null);
-                    }
+                    displayError(error, null);
                 }
         ) {
             public String getBodyContentType() {

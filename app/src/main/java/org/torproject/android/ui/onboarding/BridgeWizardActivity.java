@@ -53,53 +53,34 @@ public class BridgeWizardActivity extends AppCompatActivity {
 
         setTitle(getString(R.string.bridges));
 
-        findViewById(R.id.btnMoat).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivityForResult(new Intent(BridgeWizardActivity.this, MoatActivity.class),
-                        MOAT_REQUEST_CODE);
-            }
-        });
+        findViewById(R.id.btnMoat).setOnClickListener(v -> startActivityForResult(new Intent(BridgeWizardActivity.this, MoatActivity.class),
+                MOAT_REQUEST_CODE));
 
         mBtDirect = findViewById(R.id.btnBridgesDirect);
-        mBtDirect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Prefs.setBridgesList("");
-                Prefs.putBridgesEnabled(false);
-                testBridgeConnection();
-            }
+        mBtDirect.setOnClickListener(v -> {
+            Prefs.setBridgesList("");
+            Prefs.putBridgesEnabled(false);
+            testBridgeConnection();
         });
 
         mBtObfs4 = findViewById(R.id.btnBridgesObfs4);
-        mBtObfs4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Prefs.setBridgesList("obfs4");
-                Prefs.putBridgesEnabled(true);
-                testBridgeConnection();
-            }
+        mBtObfs4.setOnClickListener(v -> {
+            Prefs.setBridgesList("obfs4");
+            Prefs.putBridgesEnabled(true);
+            testBridgeConnection();
         });
 
 
         mBtMeek = findViewById(R.id.btnBridgesMeek);
-        mBtMeek.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Prefs.setBridgesList("meek");
-                Prefs.putBridgesEnabled(true);
-                testBridgeConnection();
-            }
+        mBtMeek.setOnClickListener(v -> {
+            Prefs.setBridgesList("meek");
+            Prefs.putBridgesEnabled(true);
+            testBridgeConnection();
         });
 
 
         mBtCustom = findViewById(R.id.btnCustomBridges);
-        mBtCustom.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(BridgeWizardActivity.this, CustomBridgesActivity.class));
-            }
-        });
+        mBtCustom.setOnClickListener(view -> startActivity(new Intent(BridgeWizardActivity.this, CustomBridgesActivity.class)));
     }
 
     @Override

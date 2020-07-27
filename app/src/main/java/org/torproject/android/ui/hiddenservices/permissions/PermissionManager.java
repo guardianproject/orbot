@@ -14,7 +14,7 @@ import android.provider.Settings;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
-import android.view.View;
+
 import org.torproject.android.R;
 
 public class PermissionManager {
@@ -38,14 +38,9 @@ public class PermissionManager {
             Snackbar.make(mActivity.findViewById(android.R.id.content),
                     R.string.please_grant_permissions_for_external_storage,
                     Snackbar.LENGTH_INDEFINITE).setAction(R.string.activate,
-                    new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            ActivityCompat.requestPermissions(mActivity,
-                                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                                    mAction);
-                        }
-                    }).show();
+                    v -> ActivityCompat.requestPermissions(mActivity,
+                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                            mAction)).show();
         } else {
             ActivityCompat.requestPermissions(mActivity,
                     new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
@@ -65,14 +60,11 @@ public class PermissionManager {
         Snackbar.make(activity.findViewById(android.R.id.content),
                 R.string.consider_disable_battery_optimizations,
                 VERY_LONG_LENGTH).setAction(R.string.disable,
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent();
-                        intent.setAction(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
-                        intent.setData(Uri.parse("package:" + packageName));
-                        mContext.startActivity(intent);
-                    }
+                v -> {
+                    Intent intent = new Intent();
+                    intent.setAction(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
+                    intent.setData(Uri.parse("package:" + packageName));
+                    mContext.startActivity(intent);
                 }).show();
     }
 
@@ -89,13 +81,10 @@ public class PermissionManager {
         Snackbar.make(activity.findViewById(android.R.id.content),
                 R.string.consider_enable_battery_optimizations,
                 VERY_LONG_LENGTH).setAction(R.string.enable,
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent();
-                        intent.setAction(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS);
-                        mContext.startActivity(intent);
-                    }
+                v -> {
+                    Intent intent = new Intent();
+                    intent.setAction(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS);
+                    mContext.startActivity(intent);
                 }).show();
     }
 }

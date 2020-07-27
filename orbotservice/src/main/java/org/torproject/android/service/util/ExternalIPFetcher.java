@@ -2,7 +2,6 @@ package org.torproject.android.service.util;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.torproject.android.service.OrbotService;
 import org.torproject.android.service.TorEventHandler;
 import org.torproject.android.service.OrbotService;
 

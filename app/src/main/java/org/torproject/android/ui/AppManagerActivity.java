@@ -35,7 +35,6 @@ import org.torproject.android.service.vpn.TorifiedApp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -125,17 +124,15 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
         if (mApps == null)
             mApps = getApps(prefs);
 
-        Collections.sort(mApps,new Comparator<TorifiedApp>() {
-            public int compare(TorifiedApp o1, TorifiedApp o2) {
-                /* Some apps start with lowercase letters and without the sorting being case
-                   insensitive they'd appear at the end of the grid of apps, a position where users
-                   would likely not expect to find them.
-                 */
-                if (o1.isTorified() == o2.isTorified())
-                    return o1.getName().compareToIgnoreCase(o2.getName());
-                if (o1.isTorified()) return -1;
-                return 1;
-            }
+        Collections.sort(mApps, (o1, o2) -> {
+            /* Some apps start with lowercase letters and without the sorting being case
+               insensitive they'd appear at the end of the grid of apps, a position where users
+               would likely not expect to find them.
+             */
+            if (o1.isTorified() == o2.isTorified())
+                return o1.getName().compareToIgnoreCase(o2.getName());
+            if (o1.isTorified()) return -1;
+            return 1;
         });
 
         final LayoutInflater inflater = getLayoutInflater();
