@@ -46,4 +46,5 @@
     <string name="pref_node_configuration_summary">এটি উন্নত সেটিংস যা তোমার গোপনীয়তা হ্রাস করতে পারে</string>
     <string name="pref_node_configuration">নোড কনফিগারেশন</string>
     <string name="pref_start_boot_summary">অরবোটটি স্বয়ংক্রিয়ভাবে শুরু করো এবং তোমার অ্যান্ড্রয়েড ডিভাইস বুট হওয়ার পরে টরে সংযুক্ত করো</string>
+    <string name="pref_allow_background_starts_summary">যে কোন অ্যাপ অরবটকে টর এবং সংশ্লিষ্ট পরিষেবাগুলি চালু করতে বলতে পারে</string>
 </resources>
