@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -27,14 +28,21 @@ import java.net.SocketAddress;
 
 public class BridgeWizardActivity extends AppCompatActivity {
 
-    private static int MOAT_REQUEST_CODE = 666;
+    private static final int MOAT_REQUEST_CODE = 666;
+    private static final int CUSTOM_BRIDGES_REQUEST_CODE = 1312;
 
-    private TextView mTvStatus;
+    private static TextView mTvStatus;
+    private static HostTester runningHostTest;
+
     private RadioButton mBtDirect;
     private RadioButton mBtObfs4;
     private RadioButton mBtMeek;
     private RadioButton mBtCustom;
 
+    private View mBtnConfgiureCustomBridges;
+
+    private static final String BUNDLE_KEY_TV_STATUS_VISIBILITY = "visibility";
+    private static final String BUNDLE_KEY_TV_STATUS_TEXT = "text";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,44 +57,64 @@ public class BridgeWizardActivity extends AppCompatActivity {
         }
 
         mTvStatus = findViewById(R.id.lbl_bridge_test_status);
-        mTvStatus.setVisibility(View.GONE);
+        if (savedInstanceState == null) {
+            mTvStatus.setVisibility(View.GONE);
+        } else {
+            mTvStatus.setVisibility(savedInstanceState.getInt(BUNDLE_KEY_TV_STATUS_VISIBILITY, View.GONE));
+            mTvStatus.setText(savedInstanceState.getString(BUNDLE_KEY_TV_STATUS_TEXT, ""));
+        }
 
         setTitle(getString(R.string.bridges));
 
-        findViewById(R.id.btnMoat).setOnClickListener(v -> startActivityForResult(new Intent(BridgeWizardActivity.this, MoatActivity.class),
-                MOAT_REQUEST_CODE));
+        findViewById(R.id.btnMoat).setOnClickListener(v -> {
+            cancelHostTestIfRunning();
+            startActivityForResult(new Intent(BridgeWizardActivity.this, MoatActivity.class), MOAT_REQUEST_CODE);
+        });
 
         mBtDirect = findViewById(R.id.btnBridgesDirect);
-        mBtDirect.setOnClickListener(v -> {
+        mBtDirect.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (!isChecked) return;
             Prefs.setBridgesList("");
             Prefs.putBridgesEnabled(false);
             testBridgeConnection();
+
         });
 
         mBtObfs4 = findViewById(R.id.btnBridgesObfs4);
-        mBtObfs4.setOnClickListener(v -> {
+        mBtObfs4.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (!isChecked) return;
             Prefs.setBridgesList("obfs4");
             Prefs.putBridgesEnabled(true);
             testBridgeConnection();
         });
 
-
         mBtMeek = findViewById(R.id.btnBridgesMeek);
-        mBtMeek.setOnClickListener(v -> {
+        mBtMeek.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (!isChecked) return;
             Prefs.setBridgesList("meek");
             Prefs.putBridgesEnabled(true);
             testBridgeConnection();
         });
 
-
         mBtCustom = findViewById(R.id.btnCustomBridges);
-        mBtCustom.setOnClickListener(view -> startActivity(new Intent(BridgeWizardActivity.this, CustomBridgesActivity.class)));
+        mBtCustom.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                cancelHostTestIfRunning();
+                mTvStatus.setVisibility(View.GONE);
+                mBtnConfgiureCustomBridges.setVisibility(View.VISIBLE);
+            } else {
+                mBtnConfgiureCustomBridges.setVisibility(View.GONE);
+            }
+        });
+
+        mBtnConfgiureCustomBridges = findViewById(R.id.btnConfigureCustomBridges);
+        mBtnConfgiureCustomBridges.setOnClickListener(v ->
+                startActivityForResult(new Intent(BridgeWizardActivity.this, CustomBridgesActivity.class), CUSTOM_BRIDGES_REQUEST_CODE));
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
         evaluateBridgeListState();
     }
 
@@ -117,23 +145,27 @@ public class BridgeWizardActivity extends AppCompatActivity {
             else {
                 evaluateBridgeListState();
             }
-        }
-        else {
+        } else if (requestCode == CUSTOM_BRIDGES_REQUEST_CODE) {
+            if (noBridgesSet()) mBtDirect.setChecked(true);
+        } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
 
-
     private void testBridgeConnection() {
+        cancelHostTestIfRunning();
+        HostTester hostTester = new HostTester();
         if (TextUtils.isEmpty(Prefs.getBridgesList()) || (!Prefs.bridgesEnabled())) {
-            new HostTester().execute("check.torproject.org", "443");
+            hostTester.execute("check.torproject.org", "443");
         } else if (Prefs.getBridgesList().equals("meek")) {
-            new HostTester().execute("meek.azureedge.net", "443", "d2cly7j4zqgua7.cloudfront.net", "443");
+            hostTester.execute("meek.azureedge.net", "443", "d2cly7j4zqgua7.cloudfront.net", "443");
         } else if (Prefs.getBridgesList().equals("obfs4")) {
-            new HostTester().execute("85.17.30.79", "443", "154.35.22.9", "443", "192.99.11.54", "443");
+            hostTester.execute("85.17.30.79", "443", "154.35.22.9", "443", "192.99.11.54", "443");
         } else {
+            hostTester = null;
             mTvStatus.setText("");
         }
+        if (hostTester != null) runningHostTest = hostTester;
     }
 
     private class HostTester extends AsyncTask<String, Void, Boolean> {
@@ -141,17 +173,17 @@ public class BridgeWizardActivity extends AppCompatActivity {
         protected void onPreExecute() {
             // Pre Code
             mTvStatus.setVisibility(View.VISIBLE);
-            mTvStatus.setText(R.string.testing_bridges);
+            mTvStatus.setText(mBtDirect.isChecked() ? R.string.testing_tor_direct : R.string.testing_bridges);
         }
 
         @Override
         protected Boolean doInBackground(String... host) {
             // Background Code
             for (int i = 0; i < host.length; i++) {
+                if (isCancelled()) return null;
                 String testHost = host[i];
                 i++; //move to the port
                 int testPort = Integer.parseInt(host[i]);
-
                 if (isHostReachable(testHost, testPort, 10000)) {
                     return true;
                 }
@@ -163,14 +195,28 @@ public class BridgeWizardActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean result) {
             // Post Code
+            runningHostTest = null;
             if (result) {
-                mTvStatus.setText(R.string.testing_bridges_success);
-
+                int stringRes = mBtDirect.isChecked() ? R.string.testing_tor_direct_success : R.string.testing_bridges_success;
+                mTvStatus.setText(stringRes);
             } else {
                 mTvStatus.setText(R.string.testing_bridges_fail);
-
             }
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putInt(BUNDLE_KEY_TV_STATUS_VISIBILITY, mTvStatus.getVisibility());
+        savedInstanceState.putString(BUNDLE_KEY_TV_STATUS_TEXT, mTvStatus.getText().toString());
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    @Override
+    public void onDestroy() {
+        cancelHostTestIfRunning();
+        mTvStatus = null;
+        super.onDestroy();
     }
 
     @SuppressWarnings("SameParameterValue")
@@ -185,8 +231,7 @@ public class BridgeWizardActivity extends AppCompatActivity {
                 connected = true;
                 socket.close();
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -195,18 +240,25 @@ public class BridgeWizardActivity extends AppCompatActivity {
 
     private void evaluateBridgeListState() {
         Log.d(getClass().getSimpleName(), String.format("bridgesEnabled=%b, bridgesList=%s", Prefs.bridgesEnabled(), Prefs.getBridgesList()));
-
-        if (!Prefs.bridgesEnabled()) {
+        if (noBridgesSet()) {
             mBtDirect.setChecked(true);
-        }
-        else if (Prefs.getBridgesList().equals("meek")) {
+        } else if (Prefs.getBridgesList().equals("meek")) {
             mBtMeek.setChecked(true);
-        }
-        else if (Prefs.getBridgesList().equals("obfs4")) {
+        } else if (Prefs.getBridgesList().equals("obfs4")) {
             mBtObfs4.setChecked(true);
-        }
-        else {
+        } else {
             mBtCustom.setChecked(true);
         }
+    }
+
+    private static void cancelHostTestIfRunning() {
+        if (runningHostTest != null) {
+            runningHostTest.cancel(true);
+            runningHostTest = null;
+        }
+    }
+
+    private static boolean noBridgesSet() {
+        return !Prefs.bridgesEnabled() || Prefs.getBridgesList().trim().equals("");
     }
 }

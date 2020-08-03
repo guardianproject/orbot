@@ -172,6 +172,7 @@
     <string name="bridge_mode">Request New Bridge</string>
 
     <string name="get_bridges_email">Email</string>
+    <string name="get_bridges_email_request">Request Bridges via Email</string>
     <string name="get_bridges_web">Web</string>
 
     <string name="activate">Activate</string>
@@ -242,7 +243,9 @@
     <string name="pref_disable_ipv4_summary">Tells exits not to connect to IPv4 addresses</string>
     <string name="app_shortcuts">Tor-Enabled Apps</string>
     <string name="testing_bridges">Testing bridge connection to Tor....</string>
+    <string name="testing_tor_direct">Testing connection to Tor...</string>
     <string name="testing_bridges_success">Success. Bridge configuration is good!</string>
+    <string name="testing_tor_direct_success">Success. Tor connection is good!</string>
     <string name="testing_bridges_fail">FAILED. Try another option</string>
     <string name="bridge_direct_connect">Connect directly to Tor (Best)</string>
     <string name="bridge_community">Connect through community servers</string>
@@ -270,7 +273,8 @@
     <!-- BridgeWizardActivity -->
     <string name="request_bridges_from_torproject">Request Bridges from torproject.org</string>
     <string name="custom_bridges">Custom Bridges</string>
-    
+    <string name="configure_custom_bridges">Configure Custom Bridges</string>
+
     <!-- CustomBridgesActivity -->
     <string name="use_custom_bridges">Use Custom Bridges</string>
     <string name="in_a_browser">In a browser, visit %s and tap "Get Bridges" > "Just Give Me Bridges!"</string>
