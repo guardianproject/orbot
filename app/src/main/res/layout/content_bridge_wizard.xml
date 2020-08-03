@@ -67,6 +67,14 @@
 
         </RadioGroup>
 
+        <Button
+            android:id="@+id/btnConfigureCustomBridges"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:text="@string/configure_custom_bridges"
+            android:visibility="gone" />
+
         <TextView
             android:id="@+id/lbl_bridge_test_status"
             android:layout_width="match_parent"
