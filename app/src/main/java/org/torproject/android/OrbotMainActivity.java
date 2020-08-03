@@ -274,6 +274,10 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
 
                     break;
                 }
+                case ACTION_STOP_VPN: {
+                    mBtnVPN.setChecked(false);
+                    break;
+                }
             }
         }
     };
@@ -880,7 +884,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         super.onResume();
 
         mBtnBridges.setChecked(Prefs.bridgesEnabled());
-        mBtnVPN.setChecked(Prefs.useVpn());
+        refreshVpnState();
 
         setCountrySpinner();
 
@@ -896,6 +900,22 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         //now you can handle the intents properly
         handleIntents();
 
+    }
+
+    /**
+     * After granting VPN permissions in Orbot it's possible to revoke them outside of the app
+     * This method ensures that VPN permissions are still granted and if not it updates the state
+     * of the UI accordingly. see: https://github.com/guardianproject/orbot/issues/368
+     */
+    private void refreshVpnState() {
+        if (Prefs.useVpn()) {
+            Intent enableVpnIntent = VpnService.prepare(this);
+            // don't start the Intent, just update Orbot to say that VPN privileges are gone
+            if (enableVpnIntent != null) {
+                Prefs.putUseVpn(false);
+            }
+        }
+        mBtnVPN.setChecked(Prefs.useVpn());
     }
 
     AlertDialog aDialog = null;
