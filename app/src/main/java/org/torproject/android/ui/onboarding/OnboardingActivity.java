@@ -17,56 +17,25 @@ import org.torproject.android.ui.AppManagerActivity;
 import org.torproject.android.ui.hiddenservices.permissions.PermissionManager;
 
 public class OnboardingActivity extends AppIntro {
-    private CustomSlideBigText welcome, intro2, cs2, cs3;
-
-    private static final String BUNDLE_KEY_WELCOME_FRAGMENT = "Welcome";
-    private static final String BUNDLE_KEY_INTRO_2_FRAGMENT = "Intro2";
-    private static final String BUNDLE_KEY_CS2_FRAGMENT = "CS2";
-    private static final String BUNDLE_KEY_CS3_FRAGMENT = "CS3";
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (savedInstanceState != null) { // Restoring the fragments
-            welcome = (CustomSlideBigText) getSupportFragmentManager().getFragment(savedInstanceState, BUNDLE_KEY_WELCOME_FRAGMENT);
-            intro2 = (CustomSlideBigText) getSupportFragmentManager().getFragment(savedInstanceState, BUNDLE_KEY_INTRO_2_FRAGMENT);
-            cs2 = (CustomSlideBigText) getSupportFragmentManager().getFragment(savedInstanceState, BUNDLE_KEY_CS2_FRAGMENT);
-            if (PermissionManager.isLollipopOrHigher())
-                cs3 = (CustomSlideBigText) getSupportFragmentManager().getFragment(savedInstanceState, BUNDLE_KEY_CS3_FRAGMENT);
+        addSlide(CustomSlideBigText.newInstance(R.layout.custom_slide_big_text, getString(R.string.hello), getString(R.string.welcome)));
+        addSlide(CustomSlideBigText.newInstance(R.layout.custom_slide_big_text, getString(R.string.browser_the_internet), getString(R.string.no_tracking)));
 
-        } else {
-            // Instead of fragments, you can also use our default slide
-            // Just set a title, description, background and image. AppIntro will do the rest.
-            welcome = CustomSlideBigText.newInstance(R.layout.custom_slide_big_text);
-            welcome.setTitle(getString(R.string.hello));
-            welcome.setSubTitle(getString(R.string.welcome));
-            addSlide(welcome);
+        CustomSlideBigText cs2 = CustomSlideBigText.newInstance(R.layout.custom_slide_big_text, getString(R.string.bridges_sometimes));
+        cs2.showButton(getString(R.string.action_more), v -> startActivity(new Intent(OnboardingActivity.this, BridgeWizardActivity.class)));
+        cs2.showButton(getString(R.string.action_more), v -> startActivity(new Intent(OnboardingActivity.this, BridgeWizardActivity.class)));
+        addSlide(cs2);
 
-            intro2 = CustomSlideBigText.newInstance(R.layout.custom_slide_big_text);
-            intro2.setTitle(getString(R.string.browser_the_internet));
-            intro2.setSubTitle(getString(R.string.no_tracking));
-            addSlide(intro2);
-
-            cs2 = CustomSlideBigText.newInstance(R.layout.custom_slide_big_text);
-            cs2.setTitle(getString(R.string.bridges_sometimes));
-            cs2.showButton(getString(R.string.action_more), v -> startActivity(new Intent(OnboardingActivity.this, BridgeWizardActivity.class)));
-            addSlide(cs2);
-
-            if (PermissionManager.isLollipopOrHigher()) {
-
-                cs3 = CustomSlideBigText.newInstance(R.layout.custom_slide_big_text);
-                cs3.setTitle(getString(R.string.vpn_setup));
-                cs3.setSubTitle(getString(R.string.vpn_setup_sub));
-                cs3.showButton(getString(R.string.action_vpn_choose), v -> startActivityForResult(new Intent(OnboardingActivity.this, AppManagerActivity.class), 9999));
-                addSlide(cs3);
-
-            }
+        if (PermissionManager.isLollipopOrHigher()) {
+            CustomSlideBigText cs3 = CustomSlideBigText.newInstance(R.layout.custom_slide_big_text, getString(R.string.vpn_setup), getString(R.string.vpn_setup_sub));
+            cs3.showButton(getString(R.string.action_vpn_choose), v -> startActivity(new Intent(OnboardingActivity.this, AppManagerActivity.class)));
+            addSlide(cs3);
         }
 
-
-        // OPTIONAL METHODS
         // Override bar/separator color.
         setBarColor(getResources().getColor(R.color.dark_purple));
         setSeparatorColor(getResources().getColor(R.color.panel_background_main));
@@ -89,26 +58,5 @@ public class OnboardingActivity extends AppIntro {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(LocaleHelper.onAttach(base));
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) { //Saving the fragments
-        super.onSaveInstanceState(outState);
-
-        //Save the fragment's instance
-        int count = 0;
-        for (Fragment fragment : getSupportFragmentManager().getFragments()) {
-            count++;
-        }
-
-        //Should check if the fragment exists in the fragment manager or else it'll flag error
-        if (count >= 1)
-            getSupportFragmentManager().putFragment(outState, BUNDLE_KEY_WELCOME_FRAGMENT, welcome);
-        if (count >= 2)
-            getSupportFragmentManager().putFragment(outState, BUNDLE_KEY_INTRO_2_FRAGMENT, intro2);
-        if (count >= 3)
-            getSupportFragmentManager().putFragment(outState, BUNDLE_KEY_CS2_FRAGMENT, cs2);
-        if (count >= 4 && PermissionManager.isLollipopOrHigher())
-            getSupportFragmentManager().putFragment(outState, BUNDLE_KEY_CS3_FRAGMENT, cs3);
     }
 }
