@@ -523,9 +523,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
             if (intentVPN != null)
                 startActivityForResult(intentVPN, REQUEST_VPN);
             else {
-                drawAppShortcuts(true);
-                sendIntentToService(ACTION_START);
-                sendIntentToService(ACTION_START_VPN);
+                startVpn();
             }
 
         } else {
@@ -533,6 +531,12 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
             sendIntentToService(ACTION_STOP_VPN);
         }
 
+    }
+
+    private void startVpn() {
+        drawAppShortcuts(true);
+        sendIntentToService(ACTION_START);
+        sendIntentToService(ACTION_START_VPN);
     }
 
     private void enableHiddenServicePort(
@@ -805,8 +809,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                 refreshVPNApps();
 
         } else if (request == REQUEST_VPN && response == RESULT_OK) {
-            drawAppShortcuts(true);
-            sendIntentToService(ACTION_START_VPN);
+            startVpn();
         } else if (request == REQUEST_VPN && response == RESULT_CANCELED) {
             mBtnVPN.setChecked(false);
         }
@@ -1239,13 +1242,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         iv.setLayoutParams(params);
         iv.setImageDrawable(getResources().getDrawable(R.drawable.ic_settings_white_24dp));
         llBoxShortcuts.addView(iv);
-        iv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivityForResult(new Intent(OrbotMainActivity.this, AppManagerActivity.class), REQUEST_VPN_APPS_SELECT);
-
-            }
-        });
+        iv.setOnClickListener(v -> startActivityForResult(new Intent(OrbotMainActivity.this, AppManagerActivity.class), REQUEST_VPN_APPS_SELECT));
     }
 
 

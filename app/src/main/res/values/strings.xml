@@ -212,7 +212,7 @@
     <string name="copy_cookie_to_clipboard">Copy cookie to clipboard</string>
     <string name="auth_cookie_was_not_configured">Auth cookie was not configured</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Please restart Orbot to enable the changes</string>
-    <string name="client_cookies">Client cookies</string>
+    <string name="client_cookies">Client Cookies</string>
     <string name="onion">.onion</string>
     <string name="invalid_onion_address">Invalid .onion address</string>
     <string name="cookie_from_QR">Read from QR</string>

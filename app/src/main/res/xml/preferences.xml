@@ -158,7 +158,7 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="ReachableAddresses">
+    <PreferenceCategory android:title="@string/reachable_addresses">
         <CheckBoxPreference
             android:defaultValue="false"
             android:enabled="true"
