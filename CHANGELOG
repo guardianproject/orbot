@@ -1,4 +1,46 @@
 
+
+/** 16.3.1-BETA-1-tor-0.4.2.7 / 4 August 2020 / 853c7c3641bcd82b92cfd95510cd838db56aa888 **/
+
+853c7c36 (HEAD -> master, tag: 16.3.1-BETA-1-tor-0.4.2.7) update version to 1631100100
+ffe21c4c (origin/master, origin/HEAD) Merge branch 'bitmold-bridge_wiz_rotation_fix'
+3b796cf6 (bitmold-bridge_wiz_rotation_fix) Merge branch 'bridge_wiz_rotation_fix' of https://github.com/bitmold/orbot into bitmold-bridge_wiz_rotation_fix
+3bcb7625 (newport/master) Merge branch 'master' of github.com:guardianproject/orbot
+c3001186 Merge branch 'bitmold-vpn_disable'
+76a52f7f Fixes #358 ~ BridgeWizard bridge options are selected correctly when the wizard is opened/closed. ~ Custom Bridges option is behind a button now that is only visible when the radio button is set ~ Some String updates to make it clear a given connection test is for bridges or not
+aa8a5325 Fixes #366 Prevents multiple HostTests from running concurrently and closes any ongoing network requests once the BridgeWizardActivity loses focus
+e006fce7 Fixes #364 Bridge Wizard status TextView is preserved on device rotation
+8990c904 Merge pull request #373 from bitmold/onboarding_rotation_fix
+900a7e86 Fixes #304 Onboarding text and slide position are preserved on rotation
+992b3108 (bitmold-vpn_disable) When the VPN is disconnected through another app using VpnService or manually by the user turn off the VPN toggle within Orbot
+3b708b43 Fixes #368 - if VPN priviliges are removed outside of Orbot, Orbot will appropriately respond and turn off the VPN controls within the app.
+53cdad1f Merge branch 'bitmold-vpn_app_icon_fix'
+713ef464 (bitmold-vpn_app_icon_fix) Merge branch 'vpn_app_icon_fix' of https://github.com/bitmold/orbot into bitmold-vpn_app_icon_fix
+e436e10b Merge branch 'master' of github.com:guardianproject/orbot
+86845558 Merge pull request #371 from bitmold/vpn_ui_no_orbot
+855bc72d Merge branch 'master' of github.com:guardianproject/orbot
+4e425cb0 Merge pull request #372 from bitmold/java8
+af1ab221 Java 8 code cleanup, lambdas over anonymous inner classes. This gets rid of unused imports. Also removed methods in the main app that are not used by the program at all.
+db079a4c set compile options to Java 8
+dac9b510 Users can't select Orbot itself through the VPN app manager. It is impossible (explained in #151) + and selecting won't do anyhting but mislead users
+c2cb00f1 Merge branch 'master' of github.com:guardianproject/orbot
+dc536fcd Merge pull request #350 from bitmold/gitignore_update
+e25600d8 Merge pull request #351 from bitmold/patch-1
+0a971129 Merge pull request #362 from bitmold/patch-3
+b3059ecc only show app icons after granting vpn permissioN
+137f3be2 Update FUNDING.yml
+a9168d2d Merge branch 'master' of github.com:guardianproject/orbot
+5f296ccc Merge pull request #361 from bitmold/onionservices_no_click_again
+85f6f305 Merge pull request #357 from bitmold/paste_bridges_ET_fix
+49404498 Merge pull request #355 from bitmold/auto_kb_bridges_fix
+74e773f7 Merge pull request #359 from bitmold/app-mini-builds
+88082af9 Fixes #360 "Click again for backup"
+b9d2f90d app-mini project builds again
+2a389e05 Fixes #356 Can't Scroll through pasted bridges with soft keyboard open
+d521ae02 Fixes #354 MOAT Solution Textfield is only enabled when there's a solution. Also do not automatically open up the keyboard when there's nothing to type.
+4ef76e06 Update BUILD
+fbda0e45 gitignore ndk-build artifacts
+
 /** 16.3.0-RC-1-tor-0.4.2.7 / 30 May 2020 / 9b415d17a0d8086adc5525e395736e5438cf3276 **/
 
 9b415d17 (HEAD -> master) update version code to 1630200100
