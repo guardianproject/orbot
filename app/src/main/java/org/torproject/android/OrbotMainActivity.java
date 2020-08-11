@@ -1175,8 +1175,10 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     }
 
     private void drawAppShortcuts(boolean showSelectedApps) {
-
-        if (!PermissionManager.isLollipopOrHigher()) return;
+        if (!PermissionManager.isLollipopOrHigher()) {
+            findViewById(R.id.boxVpnStatus).setVisibility(View.GONE);
+            return;
+        }
 
         LinearLayout llBoxShortcuts = findViewById(R.id.boxAppShortcuts);
 
@@ -1205,14 +1207,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                         params.setMargins(3, 3, 3, 3);
                         iv.setLayoutParams(params);
                         iv.setImageDrawable(pMgr.getApplicationIcon(pkgId));
-
-                        iv.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                openBrowser(URL_TOR_CHECK, false, pkgId);
-                            }
-                        });
-
+                        iv.setOnClickListener(v -> openBrowser(URL_TOR_CHECK, false, pkgId));
                         llBoxShortcuts.addView(iv);
                         appsAdded++;
                     } catch (Exception e) {
