@@ -28,6 +28,8 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.net.VpnService;
 import android.os.Build;
+import android.os.Environment;
+import android.os.Handler;
 import android.os.IBinder;
 import android.provider.BaseColumns;
 import androidx.annotation.RequiresApi;
@@ -39,8 +41,10 @@ import android.util.Log;
 import com.jaredrummler.android.shell.CommandResult;
 
 import net.freehaven.tor.control.ConfigEntry;
+import net.freehaven.tor.control.RawEventListener;
 import net.freehaven.tor.control.TorControlConnection;
 
+import org.apache.commons.io.FileUtils;
 import org.torproject.android.service.util.CustomShell;
 import org.torproject.android.service.util.CustomTorResourceInstaller;
 import org.torproject.android.service.util.DummyActivity;
@@ -66,9 +70,12 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -133,6 +140,8 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
     OrbotVpnManager mVpnManager;
 
+    Handler mHandler;
+
     public static final class HiddenService implements BaseColumns {
         public static final String NAME = "name";
         public static final String PORT = "port";
@@ -174,10 +183,12 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
     public void debug(String msg)
     {
+
+        Log.d(OrbotConstants.TAG,msg);
+
         if (Prefs.useDebugLogging())
         {
-            Log.d(OrbotConstants.TAG,msg);
-            sendCallbackLogMessage(msg);
+           sendCallbackLogMessage(msg);
 
         }
     }
@@ -535,6 +546,8 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
         try
         {
+            mHandler = new Handler();
+
             appBinHome = getFilesDir();//getDir(TorServiceConstants.DIRECTORY_TOR_BINARY, Application.MODE_PRIVATE);
             if (!appBinHome.exists())
                 appBinHome.mkdirs();
@@ -548,6 +561,20 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
             if (!appCacheHome.exists())
                 appCacheHome.mkdirs();
+
+
+            debug("listing files in DataDirectory: " + appCacheHome.getAbsolutePath());
+            Iterator<File> files = FileUtils.iterateFiles(appCacheHome,null,true);
+            while (files.hasNext())
+            {
+                File fileNext = files.next();
+                debug(fileNext.getAbsolutePath()
+                        + " length=" + fileNext.length()
+                        + " rw=" + fileNext.canRead() + "/" + fileNext.canWrite()
+                        + " lastMod=" + new Date(fileNext.lastModified()).toLocaleString()
+
+                );
+            }
 
             fileTorRc = new File(appBinHome, TORRC_ASSET_KEY);
             fileControlPort = new File(getFilesDir(), TOR_CONTROL_PORT_FILE);
@@ -680,8 +707,8 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
         extraLines.append("PidFile").append(' ').append(filePid.getCanonicalPath()).append('\n');
 
-       //extraLines.append("RunAsDaemon 1").append('\n');
-       //extraLines.append("AvoidDiskWrites 1").append('\n');
+        extraLines.append("RunAsDaemon 1").append('\n');
+        extraLines.append("AvoidDiskWrites 1").append('\n');
         
          String socksPortPref = prefs.getString(OrbotConstants.PREF_SOCKS, (TorServiceConstants.SOCKS_PROXY_PORT_DEFAULT));
 
@@ -756,8 +783,8 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         extraLines.append("VirtualAddrNetwork 10.192.0.0/10").append('\n');
         extraLines.append("AutomapHostsOnResolve 1").append('\n');
 
-        extraLines.append("DormantClientTimeout 10 minutes").append('\n');
-        extraLines.append("DormantOnFirstStartup 0").append('\n');
+       // extraLines.append("DormantClientTimeout 10 minutes").append('\n');
+       // extraLines.append("DormantOnFirstStartup 0").append('\n');
 
         extraLines.append("DisableNetwork 0").append('\n');
 
@@ -992,10 +1019,10 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
         sendCallbackLogMessage(getString(R.string.status_starting_up));
 
-        String torCmdString = fileTor.getCanonicalPath()
-                + " DataDirectory " + appCacheHome.getCanonicalPath()
-                + " --defaults-torrc " + fileTorRc.getCanonicalPath()
-                + " -f " + fileTorrcCustom.getCanonicalPath();
+        String torCmdString = fileTor.getAbsolutePath()
+                + " DataDirectory " + appCacheHome.getAbsolutePath()
+                + " --defaults-torrc " + fileTorRc.getAbsolutePath()
+                + " -f " + fileTorrcCustom.getAbsolutePath();
 
         int exitCode = -1;
 
@@ -1122,15 +1149,41 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                     if (fileCookie.exists())
                     {
 
+                        // We extend NullEventHandler so that we don't need to provide empty
+                        // implementations for all the events we don't care about.
+                        logNotice( "adding control port event handler");
+
+                        if (Prefs.useDebugLogging()) {
+                            conn.setDebugging(System.out);
+                            conn.addRawEventListener(new RawEventListener() {
+                                @Override
+                                public void onEvent(String keyword, String data) {
+
+
+                                    debug(keyword + ": " + data);
+                                }
+                            });
+                        }
+
+                        conn.setEventHandler(mEventHandler);
+
+                        logNotice( "SUCCESS added control port event handler");
                         byte[] cookie = new byte[(int)fileCookie.length()];
                         DataInputStream fis = new DataInputStream(new FileInputStream(fileCookie));
                         fis.read(cookie);
                         fis.close();
                         conn.authenticate(cookie);
 
-                        addEventHandler();
-
                         logNotice( "SUCCESS - authenticated to control port.");
+
+                 //       conn.setEvents(Arrays.asList(new String[]{"DEBUG","STATUS_CLIENT","STATUS_GENERAL","BW"}));
+
+                        if (Prefs.useDebugLogging())
+                            conn.setEvents(Arrays.asList(new String[]{
+                                "CIRC","STREAM", "ORCONN" , "BW" , "INFO" ,"NOTICE" , "WARN" , "DEBUG","ERR" , "NEWDESC" , "ADDRMAP"}));
+                        else
+                            conn.setEvents(Arrays.asList(new String[]{
+                                    "CIRC","STREAM", "ORCONN" , "BW" , "NOTICE" ,"ERR" , "NEWDESC" , "ADDRMAP"}));
 
                       //  sendCallbackLogMessage(getString(R.string.tor_process_starting) + ' ' + getString(R.string.tor_process_complete));
 
@@ -1169,6 +1222,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
                         sendCallbackPorts(mPortSOCKS, mPortHTTP, mPortDns, mPortTrans);
 
+                        setTorNetworkEnabled(true);
 
                         return Integer.parseInt(torProcId);
 
@@ -1221,20 +1275,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         return result;
     }
 
-    public void addEventHandler () throws Exception {
-           // We extend NullEventHandler so that we don't need to provide empty
-           // implementations for all the events we don't care about.
-           // ...
-        logNotice( "adding control port event handler");
-
-
-        conn.setEvents(Arrays.asList(new String[]{
-                "CIRC","STREAM", "ORCONN" , "BW" , "INFO" ,"NOTICE" , "WARN" , "ERR" , "NEWDESC" , "ADDRMAP"}));
-
-        conn.setEventHandler(mEventHandler);
-
-        logNotice( "SUCCESS added control port event handler");
-    }
 
         /**
          * Returns the port number that the HTTP proxy is running on
@@ -1453,15 +1493,23 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
     }
 
-    private void sendCallbackLogMessage (String logMessage)
+    private void sendCallbackLogMessage (final String logMessage)
     {
 
-        Intent intent = new Intent(LOCAL_ACTION_LOG);
-          // You can also include some extra data.
-          intent.putExtra(LOCAL_EXTRA_LOG, logMessage);
-	      intent.putExtra(EXTRA_STATUS, mCurrentStatus);
+        mHandler.post(new Runnable () {
 
-          LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+            public void run ()
+            {
+
+                Intent intent = new Intent(LOCAL_ACTION_LOG);
+                // You can also include some extra data.
+                intent.putExtra(LOCAL_EXTRA_LOG, logMessage);
+                intent.putExtra(EXTRA_STATUS, mCurrentStatus);
+
+                LocalBroadcastManager.getInstance(OrbotService.this).sendBroadcast(intent);
+            }
+
+        });
 
     }
 

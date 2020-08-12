@@ -5,6 +5,7 @@ package org.torproject.android;
 
 import android.app.AlertDialog;
 
+import android.app.Application;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.ContentValues;
@@ -19,7 +20,9 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.net.VpnService;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
@@ -39,6 +42,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
@@ -54,6 +58,7 @@ import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.OrbotService;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.Prefs;
+import org.torproject.android.service.util.Utils;
 import org.torproject.android.service.vpn.VpnConstants;
 import org.torproject.android.service.vpn.VpnPrefs;
 import org.torproject.android.service.vpn.VpnUtils;
@@ -77,6 +82,7 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Locale;
 import java.util.StringTokenizer;
 
@@ -89,6 +95,7 @@ import static org.torproject.android.MainConstants.URL_TOR_CHECK;
 import static org.torproject.android.service.TorServiceConstants.ACTION_START;
 import static org.torproject.android.service.TorServiceConstants.ACTION_START_VPN;
 import static org.torproject.android.service.TorServiceConstants.ACTION_STOP_VPN;
+import static org.torproject.android.service.TorServiceConstants.DIRECTORY_TOR_DATA;
 import static org.torproject.android.service.vpn.VpnPrefs.PREFS_KEY_TORIFIED;
 
 public class OrbotMainActivity extends AppCompatActivity implements OrbotConstants {
@@ -197,6 +204,11 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         // Resets previous DNS Port to the default.
         VpnUtils.getSharedPrefs(getApplicationContext()).edit().putInt(VpnPrefs.PREFS_DNS_PORT,
                 VpnConstants.TOR_DNS_PORT_DEFAULT).apply();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            if (Prefs.useDebugLogging())
+                exportTorData();
+        }
 
     }
 
@@ -1250,4 +1262,21 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         llBoxShortcuts.addView(tv);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    private void exportTorData ()
+    {
+        File fileTorData = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            fileTorData = new File(getDataDir(),DIRECTORY_TOR_DATA);
+        }
+        else {
+            fileTorData = getDir(DIRECTORY_TOR_DATA, Application.MODE_PRIVATE);
+        }
+
+        File fileZip = new File(getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS),"orbotdata" + new Date().getTime() + ".zip");
+        Utils.zipFileAtPath(fileTorData.getAbsolutePath(), fileZip.getAbsolutePath());
+        fileZip.setReadable(true,false);
+        Log.d (TAG,"debugdata: " + fileZip.getAbsolutePath());
+
+    }
 }

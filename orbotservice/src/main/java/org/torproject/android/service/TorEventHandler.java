@@ -57,7 +57,11 @@ public class TorEventHandler implements EventHandler, TorServiceConstants {
 
     @Override
     public void message(String severity, String msg) {
-        mService.logNotice(severity + ": " + msg);
+
+        if (severity.equalsIgnoreCase("debug"))
+            mService.debug(severity + ": " + msg);
+        else
+            mService.logNotice(severity + ": " + msg);
     }
 
     @Override
@@ -89,7 +93,7 @@ public class TorEventHandler implements EventHandler, TorServiceConstants {
         sb.append("): ");
         sb.append(status);
 
-        mService.logNotice(sb.toString());
+        mService.debug(sb.toString());
     }
 
     @Override
@@ -104,10 +108,12 @@ public class TorEventHandler implements EventHandler, TorServiceConstants {
         mService.logNotice(sb.toString());
     }
 
+    private final static int BW_THRESDHOLD = 10000;
+
     @Override
     public void bandwidthUsed(long read, long written) {
 
-        if (read != lastRead || written != lastWritten)
+        if (lastWritten > BW_THRESDHOLD || lastRead > BW_THRESDHOLD)
         {
             StringBuilder sb = new StringBuilder();
             sb.append(formatCount(read));
@@ -125,12 +131,16 @@ public class TorEventHandler implements EventHandler, TorServiceConstants {
 
             mTotalTrafficWritten += written;
             mTotalTrafficRead += read;
+
+            mService.sendCallbackBandwidth(lastWritten, lastRead, mTotalTrafficWritten, mTotalTrafficRead);
+
+            lastWritten = 0;
+            lastRead = 0;
         }
 
-        lastWritten = written;
-        lastRead = read;
+        lastWritten += written;
+        lastRead += read;
 
-        mService.sendCallbackBandwidth(lastWritten, lastRead, mTotalTrafficWritten, mTotalTrafficRead);
     }
 
     private String formatCount(long count) {
