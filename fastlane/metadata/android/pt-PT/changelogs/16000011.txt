@@ -1,4 +1,4 @@
-- Atualização importante para a interface do usuário!
+- Atualização importante para a interface do utilizador!
 - Novos assistentes para configuração e configuração de ponte
 - Recursos VPN melhorados
 - Correções para craches de configuração do serviço Onion/Ocultado

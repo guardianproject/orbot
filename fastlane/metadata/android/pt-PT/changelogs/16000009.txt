@@ -1,4 +1,4 @@
-- Atualização importante para a interface do usuário!
+- Atualização importante para a interface do utilizador!
 - Novos assistentes para configuração e configuração de ponte
 - Recursos VPN aprimorados
 - Correções para choques de configuração de serviço cebola / escondido
