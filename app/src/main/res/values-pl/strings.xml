@@ -210,4 +210,6 @@
     <string name="pref_isolate_dest">Izoluj adresy docelowe</string>
     <string name="consider_enable_battery_optimizations">Rozważ wyłączenie optymalizacji baterii</string>
     <string name="hosted_services">Usługi Hostingowe</string>
+    <string name="pref_connection_padding">Wypełnienie połączenia</string>
+    <string name="pref_connection_padding_summary">Zawsze włącza wypełnienie połączenia, aby chronić się przed niektórymi formami analizy ruchu. Domyślnie: auto</string>
 </resources>
