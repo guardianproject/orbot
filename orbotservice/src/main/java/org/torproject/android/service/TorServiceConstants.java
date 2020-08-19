@@ -105,6 +105,7 @@ public interface TorServiceConstants {
     String CMD_SIGNAL_HUP = "signal_hup";
     String CMD_NEWNYM = "newnym";
     String CMD_SET_EXIT = "setexit";
+    String CMD_ACTIVE = "ACTIVE";
 
     String PREF_BINARY_TOR_VERSION_INSTALLED = "BINARY_TOR_VERSION_INSTALLED";
 

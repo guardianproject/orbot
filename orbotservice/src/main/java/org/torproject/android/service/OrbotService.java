@@ -424,7 +424,11 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                     requestTorRereadConfig();
                 } else if (action.equals(CMD_NEWNYM)) {
                     newIdentity();
-                } else if (action.equals(CMD_SET_EXIT)) {
+                }
+                else if (action.equals(CMD_ACTIVE)) {
+                    sendSignalActive();
+                }
+                else if (action.equals(CMD_SET_EXIT)) {
 
                 	setExitNode(mIntent.getStringExtra("exit"));
 
@@ -600,6 +604,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
             IntentFilter filter = new IntentFilter();
             filter.addAction(CMD_NEWNYM);
+            filter.addAction(CMD_ACTIVE);
             mActionBroadcastReceiver = new ActionBroadcastReceiver();
             registerReceiver(mActionBroadcastReceiver, filter);
 
@@ -783,8 +788,9 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         extraLines.append("VirtualAddrNetwork 10.192.0.0/10").append('\n');
         extraLines.append("AutomapHostsOnResolve 1").append('\n');
 
-       // extraLines.append("DormantClientTimeout 10 minutes").append('\n');
+        extraLines.append("DormantClientTimeout 10 minutes").append('\n');
        // extraLines.append("DormantOnFirstStartup 0").append('\n');
+        extraLines.append("DormantCanceledByStartup 1").append('\n');
 
         extraLines.append("DisableNetwork 0").append('\n');
 
@@ -1397,6 +1403,17 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 }.start();
             }
 
+        }
+
+        public void sendSignalActive ()
+        {
+            if (conn != null && mCurrentStatus == STATUS_ON) {
+                try {
+                    conn.signal("ACTIVE");
+                } catch (IOException e) {
+                    debug("error send active: " + e.getLocalizedMessage());
+                }
+            }
         }
 
         public void newIdentity ()
@@ -2137,6 +2154,11 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 case CMD_NEWNYM:
                 {
                     newIdentity();
+                    break;
+                }
+                case CMD_ACTIVE:
+                {
+                    sendSignalActive();
                     break;
                 }
             }

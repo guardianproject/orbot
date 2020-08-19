@@ -898,6 +898,8 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     protected void onResume() {
         super.onResume();
 
+        sendIntentToService(TorServiceConstants.CMD_ACTIVE);
+
         mBtnBridges.setChecked(Prefs.bridgesEnabled());
         refreshVpnState();
 
