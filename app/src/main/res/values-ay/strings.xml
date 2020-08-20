@@ -126,8 +126,8 @@
   <string name="pref_torrc_title">Torrc mayjt\'ayaña</string>
   <string name="pref_torrc_summary">YATIRINAKATAKIKI: torrc apthapitan chiqak mayjt\'ayam</string>
   <string name="pref_torrc_dialog">Maynipachpatak Torrc kuttayaña</string>
-  <string name="kbps">kbps</string>
-  <string name="mbps">mbps</string>
+  <string name="kbps">KBps</string>
+  <string name="mbps">MBps</string>
   <string name="kb">KB</string>
   <string name="mb">MB</string>
   <string name="bridges_updated">Jichhaptayat jalakipañanaka</string>
