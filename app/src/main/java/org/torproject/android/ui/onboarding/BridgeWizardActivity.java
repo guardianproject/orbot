@@ -214,7 +214,7 @@ public class BridgeWizardActivity extends AppCompatActivity {
             if (!TextUtils.isEmpty(mTvStatus.getText()))
                 savedInstanceState.putString(BUNDLE_KEY_TV_STATUS_TEXT, mTvStatus.getText().toString());
         }
-        
+
         super.onSaveInstanceState(savedInstanceState);
     }
 

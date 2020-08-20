@@ -806,8 +806,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
 
                 finish();
 
-                final Handler handler = new Handler();
-                handler.postDelayed(() -> {
+                mStatusUpdateHandler.postDelayed(() -> {
                     //Do something after 100ms
                     startActivity(new Intent(OrbotMainActivity.this, OrbotMainActivity.class));
 
