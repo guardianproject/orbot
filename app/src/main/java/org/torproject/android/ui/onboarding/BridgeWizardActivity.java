@@ -171,9 +171,12 @@ public class BridgeWizardActivity extends AppCompatActivity {
     private class HostTester extends AsyncTask<String, Void, Boolean> {
         @Override
         protected void onPreExecute() {
-            // Pre Code
-            mTvStatus.setVisibility(View.VISIBLE);
-            mTvStatus.setText(mBtDirect.isChecked() ? R.string.testing_tor_direct : R.string.testing_bridges);
+
+            if (mTvStatus != null) {
+                // Pre Code
+                mTvStatus.setVisibility(View.VISIBLE);
+                mTvStatus.setText(mBtDirect.isChecked() ? R.string.testing_tor_direct : R.string.testing_bridges);
+            }
         }
 
         @Override
@@ -195,12 +198,15 @@ public class BridgeWizardActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean result) {
             // Post Code
-            runningHostTest = null;
-            if (result) {
-                int stringRes = mBtDirect.isChecked() ? R.string.testing_tor_direct_success : R.string.testing_bridges_success;
-                mTvStatus.setText(stringRes);
-            } else {
-                mTvStatus.setText(R.string.testing_bridges_fail);
+            if (mTvStatus != null)
+            {
+                runningHostTest = null;
+                if (result) {
+                    int stringRes = mBtDirect.isChecked() ? R.string.testing_tor_direct_success : R.string.testing_bridges_success;
+                    mTvStatus.setText(stringRes);
+                } else {
+                    mTvStatus.setText(R.string.testing_bridges_fail);
+                }
             }
         }
     }
