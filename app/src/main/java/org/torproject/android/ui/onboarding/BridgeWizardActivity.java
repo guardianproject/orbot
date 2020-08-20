@@ -207,8 +207,14 @@ public class BridgeWizardActivity extends AppCompatActivity {
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
-        savedInstanceState.putInt(BUNDLE_KEY_TV_STATUS_VISIBILITY, mTvStatus.getVisibility());
-        savedInstanceState.putString(BUNDLE_KEY_TV_STATUS_TEXT, mTvStatus.getText().toString());
+
+        if (mTvStatus != null) {
+            savedInstanceState.putInt(BUNDLE_KEY_TV_STATUS_VISIBILITY, mTvStatus.getVisibility());
+
+            if (!TextUtils.isEmpty(mTvStatus.getText()))
+                savedInstanceState.putString(BUNDLE_KEY_TV_STATUS_TEXT, mTvStatus.getText().toString());
+        }
+        
         super.onSaveInstanceState(savedInstanceState);
     }
 
