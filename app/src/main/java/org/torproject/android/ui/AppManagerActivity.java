@@ -160,31 +160,31 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
                     convertView.setTag(entry);
                 }
 
-                final TorifiedApp app = mApps.get(position);
+                if (mApps != null) {
+                    final TorifiedApp app = mApps.get(position);
 
-                if (entry.icon != null) {
+                    if (entry.icon != null) {
 
-                    try {
-                        entry.icon.setImageDrawable(pMgr.getApplicationIcon(app.getPackageName()));
-                        entry.icon.setOnClickListener(AppManagerActivity.this);
-                        entry.icon.setTag(entry.box);
+                        try {
+                            entry.icon.setImageDrawable(pMgr.getApplicationIcon(app.getPackageName()));
+                            entry.icon.setOnClickListener(AppManagerActivity.this);
+                            entry.icon.setTag(entry.box);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
-                    catch (Exception e)
-                    {
-                        e.printStackTrace();
+
+                    if (entry.text != null) {
+                        entry.text.setText(app.getName());
+                        entry.text.setOnClickListener(AppManagerActivity.this);
+                        entry.text.setTag(entry.box);
                     }
-                }
 
-                if (entry.text != null) {
-                    entry.text.setText(app.getName());
-                    entry.text.setOnClickListener(AppManagerActivity.this);
-                    entry.text.setTag(entry.box);
-                }
-
-                if (entry.box != null) {
-                    entry.box.setOnClickListener(AppManagerActivity.this);
-                    entry.box.setChecked(app.isTorified());
-                    entry.box.setTag(app);
+                    if (entry.box != null) {
+                        entry.box.setOnClickListener(AppManagerActivity.this);
+                        entry.box.setChecked(app.isTorified());
+                        entry.box.setTag(app);
+                    }
                 }
 
                 return convertView;
