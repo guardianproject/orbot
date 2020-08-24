@@ -18,13 +18,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import org.torproject.android.R;
+import org.torproject.android.service.OrbotService;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.settings.LocaleHelper;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
+import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 public class BridgeWizardActivity extends AppCompatActivity {
 
@@ -158,9 +163,39 @@ public class BridgeWizardActivity extends AppCompatActivity {
         if (TextUtils.isEmpty(Prefs.getBridgesList()) || (!Prefs.bridgesEnabled())) {
             hostTester.execute("check.torproject.org", "443");
         } else if (Prefs.getBridgesList().equals("meek")) {
-            hostTester.execute("meek.azureedge.net", "443", "d2cly7j4zqgua7.cloudfront.net", "443");
+            hostTester.execute("meek.azureedge.net", "443");
         } else if (Prefs.getBridgesList().equals("obfs4")) {
-            hostTester.execute("85.17.30.79", "443", "154.35.22.9", "443", "192.99.11.54", "443");
+
+            ArrayList alBridges = new ArrayList<String>();
+
+            try
+            {
+                BufferedReader in=
+                        new BufferedReader(new InputStreamReader(getResources().openRawResource(org.torproject.android.service.R.raw.bridges), "UTF-8"));
+                String str;
+
+                while ((str=in.readLine()) != null) {
+
+                    StringTokenizer st = new StringTokenizer (str," ");
+                    String type = st.nextToken();
+
+                    if (type.equals("obfs4")) {
+                        String[] hostport = st.nextToken().split(":");
+                        hostTester.execute(hostport[0],hostport[1]);
+                        break;
+                    }
+
+                }
+
+                in.close();
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+
+
+
         } else {
             hostTester = null;
             mTvStatus.setText("");
@@ -187,7 +222,7 @@ public class BridgeWizardActivity extends AppCompatActivity {
                 String testHost = host[i];
                 i++; //move to the port
                 int testPort = Integer.parseInt(host[i]);
-                if (isHostReachable(testHost, testPort, 10000)) {
+                if (isHostReachable(testHost, testPort, 5000)) {
                     return true;
                 }
             }
