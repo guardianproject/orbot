@@ -375,14 +375,15 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
             String action = mIntent.getAction();
 
-            if (action != null) {
+            if (!TextUtils.isEmpty(action)) {
                 if (action.equals(ACTION_START) || action.equals(ACTION_START_ON_BOOT)) {
                     startTor();
                     replyWithStatus(mIntent);
 
                     if (Prefs.useVpn())
                     {
-                        if (!mVpnManager.isStarted()) {
+                        if (mVpnManager != null
+                                && (!mVpnManager.isStarted())) {
                             //start VPN here
                             Intent vpnIntent = VpnService.prepare(OrbotService.this);
                             if (vpnIntent == null) //then we can run the VPN
@@ -398,7 +399,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
                 }
                 else if (action.equals(ACTION_START_VPN)) {
-                    if (!mVpnManager.isStarted()) {
+                    if (mVpnManager != null && (!mVpnManager.isStarted())) {
                         //start VPN here
                         Intent vpnIntent = VpnService.prepare(OrbotService.this);
                         if (vpnIntent == null) //then we can run the VPN
@@ -415,7 +416,8 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
                 }
                 else if (action.equals(ACTION_STOP_VPN)) {
-                    mVpnManager.handleIntent(new Builder(),mIntent);
+                    if (mVpnManager != null)
+                        mVpnManager.handleIntent(new Builder(),mIntent);
                 }
                 else if (action.equals(ACTION_STATUS)) {
                     replyWithStatus(mIntent);
@@ -1978,7 +1980,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     @Override
     public IBinder onBind(Intent intent) {
         Log.e( TAG, "onBind" );
-        handleIntent(intent);
+        //do nothing here
         return super.onBind(intent); // invoking super class will call onRevoke() when appropriate
     }
 
@@ -1990,13 +1992,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         // tell UI, if it's open, to update immediately (don't wait for onResume() in Activity...)
         LocalBroadcastManager.getInstance(this).sendBroadcast(new Intent(ACTION_STOP_VPN));
     }
-
-    private void handleIntent( Intent intent ) {
-        if( intent != null && intent.getAction() != null ) {
-            Log.e( TAG, intent.getAction());
-        }
-    }
-
 
     private void setExitNode (String newExits)
     {

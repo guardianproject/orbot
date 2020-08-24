@@ -27,6 +27,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.os.ParcelFileDescriptor;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 import com.runjva.sourceforge.jsocks.protocol.ProxyServer;
@@ -95,52 +96,50 @@ public class OrbotVpnManager implements Handler.Callback {
     public int handleIntent(VpnService.Builder builder, Intent intent) {
     	if (intent != null) {
 	    	String action = intent.getAction();
-	    	
-	    	if (action.equals(ACTION_START_VPN)||action.equals(ACTION_START)) {
-				Log.d(TAG,"starting VPN");
 
-				isStarted = true;
+	    	if (!TextUtils.isEmpty(action)) {
+				if (action.equals(ACTION_START_VPN) || action.equals(ACTION_START)) {
+					Log.d(TAG, "starting VPN");
 
-		        // Stop the previous session by interrupting the thread.
-		        if (mThreadVPN != null && mThreadVPN.isAlive())
-		        	stopVPN();
+					isStarted = true;
 
-				if (mTorSocks != -1)
-				{
-					if (!mIsLollipop)
-					{
-						startSocksBypass();
+					// Stop the previous session by interrupting the thread.
+					if (mThreadVPN != null && mThreadVPN.isAlive())
+						stopVPN();
+
+					if (mTorSocks != -1) {
+						if (!mIsLollipop) {
+							startSocksBypass();
+						}
+
+						setupTun2Socks(builder);
 					}
 
-					setupTun2Socks(builder);
-				}
+				} else if (action.equals(ACTION_STOP_VPN)) {
+					isStarted = false;
 
-	    	}
-	    	else if (action.equals(ACTION_STOP_VPN)) {
-				isStarted = false;
+					Log.d(TAG, "stopping VPN");
 
-	    		Log.d(TAG,"stopping VPN");
-	    		
-	    		stopVPN();
-	    	}
-	    	else if (action.equals(TorServiceConstants.LOCAL_ACTION_PORTS)) {
-				Log.d(TAG,"setting VPN ports");
+					stopVPN();
+				} else if (action.equals(TorServiceConstants.LOCAL_ACTION_PORTS)) {
+					Log.d(TAG, "setting VPN ports");
 
-				int torSocks = intent.getIntExtra(OrbotService.EXTRA_SOCKS_PROXY_PORT,-1);
-				int torDns = intent.getIntExtra(OrbotService.EXTRA_DNS_PORT,-1);
+					int torSocks = intent.getIntExtra(OrbotService.EXTRA_SOCKS_PROXY_PORT, -1);
+					int torDns = intent.getIntExtra(OrbotService.EXTRA_DNS_PORT, -1);
 
-				//if running, we need to restart
-				if ((torSocks != mTorSocks || torDns != mTorDns)) {
+					//if running, we need to restart
+					if ((torSocks != mTorSocks || torDns != mTorDns)) {
 
-					mTorSocks = torSocks;
-					mTorDns = torDns;
+						mTorSocks = torSocks;
+						mTorDns = torDns;
 
-					if (!mIsLollipop) {
-						stopSocksBypass();
-						startSocksBypass();
+						if (!mIsLollipop) {
+							stopSocksBypass();
+							startSocksBypass();
+						}
+
+						setupTun2Socks(builder);
 					}
-
-					setupTun2Socks(builder);
 				}
 			}
 
