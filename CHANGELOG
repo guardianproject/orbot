@@ -1,9 +1,29 @@
 
+/** 16.3.1-BETA-2-tor-0.4.3.6 / 24 August 2020 / d07dcb7ea5d6479ca5cf5c0a497837b4dc3961bf **/
+
+d07dcb7e (HEAD -> master, tag: 16.3.1-BETA-2-tor-0.4.3.6, tag: 16.3.1-BETA-1-tor-0.4.3.6) update version code to 1631100200
+4cebceda (origin/master, origin/HEAD) update default bridges and bridge tester
+2eaa192c a few more checks to handle null intents
+6893c07b for #382 don't set textview value if it is nulled
+e183d443 for #381 make sure apps array is not null
+c9cb5bb3 don't create a new handler for restarting main activity
+b750d107 start fixing mbps to Mbps etc for #378
+d6b6d5cb ensure textview is not null for #379
+3087f77b fixes for #285 reset dormant state on start / resume more info at: https://gitlab.torproject.org/tpo/core/tor/-/issues/40097w
+74fce069 update jtorctl to 0.4 and add more tor DataDirectory corruption debug capabilties
+cd0c2c88 update tor to 0.4.3.6
+9d1f98a0 Merge pull request #375 from bitmold/prelollipop_vpn_ui
+04b622d5 (newport/master) set Java compat to 1.8 for app-mini
+15b7d79b Merge branch 'master' of github.com:guardianproject/orbot
+07592383 update CHANGELOG for 16.3.1 BETA 1
+c54427f3 Removed "Tor-Enabled Apps" UI from devices < Lollipop as the VPN is either on ("full device") or not This is extra information that could confuse users running older versions of Android
+19e53226 Small String Fixes:
+233abf8e Start tor/VPN when VPN permissions are first granted and VPN switch is set to on (orbot starts everytime the switch is pressed on, just wasn't after the initial time you grant VPN permissions)
 
 /** 16.3.1-BETA-1-tor-0.4.2.7 / 4 August 2020 / 853c7c3641bcd82b92cfd95510cd838db56aa888 **/
 
 853c7c36 (HEAD -> master, tag: 16.3.1-BETA-1-tor-0.4.2.7) update version to 1631100100
-ffe21c4c (origin/master, origin/HEAD) Merge branch 'bitmold-bridge_wiz_rotation_fix'
+ffe20c4c (origin/master, origin/HEAD) Merge branch 'bitmold-bridge_wiz_rotation_fix'
 3b796cf6 (bitmold-bridge_wiz_rotation_fix) Merge branch 'bridge_wiz_rotation_fix' of https://github.com/bitmold/orbot into bitmold-bridge_wiz_rotation_fix
 3bcb7625 (newport/master) Merge branch 'master' of github.com:guardianproject/orbot
 c3001186 Merge branch 'bitmold-vpn_disable'
