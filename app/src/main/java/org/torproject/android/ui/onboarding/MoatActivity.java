@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
@@ -45,6 +46,15 @@ import org.torproject.android.service.OrbotService;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.ui.dialog.MoatErrorDialogFragment;
+
+import java.util.ArrayList;
+import java.util.Properties;
+
+import goptbundle.Goptbundle;
+import info.pluggabletransports.dispatch.DispatchConstants;
+import info.pluggabletransports.dispatch.Dispatcher;
+import info.pluggabletransports.dispatch.Transport;
+import info.pluggabletransports.dispatch.transports.legacy.MeekTransport;
 
 /**
  Implements the MOAT protocol: Fetches OBFS4 bridges via Meek Azure.
@@ -170,7 +180,48 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
     protected void onResume() {
         super.onResume();
 
-        sendIntentToService(TorServiceConstants.ACTION_STATUS);
+        new MeekTransport().register();
+
+        Properties options = new Properties();
+        options.put(MeekTransport.OPTION_URL, "https://onion.azureedge.net/");
+        options.put(MeekTransport.OPTION_FRONT, "ajax.aspnetcdn.com");
+
+        Transport transport = Dispatcher.get().getTransport(this, DispatchConstants.PT_TRANSPORTS_MEEK, options);
+
+        if (transport != null) {
+            new Thread(() -> {
+                Goptbundle.setenv(DispatchConstants.TOR_PT_LOG_LEVEL, "DEBUG");
+                Goptbundle.setenv(DispatchConstants.TOR_PT_CLIENT_TRANSPORTS, DispatchConstants.PT_TRANSPORTS_MEEK);
+                Goptbundle.setenv(DispatchConstants.TOR_PT_MANAGED_TRANSPORT_VER, "1");
+                Goptbundle.setenv(DispatchConstants.TOR_PT_EXIT_ON_STDIN_CLOSE, "0");
+                Goptbundle.load(getDir("pt-state", Context.MODE_PRIVATE).getAbsolutePath());
+            }).start();
+
+            ArrayList<String> args = new ArrayList<>();
+
+            for (Object key : options.keySet()) {
+                String k = (String) key;
+
+                args.add(String.format("%s=%s", k, options.getProperty(k)));
+            }
+
+            StringBuilder sb = new StringBuilder();
+
+            for (String arg : args) {
+                sb.append(arg).append(";");
+            }
+
+            ProxiedHurlStack phs = new ProxiedHurlStack("127.0.0.1", 47352,
+                    sb.toString(), "\0");
+
+            mQueue = Volley.newRequestQueue(MoatActivity.this, phs);
+
+            if (mCaptcha == null) {
+                new Handler().postDelayed(this::fetchCaptcha, 1000);
+            }
+        }
+
+//        sendIntentToService(TorServiceConstants.ACTION_STATUS);
     }
 
     @Override
