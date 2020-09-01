@@ -2,11 +2,11 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Orbot es una aplicación libre de proxy (interpuesto) que faculta a otras aplicaciones para usar Internet de forma más segura. Orbot utiliza Tor para cifrar su tráfico de Internet, y luego lo oculta rebotándolo a través de una serie de computadoras por todo el mundo. Tor es software libre y una red abierta que le ayuda a defenderse contra una forma de vigilancia de red conocida como análisis de tráfico que amenaza la libertad y la privacidad personales, las actividades y relaciones comerciales confidenciales, y la seguridad de estado.</string>
-    <string name="status_starting_up">Orbot está iniciandose...</string>
+    <string name="status_starting_up">Orbot está iniciandose…</string>
     <string name="status_activated">Conectado a la red Tor</string>
     <string name="status_disabled">Orbot está desactivado</string>
     <string name="status_shutting_down">TorService se está cerrando</string>
-    <string name="tor_process_starting">Iniciando cliente Tor...</string>
+    <string name="tor_process_starting">Iniciando cliente Tor…</string>
     <string name="tor_process_complete">completado.</string>
     <string name="menu_settings">Configuración</string>
     <string name="menu_log">Registro (log)</string>
@@ -35,16 +35,15 @@
     <!--TipsAndTricks screen-->
     <!--Transparent Proxy screen-->
     <string name="pref_node_configuration">Configuración de nodos</string>
-    <string name="pref_node_configuration_summary">¡Estas son configuraciones avanzadas que pueden reducir su anonimato! Afectan a los circuitos (túneles) que se establezcan para su propio tráfico a través de Tor; si repite tráfico ajeno estas configuraciones no afectan a esos circuitos.</string>
+    <string name="pref_node_configuration_summary">Estas son configuraciones avanzadas que pueden reducir su anonimato</string>
     <string name="pref_entrance_node">Nodos de entrada</string>
-    <string name="pref_entrance_node_summary">Reglas de identificación de repetidores de entrada a la red Tor, mediante huellas de validación de claves (fingerprints), alias (nicks), códigos de país y 
-direcciones (o rangos). No prevalecen sobre las configuraciones de exclusión de nodos, y las configuraciones de bridges.</string>
+    <string name="pref_entrance_node_summary">Huellas digitales, muescas, países y direcciones para el primer salto</string>
     <string name="pref_entrance_node_dialog">Introduzca nodos de entrada</string>
     <string name="pref_allow_background_starts_title">Permitir inicios en segundo plano</string>
     <string name="pref_allow_background_starts_summary">Deja que cualquier aplicación le diga a Orbot que inicie Tor y servicios relacionados</string>
     <string name="pref_proxy_title">Proxy de salida a la red (opcional)</string>
     <string name="pref_proxy_type_title">Tipo de proxy saliente</string>
-    <string name="pref_proxy_type_summary">Protocolo a usar para el servidor proxy saliente: HTTP, HTTPS, Socks4, Socks5.</string>
+    <string name="pref_proxy_type_summary">Protocolo a usar para el servidor proxy saliente: HTTP, HTTPS, SOCKS4, SOCKS5</string>
     <string name="pref_proxy_type_dialog">Introduzca tipo de proxy</string>
     <string name="pref_proxy_host_title">Servidor proxy saliente</string>
     <string name="pref_proxy_host_summary">Nombre del servidor proxy </string>
@@ -92,14 +91,14 @@ direcciones (o rangos). No prevalecen sobre las configuraciones de exclusión de
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Habilitar el registro de depuración (debug log) a la salida (debe utilizar adb o aLogCat para verlo)</string>
     <string name="project_home">Página(s) principal(es) del proyecto:</string>
     <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
-    <string name="third_party_software">Software de terceras partes</string>
+    <string name="third_party_software">Software de terceros:</string>
     <string name="tor_version">Tor: https://www.torproject.org</string>
     <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
     <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
     <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
     <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
     <string name="hidden_service_request">Una aplicación quiere abrir el puerto %1$s de servidor oculto a la red Tor. Esto es seguro si confía en la aplicación.</string>
-    <string name="found_existing_tor_process">Se encontró un proceso de Tor ya existente...</string>
+    <string name="found_existing_tor_process">Se encontró un proceso de Tor ya existente…</string>
     <string name="something_bad_happened">Hubo algún tipo de problema. Compruebe el registro (log)</string>
     <string name="unable_to_read_hidden_service_name">No fue posible leer el nombre del servicio oculto</string>
     <string name="unable_to_start_tor">No fue posible iniciar Tor: </string>
@@ -108,7 +107,7 @@ direcciones (o rangos). No prevalecen sobre las configuraciones de exclusión de
     <string name="pref_use_expanded_notifications">Mostrar notificación expandida con el país de salida de Tor y la IP</string>
     <string name="pref_use_expanded_notifications_title">Notificaciones expandidas</string>
     <string name="set_locale_title">Idioma</string>
-    <string name="no_internet_connection_tor">Sin conexión a Internet; Tor está en suspensión...</string>
+    <string name="no_internet_connection_tor">Sin conexión a Internet; Tor está en suspensión…</string>
     <string name="pref_disable_network_title">Sin suspensión-automática de la red</string>
     <string name="pref_disable_network_summary">Ponga Tor en suspensión cuando no haya Internet disponible</string>
     <string name="newnym">¡Ha cambiado a una nueva identidad de Tor!</string>
@@ -201,11 +200,21 @@ direcciones (o rangos). No prevalecen sobre las configuraciones de exclusión de
     <string name="bridge_community">Conectar a través de servidores de la comunidad</string>
     <string name="bridge_cloud">Conectar a través de servidores de la nube</string>
     <string name="bridges_get_new">Solicitar nuevos puentes... (si todo lo demás falla)</string>
-    <string name="trouble_connecting">¿Problemas al conectar?</string>
+    <string name="trouble_connecting">¿Problemas de conexión\?</string>
     <string name="full_device_vpn">VPN de dispositivo completo</string>
     <string name="vpn_disabled">VPN deshabilitada</string>
     <string name="pref_open_proxy_on_all_interfaces_title">Proxy Abierto en Todas las Interfaces</string>
     <string name="pref_http_title">Tor HTTP</string>
     <string name="pref_http_summary">Puerto en el que Tor ofrece su proxy HTTP (predeterminado: 8118 o 0 para deshabilitar)</string>
     <string name="pref_http_dialog">Configuración del puerto HTTP</string>
+    <string name="refresh_apps">Refrescar aplicaciones</string>
+    <string name="default_socks_http">SOCKS: - HTTP: -</string>
+    <string name="app_services">Servicios de aplicaciones</string>
+    <string name="user_services">Servicios de usuario</string>
+    <string name="menu_new_identity">Nueva identidad</string>
+    <string name="pref_disable_ipv4_summary">Le dice a las salidas que no se conecten a direcciones IPv4</string>
+    <string name="pref_disable_ipv4">Deshabilitar las conexiones IPv4</string>
+    <string name="pref_prefer_ipv6_summary">Indica a las salidas que se prefieren las direcciones IPv6</string>
+    <string name="pref_prefer_ipv6">Preferir conexiones IPv6</string>
+    <string name="pref_open_proxy_on_all_interfaces_summary">Permitir que sus compañeros de Wi-Fi, dispositivos conectados y cualquier otra persona que pueda conectarse a su IP pueda acceder a Tor</string>
 </resources>
