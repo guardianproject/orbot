@@ -4,8 +4,6 @@
     <string name="status_starting_up">Orbot abiarazten ari da...</string>
   <string name="status_activated">Tor sarera konektatuta</string>
   <string name="status_disabled">\"Orbot desaktibatuta dago</string>
-  <string name="tor_process_starting">Tor bezeroa hasten...</string>
-  <string name="tor_process_complete">eginda.</string>
     <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
     <!--New Wizard Strings-->
@@ -21,6 +19,5 @@
   <string name="something_bad_happened">Zerbait txarra gertatu da. Begiratu logetan</string>
     <string name="unable_to_read_hidden_service_name">ezkutuko zerbitzuare izena ezin da irakurri</string>
   <string name="unable_to_start_tor">Ezin izan da Tor hasi:</string>
-    <string name="no_internet_connection_tor">Ez dago Interneterako konexiorik; Tor egonean dago...</string>
     <string name="newnym">ChatSecure - Andriodentzako berehalako mezulari bezero ziurra</string>
 </resources>

@@ -6,8 +6,6 @@
   <string name="status_activated">Connecté au réseau Tor</string>
   <string name="status_disabled">Orbot est désactivé</string>
   <string name="status_shutting_down">Le service Tor est en cours de fermeture</string>
-  <string name="tor_process_starting">Démarrage du client Tor...</string>
-  <string name="tor_process_complete">terminé.</string>
     <!--Welcome Wizard strings (DJH)-->
   <!--END Welcome Wizard strings (DJH)-->
   <!--New Wizard Strings-->

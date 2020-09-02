@@ -4,8 +4,6 @@
     <string name="status_starting_up">Το Orbot ξεκινά</string>
   <string name="status_activated">Συνδέθηκε στο δίκτυο Tor</string>
   <string name="status_disabled">\"Το Orbot είναι Απενεργοποιημένο</string>
-  <string name="tor_process_starting">Εκκίνηση του πελάτη Tor...</string>
-  <string name="tor_process_complete">ολοκληρώθηκε...</string>
     <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
     <!--New Wizard Strings-->

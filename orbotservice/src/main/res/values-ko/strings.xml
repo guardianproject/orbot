@@ -4,8 +4,6 @@
     <string name="status_starting_up">Orbot 시작 중…</string>
   <string name="status_activated">Tor 네트워크에 연결됨</string>
   <string name="status_disabled">Orbot이 비활성화되어 있습니다</string>
-  <string name="tor_process_starting">Tor 클라이언트 시작 중…</string>
-  <string name="tor_process_complete">완료.</string>
     <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
     <!--New Wizard Strings-->

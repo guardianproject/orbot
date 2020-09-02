@@ -5,8 +5,6 @@
   <string name="status_activated">Bersambung ke rangkaian Tor</string>
   <string name="status_disabled">\"Orbot telah dinyah-aktifkan</string>
   <string name="status_shutting_down">Orbot sedang ditutup</string>
-  <string name="tor_process_starting">Memulakan klien Tor..</string>
-  <string name="tor_process_complete">selesai.</string>
     <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
     <!--New Wizard Strings-->
