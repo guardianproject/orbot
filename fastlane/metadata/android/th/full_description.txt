@@ -1,25 +1,25 @@
-Orbot is a free proxy app that empowers other apps to use the internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.
+Orbot เป็นแอปพร็อกซีฟรีที่ช่วยให้แอปอื่น ๆ ใช้อินเทอร์เน็ตได้อย่างปลอดภัยยิ่งขึ้น Orbot ใช้ Tor เพื่อเข้ารหัสการรับส่งข้อมูลอินเทอร์เน็ตของคุณจากนั้นซ่อนไว้โดยการตีกลับผ่านคอมพิวเตอร์หลายเครื่องทั่วโลก Tor เป็นซอฟต์แวร์ฟรีและเครือข่ายแบบเปิดที่ช่วยคุณป้องกันรูปแบบการเฝ้าระวังเครือข่ายที่คุกคามเสรีภาพส่วนบุคคลและความเป็นส่วนตัวกิจกรรมและความสัมพันธ์ทางธุรกิจที่เป็นความลับและความปลอดภัยของรัฐที่เรียกว่าการวิเคราะห์การจราจร
 
-*** Android 4.0 and lower, you can download older versions from https://guardianproject.info/releases/ or through the FDroid.org open app store at https://f-droid.org. The last release with KitKat and older support is: https://guardianproject.info/releases/Orbot-v14.1.4-UpToKitKat-nonPIE.apk ***
+*** Android 4.0 และต่ำกว่าคุณสามารถดาวน์โหลดเวอร์ชันเก่าได้จาก https://guardianproject.info/releases/ หรือผ่านแอพสโตร์ FDroid.org ที่ https://f-droid.org รุ่นล่าสุดที่มี KitKat และการสนับสนุนรุ่นเก่าคือ: https://guardianproject.info/releases/Orbot-v14.1.4-UpToKitKat-nonPIE.apk ***
 
-*** SAMSUNG GALAXY USERS ***
-On some devices, a Samsung app is listening on the same network port that Orbot needs. Download 'SockStat' from Google Play. Look for the app on port 9050. Force stop and disable that app. You can also try to change Orbot's "Tor SOCKS" setting under the Debug section to 9051 or AUTO. You can see the fix in this video: https://www.youtube.com/watch?v=yK-nK4F67_g
+*** ผู้ใช้ SAMSUNG GALAXY ***
+ในอุปกรณ์บางเครื่องแอพ Samsung กำลังฟังบนพอร์ตเครือข่ายเดียวกับที่ Orbot ต้องการ ดาวน์โหลด 'SockStat' จาก Google Play มองหาแอปบนพอร์ต 9050 บังคับให้หยุดและปิดใช้งานแอปนั้น คุณยังสามารถลองเปลี่ยนการตั้งค่า "Tor SOCKS" ของ Orbot ในส่วน Debug เป็น 9051 หรือ AUTO คุณสามารถดูการแก้ไขได้ในวิดีโอนี้: https://www.youtube.com/watch?v=yK-nK4F67_g
 *****
 
-Orbot is the only app that creates a truly private internet connection. As the New York Times writes, “when a communication arrives from Tor, you can never know where or whom it’s from.” Tor won the 2012 Electronic Frontier Foundation (EFF) Pioneer Award.
+Orbot เป็นแอปเดียวที่สร้างการเชื่อมต่ออินเทอร์เน็ตส่วนตัวอย่างแท้จริง ดังที่ New York Times เขียนว่า“ เมื่อมีการสื่อสารมาจาก Tor คุณไม่มีทางรู้ได้เลยว่ามาจากไหนหรือใคร” Torได้รับรางวัล 2012 Electronic Frontier Foundation (EFF) Pioneer Award
 
-★ ACCEPT NO SUBSTITUTES: Orbot is the safest way to use the Internet on Android. Period. Orbot bounces your encrypted traffic several times through computers around the world, instead of connecting you directly like VPNs and proxies. This process takes a little longer, but the strongest privacy and identity protection available is worth the wait.
-★ PRIVATE WEB SURFING: Use with Orfox, the most anonymous way to access any website, even if it’s normally blocked, monitored, or on the hidden web. Get Orfox: https://play.google.com/store/apps/details?id=info.guardianproject.orfox
-★ PRIVATE CHAT MESSAGING: Use ChatSecure with Orbot to chat confidentially with anyone, anywhere for free. Get ChatSecure: https://goo.gl/O3FfS
-★ PRIVACY FOR APPS: Any installed app can use Tor if it has a proxy feature, using the settings found here: https://goo.gl/2OA1y Use Orbot with Twitter, or try private web searching with DuckDuckGo: https://goo.gl/lgh1p
-★ PRIVACY FOR EVERYONE: Tor can help you confidentially research a competitor, get around the Facebook block at school, or circumvent a firewall to watch sports at work.
-★ PRIVACY MADE EASY: Check out our fun, interactive walkthrough: https://guardianproject.info/howto/browsefreely
-★ IT’S OFFICIAL: This is the official version of the Tor onion routing service for Android.
+★ไม่ยอมรับการแทนที่: Orbot เป็นวิธีที่ปลอดภัยที่สุดในการใช้อินเทอร์เน็ตบน Android ระยะเวลา Orbot ตีกลับการรับส่งข้อมูลที่เข้ารหัสของคุณหลายครั้งผ่านคอมพิวเตอร์ทั่วโลกแทนที่จะเชื่อมต่อกับคุณโดยตรงเช่น VPN และพร็อกซี กระบวนการนี้ใช้เวลานานกว่าเล็กน้อย แต่การป้องกันความเป็นส่วนตัวและข้อมูลประจำตัวที่แข็งแกร่งที่สุดนั้นคุ้มค่ากับการรอคอย
+★ท่องเว็บแบบส่วนตัว: ใช้กับ Orfox ซึ่งเป็นวิธีที่ไม่ระบุตัวตนมากที่สุดในการเข้าถึงเว็บไซต์ใด ๆ แม้ว่าตามปกติจะถูกบล็อกตรวจสอบหรือบนเว็บที่ซ่อนอยู่ก็ตาม รับ Orfox: https://play.google.com/store/apps/details?id=info.guardianproject.orfox
+★การส่งข้อความแชทส่วนตัว: ใช้ ChatSecure กับ Orbot เพื่อแชทอย่างเป็นความลับกับใครก็ได้ฟรีทุกที่ รับ ChatSecure: https://goo.gl/O3FfS
+★ความเป็นส่วนตัวสำหรับแอป: แอปใด ๆ ที่ติดตั้งสามารถใช้ Tor ได้หากมีคุณสมบัติพร็อกซีโดยใช้การตั้งค่าที่พบที่นี่: https://goo.gl/2OA1y ใช้ Orbot กับ Twitter หรือลองค้นหาเว็บส่วนตัวด้วย DuckDuckGo: https: // goo.gl/lgh1p
+★ความเป็นส่วนตัวสำหรับทุกคน: Tor สามารถช่วยคุณค้นคว้าข้อมูลคู่แข่งอย่างเป็นความลับสำรวจบล็อก Facebook ที่โรงเรียนหรือหลีกเลี่ยงไฟร์วอลล์เพื่อดูกีฬาในที่ทำงาน
+★ความเป็นส่วนตัวทำได้ง่าย: ลองดูคำแนะนำแบบโต้ตอบที่สนุกสนานของเรา: https://guardianproject.info/howto/browsefreely
+★มันเป็นทางการ: นี่คือเวอร์ชันอย่างเป็นทางการของบริการกำหนดเส้นทางหัวหอม Tor สำหรับ Android
 
-***We Love Feedback***
-★ ABOUT US: Guardian Project is a group of developers that make secure mobile apps and open-source code for a better tomorrow.
-★ OPEN-SOURCE: Orbot is free software. Take a look at our source code, or join the community to make it better: https://gitweb.torproject.org/orbot.git
-★ MESSAGE US: Are we missing your favorite feature? Found an annoying bug? We’d love to hear from you! Send us an email: support@guardianproject.info
+*** เราชอบข้อเสนอแนะ ***
+★เกี่ยวกับเรา: Guardian Project คือกลุ่มนักพัฒนาที่สร้างแอพมือถือที่ปลอดภัยและรหัสโอเพนซอร์สเพื่ออนาคตที่ดีกว่า
+★ OPEN-SOURCE: Orbot เป็นซอฟต์แวร์ฟรี ดูซอร์สโค้ดของเราหรือเข้าร่วมชุมชนเพื่อปรับปรุงให้ดีขึ้น: https://gitweb.torproject.org/orbot.git
+★ส่งข้อความถึงเรา: เราคิดถึงฟีเจอร์โปรดของคุณหรือเปล่า? พบข้อผิดพลาดที่น่ารำคาญ? เราชอบที่จะได้ยินจากคุณ! ส่งอีเมลถึงเรา: support@guardianproject.info
 
-***Disclaimer***
-The Guardian Project makes apps that are designed to protect your security and anonymity. The protocols that we use are widely regarded as the state of the art in security technology. While we are constantly upgrading our software to combat the latest threats and eliminate bugs, no technology is 100% foolproof. For maximum security and anonymity users must utilize best practices to keep themselves safe.  You can find a good introductory guide to these topics at https://securityinabox.org
+*** ข้อจำกัดความรับผิดชอบ ***
+The Guardian Project สร้างแอพที่ออกแบบมาเพื่อปกป้องความปลอดภัยและการไม่เปิดเผยตัวตนของคุณ โปรโตคอลที่เราใช้ถือได้ว่าเป็นเทคโนโลยีที่ทันสมัยในด้านความปลอดภัย ในขณะที่เราอัปเกรดซอฟต์แวร์ของเราอย่างต่อเนื่องเพื่อต่อสู้กับภัยคุกคามล่าสุดและกำจัดข้อบกพร่อง แต่ไม่มีเทคโนโลยีใดที่สามารถป้องกันความผิดพลาดได้ 100% เพื่อความปลอดภัยสูงสุดและผู้ใช้ที่ไม่เปิดเผยตัวตนต้องใช้แนวทางปฏิบัติที่ดีที่สุดเพื่อให้ตนเองปลอดภัย คุณสามารถค้นหาคำแนะนำเบื้องต้นที่ดีสำหรับหัวข้อเหล่านี้ได้ที่ https://securityinabox.org

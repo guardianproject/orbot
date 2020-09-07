@@ -1,0 +1,8 @@
+- อัปเดต user interface ช้ครั้งใหญ่!
+- ตัวช่วยสร้างใหม่สำหรับการตั้งค่าและการกำหนดค่า bridges
+- ปรับปรุงคุณสมบัติ VPN
+- แก้ไขปัญหาการตั้งค่าบริการ Onion / Hidden ล่ม
+
+และอื่น ๆ อีกมากมาย ...
+
+ขอบคุณ: pgerber, syphyr, Khsed4, BjarniRunar, Unpublished, igortoliveira, goapunk, SpotComms, AkshatAgrawal05, dixidroid, arrase และอื่น ๆ สำหรับ issues, commits, และการประชาสัมพันธ์
