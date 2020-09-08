@@ -54,17 +54,17 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import org.json.JSONArray;
+import org.torproject.android.core.LocaleHelper;
 import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.OrbotService;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.util.Utils;
 import org.torproject.android.service.vpn.VpnPrefs;
-import org.torproject.android.settings.Languages;
-import org.torproject.android.settings.LocaleHelper;
-import org.torproject.android.settings.SettingsPreferences;
+import org.torproject.android.core.Languages;
+import org.torproject.android.core.ui.SettingsPreferencesActivity;
 import org.torproject.android.ui.AppManagerActivity;
-import org.torproject.android.ui.Rotate3dAnimation;
+import org.torproject.android.core.ui.Rotate3dAnimation;
 import org.torproject.android.ui.dialog.AboutDialogFragment;
 import org.torproject.android.ui.hiddenservices.ClientCookiesActivity;
 import org.torproject.android.ui.hiddenservices.HiddenServicesActivity;
@@ -449,10 +449,10 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         if (item.getItemId() == R.id.menu_newnym) {
             requestNewTorIdentity();
         } else if (item.getItemId() == R.id.menu_settings) {
-            Intent intent = new Intent(OrbotMainActivity.this, SettingsPreferences.class);
+            Intent intent = SettingsPreferencesActivity.createIntent(this, R.xml.preferences);
             startActivityForResult(intent, REQUEST_SETTINGS);
         } else if (item.getItemId() == R.id.menu_exit) {
-            doExit(); // exit appp
+            doExit(); // exit app
         } else if (item.getItemId() == R.id.menu_about) {
             new AboutDialogFragment().show(getSupportFragmentManager(), AboutDialogFragment.TAG);
         } else if (item.getItemId() == R.id.menu_scan) {
