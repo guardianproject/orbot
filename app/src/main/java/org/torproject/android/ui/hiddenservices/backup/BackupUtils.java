@@ -13,7 +13,7 @@ import org.torproject.android.R;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.ui.hiddenservices.providers.CookieContentProvider;
 import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
-import org.torproject.android.ui.hiddenservices.storage.ExternalStorage;
+import org.torproject.android.core.ExternalStorage;
 
 import java.io.File;
 import java.io.FileInputStream;

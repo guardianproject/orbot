@@ -24,7 +24,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 
 import org.torproject.android.R;
-import org.torproject.android.settings.LocaleHelper;
+import org.torproject.android.core.LocaleHelper;
 import org.torproject.android.ui.hiddenservices.adapters.OnionListAdapter;
 import org.torproject.android.ui.hiddenservices.dialogs.HSActionsDialog;
 import org.torproject.android.ui.hiddenservices.dialogs.HSDataDialog;
