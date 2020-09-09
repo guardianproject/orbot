@@ -7,7 +7,6 @@
 
 package org.torproject.android.service;
 
-
 import android.annotation.SuppressLint;
 import android.app.Application;
 import android.app.Notification;
@@ -28,7 +27,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.net.VpnService;
 import android.os.Build;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.provider.BaseColumns;
@@ -70,8 +68,6 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -85,10 +81,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeoutException;
 
-import static org.torproject.android.service.vpn.VpnUtils.getSharedPrefs;
-
-public class OrbotService extends VpnService implements TorServiceConstants, OrbotConstants
-{
+public class OrbotService extends VpnService implements TorServiceConstants, OrbotConstants {
 
     public final static String BINARY_TOR_VERSION = org.torproject.android.binary.TorServiceConstants.BINARY_TOR_VERSION;
     private String mCurrentStatus = STATUS_OFF;
@@ -467,10 +460,8 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         super.onDestroy();
     }
 
-    private void stopTor ()
-    {
-        new Thread(() -> stopTorAsync()).start();
-
+    private void stopTor() {
+        new Thread(this::stopTorAsync).start();
     }
 
     private void stopTorAsync () {
@@ -1217,7 +1208,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                             confDns = st.nextToken().split(":")[1];
                             confDns = confDns.substring(0, confDns.length() - 1);
                             mPortDns = Integer.parseInt(confDns);
-                            getSharedPrefs(getApplicationContext()).edit().putInt(VpnPrefs.PREFS_DNS_PORT, mPortDns).apply();
+                            Prefs.getSharedPrefs(getApplicationContext()).edit().putInt(VpnPrefs.PREFS_DNS_PORT, mPortDns).apply();
                         }
 
                         String confTrans = conn.getInfo("net/listeners/trans");

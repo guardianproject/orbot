@@ -61,7 +61,6 @@ import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.util.Utils;
 import org.torproject.android.service.vpn.VpnConstants;
 import org.torproject.android.service.vpn.VpnPrefs;
-import org.torproject.android.service.vpn.VpnUtils;
 import org.torproject.android.settings.Languages;
 import org.torproject.android.settings.LocaleHelper;
 import org.torproject.android.settings.SettingsPreferences;
@@ -202,7 +201,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         }
 
         // Resets previous DNS Port to the default.
-        VpnUtils.getSharedPrefs(getApplicationContext()).edit().putInt(VpnPrefs.PREFS_DNS_PORT,
+        Prefs.getSharedPrefs(getApplicationContext()).edit().putInt(VpnPrefs.PREFS_DNS_PORT,
                 VpnConstants.TOR_DNS_PORT_DEFAULT).apply();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
