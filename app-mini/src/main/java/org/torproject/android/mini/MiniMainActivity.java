@@ -62,7 +62,6 @@ import org.torproject.android.service.OrbotService;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.vpn.TorifiedApp;
-import org.torproject.android.service.vpn.VpnConstants;
 import org.torproject.android.service.vpn.VpnPrefs;
 
 import java.io.BufferedReader;
@@ -76,7 +75,6 @@ import java.util.StringTokenizer;
 
 import static org.torproject.android.mini.MainConstants.RESULT_CLOSE_ALL;
 import static org.torproject.android.service.vpn.VpnPrefs.PREFS_KEY_TORIFIED;
-import static org.torproject.android.service.vpn.VpnUtils.getSharedPrefs;
 
 public class MiniMainActivity extends AppCompatActivity
         implements OrbotConstants, OnLongClickListener {
@@ -157,8 +155,8 @@ public class MiniMainActivity extends AppCompatActivity
         /**
          * Resets previous DNS Port to the default
          */
-        getSharedPrefs(getApplicationContext()).edit().putInt(VpnPrefs.PREFS_DNS_PORT,
-                VpnConstants.TOR_DNS_PORT_DEFAULT).apply();
+        mPrefs.edit().putInt(VpnPrefs.PREFS_DNS_PORT,
+                TorServiceConstants.TOR_DNS_PORT_DEFAULT).apply();
 
     }
 
