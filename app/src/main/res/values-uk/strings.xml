@@ -2,11 +2,11 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Orbot — це вільна програма для проксі-з\'єднань, яка дозволяє іншим додаткам безпечніше використовувати інтернет-з\'єднання. Orbot використовує Tor для шифрування інтернет-трафіку, який далі приховується під час пересилання через кілька комп\'ютерів у різних частинах планети. Tor є вільним програмним забезпеченням, а також відкритою мережею, що допомагає захиститися від мережевого стеження, яке загрожує особистій свободі та приватному життю, конфіденційній бізнес-діяльності і контактам, а також державної програми безпеки, що відома як аналіз трафіку.</string>
-    <string name="status_starting_up">Запуск Orbot...</string>
+    <string name="status_starting_up">Запуск Orbot…</string>
     <string name="status_activated">Під\'єднаний до мережі Tor</string>
     <string name="status_disabled">«Orbot» від\'єднаний</string>
     <string name="status_shutting_down">Сервіси Тор деактивовані</string>
-    <string name="tor_process_starting">Запускається клієнт Tor...</string>
+    <string name="tor_process_starting">Запускається клієнт Tor…</string>
     <string name="tor_process_complete">завершено.</string>
     <string name="menu_settings">Налаштування</string>
     <string name="menu_log">Журнал</string>
@@ -98,7 +98,7 @@
     <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
     <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
     <string name="hidden_service_request">Програма хоче відкрити прихований серверний порт %1$s у мережу Tor. Це безпечно, якщо ви довіряєте застосунку.</string>
-    <string name="found_existing_tor_process">знайдено існуючий процес Tor...</string>
+    <string name="found_existing_tor_process">знайдено наявний процес Tor…</string>
     <string name="something_bad_happened">Виникла якась помилка. Перевірте лог</string>
     <string name="unable_to_read_hidden_service_name">неможливо прочитати ім\'я прихованої служби</string>
     <string name="unable_to_start_tor">Неможливо запустити Tor:</string>
@@ -127,7 +127,7 @@
     <string name="pref_torrc_summary">ЛИШЕ ДЛЯ ЕКСПЕРТІВ: введіть безпосередні рядки налаштувань torrc</string>
     <string name="pref_torrc_dialog">Додаткове у Torrc</string>
     <string name="kbps">kbps</string>
-    <string name="mbps">mbps</string>
+    <string name="mbps">Мбіт/с</string>
     <string name="kb">KB</string>
     <string name="mb">MB</string>
     <string name="bridges_updated">Мости оновлено</string>
