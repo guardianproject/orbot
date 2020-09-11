@@ -4,8 +4,6 @@
     <string name="status_starting_up">Orbot está iniciándose...</string>
   <string name="status_activated">Conectado a la red Tor</string>
   <string name="status_disabled">\"Orbot está Desactivado</string>
-  <string name="tor_process_starting">Iniciando el cliente Tor...</string>
-  <string name="tor_process_complete">Completar</string>
     <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
     <!--New Wizard Strings-->

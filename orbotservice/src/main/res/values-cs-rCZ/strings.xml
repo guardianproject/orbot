@@ -4,9 +4,7 @@
     <string name="status_starting_up">Orbot se spouští...</string>
   <string name="status_activated">Připojen k síti Tor</string>
   <string name="status_disabled">Orbot je deaktivován</string>
-  <string name="tor_process_starting">Startuji Tor klienta...</string>
-  <string name="tor_process_complete">hotovo.</string>
-    <!--Welcome Wizard strings (DJH)-->
+  <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
     <!--New Wizard Strings-->
   <!--Title Screen-->

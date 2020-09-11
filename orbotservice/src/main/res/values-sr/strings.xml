@@ -5,8 +5,6 @@
     <string name="status_starting_up">Орбот се покреће...</string>
   <string name="status_activated">Повезан са Тор мрежом</string>
   <string name="status_disabled">Орбот је деактивиран</string>
-  <string name="tor_process_starting">Покреће се Тор клијент...</string>
-  <string name="tor_process_complete">завршено.</string>
     <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
     <!--New Wizard Strings-->

@@ -7,7 +7,6 @@
 
 package org.torproject.android.service;
 
-
 import android.annotation.SuppressLint;
 import android.app.Application;
 import android.app.Notification;
@@ -28,7 +27,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.net.VpnService;
 import android.os.Build;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.provider.BaseColumns;
@@ -41,7 +39,6 @@ import android.util.Log;
 import com.jaredrummler.android.shell.CommandResult;
 
 import net.freehaven.tor.control.ConfigEntry;
-import net.freehaven.tor.control.RawEventListener;
 import net.freehaven.tor.control.TorControlConnection;
 
 import org.apache.commons.io.FileUtils;
@@ -70,8 +67,6 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -85,10 +80,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeoutException;
 
-import static org.torproject.android.service.vpn.VpnUtils.getSharedPrefs;
-
-public class OrbotService extends VpnService implements TorServiceConstants, OrbotConstants
-{
+public class OrbotService extends VpnService implements TorServiceConstants, OrbotConstants {
 
     public final static String BINARY_TOR_VERSION = org.torproject.android.binary.TorServiceConstants.BINARY_TOR_VERSION;
     private String mCurrentStatus = STATUS_OFF;
@@ -208,8 +200,8 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             sendCallbackLogMessage(msg);
 
     }
-    
-    
+
+
     private boolean findExistingTorDaemon() {
         try {
             mLastProcessId = initControlConnection(3, true);
@@ -451,8 +443,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
     @Override
     public void onDestroy() {
-
-
         try {
          //   unregisterReceiver(mNetworkStateReceiver);
             unregisterReceiver(mActionBroadcastReceiver);
@@ -467,10 +457,8 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         super.onDestroy();
     }
 
-    private void stopTor ()
-    {
-        new Thread(() -> stopTorAsync()).start();
-
+    private void stopTor() {
+        new Thread(this::stopTorAsync).start();
     }
 
     private void stopTorAsync () {
@@ -697,9 +685,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             return true;
         }
 
-
-
-
         return false;
     }
 
@@ -716,7 +701,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
         extraLines.append("RunAsDaemon 1").append('\n');
         extraLines.append("AvoidDiskWrites 1").append('\n');
-        
+
          String socksPortPref = prefs.getString(OrbotConstants.PREF_SOCKS, (TorServiceConstants.SOCKS_PROXY_PORT_DEFAULT));
 
          if (socksPortPref.indexOf(':')!=-1)
@@ -796,10 +781,8 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
         extraLines.append("DisableNetwork 0").append('\n');
 
-        if (Prefs.useDebugLogging())
-        {
-        	extraLines.append("Log debug syslog").append('\n');
-        	extraLines.append("Log info syslog").append('\n');
+        if (Prefs.useDebugLogging()) {
+          	extraLines.append("Log debug syslog").append('\n');
         	extraLines.append("SafeLogging 0").append('\n');
         }
 
@@ -1093,8 +1076,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
          debug("stderr: " + result.getStderr());
 
          return result.exitCode;
-
-
     }
 
     private int initControlConnection (int maxTries, boolean isReconnect) throws Exception
@@ -1161,18 +1142,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                         // implementations for all the events we don't care about.
                         logNotice( "adding control port event handler");
 
-                        if (Prefs.useDebugLogging()) {
-                            conn.setDebugging(System.out);
-                            conn.addRawEventListener(new RawEventListener() {
-                                @Override
-                                public void onEvent(String keyword, String data) {
-
-
-                                    debug(keyword + ": " + data);
-                                }
-                            });
-                        }
-
                         conn.setEventHandler(mEventHandler);
 
                         logNotice( "SUCCESS added control port event handler");
@@ -1217,7 +1186,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                             confDns = st.nextToken().split(":")[1];
                             confDns = confDns.substring(0, confDns.length() - 1);
                             mPortDns = Integer.parseInt(confDns);
-                            getSharedPrefs(getApplicationContext()).edit().putInt(VpnPrefs.PREFS_DNS_PORT, mPortDns).apply();
+                            Prefs.getSharedPrefs(getApplicationContext()).edit().putInt(VpnPrefs.PREFS_DNS_PORT, mPortDns).apply();
                         }
 
                         String confTrans = conn.getInfo("net/listeners/trans");
@@ -1244,8 +1213,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 }
 
             throw new Exception("Tor control port could not be found");
-
-
     }
 
     private int getControlPort () {
@@ -1515,19 +1482,14 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     private void sendCallbackLogMessage (final String logMessage)
     {
 
-        mHandler.post(new Runnable () {
+        mHandler.post(() -> {
 
-            public void run ()
-            {
+            Intent intent = new Intent(LOCAL_ACTION_LOG);
+            // You can also include some extra data.
+            intent.putExtra(LOCAL_EXTRA_LOG, logMessage);
+            intent.putExtra(EXTRA_STATUS, mCurrentStatus);
 
-                Intent intent = new Intent(LOCAL_ACTION_LOG);
-                // You can also include some extra data.
-                intent.putExtra(LOCAL_EXTRA_LOG, logMessage);
-                intent.putExtra(EXTRA_STATUS, mCurrentStatus);
-
-                LocalBroadcastManager.getInstance(OrbotService.this).sendBroadcast(intent);
-            }
-
+            LocalBroadcastManager.getInstance(OrbotService.this).sendBroadcast(intent);
         });
 
     }
@@ -1896,85 +1858,28 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     public void onTrimMemory(int level) {
         super.onTrimMemory(level);
 
-        switch (level)
-        {
-
-            case TRIM_MEMORY_BACKGROUND:
-                debug("trim memory requested: app in the background");
+        switch (level) {
+            case TRIM_MEMORY_BACKGROUND: debug("trim memory requested: app in the background");
             return;
 
-        /**
-        public static final int TRIM_MEMORY_BACKGROUND
-        Added in API level 14
-        Level for onTrimMemory(int): the process has gone on to the LRU list. This is a good opportunity to clean up resources that can efficiently and quickly be re-built if the user returns to the app.
-        Constant Value: 40 (0x00000028)
-        */
-
-            case TRIM_MEMORY_COMPLETE:
-
-                debug("trim memory requested: cleanup all memory");
-            return;
-        /**
-        public static final int TRIM_MEMORY_COMPLETE
-        Added in API level 14
-        Level for onTrimMemory(int): the process is nearing the end of the background LRU list, and if more memory isn't found soon it will be killed.
-        Constant Value: 80 (0x00000050)
-        */
-            case TRIM_MEMORY_MODERATE:
-
-                debug("trim memory requested: clean up some memory");
+            case TRIM_MEMORY_COMPLETE: debug("trim memory requested: cleanup all memory");
             return;
 
-        /**
-        public static final int TRIM_MEMORY_MODERATE
-        Added in API level 14
-        Level for onTrimMemory(int): the process is around the middle of the background LRU list; freeing memory can help the system keep other processes running later in the list for better overall performance.
-        Constant Value: 60 (0x0000003c)
-        */
-
-            case TRIM_MEMORY_RUNNING_CRITICAL:
-
-                debug("trim memory requested: memory on device is very low and critical");
-            return;
-        /**
-        public static final int TRIM_MEMORY_RUNNING_CRITICAL
-        Added in API level 16
-        Level for onTrimMemory(int): the process is not an expendable background process, but the device is running extremely low on memory and is about to not be able to keep any background processes running. Your running process should free up as many non-critical resources as it can to allow that memory to be used elsewhere. The next thing that will happen after this is onLowMemory() called to report that nothing at all can be kept in the background, a situation that can start to notably impact the user.
-        Constant Value: 15 (0x0000000f)
-        */
-
-            case TRIM_MEMORY_RUNNING_LOW:
-
-                debug("trim memory requested: memory on device is running low");
-            return;
-        /**
-        public static final int TRIM_MEMORY_RUNNING_LOW
-        Added in API level 16
-        Level for onTrimMemory(int): the process is not an expendable background process, but the device is running low on memory. Your running process should free up unneeded resources to allow that memory to be used elsewhere.
-        Constant Value: 10 (0x0000000a)
-        */
-            case TRIM_MEMORY_RUNNING_MODERATE:
-
-                debug("trim memory requested: memory on device is moderate");
-            return;
-        /**
-        public static final int TRIM_MEMORY_RUNNING_MODERATE
-        Added in API level 16
-        Level for onTrimMemory(int): the process is not an expendable background process, but the device is running moderately low on memory. Your running process may want to release some unneeded resources for use elsewhere.
-        Constant Value: 5 (0x00000005)
-        */
-            case TRIM_MEMORY_UI_HIDDEN:
-
-                debug("trim memory requested: app is not showing UI anymore");
+            case TRIM_MEMORY_MODERATE: debug("trim memory requested: clean up some memory");
             return;
 
-        /**
-        public static final int TRIM_MEMORY_UI_HIDDEN
-        Level for onTrimMemory(int): the process had been showing a user interface, and is no longer doing so. Large allocations with the UI should be released at this point to allow memory to be better managed.
-        Constant Value: 20 (0x00000014)
-        */
+            case TRIM_MEMORY_RUNNING_CRITICAL: debug("trim memory requested: memory on device is very low and critical");
+            return;
+
+            case TRIM_MEMORY_RUNNING_LOW: debug("trim memory requested: memory on device is running low");
+            return;
+
+            case TRIM_MEMORY_RUNNING_MODERATE: debug("trim memory requested: memory on device is moderate");
+            return;
+
+            case TRIM_MEMORY_UI_HIDDEN: debug("trim memory requested: app is not showing UI anymore");
+            return;
         }
-
     }
 
     @Override
@@ -2071,7 +1976,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     {
         if (alBridges == null)
         {
-            alBridges = new ArrayList<Bridge>();
+            alBridges = new ArrayList<>();
 
             try
             {

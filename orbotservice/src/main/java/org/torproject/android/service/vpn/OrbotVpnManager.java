@@ -39,6 +39,7 @@ import org.torproject.android.service.OrbotService;
 import org.torproject.android.service.R;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.CustomNativeLoader;
+import org.torproject.android.service.util.Prefs;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -77,7 +78,7 @@ public class OrbotVpnManager implements Handler.Callback {
     
     private final static boolean mIsLollipop = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
 
-	private File filePdnsd = null;
+	private File filePdnsd;
 
 	private final static String PDNSD_BIN = "pdnsd";
 
@@ -326,7 +327,7 @@ public class OrbotVpnManager implements Handler.Callback {
     
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	private void doLollipopAppRouting (VpnService.Builder builder) throws NameNotFoundException {
-		SharedPreferences prefs = VpnUtils.getSharedPrefs(mService.getApplicationContext());
+		SharedPreferences prefs = Prefs.getSharedPrefs(mService.getApplicationContext());
         ArrayList<TorifiedApp> apps = TorifiedApp.getApps(mService, prefs);
 
 
