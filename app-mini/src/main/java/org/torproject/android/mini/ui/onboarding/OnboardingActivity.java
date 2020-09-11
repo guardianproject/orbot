@@ -5,8 +5,9 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import com.github.paolorotolo.appintro.AppIntro;
+
+import org.torproject.android.core.LocaleHelper;
 import org.torproject.android.mini.R;
-import org.torproject.android.mini.settings.LocaleHelper;
 
 public class OnboardingActivity extends AppIntro {
 

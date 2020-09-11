@@ -125,6 +125,8 @@ dependencies {
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'pl.bclogic:pulsator4droid:1.0.3'
     implementation 'com.github.apl-devs:appintro:v4.2.2'
+    implementation project(path: ':appcore')
+    implementation project(path: ':intentintegrator')
     androidTestImplementation "tools.fastlane:screengrab:1.2.0"
     implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
     implementation 'com.android.volley:volley:1.1.1'

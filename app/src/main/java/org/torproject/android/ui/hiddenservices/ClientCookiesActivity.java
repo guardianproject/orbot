@@ -20,7 +20,7 @@ import com.google.zxing.integration.android.IntentResult;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.torproject.android.R;
-import org.torproject.android.settings.LocaleHelper;
+import org.torproject.android.core.LocaleHelper;
 import org.torproject.android.ui.hiddenservices.adapters.ClientCookiesAdapter;
 import org.torproject.android.ui.hiddenservices.dialogs.AddCookieDialog;
 import org.torproject.android.ui.hiddenservices.dialogs.CookieActionsDialog;
