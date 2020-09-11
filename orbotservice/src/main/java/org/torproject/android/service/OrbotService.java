@@ -39,7 +39,6 @@ import android.util.Log;
 import com.jaredrummler.android.shell.CommandResult;
 
 import net.freehaven.tor.control.ConfigEntry;
-import net.freehaven.tor.control.RawEventListener;
 import net.freehaven.tor.control.TorControlConnection;
 
 import org.apache.commons.io.FileUtils;
@@ -201,8 +200,8 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             sendCallbackLogMessage(msg);
 
     }
-    
-    
+
+
     private boolean findExistingTorDaemon() {
         try {
             mLastProcessId = initControlConnection(3, true);
@@ -444,8 +443,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
     @Override
     public void onDestroy() {
-
-
         try {
          //   unregisterReceiver(mNetworkStateReceiver);
             unregisterReceiver(mActionBroadcastReceiver);
@@ -688,9 +685,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             return true;
         }
 
-
-
-
         return false;
     }
 
@@ -707,7 +701,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
         extraLines.append("RunAsDaemon 1").append('\n');
         extraLines.append("AvoidDiskWrites 1").append('\n');
-        
+
          String socksPortPref = prefs.getString(OrbotConstants.PREF_SOCKS, (TorServiceConstants.SOCKS_PROXY_PORT_DEFAULT));
 
          if (socksPortPref.indexOf(':')!=-1)
@@ -787,10 +781,8 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
         extraLines.append("DisableNetwork 0").append('\n');
 
-        if (Prefs.useDebugLogging())
-        {
-        	extraLines.append("Log debug syslog").append('\n');
-        	extraLines.append("Log info syslog").append('\n');
+        if (Prefs.useDebugLogging()) {
+          	extraLines.append("Log debug syslog").append('\n');
         	extraLines.append("SafeLogging 0").append('\n');
         }
 
@@ -1084,8 +1076,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
          debug("stderr: " + result.getStderr());
 
          return result.exitCode;
-
-
     }
 
     private int initControlConnection (int maxTries, boolean isReconnect) throws Exception
@@ -1151,18 +1141,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                         // We extend NullEventHandler so that we don't need to provide empty
                         // implementations for all the events we don't care about.
                         logNotice( "adding control port event handler");
-
-                        if (Prefs.useDebugLogging()) {
-                            conn.setDebugging(System.out);
-                            conn.addRawEventListener(new RawEventListener() {
-                                @Override
-                                public void onEvent(String keyword, String data) {
-
-
-                                    debug(keyword + ": " + data);
-                                }
-                            });
-                        }
 
                         conn.setEventHandler(mEventHandler);
 
@@ -1235,8 +1213,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 }
 
             throw new Exception("Tor control port could not be found");
-
-
     }
 
     private int getControlPort () {
@@ -1506,19 +1482,14 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     private void sendCallbackLogMessage (final String logMessage)
     {
 
-        mHandler.post(new Runnable () {
+        mHandler.post(() -> {
 
-            public void run ()
-            {
+            Intent intent = new Intent(LOCAL_ACTION_LOG);
+            // You can also include some extra data.
+            intent.putExtra(LOCAL_EXTRA_LOG, logMessage);
+            intent.putExtra(EXTRA_STATUS, mCurrentStatus);
 
-                Intent intent = new Intent(LOCAL_ACTION_LOG);
-                // You can also include some extra data.
-                intent.putExtra(LOCAL_EXTRA_LOG, logMessage);
-                intent.putExtra(EXTRA_STATUS, mCurrentStatus);
-
-                LocalBroadcastManager.getInstance(OrbotService.this).sendBroadcast(intent);
-            }
-
+            LocalBroadcastManager.getInstance(OrbotService.this).sendBroadcast(intent);
         });
 
     }
@@ -2005,7 +1976,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     {
         if (alBridges == null)
         {
-            alBridges = new ArrayList<Bridge>();
+            alBridges = new ArrayList<>();
 
             try
             {
