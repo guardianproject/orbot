@@ -59,7 +59,7 @@
     <string name="pref_proxy_password_dialog">ใส่รหัสผ่านพร็อกซี</string>
     <string name="couldn_t_start_tor_process_">ไม่สามารถเริ่มกระบวนการของ Tor:</string>
     <string name="error">ผิดพลาด</string>
-    <string name="your_reachableaddresses_settings_caused_an_exception_">การตั้งค่า ที่อยู่ที่เข้าถึงได้ ของคุณทำให้เกิดข้อผิดพลาด!</string>
+    <string name="your_reachableaddresses_settings_caused_an_exception_">การตั้งค่า ReachableAddresses ของคุณทำให้เกิดข้อผิดพลาด!</string>
     <string name="your_relay_settings_caused_an_exception_">การตั้งค่ารีเลย์ของคุณทำให้เกิดข้อผิดพลาด!</string>
     <string name="exit_nodes">โหนดทางออก</string>
     <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">ลายนิ้วมือ ชื่อเล่น ประเทศ และที่อยู่ของฮอพสุดท้าย</string>
@@ -107,12 +107,12 @@
     <string name="pref_use_expanded_notifications">แสดงการแจ้งเตือนแบบขยายที่ระบุประเทศปลายทางและ IP ของ Tor</string>
     <string name="pref_use_expanded_notifications_title">การแจ้งเตือนแบบขยาย</string>
     <string name="set_locale_title">ภาษา</string>
-    <string name="no_internet_connection_tor">ไม่มีการเชื่อมต่ออินเทอร์เน็ต; Tor พร้อมรอใช้งาน…</string>
+    <string name="no_internet_connection_tor">ไม่มีการเชื่อมต่ออินเทอร์เน็ต Tor พร้อมรอใช้งาน…</string>
     <string name="pref_disable_network_title">ไม่พบเครือข่าย พักการใช้งานอัตโนมัติ</string>
     <string name="pref_disable_network_summary">พักการใช้งาน Tor เมื่อไม่มีอินเทอร์เน็ต</string>
     <string name="newnym">คุณได้เปลี่ยนมาใช้ตัวตน Tor ใหม่แล้ว!</string>
-    <string name="no_network_connectivity_putting_tor_to_sleep_">ไม่มีการเชื่อมต่อเครือข่าย. กําลังพักการใช้งาน Tor…</string>
-    <string name="network_connectivity_is_good_waking_tor_up_">การเชื่อมต่อเสถียร. กําลังเปิดใช้งาน Tor…</string>
+    <string name="no_network_connectivity_putting_tor_to_sleep_">ไม่มีการเชื่อมต่อเครือข่าย พักการใช้งาน Tor…</string>
+    <string name="network_connectivity_is_good_waking_tor_up_">การเชื่อมต่อเสถียร เปิดใช้งาน Tor…</string>
     <string name="updating_settings_in_tor_service">กําลังปรับปรุงการตั้งค่าในบริการ Tor</string>
     <string name="pref_socks_title">Tor SOCKS</string>
     <string name="pref_socks_summary">พอร์ตที่ Tor ให้บริการพร็อกซี SOCKS (ค่าเริ่มต้น: 9050 หรือ 0 ไปถึงไม่เปิดใช้งาน)</string>
@@ -165,7 +165,7 @@
     <string name="fields_can_t_be_empty">ปล่อยเขตข้อมูลให้ว่างไม่ได้</string>
     <string name="start_tor_again_for_finish_the_process">เริ่มทำงาน Tor อีกครั้งเพื่อจบกระบวนการ</string>
     <string name="confirm_service_deletion">ยืนยันการลบบริการ</string>
-    <string name="click_again_for_backup">กดอีกครั้งเพื่อเรียกข้อมูลสำรอง</string>
+    <string name="click_again_for_backup">คลิกอีกครั้งเพื่อสำรองข้อมูล</string>
     <string name="service_type">ประเภทของบริการ</string>
     <string name="auth_cookie">คุกกี้ที่ได้รับอนุญาต</string>
     <string name="copy_cookie_to_clipboard">คัดลอกคุกกี้ลงในคลิปบอร์ด</string>
@@ -194,7 +194,7 @@
     <string name="pref_reduced_connection_padding_summary">เลือกการเชื่อมต่อรีเลย์ให้เร็วขึ้นและส่งช่องว่างภายในแพคเก็ตให้น้อยลงเพื่อลดการใช้งานข้อมูลและแบตเตอรี่</string>
     <string name="app_shortcuts">แอปที่ใช้ได้กับ Tor</string>
     <string name="testing_bridges">ทดสอบการเชื่อมต่อ Bridge กับ Tor…</string>
-    <string name="testing_bridges_success">สำเร็จ. การกำหนดค่า Bridge เรียบร้อยดีแล้ว!</string>
+    <string name="testing_bridges_success">สำเร็จ การกำหนดค่า Bridge เรียบร้อยดีแล้ว!</string>
     <string name="testing_bridges_fail">ล้มเหลว ลองตัวเลือกอื่น</string>
     <string name="bridge_direct_connect">เชื่อมต่อกับ Tor โดยตรง (ดีที่สุด)</string>
     <string name="bridge_community">เชื่อมต่อผ่านเซิร์ฟเวอร์ของชุมชน</string>
