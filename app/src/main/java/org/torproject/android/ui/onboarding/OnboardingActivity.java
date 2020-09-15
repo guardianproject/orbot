@@ -11,8 +11,8 @@ import androidx.fragment.app.Fragment;
 import com.github.paolorotolo.appintro.AppIntro;
 
 import org.torproject.android.R;
+import org.torproject.android.core.LocaleHelper;
 import org.torproject.android.service.util.Prefs;
-import org.torproject.android.settings.LocaleHelper;
 import org.torproject.android.ui.AppManagerActivity;
 import org.torproject.android.ui.hiddenservices.permissions.PermissionManager;
 

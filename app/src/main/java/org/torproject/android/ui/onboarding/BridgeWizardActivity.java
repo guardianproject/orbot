@@ -8,7 +8,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -18,9 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import org.torproject.android.R;
-import org.torproject.android.service.OrbotService;
+import org.torproject.android.core.LocaleHelper;
 import org.torproject.android.service.util.Prefs;
-import org.torproject.android.settings.LocaleHelper;
 
 import java.io.BufferedReader;
 import java.io.IOException;
