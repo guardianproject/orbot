@@ -12,7 +12,7 @@
         android:textSize="18sp"
         android:layout_weight="1" />
 
-    <Switch
+    <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/cookie_switch"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"

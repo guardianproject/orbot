@@ -45,6 +45,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -316,8 +317,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
 
         Intent intent = new Intent(OrbotMainActivity.this, OrbotService.class);
         stopService(intent);
-
-
     }
 
     private void doLayout() {
@@ -1204,7 +1203,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         params.setMargins(3, 3, 3, 3);
         iv.setLayoutParams(params);
-        iv.setImageDrawable(getResources().getDrawable(R.drawable.ic_settings_white_24dp));
+        iv.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_settings_white_24dp, null));
         llBoxShortcuts.addView(iv);
         iv.setOnClickListener(v -> startActivityForResult(new Intent(OrbotMainActivity.this, AppManagerActivity.class), REQUEST_VPN_APPS_SELECT));
     }

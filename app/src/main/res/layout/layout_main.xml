@@ -26,7 +26,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
                 <FrameLayout
                     android:id="@+id/frameMain"
@@ -107,9 +107,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/lblPorts"
-                    android:orientation="horizontal"
-
-                    >
+                    android:orientation="horizontal">
 
                     <LinearLayout
                         android:layout_width="170dp"
@@ -119,21 +117,14 @@
                         android:layout_weight="1"
                         android:background="#11CCCCCC"
                         android:orientation="vertical">
-                        <!--
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Select Region"
-                    android:layout_margin="12dp"
 
-                    />-->
                         <Spinner
                             android:id="@+id/spinnerCountry"
                             android:layout_width="165dp"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center"
                             android:layout_margin="9dp"
-
-                            />
+                            android:padding="3dp" />
 
                     </LinearLayout>
 
@@ -145,9 +136,7 @@
                         android:layout_margin="3dp"
                         android:layout_weight="1"
                         android:background="#11CCCCCC"
-                        android:orientation="vertical"
-
-                        >
+                        android:orientation="vertical">
 
                         <androidx.appcompat.widget.SwitchCompat
                             android:id="@+id/btnVPN"
@@ -156,9 +145,7 @@
                             android:layout_gravity="center"
                             android:layout_margin="9dp"
                             android:text="@string/apps_mode"
-                            app:switchPadding="3dp"
-
-                            />
+                            app:switchPadding="3dp" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -169,9 +156,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/controls"
-                    android:orientation="horizontal"
-
-                    >
+                    android:orientation="horizontal">
 
                     <LinearLayout
                         android:layout_width="170dp"
@@ -188,9 +173,7 @@
                             android:fontFamily="sans-serif-light"
                             android:gravity="center"
                             android:lines="1"
-                            android:text="@string/main_layout_download"
-
-                            />
+                            android:text="@string/main_layout_download" />
 
 
                         <TextView
@@ -201,9 +184,7 @@
                             android:fontFamily="sans-serif-light"
                             android:gravity="center_vertical"
                             android:lines="1"
-                            android:text="0kbps"
-
-                            />
+                            android:text="0kbps" />
                     </LinearLayout>
 
 
@@ -213,9 +194,7 @@
                         android:layout_gravity="center"
                         android:layout_margin="3dp"
                         android:layout_weight="1"
-                        android:orientation="horizontal"
-
-                        >
+                        android:orientation="horizontal">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -233,9 +212,7 @@
                             android:fontFamily="sans-serif-light"
                             android:gravity="center_vertical"
                             android:lines="1"
-                            android:text="0kbps"
-
-                            />
+                            android:text="0kbps" />
 
                     </LinearLayout>
 
@@ -247,7 +224,6 @@
                     android:layout_height="40dp"
                     android:layout_below="@+id/traffic"
                     android:layout_margin="3dp"
-                    android:layout_weight="1"
                     android:background="#11CCCCCC"
                     android:gravity="center_horizontal"
                     android:orientation="horizontal">
@@ -259,16 +235,12 @@
                         android:fontFamily="sans-serif-light"
                         android:gravity="center_vertical"
                         android:lines="1"
-                        android:text="@string/trouble_connecting"
-
-                        />
+                        android:text="@string/trouble_connecting" />
 
                     <androidx.appcompat.widget.SwitchCompat
                         android:id="@+id/btnBridges"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
                         android:layout_margin="3dp"
                         android:layout_marginTop="10dp"
                         android:text="@string/use_bridges"
@@ -281,7 +253,6 @@
                     android:layout_height="80dp"
                     android:layout_below="@+id/row_bridges"
                     android:layout_margin="3dp"
-                    android:layout_weight="1"
                     android:background="#55CCCCCC"
                     android:gravity="center_horizontal"
                     android:orientation="vertical">
@@ -301,7 +272,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:orientation="horizontal"
-                        android:padding="3dp"/>
+                        android:padding="3dp" />
                 </LinearLayout>
 
 
@@ -327,7 +298,6 @@
                 android:id="@+id/orbotLog"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
                 android:layout_marginTop="10dp"
                 android:fontFamily="monospace"
                 android:gravity="start"

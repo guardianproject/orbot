@@ -18,8 +18,8 @@
             android:id="@+id/hs_port"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:paddingRight="10dp"
             android:paddingTop="10dp"
+            android:paddingRight="10dp"
             android:textSize="35sp" />
 
         <LinearLayout
@@ -32,21 +32,21 @@
                 android:id="@+id/hs_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="10dp"
                 android:paddingLeft="10dp"
+                android:paddingBottom="10dp"
                 android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/hs_onion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="10dp"
                 android:paddingLeft="10dp"
+                android:paddingBottom="10dp"
                 android:textSize="18sp" />
 
         </LinearLayout>
 
-        <Switch
+        <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/hs_switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

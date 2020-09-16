@@ -4,11 +4,12 @@ import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.cursoradapter.widget.CursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 import org.torproject.android.R;
@@ -37,7 +38,7 @@ public class OnionListAdapter extends CursorAdapter {
         TextView domain = view.findViewById(R.id.hs_onion);
         domain.setText(cursor.getString(cursor.getColumnIndex(HSContentProvider.HiddenService.DOMAIN)));
 
-        Switch enabled = view.findViewById(R.id.hs_switch);
+        SwitchCompat enabled = view.findViewById(R.id.hs_switch);
         enabled.setChecked(
                 cursor.getInt(cursor.getColumnIndex(HSContentProvider.HiddenService.ENABLED)) == 1
         );
