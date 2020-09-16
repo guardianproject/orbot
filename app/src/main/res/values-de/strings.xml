@@ -6,9 +6,7 @@
   <string name="status_activated">Verbunden mit dem Tor-Netzwerk</string>
   <string name="status_disabled">Orbot ist Deaktiviert</string>
   <string name="status_shutting_down">TorService wird heruntergefahren</string>
-  <string name="tor_process_starting">Tor-Programm wird gestartet …</string>
-  <string name="tor_process_complete">abgeschlossen.</string>
-    <string name="menu_settings">Einstellungen</string>
+  <string name="menu_settings">Einstellungen</string>
   <string name="menu_log">Protokoll</string>
     <string name="menu_start">Start</string>
   <string name="menu_stop">Stopp</string>
@@ -107,12 +105,9 @@
   <string name="pref_use_expanded_notifications">Zeige erweiterte Benachrichtigung mit Tor-Ausgangsland und IP an</string>
   <string name="pref_use_expanded_notifications_title">Erweiterte Benachrichtigungen</string>
     <string name="set_locale_title">Sprache</string>
-    <string name="no_internet_connection_tor">Keine Internetverbindung; Tor ist in Bereitschaft...</string>
-    <string name="pref_disable_network_title">Kein Automatischer Netzwerk Ruhezustand</string>
+  <string name="pref_disable_network_title">Kein Automatischer Netzwerk Ruhezustand</string>
   <string name="pref_disable_network_summary">Versetze Tor in den Ruhezustand wenn kein Internet verfügbar ist</string>
   <string name="newnym">Sie haben zu einer Neuen Tor-Identität gewechselt!</string>
-  <string name="no_network_connectivity_putting_tor_to_sleep_">Keine Netzwerk-Verbindung. Tor wird in den Ruhezustand versetzt…</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">Netzwerk-Verbindung ist Gut. Tor wird aktiviert …</string>
   <string name="updating_settings_in_tor_service">Aktualisiere Einstellungen für den Tor-Dienst</string>
   <string name="pref_socks_title">Tor SOCKS</string>
   <string name="pref_socks_summary">Anschluss auf dem der SOCKS-Proxy von Tor bereitgestellt wird (Standard: 9050 oder 0 zum deaktivieren)</string>
@@ -134,14 +129,11 @@
   <string name="restart_orbot_to_use_this_bridge_">Bitte Tor Erneut Starten um die Änderungen wirksam werden zu lassen</string>
   <string name="menu_qr">QR Codes</string>
   <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Wenn Ihr mobiles Netzwerk Tor blockiert, können Sie einen \"Brücken-Server\" als alternativen Weg verwenden. Wählen Sie eine der Optionen zum Konfigurieren und Testen ..,.</string>
-  <string name="bridge_mode">Brücken-Modus</string>
   <string name="get_bridges_email">E-Mail</string>
-  <string name="get_bridges_web">Netz</string>
   <string name="activate">Aktivieren</string>
   <string name="apps_mode">VPN Modus</string>
     <string name="send_email">E-Mail senden</string>
-  <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Sie können eine Brücken-Adresse per E-Mail, im Web oder per Scan eines BrückenQR-Codes erhalten. Wählen Sie unten \'E-Mail\' oder \'Web\', um eine Brückenadresse anzufordern.\n\nSobald Sie eine Adresse haben, fügen Sie diese bei den Einstellungen für Brücken ein und starten Sie Orbot neu.</string>
-    <string name="vpn_default_world">Global (Automatisch)</string>
+  <string name="vpn_default_world">Global (Automatisch)</string>
   <string name="hidden_services">Versteckte Dienste</string>
   <string name="title_activity_hidden_services">Versteckte Dienste</string>
   <string name="menu_hidden_services">Versteckte Dienste</string>
@@ -185,8 +177,6 @@
   <string name="consider_enable_battery_optimizations">Aktivieren Sie die Akku-Optimierung</string>
   <string name="pref_isolate_dest">Isolierte Zieladressen</string>
   <string name="pref_isolate_dest_summary">Verwenden Sie für jeden Netzwerk-Kreislauf eine andere Zieladresse</string>
-  <string name="no_transproxy_warning_short">ACHTUNG: Transproxying wird nicht mehr unterstützt</string>
-  <string name="no_transproxy_warning">ACHTUNG: Transparente Proxy-Unterstützung wird nicht mehr unterstützt. Verwenden Sie stattdessen Orbot Apps VPN.</string>
   <string name="pref_connection_padding">Verbindungsauffüllung</string>
   <string name="pref_connection_padding_summary">Aktiviert immer die Verbindungsauffüllung, um einige Formen der Verkehrsanalyse zu verhindern. Standard: Automatisch</string>
   <string name="pref_reduced_connection_padding">Reduzierte Verbindungsauffüllung</string>
@@ -198,7 +188,6 @@
   <string name="bridge_direct_connect">Direkt mit Tor verbinden (am Besten)</string>
   <string name="bridge_community">Verbinden Sie sich über Community-Server</string>
   <string name="bridge_cloud">Verbinden Sie sich über Cloud-Server</string>
-  <string name="bridges_get_new">Fordere Neue Brücken an... (Wenn alles andere fehlschlägt)</string>
   <string name="trouble_connecting">Probleme beim Verbinden?</string>
   <string name="full_device_vpn">Vollständiger Geräte-VPN</string>
   <string name="vpn_disabled">VPN Deaktiviert</string>

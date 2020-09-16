@@ -4,9 +4,7 @@
     <string name="status_starting_up">Orbot ŝaltiĝas...</string>
   <string name="status_activated">Konektita al Tor-reto</string>
   <string name="status_disabled">Orbot estas malaktivigita</string>
-  <string name="tor_process_starting">Ŝaltiĝas Tor-kliento...</string>
-  <string name="tor_process_complete">kompleta.</string>
-    <string name="menu_settings">Agordoj</string>
+  <string name="menu_settings">Agordoj</string>
   <string name="menu_log">Protokolo</string>
     <string name="menu_start">Starti</string>
   <string name="menu_stop">Halti</string>

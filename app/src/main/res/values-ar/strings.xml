@@ -6,8 +6,6 @@
   <string name="status_activated">متصل بشبكة تور</string>
   <string name="status_disabled">تم إيقاف اوربوت</string>
   <string name="status_shutting_down">جاري ايقاف خدمة تور</string>
-  <string name="tor_process_starting">جاري تشغيل تور...</string>
-  <string name="tor_process_complete">كامل.</string>
   <string name="menu_settings">إعدادات</string>
   <string name="menu_log">السجل</string>
   <string name="menu_start">بدء</string>
@@ -104,12 +102,9 @@
   <string name="pref_use_expanded_notifications">قم بأظهار التنبيه بشكل موسع بأستخدام تور. أخرج من البلد ورقم الآي بي رقم العنوان على الشبكة</string>
   <string name="pref_use_expanded_notifications_title">تنبيه موسّع</string>
   <string name="set_locale_title">اللغة</string>
-  <string name="no_internet_connection_tor">لا يوجد ارتباط بألانترنيت: تور في وضع الوقف المؤقت</string>
   <string name="pref_disable_network_title">لاتوجد شبكة نوم-آلي</string>
   <string name="pref_disable_network_summary">ضع تور في وضعية النوم عند عدم وجود الأنترنت</string>
   <string name="newnym">لقد تحولت الى هوية تور جديدة</string>
-  <string name="no_network_connectivity_putting_tor_to_sleep_">لا يوجد اتصال بألشبكة. سينتقل تور الى وضعية النوم</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">حال الإتصال بالشبكة جيد. يتم إيقاذ تور...</string>
   <string name="updating_settings_in_tor_service">تحديث الاعدادات في خدمات تور</string>
   <string name="pref_socks_title">تور  سوكس</string>
   <string name="pref_socks_summary">منفذ الشبكات الحاسوبية او بورت الذي يقدمه تور الى وحدة الخدمة النائبة البروكسي في سوكس. (الوضعية الأصلية: 9050 او 0 للتعطيل)</string>
@@ -130,17 +125,11 @@
   <string name="bridges_updated">تم تحديث الجسور</string>
   <string name="restart_orbot_to_use_this_bridge_">الرجاء إعادة تشغيل أوربوت لتفعيل التعديلات</string>
   <string name="menu_qr">رمز كيو آر</string>
-  <string name="bridge_mode">نمط الجسر</string>
   <string name="get_bridges_email">البريد الإلكتروني</string>
-  <string name="get_bridges_web">الويب</string>
   <string name="activate">تفعيل</string>
   <string name="apps_mode">وضع الـ VPN</string>
   <string name="send_email">أرسل بريد الكتروني</string>
-  <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">تستطيع الحصول على عنوان جسر عبر البريد الإلكتروني، عبر الويب، أو بعمل مسح لكيوآر كود خاص بجسر.
-إختر \"بريد إلكتروني\" أو \"ويب\" بالأسفل لطلب عنوان جسر.
-
-ما أن تحصل على جسر، أنسخه وألصقه في خانة \"الجسور\" في إعدادات أوربوت وأعد التشغيل.</string>
-    <string name="vpn_default_world">شامل (تلقائي)</string>
+  <string name="vpn_default_world">شامل (تلقائي)</string>
   <string name="hidden_services">خدمات خفية</string>
   <string name="title_activity_hidden_services">خدمات خفية</string>
   <string name="menu_hidden_services">خدمات خفية</string>

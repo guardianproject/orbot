@@ -6,8 +6,6 @@
   <string name="status_activated">Conectado a la red Tor</string>
   <string name="status_disabled">Orbot está desactivado</string>
   <string name="status_shutting_down">El servicio de Tor se esta cerrando</string>
-  <string name="tor_process_starting">Iniciando el cliente Tor...</string>
-  <string name="tor_process_complete">completo.</string>
     <string name="menu_settings">Configuración</string>
   <string name="menu_log">Registro</string>
     <string name="menu_start">Iniciar</string>
@@ -110,8 +108,7 @@
   <string name="kb">KB</string>
   <string name="mb">MB</string>
   <string name="get_bridges_email">Email</string>
-  <string name="get_bridges_web">Web</string>
-  <string name="activate">Activar</string>
+    <string name="activate">Activar</string>
     <string name="save">Guardar</string>
   <string name="name">Nombre</string>
   <string name="disable">Deshabilitar</string>

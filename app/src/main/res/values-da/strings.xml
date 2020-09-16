@@ -6,9 +6,7 @@
   <string name="status_activated">Der er forbindelse til Tor-netværket</string>
   <string name="status_disabled">Orbot er slået fra</string>
   <string name="status_shutting_down">TorServe lukker ned</string>
-  <string name="tor_process_starting">Starter Tor klienten...</string>
-  <string name="tor_process_complete">udført.</string>
-    <string name="menu_settings">Indstillinger</string>
+  <string name="menu_settings">Indstillinger</string>
   <string name="menu_log">Log</string>
     <string name="menu_start">Start</string>
   <string name="menu_stop">Stop</string>
@@ -96,8 +94,7 @@
     <string name="pref_use_persistent_notifications">Vis altid ikonet i statuslinien når Orbot er forbundet til netværket</string>
   <string name="pref_use_persistent_notifications_title">Vis altid notifikationer</string>
     <string name="set_locale_title">Sprog</string>
-    <string name="no_internet_connection_tor">Ingen internetforbindelse; Tor er på standby...</string>
-    <string name="kb">KB</string>
+  <string name="kb">KB</string>
   <string name="mb">MB</string>
   <string name="get_bridges_email">Mail</string>
   <string name="activate">Aktiver</string>

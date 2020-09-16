@@ -4,9 +4,7 @@
     <string name="status_starting_up">Nagsisimula na ang Orbot…</string>
   <string name="status_activated">Konektado sa Tor network</string>
   <string name="status_disabled">Naka-deactivate ang Orbot</string>
-  <string name="tor_process_starting">Binubuksan ang Tor client…</string>
-  <string name="tor_process_complete">kumpleto na.</string>
-    <string name="menu_settings">Settings</string>
+  <string name="menu_settings">Settings</string>
   <string name="menu_log">Tala</string>
     <string name="menu_start">Simulan</string>
   <string name="menu_stop">Ihinto</string>
@@ -100,8 +98,7 @@
   <string name="pref_use_expanded_notifications">Ipakita ang pinalaking notification kasama ng Tor exit country at IP</string>
   <string name="pref_use_expanded_notifications_title">Pinalawak na Notifications</string>
     <string name="set_locale_title">Wika</string>
-    <string name="no_internet_connection_tor">Walang connection sa internet; Ang Tor ay naka-standby mode...</string>
-    <string name="pref_disable_network_title">Walang Auto-Sleep sa Network</string>
+  <string name="pref_disable_network_title">Walang Auto-Sleep sa Network</string>
   <string name="pref_disable_network_summary">Ilagay ang Tor sa sleep kapag walang internet na pwede</string>
   <string name="newnym">Ikaw ay nagpalit ng bagong pagkakakilanlan sa Tor!</string>
     <string name="kbps">kbps</string>
@@ -109,7 +106,6 @@
   <string name="kb">KB</string>
   <string name="mb">MB</string>
   <string name="get_bridges_email">Email</string>
-  <string name="get_bridges_web">Web</string>
   <string name="activate">Activate</string>
   <string name="send_email">Send Email</string>
     <string name="save">I-save</string>

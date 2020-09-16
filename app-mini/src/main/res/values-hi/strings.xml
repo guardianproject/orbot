@@ -7,9 +7,7 @@
   <string name="status_activated">तोर नेटवर्क से जुड़ा </string>
   <string name="status_disabled">औरबोट निष्क्रिय है</string>
   <string name="status_shutting_down">तोर सर्विस बंध हो रहा हे </string>
-  <string name="tor_process_starting">तोर क्लाइंट शुरू हो रहा हे </string>
-  <string name="tor_process_complete">पूर्ण</string>
-    <string name="menu_settings">सेटिंग्स</string>
+  <string name="menu_settings">सेटिंग्स</string>
   <string name="menu_log">यात्रा दैनिकी</string>
     <string name="menu_start">प्रारंभ</string>
   <string name="menu_stop">विराम</string>
@@ -108,12 +106,9 @@
   <string name="pref_use_expanded_notifications">तोर एग्जिट देश और आईपी के साथ विस्तारित सूचना दिखाएं</string>
   <string name="pref_use_expanded_notifications_title">विस्तारित सूचनाएं</string>
     <string name="set_locale_title">भाषा</string>
-    <string name="no_internet_connection_tor">कोई इंटरनेट कनेक्शन नहीं; तोर स्टैंडबाय पर है ...</string>
-    <string name="pref_disable_network_title">कोई नेटवर्क ऑटो-स्लीप नहीं</string>
+  <string name="pref_disable_network_title">कोई नेटवर्क ऑटो-स्लीप नहीं</string>
   <string name="pref_disable_network_summary">जब कोई इंटरनेट उपलब्ध नहीं है तो तोर को सोएं</string>
   <string name="newnym">आपने एक नई टोरी पहचान को बदल दिया है!</string>
-    <string name="no_network_connectivity_putting_tor_to_sleep_">कोई नेटवर्क कनेक्टिविटी नहीं टो को सोने के लिए डालना ...</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">नेटवर्क कनेक्टिविटी अच्छा है जागो टॉर अप ...</string>
   <string name="updating_settings_in_tor_service">टॉर सेवा में सेटिंग अपडेट करना</string>
   <string name="pref_socks_title">टॉर सॉक्स</string>
   <string name="pref_socks_summary">पोर्ट उस टो पर अपनी सॉक्स प्रॉक्सी प्रदान करता है (डिफ़ॉल्ट: 9050 या अक्षम करने के लिए 0)</string>
@@ -135,14 +130,11 @@
   <string name="restart_orbot_to_use_this_bridge_">परिवर्तन सक्षम करने के लिए Orbot पुनः प्रारंभ करें</string>
   <string name="menu_qr">QR कोड</string>
   <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">यदि आपका मोबाइल नेटवर्क सक्रिय रूप से टो को ब्लॉक करता है, तो आप \'पुल सर्वर\' को एक वैकल्पिक तरीके से उपयोग कर सकते हैं। कॉन्फ़िगर और परीक्षण करने के लिए विकल्पों में से एक का चयन करें ..,।</string>
-  <string name="bridge_mode">ब्रिज मोड</string>
   <string name="get_bridges_email">ईमेल</string>
-  <string name="get_bridges_web">वेब</string>
   <string name="activate">सक्रिय</string>
   <string name="apps_mode">वीपीएन मोड</string>
     <string name="send_email">ईमेल भेजें</string>
-  <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">आप ईमेल, वेब के माध्यम से या एक पुल क्यूआर कोड को स्कैन करके एक पुल का पता मिल सकती है। एक पुल का पता अनुरोध करने के लिए \'ईमेल\' या \'वेब\' नीचे का चयन करें। एक बार जब आप एक पता है, कॉपी और यह Orbot की सेटिंग और पुनः आरंभ में \"पुल\" वरीयता में पेस्ट करें।</string>
-    <string name="vpn_default_world">ग्लोबल (ऑटो)</string>
+  <string name="vpn_default_world">ग्लोबल (ऑटो)</string>
   <string name="hidden_services">हिडन सेवाएं</string>
   <string name="title_activity_hidden_services">हिडन सेवाएं</string>
   <string name="menu_hidden_services">हिडन सेवाएं</string>
@@ -187,8 +179,6 @@
   <string name="consider_enable_battery_optimizations">बैटरी ऑप्टिमाइज़ेशन को सक्षम करने पर विचार करें</string>
   <string name="pref_isolate_dest">गंतव्य पते अलग करें</string>
   <string name="pref_isolate_dest_summary">प्रत्येक गंतव्य पते के लिए एक अलग सर्किट का उपयोग करें</string>
-  <string name="no_transproxy_warning_short">चेतावनी: ट्रांसप्रॉक्सिंग अब समर्थित नहीं है</string>
-  <string name="no_transproxy_warning">चेतावनी: पारदर्शी प्रॉक्सीिंग समर्थित नहीं है। Orbot Apps VPN का उपयोग इसके बजाय</string>
   <string name="pref_connection_padding">कनेक्शन पैडिंग</string>
   <string name="pref_connection_padding_summary">ट्रैफिक विश्लेषण के कुछ रूपों से बचाव के लिए हमेशा कनेक्शन पैडिंग सक्षम करता है। डिफ़ॉल्ट: ऑटो</string>
   <string name="pref_reduced_connection_padding">कम कनेक्शन पैडिंग</string>
@@ -200,8 +190,7 @@
   <string name="bridge_direct_connect">सीधे टॉर से कनेक्ट करें (सर्वश्रेष्ठ)</string>
   <string name="bridge_community">सामुदायिक सर्वर के माध्यम से कनेक्ट करें</string>
   <string name="bridge_cloud">क्लाउड सर्वर से जुड़ें</string>
-  <string name="bridges_get_new">नई ब्रिज का अनुरोध ... (यदि सब कुछ विफल रहता है)</string>
-  <string name="trouble_connecting">कनेक्ट करने में समस्या?</string>
+    <string name="trouble_connecting">कनेक्ट करने में समस्या?</string>
   <string name="full_device_vpn">पूर्ण डिवाइस VPN</string>
   <string name="vpn_disabled">वीपीएन अक्षम किया गया</string>
 </resources>

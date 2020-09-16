@@ -6,9 +6,7 @@
   <string name="status_activated">เชื่อมต่อกับเครือข่าย Tor แล้ว</string>
   <string name="status_disabled">ปิดการใช้งาน Orbot</string>
   <string name="status_shutting_down">กำลังปิดการทำงาน TorService </string>
-  <string name="tor_process_starting">เริ่มใช้ไคลเอ็นต์ Tor </string>
-  <string name="tor_process_complete">เสร็จ</string>
-    <string name="menu_settings">การตั้งค่า</string>
+  <string name="menu_settings">การตั้งค่า</string>
   <string name="menu_log">บันทึก</string>
     <string name="menu_start">เริ่ม</string>
   <string name="menu_stop">หยุด</string>
@@ -107,12 +105,9 @@
   <string name="pref_use_expanded_notifications">แสดงการแจ้งเตือนแบบขยายที่ระบุประเทศปลายทางและ IP ของ Tor</string>
   <string name="pref_use_expanded_notifications_title">การแจ้งเตือนแบบขยาย</string>
     <string name="set_locale_title">ภาษา</string>
-    <string name="no_internet_connection_tor">ไม่มีการเชื่อมต่ออินเทอร์เน็ต Tor พร้อมรอใช้งาน...</string>
-    <string name="pref_disable_network_title">ไม่พบเครือข่าย พักการใช้งานอัตโนมัติ</string>
+  <string name="pref_disable_network_title">ไม่พบเครือข่าย พักการใช้งานอัตโนมัติ</string>
   <string name="pref_disable_network_summary">พักการใช้งาน Tor เมื่อไม่มีอินเทอร์เน็ต</string>
   <string name="newnym">คุณได้เปลี่ยนมาใช้ตัวตน Tor ใหม่แล้ว</string>
-  <string name="no_network_connectivity_putting_tor_to_sleep_">ไม่มีการเชื่อมต่อเครือข่าย พักการใช้งาน Tor</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">การเชื่อมต่อเสถียร เปิดใช้งาน Tor...</string>
   <string name="updating_settings_in_tor_service">ปรับปรุงการตั้งค่าในบริการ Tor</string>
   <string name="pref_socks_title">Tor SOCKS</string>
   <string name="pref_socks_summary">พอร์ตที่ Tor ให้บริการพร็อกซี SOCKS (ค่าเริ่มต้น: 9050 หรือ 0 ไปถึงไม่เปิดใช้งาน)</string>
@@ -134,14 +129,11 @@
   <string name="restart_orbot_to_use_this_bridge_">กรุณาเริ่ม Orbot ใหม่เพื่อให้การเปลี่ยนแปลงใช้งานได้</string>
   <string name="menu_qr">รหัสคิวอาร์</string>
   <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">หากเครือข่ายโทรศัพท์ของคุณปิดกั้น Tor คุณสามารถใช้ \'เซิร์ฟเวอร์ Bridge\' เป็นตัวเลือกในการเข้าถึงได้ เลือกตัวเลือกหนึ่งเพื่อกำหนดค่าและทดสอบ...</string>
-  <string name="bridge_mode">โหมด Bridge</string>
   <string name="get_bridges_email">อีเมล</string>
-  <string name="get_bridges_web">เว็บ</string>
   <string name="activate">เปิดใช้งาน</string>
   <string name="apps_mode">โหมด VPN</string>
     <string name="send_email">ส่งอีเมล</string>
-  <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">คุณสามารถรับที่อยู่ของ Bridge ได้โดยผ่านอีเมล เว็บ หรือการสแกนรหัสคิวอาร์ของ Bridge เลือก \'อีเมล\' หรือ \'เว็บ\' ด้านล่างเพื่อขอที่อยู่ของ Bridge\n\nเมื่อคุณได้ที่อยู่แล้ว ให้คัดลอก &amp; วางลงในการปรับแต่งลักษณะของ \"Bridge\" ในการตั้งค่าของ Orbit และเริ่มการทำงานใหม่</string>
-    <string name="vpn_default_world">ส่วนรวม (อัตโนมัติ)</string>
+  <string name="vpn_default_world">ส่วนรวม (อัตโนมัติ)</string>
   <string name="hidden_services">บริการที่ซ่อน</string>
   <string name="title_activity_hidden_services">บริการที่ซ่อน</string>
   <string name="menu_hidden_services">บริการที่ซ่อน</string>
@@ -186,8 +178,6 @@
   <string name="consider_enable_battery_optimizations">พิจารณาเปิดใช้งานการปรับแบตเตอรี่ให้เหมาะสมที่สุด</string>
   <string name="pref_isolate_dest">แยกที่อยู่ปลายทาง</string>
   <string name="pref_isolate_dest_summary">ใช้วงรอบที่แตกต่างกันสำหรับแต่ละที่อยู่ปลายทาง</string>
-  <string name="no_transproxy_warning_short">คำเตือน: ไม่รองรับพร็อกซีแบบ Transparent</string>
-  <string name="no_transproxy_warning">คำเตือน: ไม่รองรับพร็อกซีแบบ Transparent  ใช้ VPN ของแอป Orbot แทน</string>
   <string name="pref_connection_padding">ช่องว่างภายในการเชื่อมต่อ</string>
   <string name="pref_connection_padding_summary">เปิดใช้งานช่องว่างภายในเครือข่ายเสมอเพื่อป้องกันการวิเคราะห์การรับส่งข้อมูลบางรูปแบบ ตั้งค่าเริ่มต้นเป็น: อัตโนมัติ</string>
   <string name="pref_reduced_connection_padding">ลดช่องว่างภายในเครือข่าย</string>
@@ -199,8 +189,7 @@
   <string name="bridge_direct_connect">เชื่อมต่อกับ Tor โดยตรง (ดีที่สุด)</string>
   <string name="bridge_community">เชื่อมต่อผ่านเซิร์ฟเวอร์ของชุมชน</string>
   <string name="bridge_cloud">เชื่อมต่อผ่านเซิร์ฟเวอร์คลาวด์</string>
-  <string name="bridges_get_new">ขอ Bridge ใหม่... (หากทุกอย่างใช้การไม่ได้)</string>
-  <string name="trouble_connecting">มีปัญหากับการเชื่อมต่อหรือไม่</string>
+    <string name="trouble_connecting">มีปัญหากับการเชื่อมต่อหรือไม่</string>
   <string name="full_device_vpn">VPN ทั้งอุปกรณ์</string>
   <string name="vpn_disabled">ปิดใช้งาน VPN</string>
 </resources>

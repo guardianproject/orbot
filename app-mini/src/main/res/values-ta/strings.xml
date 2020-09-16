@@ -5,8 +5,6 @@
     <string name="status_starting_up">ஆர்பாட் துவங்குகிறது...</string>
   <string name="status_activated">தோர் நெட்வொர்க் இணைக்கப்பட்ட</string>
   <string name="status_disabled">ஆர்பாட் நிறுத்தப்பட்டது</string>
-  <string name="tor_process_starting">தோர் துவங்கப்படுகிறது...</string>
-  <string name="tor_process_complete">முடிந்தது.</string>
     <string name="menu_settings">அமைப்புகள்</string>
   <string name="menu_log">பதிவுகள்</string>
     <string name="menu_start">துவங்கு</string>

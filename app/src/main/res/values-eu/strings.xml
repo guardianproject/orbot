@@ -6,9 +6,7 @@
   <string name="status_activated">Tor sarera konektatuta</string>
   <string name="status_disabled">Orbot desaktibatuta dago</string>
   <string name="status_shutting_down">TorService itzaltzen ari da</string>
-  <string name="tor_process_starting">Tor bezeroa hasten...</string>
-  <string name="tor_process_complete">eginda.</string>
-    <string name="menu_settings">Ezarpenak</string>
+  <string name="menu_settings">Ezarpenak</string>
   <string name="menu_log">Egunkaria</string>
     <string name="menu_start">Abiarazi</string>
   <string name="menu_stop">Gelditu</string>
@@ -107,12 +105,9 @@
   <string name="pref_use_expanded_notifications">Erakutsi hedatutako jakinarazpenak Tor irteera herrialde eta IP-arekin</string>
   <string name="pref_use_expanded_notifications_title">Hedatutako jakinarazpenak</string>
     <string name="set_locale_title">Hizkuntza</string>
-    <string name="no_internet_connection_tor">Ez dago Interneterako konexiorik; Tor egonean dago...</string>
-    <string name="pref_disable_network_title">Sareko lokartze automatikorik ez</string>
+  <string name="pref_disable_network_title">Sareko lokartze automatikorik ez</string>
   <string name="pref_disable_network_summary">Jarri Tor lotan internet atzigarri ez dagoenean</string>
   <string name="newnym">Tor identitate berri batera aldatu duzu!</string>
-  <string name="no_network_connectivity_putting_tor_to_sleep_">Sare konexiorik ez. Tor lotan jartzen...</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">Sare konexioa berreskuratu da. Tor esnatzen...</string>
   <string name="updating_settings_in_tor_service">Tor zerbitzuaren ezarpenak eguneratzen</string>
   <string name="pref_socks_title">Tor SOCKS</string>
   <string name="pref_socks_summary">Tor-ek bere SOCKS proxya eskaintzeko ataka (Lehenetsia: 9050 edo 0 desgaitzeko)</string>
@@ -134,14 +129,11 @@
   <string name="restart_orbot_to_use_this_bridge_">Berrabiarazi Orbot aldaketak aplikatzeko</string>
   <string name="menu_qr">QR Kodeak</string>
   <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Zure sare mugikorrak Tor nahita blokeatzen badu, \'Zubi zerbitzaria\' erabili dezakezu ordezko sarbide gisa. HAUTATU konfiguratzeko aukera bat eta probatu...</string>
-  <string name="bridge_mode">Zubi modua</string>
   <string name="get_bridges_email">E-mail</string>
-  <string name="get_bridges_web">Web</string>
   <string name="activate">Aktibatu</string>
   <string name="apps_mode">VPN modua</string>
     <string name="send_email">Bidali E-maila</string>
-  <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Zubi helbide bat lortu dezakezu e-mail eta web bidez edo QR kode bat eskaneatuz. Hautatu \'E-mail\' edo \'Web\' behean zubi helbide bat eskatzeko.\n\nBehin helbide bat duzula, kopiatu eta itsatsi ezazu Orbot ezarpenetako \"Zubiak\" atalean eta berrabiarazi.</string>
-    <string name="vpn_default_world">Orokorra (Automatikoa)</string>
+  <string name="vpn_default_world">Orokorra (Automatikoa)</string>
   <string name="hidden_services">Ezkutuko zerbitzuak</string>
   <string name="title_activity_hidden_services">Ezkutuko zerbitzuak</string>
   <string name="menu_hidden_services">Ezkutuko zerbitzuak</string>
@@ -185,8 +177,6 @@
   <string name="consider_enable_battery_optimizations">Aztertu bateria optimizazioak gaitzea</string>
   <string name="pref_isolate_dest">Isolatu helbide helburuak</string>
   <string name="pref_isolate_dest_summary">Erabili zirkuitu desberdin bat helbide helburu bakoitzeko</string>
-  <string name="no_transproxy_warning_short">ABISUA: Proxy gardenak ez du euskarria jada</string>
-  <string name="no_transproxy_warning">ABISUA: Proxy gardenak ez du euskarria jada. Erabili Orbot aplikazioen VPN-a ordez.</string>
   <string name="pref_connection_padding">Konexioaren betegarria</string>
   <string name="pref_connection_padding_summary">Beti gaitzen du konexioaren betegarria trafikoaren azterketa motza batzuetaz babesteko. Lehenetsita: automatikoa</string>
   <string name="pref_reduced_connection_padding">Konexioaren betegarria gutxitua</string>
@@ -198,7 +188,6 @@
   <string name="bridge_direct_connect">Konektatu zuzenean Tor sarera (Onena)</string>
   <string name="bridge_community">Konektatu komunitatearen zerbitzarietatik</string>
   <string name="bridge_cloud">Konektatu hodeiko zerbitzarietatik</string>
-  <string name="bridges_get_new">Eskatu zubi berriak... (Beste guztiak huts egiten badu)</string>
   <string name="trouble_connecting">Arazoak konektatzeko?</string>
   <string name="full_device_vpn">Gailu osoaren VPN-a</string>
   <string name="vpn_disabled">VPN-a desgaituta</string>

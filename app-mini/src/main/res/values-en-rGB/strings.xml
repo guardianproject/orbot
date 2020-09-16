@@ -6,8 +6,6 @@
   <string name="status_activated">Connected to the Tor network</string>
   <string name="status_disabled">Orbot is deactivated</string>
   <string name="status_shutting_down">TorService is shutting down</string>
-  <string name="tor_process_starting">Starting Tor client…</string>
-  <string name="tor_process_complete">complete.</string>
     <string name="menu_settings">Settings</string>
   <string name="menu_log">Log</string>
     <string name="menu_start">Start</string>

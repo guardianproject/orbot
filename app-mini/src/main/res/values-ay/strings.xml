@@ -5,8 +5,6 @@
   <string name="status_activated">Tor llikatuqir waythapitawa</string>
   <string name="status_disabled">Orbotax jiwt\'atawa</string>
   <string name="status_shutting_down">Tor wakichawix jist\'antasiskiwa</string>
-  <string name="tor_process_starting">Tor apnaqirix qalltayaskiwa...</string>
-  <string name="tor_process_complete">tukuyata.</string>
   <string name="menu_settings">Mayjt\'ayaña</string>
   <string name="menu_log">Imata</string>
   <string name="menu_start">Qalltaña</string>
@@ -106,12 +104,9 @@
   <string name="pref_use_expanded_notifications">Kawkja markans IP ukamp Toramp  uñstani uka yatiyäw juk\'amp uñacht\'ayaña</string>
   <string name="pref_use_expanded_notifications_title">Phuqhat yatiyäwinaka</string>
   <string name="set_locale_title">Aru</string>
-  <string name="no_internet_connection_tor">Llikax janiw utjkiti; Tor ukax suyt\'atawa...</string>
   <string name="pref_disable_network_title">Jan jiwt\'ayas suyt\'aña</string>
   <string name="pref_disable_network_summary">Llika jan uktjki ukjax Tor suyt\'ayam</string>
   <string name="newnym">¡Jichhax Tor sutimax yaqhäxiwa!</string>
-  <string name="no_network_connectivity_putting_tor_to_sleep_">Janiw llikax utjkiti. Torax suyt\'ayatawa...</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">Llikax khus uñstaniski. Torax aqtaskiwa...</string>
   <string name="updating_settings_in_tor_service">Toran wakichäwinakax mayjt\'ayaskiwa</string>
   <string name="pref_socks_title">Toran SOCKS ukapa</string>
   <string name="pref_socks_summary">Toran proxy SOCKS apayañ thakhipa: (nayra utt\'atatakix 9050, jiwt\'ayañatakix 0)</string>
@@ -133,14 +128,11 @@
   <string name="restart_orbot_to_use_this_bridge_">Mayjt\'ayatanak aqtayañatak Orbot mayamp qhant\'ayam, amp suma</string>
   <string name="menu_qr">QR chimpunaka</string>
   <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Jawsañ apnaqirinakax Tor jark\'antañ yatipk ukjax \'Jalakipañ yanapiri\' mantañatak apnaqarakismawa. Yant\'añataki, mayjt\'ayañatakix AJLLT\'AM...</string>
-  <string name="bridge_mode">Jalakipaña</string>
   <string name="get_bridges_email">Imaylu (Email)</string>
-  <string name="get_bridges_web">Llika janja</string>
   <string name="activate">Qhantayaña</string>
   <string name="apps_mode">VPN</string>
   <string name="send_email">Qillqat apayaña</string>
-  <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Jalakipañan QR waruqasa, jan ukax llikatuqi, imailtuqis jalakipañ utjirinakx jikxatarakismawa. Jalakipañ thakh jikxatañatakix \'Imail\' jan ukax \'llika\' ajllt\'am.\n\n Orbotan majt\'ayañawjapan \"Jalakipañ Thakhi\" limt\'añar apkatam, ukat mayamp qalltam.</string>
-    <string name="vpn_default_world">Uraqpacha (justupaki)</string>
+  <string name="vpn_default_world">Uraqpacha (justupaki)</string>
   <string name="hidden_services">Imantat lurañanaka</string>
   <string name="title_activity_hidden_services">Imantat lurañanaka</string>
   <string name="menu_hidden_services">Imantat lurañanaka</string>
@@ -185,8 +177,6 @@
   <string name="consider_enable_battery_optimizations">Ch\'amanchir pist\'k ukjax jiwt\'añkam jan aqañapatak amuyt\'am</string>
   <string name="pref_isolate_dest">Apayañ chiqanak jark\'aqaña</string>
   <string name="pref_isolate_dest_summary">Sapa apayañ chiqatak kunayman thakhinak apnaqaña</string>
-  <string name="no_transproxy_warning_short">UKATARAKI: Transproxy luräwix janiw mayampis iyaw jisxiti</string>
-  <string name="no_transproxy_warning">UKATARAKI: Qhan apnaqat proxyx janiw iyaw satäkiti. Uka lantix Orbot wakichäw VPN apnaqam.</string>
   <string name="pref_connection_padding">Waythapiñ ch\'amachiri</string>
   <string name="pref_connection_padding_summary">Yaqhip apayat uñsusirinakat jark\'aqasiñataki, waythapiñ ch\'amachir aqtayapunim. Utt\'ayata: justupacha</string>
   <string name="pref_reduced_connection_padding">Juk\'aptayat waythapiñ ch\'amañchiri</string>
@@ -198,8 +188,7 @@
   <string name="bridge_direct_connect">Tor ukar chiqak waykattaña (juk\'amp khusa)</string>
   <string name="bridge_community">Yanapirinakan atamirinakapamp waythapiña</string>
   <string name="bridge_cloud">Llikan imirinakamp waythapiña</string>
-  <string name="bridges_get_new">Machaq jalakipañanak mayiña... (yaqhanak jan walt\'kasp ukja)</string>
-  <string name="trouble_connecting">¿Waythapiykasat jan walt\'xï?</string>
+    <string name="trouble_connecting">¿Waythapiykasat jan walt\'xï?</string>
   <string name="full_device_vpn">Taqpach wakichäwinakaw VPN ukamp apnaqatäni</string>
   <string name="vpn_disabled">VPN jiwt\'ayatawa</string>
 </resources>

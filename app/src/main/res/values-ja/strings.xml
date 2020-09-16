@@ -6,9 +6,7 @@
   <string name="status_activated">Torネットワークに接続しています</string>
   <string name="status_disabled">\"Orbotが解除されました</string>
   <string name="status_shutting_down">TorServiceが終了しています</string>
-  <string name="tor_process_starting">Torクライエントを開始しています...</string>
-  <string name="tor_process_complete">完了</string>
-    <string name="menu_settings">設定</string>
+  <string name="menu_settings">設定</string>
   <string name="menu_log">履歴</string>
     <string name="menu_start">スタート</string>
   <string name="menu_stop">停止</string>
@@ -107,12 +105,9 @@
   <string name="pref_use_expanded_notifications">拡張通知で、Torの出口の国とIPを表示します</string>
   <string name="pref_use_expanded_notifications_title">拡張通知</string>
     <string name="set_locale_title">言語</string>
-    <string name="no_internet_connection_tor">インターネット接続なし。Torは待機中です...</string>
-    <string name="pref_disable_network_title">ネットワークなし時オートスリープ</string>
+  <string name="pref_disable_network_title">ネットワークなし時オートスリープ</string>
   <string name="pref_disable_network_summary">ネット接続がない時 Tor をスリープさせる</string>
   <string name="newnym">新たな Tor の身元に切り替えました。</string>
-  <string name="no_network_connectivity_putting_tor_to_sleep_">ネットワーク接続がありません。Torはスリープします…</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">ネットワーク接続は良好です。Torを有効にします…</string>
   <string name="updating_settings_in_tor_service">Torサービスの設定を更新中</string>
   <string name="pref_socks_title">Tor SOCKS</string>
   <string name="pref_socks_summary">TorがSOCKSプロキシを提供するポート (デフォルト: 9050、0にすると無効)</string>
@@ -134,14 +129,11 @@
   <string name="restart_orbot_to_use_this_bridge_">変更を有効にするにはOrbotを再起動してください</string>
   <string name="menu_qr">QRコード</string>
   <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">モバイルネットワークが頻繁にTorをブロックする場合、別の方法として \'ブリッジサーバー\'を使用することができます。オプションを１つ選択して、設定とテストを行ってください。</string>
-  <string name="bridge_mode">ブリッジ モード</string>
   <string name="get_bridges_email">メール</string>
-  <string name="get_bridges_web">Web</string>
   <string name="activate">アクティブ化</string>
   <string name="apps_mode">VPN モード</string>
     <string name="send_email">メール送信</string>
-  <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">あなたは、メール、ウェブを介して、またはブリッジQRコードをスキャンしてブリッジアドレスを取得することができます。ブリッジアドレスを要求するため、下の「メール」または「ウェブ」を選択してください。\n\nアドレスを入手したら、それをOrbot設定の「ブリッジ」設定にコピー&amp; 貼り付けして、Orbotを再起動します。</string>
-    <string name="vpn_default_world">世界中 (自動)</string>
+  <string name="vpn_default_world">世界中 (自動)</string>
   <string name="hidden_services">Hidden Services</string>
   <string name="title_activity_hidden_services">Hidden Services</string>
   <string name="menu_hidden_services">Hidden Services</string>
@@ -185,8 +177,6 @@
   <string name="consider_enable_battery_optimizations">電池最適化を有効にすることを考察する</string>
   <string name="pref_isolate_dest">宛先アドレスを分離する</string>
   <string name="pref_isolate_dest_summary">宛先アドレスごとに別のサーキットを利用する</string>
-  <string name="no_transproxy_warning_short">警告：透過的プロキシはもはやサポートされていません。</string>
-  <string name="no_transproxy_warning">警告：透過的プロキシはサポートされていません。代わりにOrbotのアプリVPNを利用して下さい。</string>
   <string name="pref_connection_padding">通信難読化</string>
   <string name="pref_connection_padding_summary">ある種のトラヒック分析から防衛するために、常に通信難読化を有効にします。デフォルト：自動的</string>
   <string name="pref_reduced_connection_padding">減らした通信難読化</string>
@@ -198,7 +188,6 @@
   <string name="bridge_direct_connect">Tor に直接接続する (ベスト)</string>
   <string name="bridge_community">コミュニティーサーバーを介して接続する</string>
   <string name="bridge_cloud">クラウドサーバーを介して接続する</string>
-  <string name="bridges_get_new">新しいブリッジをリクエストする...（最悪の場合に）</string>
   <string name="trouble_connecting">接続に問題がありましたか?</string>
   <string name="full_device_vpn">フルデバイス VPN</string>
   <string name="vpn_disabled">VPN が無効</string>

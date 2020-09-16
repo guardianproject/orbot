@@ -6,9 +6,7 @@
   <string name="status_activated">Připojen k síti Tor</string>
   <string name="status_disabled">\"Orbot je deaktivován</string>
   <string name="status_shutting_down">Orbot se vypíná</string>
-  <string name="tor_process_starting">Startuji Tor klienta…</string>
-  <string name="tor_process_complete">hotovo.</string>
-    <string name="menu_settings">Nastavení</string>
+  <string name="menu_settings">Nastavení</string>
   <string name="menu_log">Log</string>
     <string name="menu_start">Zapnout</string>
   <string name="menu_stop">Vypnout</string>

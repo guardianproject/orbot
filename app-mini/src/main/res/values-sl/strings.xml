@@ -4,8 +4,6 @@
     <string name="status_starting_up">Orbot se zaganja...</string>
   <string name="status_activated">Povezan v omrežje Tor</string>
   <string name="status_disabled">Orbot ni aktiviran</string>
-  <string name="tor_process_starting">Zagon Tor klijenta...</string>
-  <string name="tor_process_complete">končano.</string>
     <string name="menu_settings">Nastavitve</string>
   <string name="menu_log">Dnevnik</string>
     <string name="menu_start">Začni</string>

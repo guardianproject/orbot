@@ -6,9 +6,7 @@
   <string name="status_activated">Csatlakozva a Tor hálózathoz</string>
   <string name="status_disabled">Az Orbot deaktiválva</string>
   <string name="status_shutting_down">A TorService leáll</string>
-  <string name="tor_process_starting">A Tor kliens indítása...</string>
-  <string name="tor_process_complete">kész.</string>
-    <string name="menu_settings">Beállítások</string>
+  <string name="menu_settings">Beállítások</string>
   <string name="menu_log">Log</string>
     <string name="menu_start">Indítás</string>
   <string name="menu_stop">Leállítás</string>
@@ -107,12 +105,9 @@
   <string name="pref_use_expanded_notifications">Mutassa a bővített értesítést a Tor kilépő országgal és IP-vel</string>
   <string name="pref_use_expanded_notifications_title">Bővített értesítések</string>
     <string name="set_locale_title">Nyelv</string>
-    <string name="no_internet_connection_tor">Nincs internetkapcsolat; Tor készenlétben...</string>
-    <string name="pref_disable_network_title">Nincs hálózati auto-alvás</string>
+  <string name="pref_disable_network_title">Nincs hálózati auto-alvás</string>
   <string name="pref_disable_network_summary">A Tor alvó módba helyezése, ha internet nem elérhető</string>
   <string name="newnym">Új Tor identitásra váltottál!</string>
-    <string name="no_network_connectivity_putting_tor_to_sleep_">Nincs hálózati kapcsolat. Tor alvó állapotba helyezése...</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">A hálózati kapcsolat jó. Tor felébresztése...</string>
   <string name="updating_settings_in_tor_service">a Tor szolgáltatás beállításainak frissítése</string>
   <string name="pref_socks_title">Tor SOCKS</string>
   <string name="pref_socks_summary">Port amelyen a Tor a SOCKS proxyt biztosítja (alapértelmezett: 9050 vagy 0 a tiltáshoz)</string>
@@ -134,14 +129,11 @@
   <string name="restart_orbot_to_use_this_bridge_">Kérlek indítsd újra az Orbot-ot a változások engedélyezéséhez</string>
   <string name="menu_qr">QR kódok</string>
   <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Ha a mobil hálózata aktívan blokkolja a Tor-t, akkor választhatja a \'Híd szerver\'-t, mint alternatív utat. VÁLASSZON egyet a lehetőségek közül és tesztelje....</string>
-  <string name="bridge_mode">Híd mód</string>
   <string name="get_bridges_email">Email</string>
-  <string name="get_bridges_web">Web</string>
   <string name="activate">Aktiválás</string>
   <string name="apps_mode">VPN Mód</string>
     <string name="send_email">Email küldése</string>
-  <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Kaphatsz egy híd-címet emailen, weben keresztül vagy a híd QR kódjának beszkennelésével. Válaszd az \'Email\'-t vagy a \'Web\'-et alább a híd-cím kéréséhez.\n\nAmikor már van egy címed, másold &amp; illeszd be \"Hidak\" preferenciákba az Orbot beállításaiban és indítsd újra.</string>
-    <string name="vpn_default_world">Globális (Auto)</string>
+  <string name="vpn_default_world">Globális (Auto)</string>
   <string name="hidden_services">Rejtett szolgáltatások</string>
   <string name="title_activity_hidden_services">Rejtett szolgáltatások</string>
   <string name="menu_hidden_services">Rejtett szolgáltatások</string>
@@ -185,8 +177,6 @@
   <string name="consider_enable_battery_optimizations">Vegye fontolóra az akkumulátor optimalizálás engedélyezését</string>
   <string name="pref_isolate_dest">Célcím elszigetelése</string>
   <string name="pref_isolate_dest_summary">Másik áramkör használata minden célcímhez</string>
-  <string name="no_transproxy_warning_short">FIGYELEM: A Transproxying már nem támogatott</string>
-  <string name="no_transproxy_warning">FIGYELEM: A transzparens proxyzásmár nem támogatott. Használja az Orbot App VPN-t helyette.</string>
   <string name="pref_connection_padding">Kapcsolat kitöltés</string>
   <string name="pref_connection_padding_summary">Mindig engedélyezi a kapcsolat kitöltést, hogy megvédjen a hálózati analízistől. Alapértelmezés: auto </string>
   <string name="pref_reduced_connection_padding">Csökkentett kapcsolat kitöltés</string>
@@ -198,7 +188,6 @@
   <string name="bridge_direct_connect">Csatlakozás közvetlenül a Tor-hoz (Legjobb)</string>
   <string name="bridge_community">Csatlakozás közösségi szervereken keresztül</string>
   <string name="bridge_cloud">Csatlakozás felhőszervereken keresztül</string>
-  <string name="bridges_get_new">Új hidak kérése... (ha más nem segített)</string>
   <string name="trouble_connecting">Probléma a csatlakozással?</string>
   <string name="full_device_vpn">Teljes Készülék VPN</string>
   <string name="vpn_disabled">VPN Letiltva</string>

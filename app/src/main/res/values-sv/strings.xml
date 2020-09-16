@@ -6,9 +6,7 @@
   <string name="status_activated">Uppkopplad till Tor-nätverket</string>
   <string name="status_disabled">Orbot är inaktiverad</string>
   <string name="status_shutting_down">TorService avslutas</string>
-  <string name="tor_process_starting">Startar Tor-klient...</string>
-  <string name="tor_process_complete">färdig.</string>
-    <string name="menu_settings">Inställningar</string>
+  <string name="menu_settings">Inställningar</string>
   <string name="menu_log">Logg</string>
     <string name="menu_start">Start</string>
   <string name="menu_stop">Stopp</string>
@@ -107,12 +105,9 @@
   <string name="pref_use_expanded_notifications">Visa utökad notis med Tors utgångsland och IP</string>
   <string name="pref_use_expanded_notifications_title">Utökade notiser</string>
     <string name="set_locale_title">Språk</string>
-    <string name="no_internet_connection_tor">Ingen internetanslutning; Tor är i standby-läge...</string>
-    <string name="pref_disable_network_title">Ingen auto-sömn för nätverket</string>
+  <string name="pref_disable_network_title">Ingen auto-sömn för nätverket</string>
   <string name="pref_disable_network_summary">Låt Tor sova när inget internet finns tillgängligt</string>
   <string name="newnym">Du har bytt till en ny Tor identitet!</string>
-  <string name="no_network_connectivity_putting_tor_to_sleep_">Ingen nätverksanslutning. Försätter Tor i dvala...</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">Nätverksanslutningen fungerar. Väcker Tor...</string>
   <string name="updating_settings_in_tor_service">uppdaterar inställningar i Tor-tjänsten</string>
   <string name="pref_socks_title">Tor-SOCKS</string>
   <string name="pref_socks_summary">Port som Tor erbjuder sin SOCKS-proxy på (standard: 9050 eller 0 för att inaktivera)</string>
@@ -134,14 +129,11 @@
   <string name="restart_orbot_to_use_this_bridge_">Vänligen starta om Orbot för att aktivera ändringarna</string>
   <string name="menu_qr">QR-koder</string>
   <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Om ditt mobilnät aktivt blockerar Tor kan du använda en \"Bridge Server\" som ett alternativt sätt. VÄLJ ett av alternativen att konfigurera och testa.,.</string>
-  <string name="bridge_mode">Bryggläge</string>
   <string name="get_bridges_email">E-post</string>
-  <string name="get_bridges_web">Webb</string>
   <string name="activate">Aktivera</string>
   <string name="apps_mode">VPN-läge</string>
     <string name="send_email">Skicka e-post</string>
-  <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Du kan få en brygg-adress via e-post, via webben eller genom att skanna en QR-kod för en brygga. Välj \'E-post\' eller \'Webb\' nedan för att begära en brygg-adress.\n\nNär du väl har en adress, kopiera &amp; klistra in den i inställningen för \"Bryggor\" i Orbot och starta om.</string>
-    <string name="vpn_default_world">Global (automatisk)</string>
+  <string name="vpn_default_world">Global (automatisk)</string>
   <string name="hidden_services">Hidden Services</string>
   <string name="title_activity_hidden_services">Hidden Services</string>
   <string name="menu_hidden_services">Hidden Services</string>
@@ -185,8 +177,6 @@
   <string name="consider_enable_battery_optimizations">Överväg att aktivera batterioptimeringar</string>
   <string name="pref_isolate_dest">Isolera destinationsadresser</string>
   <string name="pref_isolate_dest_summary">Använd en annan krets för varje destinationsadress</string>
-  <string name="no_transproxy_warning_short">VARNING: Transproxy stöds inte längre</string>
-  <string name="no_transproxy_warning">VARNING: Transparent proxy stöds inte. Använd Orbot Apps VPN istället.</string>
   <string name="pref_connection_padding">Anslutnings-utfyllnad</string>
   <string name="pref_connection_padding_summary">Aktivera alltid anslutnings-utfyllnad för att skydda mot vissa former av trafikanalys. Standard: auto</string>
   <string name="pref_reduced_connection_padding">Minskad anslutnings-utfyllnad</string>
@@ -198,7 +188,6 @@
   <string name="bridge_direct_connect">Anslut direkt till Tor (Bästa)</string>
   <string name="bridge_community">Anslut genom gemenskaps servrar</string>
   <string name="bridge_cloud">Anslut via molnservrar</string>
-  <string name="bridges_get_new">Begär nya broar... (om allt annat misslyckas)</string>
   <string name="trouble_connecting">Problem med att ansluta?</string>
   <string name="full_device_vpn">VPN för hela enheten</string>
   <string name="vpn_disabled">VPN inaktiverad</string>

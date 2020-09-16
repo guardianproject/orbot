@@ -6,8 +6,6 @@
   <string name="status_activated">টর নেটওয়ার্কের সাথে সংযুক্ত হয়েছে</string>
   <string name="status_disabled">অরবট নিষ্ক্রিয় করা হয়েছে</string>
   <string name="status_shutting_down">টর সার্ভিস বন্ধ করা হচ্ছে</string>
-  <string name="tor_process_starting">টর ক্লায়েন্ট চালু করা হচ্ছে</string>
-  <string name="tor_process_complete">সম্পূর্ণ</string>
     <string name="menu_settings">নিয়ম বিন্যাস</string>
   <string name="menu_log">লগ</string>
     <string name="menu_start">শুরু</string>

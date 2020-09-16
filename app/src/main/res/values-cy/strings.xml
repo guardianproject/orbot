@@ -3,9 +3,7 @@
   <string name="app_name">Orbot</string>
     <string name="status_starting_up">Mae Orbot yn cychwyn...</string>
   <string name="status_activated">Wedi cysylltu â rhwydwaith Tor</string>
-  <string name="tor_process_starting">Yn cychwyn cleient Tor</string>
-  <string name="tor_process_complete">Wedi ei gwblhau.</string>
-    <string name="menu_settings">Gosodiadau</string>
+  <string name="menu_settings">Gosodiadau</string>
   <string name="menu_log">Log</string>
     <string name="menu_start">Cychwyn</string>
   <string name="menu_stop">Stop</string>

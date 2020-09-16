@@ -6,9 +6,7 @@
   <string name="status_activated">Conectado a la red Tor</string>
   <string name="status_disabled">Orbot está desactivado</string>
   <string name="status_shutting_down">TorService se está cerrando</string>
-  <string name="tor_process_starting">Iniciando cliente Tor...</string>
-  <string name="tor_process_complete">completado.</string>
-    <string name="menu_settings">Configuración</string>
+  <string name="menu_settings">Configuración</string>
   <string name="menu_log">Registro (log)</string>
     <string name="menu_start">Iniciar</string>
   <string name="menu_stop">Detener</string>
@@ -108,12 +106,9 @@ direcciones (o rangos). No prevalecen sobre las configuraciones de exclusión de
   <string name="pref_use_expanded_notifications">Mostrar notificación expandida con el país de salida de Tor y la IP</string>
   <string name="pref_use_expanded_notifications_title">Notificaciones expandidas</string>
     <string name="set_locale_title">Idioma</string>
-    <string name="no_internet_connection_tor">Sin conexión a Internet; Tor está en suspensión...</string>
-    <string name="pref_disable_network_title">Sin suspensión-automática de la red</string>
+  <string name="pref_disable_network_title">Sin suspensión-automática de la red</string>
   <string name="pref_disable_network_summary">Ponga Tor en suspensión cuando no haya Internet disponible</string>
   <string name="newnym">¡Ha cambiado a una nueva identidad de Tor!</string>
-    <string name="no_network_connectivity_putting_tor_to_sleep_">No hay conectividad de red. Poniendo a Tor a dormir...</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">La conectividad de red es buena. Despertando a Tor...</string>
   <string name="updating_settings_in_tor_service">actualizando la configuración en el servicio Tor</string>
   <string name="pref_socks_title">SOCKS de Tor</string>
   <string name="pref_socks_summary">Puerto sobre el que Tor ofrece su proxy SOCKS (por defecto: 9050 o 0 para deshabilitarlo)</string>
@@ -135,14 +130,11 @@ direcciones (o rangos). No prevalecen sobre las configuraciones de exclusión de
   <string name="restart_orbot_to_use_this_bridge_">Por favor, reinicie Orbot para habilitar los cambios</string>
   <string name="menu_qr">Códigos QR</string>
   <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Si su red móvil bloquea Tor activamente, puede usar un \'Servidor Puente\' como alternativa para acceder. SELECCIONE una de las opciones a configurar y probar...</string>
-  <string name="bridge_mode">Modo bridge</string>
   <string name="get_bridges_email">Correo electrónico</string>
-  <string name="get_bridges_web">Página web</string>
   <string name="activate">Activar</string>
   <string name="apps_mode">Modo VPN</string>
     <string name="send_email">Enviar correo</string>
-  <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Puede obtener una dirección de bridge (repetidor puente) a través de correo electrónico, la web, o escaneando un código QR de bridge. Seleccione \'Correo\' o \'Web\' debajo para solicitar una dirección de bridge.\n\nUna vez tenga una dirección, copie y péguela en la opción \"Bridges\" de la configuración de Orbot, y reinicie.</string>
-    <string name="vpn_default_world">Global (Automático)</string>
+  <string name="vpn_default_world">Global (Automático)</string>
   <string name="hidden_services">Servicios ocultos</string>
   <string name="title_activity_hidden_services">Servicios ocultos</string>
   <string name="menu_hidden_services">Servicios ocultos</string>
@@ -186,8 +178,6 @@ direcciones (o rangos). No prevalecen sobre las configuraciones de exclusión de
   <string name="consider_enable_battery_optimizations">Considere habilitar las optimizaciones de batería</string>
   <string name="pref_isolate_dest">Aislar direcciones de destino</string>
   <string name="pref_isolate_dest_summary">Usar un circuito diferente para cada dirección de destino</string>
-  <string name="no_transproxy_warning_short">ADVERTENCIA: El proxyficado transparente ya no está soportado</string>
-  <string name="no_transproxy_warning">ADVERTENCIA: El proxyficado transparente no está soportado. Use la VPN de aplicaciones de Orbot en su lugar.</string>
   <string name="pref_connection_padding">Relleno de la conexión</string>
   <string name="pref_connection_padding_summary">Habilita siempre el relleno de la conexión como defensa contra algunas formas de análisis de tráfico. Predeterminado: Automático</string>
   <string name="pref_reduced_connection_padding">Relleno de la conexión reducido</string>
@@ -199,7 +189,6 @@ direcciones (o rangos). No prevalecen sobre las configuraciones de exclusión de
   <string name="bridge_direct_connect">Conectar directamente a Tor (lo mejor)</string>
   <string name="bridge_community">Conectar a través de servidores de la comunidad</string>
   <string name="bridge_cloud">Conectar a través de servidores de la nube</string>
-  <string name="bridges_get_new">Solicitar nuevos puentes... (si todo lo demás falla)</string>
   <string name="trouble_connecting">¿Problemas al conectar?</string>
   <string name="full_device_vpn">VPN de dispositivo completo</string>
   <string name="vpn_disabled">VPN deshabilitada</string>
