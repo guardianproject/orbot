@@ -17,8 +17,6 @@
     <string name="menu_exit">Ieşire</string>
   <string name="menu_scan">Scanează BridgeQR</string>
   <string name="menu_share_bridge">Distribuie BridgeQR</string>
-    <string name="btn_okay">Ok</string>
-  <string name="btn_cancel">Revocare</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Detalii Orbot</string>
     <!--END Welcome Wizard strings (DJH)-->

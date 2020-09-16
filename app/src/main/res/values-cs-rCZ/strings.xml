@@ -17,8 +17,6 @@
     <string name="menu_exit">Konec</string>
   <string name="menu_scan">Skenovat BridgeQR</string>
   <string name="menu_share_bridge">Sdílet BridgeQR</string>
-    <string name="btn_okay">Budiž</string>
-  <string name="btn_cancel">Zrušit</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Pár detailů o Orbot</string>
     <!--END Welcome Wizard strings (DJH)-->

@@ -1,5 +1,8 @@
 package org.torproject.android.ui.hiddenservices.backup;
 
+import android.content.ContentResolver;
+import android.net.Uri;
+import android.os.ParcelFileDescriptor;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,27 +21,27 @@ import java.util.zip.ZipOutputStream;
 public class ZipIt {
     private static final int BUFFER = 2048;
 
-    private String[] _files;
-    private String _zipFile;
+    private String[] files;
+    private Uri zipFile;
+    private ContentResolver contentResolver;
 
-    public ZipIt(@Nullable String[] files, @NonNull String zipFile) {
-        _files = files;
-        _zipFile = zipFile;
+    public ZipIt(@Nullable String[] files, @NonNull Uri zipFile, @NonNull ContentResolver contentResolver) {
+        this.files = files;
+        this.zipFile = zipFile;
+        this.contentResolver = contentResolver;
     }
 
     public boolean zip() {
         try {
             BufferedInputStream origin;
-            FileOutputStream dest = new FileOutputStream(_zipFile);
-
+            ParcelFileDescriptor pdf = contentResolver.openFileDescriptor(zipFile, "w");
+            FileOutputStream dest = new FileOutputStream(pdf.getFileDescriptor());
             ZipOutputStream out = new ZipOutputStream(new BufferedOutputStream(dest));
-
             byte[] data = new byte[BUFFER];
-
-            for (String _file : _files) {
-                FileInputStream fi = new FileInputStream(_file);
+            for (String file : files) {
+                FileInputStream fi = new FileInputStream(file);
                 origin = new BufferedInputStream(fi, BUFFER);
-                ZipEntry entry = new ZipEntry(_file.substring(_file.lastIndexOf("/") + 1));
+                ZipEntry entry = new ZipEntry(file.substring(file.lastIndexOf("/") + 1));
                 out.putNextEntry(entry);
                 int count;
                 while ((count = origin.read(data, 0, BUFFER)) != -1) {
@@ -46,42 +49,40 @@ public class ZipIt {
                 }
                 origin.close();
             }
-
             out.close();
-        } catch (Exception e) {
+            dest.close();
+            pdf.close();
+        } catch (IOException e) {
+            e.printStackTrace();
             return false;
         }
-
         return true;
     }
 
-    public boolean unzip(String output_path) {
+    public boolean unzip(String outputPath) {
         InputStream is;
         ZipInputStream zis;
 
         try {
             String filename;
-            is = new FileInputStream(_zipFile);
+            is = contentResolver.openInputStream(zipFile);
             zis = new ZipInputStream(new BufferedInputStream(is));
             ZipEntry ze;
             byte[] buffer = new byte[1024];
             int count;
 
             while ((ze = zis.getNextEntry()) != null) {
-                // zapis do souboru
                 filename = ze.getName();
 
-                // Need to create directories if not exists, or
-                // it will generate an Exception...
+                // Need to create directories if not exists, or it will generate an Exception...
                 if (ze.isDirectory()) {
-                    File fmd = new File(output_path + "/" + filename);
+                    File fmd = new File(outputPath + "/" + filename);
                     fmd.mkdirs();
                     continue;
                 }
 
-                FileOutputStream fout = new FileOutputStream(output_path + "/" + filename);
+                FileOutputStream fout = new FileOutputStream(outputPath + "/" + filename);
 
-                // cteni zipu a zapis
                 while ((count = zis.read(buffer)) != -1) {
                     fout.write(buffer, 0, count);
                 }
@@ -91,6 +92,7 @@ public class ZipIt {
             }
 
             zis.close();
+            is.close();
         } catch (IOException e) {
             e.printStackTrace();
             return false;

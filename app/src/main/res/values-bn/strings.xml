@@ -8,7 +8,6 @@
   <string name="main_layout_download">ডাউনলোড</string>
     <string name="button_about">সম্বন্ধে</string>
   <string name="menu_exit">বন্ধ</string>
-    <string name="btn_cancel">বাতিল</string>
   <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
   <string name="pref_general_group">সাধারণ</string>

@@ -18,8 +18,7 @@
   <string name="menu_scan">BridgeQR szkennelése</string>
   <string name="menu_share_bridge">BridgeQR megosztása</string>
     <string name="btn_okay">OK</string>
-  <string name="btn_cancel">Mégsem</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Néhány Orbot adat</string>
   <string name="wizard_details_msg">Az Orbot egy nyilt forráskódú alkalmazás ami Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent és Polipo alkalmazásokat tartalmaz. Helyi  HTTP proxyt (8118) és  SOCKS proxyt (9050) biztosít a Tor hálózatba. Az Orbot továbbá képes arra, hogy rootolt eszközön a teljes internet forgalmat keresztül küldje a Tor-on.</string>
     <!--END Welcome Wizard strings (DJH)-->
@@ -149,11 +148,9 @@
   <string name="delete_service">Szolgáltatás Törlése</string>
   <string name="backup_saved_at_external_storage">Külső tárhelyre mentve</string>
   <string name="backup_restored">Mentés visszaállítva</string>
-  <string name="filemanager_not_available">Fájlkezelő nem elérhető</string>
   <string name="please_grant_permissions_for_external_storage">Kérjük adjon jogosultságot a külső tárhelyhez</string>
     <string name="restore_backup">Mentés visszaállítása</string>
-  <string name="create_a_backup_first">Készítsen előbb egy mentést</string>
-  <string name="name_can_t_be_empty">A név nem lehet üres</string>
+    <string name="name_can_t_be_empty">A név nem lehet üres</string>
   <string name="fields_can_t_be_empty">A mezők nem lehetnek üresek</string>
   <string name="start_tor_again_for_finish_the_process">Indítsa el a Tor-t még egyszer a befejezéshez</string>
   <string name="confirm_service_deletion">Szolgáltatás törlés jóváhagyása</string>

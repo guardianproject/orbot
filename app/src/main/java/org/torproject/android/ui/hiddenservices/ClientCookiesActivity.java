@@ -9,22 +9,26 @@ import android.database.ContentObserver;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.torproject.android.R;
+import org.torproject.android.core.DiskUtils;
 import org.torproject.android.core.LocaleHelper;
 import org.torproject.android.ui.hiddenservices.adapters.ClientCookiesAdapter;
+import org.torproject.android.ui.hiddenservices.backup.BackupUtils;
 import org.torproject.android.ui.hiddenservices.dialogs.AddCookieDialog;
 import org.torproject.android.ui.hiddenservices.dialogs.CookieActionsDialog;
-import org.torproject.android.ui.hiddenservices.dialogs.SelectCookieBackupDialog;
 import org.torproject.android.ui.hiddenservices.permissions.PermissionManager;
 import org.torproject.android.ui.hiddenservices.providers.CookieContentProvider;
 
@@ -50,10 +54,8 @@ public class ClientCookiesActivity extends AppCompatActivity {
             dialog.show(getSupportFragmentManager(), "AddCookieDialog");
         });
 
-        mAdapter = new ClientCookiesAdapter(
-                this,
-                mResolver.query(CookieContentProvider.CONTENT_URI, CookieContentProvider.PROJECTION, null, null, null)
-                , 0);
+        mAdapter = new ClientCookiesAdapter(this,
+                mResolver.query(CookieContentProvider.CONTENT_URI, CookieContentProvider.PROJECTION, null, null, null), 0);
 
         mResolver.registerContentObserver(
                 CookieContentProvider.CONTENT_URI, true, new HSObserver(new Handler())
@@ -66,21 +68,11 @@ public class ClientCookiesActivity extends AppCompatActivity {
             Cursor item = (Cursor) parent.getItemAtPosition(position);
 
             Bundle arguments = new Bundle();
-            arguments.putInt(
-                    "_id", item.getInt(item.getColumnIndex(CookieContentProvider.ClientCookie._ID))
-            );
+            arguments.putInt("_id", item.getInt(item.getColumnIndex(CookieContentProvider.ClientCookie._ID)));
 
-            arguments.putString(
-                    "domain", item.getString(item.getColumnIndex(CookieContentProvider.ClientCookie.DOMAIN))
-            );
-
-            arguments.putString(
-                    "auth_cookie_value", item.getString(item.getColumnIndex(CookieContentProvider.ClientCookie.AUTH_COOKIE_VALUE))
-            );
-
-            arguments.putInt(
-                    "enabled", item.getInt(item.getColumnIndex(CookieContentProvider.ClientCookie.ENABLED))
-            );
+            arguments.putString("domain", item.getString(item.getColumnIndex(CookieContentProvider.ClientCookie.DOMAIN)));
+            arguments.putString("auth_cookie_value", item.getString(item.getColumnIndex(CookieContentProvider.ClientCookie.AUTH_COOKIE_VALUE)));
+            arguments.putInt("enabled", item.getInt(item.getColumnIndex(CookieContentProvider.ClientCookie.ENABLED)));
 
             CookieActionsDialog dialog = new CookieActionsDialog();
             dialog.setArguments(arguments);
@@ -101,6 +93,8 @@ public class ClientCookiesActivity extends AppCompatActivity {
         return true;
     }
 
+    private static final int REQUEST_CODE_READ_COOKIE = 54;
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -112,8 +106,8 @@ public class ClientCookiesActivity extends AppCompatActivity {
                 return true;
             }
 
-            SelectCookieBackupDialog dialog = new SelectCookieBackupDialog();
-            dialog.show(getSupportFragmentManager(), "SelectCookieBackupDialog");
+            Intent readCookieIntent = DiskUtils.createReadFileIntent("application/json");
+            startActivityForResult(readCookieIntent, REQUEST_CODE_READ_COOKIE);
 
         } else if (id == R.id.cookie_from_qr) {
             IntentIntegrator integrator = new IntentIntegrator(ClientCookiesActivity.this);
@@ -124,24 +118,19 @@ public class ClientCookiesActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         if (grantResults.length < 1
                 || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
             return;
         }
 
         switch (requestCode) {
-            case WRITE_EXTERNAL_STORAGE_FROM_COOKIE_ACTIONBAR: {
-                SelectCookieBackupDialog dialog = new SelectCookieBackupDialog();
-                dialog.show(getSupportFragmentManager(), "SelectCookieBackupDialog");
-                break;
-            }
             case CookieActionsDialog.WRITE_EXTERNAL_STORAGE_FROM_COOKIE_ACTION_DIALOG: {
                 try {
                     CookieActionsDialog activeDialog = (CookieActionsDialog) getSupportFragmentManager().findFragmentByTag(CookieActionsDialog.class.getSimpleName());
                     activeDialog.doBackup();
-                } catch (ClassCastException e) {}
+                } catch (ClassCastException e) {
+                }
                 break;
             }
         }
@@ -150,6 +139,14 @@ public class ClientCookiesActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int request, int response, Intent data) {
         super.onActivityResult(request, response, data);
+
+        if (request == REQUEST_CODE_READ_COOKIE) {
+            if (response != RESULT_OK) return;
+            String cookieStr = DiskUtils.readFileFromInputStream(getContentResolver(), data.getData());
+            BackupUtils backup = new BackupUtils(this);
+            backup.restoreCookieBackup(cookieStr);
+            return;
+        }
 
         IntentResult scanResult = IntentIntegrator.parseActivityResult(request, response, data);
 
@@ -193,5 +190,4 @@ public class ClientCookiesActivity extends AppCompatActivity {
             ));
         }
     }
-
 }

@@ -14,8 +14,6 @@
     <string name="button_about">Tungkol</string>
     <string name="menu_exit">Labasan</string>
   <string name="menu_share_bridge">Ipamahagi ang BridgeQR</string>
-    <string name="btn_okay">Okay</string>
-  <string name="btn_cancel">Kanselahin</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Ilang detalye sa Orbot</string>
     <!--END Welcome Wizard strings (DJH)-->

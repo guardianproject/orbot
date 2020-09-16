@@ -17,8 +17,6 @@
     <string name="menu_exit">Thoát</string>
   <string name="menu_scan">Quét mã BridgeQR</string>
   <string name="menu_share_bridge">Xuất mã BridgeQR</string>
-    <string name="btn_okay">Đồng ý</string>
-  <string name="btn_cancel">Hủy</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Vài chi tiết về Orbot</string>
     <!--END Welcome Wizard strings (DJH)-->

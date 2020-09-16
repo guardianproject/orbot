@@ -9,8 +9,6 @@
   <string name="main_layout_download">Shkarkim</string>
     <string name="button_about">Informacione</string>
   <string name="menu_exit">Dil</string>
-    <string name="btn_okay">Ne rregul</string>
-  <string name="btn_cancel">Anullo</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Disa detaje te Orbot</string>
     <!--END Welcome Wizard strings (DJH)-->

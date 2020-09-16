@@ -17,8 +17,6 @@
     <string name="menu_exit">Çıx</string>
   <string name="menu_scan">KörpüQR kodu skan edin</string>
   <string name="menu_share_bridge">KörpüQR kodu paylaşın</string>
-    <string name="btn_okay">Okey</string>
-  <string name="btn_cancel">Ləğv et</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Bəzi Orbot Detalları</string>
     <!--END Welcome Wizard strings (DJH)-->

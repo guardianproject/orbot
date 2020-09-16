@@ -18,8 +18,7 @@
   <string name="menu_scan">Skannaa sillan QR-koodi</string>
   <string name="menu_share_bridge">Jaa sillan QR-koodi</string>
   <string name="btn_okay">Selvä</string>
-  <string name="btn_cancel">Peru</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Joitakin Orbotin lisätietoja</string>
   <!--END Welcome Wizard strings (DJH)-->
   <string name="pref_general_group">Yleiset</string>

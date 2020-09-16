@@ -15,8 +15,6 @@
   <string name="main_layout_upload">Lae üles</string>
     <string name="button_about">Lähemalt</string>
     <string name="menu_exit">Välja</string>
-    <string name="btn_okay">Hea küll</string>
-  <string name="btn_cancel">Katkesta</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Mõned Orbot\'i detailid</string>
     <!--END Welcome Wizard strings (DJH)-->

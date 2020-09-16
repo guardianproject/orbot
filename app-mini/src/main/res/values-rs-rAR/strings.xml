@@ -12,8 +12,7 @@
   <string name="menu_about">Acerca de</string>
     <string name="button_about">Acerca de</string>
     <string name="menu_exit">Salir</string>
-    <string name="btn_cancel">Cancelar</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
   <string name="pref_general_group">General</string>
   <!--New Wizard Strings-->

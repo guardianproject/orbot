@@ -18,8 +18,7 @@
   <string name="menu_scan">Pindai BridgeQR</string>
   <string name="menu_share_bridge">Bagikan BridgeQR</string>
     <string name="btn_okay">Oke</string>
-  <string name="btn_cancel">Batal</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Beberapa Rincian Orbot</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Umum</string>

@@ -18,8 +18,7 @@
   <string name="menu_scan">Escaneja el BridgeQR</string>
   <string name="menu_share_bridge">Comparteix el BridgeQR</string>
     <string name="btn_okay">D\'acord</string>
-  <string name="btn_cancel">Cancel·la</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Alguns detalls de l\'Orbot...</string>
   <string name="wizard_details_msg">Orbot és una aplicació de codi obert que conté Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent i Polipo. Proporciona un proxy HTTP local (8118) i un proxy SOCKS (9050) a la xarxa Tor. En dispositius root Orbot també té la capacitat d\'enviar tot el trànsit d\'Internet a través de Tor</string>
     <!--END Welcome Wizard strings (DJH)-->
@@ -149,11 +148,9 @@
   <string name="delete_service">Esborrar servei</string>
   <string name="backup_saved_at_external_storage">Còpia de seguretat desada a emmagatzematge extern</string>
   <string name="backup_restored">Còpia de seguretat restaurada</string>
-  <string name="filemanager_not_available">Gestor d\'arxius no disponible</string>
   <string name="please_grant_permissions_for_external_storage">Si us plau concedeix permisos per emmagatzematge extern</string>
     <string name="restore_backup">Restaurar còpia de seguretat</string>
-  <string name="create_a_backup_first">Crea una còpia de seguretat primer</string>
-  <string name="name_can_t_be_empty">El nom no pot estar buit</string>
+    <string name="name_can_t_be_empty">El nom no pot estar buit</string>
   <string name="fields_can_t_be_empty">Els camps no poden estar buits</string>
   <string name="start_tor_again_for_finish_the_process">Torna a iniciar Tor per acabar el procés</string>
   <string name="confirm_service_deletion">Confirma la supressió del servei</string>

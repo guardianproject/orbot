@@ -17,8 +17,6 @@
   <string name="menu_exit">Izlaz</string>
   <string name="menu_scan">Skeniraj BridgeQR</string>
   <string name="menu_share_bridge">Podijeli BridgeQR</string>
-  <string name="btn_okay">U redu</string>
-  <string name="btn_cancel">Odustani</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Detalji o Orbot-u</string>
   <!--END Welcome Wizard strings (DJH)-->

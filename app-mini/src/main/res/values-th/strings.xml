@@ -18,8 +18,7 @@
   <string name="menu_scan">สแกน BridgeQR</string>
   <string name="menu_share_bridge">แชร์ BridgeQR</string>
     <string name="btn_okay">ตกลง</string>
-  <string name="btn_cancel">ยกเลิก</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">รายละเอียดเกี่ยวกับ Orbot</string>
   <string name="wizard_details_msg">Orbot เป็นแอปพลิเคชันโอเพ่นซอร์สที่ประกอบด้วย Tor, Obfs4Proxy, BadVPN, Tun2Socks, LibEvent และ Polipo โดย Orbot จะสร้างพร็อกซี (8118) และพร็อกซี SOCKS (9050) ในเครื่อง ภายในเครือข่าย Tor Orbot ยังสามารถทำการรับส่งข้อมูลทั้งหมดส่งผ่าน Tor ได้บนอุปกรณ์ที่ได้ทำการ root แล้ว</string>
     <!--END Welcome Wizard strings (DJH)-->
@@ -149,11 +148,9 @@
   <string name="delete_service">บริการลบ</string>
   <string name="backup_saved_at_external_storage">ข้อมูลสำรองบันทึกที่ที่เก็บข้อมูลภายนอก</string>
   <string name="backup_restored">คืนค่าข้อมูลสำรอง</string>
-  <string name="filemanager_not_available">ไม่สามารถใช้ Filemanager ได้</string>
   <string name="please_grant_permissions_for_external_storage">กรุณาอนุญาตให้เข้าถึงที่เก็บข้อมูลภายนอก</string>
     <string name="restore_backup">คืนค่าข้อมูลสำรอง</string>
-  <string name="create_a_backup_first">สร้างข้อมูลสำรองก่อน</string>
-  <string name="name_can_t_be_empty">ปล่อยชื่อให้ว่างไม่ได้</string>
+    <string name="name_can_t_be_empty">ปล่อยชื่อให้ว่างไม่ได้</string>
   <string name="fields_can_t_be_empty">ปล่อยเขตข้อมูลให้ว่างไม่ได้</string>
   <string name="start_tor_again_for_finish_the_process">เริ่มทำงาน Tor อีกครั้งเพื่อจบกระบวนการ</string>
   <string name="confirm_service_deletion">ยืนยันการลบบริการ</string>

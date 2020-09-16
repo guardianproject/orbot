@@ -14,8 +14,6 @@
   <string name="main_layout_upload">උඩුගත කරන්න </string>
     <string name="button_about">පිළිබද</string>
     <string name="menu_exit">ඉවත් වන්න</string>
-    <string name="btn_okay">එකගයි</string>
-  <string name="btn_cancel">අවලංගු කරන්න</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Orbot පිළිබද ඇතැම් විස්තර </string>
     <!--END Welcome Wizard strings (DJH)-->

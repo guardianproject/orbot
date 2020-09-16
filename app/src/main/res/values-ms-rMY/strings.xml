@@ -13,8 +13,6 @@
   <string name="main_layout_upload">Muat naik</string>
     <string name="button_about">Tentang</string>
     <string name="menu_exit">Keluar</string>
-    <string name="btn_okay">Okay</string>
-  <string name="btn_cancel">Batal</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Maklumat Orbot</string>
     <!--END Welcome Wizard strings (DJH)-->

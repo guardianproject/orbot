@@ -13,8 +13,7 @@
   <string name="main_layout_upload">Alŝutado</string>
     <string name="button_about">Pri</string>
     <string name="menu_exit">Eliri</string>
-    <string name="btn_cancel">Rezigni</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Kelkaj Detaloj pri Orbot</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Ĝenerala</string>

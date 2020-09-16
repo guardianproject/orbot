@@ -17,8 +17,6 @@
     <string name="menu_exit">終了</string>
   <string name="menu_scan">ブリッジQRをスキャン</string>
   <string name="menu_share_bridge">ブリッジQRを共有</string>
-    <string name="btn_okay">OK</string>
-  <string name="btn_cancel">キャンセル</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Orbot詳細</string>
   <string name="wizard_details_msg">Orbot はTor、Obfs4Proxy、BadVPN Tun2Socks、LibEvent、Polipoを含むオープンソースアプリです。ローカルHTTPプロキシ (8118) と SOCKSプロキシ (9050) をTorネットワークに接続します。root化された端末ではOrbotは全ての通信をTorを通して行うこともできます。</string>
@@ -148,11 +146,9 @@
   <string name="delete_service">サービスを削除</string>
   <string name="backup_saved_at_external_storage">バックアップは外部記憶装置に保存されました</string>
   <string name="backup_restored">バックアップから復元</string>
-  <string name="filemanager_not_available">該当ファイル・マネージャーなし</string>
   <string name="please_grant_permissions_for_external_storage">外部記憶へのアクセス許可を与えて下さい。</string>
     <string name="restore_backup">バックアップの復旧</string>
-  <string name="create_a_backup_first">最初に、バックアップを作成して下さい</string>
-  <string name="name_can_t_be_empty">名前はブランクのままにできません</string>
+    <string name="name_can_t_be_empty">名前はブランクのままにできません</string>
   <string name="fields_can_t_be_empty">フィールドを空にしておくことはできません</string>
   <string name="start_tor_again_for_finish_the_process">プロセスを完了するには、Torを再起動して下さい。</string>
   <string name="confirm_service_deletion">サービス削除を確認</string>

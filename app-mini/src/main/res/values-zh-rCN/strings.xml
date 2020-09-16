@@ -18,8 +18,7 @@
   <string name="menu_scan">扫描网桥QR码</string>
   <string name="menu_share_bridge">分享网桥QR码</string>
     <string name="btn_okay">确定</string>
-  <string name="btn_cancel">取消</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">更多 Orbot 信息</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">常规</string>

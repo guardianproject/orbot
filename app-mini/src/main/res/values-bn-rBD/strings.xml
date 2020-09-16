@@ -18,8 +18,7 @@
   <string name="menu_scan">ব্রিজকিউআর চেক করুন</string>
   <string name="menu_share_bridge">ব্রিজকিউআর শেয়ার করুন</string>
     <string name="btn_okay">ঠিক আছে</string>
-  <string name="btn_cancel">বাদ</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
   <string name="pref_general_group">সাধারণ</string>
   <!--New Wizard Strings-->

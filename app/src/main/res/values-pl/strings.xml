@@ -17,8 +17,6 @@
     <string name="menu_exit">Wyjście</string>
   <string name="menu_scan">Skanuj BridgeQR</string>
   <string name="menu_share_bridge">Podziel się BridgeQR</string>
-    <string name="btn_okay">OK</string>
-  <string name="btn_cancel">Anuluj</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Niektóre szczegóły o Orbocie</string>
     <!--END Welcome Wizard strings (DJH)-->

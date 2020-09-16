@@ -20,8 +20,7 @@
   <string name="menu_scan">Digitalizar BridgeQR</string>
   <string name="menu_share_bridge">Partilhar BridgeQR</string>
     <string name="btn_okay">Ok</string>
-  <string name="btn_cancel">Cancelar</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Alguns Detalhes do Orbot</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Geral</string>

@@ -17,8 +17,6 @@
     <string name="menu_exit">종료</string>
   <string name="menu_scan">브릿지 QR코드 스캔하기</string>
   <string name="menu_share_bridge">브릿지 QR코드 공유하기</string>
-    <string name="btn_okay">확인</string>
-  <string name="btn_cancel">취소</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Orbot에 대한 몇몇 상세사항</string>
     <!--END Welcome Wizard strings (DJH)-->

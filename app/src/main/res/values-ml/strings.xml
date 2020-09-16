@@ -4,7 +4,6 @@
   <string name="menu_stop">നിര്‍ത്തുക</string>
   <string name="menu_about">വിവരം</string>
     <string name="button_about">വിവരം</string>
-    <string name="btn_cancel">റദ്ദാക്കുക </string>
   <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
   <string name="pref_general_group">പൊതുവായത്</string>

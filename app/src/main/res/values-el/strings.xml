@@ -17,8 +17,6 @@
     <string name="menu_exit">Έξοδος</string>
   <string name="menu_scan">Σάρωση BridgeQR</string>
   <string name="menu_share_bridge">Κοινή χρήση BridgeQR</string>
-    <string name="btn_okay">Okay</string>
-  <string name="btn_cancel">Άκυρο</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Μερικές λεπτομέρειες για το Orbot</string>
   <string name="wizard_details_msg">Το Orbot είναι μια εφαρμογή ανοικτού λογισμικού που περιέχει τα Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent καί Polipo.  Διαθέτει τοπικούς πληρεξούσιους διακομιστές HTTP (8118) και SOCKS (9050) για το δίκτυο Tor. Σε συσκευές που έχουν διαμορφωθεί για ριζική χρήση, το Orbot μπορεί να μεταδίδει όλη την διαδυκτιακή κυκλοφορία μέσω Tor.</string>
@@ -148,11 +146,9 @@
   <string name="delete_service">Διαγραφή υπηρεσίας</string>
   <string name="backup_saved_at_external_storage">Το αντίγράφο ασφαλείας αποθηκεύθηκε σε εξωτερικό μέσο αποθήκευσης</string>
   <string name="backup_restored">Το αντίγραφο ασφαλείας επαναφέρθηκε</string>
-  <string name="filemanager_not_available">Ο διαχειριστής αρχείων δεν είναι διαθέσιμος.</string>
   <string name="please_grant_permissions_for_external_storage">Παρακαλούμε να παραχωρήσετε δικαιώματα για εξωτερική αποθήκευση</string>
     <string name="restore_backup">Επαναφορά αντιγράφου ασφαλείας</string>
-  <string name="create_a_backup_first">Δημιουργήστε πρώτα ένα αντίγραφο ασφαλείας </string>
-  <string name="name_can_t_be_empty">Το όνομα δεν γίνεται να είναι κενό</string>
+    <string name="name_can_t_be_empty">Το όνομα δεν γίνεται να είναι κενό</string>
   <string name="fields_can_t_be_empty">Τα πεδία δεν μπορεί να είναι κενά</string>
   <string name="start_tor_again_for_finish_the_process">Έναρξη ξανά τού Tor για τον τερματισμό της ενέργειας</string>
   <string name="confirm_service_deletion">Επιβεβαίωση διαγραφής υπηρεσίας</string>

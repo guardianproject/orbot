@@ -18,8 +18,7 @@
   <string name="menu_scan">Сканировать QR-код моста</string>
   <string name="menu_share_bridge">Опубликовать QR-код моста</string>
     <string name="btn_okay">OK</string>
-  <string name="btn_cancel">Отмена</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Некоторые сведения о программе Orbot</string>
   <string name="wizard_details_msg">Orbot — это приложение с открытым исходным кодом, которое содержит Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent и Polipo. Оно предоставляет локальный HTTP- (8118) и SOCKS-прокси (9050) в сеть Tor. Orbot также позволяет на устройствах с правами root пересылать весь интернет-трафик через Tor.</string>
     <!--END Welcome Wizard strings (DJH)-->
@@ -149,11 +148,9 @@
   <string name="delete_service">Удалить службу</string>
   <string name="backup_saved_at_external_storage">Резервная копия сохранена на внешнем хранилище</string>
   <string name="backup_restored">Восстановлено из резервной копии</string>
-  <string name="filemanager_not_available">Файловый менеджер недоступен</string>
   <string name="please_grant_permissions_for_external_storage">Предоставьте разрешения для доступа к внешнему хранилищу</string>
     <string name="restore_backup">Восстановить из копии</string>
-  <string name="create_a_backup_first">Сначала создайте резервную копию</string>
-  <string name="name_can_t_be_empty">Имя не может быть пустым</string>
+    <string name="name_can_t_be_empty">Имя не может быть пустым</string>
   <string name="fields_can_t_be_empty">Поля не могут быть пустыми</string>
   <string name="start_tor_again_for_finish_the_process">Запустите Tor снова для завершения процесса</string>
   <string name="confirm_service_deletion">Подтверждение удаления службы</string>

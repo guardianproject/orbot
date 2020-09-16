@@ -18,8 +18,6 @@
     <string name="menu_exit">निकास</string>
   <string name="menu_scan">स्कैन ब्रिज क्यूआर</string>
   <string name="menu_share_bridge">शेयर ब्रिज QR</string>
-    <string name="btn_okay">ठीक है</string>
-  <string name="btn_cancel">रद्द करें </string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">कुछ औरबोट विवरण</string>
   <string name="wizard_details_msg">ऑरबोट एक ओपन-सोर्स एप्लिकेशन है जिसमें टोर, ओबफ्स 4 प्रोक्सी, बैड वीपीएन टोन 2 एसॉक्स, लिबवेवेंट और पोलीपो शामिल हैं। यह टो नेट नेटवर्क में एक स्थानीय HTTP प्रॉक्सी (8118) और एक सॉक्स प्रॉक्सी (9050) प्रदान करता है। ऑरबोट की भी क्षमता है, रूट डिवाइस पर, टो के माध्यम से सभी इंटरनेट ट्रैफिक भेजने के लिए</string>
@@ -149,11 +147,9 @@
   <string name="delete_service">सेवा हटाएँ</string>
   <string name="backup_saved_at_external_storage">बाह्य संग्रहण में बैकअप सहेजा गया</string>
   <string name="backup_restored">बैकअप को पुनर्स्थापित किया गया</string>
-  <string name="filemanager_not_available">फाइलमैनेजर उपलब्ध नहीं है</string>
   <string name="please_grant_permissions_for_external_storage">कृपया बाहरी संग्रहण के लिए अनुमति दें</string>
     <string name="restore_backup">बैकअप बहाल</string>
-  <string name="create_a_backup_first">पहले बैकअप बनाएं</string>
-  <string name="name_can_t_be_empty">नाम रिक्त नहीं हो सकता</string>
+    <string name="name_can_t_be_empty">नाम रिक्त नहीं हो सकता</string>
   <string name="fields_can_t_be_empty">फ़ील्ड रिक्त नहीं हो सकते</string>
   <string name="start_tor_again_for_finish_the_process">प्रक्रिया को खत्म करने के लिए Tor पुन: प्रारंभ करें</string>
   <string name="confirm_service_deletion">सेवा हटाने की पुष्टि करें</string>

@@ -17,8 +17,7 @@
   <string name="menu_scan">Jalakipañ QR waruqaña</string>
   <string name="menu_share_bridge">Jalakipañ QR ch\'iqiyaña</string>
   <string name="btn_okay">Iyaw saña</string>
-  <string name="btn_cancel">Janiw saña</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Orbotxat juk\'amp yatiñataki</string>
   <string name="wizard_details_msg">Orbot wakichawix inakiwa ukatx Tor ukaniwa, Obfs4Proxy, BadVPN Tun2Socks, LibEvent ukhamarak Polipo. Proxy HTTP (8118) ukhamarak mä proxy SOCKS (9050) Tor taypin utjayi. Mä rooteat atamirinx Orbotax Tor tuqiw taqpach llika yatiyäwinak  apayarakispawa.</string>
   <!--END Welcome Wizard strings (DJH)-->
@@ -148,11 +147,9 @@
   <string name="delete_service">Lurañanak pichsuña</string>
   <string name="backup_saved_at_external_storage">Imat luratanakamax yaqha yänakar imataxiwa</string>
   <string name="backup_restored">Imat luratanakamax mayamp apnaqatäxiwa</string>
-  <string name="filemanager_not_available">Imatanak apnaqirix janiw uñjañjamäkiti</string>
   <string name="please_grant_permissions_for_external_storage">Yaqha yänakar imañatak iyaw sam, amp suma</string>
   <string name="restore_backup">Imat luratanak mayamp aqtayam</string>
-  <string name="create_a_backup_first"> Imat luratanak nayraqat uñstayam</string>
-  <string name="name_can_t_be_empty">Sutix qillqantatäñapapuniwa</string>
+    <string name="name_can_t_be_empty">Sutix qillqantatäñapapuniwa</string>
   <string name="fields_can_t_be_empty">Janiw kunas ch\'usäñapakiti</string>
   <string name="start_tor_again_for_finish_the_process">Tukuyañatakix Tor mayamp naktayam</string>
   <string name="confirm_service_deletion">Lurañanakax pichsutäniwa</string>

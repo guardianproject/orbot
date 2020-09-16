@@ -2,7 +2,6 @@
 <resources>
   <string name="menu_settings">सेटिंग्स</string>
     <string name="menu_exit">अोंखारलां</string>
-  <string name="btn_cancel">नेवसि</string>
   <!--Welcome Wizard strings (DJH)-->
   <!--END Welcome Wizard strings (DJH)-->
   <!--New Wizard Strings-->

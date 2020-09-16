@@ -17,8 +17,6 @@
     <string name="menu_exit">Afslut</string>
   <string name="menu_scan">Skan BridgeQR</string>
   <string name="menu_share_bridge">Del BridgeQR</string>
-    <string name="btn_okay">Okay</string>
-  <string name="btn_cancel">Fortryd</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Nogle Orbot detaljer</string>
     <!--END Welcome Wizard strings (DJH)-->

@@ -13,8 +13,6 @@
   <string name="main_layout_upload">Naloži</string>
     <string name="button_about">O programu</string>
     <string name="menu_exit">Izhod</string>
-    <string name="btn_okay">Potrdi</string>
-  <string name="btn_cancel">Prekini</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Nekaj podrobnosti o Orbot-u</string>
     <!--END Welcome Wizard strings (DJH)-->

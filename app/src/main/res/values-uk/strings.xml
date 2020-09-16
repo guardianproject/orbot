@@ -17,8 +17,6 @@
     <string name="menu_exit">Вихід</string>
   <string name="menu_scan">Сканувати BridgeQR</string>
   <string name="menu_share_bridge">Поділитися BridgeQR</string>
-    <string name="btn_okay">OK</string>
-  <string name="btn_cancel">Відміна</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Деякі відомості про програму Orbot</string>
   <string name="wizard_details_msg">Orbot — це програма з відкритим кодом, яка містить Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent і Polipo. Він забезпечує локальний HTTP-проксі (8118) та проксі SOCKS (9050) у мережу Tor. Orbot також має здатність, на кореневому пристрої, відправляти весь інтернет-трафік через Tor.</string>
@@ -148,11 +146,9 @@
   <string name="delete_service">Вилучити Сервіс</string>
   <string name="backup_saved_at_external_storage">Резервна копія збережена на зовнішній пам\'яті</string>
   <string name="backup_restored">Резервне копіювання відновлено</string>
-  <string name="filemanager_not_available">Менеджер файлів недоступний</string>
   <string name="please_grant_permissions_for_external_storage">Надайте дозволи на зовнішню пам\'ять</string>
     <string name="restore_backup">Відновити резервну копію</string>
-  <string name="create_a_backup_first">Спершу створити резервну копію</string>
-  <string name="name_can_t_be_empty">Назва не може бути порожньою</string>
+    <string name="name_can_t_be_empty">Назва не може бути порожньою</string>
   <string name="fields_can_t_be_empty">Поля не можуть бути порожніми</string>
   <string name="start_tor_again_for_finish_the_process">Запустіть Tor знову для завершення процесу</string>
   <string name="confirm_service_deletion">Підтвердьте видалення сервісу</string>

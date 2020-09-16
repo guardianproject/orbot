@@ -12,8 +12,6 @@
   <string name="main_layout_upload">Llwytho i fyny</string>
     <string name="button_about">Amdanom ni</string>
     <string name="menu_exit">Gadael</string>
-    <string name="btn_okay">Iawn</string>
-  <string name="btn_cancel">Diddymu</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Rhai manylion am Orbot</string>
     <!--END Welcome Wizard strings (DJH)-->

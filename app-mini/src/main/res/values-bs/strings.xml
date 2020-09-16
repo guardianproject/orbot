@@ -1,8 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="menu_settings">Postavke</string>
-    <string name="btn_cancel">Otkaži</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
   <string name="pref_general_group">Osnovno</string>
   <!--New Wizard Strings-->

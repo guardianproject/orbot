@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp">
 
     <Button
-        android:text="@string/backup_cookie"
+        android:id="@+id/btn_cookie_backup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_cookie_backup" />
+        android:text="@string/backup_cookie" />
 
     <Button
-        android:text="@string/delete_cookie"
+        android:id="@+id/btn_cookie_delete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_cookie_delete" />
+        android:text="@string/delete_cookie" />
 
     <Button
-        android:text="@string/btn_cancel"
+        android:id="@+id/btn_cookie_cancel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_cookie_cancel" />
+        android:text="@android:string/cancel" />
 
 </LinearLayout>

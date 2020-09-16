@@ -18,8 +18,7 @@
   <string name="menu_scan">Escanear BridgeQR</string>
   <string name="menu_share_bridge">Compartir BridgeQR</string>
     <string name="btn_okay">Aceptar</string>
-  <string name="btn_cancel">Cancelar</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Algúns detalles sobre Orbot</string>
   <string name="wizard_details_msg">Orbot é unha aplicación de código-aberto que contén a Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent e Polipo. Proporciona un proxy HTTP (8118) e un proxy SOCKS (9050) na rede Tor. Orbot tamén pode, nun dispositivo con acceso root, enviar todo o tráfico de internet a través de Tor.</string>
     <!--END Welcome Wizard strings (DJH)-->
@@ -149,11 +148,9 @@
   <string name="delete_service">Eliminar servizo</string>
   <string name="backup_saved_at_external_storage">Respaldo gardado en almacenamento externo</string>
   <string name="backup_restored">Respaldo restaurado</string>
-  <string name="filemanager_not_available">Xestor de ficheiros non dispoñible</string>
   <string name="please_grant_permissions_for_external_storage">Por favor, conceda permiso para o almacenamento externo</string>
     <string name="restore_backup">Restaurar respaldo</string>
-  <string name="create_a_backup_first">Cree un respaldo primeiro</string>
-  <string name="name_can_t_be_empty">O nome non pode quedar baldeiro</string>
+    <string name="name_can_t_be_empty">O nome non pode quedar baldeiro</string>
   <string name="fields_can_t_be_empty">Os campos non poden estar baldeiros</string>
   <string name="start_tor_again_for_finish_the_process">Inicie Tor de novo para rematar o proceso</string>
   <string name="confirm_service_deletion">Confirme a eliminación do servizo</string>

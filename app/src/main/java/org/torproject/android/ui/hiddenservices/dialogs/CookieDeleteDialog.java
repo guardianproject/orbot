@@ -1,6 +1,5 @@
 package org.torproject.android.ui.hiddenservices.dialogs;
 
-
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -39,8 +38,8 @@ public class CookieDeleteDialog extends DialogFragment {
 
         return new AlertDialog.Builder(context)
                 .setMessage(R.string.confirm_cookie_deletion)
-                .setPositiveButton(R.string.btn_okay, dialogClickListener)
-                .setNegativeButton(R.string.btn_cancel, dialogClickListener)
+                .setPositiveButton(android.R.string.ok, dialogClickListener)
+                .setNegativeButton(android.R.string.cancel, dialogClickListener)
                 .create();
     }
 }

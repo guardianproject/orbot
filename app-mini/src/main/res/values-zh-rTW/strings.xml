@@ -18,8 +18,7 @@
   <string name="menu_scan">掃描網橋 QR 碼</string>
   <string name="menu_share_bridge">分享網橋 QR 碼</string>
     <string name="btn_okay">確定</string>
-  <string name="btn_cancel">取消</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Orbot 的一些詳細資料</string>
   <string name="wizard_details_msg">Orbot 是一款開源應用,其包含 Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent 與 Polipo.它提供了本地的 HTTP 代理 (8118) 與 SOCKS 代理 (9050) 到 Tor 網路中. Orbot 也有能力可在取得最高權限的設備上來利用 Tor 傳送互聯網流量</string>
     <!--END Welcome Wizard strings (DJH)-->
@@ -149,11 +148,9 @@
   <string name="delete_service">刪除服務</string>
   <string name="backup_saved_at_external_storage">備份檔儲存在外部儲存器</string>
   <string name="backup_restored">備份已還原</string>
-  <string name="filemanager_not_available">檔案管理員不可用</string>
   <string name="please_grant_permissions_for_external_storage">請授權外接儲存器使用</string>
     <string name="restore_backup">還原備份</string>
-  <string name="create_a_backup_first">先創立備份</string>
-  <string name="name_can_t_be_empty">名稱不可空白</string>
+    <string name="name_can_t_be_empty">名稱不可空白</string>
   <string name="fields_can_t_be_empty">欄位不可空白</string>
   <string name="start_tor_again_for_finish_the_process">再次開啟 Tor  以完成此過程</string>
   <string name="confirm_service_deletion">確認服務刪除</string>

@@ -17,8 +17,7 @@
   <string name="menu_scan">סרוק BridgeQR</string>
   <string name="menu_share_bridge">שתף BridgeQR</string>
     <string name="btn_okay">אישור</string>
-  <string name="btn_cancel">ביטול</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">פרטים מסוימים של Orbot </string>
   <string name="wizard_details_msg">Orbot היא אפליקציית קוד פתוח הכוללת את Tor, LibEvent ו-Polipo. היא מתחבר לרשת Tor באמצעות שרת פרוקסי HTTP מקומי (8118) ושרת פרוקסי SOCKS (פורט 9050). Orbot יכולה בנוסף עם הרשאות רוט לנתב את כל תעבורת האינטרנט של המכשיר דרך Tor כברירת מחדל.</string>
     <!--END Welcome Wizard strings (DJH)-->

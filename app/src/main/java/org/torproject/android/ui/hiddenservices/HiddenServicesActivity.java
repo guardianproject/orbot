@@ -1,20 +1,13 @@
 package org.torproject.android.ui.hiddenservices;
 
-
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import androidx.core.view.MenuItemCompat;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,12 +16,19 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.MenuItemCompat;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import org.torproject.android.R;
+import org.torproject.android.core.DiskUtils;
 import org.torproject.android.core.LocaleHelper;
 import org.torproject.android.ui.hiddenservices.adapters.OnionListAdapter;
+import org.torproject.android.ui.hiddenservices.backup.BackupUtils;
 import org.torproject.android.ui.hiddenservices.dialogs.HSActionsDialog;
 import org.torproject.android.ui.hiddenservices.dialogs.HSDataDialog;
-import org.torproject.android.ui.hiddenservices.dialogs.SelectHSBackupDialog;
 import org.torproject.android.ui.hiddenservices.permissions.PermissionManager;
 import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
 
@@ -59,15 +59,10 @@ public class HiddenServicesActivity extends AppCompatActivity {
 
         mAdapter = new OnionListAdapter(
                 this,
-                mResolver.query(
-                        HSContentProvider.CONTENT_URI, HSContentProvider.PROJECTION, mWhere, null, null
-                ),
-                0
-        );
+                mResolver.query(HSContentProvider.CONTENT_URI, HSContentProvider.PROJECTION, mWhere, null, null),
+                0);
 
-        mResolver.registerContentObserver(
-                HSContentProvider.CONTENT_URI, true, new HSObserver(new Handler())
-        );
+        mResolver.registerContentObserver(HSContentProvider.CONTENT_URI, true, new HSObserver(new Handler()));
 
         ListView onion_list = findViewById(R.id.onion_list);
         onion_list.setAdapter(mAdapter);
@@ -76,25 +71,11 @@ public class HiddenServicesActivity extends AppCompatActivity {
             Cursor item = (Cursor) parent.getItemAtPosition(position);
 
             Bundle arguments = new Bundle();
-            arguments.putInt(
-                    "_id", item.getInt(item.getColumnIndex(HSContentProvider.HiddenService._ID))
-            );
-
-            arguments.putString(
-                    "port", item.getString(item.getColumnIndex(HSContentProvider.HiddenService.PORT))
-            );
-
-            arguments.putString(
-                    "onion", item.getString(item.getColumnIndex(HSContentProvider.HiddenService.DOMAIN))
-            );
-
-            arguments.putInt(
-                    "auth_cookie", item.getInt(item.getColumnIndex(HSContentProvider.HiddenService.AUTH_COOKIE))
-            );
-
-            arguments.putString(
-                    "auth_cookie_value", item.getString(item.getColumnIndex(HSContentProvider.HiddenService.AUTH_COOKIE_VALUE))
-            );
+            arguments.putInt("_id", item.getInt(item.getColumnIndex(HSContentProvider.HiddenService._ID)));
+            arguments.putString("port", item.getString(item.getColumnIndex(HSContentProvider.HiddenService.PORT)));
+            arguments.putString("onion", item.getString(item.getColumnIndex(HSContentProvider.HiddenService.DOMAIN)));
+            arguments.putInt("auth_cookie", item.getInt(item.getColumnIndex(HSContentProvider.HiddenService.AUTH_COOKIE)));
+            arguments.putString("auth_cookie_value", item.getString(item.getColumnIndex(HSContentProvider.HiddenService.AUTH_COOKIE_VALUE)));
 
             HSActionsDialog dialog = new HSActionsDialog();
             dialog.setArguments(arguments);
@@ -115,15 +96,11 @@ public class HiddenServicesActivity extends AppCompatActivity {
         MenuItem item = menu.findItem(R.id.hs_type);
         Spinner spinner = (Spinner) MenuItemCompat.getActionView(item);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                this, R.array.array_hs_types, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.array_hs_types, android.R.layout.simple_spinner_item);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         spinner.setAdapter(adapter);
-
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
             @Override
             public void onItemSelected(AdapterView<?> arg0, View v, int pos, long id) {
                 if (pos == 0) {
@@ -134,9 +111,7 @@ public class HiddenServicesActivity extends AppCompatActivity {
                     fab.hide();
                 }
 
-                mAdapter.changeCursor(mResolver.query(
-                        HSContentProvider.CONTENT_URI, HSContentProvider.PROJECTION, mWhere, null, null
-                ));
+                mAdapter.changeCursor(mResolver.query(HSContentProvider.CONTENT_URI, HSContentProvider.PROJECTION, mWhere, null, null));
             }
 
             @Override
@@ -146,6 +121,22 @@ public class HiddenServicesActivity extends AppCompatActivity {
         });
 
         return true;
+    }
+
+    private static final int REQUEST_CODE_READ_ZIP_BACKUP = 125;
+    private void doRestore() {
+        Intent readFile = DiskUtils.createReadFileIntent("application/zip");
+        startActivityForResult(readFile, REQUEST_CODE_READ_ZIP_BACKUP);
+    }
+
+    @Override
+    protected void onActivityResult(int request, int response, Intent data) {
+        super.onActivityResult(request, response, data);
+        if (request == REQUEST_CODE_READ_ZIP_BACKUP) {
+            if (response != RESULT_OK) return;
+            BackupUtils backupUtils = new BackupUtils(this);
+            backupUtils.restoreZipBackup(data.getData());
+        }
     }
 
     @Override
@@ -159,25 +150,20 @@ public class HiddenServicesActivity extends AppCompatActivity {
                 return true;
             }
 
-            SelectHSBackupDialog dialog = new SelectHSBackupDialog();
-            dialog.show(getSupportFragmentManager(), "SelectHSBackupDialog");
+            doRestore();
         }
 
         return super.onOptionsItemSelected(item);
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           String[] permissions, int[] grantResults) {
-        if (grantResults.length < 1
-                || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (grantResults.length < 1 || grantResults[0] != PackageManager.PERMISSION_GRANTED)
             return;
-        }
 
         switch (requestCode) {
             case WRITE_EXTERNAL_STORAGE_FROM_ACTIONBAR: {
-                SelectHSBackupDialog dialog = new SelectHSBackupDialog();
-                dialog.show(getSupportFragmentManager(), "SelectHSBackupDialog");
+                doRestore();
                 break;
             }
             case HSActionsDialog.WRITE_EXTERNAL_STORAGE_FROM_ACTION_DIALOG: {
@@ -198,14 +184,11 @@ public class HiddenServicesActivity extends AppCompatActivity {
 
         @Override
         public void onChange(boolean selfChange) {
-            mAdapter.changeCursor(mResolver.query(
-                    HSContentProvider.CONTENT_URI, HSContentProvider.PROJECTION, mWhere, null, null
-            ));
+            mAdapter.changeCursor(mResolver.query(HSContentProvider.CONTENT_URI, HSContentProvider.PROJECTION, mWhere, null, null));
 
             if (PermissionManager.isLollipopOrHigher()) {
                 Cursor active = mResolver.query(
-                        HSContentProvider.CONTENT_URI, HSContentProvider.PROJECTION, HSContentProvider.HiddenService.ENABLED + "=1", null, null
-                );
+                        HSContentProvider.CONTENT_URI, HSContentProvider.PROJECTION, HSContentProvider.HiddenService.ENABLED + "=1", null, null);
 
                 if (active == null) return;
 

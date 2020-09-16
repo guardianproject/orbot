@@ -16,8 +16,6 @@
     <string name="menu_exit">வெளியேறு</string>
   <string name="menu_scan">ஸ்கேன் BridgeQR</string>
   <string name="menu_share_bridge">BridgeQR பகிர்ந்திடு</string>
-    <string name="btn_okay">சரி</string>
-  <string name="btn_cancel">ரத்து செய்</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">ஆர்பாட் பற்றிய தகவல்</string>
     <!--END Welcome Wizard strings (DJH)-->

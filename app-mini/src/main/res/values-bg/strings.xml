@@ -18,8 +18,7 @@
   <string name="menu_scan">Сканирай BridgeQR</string>
   <string name="menu_share_bridge">Сподели BridgeQR</string>
     <string name="btn_okay">ОК</string>
-  <string name="btn_cancel">Откажи</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Някои Орбот детайли</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Главни</string>

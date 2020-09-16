@@ -18,8 +18,7 @@
   <string name="menu_scan">Balayer un code QR de pont</string>
   <string name="menu_share_bridge">Partager un code QR de pont</string>
     <string name="btn_okay">OK</string>
-  <string name="btn_cancel">Annuler</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Quelques détails sur Orbot</string>
   <string name="wizard_details_msg">Orbot est une application à code source ouvert incluant Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent et Polipo. Elle fournit un mandataire local HTTP (8118) et un mandataire SOCKS (9050) vers le réseau Tor. Orbot a aussi la capacité, sur un appareil débridé, d’envoyer tout le trafic Internet par Tor.</string>
     <!--END Welcome Wizard strings (DJH)-->
@@ -149,11 +148,9 @@
   <string name="delete_service">Supprimer le service</string>
   <string name="backup_saved_at_external_storage">La sauvegarde a été enregistrée sur une mémoire externe</string>
   <string name="backup_restored">La sauvegarde a été restaurée</string>
-  <string name="filemanager_not_available">Le gestionnaire de fichiers n’est pas disponible</string>
   <string name="please_grant_permissions_for_external_storage">Veuillez accorder les droits vers la mémoire externe</string>
     <string name="restore_backup">Restaurer la sauvegarde</string>
-  <string name="create_a_backup_first">Créer d’abord une sauvegarde</string>
-  <string name="name_can_t_be_empty">Le nom ne peut pas être vide</string>
+    <string name="name_can_t_be_empty">Le nom ne peut pas être vide</string>
   <string name="fields_can_t_be_empty">Les champs ne peuvent pas être vides</string>
   <string name="start_tor_again_for_finish_the_process">Redémarrer Tor pour terminer le processus</string>
   <string name="confirm_service_deletion">Confirmer la suppression du service</string>

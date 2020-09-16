@@ -18,8 +18,7 @@
   <string name="menu_scan">BridgeQR scannen</string>
   <string name="menu_share_bridge">BridgeQR delen</string>
     <string name="btn_okay">Oké</string>
-  <string name="btn_cancel">Annuleren</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Enkele Orbot-gegevens</string>
   <string name="wizard_details_msg">Orbot is een openbronapplicatie die Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent en Polipo bevat. Het creëert een lokale HTTP-proxy (8118) en een SOCKS-proxy (9050) naar het Tor-netwerk. Orbot heeft ook de mogelijkheid om al het internetverkeer over het Tor-netwerk te sturen.</string>
     <!--END Welcome Wizard strings (DJH)-->
@@ -149,11 +148,9 @@
   <string name="delete_service">Dienst verwijderen</string>
   <string name="backup_saved_at_external_storage">Back-up opgeslagen op externe opslag</string>
   <string name="backup_restored">Back-up hersteld</string>
-  <string name="filemanager_not_available">Bestandsbeheerder niet beschikbaar</string>
   <string name="please_grant_permissions_for_external_storage">Verleen toestemmingen voor externe opslag</string>
     <string name="restore_backup">Back-up herstellen</string>
-  <string name="create_a_backup_first">Maak eerst een back-up aan</string>
-  <string name="name_can_t_be_empty">Naam kan niet leeg zijn</string>
+    <string name="name_can_t_be_empty">Naam kan niet leeg zijn</string>
   <string name="fields_can_t_be_empty">Velden kunnen niet leeg zijn</string>
   <string name="start_tor_again_for_finish_the_process">Start Tor opnieuw om het proces te voltooien</string>
   <string name="confirm_service_deletion">Bevestig verwijderen van dienst</string>

@@ -18,8 +18,7 @@
   <string name="menu_scan">Zoskenovať BridgeQR</string>
   <string name="menu_share_bridge">Zdielať BridgeQR</string>
     <string name="btn_okay">OK</string>
-  <string name="btn_cancel">Zrušiť</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Niekoľko detailov o Orbot</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Všeobecné</string>

@@ -17,8 +17,6 @@
   <string name="menu_exit">خروج</string>
   <string name="menu_scan">فحص QR الجسر</string>
   <string name="menu_share_bridge">مشاركة QR الجسر</string>
-  <string name="btn_okay">موافق</string>
-  <string name="btn_cancel">إلغاء</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">بعض التفاصيل عن اوربوت</string>
   <!--END Welcome Wizard strings (DJH)-->
@@ -144,10 +142,8 @@
   <string name="delete_service">حذف الخدمة</string>
   <string name="backup_saved_at_external_storage">تمت عملية حفظ النسخة الإحتياطية في ذاكرة التخزين الخارجية</string>
   <string name="backup_restored">تمت استعادة النسخة الإحتياطية</string>
-  <string name="filemanager_not_available">تعذر العثور على مدير الملفات</string>
   <string name="restore_backup">إسترجاع نسخة احتياطية</string>
-  <string name="create_a_backup_first">قم أولاً بإنشاء نسخة إحتياطية</string>
-  <string name="name_can_t_be_empty">لا يمكن ترك الإسم فارغا</string>
+    <string name="name_can_t_be_empty">لا يمكن ترك الإسم فارغا</string>
   <string name="fields_can_t_be_empty">لا يمكن ترك الحقول فارغة</string>
   <string name="start_tor_again_for_finish_the_process">قم بتشغيل تور ثانيةً لإنهاء العملية</string>
   <string name="confirm_service_deletion">تأكيد حذف الخدمة</string>

@@ -18,8 +18,7 @@
   <string name="menu_scan">QR kodu tara</string>
   <string name="menu_share_bridge">QR kodu paylaş</string>
   <string name="btn_okay">Tamam</string>
-  <string name="btn_cancel">İptal</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Bazı Orbot Ayrıntıları</string>
   <string name="wizard_details_msg">Orbot; Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent ve Polipo yapılarını kapsayan açık kaynaklı bir uygulamadır. Tor ağına bağlanmak için bir yerel HTTP vekil sunucu (8118) ve bir SOCKS vekil sunucu (9050) sağlar. Orbot ayrıca, rootlanmış aygıtlarda tüm İnternet trafiğini Tor üzerinden gönderebilir.</string>
   <!--END Welcome Wizard strings (DJH)-->
@@ -149,11 +148,9 @@
   <string name="delete_service">Hizmeti Sil</string>
   <string name="backup_saved_at_external_storage">Yedek dış depolamaya kaydedildi</string>
   <string name="backup_restored">Yedek geri yüklendi</string>
-  <string name="filemanager_not_available">Dosya tarayıcı kullanılamıyor</string>
   <string name="please_grant_permissions_for_external_storage">Lütfen dış depolama için izinleri verin</string>
   <string name="restore_backup">Yedeği Geri Yükle</string>
-  <string name="create_a_backup_first">Önce bir yedek oluşturun</string>
-  <string name="name_can_t_be_empty">Ad boş bırakılamaz</string>
+    <string name="name_can_t_be_empty">Ad boş bırakılamaz</string>
   <string name="fields_can_t_be_empty">Alanlar boş bırakılamaz</string>
   <string name="start_tor_again_for_finish_the_process">İşlemi tamamlamak için Tor uygulamasını yeniden başlatın</string>
   <string name="confirm_service_deletion">Hizmeti Silmeyi Onayla</string>

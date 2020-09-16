@@ -17,8 +17,6 @@
     <string name="menu_exit">Sair</string>
   <string name="menu_scan">Escanear BridgeQR</string>
   <string name="menu_share_bridge">Compartilhar BridgeQR</string>
-    <string name="btn_okay">Okay</string>
-  <string name="btn_cancel">Cancelar</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Alguns detalhes do Orbot</string>
   <string name="wizard_details_msg">Orbot é um software de código aberto que contem Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent e Polipo. Ele fornece um proxy local HTTP (8118) e um proxy SOCKS (9050) como acesso a rede Tor. Orbot também tem a habilidade, em dispositivos com acesso root, de enviar todo o trafego de Internet via rede Tor.</string>
@@ -148,11 +146,9 @@
   <string name="delete_service">Remover Serviço</string>
   <string name="backup_saved_at_external_storage">Backup salvo em mídia externa</string>
   <string name="backup_restored">Backup Restaurado</string>
-  <string name="filemanager_not_available">Gerenciador de arquivos não está disponível</string>
   <string name="please_grant_permissions_for_external_storage">Por favor dê permissões ao armazenamento externo</string>
     <string name="restore_backup">Restaurar Backup</string>
-  <string name="create_a_backup_first">Criar primeiro backup</string>
-  <string name="name_can_t_be_empty">O campo Nome não pode ser vazio</string>
+    <string name="name_can_t_be_empty">O campo Nome não pode ser vazio</string>
   <string name="fields_can_t_be_empty">Campos não podem ser vazios</string>
   <string name="confirm_service_deletion">Confirmar a remoção do serviço</string>
     <string name="service_type">Tipo do Serviço</string>

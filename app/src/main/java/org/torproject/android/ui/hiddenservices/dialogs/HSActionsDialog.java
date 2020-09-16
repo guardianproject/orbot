@@ -1,6 +1,6 @@
 package org.torproject.android.ui.hiddenservices.dialogs;
 
-
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -17,18 +17,20 @@ import android.view.View;
 import android.widget.Toast;
 
 import org.torproject.android.R;
+import org.torproject.android.core.DiskUtils;
 import org.torproject.android.ui.hiddenservices.backup.BackupUtils;
 import org.torproject.android.ui.hiddenservices.permissions.PermissionManager;
 
 public class HSActionsDialog extends DialogFragment {
     public static final int WRITE_EXTERNAL_STORAGE_FROM_ACTION_DIALOG = 2;
     private AlertDialog actionDialog;
+    private int port;
 
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         final Bundle arguments = getArguments();
-
+        port = Integer.parseInt(arguments.getString("port"));
         final View dialog_view = getActivity().getLayoutInflater().inflate(R.layout.layout_hs_actions, null);
         actionDialog = new AlertDialog.Builder(getActivity())
                 .setView(dialog_view)
@@ -81,36 +83,35 @@ public class HSActionsDialog extends DialogFragment {
     }
 
     public void doBackup() {
-        Context mContext = getActivity();
+        Intent createFile = DiskUtils.createWriteFileIntent("hs" + port + ".zip", "application/zip");
+        startActivityForResult(createFile, REQUEST_CODE_WRITE_FILE);
+    }
+
+    public void doBackup1() {
         if (PermissionManager.isLollipopOrHigher()
                 && !PermissionManager.hasExternalWritePermission(getActivity())) {
 
             PermissionManager.requestExternalWritePermissions(
                     getActivity(), WRITE_EXTERNAL_STORAGE_FROM_ACTION_DIALOG);
-
-            return;
         }
+    }
 
-        BackupUtils hsutils = new BackupUtils(mContext);
-        String backupPath = hsutils.createZipBackup(Integer.parseInt(getArguments().getString("port")));
+    private static final int REQUEST_CODE_WRITE_FILE = 123;
 
-        if (backupPath == null || backupPath.length() < 1) {
-            Toast.makeText(mContext, R.string.error, Toast.LENGTH_LONG).show();
-            actionDialog.dismiss();
-            return;
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_CODE_WRITE_FILE && resultCode == Activity.RESULT_OK) {
+            if (data != null) {
+                Uri file = data.getData();
+                BackupUtils backupUtils = new BackupUtils(getContext());
+                String backup = backupUtils.createZipBackup(port, file);
+                if (backup != null) {
+                    Toast.makeText(getContext(), R.string.backup_saved_at_external_storage, Toast.LENGTH_LONG).show();
+                } else{
+                    Toast.makeText(getContext(), R.string.error, Toast.LENGTH_LONG).show();
+                }
+                actionDialog.dismiss();
+            }
         }
-
-        Toast.makeText(mContext, R.string.backup_saved_at_external_storage, Toast.LENGTH_LONG).show();
-
-        Uri selectedUri = Uri.parse(backupPath.substring(0, backupPath.lastIndexOf("/")));
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setDataAndType(selectedUri, "resource/folder");
-
-        if (intent.resolveActivityInfo(mContext.getPackageManager(), 0) != null) {
-            startActivity(intent);
-        } else {
-            Toast.makeText(mContext, R.string.filemanager_not_available, Toast.LENGTH_LONG).show();
-        }
-        actionDialog.dismiss();
     }
 }

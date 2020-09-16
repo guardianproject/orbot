@@ -29,8 +29,7 @@ public class HSDeleteDialog extends DialogFragment {
                     context.getContentResolver().delete(
                             HSContentProvider.CONTENT_URI,
                             HSContentProvider.HiddenService._ID + "=" + arguments.getInt("_id"),
-                            null
-                    );
+                            null);
 
                     // Delete from internal storage
                     String base = context.getFilesDir().getAbsolutePath() + "/" + TorServiceConstants.HIDDEN_SERVICES_DIR;
@@ -54,8 +53,8 @@ public class HSDeleteDialog extends DialogFragment {
 
         return new AlertDialog.Builder(context)
                 .setMessage(R.string.confirm_service_deletion)
-                .setPositiveButton(R.string.btn_okay, dialogClickListener)
-                .setNegativeButton(R.string.btn_cancel, dialogClickListener)
+                .setPositiveButton(android.R.string.ok, dialogClickListener)
+                .setNegativeButton(android.R.string.cancel, dialogClickListener)
                 .create();
     }
 }

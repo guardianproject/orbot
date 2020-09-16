@@ -17,8 +17,6 @@
   <string name="menu_exit">Излез</string>
   <string name="menu_scan">Скенирај QR на мост</string>
   <string name="menu_share_bridge">Сподели QR на мост</string>
-  <string name="btn_okay">OK</string>
-  <string name="btn_cancel">Откажи</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Неколку детали за Orbot</string>
   <string name="wizard_details_msg">Orbot e апликација со отворен код која содржи Tor Obfs4Proxy, BadVPN Tun2Socks, LibEvent и Polipo. Овозможува локален HTTP прокси (8118) и SOCKS прокси (9050) во Tor мрежата. Orbot исто така има можност, на уред со root пристап, да го испраќа целиот интернет сообраќај преку Tor.</string>
@@ -148,11 +146,9 @@
   <string name="delete_service">Избриши услуга</string>
   <string name="backup_saved_at_external_storage">Резервната копија е снимена на надворешна меморија</string>
   <string name="backup_restored">Вратено од резервна копија</string>
-  <string name="filemanager_not_available">Менаџерот на датотеки не е достапен</string>
   <string name="please_grant_permissions_for_external_storage">Ве молиме дадете дозволи за надворешна меморија</string>
   <string name="restore_backup">Врати резервна копија</string>
-  <string name="create_a_backup_first">Создади резервна копија</string>
-  <string name="name_can_t_be_empty">Името не може да биде празно</string>
+    <string name="name_can_t_be_empty">Името не може да биде празно</string>
   <string name="fields_can_t_be_empty">Полињата не можат да бидат празни</string>
   <string name="start_tor_again_for_finish_the_process">Стартувај го Tor повторно да го заврши процесот</string>
   <string name="confirm_service_deletion">Потврди бришење на услугата</string>

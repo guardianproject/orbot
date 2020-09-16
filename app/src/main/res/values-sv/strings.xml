@@ -17,8 +17,6 @@
     <string name="menu_exit">Avsluta</string>
   <string name="menu_scan">Skanna BridgeQR</string>
   <string name="menu_share_bridge">Dela BridgeQR</string>
-    <string name="btn_okay">Okej</string>
-  <string name="btn_cancel">Avbryt</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Orbot-information</string>
   <string name="wizard_details_msg">Orbot är ett program med öppen källkod som innehåller Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent och Polipo. Den tillhandahåller en lokal HTTP-proxy (8118) och en SOCKS-proxy (9050) i Tor-nätverket. Orbot har också förmågan att, på rotad enhet, skicka all internettrafik genom Tor.</string>
@@ -148,11 +146,9 @@
   <string name="delete_service">Ta bort tjänst</string>
   <string name="backup_saved_at_external_storage">Säkerhetskopiering sparad i externt lagringsutrymme</string>
   <string name="backup_restored">Backup återställd</string>
-  <string name="filemanager_not_available">Filhanteraren är inte tillgänglig</string>
   <string name="please_grant_permissions_for_external_storage">Bevilja tillstånd för extern lagring</string>
     <string name="restore_backup">Återställa säkerhetskopia</string>
-  <string name="create_a_backup_first">Skapa en säkerhetskopia först</string>
-  <string name="name_can_t_be_empty">Namnet kan inte vara tomt</string>
+    <string name="name_can_t_be_empty">Namnet kan inte vara tomt</string>
   <string name="fields_can_t_be_empty">Fält kan inte vara tomma</string>
   <string name="start_tor_again_for_finish_the_process">Starta Tor igen för att avsluta processen</string>
   <string name="confirm_service_deletion">Bekräfta tjänst borttagning</string>

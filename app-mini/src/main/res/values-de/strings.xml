@@ -18,8 +18,7 @@
   <string name="menu_scan">BrückenQR scannen</string>
   <string name="menu_share_bridge">BrückenQR-Code teilen</string>
     <string name="btn_okay">Okay</string>
-  <string name="btn_cancel">Abbrechen</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Nähere Informationen zu Orbot</string>
   <string name="wizard_details_msg">Orbot ist eine quelloffene Anwendung, die Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent und Polipo enthält. Sie stellt einen lokalen HTTP-Proxy (Port: 8118) und einen SOCKS-Proxy (Port: 9050) in das Tor-Netzwerk bereit. Auf gerooteten Geräten kann Orbot auch sämtliche Internetverbindungen durch Tor leiten.</string>
     <!--END Welcome Wizard strings (DJH)-->
@@ -149,11 +148,9 @@
   <string name="delete_service">Dienst löschen</string>
   <string name="backup_saved_at_external_storage">Sicherung auf externem Speicher gespeichert </string>
   <string name="backup_restored">Sicherung wiederhergestellt</string>
-  <string name="filemanager_not_available">Dateimanager nicht verfügbar</string>
   <string name="please_grant_permissions_for_external_storage">Bitte Zugriffsrechte auf externen Speicher gewähren</string>
     <string name="restore_backup">Sicherung wiederherstellen</string>
-  <string name="create_a_backup_first">Erstellen Sie zuerst eine Sicherung</string>
-  <string name="name_can_t_be_empty">Name darf nicht leer sein</string>
+    <string name="name_can_t_be_empty">Name darf nicht leer sein</string>
   <string name="fields_can_t_be_empty">Felder dürfen nicht leer sein</string>
   <string name="start_tor_again_for_finish_the_process">Tor neu starten, um den Vorgang abzuschließen</string>
   <string name="confirm_service_deletion">Löschen des Dienst bestätigen</string>

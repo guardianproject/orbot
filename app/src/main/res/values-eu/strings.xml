@@ -17,8 +17,6 @@
     <string name="menu_exit">Irten</string>
   <string name="menu_scan">Eskaneatu BridgeQR</string>
   <string name="menu_share_bridge">Partekatu BridgeQR</string>
-    <string name="btn_okay">Ados</string>
-  <string name="btn_cancel">Utzi</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Orbot xehetasun batzuk</string>
   <string name="wizard_details_msg">Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent eta Polipo dituen kode irekiko aplikazio bat da Orbot. Tor sarera sartzeko HTTP proxya (8118) eta SOCKS proxya (9050) eskaintzen ditu. Rooteatutako gailuetan Orbot-ek interneteko trafiko guztia Tor bidez bidali dezake baita ere.</string>
@@ -148,11 +146,9 @@
   <string name="delete_service">Ezabatu zerbitzua</string>
   <string name="backup_saved_at_external_storage">Babeskopia kanpo biltegiratzean gorde da</string>
   <string name="backup_restored">Babeskopia berrezarri da</string>
-  <string name="filemanager_not_available">Fitxategi kudeatzailea ez dago eskuragarri</string>
   <string name="please_grant_permissions_for_external_storage">Eman kanpo biltegiratzerako baimena</string>
     <string name="restore_backup">Berrezarri babeskopia</string>
-  <string name="create_a_backup_first">Sortu babeskopia aurretik</string>
-  <string name="name_can_t_be_empty">Izena ezin da hutsik egon</string>
+    <string name="name_can_t_be_empty">Izena ezin da hutsik egon</string>
   <string name="fields_can_t_be_empty">Eremuak ezin dira hutsik egon</string>
   <string name="start_tor_again_for_finish_the_process">Hasi Tor berriro prozesua amaitzeko</string>
   <string name="confirm_service_deletion">Berretsi zerbitzua ezabatzea</string>

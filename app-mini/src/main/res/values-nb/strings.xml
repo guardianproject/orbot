@@ -18,8 +18,7 @@
   <string name="menu_scan">Skann BridgeQR</string>
   <string name="menu_share_bridge">Del BridgeQR</string>
     <string name="btn_okay">Ok</string>
-  <string name="btn_cancel">Avbryt</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Noen Orbot-detaljer</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Generelt</string>
@@ -143,8 +142,7 @@
   <string name="delete_service">Slett tjeneste</string>
   <string name="backup_restored">Sikkerhetskopi gjenopprettet</string>
     <string name="restore_backup">Gjenopprett sikkerhetskopi</string>
-  <string name="create_a_backup_first">Opprett en sikkerhetskopi først</string>
-  <string name="name_can_t_be_empty">Navnet kan ikke være tomt</string>
+    <string name="name_can_t_be_empty">Navnet kan ikke være tomt</string>
   <string name="fields_can_t_be_empty">Felter kan ikke stå tomme</string>
   <string name="start_tor_again_for_finish_the_process">Start Tor igjen for å fullføre prosessen</string>
   <string name="confirm_service_deletion">Bekreft sletting av tjeneste</string>
