@@ -33,7 +33,7 @@ public class ZipIt {
 
             ZipOutputStream out = new ZipOutputStream(new BufferedOutputStream(dest));
 
-            byte data[] = new byte[BUFFER];
+            byte[] data = new byte[BUFFER];
 
             for (String _file : _files) {
                 FileInputStream fi = new FileInputStream(_file);

@@ -29,7 +29,7 @@ public class ExternalIPFetcher implements Runnable {
     public void run() {
         try {
 
-            URLConnection conn = null;
+            URLConnection conn;
 
             Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("127.0.0.1", mLocalHttpProxyPort));
             conn = new URL(ONIONOO_BASE_URL + mNode.id).openConnection(proxy);
@@ -45,7 +45,7 @@ public class ExternalIPFetcher implements Runnable {
             // getting JSON string from URL
 
             StringBuffer json = new StringBuffer();
-            String line = null;
+            String line;
 
             while ((line = reader.readLine()) != null)
                 json.append(line);

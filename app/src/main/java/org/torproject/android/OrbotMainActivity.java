@@ -163,12 +163,8 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                     String log = (String) msg.obj;
 
                     if (torStatus == null && newTorStatus != null) //first time status
-                    {
                         findViewById(R.id.frameMain).setVisibility(View.VISIBLE);
-                        updateStatus(log, newTorStatus);
-
-                    } else
-                        updateStatus(log, newTorStatus);
+                    updateStatus(log, newTorStatus);
                     super.handleMessage(msg);
                     break;
             }
@@ -326,8 +322,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
 
     private void doLayout() {
         setContentView(R.layout.layout_main);
-
-        setTitle(R.string.app_name);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -1226,7 +1220,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void exportTorData() {
-        File fileTorData = null;
+        File fileTorData;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             fileTorData = new File(getDataDir(), DIRECTORY_TOR_DATA);
         } else {
@@ -1242,9 +1236,9 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
 
     public static class DataCount {
         // data uploaded
-        long Upload;
+        final long Upload;
         // data downloaded
-        long Download;
+        final long Download;
 
         DataCount(long Upload, long Download) {
             this.Upload = Upload;

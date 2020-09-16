@@ -40,7 +40,6 @@ public class Tun2Socks {
     private static final String TAG = Tun2Socks.class.getSimpleName();
     private static final boolean LOGD = true;
 
-    ;
     private static Thread mThread;
     private static ParcelFileDescriptor mVpnInterfaceFileDescriptor;
     private static int mVpnInterfaceMTU;
@@ -169,7 +168,7 @@ public class Tun2Socks {
         mAppUidBlacklist.remove(uid);
     }
 
-    public static interface IProtectSocket {
+    public interface IProtectSocket {
         boolean doVpnProtect(Socket socket);
 
         boolean doVpnProtect(DatagramSocket socket);

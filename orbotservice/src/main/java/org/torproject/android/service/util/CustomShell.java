@@ -20,8 +20,8 @@ public class CustomShell extends Shell {
 
     @WorkerThread
     public static CommandResult run(@NonNull String shell, boolean waitFor, @Nullable Map<String, String> env, @NonNull String command) {
-        List<String> stdout = Collections.synchronizedList(new ArrayList<String>());
-        List<String> stderr = Collections.synchronizedList(new ArrayList<String>());
+        List<String> stdout = Collections.synchronizedList(new ArrayList<>());
+        List<String> stderr = Collections.synchronizedList(new ArrayList<>());
         int exitCode = -1;
 
         try {

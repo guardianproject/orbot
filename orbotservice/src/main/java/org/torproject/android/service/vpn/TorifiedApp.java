@@ -52,12 +52,12 @@ public class TorifiedApp implements Comparable {
 
         Iterator<ApplicationInfo> itAppInfo = lAppInfo.iterator();
 
-        ArrayList<TorifiedApp> apps = new ArrayList<TorifiedApp>();
+        ArrayList<TorifiedApp> apps = new ArrayList<>();
 
-        ApplicationInfo aInfo = null;
+        ApplicationInfo aInfo;
 
         int appIdx = 0;
-        TorifiedApp app = null;
+        TorifiedApp app;
 
         while (itAppInfo.hasNext()) {
             aInfo = itAppInfo.next();

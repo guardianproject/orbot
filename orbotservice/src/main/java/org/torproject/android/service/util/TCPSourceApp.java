@@ -99,7 +99,6 @@ public class TCPSourceApp {
      * @return an AppDescriptor object, representing the found application; null
      * if no application could be found
      */
-    @SuppressWarnings("unused")
     public static AppDescriptor getApplicationInfo(Context context, String saddr, int sport, String daddr, int dport) {
 
         File tcp;
@@ -122,7 +121,6 @@ public class TCPSourceApp {
 
             tcp = new File(TCP_6_FILE_PATH);
             reader = new BufferedReader(new FileReader(tcp));
-            line = "";
             builder = new StringBuilder();
 
             while ((line = reader.readLine()) != null) {
@@ -171,7 +169,6 @@ public class TCPSourceApp {
         try {
             tcp = new File(TCP_4_FILE_PATH);
             reader = new BufferedReader(new FileReader(tcp));
-            line = "";
             builder = new StringBuilder();
 
             while ((line = reader.readLine()) != null) {

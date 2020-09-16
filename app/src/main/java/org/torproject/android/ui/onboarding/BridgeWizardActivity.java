@@ -26,7 +26,6 @@ import java.io.InputStreamReader;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
-import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 public class BridgeWizardActivity extends AppCompatActivity {
@@ -189,8 +188,6 @@ public class BridgeWizardActivity extends AppCompatActivity {
         } else if (Prefs.getBridgesList().equals("meek")) {
             hostTester.execute("meek.azureedge.net", "443");
         } else if (Prefs.getBridgesList().equals("obfs4")) {
-
-            ArrayList alBridges = new ArrayList<String>();
 
             try {
                 BufferedReader in =

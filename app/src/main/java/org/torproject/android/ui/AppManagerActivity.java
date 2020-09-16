@@ -56,8 +56,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
     // returns true if the given app is enabled and not orbot
     public static boolean includeAppInUi(ApplicationInfo applicationInfo) {
         if (!applicationInfo.enabled) return false;
-        if (BuildConfig.APPLICATION_ID.equals(applicationInfo.packageName)) return false;
-        return true;
+        return !BuildConfig.APPLICATION_ID.equals(applicationInfo.packageName);
     }
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -296,7 +295,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
 
         Editor edit = mPrefs.edit();
         edit.putString(PREFS_KEY_TORIFIED, tordApps.toString());
-        edit.commit();
+        edit.apply();
 
         setResult(RESULT_OK, response);
     }

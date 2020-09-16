@@ -125,7 +125,7 @@ public class BackupUtils {
         }
 
         String zip_path = storage_path.getAbsolutePath() + "/hs" + port + ".zip";
-        String files[] = {hostnameFilePath, keyFilePath, configFilePath};
+        String[] files = {hostnameFilePath, keyFilePath, configFilePath};
 
         ZipIt zip = new ZipIt(files, zip_path);
 

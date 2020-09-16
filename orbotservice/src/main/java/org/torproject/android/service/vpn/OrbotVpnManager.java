@@ -85,7 +85,7 @@ public class OrbotVpnManager implements Handler.Callback {
         Tun2Socks.init();
     }
 
-    public static File makePdnsdConf(Context context, File fileDir, String torDnsHost, int torDnsPort, String pdnsdHost, int pdnsdPort) throws FileNotFoundException, IOException {
+    public static File makePdnsdConf(Context context, File fileDir, String torDnsHost, int torDnsPort, String pdnsdHost, int pdnsdPort) throws IOException {
         String conf = String.format(context.getString(R.string.pdnsd_conf), torDnsHost, torDnsPort, fileDir.getCanonicalPath(), pdnsdHost, pdnsdPort);
 
         Log.d(TAG, "pdsnd conf:" + conf);
@@ -371,7 +371,7 @@ public class OrbotVpnManager implements Handler.Callback {
         if (proc.exitValue() != 0) {
             BufferedReader br = new BufferedReader(new InputStreamReader(proc.getInputStream()));
 
-            String line = null;
+            String line;
             while ((line = br.readLine()) != null) {
                 Log.d(TAG, "pdnsd: " + line);
             }
@@ -382,7 +382,7 @@ public class OrbotVpnManager implements Handler.Callback {
 
     private boolean stopDns() {
         if (filePdnsPid != null && filePdnsPid.exists()) {
-            List<String> lines = null;
+            List<String> lines;
             try {
                 lines = IOUtils.readLines(new FileReader(filePdnsPid));
                 String dnsPid = lines.get(0);

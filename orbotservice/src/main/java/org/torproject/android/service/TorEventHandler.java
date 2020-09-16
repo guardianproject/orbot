@@ -24,8 +24,8 @@ public class TorEventHandler implements EventHandler, TorServiceConstants {
     private long lastWritten = -1;
     private long mTotalTrafficWritten = 0;
     private long mTotalTrafficRead = 0;
-    private NumberFormat mNumberFormat = null;
-    private HashMap<String, Node> hmBuiltNodes = new HashMap<String, Node>();
+    private NumberFormat mNumberFormat;
+    private HashMap<String, Node> hmBuiltNodes = new HashMap<>();
 
     public TorEventHandler(OrbotService service) {
         mService = service;
@@ -57,56 +57,49 @@ public class TorEventHandler implements EventHandler, TorServiceConstants {
     @Override
     public void orConnStatus(String status, String orName) {
 
-        StringBuilder sb = new StringBuilder();
-        sb.append("orConnStatus (");
-        sb.append(parseNodeName(orName));
-        sb.append("): ");
-        sb.append(status);
-
-        mService.debug(sb.toString());
+        String sb = "orConnStatus (" +
+                parseNodeName(orName) +
+                "): " +
+                status;
+        mService.debug(sb);
     }
 
     @Override
     public void streamStatus(String status, String streamID, String target) {
 
-        StringBuilder sb = new StringBuilder();
-        sb.append("StreamStatus (");
-        sb.append((streamID));
-        sb.append("): ");
-        sb.append(status);
-
-        mService.debug(sb.toString());
+        String sb = "StreamStatus (" +
+                (streamID) +
+                "): " +
+                status;
+        mService.debug(sb);
     }
 
     @Override
     public void unrecognized(String type, String msg) {
 
-        StringBuilder sb = new StringBuilder();
-        sb.append("Message (");
-        sb.append(type);
-        sb.append("): ");
-        sb.append(msg);
-
-        mService.logNotice(sb.toString());
+        String sb = "Message (" +
+                type +
+                "): " +
+                msg;
+        mService.logNotice(sb);
     }
 
     @Override
     public void bandwidthUsed(long read, long written) {
 
         if (lastWritten > BW_THRESDHOLD || lastRead > BW_THRESDHOLD) {
-            StringBuilder sb = new StringBuilder();
-            sb.append(formatCount(read));
-            sb.append(" \u2193");
-            sb.append(" / ");
-            sb.append(formatCount(written));
-            sb.append(" \u2191");
 
             int iconId = R.drawable.ic_stat_tor;
 
             if (read > 0 || written > 0)
                 iconId = R.drawable.ic_stat_tor_xfer;
 
-            mService.showToolbarNotification(sb.toString(), mService.getNotifyId(), iconId);
+            String sb = formatCount(read) +
+                    " \u2193" +
+                    " / " +
+                    formatCount(written) +
+                    " \u2191";
+            mService.showToolbarNotification(sb, mService.getNotifyId(), iconId);
 
             mTotalTrafficWritten += written;
             mTotalTrafficRead += read;
@@ -153,7 +146,7 @@ public class TorEventHandler implements EventHandler, TorServiceConstants {
             sb.append(": ");
 
             StringTokenizer st = new StringTokenizer(path, ",");
-            Node node = null;
+            Node node;
 
             boolean isFirstNode = true;
             int nodeCount = st.countTokens();
@@ -237,7 +230,7 @@ public class TorEventHandler implements EventHandler, TorServiceConstants {
             return node;
     }
 
-    public class Node {
+    public static class Node {
         public String status;
         public String id;
         public String name;

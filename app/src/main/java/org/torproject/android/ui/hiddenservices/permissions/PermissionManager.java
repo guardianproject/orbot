@@ -18,7 +18,7 @@ import androidx.fragment.app.FragmentActivity;
 import org.torproject.android.R;
 
 public class PermissionManager {
-    public static int VERY_LONG_LENGTH = 6000;
+    public static final int VERY_LONG_LENGTH = 6000;
 
     public static boolean isLollipopOrHigher() {
         return (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP);

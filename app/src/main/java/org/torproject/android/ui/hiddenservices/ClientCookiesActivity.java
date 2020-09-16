@@ -125,7 +125,7 @@ public class ClientCookiesActivity extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
+                                           String[] permissions, int[] grantResults) {
         if (grantResults.length < 1
                 || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
             return;

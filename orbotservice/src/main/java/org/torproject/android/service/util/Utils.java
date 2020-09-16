@@ -47,7 +47,7 @@ public class Utils {
      * Load the log file text
      */
     public static String loadTextFile(String path) {
-        String line = null;
+        String line;
 
         StringBuffer out = new StringBuffer();
 
@@ -107,14 +107,14 @@ public class Utils {
 
         File sourceFile = new File(sourcePath);
         try {
-            BufferedInputStream origin = null;
+            BufferedInputStream origin;
             FileOutputStream dest = new FileOutputStream(toLocation);
             ZipOutputStream out = new ZipOutputStream(new BufferedOutputStream(
                     dest));
             if (sourceFile.isDirectory()) {
                 zipSubFolder(out, sourceFile, sourceFile.getParent().length());
             } else {
-                byte data[] = new byte[BUFFER];
+                byte[] data = new byte[BUFFER];
                 FileInputStream fi = new FileInputStream(sourcePath);
                 origin = new BufferedInputStream(fi, BUFFER);
                 ZipEntry entry = new ZipEntry(getLastPathComponent(sourcePath));
@@ -150,7 +150,7 @@ public class Utils {
             if (file.isDirectory()) {
                 zipSubFolder(out, file, basePathLength);
             } else {
-                byte data[] = new byte[BUFFER];
+                byte[] data = new byte[BUFFER];
                 String unmodifiedFilePath = file.getPath();
                 String relativePath = unmodifiedFilePath
                         .substring(basePathLength);
@@ -178,7 +178,6 @@ public class Utils {
         String[] segments = filePath.split("/");
         if (segments.length == 0)
             return "";
-        String lastPathComponent = segments[segments.length - 1];
-        return lastPathComponent;
+        return segments[segments.length - 1];
     }
 }
