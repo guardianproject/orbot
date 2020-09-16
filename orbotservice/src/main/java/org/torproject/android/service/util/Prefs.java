@@ -1,4 +1,3 @@
-
 package org.torproject.android.service.util;
 
 import android.content.Context;

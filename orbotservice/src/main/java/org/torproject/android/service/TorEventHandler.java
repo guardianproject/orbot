@@ -18,41 +18,23 @@ import java.util.StringTokenizer;
  */
 public class TorEventHandler implements EventHandler, TorServiceConstants {
 
+    private final static int BW_THRESDHOLD = 10000;
     private OrbotService mService;
-
-
     private long lastRead = -1;
     private long lastWritten = -1;
     private long mTotalTrafficWritten = 0;
     private long mTotalTrafficRead = 0;
-
     private NumberFormat mNumberFormat = null;
+    private HashMap<String, Node> hmBuiltNodes = new HashMap<String, Node>();
 
-
-    private HashMap<String,Node> hmBuiltNodes = new HashMap<String,Node>();
-
-    public class Node
-    {
-        public String status;
-        public String id;
-        public String name;
-        public String ipAddress;
-        public String country;
-        public String organization;
-
-        public boolean isFetchingInfo = false;
-    }
-
-    public HashMap<String,Node> getNodes ()
-    {
-        return hmBuiltNodes;
-    }
-
-    public TorEventHandler (OrbotService service)
-    {
+    public TorEventHandler(OrbotService service) {
         mService = service;
         mNumberFormat = NumberFormat.getInstance(Locale.getDefault()); //localized numbers!
 
+    }
+
+    public HashMap<String, Node> getNodes() {
+        return hmBuiltNodes;
     }
 
     @Override
@@ -77,7 +59,7 @@ public class TorEventHandler implements EventHandler, TorServiceConstants {
 
         StringBuilder sb = new StringBuilder();
         sb.append("orConnStatus (");
-        sb.append(parseNodeName(orName) );
+        sb.append(parseNodeName(orName));
         sb.append("): ");
         sb.append(status);
 
@@ -108,13 +90,10 @@ public class TorEventHandler implements EventHandler, TorServiceConstants {
         mService.logNotice(sb.toString());
     }
 
-    private final static int BW_THRESDHOLD = 10000;
-
     @Override
     public void bandwidthUsed(long read, long written) {
 
-        if (lastWritten > BW_THRESDHOLD || lastRead > BW_THRESDHOLD)
-        {
+        if (lastWritten > BW_THRESDHOLD || lastRead > BW_THRESDHOLD) {
             StringBuilder sb = new StringBuilder();
             sb.append(formatCount(read));
             sb.append(" \u2193");
@@ -150,9 +129,9 @@ public class TorEventHandler implements EventHandler, TorServiceConstants {
         // Over 2Mb, returns "xxx.xxMb"
         if (mNumberFormat != null)
             if (count < 1e6)
-                return mNumberFormat.format(Math.round((float)((int)(count*10/1024))/10)) + "kbps";
+                return mNumberFormat.format(Math.round((float) ((int) (count * 10 / 1024)) / 10)) + "kbps";
             else
-                return mNumberFormat.format(Math.round((float)((int)(count*100/1024/1024))/100)) + "mbps";
+                return mNumberFormat.format(Math.round((float) ((int) (count * 100 / 1024 / 1024)) / 100)) + "mbps";
         else
             return "";
 
@@ -203,8 +182,7 @@ public class TorEventHandler implements EventHandler, TorServiceConstants {
 
                 node = hmBuiltNodes.get(nodeId);
 
-                if (node == null)
-                {
+                if (node == null) {
                     node = new Node();
                     node.id = nodeId;
                     node.name = nodeName;
@@ -220,11 +198,9 @@ public class TorEventHandler implements EventHandler, TorServiceConstants {
                 if (st.hasMoreTokens())
                     sb.append(" > ");
 
-                if (status.equals("EXTENDED"))
-                {
+                if (status.equals("EXTENDED")) {
 
-                    if (isFirstNode)
-                    {
+                    if (isFirstNode) {
                         hmBuiltNodes.put(node.id, node);
 
                         if (node.ipAddress == null && (!node.isFetchingInfo) && Prefs.useDebugLogging()) {
@@ -234,14 +210,12 @@ public class TorEventHandler implements EventHandler, TorServiceConstants {
 
                         isFirstNode = false;
                     }
-                }
-                else if (status.equals("BUILT")) {
-                 //   mService.logNotice(sb.toString());
+                } else if (status.equals("BUILT")) {
+                    //   mService.logNotice(sb.toString());
 
                     if (Prefs.useDebugLogging() && nodeCount > 3)
                         mService.debug(sb.toString());
-                }
-                else if (status.equals("CLOSED")) {
+                } else if (status.equals("CLOSED")) {
                     //  mService.logNotice(sb.toString());
                     hmBuiltNodes.remove(node.id);
                 }
@@ -252,21 +226,25 @@ public class TorEventHandler implements EventHandler, TorServiceConstants {
         }
 
 
-
     }
 
-
-    private String parseNodeName(String node)
-    {
-        if (node.indexOf('=')!=-1)
-        {
-            return (node.substring(node.indexOf("=")+1));
-        }
-        else if (node.indexOf('~')!=-1)
-        {
-            return (node.substring(node.indexOf("~")+1));
-        }
-        else
+    private String parseNodeName(String node) {
+        if (node.indexOf('=') != -1) {
+            return (node.substring(node.indexOf("=") + 1));
+        } else if (node.indexOf('~') != -1) {
+            return (node.substring(node.indexOf("~") + 1));
+        } else
             return node;
+    }
+
+    public class Node {
+        public String status;
+        public String id;
+        public String name;
+        public String ipAddress;
+        public String country;
+        public String organization;
+
+        public boolean isFetchingInfo = false;
     }
 }

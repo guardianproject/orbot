@@ -21,9 +21,23 @@ import java.io.InputStreamReader;
 public class AboutDialogFragment extends DialogFragment {
 
     public static final String TAG = AboutDialogFragment.class.getSimpleName();
-
-    private TextView tvAbout;
     private static final String BUNDLE_KEY_TV_ABOUT_TEXT = "about_tv_txt";
+    private TextView tvAbout;
+
+    @SuppressWarnings("SameParameterValue")
+    private static String readFromAssets(Context context, String filename) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(context.getAssets().open(filename)));
+
+        // do reading, usually loop until end of file reading
+        StringBuilder sb = new StringBuilder();
+        String mLine = reader.readLine();
+        while (mLine != null) {
+            sb.append(mLine).append('\n'); // process line
+            mLine = reader.readLine();
+        }
+        reader.close();
+        return sb.toString();
+    }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -65,21 +79,6 @@ public class AboutDialogFragment extends DialogFragment {
                 .setTitle(getString(R.string.button_about))
                 .setView(view)
                 .create();
-    }
-
-    @SuppressWarnings("SameParameterValue")
-    private static String readFromAssets(Context context, String filename) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(context.getAssets().open(filename)));
-
-        // do reading, usually loop until end of file reading
-        StringBuilder sb = new StringBuilder();
-        String mLine = reader.readLine();
-        while (mLine != null) {
-            sb.append(mLine).append('\n'); // process line
-            mLine = reader.readLine();
-        }
-        reader.close();
-        return sb.toString();
     }
 
     @Override

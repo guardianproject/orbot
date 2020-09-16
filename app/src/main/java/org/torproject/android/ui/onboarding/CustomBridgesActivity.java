@@ -46,6 +46,22 @@ public class CustomBridgesActivity extends AppCompatActivity implements View.OnC
 
     private EditText mEtPastedBridges;
 
+    // configures an EditText we assume to be multiline and nested in a ScrollView to be independently scrollable
+    @SuppressLint("ClickableViewAccessibility")
+    private static void configureMultilineEditTextInScrollView(EditText et) {
+        et.setVerticalScrollBarEnabled(true);
+        et.setOverScrollMode(View.OVER_SCROLL_ALWAYS);
+        et.setScrollBarStyle(View.SCROLLBARS_INSIDE_INSET);
+        et.setMovementMethod(ScrollingMovementMethod.getInstance());
+        et.setOnTouchListener((v, event) -> {
+            v.getParent().requestDisallowInterceptTouchEvent(true);
+            if ((event.getAction() & MotionEvent.ACTION_UP) != 0 && (event.getActionMasked() & MotionEvent.ACTION_UP) != 0) {
+                v.getParent().requestDisallowInterceptTouchEvent(false);
+            }
+            return false;
+        });
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -217,21 +233,5 @@ public class CustomBridgesActivity extends AppCompatActivity implements View.OnC
         Intent intent = new Intent(this, OrbotService.class);
         intent.setAction(TorServiceConstants.CMD_SIGNAL_HUP);
         startService(intent);
-    }
-
-    // configures an EditText we assume to be multiline and nested in a ScrollView to be independently scrollable
-    @SuppressLint("ClickableViewAccessibility")
-    private static void configureMultilineEditTextInScrollView(EditText et) {
-        et.setVerticalScrollBarEnabled(true);
-        et.setOverScrollMode(View.OVER_SCROLL_ALWAYS);
-        et.setScrollBarStyle(View.SCROLLBARS_INSIDE_INSET);
-        et.setMovementMethod(ScrollingMovementMethod.getInstance());
-        et.setOnTouchListener((v, event) -> {
-            v.getParent().requestDisallowInterceptTouchEvent(true);
-            if ((event.getAction() & MotionEvent.ACTION_UP) != 0 && (event.getActionMasked() & MotionEvent.ACTION_UP) != 0) {
-                v.getParent().requestDisallowInterceptTouchEvent(false);
-            }
-            return false;
-        });
     }
 }

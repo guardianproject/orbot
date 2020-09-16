@@ -1,6 +1,7 @@
 package org.torproject.android.service.util;
 
 import android.util.Log;
+
 import com.offbynull.portmapper.PortMapperFactory;
 import com.offbynull.portmapper.gateway.Bus;
 import com.offbynull.portmapper.gateway.Gateway;
@@ -19,17 +20,14 @@ public class PortForwarder {
     private boolean shutdown = false;
     private Thread mThread = null;
 
-    public void shutdown ()
-    {
+    public void shutdown() {
         shutdown = true;
     }
 
-    public void forward (final int internalPort, final int externalPort, final long lifetime) throws InterruptedException {
+    public void forward(final int internalPort, final int externalPort, final long lifetime) throws InterruptedException {
 
-        mThread = new Thread ()
-        {
-            public void run ()
-            {
+        mThread = new Thread() {
+            public void run() {
                 try {
                     forwardSync(internalPort, externalPort, lifetime);
                 } catch (InterruptedException e) {
@@ -42,7 +40,7 @@ public class PortForwarder {
     }
 
 
-    public void forwardSync (int internalPort, int externalPort, long lifetime) throws InterruptedException {
+    public void forwardSync(int internalPort, int externalPort, long lifetime) throws InterruptedException {
         // Start gateways
         Gateway network = NetworkGateway.create();
         Gateway process = ProcessGateway.create();
@@ -59,13 +57,13 @@ public class PortForwarder {
 // (both internal and external ports). Be mindful of this when choosing which
 // ports you want to map.
         MappedPort mappedPort = mapper.mapPort(PortType.TCP, internalPort, externalPort, lifetime);
-        Log.d(getClass().getName(),"Port mapping added: " + mappedPort);
+        Log.d(getClass().getName(), "Port mapping added: " + mappedPort);
 
 // Refresh mapping half-way through the lifetime of the mapping (for example,
 // if the mapping is available for 40 seconds, refresh it every 20 seconds)
-        while(!shutdown) {
+        while (!shutdown) {
             mappedPort = mapper.refreshPort(mappedPort, mappedPort.getLifetime() / 2L);
-            Log.d(getClass().getName(),"Port mapping refreshed: " + mappedPort);
+            Log.d(getClass().getName(), "Port mapping refreshed: " + mappedPort);
             Thread.sleep(mappedPort.getLifetime() * 1000L);
         }
 

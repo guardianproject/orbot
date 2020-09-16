@@ -3,6 +3,7 @@ package org.torproject.android.service.util;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
+
 import com.jaredrummler.android.shell.CommandResult;
 import com.jaredrummler.android.shell.Shell;
 import com.jaredrummler.android.shell.ShellExitCode;
@@ -18,7 +19,7 @@ public class CustomShell extends Shell {
 
 
     @WorkerThread
-    public static CommandResult run(@NonNull String shell, boolean waitFor, @Nullable Map<String,String> env, @NonNull String command) {
+    public static CommandResult run(@NonNull String shell, boolean waitFor, @Nullable Map<String, String> env, @NonNull String command) {
         List<String> stdout = Collections.synchronizedList(new ArrayList<String>());
         List<String> stderr = Collections.synchronizedList(new ArrayList<String>());
         int exitCode = -1;
@@ -56,17 +57,17 @@ public class CustomShell extends Shell {
             // make sure our threads are done gobbling, our streams are closed, and the process is destroyed - while the
             // latter two shouldn't be needed in theory, and may even produce warnings, in "normal" Java they are required
             // for guaranteed cleanup of resources, so lets be safe and do this on Android as well
-           /**
-            try {
-                stdin.close();
-            } catch (IOException e) {
-                // might be closed already
-            }**/
+            /**
+             try {
+             stdin.close();
+             } catch (IOException e) {
+             // might be closed already
+             }**/
 
-           if (waitFor) {
-               stdoutGobbler.join();
-               stderrGobbler.join();
-           }
+            if (waitFor) {
+                stdoutGobbler.join();
+                stderrGobbler.join();
+            }
 
         } catch (InterruptedException e) {
             exitCode = ShellExitCode.WATCHDOG_EXIT;

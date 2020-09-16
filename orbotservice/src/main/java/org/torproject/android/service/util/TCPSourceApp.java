@@ -49,61 +49,10 @@ import java.util.regex.Pattern;
 
 /**
  * Main class for the TCPSourceApp library.
- * @author Sebastiano Gottardo
  *
+ * @author Sebastiano Gottardo
  */
 public class TCPSourceApp {
-
-    /*
-     * This class represents an Android application. Each application is
-     * uniquely identified by its package name (e.g. com.megadevs.tcpsourceapp)
-     * and its version (e.g. 1.0).
-     */
-    public static class AppDescriptor {
-
-        private String packageName;
-        private String version;
-        private int uid;
-
-        public AppDescriptor(int uid, String pName, String ver) {
-            this.uid = uid;
-            packageName = pName;
-            version = ver;
-        }
-
-        public int getUid () {
-            return uid;
-        }
-
-        public String getPackageName() {
-            return packageName;
-        }
-
-        public String getVersion() {
-            return version;
-        }
-
-        /*
-         * Override of the 'equals' method, in order to have a proper
-         * comparison between two AppDescriptor objects.
-         *
-         * (non-Javadoc)
-         * @see java.lang.Object#equals(java.lang.Object)
-         */
-        @Override
-        public boolean equals(Object o) {
-
-            if (o instanceof AppDescriptor) {
-                boolean c1 = ((AppDescriptor) o).packageName.compareTo(this.packageName) == 0;
-                boolean c2 = ((AppDescriptor) o).version.compareTo(this.version) == 0;
-
-                return c1 && c2;
-            }
-
-            return false;
-        }
-
-    }
 
     /*
      * In a Linux-based OS, each active TCP socket is mapped in the following
@@ -111,9 +60,8 @@ public class TCPSourceApp {
      *  of a simple IPv4 address, or in the '/proc/net/tcp6' if an IPv6 address
      *  is available.
      */
-    private static final String TCP_4_FILE_PATH 	= "/proc/net/tcp";
-    private static final String TCP_6_FILE_PATH 	= "/proc/net/tcp6";
-
+    private static final String TCP_4_FILE_PATH = "/proc/net/tcp";
+    private static final String TCP_6_FILE_PATH = "/proc/net/tcp6";
     /*
      * Two regular expressions that are able to extract valuable informations
      * from the two /proc/net/tcp* files. More specifically, there are three
@@ -122,24 +70,20 @@ public class TCPSourceApp {
      * 	- port
      * 	- PID
      */
-    private static final String TCP_6_PATTERN 	= "\\d+:\\s([0-9A-F]{32}):([0-9A-F]{4})\\s[0-9A-F]{32}:[0-9A-F]{4}\\s[0-9A-F]{2}\\s[0-9]{8}:[0-9]{8}\\s[0-9]{2}:[0-9]{8}\\s[0-9]{8}\\s+([0-9]+)";
+    private static final String TCP_6_PATTERN = "\\d+:\\s([0-9A-F]{32}):([0-9A-F]{4})\\s[0-9A-F]{32}:[0-9A-F]{4}\\s[0-9A-F]{2}\\s[0-9]{8}:[0-9]{8}\\s[0-9]{2}:[0-9]{8}\\s[0-9]{8}\\s+([0-9]+)";
+    private static final String TCP_4_PATTERN = "\\d+:\\s([0-9A-F]{8}):([0-9A-F]{4})\\s[0-9A-F]{8}:[0-9A-F]{4}\\s[0-9A-F]{2}\\s[0-9A-F]{8}:[0-9A-F]{8}\\s[0-9]{2}:[0-9]{8}\\s[0-9A-F]{8}\\s+([0-9]+)";
 //sargo:/ $ cat /proc/net/tcp6
 //  sl  local_address                         remote_address                        st tx_queue rx_queue tr tm->when retrnsmt   uid  timeout inode
 //   0: 00000000000000000000000000000000:C36A 00000000000000000000000000000000:0000 8A 00000000:00000000 00:00000000 00000000  1001        0 35059 1 0000000000000000 99 0 0 10 0
 //   1: 00000000000000000000000000000000:A64B 00000000000000000000000000000000:0000 8A 00000000:00000000 00:00000000 00000000  1001        0 910009 1 0000000000000000 99 0 0 10 0
-
-
-    private static final String TCP_4_PATTERN 	= "\\d+:\\s([0-9A-F]{8}):([0-9A-F]{4})\\s[0-9A-F]{8}:[0-9A-F]{4}\\s[0-9A-F]{2}\\s[0-9A-F]{8}:[0-9A-F]{8}\\s[0-9]{2}:[0-9]{8}\\s[0-9A-F]{8}\\s+([0-9]+)";
-// sl  local_address rem_address   st tx_queue rx_queue tr tm->when retrnsmt   uid  timeout inode
-//   0: 00000000:C368 00000000:0000 8A 00000000:00000000 00:00000000 00000000  1001        0 34999 1 0000000000000000 99 0 0 10 0
-
     /*
      * Optimises the socket lookup by checking if the connected network
      * interface has a 'valid' IPv6 address (a global address, not a link-local
      * one).
      */
-    private static boolean checkConnectedIfaces	= true;
-
+    private static boolean checkConnectedIfaces = true;
+// sl  local_address rem_address   st tx_queue rx_queue tr tm->when retrnsmt   uid  timeout inode
+//   0: 00000000:C368 00000000:0000 8A 00000000:00000000 00:00000000 00000000  1001        0 34999 1 0000000000000000 99 0 0 10 0
 
     /**
      * The main method of the TCPSourceApp library. This method receives an
@@ -150,8 +94,8 @@ public class TCPSourceApp {
      * find the originating application.
      *
      * @param context a valid Android Context instance
-     * @param daddr the (logical) address of the destination
-     * @param dport the (logical) port of the destination
+     * @param daddr   the (logical) address of the destination
+     * @param dport   the (logical) port of the destination
      * @return an AppDescriptor object, representing the found application; null
      * if no application could be found
      */
@@ -192,8 +136,8 @@ public class TCPSourceApp {
             if (hasIPv6)
                 while (m6.find()) {
                     String addressEntry = m6.group(1);
-                    String portEntry 	= m6.group(2);
-                    int pidEntry 		= Integer.valueOf(m6.group(3));
+                    String portEntry = m6.group(2);
+                    int pidEntry = Integer.valueOf(m6.group(3));
 
                     if (Integer.parseInt(portEntry, 16) == dport) {
                         PackageManager manager = context.getPackageManager();
@@ -240,8 +184,8 @@ public class TCPSourceApp {
 
             while (m4.find()) {
                 String addressEntry = m4.group(1);
-                String portEntry 	= m4.group(2);
-                int pidEntry 	= Integer.valueOf(m4.group(3));
+                String portEntry = m4.group(2);
+                int pidEntry = Integer.valueOf(m4.group(3));
 
                 if (Integer.parseInt(portEntry, 16) == dport) {
                     PackageManager manager = context.getPackageManager();
@@ -310,6 +254,57 @@ public class TCPSourceApp {
      */
     public static void setCheckConnectedIfaces(boolean value) {
         checkConnectedIfaces = value;
+    }
+
+    /*
+     * This class represents an Android application. Each application is
+     * uniquely identified by its package name (e.g. com.megadevs.tcpsourceapp)
+     * and its version (e.g. 1.0).
+     */
+    public static class AppDescriptor {
+
+        private String packageName;
+        private String version;
+        private int uid;
+
+        public AppDescriptor(int uid, String pName, String ver) {
+            this.uid = uid;
+            packageName = pName;
+            version = ver;
+        }
+
+        public int getUid() {
+            return uid;
+        }
+
+        public String getPackageName() {
+            return packageName;
+        }
+
+        public String getVersion() {
+            return version;
+        }
+
+        /*
+         * Override of the 'equals' method, in order to have a proper
+         * comparison between two AppDescriptor objects.
+         *
+         * (non-Javadoc)
+         * @see java.lang.Object#equals(java.lang.Object)
+         */
+        @Override
+        public boolean equals(Object o) {
+
+            if (o instanceof AppDescriptor) {
+                boolean c1 = ((AppDescriptor) o).packageName.compareTo(this.packageName) == 0;
+                boolean c2 = ((AppDescriptor) o).version.compareTo(this.version) == 0;
+
+                return c1 && c2;
+            }
+
+            return false;
+        }
+
     }
 
 }

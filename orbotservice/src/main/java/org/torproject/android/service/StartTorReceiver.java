@@ -1,4 +1,3 @@
-
 package org.torproject.android.service;
 
 import android.content.BroadcastReceiver;
@@ -6,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.text.TextUtils;
+
 import org.torproject.android.service.util.Prefs;
 
 
