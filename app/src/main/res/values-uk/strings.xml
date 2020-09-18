@@ -88,7 +88,7 @@
     <string name="reachable_ports">Доступні порти</string>
     <string name="ports_reachable_behind_a_restrictive_firewall">Порти доступні із обмежуваного брандмауера</string>
     <string name="enter_ports">Введіть порти</string>
-    <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">ввімкнути вивід логу налогодження (потрібно використовувати adb або aLogCat для перегляду)</string>
+    <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Увімкнути вивід журналу зневадження (потрібно використовувати adb або aLogCat для перегляду)</string>
     <string name="project_home">Домашня сторінка(и) проекту: </string>
     <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
     <string name="third_party_software">Програми сторонніх розробників: </string>
