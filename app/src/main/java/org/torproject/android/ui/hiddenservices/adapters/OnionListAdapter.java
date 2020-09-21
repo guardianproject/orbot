@@ -4,14 +4,15 @@ import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-
-import androidx.appcompat.widget.SwitchCompat;
-import androidx.cursoradapter.widget.CursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.widget.SwitchCompat;
+import androidx.cursoradapter.widget.CursorAdapter;
+
 import org.torproject.android.R;
 import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
 
@@ -21,8 +22,7 @@ public class OnionListAdapter extends CursorAdapter {
     public OnionListAdapter(Context context, Cursor c, int flags) {
         super(context, c, flags);
 
-        cursorInflater = (LayoutInflater) context.getSystemService(
-                Context.LAYOUT_INFLATER_SERVICE);
+        cursorInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
@@ -47,9 +47,7 @@ public class OnionListAdapter extends CursorAdapter {
             ContentResolver resolver = mContext.getContentResolver();
             ContentValues fields = new ContentValues();
             fields.put(HSContentProvider.HiddenService.ENABLED, isChecked);
-            resolver.update(
-                    HSContentProvider.CONTENT_URI, fields, where, null
-            );
+            resolver.update(HSContentProvider.CONTENT_URI, fields, where, null);
 
             Toast.makeText(
                     mContext, R.string.please_restart_Orbot_to_enable_the_changes, Toast.LENGTH_LONG

@@ -11,14 +11,11 @@ import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Spinner;
+import android.widget.RadioButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.MenuItemCompat;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -33,17 +30,21 @@ import org.torproject.android.ui.hiddenservices.permissions.PermissionManager;
 import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
 
 public class HiddenServicesActivity extends AppCompatActivity {
+    private static final int REQUEST_CODE_READ_ZIP_BACKUP = 125;
     public final int WRITE_EXTERNAL_STORAGE_FROM_ACTIONBAR = 1;
     private ContentResolver mResolver;
     private OnionListAdapter mAdapter;
+    private RadioButton radioShowUserServices, radioShowAppServices;
     private FloatingActionButton fab;
-
     private String mWhere = HSContentProvider.HiddenService.CREATED_BY_USER + "=1";
+    private static final String BUNDLE_KEY_SHOW_USER_SERVICES = "show_user_services";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_hs_list_view);
+        radioShowUserServices = findViewById(R.id.radioUserServices);
+        radioShowAppServices = findViewById(R.id.radioAppServices);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -57,14 +58,15 @@ public class HiddenServicesActivity extends AppCompatActivity {
             dialog.show(getSupportFragmentManager(), "HSDataDialog");
         });
 
-        mAdapter = new OnionListAdapter(
-                this,
-                mResolver.query(HSContentProvider.CONTENT_URI, HSContentProvider.PROJECTION, mWhere, null, null),
-                0);
+        mAdapter = new OnionListAdapter(this, mResolver.query(HSContentProvider.CONTENT_URI, HSContentProvider.PROJECTION, mWhere, null, null), 0);
 
         mResolver.registerContentObserver(HSContentProvider.CONTENT_URI, true, new HSObserver(new Handler()));
 
         ListView onion_list = findViewById(R.id.onion_list);
+        boolean selectUserServices = savedInstanceState == null || savedInstanceState.getBoolean(BUNDLE_KEY_SHOW_USER_SERVICES);
+        if (selectUserServices) radioShowUserServices.setChecked(true);
+        else radioShowAppServices.setChecked(true);
+        filterServices(selectUserServices);
         onion_list.setAdapter(mAdapter);
 
         onion_list.setOnItemClickListener((parent, view, position, id) -> {
@@ -83,7 +85,12 @@ public class HiddenServicesActivity extends AppCompatActivity {
         });
     }
 
-    
+    @Override
+    protected void onSaveInstanceState(Bundle icicle) {
+        super.onSaveInstanceState(icicle);
+        icicle.putBoolean(BUNDLE_KEY_SHOW_USER_SERVICES, radioShowUserServices.isChecked());
+    }
+
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(LocaleHelper.onAttach(base));
@@ -92,38 +99,9 @@ public class HiddenServicesActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.hs_menu, menu);
-
-        MenuItem item = menu.findItem(R.id.hs_type);
-        Spinner spinner = (Spinner) MenuItemCompat.getActionView(item);
-
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.array_hs_types, android.R.layout.simple_spinner_item);
-
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> arg0, View v, int pos, long id) {
-                if (pos == 0) {
-                    mWhere = HSContentProvider.HiddenService.CREATED_BY_USER + "=1";
-                    fab.show();
-                } else {
-                    mWhere = HSContentProvider.HiddenService.CREATED_BY_USER + "=0";
-                    fab.hide();
-                }
-
-                mAdapter.changeCursor(mResolver.query(HSContentProvider.CONTENT_URI, HSContentProvider.PROJECTION, mWhere, null, null));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> arg0) {
-                // Do nothing
-            }
-        });
-
         return true;
     }
 
-    private static final int REQUEST_CODE_READ_ZIP_BACKUP = 125;
     private void doRestore() {
         Intent readFile = DiskUtils.createReadFileIntent("application/zip");
         startActivityForResult(readFile, REQUEST_CODE_READ_ZIP_BACKUP);
@@ -141,15 +119,12 @@ public class HiddenServicesActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.menu_restore_backup) {
+        if (item.getItemId() == R.id.menu_restore_backup) {
             if (PermissionManager.isLollipopOrHigher()
                     && !PermissionManager.hasExternalWritePermission(this)) {
                 PermissionManager.requestExternalWritePermissions(this, WRITE_EXTERNAL_STORAGE_FROM_ACTIONBAR);
                 return true;
             }
-
             doRestore();
         }
 
@@ -174,6 +149,30 @@ public class HiddenServicesActivity extends AppCompatActivity {
                 }
                 break;
             }
+        }
+    }
+
+    private void filterServices(boolean showUserServices) {
+        if (showUserServices) {
+            mWhere = HSContentProvider.HiddenService.CREATED_BY_USER + "=1";
+            fab.show();
+        } else {
+            mWhere = HSContentProvider.HiddenService.CREATED_BY_USER + "=0";
+            fab.hide();
+        }
+        mAdapter.changeCursor(mResolver.query(HSContentProvider.CONTENT_URI, HSContentProvider.PROJECTION, mWhere, null, null));
+    }
+
+    public void onRadioButtonClick(View view) {
+        switch (view.getId()) {
+            case R.id.radioUserServices:
+                filterServices(true);
+                break;
+            case R.id.radioAppServices:
+                filterServices(false);
+                break;
+            default:
+                break;
         }
     }
 
