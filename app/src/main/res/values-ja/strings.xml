@@ -127,7 +127,6 @@
   <string name="menu_qr">QRコード</string>
   <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">モバイルネットワークが頻繁にTorをブロックする場合、別の方法として \'ブリッジサーバー\'を使用することができます。オプションを１つ選択して、設定とテストを行ってください。</string>
   <string name="get_bridges_email">メール</string>
-  <string name="activate">アクティブ化</string>
   <string name="apps_mode">VPN モード</string>
     <string name="send_email">メール送信</string>
   <string name="vpn_default_world">世界中 (自動)</string>
@@ -146,9 +145,9 @@
   <string name="delete_service">サービスを削除</string>
   <string name="backup_saved_at_external_storage">バックアップは外部記憶装置に保存されました</string>
   <string name="backup_restored">バックアップから復元</string>
-  <string name="please_grant_permissions_for_external_storage">外部記憶へのアクセス許可を与えて下さい。</string>
     <string name="restore_backup">バックアップの復旧</string>
-    <string name="name_can_t_be_empty">名前はブランクのままにできません</string>
+  <string name="create_a_backup_first">最初に、バックアップを作成して下さい</string>
+  <string name="name_can_t_be_empty">名前はブランクのままにできません</string>
   <string name="fields_can_t_be_empty">フィールドを空にしておくことはできません</string>
   <string name="start_tor_again_for_finish_the_process">プロセスを完了するには、Torを再起動して下さい。</string>
   <string name="confirm_service_deletion">サービス削除を確認</string>

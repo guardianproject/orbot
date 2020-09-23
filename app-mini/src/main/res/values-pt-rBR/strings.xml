@@ -148,7 +148,6 @@
   <string name="delete_service">Remover Serviço</string>
   <string name="backup_saved_at_external_storage">Backup salvo em mídia externa</string>
   <string name="backup_restored">Backup Restaurado</string>
-  <string name="please_grant_permissions_for_external_storage">Por favor dê permissões ao armazenamento externo</string>
     <string name="restore_backup">Restaurar Backup</string>
     <string name="name_can_t_be_empty">O campo Nome não pode ser vazio</string>
   <string name="fields_can_t_be_empty">Campos não podem ser vazios</string>

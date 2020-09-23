@@ -147,8 +147,7 @@
   <string name="delete_service">Выдаліць службу</string>
   <string name="backup_saved_at_external_storage">Рэзервовая копія захавана на вонкавым сховішчы</string>
   <string name="backup_restored">Адноўлена з рэзервовай копіі</string>
-  <string name="please_grant_permissions_for_external_storage">Дайце дазвол для доступу да вонкавага сховішча</string>
-  <string name="restore_backup">Аднавіць з копіі</string>
+    <string name="restore_backup">Аднавіць з копіі</string>
     <string name="name_can_t_be_empty">Імя не можа быць пустым</string>
   <string name="fields_can_t_be_empty">Палі не могуць быць пустымі</string>
   <string name="start_tor_again_for_finish_the_process">Запусціце Tor ізноў для завяршэння працэсу</string>

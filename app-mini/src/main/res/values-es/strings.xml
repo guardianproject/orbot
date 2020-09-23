@@ -149,7 +149,6 @@ direcciones (o rangos). No prevalecen sobre las configuraciones de exclusión de
   <string name="delete_service">Borrar servicio</string>
   <string name="backup_saved_at_external_storage">Copia de seguridad guardada en un almacenamiento externo</string>
   <string name="backup_restored">Copia de seguridad restaurada</string>
-  <string name="please_grant_permissions_for_external_storage">Por favor, conceda permisos para almacenamiento externo</string>
     <string name="restore_backup">Restaurar copia de seguridad</string>
     <string name="name_can_t_be_empty">El nombre no puede estar vacío</string>
   <string name="fields_can_t_be_empty">Los campos no pueden estar vacíos</string>

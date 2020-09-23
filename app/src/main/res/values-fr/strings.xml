@@ -127,7 +127,6 @@
   <string name="menu_qr">Codes QR</string>
   <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Si votre réseau mobile bloque Tor activement, vous pouvez utiliser un serveur-pont comme moyen de remplacement. CHOISIR une des options pour configurer et tester…</string>
   <string name="get_bridges_email">Courriel</string>
-  <string name="activate">Activer</string>
   <string name="apps_mode">Mode RPV</string>
     <string name="send_email">Envoyer un courriel</string>
   <string name="vpn_default_world">Mondial (Auto)</string>
@@ -146,9 +145,9 @@
   <string name="delete_service">Supprimer le service</string>
   <string name="backup_saved_at_external_storage">La sauvegarde a été enregistrée sur une mémoire externe</string>
   <string name="backup_restored">La sauvegarde a été restaurée</string>
-  <string name="please_grant_permissions_for_external_storage">Veuillez accorder les droits vers la mémoire externe</string>
     <string name="restore_backup">Restaurer la sauvegarde</string>
-    <string name="name_can_t_be_empty">Le nom ne peut pas être vide</string>
+  <string name="create_a_backup_first">Créer d’abord une sauvegarde</string>
+  <string name="name_can_t_be_empty">Le nom ne peut pas être vide</string>
   <string name="fields_can_t_be_empty">Les champs ne peuvent pas être vides</string>
   <string name="start_tor_again_for_finish_the_process">Redémarrer Tor pour terminer le processus</string>
   <string name="confirm_service_deletion">Confirmer la suppression du service</string>

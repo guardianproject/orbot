@@ -148,7 +148,6 @@
   <string name="delete_service">บริการลบ</string>
   <string name="backup_saved_at_external_storage">ข้อมูลสำรองบันทึกที่ที่เก็บข้อมูลภายนอก</string>
   <string name="backup_restored">คืนค่าข้อมูลสำรอง</string>
-  <string name="please_grant_permissions_for_external_storage">กรุณาอนุญาตให้เข้าถึงที่เก็บข้อมูลภายนอก</string>
     <string name="restore_backup">คืนค่าข้อมูลสำรอง</string>
     <string name="name_can_t_be_empty">ปล่อยชื่อให้ว่างไม่ได้</string>
   <string name="fields_can_t_be_empty">ปล่อยเขตข้อมูลให้ว่างไม่ได้</string>

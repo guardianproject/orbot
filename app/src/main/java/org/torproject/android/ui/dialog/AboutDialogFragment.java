@@ -2,7 +2,6 @@ package org.torproject.android.ui.dialog;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.text.Html;
@@ -12,32 +11,16 @@ import android.widget.TextView;
 import androidx.fragment.app.DialogFragment;
 
 import org.torproject.android.R;
+import org.torproject.android.core.DiskUtils;
 import org.torproject.android.service.OrbotService;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class AboutDialogFragment extends DialogFragment {
 
     public static final String TAG = AboutDialogFragment.class.getSimpleName();
     private static final String BUNDLE_KEY_TV_ABOUT_TEXT = "about_tv_txt";
     private TextView tvAbout;
-
-    @SuppressWarnings("SameParameterValue")
-    private static String readFromAssets(Context context, String filename) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(context.getAssets().open(filename)));
-
-        // do reading, usually loop until end of file reading
-        StringBuilder sb = new StringBuilder();
-        String mLine = reader.readLine();
-        while (mLine != null) {
-            sb.append(mLine).append('\n'); // process line
-            mLine = reader.readLine();
-        }
-        reader.close();
-        return sb.toString();
-    }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -69,7 +52,7 @@ public class AboutDialogFragment extends DialogFragment {
 
         if (buildAboutText) {
             try {
-                String aboutText = readFromAssets(getContext(), "LICENSE");
+                String aboutText = DiskUtils.readFileFromAssets("LICENSE", getContext());
                 aboutText = aboutText.replace("\n", "<br/>");
                 tvAbout.setText(Html.fromHtml(aboutText));
             } catch (IOException e) {

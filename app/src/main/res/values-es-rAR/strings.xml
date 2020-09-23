@@ -105,8 +105,7 @@
   <string name="kb">KB</string>
   <string name="mb">MB</string>
   <string name="get_bridges_email">Email</string>
-  <string name="activate">Activar</string>
-    <string name="save">Guardar</string>
+  <string name="save">Guardar</string>
   <string name="name">Nombre</string>
   <string name="disable">Deshabilitar</string>
 </resources>

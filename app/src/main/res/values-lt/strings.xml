@@ -32,7 +32,6 @@
   <string name="bridges">Tinklų tiltai</string>
     <string name="set_locale_title">Kalba</string>
     <string name="get_bridges_email">El. paštas</string>
-  <string name="activate">Aktyvuoti</string>
   <string name="save">Įrašyti</string>
   <string name="name">Vardas</string>
   <string name="backup_restored">Atsarginė kopija atkurta</string>

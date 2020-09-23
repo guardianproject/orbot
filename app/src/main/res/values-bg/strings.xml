@@ -121,7 +121,6 @@
   <string name="restart_orbot_to_use_this_bridge_">Моля, рестартирай Orbot, за да влязат в действие промените</string>
   <string name="menu_qr">QR Кодове</string>
   <string name="get_bridges_email">Имейл</string>
-  <string name="activate">Активирай</string>
   <string name="send_email">Изпрати имейл</string>
   <string name="hidden_services">Скрити услуги</string>
   <string name="title_activity_hidden_services">Скрити услуги</string>

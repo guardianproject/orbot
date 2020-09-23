@@ -121,7 +121,6 @@
   <string name="restart_orbot_to_use_this_bridge_">Silakan start ulang Orbot untuk mengaktifkan perubahan</string>
   <string name="menu_qr">Kode QR</string>
   <string name="get_bridges_email">Email</string>
-  <string name="activate">Aktivasi</string>
   <string name="send_email">Kirim Email</string>
   <string name="save">Simpan</string>
   <string name="name">Nama</string>

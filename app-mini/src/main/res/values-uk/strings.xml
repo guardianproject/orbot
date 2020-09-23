@@ -148,7 +148,6 @@
   <string name="delete_service">Вилучити Сервіс</string>
   <string name="backup_saved_at_external_storage">Резервна копія збережена на зовнішній пам\'яті</string>
   <string name="backup_restored">Резервне копіювання відновлено</string>
-  <string name="please_grant_permissions_for_external_storage">Надайте дозволи на зовнішню пам\'ять</string>
     <string name="restore_backup">Відновити резервну копію</string>
     <string name="name_can_t_be_empty">Назва не може бути порожньою</string>
   <string name="fields_can_t_be_empty">Поля не можуть бути порожніми</string>

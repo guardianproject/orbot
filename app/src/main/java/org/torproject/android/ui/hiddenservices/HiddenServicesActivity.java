@@ -3,7 +3,6 @@ package org.torproject.android.ui.hiddenservices;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -13,7 +12,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -29,15 +30,16 @@ import org.torproject.android.ui.hiddenservices.dialogs.HSDataDialog;
 import org.torproject.android.ui.hiddenservices.permissions.PermissionManager;
 import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
 
+import java.io.File;
+
 public class HiddenServicesActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_READ_ZIP_BACKUP = 125;
-    public final int WRITE_EXTERNAL_STORAGE_FROM_ACTIONBAR = 1;
+    private static final String BUNDLE_KEY_SHOW_USER_SERVICES = "show_user_services";
     private ContentResolver mResolver;
     private OnionListAdapter mAdapter;
     private RadioButton radioShowUserServices, radioShowAppServices;
     private FloatingActionButton fab;
     private String mWhere = HSContentProvider.HiddenService.CREATED_BY_USER + "=1";
-    private static final String BUNDLE_KEY_SHOW_USER_SERVICES = "show_user_services";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,9 +104,24 @@ public class HiddenServicesActivity extends AppCompatActivity {
         return true;
     }
 
-    private void doRestore() {
-        Intent readFile = DiskUtils.createReadFileIntent("application/zip");
-        startActivityForResult(readFile, REQUEST_CODE_READ_ZIP_BACKUP);
+    private void doRestoreLegacy() { // API 16, 17, 18
+        File backupDir = DiskUtils.getOrCreateLegacyBackupDir();
+        File[] files = backupDir.listFiles((dir, name) -> name.toLowerCase().endsWith(".zip"));
+        if (files != null) {
+            if (files.length == 0) {
+                Toast.makeText(this, R.string.create_a_backup_first, Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            CharSequence[] fileNames = new CharSequence[files.length];
+            for (int i = 0; i < files.length; i++) fileNames[i] = files[i].getName();
+
+            new AlertDialog.Builder(this)
+                    .setTitle(R.string.restore_backup)
+                    .setItems(fileNames, (dialog, which) -> new BackupUtils(HiddenServicesActivity.this).restoreZipBackupLegacy(files[which]))
+                    .show();
+
+        }
     }
 
     @Override
@@ -120,36 +137,15 @@ public class HiddenServicesActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menu_restore_backup) {
-            if (PermissionManager.isLollipopOrHigher()
-                    && !PermissionManager.hasExternalWritePermission(this)) {
-                PermissionManager.requestExternalWritePermissions(this, WRITE_EXTERNAL_STORAGE_FROM_ACTIONBAR);
-                return true;
+            if (DiskUtils.supportsStorageAccessFramework()) {
+                Intent readFile = DiskUtils.createReadFileIntent("application/zip");
+                startActivityForResult(readFile, REQUEST_CODE_READ_ZIP_BACKUP);
+            } else { // API 16, 17, 18
+                doRestoreLegacy();
             }
-            doRestore();
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        if (grantResults.length < 1 || grantResults[0] != PackageManager.PERMISSION_GRANTED)
-            return;
-
-        switch (requestCode) {
-            case WRITE_EXTERNAL_STORAGE_FROM_ACTIONBAR: {
-                doRestore();
-                break;
-            }
-            case HSActionsDialog.WRITE_EXTERNAL_STORAGE_FROM_ACTION_DIALOG: {
-                try {
-                    HSActionsDialog activeDialog = (HSActionsDialog) getSupportFragmentManager().findFragmentByTag(HSActionsDialog.class.getSimpleName());
-                    activeDialog.doBackup();
-                } catch (ClassCastException e) {
-                }
-                break;
-            }
-        }
     }
 
     private void filterServices(boolean showUserServices) {
@@ -185,19 +181,17 @@ public class HiddenServicesActivity extends AppCompatActivity {
         public void onChange(boolean selfChange) {
             mAdapter.changeCursor(mResolver.query(HSContentProvider.CONTENT_URI, HSContentProvider.PROJECTION, mWhere, null, null));
 
-            if (PermissionManager.isLollipopOrHigher()) {
-                Cursor active = mResolver.query(
-                        HSContentProvider.CONTENT_URI, HSContentProvider.PROJECTION, HSContentProvider.HiddenService.ENABLED + "=1", null, null);
+            if (!PermissionManager.isLollipopOrHigher()) return;
+            Cursor active = mResolver.query(HSContentProvider.CONTENT_URI, HSContentProvider.PROJECTION, HSContentProvider.HiddenService.ENABLED + "=1", null, null);
 
-                if (active == null) return;
+            if (active == null) return;
 
-                if (active.getCount() > 0) // Call only if there running services
-                    PermissionManager.requestBatteryPermmssions(HiddenServicesActivity.this, getApplicationContext());
-                else // Drop whe not needed
-                    PermissionManager.requestDropBatteryPermmssions(HiddenServicesActivity.this, getApplicationContext());
+            if (active.getCount() > 0) // Call only if there running services
+                PermissionManager.requestBatteryPermissions(HiddenServicesActivity.this, getApplicationContext());
+            else // Drop whe not needed
+                PermissionManager.requestDropBatteryPermissions(HiddenServicesActivity.this, getApplicationContext());
 
-                active.close();
-            }
+            active.close();
         }
     }
 }

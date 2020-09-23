@@ -127,7 +127,6 @@
   <string name="menu_qr">QR Codes</string>
   <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Se sua rede de dados bloqueia o Tor, você pode utilizar um \'Servidor Bridge\' como alternativa contra o bloqueio. SELECIONE umas das opções para configurar e testar..,.</string>
   <string name="get_bridges_email">Email</string>
-  <string name="activate">Atvar</string>
   <string name="apps_mode">Modo VPN</string>
   <string name="send_email">Enviar Email</string>
   <string name="vpn_default_world">Global (Automático)</string>
@@ -146,9 +145,9 @@
   <string name="delete_service">Remover Serviço</string>
   <string name="backup_saved_at_external_storage">Backup salvo em mídia externa</string>
   <string name="backup_restored">Backup Restaurado</string>
-  <string name="please_grant_permissions_for_external_storage">Por favor dê permissões ao armazenamento externo</string>
     <string name="restore_backup">Restaurar Backup</string>
-    <string name="name_can_t_be_empty">O campo Nome não pode ser vazio</string>
+  <string name="create_a_backup_first">Criar primeiro backup</string>
+  <string name="name_can_t_be_empty">O campo Nome não pode ser vazio</string>
   <string name="fields_can_t_be_empty">Campos não podem ser vazios</string>
   <string name="confirm_service_deletion">Confirmar a remoção do serviço</string>
     <string name="service_type">Tipo do Serviço</string>

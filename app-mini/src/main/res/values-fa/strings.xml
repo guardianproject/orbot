@@ -148,7 +148,6 @@
   <string name="delete_service">حذف سرویس</string>
   <string name="backup_saved_at_external_storage">بک‌آپ در انباره خارجی ذخیره شد</string>
   <string name="backup_restored">بک‌آپ بازگردانده شد</string>
-  <string name="please_grant_permissions_for_external_storage">لطفا به  انباره خارجی اجازه دسترسی بدهید</string>
     <string name="restore_backup">برگرداندن بک‌آپ</string>
     <string name="name_can_t_be_empty">نام نباید خالی باشد</string>
   <string name="fields_can_t_be_empty">زمینه‌ها نباید خالی باشند</string>

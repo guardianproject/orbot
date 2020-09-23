@@ -148,7 +148,6 @@
   <string name="delete_service">刪除服務</string>
   <string name="backup_saved_at_external_storage">備份檔儲存在外部儲存器</string>
   <string name="backup_restored">備份已還原</string>
-  <string name="please_grant_permissions_for_external_storage">請授權外接儲存器使用</string>
     <string name="restore_backup">還原備份</string>
     <string name="name_can_t_be_empty">名稱不可空白</string>
   <string name="fields_can_t_be_empty">欄位不可空白</string>

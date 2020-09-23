@@ -128,7 +128,6 @@ direcciones (o rangos). No prevalecen sobre las configuraciones de exclusión de
   <string name="menu_qr">Códigos QR</string>
   <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Si su red móvil bloquea Tor activamente, puede usar un \'Servidor Puente\' como alternativa para acceder. SELECCIONE una de las opciones a configurar y probar...</string>
   <string name="get_bridges_email">Correo electrónico</string>
-  <string name="activate">Activar</string>
   <string name="apps_mode">Modo VPN</string>
     <string name="send_email">Enviar correo</string>
   <string name="vpn_default_world">Global (Automático)</string>
@@ -147,9 +146,9 @@ direcciones (o rangos). No prevalecen sobre las configuraciones de exclusión de
   <string name="delete_service">Borrar servicio</string>
   <string name="backup_saved_at_external_storage">Copia de seguridad guardada en un almacenamiento externo</string>
   <string name="backup_restored">Copia de seguridad restaurada</string>
-  <string name="please_grant_permissions_for_external_storage">Por favor, conceda permisos para almacenamiento externo</string>
     <string name="restore_backup">Restaurar copia de seguridad</string>
-    <string name="name_can_t_be_empty">El nombre no puede estar vacío</string>
+  <string name="create_a_backup_first">Primero cree una copia de seguridad</string>
+  <string name="name_can_t_be_empty">El nombre no puede estar vacío</string>
   <string name="fields_can_t_be_empty">Los campos no pueden estar vacíos</string>
   <string name="start_tor_again_for_finish_the_process">Inicie Tor de nuevo para finalizar el proceso</string>
   <string name="confirm_service_deletion">Confirme el borrado del servicio</string>

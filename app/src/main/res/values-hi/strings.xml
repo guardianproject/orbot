@@ -128,7 +128,6 @@
   <string name="menu_qr">QR कोड</string>
   <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">यदि आपका मोबाइल नेटवर्क सक्रिय रूप से टो को ब्लॉक करता है, तो आप \'पुल सर्वर\' को एक वैकल्पिक तरीके से उपयोग कर सकते हैं। कॉन्फ़िगर और परीक्षण करने के लिए विकल्पों में से एक का चयन करें ..,।</string>
   <string name="get_bridges_email">ईमेल</string>
-  <string name="activate">सक्रिय</string>
   <string name="apps_mode">वीपीएन मोड</string>
     <string name="send_email">ईमेल भेजें</string>
   <string name="vpn_default_world">ग्लोबल (ऑटो)</string>
@@ -147,9 +146,9 @@
   <string name="delete_service">सेवा हटाएँ</string>
   <string name="backup_saved_at_external_storage">बाह्य संग्रहण में बैकअप सहेजा गया</string>
   <string name="backup_restored">बैकअप को पुनर्स्थापित किया गया</string>
-  <string name="please_grant_permissions_for_external_storage">कृपया बाहरी संग्रहण के लिए अनुमति दें</string>
     <string name="restore_backup">बैकअप बहाल</string>
-    <string name="name_can_t_be_empty">नाम रिक्त नहीं हो सकता</string>
+  <string name="create_a_backup_first">पहले बैकअप बनाएं</string>
+  <string name="name_can_t_be_empty">नाम रिक्त नहीं हो सकता</string>
   <string name="fields_can_t_be_empty">फ़ील्ड रिक्त नहीं हो सकते</string>
   <string name="start_tor_again_for_finish_the_process">प्रक्रिया को खत्म करने के लिए Tor पुन: प्रारंभ करें</string>
   <string name="confirm_service_deletion">सेवा हटाने की पुष्टि करें</string>

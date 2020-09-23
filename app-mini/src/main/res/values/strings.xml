@@ -187,7 +187,6 @@
     <string name="delete_service">Delete Service</string>
     <string name="backup_saved_at_external_storage">Backup saved at external storage</string>
     <string name="backup_restored">Backup restored</string>
-    <string name="please_grant_permissions_for_external_storage">Please grant permissions for external storage</string>
     <string name="restore_backup">Restore Backup</string>
     <string name="name_can_t_be_empty">Name can\'t be empty</string>
     <string name="fields_can_t_be_empty">Fields can\'t be empty</string>

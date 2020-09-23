@@ -127,7 +127,6 @@
   <string name="menu_qr">QR 碼</string>
   <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">如果行動網路主動地封鎖 Tor 可以使用\"橋接伺服器\"作為替代方式.選擇一個選項作設定和測試</string>
   <string name="get_bridges_email">Email</string>
-  <string name="activate">啟用</string>
   <string name="apps_mode">VPN 模式</string>
     <string name="send_email">寄送電子信件</string>
   <string name="vpn_default_world">全域(自動)</string>
@@ -146,9 +145,9 @@
   <string name="delete_service">刪除服務</string>
   <string name="backup_saved_at_external_storage">備份檔儲存在外部儲存器</string>
   <string name="backup_restored">備份已還原</string>
-  <string name="please_grant_permissions_for_external_storage">請授權外接儲存器使用</string>
     <string name="restore_backup">還原備份</string>
-    <string name="name_can_t_be_empty">名稱不可空白</string>
+  <string name="create_a_backup_first">先創立備份</string>
+  <string name="name_can_t_be_empty">名稱不可空白</string>
   <string name="fields_can_t_be_empty">欄位不可空白</string>
   <string name="start_tor_again_for_finish_the_process">再次開啟 Tor  以完成此過程</string>
   <string name="confirm_service_deletion">確認服務刪除</string>

@@ -127,7 +127,6 @@
   <string name="menu_qr">รหัสคิวอาร์</string>
   <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">หากเครือข่ายโทรศัพท์ของคุณปิดกั้น Tor คุณสามารถใช้ \'เซิร์ฟเวอร์ Bridge\' เป็นตัวเลือกในการเข้าถึงได้ เลือกตัวเลือกหนึ่งเพื่อกำหนดค่าและทดสอบ...</string>
   <string name="get_bridges_email">อีเมล</string>
-  <string name="activate">เปิดใช้งาน</string>
   <string name="apps_mode">โหมด VPN</string>
     <string name="send_email">ส่งอีเมล</string>
   <string name="vpn_default_world">ส่วนรวม (อัตโนมัติ)</string>
@@ -146,9 +145,9 @@
   <string name="delete_service">บริการลบ</string>
   <string name="backup_saved_at_external_storage">ข้อมูลสำรองบันทึกที่ที่เก็บข้อมูลภายนอก</string>
   <string name="backup_restored">คืนค่าข้อมูลสำรอง</string>
-  <string name="please_grant_permissions_for_external_storage">กรุณาอนุญาตให้เข้าถึงที่เก็บข้อมูลภายนอก</string>
     <string name="restore_backup">คืนค่าข้อมูลสำรอง</string>
-    <string name="name_can_t_be_empty">ปล่อยชื่อให้ว่างไม่ได้</string>
+  <string name="create_a_backup_first">สร้างข้อมูลสำรองก่อน</string>
+  <string name="name_can_t_be_empty">ปล่อยชื่อให้ว่างไม่ได้</string>
   <string name="fields_can_t_be_empty">ปล่อยเขตข้อมูลให้ว่างไม่ได้</string>
   <string name="start_tor_again_for_finish_the_process">เริ่มทำงาน Tor อีกครั้งเพื่อจบกระบวนการ</string>
   <string name="confirm_service_deletion">ยืนยันการลบบริการ</string>

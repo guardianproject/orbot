@@ -127,7 +127,6 @@
   <string name="menu_qr">Κώδικες QR</string>
   <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Αν το δίκτυο κινητής τηλεφωνίας σας μπλοκάρει ενεργά το Tor, μπορείτε να χρησιμοποιήσετε μια γέφυρα για να έχετε πρόσβαση στο δίκτυο. ΕΠΙΛΕΞΤΕ έναν από τους παραπάνω τύπους γέφυρας για να ενεργοποιήσετε τις γέφυρες.</string>
   <string name="get_bridges_email">Email</string>
-  <string name="activate">Ενεργοποίηση</string>
   <string name="apps_mode">Λειτουργία VPN</string>
     <string name="send_email">Στείλτε Email</string>
   <string name="vpn_default_world">Παγκόσμια (Auto)</string>
@@ -146,9 +145,9 @@
   <string name="delete_service">Διαγραφή υπηρεσίας</string>
   <string name="backup_saved_at_external_storage">Το αντίγράφο ασφαλείας αποθηκεύθηκε σε εξωτερικό μέσο αποθήκευσης</string>
   <string name="backup_restored">Το αντίγραφο ασφαλείας επαναφέρθηκε</string>
-  <string name="please_grant_permissions_for_external_storage">Παρακαλούμε να παραχωρήσετε δικαιώματα για εξωτερική αποθήκευση</string>
     <string name="restore_backup">Επαναφορά αντιγράφου ασφαλείας</string>
-    <string name="name_can_t_be_empty">Το όνομα δεν γίνεται να είναι κενό</string>
+  <string name="create_a_backup_first">Δημιουργήστε πρώτα ένα αντίγραφο ασφαλείας </string>
+  <string name="name_can_t_be_empty">Το όνομα δεν γίνεται να είναι κενό</string>
   <string name="fields_can_t_be_empty">Τα πεδία δεν μπορεί να είναι κενά</string>
   <string name="start_tor_again_for_finish_the_process">Έναρξη ξανά τού Tor για τον τερματισμό της ενέργειας</string>
   <string name="confirm_service_deletion">Επιβεβαίωση διαγραφής υπηρεσίας</string>

@@ -59,20 +59,43 @@ public class ZipIt {
         return true;
     }
 
+    public boolean unzipLegacy(String outputPath, File zipFile) {
+        try {
+            FileInputStream fis = new FileInputStream((zipFile));
+            ZipInputStream zis = new ZipInputStream(new BufferedInputStream(fis));
+            boolean returnVal = extractFromZipInputStream(outputPath, zis);
+            fis.close();
+            return returnVal;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public boolean unzip(String outputPath) {
         InputStream is;
-        ZipInputStream zis;
-
         try {
-            String filename;
             is = contentResolver.openInputStream(zipFile);
-            zis = new ZipInputStream(new BufferedInputStream(is));
+            ZipInputStream zis = new ZipInputStream(new BufferedInputStream(is));
+            boolean returnVal = extractFromZipInputStream(outputPath, zis);
+            is.close();
+            return returnVal;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    private boolean extractFromZipInputStream(String outputPath, ZipInputStream zis) {
+        try {
             ZipEntry ze;
             byte[] buffer = new byte[1024];
             int count;
 
+            new File(outputPath).mkdirs();
+
             while ((ze = zis.getNextEntry()) != null) {
-                filename = ze.getName();
+                String filename = ze.getName();
 
                 // Need to create directories if not exists, or it will generate an Exception...
                 if (ze.isDirectory()) {
@@ -92,12 +115,12 @@ public class ZipIt {
             }
 
             zis.close();
-            is.close();
         } catch (IOException e) {
             e.printStackTrace();
             return false;
         }
-
         return true;
     }
+
+
 }

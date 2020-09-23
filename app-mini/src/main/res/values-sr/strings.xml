@@ -146,7 +146,6 @@
   <string name="delete_service">Обриши Услугу</string>
   <string name="backup_saved_at_external_storage">Резербна копија је сачувана на спољној меморији</string>
   <string name="backup_restored">Резервна копија је обновљена</string>
-  <string name="please_grant_permissions_for_external_storage">Молимо да дате дозволе за екстерно складиштење</string>
     <string name="restore_backup">Обнови резервну копију</string>
     <string name="name_can_t_be_empty">Име не може бити празно</string>
   <string name="fields_can_t_be_empty">Поља не могу бити празна</string>

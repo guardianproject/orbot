@@ -123,7 +123,6 @@
   <string name="restart_orbot_to_use_this_bridge_">الرجاء إعادة تشغيل أوربوت لتفعيل التعديلات</string>
   <string name="menu_qr">رمز كيو آر</string>
   <string name="get_bridges_email">البريد الإلكتروني</string>
-  <string name="activate">تفعيل</string>
   <string name="apps_mode">وضع الـ VPN</string>
   <string name="send_email">أرسل بريد الكتروني</string>
   <string name="vpn_default_world">شامل (تلقائي)</string>
@@ -143,7 +142,8 @@
   <string name="backup_saved_at_external_storage">تمت عملية حفظ النسخة الإحتياطية في ذاكرة التخزين الخارجية</string>
   <string name="backup_restored">تمت استعادة النسخة الإحتياطية</string>
   <string name="restore_backup">إسترجاع نسخة احتياطية</string>
-    <string name="name_can_t_be_empty">لا يمكن ترك الإسم فارغا</string>
+  <string name="create_a_backup_first">قم أولاً بإنشاء نسخة إحتياطية</string>
+  <string name="name_can_t_be_empty">لا يمكن ترك الإسم فارغا</string>
   <string name="fields_can_t_be_empty">لا يمكن ترك الحقول فارغة</string>
   <string name="start_tor_again_for_finish_the_process">قم بتشغيل تور ثانيةً لإنهاء العملية</string>
   <string name="confirm_service_deletion">تأكيد حذف الخدمة</string>

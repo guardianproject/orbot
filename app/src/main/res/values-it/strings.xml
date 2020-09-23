@@ -127,7 +127,6 @@
   <string name="menu_qr">Codici QR</string>
   <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Se la tua rete mobile blocca attivamente Tor, puoi usare un \'Server Bridge\' come via alternativa. SELEZIONA una delle opzioni per configurare e testare...</string>
   <string name="get_bridges_email">Email</string>
-  <string name="activate">Attiva</string>
   <string name="apps_mode">Modalità VPN</string>
     <string name="send_email">Invia email</string>
   <string name="vpn_default_world">Globale (Auto)</string>
@@ -146,9 +145,9 @@
   <string name="delete_service">Elimina il servizio</string>
   <string name="backup_saved_at_external_storage">Backup salvato nell\'archiviazione esterna</string>
   <string name="backup_restored">Backup ripristinato</string>
-  <string name="please_grant_permissions_for_external_storage">Consenti l\'autorizzazione per l\'archiviazione esterna</string>
     <string name="restore_backup">Ripristina backup</string>
-    <string name="name_can_t_be_empty">Il nome non può essere vuoto</string>
+  <string name="create_a_backup_first">Prima crea un backup</string>
+  <string name="name_can_t_be_empty">Il nome non può essere vuoto</string>
   <string name="fields_can_t_be_empty">I campi non possono essere vuoti</string>
   <string name="start_tor_again_for_finish_the_process">Riavvia Tor per finire il processo</string>
   <string name="confirm_service_deletion">Conferma l\'eliminazione del servizio</string>

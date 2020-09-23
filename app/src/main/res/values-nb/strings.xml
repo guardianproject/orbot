@@ -123,7 +123,6 @@
   <string name="restart_orbot_to_use_this_bridge_">Gjør omstart av Orbot før endringer trer i kraft</string>
   <string name="menu_qr">QR-koder</string>
   <string name="get_bridges_email">E-post</string>
-    <string name="activate">Aktiver</string>
   <string name="apps_mode">VPN-modus</string>
   <string name="send_email">Send e-post</string>
   <string name="hidden_services">Hidden Services</string>
@@ -140,7 +139,8 @@
   <string name="delete_service">Slett tjeneste</string>
   <string name="backup_restored">Sikkerhetskopi gjenopprettet</string>
     <string name="restore_backup">Gjenopprett sikkerhetskopi</string>
-    <string name="name_can_t_be_empty">Navnet kan ikke være tomt</string>
+  <string name="create_a_backup_first">Opprett en sikkerhetskopi først</string>
+  <string name="name_can_t_be_empty">Navnet kan ikke være tomt</string>
   <string name="fields_can_t_be_empty">Felter kan ikke stå tomme</string>
   <string name="start_tor_again_for_finish_the_process">Start Tor igjen for å fullføre prosessen</string>
   <string name="confirm_service_deletion">Bekreft sletting av tjeneste</string>

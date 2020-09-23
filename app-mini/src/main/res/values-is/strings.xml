@@ -148,7 +148,6 @@
   <string name="delete_service">Eyða þjónustu</string>
   <string name="backup_saved_at_external_storage">Öryggisafrit var vistað í ytri gagnageymslu</string>
   <string name="backup_restored">Öryggisafrit var endurheimt</string>
-  <string name="please_grant_permissions_for_external_storage">Gefðu heimild til að nota ytri gagnageymslu</string>
     <string name="restore_backup">Endurheimta úr öryggisafriti</string>
     <string name="name_can_t_be_empty">Nafnið má ekki vera autt</string>
   <string name="fields_can_t_be_empty">Gagnasvið mega ekki vera auð</string>

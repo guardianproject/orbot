@@ -148,8 +148,7 @@
   <string name="delete_service">Избриши услуга</string>
   <string name="backup_saved_at_external_storage">Резервната копија е снимена на надворешна меморија</string>
   <string name="backup_restored">Вратено од резервна копија</string>
-  <string name="please_grant_permissions_for_external_storage">Ве молиме дадете дозволи за надворешна меморија</string>
-  <string name="restore_backup">Врати резервна копија</string>
+    <string name="restore_backup">Врати резервна копија</string>
     <string name="name_can_t_be_empty">Името не може да биде празно</string>
   <string name="fields_can_t_be_empty">Полињата не можат да бидат празни</string>
   <string name="start_tor_again_for_finish_the_process">Стартувај го Tor повторно да го заврши процесот</string>

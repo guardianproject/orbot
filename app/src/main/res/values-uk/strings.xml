@@ -127,7 +127,6 @@
   <string name="menu_qr">QR-коди</string>
   <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Якщо ваша мобільна мережа активно блокує Tor, ви можете використовувати \'Bridge Server\' як альтернативний спосіб входу. ВИБЕРИ один із параметрів для налаштування та тестування...</string>
   <string name="get_bridges_email">Email</string>
-  <string name="activate">Активувати</string>
   <string name="apps_mode">VPN Спосіб</string>
     <string name="send_email">Надіслати листа</string>
   <string name="vpn_default_world">Глобальний (автоматичний)</string>
@@ -146,9 +145,9 @@
   <string name="delete_service">Вилучити Сервіс</string>
   <string name="backup_saved_at_external_storage">Резервна копія збережена на зовнішній пам\'яті</string>
   <string name="backup_restored">Резервне копіювання відновлено</string>
-  <string name="please_grant_permissions_for_external_storage">Надайте дозволи на зовнішню пам\'ять</string>
     <string name="restore_backup">Відновити резервну копію</string>
-    <string name="name_can_t_be_empty">Назва не може бути порожньою</string>
+  <string name="create_a_backup_first">Спершу створити резервну копію</string>
+  <string name="name_can_t_be_empty">Назва не може бути порожньою</string>
   <string name="fields_can_t_be_empty">Поля не можуть бути порожніми</string>
   <string name="start_tor_again_for_finish_the_process">Запустіть Tor знову для завершення процесу</string>
   <string name="confirm_service_deletion">Підтвердьте видалення сервісу</string>

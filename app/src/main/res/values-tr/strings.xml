@@ -127,7 +127,6 @@
   <string name="menu_qr">QR Kodları</string>
   <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Tor kullanımı mobil ağınızda etkin olarak engelleniyorsa, Tor ağına erişmek için bir \'Köprü Sunucusu\' kullanabilirsiniz. Yapılandırmak ve denemek için aşağıdaki seçeneklerden birini seçin...</string>
   <string name="get_bridges_email">E-posta</string>
-  <string name="activate">Etkinleştir</string>
   <string name="apps_mode">VPN Kipi</string>
   <string name="send_email">E-posta Gönder</string>
   <string name="vpn_default_world">Genel (Otomatik)</string>
@@ -146,9 +145,9 @@
   <string name="delete_service">Hizmeti Sil</string>
   <string name="backup_saved_at_external_storage">Yedek dış depolamaya kaydedildi</string>
   <string name="backup_restored">Yedek geri yüklendi</string>
-  <string name="please_grant_permissions_for_external_storage">Lütfen dış depolama için izinleri verin</string>
-  <string name="restore_backup">Yedeği Geri Yükle</string>
-    <string name="name_can_t_be_empty">Ad boş bırakılamaz</string>
+    <string name="restore_backup">Yedeği Geri Yükle</string>
+  <string name="create_a_backup_first">Önce bir yedek oluşturun</string>
+  <string name="name_can_t_be_empty">Ad boş bırakılamaz</string>
   <string name="fields_can_t_be_empty">Alanlar boş bırakılamaz</string>
   <string name="start_tor_again_for_finish_the_process">İşlemi tamamlamak için Tor uygulamasını yeniden başlatın</string>
   <string name="confirm_service_deletion">Hizmeti Silmeyi Onayla</string>

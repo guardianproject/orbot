@@ -33,7 +33,6 @@
   <string name="enter_exclude_nodes">I mewn i Nodau Eithrio</string>
     <string name="third_party_software">Meddalwedd 3ydd-parti</string>
     <string name="set_locale_title">Iaith</string>
-    <string name="activate">Ysgogi</string>
   <string name="hidden_services">Gwasanaethau Cudd</string>
   <string name="title_activity_hidden_services">Gwasanaethau Cudd</string>
   <string name="menu_hidden_services">Gwasanaethau Cudd</string>

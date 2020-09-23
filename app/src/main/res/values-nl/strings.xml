@@ -127,7 +127,6 @@
   <string name="menu_qr">QR-codes</string>
   <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Als je mobiele netwerk Tor actief blokkeert, kan je een \'bridge-server\' gebruiken als alternatieve toegang. SELECTEER een van de opties om te configureren en te testen..,.</string>
   <string name="get_bridges_email">E-mail</string>
-  <string name="activate">Activeren</string>
   <string name="apps_mode">VPN-modus</string>
     <string name="send_email">E-mail versturen</string>
   <string name="vpn_default_world">Algemeen (automatisch)</string>
@@ -146,9 +145,9 @@
   <string name="delete_service">Dienst verwijderen</string>
   <string name="backup_saved_at_external_storage">Back-up opgeslagen op externe opslag</string>
   <string name="backup_restored">Back-up hersteld</string>
-  <string name="please_grant_permissions_for_external_storage">Verleen toestemmingen voor externe opslag</string>
     <string name="restore_backup">Back-up herstellen</string>
-    <string name="name_can_t_be_empty">Naam kan niet leeg zijn</string>
+  <string name="create_a_backup_first">Maak eerst een back-up aan</string>
+  <string name="name_can_t_be_empty">Naam kan niet leeg zijn</string>
   <string name="fields_can_t_be_empty">Velden kunnen niet leeg zijn</string>
   <string name="start_tor_again_for_finish_the_process">Start Tor opnieuw om het proces te voltooien</string>
   <string name="confirm_service_deletion">Bevestig verwijderen van dienst</string>

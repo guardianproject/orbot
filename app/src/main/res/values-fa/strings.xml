@@ -127,7 +127,6 @@
   <string name="menu_qr">کدهای QR</string>
   <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">اگر شبکه همراهتان به صورت مرتب تور را مسدود می‌کند، می‌توانید از یک «کارساز پل» به عنوان راهی جایگزین برای ورود استفاده کنید. برای پیکربندی و تست، یکی از گزینه‌ها را انتخاب کنید…</string>
   <string name="get_bridges_email">ایمیل</string>
-  <string name="activate">فعال</string>
   <string name="apps_mode">حالت VPN</string>
     <string name="send_email">ایمیل بفرست</string>
   <string name="vpn_default_world">جهانی (خودکار)</string>
@@ -146,9 +145,9 @@
   <string name="delete_service">حذف سرویس</string>
   <string name="backup_saved_at_external_storage">بک‌آپ در انباره خارجی ذخیره شد</string>
   <string name="backup_restored">بک‌آپ بازگردانده شد</string>
-  <string name="please_grant_permissions_for_external_storage">لطفا به  انباره خارجی اجازه دسترسی بدهید</string>
-    <string name="restore_backup">برگرداندن بک‌آپ</string>
-    <string name="name_can_t_be_empty">نام نباید خالی باشد</string>
+  <string name="restore_backup">برگرداندن بک‌آپ</string>
+  <string name="create_a_backup_first">اول یک نسخه بک‌آپ درست کنید</string>
+  <string name="name_can_t_be_empty">نام نباید خالی باشد</string>
   <string name="fields_can_t_be_empty">زمینه‌ها نباید خالی باشند</string>
   <string name="start_tor_again_for_finish_the_process">برای پایان روند کار ، دوباره تور را آغاز کنید</string>
   <string name="confirm_service_deletion">حذف سرویس را تایید کنید</string>

@@ -148,7 +148,6 @@
   <string name="delete_service">Szolgáltatás Törlése</string>
   <string name="backup_saved_at_external_storage">Külső tárhelyre mentve</string>
   <string name="backup_restored">Mentés visszaállítva</string>
-  <string name="please_grant_permissions_for_external_storage">Kérjük adjon jogosultságot a külső tárhelyhez</string>
     <string name="restore_backup">Mentés visszaállítása</string>
     <string name="name_can_t_be_empty">A név nem lehet üres</string>
   <string name="fields_can_t_be_empty">A mezők nem lehetnek üresek</string>

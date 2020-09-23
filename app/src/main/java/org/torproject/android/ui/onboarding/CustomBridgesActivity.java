@@ -3,8 +3,6 @@
 package org.torproject.android.ui.onboarding;
 
 import android.annotation.SuppressLint;
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,7 +16,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,6 +28,7 @@ import com.google.zxing.integration.android.IntentResult;
 
 import org.json.JSONArray;
 import org.torproject.android.R;
+import org.torproject.android.core.ClipboardUtils;
 import org.torproject.android.service.OrbotService;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.Prefs;
@@ -115,19 +113,11 @@ public class CustomBridgesActivity extends AppCompatActivity implements View.OnC
 
         switch (view.getId()) {
             case R.id.btCopyUrl:
-                ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-
-                if (clipboard != null) {
-                    clipboard.setPrimaryClip(ClipData.newPlainText(URL_TOR_BRIDGES, URL_TOR_BRIDGES));
-
-                    Toast.makeText(this, R.string.done, Toast.LENGTH_LONG).show();
-                }
-
+                ClipboardUtils.copyToClipboard("bridge_url", URL_TOR_BRIDGES, getString(R.string.done), this);
                 break;
 
             case R.id.btScanQr:
                 integrator.initiateScan();
-
                 break;
 
             case R.id.btShareQr:

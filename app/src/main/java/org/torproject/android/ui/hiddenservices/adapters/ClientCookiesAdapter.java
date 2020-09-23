@@ -20,9 +20,7 @@ public class ClientCookiesAdapter extends CursorAdapter {
 
     public ClientCookiesAdapter(Context context, Cursor c, int flags) {
         super(context, c, flags);
-
-        cursorInflater = (LayoutInflater) context.getSystemService(
-                Context.LAYOUT_INFLATER_SERVICE);
+        cursorInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
@@ -35,9 +33,7 @@ public class ClientCookiesAdapter extends CursorAdapter {
         domain.setText(cursor.getString(cursor.getColumnIndex(CookieContentProvider.ClientCookie.DOMAIN)));
 
         SwitchCompat enabled = view.findViewById(R.id.cookie_switch);
-        enabled.setChecked(
-                cursor.getInt(cursor.getColumnIndex(CookieContentProvider.ClientCookie.ENABLED)) == 1
-        );
+        enabled.setChecked(cursor.getInt(cursor.getColumnIndex(CookieContentProvider.ClientCookie.ENABLED)) == 1);
 
         enabled.setOnCheckedChangeListener((buttonView, isChecked) -> {
             ContentResolver resolver = mContext.getContentResolver();

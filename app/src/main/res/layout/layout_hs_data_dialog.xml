@@ -3,15 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingLeft="5dp"
-    android:paddingTop="5dp"
-    android:paddingRight="5dp"
-    android:paddingBottom="5dp">
+    android:padding="?dialogPreferredPadding">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="5dp"
         android:text="@string/name"
         android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Small" />
 
@@ -25,7 +21,6 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="5dp"
         android:text="@string/local_port"
         android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Small" />
 
@@ -39,7 +34,6 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="5dp"
         android:text="@string/onion_port"
         android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Small" />
 
@@ -54,31 +48,7 @@
         android:id="@+id/hsAuth"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="5dp"
-        android:paddingBottom="10dp"
-        android:text="@string/auth_cookie" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/HSDialogCancel"
-            style="@style/Widget.AppCompat.Button.Borderless.Colored"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@android:string/cancel" />
-
-        <Button
-            android:id="@+id/HSDialogSave"
-            style="@style/Widget.AppCompat.Button.Borderless.Colored"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/save" />
-
-    </LinearLayout>
+        android:text="@string/auth_cookie"
+        android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Small" />
 
 </LinearLayout>

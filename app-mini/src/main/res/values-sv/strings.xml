@@ -148,7 +148,6 @@
   <string name="delete_service">Ta bort tjänst</string>
   <string name="backup_saved_at_external_storage">Säkerhetskopiering sparad i externt lagringsutrymme</string>
   <string name="backup_restored">Backup återställd</string>
-  <string name="please_grant_permissions_for_external_storage">Bevilja tillstånd för extern lagring</string>
     <string name="restore_backup">Återställa säkerhetskopia</string>
     <string name="name_can_t_be_empty">Namnet kan inte vara tomt</string>
   <string name="fields_can_t_be_empty">Fält kan inte vara tomma</string>

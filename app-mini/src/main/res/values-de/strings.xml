@@ -148,7 +148,6 @@
   <string name="delete_service">Dienst löschen</string>
   <string name="backup_saved_at_external_storage">Sicherung auf externem Speicher gespeichert </string>
   <string name="backup_restored">Sicherung wiederhergestellt</string>
-  <string name="please_grant_permissions_for_external_storage">Bitte Zugriffsrechte auf externen Speicher gewähren</string>
     <string name="restore_backup">Sicherung wiederherstellen</string>
     <string name="name_can_t_be_empty">Name darf nicht leer sein</string>
   <string name="fields_can_t_be_empty">Felder dürfen nicht leer sein</string>

@@ -147,8 +147,7 @@
   <string name="delete_service">Lurañanak pichsuña</string>
   <string name="backup_saved_at_external_storage">Imat luratanakamax yaqha yänakar imataxiwa</string>
   <string name="backup_restored">Imat luratanakamax mayamp apnaqatäxiwa</string>
-  <string name="please_grant_permissions_for_external_storage">Yaqha yänakar imañatak iyaw sam, amp suma</string>
-  <string name="restore_backup">Imat luratanak mayamp aqtayam</string>
+    <string name="restore_backup">Imat luratanak mayamp aqtayam</string>
     <string name="name_can_t_be_empty">Sutix qillqantatäñapapuniwa</string>
   <string name="fields_can_t_be_empty">Janiw kunas ch\'usäñapakiti</string>
   <string name="start_tor_again_for_finish_the_process">Tukuyañatakix Tor mayamp naktayam</string>

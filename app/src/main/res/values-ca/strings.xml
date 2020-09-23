@@ -127,7 +127,6 @@
   <string name="menu_qr">Codis QR</string>
   <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Si la teva xarxa mòbil boqueja activament Tor, pots utilitzar un \'Servidor pont\' com a via alternativa. SELECCIONA una de les opcions per configurar i provar.</string>
   <string name="get_bridges_email">Correu-e</string>
-  <string name="activate">Activa</string>
   <string name="apps_mode">Mode VPN</string>
     <string name="send_email">Envia correu-e</string>
   <string name="vpn_default_world">Global (auto)</string>
@@ -146,9 +145,9 @@
   <string name="delete_service">Esborrar servei</string>
   <string name="backup_saved_at_external_storage">Còpia de seguretat desada a emmagatzematge extern</string>
   <string name="backup_restored">Còpia de seguretat restaurada</string>
-  <string name="please_grant_permissions_for_external_storage">Si us plau concedeix permisos per emmagatzematge extern</string>
     <string name="restore_backup">Restaurar còpia de seguretat</string>
-    <string name="name_can_t_be_empty">El nom no pot estar buit</string>
+  <string name="create_a_backup_first">Crea una còpia de seguretat primer</string>
+  <string name="name_can_t_be_empty">El nom no pot estar buit</string>
   <string name="fields_can_t_be_empty">Els camps no poden estar buits</string>
   <string name="start_tor_again_for_finish_the_process">Torna a iniciar Tor per acabar el procés</string>
   <string name="confirm_service_deletion">Confirma la supressió del servei</string>

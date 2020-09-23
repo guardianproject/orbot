@@ -148,7 +148,6 @@
   <string name="delete_service">Удалить службу</string>
   <string name="backup_saved_at_external_storage">Резервная копия сохранена на внешнем хранилище</string>
   <string name="backup_restored">Восстановлено из резервной копии</string>
-  <string name="please_grant_permissions_for_external_storage">Предоставьте разрешения для доступа к внешнему хранилищу</string>
     <string name="restore_backup">Восстановить из копии</string>
     <string name="name_can_t_be_empty">Имя не может быть пустым</string>
   <string name="fields_can_t_be_empty">Поля не могут быть пустыми</string>

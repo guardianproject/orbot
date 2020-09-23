@@ -127,7 +127,6 @@
   <string name="menu_qr">קודי QR</string>
   <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">אם פעילות הרשת הניידת שלך חוסמת את Tor, אתה יכול להשתמש ב\'שרת גשר\' כדרך חלופית להיכנס. בחר אחת מאפשרויות כדי להגדיר ולבחון...</string>
   <string name="get_bridges_email">דוא\"ל</string>
-  <string name="activate">הפעל</string>
   <string name="apps_mode">מצב VPN</string>
     <string name="send_email">שלח דוא\"ל</string>
   <string name="vpn_default_world">עולמי (אוטומטי)</string>
@@ -146,9 +145,9 @@
   <string name="delete_service">מחק שירות</string>
   <string name="backup_saved_at_external_storage">גיבוי נשמר באחסון חיצוני</string>
   <string name="backup_restored">גיבוי שוחזר</string>
-  <string name="please_grant_permissions_for_external_storage">אנא הענק הרשאות עבור אחסון חיצוני</string>
-    <string name="restore_backup">שחזר גיבוי</string>
-    <string name="name_can_t_be_empty">שם אינו יכול להיות ריק</string>
+  <string name="restore_backup">שחזר גיבוי</string>
+  <string name="create_a_backup_first">צור גיבוי תחילה</string>
+  <string name="name_can_t_be_empty">שם אינו יכול להיות ריק</string>
   <string name="fields_can_t_be_empty">שדות אינם יכולים להיות ריקים</string>
   <string name="start_tor_again_for_finish_the_process">הפעל את Tor שוב כדי לסיים את התהליך</string>
   <string name="confirm_service_deletion">אשר מחיקת שירות</string>

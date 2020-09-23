@@ -148,7 +148,6 @@
   <string name="delete_service">Dienst verwijderen</string>
   <string name="backup_saved_at_external_storage">Back-up opgeslagen op externe opslag</string>
   <string name="backup_restored">Back-up hersteld</string>
-  <string name="please_grant_permissions_for_external_storage">Verleen toestemmingen voor externe opslag</string>
     <string name="restore_backup">Back-up herstellen</string>
     <string name="name_can_t_be_empty">Naam kan niet leeg zijn</string>
   <string name="fields_can_t_be_empty">Velden kunnen niet leeg zijn</string>

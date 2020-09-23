@@ -121,7 +121,6 @@
   <string name="restart_orbot_to_use_this_bridge_">Käynnistä Orbot uudelleen ottaaksesi muutokset käyttöön</string>
   <string name="menu_qr">QR-koodit</string>
   <string name="get_bridges_email">Sähköposti</string>
-  <string name="activate">Ota käyttöön</string>
   <string name="send_email">Lähetä sähköpostia</string>
   <string name="hidden_services">Piilopalvelut</string>
   <string name="title_activity_hidden_services">Piilopalvelut</string>

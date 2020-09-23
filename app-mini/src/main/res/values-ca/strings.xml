@@ -148,7 +148,6 @@
   <string name="delete_service">Esborrar servei</string>
   <string name="backup_saved_at_external_storage">Còpia de seguretat desada a emmagatzematge extern</string>
   <string name="backup_restored">Còpia de seguretat restaurada</string>
-  <string name="please_grant_permissions_for_external_storage">Si us plau concedeix permisos per emmagatzematge extern</string>
     <string name="restore_backup">Restaurar còpia de seguretat</string>
     <string name="name_can_t_be_empty">El nom no pot estar buit</string>
   <string name="fields_can_t_be_empty">Els camps no poden estar buits</string>

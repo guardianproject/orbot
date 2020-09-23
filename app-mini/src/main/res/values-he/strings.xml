@@ -148,7 +148,6 @@
   <string name="delete_service">מחק שירות</string>
   <string name="backup_saved_at_external_storage">גיבוי נשמר באחסון חיצוני</string>
   <string name="backup_restored">גיבוי שוחזר</string>
-  <string name="please_grant_permissions_for_external_storage">אנא הענק הרשאות עבור אחסון חיצוני</string>
     <string name="restore_backup">שחזר גיבוי</string>
     <string name="name_can_t_be_empty">שם אינו יכול להיות ריק</string>
   <string name="fields_can_t_be_empty">שדות אינם יכולים להיות ריקים</string>

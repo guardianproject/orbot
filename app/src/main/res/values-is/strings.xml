@@ -127,7 +127,6 @@
   <string name="menu_qr">QR-kóðar</string>
   <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Ef farsímanetið þitt er virkt í að loka á Tor, geturðu notað \'Brúarþjón\' sem varaleið inn. VELDU einn af valkostunum til að setja upp og prófa...</string>
   <string name="get_bridges_email">Tölvupóstur</string>
-  <string name="activate">Virkja</string>
   <string name="apps_mode">VPN-hamur</string>
     <string name="send_email">Senda tölvupóst</string>
   <string name="vpn_default_world">Víðvært (sjálfvirkt)</string>
@@ -146,9 +145,9 @@
   <string name="delete_service">Eyða þjónustu</string>
   <string name="backup_saved_at_external_storage">Öryggisafrit var vistað í ytri gagnageymslu</string>
   <string name="backup_restored">Öryggisafrit var endurheimt</string>
-  <string name="please_grant_permissions_for_external_storage">Gefðu heimild til að nota ytri gagnageymslu</string>
     <string name="restore_backup">Endurheimta úr öryggisafriti</string>
-    <string name="name_can_t_be_empty">Nafnið má ekki vera autt</string>
+  <string name="create_a_backup_first">Gerðu fyrst öryggisafrit</string>
+  <string name="name_can_t_be_empty">Nafnið má ekki vera autt</string>
   <string name="fields_can_t_be_empty">Gagnasvið mega ekki vera auð</string>
   <string name="start_tor_again_for_finish_the_process">Ræstu Tor aftur til að ljúka ferlinu</string>
   <string name="confirm_service_deletion">Staðfestu eyðingu á þjónustu</string>

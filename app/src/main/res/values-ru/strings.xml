@@ -127,7 +127,6 @@
   <string name="menu_qr">QR-коды</string>
   <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Если ваша мобильная сеть активно блокирует Tor, вы можете использовать мосты Tor для доступа к сети. Выберите один из вариантов для настройки и тестирования:</string>
   <string name="get_bridges_email">Эл. почта</string>
-  <string name="activate">Активация</string>
   <string name="apps_mode">VPN-режим</string>
     <string name="send_email">Отправить письмо</string>
   <string name="vpn_default_world">Мир (авто)</string>
@@ -146,9 +145,9 @@
   <string name="delete_service">Удалить службу</string>
   <string name="backup_saved_at_external_storage">Резервная копия сохранена на внешнем хранилище</string>
   <string name="backup_restored">Восстановлено из резервной копии</string>
-  <string name="please_grant_permissions_for_external_storage">Предоставьте разрешения для доступа к внешнему хранилищу</string>
     <string name="restore_backup">Восстановить из копии</string>
-    <string name="name_can_t_be_empty">Имя не может быть пустым</string>
+  <string name="create_a_backup_first">Сначала создайте резервную копию</string>
+  <string name="name_can_t_be_empty">Имя не может быть пустым</string>
   <string name="fields_can_t_be_empty">Поля не могут быть пустыми</string>
   <string name="start_tor_again_for_finish_the_process">Запустите Tor снова для завершения процесса</string>
   <string name="confirm_service_deletion">Подтверждение удаления службы</string>

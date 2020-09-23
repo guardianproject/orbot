@@ -148,7 +148,6 @@
   <string name="delete_service">Eliminar servizo</string>
   <string name="backup_saved_at_external_storage">Respaldo gardado en almacenamento externo</string>
   <string name="backup_restored">Respaldo restaurado</string>
-  <string name="please_grant_permissions_for_external_storage">Por favor, conceda permiso para o almacenamento externo</string>
     <string name="restore_backup">Restaurar respaldo</string>
     <string name="name_can_t_be_empty">O nome non pode quedar baldeiro</string>
   <string name="fields_can_t_be_empty">Os campos non poden estar baldeiros</string>

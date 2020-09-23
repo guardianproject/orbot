@@ -10,7 +10,7 @@
     <string name="menu_about">Mengenai</string>
     <string name="button_about">Mengenai</string>
     <string name="menu_exit">Keluar</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
   <string name="pref_general_group">Umum</string>
   <!--New Wizard Strings-->

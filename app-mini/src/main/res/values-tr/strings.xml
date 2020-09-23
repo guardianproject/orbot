@@ -148,8 +148,7 @@
   <string name="delete_service">Hizmeti Sil</string>
   <string name="backup_saved_at_external_storage">Yedek dış depolamaya kaydedildi</string>
   <string name="backup_restored">Yedek geri yüklendi</string>
-  <string name="please_grant_permissions_for_external_storage">Lütfen dış depolama için izinleri verin</string>
-  <string name="restore_backup">Yedeği Geri Yükle</string>
+    <string name="restore_backup">Yedeği Geri Yükle</string>
     <string name="name_can_t_be_empty">Ad boş bırakılamaz</string>
   <string name="fields_can_t_be_empty">Alanlar boş bırakılamaz</string>
   <string name="start_tor_again_for_finish_the_process">İşlemi tamamlamak için Tor uygulamasını yeniden başlatın</string>

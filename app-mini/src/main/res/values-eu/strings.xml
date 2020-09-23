@@ -148,7 +148,6 @@
   <string name="delete_service">Ezabatu zerbitzua</string>
   <string name="backup_saved_at_external_storage">Babeskopia kanpo biltegiratzean gorde da</string>
   <string name="backup_restored">Babeskopia berrezarri da</string>
-  <string name="please_grant_permissions_for_external_storage">Eman kanpo biltegiratzerako baimena</string>
     <string name="restore_backup">Berrezarri babeskopia</string>
     <string name="name_can_t_be_empty">Izena ezin da hutsik egon</string>
   <string name="fields_can_t_be_empty">Eremuak ezin dira hutsik egon</string>

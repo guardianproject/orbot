@@ -121,7 +121,6 @@
   <string name="restart_orbot_to_use_this_bridge_">Vui lòng khởi động lại Orbot để áp dụng thay đổi</string>
   <string name="menu_qr">Mã QR</string>
   <string name="get_bridges_email">Email</string>
-  <string name="activate">Kích hoạt</string>
   <string name="send_email">Gửi email</string>
   <string name="save">Lưu</string>
   <string name="name">Tên</string>

@@ -148,7 +148,6 @@
   <string name="delete_service">サービスを削除</string>
   <string name="backup_saved_at_external_storage">バックアップは外部記憶装置に保存されました</string>
   <string name="backup_restored">バックアップから復元</string>
-  <string name="please_grant_permissions_for_external_storage">外部記憶へのアクセス許可を与えて下さい。</string>
     <string name="restore_backup">バックアップの復旧</string>
     <string name="name_can_t_be_empty">名前はブランクのままにできません</string>
   <string name="fields_can_t_be_empty">フィールドを空にしておくことはできません</string>

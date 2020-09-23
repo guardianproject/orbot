@@ -121,7 +121,6 @@
   <string name="restart_orbot_to_use_this_bridge_">Lūdzu pārstartējiet Orbot, lai iespējotu izmaiņas</string>
   <string name="menu_qr">QR kodi</string>
   <string name="get_bridges_email">E-pasts</string>
-  <string name="activate">Aktivizēt</string>
   <string name="send_email">Nosūtīt e-pastu</string>
   <string name="hidden_services">Slēptie pakalpojumi</string>
   <string name="title_activity_hidden_services">Slēptie pakalpojumi</string>

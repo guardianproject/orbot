@@ -148,7 +148,6 @@
   <string name="delete_service">Supprimer le service</string>
   <string name="backup_saved_at_external_storage">La sauvegarde a été enregistrée sur une mémoire externe</string>
   <string name="backup_restored">La sauvegarde a été restaurée</string>
-  <string name="please_grant_permissions_for_external_storage">Veuillez accorder les droits vers la mémoire externe</string>
     <string name="restore_backup">Restaurer la sauvegarde</string>
     <string name="name_can_t_be_empty">Le nom ne peut pas être vide</string>
   <string name="fields_can_t_be_empty">Les champs ne peuvent pas être vides</string>

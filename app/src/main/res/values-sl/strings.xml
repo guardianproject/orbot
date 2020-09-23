@@ -25,7 +25,6 @@
   <!--Transparent Proxy screen-->
     <string name="error">Napaka</string>
     <string name="set_locale_title">Jezik</string>
-    <string name="activate">Aktiviraj</string>
   <string name="save">Shrani</string>
   <string name="name">ime</string>
 </resources>

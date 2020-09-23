@@ -149,7 +149,6 @@
   <string name="delete_service">सेवा हटाएँ</string>
   <string name="backup_saved_at_external_storage">बाह्य संग्रहण में बैकअप सहेजा गया</string>
   <string name="backup_restored">बैकअप को पुनर्स्थापित किया गया</string>
-  <string name="please_grant_permissions_for_external_storage">कृपया बाहरी संग्रहण के लिए अनुमति दें</string>
     <string name="restore_backup">बैकअप बहाल</string>
     <string name="name_can_t_be_empty">नाम रिक्त नहीं हो सकता</string>
   <string name="fields_can_t_be_empty">फ़ील्ड रिक्त नहीं हो सकते</string>

@@ -17,7 +17,7 @@
     <string name="menu_exit">Konec</string>
   <string name="menu_scan">Skenovat QR kód bridge</string>
   <string name="menu_share_bridge">Sdílet QR kód bridge</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Detaily o Orbotu</string>
     <!--END Welcome Wizard strings (DJH)-->
   <string name="pref_general_group">Hlavní</string>
@@ -33,7 +33,6 @@
   <string name="bridges">Přemostění</string>
     <string name="set_locale_title">Jazyk</string>
     <string name="get_bridges_email">Email</string>
-  <string name="activate">Aktivovat</string>
   <string name="hidden_services">Skryté Služby</string>
   <string name="title_activity_hidden_services">Skryté Služby</string>
   <string name="menu_hidden_services">Skryté Služby</string>
