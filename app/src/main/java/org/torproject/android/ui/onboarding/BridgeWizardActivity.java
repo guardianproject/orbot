@@ -23,6 +23,7 @@ import org.torproject.android.service.util.Prefs;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.ref.WeakReference;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
@@ -34,7 +35,7 @@ public class BridgeWizardActivity extends AppCompatActivity {
     private static final int CUSTOM_BRIDGES_REQUEST_CODE = 1312;
     private static final String BUNDLE_KEY_TV_STATUS_VISIBILITY = "visibility";
     private static final String BUNDLE_KEY_TV_STATUS_TEXT = "text";
-    private static TextView mTvStatus;
+    private TextView mTvStatus;
     private static HostTester runningHostTest;
     private RadioButton mBtDirect;
     private RadioButton mBtObfs4;
@@ -182,7 +183,7 @@ public class BridgeWizardActivity extends AppCompatActivity {
 
     private void testBridgeConnection() {
         cancelHostTestIfRunning();
-        HostTester hostTester = new HostTester();
+        HostTester hostTester = new HostTester(this);
         if (TextUtils.isEmpty(Prefs.getBridgesList()) || (!Prefs.bridgesEnabled())) {
             hostTester.execute("check.torproject.org", "443");
         } else if (Prefs.getBridgesList().equals("meek")) {
@@ -253,22 +254,32 @@ public class BridgeWizardActivity extends AppCompatActivity {
         }
     }
 
-    private class HostTester extends AsyncTask<String, Void, Boolean> {
+    private static class HostTester extends AsyncTask<String, Void, Boolean> {
+
+        private WeakReference<BridgeWizardActivity> ref;
+
+        HostTester(BridgeWizardActivity activity) {
+            ref = new WeakReference<>(activity);
+        }
+
+        private boolean shouldStop() {
+            return ref.get() == null || ref.get().isFinishing();
+        }
+
         @Override
         protected void onPreExecute() {
-
-            if (mTvStatus != null) {
-                // Pre Code
-                mTvStatus.setVisibility(View.VISIBLE);
-                mTvStatus.setText(mBtDirect.isChecked() ? R.string.testing_tor_direct : R.string.testing_bridges);
+            if (shouldStop()) return;
+            BridgeWizardActivity bwa = ref.get();
+            if (bwa.mTvStatus != null) {
+                bwa.mTvStatus.setVisibility(View.VISIBLE);
+                bwa.mTvStatus.setText(bwa.mBtDirect.isChecked() ? R.string.testing_tor_direct : R.string.testing_bridges);
             }
         }
 
         @Override
         protected Boolean doInBackground(String... host) {
-            // Background Code
             for (int i = 0; i < host.length; i++) {
-                if (isCancelled()) return null;
+                if (shouldStop() || isCancelled()) return null;
                 String testHost = host[i];
                 i++; //move to the port
                 int testPort = Integer.parseInt(host[i]);
@@ -276,20 +287,20 @@ public class BridgeWizardActivity extends AppCompatActivity {
                     return true;
                 }
             }
-
             return false;
         }
 
         @Override
         protected void onPostExecute(Boolean result) {
-            // Post Code
-            if (mTvStatus != null) {
+            if (shouldStop()) return;
+            BridgeWizardActivity bwa = ref.get();
+            if (bwa.mTvStatus != null) {
                 runningHostTest = null;
                 if (result) {
-                    int stringRes = mBtDirect.isChecked() ? R.string.testing_tor_direct_success : R.string.testing_bridges_success;
-                    mTvStatus.setText(stringRes);
+                    int stringRes = bwa.mBtDirect.isChecked() ? R.string.testing_tor_direct_success : R.string.testing_bridges_success;
+                    bwa.mTvStatus.setText(stringRes);
                 } else {
-                    mTvStatus.setText(R.string.testing_bridges_fail);
+                    bwa.mTvStatus.setText(R.string.testing_bridges_fail);
                 }
             }
         }

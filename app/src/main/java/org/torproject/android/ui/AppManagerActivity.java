@@ -35,6 +35,7 @@ import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.vpn.TorifiedApp;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -105,29 +106,13 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
     }
 
     private void reloadApps() {
-        new AsyncTask<Void, Void, Void>() {
-            protected void onPreExecute() {
-                // Pre Code
-                progressBar.setVisibility(View.VISIBLE);
-            }
-
-            protected Void doInBackground(Void... unused) {
-                loadApps(mPrefs);
-                return null;
-            }
-
-            protected void onPostExecute(Void unused) {
-                listApps.setAdapter(adapterApps);
-                progressBar.setVisibility(View.GONE);
-            }
-        }.execute();
-
-
+        new ReloadAppsAsyncTask(this).execute();
     }
 
-    private void loadApps(SharedPreferences prefs) {
+    private void loadApps() {
+
         if (mApps == null)
-            mApps = getApps(prefs);
+            mApps = getApps(mPrefs);
 
         Collections.sort(mApps, (o1, o2) -> {
             /* Some apps start with lowercase letters and without the sorting being case
@@ -279,7 +264,6 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
         return apps;
     }
 
-
     public void saveAppSettings() {
 
         StringBuilder tordApps = new StringBuilder();
@@ -300,7 +284,6 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
         setResult(RESULT_OK, response);
     }
 
-
     public void onClick(View v) {
 
         CheckBox cbox = null;
@@ -319,6 +302,42 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
 
             saveAppSettings();
         }
+    }
+
+    private static class ReloadAppsAsyncTask extends AsyncTask<Void, Void, Void> {
+
+        private WeakReference<AppManagerActivity> activity;
+
+        ReloadAppsAsyncTask(AppManagerActivity activity) {
+            this.activity = new WeakReference<>(activity);
+        }
+
+        @Override
+        protected void onPreExecute() {
+            if (shouldStop()) return;
+            activity.get().progressBar.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            if (shouldStop()) return null;
+            activity.get().loadApps();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void unused) {
+            if (shouldStop()) return;
+            AppManagerActivity ama = activity.get();
+            ama.listApps.setAdapter(ama.adapterApps);
+            ama.progressBar.setVisibility(View.GONE);
+        }
+
+        private boolean shouldStop() {
+            AppManagerActivity ama = activity.get();
+            return ama == null || ama.isFinishing();
+        }
+
     }
 
     private static class ListEntry {

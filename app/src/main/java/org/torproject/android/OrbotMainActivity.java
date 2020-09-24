@@ -76,6 +76,7 @@ import org.torproject.android.ui.onboarding.OnboardingActivity;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
+import java.lang.ref.WeakReference;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.text.NumberFormat;
@@ -130,47 +131,8 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     private SharedPreferences mPrefs = null;
     private boolean autoStartFromIntent = false;
     // this is what takes messages or values from the callback threads or other non-mainUI threads
-//and passes them back into the main UI thread for display to the user
-    private Handler mStatusUpdateHandler = new Handler() {
-
-        @Override
-        public void handleMessage(final Message msg) {
-
-
-            Bundle data = msg.getData();
-
-            switch (msg.what) {
-                case MESSAGE_TRAFFIC_COUNT:
-
-                    DataCount datacount = new DataCount(data.getLong("upload"), data.getLong("download"));
-
-                    long totalRead = data.getLong("readTotal");
-                    long totalWrite = data.getLong("writeTotal");
-
-                    downloadText.setText(String.format("%s / %s", formatCount(datacount.Download), formatTotal(totalRead)));
-                    uploadText.setText(String.format("%s / %s", formatCount(datacount.Upload), formatTotal(totalWrite)));
-
-                    break;
-                case MESSAGE_PORTS:
-
-                    int socksPort = data.getInt("socks");
-                    int httpPort = data.getInt("http");
-
-                    lblPorts.setText(String.format(Locale.getDefault(), "SOCKS: %d | HTTP: %d", socksPort, httpPort));
-
-                    break;
-                default:
-                    String newTorStatus = msg.getData().getString("status");
-                    String log = (String) msg.obj;
-
-                    if (torStatus == null && newTorStatus != null) //first time status
-                        findViewById(R.id.frameMain).setVisibility(View.VISIBLE);
-                    updateStatus(log, newTorStatus);
-                    super.handleMessage(msg);
-                    break;
-            }
-        }
-    };
+    // and passes them back into the main UI thread for display to the user
+    private Handler mStatusUpdateHandler = new MainActivityStatusUpdateHandler(this);
     /**
      * The state and log info from {@link OrbotService} are sent to the UI here in
      * the form of a local broadcast. Regular broadcasts can be sent by any app,
@@ -1233,15 +1195,48 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
 
     }
 
-    public static class DataCount {
-        // data uploaded
-        final long Upload;
-        // data downloaded
-        final long Download;
+    private static class MainActivityStatusUpdateHandler extends Handler {
+        private WeakReference<OrbotMainActivity> ref;
 
-        DataCount(long Upload, long Download) {
-            this.Upload = Upload;
-            this.Download = Download;
+        MainActivityStatusUpdateHandler(OrbotMainActivity oma) {
+            ref = new WeakReference<>(oma);
+        }
+
+        private boolean shouldStop() {
+            return ref.get() == null || ref.get().isFinishing();
+        }
+
+        @Override
+        public void handleMessage(final Message msg) {
+            if (shouldStop()) return;
+            OrbotMainActivity oma = ref.get();
+            Bundle data = msg.getData();
+
+            switch (msg.what) {
+                case MESSAGE_TRAFFIC_COUNT:
+                    long upload = data.getLong("upload");
+                    long download = data.getLong("download");
+                    long totalRead = data.getLong("readTotal");
+                    long totalWrite = data.getLong("writeTotal");
+                    oma.downloadText.setText(String.format("%s / %s", oma.formatCount(download), oma.formatTotal(totalRead)));
+                    oma.uploadText.setText(String.format("%s / %s", oma.formatCount(upload), oma.formatTotal(totalWrite)));
+                    break;
+
+                case MESSAGE_PORTS:
+                    int socksPort = data.getInt("socks");
+                    int httpPort = data.getInt("http");
+                    oma.lblPorts.setText(String.format(Locale.getDefault(), "SOCKS: %d | HTTP: %d", socksPort, httpPort));
+                    break;
+
+                default:
+                    String newTorStatus = msg.getData().getString("status");
+                    String log = (String) msg.obj;
+
+                    if (oma.torStatus == null && newTorStatus != null) //first time status
+                        oma.findViewById(R.id.frameMain).setVisibility(View.VISIBLE);
+                    oma.updateStatus(log, newTorStatus);
+                    super.handleMessage(msg);
+            }
         }
     }
 }
