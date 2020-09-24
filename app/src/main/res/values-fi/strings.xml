@@ -90,8 +90,7 @@
   <string name="third_party_software">3:n osapuolen ohjelmisto:</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
-  <string name="found_existing_tor_process">löytyi olemassaoleva Tor-prosessi...</string>
+    <string name="found_existing_tor_process">löytyi olemassaoleva Tor-prosessi...</string>
   <string name="something_bad_happened">Jotain pahaa tapahtui. Tarkista loki</string>
   <string name="unable_to_read_hidden_service_name">piilopalvelunimen lukeminen epäonnistui</string>
   <string name="unable_to_start_tor">Torin käynnistys epäonnistui:</string>

@@ -92,8 +92,7 @@
     <string name="third_party_software">Software de Terceiros</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
-  <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
+    <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">Um aplicativo precisa abrir uma porta tipo servidor escondida %1$spara a Rede Tor. Isso é seguro se você confiar nesta aplicação.</string>
   <string name="found_existing_tor_process">procurando processos Tor existentes...</string>

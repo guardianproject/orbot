@@ -92,8 +92,7 @@
 Tor: https://www.torproject.org</string>
   <string name="libevent_version">
 LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
-  <string name="found_existing_tor_process">mövcud Tor prosesi tapıldı...</string>
+    <string name="found_existing_tor_process">mövcud Tor prosesi tapıldı...</string>
   <string name="something_bad_happened">Nə isə pis bir şey oldu. Girişi yoxla</string>
     <string name="unable_to_read_hidden_service_name">gizli xidmət adını oxumağı deaktivləşdir</string>
   <string name="unable_to_start_tor">Tor-un başlanmasını dayandır:</string>

@@ -80,7 +80,6 @@
     <string name="third_party_software">תוכנה-צד-ג׳: </string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
     <string name="found_existing_tor_process">נמצא תהליך Tor קיים…</string>
   <string name="something_bad_happened">משהו רע התרחש. בדוק את היומן</string>
     <string name="unable_to_read_hidden_service_name">לא מסוגל לקרוא שם שירות נסתר</string>

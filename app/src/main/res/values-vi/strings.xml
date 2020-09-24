@@ -90,8 +90,7 @@
     <string name="third_party_software">Phần mềm bên thứ 3:</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
-  <string name="found_existing_tor_process">tìm ra tiến trình hiện hành của Tor...</string>
+    <string name="found_existing_tor_process">tìm ra tiến trình hiện hành của Tor...</string>
   <string name="something_bad_happened">Có gì đó không ổn. Xin xem lại nhật ký</string>
     <string name="unable_to_read_hidden_service_name">không thể đọc được tên dịch vụ ẩn</string>
   <string name="unable_to_start_tor">Không thể khởi động Tor được: </string>

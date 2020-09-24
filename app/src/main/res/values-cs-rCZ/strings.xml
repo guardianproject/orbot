@@ -89,8 +89,7 @@
     <string name="third_party_software">Software třetích stran:</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
-  <string name="found_existing_tor_process">nalezev existující Tor proces…</string>
+    <string name="found_existing_tor_process">nalezev existující Tor proces…</string>
   <string name="something_bad_happened">Stalo se něco špatného. Zkontrolujte log</string>
     <string name="unable_to_read_hidden_service_name">nelze číst název skryté služby</string>
   <string name="unable_to_start_tor">Nelze spustit Tor:</string>

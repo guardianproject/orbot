@@ -92,8 +92,7 @@
     <string name="third_party_software">第三方軟體：</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
-  <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
+    <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">有一個應用要開啟隱藏的伺服器端口 %1$s 到 Tor 網路,如果信得過此應用才進行此操作</string>
   <string name="found_existing_tor_process">發現已有 Tor 程序運行中 ...</string>

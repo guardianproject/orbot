@@ -59,8 +59,7 @@
     <string name="third_party_software">Programas de Terceiros: </string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
-  <string name="found_existing_tor_process">encontrado o processo Tor existente...</string>
+    <string name="found_existing_tor_process">encontrado o processo Tor existente...</string>
   <string name="something_bad_happened">Aconteceu algo de mau. Verifique o registo de eventos.</string>
     <string name="unable_to_read_hidden_service_name">não é possível ler o nome do serviço ocultado</string>
   <string name="unable_to_start_tor">Não é possível iniciar o Tor:</string>
