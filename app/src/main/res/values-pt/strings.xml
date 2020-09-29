@@ -98,7 +98,7 @@
 \nUma vez que tem um endereço, copie &amp; cole-lo na preferência \"Pontes\" na configuração e reinicie do Orbot.</string>
     <string name="refresh_apps">Atualizar apps</string>
     <string name="default_socks_http">SOCKS: - HTTP: -</string>
-    <string name="app_services">Serviços de aplicação</string>
+    <string name="app_services">Serviços de app</string>
     <string name="user_services">Serviços ao utilizador</string>
     <string name="menu_new_identity">Nova Identidade</string>
     <string name="vpn_disabled">VPN Desativado</string>
@@ -183,7 +183,7 @@
     <string name="no_internet_connection_tor">Sem conexão com a internet; O Tor está de prontidão…</string>
     <string name="pref_use_expanded_notifications">Mostrar as notificação expandida com o Tor, país de saída e o IP</string>
     <string name="pref_use_persistent_notifications">Mantenha sempre um ícone na barra de ferramentas quando o Orbot estiver conectado</string>
-    <string name="hidden_service_request">Uma aplicação quer abrir uma porta do servidor onion %1$s para a rede Tor. É seguro caso confie nesta aplicação.</string>
+    <string name="hidden_service_request">Uma app quer abrir uma porta do servidor onion %1$s para a rede Tor. É seguro caso confie nesta app.</string>
     <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
     <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Ativar os registos de depuração para saída (deve usar adb ou aLogCat para ver)</string>
@@ -209,7 +209,7 @@
     <string name="exit_nodes">Nós de Saída</string>
     <string name="your_relay_settings_caused_an_exception_">As suas configurações de retransmissão causaram uma exceção!</string>
     <string name="your_reachableaddresses_settings_caused_an_exception_">As suas configurações de Endereços Acessíveis causou uma exceção!</string>
-    <string name="pref_allow_background_starts_summary">Deixar uma aplicação informar o Orbot para iniciar o Tor e os seus serviços relacionados</string>
+    <string name="pref_allow_background_starts_summary">Deixar uma app informar o Orbot para iniciar o Tor e os seus serviços relacionados</string>
     <string name="pref_allow_background_starts_title">Permitir Inicializações em Segundo Plano</string>
     <string name="pref_entrance_node_dialog">Digite os Nós de Entrada</string>
     <string name="pref_entrance_node_summary">Impressões digitais, apelidos, países e endereços para a primeira etapa</string>
@@ -218,5 +218,5 @@
     <string name="pref_node_configuration">Configuração do Nó</string>
     <string name="wizard_details_msg">O Orbot é um software de código aberto que contem Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent e Polipo. Ele fornece um proxy local HTTP (8118) e um proxy SOCKS (9050) como acesso a rede Tor. Orbot também tem a habilidade, em aparelhos com acesso root, de enviar todo o trafego de Internet via a rede Tor.</string>
     <string name="status_shutting_down">O TorService está desligando</string>
-    <string name="app_description">Orbot é uma aplicação de proxy livre que capacita outras aplicações a usar a internet com mais segurança. O Orbot usa o Tor para criptografar o seu tráfego na internet e então o esconde \"saltando\" entre uma série de computadores ao redor do mundo. Tor é um software livre e de rede aberta que ajuda a se defender de certas formas de vigilância que ameaçam privacidade e liberdade pessoais, atividades e relações comerciais confidenciais e segurança estatal conhecida como análise de tráfego.</string>
+    <string name="app_description">Orbot é uma app de proxy livre que capacita outras aplicações a usar a internet com mais segurança. O Orbot usa o Tor para criptografar o seu tráfego na internet e então o esconde \"saltando\" entre uma série de computadores ao redor do mundo. Tor é um software livre e de rede aberta que ajuda a se defender de certas formas de vigilância que ameaçam privacidade e liberdade pessoais, atividades e relações comerciais confidenciais e segurança estatal conhecida como análise de tráfego.</string>
 </resources>
