@@ -138,8 +138,7 @@
   <string name="onion_port">พอร์ต Onion</string>
   <string name="name">ชื่อเอกสาร</string>
   <string name="done">เสร็จสิ้น!</string>
-  <string name="invalid_port">พอร์ตไม่ถูกต้อง</string>
-  <string name="copy_address_to_clipboard">คัดลอกที่อยู่ลงในคลิปบอร์ด</string>
+    <string name="copy_address_to_clipboard">คัดลอกที่อยู่ลงในคลิปบอร์ด</string>
   <string name="show_auth_cookie">แสดงคุกกี้ที่ได้รับอนุญาต</string>
   <string name="backup_service">บริการสำรองข้อมูล</string>
   <string name="delete_service">บริการลบ</string>
@@ -147,8 +146,6 @@
   <string name="backup_restored">คืนค่าข้อมูลสำรอง</string>
     <string name="restore_backup">คืนค่าข้อมูลสำรอง</string>
   <string name="create_a_backup_first">สร้างข้อมูลสำรองก่อน</string>
-  <string name="name_can_t_be_empty">ปล่อยชื่อให้ว่างไม่ได้</string>
-  <string name="fields_can_t_be_empty">ปล่อยเขตข้อมูลให้ว่างไม่ได้</string>
   <string name="start_tor_again_for_finish_the_process">เริ่มทำงาน Tor อีกครั้งเพื่อจบกระบวนการ</string>
   <string name="confirm_service_deletion">ยืนยันการลบบริการ</string>
     <string name="service_type">ประเภทของบริการ</string>
@@ -158,7 +155,6 @@
   <string name="please_restart_Orbot_to_enable_the_changes">กรุณาเริ่ม Orbot ใหม่เพื่อให้การเปลี่ยนแปลงใช้งานได้</string>
   <string name="client_cookies">คุกกี้ของไคลเอ็นต์</string>
   <string name="onion">.onion</string>
-  <string name="invalid_onion_address">ที่อยู่ .onion ไม่ถูกต้อง</string>
   <string name="cookie_from_QR">อ่านจากคิวอาร์</string>
   <string name="backup_cookie">สำรองข้อมูลคุกกี้</string>
   <string name="delete_cookie">ลบคุกกี้</string>

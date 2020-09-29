@@ -138,8 +138,7 @@
   <string name="onion_port">Onion Port</string>
   <string name="name">Név</string>
   <string name="done">Kész!</string>
-  <string name="invalid_port">Érvénytelen Port</string>
-  <string name="copy_address_to_clipboard">Cím másolása vágólapra</string>
+    <string name="copy_address_to_clipboard">Cím másolása vágólapra</string>
   <string name="show_auth_cookie">Azonosító süti megjelenítése</string>
   <string name="backup_service">Mentő szolgáltatás</string>
   <string name="delete_service">Szolgáltatás Törlése</string>
@@ -147,8 +146,6 @@
   <string name="backup_restored">Mentés visszaállítva</string>
     <string name="restore_backup">Mentés visszaállítása</string>
   <string name="create_a_backup_first">Készítsen előbb egy mentést</string>
-  <string name="name_can_t_be_empty">A név nem lehet üres</string>
-  <string name="fields_can_t_be_empty">A mezők nem lehetnek üresek</string>
   <string name="start_tor_again_for_finish_the_process">Indítsa el a Tor-t még egyszer a befejezéshez</string>
   <string name="confirm_service_deletion">Szolgáltatás törlés jóváhagyása</string>
     <string name="service_type">Szolgáltatás típus</string>
@@ -158,7 +155,6 @@
   <string name="please_restart_Orbot_to_enable_the_changes">Kérlek indítsd újra az Orbot-ot a változások engedélyezéséhez</string>
   <string name="client_cookies">Kliens sütik</string>
   <string name="onion">.onion</string>
-  <string name="invalid_onion_address">Érvénytelen .onion cím</string>
   <string name="cookie_from_QR">Olvasás QR-ból</string>
   <string name="backup_cookie">Süti mentése</string>
   <string name="delete_cookie">Süti törlése</string>

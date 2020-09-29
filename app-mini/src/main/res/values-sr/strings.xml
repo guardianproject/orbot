@@ -139,16 +139,13 @@
   <string name="onion_port">Onion Порт</string>
   <string name="name">Име</string>
   <string name="done">Готово !</string>
-  <string name="invalid_port">Неисправан Порт</string>
-  <string name="copy_address_to_clipboard">Копирај адреса у clipboard</string>
+    <string name="copy_address_to_clipboard">Копирај адреса у clipboard</string>
   <string name="show_auth_cookie">Покажите ауторизовани колачић</string>
   <string name="backup_service">Услуга за резервне копије</string>
   <string name="delete_service">Обриши Услугу</string>
   <string name="backup_saved_at_external_storage">Резербна копија је сачувана на спољној меморији</string>
   <string name="backup_restored">Резервна копија је обновљена</string>
     <string name="restore_backup">Обнови резервну копију</string>
-    <string name="name_can_t_be_empty">Име не може бити празно</string>
-  <string name="fields_can_t_be_empty">Поља не могу бити празна</string>
   <string name="start_tor_again_for_finish_the_process">Поново покрените Тор да бисте довршили процес</string>
   <string name="confirm_service_deletion">Потрврди брисанје услуге</string>
   <string name="click_again_for_backup">Кликните поново за резервну копију</string>
@@ -156,7 +153,6 @@
   <string name="please_restart_Orbot_to_enable_the_changes">Молимо покрените поново Орбот ради примењивања промена</string>
   <string name="client_cookies">Колачићи клијента</string>
   <string name="onion">.onion</string>
-  <string name="invalid_onion_address">Неважећа .onion адреса</string>
   <string name="cookie_from_QR">Прочитај са QR кода</string>
   <string name="backup_cookie">Резервна копија колачића</string>
   <string name="delete_cookie">Избриши колачић</string>

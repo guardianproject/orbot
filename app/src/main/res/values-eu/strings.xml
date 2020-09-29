@@ -138,8 +138,7 @@
   <string name="onion_port">Onion ataka</string>
   <string name="name">Izena</string>
   <string name="done">Egina!</string>
-  <string name="invalid_port">Ataka baliogabea</string>
-  <string name="copy_address_to_clipboard">Kopiatu helbidea arbelera</string>
+    <string name="copy_address_to_clipboard">Kopiatu helbidea arbelera</string>
   <string name="show_auth_cookie">Erakutsi autentifikazio cookie-a</string>
   <string name="backup_service">Egin zerbitzuaren babeskopia</string>
   <string name="delete_service">Ezabatu zerbitzua</string>
@@ -147,8 +146,6 @@
   <string name="backup_restored">Babeskopia berrezarri da</string>
     <string name="restore_backup">Berrezarri babeskopia</string>
   <string name="create_a_backup_first">Sortu babeskopia aurretik</string>
-  <string name="name_can_t_be_empty">Izena ezin da hutsik egon</string>
-  <string name="fields_can_t_be_empty">Eremuak ezin dira hutsik egon</string>
   <string name="start_tor_again_for_finish_the_process">Hasi Tor berriro prozesua amaitzeko</string>
   <string name="confirm_service_deletion">Berretsi zerbitzua ezabatzea</string>
     <string name="service_type">Zerbitzu mota</string>
@@ -158,7 +155,6 @@
   <string name="please_restart_Orbot_to_enable_the_changes">Mesedez berrabiarazi Orbot aldaketak aktibatzeko</string>
   <string name="client_cookies">Bezero-cookie-ak</string>
   <string name="onion">.onion</string>
-  <string name="invalid_onion_address">.onion helbide baliogabea</string>
   <string name="cookie_from_QR">Irakurri QR-tik</string>
   <string name="backup_cookie">Egin cookie-aren babeskopia</string>
   <string name="delete_cookie">Ezabatu cookie-a</string>

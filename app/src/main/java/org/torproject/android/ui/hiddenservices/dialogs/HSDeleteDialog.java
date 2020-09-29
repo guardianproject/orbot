@@ -46,5 +46,4 @@ public class HSDeleteDialog extends DialogFragment {
             dir.delete();
         }
     }
-
 }

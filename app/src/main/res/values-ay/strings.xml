@@ -138,8 +138,7 @@
   <string name="onion_port">Onion apayañ thakhi</string>
   <string name="name">Suti</string>
   <string name="done">¡Tukuyata!</string>
-  <string name="invalid_port">Jan apaykay thakhi</string>
-  <string name="copy_address_to_clipboard">Utjirinak waruqañawjar imam</string>
+    <string name="copy_address_to_clipboard">Utjirinak waruqañawjar imam</string>
   <string name="show_auth_cookie"> Uñt\'ayktam uka cookie uñstayam</string>
   <string name="backup_service">Yanapirit imat luratanakam waruqam</string>
   <string name="delete_service">Lurañanak pichsuña</string>
@@ -147,8 +146,6 @@
   <string name="backup_restored">Imat luratanakamax mayamp apnaqatäxiwa</string>
     <string name="restore_backup">Imat luratanak mayamp aqtayam</string>
   <string name="create_a_backup_first"> Imat luratanak nayraqat uñstayam</string>
-  <string name="name_can_t_be_empty">Sutix qillqantatäñapapuniwa</string>
-  <string name="fields_can_t_be_empty">Janiw kunas ch\'usäñapakiti</string>
   <string name="start_tor_again_for_finish_the_process">Tukuyañatakix Tor mayamp naktayam</string>
   <string name="confirm_service_deletion">Lurañanakax pichsutäniwa</string>
     <string name="service_type">Kunayman lurañanaka</string>
@@ -158,7 +155,6 @@
   <string name="please_restart_Orbot_to_enable_the_changes">Mayjt\'ayatanak aqtayañatak Orbot mayamp qhant\'ayam, amp suma</string>
   <string name="client_cookies">Apnaqirin Cookiepa</string>
   <string name="onion">.onion</string>
-  <string name="invalid_onion_address">Jan wali Onion ukan chiqawjanakapa</string>
   <string name="cookie_from_QR">QR ukamp ullaraña</string>
   <string name="backup_cookie">Cookien imat luratanakapa</string>
   <string name="delete_cookie">Cookie pichsum</string>

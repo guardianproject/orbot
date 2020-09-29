@@ -5,7 +5,11 @@ import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -19,55 +23,72 @@ import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
 
 public class HSDataDialog extends DialogFragment {
 
+    private EditText etServer, etLocalPort, etOnionPort;
+    private TextWatcher inputValidator;
+
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        final View dialog_view = getActivity().getLayoutInflater().inflate(R.layout.layout_hs_data_dialog, null);
-        return new AlertDialog.Builder(getActivity())
+        final View dialogView = getActivity().getLayoutInflater().inflate(R.layout.layout_hs_data_dialog, null);
+        etServer = dialogView.findViewById(R.id.hsName);
+        etLocalPort = dialogView.findViewById(R.id.hsLocalPort);
+        etOnionPort = dialogView.findViewById(R.id.hsOnionPort);
+        AlertDialog ad = new AlertDialog.Builder(getActivity())
                 .setTitle(R.string.hidden_services)
                 .setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.cancel())
-                .setPositiveButton(R.string.save, (dialog, which) -> doSave(dialog_view, getContext()))
-                .setView(dialog_view)
+                .setPositiveButton(R.string.save, (dialog, which) -> doSave(dialogView, getContext()))
+                .setView(dialogView)
                 .create();
+
+        inputValidator = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                Button btn = ad.getButton(AlertDialog.BUTTON_POSITIVE);
+                try {
+                    int localPort = Integer.parseInt(etLocalPort.getText().toString());
+                    int onionPort = Integer.parseInt(etOnionPort.getText().toString());
+                    btn.setEnabled(checkInput(localPort, onionPort));
+                } catch (NumberFormatException nfe) {
+                    btn.setEnabled(false);
+                }
+            }
+        };
+
+        etOnionPort.addTextChangedListener(inputValidator);
+        etLocalPort.addTextChangedListener(inputValidator);
+        etServer.addTextChangedListener(inputValidator);
+
+        return ad;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        inputValidator.afterTextChanged(null); // initially disable positive button
     }
 
     private void doSave(View dialogView, Context context) {
-        String serverName = ((EditText) dialogView.findViewById(R.id.hsName)).getText().toString();
-        int localPort, onionPort;
-        try {
-            localPort = Integer.parseInt(((EditText) dialogView.findViewById(R.id.hsLocalPort)).getText().toString());
-            onionPort = Integer.parseInt(((EditText) dialogView.findViewById(R.id.hsOnionPort)).getText().toString());
-        } catch (NumberFormatException nfe) {
-            Toast.makeText(context, R.string.fields_can_t_be_empty, Toast.LENGTH_LONG).show();
-            return;
-        }
+        String serverName = etServer.getText().toString().trim();
+        int localPort = Integer.parseInt(etLocalPort.getText().toString());
+        int onionPort = Integer.parseInt(etOnionPort.getText().toString());
         boolean authCookie = ((CheckBox) dialogView.findViewById(R.id.hsAuth)).isChecked();
-
-        if (checkInput(serverName, localPort, onionPort)) {
-            saveData(serverName, localPort, onionPort, authCookie);
-            Toast.makeText(context, R.string.please_restart_Orbot_to_enable_the_changes, Toast.LENGTH_LONG).show();
-        }
+        saveData(serverName, localPort, onionPort, authCookie);
+        Toast.makeText(context, R.string.please_restart_Orbot_to_enable_the_changes, Toast.LENGTH_LONG).show();
     }
 
-    private boolean checkInput(String serverName, int local, int remote) {
-        boolean is_ok = true;
-        int error_msg = 0;
-
-        if ((local < 1 || local > 65535) || (remote < 1 || remote > 65535)) {
-            error_msg = R.string.invalid_port;
-            is_ok = false;
-        }
-
-        if (serverName == null || serverName.length() < 1) {
-            error_msg = R.string.name_can_t_be_empty;
-            is_ok = false;
-        }
-
-        if (!is_ok) {
-            Toast.makeText(getContext(), error_msg, Toast.LENGTH_SHORT).show();
-        }
-
-        return is_ok;
+    private boolean checkInput(int local, int remote) {
+        if ((local < 1 || local > 65535) || (remote < 1 || remote > 65535)) return false;
+        return !TextUtils.isEmpty(etServer.getText().toString().trim());
     }
 
     private void saveData(String name, int local, int remote, boolean authCookie) {

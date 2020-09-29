@@ -28,8 +28,10 @@
         android:id="@+id/hsLocalPort"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:digits="0123456789"
         android:ems="10"
-        android:inputType="number" />
+        android:inputType="number"
+        android:maxLength="5" />
 
     <TextView
         android:layout_width="match_parent"
@@ -41,8 +43,10 @@
         android:id="@+id/hsOnionPort"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:digits="0123456789"
         android:ems="10"
-        android:inputType="number" />
+        android:inputType="number"
+        android:maxLength="5" />
 
     <CheckBox
         android:id="@+id/hsAuth"

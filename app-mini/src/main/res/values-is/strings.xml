@@ -141,16 +141,13 @@
   <string name="onion_port">Onion-gátt</string>
   <string name="name">Heiti</string>
   <string name="done">Lokið!</string>
-  <string name="invalid_port">Ógild gátt</string>
-  <string name="copy_address_to_clipboard">Afrita vistfang yfir á klippispjald</string>
+    <string name="copy_address_to_clipboard">Afrita vistfang yfir á klippispjald</string>
   <string name="show_auth_cookie">Birta auðkenningar-vefköku</string>
   <string name="backup_service">Öryggisafritunarþjónusta</string>
   <string name="delete_service">Eyða þjónustu</string>
   <string name="backup_saved_at_external_storage">Öryggisafrit var vistað í ytri gagnageymslu</string>
   <string name="backup_restored">Öryggisafrit var endurheimt</string>
     <string name="restore_backup">Endurheimta úr öryggisafriti</string>
-    <string name="name_can_t_be_empty">Nafnið má ekki vera autt</string>
-  <string name="fields_can_t_be_empty">Gagnasvið mega ekki vera auð</string>
   <string name="start_tor_again_for_finish_the_process">Ræstu Tor aftur til að ljúka ferlinu</string>
   <string name="confirm_service_deletion">Staðfestu eyðingu á þjónustu</string>
   <string name="click_again_for_backup">Smelltu aftur fyrir öryggisafrit</string>
@@ -161,7 +158,6 @@
   <string name="please_restart_Orbot_to_enable_the_changes">Endurræstu Orbot til að breytingarnar taki gildi</string>
   <string name="client_cookies">Vefkökur forritsins</string>
   <string name="onion">.onion</string>
-  <string name="invalid_onion_address">Ógilt .onion vistfang</string>
   <string name="cookie_from_QR">Lesa úr QR-kóða</string>
   <string name="backup_cookie">Öryggisafrit af vefköku</string>
   <string name="delete_cookie">Eyða vefköku</string>

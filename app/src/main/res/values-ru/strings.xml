@@ -138,8 +138,7 @@
   <string name="onion_port">Onion-порт</string>
   <string name="name">Имя</string>
   <string name="done">Готово!</string>
-  <string name="invalid_port">Некорректный порт</string>
-  <string name="copy_address_to_clipboard">Скопировать адрес в буфер обмена</string>
+    <string name="copy_address_to_clipboard">Скопировать адрес в буфер обмена</string>
   <string name="show_auth_cookie">Показать авторизирующие cookie</string>
   <string name="backup_service">Резервировать службу</string>
   <string name="delete_service">Удалить службу</string>
@@ -147,8 +146,6 @@
   <string name="backup_restored">Восстановлено из резервной копии</string>
     <string name="restore_backup">Восстановить из копии</string>
   <string name="create_a_backup_first">Сначала создайте резервную копию</string>
-  <string name="name_can_t_be_empty">Имя не может быть пустым</string>
-  <string name="fields_can_t_be_empty">Поля не могут быть пустыми</string>
   <string name="start_tor_again_for_finish_the_process">Запустите Tor снова для завершения процесса</string>
   <string name="confirm_service_deletion">Подтверждение удаления службы</string>
     <string name="service_type">Тип службы</string>
@@ -158,7 +155,6 @@
   <string name="please_restart_Orbot_to_enable_the_changes">Пожалуйста, перезапустите Orbot для вступления изменения в силу</string>
   <string name="client_cookies">Cookies клиента</string>
   <string name="onion">.onion</string>
-  <string name="invalid_onion_address">Недействительный .onion-адрес</string>
   <string name="cookie_from_QR">Прочитать из QR-кода</string>
   <string name="backup_cookie">Резервировать cookie</string>
   <string name="delete_cookie">Удалить cookies</string>

@@ -138,8 +138,7 @@
   <string name="onion_port">Onion Anschluss</string>
   <string name="name">Name</string>
   <string name="done">Fertig!</string>
-  <string name="invalid_port">Ungültiger Anschluss</string>
-  <string name="copy_address_to_clipboard">Adresse in die Zwischenablage kopieren</string>
+    <string name="copy_address_to_clipboard">Adresse in die Zwischenablage kopieren</string>
   <string name="show_auth_cookie">Authentifikationscookie anzeigen</string>
   <string name="backup_service">Sicherungsdienst</string>
   <string name="delete_service">Dienst löschen</string>
@@ -147,8 +146,6 @@
   <string name="backup_restored">Sicherung wiederhergestellt</string>
     <string name="restore_backup">Sicherung wiederherstellen</string>
   <string name="create_a_backup_first">Erstellen Sie zuerst eine Sicherung</string>
-  <string name="name_can_t_be_empty">Name darf nicht leer sein</string>
-  <string name="fields_can_t_be_empty">Felder dürfen nicht leer sein</string>
   <string name="start_tor_again_for_finish_the_process">Tor neu starten, um den Vorgang abzuschließen</string>
   <string name="confirm_service_deletion">Löschen des Dienst bestätigen</string>
     <string name="service_type">Dienst-Typ</string>
@@ -158,7 +155,6 @@
   <string name="please_restart_Orbot_to_enable_the_changes">Bitte Orbot zum Aktivieren der Änderungen neustarten</string>
   <string name="client_cookies">Client Cookies</string>
   <string name="onion">.onion</string>
-  <string name="invalid_onion_address">Ungültige .onion-Adresse</string>
   <string name="cookie_from_QR">Lese QR-Code</string>
   <string name="backup_cookie">Cookie sichern</string>
   <string name="delete_cookie">Cookie löschen</string>

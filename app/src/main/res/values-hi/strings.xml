@@ -139,8 +139,7 @@
   <string name="onion_port">अनियन पोर्ट</string>
   <string name="name">नाम</string>
   <string name="done">किया हुआ!</string>
-  <string name="invalid_port">अमान्य पोर्ट</string>
-  <string name="copy_address_to_clipboard">क्लिपबोर्ड को पता कॉपी करें</string>
+    <string name="copy_address_to_clipboard">क्लिपबोर्ड को पता कॉपी करें</string>
   <string name="show_auth_cookie">Auth कुकी दिखाएं</string>
   <string name="backup_service">बैकअप सेवा</string>
   <string name="delete_service">सेवा हटाएँ</string>
@@ -148,8 +147,6 @@
   <string name="backup_restored">बैकअप को पुनर्स्थापित किया गया</string>
     <string name="restore_backup">बैकअप बहाल</string>
   <string name="create_a_backup_first">पहले बैकअप बनाएं</string>
-  <string name="name_can_t_be_empty">नाम रिक्त नहीं हो सकता</string>
-  <string name="fields_can_t_be_empty">फ़ील्ड रिक्त नहीं हो सकते</string>
   <string name="start_tor_again_for_finish_the_process">प्रक्रिया को खत्म करने के लिए Tor पुन: प्रारंभ करें</string>
   <string name="confirm_service_deletion">सेवा हटाने की पुष्टि करें</string>
     <string name="service_type">सेवा प्रकार</string>
@@ -159,7 +156,6 @@
   <string name="please_restart_Orbot_to_enable_the_changes">परिवर्तन सक्षम करने के लिए Orbot पुनः प्रारंभ करें</string>
   <string name="client_cookies">क्लाइंट कुकीज़</string>
   <string name="onion">.अनियन </string>
-  <string name="invalid_onion_address">अमान्य .अमान्य  पतापता</string>
   <string name="cookie_from_QR">QR से पढ़ें</string>
   <string name="backup_cookie">बैकअप कुकी</string>
   <string name="delete_cookie">कुकी हटाएं</string>

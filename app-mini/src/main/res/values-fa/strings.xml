@@ -141,16 +141,13 @@
   <string name="onion_port">درگاه پیازی</string>
   <string name="name">نام</string>
   <string name="done">انجام شد!</string>
-  <string name="invalid_port">درگاه نامعتبر</string>
-  <string name="copy_address_to_clipboard">رونوشت نشانی‌ها در حافظه موقت</string>
+    <string name="copy_address_to_clipboard">رونوشت نشانی‌ها در حافظه موقت</string>
   <string name="show_auth_cookie">نمایش کوکی احراز هویت</string>
   <string name="backup_service">سرویس بک‌آپ</string>
   <string name="delete_service">حذف سرویس</string>
   <string name="backup_saved_at_external_storage">بک‌آپ در انباره خارجی ذخیره شد</string>
   <string name="backup_restored">بک‌آپ بازگردانده شد</string>
     <string name="restore_backup">برگرداندن بک‌آپ</string>
-    <string name="name_can_t_be_empty">نام نباید خالی باشد</string>
-  <string name="fields_can_t_be_empty">زمینه‌ها نباید خالی باشند</string>
   <string name="start_tor_again_for_finish_the_process">برای پایان روند کار ، دوباره تور را آغاز کنید</string>
   <string name="confirm_service_deletion">حذف سرویس را تایید کنید</string>
   <string name="click_again_for_backup">برای بک‌آپ، دوباره کلیک کنید</string>
@@ -161,7 +158,6 @@
   <string name="please_restart_Orbot_to_enable_the_changes">برای دیدن تغییرات، اوربات  را دوباره راه اندازی کنید</string>
   <string name="client_cookies">کوکی‌های Client</string>
   <string name="onion">onion.</string>
-  <string name="invalid_onion_address">نشانی نامعتبر onion. </string>
   <string name="cookie_from_QR">از QR بخوان</string>
   <string name="backup_cookie">بک‌آپ از کوکی</string>
   <string name="delete_cookie">حذف کوکی</string>

@@ -138,8 +138,7 @@
   <string name="onion_port">Port oignon</string>
   <string name="name">Nom</string>
   <string name="done">Fait !</string>
-  <string name="invalid_port">Port invalide</string>
-  <string name="copy_address_to_clipboard">Copier l’adresse vers le presse-papiers</string>
+    <string name="copy_address_to_clipboard">Copier l’adresse vers le presse-papiers</string>
   <string name="show_auth_cookie">Afficher le témoin auth</string>
   <string name="backup_service">Service de sauvegarde</string>
   <string name="delete_service">Supprimer le service</string>
@@ -147,8 +146,6 @@
   <string name="backup_restored">La sauvegarde a été restaurée</string>
     <string name="restore_backup">Restaurer la sauvegarde</string>
   <string name="create_a_backup_first">Créer d’abord une sauvegarde</string>
-  <string name="name_can_t_be_empty">Le nom ne peut pas être vide</string>
-  <string name="fields_can_t_be_empty">Les champs ne peuvent pas être vides</string>
   <string name="start_tor_again_for_finish_the_process">Redémarrer Tor pour terminer le processus</string>
   <string name="confirm_service_deletion">Confirmer la suppression du service</string>
     <string name="service_type">Type de service</string>
@@ -158,7 +155,6 @@
   <string name="please_restart_Orbot_to_enable_the_changes">Veuillez redémarrer Orbot pour activer les changements</string>
   <string name="client_cookies">Témoins du client</string>
   <string name="onion">.onion</string>
-  <string name="invalid_onion_address">Adresse .onion invalide</string>
   <string name="cookie_from_QR">Lire d’un code QR</string>
   <string name="backup_cookie">Sauvegarder le témoin</string>
   <string name="delete_cookie">Supprimer le témoin</string>

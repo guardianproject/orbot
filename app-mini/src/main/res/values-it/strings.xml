@@ -141,16 +141,13 @@
   <string name="onion_port">Porta onion</string>
   <string name="name">Nome</string>
   <string name="done">Fatto!</string>
-  <string name="invalid_port">Porta non valida</string>
-  <string name="copy_address_to_clipboard">Copia l\'indirizzo negli appunti</string>
+    <string name="copy_address_to_clipboard">Copia l\'indirizzo negli appunti</string>
   <string name="show_auth_cookie">Mostra cookie di autenticazione</string>
   <string name="backup_service">Servizio di backup</string>
   <string name="delete_service">Elimina il servizio</string>
   <string name="backup_saved_at_external_storage">Backup salvato nell\'archiviazione esterna</string>
   <string name="backup_restored">Backup ripristinato</string>
     <string name="restore_backup">Ripristina backup</string>
-    <string name="name_can_t_be_empty">Il nome non può essere vuoto</string>
-  <string name="fields_can_t_be_empty">I campi non possono essere vuoti</string>
   <string name="start_tor_again_for_finish_the_process">Riavvia Tor per finire il processo</string>
   <string name="confirm_service_deletion">Conferma l\'eliminazione del servizio</string>
   <string name="click_again_for_backup">Clicca ancora per eseguire il backup</string>
@@ -161,7 +158,6 @@
   <string name="please_restart_Orbot_to_enable_the_changes">Per favore riavvia Orbot per rendere effettive le modifiche</string>
   <string name="client_cookies">Cookie del client</string>
   <string name="onion">.onion</string>
-  <string name="invalid_onion_address">Indirizzo .onion non valido</string>
   <string name="cookie_from_QR">Leggi da QR</string>
   <string name="backup_cookie">Backup cookie</string>
   <string name="delete_cookie">Elimina cookie</string>

@@ -47,6 +47,11 @@ public class BackupUtils {
         return zipFile.getPath();
     }
 
+    // returns true if domain is v2 onion address or v3 onion address
+    public static boolean isOnionAddressValid(String onionToTest) {
+        if (onionToTest.matches("([a-z0-9]{16}).onion")) return true;
+        return onionToTest.matches("([a-z0-9]{56}).onion");
+    }
 
     private String[] createFilesForZipping(int port) {
         File hsBasePath = getHSBasePath();

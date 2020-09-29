@@ -138,8 +138,7 @@
   <string name="onion_port">Onion port</string>
   <string name="name">Namn</string>
   <string name="done">Klart!</string>
-  <string name="invalid_port">Ogiltig port</string>
-  <string name="copy_address_to_clipboard">Kopiera adress till urklipp</string>
+    <string name="copy_address_to_clipboard">Kopiera adress till urklipp</string>
   <string name="show_auth_cookie">Visa auth kaka</string>
   <string name="backup_service">Säkerhetskopiera tjänst</string>
   <string name="delete_service">Ta bort tjänst</string>
@@ -147,8 +146,6 @@
   <string name="backup_restored">Backup återställd</string>
     <string name="restore_backup">Återställa säkerhetskopia</string>
   <string name="create_a_backup_first">Skapa en säkerhetskopia först</string>
-  <string name="name_can_t_be_empty">Namnet kan inte vara tomt</string>
-  <string name="fields_can_t_be_empty">Fält kan inte vara tomma</string>
   <string name="start_tor_again_for_finish_the_process">Starta Tor igen för att avsluta processen</string>
   <string name="confirm_service_deletion">Bekräfta tjänst borttagning</string>
     <string name="service_type">Typ av tjänst</string>
@@ -158,7 +155,6 @@
   <string name="please_restart_Orbot_to_enable_the_changes">Vänligen starta om Orbot för att aktivera ändringarna</string>
   <string name="client_cookies">Klientkakor</string>
   <string name="onion">.onion</string>
-  <string name="invalid_onion_address">Ogiltig .onion-adress</string>
   <string name="cookie_from_QR">Läs från QR</string>
   <string name="backup_cookie">Säkerhetskopiera kaka</string>
   <string name="delete_cookie">Ta bort kaka</string>

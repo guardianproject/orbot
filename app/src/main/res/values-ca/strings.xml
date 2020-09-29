@@ -138,8 +138,7 @@
   <string name="onion_port">Port ceba</string>
   <string name="name">Nom</string>
   <string name="done">Fet!</string>
-  <string name="invalid_port">Port invàlid</string>
-  <string name="copy_address_to_clipboard">Copia adreça al portapapers</string>
+    <string name="copy_address_to_clipboard">Copia adreça al portapapers</string>
   <string name="show_auth_cookie">Mostrar galetes d\'autentificació</string>
   <string name="backup_service">Servei de còpia de seguretat</string>
   <string name="delete_service">Esborrar servei</string>
@@ -147,8 +146,6 @@
   <string name="backup_restored">Còpia de seguretat restaurada</string>
     <string name="restore_backup">Restaurar còpia de seguretat</string>
   <string name="create_a_backup_first">Crea una còpia de seguretat primer</string>
-  <string name="name_can_t_be_empty">El nom no pot estar buit</string>
-  <string name="fields_can_t_be_empty">Els camps no poden estar buits</string>
   <string name="start_tor_again_for_finish_the_process">Torna a iniciar Tor per acabar el procés</string>
   <string name="confirm_service_deletion">Confirma la supressió del servei</string>
     <string name="service_type">Tipus de servei</string>
@@ -158,7 +155,6 @@
   <string name="please_restart_Orbot_to_enable_the_changes">Reinicieu l\'Orbot per aplicar els canvis</string>
   <string name="client_cookies">Client cookies</string>
   <string name="onion">.onion</string>
-  <string name="invalid_onion_address">L\'adreça .onion no és vàlida</string>
   <string name="cookie_from_QR">Llegir de QR</string>
   <string name="backup_cookie">Backup cookie</string>
   <string name="delete_cookie">Elimina la galeta</string>

@@ -142,16 +142,13 @@ direcciones (o rangos). No prevalecen sobre las configuraciones de exclusión de
   <string name="onion_port">Puerto onion</string>
   <string name="name">Nombre</string>
   <string name="done">¡Hecho!</string>
-  <string name="invalid_port">Puerto no válido</string>
-  <string name="copy_address_to_clipboard">Copiar dirección al portapapeles</string>
+    <string name="copy_address_to_clipboard">Copiar dirección al portapapeles</string>
   <string name="show_auth_cookie">Mostrar cookie de autentificación</string>
   <string name="backup_service">Hacer copia de seguridad del servicio</string>
   <string name="delete_service">Borrar servicio</string>
   <string name="backup_saved_at_external_storage">Copia de seguridad guardada en un almacenamiento externo</string>
   <string name="backup_restored">Copia de seguridad restaurada</string>
     <string name="restore_backup">Restaurar copia de seguridad</string>
-    <string name="name_can_t_be_empty">El nombre no puede estar vacío</string>
-  <string name="fields_can_t_be_empty">Los campos no pueden estar vacíos</string>
   <string name="start_tor_again_for_finish_the_process">Inicie Tor de nuevo para finalizar el proceso</string>
   <string name="confirm_service_deletion">Confirme el borrado del servicio</string>
   <string name="click_again_for_backup">Pulse de nuevo para realizar copia de seguridad</string>
@@ -162,7 +159,6 @@ direcciones (o rangos). No prevalecen sobre las configuraciones de exclusión de
   <string name="please_restart_Orbot_to_enable_the_changes">Por favor, reinicie Orbot para habilitar los cambios</string>
   <string name="client_cookies">Cookies de cliente</string>
   <string name="onion">.onion</string>
-  <string name="invalid_onion_address">Dirección .onion no válida</string>
   <string name="cookie_from_QR">Leer desde QR</string>
   <string name="backup_cookie">Realizar copia de seguridad de cookie</string>
   <string name="delete_cookie">Borrar cookie</string>

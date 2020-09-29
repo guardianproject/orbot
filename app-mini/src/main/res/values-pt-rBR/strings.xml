@@ -141,16 +141,13 @@
   <string name="onion_port">Porta Onion</string>
   <string name="name">Nome</string>
   <string name="done">Feito!</string>
-  <string name="invalid_port">Porta Invalida</string>
-  <string name="copy_address_to_clipboard">Copiar para a area de transferência </string>
+    <string name="copy_address_to_clipboard">Copiar para a area de transferência </string>
   <string name="show_auth_cookie">Mostre cookie de autenticação</string>
   <string name="backup_service">Serviço de Backup</string>
   <string name="delete_service">Remover Serviço</string>
   <string name="backup_saved_at_external_storage">Backup salvo em mídia externa</string>
   <string name="backup_restored">Backup Restaurado</string>
     <string name="restore_backup">Restaurar Backup</string>
-    <string name="name_can_t_be_empty">O campo Nome não pode ser vazio</string>
-  <string name="fields_can_t_be_empty">Campos não podem ser vazios</string>
   <string name="confirm_service_deletion">Confirmar a remoção do serviço</string>
   <string name="click_again_for_backup">Clique novamente para backup</string>
   <string name="service_type">Tipo do Serviço</string>

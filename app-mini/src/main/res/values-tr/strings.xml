@@ -141,16 +141,13 @@
   <string name="onion_port">Onion Kapısı</string>
   <string name="name">Ad</string>
   <string name="done">Tamam!</string>
-  <string name="invalid_port">Kapı Geçersiz</string>
-  <string name="copy_address_to_clipboard">Adresi panoya kopyala</string>
+    <string name="copy_address_to_clipboard">Adresi panoya kopyala</string>
   <string name="show_auth_cookie">Kimlik doğrulama çerezini görüntüle</string>
   <string name="backup_service">Hizmeti Yedekle</string>
   <string name="delete_service">Hizmeti Sil</string>
   <string name="backup_saved_at_external_storage">Yedek dış depolamaya kaydedildi</string>
   <string name="backup_restored">Yedek geri yüklendi</string>
     <string name="restore_backup">Yedeği Geri Yükle</string>
-    <string name="name_can_t_be_empty">Ad boş bırakılamaz</string>
-  <string name="fields_can_t_be_empty">Alanlar boş bırakılamaz</string>
   <string name="start_tor_again_for_finish_the_process">İşlemi tamamlamak için Tor uygulamasını yeniden başlatın</string>
   <string name="confirm_service_deletion">Hizmeti Silmeyi Onayla</string>
   <string name="click_again_for_backup">Yedeklemek için yeniden tıklayın</string>
@@ -161,7 +158,6 @@
   <string name="please_restart_Orbot_to_enable_the_changes">Değişiklikleri etkinleştirmek için Orbot uygulamasını yeniden başlatın</string>
   <string name="client_cookies">İstemci çerezleri</string>
   <string name="onion">.onion</string>
-  <string name="invalid_onion_address">.onion adresi geçersiz</string>
   <string name="cookie_from_QR">QR kodundan oku</string>
   <string name="backup_cookie">Çerezi yedekle</string>
   <string name="delete_cookie">Çerezi sil</string>

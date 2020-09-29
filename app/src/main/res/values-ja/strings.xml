@@ -138,8 +138,7 @@
   <string name="onion_port">Onion ポート</string>
   <string name="name">名前</string>
   <string name="done">完了</string>
-  <string name="invalid_port">無効なポート</string>
-  <string name="copy_address_to_clipboard">アドレスをクリップボードにコピー</string>
+    <string name="copy_address_to_clipboard">アドレスをクリップボードにコピー</string>
   <string name="show_auth_cookie">Cookie 認証を非表示</string>
   <string name="backup_service">バックアップサービス</string>
   <string name="delete_service">サービスを削除</string>
@@ -147,8 +146,6 @@
   <string name="backup_restored">バックアップから復元</string>
     <string name="restore_backup">バックアップの復旧</string>
   <string name="create_a_backup_first">最初に、バックアップを作成して下さい</string>
-  <string name="name_can_t_be_empty">名前はブランクのままにできません</string>
-  <string name="fields_can_t_be_empty">フィールドを空にしておくことはできません</string>
   <string name="start_tor_again_for_finish_the_process">プロセスを完了するには、Torを再起動して下さい。</string>
   <string name="confirm_service_deletion">サービス削除を確認</string>
     <string name="service_type">サービスタイプ</string>
@@ -158,7 +155,6 @@
   <string name="please_restart_Orbot_to_enable_the_changes">変更を有効にするにはOrbotを再起動してください</string>
   <string name="client_cookies">クライアント Cookie</string>
   <string name="onion">.onion</string>
-  <string name="invalid_onion_address">無効な .onion アドレス</string>
   <string name="cookie_from_QR">QRコードから読み取り</string>
   <string name="backup_cookie">Cookie をバックアップ</string>
   <string name="delete_cookie">Cookie を削除</string>

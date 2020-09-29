@@ -138,8 +138,7 @@
   <string name="onion_port">Porto Onion</string>
   <string name="name">Nome</string>
   <string name="done">Feito!</string>
-  <string name="invalid_port">Porto non válido</string>
-  <string name="copy_address_to_clipboard">Copiar enderezo ao portapapeis</string>
+    <string name="copy_address_to_clipboard">Copiar enderezo ao portapapeis</string>
   <string name="show_auth_cookie">Mostar testemuño de autorización</string>
   <string name="backup_service">Servizo de respaldo</string>
   <string name="delete_service">Eliminar servizo</string>
@@ -147,8 +146,6 @@
   <string name="backup_restored">Respaldo restaurado</string>
     <string name="restore_backup">Restaurar respaldo</string>
   <string name="create_a_backup_first">Cree un respaldo primeiro</string>
-  <string name="name_can_t_be_empty">O nome non pode quedar baldeiro</string>
-  <string name="fields_can_t_be_empty">Os campos non poden estar baldeiros</string>
   <string name="start_tor_again_for_finish_the_process">Inicie Tor de novo para rematar o proceso</string>
   <string name="confirm_service_deletion">Confirme a eliminación do servizo</string>
     <string name="service_type">Tipo de servizo</string>
@@ -158,7 +155,6 @@
   <string name="please_restart_Orbot_to_enable_the_changes">Por favor, reinicie Orbot para activar os cambios</string>
   <string name="client_cookies">Testemuños do cliente</string>
   <string name="onion">.onion</string>
-  <string name="invalid_onion_address">Enderezo .onion non válido</string>
   <string name="cookie_from_QR">Ler desde QR</string>
   <string name="backup_cookie">Testemuño de respaldo</string>
   <string name="delete_cookie">Eliminar testemuño</string>

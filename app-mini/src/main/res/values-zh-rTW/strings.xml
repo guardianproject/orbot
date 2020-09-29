@@ -141,16 +141,13 @@
   <string name="onion_port">洋蔥端口</string>
   <string name="name">名稱</string>
   <string name="done">已完成!</string>
-  <string name="invalid_port">無效埠</string>
-  <string name="copy_address_to_clipboard">複製地址到剪貼簿</string>
+    <string name="copy_address_to_clipboard">複製地址到剪貼簿</string>
   <string name="show_auth_cookie">顯示 auth cookie</string>
   <string name="backup_service">備份服務</string>
   <string name="delete_service">刪除服務</string>
   <string name="backup_saved_at_external_storage">備份檔儲存在外部儲存器</string>
   <string name="backup_restored">備份已還原</string>
     <string name="restore_backup">還原備份</string>
-    <string name="name_can_t_be_empty">名稱不可空白</string>
-  <string name="fields_can_t_be_empty">欄位不可空白</string>
   <string name="start_tor_again_for_finish_the_process">再次開啟 Tor  以完成此過程</string>
   <string name="confirm_service_deletion">確認服務刪除</string>
   <string name="click_again_for_backup">再次點選以進行備份</string>
@@ -161,7 +158,6 @@
   <string name="please_restart_Orbot_to_enable_the_changes">請重新啟動 Orbot 來讓設定生效。</string>
   <string name="client_cookies">客戶 cookies</string>
   <string name="onion">.onion</string>
-  <string name="invalid_onion_address">無效的 .onion 地址</string>
   <string name="cookie_from_QR">由 QR 碼讀取</string>
   <string name="backup_cookie">備分 cookie</string>
   <string name="delete_cookie">刪除 cookie</string>

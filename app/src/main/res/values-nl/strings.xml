@@ -138,8 +138,7 @@
   <string name="onion_port">Onion-poort</string>
   <string name="name">Naam</string>
   <string name="done">Klaar!</string>
-  <string name="invalid_port">Ongeldige poort</string>
-  <string name="copy_address_to_clipboard">Adres kopiëren naar klembord</string>
+    <string name="copy_address_to_clipboard">Adres kopiëren naar klembord</string>
   <string name="show_auth_cookie">Authenticatiecookie tonen</string>
   <string name="backup_service">Back-updienst</string>
   <string name="delete_service">Dienst verwijderen</string>
@@ -147,8 +146,6 @@
   <string name="backup_restored">Back-up hersteld</string>
     <string name="restore_backup">Back-up herstellen</string>
   <string name="create_a_backup_first">Maak eerst een back-up aan</string>
-  <string name="name_can_t_be_empty">Naam kan niet leeg zijn</string>
-  <string name="fields_can_t_be_empty">Velden kunnen niet leeg zijn</string>
   <string name="start_tor_again_for_finish_the_process">Start Tor opnieuw om het proces te voltooien</string>
   <string name="confirm_service_deletion">Bevestig verwijderen van dienst</string>
     <string name="service_type">Diensttype</string>
@@ -158,7 +155,6 @@
   <string name="please_restart_Orbot_to_enable_the_changes">Herstart Orbot om de wijzigingen in te schakelen</string>
   <string name="client_cookies">Cliëntcookies</string>
   <string name="onion">.onion</string>
-  <string name="invalid_onion_address">Ongeldig .onion-adres</string>
   <string name="cookie_from_QR">Lezen van QR-code</string>
   <string name="backup_cookie">Back-up maken van cookie</string>
   <string name="delete_cookie">Cookie verwijderen</string>

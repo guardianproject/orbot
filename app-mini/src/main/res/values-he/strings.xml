@@ -141,16 +141,13 @@
   <string name="onion_port">פתחת בצל</string>
   <string name="name">שם</string>
   <string name="done">הסתיים!</string>
-  <string name="invalid_port">פתחה לא תקפה</string>
-  <string name="copy_address_to_clipboard">העתק כתובת ללוח עריכה</string>
+    <string name="copy_address_to_clipboard">העתק כתובת ללוח עריכה</string>
   <string name="show_auth_cookie">הראה עוגיית אימות</string>
   <string name="backup_service">גבה שירות</string>
   <string name="delete_service">מחק שירות</string>
   <string name="backup_saved_at_external_storage">גיבוי נשמר באחסון חיצוני</string>
   <string name="backup_restored">גיבוי שוחזר</string>
     <string name="restore_backup">שחזר גיבוי</string>
-    <string name="name_can_t_be_empty">שם אינו יכול להיות ריק</string>
-  <string name="fields_can_t_be_empty">שדות אינם יכולים להיות ריקים</string>
   <string name="start_tor_again_for_finish_the_process">הפעל את Tor שוב כדי לסיים את התהליך</string>
   <string name="confirm_service_deletion">אשר מחיקת שירות</string>
   <string name="click_again_for_backup">לחץ שוב לגיבוי</string>
@@ -161,7 +158,6 @@
   <string name="please_restart_Orbot_to_enable_the_changes">אנא הפעל מחדש את Orbot כדי לאפשר את השינויים</string>
   <string name="client_cookies">עוגיות לקוח</string>
   <string name="onion">.onion</string>
-  <string name="invalid_onion_address">כתובת .onion לא תקפה</string>
   <string name="cookie_from_QR">קרא מתוך QR</string>
   <string name="backup_cookie">גבה עוגייה</string>
   <string name="delete_cookie">מחק עוגייה</string>

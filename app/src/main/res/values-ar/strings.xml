@@ -134,8 +134,7 @@
   <string name="onion_port">منفذ الـ Onion</string>
   <string name="name">الاسم</string>
   <string name="done">تم !</string>
-  <string name="invalid_port">المنفذ غير صالح</string>
-  <string name="copy_address_to_clipboard">نسخ العنوان إلى الحافظة</string>
+    <string name="copy_address_to_clipboard">نسخ العنوان إلى الحافظة</string>
   <string name="show_auth_cookie">عرض كعكة المصادقة</string>
   <string name="backup_service">النسخ الإحتياطي للخدمة</string>
   <string name="delete_service">حذف الخدمة</string>
@@ -143,8 +142,6 @@
   <string name="backup_restored">تمت استعادة النسخة الإحتياطية</string>
   <string name="restore_backup">إسترجاع نسخة احتياطية</string>
   <string name="create_a_backup_first">قم أولاً بإنشاء نسخة إحتياطية</string>
-  <string name="name_can_t_be_empty">لا يمكن ترك الإسم فارغا</string>
-  <string name="fields_can_t_be_empty">لا يمكن ترك الحقول فارغة</string>
   <string name="start_tor_again_for_finish_the_process">قم بتشغيل تور ثانيةً لإنهاء العملية</string>
   <string name="confirm_service_deletion">تأكيد حذف الخدمة</string>
     <string name="service_type">نوع الخدمة</string>
@@ -154,7 +151,6 @@
   <string name="please_restart_Orbot_to_enable_the_changes">الرجاء إعادة تشغيل أوربوت لتفعيل التعديلات</string>
   <string name="client_cookies">كعكات العميل</string>
   <string name="onion">.onion</string>
-  <string name="invalid_onion_address">عنوان الـ .onion غير صالح</string>
   <string name="cookie_from_QR">القراءة مِن رمز الكيو آر</string>
   <string name="backup_cookie">النسخ الإحتياطي للكعكة</string>
   <string name="delete_cookie">حذف الكعكة</string>

@@ -177,7 +177,6 @@
     <string name="onion_port">Onion Port</string>
     <string name="name">Name</string>
     <string name="done">Done!</string>
-    <string name="invalid_port">Invalid Port</string>
     <string name="copy_address_to_clipboard">Copy address to clipboard</string>
     <string name="show_auth_cookie">Show auth cookie</string>
     <string name="backup_service">Backup Service</string>
@@ -186,8 +185,6 @@
     <string name="backup_restored">Backup restored</string>
     <string name="restore_backup">Restore Backup</string>
     <string name="create_a_backup_first">Create a backup first</string>
-    <string name="name_can_t_be_empty">Name can\'t be empty</string>
-    <string name="fields_can_t_be_empty">Fields can\'t be empty</string>
     <string name="start_tor_again_for_finish_the_process">Start Tor again for finish the process</string>
     <string name="confirm_service_deletion">Confirm service deletion</string>
     <string name="service_type">Service type</string>
@@ -197,7 +194,6 @@
     <string name="please_restart_Orbot_to_enable_the_changes">Please restart Orbot to enable the changes</string>
     <string name="client_cookies">Client Cookies</string>
     <string name="onion">.onion</string>
-    <string name="invalid_onion_address">Invalid .onion address</string>
     <string name="cookie_from_QR">Read from QR</string>
     <string name="backup_cookie">Backup cookie</string>
     <string name="delete_cookie">Delete cookie</string>

@@ -138,8 +138,7 @@
   <string name="onion_port">Onion порта</string>
   <string name="name">Име</string>
   <string name="done">Завршено!</string>
-  <string name="invalid_port">Невалидна порта</string>
-  <string name="copy_address_to_clipboard">Копирај ја адресата за залепување</string>
+    <string name="copy_address_to_clipboard">Копирај ја адресата за залепување</string>
   <string name="show_auth_cookie">Покажи автентично колаче</string>
   <string name="backup_service">Резервна копија</string>
   <string name="delete_service">Избриши услуга</string>
@@ -147,8 +146,6 @@
   <string name="backup_restored">Вратено од резервна копија</string>
     <string name="restore_backup">Врати резервна копија</string>
   <string name="create_a_backup_first">Создади резервна копија</string>
-  <string name="name_can_t_be_empty">Името не може да биде празно</string>
-  <string name="fields_can_t_be_empty">Полињата не можат да бидат празни</string>
   <string name="start_tor_again_for_finish_the_process">Стартувај го Tor повторно да го заврши процесот</string>
   <string name="confirm_service_deletion">Потврди бришење на услугата</string>
     <string name="service_type">Тип на услуга</string>
@@ -158,7 +155,6 @@
   <string name="please_restart_Orbot_to_enable_the_changes">Ве молиме стартувајте го повторно Orbot за да се овозможат промените</string>
   <string name="client_cookies">Клиентски колачиња</string>
   <string name="onion">.onion</string>
-  <string name="invalid_onion_address">Невалидна .onion адреса</string>
   <string name="cookie_from_QR">Прочитај од QR</string>
   <string name="backup_cookie">Направи резервна копија на колаче</string>
   <string name="delete_cookie">Избриши колаче</string>
