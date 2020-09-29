@@ -10,6 +10,7 @@ import androidx.fragment.app.DialogFragment;
 
 import org.torproject.android.R;
 import org.torproject.android.service.TorServiceConstants;
+import org.torproject.android.ui.hiddenservices.HiddenServicesActivity;
 import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
 
 import java.io.File;
@@ -29,14 +30,12 @@ public class HSDeleteDialog extends DialogFragment {
     }
 
     private void doDelete(Bundle arguments, Context context) {
-        context.getContentResolver().delete( // Delete from db
-                HSContentProvider.CONTENT_URI,
-                HSContentProvider.HiddenService._ID + "=" + arguments.getInt("_id"),
-                null);
+        context.getContentResolver().delete(HSContentProvider.CONTENT_URI,
+                HSContentProvider.HiddenService._ID + "=" + arguments.getInt(HiddenServicesActivity.BUNDLE_KEY_ID), null);
 
         // Delete from internal storage
         String base = context.getFilesDir().getAbsolutePath() + "/" + TorServiceConstants.HIDDEN_SERVICES_DIR;
-        File dir = new File(base, "hs" + arguments.getString("port"));
+        File dir = new File(base, "hs" + arguments.getString(HiddenServicesActivity.BUNDLE_KEY_PORT));
 
         if (dir.isDirectory()) {
             String[] children = dir.list();

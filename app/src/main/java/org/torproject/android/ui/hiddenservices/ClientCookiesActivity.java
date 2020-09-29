@@ -34,6 +34,10 @@ import org.torproject.android.ui.hiddenservices.providers.CookieContentProvider;
 import java.io.File;
 
 public class ClientCookiesActivity extends AppCompatActivity {
+    public static final String BUNDLE_KEY_ID = "_id",
+            BUNDLE_KEY_DOMAIN = "domain",
+            BUNDLE_KEY_COOKIE = "auth_cookie_value",
+            BUNDLE_KEY_ENABLED = "enabled";
     private static final int REQUEST_CODE_READ_COOKIE = 54;
     private ContentResolver mResolver;
     private ClientCookiesAdapter mAdapter;
@@ -65,11 +69,10 @@ public class ClientCookiesActivity extends AppCompatActivity {
             Cursor item = (Cursor) parent.getItemAtPosition(position);
 
             Bundle arguments = new Bundle();
-            arguments.putInt("_id", item.getInt(item.getColumnIndex(CookieContentProvider.ClientCookie._ID)));
-
-            arguments.putString("domain", item.getString(item.getColumnIndex(CookieContentProvider.ClientCookie.DOMAIN)));
-            arguments.putString("auth_cookie_value", item.getString(item.getColumnIndex(CookieContentProvider.ClientCookie.AUTH_COOKIE_VALUE)));
-            arguments.putInt("enabled", item.getInt(item.getColumnIndex(CookieContentProvider.ClientCookie.ENABLED)));
+            arguments.putInt(BUNDLE_KEY_ID, item.getInt(item.getColumnIndex(CookieContentProvider.ClientCookie._ID)));
+            arguments.putString(BUNDLE_KEY_DOMAIN, item.getString(item.getColumnIndex(CookieContentProvider.ClientCookie.DOMAIN)));
+            arguments.putString(BUNDLE_KEY_COOKIE, item.getString(item.getColumnIndex(CookieContentProvider.ClientCookie.AUTH_COOKIE_VALUE)));
+            arguments.putInt(BUNDLE_KEY_ENABLED, item.getInt(item.getColumnIndex(CookieContentProvider.ClientCookie.ENABLED)));
 
             CookieActionsDialog dialog = new CookieActionsDialog();
             dialog.setArguments(arguments);
@@ -138,39 +141,25 @@ public class ClientCookiesActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int request, int response, Intent data) {
         super.onActivityResult(request, response, data);
-
-        if (request == REQUEST_CODE_READ_COOKIE) {
-            if (response != RESULT_OK) return;
+        if (request == REQUEST_CODE_READ_COOKIE && response == RESULT_OK) {
             String cookieStr = DiskUtils.readFileFromInputStream(mResolver, data.getData());
             new BackupUtils(this).restoreCookieBackup(cookieStr);
-            return;
-        }
+        } else {
+            IntentResult scanResult = IntentIntegrator.parseActivityResult(request, response, data);
+            if (scanResult == null) return;
 
-        IntentResult scanResult = IntentIntegrator.parseActivityResult(request, response, data);
-
-        if (scanResult == null) return;
-
-        String results = scanResult.getContents();
-
-        if (results == null || results.length() < 1) return;
-
-        try {
-            JSONObject savedValues = new JSONObject(results);
-            ContentValues fields = new ContentValues();
-
-            fields.put(
-                    CookieContentProvider.ClientCookie.DOMAIN,
-                    savedValues.getString(CookieContentProvider.ClientCookie.DOMAIN));
-
-            fields.put(
-                    CookieContentProvider.ClientCookie.AUTH_COOKIE_VALUE,
-                    savedValues.getString(CookieContentProvider.ClientCookie.AUTH_COOKIE_VALUE));
-
-            mResolver.insert(CookieContentProvider.CONTENT_URI, fields);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-            Toast.makeText(this, R.string.error, Toast.LENGTH_LONG).show();
+            String results = scanResult.getContents();
+            if (results == null || results.length() < 1) return;
+            try {
+                JSONObject savedValues = new JSONObject(results);
+                ContentValues fields = new ContentValues();
+                fields.put(CookieContentProvider.ClientCookie.DOMAIN, savedValues.getString(CookieContentProvider.ClientCookie.DOMAIN));
+                fields.put(CookieContentProvider.ClientCookie.AUTH_COOKIE_VALUE, savedValues.getString(CookieContentProvider.ClientCookie.AUTH_COOKIE_VALUE));
+                mResolver.insert(CookieContentProvider.CONTENT_URI, fields);
+            } catch (JSONException e) {
+                e.printStackTrace();
+                Toast.makeText(this, R.string.error, Toast.LENGTH_LONG).show();
+            }
         }
     }
 

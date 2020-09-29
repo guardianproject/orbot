@@ -16,6 +16,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.torproject.android.R;
 import org.torproject.android.core.DiskUtils;
+import org.torproject.android.ui.hiddenservices.ClientCookiesActivity;
 import org.torproject.android.ui.hiddenservices.providers.CookieContentProvider;
 
 import java.io.File;
@@ -33,27 +34,35 @@ public class CookieActionsDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         final Bundle arguments = getArguments();
-        domain = arguments.getString("domain");
-        cookie = arguments.getString("auth_cookie_value");
-        enabled = arguments.getInt("enabled");
+        domain = arguments.getString(ClientCookiesActivity.BUNDLE_KEY_DOMAIN);
+        cookie = arguments.getString(ClientCookiesActivity.BUNDLE_KEY_COOKIE);
+        enabled = arguments.getInt(ClientCookiesActivity.BUNDLE_KEY_ENABLED);
 
-        return new AlertDialog.Builder(getActivity())
+        AlertDialog ad = new AlertDialog.Builder(getActivity())
                 .setTitle(R.string.client_cookies)
                 .setItems(new CharSequence[]{
                         getString(R.string.backup_cookie),
                         getString(R.string.delete_cookie)
-                }, (dialog, which) -> {
-                    if (which == 0) doBackup();
-                    else doDelete(arguments);
-                })
+                }, null)
                 .setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.dismiss())
                 .create();
+
+        ad.getListView().setOnItemClickListener((parent, view, position, id) -> {
+            if (position == 0) doBackup();
+            else {
+                doDelete(arguments);
+                ad.dismiss();
+            }
+        });
+
+        return ad;
     }
 
     private void doDelete(Bundle arguments) {
         CookieDeleteDialog dialog = new CookieDeleteDialog();
         dialog.setArguments(arguments);
         dialog.show(getFragmentManager(), "CookieDeleteDialog");
+        dismiss();
     }
 
     private void doBackup() {
@@ -62,6 +71,7 @@ public class CookieActionsDialog extends DialogFragment {
             Intent createFile = DiskUtils.createWriteFileIntent(filename, "application/json");
             startActivityForResult(createFile, REQUEST_CODE_WRITE_FILE);
         } else { // API 16, 17, and 18
+            int msg = R.string.backup_saved_at_external_storage;
             try {
                 File externalStorage = DiskUtils.getOrCreateLegacyBackupDir();
                 String backupFile = externalStorage.getAbsolutePath() + "/" + filename;
@@ -70,8 +80,10 @@ public class CookieActionsDialog extends DialogFragment {
                 writer.write(data);
                 writer.close();
             } catch (JSONException | IOException e) {
-                Toast.makeText(getContext(), R.string.error, Toast.LENGTH_LONG).show();
+                msg = R.string.error;
             }
+            Toast.makeText(getContext(), msg, Toast.LENGTH_LONG).show();
+            dismiss();
         }
     }
 
@@ -87,20 +99,20 @@ public class CookieActionsDialog extends DialogFragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CODE_WRITE_FILE && resultCode == Activity.RESULT_OK) {
             if (data != null) {
+                int msg = R.string.backup_saved_at_external_storage;
                 Uri file = data.getData();
                 try {
                     ParcelFileDescriptor pfd = getActivity().getContentResolver().openFileDescriptor(file, "w");
                     FileOutputStream fileOutputStream = new FileOutputStream(pfd.getFileDescriptor());
                     fileOutputStream.write(createBackupData().getBytes());
-                    // Let the document provider know you're done by closing the stream.
-                    fileOutputStream.close();
+                    fileOutputStream.close(); // Let the document provider know you're done by closing the stream
                     pfd.close();
                 } catch (JSONException | IOException e) {
                     e.printStackTrace();
-                    Toast.makeText(getContext(), R.string.error, Toast.LENGTH_LONG).show();
-                    return;
+                    msg = R.string.error;
                 }
-                Toast.makeText(getContext(), R.string.backup_saved_at_external_storage, Toast.LENGTH_LONG).show();
+                dismiss();
+                Toast.makeText(getContext(), msg, Toast.LENGTH_LONG).show();
             }
         }
     }

@@ -33,6 +33,11 @@ import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
 import java.io.File;
 
 public class HiddenServicesActivity extends AppCompatActivity {
+    public static final String BUNDLE_KEY_ID = "_id",
+            BUNDLE_KEY_PORT = "port",
+            BUNDLE_KEY_ONION = "onion",
+            BUNDLE_KEY_AUTH_COOKIE = "auth_cookie",
+            BUNDLE_KEY_AUTH_COOKIE_VALUE = "auth_cookie_value";
     private static final int REQUEST_CODE_READ_ZIP_BACKUP = 125;
     private static final String BUNDLE_KEY_SHOW_USER_SERVICES = "show_user_services";
     private ContentResolver mResolver;
@@ -75,11 +80,11 @@ public class HiddenServicesActivity extends AppCompatActivity {
             Cursor item = (Cursor) parent.getItemAtPosition(position);
 
             Bundle arguments = new Bundle();
-            arguments.putInt("_id", item.getInt(item.getColumnIndex(HSContentProvider.HiddenService._ID)));
-            arguments.putString("port", item.getString(item.getColumnIndex(HSContentProvider.HiddenService.PORT)));
-            arguments.putString("onion", item.getString(item.getColumnIndex(HSContentProvider.HiddenService.DOMAIN)));
-            arguments.putInt("auth_cookie", item.getInt(item.getColumnIndex(HSContentProvider.HiddenService.AUTH_COOKIE)));
-            arguments.putString("auth_cookie_value", item.getString(item.getColumnIndex(HSContentProvider.HiddenService.AUTH_COOKIE_VALUE)));
+            arguments.putInt(BUNDLE_KEY_ID, item.getInt(item.getColumnIndex(HSContentProvider.HiddenService._ID)));
+            arguments.putString(BUNDLE_KEY_PORT, item.getString(item.getColumnIndex(HSContentProvider.HiddenService.PORT)));
+            arguments.putString(BUNDLE_KEY_ONION, item.getString(item.getColumnIndex(HSContentProvider.HiddenService.DOMAIN)));
+            arguments.putInt(BUNDLE_KEY_AUTH_COOKIE, item.getInt(item.getColumnIndex(HSContentProvider.HiddenService.AUTH_COOKIE)));
+            arguments.putString(BUNDLE_KEY_AUTH_COOKIE_VALUE, item.getString(item.getColumnIndex(HSContentProvider.HiddenService.AUTH_COOKIE_VALUE)));
 
             HSActionsDialog dialog = new HSActionsDialog();
             dialog.setArguments(arguments);

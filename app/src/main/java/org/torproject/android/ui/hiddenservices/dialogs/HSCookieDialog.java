@@ -13,6 +13,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.torproject.android.R;
 import org.torproject.android.core.ClipboardUtils;
+import org.torproject.android.ui.hiddenservices.HiddenServicesActivity;
 import org.torproject.android.ui.hiddenservices.providers.CookieContentProvider;
 
 public class HSCookieDialog extends DialogFragment {
@@ -22,8 +23,8 @@ public class HSCookieDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         final Bundle arguments = getArguments();
-        authCookieValue = arguments.getString("auth_cookie_value");
-        onion = arguments.getString("onion");
+        authCookieValue = arguments.getString(HiddenServicesActivity.BUNDLE_KEY_AUTH_COOKIE_VALUE);
+        onion = arguments.getString(HiddenServicesActivity.BUNDLE_KEY_ONION);
         return new AlertDialog.Builder(getActivity())
                 .setTitle(authCookieValue)
                 .setItems(new CharSequence[]{
@@ -42,9 +43,7 @@ public class HSCookieDialog extends DialogFragment {
             JSONObject backup = new JSONObject();
             backup.put(CookieContentProvider.ClientCookie.DOMAIN, onion);
             backup.put(CookieContentProvider.ClientCookie.AUTH_COOKIE_VALUE, authCookieValue);
-
             new IntentIntegrator(getActivity()).shareText(backup.toString());
-
         } catch (JSONException e) {
             e.printStackTrace();
         }

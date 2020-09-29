@@ -9,6 +9,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
 import org.torproject.android.R;
+import org.torproject.android.ui.hiddenservices.ClientCookiesActivity;
 import org.torproject.android.ui.hiddenservices.providers.CookieContentProvider;
 
 public class CookieDeleteDialog extends DialogFragment {
@@ -29,7 +30,7 @@ public class CookieDeleteDialog extends DialogFragment {
     private void doDelete(Bundle arguments, Context context) {
         context.getContentResolver().delete( // delete from db
                 CookieContentProvider.CONTENT_URI,
-                CookieContentProvider.ClientCookie._ID + "=" + arguments.getInt("_id"),
+                CookieContentProvider.ClientCookie._ID + "=" + arguments.getInt(ClientCookiesActivity.BUNDLE_KEY_ID),
                 null
         );
     }

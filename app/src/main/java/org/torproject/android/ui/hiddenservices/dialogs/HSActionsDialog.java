@@ -15,6 +15,7 @@ import androidx.fragment.app.DialogFragment;
 import org.torproject.android.R;
 import org.torproject.android.core.ClipboardUtils;
 import org.torproject.android.core.DiskUtils;
+import org.torproject.android.ui.hiddenservices.HiddenServicesActivity;
 import org.torproject.android.ui.hiddenservices.backup.BackupUtils;
 
 import java.io.File;
@@ -27,22 +28,27 @@ public class HSActionsDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         final Bundle arguments = getArguments();
-        port = Integer.parseInt(arguments.getString("port"));
-        return new AlertDialog.Builder(getActivity())
+        port = Integer.parseInt(arguments.getString(HiddenServicesActivity.BUNDLE_KEY_PORT));
+        AlertDialog ad = new AlertDialog.Builder(getActivity())
                 .setItems(new CharSequence[]{
-                                getString(R.string.copy_address_to_clipboard),
-                                getString(R.string.show_auth_cookie),
-                                getString(R.string.backup_service),
-                                getString(R.string.delete_service)},
-                        (dialog, which) -> {
-                            if (which == 0) doCopy(arguments, getContext());
-                            else if (which == 1) doShowAuthCookie(arguments, getContext());
-                            else if (which == 2) doBackup(arguments, getContext());
-                            else if (which == 3) doDelete(arguments);
-                        })
+                        getString(R.string.copy_address_to_clipboard),
+                        getString(R.string.show_auth_cookie),
+                        getString(R.string.backup_service),
+                        getString(R.string.delete_service)}, null)
                 .setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.dismiss())
                 .setTitle(R.string.hidden_services)
                 .create();
+
+        // done this way so we can startActivityForResult on backup without the dialog vanishing
+        ad.getListView().setOnItemClickListener((parent, view, position, id) -> {
+            if (position == 0) doCopy(arguments, getContext());
+            else if (position == 1) doShowAuthCookie(arguments, getContext());
+            else if (position == 2) doBackup(arguments, getContext());
+            else if (position == 3) doDelete(arguments);
+            if (position != 2) dismiss();
+        });
+
+        return ad;
     }
 
     private void doDelete(Bundle arguments) {
@@ -52,9 +58,9 @@ public class HSActionsDialog extends DialogFragment {
     }
 
     private void doShowAuthCookie(Bundle arguments, Context context) {
-        String auth_cookie_value = arguments.getString("auth_cookie_value");
+        String auth_cookie_value = arguments.getString(HiddenServicesActivity.BUNDLE_KEY_AUTH_COOKIE_VALUE);
 
-        if (arguments.getInt("auth_cookie") == 1) {
+        if (arguments.getInt(HiddenServicesActivity.BUNDLE_KEY_AUTH_COOKIE) == 1) {
             if (auth_cookie_value == null || auth_cookie_value.length() < 1) {
                 Toast.makeText(context, R.string.please_restart_Orbot_to_enable_the_changes, Toast.LENGTH_LONG).show();
             } else {
@@ -68,16 +74,16 @@ public class HSActionsDialog extends DialogFragment {
     }
 
     private void doCopy(Bundle arguments, Context context) {
-        String onion = arguments.getString("onion");
+        String onion = arguments.getString(HiddenServicesActivity.BUNDLE_KEY_ONION);
         if (onion == null)
             Toast.makeText(context, R.string.please_restart_Orbot_to_enable_the_changes, Toast.LENGTH_LONG).show();
         else
-            ClipboardUtils.copyToClipboard("onion", arguments.getString("onion"), getString(R.string.done), context);
+            ClipboardUtils.copyToClipboard("onion", onion, getString(R.string.done), context);
     }
 
     private void doBackup(Bundle arguments, Context context) {
         String filename = "hs" + port + ".zip";
-        String onion = arguments.getString("onion");
+        String onion = arguments.getString(HiddenServicesActivity.BUNDLE_KEY_ONION);
         if (onion == null) {
             Toast.makeText(context, R.string.please_restart_Orbot_to_enable_the_changes, Toast.LENGTH_LONG).show();
             return;
@@ -102,11 +108,8 @@ public class HSActionsDialog extends DialogFragment {
     private void attemptToWriteBackup(Uri outputFile) {
         BackupUtils backupUtils = new BackupUtils(getContext());
         String backup = backupUtils.createZipBackup(port, outputFile);
-        if (backup != null) {
-            Toast.makeText(getContext(), R.string.backup_saved_at_external_storage, Toast.LENGTH_LONG).show();
-        } else {
-            Toast.makeText(getContext(), R.string.error, Toast.LENGTH_LONG).show();
-        }
+        Toast.makeText(getContext(), backup != null ? R.string.backup_saved_at_external_storage : R.string.error, Toast.LENGTH_LONG).show();
+        dismiss();
     }
 
 }
