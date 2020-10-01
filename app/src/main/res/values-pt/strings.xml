@@ -45,7 +45,7 @@
     <string name="pref_proxy_username_summary">Nome do Utilizador do Proxy (Opcional)</string>
     <string name="pref_proxy_username_dialog">Inserir Nome de Utilizador do Proxy</string>
     <string name="pref_proxy_password_title">Senha do Proxy de Saída</string>
-    <string name="pref_proxy_password_summary">Senha do Proxy (Opcional)</string>
+    <string name="pref_proxy_password_summary">Palavra-passe do Proxy (Opcional)</string>
     <string name="pref_proxy_password_dialog">Inserir Senha do Proxy</string>
     <string name="couldn_t_start_tor_process_">Não foi possível iniciar o processo Tor: </string>
     <string name="error">Erro</string>
