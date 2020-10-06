@@ -22,7 +22,6 @@ import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.net.VpnService;
@@ -153,7 +152,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
         if (Prefs.useDebugLogging()) {
             sendCallbackLogMessage(msg);
-
         }
     }
 
@@ -209,65 +207,46 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void createNotificationChannel() {
-        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-        CharSequence name = getString(R.string.app_name); // The user-visible name of the channel.
-        String description = getString(R.string.app_description); // The user-visible description of the channel.
-        NotificationChannel mChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, name, NotificationManager.IMPORTANCE_LOW);
-        // Configure the notification channel.
-        mChannel.setDescription(description);
-        mChannel.enableLights(false);
-        mChannel.enableVibration(false);
-        mChannel.setShowBadge(false);
-        mChannel.setLockscreenVisibility(Notification.VISIBILITY_SECRET);
-        mNotificationManager.createNotificationChannel(mChannel);
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        CharSequence channelname = getString(R.string.app_name);
+        NotificationChannel channel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, channelname, NotificationManager.IMPORTANCE_LOW);
+        channel.setDescription(getString(R.string.app_description));
+        channel.enableLights(false);
+        channel.enableVibration(false);
+        channel.setShowBadge(false);
+        channel.setLockscreenVisibility(Notification.VISIBILITY_SECRET);
+        if (notificationManager != null) {
+            notificationManager.createNotificationChannel(channel);
+        } else {
+            Log.w(TAG, "createNotificationChannel() notificationManager null");
+        }
     }
 
     @SuppressLint("NewApi")
     protected void showToolbarNotification(String notifyMsg, int notifyType, int icon) {
-
-        //Reusable code.
-        PackageManager pm = getPackageManager();
-        Intent intent = pm.getLaunchIntentForPackage(getPackageName());
+        Intent intent = getPackageManager().getLaunchIntentForPackage(getPackageName());
         PendingIntent pendIntent = PendingIntent.getActivity(OrbotService.this, 0, intent, 0);
 
         if (mNotifyBuilder == null) {
-
             mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-            if (mNotifyBuilder == null) {
-                mNotifyBuilder = new NotificationCompat.Builder(this)
-                        .setContentTitle(getString(R.string.app_name))
-                        .setSmallIcon(R.drawable.ic_stat_tor);
-
-                mNotifyBuilder.setContentIntent(pendIntent);
-
-            }
-
-
-            mNotifyBuilder.setCategory(Notification.CATEGORY_SERVICE);
-
-            mNotifyBuilder.setChannelId(NOTIFICATION_CHANNEL_ID);
-
-
             Intent intentRefresh = new Intent();
             intentRefresh.setAction(CMD_NEWNYM);
             PendingIntent pendingIntentNewNym = PendingIntent.getBroadcast(this, 0, intentRefresh, PendingIntent.FLAG_UPDATE_CURRENT);
-            mNotifyBuilder.addAction(R.drawable.ic_refresh_white_24dp, getString(R.string.menu_new_identity),
-                    pendingIntentNewNym);
 
-            mNotifyBuilder.setOngoing(Prefs.persistNotifications());
-
+            mNotifyBuilder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
+                    .setContentTitle(getString(R.string.app_name))
+                    .setSmallIcon(R.drawable.ic_stat_tor)
+                    .setContentIntent(pendIntent)
+                    .setCategory(Notification.CATEGORY_SERVICE)
+                    .setChannelId(NOTIFICATION_CHANNEL_ID)
+                    .addAction(R.drawable.ic_refresh_white_24dp, getString(R.string.menu_new_identity), pendingIntentNewNym)
+                    .setOngoing(Prefs.persistNotifications());
         }
 
-        mNotifyBuilder.setContentText(notifyMsg);
-        mNotifyBuilder.setSmallIcon(icon);
+        mNotifyBuilder.setContentText(notifyMsg)
+                .setSmallIcon(icon)
+                .setTicker(notifyType != NOTIFY_ID ? notifyMsg : null);
 
-        if (notifyType != NOTIFY_ID) {
-            mNotifyBuilder.setTicker(notifyMsg);
-        } else {
-            mNotifyBuilder.setTicker(null);
-        }
 
         if (!Prefs.persistNotifications())
             mNotifyBuilder.setPriority(Notification.PRIORITY_LOW);
@@ -290,9 +269,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
      * @see android.app.Service#onStart(android.content.Intent, int)
      */
     public int onStartCommand(Intent intent, int flags, int startId) {
-
-        showToolbarNotification("", NOTIFY_ID, R.drawable.ic_stat_tor);
-
         if (intent != null)
             exec(new IncomingIntentRouter(intent));
         else
@@ -328,7 +304,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     }
 
     private void stopTorAsync() {
-        Log.i("OrbotService", "stopTor");
+        Log.i(OrbotConstants.TAG, "stopTor");
         try {
             sendCallbackStatus(STATUS_STOPPING);
             sendCallbackLogMessage(getString(R.string.status_shutting_down));
@@ -454,7 +430,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             mActionBroadcastReceiver = new ActionBroadcastReceiver();
             registerReceiver(mActionBroadcastReceiver, filter);
 
-            if (Build.VERSION.SDK_INT >= 26)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
                 createNotificationChannel();
 
             torUpgradeAndConfig();
@@ -1776,6 +1752,12 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         }
     }
 
+    // for bridge loading from the assets default bridges.txt file
+    static class Bridge {
+        String type;
+        String config;
+    }
+
     private class IncomingIntentRouter implements Runnable {
         Intent mIntent;
 
@@ -1844,12 +1826,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 }
             }
         }
-    }
-
-    // for bridge loading from the assets default bridges.txt file
-    static class Bridge {
-        String type;
-        String config;
     }
 
     private class ActionBroadcastReceiver extends BroadcastReceiver {
