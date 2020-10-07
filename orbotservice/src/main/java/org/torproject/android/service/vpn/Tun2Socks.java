@@ -40,7 +40,6 @@ public class Tun2Socks {
     private static final String TAG = Tun2Socks.class.getSimpleName();
     private static final boolean LOGD = true;
 
-    private static Thread mThread;
     private static ParcelFileDescriptor mVpnInterfaceFileDescriptor;
     private static int mVpnInterfaceMTU;
     private static String mVpnIpAddress;
@@ -49,7 +48,6 @@ public class Tun2Socks {
     private static String mUdpgwServerAddress;
     private static boolean mUdpgwTransparentDNS;
     private static HashMap<Integer, String> mAppUidBlacklist = new HashMap<>();
-    private static Context mContext;
 
     static {
         System.loadLibrary("tun2socks");
@@ -70,7 +68,6 @@ public class Tun2Socks {
             String socksServerAddress,
             String udpgwServerAddress,
             boolean udpgwTransparentDNS) {
-        mContext = context;
 
         mVpnInterfaceFileDescriptor = vpnInterfaceFileDescriptor;
         mVpnInterfaceMTU = vpnInterfaceMTU;
@@ -120,17 +117,16 @@ public class Tun2Socks {
 
     private native static void terminateTun2Socks();
 
-    public static boolean checkIsAllowed(int protocol, String sourceAddr, int sourcePort, String destAddr, int destPort) {
-
+    public static boolean checkIsAllowed(Context context, int protocol, String sourceAddr, int sourcePort, String destAddr, int destPort) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            return isAllowedQ(protocol, sourceAddr, sourcePort, destAddr, destPort);
+            return isAllowedQ(context, protocol, sourceAddr, sourcePort, destAddr, destPort);
         } else
-            return isAllowed(protocol, sourceAddr, sourcePort, destAddr, destPort);
+            return isAllowed(context, protocol, sourceAddr, sourcePort, destAddr, destPort);
     }
 
-    public static boolean isAllowed(int protocol, String sourceAddr, int sourcePort, String destAddr, int destPort) {
+    public static boolean isAllowed(Context context, int protocol, String sourceAddr, int sourcePort, String destAddr, int destPort) {
 
-        TCPSourceApp.AppDescriptor aInfo = TCPSourceApp.getApplicationInfo(mContext, sourceAddr, sourcePort, destAddr, destPort);
+        TCPSourceApp.AppDescriptor aInfo = TCPSourceApp.getApplicationInfo(context, sourceAddr, sourcePort, destAddr, destPort);
 
         if (aInfo != null) {
             int uid = aInfo.getUid();
@@ -140,8 +136,8 @@ public class Tun2Socks {
     }
 
     @TargetApi(Build.VERSION_CODES.Q)
-    public static boolean isAllowedQ(int protocol, String sourceAddr, int sourcePort, String destAddr, int destPort) {
-        ConnectivityManager cm = (ConnectivityManager) mContext.getSystemService(CONNECTIVITY_SERVICE);
+    public static boolean isAllowedQ(Context context, int protocol, String sourceAddr, int sourcePort, String destAddr, int destPort) {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(CONNECTIVITY_SERVICE);
         if (cm == null)
             return false;
 
