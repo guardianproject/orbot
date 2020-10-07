@@ -2,7 +2,7 @@ This file contains the license for Orbot, a free software project to
 provide anonymity on the Internet from a Google Android smartphone.
 
 It also lists the licenses for other components used by Orbot, including 
-Tor, Privoxy, and iptables.
+Tor, and iptables.
 
 For more information about Orbot, see https://guardianproject.info/apps/orbot
 
@@ -75,24 +75,6 @@ POSSIBILITY OF SUCH DAMAGE.
 
 
 *****
-
-*****
-Orbot contains a binary distribution of Privoxy (http://www.privoxy.org/)
-Copyright © 2001-2010 by Privoxy Developers <ijbswa-developers@lists.sourceforge.net>
-http://www.privoxy.org/user-manual/copyright.html
-
-Some source code is based on code Copyright © 1997 by Anonymous Coders and Junkbusters, Inc. 
-and licensed under the GNU General Public License.
-
-Privoxy is free software; you can redistribute it and/or modify it under the terms of the 
-GNU General Public License, version 2, as published by the Free Software Foundation.
-
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; 
-without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
-See the GNU General Public License for details.
-http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
-
-******
 Orbot contains a binary distribution of Tor:
 
                     This file contains the license for Tor,

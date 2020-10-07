@@ -3,9 +3,7 @@
   <string name="app_name">Orbot</string>
     <string name="status_starting_up">Mae Orbot yn cychwyn...</string>
   <string name="status_activated">Wedi cysylltu â rhwydwaith Tor</string>
-  <string name="tor_process_starting">Yn cychwyn cleient Tor</string>
-  <string name="tor_process_complete">Wedi ei gwblhau.</string>
-    <string name="menu_settings">Gosodiadau</string>
+  <string name="menu_settings">Gosodiadau</string>
   <string name="menu_log">Log</string>
     <string name="menu_start">Cychwyn</string>
   <string name="menu_stop">Stop</string>
@@ -14,8 +12,6 @@
   <string name="main_layout_upload">Llwytho i fyny</string>
     <string name="button_about">Amdanom ni</string>
     <string name="menu_exit">Gadael</string>
-    <string name="btn_okay">Iawn</string>
-  <string name="btn_cancel">Diddymu</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Rhai manylion am Orbot</string>
     <!--END Welcome Wizard strings (DJH)-->
@@ -37,7 +33,6 @@
   <string name="enter_exclude_nodes">I mewn i Nodau Eithrio</string>
     <string name="third_party_software">Meddalwedd 3ydd-parti</string>
     <string name="set_locale_title">Iaith</string>
-    <string name="activate">Ysgogi</string>
   <string name="hidden_services">Gwasanaethau Cudd</string>
   <string name="title_activity_hidden_services">Gwasanaethau Cudd</string>
   <string name="menu_hidden_services">Gwasanaethau Cudd</string>

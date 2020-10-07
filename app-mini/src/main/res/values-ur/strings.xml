@@ -5,8 +5,7 @@
     <string name="menu_start">شروع کرئیں</string>
   <string name="menu_about">کے بارے میں</string>
     <string name="button_about">کے بارے میں</string>
-    <string name="btn_cancel">تنسیخ کیجیے</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
   <string name="pref_general_group">عام </string>
   <!--New Wizard Strings-->

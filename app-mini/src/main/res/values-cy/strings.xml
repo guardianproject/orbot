@@ -3,8 +3,6 @@
   <string name="app_name">Orbot</string>
     <string name="status_starting_up">Mae Orbot yn cychwyn...</string>
   <string name="status_activated">Wedi cysylltu â rhwydwaith Tor</string>
-  <string name="tor_process_starting">Yn cychwyn cleient Tor</string>
-  <string name="tor_process_complete">Wedi ei gwblhau.</string>
     <string name="menu_settings">Gosodiadau</string>
   <string name="menu_log">Log</string>
     <string name="menu_start">Cychwyn</string>
@@ -15,8 +13,7 @@
     <string name="button_about">Amdanom ni</string>
     <string name="menu_exit">Gadael</string>
     <string name="btn_okay">Iawn</string>
-  <string name="btn_cancel">Diddymu</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Rhai manylion am Orbot</string>
     <!--END Welcome Wizard strings (DJH)-->
   <string name="pref_general_group">Cyffredinol</string>

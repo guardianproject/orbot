@@ -4,9 +4,7 @@
     <string name="status_starting_up">Orbot se zaganja...</string>
   <string name="status_activated">Povezan v omrežje Tor</string>
   <string name="status_disabled">Orbot ni aktiviran</string>
-  <string name="tor_process_starting">Zagon Tor klijenta...</string>
-  <string name="tor_process_complete">končano.</string>
-    <string name="menu_settings">Nastavitve</string>
+  <string name="menu_settings">Nastavitve</string>
   <string name="menu_log">Dnevnik</string>
     <string name="menu_start">Začni</string>
   <string name="menu_stop">Ustavi</string>
@@ -15,8 +13,6 @@
   <string name="main_layout_upload">Naloži</string>
     <string name="button_about">O programu</string>
     <string name="menu_exit">Izhod</string>
-    <string name="btn_okay">Potrdi</string>
-  <string name="btn_cancel">Prekini</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Nekaj podrobnosti o Orbot-u</string>
     <!--END Welcome Wizard strings (DJH)-->
@@ -29,7 +25,6 @@
   <!--Transparent Proxy screen-->
     <string name="error">Napaka</string>
     <string name="set_locale_title">Jezik</string>
-    <string name="activate">Aktiviraj</string>
   <string name="save">Shrani</string>
   <string name="name">ime</string>
 </resources>

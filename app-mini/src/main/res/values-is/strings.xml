@@ -6,9 +6,7 @@
   <string name="status_activated">Tengdur við Tor netið</string>
   <string name="status_disabled">Orbot er óvirkt</string>
   <string name="status_shutting_down">TorService er að slökkva á sér</string>
-  <string name="tor_process_starting">Kveiki á Tor notandaforriti...</string>
-  <string name="tor_process_complete">lokið.</string>
-    <string name="menu_settings">Stillingar</string>
+  <string name="menu_settings">Stillingar</string>
   <string name="menu_log">Atvikaskráning</string>
     <string name="menu_start">Ræsa</string>
   <string name="menu_stop">Stöðva</string>
@@ -20,8 +18,7 @@
   <string name="menu_scan">Skanna BridgeQR</string>
   <string name="menu_share_bridge">Deila BridgeQR</string>
     <string name="btn_okay">Í lagi</string>
-  <string name="btn_cancel">Hætta við</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Fáein nánari atriði um Orbot</string>
   <string name="wizard_details_msg">Orbot er opinn og frjáls hugbúnaður sem inniheldur Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent og Polipo. Það sér um að útbúa staðværan HTTP-milliþjón (8118) og SOCKS-milliþjón (9050) inn á Tor-netið. Orbot getur einnig, á tækjum með rótaraðgangi, sent alla internetumferð í gegnum Tor.</string>
     <!--END Welcome Wizard strings (DJH)-->
@@ -107,12 +104,9 @@
   <string name="pref_use_expanded_notifications">Birta útflettar tilkynningar varðandi Tor-útgangsland og IP-vistfang</string>
   <string name="pref_use_expanded_notifications_title">Útflettar tilkynningar</string>
     <string name="set_locale_title">Tungumál</string>
-    <string name="no_internet_connection_tor">Engin tenging við netið; Tor er í biðstöðu...</string>
-    <string name="pref_disable_network_title">Engin sjálfvirk svæfing netkerfis</string>
+  <string name="pref_disable_network_title">Engin sjálfvirk svæfing netkerfis</string>
   <string name="pref_disable_network_summary">Svæfa Tor þegar engin internettenging er til staðar</string>
   <string name="newnym">Þú ert komin með nýtt Tor-auðkenni!</string>
-  <string name="no_network_connectivity_putting_tor_to_sleep_">Engin tenging við netið. Tor verður svæft...</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">Tenging við netið er góð. Tor verður vakið upp...</string>
   <string name="updating_settings_in_tor_service">uppfæri stillingar í Tor þjónustu</string>
   <string name="pref_socks_title">Tor SOCKS</string>
   <string name="pref_socks_summary">Gátt sem Tor býður SOCKS milliþjón á (sjálfgefið: 9050 eða 0 til að gera óvirkt)</string>
@@ -134,14 +128,11 @@
   <string name="restart_orbot_to_use_this_bridge_">Endurræstu Orbot til að breytingarnar taki gildi</string>
   <string name="menu_qr">QR-kóðar</string>
   <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Ef farsímanetið þitt er virkt í að loka á Tor, geturðu notað \'Brúarþjón\' sem varaleið inn. VELDU einn af valkostunum til að setja upp og prófa...</string>
-  <string name="bridge_mode">Brúar-hamur</string>
   <string name="get_bridges_email">Tölvupóstur</string>
-  <string name="get_bridges_web">Vefur</string>
   <string name="activate">Virkja</string>
   <string name="apps_mode">VPN-hamur</string>
     <string name="send_email">Senda tölvupóst</string>
-  <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Þú getur fengið vistfang brúar sent í gegnum tölvupóst, vefinn eða með að skanna QR-kóða fyrir brú. Veldu \'Tölvupóstur\' eða \'Vefur\' fyrir neðan til að óska eftir vistfangi brúar.\n\nÞegar þú kominn með vistfang, afritaðu &amp; límdu það inn í stillingar fyrir \'Brýr\' í kjörstillingum Orbot og endurræstu síðan.</string>
-    <string name="vpn_default_world">Víðvært (sjálfvirkt)</string>
+  <string name="vpn_default_world">Víðvært (sjálfvirkt)</string>
   <string name="hidden_services">Faldar þjónustur</string>
   <string name="title_activity_hidden_services">Faldar þjónustur</string>
   <string name="menu_hidden_services">Faldar þjónustur</string>
@@ -150,19 +141,13 @@
   <string name="onion_port">Onion-gátt</string>
   <string name="name">Heiti</string>
   <string name="done">Lokið!</string>
-  <string name="invalid_port">Ógild gátt</string>
-  <string name="copy_address_to_clipboard">Afrita vistfang yfir á klippispjald</string>
+    <string name="copy_address_to_clipboard">Afrita vistfang yfir á klippispjald</string>
   <string name="show_auth_cookie">Birta auðkenningar-vefköku</string>
   <string name="backup_service">Öryggisafritunarþjónusta</string>
   <string name="delete_service">Eyða þjónustu</string>
   <string name="backup_saved_at_external_storage">Öryggisafrit var vistað í ytri gagnageymslu</string>
   <string name="backup_restored">Öryggisafrit var endurheimt</string>
-  <string name="filemanager_not_available">Skráastjóri ekki tiltækur</string>
-  <string name="please_grant_permissions_for_external_storage">Gefðu heimild til að nota ytri gagnageymslu</string>
     <string name="restore_backup">Endurheimta úr öryggisafriti</string>
-  <string name="create_a_backup_first">Gerðu fyrst öryggisafrit</string>
-  <string name="name_can_t_be_empty">Nafnið má ekki vera autt</string>
-  <string name="fields_can_t_be_empty">Gagnasvið mega ekki vera auð</string>
   <string name="start_tor_again_for_finish_the_process">Ræstu Tor aftur til að ljúka ferlinu</string>
   <string name="confirm_service_deletion">Staðfestu eyðingu á þjónustu</string>
   <string name="click_again_for_backup">Smelltu aftur fyrir öryggisafrit</string>
@@ -173,7 +158,6 @@
   <string name="please_restart_Orbot_to_enable_the_changes">Endurræstu Orbot til að breytingarnar taki gildi</string>
   <string name="client_cookies">Vefkökur forritsins</string>
   <string name="onion">.onion</string>
-  <string name="invalid_onion_address">Ógilt .onion vistfang</string>
   <string name="cookie_from_QR">Lesa úr QR-kóða</string>
   <string name="backup_cookie">Öryggisafrit af vefköku</string>
   <string name="delete_cookie">Eyða vefköku</string>
@@ -186,8 +170,6 @@
   <string name="consider_enable_battery_optimizations">Íhugaðu að virkja bestun fyrir rafhlöðu</string>
   <string name="pref_isolate_dest">Einangra markvistfang</string>
   <string name="pref_isolate_dest_summary">Nota mismunandi rás fyrir hvert markvistfang</string>
-  <string name="no_transproxy_warning_short">AÐVÖRUN: Gegnsæ milliþjónabeining er ekki lengur studd.</string>
-  <string name="no_transproxy_warning">AÐVÖRUN: Gegnsæ milliþjónabeining er ekki studd. Notaðu í staðinn VPN fyrir forrit í Orbot.</string>
   <string name="pref_connection_padding">Bólstrun tengingar (padding)</string>
   <string name="pref_connection_padding_summary">Virkjar alltaf bólstrun tengingar (padding) til varnar gegn ákveðnum gerðum umferðargreiningar. Sjálfgefið: sjálfvirkt</string>
   <string name="pref_reduced_connection_padding">Minnkuð bólstrun tengingar (padding)</string>
@@ -199,8 +181,7 @@
   <string name="bridge_direct_connect">Tengjast beint við Tor (best)</string>
   <string name="bridge_community">Tengjast í gegnum þjóna meðlima</string>
   <string name="bridge_cloud">Tengjast í gegnum þjóna í tölvuskýjum</string>
-  <string name="bridges_get_new">Biðja um nýjar brýr... (ef allt annað bregst)</string>
-  <string name="trouble_connecting">Vandamál við tengingu?</string>
+    <string name="trouble_connecting">Vandamál við tengingu?</string>
   <string name="full_device_vpn">Fullt VPN á tækinu</string>
   <string name="vpn_disabled">VPN óvirkt</string>
 </resources>

@@ -4,8 +4,6 @@
     <string name="status_starting_up">O Orbot está a iniciar...</string>
   <string name="status_activated">Conetado à rede Tor</string>
   <string name="status_disabled">O Orbot está desativado</string>
-  <string name="tor_process_starting">A iniciar o cliente Tor...</string>
-  <string name="tor_process_complete">completo.</string>
     <string name="menu_settings">Configurações</string>
   <string name="menu_log">Registo</string>
     <string name="menu_start">Iniciar</string>
@@ -18,8 +16,7 @@
   <string name="menu_scan">Digitalizar BridgeQR</string>
   <string name="menu_share_bridge">Compartilhar BridgeQR</string>
     <string name="btn_okay">OK</string>
-  <string name="btn_cancel">Cancelar</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Alguns Detalhes do Orbot</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Geral</string>
@@ -70,8 +67,6 @@
   <string name="pref_use_expanded_notifications_title">Notificações Estendidas</string>
     <string name="set_locale_title">Idioma</string>
     <string name="newnym">Mudou para uma nova identidade do Tor!</string>
-    <string name="no_network_connectivity_putting_tor_to_sleep_">Nenhuma conetividade de rede. A hibernar Tor…</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">A conetividade de rede é boa. A iniciar Tor…</string>
   <string name="updating_settings_in_tor_service">a atualizar as definições no serviço Tor</string>
   <string name="pref_socks_title">SOCKS Tor</string>
   <string name="pref_dnsport_title">Porta DNS Tor</string>
@@ -82,8 +77,7 @@
   <string name="bridges_updated">Pontes Atualizadas</string>
   <string name="menu_qr">Códigos QR</string>
   <string name="get_bridges_email">Correio Eletrónico</string>
-  <string name="get_bridges_web">Web</string>
-  <string name="activate">Ativar</string>
+    <string name="activate">Ativar</string>
   <string name="send_email">Enviar Mensagem</string>
     <string name="hidden_services">Serviços ocultos</string>
   <string name="title_activity_hidden_services">Serviços ocultos</string>

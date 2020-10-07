@@ -3,8 +3,7 @@
   <string name="menu_settings">સેટિંગ્સ</string>
   <string name="menu_log">નોંધણી</string>
     <string name="btn_okay">બરાબર</string>
-  <string name="btn_cancel">રદ્ કરો</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
   <!--New Wizard Strings-->
   <!--Title Screen-->

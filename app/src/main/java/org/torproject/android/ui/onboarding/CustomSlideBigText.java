@@ -15,15 +15,14 @@ import org.torproject.android.R;
 
 public class CustomSlideBigText extends Fragment {
 
+    private static final String BUNDLE_KEY_LAYOUT_RES_ID = "layoutResId";
+    private static final String BUNDLE_KEY_TITLE = "Title";
+    private static final String BUNDLE_KEY_SUBTITLE = "Subtitle";
     private int layoutResId;
     private String mTitle;
     private String mButtonText;
     private String mSubTitle;
     private View.OnClickListener mButtonListener;
-
-    private static final String BUNDLE_KEY_LAYOUT_RES_ID = "layoutResId";
-    private static final String BUNDLE_KEY_TITLE = "Title";
-    private static final String BUNDLE_KEY_SUBTITLE = "Subtitle";
 
     public static CustomSlideBigText newInstance(int layoutResId, String title) {
         return newInstance(layoutResId, title, null);

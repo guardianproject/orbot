@@ -8,9 +8,7 @@
   <string name="status_activated">Ligado à rede Tor</string>
   <string name="status_disabled">Orbot está desativado</string>
   <string name="status_shutting_down">TorService está a encerrar</string>
-  <string name="tor_process_starting">A iniciar o cliente Tor...</string>
-  <string name="tor_process_complete">completo.</string>
-    <string name="menu_settings">Definições</string>
+  <string name="menu_settings">Definições</string>
   <string name="menu_log">Registo</string>
     <string name="menu_start">Iniciar</string>
   <string name="menu_stop">Parar</string>
@@ -21,8 +19,6 @@
     <string name="menu_exit">Sair</string>
   <string name="menu_scan">Digitalizar BridgeQR</string>
   <string name="menu_share_bridge">Partilhar BridgeQR</string>
-    <string name="btn_okay">Ok</string>
-  <string name="btn_cancel">Cancelar</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Alguns Detalhes do Orbot</string>
     <!--END Welcome Wizard strings (DJH)-->
@@ -46,7 +42,6 @@
     <string name="third_party_software">Software de terceiros:  </string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
     <string name="set_locale_title">idioma</string>
     <string name="pref_socks_title">SOCKS do Tor</string>
   <string name="pref_dnsport_title">Porta DNS do Tor</string>
@@ -56,8 +51,6 @@
   <string name="mb">MB</string>
   <string name="menu_qr">Códigos QR</string>
   <string name="get_bridges_email">E-mail</string>
-  <string name="get_bridges_web">Web</string>
-  <string name="activate">Ativar</string>
   <string name="send_email">Enviar Mensagem</string>
     <string name="save">Guardar</string>
   <string name="name">Nome</string>

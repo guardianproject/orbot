@@ -1,145 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical">
 
-    <ScrollView
-		android:id="@+id/scrollView"
+    <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <LinearLayout
+        <TextView
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:paddingLeft="15px"
+            android:paddingTop="15px"
+            android:text="@string/wizard_details"
+            android:textColor="#00ff00"
+            android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="15px"
-                android:paddingTop="15px"
-                android:text="@string/wizard_details"
-                android:textColor="#00ff00"
-                android:textStyle="bold" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:autoLink="web"
+            android:paddingLeft="15px"
+            android:text="@string/wizard_details_msg"
+            android:textColor="#ffffff"
+            android:textColorLink="#ffffff" />
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:autoLink="web"
-                android:paddingLeft="15px"
-                android:text="@string/wizard_details_msg"
-                android:textColor="#ffffff"
-                android:textColorLink="#ffffff" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="15px"
+            android:paddingTop="15px"
+            android:text="Version: "
+            android:textColor="#00ff00"
+            android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="15px"
-                android:paddingTop="15px"
-                android:text="Version: "
-                android:textColor="#00ff00"
-                android:textStyle="bold" />
+        <TextView
+            android:id="@+id/versionName"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingLeft="15px"
+            android:text="- Unknown -"
+            android:textColor="#ffffff" />
 
-            <TextView
-                android:id="@+id/versionName"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:paddingLeft="15px"
-                android:text="- Unknown -"
-                android:textColor="#ffffff" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="15px"
+            android:paddingTop="15px"
+            android:text="@string/project_home"
+            android:textColor="#00ff00"
+            android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="15px"
-                android:paddingTop="15px"
-                android:text="@string/project_home"
-                android:textColor="#00ff00"
-                android:textStyle="bold" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:autoLink="web"
+            android:paddingLeft="15px"
+            android:text="@string/project_urls"
+            android:textColor="#ffffff"
+            android:textColorLink="#ffffff" />
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:autoLink="web"
-                android:paddingLeft="15px"
-                android:text="@string/project_urls"
-                android:textColor="#ffffff"
-                android:textColorLink="#ffffff" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="15px"
+            android:paddingTop="15px"
+            android:text="@string/third_party_software"
+            android:textColor="#00ff00"
+            android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="15px"
-                android:paddingTop="15px"
-                android:text="@string/third_party_software"
-                android:textColor="#00ff00"
-                android:textStyle="bold" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:autoLink="web"
+            android:paddingLeft="15px"
+            android:text="@string/tor_version"
+            android:textColor="#ffffff"
+            android:textColorLink="#ffffff" />
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:autoLink="web"
-                android:paddingLeft="15px"
-                android:text="@string/tor_version"
-                android:textColor="#ffffff"
-                android:textColorLink="#ffffff" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:autoLink="web"
+            android:paddingLeft="15px"
+            android:text="@string/libevent_version"
+            android:textColor="#ffffff"
+            android:textColorLink="#ffffff" />
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:autoLink="web"
-                android:paddingLeft="15px"
-                android:text="@string/libevent_version"
-                android:textColor="#ffffff"
-                android:textColorLink="#ffffff" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:autoLink="web"
+            android:paddingLeft="15px"
+            android:text="@string/obfsproxy_version"
+            android:textColor="#ffffff"
+            android:textColorLink="#ffffff" />
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:autoLink="web"
-                android:paddingLeft="15px"
-                android:text="@string/polipo_version"
-                android:textColor="#ffffff"
-                android:textColorLink="#ffffff" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:autoLink="web"
+            android:paddingLeft="15px"
+            android:text="@string/openssl_version"
+            android:textColor="#ffffff"
+            android:textColorLink="#ffffff" />
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:autoLink="web"
-                android:paddingLeft="15px"
-                android:text="@string/obfsproxy_version"
-                android:textColor="#ffffff"
-                android:textColorLink="#ffffff" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="15px"
+            android:paddingTop="15px"
+            android:text="License: "
+            android:textColor="#00ff00"
+            android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:autoLink="web"
-                android:paddingLeft="15px"
-                android:text="@string/openssl_version"
-                android:textColor="#ffffff"
-                android:textColorLink="#ffffff" />
+        <TextView
+            android:id="@+id/aboutother"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:autoLink="web"
+            android:paddingLeft="15px"
+            android:textColor="#ffffff"
+            android:textColorLink="#ffffff" />
+    </LinearLayout>
+</ScrollView>
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="15px"
-                android:paddingTop="15px"
-                android:text="License: "
-                android:textColor="#00ff00"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/aboutother"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:autoLink="web"
-                android:paddingLeft="15px"
-                android:textColor="#ffffff"
-                android:textColorLink="#ffffff" />
-        </LinearLayout>
-    </ScrollView>
-</LinearLayout>

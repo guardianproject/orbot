@@ -6,9 +6,7 @@
   <string name="status_activated">Izveidots savienojums ar tīklu Tor</string>
   <string name="status_disabled">Orbot ir deaktivēts</string>
   <string name="status_shutting_down">TorService izslēdzas</string>
-  <string name="tor_process_starting">Startē Tor klientu...</string>
-  <string name="tor_process_complete">pabeidz.</string>
-    <string name="menu_settings">Iestatījumi</string>
+  <string name="menu_settings">Iestatījumi</string>
   <string name="menu_log">Žurnāls</string>
     <string name="menu_start">Startēt</string>
   <string name="menu_stop">Apturēt</string>
@@ -20,8 +18,7 @@
   <string name="menu_scan">Skenēt BridgeQR</string>
   <string name="menu_share_bridge">Koplietot BridgeQR</string>
     <string name="btn_okay">Labi</string>
-  <string name="btn_cancel">Atcelt</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Vairāk informācijas par Orbot</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Vispārīgi</string>
@@ -102,12 +99,9 @@
   <string name="pref_use_expanded_notifications">Rādīt paplašinātus paziņojumus, kur norādīts IP un Tor izejas valsts</string>
   <string name="pref_use_expanded_notifications_title">Paplašināti paziņojumi</string>
     <string name="set_locale_title">Valoda</string>
-    <string name="no_internet_connection_tor">Nav interneta savienojuma; Tor ir gaidstāvē...</string>
-    <string name="pref_disable_network_title">Neizmantot tīkla automātiskā miega režīmu</string>
+  <string name="pref_disable_network_title">Neizmantot tīkla automātiskā miega režīmu</string>
   <string name="pref_disable_network_summary">Kad nav interneta, pārslēgt Tor\'u uz miega režīmu</string>
   <string name="newnym">Jūs pārslēdzāties uz jaunu Tor\'a identitāti!</string>
-    <string name="no_network_connectivity_putting_tor_to_sleep_">Nav tīkla savienojuma. Tor\'am iestata miega režīmu...</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">Labs tīkla savienojums. Aktivizē Tor\'u...</string>
   <string name="updating_settings_in_tor_service">atjaunina Tor pakalpojuma iestatījumus </string>
   <string name="pref_socks_title">Tor SOCKS</string>
   <string name="pref_socks_summary">Ports, uz kura Tor piedāvā savu SOCKS starpniekserveri (noklusējumvērtība: 9050 vai 0 lai atspējotu)</string>
@@ -128,13 +122,10 @@
   <string name="bridges_updated">Tilti ir atjaunināti</string>
   <string name="restart_orbot_to_use_this_bridge_">Lūdzu pārstartējiet Orbot, lai iespējotu izmaiņas</string>
   <string name="menu_qr">QR kodi</string>
-  <string name="bridge_mode">Tiltu režīms</string>
   <string name="get_bridges_email">E-pasts</string>
-  <string name="get_bridges_web">Tīmeklis</string>
-  <string name="activate">Aktivizēt</string>
+    <string name="activate">Aktivizēt</string>
   <string name="send_email">Nosūtīt e-pastu</string>
-  <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Jūs varat saņemt tiltu adreses e-pastā, tīmeklī vai skenējot tiltu QR kodu. Zemāk atlasiet „E-pasts” vai „Tīmeklis”, lai pieprasītu tiltu adreses. Kad esat saņēmis adreses, tad tās iekopējiet un ielīmējiet Orbot iestatījumu preferencēs „Tilti” un pārstartējiet.</string>
-    <string name="hidden_services">Slēptie pakalpojumi</string>
+  <string name="hidden_services">Slēptie pakalpojumi</string>
   <string name="title_activity_hidden_services">Slēptie pakalpojumi</string>
   <string name="menu_hidden_services">Slēptie pakalpojumi</string>
   <string name="save">Saglabāt</string>

@@ -99,7 +99,7 @@ public class CookieContentProvider extends ContentProvider {
 
         SQLiteDatabase db = mServervices.getWritableDatabase();
 
-        Integer rows = db.delete(HSDatabase.HS_CLIENT_COOKIE_TABLE_NAME, where, selectionArgs);
+        int rows = db.delete(HSDatabase.HS_CLIENT_COOKIE_TABLE_NAME, where, selectionArgs);
 
         mContext.getContentResolver().notifyChange(CONTENT_URI, null);
 
@@ -116,7 +116,7 @@ public class CookieContentProvider extends ContentProvider {
             where = "_id=" + uri.getLastPathSegment();
         }
 
-        Integer rows = db.update(HSDatabase.HS_CLIENT_COOKIE_TABLE_NAME, values, where, null);
+        int rows = db.update(HSDatabase.HS_CLIENT_COOKIE_TABLE_NAME, values, where, null);
         mContext.getContentResolver().notifyChange(CONTENT_URI, null);
 
         return rows;

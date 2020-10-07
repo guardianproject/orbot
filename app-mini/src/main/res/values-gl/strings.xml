@@ -6,9 +6,7 @@
   <string name="status_activated">Conectado á rede Tor</string>
   <string name="status_disabled">Orbot está desactivado</string>
   <string name="status_shutting_down">O ServizoTor estase pechando</string>
-  <string name="tor_process_starting">Iniciando cliente Tor...</string>
-  <string name="tor_process_complete">completado.</string>
-    <string name="menu_settings">Axustes</string>
+  <string name="menu_settings">Axustes</string>
   <string name="menu_log">Rexistro (log)</string>
     <string name="menu_start">Iniciar</string>
   <string name="menu_stop">Deter</string>
@@ -20,8 +18,7 @@
   <string name="menu_scan">Escanear BridgeQR</string>
   <string name="menu_share_bridge">Compartir BridgeQR</string>
     <string name="btn_okay">Aceptar</string>
-  <string name="btn_cancel">Cancelar</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Algúns detalles sobre Orbot</string>
   <string name="wizard_details_msg">Orbot é unha aplicación de código-aberto que contén a Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent e Polipo. Proporciona un proxy HTTP (8118) e un proxy SOCKS (9050) na rede Tor. Orbot tamén pode, nun dispositivo con acceso root, enviar todo o tráfico de internet a través de Tor.</string>
     <!--END Welcome Wizard strings (DJH)-->
@@ -107,12 +104,9 @@
   <string name="pref_use_expanded_notifications">Mostar notificación extendida co país de saída de Tor e IP</string>
   <string name="pref_use_expanded_notifications_title">Notificacións extendidas</string>
     <string name="set_locale_title">Idioma</string>
-    <string name="no_internet_connection_tor">Sen conexión a internet; Tor está a espera...</string>
-    <string name="pref_disable_network_title">Auto-Parado Sen Rede</string>
+  <string name="pref_disable_network_title">Auto-Parado Sen Rede</string>
   <string name="pref_disable_network_summary">Parar Tor cando non hai conexión a internet</string>
   <string name="newnym">Cambiou a unha nova identidade Tor!</string>
-    <string name="no_network_connectivity_putting_tor_to_sleep_">Sen conexión a rede. Tor agardando...</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">A conexión a rede é boa. Espertando a Tor...</string>
   <string name="updating_settings_in_tor_service">actualizando axustes no servizo Tor</string>
   <string name="pref_socks_title">SOCKS de Tor</string>
   <string name="pref_socks_summary">Porto no que Tor ofrece o seu proxy SOCKS (por omisión: 9050 ou 0 para desactivar)</string>
@@ -134,14 +128,11 @@
   <string name="restart_orbot_to_use_this_bridge_">Por favor, reinicie Orbot para activar os cambios</string>
   <string name="menu_qr">Códigod QR</string>
   <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Si a súa rede móbil bloquea Tor de xeito activo, pode utilizar un \'Servidor Ponte\' como modo alternativo. ESCOLL unha das opcións para configurar e probar...</string>
-  <string name="bridge_mode">Modo Ponte</string>
   <string name="get_bridges_email">Email</string>
-  <string name="get_bridges_web">Web</string>
   <string name="activate">Activar</string>
   <string name="apps_mode">Modo VPN</string>
     <string name="send_email">Enviar correo</string>
-  <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Pode obter un enderezo de ponte a través de correo electrónico, na web ou escaneando o código QR de unha ponte. Escolla abaixo \'Correo-e\' ou \'Web\' para solicitar un enderezo de ponte.\n\nUnha vez teña un enderezo, cópieo e pégueo no axuste \"Pontes\" na configuración de Orbot e reinicie.</string>
-    <string name="vpn_default_world">Global (Auto)</string>
+  <string name="vpn_default_world">Global (Auto)</string>
   <string name="hidden_services">Servizos agochados</string>
   <string name="title_activity_hidden_services">Servizos agochados</string>
   <string name="menu_hidden_services">Servizos agochados</string>
@@ -150,19 +141,13 @@
   <string name="onion_port">Porto Onion</string>
   <string name="name">Nome</string>
   <string name="done">Feito!</string>
-  <string name="invalid_port">Porto non válido</string>
-  <string name="copy_address_to_clipboard">Copiar enderezo ao portapapeis</string>
+    <string name="copy_address_to_clipboard">Copiar enderezo ao portapapeis</string>
   <string name="show_auth_cookie">Mostar testemuño de autorización</string>
   <string name="backup_service">Servizo de respaldo</string>
   <string name="delete_service">Eliminar servizo</string>
   <string name="backup_saved_at_external_storage">Respaldo gardado en almacenamento externo</string>
   <string name="backup_restored">Respaldo restaurado</string>
-  <string name="filemanager_not_available">Xestor de ficheiros non dispoñible</string>
-  <string name="please_grant_permissions_for_external_storage">Por favor, conceda permiso para o almacenamento externo</string>
     <string name="restore_backup">Restaurar respaldo</string>
-  <string name="create_a_backup_first">Cree un respaldo primeiro</string>
-  <string name="name_can_t_be_empty">O nome non pode quedar baldeiro</string>
-  <string name="fields_can_t_be_empty">Os campos non poden estar baldeiros</string>
   <string name="start_tor_again_for_finish_the_process">Inicie Tor de novo para rematar o proceso</string>
   <string name="confirm_service_deletion">Confirme a eliminación do servizo</string>
   <string name="click_again_for_backup">Pulse de novo para respaldar</string>
@@ -173,7 +158,6 @@
   <string name="please_restart_Orbot_to_enable_the_changes">Por favor, reinicie Orbot para activar os cambios</string>
   <string name="client_cookies">Testemuños do cliente</string>
   <string name="onion">.onion</string>
-  <string name="invalid_onion_address">Enderezo .onion non válido</string>
   <string name="cookie_from_QR">Ler desde QR</string>
   <string name="backup_cookie">Testemuño de respaldo</string>
   <string name="delete_cookie">Eliminar testemuño</string>
@@ -186,8 +170,6 @@
   <string name="consider_enable_battery_optimizations">Considere activar as optimizacións da batería</string>
   <string name="pref_isolate_dest">Illar enderezos de destino</string>
   <string name="pref_isolate_dest_summary">Utilizar un circuito diferente para cada enderezo de destino</string>
-  <string name="no_transproxy_warning_short">AVISO: xa non está soportado o Proxy Transparente</string>
-  <string name="no_transproxy_warning">AVISO: o Proxy Transparente non está soportado. Utilice Orbot VPN Apps no seu lugar.</string>
   <string name="pref_connection_padding">Espazado da conexión</string>
   <string name="pref_connection_padding_summary">Activar sempre un espazado na conexión para defenderse contra algúns tipos de análise de tráfico. Por omisión: auto</string>
   <string name="pref_reduced_connection_padding">Espazado limitado da conexión</string>
@@ -199,8 +181,7 @@
   <string name="bridge_direct_connect">Conectar directamente con Tor (preferido)</string>
   <string name="bridge_community">Conectar a través de servidores da comunidade</string>
   <string name="bridge_cloud">Conectar a través de servidores na nube</string>
-  <string name="bridges_get_new">Solicitar Novas Pontes... (si todo o anterior falla)</string>
-  <string name="trouble_connecting">Problemas ao conectar?</string>
+    <string name="trouble_connecting">Problemas ao conectar?</string>
   <string name="full_device_vpn">VPN para todo o dispositivo</string>
   <string name="vpn_disabled">VPN desactivada</string>
 </resources>

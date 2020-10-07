@@ -6,9 +6,7 @@
   <string name="status_activated">Verbonden met het Tor-netwerk</string>
   <string name="status_disabled">Orbot is uitgeschakeld</string>
   <string name="status_shutting_down">TorService wordt afgesloten</string>
-  <string name="tor_process_starting">Bezig met Tor-cliënt starten…</string>
-  <string name="tor_process_complete">klaar.</string>
-    <string name="menu_settings">Instellingen</string>
+  <string name="menu_settings">Instellingen</string>
   <string name="menu_log">Logboek</string>
     <string name="menu_start">Start</string>
   <string name="menu_stop">Stop</string>
@@ -20,8 +18,7 @@
   <string name="menu_scan">BridgeQR scannen</string>
   <string name="menu_share_bridge">BridgeQR delen</string>
     <string name="btn_okay">Oké</string>
-  <string name="btn_cancel">Annuleren</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Enkele Orbot-gegevens</string>
   <string name="wizard_details_msg">Orbot is een openbronapplicatie die Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent en Polipo bevat. Het creëert een lokale HTTP-proxy (8118) en een SOCKS-proxy (9050) naar het Tor-netwerk. Orbot heeft ook de mogelijkheid om al het internetverkeer over het Tor-netwerk te sturen.</string>
     <!--END Welcome Wizard strings (DJH)-->
@@ -107,12 +104,9 @@
   <string name="pref_use_expanded_notifications">Toon uitgebreide melding met Tor-exitland en IP</string>
   <string name="pref_use_expanded_notifications_title">Uitgebreide meldingen</string>
     <string name="set_locale_title">Taal</string>
-    <string name="no_internet_connection_tor">Geen internetverbinding; Tor is in de slaapstand...</string>
-    <string name="pref_disable_network_title">Geen netwerk automatisch slapen</string>
+  <string name="pref_disable_network_title">Geen netwerk automatisch slapen</string>
   <string name="pref_disable_network_summary">Laat Tor slapen als er geen internetverbinding beschikbaar is</string>
   <string name="newnym">Je bent naar een nieuwe Tor identiteit gewisseld!</string>
-  <string name="no_network_connectivity_putting_tor_to_sleep_">Geen internetverbinding. Tor wordt te slapen gelegd…</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">Netwerkverbinding is in orde. Tor wordt wakker gemaakt…</string>
   <string name="updating_settings_in_tor_service">instellingen in Tor-dienst worden bijgewerkt</string>
   <string name="pref_socks_title">Tor SOCKS</string>
   <string name="pref_socks_summary">Poort waarop Tor de SOCKS-proxy aanbiedt (standaard: 9050 of 0 om uit te schakelen)</string>
@@ -134,14 +128,11 @@
   <string name="restart_orbot_to_use_this_bridge_">Herstart Orbot om de wijzigingen in te schakelen</string>
   <string name="menu_qr">QR-codes</string>
   <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Als je mobiele netwerk Tor actief blokkeert, kan je een \'bridge-server\' gebruiken als alternatieve toegang. SELECTEER een van de opties om te configureren en te testen..,.</string>
-  <string name="bridge_mode">Bridge-modus</string>
   <string name="get_bridges_email">E-mail</string>
-  <string name="get_bridges_web">Web</string>
   <string name="activate">Activeren</string>
   <string name="apps_mode">VPN-modus</string>
     <string name="send_email">E-mail versturen</string>
-  <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Je kan een bridge-adres verkrijgen door e-mail, het web of door een bridge-QR-code te scannen. Kies \'E-mail\' of \'Web\' hieronder om een bridge-adres aan te vragen.\n\nEenmaal je een adres hebt kopieer en plak je het in de \"Bridges\"-optie in de Orbot-instellingen, waarna je Orbot herstart.</string>
-    <string name="vpn_default_world">Algemeen (automatisch)</string>
+  <string name="vpn_default_world">Algemeen (automatisch)</string>
   <string name="hidden_services">Verborgen diensten</string>
   <string name="title_activity_hidden_services">Verborgen diensten</string>
   <string name="menu_hidden_services">Verborgen diensten</string>
@@ -150,19 +141,13 @@
   <string name="onion_port">Onion-poort</string>
   <string name="name">Naam</string>
   <string name="done">Klaar!</string>
-  <string name="invalid_port">Ongeldige poort</string>
-  <string name="copy_address_to_clipboard">Adres kopiëren naar klembord</string>
+    <string name="copy_address_to_clipboard">Adres kopiëren naar klembord</string>
   <string name="show_auth_cookie">Authenticatiecookie tonen</string>
   <string name="backup_service">Back-updienst</string>
   <string name="delete_service">Dienst verwijderen</string>
   <string name="backup_saved_at_external_storage">Back-up opgeslagen op externe opslag</string>
   <string name="backup_restored">Back-up hersteld</string>
-  <string name="filemanager_not_available">Bestandsbeheerder niet beschikbaar</string>
-  <string name="please_grant_permissions_for_external_storage">Verleen toestemmingen voor externe opslag</string>
     <string name="restore_backup">Back-up herstellen</string>
-  <string name="create_a_backup_first">Maak eerst een back-up aan</string>
-  <string name="name_can_t_be_empty">Naam kan niet leeg zijn</string>
-  <string name="fields_can_t_be_empty">Velden kunnen niet leeg zijn</string>
   <string name="start_tor_again_for_finish_the_process">Start Tor opnieuw om het proces te voltooien</string>
   <string name="confirm_service_deletion">Bevestig verwijderen van dienst</string>
   <string name="click_again_for_backup">Klik opnieuw voor back-up</string>
@@ -173,7 +158,6 @@
   <string name="please_restart_Orbot_to_enable_the_changes">Herstart Orbot om de wijzigingen in te schakelen</string>
   <string name="client_cookies">Cliëntcookies</string>
   <string name="onion">.onion</string>
-  <string name="invalid_onion_address">Ongeldig .onion-adres</string>
   <string name="cookie_from_QR">Lezen van QR-code</string>
   <string name="backup_cookie">Back-up maken van cookie</string>
   <string name="delete_cookie">Cookie verwijderen</string>
@@ -186,8 +170,6 @@
   <string name="consider_enable_battery_optimizations">Overweeg accubesparing in te schakelen</string>
   <string name="pref_isolate_dest">Geïsoleerde bestemmingsadressen</string>
   <string name="pref_isolate_dest_summary">Gebruik een ander circuit voor elk bestemmingsadres</string>
-  <string name="no_transproxy_warning_short">WAARSCHUWING: transproxyen wordt niet meer ondersteund</string>
-  <string name="no_transproxy_warning">WAARSCHUWING: transproxyen wordt niet meer ondersteund. Gebruik de Orbot-VPN.</string>
   <string name="pref_connection_padding">Verbindingsopvulling</string>
   <string name="pref_connection_padding_summary">Schakelt verbindingsopvulling altijd in om te verdedigen tegen krachtiger vormen van verkeersanalyse. Standaard: automatisch</string>
   <string name="pref_reduced_connection_padding">Beperkte verbindingsopvulling</string>
@@ -199,8 +181,7 @@
   <string name="bridge_direct_connect">Rechtstreeks verbinden met Tor (best)</string>
   <string name="bridge_community">Verbinden via gemeenschapsservers</string>
   <string name="bridge_cloud">Verbinden via cloudservers</string>
-  <string name="bridges_get_new">Nieuwe bridges opvragen... (als alle andere opties mislukken)</string>
-  <string name="trouble_connecting">Problemen met verbinden?</string>
+    <string name="trouble_connecting">Problemen met verbinden?</string>
   <string name="full_device_vpn">Volledigapparaats-VPN</string>
   <string name="vpn_disabled">VPN uitgeschakeld</string>
 </resources>

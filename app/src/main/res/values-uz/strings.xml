@@ -10,8 +10,7 @@
   <string name="main_layout_upload">Yuklash</string>
     <string name="button_about">Dasur haqida</string>
     <string name="menu_exit">Chiqish</string>
-    <string name="btn_cancel">Bekor qilish</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
   <string name="pref_general_group">Umumiy</string>
   <!--New Wizard Strings-->

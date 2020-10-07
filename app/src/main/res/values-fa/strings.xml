@@ -6,9 +6,7 @@
   <string name="status_activated">متصل به شبکه تور</string>
   <string name="status_disabled">اربوت غیرفعال شده است.</string>
   <string name="status_shutting_down">سرویس تور در حال خاموش شدن است</string>
-  <string name="tor_process_starting">شروع کلاینت تور...</string>
-  <string name="tor_process_complete">تمام.</string>
-    <string name="menu_settings">تنظیمات</string>
+  <string name="menu_settings">تنظیمات</string>
   <string name="menu_log">ورود</string>
     <string name="menu_start">آغاز</string>
   <string name="menu_stop">ایست</string>
@@ -19,8 +17,6 @@
     <string name="menu_exit">خروج</string>
   <string name="menu_scan">اسکن BridgeQR</string>
   <string name="menu_share_bridge">اشتراک BridgeQR</string>
-    <string name="btn_okay">قبول</string>
-  <string name="btn_cancel">لغو</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">برخی جزییات درباره اوربوت</string>
   <string name="wizard_details_msg">اوربات نرم‌افزاری آزاد است که شامل تور، Obfs4Proxy، BadVPN Tun2Socks، LibEvent و پولیپو می‌شود. این نرم‌افزار یک اچ‌تی‌تی‌پی پراکسی (8118) و ساکس (9050) محلی روی شبکه تور فراهم می‌کند. همچنین اوربات می‌تواند روی دستگاه‌های روت شده، تمام ترافیک اینترنت را ار تور عبور دهد.</string>
@@ -94,8 +90,7 @@
     <string name="third_party_software">3rd-Party-Software:</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
-  <string name="obfsproxy_version">Obfs4proxy نسخه‌ی 0.0.8: https://github.com/Yawning/obfs4</string>
+    <string name="obfsproxy_version">Obfs4proxy نسخه‌ی 0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">اپلیکیشنی می‌خواهد پورت سرور %1$s را به شبکه تور بگشاید. در صورتی که به این برنامه اطمینان دارید، چنین کاری امن است.</string>
   <string name="found_existing_tor_process">یک تور درحال اجرا پیدا شد...</string>
@@ -107,12 +102,9 @@
   <string name="pref_use_expanded_notifications">نمایش اطلاع رسانی گسترده با کشور خروجی Tor و IP</string>
   <string name="pref_use_expanded_notifications_title">اطلاعیه گسترده</string>
     <string name="set_locale_title">زبان</string>
-    <string name="no_internet_connection_tor">ارتباط اینترنتی وجود ندارد; تور آماده کار است... </string>
-    <string name="pref_disable_network_title">خاموش کردن در صورت عدم وجود شبکه</string>
+  <string name="pref_disable_network_title">خاموش کردن در صورت عدم وجود شبکه</string>
   <string name="pref_disable_network_summary">در صورتی که شبکه وجود نداشته باشد خاموش شود</string>
   <string name="newnym">شما به شناسه جدید تور منتقل شدید</string>
-  <string name="no_network_connectivity_putting_tor_to_sleep_">ارتباط شبکه ای وجود ندارد. تور به حالت خواب می رود</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">ارتباط شبکه ای خوب است. تور را بیدار نمایید...</string>
   <string name="updating_settings_in_tor_service">به روز رسانی تنظیمات در سرویس Tor</string>
   <string name="pref_socks_title">Tor SOCKS</string>
   <string name="pref_socks_summary">پورتی که تور ارائه می دهد SOCKS proxy روی (پیش فرض: 9050 یا 0 برای غیرفعال کردن)</string>
@@ -134,14 +126,10 @@
   <string name="restart_orbot_to_use_this_bridge_">برای فعال کردن تغییرات لطفا Orbot را راه اندازی مجدد کنید</string>
   <string name="menu_qr">کدهای QR</string>
   <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">اگر شبکه همراهتان به صورت مرتب تور را مسدود می‌کند، می‌توانید از یک «کارساز پل» به عنوان راهی جایگزین برای ورود استفاده کنید. برای پیکربندی و تست، یکی از گزینه‌ها را انتخاب کنید…</string>
-  <string name="bridge_mode">حالت Bridges</string>
   <string name="get_bridges_email">ایمیل</string>
-  <string name="get_bridges_web">وب</string>
-  <string name="activate">فعال</string>
   <string name="apps_mode">حالت VPN</string>
     <string name="send_email">ایمیل بفرست</string>
-  <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">می توانید آدرس  bridge  را از طریق ایمیل٬ وب یا با اسکن کردن  bridge QR code بدست آورید. ایمیل یا وب پایین را برای درخواست آدرس bridge انتخاب کنید.\n\n وقتی آدرس را دارید آن را کپی کنید و برگردانید در  اولویت های  Bridges در تنظیمات اربت و آن را دوباره راه اندازی کنید.</string>
-    <string name="vpn_default_world">جهانی (خودکار)</string>
+  <string name="vpn_default_world">جهانی (خودکار)</string>
   <string name="hidden_services">سرویس‌های مخفی</string>
   <string name="title_activity_hidden_services">سرویس‌های مخفی</string>
   <string name="menu_hidden_services">سرویس‌های مخفی</string>
@@ -150,19 +138,14 @@
   <string name="onion_port">درگاه پیازی</string>
   <string name="name">نام</string>
   <string name="done">انجام شد!</string>
-  <string name="invalid_port">درگاه نامعتبر</string>
-  <string name="copy_address_to_clipboard">رونوشت نشانی‌ها در حافظه موقت</string>
+    <string name="copy_address_to_clipboard">رونوشت نشانی‌ها در حافظه موقت</string>
   <string name="show_auth_cookie">نمایش کوکی احراز هویت</string>
   <string name="backup_service">سرویس بک‌آپ</string>
   <string name="delete_service">حذف سرویس</string>
   <string name="backup_saved_at_external_storage">بک‌آپ در انباره خارجی ذخیره شد</string>
   <string name="backup_restored">بک‌آپ بازگردانده شد</string>
-  <string name="filemanager_not_available">Filemanager موجود نیست</string>
-  <string name="please_grant_permissions_for_external_storage">لطفا به  انباره خارجی اجازه دسترسی بدهید</string>
-    <string name="restore_backup">برگرداندن بک‌آپ</string>
+  <string name="restore_backup">برگرداندن بک‌آپ</string>
   <string name="create_a_backup_first">اول یک نسخه بک‌آپ درست کنید</string>
-  <string name="name_can_t_be_empty">نام نباید خالی باشد</string>
-  <string name="fields_can_t_be_empty">زمینه‌ها نباید خالی باشند</string>
   <string name="start_tor_again_for_finish_the_process">برای پایان روند کار ، دوباره تور را آغاز کنید</string>
   <string name="confirm_service_deletion">حذف سرویس را تایید کنید</string>
     <string name="service_type">نوع سرویس</string>
@@ -172,7 +155,6 @@
   <string name="please_restart_Orbot_to_enable_the_changes">برای دیدن تغییرات، اوربات  را دوباره راه اندازی کنید</string>
   <string name="client_cookies">کوکی‌های Client</string>
   <string name="onion">onion.</string>
-  <string name="invalid_onion_address">نشانی نامعتبر onion. </string>
   <string name="cookie_from_QR">از QR بخوان</string>
   <string name="backup_cookie">بک‌آپ از کوکی</string>
   <string name="delete_cookie">حذف کوکی</string>
@@ -185,8 +167,6 @@
   <string name="consider_enable_battery_optimizations">فعال کردن بهینه‌سازی باتری را مدنظر قرار دهید</string>
   <string name="pref_isolate_dest">آدرس‌های مقصد را مجزا کن</string>
   <string name="pref_isolate_dest_summary">برای هر آدرس مقصد از مداری متفاوت استفاده کن</string>
-  <string name="no_transproxy_warning_short">هشدار: پراکسی کردن شفاف دیگر پشتیبانی نمی‌شود</string>
-  <string name="no_transproxy_warning">هشدار: پراکسی کردن شفاف پشتیبانی نمی‌شود. از Orbot Apps VPN استفاده کنید.</string>
   <string name="pref_connection_padding">پهنای ارتباط</string>
   <string name="pref_connection_padding_summary">همیشه لایه‌گذاری ارتباط را فعال می‌کند تا با برخی از حالت‌های تحلیل ترافیک مقابله کند. پیش‌فرض: خودکار</string>
   <string name="pref_reduced_connection_padding">پنهای ارتباط کاهش پیدا کرد</string>
@@ -198,7 +178,6 @@
   <string name="bridge_direct_connect">اتصال مستقیم به تور (بهترین عملکرد)</string>
   <string name="bridge_community">اتصال از طریق سرورهای جامعه</string>
   <string name="bridge_cloud">اتصال از طریق سرورهای ابری</string>
-  <string name="bridges_get_new">درخواست پل‌های ارتباطی جدید... (اگر تمامی روش‌های دیگر کار نکردند)</string>
   <string name="trouble_connecting">در اتصال مشکل دارید؟</string>
   <string name="full_device_vpn">VPN برای تمام دستگاه</string>
   <string name="vpn_disabled">VPN غیر فعال شد</string>

@@ -6,9 +6,7 @@
   <string name="status_activated">Connecté au réseau Tor</string>
   <string name="status_disabled">Orbot est désactivé</string>
   <string name="status_shutting_down">TorService est en cours d’extinction</string>
-  <string name="tor_process_starting">Démarrage du client Tor...</string>
-  <string name="tor_process_complete">terminé.</string>
-    <string name="menu_settings">Paramètres</string>
+  <string name="menu_settings">Paramètres</string>
   <string name="menu_log">Journal</string>
     <string name="menu_start">Démarrer</string>
   <string name="menu_stop">Arrêter</string>
@@ -19,8 +17,6 @@
     <string name="menu_exit">Quitter </string>
   <string name="menu_scan">Balayer un code QR de pont</string>
   <string name="menu_share_bridge">Partager un code QR de pont</string>
-    <string name="btn_okay">OK</string>
-  <string name="btn_cancel">Annuler</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Quelques détails sur Orbot</string>
   <string name="wizard_details_msg">Orbot est une application à code source ouvert incluant Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent et Polipo. Elle fournit un mandataire local HTTP (8118) et un mandataire SOCKS (9050) vers le réseau Tor. Orbot a aussi la capacité, sur un appareil débridé, d’envoyer tout le trafic Internet par Tor.</string>
@@ -94,8 +90,7 @@
     <string name="third_party_software">Logiciels tiers :</string>
   <string name="tor_version">Tor : https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21 : http://www.monkey.org/~provos/libevent/</string>
-  <string name="polipo_version">Polipo v1.1.9 : https://github.com/jech/polipo</string>
-  <string name="obfsproxy_version">Obfs4proxy v0.0.8 : https://github.com/Yawning/obfs4</string>
+    <string name="obfsproxy_version">Obfs4proxy v0.0.8 : https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j : http://www.openssl.org</string>
   <string name="hidden_service_request">Une appli veut ouvrir le port %1$s du serveur caché au réseau Tor. Cela est sécuritaire si vous faites confiance à l’appli.</string>
   <string name="found_existing_tor_process">un processus existant de Tor a été trouvé...</string>
@@ -107,12 +102,9 @@
   <string name="pref_use_expanded_notifications">Montrer des notifications étendues avec le pays de sortie de Tor et l’IP</string>
   <string name="pref_use_expanded_notifications_title">Notifications étendues</string>
     <string name="set_locale_title">Langue</string>
-    <string name="no_internet_connection_tor">Pas de connexion Internet ; Tor est en attente...</string>
-    <string name="pref_disable_network_title">Pas de mise en veille automatique du réseau</string>
+  <string name="pref_disable_network_title">Pas de mise en veille automatique du réseau</string>
   <string name="pref_disable_network_summary">Mettre Tor en veille quand aucune connexion Internet n’est disponible</string>
   <string name="newnym">Vous avez basculé vers une nouvelle identité Tor !</string>
-    <string name="no_network_connectivity_putting_tor_to_sleep_">Pas de connectivité réseau. Mise au repos de Tor...</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">La connectivité réseau est bonne. Réveil de Tor...</string>
   <string name="updating_settings_in_tor_service">mise à jour des paramètres dans le service Tor</string>
   <string name="pref_socks_title">SOCKS Tor</string>
   <string name="pref_socks_summary">Port sur lequel Tor offre son mandataire SOCKS (par défaut : 9050 ou 0 pour le désactiver)</string>
@@ -134,14 +126,10 @@
   <string name="restart_orbot_to_use_this_bridge_">Veuillez redémarrer Orbot pour activer les changements</string>
   <string name="menu_qr">Codes QR</string>
   <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Si votre réseau mobile bloque Tor activement, vous pouvez utiliser un serveur-pont comme moyen de remplacement. CHOISIR une des options pour configurer et tester…</string>
-  <string name="bridge_mode">Mode pont</string>
   <string name="get_bridges_email">Courriel</string>
-  <string name="get_bridges_web">Web</string>
-  <string name="activate">Activer</string>
   <string name="apps_mode">Mode RPV</string>
     <string name="send_email">Envoyer un courriel</string>
-  <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Vous pouvez obtenir une adresse de pont par courriel, par le Web ou en balayant le code QR d’un pont. Choisissez *Courriel* ou *Web* ci-dessous pour demander une adresse de pont.\n\nUne fois que vous avez une adresse, copiez &amp; collez-la dans le champ « Ponts » des paramètres d’Orbot et redémarrez.</string>
-    <string name="vpn_default_world">Mondial (Auto)</string>
+  <string name="vpn_default_world">Mondial (Auto)</string>
   <string name="hidden_services">Services cachés</string>
   <string name="title_activity_hidden_services">Services cachés</string>
   <string name="menu_hidden_services">Services cachés</string>
@@ -150,19 +138,14 @@
   <string name="onion_port">Port oignon</string>
   <string name="name">Nom</string>
   <string name="done">Fait !</string>
-  <string name="invalid_port">Port invalide</string>
-  <string name="copy_address_to_clipboard">Copier l’adresse vers le presse-papiers</string>
+    <string name="copy_address_to_clipboard">Copier l’adresse vers le presse-papiers</string>
   <string name="show_auth_cookie">Afficher le témoin auth</string>
   <string name="backup_service">Service de sauvegarde</string>
   <string name="delete_service">Supprimer le service</string>
   <string name="backup_saved_at_external_storage">La sauvegarde a été enregistrée sur une mémoire externe</string>
   <string name="backup_restored">La sauvegarde a été restaurée</string>
-  <string name="filemanager_not_available">Le gestionnaire de fichiers n’est pas disponible</string>
-  <string name="please_grant_permissions_for_external_storage">Veuillez accorder les droits vers la mémoire externe</string>
     <string name="restore_backup">Restaurer la sauvegarde</string>
   <string name="create_a_backup_first">Créer d’abord une sauvegarde</string>
-  <string name="name_can_t_be_empty">Le nom ne peut pas être vide</string>
-  <string name="fields_can_t_be_empty">Les champs ne peuvent pas être vides</string>
   <string name="start_tor_again_for_finish_the_process">Redémarrer Tor pour terminer le processus</string>
   <string name="confirm_service_deletion">Confirmer la suppression du service</string>
     <string name="service_type">Type de service</string>
@@ -172,7 +155,6 @@
   <string name="please_restart_Orbot_to_enable_the_changes">Veuillez redémarrer Orbot pour activer les changements</string>
   <string name="client_cookies">Témoins du client</string>
   <string name="onion">.onion</string>
-  <string name="invalid_onion_address">Adresse .onion invalide</string>
   <string name="cookie_from_QR">Lire d’un code QR</string>
   <string name="backup_cookie">Sauvegarder le témoin</string>
   <string name="delete_cookie">Supprimer le témoin</string>
@@ -185,8 +167,6 @@
   <string name="consider_enable_battery_optimizations">Envisagez d’activer les optimisations de la pile</string>
   <string name="pref_isolate_dest">Isoler les adresses de destination</string>
   <string name="pref_isolate_dest_summary">Utiliser un circuit différent pour chaque adresse de destination</string>
-  <string name="no_transproxy_warning_short">AVERTISSEMENT : le transrelais n’est plus pris en charge</string>
-  <string name="no_transproxy_warning">AVERTISSEMENT : le relais transparent n’est plus pris en charge. Utiliser plutôt le RPV pour applis d’Orbot.</string>
   <string name="pref_connection_padding">Bourrage de la connexion</string>
   <string name="pref_connection_padding_summary">Toujours activer le bourrage de la connexion pour se défendre contre certaines formes d’analyse du trafic. Par défaut de : auto</string>
   <string name="pref_reduced_connection_padding">Bourrage réduit de la connexion</string>
@@ -198,7 +178,6 @@
   <string name="bridge_direct_connect">Se connecter directement à Tor (le mieux)</string>
   <string name="bridge_community">Se connecter par des serveurs communautaires</string>
   <string name="bridge_cloud">Se connecter par des serveurs nuagiques</string>
-  <string name="bridges_get_new">Demander de nouveaux ponts… (si tout échoue)</string>
   <string name="trouble_connecting">Des problèmes de connexion ?</string>
   <string name="full_device_vpn">RPV de l’appareil entier</string>
   <string name="vpn_disabled">Le RPV est désactivé</string>

@@ -6,9 +6,7 @@
   <string name="status_activated">Tor sarera konektatuta</string>
   <string name="status_disabled">Orbot desaktibatuta dago</string>
   <string name="status_shutting_down">TorService itzaltzen ari da</string>
-  <string name="tor_process_starting">Tor bezeroa hasten...</string>
-  <string name="tor_process_complete">eginda.</string>
-    <string name="menu_settings">Ezarpenak</string>
+  <string name="menu_settings">Ezarpenak</string>
   <string name="menu_log">Egunkaria</string>
     <string name="menu_start">Abiarazi</string>
   <string name="menu_stop">Gelditu</string>
@@ -19,8 +17,6 @@
     <string name="menu_exit">Irten</string>
   <string name="menu_scan">Eskaneatu BridgeQR</string>
   <string name="menu_share_bridge">Partekatu BridgeQR</string>
-    <string name="btn_okay">Ados</string>
-  <string name="btn_cancel">Utzi</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Orbot xehetasun batzuk</string>
   <string name="wizard_details_msg">Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent eta Polipo dituen kode irekiko aplikazio bat da Orbot. Tor sarera sartzeko HTTP proxya (8118) eta SOCKS proxya (9050) eskaintzen ditu. Rooteatutako gailuetan Orbot-ek interneteko trafiko guztia Tor bidez bidali dezake baita ere.</string>
@@ -94,7 +90,6 @@
     <string name="third_party_software">Hirugarrengoen softwarea:</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
   <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">Aplikazio batek ezkutuko zerbitzariko %1$s ataka ireki nau du Tor sarera. Segurua da aplikazioaz fidatzen bazara.</string>
@@ -107,12 +102,9 @@
   <string name="pref_use_expanded_notifications">Erakutsi hedatutako jakinarazpenak Tor irteera herrialde eta IP-arekin</string>
   <string name="pref_use_expanded_notifications_title">Hedatutako jakinarazpenak</string>
     <string name="set_locale_title">Hizkuntza</string>
-    <string name="no_internet_connection_tor">Ez dago Interneterako konexiorik; Tor egonean dago...</string>
-    <string name="pref_disable_network_title">Sareko lokartze automatikorik ez</string>
+  <string name="pref_disable_network_title">Sareko lokartze automatikorik ez</string>
   <string name="pref_disable_network_summary">Jarri Tor lotan internet atzigarri ez dagoenean</string>
   <string name="newnym">Tor identitate berri batera aldatu duzu!</string>
-  <string name="no_network_connectivity_putting_tor_to_sleep_">Sare konexiorik ez. Tor lotan jartzen...</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">Sare konexioa berreskuratu da. Tor esnatzen...</string>
   <string name="updating_settings_in_tor_service">Tor zerbitzuaren ezarpenak eguneratzen</string>
   <string name="pref_socks_title">Tor SOCKS</string>
   <string name="pref_socks_summary">Tor-ek bere SOCKS proxya eskaintzeko ataka (Lehenetsia: 9050 edo 0 desgaitzeko)</string>
@@ -134,14 +126,10 @@
   <string name="restart_orbot_to_use_this_bridge_">Berrabiarazi Orbot aldaketak aplikatzeko</string>
   <string name="menu_qr">QR Kodeak</string>
   <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Zure sare mugikorrak Tor nahita blokeatzen badu, \'Zubi zerbitzaria\' erabili dezakezu ordezko sarbide gisa. HAUTATU konfiguratzeko aukera bat eta probatu...</string>
-  <string name="bridge_mode">Zubi modua</string>
   <string name="get_bridges_email">E-mail</string>
-  <string name="get_bridges_web">Web</string>
-  <string name="activate">Aktibatu</string>
   <string name="apps_mode">VPN modua</string>
     <string name="send_email">Bidali E-maila</string>
-  <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Zubi helbide bat lortu dezakezu e-mail eta web bidez edo QR kode bat eskaneatuz. Hautatu \'E-mail\' edo \'Web\' behean zubi helbide bat eskatzeko.\n\nBehin helbide bat duzula, kopiatu eta itsatsi ezazu Orbot ezarpenetako \"Zubiak\" atalean eta berrabiarazi.</string>
-    <string name="vpn_default_world">Orokorra (Automatikoa)</string>
+  <string name="vpn_default_world">Orokorra (Automatikoa)</string>
   <string name="hidden_services">Ezkutuko zerbitzuak</string>
   <string name="title_activity_hidden_services">Ezkutuko zerbitzuak</string>
   <string name="menu_hidden_services">Ezkutuko zerbitzuak</string>
@@ -150,19 +138,14 @@
   <string name="onion_port">Onion ataka</string>
   <string name="name">Izena</string>
   <string name="done">Egina!</string>
-  <string name="invalid_port">Ataka baliogabea</string>
-  <string name="copy_address_to_clipboard">Kopiatu helbidea arbelera</string>
+    <string name="copy_address_to_clipboard">Kopiatu helbidea arbelera</string>
   <string name="show_auth_cookie">Erakutsi autentifikazio cookie-a</string>
   <string name="backup_service">Egin zerbitzuaren babeskopia</string>
   <string name="delete_service">Ezabatu zerbitzua</string>
   <string name="backup_saved_at_external_storage">Babeskopia kanpo biltegiratzean gorde da</string>
   <string name="backup_restored">Babeskopia berrezarri da</string>
-  <string name="filemanager_not_available">Fitxategi kudeatzailea ez dago eskuragarri</string>
-  <string name="please_grant_permissions_for_external_storage">Eman kanpo biltegiratzerako baimena</string>
     <string name="restore_backup">Berrezarri babeskopia</string>
   <string name="create_a_backup_first">Sortu babeskopia aurretik</string>
-  <string name="name_can_t_be_empty">Izena ezin da hutsik egon</string>
-  <string name="fields_can_t_be_empty">Eremuak ezin dira hutsik egon</string>
   <string name="start_tor_again_for_finish_the_process">Hasi Tor berriro prozesua amaitzeko</string>
   <string name="confirm_service_deletion">Berretsi zerbitzua ezabatzea</string>
     <string name="service_type">Zerbitzu mota</string>
@@ -172,7 +155,6 @@
   <string name="please_restart_Orbot_to_enable_the_changes">Mesedez berrabiarazi Orbot aldaketak aktibatzeko</string>
   <string name="client_cookies">Bezero-cookie-ak</string>
   <string name="onion">.onion</string>
-  <string name="invalid_onion_address">.onion helbide baliogabea</string>
   <string name="cookie_from_QR">Irakurri QR-tik</string>
   <string name="backup_cookie">Egin cookie-aren babeskopia</string>
   <string name="delete_cookie">Ezabatu cookie-a</string>
@@ -185,8 +167,6 @@
   <string name="consider_enable_battery_optimizations">Aztertu bateria optimizazioak gaitzea</string>
   <string name="pref_isolate_dest">Isolatu helbide helburuak</string>
   <string name="pref_isolate_dest_summary">Erabili zirkuitu desberdin bat helbide helburu bakoitzeko</string>
-  <string name="no_transproxy_warning_short">ABISUA: Proxy gardenak ez du euskarria jada</string>
-  <string name="no_transproxy_warning">ABISUA: Proxy gardenak ez du euskarria jada. Erabili Orbot aplikazioen VPN-a ordez.</string>
   <string name="pref_connection_padding">Konexioaren betegarria</string>
   <string name="pref_connection_padding_summary">Beti gaitzen du konexioaren betegarria trafikoaren azterketa motza batzuetaz babesteko. Lehenetsita: automatikoa</string>
   <string name="pref_reduced_connection_padding">Konexioaren betegarria gutxitua</string>
@@ -198,7 +178,6 @@
   <string name="bridge_direct_connect">Konektatu zuzenean Tor sarera (Onena)</string>
   <string name="bridge_community">Konektatu komunitatearen zerbitzarietatik</string>
   <string name="bridge_cloud">Konektatu hodeiko zerbitzarietatik</string>
-  <string name="bridges_get_new">Eskatu zubi berriak... (Beste guztiak huts egiten badu)</string>
   <string name="trouble_connecting">Arazoak konektatzeko?</string>
   <string name="full_device_vpn">Gailu osoaren VPN-a</string>
   <string name="vpn_disabled">VPN-a desgaituta</string>

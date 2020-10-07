@@ -6,9 +6,7 @@
   <string name="status_activated">Tersambung ke Jaringan Tor</string>
   <string name="status_disabled">Orbot telah dibatalkan</string>
   <string name="status_shutting_down">TorService dimatikan</string>
-  <string name="tor_process_starting">Memulai klien Tor...</string>
-  <string name="tor_process_complete">selesai.</string>
-    <string name="menu_settings">Pengaturan</string>
+  <string name="menu_settings">Pengaturan</string>
   <string name="menu_log">Log</string>
     <string name="menu_start">Mulai</string>
   <string name="menu_stop">Berhenti</string>
@@ -20,8 +18,7 @@
   <string name="menu_scan">Pindai BridgeQR</string>
   <string name="menu_share_bridge">Bagikan BridgeQR</string>
     <string name="btn_okay">Oke</string>
-  <string name="btn_cancel">Batal</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Beberapa Rincian Orbot</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Umum</string>
@@ -102,12 +99,9 @@
   <string name="pref_use_expanded_notifications">Tampilkan notifikasi melebar dengan negara dan IP keluar Tor</string>
   <string name="pref_use_expanded_notifications_title">Notifikasi Melebar</string>
     <string name="set_locale_title">Bahasa</string>
-    <string name="no_internet_connection_tor">Tidak ada koneksi internet; Tor sedang standby...</string>
-    <string name="pref_disable_network_title">Auto-Tidur Tidak Ada Jaringan</string>
+  <string name="pref_disable_network_title">Auto-Tidur Tidak Ada Jaringan</string>
   <string name="pref_disable_network_summary">Menempatkan Tor untuk tidur ketika tidak ada internet yang tersedia</string>
   <string name="newnym">Anda telah beralih ke identitas Tor baru!</string>
-    <string name="no_network_connectivity_putting_tor_to_sleep_">Tidak ada jaringan terhubung. Menidurkan Tor...</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">Jaringan terhubung baik. Memanggil Tor...</string>
   <string name="updating_settings_in_tor_service">memperbarui setting pada layanan Tor</string>
   <string name="pref_socks_title">SOCKS Tor</string>
   <string name="pref_socks_summary">Port tempat proxy SOCKS Tor aktif (standar: 9050 atau 0 untuk mematikan)</string>
@@ -128,13 +122,10 @@
   <string name="bridges_updated">Bridge Telah Diperbarui</string>
   <string name="restart_orbot_to_use_this_bridge_">Silakan start ulang Orbot untuk mengaktifkan perubahan</string>
   <string name="menu_qr">Kode QR</string>
-  <string name="bridge_mode">Mode Bridge</string>
   <string name="get_bridges_email">Email</string>
-  <string name="get_bridges_web">Laman</string>
-  <string name="activate">Aktivasi</string>
+    <string name="activate">Aktivasi</string>
   <string name="send_email">Kirim Email</string>
-  <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Anda bisa mendapatkan alamat bridge melalui email, halaman web atau dengan memindai kode QR bridge tersebut. Pilih \'Email\' atau \'Laman\' di bawah untuk meminta alamat bridge. Setelah anda mendapatkannya, salin lalu tempel di pilihan \"Bridges\" pada setting Orbot lalu start ulang.</string>
-    <string name="save">Simpan</string>
+  <string name="save">Simpan</string>
   <string name="name">Nama</string>
   <string name="done">Selesai!</string>
   <string name="please_restart_Orbot_to_enable_the_changes">Silakan start ulang Orbot untuk mengaktifkan perubahan</string>

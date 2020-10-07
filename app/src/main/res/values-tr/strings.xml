@@ -6,8 +6,6 @@
   <string name="status_activated">Tor ağına bağlandı</string>
   <string name="status_disabled">Orbot devre dışı bırakıldı</string>
   <string name="status_shutting_down">Tor hizmeti kapatılıyor</string>
-  <string name="tor_process_starting">Tor istemcisi başlatılıyor...</string>
-  <string name="tor_process_complete">tamamlandı.</string>
   <string name="menu_settings">Ayarlar</string>
   <string name="menu_log">Günlük</string>
   <string name="menu_start">Başlat</string>
@@ -19,8 +17,6 @@
   <string name="menu_exit">Çıkış</string>
   <string name="menu_scan">QR kodu tara</string>
   <string name="menu_share_bridge">QR kodu paylaş</string>
-  <string name="btn_okay">Tamam</string>
-  <string name="btn_cancel">İptal</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Bazı Orbot Ayrıntıları</string>
   <string name="wizard_details_msg">Orbot; Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent ve Polipo yapılarını kapsayan açık kaynaklı bir uygulamadır. Tor ağına bağlanmak için bir yerel HTTP vekil sunucu (8118) ve bir SOCKS vekil sunucu (9050) sağlar. Orbot ayrıca, rootlanmış aygıtlarda tüm İnternet trafiğini Tor üzerinden gönderebilir.</string>
@@ -94,8 +90,7 @@
   <string name="third_party_software">Üçüncü Taraf Yazılım:</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
-  <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
+    <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">Bir uygulama Tor ağına %1$s gizli sunucu kapısını açmak istiyor. Uygulamaya güveniyorsanız bu işlem güvenlidir.</string>
   <string name="found_existing_tor_process">varolan bir Tor işlemi bulundu...</string>
@@ -107,12 +102,9 @@
   <string name="pref_use_expanded_notifications">Tor çıkış ülkesi ve IP adresi ile ilgili ayrıntılı bildirim görüntülensin</string>
   <string name="pref_use_expanded_notifications_title">Ayrıntılı Bildirimler</string>
   <string name="set_locale_title">Dil</string>
-  <string name="no_internet_connection_tor">İnternet bağlantısı yok; Tor hazırda bekliyor...</string>
   <string name="pref_disable_network_title">Bağlantı Olmadığında Otomatik Uyku</string>
   <string name="pref_disable_network_summary">İnternet bağlantısı olmadığında Tor uyku kipine geçsin</string>
   <string name="newnym">Yeni bir Tor kimliğine geçiş yaptınız!</string>
-    <string name="no_network_connectivity_putting_tor_to_sleep_">Herhangi bir ağ bağlantısı yok. Tor uyutuluyor...</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">Ağ bağlantısı iyi. Tor uyandırılıyor... </string>
   <string name="updating_settings_in_tor_service">Tor hizmet ayarları güncelleniyor</string>
   <string name="pref_socks_title">Tor SOCKS</string>
   <string name="pref_socks_summary">Tor SOCKS vekil sunucusu için kullanılacak kapı numarası (Varsayılan 9050, devre dışı bırakmak için 0)</string>
@@ -134,14 +126,10 @@
   <string name="restart_orbot_to_use_this_bridge_">Değişiklikleri etkinleştirmek için Orbot uygulamasını yeniden başlatın</string>
   <string name="menu_qr">QR Kodları</string>
   <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Tor kullanımı mobil ağınızda etkin olarak engelleniyorsa, Tor ağına erişmek için bir \'Köprü Sunucusu\' kullanabilirsiniz. Yapılandırmak ve denemek için aşağıdaki seçeneklerden birini seçin...</string>
-  <string name="bridge_mode">Köprü Kipi</string>
   <string name="get_bridges_email">E-posta</string>
-  <string name="get_bridges_web">Web</string>
-  <string name="activate">Etkinleştir</string>
   <string name="apps_mode">VPN Kipi</string>
   <string name="send_email">E-posta Gönder</string>
-  <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Köprü adresini e-posta, web ya da QR kodu ile edinebilirsiniz. Köprü adresini istemek için aşağıdan \'E-posta\' ya da \'Web\' seçeneğini seçin. \n\nAdresi edindikten sonra kopyalayıp Orbot ayarlarındaki \"Köprüler\" alanına kopyalayın ve Orbot uygulamasını yeniden başlatın.</string>
-    <string name="vpn_default_world">Genel (Otomatik)</string>
+  <string name="vpn_default_world">Genel (Otomatik)</string>
   <string name="hidden_services">Gizli Hizmetler</string>
   <string name="title_activity_hidden_services">Gizli Hizmetler</string>
   <string name="menu_hidden_services">Gizli Hizmetler</string>
@@ -150,19 +138,14 @@
   <string name="onion_port">Onion Kapısı</string>
   <string name="name">Ad</string>
   <string name="done">Tamam!</string>
-  <string name="invalid_port">Kapı Geçersiz</string>
-  <string name="copy_address_to_clipboard">Adresi panoya kopyala</string>
+    <string name="copy_address_to_clipboard">Adresi panoya kopyala</string>
   <string name="show_auth_cookie">Kimlik doğrulama çerezini görüntüle</string>
   <string name="backup_service">Hizmeti Yedekle</string>
   <string name="delete_service">Hizmeti Sil</string>
   <string name="backup_saved_at_external_storage">Yedek dış depolamaya kaydedildi</string>
   <string name="backup_restored">Yedek geri yüklendi</string>
-  <string name="filemanager_not_available">Dosya tarayıcı kullanılamıyor</string>
-  <string name="please_grant_permissions_for_external_storage">Lütfen dış depolama için izinleri verin</string>
-  <string name="restore_backup">Yedeği Geri Yükle</string>
+    <string name="restore_backup">Yedeği Geri Yükle</string>
   <string name="create_a_backup_first">Önce bir yedek oluşturun</string>
-  <string name="name_can_t_be_empty">Ad boş bırakılamaz</string>
-  <string name="fields_can_t_be_empty">Alanlar boş bırakılamaz</string>
   <string name="start_tor_again_for_finish_the_process">İşlemi tamamlamak için Tor uygulamasını yeniden başlatın</string>
   <string name="confirm_service_deletion">Hizmeti Silmeyi Onayla</string>
     <string name="service_type">Hizmet Türü</string>
@@ -172,7 +155,6 @@
   <string name="please_restart_Orbot_to_enable_the_changes">Değişiklikleri etkinleştirmek için Orbot uygulamasını yeniden başlatın</string>
   <string name="client_cookies">İstemci çerezleri</string>
   <string name="onion">.onion</string>
-  <string name="invalid_onion_address">.onion adresi geçersiz</string>
   <string name="cookie_from_QR">QR kodundan oku</string>
   <string name="backup_cookie">Çerezi yedekle</string>
   <string name="delete_cookie">Çerezi sil</string>
@@ -185,8 +167,6 @@
   <string name="consider_enable_battery_optimizations">Pil kullanımı iyileştirmelerini etkinleştirmeyi düşünün</string>
   <string name="pref_isolate_dest">Hedef adresleri yalıtılsın</string>
   <string name="pref_isolate_dest_summary">Her ehdef adresi için farklı devre kullanılır</string>
-  <string name="no_transproxy_warning_short">Uyarı: Saydam vekil sunucu özelliği artık desteklenmiyor</string>
-  <string name="no_transproxy_warning">Uyarı: Saydam vekil sunucu özelliği artık desteklenmiyor. Onun yerine Orbot uygulamasının VPN özelliğini kullanın.</string>
   <string name="pref_connection_padding">Bağlantı yastıklama</string>
   <string name="pref_connection_padding_summary">Bazı trafik inceleme yöntemlerine karşı korunmayı sağlamak için her zaman bağlantı yastıklaması kullanılır. Varsayılan değer: Otomatik.</string>
   <string name="pref_reduced_connection_padding">Azaltılmış bağlantı yastıklaması</string>
@@ -198,7 +178,6 @@
   <string name="bridge_direct_connect">Doğrudan Tor ağına bağlanılsın (en iyisi)</string>
   <string name="bridge_community">Topluluk sunucuları üzerinden bağlanılsın</string>
   <string name="bridge_cloud">Bulut sunucular üzerinden bağlanılsın</string>
-  <string name="bridges_get_new">Yeni Köprüler İsteyin... (hiçbir seçenek bağlanamıyorsa)</string>
   <string name="trouble_connecting">Bağlanmakta sorun mu yaşıyorsunuz?</string>
   <string name="full_device_vpn">Aygıt Geneli VPN</string>
   <string name="vpn_disabled">VPN Devre Dışı</string>

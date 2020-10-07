@@ -26,26 +26,51 @@ import java.io.InputStreamReader;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
-import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 public class BridgeWizardActivity extends AppCompatActivity {
 
     private static final int MOAT_REQUEST_CODE = 666;
     private static final int CUSTOM_BRIDGES_REQUEST_CODE = 1312;
-
+    private static final String BUNDLE_KEY_TV_STATUS_VISIBILITY = "visibility";
+    private static final String BUNDLE_KEY_TV_STATUS_TEXT = "text";
     private static TextView mTvStatus;
     private static HostTester runningHostTest;
-
     private RadioButton mBtDirect;
     private RadioButton mBtObfs4;
     private RadioButton mBtMeek;
     private RadioButton mBtCustom;
-
     private View mBtnConfgiureCustomBridges;
 
-    private static final String BUNDLE_KEY_TV_STATUS_VISIBILITY = "visibility";
-    private static final String BUNDLE_KEY_TV_STATUS_TEXT = "text";
+    @SuppressWarnings("SameParameterValue")
+    private static boolean isHostReachable(String serverAddress, int serverTCPport, int timeoutMS) {
+        boolean connected = false;
+
+        try {
+            Socket socket = new Socket();
+            SocketAddress socketAddress = new InetSocketAddress(serverAddress, serverTCPport);
+            socket.connect(socketAddress, timeoutMS);
+            if (socket.isConnected()) {
+                connected = true;
+                socket.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return connected;
+    }
+
+    private static void cancelHostTestIfRunning() {
+        if (runningHostTest != null) {
+            runningHostTest.cancel(true);
+            runningHostTest = null;
+        }
+    }
+
+    private static boolean noBridgesSet() {
+        return !Prefs.bridgesEnabled() || Prefs.getBridgesList().trim().equals("");
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -164,34 +189,28 @@ public class BridgeWizardActivity extends AppCompatActivity {
             hostTester.execute("meek.azureedge.net", "443");
         } else if (Prefs.getBridgesList().equals("obfs4")) {
 
-            ArrayList alBridges = new ArrayList<String>();
-
-            try
-            {
-                BufferedReader in=
+            try {
+                BufferedReader in =
                         new BufferedReader(new InputStreamReader(getResources().openRawResource(org.torproject.android.service.R.raw.bridges), "UTF-8"));
                 String str;
 
-                while ((str=in.readLine()) != null) {
+                while ((str = in.readLine()) != null) {
 
-                    StringTokenizer st = new StringTokenizer (str," ");
+                    StringTokenizer st = new StringTokenizer(str, " ");
                     String type = st.nextToken();
 
                     if (type.equals("obfs4")) {
                         String[] hostport = st.nextToken().split(":");
-                        hostTester.execute(hostport[0],hostport[1]);
+                        hostTester.execute(hostport[0], hostport[1]);
                         break;
                     }
 
                 }
 
                 in.close();
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-
 
 
         } else {
@@ -199,6 +218,39 @@ public class BridgeWizardActivity extends AppCompatActivity {
             mTvStatus.setText("");
         }
         if (hostTester != null) runningHostTest = hostTester;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+
+        if (mTvStatus != null) {
+            savedInstanceState.putInt(BUNDLE_KEY_TV_STATUS_VISIBILITY, mTvStatus.getVisibility());
+
+            if (!TextUtils.isEmpty(mTvStatus.getText()))
+                savedInstanceState.putString(BUNDLE_KEY_TV_STATUS_TEXT, mTvStatus.getText().toString());
+        }
+
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    @Override
+    public void onDestroy() {
+        cancelHostTestIfRunning();
+        mTvStatus = null;
+        super.onDestroy();
+    }
+
+    private void evaluateBridgeListState() {
+        Log.d(getClass().getSimpleName(), String.format("bridgesEnabled=%b, bridgesList=%s", Prefs.bridgesEnabled(), Prefs.getBridgesList()));
+        if (noBridgesSet()) {
+            mBtDirect.setChecked(true);
+        } else if (Prefs.getBridgesList().equals("meek")) {
+            mBtMeek.setChecked(true);
+        } else if (Prefs.getBridgesList().equals("obfs4")) {
+            mBtObfs4.setChecked(true);
+        } else {
+            mBtCustom.setChecked(true);
+        }
     }
 
     private class HostTester extends AsyncTask<String, Void, Boolean> {
@@ -231,8 +283,7 @@ public class BridgeWizardActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean result) {
             // Post Code
-            if (mTvStatus != null)
-            {
+            if (mTvStatus != null) {
                 runningHostTest = null;
                 if (result) {
                     int stringRes = mBtDirect.isChecked() ? R.string.testing_tor_direct_success : R.string.testing_bridges_success;
@@ -242,68 +293,5 @@ public class BridgeWizardActivity extends AppCompatActivity {
                 }
             }
         }
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle savedInstanceState) {
-
-        if (mTvStatus != null) {
-            savedInstanceState.putInt(BUNDLE_KEY_TV_STATUS_VISIBILITY, mTvStatus.getVisibility());
-
-            if (!TextUtils.isEmpty(mTvStatus.getText()))
-                savedInstanceState.putString(BUNDLE_KEY_TV_STATUS_TEXT, mTvStatus.getText().toString());
-        }
-
-        super.onSaveInstanceState(savedInstanceState);
-    }
-
-    @Override
-    public void onDestroy() {
-        cancelHostTestIfRunning();
-        mTvStatus = null;
-        super.onDestroy();
-    }
-
-    @SuppressWarnings("SameParameterValue")
-    private static boolean isHostReachable(String serverAddress, int serverTCPport, int timeoutMS) {
-        boolean connected = false;
-
-        try {
-            Socket socket = new Socket();
-            SocketAddress socketAddress = new InetSocketAddress(serverAddress, serverTCPport);
-            socket.connect(socketAddress, timeoutMS);
-            if (socket.isConnected()) {
-                connected = true;
-                socket.close();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return connected;
-    }
-
-    private void evaluateBridgeListState() {
-        Log.d(getClass().getSimpleName(), String.format("bridgesEnabled=%b, bridgesList=%s", Prefs.bridgesEnabled(), Prefs.getBridgesList()));
-        if (noBridgesSet()) {
-            mBtDirect.setChecked(true);
-        } else if (Prefs.getBridgesList().equals("meek")) {
-            mBtMeek.setChecked(true);
-        } else if (Prefs.getBridgesList().equals("obfs4")) {
-            mBtObfs4.setChecked(true);
-        } else {
-            mBtCustom.setChecked(true);
-        }
-    }
-
-    private static void cancelHostTestIfRunning() {
-        if (runningHostTest != null) {
-            runningHostTest.cancel(true);
-            runningHostTest = null;
-        }
-    }
-
-    private static boolean noBridgesSet() {
-        return !Prefs.bridgesEnabled() || Prefs.getBridgesList().trim().equals("");
     }
 }

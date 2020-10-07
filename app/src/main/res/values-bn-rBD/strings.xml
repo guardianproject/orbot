@@ -6,9 +6,7 @@
   <string name="status_activated">টর নেটওয়ার্কের সাথে সংযুক্ত হয়েছে</string>
   <string name="status_disabled">অরবট নিষ্ক্রিয় করা হয়েছে</string>
   <string name="status_shutting_down">টর সার্ভিস বন্ধ করা হচ্ছে</string>
-  <string name="tor_process_starting">টর ক্লায়েন্ট চালু করা হচ্ছে</string>
-  <string name="tor_process_complete">সম্পূর্ণ</string>
-    <string name="menu_settings">নিয়ম বিন্যাস</string>
+  <string name="menu_settings">নিয়ম বিন্যাস</string>
   <string name="menu_log">লগ</string>
     <string name="menu_start">শুরু</string>
   <string name="menu_stop">শেষ</string>
@@ -19,8 +17,6 @@
     <string name="menu_exit">প্রস্থান</string>
   <string name="menu_scan">ব্রিজকিউআর চেক করুন</string>
   <string name="menu_share_bridge">ব্রিজকিউআর শেয়ার করুন</string>
-    <string name="btn_okay">ঠিক আছে</string>
-  <string name="btn_cancel">বাদ</string>
   <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
   <string name="pref_general_group">সাধারণ</string>

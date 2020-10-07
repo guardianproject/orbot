@@ -55,11 +55,11 @@ class SettingsPreferencesActivity : PreferenceActivity() {
 
     companion object {
         private const val BUNDLE_KEY_PREFERENCES_XML = "prefxml"
+
         @JvmStatic
-        fun createIntent(context: Context?, @XmlRes xmlPrefId: Int): Intent {
-            val intent = Intent(context, SettingsPreferencesActivity::class.java)
-            intent.putExtra(BUNDLE_KEY_PREFERENCES_XML, xmlPrefId)
-            return intent
-        }
+        fun createIntent(context: Context?, @XmlRes xmlPrefId: Int): Intent =
+                Intent(context, SettingsPreferencesActivity::class.java).apply {
+                    putExtra(BUNDLE_KEY_PREFERENCES_XML, xmlPrefId)
+                }
     }
 }

@@ -6,9 +6,7 @@
   <string name="status_activated">Uppkopplad till Tor-nätverket</string>
   <string name="status_disabled">Orbot är inaktiverad</string>
   <string name="status_shutting_down">TorService avslutas</string>
-  <string name="tor_process_starting">Startar Tor-klient...</string>
-  <string name="tor_process_complete">färdig.</string>
-    <string name="menu_settings">Inställningar</string>
+  <string name="menu_settings">Inställningar</string>
   <string name="menu_log">Logg</string>
     <string name="menu_start">Start</string>
   <string name="menu_stop">Stopp</string>
@@ -19,8 +17,6 @@
     <string name="menu_exit">Avsluta</string>
   <string name="menu_scan">Skanna BridgeQR</string>
   <string name="menu_share_bridge">Dela BridgeQR</string>
-    <string name="btn_okay">Okej</string>
-  <string name="btn_cancel">Avbryt</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Orbot-information</string>
   <string name="wizard_details_msg">Orbot är ett program med öppen källkod som innehåller Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent och Polipo. Den tillhandahåller en lokal HTTP-proxy (8118) och en SOCKS-proxy (9050) i Tor-nätverket. Orbot har också förmågan att, på rotad enhet, skicka all internettrafik genom Tor.</string>
@@ -94,8 +90,7 @@
     <string name="third_party_software">Tredjepartsprogramvara:</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
-  <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
+    <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">En app vill öppna dold serverport %1$s till Tor-nätverket. Det här är säkert om du litar på appen.</string>
   <string name="found_existing_tor_process">hittade existerande Tor process...</string>
@@ -107,12 +102,9 @@
   <string name="pref_use_expanded_notifications">Visa utökad notis med Tors utgångsland och IP</string>
   <string name="pref_use_expanded_notifications_title">Utökade notiser</string>
     <string name="set_locale_title">Språk</string>
-    <string name="no_internet_connection_tor">Ingen internetanslutning; Tor är i standby-läge...</string>
-    <string name="pref_disable_network_title">Ingen auto-sömn för nätverket</string>
+  <string name="pref_disable_network_title">Ingen auto-sömn för nätverket</string>
   <string name="pref_disable_network_summary">Låt Tor sova när inget internet finns tillgängligt</string>
   <string name="newnym">Du har bytt till en ny Tor identitet!</string>
-  <string name="no_network_connectivity_putting_tor_to_sleep_">Ingen nätverksanslutning. Försätter Tor i dvala...</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">Nätverksanslutningen fungerar. Väcker Tor...</string>
   <string name="updating_settings_in_tor_service">uppdaterar inställningar i Tor-tjänsten</string>
   <string name="pref_socks_title">Tor-SOCKS</string>
   <string name="pref_socks_summary">Port som Tor erbjuder sin SOCKS-proxy på (standard: 9050 eller 0 för att inaktivera)</string>
@@ -134,14 +126,10 @@
   <string name="restart_orbot_to_use_this_bridge_">Vänligen starta om Orbot för att aktivera ändringarna</string>
   <string name="menu_qr">QR-koder</string>
   <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Om ditt mobilnät aktivt blockerar Tor kan du använda en \"Bridge Server\" som ett alternativt sätt. VÄLJ ett av alternativen att konfigurera och testa.,.</string>
-  <string name="bridge_mode">Bryggläge</string>
   <string name="get_bridges_email">E-post</string>
-  <string name="get_bridges_web">Webb</string>
-  <string name="activate">Aktivera</string>
   <string name="apps_mode">VPN-läge</string>
     <string name="send_email">Skicka e-post</string>
-  <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Du kan få en brygg-adress via e-post, via webben eller genom att skanna en QR-kod för en brygga. Välj \'E-post\' eller \'Webb\' nedan för att begära en brygg-adress.\n\nNär du väl har en adress, kopiera &amp; klistra in den i inställningen för \"Bryggor\" i Orbot och starta om.</string>
-    <string name="vpn_default_world">Global (automatisk)</string>
+  <string name="vpn_default_world">Global (automatisk)</string>
   <string name="hidden_services">Hidden Services</string>
   <string name="title_activity_hidden_services">Hidden Services</string>
   <string name="menu_hidden_services">Hidden Services</string>
@@ -150,19 +138,14 @@
   <string name="onion_port">Onion port</string>
   <string name="name">Namn</string>
   <string name="done">Klart!</string>
-  <string name="invalid_port">Ogiltig port</string>
-  <string name="copy_address_to_clipboard">Kopiera adress till urklipp</string>
+    <string name="copy_address_to_clipboard">Kopiera adress till urklipp</string>
   <string name="show_auth_cookie">Visa auth kaka</string>
   <string name="backup_service">Säkerhetskopiera tjänst</string>
   <string name="delete_service">Ta bort tjänst</string>
   <string name="backup_saved_at_external_storage">Säkerhetskopiering sparad i externt lagringsutrymme</string>
   <string name="backup_restored">Backup återställd</string>
-  <string name="filemanager_not_available">Filhanteraren är inte tillgänglig</string>
-  <string name="please_grant_permissions_for_external_storage">Bevilja tillstånd för extern lagring</string>
     <string name="restore_backup">Återställa säkerhetskopia</string>
   <string name="create_a_backup_first">Skapa en säkerhetskopia först</string>
-  <string name="name_can_t_be_empty">Namnet kan inte vara tomt</string>
-  <string name="fields_can_t_be_empty">Fält kan inte vara tomma</string>
   <string name="start_tor_again_for_finish_the_process">Starta Tor igen för att avsluta processen</string>
   <string name="confirm_service_deletion">Bekräfta tjänst borttagning</string>
     <string name="service_type">Typ av tjänst</string>
@@ -172,7 +155,6 @@
   <string name="please_restart_Orbot_to_enable_the_changes">Vänligen starta om Orbot för att aktivera ändringarna</string>
   <string name="client_cookies">Klientkakor</string>
   <string name="onion">.onion</string>
-  <string name="invalid_onion_address">Ogiltig .onion-adress</string>
   <string name="cookie_from_QR">Läs från QR</string>
   <string name="backup_cookie">Säkerhetskopiera kaka</string>
   <string name="delete_cookie">Ta bort kaka</string>
@@ -185,8 +167,6 @@
   <string name="consider_enable_battery_optimizations">Överväg att aktivera batterioptimeringar</string>
   <string name="pref_isolate_dest">Isolera destinationsadresser</string>
   <string name="pref_isolate_dest_summary">Använd en annan krets för varje destinationsadress</string>
-  <string name="no_transproxy_warning_short">VARNING: Transproxy stöds inte längre</string>
-  <string name="no_transproxy_warning">VARNING: Transparent proxy stöds inte. Använd Orbot Apps VPN istället.</string>
   <string name="pref_connection_padding">Anslutnings-utfyllnad</string>
   <string name="pref_connection_padding_summary">Aktivera alltid anslutnings-utfyllnad för att skydda mot vissa former av trafikanalys. Standard: auto</string>
   <string name="pref_reduced_connection_padding">Minskad anslutnings-utfyllnad</string>
@@ -198,7 +178,6 @@
   <string name="bridge_direct_connect">Anslut direkt till Tor (Bästa)</string>
   <string name="bridge_community">Anslut genom gemenskaps servrar</string>
   <string name="bridge_cloud">Anslut via molnservrar</string>
-  <string name="bridges_get_new">Begär nya broar... (om allt annat misslyckas)</string>
   <string name="trouble_connecting">Problem med att ansluta?</string>
   <string name="full_device_vpn">VPN för hela enheten</string>
   <string name="vpn_disabled">VPN inaktiverad</string>

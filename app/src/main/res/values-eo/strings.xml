@@ -4,9 +4,7 @@
     <string name="status_starting_up">Orbot ŝaltiĝas...</string>
   <string name="status_activated">Konektita al Tor-reto</string>
   <string name="status_disabled">Orbot estas malaktivigita</string>
-  <string name="tor_process_starting">Ŝaltiĝas Tor-kliento...</string>
-  <string name="tor_process_complete">kompleta.</string>
-    <string name="menu_settings">Agordoj</string>
+  <string name="menu_settings">Agordoj</string>
   <string name="menu_log">Protokolo</string>
     <string name="menu_start">Starti</string>
   <string name="menu_stop">Halti</string>
@@ -15,8 +13,7 @@
   <string name="main_layout_upload">Alŝutado</string>
     <string name="button_about">Pri</string>
     <string name="menu_exit">Eliri</string>
-    <string name="btn_cancel">Rezigni</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Kelkaj Detaloj pri Orbot</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Ĝenerala</string>
@@ -73,7 +70,6 @@
     <string name="unable_to_read_hidden_service_name">ne eblas legi nomon de la kaŝita servo</string>
   <string name="unable_to_start_tor">Ne eblas startigi Tor:</string>
     <string name="set_locale_title">Lingvo</string>
-    <string name="activate">Aktivi</string>
   <string name="save">Konservi</string>
   <string name="name">Nomo</string>
   <string name="done"> Farita! </string>

@@ -6,14 +6,15 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
+import android.provider.OpenableColumns;
 import android.widget.Toast;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.torproject.android.R;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.ui.hiddenservices.providers.CookieContentProvider;
 import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
-import org.torproject.android.core.ExternalStorage;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -27,7 +28,7 @@ import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
 
 public class BackupUtils {
-    private final String configFileName = "config.json";
+    private static final String configFileName = "config.json";
     private Context mContext;
     private ContentResolver mResolver;
 
@@ -36,20 +37,27 @@ public class BackupUtils {
         mResolver = mContext.getContentResolver();
     }
 
-    public String createZipBackup(Integer port) {
-        File mHSBasePath = new File(
-                mContext.getFilesDir().getAbsolutePath(),
-                TorServiceConstants.HIDDEN_SERVICES_DIR
-        );
+    public String createZipBackup(int port, Uri zipFile) {
+        String[] files = createFilesForZipping(port);
+        ZipIt zip = new ZipIt(files, zipFile, mResolver);
 
-        String configFilePath = mHSBasePath + "/hs" + port + "/" + configFileName;
-        String hostnameFilePath = mHSBasePath + "/hs" + port + "/hostname";
-        String keyFilePath = mHSBasePath + "/hs" + port + "/private_key";
-
-        File storage_path = ExternalStorage.getOrCreateBackupDir();
-
-        if (storage_path == null)
+        if (!zip.zip())
             return null;
+
+        return zipFile.getPath();
+    }
+
+    // returns true if domain is v2 onion address or v3 onion address
+    public static boolean isOnionAddressValid(String onionToTest) {
+        if (onionToTest.matches("([a-z0-9]{16}).onion")) return true;
+        return onionToTest.matches("([a-z0-9]{56}).onion");
+    }
+
+    private String[] createFilesForZipping(int port) {
+        File hsBasePath = getHSBasePath();
+        String configFilePath = hsBasePath + "/hs" + port + "/" + configFileName;
+        String hostnameFilePath = hsBasePath + "/hs" + port + "/hostname";
+        String keyFilePath = hsBasePath + "/hs" + port + "/private_key";
 
         Cursor portData = mResolver.query(
                 HSContentProvider.CONTENT_URI,
@@ -66,45 +74,14 @@ public class BackupUtils {
 
             portData.moveToNext();
 
-            config.put(
-                    HSContentProvider.HiddenService.NAME,
-                    portData.getString(portData.getColumnIndex(HSContentProvider.HiddenService.NAME))
-            );
-
-            config.put(
-                    HSContentProvider.HiddenService.PORT,
-                    portData.getInt(portData.getColumnIndex(HSContentProvider.HiddenService.PORT))
-            );
-
-            config.put(
-                    HSContentProvider.HiddenService.ONION_PORT,
-                    portData.getInt(portData.getColumnIndex(HSContentProvider.HiddenService.ONION_PORT))
-            );
-
-            config.put(
-                    HSContentProvider.HiddenService.DOMAIN,
-                    portData.getString(portData.getColumnIndex(HSContentProvider.HiddenService.DOMAIN))
-            );
-
-            config.put(
-                    HSContentProvider.HiddenService.AUTH_COOKIE,
-                    portData.getInt(portData.getColumnIndex(HSContentProvider.HiddenService.AUTH_COOKIE))
-            );
-
-            config.put(
-                    HSContentProvider.HiddenService.AUTH_COOKIE_VALUE,
-                    portData.getString(portData.getColumnIndex(HSContentProvider.HiddenService.AUTH_COOKIE_VALUE))
-            );
-
-            config.put(
-                    HSContentProvider.HiddenService.CREATED_BY_USER,
-                    portData.getInt(portData.getColumnIndex(HSContentProvider.HiddenService.CREATED_BY_USER))
-            );
-
-            config.put(
-                    HSContentProvider.HiddenService.ENABLED,
-                    portData.getInt(portData.getColumnIndex(HSContentProvider.HiddenService.ENABLED))
-            );
+            config.put(HSContentProvider.HiddenService.NAME, portData.getString(portData.getColumnIndex(HSContentProvider.HiddenService.NAME)));
+            config.put(HSContentProvider.HiddenService.PORT, portData.getInt(portData.getColumnIndex(HSContentProvider.HiddenService.PORT)));
+            config.put(HSContentProvider.HiddenService.ONION_PORT, portData.getInt(portData.getColumnIndex(HSContentProvider.HiddenService.ONION_PORT)));
+            config.put(HSContentProvider.HiddenService.DOMAIN, portData.getString(portData.getColumnIndex(HSContentProvider.HiddenService.DOMAIN)));
+            config.put(HSContentProvider.HiddenService.AUTH_COOKIE, portData.getInt(portData.getColumnIndex(HSContentProvider.HiddenService.AUTH_COOKIE)));
+            config.put(HSContentProvider.HiddenService.AUTH_COOKIE_VALUE, portData.getString(portData.getColumnIndex(HSContentProvider.HiddenService.AUTH_COOKIE_VALUE)));
+            config.put(HSContentProvider.HiddenService.CREATED_BY_USER, portData.getInt(portData.getColumnIndex(HSContentProvider.HiddenService.CREATED_BY_USER)));
+            config.put(HSContentProvider.HiddenService.ENABLED, portData.getInt(portData.getColumnIndex(HSContentProvider.HiddenService.ENABLED)));
         } catch (JSONException e) {
             e.printStackTrace();
             return null;
@@ -123,38 +100,19 @@ public class BackupUtils {
             e.printStackTrace();
             return null;
         }
-
-        String zip_path = storage_path.getAbsolutePath() + "/hs" + port + ".zip";
-        String files[] = {hostnameFilePath, keyFilePath, configFilePath};
-
-        ZipIt zip = new ZipIt(files, zip_path);
-
-        if (!zip.zip())
-            return null;
-
-        return zip_path;
+        return new String[]{hostnameFilePath, keyFilePath, configFilePath};
     }
 
-    public void restoreZipBackup(File backup) {
-
-        File mHSBasePath = new File(
-                mContext.getFilesDir().getAbsolutePath(),
-                TorServiceConstants.HIDDEN_SERVICES_DIR
-        );
-
+    private void extractConfigFromUnzippedBackup(String backupName) {
+        File mHSBasePath = getHSBasePath();
         int port;
-        Cursor service;
-        String backupName = backup.getName();
         String hsDir = backupName.substring(0, backupName.lastIndexOf('.'));
         String configFilePath = mHSBasePath + "/" + hsDir + "/" + configFileName;
-        String jString = null;
+        String jString;
 
         File hsPath = new File(mHSBasePath.getAbsolutePath(), hsDir);
         if (!hsPath.isDirectory())
             hsPath.mkdirs();
-
-        ZipIt zip = new ZipIt(null, backup.getAbsolutePath());
-        zip.unzip(hsPath.getAbsolutePath());
 
         File config = new File(configFilePath);
         FileInputStream stream;
@@ -165,51 +123,21 @@ public class BackupUtils {
             MappedByteBuffer bb = fc.map(FileChannel.MapMode.READ_ONLY, 0, fc.size());
             jString = Charset.defaultCharset().decode(bb).toString();
             stream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
-        if (jString == null)
-            Toast.makeText(mContext, R.string.error, Toast.LENGTH_LONG).show();
-
-        try {
             JSONObject savedValues = new JSONObject(jString);
             ContentValues fields = new ContentValues();
 
-            fields.put(
-                    HSContentProvider.HiddenService.NAME,
-                    savedValues.getString(HSContentProvider.HiddenService.NAME)
-            );
-
-            fields.put(
-                    HSContentProvider.HiddenService.ONION_PORT,
-                    savedValues.getInt(HSContentProvider.HiddenService.ONION_PORT)
-            );
-
-            fields.put(
-                    HSContentProvider.HiddenService.DOMAIN,
-                    savedValues.getString(HSContentProvider.HiddenService.DOMAIN)
-            );
-
-            fields.put(
-                    HSContentProvider.HiddenService.AUTH_COOKIE,
-                    savedValues.getInt(HSContentProvider.HiddenService.AUTH_COOKIE)
-            );
-
-            fields.put(
-                    HSContentProvider.HiddenService.CREATED_BY_USER,
-                    savedValues.getInt(HSContentProvider.HiddenService.CREATED_BY_USER)
-            );
-
-            fields.put(
-                    HSContentProvider.HiddenService.ENABLED,
-                    savedValues.getInt(HSContentProvider.HiddenService.ENABLED)
-            );
+            fields.put(HSContentProvider.HiddenService.NAME, savedValues.getString(HSContentProvider.HiddenService.NAME));
+            fields.put(HSContentProvider.HiddenService.ONION_PORT, savedValues.getInt(HSContentProvider.HiddenService.ONION_PORT));
+            fields.put(HSContentProvider.HiddenService.DOMAIN, savedValues.getString(HSContentProvider.HiddenService.DOMAIN));
+            fields.put(HSContentProvider.HiddenService.AUTH_COOKIE, savedValues.getInt(HSContentProvider.HiddenService.AUTH_COOKIE));
+            fields.put(HSContentProvider.HiddenService.CREATED_BY_USER, savedValues.getInt(HSContentProvider.HiddenService.CREATED_BY_USER));
+            fields.put(HSContentProvider.HiddenService.ENABLED, savedValues.getInt(HSContentProvider.HiddenService.ENABLED));
 
             port = savedValues.getInt(HSContentProvider.HiddenService.PORT);
             fields.put(HSContentProvider.HiddenService.PORT, port);
 
-            service = mResolver.query(
+            Cursor service = mResolver.query(
                     HSContentProvider.CONTENT_URI,
                     HSContentProvider.PROJECTION,
                     HSContentProvider.HiddenService.PORT + "=" + port,
@@ -229,13 +157,42 @@ public class BackupUtils {
 
                 service.close();
             }
-
-        } catch (JSONException e) {
+            Toast.makeText(mContext, R.string.backup_restored, Toast.LENGTH_LONG).show();
+        } catch (IOException | JSONException e) {
             e.printStackTrace();
             Toast.makeText(mContext, R.string.error, Toast.LENGTH_LONG).show();
         }
+    }
 
-        Toast.makeText(mContext, R.string.backup_restored, Toast.LENGTH_LONG).show();
+    private File getHSBasePath() {
+        return new File(mContext.getFilesDir().getAbsolutePath(), TorServiceConstants.HIDDEN_SERVICES_DIR);
+    }
+
+    public void restoreZipBackupLegacy(File zipFile) {
+        String backupName = zipFile.getName();
+        ZipIt zip = new ZipIt(null, null, mResolver);
+        String hsDir = backupName.substring(0, backupName.lastIndexOf('.'));
+        File hsPath = new File(getHSBasePath().getAbsolutePath(), hsDir);
+        if (zip.unzipLegacy(hsPath.getAbsolutePath(), zipFile))
+            extractConfigFromUnzippedBackup(backupName);
+        else
+            Toast.makeText(mContext, R.string.error, Toast.LENGTH_LONG).show();
+    }
+
+    public void restoreZipBackup(Uri zipUri) {
+        Cursor returnCursor = mResolver.query(zipUri, null, null, null, null);
+        int nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+        returnCursor.moveToFirst();
+        String backupName = returnCursor.getString(nameIndex);
+        returnCursor.close();
+
+        String hsDir = backupName.substring(0, backupName.lastIndexOf('.'));
+        File hsPath = new File(getHSBasePath().getAbsolutePath(), hsDir);
+        if (new ZipIt(null, zipUri, mResolver).unzip(hsPath.getAbsolutePath()))
+            extractConfigFromUnzippedBackup(backupName);
+        else
+            Toast.makeText(mContext, R.string.error, Toast.LENGTH_LONG).show();
+
     }
 
     public void restoreKeyBackup(int hsPort, Uri hsKeyPath) {
@@ -266,70 +223,21 @@ public class BackupUtils {
         }
     }
 
-    public void restoreCookieBackup(File p) {
-        File config = new File(p.getAbsolutePath());
-        FileInputStream stream;
-        String jString = null;
-
-        try {
-            stream = new FileInputStream(config);
-            FileChannel fc = stream.getChannel();
-            MappedByteBuffer bb = fc.map(FileChannel.MapMode.READ_ONLY, 0, fc.size());
-            jString = Charset.defaultCharset().decode(bb).toString();
-            stream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        if (jString == null)
-            Toast.makeText(mContext, R.string.error, Toast.LENGTH_LONG).show();
-
+    public void restoreCookieBackup(String jString) {
         try {
             JSONObject savedValues = new JSONObject(jString);
             ContentValues fields = new ContentValues();
 
-            fields.put(
-                    CookieContentProvider.ClientCookie.DOMAIN,
-                    savedValues.getString(CookieContentProvider.ClientCookie.DOMAIN)
-            );
-
-            fields.put(
-                    CookieContentProvider.ClientCookie.AUTH_COOKIE_VALUE,
-                    savedValues.getString(CookieContentProvider.ClientCookie.AUTH_COOKIE_VALUE)
-            );
-
-            fields.put(
-                    CookieContentProvider.ClientCookie.ENABLED,
-                    savedValues.getInt(CookieContentProvider.ClientCookie.ENABLED)
-            );
+            fields.put(CookieContentProvider.ClientCookie.DOMAIN, savedValues.getString(CookieContentProvider.ClientCookie.DOMAIN));
+            fields.put(CookieContentProvider.ClientCookie.AUTH_COOKIE_VALUE, savedValues.getString(CookieContentProvider.ClientCookie.AUTH_COOKIE_VALUE));
+            fields.put(CookieContentProvider.ClientCookie.ENABLED, savedValues.getInt(CookieContentProvider.ClientCookie.ENABLED));
 
             mResolver.insert(CookieContentProvider.CONTENT_URI, fields);
+            Toast.makeText(mContext, R.string.backup_restored, Toast.LENGTH_LONG).show();
 
         } catch (JSONException e) {
             e.printStackTrace();
             Toast.makeText(mContext, R.string.error, Toast.LENGTH_LONG).show();
         }
-
-        Toast.makeText(mContext, R.string.backup_restored, Toast.LENGTH_LONG).show();
-    }
-
-    public String createCookieBackup(String domain, String cookie, Integer enabled) {
-        File storage_path = ExternalStorage.getOrCreateBackupDir();
-        String backupFile = storage_path.getAbsolutePath() + '/' + domain.replace(".onion", ".json");
-
-        JSONObject backup = new JSONObject();
-        try {
-            backup.put(CookieContentProvider.ClientCookie.DOMAIN, domain);
-            backup.put(CookieContentProvider.ClientCookie.AUTH_COOKIE_VALUE, cookie);
-            backup.put(CookieContentProvider.ClientCookie.ENABLED, enabled);
-            FileWriter file = new FileWriter(backupFile);
-            file.write(backup.toString());
-            file.close();
-        } catch (JSONException | IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-
-        return backupFile;
     }
 }

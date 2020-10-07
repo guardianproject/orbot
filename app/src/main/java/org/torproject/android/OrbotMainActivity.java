@@ -4,7 +4,6 @@
 package org.torproject.android;
 
 import android.app.AlertDialog;
-
 import android.app.Application;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
@@ -46,6 +45,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -54,17 +54,17 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import org.json.JSONArray;
+import org.torproject.android.core.Languages;
 import org.torproject.android.core.LocaleHelper;
+import org.torproject.android.core.ui.Rotate3dAnimation;
+import org.torproject.android.core.ui.SettingsPreferencesActivity;
 import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.OrbotService;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.util.Utils;
 import org.torproject.android.service.vpn.VpnPrefs;
-import org.torproject.android.core.Languages;
-import org.torproject.android.core.ui.SettingsPreferencesActivity;
 import org.torproject.android.ui.AppManagerActivity;
-import org.torproject.android.core.ui.Rotate3dAnimation;
 import org.torproject.android.ui.dialog.AboutDialogFragment;
 import org.torproject.android.ui.hiddenservices.ClientCookiesActivity;
 import org.torproject.android.ui.hiddenservices.HiddenServicesActivity;
@@ -98,49 +98,145 @@ import static org.torproject.android.service.vpn.VpnPrefs.PREFS_KEY_TORIFIED;
 
 public class OrbotMainActivity extends AppCompatActivity implements OrbotConstants {
 
-    /* Useful UI bits */
-    private TextView lblStatus = null; //the main text display widget
-    private TextView lblPorts = null;
-    private ImageView imgStatus = null; //the main touchable image for activating Orbot
-
-    private TextView downloadText = null;
-    private TextView uploadText = null;
-    private TextView mTxtOrbotLog = null;
-
-    private Button mBtnStart = null;
-
-    private SwitchCompat mBtnVPN = null;
-    private SwitchCompat mBtnBridges = null;
-
-    private Spinner spnCountries = null;
-
-    private DrawerLayout mDrawer;
-
-    /* Some tracking bits */
-    private String torStatus = null; //latest status reported from the tor service
-    private Intent lastStatusIntent;  // the last ACTION_STATUS Intent received
-
-    private SharedPreferences mPrefs = null;
-
-    private boolean autoStartFromIntent = false;
-
+    public final static String INTENT_ACTION_REQUEST_HIDDEN_SERVICE = "org.torproject.android.REQUEST_HS_PORT";
+    public final static String INTENT_ACTION_REQUEST_START_TOR = "org.torproject.android.START_TOR";
     private final static int REQUEST_VPN = 8888;
     private final static int REQUEST_SETTINGS = 0x9874;
     private final static int REQUEST_VPN_APPS_SELECT = 8889;
-
     private final static int LOG_DRAWER_GRAVITY = GravityCompat.END;
-
     // message types for mStatusUpdateHandler
     private final static int STATUS_UPDATE = 1;
     private static final int MESSAGE_TRAFFIC_COUNT = 2;
     private static final int MESSAGE_PORTS = 3;
-
-
-    public final static String INTENT_ACTION_REQUEST_HIDDEN_SERVICE = "org.torproject.android.REQUEST_HS_PORT";
-    public final static String INTENT_ACTION_REQUEST_START_TOR = "org.torproject.android.START_TOR";
-
-
+    private static final float ROTATE_FROM = 0.0f;
+    private static final float ROTATE_TO = 360.0f * 4f;// 3.141592654f * 32.0f;
     PulsatorLayout mPulsator;
+    AlertDialog aDialog = null;
+    /* Useful UI bits */
+    private TextView lblStatus = null; //the main text display widget
+    private TextView lblPorts = null;
+    private ImageView imgStatus = null; //the main touchable image for activating Orbot
+    private TextView downloadText = null;
+    private TextView uploadText = null;
+    private TextView mTxtOrbotLog = null;
+    private Button mBtnStart = null;
+    private SwitchCompat mBtnVPN = null;
+    private SwitchCompat mBtnBridges = null;
+    private Spinner spnCountries = null;
+    private DrawerLayout mDrawer;
+    /* Some tracking bits */
+    private String torStatus = null; //latest status reported from the tor service
+    private Intent lastStatusIntent;  // the last ACTION_STATUS Intent received
+    private SharedPreferences mPrefs = null;
+    private boolean autoStartFromIntent = false;
+    // this is what takes messages or values from the callback threads or other non-mainUI threads
+//and passes them back into the main UI thread for display to the user
+    private Handler mStatusUpdateHandler = new Handler() {
+
+        @Override
+        public void handleMessage(final Message msg) {
+
+
+            Bundle data = msg.getData();
+
+            switch (msg.what) {
+                case MESSAGE_TRAFFIC_COUNT:
+
+                    DataCount datacount = new DataCount(data.getLong("upload"), data.getLong("download"));
+
+                    long totalRead = data.getLong("readTotal");
+                    long totalWrite = data.getLong("writeTotal");
+
+                    downloadText.setText(String.format("%s / %s", formatCount(datacount.Download), formatTotal(totalRead)));
+                    uploadText.setText(String.format("%s / %s", formatCount(datacount.Upload), formatTotal(totalWrite)));
+
+                    break;
+                case MESSAGE_PORTS:
+
+                    int socksPort = data.getInt("socks");
+                    int httpPort = data.getInt("http");
+
+                    lblPorts.setText(String.format(Locale.getDefault(), "SOCKS: %d | HTTP: %d", socksPort, httpPort));
+
+                    break;
+                default:
+                    String newTorStatus = msg.getData().getString("status");
+                    String log = (String) msg.obj;
+
+                    if (torStatus == null && newTorStatus != null) //first time status
+                        findViewById(R.id.frameMain).setVisibility(View.VISIBLE);
+                    updateStatus(log, newTorStatus);
+                    super.handleMessage(msg);
+                    break;
+            }
+        }
+    };
+    /**
+     * The state and log info from {@link OrbotService} are sent to the UI here in
+     * the form of a local broadcast. Regular broadcasts can be sent by any app,
+     * so local ones are used here so other apps cannot interfere with Orbot's
+     * operation.
+     */
+    private BroadcastReceiver mLocalBroadcastReceiver = new BroadcastReceiver() {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if (action == null)
+                return;
+
+            switch (action) {
+                case TorServiceConstants.LOCAL_ACTION_LOG: {
+                    Message msg = mStatusUpdateHandler.obtainMessage(STATUS_UPDATE);
+                    msg.obj = intent.getStringExtra(TorServiceConstants.LOCAL_EXTRA_LOG);
+                    msg.getData().putString("status", intent.getStringExtra(TorServiceConstants.EXTRA_STATUS));
+                    mStatusUpdateHandler.sendMessage(msg);
+
+                    break;
+                }
+                case TorServiceConstants.LOCAL_ACTION_BANDWIDTH: {
+                    long upload = intent.getLongExtra("up", 0);
+                    long download = intent.getLongExtra("down", 0);
+                    long written = intent.getLongExtra("written", 0);
+                    long read = intent.getLongExtra("read", 0);
+
+                    Message msg = mStatusUpdateHandler.obtainMessage(MESSAGE_TRAFFIC_COUNT);
+                    msg.getData().putLong("download", download);
+                    msg.getData().putLong("upload", upload);
+                    msg.getData().putLong("readTotal", read);
+                    msg.getData().putLong("writeTotal", written);
+                    msg.getData().putString("status", intent.getStringExtra(TorServiceConstants.EXTRA_STATUS));
+
+                    mStatusUpdateHandler.sendMessage(msg);
+
+                    break;
+                }
+                case TorServiceConstants.ACTION_STATUS: {
+                    lastStatusIntent = intent;
+
+                    Message msg = mStatusUpdateHandler.obtainMessage(STATUS_UPDATE);
+                    msg.getData().putString("status", intent.getStringExtra(TorServiceConstants.EXTRA_STATUS));
+
+                    mStatusUpdateHandler.sendMessage(msg);
+                    break;
+                }
+                case TorServiceConstants.LOCAL_ACTION_PORTS: {
+
+                    Message msg = mStatusUpdateHandler.obtainMessage(MESSAGE_PORTS);
+                    msg.getData().putInt("socks", intent.getIntExtra(OrbotService.EXTRA_SOCKS_PROXY_PORT, -1));
+                    msg.getData().putInt("http", intent.getIntExtra(OrbotService.EXTRA_HTTP_PROXY_PORT, -1));
+
+                    mStatusUpdateHandler.sendMessage(msg);
+
+                    break;
+                }
+                case ACTION_STOP_VPN: {
+                    mBtnVPN.setChecked(false);
+                    break;
+                }
+            }
+        }
+    };
 
     private void migratePreferences() {
         String hsPortString = mPrefs.getString("pref_hs_ports", "");
@@ -221,81 +317,10 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
 
         Intent intent = new Intent(OrbotMainActivity.this, OrbotService.class);
         stopService(intent);
-
-
     }
-
-    /**
-     * The state and log info from {@link OrbotService} are sent to the UI here in
-     * the form of a local broadcast. Regular broadcasts can be sent by any app,
-     * so local ones are used here so other apps cannot interfere with Orbot's
-     * operation.
-     */
-    private BroadcastReceiver mLocalBroadcastReceiver = new BroadcastReceiver() {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            if (action == null)
-                return;
-
-            switch (action) {
-                case TorServiceConstants.LOCAL_ACTION_LOG: {
-                    Message msg = mStatusUpdateHandler.obtainMessage(STATUS_UPDATE);
-                    msg.obj = intent.getStringExtra(TorServiceConstants.LOCAL_EXTRA_LOG);
-                    msg.getData().putString("status", intent.getStringExtra(TorServiceConstants.EXTRA_STATUS));
-                    mStatusUpdateHandler.sendMessage(msg);
-
-                    break;
-                }
-                case TorServiceConstants.LOCAL_ACTION_BANDWIDTH: {
-                    long upload = intent.getLongExtra("up", 0);
-                    long download = intent.getLongExtra("down", 0);
-                    long written = intent.getLongExtra("written", 0);
-                    long read = intent.getLongExtra("read", 0);
-
-                    Message msg = mStatusUpdateHandler.obtainMessage(MESSAGE_TRAFFIC_COUNT);
-                    msg.getData().putLong("download", download);
-                    msg.getData().putLong("upload", upload);
-                    msg.getData().putLong("readTotal", read);
-                    msg.getData().putLong("writeTotal", written);
-                    msg.getData().putString("status", intent.getStringExtra(TorServiceConstants.EXTRA_STATUS));
-
-                    mStatusUpdateHandler.sendMessage(msg);
-
-                    break;
-                }
-                case TorServiceConstants.ACTION_STATUS: {
-                    lastStatusIntent = intent;
-
-                    Message msg = mStatusUpdateHandler.obtainMessage(STATUS_UPDATE);
-                    msg.getData().putString("status", intent.getStringExtra(TorServiceConstants.EXTRA_STATUS));
-
-                    mStatusUpdateHandler.sendMessage(msg);
-                    break;
-                }
-                case TorServiceConstants.LOCAL_ACTION_PORTS: {
-
-                    Message msg = mStatusUpdateHandler.obtainMessage(MESSAGE_PORTS);
-                    msg.getData().putInt("socks", intent.getIntExtra(OrbotService.EXTRA_SOCKS_PROXY_PORT, -1));
-                    msg.getData().putInt("http", intent.getIntExtra(OrbotService.EXTRA_HTTP_PROXY_PORT, -1));
-
-                    mStatusUpdateHandler.sendMessage(msg);
-
-                    break;
-                }
-                case ACTION_STOP_VPN: {
-                    mBtnVPN.setChecked(false);
-                    break;
-                }
-            }
-        }
-    };
 
     private void doLayout() {
         setContentView(R.layout.layout_main);
-
-        setTitle(R.string.app_name);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -443,7 +468,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         return true;
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menu_newnym) {
@@ -507,7 +531,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
             //can happen on exit/shutdown
         }
     }
-
 
     @Override
     public void onBackPressed() {
@@ -875,7 +898,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
 
     }
 
-
     private void enableBridges(boolean enable) {
         Prefs.putBridgesEnabled(enable);
 
@@ -932,8 +954,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         mBtnVPN.setChecked(Prefs.useVpn());
     }
 
-    AlertDialog aDialog = null;
-
     //general alert dialog for mostly Tor warning messages
     //sometimes this can go haywire or crazy with too many error
     //messages from Tor, and the user cannot stop or exit Orbot
@@ -952,7 +972,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                     .setIcon(R.drawable.onion32)
                     .setTitle(title)
                     .setMessage(msg)
-                    .setPositiveButton(R.string.btn_okay, null)
+                    .setPositiveButton(android.R.string.ok, null)
                     .show();
         } else {
             aDialog = new AlertDialog.Builder(OrbotMainActivity.this)
@@ -1075,71 +1095,11 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         sendIntentToService(TorServiceConstants.ACTION_STATUS);
     }
 
-
-    // this is what takes messages or values from the callback threads or other non-mainUI threads
-//and passes them back into the main UI thread for display to the user
-    private Handler mStatusUpdateHandler = new Handler() {
-
-        @Override
-        public void handleMessage(final Message msg) {
-
-
-            Bundle data = msg.getData();
-
-            switch (msg.what) {
-                case MESSAGE_TRAFFIC_COUNT:
-
-                    DataCount datacount = new DataCount(data.getLong("upload"), data.getLong("download"));
-
-                    long totalRead = data.getLong("readTotal");
-                    long totalWrite = data.getLong("writeTotal");
-
-                    downloadText.setText(String.format("%s / %s", formatCount(datacount.Download), formatTotal(totalRead)));
-                    uploadText.setText(String.format("%s / %s", formatCount(datacount.Upload), formatTotal(totalWrite)));
-
-                    break;
-                case MESSAGE_PORTS:
-
-                    int socksPort = data.getInt("socks");
-                    int httpPort = data.getInt("http");
-
-                    lblPorts.setText(String.format(Locale.getDefault(), "SOCKS: %d | HTTP: %d", socksPort, httpPort));
-
-                    break;
-                default:
-                    String newTorStatus = msg.getData().getString("status");
-                    String log = (String) msg.obj;
-
-                    if (torStatus == null && newTorStatus != null) //first time status
-                    {
-                        findViewById(R.id.frameMain).setVisibility(View.VISIBLE);
-                        updateStatus(log, newTorStatus);
-
-                    } else
-                        updateStatus(log, newTorStatus);
-                    super.handleMessage(msg);
-                    break;
-            }
-        }
-    };
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
 
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mLocalBroadcastReceiver);
-    }
-
-    public static class DataCount {
-        // data uploaded
-        long Upload;
-        // data downloaded
-        long Download;
-
-        DataCount(long Upload, long Download) {
-            this.Upload = Upload;
-            this.Download = Download;
-        }
     }
 
     private String formatCount(long count) {
@@ -1169,9 +1129,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                     .round(((float) ((int) (count * 100 / 1024 / 1024)) / 100)))
                     + getString(R.string.mb);
     }
-
-    private static final float ROTATE_FROM = 0.0f;
-    private static final float ROTATE_TO = 360.0f * 4f;// 3.141592654f * 32.0f;
 
     private void requestNewTorIdentity() {
         sendIntentToService(TorServiceConstants.CMD_NEWNYM);
@@ -1246,11 +1203,10 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         params.setMargins(3, 3, 3, 3);
         iv.setLayoutParams(params);
-        iv.setImageDrawable(getResources().getDrawable(R.drawable.ic_settings_white_24dp));
+        iv.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_settings_white_24dp, null));
         llBoxShortcuts.addView(iv);
         iv.setOnClickListener(v -> startActivityForResult(new Intent(OrbotMainActivity.this, AppManagerActivity.class), REQUEST_VPN_APPS_SELECT));
     }
-
 
     private void addFullDeviceVpnView(LinearLayout llBoxShortcuts) {
         TextView tv = new TextView(this);
@@ -1262,20 +1218,30 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    private void exportTorData ()
-    {
-        File fileTorData = null;
+    private void exportTorData() {
+        File fileTorData;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            fileTorData = new File(getDataDir(),DIRECTORY_TOR_DATA);
-        }
-        else {
+            fileTorData = new File(getDataDir(), DIRECTORY_TOR_DATA);
+        } else {
             fileTorData = getDir(DIRECTORY_TOR_DATA, Application.MODE_PRIVATE);
         }
 
-        File fileZip = new File(getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS),"orbotdata" + new Date().getTime() + ".zip");
+        File fileZip = new File(getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS), "orbotdata" + new Date().getTime() + ".zip");
         Utils.zipFileAtPath(fileTorData.getAbsolutePath(), fileZip.getAbsolutePath());
-        fileZip.setReadable(true,false);
-        Log.d (TAG,"debugdata: " + fileZip.getAbsolutePath());
+        fileZip.setReadable(true, false);
+        Log.d(TAG, "debugdata: " + fileZip.getAbsolutePath());
 
+    }
+
+    public static class DataCount {
+        // data uploaded
+        final long Upload;
+        // data downloaded
+        final long Download;
+
+        DataCount(long Upload, long Download) {
+            this.Upload = Upload;
+            this.Download = Download;
+        }
     }
 }

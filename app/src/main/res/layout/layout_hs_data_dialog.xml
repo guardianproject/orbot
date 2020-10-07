@@ -1,84 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="5dp"
-    android:paddingRight="5dp"
-    android:paddingTop="5dp"
-    android:paddingBottom="5dp">
+    android:orientation="vertical"
+    android:padding="?dialogPreferredPadding">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/name"
-        android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Small"
-        android:paddingLeft="5dp" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Small" />
 
     <org.torproject.android.core.ui.NoPersonalizedLearningEditText
+        android:id="@+id/hsName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text"
         android:ems="10"
-        android:id="@+id/hsName" />
+        android:inputType="text" />
 
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="@string/local_port"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Small"
-        android:paddingLeft="5dp" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Small" />
 
     <org.torproject.android.core.ui.NoPersonalizedLearningEditText
+        android:id="@+id/hsLocalPort"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:digits="0123456789"
         android:ems="10"
-        android:id="@+id/hsLocalPort"
-        android:inputType="number" />
+        android:inputType="number"
+        android:maxLength="5" />
 
     <TextView
-        android:text="@string/onion_port"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Small"
-        android:paddingLeft="5dp" />
+        android:text="@string/onion_port"
+        android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Small" />
 
     <org.torproject.android.core.ui.NoPersonalizedLearningEditText
+        android:id="@+id/hsOnionPort"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:digits="0123456789"
         android:ems="10"
-        android:id="@+id/hsOnionPort"
-        android:inputType="number" />
+        android:inputType="number"
+        android:maxLength="5" />
 
     <CheckBox
-        android:text="@string/auth_cookie"
+        android:id="@+id/hsAuth"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/hsAuth"
-        android:paddingTop="5dp"
-        android:paddingBottom="10dp"/>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <Button
-            android:text="@string/btn_cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/HSDialogCancel"
-            android:layout_weight="1"
-            style="@style/Widget.AppCompat.Button.Borderless.Colored" />
-
-        <Button
-            android:text="@string/save"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/HSDialogSave"
-            android:layout_weight="1"
-            style="@style/Widget.AppCompat.Button.Borderless.Colored" />
-
-    </LinearLayout>
+        android:text="@string/auth_cookie"
+        android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Small" />
 
 </LinearLayout>

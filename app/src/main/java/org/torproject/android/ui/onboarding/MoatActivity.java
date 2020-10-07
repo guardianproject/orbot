@@ -47,14 +47,14 @@ import org.torproject.android.service.util.Prefs;
 import org.torproject.android.ui.dialog.MoatErrorDialogFragment;
 
 /**
- Implements the MOAT protocol: Fetches OBFS4 bridges via Meek Azure.
-
- The bare minimum of the communication is implemented. E.g. no check, if OBFS4 is possible or which
- protocol version the server wants to speak. The first should be always good, as OBFS4 is the most widely
- supported bridge type, the latter should be the same as we requested (0.1.0) anyway.
-
- API description:
- https://github.com/NullHypothesis/bridgedb#accessing-the-moat-interface
+ * Implements the MOAT protocol: Fetches OBFS4 bridges via Meek Azure.
+ * <p>
+ * The bare minimum of the communication is implemented. E.g. no check, if OBFS4 is possible or which
+ * protocol version the server wants to speak. The first should be always good, as OBFS4 is the most widely
+ * supported bridge type, the latter should be the same as we requested (0.1.0) anyway.
+ * <p>
+ * API description:
+ * https://github.com/NullHypothesis/bridgedb#accessing-the-moat-interface
  */
 public class MoatActivity extends AppCompatActivity implements View.OnClickListener, TextView.OnEditorActionListener {
 
@@ -81,7 +81,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
         @Override
         public void onReceive(Context context, Intent intent) {
             String host = intent.getStringExtra(OrbotService.EXTRA_SOCKS_PROXY_HOST);
-            int port = intent.getIntExtra(OrbotService.EXTRA_SOCKS_PROXY_PORT,-1);
+            int port = intent.getIntExtra(OrbotService.EXTRA_SOCKS_PROXY_PORT, -1);
             String status = intent.getStringExtra(TorServiceConstants.EXTRA_STATUS);
 
             if (TextUtils.isEmpty(host)) {
@@ -136,8 +136,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
                 mRequestInProgress = false;
                 mEtSolution.setEnabled(true);
             }
-        }
-        else {
+        } else {
             mIvCaptcha.setVisibility(View.GONE);
             mEtSolution.setEnabled(false);
             mBtRequest.setEnabled(false);
@@ -308,8 +307,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
                         mSuccess = true;
                         setResult(RESULT_OK);
                         finish();
-                    }
-                    catch (JSONException e) {
+                    } catch (JSONException e) {
                         Log.d(MoatActivity.class.getSimpleName(), "Error decoding answer: " + response.toString());
 
                         displayError(e, response);

@@ -4,11 +4,12 @@ import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.cursoradapter.widget.CursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 import org.torproject.android.R;
@@ -19,9 +20,7 @@ public class ClientCookiesAdapter extends CursorAdapter {
 
     public ClientCookiesAdapter(Context context, Cursor c, int flags) {
         super(context, c, flags);
-
-        cursorInflater = (LayoutInflater) context.getSystemService(
-                Context.LAYOUT_INFLATER_SERVICE);
+        cursorInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
@@ -33,22 +32,16 @@ public class ClientCookiesAdapter extends CursorAdapter {
         TextView domain = view.findViewById(R.id.cookie_onion);
         domain.setText(cursor.getString(cursor.getColumnIndex(CookieContentProvider.ClientCookie.DOMAIN)));
 
-        Switch enabled = view.findViewById(R.id.cookie_switch);
-        enabled.setChecked(
-                cursor.getInt(cursor.getColumnIndex(CookieContentProvider.ClientCookie.ENABLED)) == 1
-        );
+        SwitchCompat enabled = view.findViewById(R.id.cookie_switch);
+        enabled.setChecked(cursor.getInt(cursor.getColumnIndex(CookieContentProvider.ClientCookie.ENABLED)) == 1);
 
         enabled.setOnCheckedChangeListener((buttonView, isChecked) -> {
             ContentResolver resolver = mContext.getContentResolver();
             ContentValues fields = new ContentValues();
             fields.put(CookieContentProvider.ClientCookie.ENABLED, isChecked);
-            resolver.update(
-                    CookieContentProvider.CONTENT_URI, fields, where, null
-            );
+            resolver.update(CookieContentProvider.CONTENT_URI, fields, where, null);
 
-            Toast.makeText(
-                    mContext, R.string.please_restart_Orbot_to_enable_the_changes, Toast.LENGTH_LONG
-            ).show();
+            Toast.makeText(mContext, R.string.please_restart_Orbot_to_enable_the_changes, Toast.LENGTH_LONG).show();
         });
     }
 

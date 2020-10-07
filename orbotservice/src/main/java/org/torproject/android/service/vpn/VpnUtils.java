@@ -16,9 +16,9 @@ public class VpnUtils {
 
     public static int findProcessId(String command) throws IOException {
 
-        String[] cmds = {"ps -ef","ps -A","toolbox ps"};
+        String[] cmds = {"ps -ef", "ps -A", "toolbox ps"};
 
-        for (int i = 0; i < cmds.length;i++) {
+        for (int i = 0; i < cmds.length; i++) {
             Process procPs = getRuntime().exec(cmds[i]);
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(procPs.getInputStream()));
@@ -92,7 +92,7 @@ public class VpnUtils {
                     // ignored
                 }
 
-                           }
+            }
 
             if (killAttempts > 4)
                 throw new Exception("Cannot kill: " + fileProcBin.getAbsolutePath());
@@ -103,34 +103,31 @@ public class VpnUtils {
 
     public static boolean killProcess(String pidString, String signal) throws Exception {
 
-        String[] cmds = {"","toolbox ","busybox "};
+        String[] cmds = {"", "toolbox ", "busybox "};
 
-        for (int i = 0; i < cmds.length;i++) {
+        for (int i = 0; i < cmds.length; i++) {
             try {
                 Process proc = getRuntime().exec(cmds[i] + "kill " + signal + " " + pidString);
                 int exitVal = proc.waitFor();
                 List<String> lineErrors = IOUtils.readLines(proc.getErrorStream());
                 List<String> lineInputs = IOUtils.readLines(proc.getInputStream());
 
-                if (exitVal != 0)
-                {
-                    Log.d("Orbot.killProcess","exit=" + exitVal);
-                    for (String line: lineErrors)
-                        Log.d("Orbot.killProcess",line);
+                if (exitVal != 0) {
+                    Log.d("Orbot.killProcess", "exit=" + exitVal);
+                    for (String line : lineErrors)
+                        Log.d("Orbot.killProcess", line);
 
-                    for (String line: lineInputs)
-                        Log.d("Orbot.killProcess",line);
+                    for (String line : lineInputs)
+                        Log.d("Orbot.killProcess", line);
 
-                }
-                else
-                {
+                } else {
                     //it worked, let's exit
                     return true;
                 }
 
 
             } catch (IOException ioe) {
-                Log.e("Orbot.killprcess","error killing process: " + pidString,ioe);
+                Log.e("Orbot.killprcess", "error killing process: " + pidString, ioe);
             }
         }
 

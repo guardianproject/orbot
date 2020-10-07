@@ -6,8 +6,6 @@
   <string name="status_activated">Prisijungta prie Tor tinklo</string>
   <string name="status_disabled">Orbot išjungtas</string>
   <string name="status_shutting_down">TorService išjungiamas</string>
-  <string name="tor_process_starting">Paleidžiamas Tor klientas...</string>
-  <string name="tor_process_complete">baigta.</string>
     <string name="menu_settings">Nustatymai</string>
   <string name="menu_log">Žurnalas</string>
     <string name="menu_start">Pradėti</string>
@@ -20,8 +18,7 @@
   <string name="menu_scan">Nuskaityti tilto QR kodą</string>
   <string name="menu_share_bridge">Dalintis tilto QR kodu</string>
     <string name="btn_okay">Gerai</string>
-  <string name="btn_cancel">Atsisakyti</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Orbot detalės</string>
   <string name="wizard_details_msg">Orbot yra atviro kodo programėlė, kuri susideda iš Tor, Obfs4Proxy, BadVPN, Tun2Socks, LibEvent ir Polipo. Ji leidžia jungtis prie Tor tinklo per HTTP (8118) ir SOCKS (9050) tarpinius serverius. Orbot taip pat leidžia perkelti visą tinklo srautą per Tor tinklą, jeigu turite root/supernaudotojo privilegijas.</string>
     <!--END Welcome Wizard strings (DJH)-->

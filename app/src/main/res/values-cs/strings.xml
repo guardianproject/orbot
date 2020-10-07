@@ -6,9 +6,7 @@
   <string name="status_activated">Připojen k síti Tor</string>
   <string name="status_disabled">\"Orbot je deaktivován</string>
   <string name="status_shutting_down">Orbot se vypíná</string>
-  <string name="tor_process_starting">Startuji Tor klienta…</string>
-  <string name="tor_process_complete">hotovo.</string>
-    <string name="menu_settings">Nastavení</string>
+  <string name="menu_settings">Nastavení</string>
   <string name="menu_log">Log</string>
     <string name="menu_start">Zapnout</string>
   <string name="menu_stop">Vypnout</string>
@@ -19,8 +17,7 @@
     <string name="menu_exit">Konec</string>
   <string name="menu_scan">Skenovat QR kód bridge</string>
   <string name="menu_share_bridge">Sdílet QR kód bridge</string>
-    <string name="btn_cancel">Zrušit</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Detaily o Orbotu</string>
     <!--END Welcome Wizard strings (DJH)-->
   <string name="pref_general_group">Hlavní</string>
@@ -36,7 +33,6 @@
   <string name="bridges">Přemostění</string>
     <string name="set_locale_title">Jazyk</string>
     <string name="get_bridges_email">Email</string>
-  <string name="activate">Aktivovat</string>
   <string name="hidden_services">Skryté Služby</string>
   <string name="title_activity_hidden_services">Skryté Služby</string>
   <string name="menu_hidden_services">Skryté Služby</string>

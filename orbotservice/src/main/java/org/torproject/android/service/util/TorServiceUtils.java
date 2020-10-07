@@ -16,14 +16,10 @@ public class TorServiceUtils implements TorServiceConstants {
             socket.connect(new InetSocketAddress(ip, port), timeout);
             socket.close();
             return true;
-        } 
-
-        catch(ConnectException ce){
+        } catch (ConnectException ce) {
             //ce.printStackTrace();
             return false;
-        }
-
-        catch (Exception ex) {
+        } catch (Exception ex) {
             //ex.printStackTrace();
             return false;
         }

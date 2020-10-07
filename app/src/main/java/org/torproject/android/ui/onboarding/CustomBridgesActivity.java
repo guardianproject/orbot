@@ -3,8 +3,6 @@
 package org.torproject.android.ui.onboarding;
 
 import android.annotation.SuppressLint;
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,7 +16,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,6 +28,7 @@ import com.google.zxing.integration.android.IntentResult;
 
 import org.json.JSONArray;
 import org.torproject.android.R;
+import org.torproject.android.core.ClipboardUtils;
 import org.torproject.android.service.OrbotService;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.Prefs;
@@ -45,6 +43,22 @@ import static org.torproject.android.MainConstants.URL_TOR_BRIDGES;
 public class CustomBridgesActivity extends AppCompatActivity implements View.OnClickListener, TextWatcher {
 
     private EditText mEtPastedBridges;
+
+    // configures an EditText we assume to be multiline and nested in a ScrollView to be independently scrollable
+    @SuppressLint("ClickableViewAccessibility")
+    private static void configureMultilineEditTextInScrollView(EditText et) {
+        et.setVerticalScrollBarEnabled(true);
+        et.setOverScrollMode(View.OVER_SCROLL_ALWAYS);
+        et.setScrollBarStyle(View.SCROLLBARS_INSIDE_INSET);
+        et.setMovementMethod(ScrollingMovementMethod.getInstance());
+        et.setOnTouchListener((v, event) -> {
+            v.getParent().requestDisallowInterceptTouchEvent(true);
+            if ((event.getAction() & MotionEvent.ACTION_UP) != 0 && (event.getActionMasked() & MotionEvent.ACTION_UP) != 0) {
+                v.getParent().requestDisallowInterceptTouchEvent(false);
+            }
+            return false;
+        });
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -99,19 +113,11 @@ public class CustomBridgesActivity extends AppCompatActivity implements View.OnC
 
         switch (view.getId()) {
             case R.id.btCopyUrl:
-                ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-
-                if (clipboard != null) {
-                    clipboard.setPrimaryClip(ClipData.newPlainText(URL_TOR_BRIDGES, URL_TOR_BRIDGES));
-
-                    Toast.makeText(this, R.string.done, Toast.LENGTH_LONG).show();
-                }
-
+                ClipboardUtils.copyToClipboard("bridge_url", URL_TOR_BRIDGES, getString(R.string.done), this);
                 break;
 
             case R.id.btScanQr:
                 integrator.initiateScan();
-
                 break;
 
             case R.id.btShareQr:
@@ -217,21 +223,5 @@ public class CustomBridgesActivity extends AppCompatActivity implements View.OnC
         Intent intent = new Intent(this, OrbotService.class);
         intent.setAction(TorServiceConstants.CMD_SIGNAL_HUP);
         startService(intent);
-    }
-
-    // configures an EditText we assume to be multiline and nested in a ScrollView to be independently scrollable
-    @SuppressLint("ClickableViewAccessibility")
-    private static void configureMultilineEditTextInScrollView(EditText et) {
-        et.setVerticalScrollBarEnabled(true);
-        et.setOverScrollMode(View.OVER_SCROLL_ALWAYS);
-        et.setScrollBarStyle(View.SCROLLBARS_INSIDE_INSET);
-        et.setMovementMethod(ScrollingMovementMethod.getInstance());
-        et.setOnTouchListener((v, event) -> {
-            v.getParent().requestDisallowInterceptTouchEvent(true);
-            if ((event.getAction() & MotionEvent.ACTION_UP) != 0 && (event.getActionMasked() & MotionEvent.ACTION_UP) != 0) {
-                v.getParent().requestDisallowInterceptTouchEvent(false);
-            }
-            return false;
-        });
     }
 }

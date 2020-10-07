@@ -26,7 +26,7 @@ public class MoatErrorDialogFragment extends DialogFragment {
         return new AlertDialog.Builder(getContext())
                 .setTitle(R.string.error)
                 .setMessage(getArguments().getString(BUNDLE_KEY_MSG))
-                .setNegativeButton(R.string.btn_okay, null)
+                .setNegativeButton(android.R.string.ok, null)
                 .create();
     }
 }
