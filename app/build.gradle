@@ -122,7 +122,7 @@ android {
 
 dependencies {
     implementation project(':orbotservice')
-    implementation 'com.google.android.material:material:1.2.0'
+    implementation 'com.google.android.material:material:1.2.1'
     implementation 'pl.bclogic:pulsator4droid:1.0.3'
     implementation 'com.github.apl-devs:appintro:v4.2.2'
     implementation project(path: ':appcore')
