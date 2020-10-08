@@ -15,7 +15,6 @@
         android:id="@+id/applistview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
         android:gravity="center"
         android:horizontalSpacing="5dp"
         android:numColumns="4"

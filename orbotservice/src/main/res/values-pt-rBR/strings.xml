@@ -6,8 +6,6 @@
   <string name="status_activated">Conectado à rede Tor</string>
   <string name="status_disabled">Orbot está desativado</string>
   <string name="status_shutting_down">TorService está desligando</string>
-  <string name="tor_process_starting">Iniciando cliente Tor...</string>
-  <string name="tor_process_complete">completo.</string>
     <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
     <!--New Wizard Strings-->
@@ -23,9 +21,6 @@
   <string name="something_bad_happened">Algo ruim aconteceu. Cheque o lo</string>
     <string name="unable_to_read_hidden_service_name">habilitar ler o nome do serviço oculto</string>
   <string name="unable_to_start_tor">Habilitar iniciar o Tor:</string>
-    <string name="no_internet_connection_tor">Sem conexão na internet; Tor está na espera...</string>
     <string name="newnym">Você trocou para uma nova identidade Tor!</string>
-    <string name="no_network_connectivity_putting_tor_to_sleep_">Sem conectividade na rede. Colocando o Tor para dormir...</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">Conectividade da rede está boa. Acordando Tor</string>
-  <string name="updating_settings_in_tor_service">atualizando configurações no serviço Tor</string>
+    <string name="updating_settings_in_tor_service">atualizando configurações no serviço Tor</string>
 </resources>

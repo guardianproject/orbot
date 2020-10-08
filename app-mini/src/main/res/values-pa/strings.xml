@@ -4,8 +4,7 @@
     <string name="menu_about">ਇਸ ਬਾਰੇ</string>
     <string name="button_about">ਇਸ ਬਾਰੇ</string>
     <string name="menu_exit">ਬੰਦ ਕਰੋ</string>
-  <string name="btn_cancel">ਰੱਦ ਕਰੋ</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
   <!--New Wizard Strings-->
   <!--Title Screen-->

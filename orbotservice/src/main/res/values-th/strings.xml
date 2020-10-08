@@ -2,7 +2,6 @@
 <resources>
   <string name="app_name">Orbot</string>
     <string name="status_activated">เชื่อมต่อกับเครือข่าย Tor</string>
-  <string name="tor_process_complete">เสร็จ</string>
     <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
     <!--New Wizard Strings-->

@@ -6,8 +6,6 @@
   <string name="status_activated">Tor ağına bağlandı</string>
   <string name="status_disabled">Orbot devre dışı bırakıldı</string>
   <string name="status_shutting_down">Tor hizmeti kapatılıyor</string>
-  <string name="tor_process_starting">Tor kullanımı başlatılıyor...</string>
-  <string name="tor_process_complete">tamamlandı.</string>
     <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
     <!--New Wizard Strings-->
@@ -23,9 +21,6 @@
   <string name="something_bad_happened">Kötü bir şey oldu. Kayıtlara bakınız</string>
     <string name="unable_to_read_hidden_service_name">gizli hizmet adı okunamıyor</string>
   <string name="unable_to_start_tor">Tor başlatılamadı:</string>
-    <string name="no_internet_connection_tor">İnternet bağlantısı yok; Tor bekleme modunda...</string>
     <string name="newnym">Yeni bir Tor kimliğine geçiş yaptınız!</string>
-    <string name="no_network_connectivity_putting_tor_to_sleep_">Hiçbir ağ bağlantısı yok. Tor uyku moduna alınıyor...</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">Ağ bağlantısı iyi. Tor uyandırılıyor... </string>
-  <string name="updating_settings_in_tor_service">Tor hizmet ayarları güncellemesi</string>
+    <string name="updating_settings_in_tor_service">Tor hizmet ayarları güncellemesi</string>
 </resources>

@@ -74,16 +74,14 @@ public class CustomNativeLoader {
         try {
 
 
-            File fileNativeBin = new File(getNativeLibraryDir(context),libname + ".so");
+            File fileNativeBin = new File(getNativeLibraryDir(context), libname + ".so");
             if (!fileNativeBin.exists())
-                fileNativeBin = new File(getNativeLibraryDir(context),"lib" + libname + ".so");
+                fileNativeBin = new File(getNativeLibraryDir(context), "lib" + libname + ".so");
 
-            if (fileNativeBin.exists())
-            {
+            if (fileNativeBin.exists()) {
                 if (fileNativeBin.canExecute())
                     return fileNativeBin;
-                else
-                {
+                else {
                     setExecutable(fileNativeBin);
 
                     if (fileNativeBin.canExecute())

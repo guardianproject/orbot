@@ -6,8 +6,6 @@
     <string name="status_activated">Connected to the Tor network</string>
     <string name="status_disabled">Orbot is deactivated</string>
     <string name="status_shutting_down">TorService is shutting down</string>
-    <string name="tor_process_starting">Starting Tor client&#8230;</string>
-    <string name="tor_process_complete">complete.</string>
     <string name="menu_settings">Settings</string>
     <string name="menu_log">Log</string>
     <string name="menu_start">Start</string>
@@ -20,7 +18,6 @@
     <string name="menu_scan">Scan BridgeQR</string>
     <string name="menu_share_bridge">Share BridgeQR</string>
     <string name="btn_okay">Okay</string>
-    <string name="btn_cancel">Cancel</string>
     <!--Welcome Wizard strings (DJH)-->
     <string name="wizard_details">Some Orbot Details</string>
     <string name="wizard_details_msg">Orbot is an open-source application that contains Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent and Polipo. It provides a local HTTP proxy (8118) and a SOCKS proxy (9050) into the Tor network. Orbot also has the ability, on rooted device, to send all internet traffic through Tor.</string>
@@ -118,7 +115,6 @@
     <string name="pref_use_expanded_notifications_title">Expanded Notifications</string>
 
     <string name="set_locale_title">Language</string>
-    <string name="no_internet_connection_tor">No internet connection; Tor is on standby…</string>
     <string name="pref_disable_network_title">No Network Auto-Sleep</string>
     <string name="pref_disable_network_summary">Put Tor to sleep when there is no internet available</string>
     <string name="newnym">You\'ve switched to a new Tor identity!</string>
@@ -126,8 +122,6 @@
     <string name="pref_open_proxy_on_all_interfaces_title">Open Proxy on All Interfaces</string>
     <string name="pref_open_proxy_on_all_interfaces_summary">Allow Wi-Fi peers, tethered devices and anyone else who can connect to your IP, to access Tor</string>
 
-    <string name="no_network_connectivity_putting_tor_to_sleep_">No network connectivity. Putting Tor to sleep…</string>
-    <string name="network_connectivity_is_good_waking_tor_up_">Network connectivity is good. Waking Tor up…</string>
     <string name="updating_settings_in_tor_service">updating settings in Tor service</string>
 
     <string name="pref_socks_title">Tor SOCKS</string>
@@ -169,18 +163,13 @@
 
     <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">If your mobile network actively blocks Tor, you can use a \'Bridge Server\' as an alternate way in. SELECT one of the options to configure and test...</string>
 
-    <string name="bridge_mode">Request New Bridge</string>
-
     <string name="get_bridges_email">Email</string>
-    <string name="get_bridges_web">Web</string>
 
     <string name="activate">Activate</string>
 
     <string name="apps_mode">VPN Mode</string>
 
     <string name="send_email">Send Email</string>
-
-    <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">You can get a bridge address through email, the web or by scanning a bridge QR code. Select \'Email\' or \'Web\' below to request a bridge address.\n\nOnce you have an address, copy &amp; paste it into the \"Bridges\" preference in Orbot\'s settings and restart.</string>
 
     <string name="vpn_default_world">Global (Auto)</string>
     <string name="hidden_services">Onion Services</string>
@@ -191,19 +180,13 @@
     <string name="onion_port">Onion Port</string>
     <string name="name">Name</string>
     <string name="done">Done!</string>
-    <string name="invalid_port">Invalid Port</string>
     <string name="copy_address_to_clipboard">Copy address to clipboard</string>
     <string name="show_auth_cookie">Show auth cookie</string>
     <string name="backup_service">Backup Service</string>
     <string name="delete_service">Delete Service</string>
     <string name="backup_saved_at_external_storage">Backup saved at external storage</string>
     <string name="backup_restored">Backup restored</string>
-    <string name="filemanager_not_available">Filemanager not available</string>
-    <string name="please_grant_permissions_for_external_storage">Please grant permissions for external storage</string>
     <string name="restore_backup">Restore Backup</string>
-    <string name="create_a_backup_first">Create a backup first</string>
-    <string name="name_can_t_be_empty">Name can\'t be empty</string>
-    <string name="fields_can_t_be_empty">Fields can\'t be empty</string>
     <string name="start_tor_again_for_finish_the_process">Start Tor again for finish the process</string>
     <string name="confirm_service_deletion">Confirm service deletion</string>
     <string name="click_again_for_backup">Click again for backup</string>
@@ -214,7 +197,6 @@
     <string name="please_restart_Orbot_to_enable_the_changes">Please restart Orbot to enable the changes</string>
     <string name="client_cookies">Client cookies</string>
     <string name="onion">.onion</string>
-    <string name="invalid_onion_address">Invalid .onion address</string>
     <string name="cookie_from_QR">Read from QR</string>
     <string name="backup_cookie">Backup cookie</string>
     <string name="delete_cookie">Delete cookie</string>
@@ -227,8 +209,6 @@
     <string name="consider_enable_battery_optimizations">Consider enable battery optimizations</string>
     <string name="pref_isolate_dest">Isolate destination addresses</string>
     <string name="pref_isolate_dest_summary">Use a different circuit for each destination address</string>
-    <string name="no_transproxy_warning_short">WARNING: Transproxying no longer supported</string>
-    <string name="no_transproxy_warning">WARNING: Transparent proxying not supported. Use Orbot Apps VPN instead.</string>
     <string name="pref_connection_padding">Connection padding</string>
     <string name="pref_connection_padding_summary">Always enables connection padding to defend against some forms of traffic analysis. Default: auto</string>
     <string name="pref_reduced_connection_padding">Reduced connection padding</string>
@@ -248,7 +228,6 @@
     <string name="bridge_direct_connect">Connect directly to Tor (Best)</string>
     <string name="bridge_community">Connect through community servers</string>
     <string name="bridge_cloud">Connect through cloud servers</string>
-    <string name="bridges_get_new">Request New Bridges... (If all else fails)</string>
     <string name="trouble_connecting">Trouble connecting?</string>
     <string name="full_device_vpn">Full Device VPN</string>
     <string name="vpn_disabled">VPN Disabled</string>

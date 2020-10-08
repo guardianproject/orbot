@@ -6,8 +6,6 @@
   <string name="status_activated">Ühendatud Tor võrgustikku</string>
   <string name="status_disabled">Orbot deaktiveeritud</string>
   <string name="status_shutting_down">Orbot lülitub välja</string>
-  <string name="tor_process_starting">Tor kliendi käivitamine...</string>
-  <string name="tor_process_complete">valmis.</string>
     <string name="menu_settings">Seaded</string>
   <string name="menu_log">Logi</string>
     <string name="menu_start">Start</string>
@@ -18,8 +16,7 @@
     <string name="button_about">Lähemalt</string>
     <string name="menu_exit">Välja</string>
     <string name="btn_okay">Hea küll</string>
-  <string name="btn_cancel">Katkesta</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Mõned Orbot\'i detailid</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Üldist</string>
@@ -94,9 +91,7 @@
     <string name="pref_disable_network_title">Pole võrgu auto-und</string>
   <string name="pref_disable_network_summary">Pane Tor magama kui Internetiühendus puudub</string>
   <string name="newnym">Lülitusite uuele Tor identiteedile!</string>
-    <string name="no_network_connectivity_putting_tor_to_sleep_">Interneti ühendus puudub. Panen Tori magama...</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">Interneti ühendus hea. Äratan Tori üles...</string>
-    <string name="save">Salvesta</string>
+  <string name="save">Salvesta</string>
   <string name="name">Name</string>
   <string name="disable">Keela</string>
   <string name="enable">Luba</string>

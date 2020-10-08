@@ -7,8 +7,7 @@
   <string name="main_layout_download">ဒေါင်းလုဒ်</string>
     <string name="button_about">အကြောင်း</string>
   <string name="menu_exit">ထွက်ရန်</string>
-    <string name="btn_cancel">ဖျက်သိမ်းရန်</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
   <string name="pref_general_group">ယေဘုယျ</string>
   <!--New Wizard Strings-->
@@ -22,7 +21,6 @@
     <string name="kb">ကီလိုဘိုက်</string>
   <string name="mb">မဂ္ဂါဘိုက်</string>
   <string name="get_bridges_email">အီးေမးလ္</string>
-  <string name="activate">Activate</string>
   <string name="hidden_services">Hidden Services</string>
   <string name="title_activity_hidden_services">Hidden Services</string>
   <string name="menu_hidden_services">Hidden Services</string>

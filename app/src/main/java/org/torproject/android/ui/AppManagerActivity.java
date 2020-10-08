@@ -12,7 +12,6 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -28,12 +27,15 @@ import android.widget.ListAdapter;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import org.torproject.android.BuildConfig;
 import org.torproject.android.R;
 import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.vpn.TorifiedApp;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -45,10 +47,18 @@ import static org.torproject.android.service.vpn.VpnPrefs.PREFS_KEY_TORIFIED;
 
 public class AppManagerActivity extends AppCompatActivity implements OnClickListener, OrbotConstants {
 
+    static ArrayList<TorifiedApp> mApps = null;
+    PackageManager pMgr = null;
+    SharedPreferences mPrefs = null;
     private GridView listApps;
     private ListAdapter adapterApps;
     private ProgressBar progressBar;
-    PackageManager pMgr = null;
+
+    // returns true if the given app is enabled and not orbot
+    public static boolean includeAppInUi(ApplicationInfo applicationInfo) {
+        if (!applicationInfo.enabled) return false;
+        return !BuildConfig.APPLICATION_ID.equals(applicationInfo.packageName);
+    }
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,14 +72,12 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
         progressBar = findViewById(R.id.progressBar);
     }
 
-
     @Override
     protected void onResume() {
         super.onResume();
         mPrefs = Prefs.getSharedPrefs(getApplicationContext());
         reloadApps();
     }
-
 
     /*
      * Create the UI Options Menu (non-Javadoc)
@@ -83,16 +91,13 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
         return true;
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if (item.getItemId() == R.id.menu_refresh_apps)
-        {
+        if (item.getItemId() == R.id.menu_refresh_apps) {
             mApps = null;
             reloadApps();
-        }
-        else if (item.getItemId() == android.R.id.home) {
+        } else if (item.getItemId() == android.R.id.home) {
             finish();
             return true;
         }
@@ -100,31 +105,14 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
         return super.onOptionsItemSelected(item);
     }
 
-    private void reloadApps () {
-        new AsyncTask<Void, Void, Void>() {
-            protected void onPreExecute() {
-                // Pre Code
-                progressBar.setVisibility(View.VISIBLE);
-            }
-            protected Void doInBackground(Void... unused) {
-                loadApps(mPrefs);
-                return null;
-            }
-            protected void onPostExecute(Void unused) {
-                listApps.setAdapter(adapterApps);
-                progressBar.setVisibility(View.GONE);
-            }
-        }.execute();
-
-
+    private void reloadApps() {
+        new ReloadAppsAsyncTask(this).execute();
     }
 
-    SharedPreferences mPrefs = null;
-    static ArrayList<TorifiedApp> mApps = null;
+    private void loadApps() {
 
-    private void loadApps (SharedPreferences prefs) {
         if (mApps == null)
-            mApps = getApps(prefs);
+            mApps = getApps(mPrefs);
 
         Collections.sort(mApps, (o1, o2) -> {
             /* Some apps start with lowercase letters and without the sorting being case
@@ -139,7 +127,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
 
         final LayoutInflater inflater = getLayoutInflater();
 
-        adapterApps = new ArrayAdapter<TorifiedApp>(this, R.layout.layout_apps_item, R.id.itemtext,mApps) {
+        adapterApps = new ArrayAdapter<TorifiedApp>(this, R.layout.layout_apps_item, R.id.itemtext, mApps) {
 
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
@@ -194,23 +182,16 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
 
     }
 
-    private static class ListEntry {
-        private CheckBox box;
-        private TextView text;
-        private ImageView icon;
-    }
-
     public ArrayList<TorifiedApp> getApps(SharedPreferences prefs) {
 
         String tordAppString = prefs.getString(PREFS_KEY_TORIFIED, "");
 
         String[] tordApps;
 
-        StringTokenizer st = new StringTokenizer(tordAppString,"|");
+        StringTokenizer st = new StringTokenizer(tordAppString, "|");
         tordApps = new String[st.countTokens()];
         int tordIdx = 0;
-        while (st.hasMoreTokens())
-        {
+        while (st.hasMoreTokens()) {
             tordApps[tordIdx++] = st.nextToken();
         }
         Arrays.sort(tordApps);
@@ -225,8 +206,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
 
         TorifiedApp app;
 
-        while (itAppInfo.hasNext())
-        {
+        while (itAppInfo.hasNext()) {
             aInfo = itAppInfo.next();
             if (!includeAppInUi(aInfo)) continue;
             app = new TorifiedApp();
@@ -235,12 +215,9 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
             try {
                 PackageInfo pInfo = pMgr.getPackageInfo(aInfo.packageName, PackageManager.GET_PERMISSIONS);
 
-                if (pInfo != null && pInfo.requestedPermissions != null)
-                {
-                    for (String permInfo:pInfo.requestedPermissions)
-                    {
-                        if (permInfo.equals(Manifest.permission.INTERNET))
-                        {
+                if (pInfo != null && pInfo.requestedPermissions != null) {
+                    for (String permInfo : pInfo.requestedPermissions) {
+                        if (permInfo.equals(Manifest.permission.INTERNET)) {
                             app.setUsesInternet(true);
                         }
                     }
@@ -252,12 +229,9 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
                 e.printStackTrace();
             }
 
-            try
-            {
+            try {
                 app.setName(pMgr.getApplicationLabel(aInfo).toString());
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 // no name
                 continue; //we only show apps with names
             }
@@ -265,8 +239,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
 
             if (!app.usesInternet())
                 continue;
-            else
-            {
+            else {
                 apps.add(app);
             }
 
@@ -280,9 +253,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
             // check if this application is allowed
             if (Arrays.binarySearch(tordApps, app.getUsername()) >= 0) {
                 app.setTorified(true);
-            }
-            else
-            {
+            } else {
                 app.setTorified(false);
             }
 
@@ -293,38 +264,34 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
         return apps;
     }
 
-
     public void saveAppSettings() {
 
         StringBuilder tordApps = new StringBuilder();
         Intent response = new Intent();
 
-        for (TorifiedApp tApp:mApps)
-        {
-            if (tApp.isTorified())
-            {
+        for (TorifiedApp tApp : mApps) {
+            if (tApp.isTorified()) {
                 tordApps.append(tApp.getUsername());
                 tordApps.append("|");
-                response.putExtra(tApp.getUsername(),true);
+                response.putExtra(tApp.getUsername(), true);
             }
         }
 
         Editor edit = mPrefs.edit();
         edit.putString(PREFS_KEY_TORIFIED, tordApps.toString());
-        edit.commit();
+        edit.apply();
 
-        setResult(RESULT_OK,response);
+        setResult(RESULT_OK, response);
     }
-
 
     public void onClick(View v) {
 
         CheckBox cbox = null;
 
         if (v instanceof CheckBox)
-            cbox = (CheckBox)v;
+            cbox = (CheckBox) v;
         else if (v.getTag() instanceof CheckBox)
-            cbox = (CheckBox)v.getTag();
+            cbox = (CheckBox) v.getTag();
 
         if (cbox != null) {
             final TorifiedApp app = (TorifiedApp) cbox.getTag();
@@ -337,11 +304,46 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
         }
     }
 
-    // returns true if the given app is enabled and not orbot
-    public static boolean includeAppInUi(ApplicationInfo applicationInfo) {
-        if (!applicationInfo.enabled) return false;
-        if (BuildConfig.APPLICATION_ID.equals(applicationInfo.packageName)) return false;
-        return true;
+    private static class ReloadAppsAsyncTask extends AsyncTask<Void, Void, Void> {
+
+        private WeakReference<AppManagerActivity> activity;
+
+        ReloadAppsAsyncTask(AppManagerActivity activity) {
+            this.activity = new WeakReference<>(activity);
+        }
+
+        @Override
+        protected void onPreExecute() {
+            if (shouldStop()) return;
+            activity.get().progressBar.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            if (shouldStop()) return null;
+            activity.get().loadApps();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void unused) {
+            if (shouldStop()) return;
+            AppManagerActivity ama = activity.get();
+            ama.listApps.setAdapter(ama.adapterApps);
+            ama.progressBar.setVisibility(View.GONE);
+        }
+
+        private boolean shouldStop() {
+            AppManagerActivity ama = activity.get();
+            return ama == null || ama.isFinishing();
+        }
+
+    }
+
+    private static class ListEntry {
+        private CheckBox box;
+        private TextView text;
+        private ImageView icon;
     }
 
 }

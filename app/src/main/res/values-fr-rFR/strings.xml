@@ -6,9 +6,7 @@
   <string name="status_activated">Connecté au réseau Tor</string>
   <string name="status_disabled">Orbot est désactivé</string>
   <string name="status_shutting_down">TorService est en cours d’extinction</string>
-  <string name="tor_process_starting">Démarrage du client Tor...</string>
-  <string name="tor_process_complete">terminé.</string>
-    <string name="menu_settings">Paramètres</string>
+  <string name="menu_settings">Paramètres</string>
   <string name="menu_log">Journal</string>
     <string name="menu_start">Démarrer</string>
   <string name="menu_stop">Arrêter</string>
@@ -19,8 +17,6 @@
     <string name="menu_exit">Quitter </string>
   <string name="menu_scan">Balayer un code QR de pont</string>
   <string name="menu_share_bridge">Partager un code QR de pont</string>
-    <string name="btn_okay">OK</string>
-  <string name="btn_cancel">Annuler</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Quelques détails sur Orbot</string>
     <!--END Welcome Wizard strings (DJH)-->
@@ -92,8 +88,7 @@
     <string name="third_party_software">Logiciels tiers :</string>
   <string name="tor_version">Tor : https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21 : http://www.monkey.org/~provos/libevent/</string>
-  <string name="polipo_version">Polipo v1.1.9 : https://github.com/jech/polipo</string>
-  <string name="found_existing_tor_process">un processus existant de Tor a été trouvé...</string>
+    <string name="found_existing_tor_process">un processus existant de Tor a été trouvé...</string>
   <string name="something_bad_happened">Quelque chose n’a pas été. Vérifiez le journal</string>
     <string name="unable_to_read_hidden_service_name">impossible de lire le nom du service caché</string>
   <string name="unable_to_start_tor">Impossible de démarrer Tor :</string>
@@ -102,12 +97,9 @@
   <string name="pref_use_expanded_notifications">Montrer des notifications étendues avec le pays de sortie de Tor et l’IP</string>
   <string name="pref_use_expanded_notifications_title">Notifications étendues</string>
     <string name="set_locale_title">Langue</string>
-    <string name="no_internet_connection_tor">Pas de connexion Internet ; Tor est en attente...</string>
-    <string name="pref_disable_network_title">Pas de mise en veille automatique du réseau</string>
+  <string name="pref_disable_network_title">Pas de mise en veille automatique du réseau</string>
   <string name="pref_disable_network_summary">Mettre Tor en veille quand aucune connexion Internet n’est disponible</string>
   <string name="newnym">Vous avez basculé vers une nouvelle identité Tor !</string>
-    <string name="no_network_connectivity_putting_tor_to_sleep_">Pas de connectivité réseau. Mise au repos de Tor...</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">La connectivité réseau est bonne. Réveil de Tor...</string>
   <string name="updating_settings_in_tor_service">mise à jour des paramètres dans le service Tor</string>
   <string name="pref_socks_title">SOCKS Tor</string>
   <string name="pref_socks_summary">Port sur lequel Tor offre son mandataire SOCKS (par défaut : 9050 ou 0 pour le désactiver)</string>
@@ -128,13 +120,9 @@
   <string name="bridges_updated">Ponts mis à jour</string>
   <string name="restart_orbot_to_use_this_bridge_">Veuillez redémarrer Orbot pour activer les changements</string>
   <string name="menu_qr">Codes QR</string>
-  <string name="bridge_mode">Mode pont</string>
   <string name="get_bridges_email">Courriel</string>
-  <string name="get_bridges_web">Web</string>
-  <string name="activate">Activer</string>
   <string name="send_email">Envoyer un courriel</string>
-  <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Vous pouvez obtenir une adresse de pont par courriel, par le Web ou en balayant le code QR d’un pont. Choisissez *Courriel* ou *Web* ci-dessous pour demander une adresse de pont.\n\nUne fois que vous avez une adresse, copiez &amp; collez-la dans le champ « Ponts » des paramètres d’Orbot et redémarrez.</string>
-    <string name="save">Enregistrer</string>
+  <string name="save">Enregistrer</string>
   <string name="name">Name</string>
   <string name="please_restart_Orbot_to_enable_the_changes">Veuillez redémarrer Orbot pour activer les changements</string>
 </resources>

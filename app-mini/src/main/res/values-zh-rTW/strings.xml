@@ -6,9 +6,7 @@
   <string name="status_activated">已連線至 Tor 網路</string>
   <string name="status_disabled">Orbot 已停用</string>
   <string name="status_shutting_down">Tor服務 正在關閉</string>
-  <string name="tor_process_starting">啟動Tor 用戶端...</string>
-  <string name="tor_process_complete">完成。</string>
-    <string name="menu_settings">設定</string>
+  <string name="menu_settings">設定</string>
   <string name="menu_log">記錄檔</string>
     <string name="menu_start">開始</string>
   <string name="menu_stop">停止</string>
@@ -20,8 +18,7 @@
   <string name="menu_scan">掃描網橋 QR 碼</string>
   <string name="menu_share_bridge">分享網橋 QR 碼</string>
     <string name="btn_okay">確定</string>
-  <string name="btn_cancel">取消</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Orbot 的一些詳細資料</string>
   <string name="wizard_details_msg">Orbot 是一款開源應用,其包含 Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent 與 Polipo.它提供了本地的 HTTP 代理 (8118) 與 SOCKS 代理 (9050) 到 Tor 網路中. Orbot 也有能力可在取得最高權限的設備上來利用 Tor 傳送互聯網流量</string>
     <!--END Welcome Wizard strings (DJH)-->
@@ -107,12 +104,9 @@
   <string name="pref_use_expanded_notifications">在通知中顯示 Tor 出口點的國家和 IP</string>
   <string name="pref_use_expanded_notifications_title">詳細的通知</string>
     <string name="set_locale_title">語言</string>
-    <string name="no_internet_connection_tor">沒有網路連線；Tor 待機中 ...</string>
-    <string name="pref_disable_network_title">無網路時自動休眠</string>
+  <string name="pref_disable_network_title">無網路時自動休眠</string>
   <string name="pref_disable_network_summary">當沒有網路可用時，讓 Tor 休眠</string>
   <string name="newnym">您已切換到新的 Tor 身分！</string>
-  <string name="no_network_connectivity_putting_tor_to_sleep_">沒有網路連線。正在叫 Tor 休眠 ...</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">網路連線良好，正在喚醒 Tor ...</string>
   <string name="updating_settings_in_tor_service">更新 Tor 的設定</string>
   <string name="pref_socks_title">Tor SOCKS 代理</string>
   <string name="pref_socks_summary">Tor 提供 SOCKS 代理的連接埠 (預設：9050，若設為 0 則關閉)</string>
@@ -134,14 +128,11 @@
   <string name="restart_orbot_to_use_this_bridge_">請重新啟動 Orbot 來讓設定生效。</string>
   <string name="menu_qr">QR 碼</string>
   <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">如果行動網路主動地封鎖 Tor 可以使用\"橋接伺服器\"作為替代方式.選擇一個選項作設定和測試</string>
-  <string name="bridge_mode">網橋模式</string>
   <string name="get_bridges_email">Email</string>
-  <string name="get_bridges_web">Web</string>
   <string name="activate">啟用</string>
   <string name="apps_mode">VPN 模式</string>
     <string name="send_email">寄送電子信件</string>
-  <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">您可以透過 email 取得網橋位址，或者在網際網路上搜尋，或者掃描網橋的 QR 碼。在下面選擇 \'Email\' 或者 \'Web\' 來取得網橋位址。\n\n取得網橋位址後，將它複製貼上到｢網橋｣的設定項中，然後重新啟動 Orbot。</string>
-    <string name="vpn_default_world">全域(自動)</string>
+  <string name="vpn_default_world">全域(自動)</string>
   <string name="hidden_services">隱藏服務</string>
   <string name="title_activity_hidden_services">隱藏服務</string>
   <string name="menu_hidden_services">隱藏服務</string>
@@ -150,19 +141,13 @@
   <string name="onion_port">洋蔥端口</string>
   <string name="name">名稱</string>
   <string name="done">已完成!</string>
-  <string name="invalid_port">無效埠</string>
-  <string name="copy_address_to_clipboard">複製地址到剪貼簿</string>
+    <string name="copy_address_to_clipboard">複製地址到剪貼簿</string>
   <string name="show_auth_cookie">顯示 auth cookie</string>
   <string name="backup_service">備份服務</string>
   <string name="delete_service">刪除服務</string>
   <string name="backup_saved_at_external_storage">備份檔儲存在外部儲存器</string>
   <string name="backup_restored">備份已還原</string>
-  <string name="filemanager_not_available">檔案管理員不可用</string>
-  <string name="please_grant_permissions_for_external_storage">請授權外接儲存器使用</string>
     <string name="restore_backup">還原備份</string>
-  <string name="create_a_backup_first">先創立備份</string>
-  <string name="name_can_t_be_empty">名稱不可空白</string>
-  <string name="fields_can_t_be_empty">欄位不可空白</string>
   <string name="start_tor_again_for_finish_the_process">再次開啟 Tor  以完成此過程</string>
   <string name="confirm_service_deletion">確認服務刪除</string>
   <string name="click_again_for_backup">再次點選以進行備份</string>
@@ -173,7 +158,6 @@
   <string name="please_restart_Orbot_to_enable_the_changes">請重新啟動 Orbot 來讓設定生效。</string>
   <string name="client_cookies">客戶 cookies</string>
   <string name="onion">.onion</string>
-  <string name="invalid_onion_address">無效的 .onion 地址</string>
   <string name="cookie_from_QR">由 QR 碼讀取</string>
   <string name="backup_cookie">備分 cookie</string>
   <string name="delete_cookie">刪除 cookie</string>
@@ -186,8 +170,6 @@
   <string name="consider_enable_battery_optimizations">考慮開啟電池的最適化</string>
   <string name="pref_isolate_dest">孤立目的地地址</string>
   <string name="pref_isolate_dest_summary">每個目的地使用不同的電路</string>
-  <string name="no_transproxy_warning_short">警告: 不再支援 Transproxying </string>
-  <string name="no_transproxy_warning">警告: 不支援透明的代理, 請用 Orbot Apps VPN 替代</string>
   <string name="pref_connection_padding">連接保護</string>
   <string name="pref_connection_padding_summary">全部啟用連接保護以防止一些流量分析手段
 默認: auto</string>
@@ -200,8 +182,7 @@
   <string name="bridge_direct_connect">直接連上洋蔥路由網路(最佳)</string>
   <string name="bridge_community">透過社區伺服器連接</string>
   <string name="bridge_cloud">透過雲端伺服器連接</string>
-  <string name="bridges_get_new">請求新的橋接... (如果其它都失敗)</string>
-  <string name="trouble_connecting">連線遇上問題?</string>
+    <string name="trouble_connecting">連線遇上問題?</string>
   <string name="full_device_vpn">全設備 VPN</string>
   <string name="vpn_disabled">VPN 關閉</string>
 </resources>

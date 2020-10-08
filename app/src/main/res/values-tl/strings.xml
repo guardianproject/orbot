@@ -4,9 +4,7 @@
     <string name="status_starting_up">Nagsisimula na ang Orbot…</string>
   <string name="status_activated">Konektado sa Tor network</string>
   <string name="status_disabled">Naka-deactivate ang Orbot</string>
-  <string name="tor_process_starting">Binubuksan ang Tor client…</string>
-  <string name="tor_process_complete">kumpleto na.</string>
-    <string name="menu_settings">Settings</string>
+  <string name="menu_settings">Settings</string>
   <string name="menu_log">Tala</string>
     <string name="menu_start">Simulan</string>
   <string name="menu_stop">Ihinto</string>
@@ -16,8 +14,6 @@
     <string name="button_about">Tungkol</string>
     <string name="menu_exit">Labasan</string>
   <string name="menu_share_bridge">Ipamahagi ang BridgeQR</string>
-    <string name="btn_okay">Okay</string>
-  <string name="btn_cancel">Kanselahin</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Ilang detalye sa Orbot</string>
     <!--END Welcome Wizard strings (DJH)-->
@@ -90,8 +86,7 @@
     <string name="third_party_software">3rd-Party-Software:</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
-  <string name="found_existing_tor_process"> nakakita ng umiiral na Tor process...</string>
+    <string name="found_existing_tor_process"> nakakita ng umiiral na Tor process...</string>
   <string name="something_bad_happened">May nangyaring masama. Tingnan ang log</string>
     <string name="unable_to_read_hidden_service_name">hindi mabasa ang pangalan ng tagong serbisyo</string>
   <string name="unable_to_start_tor">Hindi masimulan ang Tor:</string>
@@ -100,8 +95,7 @@
   <string name="pref_use_expanded_notifications">Ipakita ang pinalaking notification kasama ng Tor exit country at IP</string>
   <string name="pref_use_expanded_notifications_title">Pinalawak na Notifications</string>
     <string name="set_locale_title">Wika</string>
-    <string name="no_internet_connection_tor">Walang connection sa internet; Ang Tor ay naka-standby mode...</string>
-    <string name="pref_disable_network_title">Walang Auto-Sleep sa Network</string>
+  <string name="pref_disable_network_title">Walang Auto-Sleep sa Network</string>
   <string name="pref_disable_network_summary">Ilagay ang Tor sa sleep kapag walang internet na pwede</string>
   <string name="newnym">Ikaw ay nagpalit ng bagong pagkakakilanlan sa Tor!</string>
     <string name="kbps">kbps</string>
@@ -109,8 +103,6 @@
   <string name="kb">KB</string>
   <string name="mb">MB</string>
   <string name="get_bridges_email">Email</string>
-  <string name="get_bridges_web">Web</string>
-  <string name="activate">Activate</string>
   <string name="send_email">Send Email</string>
     <string name="save">I-save</string>
   <string name="name">Name</string>

@@ -5,8 +5,7 @@
   <string name="menu_about">Программа жөнүндө</string>
     <string name="button_about">Программа жөнүндө</string>
   <string name="menu_exit">Чыгуу</string>
-    <string name="btn_cancel">Айнуу</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
   <!--New Wizard Strings-->
   <!--Title Screen-->

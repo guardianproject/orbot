@@ -8,8 +8,6 @@
   <string name="status_activated">Ligado à rede Tor</string>
   <string name="status_disabled">Orbot está desativado</string>
   <string name="status_shutting_down">TorService está a encerrar</string>
-  <string name="tor_process_starting">A iniciar o cliente Tor...</string>
-  <string name="tor_process_complete">completo.</string>
     <string name="menu_settings">Definições</string>
   <string name="menu_log">Registo</string>
     <string name="menu_start">Iniciar</string>
@@ -22,8 +20,7 @@
   <string name="menu_scan">Digitalizar BridgeQR</string>
   <string name="menu_share_bridge">Partilhar BridgeQR</string>
     <string name="btn_okay">Ok</string>
-  <string name="btn_cancel">Cancelar</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Alguns Detalhes do Orbot</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Geral</string>
@@ -56,8 +53,7 @@
   <string name="mb">MB</string>
   <string name="menu_qr">Códigos QR</string>
   <string name="get_bridges_email">E-mail</string>
-  <string name="get_bridges_web">Web</string>
-  <string name="activate">Ativar</string>
+    <string name="activate">Ativar</string>
   <string name="send_email">Enviar Mensagem</string>
     <string name="save">Guardar</string>
   <string name="name">Nome</string>

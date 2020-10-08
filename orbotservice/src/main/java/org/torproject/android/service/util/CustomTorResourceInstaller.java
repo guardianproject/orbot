@@ -3,6 +3,7 @@ package org.torproject.android.service.util;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.util.Log;
+
 import org.torproject.android.binary.TorServiceConstants;
 
 import java.io.File;
@@ -24,10 +25,77 @@ public class CustomTorResourceInstaller implements TorServiceConstants {
     private File fileTorrc;
     private File fileTor;
 
-    public CustomTorResourceInstaller (Context context, File installFolder)
-    {
+    public CustomTorResourceInstaller(Context context, File installFolder) {
         this.installFolder = installFolder;
         this.context = context;
+    }
+
+    // Return Full path to the directory where native JNI libraries are stored.
+    private static String getNativeLibraryDir(Context context) {
+        ApplicationInfo appInfo = context.getApplicationInfo();
+        return appInfo.nativeLibraryDir;
+    }
+
+    /*
+     * Write the inputstream contents to the file
+     */
+    private static boolean streamToFile(InputStream stm, File outFile, boolean append, boolean zip) throws IOException {
+        byte[] buffer = new byte[FILE_WRITE_BUFFER_SIZE];
+
+        int bytecount;
+
+        OutputStream stmOut = new FileOutputStream(outFile.getAbsolutePath(), append);
+        ZipInputStream zis = null;
+
+        if (zip) {
+            zis = new ZipInputStream(stm);
+            ZipEntry ze = zis.getNextEntry();
+            stm = zis;
+
+        }
+
+        while ((bytecount = stm.read(buffer)) > 0) {
+
+            stmOut.write(buffer, 0, bytecount);
+
+        }
+
+        stmOut.close();
+        stm.close();
+
+        if (zis != null)
+            zis.close();
+
+
+        return true;
+
+    }
+
+
+
+
+    /*
+     * Extract the Tor binary from the APK file using ZIP
+     */
+
+    private static File[] listf(String directoryName) {
+
+        // .............list file
+        File directory = new File(directoryName);
+
+        // get all the files from a directory
+        File[] fList = directory.listFiles();
+
+        if (fList != null)
+            for (File file : fList) {
+                if (file.isFile()) {
+                    Log.d(TAG, file.getAbsolutePath());
+                } else if (file.isDirectory()) {
+                    listf(file.getAbsolutePath());
+                }
+            }
+
+        return fList;
     }
 
     //
@@ -36,8 +104,7 @@ public class CustomTorResourceInstaller implements TorServiceConstants {
      *
      * @File path to the Tor executable
      */
-    public File installResources () throws IOException, TimeoutException
-    {
+    public File installResources() throws IOException, TimeoutException {
 
         fileTor = new File(installFolder, TOR_ASSET_KEY);
 
@@ -48,14 +115,12 @@ public class CustomTorResourceInstaller implements TorServiceConstants {
         fileTorrc = assetToFile(COMMON_ASSET_KEY + TORRC_ASSET_KEY, TORRC_ASSET_KEY, false, false);
 
         File fileNativeDir = new File(getNativeLibraryDir(context));
-        fileTor = new File(fileNativeDir,TOR_ASSET_KEY + ".so");
+        fileTor = new File(fileNativeDir, TOR_ASSET_KEY + ".so");
 
-        if (fileTor.exists())
-        {
+        if (fileTor.exists()) {
             if (fileTor.canExecute())
                 return fileTor;
-            else
-            {
+            else {
                 setExecutable(fileTor);
 
                 if (fileTor.canExecute())
@@ -76,7 +141,7 @@ public class CustomTorResourceInstaller implements TorServiceConstants {
         }
 
         //let's try another approach
-        fileTor = CustomNativeLoader.loadNativeBinary(context,TOR_ASSET_KEY,fileTorBin);
+        fileTor = CustomNativeLoader.loadNativeBinary(context, TOR_ASSET_KEY, fileTorBin);
 
         if (fileTor != null && fileTor.exists())
             setExecutable(fileTor);
@@ -87,22 +152,7 @@ public class CustomTorResourceInstaller implements TorServiceConstants {
         return null;
     }
 
-
-    // Return Full path to the directory where native JNI libraries are stored.
-    private static String getNativeLibraryDir(Context context) {
-        ApplicationInfo appInfo = context.getApplicationInfo();
-        return appInfo.nativeLibraryDir;
-    }
-
-
-
-
-    /*
-     * Extract the Tor binary from the APK file using ZIP
-     */
-
-    private boolean installGeoIP () throws IOException
-    {
+    private boolean installGeoIP() throws IOException {
 
         assetToFile(COMMON_ASSET_KEY + GEOIP_ASSET_KEY, GEOIP_ASSET_KEY, false, false);
 
@@ -124,73 +174,11 @@ public class CustomTorResourceInstaller implements TorServiceConstants {
         return outFile;
     }
 
-
-    /*
-     * Write the inputstream contents to the file
-     */
-    private static boolean streamToFile(InputStream stm, File outFile, boolean append, boolean zip) throws IOException
-
-    {
-        byte[] buffer = new byte[FILE_WRITE_BUFFER_SIZE];
-
-        int bytecount;
-
-        OutputStream stmOut = new FileOutputStream(outFile.getAbsolutePath(), append);
-        ZipInputStream zis = null;
-
-        if (zip)
-        {
-            zis = new ZipInputStream(stm);
-            ZipEntry ze = zis.getNextEntry();
-            stm = zis;
-
-        }
-
-        while ((bytecount = stm.read(buffer)) > 0)
-        {
-
-            stmOut.write(buffer, 0, bytecount);
-
-        }
-
-        stmOut.close();
-        stm.close();
-
-        if (zis != null)
-            zis.close();
-
-
-        return true;
-
-    }
-
-
-
     private void setExecutable(File fileBin) {
         fileBin.setReadable(true);
         fileBin.setExecutable(true);
         fileBin.setWritable(false);
         fileBin.setWritable(true, true);
-    }
-
-    private static File[] listf(String directoryName) {
-
-        // .............list file
-        File directory = new File(directoryName);
-
-        // get all the files from a directory
-        File[] fList = directory.listFiles();
-
-        if (fList != null)
-            for (File file : fList) {
-                if (file.isFile()) {
-                    Log.d(TAG,file.getAbsolutePath());
-                } else if (file.isDirectory()) {
-                    listf(file.getAbsolutePath());
-                }
-            }
-
-        return fList;
     }
 }
 

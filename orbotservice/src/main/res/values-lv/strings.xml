@@ -5,8 +5,6 @@
     <string name="status_starting_up">Orbot startē...</string>
   <string name="status_activated">Izveidots savienojums ar tīklu Tor</string>
   <string name="status_disabled">Orbot ir deaktivēts</string>
-  <string name="tor_process_starting">Startē Tor klientu...</string>
-  <string name="tor_process_complete">pabeidz.</string>
     <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
     <!--New Wizard Strings-->
@@ -22,9 +20,6 @@
   <string name="something_bad_happened">Nav labi. Pārbaudiet žurnālu</string>
     <string name="unable_to_read_hidden_service_name">Nespēj lasīt slēpta pakalpojuma nosaukumu</string>
   <string name="unable_to_start_tor">Nevar startēt Tor:</string>
-    <string name="no_internet_connection_tor">Nav interneta savienojuma; Tor ir gaidstāvē...</string>
     <string name="newnym">Jūs pārslēdzāties uz jaunu Tor\'a identitāti!</string>
-    <string name="no_network_connectivity_putting_tor_to_sleep_">Nav tīkla savienojuma. Tor\'am iestata miega režīmu...</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">Labs tīkla savienojums. Aktivizē Tor\'u...</string>
-  <string name="updating_settings_in_tor_service">atjaunina Tor pakalpojuma iestatījumus </string>
+    <string name="updating_settings_in_tor_service">atjaunina Tor pakalpojuma iestatījumus </string>
 </resources>

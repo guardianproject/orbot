@@ -7,8 +7,6 @@ Orbot使用Tor在全球一系列的電腦間跳躍，以便隱藏網路流量並
   <string name="status_activated">已連線至 Tor 網路</string>
   <string name="status_disabled">Orbot 已停用</string>
   <string name="status_shutting_down">Tor服務 正在關閉</string>
-  <string name="tor_process_starting">啟動Tor 用戶端...</string>
-  <string name="tor_process_complete">完成。</string>
     <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
     <!--New Wizard Strings-->

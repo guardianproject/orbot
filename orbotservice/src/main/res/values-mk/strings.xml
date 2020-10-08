@@ -5,8 +5,6 @@
     <string name="status_starting_up">Орбот се стартува...</string>
   <string name="status_activated">Поврзан на мрежата на Tor</string>
   <string name="status_disabled">Орбот е деактивиран</string>
-  <string name="tor_process_starting">Стартување на клиентот на Tor...</string>
-  <string name="tor_process_complete">завршено.</string>
     <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
     <!--New Wizard Strings-->
@@ -22,9 +20,6 @@
   <string name="something_bad_happened">Настана грешка. Проверете во дневникот</string>
     <string name="unable_to_read_hidden_service_name">не може да се прочита името на скриениот сервис</string>
   <string name="unable_to_start_tor">Tor не може да се стартува:</string>
-    <string name="no_internet_connection_tor">Нема интернет-врска; Tor е во мирување...</string>
     <string name="newnym">Се префрливте на нов идентитет на Tor!</string>
-    <string name="no_network_connectivity_putting_tor_to_sleep_">Нема мрежно поврзување. Ставете го Тор на режимот на спиење...</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">Мрежното поврзување е добро. Го буди Tor...</string>
-  <string name="updating_settings_in_tor_service">ажурирање на поставките во сервисот Tor </string>
+    <string name="updating_settings_in_tor_service">ажурирање на поставките во сервисот Tor </string>
 </resources>

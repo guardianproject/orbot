@@ -4,8 +4,7 @@
     <string name="menu_about">O</string>
     <string name="button_about">O</string>
   <string name="menu_exit">Izlaz</string>
-    <string name="btn_cancel">Odustani</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
   <string name="pref_general_group">Općenito</string>
   <!--New Wizard Strings-->

@@ -2,8 +2,6 @@
 <resources>
   <string name="menu_settings">સેટિંગ્સ</string>
   <string name="menu_log">નોંધણી</string>
-    <string name="btn_okay">બરાબર</string>
-  <string name="btn_cancel">રદ્ કરો</string>
   <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
   <!--New Wizard Strings-->
@@ -12,7 +10,6 @@
   <!--Permissions screen-->
   <!--TipsAndTricks screen-->
   <!--Transparent Proxy screen-->
-    <string name="activate">સક્રિય</string>
   <string name="save">સંગ્રહો</string>
   <string name="name">નામ</string>
   <string name="disable">નિષ્ક્રિય કરો</string>

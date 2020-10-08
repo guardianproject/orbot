@@ -5,9 +5,7 @@
     <string name="status_starting_up">Orbot ආරම්භ කරමින්…</string>
   <string name="status_activated">Tor ජාලයට සබැදියි</string>
   <string name="status_disabled">Orbot ක්‍රියාවිරහිත කර ඇත </string>
-  <string name="tor_process_starting">Tor දායකයා ආරම්භ කරමින්...</string>
-  <string name="tor_process_complete">සම්පුර්ණයි.</string>
-    <string name="menu_settings">සිටවුම්</string>
+  <string name="menu_settings">සිටවුම්</string>
   <string name="menu_log">ලොගය </string>
     <string name="menu_start">අරඹන්න</string>
   <string name="menu_stop">නවත්වන්න</string>
@@ -16,8 +14,6 @@
   <string name="main_layout_upload">උඩුගත කරන්න </string>
     <string name="button_about">පිළිබද</string>
     <string name="menu_exit">ඉවත් වන්න</string>
-    <string name="btn_okay">එකගයි</string>
-  <string name="btn_cancel">අවලංගු කරන්න</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Orbot පිළිබද ඇතැම් විස්තර </string>
     <!--END Welcome Wizard strings (DJH)-->
@@ -87,7 +83,6 @@
     <string name="set_locale_title">භාෂාව</string>
     <string name="kb">KB</string>
   <string name="mb">MB</string>
-  <string name="activate">ක්‍රියාකරවන්න</string>
   <string name="hidden_services">සැගවුණු සේවා </string>
   <string name="title_activity_hidden_services">සැගවුණු සේවා </string>
   <string name="menu_hidden_services">සැගවුණු සේවා </string>

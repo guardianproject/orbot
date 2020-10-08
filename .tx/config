@@ -9,6 +9,13 @@ source_file = app/src/main/res/values/strings.xml
 source_lang = en
 type = ANDROID
 
+[orbot.servicexml]
+file_filter = orbotservice/src/main/res/values-<lang>/strings.xml
+host = https://www.transifex.com
+source_file = orbotservice/src/main/res/values/strings.xml
+source_lang = en
+type = ANDROID
+
 [orbot.poestringsxml]
 file_filter = app/src/main/res/values-<lang>/poestrings.xml
 host = https://www.transifex.com

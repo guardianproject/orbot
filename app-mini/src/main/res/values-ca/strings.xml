@@ -6,9 +6,7 @@
   <string name="status_activated">Esteu connectat a la xarxa Tor</string>
   <string name="status_disabled">L\'Orbot està desactivat</string>
   <string name="status_shutting_down">El servei Tor s\'està desactivant</string>
-  <string name="tor_process_starting">S\'està iniciant el client Tor...</string>
-  <string name="tor_process_complete">fet.</string>
-    <string name="menu_settings">Preferències</string>
+  <string name="menu_settings">Preferències</string>
   <string name="menu_log">Registre</string>
     <string name="menu_start">Inicia</string>
   <string name="menu_stop">Atura</string>
@@ -20,8 +18,7 @@
   <string name="menu_scan">Escaneja el BridgeQR</string>
   <string name="menu_share_bridge">Comparteix el BridgeQR</string>
     <string name="btn_okay">D\'acord</string>
-  <string name="btn_cancel">Cancel·la</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Alguns detalls de l\'Orbot...</string>
   <string name="wizard_details_msg">Orbot és una aplicació de codi obert que conté Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent i Polipo. Proporciona un proxy HTTP local (8118) i un proxy SOCKS (9050) a la xarxa Tor. En dispositius root Orbot també té la capacitat d\'enviar tot el trànsit d\'Internet a través de Tor</string>
     <!--END Welcome Wizard strings (DJH)-->
@@ -107,12 +104,9 @@
   <string name="pref_use_expanded_notifications">Mostra la informació de sortida addicional del Tor amb  el país i la IP</string>
   <string name="pref_use_expanded_notifications_title">Notificacions addicionals</string>
     <string name="set_locale_title">Llengua</string>
-    <string name="no_internet_connection_tor">No s\'ha trobat cap connexió a Internet; el Tor és a l\'espera</string>
-    <string name="pref_disable_network_title">No hi ha autodesconnexió de xarxa</string>
+  <string name="pref_disable_network_title">No hi ha autodesconnexió de xarxa</string>
   <string name="pref_disable_network_summary">Posa el Tor en pausa mentre no hi ha connexió a internet</string>
   <string name="newnym">Heu canviat a una nova identitat Tor.</string>
-  <string name="no_network_connectivity_putting_tor_to_sleep_">No s\'ha trobat connectivitat a la xarxa. El Tor entra en suspensió...</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">La connectivitat de la xarxa és bona. S\'està despertant el Tor...</string>
   <string name="updating_settings_in_tor_service">S\'està actualitzant la configuració als serveis del Tor</string>
   <string name="pref_socks_title">SOCKS Tor</string>
   <string name="pref_socks_summary">Port que ofereix el servidor intermediari SOCKS al Tor (per defecte:  9050 or 0 per inhabilitar)</string>
@@ -134,14 +128,11 @@
   <string name="restart_orbot_to_use_this_bridge_">Reinicieu l\'Orbot per aplicar els canvis</string>
   <string name="menu_qr">Codis QR</string>
   <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Si la teva xarxa mòbil boqueja activament Tor, pots utilitzar un \'Servidor pont\' com a via alternativa. SELECCIONA una de les opcions per configurar i provar.</string>
-  <string name="bridge_mode">Mode pont</string>
   <string name="get_bridges_email">Correu-e</string>
-  <string name="get_bridges_web">Web</string>
   <string name="activate">Activa</string>
   <string name="apps_mode">Mode VPN</string>
     <string name="send_email">Envia correu-e</string>
-  <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Podeu obtenir un enllaç pont mitjançant el correu electrònic, el web o escanejant un codi QR. Trieu Correu-e o Web a sota per demanar una adreça.\n\nQuan tingueu un enllaç d\'aquest tipus, copieu-ho i enganxeu-ho a l\'apartat «Ponts» de la configuració de l\'Orbot i reinicieu.</string>
-    <string name="vpn_default_world">Global (auto)</string>
+  <string name="vpn_default_world">Global (auto)</string>
   <string name="hidden_services">Serveis ocults</string>
   <string name="title_activity_hidden_services">Serveis ocults</string>
   <string name="menu_hidden_services">Serveis ocults</string>
@@ -150,19 +141,13 @@
   <string name="onion_port">Port ceba</string>
   <string name="name">Nom</string>
   <string name="done">Fet!</string>
-  <string name="invalid_port">Port invàlid</string>
-  <string name="copy_address_to_clipboard">Copia adreça al portapapers</string>
+    <string name="copy_address_to_clipboard">Copia adreça al portapapers</string>
   <string name="show_auth_cookie">Mostrar galetes d\'autentificació</string>
   <string name="backup_service">Servei de còpia de seguretat</string>
   <string name="delete_service">Esborrar servei</string>
   <string name="backup_saved_at_external_storage">Còpia de seguretat desada a emmagatzematge extern</string>
   <string name="backup_restored">Còpia de seguretat restaurada</string>
-  <string name="filemanager_not_available">Gestor d\'arxius no disponible</string>
-  <string name="please_grant_permissions_for_external_storage">Si us plau concedeix permisos per emmagatzematge extern</string>
     <string name="restore_backup">Restaurar còpia de seguretat</string>
-  <string name="create_a_backup_first">Crea una còpia de seguretat primer</string>
-  <string name="name_can_t_be_empty">El nom no pot estar buit</string>
-  <string name="fields_can_t_be_empty">Els camps no poden estar buits</string>
   <string name="start_tor_again_for_finish_the_process">Torna a iniciar Tor per acabar el procés</string>
   <string name="confirm_service_deletion">Confirma la supressió del servei</string>
   <string name="click_again_for_backup">Feu clic novament per fer còpia de seguretat</string>
@@ -173,7 +158,6 @@
   <string name="please_restart_Orbot_to_enable_the_changes">Reinicieu l\'Orbot per aplicar els canvis</string>
   <string name="client_cookies">Client cookies</string>
   <string name="onion">.onion</string>
-  <string name="invalid_onion_address">L\'adreça .onion no és vàlida</string>
   <string name="cookie_from_QR">Llegir de QR</string>
   <string name="backup_cookie">Backup cookie</string>
   <string name="delete_cookie">Elimina la galeta</string>
@@ -186,8 +170,6 @@
   <string name="consider_enable_battery_optimizations">Penseu a habilitar les optimitzacions de la bateria</string>
   <string name="pref_isolate_dest">Aïllar adreces de destinació</string>
   <string name="pref_isolate_dest_summary">Utilitzeu un circuit diferent per a cada adreça de destinació</string>
-  <string name="no_transproxy_warning_short">ATENCIÓ: Transproxying ja no és compatible</string>
-  <string name="no_transproxy_warning">ATENCIÓ: no s\'admet Transparent proxying. Utilitzeu les aplicacions Orbot VPN.</string>
   <string name="pref_connection_padding">Farciment de connexió</string>
   <string name="pref_connection_padding_summary">Activeu sempre el farciment de connexió per defensar-vos d\'algunes formes d\'anàlisi de trànsit. Per defecte: automàtic</string>
   <string name="pref_reduced_connection_padding">Farciment de connexió reduit</string>
@@ -199,8 +181,7 @@
   <string name="bridge_direct_connect">Connecta directament a Tor (Lo millor)</string>
   <string name="bridge_community">Connecta mitjançant servidors de comunitat</string>
   <string name="bridge_cloud">Connecta mitjançant servidors núvol</string>
-  <string name="bridges_get_new">Demana nous ponts (Si tot lo altra falla)</string>
-  <string name="trouble_connecting">Problemes connectant?</string>
+    <string name="trouble_connecting">Problemes connectant?</string>
   <string name="full_device_vpn">Dispositiu completament VPN</string>
   <string name="vpn_disabled">VPN desactivat</string>
 </resources>

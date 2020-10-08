@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/hs_type"
-        android:background="#ff00"
-        android:title="@string/service_type"
-        app:actionViewClass="android.widget.Spinner"
-        app:showAsAction="always" />
-
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/menu_restore_backup"
         android:title="@string/restore_backup" />

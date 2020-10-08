@@ -6,8 +6,6 @@
   <string name="status_activated">متصل به شبکه تور</string>
   <string name="status_disabled">اربوت غیرفعال شده است.</string>
   <string name="status_shutting_down">TorService خاموش است</string>
-  <string name="tor_process_starting">شروع کلاینت تور...</string>
-  <string name="tor_process_complete">تمام.</string>
     <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
     <!--New Wizard Strings-->
@@ -23,9 +21,6 @@
   <string name="something_bad_happened">اتفاق بدی افتاد. وقایع ثبت شده را چک کنید</string>
     <string name="unable_to_read_hidden_service_name">ناتوان در خواندن نام سرویس مخفی</string>
   <string name="unable_to_start_tor">ناتوان در راه اندازی تور:</string>
-    <string name="no_internet_connection_tor">ارتباط اینترنتی وجود ندارد; تور آماده کار است... </string>
     <string name="newnym">شما به شناسه جدید تور منتقل شدید</string>
-    <string name="no_network_connectivity_putting_tor_to_sleep_">ارتباط شبکه ای وجود ندارد. تور به حالت خواب می رود</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">ارتباط شبکه ای خوب است. تور را بیدار نمایید...</string>
-  <string name="updating_settings_in_tor_service">به روز رسانی تنظیمات در سرویس Tor</string>
+    <string name="updating_settings_in_tor_service">به روز رسانی تنظیمات در سرویس Tor</string>
 </resources>

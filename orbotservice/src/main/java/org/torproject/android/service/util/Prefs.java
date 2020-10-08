@@ -1,8 +1,8 @@
-
 package org.torproject.android.service.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+
 import org.torproject.android.service.OrbotConstants;
 
 import java.util.Locale;
@@ -20,7 +20,7 @@ public class Prefs {
     private final static String PREF_OPEN_PROXY_ON_ALL_INTERFACES = "pref_open_proxy_on_all_interfaces";
     private final static String PREF_USE_VPN = "pref_vpn";
     private final static String PREF_EXIT_NODES = "pref_exit_nodes";
-    
+
     private static SharedPreferences prefs;
 
     public static void setContext(Context context) {
@@ -100,18 +100,16 @@ public class Prefs {
     public static void putStartOnBoot(boolean value) {
         putBoolean(PREF_START_ON_BOOT, value);
     }
-    
-    public static String getExitNodes ()
-    {
-    	return prefs.getString(PREF_EXIT_NODES, "");
-    }
-    
-    public static void setExitNodes (String exits)
-    {
-    	putString(PREF_EXIT_NODES,exits);
+
+    public static String getExitNodes() {
+        return prefs.getString(PREF_EXIT_NODES, "");
     }
 
-    public static SharedPreferences getSharedPrefs (Context context) {
-        return context.getSharedPreferences(OrbotConstants.PREF_TOR_SHARED_PREFS,0 | Context.MODE_MULTI_PROCESS);
+    public static void setExitNodes(String exits) {
+        putString(PREF_EXIT_NODES, exits);
+    }
+
+    public static SharedPreferences getSharedPrefs(Context context) {
+        return context.getSharedPreferences(OrbotConstants.PREF_TOR_SHARED_PREFS, Context.MODE_MULTI_PROCESS);
     }
 }

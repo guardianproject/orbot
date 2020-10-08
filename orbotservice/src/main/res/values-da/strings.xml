@@ -5,8 +5,6 @@
     <string name="status_starting_up">Orbot starter op ...</string>
   <string name="status_activated">Der er forbindelse til Tor-netværket</string>
   <string name="status_disabled">Orbot er slået fra</string>
-  <string name="tor_process_starting">Starter Tor klienten...</string>
-  <string name="tor_process_complete">udført.</string>
     <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
     <!--New Wizard Strings-->
@@ -22,5 +20,4 @@
   <string name="something_bad_happened">Noget slemt er sket. Check loggen</string>
     <string name="unable_to_read_hidden_service_name">ikke i stand til at læse navnet på den skjulte service</string>
   <string name="unable_to_start_tor">Kunne ikke starte Tor:</string>
-    <string name="no_internet_connection_tor">Ingen internetforbindelse; Tor er på standby...</string>
 </resources>

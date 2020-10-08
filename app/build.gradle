@@ -36,7 +36,7 @@ android {
     }
 
     compileSdkVersion 29
-    buildToolsVersion '29.0.2'
+    buildToolsVersion '29.0.3'
     defaultConfig {
         applicationId "org.torproject.android"
         versionName getVersionName()
@@ -77,7 +77,7 @@ android {
             minSdkVersion 16
             applicationId 'org.torproject.android'
             targetSdkVersion 29
-            versionCode 1631200100
+            versionCode 1631300100
             versionName getVersionName()
             archivesBaseName = "Orbot-$versionName"
         }
@@ -125,6 +125,8 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.0'
     implementation 'pl.bclogic:pulsator4droid:1.0.3'
     implementation 'com.github.apl-devs:appintro:v4.2.2'
+    implementation project(path: ':appcore')
+    implementation project(path: ':intentintegrator')
     androidTestImplementation "tools.fastlane:screengrab:1.2.0"
     implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
     implementation 'com.android.volley:volley:1.1.1'

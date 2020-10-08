@@ -6,9 +6,7 @@
   <string name="status_activated">Συνδέθηκε στο δίκτυο Tor</string>
   <string name="status_disabled">\"Το Orbot είναι Απενεργοποιημένο</string>
   <string name="status_shutting_down">Η υπηρεσία Tor τερματίζεται</string>
-  <string name="tor_process_starting">Εκκίνηση του πελάτη Tor...</string>
-  <string name="tor_process_complete">ολοκληρώθηκε...</string>
-    <string name="menu_settings">Ρυθμίσεις</string>
+  <string name="menu_settings">Ρυθμίσεις</string>
   <string name="menu_log">Καταγραφή</string>
     <string name="menu_start">Εκκίνηση</string>
   <string name="menu_stop">Διακοπή</string>
@@ -20,8 +18,7 @@
   <string name="menu_scan">Σάρωση BridgeQR</string>
   <string name="menu_share_bridge">Κοινή χρήση BridgeQR</string>
     <string name="btn_okay">Okay</string>
-  <string name="btn_cancel">Άκυρο</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Μερικές λεπτομέρειες για το Orbot</string>
   <string name="wizard_details_msg">Το Orbot είναι μια εφαρμογή ανοικτού λογισμικού που περιέχει τα Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent καί Polipo.  Διαθέτει τοπικούς πληρεξούσιους διακομιστές HTTP (8118) και SOCKS (9050) για το δίκτυο Tor. Σε συσκευές που έχουν διαμορφωθεί για ριζική χρήση, το Orbot μπορεί να μεταδίδει όλη την διαδυκτιακή κυκλοφορία μέσω Tor.</string>
     <!--END Welcome Wizard strings (DJH)-->
@@ -107,12 +104,9 @@
   <string name="pref_use_expanded_notifications">Εμφάνιση εκτεταμένης ειδοποίησης με τη χώρα εξόδου του Tor και τη διεύθυνση IP</string>
   <string name="pref_use_expanded_notifications_title">Επεκταμένες Ειδοποιήσεις</string>
     <string name="set_locale_title">Γλώσσα </string>
-    <string name="no_internet_connection_tor">Δεν υπάρχει σύνδεση στο διαδίκτυο. Ο Tor είναι σε αναμονή...</string>
-    <string name="pref_disable_network_title">Χωρίς Αυτόματη Αναστολή Δικτύου</string>
+  <string name="pref_disable_network_title">Χωρίς Αυτόματη Αναστολή Δικτύου</string>
   <string name="pref_disable_network_summary">Θέσε το Tor σε λειτουργία sleep όταν δεν υπάρχει διαθέσιμη σύνδεση Ιnternet</string>
   <string name="newnym">Έχετε αλλάξει επιτυχώς την ταυτότητα σας στο Tor! </string>
-    <string name="no_network_connectivity_putting_tor_to_sleep_">Δεν υπάρχει σύνδεση με δίκτυο. Ο Tor μπαίνει σε κατάσταση αναμονής...</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">Η σύνδεση δικτύου είναι καλή. Γίνεται αφύπνιση του Tor...</string>
   <string name="updating_settings_in_tor_service">ενημέρωση ρυθμίσεων στην υπηρεσία Tor</string>
   <string name="pref_socks_title">Tor SOCKS</string>
   <string name="pref_socks_summary">Θύρα που προσφέρει ο Tor στο SOCKS proxy του (προεπιλογή: 9050 ή 0 για απενεργοποίηση)</string>
@@ -134,14 +128,11 @@
   <string name="restart_orbot_to_use_this_bridge_">Παρακαλούμε επανεκκινήστε το Orbot για να ενεργοποιήσετε τις αλλαγές</string>
   <string name="menu_qr">Κώδικες QR</string>
   <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Αν το δίκτυο κινητής τηλεφωνίας σας μπλοκάρει ενεργά το Tor, μπορείτε να χρησιμοποιήσετε μια γέφυρα για να έχετε πρόσβαση στο δίκτυο. ΕΠΙΛΕΞΤΕ έναν από τους παραπάνω τύπους γέφυρας για να ενεργοποιήσετε τις γέφυρες.</string>
-  <string name="bridge_mode">Λειτουργία Γέφυρας</string>
   <string name="get_bridges_email">Email</string>
-  <string name="get_bridges_web">Web</string>
   <string name="activate">Ενεργοποίηση</string>
   <string name="apps_mode">Λειτουργία VPN</string>
     <string name="send_email">Στείλτε Email</string>
-  <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Μπορείτε να πάρετε μια διεύθυνση γέφυρας μέσω ηλεκτρονικού ταχυδρομείου, στον ιστό ή με τη σάρωση κώδικα QR γέφυρας. Επιλέξτε \'Email\' ή \'Web\' παρακάτω για να ζητήσετε μια διεύθυνση γέφυρας.\n\nΌταν έχετε μια διεύθυνση, αντιγράψτε το &amp; επικολλήστε το στην προτίμηση \"Bridges\" στη ρύθμιση του Orbot και επανεκκινήστε.</string>
-    <string name="vpn_default_world">Παγκόσμια (Auto)</string>
+  <string name="vpn_default_world">Παγκόσμια (Auto)</string>
   <string name="hidden_services">Αποκρυφες υπηρεσιες</string>
   <string name="title_activity_hidden_services">Αποκρυφες υπηρεσιες</string>
   <string name="menu_hidden_services">Αποκρυφες υπηρεσιες</string>
@@ -150,19 +141,13 @@
   <string name="onion_port">Θύρα Κρεμμυδιού</string>
   <string name="name">Όνομα</string>
   <string name="done">Έγινε!</string>
-  <string name="invalid_port">Άκυρη θύρα</string>
-  <string name="copy_address_to_clipboard">Αντιγραφή διέυθυνσης στο πρόχειρο</string>
+    <string name="copy_address_to_clipboard">Αντιγραφή διέυθυνσης στο πρόχειρο</string>
   <string name="show_auth_cookie">Εμφάνιση αναγνωριστικού cookie</string>
   <string name="backup_service">Υπηρεσία δημιουργίας αντιγράφου ασφαλείας</string>
   <string name="delete_service">Διαγραφή υπηρεσίας</string>
   <string name="backup_saved_at_external_storage">Το αντίγράφο ασφαλείας αποθηκεύθηκε σε εξωτερικό μέσο αποθήκευσης</string>
   <string name="backup_restored">Το αντίγραφο ασφαλείας επαναφέρθηκε</string>
-  <string name="filemanager_not_available">Ο διαχειριστής αρχείων δεν είναι διαθέσιμος.</string>
-  <string name="please_grant_permissions_for_external_storage">Παρακαλούμε να παραχωρήσετε δικαιώματα για εξωτερική αποθήκευση</string>
     <string name="restore_backup">Επαναφορά αντιγράφου ασφαλείας</string>
-  <string name="create_a_backup_first">Δημιουργήστε πρώτα ένα αντίγραφο ασφαλείας </string>
-  <string name="name_can_t_be_empty">Το όνομα δεν γίνεται να είναι κενό</string>
-  <string name="fields_can_t_be_empty">Τα πεδία δεν μπορεί να είναι κενά</string>
   <string name="start_tor_again_for_finish_the_process">Έναρξη ξανά τού Tor για τον τερματισμό της ενέργειας</string>
   <string name="confirm_service_deletion">Επιβεβαίωση διαγραφής υπηρεσίας</string>
   <string name="click_again_for_backup">Πατήστε ξανά για το αντίγραφο ασφαλείας</string>
@@ -173,7 +158,6 @@
   <string name="please_restart_Orbot_to_enable_the_changes">Παρακαλούμε επανεκκινήστε το Orbot για να ενεργοποιήσετε τις αλλαγές</string>
   <string name="client_cookies">Cookies πελατών</string>
   <string name="onion">.onion</string>
-  <string name="invalid_onion_address">Άκυρη .onion διεύθυνση</string>
   <string name="cookie_from_QR">Ανάγνωση από QR</string>
   <string name="backup_cookie">Cookie αντίγραφου ασφαλείας </string>
   <string name="delete_cookie">Αφαίρεση Cookie</string>
@@ -186,8 +170,6 @@
   <string name="consider_enable_battery_optimizations">Σκέψη ενεργοποίησης βελτιστοποιήσεων μπαταρίας</string>
   <string name="pref_isolate_dest">Μη έγκυρος προορισμός διευθύνσεων</string>
   <string name="pref_isolate_dest_summary">Χρησιμοποιήστε ένα διαφορετικό κύκλωμα για κάθε διεύθυνση προορισμού</string>
-  <string name="no_transproxy_warning_short">ΠΡΟΕΙΔΟΠΟΙΗΣΗ: Το Transproxying δεν υποστηρίζεται πλέον</string>
-  <string name="no_transproxy_warning">ΠΡΟΕΙΔΟΠΟΙΗΣΗ: Το Transparent proxying δεν υποστηρίζεται. Χρήση Orbot Εφαρμογών VPN αντ \' αυτού.</string>
   <string name="pref_connection_padding">Σύνδεση αναπλήρωσης</string>
   <string name="pref_connection_padding_summary">Πάντα δίνετε η δυνατότητα σύνδεσης padding για υπεράσπιση ενάντια σε ορισμένες μορφές ανάλυση της κυκλοφορίας. Προεπιλογή: auto</string>
   <string name="pref_reduced_connection_padding">Σύνδεση αναπλήρωσης</string>
@@ -199,8 +181,7 @@
   <string name="bridge_direct_connect">Απευθείας σύνδεση με το δίκτυο Tor (προεπιλογή)</string>
   <string name="bridge_community">Σύνδεση μέσω κοινοτικών διακομιστών</string>
   <string name="bridge_cloud">Σύνδεση μέσω cloud server</string>
-  <string name="bridges_get_new">Αίτημα νέων γεφυρών... (Αν όλα τα άλλα αποτύχουν)</string>
-  <string name="trouble_connecting">Πρόβλημα σύνδεσης;</string>
+    <string name="trouble_connecting">Πρόβλημα σύνδεσης;</string>
   <string name="full_device_vpn">Πλήρης Συσκευή VPN</string>
   <string name="vpn_disabled">Το VPN απενεργοποιήθηκε</string>
 </resources>

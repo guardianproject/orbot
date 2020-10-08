@@ -6,8 +6,6 @@
   <string name="status_activated">Yhdistetty Tor-verkkoon</string>
   <string name="status_disabled">Orbot on poistettu käytöstä</string>
   <string name="status_shutting_down">Tor-palvelua sammutetaan</string>
-  <string name="tor_process_starting">Käynnistetään Tor-ohjelmaa...</string>
-  <string name="tor_process_complete">valmis.</string>
   <string name="menu_settings">Asetukset</string>
   <string name="menu_log">Loki</string>
   <string name="menu_start">Aloita</string>
@@ -20,8 +18,7 @@
   <string name="menu_scan">Skannaa sillan QR-koodi</string>
   <string name="menu_share_bridge">Jaa sillan QR-koodi</string>
   <string name="btn_okay">Selvä</string>
-  <string name="btn_cancel">Peru</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Joitakin Orbotin lisätietoja</string>
   <!--END Welcome Wizard strings (DJH)-->
   <string name="pref_general_group">Yleiset</string>
@@ -102,12 +99,9 @@
   <string name="pref_use_expanded_notifications">Näytä laajennettu ilmoitus (Torin ulostulon maa ja IP)</string>
   <string name="pref_use_expanded_notifications_title">Laajennetut ilmoitukset</string>
   <string name="set_locale_title">Kieli</string>
-  <string name="no_internet_connection_tor">Ei internet-yhteyttä; Tor on valmiustilassa...</string>
   <string name="pref_disable_network_title">Ei verkon automaattilepotilaa</string>
   <string name="pref_disable_network_summary">Laita Tor nukkumaan, kun internet-yhteyttä ei ole saatavilla</string>
   <string name="newnym">Vaihdoit Tor-identiteettisi uuteen!</string>
-  <string name="no_network_connectivity_putting_tor_to_sleep_">Ei verkkoyhteyttä. Tor siirtyy valmiustilaan...</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">Verkkoyhteys toimii. Herätetään Tor...</string>
   <string name="updating_settings_in_tor_service">päivitetään Tor-palvelun asetuksia</string>
   <string name="pref_socks_title">Tor SOCKS</string>
   <string name="pref_socks_summary">Portti, jossa Torin SOCKS-välityspalvelin on (oletus: 9050, 0 = poista käytöstä)</string>
@@ -128,13 +122,10 @@
   <string name="bridges_updated">Sillat päivitetty</string>
   <string name="restart_orbot_to_use_this_bridge_">Käynnistä Orbot uudelleen ottaaksesi muutokset käyttöön</string>
   <string name="menu_qr">QR-koodit</string>
-  <string name="bridge_mode">Siltatila</string>
   <string name="get_bridges_email">Sähköposti</string>
-  <string name="get_bridges_web">Verkkosivu</string>
-  <string name="activate">Ota käyttöön</string>
+    <string name="activate">Ota käyttöön</string>
   <string name="send_email">Lähetä sähköpostia</string>
-  <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Voit saada sillan osoitteen sähköpostin kautta, verkkosivulta tai skannaamalla sillan QR-koodin. Valitse \'Sähköposti\' tai \'Verkkosivu\' alta pyytääksesi sillan osoitetta.\n\nKun sinulla on osoite, kopioi &amp; liitä se \"Sillat\" -kohtaan Orbotin asetuksissa ja käynnistä uudelleen.</string>
-    <string name="hidden_services">Piilopalvelut</string>
+  <string name="hidden_services">Piilopalvelut</string>
   <string name="title_activity_hidden_services">Piilopalvelut</string>
   <string name="menu_hidden_services">Piilopalvelut</string>
   <string name="save">Tallenna</string>

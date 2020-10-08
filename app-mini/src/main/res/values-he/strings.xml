@@ -6,9 +6,7 @@
   <string name="status_activated">מחובר לרשת Tor</string>
   <string name="status_disabled">Orbot כבוי</string>
   <string name="status_shutting_down">שירות Tor מתכבה</string>
-  <string name="tor_process_starting">מתחיל לקוח Tor...</string>
-  <string name="tor_process_complete">הושלם.</string>
-    <string name="menu_settings">הגדרות</string>
+  <string name="menu_settings">הגדרות</string>
   <string name="menu_log">יומן</string>
     <string name="menu_start">התחל</string>
   <string name="menu_stop">עצור</string>
@@ -20,8 +18,7 @@
   <string name="menu_scan">סרוק BridgeQR</string>
   <string name="menu_share_bridge">שתף BridgeQR</string>
     <string name="btn_okay">אישור</string>
-  <string name="btn_cancel">ביטול</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">פרטים מסוימים של Orbot </string>
   <string name="wizard_details_msg">Orbot הוא יישום מקור־פתוח אשר מכיל את Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent ו-Polipo. הוא מספק יפוי־כוח מקומי של HTTP (פתחה 8118) ויפוי־כוח SOCKS (פתחה 9050) לתוך רשת Tor. ל-Orbot יש גם את היכולת, במכשירים עם הרשאת שורש, לשלוח את כל תעבורת האינטרנט באמצעות Tor.</string>
     <!--END Welcome Wizard strings (DJH)-->
@@ -107,12 +104,9 @@
   <string name="pref_use_expanded_notifications">הראה התראה מורחבת עם מדינת יציאה ו-IP יציאה של Tor</string>
   <string name="pref_use_expanded_notifications_title">התראות מורחבות</string>
     <string name="set_locale_title">שפה</string>
-    <string name="no_internet_connection_tor">אין חיבור לאינטרנט; תור ממתין...</string>
-    <string name="pref_disable_network_title">אין שינה אוטומטית של רשת</string>
+  <string name="pref_disable_network_title">אין שינה אוטומטית של רשת</string>
   <string name="pref_disable_network_summary">כבה את Tor כאשר אין חיבור לאינטרנט</string>
   <string name="newnym">החלפת אל זהות Tor חדשה!</string>
-    <string name="no_network_connectivity_putting_tor_to_sleep_">אין חיבור לרשת. מכבה את Tor....</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">החיבור עובד טוב. מעיר את Tor...</string>
   <string name="updating_settings_in_tor_service">מעדכן הגדרות Tor במכשיר</string>
   <string name="pref_socks_title">Tor SOCKS</string>
   <string name="pref_socks_summary">פתחה אשר Tor מציע את יפוי־הכוח SOCKS שלו עליה (ברירת מחדל: 9050 או 0 כדי להשבית)</string>
@@ -134,14 +128,11 @@
   <string name="restart_orbot_to_use_this_bridge_">אנא הפעל מחדש את Orbot כדי לאפשר את השינויים</string>
   <string name="menu_qr">קודי QR</string>
   <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">אם פעילות הרשת הניידת שלך חוסמת את Tor, אתה יכול להשתמש ב\'שרת גשר\' כדרך חלופית להיכנס. בחר אחת מאפשרויות כדי להגדיר ולבחון...</string>
-  <string name="bridge_mode">מצב גשר</string>
   <string name="get_bridges_email">דוא\"ל</string>
-  <string name="get_bridges_web">אתר</string>
   <string name="activate">הפעל</string>
   <string name="apps_mode">מצב VPN</string>
     <string name="send_email">שלח דוא\"ל</string>
-  <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">אתה יכול להשיג כתובת גשר באמצעות דוא\"ל, הרשת או ע\"י סריקת קוד QR של גשר. בחר \'דוא\"ל\' או \'רשת\' למטה כדי לבקש כתובת גשר.\n\nברגע שיש לך כתובת, העתק והדבק אותה לתוך ההעדפה \"גשרים\" בהגדרות Orbot והפעל מחדש.</string>
-    <string name="vpn_default_world">עולמי (אוטומטי)</string>
+  <string name="vpn_default_world">עולמי (אוטומטי)</string>
   <string name="hidden_services">שירותים נסתרים</string>
   <string name="title_activity_hidden_services">שירותים נסתרים</string>
   <string name="menu_hidden_services">שירותים נסתרים</string>
@@ -150,19 +141,13 @@
   <string name="onion_port">פתחת בצל</string>
   <string name="name">שם</string>
   <string name="done">הסתיים!</string>
-  <string name="invalid_port">פתחה לא תקפה</string>
-  <string name="copy_address_to_clipboard">העתק כתובת ללוח עריכה</string>
+    <string name="copy_address_to_clipboard">העתק כתובת ללוח עריכה</string>
   <string name="show_auth_cookie">הראה עוגיית אימות</string>
   <string name="backup_service">גבה שירות</string>
   <string name="delete_service">מחק שירות</string>
   <string name="backup_saved_at_external_storage">גיבוי נשמר באחסון חיצוני</string>
   <string name="backup_restored">גיבוי שוחזר</string>
-  <string name="filemanager_not_available">מנהל קבצים אינו זמין</string>
-  <string name="please_grant_permissions_for_external_storage">אנא הענק הרשאות עבור אחסון חיצוני</string>
     <string name="restore_backup">שחזר גיבוי</string>
-  <string name="create_a_backup_first">צור גיבוי תחילה</string>
-  <string name="name_can_t_be_empty">שם אינו יכול להיות ריק</string>
-  <string name="fields_can_t_be_empty">שדות אינם יכולים להיות ריקים</string>
   <string name="start_tor_again_for_finish_the_process">הפעל את Tor שוב כדי לסיים את התהליך</string>
   <string name="confirm_service_deletion">אשר מחיקת שירות</string>
   <string name="click_again_for_backup">לחץ שוב לגיבוי</string>
@@ -173,7 +158,6 @@
   <string name="please_restart_Orbot_to_enable_the_changes">אנא הפעל מחדש את Orbot כדי לאפשר את השינויים</string>
   <string name="client_cookies">עוגיות לקוח</string>
   <string name="onion">.onion</string>
-  <string name="invalid_onion_address">כתובת .onion לא תקפה</string>
   <string name="cookie_from_QR">קרא מתוך QR</string>
   <string name="backup_cookie">גבה עוגייה</string>
   <string name="delete_cookie">מחק עוגייה</string>
@@ -186,8 +170,6 @@
   <string name="consider_enable_battery_optimizations">שקול לאפשר מיטובי סוללה</string>
   <string name="pref_isolate_dest">בודד כתובות יעד</string>
   <string name="pref_isolate_dest_summary">השתמש במעגל שונה לכל כתובת יעד</string>
-  <string name="no_transproxy_warning_short">אזהרה: יפוי־כוח שקוף אינו נתמך יותר</string>
-  <string name="no_transproxy_warning">אזהרה: יפוי־כוח שקוף אינו נתמך. השתמש ב-VPN של Orbot במקום.</string>
   <string name="pref_connection_padding">ריפוד חיבור</string>
   <string name="pref_connection_padding_summary">אפשר תמיד ריפוד חיבור כדי להגן מפני צורות מסוימות של ניתוח תעבורה. ברירת מחדל: אוטומטי</string>
   <string name="pref_reduced_connection_padding">הופחת ריפוד חיבור</string>
@@ -199,8 +181,7 @@
   <string name="bridge_direct_connect">התחבר ישירות אל Tor (הכי טוב)</string>
   <string name="bridge_community">התחבר באמצעות שרתי קהילה</string>
   <string name="bridge_cloud">התחבר באמצעות שרתי ענן</string>
-  <string name="bridges_get_new">בקש גשרים חדשים... (אם כל השאר נכשל)</string>
-  <string name="trouble_connecting">בעית התחברות?</string>
+    <string name="trouble_connecting">בעית התחברות?</string>
   <string name="full_device_vpn">VPN מכשיר מלא</string>
   <string name="vpn_disabled">VPN מושבת</string>
 </resources>

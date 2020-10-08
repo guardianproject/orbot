@@ -5,8 +5,6 @@
   <string name="status_activated">Падлучаны да сеткі Tor</string>
   <string name="status_disabled">Orbot адключаны</string>
   <string name="status_shutting_down">Служба Tor выключаецца</string>
-  <string name="tor_process_starting">Запускаецца кліент Tor...</string>
-  <string name="tor_process_complete">завершана.</string>
   <string name="menu_settings">Налады</string>
   <string name="menu_log">Журнал</string>
   <string name="menu_start">Пуск</string>
@@ -19,8 +17,7 @@
   <string name="menu_scan">Сканаваць QR-код моста</string>
   <string name="menu_share_bridge">Апублікаваць QR-код моста</string>
   <string name="btn_okay">OK</string>
-  <string name="btn_cancel">Скасаваць</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Некаторыя звесткі пра праграму Orbot</string>
   <string name="wizard_details_msg">Orbot — гэта праграма з адкрытым зыходным кодам, якая ўтрымоўвае Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent і Polipo. Яно прапануе лакальны HTTP- (8118) і SOCKS-проксі (9050) у сетку Tor. Orbot таксама дазваляе на прыладах з правамі root перасылаць увесь інтэрнэт-трафік праз Tor.</string>
   <!--END Welcome Wizard strings (DJH)-->
@@ -106,12 +103,9 @@
   <string name="pref_use_expanded_notifications">Паказаць пашыранае апавяшчэнне Tor з краінай выхаду і IP</string>
   <string name="pref_use_expanded_notifications_title">Пашыраныя апавяшчэнні</string>
   <string name="set_locale_title">Мова</string>
-  <string name="no_internet_connection_tor">Адсутнічае падключэнне да інтэрнэту, Tor знаходзіцца ў рэжыме чакання…</string>
   <string name="pref_disable_network_title">Аўтазасынанне без сеткі</string>
   <string name="pref_disable_network_summary">Пераводзіць Tor у спячы рэжым пры немені інтэрнэту</string>
   <string name="newnym">Вы перамкнуліся на новы ідэнтыфікатар Tor!</string>
-    <string name="no_network_connectivity_putting_tor_to_sleep_">Няма падключэння да сеткі. Tor пераходзіць у рэжым сну...</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">Падключэнне да сеткі ўсталявана. Tor прачынаецца...</string>
   <string name="updating_settings_in_tor_service">абнаўленне налад у сэрвісе Tor</string>
   <string name="pref_socks_title">Tor SOCKS</string>
   <string name="pref_socks_summary">Порт, на якім Tor прапануе свой SOCKS-проксі (па змаўчанні: 9050, 0 - для адключэння)</string>
@@ -133,14 +127,11 @@
   <string name="restart_orbot_to_use_this_bridge_">Калі ласка, перазапусціце Orbot для ўступу змены ў сілу</string>
   <string name="menu_qr">QR-коды</string>
   <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Калі ваша мабільная сетка актыўна блакуе Tor, вы можаце выкарыстоўваць масты Tor для доступу да сеткі. Абярыце адзін з варыянтаў для налады і тэставання:</string>
-  <string name="bridge_mode">Рэжым моста</string>
   <string name="get_bridges_email">Эл. пошта</string>
-  <string name="get_bridges_web">Сайт</string>
   <string name="activate">Актывацыя</string>
   <string name="apps_mode">VPN-рэжым</string>
   <string name="send_email">Адправіць ліст</string>
-  <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Вы можаце атрымаць адрас моста па электроннай пошце, з сайта ці шляхам сканавання QR-кода. Абярыце \"Эл. пошта\" ці \"Сайт\" ніжэй, каб запытаць адрас моста.\n\nАтрыманы адрас скапіюйце і ўстаўце яго ў падзеле налад Orbot \"Масты\", пасля чаго перазапусціце дадатак.</string>
-    <string name="vpn_default_world">Свет (аўта)</string>
+  <string name="vpn_default_world">Свет (аўта)</string>
   <string name="hidden_services">Схаваныя службы</string>
   <string name="title_activity_hidden_services">Схаваныя службы</string>
   <string name="menu_hidden_services">Схаваныя службы</string>
@@ -149,19 +140,13 @@
   <string name="onion_port">Onion-порт</string>
   <string name="name">Імя</string>
   <string name="done">Гатова!</string>
-  <string name="invalid_port">Некарэктны порт</string>
-  <string name="copy_address_to_clipboard">Скапіяваць адрас у буфер памену</string>
+    <string name="copy_address_to_clipboard">Скапіяваць адрас у буфер памену</string>
   <string name="show_auth_cookie">Паказаць аўтарызуючыя cookie</string>
   <string name="backup_service">Рэзерваваць службу</string>
   <string name="delete_service">Выдаліць службу</string>
   <string name="backup_saved_at_external_storage">Рэзервовая копія захавана на вонкавым сховішчы</string>
   <string name="backup_restored">Адноўлена з рэзервовай копіі</string>
-  <string name="filemanager_not_available">Файлавы менеджар недаступны</string>
-  <string name="please_grant_permissions_for_external_storage">Дайце дазвол для доступу да вонкавага сховішча</string>
-  <string name="restore_backup">Аднавіць з копіі</string>
-  <string name="create_a_backup_first">Спачатку стварыце рэзервовую копію</string>
-  <string name="name_can_t_be_empty">Імя не можа быць пустым</string>
-  <string name="fields_can_t_be_empty">Палі не могуць быць пустымі</string>
+    <string name="restore_backup">Аднавіць з копіі</string>
   <string name="start_tor_again_for_finish_the_process">Запусціце Tor ізноў для завяршэння працэсу</string>
   <string name="confirm_service_deletion">Пацверджанне выдалення службы</string>
   <string name="click_again_for_backup">Націсніце яшчэ раз для рэзервавання</string>
@@ -172,7 +157,6 @@
   <string name="please_restart_Orbot_to_enable_the_changes">Калі ласка, перазапусціце Orbot для ўступу змены ў сілу</string>
   <string name="client_cookies">Cookies кліента</string>
   <string name="onion">.onion</string>
-  <string name="invalid_onion_address">Несапраўдны .onion-адрас</string>
   <string name="cookie_from_QR">Прачытаць з QR-кода</string>
   <string name="backup_cookie">Рэзерваваць cookie</string>
   <string name="delete_cookie">Выдаліць cookies</string>
@@ -185,8 +169,6 @@
   <string name="consider_enable_battery_optimizations">Разгледзьце магчымасць уключэння аптымізацыі батарэі</string>
   <string name="pref_isolate_dest">Ізаляваць адрасы прызначэння</string>
   <string name="pref_isolate_dest_summary">Ужываць розныя ланцугі для кожнага адраса прызначэння</string>
-  <string name="no_transproxy_warning_short">ПАПЯРЭДЖАННЕ: празрысты проксі больш не падтрымліваецца</string>
-  <string name="no_transproxy_warning">ПАПЯРЭДЖАННЕ: празрысты проксі больш не падтрымліваецца. Замест гэтага выкарыстоўвайце VPN-рэжым Orbot.</string>
   <string name="pref_connection_padding">Пракладка злучэння</string>
   <string name="pref_connection_padding_summary">Заўсёды ўключае пракладку злучэння для абароны ад некаторых формаў аналізу трафіка. Звычайна: аўта</string>
   <string name="pref_reduced_connection_padding">Сокращённая прокладка соединения</string>
@@ -198,8 +180,7 @@
   <string name="bridge_direct_connect">Падключэнне непасрэдна да Tor (найлепей)</string>
   <string name="bridge_community">Падключэнне праз серверы супольнасці</string>
   <string name="bridge_cloud">Падключэнне праз воблачныя серверы</string>
-  <string name="bridges_get_new">Запытаць новыя масты… (калі ўсе іншыя не атрымалася)</string>
-  <string name="trouble_connecting">Праблема з падключэннем?</string>
+    <string name="trouble_connecting">Праблема з падключэннем?</string>
   <string name="full_device_vpn">VPN для ўсёй прылады</string>
   <string name="vpn_disabled">VPN адключаны</string>
 </resources>

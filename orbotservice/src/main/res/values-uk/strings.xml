@@ -5,8 +5,6 @@
     <string name="status_starting_up">Запуск Orbot...</string>
   <string name="status_activated">Під\'єднаний до мережі Tor</string>
   <string name="status_disabled">«Orbot» від\'єднаний</string>
-  <string name="tor_process_starting">Запускається клієнт Tor...</string>
-  <string name="tor_process_complete">завершено.</string>
     <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
     <!--New Wizard Strings-->
@@ -22,9 +20,6 @@
   <string name="something_bad_happened">Виникла якась помилка. Перевірте лог</string>
     <string name="unable_to_read_hidden_service_name">неможливо прочитати ім\'я прихованої служби</string>
   <string name="unable_to_start_tor">Неможливо запустити Tor:</string>
-    <string name="no_internet_connection_tor">Немає інтернет-з\'єднання; Tor в режимі очікування…</string>
     <string name="newnym">Ви перемкнулись на новий ідентифікатор Tor!</string>
-    <string name="no_network_connectivity_putting_tor_to_sleep_">Немає доступу до мережі інтернет. Tor переходить в режим сну…</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">Доступ до мережі хороший. Tor виходить з режиму сну…</string>
-  <string name="updating_settings_in_tor_service">оновлення налаштувань у сервісі Tor</string>
+    <string name="updating_settings_in_tor_service">оновлення налаштувань у сервісі Tor</string>
 </resources>

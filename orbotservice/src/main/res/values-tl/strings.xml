@@ -4,8 +4,6 @@
     <string name="status_starting_up">Nagsisimula na ang Orbot…</string>
   <string name="status_activated">Konektado sa Tor network</string>
   <string name="status_disabled">Naka-deactivate ang Orbot</string>
-  <string name="tor_process_starting">Binubuksan ang Tor client…</string>
-  <string name="tor_process_complete">kumpleto na.</string>
     <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
     <!--New Wizard Strings-->
@@ -21,6 +19,5 @@
   <string name="something_bad_happened">May nangyaring masama. Tingnan ang log</string>
     <string name="unable_to_read_hidden_service_name">hindi mabasa ang pangalan ng tagong serbisyo</string>
   <string name="unable_to_start_tor">Hindi masimulan ang Tor:</string>
-    <string name="no_internet_connection_tor">Walang connection sa internet; Ang Tor ay naka-standby mode...</string>
     <string name="newnym">Ikaw ay nagpalit ng bagong pagkakakilanlan sa Tor!</string>
 </resources>

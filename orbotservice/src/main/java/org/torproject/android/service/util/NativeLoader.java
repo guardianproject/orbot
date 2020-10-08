@@ -1,4 +1,3 @@
-
 package org.torproject.android.service.util;
 
 import android.content.Context;
@@ -25,19 +24,19 @@ public class NativeLoader {
             zipFile = new ZipFile(context.getApplicationInfo().sourceDir);
 
             /**
-            Enumeration<? extends ZipEntry> entries = zipFile.entries();
-            while (entries.hasMoreElements())
-            {
-                ZipEntry entry = entries.nextElement();
-                Log.d("Zip","entry: " + entry.getName());
-            }
-            **/
+             Enumeration<? extends ZipEntry> entries = zipFile.entries();
+             while (entries.hasMoreElements())
+             {
+             ZipEntry entry = entries.nextElement();
+             Log.d("Zip","entry: " + entry.getName());
+             }
+             **/
 
             ZipEntry entry = zipFile.getEntry("lib/" + folder + "/" + libName + ".so");
             if (entry == null) {
                 entry = zipFile.getEntry("lib/" + folder + "/" + libName);
                 if (entry == null)
-                throw new Exception("Unable to find file in apk:" + "lib/" + folder + "/" + libName);
+                    throw new Exception("Unable to find file in apk:" + "lib/" + folder + "/" + libName);
             }
             stream = zipFile.getInputStream(entry);
 

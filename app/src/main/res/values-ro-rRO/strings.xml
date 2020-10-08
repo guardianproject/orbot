@@ -4,8 +4,7 @@
     <string name="menu_about">Despre</string>
     <string name="button_about">Despre</string>
   <string name="menu_exit">Ieşire</string>
-    <string name="btn_cancel">Revocare</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
   <string name="pref_general_group">General</string>
   <!--New Wizard Strings-->

@@ -4,8 +4,6 @@
     <string name="status_starting_up">Orbot porneste...</string>
   <string name="status_activated">Conectat la reteaua Tor</string>
   <string name="status_disabled">Orbot este dezactivat</string>
-  <string name="tor_process_starting">Porneste clientul Tor...</string>
-  <string name="tor_process_complete">terminat.</string>
     <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
     <!--New Wizard Strings-->
@@ -21,9 +19,6 @@
   <string name="something_bad_happened">Ceva rau s-a intamplat. Verifica log-ul</string>
     <string name="unable_to_read_hidden_service_name">nu am putut citi numele serviciului ascuns</string>
   <string name="unable_to_start_tor">Nu am reusit sa pornesc Tor:</string>
-    <string name="no_internet_connection_tor">Nu este conexiune la internet; Tor este în așteptare...</string>
     <string name="newnym">Ați comutat la o nouă identitate Tor!</string>
-    <string name="no_network_connectivity_putting_tor_to_sleep_">Nu este conexiune la rețea. Se pune Tor în adormire...</string>
-  <string name="network_connectivity_is_good_waking_tor_up_">Conexiunea la rețea este bună. Se trezește Tor...</string>
-  <string name="updating_settings_in_tor_service">se actualizează configurările în serviciul Tor</string>
+    <string name="updating_settings_in_tor_service">se actualizează configurările în serviciul Tor</string>
 </resources>

@@ -7,8 +7,7 @@
   <string name="main_layout_download">ဒေါင်းလုဒ်</string>
     <string name="button_about">အကြောင်း</string>
   <string name="menu_exit">ထွက်ရန်</string>
-    <string name="btn_cancel">ဖျက်သိမ်းရန်</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
   <string name="pref_general_group">ယေဘုယျ</string>
   <!--New Wizard Strings-->
