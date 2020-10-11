@@ -205,7 +205,7 @@
     <string name="no_transproxy_warning_short">警告：透明代理已不受支持</string>
     <string name="pref_isolate_dest">隔离目标地址</string>
     <string name="invalid_onion_address">无效的 .onion 地址</string>
-    <string name="auth_cookie">Auth cookie</string>
+    <string name="auth_cookie">认证 cookie</string>
     <string name="create_a_backup_first">先建立一个备份</string>
     <string name="show_auth_cookie">显示 auth cookie</string>
     <string name="onion_port">洋葱端口</string>
