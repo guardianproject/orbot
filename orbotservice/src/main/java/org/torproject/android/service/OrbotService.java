@@ -86,7 +86,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
     public final static String BINARY_TOR_VERSION = org.torproject.android.binary.TorServiceConstants.BINARY_TOR_VERSION;
     private final static int CONTROL_SOCKET_TIMEOUT = 60000;
-    private static final int NOTIFY_ID = 1;
+    static final int NOTIFY_ID = 1;
     private static final int ERROR_NOTIFY_ID = 3;
     private static final int HS_NOTIFY_ID = 4;
     private static final Uri HS_CONTENT_URI = Uri.parse("content://org.torproject.android.ui.hiddenservices.providers/hs");
@@ -1162,7 +1162,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                         int iconId = R.drawable.ic_stat_tor;
 
                         if (conn != null && mCurrentStatus == STATUS_ON && Prefs.expandedNotifications())
-                            showToolbarNotification(getString(R.string.newnym), getNotifyId(), iconId);
+                            showToolbarNotification(getString(R.string.newnym), NOTIFY_ID, iconId);
 
                         conn.signal(TorControlCommands.SIGNAL_NEWNYM);
 
@@ -1660,9 +1660,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
     }
 
-    public int getNotifyId() {
-        return NOTIFY_ID;
-    }
     private void loadBridgeDefaults() {
         if (alBridges == null) {
             alBridges = new ArrayList<>();
