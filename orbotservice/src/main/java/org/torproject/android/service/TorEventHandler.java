@@ -99,7 +99,7 @@ public class TorEventHandler implements EventHandler, TorServiceConstants {
                     " / " +
                     formatCount(written) +
                     " \u2191";
-            mService.showToolbarNotification(sb, mService.getNotifyId(), iconId);
+            mService.showToolbarNotification(sb, OrbotService.NOTIFY_ID, iconId);
 
             mTotalTrafficWritten += written;
             mTotalTrafficRead += read;

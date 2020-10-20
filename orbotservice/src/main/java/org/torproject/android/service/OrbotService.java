@@ -40,6 +40,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import com.jaredrummler.android.shell.CommandResult;
 
 import net.freehaven.tor.control.ConfigEntry;
+import net.freehaven.tor.control.TorControlCommands;
 import net.freehaven.tor.control.TorControlConnection;
 
 import org.apache.commons.io.FileUtils;
@@ -85,7 +86,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
     public final static String BINARY_TOR_VERSION = org.torproject.android.binary.TorServiceConstants.BINARY_TOR_VERSION;
     private final static int CONTROL_SOCKET_TIMEOUT = 60000;
-    private static final int NOTIFY_ID = 1;
+    static final int NOTIFY_ID = 1;
     private static final int ERROR_NOTIFY_ID = 3;
     private static final int HS_NOTIFY_ID = 4;
     private static final Uri HS_CONTENT_URI = Uri.parse("content://org.torproject.android.ui.hiddenservices.providers/hs");
@@ -114,15 +115,13 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     private ArrayList<String> configBuffer = null;
     private ArrayList<String> resetBuffer = null;
     private File fileControlPort, filePid;
-    private boolean mConnectivity = true;
     private NotificationManager mNotificationManager = null;
     private NotificationCompat.Builder mNotifyBuilder;
-    private Notification mNotification;
     private boolean mNotificationShowing = false;
-    private ExecutorService mExecutor = Executors.newFixedThreadPool(3);
+    private final ExecutorService mExecutor = Executors.newFixedThreadPool(3);
     private File mHSBasePath;
     private ArrayList<Bridge> alBridges = null;
-    private String[] hsProjection = new String[]{
+    private final String[] hsProjection = new String[]{
             HiddenService._ID,
             HiddenService.NAME,
             HiddenService.DOMAIN,
@@ -131,7 +130,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             HiddenService.AUTH_COOKIE_VALUE,
             HiddenService.ONION_PORT,
             HiddenService.ENABLED};
-    private String[] cookieProjection = new String[]{
+    private final String[] cookieProjection = new String[]{
             ClientCookie._ID,
             ClientCookie.DOMAIN,
             ClientCookie.AUTH_COOKIE_VALUE,
@@ -170,6 +169,10 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
     }
 
+    private void showConnectedToTorNetworkNotification() {
+        showToolbarNotification(getString(R.string.status_activated), NOTIFY_ID, R.drawable.ic_stat_tor);
+    }
+
     private boolean findExistingTorDaemon() {
         try {
             mLastProcessId = initControlConnection(3, true);
@@ -177,8 +180,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             if (mLastProcessId != -1 && conn != null) {
                 sendCallbackLogMessage(getString(R.string.found_existing_tor_process));
                 sendCallbackStatus(STATUS_ON);
-                showToolbarNotification(getString(R.string.status_activated), NOTIFY_ID, R.drawable.ic_stat_tor);
-
+                showConnectedToTorNetworkNotification();
                 return true;
             }
         } catch (Exception e) {
@@ -223,64 +225,45 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         mNotificationManager.createNotificationChannel(mChannel);
     }
 
-    @SuppressLint("NewApi")
+    @SuppressLint({"NewApi", "RestrictedApi"})
     protected void showToolbarNotification(String notifyMsg, int notifyType, int icon) {
-
-        //Reusable code.
         PackageManager pm = getPackageManager();
         Intent intent = pm.getLaunchIntentForPackage(getPackageName());
         PendingIntent pendIntent = PendingIntent.getActivity(OrbotService.this, 0, intent, 0);
 
         if (mNotifyBuilder == null) {
-
             mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            mNotifyBuilder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
+                    .setContentTitle(getString(R.string.app_name))
+                    .setSmallIcon(R.drawable.ic_stat_tor)
+                    .setContentIntent(pendIntent)
+                    .setCategory(Notification.CATEGORY_SERVICE)
+                    .setOngoing(Prefs.persistNotifications());
+        }
 
-            if (mNotifyBuilder == null) {
-                mNotifyBuilder = new NotificationCompat.Builder(this)
-                        .setContentTitle(getString(R.string.app_name))
-                        .setSmallIcon(R.drawable.ic_stat_tor);
-
-                mNotifyBuilder.setContentIntent(pendIntent);
-
-            }
-
-
-            mNotifyBuilder.setCategory(Notification.CATEGORY_SERVICE);
-
-            mNotifyBuilder.setChannelId(NOTIFICATION_CHANNEL_ID);
-
-
-            Intent intentRefresh = new Intent();
-            intentRefresh.setAction(CMD_NEWNYM);
+        mNotifyBuilder.mActions.clear(); // clear out NEWNYM action
+        if (conn != null) { // only add new identity action when there is a connection
+            Intent intentRefresh = new Intent(CMD_NEWNYM);
             PendingIntent pendingIntentNewNym = PendingIntent.getBroadcast(this, 0, intentRefresh, PendingIntent.FLAG_UPDATE_CURRENT);
-            mNotifyBuilder.addAction(R.drawable.ic_refresh_white_24dp, getString(R.string.menu_new_identity),
-                    pendingIntentNewNym);
-
-            mNotifyBuilder.setOngoing(Prefs.persistNotifications());
-
+            mNotifyBuilder.addAction(R.drawable.ic_refresh_white_24dp, getString(R.string.menu_new_identity), pendingIntentNewNym);
         }
 
-        mNotifyBuilder.setContentText(notifyMsg);
-        mNotifyBuilder.setSmallIcon(icon);
-
-        if (notifyType != NOTIFY_ID) {
-            mNotifyBuilder.setTicker(notifyMsg);
-        } else {
-            mNotifyBuilder.setTicker(null);
-        }
+        mNotifyBuilder.setContentText(notifyMsg)
+                .setSmallIcon(icon)
+                .setTicker(notifyType != NOTIFY_ID ? notifyMsg : null);
 
         if (!Prefs.persistNotifications())
             mNotifyBuilder.setPriority(Notification.PRIORITY_LOW);
 
-        mNotification = mNotifyBuilder.build();
+        Notification notification = mNotifyBuilder.build();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            startForeground(NOTIFY_ID, mNotification);
+            startForeground(NOTIFY_ID, notification);
         } else if (Prefs.persistNotifications() && (!mNotificationShowing)) {
-            startForeground(NOTIFY_ID, mNotification);
+            startForeground(NOTIFY_ID, notification);
             logNotice("Set background service to FOREGROUND");
         } else {
-            mNotificationManager.notify(NOTIFY_ID, mNotification);
+            mNotificationManager.notify(NOTIFY_ID, notification);
         }
 
         mNotificationShowing = true;
@@ -364,8 +347,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
             conn = null;
         }
-
-
     }
 
     private void requestTorRereadConfig() {
@@ -728,7 +709,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 sendCallbackLogMessage("Ignoring start request, currently " + mCurrentStatus);
                 return;
             } else if (mCurrentStatus == STATUS_ON && (torProcId != null)) {
-
+                showConnectedToTorNetworkNotification();
                 sendCallbackLogMessage("Ignoring start request, already started.");
                 // setTorNetworkEnabled (true);
 
@@ -1178,19 +1159,15 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             new Thread() {
                 public void run() {
                     try {
-
-
                         int iconId = R.drawable.ic_stat_tor;
 
-                        if (hasConnectivity() && Prefs.expandedNotifications())
-                            showToolbarNotification(getString(R.string.newnym), getNotifyId(), iconId);
+                        if (conn != null && mCurrentStatus == STATUS_ON && Prefs.expandedNotifications())
+                            showToolbarNotification(getString(R.string.newnym), NOTIFY_ID, iconId);
 
-                        conn.signal("NEWNYM");
+                        conn.signal(TorControlCommands.SIGNAL_NEWNYM);
 
                     } catch (Exception ioe) {
-
                         debug("error requesting newnym: " + ioe.getLocalizedMessage());
-
                     }
                 }
             }.start();
@@ -1285,10 +1262,8 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     protected void sendCallbackStatus(String currentStatus) {
         mCurrentStatus = currentStatus;
         Intent intent = getActionStatusIntent(currentStatus);
-        // send for Orbot internals, using secure local broadcast
-        sendBroadcastOnlyToOrbot(intent);
-        // send for any apps that are interested
-        sendBroadcast(intent);
+        sendBroadcastOnlyToOrbot(intent); // send for Orbot internals, using secure local broadcast
+        sendBroadcast(intent); // send for any apps that are interested
     }
 
     /**
@@ -1685,14 +1660,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
     }
 
-    public boolean hasConnectivity() {
-        return mConnectivity;
-    }
-
-    public int getNotifyId() {
-        return NOTIFY_ID;
-    }
-
     private void loadBridgeDefaults() {
         if (alBridges == null) {
             alBridges = new ArrayList<>();
@@ -1776,6 +1743,12 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         }
     }
 
+    // for bridge loading from the assets default bridges.txt file
+    static class Bridge {
+        String type;
+        String config;
+    }
+
     private class IncomingIntentRouter implements Runnable {
         Intent mIntent;
 
@@ -1844,12 +1817,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 }
             }
         }
-    }
-
-    // for bridge loading from the assets default bridges.txt file
-    static class Bridge {
-        String type;
-        String config;
     }
 
     private class ActionBroadcastReceiver extends BroadcastReceiver {
