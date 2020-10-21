@@ -60,7 +60,7 @@
     <string name="error">Feil</string>
     <string name="your_reachableaddresses_settings_caused_an_exception_">Dine \"adresser som kan nås\"-innstillinger forårsaket et unntak!</string>
     <string name="your_relay_settings_caused_an_exception_">Dine relé-innstillinger forårsaket et unntak!</string>
-    <string name="exit_nodes">Avslutt noder</string>
+    <string name="exit_nodes">Utgangsnoder</string>
     <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Fingeravtrykk, kallenavn, land og adresser for siste hopp</string>
     <string name="enter_exit_nodes">Skriv inn utgående noder</string>
     <string name="exclude_nodes">Ekskluder noder</string>
@@ -74,7 +74,7 @@
     <string name="enter_bridge_addresses">Skriv inn broadresser</string>
     <string name="relays">Reléer</string>
     <string name="relaying">Videresending</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">Aktiver enheten din som et relé uten utgående trafikk</string>
+    <string name="enable_your_device_to_be_a_non_exit_relay">Aktiver enheten din som et rutingsstafettoppsett uten utgående trafikk</string>
     <string name="relay_port">Relé-port</string>
     <string name="listening_port_for_your_tor_relay">Porten Tor-reléet ditt lytter på</string>
     <string name="enter_or_port">Skriv inn ELLER-port</string>
@@ -201,4 +201,19 @@
     <string name="refresh_apps">Gjenoppfrisk programmer</string>
     <string name="pref_prefer_ipv6">Foretrekk IPv6-tilknytninger</string>
     <string name="testing_bridges">Tester bro-tilknytning til Tor…</string>
+    <string name="pref_prefer_ipv6_summary">Forteller utgangsnoder at IPv6-adresser foretrekkes</string>
+    <string name="pref_reduced_connection_padding_summary">Lukker stafettrutingsoppsettstilknytninger tidligere, og sender flere utfyllingspakker for å redusere data- og batteribruk.</string>
+    <string name="pref_reduced_connection_padding">Redusert tilknytningsutfylling</string>
+    <string name="pref_connection_padding_summary">Tillat tilknytningsutfylling for å beskytte mot noen typer trafikkanalyse. Forvalg: auto</string>
+    <string name="pref_connection_padding">Tilkoblingsutfylling</string>
+    <string name="show_auth_cookie">Vis identitetsbekreftelseskake</string>
+    <string name="pref_open_proxy_on_all_interfaces_summary">Tillat Wi-Fi-likemenn, tjudrede enheter, og alle som kan koble til din IP; tilgang til Tor</string>
+    <string name="app_shortcuts">Programmer som kan bruke Tor</string>
+    <string name="testing_bridges_success">Brooppsettet fungerer.</string>
+    <string name="testing_bridges_fail">Mislyktes. Prøv et annet alternativ.</string>
+    <string name="no_transproxy_warning">Advarsel: Transparent mellomtjening støttes ikke. Bruk VPN fra Orbot-programmet istedenfor.</string>
+    <string name="no_transproxy_warning_short">Advarsel: Transmellomtjening støttes ikke lenger</string>
+    <string name="backup_saved_at_external_storage">Sikkerhetskopi lagret på eksternt lagringsområde</string>
+    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Hvis ditt mobilnettverk aktivt blokkerer Tor, kan du bruke en «Brotjener» som alternativ vei inn. VELG én av alternativene å sette opp og teste…</string>
+    <string name="pref_http_summary">Porten Tor tilbyr sin HTTP-mellomtjener på (forvalg: 8118 eller 0 for å skru av)</string>
 </resources>
