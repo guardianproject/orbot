@@ -138,7 +138,7 @@
     <string name="bridges_updated">Bridges Updated</string>
     <string name="restart_orbot_to_use_this_bridge_">Please restart Orbot to enable the changes</string>
     <string name="menu_qr">QR Codes</string>
-    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">If your mobile network actively blocks Tor, you can use a \'Bridge Server\' as an alternate way in. SELECT one of the options to configure and test...</string>
+    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">If your mobile network actively blocks Tor, you can use a \'Bridge Server\' as an alternate way in. SELECT one of the options to configure and test…</string>
     <string name="bridge_mode">Request New Bridge</string>
     <string name="get_bridges_email">Email</string>
     <string name="get_bridges_web">Web</string>
