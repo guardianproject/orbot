@@ -1,4 +1,65 @@
 
+/** 16.3.2-RC-1-tor-0.4.3.6 / 2 November 2020 / c69a217aa8e1f09a34634da50e7af55c4fc73a21 **/
+
+c69a217a (HEAD -> master, tag: 16.3.2-RC-1-tor-0.4.3.6) update to 16.3.2
+92185886 (origin/master, origin/HEAD) Merge branch 'master' of github.com:guardianproject/orbot
+eb84e9fc Merge pull request #404 from bitmold/androidx-gradle-optimizations
+a0e9460e Merge branch 'master' of github.com:guardianproject/orbot
+2b394294 update build tools
+07e77940 Merge pull request #402 from bitmold/newnym_ui_fixes
+e2b01306 Use smaller androidx dependencies in orbotservice. specifically just use core for notifications, and another one for localbroadcastmanager
+39a5ceb6 Removed another small & uneeded method from OrbotService related to notifications
+e63b9e61 Fixes #401 Only NEWNYM Through UI When Sensible - The "NEW IDENTITY" button in the notification is only visible when the user can click on it - Clicking the refresh button in the main app gives you a new identity if you have one, does nothing if Tor is starting, and starts tor if it's off/stopping
+804ce57a update app-mini builds tools to 29.0.3
+860908d1 (public/master, newport/master) update builds tools to 29.0.3 and gradle to 4.0.2
+1cbcd4f7 Merge pull request #396 from bitmold/leaky_async_tasks
+3d4ddd95 specify NDK version for CI builds
+baa7ec77 Merge branch 'master' of github.com:guardianproject/orbot
+a66b99dd Merge branch 'bitmold-backup_fix'
+8fca5f8e Create android.yml
+929407d4 (bitmold-backup_fix) finishing touches (also use bundle keys in backup flows)
+1439356d UI Validation on Dialogs:      - UI is ready for v3 client cookies (just uncomment one line of code)   - when text input is incorrect, the submit button will be disabled rather dismissing the dialog and showing the user a vague Toast + erasing all their input
+cdb8581c Legacy Onion Service Backup/Restore and Cookie backup/restore works.
+b0ec2fac Fixes #180 removes Spinner from HostedServices
+62ff81c2 Used Storage Access Framework for cookie backup/restore and onion service backup/restore.
+7a097561 removed Context memory leak from OrbotService (Tun2Socks)
+4d5341e3 Used static inner classes for AsyncTasks in OrbotMainActivity, BridgeWizardActivity + AppManagerActivity. Removes huge warnings from code. Anonymous AsyncTask implementations (such as Handler) implicitly hold a reference to the outer Activity, this could cause a memory leak where the AsyncTask is still running after the Activity has terminated
+462f7dac OrbotService does NOT need WRITE_EXTERNAL_STORAGE (this sets us up to fully remove the permission on APIs 19+ after #395 is merged
+0a391f03 update LICENSE
+cf2dd390 removed polipo from about
+5dad571e set baselineAligned = false on main layout for better performance
+e436df06 Final linting round: - replaced deprecated Switch with androidx SwitchCompat - Made the country dropdown centered on the main activity UI - Removed XML attributes that do nothing
+dd348484 removed unused string resources from all locales
+49da6819 ran lint to remove a lot of avoidable warnings
+b12efdb7 ran android studio IDE code formatter
+e7d9a8a1 Merge pull request #390 from bitmold/orbot-kt-modularization
+1ce3bd05 Merge branch 'bitmold-orbot-kt-modularization'
+17178d23 First stab at modularizing shared code between the app and app mini projects
+9142dfdb (bitmold-orbot-kt-modularization) Merge branch 'orbot-kt-modularization' of https://github.com/bitmold/orbot into bitmold-orbot-kt-modularization
+bf584ccf Merge branch 'master' of github.com:guardianproject/orbot
+0e27fb0b Merge pull request #389 from bitmold/debug_log_once
+64692ff1 First stab at modularizing shared code between the app and app mini projects
+ccb03b94 Fixes #73 only log debug information one time if preference is enabled
+9cca3d0f VpnConstants file isn't needed, redirects to another file
+2b7dd42d VpnUtils.getSharedPrefs was an exact duplicate of Prefs.getSharedPrefs
+b73ba828 removed big unneeded comments from orbotservice
+2334ed0a Merge branch 'master' of https://github.com/guardianproject/orbot
+c5b52f6c Revert "removed unused app module drawables" (this was a mistake, sorry)
+13d57462 Merge pull request #387 from bitmold/new_identity_str
+e46fb670 Merge pull request #385 from bitmold/delete_eclipse_files
+0637afe3 (tag: 16.3.1-RC-1-tor-0.4.3.6) update version code for RC1 1631300100
+4fc4a097 removed unused placeholder assets
+1c579b85 removed unused app module drawables
+5a8cac6f Removed unused assets from orbotservice module
+81346eb2 Added orbotservice module to transifex config
+23e5b459 Removed old+unused update.json file to address concerns in #323
+dfd5d7a0 removed eclipse/ant build files
+975053b7 Build instructions clarification + markdown
+8555dea9 Updated BUILD, included instructions for windows
+7ccdd01e remove versioning info in orbotservice build as it conflicts with app
+0e76b617 update version code for play beta 1631200100
+1f715835 update changelog
+
 /** 16.3.1-BETA-2-tor-0.4.3.6 / 24 August 2020 / d07dcb7ea5d6479ca5cf5c0a497837b4dc3961bf **/
 
 d07dcb7e (HEAD -> master, tag: 16.3.1-BETA-2-tor-0.4.3.6, tag: 16.3.1-BETA-1-tor-0.4.3.6) update version code to 1631100200
