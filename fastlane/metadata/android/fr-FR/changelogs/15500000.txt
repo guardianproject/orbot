@@ -1,8 +1,9 @@
-***ATTENTION : TOUTES LES FONCTIONNALITÉS ROOT ONT ÉTÉ ENLEVÉES D'ORBOT.***
-Veuillez utiliser le "Mode Apps VPN" d'Orbot ou le navigateur Orfox au lieu du proxy transparent avec root.
+***AVERTISSEMENT : CETTE NOUVELLE VERSION SUPPRIME TOUTES LES FONCTIONS RACINE. ***
+Utiliser le « Mode RPV applis » d’Orbot ou le navigateur Orfox au lieu du relais transparent avec racine.
 
-* Mise à jour Tor 0.3.1.8
-* Fin des fonctions Root / Transproxy car devenues instables et non testées
-* MEILLEUR support du proxy transparent par VPN et nouvelle interface "Apps" de sélection des applis 
-* Résolution du souci d'inclusion de la license Obfs4proxy 
-* Support des nouveaux ponts Meek
+* Mise à jour vers Tor 0.3.1.8
+* Fin des fonctions Racine/Relais transparent devenues instables et non testées
+* Relais transparent par RPV amélioré et nouvelle IU « Applis » » de sélection
+des applis 
+* Règle le problème d’inclusion d’info de licence Obfs4proxy 
+* Emplacements des ponts Meek les + récents
