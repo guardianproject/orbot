@@ -79,8 +79,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeoutException;
 
-import info.pluggabletransports.dispatch.util.TransportListener;
-import info.pluggabletransports.dispatch.util.TransportManager;
+import IPtProxy.IPtProxy;
 
 public class OrbotService extends VpnService implements TorServiceConstants, OrbotConstants {
 
@@ -100,7 +99,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     public static File appBinHome;
     public static File appCacheHome;
     public static File fileTor;
-    public static File fileObfsclient;
     public static File fileTorRc;
     boolean mIsLollipop = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
     TorEventHandler mEventHandler;
@@ -316,6 +314,11 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             sendCallbackStatus(STATUS_STOPPING);
             sendCallbackLogMessage(getString(R.string.status_shutting_down));
 
+            String bridgeList = Prefs.getBridgesList();
+            boolean useIPtProxy = bridgeList.contains("obfs3")|| bridgeList.contains("obfs4")||bridgeList.contains("meek");
+            if (useIPtProxy)
+                IPtProxy.stopObfs4Proxy();
+            
             killAllDaemons();
 
             //stop the foreground priority and make sure to remove the persistant notification
@@ -474,22 +477,12 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
     private boolean pluggableTransportInstall() {
 
-        fileObfsclient = new TransportManager() {
-            @Override
-            public void startTransportSync(TransportListener transportListener) {
-
-            }
-        }.installTransport(this, OBFSCLIENT_ASSET_KEY);
-
-        if (fileObfsclient != null && fileObfsclient.exists()) {
-
-            fileObfsclient.setReadable(true);
-            fileObfsclient.setExecutable(true);
-            fileObfsclient.setWritable(false);
-            fileObfsclient.setWritable(true, true);
-
-            return fileObfsclient.canExecute();
-        }
+        File fileCacheDir = new File(getCacheDir(),"pt");
+        if (!fileCacheDir.exists())
+            fileCacheDir.mkdir();
+        IPtProxy.setStateLocation(fileCacheDir.getAbsolutePath());
+        String fileTestState = IPtProxy.getStateLocation();
+        debug ("IPtProxy state: " + fileTestState);
 
         return false;
     }
@@ -1381,62 +1374,55 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 }
             }
         } else {
-            if (fileObfsclient != null
-                    && fileObfsclient.exists()
-                    && fileObfsclient.canExecute()) {
 
-                loadBridgeDefaults();
+            loadBridgeDefaults();
 
-                extraLines.append("UseBridges 1").append('\n');
-                //    extraLines.append("UpdateBridgesFromAuthority 1").append('\n');
+            extraLines.append("UseBridges 1").append('\n');
+            //    extraLines.append("UpdateBridgesFromAuthority 1").append('\n');
 
-                String bridgeList = Prefs.getBridgesList();
-                boolean obfs3Bridges = bridgeList.contains("obfs3");
-                boolean obfs4Bridges = bridgeList.contains("obfs4");
-                boolean meekBridges = bridgeList.contains("meek");
+            String bridgeList = Prefs.getBridgesList();
+            boolean obfs3Bridges = bridgeList.contains("obfs3");
+            boolean obfs4Bridges = bridgeList.contains("obfs4");
+            boolean meekBridges = bridgeList.contains("meek");
 
-                //check if any PT bridges are needed
-                if (obfs3Bridges)
-                    extraLines.append("ClientTransportPlugin obfs3 exec ")
-                            .append(fileObfsclient.getAbsolutePath()).append('\n');
+            //check if any PT bridges are needed
+            if (obfs3Bridges)
+                extraLines.append("ClientTransportPlugin obfs3 socks5 127.0.0.1:" + IPtProxy.Obfs3SocksPort).append('\n');
 
-                if (obfs4Bridges)
-                    extraLines.append("ClientTransportPlugin obfs4 exec ")
-                            .append(fileObfsclient.getAbsolutePath()).append('\n');
+            if (obfs4Bridges)
+                extraLines.append("ClientTransportPlugin obfs4 socks5 127.0.0.1:" + IPtProxy.Obfs4SocksPort).append('\n');
+
+            if (meekBridges)
+                extraLines.append("ClientTransportPlugin meek_lite socks5 127.0.0.1:" + IPtProxy.MeekSocksPort).append('\n');
+
+            if (bridgeList != null && bridgeList.length() > 5) //longer then 1 = some real values here
+            {
+                String[] bridgeListLines = parseBridgesFromSettings(bridgeList);
+                int bridgeIdx = (int) Math.floor(Math.random() * ((double) bridgeListLines.length));
+                String bridgeLine = bridgeListLines[bridgeIdx];
+                extraLines.append("Bridge ");
+                extraLines.append(bridgeLine);
+                extraLines.append("\n");
+                /**
+                 for (String bridgeConfigLine : bridgeListLines) {
+                 if (!TextUtils.isEmpty(bridgeConfigLine)) {
+                 extraLines.append("Bridge ");
+                 extraLines.append(bridgeConfigLine.trim());
+                 extraLines.append("\n");
+                 }
+
+                 }**/
+            } else {
+
+                String type = "obfs4";
 
                 if (meekBridges)
-                    extraLines.append("ClientTransportPlugin meek_lite exec " + fileObfsclient.getCanonicalPath()).append('\n');
+                    type = "meek_lite";
 
-                if (bridgeList != null && bridgeList.length() > 5) //longer then 1 = some real values here
-                {
-                    String[] bridgeListLines = parseBridgesFromSettings(bridgeList);
-                    int bridgeIdx = (int) Math.floor(Math.random() * ((double) bridgeListLines.length));
-                    String bridgeLine = bridgeListLines[bridgeIdx];
-                    extraLines.append("Bridge ");
-                    extraLines.append(bridgeLine);
-                    extraLines.append("\n");
-                    /**
-                     for (String bridgeConfigLine : bridgeListLines) {
-                     if (!TextUtils.isEmpty(bridgeConfigLine)) {
-                     extraLines.append("Bridge ");
-                     extraLines.append(bridgeConfigLine.trim());
-                     extraLines.append("\n");
-                     }
+                getBridges(type, extraLines);
 
-                     }**/
-                } else {
-
-                    String type = "obfs4";
-
-                    if (meekBridges)
-                        type = "meek_lite";
-
-                    getBridges(type, extraLines);
-
-                }
-            } else {
-                throw new IOException("Bridge binary does not exist: " + fileObfsclient.getCanonicalPath());
             }
+
         }
 
 
@@ -1762,6 +1748,12 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
             if (!TextUtils.isEmpty(action)) {
                 if (action.equals(ACTION_START) || action.equals(ACTION_START_ON_BOOT)) {
+
+                    String bridgeList = Prefs.getBridgesList();
+                    boolean useIPtProxy = bridgeList.contains("obfs3")|| bridgeList.contains("obfs4")||bridgeList.contains("meek");
+                    if (useIPtProxy)
+                        IPtProxy.startObfs4Proxy("DEBUG", false, false);
+
                     startTor();
                     replyWithStatus(mIntent);
 
