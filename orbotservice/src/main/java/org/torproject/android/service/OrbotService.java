@@ -314,11 +314,9 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             sendCallbackStatus(STATUS_STOPPING);
             sendCallbackLogMessage(getString(R.string.status_shutting_down));
 
-            String bridgeList = Prefs.getBridgesList();
-            boolean useIPtProxy = bridgeList.contains("obfs3")|| bridgeList.contains("obfs4")||bridgeList.contains("meek");
-            if (useIPtProxy)
+            if (useIPtProxy())
                 IPtProxy.stopObfs4Proxy();
-            
+
             killAllDaemons();
 
             //stop the foreground priority and make sure to remove the persistant notification
@@ -333,6 +331,12 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         sendCallbackStatus(STATUS_OFF);
 
 
+    }
+
+    private static boolean useIPtProxy ()
+    {
+        String bridgeList = Prefs.getBridgesList();
+        return bridgeList.contains("obfs3")|| bridgeList.contains("obfs4")||bridgeList.contains("meek");
     }
 
     private void killAllDaemons() throws Exception {
@@ -1749,9 +1753,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             if (!TextUtils.isEmpty(action)) {
                 if (action.equals(ACTION_START) || action.equals(ACTION_START_ON_BOOT)) {
 
-                    String bridgeList = Prefs.getBridgesList();
-                    boolean useIPtProxy = bridgeList.contains("obfs3")|| bridgeList.contains("obfs4")||bridgeList.contains("meek");
-                    if (useIPtProxy)
+                    if (useIPtProxy())
                         IPtProxy.startObfs4Proxy("DEBUG", false, false);
 
                     startTor();
