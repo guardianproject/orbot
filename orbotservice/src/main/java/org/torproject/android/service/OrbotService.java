@@ -1407,15 +1407,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 extraLines.append("Bridge ");
                 extraLines.append(bridgeLine);
                 extraLines.append("\n");
-                /**
-                 for (String bridgeConfigLine : bridgeListLines) {
-                 if (!TextUtils.isEmpty(bridgeConfigLine)) {
-                 extraLines.append("Bridge ");
-                 extraLines.append(bridgeConfigLine.trim());
-                 extraLines.append("\n");
-                 }
-
-                 }**/
+               
             } else {
 
                 String type = "obfs4";
