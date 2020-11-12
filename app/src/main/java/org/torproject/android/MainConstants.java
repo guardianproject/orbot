@@ -12,6 +12,4 @@ public interface MainConstants {
 
     String EMAIL_TOR_BRIDGES = "bridges@torproject.org";
 
-    int RESULT_CLOSE_ALL = 0;
-
 }
