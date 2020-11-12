@@ -186,15 +186,10 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         return false;
     }
 
-    /* (non-Javadoc)
-     * @see android.app.Service#onLowMemory()
-     */
     @Override
     public void onLowMemory() {
         super.onLowMemory();
-
         logNotice("Low Memory Warning!");
-
     }
 
     private void clearNotifications() {
@@ -267,9 +262,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         mNotificationShowing = true;
     }
 
-    /* (non-Javadoc)
-     * @see android.app.Service#onStart(android.content.Intent, int)
-     */
     public int onStartCommand(Intent intent, int flags, int startId) {
 
         showToolbarNotification("", NOTIFY_ID, R.drawable.ic_stat_tor);
