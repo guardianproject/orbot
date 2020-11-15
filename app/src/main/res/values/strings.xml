@@ -101,6 +101,8 @@
     <string name="obfsproxy_version">Obfs4proxy: https://github.com/Yawning/obfs4</string>
     <string name="openssl_version">OpenSSL: http://www.openssl.org</string>
     <string name="hidden_service_request">An app wants to open onion server port %1$s to the Tor network. This is safe if you trust the app.</string>
+    <string name="allow">Allow</string>
+    <string name="deny">Deny</string>
     <string name="found_existing_tor_process">found existing Tor process&#8230;</string>
     <string name="something_bad_happened">Something bad happened. Check the log</string>
     <string name="unable_to_read_hidden_service_name">unable to read onion service name</string>

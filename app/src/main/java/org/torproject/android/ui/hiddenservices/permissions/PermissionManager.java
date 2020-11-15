@@ -23,9 +23,8 @@ public class PermissionManager {
 
     @TargetApi(Build.VERSION_CODES.M)
     public static void requestBatteryPermissions(FragmentActivity activity, Context context) {
-        final Context mContext = context;
-        final String packageName = mContext.getPackageName();
-        PowerManager pm = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
+        final String packageName = context.getPackageName();
+        PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
 
         if (pm.isIgnoringBatteryOptimizations(packageName))
             return;
@@ -37,18 +36,15 @@ public class PermissionManager {
                     Intent intent = new Intent();
                     intent.setAction(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
                     intent.setData(Uri.parse("package:" + packageName));
-                    mContext.startActivity(intent);
+                    context.startActivity(intent);
                 }).show();
     }
 
     @TargetApi(Build.VERSION_CODES.M)
     public static void requestDropBatteryPermissions(FragmentActivity activity, Context context) {
-        final Context mContext = context;
-
-        final String packageName = context.getPackageName();
         PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
 
-        if (!pm.isIgnoringBatteryOptimizations(packageName))
+        if (!pm.isIgnoringBatteryOptimizations(context.getPackageName()))
             return;
 
         Snackbar.make(activity.findViewById(android.R.id.content),
@@ -57,7 +53,7 @@ public class PermissionManager {
                 v -> {
                     Intent intent = new Intent();
                     intent.setAction(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS);
-                    mContext.startActivity(intent);
+                    context.startActivity(intent);
                 }).show();
     }
 }

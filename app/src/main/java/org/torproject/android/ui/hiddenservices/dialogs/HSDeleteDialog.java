@@ -20,11 +20,9 @@ public class HSDeleteDialog extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        final Bundle arguments = getArguments();
-        final Context context = getContext();
-        return new AlertDialog.Builder(context)
+        return new AlertDialog.Builder(getContext())
                 .setTitle(R.string.confirm_service_deletion)
-                .setPositiveButton(android.R.string.ok, (dialog, which) -> doDelete(arguments, context))
+                .setPositiveButton(android.R.string.ok, (dialog, which) -> doDelete(getArguments(), getContext()))
                 .setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.cancel())
                 .create();
     }

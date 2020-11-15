@@ -61,13 +61,9 @@ public class HiddenServicesActivity extends AppCompatActivity {
         mResolver = getContentResolver();
 
         fab = findViewById(R.id.fab);
-        fab.setOnClickListener(view -> {
-            HSDataDialog dialog = new HSDataDialog();
-            dialog.show(getSupportFragmentManager(), "HSDataDialog");
-        });
+        fab.setOnClickListener(view -> new HSDataDialog().show(getSupportFragmentManager(), "HSDataDialog"));
 
         mAdapter = new OnionListAdapter(this, mResolver.query(HSContentProvider.CONTENT_URI, HSContentProvider.PROJECTION, mWhere, null, null), 0);
-
         mResolver.registerContentObserver(HSContentProvider.CONTENT_URI, true, new HSObserver(new Handler()));
 
         ListView onion_list = findViewById(R.id.onion_list);

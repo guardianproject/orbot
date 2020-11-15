@@ -74,6 +74,7 @@ import org.torproject.android.ui.hiddenservices.permissions.PermissionManager;
 import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
 import org.torproject.android.ui.onboarding.BridgeWizardActivity;
 import org.torproject.android.ui.onboarding.OnboardingActivity;
+import org.torproject.android.ui.v3onionservice.OnionServicesActivity;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
@@ -114,6 +115,9 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     private static final int MESSAGE_PORTS = 3;
     private static final float ROTATE_FROM = 0.0f;
     private static final float ROTATE_TO = 360.0f * 4f;// 3.141592654f * 32.0f;
+    // this is what takes messages or values from the callback threads or other non-mainUI threads
+    // and passes them back into the main UI thread for display to the user
+    private final Handler mStatusUpdateHandler = new MainActivityStatusUpdateHandler(this);
     PulsatorLayout mPulsator;
     AlertDialog aDialog = null;
     /* Useful UI bits */
@@ -131,11 +135,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     /* Some tracking bits */
     private String torStatus = null; //latest status reported from the tor service
     private Intent lastStatusIntent;  // the last ACTION_STATUS Intent received
-    private SharedPreferences mPrefs = null;
-    private boolean autoStartFromIntent = false;
-    // this is what takes messages or values from the callback threads or other non-mainUI threads
-    // and passes them back into the main UI thread for display to the user
-    private final Handler mStatusUpdateHandler = new MainActivityStatusUpdateHandler(this);
     /**
      * The state and log info from {@link OrbotService} are sent to the UI here in
      * the form of a local broadcast. Regular broadcasts can be sent by any app,
@@ -202,6 +201,8 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
             }
         }
     };
+    private SharedPreferences mPrefs = null;
+    private boolean autoStartFromIntent = false;
 
     private void migratePreferences() {
         String hsPortString = mPrefs.getString("pref_hs_ports", "");
@@ -463,6 +464,8 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                 }
             }
 
+        } else if (item.getItemId() == R.id.menu_v3_onion_services) {
+            startActivity(new Intent(this, OnionServicesActivity.class));
         } else if (item.getItemId() == R.id.menu_hidden_services) {
             startActivity(new Intent(this, HiddenServicesActivity.class));
         } else if (item.getItemId() == R.id.menu_client_cookies) {
@@ -534,12 +537,8 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         sendIntentToService(ACTION_START_VPN);
     }
 
-    private void enableHiddenServicePort(
-            String hsName, final int hsPort, int hsRemotePort,
-            final String backupToPackage, final Uri hsKeyPath,
-            final Boolean authCookie
-    ) {
-
+    private void enableHiddenServicePort(String hsName, final int hsPort, int hsRemotePort,
+                                         final String backupToPackage, final Uri hsKeyPath, final Boolean authCookie) {
         String onionHostname = null;
 
         if (hsName == null)
@@ -687,9 +686,9 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                 };
 
                 String requestMsg = getString(R.string.hidden_service_request, String.valueOf(hiddenServicePort));
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage(requestMsg).setPositiveButton("Allow", dialogClickListener)
-                        .setNegativeButton("Deny", dialogClickListener).show();
+                new AlertDialog.Builder(this).setMessage(requestMsg)
+                        .setPositiveButton(R.string.allow, dialogClickListener)
+                        .setNegativeButton(R.string.deny, dialogClickListener).show();
 
                 return; //don't null the setIntent() as we need it later
 
@@ -1103,12 +1102,14 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                 imgStatus.startAnimation(rotation);
                 lblStatus.setText(getString(R.string.newnym));
                 break;
-            case STATUS_STARTING: return; // tor is starting up, a new identity isn't needed
+            case STATUS_STARTING:
+                return; // tor is starting up, a new identity isn't needed
             case STATUS_OFF:
             case STATUS_STOPPING:
                 startTor();
                 break;
-            default: break;
+            default:
+                break;
         }
     }
 

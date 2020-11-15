@@ -68,9 +68,15 @@ object DiskUtils {
     @JvmStatic
     fun getOrCreateLegacyBackupDir(): File? {
         if (Environment.MEDIA_MOUNTED != Environment.getExternalStorageState()) return null
-        val dir = File(Environment.getExternalStorageDirectory(), "Orbot")
+        val dir = File(Environment.getExternalStorageDirectory(), )
         return if (!dir.isDirectory && !dir.mkdirs()) null else dir
     }
 
+    @JvmStatic
+    fun recursivelyDeleteDirectory(directory: File) : Boolean {
+        val contents = directory.listFiles()
+        contents?.forEach { recursivelyDeleteDirectory(it) }
+        return directory.delete()
+    }
 
 }

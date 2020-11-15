@@ -27,8 +27,7 @@ public class HSContentProvider extends ContentProvider {
             HiddenService.ENABLED
     };
     private static final String AUTH = "org.torproject.android.ui.hiddenservices.providers";
-    public static final Uri CONTENT_URI =
-            Uri.parse("content://" + AUTH + "/hs");
+    public static final Uri CONTENT_URI = Uri.parse("content://" + AUTH + "/hs");
     //UriMatcher
     private static final int ONIONS = 1;
     private static final int ONION_ID = 2;
@@ -61,8 +60,7 @@ public class HSContentProvider extends ContentProvider {
 
         SQLiteDatabase db = mServervices.getReadableDatabase();
 
-        return db.query(HSDatabase.HS_DATA_TABLE_NAME, projection, where,
-                selectionArgs, null, null, sortOrder);
+        return db.query(HSDatabase.HS_DATA_TABLE_NAME, projection, where, selectionArgs, null, null, sortOrder);
     }
 
     @Nullable

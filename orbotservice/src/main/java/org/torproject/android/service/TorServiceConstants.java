@@ -112,6 +112,6 @@ public interface TorServiceConstants {
     String OBFSCLIENT_ASSET_KEY = "obfs4proxy";
 
     String HIDDEN_SERVICES_DIR = "hidden_services";
-
+    String ONION_SERVICES_DIR = "v3_onion_services";
 
 }
