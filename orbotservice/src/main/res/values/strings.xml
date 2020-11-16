@@ -20,4 +20,6 @@
     <string name="updating_settings_in_tor_service">updating settings in Tor service</string>
 
     <string name="menu_new_identity">New Identity</string>
+    <string name="waiting_for_control_port">Waiting for control port...</string>
+    <string name="connecting_to_control_port">\"Connecting to control port: \"</string>
 </resources>
