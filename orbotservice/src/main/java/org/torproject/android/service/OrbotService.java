@@ -116,7 +116,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     private NotificationManager mNotificationManager = null;
     private NotificationCompat.Builder mNotifyBuilder;
     private boolean mNotificationShowing = false;
-    private final ExecutorService mExecutor = Executors.newFixedThreadPool(3);
+    private final ExecutorService mExecutor = Executors.newCachedThreadPool();
     private File mHSBasePath;
     private ArrayList<Bridge> alBridges = null;
     private final String[] hsProjection = new String[]{
@@ -173,7 +173,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
     private boolean findExistingTorDaemon() {
         try {
-            mLastProcessId = initControlConnection(3, true);
+            mLastProcessId = initControlConnection(1, true);
 
             if (mLastProcessId != -1 && conn != null) {
                 sendCallbackLogMessage(getString(R.string.found_existing_tor_process));
@@ -182,6 +182,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 return true;
             }
         } catch (Exception e) {
+            debug("Error finding existing tor daemon: " + e);
         }
         return false;
     }
@@ -309,7 +310,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             if (useIPtProxy())
                 IPtProxy.stopObfs4Proxy();
 
-            killAllDaemons();
+            stopTorDaemon(true);
 
             //stop the foreground priority and make sure to remove the persistant notification
             stopForeground(true);
@@ -331,20 +332,34 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         return bridgeList.contains("obfs3")|| bridgeList.contains("obfs4")||bridgeList.contains("meek");
     }
 
-    private void killAllDaemons() throws Exception {
+    /**
+     * if someone stops during startup, we may have to wait for the conn port to be setup, so we can properly shutdown tor
+     * @throws Exception
+     */
+    private void stopTorDaemon(boolean waitForConnection) throws Exception {
 
-        if (conn != null) {
-            logNotice("Using control port to shutdown Tor");
+        int tryCount = 0;
 
-            try {
-                logNotice("sending HALT signal to Tor process");
-                conn.shutdownTor("SHUTDOWN");
+        while (tryCount++ < 3) {
+            if (conn != null) {
+                logNotice("Using control port to shutdown Tor");
 
-            } catch (IOException e) {
-                Log.d(OrbotConstants.TAG, "error shutting down Tor via connection", e);
+                try {
+                    logNotice("sending HALT signal to Tor process");
+                    conn.shutdownTor("SHUTDOWN");
+
+                } catch (IOException e) {
+                    Log.d(OrbotConstants.TAG, "error shutting down Tor via connection", e);
+                }
+
+                conn = null;
+                break;
             }
 
-            conn = null;
+            if (!waitForConnection)
+                break;
+
+            try { Thread.sleep(3000);}catch (Exception e){}
         }
     }
 
@@ -515,8 +530,8 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
         extraLines.append("PidFile").append(' ').append(filePid.getCanonicalPath()).append('\n');
 
-        extraLines.append("RunAsDaemon 1").append('\n');
-        extraLines.append("AvoidDiskWrites 1").append('\n');
+        extraLines.append("RunAsDaemon 0").append('\n');
+        extraLines.append("AvoidDiskWrites 0").append('\n');
 
         String socksPortPref = prefs.getString(OrbotConstants.PREF_SOCKS, (TorServiceConstants.SOCKS_PROXY_PORT_DEFAULT));
 
@@ -683,12 +698,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
      */
     private void startTor() {
 
-        String torProcId = null;
-
-        try {
-            if (conn != null) torProcId = conn.getInfo("process/pid");
-        } catch (Exception e) {
-        }
 
         try {
 
@@ -697,7 +706,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 // these states should probably be handled better
                 sendCallbackLogMessage("Ignoring start request, currently " + mCurrentStatus);
                 return;
-            } else if (mCurrentStatus == STATUS_ON && (torProcId != null)) {
+            } else if (mCurrentStatus == STATUS_ON && (mLastProcessId != -1)) {
                 showConnectedToTorNetworkNotification();
                 sendCallbackLogMessage("Ignoring start request, already started.");
                 // setTorNetworkEnabled (true);
@@ -705,15 +714,29 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 return;
             }
 
+            sendCallbackStatus(STATUS_STARTING);
+
+            try {
+                if (conn != null) {
+                    String torProcId = conn.getInfo("process/pid");
+                    if (!TextUtils.isEmpty(torProcId))
+                        mLastProcessId = Integer.parseInt(torProcId);
+                }
+                else {
+                    if (fileControlPort!=null && fileControlPort.exists())
+                        findExistingTorDaemon();
+
+                }
+            } catch (Exception e) {
+            }
 
             // make sure there are no stray daemons running
-            killAllDaemons();
+            stopTorDaemon(false);
 
             SharedPreferences prefs = Prefs.getSharedPrefs(getApplicationContext());
             String version = prefs.getString(PREF_BINARY_TOR_VERSION_INSTALLED, null);
             logNotice("checking binary version: " + version);
 
-            sendCallbackStatus(STATUS_STARTING);
             showToolbarNotification(getString(R.string.status_starting_up), NOTIFY_ID, R.drawable.ic_stat_tor);
             //sendCallbackLogMessage(getString(R.string.status_starting_up));
             //logNotice(getString(R.string.status_starting_up));
@@ -878,7 +901,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         int controlPort = -1;
         int attempt = 0;
 
-        logNotice("Waiting for control port...");
+        logNotice(getString(R.string.waiting_for_control_port));
 
         while (conn == null && attempt++ < maxTries && (mCurrentStatus != STATUS_OFF)) {
             try {
@@ -886,7 +909,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 controlPort = getControlPort();
 
                 if (controlPort != -1) {
-                    logNotice("Connecting to control port: " + controlPort);
+                    logNotice(getString(R.string.connecting_to_control_port) + controlPort);
 
 
                     break;
