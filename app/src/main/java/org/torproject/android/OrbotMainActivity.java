@@ -89,7 +89,6 @@ import pl.bclogic.pulsator4droid.library.PulsatorLayout;
 
 import static androidx.core.content.FileProvider.getUriForFile;
 import static org.torproject.android.MainConstants.COUNTRY_CODES;
-import static org.torproject.android.MainConstants.RESULT_CLOSE_ALL;
 import static org.torproject.android.MainConstants.URL_TOR_CHECK;
 import static org.torproject.android.service.TorServiceConstants.ACTION_START;
 import static org.torproject.android.service.TorServiceConstants.ACTION_START_VPN;
@@ -108,7 +107,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     private final static int REQUEST_VPN = 8888;
     private final static int REQUEST_SETTINGS = 0x9874;
     private final static int REQUEST_VPN_APPS_SELECT = 8889;
-    private final static int LOG_DRAWER_GRAVITY = GravityCompat.END;
     // message types for mStatusUpdateHandler
     private final static int STATUS_UPDATE = 1;
     private static final int MESSAGE_TRAFFIC_COUNT = 2;
@@ -143,7 +141,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
      * so local ones are used here so other apps cannot interfere with Orbot's
      * operation.
      */
-    private BroadcastReceiver mLocalBroadcastReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver mLocalBroadcastReceiver = new BroadcastReceiver() {
 
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -296,7 +294,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         mTxtOrbotLog = findViewById(R.id.orbotLog);
 
         lblStatus = findViewById(R.id.lblStatus);
-        lblStatus.setOnClickListener(v -> mDrawer.openDrawer(LOG_DRAWER_GRAVITY));
+        lblStatus.setOnClickListener(v -> mDrawer.openDrawer(GravityCompat.END));
 
         lblPorts = findViewById(R.id.lblPorts);
 
@@ -481,9 +479,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
      **/
     private void doExit() {
         stopTor();
-
-        // Kill all the wizard activities
-        setResult(RESULT_CLOSE_ALL);
         finish();
     }
 
@@ -501,7 +496,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     @Override
     public void onBackPressed() {
         // check to see if the log is open, if so close it
-        if (mDrawer.isDrawerOpen(LOG_DRAWER_GRAVITY)) {
+        if (mDrawer.isDrawerOpen(GravityCompat.END)) {
             mDrawer.closeDrawers();
         } else {
             super.onBackPressed();
