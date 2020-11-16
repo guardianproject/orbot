@@ -81,16 +81,6 @@ android {
             versionName getVersionName()
             archivesBaseName = "Orbot-$versionName"
         }
-        /**
-        appmax {
-            dimension "free"
-            minSdkVersion 16
-            applicationId 'org.torproject.android.max'
-            targetSdkVersion 28
-            versionCode 161410000
-            versionName getVersionName()
-            archivesBaseName = "orbotMAX-$versionName"
-        }**/
     }
 
     splits {
@@ -112,14 +102,6 @@ android {
 
             // Specifies that we do not want to also generate a universal APK that includes all ABIs.
             universalApk true
-        }
-
-
-    }
-
-    repositories {
-        flatDir {
-            dir 'libs'
         }
     }
 }

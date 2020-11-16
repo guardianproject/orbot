@@ -37,14 +37,6 @@ android {
     packagingOptions {
         exclude 'assets/arm/obfs4proxy' //this is redundant
     }
-
-    repositories {
-        flatDir {
-            dir 'libs'
-        }
-    }
-
-
 }
 
 dependencies {
@@ -69,6 +61,5 @@ dependencies {
     implementation 'info.guardianproject:jtorctl:0.4'
 
     /*********** IPtProxy: https://github.com/tladesignz/IPtProxy  **********/
-    implementation(name: 'IPtProxy', ext: 'aar')
-
+    implementation project(path: ':IPtProxy')
 }
