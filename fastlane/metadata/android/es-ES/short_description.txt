@@ -1,2 +1,1 @@
-Orbot
-Proxy con Tor
+Mejore su privacidad y rompa los cortafuegos.
