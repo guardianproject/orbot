@@ -89,12 +89,15 @@ import pl.bclogic.pulsator4droid.library.PulsatorLayout;
 
 import static androidx.core.content.FileProvider.getUriForFile;
 import static org.torproject.android.MainConstants.COUNTRY_CODES;
-import static org.torproject.android.MainConstants.RESULT_CLOSE_ALL;
 import static org.torproject.android.MainConstants.URL_TOR_CHECK;
 import static org.torproject.android.service.TorServiceConstants.ACTION_START;
 import static org.torproject.android.service.TorServiceConstants.ACTION_START_VPN;
 import static org.torproject.android.service.TorServiceConstants.ACTION_STOP_VPN;
 import static org.torproject.android.service.TorServiceConstants.DIRECTORY_TOR_DATA;
+import static org.torproject.android.service.TorServiceConstants.STATUS_OFF;
+import static org.torproject.android.service.TorServiceConstants.STATUS_ON;
+import static org.torproject.android.service.TorServiceConstants.STATUS_STARTING;
+import static org.torproject.android.service.TorServiceConstants.STATUS_STOPPING;
 import static org.torproject.android.service.vpn.VpnPrefs.PREFS_KEY_TORIFIED;
 
 public class OrbotMainActivity extends AppCompatActivity implements OrbotConstants {
@@ -104,7 +107,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     private final static int REQUEST_VPN = 8888;
     private final static int REQUEST_SETTINGS = 0x9874;
     private final static int REQUEST_VPN_APPS_SELECT = 8889;
-    private final static int LOG_DRAWER_GRAVITY = GravityCompat.END;
     // message types for mStatusUpdateHandler
     private final static int STATUS_UPDATE = 1;
     private static final int MESSAGE_TRAFFIC_COUNT = 2;
@@ -132,14 +134,14 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     private boolean autoStartFromIntent = false;
     // this is what takes messages or values from the callback threads or other non-mainUI threads
     // and passes them back into the main UI thread for display to the user
-    private Handler mStatusUpdateHandler = new MainActivityStatusUpdateHandler(this);
+    private final Handler mStatusUpdateHandler = new MainActivityStatusUpdateHandler(this);
     /**
      * The state and log info from {@link OrbotService} are sent to the UI here in
      * the form of a local broadcast. Regular broadcasts can be sent by any app,
      * so local ones are used here so other apps cannot interfere with Orbot's
      * operation.
      */
-    private BroadcastReceiver mLocalBroadcastReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver mLocalBroadcastReceiver = new BroadcastReceiver() {
 
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -292,7 +294,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         mTxtOrbotLog = findViewById(R.id.orbotLog);
 
         lblStatus = findViewById(R.id.lblStatus);
-        lblStatus.setOnClickListener(v -> mDrawer.openDrawer(LOG_DRAWER_GRAVITY));
+        lblStatus.setOnClickListener(v -> mDrawer.openDrawer(GravityCompat.END));
 
         lblPorts = findViewById(R.id.lblPorts);
 
@@ -477,9 +479,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
      **/
     private void doExit() {
         stopTor();
-
-        // Kill all the wizard activities
-        setResult(RESULT_CLOSE_ALL);
         finish();
     }
 
@@ -497,7 +496,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     @Override
     public void onBackPressed() {
         // check to see if the log is open, if so close it
-        if (mDrawer.isDrawerOpen(LOG_DRAWER_GRAVITY)) {
+        if (mDrawer.isDrawerOpen(GravityCompat.END)) {
             mDrawer.closeDrawers();
         } else {
             super.onBackPressed();
@@ -1093,15 +1092,23 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     }
 
     private void requestNewTorIdentity() {
-        sendIntentToService(TorServiceConstants.CMD_NEWNYM);
-
-        Rotate3dAnimation rotation = new Rotate3dAnimation(ROTATE_FROM, ROTATE_TO, imgStatus.getWidth() / 2f, imgStatus.getWidth() / 2f, 20f, false);
-        rotation.setFillAfter(true);
-        rotation.setInterpolator(new AccelerateInterpolator());
-        rotation.setDuration((long) 2 * 1000);
-        rotation.setRepeatCount(0);
-        imgStatus.startAnimation(rotation);
-        lblStatus.setText(getString(R.string.newnym));
+        switch (torStatus) {
+            case STATUS_ON: // tor is on, we can ask for a new identity
+                Rotate3dAnimation rotation = new Rotate3dAnimation(ROTATE_FROM, ROTATE_TO, imgStatus.getWidth() / 2f, imgStatus.getWidth() / 2f, 20f, false);
+                rotation.setFillAfter(true);
+                rotation.setInterpolator(new AccelerateInterpolator());
+                rotation.setDuration((long) 2 * 1000);
+                rotation.setRepeatCount(0);
+                imgStatus.startAnimation(rotation);
+                lblStatus.setText(getString(R.string.newnym));
+                break;
+            case STATUS_STARTING: return; // tor is starting up, a new identity isn't needed
+            case STATUS_OFF:
+            case STATUS_STOPPING:
+                startTor();
+                break;
+            default: break;
+        }
     }
 
     private void drawAppShortcuts(boolean showSelectedApps) {
