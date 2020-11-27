@@ -73,7 +73,7 @@ public class CookieActionsDialog extends DialogFragment {
         } else { // API 16, 17, and 18
             int msg = R.string.backup_saved_at_external_storage;
             try {
-                File externalStorage = DiskUtils.getOrCreateLegacyBackupDir();
+                File externalStorage = DiskUtils.getOrCreateLegacyBackupDir(getString(R.string.app_name));
                 String backupFile = externalStorage.getAbsolutePath() + "/" + filename;
                 String data = createBackupData();
                 FileWriter writer = new FileWriter(backupFile);

@@ -2,6 +2,7 @@ package org.torproject.android.ui.v3onionservice;
 
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.Intent;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -19,11 +20,13 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import org.torproject.android.R;
 import org.torproject.android.core.DiskUtils;
 import org.torproject.android.core.LocaleHelper;
+import org.torproject.android.ui.hiddenservices.backup.BackupUtils;
 
 public class OnionServicesActivity extends AppCompatActivity {
 
     static final String BUNDLE_KEY_ID = "id", BUNDLE_KEY_PORT = "port", BUNDLE_KEY_DOMAIN = "domain";
     private static final String WHERE_SELECTION_CLAUSE = OnionServiceContentProvider.OnionService.CREATED_BY_USER + "=1";
+    private static final int REQUEST_CODE_READ_ZIP_BACKUP = 347;
     private RadioButton radioShowUserServices, radioShowAppServices;
     private FloatingActionButton fab;
     private ContentResolver mContentResolver;
@@ -73,12 +76,21 @@ public class OnionServicesActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menu_restore_backup) {
             if (DiskUtils.supportsStorageAccessFramework()) {
-
+                Intent readFileIntent = DiskUtils.createReadFileIntent("application/zip");
+                startActivityForResult(readFileIntent, REQUEST_CODE_READ_ZIP_BACKUP);
             } else { // 16, 17, 18
 
             }
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int result, Intent data) {
+        super.onActivityResult(requestCode, result, data);
+        if (requestCode == REQUEST_CODE_READ_ZIP_BACKUP && result == RESULT_OK) {
+            new BackupUtils(this).restoreZipBackupV3(data.getData());
+        }
     }
 
     private class OnionServiceObserver extends ContentObserver {

@@ -61,7 +61,7 @@ public class OnionServiceActionsDialogFragment extends DialogFragment {
     }
 
     private void doBackup(Bundle arguments, Context context) {
-        String filename = "onion_service" + arguments.getInt(OnionServicesActivity.BUNDLE_KEY_PORT) + ".zip";
+        String filename = "onion_service" + arguments.getString(OnionServicesActivity.BUNDLE_KEY_PORT) + ".zip";
         if (arguments.getString(OnionServicesActivity.BUNDLE_KEY_DOMAIN) == null) {
             Toast.makeText(context, R.string.please_restart_Orbot_to_enable_the_changes, Toast.LENGTH_LONG).show();
             return;
@@ -70,7 +70,7 @@ public class OnionServiceActionsDialogFragment extends DialogFragment {
             Intent createFileIntent = DiskUtils.createWriteFileIntent(filename, "application/zip");
             startActivityForResult(createFileIntent, REQUEST_CODE_WRITE_FILE);
         } else { // APIs 16, 17, 18
-            attemptToWriteBackup(Uri.fromFile(new File(DiskUtils.getOrCreateLegacyBackupDir(), filename)));
+            attemptToWriteBackup(Uri.fromFile(new File(DiskUtils.getOrCreateLegacyBackupDir(getString(R.string.app_name)), filename)));
         }
     }
 
@@ -85,7 +85,7 @@ public class OnionServiceActionsDialogFragment extends DialogFragment {
 
     private void attemptToWriteBackup(Uri outputFile) {
         BackupUtils backupUtils = new BackupUtils(getContext());
-//        String backup = backupUtils.createZipBackup(port, outputFile); TODO need to break apart backup logic for v2 and v3 onions
+        String backup = backupUtils.createV3ZipBackup(getArguments().getString(OnionServicesActivity.BUNDLE_KEY_PORT), outputFile);
         Toast.makeText(getContext(), backup != null ? R.string.backup_saved_at_external_storage : R.string.error, Toast.LENGTH_LONG).show();
         dismiss();
     }

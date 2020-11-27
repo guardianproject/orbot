@@ -92,7 +92,7 @@ public class HSActionsDialog extends DialogFragment {
             Intent createFile = DiskUtils.createWriteFileIntent(filename, "application/zip");
             startActivityForResult(createFile, REQUEST_CODE_WRITE_FILE);
         } else { // API 16, 17, 18
-            attemptToWriteBackup(Uri.fromFile(new File(DiskUtils.getOrCreateLegacyBackupDir(), filename)));
+            attemptToWriteBackup(Uri.fromFile(new File(DiskUtils.getOrCreateLegacyBackupDir(getString(R.string.app_name)), filename)));
         }
     }
 
@@ -107,7 +107,7 @@ public class HSActionsDialog extends DialogFragment {
 
     private void attemptToWriteBackup(Uri outputFile) {
         BackupUtils backupUtils = new BackupUtils(getContext());
-        String backup = backupUtils.createZipBackup(port, outputFile);
+        String backup = backupUtils.createV2ZipBackup(port, outputFile);
         Toast.makeText(getContext(), backup != null ? R.string.backup_saved_at_external_storage : R.string.error, Toast.LENGTH_LONG).show();
         dismiss();
     }

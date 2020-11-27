@@ -113,7 +113,7 @@ public class ClientCookiesActivity extends AppCompatActivity {
     }
 
     private void restoreBackupLegacy() {
-        File backupDir = DiskUtils.getOrCreateLegacyBackupDir();
+        File backupDir = DiskUtils.getOrCreateLegacyBackupDir(getString(R.string.app_name));
 
         try {
             File[] files = backupDir.listFiles((dir, name) -> name.toLowerCase(Locale.ENGLISH).endsWith(".json"));

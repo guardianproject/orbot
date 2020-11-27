@@ -15,6 +15,7 @@ import org.torproject.android.R;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.ui.hiddenservices.providers.CookieContentProvider;
 import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
+import org.torproject.android.ui.v3onionservice.OnionServiceContentProvider;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -37,8 +38,19 @@ public class BackupUtils {
         mResolver = mContext.getContentResolver();
     }
 
-    public String createZipBackup(int port, Uri zipFile) {
-        String[] files = createFilesForZipping(port);
+    public static boolean isV2OnionAddressValid(String onionToTest) {
+        return onionToTest.matches("([a-z0-9]{16}).onion");
+    }
+
+    public String createV3ZipBackup(String port, Uri zipFile) {
+        String[] files = createFilesForZippingV3(port);
+        ZipIt zip = new ZipIt(files, zipFile, mResolver);
+        if (!zip.zip()) return null;
+        return zipFile.getPath();
+    }
+
+    public String createV2ZipBackup(int port, Uri zipFile) {
+        String[] files = createFilesForZippingV2(port);
         ZipIt zip = new ZipIt(files, zipFile, mResolver);
 
         if (!zip.zip())
@@ -47,11 +59,50 @@ public class BackupUtils {
         return zipFile.getPath();
     }
 
-    public static boolean isV2OnionAddressValid(String onionToTest) {
-        return onionToTest.matches("([a-z0-9]{16}).onion");
+    // todo also write out authorized clients...
+    private String[] createFilesForZippingV3(String port) {
+        final String v3BasePath = getV3BasePath() + "/v3" + port + "/";
+        final String hostnamePath = v3BasePath + "hostname",
+                configFilePath = v3BasePath + configFileName,
+                privKeyPath = v3BasePath + "hs_ed25519_secret_key",
+                pubKeyPath = v3BasePath + "hs_ed25519_public_key";
+
+        Cursor portData = mResolver.query(OnionServiceContentProvider.CONTENT_URI, OnionServiceContentProvider.PROJECTION,
+                OnionServiceContentProvider.OnionService.PORT + "=" + port, null, null);
+
+        JSONObject config = new JSONObject();
+        try {
+            if (portData == null || portData.getCount() != 1)
+                return null;
+            portData.moveToNext();
+
+
+            config.put(OnionServiceContentProvider.OnionService.NAME, portData.getString(portData.getColumnIndex(OnionServiceContentProvider.OnionService.NAME)));
+            config.put(OnionServiceContentProvider.OnionService.PORT, portData.getString(portData.getColumnIndex(OnionServiceContentProvider.OnionService.PORT)));
+            config.put(OnionServiceContentProvider.OnionService.ONION_PORT, portData.getString(portData.getColumnIndex(OnionServiceContentProvider.OnionService.ONION_PORT)));
+            config.put(OnionServiceContentProvider.OnionService.DOMAIN, portData.getString(portData.getColumnIndex(OnionServiceContentProvider.OnionService.DOMAIN)));
+            config.put(OnionServiceContentProvider.OnionService.CREATED_BY_USER, portData.getString(portData.getColumnIndex(OnionServiceContentProvider.OnionService.CREATED_BY_USER)));
+            config.put(OnionServiceContentProvider.OnionService.ENABLED, portData.getString(portData.getColumnIndex(OnionServiceContentProvider.OnionService.ENABLED)));
+
+        } catch (JSONException jsone) {
+            jsone.printStackTrace();
+            return null;
+        }
+        portData.close();
+
+        try {
+            FileWriter fileWriter = new FileWriter(configFilePath);
+            fileWriter.write(config.toString());
+            fileWriter.close();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+            return null;
+        }
+
+        return new String[]{hostnamePath, configFilePath, privKeyPath, pubKeyPath};
     }
 
-    private String[] createFilesForZipping(int port) {
+    private String[] createFilesForZippingV2(int port) {
         File hsBasePath = getHSBasePath();
         String configFilePath = hsBasePath + "/hs" + port + "/" + configFileName;
         String hostnameFilePath = hsBasePath + "/hs" + port + "/hostname";
@@ -101,7 +152,45 @@ public class BackupUtils {
         return new String[]{hostnameFilePath, keyFilePath, configFilePath};
     }
 
-    private void extractConfigFromUnzippedBackup(String backupName) {
+    private void extractConfigFromUnzippedBackupV3(String backupName) {
+        File v3BasePath = getV3BasePath();
+        String v3Dir = backupName.substring(0, backupName.lastIndexOf('.'));
+        String configFilePath = v3BasePath + "/" + v3Dir + "/" + configFileName;
+        File v3Path = new File(v3BasePath.getAbsolutePath(), v3Dir);
+        if (!v3Path.isDirectory()) v3Path.mkdirs();
+
+        File configFile = new File(configFilePath);
+        try {
+            FileInputStream fis = new FileInputStream(configFile);
+            FileChannel fc = fis.getChannel();
+            MappedByteBuffer bb = fc.map(FileChannel.MapMode.READ_ONLY, 0, fc.size());
+            String jsonString = Charset.defaultCharset().decode(bb).toString();
+            JSONObject savedValues = new JSONObject(jsonString);
+            ContentValues fields = new ContentValues();
+
+            int port = savedValues.getInt(OnionServiceContentProvider.OnionService.PORT);
+            fields.put(OnionServiceContentProvider.OnionService.PORT, port);
+            fields.put(OnionServiceContentProvider.OnionService.NAME, savedValues.getString(OnionServiceContentProvider.OnionService.NAME));
+            fields.put(OnionServiceContentProvider.OnionService.ONION_PORT, savedValues.getInt(OnionServiceContentProvider.OnionService.ONION_PORT));
+            fields.put(OnionServiceContentProvider.OnionService.DOMAIN, savedValues.getString(OnionServiceContentProvider.OnionService.DOMAIN));
+            fields.put(OnionServiceContentProvider.OnionService.CREATED_BY_USER, savedValues.getInt(OnionServiceContentProvider.OnionService.CREATED_BY_USER));
+            fields.put(OnionServiceContentProvider.OnionService.ENABLED, savedValues.getInt(OnionServiceContentProvider.OnionService.ENABLED));
+
+            Cursor dbService = mResolver.query(OnionServiceContentProvider.CONTENT_URI, OnionServiceContentProvider.PROJECTION,
+                    OnionServiceContentProvider.OnionService.PORT + "=" + port, null, null);
+            if (dbService == null || dbService.getCount() == 0)
+                mResolver.insert(OnionServiceContentProvider.CONTENT_URI, fields);
+            else
+                mResolver.update(OnionServiceContentProvider.CONTENT_URI, fields, OnionServiceContentProvider.OnionService.PORT + "=" + port, null);
+            dbService.close();
+            Toast.makeText(mContext, R.string.backup_restored, Toast.LENGTH_LONG).show();
+        } catch (IOException | JSONException e) {
+            e.printStackTrace();
+            Toast.makeText(mContext, R.string.error, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void extractConfigFromUnzippedBackupV2(String backupName) {
         File mHSBasePath = getHSBasePath();
         int port;
         String hsDir = backupName.substring(0, backupName.lastIndexOf('.'));
@@ -166,18 +255,22 @@ public class BackupUtils {
         return new File(mContext.getFilesDir().getAbsolutePath(), TorServiceConstants.HIDDEN_SERVICES_DIR);
     }
 
-    public void restoreZipBackupLegacy(File zipFile) {
+    private File getV3BasePath() {
+        return new File(mContext.getFilesDir().getAbsolutePath(), TorServiceConstants.ONION_SERVICES_DIR);
+    }
+
+    public void restoreZipBackupV2Legacy(File zipFile) {
         String backupName = zipFile.getName();
         ZipIt zip = new ZipIt(null, null, mResolver);
         String hsDir = backupName.substring(0, backupName.lastIndexOf('.'));
         File hsPath = new File(getHSBasePath().getAbsolutePath(), hsDir);
         if (zip.unzipLegacy(hsPath.getAbsolutePath(), zipFile))
-            extractConfigFromUnzippedBackup(backupName);
+            extractConfigFromUnzippedBackupV2(backupName);
         else
             Toast.makeText(mContext, R.string.error, Toast.LENGTH_LONG).show();
     }
 
-    public void restoreZipBackup(Uri zipUri) {
+    public void restoreZipBackupV2(Uri zipUri) {
         Cursor returnCursor = mResolver.query(zipUri, null, null, null, null);
         int nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
         returnCursor.moveToFirst();
@@ -187,11 +280,26 @@ public class BackupUtils {
         String hsDir = backupName.substring(0, backupName.lastIndexOf('.'));
         File hsPath = new File(getHSBasePath().getAbsolutePath(), hsDir);
         if (new ZipIt(null, zipUri, mResolver).unzip(hsPath.getAbsolutePath()))
-            extractConfigFromUnzippedBackup(backupName);
+            extractConfigFromUnzippedBackupV2(backupName);
         else
             Toast.makeText(mContext, R.string.error, Toast.LENGTH_LONG).show();
-
     }
+
+    public void restoreZipBackupV3(Uri zipUri) {
+        Cursor returnCursor = mResolver.query(zipUri, null, null, null, null);
+        int nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+        returnCursor.moveToFirst();
+        String backupName = returnCursor.getString(nameIndex);
+        returnCursor.close();
+
+        String v3Dir = backupName.substring(0, backupName.lastIndexOf('.'));
+        File v3Paath = new File(getV3BasePath().getAbsolutePath(), v3Dir);
+        if (new ZipIt(null, zipUri, mResolver).unzip(v3Paath.getAbsolutePath()))
+            extractConfigFromUnzippedBackupV3(backupName);
+        else
+            Toast.makeText(mContext, R.string.error, Toast.LENGTH_LONG).show();
+    }
+
 
     public void restoreKeyBackup(int hsPort, Uri hsKeyPath) {
         File mHSBasePath = new File(

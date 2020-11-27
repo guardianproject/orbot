@@ -107,8 +107,8 @@ public class HiddenServicesActivity extends AppCompatActivity {
     }
 
     private void doRestoreLegacy() { // API 16, 17, 18
-        File backupDir = DiskUtils.getOrCreateLegacyBackupDir();
-        File[] files = backupDir.listFiles((dir, name) -> name.toLowerCase(Locale.ENGLISH).endsWith(".zip"));
+        File backupDir = DiskUtils.getOrCreateLegacyBackupDir(getString(R.string.app_name));
+        File[] files = backupDir.listFiles((dir, name) -> name.toLowerCase().endsWith(".zip"));
         if (files != null) {
             if (files.length == 0) {
                 Toast.makeText(this, R.string.create_a_backup_first, Toast.LENGTH_LONG).show();
@@ -120,7 +120,7 @@ public class HiddenServicesActivity extends AppCompatActivity {
 
             new AlertDialog.Builder(this)
                     .setTitle(R.string.restore_backup)
-                    .setItems(fileNames, (dialog, which) -> new BackupUtils(HiddenServicesActivity.this).restoreZipBackupLegacy(files[which]))
+                    .setItems(fileNames, (dialog, which) -> new BackupUtils(HiddenServicesActivity.this).restoreZipBackupV2Legacy(files[which]))
                     .show();
 
         }
@@ -132,7 +132,7 @@ public class HiddenServicesActivity extends AppCompatActivity {
         if (request == REQUEST_CODE_READ_ZIP_BACKUP) {
             if (response != RESULT_OK) return;
             BackupUtils backupUtils = new BackupUtils(this);
-            backupUtils.restoreZipBackup(data.getData());
+            backupUtils.restoreZipBackupV2(data.getData());
         }
     }
 
