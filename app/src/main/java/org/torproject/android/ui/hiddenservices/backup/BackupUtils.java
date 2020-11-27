@@ -270,6 +270,18 @@ public class BackupUtils {
             Toast.makeText(mContext, R.string.error, Toast.LENGTH_LONG).show();
     }
 
+    public void restoreZipBackupV3Legacy(File zipFile) {
+        String backupName = zipFile.getName();
+        ZipIt zip = new ZipIt(null, null, mResolver);
+        String v3Dir = backupName.substring(0, backupName.lastIndexOf('.'));
+        File v3Path = new File(getV3BasePath().getAbsolutePath(), v3Dir);
+        if (zip.unzipLegacy(v3Path.getAbsolutePath(), zipFile))
+            extractConfigFromUnzippedBackupV3(backupName);
+        else
+            Toast.makeText(mContext, R.string.error, Toast.LENGTH_LONG).show();
+    }
+
+
     public void restoreZipBackupV2(Uri zipUri) {
         Cursor returnCursor = mResolver.query(zipUri, null, null, null, null);
         int nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);

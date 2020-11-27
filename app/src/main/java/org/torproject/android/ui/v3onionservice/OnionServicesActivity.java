@@ -11,7 +11,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -21,6 +23,8 @@ import org.torproject.android.R;
 import org.torproject.android.core.DiskUtils;
 import org.torproject.android.core.LocaleHelper;
 import org.torproject.android.ui.hiddenservices.backup.BackupUtils;
+
+import java.io.File;
 
 public class OnionServicesActivity extends AppCompatActivity {
 
@@ -78,11 +82,29 @@ public class OnionServicesActivity extends AppCompatActivity {
             if (DiskUtils.supportsStorageAccessFramework()) {
                 Intent readFileIntent = DiskUtils.createReadFileIntent("application/zip");
                 startActivityForResult(readFileIntent, REQUEST_CODE_READ_ZIP_BACKUP);
-            } else { // 16, 17, 18
-
+            } else { // APIs 16, 17, 18
+                doRestoreLegacy();
             }
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void doRestoreLegacy() { // APIs 16, 17, 18
+        File backupDir = DiskUtils.getOrCreateLegacyBackupDir(getString(R.string.app_name));
+        File[] files = backupDir.listFiles((dir, name) -> name.toLowerCase().endsWith(".zip"));
+        if (files == null) return;
+        if (files.length == 0) {
+            Toast.makeText(this, R.string.create_a_backup_first, Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        CharSequence[] fileNames = new CharSequence[files.length];
+        for (int i = 0; i < files.length; i++) fileNames[i] = files[i].getName();
+
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.restore_backup)
+                .setItems(fileNames, (dialog, which) -> new BackupUtils(this).restoreZipBackupV3Legacy(files[which]))
+                .show();
     }
 
     @Override

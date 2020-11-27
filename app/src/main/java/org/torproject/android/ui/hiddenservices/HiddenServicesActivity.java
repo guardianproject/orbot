@@ -120,7 +120,7 @@ public class HiddenServicesActivity extends AppCompatActivity {
 
             new AlertDialog.Builder(this)
                     .setTitle(R.string.restore_backup)
-                    .setItems(fileNames, (dialog, which) -> new BackupUtils(HiddenServicesActivity.this).restoreZipBackupV2Legacy(files[which]))
+                    .setItems(fileNames, (dialog, which) -> new BackupUtils(this).restoreZipBackupV2Legacy(files[which]))
                     .show();
 
         }
