@@ -30,8 +30,8 @@ import java.nio.charset.Charset;
 
 public class BackupUtils {
     private static final String configFileName = "config.json";
-    private Context mContext;
-    private ContentResolver mResolver;
+    private final Context mContext;
+    private final ContentResolver mResolver;
 
     public BackupUtils(Context context) {
         mContext = context;
@@ -44,14 +44,14 @@ public class BackupUtils {
 
     public String createV3ZipBackup(String port, Uri zipFile) {
         String[] files = createFilesForZippingV3(port);
-        ZipIt zip = new ZipIt(files, zipFile, mResolver);
+        ZipUtilities zip = new ZipUtilities(files, zipFile, mResolver);
         if (!zip.zip()) return null;
         return zipFile.getPath();
     }
 
     public String createV2ZipBackup(int port, Uri zipFile) {
         String[] files = createFilesForZippingV2(port);
-        ZipIt zip = new ZipIt(files, zipFile, mResolver);
+        ZipUtilities zip = new ZipUtilities(files, zipFile, mResolver);
 
         if (!zip.zip())
             return null;
@@ -84,17 +84,12 @@ public class BackupUtils {
             config.put(OnionServiceContentProvider.OnionService.CREATED_BY_USER, portData.getString(portData.getColumnIndex(OnionServiceContentProvider.OnionService.CREATED_BY_USER)));
             config.put(OnionServiceContentProvider.OnionService.ENABLED, portData.getString(portData.getColumnIndex(OnionServiceContentProvider.OnionService.ENABLED)));
 
-        } catch (JSONException jsone) {
-            jsone.printStackTrace();
-            return null;
-        }
-        portData.close();
+            portData.close();
 
-        try {
             FileWriter fileWriter = new FileWriter(configFilePath);
             fileWriter.write(config.toString());
             fileWriter.close();
-        } catch (IOException ioe) {
+        } catch (JSONException | IOException ioe) {
             ioe.printStackTrace();
             return null;
         }
@@ -131,10 +126,7 @@ public class BackupUtils {
             config.put(HSContentProvider.HiddenService.AUTH_COOKIE_VALUE, portData.getString(portData.getColumnIndex(HSContentProvider.HiddenService.AUTH_COOKIE_VALUE)));
             config.put(HSContentProvider.HiddenService.CREATED_BY_USER, portData.getInt(portData.getColumnIndex(HSContentProvider.HiddenService.CREATED_BY_USER)));
             config.put(HSContentProvider.HiddenService.ENABLED, portData.getInt(portData.getColumnIndex(HSContentProvider.HiddenService.ENABLED)));
-        } catch (JSONException e) {
-            e.printStackTrace();
-            return null;
-        } catch (NullPointerException e) {
+        } catch (JSONException | NullPointerException e) {
             e.printStackTrace();
             return null;
         }
@@ -261,7 +253,7 @@ public class BackupUtils {
 
     public void restoreZipBackupV2Legacy(File zipFile) {
         String backupName = zipFile.getName();
-        ZipIt zip = new ZipIt(null, null, mResolver);
+        ZipUtilities zip = new ZipUtilities(null, null, mResolver);
         String hsDir = backupName.substring(0, backupName.lastIndexOf('.'));
         File hsPath = new File(getHSBasePath().getAbsolutePath(), hsDir);
         if (zip.unzipLegacy(hsPath.getAbsolutePath(), zipFile))
@@ -272,7 +264,7 @@ public class BackupUtils {
 
     public void restoreZipBackupV3Legacy(File zipFile) {
         String backupName = zipFile.getName();
-        ZipIt zip = new ZipIt(null, null, mResolver);
+        ZipUtilities zip = new ZipUtilities(null, null, mResolver);
         String v3Dir = backupName.substring(0, backupName.lastIndexOf('.'));
         File v3Path = new File(getV3BasePath().getAbsolutePath(), v3Dir);
         if (zip.unzipLegacy(v3Path.getAbsolutePath(), zipFile))
@@ -291,7 +283,7 @@ public class BackupUtils {
 
         String hsDir = backupName.substring(0, backupName.lastIndexOf('.'));
         File hsPath = new File(getHSBasePath().getAbsolutePath(), hsDir);
-        if (new ZipIt(null, zipUri, mResolver).unzip(hsPath.getAbsolutePath()))
+        if (new ZipUtilities(null, zipUri, mResolver).unzip(hsPath.getAbsolutePath()))
             extractConfigFromUnzippedBackupV2(backupName);
         else
             Toast.makeText(mContext, R.string.error, Toast.LENGTH_LONG).show();
@@ -306,7 +298,7 @@ public class BackupUtils {
 
         String v3Dir = backupName.substring(0, backupName.lastIndexOf('.'));
         File v3Paath = new File(getV3BasePath().getAbsolutePath(), v3Dir);
-        if (new ZipIt(null, zipUri, mResolver).unzip(v3Paath.getAbsolutePath()))
+        if (new ZipUtilities(null, zipUri, mResolver).unzip(v3Paath.getAbsolutePath()))
             extractConfigFromUnzippedBackupV3(backupName);
         else
             Toast.makeText(mContext, R.string.error, Toast.LENGTH_LONG).show();

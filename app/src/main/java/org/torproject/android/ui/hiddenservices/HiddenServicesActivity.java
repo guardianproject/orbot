@@ -25,6 +25,7 @@ import org.torproject.android.core.DiskUtils;
 import org.torproject.android.core.LocaleHelper;
 import org.torproject.android.ui.hiddenservices.adapters.OnionListAdapter;
 import org.torproject.android.ui.hiddenservices.backup.BackupUtils;
+import org.torproject.android.ui.hiddenservices.backup.ZipUtilities;
 import org.torproject.android.ui.hiddenservices.dialogs.HSActionsDialog;
 import org.torproject.android.ui.hiddenservices.dialogs.HSDataDialog;
 import org.torproject.android.ui.hiddenservices.permissions.PermissionManager;
@@ -43,7 +44,7 @@ public class HiddenServicesActivity extends AppCompatActivity {
     private static final String BUNDLE_KEY_SHOW_USER_SERVICES = "show_user_services";
     private ContentResolver mResolver;
     private OnionListAdapter mAdapter;
-    private RadioButton radioShowUserServices, radioShowAppServices;
+    private RadioButton radioShowUserServices;
     private FloatingActionButton fab;
     private String mWhere = HSContentProvider.HiddenService.CREATED_BY_USER + "=1";
 
@@ -52,7 +53,7 @@ public class HiddenServicesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_hs_list_view);
         radioShowUserServices = findViewById(R.id.radioUserServices);
-        radioShowAppServices = findViewById(R.id.radioAppServices);
+        RadioButton radioShowAppServices = findViewById(R.id.radioAppServices);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -61,7 +62,7 @@ public class HiddenServicesActivity extends AppCompatActivity {
         mResolver = getContentResolver();
 
         fab = findViewById(R.id.fab);
-        fab.setOnClickListener(view -> new HSDataDialog().show(getSupportFragmentManager(), "HSDataDialog"));
+        fab.setOnClickListener(view -> new HSDataDialog().show(getSupportFragmentManager(), HSDataDialog.class.getSimpleName()));
 
         mAdapter = new OnionListAdapter(this, mResolver.query(HSContentProvider.CONTENT_URI, HSContentProvider.PROJECTION, mWhere, null, null), 0);
         mResolver.registerContentObserver(HSContentProvider.CONTENT_URI, true, new HSObserver(new Handler()));
@@ -108,7 +109,7 @@ public class HiddenServicesActivity extends AppCompatActivity {
 
     private void doRestoreLegacy() { // API 16, 17, 18
         File backupDir = DiskUtils.getOrCreateLegacyBackupDir(getString(R.string.app_name));
-        File[] files = backupDir.listFiles((dir, name) -> name.toLowerCase().endsWith(".zip"));
+        File[] files = backupDir.listFiles(ZipUtilities.FILTER_ZIP_FILES);
         if (files != null) {
             if (files.length == 0) {
                 Toast.makeText(this, R.string.create_a_backup_first, Toast.LENGTH_LONG).show();
@@ -140,7 +141,7 @@ public class HiddenServicesActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menu_restore_backup) {
             if (DiskUtils.supportsStorageAccessFramework()) {
-                Intent readFile = DiskUtils.createReadFileIntent("application/zip");
+                Intent readFile = DiskUtils.createReadFileIntent(ZipUtilities.ZIP_MIME_TYPE);
                 startActivityForResult(readFile, REQUEST_CODE_READ_ZIP_BACKUP);
             } else { // API 16, 17, 18
                 doRestoreLegacy();
@@ -177,12 +178,9 @@ public class HiddenServicesActivity extends AppCompatActivity {
         @Override
         public void onChange(boolean selfChange) {
             mAdapter.changeCursor(mResolver.query(HSContentProvider.CONTENT_URI, HSContentProvider.PROJECTION, mWhere, null, null));
-
             if (!PermissionManager.isLollipopOrHigher()) return;
             Cursor active = mResolver.query(HSContentProvider.CONTENT_URI, HSContentProvider.PROJECTION, HSContentProvider.HiddenService.ENABLED + "=1", null, null);
-
             if (active == null) return;
-
             if (active.getCount() > 0) // Call only if there running services
                 PermissionManager.requestBatteryPermissions(HiddenServicesActivity.this, getApplicationContext());
             else // Drop whe not needed

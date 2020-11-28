@@ -9,10 +9,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -23,15 +25,17 @@ import org.torproject.android.R;
 import org.torproject.android.core.DiskUtils;
 import org.torproject.android.core.LocaleHelper;
 import org.torproject.android.ui.hiddenservices.backup.BackupUtils;
+import org.torproject.android.ui.hiddenservices.backup.ZipUtilities;
 
 import java.io.File;
 
 public class OnionServicesActivity extends AppCompatActivity {
 
     static final String BUNDLE_KEY_ID = "id", BUNDLE_KEY_PORT = "port", BUNDLE_KEY_DOMAIN = "domain";
-    private static final String WHERE_SELECTION_CLAUSE = OnionServiceContentProvider.OnionService.CREATED_BY_USER + "=1";
+    private static final String BASE_WHERE_SELECTION_CLAUSE = OnionServiceContentProvider.OnionService.CREATED_BY_USER + "=";
+    private static final String BUNDLE_KEY_SHOW_USER_SERVICES = "show_user_key";
     private static final int REQUEST_CODE_READ_ZIP_BACKUP = 347;
-    private RadioButton radioShowUserServices, radioShowAppServices;
+    private RadioButton radioShowUserServices;
     private FloatingActionButton fab;
     private ContentResolver mContentResolver;
     private OnionV3ListAdapter mAdapter;
@@ -46,13 +50,20 @@ public class OnionServicesActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         fab = findViewById(R.id.fab);
-        fab.setOnClickListener(v -> new NewOnionServiceDialogFragment().show(getSupportFragmentManager(), "NewOnionServiceDialogFragment"));
+        fab.setOnClickListener(v -> new NewOnionServiceDialogFragment().show(getSupportFragmentManager(), NewOnionServiceDialogFragment.class.getSimpleName()));
 
         mContentResolver = getContentResolver();
-        mAdapter = new OnionV3ListAdapter(this, mContentResolver.query(OnionServiceContentProvider.CONTENT_URI, OnionServiceContentProvider.PROJECTION, WHERE_SELECTION_CLAUSE, null, null), 0);
+        mAdapter = new OnionV3ListAdapter(this, mContentResolver.query(OnionServiceContentProvider.CONTENT_URI, OnionServiceContentProvider.PROJECTION, BASE_WHERE_SELECTION_CLAUSE + '1', null, null), 0);
         mContentResolver.registerContentObserver(OnionServiceContentProvider.CONTENT_URI, true, new OnionServiceObserver(new Handler()));
 
         ListView onionList = findViewById(R.id.onion_list);
+
+        radioShowUserServices = findViewById(R.id.radioUserServices);
+        RadioButton radioShowAppServices = findViewById(R.id.radioAppServices);
+        boolean showUserServices = radioShowAppServices.isChecked() || bundle == null || bundle.getBoolean(BUNDLE_KEY_SHOW_USER_SERVICES, false);
+        if (showUserServices) radioShowUserServices.setChecked(true);
+        else radioShowAppServices.setChecked(true);
+        filterServices(showUserServices);
         onionList.setAdapter(mAdapter);
         onionList.setOnItemClickListener((parent, view, position, id) -> {
             Cursor item = (Cursor) parent.getItemAtPosition(position);
@@ -63,6 +74,19 @@ public class OnionServicesActivity extends AppCompatActivity {
             OnionServiceActionsDialogFragment dialog = new OnionServiceActionsDialogFragment(arguments);
             dialog.show(getSupportFragmentManager(), OnionServiceActionsDialogFragment.class.getSimpleName());
         });
+    }
+
+    private void filterServices(boolean showUserServices) {
+        String predicate;
+        if (showUserServices) {
+            predicate = "1";
+            fab.show();
+        } else {
+            predicate = "0";
+            fab.hide();
+        }
+        mAdapter.changeCursor(mContentResolver.query(OnionServiceContentProvider.CONTENT_URI, OnionServiceContentProvider.PROJECTION,
+                BASE_WHERE_SELECTION_CLAUSE + predicate, null, null));
     }
 
     @Override
@@ -77,10 +101,16 @@ public class OnionServicesActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onSaveInstanceState(@NonNull Bundle icicle) {
+        super.onSaveInstanceState(icicle);
+        icicle.putBoolean(BUNDLE_KEY_SHOW_USER_SERVICES, radioShowUserServices.isChecked());
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menu_restore_backup) {
             if (DiskUtils.supportsStorageAccessFramework()) {
-                Intent readFileIntent = DiskUtils.createReadFileIntent("application/zip");
+                Intent readFileIntent = DiskUtils.createReadFileIntent(ZipUtilities.ZIP_MIME_TYPE);
                 startActivityForResult(readFileIntent, REQUEST_CODE_READ_ZIP_BACKUP);
             } else { // APIs 16, 17, 18
                 doRestoreLegacy();
@@ -91,7 +121,7 @@ public class OnionServicesActivity extends AppCompatActivity {
 
     private void doRestoreLegacy() { // APIs 16, 17, 18
         File backupDir = DiskUtils.getOrCreateLegacyBackupDir(getString(R.string.app_name));
-        File[] files = backupDir.listFiles((dir, name) -> name.toLowerCase().endsWith(".zip"));
+        File[] files = backupDir.listFiles(ZipUtilities.FILTER_ZIP_FILES);
         if (files == null) return;
         if (files.length == 0) {
             Toast.makeText(this, R.string.create_a_backup_first, Toast.LENGTH_LONG).show();
@@ -115,6 +145,14 @@ public class OnionServicesActivity extends AppCompatActivity {
         }
     }
 
+    public void onRadioButtonClick(View view) {
+        int id = view.getId();
+        if (id == R.id.radioUserServices)
+            filterServices(true);
+        else if (id == R.id.radioAppServices)
+            filterServices(false);
+    }
+
     private class OnionServiceObserver extends ContentObserver {
 
         OnionServiceObserver(Handler handler) {
@@ -123,7 +161,7 @@ public class OnionServicesActivity extends AppCompatActivity {
 
         @Override
         public void onChange(boolean selfChange) {
-            mAdapter.changeCursor(mContentResolver.query(OnionServiceContentProvider.CONTENT_URI, OnionServiceContentProvider.PROJECTION, WHERE_SELECTION_CLAUSE, null, null));
+            mAdapter.changeCursor(mContentResolver.query(OnionServiceContentProvider.CONTENT_URI, OnionServiceContentProvider.PROJECTION, BASE_WHERE_SELECTION_CLAUSE + '1', null, null));
             // todo battery optimization stuff if lollipop or higher and running onion services
         }
     }

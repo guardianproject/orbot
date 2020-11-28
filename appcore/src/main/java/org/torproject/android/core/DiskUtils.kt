@@ -21,7 +21,6 @@ object DiskUtils {
     @Throws(IOException::class)
     fun readFileFromAssets(assetFilename: String, context: Context): String {
         val reader = BufferedReader(InputStreamReader(context.assets.open(assetFilename)))
-        // do reading, usually loop until end of file reading
         val sb = StringBuilder()
         var mLine = reader.readLine()
         while (mLine != null) {
