@@ -26,6 +26,7 @@ import org.torproject.android.core.DiskUtils;
 import org.torproject.android.core.LocaleHelper;
 import org.torproject.android.ui.hiddenservices.backup.BackupUtils;
 import org.torproject.android.ui.hiddenservices.backup.ZipUtilities;
+import org.torproject.android.ui.hiddenservices.permissions.PermissionManager;
 
 import java.io.File;
 
@@ -161,8 +162,16 @@ public class OnionServicesActivity extends AppCompatActivity {
 
         @Override
         public void onChange(boolean selfChange) {
-            mAdapter.changeCursor(mContentResolver.query(OnionServiceContentProvider.CONTENT_URI, OnionServiceContentProvider.PROJECTION, BASE_WHERE_SELECTION_CLAUSE + '1', null, null));
-            // todo battery optimization stuff if lollipop or higher and running onion services
+            filterServices(radioShowUserServices.isChecked()); // updates adapter
+            if (!PermissionManager.isLollipopOrHigher()) return;
+            Cursor activeServices = mContentResolver.query(OnionServiceContentProvider.CONTENT_URI, OnionServiceContentProvider.PROJECTION,
+                    OnionServiceContentProvider.OnionService.ENABLED + "=1", null, null);
+            if (activeServices == null) return;
+            if (activeServices.getCount() > 0)
+                PermissionManager.requestBatteryPermissions(OnionServicesActivity.this, getApplicationContext());
+            else
+                PermissionManager.requestDropBatteryPermissions(OnionServicesActivity.this, getApplicationContext());
+            activeServices.close();
         }
     }
 
