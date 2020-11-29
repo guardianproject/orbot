@@ -1370,8 +1370,8 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
         ContentResolver contentResolver = getApplicationContext().getContentResolver();
         addV3OnionServicesToTorrc(extraLines, contentResolver);
-//        addV2HiddenServicesToTorrc(extraLines, contentResolver);
-//        addV2ClientCookiesToTorrc(extraLines, contentResolver);
+        addV2HiddenServicesToTorrc(extraLines, contentResolver);
+        addV2ClientCookiesToTorrc(extraLines, contentResolver);
         return extraLines;
     }
 

@@ -10,7 +10,6 @@ import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -74,6 +73,7 @@ import org.torproject.android.ui.hiddenservices.permissions.PermissionManager;
 import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
 import org.torproject.android.ui.onboarding.BridgeWizardActivity;
 import org.torproject.android.ui.onboarding.OnboardingActivity;
+import org.torproject.android.ui.v3onionservice.OnionServiceContentProvider;
 import org.torproject.android.ui.v3onionservice.OnionServicesActivity;
 
 import java.io.File;
@@ -102,13 +102,14 @@ import static org.torproject.android.service.vpn.VpnPrefs.PREFS_KEY_TORIFIED;
 
 public class OrbotMainActivity extends AppCompatActivity implements OrbotConstants {
 
-    public final static String INTENT_ACTION_REQUEST_HIDDEN_SERVICE = "org.torproject.android.REQUEST_HS_PORT";
-    public final static String INTENT_ACTION_REQUEST_START_TOR = "org.torproject.android.START_TOR";
-    private final static int REQUEST_VPN = 8888;
-    private final static int REQUEST_SETTINGS = 0x9874;
-    private final static int REQUEST_VPN_APPS_SELECT = 8889;
+    private static final String INTENT_ACTION_REQUEST_HIDDEN_SERVICE = "org.torproject.android.REQUEST_HS_PORT";
+    private static final String INTENT_ACTION_REQUEST_V3_ONION_SERVICE = "org.torproject.android.REQUEST_V3_ONION_SERVICE";
+    private static final String INTENT_ACTION_REQUEST_START_TOR = "org.torproject.android.START_TOR";
+    private static final int REQUEST_VPN = 8888;
+    private static final int REQUEST_SETTINGS = 0x9874;
+    private static final int REQUEST_VPN_APPS_SELECT = 8889;
     // message types for mStatusUpdateHandler
-    private final static int STATUS_UPDATE = 1;
+    private static final int STATUS_UPDATE = 1;
     private static final int MESSAGE_TRAFFIC_COUNT = 2;
     private static final int MESSAGE_PORTS = 3;
     private static final float ROTATE_FROM = 0.0f;
@@ -120,18 +121,18 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     // and passes them back into the main UI thread for display to the user
     private final Handler mStatusUpdateHandler = new MainActivityStatusUpdateHandler(this);
     PulsatorLayout mPulsator;
-    AlertDialog aDialog = null;
+    AlertDialog aDialog;
     /* Useful UI bits */
-    private TextView lblStatus = null; //the main text display widget
-    private TextView lblPorts = null;
-    private ImageView imgStatus = null; //the main touchable image for activating Orbot
-    private TextView downloadText = null;
-    private TextView uploadText = null;
-    private TextView mTxtOrbotLog = null;
-    private Button mBtnStart = null;
-    private SwitchCompat mBtnVPN = null;
-    private SwitchCompat mBtnBridges = null;
-    private Spinner spnCountries = null;
+    private TextView lblStatus; //the main text display widget
+    private TextView lblPorts;
+    private ImageView imgStatus; //the main touchable image for activating Orbot
+    private TextView downloadText;
+    private TextView uploadText;
+    private TextView mTxtOrbotLog;
+    private Button mBtnStart;
+    private SwitchCompat mBtnVPN;
+    private SwitchCompat mBtnBridges;
+    private Spinner spnCountries;
     private DrawerLayout mDrawer;
     /* Some tracking bits */
     private String torStatus = null; //latest status reported from the tor service
@@ -538,8 +539,30 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         sendIntentToService(ACTION_START_VPN);
     }
 
-    private void enableHiddenServicePort(String hsName, final int hsPort, int hsRemotePort,
-                                         final String backupToPackage, final Uri hsKeyPath, final Boolean authCookie) {
+    private void enableV3OnionServiceOnV3(int localPort, int onionPort, String name) {
+        ContentValues fields = new ContentValues();
+        fields.put(OnionServiceContentProvider.OnionService.PORT, localPort);
+        fields.put(OrbotService.OnionService.NAME, name);
+        fields.put(OnionServiceContentProvider.OnionService.PORT, onionPort);
+        fields.put(OnionServiceContentProvider.OnionService.ENABLED, 1);
+        fields.put(OnionServiceContentProvider.OnionService.CREATED_BY_USER, 0);
+
+        ContentResolver contentResolver = getContentResolver();
+        contentResolver.insert(OnionServiceContentProvider.CONTENT_URI, fields);
+
+        if (torStatus.equals(TorServiceConstants.STATUS_OFF)) {
+            startTor();
+        } else {
+            stopTor();
+            Toast.makeText(this, R.string.start_tor_again_for_finish_the_process, Toast.LENGTH_LONG).show();
+        }
+
+
+
+    }
+
+    private void enableHiddenServicePortV2(String hsName, final int hsPort, int hsRemotePort,
+                                           final String backupToPackage, final Uri hsKeyPath, final Boolean authCookie) {
         String onionHostname = null;
 
         if (hsName == null)
@@ -582,9 +605,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                 startTor();
             } else {
                 stopTor();
-                Toast.makeText(
-                        this, R.string.start_tor_again_for_finish_the_process, Toast.LENGTH_LONG
-                ).show();
+                Toast.makeText(this, R.string.start_tor_again_for_finish_the_process, Toast.LENGTH_LONG).show();
             }
 
             new Thread() {
@@ -668,41 +689,44 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
             return;
 
         switch (action) {
+            case INTENT_ACTION_REQUEST_V3_ONION_SERVICE:
+                final int v3LocalPort = intent.getIntExtra("localPort", -1);
+                final int v3onionPort = intent.getIntExtra("onionPort", v3LocalPort);
+                String name = intent.getStringExtra("name") ;
+                if (name == null) name = "v3" + v3LocalPort;
+                final String finalName = name;
+                new AlertDialog.Builder(this)
+                        .setMessage(getString(R.string.hidden_service_request, String.valueOf(v3LocalPort)))
+                        .setPositiveButton(R.string.allow, (d, w) -> enableV3OnionServiceOnV3(v3LocalPort, v3onionPort, finalName))
+                        .setNegativeButton(R.string.deny, (d, w) -> d.dismiss())
+                        .show();
+                return;
+
             case INTENT_ACTION_REQUEST_HIDDEN_SERVICE:
-                final int hiddenServicePort = intent.getIntExtra("hs_port", -1);
-                final int hiddenServiceRemotePort = intent.getIntExtra("hs_onion_port", -1);
-                final String hiddenServiceName = intent.getStringExtra("hs_name");
-                final String backupToPackage = intent.getStringExtra("hs_backup_to_package");
-                final Boolean authCookie = intent.getBooleanExtra("hs_auth_cookie", false);
-                final Uri mKeyUri = intent.getData();
+                final int v2hiddenServicePort = intent.getIntExtra("hs_port", -1);
+                final int v2hiddenServiceRemotePort = intent.getIntExtra("hs_onion_port", -1);
+                final String v2hiddenServiceName = intent.getStringExtra("hs_name");
+                final String v2backupToPackage = intent.getStringExtra("hs_backup_to_package");
+                final Boolean v2authCookie = intent.getBooleanExtra("hs_auth_cookie", false);
+                final Uri v2KeyUri = intent.getData();
 
-                DialogInterface.OnClickListener dialogClickListener = (dialog, which) -> {
-                    if (which == DialogInterface.BUTTON_POSITIVE) {
-                        enableHiddenServicePort(
-                                hiddenServiceName, hiddenServicePort,
-                                hiddenServiceRemotePort, backupToPackage,
-                                mKeyUri, authCookie
-                        );
-                    }
-                };
-
-                String requestMsg = getString(R.string.hidden_service_request, String.valueOf(hiddenServicePort));
-                new AlertDialog.Builder(this).setMessage(requestMsg)
-                        .setPositiveButton(R.string.allow, dialogClickListener)
-                        .setNegativeButton(R.string.deny, dialogClickListener).show();
-
+                String v2RequestMsg = getString(R.string.hidden_service_request, String.valueOf(v2hiddenServicePort));
+                new AlertDialog.Builder(this).setMessage(v2RequestMsg)
+                        .setPositiveButton(R.string.allow, (dialog, which) -> enableHiddenServicePortV2(
+                                v2hiddenServiceName, v2hiddenServicePort,
+                                v2hiddenServiceRemotePort, v2backupToPackage,
+                                v2KeyUri, v2authCookie))
+                        .setNegativeButton(R.string.deny, (d, w) -> d.dismiss()).show();
                 return; //don't null the setIntent() as we need it later
 
             case INTENT_ACTION_REQUEST_START_TOR:
                 autoStartFromIntent = true;
                 startTor();
-
                 break;
+
             case Intent.ACTION_VIEW:
                 String urlString = intent.getDataString();
-
                 if (urlString != null) {
-
                     if (urlString.toLowerCase(Locale.ENGLISH).startsWith("bridge://")) {
                         String newBridgeValue = urlString.substring(9); //remove the bridge protocol piece
                         try {
@@ -712,17 +736,13 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                         }
 
                         showAlert(getString(R.string.bridges_updated), getString(R.string.restart_orbot_to_use_this_bridge_) + newBridgeValue, false);
-
                         setNewBridges(newBridgeValue);
                     }
                 }
                 break;
         }
-
         updateStatus(null, torStatus);
-
         setIntent(null);
-
     }
 
     private void setNewBridges(String newBridgeValue) {
