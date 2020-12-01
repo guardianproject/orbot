@@ -147,7 +147,7 @@
     <string name="pref_http_title">HTTP Tor</string>
     <string name="pref_http_summary">Port sur lequel Tor offre son mandataire HTTP (par défaut : 8118 ou 0 pour le désactiver)</string>
     <string name="pref_http_dialog">Configuration du port HTTP</string>
-    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Si votre réseau mobile bloque Tor activement, vous pouvez utiliser un « Serveur pont » comme alternative. SÉLECTIONNEZ l’une des options pour configurer et tester…</string>
+    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Si votre réseau mobile bloque Tor activement, vous pouvez utiliser un « Serveur pont » comme alternative. SÉLECTIONNEZ l’une des options pour configurer et tester…</string>
     <string name="apps_mode">Mode RPV</string>
     <string name="vpn_default_world">Global (automatique)</string>
     <string name="hidden_services">Services onion</string>
