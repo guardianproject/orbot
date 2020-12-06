@@ -120,8 +120,6 @@
   <string name="pref_torrc_title">Torrc egyedi konfiguráció</string>
   <string name="pref_torrc_summary">CSAK SZAKÉRTŐKNEK: torrc konfigurációs sorok közvetlen beírása</string>
   <string name="pref_torrc_dialog">Egyedi Torrc</string>
-    <string name="kbps">kbps</string>
-  <string name="mbps">mbps</string>
   <string name="kb">KB</string>
   <string name="mb">MB</string>
   <string name="bridges_updated">Hidak frissítve</string>

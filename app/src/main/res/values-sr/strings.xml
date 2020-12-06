@@ -116,10 +116,6 @@
   <string name="pref_torrc_title">Torrc Прерађена Подешавања</string>
   <string name="pref_torrc_summary">САМО ЗА ЕКСПЕРТЕ: унети директно torrc линије подешавања</string>
   <string name="pref_torrc_dialog">Подеси Torrc</string>
-    <string name="kbps">kbps</string>
-  <string name="mbps">mbps</string>
-  <string name="kb">KB</string>
-  <string name="mb">MB</string>
   <string name="bridges_updated">Bridges Ажурирање</string>
   <string name="restart_orbot_to_use_this_bridge_">Молимо покрените поново Орбот ради примењивања промена</string>
   <string name="menu_qr">QR Кодови</string>

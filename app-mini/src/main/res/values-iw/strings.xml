@@ -94,8 +94,6 @@
   <string name="pref_transport_title">Tor TransProxy Port</string>
   <string name="pref_transport_dialog">הגדרת הפורט של TransProxy</string>
   <string name="pref_dnsport_title">Tor DNS Port</string>
-    <string name="kbps">kbps</string>
-  <string name="mbps">mbps</string>
   <string name="kb">KB</string>
   <string name="mb">MB</string>
   <string name="menu_qr">קוד QR</string>

@@ -147,10 +147,6 @@
     <string name="pref_torrc_dialog">Custom Torrc</string>
 
 
-    <string name="kbps">kbps</string>
-
-    <string name="mbps">mbps</string>
-
     <string name="kb">KB</string>
 
     <string name="mb">MB</string>

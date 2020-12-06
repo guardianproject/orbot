@@ -98,10 +98,6 @@
   <string name="pref_disable_network_title">Walang Auto-Sleep sa Network</string>
   <string name="pref_disable_network_summary">Ilagay ang Tor sa sleep kapag walang internet na pwede</string>
   <string name="newnym">Ikaw ay nagpalit ng bagong pagkakakilanlan sa Tor!</string>
-    <string name="kbps">kbps</string>
-  <string name="mbps">mbps</string>
-  <string name="kb">KB</string>
-  <string name="mb">MB</string>
   <string name="get_bridges_email">Email</string>
   <string name="send_email">Send Email</string>
     <string name="save">I-save</string>

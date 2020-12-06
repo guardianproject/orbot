@@ -1066,29 +1066,29 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     private String formatCount(long count) {
         NumberFormat numberFormat = NumberFormat.getInstance(Locale.getDefault());
         // Converts the supplied argument into a string.
-        // Under 2Mb, returns "xxx.xKb"
-        // Over 2Mb, returns "xxx.xxMb"
+        // Under 2 mebibytes, returns "xxx.xKiB/s"
+        // Over 2 mebibytes, returns "xxx.xxMiB/s"
         if (count < 1e6)
             return numberFormat.format(Math.round(((float) ((int) (count * 10 / 1024)) / 10)))
-                    + getString(R.string.kbps);
+                    + getString(R.string.kibibyte_per_second);
         else
             return numberFormat.format(Math
                     .round(((float) ((int) (count * 100 / 1024 / 1024)) / 100)))
-                    + getString(R.string.mbps);
+                    + getString(R.string.mebibyte_per_second);
     }
 
     private String formatTotal(long count) {
         NumberFormat numberFormat = NumberFormat.getInstance(Locale.getDefault());
         // Converts the supplied argument into a string.
-        // Under 2Mb, returns "xxx.xKb"
-        // Over 2Mb, returns "xxx.xxMb"
+        // Under 2MiB, returns "xxx.xKiB"
+        // Over 2MiB, returns "xxx.xxMiB"
         if (count < 1e6)
             return numberFormat.format(Math.round(((float) ((int) (count * 10 / 1024)) / 10)))
-                    + getString(R.string.kb);
+                    + getString(R.string.kibibyte);
         else
             return numberFormat.format(Math
                     .round(((float) ((int) (count * 100 / 1024 / 1024)) / 100)))
-                    + getString(R.string.mb);
+                    + getString(R.string.mebibyte);
     }
 
     private void requestNewTorIdentity() {

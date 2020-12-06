@@ -113,10 +113,6 @@
   <string name="pref_torrc_title">Konfigurasi Torrc</string>
   <string name="pref_torrc_summary">HANYA UNTUK AHLI: masukkan baris konfigurasi direct Torrc</string>
   <string name="pref_torrc_dialog">Torrc Custom</string>
-    <string name="kbps">kbps</string>
-  <string name="mbps">mbps</string>
-  <string name="kb">KB</string>
-  <string name="mb">MB</string>
   <string name="bridges_updated">Bridge Telah Diperbarui</string>
   <string name="restart_orbot_to_use_this_bridge_">Silakan start ulang Orbot untuk mengaktifkan perubahan</string>
   <string name="menu_qr">Kode QR</string>

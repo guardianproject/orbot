@@ -120,8 +120,6 @@
   <string name="pref_torrc_title">Torrc konfigurazio pertsonala</string>
   <string name="pref_torrc_summary">ADITUAK BESTERIK EZ: sartu torrc konfigurazio lerroak</string>
   <string name="pref_torrc_dialog">Torrc pertsonalizatua</string>
-    <string name="kbps">kbps</string>
-  <string name="mbps">mbps</string>
   <string name="kb">KB</string>
   <string name="mb">MB</string>
   <string name="bridges_updated">Zubiak eguneratuta</string>

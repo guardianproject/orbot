@@ -120,8 +120,6 @@
   <string name="pref_torrc_title">กำหนดค่า Torrc เอง</string>
   <string name="pref_torrc_summary">สำหรับผู้เชี่ยวชาญเท่านั้น: ระบุบรรทัดที่กำหนดค่า torcc โดยตรง</string>
   <string name="pref_torrc_dialog">Torrc ที่กำหนดเอง</string>
-    <string name="kbps">กิโลบิตต่อวินาที</string>
-  <string name="mbps">เมกะบิตต่อวินาที</string>
   <string name="kb">กิโลไบต์</string>
   <string name="mb">เมกะไบต์</string>
   <string name="bridges_updated">ปรับปรุง Bridges แล้ว</string>

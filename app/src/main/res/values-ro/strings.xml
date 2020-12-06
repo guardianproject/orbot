@@ -113,10 +113,6 @@
   <string name="pref_torrc_title">Configurare personalizată Torrc</string>
   <string name="pref_torrc_summary">PENTRU EXPERŢI: introdu direct liniile de configurare ale torrc</string>
   <string name="pref_torrc_dialog">Torrc Personalizat</string>
-    <string name="kbps">kbps</string>
-  <string name="mbps">mbps</string>
-  <string name="kb">KB</string>
-  <string name="mb">MB</string>
   <string name="bridges_updated">Punţi activate</string>
   <string name="restart_orbot_to_use_this_bridge_">Vă rugăm reporniţi Orbot pentru a aplica modificările</string>
   <string name="menu_qr">Coduri QR</string>

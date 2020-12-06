@@ -115,8 +115,6 @@
   <string name="pref_torrc_title">Torrc:n mukautetut asetukset</string>
   <string name="pref_torrc_summary">VAIN ASIANTUNTIJAT: syötä torrc:n määritysrivejä suoraan</string>
   <string name="pref_torrc_dialog">Mukautettu torrc</string>
-  <string name="kbps">kilobittiä per sekunti</string>
-  <string name="mbps">megabittiä per sekunti</string>
   <string name="kb">kt</string>
   <string name="mb">Mt</string>
   <string name="bridges_updated">Sillat päivitetty</string>

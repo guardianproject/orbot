@@ -120,8 +120,6 @@
   <string name="pref_torrc_title">Додаткові налаштування Torrc</string>
   <string name="pref_torrc_summary">ЛИШЕ ДЛЯ ЕКСПЕРТІВ: введіть безпосередні рядки налаштувань torrc</string>
   <string name="pref_torrc_dialog">Додаткове у Torrc</string>
-    <string name="kbps">kbps</string>
-  <string name="mbps">mbps</string>
   <string name="kb">KB</string>
   <string name="mb">MB</string>
   <string name="bridges_updated">Мости оновлено</string>
