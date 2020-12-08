@@ -119,10 +119,6 @@ direcciones (o rangos). No prevalecen sobre las configuraciones de exclusión de
   <string name="pref_torrc_title">Configuración personalizada de torrc</string>
   <string name="pref_torrc_summary">SÓLO EXPERTOS: Introduzca directamente las líneas de configuración en el fichero torrc</string>
   <string name="pref_torrc_dialog">torrc personalizado</string>
-    <string name="kbps">kbps</string>
-  <string name="mbps">mbps</string>
-  <string name="kb">KB</string>
-  <string name="mb">MB</string>
   <string name="bridges_updated">Bridges actualizados</string>
   <string name="restart_orbot_to_use_this_bridge_">Por favor, reinicie Orbot para habilitar los cambios</string>
   <string name="menu_qr">Códigos QR</string>

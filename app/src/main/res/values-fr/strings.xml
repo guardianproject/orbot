@@ -118,10 +118,6 @@
   <string name="pref_torrc_title">Configuration personnalisée de Torrc</string>
   <string name="pref_torrc_summary">EXPERTS SEULEMENT : saisissez les lignes de configuration de torrc direct</string>
   <string name="pref_torrc_dialog">Personnaliser Torrc </string>
-    <string name="kbps">kbps</string>
-  <string name="mbps">mbps</string>
-  <string name="kb">Ko</string>
-  <string name="mb">Mo</string>
   <string name="bridges_updated">Ponts mis à jour</string>
   <string name="restart_orbot_to_use_this_bridge_">Veuillez redémarrer Orbot pour activer les changements</string>
   <string name="menu_qr">Codes QR</string>

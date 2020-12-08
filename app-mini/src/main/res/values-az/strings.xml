@@ -116,8 +116,6 @@ LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="pref_torrc_title">Torrc Custom Config</string>
   <string name="pref_torrc_summary">YALNIZ EKSPERTLƏR: birbaşa torrc config xətlərini daxil edin</string>
   <string name="pref_torrc_dialog">Custom Torrc</string>
-    <string name="kbps">kbps</string>
-  <string name="mbps">mbps</string>
   <string name="kb">KB</string>
   <string name="mb">MB</string>
   <string name="bridges_updated">Körpülər yeniləndi</string>

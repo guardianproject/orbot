@@ -120,8 +120,6 @@
   <string name="pref_torrc_title">Torrc カスタム設定</string>
   <string name="pref_torrc_summary">上級者家のみ: 直接torrc設定行を入力します</string>
   <string name="pref_torrc_dialog">Torrcをカスタム</string>
-    <string name="kbps">kbps</string>
-  <string name="mbps">mbps</string>
   <string name="kb">KB</string>
   <string name="mb">MB</string>
   <string name="bridges_updated">ブリッジを更新しました</string>

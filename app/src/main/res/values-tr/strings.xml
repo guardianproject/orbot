@@ -118,10 +118,6 @@
   <string name="pref_torrc_title">Özel Torrc Ayarları</string>
   <string name="pref_torrc_summary">UZMANLAR İÇİN: torrc ayar satırlarını doğrudan yazın</string>
   <string name="pref_torrc_dialog">Özel Torrc Ayarları</string>
-  <string name="kbps">kbps</string>
-  <string name="mbps">mbps</string>
-  <string name="kb">KB</string>
-  <string name="mb">MB</string>
   <string name="bridges_updated">Köprüler Güncellendi</string>
   <string name="restart_orbot_to_use_this_bridge_">Değişiklikleri etkinleştirmek için Orbot uygulamasını yeniden başlatın</string>
   <string name="menu_qr">QR Kodları</string>

@@ -120,8 +120,6 @@
   <string name="pref_torrc_title">Torrc anpassad konfiguration</string>
   <string name="pref_torrc_summary">ENDAST EXPERTER: ange torrc konfiguration direkt</string>
   <string name="pref_torrc_dialog">Anpassad Torrc</string>
-    <string name="kbps">kb/s</string>
-  <string name="mbps">mb/s</string>
   <string name="kb">KB</string>
   <string name="mb">MB</string>
   <string name="bridges_updated">Bryggor uppdaterade</string>

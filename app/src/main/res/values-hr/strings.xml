@@ -113,10 +113,6 @@
   <string name="pref_torrc_title">Torrc prilagođena konfiguracija</string>
   <string name="pref_torrc_summary">SAMO ZA STRUČNJAKE: unesite direktno torrc konfiguracijske linije</string>
   <string name="pref_torrc_dialog">Prilagođeni Torrc</string>
-  <string name="kbps">kbps</string>
-  <string name="mbps">mbps</string>
-  <string name="kb">KB</string>
-  <string name="mb">MB</string>
   <string name="bridges_updated">Mostova ažurirano</string>
   <string name="restart_orbot_to_use_this_bridge_">Ponovno pokrenite Orbot da bi omogućili promjene</string>
   <string name="menu_qr">QR kodovi</string>

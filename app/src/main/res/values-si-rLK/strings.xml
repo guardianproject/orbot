@@ -81,8 +81,6 @@
     <string name="pref_use_persistent_notifications">Orbot සම්බන්ධ වී ඇති සැමවිටම විට මෙවලම් තීරුවේ නිරූපකය තබාගන්න</string>
   <string name="pref_use_persistent_notifications_title">නිවේදන ලැබීමට සලස්වන්න </string>
     <string name="set_locale_title">භාෂාව</string>
-    <string name="kb">KB</string>
-  <string name="mb">MB</string>
   <string name="hidden_services">සැගවුණු සේවා </string>
   <string name="title_activity_hidden_services">සැගවුණු සේවා </string>
   <string name="menu_hidden_services">සැගවුණු සේවා </string>

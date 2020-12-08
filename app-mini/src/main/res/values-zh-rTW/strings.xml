@@ -120,8 +120,6 @@
   <string name="pref_torrc_title">Torrc 自訂設置</string>
   <string name="pref_torrc_summary">僅限專家：輸入 torrc 設定指令</string>
   <string name="pref_torrc_dialog">自訂 Torrc</string>
-    <string name="kbps">kbps</string>
-  <string name="mbps">mbps</string>
   <string name="kb">KB</string>
   <string name="mb">MB</string>
   <string name="bridges_updated">網橋已更新</string>
