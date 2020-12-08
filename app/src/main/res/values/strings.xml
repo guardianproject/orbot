@@ -145,13 +145,10 @@
     <string name="pref_torrc_dialog">Custom Torrc</string>
 
 
-    <string name="kbps">KBps</string>
-
-    <string name="mbps">MBps</string>
-
-    <string name="kb">KB</string>
-
-    <string name="mb">MB</string>
+    <string name="kibibyte_per_second">KiB/s</string>
+    <string name="mebibyte_per_second">MiB/s</string>
+    <string name="kibibyte">KiB</string>
+    <string name="mebibyte">MiB</string>
 
     <string name="bridges_updated">Bridges Updated</string>
 

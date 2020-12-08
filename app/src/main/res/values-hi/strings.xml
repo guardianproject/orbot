@@ -119,10 +119,6 @@
   <string name="pref_torrc_title">टोररक कस्टम कॉन्फ़िग</string>
   <string name="pref_torrc_summary">केवल विशेषज्ञ: प्रत्यक्ष टॉर्च कॉन्फ़िग लाइनें दर्ज करें</string>
   <string name="pref_torrc_dialog">कस्टम टोररक</string>
-    <string name="kbps">केबीपीएस</string>
-  <string name="mbps">एमबीपीएस</string>
-  <string name="kb">कब</string>
-  <string name="mb">मब </string>
   <string name="bridges_updated">पुल अपडेटेड </string>
   <string name="restart_orbot_to_use_this_bridge_">परिवर्तन सक्षम करने के लिए Orbot पुनः प्रारंभ करें</string>
   <string name="menu_qr">QR कोड</string>

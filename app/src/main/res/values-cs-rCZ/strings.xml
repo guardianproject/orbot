@@ -112,10 +112,6 @@
   <string name="pref_torrc_title">Torrc vstastní konfigurace</string>
   <string name="pref_torrc_summary">POUZE PRO EXPERTY: zadejte přímo řádky nastavení torrc</string>
   <string name="pref_torrc_dialog">Vlastní Torrs</string>
-    <string name="kbps">kbps</string>
-  <string name="mbps">mbps</string>
-  <string name="kb">kB</string>
-  <string name="mb">MB</string>
   <string name="bridges_updated">Bridge aktualizovány</string>
   <string name="restart_orbot_to_use_this_bridge_">Pro projevení změn restartujte Orbot</string>
   <string name="menu_qr">QR kódy</string>

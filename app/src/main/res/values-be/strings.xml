@@ -118,10 +118,6 @@
   <string name="pref_torrc_title">Карыстальніцкія налады Torrc</string>
   <string name="pref_torrc_summary">ТОЛЬКІ ДЛЯ ЭКСПЕРТАЎ: унясіце налады наўпрост у радкі файла канфігурацыі torrc</string>
   <string name="pref_torrc_dialog">Карыстальніцкі Torrc</string>
-  <string name="kbps">кбіт/с</string>
-  <string name="mbps">мбіт/с</string>
-  <string name="kb">КБ</string>
-  <string name="mb">МБ</string>
   <string name="bridges_updated">Масты абноўлены</string>
   <string name="restart_orbot_to_use_this_bridge_">Калі ласка, перазапусціце Orbot для ўступу змены ў сілу</string>
   <string name="menu_qr">QR-коды</string>

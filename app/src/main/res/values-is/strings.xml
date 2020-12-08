@@ -118,10 +118,6 @@
   <string name="pref_torrc_title">Sérsniðnar stillingar Torrc</string>
   <string name="pref_torrc_summary">AÐEINS SÉRFRÆÐINGAR: sláðu inn stillingarlínur beint í torrc</string>
   <string name="pref_torrc_dialog">Sérsniðið Torrc</string>
-    <string name="kbps">kb/sek</string>
-  <string name="mbps">mb/sek</string>
-  <string name="kb">KB</string>
-  <string name="mb">MB</string>
   <string name="bridges_updated">Brýr uppfærðar</string>
   <string name="restart_orbot_to_use_this_bridge_">Endurræstu Orbot til að breytingarnar taki gildi</string>
   <string name="menu_qr">QR-kóðar</string>

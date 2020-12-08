@@ -100,10 +100,6 @@
     <string name="pref_socks_title">Tor SOCKS</string>
   <string name="pref_dnsport_title">Puerto DNS Tor</string>
   <string name="pref_dnsport_dialog">Configuración del Puerto DNS</string>
-    <string name="kbps">kbps</string>
-  <string name="mbps">mbps</string>
-  <string name="kb">KB</string>
-  <string name="mb">MB</string>
   <string name="get_bridges_email">Email</string>
   <string name="save">Guardar</string>
   <string name="name">Nombre</string>
