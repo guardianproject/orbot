@@ -44,9 +44,9 @@
     <string name="pref_proxy_username_title">Nome do Utilizador do Proxy de Saída</string>
     <string name="pref_proxy_username_summary">Nome do Utilizador do Proxy (Opcional)</string>
     <string name="pref_proxy_username_dialog">Inserir Nome de Utilizador do Proxy</string>
-    <string name="pref_proxy_password_title">Senha do Proxy de Saída</string>
+    <string name="pref_proxy_password_title">Palavra-passe do proxy de saída</string>
     <string name="pref_proxy_password_summary">Palavra-passe do Proxy (Opcional)</string>
-    <string name="pref_proxy_password_dialog">Inserir Senha do Proxy</string>
+    <string name="pref_proxy_password_dialog">Inserir palavra-passe do proxy</string>
     <string name="couldn_t_start_tor_process_">Não foi possível iniciar o processo Tor: </string>
     <string name="error">Erro</string>
     <string name="bridges">Pontes</string>
@@ -166,7 +166,7 @@
     <string name="vpn_default_world">Global (Automático)</string>
     <string name="apps_mode">Modo VPN</string>
     <string name="bridge_mode">Requisitar Nova Ponte</string>
-    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Se a sua rede móvel bloqueia o Tor, pode utilizar um \'Servidor Ponte\' como alternativa contra o bloqueio. SELECIONE umas das opções para configurar e testar..,.</string>
+    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Se a sua rede móvel bloqueia o Tor, pode utilizar um \'Servidor Ponte\' como alternativa contra o bloqueio. SELECIONE umas das opções para configurar e testar…</string>
     <string name="restart_orbot_to_use_this_bridge_">Por favor reinicie Orbot para ativar as mundanças</string>
     <string name="pref_torrc_dialog">Torrc Personalizado</string>
     <string name="pref_torrc_summary">SOMENTE EXPERIENTES: adicione sua própria linha de configuração torrc</string>
