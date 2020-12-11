@@ -307,7 +307,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             sendCallbackStatus(STATUS_STOPPING);
             sendCallbackLogMessage(getString(R.string.status_shutting_down));
 
-            if (useIPtObfs4Proxy())
+            if (useIPtObfsMeekProxy())
                 IPtProxy.stopObfs4Proxy();
 
             if (useIPtSnowflakeProxy())
@@ -329,10 +329,10 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
     }
 
-    private static boolean useIPtObfs4Proxy ()
+    private static boolean useIPtObfsMeekProxy ()
     {
         String bridgeList = Prefs.getBridgesList();
-        return bridgeList.contains("obfs3")|| bridgeList.contains("obfs4")||bridgeList.contains("meek");
+        return bridgeList.contains("obfs")||bridgeList.contains("meek");
     }
 
     private static boolean useIPtSnowflakeProxy ()
@@ -1415,35 +1415,30 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             //    extraLines.append("UpdateBridgesFromAuthority 1").append('\n');
 
             String bridgeList = Prefs.getBridgesList();
-            boolean obfsBridges = bridgeList.contains("obfs");
-            boolean meekBridges = bridgeList.contains("meek");
-            boolean snowflakeBridges = bridgeList.contains("snowflake");
+
+            String builtInBridgeType = null;
 
             //check if any PT bridges are needed
-            if (obfsBridges) {
+            if (bridgeList.contains("obfs")) {
                 extraLines.append("ClientTransportPlugin obfs3 socks5 127.0.0.1:" + IPtProxy.Obfs3SocksPort).append('\n');
                 extraLines.append("ClientTransportPlugin obfs4 socks5 127.0.0.1:" + IPtProxy.Obfs4SocksPort).append('\n');
+
+                if (bridgeList.equals("obfs4"))
+                    builtInBridgeType = "obfs4";
             }
 
-            if (meekBridges)
+            if (bridgeList.equals("meek")) {
                 extraLines.append("ClientTransportPlugin meek_lite socks5 127.0.0.1:" + IPtProxy.MeekSocksPort).append('\n');
-
-            if (snowflakeBridges)
-                extraLines.append("ClientTransportPlugin snowflake socks5 127.0.0.1:" + IPtProxy.SnowflakeSocksPort).append('\n');
-
-            if (obfsBridges||meekBridges||snowflakeBridges)
-            {
-
-                String type = "obfs4";
-
-                if (meekBridges)
-                    type = "meek_lite";
-                else if (snowflakeBridges)
-                    type = "snowflake";
-
-                getBridges(type, extraLines);
-
+                builtInBridgeType = "meek_lite";
             }
+
+            if (bridgeList.equals("snowflake")) {
+                extraLines.append("ClientTransportPlugin snowflake socks5 127.0.0.1:" + IPtProxy.SnowflakeSocksPort).append('\n');
+                builtInBridgeType = "snowflake";
+            }
+
+            if (!TextUtils.isEmpty(builtInBridgeType))
+                getBridges(builtInBridgeType, extraLines);
             else
             {
                 String[] bridgeListLines = parseBridgesFromSettings(bridgeList);
@@ -1781,7 +1776,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             if (!TextUtils.isEmpty(action)) {
                 if (action.equals(ACTION_START) || action.equals(ACTION_START_ON_BOOT)) {
 
-                    if (useIPtObfs4Proxy())
+                    if (useIPtObfsMeekProxy())
                         IPtProxy.startObfs4Proxy("DEBUG", false, false);
 
                     if (useIPtSnowflakeProxy())
