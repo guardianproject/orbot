@@ -342,6 +342,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     }
 
     private void startSnowflakeProxy () {
+        //this is using the current, default Tor snowflake infrastructure
         IPtProxy.startSnowflake( "stun:stun.l.google.com:19302", "https://snowflake-broker.azureedge.net/",
                 "ajax.aspnetcdn.com", null, true, false, true, 3);
     }
@@ -1414,17 +1415,15 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             //    extraLines.append("UpdateBridgesFromAuthority 1").append('\n');
 
             String bridgeList = Prefs.getBridgesList();
-            boolean obfs3Bridges = bridgeList.contains("obfs3");
-            boolean obfs4Bridges = bridgeList.contains("obfs4");
+            boolean obfsBridges = bridgeList.contains("obfs");
             boolean meekBridges = bridgeList.contains("meek");
             boolean snowflakeBridges = bridgeList.contains("snowflake");
 
             //check if any PT bridges are needed
-            if (obfs3Bridges)
+            if (obfsBridges) {
                 extraLines.append("ClientTransportPlugin obfs3 socks5 127.0.0.1:" + IPtProxy.Obfs3SocksPort).append('\n');
-
-            if (obfs4Bridges)
                 extraLines.append("ClientTransportPlugin obfs4 socks5 127.0.0.1:" + IPtProxy.Obfs4SocksPort).append('\n');
+            }
 
             if (meekBridges)
                 extraLines.append("ClientTransportPlugin meek_lite socks5 127.0.0.1:" + IPtProxy.MeekSocksPort).append('\n');
@@ -1432,16 +1431,8 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             if (snowflakeBridges)
                 extraLines.append("ClientTransportPlugin snowflake socks5 127.0.0.1:" + IPtProxy.SnowflakeSocksPort).append('\n');
 
-            if (bridgeList != null && bridgeList.length() > 10) //longer then 1 = some real values here
+            if (obfsBridges||meekBridges||snowflakeBridges)
             {
-                String[] bridgeListLines = parseBridgesFromSettings(bridgeList);
-                int bridgeIdx = (int) Math.floor(Math.random() * ((double) bridgeListLines.length));
-                String bridgeLine = bridgeListLines[bridgeIdx];
-                extraLines.append("Bridge ");
-                extraLines.append(bridgeLine);
-                extraLines.append("\n");
-               
-            } else {
 
                 String type = "obfs4";
 
@@ -1451,6 +1442,16 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                     type = "snowflake";
 
                 getBridges(type, extraLines);
+
+            }
+            else
+            {
+                String[] bridgeListLines = parseBridgesFromSettings(bridgeList);
+                int bridgeIdx = (int) Math.floor(Math.random() * ((double) bridgeListLines.length));
+                String bridgeLine = bridgeListLines[bridgeIdx];
+                extraLines.append("Bridge ");
+                extraLines.append(bridgeLine);
+                extraLines.append("\n");
 
             }
 
