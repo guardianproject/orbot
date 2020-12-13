@@ -539,11 +539,11 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         sendIntentToService(ACTION_START_VPN);
     }
 
-    private void enableV3OnionServiceOnV3(int localPort, int onionPort, String name) {
+    private void enableV3OnionService(int localPort, int onionPort, String name) {
         ContentValues fields = new ContentValues();
         fields.put(OnionServiceContentProvider.OnionService.PORT, localPort);
         fields.put(OrbotService.OnionService.NAME, name);
-        fields.put(OnionServiceContentProvider.OnionService.PORT, onionPort);
+        fields.put(OnionServiceContentProvider.OnionService.ONION_PORT, onionPort);
         fields.put(OnionServiceContentProvider.OnionService.ENABLED, 1);
         fields.put(OnionServiceContentProvider.OnionService.CREATED_BY_USER, 0);
 
@@ -697,7 +697,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                 final String finalName = name;
                 new AlertDialog.Builder(this)
                         .setMessage(getString(R.string.hidden_service_request, String.valueOf(v3LocalPort)))
-                        .setPositiveButton(R.string.allow, (d, w) -> enableV3OnionServiceOnV3(v3LocalPort, v3onionPort, finalName))
+                        .setPositiveButton(R.string.allow, (d, w) -> enableV3OnionService(v3LocalPort, v3onionPort, finalName))
                         .setNegativeButton(R.string.deny, (d, w) -> d.dismiss())
                         .show();
                 return;

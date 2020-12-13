@@ -39,7 +39,6 @@
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <intent-filter>
@@ -52,8 +51,11 @@
             </intent-filter>
             <intent-filter>
                 <action android:name="org.torproject.android.REQUEST_HS_PORT" />
-
                 <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="org.torproject.android.REQUEST_V3_ONION_SERVICE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
             <intent-filter>
                 <action android:name="org.torproject.android.START_TOR" />
