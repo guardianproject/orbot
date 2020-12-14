@@ -292,41 +292,40 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             //not registered yet
         }
 
-        stopTor();
+        stopTorAsync();
 
         super.onDestroy();
     }
 
-    private void stopTor() {
-        new Thread(this::stopTorAsync).start();
-    }
-
     private void stopTorAsync() {
-        Log.i("OrbotService", "stopTor");
         try {
-            sendCallbackStatus(STATUS_STOPPING);
-            sendCallbackLogMessage(getString(R.string.status_shutting_down));
 
-            if (useIPtObfsMeekProxy())
-                IPtProxy.stopObfs4Proxy();
+        new Thread(() ->{
+            Log.i("OrbotService", "stopTor");
+            try {
+                sendCallbackStatus(STATUS_STOPPING);
+                sendCallbackLogMessage(getString(R.string.status_shutting_down));
 
-            if (useIPtSnowflakeProxy())
-               IPtProxy.stopSnowflake();
+            	if (useIPtObfsMeekProxy())
+               	 IPtProxy.stopObfs4Proxy();
 
-            stopTorDaemon(true);
-
-            //stop the foreground priority and make sure to remove the persistant notification
-            stopForeground(true);
-
-            sendCallbackLogMessage(getString(R.string.status_disabled));
-        } catch (Exception e) {
-            logNotice("An error occured stopping Tor: " + e.getMessage());
-            sendCallbackLogMessage(getString(R.string.something_bad_happened));
-        }
-        clearNotifications();
-        sendCallbackStatus(STATUS_OFF);
+            	if (useIPtSnowflakeProxy())
+                IPtProxy.stopSnowflake();
 
 
+                stopTorDaemon(true);
+
+                //stop the foreground priority and make sure to remove the persistant notification
+                stopForeground(true);
+
+                sendCallbackLogMessage(getString(R.string.status_disabled));
+            } catch (Exception e) {
+                logNotice("An error occured stopping Tor: " + e.getMessage());
+                sendCallbackLogMessage(getString(R.string.something_bad_happened));
+            }
+            clearNotifications();
+            sendCallbackStatus(STATUS_OFF);
+        }).start();
     }
 
     private static boolean useIPtObfsMeekProxy ()
@@ -775,7 +774,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
         } catch (Exception e) {
             logException("Unable to start Tor: " + e.toString(), e);
-            stopTor();
+            stopTorAsync();
             showToolbarNotification(
                     getString(R.string.unable_to_start_tor) + ": " + e.getMessage(),
                     ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
