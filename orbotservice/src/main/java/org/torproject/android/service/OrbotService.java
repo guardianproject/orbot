@@ -298,7 +298,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     }
 
     private void stopTorAsync() {
-        try {
 
         new Thread(() ->{
             Log.i("OrbotService", "stopTor");
