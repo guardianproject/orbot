@@ -253,4 +253,5 @@
     <string name="in_a_browser">In a browser, visit %s and tap "Get Bridges" > "Just Give Me Bridges!"</string>
     <string name="paste_bridges">Paste Bridges</string>
     <string name="use_qr_code">Use QR Code</string>
+    <string name="bridge_snowflake">Connect through other Tor peers (experimental)</string>
 </resources>

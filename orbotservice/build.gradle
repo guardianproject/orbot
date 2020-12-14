@@ -60,6 +60,5 @@ dependencies {
 
     implementation 'info.guardianproject:jtorctl:0.4'
 
-    /*********** IPtProxy: https://github.com/tladesignz/IPtProxy  **********/
-    implementation project(path: ':IPtProxy')
+    implementation 'com.github.tladesignz:IPtProxy:0.5.0'
 }
