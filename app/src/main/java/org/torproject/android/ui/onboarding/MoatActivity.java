@@ -190,9 +190,8 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
 
         mQueue = Volley.newRequestQueue(MoatActivity.this, phs);
 
-            if (mCaptcha == null) {
-                new Handler().postDelayed(this::fetchCaptcha, 1000);
-            }
+        if (mCaptcha == null) {
+            new Handler(Looper.getMainLooper()).postDelayed(this::fetchCaptcha, 1000);
         }
     }
 
@@ -205,15 +204,16 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_refresh:
-                mEtSolution.setText("");
-                fetchCaptcha();
-                return true;
+        int id = item.getItemId();
 
-            case android.R.id.home:
-                finish();
-                return true;
+        if (id == R.id.menu_refresh) {
+            mEtSolution.setText("");
+            fetchCaptcha();
+            return true;
+        }
+        else if (id == android.R.id.home) {
+            finish();
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
