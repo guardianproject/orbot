@@ -113,10 +113,6 @@
   <string name="pref_torrc_title">사용자 지정 Torrc 구성</string>
   <string name="pref_torrc_summary">전문가 전용: torrc 구성 줄을 직접 입력합니다</string>
   <string name="pref_torrc_dialog">나만의 Torrc</string>
-    <string name="kbps">kbps</string>
-  <string name="mbps">mbps</string>
-  <string name="kb">KB</string>
-  <string name="mb">MB</string>
   <string name="bridges_updated">브릿지가 업데이트되었습니다</string>
   <string name="restart_orbot_to_use_this_bridge_">변경을 완료하려면 Orbot을 재시작하세요</string>
   <string name="menu_qr">QR 코드</string>

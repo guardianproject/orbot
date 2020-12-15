@@ -118,10 +118,6 @@
   <string name="pref_torrc_title">Benutzerdefinierte Torrc-Konfiguration</string>
   <string name="pref_torrc_summary">NUR FÜR EXPERTEN: torrc-Konfigurationszeilen direkt eingeben</string>
   <string name="pref_torrc_dialog">Benutzerdefinierter Torrc</string>
-    <string name="kbps">Kbit/s</string>
-  <string name="mbps">Mbit/s</string>
-  <string name="kb">KB</string>
-  <string name="mb">MB</string>
   <string name="bridges_updated">Brücken Aktualisiert</string>
   <string name="restart_orbot_to_use_this_bridge_">Bitte Tor Erneut Starten um die Änderungen wirksam werden zu lassen</string>
   <string name="menu_qr">QR Codes</string>

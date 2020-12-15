@@ -292,44 +292,57 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             //not registered yet
         }
 
-        stopTor();
+        stopTorAsync();
 
         super.onDestroy();
     }
 
-    private void stopTor() {
-        new Thread(this::stopTorAsync).start();
-    }
-
     private void stopTorAsync() {
-        Log.i("OrbotService", "stopTor");
-        try {
-            sendCallbackStatus(STATUS_STOPPING);
-            sendCallbackLogMessage(getString(R.string.status_shutting_down));
 
-            if (useIPtProxy())
-                IPtProxy.stopObfs4Proxy();
+        new Thread(() ->{
+            Log.i("OrbotService", "stopTor");
+            try {
+                sendCallbackStatus(STATUS_STOPPING);
+                sendCallbackLogMessage(getString(R.string.status_shutting_down));
 
-            stopTorDaemon(true);
+            	if (useIPtObfsMeekProxy())
+               	 IPtProxy.stopObfs4Proxy();
 
-            //stop the foreground priority and make sure to remove the persistant notification
-            stopForeground(true);
-
-            sendCallbackLogMessage(getString(R.string.status_disabled));
-        } catch (Exception e) {
-            logNotice("An error occured stopping Tor: " + e.getMessage());
-            sendCallbackLogMessage(getString(R.string.something_bad_happened));
-        }
-        clearNotifications();
-        sendCallbackStatus(STATUS_OFF);
+            	if (useIPtSnowflakeProxy())
+                IPtProxy.stopSnowflake();
 
 
+                stopTorDaemon(true);
+
+                //stop the foreground priority and make sure to remove the persistant notification
+                stopForeground(true);
+
+                sendCallbackLogMessage(getString(R.string.status_disabled));
+            } catch (Exception e) {
+                logNotice("An error occured stopping Tor: " + e.getMessage());
+                sendCallbackLogMessage(getString(R.string.something_bad_happened));
+            }
+            clearNotifications();
+            sendCallbackStatus(STATUS_OFF);
+        }).start();
     }
 
-    private static boolean useIPtProxy ()
+    private static boolean useIPtObfsMeekProxy ()
     {
         String bridgeList = Prefs.getBridgesList();
-        return bridgeList.contains("obfs3")|| bridgeList.contains("obfs4")||bridgeList.contains("meek");
+        return bridgeList.contains("obfs")||bridgeList.contains("meek");
+    }
+
+    private static boolean useIPtSnowflakeProxy ()
+    {
+        String bridgeList = Prefs.getBridgesList();
+        return bridgeList.contains("snowflake");
+    }
+
+    private void startSnowflakeProxy () {
+        //this is using the current, default Tor snowflake infrastructure
+        IPtProxy.startSnowflake( "stun:stun.l.google.com:19302", "https://snowflake-broker.azureedge.net/",
+                "ajax.aspnetcdn.com", null, true, false, true, 3);
     }
 
     /**
@@ -760,7 +773,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
         } catch (Exception e) {
             logException("Unable to start Tor: " + e.toString(), e);
-            stopTor();
+            stopTorAsync();
             showToolbarNotification(
                     getString(R.string.unable_to_start_tor) + ": " + e.getMessage(),
                     ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
@@ -1400,21 +1413,31 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             //    extraLines.append("UpdateBridgesFromAuthority 1").append('\n');
 
             String bridgeList = Prefs.getBridgesList();
-            boolean obfs3Bridges = bridgeList.contains("obfs3");
-            boolean obfs4Bridges = bridgeList.contains("obfs4");
-            boolean meekBridges = bridgeList.contains("meek");
+
+            String builtInBridgeType = null;
 
             //check if any PT bridges are needed
-            if (obfs3Bridges)
+            if (bridgeList.contains("obfs")) {
                 extraLines.append("ClientTransportPlugin obfs3 socks5 127.0.0.1:" + IPtProxy.Obfs3SocksPort).append('\n');
-
-            if (obfs4Bridges)
                 extraLines.append("ClientTransportPlugin obfs4 socks5 127.0.0.1:" + IPtProxy.Obfs4SocksPort).append('\n');
 
-            if (meekBridges)
-                extraLines.append("ClientTransportPlugin meek_lite socks5 127.0.0.1:" + IPtProxy.MeekSocksPort).append('\n');
+                if (bridgeList.equals("obfs4"))
+                    builtInBridgeType = "obfs4";
+            }
 
-            if (bridgeList != null && bridgeList.length() > 5) //longer then 1 = some real values here
+            if (bridgeList.equals("meek")) {
+                extraLines.append("ClientTransportPlugin meek_lite socks5 127.0.0.1:" + IPtProxy.MeekSocksPort).append('\n');
+                builtInBridgeType = "meek_lite";
+            }
+
+            if (bridgeList.equals("snowflake")) {
+                extraLines.append("ClientTransportPlugin snowflake socks5 127.0.0.1:" + IPtProxy.SnowflakeSocksPort).append('\n');
+                builtInBridgeType = "snowflake";
+            }
+
+            if (!TextUtils.isEmpty(builtInBridgeType))
+                getBridges(builtInBridgeType, extraLines);
+            else
             {
                 String[] bridgeListLines = parseBridgesFromSettings(bridgeList);
                 int bridgeIdx = (int) Math.floor(Math.random() * ((double) bridgeListLines.length));
@@ -1422,15 +1445,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 extraLines.append("Bridge ");
                 extraLines.append(bridgeLine);
                 extraLines.append("\n");
-               
-            } else {
-
-                String type = "obfs4";
-
-                if (meekBridges)
-                    type = "meek_lite";
-
-                getBridges(type, extraLines);
 
             }
 
@@ -1760,8 +1774,12 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             if (!TextUtils.isEmpty(action)) {
                 if (action.equals(ACTION_START) || action.equals(ACTION_START_ON_BOOT)) {
 
-                    if (useIPtProxy())
+                    if (useIPtObfsMeekProxy())
                         IPtProxy.startObfs4Proxy("DEBUG", false, false);
+
+                    if (useIPtSnowflakeProxy())
+                       startSnowflakeProxy();
+
 
                     startTor();
                     replyWithStatus(mIntent);

@@ -1,3 +1,26 @@
+/** 16.3.3-RC-1-tor-0.4.3.6 / 20 November 2020 **/
+daa2e7b4 (HEAD -> master) update version code to 1633300100
+e88c84aa (origin/master, origin/HEAD) remove quotes from string
+a2158981 (tag: 16.3.3-BETA-2-tor-0.4.3.6) update version to 1633100200
+d6ebcd7e improve logic for start/stop/reconnect of tor to handle orphaned processes - if someone rapidly stops/starts tor, there can be a case where a tor process is launched and not shutdown. This can currently cause the UI to hang and be unable to start tor or connecting to an exsiting control port.
+68aa65b4 externalize log strings
+9a21cd65 Merge branch 'master' of github.com:guardianproject/orbot
+05e9dd8f Merge pull request #412 from bitmold/IPtProxy_aar_module
+e81e50cd Merge branch 'master' of github.com:guardianproject/orbot
+a5a146c8 Made IPtProxy a module, only ship app with one AAR file
+4a39df4e added maxSdkVersion18 for WRITE_EXTERNAL_STORAGE prem
+9a7ef0d8 deleted superflous comments
+5ef1da70 removed unused constants/warnings
+3afa7612 (tag: 16.3.3-BETA-1-tor-0.4.3.6) update version code to 1633100100
+317923b7 Merge pull request #411 from guardianproject/dev_iptproxy
+42b65133 (origin/dev_iptproxy, dev_iptproxy) remove unused bridge list loop
+8d7a79a5 add use IPtProxy function
+4e7ecdef use IPtProxy instead of the AndroidPT dependency
+be40bf56 modifying dependencies to support use of AAR for IPtProxy (temporarily)
+b3006347 the main app needs access to the aar for building as well
+0e33a652 add IPtProxy as aar for now
+075c6ddf update gradle and tools
+50ee0d6f small changes to ensure handling of auto start on boot
 
 /** 16.3.2-RC-1-tor-0.4.3.6 / 2 November 2020 / c69a217aa8e1f09a34634da50e7af55c4fc73a21 **/
 

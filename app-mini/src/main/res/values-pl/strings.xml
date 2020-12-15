@@ -115,8 +115,6 @@
   <string name="pref_torrc_title">Konfiguracja Torrc klienta</string>
   <string name="pref_torrc_summary">TYLKO DLA EKSPERTÓW: wpisz linijki konfiguracyjne torrc</string>
   <string name="pref_torrc_dialog">Torrc klienta</string>
-    <string name="kbps">kbps</string>
-  <string name="mbps">mbps</string>
   <string name="kb">KB</string>
   <string name="mb">MB</string>
   <string name="bridges_updated">Zaktualizowane Bridges</string>

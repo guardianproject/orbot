@@ -116,8 +116,6 @@
   <string name="pref_torrc_title">ترتيبات خاصة بـ torrc</string>
   <string name="pref_torrc_summary">للخبراء فقط : أدخل أسطر ملف torrc مباشرةً</string>
   <string name="pref_torrc_dialog">torrc خاص</string>
-  <string name="kbps">كيلوبيت في الثانية</string>
-  <string name="mbps">ميغابيت في الثانية</string>
   <string name="kb">كيلوبايت</string>
   <string name="mb">ميغابايت</string>
   <string name="bridges_updated">تم تحديث الجسور</string>

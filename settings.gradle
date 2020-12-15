@@ -1,4 +1,3 @@
-include ':IPtProxy'
 include ':intentintegrator'
 include ':appcore'
 include ':orbotservice',':app',':app-mini'

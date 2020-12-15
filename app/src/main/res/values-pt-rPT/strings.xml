@@ -45,10 +45,6 @@
     <string name="set_locale_title">idioma</string>
     <string name="pref_socks_title">SOCKS do Tor</string>
   <string name="pref_dnsport_title">Porta DNS do Tor</string>
-    <string name="kbps">kbps</string>
-  <string name="mbps">mbps</string>
-  <string name="kb">KB</string>
-  <string name="mb">MB</string>
   <string name="menu_qr">Códigos QR</string>
   <string name="get_bridges_email">E-mail</string>
   <string name="send_email">Enviar Mensagem</string>

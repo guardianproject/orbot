@@ -18,8 +18,6 @@
   <!--Transparent Proxy screen-->
     <string name="error">ချို့ယွင်းချက်</string>
     <string name="set_locale_title">ဘာသာစကား</string>
-    <string name="kb">ကီလိုဘိုက်</string>
-  <string name="mb">မဂ္ဂါဘိုက်</string>
   <string name="get_bridges_email">အီးေမးလ္</string>
   <string name="hidden_services">Hidden Services</string>
   <string name="title_activity_hidden_services">Hidden Services</string>

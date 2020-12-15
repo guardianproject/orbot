@@ -120,8 +120,6 @@
   <string name="pref_torrc_title">Пользовательские настройки Torrc</string>
   <string name="pref_torrc_summary">ТОЛЬКО ДЛЯ ЭКСПЕРТОВ: внесите настройки напрямую в строки файла конфигурации torrc</string>
   <string name="pref_torrc_dialog">Пользовательский Torrc</string>
-    <string name="kbps">кбит/с</string>
-  <string name="mbps">мбит/с</string>
   <string name="kb">КБ</string>
   <string name="mb">МБ</string>
   <string name="bridges_updated">Мосты обновлены</string>

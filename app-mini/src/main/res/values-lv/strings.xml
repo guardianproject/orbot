@@ -115,8 +115,6 @@
   <string name="pref_torrc_title">Torrc pielāgota konfigurēšana</string>
   <string name="pref_torrc_summary">VIENĪGI EKSPERTIEM: tieši ievadīt torrc konfigurēšanas rindas</string>
   <string name="pref_torrc_dialog">Pielāgot Torrc</string>
-    <string name="kbps">kbps</string>
-  <string name="mbps">mbps</string>
   <string name="kb">KB</string>
   <string name="mb">MB</string>
   <string name="bridges_updated">Tilti ir atjaunināti</string>

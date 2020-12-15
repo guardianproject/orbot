@@ -118,10 +118,6 @@
   <string name="pref_torrc_title">Torrc Custom Config</string>
   <string name="pref_torrc_summary">ΜΟΝΟ ΓΙΑ ΕΙΔΙΚΟΥΣ: πληκτρολογήστε απευθείας torrc config γραμμές</string>
   <string name="pref_torrc_dialog">Προσαρμογή Torrc</string>
-    <string name="kbps">kbps</string>
-  <string name="mbps">mbps</string>
-  <string name="kb">KB</string>
-  <string name="mb">MB</string>
   <string name="bridges_updated">Οι γέφυρες ενημερώθηκαν</string>
   <string name="restart_orbot_to_use_this_bridge_">Παρακαλούμε επανεκκινήστε το Orbot για να ενεργοποιήσετε τις αλλαγές</string>
   <string name="menu_qr">Κώδικες QR</string>
