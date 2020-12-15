@@ -10,6 +10,7 @@ import android.content.IntentFilter;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
@@ -47,14 +48,9 @@ import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.ui.dialog.MoatErrorDialogFragment;
 
-import java.util.ArrayList;
-import java.util.Properties;
+import java.io.File;
 
-import goptbundle.Goptbundle;
-import info.pluggabletransports.dispatch.DispatchConstants;
-import info.pluggabletransports.dispatch.Dispatcher;
-import info.pluggabletransports.dispatch.Transport;
-import info.pluggabletransports.dispatch.transports.legacy.MeekTransport;
+import IPtProxy.IPtProxy;
 
 /**
  * Implements the MOAT protocol: Fetches OBFS4 bridges via Meek Azure.
@@ -68,7 +64,7 @@ import info.pluggabletransports.dispatch.transports.legacy.MeekTransport;
  */
 public class MoatActivity extends AppCompatActivity implements View.OnClickListener, TextView.OnEditorActionListener {
 
-    private static String moatBaseUrl = "https://bridges.torproject.org/moat";
+    private static final String moatBaseUrl = "https://bridges.torproject.org/moat";
 
     private ImageView mIvCaptcha;
     private ProgressBar mProgressBar;
@@ -87,7 +83,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
 
     private boolean mRequestInProgress = true;
 
-    private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             String host = intent.getStringExtra(OrbotService.EXTRA_SOCKS_PROXY_HOST);
@@ -179,48 +175,25 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
     protected void onResume() {
         super.onResume();
 
-        new MeekTransport().register();
+        File fileCacheDir = new File(getCacheDir(),"pt");
+        if (!fileCacheDir.exists()) {
+            //noinspection ResultOfMethodCallIgnored
+            fileCacheDir.mkdir();
+        }
 
-        Properties options = new Properties();
-        options.put(MeekTransport.OPTION_URL, "https://onion.azureedge.net/");
-        options.put(MeekTransport.OPTION_FRONT, "ajax.aspnetcdn.com");
+        IPtProxy.setStateLocation(fileCacheDir.getAbsolutePath());
 
-        Transport transport = Dispatcher.get().getTransport(this, DispatchConstants.PT_TRANSPORTS_MEEK, options);
+        IPtProxy.startObfs4Proxy("DEBUG", false, false);
 
-        if (transport != null) {
-            new Thread(() -> {
-                Goptbundle.setenv(DispatchConstants.TOR_PT_LOG_LEVEL, "DEBUG");
-                Goptbundle.setenv(DispatchConstants.TOR_PT_CLIENT_TRANSPORTS, DispatchConstants.PT_TRANSPORTS_MEEK);
-                Goptbundle.setenv(DispatchConstants.TOR_PT_MANAGED_TRANSPORT_VER, "1");
-                Goptbundle.setenv(DispatchConstants.TOR_PT_EXIT_ON_STDIN_CLOSE, "0");
-                Goptbundle.load(getDir("pt-state", Context.MODE_PRIVATE).getAbsolutePath());
-            }).start();
+        ProxiedHurlStack phs = new ProxiedHurlStack("127.0.0.1", (int) IPtProxy.MeekSocksPort,
+                "url=https://meek.azureedge.net/;front=ajax.aspnetcdn.com", "\0");
 
-            ArrayList<String> args = new ArrayList<>();
-
-            for (Object key : options.keySet()) {
-                String k = (String) key;
-
-                args.add(String.format("%s=%s", k, options.getProperty(k)));
-            }
-
-            StringBuilder sb = new StringBuilder();
-
-            for (String arg : args) {
-                sb.append(arg).append(";");
-            }
-
-            ProxiedHurlStack phs = new ProxiedHurlStack("127.0.0.1", 47352,
-                    sb.toString(), "\0");
-
-            mQueue = Volley.newRequestQueue(MoatActivity.this, phs);
+        mQueue = Volley.newRequestQueue(MoatActivity.this, phs);
 
             if (mCaptcha == null) {
                 new Handler().postDelayed(this::fetchCaptcha, 1000);
             }
         }
-
-//        sendIntentToService(TorServiceConstants.ACTION_STATUS);
     }
 
     @Override
