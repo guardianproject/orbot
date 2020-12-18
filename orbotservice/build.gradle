@@ -60,5 +60,5 @@ dependencies {
 
     implementation 'info.guardianproject:jtorctl:0.4'
 
-    implementation 'com.github.tladesignz:IPtProxy:0.5.0'
+    implementation 'com.github.tladesignz:IPtProxy:0.5.2'
 }
