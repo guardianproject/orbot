@@ -186,7 +186,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
         IPtProxy.startObfs4Proxy("DEBUG", false, false);
 
         ProxiedHurlStack phs = new ProxiedHurlStack("127.0.0.1", (int) IPtProxy.MeekSocksPort,
-                "url=https://meek.azureedge.net/;front=ajax.aspnetcdn.com", "\0");
+                "url=https://onion.azureedge.net/;front=ajax.aspnetcdn.com", "\0");
 
         mQueue = Volley.newRequestQueue(MoatActivity.this, phs);
 
@@ -371,6 +371,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
                     mProgressBar.setVisibility(View.GONE);
 
                     Log.d(MoatActivity.class.getSimpleName(), "Error response.");
+                    error.printStackTrace();
 
                     displayError(error, null);
                 }
