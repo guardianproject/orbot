@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
@@ -46,6 +48,10 @@ import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.ui.dialog.MoatErrorDialogFragment;
 
+import java.io.File;
+
+import IPtProxy.IPtProxy;
+
 /**
  * Implements the MOAT protocol: Fetches OBFS4 bridges via Meek Azure.
  * <p>
@@ -58,7 +64,7 @@ import org.torproject.android.ui.dialog.MoatErrorDialogFragment;
  */
 public class MoatActivity extends AppCompatActivity implements View.OnClickListener, TextView.OnEditorActionListener {
 
-    private static String moatBaseUrl = "https://bridges.torproject.org/moat";
+    private static final String moatBaseUrl = "https://bridges.torproject.org/moat";
 
     private ImageView mIvCaptcha;
     private ProgressBar mProgressBar;
@@ -77,7 +83,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
 
     private boolean mRequestInProgress = true;
 
-    private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             String host = intent.getStringExtra(OrbotService.EXTRA_SOCKS_PROXY_HOST);
@@ -169,7 +175,24 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
     protected void onResume() {
         super.onResume();
 
-        sendIntentToService(TorServiceConstants.ACTION_STATUS);
+        File fileCacheDir = new File(getCacheDir(),"pt");
+        if (!fileCacheDir.exists()) {
+            //noinspection ResultOfMethodCallIgnored
+            fileCacheDir.mkdir();
+        }
+
+        IPtProxy.setStateLocation(fileCacheDir.getAbsolutePath());
+
+        IPtProxy.startObfs4Proxy("DEBUG", false, false);
+
+        ProxiedHurlStack phs = new ProxiedHurlStack("127.0.0.1", (int) IPtProxy.MeekSocksPort,
+                "url=https://onion.azureedge.net/;front=ajax.aspnetcdn.com", "\0");
+
+        mQueue = Volley.newRequestQueue(MoatActivity.this, phs);
+
+        if (mCaptcha == null) {
+            new Handler(Looper.getMainLooper()).postDelayed(this::fetchCaptcha, 1000);
+        }
     }
 
     @Override
@@ -181,15 +204,16 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_refresh:
-                mEtSolution.setText("");
-                fetchCaptcha();
-                return true;
+        int id = item.getItemId();
 
-            case android.R.id.home:
-                finish();
-                return true;
+        if (id == R.id.menu_refresh) {
+            mEtSolution.setText("");
+            fetchCaptcha();
+            return true;
+        }
+        else if (id == android.R.id.home) {
+            finish();
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -347,6 +371,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
                     mProgressBar.setVisibility(View.GONE);
 
                     Log.d(MoatActivity.class.getSimpleName(), "Error response.");
+                    error.printStackTrace();
 
                     displayError(error, null);
                 }
