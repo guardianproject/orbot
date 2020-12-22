@@ -143,7 +143,7 @@
     <string name="pref_use_persistent_notifications_title">Notificações Sempre Ativadas</string>
     <string name="full_device_vpn">VPN Para Todo o Aparelho</string>
     <string name="trouble_connecting">Problemas na conexão \?</string>
-    <string name="bridges_get_new">Solicitar uma nova ponte... (Caso o resto falhe.)</string>
+    <string name="bridges_get_new">Solicitar uma nova ponte… (Caso o resto falhe.)</string>
     <string name="bridge_cloud">Conecte-se através de servidores em nuvem</string>
     <string name="bridge_community">Conecte-se através de servidores da comunidade</string>
     <string name="bridge_direct_connect">Conecte-se diretamente ao Tor (O melhor)</string>

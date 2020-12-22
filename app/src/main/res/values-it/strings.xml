@@ -98,7 +98,7 @@
     <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
     <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
     <string name="hidden_service_request">Un\'app vuole aprire la porta %1$s del server nascosto alla rete Tor. È un\'azione sicura se ti fidi dell\'app.</string>
-    <string name="found_existing_tor_process">trovato un processo Tor esistente...</string>
+    <string name="found_existing_tor_process">trovato un processo Tor esistente…</string>
     <string name="something_bad_happened">E\' accaduto un evento indesiderato. Controllare i log</string>
     <string name="unable_to_read_hidden_service_name">Impossibile leggere il nome del servizio onion</string>
     <string name="unable_to_start_tor">Impossibile avviare Tor:</string>
@@ -133,7 +133,7 @@
     <string name="bridges_updated">Bridge attivati</string>
     <string name="restart_orbot_to_use_this_bridge_">Per favore riavvia Orbot per rendere effettive le modifiche</string>
     <string name="menu_qr">Codici QR</string>
-    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Se la tua rete mobile blocca attivamente Tor, puoi usare un \'Server Bridge\' come via alternativa. SELEZIONA una delle opzioni per configurare e testare...</string>
+    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Se la tua rete mobile blocca attivamente Tor, puoi usare un \'Server Bridge\' come via alternativa. SELEZIONA una delle opzioni per configurare e testare…</string>
     <string name="bridge_mode">Modalità Bridge</string>
     <string name="get_bridges_email">Email</string>
     <string name="get_bridges_web">Web</string>
@@ -199,7 +199,7 @@
     <string name="bridge_direct_connect">Connettiti direttamente a Tor (Migliore)</string>
     <string name="bridge_community">Connettiti tramite i server comunitari</string>
     <string name="bridge_cloud">Connettiti tramite i server cloud</string>
-    <string name="bridges_get_new">Richiedi nuovi bridge... (se gli altri falliscono)</string>
+    <string name="bridges_get_new">Richiedi nuovi bridge… (se gli altri falliscono)</string>
     <string name="trouble_connecting">Problemi nel connetterti?</string>
     <string name="full_device_vpn">VPN intero dispositivo</string>
     <string name="vpn_disabled">VPN Disabilitata</string>

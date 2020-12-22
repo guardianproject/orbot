@@ -2,11 +2,11 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Orbot on ilmainen välityspalvelinsovellus, joka tarjoaa muille sovelluksille mahdollisuuden käyttää internetiä turvallisemmin. Orbot käyttää Toria kryptaamaan verkkoliikenteesi ja sitten piilottaa sen kierrättämällä sitä usean tietokoneen kautta ympäri maailman. Tor on vapaa ohjelmisto ja avoin verkosto, jotka auttavat puolustautumaan vapautta ja yksityisyyttä uhkaavalta verkkovalvonnalta ja valtioiden verkonseurannalta sekä suojaamaan salaisia liiketoimintoja ja -yhteyksiä.</string>
-    <string name="status_starting_up">Orbot käynnistyy...</string>
+    <string name="status_starting_up">Orbot käynnistyy…</string>
     <string name="status_activated">Yhdistetty Tor-verkkoon</string>
     <string name="status_disabled">Orbot on poistettu käytöstä</string>
     <string name="status_shutting_down">Tor-palvelua sammutetaan</string>
-    <string name="tor_process_starting">Käynnistetään Tor-ohjelmaa...</string>
+    <string name="tor_process_starting">Käynnistetään Tor-ohjelmaa…</string>
     <string name="tor_process_complete">valmis.</string>
     <string name="menu_settings">Asetukset</string>
     <string name="menu_log">Loki</string>
@@ -93,7 +93,7 @@
     <string name="tor_version">Tor: https://www.torproject.org</string>
     <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
     <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
-    <string name="found_existing_tor_process">löytyi olemassaoleva Tor-prosessi...</string>
+    <string name="found_existing_tor_process">löytyi olemassaoleva Tor-prosessi…</string>
     <string name="something_bad_happened">Jotain pahaa tapahtui. Tarkista loki</string>
     <string name="unable_to_read_hidden_service_name">piilopalvelunimen lukeminen epäonnistui</string>
     <string name="unable_to_start_tor">Torin käynnistys epäonnistui:</string>
@@ -102,12 +102,12 @@
     <string name="pref_use_expanded_notifications">Näytä laajennettu ilmoitus (Torin ulostulon maa ja IP)</string>
     <string name="pref_use_expanded_notifications_title">Laajennetut ilmoitukset</string>
     <string name="set_locale_title">Kieli</string>
-    <string name="no_internet_connection_tor">Ei internet-yhteyttä; Tor on valmiustilassa...</string>
+    <string name="no_internet_connection_tor">Ei internet-yhteyttä; Tor on valmiustilassa…</string>
     <string name="pref_disable_network_title">Ei verkon automaattilepotilaa</string>
     <string name="pref_disable_network_summary">Laita Tor nukkumaan, kun internet-yhteyttä ei ole saatavilla</string>
     <string name="newnym">Vaihdoit Tor-identiteettisi uuteen!</string>
-    <string name="no_network_connectivity_putting_tor_to_sleep_">Ei verkkoyhteyttä. Tor siirtyy valmiustilaan...</string>
-    <string name="network_connectivity_is_good_waking_tor_up_">Verkkoyhteys toimii. Herätetään Tor...</string>
+    <string name="no_network_connectivity_putting_tor_to_sleep_">Ei verkkoyhteyttä. Tor siirtyy valmiustilaan…</string>
+    <string name="network_connectivity_is_good_waking_tor_up_">Verkkoyhteys toimii. Herätetään Tor…</string>
     <string name="updating_settings_in_tor_service">päivitetään Tor-palvelun asetuksia</string>
     <string name="pref_socks_title">Tor SOCKS</string>
     <string name="pref_socks_summary">Portti, jossa Torin SOCKS-välityspalvelin on (oletus: 9050, 0 = poista käytöstä)</string>
@@ -151,7 +151,7 @@
     <string name="pref_http_title">Tori HTTP</string>
     <string name="pref_http_summary">Portti, jossa Tor tarjoaa HTTP-välityspalvelimen (oletus: 8118 tai 0 poistaa käytöstä)</string>
     <string name="pref_http_dialog">HTTP-portin määritys</string>
-    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Jos mobiiliverkkosi estää Torin aktiivisesti, voit käyttää Bridge Serveriä vaihtoehtoisena tienä. VALITSE yksi vaihtoehdoista määrittää ja testata ...</string>
+    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Jos mobiiliverkkosi estää Torin aktiivisesti, voit käyttää Bridge Serveriä vaihtoehtoisena tienä. VALITSE yksi vaihtoehdoista määrittää ja testata …</string>
     <string name="apps_mode">VPN-tila</string>
     <string name="vpn_default_world">Globaali (automaattinen)</string>
     <string name="local_port">Paikallinen portti</string>

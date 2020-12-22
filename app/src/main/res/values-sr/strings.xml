@@ -2,7 +2,7 @@
 <resources>
   <string name="app_name">Орбот</string>
   <string name="app_description">Орбот је бесплатна прокси апликација која даје моћ другим апликацијама да безбедније користе интернет. Орбот користи Тор за шифровање вашег интернет саобраћаја и онда га скрива слањем кроз низ рачунара широм света. Тор је слободан софтвер и отворена мрежа која помаже да се одбраните од разних облика надзора мрежа који угрожавају личну слободу и приватност, поверљиве пословне активности и личне односе и државне безбедности познате као анализа саобраћаја.</string>
-    <string name="status_starting_up">Орбот се покреће...</string>
+    <string name="status_starting_up">Орбот се покреће…</string>
   <string name="status_activated">Повезан са Тор мрежом</string>
   <string name="status_disabled">Орбот је деактивиран</string>
   <string name="status_shutting_down">Гашење Тор Сервиса</string>
@@ -91,7 +91,7 @@
   <string name="tor_version">Toр: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
     <string name="hidden_service_request">Апликација жели да отвори сакривен порт%1$s на серверу за Тор мрежу. Ово је сигуран потез уколико верујете апликацији.</string>
-  <string name="found_existing_tor_process">нађен покренути Тор процес...</string>
+  <string name="found_existing_tor_process">нађен покренути Тор процес…</string>
   <string name="something_bad_happened">Нешто лоше се догодило. Прегледајте логове</string>
     <string name="unable_to_read_hidden_service_name">нисам у могућности да прочитам име сакривеног сервиса</string>
   <string name="unable_to_start_tor">Тор није у могућности да се покрене:</string>
@@ -119,7 +119,7 @@
   <string name="bridges_updated">Bridges Ажурирање</string>
   <string name="restart_orbot_to_use_this_bridge_">Молимо покрените поново Орбот ради примењивања промена</string>
   <string name="menu_qr">QR Кодови</string>
-  <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Ако ваша мобилна мрежа активно блокира Тор, можете премошћивати сервером као алтернативни начин уласка.ОДАБЕРИ једну од опција за конфигурацију и тестирање....</string>
+  <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Ако ваша мобилна мрежа активно блокира Тор, можете премошћивати сервером као алтернативни начин уласка.ОДАБЕРИ једну од опција за конфигурацију и тестирање….</string>
   <string name="get_bridges_email">Е-пошта</string>
   <string name="apps_mode">VPN Мод</string>
     <string name="send_email">Пошаљи Е-пошту</string>

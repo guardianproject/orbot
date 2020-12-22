@@ -2,11 +2,11 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Orbotは他のアプリがインターネットをより安全に使うことを可能にするフリーのプロキシアプリです。Orbotでは、Torを用いてあなたの端末のトラフィックを暗号化し、世界中のコンピューターを中継することで、そのトラフィックを隠します。Torはフリーのソフトウェアとオープンなネットワークであり、ユーザーの自由とプライバシーを脅かす監視活動や、機密のビジネス活動、国家によるトラフィック分析から身を守ることを助けてくれます。</string>
-    <string name="status_starting_up">Orbotが開始されています...</string>
+    <string name="status_starting_up">Orbotが開始されています…</string>
     <string name="status_activated">Torネットワークに接続しています</string>
     <string name="status_disabled">\"Orbotが解除されました</string>
     <string name="status_shutting_down">TorServiceが終了しています</string>
-    <string name="tor_process_starting">Torクライエントを開始しています...</string>
+    <string name="tor_process_starting">Torクライエントを開始しています…</string>
     <string name="tor_process_complete">完了</string>
     <string name="menu_settings">設定</string>
     <string name="menu_log">履歴</string>
@@ -107,7 +107,7 @@
     <string name="pref_use_expanded_notifications">拡張通知で、Torの出口の国とIPを表示します</string>
     <string name="pref_use_expanded_notifications_title">拡張通知</string>
     <string name="set_locale_title">言語</string>
-    <string name="no_internet_connection_tor">インターネット接続なし。Torは待機中です...</string>
+    <string name="no_internet_connection_tor">インターネット接続なし。Torは待機中です…</string>
     <string name="pref_disable_network_title">ネットワークなし時オートスリープ</string>
     <string name="pref_disable_network_summary">ネット接続がない時 Tor をスリープさせる</string>
     <string name="newnym">新たな Tor の身元に切り替えました。</string>
@@ -199,7 +199,7 @@
     <string name="bridge_direct_connect">Tor に直接接続する (ベスト)</string>
     <string name="bridge_community">コミュニティーサーバーを介して接続する</string>
     <string name="bridge_cloud">クラウドサーバーを介して接続する</string>
-    <string name="bridges_get_new">新しいブリッジをリクエストする...（最悪の場合に）</string>
+    <string name="bridges_get_new">新しいブリッジをリクエストする…（最悪の場合に）</string>
     <string name="trouble_connecting">接続に問題がありましたか?</string>
     <string name="full_device_vpn">フルデバイス VPN</string>
     <string name="vpn_disabled">VPN が無効</string>

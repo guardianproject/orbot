@@ -133,7 +133,7 @@
     <string name="bridges_updated">Bridges อัพเดตแล้ว</string>
     <string name="restart_orbot_to_use_this_bridge_">กรุณาเริ่ม Orbot ใหม่เพื่อให้การเปลี่ยนแปลงใช้งานได้</string>
     <string name="menu_qr">รหัสคิวอาร์</string>
-    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">หากเครือข่ายโทรศัพท์ของคุณปิดกั้น Tor คุณสามารถใช้ \'เซิร์ฟเวอร์ Bridge\' เป็นตัวเลือกในการเข้าถึงได้ เลือกตัวเลือกหนึ่งเพื่อกำหนดค่าและทดสอบ...</string>
+    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">หากเครือข่ายโทรศัพท์ของคุณปิดกั้น Tor คุณสามารถใช้ \'เซิร์ฟเวอร์ Bridge\' เป็นตัวเลือกในการเข้าถึงได้ เลือกตัวเลือกหนึ่งเพื่อกำหนดค่าและทดสอบ…</string>
     <string name="bridge_mode">ร้องขอ Bridge ใหม่</string>
     <string name="get_bridges_email">อีเมล</string>
     <string name="get_bridges_web">เว็บ</string>
@@ -199,7 +199,7 @@
     <string name="bridge_direct_connect">เชื่อมต่อกับ Tor โดยตรง (ดีที่สุด)</string>
     <string name="bridge_community">เชื่อมต่อผ่านเซิร์ฟเวอร์ของชุมชน</string>
     <string name="bridge_cloud">เชื่อมต่อผ่านเซิร์ฟเวอร์คลาวด์</string>
-    <string name="bridges_get_new">ขอ Bridge ใหม่... (หากทุกอย่างใช้การไม่ได้)</string>
+    <string name="bridges_get_new">ขอ Bridge ใหม่… (หากทุกอย่างใช้การไม่ได้)</string>
     <string name="trouble_connecting">มีปัญหากับการเชื่อมต่อหรือไม่\?</string>
     <string name="full_device_vpn">VPN ทั้งอุปกรณ์</string>
     <string name="vpn_disabled">ปิดใช้งาน VPN</string>

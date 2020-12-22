@@ -199,7 +199,7 @@
     <string name="bridge_direct_connect">Anslut direkt till Tor (Bästa)</string>
     <string name="bridge_community">Anslut genom gemenskaps servrar</string>
     <string name="bridge_cloud">Anslut via molnservrar</string>
-    <string name="bridges_get_new">Begär nya broar... (om allt annat misslyckas)</string>
+    <string name="bridges_get_new">Begär nya broar… (om allt annat misslyckas)</string>
     <string name="trouble_connecting">Problem med att ansluta?</string>
     <string name="full_device_vpn">VPN för hela enheten</string>
     <string name="vpn_disabled">VPN inaktiverad</string>

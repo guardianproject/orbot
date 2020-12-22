@@ -179,7 +179,7 @@
     <string name="bridge_direct_connect">Conecte-se diretamente ao Tor (Melhor forma)</string>
     <string name="bridge_community">Conecte-se através de servidores da comunidade</string>
     <string name="bridge_cloud">Conecte-se através de servidores em nuvem</string>
-    <string name="bridges_get_new">Solicitar uma nova ponte... (Caso todas falhem.)</string>
+    <string name="bridges_get_new">Solicitar uma nova ponte… (Caso todas falhem.)</string>
     <string name="trouble_connecting">Problemas na conexão ? </string>
     <string name="full_device_vpn">VPN PARA TODO O DISPOSITIVO</string>
     <string name="refresh_apps">Atualizar os Aplicativos</string>

@@ -199,7 +199,7 @@
     <string name="bridge_direct_connect">Conectar directamente a Tor (lo mejor)</string>
     <string name="bridge_community">Conectar a través de servidores de la comunidad</string>
     <string name="bridge_cloud">Conectar a través de servidores de la nube</string>
-    <string name="bridges_get_new">Solicitar nuevos puentes... (si todo lo demás falla)</string>
+    <string name="bridges_get_new">Solicitar nuevos puentes… (si todo lo demás falla)</string>
     <string name="trouble_connecting">¿Problemas de conexión\?</string>
     <string name="full_device_vpn">VPN de dispositivo completo</string>
     <string name="vpn_disabled">VPN deshabilitada</string>

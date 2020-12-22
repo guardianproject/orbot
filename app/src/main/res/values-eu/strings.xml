@@ -2,11 +2,11 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Orbot proxy aplikazio aske bat da beste aplikazioei Interneten erabilera seguruago bat egitea ahalbidetzen diena. Orbot-ek Tor erabiltzen du zure Internet trafikoa zifratzeko eta mundu osoan barrena hainbat konputagailuetatik pasatuz ezkutatzeko. Tor software askea eta sare irekia da, askatasun eta pribatutasun pertsonala, aktibitate eta erlazio komertzial konfidentzialak erasotzen dituen sare analisi moten kontra eginez babesten zaituena.</string>
-    <string name="status_starting_up">Orbot abiarazten ari da...</string>
+    <string name="status_starting_up">Orbot abiarazten ari da…</string>
     <string name="status_activated">Tor sarera konektatuta</string>
     <string name="status_disabled">Orbot desaktibatuta dago</string>
     <string name="status_shutting_down">TorService itzaltzen ari da</string>
-    <string name="tor_process_starting">Tor bezeroa hasten...</string>
+    <string name="tor_process_starting">Tor bezeroa hasten…</string>
     <string name="tor_process_complete">eginda.</string>
     <string name="menu_settings">Ezarpenak</string>
     <string name="menu_log">Egunkaria</string>
@@ -98,7 +98,7 @@
     <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
     <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
     <string name="hidden_service_request">Aplikazio batek ezkutuko zerbitzariko %1$s ataka ireki nau du Tor sarera. Segurua da aplikazioaz fidatzen bazara.</string>
-    <string name="found_existing_tor_process">aurreko Tor prozesu bat aurkitu da...</string>
+    <string name="found_existing_tor_process">aurreko Tor prozesu bat aurkitu da…</string>
     <string name="something_bad_happened">Zerbait txarra gertatu da. Begiratu egunkarian</string>
     <string name="unable_to_read_hidden_service_name">ezin izan da ezkutuko zerbitzuaren izena irakurri</string>
     <string name="unable_to_start_tor">Ezin izan da Tor hasi:</string>
@@ -107,12 +107,12 @@
     <string name="pref_use_expanded_notifications">Erakutsi hedatutako jakinarazpenak Tor irteera herrialde eta IP-arekin</string>
     <string name="pref_use_expanded_notifications_title">Hedatutako jakinarazpenak</string>
     <string name="set_locale_title">Hizkuntza</string>
-    <string name="no_internet_connection_tor">Ez dago Interneterako konexiorik; Tor egonean dago...</string>
+    <string name="no_internet_connection_tor">Ez dago Interneterako konexiorik; Tor egonean dago…</string>
     <string name="pref_disable_network_title">Sareko lokartze automatikorik ez</string>
     <string name="pref_disable_network_summary">Jarri Tor lotan internet atzigarri ez dagoenean</string>
     <string name="newnym">Tor identitate berri batera aldatu duzu!</string>
-    <string name="no_network_connectivity_putting_tor_to_sleep_">Sare konexiorik ez. Tor lotan jartzen...</string>
-    <string name="network_connectivity_is_good_waking_tor_up_">Sare konexioa berreskuratu da. Tor esnatzen...</string>
+    <string name="no_network_connectivity_putting_tor_to_sleep_">Sare konexiorik ez. Tor lotan jartzen…</string>
+    <string name="network_connectivity_is_good_waking_tor_up_">Sare konexioa berreskuratu da. Tor esnatzen…</string>
     <string name="updating_settings_in_tor_service">Tor zerbitzuaren ezarpenak eguneratzen</string>
     <string name="pref_socks_title">Tor SOCKS</string>
     <string name="pref_socks_summary">Tor-ek bere SOCKS proxya eskaintzeko ataka (Lehenetsia: 9050 edo 0 desgaitzeko)</string>
@@ -133,7 +133,7 @@
     <string name="bridges_updated">Zubiak eguneratuta</string>
     <string name="restart_orbot_to_use_this_bridge_">Berrabiarazi Orbot aldaketak aplikatzeko</string>
     <string name="menu_qr">QR Kodeak</string>
-    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Zure sare mugikorrak Tor nahita blokeatzen badu, \'Zubi zerbitzaria\' erabili dezakezu ordezko sarbide gisa. HAUTATU konfiguratzeko aukera bat eta probatu...</string>
+    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Zure sare mugikorrak Tor nahita blokeatzen badu, \'Zubi zerbitzaria\' erabili dezakezu ordezko sarbide gisa. HAUTATU konfiguratzeko aukera bat eta probatu…</string>
     <string name="bridge_mode">Zubi modua</string>
     <string name="get_bridges_email">E-mail</string>
     <string name="get_bridges_web">Web</string>
@@ -199,7 +199,7 @@
     <string name="bridge_direct_connect">Konektatu zuzenean Tor sarera (Onena)</string>
     <string name="bridge_community">Konektatu komunitatearen zerbitzarietatik</string>
     <string name="bridge_cloud">Konektatu hodeiko zerbitzarietatik</string>
-    <string name="bridges_get_new">Eskatu zubi berriak... (Beste guztiak huts egiten badu)</string>
+    <string name="bridges_get_new">Eskatu zubi berriak… (Beste guztiak huts egiten badu)</string>
     <string name="trouble_connecting">Arazoak konektatzeko?</string>
     <string name="full_device_vpn">Gailu osoaren VPN-a</string>
     <string name="vpn_disabled">VPN-a desgaituta</string>

@@ -181,7 +181,7 @@
     <string name="bridge_direct_connect">直接连接到 Tor（最佳）</string>
     <string name="bridge_community">通过社区服务器进行连接</string>
     <string name="bridge_cloud">通过云服务器进行连接</string>
-    <string name="bridges_get_new">请求新的网桥 ...（如果其他所有方法均失败）</string>
+    <string name="bridges_get_new">请求新的网桥 …（如果其他所有方法均失败）</string>
     <string name="trouble_connecting">连接时遇到问题？</string>
     <string name="full_device_vpn">全设备 VPN</string>
     <string name="vpn_disabled">VPN 已禁用</string>

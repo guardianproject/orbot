@@ -196,7 +196,7 @@
     <string name="bridge_direct_connect">Під\'єднання безпосередньо до Tor (Найкраще)</string>
     <string name="bridge_community">Під\'єднання через сервери спільноти</string>
     <string name="bridge_cloud">Під\'єднання через хмарні сервери</string>
-    <string name="bridges_get_new">Запит нових мостів... (Якщо все інше не вдається)</string>
+    <string name="bridges_get_new">Запит нових мостів… (Якщо все інше не вдається)</string>
     <string name="trouble_connecting">Проблеми з під\'єднанням?</string>
     <string name="full_device_vpn">Цілком VPN-пристрій</string>
     <string name="vpn_disabled">VPN Вимкнена</string>

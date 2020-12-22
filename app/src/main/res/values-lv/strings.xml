@@ -2,7 +2,7 @@
 <resources>
   <string name="app_name">Orbot</string>
   <string name="app_description">Orbot ir starpniekserveru bezmaksas lietotne, kas sniedz iespēju citām lietotnēm drošāk lietot internetu. Orbot izmanto Tor, lai šifrētu Jūsu interneta datplūsmu, tad to paslēpj, pārsūtot to caur daudziem datoriem visā pasaulē. Tor ir bezmaksas programmatūra un atvērts tīkls, kas palīdz Jums aizsargāties pret tīkla uzraudzības veidu - datplūsmas analīzi -, ar kuras palīdzību tiek apdraudēta personiskā brīvība un privātums, konfidenciālas lietišķas darbības un attiecības, kā arī valsts drošība.  </string>
-    <string name="status_starting_up">Orbot startē...</string>
+    <string name="status_starting_up">Orbot startē…</string>
   <string name="status_activated">Izveidots savienojums ar tīklu Tor</string>
   <string name="status_disabled">Orbot ir deaktivēts</string>
   <string name="status_shutting_down">TorService izslēdzas</string>
@@ -88,7 +88,7 @@
     <string name="third_party_software">Trešo personu programmatūra:</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="found_existing_tor_process">Atrada esošu Tor procesu...</string>
+    <string name="found_existing_tor_process">Atrada esošu Tor procesu…</string>
   <string name="something_bad_happened">Nav labi. Pārbaudiet žurnālu</string>
     <string name="unable_to_read_hidden_service_name">Nespēj lasīt slēpta pakalpojuma nosaukumu</string>
   <string name="unable_to_start_tor">Nevar startēt Tor:</string>

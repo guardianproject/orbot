@@ -2,7 +2,7 @@
 <resources>
   <string name="app_name">Orbot</string>
   <string name="app_description">Orbot adalah aplikasi proxy gratis yang membuat aplikasi-aplikasi lainnya dapat terkoneksi dengan internet secara aman. Orbot menggunakan Tor untuk mengenkripsi hubungan internet Anda dan menyalurkannya melewati berbagai komputer di seluruh dunia. Tor adalah software gratis dan layanan terbuka, yang membantu Anda menghindari pengawasan jaringan yang mengancam kebebasan pribadi dan privasi, aktivitas bisnis rahasia dan relasi, serta keamanan negara yang dikenal dengan analisis traffic.</string>
-    <string name="status_starting_up">Orbot sedang memulai...</string>
+    <string name="status_starting_up">Orbot sedang memulai…</string>
   <string name="status_activated">Tersambung ke jaringan Tor</string>
   <string name="status_disabled">Orbot telah dibatalkan</string>
   <string name="status_shutting_down">TorService sedang dimatikan</string>
@@ -88,7 +88,7 @@
     <string name="third_party_software">Perangkat Lunak Pihak Ke-3:</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="found_existing_tor_process">menemukan proses Tor yang ada...</string>
+    <string name="found_existing_tor_process">menemukan proses Tor yang ada…</string>
   <string name="something_bad_happened">Sesuatu yang buruk terjadi. Periksa log</string>
     <string name="unable_to_read_hidden_service_name">tidak dapat membaca nama layanan tersembunyi</string>
   <string name="unable_to_start_tor">Tidak dapat memulai Tor:</string>

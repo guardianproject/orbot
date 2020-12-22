@@ -2,11 +2,11 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Az Orbot egy ingyenes proxy alkalmazás, ami képessé tesz alkalmazásokat, hogy biztonságosabban használhassák az internetet. Az Orbot Tor-t használ, hogy titkosítsa az internetforgalmadat és elrejtse azáltal, hogy pattogtatja számítógépek sorozatain keresztül a világ körül. A Tor ingyenes szoftver és nyitott hálózat, ami segít megvédeni a hálózati felügyelettől, ami fenyegeti a személyi szabadságot és magánéletet, a bizalmas céges tevékenységeket és kapcsolatokat, és állambiztonság címén a forgalomelemzéstől.</string>
-    <string name="status_starting_up">Az Orbot indul...</string>
+    <string name="status_starting_up">Az Orbot indul…</string>
     <string name="status_activated">Csatlakozva a Tor hálózathoz</string>
     <string name="status_disabled">Az Orbot deaktiválva</string>
     <string name="status_shutting_down">A TorService leáll</string>
-    <string name="tor_process_starting">A Tor kliens indítása...</string>
+    <string name="tor_process_starting">A Tor kliens indítása…</string>
     <string name="tor_process_complete">kész.</string>
     <string name="menu_settings">Beállítások</string>
     <string name="menu_log">Log</string>
@@ -98,7 +98,7 @@
     <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
     <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
     <string name="hidden_service_request">Egy app egy rejtett szerver portot %1$s nyitna a Tor hálózatra. Ez biztonságos, ha megbízik az appban.</string>
-    <string name="found_existing_tor_process">létező Tor folyamat találva...</string>
+    <string name="found_existing_tor_process">létező Tor folyamat találva…</string>
     <string name="something_bad_happened">Valami rossz történt. Nézd meg a naplót.</string>
     <string name="unable_to_read_hidden_service_name">nem olvasható a rejtett szolgáltatás neve</string>
     <string name="unable_to_start_tor">A Tor indítása sikertelen:</string>
@@ -107,12 +107,12 @@
     <string name="pref_use_expanded_notifications">Mutassa a bővített értesítést a Tor kilépő országgal és IP-vel</string>
     <string name="pref_use_expanded_notifications_title">Bővített értesítések</string>
     <string name="set_locale_title">Nyelv</string>
-    <string name="no_internet_connection_tor">Nincs internetkapcsolat; Tor készenlétben...</string>
+    <string name="no_internet_connection_tor">Nincs internetkapcsolat; Tor készenlétben…</string>
     <string name="pref_disable_network_title">Nincs hálózati auto-alvás</string>
     <string name="pref_disable_network_summary">A Tor alvó módba helyezése, ha internet nem elérhető</string>
     <string name="newnym">Új Tor identitásra váltottál!</string>
-    <string name="no_network_connectivity_putting_tor_to_sleep_">Nincs hálózati kapcsolat. Tor alvó állapotba helyezése...</string>
-    <string name="network_connectivity_is_good_waking_tor_up_">A hálózati kapcsolat jó. Tor felébresztése...</string>
+    <string name="no_network_connectivity_putting_tor_to_sleep_">Nincs hálózati kapcsolat. Tor alvó állapotba helyezése…</string>
+    <string name="network_connectivity_is_good_waking_tor_up_">A hálózati kapcsolat jó. Tor felébresztése…</string>
     <string name="updating_settings_in_tor_service">a Tor szolgáltatás beállításainak frissítése</string>
     <string name="pref_socks_title">Tor SOCKS</string>
     <string name="pref_socks_summary">Port amelyen a Tor a SOCKS proxyt biztosítja (alapértelmezett: 9050 vagy 0 a tiltáshoz)</string>
@@ -133,7 +133,7 @@
     <string name="bridges_updated">Hidak frissítve</string>
     <string name="restart_orbot_to_use_this_bridge_">Kérlek indítsd újra az Orbot-ot a változások engedélyezéséhez</string>
     <string name="menu_qr">QR kódok</string>
-    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Ha a mobil hálózata aktívan blokkolja a Tor-t, akkor választhatja a \'Híd szerver\'-t, mint alternatív utat. VÁLASSZON egyet a lehetőségek közül és tesztelje....</string>
+    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Ha a mobil hálózata aktívan blokkolja a Tor-t, akkor választhatja a \'Híd szerver\'-t, mint alternatív utat. VÁLASSZON egyet a lehetőségek közül és tesztelje….</string>
     <string name="bridge_mode">Híd mód</string>
     <string name="get_bridges_email">Email</string>
     <string name="get_bridges_web">Web</string>
@@ -199,7 +199,7 @@
     <string name="bridge_direct_connect">Csatlakozás közvetlenül a Tor-hoz (Legjobb)</string>
     <string name="bridge_community">Csatlakozás közösségi szervereken keresztül</string>
     <string name="bridge_cloud">Csatlakozás felhőszervereken keresztül</string>
-    <string name="bridges_get_new">Új hidak kérése... (ha más nem segített)</string>
+    <string name="bridges_get_new">Új hidak kérése… (ha más nem segített)</string>
     <string name="trouble_connecting">Probléma a csatlakozással?</string>
     <string name="full_device_vpn">Teljes Készülék VPN</string>
     <string name="vpn_disabled">VPN Letiltva</string>

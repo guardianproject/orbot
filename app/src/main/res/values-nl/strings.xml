@@ -107,7 +107,7 @@
     <string name="pref_use_expanded_notifications">Toon uitgebreide melding met Tor-exitland en IP</string>
     <string name="pref_use_expanded_notifications_title">Uitgebreide meldingen</string>
     <string name="set_locale_title">Taal</string>
-    <string name="no_internet_connection_tor">Geen internetverbinding; Tor is in de slaapstand...</string>
+    <string name="no_internet_connection_tor">Geen internetverbinding; Tor is in de slaapstand…</string>
     <string name="pref_disable_network_title">Geen netwerk automatisch slapen</string>
     <string name="pref_disable_network_summary">Laat Tor slapen als er geen internetverbinding beschikbaar is</string>
     <string name="newnym">Je bent naar een nieuwe Tor identiteit gewisseld!</string>
@@ -199,7 +199,7 @@
     <string name="bridge_direct_connect">Rechtstreeks verbinden met Tor (best)</string>
     <string name="bridge_community">Verbinden via gemeenschapsservers</string>
     <string name="bridge_cloud">Verbinden via cloudservers</string>
-    <string name="bridges_get_new">Nieuwe bridges opvragen... (als alle andere opties mislukken)</string>
+    <string name="bridges_get_new">Nieuwe bridges opvragen… (als alle andere opties mislukken)</string>
     <string name="trouble_connecting">Problemen met verbinden?</string>
     <string name="full_device_vpn">Volledigapparaats-VPN</string>
     <string name="vpn_disabled">VPN uitgeschakeld</string>

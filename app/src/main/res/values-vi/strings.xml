@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Orbot</string>
-    <string name="app_description">Orbot là một ứng dụng proxy miễn phí, được thiết kế để làm cho các ứng dụng khác kết nối với Internet một cách an toàn. Orbot sử dụng Tor để mã hóa các kết nối Internet rồi ẩn danh nó thông qua một loạt các nút trong mạng Tor. Tor là phần mềm miễn phí và là một mạng lưới mở giúp bạn chống lại sự giám sát mạng, vốn đe dọa riêng tư trực tuyến, hay các hoạt động bí mật...</string>
+    <string name="app_description">Orbot là một ứng dụng proxy miễn phí, được thiết kế để làm cho các ứng dụng khác kết nối với Internet một cách an toàn. Orbot sử dụng Tor để mã hóa các kết nối Internet rồi ẩn danh nó thông qua một loạt các nút trong mạng Tor. Tor là phần mềm miễn phí và là một mạng lưới mở giúp bạn chống lại sự giám sát mạng, vốn đe dọa riêng tư trực tuyến, hay các hoạt động bí mật…</string>
     <string name="status_starting_up">Orbot đang khởi động…</string>
     <string name="status_activated">Đã kết nối với mạng Tor</string>
     <string name="status_disabled">Orbot đã được vô hiệu hóa</string>
@@ -93,7 +93,7 @@
     <string name="tor_version">Tor: https://www.torproject.org</string>
     <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
     <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
-    <string name="found_existing_tor_process">tìm ra tiến trình hiện hành của Tor...</string>
+    <string name="found_existing_tor_process">tìm ra tiến trình hiện hành của Tor…</string>
     <string name="something_bad_happened">Có gì đó không ổn. Xin xem lại nhật ký</string>
     <string name="unable_to_read_hidden_service_name">không thể đọc được tên dịch vụ ẩn</string>
     <string name="unable_to_start_tor">Không thể khởi động Tor được: </string>
@@ -102,12 +102,12 @@
     <string name="pref_use_expanded_notifications">Hiển thị thông báo mở rộng với IP và quốc gia của nút cuối (Tor exit-node)</string>
     <string name="pref_use_expanded_notifications_title">Thông báo mở rộng</string>
     <string name="set_locale_title">Ngôn ngữ</string>
-    <string name="no_internet_connection_tor">Không có kết nối Internet; Tor đang ở chế độ chờ...</string>
+    <string name="no_internet_connection_tor">Không có kết nối Internet; Tor đang ở chế độ chờ…</string>
     <string name="pref_disable_network_title">Tự động \"ngủ\" khi không có mạng</string>
     <string name="pref_disable_network_summary">Chuyển Tor sang chế độ ngủ nếu không có Internet</string>
     <string name="newnym">Bạn đã chuyển sang một mạch Tor mới!</string>
-    <string name="no_network_connectivity_putting_tor_to_sleep_">Không có mạng. Đang chuyển Tor sang chế độ ngủ...</string>
-    <string name="network_connectivity_is_good_waking_tor_up_">Kết nối mạng tốt. Đang \"đánh thức\" Tor...</string>
+    <string name="no_network_connectivity_putting_tor_to_sleep_">Không có mạng. Đang chuyển Tor sang chế độ ngủ…</string>
+    <string name="network_connectivity_is_good_waking_tor_up_">Kết nối mạng tốt. Đang \"đánh thức\" Tor…</string>
     <string name="updating_settings_in_tor_service">đang cập nhật cài đặt dịch vụ Tor</string>
     <string name="pref_socks_title">Cổng SOCKS</string>
     <string name="pref_socks_summary">Cổng để Tor đặt proxy SOCKS lên (mặc định: 9050 hoặc 0 để vô hiệu hóa)</string>

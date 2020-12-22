@@ -57,7 +57,7 @@
     <string name="pref_proxy_username_dialog">प्रॉक्सी उपयोगकर्ता नाम दर्ज करें</string>
     <string name="pref_proxy_password_title">आउटबाउंड प्रॉक्सी पासवर्ड</string>
     <string name="pref_proxy_password_summary">प्रॉक्सी पासवर्ड (वैकल्पिक)</string>
-    <string name="pref_proxy_password_dialog">पूर्ण पारदर्शी प्रक्सीयंग सेट करना ...</string>
+    <string name="pref_proxy_password_dialog">पूर्ण पारदर्शी प्रक्सीयंग सेट करना …</string>
     <string name="couldn_t_start_tor_process_">तोर प्रक्रिया शुरू नहीं किया जा सका:</string>
     <string name="error">त्रुटि</string>
     <string name="your_reachableaddresses_settings_caused_an_exception_">आपके पहुंचने योग्य एड्रेस सेटिंग्स ने अपवाद उत्पन्न किया!</string>
@@ -99,7 +99,7 @@
     <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
     <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
     <string name="hidden_service_request">एक ऐप Tor नेटवर्क पर %1$sछिपा सर्वर पोर्ट खोलना चाहता है। यदि आप ऐप पर विश्वास करते हैं, तो यह सुरक्षित है</string>
-    <string name="found_existing_tor_process">मौजूदा तोर प्रक्रिया पाया ...</string>
+    <string name="found_existing_tor_process">मौजूदा तोर प्रक्रिया पाया …</string>
     <string name="something_bad_happened">कुछ बुरा हो गया। लॉग की जांच करें</string>
     <string name="unable_to_read_hidden_service_name">छिपी हुई सेवा का नाम पढ़ने में असमर्थ</string>
     <string name="unable_to_start_tor">टो शुरू करने में असमर्थ:</string>
@@ -108,12 +108,12 @@
     <string name="pref_use_expanded_notifications">तोर एग्जिट देश और आईपी के साथ विस्तारित सूचना दिखाएं</string>
     <string name="pref_use_expanded_notifications_title">विस्तारित सूचनाएं</string>
     <string name="set_locale_title">भाषा</string>
-    <string name="no_internet_connection_tor">कोई इंटरनेट कनेक्शन नहीं; तोर स्टैंडबाय पर है ...</string>
+    <string name="no_internet_connection_tor">कोई इंटरनेट कनेक्शन नहीं; तोर स्टैंडबाय पर है …</string>
     <string name="pref_disable_network_title">कोई नेटवर्क ऑटो-स्लीप नहीं</string>
     <string name="pref_disable_network_summary">जब कोई इंटरनेट उपलब्ध नहीं है तो तोर को सोएं</string>
     <string name="newnym">आपने एक नई टोरी पहचान को बदल दिया है!</string>
-    <string name="no_network_connectivity_putting_tor_to_sleep_">कोई नेटवर्क कनेक्टिविटी नहीं टो को सोने के लिए डालना ...</string>
-    <string name="network_connectivity_is_good_waking_tor_up_">नेटवर्क कनेक्टिविटी अच्छा है जागो टॉर अप ...</string>
+    <string name="no_network_connectivity_putting_tor_to_sleep_">कोई नेटवर्क कनेक्टिविटी नहीं टो को सोने के लिए डालना …</string>
+    <string name="network_connectivity_is_good_waking_tor_up_">नेटवर्क कनेक्टिविटी अच्छा है जागो टॉर अप …</string>
     <string name="updating_settings_in_tor_service">टॉर सेवा में सेटिंग अपडेट करना</string>
     <string name="pref_socks_title">टॉर सॉक्स</string>
     <string name="pref_socks_summary">पोर्ट उस टो पर अपनी सॉक्स प्रॉक्सी प्रदान करता है (डिफ़ॉल्ट: 9050 या अक्षम करने के लिए 0)</string>
@@ -200,7 +200,7 @@
     <string name="bridge_direct_connect">सीधे टॉर से कनेक्ट करें (सर्वश्रेष्ठ)</string>
     <string name="bridge_community">सामुदायिक सर्वर के माध्यम से कनेक्ट करें</string>
     <string name="bridge_cloud">क्लाउड सर्वर से जुड़ें</string>
-    <string name="bridges_get_new">नई ब्रिज का अनुरोध ... (यदि सब कुछ विफल रहता है)</string>
+    <string name="bridges_get_new">नई ब्रिज का अनुरोध … (यदि सब कुछ विफल रहता है)</string>
     <string name="trouble_connecting">कनेक्ट करने में समस्या?</string>
     <string name="full_device_vpn">पूर्ण डिवाइस VPN</string>
     <string name="vpn_disabled">वीपीएन अक्षम किया गया</string>

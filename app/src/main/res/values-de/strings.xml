@@ -199,7 +199,7 @@
     <string name="bridge_direct_connect">Direkt mit Tor verbinden (am besten)</string>
     <string name="bridge_community">Über Community-Server verbinden</string>
     <string name="bridge_cloud">Über Cloud-Server verbinden</string>
-    <string name="bridges_get_new">Neue Brücken anfordern... (Wenn alles andere fehlschlägt.)</string>
+    <string name="bridges_get_new">Neue Brücken anfordern… (Wenn alles andere fehlschlägt.)</string>
     <string name="trouble_connecting">Probleme beim Verbinden?</string>
     <string name="full_device_vpn">Vollständiges Geräte-VPN</string>
     <string name="vpn_disabled">VPN deaktiviert</string>

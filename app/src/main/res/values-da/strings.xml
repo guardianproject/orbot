@@ -2,7 +2,7 @@
 <resources>
   <string name="app_name">Orbot</string>
   <string name="app_description">Orbot er en gratis og åben proxy-applikation, der gør det muligt at anvende internettet mere sikkert fra andre programmer. Orbot bruger Tor til at kryptere internettrafikken, og skjuler den ved at sende den gennem serverere, lokaliseret i hele verden. Tor er gratis og åben software, der kan hjælpe dig mod netværksovervågning kaldet trafikanalyse, der kan true din personlige frihed, dit privatliv, handelsaktivitet og forhold.</string>
-    <string name="status_starting_up">Orbot starter op ...</string>
+    <string name="status_starting_up">Orbot starter op …</string>
   <string name="status_activated">Der er forbindelse til Tor-netværket</string>
   <string name="status_disabled">Orbot er slået fra</string>
   <string name="status_shutting_down">TorServe lukker ned</string>
@@ -85,7 +85,7 @@
   <string name="project_home">Projekt hjemmeside(r):</string>
     <string name="third_party_software">Tredjeparts-software:</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
-  <string name="found_existing_tor_process">fandt eksisterende Tor process...</string>
+  <string name="found_existing_tor_process">fandt eksisterende Tor process…</string>
   <string name="something_bad_happened">Noget slemt er sket. Check loggen</string>
     <string name="unable_to_read_hidden_service_name">ikke i stand til at læse navnet på den skjulte service</string>
   <string name="unable_to_start_tor">Kunne ikke starte Tor:</string>

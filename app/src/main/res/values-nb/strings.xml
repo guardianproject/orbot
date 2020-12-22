@@ -106,7 +106,7 @@
     <string name="set_locale_title">Språk</string>
     <string name="no_internet_connection_tor">Ingen Internett-tilkobling; Tor er i ventemodus…</string>
     <string name="pref_disable_network_title">Inget automatisk hvilemodus for nettverk</string>
-    <string name="pref_disable_network_summary">Legg Tor i hvilemodus når nettilkobling til internett ikke er tilgjengelig</string>
+    <string name="pref_disable_network_summary">Legg Tor i hvilemodus når nettilkobling til Internett ikke er tilgjengelig</string>
     <string name="newnym">Du har byttet til en ny Tor-identitet!</string>
     <string name="no_network_connectivity_putting_tor_to_sleep_">Ingen nettverkstilkobling. Tor går i dvale…</string>
     <string name="network_connectivity_is_good_waking_tor_up_">Nettverkstilkoblingen er bra. Vekker opp Tor…</string>

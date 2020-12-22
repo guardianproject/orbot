@@ -86,7 +86,7 @@
     <string name="third_party_software">3rd-Party-Software:</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="found_existing_tor_process"> nakakita ng umiiral na Tor process...</string>
+    <string name="found_existing_tor_process"> nakakita ng umiiral na Tor process…</string>
   <string name="something_bad_happened">May nangyaring masama. Tingnan ang log</string>
     <string name="unable_to_read_hidden_service_name">hindi mabasa ang pangalan ng tagong serbisyo</string>
   <string name="unable_to_start_tor">Hindi masimulan ang Tor:</string>

@@ -2,11 +2,11 @@
 <resources>
     <string name="app_name">روبات پیازی</string>
     <string name="app_description">اربت یک برنامه پروکسی مجانی است که دیگر برنامه ها را به استفاده امن از اینترنت توانمند می کند . اربوت از تور برای رمزگذاری کردن ترافیک اینترنت شما استفاده می کند و بعد آن ها را از طریق کامپیوترهای متفاوت در نقاط مختلف جهان مخفی می کند. تور یک برنامه مجانی و شبکه باز است که شما از شما در مقابل تحت نظر بودن در شبکه٬‌  تهدید آزادی های شخصی٬ خصوصی٬ فعالیت های کاری و رابطه های شخصی بطور امن محافظت می کند. </string>
-    <string name="status_starting_up">اربوت درحال آغاز است...</string>
+    <string name="status_starting_up">اربوت درحال آغاز است…</string>
     <string name="status_activated">متصل به شبکه تور</string>
     <string name="status_disabled">اربوت غیرفعال شده است.</string>
     <string name="status_shutting_down">سرویس تور در حال خاموش شدن است</string>
-    <string name="tor_process_starting">شروع کلاینت تور...</string>
+    <string name="tor_process_starting">شروع کلاینت تور…</string>
     <string name="tor_process_complete">تمام.</string>
     <string name="menu_settings">تنظیمات</string>
     <string name="menu_log">ورود</string>
@@ -98,7 +98,7 @@
     <string name="obfsproxy_version">Obfs4proxy نسخه‌ی 0.0.8: https://github.com/Yawning/obfs4</string>
     <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
     <string name="hidden_service_request">اپلیکیشنی می‌خواهد پورت سرور %1$s را به شبکه تور بگشاید. در صورتی که به این برنامه اطمینان دارید، چنین کاری امن است.</string>
-    <string name="found_existing_tor_process">یک تور درحال اجرا پیدا شد...</string>
+    <string name="found_existing_tor_process">یک تور درحال اجرا پیدا شد…</string>
     <string name="something_bad_happened">اتفاق بدی افتاد. وقایع ثبت شده را چک کنید</string>
     <string name="unable_to_read_hidden_service_name">ناتوان در خواندن نام سرویس مخفی</string>
     <string name="unable_to_start_tor">ناتوان در راه اندازی تور:</string>
@@ -107,12 +107,12 @@
     <string name="pref_use_expanded_notifications">نمایش اطلاع رسانی گسترده با کشور خروجی Tor و IP</string>
     <string name="pref_use_expanded_notifications_title">اطلاعیه گسترده</string>
     <string name="set_locale_title">زبان</string>
-    <string name="no_internet_connection_tor">ارتباط اینترنتی وجود ندارد; تور آماده کار است... </string>
+    <string name="no_internet_connection_tor">ارتباط اینترنتی وجود ندارد; تور آماده کار است… </string>
     <string name="pref_disable_network_title">خاموش کردن در صورت عدم وجود شبکه</string>
     <string name="pref_disable_network_summary">در صورتی که شبکه وجود نداشته باشد خاموش شود</string>
     <string name="newnym">شما به شناسه جدید تور منتقل شدید</string>
     <string name="no_network_connectivity_putting_tor_to_sleep_">ارتباط شبکه ای وجود ندارد. تور به حالت خواب می رود</string>
-    <string name="network_connectivity_is_good_waking_tor_up_">ارتباط شبکه ای خوب است. تور را بیدار نمایید...</string>
+    <string name="network_connectivity_is_good_waking_tor_up_">ارتباط شبکه ای خوب است. تور را بیدار نمایید…</string>
     <string name="updating_settings_in_tor_service">به روز رسانی تنظیمات در سرویس Tor</string>
     <string name="pref_socks_title">Tor SOCKS</string>
     <string name="pref_socks_summary">پورتی که تور ارائه می دهد SOCKS proxy روی (پیش فرض: 9050 یا 0 برای غیرفعال کردن)</string>
@@ -199,7 +199,7 @@
     <string name="bridge_direct_connect">اتصال مستقیم به تور (بهترین عملکرد)</string>
     <string name="bridge_community">اتصال از طریق سرورهای جامعه</string>
     <string name="bridge_cloud">اتصال از طریق سرورهای ابری</string>
-    <string name="bridges_get_new">درخواست پل‌های ارتباطی جدید... (اگر تمامی روش‌های دیگر کار نکردند)</string>
+    <string name="bridges_get_new">درخواست پل‌های ارتباطی جدید… (اگر تمامی روش‌های دیگر کار نکردند)</string>
     <string name="trouble_connecting">در اتصال مشکل دارید؟</string>
     <string name="full_device_vpn">VPN برای تمام دستگاه</string>
     <string name="vpn_disabled">VPN غیر فعال شد</string>
