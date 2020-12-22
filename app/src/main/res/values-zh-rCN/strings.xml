@@ -6,8 +6,6 @@
     <string name="status_activated">已连接到 Tor 网络</string>
     <string name="status_disabled">Orbot 已停用</string>
     <string name="status_shutting_down">Tor服务 正在关闭</string>
-    <string name="tor_process_starting">正在启动 Tor 客户端…</string>
-    <string name="tor_process_complete">完成。</string>
     <string name="menu_settings">设置</string>
     <string name="menu_log">日志</string>
     <string name="menu_start">启动</string>
@@ -19,8 +17,6 @@
     <string name="menu_exit">退出</string>
     <string name="menu_scan">扫描网桥 QR 码</string>
     <string name="menu_share_bridge">分享网桥 QR 码</string>
-    <string name="btn_okay">确定</string>
-    <string name="btn_cancel">取消</string>
     <!--Welcome Wizard strings (DJH)-->
     <string name="wizard_details">更多 Orbot 信息</string>
     <!--END Welcome Wizard strings (DJH)-->
@@ -92,7 +88,6 @@
     <string name="third_party_software">第三方软件：</string>
     <string name="tor_version">Tor: https://www.torproject.org</string>
     <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
     <string name="found_existing_tor_process">发现现有的Tor进程…</string>
     <string name="something_bad_happened">发生错误，请检查日志</string>
     <string name="unable_to_read_hidden_service_name">无法读取隐藏服务名称</string>
@@ -102,12 +97,9 @@
     <string name="pref_use_expanded_notifications">显示扩展的通知，有关 Tor 出口的国家和 IP</string>
     <string name="pref_use_expanded_notifications_title">扩展的通知</string>
     <string name="set_locale_title">语言</string>
-    <string name="no_internet_connection_tor">没有网络连接;Tor处于待命状态…</string>
     <string name="pref_disable_network_title">无网络自动休眠</string>
     <string name="pref_disable_network_summary">没有网络连接时，暂时停用 Tor</string>
     <string name="newnym">已切换为新的 Tor 标识！</string>
-    <string name="no_network_connectivity_putting_tor_to_sleep_">没有网络连接。正将Tor置于沉睡状态…</string>
-    <string name="network_connectivity_is_good_waking_tor_up_">网络连接很好。正在唤醒Tor……</string>
     <string name="updating_settings_in_tor_service">正在更新 Tor 服务中的设置</string>
     <string name="pref_socks_title">Tor SOCKS</string>
     <string name="pref_socks_summary">Tor 提供其 SOCKS 代理的端口 (默认: 9050, 0 禁用)</string>
@@ -121,22 +113,12 @@
     <string name="pref_torrc_title">Torrc 自定义配置</string>
     <string name="pref_torrc_summary">仅供专家：直接输入 torrc 配置行</string>
     <string name="pref_torrc_dialog">自定义 Torrc</string>
-    <string name="kbps">kbps</string>
-    <string name="mbps">mbps</string>
-    <string name="kb">KB</string>
-    <string name="mb">MB</string>
     <string name="bridges_updated">网桥已更新</string>
     <string name="restart_orbot_to_use_this_bridge_">请重启 Orbot 以使变更生效</string>
     <string name="menu_qr">QR码</string>
-    <string name="bridge_mode">请求新桥</string>
     <string name="get_bridges_email">电子邮件</string>
-    <string name="get_bridges_web">Web</string>
-    <string name="activate">激活</string>
     <string name="apps_mode">VPN 模式</string>
     <string name="send_email">发送电子邮件</string>
-    <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">你可以通过电子邮件、网络或扫描桥的二维码获得桥的地址。选择下面的“电子邮件”或“网络”来请求网桥地址。
-\n
-\n一旦你有了一个地址，复制并粘贴到Orbot设置中的“桥”选项中，然后重新启动。</string>
     <string name="save">保存</string>
     <string name="name">名称</string>
     <string name="please_restart_Orbot_to_enable_the_changes">请重启 Orbot 以使变更生效</string>
@@ -152,20 +134,14 @@
     <string name="vpn_default_world">全局 (自动)</string>
     <string name="local_port">本地端口</string>
     <string name="done">完成！</string>
-    <string name="invalid_port">无效的端口</string>
     <string name="copy_address_to_clipboard">复制地址到剪贴板</string>
     <string name="backup_service">备份服务</string>
     <string name="delete_service">删除服务</string>
     <string name="backup_saved_at_external_storage">备份已保存在外部存储</string>
     <string name="backup_restored">备份已恢复</string>
-    <string name="filemanager_not_available">文件管理器不可用</string>
-    <string name="please_grant_permissions_for_external_storage">请授予外部存储权限</string>
     <string name="restore_backup">恢复备份</string>
-    <string name="name_can_t_be_empty">名称不能为空</string>
-    <string name="fields_can_t_be_empty">字段不能为空</string>
     <string name="start_tor_again_for_finish_the_process">再次启动 Tor 以完成该过程</string>
     <string name="confirm_service_deletion">确认服务删除</string>
-    <string name="click_again_for_backup">再次单击以进行备份</string>
     <string name="service_type">服务类型</string>
     <string name="cookie_from_QR">从二维码读取</string>
     <string name="share_as_qr">以 QR 码形式分享</string>
@@ -181,7 +157,6 @@
     <string name="bridge_direct_connect">直接连接到 Tor（最佳）</string>
     <string name="bridge_community">通过社区服务器进行连接</string>
     <string name="bridge_cloud">通过云服务器进行连接</string>
-    <string name="bridges_get_new">请求新的网桥 …（如果其他所有方法均失败）</string>
     <string name="trouble_connecting">连接时遇到问题？</string>
     <string name="full_device_vpn">全设备 VPN</string>
     <string name="vpn_disabled">VPN 已禁用</string>
@@ -201,10 +176,7 @@
     <string name="pref_reduced_connection_padding_summary">更快关闭中继连接，并发送更少的填充数据包以减少数据和电池的使用量</string>
     <string name="pref_reduced_connection_padding">减少了连接填充量</string>
     <string name="pref_connection_padding_summary">始终启用连接填充来防御某些形式的流量分析。默认值：自动</string>
-    <string name="no_transproxy_warning">警告：不支持透明代理。使用Orbot应用VPN代替。</string>
-    <string name="no_transproxy_warning_short">警告：透明代理已不受支持</string>
     <string name="pref_isolate_dest">隔离目标地址</string>
-    <string name="invalid_onion_address">无效的 .onion 地址</string>
     <string name="auth_cookie">认证 cookie</string>
     <string name="create_a_backup_first">先建立一个备份</string>
     <string name="show_auth_cookie">显示 auth cookie</string>

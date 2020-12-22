@@ -6,8 +6,6 @@
     <string name="status_activated">Conectado à rede Tor</string>
     <string name="status_disabled">O Orbot está desativado</string>
     <string name="status_shutting_down">O TorService está desligando</string>
-    <string name="tor_process_starting">Iniciando o cliente Tor…</string>
-    <string name="tor_process_complete">completo.</string>
     <string name="menu_settings">Configurações</string>
     <string name="menu_log">Log</string>
     <string name="menu_start">Iniciar</string>
@@ -19,8 +17,6 @@
     <string name="menu_exit">Sair</string>
     <string name="menu_scan">Escanear um BridgeQR</string>
     <string name="menu_share_bridge">Compartilhar o BridgeQR</string>
-    <string name="btn_okay">Okay</string>
-    <string name="btn_cancel">Cancelar</string>
     <!--Welcome Wizard strings (DJH)-->
     <string name="wizard_details">Alguns Detalhes Sobre o Orbot</string>
     <string name="wizard_details_msg">O Orbot é um software de código aberto que contem Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent e Polipo. Ele fornece um proxy local HTTP (8118) e um proxy SOCKS (9050) como acesso a rede Tor. Orbot também tem a habilidade, em dispositivos com acesso root, de enviar todo o trafego de Internet via rede Tor.</string>
@@ -94,7 +90,6 @@
     <string name="third_party_software">Software de Terceiros:</string>
     <string name="tor_version">Tor: https://www.torproject.org</string>
     <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
     <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
     <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
     <string name="hidden_service_request">Um aplicativo quer abrir uma porta do servidor onion %1$s para a rede Tor. É seguro caso você confie neste aplicativo.</string>
@@ -107,12 +102,9 @@
     <string name="pref_use_expanded_notifications">Mostrar as notificação expandida com o Tor, país de saída e o IP</string>
     <string name="pref_use_expanded_notifications_title">Notificações Expandidas</string>
     <string name="set_locale_title">Idioma</string>
-    <string name="no_internet_connection_tor">Sem conexão com a internet; O Tor está de prontidão…</string>
     <string name="pref_disable_network_title">Sem Rede, Modo de Espera Automático</string>
     <string name="pref_disable_network_summary">Colocar o Tor em modo de espera quando não houver Internet disponível</string>
     <string name="newnym">Você trocou para uma nova identidade Tor!</string>
-    <string name="no_network_connectivity_putting_tor_to_sleep_">Sem conectividade de rede. Colocando o Tor para dormir…</string>
-    <string name="network_connectivity_is_good_waking_tor_up_">Conectividade da rede está boa. Acordando o Tor…</string>
     <string name="updating_settings_in_tor_service">atualizando as configurações no serviço Tor</string>
     <string name="pref_socks_title">Tor SOCKS</string>
     <string name="pref_socks_summary">Porta que o Tor oferece do seu proxy SOCKS (padrão: 9050 ou 0 para desativar)</string>
@@ -126,21 +118,13 @@
     <string name="pref_torrc_title">Config Personalizada do Torrc</string>
     <string name="pref_torrc_summary">SOMENTE EXPERIENTES: adicione sua própria linha de configuração torrc</string>
     <string name="pref_torrc_dialog">Torrc Personalizado</string>
-    <string name="kbps">kbps</string>
-    <string name="mbps">mbps</string>
-    <string name="kb">KB</string>
-    <string name="mb">MB</string>
     <string name="bridges_updated">Pontes Atualizadas</string>
     <string name="restart_orbot_to_use_this_bridge_">Por favor reinicie Orbot para habilitar as mundanças</string>
     <string name="menu_qr">QR Codes</string>
     <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Se sua rede de dados bloqueia o Tor, você pode utilizar um \'Servidor Bridge\' como alternativa contra o bloqueio. SELECIONE umas das opções para configurar e testar…</string>
-    <string name="bridge_mode">Modo Ponte</string>
     <string name="get_bridges_email">Email</string>
-    <string name="get_bridges_web">Web</string>
-    <string name="activate">Atvar</string>
     <string name="apps_mode">Modo VPN</string>
     <string name="send_email">Enviar Email</string>
-    <string name="you_must_get_a_bridge_address_by_email_web_or_from_a_friend_once_you_have_this_address_please_paste_it_into_the_bridges_preference_in_orbot_s_setting_and_restart_">Você pode obter um endereço de ponte através de e-mail, web ou lendo um código QR ponte. Selecione \'E-mail\' ou \'Web\' abaixo para solicitar uma ponte endereço. \n\nUma vez que você tem um endereço, copie &amp; colá-lo na \"Bridges\" preferência na configuração e reiniciar do Orbot.</string>
     <string name="vpn_default_world">Global (Automático)</string>
     <string name="hidden_services">Serviços Ocultos</string>
     <string name="title_activity_hidden_services">Serviços Ocultos</string>
@@ -150,21 +134,15 @@
     <string name="onion_port">Porta Onion</string>
     <string name="name">Nome</string>
     <string name="done">Feito!</string>
-    <string name="invalid_port">Porta Invalida</string>
     <string name="copy_address_to_clipboard">Copiar para a area de transferência </string>
     <string name="show_auth_cookie">Mostre cookie de autenticação</string>
     <string name="backup_service">Serviço de Backup</string>
     <string name="delete_service">Remover Serviço</string>
     <string name="backup_saved_at_external_storage">Backup salvo em mídia externa</string>
     <string name="backup_restored">Backup Restaurado</string>
-    <string name="filemanager_not_available">Gerenciador de arquivos não está disponível</string>
-    <string name="please_grant_permissions_for_external_storage">Por favor dê permissões ao armazenamento externo</string>
     <string name="restore_backup">Restaurar Backup</string>
     <string name="create_a_backup_first">Criar primeiro backup</string>
-    <string name="name_can_t_be_empty">O campo Nome não pode ser vazio</string>
-    <string name="fields_can_t_be_empty">Campos não podem ser vazios</string>
     <string name="confirm_service_deletion">Confirmar a remoção do serviço</string>
-    <string name="click_again_for_backup">Clique novamente para backup</string>
     <string name="service_type">Tipo do Serviço</string>
     <string name="auth_cookie">Cookie de autenticação</string>
     <string name="copy_cookie_to_clipboard">Copiar cookie para a area de transferência</string>
@@ -179,7 +157,6 @@
     <string name="bridge_direct_connect">Conecte-se diretamente ao Tor (Melhor forma)</string>
     <string name="bridge_community">Conecte-se através de servidores da comunidade</string>
     <string name="bridge_cloud">Conecte-se através de servidores em nuvem</string>
-    <string name="bridges_get_new">Solicitar uma nova ponte… (Caso todas falhem.)</string>
     <string name="trouble_connecting">Problemas na conexão ? </string>
     <string name="full_device_vpn">VPN PARA TODO O DISPOSITIVO</string>
     <string name="refresh_apps">Atualizar os Aplicativos</string>
@@ -196,8 +173,6 @@
     <string name="pref_reduced_connection_padding">Preenchimento de conexão reduzido</string>
     <string name="pref_connection_padding_summary">Sempre permita que o preenchimento de conexão se defenda contra algumas formas de análise de tráfego. Padrão: auto</string>
     <string name="pref_connection_padding">Preenchimento da conexão</string>
-    <string name="no_transproxy_warning">AVISO: O Proxy transparente não é suportado. No lugar utilize o Orbot Apps VPN.</string>
-    <string name="no_transproxy_warning_short">AVISO: Não há mais suporte para o Transproxying</string>
     <string name="pref_isolate_dest_summary">Use um circuito diferente para cada endereço de destino</string>
     <string name="pref_isolate_dest">Isole os endereços do destino</string>
     <string name="consider_enable_battery_optimizations">Considere ativar as otimizações da bateria</string>
@@ -207,7 +182,6 @@
     <string name="delete_cookie">Excluir o cookie</string>
     <string name="backup_cookie">Cópia de segurança do cookie</string>
     <string name="cookie_from_QR">Ler a partir do QR</string>
-    <string name="invalid_onion_address">Endereço .onion inválido</string>
     <string name="onion">.onion</string>
     <string name="client_cookies">Cookies dos clientes</string>
     <string name="auth_cookie_was_not_configured">O cookie de Autenticação não foi configurado</string>

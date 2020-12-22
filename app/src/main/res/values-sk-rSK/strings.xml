@@ -14,8 +14,6 @@
     <string name="status_activated">Pripojený k sieti Tor</string>
     <string name="status_disabled">Orbot je deaktivovaný</string>
     <string name="status_shutting_down">TorService sa vypína</string>
-    <string name="tor_process_starting">Spúšťa sa klient Tor…</string>
-    <string name="tor_process_complete">dokončené.</string>
     <string name="menu_settings">Nastavenia</string>
     <string name="menu_log">Denník</string>
     <string name="menu_start">Začať</string>
@@ -27,8 +25,6 @@
     <string name="menu_exit">Ukončenie</string>
     <string name="menu_scan">Skenovať BridgeQR</string>
     <string name="menu_share_bridge">Zdieľať BridgeQR</string>
-    <string name="btn_okay">V poriadku</string>
-    <string name="btn_cancel">Zrušiť</string>
     <string name="wizard_details">Niektoré podrobnosti Orbotu</string>
     <string name="wizard_details_msg">Orbot je open-source aplikácia, ktorá obsahuje Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent a Polipo. Poskytuje lokálny HTTP proxy (8118) a SOCKS proxy (9050) do siete Tor. Orbot má tiež možnosť na koreňovom zariadení posielať všetok internetový prenos cez Tor.</string>
     <string name="pref_general_group">Všeobecné</string>
