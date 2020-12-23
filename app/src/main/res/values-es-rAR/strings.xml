@@ -58,7 +58,7 @@
   <string name="your_reachableaddresses_settings_caused_an_exception_">La configuración de las direcciones alcanzables causó una excepción.</string>
   <string name="your_relay_settings_caused_an_exception_">Su configuración de retransmisión provocó una excepción.</string>
   <string name="exit_nodes">nodos de salida</string>
-  <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">huellas dactilares, apodos, paises y direcciones para el ultimo salto</string>
+  <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">huellas dactilares, apodos, paises y direcciones para el último salto</string>
   <string name="enter_exit_nodes">ingrese nodos de salida</string>
   <string name="exclude_nodes">excluir nodos</string>
   <string name="fingerprints_nicks_countries_and_addresses_to_exclude">huellas digitales, usuarios, paises y direcciones para excluir</string>

@@ -1,5 +1,6 @@
 package org.torproject.android.service.util;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Build;
 import android.util.Log;
@@ -15,6 +16,7 @@ public class NativeLoader {
 
     private final static String TAG = "TorNativeLoader";
 
+    @SuppressLint("SetWorldReadable")
     private static boolean loadFromZip(Context context, String libName, File destLocalFile, String folder) {
 
 

@@ -31,7 +31,14 @@ android {
     }
 
     lintOptions {
-        abortOnError false
+        checkReleaseBuilds false
+        abortOnError true
+
+        htmlReport true
+        xmlReport false
+        textReport false
+
+        lintConfig file("../lint.xml")
     }
 
     packagingOptions {

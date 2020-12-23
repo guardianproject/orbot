@@ -3,6 +3,7 @@
 
 package org.torproject.android;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Application;
 import android.content.BroadcastReceiver;
@@ -702,7 +703,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
 
                 if (urlString != null) {
 
-                    if (urlString.toLowerCase().startsWith("bridge://")) {
+                    if (urlString.toLowerCase(Locale.ENGLISH).startsWith("bridge://")) {
                         String newBridgeValue = urlString.substring(9); //remove the bridge protocol piece
                         try {
                             newBridgeValue = URLDecoder.decode(newBridgeValue, "UTF-8"); //decode the value here
@@ -1186,6 +1187,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         llBoxShortcuts.addView(tv);
     }
 
+    @SuppressLint("SetWorldReadable")
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void exportTorData() {
         File fileTorData;
