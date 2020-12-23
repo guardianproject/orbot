@@ -1,0 +1,4 @@
+* Główne poprawki trybu VPN
+* Nowe domyślne mosty
+* Zaktualizowano do wersji 0.4.0.4
+* Obsługa trybu 64-bitowego i systemu Android Q

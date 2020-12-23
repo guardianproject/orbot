@@ -2,7 +2,7 @@
 <resources>
   <string name="app_name">Орбот</string>
   <string name="app_description">Orbot е безплатна прокси програма, която дава възможноста на други програми да използват интерент по-сигурно. Orbot използва Tor, за да криптира Интернет трафика и след това го скрива като препраща през няколко компютъра по целия свят. Tor е безплатен софтуер и отворена мрежа, която ти помага да се предпазиш от шпиониране по мрежата, което заплашва твоята свобода и лично пространство, конфиденциални бизнес отношение и връзки, и от вид правителствено следене наречено трафик анализ.</string>
-    <string name="status_starting_up">Орбот стартира...</string>
+    <string name="status_starting_up">Орбот стартира…</string>
   <string name="status_activated">Свързан към Тор мрежата</string>
   <string name="status_disabled">Орбот е деактивиран</string>
   <string name="status_shutting_down">TorService спира</string>
@@ -88,7 +88,7 @@
     <string name="third_party_software">Софтуер на трети страни: </string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="found_existing_tor_process">намерил си съвместим Tor проект...</string>
+    <string name="found_existing_tor_process">намерил си съвместим Tor проект…</string>
   <string name="something_bad_happened">Нещо лошо се случи. Проверете лога</string>
     <string name="unable_to_read_hidden_service_name">не може да прочете име на скрита услуга</string>
   <string name="unable_to_start_tor">Не може да стартира Тор:</string>

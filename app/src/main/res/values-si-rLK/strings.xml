@@ -74,7 +74,7 @@
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">නිදොස් කිරීමේ ලොගය ප්‍රතිදානය සදහා සබල කරන්න (නැරඹීම සදහා adb or aLogCat භාවිතා කරන්න)</string>
   <string name="project_home">ව්‍යාපෘති නිවහන(න්):</string>
     <string name="third_party_software">3 වන පාර්ශව මෘදුකාංග</string>
-  <string name="found_existing_tor_process">පවතින Tor ක්‍රියාවලි හමුවිය...</string>
+  <string name="found_existing_tor_process">පවතින Tor ක්‍රියාවලි හමුවිය…</string>
   <string name="something_bad_happened">යම් නොමනා දෙයක් සිදුවිය. ලොගය පරික්ෂා කර බලන්න </string>
     <string name="unable_to_read_hidden_service_name">සැගවුණු සේවා නාමය කියවීමට නොහැකිය </string>
   <string name="unable_to_start_tor">Tor ආරම්භ කිරීමට නොහැකිය:</string>

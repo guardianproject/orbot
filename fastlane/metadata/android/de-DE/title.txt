@@ -1,1 +1,1 @@
-Orbot: Vermittlung mit Tor
+Orbot: Tor für Android

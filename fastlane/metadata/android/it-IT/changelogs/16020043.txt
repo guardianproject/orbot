@@ -1,0 +1,6 @@
+- Dimensioni dell'installazione (APK) inferiori del 30%, inferiori a 10 MB!
+  - aggiornato alla versione 0.3.3.5 (supporto Onion Services v3 e altro)
+  - molte correzioni per tor, installazione binaria di trasporto collegabile
+  - Niente più server HTTP "Polipo", ma solo utilizzando la nuova funzionalità integrata di Tor
+  - migliorata la selezione della lingua nell'app
+NUOVA AUTORIZZAZIONE: L'accesso a "Memoria esterna" consente di conservare le informazioni di backup per i servizi cipolla

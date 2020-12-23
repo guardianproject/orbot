@@ -2,7 +2,7 @@
 <resources>
   <string name="app_name">Orbot</string>
   <string name="app_description">Orbot — гэта свабодная праграма для проксі-злучэнняў, яна дазваляе іншым дадаткам больш бяспечна выкарыстоўваць інтэрнэт-злучэнне. Orbot ужывае Tor для шыфравання інтэрнэт-трафіка, які потым хаваецца падчас перасылання праз некалькі кампутараў у розных частках планеты. Tor з\'яўляецца свабодным праграмным дадаткам, а таксама адкрытай сеткай, якая дапамагае абараніцца ад сачэння ў сетках, якая пагражае асабістай волі і прыватным жыцці, прыватнасці бізнес-дзейнасці і кантактаў, а таксама дзяржаўнай праграме бяспекі, вядомай як аналіз трафіка.</string>
-  <string name="status_starting_up">Orbot запускаецца...</string>
+  <string name="status_starting_up">Orbot запускаецца…</string>
   <string name="status_activated">Падлучаны да сеткі Tor</string>
   <string name="status_disabled">Orbot адключаны</string>
   <string name="status_shutting_down">Служба Tor выключаецца</string>
@@ -93,7 +93,7 @@
     <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">Дадатак хоча адкрыць схаваны порт сервера %1$s сеткі Tor. Гэта бяспечна, калі вы давяраеце дадзенаму дадатку.</string>
-  <string name="found_existing_tor_process">знойдзены існавалы працэс Tor...</string>
+  <string name="found_existing_tor_process">знойдзены існавалы працэс Tor…</string>
   <string name="something_bad_happened">Адбылася нейкая памылка. Праверце журнал.</string>
   <string name="unable_to_read_hidden_service_name">немагчыма прачытаць імя схаванай службы</string>
   <string name="unable_to_start_tor">Немагчыма запусціць Tor:</string>

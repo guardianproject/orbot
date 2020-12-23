@@ -88,7 +88,7 @@
     <string name="third_party_software">Software tretích strán:</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="found_existing_tor_process">nájdený iný proces Tor...</string>
+    <string name="found_existing_tor_process">nájdený iný proces Tor…</string>
   <string name="something_bad_happened">Deje sa niečo zlé. Skontrolujte podrobnosti.</string>
     <string name="unable_to_read_hidden_service_name">nemožné prečítať názov skrytej služby</string>
   <string name="unable_to_start_tor">Nemožné spustiť Tor:</string>

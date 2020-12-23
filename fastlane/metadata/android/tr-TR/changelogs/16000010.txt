@@ -1,8 +1,8 @@
 - Kullanıcı arayüzüne ilişkin önemli güncelleme!
 - Kurulum ve köprü yapılandırması için yeni sihirbazlar
 - Geliştirilmiş VPN özellikleri
-- Soğan için düzeltmeler / Gizli servis yapılandırması çöküyor
+- Onion/Gizli servis yapılandırması çökmeleri için düzeltmeler
 
 ve daha fazlası...
 
-TEŞEKKÜR EDERİNİZ: pgerber, syphyr, Khsed4, BjarniRunar, Yayınlanmamış, igortoliveira, goapunk, SpotComms, AkshatAgrawal05, dixidroid, sorunlar, taahhütler ve PR'ler için diğerleri ve diğerleri.
+TEŞEKKÜRLER: pgerber, syphyr, Khsed4, BjarniRunar, Yayınlanmamış, igortoliveira, goapunk, SpotComms, AkshatAgrawal05, dixidroid, arrase ve sorunlar, commitler ve PR'ler için diğerleri

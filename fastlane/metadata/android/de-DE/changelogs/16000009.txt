@@ -1,8 +1,8 @@
-- Major Update auf der Benutzeroberfläche!
-- Neue Assistenten für die Einrichtung und Brückenkonfiguration
+- Großes Update für die Benutzeroberfläche!
+- Neue Assistenten für Ersteinrichtung und Brückenkonfiguration
 - Verbesserte VPN-Funktionen
 - Fixes für Onion / Versteckte Dienstkonfiguration stürzt ab
 
 und vieles mehr...
 
-DANKSAGEN: Pgerber, Syphyr, Khsed4, BjarniRunar, Unveröffentlicht, igortoliveira, Goapunk, SpotComms, AkshatAgrawal05, Dixidroid, Arras und andere für die Probleme, Commits und PRs
+DANK AN: Pgerber, Syphyr, Khsed4, BjarniRunar, Unveröffentlicht, igortoliveira, Goapunk, SpotComms, AkshatAgrawal05, Dixidroid, Arras und andere für die Probleme, Commits und PRs

@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Orbot</string>
-    <string name="status_starting_up">Mae Orbot yn cychwyn...</string>
+    <string name="status_starting_up">Mae Orbot yn cychwyn…</string>
   <string name="status_activated">Wedi cysylltu â rhwydwaith Tor</string>
   <string name="menu_settings">Gosodiadau</string>
   <string name="menu_log">Log</string>

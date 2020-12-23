@@ -2,7 +2,7 @@
 <resources>
   <string name="app_name">Orbot </string>
   <string name="app_description">Orbotax proxyn mä wakichawipawa, llikatuq jan lunthatayasiñatakiw yaqha wakichawinakampachar yanapi. Orbotax Toratuqiw uraqpachan luratanak jañ uñjayasiñatak atamirinaktuq jark\'aqi. Torax Software Libre ukhamawa, ukampirus maynin luratanakapa, aruskipatanakapa, amuyunakap jan uñjayasiñatakiw jark\'aqi. </string>
-  <string name="status_starting_up">Orbotax qalltaskiwa...</string>
+  <string name="status_starting_up">Orbotax qalltaskiwa…</string>
   <string name="status_activated">Tor llikatuqir waythapitawa</string>
   <string name="status_disabled">Orbotax jiwt\'atawa</string>
   <string name="status_shutting_down">Tor wakichawix jist\'antasiskiwa</string>
@@ -93,7 +93,7 @@
   <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">Imantat apayañ thakhinak Tor llikar mä wakichäwiw jist\'arañ muni %1$s. Wakichawitix uñt\'atachixa, iyaw sama.</string>
-  <string name="found_existing_tor_process">Utjir Toraw jikxatata...</string>
+  <string name="found_existing_tor_process">Utjir Toraw jikxatata…</string>
   <string name="something_bad_happened">Mä jan walt\'äwiw utji. Qillqantayasit uñakipam</string>
   <string name="unable_to_read_hidden_service_name">Janiw imantat yanapirin sutiman ullarañjamakänti</string>
   <string name="unable_to_start_tor">Janiw Torax aqtayañjamäkiti:</string>
@@ -121,7 +121,7 @@
   <string name="bridges_updated">Jichhaptayat jalakipañanaka</string>
   <string name="restart_orbot_to_use_this_bridge_">Mayjt\'ayatanak aqtayañatak Orbot mayamp qhant\'ayam, amp suma</string>
   <string name="menu_qr">QR chimpunaka</string>
-  <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Jawsañ apnaqirinakax Tor jark\'antañ yatipk ukjax \'Jalakipañ yanapiri\' mantañatak apnaqarakismawa. Yant\'añataki, mayjt\'ayañatakix AJLLT\'AM...</string>
+  <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Jawsañ apnaqirinakax Tor jark\'antañ yatipk ukjax \'Jalakipañ yanapiri\' mantañatak apnaqarakismawa. Yant\'añataki, mayjt\'ayañatakix AJLLT\'AM…</string>
   <string name="get_bridges_email">Imaylu (Email)</string>
   <string name="apps_mode">VPN</string>
   <string name="send_email">Qillqat apayaña</string>

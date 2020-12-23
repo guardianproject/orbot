@@ -1,0 +1,9 @@
+- 30% mniejszy rozmiar instalacji (APK), poniżej 10 MB! 
+ - aktualizacja do tor 0.3.3.5 (Onion Services v3 wsparcie i więcej)
+ - wiele poprawek dla tor, pluggable transportu instalacji binarnej
+ - Koniec z serwerem HTTP "Polipo", tylko dzięki nowej wbudowanej funkcji Tor
+ - ulepszony wybór języka w aplikacji
+
+NOWE UPRAWNIENIE: Dostęp do "Pamięci zewnętrznej" służy do przechowywaniu kopii zapasowej. 
+
+Pełne informacje o wydaniu: https://github.com/n8fr8/orbot/releases/tag/16.0.2-RC-1

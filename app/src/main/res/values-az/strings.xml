@@ -2,7 +2,7 @@
 <resources>
   <string name="app_name">Orbot</string>
   <string name="app_description">Pulsuz proksi tətbiqetməsi olan Orbot başqa tətbiqetmələrə internetdən daha təhlükəsiz istifadə etmək imkanı verir. Orbot sizin internet trafikinizi şifrələmək üçün Tordan istifadə edir və dünyanın hər yerində kompüterlərin birindən o birinə sıçramaqla bunu gizlədir. Tor pulsuz proqram təminatıdır, eyni zamanda sizin şəxsi azadlığınız və təhlükəsizliyinizə, gizli biznes fəaliyyəti və əlaqələrə, o cümlədən trafik analiz adlanan dövlət təhlükəsizliyinə xələl gətirə biləcək şəbəkə nəzarəti formalarından müdafiə olunmağa yardım edən açıq şəbəkədir.</string>
-    <string name="status_starting_up">Orbot başlayır...</string>
+    <string name="status_starting_up">Orbot başlayır…</string>
   <string name="status_activated">Tor şəbəkəsinə bağlandı</string>
   <string name="status_disabled">Orbot deaktivasiya edildi</string>
   <string name="status_shutting_down">Tor xidməti işini başa vurur</string>
@@ -90,7 +90,7 @@
 Tor: https://www.torproject.org</string>
   <string name="libevent_version">
 LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="found_existing_tor_process">mövcud Tor prosesi tapıldı...</string>
+    <string name="found_existing_tor_process">mövcud Tor prosesi tapıldı…</string>
   <string name="something_bad_happened">Nə isə pis bir şey oldu. Girişi yoxla</string>
     <string name="unable_to_read_hidden_service_name">gizli xidmət adını oxumağı deaktivləşdir</string>
   <string name="unable_to_start_tor">Tor-un başlanmasını dayandır:</string>

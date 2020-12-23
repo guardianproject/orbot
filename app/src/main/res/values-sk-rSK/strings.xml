@@ -2,10 +2,31 @@
 <resources>
     <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
-  <!--New Wizard Strings-->
-  <!--Title Screen-->
-  <!--Warning screen-->
-  <!--Permissions screen-->
-  <!--TipsAndTricks screen-->
-  <!--Transparent Proxy screen-->
+    <!--New Wizard Strings-->
+    <!--Title Screen-->
+    <!--Warning screen-->
+    <!--Permissions screen-->
+    <!--TipsAndTricks screen-->
+    <!--Transparent Proxy screen-->
+    <string name="app_name">Orbot</string>
+    <string name="app_description">Orbot je bezplatná aplikácia proxy, ktorá umožňuje iným aplikáciám bezpečnejšie využívať internet. Orbot používa Tor na šifrovanie vášho internetového prenosu a potom ho skryje tým, že skáče po sérii počítačov po celom svete. Tor je slobodný softvér a otvorená sieť, ktorá vám pomáha brániť proti určitému druhu sieťového dohľadu, ktorý ohrozuje osobnú slobodu a súkromie, dôverné obchodné činnosti a vzťahy a štátnu bezpečnosť známu ako dopravná analýza.</string>
+    <string name="status_starting_up">Orbot sa spúšťa…</string>
+    <string name="status_activated">Pripojený k sieti Tor</string>
+    <string name="status_disabled">Orbot je deaktivovaný</string>
+    <string name="status_shutting_down">TorService sa vypína</string>
+    <string name="menu_settings">Nastavenia</string>
+    <string name="menu_log">Denník</string>
+    <string name="menu_start">Začať</string>
+    <string name="menu_stop">Zastaviť</string>
+    <string name="menu_about">O Programe</string>
+    <string name="main_layout_download">Stiahnuť</string>
+    <string name="main_layout_upload">Nahrať</string>
+    <string name="button_about">O Programe</string>
+    <string name="menu_exit">Ukončenie</string>
+    <string name="menu_scan">Skenovať BridgeQR</string>
+    <string name="menu_share_bridge">Zdieľať BridgeQR</string>
+    <string name="wizard_details">Niektoré podrobnosti Orbotu</string>
+    <string name="wizard_details_msg">Orbot je open-source aplikácia, ktorá obsahuje Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent a Polipo. Poskytuje lokálny HTTP proxy (8118) a SOCKS proxy (9050) do siete Tor. Orbot má tiež možnosť na koreňovom zariadení posielať všetok internetový prenos cez Tor.</string>
+    <string name="pref_general_group">Všeobecné</string>
+    <string name="pref_start_boot_title">Spustiť Orbot pri štarte</string>
 </resources>

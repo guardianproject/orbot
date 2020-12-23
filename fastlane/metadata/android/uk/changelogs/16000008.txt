@@ -1,0 +1,8 @@
+- Основне оновлення користувацького інтерфейсу!
+- Нові майстри налаштування мосту
+- Покращені функції VPN
+- Виправлення збоїв у налаштуваннях служби Onion / Hidden
+
+і багато іншого...
+
+ДЯКУЄМО: pgerber, syphyr, Khsed4, BjarniRunar, Unpublisher, igortoliveira, goapunk, SpotComms, AkshatAgrawal05, диксидороїд, arrase та іншим за питання, подання та PR

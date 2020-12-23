@@ -2,7 +2,7 @@
 <resources>
   <string name="app_name">Orbot</string>
   <string name="app_description">Orbot este o aplicaţie gratuită de proxy care permite altor aplicaţii să folosească internetul în siguranţă. Orbot foloseşte Tor pentru a cripta traficul de internet după care îl ascunde printr-o serie de calculatoare din întreaga lume. Tor este un program gratuit si o reţea deschisă care te ajută să te aperi de monitorizarea reţelelor, lucru care ameninţă libertatea personală şi intimitatea, activităţi confidenţiale legate de afaceri si relaţii personale şi de analiza traficului.</string>
-    <string name="status_starting_up">Orbot porneşte...</string>
+    <string name="status_starting_up">Orbot porneşte…</string>
   <string name="status_activated">Conectat la reţeaua Tor</string>
   <string name="status_disabled">Orbot este dezactivat</string>
   <string name="status_shutting_down">ServiciulTor se opreşte</string>
@@ -88,7 +88,7 @@
     <string name="third_party_software">Aplicatii tertiare:</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="found_existing_tor_process">găsit proces Tor existent...</string>
+    <string name="found_existing_tor_process">găsit proces Tor existent…</string>
   <string name="something_bad_happened">Ceva rău s-a întâmplat. Verifică log-ul</string>
     <string name="unable_to_read_hidden_service_name">nu am putut citi numele serviciului ascuns</string>
   <string name="unable_to_start_tor">Nu am reuşit să pornesc Tor:</string>

@@ -1,5 +1,5 @@
-***WARNING: ALL ROOT FEATURES HAVE BEEN REMOVED FROM THIS NEW VERSION OF ORBOT.***
-Please use Orbot's "Apps VPN Mode" or Orfox browser instead of transparent proxying with root.
+***AVISO: TODAS AS FUNCIONALIDADES RAIZ FORAM REMOVIDAS DESTA NOVA VERSÃO DO ORBOT***
+Por favor, use "Apps VPN Mode" Orbot ou navegador Orfox em vez de ''proxying'' transparente com raiz
 
 * Update to Tor 0.3.1.8
 * Removed support for Root / Transproxy functions as they had become

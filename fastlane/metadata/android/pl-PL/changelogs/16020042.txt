@@ -1,0 +1,9 @@
+- 30% mniejszy rozmiar instalacji (APK), poniżej 10 MB!
+ - zaktualizowano do tor 0.3.3.5 (obsługa Onion Services v3 i wyżej)
+ - wiele poprawek dla tor, wtykowa, transportowa instalacja binarna
+ - Koniec z serwerem HTTP „Polipo”, używa nowych wbudowanych możliwości Tor
+ - poprawiony wybór języka w aplikacji
+
+NOWE ZEZWOLENIE: Dostęp do „Pamięci zewnętrznej” służy do trwałego tworzenia kopii zapasowych usług cebuli.
+
+Pełne informacje o wersji: https://github.com/n8fr8/orbot/releases/tag/16.0.2-RC-1

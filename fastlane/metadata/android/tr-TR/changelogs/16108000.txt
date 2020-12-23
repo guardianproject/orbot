@@ -1,0 +1,4 @@
+* VPN modu için önemli düzeltmeler
+* Yeni öntanımlı köprüler
+* Tor sürümü 0.4.0.4 olarak güncellendi
+* 64-bit modu ve Android Q için destek

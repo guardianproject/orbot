@@ -1,0 +1,9 @@
+– APK 30 % plus petite, moins de 10 Mb
+ – mise à jour vers tor 0.3.3.5 (services Onion v3 et plus)
+ – nombreux correctifs exécutables d’installation de tor, des transports enfichables
+ – Fin du serveur HTTP « Polipo », géré directement par Tor
+ – meilleure sélection de langue dans l’appli
+
+NOUVELLE AUTORISATION : Accès « Mémoire externe » pour les données persistantes de sauvegarde des services onion. 
+
+Notes complètes de mise à jour sur : https ://github.com/n8fr8/orbot/releases/tag/16.0.2-RC-1

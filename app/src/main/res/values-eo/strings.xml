@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Orbot</string>
-    <string name="status_starting_up">Orbot ŝaltiĝas...</string>
+    <string name="status_starting_up">Orbot ŝaltiĝas…</string>
   <string name="status_activated">Konektita al Tor-reto</string>
   <string name="status_disabled">Orbot estas malaktivigita</string>
   <string name="menu_settings">Agordoj</string>
@@ -66,7 +66,7 @@
   <string name="ports_reachable_behind_a_restrictive_firewall">Pordoj, kiuj atingeblas tra la restrikta fajromuro</string>
   <string name="enter_ports">Entajpu pordojn</string>
     <string name="project_home">Retpaĝaro(j) de la Projekto:</string>
-    <string name="found_existing_tor_process">trovi ekzistantan Tor-procedon...</string>
+    <string name="found_existing_tor_process">trovi ekzistantan Tor-procedon…</string>
     <string name="unable_to_read_hidden_service_name">ne eblas legi nomon de la kaŝita servo</string>
   <string name="unable_to_start_tor">Ne eblas startigi Tor:</string>
     <string name="set_locale_title">Lingvo</string>
