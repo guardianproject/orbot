@@ -1,0 +1,2 @@
+* correções para suporte Bridge
+* atualizado do tor para 0.4.1.5

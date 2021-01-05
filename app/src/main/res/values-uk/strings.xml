@@ -19,7 +19,7 @@
     <string name="menu_share_bridge">Поділитися BridgeQR</string>
     <!--Welcome Wizard strings (DJH)-->
     <string name="wizard_details">Деякі відомості про програму Orbot</string>
-    <string name="wizard_details_msg">Orbot — це програма з відкритим кодом, яка містить Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent і Polipo. Він забезпечує локальний HTTP-проксі (8118) та проксі SOCKS (9050) у мережу Tor. Orbot також має здатність, на кореневому пристрої, відправляти весь інтернет-трафік через Tor.</string>
+    <string name="wizard_details_msg">Orbot — це програма з відкритим кодом, яка містить Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent. Він забезпечує локальний HTTP-проксі (8118) та проксі SOCKS (9050) у мережу Tor. Orbot також має здатність, на кореневому пристрої, відправляти весь інтернет-трафік через Tor.</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Основні</string>
     <string name="pref_start_boot_title">Запуск Orbot при ввімкненні</string>
@@ -149,7 +149,7 @@
     <string name="copy_cookie_to_clipboard">Копіювати реп\'яшки в буфер обміну</string>
     <string name="auth_cookie_was_not_configured">Авторизація реп\'яшків не налаштована</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Будь ласка, перезапустіть Orbot, щоб зміни ввійшли в силу</string>
-    <string name="client_cookies">Клієнтські реп\'яшки</string>
+    <string name="client_cookies">Клієнтські Cookie</string>
     <string name="onion">.onion</string>
     <string name="cookie_from_QR">Зчитати з QR-коду</string>
     <string name="backup_cookie">Резервне копіювання реп\'яшків</string>
@@ -165,7 +165,7 @@
     <string name="pref_isolate_dest_summary">Використати інакшу схему для кожної адреси призначення</string>
     <string name="pref_connection_padding_summary">Завжди забезпечує заповнення підключення для захисту від деяких форм аналізу трафіку. За замовчуванням: автоматично</string>
     <string name="app_shortcuts">Застосунки, що працюють з Tor</string>
-    <string name="testing_bridges">Тестування моста з\'єднання з Tor…</string>
+    <string name="testing_bridges">Тестування моста з\'єднання з Tor….</string>
     <string name="testing_bridges_success">Успішно. Конфігурація мосту хороша!</string>
     <string name="testing_bridges_fail">НЕ ВДАЛОСЯ. Спробуйте інакший варіант</string>
     <string name="bridge_direct_connect">Під\'єднання безпосередньо до Tor (Найкраще)</string>
@@ -191,4 +191,28 @@
     <string name="app_services">Служби застосунків</string>
     <string name="default_socks_http">SOCKS: - HTTP: -</string>
     <string name="refresh_apps">Оновити застосунки</string>
+    <string name="bridge_snowflake">З\'єднання через інші вузли Tor (експериментально)</string>
+    <string name="use_qr_code">Використовувати QR-код</string>
+    <string name="paste_bridges">Вставити мости</string>
+    <string name="in_a_browser">У переглядачі відвідайте %s і торкніться Отримати мости &gt; Просто дайте мені мости!</string>
+    <string name="use_custom_bridges">Застосовувати власні мости</string>
+    <string name="configure_custom_bridges">Налаштувати власні мости</string>
+    <string name="custom_bridges">Власні мости</string>
+    <string name="request_bridges_from_torproject">Запит мостів від torproject.org</string>
+    <string name="enter_characters_from_image">Введіть символи з зображення</string>
+    <string name="captcha">Captcha</string>
+    <string name="solve_captcha_instruction">Розв\'яжіть CAPTCHA для запиту мостів.</string>
+    <string name="refresh_captcha">Оновити CAPTCHA</string>
+    <string name="request_bridges">Запит мостів</string>
+    <string name="testing_tor_direct_success">Успішно. З\'єднання Tor хороше!</string>
+    <string name="testing_tor_direct">Перевірка з\'єднання з Tor…</string>
+    <string name="get_bridges_email_request">Запитувати мости електронною поштою</string>
+    <string name="mebibyte">МіБ</string>
+    <string name="kibibyte">КіБ</string>
+    <string name="mebibyte_per_second">МіБ/с</string>
+    <string name="kibibyte_per_second">КіБ/с</string>
+    <string name="pref_reduced_circuit_padding_summary">Використання нижчих накладних алгоритмів заповнення для скорочення використання даних і акумулятора</string>
+    <string name="pref_reduced_circuit_padding">Скорочене заповнення ланцюжка</string>
+    <string name="pref_circuit_padding_summary">Увімкнути заповнення ланцюжка для захисту від деяких форм аналізу трафіку</string>
+    <string name="pref_circuit_padding">Заповнення ланцюжка</string>
 </resources>
