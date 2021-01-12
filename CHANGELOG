@@ -1,3 +1,232 @@
+/** 16.4.0-RC-1-tor-0.4.4.6 / 12 January 2021 **/
+
+(This one's for Karsten, and his life well lived)
+
+787ca9ac (HEAD -> master) update version code to 1640100100
+da6c6396 (origin/master, origin/HEAD) Merge pull request #426 from weblate/weblate-guardianproject-orbot
+9a1e989c Translated using Weblate (French)
+9c92c051 Translated using Weblate (Icelandic)
+971c922e Merge pull request #425 from weblate/weblate-guardianproject-orbot
+82b46da3 Translated using Weblate (Chinese (Simplified))
+6cdd6b16 Translated using Weblate (Ukrainian)
+e56c1996 Translated using Weblate (Turkish)
+54da4b06 Translated using Weblate (Portuguese (Brazil))
+45ee05ba (newport/master) Merge pull request #423 from eighthave/lint
+12991047 fix lint Typo: internett -> Internett
+17756860 add .weblate to support wlc command line tool
+37a88fd5 fix lint DefaultLocale: ensure that ASCII chars are lowercased
+d3bc187d fix lint Typo: Correio Eletrónico ->Correio Eletrônico
+d8d61dc5 fix lint Typo: bem vindo -> bem-vindo
+16d0253a fix lint Typo: ultimo --> último
+5fe955e8 ignore lint SetWorldReadable for the native unpackers
+b2c7bf0d enable useful lint checks, which will fail the build
+d4423fe9 (public/master) Merge branch 'eighthave-weblate'
+8d6d2214 (eighthave-weblate) fix fastlane whitespace
+fa6b241d remove translations for source strings that have been remove
+5475fa20 standardize ellipses to … using a script
+8d5ec6f5 sync gradle wrapper and add download verification
+b70a2715 Translated using Weblate (Portuguese)
+f5479b2d Translated using Weblate (French)
+230c8baf Translated using Weblate (French)
+d540aed8 Translated using Weblate (Spanish)
+4c5c7782 Translated using Weblate (Spanish)
+272b6a18 Translated using Weblate (Lithuanian)
+8577ef8f Translated using Weblate (Norwegian Bokmål)
+06e730a0 Translated using Weblate (French)
+c7c99d13 Translated using Weblate (Turkish)
+ec2384ca Translated using Weblate (Icelandic)
+30d9a43d Translated using Weblate (Persian)
+81bbf864 Translated using Weblate (German)
+d63c23f5 Translated using Weblate (Chinese (Simplified))
+b6061833 Translated using Weblate (Ukrainian)
+ab311c62 Translated using Weblate (Portuguese (Brazil))
+81fe3e00 Translated using Weblate (Norwegian Bokmål)
+c8b11ee6 Translated using Weblate (Hebrew)
+e48a9c30 Translated using Weblate (French)
+06d34640 Translated using Weblate (Chinese (Simplified))
+38ebf0d2 Translated using Weblate (Portuguese)
+727b1844 Translated using Weblate (Portuguese)
+ba2bae87 Translated using Weblate (Polish)
+6d70f872 Translated using Weblate (Chinese (Simplified))
+7aeb070b Translated using Weblate (Ukrainian)
+647d15d4 Translated using Weblate (Ukrainian)
+9c2a751b Translated using Weblate (Thai)
+564fa95a Translated using Weblate (Ukrainian)
+cd74e0ee Translated using Weblate (Ukrainian)
+adc7dec8 Translated using Weblate (Portuguese (Brazil))
+4678b77e Translated using Weblate (Portuguese (Brazil))
+01fcf106 Translated using Weblate (Thai)
+2221c99f Translated using Weblate (Thai)
+4b317e79 Translated using Weblate (Spanish)
+f8d64ef6 Translated using Weblate (Spanish)
+79a8827b Translated using Weblate (Portuguese (Portugal))
+6c554314 Translated using Weblate (Polish)
+7927cba7 Translated using Weblate (Chinese (Simplified))
+70356060 Translated using Weblate (Polish)
+29dd1245 Translated using Weblate (Chinese (Simplified))
+fcf51b0f Translated using Weblate (Polish)
+5545af95 Translated using Weblate (Bengali (Bangladesh))
+6c9bc83e Translated using Weblate (Bengali (Bangladesh))
+4f9b6d42 Translated using Weblate (Chinese (Simplified))
+a488e623 Translated using Weblate (Chinese (Simplified))
+bbf3601c Translated using Weblate (Portuguese)
+83ec252e Translated using Weblate (Portuguese (Portugal))
+3b36db97 Translated using Weblate (Hebrew)
+3d70d5ad Translated using Weblate (Russian)
+63d884f6 Translated using Weblate (Polish)
+48dbe3d9 Translated using Weblate (Polish)
+080cd120 Translated using Weblate (Polish)
+71ba74b0 Translated using Weblate (Portuguese (Portugal))
+8b665f0f Translated using Weblate (Vietnamese)
+9a3fd3b7 Translated using Weblate (Slovak)
+ada5c029 Weblate translations
+9b58fc70 Translated using Weblate (German)
+14c3a77c Translated using Weblate (English (United Kingdom))
+662cf539 Translated using Weblate (Hindi)
+02fd9cd0 Translated using Weblate (Hindi)
+0dbc3895 Translated using Weblate (Portuguese (Portugal))
+949542b0 Translated using Weblate (Portuguese (Portugal))
+d1a15b8a Translated using Weblate (Bengali)
+0d5701bb Translated using Weblate (Bengali)
+6743424f Translated using Weblate (Dutch)
+2f0222f6 Translated using Weblate (Bengali (Bangladesh))
+eaafc34d Translated using Weblate (Chinese (Simplified))
+90e6e762 Translated using Weblate (Turkish)
+3b4f7102 Translated using Weblate (Turkish)
+a9314eea Translated using Weblate (Portuguese (Brazil))
+5b488229 Translated using Weblate (Turkish)
+04568d59 Translated using Weblate (Portuguese (Brazil))
+04a5463f Translated using Weblate (Croatian)
+11e7af0d Translated using Weblate (Portuguese (Brazil))
+82425d2e Translated using Weblate (Turkish)
+b843d208 Translated using Weblate (Turkish)
+a8b1bf6e Translated using Weblate (Italian)
+c6de87f0 Translated using Weblate (Finnish)
+5f3087c5 Translated using Weblate (Ukrainian)
+c75e612d Translated using Weblate (Icelandic)
+452848c1 Translated using Weblate (Slovak)
+fdec4705 Translated using Weblate (Ukrainian)
+a9eb2a3b Translated using Weblate (Chinese (Simplified))
+9cff48c2 Translated using Weblate (Norwegian Bokmål)
+80d0f1c3 Translated using Weblate (Chinese (Simplified))
+c1b49098 Translated using Weblate (Chinese (Simplified))
+4c0afb19 Translated using Weblate (Swedish)
+0b7a7a28 Translated using Weblate (Spanish)
+ea85dd27 Translated using Weblate (Dutch)
+800ff78f Translated using Weblate (Arabic)
+7dfe4df7 Translated using Weblate (Italian)
+3218c65e Translated using Weblate (Macedonian)
+9ab2fc5b Translated using Weblate (Hebrew)
+c3c3779a Translated using Weblate (Hindi)
+8f8851d8 Translated using Weblate (Hungarian)
+82a4aa06 Translated using Weblate (Icelandic)
+d7368e62 Translated using Weblate (Catalan)
+55a5e2c4 Translated using Weblate (Japanese)
+e11fb471 Translated using Weblate (Ukrainian)
+1153914f Translated using Weblate (Basque)
+336c8442 Translated using Weblate (Greek)
+d2e50d10 Translated using Weblate (German)
+1516415c Translated using Weblate (Turkish)
+39aa4e83 Translated using Weblate (Galician)
+5c1a5936 Translated using Weblate (French)
+31bb528b Translated using Weblate (Chinese (Simplified))
+0bb0b13f Translated using Weblate (French)
+6cb4a0d9 Translated using Weblate (French)
+3f0ba8bc Translated using Weblate (French)
+ccd15479 Translated using Weblate (French)
+42870712 Translated using Weblate (Turkish)
+0ee88fff Translated using Weblate (Norwegian Bokmål)
+032c4f8b Translated using Weblate (German)
+1e4b4182 Translated using Weblate (Portuguese (Portugal))
+285517d8 Translated using Weblate (Icelandic)
+828bfde3 Translated using Weblate (Spanish)
+f59046b1 Translated using Weblate (Spanish)
+3eed58bf Translated using Weblate (Norwegian Bokmål)
+a85d358e Translated using Weblate (Norwegian Bokmål)
+e9b9e801 Translated using Weblate (Chinese (Simplified))
+0164840f Translated using Weblate (Portuguese (Portugal))
+407abb6e Translated using Weblate (Slovenian)
+d67ff1ad Translated using Weblate (Slovak)
+8e7acfe4 Translated using Weblate (Korean)
+0baf81ef Translated using Weblate (Finnish)
+16673346 Translated using Weblate (Persian)
+53668053 Translated using Weblate (Swedish)
+10948a07 Translated using Weblate (French)
+93eaf864 Translated using Weblate (Spanish)
+61b4f8ec Translated using Weblate (Dutch)
+29c36ffe Translated using Weblate (Indonesian)
+1ca1bf3f Translated using Weblate (Arabic)
+b3ca0922 Translated using Weblate (Italian)
+216f8f10 Translated using Weblate (Amharic)
+4330d59a Translated using Weblate (Swahili)
+6de2a091 Translated using Weblate (Afrikaans)
+6daa2e6b Translated using Weblate (Polish)
+cbe08863 Translated using Weblate (Hindi)
+10e9b8d7 Translated using Weblate (Hungarian)
+c4777493 Translated using Weblate (Croatian)
+b15696e0 Translated using Weblate (Vietnamese)
+cc5de0e1 Translated using Weblate (Czech)
+3b568069 Translated using Weblate (Catalan)
+8e26dbd8 Translated using Weblate (Japanese)
+7a7cfc77 Translated using Weblate (Ukrainian)
+833ef7d8 Translated using Weblate (Bulgarian)
+b7dba6bf Translated using Weblate (Romanian)
+d3a12f11 Translated using Weblate (Russian)
+80b617c4 Translated using Weblate (Estonian)
+c2ef8d65 Translated using Weblate (Greek)
+3ab34a19 Translated using Weblate (German)
+31ad21c0 Translated using Weblate (Portuguese (Brazil))
+cffecb5f Translated using Weblate (Thai)
+8c98a79a Translated using Weblate (Lithuanian)
+0bd88853 Translated using Weblate (Turkish)
+d1a33ef4 Translated using Weblate (Norwegian Bokmål)
+41817951 Translated using Weblate (Polish)
+f03ba787 Translated using Weblate (Catalan)
+4f025bda Translated using Weblate (German)
+16ffdfaa Translated using Weblate (German)
+6dad0b00 Translated using Weblate (German)
+30e073c9 Translated using Weblate (German)
+3eded015 Translated using Weblate (German)
+4e3360e8 Translated using Weblate (Polish)
+ac881cb5 Translated using Weblate (Norwegian Bokmål)
+3d519707 Translated using Weblate (Norwegian Bokmål)
+9978127f Translated using Weblate (Portuguese (Portugal))
+36881e8e Translated using Weblate (Italian)
+b9facd2e Translated using Weblate (Turkish)
+2f684889 Translated using Weblate (Portuguese (Portugal))
+beb4b254 Translated using Weblate (Italian)
+a3f7ff7e Translated using Weblate (Japanese)
+4ba23d7e Translated using Weblate (Turkish)
+f72b993f Translated using Weblate (Spanish)
+8a109a3d Translated using Weblate (Swedish)
+1f0c7e3c Translated using Weblate (Swedish)
+990ceb5a Translated using Weblate (German)
+328ad53c Merge branch 'tladesignz-master'
+e7f0feb6 (tladesignz-master) Fixed meek server URL to reach MOAT service.
+16010aa0 Update to latest IPtProxy, which fixes cert issues with the meek-azure bridge.
+f000d58b Fixed compiler warnings.
+cb5f1c4e Issue #370: Improved MOAT implementation. Use Meek directly instead of via Tor with the newly available IPtProxy.
+d0aa2e01 Update to latest Android API 30. Update dependencies.
+a11e73a9 Merge remote-tracking branch 'upstream/master'
+eeb31422 fix "try" typo from merge
+9be60c28 Merge branch 'master' of github.com:guardianproject/orbot
+47b7b805 Merge branch 'dev_snowflake_new'
+626a341d stopTor just invokes stopTorAsync so i got rid of it
+4a2e8b14 (origin/dev_snowflake_new, dev_snowflake_new) more improvements to bridge PT init logic
+b2fb0e74 clean-up logic for setting PT bridge lines
+bbe63e4e (dev_snowflake) enable selection of Snowflake from bridge wizard activity
+f675a7f1 enable start/stop of Snowflake client
+fa18797f add snowflake entry to built in bridges
+051a5791 remove local IPtProxy; use jitpack dependency instead
+823f4646 Merge branch 'master' of github.com:guardianproject/orbot
+7e7007e3 Merge pull request #417 from bitmold/correct_bandwidth_labels
+590d440d Correct data-rate units, Fixes #378
+f9d5fcf5 Removed very outdated text/graphics from "docs" folder. Moved svg icon from root of repo into docs folder
+cabca2a7 Removed outdated repository files, made README a markdown file. It would make sense to eventually populate README.md with instructions about how to use the app, how to get involved with the project etc
+4a5aad92 Merge remote-tracking branch 'upstream/master'
+
+
+
 /** 16.3.3-RC-1-tor-0.4.3.6 / 20 November 2020 **/
 daa2e7b4 (HEAD -> master) update version code to 1633300100
 e88c84aa (origin/master, origin/HEAD) remove quotes from string
