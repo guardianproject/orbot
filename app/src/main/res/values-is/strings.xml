@@ -19,7 +19,7 @@
     <string name="menu_share_bridge">Deila BridgeQR</string>
     <!--Welcome Wizard strings (DJH)-->
     <string name="wizard_details">Fáein nánari atriði um Orbot</string>
-    <string name="wizard_details_msg">Orbot er opinn og frjáls hugbúnaður sem inniheldur Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent og Polipo. Það sér um að útbúa staðværan HTTP-milliþjón (8118) og SOCKS-milliþjón (9050) inn á Tor-netið. Orbot getur einnig, á tækjum með rótaraðgangi, sent alla internetumferð í gegnum Tor.</string>
+    <string name="wizard_details_msg">Orbot er opinn og frjáls hugbúnaður sem inniheldur Tor, Obfs4Proxy, BadVPN Tun2Socks og LibEvent. Það sér um að útbúa staðværan HTTP-milliþjón (8118) og SOCKS-milliþjón (9050) inn á Tor-netið. Orbot getur einnig, á tækjum með rótaraðgangi, sent alla internetumferð í gegnum Tor.</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Almennt</string>
     <string name="pref_start_boot_title">Virkja Orbot í ræsingu</string>
@@ -168,7 +168,7 @@
     <string name="pref_reduced_connection_padding">Minnkuð bólstrun tengingar (padding)</string>
     <string name="pref_reduced_connection_padding_summary">Lokar tengingum við endurvarpa fyrr og sendir færri pakka til að bólstra tengingu (padding) svo gagnamagn og rafhlöðunotkun sé sem minnst</string>
     <string name="app_shortcuts">Tor-virkjuð forrit</string>
-    <string name="testing_bridges">Prófa brúartengingu við Tor…</string>
+    <string name="testing_bridges">Prófa brúartengingu við Tor….</string>
     <string name="testing_bridges_success">Tókst. Uppsetning brúar virkar!</string>
     <string name="testing_bridges_fail">MISTÓKST. Reyndu annan valkost</string>
     <string name="bridge_direct_connect">Tengjast beint við Tor (best)</string>
@@ -191,4 +191,28 @@
     <string name="app_services">Þjónustur forrita</string>
     <string name="default_socks_http">SOCKS: - HTTP: -</string>
     <string name="refresh_apps">Endurlesa forrit</string>
+    <string name="in_a_browser">Í vafra, farðu á %s og ýttu á Ná í brýr &gt; Gefðu mér bara brýrnar!</string>
+    <string name="bridge_snowflake">Tengjast í gegnum aðra Tor-jafningja (á tilraunastigi)</string>
+    <string name="use_qr_code">Nota QR-kóða</string>
+    <string name="paste_bridges">Líma brýr</string>
+    <string name="use_custom_bridges">Nota sérsniðnar brýr</string>
+    <string name="configure_custom_bridges">Stilla sérsniðnar brýr</string>
+    <string name="custom_bridges">Sérsniðnar brýr</string>
+    <string name="request_bridges_from_torproject">Biðja um brýr frá torproject.org</string>
+    <string name="enter_characters_from_image">Settu inn stafina úr myndinni</string>
+    <string name="captcha">CAPTCHA-mennskupróf</string>
+    <string name="solve_captcha_instruction">Leystu CAPTCHA-þraut til að biðja um brýr.</string>
+    <string name="refresh_captcha">Endurlesa CAPTCHA</string>
+    <string name="request_bridges">Biðja um brýr</string>
+    <string name="pref_reduced_circuit_padding_summary">Nota umfangsminni reiknirit við bólstrun (padding) svo gagnamagn og rafhlöðunotkun sé sem minnst</string>
+    <string name="pref_reduced_circuit_padding">Minnkuð bólstrun rásar (padding)</string>
+    <string name="pref_circuit_padding_summary">Virkjar alltaf bólstrun rásar (padding) til varnar gegn ákveðnum gerðum umferðargreiningar</string>
+    <string name="pref_circuit_padding">Bólstrun rásar (padding)</string>
+    <string name="kibibyte">KiB</string>
+    <string name="testing_tor_direct_success">Tókst. Tor-tengingin er góð!</string>
+    <string name="testing_tor_direct">Prófa tengingu við Tor…</string>
+    <string name="get_bridges_email_request">Biðja um brýr með tölvupósti</string>
+    <string name="mebibyte">MiB</string>
+    <string name="mebibyte_per_second">MiB/sek</string>
+    <string name="kibibyte_per_second">KiB/sek</string>
 </resources>
