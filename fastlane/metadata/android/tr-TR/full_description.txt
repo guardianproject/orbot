@@ -1,7 +1,5 @@
 Orbot, diğer uygulamaların interneti daha güvenli kullanmasını sağlayan özgür ve ücretsiz bir proxy uygulamasıdır. Orbot, internet trafiğinizi şifrelemek için Tor'u kullanır ve dünya üzerindeki bir dizi bilgisayardan sektirerek gizler. Tor; kişisel özgürlüğü ve gizliliği, gizli ticari faaliyetleri ve ilişkileri, devlet güvenliğini tehdit eden ve trafik analizi olarak bilinen bir tür ağ gözetimine karşı savunmanıza yardımcı olan özgür bir yazılım ve açık bir ağdır.
 
-*** Android 4.0 ve öncesi için, daha eski sürümleri https://guardianproject.info/releases/ adresinden veya https://f-droid.org adresindeki FDroid.org açık uygulama mağazasından indirebilirsiniz. KitKat ve daha eski desteğe sahip son sürüm: https://guardianproject.info/releases/Orbot-v14.1.4-UpToKitKat-nonPIE.apk  ***
-
 *** SAMSUNG GALAXY KULLANICILARI ***
 Bazı aygıtlarda, Orbot'un ihtiyaç duyduğu ağ bağlantı noktasını bir Samsung uygulaması dinlemektedir. Google Play'den 'SockStat'ı indirin. 9050 numaralı bağlantı noktasındaki uygulamayı arayın. Zorla durdurun ve bu uygulamayı devre dışı bırakın. Hata ayıklama bölümündeki Orbot'un "Tor SOCKS" ayarını 9051 veya AUTO olarak değiştirmeyi de deneyebilirsiniz. Düzeltmeyi bu videoda görebilirsiniz: https://www.youtube.com/watch?v=yK-nK4F67_g
 *****

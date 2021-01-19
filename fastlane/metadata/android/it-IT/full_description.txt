@@ -1,7 +1,5 @@
 Orbot è un'app proxy gratuita che consente ad altre app di utilizzare Internet in modo più sicuro. Orbot usa Tor per crittografare il tuo traffico Internet e poi lo nasconde rimbalzando attraverso una serie di computer in tutto il mondo. Tor è un software gratuito e una rete aperta che ti aiuta a difenderti da una forma di sorveglianza della rete che minaccia la libertà personale e la privacy, le attività commerciali e le relazioni riservate e la sicurezza dello stato nota come analisi del traffico.
 
-*** Android 4.0 e versioni precedenti, è possibile scaricare versioni precedenti da https://guardianproject.info/releases/ o tramite l'app store aperto FDroid.org all'indirizzo https://f-droid.org. L'ultima versione con KitKat e supporto precedente è: https://guardianproject.info/releases/Orbot-v14.1.4-UpToKitKat-nonPIE.apk ***
-
 *** UTENTI SAMSUNG GALAXY ***
 Su alcuni dispositivi, un'app Samsung è in ascolto sulla stessa porta di rete di cui Orbot ha bisogno. Scarica "SockStat" da Google Play. Cerca l'app sulla porta 9050. Forza l'arresto e disabilita l'app. Puoi anche provare a cambiare l'impostazione "Tor SOCKS" di Orbot nella sezione Debug su 9051 o AUTO. Puoi vedere la correzione in questo video: https://www.youtube.com/watch?v=yK-nK4F67_g
 *****
