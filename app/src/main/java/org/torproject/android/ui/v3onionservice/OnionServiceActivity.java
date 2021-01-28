@@ -30,7 +30,7 @@ import org.torproject.android.ui.hiddenservices.permissions.PermissionManager;
 
 import java.io.File;
 
-public class OnionServicesActivity extends AppCompatActivity {
+public class OnionServiceActivity extends AppCompatActivity {
 
     static final String BUNDLE_KEY_ID = "id", BUNDLE_KEY_PORT = "port", BUNDLE_KEY_DOMAIN = "domain";
     private static final String BASE_WHERE_SELECTION_CLAUSE = OnionServiceContentProvider.OnionService.CREATED_BY_USER + "=";
@@ -51,7 +51,7 @@ public class OnionServicesActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         fab = findViewById(R.id.fab);
-        fab.setOnClickListener(v -> new NewOnionServiceDialogFragment().show(getSupportFragmentManager(), NewOnionServiceDialogFragment.class.getSimpleName()));
+        fab.setOnClickListener(v -> new OnionServiceCreateDialogFragment().show(getSupportFragmentManager(), OnionServiceCreateDialogFragment.class.getSimpleName()));
 
         mContentResolver = getContentResolver();
         mAdapter = new OnionV3ListAdapter(this, mContentResolver.query(OnionServiceContentProvider.CONTENT_URI, OnionServiceContentProvider.PROJECTION, BASE_WHERE_SELECTION_CLAUSE + '1', null, null), 0);
@@ -123,8 +123,7 @@ public class OnionServicesActivity extends AppCompatActivity {
     private void doRestoreLegacy() { // APIs 16, 17, 18
         File backupDir = DiskUtils.getOrCreateLegacyBackupDir(getString(R.string.app_name));
         File[] files = backupDir.listFiles(ZipUtilities.FILTER_ZIP_FILES);
-        if (files == null) return;
-        if (files.length == 0) {
+        if (files == null || files.length == 0) {
             Toast.makeText(this, R.string.create_a_backup_first, Toast.LENGTH_LONG).show();
             return;
         }
@@ -168,9 +167,9 @@ public class OnionServicesActivity extends AppCompatActivity {
                     OnionServiceContentProvider.OnionService.ENABLED + "=1", null, null);
             if (activeServices == null) return;
             if (activeServices.getCount() > 0)
-                PermissionManager.requestBatteryPermissions(OnionServicesActivity.this, getApplicationContext());
+                PermissionManager.requestBatteryPermissions(OnionServiceActivity.this, getApplicationContext());
             else
-                PermissionManager.requestDropBatteryPermissions(OnionServicesActivity.this, getApplicationContext());
+                PermissionManager.requestDropBatteryPermissions(OnionServiceActivity.this, getApplicationContext());
             activeServices.close();
         }
     }

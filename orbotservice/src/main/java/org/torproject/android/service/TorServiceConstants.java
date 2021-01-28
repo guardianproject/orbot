@@ -113,5 +113,6 @@ public interface TorServiceConstants {
 
     String HIDDEN_SERVICES_DIR = "hidden_services";
     String ONION_SERVICES_DIR = "v3_onion_services";
+    String V3_CLIENT_AUTH_DIR = "v3_client_auth";
 
 }

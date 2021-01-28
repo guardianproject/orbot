@@ -12,12 +12,11 @@ import androidx.fragment.app.DialogFragment;
 import org.torproject.android.R;
 import org.torproject.android.core.DiskUtils;
 import org.torproject.android.service.TorServiceConstants;
-import org.torproject.android.ui.hiddenservices.HiddenServicesActivity;
 
 import java.io.File;
 
-public class DeleteOnionServiceDialogFragment extends DialogFragment {
-    DeleteOnionServiceDialogFragment(Bundle arguments) {
+public class OnionServiceDeleteDialogFragment extends DialogFragment {
+    OnionServiceDeleteDialogFragment(Bundle arguments) {
         super();
         setArguments(arguments);
     }
@@ -33,9 +32,9 @@ public class DeleteOnionServiceDialogFragment extends DialogFragment {
     }
 
     private void doDelete(Bundle arguments, Context context) {
-        context.getContentResolver().delete(OnionServiceContentProvider.CONTENT_URI, OnionServiceContentProvider.OnionService._ID + '=' + arguments.getInt(OnionServicesActivity.BUNDLE_KEY_ID), null);
+        context.getContentResolver().delete(OnionServiceContentProvider.CONTENT_URI, OnionServiceContentProvider.OnionService._ID + '=' + arguments.getInt(OnionServiceActivity.BUNDLE_KEY_ID), null);
         String base = context.getFilesDir().getAbsolutePath() + "/" + TorServiceConstants.ONION_SERVICES_DIR;
-        DiskUtils.recursivelyDeleteDirectory(new File(base, "v3" + arguments.getString(OnionServicesActivity.BUNDLE_KEY_PORT)));
+        DiskUtils.recursivelyDeleteDirectory(new File(base, "v3" + arguments.getString(OnionServiceActivity.BUNDLE_KEY_PORT)));
     }
 
 }

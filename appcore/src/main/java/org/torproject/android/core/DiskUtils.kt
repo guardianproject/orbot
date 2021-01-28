@@ -72,7 +72,7 @@ object DiskUtils {
     }
 
     @JvmStatic
-    fun recursivelyDeleteDirectory(directory: File) : Boolean {
+    fun recursivelyDeleteDirectory(directory: File): Boolean {
         val contents = directory.listFiles()
         contents?.forEach { recursivelyDeleteDirectory(it) }
         return directory.delete()

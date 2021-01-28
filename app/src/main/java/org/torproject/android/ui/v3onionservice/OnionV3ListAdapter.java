@@ -14,7 +14,6 @@ import android.widget.Toast;
 import androidx.appcompat.widget.SwitchCompat;
 
 import org.torproject.android.R;
-import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
 
 public class OnionV3ListAdapter extends CursorAdapter {
 

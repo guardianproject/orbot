@@ -95,7 +95,7 @@
         </activity>
 
         <activity
-            android:name=".ui.v3onionservice.OnionServicesActivity"
+            android:name=".ui.v3onionservice.OnionServiceActivity"
             android:label="@string/hidden_services"
             android:theme="@style/DefaultTheme">
             <meta-data
@@ -103,8 +103,8 @@
                 android:value=".OrbotMainActivity" />
         </activity>
 
-        <activity android:name=".ui.v3onionservice.V3ClientAuthActivity"
-            android:label="@string/v3_client_auth"
+        <activity android:name=".ui.v3onionservice.clientauth.ClientAuthActivity"
+            android:label="@string/v3_client_auth_activity_title"
             android:theme="@style/DefaultTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -146,6 +146,11 @@
             android:name=".ui.v3onionservice.OnionServiceContentProvider"
             android:authorities="org.torproject.android.ui.v3onionservice"
             android:exported="false" />
+
+        <provider
+            android:authorities="org.torproject.android.ui.v3onionservice.clientauth"
+            android:name=".ui.v3onionservice.clientauth.ClientAuthContentProvider"
+            android:exported="false"/>
 
         <provider
             android:name="androidx.core.content.FileProvider"

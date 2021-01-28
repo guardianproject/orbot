@@ -46,13 +46,10 @@ public class OnionServiceContentProvider extends ContentProvider {
     @Nullable
     @Override
     public Cursor query(@NonNull Uri uri, @Nullable String[] projection, @Nullable String selection, @Nullable String[] selectionArgs, @Nullable String sortOrder) {
-        String where = selection;
-        if (uriMatcher.match(uri) == ONION_ID) {
-            where = "_id=" + uri.getLastPathSegment();
-        }
-
+        if (uriMatcher.match(uri) == ONION_ID)
+            selection = "_id=" + uri.getLastPathSegment();
         SQLiteDatabase db = mDatabase.getReadableDatabase();
-        return db.query(OnionServiceDatabase.ONION_SERVICE_TABLE_NAME, projection, where, selectionArgs, null, null, sortOrder);
+        return db.query(OnionServiceDatabase.ONION_SERVICE_TABLE_NAME, projection, selection, selectionArgs, null, null, sortOrder);
     }
 
     @Nullable
@@ -80,9 +77,8 @@ public class OnionServiceContentProvider extends ContentProvider {
 
     @Override
     public int delete(@NonNull Uri uri, @Nullable String selection, @Nullable String[] selectionArgs) {
-        if (uriMatcher.match(uri) == ONION_ID) {
+        if (uriMatcher.match(uri) == ONION_ID)
             selection = "_id=" + uri.getLastPathSegment();
-        }
         SQLiteDatabase db = mDatabase.getWritableDatabase();
         int rows = db.delete(OnionServiceDatabase.ONION_SERVICE_TABLE_NAME, selection, selectionArgs);
         getContext().getContentResolver().notifyChange(CONTENT_URI, null);
@@ -92,12 +88,9 @@ public class OnionServiceContentProvider extends ContentProvider {
     @Override
     public int update(@NonNull Uri uri, @Nullable ContentValues values, @Nullable String selection, @Nullable String[] selectionArgs) {
         SQLiteDatabase db = mDatabase.getWritableDatabase();
-        String where = selection;
-        if (uriMatcher.match(uri) == ONION_ID) {
-            where = "_id=" + uri.getLastPathSegment();
-        }
-
-        int rows = db.update(OnionServiceDatabase.ONION_SERVICE_TABLE_NAME, values, where, null);
+        if (uriMatcher.match(uri) == ONION_ID)
+            selection = "_id=" + uri.getLastPathSegment();
+        int rows = db.update(OnionServiceDatabase.ONION_SERVICE_TABLE_NAME, values, selection, null);
         getContext().getContentResolver().notifyChange(CONTENT_URI, null);
         return rows;
     }

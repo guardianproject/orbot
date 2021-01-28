@@ -19,7 +19,7 @@ import androidx.fragment.app.DialogFragment;
 
 import org.torproject.android.R;
 
-public class NewOnionServiceDialogFragment extends DialogFragment {
+public class OnionServiceCreateDialogFragment extends DialogFragment {
 
     private EditText etServer, etLocalPort, etOnionPort;
     private TextWatcher inputValidator;
@@ -90,7 +90,7 @@ public class NewOnionServiceDialogFragment extends DialogFragment {
         fields.put(OnionServiceContentProvider.OnionService.PORT, localPort);
         fields.put(OnionServiceContentProvider.OnionService.ONION_PORT, onionPort);
         fields.put(OnionServiceContentProvider.OnionService.CREATED_BY_USER, 1);
-        ContentResolver cr = getContext().getContentResolver();
+        ContentResolver cr = context.getContentResolver();
         cr.insert(OnionServiceContentProvider.CONTENT_URI, fields);
         Toast.makeText(context, R.string.please_restart_Orbot_to_enable_the_changes, Toast.LENGTH_LONG).show();
     }

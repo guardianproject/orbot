@@ -169,9 +169,18 @@
 
     <string name="vpn_default_world">Global (Auto)</string>
     <string name="hidden_services">Onion Services</string>
-    <string name="v2_hidden_services">V2 Onion Services (Deprecated)</string>
-    <string name="v3_hosted_services">Hosted V3 Onion Services</string>
-    <string name="v3_client_auth">V3 Onion Service Client Authorization</string>
+    <string name="v2_hidden_services">v2 Onion Services (Deprecated)</string>
+    <string name="v3_hosted_services">Hosted v3 Onion Services</string>
+    <string name="v3_client_auth">v3 Onion Service Client Authorization</string>
+    <string name="v3_client_auth_activity_title">v3 Client Authorization</string>
+    <string name="v3_key_hash">X25519 Private Key in Base 32</string>
+    <string name="v3_onion">v3 .onion Domain</string>
+    <string name="v3_backup_key">Backup Client Authorization Key</string>
+    <string name="v3_backup_key_warning">Warning: This Could Expose Your Key to Other Apps</string>
+    <string name="v3_delete_client_authorization">Delete Client Authorization Key</string>
+    <string name="v3_delete_client_authorization_confirm">Delete Client Authorization</string>
+    <string name="v3_backup_name_hint">Backup filename…</string>
+    <string name="confirm">Confirm</string>
     <string name="title_activity_hidden_services">Onion Services</string>
     <string name="menu_hidden_services">Onion Services</string>
     <string name="save">Save</string>
@@ -181,7 +190,7 @@
     <string name="done">Done!</string>
     <string name="copy_address_to_clipboard">Copy address to clipboard</string>
     <string name="show_auth_cookie">Show auth cookie</string>
-    <string name="backup_service">Backup Service</string>
+    <string name="backup_service">Backup Service &lt;i&gt;(Warning: This Could Expose Your Service Configuration to Other Apps)&lt;/i&gt;</string>
     <string name="delete_service">Delete Service</string>
     <string name="backup_saved_at_external_storage">Backup saved at external storage</string>
     <string name="backup_restored">Backup restored</string>

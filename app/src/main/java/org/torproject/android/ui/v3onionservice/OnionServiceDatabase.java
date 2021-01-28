@@ -20,7 +20,7 @@ public class OnionServiceDatabase extends SQLiteOpenHelper {
                     "enabled INTEGER DEFAULT 1, " +
                     "port INTEGER);";
 
-    public OnionServiceDatabase(Context context) {
+    OnionServiceDatabase(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -31,7 +31,6 @@ public class OnionServiceDatabase extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
     }
 
 

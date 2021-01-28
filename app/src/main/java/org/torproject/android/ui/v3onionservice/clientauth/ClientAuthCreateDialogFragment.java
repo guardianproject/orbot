@@ -1,20 +1,23 @@
-package org.torproject.android.ui.v3onionservice;
+package org.torproject.android.ui.v3onionservice.clientauth;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
 import org.torproject.android.R;
 
-public class AddV3ClientAuthDialogFragment extends DialogFragment {
+public class ClientAuthCreateDialogFragment extends DialogFragment {
 
     private EditText etOnionUrl, etKeyHash;
     private TextWatcher inputValidator;
@@ -58,7 +61,22 @@ public class AddV3ClientAuthDialogFragment extends DialogFragment {
     }
 
     private void doSave(Context context) {
+        String onionName = sanitizeOnionDomainTextField();
+        String hash = etKeyHash.getText().toString();
+        ContentValues fields = new ContentValues();
+        fields.put(ClientAuthContentProvider.V3ClientAuth.DOMAIN, onionName);
+        fields.put(ClientAuthContentProvider.V3ClientAuth.HASH, hash);
+        ContentResolver cr = context.getContentResolver();
+        cr.insert(ClientAuthContentProvider.CONTENT_URI, fields);
+        Toast.makeText(context, R.string.please_restart_Orbot_to_enable_the_changes, Toast.LENGTH_LONG).show();
+    }
 
+    private String sanitizeOnionDomainTextField() {
+        String domain = ".onion";
+        String onion = etOnionUrl.getText().toString();
+        if (onion.endsWith(domain))
+            return onion.substring(0, onion.indexOf(domain));
+        return onion;
     }
 
     @Override
@@ -68,10 +86,7 @@ public class AddV3ClientAuthDialogFragment extends DialogFragment {
     }
 
     private boolean checkInput() {
-        String domain = ".onion";
-        String onion = etOnionUrl.getText().toString();
-        if (onion.endsWith(domain))
-            onion = onion.substring(0, onion.indexOf(domain));
+        String onion = sanitizeOnionDomainTextField();
         if (!onion.matches("([a-z0-9]{56})")) return false;
         String hash = etKeyHash.getText().toString();
         return hash.matches("([A-Z2-7]{52})");

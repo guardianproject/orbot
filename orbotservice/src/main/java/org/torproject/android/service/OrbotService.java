@@ -58,6 +58,7 @@ import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -89,6 +90,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     private static final Uri V2_HS_CONTENT_URI = Uri.parse("content://org.torproject.android.ui.hiddenservices.providers/hs");
     private static final Uri V3_ONION_SERVICES_CONTENT_URI = Uri.parse("content://org.torproject.android.ui.v3onionservice/v3");
     private static final Uri COOKIE_CONTENT_URI = Uri.parse("content://org.torproject.android.ui.hiddenservices.providers.cookie/cookie");
+    private static final Uri V3_CLIENT_AUTH_URI = Uri.parse("content://org.torproject.android.ui.v3onionservice.clientauth/v3auth");
     private final static String NOTIFICATION_CHANNEL_ID = "orbot_channel_1";
     private static final String[] LEGACY_V2_ONION_SERVICE_PROJECTION = new String[]{
             OnionService._ID,
@@ -112,6 +114,12 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             ClientCookie.DOMAIN,
             ClientCookie.AUTH_COOKIE_VALUE,
             ClientCookie.ENABLED};
+    private static final String[] V3_CLIENT_AUTH_PROJECTION = new String[]{
+            V3ClientAuth._ID,
+            V3ClientAuth.DOMAIN,
+            V3ClientAuth.HASH,
+            V3ClientAuth.ENABLED
+    };
     public static int mPortSOCKS = -1;
     public static int mPortHTTP = -1;
     public static int mPortDns = TOR_DNS_PORT_DEFAULT;
@@ -135,7 +143,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     private NotificationManager mNotificationManager = null;
     private NotificationCompat.Builder mNotifyBuilder;
     private boolean mNotificationShowing = false;
-    private File mHSBasePath, mV3OnionBasePath;
+    private File mHSBasePath, mV3OnionBasePath, mV3AuthBasePath;
     private ArrayList<Bridge> alBridges = null;
 
     /**
@@ -305,17 +313,17 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
     private void stopTorAsync() {
 
-        new Thread(() ->{
+        new Thread(() -> {
             Log.i("OrbotService", "stopTor");
             try {
                 sendCallbackStatus(STATUS_STOPPING);
                 sendCallbackLogMessage(getString(R.string.status_shutting_down));
 
-            	if (useIPtObfsMeekProxy())
-               	 IPtProxy.stopObfs4Proxy();
+                if (useIPtObfsMeekProxy())
+                    IPtProxy.stopObfs4Proxy();
 
-            	if (useIPtSnowflakeProxy())
-                IPtProxy.stopSnowflake();
+                if (useIPtSnowflakeProxy())
+                    IPtProxy.stopSnowflake();
 
 
                 stopTorDaemon(true);
@@ -333,21 +341,19 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         }).start();
     }
 
-    private static boolean useIPtObfsMeekProxy ()
-    {
+    private static boolean useIPtObfsMeekProxy() {
         String bridgeList = Prefs.getBridgesList();
-        return bridgeList.contains("obfs")||bridgeList.contains("meek");
+        return bridgeList.contains("obfs") || bridgeList.contains("meek");
     }
 
-    private static boolean useIPtSnowflakeProxy ()
-    {
+    private static boolean useIPtSnowflakeProxy() {
         String bridgeList = Prefs.getBridgesList();
         return bridgeList.contains("snowflake");
     }
 
-    private void startSnowflakeProxy () {
+    private void startSnowflakeProxy() {
         //this is using the current, default Tor snowflake infrastructure
-        IPtProxy.startSnowflake( "stun:stun.l.google.com:19302", "https://snowflake-broker.azureedge.net/",
+        IPtProxy.startSnowflake("stun:stun.l.google.com:19302", "https://snowflake-broker.azureedge.net/",
                 "ajax.aspnetcdn.com", null, true, false, true, 3);
     }
 
@@ -447,6 +453,10 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             mV3OnionBasePath = new File(getFilesDir().getAbsolutePath(), TorServiceConstants.ONION_SERVICES_DIR);
             if (!mV3OnionBasePath.isDirectory())
                 mV3OnionBasePath.mkdirs();
+
+            mV3AuthBasePath = new File(getFilesDir().getAbsolutePath(), TorServiceConstants.V3_CLIENT_AUTH_DIR);
+            if (!mV3AuthBasePath.isDirectory())
+                mV3AuthBasePath.mkdirs();
 
             mEventHandler = new TorEventHandler(this);
 
@@ -779,6 +789,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                     ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
         }
     }
+
 
     private void updateV3OnionNames() throws SecurityException {
         ContentResolver contentResolver = getApplicationContext().getContentResolver();
@@ -1309,8 +1320,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
             if (!TextUtils.isEmpty(builtInBridgeType))
                 getBridges(builtInBridgeType, extraLines);
-            else
-            {
+            else {
                 String[] bridgeListLines = parseBridgesFromSettings(bridgeList);
                 int bridgeIdx = (int) Math.floor(Math.random() * ((double) bridgeListLines.length));
                 String bridgeLine = bridgeListLines[bridgeIdx];
@@ -1370,6 +1380,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
         ContentResolver contentResolver = getApplicationContext().getContentResolver();
         addV3OnionServicesToTorrc(extraLines, contentResolver);
+        addV3ClientAuthToTorrc(extraLines, contentResolver);
         addV2HiddenServicesToTorrc(extraLines, contentResolver);
         addV2ClientCookiesToTorrc(extraLines, contentResolver);
         return extraLines;
@@ -1425,6 +1436,34 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 hidden_services.close();
             }
         } catch (SecurityException se) {
+        }
+    }
+
+    public static String buildV3ClientAuthFile(String domain, String keyHash) {
+        return domain + ":descriptor:x25519:" + keyHash;
+    }
+
+    private void addV3ClientAuthToTorrc(StringBuffer torrc, ContentResolver contentResolver) {
+        Cursor v3auths = contentResolver.query(V3_CLIENT_AUTH_URI, V3_CLIENT_AUTH_PROJECTION, V3ClientAuth.ENABLED + "=1", null, null);
+        if (v3auths != null) {
+            for (File file : mV3AuthBasePath.listFiles()) {
+                if (!file.isDirectory())
+                    file.delete(); // todo the adapter should maybe just write these files and not do this in service...
+            }
+            torrc.append("ClientOnionAuthDir " + mV3AuthBasePath.getAbsolutePath()).append('\n');
+            try {
+                while (v3auths.moveToNext()) {
+                    String domain = v3auths.getString(v3auths.getColumnIndex(V3ClientAuth.DOMAIN));
+                    String hash = v3auths.getString(v3auths.getColumnIndex(V3ClientAuth.HASH));
+                    File authFile = new File(mV3AuthBasePath, domain + ".auth_private");
+                    authFile.createNewFile();
+                    FileOutputStream fos = new FileOutputStream(authFile);
+                    fos.write(buildV3ClientAuthFile(domain, hash).getBytes());
+                    fos.close();
+                }
+            } catch (Exception e) {
+                Log.e(TAG, "error adding v3 client auth...");
+            }
         }
     }
 
@@ -1617,18 +1656,18 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         public static final String AUTH_COOKIE = "auth_cookie";
         public static final String AUTH_COOKIE_VALUE = "auth_cookie_value";
         public static final String ENABLED = "enabled";
+    }
 
-        private OnionService() {
-        }
+    public static final class V3ClientAuth implements BaseColumns {
+        public static final String DOMAIN = "domain";
+        public static final String HASH = "hash";
+        public static final String ENABLED = "enabled";
     }
 
     public static final class ClientCookie implements BaseColumns {
         public static final String DOMAIN = "domain";
         public static final String AUTH_COOKIE_VALUE = "auth_cookie_value";
         public static final String ENABLED = "enabled";
-
-        private ClientCookie() {
-        }
     }
 
     // for bridge loading from the assets default bridges.txt file
@@ -1654,7 +1693,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                         IPtProxy.startObfs4Proxy("DEBUG", false, false);
 
                     if (useIPtSnowflakeProxy())
-                       startSnowflakeProxy();
+                        startSnowflakeProxy();
 
 
                     startTor();

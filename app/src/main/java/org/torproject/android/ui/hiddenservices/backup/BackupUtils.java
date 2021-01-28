@@ -12,10 +12,12 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.torproject.android.R;
+import org.torproject.android.service.OrbotService;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.ui.hiddenservices.providers.CookieContentProvider;
 import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
 import org.torproject.android.ui.v3onionservice.OnionServiceContentProvider;
+import org.torproject.android.ui.v3onionservice.clientauth.ClientAuthContentProvider;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -38,15 +40,25 @@ public class BackupUtils {
         mResolver = mContext.getContentResolver();
     }
 
-    public static boolean isV2OnionAddressValid(String onionToTest) {
-        return onionToTest.matches("([a-z0-9]{16}).onion");
-    }
-
     public String createV3ZipBackup(String port, Uri zipFile) {
         String[] files = createFilesForZippingV3(port);
         ZipUtilities zip = new ZipUtilities(files, zipFile, mResolver);
         if (!zip.zip()) return null;
         return zipFile.getPath();
+    }
+
+    public String createV3AuthBackup(String domain, String keyHash, Uri backupFile) {
+        String fileText = OrbotService.buildV3ClientAuthFile(domain, keyHash);
+        try {
+            ParcelFileDescriptor pfd = mContext.getContentResolver().openFileDescriptor(backupFile, "w");
+            FileOutputStream fos = new FileOutputStream(pfd.getFileDescriptor());
+            fos.write(fileText.getBytes());
+            fos.close();
+            pfd.close();
+        } catch (IOException ioe) {
+            return null;
+        }
+        return backupFile.getPath();
     }
 
     public String createV2ZipBackup(int port, Uri zipFile) {
@@ -59,7 +71,7 @@ public class BackupUtils {
         return zipFile.getPath();
     }
 
-    // todo also write out authorized clients...
+    // todo this doesn't export data for onions that orbot hosts which have authentication (not supported yet...)
     private String[] createFilesForZippingV3(String port) {
         final String v3BasePath = getV3BasePath() + "/v3" + port + "/";
         final String hostnamePath = v3BasePath + "hostname",
@@ -304,7 +316,6 @@ public class BackupUtils {
             Toast.makeText(mContext, R.string.error, Toast.LENGTH_LONG).show();
     }
 
-
     public void restoreKeyBackup(int hsPort, Uri hsKeyPath) {
         File mHSBasePath = new File(
                 mContext.getFilesDir().getAbsolutePath(),
@@ -331,6 +342,20 @@ public class BackupUtils {
         } catch (IOException | NullPointerException e) {
             e.printStackTrace();
         }
+    }
+
+
+    public void restoreClientAuthBackup(String authFileContents) {
+        ContentValues fields = new ContentValues();
+        String[] split = authFileContents.split(":");
+        if (split.length != 4) {
+            Toast.makeText(mContext, R.string.error, Toast.LENGTH_LONG).show();
+            return;
+        }
+        fields.put(ClientAuthContentProvider.V3ClientAuth.DOMAIN, split[0]);
+        fields.put(ClientAuthContentProvider.V3ClientAuth.HASH, split[3]);
+        mResolver.insert(ClientAuthContentProvider.CONTENT_URI, fields);
+        Toast.makeText(mContext, R.string.backup_restored, Toast.LENGTH_LONG).show();
     }
 
     public void restoreCookieBackup(String jString) {
