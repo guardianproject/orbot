@@ -1452,10 +1452,11 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             }
             torrc.append("ClientOnionAuthDir " + mV3AuthBasePath.getAbsolutePath()).append('\n');
             try {
+                int i = 0;
                 while (v3auths.moveToNext()) {
                     String domain = v3auths.getString(v3auths.getColumnIndex(V3ClientAuth.DOMAIN));
                     String hash = v3auths.getString(v3auths.getColumnIndex(V3ClientAuth.HASH));
-                    File authFile = new File(mV3AuthBasePath, domain + ".auth_private");
+                    File authFile = new File(mV3AuthBasePath, (i++) + ".auth_private");
                     authFile.createNewFile();
                     FileOutputStream fos = new FileOutputStream(authFile);
                     fos.write(buildV3ClientAuthFile(domain, hash).getBytes());
