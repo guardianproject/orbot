@@ -38,7 +38,12 @@
 
             <item
                 android:id="@+id/menu_v3_onion_services"
-                android:title="@string/hosted_services"
+                android:title="@string/v3_hosted_services"
+                yourapp:showAsAction="never" />
+
+            <item
+                android:id="@+id/menu_v3_onion_client_auth"
+                android:title="@string/v3_client_auth"
                 yourapp:showAsAction="never" />
 
             <item

@@ -170,6 +170,8 @@
     <string name="vpn_default_world">Global (Auto)</string>
     <string name="hidden_services">Onion Services</string>
     <string name="v2_hidden_services">V2 Onion Services (Deprecated)</string>
+    <string name="v3_hosted_services">Hosted V3 Onion Services</string>
+    <string name="v3_client_auth">V3 Onion Service Client Authorization</string>
     <string name="title_activity_hidden_services">Onion Services</string>
     <string name="menu_hidden_services">Onion Services</string>
     <string name="save">Save</string>

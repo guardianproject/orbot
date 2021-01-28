@@ -103,6 +103,14 @@
                 android:value=".OrbotMainActivity" />
         </activity>
 
+        <activity android:name=".ui.v3onionservice.V3ClientAuthActivity"
+            android:label="@string/v3_client_auth"
+            android:theme="@style/DefaultTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".OrbotMainActivity"/>
+        </activity>
+
         <activity
             android:name=".ui.hiddenservices.ClientCookiesActivity"
             android:label="@string/client_cookies"

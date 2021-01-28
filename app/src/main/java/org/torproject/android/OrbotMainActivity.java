@@ -75,6 +75,7 @@ import org.torproject.android.ui.onboarding.BridgeWizardActivity;
 import org.torproject.android.ui.onboarding.OnboardingActivity;
 import org.torproject.android.ui.v3onionservice.OnionServiceContentProvider;
 import org.torproject.android.ui.v3onionservice.OnionServicesActivity;
+import org.torproject.android.ui.v3onionservice.V3ClientAuthActivity;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
@@ -468,6 +469,8 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
 
         } else if (item.getItemId() == R.id.menu_v3_onion_services) {
             startActivity(new Intent(this, OnionServicesActivity.class));
+        } else if (item.getItemId() == R.id.menu_v3_onion_client_auth) {
+            startActivity(new Intent(this, V3ClientAuthActivity.class));
         } else if (item.getItemId() == R.id.menu_hidden_services) {
             startActivity(new Intent(this, HiddenServicesActivity.class));
         } else if (item.getItemId() == R.id.menu_client_cookies) {
