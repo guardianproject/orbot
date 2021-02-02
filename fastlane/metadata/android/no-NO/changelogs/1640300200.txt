@@ -1,0 +1,4 @@
+* Tillagt Snowflake-brostøtte
+* Oppdatert Obfs4- og Meek-brostøtte
+* Forbedret hastighet for «Forespør nye broer»-funksjonalitet
+* Oppgradering av Tor til 0.4.4.6
