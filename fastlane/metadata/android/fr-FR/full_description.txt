@@ -1,26 +1,18 @@
-Orbot
-Proxy par Tor
-Orbot est un proxy libre et gratuit qui permet à d'autres applications d'accéder à Internet de manière plus sûre. Orbot utilise Tor pour chiffrer votre trafic et le cacher en le faisant rebondir plusieurs fois au travers de différents ordinateurs répartis de par le monde. Tor est un logiciel libre et un réseau ouvert qui vous aide à vous défendre contre une forme de surveillance du réseau, l'analyse de trafic, qui met à mal les libertés individuelles et la vie privée, la secret des affaires et la confidentialité des relations ainsi que la sécurité des états.
+Orbot est une appli de mandataire libre et gratuite qui permet à d’autres applis d’accéder à Internet de manière plus sûre. Orbot utilise Tor pour chiffrer votre trafic sur Internet et le cache ensuite en le faisant passer par une série d’ordinateurs répartis dans le monde entier. Tor est à la fois un logiciel libre et un réseau ouvert qui vous aident à vous défendre contre une forme de surveillance du réseau, appelée analyse du trafic, qui menace la liberté personnelle et la vie privée, les activités et les relations d’affaires confidentielles, ainsi que la sécurité des états.
 
-Orbot est la seule application qui crée une connexion à Internet réellement privée. Pour citer le New York Times : « quand une communication arrive par Tor, on ne peut jamais savoir d'où, ou de qui elle vient. ». Tor a gagné le Pioneer Award 2012 de l'Electronic Frontier Foundation (EFF).
+Orbot est la seule appli à créer une connexion à Internet réellement privée. Comme l’écrit le New York Times : « quand une communication arrive de Tor, on ne peut jamais savoir ni d’où ni de qui elle provient ».
 
-REFUSEZ LES PÂLES COPIES : Orbot est la manière la plus sûre d'utiliser Internet sur Android, point à la ligne. Orbot fait rebondir votre trafic chiffré plusieurs fois au travers de différents ordinateurs répartis de par le monde, au lieu de vous connecter directement comme le font les VPN et proxies. Le processus est un peu plus long, mais attendre un peu pour la meilleure protection possible de la vie privée et de votre identité en valent la peine.
-NAVIGATION INTERNET PRIVÉE : Utilisé avec Orweb, Orbot est la manière la plus anonyme d'accéder à n'importe quel site web, même si celui-ci est habituellement bloqué, surveillé ou fait partie du web caché. Téléchargez Orweb : https://play.google.com/store/apps/details ?id=info.guardianproject.browser
-MESSAGERIE INSTANTANÉE PRIVÉE : Utilisez Gibberbot avec Orbot pour discuter en toute confidentialité avec qui que ce soit, où que ce soit, librement et gratuitement. Téléchargez Gibberbot : https://play.google.com/store/apps/details ?id=info.guardianproject.otr.app.im
-RENDEZ VOS APPLICATIONS PRIVÉES : Toute application installée peut utiliser Tor si elle est capable d'utiliser un proxy, en utilisant les réglages fournis ici : https://guardianproject.info/apps/orbot/ Utilisez Orbot avec Twitter ou essayez un moteur de recherche privé comme DuckDuckGo : https ://play.google.com/store/apps/details ?id=com.duckduckgo.mobile.android
-LA VIE PRIVÉE POUR TOUS : Tor peut vous aider à vous renseigner confidentiellement sur un concurrent, contourner le blocage de Facebook à l'école ou éviter un parre-feu en entreprise pour regarder les diffusions sportives.
-LA VIE PRIVÉE FACILE : Besoin d'aide ? Regardez notre sympathique tutoriel interactif : https ://guardianproject.info/howto/browsefreely
-OFFICIEL : Orbot est la version officielle du réseau Tor pour Android.
+Tor a reçu le Pioneer Award 2012 de la Fondation Frontière Électronique (FFÉ).
 
-***Mode Root Expert***
-MODE UNIVERSEL : Orbot peut être configuré pour faire passer tout votre trafic Internet de manière transparente par Tor. Vous pouvez également choisir quelles applications en particulier vous voulez faire transiter par Tor.
+★ N’ACCEPTEZ AUCUN SUBSTITUT : Orbot est sans contestation la façon la plus sûre d’utiliser Internet sur Android. Orbot fait rebondir plusieurs fois votre trafic chiffré par des ordinateurs répartis dans le monde entier, au lieu de vous connecter directement comme le font les RPV et les mandataires. Ce processus prend un plus de temps, mais la meilleure protection possible des données personnelles et de votre identité vaut l’attente.
+★ PROTECTION POUR LES APPLIS : n’importe quelle appli installée peut utiliser Tor grâce à la fonction RPV d’Orbot, ou si elle dispose d’une fonction de mandataire, en utilisant les paramètres trouvés ici : https://goo.gl/2OA1y Utilisez Orbot avec Twitter, ou essayez la recherche privée sur le Web avec : https://goo.gl/lgh1p
+★ VIE PRIVÉE ET PROTECTION DES DONNÉES PERSONNELLES POUR TOUS : Orbot empêche quelqu’un qui surveille votre connexion de connaître les applis que vous utilisez ou les sites Web que vous visitez. Tout ce que quelqu’un qui surveille votre trafic réseau peut voir est que vous utilisez Tor.
 
-***Donnez-nous votre avis !***
-À PROPOS : Le Guardian Project est un groupe de développeurs qui créent des applications mobiles sécurisées, libre et open source pour un avenir meilleur.
-NOTRE SITE : https ://GuardianProject.info
-SUR TWITTER : https ://twitter.com/guardianproject
-OPEN-SOURCE : Orbot est un logiciel libre. Jeter un œil à notre code source ou rejoignez la communauté pour l'améliorer : https ://gitweb.torproject.org/orbot.git
-À PROPOS DE TOR : https ://TorProject.org
-NOUS JOINDRE : Il manque votre fonction préférée ? Vous avez trouvé un bug énervant ? Nous serions ravi d'entendre ce que vous avez à dire ! Envoyez-nous un mail : root@guardianproject.info
-AIDEZ-NOUS À TRADUIRE ORBOT DANS VOTRE LANGUE : Nous voulons rendre Orbot accessible à autant de pays que possibles.
-Si Orbot n'existe pas encore dans votre langue nous serions ravi de vous voir rejoindre notre équipe de traduction : https ://www.transifex.com/otf/orbot/
+***Les rétroactions, on aime ça***
+★ À PROPOS DE NOUS : le Projet Guardian est un groupe de développeurs qui produit des applis mobiles sécurisées et à code source ouvert, pour un lendemain meilleur.
+★ CODE SOURCE OUVERT : Orbot est un logiciel libre. Jetez un œil à notre code source ou joignez-vous à la communauté pour l’améliorer : https://github.com/guardianproject/orbot ou https://gitweb.torproject.org/orbot.git
+★ CONTACTEZ-NOUS : votre fonction favorite est-elle absente ? Avez-vous avez trouvé un bogue gênant ? Nous aimerions que vous nous en fassiez part. Envoyez-nous un courriel à support@guardianproject.info
+
+***Avis***
+Le Projet Guardian développe des applis conçues pour protéger votre sécurité et votre anonymat. Les protocoles que nous utilisons sont généralement considérés comme des protocoles de pointe en matière de technologie de sécurité. Malgré la mise à niveau constante de nos logiciels afin de combattre les menaces les plus récentes et d’éliminer les bogues, aucune technologie n’est entièrement infaillible. Pour une sécurité et un anonymat maximaux, les utilisateurs doivent mettre en œuvre les meilleures pratiques afin d’assurer leur sécurité.
+https://securityinabox.org présente un bon guide d’introduction sur ces sujets
