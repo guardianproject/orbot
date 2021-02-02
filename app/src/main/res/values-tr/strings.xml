@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Orbot</string>
-    <string name="app_description">Orbot başka uygulamaların İnterneti daha güvenli olarak kullanmasını sağlayan ücretsiz bir vekil sunucu uygulamasıdır. Orbot Tor yazılımını kullanarak İnternet trafiğinizi şifreler ve dünya üzerindeki pek çok farklı bilgisayardan geçirerek gizler. Tor kişisel özgürlüğünüze, kişisel bilgilerinize, gizli ticari işlemlerinize ve ilişkilerinize karşı tehdit oluşturan ve devlet güvenliği olarak bilinen ağ izlemelerine karşı koruma sağlayan bir özgür yazılım ve açık ağ yazılımıdır.</string>
+    <string name="app_description">Orbot başka uygulamaların İnterneti daha güvenli olarak kullanmasını sağlayan özgür bir vekil sunucu uygulamasıdır. Orbot, Tor kullanarak İnternet trafiğinizi şifreler ve dünya üzerindeki pek çok farklı bilgisayardan geçirerek gizler. Tor kişisel özgürlüğünüze ve bilgilerinize, gizli ticari işlemlerinize ve ilişkilerinize, devlet güvenliğine karşı tehdit oluşturan ve trafik analizi olarak bilinen ağ izlemelerine karşı koruma sağlayan bir özgür yazılım ve açık ağdır.</string>
     <string name="status_starting_up">Orbot başlatılıyor…</string>
     <string name="status_activated">Tor ağına bağlandı</string>
     <string name="status_disabled">Orbot devre dışı bırakıldı</string>

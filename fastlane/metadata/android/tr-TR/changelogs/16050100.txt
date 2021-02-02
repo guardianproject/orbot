@@ -1,4 +1,4 @@
-- Tor'u en son v0.3.4.9'a güncellemek
+- Tor en son 0.3.4.9 sürümüne güncellendi
 - VPN kararlılığı için düzeltmeler
 - Android 8 ve 9'da test edildi
-- birçok dil için geliştirilmiş ve güncellenmiş çeviriler
+- birçok dil için çeviriler iyileştirildi ve güncellendi
