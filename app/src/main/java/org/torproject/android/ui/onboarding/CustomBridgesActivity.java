@@ -40,7 +40,7 @@ import java.net.URLEncoder;
 import static org.torproject.android.MainConstants.EMAIL_TOR_BRIDGES;
 import static org.torproject.android.MainConstants.URL_TOR_BRIDGES;
 
-public class CustomBridgesActivity extends AppCompatActivity implements View.OnClickListener, TextWatcher {
+public class CustomBridgesActivity extends AppCompatActivity implements TextWatcher {
 
     private EditText mEtPastedBridges;
 
@@ -75,7 +75,7 @@ public class CustomBridgesActivity extends AppCompatActivity implements View.OnC
 
         ((TextView) findViewById(R.id.tvDescription)).setText(getString(R.string.in_a_browser, URL_TOR_BRIDGES));
 
-        findViewById(R.id.btCopyUrl).setOnClickListener(this);
+        findViewById(R.id.btCopyUrl).setOnClickListener(v -> ClipboardUtils.copyToClipboard("bridge_url", URL_TOR_BRIDGES, getString(R.string.done), this));
 
         String bridges = Prefs.getBridgesList().trim();
         if (!Prefs.bridgesEnabled() || userHasSetPreconfiguredBridge(bridges)) {
@@ -86,60 +86,34 @@ public class CustomBridgesActivity extends AppCompatActivity implements View.OnC
         configureMultilineEditTextInScrollView(mEtPastedBridges);
         mEtPastedBridges.setText(bridges);
         mEtPastedBridges.addTextChangedListener(this);
+        final IntentIntegrator integrator = new IntentIntegrator(this);
 
-        findViewById(R.id.btScanQr).setOnClickListener(this);
-        findViewById(R.id.btShareQr).setOnClickListener(this);
-        findViewById(R.id.btEmail).setOnClickListener(this);
+        findViewById(R.id.btScanQr).setOnClickListener(v -> integrator.initiateScan());
+        findViewById(R.id.btShareQr).setOnClickListener(v -> {
+            String setBridges = Prefs.getBridgesList();
+            if (!TextUtils.isEmpty(setBridges)) {
+                try {
+                    integrator.shareText("bridge://" + URLEncoder.encode(setBridges, "UTF-8"));
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        findViewById(R.id.btEmail).setOnClickListener(v -> {
+            Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + EMAIL_TOR_BRIDGES));
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "get transport");
+            emailIntent.putExtra(Intent.EXTRA_TEXT, "get transport");
+            startActivity(Intent.createChooser(emailIntent, getString(R.string.send_email)));
+        });
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             finish();
-
             return true;
         }
-
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onClick(View view) {
-        IntentIntegrator integrator = new IntentIntegrator(this);
-
-        switch (view.getId()) {
-            case R.id.btCopyUrl:
-                ClipboardUtils.copyToClipboard("bridge_url", URL_TOR_BRIDGES, getString(R.string.done), this);
-                break;
-
-            case R.id.btScanQr:
-                integrator.initiateScan();
-                break;
-
-            case R.id.btShareQr:
-                String bridges = Prefs.getBridgesList();
-
-                if (!TextUtils.isEmpty(bridges)) {
-                    try {
-                        bridges = "bridge://" + URLEncoder.encode(bridges, "UTF-8");
-
-                        integrator.shareText(bridges);
-
-                    } catch (UnsupportedEncodingException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                break;
-
-            case R.id.btEmail:
-                Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + EMAIL_TOR_BRIDGES));
-                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "get transport");
-                emailIntent.putExtra(Intent.EXTRA_TEXT, "get transport");
-                startActivity(Intent.createChooser(emailIntent, getString(R.string.send_email)));
-
-                break;
-        }
     }
 
     @Override

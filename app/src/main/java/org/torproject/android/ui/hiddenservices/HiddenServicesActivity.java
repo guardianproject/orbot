@@ -166,15 +166,10 @@ public class HiddenServicesActivity extends AppCompatActivity {
     }
 
     public void onRadioButtonClick(View view) {
-        switch (view.getId()) {
-            case R.id.radioUserServices:
-                filterServices(true);
-                break;
-            case R.id.radioAppServices:
-                filterServices(false);
-                break;
-            default:
-                break;
+        if (view.getId() == R.id.radioUserServices) {
+            filterServices(true);
+        } else if (view.getId() == R.id.radioAppServices) {
+            filterServices(false);
         }
     }
 
