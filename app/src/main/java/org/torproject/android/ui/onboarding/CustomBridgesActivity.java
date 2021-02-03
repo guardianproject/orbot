@@ -80,7 +80,7 @@ public class CustomBridgesActivity extends AppCompatActivity implements View.OnC
         findViewById(R.id.btCopyUrl).setOnClickListener(this);
 
         String bridges = Prefs.getBridgesList().trim();
-        if (!Prefs.bridgesEnabled() || bridges.equals("obfs4") || bridges.equals("meek")) {
+        if (!Prefs.bridgesEnabled() || userHasSetPreconfiguredBridge(bridges)) {
             bridges = null;
         }
 
@@ -90,9 +90,7 @@ public class CustomBridgesActivity extends AppCompatActivity implements View.OnC
         mEtPastedBridges.addTextChangedListener(this);
 
         findViewById(R.id.btScanQr).setOnClickListener(this);
-
         findViewById(R.id.btShareQr).setOnClickListener(this);
-
         findViewById(R.id.btEmail).setOnClickListener(this);
     }
 
@@ -223,5 +221,10 @@ public class CustomBridgesActivity extends AppCompatActivity implements View.OnC
         Intent intent = new Intent(this, OrbotService.class);
         intent.setAction(TorServiceConstants.CMD_SIGNAL_HUP);
         startService(intent);
+    }
+
+    private static boolean userHasSetPreconfiguredBridge(String bridges) {
+        if (bridges == null) return false;
+        return bridges.equals("obfs4") || bridges.equals("meek") || bridges.equals("snowflake");
     }
 }
