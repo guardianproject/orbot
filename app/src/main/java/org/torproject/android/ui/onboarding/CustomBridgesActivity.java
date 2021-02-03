@@ -73,8 +73,6 @@ public class CustomBridgesActivity extends AppCompatActivity implements View.OnC
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        setTitle(getString(R.string.use_custom_bridges));
-
         ((TextView) findViewById(R.id.tvDescription)).setText(getString(R.string.in_a_browser, URL_TOR_BRIDGES));
 
         findViewById(R.id.btCopyUrl).setOnClickListener(this);

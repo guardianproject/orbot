@@ -94,8 +94,6 @@ public class BridgeWizardActivity extends AppCompatActivity {
             mTvStatus.setText(savedInstanceState.getString(BUNDLE_KEY_TV_STATUS_TEXT, ""));
         }
 
-        setTitle(getString(R.string.bridges));
-
         findViewById(R.id.btnMoat).setOnClickListener(v -> {
             cancelHostTestIfRunning();
             startActivityForResult(new Intent(BridgeWizardActivity.this, MoatActivity.class), MOAT_REQUEST_CODE);

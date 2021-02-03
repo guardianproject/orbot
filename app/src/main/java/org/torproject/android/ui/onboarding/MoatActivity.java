@@ -120,8 +120,6 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        setTitle(getString(R.string.request_bridges));
-
         mIvCaptcha = findViewById(R.id.captchaIv);
         mProgressBar = findViewById(R.id.progressBar);
         mEtSolution = findViewById(R.id.solutionEt);
