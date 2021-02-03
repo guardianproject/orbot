@@ -66,8 +66,6 @@
     <string name="use_only_these_specified_nodes">仅使用这些指定节点</string>
     <string name="bridges">网桥</string>
     <string name="use_bridges">使用网桥</string>
-    <string name="ip_address_and_port_of_bridges">网桥的 IP 地址和端口</string>
-    <string name="enter_bridge_addresses">输入网桥地址</string>
     <string name="relays">中继</string>
     <string name="relaying">中继转发</string>
     <string name="enable_your_device_to_be_a_non_exit_relay">使您的设备成为非出口中继</string>
@@ -185,7 +183,6 @@
     <string name="title_activity_hidden_services">洋葱服务</string>
     <string name="hidden_services">洋葱服务</string>
     <string name="hidden_service_request">一个应用程序想要打开洋葱服务器%1$s端口到Tor网络。如果你信任这个应用程序，这是安全的。</string>
-    <string name="enable_alternate_entrance_nodes_into_the_tor_network">启用进入Tor网络的备用入口</string>
     <string name="pref_connection_padding">连接填充</string>
     <string name="hosted_services">托管的服务</string>
     <string name="onion">.onion 地址</string>

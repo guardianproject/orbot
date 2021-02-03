@@ -66,8 +66,6 @@
   <string name="use_only_these_specified_nodes">*Yalnız* bu xüsusi kəsişmələri istifadə et</string>
   <string name="bridges">Körpülər</string>
   <string name="use_bridges">Körpü İstifadə Et</string>
-    <string name="ip_address_and_port_of_bridges">Körpülərin IP ünvanı və portu</string>
-  <string name="enter_bridge_addresses">Körpü Ünvanlarını Daxil et</string>
   <string name="relays">Keçidlər</string>
   <string name="relaying">Keçidləmə</string>
   <string name="enable_your_device_to_be_a_non_exit_relay">Cihazının son-keçid funksiyasını aktivləşdir</string>

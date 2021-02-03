@@ -67,9 +67,6 @@
     <string name="use_only_these_specified_nodes">Utilizza *solo* i nodi specificati</string>
     <string name="bridges">Bridge</string>
     <string name="use_bridges">Utilizza i bridge</string>
-    <string name="enable_alternate_entrance_nodes_into_the_tor_network">Attiva entrate alternate nella rete Tor</string>
-    <string name="ip_address_and_port_of_bridges">Indirizzo IP e porta dei bridge</string>
-    <string name="enter_bridge_addresses">Inserire gli indirizzi dei bridge</string>
     <string name="relays">Relays (Inoltratori)</string>
     <string name="relaying">Relaying (Inoltro)</string>
     <string name="enable_your_device_to_be_a_non_exit_relay">Abilita il tuo dispositivo per essere un relay non di uscita</string>

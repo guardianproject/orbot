@@ -66,8 +66,6 @@
   <string name="use_only_these_specified_nodes">이 특정한 노드*만* 사용합니다.</string>
   <string name="bridges">중계서버</string>
   <string name="use_bridges">중계서버 사용</string>
-    <string name="ip_address_and_port_of_bridges">중계서버의 IP 주소와 </string>
-  <string name="enter_bridge_addresses">중게서버 주소 입력</string>
   <string name="relays">중계서버</string>
   <string name="relaying">중계</string>
   <string name="enable_your_device_to_be_a_non_exit_relay">귀하의 장치를 출구가 아닌 중계서버로 활성화</string>

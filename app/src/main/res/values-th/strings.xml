@@ -67,9 +67,6 @@
     <string name="use_only_these_specified_nodes">ใช้ *เฉพาะ* โหนดที่ระบุเหล่านี้เท่านั้น</string>
     <string name="bridges">Bridges</string>
     <string name="use_bridges">ใช้งาน Bridges</string>
-    <string name="enable_alternate_entrance_nodes_into_the_tor_network">เปิดใช้งานทางเข้าอื่นเข้าสู่เครือข่าย Tor</string>
-    <string name="ip_address_and_port_of_bridges">ที่อยู่ไอพีและพอร์ตของ Bridges</string>
-    <string name="enter_bridge_addresses">ระบุที่อยู่ของ Bridge</string>
     <string name="relays">รีเลย์</string>
     <string name="relaying">การรีเลย์</string>
     <string name="enable_your_device_to_be_a_non_exit_relay">ทำให้อุปกรณ์ของคุณทำงานเป็นรีเลย์แบบไม่ใช่ทางออก</string>

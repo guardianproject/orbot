@@ -67,9 +67,6 @@
     <string name="use_only_these_specified_nodes">Använd *enbart* dessa specificerade noder</string>
     <string name="bridges">Broar</string>
     <string name="use_bridges">Använd Broar</string>
-    <string name="enable_alternate_entrance_nodes_into_the_tor_network">Aktivera alternativa ingångar i Tor-nätverket</string>
-    <string name="ip_address_and_port_of_bridges">IP adress och port för broar</string>
-    <string name="enter_bridge_addresses">Skriv in Bro Adresser</string>
     <string name="relays">Reläer</string>
     <string name="relaying">Överföring</string>
     <string name="enable_your_device_to_be_a_non_exit_relay">Aktivera din enhet till att vara ett icke-utgångsrelä</string>

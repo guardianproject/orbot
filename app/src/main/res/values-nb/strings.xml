@@ -66,8 +66,6 @@
     <string name="use_only_these_specified_nodes">Bruk *bare* disse angitte nodene</string>
     <string name="bridges">Broer</string>
     <string name="use_bridges">Bruk broer</string>
-    <string name="ip_address_and_port_of_bridges">IP-adresser og broporter</string>
-    <string name="enter_bridge_addresses">Skriv inn broadresser</string>
     <string name="relays">Reléer</string>
     <string name="relaying">Videresending</string>
     <string name="enable_your_device_to_be_a_non_exit_relay">Aktiver enheten din som et rutingsstafettoppsett uten utgående trafikk</string>
@@ -155,7 +153,6 @@
     <string name="full_device_vpn">VPN for hele enheten</string>
     <string name="vpn_disabled">VPN Deaktivert</string>
     <string name="wizard_details_msg">Orbot er et fritt program som inneholder Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent og Polipo. Den gir en lokal HTTP-proxy (8118) og en SOCKS-mellomtjener (9050) inn i Tor-nettverket. Orbot har også muligheten til å sende all Internett-trafikk gjennom Tor på enheter med superbrukertilgang.</string>
-    <string name="enable_alternate_entrance_nodes_into_the_tor_network">Aktiver alternative innganger til Tor-nettverket</string>
     <string name="hidden_service_request">Et program ønsker å åpne løktjenerport %1$s til Tor-nettverket. Dette er trygt såfremt du stoler på programmet.</string>
     <string name="pref_open_proxy_on_all_interfaces_title">Åpne proxy på alle grensesnitt</string>
     <string name="pref_http_title">Tor HTTP</string>

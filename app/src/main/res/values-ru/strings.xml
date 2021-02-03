@@ -67,9 +67,6 @@
     <string name="use_only_these_specified_nodes">Использовать *только* эти заданные узлы</string>
     <string name="bridges">Мосты</string>
     <string name="use_bridges">Использовать мосты</string>
-    <string name="enable_alternate_entrance_nodes_into_the_tor_network">Включить альтернативные входные узлы в сеть Tor</string>
-    <string name="ip_address_and_port_of_bridges">IP-адреса и порты мостов</string>
-    <string name="enter_bridge_addresses">Введите адреса мостов</string>
     <string name="relays">Ретрансляторы</string>
     <string name="relaying">Ретрансляция</string>
     <string name="enable_your_device_to_be_a_non_exit_relay">Разрешить вашему устройству быть невыходным ретранслятором</string>

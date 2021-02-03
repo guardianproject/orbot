@@ -68,9 +68,6 @@
     <string name="use_only_these_specified_nodes">* केवल * इन निर्दिष्ट नोड्स का उपयोग करें</string>
     <string name="bridges">पुल</string>
     <string name="use_bridges">पुल का उपयोग करें</string>
-    <string name="enable_alternate_entrance_nodes_into_the_tor_network">टोरी नेटवर्क में वैकल्पिक प्रवेश द्वार सक्षम करें</string>
-    <string name="ip_address_and_port_of_bridges">आईपी पता और पुल का बंदरगाह</string>
-    <string name="enter_bridge_addresses">ब्रिज पते दर्ज करें</string>
     <string name="relays">रिले</string>
     <string name="relaying">रिलेइंग</string>
     <string name="enable_your_device_to_be_a_non_exit_relay">अपने डिवाइस को गैर-बाहर निकलें रिले होने के लिए सक्षम करें</string>

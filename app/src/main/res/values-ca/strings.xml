@@ -67,9 +67,6 @@
     <string name="use_only_these_specified_nodes">Utilitza *només* aquests nodes especificats</string>
     <string name="bridges">Ponts</string>
     <string name="use_bridges">Utilitza ponts</string>
-    <string name="enable_alternate_entrance_nodes_into_the_tor_network">Activar entrades alternes a la xarxa Tor</string>
-    <string name="ip_address_and_port_of_bridges">Adreça IP i port dels ponts</string>
-    <string name="enter_bridge_addresses">Introduïu les adreces del pont</string>
     <string name="relays">Reemissors</string>
     <string name="relaying">Reemissió</string>
     <string name="enable_your_device_to_be_a_non_exit_relay">Activa el vostre dispositiu per ser un reemissor sense sortida</string>

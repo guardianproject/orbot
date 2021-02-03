@@ -62,8 +62,6 @@
   <string name="use_only_these_specified_nodes">Kasuta *ainult* neid märgitud sõlmi</string>
   <string name="bridges">Sillad</string>
   <string name="use_bridges">Kasuta sildu</string>
-    <string name="ip_address_and_port_of_bridges">Sildade IP aadressid ja pordinumbrid</string>
-  <string name="enter_bridge_addresses">Sisestage silla aadressid</string>
   <string name="relays">Edastajad</string>
   <string name="relaying">Edastamine</string>
   <string name="enable_your_device_to_be_a_non_exit_relay">Luba oma seadmel hakata mitte-väljund edastajaks</string>

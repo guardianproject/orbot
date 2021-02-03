@@ -67,9 +67,6 @@
     <string name="use_only_these_specified_nodes">Usar *só* este nodos específicos</string>
     <string name="bridges">Pontes</string>
     <string name="use_bridges">Usar Pontes</string>
-    <string name="enable_alternate_entrance_nodes_into_the_tor_network">Activar entradas alternativas a rede Tor</string>
-    <string name="ip_address_and_port_of_bridges">Dirección IP e porto das pontes</string>
-    <string name="enter_bridge_addresses">Introduza Direccións das Pontes</string>
     <string name="relays">Reenvíos</string>
     <string name="relaying">Reenvío</string>
     <string name="enable_your_device_to_be_a_non_exit_relay">Habilite o seu dispositivo para ser un reenvío non de saída</string>

@@ -66,8 +66,6 @@
     <string name="use_only_these_specified_nodes">N’utiliser *que* ces nœuds précis</string>
     <string name="bridges">Ponts</string>
     <string name="use_bridges">Utiliser des ponts</string>
-    <string name="ip_address_and_port_of_bridges">Adresse IP et port des ponts</string>
-    <string name="enter_bridge_addresses">Saisir les adresses des ponts</string>
     <string name="relays">Relais</string>
     <string name="relaying">Relais</string>
     <string name="enable_your_device_to_be_a_non_exit_relay">Faire de votre appareil un relais de non-sortie</string>
@@ -122,7 +120,6 @@
     <string name="name">Name</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Veuillez redémarrer Orbot pour activer les changements</string>
     <string name="wizard_details_msg">Orbot est une application à code source ouvert qui comprend Tor, Obfs4Proxy, BadVPN Tun2Socks et LibEvent. Elle fournit un mandataire HTTP local (8118) et un mandataire SOCKS (9050) vers le réseau Tor. Sur un appareil débridé, Orbot peut aussi faire passer tout le trafic Internet par Tor.</string>
-    <string name="enable_alternate_entrance_nodes_into_the_tor_network">Activer les entrées auxiliaires vers le réseau Tor</string>
     <string name="obfsproxy_version">Obfs4proxy : https://github.com/Yawning/obfs4</string>
     <string name="openssl_version">OpenSSL : http://www.openssl.org</string>
     <string name="hidden_service_request">Une appli veut ouvrir le port %1$s du serveur onion vers le réseau Tor. Cette action est sûre si vous faites confiance à cette appli.</string>

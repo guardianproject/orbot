@@ -66,8 +66,6 @@
   <string name="use_only_these_specified_nodes">Използвай *само* изброените node-ве</string>
   <string name="bridges">Бриджове</string>
   <string name="use_bridges">Използвай Бриджове</string>
-    <string name="ip_address_and_port_of_bridges">IP адрес и порт на бриджове</string>
-  <string name="enter_bridge_addresses">Въведи адреси на бриджове</string>
   <string name="relays">Препращачи(Relays)</string>
   <string name="relaying">Препращане</string>
   <string name="enable_your_device_to_be_a_non_exit_relay">Разреши устройството ти да бъде не изходен препращач</string>

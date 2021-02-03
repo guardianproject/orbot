@@ -67,9 +67,6 @@
     <string name="use_only_these_specified_nodes">*Yalnız* bu düğümler kullanılsın</string>
     <string name="bridges">Köprüler</string>
     <string name="use_bridges">Köprüleri Kullan</string>
-    <string name="enable_alternate_entrance_nodes_into_the_tor_network">Alternatif Tor ağı girişleri kullanılabilsin</string>
-    <string name="ip_address_and_port_of_bridges">Köprülerin IP adresleri ve bağlantı noktaları</string>
-    <string name="enter_bridge_addresses">Köprü Adreslerini Girin</string>
     <string name="relays">Aktarıcılar</string>
     <string name="relaying">Aktarım</string>
     <string name="enable_your_device_to_be_a_non_exit_relay">Aygıtınız çıkış yapmayan bir aktarıcı olarak kullanılsın</string>

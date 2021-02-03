@@ -55,8 +55,7 @@
   <string name="use_only_these_specified_nodes">Uzi *nur* tiujn ĉi nodojn</string>
   <string name="bridges">Pontoj</string>
   <string name="use_bridges">Uzi Pontojn</string>
-  <string name="ip_address_and_port_of_bridges">IP-adresoj kaj pordoj de pontoj</string>
-  <string name="enter_or_port">Entajpu OR-pordon</string>
+    <string name="enter_or_port">Entajpu OR-pordon</string>
   <string name="relay_nickname">Kaŝnomo de la relajso</string>
   <string name="the_nickname_for_your_tor_relay">Kaŝnomo por via Tor-relajso</string>
   <string name="enter_a_custom_relay_nickname">Entajpu propran kaŝnomon de la relajso</string>

@@ -67,9 +67,6 @@
     <string name="use_only_these_specified_nodes">Usar *sólo* estos nodos especificados</string>
     <string name="bridges">Bridges (repetidores puente) </string>
     <string name="use_bridges">Usar bridges</string>
-    <string name="enable_alternate_entrance_nodes_into_the_tor_network">Habilitar entradas alternativas hacia el interior de la red Tor</string>
-    <string name="ip_address_and_port_of_bridges">Direcciones IP y puertos de los bridges</string>
-    <string name="enter_bridge_addresses">Introduzca direcciones de bridge</string>
     <string name="relays">Repetidores</string>
     <string name="relaying">Repetición de tráfico</string>
     <string name="enable_your_device_to_be_a_non_exit_relay">Habilitar que su dispositivo no sea repetidor de salida (de la red Tor) </string>

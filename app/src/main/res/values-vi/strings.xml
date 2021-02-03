@@ -66,8 +66,6 @@
     <string name="use_only_these_specified_nodes">*Chỉ* dùng những nút được liệt kê</string>
     <string name="bridges">Bridge</string>
     <string name="use_bridges">Dùng bridge</string>
-    <string name="ip_address_and_port_of_bridges">Địa chỉ IP và cổng của bridge</string>
-    <string name="enter_bridge_addresses">Nhập địa chỉ bridge</string>
     <string name="relays">Relay</string>
     <string name="relaying">Chức năng relay</string>
     <string name="enable_your_device_to_be_a_non_exit_relay">Cho phép thiết bị bạn trở thành một nút relay (không phải nút cuối)</string>

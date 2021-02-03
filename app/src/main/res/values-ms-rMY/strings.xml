@@ -60,8 +60,6 @@
   <string name="use_only_these_specified_nodes">Guna *hanya* nod-nod ini</string>
   <string name="bridges">Jambatan</string>
   <string name="use_bridges">Guna Jambatan</string>
-    <string name="ip_address_and_port_of_bridges">Alamat IP dan pelabuhan jambatan</string>
-  <string name="enter_bridge_addresses">Masukkan Alamat Jambatan</string>
   <string name="relays">Relays</string>
   <string name="relaying">Relaying</string>
   <string name="enable_your_device_to_be_a_non_exit_relay">Membolehkan peranti anda untuk menjadi geganti bukan keluar</string>

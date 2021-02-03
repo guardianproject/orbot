@@ -59,8 +59,6 @@
   <string name="use_only_these_specified_nodes">השתמש *רק* בצמתים מצוינים אלו</string>
   <string name="bridges">גשרים</string>
   <string name="use_bridges">השתמש בגשרים</string>
-    <string name="ip_address_and_port_of_bridges">כתובת ה-IP ויציאה של הגשרים</string>
-  <string name="enter_bridge_addresses">הכנס כתובות גשר</string>
   <string name="relays">ממסרים</string>
   <string name="relaying">ממסור</string>
   <string name="enable_your_device_to_be_a_non_exit_relay">אפשר למכשיר שלך להיות תחנת ממסר שאיננה יציאה</string>

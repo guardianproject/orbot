@@ -67,9 +67,6 @@
     <string name="use_only_these_specified_nodes">*Nur* diese angegebenen Netzknoten nutzen</string>
     <string name="bridges">Brücken</string>
     <string name="use_bridges">Brücken benutzen</string>
-    <string name="enable_alternate_entrance_nodes_into_the_tor_network">Alternative Zugangswege ins Tor-Netzwerk aktivieren</string>
-    <string name="ip_address_and_port_of_bridges">IP-Adresse und Port der Brücken</string>
-    <string name="enter_bridge_addresses">Brückenadressen eingeben</string>
     <string name="relays">Relais</string>
     <string name="relaying">Weiterleitung</string>
     <string name="enable_your_device_to_be_a_non_exit_relay">Ihr Gerät als Nichtausgangsrelais aktivieren</string>

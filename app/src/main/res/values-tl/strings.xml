@@ -63,8 +63,6 @@
   <string name="use_only_these_specified_nodes">Gumamit ng *only* sa mga ispesipikong nodes </string>
   <string name="bridges">Bridges</string>
   <string name="use_bridges">Gumamit ng Bridges</string>
-    <string name="ip_address_and_port_of_bridges">IP address at port ng bridges</string>
-  <string name="enter_bridge_addresses">Ilagay ang Bridge Addresses</string>
   <string name="relays">Relays</string>
   <string name="relaying">Relaying</string>
   <string name="enable_your_device_to_be_a_non_exit_relay">I-enable ang iyong device na non-exit relay</string>

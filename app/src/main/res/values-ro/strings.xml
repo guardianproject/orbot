@@ -66,8 +66,6 @@
   <string name="use_only_these_specified_nodes">Foloseste *doar* nodurile specificate</string>
   <string name="bridges">Punţi</string>
   <string name="use_bridges">Foloseşte punţi</string>
-    <string name="ip_address_and_port_of_bridges">Adresa IP şi port pentru punţi</string>
-  <string name="enter_bridge_addresses">Introdu adresa pentru punte</string>
   <string name="relays">Comutatoare</string>
   <string name="relaying">Comutare</string>
   <string name="enable_your_device_to_be_a_non_exit_relay">Activeaza dispozitivul sa fie un comutator fara iesire</string>

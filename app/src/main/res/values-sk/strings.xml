@@ -66,8 +66,6 @@
   <string name="use_only_these_specified_nodes">Použiť *len* tieto špecifikované uzly</string>
   <string name="bridges">Premostenia</string>
   <string name="use_bridges">Použiť premostenia</string>
-    <string name="ip_address_and_port_of_bridges">IP adresy a porty premostení</string>
-  <string name="enter_bridge_addresses">Vložiť adresy premostení</string>
   <string name="relays">Relé</string>
   <string name="relaying">Postúpenie relé</string>
   <string name="enable_your_device_to_be_a_non_exit_relay">Povoliť, aby nebolo vaše zariadenie východiskovým relé / non-exit</string>

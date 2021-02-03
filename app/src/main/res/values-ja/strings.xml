@@ -67,9 +67,6 @@
     <string name="use_only_these_specified_nodes">ここに指定したノードのみを使用</string>
     <string name="bridges">ブリッジ</string>
     <string name="use_bridges">ブリッジを使う</string>
-    <string name="enable_alternate_entrance_nodes_into_the_tor_network">Torネットワークへの代替入口を有効化</string>
-    <string name="ip_address_and_port_of_bridges">ブリッジのIPアドレスとポート</string>
-    <string name="enter_bridge_addresses">ブリッジのアドレスを入力</string>
     <string name="relays">リレー</string>
     <string name="relaying">リレー中</string>
     <string name="enable_your_device_to_be_a_non_exit_relay">この端末を非出口リレーにする</string>

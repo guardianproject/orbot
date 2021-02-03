@@ -67,9 +67,6 @@
     <string name="use_only_these_specified_nodes">*Csak* ezeknek a megadott csomópontoknak a használata</string>
     <string name="bridges">Hidak</string>
     <string name="use_bridges">Hidak használata</string>
-    <string name="enable_alternate_entrance_nodes_into_the_tor_network">A Tor hálózat bejáratok váltogatásának engedélyezése </string>
-    <string name="ip_address_and_port_of_bridges">A hidak IP címe és portja</string>
-    <string name="enter_bridge_addresses">Add meg a híd címeit</string>
     <string name="relays">Átjátszók</string>
     <string name="relaying">Átjátszás</string>
     <string name="enable_your_device_to_be_a_non_exit_relay">Engedélyezd az eszközödnek, hogy nem-átjátszó elosztó legyen</string>
