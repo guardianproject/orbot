@@ -112,8 +112,7 @@
   <string name="pref_torrc_dialog">Vlastní Torrs</string>
   <string name="bridges_updated">Bridge aktualizovány</string>
   <string name="restart_orbot_to_use_this_bridge_">Pro projevení změn restartujte Orbot</string>
-  <string name="menu_qr">QR kódy</string>
-  <string name="get_bridges_email">Email</string>
+    <string name="get_bridges_email">Email</string>
   <string name="send_email">Pošli email</string>
   <string name="save">Uložit</string>
   <string name="name">Jméno</string>

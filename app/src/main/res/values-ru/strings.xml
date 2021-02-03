@@ -117,7 +117,6 @@
     <string name="pref_torrc_dialog">Пользовательский Torrc</string>
     <string name="bridges_updated">Мосты обновлены</string>
     <string name="restart_orbot_to_use_this_bridge_">Пожалуйста, перезапустите Orbot для вступления изменения в силу</string>
-    <string name="menu_qr">QR-коды</string>
     <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Если ваша мобильная сеть активно блокирует Tor, вы можете использовать мосты Tor для доступа к сети. Выберите один из вариантов для настройки и тестирования:</string>
     <string name="get_bridges_email">Эл. почта</string>
     <string name="apps_mode">VPN-режим</string>

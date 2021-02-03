@@ -51,10 +51,6 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
-
-import org.json.JSONArray;
 import org.torproject.android.core.Languages;
 import org.torproject.android.core.LocaleHelper;
 import org.torproject.android.core.ui.Rotate3dAnimation;
@@ -79,7 +75,6 @@ import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.lang.ref.WeakReference;
 import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -421,10 +416,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         super.attachBaseContext(LocaleHelper.onAttach(base));
     }
 
-    /*
-     * Create the UI Options Menu (non-Javadoc)
-     * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
-     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
@@ -444,25 +435,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
             doExit(); // exit app
         } else if (item.getItemId() == R.id.menu_about) {
             new AboutDialogFragment().show(getSupportFragmentManager(), AboutDialogFragment.TAG);
-        } else if (item.getItemId() == R.id.menu_scan) {
-            IntentIntegrator integrator = new IntentIntegrator(OrbotMainActivity.this);
-            integrator.initiateScan();
-        } else if (item.getItemId() == R.id.menu_share_bridge) {
-
-            String bridges = Prefs.getBridgesList();
-
-            if (bridges != null && bridges.length() > 0) {
-                try {
-                    bridges = "bridge://" + URLEncoder.encode(bridges, "UTF-8");
-
-                    IntentIntegrator integrator = new IntentIntegrator(OrbotMainActivity.this);
-                    integrator.shareText(bridges);
-
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
-            }
-
         } else if (item.getItemId() == R.id.menu_hidden_services) {
             startActivity(new Intent(this, HiddenServicesActivity.class));
         } else if (item.getItemId() == R.id.menu_client_cookies) {
@@ -807,45 +779,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         } else if (request == REQUEST_VPN && response == RESULT_CANCELED) {
             mBtnVPN.setChecked(false);
         }
-
-        IntentResult scanResult = IntentIntegrator.parseActivityResult(request, response, data);
-        if (scanResult != null) {
-            // handle scan result
-
-            String results = scanResult.getContents();
-
-            if (results != null && results.length() > 0) {
-                try {
-
-                    int urlIdx = results.indexOf("://");
-
-                    if (urlIdx != -1) {
-                        results = URLDecoder.decode(results, "UTF-8");
-                        results = results.substring(urlIdx + 3);
-
-                        showAlert(getString(R.string.bridges_updated), getString(R.string.restart_orbot_to_use_this_bridge_) + results, false);
-
-                        setNewBridges(results);
-                    } else {
-                        JSONArray bridgeJson = new JSONArray(results);
-                        StringBuilder bridgeLines = new StringBuilder();
-
-                        for (int i = 0; i < bridgeJson.length(); i++) {
-                            String bridgeLine = bridgeJson.getString(i);
-                            bridgeLines.append(bridgeLine).append("\n");
-                        }
-
-                        setNewBridges(bridgeLines.toString());
-                    }
-
-
-                } catch (Exception e) {
-                    Log.e(TAG, "unsupported", e);
-                }
-            }
-
-        }
-
     }
 
     public void promptSetupBridges() {

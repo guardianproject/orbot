@@ -117,7 +117,6 @@
     <string name="pref_torrc_dialog">Torrc Personalizado</string>
     <string name="bridges_updated">Pontes Atualizadas</string>
     <string name="restart_orbot_to_use_this_bridge_">Por favor reinicie Orbot para habilitar as mundanças</string>
-    <string name="menu_qr">QR Codes</string>
     <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Se sua rede de dados bloqueia o Tor, você pode utilizar um \'Servidor Bridge\' como alternativa contra o bloqueio. SELECIONE umas das opções para configurar e testar…</string>
     <string name="get_bridges_email">Email</string>
     <string name="apps_mode">Modo VPN</string>

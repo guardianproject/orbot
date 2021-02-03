@@ -113,7 +113,6 @@
     <string name="pref_torrc_dialog">Torrc personnalisé</string>
     <string name="bridges_updated">Ponts mis à jour</string>
     <string name="restart_orbot_to_use_this_bridge_">Veuillez redémarrer Orbot pour activer les changements</string>
-    <string name="menu_qr">Codes QR</string>
     <string name="get_bridges_email">Courriel</string>
     <string name="send_email">Envoyer un courriel</string>
     <string name="save">Enregistrer</string>

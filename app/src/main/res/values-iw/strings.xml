@@ -90,7 +90,6 @@
   <string name="pref_transport_title">Tor TransProxy Port</string>
   <string name="pref_transport_dialog">הגדרת הפורט של TransProxy</string>
   <string name="pref_dnsport_title">Tor DNS Port</string>
-  <string name="menu_qr">קוד QR</string>
-  <string name="get_bridges_email">דוא\"ל</string>
+    <string name="get_bridges_email">דוא\"ל</string>
   <string name="send_email">שלח דוא\"ל</string>
 </resources>

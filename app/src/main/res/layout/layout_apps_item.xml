@@ -20,7 +20,6 @@
         android:maxLines="2"
         android:minLines="2"
         android:scrollHorizontally="false"
-        android:text="uid:packages"
         android:textAlignment="center"
         android:textSize="12sp" />
 

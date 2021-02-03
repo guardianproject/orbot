@@ -124,8 +124,7 @@
   <string name="mb">MB</string>
   <string name="bridges_updated">Οι γέφυρες ενημερώθηκαν</string>
   <string name="restart_orbot_to_use_this_bridge_">Παρακαλούμε επανεκκινήστε το Orbot για να ενεργοποιήσετε τις αλλαγές</string>
-  <string name="menu_qr">Κώδικες QR</string>
-  <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Αν το δίκτυο κινητής τηλεφωνίας σας μπλοκάρει ενεργά το Tor, μπορείτε να χρησιμοποιήσετε μια γέφυρα για να έχετε πρόσβαση στο δίκτυο. ΕΠΙΛΕΞΤΕ έναν από τους παραπάνω τύπους γέφυρας για να ενεργοποιήσετε τις γέφυρες.</string>
+    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Αν το δίκτυο κινητής τηλεφωνίας σας μπλοκάρει ενεργά το Tor, μπορείτε να χρησιμοποιήσετε μια γέφυρα για να έχετε πρόσβαση στο δίκτυο. ΕΠΙΛΕΞΤΕ έναν από τους παραπάνω τύπους γέφυρας για να ενεργοποιήσετε τις γέφυρες.</string>
   <string name="get_bridges_email">Email</string>
   <string name="activate">Ενεργοποίηση</string>
   <string name="apps_mode">Λειτουργία VPN</string>

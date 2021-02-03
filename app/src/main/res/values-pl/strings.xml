@@ -113,7 +113,6 @@
     <string name="pref_torrc_dialog">Torrc klienta</string>
     <string name="bridges_updated">Zaktualizowane Bridges</string>
     <string name="restart_orbot_to_use_this_bridge_">Proszę zrestartować Orbot, aby zmiany mogły wejść w życie</string>
-    <string name="menu_qr">Kody QR</string>
     <string name="get_bridges_email">Email</string>
     <string name="apps_mode">Tryb VPN</string>
     <string name="send_email">Wyślij Email</string>
