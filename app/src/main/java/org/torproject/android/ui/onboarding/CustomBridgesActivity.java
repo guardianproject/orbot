@@ -37,10 +37,10 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 
-import static org.torproject.android.MainConstants.EMAIL_TOR_BRIDGES;
-import static org.torproject.android.MainConstants.URL_TOR_BRIDGES;
-
 public class CustomBridgesActivity extends AppCompatActivity implements TextWatcher {
+
+    private static final String EMAIL_TOR_BRIDGES = "bridges@torproject.org";
+    private static final String URL_TOR_BRIDGES = "https://bridges.torproject.org/bridges";
 
     private EditText mEtPastedBridges;
 

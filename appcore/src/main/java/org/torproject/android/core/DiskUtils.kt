@@ -21,7 +21,6 @@ object DiskUtils {
     @Throws(IOException::class)
     fun readFileFromAssets(assetFilename: String, context: Context): String {
         val reader = BufferedReader(InputStreamReader(context.assets.open(assetFilename)))
-        // do reading, usually loop until end of file reading
         val sb = StringBuilder()
         var mLine = reader.readLine()
         while (mLine != null) {
@@ -66,11 +65,17 @@ object DiskUtils {
     fun readFile(contentResolver: ContentResolver, file: File): String = readFileFromInputStream(contentResolver, Uri.fromFile(file))
 
     @JvmStatic
-    fun getOrCreateLegacyBackupDir(): File? {
+    fun getOrCreateLegacyBackupDir(directoryName: String): File? {
         if (Environment.MEDIA_MOUNTED != Environment.getExternalStorageState()) return null
-        val dir = File(Environment.getExternalStorageDirectory(), "Orbot")
+        val dir = File(Environment.getExternalStorageDirectory(), directoryName)
         return if (!dir.isDirectory && !dir.mkdirs()) null else dir
     }
 
+    @JvmStatic
+    fun recursivelyDeleteDirectory(directory: File): Boolean {
+        val contents = directory.listFiles()
+        contents?.forEach { recursivelyDeleteDirectory(it) }
+        return directory.delete()
+    }
 
 }

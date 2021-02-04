@@ -1,4 +1,4 @@
-package org.torproject.android.ui.hiddenservices.dialogs;
+package org.torproject.android.ui.v3onionservice;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Html;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -15,25 +16,27 @@ import androidx.fragment.app.DialogFragment;
 import org.torproject.android.R;
 import org.torproject.android.core.ClipboardUtils;
 import org.torproject.android.core.DiskUtils;
-import org.torproject.android.ui.hiddenservices.HiddenServicesActivity;
 import org.torproject.android.ui.hiddenservices.backup.BackupUtils;
 
 import java.io.File;
 
-public class HSActionsDialog extends DialogFragment {
-    private static final int REQUEST_CODE_WRITE_FILE = 123;
-    private int port;
+public class OnionServiceActionsDialogFragment extends DialogFragment {
+
+    private static final int REQUEST_CODE_WRITE_FILE = 343;
+
+    OnionServiceActionsDialogFragment(Bundle arguments) {
+        super();
+        setArguments(arguments);
+    }
 
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        final Bundle arguments = getArguments();
-        port = Integer.parseInt(arguments.getString(HiddenServicesActivity.BUNDLE_KEY_PORT));
+        Bundle arguments = getArguments();
         AlertDialog ad = new AlertDialog.Builder(getActivity())
                 .setItems(new CharSequence[]{
                         getString(R.string.copy_address_to_clipboard),
-                        getString(R.string.show_auth_cookie),
-                        getString(R.string.backup_service),
+                        Html.fromHtml(getString(R.string.backup_service)),
                         getString(R.string.delete_service)}, null)
                 .setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.dismiss())
                 .setTitle(R.string.hidden_services)
@@ -42,39 +45,16 @@ public class HSActionsDialog extends DialogFragment {
         // done this way so we can startActivityForResult on backup without the dialog vanishing
         ad.getListView().setOnItemClickListener((parent, view, position, id) -> {
             if (position == 0) doCopy(arguments, getContext());
-            else if (position == 1) doShowAuthCookie(arguments, getContext());
-            else if (position == 2) doBackup(arguments, getContext());
-            else if (position == 3) doDelete(arguments);
-            if (position != 2) dismiss();
+            else if (position == 1) doBackup(arguments, getContext());
+            else if (position == 2)
+                new OnionServiceDeleteDialogFragment(arguments).show(getFragmentManager(), OnionServiceDeleteDialogFragment.class.getSimpleName());
+            if (position != 1) dismiss();
         });
-
         return ad;
     }
 
-    private void doDelete(Bundle arguments) {
-        HSDeleteDialog dialog = new HSDeleteDialog();
-        dialog.setArguments(arguments);
-        dialog.show(getFragmentManager(), "HSDeleteDialog");
-    }
-
-    private void doShowAuthCookie(Bundle arguments, Context context) {
-        String auth_cookie_value = arguments.getString(HiddenServicesActivity.BUNDLE_KEY_AUTH_COOKIE_VALUE);
-
-        if (arguments.getInt(HiddenServicesActivity.BUNDLE_KEY_AUTH_COOKIE) == 1) {
-            if (auth_cookie_value == null || auth_cookie_value.length() < 1) {
-                Toast.makeText(context, R.string.please_restart_Orbot_to_enable_the_changes, Toast.LENGTH_LONG).show();
-            } else {
-                HSCookieDialog dialog = new HSCookieDialog();
-                dialog.setArguments(arguments);
-                dialog.show(getFragmentManager(), "HSCookieDialog");
-            }
-        } else {
-            Toast.makeText(context, R.string.auth_cookie_was_not_configured, Toast.LENGTH_LONG).show();
-        }
-    }
-
     private void doCopy(Bundle arguments, Context context) {
-        String onion = arguments.getString(HiddenServicesActivity.BUNDLE_KEY_ONION);
+        String onion = arguments.getString(OnionServiceActivity.BUNDLE_KEY_DOMAIN);
         if (onion == null)
             Toast.makeText(context, R.string.please_restart_Orbot_to_enable_the_changes, Toast.LENGTH_LONG).show();
         else
@@ -82,16 +62,15 @@ public class HSActionsDialog extends DialogFragment {
     }
 
     private void doBackup(Bundle arguments, Context context) {
-        String filename = "hs" + port + ".zip";
-        String onion = arguments.getString(HiddenServicesActivity.BUNDLE_KEY_ONION);
-        if (onion == null) {
+        String filename = "onion_service" + arguments.getString(OnionServiceActivity.BUNDLE_KEY_PORT) + ".zip";
+        if (arguments.getString(OnionServiceActivity.BUNDLE_KEY_DOMAIN) == null) {
             Toast.makeText(context, R.string.please_restart_Orbot_to_enable_the_changes, Toast.LENGTH_LONG).show();
             return;
         }
         if (DiskUtils.supportsStorageAccessFramework()) {
-            Intent createFile = DiskUtils.createWriteFileIntent(filename, "application/zip");
-            startActivityForResult(createFile, REQUEST_CODE_WRITE_FILE);
-        } else { // API 16, 17, 18
+            Intent createFileIntent = DiskUtils.createWriteFileIntent(filename, "application/zip");
+            startActivityForResult(createFileIntent, REQUEST_CODE_WRITE_FILE);
+        } else { // APIs 16, 17, 18
             attemptToWriteBackup(Uri.fromFile(new File(DiskUtils.getOrCreateLegacyBackupDir(getString(R.string.app_name)), filename)));
         }
     }
@@ -107,7 +86,7 @@ public class HSActionsDialog extends DialogFragment {
 
     private void attemptToWriteBackup(Uri outputFile) {
         BackupUtils backupUtils = new BackupUtils(getContext());
-        String backup = backupUtils.createV2ZipBackup(port, outputFile);
+        String backup = backupUtils.createV3ZipBackup(getArguments().getString(OnionServiceActivity.BUNDLE_KEY_PORT), outputFile);
         Toast.makeText(getContext(), backup != null ? R.string.backup_saved_at_external_storage : R.string.error, Toast.LENGTH_LONG).show();
         dismiss();
     }

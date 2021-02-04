@@ -25,8 +25,7 @@ public class OnionListAdapter extends CursorAdapter {
     }
 
     @Override
-    public void bindView(View view, Context context, Cursor cursor) {
-        final Context mContext = context;
+    public void bindView(View view, final Context context, Cursor cursor) {
         int id = cursor.getInt(cursor.getColumnIndex(HSContentProvider.HiddenService._ID));
         final String where = HSContentProvider.HiddenService._ID + "=" + id;
 
@@ -40,12 +39,12 @@ public class OnionListAdapter extends CursorAdapter {
         SwitchCompat enabled = view.findViewById(R.id.hs_switch);
         enabled.setChecked(cursor.getInt(cursor.getColumnIndex(HSContentProvider.HiddenService.ENABLED)) == 1);
         enabled.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            ContentResolver resolver = mContext.getContentResolver();
+            ContentResolver resolver = context.getContentResolver();
             ContentValues fields = new ContentValues();
             fields.put(HSContentProvider.HiddenService.ENABLED, isChecked);
             resolver.update(HSContentProvider.CONTENT_URI, fields, where, null);
 
-            Toast.makeText(mContext, R.string.please_restart_Orbot_to_enable_the_changes, Toast.LENGTH_LONG).show();
+            Toast.makeText(context, R.string.please_restart_Orbot_to_enable_the_changes, Toast.LENGTH_LONG).show();
         });
     }
 

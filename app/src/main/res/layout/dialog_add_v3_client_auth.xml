@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="?dialogPreferredPadding">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/v3_onion"
+        android:hint="@string/onion"
+        android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Small" />
+
+    <org.torproject.android.core.ui.NoPersonalizedLearningEditText
+        android:id="@+id/cookie_onion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/v3_key_hash"
+        android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Small" />
+
+    <org.torproject.android.core.ui.NoPersonalizedLearningEditText
+        android:id="@+id/cookie_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text" />
+</LinearLayout>
