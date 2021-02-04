@@ -76,7 +76,11 @@ public class AddCookieDialog extends DialogFragment {
         String onion = etOnion.getText().toString();
         String cookie = etCookie.getText().toString();
         if (TextUtils.isEmpty(onion.trim()) || TextUtils.isEmpty(cookie.trim())) return false;
-        return BackupUtils.isV2OnionAddressValid(onion);
+        return isV2OnionAddressValid(onion);
+    }
+
+    private static boolean isV2OnionAddressValid(String onionToTest) {
+        return onionToTest.matches("([a-z0-9]{16}).onion");
     }
 
     private void saveData(String domain, String cookie) {

@@ -39,7 +39,6 @@
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <intent-filter>
@@ -52,8 +51,11 @@
             </intent-filter>
             <intent-filter>
                 <action android:name="org.torproject.android.REQUEST_HS_PORT" />
-
                 <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="org.torproject.android.REQUEST_V3_ONION_SERVICE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
             <intent-filter>
                 <action android:name="org.torproject.android.START_TOR" />
@@ -93,6 +95,23 @@
         </activity>
 
         <activity
+            android:name=".ui.v3onionservice.OnionServiceActivity"
+            android:label="@string/hidden_services"
+            android:theme="@style/DefaultTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".OrbotMainActivity" />
+        </activity>
+
+        <activity android:name=".ui.v3onionservice.clientauth.ClientAuthActivity"
+            android:label="@string/v3_client_auth_activity_title"
+            android:theme="@style/DefaultTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".OrbotMainActivity"/>
+        </activity>
+
+        <activity
             android:name=".ui.hiddenservices.ClientCookiesActivity"
             android:label="@string/client_cookies"
             android:theme="@style/DefaultTheme">
@@ -122,6 +141,16 @@
             android:name=".ui.hiddenservices.providers.HSContentProvider"
             android:authorities="org.torproject.android.ui.hiddenservices.providers"
             android:exported="false" />
+
+        <provider
+            android:name=".ui.v3onionservice.OnionServiceContentProvider"
+            android:authorities="org.torproject.android.ui.v3onionservice"
+            android:exported="false" />
+
+        <provider
+            android:authorities="org.torproject.android.ui.v3onionservice.clientauth"
+            android:name=".ui.v3onionservice.clientauth.ClientAuthContentProvider"
+            android:exported="false"/>
 
         <provider
             android:name="androidx.core.content.FileProvider"

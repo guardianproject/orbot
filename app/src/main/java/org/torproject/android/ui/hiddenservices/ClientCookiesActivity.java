@@ -15,7 +15,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -48,16 +47,13 @@ public class ClientCookiesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_activity_client_cookies);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setSupportActionBar(findViewById(R.id.toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mResolver = getContentResolver();
 
-        findViewById(R.id.fab).setOnClickListener(view -> {
-            AddCookieDialog dialog = new AddCookieDialog();
-            dialog.show(getSupportFragmentManager(), "AddCookieDialog");
-        });
+        findViewById(R.id.fab).setOnClickListener(view ->
+            new AddCookieDialog().show(getSupportFragmentManager(), AddCookieDialog.class.getSimpleName()));
 
         mAdapter = new ClientCookiesAdapter(this, mResolver.query(CookieContentProvider.CONTENT_URI, CookieContentProvider.PROJECTION, null, null, null), 0);
 
@@ -113,7 +109,7 @@ public class ClientCookiesActivity extends AppCompatActivity {
     }
 
     private void restoreBackupLegacy() {
-        File backupDir = DiskUtils.getOrCreateLegacyBackupDir();
+        File backupDir = DiskUtils.getOrCreateLegacyBackupDir(getString(R.string.app_name));
 
         try {
             File[] files = backupDir.listFiles((dir, name) -> name.toLowerCase(Locale.ENGLISH).endsWith(".json"));
