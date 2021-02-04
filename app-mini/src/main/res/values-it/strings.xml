@@ -124,8 +124,7 @@
   <string name="mb">MB</string>
   <string name="bridges_updated">Bridge attivati</string>
   <string name="restart_orbot_to_use_this_bridge_">Per favore riavvia Orbot per rendere effettive le modifiche</string>
-  <string name="menu_qr">Codici QR</string>
-  <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Se la tua rete mobile blocca attivamente Tor, puoi usare un \'Server Bridge\' come via alternativa. SELEZIONA una delle opzioni per configurare e testare...</string>
+    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Se la tua rete mobile blocca attivamente Tor, puoi usare un \'Server Bridge\' come via alternativa. SELEZIONA una delle opzioni per configurare e testare...</string>
   <string name="get_bridges_email">Email</string>
   <string name="activate">Attiva</string>
   <string name="apps_mode">Modalità VPN</string>

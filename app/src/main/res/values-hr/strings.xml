@@ -66,8 +66,6 @@
   <string name="use_only_these_specified_nodes">Koristi *samo* ove navedene čvorove</string>
   <string name="bridges">Mostovi</string>
   <string name="use_bridges">Koristi Mostove</string>
-  <string name="ip_address_and_port_of_bridges">IP adresa i port mostova</string>
-  <string name="enter_bridge_addresses">Unesi Adrese Mostova</string>
   <string name="relays">Releji</string>
   <string name="relaying">Prenošenje</string>
   <string name="enable_your_device_to_be_a_non_exit_relay">Omogućite svom uređaju da bude ne-izlazni relej</string>
@@ -115,8 +113,7 @@
   <string name="pref_torrc_dialog">Prilagođeni Torrc</string>
   <string name="bridges_updated">Mostova ažurirano</string>
   <string name="restart_orbot_to_use_this_bridge_">Ponovno pokrenite Orbot da bi omogućili promjene</string>
-  <string name="menu_qr">QR kodovi</string>
-  <string name="get_bridges_email">Email</string>
+    <string name="get_bridges_email">Email</string>
   <string name="send_email">Pošalji email</string>
   <string name="save">Spremi</string>
   <string name="name">Ime</string>

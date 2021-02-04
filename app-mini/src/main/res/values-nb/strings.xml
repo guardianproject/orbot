@@ -121,8 +121,7 @@
   <string name="mb">MB</string>
   <string name="bridges_updated">Broer oppdatert</string>
   <string name="restart_orbot_to_use_this_bridge_">Gjør omstart av Orbot før endringer trer i kraft</string>
-  <string name="menu_qr">QR-koder</string>
-  <string name="get_bridges_email">E-post</string>
+    <string name="get_bridges_email">E-post</string>
     <string name="activate">Aktiver</string>
   <string name="apps_mode">VPN-modus</string>
   <string name="send_email">Send e-post</string>

@@ -125,8 +125,7 @@
   <string name="mb">मब </string>
   <string name="bridges_updated">पुल अपडेटेड </string>
   <string name="restart_orbot_to_use_this_bridge_">परिवर्तन सक्षम करने के लिए Orbot पुनः प्रारंभ करें</string>
-  <string name="menu_qr">QR कोड</string>
-  <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">यदि आपका मोबाइल नेटवर्क सक्रिय रूप से टो को ब्लॉक करता है, तो आप \'पुल सर्वर\' को एक वैकल्पिक तरीके से उपयोग कर सकते हैं। कॉन्फ़िगर और परीक्षण करने के लिए विकल्पों में से एक का चयन करें ..,।</string>
+    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">यदि आपका मोबाइल नेटवर्क सक्रिय रूप से टो को ब्लॉक करता है, तो आप \'पुल सर्वर\' को एक वैकल्पिक तरीके से उपयोग कर सकते हैं। कॉन्फ़िगर और परीक्षण करने के लिए विकल्पों में से एक का चयन करें ..,।</string>
   <string name="get_bridges_email">ईमेल</string>
   <string name="activate">सक्रिय</string>
   <string name="apps_mode">वीपीएन मोड</string>

@@ -47,7 +47,6 @@
     <string name="error">Erro</string>
     <string name="bridges">Pontes</string>
     <string name="use_bridges">Usar Pontes</string>
-    <string name="ip_address_and_port_of_bridges">Endereço de IP e porta das pontes</string>
     <string name="enter_or_port">Inserir OU porta</string>
     <string name="reachable_ports">Portas alcançáveis</string>
     <string name="ports_reachable_behind_a_restrictive_firewall">Portas alcançáveis por detrás de uma Firewal restritiva</string>
@@ -69,7 +68,6 @@
     <string name="pref_socks_title">SOCKS Tor</string>
     <string name="pref_dnsport_title">Porta DNS Tor</string>
     <string name="bridges_updated">Pontes Atualizadas</string>
-    <string name="menu_qr">Códigos QR</string>
     <string name="get_bridges_email">Correio Eletrônico</string>
     <string name="send_email">Enviar Mensagem</string>
     <string name="hidden_services">Serviços ocultos</string>
@@ -169,8 +167,6 @@
     <string name="enable_your_device_to_be_a_non_exit_relay">Ativar o seu aparelho para ser um retransmissor de sem saída</string>
     <string name="relaying">Retransmitindo</string>
     <string name="relays">Retransmissores</string>
-    <string name="enter_bridge_addresses">Insira os Endereços das Pontes</string>
-    <string name="enable_alternate_entrance_nodes_into_the_tor_network">Ative as entradas alternativas para a Rede Tor</string>
     <string name="use_only_these_specified_nodes">Use *somente* estes nós específicos</string>
     <string name="strict_nodes">Nós Estritos</string>
     <string name="enter_exclude_nodes">Digite Nós Excluídos</string>

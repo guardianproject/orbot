@@ -119,8 +119,7 @@
   <string name="mb">MB</string>
   <string name="bridges_updated">Punţi activate</string>
   <string name="restart_orbot_to_use_this_bridge_">Vă rugăm reporniţi Orbot pentru a aplica modificările</string>
-  <string name="menu_qr">Coduri QR</string>
-  <string name="get_bridges_email">Email</string>
+    <string name="get_bridges_email">Email</string>
     <string name="activate">Activează</string>
   <string name="send_email">Trimite email</string>
   <string name="hidden_services">Servicii ascunse</string>

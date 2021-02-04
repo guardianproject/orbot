@@ -67,9 +67,6 @@
     <string name="use_only_these_specified_nodes">Usar *só* este nodos específicos</string>
     <string name="bridges">Pontes</string>
     <string name="use_bridges">Usar Pontes</string>
-    <string name="enable_alternate_entrance_nodes_into_the_tor_network">Activar entradas alternativas a rede Tor</string>
-    <string name="ip_address_and_port_of_bridges">Dirección IP e porto das pontes</string>
-    <string name="enter_bridge_addresses">Introduza Direccións das Pontes</string>
     <string name="relays">Reenvíos</string>
     <string name="relaying">Reenvío</string>
     <string name="enable_your_device_to_be_a_non_exit_relay">Habilite o seu dispositivo para ser un reenvío non de saída</string>
@@ -120,7 +117,6 @@
     <string name="pref_torrc_dialog">Torrc personalizado</string>
     <string name="bridges_updated">Pontes actualizadas</string>
     <string name="restart_orbot_to_use_this_bridge_">Por favor, reinicie Orbot para activar os cambios</string>
-    <string name="menu_qr">Códigod QR</string>
     <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Si a súa rede móbil bloquea Tor de xeito activo, pode utilizar un \'Servidor Ponte\' como modo alternativo. ESCOLL unha das opcións para configurar e probar…</string>
     <string name="get_bridges_email">Email</string>
     <string name="apps_mode">Modo VPN</string>

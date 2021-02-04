@@ -66,8 +66,6 @@
   <string name="use_only_these_specified_nodes">Použít *pouze* tyto specifické nody</string>
   <string name="bridges">Bridge</string>
   <string name="use_bridges">Použít bridge</string>
-    <string name="ip_address_and_port_of_bridges">IP adresy a porty bridgů</string>
-  <string name="enter_bridge_addresses">Zadejte adresy bridgů</string>
   <string name="relays">Relé</string>
   <string name="relaying">Používání relé</string>
   <string name="enable_your_device_to_be_a_non_exit_relay">Spuštění zařízení jako neodchozího relé</string>
@@ -114,8 +112,7 @@
   <string name="pref_torrc_dialog">Vlastní Torrs</string>
   <string name="bridges_updated">Bridge aktualizovány</string>
   <string name="restart_orbot_to_use_this_bridge_">Pro projevení změn restartujte Orbot</string>
-  <string name="menu_qr">QR kódy</string>
-  <string name="get_bridges_email">Email</string>
+    <string name="get_bridges_email">Email</string>
   <string name="send_email">Pošli email</string>
   <string name="save">Uložit</string>
   <string name="name">Jméno</string>

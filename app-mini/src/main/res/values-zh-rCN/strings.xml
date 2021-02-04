@@ -119,8 +119,7 @@
   <string name="mb">MB</string>
   <string name="bridges_updated">网桥已更新</string>
   <string name="restart_orbot_to_use_this_bridge_">请重启 Orbot 以使变更生效</string>
-  <string name="menu_qr">QR码</string>
-  <string name="get_bridges_email">电子邮件</string>
+    <string name="get_bridges_email">电子邮件</string>
     <string name="activate">激活</string>
   <string name="apps_mode">VPN 模式</string>
   <string name="send_email">发送电子邮件</string>

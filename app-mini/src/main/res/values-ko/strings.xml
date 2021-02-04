@@ -119,8 +119,7 @@
   <string name="mb">MB</string>
   <string name="bridges_updated">브릿지가 업데이트되었습니다</string>
   <string name="restart_orbot_to_use_this_bridge_">변경을 완료하려면 Orbot을 재시작하세요</string>
-  <string name="menu_qr">QR 코드</string>
-  <string name="get_bridges_email">이메일</string>
+    <string name="get_bridges_email">이메일</string>
     <string name="activate">활성화</string>
   <string name="send_email">이메일 보내기</string>
   <string name="save">저장</string>

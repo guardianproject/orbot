@@ -67,9 +67,6 @@
     <string name="use_only_these_specified_nodes">Gebruik *enkel* deze opgegeven nodes</string>
     <string name="bridges">Bridges</string>
     <string name="use_bridges">Gebruik bridges</string>
-    <string name="enable_alternate_entrance_nodes_into_the_tor_network">Alternatieve toegangen tot het Tor-netwerk inschakelen</string>
-    <string name="ip_address_and_port_of_bridges">IP-adres en poort van bridges</string>
-    <string name="enter_bridge_addresses">Voer bridge-adres in</string>
     <string name="relays">Relays</string>
     <string name="relaying">Relayen</string>
     <string name="enable_your_device_to_be_a_non_exit_relay">Stel je toestel in staat om een non-exit relay te zijn</string>
@@ -120,7 +117,6 @@
     <string name="pref_torrc_dialog">Aangepaste Torrc</string>
     <string name="bridges_updated">Bridges bijgewerkt</string>
     <string name="restart_orbot_to_use_this_bridge_">Herstart Orbot om de wijzigingen in te schakelen</string>
-    <string name="menu_qr">QR-codes</string>
     <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Als je mobiele netwerk Tor actief blokkeert, kan je een \'bridge-server\' gebruiken als alternatieve toegang. SELECTEER een van de opties om te configureren en te testen..,.</string>
     <string name="get_bridges_email">E-mail</string>
     <string name="apps_mode">VPN-modus</string>

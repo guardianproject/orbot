@@ -66,8 +66,6 @@
     <string name="use_only_these_specified_nodes">Użyj *tylko* tych określonych węzłów</string>
     <string name="bridges">Mostki</string>
     <string name="use_bridges">Użyj mostków</string>
-    <string name="ip_address_and_port_of_bridges">Adres IP i port mostków</string>
-    <string name="enter_bridge_addresses">Wpisz adresy mostków</string>
     <string name="relays">Przekaźniki</string>
     <string name="relaying">Przekazywanie</string>
     <string name="enable_your_device_to_be_a_non_exit_relay">Pozwól swojemu urządzeniu zostać bezwyjściowym przekaźnikiem</string>
@@ -115,7 +113,6 @@
     <string name="pref_torrc_dialog">Torrc klienta</string>
     <string name="bridges_updated">Zaktualizowane Bridges</string>
     <string name="restart_orbot_to_use_this_bridge_">Proszę zrestartować Orbot, aby zmiany mogły wejść w życie</string>
-    <string name="menu_qr">Kody QR</string>
     <string name="get_bridges_email">Email</string>
     <string name="apps_mode">Tryb VPN</string>
     <string name="send_email">Wyślij Email</string>
@@ -130,7 +127,6 @@
     <string name="please_restart_Orbot_to_enable_the_changes">Proszę zrestartować Orbot, aby zmiany mogły wejść w życie</string>
     <string name="disable">Wyłącz</string>
     <string name="enable">Włącz</string>
-    <string name="enable_alternate_entrance_nodes_into_the_tor_network">Włącz alternatywne wejścia do sieci Tor</string>
     <string name="pref_open_proxy_on_all_interfaces_title">Otwórz serwer proxy na wszystkich interfejsach</string>
     <string name="pref_http_dialog">Konfiguracja portu HTTP</string>
     <string name="pref_http_title">Tor HTTP</string>

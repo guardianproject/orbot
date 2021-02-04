@@ -59,8 +59,6 @@
   <string name="use_only_these_specified_nodes">השתמש *רק* בצמתים מצוינים אלו</string>
   <string name="bridges">גשרים</string>
   <string name="use_bridges">השתמש בגשרים</string>
-    <string name="ip_address_and_port_of_bridges">כתובת ה-IP ויציאה של הגשרים</string>
-  <string name="enter_bridge_addresses">הכנס כתובות גשר</string>
   <string name="relays">ממסרים</string>
   <string name="relaying">ממסור</string>
   <string name="enable_your_device_to_be_a_non_exit_relay">אפשר למכשיר שלך להיות תחנת ממסר שאיננה יציאה</string>
@@ -92,7 +90,6 @@
   <string name="pref_transport_title">Tor TransProxy Port</string>
   <string name="pref_transport_dialog">הגדרת הפורט של TransProxy</string>
   <string name="pref_dnsport_title">Tor DNS Port</string>
-  <string name="menu_qr">קוד QR</string>
-  <string name="get_bridges_email">דוא\"ל</string>
+    <string name="get_bridges_email">דוא\"ל</string>
   <string name="send_email">שלח דוא\"ל</string>
 </resources>

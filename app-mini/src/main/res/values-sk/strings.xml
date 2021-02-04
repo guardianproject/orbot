@@ -119,8 +119,7 @@
   <string name="mb">MB</string>
   <string name="bridges_updated">Premostenia aktualizované</string>
   <string name="restart_orbot_to_use_this_bridge_">Prosím reštartujte Orbot, aby sa aktivovali zmeny</string>
-  <string name="menu_qr">QR kódy</string>
-  <string name="get_bridges_email">Email</string>
+    <string name="get_bridges_email">Email</string>
     <string name="activate">Aktivovať</string>
   <string name="send_email">Poslať email</string>
   <string name="save">Uložiť</string>

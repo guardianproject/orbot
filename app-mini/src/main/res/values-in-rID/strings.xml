@@ -119,8 +119,7 @@
   <string name="mb">MB</string>
   <string name="bridges_updated">Bridge Telah Diperbarui</string>
   <string name="restart_orbot_to_use_this_bridge_">Silakan start ulang Orbot untuk mengaktifkan perubahan</string>
-  <string name="menu_qr">Kode QR</string>
-  <string name="get_bridges_email">Email</string>
+    <string name="get_bridges_email">Email</string>
     <string name="activate">Aktivasi</string>
   <string name="send_email">Kirim Email</string>
   <string name="please_restart_Orbot_to_enable_the_changes">Silakan start ulang Orbot untuk mengaktifkan perubahan</string>

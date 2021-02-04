@@ -67,9 +67,6 @@
     <string name="use_only_these_specified_nodes">Erabili *bakarrik* zehaztutako nodo hauek</string>
     <string name="bridges">Zubiak</string>
     <string name="use_bridges">Erabili zubiak</string>
-    <string name="enable_alternate_entrance_nodes_into_the_tor_network">Gaitu ordezko sarrerak Tor sarera</string>
-    <string name="ip_address_and_port_of_bridges">Zubien IP helbidea eta ataka</string>
-    <string name="enter_bridge_addresses">Sartu zubien helbideak</string>
     <string name="relays">Erreleak</string>
     <string name="relaying">Erreleatzea</string>
     <string name="enable_your_device_to_be_a_non_exit_relay">Gaitu zure gailua ez-irteerako errelea izatea</string>
@@ -120,7 +117,6 @@
     <string name="pref_torrc_dialog">Torrc pertsonalizatua</string>
     <string name="bridges_updated">Zubiak eguneratuta</string>
     <string name="restart_orbot_to_use_this_bridge_">Berrabiarazi Orbot aldaketak aplikatzeko</string>
-    <string name="menu_qr">QR Kodeak</string>
     <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Zure sare mugikorrak Tor nahita blokeatzen badu, \'Zubi zerbitzaria\' erabili dezakezu ordezko sarbide gisa. HAUTATU konfiguratzeko aukera bat eta probatu…</string>
     <string name="get_bridges_email">E-mail</string>
     <string name="apps_mode">VPN modua</string>

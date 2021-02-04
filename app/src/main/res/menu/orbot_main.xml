@@ -16,22 +16,6 @@
         yourapp:showAsAction="never" />
 
     <item
-        android:title="@string/menu_qr"
-        yourapp:showAsAction="never">
-        <menu>
-            <item
-                android:id="@+id/menu_scan"
-                android:title="@string/menu_scan"
-                yourapp:showAsAction="never" />
-
-            <item
-                android:id="@+id/menu_share_bridge"
-                android:title="@string/menu_share_bridge"
-                yourapp:showAsAction="never" />
-        </menu>
-    </item>
-
-    <item
         android:title="@string/menu_hidden_services"
         yourapp:showAsAction="never">
         <menu>

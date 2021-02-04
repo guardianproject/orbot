@@ -96,8 +96,7 @@
   <string name="pref_dnsport_title">Tor DNS Port</string>
   <string name="kb">KB</string>
   <string name="mb">MB</string>
-  <string name="menu_qr">קוד QR</string>
-  <string name="get_bridges_email">דוא\"ל</string>
+    <string name="get_bridges_email">דוא\"ל</string>
     <string name="activate">הפעל</string>
   <string name="send_email">שלח דוא\"ל</string>
 </resources>

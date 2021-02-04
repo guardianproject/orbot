@@ -124,8 +124,7 @@
   <string name="mb">מ\"ב</string>
   <string name="bridges_updated">גשרים עודכנו</string>
   <string name="restart_orbot_to_use_this_bridge_">אנא הפעל מחדש את Orbot כדי לאפשר את השינויים</string>
-  <string name="menu_qr">קודי QR</string>
-  <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">אם פעילות הרשת הניידת שלך חוסמת את Tor, אתה יכול להשתמש ב\'שרת גשר\' כדרך חלופית להיכנס. בחר אחת מאפשרויות כדי להגדיר ולבחון...</string>
+    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">אם פעילות הרשת הניידת שלך חוסמת את Tor, אתה יכול להשתמש ב\'שרת גשר\' כדרך חלופית להיכנס. בחר אחת מאפשרויות כדי להגדיר ולבחון...</string>
   <string name="get_bridges_email">דוא\"ל</string>
   <string name="activate">הפעל</string>
   <string name="apps_mode">מצב VPN</string>

@@ -123,8 +123,7 @@
   <string name="mb">МБ</string>
   <string name="bridges_updated">Масты абноўлены</string>
   <string name="restart_orbot_to_use_this_bridge_">Калі ласка, перазапусціце Orbot для ўступу змены ў сілу</string>
-  <string name="menu_qr">QR-коды</string>
-  <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Калі ваша мабільная сетка актыўна блакуе Tor, вы можаце выкарыстоўваць масты Tor для доступу да сеткі. Абярыце адзін з варыянтаў для налады і тэставання:</string>
+    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Калі ваша мабільная сетка актыўна блакуе Tor, вы можаце выкарыстоўваць масты Tor для доступу да сеткі. Абярыце адзін з варыянтаў для налады і тэставання:</string>
   <string name="get_bridges_email">Эл. пошта</string>
   <string name="activate">Актывацыя</string>
   <string name="apps_mode">VPN-рэжым</string>

@@ -43,7 +43,6 @@
     <string name="set_locale_title">Idioma</string>
     <string name="pref_socks_title">SOCKS Tor</string>
     <string name="pref_dnsport_title">Porta DNS Tor</string>
-    <string name="menu_qr">Códigos QR</string>
     <string name="get_bridges_email">Correio Eletrônico</string>
     <string name="send_email">Enviar Mensagem</string>
     <string name="save">Guardar</string>
@@ -111,7 +110,6 @@
     <string name="bridges_updated">Pontes Atualizadas</string>
     <string name="pref_proxy_host_title">Anfitrião Proxy de Saída</string>
     <string name="pref_proxy_host_dialog">Inserir Hospedeiro Proxy</string>
-    <string name="ip_address_and_port_of_bridges">Endereço de IP e porta das pontes</string>
     <string name="pref_proxy_password_summary">Senha do Proxy (Opcional)</string>
     <string name="project_home">Projeto Home(s):</string>
     <string name="pref_proxy_type_title">Tipo de Proxy de Saída</string>
@@ -178,8 +176,6 @@
     <string name="relay_port">Porta Retransmissora</string>
     <string name="enable_your_device_to_be_a_non_exit_relay">Ativar o seu aparelho para ser um retransmissor de sem saída</string>
     <string name="relaying">Retransmitindo</string>
-    <string name="enter_bridge_addresses">Insira os Endereços das Pontes</string>
-    <string name="enable_alternate_entrance_nodes_into_the_tor_network">Ative as entradas alternativas para a Rede Tor</string>
     <string name="strict_nodes">Nós Estritos</string>
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Impressões digitais, apelidos, países e endereços para excluir</string>
     <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Impressões digitais, apelidos, países e endereços para a última etapa</string>

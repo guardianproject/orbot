@@ -65,8 +65,6 @@
   <string name="use_only_these_specified_nodes">Brug *kun* disse specificerede punkter</string>
   <string name="bridges">Broer</string>
   <string name="use_bridges">Brug broer</string>
-    <string name="ip_address_and_port_of_bridges">IP adresser og porte på broer</string>
-  <string name="enter_bridge_addresses">Indtast bro-adresser</string>
   <string name="relays">Relæer</string>
   <string name="relaying">Relæfunktion</string>
   <string name="enable_your_device_to_be_a_non_exit_relay">Lad denne enhed være et ikke-udgangs relæ</string>

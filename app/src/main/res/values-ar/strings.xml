@@ -66,8 +66,6 @@
     <string name="use_only_these_specified_nodes">استخدم فقط تلك النقاط المحددة</string>
     <string name="bridges">الجسور</string>
     <string name="use_bridges">استخدم الجسور</string>
-    <string name="ip_address_and_port_of_bridges">عنوان الانترنت و المنفذ للجسور</string>
-    <string name="enter_bridge_addresses">أدخل عناوين الجسور</string>
     <string name="relays">المرحلات</string>
     <string name="relaying">يرحل</string>
     <string name="enable_your_device_to_be_a_non_exit_relay">اسمح لجهازك ليكون مرحل غير نهائي</string>
@@ -117,7 +115,6 @@
     <string name="pref_torrc_dialog">torrc خاص</string>
     <string name="bridges_updated">تم تحديث الجسور</string>
     <string name="restart_orbot_to_use_this_bridge_">الرجاء إعادة تشغيل أوربوت لتفعيل التعديلات</string>
-    <string name="menu_qr">رمز كيو آر</string>
     <string name="get_bridges_email">البريد الإلكتروني</string>
     <string name="apps_mode">وضع الـ VPN</string>
     <string name="send_email">أرسل بريد الكتروني</string>
