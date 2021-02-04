@@ -66,7 +66,6 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
         pMgr = getPackageManager();
 
         this.setContentView(R.layout.layout_apps);
-        setTitle(R.string.apps_mode);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         listApps = findViewById(R.id.applistview);
         progressBar = findViewById(R.id.progressBar);
