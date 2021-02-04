@@ -69,15 +69,15 @@ public class OrbotVpnManager implements Handler.Callback {
     boolean isStarted = false;
     File filePdnsPid;
     private Thread mThreadVPN;
-    private String mSessionName = "OrbotVPN";
+    private final static String mSessionName = "OrbotVPN";
     private ParcelFileDescriptor mInterface;
     private int mTorSocks = -1;
     private int mTorDns = -1;
     private int pdnsdPort = 8091;
     private ProxyServer mSocksProxyServer;
-    private File filePdnsd;
+    private final File filePdnsd;
     private boolean isRestart = false;
-    private VpnService mService;
+    private final VpnService mService;
 
     public OrbotVpnManager(VpnService service) throws IOException, TimeoutException {
         mService = service;
@@ -291,6 +291,11 @@ public class OrbotVpnManager implements Handler.Callback {
                     if (mIsLollipop)
                         doLollipopAppRouting(builder);
 
+                    // https://developer.android.com/reference/android/net/VpnService.Builder#setMetered(boolean)
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                        builder.setMetered(false);
+                    }
+
                     // Create a new interface using the builder and save the parameters.
                     ParcelFileDescriptor newInterface = builder.setSession(mSessionName)
                             .setConfigureIntent(null) // previously this was set to a null member variable
@@ -380,7 +385,7 @@ public class OrbotVpnManager implements Handler.Callback {
 
     }
 
-    private boolean stopDns() {
+    private void stopDns() {
         if (filePdnsPid != null && filePdnsPid.exists()) {
             List<String> lines;
             try {
@@ -393,7 +398,6 @@ public class OrbotVpnManager implements Handler.Callback {
                 Log.e("OrbotVPN", "error killing dns process", e);
             }
         }
-        return false;
     }
 
     public boolean isStarted() {
