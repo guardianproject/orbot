@@ -443,25 +443,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
             doExit(); // exit app
         } else if (item.getItemId() == R.id.menu_about) {
             new AboutDialogFragment().show(getSupportFragmentManager(), AboutDialogFragment.TAG);
-        } else if (item.getItemId() == R.id.menu_scan) {
-            IntentIntegrator integrator = new IntentIntegrator(OrbotMainActivity.this);
-            integrator.initiateScan();
-        } else if (item.getItemId() == R.id.menu_share_bridge) {
-
-            String bridges = Prefs.getBridgesList();
-
-            if (bridges != null && bridges.length() > 0) {
-                try {
-                    bridges = "bridge://" + URLEncoder.encode(bridges, "UTF-8");
-
-                    IntentIntegrator integrator = new IntentIntegrator(OrbotMainActivity.this);
-                    integrator.shareText(bridges);
-
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
-            }
-
         } else if (item.getItemId() == R.id.menu_v3_onion_services) {
             startActivity(new Intent(this, OnionServiceActivity.class));
         } else if (item.getItemId() == R.id.menu_v3_onion_client_auth) {
