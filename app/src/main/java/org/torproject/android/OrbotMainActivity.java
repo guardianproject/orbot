@@ -312,9 +312,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         downloadText = findViewById(R.id.trafficDown);
         uploadText = findViewById(R.id.trafficUp);
 
-        String zero = String.format("%s / %s", formatCount(0), formatTotal(0));
-        downloadText.setText(zero);
-        uploadText.setText(zero);
+        resetBandwidthStatTextviews();
 
         mBtnStart = findViewById(R.id.btnStart);
         mBtnStart.setOnClickListener(v -> toggleTor());
@@ -342,6 +340,12 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         setCountrySpinner();
 
         mPulsator = findViewById(R.id.pulsator);
+    }
+
+    private void resetBandwidthStatTextviews() {
+        String zero = String.format("%s / %s", formatCount(0), formatTotal(0));
+        downloadText.setText(zero);
+        uploadText.setText(zero);
     }
 
     private void toggleTor() { // UI entry point for  (dis)connecting to Tor
@@ -1056,6 +1060,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                 lblStatus.setText(String.format("Tor v%s", OrbotService.BINARY_TOR_VERSION));
                 mBtnStart.setText(R.string.menu_start);
                 mPulsator.start();
+                resetBandwidthStatTextviews();
 
                 break;
         }
