@@ -66,8 +66,6 @@
   <string name="use_only_these_specified_nodes">*Yalnız* bu xüsusi kəsişmələri istifadə et</string>
   <string name="bridges">Körpülər</string>
   <string name="use_bridges">Körpü İstifadə Et</string>
-    <string name="ip_address_and_port_of_bridges">Körpülərin IP ünvanı və portu</string>
-  <string name="enter_bridge_addresses">Körpü Ünvanlarını Daxil et</string>
   <string name="relays">Keçidlər</string>
   <string name="relaying">Keçidləmə</string>
   <string name="enable_your_device_to_be_a_non_exit_relay">Cihazının son-keçid funksiyasını aktivləşdir</string>
@@ -117,8 +115,7 @@ LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="pref_torrc_dialog">Custom Torrc</string>
   <string name="bridges_updated">Körpülər yeniləndi</string>
   <string name="restart_orbot_to_use_this_bridge_">Lütfən, Orbotu söndürün və yenidən yandırın ki, dəyişikliklər tətbiq edilsin.</string>
-  <string name="menu_qr">QR kodlar</string>
-  <string name="get_bridges_email">Emeyl</string>
+    <string name="get_bridges_email">Emeyl</string>
   <string name="send_email">Emeyl göndərin</string>
   <string name="save">Saxla</string>
   <string name="name">Ad</string>

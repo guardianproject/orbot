@@ -67,9 +67,6 @@
     <string name="use_only_these_specified_nodes">*Nur* diese angegebenen Netzknoten nutzen</string>
     <string name="bridges">Brücken</string>
     <string name="use_bridges">Brücken benutzen</string>
-    <string name="enable_alternate_entrance_nodes_into_the_tor_network">Alternative Zugangswege ins Tor-Netzwerk aktivieren</string>
-    <string name="ip_address_and_port_of_bridges">IP-Adresse und Port der Brücken</string>
-    <string name="enter_bridge_addresses">Brückenadressen eingeben</string>
     <string name="relays">Relais</string>
     <string name="relaying">Weiterleitung</string>
     <string name="enable_your_device_to_be_a_non_exit_relay">Ihr Gerät als Nichtausgangsrelais aktivieren</string>
@@ -120,7 +117,6 @@
     <string name="pref_torrc_dialog">Benutzerdefinierter Torrc</string>
     <string name="bridges_updated">Brücken Aktualisiert</string>
     <string name="restart_orbot_to_use_this_bridge_">Bitte Orbot neu starten, damit die Änderungen wirksam werden</string>
-    <string name="menu_qr">QR-Codes</string>
     <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Wenn Ihr mobiles Netzwerk Tor blockiert, können Sie einen \"Brücken-Server\" als alternativen Weg verwenden. Wählen Sie eine der Optionen zum Konfigurieren und Testen…</string>
     <string name="get_bridges_email">E-Mail</string>
     <string name="apps_mode">VPN-Modus</string>

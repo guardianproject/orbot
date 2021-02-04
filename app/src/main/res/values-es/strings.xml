@@ -67,9 +67,6 @@
     <string name="use_only_these_specified_nodes">Usar *sólo* estos nodos especificados</string>
     <string name="bridges">Bridges (repetidores puente) </string>
     <string name="use_bridges">Usar bridges</string>
-    <string name="enable_alternate_entrance_nodes_into_the_tor_network">Habilitar entradas alternativas hacia el interior de la red Tor</string>
-    <string name="ip_address_and_port_of_bridges">Direcciones IP y puertos de los bridges</string>
-    <string name="enter_bridge_addresses">Introduzca direcciones de bridge</string>
     <string name="relays">Repetidores</string>
     <string name="relaying">Repetición de tráfico</string>
     <string name="enable_your_device_to_be_a_non_exit_relay">Habilitar que su dispositivo no sea repetidor de salida (de la red Tor) </string>
@@ -120,7 +117,6 @@
     <string name="pref_torrc_dialog">torrc personalizado</string>
     <string name="bridges_updated">Bridges actualizados</string>
     <string name="restart_orbot_to_use_this_bridge_">Por favor, reinicie Orbot para habilitar los cambios</string>
-    <string name="menu_qr">Códigos QR</string>
     <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Si su red móvil bloquea Tor activamente, puede usar un \'Servidor Puente\' como alternativa para acceder. SELECCIONE una de las opciones a configurar y probar…</string>
     <string name="get_bridges_email">Correo electrónico</string>
     <string name="apps_mode">Modo VPN</string>

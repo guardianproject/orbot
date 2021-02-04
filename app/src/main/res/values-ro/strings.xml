@@ -66,8 +66,6 @@
   <string name="use_only_these_specified_nodes">Foloseste *doar* nodurile specificate</string>
   <string name="bridges">Punţi</string>
   <string name="use_bridges">Foloseşte punţi</string>
-    <string name="ip_address_and_port_of_bridges">Adresa IP şi port pentru punţi</string>
-  <string name="enter_bridge_addresses">Introdu adresa pentru punte</string>
   <string name="relays">Comutatoare</string>
   <string name="relaying">Comutare</string>
   <string name="enable_your_device_to_be_a_non_exit_relay">Activeaza dispozitivul sa fie un comutator fara iesire</string>
@@ -115,8 +113,7 @@
   <string name="pref_torrc_dialog">Torrc Personalizat</string>
   <string name="bridges_updated">Punţi activate</string>
   <string name="restart_orbot_to_use_this_bridge_">Vă rugăm reporniţi Orbot pentru a aplica modificările</string>
-  <string name="menu_qr">Coduri QR</string>
-  <string name="get_bridges_email">Email</string>
+    <string name="get_bridges_email">Email</string>
   <string name="send_email">Trimite email</string>
   <string name="hidden_services">Servicii ascunse</string>
   <string name="title_activity_hidden_services">Servicii ascunse</string>

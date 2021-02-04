@@ -67,9 +67,6 @@
     <string name="use_only_these_specified_nodes">Använd *enbart* dessa specificerade noder</string>
     <string name="bridges">Broar</string>
     <string name="use_bridges">Använd Broar</string>
-    <string name="enable_alternate_entrance_nodes_into_the_tor_network">Aktivera alternativa ingångar i Tor-nätverket</string>
-    <string name="ip_address_and_port_of_bridges">IP adress och port för broar</string>
-    <string name="enter_bridge_addresses">Skriv in Bro Adresser</string>
     <string name="relays">Reläer</string>
     <string name="relaying">Överföring</string>
     <string name="enable_your_device_to_be_a_non_exit_relay">Aktivera din enhet till att vara ett icke-utgångsrelä</string>
@@ -120,7 +117,6 @@
     <string name="pref_torrc_dialog">Anpassad Torrc</string>
     <string name="bridges_updated">Bryggor uppdaterade</string>
     <string name="restart_orbot_to_use_this_bridge_">Vänligen starta om Orbot för att aktivera ändringarna</string>
-    <string name="menu_qr">QR-koder</string>
     <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Om ditt mobilnät aktivt blockerar Tor kan du använda en \"Bridge Server\" som ett alternativt sätt. VÄLJ ett av alternativen att konfigurera och testa.,.</string>
     <string name="get_bridges_email">E-post</string>
     <string name="apps_mode">VPN-läge</string>

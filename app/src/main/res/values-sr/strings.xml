@@ -67,9 +67,6 @@
   <string name="use_only_these_specified_nodes">Користи САМО ове наведене чворове</string>
   <string name="bridges">Мостови</string>
   <string name="use_bridges">Користи bridge</string>
-    <string name="enable_alternate_entrance_nodes_into_the_tor_network">Омогућите алтернативне улазе у Тор мрежу</string>
-    <string name="ip_address_and_port_of_bridges">IP адреса и порт bridge-а</string>
-  <string name="enter_bridge_addresses">Унесите bridge адресу </string>
   <string name="relays">Релеји</string>
   <string name="relaying">Релејирање</string>
   <string name="enable_your_device_to_be_a_non_exit_relay">Омогућите вашем уређају да буде релеј без излаза</string>
@@ -118,8 +115,7 @@
   <string name="pref_torrc_dialog">Подеси Torrc</string>
   <string name="bridges_updated">Bridges Ажурирање</string>
   <string name="restart_orbot_to_use_this_bridge_">Молимо покрените поново Орбот ради примењивања промена</string>
-  <string name="menu_qr">QR Кодови</string>
-  <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Ако ваша мобилна мрежа активно блокира Тор, можете премошћивати сервером као алтернативни начин уласка.ОДАБЕРИ једну од опција за конфигурацију и тестирање….</string>
+    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Ако ваша мобилна мрежа активно блокира Тор, можете премошћивати сервером као алтернативни начин уласка.ОДАБЕРИ једну од опција за конфигурацију и тестирање….</string>
   <string name="get_bridges_email">Е-пошта</string>
   <string name="apps_mode">VPN Мод</string>
     <string name="send_email">Пошаљи Е-пошту</string>

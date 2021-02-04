@@ -55,8 +55,6 @@
   <string name="use_only_these_specified_nodes">ඉහත සදහන් නොඩු *පමණක්* භාවිතා කරන්න </string>
   <string name="bridges">සේතු</string>
   <string name="use_bridges">සේතු භාවිතා කරන්න </string>
-    <string name="ip_address_and_port_of_bridges">IP ලිපිනය හා සේතුවල පෝට</string>
-  <string name="enter_bridge_addresses">සේතු ලිපිනයන් ඇතුළු කරන්න </string>
   <string name="relays">ප්‍රතියෝජකය</string>
   <string name="relaying">ප්‍රතියෝජනය </string>
   <string name="enable_your_device_to_be_a_non_exit_relay">ඔබේ උපාංගය නික්ම-නොයන ප්‍රතියෝජකයක් බවට සබල කරන්න </string>

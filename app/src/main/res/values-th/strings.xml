@@ -67,9 +67,6 @@
     <string name="use_only_these_specified_nodes">ใช้ *เฉพาะ* โหนดที่ระบุเหล่านี้เท่านั้น</string>
     <string name="bridges">Bridges</string>
     <string name="use_bridges">ใช้งาน Bridges</string>
-    <string name="enable_alternate_entrance_nodes_into_the_tor_network">เปิดใช้งานทางเข้าอื่นเข้าสู่เครือข่าย Tor</string>
-    <string name="ip_address_and_port_of_bridges">ที่อยู่ไอพีและพอร์ตของ Bridges</string>
-    <string name="enter_bridge_addresses">ระบุที่อยู่ของ Bridge</string>
     <string name="relays">รีเลย์</string>
     <string name="relaying">การรีเลย์</string>
     <string name="enable_your_device_to_be_a_non_exit_relay">ทำให้อุปกรณ์ของคุณทำงานเป็นรีเลย์แบบไม่ใช่ทางออก</string>
@@ -120,7 +117,6 @@
     <string name="pref_torrc_dialog">Torrc ที่กำหนดเอง</string>
     <string name="bridges_updated">Bridges อัพเดตแล้ว</string>
     <string name="restart_orbot_to_use_this_bridge_">กรุณาเริ่ม Orbot ใหม่เพื่อให้การเปลี่ยนแปลงใช้งานได้</string>
-    <string name="menu_qr">รหัสคิวอาร์</string>
     <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">หากเครือข่ายโทรศัพท์ของคุณปิดกั้น Tor คุณสามารถใช้ \'เซิร์ฟเวอร์ Bridge\' เป็นตัวเลือกในการเข้าถึงได้ เลือกตัวเลือกหนึ่งเพื่อกำหนดค่าและทดสอบ…</string>
     <string name="get_bridges_email">อีเมล</string>
     <string name="apps_mode">โหมด VPN</string>

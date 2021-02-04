@@ -119,8 +119,7 @@
   <string name="mb">MB</string>
   <string name="bridges_updated">Mostova ažurirano</string>
   <string name="restart_orbot_to_use_this_bridge_">Ponovno pokrenite Orbot da bi omogućili promjene</string>
-  <string name="menu_qr">QR kodovi</string>
-  <string name="get_bridges_email">Email</string>
+    <string name="get_bridges_email">Email</string>
     <string name="activate">Aktiviraj</string>
   <string name="send_email">Pošalji email</string>
   <string name="save">Spremi</string>

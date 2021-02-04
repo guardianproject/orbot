@@ -67,9 +67,6 @@
     <string name="use_only_these_specified_nodes">Користете ги *само* овие наведени јазли</string>
     <string name="bridges">Мостови</string>
     <string name="use_bridges">Користи мостови</string>
-    <string name="enable_alternate_entrance_nodes_into_the_tor_network">Овозможи алтернативен влезови на Tor мрежата</string>
-    <string name="ip_address_and_port_of_bridges">IP-адреса и порта на мостовите</string>
-    <string name="enter_bridge_addresses">Внесете адреси на мостовите</string>
     <string name="relays">Релеи</string>
     <string name="relaying">Препраќање</string>
     <string name="enable_your_device_to_be_a_non_exit_relay">Овозможи го уредот да биде реле без излез</string>
@@ -120,7 +117,6 @@
     <string name="pref_torrc_dialog">Прилагоден torrc</string>
     <string name="bridges_updated">Ажурирани мостови</string>
     <string name="restart_orbot_to_use_this_bridge_">Ве молиме повторно стартувајте го Orbot за да се овозможат промените</string>
-    <string name="menu_qr">QR-кодови</string>
     <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Ако вашата мобилна мрежа активно го блокира Tor, можете да користите „Мост сервер“ како алтернативен пристап. ОДБЕРЕТЕ една од опциите за поставување и тестирање…</string>
     <string name="get_bridges_email">Е-пошта</string>
     <string name="apps_mode">VPN мод</string>
