@@ -101,7 +101,7 @@ public class ClientAuthActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.menu_restore_backup) {
+        if (item.getItemId() == R.id.menu_import_auth_priv) {
             if (DiskUtils.supportsStorageAccessFramework()) {
                 Intent readFileIntent = DiskUtils.createReadFileIntent("text/*");
                 startActivityForResult(readFileIntent, REQUEST_CODE_READ_ZIP_BACKUP);
@@ -134,7 +134,7 @@ public class ClientAuthActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.hs_menu, menu);
+        getMenuInflater().inflate(R.menu.v3_client_auth_menu, menu);
         return true;
     }
 
