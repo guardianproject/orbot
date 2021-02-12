@@ -41,9 +41,6 @@ android {
         lintConfig file("../lint.xml")
     }
 
-    packagingOptions {
-        exclude 'assets/arm/obfs4proxy' //this is redundant
-    }
 }
 
 dependencies {
