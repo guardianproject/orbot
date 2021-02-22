@@ -42,7 +42,6 @@ import com.jaredrummler.android.shell.CommandResult;
 import net.freehaven.tor.control.TorControlCommands;
 import net.freehaven.tor.control.TorControlConnection;
 
-import org.apache.commons.io.FileUtils;
 import org.torproject.android.service.util.CustomShell;
 import org.torproject.android.service.util.CustomTorResourceInstaller;
 import org.torproject.android.service.util.DummyActivity;
@@ -72,6 +71,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Objects;
 import java.util.Random;
 import java.util.StringTokenizer;
 import java.util.concurrent.ExecutorService;
@@ -357,6 +357,28 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 "ajax.aspnetcdn.com", null, true, false, true, 3);
     }
 
+    /*
+    This is to host a snowflake entrance node / bridge
+     */
+    private void runSnowflakeProxy () {
+        
+        // @param capacity Maximum concurrent clients. OPTIONAL. Defaults to 10, if 0.
+// @param broker Broker URL. OPTIONAL. Defaults to https://snowflake-broker.bamsoftware.com/, if empty.
+// @param relay WebSocket relay URL. OPTIONAL. Defaults to wss://snowflake.bamsoftware.com/, if empty.
+// @param stun STUN URL. OPTIONAL. Defaults to stun:stun.stunprotocol.org:3478, if empty.
+// @param logFile Name of log file. OPTIONAL
+// @param keepLocalAddresses Keep local LAN address ICE candidates.
+// @param unsafeLogging Prevent logs from being scrubbed.
+
+        int capacity = 3;
+        String broker = "https://snowflake-broker.bamsoftware.com/";
+        String relay = "wss://snowflake.bamsoftware.com/";
+        String stun = "stun:stun.stunprotocol.org:3478";
+        String logFile = null;
+        boolean keepLocalAddresses = true;
+        boolean unsafeLogging = false;
+        IPtProxy.startSnowflakeProxy(capacity, broker, relay, stun, logFile, keepLocalAddresses, unsafeLogging);
+    }
     /**
      * if someone stops during startup, we may have to wait for the conn port to be setup, so we can properly shutdown tor
      */
@@ -428,19 +450,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
             if (!appCacheHome.exists())
                 appCacheHome.mkdirs();
-
-
-            debug("listing files in DataDirectory: " + appCacheHome.getAbsolutePath());
-            Iterator<File> files = FileUtils.iterateFiles(appCacheHome, null, true);
-            while (files.hasNext()) {
-                File fileNext = files.next();
-                debug(fileNext.getAbsolutePath()
-                        + " length=" + fileNext.length()
-                        + " rw=" + fileNext.canRead() + "/" + fileNext.canWrite()
-                        + " lastMod=" + new Date(fileNext.lastModified()).toLocaleString()
-
-                );
-            }
 
             fileTorRc = new File(appBinHome, TORRC_ASSET_KEY);
             fileControlPort = new File(getFilesDir(), TOR_CONTROL_PORT_FILE);
@@ -721,11 +730,11 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         try {
 
             // STATUS_STARTING is set in onCreate()
-            if (mCurrentStatus == STATUS_STOPPING) {
+            if (mCurrentStatus.equals(STATUS_STOPPING)) {
                 // these states should probably be handled better
                 sendCallbackLogMessage("Ignoring start request, currently " + mCurrentStatus);
                 return;
-            } else if (mCurrentStatus == STATUS_ON && (mLastProcessId != -1)) {
+            } else if (mCurrentStatus.equals(STATUS_ON) && (mLastProcessId != -1)) {
                 showConnectedToTorNetworkNotification();
                 sendCallbackLogMessage("Ignoring start request, already started.");
                 // setTorNetworkEnabled (true);
@@ -948,7 +957,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
         logNotice(getString(R.string.waiting_for_control_port));
 
-        while (conn == null && attempt++ < maxTries && (mCurrentStatus != STATUS_OFF)) {
+        while (conn == null && attempt++ < maxTries && (!mCurrentStatus.equals(STATUS_OFF))) {
             try {
                 controlPort = getControlPort();
                 if (controlPort != -1) {
@@ -1127,10 +1136,12 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                     try {
                         int iconId = R.drawable.ic_stat_tor;
 
-                        if (conn != null && mCurrentStatus == STATUS_ON && Prefs.expandedNotifications())
-                            showToolbarNotification(getString(R.string.newnym), NOTIFY_ID, iconId);
+                        if (conn != null) {
+                            if (mCurrentStatus.equals(STATUS_ON) && Prefs.expandedNotifications())
+                                showToolbarNotification(getString(R.string.newnym), NOTIFY_ID, iconId);
 
-                        conn.signal(TorControlCommands.SIGNAL_NEWNYM);
+                            conn.signal(TorControlCommands.SIGNAL_NEWNYM);
+                        }
 
                     } catch (Exception ioe) {
                         debug("error requesting newnym: " + ioe.getLocalizedMessage());
@@ -1200,52 +1211,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         return intent;
     }
 
-    /*
-     *  Another way to do this would be to use the Observer pattern by defining the
-     *  BroadcastReciever in the Android manifest.
-     */
-
-    /**
-     * private final BroadcastReceiver mNetworkStateReceiver = new BroadcastReceiver() {
-     *
-     * @Override public void onReceive(Context context, Intent intent) {
-     * <p>
-     * if (mCurrentStatus == STATUS_OFF)
-     * return;
-     * <p>
-     * SharedPreferences prefs = Prefs.getSharedPrefs(getApplicationContext());
-     * <p>
-     * boolean doNetworKSleep = prefs.getBoolean(OrbotConstants.PREF_DISABLE_NETWORK, true);
-     * <p>
-     * final ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-     * final NetworkInfo netInfo = cm.getActiveNetworkInfo();
-     * <p>
-     * boolean newConnectivityState = false;
-     * int newNetType = -1;
-     * <p>
-     * if (netInfo!=null)
-     * newNetType = netInfo.getType();
-     * <p>
-     * if(netInfo != null && netInfo.isConnected()) {
-     * // WE ARE CONNECTED: DO SOMETHING
-     * newConnectivityState = true;
-     * }
-     * else {
-     * // WE ARE NOT: DO SOMETHING ELSE
-     * newConnectivityState = false;
-     * }
-     * <p>
-     * if (newConnectivityState != mConnectivity) {
-     * mConnectivity = newConnectivityState;
-     * <p>
-     * //if (mConnectivity)
-     * //  newIdentity();
-     * }
-     * <p>
-     * }
-     * };
-     **/
-
     private StringBuffer processSettingsImpl(StringBuffer extraLines) throws IOException {
         logNotice(getString(R.string.updating_settings_in_tor_service));
         SharedPreferences prefs = Prefs.getSharedPrefs(getApplicationContext());
@@ -1275,17 +1240,17 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                     String proxyPass = prefs.getString("pref_proxy_password", null);
 
                     if ((proxyHost != null && proxyHost.length() > 0) && (proxyPort != null && proxyPort.length() > 0)) {
-                        extraLines.append(proxyType + "Proxy" + ' ' + proxyHost + ':' + proxyPort).append('\n');
+                        extraLines.append(proxyType).append("Proxy").append(' ').append(proxyHost).append(':').append(proxyPort).append('\n');
 
                         if (proxyUser != null && proxyPass != null) {
                             if (proxyType.equalsIgnoreCase("socks5")) {
-                                extraLines.append("Socks5ProxyUsername" + ' ' + proxyUser).append('\n');
-                                extraLines.append("Socks5ProxyPassword" + ' ' + proxyPass).append('\n');
+                                extraLines.append("Socks5ProxyUsername").append(' ').append(proxyUser).append('\n');
+                                extraLines.append("Socks5ProxyPassword").append(' ').append(proxyPass).append('\n');
                             } else
-                                extraLines.append(proxyType + "ProxyAuthenticator" + ' ' + proxyUser + ':' + proxyPort).append('\n');
+                                extraLines.append(proxyType).append("ProxyAuthenticator").append(' ').append(proxyUser).append(':').append(proxyPort).append('\n');
 
                         } else if (proxyPass != null)
-                            extraLines.append(proxyType + "ProxyAuthenticator" + ' ' + proxyUser + ':' + proxyPort).append('\n');
+                            extraLines.append(proxyType).append("ProxyAuthenticator").append(' ').append(proxyUser).append(':').append(proxyPort).append('\n');
                     }
                 }
             }
@@ -1335,25 +1300,25 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         File fileGeoIP6 = new File(appBinHome, GEOIP6_ASSET_KEY);
 
         if (fileGeoIP.exists()) {
-            extraLines.append("GeoIPFile" + ' ' + fileGeoIP.getCanonicalPath()).append('\n');
-            extraLines.append("GeoIPv6File" + ' ' + fileGeoIP6.getCanonicalPath()).append('\n');
+            extraLines.append("GeoIPFile" + ' ').append(fileGeoIP.getCanonicalPath()).append('\n');
+            extraLines.append("GeoIPv6File" + ' ').append(fileGeoIP6.getCanonicalPath()).append('\n');
         }
 
         if (!TextUtils.isEmpty(entranceNodes))
-            extraLines.append("EntryNodes" + ' ' + entranceNodes).append('\n');
+            extraLines.append("EntryNodes" + ' ').append(entranceNodes).append('\n');
 
         if (!TextUtils.isEmpty(exitNodes))
-            extraLines.append("ExitNodes" + ' ' + exitNodes).append('\n');
+            extraLines.append("ExitNodes" + ' ').append(exitNodes).append('\n');
 
         if (!TextUtils.isEmpty(excludeNodes))
-            extraLines.append("ExcludeNodes" + ' ' + excludeNodes).append('\n');
+            extraLines.append("ExcludeNodes" + ' ').append(excludeNodes).append('\n');
 
-        extraLines.append("StrictNodes" + ' ' + (enableStrictNodes ? "1" : "0")).append('\n');
+        extraLines.append("StrictNodes" + ' ').append(enableStrictNodes ? "1" : "0").append('\n');
 
         try {
             if (ReachableAddresses) {
                 String ReachableAddressesPorts = prefs.getString(OrbotConstants.PREF_REACHABLE_ADDRESSES_PORTS, "*:80,*:443");
-                extraLines.append("ReachableAddresses" + ' ' + ReachableAddressesPorts).append('\n');
+                extraLines.append("ReachableAddresses" + ' ').append(ReachableAddressesPorts).append('\n');
             }
 
         } catch (Exception e) {
@@ -1363,14 +1328,14 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
         try {
             if (becomeRelay && (!useBridges) && (!ReachableAddresses)) {
-                int ORPort = Integer.parseInt(prefs.getString(OrbotConstants.PREF_OR_PORT, "9001"));
+                int ORPort = Integer.parseInt(Objects.requireNonNull(prefs.getString(OrbotConstants.PREF_OR_PORT, "9001")));
                 String nickname = prefs.getString(OrbotConstants.PREF_OR_NICKNAME, "Orbot");
                 String dnsFile = writeDNSFile();
 
-                extraLines.append("ServerDNSResolvConfFile" + ' ' + dnsFile).append('\n');
-                extraLines.append("ORPort" + ' ' + ORPort).append('\n');
-                extraLines.append("Nickname" + ' ' + nickname).append('\n');
-                extraLines.append("ExitPolicy" + ' ' + "reject *:*").append('\n');
+                extraLines.append("ServerDNSResolvConfFile").append(' ').append(dnsFile).append('\n');
+                extraLines.append("ORPort").append(' ').append(ORPort).append('\n');
+                extraLines.append("Nickname").append(' ').append(nickname).append('\n');
+                StringBuffer append = extraLines.append("ExitPolicy").append(' ').append("reject *:*").append('\n');
 
             }
         } catch (Exception e) {
