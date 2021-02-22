@@ -168,13 +168,14 @@
     <string name="v3_hosted_services">Hosted v3 Onion Services</string>
     <string name="v3_client_auth">v3 Onion Service Client Authorization</string>
     <string name="v3_client_auth_activity_title">v3 Client Authorization</string>
-    <string name="v3_key_hash">X25519 Private Key in Base 32</string>
+    <string name="v3_key_hash">x25519 Private Key in Base 32</string>
     <string name="v3_onion">v3 .onion Domain</string>
     <string name="v3_backup_key">Backup Client Authorization Key</string>
     <string name="v3_backup_key_warning">Warning: This Could Expose Your Key to Other Apps</string>
     <string name="v3_delete_client_authorization">Delete Client Authorization Key</string>
     <string name="v3_delete_client_authorization_confirm">Delete Client Authorization</string>
     <string name="v3_backup_name_hint">Backup filename…</string>
+    <string name="v3_import_auth_private">Import .auth_private</string>
     <string name="confirm">Confirm</string>
     <string name="title_activity_hidden_services">Onion Services</string>
     <string name="menu_hidden_services">Onion Services</string>
