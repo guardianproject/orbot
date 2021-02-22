@@ -1,3 +1,46 @@
+/** 16.4.1 / 22 February 2021 **/
+
+f6f0f032 (HEAD -> master) update version to 1641100100
+8f0367cd (origin/master, origin/HEAD) Merge branch 'master' of github.com:guardianproject/orbot
+63ea5b12 add experimental snowflake proxy support
+75a64760 some lint cleanups
+f6cf158a removed old obfs4 packaging options from service gradle, not used anymore
+f3bfaa15 small v3 text updates
+ca543b5c Merge branch 'bitmold-no_bridge_in_settings'
+4a8c1863 (bitmold-no_bridge_in_settings) remove unused menu handling code
+2fd6da45 Merge branch 'no_bridge_in_settings' of https://github.com/bitmold/orbot into bitmold-no_bridge_in_settings
+37d7388e Merge pull request #436 from bitmold/clear_bandwidth_on_stop
+8bfad5e3 Merge pull request #432 from bitmold/unmeterd_vpn_androidQ
+75bebd89 Merge branch 'bitmold-v3onions'
+ecb5a930 (bitmold-v3onions) Merge branch 'v3onions' of https://github.com/bitmold/orbot into bitmold-v3onions
+2fb2ed69 Merge branch 'master' of github.com:guardianproject/orbot
+2380ed07 removed QR Codes from main screen, all bridge QR scanning/sharing happens in bridge wizard
+729bffd2 Fixes #431 unmetered VpnService on Android Q+ - removed small warnings in OrbotVpnManager.java
+50c411f1 When tor stops, stop sohwing wrong bandwidth stats
+80e03709 removed bridge config from barebones orbot XML settings, bridges can be configured with more ease from our own interface
+f13b53b8 generate nonsense named auth_privates locally when OrbotService is running
+64c4a462 UI For Create, Backing up Restoring, etc V3 Client Authorizations
+a8b3e167 dialog for adding v3 base32 key hashes
+23b86e51 missing netcipher integration stuff
+a26c18e1 V3 and V2 onions can coexist, Orbot ready to receive V3s from netcipher
+feb3de3b removed unused interface
+85dba3bf Battery permissions on v3 services
+ec11d9db V3 UI Cleanup, Deprecated Stuff Under Menu + filtering of v3 user/app services
+e4a5d02f Backup/Restore for V3 Working on Legacy Orbots with WRITE_EXTERNAL_STORAGE
+30e1442f V3 Backup and Restore working with Storage Access Framework
+7ce30104 Initial work for V3 UI, DB Stuff, etc
+fe69a315 altered code that will break with gradle 5 (resource IDs will be declared non-final in Java)
+6057148c small activity label cleanups (less java)
+5bf2ba89 small bug where 'snowflake' can appear in a field to paste custom bridge config
+3ea17c5b closes #424
+db7dd6d5 (tag: 16.4.0-RC-2a-tor-0.4.4.6) update to version code 1640300301
+de3599c1 increment version code to republish to play
+8727fcca remove externals app download links from fastlane metadata
+ed6a3379 update fastlane changelog for 1640300200
+d9fe4345 (tag: 16.4.0-RC-2-tor-0.4.4.6) updated version code 1640300200
+d5805b08 update full description
+870db533 restore links to youtube video in fastlane play store metadata
+
 /** 16.4.0-RC-1-tor-0.4.4.6 / 12 January 2021 **/
 
 (This one's for Karsten, and his life well lived)
