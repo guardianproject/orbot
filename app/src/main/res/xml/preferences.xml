@@ -291,4 +291,13 @@
             android:title="@string/pref_disable_network_title" />
 
     </PreferenceCategory>
+    <PreferenceCategory android:title="Experimental">
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="pref_be_a_snowflake"
+            android:summary="@string/be_a_snowflake_title"
+            android:title="@string/be_a_snowflake_desc" />
+
+    </PreferenceCategory>
+
 </PreferenceScreen>

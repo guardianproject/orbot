@@ -20,6 +20,7 @@ public class Prefs {
     private final static String PREF_OPEN_PROXY_ON_ALL_INTERFACES = "pref_open_proxy_on_all_interfaces";
     private final static String PREF_USE_VPN = "pref_vpn";
     private final static String PREF_EXIT_NODES = "pref_exit_nodes";
+    private final static String PREF_BE_A_SNOWFLAKE = "pref_be_a_snowflake";
 
     private static SharedPreferences prefs;
 
@@ -59,6 +60,14 @@ public class Prefs {
 
     public static String getDefaultLocale() {
         return prefs.getString(PREF_DEFAULT_LOCALE, Locale.getDefault().getLanguage());
+    }
+
+    public static boolean beSnowflakeProxy () {
+        return prefs.getBoolean(PREF_BE_A_SNOWFLAKE,false);
+    }
+
+    public static void setBeSnowflakeProxy (boolean beSnowflakeProxy) {
+        putBoolean(PREF_BE_A_SNOWFLAKE,beSnowflakeProxy);
     }
 
     public static void setDefaultLocale(String value) {

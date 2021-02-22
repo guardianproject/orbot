@@ -351,7 +351,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         return bridgeList.contains("snowflake");
     }
 
-    private void startSnowflakeProxy() {
+    private void startSnowflakeClient() {
         //this is using the current, default Tor snowflake infrastructure
         IPtProxy.startSnowflake("stun:stun.l.google.com:19302", "https://snowflake-broker.azureedge.net/",
                 "ajax.aspnetcdn.com", null, true, false, true, 3);
@@ -361,7 +361,8 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     This is to host a snowflake entrance node / bridge
      */
     private void runSnowflakeProxy () {
-        
+
+
         // @param capacity Maximum concurrent clients. OPTIONAL. Defaults to 10, if 0.
 // @param broker Broker URL. OPTIONAL. Defaults to https://snowflake-broker.bamsoftware.com/, if empty.
 // @param relay WebSocket relay URL. OPTIONAL. Defaults to wss://snowflake.bamsoftware.com/, if empty.
@@ -1659,8 +1660,10 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                         IPtProxy.startObfs4Proxy("DEBUG", false, false);
 
                     if (useIPtSnowflakeProxy())
-                        startSnowflakeProxy();
+                        startSnowflakeClient();
 
+                    if (Prefs.beSnowflakeProxy())
+                        runSnowflakeProxy();
 
                     startTor();
                     replyWithStatus(mIntent);

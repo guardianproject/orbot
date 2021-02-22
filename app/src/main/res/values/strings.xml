@@ -263,4 +263,6 @@
     <string name="paste_bridges">Paste Bridges</string>
     <string name="use_qr_code">Use QR Code</string>
     <string name="bridge_snowflake">Connect through other Tor peers (experimental)</string>
+    <string name="be_a_snowflake_title">Run Snowflake Proxy</string>
+    <string name="be_a_snowflake_desc">Allow other Tor users to connect to Tor through your device</string>
 </resources>
