@@ -34,7 +34,6 @@ import android.widget.Toast;
 import com.runjva.sourceforge.jsocks.protocol.ProxyServer;
 import com.runjva.sourceforge.jsocks.server.ServerAuthenticatorNone;
 
-import org.apache.commons.io.IOUtils;
 import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.OrbotService;
 import org.torproject.android.service.R;
@@ -44,7 +43,6 @@ import org.torproject.android.service.util.Prefs;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
@@ -52,7 +50,6 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.InetAddress;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeoutException;
 
 import static org.torproject.android.service.TorServiceConstants.ACTION_START;
@@ -79,7 +76,7 @@ public class OrbotVpnManager implements Handler.Callback {
     private boolean isRestart = false;
     private final VpnService mService;
 
-    public OrbotVpnManager(VpnService service) throws IOException, TimeoutException {
+    public OrbotVpnManager(VpnService service) {
         mService = service;
         filePdnsd = CustomNativeLoader.loadNativeBinary(service.getApplicationContext(), PDNSD_BIN, new File(service.getFilesDir(), PDNSD_BIN));
         Tun2Socks.init();
@@ -116,7 +113,7 @@ public class OrbotVpnManager implements Handler.Callback {
         if (intent != null) {
             String action = intent.getAction();
 
-            if (!TextUtils.isEmpty(action)) {
+            if (action != null) {
                 if (action.equals(ACTION_START_VPN) || action.equals(ACTION_START)) {
                     Log.d(TAG, "starting VPN");
 
@@ -387,9 +384,14 @@ public class OrbotVpnManager implements Handler.Callback {
 
     private void stopDns() {
         if (filePdnsPid != null && filePdnsPid.exists()) {
-            List<String> lines;
+            ArrayList<String> lines = new ArrayList<>();
             try {
-                lines = IOUtils.readLines(new FileReader(filePdnsPid));
+                BufferedReader reader = new BufferedReader(new FileReader(filePdnsPid));
+
+                String line = null;
+                while ((line = reader.readLine())!= null)
+                    lines.add(line);
+
                 String dnsPid = lines.get(0);
                 VpnUtils.killProcess(dnsPid, "");
                 filePdnsPid.delete();

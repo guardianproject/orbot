@@ -500,13 +500,8 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
             }).start();
 
-            try {
-                mVpnManager = new OrbotVpnManager(this);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (TimeoutException e) {
-                e.printStackTrace();
-            }
+            mVpnManager = new OrbotVpnManager(this);
+
         } catch (Exception e) {
             //what error here
             Log.e(OrbotConstants.TAG, "Error installing Orbot binaries", e);
