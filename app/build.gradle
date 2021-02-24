@@ -52,7 +52,7 @@ android {
     }
     lintOptions {
         checkReleaseBuilds false
-        abortOnError true
+        abortOnError false
 
         htmlReport true
         xmlReport false
