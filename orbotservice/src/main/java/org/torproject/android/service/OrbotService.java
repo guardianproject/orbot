@@ -65,6 +65,8 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -351,10 +353,45 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         return bridgeList.contains("snowflake");
     }
 
+    private static HashMap<String,String> mFronts;
+
+    public static void loadCdnFronts (Context context)
+    {
+
+        if (mFronts == null)
+        {
+            mFronts = new HashMap<>();
+
+            try {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(context.getAssets().open("fronts")));
+                String line = null;
+                while ((line = reader.readLine())!=null)
+                {
+                    String[] front = line.split(" ");
+
+                    //add some code to test the connection here
+
+                    mFronts.put(front[0],front[1]);
+
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static String getCdnFront (Context context, String service)
+    {
+
+        return mFronts.get(service);
+    }
+
+
     private void startSnowflakeClient() {
         //this is using the current, default Tor snowflake infrastructure
-        IPtProxy.startSnowflake("stun:stun.l.google.com:19302", "https://snowflake-broker.azureedge.net/",
-                "ajax.aspnetcdn.com", null, true, false, true, 3);
+        String front = getCdnFront(this,"snowflake");
+        IPtProxy.startSnowflake("stun:stun.l.google.com:19302", front,
+                null, null, true, false, true, 3);
     }
 
     /*
@@ -501,6 +538,8 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             }).start();
 
             mVpnManager = new OrbotVpnManager(this);
+
+            loadCdnFronts(this);
 
         } catch (Exception e) {
             //what error here

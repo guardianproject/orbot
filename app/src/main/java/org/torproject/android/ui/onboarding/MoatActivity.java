@@ -36,6 +36,7 @@ import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -151,6 +152,8 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
 
         LocalBroadcastManager.getInstance(this).registerReceiver(mBroadcastReceiver,
                 new IntentFilter(TorServiceConstants.ACTION_STATUS));
+
+        OrbotService.loadCdnFronts(this);
     }
 
     @Override
@@ -184,9 +187,10 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
         IPtProxy.startObfs4Proxy("DEBUG", false, false);
 
         ProxiedHurlStack phs = new ProxiedHurlStack("127.0.0.1", (int) IPtProxy.MeekSocksPort,
-                "url=https://onion.azureedge.net/;front=ajax.aspnetcdn.com", "\0");
+          "url=" + OrbotService.getCdnFront(this,"moat-url")
+                  + ";front=" + OrbotService.getCdnFront(this,"moat-front"), "\0");
 
-        mQueue = Volley.newRequestQueue(MoatActivity.this, phs);
+        mQueue = Volley.newRequestQueue(this, phs);
 
         if (mCaptcha == null) {
             new Handler(Looper.getMainLooper()).postDelayed(this::fetchCaptcha, 1000);
@@ -416,7 +420,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
 
                 Log.d(MoatActivity.class.getSimpleName(), "Set up Volley queue. host=" + host + ", port=" + port);
 
-                mQueue = Volley.newRequestQueue(this, new ProxiedHurlStack(host, port));
+             //   mQueue = Volley.newRequestQueue(this, new ProxiedHurlStack(host, port));
 
                 sendIntentToService(TorServiceConstants.CMD_SIGNAL_HUP);
 
