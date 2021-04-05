@@ -80,7 +80,7 @@ android {
             dimension "free"
             minSdkVersion 16
             applicationId 'org.torproject.android'
-            targetSdkVersion 30
+            targetSdkVersion 29
             versionCode 1641200300
 
             versionName getVersionName()
