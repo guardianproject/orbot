@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.OpenableColumns;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -22,7 +23,6 @@ import org.torproject.android.R;
 import org.torproject.android.core.DiskUtils;
 import org.torproject.android.core.LocaleHelper;
 import org.torproject.android.ui.hiddenservices.backup.BackupUtils;
-import org.torproject.android.ui.hiddenservices.backup.ZipUtilities;
 
 import java.io.File;
 import java.util.List;
@@ -35,6 +35,9 @@ public class ClientAuthActivity extends AppCompatActivity {
 
     private ContentResolver mResolver;
     private ClientAuthListAdapter mAdapter;
+
+    static final String CLIENT_AUTH_FILE_EXTENSION = ".auth_private",
+            CLIENT_AUTH_SAF_MIME_TYPE = "*/*";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -69,14 +72,22 @@ public class ClientAuthActivity extends AppCompatActivity {
         if (requestCode == REQUEST_CODE_READ_ZIP_BACKUP && resultCode == RESULT_OK) {
             Uri uri = data.getData();
             if (uri != null) {
+                Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+                int nameIndex = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+                cursor.moveToFirst();
+                String filename = cursor.getString(nameIndex);
+                cursor.close();
+                if (!filename.endsWith(CLIENT_AUTH_FILE_EXTENSION)) {
+                    Toast.makeText(this, R.string.error, Toast.LENGTH_LONG).show();
+                    return;
+                }
                 String authText = DiskUtils.readFileFromInputStream(getContentResolver(), uri);
                 new BackupUtils(this).restoreClientAuthBackup(authText);
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
             List<Fragment> frags = getSupportFragmentManager().getFragments();
-            if (frags != null)
-                for (Fragment f : frags) f.onActivityResult(requestCode, resultCode, data);
+            for (Fragment f : frags) f.onActivityResult(requestCode, resultCode, data);
         }
     }
 
@@ -103,7 +114,8 @@ public class ClientAuthActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menu_import_auth_priv) {
             if (DiskUtils.supportsStorageAccessFramework()) {
-                Intent readFileIntent = DiskUtils.createReadFileIntent("text/*");
+                // unfortunately no good way to filter .auth_private files
+                Intent readFileIntent = DiskUtils.createReadFileIntent(CLIENT_AUTH_SAF_MIME_TYPE);
                 startActivityForResult(readFileIntent, REQUEST_CODE_READ_ZIP_BACKUP);
             } else { // APIs 16, 17, 18
                 doRestoreLegacy();

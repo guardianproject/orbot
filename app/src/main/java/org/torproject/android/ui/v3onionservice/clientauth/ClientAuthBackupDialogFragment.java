@@ -3,9 +3,13 @@ package org.torproject.android.ui.v3onionservice.clientauth;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.Toast;
@@ -23,6 +27,9 @@ import java.io.File;
 public class ClientAuthBackupDialogFragment extends DialogFragment {
 
     private NoPersonalizedLearningEditText etFilename;
+    private TextWatcher fileNameTextWatcher;
+
+    private static final String BUNDLE_KEY_FILENAME = "filename";
 
     public ClientAuthBackupDialogFragment() {
     }
@@ -50,18 +57,52 @@ public class ClientAuthBackupDialogFragment extends DialogFragment {
         etFilename = new NoPersonalizedLearningEditText(ad.getContext(), null);
         etFilename.setSingleLine(true);
         etFilename.setHint(R.string.v3_backup_name_hint);
+        if (savedInstanceState != null)
+            etFilename.setText(savedInstanceState.getString(BUNDLE_KEY_FILENAME, ""));
+        fileNameTextWatcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                ad.getButton(DialogInterface.BUTTON_POSITIVE).setEnabled(!TextUtils.isEmpty(s.toString().trim()));
+            }
+        };
+        etFilename.addTextChangedListener(fileNameTextWatcher);
         etFilename.setLayoutParams(params);
         container.addView(etFilename);
         ad.setView(container);
         return ad;
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(BUNDLE_KEY_FILENAME, etFilename.getText().toString());
+    }
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        fileNameTextWatcher.afterTextChanged(etFilename.getEditableText());
+    }
+
+
+
     private void doBackup() {
         String filename = etFilename.getText().toString().trim();
-        if (filename.equals("")) filename = "filename";
-        filename += ".auth_private";
+        if (!filename.endsWith(ClientAuthActivity.CLIENT_AUTH_FILE_EXTENSION))
+            filename += ClientAuthActivity.CLIENT_AUTH_FILE_EXTENSION;
         if (DiskUtils.supportsStorageAccessFramework()) {
-            Intent createFileIntent = DiskUtils.createWriteFileIntent(filename, "text/*");
+            Intent createFileIntent = DiskUtils.createWriteFileIntent(filename, ClientAuthActivity.CLIENT_AUTH_SAF_MIME_TYPE);
             getActivity().startActivityForResult(createFileIntent, REQUEST_CODE_WRITE_FILE);
         } else { // APIs 16, 17, 18
             attemptToWriteBackup(Uri.fromFile(new File(DiskUtils.getOrCreateLegacyBackupDir("Orbot"), filename)));
