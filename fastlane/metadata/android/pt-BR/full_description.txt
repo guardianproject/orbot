@@ -2,17 +2,19 @@ Orbot
 Proxy com Tor
 Orbot é um aplicativo de proxy livre que permite que outras aplicações usem a internet de forma mais segura. O Orbot usa o Tor para criptografar o tráfego da Internet e usando uma série de caminhos alternativos através de uma série de computadores ao redor do mundo escondendo o seu computador. Tor é um software livre de rede aberta que ajuda você a se defender contra algumas formas de vigilâncias que ameaçam a liberdade, privacidade, atividades comerciais, confidenciais e relacionamentos. Assim como segurança imposta pelo Estado de análise de tráfego.
 
-Orbot é o único aplicativo que cria uma conexão verdadeiramente privada com a internet. Como o New York Times descreveu: "Quando uma comunicação chega a partir da rede Tor, você não saberá de onde vem ou de onde partiu." Tor ganhou em 2012 o prêmio Electronic Frontier Foundation (EFF) Pioneer Award.
+Orbot é o único aplicativo que cria uma conexão verdadeiramente privada com a internet. Como o New York Times descreveu, “quando uma comunicação chega a partir da rede Tor, você não saberá de onde vem ou de onde partiu.”
+
+Tor ganhou em 2012 o prêmio Electronic Frontier Foundation (EFF) Pioneer Award.
 
 ★ NÃO ACEITE NENHUM SUBSTITUTO: O Orbot sem dúvida é a forma mais segura de usar a Internet em dispositivos com o sistema operacional Android (Tvs, tablets, celulares e etc ). O Orbot transfere o seu tráfego criptografado várias vezes entre computadores espalhados geograficamente em todo o mundo, em vez de conectá-lo diretamente ao seu destino, assim como fazem as VPNs e proxies. Esse processo demora um pouco mais se comparado a uma conexão normal, porém é o preço que se paga para ter mais privacidade e proteção de identidade, vale a pena esperar.
-★ PRIVACIDADE PARA APLICATIVOS: Qualquer aplicativo instalado pode usar o Tor se ele tiver a possibilidade  de sair por um proxy, usando as configurações encontradas aqui: https://guardianproject.info/apps/orbot/ Use o Orbot com o Twitter, ou tente pesquisas privadas com DuckDuckGo: https://play.google.com/store/apps/details?id=com.duckduckgo.mobile.android
-★ PRIVACIDADE PARA TODOS: O Tor pode ajudá-lo a pesquisar confidencialmente um concorrente, contornar o bloqueio do Facebook na escola, ou contornar um firewall para assistir esportes no trabalho.
+★ PRIVACIDADE PARA OS APLICATIVOS: Qualquer aplicativo instalado pode usar o Tor através da função Orbot VPN, caso haja a possibilidade de sair através de um proxy, usando as configurações encontradas aqui: https://guardianproject.info/apps/orbot/ Use o Orbot com o Twitter, ou tente pesquisas privadas com DuckDuckGo: https://play.google.com/store/apps/details?id=com.duckduckgo.mobile.android
+★ PRIVACIDADE PARA TODOS: O Orbot impede que alguém que esteja observando a sua conexão saiba quais os aplicativos você está usando ou quais os sites você acessa. Tudo o que a pessoa que esteja monitorando o seu tráfego de rede poderá ver, é que você está usando o Tor.
 ★ UMA FORMA FÁCIL DE TER PRIVACIDADE: Confira a nossa diversão, passo a passo de modo interativo: https://guardianproject.info/howto/browsefreely
 ★ É OFICIAL: Esta é uma versão oficial do serviço de roteamento cebola Tor para o Android.
 
 *** Nós amamos comentários ***
 ★ QUEM SOMOS: O Guardian Project é um grupo de desenvolvedores que fazem aplicações móveis seguras e de código aberto para um amanhã melhor.
-★ CÓDIGO ABERTO: O Orbot é um software livre. Dê uma olhada em nosso código fonte, ou juntar-se a nossa comunidade para torná-lo ainda melhor: https://gitweb.torproject.org/orbot.git
+★ CÓDIGO ABERTO: O Orbot é um software livre. Dê uma olhada em nosso código fonte, ou juntar-se a nossa comunidade para torná-lo ainda melhor: https://github.com/guardianproject/orbot ou https://gitweb.torproject.org/orbot.git
 SOBRE O PROJETO Tor: https://TorProject.org
 ★ MANDE-NOS UMA MENSAGEM: Será que estamos desprezando o seu recurso favorito? Encontrou algum bug chato? Gostaríamos muito de ouvir de você! Envie-nos um e-mail: root@guardianproject.info
 

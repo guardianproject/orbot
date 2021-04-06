@@ -1,20 +1,16 @@
-Orbot, diğer uygulamaların interneti daha güvenli kullanmasını sağlayan özgür ve ücretsiz bir proxy uygulamasıdır. Orbot, internet trafiğinizi şifrelemek için Tor'u kullanır ve dünya üzerindeki bir dizi bilgisayardan sektirerek gizler. Tor; kişisel özgürlüğü ve gizliliği, gizli ticari faaliyetleri ve ilişkileri, devlet güvenliğini tehdit eden ve trafik analizi olarak bilinen bir tür ağ gözetimine karşı savunmanıza yardımcı olan özgür bir yazılım ve açık bir ağdır.
+Orbot başka uygulamaların İnterneti daha güvenli olarak kullanmasını sağlayan özgür bir vekil sunucu uygulamasıdır. Orbot, Tor kullanarak İnternet trafiğinizi şifreler ve dünya üzerindeki pek çok farklı bilgisayardan geçirerek gizler. Tor kişisel özgürlüğünüze ve bilgilerinize, gizli ticari işlemlerinize ve ilişkilerinize, devlet güvenliğine karşı tehdit oluşturan ve trafik analizi olarak bilinen ağ izlemelerine karşı koruma sağlayan bir özgür yazılım ve açık ağdır.
 
-*** SAMSUNG GALAXY KULLANICILARI ***
-Bazı aygıtlarda, Orbot'un ihtiyaç duyduğu ağ bağlantı noktasını bir Samsung uygulaması dinlemektedir. Google Play'den 'SockStat'ı indirin. 9050 numaralı bağlantı noktasındaki uygulamayı arayın. Zorla durdurun ve bu uygulamayı devre dışı bırakın. Hata ayıklama bölümündeki Orbot'un "Tor SOCKS" ayarını 9051 veya AUTO olarak değiştirmeyi de deneyebilirsiniz. Düzeltmeyi bu videoda görebilirsiniz: https://www.youtube.com/watch?v=yK-nK4F67_g
-*****
+Orbot, gerçekten özel bir internet bağlantısı oluşturan tek uygulamadır. New York Times'ın yazdığı gibi, “bir iletişim Tor üzerinden gerçekleştiğinde, nereden ve kimden geldiğini asla bilemezsiniz.”
 
-Orbot gerçekten özel bir internet bağlantısı oluşturan tek uygulamadır. New York Times'ın yazdığı gibi, “bir iletişim Tor'dan ulaştığında, nereden ve kimden geldiğini asla bilemezsiniz.” Tor, 2012 Electronic Frontier Foundation (EFF) Öncü Ödülü'nü kazandı.
+Tor, 2012 Electronic Frontier Foundation (EFF) Pioneer Ödülü'nü kazandı.
 
 ★ ALTERNATİF KABUL ETMEYİN: Orbot, Android'de interneti kullanmanın en güvenli yoludur. Bitti. Orbot, VPN'ler ve vekil sunucular gibi sizi doğrudan bağlamak yerine, şifreli trafiğinizi dünyanın dört bir yanındaki bilgisayarlardan birkaç kez sektirir. Bu işlem biraz daha uzun sürer, ancak kullanılabilir en güçlü gizlilik ve kimlik koruması beklemeye değer.
 ★ UYGULAMALAR İÇİN GİZLİLİK: Kurulu herhangi bir uygulama, burada bulunan ayarları kullanarak bir proxy özelliği varsa Tor'u kullanabilir: https://goo.gl/2OA1y Twitter ile Orbot'u kullanın veya DuckDuckGo ile özel internet aramasını deneyin: https://goo.gl/lgh1p
 ★ HERKES İÇİN GİZLİLİK: Tor, gizli olarak bir rakibi araştırmanıza, okuldaki Facebook engellemesini geçmenize veya iş yerinde spor izlemek için bir güvenlik duvarını atlamanıza yardımcı olabilir.
-★ KOLAYLAŞTIRILMIŞ GİZLİLİK: Eğlenceli, etkileşimli ve adım adım açıklamalı kılavuzumuza göz atın: https://guardianproject.info/howto/browsefreely
-★ RESMİ: Android için Tor onion yönlendirme servisinin resmi sürümüdür.
 
 *** Geri Bildirimi Seviyoruz ***
 ★ HAKKIMIZDA: Guardian Project, daha iyi bir yarın için güvenli mobil uygulamalar ve açık kaynaklı kodlar yazan bir geliştirici grubudur.
-★ AÇIK-KAYNAK: Orbot özgür bir yazılımdır. Kaynak kodumuza bir göz atın veya daha iyi hale getirmek için topluluğa katılın: https://gitweb.torproject.org/orbot.git
+★ AÇIK-KAYNAK: Orbot özgür bir yazılımdır. Kaynak kodumuza bir göz atın veya daha iyi hale getirmek için topluluğa katılın: https://github.com/guardianproject/orbot veya https://gitweb.torproject.org/orbot.git
 ★ BİZE MESAJ GÖNDERİN: En sevdiğiniz özellik eksik mi? Can sıkıcı bir hata mı buldunuz? Duymak isteriz! Bize bir e-posta gönderin: support@guardianproject.info
 
 *** Sorumluluk reddi ***
