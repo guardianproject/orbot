@@ -39,7 +39,6 @@ public class BridgeWizardActivity extends AppCompatActivity {
     private static HostTester runningHostTest;
     private RadioButton mBtDirect;
     private RadioButton mBtObfs4;
-    private RadioButton mBtMeek;
     private RadioButton mBtCustom;
     private RadioButton mBtSnowflake;
     private View mBtnConfgiureCustomBridges;
@@ -112,14 +111,6 @@ public class BridgeWizardActivity extends AppCompatActivity {
         mBtObfs4.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (!isChecked) return;
             Prefs.setBridgesList("obfs4");
-            Prefs.putBridgesEnabled(true);
-            testBridgeConnection();
-        });
-
-        mBtMeek = findViewById(R.id.btnBridgesMeek);
-        mBtMeek.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (!isChecked) return;
-            Prefs.setBridgesList("meek");
             Prefs.putBridgesEnabled(true);
             testBridgeConnection();
         });
@@ -252,8 +243,6 @@ public class BridgeWizardActivity extends AppCompatActivity {
         Log.d(getClass().getSimpleName(), String.format("bridgesEnabled=%b, bridgesList=%s", Prefs.bridgesEnabled(), Prefs.getBridgesList()));
         if (noBridgesSet()) {
             mBtDirect.setChecked(true);
-        } else if (Prefs.getBridgesList().equals("meek")) {
-            mBtMeek.setChecked(true);
         } else if (Prefs.getBridgesList().equals("obfs4")) {
             mBtObfs4.setChecked(true);
         } else if (Prefs.getBridgesList().equals("snowflake")) {
