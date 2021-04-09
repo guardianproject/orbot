@@ -390,8 +390,11 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     private void startSnowflakeClient() {
         //this is using the current, default Tor snowflake infrastructure
         String front = getCdnFront(this,"snowflake");
-        IPtProxy.startSnowflake("stun:stun.l.google.com:19302", front,
+        String stunServer = getCdnFront(this, "snowflake-stun");
+
+        IPtProxy.startSnowflake(stunServer, front,
                 null, null, true, false, true, 3);
+
     }
 
     /*
