@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Orbot</string>
-    <string name="app_description">Orbot — це вільна програма для проксі-з\'єднань, яка дозволяє іншим додаткам безпечніше використовувати інтернет-з\'єднання. Orbot використовує Tor для шифрування інтернет-трафіку, який далі приховується під час пересилання через кілька комп\'ютерів у різних частинах планети. Tor є вільним програмним забезпеченням, а також відкритою мережею, що допомагає захиститися від мережевого стеження, яке загрожує особистій свободі та приватному життю, конфіденційній бізнес-діяльності і контактам, а також державної програми безпеки, що відома як аналіз трафіку.</string>
+    <string name="app_description">Orbot — це вільний застосунок для проксі-з\'єднань, яка дозволяє іншим застосункам безпечніше використовувати інтернет-з\'єднання. Orbot використовує Tor для шифрування інтернет-трафіку, який далі приховується під час пересилання через кілька комп\'ютерів у різних частинах планети. Tor є вільним програмним забезпеченням, а також відкритою мережею, що допомагає захиститися від мережевого стеження, яке загрожує особистій свободі та приватному життю, конфіденційній бізнес-діяльності й контактам, а також державної програми безпеки, що відома як аналіз трафіку.</string>
     <string name="status_starting_up">Запуск Orbot…</string>
     <string name="status_activated">Під\'єднаний до мережі Tor</string>
     <string name="status_disabled">«Orbot» від\'єднаний</string>
@@ -89,7 +89,7 @@
     <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
     <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
     <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
-    <string name="hidden_service_request">Програма хоче відкрити прихований серверний порт %1$s у мережу Tor. Це безпечно, якщо ви довіряєте застосунку.</string>
+    <string name="hidden_service_request">Програма хоче відкрити прихований сервер на порту %1$s у мережу Tor. Це безпечно, якщо ви довіряєте застосунку.</string>
     <string name="found_existing_tor_process">знайдено наявний процес Tor…</string>
     <string name="something_bad_happened">Виникла якась помилка. Перевірте лог</string>
     <string name="unable_to_read_hidden_service_name">неможливо прочитати ім\'я прихованої служби</string>
@@ -132,7 +132,7 @@
     <string name="done">Зроблено!</string>
     <string name="copy_address_to_clipboard">Скопіювати адресу в буфер обміну</string>
     <string name="show_auth_cookie">Показати авторизацію реп\'яшків</string>
-    <string name="backup_service">Резервне копіювання</string>
+    <string name="backup_service">Резервне копіювання <i>(Попередження: це може надати конфігурацію вашої служби іншим програмам)</i></string>
     <string name="delete_service">Вилучити Сервіс</string>
     <string name="backup_saved_at_external_storage">Резервна копія збережена на зовнішній пам\'яті</string>
     <string name="backup_restored">Резервне копіювання відновлено</string>
@@ -211,4 +211,21 @@
     <string name="pref_reduced_circuit_padding">Скорочене заповнення ланцюжка</string>
     <string name="pref_circuit_padding_summary">Увімкнути заповнення ланцюжка для захисту від деяких форм аналізу трафіку</string>
     <string name="pref_circuit_padding">Заповнення ланцюжка</string>
+    <string name="be_a_snowflake_desc">Дозволити іншим користувачам Tor підключатися до Tor через ваш пристрій</string>
+    <string name="be_a_snowflake_title">Запуск проксі-сервера Snowflake</string>
+    <string name="confirm">Схвалити</string>
+    <string name="v3_import_auth_private">Імпорт .auth_private</string>
+    <string name="v3_backup_name_hint">Назва файлу резервної копії…</string>
+    <string name="v3_delete_client_authorization_confirm">Видалити авторизацію клієнта</string>
+    <string name="v3_delete_client_authorization">Видалити ключ авторизації клієнта</string>
+    <string name="v3_backup_key_warning">Попередження. Це може відкрити ваш ключ для інших програм</string>
+    <string name="v3_backup_key">Резервне копіювання ключа авторизації клієнта</string>
+    <string name="v3_onion">Домен .onion v3</string>
+    <string name="v3_key_hash">x25519 Закритий ключ у базі 32</string>
+    <string name="v3_client_auth_activity_title">Авторизація клієнта v3</string>
+    <string name="v3_client_auth">Авторизація клієнта служби Onion v3</string>
+    <string name="v3_hosted_services">Хостинг служб Onion v3</string>
+    <string name="v2_hidden_services">Служби Onion v2 (застарілі)</string>
+    <string name="deny">Заборонити</string>
+    <string name="allow">Длзволити</string>
 </resources>

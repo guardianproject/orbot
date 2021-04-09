@@ -1,0 +1,4 @@
+* 支持 OnionServices v3
+* 桥接配置的改进
+* 确保 VPN 模式被视为“未计量连接”
+* 实验性模式，允许作为 Snowflake 代理运行

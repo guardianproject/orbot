@@ -1,0 +1,4 @@
+* OnionServices v3 desteği
+* köprü yapılandırması iyileştirmeleri
+* VPN modunun"kotasız bağlantı" olarak değerlendirilmesini sağlar
+* Snowflake vekil sunucusu olarak çalışmayı etkinleştirmek için deneysel mod

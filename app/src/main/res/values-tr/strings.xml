@@ -89,7 +89,7 @@
     <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
     <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
     <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
-    <string name="hidden_service_request">Bir uygulama Tor ağına %1$s gizli sunucu bağlantı noktasını açmak istiyor. Uygulamaya güveniyorsanız bu işlem güvenlidir.</string>
+    <string name="hidden_service_request">Bir uygulama %1$s numaralı bağlantı noktasındaki onion sunucusunu Tor ağına açmak istiyor. Uygulamaya güveniyorsanız bu güvenlidir.</string>
     <string name="found_existing_tor_process">varolan bir Tor işlemi bulundu…</string>
     <string name="something_bad_happened">Bir şeyler ters gitti. Günlük kayıtlarına bakın</string>
     <string name="unable_to_read_hidden_service_name">gizli hizmet adı okunamadı</string>
@@ -132,7 +132,7 @@
     <string name="done">Tamam!</string>
     <string name="copy_address_to_clipboard">Adresi panoya kopyala</string>
     <string name="show_auth_cookie">Kimlik doğrulama çerezini görüntüle</string>
-    <string name="backup_service">Hizmeti Yedekle</string>
+    <string name="backup_service">Hizmeti Yedekle <i>(Uyarı: Bu, Diğer Uygulamaların Hizmet Yapılandırmanıza Erişebilmesine Neden Olabilir)</i></string>
     <string name="delete_service">Hizmeti Sil</string>
     <string name="backup_saved_at_external_storage">Yedek dış depolamaya kaydedildi</string>
     <string name="backup_restored">Yedek geri yüklendi</string>
@@ -211,4 +211,21 @@
     <string name="kibibyte">KiB</string>
     <string name="mebibyte_per_second">MiB/s</string>
     <string name="kibibyte_per_second">KiB/s</string>
+    <string name="be_a_snowflake_desc">Diğer Tor kullanıcılarının aygıtınız üzerinden Tor\'a bağlanmasına izin verin</string>
+    <string name="be_a_snowflake_title">Snowflake Vekil Sunucusu Çalıştır</string>
+    <string name="confirm">Onayla</string>
+    <string name="v3_import_auth_private">.auth_private içe aktar</string>
+    <string name="v3_backup_name_hint">Yedekleme dosyası adı…</string>
+    <string name="v3_delete_client_authorization_confirm">İstemci Yetkilendirmesini Sil</string>
+    <string name="v3_delete_client_authorization">İstemci Yetkilendirme Anahtarını Sil</string>
+    <string name="v3_backup_key_warning">Uyarı: Bu, Diğer Uygulamaların Anahtarınıza Erişebilmesine Neden Olabilir</string>
+    <string name="v3_backup_key">İstemci Yetkilendirme Anahtarını Yedekle</string>
+    <string name="v3_onion">v3 .onion Etki Alanı</string>
+    <string name="v3_key_hash">Base 32 olarak x25519 Özel Anahtarı</string>
+    <string name="v3_client_auth_activity_title">v3 İstemci Yetkilendirmesi</string>
+    <string name="v3_client_auth">v3 Onion Hizmeti İstemci Yetkilendirmesi</string>
+    <string name="v3_hosted_services">Barındırılan v3 Onion Hizmetleri</string>
+    <string name="v2_hidden_services">v2 Onion Hizmetleri (Kullanımdan Kaldırıldı)</string>
+    <string name="deny">Reddet</string>
+    <string name="allow">İzin ver</string>
 </resources>
