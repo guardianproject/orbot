@@ -132,7 +132,7 @@
     <string name="local_port">本地端口</string>
     <string name="done">完成！</string>
     <string name="copy_address_to_clipboard">复制地址到剪贴板</string>
-    <string name="backup_service">备份服务</string>
+    <string name="backup_service">备份服务<i>（警告：这可能会把你的服务配置暴露给其他应用程序）</i></string>
     <string name="delete_service">删除服务</string>
     <string name="backup_saved_at_external_storage">备份已保存在外部存储</string>
     <string name="backup_restored">备份已恢复</string>
@@ -181,7 +181,7 @@
     <string name="menu_hidden_services">洋葱服务</string>
     <string name="title_activity_hidden_services">洋葱服务</string>
     <string name="hidden_services">洋葱服务</string>
-    <string name="hidden_service_request">一个应用程序想要打开洋葱服务器%1$s端口到Tor网络。如果你信任这个应用程序，这是安全的。</string>
+    <string name="hidden_service_request">一个应用程序想要在端口%1$s上打开到 Tor 网络的洋葱服务器。如果你信任这个应用程序，这是安全的。</string>
     <string name="pref_connection_padding">连接填充</string>
     <string name="hosted_services">托管的服务</string>
     <string name="onion">.onion 地址</string>
@@ -211,4 +211,21 @@
     <string name="kibibyte">KiB</string>
     <string name="mebibyte_per_second">MiB/秒</string>
     <string name="kibibyte_per_second">KiB/秒</string>
+    <string name="be_a_snowflake_desc">允许其他 Tor 用户通过你的设备连接到 Tor</string>
+    <string name="be_a_snowflake_title">运行 Snowflake 代理</string>
+    <string name="confirm">确认</string>
+    <string name="v3_import_auth_private">导入 .auth_private</string>
+    <string name="v3_backup_name_hint">备份文件名…</string>
+    <string name="v3_delete_client_authorization_confirm">删除客户端授权</string>
+    <string name="v3_delete_client_authorization">删除客户端授权密钥</string>
+    <string name="v3_backup_key_warning">警告：这可能会把你的密钥暴露给其他应用程序</string>
+    <string name="v3_backup_key">备份客户端授权密钥</string>
+    <string name="v3_onion">v3 .onion 域名</string>
+    <string name="v3_key_hash">Base 32 编码的 x25519 私钥</string>
+    <string name="v3_client_auth_activity_title">v3 客户端授权</string>
+    <string name="v3_client_auth">v3 Onion 服务客户端授权</string>
+    <string name="v3_hosted_services">托管的 v3 Onion 服务</string>
+    <string name="v2_hidden_services">v2 Onion 服务 (已废弃)</string>
+    <string name="deny">拒绝</string>
+    <string name="allow">允许</string>
 </resources>
