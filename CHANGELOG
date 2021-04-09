@@ -1,4 +1,35 @@
-/** 16.4.1 / 22 February 2021 **/
+/** 16.4.1-RC-1 / 9 April 2021 / c80f18ae2508b73fcbfd6e09b394a2a196de7459 **/
+
+c80f18ae (HEAD -> master, tag: 16.4.1-RC-1-tor.0.4.4.6) update version code to 1641300100
+d6a19903 update configurations for fronting
+b46195c1 remove Meek supprt from briges (MSFT Azure no longer supports domain fronting)
+aa73c3e9 (origin/master, origin/HEAD) Merge pull request #447 from weblate/weblate-guardianproject-orbot
+c774b7e4 Translated using Weblate (Chinese (Simplified))
+12593ca0 Translated using Weblate (Turkish)
+5a5b4032 Translated using Weblate (Portuguese (Brazil))
+af0e1173 Translated using Weblate (German)
+376b9723 Translated using Weblate (Ukrainian)
+a0200a31 Merge branch 'eighthave-weblate'
+acaa371a (eighthave-weblate) Translated using Weblate (Greek)
+3a46fc69 Translated using Weblate (Czech)
+8bb0f99b Translated using Weblate (French)
+3615774f Translated using Weblate (Ukrainian)
+91fc7b34 Translated using Weblate (Portuguese (Brazil))
+b7aec53f Translated using Weblate (Turkish)
+4b699958 Translated using Weblate (Norwegian Bokmål)
+44b4fcaa Translated using Weblate (Bengali)
+99620a0b Merge branch 'master' of github.com:guardianproject/orbot
+74b9d2f5 add configuration file for domain fronting
+b35008f3 move SDK back to 29 so that snowflake-go code can work
+ce3f265d Merge pull request #442 from bitmold/v3_backup_bugs
+894c7ba1 - Fixed .auth_privates being saved as .auth_private.txt - Better input validation on backing up client auth keys - Fixed minor bug where backup filename would clear on device rotation
+fc6a0ea7 (newport/master) don't abort on lint
+03ed1207 (tag: 16.4.1-BETA-3-tor.0.4.4.6) update version code to 1641200300
+b6c63ea8 for #441, enable queries keyword in manifest, to enable package lookup on Android 11
+3fccd4f5 add changelog fastlane metadata
+405c45a1 (tag: 16.4.1-BETA-2-tor.0.4.4.6) update version code to 1641200200
+7ef0f913 remove IOUtils dependency and unneeded exception catching
+38e95914 (tag: 16.4.1-BETA-1-tor.0.4.4.6) update changelog for 16.4.1
 
 f6f0f032 (HEAD -> master) update version to 1641100100
 8f0367cd (origin/master, origin/HEAD) Merge branch 'master' of github.com:guardianproject/orbot
