@@ -1,0 +1,3 @@
+- removed Meek "Cloud" bridge option due to no longer being supported
+- more improvements to Onion V3 service support
+- for #441, fixes app lookup for app-based VPN selection
