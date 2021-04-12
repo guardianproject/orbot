@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Html;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -33,7 +34,7 @@ public class HSActionsDialog extends DialogFragment {
                 .setItems(new CharSequence[]{
                         getString(R.string.copy_address_to_clipboard),
                         getString(R.string.show_auth_cookie),
-                        getString(R.string.backup_service),
+                        Html.fromHtml(getString(R.string.backup_service)),
                         getString(R.string.delete_service)}, null)
                 .setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.dismiss())
                 .setTitle(R.string.hidden_services)
