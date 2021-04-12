@@ -65,14 +65,10 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Objects;
 import java.util.Random;
 import java.util.StringTokenizer;
@@ -936,7 +932,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 + " --defaults-torrc " + fileTorRc.getAbsolutePath()
                 + " -f " + fileTorrcCustom.getAbsolutePath();
 
-        int exitCode = -1;
+        int exitCode;
 
         try {
             exitCode = exec(torCmdString + " --verify-config", true);
@@ -1373,7 +1369,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 extraLines.append("ServerDNSResolvConfFile").append(' ').append(dnsFile).append('\n');
                 extraLines.append("ORPort").append(' ').append(ORPort).append('\n');
                 extraLines.append("Nickname").append(' ').append(nickname).append('\n');
-                StringBuffer append = extraLines.append("ExitPolicy").append(' ').append("reject *:*").append('\n');
+                extraLines.append("ExitPolicy").append(' ').append("reject *:*").append('\n');
 
             }
         } catch (Exception e) {
@@ -1424,8 +1420,8 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                         debug("Adding hidden service on port: " + HSLocalPort);
 
                         torrc.append("HiddenServiceDir" + ' ' + hsDirPath).append('\n');
-                        torrc.append("HiddenServicePort" + ' ' + HSOnionPort + " 127.0.0.1:" + HSLocalPort).append('\n');
                         torrc.append("HiddenServiceVersion 2").append('\n');
+                        torrc.append("HiddenServicePort" + ' ' + HSOnionPort + " 127.0.0.1:" + HSLocalPort).append('\n');
 
                         if (HSAuthCookie == 1)
                             torrc.append("HiddenServiceAuthorizeClient stealth " + HSname).append('\n');

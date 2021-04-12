@@ -187,7 +187,17 @@ public class BackupUtils {
             else
                 mResolver.update(OnionServiceContentProvider.CONTENT_URI, fields, OnionServiceContentProvider.OnionService.PORT + "=" + port, null);
             dbService.close();
-            Toast.makeText(mContext, R.string.backup_restored, Toast.LENGTH_LONG).show();
+
+            configFile.delete();
+            if (v3Path.renameTo(new File(v3BasePath, "/v3" + port))) {
+                Toast.makeText(mContext, R.string.backup_restored, Toast.LENGTH_LONG).show();
+            } else {
+                // collision, clean up files
+                for (File file: v3Path.listFiles())
+                    file.delete();
+                v3Path.delete();
+                Toast.makeText(mContext, mContext.getString(R.string.backup_port_exist, port), Toast.LENGTH_LONG).show();
+            }
         } catch (IOException | JSONException e) {
             e.printStackTrace();
             Toast.makeText(mContext, R.string.error, Toast.LENGTH_LONG).show();
@@ -309,8 +319,8 @@ public class BackupUtils {
         returnCursor.close();
 
         String v3Dir = backupName.substring(0, backupName.lastIndexOf('.'));
-        File v3Paath = new File(getV3BasePath().getAbsolutePath(), v3Dir);
-        if (new ZipUtilities(null, zipUri, mResolver).unzip(v3Paath.getAbsolutePath()))
+        File v3Path = new File(getV3BasePath().getAbsolutePath(), v3Dir);
+        if (new ZipUtilities(null, zipUri, mResolver).unzip(v3Path.getAbsolutePath()))
             extractConfigFromUnzippedBackupV3(backupName);
         else
             Toast.makeText(mContext, R.string.error, Toast.LENGTH_LONG).show();
