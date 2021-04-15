@@ -497,8 +497,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             if (!mV3AuthBasePath.isDirectory())
                 mV3AuthBasePath.mkdirs();
 
-            mEventHandler = new TorEventHandler(this);
-
             if (mNotificationManager == null) {
                 mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             }
@@ -853,14 +851,43 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             @Override
             public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
                 torService = ((TorService.LocalBinder) iBinder).getService();
-                conn = torService.getTorControlConnection();
-                addEventHandler();
+                try {
+                    conn = torService.getTorControlConnection();
+                    while (conn == null) {
+                        Log.v(TAG, "Waiting for Tor Control Connection...");
+                        Thread.sleep(500);
+                        conn = torService.getTorControlConnection();
+                    }
+                    mEventHandler = new TorEventHandler(OrbotService.this);
+                    logNotice("adding control port event handler");
+                    conn.setEventHandler(mEventHandler);
+                    ArrayList<String> events = new ArrayList<>(Arrays.asList(
+                            TorControlCommands.EVENT_OR_CONN_STATUS,
+                            TorControlCommands.EVENT_CIRCUIT_STATUS,
+                            TorControlCommands.EVENT_NOTICE_MSG,
+                            TorControlCommands.EVENT_WARN_MSG,
+                            TorControlCommands.EVENT_ERR_MSG,
+                            TorControlCommands.EVENT_BANDWIDTH_USED,
+                            TorControlCommands.EVENT_NEW_DESC,
+                            TorControlCommands.EVENT_ADDRMAP));
+                    if (Prefs.useDebugLogging()) {
+                        events.add(TorControlCommands.EVENT_DEBUG_MSG);
+                        events.add(TorControlCommands.EVENT_INFO_MSG);
+                    }
+                    conn.setEvents(events);
+                    logNotice("SUCCESS added control port event handler");
+                } catch (IOException | InterruptedException e) {
+                    e.printStackTrace();
+                    stopTorOnError(e.getLocalizedMessage());
+                    conn = null;
+                }
             }
 
             @Override
             public void onServiceDisconnected(ComponentName componentName) {
                 conn = null;
                 torService = null;
+                mEventHandler = null;
             }
 
             @Override
@@ -868,6 +895,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 stopTorOnError("Tor was unable to start: " + "onNullBinding");
                 conn = null;
                 torService = null;
+                mEventHandler = null;
             }
 
             @Override
@@ -875,6 +903,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 stopTorOnError("Tor was unable to start: " + "onBindingDied");
                 conn = null;
                 torService = null;
+                mEventHandler = null;
             }
         };
 
@@ -911,15 +940,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         if (conn != null) {
             logNotice("SUCCESS connected to Tor control port.");
             try {
-                //       conn.setEvents(Arrays.asList(new String[]{"DEBUG","STATUS_CLIENT","STATUS_GENERAL","BW"}));
-
-                if (Prefs.useDebugLogging())
-                    conn.setEvents(Arrays.asList("CIRC", "STREAM", "ORCONN", "BW", "INFO", "NOTICE", "WARN", "DEBUG", "ERR", "NEWDESC", "ADDRMAP"));
-                else
-                    conn.setEvents(Arrays.asList("CIRC", "STREAM", "ORCONN", "BW", "NOTICE", "ERR", "NEWDESC", "ADDRMAP"));
-
-                //  sendCallbackLogMessage(getString(R.string.tor_process_starting) + ' ' + getString(R.string.tor_process_complete));
-
                 String confSocks = conn.getInfo("net/listeners/socks");
                 StringTokenizer st = new StringTokenizer(confSocks, " ");
 
@@ -968,25 +988,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             } catch (IOException e) {
                 debug("error send active: " + e.getLocalizedMessage());
             }
-	}
-    }
-
-    public void addEventHandler() {
-        try {
-            logNotice("adding control port event handler");
-            conn.setEventHandler(mEventHandler);
-            conn.setEvents(Arrays.asList(
-                    TorControlCommands.EVENT_OR_CONN_STATUS,
-                    TorControlCommands.EVENT_CIRCUIT_STATUS,
-                    TorControlCommands.EVENT_NOTICE_MSG,
-                    TorControlCommands.EVENT_WARN_MSG,
-                    TorControlCommands.EVENT_ERR_MSG,
-                    TorControlCommands.EVENT_BANDWIDTH_USED));
-            logNotice("SUCCESS added control port event handler");
-        } catch (IOException e) {
-            e.printStackTrace();
-            stopTorOnError(e.getLocalizedMessage());
-            conn = null;
         }
     }
 
