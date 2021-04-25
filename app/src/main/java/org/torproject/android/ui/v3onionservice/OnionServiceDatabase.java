@@ -8,7 +8,7 @@ public class OnionServiceDatabase extends SQLiteOpenHelper {
 
     static final String DATABASE_NAME = "onion_service",
             ONION_SERVICE_TABLE_NAME = "onion_services";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     private static final String ONION_SERVICES_CREATE_SQL =
             "CREATE TABLE " + ONION_SERVICE_TABLE_NAME + " (" +
@@ -18,7 +18,8 @@ public class OnionServiceDatabase extends SQLiteOpenHelper {
                     "onion_port INTEGER, " +
                     "created_by_user INTEGER DEFAULT 0, " +
                     "enabled INTEGER DEFAULT 1, " +
-                    "port INTEGER);";
+                    "port INTEGER, " +
+                    "filepath TEXT);";
 
     OnionServiceDatabase(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -31,6 +32,9 @@ public class OnionServiceDatabase extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        if (newVersion > oldVersion) {
+            db.execSQL("ALTER TABLE " + ONION_SERVICE_TABLE_NAME + " ADD COLUMN filepath text");
+        }
     }
 
 
