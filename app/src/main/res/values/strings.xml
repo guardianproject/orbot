@@ -190,6 +190,7 @@
     <string name="delete_service">Delete Service</string>
     <string name="backup_saved_at_external_storage">Backup saved at external storage</string>
     <string name="backup_restored">Backup restored</string>
+    <string name="backup_port_exist">Error: An Onion Service is Already Using Port %s</string>
     <string name="restore_backup">Restore Backup</string>
     <string name="create_a_backup_first">Create a backup first</string>
     <string name="start_tor_again_for_finish_the_process">Start Tor again for finish the process</string>

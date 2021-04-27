@@ -9,7 +9,7 @@ public class HSDatabase extends SQLiteOpenHelper {
 
     public static final String HS_DATA_TABLE_NAME = "hs_data";
     public static final String HS_CLIENT_COOKIE_TABLE_NAME = "hs_client_cookie";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 4;
     private static final String DATABASE_NAME = "hidden_services";
     private static final String HS_DATA_TABLE_CREATE =
             "CREATE TABLE " + HS_DATA_TABLE_NAME + " (" +
@@ -21,7 +21,8 @@ public class HSDatabase extends SQLiteOpenHelper {
                     "auth_cookie_value TEXT, " +
                     "created_by_user INTEGER DEFAULT 0, " +
                     "enabled INTEGER DEFAULT 1, " +
-                    "port INTEGER);";
+                    "port INTEGER, " +
+                    "filepath TEXT);";
 
     private static final String HS_CLIENT_COOKIE_TABLE_CREATE =
             "CREATE TABLE " + HS_CLIENT_COOKIE_TABLE_NAME + " (" +
@@ -42,6 +43,8 @@ public class HSDatabase extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        if (newVersion > oldVersion) {
+            db.execSQL("ALTER TABLE " + HS_DATA_TABLE_NAME + " ADD COLUMN filepath TEXT");
+        }
     }
 }
-
