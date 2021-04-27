@@ -127,7 +127,7 @@
     <string name="name">Navn</string>
     <string name="done">Ferdig!</string>
     <string name="copy_address_to_clipboard">Kopier adresse til utklippstavle</string>
-    <string name="backup_service">Sikkerhetskopieringstjeneste</string>
+    <string name="backup_service">Sikkerhetskopieringstjeneste <i>(Advarsel: Dette kan eksponere tjenesteoppsettet ditt til andre programmer)</i></string>
     <string name="delete_service">Slett tjeneste</string>
     <string name="backup_restored">Sikkerhetskopi gjenopprettet</string>
     <string name="restore_backup">Gjenopprett sikkerhetskopi</string>
