@@ -138,7 +138,7 @@
     <string name="done">Terminé</string>
     <string name="copy_address_to_clipboard">Copier l’adresse dans le presse-papiers</string>
     <string name="show_auth_cookie">Afficher le témoin d’authentification</string>
-    <string name="backup_service">Sauvegarder le service</string>
+    <string name="backup_service">Sauvegarder le service <i>(Avertissement : cela pourrait exposer la configuration de votre service à d\'autres applications)</i></string>
     <string name="delete_service">Supprimer le service</string>
     <string name="backup_saved_at_external_storage">La sauvegarde a été enregistrée sur la mémoire externe</string>
     <string name="backup_restored">La sauvegarde a été restaurée</string>
@@ -211,4 +211,19 @@
     <string name="mebibyte_per_second">Mio/s</string>
     <string name="kibibyte_per_second">Kio/s</string>
     <string name="get_bridges_email_request">Demander des ponts par courriel</string>
+    <string name="be_a_snowflake_desc">Autoriser d\'autres utilisateurs Tor à se connecter à Tor via votre appareil</string>
+    <string name="be_a_snowflake_title">Exécuter le proxy Snowflake</string>
+    <string name="confirm">Confirmer</string>
+    <string name="v3_import_auth_private">Importer .auth_private</string>
+    <string name="v3_backup_name_hint">Nom du fichier de sauvegarde…</string>
+    <string name="v3_delete_client_authorization_confirm">Supprimer l\'autorisation du client</string>
+    <string name="v3_delete_client_authorization">Supprimer la clé d\'autorisation du client</string>
+    <string name="v3_backup_key_warning">Avertissement : cela pourrait exposer votre clé à d\'autres applications</string>
+    <string name="v3_key_hash">Clé privée x25519 en Base 32</string>
+    <string name="v3_client_auth_activity_title">Autorisation du client v3</string>
+    <string name="v3_client_auth">Autorisation du client Onion Service v3</string>
+    <string name="v3_hosted_services">Services Onion v3 hébergés</string>
+    <string name="v2_hidden_services">v2 Onion Services (obsolète)</string>
+    <string name="deny">Refuser</string>
+    <string name="allow">Autoriser</string>
 </resources>

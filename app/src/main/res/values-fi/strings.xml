@@ -149,4 +149,8 @@
     <string name="copy_cookie_to_clipboard">Kopioi eväste leikepöydälle</string>
     <string name="client_cookies">Asiakasohjelman evästeet</string>
     <string name="onion">.onion</string>
+    <string name="use_qr_code">Käytä QR-koodia</string>
+    <string name="confirm">Vahvista</string>
+    <string name="deny">Kiellä</string>
+    <string name="allow">Salli</string>
 </resources>

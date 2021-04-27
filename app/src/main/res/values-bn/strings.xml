@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="menu_settings">বিন্যাস</string>
+    <string name="menu_settings">পছন্দসমূহ</string>
     <string name="menu_log">লগ</string>
     <string name="menu_start">শুরু</string>
     <string name="menu_stop">থামুন</string>
