@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Orbot</string>
-    <string name="app_description">Orbot là một ứng dụng proxy miễn phí, được thiết kế để làm cho các ứng dụng khác kết nối với Internet một cách an toàn. Orbot sử dụng Tor để mã hóa các kết nối Internet rồi ẩn danh nó thông qua một loạt các nút trong mạng Tor. Tor là phần mềm miễn phí và là một mạng lưới mở giúp bạn chống lại sự giám sát mạng, vốn đe dọa riêng tư trực tuyến, hay các hoạt động bí mật…</string>
+    <string name="app_description">Orbot là một ứng dụng proxy miễn phí làm cho các ứng dụng khác sử dụng internet một cách bảo mật hơn. Orbot sử dụng Tor để mã hóa lưu lượng Internet rồi ẩn nó bằng cách đưa qua một loạt máy tính trên khắp thế giới. Tor là phần mềm tự do và là một mạng lưới mở giúp bạn chống lại một dạng của sự giám sát trên mạng đe dọa quyền riêng tư và tự do cá nhân, những hoạt động và mối quan hệ bí mật trong kinh doanh, và an ninh tiểu bang được biết đến là phân tích lưu lượng mạng.</string>
     <string name="status_starting_up">Orbot đang khởi động…</string>
     <string name="status_activated">Đã kết nối với mạng Tor</string>
     <string name="status_disabled">Orbot đã được vô hiệu hóa</string>
@@ -120,4 +120,14 @@
     <string name="please_restart_Orbot_to_enable_the_changes">Vui lòng khởi động lại Orbot để áp dụng thay đổi</string>
     <string name="disable">Tắt</string>
     <string name="enable">Cho phép</string>
+    <string name="pref_http_dialog">Thiết lập cổng HTTP</string>
+    <string name="pref_http_summary">Cổng mà Tor cho proxy HTTP của nó (mặc định: 8118 hoặc 0 để tắt)</string>
+    <string name="pref_http_title">HTTP Tor</string>
+    <string name="pref_open_proxy_on_all_interfaces_title">Mở Proxy trên tất cả giao diện</string>
+    <string name="deny">Từ chối</string>
+    <string name="allow">Cho phép</string>
+    <string name="hidden_service_request">Một ứng dụng muốn mở máy chủ onion ở cổng %1$s vào mạng Tor. Việc này là an toàn nếu bạn tin tưởng ứng dụng đó.</string>
+    <string name="openssl_version">OpenSSL: http://www.openssl.org</string>
+    <string name="obfsproxy_version">Obfs4proxy: https://github.com/Yawning/obfs4</string>
+    <string name="wizard_details_msg">Orbot là một ứng dụng mã nguồn mở chứa Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent. Nó cung cấp một proxy HTTP cục bộ (8118) và một proxy SOCKS (9050) vào mạng Tor. Orbot cũng có khả năng, trên thiết bị đã root, gửi tất cả lưu lượng mạng qua Tor.</string>
 </resources>
