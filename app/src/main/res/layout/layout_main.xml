@@ -180,13 +180,13 @@
 
                         <TextView
                             android:id="@+id/trafficDown"
-                            android:layout_width="100dp"
+                            android:layout_width="125dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="3dp"
                             android:fontFamily="sans-serif-light"
                             android:gravity="center_vertical"
                             android:lines="1"
-                            android:text="0kbps" />
+                            android:text="0" />
                     </LinearLayout>
 
 
@@ -208,13 +208,13 @@
 
                         <TextView
                             android:id="@+id/trafficUp"
-                            android:layout_width="100dp"
+                            android:layout_width="125dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="3dp"
                             android:fontFamily="sans-serif-light"
                             android:gravity="center_vertical"
                             android:lines="1"
-                            android:text="0kbps" />
+                            android:text="0" />
 
                     </LinearLayout>
 
