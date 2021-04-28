@@ -78,6 +78,7 @@ android {
     productFlavors {
         fullperm {
             dimension "free"
+
             minSdkVersion 16
             applicationId 'org.torproject.android'
             targetSdkVersion 29
