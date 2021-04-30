@@ -123,8 +123,6 @@ dependencies {
     androidTestImplementation "tools.fastlane:screengrab:1.2.0"
     implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
     implementation 'com.android.volley:volley:1.1.1'
-    implementation 'info.pluggabletransports.aptds:apt-dispatch-library:1.0.9'
-    implementation 'info.pluggabletransports.aptds:apt-meek-obfs4-legacy:1.0.9'
     implementation 'com.github.tladesignz:IPtProxy:0.5.2'
 }
 
