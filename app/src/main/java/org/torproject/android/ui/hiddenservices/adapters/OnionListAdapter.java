@@ -30,7 +30,11 @@ public class OnionListAdapter extends CursorAdapter {
         final String where = HSContentProvider.HiddenService._ID + "=" + id;
 
         TextView port = view.findViewById(R.id.hs_port);
-        port.setText(cursor.getString(cursor.getColumnIndex(HSContentProvider.HiddenService.PORT)));
+        port.setText(String.format("%s\n%s", context.getString(R.string.local_port),
+                cursor.getString(cursor.getColumnIndex(HSContentProvider.HiddenService.PORT))));
+        TextView onionPort = view.findViewById(R.id.onion_port);
+        onionPort.setText(String.format("%s\n%s", context.getString(R.string.onion_port),
+                cursor.getString(cursor.getColumnIndex(HSContentProvider.HiddenService.ONION_PORT))));
         TextView name = view.findViewById(R.id.hs_name);
         name.setText(cursor.getString(cursor.getColumnIndex(HSContentProvider.HiddenService.NAME)));
         TextView domain = view.findViewById(R.id.hs_onion);
