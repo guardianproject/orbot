@@ -228,4 +228,5 @@
     <string name="v2_hidden_services">Служби Onion v2 (застарілі)</string>
     <string name="deny">Заборонити</string>
     <string name="allow">Длзволити</string>
+    <string name="backup_port_exist">Помилка: служба Onion вже використовує порт %s</string>
 </resources>
