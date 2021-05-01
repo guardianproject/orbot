@@ -228,4 +228,5 @@
     <string name="v2_hidden_services">v2 Onion 服务 (已废弃)</string>
     <string name="deny">拒绝</string>
     <string name="allow">允许</string>
+    <string name="backup_port_exist">错误：一个 Onion 服务已经在使用端口 %s</string>
 </resources>
