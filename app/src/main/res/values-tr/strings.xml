@@ -228,4 +228,5 @@
     <string name="v2_hidden_services">v2 Onion Hizmetleri (Kullanımdan Kaldırıldı)</string>
     <string name="deny">Reddet</string>
     <string name="allow">İzin ver</string>
+    <string name="backup_port_exist">Hata: Bir Onion Hizmeti Zaten %s Bağlantı Noktasını Kullanıyor</string>
 </resources>
