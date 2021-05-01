@@ -1,0 +1,8 @@
+***ADVARSEL: ALL ROT-FUNKSJONALITET ER NÅ FJERNET.***
+Bruk Orbots «Program-VPN-modus» eller Orfox-nettleseren istedenfor transparent mellomtjening med rot-tilgang.
+
+* Tor 0.3.1.8
+* Fjernet støtte for rot/transmellomtjeningsfunksjoner, siden de har blitt upålitelige og utestet
+* Forbedret støtte for transparent VPN-mellomtjening og ny programvelgergrensesnitt
+* Innlemmelsesproblem med adresse til Obfs4mellomtjenerlisensinfo
+* Oppgradering til siste Tor-støtte for Meek-broplasseringer
