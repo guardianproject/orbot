@@ -89,7 +89,7 @@
     <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
     <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
     <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
-    <string name="hidden_service_request">Forrit vill opna földu vefgáttina %1$s inn á Tor-netið. Þetta er öruggt ef þú treystir forritinu.</string>
+    <string name="hidden_service_request">Forrit vill opna onion-netþjón á gáttinni %1$s inn á Tor-netið. Þetta er öruggt ef þú treystir forritinu.</string>
     <string name="found_existing_tor_process">fann annað Tor-ferli…</string>
     <string name="something_bad_happened">Eitthvað slæmt gerðist. Athugaðu atvikakráninguna</string>
     <string name="unable_to_read_hidden_service_name">get ekki lesið heiti földu þjónustunnar</string>
@@ -132,7 +132,7 @@
     <string name="done">Lokið!</string>
     <string name="copy_address_to_clipboard">Afrita vistfang yfir á klippispjald</string>
     <string name="show_auth_cookie">Birta auðkenningar-vefköku</string>
-    <string name="backup_service">Öryggisafritunarþjónusta</string>
+    <string name="backup_service">Öryggisafritunarþjónusta <i>(Aðvörun: Þetta gæti gert uppsetningu þjónustunnar þinnar sýnilega öðrum forritum)</i></string>
     <string name="delete_service">Eyða þjónustu</string>
     <string name="backup_saved_at_external_storage">Öryggisafrit var vistað í ytri gagnageymslu</string>
     <string name="backup_restored">Öryggisafrit var endurheimt</string>
@@ -211,4 +211,22 @@
     <string name="mebibyte">MiB</string>
     <string name="mebibyte_per_second">MiB/sek</string>
     <string name="kibibyte_per_second">KiB/sek</string>
+    <string name="be_a_snowflake_desc">Leyfa öðrum Tor-notendum að tengjast Tor í gegnum tækið þitt</string>
+    <string name="be_a_snowflake_title">Keyra Snowflake-milliþjón</string>
+    <string name="backup_port_exist">Villa: Önnur onion-þjónusta er þegar að nota gátt %s</string>
+    <string name="confirm">Staðfesta</string>
+    <string name="v3_import_auth_private">Flytja inn .auth_private</string>
+    <string name="v3_backup_name_hint">Skráarheiti öryggisafrits…</string>
+    <string name="v3_delete_client_authorization_confirm">Eyða auðkenningu biðlara</string>
+    <string name="v3_delete_client_authorization">Eyða auðkennislykli biðlara</string>
+    <string name="v3_backup_key_warning">Aðvörun: Þetta gæti gert lykilinn þinn sýnilegan öðrum forritum</string>
+    <string name="v3_backup_key">Auðkennislykill öryggisafrits biðlara</string>
+    <string name="v3_onion">v3 .onion lén</string>
+    <string name="v3_key_hash">x25519 einkalykill í Base 32</string>
+    <string name="v3_client_auth_activity_title">v3 auðkenning biðlara</string>
+    <string name="v3_client_auth">Auðkenning biðlara á v3 onion-þjónustum</string>
+    <string name="v3_hosted_services">Hýstar v3 onion-þjónustur</string>
+    <string name="v2_hidden_services">v2 onion-þjónustur (úrelt)</string>
+    <string name="deny">Hafna</string>
+    <string name="allow">Leyfa</string>
 </resources>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Orbot</string>
-    <string name="app_description">Orbot est une appli libre de serveur mandataire permettant aux applis d’utiliser Internet avec une sécurité accrue. Orbot utilise Tor pour chiffrer votre trafic Internet et le cache ensuite en le relayant au travers d’ordinateurs de par le monde. Tor est un logiciel libre et un réseau ouvert qui vous aident à vous défendre contre une forme de surveillance réseau qui menace la liberté personnelle et la protection des données personnelles, les activités professionnelles confidentielles et les relations, et l’analyse du trafic des gouvernements.</string>
+    <string name="app_description">Orbot est une appli libre de serveur mandataire qui permet aux applis d’utiliser Internet avec une sécurité accrue. Orbot utilise Tor pour chiffrer votre trafic Internet et le cache ensuite en le relayant au travers d’ordinateurs de par le monde. Tor est un logiciel libre et un réseau ouvert qui vous aident à vous défendre contre une forme de surveillance réseau qui menace la liberté personnelle et la protection des données personnelles, les activités professionnelles confidentielles et les relations, et l’analyse du trafic des gouvernements.</string>
     <string name="status_starting_up">Orbot démarre…</string>
     <string name="status_activated">Connecté au réseau Tor</string>
     <string name="status_disabled">Orbot est désactivé</string>
@@ -121,7 +121,7 @@
     <string name="wizard_details_msg">Orbot est une application à code source ouvert qui comprend Tor, Obfs4Proxy, BadVPN Tun2Socks et LibEvent. Elle fournit un mandataire HTTP local (8118) et un mandataire SOCKS (9050) vers le réseau Tor. Sur un appareil débridé, Orbot peut aussi faire passer tout le trafic Internet par Tor.</string>
     <string name="obfsproxy_version">Obfs4proxy : https://github.com/Yawning/obfs4</string>
     <string name="openssl_version">OpenSSL : http://www.openssl.org</string>
-    <string name="hidden_service_request">Une appli veut ouvrir le port %1$s du serveur onion vers le réseau Tor. Cette action est sûre si vous faites confiance à cette appli.</string>
+    <string name="hidden_service_request">Une appli veut ouvrir le serveur onion sur le port %1$s au réseau Tor. Cette action est sûre si vous faites confiance à cette appli.</string>
     <string name="pref_open_proxy_on_all_interfaces_title">Ouvrir le mandataire sur toutes les interfaces</string>
     <string name="pref_open_proxy_on_all_interfaces_summary">Autoriser l’accès à Tor aux pairs Wi-Fi, aux appareils qui utilisent la fonction modem et à quiconque peut se connecter à votre IP</string>
     <string name="pref_http_title">HTTP Tor</string>
@@ -138,7 +138,7 @@
     <string name="done">Terminé</string>
     <string name="copy_address_to_clipboard">Copier l’adresse dans le presse-papiers</string>
     <string name="show_auth_cookie">Afficher le témoin d’authentification</string>
-    <string name="backup_service">Sauvegarder le service <i>(Avertissement : cela pourrait exposer la configuration de votre service à d\'autres applications)</i></string>
+    <string name="backup_service">Sauvegarder le service <i>(Avertissement : La configuration de votre service pourrait être exposée à d’autres applis)</i></string>
     <string name="delete_service">Supprimer le service</string>
     <string name="backup_saved_at_external_storage">La sauvegarde a été enregistrée sur la mémoire externe</string>
     <string name="backup_restored">La sauvegarde a été restaurée</string>
@@ -211,19 +211,22 @@
     <string name="mebibyte_per_second">Mio/s</string>
     <string name="kibibyte_per_second">Kio/s</string>
     <string name="get_bridges_email_request">Demander des ponts par courriel</string>
-    <string name="be_a_snowflake_desc">Autoriser d\'autres utilisateurs Tor à se connecter à Tor via votre appareil</string>
-    <string name="be_a_snowflake_title">Exécuter le proxy Snowflake</string>
+    <string name="be_a_snowflake_desc">Autorisez les autres utilisateurs de Tor de se connecter à Tor par votre appareil</string>
+    <string name="be_a_snowflake_title">Exécuter le mandataire Snowflake</string>
     <string name="confirm">Confirmer</string>
     <string name="v3_import_auth_private">Importer .auth_private</string>
     <string name="v3_backup_name_hint">Nom du fichier de sauvegarde…</string>
-    <string name="v3_delete_client_authorization_confirm">Supprimer l\'autorisation du client</string>
-    <string name="v3_delete_client_authorization">Supprimer la clé d\'autorisation du client</string>
-    <string name="v3_backup_key_warning">Avertissement : cela pourrait exposer votre clé à d\'autres applications</string>
-    <string name="v3_key_hash">Clé privée x25519 en Base 32</string>
-    <string name="v3_client_auth_activity_title">Autorisation du client v3</string>
-    <string name="v3_client_auth">Autorisation du client Onion Service v3</string>
+    <string name="v3_delete_client_authorization_confirm">Supprimer l’autorisation client</string>
+    <string name="v3_delete_client_authorization">Supprimer la clé d’autorisation client</string>
+    <string name="v3_backup_key_warning">Avertissement : Votre clé pourrait être exposée à d’autres applis</string>
+    <string name="v3_key_hash">Clé privée x25519 en Base32</string>
+    <string name="v3_client_auth_activity_title">Autorisation client v3</string>
+    <string name="v3_client_auth">Autorisation client Onion Service v3</string>
     <string name="v3_hosted_services">Services Onion v3 hébergés</string>
-    <string name="v2_hidden_services">v2 Onion Services (obsolète)</string>
+    <string name="v2_hidden_services">Services Onion v2 (déconseillés)</string>
     <string name="deny">Refuser</string>
     <string name="allow">Autoriser</string>
+    <string name="backup_port_exist">Erreur : Un service onion utilise déjà le port %s</string>
+    <string name="v3_backup_key">Sauvegarder la clé d’autorisation client</string>
+    <string name="v3_onion">Domaine .onion v3</string>
 </resources>
