@@ -116,6 +116,15 @@ android {
     }
 }
 
+repositories {
+    jcenter {
+        content {
+            includeGroup('com.jraska')
+            includeGroup('tools.fastlane')
+        }
+    }
+}
+
 dependencies {
     implementation project(':orbotservice')
     implementation 'com.google.android.material:material:1.2.1'
@@ -125,7 +134,7 @@ dependencies {
     implementation project(path: ':intentintegrator')
     androidTestImplementation "tools.fastlane:screengrab:1.2.0"
     implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
-    implementation 'com.android.volley:volley:1.1.1'
+    implementation 'com.android.volley:volley:1.2.0'
     implementation 'com.github.tladesignz:IPtProxy:0.5.2'
 }
 

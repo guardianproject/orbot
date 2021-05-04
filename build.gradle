@@ -4,8 +4,15 @@ buildscript {
         kotlin_version = '1.4.21'
     }
     repositories {
-        jcenter()
+        mavenCentral()
         google()
+        maven { url 'https://jitpack.io' }
+        maven {
+            url "https://raw.githubusercontent.com/guardianproject/gpmaven/master"
+            content {
+                includeGroup('info.pluggabletransports.aptds')
+            }
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:4.2.0-rc01'
@@ -15,9 +22,14 @@ buildscript {
 
 allprojects {
     repositories {
+        mavenCentral()
         google()
-        jcenter()
-        maven { url "https://raw.githubusercontent.com/guardianproject/gpmaven/master" }
         maven { url 'https://jitpack.io' }
+        maven {
+            url "https://raw.githubusercontent.com/guardianproject/gpmaven/master"
+            content {
+                includeGroup('info.pluggabletransports.aptds')
+            }
+        }
     }
 }
