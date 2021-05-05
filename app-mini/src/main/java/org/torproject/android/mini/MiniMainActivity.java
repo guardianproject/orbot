@@ -50,6 +50,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import net.freehaven.tor.control.TorControlCommands;
 import org.json.JSONArray;
 import org.torproject.android.core.Languages;
 import org.torproject.android.core.LocaleHelper;
@@ -680,7 +681,7 @@ public class MiniMainActivity extends AppCompatActivity implements OrbotConstant
     }
 
     private void requestTorRereadConfig() {
-        sendIntentToService(TorServiceConstants.CMD_SIGNAL_HUP);
+        sendIntentToService(TorControlCommands.SIGNAL_RELOAD);
     }
 
     @Override
@@ -875,7 +876,7 @@ public class MiniMainActivity extends AppCompatActivity implements OrbotConstant
     }
 
     private void requestNewTorIdentity() {
-        sendIntentToService(TorServiceConstants.CMD_NEWNYM);
+        sendIntentToService(TorControlCommands.SIGNAL_NEWNYM);
 
         Rotate3dAnimation rotation = new Rotate3dAnimation(ROTATE_FROM, ROTATE_TO, imgStatus.getWidth() / 2f, imgStatus.getWidth() / 2f, 20f, false);
         rotation.setFillAfter(true);

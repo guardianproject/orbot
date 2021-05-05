@@ -15,12 +15,14 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -28,21 +30,16 @@ import android.net.Uri;
 import android.net.VpnService;
 import android.os.Build;
 import android.os.Handler;
+import android.os.HandlerThread;
 import android.os.IBinder;
+import android.os.Looper;
 import android.provider.BaseColumns;
 import android.text.TextUtils;
 import android.util.Log;
 
-import androidx.annotation.RequiresApi;
-import androidx.core.app.NotificationCompat;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-
-import com.jaredrummler.android.shell.CommandResult;
-
 import net.freehaven.tor.control.TorControlCommands;
 import net.freehaven.tor.control.TorControlConnection;
 
-import org.torproject.android.service.util.CustomShell;
 import org.torproject.android.service.util.CustomTorResourceInstaller;
 import org.torproject.android.service.util.DummyActivity;
 import org.torproject.android.service.util.Prefs;
@@ -50,21 +47,19 @@ import org.torproject.android.service.util.TorServiceUtils;
 import org.torproject.android.service.util.Utils;
 import org.torproject.android.service.vpn.OrbotVpnManager;
 import org.torproject.android.service.vpn.VpnPrefs;
+import org.torproject.jni.TorService;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
-import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.io.PrintWriter;
-import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -78,12 +73,15 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeoutException;
 
 import IPtProxy.IPtProxy;
+import androidx.annotation.RequiresApi;
+import androidx.core.app.NotificationCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 public class OrbotService extends VpnService implements TorServiceConstants, OrbotConstants {
 
-    public final static String BINARY_TOR_VERSION = org.torproject.android.binary.TorServiceConstants.BINARY_TOR_VERSION;
+    public final static String BINARY_TOR_VERSION = TorService.VERSION_NAME;
+
     static final int NOTIFY_ID = 1;
-    private final static int CONTROL_SOCKET_TIMEOUT = 60000;
     private static final int ERROR_NOTIFY_ID = 3;
     private static final int HS_NOTIFY_ID = 4;
     private static final Uri V2_HS_CONTENT_URI = Uri.parse("content://org.torproject.android.ui.hiddenservices.providers/hs");
@@ -121,14 +119,13 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             V3ClientAuth.HASH,
             V3ClientAuth.ENABLED
     };
+
     public static int mPortSOCKS = -1;
     public static int mPortHTTP = -1;
     public static int mPortDns = TOR_DNS_PORT_DEFAULT;
     public static int mPortTrans = TOR_TRANSPROXY_PORT_DEFAULT;
     public static File appBinHome;
     public static File appCacheHome;
-    public static File fileTor;
-    public static File fileTorRc;
     private final ExecutorService mExecutor = Executors.newCachedThreadPool();
     boolean mIsLollipop = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
     TorEventHandler mEventHandler;
@@ -139,8 +136,9 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     ActionBroadcastReceiver mActionBroadcastReceiver;
     private String mCurrentStatus = STATUS_OFF;
     private TorControlConnection conn = null;
-    private int mLastProcessId = -1;
-    private File fileControlPort, filePid;
+    private ServiceConnection torServiceConnection;
+    private TorService torService;
+    private boolean shouldUnbindTorService;
     private NotificationManager mNotificationManager = null;
     private NotificationCompat.Builder mNotifyBuilder;
     private boolean mNotificationShowing = false;
@@ -185,22 +183,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
     private void showConnectedToTorNetworkNotification() {
         showToolbarNotification(getString(R.string.status_activated), NOTIFY_ID, R.drawable.ic_stat_tor);
-    }
-
-    private boolean findExistingTorDaemon() {
-        try {
-            mLastProcessId = initControlConnection(1, true);
-
-            if (mLastProcessId != -1 && conn != null) {
-                sendCallbackLogMessage(getString(R.string.found_existing_tor_process));
-                sendCallbackStatus(STATUS_ON);
-                showConnectedToTorNetworkNotification();
-                return true;
-            }
-        } catch (Exception e) {
-            debug("Error finding existing tor daemon: " + e);
-        }
-        return false;
     }
 
     @Override
@@ -253,7 +235,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
         mNotifyBuilder.mActions.clear(); // clear out NEWNYM action
         if (conn != null) { // only add new identity action when there is a connection
-            Intent intentRefresh = new Intent(CMD_NEWNYM);
+            Intent intentRefresh = new Intent(TorControlCommands.SIGNAL_NEWNYM);
             PendingIntent pendingIntentNewNym = PendingIntent.getBroadcast(this, 0, intentRefresh, PendingIntent.FLAG_UPDATE_CURRENT);
             mNotifyBuilder.addAction(R.drawable.ic_refresh_white_24dp, getString(R.string.menu_new_identity), pendingIntentNewNym);
         }
@@ -283,7 +265,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         showToolbarNotification("", NOTIFY_ID, R.drawable.ic_stat_tor);
 
         if (intent != null)
-            exec(new IncomingIntentRouter(intent));
+            mExecutor.execute(new IncomingIntentRouter(intent));
         else
             Log.d(OrbotConstants.TAG, "Got null onStartCommand() intent");
 
@@ -340,6 +322,13 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             clearNotifications();
             sendCallbackStatus(STATUS_OFF);
         }).start();
+    }
+
+    private void stopTorOnError(String message) {
+        stopTorAsync();
+        showToolbarNotification(
+                getString(R.string.unable_to_start_tor) + ": " + message,
+                ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
     }
 
     private static boolean useIPtObfsMeekProxy() {
@@ -432,10 +421,15 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
                 try {
                     logNotice("sending HALT signal to Tor process");
-                    conn.shutdownTor("SHUTDOWN");
+                    conn.shutdownTor(TorControlCommands.SIGNAL_SHUTDOWN);
 
                 } catch (IOException e) {
                     Log.d(OrbotConstants.TAG, "error shutting down Tor via connection", e);
+                }
+
+                if (shouldUnbindTorService) {
+                    unbindService(torServiceConnection);
+                    shouldUnbindTorService = false;
                 }
 
                 conn = null;
@@ -454,9 +448,9 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
     private void requestTorRereadConfig() {
         try {
-            if (conn != null)
-                conn.signal("HUP");
-
+            if (conn != null) {
+                conn.signal(TorControlCommands.SIGNAL_RELOAD);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -491,10 +485,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             if (!appCacheHome.exists())
                 appCacheHome.mkdirs();
 
-            fileTorRc = new File(appBinHome, TORRC_ASSET_KEY);
-            fileControlPort = new File(getFilesDir(), TOR_CONTROL_PORT_FILE);
-            filePid = new File(getFilesDir(), TOR_PID_FILE);
-
             mHSBasePath = new File(getFilesDir().getAbsolutePath(), TorServiceConstants.HIDDEN_SERVICES_DIR);
             if (!mHSBasePath.isDirectory())
                 mHSBasePath.mkdirs();
@@ -507,8 +497,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             if (!mV3AuthBasePath.isDirectory())
                 mV3AuthBasePath.mkdirs();
 
-            mEventHandler = new TorEventHandler(this);
-
             if (mNotificationManager == null) {
                 mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             }
@@ -517,7 +505,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             //  registerReceiver(mNetworkStateReceiver , mNetworkStateFilter);
 
             IntentFilter filter = new IntentFilter();
-            filter.addAction(CMD_NEWNYM);
+            filter.addAction(TorControlCommands.SIGNAL_NEWNYM);
             filter.addAction(CMD_ACTIVE);
             mActionBroadcastReceiver = new ActionBroadcastReceiver();
             registerReceiver(mActionBroadcastReceiver, filter);
@@ -525,19 +513,10 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             if (Build.VERSION.SDK_INT >= 26)
                 createNotificationChannel();
 
-            torUpgradeAndConfig();
+            CustomTorResourceInstaller installer = new CustomTorResourceInstaller(this, appBinHome);
+            installer.installGeoIP();
 
             pluggableTransportInstall();
-
-            new Thread(() -> {
-                try {
-                    findExistingTorDaemon();
-                } catch (Exception e) {
-                    Log.e(OrbotConstants.TAG, "error onBind", e);
-                    logNotice("error finding exiting process: " + e.toString());
-                }
-
-            }).start();
 
             mVpnManager = new OrbotVpnManager(this);
 
@@ -568,37 +547,12 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         return false;
     }
 
-    private boolean torUpgradeAndConfig() throws IOException, TimeoutException {
-
-        SharedPreferences prefs = Prefs.getSharedPrefs(getApplicationContext());
-        String version = prefs.getString(PREF_BINARY_TOR_VERSION_INSTALLED, null);
-
-        logNotice("checking binary version: " + version);
-
-        CustomTorResourceInstaller installer = new CustomTorResourceInstaller(this, appBinHome);
-        logNotice("upgrading binaries to latest version: " + BINARY_TOR_VERSION);
-
-        fileTor = installer.installResources();
-
-        if (fileTor != null && fileTor.canExecute()) {
-            prefs.edit().putString(PREF_BINARY_TOR_VERSION_INSTALLED, BINARY_TOR_VERSION).apply();
-
-            fileTorRc = new File(appBinHome, "torrc");//installer.getTorrcFile();
-            return fileTorRc.exists();
-        }
-
-        return false;
-    }
-
     private File updateTorrcCustomFile() throws IOException, TimeoutException {
         SharedPreferences prefs = Prefs.getSharedPrefs(getApplicationContext());
 
         StringBuffer extraLines = new StringBuffer();
 
         extraLines.append("\n");
-        extraLines.append("ControlPortWriteToFile").append(' ').append(fileControlPort.getCanonicalPath()).append('\n');
-
-        extraLines.append("PidFile").append(' ').append(filePid.getCanonicalPath()).append('\n');
 
         extraLines.append("RunAsDaemon 0").append('\n');
         extraLines.append("AvoidDiskWrites 0").append('\n');
@@ -692,15 +646,9 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
         debug("torrc.custom=" + extraLines.toString());
 
-        File fileTorRcCustom = new File(fileTorRc.getAbsolutePath() + ".custom");
-        boolean success = updateTorConfigCustom(fileTorRcCustom, extraLines.toString());
-
-        if (success && fileTorRcCustom.exists()) {
-            logNotice("success.");
-            return fileTorRcCustom;
-        } else
-            return null;
-
+        File fileTorRcCustom = TorService.getTorrc(this);
+        updateTorConfigCustom(fileTorRcCustom, extraLines.toString());
+        return fileTorRcCustom;
     }
 
     private String checkPortOrAuto(String portString) {
@@ -771,35 +719,16 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 // these states should probably be handled better
                 sendCallbackLogMessage("Ignoring start request, currently " + mCurrentStatus);
                 return;
-            } else if (mCurrentStatus.equals(STATUS_ON) && (mLastProcessId != -1)) {
+            } else if (mCurrentStatus.equals(STATUS_ON)) {
                 showConnectedToTorNetworkNotification();
                 sendCallbackLogMessage("Ignoring start request, already started.");
-                // setTorNetworkEnabled (true);
-
                 return;
             }
 
             sendCallbackStatus(STATUS_STARTING);
 
-            try {
-                if (conn != null) {
-                    String torProcId = conn.getInfo("process/pid");
-                    if (!TextUtils.isEmpty(torProcId))
-                        mLastProcessId = Integer.parseInt(torProcId);
-                } else {
-                    if (fileControlPort != null && fileControlPort.exists())
-                        findExistingTorDaemon();
-
-                }
-            } catch (Exception e) {
-            }
-
             // make sure there are no stray daemons running
             stopTorDaemon(false);
-
-            SharedPreferences prefs = Prefs.getSharedPrefs(getApplicationContext());
-            String version = prefs.getString(PREF_BINARY_TOR_VERSION_INSTALLED, null);
-            logNotice("checking binary version: " + version);
 
             showToolbarNotification(getString(R.string.status_starting_up), NOTIFY_ID, R.drawable.ic_stat_tor);
             //sendCallbackLogMessage(getString(R.string.status_starting_up));
@@ -812,27 +741,20 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                     customEnv.add("TOR_PT_PROXY=socks5://" + OrbotVpnManager.sSocksProxyLocalhost + ":" + OrbotVpnManager.sSocksProxyServerPort);
                 }
 
-            boolean success = runTorShellCmd();
-
-            if (success) {
-                try {
-                    updateLegacyV2OnionNames();
-                } catch (SecurityException se) {
-                    logNotice("unable to upload legacy v2 onion names");
-                }
-                try {
-                    updateV3OnionNames();
-                } catch (SecurityException se) {
-                    logNotice("unable to upload v3 onion names");
-                }
+            runTorShellCmd();
+            try {
+                updateLegacyV2OnionNames();
+            } catch (SecurityException se) {
+                logNotice("unable to upload legacy v2 onion names");
             }
-
+            try {
+                updateV3OnionNames();
+            } catch (SecurityException se) {
+                logNotice("unable to upload v3 onion names");
+            }
         } catch (Exception e) {
             logException("Unable to start Tor: " + e.toString(), e);
-            stopTorAsync();
-            showToolbarNotification(
-                    getString(R.string.unable_to_start_tor) + ": " + e.getMessage(),
-                    ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
+            stopTorOnError(e.getLocalizedMessage());
         }
     }
 
@@ -913,142 +835,111 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         }
     }
 
-    private boolean runTorShellCmd() throws Exception {
+    private void runTorShellCmd() throws Exception {
+        updateTorConfigCustom(TorService.getDefaultsTorrc(this),
+                "DNSPort 0\n" +
+                "TransPort 0\n" +
+                "DisableNetwork 1\n");
+
         File fileTorrcCustom = updateTorrcCustomFile();
-
-        //make sure Tor exists and we can execute it
-        if (fileTor == null || (!fileTor.exists()) || (!fileTor.canExecute()))
-            return false;
-
-        if ((!fileTorRc.exists()) || (!fileTorRc.canRead()))
-            return false;
-
         if ((!fileTorrcCustom.exists()) || (!fileTorrcCustom.canRead()))
-            return false;
+            return;
 
         sendCallbackLogMessage(getString(R.string.status_starting_up));
 
-        String torCmdString = fileTor.getAbsolutePath()
-                + " DataDirectory " + appCacheHome.getAbsolutePath()
-                + " --defaults-torrc " + fileTorRc.getAbsolutePath()
-                + " -f " + fileTorrcCustom.getAbsolutePath();
+        torServiceConnection = new ServiceConnection() {
+            @Override
+            public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+                torService = ((TorService.LocalBinder) iBinder).getService();
+                try {
+                    conn = torService.getTorControlConnection();
+                    while (conn == null) {
+                        Log.v(TAG, "Waiting for Tor Control Connection...");
+                        Thread.sleep(500);
+                        conn = torService.getTorControlConnection();
+                    }
+                    mEventHandler = new TorEventHandler(OrbotService.this);
+                    logNotice("adding control port event handler");
+                    conn.setEventHandler(mEventHandler);
+                    ArrayList<String> events = new ArrayList<>(Arrays.asList(
+                            TorControlCommands.EVENT_OR_CONN_STATUS,
+                            TorControlCommands.EVENT_CIRCUIT_STATUS,
+                            TorControlCommands.EVENT_NOTICE_MSG,
+                            TorControlCommands.EVENT_WARN_MSG,
+                            TorControlCommands.EVENT_ERR_MSG,
+                            TorControlCommands.EVENT_BANDWIDTH_USED,
+                            TorControlCommands.EVENT_NEW_DESC,
+                            TorControlCommands.EVENT_ADDRMAP));
+                    if (Prefs.useDebugLogging()) {
+                        events.add(TorControlCommands.EVENT_DEBUG_MSG);
+                        events.add(TorControlCommands.EVENT_INFO_MSG);
+                    }
+                    conn.setEvents(events);
+                    logNotice("SUCCESS added control port event handler");
+                } catch (IOException | InterruptedException e) {
+                    e.printStackTrace();
+                    stopTorOnError(e.getLocalizedMessage());
+                    conn = null;
+                }
+            }
 
-        int exitCode;
+            @Override
+            public void onServiceDisconnected(ComponentName componentName) {
+                conn = null;
+                torService = null;
+                mEventHandler = null;
+            }
 
-        try {
-            exitCode = exec(torCmdString + " --verify-config", true);
-        } catch (Exception e) {
-            logNotice("Tor configuration did not verify: " + e.getMessage());
-            return false;
+            @Override
+            public void onNullBinding(ComponentName componentName) {
+                stopTorOnError("Tor was unable to start: " + "onNullBinding");
+                conn = null;
+                torService = null;
+                mEventHandler = null;
+            }
+
+            @Override
+            public void onBindingDied(ComponentName componentName) {
+                stopTorOnError("Tor was unable to start: " + "onBindingDied");
+                conn = null;
+                torService = null;
+                mEventHandler = null;
+            }
+        };
+
+        BroadcastReceiver receiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                if (TorService.ACTION_STATUS.equals(intent.getAction())
+                        && TorService.STATUS_ON.equals(intent.getStringExtra(TorService.EXTRA_STATUS))) {
+                    initControlConnection();
+                    unregisterReceiver(this);
+                }
+            }
+        };
+        // run the BroadcastReceiver in its own thread
+        HandlerThread handlerThread = new HandlerThread(receiver.getClass().getSimpleName());
+        handlerThread.start();
+        Looper looper = handlerThread.getLooper();
+        Handler handler = new Handler(looper);
+        registerReceiver(receiver, new IntentFilter(TorService.ACTION_STATUS), null, handler);
+
+        Intent serviceIntent = new Intent(this, TorService.class);
+        if (Build.VERSION.SDK_INT < 29) {
+            shouldUnbindTorService = bindService(serviceIntent, torServiceConnection, BIND_AUTO_CREATE);
+        } else {
+            shouldUnbindTorService = bindService(serviceIntent, BIND_AUTO_CREATE, mExecutor, torServiceConnection);
         }
-
-        if (exitCode == 0) {
-            logNotice("Tor configuration VERIFIED.");
-            try {
-                exitCode = exec(torCmdString, false);
-            } catch (Exception e) {
-                logNotice("Tor was unable to start: " + e.getMessage());
-                throw new Exception("Tor was unable to start: " + e.getMessage());
-            }
-
-            if (exitCode != 0) {
-                logNotice("Tor did not start. Exit:" + exitCode);
-                return false;
-            }
-
-            //now try to connect
-            mLastProcessId = initControlConnection(10, false);
-
-            if (mLastProcessId == -1) {
-                logNotice(getString(R.string.couldn_t_start_tor_process_) + "; exit=" + exitCode);
-                throw new Exception(getString(R.string.couldn_t_start_tor_process_) + "; exit=" + exitCode);
-            } else {
-                logNotice("Tor started; process id=" + mLastProcessId);
-            }
-        }
-
-        return true;
     }
 
     protected void exec(Runnable runn) {
         mExecutor.execute(runn);
     }
 
-    private int exec(String cmd, boolean wait) throws Exception {
-        HashMap<String, String> mapEnv = new HashMap<>();
-        mapEnv.put("HOME", appBinHome.getAbsolutePath());
-
-        CommandResult result = CustomShell.run("sh", wait, mapEnv, cmd);
-        debug("executing: " + cmd);
-        debug("stdout: " + result.getStdout());
-        debug("stderr: " + result.getStderr());
-
-        return result.exitCode;
-    }
-
-    private int initControlConnection(int maxTries, boolean isReconnect) throws Exception {
-        int controlPort = -1;
-        int attempt = 0;
-
-        logNotice(getString(R.string.waiting_for_control_port));
-
-        while (conn == null && attempt++ < maxTries && (!mCurrentStatus.equals(STATUS_OFF))) {
-            try {
-                controlPort = getControlPort();
-                if (controlPort != -1) {
-                    logNotice(getString(R.string.connecting_to_control_port) + controlPort);
-                    break;
-                }
-
-            } catch (Exception ce) {
-                conn = null;
-                //    logException( "Error connecting to Tor local control port: " + ce.getMessage(),ce);
-            }
-
-            try {
-                //    logNotice("waiting...");
-                Thread.sleep(2000);
-            } catch (Exception e) {
-            }
-        }
-
-        if (controlPort != -1) {
-            Socket torConnSocket = new Socket(IP_LOCALHOST, controlPort);
-            torConnSocket.setSoTimeout(CONTROL_SOCKET_TIMEOUT);
-            conn = new TorControlConnection(torConnSocket);
-            conn.launchThread(true);//is daemon
-        }
-
+    private void initControlConnection() {
         if (conn != null) {
             logNotice("SUCCESS connected to Tor control port.");
-
-            File fileCookie = new File(appCacheHome, TOR_CONTROL_COOKIE);
-
-            if (fileCookie.exists()) {
-                logNotice("adding control port event handler");
-
-                conn.setEventHandler(mEventHandler);
-
-                logNotice("SUCCESS added control port event handler");
-                byte[] cookie = new byte[(int) fileCookie.length()];
-                DataInputStream fis = new DataInputStream(new FileInputStream(fileCookie));
-                fis.read(cookie);
-                fis.close();
-                conn.authenticate(cookie);
-
-                logNotice("SUCCESS - authenticated to control port.");
-
-                //       conn.setEvents(Arrays.asList(new String[]{"DEBUG","STATUS_CLIENT","STATUS_GENERAL","BW"}));
-
-                if (Prefs.useDebugLogging())
-                    conn.setEvents(Arrays.asList("CIRC", "STREAM", "ORCONN", "BW", "INFO", "NOTICE", "WARN", "DEBUG", "ERR", "NEWDESC", "ADDRMAP"));
-                else
-                    conn.setEvents(Arrays.asList("CIRC", "STREAM", "ORCONN", "BW", "NOTICE", "ERR", "NEWDESC", "ADDRMAP"));
-
-                //  sendCallbackLogMessage(getString(R.string.tor_process_starting) + ' ' + getString(R.string.tor_process_complete));
-
-                String torProcId = conn.getInfo("process/pid");
-
+            try {
                 String confSocks = conn.getInfo("net/listeners/socks");
                 StringTokenizer st = new StringTokenizer(confSocks, " ");
 
@@ -1081,76 +972,12 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 }
 
                 sendCallbackPorts(mPortSOCKS, mPortHTTP, mPortDns, mPortTrans);
-                setTorNetworkEnabled(true);
 
-                return Integer.parseInt(torProcId);
-
-            } else {
-                logNotice("Tor authentication cookie does not exist yet");
+            } catch (IOException e) {
+                e.printStackTrace();
+                stopTorOnError(e.getLocalizedMessage());
                 conn = null;
-
             }
-        }
-
-        throw new Exception("Tor control port could not be found");
-    }
-
-    private int getControlPort() {
-        int result = -1;
-
-        try {
-            if (fileControlPort.exists()) {
-                debug("Reading control port config file: " + fileControlPort.getCanonicalPath());
-                BufferedReader bufferedReader = new BufferedReader(new FileReader(fileControlPort));
-                String line = bufferedReader.readLine();
-
-                if (line != null) {
-                    String[] lineParts = line.split(":");
-                    result = Integer.parseInt(lineParts[1]);
-                }
-
-
-                bufferedReader.close();
-
-                //store last valid control port
-                SharedPreferences prefs = Prefs.getSharedPrefs(getApplicationContext());
-                prefs.edit().putInt("controlport", result).apply();
-            } else {
-                debug("Control Port config file does not yet exist (waiting for tor): " + fileControlPort.getCanonicalPath());
-            }
-        } catch (FileNotFoundException e) {
-            debug("unable to get control port; file not found");
-        } catch (Exception e) {
-            debug("unable to read control port config file");
-        }
-
-        return result;
-    }
-
-    public String getInfo(String key) {
-        try {
-            if (conn != null) {
-                return conn.getInfo(key);
-            }
-        } catch (Exception ioe) {
-            //    Log.e(TAG,"Unable to get Tor information",ioe);
-            logNotice("Unable to get Tor information" + ioe.getMessage());
-        }
-        return null;
-    }
-
-    public void setTorNetworkEnabled(final boolean isEnabled) throws IOException {
-        if (conn != null) { // it is possible to not have a connection yet, and someone might try to newnym
-            new Thread() {
-                public void run() {
-                    try {
-                        final String newValue = isEnabled ? "0" : "1";
-                        conn.setConf("DisableNetwork", newValue);
-                    } catch (Exception ioe) {
-                        debug("error requesting newnym: " + ioe.getLocalizedMessage());
-                    }
-                }
-            }.start();
         }
     }
 
@@ -1768,9 +1595,9 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                         mVpnManager.handleIntent(new Builder(), mIntent);
                 } else if (action.equals(ACTION_STATUS)) {
                     replyWithStatus(mIntent);
-                } else if (action.equals(CMD_SIGNAL_HUP)) {
+                } else if (action.equals(TorControlCommands.SIGNAL_RELOAD)) {
                     requestTorRereadConfig();
-                } else if (action.equals(CMD_NEWNYM)) {
+                } else if (action.equals(TorControlCommands.SIGNAL_NEWNYM)) {
                     newIdentity();
                 } else if (action.equals(CMD_ACTIVE)) {
                     sendSignalActive();
@@ -1786,7 +1613,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     private class ActionBroadcastReceiver extends BroadcastReceiver {
         public void onReceive(Context context, Intent intent) {
             switch (intent.getAction()) {
-                case CMD_NEWNYM: {
+                case TorControlCommands.SIGNAL_NEWNYM: {
                     newIdentity();
                     break;
                 }
