@@ -83,6 +83,7 @@ android {
             applicationId 'org.torproject.android'
             targetSdkVersion 29
             versionCode 1641300200
+            versionCode 1650100100
 
             versionName getVersionName()
             archivesBaseName = "Orbot-$versionName"
